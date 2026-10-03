@@ -3,117 +3,131 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Turns Out: one true thing a day</title>
-<meta name="description" content="Small daily games about the real world. One true thing a day, with its source.">
+<title>Your Call | Turns Out</title>
+<meta name="description" content="One real moment from history a day. Three choices. Make your call, then see what the real leader did and what happened next.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Turns Out">
-<meta property="og:title" content="Turns Out">
-<meta property="og:description" content="Small daily games about the real world. One true thing a day.">
-<meta property="og:image" content="assets/img/og.png">
+<meta property="og:title" content="Your Call">
+<meta property="og:description" content="A real moment from history and three choices. What did they actually do?">
+<meta property="og:image" content="../assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/turnsout.css">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/turnsout.css">
+<link rel="stylesheet" href="your-call.css">
 </head>
 <body>
 
-<svg class="defs" aria-hidden="true" focusable="false">
-  <symbol id="p" viewBox="0 0 20 22">
-    <circle cx="10" cy="5" r="4.4"/>
-    <path d="M2.2 22v-4.2a7.8 7.8 0 0 1 15.6 0V22z"/>
-  </symbol>
-</svg>
+<header class="bar">
+  <div class="bar-id">
+    <a class="wordmark" href="../">Turns Out</a>
+    <p class="meta"><b>Your Call</b> <span id="day-label"></span></p>
+  </div>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album">Streak 0</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
 
-<main class="wrap">
-  <header class="home-head">
-    <h1 class="home-title">Turns Out</h1>
-    <p class="home-line">One true thing a day.</p>
-  </header>
+<main class="wrap play" id="app">
+  <p class="notice" id="notice" hidden></p>
+  <p class="yc-year" id="year"></p>
+  <p class="yc-place" id="place"></p>
+  <h1 class="yc-pov" id="pov"></h1>
 
-  <a class="game-card" id="card-100" href="100-of-us/">
-    <h2>100 of Us</h2>
-    <p class="pitch">Of 100 people in the world, how many…? Press and hold, let go at your guess, see how it really is.</p>
-    <div class="mini" id="mini" aria-hidden="true"></div>
-    <p class="status" id="status-100" hidden></p>
-    <span class="go" id="go-100">Play today's question</span>
-  </a>
+  <section class="yc-panel" id="panel" aria-live="polite">
+    <div class="yc-choices" id="choices"></div>
+    <p class="yc-verdict" id="verdict" hidden></p>
+  </section>
 
-  <ul class="soon">
-    <li>
-      <span class="tag">Coming</span>
-      <h2>Your Call</h2>
-      <p>A real moment from history and three choices. What did they actually do?</p>
-    </li>
-    <li>
-      <span class="tag">Coming</span>
-      <h2>Same Street</h2>
-      <p>A photo of a family's home. Where does it stand on a street sorted by income?</p>
-    </li>
-    <li>
-      <span class="tag">Coming</span>
-      <h2>A fourth game</h2>
-      <p>A chart with its line missing. You draw it, then the real line appears.</p>
-    </li>
-  </ul>
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="lock" type="button" hidden>Lock in</button>
+  </div>
 
-  <p class="foot"><span data-privacy="short">No login. No tracking. Your results stay in your browser.</span> <button type="button" data-open="dlg-about">About and sources</button></p>
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="did"></p>
+    <p class="yc-h">What happened next</p>
+    <p class="sentence" id="next-text"></p>
+    <p class="source">Sources: <a id="src1" href="#" target="_blank" rel="noopener"></a>, <a id="src2" href="#" target="_blank" rel="noopener"></a></p>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button">Share</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice">Practice</button>
+    </div>
+
+    <div class="earned" id="earned" hidden>
+      <div class="stamp yc" id="earned-stamp"></div>
+      <p>This moment is now a stamp in your album.</p>
+    </div>
+    <p class="next" id="next"></p>
+  </section>
 </main>
 
-<dialog id="dlg-about" aria-labelledby="about-title">
+<dialog id="dlg-help" aria-labelledby="help-title">
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
-    <h2 id="about-title">About Turns Out</h2>
-    <p>Small games, once a day, the same for everyone. Each one leaves you with one true thing about the world, and shows where it comes from.</p>
-    <h3>Where the numbers come from</h3>
-    <p class="quiet">100 of Us uses the World Bank's open data (World Development Indicators), under the CC BY 4.0 licence. We round each figure to whole people. The World Bank does not endorse this site.</p>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>Read the moment. It really happened.</li>
+      <li>Tap the choice you would make, then tap Lock in.</li>
+      <li>See what the real leader did, and what happened next.</li>
+    </ol>
+    <p>There is no right or wrong choice here. The game only shows what was actually done.</p>
+    <p>One moment a day, the same for everyone. A new one arrives at midnight.</p>
+    <h3>Where the facts come from</h3>
+    <p class="quiet">Every moment is checked against two sources, linked under the answer. Events are at least twenty years old.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
-    <p class="quiet">Typeface: Jost, under the SIL Open Font License.</p>
   </div>
 </dialog>
 
-<script src="data/100-of-us.js"></script>
-<script src="assets/js/turnsout.js"></script>
-<script>
-(function () {
-  "use strict";
-  var TO = window.TurnsOut;
-  if (!TO) return;
-  TO.wireDialogs();
-  TO.fixLocalLinks();
-  var mini = document.getElementById("mini");
-  var figs = [];
-  for (var i = 0; i < 100; i++) { var f = TO.figure(); mini.appendChild(f); figs.push(f); }
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="album-title">Your album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span>days played</span></div>
+      <div class="stat"><b id="st-streak">0</b><span>streak now</span></div>
+      <div class="stat"><b id="st-best">0</b><span>best streak</span></div>
+      <div class="stat"><b id="st-same">0</b><span>same calls as the leader</span></div>
+    </div>
+    <p class="album-empty" id="album-empty">Make today's call to get your first stamp.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
 
-  var data = (window.TURNSOUT_DATA || {})["100-of-us"];
-  if (!data || !data.questions || !data.questions.length) return;
-  var today = Math.max(1, TO.dayNumber(data.start));
-  var q = data.questions[(today - 1) % data.questions.length];
-  document.getElementById("card-100").style.setProperty("--hue", TO.colour(q.colour));
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="practice-title">Practice</h2>
+    <p class="quiet">Earlier moments. They do not count for your streak or your album.</p>
+    <p class="quiet" id="practice-empty" hidden>No earlier moments yet. Come back tomorrow.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="./">Back to today's moment</a></div>
+  </div>
+</dialog>
 
-  var g = TO.game("100-of-us");
-  var r = g.results[today];
-  var status = document.getElementById("status-100");
-  var go = document.getElementById("go-100");
-  var streak = TO.streak(g.results, today).current;
-  if (r && typeof r.g === "number") {
-    var gap = Math.abs(r.g - r.a);
-    for (var n = 0; n < 100; n++) {
-      var real = n < r.a, said = n < r.g;
-      if (real && said) figs[n].classList.add("real");
-      else if (real !== said) figs[n].classList.add("missed");
-    }
-    status.innerHTML = "Day " + today + " is done. <b>" + (gap === 0 ? "Spot on." : "Off by " + gap + ".") + "</b>" +
-      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new question at midnight.";
-    status.hidden = false;
-    go.textContent = "See today's answer again";
-  } else {
-    go.textContent = "Play day " + today;
-    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
-  }
-})();
-</script>
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share your call</h2>
+    <p class="quiet">Send the link along with the picture, so friends can tap it.</p>
+    <img class="shot" id="share-img" alt="Your result as a picture. It does not show what the real leader did.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="your-call.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="puzzles.js"></script>
+<script src="../assets/js/turnsout.js"></script>
+<script src="your-call.js"></script>
 </body>
 </html>
