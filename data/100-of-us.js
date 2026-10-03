@@ -1,0 +1,166 @@
+/* 100 of Us: starter questions (where people live), from the World Bank's 2025 population figures.
+   Running r/make-100-of-us.R replaces this file with the full set. Do not edit by hand. */
+window.TURNSOUT_DATA = window.TURNSOUT_DATA || {};
+window.TURNSOUT_DATA["100-of-us"] = {
+  "start": "2026-10-03",
+  "starter": true,
+  "made": "2026-10-03",
+  "questions": [
+    {
+      "id": "live-india",
+      "q": "Of 100 people in the world, how many live in India?",
+      "answer": 18,
+      "exact": 17.8,
+      "stamp": "live in India",
+      "sentence": "No country has more people.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-high-income",
+      "q": "Of 100 people in the world, how many live in a high-income country?",
+      "answer": 17,
+      "exact": 17.3,
+      "stamp": "live in a high-income country",
+      "sentence": "High-income is the World Bank's richest group of countries.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-africa",
+      "q": "Of 100 people in the world, how many live in Africa?",
+      "answer": 19,
+      "exact": 18.8,
+      "stamp": "live in Africa",
+      "sentence": "That is the whole continent, from Morocco to South Africa.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-eu",
+      "q": "Of 100 people in the world, how many live in the European Union?",
+      "answer": 5,
+      "exact": 5.49,
+      "stamp": "live in the European Union",
+      "sentence": "That is all 27 member countries together.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-asia",
+      "q": "Of 100 people in the world, how many live in Asia?",
+      "answer": 59,
+      "exact": 58.7,
+      "stamp": "live in Asia",
+      "sentence": "More people live in Asia than on all the other continents together.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-india-china",
+      "q": "Of 100 people in the world, how many live in India or China?",
+      "answer": 35,
+      "exact": 34.9,
+      "stamp": "live in India or China",
+      "sentence": "More than one in three people live in just these two countries.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-americas",
+      "q": "Of 100 people in the world, how many live in the Americas?",
+      "answer": 13,
+      "exact": 12.8,
+      "stamp": "live in the Americas",
+      "sentence": "That is North, Central and South America, with the Caribbean.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-low-income",
+      "q": "Of 100 people in the world, how many live in a low-income country?",
+      "answer": 9,
+      "exact": 9.3,
+      "stamp": "live in a low-income country",
+      "sentence": "Low-income is the World Bank's poorest group of countries.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-europe",
+      "q": "Of 100 people in the world, how many live in Europe?",
+      "answer": 9,
+      "exact": 9.1,
+      "stamp": "live in Europe",
+      "sentence": "Russia is counted as part of Europe here.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-china",
+      "q": "Of 100 people in the world, how many live in China?",
+      "answer": 17,
+      "exact": 17.1,
+      "stamp": "live in China",
+      "sentence": "Only India has more people.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-middle-income",
+      "q": "Of 100 people in the world, how many live in a middle-income country?",
+      "answer": 73,
+      "exact": 73.3,
+      "stamp": "live in a middle-income country",
+      "sentence": "Most people live in countries that are neither rich nor poor.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    {
+      "id": "live-ten-biggest",
+      "q": "Of 100 people in the world, how many live in the ten countries with the most people?",
+      "answer": 57,
+      "exact": 56.7,
+      "stamp": "live in the ten biggest countries",
+      "sentence": "The other 43 are spread over more than 200 countries and territories.",
+      "colour": "blue",
+      "source": "World Bank",
+      "year": 2025,
+      "licence": "CC BY-4.0",
+      "link": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    }
+  ]
+};

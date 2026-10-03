@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Turns Out: one true thing a day</title>
+<meta name="description" content="Small daily games about the real world. One true thing a day, with its source.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Turns Out">
+<meta property="og:title" content="Turns Out">
+<meta property="og:description" content="Small daily games about the real world. One true thing a day.">
+<meta property="og:image" content="assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/turnsout.css">
+</head>
+<body>
+
+<svg class="defs" aria-hidden="true" focusable="false">
+  <symbol id="p" viewBox="0 0 20 22">
+    <circle cx="10" cy="5" r="4.4"/>
+    <path d="M2.2 22v-4.2a7.8 7.8 0 0 1 15.6 0V22z"/>
+  </symbol>
+</svg>
+
+<main class="wrap">
+  <header class="home-head">
+    <h1 class="home-title">Turns Out</h1>
+    <p class="home-line">One true thing a day.</p>
+  </header>
+
+  <a class="game-card" id="card-100" href="100-of-us/">
+    <h2>100 of Us</h2>
+    <p class="pitch">Of 100 people in the world, how many…? Press and hold, let go at your guess, see how it really is.</p>
+    <div class="mini" id="mini" aria-hidden="true"></div>
+    <p class="status" id="status-100" hidden></p>
+    <span class="go" id="go-100">Play today's question</span>
+  </a>
+
+  <ul class="soon">
+    <li>
+      <span class="tag">Coming</span>
+      <h2>Your Call</h2>
+      <p>A real moment from history and three choices. What did they actually do?</p>
+    </li>
+    <li>
+      <span class="tag">Coming</span>
+      <h2>Same Street</h2>
+      <p>A photo of a family's home. Where does it stand on a street sorted by income?</p>
+    </li>
+    <li>
+      <span class="tag">Coming</span>
+      <h2>A fourth game</h2>
+      <p>A chart with its line missing. You draw it, then the real line appears.</p>
+    </li>
+  </ul>
+
+  <p class="foot"><span data-privacy="short">No login. No tracking. Your results stay in your browser.</span> <button type="button" data-open="dlg-about">About and sources</button></p>
+</main>
+
+<dialog id="dlg-about" aria-labelledby="about-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="about-title">About Turns Out</h2>
+    <p>Small games, once a day, the same for everyone. Each one leaves you with one true thing about the world, and shows where it comes from.</p>
+    <h3>Where the numbers come from</h3>
+    <p class="quiet">100 of Us uses the World Bank's open data (World Development Indicators), under the CC BY 4.0 licence. We round each figure to whole people. The World Bank does not endorse this site.</p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
+    <p class="quiet">Typeface: Jost, under the SIL Open Font License.</p>
+  </div>
+</dialog>
+
+<script src="data/100-of-us.js"></script>
+<script src="assets/js/turnsout.js"></script>
+<script>
+(function () {
+  "use strict";
+  var TO = window.TurnsOut;
+  if (!TO) return;
+  TO.wireDialogs();
+  TO.fixLocalLinks();
+  var mini = document.getElementById("mini");
+  var figs = [];
+  for (var i = 0; i < 100; i++) { var f = TO.figure(); mini.appendChild(f); figs.push(f); }
+
+  var data = (window.TURNSOUT_DATA || {})["100-of-us"];
+  if (!data || !data.questions || !data.questions.length) return;
+  var today = Math.max(1, TO.dayNumber(data.start));
+  var q = data.questions[(today - 1) % data.questions.length];
+  document.getElementById("card-100").style.setProperty("--hue", TO.colour(q.colour));
+
+  var g = TO.game("100-of-us");
+  var r = g.results[today];
+  var status = document.getElementById("status-100");
+  var go = document.getElementById("go-100");
+  var streak = TO.streak(g.results, today).current;
+  if (r && typeof r.g === "number") {
+    var gap = Math.abs(r.g - r.a);
+    for (var n = 0; n < 100; n++) {
+      var real = n < r.a, said = n < r.g;
+      if (real && said) figs[n].classList.add("real");
+      else if (real !== said) figs[n].classList.add("missed");
+    }
+    status.innerHTML = "Day " + today + " is done. <b>" + (gap === 0 ? "Spot on." : "Off by " + gap + ".") + "</b>" +
+      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new question at midnight.";
+    status.hidden = false;
+    go.textContent = "See today's answer again";
+  } else {
+    go.textContent = "Play day " + today;
+    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
+  }
+})();
+</script>
+</body>
+</html>
