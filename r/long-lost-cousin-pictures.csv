@@ -1,0 +1,168 @@
+key,name,phylopic_image,taxon,artist,licence
+hippo,"Hippo",https://www.phylopic.org/images/bab03f09-73ba-45ea-8534-ea176c82a1a0,"Hippopotamus amphibius","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+pig,"Pig",https://www.phylopic.org/images/3d8acaf6-4355-491e-8e86-4a411b53b98b,"Sus scrofa","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+whale,"Whale",https://www.phylopic.org/images/6ca9f0b7-cacb-45cc-9229-1b672d55b15b,"Balaenoptera musculus","T. Michael Keesey",https://creativecommons.org/publicdomain/mark/1.0/
+rhino,"Rhino",https://www.phylopic.org/images/55b24c01-3552-4c09-a485-087e4d2c4889,"Ceratotherium simum","Christophe Mallet",https://creativecommons.org/publicdomain/zero/1.0/
+trex,"T. rex",https://www.phylopic.org/images/6a38b924-85c4-46b6-a04a-0e53f2f4d77f,"Tyrannosaurus rex","Manuel Brea Lueiro",https://creativecommons.org/publicdomain/zero/1.0/
+komodo,"Komodo dragon",https://www.phylopic.org/images/ce6a78bc-3ef1-4d60-ab40-113eb84c7802,"Varanus komodoensis","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+chicken,"Chicken",https://www.phylopic.org/images/2de1c95c-7e1f-429b-9c08-17f0a27d176f,"Gallus gallus domesticus","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+crocodile,"Crocodile",https://www.phylopic.org/images/1746c09a-b19d-4c86-bd05-184868caacbe,"Crocodylus niloticus","Photograph by Caleb M. Gordon of YPM.HERR.008198, a fluid-preserved C. niloticus juvenile specimen at the Yale Peabody Museum.",https://creativecommons.org/licenses/by/4.0/
+termite,"Termite",https://www.phylopic.org/images/c44be6d9-6398-4753-84db-9609760fd37c,"Mastotermes darwiniensis","T. Michael Keesey",https://creativecommons.org/publicdomain/mark/1.0/
+ant,"Ant",https://www.phylopic.org/images/efecbd35-8143-40a7-9163-ea3120caa15b,"Formica rufa","Encyclopædia Britannica",https://creativecommons.org/publicdomain/mark/1.0/
+wasp,"Wasp",https://www.phylopic.org/images/ddfa0a49-bb7b-4bfd-8dd7-10529861553e,"Vespa crabro","J Merondun",https://creativecommons.org/publicdomain/zero/1.0/
+cockroach,"Cockroach",https://www.phylopic.org/images/b2e26249-80be-441b-8648-4c0361892ee0,"Blattella germanica","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+hyena,"Hyena",https://www.phylopic.org/images/145ab8b1-95ec-473d-b6e7-1b1b41a868e4,"Crocuta crocuta","Caleb M. Gordon",https://creativecommons.org/publicdomain/zero/1.0/
+cat,"Cat",https://www.phylopic.org/images/81e1f778-d176-47ba-a0c4-01f54e1157a9,"Felis lybica catus","Mozillian",https://creativecommons.org/publicdomain/zero/1.0/
+dog,"Dog",https://www.phylopic.org/images/6f3ebbc6-be53-4216-b45b-946f7984669b,"Canis familiaris familiaris","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+bear,"Bear",https://www.phylopic.org/images/0cd82109-bb1c-4e08-ab11-c845d8a82eba,"Ursus arctos horribilis","xgirouxb",https://creativecommons.org/publicdomain/mark/1.0/
+shark,"Shark",https://www.phylopic.org/images/545d45f0-0dd1-4cfd-aad6-2b835223ea0d,"Carcharodon carcharias","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+dolphin,"Dolphin",https://www.phylopic.org/images/4ac248c2-da47-4c20-ad5a-30c45dc38fa0,"Tursiops truncatus","Amy Beauvois",https://creativecommons.org/publicdomain/zero/1.0/
+tuna,"Tuna",https://www.phylopic.org/images/16989401-0080-4502-828d-e85a45a262be,"Thunnus thynnus","Stuart Humphries",https://creativecommons.org/publicdomain/zero/1.0/
+ray,"Ray",https://www.phylopic.org/images/0c459848-4b59-46ce-b5aa-ff0aa265c07f,"Mobula birostris","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+flamingo,"Flamingo",https://www.phylopic.org/images/a1244226-f2c2-41dc-b113-f1c6545958ce,"Phoenicopterus roseus","Ferran Sayol",https://creativecommons.org/publicdomain/zero/1.0/
+heron,"Heron",https://www.phylopic.org/images/c91c655d-a2d6-485d-8702-b3143e1eaf81,"Ardea cinerea","Nina Skinner",https://creativecommons.org/licenses/by/3.0/
+grebe,"Grebe",https://www.phylopic.org/images/926d7e08-a609-4321-9791-8d52c77702c0,"Podilymbus podiceps","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+stork,"Stork",https://www.phylopic.org/images/7b0a6f36-ffe9-45b7-a095-a5f7a09b9104,"Ciconia ciconia","Bruno Maggia",https://creativecommons.org/publicdomain/zero/1.0/
+red_panda,"Red panda",https://www.phylopic.org/images/02990f6d-82d3-45a9-b85e-99deb69d2a96,"Ailurus fulgens","Xavier A. Jenkins",https://creativecommons.org/publicdomain/zero/1.0/
+raccoon,"Raccoon",https://www.phylopic.org/images/52193065-f85e-4e4d-a677-11d08aed8c2e,"Procyon lotor","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+giant_panda,"Giant panda",https://www.phylopic.org/images/887ea34b-b62a-4126-9e98-434d6000dd0c,"Ailuropoda melanoleuca","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+mushroom,"Mushroom",https://www.phylopic.org/images/c511abe7-208f-4d69-b18b-9f7aa521abed,"Amanita muscaria","Wouter Koch",https://creativecommons.org/publicdomain/zero/1.0/
+human,"Human",https://www.phylopic.org/images/,"Homo sapiens","Turns Out",drawn for Turns Out (the figure of 100 of Us)
+moss,"Moss",https://www.phylopic.org/images/83121b9f-b916-4770-b226-87c082532647,"Sphagnum","Jan Vigués Jorba",https://creativecommons.org/publicdomain/zero/1.0/
+oak,"Oak tree",https://www.phylopic.org/images/43afe2df-ab6c-47e6-a105-c0a82b8af1c5,"Quercus robur","Carlo De Rito",https://creativecommons.org/publicdomain/zero/1.0/
+bat,"Bat",https://www.phylopic.org/images/21180755-3394-40bf-93eb-810954c0f7ba,"Desmodus rotundus","Roberto Díaz Sibaja",https://creativecommons.org/licenses/by/3.0/
+monkey,"Monkey",https://www.phylopic.org/images/4e9c5666-79cc-4766-a7d3-d547514b0d77,"Macaca mulatta","Matthew Schmitz",https://creativecommons.org/publicdomain/zero/1.0/
+horse,"Horse",https://www.phylopic.org/images/26d41545-17ea-4be5-8296-05d6ffd05360,"Equus ferus caballus","An Ignorant Atheist",https://creativecommons.org/publicdomain/zero/1.0/
+mouse,"Mouse",https://www.phylopic.org/images/92989e35-4e68-4a2d-b3a2-191ba9da671a,"Mus musculus","Daniel Jaron",https://creativecommons.org/publicdomain/zero/1.0/
+turtle,"Turtle",https://www.phylopic.org/images/09e1c81c-459f-4b44-b475-546380fa1998,"Chelonia mydas","Edwin Price",https://creativecommons.org/publicdomain/zero/1.0/
+lizard,"Lizard",https://www.phylopic.org/images/18af6753-2f5b-49d2-a28d-4cc1b7deaf6f,"Lacerta agilis","Gustav Mützel",https://creativecommons.org/publicdomain/mark/1.0/
+frog,"Frog",https://www.phylopic.org/images/e73c5c1c-7727-4687-bf0b-3957343edfc3,"Rana temporaria","Beth Reinke",https://creativecommons.org/publicdomain/zero/1.0/
+horseshoe_crab,"Horseshoe crab",https://www.phylopic.org/images/05945d69-1921-42b1-a256-ce39d248a05d,"Limulus","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+lobster,"Lobster",https://www.phylopic.org/images/4256e839-f525-47a2-8bb8-fd56f2623cc3,"Homarus americanus","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+spider,"Spider",https://www.phylopic.org/images/2f7145fc-002c-40e8-9b35-16f95b05f0e3,"Araneus diadematus","Amy Beauvois",https://creativecommons.org/publicdomain/zero/1.0/
+crab,"Crab",https://www.phylopic.org/images/7197c71a-0653-4e82-bcbb-b156c150826a,"Callinectes sapidus","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+falcon,"Falcon",https://www.phylopic.org/images/1d5f26b6-4a9a-48ad-b799-a83eadb078ca,"Falco peregrinus peregrinus","Ferran Sayol",https://creativecommons.org/publicdomain/zero/1.0/
+eagle,"Eagle",https://www.phylopic.org/images/80064052-3255-4b19-9125-5a0c79dec5bf,"Haliaeetus leucocephalus","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+parrot,"Parrot",https://www.phylopic.org/images/07a8ddc3-6440-4ca8-80e6-ccdaa988a968,"Amazona aestiva","Ferran Sayol",https://creativecommons.org/publicdomain/zero/1.0/
+firefly,"Firefly",https://www.phylopic.org/images/c97833d5-a6d8-4170-ad5f-f7b6d2186bb6,"Photinus pyralis","Steven Haddock. Photo by Abbott Nature Photography",https://creativecommons.org/publicdomain/zero/1.0/
+dragonfly,"Dragonfly",https://www.phylopic.org/images/36543d34-f5d6-48a1-818f-eca72bfe1a19,"Aeshna mixta","Wouter Koch",https://creativecommons.org/publicdomain/zero/1.0/
+housefly,"Fly",https://www.phylopic.org/images/58eda733-f5dd-4a4d-8008-c85a333570b0,"Sophophora melanogaster","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+ladybird,"Ladybird",https://www.phylopic.org/images/87b5e182-6fcf-40c7-af75-af41a04ca5fd,"Coccinella","Amy Beauvois",https://creativecommons.org/publicdomain/zero/1.0/
+anteater,"Anteater",https://www.phylopic.org/images/d52b48fc-be52-46a1-94b7-ac7790b4730c,"Myrmecophaga tridactyla","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+echidna,"Echidna",https://www.phylopic.org/images/6885c062-5deb-4ebf-a481-752186819108,"Tachyglossus aculeatus","Becky Barnes",https://creativecommons.org/publicdomain/mark/1.0/
+sloth,"Sloth",https://www.phylopic.org/images/96f7ce4a-633b-42a8-961d-c7a12c8684ce,"Choloepus didactylus","Kai Caspar",https://creativecommons.org/licenses/by/4.0/
+pangolin,"Pangolin",https://www.phylopic.org/images/f628f6fe-6e2d-4173-a20f-265dc7d2d04f,"Manis culionensis","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+centipede,"Centipede",https://www.phylopic.org/images/83c995d5-0936-441b-8a27-089005086c61,"Lithobius forficatus","Birgit Lang; based on a drawing by C.L. Koch",https://creativecommons.org/publicdomain/zero/1.0/
+earthworm,"Earthworm",https://www.phylopic.org/images/f0d839a1-5a3e-42b2-828a-c5e536f0f7b7,"Lumbricus terrestris","Carlo De Rito",https://creativecommons.org/publicdomain/zero/1.0/
+millipede,"Millipede",https://www.phylopic.org/images/0950fc2a-77b5-481f-a9f8-44b98c6179e7,"Julida","Gemma Martínez-Redondo",https://creativecommons.org/publicdomain/zero/1.0/
+beetle,"Beetle",https://www.phylopic.org/images/46a593c0-4a20-428b-8a0f-ba61921b3146,"Lucanus cervus","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+aardvark,"Aardvark",https://www.phylopic.org/images/cfee2dca-3767-46b8-8d03-bd8f46e79e9e,"Orycteropus afer","Pearson Scott Foresman",https://creativecommons.org/publicdomain/mark/1.0/
+kangaroo,"Kangaroo",https://www.phylopic.org/images/624e3d80-cba2-4465-8f3a-c9ae4025198b,"Macropus giganteus","Michael Scroggie",https://creativecommons.org/publicdomain/zero/1.0/
+elephant,"Elephant",https://www.phylopic.org/images/62398ac0-f0c3-48f8-8455-53512a05fbc4,"Loxodonta africana africana","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+triceratops,"Triceratops",https://www.phylopic.org/images/0bb6e6b8-a60b-404d-8285-f29c67086fb0,"Triceratops horridus","Itai Fein",https://creativecommons.org/publicdomain/zero/1.0/
+seal,"Seal",https://www.phylopic.org/images/44ee07ec-f829-49f9-b242-f4b92bb9cf73,"Halichoerus grypus","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+manatee,"Manatee",https://www.phylopic.org/images/d88fc903-0deb-4b78-b2fd-7c15d206d3f9,"Trichechus senegalensis","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+octopus,"Octopus",https://www.phylopic.org/images/265c4dfd-f05e-4903-a805-9687ea47c774,"Octopodidae","Kurtis Wothe",https://creativecommons.org/publicdomain/zero/1.0/
+jellyfish,"Jellyfish",https://www.phylopic.org/images/6f25228d-34f6-4a84-b52d-ce03d3fcd152,"Chrysaora quinquecirrha","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+snail,"Snail",https://www.phylopic.org/images/d8f236a7-e36b-4313-9162-8f2dead31a8a,"Helix pomatia","Martin R. Smith, from photo by Jürgen Schoner",https://creativecommons.org/publicdomain/zero/1.0/
+starfish,"Starfish",https://www.phylopic.org/images/7e27ce06-1f4f-45d8-a359-dcba8fc54b9b,"Tethyaster subinermis","Birgit Lang",https://creativecommons.org/publicdomain/zero/1.0/
+penguin,"Penguin",https://www.phylopic.org/images/f2e02022-2700-484d-a66d-b2a900030371,"Aptenodytes forsteri","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+puffin,"Puffin",https://www.phylopic.org/images/18ff6244-3ec9-4750-a29a-aaad7e2f14ad,"Fratercula arctica","Ferran Sayol",https://creativecommons.org/publicdomain/zero/1.0/
+duck,"Duck",https://www.phylopic.org/images/1c044a03-f1ba-49fd-857e-f10aa8778e30,"Anas platyrhynchos","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+albatross,"Albatross",https://www.phylopic.org/images/d1e7e88d-20fb-4d4c-8a3e-b3417c392291,"Diomedea exulans","Alexandre Vong",https://creativecommons.org/publicdomain/zero/1.0/
+meerkat,"Meerkat",https://www.phylopic.org/images/3f51cce3-2a3e-4569-8a1e-500d33a43c23,"Suricata suricatta","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+weasel,"Weasel",https://www.phylopic.org/images/001f56ab-8383-4dfb-9673-67872280449e,"Mustela erminea","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+prairie_dog,"Prairie dog",https://www.phylopic.org/images/bdf9f7a6-b5b8-4012-8810-e0d698a1a7b0,"Cynomys ludovicianus","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+bee,"Bee",https://www.phylopic.org/images/b199a5f5-20c4-4cc9-9c54-1b51578c2487,"Apis mellifera","Mattia Menchetti",https://creativecommons.org/publicdomain/zero/1.0/
+beaver,"Beaver",https://www.phylopic.org/images/be8670c2-a5bd-4b44-88e8-92f8b0c7f4c6,"Castor canadensis","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+otter,"Otter",https://www.phylopic.org/images/0d07e899-5a02-4302-b20f-32aa8afdff7f,"Lontra canadensis","Caleb M. Gordon",https://creativecommons.org/publicdomain/zero/1.0/
+platypus,"Platypus",https://www.phylopic.org/images/162021b6-349b-4a64-906f-33d4a191b30e,"Ornithorhynchus anatinus","Rachel T Mason",https://creativecommons.org/publicdomain/zero/1.0/
+axolotl,"Axolotl",https://www.phylopic.org/images/99c89d19-488d-496a-9fb9-cf4f76da7297,"Ambystoma mexicanum","Chuanixn Yu",https://creativecommons.org/publicdomain/zero/1.0/
+eel,"Eel",https://www.phylopic.org/images/629e1135-d0c5-4f02-bb13-8cbf63e48692,"Anguilla rostrata","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+camel,"Camel",https://www.phylopic.org/images/93c5e5b0-6606-4e10-97e8-699156c57042,"Camelus dromedarius","Katy Lawler",https://creativecommons.org/publicdomain/zero/1.0/
+llama,"Llama",https://www.phylopic.org/images/aca9eeb8-21bc-4315-a351-17c1c1169801,"Lama glama","Mozillian",https://creativecommons.org/publicdomain/zero/1.0/
+cow,"Cow",https://www.phylopic.org/images/8a2d5863-cd6c-4158-a164-d62e789c2210,"Bos primigenius taurus","Mozillian",https://creativecommons.org/publicdomain/zero/1.0/
+seahorse,"Seahorse",https://www.phylopic.org/images/1ce0d9a9-c644-4cc6-b4b3-02e2e7aa2266,"Hippocampus","Kelly",https://creativecommons.org/publicdomain/mark/1.0/
+squid,"Squid",https://www.phylopic.org/images/fcc93095-df8d-45ca-b989-f7818a4540cc,"Doryteuthis pealeii","Nathan Hermann",https://creativecommons.org/publicdomain/zero/1.0/
+toucan,"Toucan",https://www.phylopic.org/images/fc6845fb-070a-45bc-a537-79154a054d99,"Ramphastos toco","Jun Mencius",https://creativecommons.org/publicdomain/zero/1.0/
+hornbill,"Hornbill",https://www.phylopic.org/images/220252f6-a950-4173-ab6c-8101f8cac81c,"Buceros bicornis","Vijay Karthick",https://creativecommons.org/publicdomain/mark/1.0/
+woodpecker,"Woodpecker",https://www.phylopic.org/images/ddd5783c-ded5-48f2-a07d-cc37c83b227b,"Dendrocopos major","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+porcupine,"Porcupine",https://www.phylopic.org/images/be839ae5-9c7c-42f2-a9a1-0326d70a3b82,"Erethizon dorsatum","T. Michael Keesey",https://creativecommons.org/publicdomain/zero/1.0/
+hedgehog,"Hedgehog",https://www.phylopic.org/images/6ecff71e-fcfc-4cb9-b773-9e6e21607587,"Erinaceus europaeus","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+guinea_pig,"Guinea pig",https://www.phylopic.org/images/c154232a-10f7-404e-a917-01ec87513c65,"Cavia porcellus","Mozillian",https://creativecommons.org/publicdomain/zero/1.0/
+mantis,"Praying mantis",https://www.phylopic.org/images/05cd564e-b3f4-45e1-95e6-5f4c14bad001,"Tenodera sinensis","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+grasshopper,"Grasshopper",https://www.phylopic.org/images/18336434-56d5-4f0c-857a-25654fe9925b,"Omocestus rufipes","Luis Mguel Bugallo Sánchez",https://creativecommons.org/licenses/by/4.0/
+narwhal,"Narwhal",https://www.phylopic.org/images/d2616332-2584-4504-a463-2bf6f9fc6412,"Monodon monoceros","Olesja Bogomaz",https://creativecommons.org/publicdomain/zero/1.0/
+walrus,"Walrus",https://www.phylopic.org/images/d2575005-1fcb-4a86-8c83-e3bda619adf2,"Odobenus rosmarus","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+marlin,"Marlin",https://www.phylopic.org/images/495d8372-dc7a-44b6-b8e4-3b462672d71f,"Kajikia audax","Felix Vaux",https://creativecommons.org/publicdomain/zero/1.0/
+beluga,"Beluga",https://www.phylopic.org/images/f1367ab1-40cf-4e9a-a84b-37508f11a7c7,"Delphinapterus leucas","Xavier Giroux-Bougard",https://creativecommons.org/publicdomain/mark/1.0/
+velociraptor,"Velociraptor",https://www.phylopic.org/images/8d1c194f-3bf7-4114-a32e-5b895167a017,"Velociraptor mongoliensis","Richard Rich",https://creativecommons.org/publicdomain/zero/1.0/
+orca,"Orca",https://www.phylopic.org/images/c8cbec13-a69c-40d8-836b-902a6b1defcf,"Orcinus orca","Olesja Bogomaz",https://creativecommons.org/publicdomain/zero/1.0/
+humpback,"Humpback whale",https://www.phylopic.org/images/fd8d3e5e-24a0-4aa2-9211-987ff86007dd,"Balaenoptera novaeangliae","T. Michael Keesey",https://creativecommons.org/publicdomain/mark/1.0/
+great_white,"Great white shark",https://www.phylopic.org/images/36d54b94-35a6-4a66-a41e-b8f28534e70c,"Carcharodon carcharias","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+flea,"Flea",https://www.phylopic.org/images/8537a53a-541a-47af-a1db-b97e8a4bc81d,"Pulex irritans","T. Michael Keesey",https://creativecommons.org/publicdomain/mark/1.0/
+tick,"Tick",https://www.phylopic.org/images/27e86f16-d3d8-4e6a-9fb6-13014f5153de,"Ixodes ricinus","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+louse,"Louse",https://www.phylopic.org/images/ef34e872-7ba3-4836-bbd3-844351d895c2,"Pediculus","Christoph Schomburg",https://creativecommons.org/publicdomain/zero/1.0/
+armadillo,"Armadillo",https://www.phylopic.org/images/5d59b5ce-c1dd-40f6-b295-8d2629b9775e,"Dasypus novemcinctus","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+barnacle,"Barnacle",https://www.phylopic.org/images/30d0e60d-4224-435d-8156-424e4248db47,"Lepas anatifera","Kurtis Wothe and Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+mussel,"Mussel",https://www.phylopic.org/images/0358436f-5cf0-4885-a7bd-77b1c5098d80,"Mytilus edulis","Katie S. Collins",https://creativecommons.org/publicdomain/zero/1.0/
+kiwi,"Kiwi",https://www.phylopic.org/images/ad7d0f80-889e-4dba-a89d-c864f2f48184,"Apteryx australis","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+elephant_bird,"Elephant bird",https://www.phylopic.org/images/fe387db8-6863-4898-be7c-4a6c001e186f,"Aepyornis maximus","Ferran Sayol",https://creativecommons.org/publicdomain/zero/1.0/
+ostrich,"Ostrich",https://www.phylopic.org/images/31789d9c-30e0-4f40-8c21-6f76cd5d339b,"Struthio camelus","Marie Attard",https://creativecommons.org/publicdomain/mark/1.0/
+moa,"Moa",https://www.phylopic.org/images/586029b0-e07e-49b3-8fd2-6be1d2a8921a,"Dinornis robustus","Ferran Sayol",https://creativecommons.org/publicdomain/zero/1.0/
+snake,"Snake",https://www.phylopic.org/images/a1cd1814-e0b4-409c-af18-8cb2f841569c,"Vipera berus","Beth Reinke",https://creativecommons.org/publicdomain/zero/1.0/
+iguana,"Iguana",https://www.phylopic.org/images/5dec03d9-66a2-4033-b1a9-6dbb3485199f,"Iguana iguana","Jack Mayer Wood",https://creativecommons.org/publicdomain/zero/1.0/
+deer,"Deer",https://www.phylopic.org/images/72f2f997-e474-4caf-bbd5-72fc8dbcc40d,"Cervus elaphus","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+scorpion,"Scorpion",https://www.phylopic.org/images/7742cd64-4c67-443c-942c-fdf1c2681adf,"Protoischnurus axelrodor","Dean Schnabel",https://creativecommons.org/publicdomain/zero/1.0/
+stegosaurus,"Stegosaurus",https://www.phylopic.org/images/429d71d8-2940-449b-838b-a5b7f1733eba,"Stegosaurus stenops","Olivia Binfield",https://creativecommons.org/publicdomain/zero/1.0/
+polar_bear,"Polar bear",https://www.phylopic.org/images/35fbff4d-c0e6-4c53-9f27-f0a6ecbe7720,"Ursus maritimus","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+sea_urchin,"Sea urchin",https://www.phylopic.org/images/e5da6b25-f72b-43b5-ba79-3b8b9933116f,"Prionocidaris baculosa","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+swallow,"Swallow",https://www.phylopic.org/images/26c55043-54c5-4d88-9478-1f2073fe5e71,"Hirundo rustica","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+sparrow,"Sparrow",https://www.phylopic.org/images/3a4cdd72-e553-40ad-838e-3b23037b2010,"Passer domesticus","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+swift,"Swift",https://www.phylopic.org/images/0ca96de2-83a1-4f3c-b20d-8b0df1dd6960,"Apus apus","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+tomato,"Tomato",https://www.phylopic.org/images/bf0ea5dd-e78d-44d5-aea7-85018f4bd71a,"Solanum lycopersicum","Twitter Emoji on Icon Scout",https://creativecommons.org/licenses/by/4.0/
+potato,"Potato",https://www.phylopic.org/images/63604565-0406-460b-8cb8-1abe954b3f3a,"Solanum tuberosum","T. Michael Keesey",https://creativecommons.org/publicdomain/mark/1.0/
+apple,"Apple",https://www.phylopic.org/images/d59b3e54-faa6-4c5c-9450-0c9d20db7cbd,"Malus pumila","T. Michael Keesey",https://creativecommons.org/publicdomain/mark/1.0/
+chili,"Chili pepper",https://www.phylopic.org/images/59bd3433-c087-473d-bb8a-795f11571635,"Capsicum annuum","T. Michael Keesey",https://creativecommons.org/publicdomain/mark/1.0/
+rabbit,"Rabbit",https://www.phylopic.org/images/ad7d2a9d-ef0d-46f2-895d-7c67bb8e6355,"Oryctolagus cuniculus","Ferran Sayol",https://creativecommons.org/publicdomain/zero/1.0/
+capybara,"Capybara",https://www.phylopic.org/images/9c234021-ce53-45d9-8fdd-b0ca3115a451,"Hydrochoerus hydrochaeris","Skye M",https://creativecommons.org/publicdomain/zero/1.0/
+sugar_glider,"Sugar glider",https://www.phylopic.org/images/59897ba2-ba90-40fc-9676-4b8e11ee3376,"Petaurus breviceps","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+koala,"Koala",https://www.phylopic.org/images/0904270e-b105-46e0-b81f-c4911d47d467,"Phascolarctos cinereus","Gavin Prideaux",https://creativecommons.org/publicdomain/zero/1.0/
+flying_squirrel,"Flying squirrel",https://www.phylopic.org/images/6997107a-287b-4c0f-956a-d527ba5e0868,"Pteromys volans","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+ichthyosaur,"Ichthyosaur",https://www.phylopic.org/images/8d7843dd-3f6d-476c-83ed-961610c4d1ef,"Ichthyosaurus communis","Jagged Fang Designs",https://creativecommons.org/publicdomain/zero/1.0/
+thylacine,"Tasmanian tiger",https://www.phylopic.org/images/47f44ce1-7847-4f52-a8fd-c27506f39d20,"Thylacinus cynocephalus","Joana Damas",https://creativecommons.org/publicdomain/mark/1.0/
+wolf,"Wolf",https://www.phylopic.org/images/11658f8c-e0c2-4612-85ef-bdc44acdae0b,"Canis (lupus)","Margot Michaud",https://creativecommons.org/publicdomain/zero/1.0/
+whale_shark,"Whale shark",https://www.phylopic.org/images/07a435aa-0db6-4054-8854-2db3010c8162,"Rhincodon typus","Christoph Schomburg",https://creativecommons.org/publicdomain/zero/1.0/
+crane,"Crane",https://www.phylopic.org/images/4ce73ae2-48e2-40ca-aeae-5c47d7adc047,"Antigone canadensis","Sharon Wegner-Larsen",https://creativecommons.org/publicdomain/zero/1.0/
+emu,"Emu",https://www.phylopic.org/images/df74d782-107b-45a1-92c1-31540217def1,"Dromaius novaehollandiae","Rachel T Mason",https://creativecommons.org/publicdomain/zero/1.0/
+tapir,"Tapir",https://www.phylopic.org/images/c2175a40-7930-481e-a436-ed28b7cd6b5a,"Tapirus terrestris","Lucas Damásio",https://creativecommons.org/publicdomain/mark/1.0/
+mammoth,"Mammoth",https://www.phylopic.org/images/f39f0aa9-97f1-4982-976c-07ffb78a4682,"Mammuthus primigenius","Kamil S. Jaron",https://creativecommons.org/publicdomain/zero/1.0/
+african_elephant,"African elephant",https://www.phylopic.org/images/62398ac0-f0c3-48f8-8455-53512a05fbc4,"Loxodonta africana africana","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+mastodon,"Mastodon",https://www.phylopic.org/images/7669386a-e936-4901-bb2a-74acf6b5d731,"Mammut americanum","artrociraptor",https://creativecommons.org/publicdomain/zero/1.0/
+asian_elephant,"Asian elephant",https://www.phylopic.org/images/6e47a104-e62a-4901-81f7-fca2ecacdb0e,"Elephas maximus","An Ignorant Atheist",https://creativecommons.org/publicdomain/zero/1.0/
+dimetrodon,"Dimetrodon",https://www.phylopic.org/images/ee7f1c8c-c98d-4611-aa4e-c112e86782e6,"Dimetrodon grandis","Scott Hartman",https://creativecommons.org/licenses/by/3.0/
+woodlouse,"Woodlouse",https://www.phylopic.org/images/cc116ca2-836f-41b2-995e-fe6e778e673a,"Armadillidium vulgare","Christoph Schomburg",https://creativecommons.org/publicdomain/zero/1.0/
+shrimp,"Shrimp",https://www.phylopic.org/images/4538167f-531f-4687-8316-beb95b9f848c,"Penaeus monodon","Polina Drozdova",https://creativecommons.org/publicdomain/zero/1.0/
+orangutan,"Orangutan",https://www.phylopic.org/images/2f701a27-2f0b-4a97-9caa-206251edfe90,"Pongo pygmaeus","Rowan Sherwood",https://creativecommons.org/publicdomain/zero/1.0/
+gorilla,"Gorilla",https://www.phylopic.org/images/dd10acd5-fef8-41b4-b7af-fd8f651cc8b3,"Gorilla gorilla","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+chimp,"Chimp",https://www.phylopic.org/images/7133ab33-cc79-4d7c-9656-48717359abb4,"Pan troglodytes","Jonathan Lawley",https://creativecommons.org/publicdomain/zero/1.0/
+lamprey,"Lamprey",https://www.phylopic.org/images/1e04eace-cee7-4fd1-ac33-bb34c5f24fb6,"Petromyzon marinus","Arcadia Science",https://creativecommons.org/publicdomain/zero/1.0/
+salmon,"Salmon",https://www.phylopic.org/images/f6c6590d-8aa1-4d08-a25f-e6c90727c071,"Salmo salar","Domino Joyce",https://creativecommons.org/publicdomain/zero/1.0/
+coot,"Coot",https://www.phylopic.org/images/e0b44015-bf6c-4277-9f23-3d8962a4d7f0,"Fulica americana","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+salamander,"Salamander",https://www.phylopic.org/images/0a948f02-6e35-42d5-a835-b9360f450d39,"Salamandra salamandra","Beth Reinke",https://creativecommons.org/publicdomain/zero/1.0/
+wombat,"Wombat",https://www.phylopic.org/images/ee5c20bd-f70e-44be-a5f4-675592eb2694,"Vombatus ursinus","Rachel T Mason",https://creativecommons.org/publicdomain/zero/1.0/
+butterfly,"Butterfly",https://www.phylopic.org/images/f21829d7-6dfc-4b2f-991c-e16181c24d29,"Papilio machaon","Mattia Menchetti",https://creativecommons.org/publicdomain/zero/1.0/
+moth,"Moth",https://www.phylopic.org/images/38601f77-7e38-4261-8fab-8379c9b2924c,"Bombyx mori","Gemma Martínez-Redondo",https://creativecommons.org/publicdomain/zero/1.0/
+zebra,"Zebra",https://www.phylopic.org/images/f7d817d0-d733-493d-bd4a-3f178e0760a8,"Equus quagga chapmani","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+sponge,"Sponge",https://www.phylopic.org/images/8b28733a-9eab-4510-9dcf-9235aaf44d14,"Amphimedon queenslandica","seung9park",https://creativecommons.org/publicdomain/zero/1.0/
+coral,"Coral",https://www.phylopic.org/images/f6a243aa-5cb1-41a2-a52c-c8d4c4300104,"Acropora florida","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/
+hummingbird,"Hummingbird",https://www.phylopic.org/images/618b6a9d-6aa6-4316-bf25-2a7a3f788e88,"Archilochus colubris","Andy Wilson",https://creativecommons.org/publicdomain/zero/1.0/
+hyrax,"Hyrax",https://www.phylopic.org/images/bae84fd8-937a-4390-b123-0a22bfcd7df7,"Dendrohyrax","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+slug,"Slug",https://www.phylopic.org/images/c48ec18b-0393-4931-82a6-7b5bf1402011,"Limax maximus","Caleb M. Gordon",https://creativecommons.org/publicdomain/zero/1.0/
+lungfish,"Lungfish",https://www.phylopic.org/images/3bfadee3-c4c5-408e-a1b8-e09bec80bc7f,"Neoceratodus forsteri","Roberto Díaz Sibaja",https://creativecommons.org/licenses/by/3.0/
+shrew,"Shrew",https://www.phylopic.org/images/822c549b-b29b-47eb-9fe3-dc5bbb0abccb,"Sorex araneus","Becky Barnes",https://creativecommons.org/publicdomain/zero/1.0/
+dodo,"Dodo",https://www.phylopic.org/images/01bbffec-312c-493a-bcd3-e9361ed3435d,"Raphus cucullatus","Steven Traver",https://creativecommons.org/publicdomain/zero/1.0/
+turkey,"Turkey",https://www.phylopic.org/images/3505388e-32ed-464d-816a-0bfca1b68934,"Meleagris gallopavo","Abby Weber",https://creativecommons.org/publicdomain/zero/1.0/
+pigeon,"Pigeon",https://www.phylopic.org/images/310b4994-af54-4d7b-93ac-27bbf80f7706,"Columba livia","Amy Beauvois",https://creativecommons.org/publicdomain/zero/1.0/
+pterodactyl,"Pterodactyl",https://www.phylopic.org/images/02651c35-768e-4570-9bad-90cac6911b52,"Pterodactylus antiquus","Gareth Monger",https://creativecommons.org/licenses/by/3.0/
+leech,"Leech",https://www.phylopic.org/images/f82af611-1d90-4f77-8163-f0ea74a04813,"Hirudo medicinalis","Guillaume Dera",https://creativecommons.org/publicdomain/zero/1.0/

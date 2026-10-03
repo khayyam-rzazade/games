@@ -397,6 +397,8 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
 .mini-street .row:last-child svg { transform-origin: 50% 0; }
 .mini-street svg.real { opacity: 1; transform: scale(2); }
 .mini-street svg.missed { opacity: 1; fill: var(--miss); transform: scale(2); }
+.mini-cousin { height: 5.6rem; margin-top: 18px; }
+.mini-cousin svg { display: block; width: 100%; height: 100%; fill: #fff; }
 .game-card .go {
   display: inline-flex;
   align-items: center;

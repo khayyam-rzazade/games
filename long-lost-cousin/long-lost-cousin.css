@@ -1,0 +1,155 @@
+/* Long Lost Cousin: styles that only this game needs. Everything shared lives in assets/css/turnsout.css. */
+:root { --lc-reserve: 27.5rem; }   /* height of everything on the play screen except the big picture */
+
+/* the name of this game is long: on narrow phones the day goes on a line of its own, and the chip keeps its shape */
+.bar-tools { flex-shrink: 0; }
+.chip { white-space: nowrap; }
+
+.lc-q {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 5vw, 1.45rem);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+/* ---------- a silhouette: one path, drawn in the colour of the text around it ---------- */
+.lc-pic { display: block; }
+.lc-pic svg { display: block; width: 100%; height: 100%; fill: currentColor; overflow: visible; }
+.lc-pic.missing { border: 2px dashed var(--idle); border-radius: 16px; }   /* the picture did not load: the name still tells */
+.lc-name { display: block; font-weight: 700; line-height: 1.1; }
+
+/* ---------- guessing: the subject on top, three candidates below ---------- */
+.lc-subject { text-align: center; }
+.lc-subject .lc-pic {
+  width: min(80%, 21rem);
+  height: clamp(5.5rem, calc(100vh - var(--lc-reserve)), 13rem);
+  height: clamp(5.5rem, calc(100dvh - var(--lc-reserve)), 13rem);
+  margin: 2px auto 0;
+}
+.lc-subject .lc-name { margin-top: 8px; font-size: 1.3rem; letter-spacing: -0.012em; }
+
+.lc-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+.lc-opt {
+  appearance: none;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  background: transparent;
+  color: inherit;
+  padding: 10px 6px 10px;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.lc-opt .lc-pic { width: 100%; height: clamp(3.2rem, 15vw, 4.6rem); }
+.lc-opt .lc-name {
+  font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+  text-align: center;
+  min-height: 2.2em;                 /* room for two lines, so the three cards stay level */
+  display: flex;
+  align-items: center;
+}
+.lc-opt[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.lc-opt:active { transform: scale(0.98); }
+
+.lc-readout { min-height: 2.7rem; margin-top: 8px; }
+.lc-readout .hint { max-width: none; }
+
+/* ---------- the family tree ---------- */
+.lc-leaves {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: end;
+}
+.lc-leaf {
+  min-width: 0;
+  padding: 0 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+.lc-tag {
+  visibility: hidden;
+  margin-bottom: 6px;
+  padding: 3px 8px 4px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+.lc-tree.done .lc-leaf.you .lc-tag { visibility: visible; }
+.lc-leaf.miss .lc-tag { background: var(--miss); color: #111; }
+.lc-leaf .lc-pic { width: 100%; height: clamp(3rem, 15vw, 4.6rem); }
+.lc-leaf .lc-name {
+  margin-top: 6px;
+  font-size: clamp(0.7rem, 3.1vw, 0.88rem);
+  min-height: 2.2em;                 /* two lines, so the branches below line up */
+}
+.lc-tree.done .lc-leaf.far { opacity: 0.5; }
+.lc-tree.done .lc-leaf.miss { opacity: 1; color: var(--miss); }
+
+.lc-wood { position: relative; }
+.lc-branches { display: block; width: 100%; height: auto; overflow: visible; }
+.lc-branches path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 0.3s ease;
+}
+.lc-tree.done .lc-branches path.far { opacity: 0.4; }
+.lc-branches circle { fill: currentColor; opacity: 0; transition: opacity 0.3s ease; }
+.lc-tree.done .lc-branches circle { opacity: 1; }
+.lc-when {
+  position: absolute;
+  left: 29%;
+  top: 33%;
+  max-width: 34%;
+  font-weight: 600;
+  font-size: clamp(0.72rem, 3.1vw, 0.86rem);
+  line-height: 1.12;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.lc-tree.done .lc-when { opacity: 1; }
+
+/* ---------- after the reveal ---------- */
+.lc-credit { margin-top: 4px; }
+.stamp.lc .lc-pic {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 9%;
+  height: 44%;
+}
+.stamp.lc .what { font-weight: 800; font-size: 1.02rem; letter-spacing: -0.01em; }
+.stamp.lc .of { order: 2; margin-top: 2px; }
+
+@media (max-width: 23.5rem) {
+  :root { --lc-reserve: 29rem; }     /* the top bar is one line taller here */
+}
+@media (min-width: 40rem) {
+  :root { --lc-reserve: 29.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lc-opt:active { transform: none; }
+  .lc-leaf, .lc-branches path, .lc-branches circle, .lc-when { transition: none; }
+}

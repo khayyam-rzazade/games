@@ -1,0 +1,204 @@
+key,label,names
+hippo,Hippo,Hippopotamus amphibius|Hippopotamidae
+whale,Whale,Balaenoptera musculus|Megaptera novaeangliae|Balaenoptera physalus|Balaenopteridae|Mysticeti
+pig,Pig,Sus scrofa|Sus scrofa domesticus|Suidae
+rhino,Rhino,Ceratotherium simum|Diceros bicornis|Rhinoceros unicornis|Rhinocerotidae
+elephant,Elephant,Loxodonta africana|Elephas maximus|Elephantidae
+manatee,Manatee,Trichechus manatus|Trichechus|Trichechidae|Sirenia
+hyrax,Hyrax,Procavia capensis|Procaviidae|Hyracoidea
+guinea_pig,Guinea pig,Cavia porcellus|Cavia aperea|Caviidae
+rabbit,Rabbit,Oryctolagus cuniculus|Sylvilagus floridanus|Leporidae
+hyena,Hyena,Crocuta crocuta|Hyaena hyaena|Hyaenidae
+cat,Cat,Felis catus|Felis silvestris|Felis silvestris catus
+dog,Dog,Canis lupus familiaris|Canis familiaris|Canis lupus
+bear,Bear,Ursus arctos|Ursus americanus|Ursidae
+red_panda,Red panda,Ailurus fulgens|Ailuridae
+raccoon,Raccoon,Procyon lotor|Procyonidae
+giant_panda,Giant panda,Ailuropoda melanoleuca
+polar_bear,Polar bear,Ursus maritimus
+koala,Koala,Phascolarctos cinereus|Phascolarctidae
+wombat,Wombat,Vombatus ursinus|Lasiorhinus latifrons|Vombatidae
+kangaroo,Kangaroo,Macropus giganteus|Osphranter rufus|Macropus rufus|Macropodidae
+dolphin,Dolphin,Tursiops truncatus|Delphinus delphis|Delphinidae
+cow,Cow,Bos taurus|Bos primigenius|Bos primigenius taurus
+seal,Seal,Phoca vitulina|Halichoerus grypus|Phocidae
+sea_lion,Sea lion,Zalophus californianus|Otariidae
+bat,Bat,Myotis lucifugus|Pipistrellus pipistrellus|Desmodus rotundus|Pteropus vampyrus|Chiroptera
+horse,Horse,Equus ferus caballus|Equus caballus|Equus ferus
+mouse,Mouse,Mus musculus|Apodemus sylvaticus|Muridae
+monkey,Monkey,Macaca mulatta|Macaca fascicularis|Cercopithecus|Cercopithecidae
+human,Human,Homo sapiens|Homo sapiens sapiens
+chimp,Chimp,Pan troglodytes|Pan paniscus
+gorilla,Gorilla,Gorilla gorilla|Gorilla beringei
+orangutan,Orangutan,Pongo pygmaeus|Pongo abelii
+shrew,Shrew,Sorex araneus|Sorex cinereus|Crocidura russula|Soricidae
+hedgehog,Hedgehog,Erinaceus europaeus|Atelerix albiventris|Erinaceidae
+thylacine,Tasmanian tiger,Thylacinus cynocephalus|Thylacinidae
+wolf,Wolf,Canis lupus|Canis lupus lupus
+tiger,Tiger,Panthera tigris|Panthera leo|Panthera
+sugar_glider,Sugar glider,Petaurus breviceps|Petauridae
+flying_squirrel,Flying squirrel,Glaucomys volans|Glaucomys sabrinus|Pteromys volans|Pteromyini
+armadillo,Armadillo,Dasypus novemcinctus|Dasypodidae|Cingulata
+sloth,Sloth,Bradypus variegatus|Bradypus tridactylus|Choloepus hoffmanni|Choloepus didactylus|Folivora
+pangolin,Pangolin,Manis pentadactyla|Manis javanica|Smutsia gigantea|Manidae|Pholidota
+anteater,Anteater,Myrmecophaga tridactyla|Tamandua tetradactyla|Myrmecophagidae
+echidna,Echidna,Tachyglossus aculeatus|Zaglossus bruijni|Tachyglossidae
+aardvark,Aardvark,Orycteropus afer|Orycteropodidae
+platypus,Platypus,Ornithorhynchus anatinus
+porcupine,Porcupine,Hystrix cristata|Erethizon dorsatum|Hystricidae
+camel,Camel,Camelus dromedarius|Camelus bactrianus|Camelus ferus
+llama,Llama,Lama glama|Vicugna pacos|Lama guanicoe
+giraffe,Giraffe,Giraffa camelopardalis|Giraffa
+okapi,Okapi,Okapia johnstoni
+zebra,Zebra,Equus quagga|Equus zebra|Equus grevyi|Equus burchellii
+otter,Otter,Lutra lutra|Lontra canadensis|Enhydra lutris|Lutrinae
+weasel,Weasel,Mustela nivalis|Mustela erminea|Mustela putorius|Mustelidae
+beaver,Beaver,Castor canadensis|Castor fiber|Castoridae
+squirrel,Squirrel,Sciurus vulgaris|Sciurus carolinensis|Sciuridae
+meerkat,Meerkat,Suricata suricatta|Herpestidae
+prairie_dog,Prairie dog,Cynomys ludovicianus|Cynomys gunnisoni|Marmota marmota|Marmota monax
+capybara,Capybara,Hydrochoerus hydrochaeris|Hydrochoerus
+hamster,Hamster,Mesocricetus auratus|Cricetus cricetus|Cricetinae
+narwhal,Narwhal,Monodon monoceros
+beluga,Beluga,Delphinapterus leucas
+walrus,Walrus,Odobenus rosmarus
+swordfish,Swordfish,Xiphias gladius|Istiophorus platypterus|Istiophoridae
+orca,Orca,Orcinus orca
+humpback,Humpback whale,Megaptera novaeangliae
+mammoth,Mammoth,Mammuthus primigenius|Mammuthus columbi|Mammuthus
+asian_elephant,Asian elephant,Elephas maximus
+african_elephant,African elephant,Loxodonta africana|Loxodonta cyclotis
+mastodon,Mastodon,Mammut americanum|Mammut|Mammutidae
+tapir,Tapir,Tapirus terrestris|Tapirus indicus|Tapirus bairdii|Tapiridae
+deer,Deer,Cervus elaphus|Odocoileus virginianus|Capreolus capreolus|Cervidae
+falcon,Falcon,Falco peregrinus|Falco tinnunculus|Falconidae
+parrot,Parrot,Ara macao|Psittacus erithacus|Amazona aestiva|Melopsittacus undulatus|Psittaciformes
+eagle,Eagle,Haliaeetus leucocephalus|Aquila chrysaetos|Accipitridae
+heron,Heron,Ardea cinerea|Ardea herodias|Ardea alba|Ardeidae
+flamingo,Flamingo,Phoenicopterus roseus|Phoenicopterus ruber|Phoenicopteridae
+grebe,Grebe,Podiceps cristatus|Podilymbus podiceps|Podicipedidae
+stork,Stork,Ciconia ciconia|Ciconia nigra|Ciconiidae
+penguin,Penguin,Aptenodytes forsteri|Aptenodytes patagonicus|Pygoscelis adeliae|Spheniscidae
+albatross,Albatross,Diomedea exulans|Phoebastria|Thalassarche melanophris|Diomedeidae
+puffin,Puffin,Fratercula arctica|Alca torda|Alcidae
+swift,Swift,Apus apus|Chaetura pelagica|Apodidae
+hummingbird,Hummingbird,Archilochus colubris|Calypte anna|Trochilidae
+swallow,Swallow,Hirundo rustica|Delichon urbicum|Hirundinidae
+kiwi,Kiwi,Apteryx australis|Apteryx mantelli|Apteryx owenii|Apterygidae
+elephant_bird,Elephant bird,Aepyornis maximus|Aepyornis|Aepyornithidae
+moa,Moa,Dinornis robustus|Dinornis novaezealandiae|Dinornis|Dinornithiformes
+ostrich,Ostrich,Struthio camelus
+emu,Emu,Dromaius novaehollandiae|Casuarius casuarius
+chicken,Chicken,Gallus gallus domesticus|Gallus gallus
+coot,Coot,Fulica atra|Fulica americana|Gallinula chloropus|Rallidae
+dodo,Dodo,Raphus cucullatus
+pigeon,Pigeon,Columba livia|Columba palumbus|Columbidae
+turkey,Turkey,Meleagris gallopavo
+toucan,Toucan,Ramphastos toco|Ramphastos sulfuratus|Ramphastidae
+woodpecker,Woodpecker,Dendrocopos major|Picus viridis|Dryocopus martius|Picidae
+hornbill,Hornbill,Buceros bicornis|Buceros rhinoceros|Bucerotidae
+crane,Crane,Grus grus|Grus canadensis|Gruidae
+duck,Duck,Anas platyrhynchos|Anatidae
+sparrow,Sparrow,Passer domesticus|Passeridae
+gull,Gull,Larus argentatus|Larus|Laridae
+trex,T. rex,Tyrannosaurus rex|Tyrannosaurus
+crocodile,Crocodile,Crocodylus niloticus|Crocodylus porosus|Alligator mississippiensis|Crocodylidae
+komodo,Komodo dragon,Varanus komodoensis|Varanus
+lizard,Lizard,Lacerta agilis|Podarcis muralis|Anolis carolinensis|Lacertidae
+turtle,Turtle,Chelonia mydas|Caretta caretta|Testudo graeca|Testudines
+frog,Frog,Rana temporaria|Lithobates catesbeianus|Pelophylax|Ranidae|Anura
+salamander,Salamander,Salamandra salamandra|Salamandridae|Caudata
+axolotl,Axolotl,Ambystoma mexicanum|Ambystoma
+snake,Snake,Naja naja|Vipera berus|Python regius|Python molurus|Serpentes
+iguana,Iguana,Iguana iguana|Iguanidae
+pterodactyl,Pterodactyl,Pterodactylus antiquus|Pterodactylus|Pteranodon longiceps|Pteranodon
+ichthyosaur,Ichthyosaur,Ichthyosaurus communis|Ichthyosaurus|Stenopterygius quadriscissus|Ophthalmosaurus icenicus|Ichthyosauria
+dimetrodon,Dimetrodon,Dimetrodon grandis|Dimetrodon limbatus|Dimetrodon
+triceratops,Triceratops,Triceratops horridus|Triceratops
+stegosaurus,Stegosaurus,Stegosaurus stenops|Stegosaurus
+velociraptor,Velociraptor,Velociraptor mongoliensis|Velociraptor
+shark,Shark,Carcharodon carcharias|Carcharhinus leucas|Prionace glauca|Lamnidae
+great_white,Great white shark,Carcharodon carcharias
+whale_shark,Whale shark,Rhincodon typus
+ray,Ray,Mobula birostris|Manta birostris|Raja clavata|Dasyatis pastinaca|Batoidea
+tuna,Tuna,Thunnus thynnus|Thunnus albacares|Thunnus
+salmon,Salmon,Salmo salar|Oncorhynchus mykiss|Salmonidae
+goldfish,Goldfish,Carassius auratus|Cyprinus carpio
+eel,Eel,Anguilla anguilla|Anguilla rostrata|Anguillidae
+lamprey,Lamprey,Petromyzon marinus|Lampetra fluviatilis|Petromyzontidae
+lungfish,Lungfish,Neoceratodus forsteri|Protopterus annectens|Lepidosiren paradoxa|Dipnoi
+seahorse,Seahorse,Hippocampus hippocampus|Hippocampus kuda|Hippocampus
+flounder,Flounder,Platichthys flesus|Pleuronectes platessa|Pleuronectidae
+starfish,Starfish,Asterias rubens|Asterias|Asteroidea
+sea_urchin,Sea urchin,Strongylocentrotus purpuratus|Paracentrotus lividus|Echinoidea
+sea_cucumber,Sea cucumber,Holothuria|Apostichopus japonicus|Holothuroidea
+jellyfish,Jellyfish,Aurelia aurita|Chrysaora|Scyphozoa
+coral,Coral,Acropora|Acropora millepora|Scleractinia|Anthozoa
+sponge,Sponge,Spongia officinalis|Amphimedon queenslandica|Demospongiae|Porifera
+octopus,Octopus,Octopus vulgaris|Octopus bimaculoides|Octopodidae
+squid,Squid,Loligo vulgaris|Doryteuthis pealeii|Architeuthis dux|Loliginidae
+snail,Snail,Helix pomatia|Cornu aspersum|Cepaea nemoralis|Helicidae
+slug,Slug,Arion ater|Limax maximus|Arion|Arionidae
+mussel,Mussel,Mytilus edulis|Mytilus galloprovincialis|Mytilidae
+crab,Crab,Cancer pagurus|Callinectes sapidus|Carcinus maenas|Brachyura
+lobster,Lobster,Homarus americanus|Homarus gammarus|Nephropidae
+shrimp,Shrimp,Litopenaeus vannamei|Penaeus monodon|Crangon crangon|Palaemon serratus|Caridea
+horseshoe_crab,Horseshoe crab,Limulus polyphemus|Limulidae
+barnacle,Barnacle,Semibalanus balanoides|Balanus|Lepas anatifera|Cirripedia
+spider,Spider,Araneus diadematus|Latrodectus|Lycosidae|Araneae
+scorpion,Scorpion,Pandinus imperator|Androctonus australis|Centruroides|Scorpiones
+tick,Tick,Ixodes scapularis|Ixodes ricinus|Ixodidae|Ixodida
+butterfly,Butterfly,Papilio machaon|Danaus plexippus|Vanessa atalanta|Papilionidae
+moth,Moth,Bombyx mori|Actias luna|Manduca sexta|Saturniidae
+dragonfly,Dragonfly,Anax imperator|Libellula depressa|Anisoptera|Odonata
+bee,Bee,Apis mellifera|Bombus terrestris|Apidae
+wasp,Wasp,Vespula vulgaris|Vespa crabro|Polistes dominula|Vespidae
+ant,Ant,Formica rufa|Camponotus|Lasius niger|Formicidae
+termite,Termite,Reticulitermes flavipes|Zootermopsis|Mastotermes darwiniensis|Macrotermes|Isoptera|Termitoidae
+cockroach,Cockroach,Periplaneta americana|Blattella germanica|Blatta orientalis|Blattodea
+mantis,Praying mantis,Mantis religiosa|Mantidae|Mantodea
+grasshopper,Grasshopper,Locusta migratoria|Schistocerca gregaria|Acrididae
+firefly,Firefly,Photinus pyralis|Lampyris noctiluca|Lampyridae
+ladybird,Ladybird,Coccinella septempunctata|Harmonia axyridis|Coccinellidae
+beetle,Beetle,Lucanus cervus|Dynastes hercules|Scarabaeidae|Coleoptera
+housefly,Fly,Musca domestica|Drosophila melanogaster|Calliphora vicina|Muscidae
+flea,Flea,Pulex irritans|Ctenocephalides felis|Siphonaptera
+louse,Louse,Pediculus humanus|Pediculus humanus capitis|Phthiraptera
+woodlouse,Woodlouse,Armadillidium vulgare|Porcellio scaber|Oniscus asellus|Oniscidea|Isopoda
+millipede,Millipede,Narceus americanus|Julus|Julida|Diplopoda
+centipede,Centipede,Scolopendra|Scolopendra gigantea|Lithobius forficatus|Chilopoda
+earthworm,Earthworm,Lumbricus terrestris|Lumbricidae|Oligochaeta
+leech,Leech,Hirudo medicinalis|Hirudinea|Hirudinidae
+mushroom,Mushroom,Agaricus bisporus|Amanita muscaria|Boletus edulis|Agaricales
+moss,Moss,Physcomitrella patens|Physcomitrium patens|Sphagnum|Polytrichum|Bryophyta
+oak,Oak tree,Quercus robur|Quercus alba|Quercus
+peanut,Peanut,Arachis hypogaea|Arachis
+pea,Pea,Pisum sativum|Phaseolus vulgaris|Glycine max
+walnut,Walnut,Juglans regia|Juglans nigra|Juglandaceae
+pine,Pine tree,Pinus sylvestris|Pinus taeda|Pinus
+almond,Almond,Prunus dulcis|Prunus amygdalus
+peach,Peach,Prunus persica
+apple,Apple,Malus domestica|Malus pumila|Malus
+tomato,Tomato,Solanum lycopersicum|Lycopersicon esculentum
+potato,Potato,Solanum tuberosum
+chili,Chili pepper,Capsicum annuum|Capsicum
+cucumber,Cucumber,Cucumis sativus|Cucurbita pepo|Cucurbitaceae
+strawberry,Strawberry,Fragaria vesca|Fragaria ananassa|Fragaria
+rose,Rose,Rosa canina|Rosa chinensis|Rosa rugosa
+cashew,Cashew,Anacardium occidentale|Anacardium
+mango,Mango,Mangifera indica|Mangifera
+banana,Banana,Musa acuminata|Musa balbisiana|Musaceae
+ginger,Ginger,Zingiber officinale|Zingiberaceae
+palm,Palm tree,Cocos nucifera|Phoenix dactylifera|Arecaceae
+cocoa,Cocoa,Theobroma cacao|Theobroma
+cotton,Cotton,Gossypium hirsutum|Gossypium
+coffee,Coffee,Coffea arabica|Coffea canephora|Coffea
+tea,Tea,Camellia sinensis|Camellia
+bamboo,Bamboo,Phyllostachys edulis|Bambusa vulgaris|Bambusoideae
+rice,Rice,Oryza sativa
+cactus,Cactus,Carnegiea gigantea|Opuntia ficus-indica|Opuntia|Cactaceae
+beet,Beetroot,Beta vulgaris
+aloe,Aloe,Aloe vera|Aloe
+pineapple,Pineapple,Ananas comosus|Bromeliaceae
+black_pepper,Black pepper,Piper nigrum|Piper
+mustard,Mustard,Sinapis alba|Brassica nigra|Brassica juncea|Brassica oleracea

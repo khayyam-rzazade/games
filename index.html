@@ -55,11 +55,19 @@
     <span class="go" id="go-ss">Play today's home</span>
   </a>
 
+  <a class="game-card" id="card-lc" href="long-lost-cousin/">
+    <h2>Long Lost Cousin</h2>
+    <p class="pitch">One animal, three others. Which one is its closest relative? The family tree tells.</p>
+    <div class="mini-cousin" id="mini-cousin" aria-hidden="true"></div>
+    <p class="status" id="status-lc" hidden></p>
+    <span class="go" id="go-lc">Play today's puzzle</span>
+  </a>
+
   <ul class="soon">
     <li>
       <span class="tag">Coming</span>
-      <h2>A fourth game</h2>
-      <p>A chart with its line missing. You draw it, then the real line appears.</p>
+      <h2>More games</h2>
+      <p>New games are on the way.</p>
     </li>
   </ul>
 
@@ -77,6 +85,8 @@
     <p class="quiet">Your Call checks every moment against two sources, linked under the answer. Events are at least twenty years old.</p>
     <h3>Where the photos come from</h3>
     <p class="quiet">Same Street shows homes that were visited by Dollar Street, a Gapminder project. Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. The photographer is named under each answer. Dollar Street does not endorse this site.</p>
+    <h3>Where the family trees come from</h3>
+    <p class="quiet">Long Lost Cousin checks every answer against two sources, linked under the answer. The silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, a free library of drawings of living things. Artists who ask for credit are named under each answer. PhyloPic does not endorse this site.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typeface: Jost, under the SIL Open Font License.</p>
@@ -86,6 +96,7 @@
 <script src="data/100-of-us.js"></script>
 <script src="your-call/puzzles.js"></script>
 <script src="same-street/puzzles.js"></script>
+<script src="long-lost-cousin/puzzles.js"></script>
 <script src="assets/js/turnsout.js"></script>
 <script>
 (function () {
@@ -196,6 +207,52 @@
       (streak >= 2 ? " " + streak + " days in a row." : "") + " A new home at midnight.";
     status.hidden = false;
     go.textContent = "See today's home again";
+  } else {
+    go.textContent = "Play day " + today;
+    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
+  }
+})();
+</script>
+<script>
+/* Long Lost Cousin on the home page: today's animal or plant, and whether today is done. It never shows the answer before you play. */
+(function () {
+  "use strict";
+  var TO = window.TurnsOut;
+  var data = (window.TURNSOUT_DATA || {})["long-lost-cousin"];
+  if (!TO || !data || !data.puzzles || !data.puzzles.length) return;
+  var today = Math.max(1, TO.dayNumber(data.start));
+  var q = data.puzzles[(today - 1) % data.puzzles.length];
+  document.getElementById("card-lc").style.setProperty("--hue", TO.colour(q.colour));
+
+  // today's silhouette: its small picture file is fetched here
+  var pics = window.TURNSOUT_PICS = window.TURNSOUT_PICS || {};
+  window.TurnsOutPic = function (key, pic) { pics[key] = pic; };
+  var file = document.createElement("script");
+  file.src = "long-lost-cousin/pics/" + q.subject + ".js";
+  file.onload = function () {
+    var pic = pics[q.subject];
+    if (!pic) return;
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + pic.w + " " + pic.h);
+    svg.setAttribute("preserveAspectRatio", "xMinYMid meet");
+    var path = document.createElementNS(NS, "path");
+    path.setAttribute("d", pic.d);
+    svg.appendChild(path);
+    document.getElementById("mini-cousin").appendChild(svg);
+  };
+  document.head.appendChild(file);
+
+  var g = TO.game("long-lost-cousin");
+  var r = g.results[today];
+  var status = document.getElementById("status-lc");
+  var go = document.getElementById("go-lc");
+  var streak = TO.streak(g.results, today).current;
+  if (r && typeof r.c === "number") {
+    status.innerHTML = "Day " + today + " is done. <b>" + (r.r === 0 ? "You found the cousin." : r.r === 1 ? "One branch away." : "Two branches away.") + "</b>" +
+      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new cousin at midnight.";
+    status.hidden = false;
+    go.textContent = "See today's family tree again";
   } else {
     go.textContent = "Play day " + today;
     if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
