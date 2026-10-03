@@ -1,2 +1,10 @@
 .DS_Store
 Claude outputs/
+.Rproj.user
+.Rhistory
+.RData
+*.Rproj
+same-street/unused-photos/
+# two homes that were taken out again; the R script moves their photos away on its next run
+same-street/photos/f115-*.jpg
+same-street/photos/f133-*.jpg

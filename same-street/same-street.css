@@ -1,0 +1,205 @@
+/* Same Street: styles that only this game needs. Everything shared lives in assets/css/turnsout.css. */
+:root { --ss-reserve: 26.5rem; }   /* height of everything on the play screen except the photos */
+
+.ss-q {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 5vw, 1.45rem);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+}
+
+/* ---------- the three photos: one big, two small. Tap a small one to swap it in. ---------- */
+.ss-photos {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  /* the photos shrink on short screens so nothing scrolls while you guess */
+  width: min(100%, calc((100vh - var(--ss-reserve)) * 1.5));
+  width: min(100%, calc((100dvh - var(--ss-reserve)) * 1.5));
+  min-width: min(100%, 13rem);
+  aspect-ratio: 3 / 2;
+  margin: 10px auto 0;
+}
+.ss-photo {
+  appearance: none;
+  position: relative;
+  grid-column: 2;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--idle);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.ss-photo.big { grid-column: 1; grid-row: 1 / span 2; border-radius: 18px; cursor: zoom-in; }
+.ss-photo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ss-photo .cap {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  padding: 3px 8px 4px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.78rem;
+  line-height: 1.15;
+}
+@supports not (aspect-ratio: 1 / 1) {
+  .ss-photos { height: 14.75rem; }     /* older browsers: a fixed height instead of a proportion */
+}
+.ss-credit {
+  margin-top: 5px;
+  color: var(--soft);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  text-align: center;
+}
+.ss-credit a { color: inherit; text-underline-offset: 2px; }
+
+/* ---------- the street: 100 houses, odd numbers on one side, even numbers on the other ---------- */
+.ss-street {
+  position: relative;
+  padding: 24px 0;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: ew-resize;
+}
+.ss-street[data-phase="done"] { touch-action: auto; cursor: default; }
+.ss-row { display: grid; grid-template-columns: repeat(50, 1fr); }
+.ss-house {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 10 / 12;
+  color: var(--idle);
+  overflow: visible;
+}
+.ss-house path { fill: currentColor; }
+.ss-row.top .ss-house { transform-origin: 50% 100%; }
+.ss-row.bottom .ss-house { transform-origin: 50% 0; }
+.ss-house.on { color: var(--ink); transform: scale(2.2); position: relative; z-index: 2; }
+.ss-road {
+  position: relative;
+  height: 6px;
+  margin: 3px 0;
+  border-radius: 3px;
+  background: var(--rule);
+}
+.ss-gap { position: absolute; top: 0; bottom: 0; border-radius: 3px; background: var(--miss); }
+.ss-pin {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--ink);
+  pointer-events: none;
+}
+.ss-pin::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.ss-tag {
+  position: absolute;
+  padding: 3px 8px 4px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.ss-tag.you { top: 0; background: var(--miss); color: #111; }
+.ss-tag.real { bottom: 0; background: #fff; color: #000; }
+.ss-stem { position: absolute; width: 2px; margin-left: -1px; pointer-events: none; }
+.ss-stem.you { top: 17px; background: var(--miss); }
+.ss-stem.real { bottom: 17px; background: #fff; }
+
+.panel.revealed .ss-house { color: #fff; opacity: 0.3; }
+.panel.revealed .ss-house.walk { opacity: 1; transform: scale(1.9); position: relative; z-index: 3; }
+.panel.revealed .ss-house.real { opacity: 1; transform: scale(2.4); position: relative; z-index: 2; }
+.panel.revealed .ss-house.mine { opacity: 1; color: var(--miss); transform: scale(2.4); position: relative; z-index: 1; }
+.panel.revealed .ss-road { background: rgba(255, 255, 255, 0.3); }
+
+.ss-ends {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+  color: var(--soft);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.ss-ends span:first-child, .ss-ends span:last-child { color: var(--ink); font-weight: 700; }
+.panel.revealed .ss-ends, .panel.revealed .ss-ends span { color: rgba(255, 255, 255, 0.85); }
+
+/* the big number is a house number, so it says so */
+.ss-count { display: flex; flex-direction: column; align-items: flex-start; }
+.ss-count::before {
+  content: "House";
+  margin-bottom: 1px;
+  color: var(--soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.panel.revealed .ss-count::before { color: rgba(255, 255, 255, 0.85); }
+
+.btn.ss-step { min-width: 54px; padding: 0 12px; font-size: 1.5rem; font-weight: 600; }
+#lock { white-space: nowrap; padding: 0 14px; }
+@media (max-width: 22rem) {
+  .btn.ss-step { min-width: 48px; padding: 0 8px; }
+  #lock { font-size: 0.98rem; padding: 0 8px; }
+}
+
+/* ---------- after the reveal ---------- */
+.source a#family-link { white-space: nowrap; }
+.stamp.ss .n small {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  opacity: 0.85;
+}
+
+/* ---------- a photo, larger ---------- */
+dialog.ss-zoom { width: min(100% - 16px, 42rem); max-height: min(100% - 16px, 52rem); }
+.ss-zoom .sheet { padding: 12px 12px 14px; }
+.ss-zoom img { display: block; width: 100%; height: auto; border-radius: 16px; background: var(--idle); }
+.ss-zoom .close { background: var(--paper); }
+.ss-zoom .quiet { margin-top: 8px; padding: 0 6px; }
+
+@media (min-width: 40rem) {
+  :root { --ss-reserve: 28.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ss-house.on, .panel.revealed .ss-house.real, .panel.revealed .ss-house.mine { transition: none; }
+}

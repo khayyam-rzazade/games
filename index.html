@@ -47,12 +47,15 @@
     <span class="go" id="go-yc">Play today's moment</span>
   </a>
 
+  <a class="game-card" id="card-ss" href="same-street/">
+    <h2>Same Street</h2>
+    <p class="pitch">Three photos of one real home. Where does it stand on a street of 100 houses, sorted by income?</p>
+    <div class="mini-street" id="mini-street" aria-hidden="true"></div>
+    <p class="status" id="status-ss" hidden></p>
+    <span class="go" id="go-ss">Play today's home</span>
+  </a>
+
   <ul class="soon">
-    <li>
-      <span class="tag">Coming</span>
-      <h2>Same Street</h2>
-      <p>A photo of a family's home. Where does it stand on a street sorted by income?</p>
-    </li>
     <li>
       <span class="tag">Coming</span>
       <h2>A fourth game</h2>
@@ -72,6 +75,8 @@
     <p class="quiet">100 of Us uses the World Bank's open data (World Development Indicators), under the CC BY 4.0 licence. We round each figure to whole people. The World Bank does not endorse this site.</p>
     <h3>Where the moments come from</h3>
     <p class="quiet">Your Call checks every moment against two sources, linked under the answer. Events are at least twenty years old.</p>
+    <h3>Where the photos come from</h3>
+    <p class="quiet">Same Street shows homes that were visited by Dollar Street, a Gapminder project. Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. The photographer is named under each answer. Dollar Street does not endorse this site.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typeface: Jost, under the SIL Open Font License.</p>
@@ -80,6 +85,7 @@
 
 <script src="data/100-of-us.js"></script>
 <script src="your-call/puzzles.js"></script>
+<script src="same-street/puzzles.js"></script>
 <script src="assets/js/turnsout.js"></script>
 <script>
 (function () {
@@ -141,6 +147,55 @@
       (streak >= 2 ? " " + streak + " days in a row." : "") + " A new moment at midnight.";
     status.hidden = false;
     go.textContent = "See today's moment again";
+  } else {
+    go.textContent = "Play day " + today;
+    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
+  }
+})();
+</script>
+<script>
+/* Same Street on the home page: a small street, and whether today is done. Before you play it shows nothing about today's home. */
+(function () {
+  "use strict";
+  var TO = window.TurnsOut;
+  var data = (window.TURNSOUT_DATA || {})["same-street"];
+  if (!TO || !data || !data.homes || !data.homes.length) return;
+  var card = document.getElementById("card-ss");
+  card.style.setProperty("--hue", TO.colour("teal"));
+
+  var NS = "http://www.w3.org/2000/svg";
+  var mini = document.getElementById("mini-street");
+  var top = document.createElement("div"); top.className = "row";
+  var road = document.createElement("div"); road.className = "road";
+  var bottom = document.createElement("div"); bottom.className = "row";
+  var houses = [null];
+  for (var n = 1; n <= 100; n++) {
+    var s = document.createElementNS(NS, "svg");
+    s.setAttribute("viewBox", "0 0 10 12");
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", "M1 12V5.2L5 1l4 4.2V12z");
+    s.appendChild(p);
+    (n % 2 ? top : bottom).appendChild(s);
+    houses.push(s);
+  }
+  mini.appendChild(top); mini.appendChild(road); mini.appendChild(bottom);
+
+  var today = Math.max(1, TO.dayNumber(data.start));
+  var q = data.homes[(today - 1) % data.homes.length];
+  var g = TO.game("same-street");
+  var r = g.results[today];
+  var status = document.getElementById("status-ss");
+  var go = document.getElementById("go-ss");
+  var streak = TO.streak(g.results, today).current;
+  if (r && typeof r.g === "number" && r.g >= 1 && r.g <= 100 && r.a >= 1 && r.a <= 100) {
+    var gap = Math.abs(r.g - r.a);
+    card.style.setProperty("--hue", TO.colour(q.colour));
+    if (gap !== 0) houses[r.g].setAttribute("class", "missed");
+    houses[r.a].setAttribute("class", "real");
+    status.innerHTML = "Day " + today + " is done. <b>" + (gap === 0 ? "The right house." : gap === 1 ? "Next door." : gap + " doors away.") + "</b>" +
+      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new home at midnight.";
+    status.hidden = false;
+    go.textContent = "See today's home again";
   } else {
     go.textContent = "Play day " + today;
     if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }

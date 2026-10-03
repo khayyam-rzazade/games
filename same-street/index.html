@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Same Street | Turns Out</title>
+<meta name="description" content="Three photos of one real home. Place it on a street of 100 houses sorted by income, then see where it really stands.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Turns Out">
+<meta property="og:title" content="Same Street">
+<meta property="og:description" content="Three photos of one real home. Where on the street does it stand?">
+<meta property="og:image" content="../assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/turnsout.css">
+<link rel="stylesheet" href="same-street.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-id">
+    <a class="wordmark" href="../">Turns Out</a>
+    <p class="meta"><b>Same Street</b> <span id="day-label"></span></p>
+  </div>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album">Streak 0</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="ss-q" id="question">Where on the street is this home?</h1>
+
+  <div class="ss-photos" id="photos">
+    <button class="ss-photo big" type="button" data-i="0"><img id="photo-0" alt="The home from outside" decoding="async"><span class="cap">Outside</span></button>
+    <button class="ss-photo" type="button" data-i="1"><img id="photo-1" alt="Where the family cooks" decoding="async"><span class="cap">Cooking</span></button>
+    <button class="ss-photo" type="button" data-i="2"><img id="photo-2" alt="Where the family sleeps" decoding="async"><span class="cap">Sleeping</span></button>
+  </div>
+  <p class="ss-credit">Free photos from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a></p>
+
+  <section class="panel" id="panel" aria-live="polite">
+    <div class="ss-street" id="street" data-phase="guess" role="slider" tabindex="0"
+         aria-label="Where the home stands on the street" aria-valuemin="1" aria-valuemax="100" aria-valuenow="50" aria-valuetext="Not placed yet">
+      <span class="ss-tag you" id="tag-you" hidden>You</span>
+      <span class="ss-pin" id="pin" hidden></span>
+      <div class="ss-row top" id="row-top" aria-hidden="true"></div>
+      <div class="ss-road" aria-hidden="true"><span class="ss-gap" id="gap" hidden></span></div>
+      <div class="ss-row bottom" id="row-bottom" aria-hidden="true"></div>
+      <span class="ss-tag real" id="tag-real" hidden>This home</span>
+      <span class="ss-stem you" id="stem-you" hidden></span>
+      <span class="ss-stem real" id="stem-real" hidden></span>
+    </div>
+    <div class="ss-ends" aria-hidden="true"><span id="end-low"></span><span>for each adult, a month</span><span id="end-high"></span></div>
+
+    <div class="readout">
+      <output class="count ss-count" id="count">?</output>
+      <p class="hint" id="hint">Slide along the street to place this home.</p>
+      <div class="verdict" id="verdict" hidden>
+        <p class="turnsout" id="turnsout"></p>
+        <p class="offby" id="offby"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn ghost ss-step" id="minus" type="button" aria-label="One house down the street" hidden>−</button>
+    <button class="btn ghost ss-step" id="plus" type="button" aria-label="One house up the street" hidden>+</button>
+    <button class="btn solid" id="lock" type="button" hidden>See where it is</button>
+  </div>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="source"><span id="photo-credit"></span> Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. <a id="family-link" href="#" target="_blank" rel="noopener">Visit this family on Dollar Street</a></p>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button">Share</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice">Practice</button>
+    </div>
+
+    <div class="earned" id="earned" hidden>
+      <div class="stamp ss" id="earned-stamp"></div>
+      <p>This home is now a stamp in your album.</p>
+    </div>
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>Look at the three photos. They show one real home: from outside, where the family cooks, and where they sleep. Tap a photo to make it bigger.</li>
+      <li>Slide along the street to the house where you think this home stands.</li>
+      <li>Tap "See where it is".</li>
+    </ol>
+    <p>One home a day, the same for everyone. A new one arrives at midnight.</p>
+    <h3>The street</h3>
+    <p class="quiet">The street has 100 houses, sorted by income. The number is what each adult in the home can spend or use in a month, in US dollars adjusted for local prices. It is not a salary. Every step along the street multiplies it by the same amount, from about <span id="help-low"></span> at house 1 to about <span id="help-high"></span> at house 100.</p>
+    <h3>Where the photos come from</h3>
+    <p class="quiet">Every home was visited by Dollar Street, a Gapminder project, and the families agreed to be photographed. Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. The photographer is named under each answer. Dollar Street does not endorse this site.</p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="album-title">Your album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span>days played</span></div>
+      <div class="stat"><b id="st-streak">0</b><span>streak now</span></div>
+      <div class="stat"><b id="st-best">0</b><span>best streak</span></div>
+      <div class="stat"><b id="st-gap">0</b><span>doors away on average</span></div>
+    </div>
+    <p class="quiet" id="album-countries" hidden></p>
+    <p class="album-empty" id="album-empty">Place today's home to get your first stamp.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="practice-title">Practice</h2>
+    <p class="quiet">Earlier homes. They do not count for your streak or your album.</p>
+    <p class="quiet" id="practice-empty" hidden>No earlier homes yet. Come back tomorrow.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="./">Back to today's home</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share your result</h2>
+    <p class="quiet">Send the link along with the picture, so friends can tap it.</p>
+    <img class="shot" id="share-img" alt="Your result as a picture. It does not show where the home stands.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="same-street.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-photo" class="ss-zoom" aria-label="The photo, larger">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <img id="zoom-img" alt="">
+    <p class="quiet" id="zoom-cap"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="puzzles.js"></script>
+<script src="../assets/js/turnsout.js"></script>
+<script src="same-street.js"></script>
+</body>
+</html>
