@@ -5,7 +5,7 @@
    Every answer was checked in the two sources given. */
 window.TURNSOUT_DATA = window.TURNSOUT_DATA || {};
 window.TURNSOUT_DATA["long-lost-cousin"] = {
- "start": "2026-10-03",
+ "start": "2026-10-04",
  "things": {
   "hippo": {
    "name": "Hippo",

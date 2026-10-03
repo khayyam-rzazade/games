@@ -108,7 +108,7 @@ for k in used:
     o = pic[k]
     js = 'TurnsOutPic(%s,%s);\n' % (json.dumps(k), json.dumps({'w': o['w'], 'h': o['h'], 'd': o['d']}, separators=(',', ':')))
     open(f'{out}/pics/{k}.js', 'w').write(js); size += len(js)
-data = {'start': '2026-10-03', 'things': things, 'puzzles': puzzles}
+data = {'start': '2026-10-04', 'things': things, 'puzzles': puzzles}
 body = json.dumps(data, ensure_ascii=False, indent=1)
 # one puzzle per line reads better than one value per line
 body = re.sub(r'\{\n\s+"name": ("[^"]*"),\n\s+"url": ("[^"]*")\n\s+\}', r'{"name": \1, "url": \2}', body)
