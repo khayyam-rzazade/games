@@ -1,7 +1,7 @@
 window.TURNSOUT_DATA = window.TURNSOUT_DATA || {};
 window.TURNSOUT_DATA["your-call"] = {
   "start": "2026-10-03",
-  "open": false,
+  "open": true,
   "puzzles": [
     {
       "id": "1962-cuba",

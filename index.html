@@ -40,12 +40,14 @@
     <span class="go" id="go-100">Play today's question</span>
   </a>
 
+  <a class="game-card" id="card-yc" href="your-call/">
+    <h2>Your Call</h2>
+    <p class="pitch">A real moment from history and three choices. What did they actually do?</p>
+    <p class="status" id="status-yc" hidden></p>
+    <span class="go" id="go-yc">Play today's moment</span>
+  </a>
+
   <ul class="soon">
-    <li>
-      <span class="tag">Coming</span>
-      <h2>Your Call</h2>
-      <p>A real moment from history and three choices. What did they actually do?</p>
-    </li>
     <li>
       <span class="tag">Coming</span>
       <h2>Same Street</h2>
@@ -68,6 +70,8 @@
     <p>Small games, once a day, the same for everyone. Each one leaves you with one true thing about the world, and shows where it comes from.</p>
     <h3>Where the numbers come from</h3>
     <p class="quiet">100 of Us uses the World Bank's open data (World Development Indicators), under the CC BY 4.0 licence. We round each figure to whole people. The World Bank does not endorse this site.</p>
+    <h3>Where the moments come from</h3>
+    <p class="quiet">Your Call checks every moment against two sources, linked under the answer. Events are at least twenty years old.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typeface: Jost, under the SIL Open Font License.</p>
@@ -75,6 +79,7 @@
 </dialog>
 
 <script src="data/100-of-us.js"></script>
+<script src="your-call/puzzles.js"></script>
 <script src="assets/js/turnsout.js"></script>
 <script>
 (function () {
@@ -109,6 +114,33 @@
       (streak >= 2 ? " " + streak + " days in a row." : "") + " A new question at midnight.";
     status.hidden = false;
     go.textContent = "See today's answer again";
+  } else {
+    go.textContent = "Play day " + today;
+    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
+  }
+})();
+</script>
+<script>
+/* Your Call on the home page: today's colour, and whether today is done. It never shows what the leader did. */
+(function () {
+  "use strict";
+  var TO = window.TurnsOut;
+  var data = (window.TURNSOUT_DATA || {})["your-call"];
+  if (!TO || !data || !data.puzzles || !data.puzzles.length) return;
+  var today = Math.max(1, TO.dayNumber(data.start));
+  var q = data.puzzles[(today - 1) % data.puzzles.length];
+  document.getElementById("card-yc").style.setProperty("--hue", TO.colour(q.colour));
+
+  var g = TO.game("your-call");
+  var r = g.results[today];
+  var status = document.getElementById("status-yc");
+  var go = document.getElementById("go-yc");
+  var streak = TO.streak(g.results, today).current;
+  if (r && typeof r.c === "number") {
+    status.innerHTML = "Day " + today + " is done. <b>" + (r.c === r.r ? "Same call as the leader." : "You chose differently.") + "</b>" +
+      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new moment at midnight.";
+    status.hidden = false;
+    go.textContent = "See today's moment again";
   } else {
     go.textContent = "Play day " + today;
     if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }

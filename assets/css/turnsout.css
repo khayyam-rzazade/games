@@ -20,12 +20,12 @@
 
 :root {
   --paper: #ffffff;
-  --ink: #000000;
+  --ink: #111111;
   --soft: #5d5d68;      /* quiet text */
   --idle: #d6d6dd;      /* a figure nobody has counted yet */
   --rule: #e4e4ea;
-  --miss: #ffd21f;      /* yellow always means: the part you got wrong */
-  --hue: #2447e0;       /* the colour of today's topic, set by the game */
+  --miss: #f0b429;      /* yellow always means: the part you got wrong */
+  --hue: #1f3a7a;       /* the colour of today's topic, set by the game */
   --on-hue: #ffffff;
   --font: "Jost", "Futura", "Century Gothic", "Avenir Next", system-ui, sans-serif;
   --col: 30rem;

@@ -160,12 +160,12 @@
 
   /* The colour of each topic. Yellow is kept for one meaning only: the part you got wrong. */
   var COLOURS = {
-    blue: "#2447e0",
-    teal: "#007f86",
-    red: "#d92b21",
-    violet: "#6d3fe0",
-    green: "#0c8346",
-    magenta: "#c0177a"
+    blue: "#1f3a7a",
+    teal: "#0e5f63",
+    red: "#a8322b",
+    violet: "#4c3a8f",
+    green: "#1c6b47",
+    magenta: "#8f2a5f"
   };
   function colour(name) { return COLOURS[name] || COLOURS.blue; }
 
@@ -246,7 +246,7 @@
     address: address,
     figure: figure,
     colour: colour,
-    MISS: "#ffd21f",
+    MISS: "#f0b429",
     reducedMotion: reducedMotion
   };
 
