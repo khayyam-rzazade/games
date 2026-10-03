@@ -1,12 +1,13 @@
-/* Same Street: styles that only this game needs. Everything shared lives in assets/css/turnsout.css. */
-:root { --ss-reserve: 26.5rem; }   /* height of everything on the play screen except the photos */
+/* Same Street: styles that only this game needs. Everything shared lives in assets/css/logicers.css. */
+:root { --ss-reserve: 28.4rem; }   /* height of everything on the play screen except the photos */
 
 .ss-q {
-  margin-top: 8px;
-  font-weight: 600;
-  font-size: clamp(1.2rem, 5vw, 1.45rem);
-  line-height: 1.15;
-  letter-spacing: -0.012em;
+  margin-top: 4px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 5.9vw, 1.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
 }
 
 /* ---------- the three photos: one big, two small. Tap a small one to swap it in. ---------- */
@@ -14,13 +15,13 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 4px;
+  gap: 5px;
   /* the photos shrink on short screens so nothing scrolls while you guess */
   width: min(100%, calc((100vh - var(--ss-reserve)) * 1.5));
   width: min(100%, calc((100dvh - var(--ss-reserve)) * 1.5));
   min-width: min(100%, 13rem);
   aspect-ratio: 3 / 2;
-  margin: 10px auto 0;
+  margin: 12px auto 0;
 }
 .ss-photo {
   appearance: none;
@@ -31,29 +32,21 @@
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   background: var(--idle);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.ss-photo.big { grid-column: 1; grid-row: 1 / span 2; border-radius: 18px; cursor: zoom-in; }
-.ss-photo img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+.ss-photo.big { grid-column: 1; grid-row: 1 / span 2; border-radius: 22px; cursor: zoom-in; }
+.ss-photo img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .ss-photo .cap {
   position: absolute;
   left: 6px;
   bottom: 6px;
-  padding: 3px 8px 4px;
+  padding: 3px 9px 4px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.62);
+  background: rgba(8, 10, 21, 0.62);
   color: #fff;
   font-weight: 600;
   font-size: 0.78rem;
@@ -62,16 +55,12 @@
 @supports not (aspect-ratio: 1 / 1) {
   .ss-photos { height: 14.75rem; }     /* older browsers: a fixed height instead of a proportion */
 }
-.ss-credit {
-  margin-top: 5px;
-  color: var(--soft);
-  font-size: 0.78rem;
-  line-height: 1.2;
-  text-align: center;
-}
+.ss-credit { margin-top: 6px; color: var(--soft); font-size: 0.78rem; line-height: 1.2; text-align: center; }
 .ss-credit a { color: inherit; text-underline-offset: 2px; }
 
-/* ---------- the street: 100 houses, odd numbers on one side, even numbers on the other ---------- */
+/* ---------- the street on its card: 100 houses, odd numbers on one side, even numbers on the other ---------- */
+body[data-g="street"] .panel { margin-top: 10px; padding: 10px 11px 8px; background: var(--card); box-shadow: var(--shadow); }
+body[data-g="street"] .panel.revealed { background: var(--c); box-shadow: 0 12px 30px rgba(21, 23, 43, .16); padding-bottom: 14px; }
 .ss-street {
   position: relative;
   padding: 24px 0;
@@ -84,46 +73,15 @@
 }
 .ss-street[data-phase="done"] { touch-action: auto; cursor: default; }
 .ss-row { display: grid; grid-template-columns: repeat(50, 1fr); }
-.ss-house {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 10 / 12;
-  color: var(--idle);
-  overflow: visible;
-}
+.ss-house { display: block; width: 100%; height: auto; aspect-ratio: 10 / 12; color: var(--idle); overflow: visible; }
 .ss-house path { fill: currentColor; }
 .ss-row.top .ss-house { transform-origin: 50% 100%; }
 .ss-row.bottom .ss-house { transform-origin: 50% 0; }
-.ss-house.on { color: var(--ink); transform: scale(2.2); position: relative; z-index: 2; }
-.ss-road {
-  position: relative;
-  height: 6px;
-  margin: 3px 0;
-  border-radius: 3px;
-  background: var(--rule);
-}
+.ss-house.on { color: var(--c); transform: scale(2.2); position: relative; z-index: 2; }
+.ss-road { position: relative; height: 6px; margin: 3px 0; border-radius: 3px; background: var(--line); }
 .ss-gap { position: absolute; top: 0; bottom: 0; border-radius: 3px; background: var(--miss); }
-.ss-pin {
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  width: 2px;
-  margin-left: -1px;
-  background: var(--ink);
-  pointer-events: none;
-}
-.ss-pin::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  border-radius: 50%;
-  background: var(--ink);
-}
+.ss-pin { position: absolute; top: 10px; bottom: 10px; width: 2px; margin-left: -1px; background: var(--c); pointer-events: none; }
+.ss-pin::before { content: ""; position: absolute; top: -6px; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--c); }
 .ss-tag {
   position: absolute;
   padding: 3px 8px 4px;
@@ -134,8 +92,9 @@
   white-space: nowrap;
   pointer-events: none;
 }
-.ss-tag.you { top: 0; background: var(--miss); color: #111; }
-.ss-tag.real { bottom: 0; background: #fff; color: #000; }
+.ss-tag.you { top: 0; background: var(--c); color: var(--on-c); }
+.panel.revealed .ss-tag.you { background: var(--miss); color: #15172B; }
+.ss-tag.real { bottom: 0; background: #fff; color: var(--c); }
 .ss-stem { position: absolute; width: 2px; margin-left: -1px; pointer-events: none; }
 .ss-stem.you { top: 17px; background: var(--miss); }
 .ss-stem.real { bottom: 17px; background: #fff; }
@@ -146,33 +105,17 @@
 .panel.revealed .ss-house.mine { opacity: 1; color: var(--miss); transform: scale(2.4); position: relative; z-index: 1; }
 .panel.revealed .ss-road { background: rgba(255, 255, 255, 0.3); }
 
-.ss-ends {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 2px;
-  color: var(--soft);
-  font-size: 0.82rem;
-  font-weight: 500;
-  line-height: 1.2;
-}
+.ss-ends { display: flex; justify-content: space-between; gap: 8px; margin-top: 2px; color: var(--soft); font-size: 0.82rem; font-weight: 500; line-height: 1.2; }
 .ss-ends span:first-child, .ss-ends span:last-child { color: var(--ink); font-weight: 700; }
-.panel.revealed .ss-ends, .panel.revealed .ss-ends span { color: rgba(255, 255, 255, 0.85); }
+.panel.revealed .ss-ends, .panel.revealed .ss-ends span { color: rgba(255, 255, 255, 0.88); }
 
 /* the big number is a house number, so it says so */
 .ss-count { display: flex; flex-direction: column; align-items: flex-start; }
-.ss-count::before {
-  content: "House";
-  margin-bottom: 1px;
-  color: var(--soft);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1;
-}
-.panel.revealed .ss-count::before { color: rgba(255, 255, 255, 0.85); }
+.ss-count::before { content: "House"; margin-bottom: 1px; color: var(--soft); font-family: var(--text); font-size: 0.82rem; font-weight: 700; letter-spacing: 0; line-height: 1; }
+.panel.revealed .ss-count::before { color: rgba(255, 255, 255, 0.88); }
+body[data-g="street"] .readout { min-height: 3.7rem; margin-top: 4px; padding: 0 3px; }
 
-.btn.ss-step { min-width: 54px; padding: 0 12px; font-size: 1.5rem; font-weight: 600; }
+.btn.ss-step { min-width: 56px; padding: 0 12px; font-size: 1.5rem; font-weight: 600; }
 #lock { white-space: nowrap; padding: 0 14px; }
 @media (max-width: 22rem) {
   .btn.ss-step { min-width: 48px; padding: 0 8px; }
@@ -181,24 +124,44 @@
 
 /* ---------- after the reveal ---------- */
 .source a#family-link { white-space: nowrap; }
-.stamp.ss .n small {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  opacity: 0.85;
-}
+.stamp.ss .n small { display: block; margin-bottom: 5px; font-family: var(--text); font-size: 0.8rem; font-weight: 700; letter-spacing: 0; opacity: 0.88; }
 
 /* ---------- a photo, larger ---------- */
 dialog.ss-zoom { width: min(100% - 16px, 42rem); max-height: min(100% - 16px, 52rem); }
 .ss-zoom .sheet { padding: 12px 12px 14px; }
 .ss-zoom img { display: block; width: 100%; height: auto; border-radius: 16px; background: var(--idle); }
-.ss-zoom .close { background: var(--paper); }
+.ss-zoom .close { background: var(--card); box-shadow: var(--shadow); }
 .ss-zoom .quiet { margin-top: 8px; padding: 0 6px; }
 
-@media (min-width: 40rem) {
-  :root { --ss-reserve: 28.5rem; }
+/* ---------- night ---------- */
+@media (prefers-color-scheme: dark) {
+  body[data-g="street"] .panel { background: rgba(255, 255, 255, .045); box-shadow: inset 0 0 0 1px var(--line); }
+  body[data-g="street"] .panel.revealed { background: #0D1022; box-shadow: inset 0 0 0 1px var(--c); }
+  body[data-g="street"] .panel.revealed { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 20%, #0D1022), #0D1022 78%); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent), 0 0 44px color-mix(in srgb, var(--c) 16%, transparent); }
+  .ss-house.on { filter: drop-shadow(0 0 4px var(--c)); }
+  .ss-road { background: rgba(255, 255, 255, .12); }
+  .panel.revealed .ss-house { opacity: 0.18; }
+  .panel.revealed .ss-house.real { color: var(--c); filter: drop-shadow(0 0 4px var(--c)); }
+  .panel.revealed .ss-road { background: rgba(255, 255, 255, .14); }
+  .ss-tag.real { background: var(--c); color: #0A0C1A; }
+  .ss-stem.real { background: var(--c); }
+  .panel.revealed .ss-ends, .panel.revealed .ss-ends span { color: var(--soft); }
+  .panel.revealed .ss-count::before { color: var(--soft); }
+  .ss-zoom .close { background: rgba(8, 10, 21, .7); box-shadow: inset 0 0 0 1px var(--line); }
+}
+
+@media (max-width: 21.9rem) {
+  .ss-q { font-size: 1.1rem; letter-spacing: -0.035em; }
+}
+@media (max-height: 37.5rem) {
+  :root { --ss-reserve: 27rem; }
+  .ss-photos { margin-top: 8px; }
+  body[data-g="street"] .panel { margin-top: 8px; }
+  body[data-g="street"] .readout { min-height: 3.4rem; margin-top: 2px; }
+}
+@media (min-width: 56rem) {
+  :root { --ss-reserve: 31.5rem; }
+  .ss-q { font-size: 1.95rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ss-house.on, .panel.revealed .ss-house.real, .panel.revealed .ss-house.mine { transition: none; }

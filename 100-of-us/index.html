@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>100 of Us | Turns Out</title>
+<title>100 of Us | Logicers</title>
 <meta name="description" content="One question a day about the world's people. Press and hold, let go at your guess, and see how it really is.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Turns Out">
+<meta property="og:site_name" content="Logicers">
 <meta property="og:title" content="100 of Us">
 <meta property="og:description" content="Of 100 people in the world, how many…? One question a day.">
 <meta property="og:image" content="../assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#E3E9FD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/css/turnsout.css">
+<link rel="stylesheet" href="../assets/css/logicers.css">
 </head>
-<body>
+<body class="game" data-g="hundred">
 
 <svg class="defs" aria-hidden="true" focusable="false">
   <symbol id="p" viewBox="0 0 20 22">
@@ -27,10 +27,7 @@
 </svg>
 
 <header class="bar">
-  <div class="bar-id">
-    <a class="wordmark" href="../">Turns Out</a>
-    <p class="meta"><b>100 of Us</b> <span id="day-label"></span></p>
-  </div>
+  <a class="wordmark" href="../">Logicers</a>
   <div class="bar-tools">
     <button class="chip" id="streak-chip" type="button" data-open="dlg-album">Streak 0</button>
     <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
@@ -38,9 +35,10 @@
 </header>
 
 <main class="wrap play" id="app">
+  <p class="meta"><b>100 of Us</b> <span id="day-label"></span></p>
   <div class="stage" id="stage" data-phase="guess">
     <p class="notice" id="notice" hidden></p>
-    <h1 class="question" id="question"></h1>
+    <h1 class="question three" id="question"></h1>
 
     <section class="panel" id="panel" aria-live="polite">
       <div class="crowd" id="crowd" role="img" aria-label="0 of 100 figures counted"></div>
@@ -95,7 +93,7 @@
     <p class="quiet">From the World Bank's open data (World Development Indicators), used under the CC BY 4.0 licence. We round each figure to whole people. The World Bank does not endorse this site.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
-    <p class="quiet">Typeface: Jost, under the SIL Open Font License.</p>
+    <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>
   </div>
 </dialog>
 

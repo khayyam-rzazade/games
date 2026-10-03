@@ -53,7 +53,7 @@
   panel.style.setProperty("--hue", hue);
   $("question").textContent = q.q;
   $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "100 of Us, day " + day + " | Turns Out";
+  document.title = "100 of Us, day " + day + " | Logicers";
 
   var notice = $("notice");
   if (friendGap !== null) {
@@ -191,6 +191,7 @@
       countEl.hidden = true;
       $("turnsout").textContent = "Turns out, about " + answer + ".";
       $("offby").innerHTML = "You said " + guess + ". <b>" + (gap === 0 ? "Spot on." : "Off by " + gap + ".") + "</b>";
+      $("offby").classList.toggle("hit", gap === 0);        // yellow is kept for a miss
       verdictEl.hidden = false;
       fillAfter(guess, gap);
       renderChip();
@@ -346,15 +347,16 @@
     var c = document.createElement("canvas");
     c.width = W; c.height = H;
     var x = c.getContext("2d");
-    var F = '"Jost", "Futura", "Century Gothic", "Avenir Next", system-ui, sans-serif';
-    x.fillStyle = hue;
+    var F = '"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif';       // text
+    var FD = '"Bricolage Grotesque", ' + F;                                       // headlines
+    x.fillStyle = "#2D4FC4";                 // the game's own colour
     x.fillRect(0, 0, W, H);
     x.textBaseline = "alphabetic";
 
     x.fillStyle = "#ffffff";
     x.textAlign = "left";
-    x.font = "800 48px " + F;
-    x.fillText("Turns Out", M, 118);
+    x.font = "800 48px " + FD;
+    x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
     x.fillText("100 of Us, day " + day, W - M, 118);
@@ -362,8 +364,8 @@
     var head = gap === 0 ? "Spot on" : "Off by " + gap;
     var size = 196;
     x.textAlign = "left";
-    x.font = "800 " + size + "px " + F;
-    while (x.measureText(head).width > W - 2 * M && size > 90) { size -= 6; x.font = "800 " + size + "px " + F; }
+    x.font = "800 " + size + "px " + FD;
+    while (x.measureText(head).width > W - 2 * M && size > 90) { size -= 6; x.font = "800 " + size + "px " + FD; }
     x.fillStyle = TO.MISS;
     x.fillText(head, M - 8, 318);
 
@@ -398,7 +400,7 @@
 
     x.fillStyle = "#ffffff";
     x.textAlign = "left";
-    x.font = "700 46px " + F;
+    x.font = "700 46px " + FD;
     x.fillText(gap === 0 ? "Can you match it?" : "Can you get closer?", M, 1250);
     var st = TO.streak(TO.game(GAME).results, today).current;
     if (!practice && st >= 2) {
@@ -432,9 +434,9 @@
     }
     if (document.fonts && document.fonts.load) {
       Promise.all([
-        document.fonts.load('800 100px "Jost"'),
-        document.fonts.load('600 46px "Jost"'),
-        document.fonts.load('500 38px "Jost"')
+        document.fonts.load('800 100px "Bricolage Grotesque"'),
+        document.fonts.load('600 46px \"Figtree\"'),
+        document.fonts.load('500 38px \"Figtree\"')
       ]).then(make, make);
     } else make();
   }

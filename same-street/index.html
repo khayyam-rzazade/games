@@ -3,28 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Same Street | Turns Out</title>
+<title>Same Street | Logicers</title>
 <meta name="description" content="Three photos of one real home. Place it on a street of 100 houses sorted by income, then see where it really stands.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Turns Out">
+<meta property="og:site_name" content="Logicers">
 <meta property="og:title" content="Same Street">
 <meta property="og:description" content="Three photos of one real home. Where on the street does it stand?">
 <meta property="og:image" content="../assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#D8F3EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/css/turnsout.css">
+<link rel="stylesheet" href="../assets/css/logicers.css">
 <link rel="stylesheet" href="same-street.css">
 </head>
-<body>
+<body class="game" data-g="street">
 
 <header class="bar">
-  <div class="bar-id">
-    <a class="wordmark" href="../">Turns Out</a>
-    <p class="meta"><b>Same Street</b> <span id="day-label"></span></p>
-  </div>
+  <a class="wordmark" href="../">Logicers</a>
   <div class="bar-tools">
     <button class="chip" id="streak-chip" type="button" data-open="dlg-album">Streak 0</button>
     <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
@@ -32,6 +29,7 @@
 </header>
 
 <main class="wrap play" id="app">
+  <p class="meta"><b>Same Street</b> <span id="day-label"></span></p>
   <p class="notice" id="notice" hidden></p>
   <h1 class="ss-q" id="question">Where on the street is this home?</h1>
 

@@ -91,9 +91,10 @@
 
   /* ---------- build the screen ---------- */
   panel.style.setProperty("--hue", hue);
-  $("question").textContent = "Which of these is " + thing(q.subject).the + "'s closest relative?";
+  // "T. rex" must not break between its two halves
+  $("question").textContent = "Which of these is " + thing(q.subject).the.replace(/\b([A-Z])\. /g, "$1.\u00a0") + "'s closest relative?";
   $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Long Lost Cousin, day " + day + " | Turns Out";
+  document.title = "Long Lost Cousin, day " + day + " | Logicers";
   $("subject-name").textContent = thing(q.subject).name;
   drawInto($("subject-pic"), q.subject);
 
@@ -386,15 +387,16 @@
     var c = document.createElement("canvas");
     c.width = W; c.height = H;
     var x = c.getContext("2d");
-    var F = '"Jost", "Futura", "Century Gothic", "Avenir Next", system-ui, sans-serif';
-    x.fillStyle = hue;
+    var F = '"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif';       // text
+    var FD = '"Bricolage Grotesque", ' + F;                                       // headlines
+    x.fillStyle = "#CF4327";                 // the game's own colour
     x.fillRect(0, 0, W, H);
     x.textBaseline = "alphabetic";
     x.fillStyle = "#ffffff";
 
     x.textAlign = "left";
-    x.font = "800 48px " + F;
-    x.fillText("Turns Out", M, 118);
+    x.font = "800 48px " + FD;
+    x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
     x.fillText("Long Lost Cousin, day " + day, W - M, 118);
@@ -406,7 +408,7 @@
     x.textAlign = "left";
     var fs = 60, lines;
     do {
-      x.font = "700 " + fs + "px " + F;
+      x.font = "700 " + fs + "px " + FD;
       lines = wrapLines(x, "Which of these is " + thing(q.subject).the + "'s closest relative?", W - 2 * M);
       fs -= 2;
     } while (lines.length > 2 && fs > 40);
@@ -430,7 +432,7 @@
     x.textAlign = "left";
     x.font = "600 40px " + F;
     x.fillText(mine(rank), M, 1112);
-    x.font = "800 72px " + F;
+    x.font = "800 72px " + FD;
     x.fillText(rank === 0 ? "Can you find it too?" : "Can you find it?", M, 1204);
     var where = TO.address();
     if (where) {
@@ -462,7 +464,7 @@
     function one() { left--; if (left === 0) make(); }
     keys.forEach(function (key) { loadPic(key, one); });
     if (document.fonts && document.fonts.load) {
-      Promise.all([document.fonts.load('800 100px "Jost"'), document.fonts.load('600 44px "Jost"')]).then(one, one);
+      Promise.all([document.fonts.load('800 100px "Bricolage Grotesque"'), document.fonts.load('600 44px \"Figtree\"')]).then(one, one);
     } else one();
   }
 

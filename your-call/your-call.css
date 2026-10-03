@@ -1,68 +1,109 @@
-/* Your Call: styles that only this game needs. Everything shared lives in assets/css/turnsout.css. */
+/* Your Call: styles that only this game needs. Everything shared lives in assets/css/logicers.css. */
 .yc-year {
-  margin-top: 10px;
+  margin-top: 6px;
+  font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(3.6rem, 19vw, 5rem);
+  font-size: clamp(3.4rem, 18vw, 4.8rem);
   line-height: 0.86;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.05em;
   font-variant-numeric: tabular-nums;
+  color: var(--c);
 }
-.yc-place { margin-top: 6px; color: var(--soft); font-weight: 500; }
+.yc-place { margin-top: 7px; color: var(--soft); font-weight: 600; }
 .yc-pov {
   margin-top: 10px;
   font-weight: 600;
-  font-size: clamp(1.14rem, 4.7vw, 1.36rem);
-  line-height: 1.24;
+  font-size: clamp(1.1rem, 4.6vw, 1.3rem);
+  line-height: 1.28;
   letter-spacing: -0.008em;
 }
+
+/* the three choices stand on one card; the card takes the game's colour when the truth arrives */
 .yc-panel {
-  margin: 14px -12px 0;
-  padding: 12px;
-  border-radius: 28px;
-  background: transparent;
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: var(--r);
+  background: var(--card);
+  box-shadow: var(--shadow);
   transition: background-color 0.45s ease, color 0.45s ease;
 }
-.yc-panel.revealed { background: var(--hue); color: #fff; }
-.yc-choices { display: grid; gap: 10px; }
+.yc-panel.revealed { background: var(--c); color: #fff; box-shadow: 0 12px 30px rgba(21, 23, 43, .16); }
+.yc-choices { display: grid; gap: 8px; }
 .yc-choice {
   appearance: none;
   width: 100%;
-  min-height: 62px;
+  min-height: 60px;
   display: grid;
-  grid-template-columns: 1.7rem 1fr;
-  gap: 10px;
+  grid-template-columns: 2rem 1fr;
+  gap: 11px;
   align-items: center;
   text-align: left;
-  border: 2px solid var(--ink);
-  border-radius: 20px;
-  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: var(--tint);
   color: inherit;
-  padding: 12px 16px;
+  padding: 10px 14px 10px 10px;
   font: inherit;
   font-weight: 600;
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   line-height: 1.2;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.yc-choice .k { font-weight: 800; font-size: 1.3rem; line-height: 1; }
-.yc-choice .tag { display: none; margin-top: 5px; font-size: 0.84rem; font-weight: 700; }
-.yc-choice[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-.yc-panel.revealed .yc-choice { border-color: #fff; cursor: default; opacity: 0.4; transition: opacity 0.15s linear; }
-.yc-panel.revealed .yc-choice[aria-pressed="true"] { background: transparent; color: #fff; }
+.yc-choice .k {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--card);
+  color: var(--c);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.yc-choice .tag { display: none; margin-top: 5px; font-size: 0.82rem; font-weight: 700; }
+.yc-choice[aria-pressed="true"] { background: var(--c); color: var(--on-c); }
+
+.yc-panel.revealed .yc-choice { background: transparent; border-color: rgba(255, 255, 255, .5); color: #fff; cursor: default; opacity: 0.45; transition: opacity 0.15s linear; }
+.yc-panel.revealed .yc-choice .k { background: rgba(255, 255, 255, .2); color: #fff; }
 .yc-panel.revealed .yc-choice.scan { opacity: 1; }
-.yc-panel.revealed .yc-choice.mine { opacity: 1; }
-.yc-panel.revealed .yc-choice.real { opacity: 1; background: #fff; color: #000; }
+.yc-panel.revealed .yc-choice.mine { opacity: 1; border-color: var(--miss); }
+.yc-panel.revealed .yc-choice.mine .k { background: var(--miss); color: #15172B; }
+.yc-panel.revealed .yc-choice.mine .tag { color: var(--miss); }
+.yc-panel.revealed .yc-choice.real { opacity: 1; background: #fff; border-color: #fff; color: #15172B; }
+.yc-panel.revealed .yc-choice.real .k { background: var(--c); color: #fff; }
+.yc-panel.revealed .yc-choice.real .tag { color: var(--c); }
 .yc-panel.revealed .yc-choice.real .tag,
 .yc-panel.revealed .yc-choice.mine .tag { display: block; }
 .yc-verdict {
-  margin: 14px 4px 4px;
-  font-weight: 700;
-  font-size: clamp(1.4rem, 6vw, 1.8rem);
-  line-height: 1.12;
-  letter-spacing: -0.014em;
+  margin: 14px 6px 6px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 6.2vw, 1.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
 }
-.yc-h { margin-top: 14px; color: var(--soft); font-weight: 600; font-size: 0.95rem; }
-.yc-h + .sentence { margin-top: 2px; }
+.yc-h { margin: 16px 6px 0; color: var(--soft); font-weight: 700; font-size: 0.92rem; }
+.yc-h + .sentence { margin-top: 6px; }
 .stamp.yc .n { font-size: 2.2rem; }
+
+@media (prefers-color-scheme: dark) {
+  .yc-panel { background: rgba(255, 255, 255, .045); box-shadow: inset 0 0 0 1px var(--line); }
+  .yc-choice { background: rgba(255, 255, 255, .06); }
+  .yc-choice .k { background: #0A0C1A; }
+  .yc-choice[aria-pressed="true"] .k { background: #0A0C1A; color: var(--c); }
+  .yc-panel.revealed { background: #0D1022; color: var(--ink); box-shadow: inset 0 0 0 1px var(--c); }
+  .yc-panel.revealed { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 20%, #0D1022), #0D1022 78%); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent), 0 0 44px color-mix(in srgb, var(--c) 16%, transparent); }
+  .yc-panel.revealed .yc-choice { border-color: rgba(255, 255, 255, .22); color: var(--ink); }
+  .yc-panel.revealed .yc-choice .k { background: rgba(255, 255, 255, .1); color: var(--ink); }
+  .yc-panel.revealed .yc-choice.real { background: var(--c); border-color: var(--c); color: #0A0C1A; }
+  .yc-panel.revealed .yc-choice.real .k { background: #0A0C1A; color: var(--c); }
+  .yc-panel.revealed .yc-choice.real .tag { color: #0A0C1A; }
+}
+@media (min-width: 56rem) {
+  .yc-pov { font-size: 1.4rem; }
+  .yc-choice { font-size: 1.12rem; min-height: 64px; }
+}
 @media (prefers-reduced-motion: reduce) { .yc-panel, .yc-panel.revealed .yc-choice { transition: none; } }

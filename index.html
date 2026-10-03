@@ -3,81 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Turns Out: one true thing a day</title>
-<meta name="description" content="Small daily games about the real world. One true thing a day, with its source.">
+<title>Logicers: small daily games about the real world</title>
+<meta name="description" content="Small daily games about the real world. A minute each, and one true thing every time, with its source.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Turns Out">
-<meta property="og:title" content="Turns Out">
-<meta property="og:description" content="Small daily games about the real world. One true thing a day.">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Logicers. Are you a Logicer?">
+<meta property="og:description" content="Small daily games about the real world. A minute each. One true thing every time.">
 <meta property="og:image" content="assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/turnsout.css">
+<link rel="stylesheet" href="assets/css/logicers.css">
 </head>
-<body>
+<body class="home">
 
-<svg class="defs" aria-hidden="true" focusable="false">
-  <symbol id="p" viewBox="0 0 20 22">
-    <circle cx="10" cy="5" r="4.4"/>
-    <path d="M2.2 22v-4.2a7.8 7.8 0 0 1 15.6 0V22z"/>
-  </symbol>
-</svg>
+<div class="page">
+<header class="site-bar">
+  <a class="logo" href="./" aria-label="Logicers, home"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6.2" r="4.1"/><circle cx="5.3" cy="17.8" r="4.1"/><circle cx="18.7" cy="17.8" r="4.1"/></svg><span class="word">Logicers</span></a>
+  <div class="tools">
+    <button class="chip streak" type="button" data-open="dlg-streak" aria-label="Your streak"><svg class="flame" viewBox="0 0 20 20" aria-hidden="true"><path d="M10.4 1.6c.5 3-1.2 4.3-2.6 5.9C6.3 9.2 5 10.8 5 13a5 5 0 0 0 10 0c0-1.7-.7-3.2-1.5-4.3-.3 1-.9 1.7-1.7 2.1.5-3.4-.2-6.8-1.4-9.2z"/></svg><span>Streak <b id="streak-n">0</b></span></button>
+    <button class="chip round" type="button" data-open="dlg-about" aria-label="About and sources">?</button>
+  </div>
+</header>
 
-<main class="wrap">
-  <header class="home-head">
-    <h1 class="home-title">Turns Out</h1>
-    <p class="home-line">One true thing a day.</p>
-  </header>
+<main>
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1>Are you a <em>Logicer</em>?</h1>
+    <p class="lede">Small daily games about the real world. A minute each. One true thing every time.</p>
+  </div>
+  <div class="today">
+    <div class="today-top"><span class="today-label">Today</span><span class="today-count" id="today-count"><b>0</b> of 4 played</span></div>
+    <div class="pips" aria-hidden="true"><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-street" data-g="street"></i><i id="pip-cousin" data-g="cousin"></i></div>
+    <p class="today-note" id="today-note">New games at midnight.</p>
+  </div>
+</section>
 
-  <a class="game-card" id="card-100" href="100-of-us/">
-    <h2>100 of Us</h2>
-    <p class="pitch">Of 100 people in the world, how many…? Press and hold, let go at your guess, see how it really is.</p>
-    <div class="mini" id="mini" aria-hidden="true"></div>
-    <p class="status" id="status-100" hidden></p>
-    <span class="go" id="go-100">Play today's question</span>
-  </a>
+<section class="games" aria-labelledby="games-title">
+  <h2 class="sec" id="games-title">Today's games</h2>
+  <div class="grid">
+    <a class="tile" id="tile-hundred" data-g="hundred" href="100-of-us/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><g class="fg"><circle cx="22" cy="34" r="3.6"/><path d="M16.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="36.5" cy="34" r="3.6"/><path d="M31.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="51" cy="34" r="3.6"/><path d="M45.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="65.5" cy="34" r="3.6"/><path d="M60.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="80" cy="34" r="3.6"/><path d="M74.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="94.5" cy="34" r="3.6"/><path d="M89.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="109" cy="34" r="3.6"/><path d="M103.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="123.5" cy="34" r="3.6"/><path d="M118.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="138" cy="34" r="3.6"/><path d="M132.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="152.5" cy="34" r="3.6"/><path d="M147.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="167" cy="34" r="3.6"/><path d="M161.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="181.5" cy="34" r="3.6"/><path d="M176.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="196" cy="34" r="3.6"/><path d="M190.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="210.5" cy="34" r="3.6"/><path d="M205.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="225" cy="34" r="3.6"/><path d="M219.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="239.5" cy="34" r="3.6"/><path d="M234.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="254" cy="34" r="3.6"/><path d="M248.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="268.5" cy="34" r="3.6"/><path d="M263.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="283" cy="34" r="3.6"/><path d="M277.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="297.5" cy="34" r="3.6"/><path d="M292.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="22" cy="65" r="3.6"/><path d="M16.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="36.5" cy="65" r="3.6"/><path d="M31.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="51" cy="65" r="3.6"/><path d="M45.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="65.5" cy="65" r="3.6"/><path d="M60.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="80" cy="65" r="3.6"/><path d="M74.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="94.5" cy="65" r="3.6"/><path d="M89.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="109" cy="65" r="3.6"/><path d="M103.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="123.5" cy="65" r="3.6"/><path d="M118.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="138" cy="65" r="3.6"/><path d="M132.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="152.5" cy="65" r="3.6"/><path d="M147.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="167" cy="65" r="3.6"/><path d="M161.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="181.5" cy="65" r="3.6"/><path d="M176.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="196" cy="65" r="3.6"/><path d="M190.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="210.5" cy="65" r="3.6"/><path d="M205.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="225" cy="65" r="3.6"/><path d="M219.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="239.5" cy="65" r="3.6"/><path d="M234.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="254" cy="65" r="3.6"/><path d="M248.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="268.5" cy="65" r="3.6"/><path d="M263.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="283" cy="65" r="3.6"/><path d="M277.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="297.5" cy="65" r="3.6"/><path d="M292.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="22" cy="96" r="3.6"/><path d="M16.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="36.5" cy="96" r="3.6"/><path d="M31.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="51" cy="96" r="3.6"/><path d="M45.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="65.5" cy="96" r="3.6"/><path d="M60.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="80" cy="96" r="3.6"/><path d="M74.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="94.5" cy="96" r="3.6"/><path d="M89.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="109" cy="96" r="3.6"/><path d="M103.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="123.5" cy="96" r="3.6"/><path d="M118.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="138" cy="96" r="3.6"/><path d="M132.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="152.5" cy="96" r="3.6"/><path d="M147.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="167" cy="96" r="3.6"/><path d="M161.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="181.5" cy="96" r="3.6"/><path d="M176.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="196" cy="96" r="3.6"/><path d="M190.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="210.5" cy="96" r="3.6"/><path d="M205.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="225" cy="96" r="3.6"/><path d="M219.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="239.5" cy="96" r="3.6"/><path d="M234.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="254" cy="96" r="3.6"/><path d="M248.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="268.5" cy="96" r="3.6"/><path d="M263.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="283" cy="96" r="3.6"/><path d="M277.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="297.5" cy="96" r="3.6"/><path d="M292.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="22" cy="127" r="3.6"/><path d="M16.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="36.5" cy="127" r="3.6"/><path d="M31.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="51" cy="127" r="3.6"/><path d="M45.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="65.5" cy="127" r="3.6"/><path d="M60.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="80" cy="127" r="3.6"/><path d="M74.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="94.5" cy="127" r="3.6"/><path d="M89.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="109" cy="127" r="3.6"/><path d="M103.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="123.5" cy="127" r="3.6"/><path d="M118.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="138" cy="127" r="3.6"/><path d="M132.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="152.5" cy="127" r="3.6"/><path d="M147.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="167" cy="127" r="3.6"/><path d="M161.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="181.5" cy="127" r="3.6"/><path d="M176.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="196" cy="127" r="3.6"/><path d="M190.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="210.5" cy="127" r="3.6"/><path d="M205.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="225" cy="127" r="3.6"/><path d="M219.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="239.5" cy="127" r="3.6"/><path d="M234.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="254" cy="127" r="3.6"/><path d="M248.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="268.5" cy="127" r="3.6"/><path d="M263.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="283" cy="127" r="3.6"/><path d="M277.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="297.5" cy="127" r="3.6"/><path d="M292.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="22" cy="158" r="3.6"/><path d="M16.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="36.5" cy="158" r="3.6"/><path d="M31.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="51" cy="158" r="3.6"/><path d="M45.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="65.5" cy="158" r="3.6"/><path d="M60.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="80" cy="158" r="3.6"/><path d="M74.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="94.5" cy="158" r="3.6"/><path d="M89.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="109" cy="158" r="3.6"/><path d="M103.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="123.5" cy="158" r="3.6"/><path d="M118.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="138" cy="158" r="3.6"/><path d="M132.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="152.5" cy="158" r="3.6"/><path d="M147.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="167" cy="158" r="3.6"/><path d="M161.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="181.5" cy="158" r="3.6"/><path d="M176.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="196" cy="158" r="3.6"/><path d="M190.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="210.5" cy="158" r="3.6"/><path d="M205.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="225" cy="158" r="3.6"/><path d="M219.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="239.5" cy="158" r="3.6"/><path d="M234.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="254" cy="158" r="3.6"/><path d="M248.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="268.5" cy="158" r="3.6"/><path d="M263.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="283" cy="158" r="3.6"/><path d="M277.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="297.5" cy="158" r="3.6"/><path d="M292.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g></svg></div>
+      <div class="body">
+        <h3>100 of Us</h3>
+        <p class="pitch"><span class="long">Of 100 people in the world, how many…? Hold, let go at your guess, see how it really is.</span><span class="short">Of 100 people in the world, how many…?</span></p>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden>See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-call" data-g="call" href="your-call/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><g class="opt"><rect class="pill" x="46" y="30" width="228" height="38" rx="19"/><circle class="dot" cx="67" cy="49" r="8.5"/><rect class="txt" x="88" y="44.5" width="118" height="9" rx="4.5"/></g><g class="pick"><rect class="pill" x="46" y="81" width="228" height="38" rx="19"/><circle class="dot" cx="67" cy="100" r="8.5"/><path class="tick" d="M62.6 100.4l3 3 5.6-6.2" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect class="txt" x="88" y="95.5" width="150" height="9" rx="4.5"/></g><g class="opt"><rect class="pill" x="46" y="132" width="228" height="38" rx="19"/><circle class="dot" cx="67" cy="151" r="8.5"/><rect class="txt" x="88" y="146.5" width="96" height="9" rx="4.5"/></g></svg></div>
+      <div class="body">
+        <h3>Your Call</h3>
+        <p class="pitch"><span class="long">A real moment from history and three choices. What did they actually do?</span><span class="short">A real moment from history. What did they do?</span></p>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden>See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-street" data-g="street" href="same-street/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="mute" x="18" y="158" width="284" height="5" rx="2.5"/><path class="fg" d="M26 124l12 -13 12 13V158H26z"/><rect class="cut" x="31" y="132" width="5" height="6" rx="1"/><rect class="cut" x="40" y="132" width="5" height="6" rx="1"/><rect class="cut" x="35" y="146" width="6" height="12" rx="1.5"/><path class="fg" d="M57 116l12 -15 12 15V158H57z"/><rect class="cut" x="62" y="124" width="5" height="6" rx="1"/><rect class="cut" x="71" y="124" width="5" height="6" rx="1"/><rect class="cut" x="66" y="146" width="6" height="12" rx="1.5"/><path class="fg" d="M88 118l12 -17 12 17V158H88z"/><rect class="cut" x="93" y="126" width="5" height="6" rx="1"/><rect class="cut" x="102" y="126" width="5" height="6" rx="1"/><rect class="cut" x="97" y="146" width="6" height="12" rx="1.5"/><path class="fg" d="M119 106l12 -13 12 13V158H119z"/><rect class="cut" x="124" y="114" width="5" height="6" rx="1"/><rect class="cut" x="133" y="114" width="5" height="6" rx="1"/><rect class="cut" x="124" y="128" width="5" height="6" rx="1"/><rect class="cut" x="133" y="128" width="5" height="6" rx="1"/><rect class="cut" x="128" y="146" width="6" height="12" rx="1.5"/><path class="fg" d="M150 100l12 -15 12 15V158H150z"/><rect class="cut" x="155" y="108" width="5" height="6" rx="1"/><rect class="cut" x="164" y="108" width="5" height="6" rx="1"/><rect class="cut" x="155" y="122" width="5" height="6" rx="1"/><rect class="cut" x="164" y="122" width="5" height="6" rx="1"/><rect class="cut" x="159" y="146" width="6" height="12" rx="1.5"/><path class="hi" d="M181 88l12 -17 12 17V158H181z"/><rect class="cut" x="186" y="96" width="5" height="6" rx="1"/><rect class="cut" x="195" y="96" width="5" height="6" rx="1"/><rect class="cut" x="186" y="110" width="5" height="6" rx="1"/><rect class="cut" x="195" y="110" width="5" height="6" rx="1"/><rect class="cut" x="186" y="124" width="5" height="6" rx="1"/><rect class="cut" x="195" y="124" width="5" height="6" rx="1"/><rect class="cut" x="190" y="146" width="6" height="12" rx="1.5"/><g class="hi"><circle cx="193" cy="49" r="9"/><path d="M187 55l6 10 6-10z"/></g><circle class="cut" cx="193" cy="49" r="3.4"/><path class="fg" d="M212 80l12 -13 12 13V158H212z"/><rect class="cut" x="217" y="88" width="5" height="6" rx="1"/><rect class="cut" x="226" y="88" width="5" height="6" rx="1"/><rect class="cut" x="217" y="102" width="5" height="6" rx="1"/><rect class="cut" x="226" y="102" width="5" height="6" rx="1"/><rect class="cut" x="217" y="116" width="5" height="6" rx="1"/><rect class="cut" x="226" y="116" width="5" height="6" rx="1"/><rect class="cut" x="217" y="130" width="5" height="6" rx="1"/><rect class="cut" x="226" y="130" width="5" height="6" rx="1"/><rect class="cut" x="221" y="146" width="6" height="12" rx="1.5"/><path class="fg" d="M243 66l12 -15 12 15V158H243z"/><rect class="cut" x="248" y="74" width="5" height="6" rx="1"/><rect class="cut" x="257" y="74" width="5" height="6" rx="1"/><rect class="cut" x="248" y="88" width="5" height="6" rx="1"/><rect class="cut" x="257" y="88" width="5" height="6" rx="1"/><rect class="cut" x="248" y="102" width="5" height="6" rx="1"/><rect class="cut" x="257" y="102" width="5" height="6" rx="1"/><rect class="cut" x="248" y="116" width="5" height="6" rx="1"/><rect class="cut" x="257" y="116" width="5" height="6" rx="1"/><rect class="cut" x="248" y="130" width="5" height="6" rx="1"/><rect class="cut" x="257" y="130" width="5" height="6" rx="1"/><rect class="cut" x="252" y="146" width="6" height="12" rx="1.5"/><path class="fg" d="M274 50l12 -17 12 17V158H274z"/><rect class="cut" x="279" y="58" width="5" height="6" rx="1"/><rect class="cut" x="288" y="58" width="5" height="6" rx="1"/><rect class="cut" x="279" y="72" width="5" height="6" rx="1"/><rect class="cut" x="288" y="72" width="5" height="6" rx="1"/><rect class="cut" x="279" y="86" width="5" height="6" rx="1"/><rect class="cut" x="288" y="86" width="5" height="6" rx="1"/><rect class="cut" x="279" y="100" width="5" height="6" rx="1"/><rect class="cut" x="288" y="100" width="5" height="6" rx="1"/><rect class="cut" x="279" y="114" width="5" height="6" rx="1"/><rect class="cut" x="288" y="114" width="5" height="6" rx="1"/><rect class="cut" x="279" y="128" width="5" height="6" rx="1"/><rect class="cut" x="288" y="128" width="5" height="6" rx="1"/><rect class="cut" x="283" y="146" width="6" height="12" rx="1.5"/></svg></div>
+      <div class="body">
+        <h3>Same Street</h3>
+        <p class="pitch"><span class="long">Three photos of one real home. Where does it stand on a street sorted by income?</span><span class="short">One real home. Where on the street is it?</span></p>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden>See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-cousin" data-g="cousin" href="long-lost-cousin/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><svg class="fg" id="cousin-pic" x="50" y="12" width="220" height="92" preserveAspectRatio="xMidYMax meet"></svg><path class="ln" d="M160 112V130M86 148V130H234V148M160 130V148" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle class="q" cx="86" cy="165" r="15"/><text class="qm" x="86" y="171.5" text-anchor="middle" font-size="19" font-weight="800">?</text><circle class="q" cx="160" cy="165" r="15"/><text class="qm" x="160" y="171.5" text-anchor="middle" font-size="19" font-weight="800">?</text><circle class="q" cx="234" cy="165" r="15"/><text class="qm" x="234" y="171.5" text-anchor="middle" font-size="19" font-weight="800">?</text></svg><span class="badge">New</span></div>
+      <div class="body">
+        <h3>Long Lost Cousin</h3>
+        <p class="pitch"><span class="long">One animal, three others. Which one is its closest relative?</span><span class="short">Which one is the closest relative?</span></p>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden>See again</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
 
-  <a class="game-card" id="card-yc" href="your-call/">
-    <h2>Your Call</h2>
-    <p class="pitch">A real moment from history and three choices. What did they actually do?</p>
-    <p class="status" id="status-yc" hidden></p>
-    <span class="go" id="go-yc">Play today's moment</span>
-  </a>
-
-  <a class="game-card" id="card-ss" href="same-street/">
-    <h2>Same Street</h2>
-    <p class="pitch">Three photos of one real home. Where does it stand on a street of 100 houses, sorted by income?</p>
-    <div class="mini-street" id="mini-street" aria-hidden="true"></div>
-    <p class="status" id="status-ss" hidden></p>
-    <span class="go" id="go-ss">Play today's home</span>
-  </a>
-
-  <a class="game-card" id="card-lc" href="long-lost-cousin/">
-    <h2>Long Lost Cousin</h2>
-    <p class="pitch">One animal, three others. Which one is its closest relative? The family tree tells.</p>
-    <div class="mini-cousin" id="mini-cousin" aria-hidden="true"></div>
-    <p class="status" id="status-lc" hidden></p>
-    <span class="go" id="go-lc">Play today's puzzle</span>
-  </a>
-
-  <ul class="soon">
-    <li>
-      <span class="tag">Coming</span>
-      <h2>More games</h2>
-      <p>New games are on the way.</p>
-    </li>
-  </ul>
-
-  <p class="foot"><span data-privacy="short">No login. No tracking. Your results stay in your browser.</span> <button type="button" data-open="dlg-about">About and sources</button></p>
+<section class="soons" aria-label="Coming soon">
+  <div class="soon">
+    <div><h2>More games are in the works</h2><p>New ones join the shelf as they are ready.</p></div>
+    <div class="soon-arts" aria-hidden="true"><div class="art" data-g="half"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M160 38a62 62 0 0 0 0 124z"/><path class="mute" d="M160 38a62 62 0 0 1 0 124z"/><path class="ln" d="M160 22V178" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10"/></svg></div><div class="art" data-g="club"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="ring" cx="160" cy="102" r="66" fill="none" stroke-width="4"/><circle class="fg" cx="138" cy="84" r="9"/><circle class="fg" cx="172" cy="72" r="9"/><circle class="fg" cx="150" cy="118" r="9"/><circle class="fg" cx="186" cy="110" r="9"/><circle class="fg" cx="164" cy="138" r="9"/><circle class="mute" cx="62" cy="60" r="9"/><circle class="mute" cx="258" cy="70" r="9"/><circle class="mute" cx="250" cy="146" r="9"/><circle class="mute" cx="70" cy="140" r="9"/></svg></div><div class="art" data-g="piece"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="95" y="34" width="38" height="38" rx="9"/><rect class="mute" x="141" y="34" width="38" height="38" rx="9"/><rect class="fg" x="187" y="34" width="38" height="38" rx="9"/><rect class="mute" x="95" y="80" width="38" height="38" rx="9"/><rect class="fg" x="141" y="80" width="38" height="38" rx="9"/><rect class="gap" x="189" y="82" width="34" height="34" rx="8" fill="none" stroke-width="3.5" stroke-dasharray="6 6"/><rect class="fg" x="95" y="126" width="38" height="38" rx="9"/><rect class="mute" x="141" y="126" width="38" height="38" rx="9"/><rect class="fg" x="187" y="126" width="38" height="38" rx="9"/></svg></div></div>
+  </div>
+</section>
 </main>
+
+<footer class="foot-note">
+  <p><span data-privacy="short">No login. No tracking. Your results stay in your browser.</span></p>
+  <button type="button" data-open="dlg-about">About and sources</button>
+</footer>
+</div>
+
+<dialog id="dlg-streak" aria-labelledby="streak-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="streak-title">Your streak</h2>
+    <p id="streak-line"></p>
+    <ul class="rows" id="streak-rows"></ul>
+    <p class="quiet">A streak counts the days you played in a row. A wrong answer never breaks it. Everything is kept only in this browser.</p>
+  </div>
+</dialog>
 
 <dialog id="dlg-about" aria-labelledby="about-title">
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
-    <h2 id="about-title">About Turns Out</h2>
+    <h2 id="about-title">About Logicers</h2>
     <p>Small games, once a day, the same for everyone. Each one leaves you with one true thing about the world, and shows where it comes from.</p>
     <h3>Where the numbers come from</h3>
     <p class="quiet">100 of Us uses the World Bank's open data (World Development Indicators), under the CC BY 4.0 licence. We round each figure to whole people. The World Bank does not endorse this site.</p>
@@ -89,7 +131,7 @@
     <p class="quiet">Long Lost Cousin checks every answer against two sources, linked under the answer. The silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, a free library of drawings of living things. Artists who ask for credit are named under each answer. PhyloPic does not endorse this site.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
-    <p class="quiet">Typeface: Jost, under the SIL Open Font License.</p>
+    <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>
   </div>
 </dialog>
 
@@ -99,164 +141,125 @@
 <script src="long-lost-cousin/puzzles.js"></script>
 <script src="assets/js/turnsout.js"></script>
 <script>
+/* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
+   It never shows an answer before you have played. */
 (function () {
   "use strict";
   var TO = window.TurnsOut;
   if (!TO) return;
   TO.wireDialogs();
   TO.fixLocalLinks();
-  var mini = document.getElementById("mini");
-  var figs = [];
-  for (var i = 0; i < 100; i++) { var f = TO.figure(); mini.appendChild(f); figs.push(f); }
+  var D = window.TURNSOUT_DATA || {};
+  var now = new Date();
+  var DAY = 86400000;
 
-  var data = (window.TURNSOUT_DATA || {})["100-of-us"];
-  if (!data || !data.questions || !data.questions.length) return;
-  var today = Math.max(1, TO.dayNumber(data.start));
-  var q = data.questions[(today - 1) % data.questions.length];
-  document.getElementById("card-100").style.setProperty("--hue", TO.colour(q.colour));
+  try {
+    document.getElementById("eyebrow").textContent = now.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+  } catch (e) { /* no date line then */ }
 
-  var g = TO.game("100-of-us");
-  var r = g.results[today];
-  var status = document.getElementById("status-100");
-  var go = document.getElementById("go-100");
-  var streak = TO.streak(g.results, today).current;
-  if (r && typeof r.g === "number") {
-    var gap = Math.abs(r.g - r.a);
-    for (var n = 0; n < 100; n++) {
-      var real = n < r.a, said = n < r.g;
-      if (real && said) figs[n].classList.add("real");
-      else if (real !== said) figs[n].classList.add("missed");
+  var GAMES = [
+    { id: "100-of-us", key: "hundred", name: "100 of Us",
+      done: function (r) { return !!r && typeof r.g === "number" && typeof r.a === "number"; },
+      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "Spot on" : "Off by " + gap; } },
+    { id: "your-call", key: "call", name: "Your Call",
+      done: function (r) { return !!r && typeof r.c === "number"; },
+      says: function (r) { return r.c === r.r ? "Same call" : "Different call"; } },
+    { id: "same-street", key: "street", name: "Same Street",
+      done: function (r) { return !!r && typeof r.g === "number" && r.g >= 1 && r.g <= 100 && r.a >= 1 && r.a <= 100; },
+      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "The right house" : gap === 1 ? "Next door" : gap + " doors away"; } },
+    { id: "long-lost-cousin", key: "cousin", name: "Long Lost Cousin",
+      done: function (r) { return !!r && typeof r.c === "number"; },
+      says: function (r) { return r.r === 0 ? "Found it" : r.r === 1 ? "One branch away" : "Two branches away"; } }
+  ];
+
+  /* which calendar days had any game played: that is the streak of the whole site */
+  var todayIndex = Math.round(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / DAY);
+  function dayIndex(startISO, n) {
+    var p = String(startISO).split("-");
+    return Math.min(todayIndex, Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / DAY) + (n - 1));
+  }
+  var playedOn = {}, live = 0, doneToday = 0;
+
+  GAMES.forEach(function (G) {
+    var tile = document.getElementById("tile-" + G.key);
+    if (!tile) return;
+    live++;
+    var data = D[G.id];
+    G.stats = { current: 0, best: 0, played: 0 };
+    if (!data || !data.start) return;                      // the game's file did not load: the tile still opens the game
+    var today = Math.max(1, TO.dayNumber(data.start));
+    var results = {};
+    try { results = TO.game(G.id).results; } catch (e) { /* what the browser kept is broken: treat it as nothing played */ }
+    if (!results || typeof results !== "object") results = {};
+    Object.keys(results).forEach(function (k) {
+      var n = Number(k);
+      if (n >= 1 && n <= today) playedOn[dayIndex(data.start, n)] = true;
+    });
+    G.stats = TO.streak(results, today);
+    var r = results[today];
+    if (G.done(r)) {
+      doneToday++;
+      tile.classList.add("done");
+      tile.querySelector(".result b").textContent = G.says(r);
+      tile.querySelector(".result").hidden = false;
+      tile.querySelector(".again").hidden = false;
+      tile.querySelector(".go").hidden = true;
+      tile.querySelector(".mins").hidden = true;
+      var pip = document.getElementById("pip-" + G.key);
+      if (pip) pip.classList.add("on");
     }
-    status.innerHTML = "Day " + today + " is done. <b>" + (gap === 0 ? "Spot on." : "Off by " + gap + ".") + "</b>" +
-      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new question at midnight.";
-    status.hidden = false;
-    go.textContent = "See today's answer again";
-  } else {
-    go.textContent = "Play day " + today;
-    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
-  }
-})();
-</script>
-<script>
-/* Your Call on the home page: today's colour, and whether today is done. It never shows what the leader did. */
-(function () {
-  "use strict";
-  var TO = window.TurnsOut;
-  var data = (window.TURNSOUT_DATA || {})["your-call"];
-  if (!TO || !data || !data.puzzles || !data.puzzles.length) return;
-  var today = Math.max(1, TO.dayNumber(data.start));
-  var q = data.puzzles[(today - 1) % data.puzzles.length];
-  document.getElementById("card-yc").style.setProperty("--hue", TO.colour(q.colour));
+  });
 
-  var g = TO.game("your-call");
-  var r = g.results[today];
-  var status = document.getElementById("status-yc");
-  var go = document.getElementById("go-yc");
-  var streak = TO.streak(g.results, today).current;
-  if (r && typeof r.c === "number") {
-    status.innerHTML = "Day " + today + " is done. <b>" + (r.c === r.r ? "Same call as the leader." : "You chose differently.") + "</b>" +
-      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new moment at midnight.";
-    status.hidden = false;
-    go.textContent = "See today's moment again";
-  } else {
-    go.textContent = "Play day " + today;
-    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
-  }
-})();
-</script>
-<script>
-/* Same Street on the home page: a small street, and whether today is done. Before you play it shows nothing about today's home. */
-(function () {
-  "use strict";
-  var TO = window.TurnsOut;
-  var data = (window.TURNSOUT_DATA || {})["same-street"];
-  if (!TO || !data || !data.homes || !data.homes.length) return;
-  var card = document.getElementById("card-ss");
-  card.style.setProperty("--hue", TO.colour("teal"));
+  document.getElementById("today-count").innerHTML = "<b>" + doneToday + "</b> of " + live + " played";
+  if (live > 0 && doneToday === live) document.getElementById("today-note").textContent = "All done for today. New games at midnight.";
 
-  var NS = "http://www.w3.org/2000/svg";
-  var mini = document.getElementById("mini-street");
-  var top = document.createElement("div"); top.className = "row";
-  var road = document.createElement("div"); road.className = "road";
-  var bottom = document.createElement("div"); bottom.className = "row";
-  var houses = [null];
-  for (var n = 1; n <= 100; n++) {
-    var s = document.createElementNS(NS, "svg");
-    s.setAttribute("viewBox", "0 0 10 12");
-    var p = document.createElementNS(NS, "path");
-    p.setAttribute("d", "M1 12V5.2L5 1l4 4.2V12z");
-    s.appendChild(p);
-    (n % 2 ? top : bottom).appendChild(s);
-    houses.push(s);
-  }
-  mini.appendChild(top); mini.appendChild(road); mini.appendChild(bottom);
+  var streak = 0;
+  for (var d = playedOn[todayIndex] ? todayIndex : todayIndex - 1; playedOn[d]; d--) streak++;
+  document.getElementById("streak-n").textContent = String(streak);
+  document.getElementById("streak-line").textContent = streak === 0
+    ? "No streak yet. Play any game today to start one."
+    : "You have played " + streak + (streak === 1 ? " day" : " days") + " in a row." + (playedOn[todayIndex] ? "" : " Play any game today to keep it.");
+  var rows = document.getElementById("streak-rows");
+  GAMES.forEach(function (G) {
+    if (!G.stats) return;
+    var li = document.createElement("li");
+    li.setAttribute("data-g", G.key);
+    var dot = document.createElement("span"); dot.className = "dot";
+    var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = G.name;
+    var st = document.createElement("span"); st.className = "st";
+    st.innerHTML = G.stats.played === 0 ? "Not played yet"
+      : "Streak <b>" + G.stats.current + "</b> · best <b>" + G.stats.best + "</b> · " + G.stats.played + (G.stats.played === 1 ? " day" : " days");
+    li.appendChild(dot); li.appendChild(nm); li.appendChild(st);
+    rows.appendChild(li);
+  });
 
-  var today = Math.max(1, TO.dayNumber(data.start));
-  var q = data.homes[(today - 1) % data.homes.length];
-  var g = TO.game("same-street");
-  var r = g.results[today];
-  var status = document.getElementById("status-ss");
-  var go = document.getElementById("go-ss");
-  var streak = TO.streak(g.results, today).current;
-  if (r && typeof r.g === "number" && r.g >= 1 && r.g <= 100 && r.a >= 1 && r.a <= 100) {
-    var gap = Math.abs(r.g - r.a);
-    card.style.setProperty("--hue", TO.colour(q.colour));
-    if (gap !== 0) houses[r.g].setAttribute("class", "missed");
-    houses[r.a].setAttribute("class", "real");
-    status.innerHTML = "Day " + today + " is done. <b>" + (gap === 0 ? "The right house." : gap === 1 ? "Next door." : gap + " doors away.") + "</b>" +
-      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new home at midnight.";
-    status.hidden = false;
-    go.textContent = "See today's home again";
-  } else {
-    go.textContent = "Play day " + today;
-    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
+  /* Long Lost Cousin: today's animal or plant stands on the tile. Its small picture file is fetched here. */
+  var cousin = D["long-lost-cousin"];
+  var slot = document.getElementById("cousin-pic");
+  if (cousin && cousin.puzzles && cousin.puzzles.length && slot) {
+    var day = Math.max(1, TO.dayNumber(cousin.start));
+    var q = cousin.puzzles[(day - 1) % cousin.puzzles.length];
+    var pics = window.TURNSOUT_PICS = window.TURNSOUT_PICS || {};
+    window.TurnsOutPic = function (key, pic) { pics[key] = pic; };
+    var file = document.createElement("script");
+    file.src = "long-lost-cousin/pics/" + q.subject + ".js";
+    file.onload = function () {
+      var pic = pics[q.subject];
+      if (!pic) return;
+      slot.setAttribute("viewBox", "0 0 " + pic.w + " " + pic.h);
+      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", pic.d);
+      slot.appendChild(path);
+    };
+    document.head.appendChild(file);
   }
-})();
-</script>
-<script>
-/* Long Lost Cousin on the home page: today's animal or plant, and whether today is done. It never shows the answer before you play. */
-(function () {
-  "use strict";
-  var TO = window.TurnsOut;
-  var data = (window.TURNSOUT_DATA || {})["long-lost-cousin"];
-  if (!TO || !data || !data.puzzles || !data.puzzles.length) return;
-  var today = Math.max(1, TO.dayNumber(data.start));
-  var q = data.puzzles[(today - 1) % data.puzzles.length];
-  document.getElementById("card-lc").style.setProperty("--hue", TO.colour(q.colour));
 
-  // today's silhouette: its small picture file is fetched here
-  var pics = window.TURNSOUT_PICS = window.TURNSOUT_PICS || {};
-  window.TurnsOutPic = function (key, pic) { pics[key] = pic; };
-  var file = document.createElement("script");
-  file.src = "long-lost-cousin/pics/" + q.subject + ".js";
-  file.onload = function () {
-    var pic = pics[q.subject];
-    if (!pic) return;
-    var NS = "http://www.w3.org/2000/svg";
-    var svg = document.createElementNS(NS, "svg");
-    svg.setAttribute("viewBox", "0 0 " + pic.w + " " + pic.h);
-    svg.setAttribute("preserveAspectRatio", "xMinYMid meet");
-    var path = document.createElementNS(NS, "path");
-    path.setAttribute("d", pic.d);
-    svg.appendChild(path);
-    document.getElementById("mini-cousin").appendChild(svg);
-  };
-  document.head.appendChild(file);
-
-  var g = TO.game("long-lost-cousin");
-  var r = g.results[today];
-  var status = document.getElementById("status-lc");
-  var go = document.getElementById("go-lc");
-  var streak = TO.streak(g.results, today).current;
-  if (r && typeof r.c === "number") {
-    status.innerHTML = "Day " + today + " is done. <b>" + (r.r === 0 ? "You found the cousin." : r.r === 1 ? "One branch away." : "Two branches away.") + "</b>" +
-      (streak >= 2 ? " " + streak + " days in a row." : "") + " A new cousin at midnight.";
-    status.hidden = false;
-    go.textContent = "See today's family tree again";
-  } else {
-    go.textContent = "Play day " + today;
-    if (streak >= 1) { status.textContent = streak + (streak === 1 ? " day" : " days") + " in a row so far. Keep it going."; status.hidden = false; }
-  }
+  /* a new day while the page stays open: show it when the visitor comes back to the tab */
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState !== "visible") return;
+    var t = new Date();
+    if (Math.round(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) / DAY) !== todayIndex) window.location.reload();
+  });
 })();
 </script>
 </body>

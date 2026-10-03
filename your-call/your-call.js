@@ -49,7 +49,7 @@
   $("place").textContent = q.place;
   $("pov").textContent = "POV: " + q.pov + " Your call.";
   $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Your Call, day " + day + " | Turns Out";
+  document.title = "Your Call, day " + day + " | Logicers";
 
   var buttons = q.choices.map(function (text, i) {
     var b = document.createElement("button");
@@ -265,21 +265,22 @@
     var c = document.createElement("canvas");
     c.width = W; c.height = H;
     var x = c.getContext("2d");
-    var F = '"Jost", "Futura", "Century Gothic", "Avenir Next", system-ui, sans-serif';
-    x.fillStyle = hue;
+    var F = '"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif';       // text
+    var FD = '"Bricolage Grotesque", ' + F;                                       // headlines
+    x.fillStyle = "#6A45CC";                 // the game's own colour
     x.fillRect(0, 0, W, H);
     x.textBaseline = "alphabetic";
     x.fillStyle = "#ffffff";
 
     x.textAlign = "left";
-    x.font = "800 48px " + F;
-    x.fillText("Turns Out", M, 118);
+    x.font = "800 48px " + FD;
+    x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
     x.fillText("Your Call, day " + day, W - M, 118);
 
     x.textAlign = "left";
-    x.font = "800 190px " + F;
+    x.font = "800 190px " + FD;
     x.fillText(String(q.year), M - 8, 300);
     var yw = x.measureText(String(q.year)).width;
     x.font = "600 44px " + F;
@@ -303,7 +304,7 @@
       var by = boxTop + i * (boxH + gap);
       roundRect(x, M, by, W - 2 * M, boxH, 30);
       x.stroke();
-      x.font = "800 46px " + F;
+      x.font = "800 46px " + FD;
       x.fillText(LETTERS[i], M + 30, by + 68);
       var cs = 40;
       x.font = "600 " + cs + "px " + F;
@@ -315,7 +316,7 @@
     x.font = "600 40px " + F;
     x.fillText(same ? "I made the same call as the real leader." : "I chose differently from the real leader.", M, ry);
 
-    x.font = "800 72px " + F;
+    x.font = "800 72px " + FD;
     x.fillText("Your call.", M, 1258);
     var where = TO.address();
     if (where) {
@@ -338,7 +339,7 @@
       } catch (e) { cardBlob = null; }
     }
     if (document.fonts && document.fonts.load) {
-      Promise.all([document.fonts.load('800 100px "Jost"'), document.fonts.load('600 44px "Jost"')]).then(make, make);
+      Promise.all([document.fonts.load('800 100px "Bricolage Grotesque"'), document.fonts.load('600 44px \"Figtree\"')]).then(make, make);
     } else make();
   }
 

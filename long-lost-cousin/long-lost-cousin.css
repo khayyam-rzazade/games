@@ -1,16 +1,13 @@
-/* Long Lost Cousin: styles that only this game needs. Everything shared lives in assets/css/turnsout.css. */
-:root { --lc-reserve: 27.5rem; }   /* height of everything on the play screen except the big picture */
-
-/* the name of this game is long: on narrow phones the day goes on a line of its own, and the chip keeps its shape */
-.bar-tools { flex-shrink: 0; }
-.chip { white-space: nowrap; }
+/* Long Lost Cousin: styles that only this game needs. Everything shared lives in assets/css/logicers.css. */
+:root { --lc-reserve: 30.3rem; }   /* height of everything on the play screen except the big picture */
 
 .lc-q {
-  margin-top: 8px;
-  font-weight: 600;
-  font-size: clamp(1.2rem, 5vw, 1.45rem);
-  line-height: 1.15;
-  letter-spacing: -0.012em;
+  margin-top: 4px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 5.9vw, 1.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
@@ -20,92 +17,102 @@
 .lc-pic.missing { border: 2px dashed var(--idle); border-radius: 16px; }   /* the picture did not load: the name still tells */
 .lc-name { display: block; font-weight: 700; line-height: 1.1; }
 
-/* ---------- guessing: the subject on top, three candidates below ---------- */
-.lc-subject { text-align: center; }
+/* ---------- guessing: the subject on its card, three candidates below ---------- */
+.lc-subject { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 18px 18px 14px; text-align: center; }
 .lc-subject .lc-pic {
-  width: min(80%, 21rem);
+  width: min(86%, 21rem);
   height: clamp(5.5rem, calc(100vh - var(--lc-reserve)), 13rem);
   height: clamp(5.5rem, calc(100dvh - var(--lc-reserve)), 13rem);
-  margin: 2px auto 0;
+  margin: 0 auto;
 }
-.lc-subject .lc-name { margin-top: 8px; font-size: 1.3rem; letter-spacing: -0.012em; }
+.lc-subject .lc-name { margin-top: 10px; font-family: var(--display); font-size: 1.35rem; letter-spacing: -0.02em; }
 
-.lc-options {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 14px;
-}
+.lc-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
 .lc-opt {
   appearance: none;
+  position: relative;
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 7px;
-  border: 2px solid var(--ink);
+  gap: 6px;
+  border: 2.5px solid transparent;
   border-radius: 20px;
-  background: transparent;
+  background: var(--card);
+  box-shadow: var(--shadow);
   color: inherit;
-  padding: 10px 6px 10px;
+  padding: 11px 6px 9px;
   font: inherit;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.lc-opt .lc-pic { width: 100%; height: clamp(3.2rem, 15vw, 4.6rem); }
+.lc-opt .lc-pic { width: 100%; height: clamp(3.2rem, 15vw, 4.4rem); }
 .lc-opt .lc-name {
-  font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+  font-size: clamp(0.8rem, 3.5vw, 0.92rem);
   text-align: center;
   min-height: 2.2em;                 /* room for two lines, so the three cards stay level */
   display: flex;
   align-items: center;
 }
-.lc-opt[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.lc-opt[aria-pressed="true"] { border-color: var(--c); color: var(--c); }
+.lc-opt[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.6 10.4l3 3 5.8-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat;
+  box-shadow: 0 0 0 3px var(--tint);
+}
 .lc-opt:active { transform: scale(0.98); }
 
-.lc-readout { min-height: 2.7rem; margin-top: 8px; }
-.lc-readout .hint { max-width: none; }
+.lc-readout { min-height: 2.5rem; margin-top: 8px; }
+.lc-readout .hint { max-width: none; margin-left: 4px; }
 
 /* ---------- the family tree ---------- */
-.lc-leaves {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: end;
-}
+.panel.revealed { padding: 14px 12px 20px; }
+.panel.revealed .lc-readout { margin-top: 0; padding: 14px 8px 0; }
+.lc-leaves { display: grid; grid-template-columns: repeat(4, 1fr); align-items: end; }
 .lc-leaf {
   min-width: 0;
-  padding: 0 3px;
+  margin: 0 2px;
+  padding: 7px 3px 4px;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: opacity 0.3s ease, color 0.3s ease;
+  transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease;
 }
 .lc-tag {
   visibility: hidden;
-  margin-bottom: 6px;
-  padding: 3px 8px 4px;
+  margin-bottom: 5px;
+  padding: 3px 9px;
   border-radius: 999px;
-  background: #fff;
-  color: #000;
-  font-weight: 700;
-  font-size: 0.8rem;
-  line-height: 1;
+  background: var(--c);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  line-height: 1.2;
   white-space: nowrap;
 }
-.lc-tree.done .lc-leaf.you .lc-tag { visibility: visible; }
-.lc-leaf.miss .lc-tag { background: var(--miss); color: #111; }
-.lc-leaf .lc-pic { width: 100%; height: clamp(3rem, 15vw, 4.6rem); }
+.lc-leaf .lc-pic { width: 100%; height: clamp(3rem, 15vw, 4.4rem); }
 .lc-leaf .lc-name {
   margin-top: 6px;
-  font-size: clamp(0.7rem, 3.1vw, 0.88rem);
+  font-size: clamp(0.7rem, 3.1vw, 0.86rem);
   min-height: 2.2em;                 /* two lines, so the branches below line up */
 }
 .lc-tree.done .lc-leaf.far { opacity: 0.5; }
-.lc-tree.done .lc-leaf.miss { opacity: 1; color: var(--miss); }
+/* the one you picked stands on a card: white when it was the cousin, yellow when it was not */
+.lc-tree.done .lc-leaf.you { opacity: 1; background: #fff; color: var(--c); box-shadow: 0 6px 16px rgba(0, 0, 0, .14); }
+.lc-tree.done .lc-leaf.you .lc-tag { visibility: visible; }
+.lc-tree.done .lc-leaf.you.miss { background: var(--miss); color: #15172B; }
+.lc-tree.done .lc-leaf.you.miss .lc-tag { background: #15172B; color: var(--miss); }
 
-.lc-wood { position: relative; }
+.lc-wood { position: relative; margin-top: 2px; }
 .lc-branches { display: block; width: 100%; height: auto; overflow: visible; }
 .lc-branches path {
   fill: none;
@@ -133,21 +140,51 @@
 
 /* ---------- after the reveal ---------- */
 .lc-credit { margin-top: 4px; }
-.stamp.lc .lc-pic {
-  position: absolute;
-  left: 12%;
-  right: 12%;
-  top: 9%;
-  height: 44%;
-}
-.stamp.lc .what { font-weight: 800; font-size: 1.02rem; letter-spacing: -0.01em; }
+.stamp.lc .lc-pic { position: absolute; left: 12%; right: 12%; top: 9%; height: 44%; }
+.stamp.lc .what { font-family: var(--display); font-weight: 800; font-size: 1.02rem; letter-spacing: -0.02em; }
 .stamp.lc .of { order: 2; margin-top: 2px; }
 
-@media (max-width: 23.5rem) {
-  :root { --lc-reserve: 29rem; }     /* the top bar is one line taller here */
+/* ---------- night ---------- */
+@media (prefers-color-scheme: dark) {
+  .lc-subject { background: transparent; box-shadow: none; padding-top: 10px; padding-bottom: 8px; }
+  .lc-subject .lc-pic { color: #fff; filter: drop-shadow(0 0 22px var(--c)); }
+  .lc-opt { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .lc-opt[aria-pressed="true"] { background: rgba(255, 132, 104, .12); box-shadow: 0 0 0 4px rgba(255, 132, 104, .16), 0 0 30px rgba(255, 132, 104, .3); }
+  .lc-opt[aria-pressed="true"]::after { box-shadow: 0 0 0 3px var(--bg); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.6 10.4l3 3 5.8-6.4' fill='none' stroke='%230A0C1A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+  .lc-tag { color: #0A0C1A; }
+  .lc-tree.done .lc-leaf.far { opacity: 0.42; }
+  .lc-tree.done .lc-leaf.you { opacity: 1; background: rgba(255, 132, 104, .12); color: var(--c); box-shadow: inset 0 0 0 1.5px var(--c); }
+  .lc-tree.done .lc-leaf.you.miss { background: rgba(240, 180, 41, .12); color: var(--miss); box-shadow: inset 0 0 0 1.5px var(--miss); }
+  .lc-tree.done .lc-leaf.you.miss .lc-tag { background: var(--miss); color: #0A0C1A; }
+  .lc-branches path { stroke: var(--c); filter: drop-shadow(0 0 6px var(--c)); }
+  .lc-tree.done .lc-branches path.far { stroke: rgba(255, 255, 255, .24); opacity: 1; filter: none; }
+  .lc-branches circle { fill: #fff; filter: drop-shadow(0 0 8px var(--c)); }
+  .lc-when { color: var(--soft); }
 }
-@media (min-width: 40rem) {
-  :root { --lc-reserve: 29.5rem; }
+
+@media (max-width: 23.5rem) {
+  :root { --lc-reserve: 30.5rem; }
+  .lc-subject { padding: 14px 14px 12px; }
+}
+@media (max-width: 21.9rem) {
+  .lc-q { font-size: 1.2rem; }
+}
+@media (max-height: 37.5rem) {
+  .lc-subject { padding: 12px 14px 10px; }
+  .lc-subject .lc-name { margin-top: 6px; }
+  .lc-options { margin-top: 10px; }
+  .lc-readout { min-height: 2.1rem; margin-top: 6px; }
+}
+@media (min-width: 56rem) {
+  :root { --lc-reserve: 35.2rem; }
+  .lc-q { font-size: 1.95rem; }
+  .lc-subject .lc-pic { height: clamp(5.5rem, calc(100vh - var(--lc-reserve)), 14rem); height: clamp(5.5rem, calc(100dvh - var(--lc-reserve)), 14rem); }
+  .lc-subject .lc-name { font-size: 1.55rem; }
+  .lc-opt .lc-pic { height: 5.2rem; }
+  .lc-opt .lc-name { font-size: 1.02rem; }
+  .lc-leaf .lc-pic { height: 5rem; }
+  .lc-leaf .lc-name { font-size: 0.98rem; }
+  .lc-when { font-size: 0.95rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .lc-opt:active { transform: none; }

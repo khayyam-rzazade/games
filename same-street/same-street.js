@@ -22,7 +22,6 @@
   }
 
   var LOW = DATA.low || 25, HIGH = DATA.high || 15000;
-  var SHARE_HUE = TO.colour("teal");     // the share picture never uses the region's colour: it would give the region away
   var FAMILY = "https://www.gapminder.org/dollar-street/families/";
   var CAPTIONS = ["The home from outside", "Where the family cooks", "Where the family sleeps"];
 
@@ -92,7 +91,7 @@
 
   panel.style.setProperty("--hue", hue);
   $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Same Street, day " + day + " | Turns Out";
+  document.title = "Same Street, day " + day + " | Logicers";
   $("end-low").textContent = money(LOW);
   $("end-high").textContent = money(HIGH);
   $("help-low").textContent = money(LOW);
@@ -269,6 +268,7 @@
       countEl.hidden = true;
       $("turnsout").textContent = "Turns out, house " + answer + ".";
       $("offby").innerHTML = "You said house " + guess + ". <b>" + doors(gap) + ".</b>";
+      $("offby").classList.toggle("hit", gap === 0);        // yellow is kept for a miss
       verdictEl.hidden = false;
       fillAfter(gap);
       renderChip();
@@ -435,15 +435,16 @@
     var c = document.createElement("canvas");
     c.width = W; c.height = H;
     var x = c.getContext("2d");
-    var F = '"Jost", "Futura", "Century Gothic", "Avenir Next", system-ui, sans-serif';
-    x.fillStyle = SHARE_HUE;
+    var F = '"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif';       // text
+    var FD = '"Bricolage Grotesque", ' + F;                                       // headlines
+    x.fillStyle = "#0D7D73";                 // the game's own colour, never the region's: that would give the region away
     x.fillRect(0, 0, W, H);
     x.textBaseline = "alphabetic";
 
     x.fillStyle = "#ffffff";
     x.textAlign = "left";
-    x.font = "800 48px " + F;
-    x.fillText("Turns Out", M, 118);
+    x.font = "800 48px " + FD;
+    x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
     x.fillText("Same Street, day " + day, W - M, 118);
@@ -469,7 +470,7 @@
     x.fillText("Where on the street is this home?", M, 836);
 
     var head = doors(gap);
-    fitText(x, head, 800, 150, 90, W - 2 * M, F);
+    fitText(x, head, 800, 150, 90, W - 2 * M, FD);
     x.fillStyle = TO.MISS;
     x.fillText(head, M - 6, 984);
 
@@ -495,7 +496,7 @@
 
     x.fillStyle = "#ffffff";
     x.textAlign = "left";
-    x.font = "700 46px " + F;
+    x.font = "700 46px " + FD;
     x.fillText(gap <= 1 ? "Can you match it?" : "Can you get closer?", M, 1178);
     var st = TO.streak(TO.game(GAME).results, today).current;
     if (!practice && st >= 2) {
@@ -549,9 +550,9 @@
     }
     if (document.fonts && document.fonts.load) {
       Promise.all([
-        document.fonts.load('800 100px "Jost"'),
-        document.fonts.load('600 44px "Jost"'),
-        document.fonts.load('500 38px "Jost"')
+        document.fonts.load('800 100px "Bricolage Grotesque"'),
+        document.fonts.load('600 44px \"Figtree\"'),
+        document.fonts.load('500 38px \"Figtree\"')
       ]).then(whenPhoto, whenPhoto);
     } else whenPhoto();
   }
