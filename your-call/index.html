@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Call | Turns Out</title>
+<meta name="description" content="One real moment from history a day. Three choices. Make your call, then see what the real leader did and what happened next.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Turns Out">
+<meta property="og:title" content="Your Call">
+<meta property="og:description" content="A real moment from history and three choices. What did they actually do?">
+<meta property="og:image" content="../assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/turnsout.css">
+<link rel="stylesheet" href="your-call.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-id">
+    <a class="wordmark" href="../">Turns Out</a>
+    <p class="meta"><b>Your Call</b> <span id="day-label"></span></p>
+  </div>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album">Streak 0</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="notice" id="notice" hidden></p>
+  <p class="yc-year" id="year"></p>
+  <p class="yc-place" id="place"></p>
+  <h1 class="yc-pov" id="pov"></h1>
+
+  <section class="yc-panel" id="panel" aria-live="polite">
+    <div class="yc-choices" id="choices"></div>
+    <p class="yc-verdict" id="verdict" hidden></p>
+  </section>
+
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="lock" type="button" hidden>Lock in</button>
+  </div>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="did"></p>
+    <p class="yc-h">What happened next</p>
+    <p class="sentence" id="next-text"></p>
+    <p class="source">Sources: <a id="src1" href="#" target="_blank" rel="noopener"></a>, <a id="src2" href="#" target="_blank" rel="noopener"></a></p>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button">Share</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice">Practice</button>
+    </div>
+
+    <div class="earned" id="earned" hidden>
+      <div class="stamp yc" id="earned-stamp"></div>
+      <p>This moment is now a stamp in your album.</p>
+    </div>
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>Read the moment. It really happened.</li>
+      <li>Tap the choice you would make, then tap Lock in.</li>
+      <li>See what the real leader did, and what happened next.</li>
+    </ol>
+    <p>There is no right or wrong choice here. The game only shows what was actually done.</p>
+    <p>One moment a day, the same for everyone. A new one arrives at midnight.</p>
+    <h3>Where the facts come from</h3>
+    <p class="quiet">Every moment is checked against two sources, linked under the answer. Events are at least twenty years old.</p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="album-title">Your album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span>days played</span></div>
+      <div class="stat"><b id="st-streak">0</b><span>streak now</span></div>
+      <div class="stat"><b id="st-best">0</b><span>best streak</span></div>
+      <div class="stat"><b id="st-same">0</b><span>same calls as the leader</span></div>
+    </div>
+    <p class="album-empty" id="album-empty">Make today's call to get your first stamp.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="practice-title">Practice</h2>
+    <p class="quiet">Earlier moments. They do not count for your streak or your album.</p>
+    <p class="quiet" id="practice-empty" hidden>No earlier moments yet. Come back tomorrow.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="./">Back to today's moment</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share your call</h2>
+    <p class="quiet">Send the link along with the picture, so friends can tap it.</p>
+    <img class="shot" id="share-img" alt="Your result as a picture. It does not show what the real leader did.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="your-call.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="puzzles.js"></script>
+<script src="../assets/js/turnsout.js"></script>
+<script src="your-call.js"></script>
+</body>
+</html>
