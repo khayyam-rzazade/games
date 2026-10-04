@@ -52,6 +52,20 @@
   for (var i = 0; i < 100; i++) { var f = TO.figure(); crowd.appendChild(f); figs.push(f); }
   panel.style.setProperty("--hue", hue);
   $("question").textContent = q.q;
+  /* The page keeps room for three lines of question. On a small phone a long question can need a fourth line,
+     which would push the page beyond the screen: then its letters shrink a little until three lines hold it. */
+  function fitQuestion() {
+    var el = $("question");
+    el.style.fontSize = "";
+    var size = parseFloat(window.getComputedStyle(el).fontSize), tries = 0;
+    while (el.scrollHeight > Math.ceil(size * 3.36) + 1 && size > 14 && tries++ < 24) {
+      size -= 0.5;
+      el.style.fontSize = size + "px";
+    }
+  }
+  fitQuestion();
+  window.addEventListener("resize", fitQuestion);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitQuestion);
   $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
   document.title = "100 of Us, day " + day + " | Logicers";
 

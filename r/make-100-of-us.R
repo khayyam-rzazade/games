@@ -20,8 +20,9 @@
 #    - Nothing is invented: a row without a figure is left out and named.
 # =====================================================================
 
-start_date    <- NULL   # NULL keeps the start date already in the data file (a new file starts today).
-                        # To set day 1 yourself, write for example "2026-10-10".
+start_date    <- NULL   # Leave this as NULL. Day 1 of 100 of Us is 3 October 2026 and must never move:
+                        # players' streaks and results are stored by day number. Only a brand-new data file
+                        # (none there at all) takes its day 1 from here, or from today when this is NULL.
 max_age_years <- 6      # figures older than this are left out
 min_answer    <- 5
 max_answer    <- 95
@@ -80,6 +81,7 @@ wb_rows <- function(area, indicator, from, to) {
       if (nzchar(iso)) iso else pick(r$country$id, "")
     }, ""),
     name  = vapply(rows, function(r) pick(r$country$value, ""), ""),
+    iso2  = vapply(rows, function(r) pick(r$country$id, ""), ""),
     year  = suppressWarnings(as.integer(vapply(rows, function(r) as.character(pick(r$date, NA)), ""))),
     value = suppressWarnings(as.numeric(vapply(rows, function(r) as.character(pick(r$value, NA)), ""))),
     indicator_name = vapply(rows, function(r) pick(r$indicator$value, ""), ""),
@@ -138,10 +140,22 @@ if (any(duplicated(topics$id))) {
 continents <- read.csv(cont_path, stringsAsFactors = FALSE, fileEncoding = "UTF-8", colClasses = "character")
 
 existing <- read_existing(data_path)
-fresh <- is.null(existing) || isTRUE(existing$starter)
+# Every question already in the file stays where it is, so that each day keeps its question.
+# This includes the first 12 ("starter") questions: they have been live since 3 October 2026.
+fresh <- is.null(existing)
 questions <- if (fresh) list() else existing$questions
+if (!fresh && !length(questions)) stop("data/100-of-us.js has no questions in it, so I did not touch it.", call. = FALSE)
 have <- vapply(questions, function(q) q$id, "")
-start <- if (!is.null(start_date)) as.character(start_date) else if (fresh || is.null(existing$start)) format(Sys.Date()) else existing$start
+if (fresh) {
+  start <- if (!is.null(start_date)) as.character(start_date) else format(Sys.Date())
+} else {
+  start <- existing$start
+  if (is.null(start) || !nzchar(start)) stop("data/100-of-us.js has no start date, so I did not touch it.", call. = FALSE)
+  if (!is.null(start_date) && as.character(start_date) != start) {
+    stop("Day 1 of 100 of Us is ", start, ". Moving it would break players' streaks, so I did not touch the file. ",
+         "Set start_date back to NULL at the top of this script and run again.", call. = FALSE)
+  }
+}
 
 this_year <- as.integer(format(Sys.Date(), "%Y"))
 from_year <- this_year - max_age_years - 1
@@ -237,7 +251,9 @@ for (i in seq_len(nrow(todo))) {
     }
     value <- rows$value[1]
     year <- rows$year[1]
-    link <- paste0("https://data.worldbank.org/indicator/", t$indicator, if (area == "WLD") "?locations=1W" else "")
+    # the source link opens the figure for the place asked about (the World Bank's site names places by their two-letter code)
+    where <- if (area == "WLD") "1W" else rows$iso2[1]
+    link <- paste0("https://data.worldbank.org/indicator/", t$indicator, if (nzchar(where)) paste0("?locations=", where) else "")
   }
   if (is.na(value)) { skip(t$id, "no figure for this place"); next }
 
