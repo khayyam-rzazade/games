@@ -13,6 +13,7 @@ The shelf is laid out by the number of games: logicers.css has rules for .grid[d
 """
 import os, sys
 OUT = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/work/site2'
+SITE_URL = 'https://logicers.com/'      # the site's own address: link previews, sitemap.xml and robots.txt use it
 
 from arts import *
 
@@ -55,12 +56,16 @@ html = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Logicers: small daily games about the real world</title>
+<link rel="canonical" href="{SITE_URL}">
 <meta name="description" content="Small daily games about the real world. A minute each, and one true thing every time, with its source.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
 <meta property="og:title" content="Logicers. Are you a Logicer?">
 <meta property="og:description" content="Small daily games about the real world. A minute each. One true thing every time.">
-<meta property="og:image" content="assets/img/og.png">
+<meta property="og:url" content="{SITE_URL}">
+<meta property="og:image" content="{SITE_URL}assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
@@ -157,4 +162,11 @@ html = f'''<!doctype html>
 </html>
 '''
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(html)
+
+# the list of pages for search engines, and the file that points them to it
+pages = [SITE_URL] + [SITE_URL + g['href'] for g in GAMES]
+open(f'{OUT}/sitemap.xml', 'w', encoding='utf-8').write(
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + ''.join(f'  <url><loc>{u}</loc><changefreq>daily</changefreq></url>\n' for u in pages) + '</urlset>\n')
+open(f'{OUT}/robots.txt', 'w', encoding='utf-8').write(f'User-agent: *\nAllow: /\nDisallow: /r/\n\nSitemap: {SITE_URL}sitemap.xml\n')
 print('index.html', len(html), 'bytes')

@@ -1,8 +1,12 @@
-"""Browser-tab icon, phone home-screen icon, link preview picture and the "not found" page, in the new look."""
-import asyncio
+"""Browser-tab icon, phone home-screen icon, link preview picture and the "not found" page, in the new look.
+
+    python3 make_brand.py [folder of the site]     the folder must be served at http://localhost:8790 while it runs
+"""
+import asyncio, os, sys, tempfile
 from playwright.async_api import async_playwright
 from arts import *
-OUT = '/home/claude/work/site2'
+OUT = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/work/site2'   # the folder of the site; it must also be served at http://localhost:8790
+TOUCH = os.path.join(tempfile.gettempdir(), 'logicers-touch.html')
 
 favicon = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <circle cx="32" cy="16.5" r="11.5" fill="#3558DC"/>
@@ -18,20 +22,22 @@ svg { display: block; width: 180px; height: 180px; }
 </style></head><body>
 <svg viewBox="0 0 180 180"><circle cx="90" cy="55" r="26" fill="#2D4FC4"/><circle cx="51" cy="122" r="26" fill="#D5492F"/><circle cx="129" cy="122" r="26" fill="#0D7D73"/></svg>
 </body></html>'''
-open('touch.html', 'w').write(touch)
+open(TOUCH, 'w').write(touch)
 
 og = f'''<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="assets/css/logicers.css">
 <style>
 html, body {{ margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #F3F4F9; }}
-.wrap {{ display: grid; grid-template-columns: 1fr 470px; gap: 40px; align-items: center; height: 630px; padding: 0 64px 0 72px; }}
+.wrap {{ display: grid; grid-template-columns: 1fr 540px; gap: 40px; align-items: center; height: 630px; padding: 0 56px 0 72px; max-width: none; margin: 0; box-sizing: border-box; }}
 .logo .mark {{ width: 46px; height: 46px; }}
 .logo .word {{ font-size: 44px; }}
 h1 {{ font-family: var(--display); font-weight: 800; font-size: 96px; line-height: .96; letter-spacing: -0.035em; margin-top: 46px; position: relative; z-index: 0; }}
 h1 em {{ font-style: normal; color: #2D4FC4; position: relative; white-space: nowrap; }}
 h1 em::after {{ content: ""; position: absolute; left: 0; right: 0; bottom: .04em; height: .16em; border-radius: 99px; background: #F5C24B; z-index: -1; opacity: .9; }}
-.sub {{ margin-top: 28px; font-size: 33px; line-height: 1.3; color: #5D6279; max-width: 14.5em; }}
-.arts {{ display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }}
+.sub {{ margin-top: 28px; font-size: 33px; line-height: 1.3; color: #5D6279; max-width: 14.5em; text-wrap: balance; }}
+.arts {{ display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }}
+.arts .card {{ grid-column: span 2; }}
+.arts .card:nth-child(4) {{ grid-column: 2 / span 2; }}   /* five cards: three above, two centred below */
 .card {{ background: #fff; border-radius: 30px; padding: 10px; box-shadow: 0 1px 2px rgba(21,23,43,.05), 0 14px 34px rgba(21,23,43,.09); }}
 .card .art {{ border-radius: 21px; }}
 </style></head><body>
@@ -46,6 +52,7 @@ h1 em::after {{ content: ""; position: absolute; left: 0; right: 0; bottom: .04e
     <div class="card" data-g="call"><div class="art">{art_call()}</div></div>
     <div class="card" data-g="street"><div class="art">{art_street()}</div></div>
     <div class="card" data-g="cousin"><div class="art">{art_cousin()}</div></div>
+    <div class="card" data-g="club"><div class="art">{art_club()}</div></div>
   </div>
 </div>
 <script src="long-lost-cousin/pics/hippo.js"></script>
@@ -99,7 +106,7 @@ async def main():
     async with async_playwright() as p:
         br = await p.chromium.launch()
         ctx = await br.new_context(viewport={'width': 180, 'height': 180}, device_scale_factor=1)
-        pg = await ctx.new_page(); await pg.goto('file:///home/claude/work/site2tools/touch.html'); await pg.screenshot(path=f'{OUT}/assets/img/apple-touch-icon.png'); await ctx.close()
+        pg = await ctx.new_page(); await pg.goto('file://' + TOUCH); await pg.screenshot(path=f'{OUT}/assets/img/apple-touch-icon.png'); await ctx.close()
         ctx = await br.new_context(viewport={'width': 1200, 'height': 630}, device_scale_factor=1, color_scheme='light')
         pg = await ctx.new_page(); errs = []
         pg.on('console', lambda m: errs.append(m.text) if m.type == 'error' else None)

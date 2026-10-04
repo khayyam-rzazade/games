@@ -18,7 +18,7 @@
      Empty quotes: the site's own web address is used.
      Once the site has its own domain, write it here, for example "turnsout.games".
      ------------------------------------------------------------------ */
-  var ADDRESS = "";
+  var ADDRESS = "logicers.com";
   var SELF = (document.currentScript && document.currentScript.src) || "";
 
   var KEY = "turnsout:v1";
