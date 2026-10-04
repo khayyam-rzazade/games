@@ -104,7 +104,7 @@ async def main():
         ok('B5 Escape closes it', not await pg.evaluate("document.getElementById('dlg-streak').open"))
         await pg.locator('.tools .chip.round').click(); await pg.wait_for_timeout(150)
         about = await pg.evaluate("document.getElementById('dlg-about').innerText")
-        ok('B6 the ? opens About, with all five source notes', await pg.evaluate("document.getElementById('dlg-about').open") and all(s in about for s in ['About Logicers', 'World Bank', 'Your Call checks', 'Dollar Street', 'PhyloPic', 'The Club checks every rule and every name against two sources', 'No login, no tracking, no cookies']))
+        ok('B6 the ? opens About, with all five source notes', await pg.evaluate("document.getElementById('dlg-about').open") and all(s in about for s in ['About Logicers', 'World Bank', 'Your Call checks', 'Dollar Street', 'PhyloPic', 'The Club checks every rule against two sources', 'No login, no tracking, no cookies']))
         await pg.locator('#dlg-about [data-close]').click(); await pg.wait_for_timeout(100)
         ok('B7 the x closes it', not await pg.evaluate("document.getElementById('dlg-about').open"))
         await pg.locator('.foot-note button').click(); await pg.wait_for_timeout(100)
