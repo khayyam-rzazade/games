@@ -1,5 +1,6 @@
 """When a game's stock runs out it starts again from its first puzzle, while the day number keeps counting.
-These checks jump to 1 March 2027, long after every stock has looped once or more, with a player who already
+These checks jump to 1 March 2027, when every short stock has looped once or more (a stock longer than that,
+such as 100 of Us with 151 questions, is checked on day stock + 5 instead), with a player who already
 played the same puzzle in its first round. Site in SITE, served at B (see t_site.py)."""
 import asyncio, json, datetime, os
 from playwright.async_api import async_playwright
@@ -32,6 +33,9 @@ async def main():
             D = await pg.evaluate(f"window.TURNSOUT_DATA['{g}']")
             stock = D[field]; N = len(stock)
             day = (WHEN.date() - datetime.date.fromisoformat(D['start'])).days + 1
+            if day <= N:                                  # a long stock has not looped by then: go to its second round instead
+                day = N + 5
+                await pg.clock.set_fixed_time(datetime.datetime.combine(datetime.date.fromisoformat(D['start']) + datetime.timedelta(days=day - 1), datetime.time(12)))
             idx = (day - 1) % N
             first = idx + 1                               # the day this same puzzle was played in its first round
             yest = stock[(day - 2) % N]

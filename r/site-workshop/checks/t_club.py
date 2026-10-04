@@ -159,14 +159,19 @@ async def main():
         # ---------- practice, a friend's link, midnight, storage, folder
         ctx, pg = await new(br, day=3)
         await pg.goto(B + '/the-club/?p=1'); await pg.wait_for_timeout(300)
-        ok('P1 practice shows day 1 and says so', 'practice' in await T(pg, 'day-label') and await T(pg, 'cand') == puzzle(1)['door'][0][0] and await pg.locator('#notice').is_visible())
-        await play(pg, puzzle(1), right=2)
+        ok('P0 practice two days back is not offered: the page opens today', await T(pg, 'day-label') == 'Day 3' and await T(pg, 'cand') == puzzle(3)['door'][0][0], await T(pg, 'day-label'))
+        await pg.goto(B + '/the-club/?p=2'); await pg.wait_for_timeout(300)
+        ok('P1 practice shows yesterday (day 2) and says so', 'practice' in await T(pg, 'day-label') and await T(pg, 'cand') == puzzle(2)['door'][0][0] and await pg.locator('#notice').is_visible())
+        await play(pg, puzzle(2), right=2)
         st = (await stored(pg))['games']['the-club']
         ok('P2 practice does not count: no result, no stamp, streak 0', not st.get('results') and await pg.locator('#earned').is_hidden() and await T(pg, 'streak-chip') == 'Streak 0', st)
         ok('P3 practice offers the way back to today', "today's club" in await T(pg, 'next'))
         await pg.goto(B + '/the-club/'); await pg.wait_for_timeout(300)
         await pg.locator('[data-open="dlg-practice"]').first.click() if await pg.locator('[data-open="dlg-practice"]').first.is_visible() else None
-        ok('P4 practice list holds the earlier days', await pg.evaluate("document.querySelectorAll('#practice-list li').length") == 2)
+        rows = await pg.evaluate("[...document.querySelectorAll('#practice-list li')].map(l=>l.textContent)")
+        ok('P4 practice list holds yesterday only, with its result', len(rows) == 1 and rows[0].startswith('Day 2') and 'You got 2 of 5' in rows[0], rows)
+        await pg.goto(B + '/the-club/?d=1&g=4'); await pg.wait_for_timeout(300)
+        ok('C0 a friend\'s link from two days back opens today without the friend\'s score', await T(pg, 'day-label') == 'Day 3' and await pg.locator('#notice').is_hidden(), (await T(pg, 'day-label'), await T(pg, 'notice')))
         await pg.goto(B + '/the-club/?d=3&g=4'); await pg.wait_for_timeout(300)
         ok('C1 a friend\'s link says what the friend got', '4' in await T(pg, 'notice') and await pg.locator('#notice').is_visible())
         await play(pg, puzzle(3), right=5)

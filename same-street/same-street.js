@@ -52,9 +52,9 @@
   var practice = false;      // practice never touches the streak or the album
   var friendGap = null;      // set when the page was opened from a friend's challenge link
   var pDay = int(params.get("p")), cDay = int(params.get("d")), cGap = int(params.get("g"));
-  if (pDay !== null && pDay >= 1 && pDay < today) {
+  if (pDay !== null && pDay >= 1 && pDay === today - 1) {     // practice: yesterday only
     day = pDay; practice = true;
-  } else if (cDay !== null && cDay >= 1 && cDay <= today + 1) {
+  } else if (cDay !== null && cDay >= 1 && cDay >= today - 1 && cDay <= today + 1) {   // a friend's link: yesterday, today or tomorrow; older ones open today
     day = cDay; practice = cDay < today;
     if (cGap !== null && cGap <= 99) friendGap = cGap;
   }
@@ -369,7 +369,7 @@
     var list = $("practice-list");
     list.innerHTML = "";
     var g = TO.game(GAME);
-    var first = Math.max(1, today - 60);
+    var first = Math.max(1, today - 1);      // only yesterday can be practised
     for (var n2 = today - 1; n2 >= first; n2--) {
       var li = document.createElement("li");
       var a = document.createElement("a");

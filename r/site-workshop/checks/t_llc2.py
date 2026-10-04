@@ -176,14 +176,16 @@ async def main():
 
         # ---------- F: practice
         ctx, pg = await new(br, 3); await pg.goto(B + '/long-lost-cousin/?p=1'); await pg.wait_for_timeout(500)
-        ok('F1 practice notice and label', 'Practice' in (await T(pg, 'notice')) and (await T(pg, 'day-label')) == 'Day 1, practice')
-        await pick(pg, idx(q, 0))
+        ok('F0 practice two days back is not offered: the page opens today', (await T(pg, 'day-label')) == 'Day 3', await T(pg, 'day-label'))
+        await pg.goto(B + '/long-lost-cousin/?p=2'); await pg.wait_for_timeout(500)
+        ok('F1 practice notice and label', 'Practice' in (await T(pg, 'notice')) and (await T(pg, 'day-label')) == 'Day 2, practice')
+        await pick(pg, idx(puzzle(2), 0))
         st = await pg.evaluate("JSON.parse(localStorage.getItem('turnsout:v1')).games['long-lost-cousin']")
-        ok('F2 practice stored apart, streak untouched', st['practice'].get('1', {}).get('r') == 0 and st['results'] == {} and (await T(pg, 'streak-chip')) == 'Streak 0', st)
+        ok('F2 practice stored apart, streak untouched', st['practice'].get('2', {}).get('r') == 0 and st['results'] == {} and (await T(pg, 'streak-chip')) == 'Streak 0', st)
         ok('F3 no stamp in practice, link back', await pg.evaluate("earned.hidden") and 'Back to today' in await T(pg, 'next'))
         await pg.locator('[data-open=dlg-practice]').click(); await pg.wait_for_timeout(200)
         rows = await pg.evaluate("[...document.querySelectorAll('#practice-list li')].map(l=>l.textContent)")
-        ok('F4 practice list: days 2 and 1, with status', len(rows) == 2 and rows[0].startswith('Day 2') and 'Not played yet' in rows[0] and 'You found the cousin' in rows[1], rows)
+        ok('F4 practice list: yesterday only, with its result', len(rows) == 1 and rows[0].startswith('Day 2') and 'You found the cousin' in rows[0], rows)
         await pg.screenshot(path='shots/t-f-practice.png')
         ok('F no console errors', not pg.errs, pg.errs); await ctx.close()
 
@@ -194,8 +196,10 @@ async def main():
         ok('G2 friend line after the reveal', (await T(pg, 'friend')) == 'Your friend was two branches away.' and await pg.evaluate("!friend.hidden"), await T(pg, 'friend'))
         ok('G3 a challenge for today counts for the streak', (await T(pg, 'streak-chip')) == 'Streak 1')
         await ctx.close()
-        ctx, pg = await new(br, 4); await pg.goto(B + '/long-lost-cousin/?d=1&g=0'); await pg.wait_for_timeout(500)
-        ok('G4 an older challenge is practice', (await T(pg, 'day-label')) == 'Day 1, practice' and 'A friend found the long lost cousin. Can you?' in await T(pg, 'notice'), await T(pg, 'notice'))
+        ctx, pg = await new(br, 4); await pg.goto(B + '/long-lost-cousin/?d=3&g=0'); await pg.wait_for_timeout(500)
+        ok('G4 yesterday\'s challenge is practice', (await T(pg, 'day-label')) == 'Day 3, practice' and 'A friend found the long lost cousin. Can you?' in await T(pg, 'notice'), await T(pg, 'notice'))
+        await pg.goto(B + '/long-lost-cousin/?d=1&g=0'); await pg.wait_for_timeout(500)
+        ok('G5 an older challenge opens today, without the friend', (await T(pg, 'day-label')) == 'Day 4' and 'friend' not in (await T(pg, 'notice')).lower(), await T(pg, 'notice'))
         await ctx.close()
 
         # ---------- I: home page

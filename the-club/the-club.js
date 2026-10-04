@@ -30,9 +30,9 @@
   var practice = false;       // practice never touches the streak or the album
   var friend = null;          // how many of five a friend got right, when opened from a challenge link
   var pDay = int(params.get("p")), cDay = int(params.get("d")), cG = int(params.get("g"));
-  if (pDay !== null && pDay >= 1 && pDay < today) {
+  if (pDay !== null && pDay >= 1 && pDay === today - 1) {     // practice: yesterday only
     day = pDay; practice = true;
-  } else if (cDay !== null && cDay >= 1 && cDay <= today + 1) {
+  } else if (cDay !== null && cDay >= 1 && cDay >= today - 1 && cDay <= today + 1) {   // a friend's link: yesterday, today or tomorrow; older ones open today
     day = cDay; practice = cDay < today;
     if (cG !== null && cG <= 5) friend = cG;
   }
@@ -293,7 +293,7 @@
     var list = $("practice-list");
     list.innerHTML = "";
     var g = TO.game(GAME);
-    var first = Math.max(1, today - 60);
+    var first = Math.max(1, today - 1);      // only yesterday can be practised
     for (var n = today - 1; n >= first; n--) {
       var r = g.results[n] || g.practice[n];
       var p = playedPuzzle(r, n);
