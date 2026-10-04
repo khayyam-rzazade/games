@@ -10,7 +10,7 @@
      for example "turnsout" if your counter lives at turnsout.goatcounter.com.
      Empty quotes: nothing is counted and no outside service is contacted.
      ------------------------------------------------------------------ */
-  var COUNTER = "";
+  var COUNTER = "khayyam";
 
   /* ------------------------------------------------------------------
      The address printed on every share picture, so that people who only
@@ -198,7 +198,9 @@
 
   /* ---- counting visits and plays, without cookies and without identifying anyone ---- */
   var waiting = [];
-  function counterOn() { return !!COUNTER && window.location.protocol !== "file:"; }
+  function counterOn() {              // not from a folder and not on a test server on this computer
+    return !!COUNTER && window.location.protocol !== "file:" && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+  }
   function count(name) {              // an event, for example "100-of-us/played/day-7"
     if (!counterOn()) return;
     try {
