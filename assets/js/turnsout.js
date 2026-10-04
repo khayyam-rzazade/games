@@ -55,7 +55,9 @@
     g.practice = obj(g.practice) || {};
     change(g);
     all.games[id] = g;
+    var reached = milestones(all);      // returning players: see below
     writeAll(all);
+    reached.forEach(count);
     return g;
   }
 
@@ -267,6 +269,41 @@
   ];
   /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */
   function todayOf(G) { return Math.max(1, dayNumber(G.start)); }
+
+  /* ---- returning players, counted without identifying anyone ----
+     Each time a game stores something, the frame looks at the calendar days on which this browser finished
+     at least one game (practice does not count). The first time a milestone is reached it sends one event,
+     once per browser, and notes it under "sent" in the stored data so that it is never sent again:
+       players/new                 finished a first game
+       players/2-days              finished games on 2 different days
+       players/7-days              ... on 7 different days
+       players/2-days-in-a-row     played yesterday and today
+       players/7-days-in-a-row     played 7 days in a row, up to today
+     Together they show how many come back the next day and within a week. */
+  var MILESTONES = [["players/new", 1, 0], ["players/2-days", 2, 0], ["players/7-days", 7, 0],
+                    ["players/2-days-in-a-row", 0, 2], ["players/7-days-in-a-row", 0, 7]];
+  function calendarDay(d) { return Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000); }
+  function milestones(all) {
+    try {
+      var today = calendarDay(new Date()), on = {}, days = 0, run = 0;
+      GAMES.forEach(function (G) {
+        var res = obj(obj(obj(all.games) && all.games[G.id]) && all.games[G.id].results);
+        if (!res) return;
+        var p = String(G.start).split("-"), first = Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / 86400000);
+        Object.keys(res).forEach(function (k) {
+          var n = Number(k), d = first + n - 1;
+          if (n >= 1 && Math.floor(n) === n && d <= today && G.done(res[k]) && !on[d]) { on[d] = true; days++; }
+        });
+      });
+      for (var d = today; on[d]; d--) run++;
+      var sent = obj(all.sent) || {}, reached = [];
+      MILESTONES.forEach(function (m) {
+        if (!sent[m[0]] && days >= m[1] && run >= m[2] && days > 0) { sent[m[0]] = 1; reached.push(m[0]); }
+      });
+      all.sent = sent;
+      return reached;
+    } catch (e) { return []; }            // counting must never break a game
+  }
   function playedToday(G) {
     try { return !!G.done(game(G.id).results[todayOf(G)]); } catch (e) { return false; }
   }

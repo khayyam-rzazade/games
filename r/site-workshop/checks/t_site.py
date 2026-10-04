@@ -57,6 +57,16 @@ async def tile(pg, key):
 KEYS = ['hundred', 'call', 'street', 'cousin', 'club']
 
 async def main():
+    # Alldle (a directory of daily games) checks these codes from time to time; removing them may unlist the games.
+    import re as _re
+    want = ['Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS', 'IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB', 'OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l',
+            'M0ixwiXZazUy74GyyApJUl-CTEhxE2aP', 'mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT']
+    miss = []
+    for page in ['index.html', '100-of-us/index.html', 'your-call/index.html', 'same-street/index.html', 'long-lost-cousin/index.html', 'the-club/index.html']:
+        head = open(f'{SITE}/{page}', encoding='utf-8').read().split('</head>')[0]
+        have = _re.findall(r'<meta name="alldle-verify" content="([^"]+)">', head)
+        if sorted(have) != sorted(want): miss.append(page)
+    ok('V1 the five Alldle verification codes are in the head of the home page and of every game page', not miss, miss)
     async with async_playwright() as p:
         br = await p.chromium.launch()
 
@@ -98,7 +108,7 @@ async def main():
         await pg.locator('#dlg-about [data-close]').click(); await pg.wait_for_timeout(100)
         ok('B7 the x closes it', not await pg.evaluate("document.getElementById('dlg-about').open"))
         await pg.locator('.foot-note button').click(); await pg.wait_for_timeout(100)
-        ok('B8 "About and sources" at the bottom opens the same window', await pg.evaluate("document.getElementById('dlg-about').open"))
+        ok('B8 "About, sources and contact" at the bottom opens the same window', await pg.evaluate("document.getElementById('dlg-about').open"))
         await pg.mouse.click(8, 8); await pg.wait_for_timeout(100)
         ok('B9 a click beside the window closes it', not await pg.evaluate("document.getElementById('dlg-about').open"))
         ok('B no errors', pg.errs == [], pg.errs); await ctx.close()

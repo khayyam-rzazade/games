@@ -120,7 +120,7 @@ html = f'''<!doctype html>
 
 <footer class="foot-note">
   <p><span data-privacy="short">No login. No tracking. Your results stay in your browser.</span></p>
-  <button type="button" data-open="dlg-about">About and sources</button>
+  <button type="button" data-open="dlg-about">About, sources and contact</button>
 </footer>
 </div>
 
@@ -152,6 +152,8 @@ html = f'''<!doctype html>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>
+    <h3>Contact</h3>
+    <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
   </div>
 </dialog>
 
