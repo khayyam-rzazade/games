@@ -1,13 +1,19 @@
+"""Checks of Same Street. The site is expected in SITE and served at B (see t_site.py)."""
 import asyncio, json, datetime, math, re, os
 from playwright.async_api import async_playwright
-B="http://localhost:8790"
-data=json.load(open('/home/claude/work/order.json'))
-homes=[dict(id='f'+re.match(r'Family (\d+)',x['name']).group(1), house=x['h'], country=x['c']) for x in data]
+B=os.environ.get("LOGICERS_URL", "http://localhost:8790")
+SITE=os.environ.get("LOGICERS_SITE", "/home/claude/work/site2")
+os.makedirs('shots', exist_ok=True)
+# the homes in the order of play, straight from the game's own file
+_js=open(SITE+'/same-street/puzzles.js', encoding='utf-8').read()
+_d=json.loads(_js[_js.index('{',_js.index('window.TURNSOUT_DATA["same-street"]')):_js.rindex('}')+1])
+homes=[dict(id=x['id'], house=x['house'], country=x['country']) for x in _d['homes']]
+START=datetime.datetime.strptime(_d['start'], '%Y-%m-%d')
 res=[]; 
 def ok(name, cond, info=''):
     res.append((name, bool(cond)))
     print(('PASS ' if cond else 'FAIL ')+name+('' if cond else '  -> '+str(info)))
-def day_date(n): return datetime.datetime(2026,10,3,12,0,0)+datetime.timedelta(days=n-1)
+def day_date(n): return START+datetime.timedelta(days=n-1, hours=12)
 async def new(p_br, day=1, w=390, h=664, scheme='light', reduced=False, touch=True):
     ctx=await p_br.new_context(viewport={'width':w,'height':h},device_scale_factor=2,has_touch=touch,color_scheme=scheme,reduced_motion='reduce' if reduced else 'no-preference')
     pg=await ctx.new_page(); pg.errs=[]
@@ -100,8 +106,8 @@ async def main():
         # O home page after playing
         await pg.goto(B+'/'); await pg.wait_for_timeout(400)
         ok('O1 home tile shows the result', await pg.evaluate("document.querySelector('#tile-street .result b').textContent")=='6 doors away' and await pg.evaluate("document.querySelector('#tile-street .go').hidden && !document.querySelector('#tile-street .result').hidden"))
-        ok('O2 home: the bar of this game is filled, 1 of 4 played', await pg.evaluate("document.getElementById('pip-street').classList.contains('on')") and await T(pg,'today-count')=='1 of 4 played')
-        ok('O4 Same Street is one of four games on the shelf', await pg.evaluate("document.querySelectorAll('.grid .tile').length===4"))
+        ok('O2 home: the bar of this game is filled, 1 of 5 played', await pg.evaluate("document.getElementById('pip-street').classList.contains('on')") and await T(pg,'today-count')=='1 of 5 played')
+        ok('O4 Same Street is one of five games on the shelf', await pg.evaluate("document.querySelectorAll('.grid .tile').length===5"))
         await pg.screenshot(path='shots/ss-home.png', full_page=True)
         ok('O5 home has no errors and no sideways scroll', pg.errs==[] and await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), pg.errs)
         await pg.click('[data-open="dlg-about"]'); ok('O6 about names the photo source', 'GAPMINDER.ORG' in await pg.evaluate("document.getElementById('dlg-about').innerText"))
@@ -147,14 +153,14 @@ async def main():
             tg=await pg.evaluate("(()=>{const s=street.getBoundingClientRect(); return ['tag-you','tag-real'].map(i=>{const e=document.getElementById(i); const r=e.getBoundingClientRect(); return {hidden:e.hidden, l:r.left-s.left, r:s.right-r.right}})})()")
             gap=abs(gs-homes[idx]['house'])
             ok(f'G {name} home (house {homes[idx]["house"]}), guess {gs}: labels stay inside, {gap} doors', all((not t['hidden']) and t['l']>=-0.5 and t['r']>=-0.5 for t in tg) and (await T(pg,'offby')).endswith(f'{gap} doors away.') and await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), (tg, await T(pg,'offby')))
-            await pg.screenshot(path=f's10-{name}.png')
+            await pg.screenshot(path=f'shots/ss-s10-{name}.png')
             await ctx.close()
         # P sizes
         for (w,h) in ((375,553),(320,568),(360,560),(360,740),(430,800),(768,1024),(1280,800)):
             ctx,pg=await new(br,2,w,h); await pg.goto(B+'/same-street/'); await pg.wait_for_timeout(300); await place(pg,40)
             m=await pg.evaluate("({sh:document.documentElement.scrollHeight, ih:innerHeight, sw:document.documentElement.scrollWidth, iw:innerWidth, pw:document.getElementById('photos').getBoundingClientRect().width, lockBottom:lock.getBoundingClientRect().bottom})")
             ok(f'P {w}x{h}: fits without scrolling, photos {round(m["pw"])}px wide', m['sh']<=m['ih'] and m['sw']<=m['iw'] and m['lockBottom']<=m['ih'], m)
-            await pg.screenshot(path=f's11-{w}x{h}.png'); await ctx.close()
+            await pg.screenshot(path=f'shots/ss-s11-{w}x{h}.png'); await ctx.close()
         # Q dark, R reduced motion
         ctx,pg=await new(br,5,scheme='dark',reduced=True); await pg.goto(B+'/same-street/'); await pg.wait_for_timeout(300); await place(pg,70); await pg.screenshot(path='shots/ss-s12-dark-guess.png'); await pg.click('#lock'); await pg.wait_for_timeout(120)
         ok('R1 reduced motion: the answer is there at once', not await pg.evaluate("verdict.hidden") )
@@ -167,7 +173,7 @@ async def main():
         ok('T1 a missing photo does not break the game or the share picture', not await pg.evaluate("verdict.hidden") and await pg.evaluate("document.getElementById('share-img').naturalWidth===1080"))
         b=await pg.evaluate("fetch(document.getElementById('share-img').src).then(r=>r.arrayBuffer()).then(b=>Array.from(new Uint8Array(b)))"); open('shots/ss-s13-card-nophoto.png','wb').write(bytes(b)); await ctx.close()
         # U opened from a folder
-        ctx,pg=await new(br,1); await pg.goto('file:///home/claude/work/site/same-street/index.html'); await pg.wait_for_timeout(400); await place(pg,30); await pg.click('#lock'); await pg.wait_for_timeout(2700); await pg.click('#share'); await pg.wait_for_timeout(600)
+        ctx,pg=await new(br,1); await pg.goto('file://'+SITE+'/same-street/index.html'); await pg.wait_for_timeout(400); await place(pg,30); await pg.click('#lock'); await pg.wait_for_timeout(2700); await pg.click('#share'); await pg.wait_for_timeout(600)
         ok('U1 works when opened from a folder, share picture still made', not await pg.evaluate("verdict.hidden") and await pg.evaluate("document.getElementById('share-img').naturalWidth===1080") and (await pg.evaluate("document.querySelector('#next')!==null")), pg.errs)
         ok('U2 links work from a folder', (await pg.evaluate("document.querySelector('.wordmark').getAttribute('href')"))=='../index.html'); await ctx.close()
         # perfect card + next door card
@@ -177,22 +183,22 @@ async def main():
         ok('H2 share text for the right house', (await pg.evaluate("navigator.clipboard.readText()"))=='Same Street, day 7: the right house. Can you match it? http://localhost:8790/same-street/?d=7&g=0'); await ctx.close()
         await br.close()
     # V data
-    js=open('/home/claude/work/site2/same-street/puzzles.js').read(); d=json.loads(js[js.index('{',js.index('window.TURNSOUT_DATA["same-street"]')):js.rindex('}')+1])
+    js=open(SITE+'/same-street/puzzles.js').read(); d=json.loads(js[js.index('{',js.index('window.TURNSOUT_DATA["same-street"]')):js.rindex('}')+1])
     hs=d['homes']
     def house(inc): return max(1,min(100,round(1+99*math.log(inc/25)/math.log(600))))
     ok('V1 98 homes, ids unique', len(hs)==98 and len({h['id'] for h in hs})==98)
     ok('V2 every house fits its income (within one house, because the income is rounded)', all(abs(house(h['income'])-h['house'])<=1 for h in hs), [(h['id'],h['house'],h['income']) for h in hs if abs(house(h['income'])-h['house'])>1])
-    ok('V3 every home has its three photos and a page', all(os.path.exists(f"/home/claude/work/site2/same-street/photos/{h['id']}-{n}.jpg") for h in hs for n in (1,2,3)) and all(h['page'] and (h['year'] is None or h['year']>=2014) for h in hs))
+    ok('V3 every home has its three photos and a page', all(os.path.exists(f"{SITE}/same-street/photos/{h['id']}-{n}.jpg") for h in hs for n in (1,2,3)) and all(h['page'] and (h['year'] is None or h['year']>=2014) for h in hs))
     ok('V4 neighbours in the order differ by at least 18 houses and in country', all(abs(hs[i]['house']-hs[i+1]['house'])>=18 and hs[i]['country']!=hs[i+1]['country'] for i in range(len(hs)-1)))
     from PIL import Image
     want={f"{h['id']}-{n}.jpg" for h in hs for n in (1,2,3)}
-    have=set(os.listdir('/home/claude/work/site2/same-street/photos'))
+    have=set(os.listdir(SITE+'/same-street/photos'))
     ok('V5 the photo folder holds exactly the photos on the list', want==have, (len(want),len(have)))
-    ok('V6 every photo is a 640 by 640 JPEG', all(Image.open('/home/claude/work/site2/same-street/photos/'+f).size==(640,640) and Image.open('/home/claude/work/site2/same-street/photos/'+f).format=='JPEG' for f in sorted(want)))
+    ok('V6 every photo is a 640 by 640 JPEG', all(Image.open(SITE+'/same-street/photos/'+f).size==(640,640) and Image.open(SITE+'/same-street/photos/'+f).format=='JPEG' for f in sorted(want)))
     import csv
-    rows=list(csv.DictReader(open('/home/claude/work/site2/r/same-street-photos.csv')))
+    rows=list(csv.DictReader(open(SITE+'/r/same-street-photos.csv')))
     ok('V7 the photo list for the R script matches the game data', {r['file'] for r in rows}==want and all(r['url'].startswith('https://media.dollarstreet.org/') for r in rows))
-    txt=''.join(open(f).read() for f in ('/home/claude/work/site2/same-street/index.html','/home/claude/work/site2/same-street/same-street.js','/home/claude/work/site2/index.html'))
+    txt=''.join(open(SITE+f).read() for f in ('/same-street/index.html','/same-street/same-street.js','/index.html'))
     ok('W1 the words poor and rich appear nowhere', not re.search(r'\b(poor|poorest|rich|richest|poverty|wealthy)\b', txt, re.I))
     n=sum(1 for r in res if r[1]); print(f'\n{n} of {len(res)} checks passed'); 
 asyncio.run(main())

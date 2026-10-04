@@ -1,8 +1,11 @@
+"""Checks of Long Lost Cousin. The site is expected in SITE and served at B (see t_site.py)."""
 import asyncio, json, datetime, re, os, base64, sys, io
 from playwright.async_api import async_playwright
 from PIL import Image
-B = "http://localhost:8790"
-src = open('/home/claude/work/site2/long-lost-cousin/puzzles.js', encoding='utf-8').read()
+B = os.environ.get("LOGICERS_URL", "http://localhost:8790")
+SITE = os.environ.get("LOGICERS_SITE", "/home/claude/work/site2")
+os.makedirs('shots', exist_ok=True)
+src = open(SITE + '/long-lost-cousin/puzzles.js', encoding='utf-8').read()
 DATA = json.loads(src[src.index('= {', src.index('TURNSOUT_DATA["long-lost-cousin"]')) + 2: src.rindex(';')])
 PZ, TH = DATA['puzzles'], DATA['things']
 N = len(PZ)
@@ -10,7 +13,8 @@ res = []
 def ok(name, cond, info=''):
     res.append((name, bool(cond)))
     print(('PASS ' if cond else 'FAIL ') + name + ('' if cond else '  -> ' + str(info)))
-def day_date(n): return datetime.datetime(2026, 10, 3, 12, 0, 0) + datetime.timedelta(days=n - 1)
+START = datetime.datetime.strptime(DATA['start'], '%Y-%m-%d')      # day 1 is the start date in the game's own file
+def day_date(n): return START + datetime.timedelta(days=n - 1, hours=12)
 async def new(br, day=1, w=390, h=664, scheme='light', reduced=False):
     ctx = await br.new_context(viewport={'width': w, 'height': h}, device_scale_factor=2, has_touch=True, color_scheme=scheme,
                                reduced_motion='reduce' if reduced else 'no-preference')
@@ -41,7 +45,7 @@ async def main():
         if len(p['options']) != 3 or len(set(p['options'] + [p['subject']])) != 4: bad.append((p['id'], 'options'))
         for k in p['options'] + [p['subject']]:
             if k not in TH: bad.append((p['id'], 'thing ' + k))
-            elif not os.path.exists(f'/home/claude/work/site2/long-lost-cousin/pics/{k}.js'): bad.append((p['id'], 'pic ' + k))
+            elif not os.path.exists(f'{SITE}/long-lost-cousin/pics/{k}.js'): bad.append((p['id'], 'pic ' + k))
         if len(p['sources']) != 2 or not all(s['url'].startswith('https://') and s['name'] for s in p['sources']): bad.append((p['id'], 'sources'))
         if p['sources'][0]['name'] == p['sources'][1]['name']: bad.append((p['id'], 'same source twice'))
         if not (20 <= len(p['fact']) <= 180) or not p['fact'].endswith('.'): bad.append((p['id'], 'fact'))
@@ -60,7 +64,7 @@ async def main():
     ok('N6 no two puzzles within 5 days share a subject or an answer', not share, share)
     runs = max(len(m.group(0)) for m in re.finditer(r'(.)\1*', ''.join(str(p['rank'].index(0)) for p in PZ)))
     ok('N7 the right one never stands in the same place more than twice in a row', runs <= 2, runs)
-    pics = sorted(os.listdir('/home/claude/work/site2/long-lost-cousin/pics'))
+    pics = sorted(os.listdir(SITE + '/long-lost-cousin/pics'))
     ok('N8 no stray picture files', set(pics) == set(k + '.js' for k in TH), set(pics) ^ set(k + '.js' for k in TH))
 
     async with async_playwright() as p:
@@ -197,7 +201,7 @@ async def main():
         # ---------- I: home page
         ctx, pg = await new(br, 1); await pg.goto(B + '/'); await pg.wait_for_timeout(700)
         ok('I1 home tile with today\'s silhouette', await pg.evaluate("!!document.querySelector('#tile-cousin #cousin-pic path')") and await pg.evaluate("!document.querySelector('#tile-cousin .go').hidden"))
-        ok('I2 other tiles still work', await pg.evaluate("document.querySelectorAll('.grid .tile').length===4 && document.querySelectorAll('.grid .tile .art svg').length>=4"))
+        ok('I2 other tiles still work', await pg.evaluate("document.querySelectorAll('.grid .tile').length===5 && document.querySelectorAll('.grid .tile .art svg').length>=5"))
         ok('I3 home names no answer', TH[closest(q)]['name'] not in await pg.evaluate("document.getElementById('tile-cousin').innerText"))
         await pg.screenshot(path='shots/t-i-home.png', full_page=True)
         await pg.locator('#tile-cousin').click(); await pg.wait_for_timeout(500)
@@ -240,7 +244,7 @@ async def main():
 
         # ---------- L: opened from a folder (file://)
         ctx, pg = await new(br, 1)
-        await pg.goto('file://' + '/home/claude/work/site2/long-lost-cousin/index.html'); await pg.wait_for_timeout(600)
+        await pg.goto('file://' + SITE + '/long-lost-cousin/index.html'); await pg.wait_for_timeout(600)
         ok('L1 file mode: pictures and question show', await pg.evaluate("!!document.querySelector('#subject-pic svg path') && document.querySelectorAll('.lc-opt svg path').length===3"))
         await pick(pg, idx(q, 0))
         ok('L2 file mode: plays through', await pg.evaluate("!verdict.hidden && !after.hidden"))

@@ -1,13 +1,15 @@
 """Pictures of each game in the new look: before choosing, after choosing, after the answer; by day and at night."""
-import asyncio, datetime, json, sys
+import asyncio, datetime, json, os, sys
 from playwright.async_api import async_playwright
 from PIL import Image
-B = "http://localhost:8790"
+B = os.environ.get("LOGICERS_URL", "http://localhost:8790")
 NOON = datetime.datetime(2026, 10, 4, 12, 0, 0)
+os.makedirs('shots', exist_ok=True)
 
 async def act_cousin(pg, stage, wrong=False):
     if stage == 'guess': return
-    data = await pg.evaluate("(function(){var d=window.TURNSOUT_DATA['long-lost-cousin'];var q=d.puzzles[1];return q.rank;})()")
+    # today's puzzle, counted from the start date in the game's own file
+    data = await pg.evaluate("(function(){var d=window.TURNSOUT_DATA['long-lost-cousin'];var n=Math.max(1,TurnsOut.dayNumber(d.start));var q=d.puzzles[(n-1)%d.puzzles.length];return q.rank;})()")
     i = data.index(2 if wrong else 0)
     await pg.locator('.lc-opt').nth(i).click(); await pg.wait_for_timeout(200)
     if stage == 'reveal': await pg.locator('#lock').click(); await pg.wait_for_timeout(2300)
@@ -28,7 +30,19 @@ async def act_call(pg, stage, wrong=False):
     if stage == 'guess': return
     await pg.locator('.yc-choice').nth(0 if wrong else 2).click(); await pg.wait_for_timeout(200)
     if stage == 'reveal': await pg.locator('#lock').click(); await pg.wait_for_timeout(2800)
-GAMES = {'cousin': ('long-lost-cousin', act_cousin), 'hundred': ('100-of-us', act_hundred), 'street': ('same-street', act_street), 'call': ('your-call', act_call)}
+async def act_club(pg, stage, wrong=False):
+    """'picked': four of the five candidates are judged (the fullest screen while guessing). 'reveal': all five, then the sign lights up."""
+    if stage == 'guess': return
+    door = await pg.evaluate("(function(){var d=window.TURNSOUT_DATA['the-club'];var n=Math.max(1,TurnsOut.dayNumber(d.start));return d.puzzles[(n-1)%d.puzzles.length].door;})()")
+    want = 4 if stage == 'picked' else 5
+    while True:
+        done = await pg.evaluate("document.querySelectorAll('#pips i.ok, #pips i.miss').length")
+        if done >= want: break
+        truth = door[done][1]
+        say = (1 - truth) if (wrong and done in (1, 3)) else truth
+        await pg.locator('#btn-in' if say else '#btn-out').click(); await pg.wait_for_timeout(1150)
+    if stage == 'reveal': await pg.wait_for_timeout(1800)
+GAMES = {'cousin': ('long-lost-cousin', act_cousin), 'hundred': ('100-of-us', act_hundred), 'street': ('same-street', act_street), 'call': ('your-call', act_call), 'club': ('the-club', act_club)}
 
 async def shot(br, key, stage, scheme, w=390, h=664, wrong=False, full=None, scale=2, name=None):
     folder, act = GAMES[key]

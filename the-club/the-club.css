@@ -1,0 +1,182 @@
+/* The Club: styles that only this game needs. Everything shared lives in assets/css/logicers.css. */
+.tc-q {
+  margin-top: 4px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 5.6vw, 1.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- the sign of the club: dark while you guess, lit with the rule at the end ---------- */
+.tc-sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 8px 14px 10px;
+  border-radius: 20px;
+  border: 2px solid color-mix(in srgb, var(--c) 32%, transparent);
+  background: var(--card);
+  text-align: center;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+.tc-sign-top { font-weight: 800; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c); }
+.tc-sign-rule {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.02rem, 4.6vw, 1.22rem);
+  letter-spacing: -0.02em;
+  line-height: 1.14;
+  color: var(--soft);
+  text-wrap: balance;
+}
+.tc-sign.lighting, .tc-sign.lit { background: #fff; border-color: #fff; padding: 10px 14px 13px; }
+.tc-sign.lighting .tc-sign-rule, .tc-sign.lit .tc-sign-rule { color: var(--c); font-size: clamp(1.32rem, 6.3vw, 1.75rem); }
+.tc-sign.lighting { animation: tc-flicker 1.1s linear both; }
+@keyframes tc-flicker {
+  0% { opacity: 0.25; }
+  8% { opacity: 1; }
+  14% { opacity: 0.3; }
+  22% { opacity: 1; }
+  30% { opacity: 0.45; }
+  40% { opacity: 1; }
+  52% { opacity: 0.7; }
+  60%, 100% { opacity: 1; }
+}
+
+/* ---------- who is in and who is not ---------- */
+.tc-groups { display: grid; gap: 8px; margin-top: 10px; }
+.tc-group h2 { margin: 0 4px 5px; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; color: var(--soft); }
+.tc-group.in h2 { color: var(--c); }
+.tc-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 2.05rem;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.12;
+}
+.tc-group.in .tc-chip { background: var(--c); color: var(--on-c); }
+.tc-group.out .tc-chip { background: var(--card); color: var(--soft); box-shadow: inset 0 0 0 1.5px var(--line); }
+/* a candidate you judged: a tick when you were right, yellow when you were wrong */
+.tc-chip.me.ok::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin-right: -3px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4.2 10.6l3.6 3.6 8-8.6' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4.2 10.6l3.6 3.6 8-8.6' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.tc-group .tc-chip.me.miss { background: var(--miss); color: #15172B; box-shadow: none; }
+.tc-chip.new { animation: tc-pop 0.28s ease-out; }
+@keyframes tc-pop { from { transform: scale(0.6); opacity: 0.4; } to { transform: scale(1); opacity: 1; } }
+
+/* ---------- the door: one candidate at a time ---------- */
+.tc-door {
+  margin-top: 10px;
+  padding: 9px 14px 8px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.tc-door-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.tc-step { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; color: var(--soft); }
+.tc-pips { display: inline-flex; gap: 5px; }
+.tc-pips i { width: 11px; height: 11px; border-radius: 50%; background: var(--idle); }
+.tc-pips i.now { box-shadow: inset 0 0 0 2.5px var(--c); background: transparent; }
+.tc-pips i.ok { background: var(--c); }
+.tc-pips i.miss { background: var(--miss); }
+.tc-cand {
+  margin-top: 3px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 7.4vw, 2.05rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.tc-truth { min-height: 1.6rem; font-weight: 700; font-size: 0.98rem; line-height: 1.6rem; }
+.tc-mark { display: inline-block; margin-left: 4px; padding: 0 0.5em; border-radius: 8px; font-weight: 800; line-height: 1.45; }
+.tc-mark.ok { background: rgba(255, 255, 255, .24); }
+.tc-mark.miss { background: var(--miss); color: #15172B; }
+.tc-door.is-in { background: var(--c); color: var(--on-c); }
+.tc-door.is-out { background: #15172B; color: #fff; }
+.tc-door.is-in .tc-step, .tc-door.is-out .tc-step { color: inherit; opacity: 0.8; }
+.tc-door.is-in .tc-pips i, .tc-door.is-out .tc-pips i { background: rgba(255, 255, 255, .3); box-shadow: none; }
+.tc-door.is-in .tc-pips i.ok, .tc-door.is-out .tc-pips i.ok { background: #fff; }
+.tc-door.is-in .tc-pips i.miss, .tc-door.is-out .tc-pips i.miss { background: var(--miss); }
+
+.tc-actions .tc-btn { flex: 1 1 0; font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em; }
+.tc-actions.wait .tc-btn { opacity: 0.45; }
+
+/* ---------- after the fifth candidate ---------- */
+.tc-panel.revealed { padding: 12px 12px 14px; }
+.tc-panel.revealed .tc-group h2 { color: #fff; opacity: 0.88; }
+.tc-panel.revealed .tc-group.in .tc-chip { background: #fff; color: var(--c); }
+.tc-panel.revealed .tc-group.out .tc-chip { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .55); }
+.tc-panel.revealed .tc-group .tc-chip.me.miss { background: var(--miss); color: #15172B; box-shadow: none; }
+.tc-verdict { padding: 12px 4px 0; }
+.tc-verdict .offby { margin-top: 0; font-size: 1.12rem; }
+.tc-verdict .offby:focus { outline: none; }
+
+/* the stamp: the rule, in the colour of its topic */
+.stamp.tc .tc-ring { position: absolute; left: 10px; top: 10px; width: 36%; height: auto; fill: currentColor; }
+.stamp.tc .what { font-family: var(--display); font-weight: 800; font-size: 1.02rem; letter-spacing: -0.02em; line-height: 1.08; }
+.stamp.tc .of { order: 2; margin-top: 3px; }
+
+/* ---------- night ---------- */
+@media (prefers-color-scheme: dark) {
+  .tc-sign { background: rgba(255, 255, 255, .055); border-color: color-mix(in srgb, var(--c) 38%, transparent); }
+  .tc-group.out .tc-chip { background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px var(--line); }
+  .tc-door { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .tc-door.is-in { background: var(--c); color: #0A0C1A; box-shadow: 0 0 30px color-mix(in srgb, var(--c) 36%, transparent); }
+  .tc-door.is-out { background: rgba(255, 255, 255, .16); color: var(--ink); box-shadow: none; }
+  .tc-door.is-in .tc-mark.ok { background: rgba(10, 12, 26, .16); }
+  .tc-door.is-in .tc-pips i { background: rgba(10, 12, 26, .25); }
+  .tc-door.is-in .tc-pips i.ok { background: #0A0C1A; }
+  .tc-sign.lighting, .tc-sign.lit { background: transparent; border-color: var(--c); box-shadow: 0 0 26px color-mix(in srgb, var(--c) 40%, transparent), inset 0 0 22px color-mix(in srgb, var(--c) 16%, transparent); }
+  .tc-sign.lighting .tc-sign-rule, .tc-sign.lit .tc-sign-rule { color: #fff; text-shadow: 0 0 18px var(--c), 0 0 3px var(--c); }
+  .tc-panel.revealed .tc-group h2 { color: var(--soft); opacity: 1; }
+  .tc-panel.revealed .tc-group.in h2 { color: var(--c); }
+  .tc-panel.revealed .tc-group.in .tc-chip { background: var(--c); color: #0A0C1A; }
+  .tc-panel.revealed .tc-group.out .tc-chip { color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .24); }
+}
+
+/* ---------- small and short screens: everything a little tighter, so that nothing scrolls while you guess ---------- */
+@media (max-width: 23.5rem), (max-height: 40rem) {
+  .tc-chip { min-height: 1.8rem; padding: 2px 10px; font-size: 0.86rem; }
+  .tc-chips { gap: 5px; }
+  .tc-groups { gap: 6px; margin-top: 8px; }
+  .tc-group h2 { margin-bottom: 4px; font-size: 0.7rem; }
+  .tc-sign { padding: 6px 12px 7px; }
+  .tc-door { margin-top: 8px; padding: 7px 12px 6px; }
+  .tc-cand { font-size: clamp(1.35rem, 6.8vw, 1.7rem); }
+  .tc-truth { min-height: 1.45rem; line-height: 1.45rem; font-size: 0.92rem; }
+}
+@media (max-width: 21.9rem) {
+  .tc-q { font-size: 1.2rem; }
+}
+@media (min-width: 56rem) {
+  .tc-q { font-size: 1.95rem; }
+  .tc-chip { font-size: 1.05rem; min-height: 2.3rem; padding: 4px 15px; }
+  .tc-sign-rule { font-size: 1.3rem; }
+  .tc-sign.lighting .tc-sign-rule, .tc-sign.lit .tc-sign-rule { font-size: 1.9rem; }
+  .tc-cand { font-size: 2.3rem; }
+  .tc-door { padding: 12px 18px 10px; }
+  .tc-actions .tc-btn { font-size: 1.4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tc-sign, .tc-door { transition: none; }
+  .tc-sign.lighting { animation: none; }
+  .tc-chip.new { animation: none; }
+}

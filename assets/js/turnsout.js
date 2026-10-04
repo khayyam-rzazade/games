@@ -1,5 +1,5 @@
-/* Turns Out: the frame every game uses.
-   The daily change, what is kept in the browser, streaks, sharing, dialogs.
+/* Logicers (first called Turns Out): the frame every game uses.
+   The daily change, what is kept in the browser, streaks, sharing, dialogs, the list of games and the way onward.
    No login, no server, no tracking. */
 (function () {
   "use strict";
@@ -24,10 +24,11 @@
   var KEY = "turnsout:v1";
   var memory = null; // used when the browser will not let us store anything (private mode)
 
+  function obj(v) { return (v && typeof v === "object" && !Array.isArray(v)) ? v : null; }
   function readAll() {
     try {
       var raw = window.localStorage.getItem(KEY);
-      if (raw) return JSON.parse(raw) || {};
+      if (raw) return obj(JSON.parse(raw)) || {};          // anything that is not a plain object counts as empty
     } catch (e) { /* fall through */ }
     return memory || {};
   }
@@ -37,20 +38,21 @@
   }
   function blank() { return { results: {}, practice: {} }; }
 
-  /* What one game has stored: { results: {day: {g, a}}, practice: {day: {g, a}} } */
+  /* What one game has stored: { results: {day: {...}}, practice: {day: {...}} }.
+     Damaged data (a number where a list of results should be, and the like) is treated as nothing played. */
   function game(id) {
     var all = readAll();
-    var g = (all.games && all.games[id]) || blank();
-    g.results = g.results || {};
-    g.practice = g.practice || {};
+    var g = obj(obj(all.games) && all.games[id]) || blank();
+    g.results = obj(g.results) || {};
+    g.practice = obj(g.practice) || {};
     return g;
   }
   function update(id, change) {
     var all = readAll();
-    all.games = all.games || {};
-    var g = all.games[id] || blank();
-    g.results = g.results || {};
-    g.practice = g.practice || {};
+    all.games = obj(all.games) || {};
+    var g = obj(all.games[id]) || blank();
+    g.results = obj(g.results) || {};
+    g.practice = obj(g.practice) || {};
     change(g);
     all.games[id] = g;
     writeAll(all);
@@ -230,6 +232,179 @@
     return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }
 
+  /* ------------------------------------------------------------------
+     The games of the site, in the order of the shelf. One list for the home page and for the
+     way onward at the end of every game.
+     "start" repeats day 1 from each game's own file, because a game's page loads only its own file.
+     The browser checks compare the two (r/site-workshop/checks/t_onward.py).
+     "done" says whether a stored result is a finished game, "says" puts it into a few words.
+     To add a game: add it here, give it a colour in logicers.css and a tile in r/site-workshop/build_home.py.
+     ------------------------------------------------------------------ */
+  function num(v) { return typeof v === "number" && isFinite(v); }
+  var GAMES = [
+    { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
+      pitch: "Of 100 people in the world, how many…?",
+      done: function (r) { return !!r && num(r.g) && num(r.a); },
+      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "Spot on" : "Off by " + gap; } },
+    { id: "your-call", key: "call", name: "Your Call", href: "your-call/", start: "2026-10-03",
+      pitch: "A real moment from history. What did they do?",
+      done: function (r) { return !!r && num(r.c); },
+      says: function (r) { return r.c === r.r ? "Same call" : "Different call"; } },
+    { id: "same-street", key: "street", name: "Same Street", href: "same-street/", start: "2026-10-03",
+      pitch: "One real home. Where on the street is it?",
+      done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 100 && r.a >= 1 && r.a <= 100; },
+      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "The right house" : gap === 1 ? "Next door" : gap + " doors away"; } },
+    { id: "long-lost-cousin", key: "cousin", name: "Long Lost Cousin", href: "long-lost-cousin/", start: "2026-10-04",
+      pitch: "Which one is the closest relative?",
+      done: function (r) { return !!r && num(r.c); },
+      says: function (r) { return r.r === 0 ? "Found it" : r.r === 1 ? "One branch away" : "Two branches away"; } },
+    { id: "the-club", key: "club", name: "The Club", href: "the-club/", start: "2026-10-04",
+      pitch: "Work out the secret rule. Who gets in?",
+      done: function (r) { return !!r && Array.isArray(r.c) && r.c.length === 5 && num(r.r) && r.r >= 0 && r.r <= 5; },
+      says: function (r) { return r.r + " of 5"; } }
+  ];
+  /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */
+  function todayOf(G) { return Math.max(1, dayNumber(G.start)); }
+  function playedToday(G) {
+    try { return !!G.done(game(G.id).results[todayOf(G)]); } catch (e) { return false; }
+  }
+
+  /* ------------------------------------------------------------------
+     The way onward. A game calls TO.onward({ game, day, today, practice }) when its answer is shown.
+     1. A block at the very end of the page, after the story, the sources and the Share button:
+        how many of today's games are played, a big button to the next game not yet played today,
+        and a link back to all games.
+     2. On screens where that block is below the fold, a slim bar at the bottom edge: "Next: ..." and
+        a quiet "Stay and read" that puts it away. It hides for good once the block has come into view,
+        and it steps aside while the Share button would lie under it.
+     Nothing pops up over the text and nothing moves on by itself.
+     ------------------------------------------------------------------ */
+  var ARROW = '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function onward(o) {
+    o = o || {};
+    var after = document.getElementById("after");
+    if (!after) return null;
+    var old = document.getElementById("onward"), oldBar = document.getElementById("onbar");
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    if (oldBar && oldBar.parentNode) oldBar.parentNode.removeChild(oldBar);
+
+    var mine = -1;
+    GAMES.forEach(function (G, i) { if (G.id === o.game) mine = i; });
+    var played = GAMES.map(playedToday);
+    var count = played.filter(Boolean).length;
+
+    // where to go: back to this game's own puzzle of today when the page showed another day, otherwise the next game not played today
+    var next = null, kicker = "Next game";
+    var otherDay = !!o.practice || (num(o.day) && num(o.today) && o.day !== o.today);
+    if (mine >= 0 && otherDay && !played[mine]) {
+      next = GAMES[mine]; kicker = "Not played yet today";
+    } else {
+      for (var k = 1; k <= GAMES.length && !next; k++) {
+        var j = (Math.max(mine, 0) + k) % GAMES.length;
+        if (j !== mine && !played[j]) next = GAMES[j];
+      }
+    }
+    var href = next ? here("../" + next.href) : "";
+
+    var box = el("section", "onward");
+    box.id = "onward";
+    box.setAttribute("aria-label", "Today's games");
+    var top = el("div", "onward-top");
+    top.appendChild(el("h2", "", "Today"));
+    var c = el("span", "onward-count");
+    c.appendChild(el("b", "", String(count)));
+    c.appendChild(document.createTextNode(" of " + GAMES.length + " played"));
+    top.appendChild(c);
+    box.appendChild(top);
+    var pips = el("div", "pips");
+    pips.setAttribute("aria-hidden", "true");
+    GAMES.forEach(function (G, i) {
+      var p = el("i", played[i] ? "on" : "");
+      p.setAttribute("data-g", G.key);
+      pips.appendChild(p);
+    });
+    box.appendChild(pips);
+    if (next) {
+      var a = el("a", "onward-next");
+      a.href = href;
+      a.setAttribute("data-g", next.key);
+      var t = el("span", "onward-text");
+      t.appendChild(el("span", "onward-kicker", kicker));
+      t.appendChild(el("span", "onward-name", next.name));
+      t.appendChild(el("span", "onward-pitch", next.pitch));
+      a.appendChild(t);
+      a.insertAdjacentHTML("beforeend", ARROW);
+      a.addEventListener("click", function () { count_("onward/" + next.id); });
+      box.appendChild(a);
+    } else {
+      box.appendChild(el("p", "onward-done", "All done for today. New games at midnight."));
+    }
+    var all = el("a", "onward-all", "All games");
+    all.href = here("../");
+    box.appendChild(all);
+    after.appendChild(box);
+
+    if (!next || !("IntersectionObserver" in window)) return box;      // nothing to go to, or an old browser: the block is enough
+
+    var bar = el("nav", "onbar");
+    bar.id = "onbar";
+    bar.setAttribute("aria-label", "Next game");
+    bar.hidden = true;
+    var go = el("a", "onbar-next");
+    go.href = href;
+    go.setAttribute("data-g", next.key);
+    var words = el("span", "");
+    words.appendChild(document.createTextNode(next === GAMES[mine] ? "Today: " : "Next: "));
+    words.appendChild(el("b", "", next.name));
+    go.appendChild(words);
+    go.insertAdjacentHTML("beforeend", ARROW);
+    go.addEventListener("click", function () { count_("onward-bar/" + next.id); });
+    var stay = el("button", "onbar-stay", "Stay and read");
+    stay.type = "button";
+    bar.appendChild(go);
+    bar.appendChild(stay);
+    document.body.appendChild(bar);
+
+    var seen = false, away = false, ready = false;
+    var share = document.getElementById("share");
+    function duck() {                 // the bar steps aside whenever the Share button would lie under it
+      if (bar.hidden) return;
+      var under = false;
+      if (share) {
+        var r = share.getBoundingClientRect(), edge = window.innerHeight - bar.offsetHeight;
+        under = r.height > 0 && r.bottom > edge - 6 && r.top < window.innerHeight;
+      }
+      bar.classList.toggle("duck", under);
+    }
+    function place() {
+      var show = ready && !seen && !away;
+      bar.hidden = !show;
+      if (show) {
+        document.body.classList.add("onbar-room");      // room at the end of the page, so the bar never hides the last lines
+        duck();
+      }
+    }
+    window.addEventListener("scroll", duck, { passive: true });
+    window.addEventListener("resize", duck);
+    var watch = new window.IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { seen = true; place(); watch.disconnect(); }
+      });
+    }, { threshold: 0.2 });
+    watch.observe(box);
+    stay.addEventListener("click", function () { away = true; place(); });
+    window.setTimeout(function () { ready = true; place(); }, num(o.wait) ? o.wait : 1400);   // let the reveal have its moment first
+    return box;
+  }
+
+  function count_(name) { count(name); }
+
   window.TurnsOut = {
     game: game,
     update: update,
@@ -247,7 +422,11 @@
     figure: figure,
     colour: colour,
     MISS: "#f0b429",
-    reducedMotion: reducedMotion
+    reducedMotion: reducedMotion,
+    GAMES: GAMES,
+    todayOf: todayOf,
+    playedToday: playedToday,
+    onward: onward
   };
 
   privacyNotes();

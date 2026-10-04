@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Club | Logicers</title>
+<meta name="description" content="Some are in the club, some are not. Work out the secret rule and decide who else gets in. Then the sign lights up with one true fact.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="The Club">
+<meta property="og:description" content="Some are in the club, some are not. Work out the secret rule. Who else gets in?">
+<meta property="og:image" content="../assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBE2EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/logicers.css">
+<link rel="stylesheet" href="the-club.css">
+</head>
+<body class="game" data-g="club">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album">Streak 0</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b>The Club</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="tc-q" id="question">Who else gets in?</h1>
+
+  <section class="panel tc-panel" id="panel">
+    <div class="tc-sign" id="sign">
+      <span class="tc-sign-top">The Club</span>
+      <span class="tc-sign-rule" id="rule">The rule is a secret</span>
+    </div>
+
+    <div class="tc-groups">
+      <div class="tc-group in">
+        <h2 id="in-title">In the club</h2>
+        <ul class="tc-chips" id="in-list" aria-labelledby="in-title"></ul>
+      </div>
+      <div class="tc-group out">
+        <h2 id="out-title">Not in the club</h2>
+        <ul class="tc-chips" id="out-list" aria-labelledby="out-title"></ul>
+      </div>
+    </div>
+
+    <div class="tc-door" id="door">
+      <div class="tc-door-top">
+        <span class="tc-step" id="step">At the door</span>
+        <span class="tc-pips" id="pips" role="img" aria-label="No answers yet"><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+      <p class="tc-cand" id="cand"></p>
+      <p class="tc-truth" id="truth" aria-live="polite"></p>
+    </div>
+
+    <div class="verdict tc-verdict" id="verdict" hidden>
+      <p class="offby" id="offby"></p>
+    </div>
+  </section>
+
+  <div class="actions reserve tc-actions" id="guess-actions">
+    <button class="btn ghost tc-btn" id="btn-out" type="button">Out</button>
+    <button class="btn solid tc-btn" id="btn-in" type="button">In</button>
+  </div>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="source">Sources: <a id="src1" href="#" target="_blank" rel="noopener"></a>, <a id="src2" href="#" target="_blank" rel="noopener"></a></p>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button">Share</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice">Practice</button>
+    </div>
+
+    <div class="earned" id="earned" hidden>
+      <div class="stamp tc" id="earned-stamp"></div>
+      <p>This club is now a stamp in your album.</p>
+    </div>
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>Look at who is in the club and who is not. One secret rule decides it.</li>
+      <li>Five more come to the door, one at a time. Tap In or Out. You see at once whether you were right, so every answer tells you more about the rule.</li>
+      <li>After the fifth, the sign of the club lights up with the rule.</li>
+    </ol>
+    <p>One club a day, the same for everyone. A new one arrives at midnight.</p>
+    <h3>The rule</h3>
+    <p class="quiet">The rule is always a plain fact about the real world. It is never about how a name is spelt.</p>
+    <h3>Where the facts come from</h3>
+    <p class="quiet">Every rule and every name is checked against two sources, linked under the answer.</p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="album-title">Your album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span>days played</span></div>
+      <div class="stat"><b id="st-streak">0</b><span>streak now</span></div>
+      <div class="stat"><b id="st-best">0</b><span>best streak</span></div>
+      <div class="stat"><b id="st-right">0</b><span>right calls at the door</span></div>
+    </div>
+    <p class="album-empty" id="album-empty">Stand at today's door to get your first stamp.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="practice-title">Practice</h2>
+    <p class="quiet">Earlier clubs. They do not count for your streak or your album.</p>
+    <p class="quiet" id="practice-empty" hidden>No earlier clubs yet. Come back tomorrow.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="./">Back to today's club</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share your result</h2>
+    <p class="quiet">Send the link along with the picture, so friends can tap it.</p>
+    <img class="shot" id="share-img" alt="Your result as a picture. It shows who is in the club and who is not, but neither the rule nor who got in at the door.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="the-club.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="puzzles.js"></script>
+<script src="../assets/js/turnsout.js"></script>
+<script src="the-club.js"></script>
+</body>
+</html>

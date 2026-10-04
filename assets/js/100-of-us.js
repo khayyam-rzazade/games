@@ -241,6 +241,7 @@
       next.textContent = "A new question at midnight.";
     }
     $("after").hidden = false;
+    TO.onward({ game: GAME, day: day, today: today, practice: practice });   // what is played today, and the next game
     prepareCard(gap);
   }
 

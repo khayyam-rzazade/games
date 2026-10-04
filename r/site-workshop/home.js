@@ -14,20 +14,7 @@
     document.getElementById("eyebrow").textContent = now.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
   } catch (e) { /* no date line then */ }
 
-  var GAMES = [
-    { id: "100-of-us", key: "hundred", name: "100 of Us",
-      done: function (r) { return !!r && typeof r.g === "number" && typeof r.a === "number"; },
-      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "Spot on" : "Off by " + gap; } },
-    { id: "your-call", key: "call", name: "Your Call",
-      done: function (r) { return !!r && typeof r.c === "number"; },
-      says: function (r) { return r.c === r.r ? "Same call" : "Different call"; } },
-    { id: "same-street", key: "street", name: "Same Street",
-      done: function (r) { return !!r && typeof r.g === "number" && r.g >= 1 && r.g <= 100 && r.a >= 1 && r.a <= 100; },
-      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "The right house" : gap === 1 ? "Next door" : gap + " doors away"; } },
-    { id: "long-lost-cousin", key: "cousin", name: "Long Lost Cousin",
-      done: function (r) { return !!r && typeof r.c === "number"; },
-      says: function (r) { return r.r === 0 ? "Found it" : r.r === 1 ? "One branch away" : "Two branches away"; } }
-  ];
+  var GAMES = TO.GAMES;       // the one list of games, kept in assets/js/turnsout.js
 
   /* which calendar days had any game played: that is the streak of the whole site */
   var todayIndex = Math.round(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / DAY);
@@ -44,6 +31,7 @@
     var data = D[G.id];
     G.stats = { current: 0, best: 0, played: 0 };
     if (!data || !data.start) return;                      // the game's file did not load: the tile still opens the game
+    if (data.start !== G.start && window.console) window.console.warn("Start date of " + G.id + " differs: " + data.start + " in its file, " + G.start + " in turnsout.js");
     var today = Math.max(1, TO.dayNumber(data.start));
     var results = {};
     try { results = TO.game(G.id).results; } catch (e) { /* what the browser kept is broken: treat it as nothing played */ }

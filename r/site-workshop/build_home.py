@@ -6,11 +6,13 @@
   make_brand.py  writes the browser-tab icon, the phone icon, the link preview picture (og.png) and 404.html
 
 The look lives in assets/css/logicers.css: light by day, dark when the device is set to dark; one colour per game.
-To add a game to the shelf: draw its picture in arts.py, add it to GAMES below and to GAMES in home.js, give it a colour
-in logicers.css ([data-g="..."]), then run build_home.py. OUT is the folder of the site.
+To add a game to the shelf: draw its picture in arts.py, add it to GAMES below and to GAMES in assets/js/turnsout.js
+(the one list of games that the home page and the way onward share), give it a colour in logicers.css ([data-g="..."]),
+then run build_home.py. OUT is the folder of the site (or give it as the first argument).
+The shelf is laid out by the number of games: logicers.css has rules for .grid[data-n="5"].
 """
-import os
-OUT = '/home/claude/work/site2'
+import os, sys
+OUT = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/work/site2'
 
 from arts import *
 
@@ -21,8 +23,10 @@ GAMES = [
          pitch='A real moment from history and three choices. What did they actually do?', short='A real moment from history. What did they do?'),
     dict(key='street', href='same-street/', name='Same Street', art=art_street(),
          pitch='Three photos of one real home. Where does it stand on a street sorted by income?', short='One real home. Where on the street is it?'),
-    dict(key='cousin', href='long-lost-cousin/', name='Long Lost Cousin', art=art_cousin(), new=True,
+    dict(key='cousin', href='long-lost-cousin/', name='Long Lost Cousin', art=art_cousin(),
          pitch='One animal, three others. Which one is its closest relative?', short='Which one is the closest relative?'),
+    dict(key='club', href='the-club/', name='The Club', art=art_club(), new=True,
+         pitch='Some are in the club, some are not. Work out the secret rule and decide who else gets in.', short='Work out the secret rule. Who gets in?'),
 ]
 
 def tile(g):
@@ -41,7 +45,7 @@ def tile(g):
 
 tiles = '\n'.join(tile(g) for g in GAMES)
 pips = ''.join(f'<i id="pip-{g["key"]}" data-g="{g["key"]}"></i>' for g in GAMES)
-soon_arts = ''.join(f'<div class="art" data-g="{k}">{a}</div>' for k, a in (('half', art_half()), ('club', art_club()), ('piece', art_piece())))
+soon_arts = ''.join(f'<div class="art" data-g="{k}">{a}</div>' for k, a in (('half', art_half()), ('piece', art_piece())))
 
 SCRIPT = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'home.js'), encoding='utf-8').read()
 
@@ -91,7 +95,7 @@ html = f'''<!doctype html>
 
 <section class="games" aria-labelledby="games-title">
   <h2 class="sec" id="games-title">Today's games</h2>
-  <div class="grid">
+  <div class="grid" data-n="{len(GAMES)}">
 {tiles}
   </div>
 </section>
@@ -133,6 +137,8 @@ html = f'''<!doctype html>
     <p class="quiet">Same Street shows homes that were visited by Dollar Street, a Gapminder project. Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. The photographer is named under each answer. Dollar Street does not endorse this site.</p>
     <h3>Where the family trees come from</h3>
     <p class="quiet">Long Lost Cousin checks every answer against two sources, linked under the answer. The silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, a free library of drawings of living things. Artists who ask for credit are named under each answer. PhyloPic does not endorse this site.</p>
+    <h3>Where the clubs' facts come from</h3>
+    <p class="quiet">The Club checks every rule and every name against two sources, linked under the answer. A rule is always a plain fact about the real world.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>
@@ -143,6 +149,7 @@ html = f'''<!doctype html>
 <script src="your-call/puzzles.js"></script>
 <script src="same-street/puzzles.js"></script>
 <script src="long-lost-cousin/puzzles.js"></script>
+<script src="the-club/puzzles.js"></script>
 <script src="assets/js/turnsout.js"></script>
 <script>
 {SCRIPT}</script>
