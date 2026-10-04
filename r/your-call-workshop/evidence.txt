@@ -1,0 +1,652 @@
+# Your Call: evidence notes for the moments added on 4 October 2026, days 24 to 72 (the moments themselves are in moments.py).
+# Every page below was opened and read in the chat of 4 Oct 2026 (evening). Its address came from a web search of that chat.
+# Quotes are as the reader returned them (exact sentences from the page). "NOT FOUND" means the page did not say it.
+# Rule: every date, number and name in pov, did and next stands in at least one of the two linked sources; the decision itself stands in both.
+# Pages that could not be read this time: britannica.com (only menus visible: Themistocles, sakoku), historytoday.com (paywall).
+
+== 49bc-rubicon (Julius Caesar crosses the Rubicon)
+W https://en.wikipedia.org/wiki/Crossing_the_Rubicon
+  "the Senate ordered him to disband his army and return to Rome"
+  "In January 49 BC, Julius Caesar led Roman legion, Legio XIII" ; "The exact date of the crossing is unknown."
+  "the river Rubicon was a small river...one of two rivers that marked the boundary between the Roman province of Cisalpine Gaul to the north and areas controlled directly by Rome"
+  "Any magistrate who entered Italy at the head of his troops forfeited his imperium and was therefore no longer legally allowed to command troops."
+  "Caesar's decision for swift action forced Pompey, the consuls, and a large part of the Roman Senate to flee Rome."
+  "a civil war...which eventually led to Caesar becoming dictator for life"
+  Alternatives: NOT FOUND.
+NG https://www.nationalgeographic.com/history/history-magazine/article/julius-caesar-crossing-rubicon-rome
+  "After the fighting was ended in Gaul, Caesar was obliged to stand down from his position as governor, disband his army, and so lose the immunity his official position had given him."
+  "On January 10, 49 B.C., on the banks of the Rubicon River in southern Gaul...Julius Caesar and the soldiers of the 13th Legion waited and weighed their options."
+  "According to the law of the Roman Republic, any provincial governor leading troops across the border back into Italy would be declared a public enemy. It was, quite simply, an act of war."
+  "As Caesar advances on Rome, Pompey and his allies retreat south, ultimately abandoning Italy for Greece."
+  "Caesar becomes dictator of Rome" (timeline)
+
+== 1077-canossa (Henry IV at Canossa)
+W https://en.wikipedia.org/wiki/Road_to_Canossa
+  "On 24 January 1076, Henry assembled several German bishops in a synod at Worms, where the ecclesiastical dignitaries abandoned all commitments to the Pope."
+  "In response, Gregory excommunicated and deposed Henry in the Lenten synod of 1076 at Rome."
+  "When in October the Patriarch of Aquileia and the papal legate met with German princes at Trebur, they swore an oath not to recognize Henry unless the ban was lifted within a year."
+  "After a long journey, they reached Gregory's accommodation in Canossa on 25 January 1077." ; "the king waited by the gate for three full days."
+  "Finally, on 28 January, the castle gates were opened for Henry and he was allowed to enter...Gregory absolved Henry and invited him back into the Church."
+  Henry was "forced into civil war with Duke Rudolph of Swabia" ; "Gregory levied a second excommunication against Henry, who ultimately won the civil war, invaded Rome, and forced Gregory to flee, replacing him with Antipope Clement III"
+NA https://www.newadvent.org/cathen/03298a.htm (Catholic Encyclopedia, "Canossa")
+  "The king, excommunicated 22 February, 1076, would have been utterly abandoned by the inimical German princess unless within a year he made peace with the pope."
+  "For three days (25-27 January) he stood constantly before the castle gate, in the dress of a penitent, beseeching with many tears the pope's forgiveness."
+  "But the king soon violated his solemn oath to comply with the pope's conditions, and renewed the conflict."
+
+== 1215-magna-carta (King John seals Magna Carta)
+TNA https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/medieval/magna-carta/
+  "In 1215 a group of barons rebelled against King John. They complained he ruled in an arbitrary manner, committing crimes and imposing huge unjust penalties on his subjects."
+  "King John and the barons famously sealed their agreement, later known as 'Magna Carta', at Runnymede on 15 June 1215."
+  "[The charter] guaranteed the freedom of the church and that no free man would be arrested, imprisoned, outlawed or exiled without the lawful judgement of his peers or by the law of the land."
+  Pope annulling it: NOT FOUND. Clauses still in force: NOT FOUND.
+HC https://www.history.com/this-day-in-history/june-15/magna-carta-sealed
+  "Following a revolt by the English nobility against his rule" ; "the barons rose up in rebellion against the king's abuse of feudal law and custom."
+  "On June 15, 1215, John met the barons at Runnymede on the Thames and set his seal to the Articles of the Barons, which after minor revision was formally issued as Magna Carta."
+  "guaranteed that the king would respect feudal rights and privileges, uphold the freedom of the church, and maintain the nation's laws."
+  "Upon his death in 1216, however, Magna Carta was reissued with some changes by his son, King Henry III, and then reissued again in 1217."
+  Pope annulling it: NOT FOUND.
+
+== 1793-macartney (Qianlong turns down the British embassy)
+W https://en.wikipedia.org/wiki/Macartney_Embassy
+  "The goals of the mission included the opening of new ports for British trade in China, the establishment of a permanent embassy in Beijing, the cession of a small island for British use along China's coast, and the relaxation of trade restrictions on British merchants in Guangzhou."
+  "The meeting with the Qianlong Emperor took place on 14 September" (at Chengde / Jehol)
+  "Qianlong, who ruled the Qing dynasty at its zenith...rejected all of the mission's requests."
+  "Our Celestial Empire possesses all things in prolific abundance and lacks no product within its borders. There is therefore no need to import the manufactures of outside barbarians."
+OSU https://open.oregonstate.education/middleearlymodernages/chapter/emperor-qianlong-letter/ (open textbook: Emperor Qianlong, Letter to George III, 1793)
+  "trading privileges for the British East Indian Company in China including access to multiple ports and a permanent foreign embassy in Beijing"
+  "our Celestial Empire possesses all things in prolific abundance and lacks no product within its own borders. There was therefore no need to import the manufactures of outside barbarians"
+
+== 1698-beard-tax (Peter the Great taxes beards)
+W https://en.wikipedia.org/wiki/Beard_tax
+  "In 1698, Tsar Peter I of Russia instituted a beard tax as part of an effort to bring Russian society in line with Western European models."
+  "wealthy merchants were charged 100 rubles per year" ; "peasants were charged two half-kopeks every time they entered a city."
+  "Those who paid the tax were required to carry a 'beard token' (Russian: Бородовой знак) or 'beard kopek' (бородовая копейка)."
+  "Resistance to going clean shaven was widespread with many believing that it was a religious requirement for a man to wear a beard"
+  "In 1772, the tax was formally repealed by Catherine the Great."
+RB https://www.rbth.com/arts/history/2017/09/05/319-years-ago-peter-the-great-established-tax-on-beards_833570
+  "on Sept. 5, 1698, Peter established the tax on wearing a beard" ; "Emperor wanted to accustom Russian aristocrats to follow European fashion"
+  "To control it, he issues special metal tokens - a kind of receipt of payment for wearing a beard"
+  "During assemblies and court balls, the Emperor could personally cut off beards and tear apart traditional bulky clothing."
+SM https://www.smithsonianmag.com/smart-news/why-tsar-peter-great-established-beard-tax-180964693/ (third page, read too)
+  "When he came back from the Grand Embassy, Peter I embarked on an ambitious project of modernizing Russia"
+  "He proceeded to personally shave the beards from his horrified guests."
+  "Around this day in 1698, Tsar Peter I—known as Peter the Great—established a beard tax... for nobility and merchants, the tax could be as high as 100 rubles annually; for commoners it was much lower — as little as 1 kopek."
+  "Those paying the tax were given a token, silver for nobility and copper for commoners."
+  "a massively unpopular policy with many including the Russian Orthodox church, which said going around sans facial hair was blasphemous."
+
+== 1812-moscow (Kutuzov gives up Moscow)
+W https://en.wikipedia.org/wiki/Council_at_Fili
+  "The Council at Fili was a military council, which was convened on 13 September 1812...in the village of Fili, west of Moscow."
+  "after the orderly retreat from the Battle of Borodino that Napoleon had won despite great losses of the Grande Armée"
+  "Bennigsen announced that the retreat makes senseless the bloodshed of Borodino...he proposed to regroup and attack the Grande Armée without delay."
+  Barclay de Tolly "suggested retreating: 'Having saved Moscow, Russia is not saved from a cruel, ruinous war. But if we save the army, the hopes of the Fatherland are not yet destroyed'"
+  "Kutuzov...decided against engaging in battle from an unfavorable position and chose to abandon Moscow. He echoed Barclay de Tolly's sentiment that 'with the loss of Moscow, Russia is still not lost'"
+RB https://www.rbth.com/history/334440-russian-military-leader-crushed-napoleon
+  "The battle took place on September 7 near the village of Borodino, not far from Moscow."
+  Council on September 13; Kutuzov: "With the loss of Moscow, Russia is not lost. I consider the primary task is to save the army."
+  the French army "left the city on October 19" ; "Napoleon's Grande Armée, together with reinforcements from Europe, numbered some 600,000 people."
+  "In December of the same year, only a few tens of thousands of frozen and exhausted soldiers managed to escape from Russia."
+
+== 1839-opium (Daoguang orders an end to the opium trade)
+W https://en.wikipedia.org/wiki/Destruction_of_opium_at_Humen
+  "by which time the number of Chinese opium addicts had grown to between four and twelve million."
+  "Although some officials argued that a tax on opium would yield a profit for the imperial treasury, the Daoguang Emperor instead decided to stop the trade altogether and severely punish those involved. He then appointed respected scholar and government official Lin Zexu as Special Imperial Commissioner to enforce his will."
+  "By nightfall, British traders had agreed to surrender around 20,000 chests of opium (approximately 1,300 long tons)"
+  "The destruction of opium at Humen began on 3 June 1839, lasted for 23 days, and involved the destruction of 1,000 long tons"
+  "What followed is now known as the First Opium War (1839–1842), a conflict that initiated China's opening for trade with foreign nations under a series of treaties with the western powers."
+AS https://sites.asiasociety.org/chinawealthpower/chinas-first-drug-czar/
+  "Lin Zexu (1785-1850) was sent by the Daoguang Emperor to Canton (now Guangzhou) in 1839 with orders to halt the British trade in opium. Upon arrival, he systematically collected and destroyed all the opium he could find."
+  "The British, who were eager to expand the drug trade beyond the southern port city, used Lin's actions as an excuse to launch the First Opium War."
+
+== 1848-denmark (Frederick VII gives up absolute power)
+W https://en.wikipedia.org/wiki/Frederick_VII_of_Denmark
+  "When he succeeded to the throne in January 1848, he was almost at once met by the demands for a constitution."
+  "The king soon yielded to the Danish demands, and in March he accepted the end of absolutism, which resulted in the June Constitution of 1849."
+  "During his reign, he signed a constitution that established a Danish parliament and made the country a constitutional monarchy."
+  "Frederick VII managed to make himself one of the most beloved Danish kings of recent times."
+NM https://en.natmus.dk/historical-knowledge/denmark/the-nation-state-1848-1915/ (National Museum of Denmark)
+  "At a large mass meeting in Copenhagen on 20 March the national liberal leader Orla Lehmann gained support for a number of demands, which were to be made of the new king Frederik VII. One of these was for a new government with national liberal participation. The next day the king accepted this demand."
+  "A year later on 5 June 1849 Denmark gained its first free constitution, known as 'Grundloven' in Danish." ; "With this the absolute monarchy was abolished."
+KH https://www.kongehuset.dk/en/the-monarchy-in-denmark/history/ (read too)
+  "The democratic constitution of 5 June 1849 changed the monarchy's status from absolute to constitutional."
+
+== 1861-serfs (Alexander II frees the serfs)
+W https://en.wikipedia.org/wiki/Emancipation_reform_of_1861
+  "The pitiful display by Russian forces in the Crimean War left the government acutely aware of the empire's weaknesses."
+  "It is better to abolish serfdom from above, than to wait for that time when it starts to abolish itself from below."
+  "The legal basis of the reform was the Tsar's Emancipation Manifesto of 3 March [O.S. 19 February] 1861" ; "By this edict more than 23 million people received their liberty."
+  "The government would advance 75% of the total sum to the land-owner, and then the peasants would repay the government, plus interest, over forty-nine years."
+  "In many localities the peasants refused to believe that the manifesto was genuine. There were troubles, and troops had to be called in to disperse the angry crowds."
+SM https://www.smithsonianmag.com/history/before-lincoln-issued-the-emancipation-proclamation-this-russian-czar-freed-20-million-serfs-180980652/
+  "Alexander took action first, freeing some 20 million serfs through the Emancipation Manifesto on March 3, 1861."
+  "I've decided to do it, gentlemen. If we don't give the peasants freedom from above, they will take it from below."
+  Alexander was assassinated "in 1881, roughly 20 years after his Emancipation Manifesto, by a revolutionary group that aimed to overthrow the Russian autocracy."
+
+== 1793-macartney (continued: what happened next)
+W https://en.wikipedia.org/wiki/Macartney_Embassy (second reading)
+  "Although the Macartney Embassy returned to London without obtaining any concession from China, the mission could be termed a success..."
+  "it also prefigured increasing British pressure on China to accommodate its expanding trading and imperial network."
+
+== 480bc-salamis (Themistocles: leave Athens, fight at sea)
+W https://en.wikipedia.org/wiki/Themistocles
+  "In 483 BC, a massive new seam of silver was found in the Athenian mines of Laurion. Themistocles proposed that the silver should be used to build a new fleet of 200 triremes."
+  "His proposals accepted, Themistocles issued orders for the women and children of Athens to be sent to the city of Troezen, safely inside the Peloponnesus."
+  "the cramped conditions in the Straits hindered the much larger Persian navy, which became disarrayed, and the Allies took advantage to win a famous victory." (480 BC)
+  "The Allied victory at Salamis ended the immediate threat to Greece, and Xerxes now returned to Asia with part of the army, leaving his general Mardonius to attempt to complete the conquest."
+  "At the decisive Battle of Plataea, the Allies destroyed the Persian army" (479 BC)
+  Oracle / 'wooden wall': NOT FOUND on this page.
+W https://en.wikipedia.org/wiki/Second_Persian_invasion_of_Greece (read for the check note)
+  "the women and children of Athens were evacuated en masse to the Peloponnesian city of Troezen"
+  "The small number of Athenians who had barricaded themselves on the Acropolis were eventually defeated"
+  "the Greek fleet attacked, and scored a decisive victory, sinking or capturing at least 200 Persian ships"
+  "The most notable city actively siding with the Persians ('Medised') was Argos"
+TC https://www.thecollector.com/themistocles-battle-of-salamis/
+  "The wooden walls were the ships of Athens' navy."
+  "He suggested a plan that would see Athens abandoned, except for a token force, and the population evacuated to Salamis or other nearby islands."
+  "the Persians suffered a crushing defeat."
+  "With seemingly no other choice, the Persian king ordered his massive army to withdraw...the next year the Greeks fought a major land battle at Plataea."
+  (mentions a silver find of 483 BCE paying for 100 triremes: the number differs from Wikipedia, so no number is used)
+Not usable: https://www.britannica.com/biography/Themistocles (menus only), https://www.historytoday.com/archive/feature/salamis-battle-made-history (paywall), https://www.thecollector.com/battle-of-salamis/ (does not cover the oracle or the evacuation).
+
+== 1822-brazil (Pedro I declares Brazil independent)
+W https://en.wikipedia.org/wiki/Independence_of_Brazil
+  "the desire of the Portuguese courts to repatriate him (including demoting him from prince regent to governor-of-arms...) and returning Brazil to its former colonial status led him to stay in Brazil and rebel."
+  "Tell the people that I will stay" (Dia do Fico, January 1822)
+  "'Brazilians, Independence or death!'" ... after letters said the Cortes "had annulled all acts of the Bonifácio cabinet, removed Pedro's remaining powers, and ordered him to return to Portugal."
+  "On 12 October 1822, in the Field of Santana...Prince Pedro was acclaimed Dom Pedro I, Constitutional Emperor and Perpetual Defender of Brazil."
+  "The fighting began with skirmishes between rival militias in 1822 and lasted until January 1824, when the last Portuguese garrisons and naval units surrendered or left the country."
+  "The Treaty of Rio de Janeiro recognizing Brazil's independence was signed by Brazil and Portugal on 29 August 1825."
+TC https://www.thecollector.com/how-brazil-won-independence-portugal/
+  "The Cortes further indicated its intention to restore Portugal's monopoly over trade with Brazil and demanded Dom Pedro's return to Portugal."
+  "In what became known as the Cry of Ipiranga, because it took place on the banks of Ipiranga brook, Dom Pedro, surrounded by his personal guard, proclaimed Brazil's independence from Portugal."
+  "Dom Pedro was declared Pedro I, Emperor of Brazil, on October 12, 1822, by Brazil's constituent assembly."
+  "Portugal agreed to recognize Brazilian independence in August 1825 through the Treaty of Rio de Janeiro."
+
+== 1914-belgium (Belgium refuses Germany passage)
+W https://en.wikipedia.org/wiki/German_invasion_of_Belgium_(1914)
+  "On 2 August, the German government sent an ultimatum to Belgium, demanding passage through the country"
+  "The Treaty of London (1839) recognised Belgian independence and neutrality"
+  "On 3 August the Belgian Government refused German demands and the British government guaranteed military support to Belgium"
+  "Germany declared war on Belgium. German troops crossed the Belgian frontier and attacked Liège."
+  "On 4 August the British government sent an ultimatum to Germany and declared war on Germany at midnight on 4/5 August"
+  "By November 1914, most of Belgium was under German occupation and Allied naval blockade."
+  "On mobilisation, the King became Commander-in-Chief and chose where the army was to concentrate." ; "King Albert rejected withdrawal and next day sluice gates at Nieuwpoort were opened"
+  (The page names the Belgian government, not the king, as the body that refused; see the check note.)
+FWW https://www.firstworldwar.com/source/belgium_germanrequest.htm (primary documents with an introduction)
+  Germany demanded "free passage across Belgium for its troops, so that the latter could most efficiently invade France and reach Paris."
+  Germany offered restoration of Belgian independence after the war, evacuation of Belgian territory at the peace and compensation for damage.
+  Belgian reply: "The attack upon her independence with which the German Government threaten her constitutes a flagrant violation of international law."
+  "the former invaded Belgium the next day, which resulted in Britain's entry into the war to defend Belgian neutrality."
+  (https://www.firstworldwar.com/bio/alberti.htm could not be opened: certificate error.)
+
+== 1921-treaty (Michael Collins signs the Anglo-Irish Treaty)
+W https://en.wikipedia.org/wiki/Michael_Collins_(Irish_leader)
+  "The resulting Anglo-Irish Treaty, signed in December 1921, would establish the Irish Free State but depended on an oath of allegiance to the Crown."
+  "Lloyd George told them it was immediate signature or 'immediate and terrible war.'"
+  "The Treaty was signed at 2:20 am, 6 December 1921." ; "Collins replied 'I may have signed my actual death warrant.'"
+  "The Dáil debated the Treaty bitterly for ten days until it was approved by a vote of 64 to 57."
+  "He was shot and killed in an ambush by anti-Treaty forces in August 1922 at Beal na Blatha, County Cork."
+IT https://www.irishtimes.com/culture/heritage/anglo-irish-treaty-signatories-who-s-who-on-both-sides-1.4557268
+  "Collins was a reluctant member of the London delegation and felt, not unfairly, that he was being set up by de Valera knowing the republic was unobtainable."
+  "He chillingly recounted that, in signing the Treaty, he had signed his death warrant, but gave a spirited defence in the debates that followed, famously opining: 'In my opinion it gives us freedom, not the ultimate freedom that all nations desire, but the freedom to achieve it.'"
+  "His premature death in August 1922 robbed the country of one of its most dynamic characters."
+
+== 1922-rome (Victor Emmanuel III appoints Mussolini)
+W https://en.wikipedia.org/wiki/March_on_Rome
+  "On 28 October, the fascist demonstrators and Blackshirt paramilitaries approached the capital" ; "The march itself was composed of fewer than 30,000 men"
+  "Luigi Facta (who had resigned but continued to hold power) ordered a state of siege for Rome" ; "King Victor Emmanuel III refused to sign the military order."
+  "On 30 October 1922, the King appointed Mussolini as Prime Minister"
+  "after the 10 June 1924 assassination of Giacomo Matteotti...Mussolini went on to install the dictatorship"
+HC https://www.history.com/articles/mussolini-italy-fascism
+  "tens of thousands of armed Fascists marched on Rome, demanding Mussolini be named prime minister."
+  "Italy's King, Victor Emmanuel III, refused to declare a state of emergency and impose martial law. Instead he dissolved the government and asked Mussolini to form a new one."
+  "On January 3, 1925, Mussolini essentially took responsibility for that assassination in a speech to Parliament that is seen as the start of his Fascist dictatorship."
+
+== 1930-salt (Gandhi's salt march)
+W https://en.wikipedia.org/wiki/Salt_March
+  "The 1882 Salt Act gave the British a monopoly on the collection and manufacture of salt, limiting its handling to government salt depots and levying a salt tax."
+  "Gandhi chose the 1882 British Salt Act as the first target of satyagraha."
+  "Initially, Gandhi's choice of the salt tax was met with incredulity by the Working Committee of the Congress: Jawaharlal Nehru and Divyalochan Sahu were ambivalent; Sardar Patel suggested a land revenue boycott instead."
+  "The Viceroy himself, Lord Irwin, did not take the threat of a salt protest seriously"
+  "On 12 March 1930, Gandhi and 78 satyagrahis...set out on foot for the coastal village of Dandi" ; "The march spanned 387 kilometres (240 mi), from Sabarmati Ashram to Dandi"
+  "When Gandhi broke the British Raj salt laws at 8:30 am on 6 April 1930, it sparked large-scale acts of civil disobedience"
+  "Mass civil disobedience spread throughout India as millions broke the salt laws" ; "The British government arrested over sixty thousand people by the end of the month."
+  "Gandhi was arrested on the midnight of 4–5 May 1930" ; talks with Irwin in early 1931 "resulted in the Gandhi–Irwin Pact."
+HC https://www.history.com/articles/salt-march
+  "Britain's Salt Act of 1882 prohibited Indians from collecting or selling salt, a staple in their diet."
+  "on March 12, 1930, Gandhi set out from his ashram, or religious retreat, at Sabermanti near Ahmedabad, with several dozen followers on a trek of some 240 miles to the coastal town of Dandi on the Arabian Sea."
+  "Civil disobedience broke out all across India, soon involving millions of Indians, and British authorities arrested more than 60,000 people. Gandhi himself was arrested on May 5."
+  "He later met with Lord Irwin, the viceroy of India, and agreed to call off the satyagraha in exchange for an equal negotiating role at a London conference on India's future."
+
+== 1938-oil (Cárdenas expropriates the oil companies)
+W https://en.wikipedia.org/wiki/Mexican_oil_expropriation
+  "The Supreme Court then rejected the appeal and ordered them to raise salaries and improve working conditions for the union members."
+  "The companies, however, insisted the demands would cripple production and bankrupt them, and refused to pay."
+  "On March 18, 1938, President Cárdenas embarked on the expropriation of all oil resources and facilities by the state, nationalizing the U.S. and Anglo-Dutch (Mexican Eagle Petroleum Company) operating companies."
+  "Five days later, a crowd of 200,000 (according to the press) rallied in the Zócalo in support of Cárdenas's action."
+  "On June 7, 1938, President Cárdenas issued a decree creating Petróleos Mexicanos (PEMEX)."
+  "The British government withdrew its ambassador from Mexico in May 1938." ; "Many foreign governments closed their markets to Mexican oil."
+OH https://history.state.gov/milestones/1937-1945/mexican-oil
+  "After the foreign companies defied both the commission and the Mexican Supreme Court, however, Cárdenas promulgated the expropriation decree on March 18, 1938."
+  "On March 18, 1938, Mexican President Lázaro Cárdenas signed an order that expropriated the assets of nearly all of the foreign oil companies operating in Mexico."
+  "The foreign-owned oil companies retaliated by instituting an embargo against Mexican oil."
+  "Finally, on April 18, 1942, the U.S. and Mexican Governments signed the Cooke-Zevada agreement, whereby the Mexicans agreed to pay roughly $29 million in compensation to several American firms"
+
+== 1940-visas (Chiune Sugihara's visas)
+W https://en.wikipedia.org/wiki/Chiune_Sugihara
+  "In 1939, Sugihara became a vice-consul of the Japanese Consulate in Kaunas, the temporary capital of Lithuania."
+  "As the Soviet Union occupied sovereign Lithuania in 1940, many Polish and Lithuanian Jews fearing persecution tried to acquire exit visas."
+  "Sugihara dutifully contacted the Japanese Foreign Ministry three times for instructions. Each time, the Ministry responded that anybody granted a visa should be in possession of a destination visa to an onward country beyond Japan, without exception."
+  "from July 18 to August 28, 1940, he issued over 2100 transit visas." ; "reportedly spending 18 to 20 hours a day on them"
+  "Many refugees used their visas to travel across the Soviet Union to Vladivostok and then by boat to Kobe, Japan."
+  "In 1984, Yad Vashem bestowed the Righteous Among the Nations title on Chiune Sugihara, the only Japanese national to have been so honored."
+SM https://www.smithsonianmag.com/history/this-heroic-japanese-diplomat-defied-his-government-to-save-thousands-of-jewish-refugees-from-the-holocaust-180987067/
+  "In the early morning hours of July 18, 1940, the Sugihara family heard shouting outside of their home on the second floor of the Japanese consulate."
+  "Tokyo twice denied its consul permission, citing public safety concerns associated with the influx of a large group of refugees."
+  "Once resolved in his course of action, Sugihara worked at a furious pace, aiming to issue 200 to 300 visas each day."
+  "Many of the refugees who received transit visas from Sugihara made their way to the Japanese city of Kobe"
+  "In 1984, the Israeli Holocaust remembrance organization Yad Vashem named Sugihara 'Righteous Among the Nations.'"
+
+== 1861-sumter (Lincoln sends provisions only to Fort Sumter)
+NPS https://www.nps.gov/articles/battle-of-fort-sumter-april-1861.htm (National Park Service)
+  "Confederates, previously hopeful of Fort Sumter's evacuation, now felt betrayed by the sudden shift in President Abraham Lincoln's administration."
+  "I am directed by the President of the United States to notify you to expect an attempt will be made to supply Fort Sumter with provisions only, and that if such attempt be not resisted no effort to throw in men, arms, or ammunition will be made without further notice."
+  "At 4:30 in the morning, at Fort Johnson, a gunner in James' mortar battery pulled the lanyard on a ten-inch mortar." ; "On April 15, 1861 the surviving US Army personnel departed Charleston Harbor for New York."
+W https://en.wikipedia.org/wiki/Battle_of_Fort_Sumter
+  "Conditions in the fort deteriorated due to shortages of men, food, and supplies"
+  "On April 6, Lincoln notified Pickens that 'an attempt will be made to supply Fort Sumter with provisions only, and that if such attempt be not resisted, no effort to throw in men, arms, or ammunition will be made without further notice'"
+  "At 4:30 a.m. on April 12, 1861, Lt. Henry S. Farley... fired a single 10-inch mortar round from Fort Johnson" ; "The Union garrison formally surrendered the fort to Confederate personnel at 2:30 p.m., April 13."
+  "Lincoln called for 75,000 volunteers for 90 days... The call for 75,000 troops triggered four additional slave states to declare their secession from the Union and join the Confederacy."
+
+== 1933-banks (Roosevelt closes every bank)
+FRH https://www.federalreservehistory.org/essays/bank-holiday-of-1933
+  "In the three years leading up to it thousands of banks had failed."
+  "At 1:00 a.m. on Monday, March 6, President Roosevelt issued Proclamation 2039 ordering the suspension of all banking transactions, effective immediately."
+  "For an entire week, Americans would have no access to banks or banking services." ; "The crisis began to subside on March 9, when Congress passed the Emergency Banking Act."
+  "By March 15, banks controlling 90 percent of the country's banking resources had resumed operations and deposits far exceeded withdrawals."
+  "Although some 4,000 banks would remain closed forever ... the worst of the banking crisis seemed to be over."
+W https://en.wikipedia.org/wiki/Emergency_Banking_Act_of_1933
+  "Fears of other bank closures spread from state to state as people rushed to withdraw their deposits while they still could do so."
+  "On March 6, he declared a four-day national banking holiday that kept all banks shut until Congress could act."
+  "The Emergency Banking Act...was introduced on March 9, 1933, to a special session of Congress, and was passed the same evening" (House 435-0, Senate 96-0)
+  "On March 12, the evening before banks began to reopen, FDR gave his first fireside chat, a national radio address"
+  "Americans returned $1 billion to bank vaults in the following week." ; Dow Jones "a gain of 15.34%" on 15 March 1933
+
+== 1946-nhs (Bevan takes the hospitals into public hands)
+UKP https://www.parliament.uk/about/living-heritage/transformingsociety/livinglearning/coll-9-health1/health-01/ (UK Parliament, "1946 National Health Service Act")
+  "The first Minister of Health was Aneurin Bevan MP."
+  "Local voluntary hospitals were brought into national public ownership and were organised by regional hospital boards"
+  "The National Health Service Act came into effect on 5 July 1948" ; "The Act stated that the services shall be free of charge."
+  Opposition of doctors: NOT FOUND.
+W https://en.wikipedia.org/wiki/National_Health_Service_Act_1946
+  "Existing voluntary and local authority hospitals were transferred to the NHS."
+  the Act "came into effect on 5 July 1948" ; "Most services were to be free, but there were powers to make charges for" some items.
+  Alternatives: NOT FOUND.
+
+== 1956-speech (Khrushchev denounces Stalin)
+OH https://history.state.gov/milestones/1953-1960/khrushchev-20th-congress
+  "its twentieth meeting opened in Moscow on February 14, 1956."
+  "Over the course of his address, he condemned the brutality of the Stalinist regime, particularly the purges that led to the torture and execution of some wholly innocent party loyalists."
+  "Khrushchev's speech was supposed to be private...Israeli intelligence officers obtained a copy of the complete speech and shared it with the Eisenhower Administration...it was sent to the New York Times."
+  "Protests broke out in Poland and Hungary in the summer and autumn of 1956, both with tragic consequences...month-long demonstrations ended with Soviet military intervention and thousands of casualties."
+W https://en.wikipedia.org/wiki/20th_Congress_of_the_Communist_Party_of_the_Soviet_Union
+  "On 25 February, the last day of the Congress, it was announced that an unscheduled session had been called for the Soviet delegates. First Secretary Khrushchev's morning speech began with vague references..."
+  the speech addressed "the harmful consequences of elevating a single individual"
+  "The speech was also seen as a catalyst for the anti-Soviet uprisings in Poland and Hungary of 1956"
+
+== 1956-brasilia (Kubitschek builds Brasília)
+UNESCO https://whc.unesco.org/en/list/445/
+  "a capital created ex nihilo in the centre of the country in 1956" ; "from 1956 to 1960"
+  "Urban planner Lucio Costa and architect Oscar Niemeyer" ; "President Juscelino Kubitschek's national modernization project"
+  "Date of Inscription: 1987"
+W https://en.wikipedia.org/wiki/Bras%C3%ADlia
+  "the Third Article of the new Constitution from 1891 stated that the capital should be moved from Rio de Janeiro to a place close to the country's center."
+  "Juscelino Kubitschek was elected President of Brazil in 1955. Upon taking office in January 1956, in fulfilment of his campaign pledge, he initiated the planning and construction of the new capital."
+  "Brasília was built in 41 months, and was officially inaugurated in 21 April 1960."
+  "Lúcio Costa won a contest and was the main urban planner in 1957 ... Oscar Niemeyer was the chief architect of most public buildings."
+  "Brasília was inscribed as a UNESCO World Heritage Site in 1987"
+
+== 1961-moon (Kennedy sets the Moon goal)
+NASA https://www.nasa.gov/history/the-decision-to-go-to-the-moon/
+  "the cosmonaut Yuri Gagarin had become the first human in space on April 12, 1961, greatly embarrassing the U.S."
+  "Alan Shepard became the first American in space on May 5, he only flew on a short suborbital flight instead of orbiting the Earth"
+  "this nation should commit itself to achieving the goal, before this decade is out, of landing a man on the moon and returning him safely to the earth."
+  "an estimated seven to nine billion dollars additional over the next five years"
+  "His goal was achieved on July 20, 1969, when Apollo 11 commander Neil Armstrong stepped off the Lunar Module's ladder and onto the Moon's surface."
+JFK https://www.jfklibrary.org/learn/about-jfk/jfk-in-history/space-program
+  "Soviet cosmonaut Yuri Gagarin became the first man to orbit the Earth."
+  "On May 25, 1961, he stood before Congress to deliver a special message on 'urgent national needs.' He asked for an additional $7 billion to $9 billion over the next five years for the space program, proclaiming that 'this nation should commit itself to achieving the goal, before the decade is out, of landing a man on the Moon and returning him safely to the earth.'"
+  "On July 20, 1969, the Apollo 11 astronauts — Neil Armstrong, Michael Collins, and Edwin 'Buzz' Aldrin Jr. — realized President Kennedy's dream."
+
+== 1961-wall (Ulbricht closes the border in Berlin)
+OH https://history.state.gov/milestones/1953-1960/berlin-crises
+  "a mass exodus from the eastern side"
+  "On the morning of August 13, 1961, Berliners awoke to discover that on the orders of East German leader Walter Ulbricht, a barbed wire fence had gone up overnight"
+  "The Berlin Wall remained in place until November 9, 1989, when the border between East and West Berlin was reopened and the wall itself was finally dismantled."
+W https://en.wikipedia.org/wiki/Berlin_Wall
+  "The 3.5 million East Germans who had left by 1961 totalled approximately 20% of the entire East German population."
+  "Niemand hat die Absicht, eine Mauer zu errichten!" (No one has the intention of erecting a wall!) (Ulbricht, June 1961)
+  "At midnight, the police and units of the East German army began to close the border and, by Sunday morning, 13 August, the border with West Berlin was closed."
+
+== 1964-flag (Pearson and the maple leaf)
+CA https://www.canada.ca/en/canadian-heritage/services/flag-canada-history.html (Government of Canada)
+  "Both before and after Confederation in 1867, Canada used the United Kingdom's Royal Union Flag, commonly known as the Union Jack."
+  "the Canadian Red Ensign — a combination of the Union Jack and the shield of Canada — had been used unofficially both at sea and on land since the 1870s"
+  "As the newly elected Prime Minister in 1963, Pearson promised to resolve the question of a new national flag in time for Canada's centennial celebrations in 1967."
+  "a parliamentary committee was created and given a 6-week deadline" ; "After considering a few thousand concepts submitted by Canadians, the flag committee shortlisted 3 finalists"
+  "Two months later the House of Commons approved, followed shortly after by the Senate"
+  "The new maple leaf flag was made official by a proclamation from Queen Elizabeth II on January 28, 1965." ; "On February 15 of that year, it was inaugurated in a public ceremony on Parliament Hill."
+HC https://www.history.com/this-day-in-history/february-15/canada-adopts-maple-leaf-flag
+  "three years later a new flag, the Canadian Red Ensign, was adopted."
+  "In December 1964, Parliament voted to adopt a new design. Canada's national flag was to be red and white ... with a stylized 11-point red maple leaf in its center."
+  "Queen Elizabeth II proclaimed February 15, 1965, as the day on which the new flag would be raised over Parliament Hill"
+
+== 1970-october (Trudeau invokes the War Measures Act)
+W https://en.wikipedia.org/wiki/October_Crisis
+  "Two members of the 'Liberation Cell' of the FLQ kidnap British diplomat James Cross from his home" (5 October) ; "Members of the Chénier Cell of the FLQ approach the home of the Quebec Minister of Labour, Pierre Laporte" (10 October)
+  Demands: "The publication of the FLQ manifesto; The release of 23 'political prisoners'; An airplane to take them to either Cuba or Algeria...A 'voluntary tax' of $500,000."
+  "Premier Bourassa formally requests that the government of Canada grant the government of Quebec 'emergency powers' that allow them to 'apprehend and keep in custody' individuals" (16 October)
+  "In total, 497 people were arrested" ; "62 were charged"
+  "The Chénier cell of the FLQ announces that hostage Pierre Laporte has been executed" (17 October)
+  "After being held hostage for 62 days, kidnapped British Trade Commissioner James Cross is released" (3 December)
+  (5 October to 3 December is 59 days, not 62, so the moment gives the day of his release instead of the number of days.)
+  "In a December 1970 Gallup Poll, it was noted that 89% of English-speaking Canadians and 86% of French-speaking Canadians supported the introduction of the War Measures Act."
+CBC https://www.cbc.ca/archives/just-watch-me-when-pierre-trudeau-confronted-the-october-crisis-1.4676740
+  "a Quebec separatist group, the FLQ (Front de libération du Québec), had kidnapped British Trade Commissioner James Cross and Quebec cabinet minister Pierre Laporte."
+  "With a shrug, Trudeau replied: 'Just watch me.'" (13 October 1970)
+  "Three days later Trudeau invoked the War Measures Act, giving police the right to arrest and detain people on suspicion alone."
+
+== 1973-carfree (Den Uyl bans Sunday driving)
+W https://en.wikipedia.org/wiki/Joop_den_Uyl
+  "taking office on 11 May 1973"
+  "An early problem was the 1973 oil boycott following the Dutch support of Israel in the Yom Kippur War."
+  "implemented fuel rationing and a ban on Sunday driving"
+  "Den Uyl said in a speech on national television that 'things would never return to the way they were'"
+IE https://www.iamexpat.nl/expat-info/dutch-news/history-amsterdam-car-free-sundays
+  "the Dutch government instituted a ban on Sunday driving for three months, as a way to limit oil consumption during the Opec energy crisis."
+  "only essential workers were allowed to drive their personal vehicles" (fire engines and ambulances, doctors, dentists, vets, foreign tourists and tradesmen)
+  "it was not uncommon for people to enjoy picnics on the motorways, as well as using bikes or horses"
+  (a weak second source: an expat news site)
+
+== 1950-schuman (Schuman proposes to pool coal and steel)
+EU https://european-union.europa.eu/principles-countries-history/history-eu/eu-pioneers/robert-schuman_en (European Union: EU pioneers, Robert Schuman)
+  "he proposed joint control of coal and steel production, the most important materials for the armaments industry. The basic idea was that those without control over coal and steel production would not be able to fight a war."
+  "In cooperation with Jean Monnet, he drew up the internationally renowned Schuman Plan."
+  9 May 1950 is "now regarded as the birth of the European Union and celebrated each year as 'Europe Day'"
+EU2 https://european-union.europa.eu/principles-countries-history/history-eu/1945-59/schuman-declaration-may-1950_en (read too; same site)
+  "Franco-German production of coal and steel as a whole be placed under a common High Authority, within the framework of an organization open to the participation of the other countries of Europe."
+  "The solidarity in production thus established will make it plain that any war between France and Germany becomes not merely unthinkable, but materially impossible."
+W https://en.wikipedia.org/wiki/Schuman_Declaration
+  "The Schuman Declaration...was a proposal to place French and West German production of coal and steel under a single authority...made by the French foreign minister, Robert Schuman, on 9 May 1950."
+  "In France, the concern (which dated to the prewar period) was that coal would be available on more favourable terms to the German market."
+  "On 18 April 1951, the six founding members signed the Treaty of Paris. It created the European Coal and Steel Community (ECSC)" ; six: "France, Germany, Belgium, Italy, Luxembourg and the Netherlands"
+  "May 9 has been designated 'Europe Day' to celebrate peace and unity in Europe because of the significance of the Schuman Declaration on 9 May 1950."
+  Alternatives: NOT FOUND.
+
+== 1854-japan (Abe Masahiro's government opens two ports)
+OH https://history.state.gov/milestones/1830-1860/opening-to-japan
+  Perry's mission was "to complete an agreement with the Japanese Government for the protection of shipwrecked or stranded Americans and to open one or more ports for supplies and refueling."
+  "Perry arrived in Japanese waters with a small squadron of U.S. Navy ships" ; "The following spring, Perry returned with an even larger squadron to receive Japan's answer."
+  "Japan would protect stranded seamen and open two ports for refueling and provisioning American ships: Shimoda and Hakodate. Japan also gave the United States the right to appoint consuls"
+  "This treaty was not a commercial treaty, and it did not guarantee the right to trade with Japan."
+  "The United States and Japan signed their first true commercial treaty, sometimes called the Harris Treaty, in 1858." ; "The Emperor gained formal control of the country in the Meiji Restoration of 1868."
+W https://en.wikipedia.org/wiki/Abe_Masahiro
+  "leaving effective administration in the hands of the Council of Elders (rōjū) led by Abe Masahiro."
+  "Attempting to legitimize any decision taken, Abe polled all of the daimyō for their opinions." ; "of the 61 known responses, 19 were in favor of accepting the American demands, and 19 were opposed."
+  "Abe did not sign the treaty himself or participate in the negotiations in person; this was done by his plenipotentiary Hayashi Akira." (signed 31 March 1854)
+  "In September 1855, he was forced to resign his post"
+
+== 1977-sadat (Sadat goes to Jerusalem)
+W https://en.wikipedia.org/wiki/Anwar_Saddat (redirects to the article Anwar Sadat)
+  "He led Egypt in the October war of 1973 to regain Egypt's Sinai Peninsula, which Israel had occupied since the Six-Day War of 1967"
+  "The 1977 visit by Anwar Sadat to Jerusalem was the first time an Arab leader officially visited Israeli-controlled territory. Sadat met with Israeli prime minister Menachem Begin, and spoke before the Knesset in Jerusalem"
+  "Egypt being suspended from the Arab League from 1979 to 1989."
+  "Both Sadat and Begin were awarded the Nobel Peace Prize for creating the treaty" ; "The peace treaty was finally signed ... in Washington, D.C., United States, on 26 March 1979"
+  "on 6 October 1981, militants led by Khalid Al-Islambuli opened fire on Sadat with automatic rifles during the 6 October parade in Cairo, killing him."
+W2 https://en.wikipedia.org/wiki/1977_visit_by_Anwar_Sadat_to_Israel (read too)
+  "Sadat had stated before a special session of the Egyptian People's Assembly that he was ready to go to their 'home,' the Knesset in Jerusalem and discuss peace on 9 November 1977."
+  "Foreign Minister Ismail Fahmi submitted his resignation in protest just two days ahead of the visit." ; "Sadat's move was widely condemned by Arab leaders"
+HC https://www.history.com/speeches/egypts-anwar-el-sadat-speaks-to-israeli-parliament
+  "On November 20, 1977, Sadat delivers a speech to the Israeli Knesset proposing a peace settlement with Israeli Prime Minister Menachem Begin."
+
+== 1985-nuclear-free (Lange refuses the USS Buchanan)
+NZH https://nzhistory.govt.nz/page/uss-buchanan-refused-entry-new-zealand (NZHistory, New Zealand Ministry for Culture and Heritage)
+  "On 4 February 1985 the government said no" ; "the United States would neither confirm nor deny that the warship had nuclear capability."
+  "David Lange's government, elected in July 1984, had made clear its intention to pursue policies that would establish New Zealand as a nuclear-free country."
+  Lange: "Whatever the truth of its armaments, its arrival in New Zealand would be seen as a surrender by the government."
+  "the United States would no longer maintain its security guarantee to New Zealand, although the structure of the ANZUS treaty remained in place."
+  "This was a popular stand, and by the end of the year nearly 40 towns and boroughs had declared themselves nuclear-free."
+W https://en.wikipedia.org/wiki/New_Zealand_nuclear-free_zone
+  "In February 1985, a port-visit request by the United States for the USS Buchanan (DDG-14) was refused by the New Zealand government"
+  "Under the New Zealand Nuclear Free Zone, Disarmament, and Arms Control Act 1987 territorial sea and land of New Zealand became nuclear-free zones."
+  "the United States government suspended its ANZUS obligations to New Zealand."
+
+== 1991-semipalatinsk (Nazarbayev closes the nuclear test site)
+CT https://www.ctbto.org/sites/default/files/Documents/Spectrum_24_page7-8.pdf (CTBTO Spectrum magazine)
+  "The decision by President Nursultan Nazarbayev to close the Semipalatinsk nuclear test site" (29 August 1991; independence followed on 16 December 1991)
+  "the Soviet Union carried out more than 450 nuclear weapon tests" (1949-1989) ; "The fall-out from these tests – of which over 100 were above ground – affected 1.5 million people and led to radioactive pollution"
+  "Kazakhstan opted for full nuclear disarmament and active participation in all non-proliferation treaties and regimes."
+  "the United Nations General Assembly adopted a resolution proclaiming 29 August as the International Day against Nuclear Tests."
+W https://en.wikipedia.org/wiki/Semipalatinsk_Test_Site
+  "Between 1949 and the cessation of atomic testing in 1989, 456 explosions were conducted at the STS"
+  "According to estimates from Kazakh experts, 1.5 million people were exposed to fallout over the years."
+  "In 1989, the prominent Kazakh activist Olzhas Suleimenov founded the Nevada-Semipalatinsk movement"
+  "On August 29, 1991, the Kazakh SSR government closed the site."
+UN https://www.un.org/en/observances/end-nuclear-tests-day/history (read too)
+  "The USSR's main test site, Semipalatinsk in Kazakhstan, was closed in 1991."
+
+== 1983-petrov (Petrov reports a false alarm)
+W https://en.wikipedia.org/wiki/Stanislav_Petrov
+  "On 26 September 1983, three weeks after the Soviet military had shot down Korean Air Lines Flight 007, Petrov was the duty officer at the command center for the Oko nuclear early-warning system"
+  "the system reported that a missile had been launched from the United States, followed by up to four more"
+  "he had been told a U.S. strike would be all-out, so a mere five missiles seemed an illogical start" ; "ground radar failed to pick up corroborating evidence, even after minutes of delay"
+  "His subsequent decision to disobey orders, against Soviet military protocol, is credited with having prevented an erroneous retaliatory nuclear attack"
+  "a rare alignment of sunlight on high-altitude clouds above North Dakota and the Molniya orbits of the satellites"
+  "reprimanded for improper filing of paperwork" ; "received no reward" ; "the Dresden Peace Prize in Dresden, Germany, on 17 February 2013"
+HC https://www.history.com/articles/nuclear-attack-warning-cold-war-petrov
+  "On the evening of September 26, 1983, Soviet officer Stanislav Petrov took his seat for a 12-hour shift at the Serpukhov-15 command center near Moscow."
+  "A nondescript wall panel across the room flashed awake with angry red letters: 'LAUNCH.' ... Additional missile reports swiftly followed, setting off a new warning: 'MISSILE ATTACK.'"
+  "Petrov had been trained that a U.S. nuclear attack would involve hundreds of missiles, not a handful. A lack of telescope or radar confirmation added to his suspicion ... He called his commanders and reported the alert as a false alarm."
+
+== 1957-little-rock (Eisenhower sends troops to Little Rock)
+EL https://www.eisenhowerlibrary.gov/research/online-documents/civil-rights-little-rock-school-integration-crisis (Eisenhower Presidential Library)
+  "On May 17, 1954, the U.S. Supreme Court ruled in Brown vs. Topeka Board of Education that segregated schools are 'inherently unequal.'"
+  "When Governor Faubus ordered the Arkansas National Guard to surround Central High School to keep the nine students from entering the school..."
+  Eisenhower issued Proclamation 3204 and Executive Order 10730 and "ordered the 101st Airborne Division into Little Rock"
+HC https://www.history.com/this-day-in-history/september-25/central-high-school-integrated
+  "On September 2, Governor Orval Faubus…called out the Arkansas National Guard to surround Central High School and prevent integration"
+  "A mob of 400 white civilians gathered and turned ugly when the Black students began to arrive, shouting racial epithets and threatening"
+  "Eisenhower immediately federalized the Arkansas National Guard and approved the deployment of U.S. troops to Little Rock." (24 September 1957)
+  "Under escort from the U.S. Army's 101st Airborne Division, nine Black students enter all-white Central High School in Little Rock, Arkansas on September 25, 1957."
+  "Troops remained at Central High School throughout the school year" ; "Ernest Green, the only senior in the group, became the first Black person to graduate from Central High School" (27 May 1958)
+  "In September 1958 he ordered Little Rock's three high schools closed rather than permit integration."
+
+== 1981-patco (Reagan fires the striking air traffic controllers)
+HC https://www.history.com/this-day-in-history/august-5/reagan-fires-11359-air-traffic-controllers
+  "on August 3, almost 13,000 air-traffic controllers went on strike after negotiations with the federal government to raise their pay and shorten their workweek proved fruitless."
+  "President Reagan called the strike illegal and threatened to fire any controller who had not returned to work within 48 hours."
+  "On August 5 ... the federal government began firing the 11,359 air-traffic controllers who had not returned to work. In addition, he declared a lifetime ban on the rehiring of the strikers by the Federal Aviation Administration (FAA)."
+  "on October 22 the Federal Labor Relations Authority decertified PATCO."
+W https://en.wikipedia.org/wiki/Professional_Air_Traffic_Controllers_Organization_(1968)
+  "At 7 a.m. on August 3, 1981, the union declared a strike, seeking better working conditions, better pay ... and a 32-hour workweek."
+  "In striking, the union violated 5 U.S.C. ... which prohibits strikes by federal government employees."
+  "On August 5 ... the Reagan administration fired the 11,345 striking air traffic controllers who had ignored the order, and banned them from federal service for life." (number differs from History.com: 11,359; the moment says 'more than 11,000', which both support)
+  "PATCO was decertified by the Federal Labor Relations Authority on October 22, 1981."
+  "Reagan's firing of the government employees encouraged large private employers like Phelps Dodge (1983), Hormel (1985–86), and International Paper (1987) to hire striker replacements"
+
+== 1994-ukraine (Kravchuk agrees to give up the nuclear weapons)
+AC https://www.armscontrol.org/factsheets/ukraine-nuclear-weapons-and-security-assurances-glance (Arms Control Association)
+  "Ukraine held the third largest nuclear arsenal in the world, including an estimated 1,900 strategic warheads, 176 intercontinental ballistic missiles (ICBMs), and 44 strategic bombers."
+  "Some felt that Russia was a still a threat and that they should keep the weapons as a deterrent."
+  Trilateral Statement, January 1994: "Ukraine committed to full disarmament, including strategic weapons, in exchange for economic support and security assurances from the United States and Russia."
+  Budapest Memorandum, 5 December 1994: "The memorandum included security assurances against the threat or use of force against Ukraine's territory or political independence."
+  "June 1, 1996: Ukraine transfers its last nuclear warhead to Russia" ; "Ukraine officially acceded to the NPT as a non-nuclear weapon state on December 5, 1994."
+W https://en.wikipedia.org/wiki/Leonid_Kravchuk
+  "served as the first president of Ukraine from 5 December 1991 to 19 July 1994."
+  "In January 1994 a deal was reached, as part of which Ukraine would surrender its nuclear arsenal in return for American and Russian recognition of Ukraine's sovereignty."
+  "This was followed by the Budapest Memorandum, signed on 5 December 1994 at the Budapest summit of the Organisation for Security and Co-operation in Europe."
+W2 https://en.wikipedia.org/wiki/Budapest_Memorandum (read too)
+  "Until Ukraine transferred the Soviet nuclear weapons stationed on its soil, it held the world's third-largest nuclear weapons stockpile."
+  "Russia violated the Budapest memorandum in 2014 with its annexation of Ukraine's Crimea"
+
+== 1974-pardon (Ford pardons Nixon)
+HC https://www.history.com/this-day-in-history/september-8/ford-pardons-nixon
+  "Exactly one month after Nixon announced his resignation, Ford issued the former president a 'full, free and absolute' pardon for any crimes he committed while in office."
+  "Ford later defended this action before the House Judiciary Committee, explaining that he wanted to end the national divisions created by the Watergate scandal."
+  "The pardon was widely condemned at the time." ; "Ford left politics after losing the 1976 presidential election to Democrat Jimmy Carter."
+  "the John F. Kennedy Library Foundation presented its 2001 Profile in Courage Award to Gerald Ford for his 1974 pardon of Nixon."
+W https://en.wikipedia.org/wiki/Pardon_of_Richard_Nixon
+  "on September 8, 1974, he granted Nixon a 'full, free, and absolute pardon'"
+  "Ford's approval rating dropped from 71% to 50% following the pardon" ; "Jerald terHorst resigned his post in protest after the pardon"
+  "lingering public resentment over the pardon was a factor in Ford's narrow loss to Democratic Party nominee Jimmy Carter in the 1976 presidential election"
+
+== 1958-guinea (Sékou Touré's party campaigns for no)
+W https://en.wikipedia.org/wiki/1958_Guinean_constitutional_referendum
+  "A constitutional referendum was held in Guinea on 28 September 1958 as part of a wider referendum across the French Union (and France itself) on whether to adopt the new French Constitution."
+  "The results showed that more than 95% of voters in Guinea voted against the constitution, with a turnout of 85.5%."
+  "The Democratic Party of Guinea, which had won all but four seats in the Territorial Assembly election the previous year under the leadership of Ahmed Sékou Touré, pushed for a rejection of the constitution."
+  "Following the referendum, Guinea declared independence on 2 October. The French government reacted badly to the result, and although Touré had not been seeking it, withdrew totally from the country and halted any development assistance."
+HC https://www.history.com/this-day-in-history/october-2/the-cold-war-comes-to-africa-as-guinea-gains-its-independence
+  "The former French colony of Guinea declares its independence on October 2, 1958, with Sekou Toure as the new nation's first leader"
+  "France withdrew all aid to the new republic." ; "Guinea's open courting of Soviet aid and money and signing of a military assistance agreement with the Soviet Union."
+
+== 1998-malaysia (Mahathir's capital controls)
+IMF https://www.imf.org/external/np/exr/ib/2000/062300.HTM (IMF Issues Brief, 2000)
+  "Malaysia imposed capital controls in September 1998, largely aimed at the offshore ringgit market in Singapore and short-term portfolio flows."
+  "Malaysia's macroeconomic conditions were substantially stronger at the outset than those in the other crisis countries"
+W https://en.wikipedia.org/wiki/Mahathir_Mohamad
+  "The value of the ringgit plummeted due to currency speculation, foreign investment fled, and the main stock exchange index fell by over 75 per cent."
+  "In 1998, Mahathir defied the IMF's recommendations and implemented bold measures to stabilize the economy."
+  "These included pegging the ringgit at RM3.80 to the US dollar, banning offshore trading of the ringgit to curb speculation, and introducing capital controls."
+  Anwar Ibrahim: "On 2 September, he was dismissed as deputy prime minister and finance minister and promptly expelled from UMNO."
+  "Malaysia recovered from the crisis faster than its Southeast Asian neighbours, aided by an unorthodox capital control policy."
+
+== 1999-east-timor (Habibie lets East Timor vote)
+UN https://peacekeeping.un.org/sites/default/files/past/etimor/Untaetchrono.html (United Nations: The United Nations and East Timor, a chronology)
+  "Portugal withdraws and Indonesia invades East Timor." (1975) ; "Indonesia annexes East Timor as its 27th province. The United Nations never recognizes this integration." (1976)
+  "President Habibie indicates in a public statement that his Government might be prepared to consider independence for East Timor." (27 January 1999)
+  "94,388 or 21.5 per cent of East Timorese voted in favor of the special autonomy proposal and 344,580 or 78.5 per cent voted against." (4 September 1999)
+  "The Security Council authorizes a multinational force (INTERFET) under a unified command structure headed by Australia." (12 September 1999)
+  "East Timor becomes an independent nation." (20 May 2002)
+W https://en.wikipedia.org/wiki/1999_East_Timorese_independence_referendum
+  "on January 27, 1999, Habibie announced that East Timor would be permitted to vote on accepting 'autonomy' within Indonesia."
+  "An independence referendum was held in Indonesian-occupied East Timor on 30 August 1999" ; turnout 98.93% ; "Reject 344,580 78.50%"
+  "Mass violence was reported in the region and the enclave of Oecussi-Ambeno saw 1,000 men, women, and children reportedly murdered immediately after the referendum."
+  InterFET "largely constituted by Australian Defence Force personnel" ; "East Timor would officially achieve recognised independence on 20 May 2002."
+
+== 1888-golden-law (Princess Isabel ends slavery)
+W https://en.wikipedia.org/wiki/Isabel,_Princess_Imperial_of_Brazil
+  "The Emperor was advised to seek medical help in Europe, as a result of which he left Brazil on 30 June, leaving Isabel as regent."
+  "The Law of Free Birth, as it was called, freed all children born of slaves after that date" (1871)
+  "On 13 May 1888, Isabel signed the Golden Law (A Lei Áurea), which enabled the complete cessation of slavery."
+  "They had lost the support of slave-owning plantation owners, who held great political, economic and social power."
+  "On 15 November 1889, Pedro II was deposed in a military coup... Within two days, he and his family were on their way to exile in Europe."
+NG https://www.nationalgeographic.com/history/article/their-identity-was-forged-through-resistance-inside-the-lives-of-brazils-quilombos
+  "By 1888, when slavery was formally abolished" ; "Brazil, the last country in the Western Hemisphere to ban slavery"
+  "some 4.8 million" enslaved Africans were brought to Brazil
+  (Princess Isabel and the law's name: NOT FOUND on this page.)
+
+== 1973-embargo (King Faisal and the oil embargo)
+OH https://history.state.gov/milestones/1969-1976/oil-embargo
+  "During the 1973 Arab-Israeli War, Arab members of the Organization of Petroleum Exporting Countries (OPEC) imposed an embargo against the United States in retaliation for the U.S. decision to re-supply the Israeli military"
+  "The embargo both banned petroleum exports to the targeted nations and introduced cuts in oil production."
+  "The price of oil per barrel first doubled, then quadrupled" ; the parties agreed "to lift the embargo in March 1974."
+  Saudi Arabia / Faisal: NOT FOUND on this page.
+W https://en.wikipedia.org/wiki/Faisal_of_Saudi_Arabia
+  "After Sadat launched the 1973 Arab–Israeli War, Faisal withdrew Saudi oil from world markets and was the primary force behind the 1973 oil crisis"
+  "The price of oil had risen about 300 percent by the conclusion of the embargo in March 1974, from US$3 per barrel to nearly $12 per barrel"
+  "On 25 March 1975, the King was shot point-blank three times and killed by Faisal bin Musaid"
+
+== 1951-iran-oil (Mosaddegh nationalises the oil company)
+W https://en.wikipedia.org/wiki/Mohammad_Mosaddegh
+  "Since 1935, the Anglo-Persian Oil Company had the exclusive rights to Iranian oil. Earlier in 1914, the British government had purchased 51% of its shares and became the majority shareholder."
+  (The pov gives no year for the exclusive rights: 1935 looks like the year of the company's new name rather than the start of its rights, so it is left out.)
+  Mosaddegh: Iran was "the rightful owner" of its oil ; the law set aside "25% of the net profits on oil ... to meet all the legitimate claims of the company for compensation."
+  "In March 1951, Mosaddegh nationalised the Anglo-Iranian Oil Company, cancelling its oil concession."
+  "On 28 April 1951, the Shah confirmed Mosaddegh as Prime Minister after the Majlis (Parliament of Iran) elected Mosaddegh by a vote of 79–12."
+  "The British government announced a de facto blockade and embargo" ; "oil production dropping almost 96%"
+  "his government was overthrown in the 1953 Iranian coup d'état aided by the intelligence agencies of the United Kingdom (MI6) and the United States (CIA)"
+  "Mosaddegh was kept under house arrest at his Ahmadabad residence, until his death on 5 March 1967"
+HC https://www.history.com/this-day-in-history/august-19/cia-assisted-coup-overthrows-government-of-iran
+  "Mosaddeq immediately began attacks on British oil companies operating in his country, calling for expropriation and nationalization of the oil fields."
+  "On August 19, 1953, the military, backed by street protests organized and financed by the CIA, overthrew Mossadeq."
+  "Mossadeq was arrested, served three years in prison, and died under house arrest in 1967."
+
+== 1999-mandela (Mandela serves one term)
+NMF https://www.nelsonmandela.org/biography (Nelson Mandela Foundation)
+  "On 10 May 1994 he was inaugurated as South Africa's first democratically elected President."
+  "True to his promise, Mandela stepped down in 1999 after one term as President."
+  he "continued to work with the Nelson Mandela Children's Fund he set up in 1995 and established the Nelson Mandela Foundation and The Mandela Rhodes Foundation."
+  "He died at his home in Johannesburg on 5 December 2013."
+W https://en.wikipedia.org/wiki/Presidency_of_Nelson_Mandela
+  "In July that year, Mandela confirmed that he would not be seeking re-election to the presidency in 1999."
+  "His age was taken into consideration as part of his decision to not seek re-election in 1999."
+  "The 1996 constitution limited the president to two consecutive five-year terms."
+  "He was succeeded by Mbeki, who was inaugurated to the presidency on 16 June."
+
+== 1988-chile (Pinochet accepts the No)
+W https://en.wikipedia.org/wiki/1988_Chilean_presidential_referendum
+  "A referendum on whether Augusto Pinochet, the head of a military dictatorship, should become president for eight years under resumed civilian rule was held in Chile on 5 October 1988."
+  "The 'No' side won with 56% of the vote, marking the end of Pinochet's 16+1⁄2-year rule."
+  "After his electoral defeat in the 1988 plebiscite, Pinochet reportedly considered plans for an auto-coup to remain in power."
+  "At midnight, Air Force commander Fernando Matthei publicly acknowledged to reporters ... that the 'No' side had won the vote." ; "Matthei refused outright, reportedly tearing up a draft decree that would have authorized emergency powers."
+  (The moment says that he refused the decree; the tearing up is only "reportedly", so it is left out.)
+  "Without their backing, Pinochet was forced to accept the outcome of the plebiscite and begin the constitutional transition to civilian rule."
+  "Presidential and parliamentary elections took place as scheduled on 14 December 1989, with Christian Democrat Patricio Aylwin winning the presidency with 55 percent of the vote. Aylwin and the newly elected Congress took office on 11 March 1990"
+HC https://www.history.com/articles/augusto-pinochet
+  "A plebiscite held in 1988 rejected his candidacy as president beyond 1990"
+  "he retained his post as commander-in-chief of the army until 1998. In October 1998 he became the centre of international attention when he was arrested in London"
+
+== 1893-nz-vote (Lord Glasgow signs votes for women)
+W https://en.wikipedia.org/wiki/Women%27s_suffrage_in_New_Zealand
+  "finally in 1893 nearly 32,000 signatures were presented – almost a quarter of the adult European female population of New Zealand."
+  "Seddon needed one more vote to defeat the measure in the Upper House." (a councillor's vote was changed by wire)
+  "they changed sides and voted for the bill, allowing it to pass by 20 votes to 18 on 8 September 1893...Eighteen legislative councillors petitioned the new governor, Lord Glasgow, to withhold his consent in enacting the law"
+  "on 19 September 1893 the governor consented and the Electoral Act 1893 gave all women in New Zealand aged 21 or older the right to vote."
+  women voted for the first time in the "election held on 28 November 1893"
+NZH https://nzhistory.govt.nz/politics/womens-suffrage (NZHistory)
+  "In 1891, 1892 and 1893 they compiled a series of massive petitions calling on Parliament to grant the vote to women."
+  "New Zealand became the first self-governing country in the world in which women had the right to vote in parliamentary elections."
+
+== 1783-washington (Washington hands back his commission)
+MV https://edit.mountvernon.org/digital-encyclopedia/article/resignation-of-military-commission (George Washington's Mount Vernon, digital encyclopedia)
+  "On December 23, 1783, then commander in chief of the Continental Army, George Washington, addressed the Continental Congress in Annapolis"
+  "In early December 1783, after having quelled the Newburgh Conspiracy the previous spring, Washington bid farewell to his officers"
+  "he left Annapolis and made it home to Mount Vernon for Christmas"
+  King George III: "If [Washington] does that, he will be the greatest man in the world."
+  "Washington was unanimously elected to be the first President of the United States."
+UW https://csac.history.wisc.edu/2025/05/13/george-washington-surrenders-his-commission-to-congress-23-december-1783/ (Center for the Study of the American Constitution, University of Wisconsin-Madison)
+  "The formal ceremony surrendering Washington's commission was held on Tuesday at noon on 23 December 1783 in the Senate chamber of the Maryland statehouse in Annapolis."
+  "The next day, Washington was finally home to spend his first Christmas at Mount Vernon in eight years."
+  Offers of power / kingship: NOT FOUND on either page.
+
+== 1970-nigeria (Gowon: no victor, no vanquished)
+W https://en.wikipedia.org/wiki/Yakubu_Gowon
+  "The end of the war came about on 13 January 1970, with Colonel Olusegun Obasanjo's acceptance of the surrender of Biafran forces."
+  "In accepting Biafra's unconditional cease-fire, Gowon declared that there would be no victor and no vanquished."
+  "the years afterward were declared to be a period of rehabilitation, reconstruction, and reconciliation."
+  Gowon "followed it up with an amnesty for the majority of those who had participated in the Biafran uprising."
+  the war saw "the deaths of more than 100,000 federal soldiers and three million Biafran combatants and civilians, most of the latter of which perished through starvation."
+  "On 29 July 1975, while Gowon was attending an OAU summit in Kampala, a group of officers ... announced his overthrow."
+HC https://www.history.com/this-day-in-history/July-6/civil-war-in-nigeria
+  "war between Nigeria and Biafra broke out in July 1967."
+  "On January 11, 1970, Nigerian forces captured the provincial capital of Owerri ... Four days later, Biafra surrendered to Nigeria."
+  "an estimated one million of its civilians died as a result of severe malnutrition."
+  Gowon's post-war policy: NOT FOUND on this page (it rests on Wikipedia).
+
+== 1986-marcos (Marcos holds fire and leaves)
+W https://en.wikipedia.org/wiki/People_Power_Revolution
+  "The election was held on February 7, 1986. The official election canvasser, the Commission on Elections (COMELEC), declared that Marcos was the winner."
+  "This electoral exercise was marred by widespread reports of violence and tampering of election results, culminating in the walkout of 30 COMELEC computer technicians"
+  "At about 6:30 p.m. on February 22, Enrile and Ramos held a press conference ... where they announced that they had resigned from their positions in Marcos' cabinet and were withdrawing support from his government."
+  "The majority of the demonstrations took place on ... EDSA, in Metro Manila from February 22 to 25, 1986. They involved over two million Filipino civilians."
+  "My order is not to attack. No, no, no! Hold on. My order is not to attack."
+  "Balbas would eventually refuse to follow Ramas' orders each of the four times he was ordered to fire on Camp Crame."
+  "Laxalt advised him to 'cut and cut cleanly'"
+  "Around midnight, the Marcos family boarded a United States Air Force HH-3E Rescue helicopter" ; "flying to Hickam Air Force Base in Hawaii where Marcos finally arrived on February 26."
+OG https://www.officialgazette.gov.ph/2014/02/25/edsa-elsewhere-the-1986-people-power-revolution/ (Official Gazette of the Republic of the Philippines)
+  "On February 7, 1986, nationwide snap elections were held for the presidency and the newly restored position of vice-president."
+  "the Comelec numbers show Marcos and Tolentino the winners"
+  "multitudes of demonstrators would fill the vast expanse of Epifanio de los Santos Avenue (EDSA) calling for the peaceful ouster of a dictator."
+  "When news of President Marcos leaving the Palace reached Jaro, Iloilo, it was late at night..."
+  (Not usable: https://www.officialgazette.gov.ph/featured/the-fall-of-the-dictatorship/ returned 403.)

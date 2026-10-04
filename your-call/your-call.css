@@ -106,4 +106,14 @@
   .yc-pov { font-size: 1.4rem; }
   .yc-choice { font-size: 1.12rem; min-height: 64px; }
 }
+/* short screens (phones of up to about 656 pixels' height): the year and the place share one line and the
+   choices are a little tighter, so that the moment, the three choices and the button fit without scrolling */
+@media (max-height: 41rem) {
+  .yc-year { display: inline-block; margin-top: 4px; font-size: 2.9rem; }
+  .yc-place { display: inline-block; margin: 0 0 0 10px; }
+  .yc-pov { margin-top: 6px; font-size: 1.04rem; line-height: 1.26; }
+  .yc-panel { margin-top: 10px; padding: 8px; }
+  .yc-choices { gap: 6px; }
+  .yc-choice { min-height: 50px; padding: 7px 12px 7px 8px; font-size: 1rem; }
+}
 @media (prefers-reduced-motion: reduce) { .yc-panel, .yc-panel.revealed .yc-choice { transition: none; } }
