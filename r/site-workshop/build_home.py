@@ -59,6 +59,10 @@ html = f'''<!doctype html>
 <link rel="canonical" href="{SITE_URL}">
 <meta name="description" content="Small daily games about the real world. A minute each, and one true thing every time, with its source.">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
 <meta property="og:title" content="Logicers. Are you a Logicer?">
