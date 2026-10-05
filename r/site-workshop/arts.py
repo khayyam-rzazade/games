@@ -112,3 +112,21 @@ def art_one():
     x = 37 + c * 13.2; y = 39 + r * 13.6
     s.append(f'<circle class="ring" cx="{n(x)}" cy="{n(y)}" r="10.5" fill="none" stroke-width="3"/><circle class="fg" cx="{n(x)}" cy="{n(y)}" r="6"/>')
     return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'
+
+def art_still():
+    """Still In: the rule on top, twelve countries under it. Some were tapped right (solid), one went wrong (yellow),
+    one is picked (ringed), the rest are still to go. The lines of the rule start right of where the badge "New" sits."""
+    s = ['<rect class="fg" x="56" y="28" width="208" height="34" rx="11"/>',
+         '<rect class="q" x="120" y="37" width="118" height="7" rx="3.5"/>',
+         '<rect class="q" x="120" y="49" width="74" height="5" rx="2.5" opacity=".7"/>']
+    state = {1: 'fg', 4: 'fg', 6: 'fg', 11: 'fg', 9: 'miss', 2: 'pick'}
+    for k in range(12):
+        r, c = divmod(k, 4)
+        x = 56 + c * 54; y = 74 + r * 36
+        st = state.get(k, 'q')
+        if st == 'pick':
+            s.append(f'<rect class="q" x="{x}" y="{y}" width="46" height="28" rx="8"/>'
+                     f'<rect class="ring" x="{x - 3}" y="{y - 3}" width="52" height="34" rx="10" fill="none" stroke-width="3"/>')
+        else:
+            s.append(f'<rect class="{st}" x="{x}" y="{y}" width="46" height="28" rx="8"/>')
+    return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'

@@ -44,9 +44,12 @@ GAMES = [
 
 # the games for groups, in the order they arrived (the newest gets new=True and stands first)
 GROUP = [
-    dict(key='o193', href='one-of-193/', name='One of 193', art=art_one(), new=True, players='2+ players',
+    dict(key='o193', href='one-of-193/', name='One of 193', art=art_one(), players='2+ players',
          pitch='The phone hides one of 193 countries. Ask it yes or no, and find the country in as few questions as you can.',
          short='The phone hides a country. Ask yes or no, and find it.'),
+    dict(key='still', href='still-in/', name='Still In', art=art_still(), new=True, players='2+ players',
+         pitch='Twelve countries and one rule. Take turns tapping one that fits. Wrong, and you are out.',
+         short="Twelve countries, one rule. Tap one that fits, or you're out."),
 ]
 
 def tile(g):
@@ -213,7 +216,7 @@ html = f'''<!doctype html>
     <h3>Where the dates come from</h3>
     <p class="quiet">Years Apart checks every date against two sources, linked under the answer.</p>
     <h3>Where the countries' facts come from</h3>
-    <p class="quiet">One of 193, a game for groups, answers from the World Bank's open data (World Development Indicators, CC BY 4.0) and from lists that were each checked on two websites, linked with the facts at the end of a round.</p>
+    <p class="quiet">One of 193 and Still In, the games for groups, use the World Bank's open data (World Development Indicators, CC BY 4.0) and lists that were each checked on two websites. One of 193 links them with the facts at the end of a round, Still In under the twelve countries after each rule.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>

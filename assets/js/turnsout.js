@@ -231,6 +231,8 @@
         ? "No login. No cookies. Your results stay in your browser. Visits are counted without identifying anyone."
         : kind === "group"
         ? "No login and no cookies. Your table's best result is kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
+        : kind === "names"
+        ? "No login and no cookies. The players' names and wins are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
     });
   }
@@ -279,13 +281,16 @@
   function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 
   /* ------------------------------------------------------------------
-     The games for groups ("Pass the phone" on the home page): one phone, one to eight players, any time and as
-     often as they like. They are not daily: no day number, no streak, no album. Nothing they store counts in the
+     The games for groups ("Pass the phone" on the home page): one phone, a group of players, any time and as
+     often as they like. The newest stands first (Still In since 5 Oct 2026, evening). They are not daily: no day number, no streak, no album. Nothing they store counts in the
      Today card, the streak of the site, the way onward or the returning-player events, which all read GAMES only.
-     Their own records (a table's best result, the countries hidden lately) are kept apart, under "groups".
+     Their own records (a table's best result, the countries hidden lately, the players' names and wins) are kept
+     apart, under "groups".
      To add one: add it here and to GROUP in r/site-workshop/build_home.py, and give it a colour in logicers.css.
      ------------------------------------------------------------------ */
   var GROUP = [
+    { id: "still-in", key: "still", name: "Still In", href: "still-in/", players: "2+ players",
+      pitch: "Twelve countries, one rule. Tap one that fits, or you're out." },
     { id: "one-of-193", key: "o193", name: "One of 193", href: "one-of-193/", players: "2+ players",
       pitch: "The phone hides a country. Ask yes or no, and find it." }
   ];

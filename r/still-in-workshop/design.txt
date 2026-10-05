@@ -1,0 +1,95 @@
+STILL IN: how the game is made (5 Oct 2026, evening)
+=====================================================
+
+What it is
+  A game for one phone and two to eight players, the second game for groups ("Pass the phone" on the home page).
+  Twelve countries and one rule ("More people than Spain"). The players take turns tapping a country that fits;
+  the phone checks it against the World Bank's figures (or a checked list) and shows the real figure. A wrong
+  tap puts that player out of the game. When no country that fits is left, a new rule comes, a little harder.
+  The last player still in wins. Not daily: no day number, streak or album.
+
+Where its facts come from
+  - data/one-of-193.js (made by r/make-one-of-193.R): the 193 UN member states, their UN regions, the eight lists
+    checked on two websites each (their quotes are in r/one-of-193-workshop/evidence.txt), and five World Bank
+    figures: people, surface area, life expectancy, the share in towns and cities, forest (share of land).
+  - data/still-in.js (made by r/make-still-in.R, which Khayyam runs in RStudio): four more World Bank figures that
+    One of 193 does not have: GDP per person (PPP, current international $), people online (share), people per
+    square kilometre of land, people under 15 (share). The table of them is figures.csv here.
+  - Every figure is the World Bank's open data under CC BY 4.0 (the scripts check the licence of each), each
+    country's latest figure at most six years old; the year stands with every figure in the game.
+  - No new list was made for Still In, so there is no evidence.txt here: the lists are One of 193's.
+  - Without data/still-in.js the game plays with the five figures of One of 193 and the lists.
+
+The rules (22; the words are in still-in/still-in.js, RULES)
+  Figures, against a bar country (dir +1: more than the bar, -1: less):
+    more-people, fewer-people (pop); bigger, smaller (area); longer-lives (life); more-urban, less-urban (urban);
+    more-forest, less-forest (forest); richer (gdp); more-online (net); more-crowded, less-crowded (dense);
+    younger (young: a bigger share under 15).
+  Never asked (C): shorter lives, poorer per person, fewer online, older: they would rank countries by what they lack.
+  Lists: landlocked, island, med (a coast on the Mediterranean), equator, china, russia (a land border), left
+    (traffic keeps to the left), euro.
+  Left out (C): regions (where Cyprus or Georgia stands is a convention, and a wrong tap puts a player out),
+    income groups, coasts on the oceans (the sources do not agree), anything about religion, politics or people.
+
+Who comes into a pool
+  The UN members with at least a million people (156 on the figures of 5 Oct 2026). A country without the rule's
+  figure never comes into that rule's pools (for example North Korea for GDP per person).
+
+The bars (BAR_IDS): 45 well-known countries from every continent
+  Spain, France, Germany, Italy, the United Kingdom, Poland, Sweden, Norway, Greece, Portugal, the Netherlands,
+  Switzerland, Ireland, Finland, Austria; the United States, Canada, Mexico, Brazil, Argentina, Chile, Peru,
+  Colombia; China, India, Japan, South Korea, Indonesia, Thailand, Vietnam, the Philippines, Pakistan, Bangladesh,
+  Türkiye, Saudi Arabia, Malaysia; Egypt, Nigeria, Kenya, South Africa, Ethiopia, Morocco, Ghana; Australia,
+  New Zealand. A rule takes a bar at random among those that give a fair pool, and not one used lately.
+
+Fair pools (checked by r/site-workshop/checks/t_still.py, G1 to G5)
+  - Twelve different countries, none of them the bar, in alphabetical order on the screen.
+  - Five, six or seven of them fit (at random, so that nobody can count on it). The phone never says how many.
+  - The margin: no country lies this close to the bar, so that a small revision of a figure cannot change an answer:
+    people 5%, area 3%, GDP per person 8%, people per km² 5% (as ratios); life expectancy 1 year; towns and cities
+    3 points, forest 2 points, online 3 points, under 15 1.5 points. And no country looks the same as the bar on
+    screen once both are rounded (the tiles show whole percentages, millions with one decimal and so on).
+  - Close calls: a "near" country lies within 1.6 times the bar (1.5 for GDP; 2.5 years; 8 points; 4 points for
+    under 15). Each side of the bar gets near, middle and far countries: the first rule of a game a third of each
+    (at least one near on each side), the second half near, from the third on two thirds near (at least two near on
+    each side). So the obvious ones go first and every rule is harder than the one before.
+  - A list rule: five to seven countries on the list, and the others from the same UN sub-regions first, then the
+    same regions, then anywhere (Equatorial Guinea next to Gabon for the equator, Portugal next to Spain for the
+    Mediterranean).
+  - The order of rules in a game: it opens with a figure and its bar; a rule, a figure or a list never comes twice
+    in one game (until all have come); two list rules never follow each other.
+
+A turn
+  Whoever holds the phone taps a country (it is picked: the button says "Check Vietnam") and checks it. The tile
+  turns over and shows the figure (✓ in the game's colour, or ✗ in yellow); the line under the grid says the whole
+  figure in words, with its year where it is not the bar's year, and to whom the phone goes next. In a sentence the
+  names that need it take "the" (the Netherlands, the United States, the Central African Republic: 14 names, the
+  list THE in still-in.js); the tiles and the list after a rule show the bare name. After the last
+  country that fits: "That was the last one that fits", the button "See all twelve", then the twelve in order
+  (from the biggest figure down, the bar where it falls; for a list, the countries on it first), who tapped which,
+  and the sources; "Next rule". After the last player but one went out: the button "Who is still in?", then the end:
+  the winner, who went out on what (in the order they went out), the wins at this table, Play again, Share,
+  "The last twelve", "New players".
+
+What the browser keeps (under "groups" > "still-in" in the site's one store; never under the daily games)
+  n (players), names (eight, optional, cleaned, at most 14 letters), wins ({name: count}), games, next (who starts
+  the next game), recent (the last 40 rules with their bars), cur (a game in progress, so that a reload goes on:
+  players, who is out and on what, whose turn, the rule's number, the rules used, the pool, the taps, the pools
+  played, done when the rule was over). Broken data is left aside.
+
+Sharing
+  The picture (1080 by 1350, plum) shows the rule of the game that put the most players out, the bar's figure or the
+  list's meaning, its twelve countries without a mark, how many players it put out, and "Can your table get through
+  it?". The link (?r=rule&b=bar&c=twelve codes&k=players out) deals the same twelve and rule to a friend's table as
+  its first rule; a link that is no longer fair on today's figures is left aside.
+
+Counter events (GoatCounter): still-in/started, still-in/finished, still-in/share, still-in/challenge-opened.
+
+Its colour: plum, #6E2C78 by day (tint #F4E5F7), #E27FF5 at night (tint #1E1024). In OKLab 0.142 from the nearest
+  game colour by day (violet) and 0.088 at night (violet); the closest pair of earlier games (teal and green) lie
+  0.059 apart. White text on it: 9.15 to 1.
+
+To run the data maker again: open r/make-still-in.R in RStudio and press Source (about once a year, when the World
+  Bank adds a year). Then a chat runs t_still.py on the new file before the push.
+To test the R script without the internet: python3 test/pretend_wb.py <folder> [full|gaps|licence|renamed|unknown],
+  then Rscript test/test_r.R <folder> <copy of the site> [nonet].

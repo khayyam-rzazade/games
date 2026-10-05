@@ -65,6 +65,7 @@
 [data-g="piece"]   { --c: #238453; --tint: #DBF3E4; }
 [data-g="apart"]   { --c: #7A5034; --tint: #F1E7DC; }
 [data-g="o193"]    { --c: #166FA5; --tint: #DFEFFD; }       /* One of 193, the first game for groups: ocean blue */
+[data-g="still"]   { --c: #6E2C78; --tint: #F4E5F7; }       /* Still In, the second game for groups: plum */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -89,6 +90,7 @@
   [data-g="piece"]   { --c: #63E6A0; --tint: #0F2222; }
   [data-g="apart"]   { --c: #D9A983; --tint: #1B1511; }
   [data-g="o193"]    { --c: #8FCCFA; --tint: #071926; }
+  [data-g="still"]   { --c: #E27FF5; --tint: #1E1024; }
 }
 
 /* ---------- base ---------- */
@@ -309,6 +311,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .art .cut { fill: var(--tint); }
 .art .ring { stroke: var(--c); stroke-opacity: .5; }
 .art .gap { stroke: var(--c); stroke-opacity: .55; }
+.art .miss { fill: var(--miss); }
 .badge { position: absolute; left: 10px; top: 10px; background: var(--ink); color: var(--bg); font-size: 0.75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 4px 9px; border-radius: 99px; line-height: 1.3; }
 .tile .body { padding: 14px 10px 8px; display: flex; flex-direction: column; flex: 1; }
 .tile h3 { font-family: var(--display); font-weight: 700; font-size: 1.44rem; letter-spacing: -0.025em; line-height: 1.1; }

@@ -1,6 +1,7 @@
 """One small picture per game (600 by 400), for game directories such as Listdle that ask for a thumbnail.
 
-    python3 make_thumbs.py [folder of the site]     the folder must be served at http://localhost:8790 while it runs
+    python3 make_thumbs.py [folder of the site] [game ...]     the folder must be served at http://localhost:8790 while it runs;
+                                                             name games (for example still-in) to make only theirs
 
 Writes r/thumbnails/<game>.png. Each picture: the game's colour, its drawing from the home page, its name and one line.
 """
@@ -15,7 +16,8 @@ GAMES = [('100-of-us', 'hundred', '100 of Us', 'Of 100 people in the world, how 
          ('long-lost-cousin', 'cousin', 'Long Lost Cousin', 'Which one is the closest relative?', art_cousin()),
          ('the-club', 'club', 'The Club', 'Work out the secret rule. Who gets in?', art_club()),
          ('years-apart', 'apart', 'Years Apart', 'Two real events, one in between. Where does it fall?', art_apart()),
-         ('one-of-193', 'o193', 'One of 193', 'The phone hides a country. Ask yes or no.', art_one())]   # the first game for groups
+         ('one-of-193', 'o193', 'One of 193', 'The phone hides a country. Ask yes or no.', art_one()),    # the first game for groups
+         ('still-in', 'still', 'Still In', "Twelve countries, one rule. Tap one that fits.", art_still())]   # the second
 # the cousin drawing always shows the hippo, as on the preview picture
 HIPPO = ('<script>window.TurnsOutPic = function (k, p) { var s = document.getElementById("cousin-pic"); if (!s) return; '
          's.setAttribute("viewBox", "0 0 " + p.w + " " + p.h); var a = document.createElementNS("http://www.w3.org/2000/svg", "path"); '
@@ -48,7 +50,9 @@ async def main():
         ctx = await br.new_context(viewport={'width': 600, 'height': 400}, device_scale_factor=1, color_scheme='light')
         pg = await ctx.new_page(); errs = []
         pg.on('console', lambda m: errs.append(m.text) if m.type == 'error' else None)
+        only = sys.argv[2:]                            # optional: only these games (the others stay as they are)
         for slug, key, name, line, art in GAMES:
+            if only and slug not in only: continue
             tmp = f'_thumb-{slug}.html'                # a new name per game, so the browser never shows the previous one
             open(f'{OUT}/{tmp}', 'w', encoding='utf-8').write(page(key, name, line, art))
             await pg.goto('http://localhost:8790/' + tmp); await pg.evaluate("document.fonts.ready"); await pg.wait_for_timeout(500)
