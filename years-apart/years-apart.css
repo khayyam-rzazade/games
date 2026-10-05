@@ -1,0 +1,144 @@
+/* Years Apart: a wooden ruler on a leather desk mat. The older event at the left end, the newer one at the right,
+   a brass slider with a hairline, and a paper tag with the event in between.
+   Everything is drawn in CSS and inline SVG: no pictures are loaded. */
+
+/* the colour of the game (mocha by day, latte at night) lives in assets/css/logicers.css with the others: [data-g="apart"] */
+
+/* the materials, by day */
+.ya-mat {
+  --leather-1: #8A5C3C; --leather-2: #6E4429; --leather-3: #55331E;
+  --stitch: rgba(240, 214, 170, .40);
+  --gold: #F2D7A2; --gold-soft: #CFAE77;
+  --wood-1: #F0D3A0; --wood-2: #E2BA7D; --wood-3: #C99A5B; --wood-edge: #7A4E26;
+  --tick: #3A2614; --tick-hi: #FFF3DA; --mark: #5B3A1C;
+  --brass-1: #9C7128; --brass-2: #F6DC92; --brass-3: #D2A247; --brass-4: #8A5F1E;
+  --paper: #FBF4E4; --paper-edge: #C9B48F; --paper-ink: #2A1B10; --string: #E9D7B4;
+  --hair: #C8261F;
+}
+@media (prefers-color-scheme: dark) {
+  .ya-mat {
+    --leather-1: #4A3020; --leather-2: #34200F; --leather-3: #22150B;
+    --stitch: rgba(240, 214, 170, .26);
+    --gold: #EBCB8F; --gold-soft: #BE9D69;
+    --wood-1: #8E6744; --wood-2: #6F4B2E; --wood-3: #52341E; --wood-edge: #2C1A0D;
+    --tick: #F3E2C4; --tick-hi: #1E1209; --mark: #F3E2C4;
+    --brass-1: #7E5A1F; --brass-2: #E9CC82; --brass-3: #B88B3A; --brass-4: #6E4C17;
+    --paper: #EFE3CB; --paper-edge: #A88F67; --paper-ink: #24170D; --string: #CDBB98;
+    --hair: #E5483F;
+  }
+}
+
+.ya-q { margin-top: 4px; font-family: var(--display); font-weight: 700; font-size: clamp(1.45rem, 6.6vw, 1.7rem); line-height: 1.1; letter-spacing: -0.03em; }
+
+/* the mat */
+.ya-mat { position: relative; margin-top: 12px; padding: 14px 14px 14px; border-radius: 22px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(120% 90% at 50% 0%, var(--leather-1) 0%, var(--leather-2) 45%, var(--leather-3) 100%);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25), inset 0 2px 0 rgba(255, 255, 255, .08), 0 14px 30px rgba(60, 35, 15, .26);
+  color: var(--gold); }
+.ya-mat::before { content: ""; position: absolute; inset: 7px; border-radius: 16px; border: 1.5px dashed var(--stitch); pointer-events: none; z-index: -1; }
+.ya-mat::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .9; mix-blend-mode: multiply;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.panel.ya-mat.revealed { background: radial-gradient(120% 90% at 50% 0%, var(--leather-1) 0%, var(--leather-2) 45%, var(--leather-3) 100%); color: var(--gold);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25), inset 0 2px 0 rgba(255, 255, 255, .08), 0 14px 30px rgba(60, 35, 15, .26); }
+@media (prefers-color-scheme: dark) {
+  .ya-mat, .panel.ya-mat.revealed { box-shadow: inset 0 0 0 1px rgba(233, 204, 150, .16), 0 0 40px rgba(217, 169, 131, .10); }
+}
+
+/* the two ends, embossed in gold */
+.ya-ends { position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 2px 4px 0; }
+.ya-end { flex: 0 1 47%; min-width: 0; font-family: var(--display); font-weight: 700; font-size: clamp(.9rem, 4.1vw, 1.04rem); line-height: 1.16; letter-spacing: -0.01em;
+  color: var(--gold); text-shadow: 0 1px 0 rgba(0, 0, 0, .55), 0 -1px 0 rgba(255, 235, 190, .12); overflow-wrap: break-word; }
+.ya-end small { display: block; margin-bottom: 3px; font: 800 .64rem/1 var(--text); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-soft); text-shadow: none; }
+.ya-end.r { text-align: right; }
+.ya-year { display: block; margin-top: 4px; font: 800 .98rem/1.1 var(--text); letter-spacing: .02em; color: #FFF1D2; text-shadow: 0 1px 0 rgba(0, 0, 0, .55); }
+.ya-end.small-text { font-size: clamp(.84rem, 3.8vw, .96rem); }
+
+/* the board: ruler, slider, pin, string and tag, placed by the script */
+.ya-board { position: relative; height: 158px; margin: 8px 0 0; -webkit-tap-highlight-color: transparent; }
+.ya-board.play { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; cursor: pointer; }
+.ya-ruler { position: absolute; left: 0; top: 12px; width: 100%; height: 66px; overflow: visible; }
+.ya-ruler .w1 { stop-color: var(--wood-1); } .ya-ruler .w2 { stop-color: var(--wood-2); } .ya-ruler .w3 { stop-color: var(--wood-3); }
+.ya-ruler .b1 { stop-color: var(--brass-1); } .ya-ruler .b2 { stop-color: var(--brass-2); } .ya-ruler .b3 { stop-color: var(--brass-3); } .ya-ruler .b4 { stop-color: var(--brass-4); }
+.ya-ruler .edge { fill: var(--wood-edge); }
+.ya-ruler .tk { stroke: var(--tick); }
+.ya-ruler .tk-hi { stroke: var(--tick-hi); }
+.ya-ruler .mk { fill: var(--mark); }
+.ya-ruler .band { fill: var(--miss); }
+.ya-ruler .screw { fill: #6E4B17; }
+
+/* the brass slider: a glass window with a red hairline */
+.ya-cursor { position: absolute; top: 2px; left: 50%; width: 30px; height: 84px; margin-left: -15px; border-radius: 7px; z-index: 3; outline: none;
+  background: linear-gradient(90deg, var(--brass-1), var(--brass-2) 32%, var(--brass-3) 70%, var(--brass-4));
+  box-shadow: 0 6px 12px rgba(30, 18, 10, .45), inset 0 1px 0 rgba(255, 255, 255, .5); cursor: grab; touch-action: none; }
+.ya-cursor::before { content: ""; position: absolute; left: 5px; right: 5px; top: 9px; bottom: 9px; border-radius: 3px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .55), rgba(255, 248, 232, .16) 40%, rgba(255, 248, 232, .3));
+  box-shadow: inset 0 0 0 1px rgba(110, 75, 23, .55); }
+.ya-cursor::after { content: ""; position: absolute; left: 50%; top: 6px; bottom: 6px; width: 2px; margin-left: -1px; background: var(--hair); border-radius: 1px; }
+.ya-cursor i { position: absolute; left: 50%; bottom: -9px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--brass-2), var(--brass-3) 55%, var(--brass-4)); box-shadow: 0 1px 2px rgba(0, 0, 0, .4); }
+.ya-board.dragging .ya-cursor { cursor: grabbing; }
+.ya-cursor:focus-visible { box-shadow: 0 0 0 3px var(--leather-3), 0 0 0 6px #fff, 0 6px 12px rgba(30, 18, 10, .45); }
+.ya-board.done .ya-cursor { cursor: default; }
+
+/* the pin that marks where it really falls */
+.ya-pin { position: absolute; top: 0; left: 50%; width: 18px; height: 88px; margin-left: -9px; z-index: 2; pointer-events: none; }
+.ya-pin::before { content: ""; position: absolute; left: 50%; top: 14px; bottom: 6px; width: 3px; margin-left: -1.5px; border-radius: 2px;
+  background: linear-gradient(90deg, #6d6d6d, #f0f0f0 45%, #8d8d8d); box-shadow: 1px 2px 2px rgba(0, 0, 0, .35); }
+.ya-pin::after { content: ""; position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, #fff 0 8%, #4a3324 30%, #1d120b 75%); box-shadow: 0 3px 5px rgba(0, 0, 0, .45); }
+.ya-pin.drop { animation: ya-drop .5s cubic-bezier(.2, .9, .3, 1.25) both; }
+@keyframes ya-drop { from { transform: translateY(-34px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* the string and the paper tag */
+.ya-string { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
+.ya-string path { fill: none; stroke: var(--string); stroke-width: 1.5; stroke-linecap: round; }
+.ya-tag { position: absolute; top: 104px; left: 0; max-width: min(70%, 15.5rem); padding: 10px 14px 10px; z-index: 2;
+  background: var(--paper); color: var(--paper-ink); border-radius: 5px 8px 8px 5px; text-align: center;
+  box-shadow: 0 1px 0 var(--paper-edge), 0 7px 14px rgba(20, 10, 4, .42); }
+.ya-tag::before { content: ""; position: absolute; left: var(--hole, 50%); top: 5px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%;
+  background: var(--leather-2); box-shadow: 0 0 0 2.5px #E4D2AE; }
+.ya-tag-t { display: block; margin-top: 7px; font-family: var(--display); font-weight: 700; font-size: 1.04rem; line-height: 1.15; letter-spacing: -0.01em; }
+.ya-tag-y { display: block; margin-top: 4px; font: 800 .92rem/1 var(--text); letter-spacing: .02em; color: var(--c); }
+@media (prefers-color-scheme: dark) { .ya-tag-y { color: #7A5034; } }
+.ya-board.moving .ya-tag, .ya-board.moving .ya-string path { transition: none; }
+.ya-tag.travel { transition: left .9s cubic-bezier(.3, .7, .2, 1); }
+
+/* the verdict, under the board */
+.ya-verdict { margin: 4px 0 2px; text-align: center; }
+.ya-mat .offby { margin-top: 0; color: #FFF1D2; font-size: 1.04rem; text-shadow: 0 1px 0 rgba(0, 0, 0, .4); }
+.ya-mat .offby b { text-shadow: none; }
+.ya-mat .offby .ya-line { display: block; margin-top: 3px; color: var(--gold-soft); font-weight: 600; font-size: .9rem; }
+@media (prefers-color-scheme: dark) {
+  .ya-mat .offby { color: #FFF1D2; }
+  .ya-mat .offby.hit b { background: #F3E2C4; color: #2A1B10; }
+}
+
+.ya-hint { margin: 10px 4px 0; color: var(--soft); font-weight: 500; font-size: .94rem; line-height: 1.3; }
+#guess-actions .btn { flex: 1 1 auto; }
+
+/* sources: one row per event */
+.ya-sources { list-style: none; margin: 10px 6px 0; padding: 0; color: var(--soft); font-size: .9rem; line-height: 1.4; }
+.ya-sources li + li { margin-top: 4px; }
+.ya-sources b { color: var(--ink); font-weight: 600; }
+.ya-sources a { color: inherit; text-underline-offset: 3px; }
+
+/* the stamp: a little ruler, the event, its year */
+.stamp.ya .ya-icon { position: absolute; left: 10px; top: 11px; width: 44px; height: 18px; opacity: .92; }
+.stamp.ya .what { font-weight: 700; font-size: .9rem; line-height: 1.1; }
+
+/* short screens: a little tighter so that nothing has to scroll while playing */
+@media (max-height: 37.5rem) {
+  .ya-q { font-size: 1.4rem; }
+  .ya-mat { margin-top: 9px; padding: 10px 12px 10px; }
+  .ya-board { margin-top: 4px; }
+  .ya-hint { margin-top: 7px; font-size: .88rem; }
+}
+@media (min-width: 56rem) {
+  .ya-q { font-size: 1.95rem; }
+  .ya-end { font-size: 1.1rem; }
+  .ya-tag-t { font-size: 1.12rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ya-pin.drop { animation: none; }
+  .ya-tag.travel { transition: none; }
+}

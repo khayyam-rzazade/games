@@ -13,7 +13,8 @@ GAMES = [('100-of-us', 'hundred', '100 of Us', 'Of 100 people in the world, how 
          ('your-call', 'call', 'Your Call', 'A real moment from history. What did they do?', art_call()),
          ('same-street', 'street', 'Same Street', 'One real home. Where on the street is it?', art_street()),
          ('long-lost-cousin', 'cousin', 'Long Lost Cousin', 'Which one is the closest relative?', art_cousin()),
-         ('the-club', 'club', 'The Club', 'Work out the secret rule. Who gets in?', art_club())]
+         ('the-club', 'club', 'The Club', 'Work out the secret rule. Who gets in?', art_club()),
+         ('years-apart', 'apart', 'Years Apart', 'Two real events, one in between. Where does it fall?', art_apart())]
 # the cousin drawing always shows the hippo, as on the preview picture
 HIPPO = ('<script>window.TurnsOutPic = function (k, p) { var s = document.getElementById("cousin-pic"); if (!s) return; '
          's.setAttribute("viewBox", "0 0 " + p.w + " " + p.h); var a = document.createElementNS("http://www.w3.org/2000/svg", "path"); '

@@ -14,13 +14,15 @@ GAMES = {'100-of-us': ('questions', lambda p: {'g': 40, 'a': p['answer'], 'id': 
          'your-call': ('puzzles', lambda p: {'c': 0, 'r': p['real'], 'id': p['id']}),
          'same-street': ('homes', lambda p: {'g': 50, 'a': p['house'], 'id': p['id']}),
          'long-lost-cousin': ('puzzles', lambda p: {'c': 0, 'r': p['rank'][0], 'id': p['id']}),
-         'the-club': ('puzzles', lambda p: {'c': [1, 1, 1, 1, 1], 'r': sum(d[1] for d in p['door']), 'id': p['id']})}
+         'the-club': ('puzzles', lambda p: {'c': [1, 1, 1, 1, 1], 'r': sum(d[1] for d in p['door']), 'id': p['id']}),
+         'years-apart': ('puzzles', lambda p: {'g': 500, 'a': round(p['at'] * 1000), 'y': round(abs(0.5 - p['at']) * p['span']), 'id': p['id']})}
 SHOWS = {  # how to see on the page that the expected puzzle is on screen
     '100-of-us': "p => document.body.innerText.includes(p.q)",
     'your-call': "p => document.body.innerText.includes(p.pov.slice(0, 40))",
     'same-street': "p => [...document.images].some(i => i.src.includes(p.id + '-1.jpg'))",
     'long-lost-cousin': "p => { const t = window.TURNSOUT_DATA['long-lost-cousin'].things[p.subject]; return Object.values(t).some(v => typeof v === 'string' && v.length > 2 && document.body.innerText.includes(v)); }",
-    'the-club': "p => document.getElementById('cand').textContent === p.door[0][0]"}
+    'the-club': "p => document.getElementById('cand').textContent === p.door[0][0]",
+    'years-apart': "p => document.getElementById('tag-t').textContent === window.TURNSOUT_DATA['years-apart'].events[p.mid].t"}
 
 async def main():
     async with async_playwright() as pw:

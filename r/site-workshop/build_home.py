@@ -9,7 +9,7 @@ The look lives in assets/css/logicers.css: light by day, dark when the device is
 To add a game to the shelf: draw its picture in arts.py, add it to GAMES below and to GAMES in assets/js/turnsout.js
 (the one list of games that the home page and the way onward share), give it a colour in logicers.css ([data-g="..."]),
 then run build_home.py. OUT is the folder of the site (or give it as the first argument).
-The shelf is laid out by the number of games: logicers.css has rules for .grid[data-n="5"].
+The shelf is laid out by the number of games: logicers.css has rules for .grid[data-n="5"] and .grid[data-n="6"].
 """
 import os, sys
 OUT = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/work/site2'
@@ -26,8 +26,10 @@ GAMES = [
          pitch='Three photos of one real home. Where does it stand on a street sorted by income?', short='One real home. Where on the street is it?'),
     dict(key='cousin', href='long-lost-cousin/', name='Long Lost Cousin', art=art_cousin(),
          pitch='One animal, three others. Which one is its closest relative?', short='Which one is the closest relative?'),
-    dict(key='club', href='the-club/', name='The Club', art=art_club(), new=True,
+    dict(key='club', href='the-club/', name='The Club', art=art_club(),
          pitch='Some are in the club, some are not. Work out the secret rule and decide who else gets in.', short='Work out the secret rule. Who gets in?'),
+    dict(key='apart', href='years-apart/', name='Years Apart', art=art_apart(), new=True,
+         pitch='Two real events, and a third one in between. Slide it to where you think it falls, then see the years.', short='Two real events, one in between. Where does it fall?'),
 ]
 
 def tile(g):
@@ -149,6 +151,8 @@ html = f'''<!doctype html>
     <p class="quiet">Long Lost Cousin checks every answer against two sources, linked under the answer. The silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, a free library of drawings of living things. Artists who ask for credit are named under each answer. PhyloPic does not endorse this site.</p>
     <h3>Where the clubs' facts come from</h3>
     <p class="quiet">The Club checks every rule against two sources, linked under the answer. A rule is always a plain fact about the real world.</p>
+    <h3>Where the dates come from</h3>
+    <p class="quiet">Years Apart checks every date against two sources, linked under the answer.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>
@@ -162,6 +166,7 @@ html = f'''<!doctype html>
 <script src="same-street/puzzles.js"></script>
 <script src="long-lost-cousin/puzzles.js"></script>
 <script src="the-club/puzzles.js"></script>
+<script src="years-apart/puzzles.js"></script>
 <script src="assets/js/turnsout.js"></script>
 <script>
 {SCRIPT}</script>

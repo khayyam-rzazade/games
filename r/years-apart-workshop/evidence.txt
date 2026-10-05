@@ -1,0 +1,466 @@
+# Years Apart: what each page said. Read on 5 October 2026 (night), every page opened and read by Claude or one of its four helpers.
+# Two websites per date. Quotes are what the page reader returned, word for word; [...] marks a gap between two passages.
+# "game:" is how exact the game takes the date (day, month, year, or about).
+
+pyramid: The Great Pyramid of Giza is finished  |  sources agree on: 2560 BC  |  game: about
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Giza_pyramid_complex
+      "The Giza pyramid complex consists of the Great Pyramid (also known as the Pyramid of Cheops or Khufu and constructed c. 2580 – c. 2560 BC), the slightly smaller Pyramid of Khafre (or Chephren) a few hundred metres to the south-west, and the relatively modest-sized Pyramid of Menkaure (or Mykerinos) a few hundred metres farther south-west."
+  [2] History.com: https://www.history.com/articles/how-long-did-it-take-to-build-the-great-pyramid
+      "The precise details regarding the pyramid's construction remain a mystery, as no written records have been found, but a number of estimates place its completion at sometime between 2560 B.C. and 2540 B.C."
+  Choice: Wikipedia: built c. 2580 - c. 2560 BC; History.com: finished between 2560 and 2540 BC. The game says 'about 2560 BC' and allows 20 years either way.
+  Helper notes: Both dates are approximate, and the two sources say it differently. Wikipedia: built c. 2580 – c. 2560 BC (so finished c. 2560 BC). History.com: finished 'sometime between 2560 B.C. and 2540 B.C.' The two fit together only at 2560 BC, so 'about 2560 BC' works for both, but History.com allows a finish up to 20 years later. Wikipedia also says all the Giza pyramids were built 'between c. 2600 – c. 2500 BC'. The main 'Great Pyramid of Giza' Wikipedia article did not come up in my search results, so I used the 'Giza pyramid complex' article.
+
+olympia: The first recorded Olympic Games  |  sources agree on: 776 BC  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Ancient_Olympic_Games
+      "The originating Olympic Games are traditionally dated to 776 BC. [...] Aristotle reckoned the date of the first Olympics to be 776 BC, a date largely accepted by most, though not all, subsequent ancient historians."
+  [2] History.com: https://www.history.com/articles/olympic-games
+      "The first written records of the ancient Olympic Games date to 776 B.C., when a cook named Coroebus won the only event—a 192-meter footrace called the stade (the origin of the modern "stadium")—to become the first Olympic champion."
+  Choice: Traditional date 776 BC; both sources give it.
+  Helper notes: Neither source gives a month or day. Wikipedia calls 776 BC the traditional date, accepted by most but not all ancient historians. History.com says the first written records date to 776 B.C., which matches your wording 'first recorded'.
+
+marathon: The Battle of Marathon  |  sources agree on: 12 September 490 BC  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Battle_of_Marathon
+      "August Böckh in 1855 concluded that the battle took place on September 12, 490 BC in the Julian calendar, and this is the conventionally accepted date. [...] However, this depends on when exactly the Spartans held their festival and it is possible that the Spartan calendar was one month ahead of that of Athens. In that case the battle took place on August 12, 490 BC."
+  [2] National Geographic: https://www.nationalgeographic.com/history/history-magazine/article/battle-marathon-persia
+      "In the summer of 490 B.C., Darius sent 600 ships carrying an army of some 25,000 men over the Aegean, under the command of Admiral Datis. After laying waste to islands and cities, Datis's fleet made landfall on the long beach of Marathon in early September. [...] On the morning of September 12, as the priests made sacrifices to the gods and the generals rallied the men in each tribe, the Greeks contemplated who they would be fighting."
+  Choice: 12 September is the conventional day, Wikipedia allows 12 August: the game uses the year only.
+  Helper notes: Both sources give 12 September 490 BC. The Wikipedia infobox reads 'Date: 12 September 490 BC (6 Boedromion)'. But Wikipedia calls this the 'conventionally accepted date' and says the battle may have been on 12 August 490 BC instead. National Geographic gives the day ('September 12') in a different sentence from the year. I also opened History.com's 'Battle of Marathon' page (https://www.history.com/articles/battle-of-marathon), which only says: 'The first encounter on the Greek mainland between East (Persia) and West (Greece) took place in August or September of 490 B.C.' So the year is certain; September (12 September) is the usual date but not a certain one.
+
+alexander: Alexander the Great dies  |  sources agree on: June 323 BC  |  game: month
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Death_of_Alexander_the_Great
+      "According to a Babylonian astronomical diary, Alexander the Great died in the palace of Nebuchadnezzar II in Babylon between the evening of 10 June and the evening of 11 June 323 BC, at the age of 32."
+  [2] National Geographic: https://www.nationalgeographic.com/history/article/how-did-alexander-the-great-die-river-styx
+      "In June 323 BCE, in the palace of King Nebuchadnezzar II in Babylon, the most powerful man in the world died."
+  Choice: June 323 BC on both; the day (10 or 11 June) only on Wikipedia.
+  Helper notes: Both say June 323 BC, in Nebuchadnezzar II's palace in Babylon. Only Wikipedia gives a day (between the evening of 10 June and the evening of 11 June), so day is left empty.
+
+qin: Qin Shi Huang becomes China's first emperor  |  sources agree on: 221 BC  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Qin_Shi_Huang
+      "By 221 BC, he had conquered all the other warring states and unified all of China, and he ascended the throne as China's first emperor."
+  [2] National Geographic: https://www.nationalgeographic.com/culture/article/qin-shi-huangdi
+      "The state of Qin, based in the Sichuan plains, eventually won out in 221 B.C. under the leadership of the ruthless King Zheng. The victorious monarch gave himself the title Qin Shi Huangdi (259–210 B.C.), First Qin Emperor."
+  Helper notes: Both give 221 BC; neither gives a month or day. Wikipedia also says: 'Following the surrender of Qi in 221 BC, King Zheng reunited all of the lands of the former Kingdom of Zhou.' My own remark, not from a source: the National Geographic sentence says Qin was 'based in the Sichuan plains', which is loose (Qin's home base was the Wei River valley). If you show that quote to players, you may want to use only the date part.
+
+caesar: Julius Caesar is assassinated  |  sources agree on: 15 March 44 BC  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar
+      "Julius Caesar, the Roman dictator, was assassinated on the Ides of March (15 March), 44 BC, by a group of senators during a Senate session at the Curia of Pompey, located within the Theatre of Pompey in Rome."
+  [2] History.com: https://www.history.com/this-day-in-history/march-15/the-ides-of-march
+      "In the midst of these vast designs, he was assassinated on March 15, 44 B.C., by a group of conspirators who believed that his death would lead to the restoration of the Roman Republic."
+  Helper notes: Both give 15 March 44 BC (the Ides of March). Small detail: History.com says he was stabbed 'in the Roman Senate house', while Wikipedia says the Senate was meeting at the Curia of Pompey, inside the Theatre of Pompey.
+
+cleopatra: Cleopatra dies  |  sources agree on: August 30 BC  |  game: month
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Death_of_Cleopatra
+      "Cleopatra VII, the last ruler of the Ptolemaic Kingdom of Egypt, died on either 10 or 12 August, 30 BC, in Alexandria, when she was 39 years old. [...] There are no surviving records indicating an exact date of Cleopatra's death."
+  [2] History.com: https://www.history.com/this-day-in-history/august-10/cleopatra-commits-suicide
+      "On August 10, 30 B.C. (some scholars say August 12), Cleopatra, queen of Egypt and lover of Julius Caesar and Mark Antony, takes her life following the defeat of her forces against Octavian, the future first emperor of Rome. [...] Rather than fall under Octavian's domination, Cleopatra died by suicide on either August 10 or August 12, 30 B.C., possibly by means of an asp, a poisonous Egyptian serpent and symbol of divine royalty."
+  Choice: 10 or 12 August 30 BC: the game uses August 30 BC.
+  Helper notes: Both say August 30 BC, and both say the day is either 10 or 12 August, so day is left empty. History.com files it under August 10. Wikipedia: Skeat argued for 12 August 30 BC; Roller, Fletcher and Anderson support 10 August 30 BC.
+
+pompeii: Vesuvius buries Pompeii  |  sources agree on: 79 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Eruption_of_Mount_Vesuvius_in_79_AD
+      "In 79 AD, Mount Vesuvius, a stratovolcano located in the modern-day region of Campania, Italy, erupted, causing one of the deadliest eruptions in history. [...] For more than five centuries, until approximately 2018, articles about the eruption of Vesuvius typically stated that the eruption began on August 24, 79 AD. [...] A collaborative study in 2022 has determined a date of "between October 24th and November 1st" for the eruption in 79 AD."
+  [2] History.com: https://www.history.com/articles/pompeii
+      "The exact date of the eruption remains a matter of debate. August 24, A.D. 79, is the traditional date derived from manuscripts of Pliny the Younger's account, but archaeological evidence has led some scholars to argue that Vesuvius erupted later that year, possibly in October."
+  Choice: The day is disputed (24 August or later in the year): year only.
+  Helper notes: The year AD 79 is certain on both sites. The day and month are NOT settled, and both sites say so: 24 August 79 is the traditional date, but newer evidence points to later in the year (Wikipedia cites a 2022 study giving 'between October 24th and November 1st'; History.com says 'possibly in October'). So month and day are left empty. Better not to show '24 August' to players as a fact.
+
+colosseum: The Colosseum opens  |  sources agree on: 80 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Colosseum
+      "Construction began under the Emperor Vespasian (r. 69–79 AD) in 72 and was completed in AD 80 under his successor and heir, Titus (r. 79–81). [...] The top level was finished by his son, Titus, in 80, and the inaugural games were held in 80 or 81 AD."
+  [2] History.com: https://www.history.com/articles/colosseum
+      "In A.D. 80, Vespasian's son Titus opened the Colosseum—officially known as the Flavian Amphitheater—with 100 days of games, including gladiatorial combats and wild animal fights."
+  Choice: Both: AD 80 (Wikipedia adds that the inaugural games were in 80 or 81).
+  Helper notes: Both give AD 80 for the completion/opening under Titus; neither gives a month or day. Small caveat from Wikipedia: the Colosseum article says the inaugural games were held 'in 80 or 81 AD', and the separate Wikipedia article 'Inaugural games of the Colosseum' (https://en.wikipedia.org/wiki/Inaugural_games_of_the_Colosseum) says the games celebrated 'the completion in AD 80 (81 according to some sources)'. History.com also says: 'Titus officially dedicated the Colosseum in A.D. 80 with a festival including 100 days of games.'
+
+rome-falls: Rome's last western emperor is deposed  |  sources agree on: 4 September 476 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Romulus_Augustulus
+      "Romulus Augustus (c. 460–465 – c. 511–530), nicknamed Augustulus, was Roman emperor of the West from 31 October 475 until 4 September 476."
+  [2] History.com: https://www.history.com/this-day-in-history/september-4/western-roman-empire-falls
+      "Romulus Augustus, the last emperor of the Western Roman Empire, is deposed by Odoacer, a German barbarian who proclaims himself king of Italy."
+  Helper notes: Both give 4 September 476. On History.com the date appears only in the page title / date heading ('September 4, 476') of this 'This Day in History' page, not inside the sentence itself. Wording caveat: Wikipedia's 'Deposition of Romulus Augustus' article (https://en.wikipedia.org/wiki/Deposition_of_Romulus_Augustus; infobox 'Date: 4 September 476 AD') says: 'Odoacer's deposition of Romulus Augustus, occurring in 476 AD, was a coup that marked the end of the reign of the last Western Roman Emperor approved by the Western Roman Senate and the creation of the Kingdom of Odoacer through his decision to adopt the title of Dux/Rex Italiae (Duke/King of Italy), although Julius Nepos exercised control over Dalmatia until 480.' So 'last emperor' is the usual view, but a rival emperor, Julius Nepos, held on in Dalmatia until 480. Both sources name him 'Romulus Augustus'; 'Augustulus' is a nickname.
+
+hagia: The Hagia Sophia is finished  |  sources agree on: 27 December 537 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Hagia_Sophia
+      "Justinian and Patriarch Menas inaugurated the new basilica on 27 December 537, 5 years and 10 months after construction started, with much pomp."
+  [2] History.com: https://www.history.com/articles/hagia-sophia
+      "The third Hagia Sophia was completed in 537, and it remains standing today. [...] The first religious services in the 'new' Hagia Sophia were held on December 27, 537."
+  Choice: 27 December 537 is the inauguration; the game uses the year 537.
+  Helper notes: Both give 537, and both give 27 December 537. But that day is when the church was inaugurated / first used for services (Wikipedia: 'inaugurated'; History.com: 'first religious services'), not a separate 'completion' day. Wikipedia also gives the building period as 532–537. If you show the day to players, 'inaugurated on 27 December 537' is more exact than 'completed'.
+
+charlemagne: Charlemagne is crowned emperor  |  sources agree on: 25 December 800 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Pope_Leo_III
+      "Two days after his oath, on Christmas Day 800, Leo crowned Charlemagne as emperor."
+  [2] History.com: https://www.history.com/articles/charlemagne
+      "Pope Leo III crowned Charlemagne emperor of the Romans and first ruler of the vast Holy Roman Empire on December 25, 800, at St. Peter's Basilica in Rome."
+  Helper notes: Both give 25 December (Christmas Day) 800. The main Wikipedia 'Charlemagne' article did not come up in my search, so I used the Wikipedia 'Pope Leo III' article. Its sentence does not name the place, but the same page says just before that Charlemagne went to Rome in November 800 and held a council there on 1 December. History.com names St. Peter's Basilica in Rome.
+
+hastings: The Battle of Hastings  |  sources agree on: 14 October 1066 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Battle_of_Hastings
+      "The Battle of Hastings was fought on 14 October 1066 between the Norman-French army of William, Duke of Normandy, and an English army under the Anglo-Saxon King Harold Godwinson, beginning the Norman Conquest of England."
+  [2] English Heritage: https://www.english-heritage.org.uk/learn/histories/1066-and-the-norman-conquest/
+      "On 14 October 1066 the Battle of Hastings was fought between the armies of Harold Godwineson, King of England, and Duke William of Normandy (William the Conqueror)."
+  Helper notes: Both give 14 October 1066. Wikipedia adds: 'The only undisputed facts are that fighting began at 9 am Saturday 14 October 1066 and that the battle lasted until dusk.'
+
+genghis: Temüjin becomes Genghis Khan  |  sources agree on: 1206 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Genghis_Khan
+      "Temüjin formally adopted the title "Genghis Khan", the meaning of which is uncertain, at an assembly in 1206. [...] Now sole ruler of the steppe, Temüjin held a large assembly called a kurultai at the source of the Onon River in 1206."
+  [2] History.com: https://history.com/.amp/news/10-things-you-may-not-know-about-genghis-khan
+      "He didn't get the honorific name "Genghis Kahn" until 1206 when he was proclaimed leader of the Mongols at a tribal meeting known as a "kurultai.""
+  Helper notes: Both give 1206, at a kurultai (assembly); neither gives a month or day. The History.com sentence really does misspell the name as 'Genghis Kahn' (I checked it twice; the rest of that page spells it 'Khan'), so do not show that quote to players unedited. The History.com link is the AMP version of the page, exactly as it appeared in my search results.
+
+magna: Magna Carta is sealed  |  sources agree on: 15 June 1215 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Magna_Carta
+      "Magna Carta (Medieval Latin for "Great Charter"), sometimes spelled Magna Charta, is a royal charter of rights sealed by King John of England at Runnymede, near Windsor, on 15 June 1215."
+  [2] History.com: https://www.history.com/this-day-in-history/june-15/magna-carta-sealed
+      "Following a revolt by the English nobility against his rule, King John puts his royal seal on Magna Carta, or "the Great Charter," on June 15, 1215."
+  Helper notes: Both give 15 June 1215, and both use 'sealed'/'seal', so your wording fits. Small nuance, for your information: History.com also says 'On June 15, 1215, John met the barons at Runnymede on the Thames and set his seal to the Articles of the Barons, which after minor revision was formally issued as Magna Carta.' Wikipedia also says 'By 15 June, general agreement had been made on a text, and on 19 June, the rebels renewed their oaths of loyalty to John and copies of the charter were formally issued.' So 15 June is the standard date, while formal copies went out on 19 June. A National Archives page from my search (https://www.nationalarchives.gov.uk/education/resources/magna-carta/british-library-magna-carta-1215-runnymede/) could not be opened (error: too many redirects), so it is not used.
+
+black-death: The Black Death reaches Sicily  |  sources agree on: October 1347 AD  |  game: month
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Black_Death_in_Italy
+      "In October 1347, 12 Genoese ships from the East arrived at Messina in Sicily. [...] Sicily and the Italian Peninsula was the first area in then Catholic Western Europe to be reached by the bubonic plague pandemic known as the Black Death, which reached the region by an Italian ship from the Crimea which landed in Messina in Sicily in October 1347."
+  [2] History.com: https://www.history.com/articles/black-death
+      "The plague arrived in Europe in October 1347, when 12 ships from the Black Sea docked at the Sicilian port of Messina."
+  Choice: Wording: Sicily (Messina), as both sources say; Wikipedia says it reached Crimea and Constantinople earlier in 1347.
+  Helper notes: Both give October 1347 for the arrival at Messina, Sicily (no day). WORDING PROBLEM: 'reaches Europe' is not quite right according to Wikipedia. Wikipedia's main 'Black Death' article (https://en.wikipedia.org/wiki/Black_Death) says: 'Plague was reportedly first introduced to Europe via Genoese traders from their port city of Kaffa in the Crimea in 1347.' and 'As the disease took hold, Genoese traders fled across the Black Sea to Constantinople, where the disease first arrived in Europe in summer 1347.' and 'Carried by twelve Genoese galleys, plague arrived by ship in Sicily in October 1347; the disease spread rapidly all over the island.' The 'Black Death in Italy' article calls Sicily 'the first area in then Catholic Western Europe' to be reached. History.com does say 'arrived in Europe'. Safer wording: 'The Black Death reaches Western Europe (Messina, Sicily)' or 'reaches Italy'. The year 1347 stays the same either way.
+
+constantinople: Constantinople falls to the Ottomans  |  sources agree on: 29 May 1453 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Constantinople
+      "Constantinople was conquered by the Ottoman Empire on 29 May 1453. [...] The conquest of Constantinople followed a seven-week siege which had begun on 6 April 1453. The Empire fell on 29 May 1453."
+  [2] History.com: https://www.history.com/articles/constantinople
+      "he succeeded where his predecessors failed, claiming Constantinople for Muslim rule on May 29, 1453."
+  Helper notes: History.com quote is the end of a sentence about the Ottoman sultan (it begins with 'he' as returned). Also opened the Wikipedia '1453' page (https://en.wikipedia.org/wiki/1453), but its events entry could not be read cleanly, so it is not used.
+
+columbus: Columbus reaches the Americas  |  sources agree on: 12 October 1492 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Christopher_Columbus
+      "Columbus left the Port of Palos in August 1492 with three ships and made landfall in the Americas on 12 October, ending the period of human habitation in the Americas now referred to as the pre-Columbian era. [...] Christopher Columbus's journal entry of 12 October 1492 states:"
+  [2] History.com: https://www.history.com/articles/christopher-columbus
+      "On August 3, 1492, Columbus and his crew set sail from Spain in three ships: Niña, Pinta and Santa Maria. On October 12, the ships made landfall—not in the East Indies, as Columbus assumed, but on one of the Bahamian islands, likely modern-day San Salvador."
+  Helper notes: Both pages give 12 October within the 1492 voyage (the year sits in the sentence just before, or in the same passage). Wikipedia says the island is in what is now the Bahamas, called San Salvador by Columbus and Guanahani by the natives; History.com says 'likely modern-day San Salvador' (the exact island is not certain).
+
+gama: Vasco da Gama reaches India by sea  |  sources agree on: 20 May 1498 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Vasco_da_Gama
+      "The fleet arrived in Kappadu near Kozhikode (known as Kozhikode at the time, subsequently known as Calicut and now renamed Kozhikode) on the Malabar Coast (present-day Kerala state of India) on 20 May 1498. [...] Da Gama finally accomplished the feat when he landed at Kozhikode on 20 May 1498."
+  [2] History.com: https://www.history.com/this-day-in-history/may-20/vasco-da-gama-reaches-india
+      "[Page date heading: "MAY 20", year heading: "1498"] Portuguese explorer Vasco de Gama becomes the first European to reach India via the Atlantic Ocean when he arrives at Calicut on the Malabar Coast."
+  Helper notes: On History.com's 'This Day in History' page the day/month (May 20) and the year (1498) are page headings, not part of the sentence. History.com's biography page (https://www.history.com/articles/vasco-da-gama, also opened) gives only month and year: "With the help of a local navigator, da Gama was able to cross the Indian Ocean and reach the coast of India at Calicut (now Kozhikode) in May 1498." Wikipedia says the fleet arrived at Kappadu, near Calicut/Kozhikode. History.com spells the name 'Vasco de Gama' in that sentence.
+
+cortes: Cortés enters the Aztec capital  |  sources agree on: 8 November 1519 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Hern%C3%A1n_Cort%C3%A9s
+      "By the time he arrived in Tenochtitlán, the Spaniards had a large army. On 8 November 1519, they were peacefully received by Moctezuma II. Moctezuma deliberately let Cortés enter the Aztec capital, the island city of Tenochtitlán, hoping to get to know their weaknesses better and to crush them later."
+  [2] History.com: https://www.history.com/articles/hernan-cortes
+      "He entered Tenochtitlan, the Aztec capital home to ruler Montezuma II, on November 8, 1519."
+  Helper notes: Wikipedia ties 8 November 1519 to the peaceful reception by Moctezuma II on arrival in Tenochtitlán; History.com gives it directly as the date he entered the city.
+
+magellan: The first voyage around the world ends  |  sources agree on: 6 September 1522 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Magellan_expedition
+      "On 6 September 1522, Elcano and the remaining crew of Magellan's voyage arrived in Sanlúcar de Barrameda in Spain aboard Victoria, almost exactly three years after they departed."
+  [2] History.com: https://www.history.com/this-day-in-history/september-6/magellans-expedition-circumnavigates-globe
+      "One of Ferdinand Magellan's five ships—the Victoria—arrives at Sanlúcar de Barrameda in Spain, thus completing the first circumnavigation of the world. [...] The vessel sailed across the Indian Ocean, rounded the Cape of Good Hope, and arrived at the Spanish port of Sanlúcar de Barrameda on September 6, 1522, becoming the first ship to circumnavigate the globe."
+  Choice: Magellan died on the way; the Victoria came home under Elcano.
+  Helper notes: Wording: Magellan himself did not finish the voyage. History.com: "In subsequent fighting on April 27, Magellan was hit by a poisoned arrow and left to die by his retreating comrades." and "The other ship, the Victoria, continued west under the command of Juan Sebastian de Elcano." The date is the arrival at Sanlúcar de Barrameda; Wikipedia adds "They then sailed upriver to Seville" (no date in that sentence).
+
+copernicus: Copernicus publishes his model of the universe  |  sources agree on: 1543 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium
+      "The book, first printed in 1543 CE in Nuremberg, Holy Roman Empire, offered an alternative model of the universe to Ptolemy's geocentric system, which had been widely accepted since ancient times. [...] It was published just before Copernicus' death, in 1543."
+  [2] History.com: https://www.history.com/articles/nicolaus-copernicus
+      "Because of these problems and others, Copernicus delayed publication of his major astronomical work, De revolutionibus orbium coelestium libri vi, or "On the Revolutions of the Heavenly Spheres," nearly all his life. Completed around 1530, it was not published until 1543 — the year of his death."
+  Choice: Wikipedia: 'offered an alternative model of the universe to Ptolemy's geocentric system'.
+  Helper notes: Both pages give the year only (no day or month). Both say it came out in the year Copernicus died; Wikipedia says it was printed in Nuremberg.
+
+east-india: The East India Company gets its charter  |  sources agree on: 31 December 1600 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/1600
+      "December 31 – The East India Company is granted a Royal charter in the Kingdom of England for trade with Asia."
+  [2] History.com: https://www.history.com/this-day-in-history/december-31/charter-granted-to-the-east-india-company
+      "[Date given in the page title and date heading: "December 31, 1600"] Queen Elizabeth I of England grants a formal charter to the London merchants trading to the East Indies, hoping to break the Dutch monopoly of the spice trade in what is now Indonesia."
+  Helper notes: The Wikipedia source is the year page '1600' (events-list entry; link formatting removed); the main 'East India Company' article did not come up in the search. On History.com the full date is in the page title and date heading, not in the sentence itself. Royal Museums Greenwich (https://www.rmg.co.uk/collections/research-guides/research-guide-f5-east-india-company, also opened) confirms the year only: "Its royal charter, granted by Queen Elizabeth I in 1600, gave it exclusive rights to trade to India and the Far East".
+
+tokugawa: Tokugawa Ieyasu becomes shogun  |  sources agree on: 1603 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Tokugawa_Ieyasu
+      "He received appointment as shōgun in 1603, and voluntarily resigned from his position in 1605, although he still held the de facto control of government until his death in 1616. [Infobox:] In office March 24, 1603 – April 16, 1605"
+  [2] History.com: https://www.history.com/topics/asian-history/meiji-restoration
+      "The prestigious but largely powerless imperial court named Ieyasu as shogun (or supreme military leader) in 1603, beginning a shogunate dynasty that would rule Japan for the next two and a half centuries. [...] Japan's Edo period, which lasted from 1603 to 1867, would be the final era of traditional Japanese government, culture and society."
+  Choice: 24 March 1603 only in Wikipedia's infobox: year only.
+  Helper notes: Both agree on 1603. Only Wikipedia gives a day: its infobox shows 'In office March 24, 1603 – April 16, 1605'; I checked and its body text gives only the year. History.com gives the year only, so month/day are left null. An extra search for a second source with the day found only year-level statements: TheCollector (https://www.thecollector.com/tokugawa-ieyasu-shogun/): "In 1603, the emperor formally appointed Tokugawa Ieyasu shogun, a purely symbolic gesture from a figurehead but an important one that officially sanctioned Ieyasu's power." and Encyclopedia.com (https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/ieyasu): "He became shogun in 1603, made his son Hidetada nominal ruler in 1605, subdued Hideyoshi's heirs in 1615, and at his death in 1616 was the undisputed dictator of Japan." So 24 March 1603 rests on the Wikipedia infobox alone; use the year 1603.
+
+galileo: Galileo turns his telescope to the Moon  |  sources agree on: 30 November 1609 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Galileo_Galilei
+      "On 30 November 1609, Galileo aimed his telescope at the Moon. [...] While not being the first person to observe the Moon through a telescope (English mathematician Thomas Harriot had done so four months before but only saw a 'strange spottednesse'), Galileo was the first to deduce the cause of the uneven waning as light occlusion from lunar mountains and craters."
+  [2] History.com: https://www.history.com/this-day-in-history/november-30/galileo-begins-observing-the-moon
+      "Galileo Galilei first begins observing the moon with his telescope on November 30, 1609. [...] Galileo was not the first or the only astronomer to use a telescope to study the moon, but he was the first to publish a detailed report of his findings."
+  Choice: Both: he began observing the Moon on 30 November 1609 (he was not the first to do so).
+  Helper notes: Your expected date (1609) is supported. Both sources date the START OF HIS MOON OBSERVATIONS to 30 November 1609; Wikipedia does not call this his very first look at the sky, so if you use the day, word the event like 'Galileo begins observing the Moon with his telescope'. Wording warning: he was not the first person to point a telescope at the Moon — Wikipedia says Thomas Harriot did so four months earlier, and History.com says he was 'not the first or the only astronomer to use a telescope to study the moon'. NASA Science (https://science.nasa.gov/solar-system/galileos-observations-of-the-moon-jupiter-venus-and-the-sun/, also opened) gives the year only: "In 1609, using this early version of the telescope, Galileo became the first person to record observations of the sky made with the help of a telescope." Wikipedia also says that on 25 August 1609 he demonstrated one of his early telescopes to Venetian lawmakers.
+
+shakespeare: Shakespeare dies  |  sources agree on: 23 April 1616 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/William_Shakespeare
+      "Shakespeare died on 23 April 1616, at the age of 52."
+  [2] Shakespeare Birthplace Trust: https://www.shakespeare.org.uk/explore-shakespeare/shakespedia/william-shakespeare/when-did-shakespeare-die/
+      "A monument still stands in the church, which notes the date of Shakespeare's death as 23 April 1616. [...] His burial in Holy Trinity Church is recorded in Stratford-upon-Avon's parish register on 25 April 1616."
+  Helper notes: Both give 23 April 1616. The Shakespeare Birthplace Trust bases the date on his church monument and adds that his burial was recorded on 25 April 1616.
+
+fire-london: The Great Fire of London  |  sources agree on: 2 September 1666 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Great_Fire_of_London
+      "A short time after midnight on Sunday, 2 September 1666, a fire broke out at Thomas Farriner's bakery in Pudding Lane."
+  [2] Royal Museums Greenwich: https://www.rmg.co.uk/stories/royal-history/great-fire-london
+      "In the early hours of Sunday 2 September 1666, the Farynor family woke to smoke coming from the bakery on the ground floor of their house."
+  Helper notes: Both give the early hours of Sunday 2 September 1666. Wikipedia's calendar note: "All dates are given according to the Julian calendar. When recording British history, it is usual to use the dates recorded at the time of the event." The baker's name is spelled Farriner (Wikipedia) and Farynor (RMG). The UK National Archives page (https://www.nationalarchives.gov.uk/education/resources/fire-of-london/, also opened) gives day and month but no year in its sentence: "The fire began on early Sunday morning on the 2nd of September."
+
+principia: Newton's Principia is published  |  sources agree on: 1687 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica
+      "The Principia is written in Latin and comprises three volumes, and was authorized (imprimatur) by Samuel Pepys, then-president of the Royal Society on 5 July 1686 and first published in 1687. [...] Samuel Pepys, as president, gave his imprimatur on 30 June 1686, licensing the book for publication. The Society had just spent its book budget on De Historia piscium, and the cost of publication was borne by Edmund Halley (who was also then acting as publisher of the Philosophical Transactions of the Royal Society): the book appeared in summer 1687."
+  [2] Library of Congress: https://www.loc.gov/item/2021667054/
+      "[Created / Published field:] London : Royal Society, 1687. [Description:] The Principia appeared in three editions during Newton's lifetime: the first in 1687, with a print run of 300--400 copies"
+  Choice: 5 July 1687 is not the publication day (it is Halley's letter); year only.
+  Helper notes: YOUR EXPECTED DAY (5 July 1687) IS NOT CONFIRMED as the publication date. Both sources give only the year 1687 (Wikipedia infobox: 'Publication date: 1687'; text: 'the book appeared in summer 1687'). I asked: the text '5 July 1687' / 'July 5, 1687' does not appear anywhere on the Wikipedia page. Wikipedia links 5 July to the Royal Society licence (imprimatur) in 1686 instead, and is itself inconsistent about that licence (5 July 1686 in the opening paragraph, 30 June 1686 further down). Where '5 July 1687' comes from: an extra search found Cambridge University Library's exhibition page 'Glory and Gravity' (https://wwwe.lib.cam.ac.uk/CUL/exhibitions/Footprints_of_the_Lion/gravity_glory.html), which says: "On 5 July 1687, Halley wrote to Newton: 'I have at length brought your Book to an end, and hope it will please you. the last errata came just in time to be inserted.'" and "The publication of the Principia in 1687 secured Newton's intellectual reputation." So 5 July 1687 is the date of Halley's letter saying the printing was finished, not a stated publication date. The Royal Society (https://royalsociety.org/news/2012/The-fishy-blunder-that-nearly-prevented-Newtons-masterpiece-from-being-published/, also opened) gives the year only: "Newton's book was finally published in 1687, changing the way we view the world forever." Safest for the game: use the year 1687 only.
+
+declaration: The US Declaration of Independence  |  sources agree on: 4 July 1776 AD  |  game: day
+  [1] US National Archives: https://www.archives.gov/milestone-documents/declaration-of-independence
+      "The Continental Congress adopted the Declaration of Independence on July 4, 1776."
+  [2] Wikipedia: https://en.wikipedia.org/wiki/Signing_of_the_United_States_Declaration_of_Independence
+      "The Second Continental Congress adopted the Declaration of Independence on July 4, 1776, with 12 of the 13 colonies voting in favor and New York abstaining."
+  Choice: Adopted 4 July 1776.
+  Helper notes: The wording 'adopted' is correct. Don't mix it up with the vote for independence on July 2 (National Archives: "Although the section of the Lee Resolution dealing with independence was not adopted until July 2, Congress appointed on June 10 a committee of five to draft a statement of independence for the colonies.") or with the signing, which Wikipedia says "occurred primarily on August 2, 1776".
+
+first-fleet: The First Fleet arrives at Sydney Cove  |  sources agree on: 26 January 1788 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/First_Fleet
+      "On 26 January 1788, the Fleet weighed anchor and sailed to Port Jackson. The site selected for the anchorage had deep water close to the shore, was sheltered, and had a small stream flowing into it. Phillip named it Sydney Cove, after Lord Sydney, the British Home Secretary. This date is celebrated as Australia Day, marking the beginning of British settlement."
+  [2] National Museum of Australia: https://digital-classroom.nma.gov.au/defining-moments/first-fleet-arrives-sydney-cove
+      "The First Fleet of 11 ships, commanded by Captain Arthur Phillip, set up a convict settlement at Sydney Cove (now Circular Quay) on 26 January 1788."
+  Helper notes: Both give 26 January 1788 for Sydney Cove. Wikipedia's sentence says that on that day the fleet 'weighed anchor and sailed to Port Jackson', where Phillip named the anchorage Sydney Cove (it does not use the word 'landed'); the NMA says the settlement at Sydney Cove was set up that day. The fleet had first arrived at Botany Bay a week earlier — Wikipedia: "Supply reached Botany Bay on 18 January 1788; the three fastest transports in the advance group arrived on 19 January; slower ships, including Sirius, arrived on 20 January."
+
+bastille: The storming of the Bastille  |  sources agree on: 14 July 1789 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Bastille
+      "It was stormed by a crowd on 14 July 1789, in the French Revolution, becoming an important symbol for the French Republican movement."
+  [2] History.com: https://www.history.com/this-day-in-history/july-14/french-revolutionaries-storm-bastille
+      "Parisian revolutionaries and mutinous troops storm and dismantle the Bastille, a royal fortress and prison that had come to symbolize the tyranny of the Bourbon monarchs, on July 14, 1789."
+  Helper notes: Both agree on 14 July 1789.
+
+rosetta: The Rosetta Stone is found  |  sources agree on: July 1799 AD  |  game: month
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Rosetta_Stone
+      "It was found there in July 1799 by French army officer Pierre-François Bouchard during France's invasion of Egypt. [...] In mid-July 1799, French soldiers under the command of Colonel d'Hautpoul were strengthening the defences of Fort Julien, a couple of miles north-east of the Egyptian port city of Rosetta (modern-day Rashid)."
+  [2] British Museum: https://www.britishmuseum.org/blog/everything-you-ever-wanted-know-about-rosetta-stone
+      "Although accounts of the Stone's discovery in July 1799 are now rather vague, the story most generally accepted is that it was found by accident by soldiers on 15 July 1799 while digging the foundations of an addition to a fort near Rashid (Rosetta)."
+  Choice: July 1799 on both; 15 July only on the British Museum.
+  Helper notes: Both agree on July 1799. Only the British Museum gives a day (15 July 1799), and it calls this 'the story most generally accepted', adding that accounts of the discovery 'are now rather vague'. Wikipedia gives only 'July 1799' / 'mid-July 1799', so day is left null. Wording is fine: both say soldiers found it at a fort near Rosetta (Rashid); Wikipedia names the officer Pierre-François Bouchard, and the British Museum says 'The officer in charge, Pierre-François Bouchard (1771–1822), realised the importance of the discovery.'
+
+waterloo: The Battle of Waterloo  |  sources agree on: 18 June 1815 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Battle_of_Waterloo
+      "The Battle of Waterloo was fought on Sunday 18 June 1815, near Waterloo (then in the United Kingdom of the Netherlands, now in Belgium), being the last engagement with Napoleon I."
+  [2] National Army Museum: https://www.nam.ac.uk/explore/battle-waterloo
+      "The Battle of Waterloo was fought on 18 June 1815 between Napoleon's French Army and a coalition led by the Duke of Wellington and Marshal Blücher."
+  Helper notes: Both sources give 18 June 1815. Wikipedia's infobox also reads 'Date | 18 June 1815'.
+
+railway: The first public passenger railway opens  |  sources agree on: 27 September 1825 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Locomotion_No._1
+      "On 27 September 1825, Locomotion No. 1 hauled the first train on the Stockton and Darlington Railway, driven by George Stephenson."
+  [2] National Railway Museum: https://blog.railwaymuseum.org.uk/85/
+      "The South Stockton station was on the Stockton and Darlington Railway, the world's first public passenger railway line, opened 27th September 1825."
+  Choice: Stockton and Darlington Railway, 27 September 1825.
+  Helper notes: Both give 27 September 1825. The Wikipedia page read is the 'Locomotion No. 1' article (the main 'Stockton and Darlington Railway' article did not come up in the search). Wording: neither page read uses the exact phrase 'first public railway to use steam locomotives'. Wikipedia (Locomotion No. 1) says: 'It became the first steam locomotive to haul a passenger-carrying train on a public railway, the Stockton and Darlington Railway (S&DR).' The National Railway Museum blog calls it 'the world's first public passenger railway line'. Your wording is consistent with these but is not quoted word for word by either.
+
+penny-black: The world's first adhesive stamp goes on sale  |  sources agree on: 1 May 1840 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Penny_Black
+      "The Penny Black was the world's first adhesive postage stamp used in a public postal system. [...] It was first issued in the United Kingdom on 1 May 1840 but was not valid for use until 6 May."
+  [2] Smithsonian Magazine: https://www.smithsonianmag.com/arts-culture/the-story-of-the-first-postage-stamp-14931961/
+      "The "penny black" stamp went on sale May 1, 1840."
+  [extra] Smithsonian Magazine: https://www.smithsonianmag.com/smart-news/first-piece-of-mail-sent-using-a-stamp-auction-180983619/
+      "While prepaid stamps and Mulreadys were introduced on May 1, 1840, they weren't technically valid for use until May 6."
+  [extra] The Postal Museum: https://www.postalmuseum.org/collections/highlights/philatelic-collection/designing-a-royal-stamp/
+      "They were valid for use on the 6 May 1840 and the history of British stamps began."
+  [extra] The Postal Museum: https://www.postalmuseum.org/collections/highlights/philatelic-collection/stamp-design/
+      "In 1840, the first adhesive postage stamp in the world, the Penny Black, was issued in Great Britain."
+  Choice: The Penny Black went on sale on 1 May 1840 and was valid from 6 May. The label says "the world's first adhesive stamp", as the sources do; the sentences call it the Penny Black.
+  Helper notes: Issue date 1 May 1840 confirmed on two sites: Wikipedia and Smithsonian Magazine (two Smithsonian Magazine articles both give May 1, 1840). Valid-for-use date 6 May 1840 confirmed on Wikipedia, Smithsonian Magazine (Smart News article) and The Postal Museum; also the Smithsonian National Postal Museum page 'The World's First Postage Stamps' (https://postalmuseum.si.edu/exhibition/the-queen%E2%80%99s-own-postal-reforms-that-transformed-the-mail/the-worlds-first-postage-stamps) says: 'The introduction of prepaid stamps and stationery took nearly four more months, becoming valid for postage on May 6, 1840.' History.com's 'What Happened on May 6 | HISTORY' page (https://www.history.com/this-day-in-history/may-6) has an 1840 entry headed: 'Great Britain's "Penny Black," the first adhesive postage stamp, becomes valid for use.' The Postal Museum pages read give the issue year (1840) and 6 May 1840 but never 1 May. Another Postal Museum page read ('Rowland Hill's postal reforms - The Postal Museum', https://www.postalmuseum.org/collections/rowland-hill-postal-reforms/) says: 'All items, with the exception of the stamped paper submitted by the public, became valid for postage on 6 May 1840.' and 'The most important and successful were the labels, the Penny Black and the Twopence Blue, the world's first adhesive postage stamps.' A Royal Mail '500 years' page from the search was not read because it redirected to a slightly different URL (not followed, per the rules). Wording 'first adhesive postage stamp' is supported (Wikipedia adds 'used in a public postal system'). For the game: 'issued / went on sale 1 May 1840' and 'valid for use from 6 May 1840' are both well supported.
+
+darwin: Darwin publishes On the Origin of Species  |  sources agree on: 24 November 1859 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/On_the_Origin_of_Species
+      "On the Origin of Species was first published on Thursday 24 November 1859, priced at fifteen shillings with a first printing of 1250 copies."
+  [2] Darwin Correspondence Project: https://www.darwinproject.ac.uk/learning-resources/timeline
+      "24 November 1859 / On the Origin of Species is published"
+  Helper notes: Both give 24 November 1859. The Darwin Correspondence Project page is a timeline: '24 November 1859' is the entry's date heading and 'On the Origin of Species is published' is the entry text (shown on separate lines in the quote, as on the page).
+
+meiji: Japan's emperor is restored to power  |  sources agree on: 3 January 1868 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Meiji_Restoration
+      "On 3 January 1868, Emperor Meiji declared political power to be restored to the Imperial House."
+  [2] History.com: https://www.history.com/this-day-in-history/january-3/meiji-restoration-in-japan
+      "Meiji Restoration begins | January 3, 1868 | HISTORY"
+  Helper notes: Both give 3 January 1868. On History.com the date appears only in the page title/dateline of this 'This Day in History' entry (quoted above); no sentence in the article body contains the date. The body's first sentence reads: 'In an event that heralds the birth of modern Japan, patriotic samurai from Japan's outlying domains join with anti-shogunate nobles in restoring the emperor to power after 700 years.' History.com frames 3 January 1868 as the day the Restoration 'begins'. Wikipedia also says: 'In the early hours of 3 January 1868, domain troops seized control of the Imperial Palace from the bakufu while Iwakura simultaneously received official approval from the Emperor for these actions.' and opens: 'The Meiji Restoration ... was a political event that restored imperial rule to Japan in 1868 under Emperor Meiji and led to the westernisation of Japan.' Wording is fine.
+
+suez: The Suez Canal opens  |  sources agree on: 17 November 1869 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Suez_Canal
+      "Construction of the canal lasted from 1859 to 1869 and it officially opened on 17 November 1869."
+  [2] History.com: https://www.history.com/this-day-in-history/november-17/suez-canal-opens
+      "On November 17, 1869, the Suez Canal was opened to navigation."
+  Helper notes: Both give 17 November 1869. Wikipedia also says: 'On the morning of 17 November, a procession of ships entered the canal, headed by L'Aigle.'
+
+telephone: Bell is granted the telephone patent  |  sources agree on: 7 March 1876 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Alexander_Graham_Bell
+      "On March 7, 1876, the U.S. Patent Office issued Bell patent 174,465."
+  [2] Library of Congress: https://guides.loc.gov/chronicling-america-telephone-invention
+      "On March 7, 1876, Alexander Graham Bell successfully received a patent for the telephone and secured the rights to the discovery."
+  Helper notes: Both give 7 March 1876. The Library of Congress guide's timeline also has: 'March 7, 1876 | Alexander Graham Bell received patent 174,465 from the U.S. Patent Office...' (as returned by the reader, ending in '...'). A Library of Congress blog post (https://blogs.loc.gov/families/2026/03/celebrating-the-150th-anniversary-of-the-first-telephone-call/, 'Celebrating the 150th Anniversary of the First Telephone Call') agrees: 'After months of trial and error on March 7, 1876 Bell received U.S. Patent Number 174,465 for "improvement in telegraphy"—the first telephone patent.' Note the patent's own title was 'improvement in telegraphy'. The Library of Congress page https://www.loc.gov/item/who-is-credited-with-inventing-the-telephone/ could not be read (403 error). Side note (not a date quote): Wikipedia says of the earlier filing, 'That same morning, Bell's lawyer filed Bell's application with the patent office.' - the page reader placed that morning on 14 February 1876, the day Elisha Gray filed his caveat; this filing date was not separately quoted.
+
+eiffel: The Eiffel Tower is completed  |  sources agree on: 31 March 1889 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Eiffel_Tower
+      "The main structural work was completed at the end of March 1889 and, on 31 March, Eiffel celebrated by leading a group of government officials, accompanied by representatives of the press, to the top of the tower. [...] There was still work to be done, particularly on the lifts and facilities, and the tower was not opened to the public until nine days after the opening of the exposition on 6 May; even then, the lifts had not been completed."
+  [2] La tour Eiffel: https://www.toureiffel.paris/en/news/130-years/1889-2019-130-years-amazement
+      "The construction of the Eiffel Tower structure was completed on Sunday, March 31, 1889. [...] On May 15, the World's Fair began and the Tower opened to the public, without even one elevator yet in operation."
+  Choice: Completed 31 March 1889; open to the public 15 May 1889.
+  Helper notes: Both give 31 March 1889 for completion. PUBLIC OPENING: both give 15 May 1889 (Wikipedia infobox: 'Completed: 31 March 1889' and 'Opening: 15 May 1889'; body: opened to the public 'nine days after the opening of the exposition on 6 May'; official site: 'On May 15 ... the Tower opened to the public'). Small inconsistency between the two sites about the World's Fair itself: Wikipedia says the exposition opened on 6 May, while the official site's sentence says 'On May 15, the World's Fair began' - this does not affect the tower dates. Wording: neither page read uses the word 'inaugurated' for 31 March; Wikipedia says the main structural work was completed at the end of March and Eiffel celebrated on 31 March by leading officials to the top; the official site says the structure 'was completed' on 31 March 1889. 'Completed' is the safer word for the game.
+
+nintendo: Nintendo is founded to make playing cards  |  sources agree on: 1889 AD  |  game: year
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Nintendo
+      "Nintendo was founded as Nintendo Koppai on 23 September 1889 by craftsman Fusajiro Yamauchi in Shimogyō-ku, Kyoto, Japan, as an unincorporated establishment, to produce and distribute Japanese playing cards, or karuta (かるた; from Portuguese carta, 'card'), most notably hanafuda ( 花札, 'flower cards')."
+  [2] Nintendo: https://www.nintendo.co.jp/corporate/en/history/index.html
+      "Fusajiro Yamauchi began manufacturing and selling Japanese playing cards, Hanafuda, in Shimogyo-ku, Kyoto, Japan."
+  [extra] Nintendo: https://www.nintendo.com/en-gb/Hardware/Nintendo-History/Nintendo-History-625945.html
+      "1889 / Fusajiro Yamauchi began manufacturing "Hanafuda" (flower cards) Japanese playing cards in Kyoto."
+  Choice: 23 September only on Wikipedia; Nintendo's own pages give 1889.
+  Helper notes: The year 1889 is confirmed by two sites, but the DAY (23 September 1889) is given only by Wikipedia (infobox: 'Founded 23 September 1889'). Nintendo's own pages give the year only: on the corporate Company History page the quoted sentence is the entry listed under 1889 (the year is the entry's heading); the Nintendo UK history page lists it under '1889'; the Nintendo US 'About' page (https://www.nintendo.com/us/about/, title 'Creating smiles for generations') says 'Fusajiro Yamauchi began a small business manufacturing "Hanafuda" playing cards in Kyoto, Japan.' with year 1889 only. So month/day are null. Wording: the official site says Yamauchi 'began manufacturing and selling' hanafuda cards; it does not use the word 'founded'. Wikipedia says it was founded 'as Nintendo Koppai'.
+
+olympics-1896: The first modern Olympics open in Athens  |  sources agree on: 6 April 1896 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/1896_Summer_Olympics
+      "On Easter Monday 6 April (25 March according to the Julian calendar used in Greece until 1923) the games of the First Olympiad were officially opened."
+  [2] History.com: https://www.history.com/this-day-in-history/april-6
+      "On April 6, 1896, the Olympic Games, a long-lost tradition of ancient Greece, are reborn in Athens 1,500 years after being banned by Roman Emperor Theodosius I."
+  Choice: 6 April 1896 (Gregorian calendar).
+  Helper notes: Both give 6 April 1896 (Gregorian calendar). Calendar caveat: Wikipedia notes that in the Julian calendar then used in Greece the opening day was 25 March 1896 (infobox: 'Gregorian Calendar: 6 April 1896 Julian Calendar: 25 March 1896'); Wikipedia also says the Games were held 'from 6 to 15 April 1896'. The History.com quote comes from its 'What Happened on April 6' page, entry headed '1896 First modern Olympic Games'. Two olympics.com pages from the search could not be read (the fetch failed on the site's robots.txt). The fetched Wikipedia page called itself 'Games of the I Olympiad'.
+
+wright: The Wright brothers' first powered flight  |  sources agree on: 17 December 1903 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Wright_brothers
+      "They made the first controlled, sustained flight of an engine-powered, heavier-than-air aircraft with the Wright Flyer on December 17, 1903, four miles (6 km) south of Kitty Hawk, North Carolina, at what is now known as Kill Devil Hills."
+  [2] Smithsonian Air and Space: https://airandspace.si.edu/stories/editorial/wright-brothers-made-history-kitty-hawk
+      "At 10:35 a.m., on December 17, 1903, Wilbur and Orville Wright made history in Kitty Hawk, North Carolina. [...] They made the first powered, controlled flight of a heavier-than-air flying machine."
+  Choice: Both sources: the first controlled powered flight of an aeroplane.
+  Helper notes: Both give 17 December 1903. Wording: both sources qualify the 'first' claim - Wikipedia: 'the first controlled, sustained flight of an engine-powered, heavier-than-air aircraft'; Smithsonian: 'the first powered, controlled flight of a heavier-than-air flying machine'. 'First powered aeroplane flight' is a slight simplification; 'first controlled, powered aeroplane flight' would match the sources more closely.
+
+titanic: The Titanic sinks  |  sources agree on: 15 April 1912 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Titanic
+      "RMS Titanic was a British ocean liner that sank in the early hours of 15 April 1912 after striking an iceberg on her maiden voyage from Southampton, England, to New York City."
+  [2] Royal Museums Greenwich: https://www.rmg.co.uk/stories/maritime-history/rms-titanic-facts
+      "15 April 1912 - 02.20: Titanic foundered"
+  Helper notes: Both give 15 April 1912 for the sinking. The iceberg was struck late on 14 April: Royal Museums Greenwich lists '14 April 1912 - 23.40: Collision with iceberg' and says 'On the night of 14 April 1912, the passenger ship RMS Titanic hit an iceberg in the North Atlantic Ocean during its maiden voyage from Southampton to New York.'; Wikipedia: 'At 11:40 pm (ship's time) on 14 April, lookout Frederick Fleet spotted an iceberg immediately ahead of Titanic and alerted the bridge.' The RMG quote is a timeline entry (date and time, then entry text). The search listing gave the Wikipedia page title as 'Titanic'; the fetched page called itself 'RMS Titanic'.
+
+panama: The Panama Canal opens  |  sources agree on: 15 August 1914 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Panama_Canal
+      "The canal was formally opened on 15 August 1914, with the passage of the cargo ship SS Ancon."
+  [2] History.com: https://www.history.com/this-day-in-history/august-15/panama-canal-open-to-traffic
+      "On August 15, 1914, the Panama Canal was opened to traffic."
+  Helper notes: Both give 15 August 1914.
+
+tutankhamun: The steps to Tutankhamun's tomb are found  |  sources agree on: 4 November 1922 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Discovery_of_the_tomb_of_Tutankhamun
+      "The tomb was opened beginning on 4 November 1922 during an excavation by Carter and his patron, the 5th Earl of Carnarvon. [...] To minimise the disruption to tourists, Carter and his Egyptian workforce began on 1 November 1922, earlier in the season than usual. [...] On 4 November a worker uncovered a step in the rock."
+  [2] History.com: https://www.history.com/this-day-in-history/november-4/entrance-to-king-tuts-tomb-discovered
+      "British archaeologist Howard Carter and his workmen discover a step leading to the tomb of King Tutankhamen in the Valley of the Kings in Egypt on November 4, 1922."
+  Choice: What was found on 4 November 1922 was the first step down to the tomb.
+  Helper notes: Both give 4 November 1922. Wording: what was found on 4 November 1922 was the first step leading down to the tomb, uncovered by a worker of Carter's team (Wikipedia: 'a worker uncovered a step in the rock'; History.com: 'Howard Carter and his workmen discover a step leading to the tomb'). The tomb itself was entered later in November 1922 (not date-checked here). Safer game wording: 'Howard Carter's team finds the entrance to Tutankhamun's tomb'.
+
+penicillin: Fleming discovers penicillin  |  sources agree on: 3 September 1928 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Discovery_of_penicillin
+      "While on holiday, he was appointed Professor of Bacteriology at the St Mary's Hospital Medical School on 1 September 1928. He arrived at his laboratory on 3 September, where Pryce was waiting to greet him. As he and Pryce examined the culture plates, they found one with an open lid and the culture contaminated with a blue-green mould."
+  [2] History.com: https://www.history.com/this-day-in-history/september-3/penicillin-discovered
+      "Sir Alexander Fleming was a young bacteriologist when an accidental discovery led to one of the great developments of modern medicine on September 3, 1928."
+  Choice: Both: 3 September 1928 (some say 28 September).
+  Helper notes: Your expected date (September 1928) is right; both pages go further and give the day: 3 September 1928, the day Fleming came back from holiday and found the mould-contaminated plate. Careful: the same Wikipedia page also quotes Fleming's own later recollection, 'When I woke up just after dawn on September 28, 1928, I certainly didn't plan to revolutionize all medicine by discovering the world's first antibiotic, or bacteria killer.' So some popular sources say 28 September; the two sources used here both say 3 September. Wikipedia's lead sentence for context: 'While working at St Mary's Hospital in London in 1928, Scottish physician Alexander Fleming was the first to experimentally demonstrate that a Penicillium mould secretes an antibacterial substance, which he named 'penicillin'.' Wording 'discovers penicillin' is fine. The ACS landmark page (acs.org) was also tried but came back empty, so it was not used.
+
+world-cup: The first football World Cup kicks off  |  sources agree on: 13 July 1930 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/1930_FIFA_World_Cup
+      "The 1930 FIFA World Cup was the first FIFA World Cup, the world championship for men's national football teams. It took place in Uruguay from 13 to 30 July 1930. [...] Since there were no qualifying games, the opening two matches of the tournament were the first World Cup games ever played, taking place simultaneously on 13 July 1930"
+  [2] History.com: https://www.history.com/this-day-in-history/july-13/first-world-cup
+      "On July 13, 1930, France defeats Mexico 4-1 and the United States defeats Belgium 3-0 in the first-ever World Cup football matches, played simultaneously in host city Montevideo, Uruguay."
+  Helper notes: Both pages agree: 13 July 1930. The '[...]' in the Wikipedia quote marks a gap between two separate passages on the page; the second passage was returned without a final full stop, so the sentence may continue on the page.
+
+ww2-end: The Second World War ends  |  sources agree on: 2 September 1945 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/VJ-Day
+      "Victory over Japan Day (also known as V-J Day, Victory in the Pacific Day, or V-P Day) is the day on which Imperial Japan surrendered in World War II, in effect bringing the war to an end. [...] On 2 September 1945, formal surrender occurred aboard the battleship USS Missouri in Tokyo Bay. [...] Since the European Axis powers had surrendered three months earlier (V-E Day), V-J Day was the effective end of World War II, although a peace treaty between Japan and most of the Allies was not signed until 1952, and between Japan and the Soviet Union until 1956."
+  [2] US National Archives: https://www.archives.gov/milestone-documents/surrender-of-japan
+      "this instrument of surrender was signed on September 2, 1945, by the Japanese envoys Foreign Minister Mamora Shigemitsu and Gen. Yoshijiro Umezu. [...] On September 2, 1945, Japanese representatives signed the official Instrument of Surrender"
+  Choice: Japan's formal surrender, 2 September 1945.
+  Helper notes: Both pages agree: 2 September 1945. The archives.gov passages came back as pieces of longer sentences (one starts mid-sentence, one has no final full stop); 'Mamora' is the page's own spelling (usually written 'Mamoru'). '[...]' marks gaps between separate passages. Wording: 2 September is the formal signing; Japan had announced its surrender on 14/15 August 1945, and Wikipedia calls V-J Day 'the effective end of World War II'. Extra checks: the main Wikipedia article 'Surrender of Japan' (https://en.wikipedia.org/wiki/Surrender_of_Japan) was opened too, but its opening section could not be read; it does say 'In addition to 14 and 15 August, 2 September 1945 is also known as V-J Day.' History.com (https://www.history.com/this-day-in-history/september-2/japan-surrenders), headline 'Japan surrenders, bringing an end to WWII | September 2, 1945 | HISTORY', also agrees: 'Aboard the USS Missouri in Tokyo Bay, Japan formally surrenders to the Allies, bringing an end to World War II.'
+
+india: India becomes independent  |  sources agree on: 15 August 1947 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Independence_Day_(India)
+      "Independence Day is celebrated annually on 15 August as a public holiday in India commemorating the nation's independence from the United Kingdom on 15 August 1947."
+  [2] Know India (Government of India): https://knowindia.india.gov.in/independence-day-celebration/index.php
+      "It was on 15th August 1947 that India was declared independent from British colonialism"
+  Helper notes: Both agree: 15 August 1947. The Know India quote came back without a final full stop, so the sentence may continue on the page. Extra checks: History.com, 'India and Pakistan win independence' (https://www.history.com/this-day-in-history/august-15/india-and-pakistan-win-independence), also agrees: 'The Indian Independence Bill, which carves the two independent nations of India and Pakistan out of the former Mogul Empire, comes into force at the stroke of midnight on August 15, 1947.' The UK National Archives teaching resource 'Partition of British India' (PDF https://cdn.nationalarchives.gov.uk/documents/education/partition-of-british-india.pdf, and the web page https://www.nationalarchives.gov.uk/education/resources/partition-of-british-india/) only says, for India and Pakistan together, 'Independence was declared on 14th and 15th August 1947 but the borders of these two new nations were announced 2 days later on the 17th of August.' It does not say which day is India's, so it was not used as the second source. Wording is fine.
+
+dna: The double helix of DNA is published  |  sources agree on: 25 April 1953 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Molecular_Structure_of_Nucleic_Acids:_A_Structure_for_Deoxyribose_Nucleic_Acid
+      "It was published by Francis Crick and James D. Watson in the scientific journal Nature on pages 737–738 of its 171st volume (dated 25 April 1953)."
+  [2] Nature: https://www.nature.com/articles/171737a0
+      "Published: 25 April 1953 [...] Issue date: 25 April 1953"
+  Helper notes: Both agree: 25 April 1953. The second source is the paper's own page on Nature's website (authors shown as 'J. D. WATSON and F. H. C. CRICK'); it gives the date as information lines ('Published', 'Issue date') rather than as a sentence. Wording is fine.
+
+everest: Hillary and Tenzing reach the top of Everest  |  sources agree on: 29 May 1953 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/1953_British_Mount_Everest_expedition
+      "Tenzing Norgay and Edmund Hillary reached the summit on 29 May 1953 at 11:30 a.m."
+  [2] National Geographic: https://www.nationalgeographic.com/adventure/article/sir-edmund-hillary-tenzing-norgay-1953
+      "Edmund Hillary (left) and Sherpa Tenzing Norgay reached the 29,035-foot summit of Everest on May 29, 1953, becoming the first people to stand atop the world's highest mountain. [...] The pair reached the highest point on Earth at 11:30 a.m. on May 29."
+  Helper notes: Both agree: 29 May 1953 (both also give 11:30 a.m.). Small wording point: Wikipedia's careful phrase is that this was 'the first confirmed to have succeeded when Tenzing Norgay and Edmund Hillary reached the summit' (a fragment of a longer sentence), i.e. the first CONFIRMED ascent (Mallory and Irvine's 1924 attempt is the reason for the hedge). 'First ascent' is the usual wording; 'first confirmed ascent' would be the most careful. The National Geographic date sentence is a photo caption at the top of the article; the search listing gave the page title as 'Sir Edmund Hillary and Tenzing Norgay - 1953 Everest', while the page headline read 'Everest 1953: First Footsteps - Sir Edmund Hillary and Tenzing Norgay'.
+
+sputnik: Sputnik 1, the first satellite, is launched  |  sources agree on: 4 October 1957 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Sputnik_1
+      "Sputnik 1 (Russian: Спутник-1, Satellite 1), often referred to as simply Sputnik, was the first artificial Earth satellite. It was launched into an elliptical low Earth orbit by the Soviet Union on 4 October 1957 as part of the Soviet space program."
+  [2] NASA: https://www.nasa.gov/history/65-years-ago-sputnik-ushers-in-the-space-age/
+      "On Oct. 4, 1957, the Soviet Union inaugurated the Space Age with the launch of Sputnik, the world's first artificial satellite."
+  Helper notes: Both agree: 4 October 1957. Wording is fine (both call it the first artificial satellite). The two Wikipedia sentences were returned separately and are joined here; they come from the article's opening section.
+
+gagarin: Gagarin is the first person in space  |  sources agree on: 12 April 1961 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Yuri_Gagarin
+      "Yuri Alekseyevich Gagarin (9 March 1934 – 27 March 1968) was a Soviet pilot and cosmonaut who became the first person to journey into outer space during the first successful crewed spaceflight. [...] Travelling on Vostok 1, Gagarin completed one orbit of Earth on 12 April 1961."
+  [2] NASA: https://www.nasa.gov/history/remembering-yuri-gagarin-50-years-later/
+      "on April 12, 1961, cosmonaut Yuri Gagarin blasted off from the Baikonur Cosmodrome in Kazakhstan to become the first human to travel in space."
+  Helper notes: Both agree: 12 April 1961. The NASA quote came back starting in lower case, so it is the end of a longer sentence. Another NASA page, 'April 1961 - First Human Entered Space - NASA' (https://www.nasa.gov/image-article/april-1961-first-human-entered-space/), was opened first but gives no day (only 'April 1961' and a misleading 'Apr 01, 1961' date line), so it was not used. History.com also agrees (https://www.history.com/this-day-in-history/april-12/first-man-in-space): 'On April 12, 1961, aboard the spacecraft Vostok 1, Soviet cosmonaut Yuri Alekseyevich Gagarin becomes the first human being to travel into space.' Wording is fine.
+
+moon: Apollo 11 lands on the Moon  |  sources agree on: 20 July 1969 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Apollo_11
+      "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. [...] Eagle landed at 20:17:40 UTC on Sunday July 20 with 216 pounds (98 kg) of usable fuel remaining. [...] Landing date: July 20, 1969, 20:17:40 UTC"
+  [2] NASA: https://www.nasa.gov/learning-resources/for-kids-and-students/what-was-the-apollo-program-grades-k-4/
+      "The first moon landing was Apollo 11. It landed on July 20, 1969."
+  Helper notes: Both agree: 20 July 1969 (Wikipedia gives the landing time as 20:17:40 UTC, so the date is the same in UTC and in US time). The last Wikipedia piece ('Landing date: ...') is from the information box, not a sentence. Wording is fine. Extra checks on NASA: the main 'Apollo 11 - NASA' mission page (https://www.nasa.gov/mission/apollo-11/) was opened first but has the date only in a heading ('July 20, 1969: One Giant Leap For Mankind'), so it was not used; 'NASA: 60 Years and Counting - Human Spaceflight' (https://www.nasa.gov/specials/60counting/spaceflight.html) says 'On July 20, 1969, Apollo 11 Commander Neil Armstrong placed the first human footstep on the Moon.'
+
+star-wars: Star Wars opens in American cinemas  |  sources agree on: 25 May 1977 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Star_Wars_(film)
+      "Star Wars debuted on Wednesday, May 25, 1977, in 32 theaters."
+  [2] History.com: https://www.history.com/this-day-in-history/may-25/star-wars-opens
+      "On May 25, 1977, Memorial Day weekend opens with an intergalactic bang as the first of George Lucas' blockbuster Star Wars movies hits American theaters."
+  Choice: US release; other countries later.
+  Helper notes: Both agree: 25 May 1977 (the Wikipedia information box also says 'Release date: May 25, 1977'). This is the US release ('hits American theaters'); other countries got the film later, so a wording like 'is released in the United States' would be the most precise. Release dates outside the US were not checked here.
+
+berlin-wall: The Berlin Wall falls  |  sources agree on: 9 November 1989 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall
+      "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. [...] The evening of 9 November 1989 is known as the night the Wall came down."
+  [2] Berlin.de: https://www.berlin.de/en/history/8482274-8619314-opening-and-fall-of-the-berlin-wall.en.html
+      "At the end of a press conference in the early evening of 9 November 1989, shortly before 7:00 p.m., Central Committee member Günter Schabowski made a more or less casual announcement of a new travel regulation for GDR citizens. [...] At 9:20 p.m., in order to relieve some of the pressure created by the crowds, the guards at the Bornholmer Strasse checkpoint let the first few people leave for West Berlin, although the head of the passport control units had their passports stamped invalid, expatriating the passport holders without their knowledge. [...] By 11:30 p.m., however, the crowds had grown so large that he – still without official orders – finally raised the barrier. [...] That night, the peaceful revolution underway in the GDR and the political changes taking place in Eastern Europe had succeeded in opening the Berlin Wall."
+  Helper notes: Both agree: 9 November 1989 (the evening/night of 9 November, when the first crossing, Bornholmer Strasse, opened). '[...]' marks gaps between separate passages on the Berlin.de page. Wording 'falls (border opened)' is fine; the physical demolition came later. History.com's page 'East Germany opens the Berlin Wall' was in the search results but was not needed.
+
+hubble: The Hubble Space Telescope is launched  |  sources agree on: 24 April 1990 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Hubble_Space_Telescope
+      "The Hubble Space Telescope (HST or Hubble) is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. [...] Following the resumption of shuttle flights, Space Shuttle Discovery successfully launched Hubble on April 24, 1990, as part of the STS-31 mission."
+  [2] NASA: https://science.nasa.gov/mission/hubble/overview/hubble-timeline/hubble-history-timeline-full-text/
+      "April 24, 1990 – Hubble launched / Space shuttle Discovery (on mission STS-31) launched from the Kennedy Space Center in Florida, carrying five astronauts and the Hubble Space Telescope."
+  Helper notes: Both agree: 24 April 1990 (the Wikipedia information box also gives 'April 24, 1990, 12:33:51 UTC'). The NASA quote is a timeline entry: a heading line followed by its text. This is the launch date; the date the telescope was released from the shuttle into orbit was not checked here. Wording is fine.
+
+google: Google becomes a company  |  sources agree on: 4 September 1998 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/History_of_Google
+      "Brin and Page formally incorporated their company, Google, on September 4, 1998, in their friend Susan Wojcicki's garage in Menlo Park, California."
+  [2] Google: https://blog.google/company-news/inside-google/company-announcements/marking-20ish-years-google/
+      "It's September 1998. Aerosmith is wailing "I Don't Want to Miss a Thing" at the top of the Billboard Top 100. [...] And sometime this month, Google is born. [...] Google Inc. was incorporated on September 4, but for more than a decade we've celebrated our birthday on September 27—with an annual Doodle, of course."
+  Choice: Incorporated 4 September 1998 (Google keeps its birthday on 27 September).
+  Helper notes: Both agree on incorporation: 4 September 1998. The Google blog post (published September 4, 2018) gives the year through its scene-setting ('It's September 1998 ... sometime this month, Google is born'); its incorporation sentence itself says only 'September 4'. IMPORTANT wording point: 'founded' is fuzzy for Google. (1) Google celebrates its birthday on 27 September (blog quote above). (2) Google's own 'How we started and where we are today' page (https://about.google/intl/ALL_us/our-story/) says: 'In August 1998, Sun co-founder Andy Bechtolsheim wrote Larry and Sergey a check for $100,000, and Google Inc. was officially born.' (3) The main Wikipedia article 'Google' (https://en.wikipedia.org/wiki/Google_(company)) gives only the year: 'Google was founded in 1998 by American computer scientists Larry Page and Sergey Brin.' Suggest wording the event as 'Google is incorporated as a company' to match 4 September 1998.
+
+wikipedia: Wikipedia goes online  |  sources agree on: 15 January 2001 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/Wikipedia
+      "Wikipedia was launched on January 15, 2001 (sometimes referred to as "Wikipedia Day"), as a single English language edition with the domain name www.wikipedia.com [...]"
+  [2] timeanddate.com: https://www.timeanddate.com/on-this-day/january/15
+      "2001 – Wikipedia goes online / The online encyclopedia has since become the largest reference work on the internet."
+  Helper notes: Both agree: 15 January 2001. The Wikipedia sentence continues after 'www.wikipedia.com' (marked '[...]'); the page's reader would not return the rest. timeanddate.com gives the year inside its 'January 15' page, so the day and month come from the page itself. Since the first source is Wikipedia writing about itself, timeanddate.com is the independent check. Extra checks: the Wikimedia Foundation post 'Wikipedia celebrates 20 years of free, trusted information for the world' (https://wikimediafoundation.org/news/2021/01/14/wikipedia-celebrates-20-years/, published 14 January 2021) says Wikipedia 'turns 20 years old on 15 January' and speaks of the time 'since it was created in 2001'. The Computer History Museum page (https://www.computerhistory.org/makesoftware/exhibit/wikipedia/) gives only the year: 'After its 2001 launch, Wikipedia—the wiki created to generate raw articles for online encyclopedia Nupedia—swiftly eclipsed its parent.' Wording is fine.
+
+iphone: The first iPhone goes on sale  |  sources agree on: 29 June 2007 AD  |  game: day
+  [1] Wikipedia: https://en.wikipedia.org/wiki/IPhone_(1st_generation)
+      "After years of rumors and speculation, it was officially announced on January 9, 2007, and was released in the United States on June 29, 2007. [...] The iPhone was released in the United States on June 29, 2007, at the price of $499 for the 4 GB model and $599 for the 8 GB model, both requiring a 2-year contract."
+  [2] Apple: https://www.apple.com/newsroom/2007/06/28iPhone-Premieres-This-Friday-Night-at-Apple-Retail-Stores/
+      "CUPERTINO, California—June 28, 2007—Apple's revolutionary iPhone™ will go on sale this Friday, June 29 at 6:00 p.m. local time at Apple® retail stores nationwide. [...] iPhone goes on sale in the US on June 29, 2007 at 6:00 p.m. local time through Apple's retail stores and AT&T's select retail stores."
+  Choice: In the United States.
+  Helper notes: Both agree: 29 June 2007 (Apple: from 6:00 p.m. local time). The Apple source is Apple's own press release, dated June 28, 2007. Wording: 'goes on sale' is right, but both sources say it was in the United States; other countries got it later (not checked here). It had been announced earlier, on January 9, 2007 (Wikipedia quote above).

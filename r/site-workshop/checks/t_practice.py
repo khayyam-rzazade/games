@@ -1,4 +1,4 @@
-"""Checks of practice in all five games: only yesterday can be practised (Khayyam, 4 Oct 2026).
+"""Checks of practice in all six games: only yesterday can be practised (Khayyam, 4 Oct 2026).
 A friend's link works for yesterday, today and tomorrow; an older one opens today's puzzle.
 The site is expected served at B (see t_site.py)."""
 import asyncio, datetime, os
@@ -8,7 +8,7 @@ res = []
 def ok(name, cond, info=''):
     res.append((name, bool(cond)))
     print(('PASS ' if cond else 'FAIL ') + name + ('' if cond else '  -> ' + str(info)))
-FRIEND = {'100-of-us': 'g=1', 'your-call': 'm=1', 'same-street': 'g=1', 'long-lost-cousin': 'g=1', 'the-club': 'g=1'}
+FRIEND = {'100-of-us': 'g=1', 'your-call': 'm=1', 'same-street': 'g=1', 'long-lost-cousin': 'g=1', 'the-club': 'g=1', 'years-apart': 'g=1'}
 NOW = datetime.datetime(2026, 10, 10, 12, 0)
 
 async def main():
@@ -25,7 +25,7 @@ async def main():
         await pg.goto(B + '/'); await pg.wait_for_timeout(300)
         games = await pg.evaluate("TurnsOut.GAMES.map(function (g) { return [g.id, g.start]; })")
         await ctx.close()
-        ok('A the frame lists the five games', sorted(g for g, _ in games) == sorted(FRIEND), games)
+        ok('A the frame lists the six games', sorted(g for g, _ in games) == sorted(FRIEND), games)
         label = lambda pg: pg.evaluate("document.getElementById('day-label').textContent")
         notice = lambda pg: pg.evaluate("(function (n) { return n.hidden ? '' : n.textContent; })(document.getElementById('notice'))")
         for g, start in games:

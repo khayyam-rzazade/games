@@ -10,7 +10,7 @@ def ok(name, cond, info=''):
     print(('PASS ' if cond else 'FAIL ') + name + ('' if cond else '  -> ' + str(info)))
 NOW = datetime.datetime(2026, 10, 20, 12, 0, 0)
 DONE = {'100-of-us': {'g': 50, 'a': 50}, 'your-call': {'c': 0, 'r': 0}, 'same-street': {'g': 50, 'a': 50},
-        'long-lost-cousin': {'c': 0, 'r': 0}, 'the-club': {'c': [1, 1, 1, 1, 1], 'r': 3}}
+        'long-lost-cousin': {'c': 0, 'r': 0}, 'the-club': {'c': [1, 1, 1, 1, 1], 'r': 3}, 'years-apart': {'g': 500, 'a': 559, 'y': 266}}
 ALL = ['players/new', 'players/2-days', 'players/7-days', 'players/2-days-in-a-row', 'players/7-days-in-a-row']
 
 async def main():
@@ -48,6 +48,9 @@ async def main():
         ok('R6 Long Lost Cousin and The Club (one day later start) yesterday count as yesterday',
            await case([('long-lost-cousin', 1)], today_game='the-club') == srt(['players/new', 'players/2-days', 'players/2-days-in-a-row'])
            and await case([('the-club', 1)], today_game='long-lost-cousin') == srt(['players/new', 'players/2-days', 'players/2-days-in-a-row']))
+        ok('R6b Years Apart (two days later start) counts on the right calendar day, both ways',
+           await case([('years-apart', 1)], today_game='100-of-us') == srt(['players/new', 'players/2-days', 'players/2-days-in-a-row'])
+           and await case([('100-of-us', 1)], today_game='years-apart') == srt(['players/new', 'players/2-days', 'players/2-days-in-a-row']))
         ok('R7 practice does not count', await case([], practice=True) in ([], None))
         # once only: a second game today adds nothing that was already sent
         await case([('100-of-us', 1)])

@@ -75,3 +75,18 @@ def art_piece():
                 s.append(f'<rect class="{"fg" if (r + c) % 2 == 0 else "mute"}" x="{x}" y="{y}" width="38" height="38" rx="9"/>')
     return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'
 
+
+def art_apart():
+    """Years Apart: a ruler with brass ends, a slider with a hairline, and a tag hanging from it."""
+    s = ['<rect class="mute" x="28" y="66" width="264" height="46" rx="6"/>',
+         '<rect class="fg" x="28" y="66" width="13" height="46" rx="4"/><rect class="fg" x="279" y="66" width="13" height="46" rx="4"/>']
+    for i in range(0, 41):
+        x = 49 + i * 5.55
+        h = 15 if i % 10 == 0 else (10 if i % 5 == 0 else 6)
+        s.append(f'<rect class="fg" x="{n(x - 0.7)}" y="66" width="1.4" height="{h}" opacity=".55"/>')
+    s.append('<rect class="fg" x="186" y="52" width="24" height="74" rx="6"/>')
+    s.append('<rect class="cut" x="197" y="58" width="2.4" height="62" rx="1.2"/>')
+    s.append('<path class="ln" d="M198 126V142" fill="none" stroke-width="3" stroke-linecap="round"/>')
+    s.append('<rect class="q" x="146" y="142" width="104" height="38" rx="8"/>')
+    s.append('<rect class="mute" x="162" y="156" width="72" height="9" rx="4.5"/>')
+    return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'

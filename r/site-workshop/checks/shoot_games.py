@@ -42,7 +42,14 @@ async def act_club(pg, stage, wrong=False):
         say = (1 - truth) if (wrong and done in (1, 3)) else truth
         await pg.locator('#btn-in' if say else '#btn-out').click(); await pg.wait_for_timeout(1150)
     if stage == 'reveal': await pg.wait_for_timeout(1800)
-GAMES = {'cousin': ('long-lost-cousin', act_cousin), 'hundred': ('100-of-us', act_hundred), 'street': ('same-street', act_street), 'call': ('your-call', act_call), 'club': ('the-club', act_club)}
+async def act_apart(pg, stage, wrong=False):
+    """'picked': the slider is moved along the ruler (near the left end when wrong, else three quarters along). 'reveal': then Measure it."""
+    if stage == 'guess': return
+    b = await pg.evaluate("document.getElementById('board').getBoundingClientRect().toJSON()")
+    await pg.mouse.move(b['x'] + b['width'] * (0.08 if wrong else 0.75), b['y'] + 40); await pg.mouse.down(); await pg.mouse.up(); await pg.wait_for_timeout(200)
+    if stage == 'reveal': await pg.locator('#btn-measure').click(); await pg.wait_for_timeout(1400)
+GAMES = {'cousin': ('long-lost-cousin', act_cousin), 'hundred': ('100-of-us', act_hundred), 'street': ('same-street', act_street), 'call': ('your-call', act_call), 'club': ('the-club', act_club),
+         'apart': ('years-apart', act_apart)}
 
 async def shot(br, key, stage, scheme, w=390, h=664, wrong=False, full=None, scale=2, name=None):
     folder, act = GAMES[key]

@@ -36,8 +36,7 @@ h1 em {{ font-style: normal; color: #2D4FC4; position: relative; white-space: no
 h1 em::after {{ content: ""; position: absolute; left: 0; right: 0; bottom: .04em; height: .16em; border-radius: 99px; background: #F5C24B; z-index: -1; opacity: .9; }}
 .sub {{ margin-top: 28px; font-size: 33px; line-height: 1.3; color: #5D6279; max-width: 14.5em; text-wrap: balance; }}
 .arts {{ display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }}
-.arts .card {{ grid-column: span 2; }}
-.arts .card:nth-child(4) {{ grid-column: 2 / span 2; }}   /* five cards: three above, two centred below */
+.arts .card {{ grid-column: span 2; }}   /* six cards: three above, three below */
 .card {{ background: #fff; border-radius: 30px; padding: 10px; box-shadow: 0 1px 2px rgba(21,23,43,.05), 0 14px 34px rgba(21,23,43,.09); }}
 .card .art {{ border-radius: 21px; }}
 </style></head><body>
@@ -53,6 +52,7 @@ h1 em::after {{ content: ""; position: absolute; left: 0; right: 0; bottom: .04e
     <div class="card" data-g="street"><div class="art">{art_street()}</div></div>
     <div class="card" data-g="cousin"><div class="art">{art_cousin()}</div></div>
     <div class="card" data-g="club"><div class="art">{art_club()}</div></div>
+    <div class="card" data-g="apart"><div class="art">{art_apart()}</div></div>
   </div>
 </div>
 <script src="long-lost-cousin/pics/hippo.js"></script>

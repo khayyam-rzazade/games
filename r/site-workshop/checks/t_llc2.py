@@ -205,7 +205,7 @@ async def main():
         # ---------- I: home page
         ctx, pg = await new(br, 1); await pg.goto(B + '/'); await pg.wait_for_timeout(700)
         ok('I1 home tile with today\'s silhouette', await pg.evaluate("!!document.querySelector('#tile-cousin #cousin-pic path')") and await pg.evaluate("!document.querySelector('#tile-cousin .go').hidden"))
-        ok('I2 other tiles still work', await pg.evaluate("document.querySelectorAll('.grid .tile').length===5 && document.querySelectorAll('.grid .tile .art svg').length>=5"))
+        ok('I2 other tiles still work', await pg.evaluate("document.querySelectorAll('.grid .tile').length===6 && document.querySelectorAll('.grid .tile .art svg').length>=6"))
         ok('I3 home names no answer', TH[closest(q)]['name'] not in await pg.evaluate("document.getElementById('tile-cousin').innerText"))
         await pg.screenshot(path='shots/t-i-home.png', full_page=True)
         await pg.locator('#tile-cousin').click(); await pg.wait_for_timeout(500)

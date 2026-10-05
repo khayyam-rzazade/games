@@ -46,7 +46,7 @@ async def main():
             await pg.locator('.wordmark').click(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(400)
             r = await pg.evaluate("document.querySelector('#tile-hundred .result b').textContent")
             gap = abs(st['games']['100-of-us']['results']['2']['g'] - st['games']['100-of-us']['results']['2']['a'])
-            ok(f'100 of Us ({scheme}): home shows the result afterwards', r == ('Spot on' if gap == 0 else f'Off by {gap}') and await T(pg, 'today-count') == '1 of 5 played' and await T(pg, 'streak-n') == '1', r)
+            ok(f'100 of Us ({scheme}): home shows the result afterwards', r == ('Spot on' if gap == 0 else f'Off by {gap}') and await T(pg, 'today-count') == '1 of 6 played' and await T(pg, 'streak-n') == '1', r)
             ok(f'100 of Us ({scheme}): no errors', pg.errs == [], pg.errs); await ctx.close()
 
             # ---- Your Call

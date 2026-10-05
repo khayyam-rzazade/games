@@ -63,6 +63,7 @@
 [data-g="half"]    { --c: #B37312; --tint: #FBEED0; }
 [data-g="club"]    { --c: #BE3A82; --tint: #FBE2EE; }
 [data-g="piece"]   { --c: #238453; --tint: #DBF3E4; }
+[data-g="apart"]   { --c: #7A5034; --tint: #F1E7DC; }
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -85,6 +86,7 @@
   [data-g="half"]    { --c: #FFCB57; --tint: #231D17; }
   [data-g="club"]    { --c: #FF86BF; --tint: #24152A; }
   [data-g="piece"]   { --c: #63E6A0; --tint: #0F2222; }
+  [data-g="apart"]   { --c: #D9A983; --tint: #1B1511; }
 }
 
 /* ---------- base ---------- */
@@ -231,6 +233,9 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .grid[data-n="5"] .pitch { font-size: 0.93rem; }
 .grid[data-n="5"] .foot { flex-wrap: wrap; row-gap: 1px; }
 .grid[data-n="5"] .again { flex-basis: 100%; margin-left: 30px; font-size: 0.86rem; }
+/* six games: three by two on a wide screen and on a tablet, pairs on a phone */
+.grid[data-n="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid[data-n="6"] .art { aspect-ratio: 16 / 8; }
 .tile {
   background: var(--card);
   border-radius: var(--r);
@@ -333,6 +338,9 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .grid[data-n="5"] .pitch { font-size: 0.97rem; }
   .grid[data-n="5"] .foot { flex-wrap: nowrap; }
   .grid[data-n="5"] .again { flex-basis: auto; margin-left: 0; font-size: 0.9rem; }
+  .grid[data-n="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .grid[data-n="6"] .art { aspect-ratio: 16 / 10; }
+  .grid[data-n="6"] .foot { flex-wrap: wrap; row-gap: 2px; }
 }
 @media (max-width: 700px) {
   body { font-size: 1rem; }
@@ -358,6 +366,8 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .grid[data-n="5"] .tile:last-child .body { flex: 1; min-width: 0; padding: 8px 6px 6px 12px; }
   .grid[data-n="5"] .tile h3 { font-size: 1.16rem; }
   .grid[data-n="5"] .pitch { font-size: 0.85rem; }
+  .grid[data-n="6"] { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .grid[data-n="6"] .foot { flex-wrap: nowrap; }
   .tile { padding: 7px; border-radius: 22px; }
   .art { border-radius: 16px; }
   .tile .body { padding: 10px 7px 6px; }

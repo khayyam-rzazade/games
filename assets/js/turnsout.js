@@ -265,8 +265,13 @@
     { id: "the-club", key: "club", name: "The Club", href: "the-club/", start: "2026-10-04",
       pitch: "Work out the secret rule. Who gets in?",
       done: function (r) { return !!r && Array.isArray(r.c) && r.c.length === 5 && num(r.r) && r.r >= 0 && r.r <= 5; },
-      says: function (r) { return r.r + " of 5"; } }
+      says: function (r) { return r.r + " of 5"; } },
+    { id: "years-apart", key: "apart", name: "Years Apart", href: "years-apart/", start: "2026-10-05",
+      pitch: "Two real events, one in between. Where does it fall?",
+      done: function (r) { return !!r && num(r.g) && num(r.a) && num(r.y) && r.g >= 0 && r.g <= 1000 && r.y >= 0; },
+      says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } }
   ];
+  function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */
   function todayOf(G) { return Math.max(1, dayNumber(G.start)); }
 

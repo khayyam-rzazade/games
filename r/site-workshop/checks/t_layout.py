@@ -7,7 +7,7 @@ def ok(name, cond, info=''):
     res.append((name, bool(cond)))
     if not cond: print('FAIL ' + name + '  -> ' + str(info)[:420])
 SIZES = [(320, 568), (360, 560), (360, 640), (375, 553), (375, 667), (390, 664), (390, 844), (412, 915), (430, 932), (600, 900), (768, 1024), (1024, 768), (1280, 800), (1440, 900), (1920, 1080)]
-MUST_FIT = {'cousin', 'hundred', 'street', 'club'}  # Your Call has a paragraph to read: it may scroll on short screens
+MUST_FIT = {'cousin', 'hundred', 'street', 'club', 'apart'}  # Your Call has a paragraph to read: it may scroll on short screens
 PROBE = """() => { var over = []; document.querySelectorAll('main *, header *').forEach(e => { var r = e.getBoundingClientRect(); if (r.width > 0 && (r.right > innerWidth + 0.5 || r.left < -0.5) && getComputedStyle(e).position !== 'absolute' && !e.closest('.sr-only') && !e.classList.contains('sr-only')) over.push(e.tagName + '.' + e.className); });
   var bar = document.querySelector('.bar'), wm = document.querySelector('.wordmark').getBoundingClientRect(), tools = document.querySelector('.bar-tools').getBoundingClientRect();
   return { sh: document.documentElement.scrollHeight, ih: innerHeight, sw: document.documentElement.scrollWidth, iw: innerWidth, over: over.slice(0, 6), barOk: wm.right <= tools.left }; }"""
