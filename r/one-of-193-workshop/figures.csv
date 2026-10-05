@@ -1,0 +1,7 @@
+key,indicator,must_contain,unit,max_age
+pop,SP.POP.TOTL,"Population, total",people,6
+area,AG.SRF.TOTL.K2,Surface area,square kilometres,6
+life,SP.DYN.LE00.IN,Life expectancy at birth,years,6
+urban,SP.URB.TOTL.IN.ZS,Urban population,percent of people,6
+net,IT.NET.USER.ZS,Internet,percent of people,6
+forest,AG.LND.FRST.ZS,Forest area,percent of land,6

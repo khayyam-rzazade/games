@@ -107,56 +107,61 @@
   });
 })();
 
-/* The shelf of games: one row that moves sideways. Swipe it, scroll it with a trackpad, or press the round buttons
-   at its two ends. The button back shows once the row has moved; the button for more goes away at the last game.
+/* The shelves of games: "Today's games" and, under it, "Pass the phone" (the games for groups). Each is one row that
+   moves sideways. Swipe it, scroll it with a trackpad, or press the round buttons at its two ends. The button back
+   shows once the row has moved; the button for more goes away at the last game.
    It needs nothing from the rest of the page, so it works even if a game's file did not load. */
 (function () {
   "use strict";
-  var row = document.getElementById("shelf-row"), prev = document.getElementById("shelf-prev"), next = document.getElementById("shelf-next");
-  if (!row || !prev || !next) return;
   var calm = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   function px(v) { return parseFloat(v) || 0; }
-  function step() {                      // one press moves as many whole tiles as the row shows, at least one
-    var t = row.querySelector(".tile"), cs = window.getComputedStyle(row);
-    if (!t) return row.clientWidth;
-    var gap = px(cs.columnGap), w = t.getBoundingClientRect().width + gap;
-    var room = row.clientWidth - px(cs.paddingLeft) - px(cs.paddingRight) + gap;
-    return Math.max(1, Math.floor(room / w)) * w;
+  function shelf(rowId, prevId, nextId) {
+    var row = document.getElementById(rowId), prev = document.getElementById(prevId), next = document.getElementById(nextId);
+    if (!row || !prev || !next) return;
+    function step() {                      // one press moves as many whole tiles as the row shows, at least one
+      var t = row.querySelector(".tile"), cs = window.getComputedStyle(row);
+      if (!t) return row.clientWidth;
+      var gap = px(cs.columnGap), w = t.getBoundingClientRect().width + gap;
+      var room = row.clientWidth - px(cs.paddingLeft) - px(cs.paddingRight) + gap;
+      return Math.max(1, Math.floor(room / w)) * w;
+    }
+    function ends() {
+      var max = row.scrollWidth - row.clientWidth;
+      var atStart = row.scrollLeft <= 2, atEnd = row.scrollLeft >= max - 2;
+      var had = document.activeElement;
+      prev.classList.toggle("off", atStart);
+      next.classList.toggle("off", atEnd);
+      row.classList.toggle("more-l", !atStart);            // the soft fade at a cut edge (wide screens)
+      row.classList.toggle("more-r", !atEnd);
+      // a button that goes away while it has the focus hands it to the other one, so the keyboard never loses its place
+      if (had === prev && atStart && !atEnd) next.focus();
+      if (had === next && atEnd && !atStart) prev.focus();
+    }
+    function go(dir) {
+      try { row.scrollBy({ left: dir * step(), behavior: calm ? "auto" : "smooth" }); }
+      catch (e) { row.scrollLeft += dir * step(); }        // an old browser without scrollBy options
+    }
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    // the keyboard: a game that gets the focus while it is cut off at an edge is brought fully into view
+    row.addEventListener("focusin", function (e) {
+      var t = e.target && e.target.closest ? e.target.closest(".tile") : null;
+      if (!t) return;
+      var cs = window.getComputedStyle(row), r = row.getBoundingClientRect(), b = t.getBoundingClientRect();
+      var left = r.left + px(cs.paddingLeft), right = r.right - px(cs.paddingRight);
+      if (b.left >= left - 1 && b.right <= right + 1) return;
+      try { row.scrollTo({ left: row.scrollLeft + (b.left - left), behavior: calm ? "auto" : "smooth" }); }
+      catch (err) { row.scrollLeft += b.left - left; }
+    });
+    var queued = false;
+    row.addEventListener("scroll", function () {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(function () { queued = false; ends(); });
+    }, { passive: true });
+    window.addEventListener("resize", ends);
+    ends();
   }
-  function ends() {
-    var max = row.scrollWidth - row.clientWidth;
-    var atStart = row.scrollLeft <= 2, atEnd = row.scrollLeft >= max - 2;
-    var had = document.activeElement;
-    prev.classList.toggle("off", atStart);
-    next.classList.toggle("off", atEnd);
-    row.classList.toggle("more-l", !atStart);            // the soft fade at a cut edge (wide screens)
-    row.classList.toggle("more-r", !atEnd);
-    // a button that goes away while it has the focus hands it to the other one, so the keyboard never loses its place
-    if (had === prev && atStart && !atEnd) next.focus();
-    if (had === next && atEnd && !atStart) prev.focus();
-  }
-  function go(dir) {
-    try { row.scrollBy({ left: dir * step(), behavior: calm ? "auto" : "smooth" }); }
-    catch (e) { row.scrollLeft += dir * step(); }        // an old browser without scrollBy options
-  }
-  prev.addEventListener("click", function () { go(-1); });
-  next.addEventListener("click", function () { go(1); });
-  // the keyboard: a game that gets the focus while it is cut off at an edge is brought fully into view
-  row.addEventListener("focusin", function (e) {
-    var t = e.target && e.target.closest ? e.target.closest(".tile") : null;
-    if (!t) return;
-    var cs = window.getComputedStyle(row), r = row.getBoundingClientRect(), b = t.getBoundingClientRect();
-    var left = r.left + px(cs.paddingLeft), right = r.right - px(cs.paddingRight);
-    if (b.left >= left - 1 && b.right <= right + 1) return;
-    try { row.scrollTo({ left: row.scrollLeft + (b.left - left), behavior: calm ? "auto" : "smooth" }); }
-    catch (err) { row.scrollLeft += b.left - left; }
-  });
-  var queued = false;
-  row.addEventListener("scroll", function () {
-    if (queued) return;
-    queued = true;
-    window.requestAnimationFrame(function () { queued = false; ends(); });
-  }, { passive: true });
-  window.addEventListener("resize", ends);
-  ends();
+  shelf("shelf-row", "shelf-prev", "shelf-next");          // Today's games
+  shelf("shelf2-row", "shelf2-prev", "shelf2-next");       // Pass the phone
 })();

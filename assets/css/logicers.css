@@ -64,6 +64,7 @@
 [data-g="club"]    { --c: #BE3A82; --tint: #FBE2EE; }
 [data-g="piece"]   { --c: #238453; --tint: #DBF3E4; }
 [data-g="apart"]   { --c: #7A5034; --tint: #F1E7DC; }
+[data-g="o193"]    { --c: #166FA5; --tint: #DFEFFD; }       /* One of 193, the first game for groups: ocean blue */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -87,6 +88,7 @@
   [data-g="club"]    { --c: #FF86BF; --tint: #24152A; }
   [data-g="piece"]   { --c: #63E6A0; --tint: #0F2222; }
   [data-g="apart"]   { --c: #D9A983; --tint: #1B1511; }
+  [data-g="o193"]    { --c: #8FCCFA; --tint: #071926; }
 }
 
 /* ---------- base ---------- */
@@ -342,6 +344,25 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   }
 }
 
+/* ---------- home: the games for groups ("Pass the phone"), a second row under "Today's games" ---------- */
+.group-games { margin-top: 34px; }
+.sec-sub { margin: -10px 0 16px 4px; color: var(--soft); font-size: 0.97rem; }
+.art .dim { fill: var(--c); fill-opacity: .13; }
+.group-games .go .arrow { display: none; }               /* "2+ players" needs the room of the arrow */
+.group-games .go { padding: 0 20px; }
+.soon-tile { --c: var(--soft); --tint: transparent; background: transparent; box-shadow: none; border: 1.5px dashed color-mix(in srgb, var(--soft) 38%, transparent); }
+.soon-tile:active { transform: none; }
+.soon-tile .art { background: color-mix(in srgb, var(--soft) 8%, transparent); }
+.soon-tile .pitch { flex: 0 1 auto; }
+@media (hover: hover) {
+  .soon-tile:hover { transform: none; box-shadow: none; }
+}
+@media (prefers-color-scheme: dark) {
+  .soon-tile { background: transparent; box-shadow: none; }
+  .soon-tile .art { background: rgba(255, 255, 255, .03); }
+  .soon-tile .art > svg { filter: none; }
+}
+
 /* ---------- home: what is coming ---------- */
 .soons { margin-top: 44px; }
 .soon { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 14px 14px 24px; border-radius: 22px; border: 1.5px dashed var(--line); border-color: color-mix(in srgb, var(--soft) 38%, transparent); background: color-mix(in srgb, var(--card) 60%, transparent); }
@@ -383,6 +404,11 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .today-note { display: none; }
   .pips { margin-top: 10px; }
   .sec { font-size: 1.19rem; margin-bottom: 12px; }
+  .sec-sub { margin: -8px 0 12px 4px; font-size: 0.9rem; }
+  .group-games { margin-top: 24px; }
+  .group-games .shelf .go { padding: 0 11px; }              /* narrow tiles: a narrower Play button */
+  .group-games .shelf .foot { gap: 5px; flex-wrap: wrap; }
+  .group-games .mins { font-size: 0.72rem; }
   /* on a phone the row runs from edge to edge of the screen; two tiles and a part of the third show */
   .shelf { --gap: 12px; --tp: 7px; --ab: 40px; --tw: 150px; --tw: calc((100cqw - 2 * var(--gap)) / 2.2); }
   .shelf-row { margin-inline: calc(-1 * var(--pad)); padding-inline: var(--pad); scroll-padding-inline: var(--pad); }

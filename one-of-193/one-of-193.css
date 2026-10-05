@@ -1,0 +1,167 @@
+/* One of 193: a group game for one phone. Its colour (ocean blue) is set in logicers.css ([data-g="o193"]).
+   Three views (start, play, end) and the window for guessing. Everything fits a 320 by 568 phone without scrolling;
+   only the list of countries in the guessing window scrolls inside itself. */
+
+.o-view { margin-top: 6px; }
+
+/* ---------- the start ---------- */
+.o-title { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 7.4vw, 2.2rem); line-height: 1.04; letter-spacing: -0.035em; margin-top: 6px; text-wrap: balance; }
+.o-lede { margin-top: 10px; color: var(--soft); font-size: 1.02rem; line-height: 1.4; }
+.o-steps { margin: 12px 0 0; padding: 0 0 0 1.25em; font-size: 0.97rem; line-height: 1.35; }
+.o-steps li + li { margin-top: 6px; }
+.o-friend { margin: 14px 0 0; padding: 10px 14px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); line-height: 1.3; }
+.o-small { margin-top: 10px; color: var(--soft); font-size: 0.88rem; line-height: 1.35; }
+#v-start .actions { margin-top: 16px; }
+
+/* ---------- playing ---------- */
+.o-status { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 2px; }
+.o-left, .o-asked { display: flex; align-items: baseline; gap: 8px; margin: 0; }
+.o-asked { flex-direction: column; align-items: flex-end; gap: 0; text-align: right; appearance: none; border: 0; background: none; padding: 2px 0 0 8px; color: inherit; font: inherit; cursor: pointer; border-radius: 10px; -webkit-tap-highlight-color: transparent; }
+.o-see { display: block; margin-top: 1px; font-size: 0.8rem; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in srgb, var(--soft) 45%, transparent); }
+.o-num { font-family: var(--display); font-weight: 800; font-size: 3.1rem; line-height: 0.95; letter-spacing: -0.045em; color: var(--c); font-variant-numeric: tabular-nums; min-width: 2.2ch; }
+.o-small-num { font-size: 1.7rem; color: var(--ink); min-width: 0; }
+.o-cap { color: var(--soft); font-weight: 600; font-size: 0.86rem; line-height: 1.15; max-width: 7.5em; }
+.o-last { margin-top: 8px; min-height: 2.9em; padding: 8px 12px; border-radius: 14px; background: var(--card); box-shadow: var(--shadow); font-size: 0.95rem; line-height: 1.3; font-weight: 500; }
+.o-ans { display: inline-block; padding: 0 .45em; border-radius: 7px; font-weight: 800; }
+.o-ans.yes { background: var(--c); color: var(--on-c); }
+.o-ans.no { background: var(--bg); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+.o-pass { display: block; color: var(--soft); font-size: 0.86rem; font-weight: 600; }
+
+.o-tabs { display: flex; gap: 5px; margin-top: 10px; }
+.o-tab { appearance: none; border: 0; flex: 1 1 auto; min-width: 0; min-height: 36px; padding: 0 6px; border-radius: 999px; background: var(--card); color: var(--ink); font-weight: 700; font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: var(--shadow); white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+.o-tab[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+
+.o-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; align-content: start; min-height: calc(4 * 50px + 3 * 6px); }
+.o-q { appearance: none; border: 0; position: relative; min-height: 50px; padding: 6px 10px; border-radius: 14px; background: var(--card); color: var(--ink); text-align: left; font-weight: 600; font-size: 0.9rem; line-height: 1.18; cursor: pointer; box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent; display: flex; align-items: center; }
+.o-q:active { transform: scale(0.98); }
+.o-q.asked { cursor: default; padding-right: 34px; }
+.o-q.asked.yes { background: var(--c); color: var(--on-c); box-shadow: none; }
+.o-q.asked.no { background: transparent; color: var(--soft); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--soft) 40%, transparent); }
+.o-q.asked:active { transform: none; }
+.o-a { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); font-size: 0.66rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.o-play-actions { margin-top: 10px; }
+
+/* ---------- the end ---------- */
+.o-reveal { padding: 14px 18px 15px; margin-top: 4px; }
+.o-kicker { font-weight: 700; font-size: 0.9rem; opacity: .9; }
+.o-country { font-family: var(--display); font-weight: 800; font-size: 2.15rem; line-height: 1.02; letter-spacing: -0.035em; margin-top: 2px; text-wrap: balance; }
+.o-country.long { font-size: 1.75rem; }
+.o-country.longer { font-size: 1.5rem; }
+.o-alt { font-family: var(--text); font-size: 0.9rem; font-weight: 600; letter-spacing: 0; opacity: .88; white-space: nowrap; }
+#dlg-stop .actions { flex-wrap: wrap; }
+#dlg-stop .actions .btn { flex: 1 1 auto; }
+.o-score { margin-top: 6px; font-weight: 600; font-size: 1rem; line-height: 1.25; }
+.o-min { margin: 10px 2px 0; font-weight: 700; font-size: 0.92rem; line-height: 1.25; }
+/* the questions that would have been enough: one line of text that wraps, each question with its answer */
+.o-path { list-style: none; margin: 4px 2px 0; padding: 0; font-size: 0.86rem; line-height: 1.45; color: var(--soft); }
+.o-chip { display: inline; font-weight: 600; }
+.o-chip b { color: var(--c); margin-right: 1px; }
+.o-chip:not(:last-child)::after { content: " · "; color: var(--soft); font-weight: 400; }
+/* three true facts in one card */
+.o-facts { list-style: none; margin: 10px 0 0; padding: 2px 12px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
+.o-fact { padding: 7px 0 8px; font-size: 0.9rem; line-height: 1.3; }
+.o-fact + .o-fact { border-top: 1px solid var(--line); }
+.o-fact-t { font-weight: 500; }
+.o-src { color: var(--soft); font-size: 0.78rem; white-space: nowrap; }
+.o-src a { color: inherit; text-underline-offset: 2px; }
+#v-end .actions { margin-top: 10px; }
+.o-end-small { margin-top: 8px; }
+.o-link { appearance: none; border: 0; background: none; padding: 4px 2px; color: var(--soft); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 6px; }
+
+/* ---------- the window for guessing: regions, then the list (it scrolls inside itself) ---------- */
+dialog.o-guess { height: min(100% - 24px, 44rem); }
+.o-sheet { display: flex; flex-direction: column; height: 100%; padding: 20px 18px 12px; }
+.o-guess-note { margin-top: 4px; }
+.o-regions { flex: none; margin-top: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 5px; }
+.o-regions .o-tab { padding: 0 6px; font-size: 0.86rem; min-height: 34px; box-shadow: inset 0 0 0 1px var(--line); }
+.o-list { list-style: none; margin: 10px -4px 0; padding: 2px 4px; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: grid; grid-template-columns: 1fr; gap: 4px; align-content: start; }
+.o-c { appearance: none; border: 0; width: 100%; min-height: 40px; padding: 7px 12px; border-radius: 12px; background: var(--bg); color: var(--ink); text-align: left; font-weight: 600; font-size: 0.95rem; line-height: 1.2; cursor: pointer; display: flex; align-items: center; flex-wrap: wrap; gap: 0 8px; -webkit-tap-highlight-color: transparent; }
+.o-c-a { color: var(--soft); font-size: 0.8rem; font-weight: 500; }
+.o-c.on { background: var(--c); color: var(--on-c); }
+.o-c.on .o-c-a { color: inherit; opacity: .85; }
+.o-c.wrong { opacity: .55; cursor: default; }
+.o-c.wrong .o-c-n, .o-c.wrong .o-c-a { text-decoration: line-through; }   /* the name is struck through, not "not it" */
+.o-c-x { margin-left: auto; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.o-guess-actions { flex: none; margin-top: 10px; }
+.o-guess-actions .btn { min-height: 52px; }
+.o-giveup { flex: none; margin-top: 4px; text-align: center; font-size: 0.88rem; }
+@media (min-width: 380px) {
+  .o-list { grid-template-columns: 1fr 1fr; }
+  .o-c { font-size: 0.9rem; }
+}
+
+/* ---------- the answers so far ---------- */
+.sheet .o-trail { list-style: none; margin: 12px 0 0; padding: 0; }      /* .sheet: stronger than the frame's ".sheet ol" */
+.sheet .o-step { margin-top: 0; }
+.o-step { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.95rem; line-height: 1.25; }
+.o-step-q { font-weight: 600; }
+.o-step-n { grid-column: 1 / -1; color: var(--soft); font-size: 0.84rem; }
+.o-stats { grid-template-columns: repeat(3, 1fr); }
+.o-sources { margin: 8px 0 0; padding-left: 1.1em; color: var(--soft); font-size: 0.88rem; line-height: 1.35; }
+.o-sources li { margin-top: 4px; }
+.o-sources a { color: inherit; text-underline-offset: 2px; }
+
+/* ---------- dark ---------- */
+@media (prefers-color-scheme: dark) {
+  .o-friend, .o-last, .o-q, .o-tab, .o-facts { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .o-tab[aria-selected="true"] { background: var(--ink); color: #0A0C1A; box-shadow: none; }
+  .o-q.asked.yes { background: var(--c); color: #0A0C1A; box-shadow: 0 0 18px color-mix(in srgb, var(--c) 30%, transparent); }
+  .o-q.asked.no { background: transparent; }
+  .o-ans.yes { color: #0A0C1A; }
+  .o-ans.no { background: rgba(255, 255, 255, .08); }
+  .o-c { background: rgba(255, 255, 255, .06); }
+  .o-c.on { background: var(--c); color: #0A0C1A; }
+}
+
+/* ---------- small and short screens: a little tighter, so that nothing scrolls ---------- */
+@media (max-height: 37.5rem) {
+  .o-title { font-size: 1.5rem; }
+  .o-lede { font-size: 0.95rem; margin-top: 8px; }
+  .o-steps { font-size: 0.9rem; margin-top: 8px; }
+  .o-num { font-size: 2.6rem; }
+  .o-small-num { font-size: 1.5rem; }
+  .o-last { min-height: 2.75em; padding: 6px 11px; font-size: 0.9rem; margin-top: 6px; }
+  .o-tabs { margin-top: 8px; }
+  .o-tab { min-height: 34px; font-size: 0.84rem; }
+  .o-menu { gap: 5px; margin-top: 6px; min-height: calc(4 * 46px + 3 * 5px); }
+  .o-q { min-height: 46px; font-size: 0.86rem; }
+  .o-play-actions { margin-top: 8px; }
+  .o-reveal { padding: 10px 14px 11px; }
+  .o-country { font-size: 1.8rem; }
+  .o-country.long { font-size: 1.5rem; }
+  .o-country.longer { font-size: 1.3rem; }
+  .o-score { font-size: 0.92rem; margin-top: 4px; }
+  .o-min { margin-top: 7px; font-size: 0.86rem; }
+  .o-path { font-size: 0.8rem; line-height: 1.4; }
+  .o-facts { margin-top: 7px; padding: 1px 10px; }
+  .o-fact { padding: 5px 0 6px; font-size: 0.82rem; line-height: 1.25; }
+  .o-src { font-size: 0.72rem; }
+  #v-end .actions { margin-top: 8px; }
+  #v-end .actions .btn { min-height: 48px; }
+  .o-end-small { margin-top: 4px; font-size: 0.8rem; }
+}
+@media (min-width: 56rem) {
+  .o-title { font-size: 2.4rem; }
+  .o-num { font-size: 3.4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .o-q:active { transform: none; }
+}
+
+/* the end must fit without scrolling whatever the country: if it does not, the script steps down (fit1 to fit3) */
+body.fit1 .o-reveal { padding: 8px 14px 9px; }
+body.fit1 .o-country { font-size: 1.45rem; }
+body.fit1 .o-score { font-size: 0.86rem; margin-top: 2px; }
+body.fit1 .o-min { margin-top: 5px; font-size: 0.82rem; }
+body.fit1 .o-path { font-size: 0.76rem; line-height: 1.35; }
+body.fit1 .o-facts { margin-top: 5px; }
+body.fit1 .o-fact { padding: 4px 0 5px; font-size: 0.78rem; line-height: 1.22; }
+body.fit1 .o-src { font-size: 0.7rem; }
+body.fit1 #v-end .actions { margin-top: 6px; }
+body.fit1 #v-end .actions .btn { min-height: 44px; }
+body.fit1 .o-end-small { margin-top: 2px; font-size: 0.76rem; }
+body.fit2 .meta { display: none; }
+body.fit2 .o-kicker { display: none; }
+body.fit2 .o-country { font-size: 1.3rem; }
+body.fit3 .o-src { display: none; }
+body.fit3 .o-fact { font-size: 0.74rem; }

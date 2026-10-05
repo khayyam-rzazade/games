@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One of 193: a game of yes-or-no questions about countries, for groups | Logicers</title>
+<link rel="canonical" href="https://logicers.com/one-of-193/">
+<meta name="description" content="A game for one phone and one to eight players. The phone hides one of the 193 UN member states. Ask it yes-or-no questions, see how many countries are still possible, and find the country in as few questions as you can.">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="One of 193">
+<meta property="og:description" content="The phone hides one of 193 countries. Ask it yes or no, and find it in as few questions as you can. For one phone and a group.">
+<meta property="og:url" content="https://logicers.com/one-of-193/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#DFEFFD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=0e5029f6b3">
+<link rel="stylesheet" href="one-of-193.css?v=c00f2a8716">
+</head>
+<body class="game" data-g="o193">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="best-chip" type="button" data-open="dlg-best" aria-label="Your table's best result">Best <b id="best-n">–</b></button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b>One of 193</b> <span id="mode">Pass the phone</span></p>
+  <p class="notice" id="notice" hidden></p>
+
+  <!-- the start: what to do, in ten seconds -->
+  <section class="o-view" id="v-start" aria-labelledby="start-title">
+    <h1 class="o-title" id="start-title">The phone hides one of the 193 countries.</h1>
+    <p class="o-lede">Ask it yes-or-no questions. After each answer it tells you how many countries are still possible. Find the country in as few questions as you can.</p>
+    <ol class="o-steps">
+      <li>Whoever holds the phone picks a question, reads out the answer, and passes the phone on.</li>
+      <li>When you think you know, guess. A wrong guess costs two questions.</li>
+    </ol>
+    <p class="friend o-friend" id="friend" hidden></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-start" type="button">Hide a country</button>
+    </div>
+    <p class="o-small" id="start-small">1 to 8 players · about 3 minutes · no map, no typing</p>
+  </section>
+
+  <!-- playing: the count, the last answer, the menu -->
+  <section class="o-view" id="v-play" hidden aria-label="Ask a question">
+    <div class="o-status">
+      <p class="o-left"><span class="o-num" id="left-n">193</span><span class="o-cap" id="left-cap">countries still possible</span></p>
+      <button class="o-asked" id="btn-answers" type="button" data-open="dlg-answers"><span class="o-num o-small-num" id="asked-n">0</span><span class="o-cap"><span id="asked-cap">questions</span><span class="o-see">see answers</span></span></button>
+    </div>
+    <p class="o-last" id="last" role="status" aria-live="polite">Pick a question from the menu.</p>
+    <div class="o-tabs" id="tabs" role="tablist" aria-label="Kinds of questions"></div>
+    <div class="o-menu" id="menu" role="tabpanel" aria-labelledby="tab-where"></div>
+    <div class="actions o-play-actions">
+      <button class="btn solid" id="btn-guess" type="button">Guess the country</button>
+    </div>
+  </section>
+
+  <!-- the end: the country, how few questions would have been enough, three true facts -->
+  <section class="o-view" id="v-end" hidden aria-labelledby="end-name">
+    <div class="panel revealed o-reveal" id="reveal">
+      <p class="o-kicker" id="end-kicker">It was</p>
+      <h2 class="o-country" id="end-name"></h2>
+      <p class="o-score" id="end-score"></p>
+    </div>
+    <p class="o-min" id="end-min"></p>
+    <ul class="o-path" id="end-path" aria-label="The questions that would have been enough"></ul>
+    <ul class="o-facts" id="facts" aria-label="Three true facts"></ul>
+    <div class="actions">
+      <button class="btn solid" id="btn-again" type="button">Play again</button>
+      <button class="btn ghost" id="share" type="button">Share</button>
+    </div>
+    <p class="o-small o-end-small"><span id="end-best"></span> <button class="o-link" type="button" data-open="dlg-answers">Your questions</button></p>
+  </section>
+</main>
+
+<dialog id="dlg-guess" class="o-guess" aria-labelledby="guess-title">
+  <div class="sheet o-sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="guess-title">Which country is it?</h2>
+    <p class="quiet o-guess-note">A wrong guess costs two questions.</p>
+    <div class="o-tabs o-regions" id="regions" role="tablist" aria-label="Regions"></div>
+    <ul class="o-list" id="list" role="listbox" aria-labelledby="guess-title"></ul>
+    <div class="actions o-guess-actions">
+      <button class="btn solid" id="btn-confirm" type="button" disabled>Pick a country</button>
+    </div>
+    <p class="o-giveup"><button class="o-link" type="button" id="btn-stop">Give up and show the country</button></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-answers" aria-labelledby="answers-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="answers-title">Your answers</h2>
+    <p class="quiet" id="answers-empty">No questions asked yet.</p>
+    <ol class="o-trail" id="trail"></ol>
+  </div>
+</dialog>
+
+<dialog id="dlg-stop" aria-labelledby="stop-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="stop-title">Give up?</h2>
+    <p class="quiet">The phone shows the country, and this round does not count for your best.</p>
+    <div class="actions">
+      <button class="btn solid" id="btn-giveup" type="button">Show the country</button>
+      <button class="btn ghost" type="button" data-close>Keep playing</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-best" aria-labelledby="best-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="best-title">Your table's best</h2>
+    <div class="stats o-stats">
+      <div class="stat"><b id="st-best">–</b><span>fewest questions</span></div>
+      <div class="stat"><b id="st-found">0</b><span>countries found</span></div>
+      <div class="stat"><b id="st-rounds">0</b><span>rounds played</span></div>
+    </div>
+    <p class="quiet">Kept only in this browser. A group game has no streak and no album: play it whenever you are together.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>The phone hides one of the 193 member states of the United Nations.</li>
+      <li>Take turns. Whoever holds the phone picks a question from the menu, reads out the answer and passes the phone on.</li>
+      <li>After each answer you see how many countries are still possible. A good question cuts that number by half.</li>
+      <li>Guess when you think you know: pick the country from the list. A wrong guess costs two questions.</li>
+    </ol>
+    <p class="quiet">Now and then two countries give the same answer to every question in the menu. Then only a guess tells them apart.</p>
+    <p>At the end you see the country, three true facts about it, and how few questions would have been enough. Play again as often as you like; every round hides a new country.</p>
+    <h3>Where the answers come from</h3>
+    <p class="quiet">The figures are the World Bank's open data (World Development Indicators), under the CC BY 4.0 licence. Each country's latest figure is used, at most six years old, and the year is shown with every fact. "High income" is the World Bank's income group. The World Bank does not endorse this site.</p>
+    <p class="quiet">The regions are the UN's statistical regions (M49). Every list was checked on two websites:</p>
+    <ul class="o-sources" id="help-sources"></ul>
+    <p class="quiet">Only each country's own land counts, not its overseas territories: the United Kingdom has no Mediterranean coast here, though Gibraltar has. Questions about coasts on the oceans are not in the menu: the sources do not agree on them.</p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="group">No login, no tracking, no cookies. Your table's best result is kept only in this browser.</p>
+    <h3>Contact</h3>
+    <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share your round</h2>
+    <p class="quiet">Send the link along with the picture: it hides the same country for your friends' table.</p>
+    <img class="shot" id="share-img" alt="Your round as a picture: how many countries were still possible after each question. It does not name the country.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="one-of-193.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="../data/one-of-193.js"></script>
+<script src="../assets/js/turnsout.js?v=92c9507311"></script>
+<script src="one-of-193.js?v=45c2af42c4"></script>
+</body>
+</html>

@@ -91,3 +91,24 @@ def art_apart():
     s.append('<rect class="q" x="146" y="142" width="104" height="38" rx="8"/>')
     s.append('<rect class="mute" x="162" y="156" width="72" height="9" rx="4.5"/>')
     return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'
+
+
+def art_one():
+    """One of 193: 193 dots. Most are ruled out (faint), some are still possible, one is the hidden country."""
+    import random
+    rnd = random.Random(193)
+    cols, rows = 20, 10
+    still = set(rnd.sample(range(193), 30))
+    hidden = 87
+    still.add(hidden)
+    s = []
+    for k in range(193):
+        r, c = divmod(k, cols)
+        x = 37 + c * 13.2; y = 39 + r * 13.6
+        if k == hidden:
+            continue
+        s.append(f'<circle class="{"mute" if k in still else "dim"}" cx="{n(x)}" cy="{n(y)}" r="{4.6 if k in still else 3.6}"/>')
+    r, c = divmod(hidden, cols)
+    x = 37 + c * 13.2; y = 39 + r * 13.6
+    s.append(f'<circle class="ring" cx="{n(x)}" cy="{n(y)}" r="10.5" fill="none" stroke-width="3"/><circle class="fg" cx="{n(x)}" cy="{n(y)}" r="6"/>')
+    return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'

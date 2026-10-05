@@ -1,0 +1,11 @@
+id,name,source1,url1,source2,url2
+landlocked,Landlocked,Wikipedia,https://en.wikipedia.org/wiki/Landlocked_country,WorldAtlas,https://www.worldatlas.com/articles/landlocked-countries-of-the-world.html
+island,Island country,Wikipedia,https://en.wikipedia.org/wiki/List_of_island_countries,Nations Online,https://www.nationsonline.org/oneworld/island-countries.htm
+med,Coast on the Mediterranean,Wikipedia,https://en.wikipedia.org/wiki/Mediterranean_Sea,WorldAtlas,https://www.worldatlas.com/geography/mediterranean-countries.html
+equator,The equator crosses its land,Wikipedia,https://en.wikipedia.org/wiki/Equator,WorldAtlas,https://www.worldatlas.com/articles/countries-on-the-equator.html
+china,Shares a land border with China,Wikipedia,https://en.wikipedia.org/wiki/Borders_of_China,WorldAtlas,https://www.worldatlas.com/articles/what-countries-border-china.html
+russia,Shares a land border with Russia,Wikipedia,https://en.wikipedia.org/wiki/Borders_of_Russia,WorldAtlas,https://www.worldatlas.com/articles/what-countries-border-russia.html
+left,Drives on the left,Wikipedia,https://en.wikipedia.org/wiki/Left-_and_right-hand_traffic,WorldAtlas,https://www.worldatlas.com/articles/list-of-countries-who-drive-on-the-left.html
+euro,Uses the euro,European Commission,https://economy-finance.ec.europa.eu/euro/what-euro-area_en,Wikipedia,https://en.wikipedia.org/wiki/Eurozone
+regions,UN regions (M49),UN Statistics Division (M49),https://unstats.un.org/unsd/methodology/m49,Wikipedia,https://en.wikipedia.org/wiki/List_of_countries_and_territories_by_the_United_Nations_geoscheme
+members,Member states of the United Nations,United Nations,https://www.un.org/en/about-us/member-states,Wikipedia,https://en.wikipedia.org/wiki/Member_states_of_the_United_Nations

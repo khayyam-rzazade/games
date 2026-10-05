@@ -1,0 +1,569 @@
+ONE OF 193: WHAT THE SEARCH FOUND (5 October 2026, before anything was designed)
+=============================================================================
+Three helpers searched in parallel, 12 web searches each (app stores; the web and directories of daily games;
+board and card games with BoardGameGeek). Claude then made 10 searches of its own (follow-ups and names).
+Their reports follow unchanged. Claude's follow-ups and the verdict are at the end.
+
+
+####################################################################################################
+# helper1_appstores
+####################################################################################################
+
+# Helper 1: App stores channel. Does "Find the Country" already exist?
+
+Checked on 5 October 2026. Channel: Apple App Store, Google Play, and app listing/review sites (plus a few non-store pages that the searches returned, kept separate below).
+
+Note on method: pages were read through a fetch tool that summarises each page. Short quotes are as that tool returned them. "No count mentioned" means the listing does not mention one. It does not prove the app has none.
+
+---
+
+## 1. Queries run (12 of 12 used: 10 standard, 2 extended)
+
+| # | Query | Mode / filter | Used |
+|---|---|---|---|
+| 1 | guess the country app ask yes or no questions find the hidden country | standard, no filter | 1 of 12 |
+| 2 | 20 questions geography game you ask the questions app countries | standard, apps.apple.com + play.google.com | 2 of 12 |
+| 3 | "guess who" countries flags app two players ask questions eliminate | standard, no filter | 3 of 12 |
+| 4 | "mystery country" game app clues population area guess | standard, no filter | 4 of 12 |
+| 5 | 20 questions app AI thinks of a secret you ask yes no questions categories countries | standard, apps.apple.com + play.google.com | 5 of 12 |
+| 6 | guess the secret country by asking questions continent landlocked population game | standard, apps.apple.com + play.google.com | 6 of 12 |
+| 7 | "Find the Country" game app questions | standard, apps.apple.com + play.google.com | 7 of 12 |
+| 8 | country guessing game "is it in Europe" yes no questions app iPhone Android | standard, no filter | 8 of 12 |
+| 9 | guess country app ask questions "countries remaining" OR "possible countries" OR "countries left" elimination | standard, no filter | 9 of 12 |
+| 10 | party game app one phone group geography guess the country together questions family game night | standard, apps.apple.com + play.google.com | 10 of 12 |
+| 11 | app secretly picks a country and players ask it yes or no questions (continent, population, landlocked) to deduce which country | EXTENDED, no filter | 11 of 12 |
+| 12 | "Guess Who" style countries app play against computer ask questions about the country flip down eliminate geography | EXTENDED, no filter | 12 of 12 |
+
+---
+
+## 2. Relevant apps found
+
+### A. Reverse games (the app guesses the country YOU think of)
+
+**1. Guess Countries**
+- Store: Apple App Store. Developer: Mikolaj Adamowicz.
+- Addresses as found: https://apps.apple.com/app/id6470137142 , https://apps.apple.com/mx/app/guess-countries/id6470137142 . Read via listing site: https://mergeek.com/latest/Q8LDRAke8V7mp40P (also seen, not opened: https://mergeek.com/free/apps/37y9Pm5oQvA4wZjG)
+- How it plays: the PLAYER hides a country in their head. The APP (a genie) asks the questions. The player answers Yes / No / I don't know, by tapping or by voice. Covers "193 countries". Eliminated flags vanish from a spinning globe, so there is a visual sense of what's left, but the listing mentions no number. Solo.
+- Verdict: **CLOSE (reverse).** Same idea of narrowing down by elimination, but the roles are flipped: the app asks and the player hides.
+- Gap: I read the mergeek description, not the Apple page itself.
+
+**2. Wind of Earth**
+- Store: Apple App Store. Developer: Mikolaj Adamowicz (same developer as Guess Countries).
+- Addresses as found: https://apps.apple.com/us/app/id1498351325 (opened). A second listing, https://apps.apple.com/us/app/id1498348654 , appeared in search 1. I did not open it.
+- How it plays: the PLAYER hides a country. The APP asks yes/no questions. The player answers Yes / No / I don't know. Uses real data: "Wikipedia (wikipedia.com), WHO and UN statistics". Eliminated countries are shown on a map. Solo. According to the page summary, there is no mode where the player asks the app.
+- Verdict: **CLOSE (reverse).** This is the nearest cousin: real statistics, about 200 countries, and elimination shown visually. But the app asks and the player answers.
+
+### B. 20-questions apps where the PLAYER asks the device (general, not country-specific)
+
+**3. 2Q: 20 Questions: Word Trivia Game**
+- Store: Apple App Store. Developer: RoxyKovu LLC.
+- Address as found: https://apps.apple.com/us/app/2q-20-questions/id6746292005
+- How it plays: the APP picks a secret word from a category the player chooses. PLAYERS ask yes/no questions, typed or spoken. An AI ("Mosey") answers on the device and "looks the item up on Wikipedia" when needed. Modes: solo, pass-and-play, group on Apple TV, and iMessage. It has 13 categories with no geography/countries one; "Places" is mentioned only in the version history. No count of remaining candidates is mentioned.
+- Verdict: **CLOSE.** Same direction (players ask the device) and it supports groups. But questions are typed freely, an AI answers rather than checked data, there is no country set, and there is no count.
+
+**4. AI 20 Questions**
+- Store: Google Play. Developer: BLUETAG.
+- Address as found: https://play.google.com/store/apps/details?id=com.bluetag.lateral_thinking_puzzle&hl=en_ZA
+- How it plays: the AI picks the answer. The PLAYER types yes/no questions ("Ask the AI questions that can be answered with Yes or No") and has 20 questions. Topics include "Places & Landmarks". Solo, plus multiplayer with friends. No count mentioned.
+- Verdict: **CLOSE.** Players ask the device, and places are in scope. But questions are typed freely to an AI, there is no country menu or checked data, and no count.
+
+**5. Guessio: 20 Questions Game**
+- Store: Google Play. Developer: Wize Games.
+- Address as found: https://play.google.com/store/apps/details?id=com.guessio.app&hl=en_US
+- How it plays: "Guessio thinks of a secret object (Person, Place, or Thing)". The PLAYER types natural-language yes/no questions and the AI answers. Solo. Subscription unlocks all categories. No count mentioned.
+- Verdict: **CLOSE.** Same reasons as no. 4.
+
+**6. Guesso - AI Guessing Game**
+- Store: Google Play. Developer: Netabis.
+- Address as found: https://play.google.com/store/apps/details?id=com.netabis.guesso
+- How it plays: the APP sets one daily mystery. The PLAYER asks yes/no questions through an AI chat, typed, with a maximum of 20. Solo, with streaks. The listing names no categories. No count mentioned.
+- Verdict: **CLOSE (weak).** A generic daily 20-questions game answered by an AI. Nothing country-specific is shown.
+
+**7. 20 Questions: Guess & Win**
+- Store: Apple App Store. Developer: Ben Ryan.
+- Address as found: https://apps.apple.com/au/app/20-questions-guess-win/id6746064533
+- How it plays: in solo mode the AI picks from a set list (animals, objects, vegetables) and the player types questions. In multiplayer, a friend picks, using a room code. No geography.
+- Verdict: **DIFFERENT.** Generic 20 questions with no places or countries.
+
+**8. Twenty Questions Now**
+- Store: Apple App Store. Developer: Amol Srivastava (seller: Now Studio LLC).
+- Address as found: https://apps.apple.com/us/app/twenty-questions-now/id6757252904
+- How it plays: a human "Host keeps the secret on their device" and answers the others. A TV (via AirPlay) shows "the question tally, the category, and helpful hints". It is a party/group game with the pitch "Stop passing a phone around". Categories are "Animal, Vegetable, or Mineral and beyond", with no geography mentioned. Not based on real data.
+- Verdict: **DIFFERENT.** A human answers, not the device. It matters only as a group-party format.
+
+**9. 20 Questions · Mind Reader**
+- Store: Apple App Store. Developer: Neagu Robert PFA.
+- Address as found: https://apps.apple.com/no/app/20-questions-mind-reader/id6477538210 (also https://apps.apple.com/ly/app/20-questions-mind-reader/id6477538210)
+- How it plays: the PLAYER thinks of something and the APP asks yes/no questions to guess it. Categories include animals, sport and movies, with no geography. Solo.
+- Verdict: **DIFFERENT.** Reverse direction and no countries.
+
+**Could not check (page returned 404):**
+- 20Questions.AI, Apple: https://apps.apple.com/kn/app/20questions-ai/id6477392304
+- Twenty Questions - AI Powered, Google Play: https://play.google.com/store/apps/details?id=com.brainxsoft.twentyquestions&hl=en_IN
+
+### C. The app hides a country and the player GUESSES countries, getting hints or feedback
+
+**10. Country Quiz: Geography Guess**
+- Store: Google Play (also on Apple). Developer: Motecso OG.
+- Addresses as found: https://play.google.com/store/apps/details?id=com.motecso.stately&hl=en_US (opened). Apple listings seen but not opened: https://apps.apple.com/tt/app/country-quiz-geography-guess/id1629212691 , https://apps.apple.com/ca/app/country-quiz-geography-guess/id1629212691
+- How it plays: the APP picks the country. The player works from "continent, population, area and CO2 emissions" and can "Unlock a hint or repeat the attempt". Described as "In the style of 'Wordle'", with limited attempts. Real data. Solo (daily mode and adventure mode). The listing does not say whether guesses are typed or picked. No count mentioned.
+- Verdict: **CLOSE.** It is a real-data hidden-country game with attribute clues and hints. But the player guesses countries rather than asking a menu of questions. The exact feedback loop is not clear from the listing.
+
+**11. MapGame!**
+- Store: Apple App Store. Developer: Minas Giannekas.
+- Addresses as found: https://apps.apple.com/app/id6468603035 (opened), https://apps.apple.com/us/app/mapgame/id6468603035 . Website seen in search 12, not opened: https://mapgame.net/ ("MapGame - Guess the hidden country")
+- How it plays: the APP hides a country and the player guesses on a map. "Every wrong guess unlocks another hint": geography, flag colours, capital. Modes: Today's Game, Ranked and Practice. Solo with result sharing. Real data. No count mentioned.
+- Verdict: **CLOSE (hint-unlock relative).** The player does not choose which hint to get and does not ask questions. Hints arrive as a penalty for wrong guesses.
+
+**12. Guess_The_Country**
+- Store: Apple App Store. Developer: Bader Al-Zaid Trading Establishment.
+- Address as found: https://apps.apple.com/sa/app/id6748545179
+- How it plays: the APP picks from "over 190 countries". The player gets hints, including "Direction, region, and facts", and types guesses with "limited attempts" and points. Three difficulty levels. Solo. No count mentioned.
+- Verdict: **CLOSE (weak, hint relative).** No questions, and answers are typed.
+
+**13. Worldle - Guess The Country!**
+- Store: Apple App Store. Developer: Teuteuf Games.
+- Address as found: https://apps.apple.com/jm/app/worldle-guess-the-country/id6505002321
+- How it plays: the app shows a country's shape. The player types up to 6 guesses and gets direction, distance and proximity feedback. Bonus rounds cover population, area, currency and similar. Solo daily game. No count.
+- Verdict: **DIFFERENT.** It belongs to the distance-feedback family and has no questions.
+
+**14. Worldle - Geography Guess**
+- Store: Google Play. Developer: jigg.dev (Jesús Ignacio García García).
+- Address as found: https://play.google.com/store/apps/details?id=com.jiggdev.countryguess&hl=en_GB
+- How it plays: the same as no. 13 (typed guesses with distance and direction feedback, 6 tries, solo).
+- Verdict: **DIFFERENT.**
+
+**15. Globle - Guess hidden Country**
+- Store: Apple App Store (read via the AppGoblin listing site). Developer: Quynh Dau.
+- Address as found: https://appgoblin.info/apps/6742774774
+- How it plays: the APP picks a daily or practice country. The player types guesses and gets "Hotter colors = closer to the answer", plus distance. Solo.
+- Verdict: **DIFFERENT.** Distance feedback with no questions.
+- Other Globle store listings seen, not opened: https://play.google.com/store/apps/details?id=com.globle.app214867&hl=en_US , https://play.google.com/store/apps/details?id=com.globlewordle.game&hl=en_US
+
+### D. Name clash
+
+**16. Find The Country**
+- Store: Apple App Store. Developer: GV Software Solutions Limited.
+- Address as found: https://apps.apple.com/us/app/find-the-country/id1089643434
+- How it plays: the APP names a country and the player taps where it is on a world map, with a speed bonus. Solo.
+- Verdict: **DIFFERENT game, but the NAME "Find The Country" is already used on the App Store.**
+
+### E. Plain quizzes seen (DIFFERENT)
+
+Opened and confirmed as plain quizzes:
+- GeoQuiz – Country Quiz (Kaan Baysal), Google Play: https://play.google.com/store/apps/details?id=com.zss.whichcountry&hl=en . Multiple-choice trivia, including "Population Comparison", with 1v1 duels and private rooms.
+- Country Quest: Guess Countries (Yangmei Studios AB), Apple: https://apps.apple.com/us/app/-/id6479430936 . Identify a country from its map shape.
+- Country Flag Game (Sadi Kekec), Apple: https://apps.apple.com/us/app/id6747880060 . Flag modes.
+- World Countries Quiz (Ivan Rancic), Apple: https://apps.apple.com/us/app/-/id6756086147 . Picture quiz with letter-reveal hints.
+- 9Guess: The Trivia Party Game (K8 APPTON G.P.), Apple: https://apps.apple.com/us/app/9guess-the-trivia-party-game/id1312266285 . Pass-and-play trivia for 2 to 4 teams on one device, with some geography. It matters only as a one-phone group format.
+- GeoDiscover (Huybrechus Apps), Microsoft Store: https://apps.microsoft.com/detail/9mwp70cstzxs . Name a country from a marked area or a flag.
+
+Not opened (the titles show standard flag, map or multiple-choice quizzes): World Geography - Quiz Game (play.google.com, id=com.age.wgg.appspot); World Quiz: Geography games (id=com.geography.travel.quiz); StudyGe (id=com.mileoDev.geography); World Quiz: Learn Geography (apps.apple.com id628052020); World Map Quiz (id=com.qbis.guessthecountry); World Geography Quiz (id=com.mtapps.quiz.flags_off_the_world_quiz); Geography Quiz - Game of World (id6448554998); World Quiz: Geography games (id1586427890); Europe Geography (id=com.age.europe.appspot); The Flags Game (id6615083389); Guess the Flag 2 (id1430207873); Flag Games - Paint and Guess (id6502631211); Flags quiz guess all countries (id1610908795); Geography games (id=world.geography.quiz); Maps of All Countries Geo-Quiz (id906807790); Where is that? Geography Quiz (id=com.jaysquared.games.whereishd.releasefree); Flags Quiz (id=com.flags.quiz.trivia); Guess the Country by the Flag Quiz (id=com.polyhistor.guessthecountry); Seterra Geography (id1093460065); Country Flags 2 (id=com.gedev.flagstwo); Geography Games - Geo Quiz (id6476181709); Countries of Europe Flags Quiz (id1445350061).
+
+### F. Non-store finds from my searches (outside my channel, reported so others can follow up)
+
+**17. Country Guessing Game (guessthatcountry.com)**
+- Website only, with no store links on the page. Creator not named.
+- Address as found: https://www.guessthatcountry.com/
+- How it plays: two players. "Each player will be assigned a random country." Players "take turns asking yes/no questions" about the opponent's country. The page does NOT say who answers (the human opponent or the site) or whether questions are typed or picked from a list. No count or data source is mentioned.
+- Verdict: **CLOSE (Guess Who with real countries). This needs a direct check.** If the site answers from data using a fixed question list, it would be the nearest thing to the idea that I found. It is still a 2-player duel, not a group against one hidden country.
+
+**18. Guessful**
+- itch.io (HTML5). Address as found: https://guessful.itch.io/play
+- How it plays: the game picks a country (or a city). The player has 6 guesses. Each guess gets colour-coded feedback on continent, population, language and more, with higher/lower arrows. Optional hints cost 50 points each. Solo, daily or practice.
+- Verdict: **CLOSE (attribute-feedback relative, Countryle-type).**
+
+**Others seen:**
+- Countryle (https://tripmemo.app/countryle, not opened) is an attribute-feedback game. The EarthChasers guide (https://earthchasers.com/blog/country-guessing-game) describes it as giving "continent, population, and even average temperature". The guide lists no game where the player asks the questions.
+- https://guessthecountry.app/ : web daily typed name, capital and flag challenges. DIFFERENT.
+- https://summer.hackclub.com/projects/13535 : multiple choice from anthem, flag or motto. DIFFERENT.
+- ClueClimb (https://portfolio.fh-salzburg.ac.at/projects/2025-clueclimb): only a login page. Could not check.
+
+---
+
+## 3. Overall verdict
+
+**I found no app on the Apple App Store or Google Play that is the same game.** I found nothing where the device hides a real country, players pick yes/no questions from a fixed menu, the device answers from real data, and a count of remaining countries is shown.
+
+The closest relatives:
+1. **Reverse games: Wind of Earth and Guess Countries** (both by Mikolaj Adamowicz). They use real statistics, about 193 to 200 countries, and show elimination visually, but the app asks and the player hides the country.
+2. **General AI 20-questions apps where players ask the device:** 2Q (RoxyKovu, with pass-and-play and Apple TV groups), AI 20 Questions (BLUETAG, "Places & Landmarks"), Guessio ("Person, Place, or Thing") and Guesso. None is about countries specifically. In all of them, questions are typed freely and answered by an AI, not picked from a menu and answered from checked data. None shows a count of remaining candidates.
+3. **Real-data hidden-country guessing games with hints or feedback:** Country Quiz: Geography Guess (Motecso), MapGame!, Guess_The_Country, Worldle and Globle. Players guess countries and get clues back; they never ask questions.
+
+**I found no listing that shows players a live count of countries still possible.** The nearest is the reverse apps' vanishing flags or map.
+
+**Name warning:** "Find The Country" is already the name of an App Store app (GV Software Solutions Limited, a map-tapping quiz).
+
+**One lead outside my channel:** guessthatcountry.com is a two-player web game where players ask yes/no questions about a randomly assigned real country. From the page, I could not confirm who answers or whether questions come from a list. It is worth a direct look.
+
+**What I could not check:**
+- Two 20-questions listings returned 404 (20Questions.AI on Apple; Twenty Questions - AI Powered on Google Play).
+- ClueClimb was behind a login.
+- I read Guess Countries through a listing site, not its Apple page.
+- I did not open the second Wind of Earth listing (id1498348654), the Motecso Apple pages, the extra Globle Play listings, or about 20 plain-quiz listings.
+- Search engines index store pages unevenly, and the search tool is US-only.
+- Store descriptions often leave out features like a candidate counter.
+
+So this is "nothing found in 12 searches", not proof that nothing exists.
+
+
+####################################################################################################
+# helper2_web
+####################################################################################################
+
+# Helper 2: Web channel. Does "Find the Country" already exist?
+
+Searched on 5 October 2026. Channel: browser games, daily-game directories, itch.io, GitHub, teacher and educational sites, Reddit.
+
+## 1. Queries run: 12 of 12 used (2 of them extended)
+
+| # | Query | Mode | What came back |
+|---|---|---|---|
+| 1 | guess the country by asking yes or no questions online game | standard | Useful: Hugging Face space, Guess Countries app, Guess in 10 rules, ESL printable |
+| 2 | "20 questions" countries game online computer picks a country you ask yes or no | standard | Thin: mostly Sporcle quizzes, plus the Hugging Face space again |
+| 3 | "mystery country" game ask yes or no questions | standard | eTwinning Mystery Country page, plus repeats |
+| 4 | country guessing game "countries remaining" OR "countries left" yes no questions | standard | Hack Club project; no game showing a count |
+| 5 | Listdle geography games list | standard | Listdle itself did NOT appear; got a Peerlist page leading to the pooplegame.com directory, plus capitalle.app lists |
+| 6 | alldle.net geography daily games | standard | Alldle itself did NOT appear; got an NPR/KVCR roundup and capitalle.app lists |
+| 7 | itch.io guess the country game ask questions yes no | standard | Two itch.io games |
+| 8 | github country guessing game player asks yes/no questions computer answers remaining countries | standard | Mostly repeats; a 101computing coding exercise |
+| 9 | twenty questions country guessing game yes no questions (domain filter: github.com) | standard | Generic 20-questions repos; LMRL-Gym |
+| 10 | web game where the computer secretly picks a country and you ask it yes/no questions (continent, landlocked, population) to narrow down and find the country | extended (1 of 2) | guessthatcountry.com, Geodle, customwordle.io, earthchasers blog |
+| 11 | I made a game guess the country by asking yes or no questions (domain filter: reddit.com) | standard | FAILED: proxy rejected it (HTTP 400). Counted anyway. |
+| 12 | reddit "I made" 20 questions game for countries: ask yes/no questions, see how many countries are left, guess the country | extended (2 of 2) | No Reddit posts returned; one itch.io game, a glama.ai code file, a Goodreads forum thread |
+
+Note: the standard search kept returning the same ~10 pages, so coverage is thinner than 12 queries suggests.
+
+## 2. What I found (closest first)
+
+### A. Closest to the idea
+
+**1. Twenty Questions Geography** (Hugging Face Space, hobby/demo code)
+- Address: https://huggingface.co/spaces/jbejar86/Twenty-Questions-Geography/blob/main/game.py
+- Who hides: the computer picks a random country from a list (there is also a US-states mode).
+- Who asks: the player, typing free-text questions.
+- Who answers: an AI language model, told to "Answer only 'Yes' or 'No' to their question." It gets facts about the country through a retrieval step; the source website is not visible in this file. One reading of the code said the model is Claude; a second reading found no model name in this file, so that is unconfirmed.
+- Menu or typing: typing. Real data: partly. An AI answers from looked-up facts, so answers can be wrong.
+- Group or solo: solo. Count of remaining countries: none. Question limit: none enforced in this file. Daily: no.
+- I saw the code only, not the running app, so I can't confirm it is live.
+- **Verdict: SAME (core loop only).** It matches the brief's definition (site hides a real country, you ask yes/no, it answers), but it is a small demo: typed questions, AI answers, no menu, no count, no group mode, no reveal.
+
+**2. Guess That Country** (website, 2-player online)
+- Address: https://www.guessthatcountry.com/
+- Who hides: the site. "Each player will be assigned a random country to defend."
+- Who asks: "Players take turns asking yes/no questions about the opponent's country."
+- Who answers: not stated. The word "defend" suggests the opponent answers by hand.
+- Menu or typing: not stated. Real data: real countries; nothing says answers come from data.
+- Group or solo: two players on two devices, joined by a shared Game ID; no solo mode. Count of remaining countries: none stated. Daily: no, games are made on demand.
+- Maker and date: not stated (only "Built with Next.js and Supabase").
+- **Verdict: CLOSE.** Same question loop with real countries, but it is head-to-head between two people, and the answers seem to come from the opponent, not from data. If the site answers automatically it would be SAME. I could not confirm which.
+
+**3. Guess Countries** (iOS app by Mikolaj Adamowicz; turned up in web searches)
+- Addresses as found: https://apps.apple.com/app/id6470137142 and https://mergeek.com/latest/Q8LDRAke8V7mp40P (also listed: https://apps.apple.com/mx/app/guess-countries/id6470137142 and https://mergeek.com/free/apps/37y9Pm5oQvA4wZjG)
+- Who hides: the player thinks of a country. Who asks: an animated genie in the app. Who answers: the player taps Yes / No / I don't know, or answers out loud.
+- Menu or typing: the app's own built-in questions; the player taps answers. Real data: country facts (for example, sea borders or elephants).
+- Remaining candidates: **yes, shown visually.** "Each of your responses filters the countries": flags vanish from a spinning globe of 193 countries. No number shown.
+- Solo. Not daily. Released 1 Dec 2023; last updated 18 Mar 2024.
+- **Verdict: CLOSE (reverse, Akinator-style).** The app guesses your country. Still, it is the only thing I found that shows the candidates shrinking after each answer.
+
+### B. Human-run versions of the same question loop (people answer, not a device)
+
+**4. Countries of the World: Guess in 10** (physical card game; third-party rules page)
+- Address: https://officialgamerules.org/game-rules/countires-of-the-world-guess-in-10/
+- One player holds a hidden country card. The guesser gets "up to 10 'yes or no questions'" to the other players. Optional clue cards may cost questions. Group or teams. No device, no count, not daily. The publisher is not named on this page.
+- **Verdict: CLOSE.** Same core idea (yes/no questions, use as few as possible), but people answer from a card, not a device from data.
+
+**5. Mystery Country / Mystery Skype** (eTwinning school project; spelled "Mistery Country" on the page)
+- Address: https://twinspace.etwinning.net/122195/pages/page/1036260
+- Two classes on a video call each hide their own country. Student "Inquirers" ask yes/no questions, "each team taking turns". Group. No device answers, no count.
+- **Verdict: CLOSE.** Classroom version of the loop; humans answer.
+
+**6. Country Cards Set 3** (ESL printable)
+- Address: https://www.eslprintables.com/printable.asp?id=261529
+- Each student hides a country card; a partner asks yes/no questions; they swap roles "After every 'no' response". Pairs or groups, paper only.
+- **Verdict: CLOSE.** Paper version; humans answer.
+
+### C. Attribute-feedback daily games (you guess countries, the game grades each guess)
+
+**7. Countryle**
+- Address as found: https://countryle.com/?ref=pooplegame.com (link from the pooplegame directory). Also seen: https://geoworldle.com/countryle (link on the earthchasers blog, not opened).
+- From the directory's description: hides a country; each guess gets "five readings": hemisphere, continent, temperature, population, coordinates. Daily, solo, typed guesses, no count.
+- I could NOT open Countryle's own page (the fetch was refused).
+- **Verdict: CLOSE.** Same deduction by attributes, but you guess countries instead of asking questions; no count.
+
+**8. Geodle (geogames.io)**
+- Address: https://geogames.io/games/geodle
+- Hidden daily country, plus a practice mode. Type a country, 6 guesses. Feedback on continent, population (higher/lower), landlocked, religion, average temperature, government. Solo. No count.
+- **Verdict: CLOSE.** Uses some of the same attributes as the idea (landlocked, population), but you guess instead of ask.
+
+**9. Geodle (geodle.me)**: listed in a directory only
+- Address as found: https://geodle.me/?ref=pooplegame.com (not opened)
+- The directory says seven guesses graded on continent, population, area, religion, temperature and landlocked. It may be a different game from #8 with the same name.
+- **Verdict: CLOSE (attribute feedback).** Not verified.
+
+**10. Country Guessr**
+- Addresses: https://dorian-grdn.itch.io/country-guessr, with a web version at https://countryguessr.mrdo.fr
+- "Guess the country of the day with as few tries as possible." Each wrong guess shows comparisons: shape, borders, capital, continent, language, population, currency, area, distance. Solo, daily, typed, no count; results can be shared.
+- **Verdict: CLOSE.** Attribute feedback, and "fewest tries" scoring like the idea, but no questions and no count.
+
+**11. Guess the Country (customwordle.io)**
+- Address: https://customwordle.io/guess-the/country
+- Daily mystery country; type up to 8 guesses; colour feedback on continent, region and hemisphere, plus population up/down; extra clues (flags, capitals, landmarks). Solo, plus a "Challenge a Friend Duel". No count.
+- **Verdict: CLOSE.** Attribute feedback with clues; you guess, you don't ask.
+
+### D. Clue-sequence games and exercises
+
+**12. Guess the Country** (Python coding challenge, 101computing.net)
+- Address: https://www.101computing.net/?p=2553
+- Coding exercise: the computer picks a country and gives clues when asked. The aim is to "guess the country using as few clues as possible"; an extension counts the clues used. Solo, typed.
+- **Verdict: CLOSE (clue sequence).** The "fewest clues" score echoes the idea, but the clues are fixed rather than yes/no questions the player chooses, and it is a programming exercise, not a game.
+
+**13. Guess the country culture & geography game** (Altopedia teacher resource)
+- Address: https://altopedia.net/activities/7140-guess-the-country-culture-geography-game
+- The teacher shows 3 hints per country on a 30-second timer; teams guess, with a bonus for pointing to it on a map. Classroom slides.
+- **Verdict: CLOSE (clue sequence, distant).** The teacher gives hints; players don't ask.
+
+### E. Checked, but different
+
+- **14. Country Guessing Game** (Hack Club project): https://summer.hackclub.com/projects/13535, demo https://shock59.github.io/country-guessing-game/. Multiple choice from a country's anthem, flag, motto or native name. **DIFFERENT:** a quiz with no questions.
+- **15. guess the country** (itch.io page, Android game): https://shourovmk79.itch.io/guess-the-country. Clue/trivia levels with images and fun facts, timed, with leaderboards; exact mechanics not described. **DIFFERENT:** a clue quiz where players don't ask questions.
+- **16. Guess the Countries** (itch.io, browser): https://darktheblueshark.itch.io/guess-the-countries. Identify randomly shown countries at three difficulty levels; built on a Scratch engine. **DIFFERENT.**
+- **17. LMRL-Gym "Guess My City" / "20Qs"**: https://github.com/abdulhaim/lmrl-gym. An AI research benchmark: an "oracle" comes from a city and a guesser asks yes/no or open questions. **DIFFERENT:** a research tool, about cities not countries, not a game for people.
+- **18. Directories and roundups scanned.** None lists a question-asking country game:
+  - https://pooplegame.com/dle-games (17 geography daily games; linked from https://peerlist.io/horushe/project/dle-games-every-daily-dle-game-by-category)
+  - https://www.capitalle.app/blog/worldle-alternatives and https://www.capitalle.app/blog/geography-games-students
+  - https://kvcr.org/news/npr-top-stories/2026-09-05/daily-puzzle-games-history-geography (NPR, September 2026)
+  - https://earthchasers.com/blog/country-guessing-game (a guide to game formats; mentions "statistical clue" games only in general terms)
+
+## 3. Overall verdict
+
+**No exact match found on the web.** Nothing I found combines all of these: the phone hides a country, players pick yes/no questions from a menu, answers come from checked data, a live count of countries still possible, group play on one phone, a wrong-guess penalty, and a reveal of how few questions would have been enough.
+
+But the core loop does exist, in small or partial forms:
+- **Twenty Questions Geography** (Hugging Face) is the core loop in code: the computer hides a country, the player types yes/no questions, and an AI answers. It is a small demo with no checked data, no menu and no count.
+- **Guess That Country** (guessthatcountry.com) is a two-player online game where players ask about each other's assigned country. The answers appear to come from the opponent, not from data.
+- Human versions are old and common: 20 questions, the Guess in 10 card game, Mystery Skype, ESL cards. So the basic idea is not new. What would be new is the combination: a question menu, real-data answers, the live count, group play on one phone, and the "fewest questions" reveal.
+
+The **"countries still possible" display** only turned up in reverse (the Guess Countries iOS app, where flags vanish from a globe). I found no web game that shows a number of remaining countries. I also found nothing that shows "how few questions would have been enough".
+
+The nearest popular relatives are the **attribute-feedback dailies** (Countryle, Geodle, Country Guessr, customwordle.io). They differ because you guess countries and get graded, instead of asking questions.
+
+### What I could not open or check
+- **Listdle and Alldle:** neither site appeared in any of my results, so under the rules I did not open them. Their geography sections are unchecked. I scanned a different directory (pooplegame.com) instead.
+- **Reddit:** the reddit.com-filtered search was rejected by the proxy, and the follow-up returned no Reddit posts. Reddit announcements are effectively unchecked.
+- **Countryle's own page:** the fetch was refused (a permission prompt that wasn't answered), so I skipped it as the rules say.
+- **ClueClimb** (FH Salzburg student project, https://portfolio.fh-salzburg.ac.at/projects/2025-clueclimb): behind a login. The name suggests clues; the mechanics are unknown.
+- **glama.ai twentyquestions.js** (https://glama.ai/mcp/servers/@brightseth/vibe/blob/dc4d1010dc867a0fa7f5c42b778cc47666806bfc/games/twentyquestions.js): blocked by robots.txt. Unknown whether it is about countries.
+- **Goodreads "Interactive 20 question game"** (https://www.goodreads.com/topic/show/19320035-interactive-20-question-game?page=32): members only.
+- **Hugging Face space:** I saw the code only, not the running app.
+- **guessthatcountry.com:** the landing page doesn't say who answers or whether questions are typed or picked from a menu.
+- **Not searched (out of searches):** AI chatbot games such as custom GPTs, and Scratch projects.
+- **Seen in results but not opened** (titles looked off-target): generic GitHub 20-questions repos (ayohana/twenty-questions, tanveerao, AdemolaAdedoyin, offtian, catai9, vantrinh7, devansh287, justin-ichiro-choi), openai/evals twenty_questions, Sporcle quizzes, the JetPunk quiz "guess the random countries without any clues", geofungames Flag Reveal, Stanford Code in Place "Country by Letter Quiz", the enghub.pro "Guess it" speaking game, an itch.io flags-quiz thread, a Scribd "Twenty Questions" document, Wikipedia pages (Twenty questions, 20Q, Botticelli), playbrain Worldle, the Worldle and Earthle iOS apps, betalist dailydle.
+
+
+####################################################################################################
+# helper3_boardgames
+####################################################################################################
+
+# Helper 3 report: board and card games ("Find the Country" prior-art check)
+
+Date: 5 October 2026
+Channel: board and card games (BoardGameGeek, Kickstarter, toy and educational shops, party-game lists)
+
+---
+
+## 1. Searches run: 12 of 12 used (11 standard, 1 extended)
+
+| # | Query | Filter | Mode | What came back |
+|---|---|---|---|---|
+| 1 | boardgamegeek guess the country deduction yes no questions | none | standard | "Guess in 10: Countries of the World" rules page; BGG wiki page for "Educated Guess"; classroom printables; daily web games |
+| 2 | boardgamegeek geography deduction game hidden country | none | standard | Thin: "Country Squares" (mirror site), web daily games |
+| 3 | "Guess Who" countries edition board game flags | none | standard | Flag quiz games only; no Guess Who country edition |
+| 4 | "20 Questions" board game person place thing how to play clues | none | standard | University Games "20 Questions" (publisher page, review) |
+| 5 | "Guess Where" board game yes or no questions | none | standard | "Guess Where?" (Hasbro, house rooms); Guess Who shop pages |
+| 6 | kickstarter geography deduction card game guess the secret country | none | standard | "Where Am I? Guessing Game" (shops); Twinkl resource; Globle link; no Kickstarter pages |
+| 7 | guess the country deduction game yes no questions geography | boardgamegeek.com only | standard | 10 BGG pages (Guess in 10, Name That Country, The Game of Where on Earth?, World Factgame, GeoKnow, two geeklists, etc.). All the ones I tried refused (403) |
+| 8 | country guessing geography game players ask questions mystery country | boardgamematcher.com, boardmatch.app, analog.games only | standard | Nothing relevant (wasted search) |
+| 9 | "Carmen Sandiego" board game OR card game how to play deduce country clues | none | standard | Carmen Sandiego board game (1992), Jr. Detective rules PDF, official classroom activity |
+| 10 | Guess Who style game countries of the world flip cards ask yes or no questions | none | standard | Guess in 10 again; Skillmatics retailer listing; generic Guess Who pages |
+| 11 | geography guessing game countries deduction yes or no questions card game | kickstarter.com only | standard | Explorer Cards, The World Game, Borders Europe (geography); the rest non-geography deduction games |
+| 12 | party game one phone pass the phone guess the country yes or no questions how many countries left | none | **extended** (allowed because search 8 came back empty) | Mostly web games: guessthatcountry.com, Mappr "Find the Country", Worldle, Globle, a Finnish TV quiz |
+
+---
+
+## 2. Games found
+
+Verdict key: **SAME** = matches the definition. **CLOSE** = hidden real country plus yes/no questions, but differs on who answers or on the data/counting. **DIFFERENT** = clue reveal, trivia, or not about countries. **NOT CHECKED** = found but the page refused or was not opened.
+
+### A. Closest relatives (CLOSE)
+
+**1. Guess in 10: Countries of the World**
+- Publisher/year: Skillmatics (named in a retailer search result title; the rules page names no publisher). Year not shown.
+- Addresses as found:
+  - `https://officialgamerules.org/game-rules/countires-of-the-world-guess-in-10/` (opened; third-party rules summary)
+  - `https://boardgamegeek.com/boardgame/333257/guess-in-10-countries-of-the-world` (refused, 403)
+  - `https://www.safariltd.com/products/skillmatics-guess-in-10-countries-around-the-world` (redirected to a general shop page; no product details)
+- How it plays: a player "draws a card from the deck and keeps it hidden". The guesser gets "up to 10 'yes' or 'no' questions". Questions are free-form (examples: "Is this country in Europe?"). Some versions add clue cards ("Language", "Climate", "Landmark"). Group game; player count not shown.
+- Who answers: **not clear.** The rules page is muddled about who asks and who answers. It reads as a person holding the card who answers from the card and their own knowledge. No fixed question menu, no data source, no count of remaining countries.
+- **Verdict: CLOSE.** This is the nearest board/card game: hidden real country, yes/no questions, a question budget. But a person answers free-form questions. There are no data-backed answers, no live count and no "fewest possible questions" reveal.
+
+**2. Country Guessing Game (web, outside my channel, noted because it is close)**
+- Publisher/year: none shown ("Built with Next.js and Supabase").
+- Address as found: `https://www.guessthatcountry.com/`
+- How it plays: "Each player will be assigned a random country." Players "take turns asking yes/no questions to guess your opponent's country". Played online by joining with Game IDs, so it looks like separate devices.
+- Who answers: not stated. The wording points to the opponent, but I could not confirm it. Nothing about question limits, penalties or a remaining count.
+- **Verdict: CLOSE.** It is Guess Who with countries, online, head-to-head. It is not one shared phone, and it does not clearly answer from data or count what's left. Passing it to whoever covers web and apps.
+
+### B. Same family but a different game (DIFFERENT)
+
+**3. 20 Questions**
+- Publisher/year: University Games; first released 1985 (the page shows a redesign). 2 to 6 players, ages 12+. "6,000 clues across 300 topics".
+- Addresses as found: `https://www.universitygames.com/old-games/party/20questions`, `https://casualgamerevolution.com/node/3173`
+- How it plays: a reader holds a card (a "person, place, or thing"). A guesser "announces a number" and the reader "reads aloud the clue that is listed on his card under that number". Guessers have "ten seconds to guess". The reader scores for every clue used. Group game.
+- **Verdict: DIFFERENT.** Players pick numbered clues blind; they do not ask about features. Answers come from the card, but the topics are mixed and not only countries.
+
+**4. Where Am I? Guessing Game**
+- Publisher/year: brand "Games Room"; year not shown. 140 cards, 4+ players, about 15 minutes.
+- Address as found: `https://www.harryhartog.com.au/products/where-am-i-guessing-game` (also seen at `https://mocastore.org/products/1037897`, not opened)
+- How it plays: each card hides a real place (city, country, desert, mountain, landmark). Teams read "increasingly specific clues and race to guess". All information comes from the card; no person makes up answers.
+- **Verdict: DIFFERENT.** Clues are revealed in a set order; players never choose questions. Still, it is the nearest "the card tells the truth" relative.
+
+**5. Guess the Country Geography Game (Twinkl classroom resource)**
+- Address as found: `https://www.twinkl.pt/resource/guess-the-country-geography-game-t-par-1640250773`
+- How it plays: a player's card "contains four clues to the country". They draw, model or describe the clues, and teammates guess. "The less clues players need, the more points."
+- **Verdict: DIFFERENT.** A person gives clues, charades-style; no yes/no questions.
+
+**6. Educated Guess**
+- Publisher/year: not shown.
+- Address as found: `https://boardgamegeek.com/wiki/page/thing%3A461185` (the only BGG page that opened)
+- How it plays: "players take turns asking yes or no questions" to work out what or who is on a card. The card holder answers. "Each player only gets 2 guesses per card"; first to 5 wins.
+- **Verdict: DIFFERENT.** A general 20-questions card game where a person answers. The page does not say it is about countries.
+
+**7. Guess Where?**
+- Publisher/year: Hasbro / Milton Bradley / Jumbo; 2004 (per mirror sites). 2 players.
+- Addresses as found: `https://boardgamematcher.com/game/guess-where`, `https://boardmatch.app/en/game/13951`
+- How it plays: one player hides eight family members in rooms of a house. The opponent asks yes/no questions ("Is Dad in the Kitchen?") and the hider answers.
+- **Verdict: DIFFERENT.** Rooms in a house, not countries; the opponent answers.
+
+**8. Where in the World Is Carmen Sandiego? (board game)**
+- Publisher/year: 1992 (kallax.io; publisher not shown). 2 to 6 players, 60 minutes.
+- Addresses as found: `https://kallax.io/boardgame/BD247-Where-in-the-World-is-Carmen-Sandiego`, `https://slpl.libguides.com/centralgaming/carmensandiego` (library listing, same type of game)
+- How it plays: players answer trivia to move, "catch henchmen and gather clues to deduce Carmen's whereabouts".
+- **Verdict: DIFFERENT.** Trivia race with clue gathering; no yes/no questions answered from data.
+
+**9. Where in the World Is Carmen Sandiego? Jr. Detective Edition**
+- Publisher/year: University Games, 1997.
+- Address as found: `https://www.universitygames.com/_files/ugd/05f72c_82ad8ae0a531466abf43bff71d865c10.pdf`
+- How it plays: another player hides the pieces of each player's Wanted Poster under map pieces. Players move around and look under them. No questions.
+- **Verdict: DIFFERENT.** A physical search game.
+
+**10. Carmen Sandiego "Mystery Location Game" (official classroom activity)**
+- Address as found: `https://www.carmensandiego.com/?p=565`
+- How it plays: an adult picks a place and gives "geographic clues about where you 'are'". Kids use maps and atlases to find it.
+- **Verdict: DIFFERENT.** A person gives the clues; it is a printable activity, not a product.
+
+**11. Country Squares** (Dennis's, 1965)
+- Address as found: `https://boardgamematcher.com/game/country-squares`
+- How it plays: a letter puzzle on worksheets. "The first player to hand in 16 correct answers, wins."
+- **Verdict: DIFFERENT.** A word puzzle.
+
+**12. Flags of the World Board Game** (brand not shown; 2 to 9 players)
+- Address as found: `https://www.kohls.com/product/prd-4501802/flags-of-the-world-board-game.jsp?prdPV=11`
+- How it plays: "identify 200 international flags and answer country-specific trivia".
+- **Verdict: DIFFERENT.** A flag quiz.
+
+**13. Flags The Game** (RDN Games, a division of Publibec Limited; 1987; 2 to 6 players)
+- Address as found: `https://www.analog.games//gameItem/show/419cd83f96531da3019654e8fa2a13aa`
+- How it plays: roll and move through 85 countries, naming flags, coats of arms and capitals to collect cards.
+- **Verdict: DIFFERENT.** Trivia.
+
+**14. Guess the Country (Scratch project by "Lavitra from India")**
+- Address as found: `https://online.coolestprojects.org/projects/11684`
+- How it plays: "Players roll dices to get clues", then guess the country.
+- **Verdict: DIFFERENT.** Random clues; no questions.
+
+**15. Maailman ympäri** (Finnish TV quiz show, YLE TV1, 2000 to 2004)
+- Address as found: `https://en.wikipedia.org/wiki/Maailman_ymp%C3%A4ri`
+- How it plays: four quiz rounds. In one round contestants name a country from five clues worth fewer points each time.
+- **Verdict: DIFFERENT.** A TV quiz, not a game you can buy.
+
+### C. Kickstarter projects: pages opened, rules not visible
+
+| Project | Creator / dates | Address as found | Verdict |
+|---|---|---|---|
+| Explorer Cards: A Geography & Travel Trivia Game | Deborah Dennison; Sept to Oct 2021; 80 backers | `https://www.kickstarter.com/projects/geography-game-map/explorer-cards` | DIFFERENT by its own title ("Trivia Game"); rules not seen |
+| The World Game | "The World Game"; Nov to Dec 2020; 2 to 5 players; 523 backers (also on BGG as 322480) | `https://www.kickstarter.com/projects/theworldgame/the-world-game-fun-geography-board-game` | NOT CHECKED: the page showed no rules |
+| Borders Europe: the game about how countries fit together | Rounded Kids; April to May 2022 | `https://www.kickstarter.com/projects/boardgamemonster/borders-europe-the-game-about-how-countries-fit-together` | NOT CHECKED: no rules shown; the title suggests a map-fitting game, not deduction |
+
+### D. Found on BoardGameGeek but could not open (NOT CHECKED)
+
+These came up in search 7. Every BGG game page and geeklist I tried returned **403**, so per the rules I did not retry them another way.
+
+- Tried, refused: `https://boardgamegeek.com/boardgame/18008/name-that-country` ("Name That Country"), `https://boardgamegeek.com/boardgame/164749/the-game-of-where-on-earth` ("The Game of Where on Earth?"), `https://boardgamegeek.com/boardgame/11390/world-factgame` ("World Factgame"), `https://boardgamegeek.com/geeklist/28851/dude-wheres-my-country` (geeklist "Dude, where's my country?"), `https://boardgamegeek.com/geeklist/64641/games-that-teach-geography` (geeklist "Games that teach Geography").
+- Not tried after the run of refusals: `https://boardgamegeek.com/boardgame/322480/the-world-game-board-game`, `https://boardgamegeek.com/boardgame/168961/geoknow` ("GeoKnow"), `https://boardgamegeek.com/boardgame/15130/know-the-usa` (US states), `https://boardgamegeek.com/boardgame/119928/country-squares` (checked through a mirror, see item 11).
+- **Name That Country** and **The Game of Where on Earth?** are the two titles that most need a human check. Their names suggest identify-the-place games, but I cannot tell whether they use clues or questions. The two geeklists are curated lists of exactly this kind of game and are worth opening in a normal browser.
+
+### E. Other web games seen in passing (outside my channel)
+
+- **Mappr "Find the Country on the Map"**, `https://www.mappr.co/games/find-the-country-game/`: a map-tapping quiz ("Find it on the world map and tap or click it"). **DIFFERENT, but it already uses the name "Find the Country".** Worth knowing before settling on the working name.
+- **Globle**, via `https://adactio.com/links/18834` (which links to `https://globle-game.com/`): guess countries and the globe colours them by how close they are. DIFFERENT.
+- **MapGuesser / Countryle**, `https://mapguesser.fr/en`: map, flag and capital quizzes plus a daily country puzzle. DIFFERENT as far as the page shows.
+- Seen but not opened: daily "Guess The Country" posts on tvovermind.com, Globie (`https://eldrarak82.itch.io/globie`, a distance guesser), Worldle, customwordle "Guess the Country", Y8 "Guess the Country", playgeography map quiz.
+
+---
+
+## 3. Overall verdict
+
+**No SAME game found in the board and card channel.**
+
+- The basic idea of guessing a hidden real country with yes/no questions is **not new** as a board/card game. Skillmatics' **Guess in 10: Countries of the World** does it with a hidden card and a 10-question budget. Clue-reveal games (University Games' **20 Questions**, **Where Am I?**) also have a card that "tells the truth" and reward using fewer clues.
+- Nothing I could check combined the features that make "Find the Country" different:
+  1. the device answers from real data, not a person;
+  2. a fixed menu of questions;
+  3. a live count of countries still possible;
+  4. a reveal of the fewest questions that would have been enough, plus sourced facts;
+  5. one shared phone for a group or one player.
+
+  Every close relative has a person answering free-form questions (Guess in 10; guessthatcountry.com, by the look of it) or uses fixed clues instead of questions. I found no board, card or party game that counts remaining candidates.
+- **Name clash:** Mappr already uses "Find the Country" for a map quiz.
+
+**What I could not check (be careful with the "not found" verdict):**
+- All BoardGameGeek game pages and geeklists refused (403). "Name That Country", "The Game of Where on Earth?", "World Factgame", "GeoKnow", "The World Game" and both geography geeklists are unverified.
+- The rules page I used for Guess in 10 is a third-party summary and is unclear about who answers. The publisher's own page was not reachable.
+- The Kickstarter pages opened but showed no rules.
+- One search (no. 8) was wasted on an unhelpful site filter.
+- Not searched for lack of budget: talking-globe and electronic geography toys; Hedbanz-style "Who am I?" country card games; app-assisted deduction board games, a genre where an app answers fixed-menu questions about a hidden target. As far as I know, *The Search for Planet X* is one, but it is not about geography and I did not check it this session.
+
+
+####################################################################################################
+# Claude's follow-ups (10 searches)
+####################################################################################################
+
+1. guessthatcountry.com (found by helpers 1 to 3; opened from Claude's own search results and from its Show HN post):
+   "Each player will be assigned a random country to defend." "Players take turns asking yes/no questions about
+   the opponent's country." Two players online, each on a device; the OPPONENT answers. The maker played it in
+   person with his spouse before building it (Show HN, hn.svelte.dev/item/44438487). Close (Guess Who with real
+   countries), not the same: no data behind the answers, no menu, no count of what is left, two people against
+   each other.
+2. Trieste Next, "Indovina il paese!" (Department of Political and Social Sciences, University of Trieste): clues
+   from political, economic and legal indicators are revealed by the game; three guesses; the distance of a wrong
+   guess. Different: the game gives the clues, the player asks nothing.
+3. "Name That Country" (BoardGameGeek wiki page, thing 18008): a children's roll-and-move geography game with a
+   spinner of 60 countries and postcards. Different.
+4. "The Game of Where on Earth?": only trivia games of that name were found (Hex Games, Where On Earth trivia).
+5. Listdle, geography category (71 games, read in full) and Alldle, geography category (page 3): no game in which
+   the player asks. Nearest: MapFold (FlightQ; Listdle: "Find one hidden country a day. Each clue cuts possibilities
+   in half." The game provides the clues; "the ruled-out part of the map literally folds away"; daily, solo).
+   Its own page (flightq.app) could not be opened: the address came only from Listdle's summary, and the reader
+   asked Khayyam for permission; the request was withdrawn unanswered and not retried.
+6. Names: "Find the Country" is taken (an App Store map-tapping quiz by GV Software Solutions; Mappr's "Find the
+   Country on the Map"). "Down to One" is taken (a Google Play puzzle and speed game by Carlos Fernandez, 2019).
+   "One of 193": nothing found on the web, the App Store, Google Play, itch.io, BoardGameGeek, Kickstarter, Listdle
+   or Alldle (only unrelated "Mini Jam 193" entries on itch.io).
+
+VERDICT (C): no game does the same thing, so it is built, as a mixture. Asking yes-or-no questions about a hidden
+country is old (twenty questions, Guess in 10: Countries of the World by Skillmatics, classroom "Mystery Country"
+calls, guessthatcountry.com), and an app that asks YOU about the country you think of exists (Guess Countries,
+Wind of Earth). Not found anywhere: one phone that hides a real country for a group, a fixed menu of questions that
+the phone answers from checked data, the number of countries still possible after each answer, and at the end how
+few questions would have been enough.

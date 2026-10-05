@@ -6,6 +6,10 @@
   make_brand.py  writes the browser-tab icon, the phone icon, the link preview picture (og.png) and 404.html
 
 The look lives in assets/css/logicers.css: light by day, dark when the device is set to dark; one colour per game.
+Under "Today's games" stands a second row, "Pass the phone": the games for groups (GROUP below and in turnsout.js).
+They are not daily: their tiles say "2+ players" instead of "1 min" and show no result of the day, and they do not
+count in the Today card or the streak. To add one: draw it in arts.py, add it to GROUP here and to GROUP in
+assets/js/turnsout.js, give it a colour in logicers.css, and run this script.
 To add a game to the shelf: draw its picture in arts.py, add it to GAMES below and to GAMES in assets/js/turnsout.js
 (the one list of games that the home page and the way onward share), give it a colour in logicers.css ([data-g="..."]),
 then run build_home.py. OUT is the folder of the site (or give it as the first argument).
@@ -36,6 +40,13 @@ GAMES = [
          pitch='Two real events, and a third one in between. Slide it to where you think it falls, then see the years.', short='Two real events, one in between. Where does it fall?'),
 ]
 
+# the games for groups, in the order they arrived (the newest gets new=True and stands first)
+GROUP = [
+    dict(key='o193', href='one-of-193/', name='One of 193', art=art_one(), new=True, players='2+ players',
+         pitch='The phone hides one of 193 countries. Ask it yes or no, and find the country in as few questions as you can.',
+         short='The phone hides a country. Ask yes or no, and find it.'),
+]
+
 def tile(g):
     badge = '<span class="badge">New</span>' if g.get('new') else ''
     return f'''    <a class="tile" id="tile-{g['key']}" data-g="{g['key']}" href="{g['href']}">
@@ -50,9 +61,33 @@ def tile(g):
       </div>
     </a>'''
 
+def group_tile(g):
+    badge = '<span class="badge">New</span>' if g.get('new') else ''
+    return f'''    <a class="tile" id="tile-{g['key']}" data-g="{g['key']}" href="{g['href']}">
+      <div class="art">{g['art']}{badge}</div>
+      <div class="body">
+        <h3>{g['name']}</h3>
+        <p class="pitch"><span class="long">{g['pitch']}</span><span class="short">{g['short']}</span></p>
+        <div class="foot">
+          <span class="go"><span>Play</span>{ARROW}</span><span class="mins">{g['players']}</span>
+        </div>
+      </div>
+    </a>'''
+
 # the shelf: the newest game first, then the others in the order they arrived (GAMES keeps that order for the sitemap)
 SHELF = [g for g in GAMES if g.get('new')] + [g for g in GAMES if not g.get('new')]
 tiles = '\n'.join(tile(g) for g in SHELF)
+GSHELF = [g for g in GROUP if g.get('new')] + [g for g in GROUP if not g.get('new')]
+gtiles = '\n'.join(group_tile(g) for g in GSHELF)
+# a quiet last tile while the row is short: more games for groups are being made (decided 5 Oct 2026: five, one at a time)
+gtiles += '''
+    <div class="tile soon-tile" id="tile-more-groups">
+      <div class="art soon-art" aria-hidden="true"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="mute" cx="128" cy="100" r="9"/><circle class="mute" cx="160" cy="100" r="9"/><circle class="mute" cx="192" cy="100" r="9"/></svg></div>
+      <div class="body">
+        <h3>More to come</h3>
+        <p class="pitch">More games for groups are in the works.</p>
+      </div>
+    </div>'''
 pips = ''.join(f'<i id="pip-{g["key"]}" data-g="{g["key"]}"></i>' for g in SHELF)
 soon_arts = ''.join(f'<div class="art" data-g="{k}">{a}</div>' for k, a in (('half', art_half()), ('piece', art_piece())))
 
@@ -122,6 +157,18 @@ html = f'''<!doctype html>
   </div>
 </section>
 
+<section class="games group-games" aria-labelledby="group-title">
+  <h2 class="sec" id="group-title">Pass the phone</h2>
+  <p class="sec-sub">Games for two or more, on one phone.</p>
+  <div class="shelf" id="shelf2">
+    <button class="shelf-btn prev off" type="button" id="shelf2-prev" aria-controls="shelf2-row" aria-label="Previous group games">{CHEVRON}</button>
+    <div class="shelf-row" id="shelf2-row" data-n="{len(GSHELF)}">
+{gtiles}
+    </div>
+    <button class="shelf-btn next" type="button" id="shelf2-next" aria-controls="shelf2-row" aria-label="More group games">{CHEVRON}</button>
+  </div>
+</section>
+
 <section class="soons" aria-label="Coming soon">
   <div class="soon">
     <div><h2>More games are in the works</h2><p>New ones join the shelf as they are ready.</p></div>
@@ -163,6 +210,8 @@ html = f'''<!doctype html>
     <p class="quiet">The Club checks every rule against two sources, linked under the answer. A rule is always a plain fact about the real world.</p>
     <h3>Where the dates come from</h3>
     <p class="quiet">Years Apart checks every date against two sources, linked under the answer.</p>
+    <h3>Where the countries' facts come from</h3>
+    <p class="quiet">One of 193, a game for groups, answers from the World Bank's open data (World Development Indicators, CC BY 4.0) and from lists that were each checked on two websites, linked with the facts at the end of a round.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>
@@ -186,10 +235,11 @@ html = f'''<!doctype html>
 open(f'{OUT}/index.html', 'w', encoding='utf-8').write(html)
 
 # the list of pages for search engines, and the file that points them to it
-pages = [SITE_URL] + [SITE_URL + g['href'] for g in GAMES]
+# the home page and the daily games change every day; a game for groups changes only when its data is made again
+pages = [(SITE_URL, 'daily')] + [(SITE_URL + g['href'], 'daily') for g in GAMES] + [(SITE_URL + g['href'], 'monthly') for g in GROUP]
 open(f'{OUT}/sitemap.xml', 'w', encoding='utf-8').write(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    + ''.join(f'  <url><loc>{u}</loc><changefreq>daily</changefreq></url>\n' for u in pages) + '</urlset>\n')
+    + ''.join(f'  <url><loc>{u}</loc><changefreq>{f}</changefreq></url>\n' for u, f in pages) + '</urlset>\n')
 open(f'{OUT}/robots.txt', 'w', encoding='utf-8').write(f'User-agent: *\nAllow: /\nDisallow: /r/\n\nSitemap: {SITE_URL}sitemap.xml\n')
 stamp.stamp_file(OUT, f'{OUT}/index.html')       # the versions of the scripts and stylesheets (see stamp.py)
 print('index.html', len(html), 'bytes')

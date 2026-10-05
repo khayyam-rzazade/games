@@ -1,0 +1,3228 @@
+ONE OF 193: EVIDENCE
+====================
+What each page said, for every list the phone answers from. Read on 5 October 2026 in the chat that built the game.
+Four helpers did the reading in parallel (each with a fixed budget of web searches; every address opened came from
+their own search results or was a link on the same website). Claude compared the lists with the files in
+r/one-of-193-workshop/countries.py (a script mapped every name in these quotes to its country code: all lists match).
+
+Parts
+  A  the 193 UN member states, and the UN regions and sub-regions (M49)
+  B  landlocked, island countries, the Mediterranean, the equator
+  C  coasts on the Pacific, Indian, Atlantic and Arctic oceans: NOT used (the sources do not agree; see the verdict)
+  D  land borders with China and with Russia, left-hand traffic, the euro
+
+What the game took (C):
+  - only UN member states: territories, observer states (the Holy See, Palestine), states in free association
+    (the Cook Islands, Niue), Western Sahara and partially recognised states (Kosovo, Taiwan, Northern Cyprus,
+    Abkhazia, South Ossetia, Transnistria) are left out;
+  - each country's own land only: overseas territories never count (so the United Kingdom is not a
+    Mediterranean country, though Gibraltar and Akrotiri and Dhekelia touch the sea);
+  - the ocean questions are left out of the menu (part C).
+
+The marks [T], [OBS], [FA], [DISP] and every "COMPARISON" or "NOTES" line are the helpers' own, not the pages'.
+
+
+####################################################################################################
+# PART A
+####################################################################################################
+
+EVIDENCE FILE A
+UN member states (List A1) and UN M49 statistical regions (List A2)
+Compiled on 5 October 2026.
+
+Plain text. Everything below was read from the web pages named here, through
+the WebFetch page reader. That reader summarises, so every list was asked for
+word for word, in parts, and checked again with repeat fetches. Anything I add
+myself (a mark, a count, a note) is labelled as mine.
+
+
+======================================================================
+KEY TO MARKS USED IN THIS FILE (all marks are mine, not the pages')
+======================================================================
+(no mark) = UN member state (one of the 193 in List A1).
+[T]    = NOT a UN member state: territory, dependency or other area.
+         Based on List A1 (both A1 sources list the same 193 member states).
+[OBS]  = NOT a UN member state: one of the "two UN observer states
+         (the Holy See and Palestine)" (wording from the Wikipedia
+         geoscheme list page).
+[FA]   = NOT a UN member state: one of the "two states in free association
+         with New Zealand (the Cook Islands and Niue)" (same page).
+[DISP] = NOT a UN member state: Western Sahara, "a disputed territory whose
+         sovereignty is contested" (same page).
+Everything marked [T], [OBS], [FA] or [DISP] is to be left out of the
+193-country game list.
+[...] = a gap left by the page reader. No gaps remain in the final lists
+(see Part 4, Notes).
+
+
+======================================================================
+PART 1. SEARCH QUERIES (6 of 6 used)
+======================================================================
+1 of 6: UN Member States list un.org about us member states
+2 of 6: Member states of the United Nations Wikipedia
+3 of 6: unstats M49 Standard country or area codes for statistical use overview geographic regions
+4 of 6: United Nations geoscheme Wikipedia
+5 of 6: unstats.un.org unsd methodology m49 overview Sub-region Name Intermediate Region Name
+6 of 6: "m49/overview" UNSD Methodology Standard country or area codes Overview table
+
+Searches 5 and 6 were attempts to find the M49 "Overview" page. Its address
+did not appear in either result list, so it was not opened.
+
+Pages opened (WebFetch), and where each address came from:
+- https://www.un.org/es/member-states/
+    (in the results of search 1)
+- https://www.un.org/en/about-us/member-states
+    (English-language link copied from the page above; same website)
+- https://en.wikipedia.org/wiki/Member_states_of_the_United_Nations
+    (results of search 2)
+- https://unstats.un.org/unsd/methodology/m49
+    (results of searches 3, 5 and 6)
+- https://unstats.un.org/unsd/methodology/M49
+    (results of searches 3, 5 and 6; same page with a capital M; opened once,
+    only to look for links)
+- https://en.wikipedia.org/wiki/United_Nations_geoscheme
+    (results of search 4)
+- https://en.wikipedia.org/wiki/List_of_countries_and_territories_by_the_United_Nations_geoscheme
+    (results of search 4; also a link on the page above)
+No fetch failed or was refused.
+
+
+======================================================================
+PART 2. LIST A1 - THE 193 UN MEMBER STATES
+======================================================================
+
+----------------------------------------------------------------------
+A1, SOURCE 1: United Nations, "Member States" page (un.org)
+----------------------------------------------------------------------
+Address as opened: https://www.un.org/en/about-us/member-states
+How reached: search 1 gave https://www.un.org/es/member-states/ . That page's
+language links included https://www.un.org/en/about-us/member-states , which
+I then opened.
+What the page shows: one heading per member state, with
+"Date of Admission: dd-mm-yyyy" under it. Example from the raw page text:
+"## Bahamas (The)" / "Date of Admission: 18-09-1973".
+Total printed on the page: none (the reader found no sentence giving a total).
+My count of the names read: 193.
+How read: 5 fetches by first letter (A-C: 45, D-I: 39, J-N: 44, O-S: 41,
+T-Z: 24; total 193). Then one check fetch quoting the raw entries, with
+admission dates, for the unusual names: Bahamas (The), China (the People's
+Republic of), Côte D'Ivoire, Gambia (Republic of The), Guinea Bissau, Naoero,
+Netherlands (Kingdom of the), Türkiye, Venezuela, Bolivarian Republic of, Lao
+People's Democratic Republic, Czechia, Eswatini. All were confirmed as written
+below. Raw entry for Nauru: "## [Naoero](https://www.un.org/en/about-us/member-states/naoero)"
+with "Date of Admission: 14-09-1999".
+
+Names exactly as the page writes them (page order, alphabetical):
+1. Afghanistan
+2. Albania
+3. Algeria
+4. Andorra
+5. Angola
+6. Antigua and Barbuda
+7. Argentina
+8. Armenia
+9. Australia
+10. Austria
+11. Azerbaijan
+12. Bahamas (The)
+13. Bahrain
+14. Bangladesh
+15. Barbados
+16. Belarus
+17. Belgium
+18. Belize
+19. Benin
+20. Bhutan
+21. Bolivia (Plurinational State of)
+22. Bosnia and Herzegovina
+23. Botswana
+24. Brazil
+25. Brunei Darussalam
+26. Bulgaria
+27. Burkina Faso
+28. Burundi
+29. Cabo Verde
+30. Cambodia
+31. Cameroon
+32. Canada
+33. Central African Republic
+34. Chad
+35. Chile
+36. China (the People's Republic of)
+37. Colombia
+38. Comoros
+39. Congo
+40. Costa Rica
+41. Côte D'Ivoire
+42. Croatia
+43. Cuba
+44. Cyprus
+45. Czechia
+46. Democratic People's Republic of Korea
+47. Democratic Republic of the Congo
+48. Denmark
+49. Djibouti
+50. Dominica
+51. Dominican Republic
+52. Ecuador
+53. Egypt
+54. El Salvador
+55. Equatorial Guinea
+56. Eritrea
+57. Estonia
+58. Eswatini
+59. Ethiopia
+60. Fiji
+61. Finland
+62. France
+63. Gabon
+64. Gambia (Republic of The)
+65. Georgia
+66. Germany
+67. Ghana
+68. Greece
+69. Grenada
+70. Guatemala
+71. Guinea
+72. Guinea Bissau
+73. Guyana
+74. Haiti
+75. Honduras
+76. Hungary
+77. Iceland
+78. India
+79. Indonesia
+80. Iran (Islamic Republic of)
+81. Iraq
+82. Ireland
+83. Israel
+84. Italy
+85. Jamaica
+86. Japan
+87. Jordan
+88. Kazakhstan
+89. Kenya
+90. Kiribati
+91. Kuwait
+92. Kyrgyzstan
+93. Lao People's Democratic Republic
+94. Latvia
+95. Lebanon
+96. Lesotho
+97. Liberia
+98. Libya
+99. Liechtenstein
+100. Lithuania
+101. Luxembourg
+102. Madagascar
+103. Malawi
+104. Malaysia
+105. Maldives
+106. Mali
+107. Malta
+108. Marshall Islands
+109. Mauritania
+110. Mauritius
+111. Mexico
+112. Micronesia (Federated States of)
+113. Monaco
+114. Mongolia
+115. Montenegro
+116. Morocco
+117. Mozambique
+118. Myanmar
+119. Namibia
+120. Naoero
+121. Nepal
+122. Netherlands (Kingdom of the)
+123. New Zealand
+124. Nicaragua
+125. Niger
+126. Nigeria
+127. North Macedonia
+128. Norway
+129. Oman
+130. Pakistan
+131. Palau
+132. Panama
+133. Papua New Guinea
+134. Paraguay
+135. Peru
+136. Philippines
+137. Poland
+138. Portugal
+139. Qatar
+140. Republic of Korea
+141. Republic of Moldova
+142. Romania
+143. Russian Federation
+144. Rwanda
+145. Saint Kitts and Nevis
+146. Saint Lucia
+147. Saint Vincent and the Grenadines
+148. Samoa
+149. San Marino
+150. Sao Tome and Principe
+151. Saudi Arabia
+152. Senegal
+153. Serbia
+154. Seychelles
+155. Sierra Leone
+156. Singapore
+157. Slovakia
+158. Slovenia
+159. Solomon Islands
+160. Somalia
+161. South Africa
+162. South Sudan
+163. Spain
+164. Sri Lanka
+165. Sudan
+166. Suriname
+167. Sweden
+168. Switzerland
+169. Syrian Arab Republic
+170. Tajikistan
+171. Thailand
+172. Timor-Leste
+173. Togo
+174. Tonga
+175. Trinidad and Tobago
+176. Tunisia
+177. Türkiye
+178. Turkmenistan
+179. Tuvalu
+180. Uganda
+181. Ukraine
+182. United Arab Emirates
+183. United Kingdom of Great Britain and Northern Ireland
+184. United Republic of Tanzania
+185. United States of America
+186. Uruguay
+187. Uzbekistan
+188. Vanuatu
+189. Venezuela, Bolivarian Republic of
+190. Viet Nam
+191. Yemen
+192. Zambia
+193. Zimbabwe
+
+----------------------------------------------------------------------
+A1, SOURCE 2: Wikipedia, "Member states of the United Nations"
+----------------------------------------------------------------------
+Address as opened: https://en.wikipedia.org/wiki/Member_states_of_the_United_Nations
+What the page shows: a table of current members. Column headings, as the
+reader gave them: "Member state", "Date of admission", "Notes".
+Total: the reader counted 193 rows in the table. It quoted the introduction
+as: "The United Nations comprise 193 sovereign states and the world's largest
+intergovernmental organization." (This wording looks garbled by the reader;
+the number 193 is what matters.)
+My count of the names read: 193.
+How read: two complete passes by first letter, plus check fetches.
+  Pass 1 (names only) missed Norway and Tajikistan.
+  Pass 2 (names with admission dates) missed Democratic People's Republic of
+  Korea, Democratic Republic of the Congo and Rwanda.
+  Each of these five was then confirmed in the table by a targeted fetch that
+  gave its admission date: Norway 27 November 1945; Tajikistan 2 March 1992;
+  Democratic People's Republic of Korea 17 September 1991; Democratic
+  Republic of the Congo 20 September 1960; Rwanda 18 September 1962.
+  Palestine, Holy See / Vatican, Kosovo and Taiwan: "NOT IN TABLE".
+Note printed in the table for Naoero (quoted by the reader):
+  "Previously referred to as Nauru until 26 June 2026."
+
+Names exactly as the reader returned them from the "Member state" column
+(table order, alphabetical):
+1. Afghanistan
+2. Albania
+3. Algeria
+4. Andorra
+5. Angola
+6. Antigua and Barbuda
+7. Argentina
+8. Armenia
+9. Australia
+10. Austria
+11. Azerbaijan
+12. Bahamas, The
+13. Bahrain
+14. Bangladesh
+15. Barbados
+16. Belarus
+17. Belgium
+18. Belize
+19. Benin
+20. Bhutan
+21. Bolivia
+22. Bosnia and Herzegovina
+23. Botswana
+24. Brazil
+25. Brunei
+26. Bulgaria
+27. Burkina Faso
+28. Burundi
+29. Cabo Verde
+30. Cambodia
+31. Cameroon
+32. Canada
+33. Central African Republic
+34. Chad
+35. Chile
+36. China
+37. Colombia
+38. Comoros
+39. Congo
+40. Costa Rica
+41. Côte d'Ivoire
+42. Croatia
+43. Cuba
+44. Cyprus
+45. Czechia
+46. North Korea Democratic People's Republic of Korea   (see note A1-W1)
+47. Democratic Republic of the Congo
+48. Denmark Denmark   (see note A1-W1)
+49. Djibouti
+50. Dominica
+51. Dominican Republic
+52. Ecuador
+53. Egypt
+54. El Salvador
+55. Equatorial Guinea
+56. Eritrea
+57. Estonia
+58. Eswatini
+59. Ethiopia
+60. Fiji
+61. Finland
+62. France
+63. Gabon
+64. Gambia (Republic of The)
+65. Georgia
+66. Germany
+67. Ghana
+68. Greece
+69. Grenada
+70. Guatemala
+71. Guinea
+72. Guinea-Bissau
+73. Guyana
+74. Haiti
+75. Honduras
+76. Hungary
+77. Iceland
+78. India
+79. Indonesia
+80. Iran (Islamic Republic of)
+81. Iraq
+82. Ireland
+83. Israel
+84. Italy
+85. Jamaica
+86. Japan
+87. Jordan
+88. Kazakhstan
+89. Kenya
+90. Kiribati
+91. Kuwait
+92. Kyrgyzstan
+93. Lao People's Democratic Republic
+94. Latvia
+95. Lebanon
+96. Lesotho
+97. Liberia
+98. Libya
+99. Liechtenstein
+100. Lithuania
+101. Luxembourg
+102. Madagascar
+103. Malawi
+104. Malaysia
+105. Maldives
+106. Mali
+107. Malta
+108. Marshall Islands
+109. Mauritania
+110. Mauritius
+111. Mexico
+112. Micronesia (Federated States of)
+113. Monaco
+114. Mongolia
+115. Montenegro
+116. Morocco
+117. Mozambique
+118. Myanmar
+119. Namibia
+120. Naoero
+121. Nepal
+122. Netherlands
+123. New Zealand
+124. Nicaragua
+125. Niger
+126. Nigeria
+127. North Macedonia
+128. Norway
+129. Oman
+130. Pakistan
+131. Palau
+132. Panama
+133. Papua New Guinea
+134. Paraguay
+135. Peru
+136. Philippines
+137. Poland
+138. Portugal
+139. Qatar
+140. South Korea Republic of Korea   (see note A1-W1)
+141. Republic of Moldova
+142. Romania
+143. Russian Federation
+144. Rwanda
+145. Saint Kitts and Nevis
+146. Saint Lucia
+147. Saint Vincent and the Grenadines
+148. Samoa
+149. San Marino
+150. Sao Tome and Principe
+151. Saudi Arabia
+152. Senegal
+153. Serbia
+154. Seychelles
+155. Sierra Leone
+156. Singapore
+157. Slovakia
+158. Slovenia
+159. Solomon Islands
+160. Somalia
+161. South Africa
+162. South Sudan
+163. Spain
+164. Sri Lanka
+165. Sudan
+166. Suriname
+167. Sweden
+168. Switzerland
+169. Syrian Arab Republic
+170. Tajikistan
+171. Thailand
+172. Timor-Leste
+173. Togo
+174. Tonga
+175. Trinidad and Tobago
+176. Tunisia
+177. Türkiye
+178. Turkmenistan
+179. Tuvalu
+180. Uganda
+181. Ukraine
+182. United Arab Emirates
+183. United Kingdom of Great Britain and Northern Ireland
+184. United Republic of Tanzania
+185. United States of America
+186. Uruguay
+187. Uzbekistan
+188. Vanuatu
+189. Venezuela (Bolivarian Republic of)
+190. Vietnam
+191. Yemen
+192. Zambia
+193. Zimbabwe
+
+Note A1-W1 (mine): for three rows the reader returned two names run
+together: "Denmark Denmark", "North Korea Democratic People's Republic of
+Korea" and "South Korea Republic of Korea". It did this again when asked for
+the raw cell text. This is probably a hidden label in the cell (for example a
+flag picture's label) read together with the name. The rows sit in the table
+where "Denmark", "Democratic People's Republic of Korea" and "Republic of
+Korea" fall alphabetically (under D, D and R), and in pass 1 the reader
+returned plain "Denmark", "Democratic People's Republic of Korea" and
+"Republic of Korea". So these are most likely the names shown on the page.
+
+----------------------------------------------------------------------
+A1, COMPARISON OF THE TWO SOURCES
+----------------------------------------------------------------------
+Count: UN page 193. Wikipedia 193.
+
+Names on one source only (after allowing for spelling and format
+differences): NONE. Both sources list the same 193 states.
+
+Same state, written differently (12 cases):
+  UN page                                 | Wikipedia
+  Bahamas (The)                           | Bahamas, The
+  Bolivia (Plurinational State of)        | Bolivia
+  Brunei Darussalam                       | Brunei
+  China (the People's Republic of)        | China
+  Côte D'Ivoire                           | Côte d'Ivoire
+  Democratic People's Republic of Korea   | North Korea Democratic People's Republic of Korea (note A1-W1)
+  Denmark                                 | Denmark Denmark (note A1-W1)
+  Guinea Bissau                           | Guinea-Bissau
+  Netherlands (Kingdom of the)            | Netherlands
+  Republic of Korea                       | South Korea Republic of Korea (note A1-W1)
+  Venezuela, Bolivarian Republic of       | Venezuela (Bolivarian Republic of)
+  Viet Nam                                | Vietnam
+
+The other 181 names are written the same on both sources. These include
+several that differ from everyday English and are worth knowing for the game:
+Cabo Verde, Czechia, Eswatini, Gambia (Republic of The), Iran (Islamic
+Republic of), Lao People's Democratic Republic, Micronesia (Federated States
+of), Naoero, North Macedonia, Republic of Moldova, Russian Federation, Syrian
+Arab Republic, Timor-Leste, Türkiye, United Republic of Tanzania, United
+Kingdom of Great Britain and Northern Ireland, United States of America.
+
+Nauru: both sources now write "Naoero". Wikipedia's note: "Previously
+referred to as Nauru until 26 June 2026."
+
+
+======================================================================
+PART 3. LIST A2 - UN STATISTICAL REGIONS (M49 / UN geoscheme)
+======================================================================
+
+----------------------------------------------------------------------
+A2, SOURCE 1: UN Statistics Division, "Standard country or area codes for
+statistical use (M49)" (unstats.un.org)
+----------------------------------------------------------------------
+Address as opened: https://unstats.un.org/unsd/methodology/m49
+Part used: the English "Geographic Regions" list on this page (a nested list
+of regions, each with a numeric code). The page also has the list in other
+languages (the reader saw French, Spanish and Arabic forms); those were not
+used.
+
+The page's own description, as quoted by the reader:
+"These geographic regions are based on continental regions; which are
+further subdivided into sub-regions and intermediary regions drawn as to
+obtain greater homogeneity in sizes of population, demographic circumstances
+and accuracy of demographic statistics."
+The reader said the page does not label which headings are "sub-regions" and
+which are "intermediary regions".
+
+Headings in the list, in page order, with their codes and nesting:
+World 001
+  Africa 002
+    Northern Africa 015
+    Sub-Saharan Africa 202
+      Eastern Africa 014
+      Middle Africa 017
+      Southern Africa 018
+      Western Africa 011
+  Americas 019
+    Latin America and the Caribbean 419
+      Caribbean 029
+      Central America 013
+      South America 005
+    Northern America 021
+  Antarctica 010
+  Asia 142
+    Central Asia 143
+    Eastern Asia 030
+    South-eastern Asia 035
+    Southern Asia 034
+    Western Asia 145
+  Europe 150
+    Eastern Europe 151
+    Northern Europe 154
+    Southern Europe 039
+    Western Europe 155
+  Oceania 009
+    Australia and New Zealand 053
+    Melanesia 054
+    Micronesia 057
+    Polynesia 061
+The reader confirmed that no country or area sits directly under
+"Sub-Saharan Africa 202" or "Latin America and the Caribbean 419"; all are
+inside the groups listed under them.
+
+Countries or areas in each group, exactly as written, followed by the M49
+numeric code the page gives each one. (The page also shows ISO alpha-3 codes
+and LDC / LLDC / SIDS marks for many entries; I did not collect those
+systematically.) Counts are mine. Marks are mine (see key).
+
+AFRICA 002
+
+Northern Africa 015  (7 entries; 6 UN member states)
+  Algeria | 012
+  Egypt | 818
+  Libya | 434
+  Morocco | 504
+  Sudan | 729
+  Tunisia | 788
+  Western Sahara | 732  [DISP]
+
+Sub-Saharan Africa 202 > Eastern Africa 014  (22 entries; 18 UN member states)
+  British Indian Ocean Territory | 086  [T]
+  Burundi | 108
+  Comoros | 174
+  Djibouti | 262
+  Eritrea | 232
+  Ethiopia | 231
+  French Southern Territories | 260  [T]
+  Kenya | 404
+  Madagascar | 450
+  Malawi | 454
+  Mauritius | 480
+  Mayotte | 175  [T]
+  Mozambique | 508
+  Réunion | 638  [T]
+  Rwanda | 646
+  Seychelles | 690
+  Somalia | 706
+  South Sudan | 728
+  Uganda | 800
+  United Republic of Tanzania | 834
+  Zambia | 894
+  Zimbabwe | 716
+
+Sub-Saharan Africa 202 > Middle Africa 017  (9 entries; 9 UN member states)
+  Angola | 024
+  Cameroon | 120
+  Central African Republic | 140
+  Chad | 148
+  Congo | 178
+  Democratic Republic of the Congo | 180
+  Equatorial Guinea | 226
+  Gabon | 266
+  Sao Tome and Principe | 678
+
+Sub-Saharan Africa 202 > Southern Africa 018  (5 entries; 5 UN member states)
+  Botswana | 072
+  Eswatini | 748
+  Lesotho | 426
+  Namibia | 516
+  South Africa | 710
+
+Sub-Saharan Africa 202 > Western Africa 011  (17 entries; 16 UN member states)
+  Benin | 204
+  Burkina Faso | 854
+  Cabo Verde | 132
+  Côte d'Ivoire | 384
+  Gambia | 270
+  Ghana | 288
+  Guinea | 324
+  Guinea-Bissau | 624
+  Liberia | 430
+  Mali | 466
+  Mauritania | 478
+  Niger | 562
+  Nigeria | 566
+  Saint Helena | 654  [T]
+  Senegal | 686
+  Sierra Leone | 694
+  Togo | 768
+
+AMERICAS 019
+
+Latin America and the Caribbean 419 > Caribbean 029  (28 entries; 13 UN member states)
+  Anguilla | 660  [T]
+  Antigua and Barbuda | 028
+  Aruba | 533  [T]
+  Bahamas | 044
+  Barbados | 052
+  Bonaire, Sint Eustatius and Saba | 535  [T]
+  British Virgin Islands | 092  [T]
+  Cayman Islands | 136  [T]
+  Cuba | 192
+  Curaçao | 531  [T]
+  Dominica | 212
+  Dominican Republic | 214
+  Grenada | 308
+  Guadeloupe | 312  [T]
+  Haiti | 332
+  Jamaica | 388
+  Martinique | 474  [T]
+  Montserrat | 500  [T]
+  Puerto Rico | 630  [T]
+  Saint Barthélemy | 652  [T]
+  Saint Kitts and Nevis | 659
+  Saint Lucia | 662
+  Saint Martin (French Part) | 663  [T]
+  Saint Vincent and the Grenadines | 670
+  Sint Maarten (Dutch part) | 534  [T]
+  Trinidad and Tobago | 780
+  Turks and Caicos Islands | 796  [T]
+  United States Virgin Islands | 850  [T]
+
+Latin America and the Caribbean 419 > Central America 013  (8 entries; 8 UN member states)
+  Belize | 084
+  Costa Rica | 188
+  El Salvador | 222
+  Guatemala | 320
+  Honduras | 340
+  Mexico | 484
+  Nicaragua | 558
+  Panama | 591
+
+Latin America and the Caribbean 419 > South America 005  (16 entries; 12 UN member states)
+  Argentina | 032
+  Bolivia (Plurinational State of) | 068
+  Bouvet Island | 074  [T]
+  Brazil | 076
+  Chile | 152
+  Colombia | 170
+  Ecuador | 218
+  Falkland Islands (Malvinas) | 238  [T]
+  French Guiana | 254  [T]
+  Guyana | 328
+  Paraguay | 600
+  Peru | 604
+  South Georgia and the South Sandwich Islands | 239  [T]
+  Suriname | 740
+  Uruguay | 858
+  Venezuela (Bolivarian Republic of) | 862
+
+Northern America 021  (5 entries; 2 UN member states)
+  Bermuda | 060  [T]
+  Canada | 124
+  Greenland | 304  [T]
+  Saint Pierre and Miquelon | 666  [T]
+  United States of America | 840
+
+ANTARCTICA 010  (sits directly under World 001; 1 entry; no UN member state)
+  Antarctica | 010  [T]
+
+ASIA 142
+
+Central Asia 143  (5 entries; 5 UN member states)
+  Kazakhstan | 398
+  Kyrgyzstan | 417
+  Tajikistan | 762
+  Turkmenistan | 795
+  Uzbekistan | 860
+
+Eastern Asia 030  (7 entries; 5 UN member states)
+  China | 156
+  China, Hong Kong Special Administrative Region | 344  [T]
+  China, Macao Special Administrative Region | 446  [T]
+  Democratic People's Republic of Korea | 408
+  Japan | 392
+  Mongolia | 496
+  Republic of Korea | 410
+
+South-eastern Asia 035  (11 entries; 11 UN member states)
+  Brunei Darussalam | 096
+  Cambodia | 116
+  Indonesia | 360
+  Lao People's Democratic Republic | 418
+  Malaysia | 458
+  Myanmar | 104
+  Philippines | 608
+  Singapore | 702
+  Thailand | 764
+  Timor-Leste | 626
+  Viet Nam | 704
+
+Southern Asia 034  (9 entries; 9 UN member states)
+  Afghanistan | 004
+  Bangladesh | 050
+  Bhutan | 064
+  India | 356
+  Iran (Islamic Republic of) | 364
+  Maldives | 462
+  Nepal | 524
+  Pakistan | 586
+  Sri Lanka | 144
+
+Western Asia 145  (18 entries; 17 UN member states)
+  Armenia | 051
+  Azerbaijan | 031
+  Bahrain | 048
+  Cyprus | 196
+  Georgia | 268
+  Iraq | 368
+  Israel | 376
+  Jordan | 400
+  Kuwait | 414
+  Lebanon | 422
+  Oman | 512
+  Qatar | 634
+  Saudi Arabia | 682
+  State of Palestine | 275  [OBS]
+  Syrian Arab Republic | 760
+  Türkiye | 792
+  United Arab Emirates | 784
+  Yemen | 887
+
+EUROPE 150
+
+Eastern Europe 151  (10 entries; 10 UN member states)
+  Belarus | 112
+  Bulgaria | 100
+  Czechia | 203
+  Hungary | 348
+  Poland | 616
+  Republic of Moldova | 498
+  Romania | 642
+  Russian Federation | 643
+  Slovakia | 703
+  Ukraine | 804
+
+Northern Europe 154  (16 entries; 10 UN member states)
+  Åland Islands | 248  [T]
+  Denmark | 208
+  Estonia | 233
+  Faroe Islands | 234  [T]
+  Finland | 246
+  Guernsey | 831  [T]
+  Iceland | 352
+  Ireland | 372
+  Isle of Man | 833  [T]
+  Jersey | 832  [T]
+  Latvia | 428
+  Lithuania | 440
+  Norway | 578
+  Svalbard and Jan Mayen Islands | 744  [T]
+  Sweden | 752
+  United Kingdom of Great Britain and Northern Ireland | 826
+  (The reader found no "Channel Islands" heading on this page. A text search
+  of the whole page for "830", "680", "Channel" and "Sark" found nothing.)
+
+Southern Europe 039  (16 entries; 14 UN member states)
+  Albania | 008
+  Andorra | 020
+  Bosnia and Herzegovina | 070
+  Croatia | 191
+  Gibraltar | 292  [T]
+  Greece | 300
+  Holy See | 336  [OBS]
+  Italy | 380
+  Malta | 470
+  Montenegro | 499
+  North Macedonia | 807
+  Portugal | 620
+  San Marino | 674
+  Serbia | 688
+  Slovenia | 705
+  Spain | 724
+
+Western Europe 155  (9 entries; 9 UN member states)
+  Austria | 040
+  Belgium | 056
+  France | 250
+  Germany | 276
+  Liechtenstein | 438
+  Luxembourg | 442
+  Monaco | 492
+  Netherlands (Kingdom of the) | 528
+  Switzerland | 756
+
+OCEANIA 009
+
+Australia and New Zealand 053  (6 entries; 2 UN member states)
+  Australia | 036
+  Christmas Island | 162  [T]
+  Cocos (Keeling) Islands | 166  [T]
+  Heard Island and McDonald Islands | 334  [T]
+  New Zealand | 554
+  Norfolk Island | 574  [T]
+
+Melanesia 054  (5 entries; 4 UN member states)
+  Fiji | 242
+  New Caledonia | 540  [T]
+  Papua New Guinea | 598
+  Solomon Islands | 090
+  Vanuatu | 548
+
+Micronesia 057  (8 entries; 5 UN member states)
+  Guam | 316  [T]
+  Kiribati | 296
+  Marshall Islands | 584
+  Micronesia (Federated States of) | 583
+  Naoero | 520
+  Northern Mariana Islands | 580  [T]
+  Palau | 585
+  United States Minor Outlying Islands | 581  [T]
+
+Polynesia 061  (10 entries; 3 UN member states)
+  American Samoa | 016  [T]
+  Cook Islands | 184  [FA]
+  French Polynesia | 258  [T]
+  Niue | 570  [FA]
+  Pitcairn | 612  [T]
+  Samoa | 882
+  Tokelau | 772  [T]
+  Tonga | 776
+  Tuvalu | 798
+  Wallis and Futuna Islands | 876  [T]
+
+Not on this page (text search by the reader; all "NOT FOUND"): Taiwan, 158,
+Kosovo, 412, Channel Islands (830), Sark (680).
+
+M49 page totals (mine): 248 entries = 193 UN member states + 55 others
+(2 [OBS], 2 [FA], 1 [DISP], and 50 [T], one of which is Antarctica).
+
+----------------------------------------------------------------------
+A2, SOURCE 2: Wikipedia, "List of countries and territories by the United
+Nations geoscheme"
+----------------------------------------------------------------------
+Address as opened:
+https://en.wikipedia.org/wiki/List_of_countries_and_territories_by_the_United_Nations_geoscheme
+
+Why this page and not only "United Nations geoscheme": the main article
+https://en.wikipedia.org/wiki/United_Nations_geoscheme was opened first (three
+fetches). The reader found country lists there only for the Caribbean and
+South America. It gave those only in summary form, and its two answers did not
+agree on the names (for example "Venezuela (Bolivarian Republic of)" in one
+answer, "Venezuela" in the other), so they are not used here. The reader
+could not give the addresses of the per-continent pages ("UN
+geoscheme for Africa", "UN geoscheme for the Americas", "UN geoscheme for
+Asia", "UN geoscheme for Europe"). It did give the address of this list page
+as a link on the main article, and the same address was in the results of
+search 4. So this list page is the complete Wikipedia source for A2. The
+per-continent pages were not opened.
+
+Introduction, quoted by the reader in short pieces (joined here):
+"This is a list of countries and territories by the United Nations
+geoscheme, including 193 UN member states, two UN observer states (the Holy
+See and Palestine), two states in free association with New Zealand (the
+Cook Islands and Niue), and 49 non-sovereign dependencies or territories, as
+well as Western Sahara (a disputed territory whose sovereignty is contested)
+and Antarctica. In total, 248 countries and territories have been listed."
+
+Main table column headings (exact, as given by the reader):
+"Country or Area | Geographical subregion | Intermediary region | Continental
+region | UNSD M49 Codes"
+The table does not mark which rows are UN members (reader). The marks below
+are mine.
+Square brackets inside a name are how the reader showed a second name given
+in the same cell (for example "Eswatini [Swaziland]"). I cannot confirm how
+the page lays out that second name.
+The reader's own row counts were sometimes wrong (it said 23 for Eastern
+Africa, 16 for Western Africa and 14 for South America while listing 22, 17
+and 16 rows). The counts below are mine, from the rows it actually listed.
+
+For each group I give the shared pattern once, then every row's name and its
+own code. Every row listed in the group follows the pattern exactly.
+
+Northern Africa  (7 rows; 6 UN member states)
+Every row reads: <name> | Northern Africa | — | Africa | <code> < 015 < 002 < 001
+  Algeria | 012
+  Egypt | 818
+  Libya | 434
+  Morocco | 504
+  Sudan | 729
+  Tunisia | 788
+  Western Sahara (disputed) | 732  [DISP]
+
+Eastern Africa  (22 rows; 18 UN member states)
+Every row reads: <name> | Eastern Africa | Sub-Saharan Africa | Africa | <code> < 014 < 202 < 002 < 001
+  British Indian Ocean Territory | 086  [T]
+  Burundi | 108
+  Comoros | 174
+  Djibouti | 262
+  Eritrea | 232
+  Ethiopia | 231
+  French Southern Territories | 260  [T]
+  Kenya | 404
+  Madagascar | 450
+  Malawi | 454
+  Mauritius | 480
+  Mayotte | 175  [T]
+  Mozambique | 508
+  Réunion | 638  [T]
+  Rwanda | 646
+  Seychelles | 690
+  Somalia | 706
+  South Sudan | 728
+  Uganda | 800
+  United Republic of Tanzania | 834
+  Zambia | 894
+  Zimbabwe | 716
+
+Middle Africa  (9 rows; 9 UN member states)
+Every row reads: <name> | Middle Africa | Sub-Saharan Africa | Africa | <code> < 017 < 202 < 002 < 001
+  Angola | 024
+  Cameroon | 120
+  Central African Republic | 140
+  Chad | 148
+  Congo [Republic of the Congo] | 178
+  Democratic Republic of the Congo [DR Congo] | 180
+  Equatorial Guinea | 226
+  Gabon | 266
+  Sao Tome and Principe | 678
+
+Southern Africa  (5 rows; 5 UN member states)
+Every row reads: <name> | Southern Africa | Sub-Saharan Africa | Africa | <code> < 018 < 202 < 002 < 001
+  Botswana | 072
+  Eswatini [Swaziland] | 748
+  Lesotho | 426
+  Namibia | 516
+  South Africa | 710
+
+Western Africa  (17 rows; 16 UN member states)
+Every row reads: <name> | Western Africa | Sub-Saharan Africa | Africa | <code> < 011 < 202 < 002 < 001
+  Benin | 204
+  Burkina Faso | 854
+  Cabo Verde [Cape Verde] | 132
+  Côte d'Ivoire [Ivory Coast] | 384
+  Gambia | 270
+  Ghana | 288
+  Guinea | 324
+  Guinea-Bissau | 624
+  Liberia | 430
+  Mali | 466
+  Mauritania | 478
+  Niger | 562
+  Nigeria | 566
+  Saint Helena [Saint Helena, Ascension and Tristan da Cunha] | 654  [T]
+  Senegal | 686
+  Sierra Leone | 694
+  Togo | 768
+
+Caribbean  (28 rows; 13 UN member states)
+Every row reads: <name> | Caribbean | Latin America and the Caribbean North America | Americas | <code> < 029 < 419 / 003 < 019 < 001
+(The intermediary-region cell holds two names, "Latin America and the
+Caribbean" and "North America", and the code cell shows "419 / 003".)
+  Anguilla | 660  [T]
+  Antigua and Barbuda | 028
+  Aruba | 533  [T]
+  Bahamas | 044
+  Barbados | 052
+  Bonaire, Sint Eustatius and Saba [Caribbean Netherlands] | 535  [T]
+  British Virgin Islands | 092  [T]
+  Cayman Islands | 136  [T]
+  Cuba | 192
+  Curaçao | 531  [T]
+  Dominica | 212
+  Dominican Republic | 214
+  Grenada | 308
+  Guadeloupe | 312  [T]
+  Haiti | 332
+  Jamaica | 388
+  Martinique | 474  [T]
+  Montserrat | 500  [T]
+  Puerto Rico | 630  [T]
+  Saint Barthélemy | 652  [T]
+  Saint Kitts and Nevis | 659
+  Saint Lucia | 662
+  Saint Martin (French part) | 663  [T]
+  Saint Vincent and the Grenadines | 670
+  Sint Maarten (Dutch part) | 534  [T]
+  Trinidad and Tobago | 780
+  Turks and Caicos Islands | 796  [T]
+  United States Virgin Islands | 850  [T]
+
+Central America  (8 rows; 8 UN member states)
+Every row reads: <name> | Central America | Latin America and the Caribbean North America | Americas | <code> < 013 < 419 / 003 < 019 < 001
+  Belize | 084
+  Costa Rica | 188
+  El Salvador | 222
+  Guatemala | 320
+  Honduras | 340
+  Mexico | 484
+  Nicaragua | 558
+  Panama | 591
+
+South America  (16 rows; 12 UN member states)
+Every row reads: <name> | South America | Latin America and the Caribbean | Americas | <code> < 005 < 419 < 019 < 001
+  Argentina | 032
+  Bolivia (Plurinational State of) | 068
+  Bouvet Island | 074  [T]
+  Brazil | 076
+  Chile | 152
+  Colombia | 170
+  Ecuador | 218
+  Falkland Islands (Malvinas) | 238  [T]
+  French Guiana | 254  [T]
+  Guyana | 328
+  Paraguay | 600
+  Peru | 604
+  South Georgia and the South Sandwich Islands | 239  [T]
+  Suriname | 740
+  Uruguay | 858
+  Venezuela (Bolivarian Republic of) | 862
+
+Northern America  (5 rows; 2 UN member states)
+Every row reads: <name> | Northern America | North America | Americas | <code> < 021 < 003 < 019 < 001
+  Bermuda | 060  [T]
+  Canada | 124
+  Greenland | 304  [T]
+  Saint Pierre and Miquelon | 666  [T]
+  United States of America | 840
+
+Central Asia  (5 rows; 5 UN member states)
+Every row reads: <name> | Central Asia | — | Asia | <code> < 143 < 142 < 001
+  Kazakhstan | 398
+  Kyrgyzstan | 417
+  Tajikistan | 762
+  Turkmenistan | 795
+  Uzbekistan | 860
+
+Eastern Asia  (7 rows; 5 UN member states)
+Every row reads: <name> | Eastern Asia | — | Asia | <code> < 030 < 142 < 001
+  China | 156
+  China, Hong Kong Special Administrative Region | 344  [T]
+  China, Macao Special Administrative Region | 446  [T]
+  Democratic People's Republic of Korea [North Korea] | 408
+  Japan | 392
+  Mongolia | 496
+  Republic of Korea [South Korea] | 410
+
+South-eastern Asia  (11 rows; 11 UN member states)
+Every row reads: <name> | South-eastern Asia | — | Asia | <code> < 035 < 142 < 001
+  Brunei Darussalam | 096
+  Cambodia | 116
+  Indonesia | 360
+  Lao People's Democratic Republic | 418
+  Malaysia | 458
+  Myanmar [Burma] | 104
+  Philippines | 608
+  Singapore | 702
+  Thailand | 764
+  Timor-Leste [East Timor] | 626
+  Viet Nam | 704
+
+Southern Asia  (9 rows; 9 UN member states)
+Every row reads: <name> | Southern Asia | — | Asia | <code> < 034 < 142 < 001
+  Islamic Republic of Afghanistan | 004
+  Bangladesh | 050
+  Bhutan | 064
+  India | 356
+  Iran (Islamic Republic of) | 364
+  Maldives | 462
+  Nepal | 524
+  Pakistan | 586
+  Sri Lanka | 144
+
+Western Asia  (18 rows; 17 UN member states)
+Every row reads: <name> | Western Asia | — | Asia | <code> < 145 < 142 < 001
+  Armenia | 051
+  Azerbaijan | 031
+  Bahrain | 048
+  Cyprus | 196
+  Georgia | 268
+  Iraq | 368
+  Israel | 376
+  Jordan | 400
+  Kuwait | 414
+  Lebanon | 422
+  Oman | 512
+  Qatar | 634
+  Saudi Arabia | 682
+  State of Palestine | 275  [OBS]
+  Syrian Arab Republic | 760
+  Türkiye | 792
+  United Arab Emirates | 784
+  Yemen | 887
+
+Eastern Europe  (10 rows; 10 UN member states)
+Every row reads: <name> | Eastern Europe | — | Europe | <code> < 151 < 150 < 001
+  Belarus | 112
+  Bulgaria | 100
+  Czechia [Czech Republic] | 203
+  Hungary | 348
+  Poland | 616
+  Republic of Moldova | 498
+  Romania | 642
+  Russian Federation | 643
+  Slovakia | 703
+  Ukraine | 804
+
+Northern Europe  (16 rows; 10 UN member states)
+Every row reads: <name> | Northern Europe | — | Europe | <code> < 154 < 150 < 001
+  Åland Islands | 248  [T]
+  Denmark | 208
+  Estonia | 233
+  Faroe Islands | 234  [T]
+  Finland | 246
+  Guernsey | 831  [T]
+  Iceland | 352
+  Ireland | 372
+  Isle of Man | 833  [T]
+  Jersey | 832  [T]
+  Latvia | 428
+  Lithuania | 440
+  Norway | 578
+  Svalbard and Jan Mayen Islands | 744  [T]
+  Sweden | 752
+  United Kingdom of Great Britain and Northern Ireland | 826
+
+Southern Europe  (16 rows; 14 UN member states)
+Every row reads: <name> | Southern Europe | — | Europe | <code> < 039 < 150 < 001
+  Albania | 008
+  Andorra | 020
+  Bosnia and Herzegovina | 070
+  Croatia | 191
+  Gibraltar | 292  [T]
+  Greece | 300
+  Holy See [Vatican City] | 336  [OBS]
+  Italy | 380
+  Malta | 470
+  Montenegro | 499
+  North Macedonia | 807
+  Portugal | 620
+  San Marino | 674
+  Serbia | 688
+  Slovenia | 705
+  Spain | 724
+
+Western Europe  (9 rows; 9 UN member states)
+Every row reads: <name> | Western Europe | — | Europe | <code> < 155 < 150 < 001
+  Austria | 040
+  Belgium | 056
+  France [French Republic] | 250
+  Germany | 276
+  Liechtenstein | 438
+  Luxembourg | 442
+  Monaco | 492
+  Netherlands | 528
+  Switzerland | 756
+
+Australia and New Zealand  (6 rows; 2 UN member states)
+Every row reads: <name> | Australia and New Zealand | — | Oceania | <code> < 053 < 009 < 001
+  Australia | 036
+  Christmas Island | 162  [T]
+  Cocos (Keeling) Islands | 166  [T]
+  Heard Island and McDonald Islands | 334  [T]
+  New Zealand | 554
+  Norfolk Island | 574  [T]
+
+Melanesia  (5 rows; 4 UN member states)
+Every row reads: <name> | Melanesia | — | Oceania | <code> < 054 < 009 < 001
+  Fiji | 242
+  New Caledonia | 540  [T]
+  Papua New Guinea | 598
+  Solomon Islands | 090
+  Vanuatu | 548
+
+Micronesia  (8 rows; 5 UN member states)
+Every row reads: <name> | Micronesia | — | Oceania | <code> < 057 < 009 < 001
+  Guam | 316  [T]
+  Kiribati | 296
+  Marshall Islands | 584
+  Micronesia (Federated States of) | 583
+  Nauru | 520
+  Northern Mariana Islands | 580  [T]
+  Palau | 585
+  United States Minor Outlying Islands | 581  [T]
+
+Polynesia  (10 rows; 3 UN member states)
+Every row reads: <name> | Polynesia | — | Oceania | <code> < 061 < 009 < 001
+  American Samoa | 016  [T]
+  Cook Islands | 184  [FA]
+  French Polynesia | 258  [T]
+  Niue | 570  [FA]
+  Pitcairn [Pitcairn Islands] | 612  [T]
+  Samoa | 882
+  Tokelau | 772  [T]
+  Tonga | 776
+  Tuvalu | 798
+  Wallis and Futuna Islands | 876  [T]
+
+Antarctica  (1 row; no UN member state)
+  Antarctic Treaty Antarctica | — | — | Antarctica | 010 < 001  [T]
+  (The reader returned "Antarctic Treaty Antarctica" as the name, also in a
+  raw-text check. Probably a flag label, "Antarctic Treaty", read together
+  with the name "Antarctica"; my interpretation.)
+
+Main table totals (mine): 248 rows, matching the introduction's "In total,
+248 countries and territories have been listed." = 193 UN member states + 55
+others (2 [OBS], 2 [FA], 1 [DISP], and 50 [T], one of which is Antarctica).
+
+Second table, heading "Entries for strictly statistical purposes" (not UN
+member states; not counted in the 248):
+  Taiwan Province of China [Taiwan] | Eastern Asia | — | Asia | 158 < 030 < 142 < 001
+  Kosovo | Southern Europe | — | Europe | 412 < 039 < 150 < 001
+
+Third table (the reader found no caption; not UN member states; not counted
+in the 248):
+  Channel Islands | Northern Europe | — | Europe | 830 < 154 < 150 < 001
+  Sark | Northern Europe | — | Europe | 680 < 154 < 150 < 001
+
+----------------------------------------------------------------------
+A2, COMPARISON OF THE TWO SOURCES
+----------------------------------------------------------------------
+1. Different region or sub-region: NONE.
+   All 248 entries that both sources list are in the same continent and the
+   same lowest-level group in both (for example Cyprus, Armenia, Azerbaijan,
+   Georgia and Türkiye are in Western Asia in both; Russian Federation in
+   Eastern Europe in both; Mexico in Central America in both; Sudan in
+   Northern Africa in both; Iran (Islamic Republic of) in Southern Asia in
+   both). The M49 code chains on Wikipedia match the M49 page's nesting.
+
+2. UN member states missing from either source: NONE.
+   Each of the 193 member states in List A1 appears exactly once in each A2
+   source (matching across the name differences listed in point 4).
+
+3. Members per group (same in both sources; my counts):
+   Africa 54: Northern Africa 6, Eastern Africa 18, Middle Africa 9,
+     Southern Africa 5, Western Africa 16
+   Americas 35: Caribbean 13, Central America 8, South America 12,
+     Northern America 2
+   Asia 47: Central Asia 5, Eastern Asia 5, South-eastern Asia 11,
+     Southern Asia 9, Western Asia 17
+   Europe 43: Eastern Europe 10, Northern Europe 10, Southern Europe 14,
+     Western Europe 9
+   Oceania 14: Australia and New Zealand 2, Melanesia 4, Micronesia 5,
+     Polynesia 3
+   Total: 193.
+
+4. Same entry, written differently (M49 page | Wikipedia list):
+   Afghanistan | Islamic Republic of Afghanistan
+   Naoero | Nauru
+   Netherlands (Kingdom of the) | Netherlands
+   France | France [French Republic]
+   Saint Martin (French Part) | Saint Martin (French part)        [T]
+   Western Sahara | Western Sahara (disputed)                     [DISP]
+   Antarctica | Antarctic Treaty Antarctica                       [T]
+   Wikipedia adds a second name in brackets (M49 has the first name only):
+   Congo [Republic of the Congo]; Democratic Republic of the Congo [DR Congo];
+   Eswatini [Swaziland]; Cabo Verde [Cape Verde]; Côte d'Ivoire [Ivory
+   Coast]; Democratic People's Republic of Korea [North Korea]; Republic of
+   Korea [South Korea]; Myanmar [Burma]; Timor-Leste [East Timor]; Czechia
+   [Czech Republic]; Holy See [Vatican City] [OBS]; Saint Helena [Saint
+   Helena, Ascension and Tristan da Cunha] [T]; Bonaire, Sint Eustatius and
+   Saba [Caribbean Netherlands] [T]; Pitcairn [Pitcairn Islands] [T].
+   All other names are written the same in both.
+
+5. Entries on one source only (none are UN member states):
+   Wikipedia only: Taiwan Province of China [Taiwan] (Eastern Asia) and
+   Kosovo (Southern Europe), in its "Entries for strictly statistical
+   purposes" table; Channel Islands (830) and Sark (680) (Northern Europe), in
+   its third table. The M49 page, as read, has none of these four.
+   M49 page only: nothing.
+
+6. How the levels are named (this matters for the game's wording):
+   - The M49 page puts "Sub-Saharan Africa 202" between Africa and Eastern /
+     Middle / Southern / Western Africa, and "Latin America and the Caribbean
+     419" between the Americas and Caribbean / Central America / South
+     America. Northern Africa and Northern America sit directly under their
+     continents. The page does not say which level is called "sub-region" and
+     which "intermediary region" (reader).
+   - The Wikipedia list calls Eastern Africa, Caribbean and so on the
+     "Geographical subregion", and Sub-Saharan Africa / Latin America and the
+     Caribbean the "Intermediary region".
+   - Wikipedia also gives "North America" (code 003) as an intermediary
+     region for the Caribbean, Central America and Northern America. The M49
+     page's heading list, as read, has no "North America 003".
+   - Either way, the 22 lowest-level groups are the same in both sources and
+     match the sub-region list in the task: Northern, Eastern, Middle,
+     Southern, Western Africa; Caribbean, Central America, South America,
+     Northern America; Central, Eastern, South-eastern, Southern, Western
+     Asia; Eastern, Northern, Southern, Western Europe; Australia and New
+     Zealand, Melanesia, Micronesia, Polynesia.
+
+----------------------------------------------------------------------
+NAME CROSSWALK FOR UN MEMBER STATES (all four sources), mine
+----------------------------------------------------------------------
+Only member states whose name differs between at least two of the four
+sources are listed. All other members are written the same in all four.
+Order: UN page (A1) | Wikipedia member list (A1) | M49 page (A2) |
+Wikipedia geoscheme list (A2)
+
+Afghanistan | Afghanistan | Afghanistan | Islamic Republic of Afghanistan
+Bahamas (The) | Bahamas, The | Bahamas | Bahamas
+Bolivia (Plurinational State of) | Bolivia | Bolivia (Plurinational State of) | Bolivia (Plurinational State of)
+Brunei Darussalam | Brunei | Brunei Darussalam | Brunei Darussalam
+Cabo Verde | Cabo Verde | Cabo Verde | Cabo Verde [Cape Verde]
+China (the People's Republic of) | China | China | China
+Congo | Congo | Congo | Congo [Republic of the Congo]
+Côte D'Ivoire | Côte d'Ivoire | Côte d'Ivoire | Côte d'Ivoire [Ivory Coast]
+Czechia | Czechia | Czechia | Czechia [Czech Republic]
+Democratic People's Republic of Korea | North Korea Democratic People's Republic of Korea (note A1-W1) | Democratic People's Republic of Korea | Democratic People's Republic of Korea [North Korea]
+Democratic Republic of the Congo | Democratic Republic of the Congo | Democratic Republic of the Congo | Democratic Republic of the Congo [DR Congo]
+Denmark | Denmark Denmark (note A1-W1) | Denmark | Denmark
+Eswatini | Eswatini | Eswatini | Eswatini [Swaziland]
+France | France | France | France [French Republic]
+Gambia (Republic of The) | Gambia (Republic of The) | Gambia | Gambia
+Guinea Bissau | Guinea-Bissau | Guinea-Bissau | Guinea-Bissau
+Myanmar | Myanmar | Myanmar | Myanmar [Burma]
+Naoero | Naoero | Naoero | Nauru
+Netherlands (Kingdom of the) | Netherlands | Netherlands (Kingdom of the) | Netherlands
+Republic of Korea | South Korea Republic of Korea (note A1-W1) | Republic of Korea | Republic of Korea [South Korea]
+Timor-Leste | Timor-Leste | Timor-Leste | Timor-Leste [East Timor]
+Venezuela, Bolivarian Republic of | Venezuela (Bolivarian Republic of) | Venezuela (Bolivarian Republic of) | Venezuela (Bolivarian Republic of)
+Viet Nam | Vietnam | Viet Nam | Viet Nam
+
+
+======================================================================
+PART 4. NOTES
+======================================================================
+1. How the page reader behaves. WebFetch does not show the page itself; a
+   small model reads it and answers. It summarises, sometimes drops rows, and
+   its own counts were wrong several times. It also refused one long quote
+   (limit of about 125 characters per quote), so long sentences were taken in
+   pieces. To guard against this, every list was read in parts, the long
+   Wikipedia member table was read twice in full, and every row that was
+   missing from one pass was confirmed by a separate targeted fetch. All
+   counts in this file are mine, made from the rows actually returned.
+2. No gaps remain. Every list here is complete: 193 member states on each A1
+   source; 248 entries on each A2 source, with 193 members in each.
+3. Apostrophes and capitals. Names were asked for character for character,
+   but the reader may have turned curly apostrophes (’) into straight ones
+   ('). Capitals were kept as returned: for example "Côte D'Ivoire" (capital
+   D) on the UN page, confirmed in a raw-text quote; "Saint Martin (French
+   Part)" with a capital P on the M49 page, confirmed in a raw-text quote,
+   against "Saint Martin (French part)" on Wikipedia.
+4. Naoero / Nauru. The UN Member States page, the Wikipedia member list and
+   the M49 page all write "Naoero" (M49: "Naoero | 520", NRU). Wikipedia's
+   member list notes: "Previously referred to as Nauru until 26 June 2026."
+   The Wikipedia geoscheme list still writes "Nauru". Same country.
+5. The Spanish UN address. https://www.un.org/es/member-states/ (from search
+   1) was used only to find the English page's address. The reader's answer
+   from it already gave English names (Afghanistan, Albania, ...), so it may
+   redirect to, or include, the English list. Only the English page
+   (https://www.un.org/en/about-us/member-states) is used as the source.
+6. Doubled names on the Wikipedia member list ("Denmark Denmark", "North
+   Korea Democratic People's Republic of Korea", "South Korea Republic of
+   Korea") and "Antarctic Treaty Antarctica" on the Wikipedia geoscheme list
+   are kept as the reader returned them. They look like a hidden label read
+   together with the name (see note A1-W1). This is my interpretation, not
+   something the page says.
+7. "Islamic Republic of Afghanistan" (Wikipedia geoscheme list) and "France
+   [French Republic]" were each confirmed in two separate fetches. The reader
+   described "Islamic Republic of Afghanistan" as a text link.
+8. Pages not opened:
+   - The M49 "Overview" page (the full table with column names). Its address
+     never appeared in my search results, and the reader could not extract
+     link addresses from the M49 page. So I cannot quote that page's own
+     names for the levels.
+   - Wikipedia's per-continent pages ("UN geoscheme for Africa" and so on).
+     The reader gave their link text but not their addresses. Not needed,
+     because the Wikipedia list page covers every country.
+   - Other search results (research.un.org, the un.org 2022 PDF,
+     worldometers, worldatlas, and so on) were not opened.
+9. The two A2 sources are not independent: the Wikipedia list is built on
+   the M49 codes (each row shows its M49 code chain). Their full agreement is
+   expected, and it also shows that the reading of both pages was consistent.
+10. The UN Member States page does not give regions. All region and
+   sub-region data in this file comes from the two A2 sources.
+11. Search budget: all 6 searches were used (searches 5 and 6 failed to
+   surface the M49 Overview page). No fetch failed, was refused, or asked for
+   permission.
+
+
+####################################################################################################
+# PART B
+####################################################################################################
+
+EVIDENCE FILE B - lists B1 to B4 for the UN member states game
+Compiled 5 October 2026.
+
+How to read this file
+- Every quote and every list below is what the WebFetch page reader returned from the address shown. Nothing has been added from memory.
+- Country names are kept exactly as the reader returned them (spelling, order, "St." vs "Saint", etc.).
+- [...] marks a gap: text the reader shortened, or countries a page counts but does not name.
+- Lines starting "COMPARISON" and "NOTES" are my own comparison of what the pages say. They add no facts of their own.
+
+
+==================================================
+1. SEARCH QUERIES (limit 8, mode "standard")
+==================================================
+
+1 of 8: "list of landlocked countries"
+        allowed_domains: en.wikipedia.org, worldatlas.com, britannica.com
+2 of 8: "list of island countries of the world"
+        allowed_domains: en.wikipedia.org, worldatlas.com, britannica.com
+3 of 8: "countries that border the Mediterranean Sea list"
+        allowed_domains: en.wikipedia.org, worldatlas.com, britannica.com
+4 of 8: "countries the equator passes through list"
+        allowed_domains: en.wikipedia.org, worldatlas.com, britannica.com
+5 of 8: "island countries list all island nations"
+        allowed_domains: worldpopulationreview.com, thoughtco.com, nationalgeographic.org, nationsonline.org
+        RESULT: FAILED. The search proxy rejected the request (HTTP 400, "The request was invalid"). No results. Counted anyway.
+6 of 8: "island countries of the world complete list"
+        blocked_domains: en.wikipedia.org, worldatlas.com
+7 of 8: "island countries list"
+        allowed_domains: worldpopulationreview.com, nationsonline.org
+8 of 8: not used.
+
+Every address opened below appeared in one of these search results, except
+https://en.wikipedia.org/wiki/List_of_island_countries, which was copied from the "See also" link
+on https://en.wikipedia.org/wiki/Island_countries (same website, page opened). The reader gave the link exactly as:
+"[List of island countries](https://en.wikipedia.org/wiki/List_of_island_countries)".
+
+
+==================================================
+2. THE LISTS
+==================================================
+
+--------------------------------------------------
+LIST B1 - LANDLOCKED COUNTRIES
+--------------------------------------------------
+
+SOURCE B1-1: Wikipedia, article "Landlocked country"
+Address opened: https://en.wikipedia.org/wiki/Landlocked_country
+
+Defining sentences (verbatim):
+- "A landlocked country is a country that has no coastlines on the world ocean."
+- "As of 2026 [update], there are 44 landlocked countries, two of them doubly landlocked due to being surrounded by other landlocked nations (Liechtenstein and Uzbekistan), and three landlocked de facto states in the world, South Ossetia, Kosovo and Transnistria."
+  (The reader returned "As of 2026 [[update]]" in one pass and "As of 2026," in another. "[update]" is Wikipedia's "as of" marker.)
+
+Complete list - table of landlocked countries, 47 rows (44 countries + 3 de facto states), names exactly as returned, in the order returned.
+Note letters were reported by the reader in a separate pass (see the note key under the list):
+1. Afghanistan
+2. Andorra
+3. Armenia
+4. Austria
+5. Azerbaijan [a]
+6. Belarus
+7. Bhutan
+8. Bolivia
+9. Botswana
+10. Burkina Faso
+11. Burundi
+12. Central African Republic
+13. Chad
+14. Czech Republic
+15. Eswatini
+16. Ethiopia
+17. Hungary
+18. Kazakhstan [a]
+19. Kosovo [b]
+20. Kyrgyzstan
+21. Laos
+22. Lesotho [c]
+23. Liechtenstein [d]
+24. Luxembourg
+25. Malawi
+26. Mali
+27. Moldova
+28. Mongolia
+29. Nepal
+30. Niger
+31. North Macedonia
+32. Paraguay
+33. Transnistria [b]
+34. Rwanda
+35. San Marino [c]
+36. Serbia
+37. Slovakia
+38. South Ossetia [b]
+39. South Sudan
+40. Switzerland
+41. Tajikistan
+42. Turkmenistan [a]
+43. Uganda
+44. Uzbekistan [d]
+45. Vatican City [c]
+46. Zambia
+47. Zimbabwe
+
+Note key in the table (verbatim, as returned):
+[a] "Has a coastline on the inland saltwater Caspian Sea" - on Azerbaijan, Kazakhstan, Turkmenistan
+[b] "De facto state" - on Kosovo, Transnistria, South Ossetia
+[c] "Landlocked by a single country" - on Lesotho, San Marino, Vatican City
+[d] "Doubly landlocked country" - on Liechtenstein, Uzbekistan
+Names confirmed on request: "Transnistria" (not "Pridnestrovie"), "Czech Republic" (not "Czechia"), "Laos", "Vatican City", "Kosovo", "South Ossetia".
+
+Other sentences on the page (verbatim):
+- "Several countries have coastlines on landlocked bodies of water, such as the Caspian Sea and the Dead Sea."
+- "Since these seas are in effect lakes without access to wider seaborne trade, countries such as Kazakhstan are still considered landlocked."
+- "Although the Caspian Sea is connected to the Black Sea via the man-made Volga–Don Canal, large oceangoing ships are unable to traverse it."
+- "However, Uzbekistan's doubly landlocked status depends on whether the Caspian Sea is considered a lake or a sea."
+- "In the latter case, Uzbekistan is not doubly landlocked, since its neighbors Turkmenistan and Kazakhstan have access to the Caspian Sea."
+- "The Central and Southern Asian cluster and the Western Asian group can be considered contiguous, joined by the landlocked Caspian Sea."
+- On Artsakh: "On 19 September 2023, Azerbaijan launched a new offensive against the Republic of Artsakh (de facto state) and achieved a decisive victory." (Artsakh is not a row in the table as returned.)
+
+
+SOURCE B1-2: WorldAtlas, "Landlocked Countries Of The World", by John Misachi, February 19, 2021
+Address opened: https://www.worldatlas.com/articles/landlocked-countries-of-the-world.html
+
+Defining sentences (verbatim):
+- "A landlocked country is a country that does not border any of the World Oceans or whose nearest coastline lies in another country."
+- "Currently, there are 44 landlocked countries in the world."
+- "In a double landlocked country, the residents have to cross at least two international borders before they can access a coastline."
+
+Complete list - area table (column headers as returned: "Rank | Country | Area (km2)"), 44 entries, in rank order:
+1. Kazakhstan
+2. Mongolia
+3. Chad
+4. Niger
+5. Mali
+6. Ethiopia
+7. Bolivia
+8. Zambia
+9. Afghanistan
+10. South Sudan
+11. Central African Republic
+12. Botswana
+13. Turkmenistan
+14. Uzbekistan
+15. Paraguay
+16. Zimbabwe
+17. Burkina Faso
+18. Uganda
+19. Laos
+20. Belarus
+21. Kyrgyzstan
+22. Nepal
+23. Tajikistan
+24. Malawi
+25. Hungary
+26. Azerbaijan
+27. Austria
+28. Czech Republic
+29. Serbia
+30. Slovakia
+31. Switzerland
+32. Bhutan
+33. Moldova
+34. Lesotho
+35. Armenia
+36. Burundi
+37. Rwanda
+38. North Macedonia
+39. Eswatini
+40. Luxembourg
+41. Andorra
+42. Liechtenstein
+43. San Marino
+44. Vatican City
+(The page also has a population table and a GDP-per-capita table, according to the reader.)
+
+Caspian / edge-case sentences (verbatim):
+- On Kazakhstan: "It has a coastline on the Caspian Sea, extending from the sea's mid-east to mid-north."
+- On Azerbaijan, only its borders: "5 - Armenia, Georgia, Iran, Russia, Turkey". On Turkmenistan, only its borders: "4 - Afghanistan, Iran, Kazakhstan, Uzbekistan". No Caspian sentence for either.
+- Kosovo, South Ossetia, Transnistria, Artsakh, "partially recognized": not mentioned.
+
+COMPARISON B1
+- Agreement: the 44 WorldAtlas names are exactly the 44 Wikipedia rows not marked [b]. The spellings match too.
+- On Wikipedia only: Kosovo, South Ossetia, Transnistria (each marked "De facto state", and kept outside the count of 44).
+- On WorldAtlas only: none.
+- Both count Vatican City among the 44.
+- Caspian Sea (Azerbaijan, Kazakhstan, Turkmenistan): BOTH list all three as landlocked. Wikipedia marks them with note [a] "Has a coastline on the inland saltwater Caspian Sea" and says such seas are "in effect lakes". WorldAtlas mentions the Caspian coast only for Kazakhstan, and says nothing about Azerbaijan's or Turkmenistan's Caspian coast.
+- Partially recognised states: Wikipedia lists 3 de facto states as extra rows and mentions Artsakh only in a sentence about 2023. WorldAtlas does not mention any.
+- Doubly landlocked: Wikipedia names Liechtenstein and Uzbekistan, and adds that Uzbekistan's status depends on whether the Caspian is a lake or a sea. WorldAtlas defines the term but, in what was returned, does not name the countries.
+
+
+--------------------------------------------------
+LIST B2 - ISLAND COUNTRIES
+--------------------------------------------------
+
+SOURCE B2-1: Wikipedia (two pages)
+
+(a) Article "Island country"
+Address opened: https://en.wikipedia.org/wiki/Island_countries
+Definition (verbatim): "An island country, island state, or island nation is a country whose primary territory consists of one or more islands or parts of islands. Approximately 25% of all independent countries are island countries."
+Australia (verbatim): "Geographically, the country of Australia is considered a continental landmass rather than an island, covering the largest landmass of the Australian continent."
+Shared islands (verbatim): "Some island countries share one or more of their islands with other countries, such as Ireland and the United Kingdom; the Dominican Republic and Haiti; and Indonesia, which shares islands with Brunei, Timor-Leste, Malaysia, and Papua New Guinea."
+This article has no table. Its "See also" section links to "List of island countries" (opened below).
+
+(b) Article "List of island countries"
+Address opened: https://en.wikipedia.org/wiki/List_of_island_countries
+Lead paragraph (verbatim, as returned):
+"An island is a landmass (smaller than a continent) that is surrounded by water. Many island countries are spread over an archipelago, as is the case with Indonesia, Japan, and the Philippines—these countries consist of thousands of islands. Others consist of a single island, such as Barbados, Dominica, and Nauru; a main island and some smaller islands, such as Cuba, Iceland, and Sri Lanka; a part of an island, such as Brunei, the Dominican Republic, Timor-Leste, and the Republic of Ireland; or one main island but also sharing borders in other islands, such as the United Kingdom (Great Britain and a part of Ireland). The list also includes two states in free association with New Zealand, the Cook Islands and Niue, as well as two states with limited diplomatic recognition which have de facto control over territories entirely on the islands, Northern Cyprus and Taiwan. In total, 50 island countries have been included in the lists. Australia is not included as it is considered a continental country, although it was historically referred to as an island country because of its lack of land borders. Greenland is generally considered as the largest island on Earth and listed among the island territories. Puerto Rico in the Caribbean Sea is officially an unincorporated territory of the United States. Neither Greenland nor Puerto Rico are sovereign countries. Indonesia is the world's largest island country by area (1,904,569 km2), and by total number of islands (17,504 islands). It is also the world's most populous island country, with a population of over 270 million (the fourth most populous country in the world, after India, China, and the United States). South America has only one independent sovereign island nation with Trinidad and Tobago; though considered a Caribbean island country, it is located on the northern portion of the South American continental shelf just 11 kilometres (6 nautical miles) off Venezuela, but 130 kilometres (70 nautical miles) from Grenada, the nearest of the Antilles."
+
+Table columns (as returned): Name | ISO code | Geographic configuration | Geologic location | Area | Population | Population density | Geographical location | Establishment/Independence
+Page sections (as returned): "UN member states", "States with limited recognition", "States in free association with New Zealand", "Island territories", "Former island countries and territories", "See also".
+
+Complete list - Name | "Geographic configuration" (verbatim, as returned):
+
+Section "UN member states" (46 rows):
+1. Antigua and Barbuda | Two main islands: Antigua Island Barbuda Island
+2. Bahamas | Archipelago   (written "Ba­ha­mas" with soft hyphens in the page text)
+3. Bahrain | Archipelago with one main island
+4. Barbados | One main island
+5. Brunei | Part of a larger island (Borneo)
+6. Cape Verde | Archipelago
+7. Comoros | Archipelago
+8. Cuba | One main island, and several smaller islands (Isla de la Juventud, etc.)
+9. Cyprus | Part of a larger island
+10. Dominica | One main island
+11. Dominican Republic | Part of a larger island (Hispaniola), and several smaller islands (Alto Velo, Catalina, Saona, Beata, etc.)
+12. Timor-Leste | Part of a larger island (Timor)
+13. Fiji | Archipelago with two main islands: Viti Levu Vanua Levu
+14. Grenada | One main island with two island dependencies (Carriacou and Petite Martinique)
+15. Haiti | Part of a larger island (Hispaniola), and several smaller islands (Gonâve, Tortuga, Les Cayemites, etc.)
+16. Iceland | One main island
+17. Indonesia | Archipelago, including parts of larger islands (Borneo, New Guinea, Sebatik, and Timor)
+18. Ireland | Part of a larger island (Ireland), and several smaller islands
+19. Jamaica | One main island with an archipelago of islets (inc. Morant Cays, Pedro Cays, and Port Royal Cays)
+20. Japan | Four main islands and thousands of surrounding islands
+21. Kiribati | Several separated archipelagos
+22. Madagascar | One main island
+23. Maldives | Archipelago
+24. Malta | Two main islands (Malta Island and Gozo) plus other smaller islands
+25. Marshall Islands | Two archipelagos
+26. Mauritius | Archipelago with one main island
+27. Micronesia | Archipelago
+28. Nauru | One main island
+29. New Zealand | An archipelago around two main islands: Te Ika-a-Māui (the North Island) Te Waipounamu (the South Island)
+30. Palau | Archipelago
+31. Papua New Guinea | Part of a larger island (New Guinea), and surrounding archipelago
+32. Philippines | Archipelago
+33. Saint Kitts and Nevis | Two main islands: Saint Christopher Island Nevis Island
+34. Saint Lucia | One main island
+35. Saint Vincent and the Grenadines | An archipelago with one main island
+36. Samoa | Archipelago
+37. São Tomé and Príncipe | Two main islands: São Tomé Island Príncipe Island)
+38. Seychelles | Archipelago
+39. Singapore | An archipelago with one main island
+40. Solomon Islands | Archipelago
+41. Sri Lanka | One main island, plus other small islands
+42. Tonga | Archipelago
+43. Trinidad and Tobago | An archipelago with two main islands: Trinidad Island Tobago Island
+44. Tuvalu | Archipelago
+45. United Kingdom | One main island, part of second island (Ireland), plus several archipelagos
+46. Vanuatu | Archipelago
+
+Section "States with limited recognition" (2 rows):
+47. Northern Cyprus | Part of a larger island (Cyprus)
+48. Taiwan | One main island and several smaller islands
+
+Section "States in free association with New Zealand" (2 rows):
+49. Cook Islands | Two archipelagos
+50. Niue | One island
+
+Edge cases on this page (as returned):
+- Australia: in no table. Lead: "Australia is not included as it is considered a continental country, although it was historically referred to as an island country because of its lack of land borders."
+- Malaysia: in no island-country table. It occurs only under "Former island countries and territories", in lines about Labuan and Sabah: "now a federal territory of Malaysia".
+- Denmark: in no island-country table. It occurs in the "Island territories" table as the sovereign state of the Faroe Islands ("Faroe Islands | FO FRO | Archipelago | Continental shelf | Denmark"). Lead: "Greenland is generally considered as the largest island on Earth and listed among the island territories." and "Neither Greenland nor Puerto Rico are sovereign countries."
+- Equatorial Guinea: in no island-country table. It occurs only under "Former island countries and territories": "Annobón (1474–1778), now part of Equatorial Guinea" and "Fernando Po (1778–1926)" (linked to Bioko).
+
+
+SOURCE B2-2: Nations Online Project, "Island Countries"
+Address opened: https://www.nationsonline.org/oneworld/island-countries.htm
+No date or last-update shown (according to the reader).
+Definition (verbatim): "Island countries, also known as island states or island nations, are sovereign countries whose territory consists entirely of one or more islands or parts of islands, such as the United Kingdom or Japan."
+Count (verbatim): "There are 46 sovereign states and one disputed territory, Taiwan, which consists only of islands."
+Table columns (as returned): Flag, Country, Capital, Population, Area, Region, Notes. The reader says it is sorted by population, largest first.
+
+Complete list - 47 entries, in page order, names exactly as returned:
+1. Indonesia
+2. Japan
+3. Philippines
+4. United Kingdom
+5. Madagascar
+6. Taiwan
+7. Sri Lanka
+8. Haiti
+9. Cuba
+10. Dominican Republic
+11. Papua New Guinea
+12. Singapore
+13. New Zealand
+14. Ireland
+15. Jamaica
+16. Bahrain
+17. East Timor
+18. Trinidad and Tobago
+19. Mauritius
+20. Fiji
+21. Cyprus
+22. Comoros
+23. Solomon Islands
+24. Cape Verde
+25. Malta
+26. Brunei
+27. Bahamas
+28. Maldives
+29. Iceland
+30. Vanuatu
+31. Barbados
+32. São Tomé and Príncipe
+33. Samoa
+34. Saint Lucia
+35. Kiribati
+36. Grenada
+37. Saint Vincent and the Grenadines
+38. Micronesia Federated States of
+39. Antigua and Barbuda
+40. Tonga
+41. Seychelles
+42. Dominica
+43. Marshall Islands
+44. Saint Kitts and Nevis
+45. Palau
+46. Nauru
+47. Tuvalu
+
+Edge-case sentences (verbatim):
+- Australia: "Australia is not considered an island nation because it is classified as a continent."
+- Ireland / United Kingdom: "The Republic of Ireland occupies most of the island of Ireland [...] The northeastern part of the island is occupied by Northern Ireland, a province of the United Kingdom."
+- Haiti / Dominican Republic: "French-speaking Haiti is one of the two island nations on the island of Hispaniola." and "One of the two countries occupying the island of Hispaniola, the other one is Haiti."
+- Papua New Guinea: "Papua New Guinea consists of the eastern half of New Guinea and several offshore islands in the western Pacific Ocean."
+- East Timor: "East Timor, or Timor-Leste, is a sovereign nation occupying the eastern half of the island of Timor."
+- Brunei: "Brunei is a country on the north coast of Borneo in Maritime Southeast Asia."
+- Indonesia: "Indonesia is an archipelago between the Indian and Pacific oceans in Maritime Southeast Asia."
+- Malaysia: "Malaysia is not an island country, as Peninsular Malaysia is part of the Asian mainland."
+- Bahrain: "The Kingdom of Bahrain is a small archipelago with more than 30 islands centered around Bahrain Island in the Persian Gulf northwest of Qatar."
+- Singapore: "Singapore is a relatively small island adjacent to the southern tip of peninsular Malaysia."
+- Taiwan: "Taiwan, officially the Republic of China (ROC), consists of one main island and 167 small islands."
+- Denmark, Greenland, Equatorial Guinea, Bioko, Northern Cyprus, Cook Islands, Niue: absent.
+
+
+ADDITIONAL SOURCE B2-3 (reputable but PARTIAL - names only 28 of the 47 it counts):
+WorldAtlas, "Island Countries Of The World", by Jason Shvili, May 28 2021
+Address opened: https://www.worldatlas.com/geography/island-countries-of-the-world.html
+Definition: none given. The reader says: "No explicit definition of what qualifies as an island country is provided."
+Count (verbatim): "There are currently 47 island countries in the world."
+Per-ocean counts (verbatim): "The Atlantic Ocean includes 18 island countries." / "The Indian Ocean contains 6 island countries" / "The Pacific Ocean is home to 23 island countries."
+Countries the page names, by section heading (as returned):
+"Island Countries Of The Atlantic Ocean" (18 counted, 10 named):
+  United Kingdom, Ireland, Iceland, Cuba, Haiti, Dominican Republic, Trinidad and Tobago, St. Kitts and Nevis, Malta, Cyprus [... 8 counted but not named]
+"Island Countries Of The Indian Ocean" (6 counted, 6 named):
+  Seychelles, Comoros, Mauritius, Madagascar, Sri Lanka, Maldives
+"Island Countries Of The Pacific Ocean" (23 counted, 12 named):
+  Japan, Philippines, Indonesia, Australia, New Zealand, Papua New Guinea, Singapore, East Timor, Brunei, Fiji, Nauru, Federated States of Micronesia [... 11 counted but not named]
+Checked one by one and NOT named anywhere on the page: Bahrain, Cape Verde/Cabo Verde, São Tomé and Príncipe, Taiwan, Jamaica, Bahamas, Barbados, Grenada, Saint Lucia, Saint Vincent and the Grenadines, Antigua and Barbuda, Dominica, Palau, Marshall Islands, Kiribati, Tuvalu, Samoa, Tonga, Vanuatu, Solomon Islands.
+Edge-case sentences (verbatim):
+- Australia (COUNTED as an island country): "Australia, New Zealand, and Papua New Guinea are three of Oceania's largest island countries." Also: "large island countries, like Japan, the Philippines, Indonesia, Australia, and New Zealand"
+- United Kingdom / Ireland: "The largest and most populous island country in the Atlantic Ocean is the United Kingdom, which consists of the island of Great Britain and the northern part of Ireland, known as Northern Ireland."
+- Haiti / Dominican Republic: "Haiti and the Dominican Republic to its east share the island of Hispaniola, the second largest island in the Caribbean Sea."
+- Indonesia / Malaysia / Brunei / Papua New Guinea: "Indonesia shares Borneo with Malaysia and Brunei, while New Guinea is shared with Papua New Guinea." and "Indonesia is the largest and most populous island country in the world"
+- Brunei: "Brunei is a sultanate based on the island of Borneo, and is home to Southeast Asia's only absolute monarchy."
+- Singapore / East Timor / Brunei: "The other, smaller island countries of Southeast Asia are Singapore, East Timor, and Brunei." and "East Timor is the newest country in Southeast Asia, having gained independence in 2002"
+- East Timor sharing Timor: absent. Malaysia: named only in the sharing sentence above, not as an island country. Denmark/Greenland, Equatorial Guinea, Bahrain: absent.
+
+COMPARISON B2 (main pair: Wikipedia list vs Nations Online)
+- Agreement: Wikipedia's 46 "UN member states" rows and Nations Online's 46 sovereign states are the same 46 countries. The spellings differ only for: Wikipedia "Timor-Leste" vs Nations Online "East Timor"; Wikipedia "Micronesia" vs Nations Online "Micronesia Federated States of".
+- On both, as extra entries: Taiwan (Wikipedia: "States with limited recognition"; Nations Online: "one disputed territory").
+- On Wikipedia only: Northern Cyprus (limited recognition), Cook Islands and Niue (free association with New Zealand).
+- On Nations Online only: none.
+- WorldAtlas (partial) differs on one point: it COUNTS Australia as an island country, while Wikipedia and Nations Online both exclude it. Every other country WorldAtlas names is on both main lists. WorldAtlas does not name 19 of the 47 it counts, so it cannot confirm or deny the rest.
+
+Edge cases, source by source:
+- Australia: Wikipedia excludes it (continental country). Nations Online excludes it (continent). WorldAtlas includes it.
+- United Kingdom and Ireland (shared island): both included on Wikipedia, Nations Online and WorldAtlas. Wikipedia: UK "One main island, part of second island (Ireland), plus several archipelagos"; Ireland "Part of a larger island (Ireland), and several smaller islands".
+- Haiti and Dominican Republic: both included on all three (shared Hispaniola).
+- Papua New Guinea: included on all three (Wikipedia: "Part of a larger island (New Guinea), and surrounding archipelago").
+- Timor-Leste / East Timor: included on all three (Wikipedia "Part of a larger island (Timor)"). WorldAtlas does not say that Timor is shared.
+- Brunei: included on all three (Wikipedia "Part of a larger island (Borneo)").
+- Indonesia: included on all three (Wikipedia "Archipelago, including parts of larger islands (Borneo, New Guinea, Sebatik, and Timor)").
+- Malaysia: NOT an island country on any. Nations Online says so explicitly. Wikipedia's "Island country" article mentions it only as sharing islands with Indonesia. WorldAtlas mentions it only as sharing Borneo.
+- Denmark: not an island country on any. Wikipedia mentions it only as the sovereign state of the Faroe Islands, in "Island territories". Absent from Nations Online and WorldAtlas.
+- Equatorial Guinea: not an island country on any. Wikipedia mentions it only under former island territories (Annobón; Fernando Po). Absent from Nations Online and WorldAtlas.
+- Bahrain: included on Wikipedia ("Archipelago with one main island") and Nations Online. Not named by WorldAtlas.
+- Singapore: included on all three (Wikipedia "An archipelago with one main island").
+
+
+--------------------------------------------------
+LIST B3 - COUNTRIES WITH A COAST ON THE MEDITERRANEAN SEA
+--------------------------------------------------
+
+SOURCE B3-1: Wikipedia, article "Mediterranean Sea"
+Address opened: https://en.wikipedia.org/wiki/Mediterranean_Sea
+
+Defining sentences (verbatim; the spaces inside the brackets are as returned):
+- "The countries surrounding the Mediterranean and its marginal seas in clockwise order are Spain, France, Monaco, Italy, Slovenia, Croatia, Bosnia and Herzegovina, Montenegro, Albania, Greece, Turkey, Syria, Lebanon, Israel, Palestine ( Gaza Strip), Egypt, Libya, Tunisia, Algeria, and Morocco; Cyprus and Malta are island countries in the sea."
+- "In addition, Northern Cyprus ( de facto state) and two overseas territories of the United Kingdom ( Akrotiri and Dhekelia, and Gibraltar) also have coastlines along the Mediterranean Sea."
+
+Complete list as the two sentences give it (22 countries, then 3 further entities):
+1. Spain
+2. France
+3. Monaco
+4. Italy
+5. Slovenia
+6. Croatia
+7. Bosnia and Herzegovina
+8. Montenegro
+9. Albania
+10. Greece
+11. Turkey
+12. Syria
+13. Lebanon
+14. Israel
+15. Palestine ( Gaza Strip)
+16. Egypt
+17. Libya
+18. Tunisia
+19. Algeria
+20. Morocco
+21. Cyprus
+22. Malta
+Also with coastlines (second sentence): Northern Cyprus ( de facto state); Akrotiri and Dhekelia (overseas territory of the United Kingdom); Gibraltar (overseas territory of the United Kingdom)
+
+Infobox field "Basin countries / Coastal countries" (verbatim, 24 names, in order):
+Albania; Algeria; Bosnia and Herzegovina; Croatia; Cyprus; Egypt; France; Greece; Israel; Italy; Lebanon; Libya; Malta; Monaco; Montenegro; Morocco; Northern Cyprus; Palestine (Gaza Strip); Slovenia; Spain; Syria; Tunisia; Turkey; United Kingdom
+
+Table "Exclusive economic zones in Mediterranean Sea" (24 names, table order):
+Italy, Greece, Libya, Spain, Egypt, Algeria, Tunisia, France, Cyprus, Turkey, Croatia, Malta, Israel, Lebanon, Morocco, Northern Cyprus, Albania, Syria, Montenegro, Palestine, Monaco, Slovenia, Bosnia and Herzegovina, United Kingdom
+
+SUPPORTING WIKIPEDIA PAGE (only partly readable): "List of countries on the Mediterranean Sea"
+Address opened: https://en.wikipedia.org/wiki/List_of_countries_on_the_Mediterranean_Sea
+- Lead (verbatim): "The Mediterranean countries are those that surround the Mediterranean Sea or are located within the Mediterranean Basin. Twenty sovereign states in Southern Europe, Western Asia and North African border the sea itself, while two island nations are completely surrounded by it (Malta and Cyprus)."
+- Lead, next part (verbatim): "additionally, the United Kingdom is present through two British Overseas Territories: Gibraltar in the west and Akrotiri & Dhekelia in the east."
+- "Southern European coast, from west to east": Spain; Gibraltar (British Overseas Territory); France; Monaco; Italy; Malta; Slovenia; Croatia; Bosnia and Herzegovina; Montenegro; Albania; Greece; Cyprus; Turkey (East Thrace)
+- "Western Asian coast, from north to south": Turkey (Anatolia); Cyprus; Akrotiri and Dhekelia (British Overseas Territory); Syria; Lebanon; Israel; Palestine (Gaza Strip)
+- "Northern African coast, from east to west": [...] The heading was present but the reader received NO entries under it. Asked four times. A full-text check found that "Egypt", "Libya", "Tunisia", "Algeria", "Morocco", "Ceuta" and "Melilla" do not occur anywhere in the fetched text. For this reason the "Mediterranean Sea" article above is used as the Wikipedia source.
+- The Mediterranean Basin section adds Portugal and Jordan (and repeats others), with (verbatim, reader's shortening marked): "While not having a coastline in the Mediterranean, Portugal [...] are sometimes classified as Mediterranean countries based on their geographical, economic, geopolitical, historical, ethnic and cultural ties." The reader says Jordan is covered by the same sentence.
+
+
+SOURCE B3-2: WorldAtlas, "Mediterranean Countries", by Cory Price, February 15 2023
+Address opened: https://www.worldatlas.com/geography/mediterranean-countries.html
+
+Defining sentences (verbatim):
+- "The Mediterranean region is a geographical area encompassing countries located around the Mediterranean Sea."
+- "Twenty-two countries currently call the Mediterranean Coast home, making it all the more impressive that each nation has cultivated distinctive personalities and histories."
+
+Complete list - table "The 22 Mediterranean Countries" (columns: #, Country, Capital, Area (mi2), Population), in table order:
+1. Albania
+2. Algeria
+3. Bosnia and Herzegovina
+4. Croatia
+5. Cyprus
+6. Egypt
+7. France
+8. Greece
+9. Israel
+10. Italy
+11. Lebanon
+12. Libya
+13. Malta
+14. Monaco
+15. Montenegro
+16. Morocco
+17. Palestine   (capital column shows "-")
+18. Slovenia
+19. Spain
+20. Syria
+21. Tunisia
+22. Turkey
+Other sentences: "Lastly, Palestine has some of the oldest archaeological sites on earth, including Jericho, Hebron, Bethlehem, and Jerusalem." No sentence mentions the United Kingdom or Britain. The reader found no country named in the text that is missing from the table.
+
+COMPARISON B3
+- Agreement: the same 22 countries on both (Wikipedia's clockwise sentence: 20 plus Cyprus and Malta; WorldAtlas's table: 22). Spelling differs only for Wikipedia "Palestine ( Gaza Strip)" vs WorldAtlas "Palestine".
+- On Wikipedia only: Northern Cyprus ("de facto state"); the United Kingdom through Akrotiri and Dhekelia and Gibraltar (the infobox and the EEZ table list "United Kingdom").
+- On WorldAtlas only: none.
+- Gibraltar and Akrotiri and Dhekelia: Wikipedia names them as "two overseas territories of the United Kingdom" with Mediterranean coastlines (the list page says "British Overseas Territory"). WorldAtlas does not mention them, and the UK is not in its list.
+- Gaza Strip: Wikipedia writes "Palestine ( Gaza Strip)", tying the coast to Gaza. WorldAtlas lists "Palestine" with no mention of Gaza.
+- Northern Cyprus: Wikipedia yes (de facto state). WorldAtlas: not mentioned.
+- Portugal and Jordan: only on the Wikipedia list page, and only in the Mediterranean Basin section, which says explicitly that they have no Mediterranean coastline. They are not on either coast list.
+
+
+--------------------------------------------------
+LIST B4 - COUNTRIES THE EQUATOR PASSES THROUGH
+--------------------------------------------------
+
+SOURCE B4-1: Wikipedia, article "Equator"
+Address opened: https://en.wikipedia.org/wiki/Equator
+
+Defining paragraph (verbatim, the paragraph just before the table):
+"The equator passes over approximately 8714 km of land (21.7%) and 31,361 km of sea (78.3%). It passes through the land of eleven sovereign states. Indonesia is the country straddling the greatest length of the equatorial line across both land and sea. Starting at the Prime Meridian and heading eastwards, the equator passes through:"
+(The reader found no sentence that names all eleven states together.)
+
+Complete table - columns "Coordinates | Country or water body | Notes", 27 rows in order (names exactly as returned; the reader was asked twice to keep names unabbreviated and both times gave "Congo" and "DR Congo"):
+1. 0°N 0°E | Atlantic Ocean | Gulf of Guinea, "Null Island"
+2. 0°0′0″N 6°31′08″E | São Tomé and Príncipe | Passing through Pestana Equador resort on the Ilhéu das Rolas
+3. 0°0′0″N 6°31′37″E | Atlantic Ocean | Bight of Biafra
+4. 0°0′N 9°21′E | Gabon | Passing 8.9 km (5.5 mi) south of Ayem, 10.6 km (6.6 mi) north of Mayene, Booue
+5. 0°0′N 13°57′E | Congo | Passing through the town of Makoua
+6. 0°0′N 17°45′E | DR Congo | Passing 9 km (5.6 mi) south of central Butembo
+7. 0°0′N 29°44′E | Uganda | Passing 32 km (20 mi) south of central Kampala
+8. 0°0′N 32°13′E | Lake Victoria | Passing through some islands of Uganda in Mukono District and Namayingo District
+9. 0°0′N 34°0′E | Kenya | Passing 6 km (3.7 mi) north of central Kisumu. Passes through the highest mountain in Kenya i.e. Mount Kenya
+10. 0°0′N 41°0′E | Somalia | Passing south of Jamame
+11. 0°0′N 42°53′E | Indian Ocean | Passing between Huvadhu Atoll and Fuvahmulah of Maldives
+12. 0°0′N 98°13′E | Indonesia | North Sumatra (Batu Islands), West Sumatra (West Pasaman, Pasaman and Lima Puluh Kota Regency), Riau (Kampar, Pelalawan and Indragiri Hilir Regency), and Lingga Regency of Riau Islands
+13. 0°0′N 109°10′E | Indonesia | Bornean provinces of West Kalimantan (passing through province capital Pontianak), Central Kalimantan, and East Kalimantan
+14. 0°0′N 117°31′E | Makassar Strait | (no note)
+15. 0°0′N 119°40′E | Indonesia | Donggala & Parigi Moutong Regency, Central Sulawesi (Celebes)
+16. 0°0′N 120°6′E | Gulf of Tomini | (no note)
+17. 0°0′N 123°45′E | Molucca Sea | (no note)
+18. 0°0′N 127°25′E | Indonesia | Kayoa and Halmahera islands, North Maluku
+19. 0°0′N 127°53′E | Halmahera Sea | (no note)
+20. 0°0′N 129°21′E | Indonesia | Gebe and Kawe islands, North Maluku, Southwest Papua
+21. 0°0′N 130°11′E | Pacific Ocean | Passing between Aranuka and Nonouti atolls, Kiribati (at 0°0′N 173°45′E) Also passing just south of Baker Island (through its territorial waters), and north of Jarvis Island, United States Minor Outlying Islands
+22. 0°0′N 91°35′W | Ecuador | Isabela Island in the Galápagos Islands
+23. 0°0′N 91°13′W | Pacific Ocean | (no note)
+24. 0°0′N 80°7′W | Ecuador | Passing 24 km (15 mi) north of central Quito, near Mitad del Mundo, and precisely at the location of Catequilla, a pre-Columbian ruin
+25. 0°0′N 75°35′W | Colombia | Passing 4.3 km (2.7 mi) north of the border with Peru
+26. 0°0′N 70°3′W | Brazil | Amazonas, Roraima, Pará, Amapá (passing slightly south of the city center of the state capital Macapá, and precisely at the Marco Zero monument and the Avenue Equatorial)
+27. 0°0′N 49°21′W | Atlantic Ocean | At the Perigoso Canal on the mouth of the Amazon River
+
+Countries with a land row (11, matching "eleven sovereign states"), as written:
+São Tomé and Príncipe; Gabon; Congo; DR Congo; Uganda; Kenya; Somalia; Indonesia; Ecuador; Colombia; Brazil
+
+
+SOURCE B4-2: WorldAtlas, "Countries On The Equator", by Oishimaya Sen Nag, March 20 2019
+Address opened: https://www.worldatlas.com/articles/countries-on-the-equator.html
+
+Defining sentences (verbatim, consecutive on the page):
+"The Equator passes through the land of 11 countries of the world." "Also, the equator traverses the territories of two island nations but does not make a landfall in either. The 11 countries traversed by the equator include São Tomé and Príncipe, Gabon, Republic of the Congo, The Democratic Republic of the Congo, Uganda, Kenya, Somalia, Indonesia, Ecuador, Colombia, and Brazil."
+(The reader identified the first sentence as the one immediately before "Also, ...".)
+Also: "The equator passes through São Tomé and Príncipe." (shown in italics by the reader, possibly an image caption)
+
+Complete table "Countries On The Equator" - columns "Rank | Co-ordinates | Country, territory or sea", 11 rows:
+1. 0°0′N 6°31′E | São Tomé and Príncipe
+2. 0°0′N 9°21′E | Gabon
+3. 0°0′N 13°56′E | Republic of the Congo
+4. 0°0′N 17°46′E | The Democratic Republic of the Congo
+5. 0°0′N 29°43′E | Uganda
+6. 0°0′N 34°0′E | Kenya
+7. 0°0′N 41°0′E | Somalia
+8. 0°0′N 98°12′E, 0°0′N 129°20′E, 0°0′N 127°24′E, 0°0′N 119°40′E, 0°0′N 109°9′E | Indonesia
+9. 0°0′N 80°6′W | Ecuador
+10. 0°0′N 75°32′W | Colombia
+11. 0°0′N 70°3′W | Brazil
+"Rolas", "Maldives", "Kiribati", "territorial waters", "Baker Island": absent from the table and from the page.
+
+COMPARISON B4
+- Agreement: the same 11 countries on both. Spellings differ: Wikipedia "Congo" / "DR Congo"; WorldAtlas "Republic of the Congo" / "The Democratic Republic of the Congo".
+- On one source only: none, among countries the equator crosses on land.
+- São Tomé and Príncipe: both count it. Wikipedia says the line passes "through Pestana Equador resort on the Ilhéu das Rolas". WorldAtlas lists it first (0°0′N 6°31′E) and says "The equator passes through São Tomé and Príncipe." but does not mention Ilhéu das Rolas.
+- Maldives: neither counts it among the 11. Wikipedia mentions it only in an Indian Ocean row: "Passing between Huvadhu Atoll and Fuvahmulah of Maldives". WorldAtlas does not name it; it only says the equator "traverses the territories of two island nations but does not make a landfall in either" without naming them.
+- Kiribati (not asked, but similar): Wikipedia mentions it only in a Pacific Ocean row ("Passing between Aranuka and Nonouti atolls, Kiribati"). WorldAtlas does not name it.
+
+
+==================================================
+3. NOTES
+==================================================
+
+Pages that could not be opened
+- https://craftstaging.worldatlas.com/articles/which-are-the-island-countries-of-the-world.html (from search 2): fetch error "ROBOTS_DISALLOWED - robots.txt fetch failed: [Errno -2] Name or service not known". Not retried.
+- Search 5 failed (proxy HTTP 400). There were no results, so nothing to open.
+
+Pages opened but not used as main sources
+- https://www.worldatlas.com/articles/the-most-densely-populated-island-countries-of-the-world.html (Oishimaya Sen Nag, November 4, 2017): a top-10 density table only (Singapore, Bahrain, Malta, Sint Maarten, Maldives, Barbados, Mauritius, Aruba, Nauru, Tuvalu; it includes territories). Not a full list.
+- https://www.sporcle.com/blog/2022/07/which-countries-are-islands-a-list-of-island-countries/ (Sporcle, July 13, 2022; a quiz website, lower reputation; for cross-checking only). Definition (verbatim): "Island countries are countries whose territory is primarily one or more islands–or even parts of islands." It says about "a quarter of all countries are island countries" and gives no exact total. Australia: "Australia is not an island, but it is a continent." It names 48, by heading:
+  Atlantic Ocean: Bahamas, Cape Verde, Iceland, The United Kingdom, Ireland, São Tomé and Príncipe
+  Caribbean Sea: Antigua and Barbuda, Barbados, Cuba, Dominica, Dominican Republic, Grenada, Haiti, Jamaica, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Trinidad and Tobago
+  Indian Ocean: Bahrain, Comoros, Madagascar, Maldives, Mauritius, Seychelles, Sri Lanka
+  Oceanic Southeast Asia: Brunei, East Timor/Timor-Leste, Indonesia, Philippines, Singapore
+  Mediterranean Sea: Cyprus, Northern Cyprus, Malta
+  Pacific Ocean: Fiji, Japan, Kiribati, Marshall Islands, Micronesia, Nauru, New Zealand, Palau, Papua New Guinea, Samoa, Solomon Islands, Taiwan, Tonga, Tuvalu, Vanuatu
+  (Comparison: the same 46 as Wikipedia's "UN member states", plus Northern Cyprus and Taiwan; no Cook Islands or Niue; no Australia.)
+- https://worldpopulationreview.com/country-rankings/island-countries (from search 7). Definition (verbatim): "An island country is a country that is made up of one or more islands, or land that is surrounded completely by water." The reader reports 76 entries, which mix sovereign states with dependent territories (e.g. Puerto Rico, Guadeloupe, Greenland, Faroe Islands, Cook Islands, Niue). The entries include Australia and a row "Guinea". The reader reports Timor-Leste/East Timor, Malaysia, Denmark and Equatorial Guinea as absent. NOT used: it does not separate countries from territories, and the "Guinea" row and the missing Timor-Leste were not re-checked.
+
+Reader reliability - points to treat with care
+- WorldAtlas landlocked page: in its first pass the reader added a "Continent" column. A second pass gave the area table's headers as only "Rank | Country | Area (km2)", so the continent values are left out here.
+- Wikipedia landlocked note [b]: in one pass the reader attached "De facto state" also to "Azerbaijan (disputed), North Macedonia (disputed)". This contradicts the page's own sentence naming the three de facto states (South Ossetia, Kosovo, Transnistria), and in another pass the reader wrongly attached the Caspian note to Afghanistan and Uzbekistan before correcting itself. The note letters above follow the reader's corrected, consistent answer and the lead sentence.
+- Wikipedia landlocked table order: the reader returned an alphabetical order, except that "Transnistria" sits between Paraguay and Rwanda. The page may sort it under another name, but the reader confirmed the displayed name is "Transnistria". Likewise, on the Wikipedia island list "Timor-Leste" sits between "Dominican Republic" and "Fiji" (possibly sorted as "East Timor"), but the displayed name was confirmed as "Timor-Leste".
+- WorldAtlas island page: one reader pass left Brunei out of the Pacific names. Brunei is named in verbatim sentences quoted above, so it is kept.
+- Wikipedia "List of countries on the Mediterranean Sea": the North African coast section came back empty (see B3).
+- Nations Online, Ireland/UK sentence: the reader returned it with an ellipsis, shown as [...].
+
+Status labels the pages themselves give (these are not checks of UN membership):
+- B1 Wikipedia: Kosovo, South Ossetia, Transnistria = "De facto state".
+- B2 Wikipedia: Northern Cyprus, Taiwan = "States with limited recognition"; Cook Islands, Niue = "States in free association with New Zealand". B2 Nations Online: Taiwan = "disputed territory".
+- B3 Wikipedia: Northern Cyprus = "de facto state"; Gibraltar, Akrotiri and Dhekelia = overseas territories of the United Kingdom.
+- Vatican City (B1, both sources) and Palestine (B3, both sources) are listed with no status note on these pages. The pages here do not say whether they are UN member states.
+
+
+####################################################################################################
+# PART C
+####################################################################################################
+
+EVIDENCE C - WHICH UN MEMBER STATES HAVE A COAST ON EACH OCEAN
+Checked on 5 October 2026.
+Lists: C1 Pacific, C2 Indian, C3 Atlantic, C4 Arctic.
+
+HOW TO READ THIS FILE
+- Every quote and every list below is what the page reader (WebFetch) gave back for the address shown. I could not see the raw pages.
+- The page reader would not quote more than about 125 characters at a time. So long sentences are given in pieces, split by " / ". Lists were asked for as "names only, exactly as spelled, in page order".
+- [...] = something the reader left out or could not give.
+- Lines marked [my note] are my own sorting or reasoning, not page text. Example: which names are UN member states.
+- "Own land" = the country's own territory, not its overseas territories (as the brief asks).
+
+
+======================================================================
+1. SEARCHES RUN (6 of 6 used, all in mode "standard")
+======================================================================
+
+Search 1 of 6: "countries that border the Pacific Ocean list"
+  allowed_domains: worldatlas.com, en.wikipedia.org
+Search 2 of 6: "countries bordering the Indian Ocean list"
+  allowed_domains: worldatlas.com, en.wikipedia.org, britannica.com
+Search 3 of 6: "list of countries and territories bordering the Atlantic Ocean"
+  allowed_domains: en.wikipedia.org, worldatlas.com
+Search 4 of 6: "countries bordering the Arctic Ocean"
+  allowed_domains: en.wikipedia.org, worldatlas.com, britannica.com, worldpopulationreview.com, nationalgeographic.org
+Search 5 of 6: "list of countries that border the Pacific Ocean"
+  blocked_domains: en.wikipedia.org, worldatlas.com, quora.com, reddit.com, youtube.com, pinterest.com, tiktok.com, brainly.com, answers.com, facebook.com, instagram.com
+  (Results were only small or unvetted sites: kids-world-travel-guide.com, completeera.com (2 pages), wisdomwave.blog, iere.org, studycountry.com, en.namu.wiki, brainly.in, and a Wikiwand copy of a Wikipedia page. I did not treat any of them as reputable. None is used as a source.)
+Search 6 of 6: "countries that border the Indian Ocean and the Pacific Ocean"
+  allowed_domains: kids.britannica.com, nationsonline.org, worldpopulationreview.com, geographyrealm.com, nationalgeographic.org, iora.int
+
+No other searches were run.
+
+
+======================================================================
+2. THE LISTS
+======================================================================
+
+----------------------------------------------------------------------
+2.0 SHARED EVIDENCE: THREE "TWO OR MORE OCEANS" TABLES
+(used in C1 to C4; none of them is a full list for any one ocean)
+----------------------------------------------------------------------
+
+(a) Wikipedia, "List of countries bordering on two or more oceans"
+Address: https://en.wikipedia.org/wiki/List_of_countries_bordering_on_two_or_more_oceans
+Rule for seas: "Under each ocean is listed the smallest named region or marginal sea that includes the coastline where that country and ocean meet."
+Rule for territories: "a second list includes countries whose total number of oceans is increased due to discontiguous areas."
+Column headings of the first table: "Continent(s) | Country | Pacific Ocean | Atlantic Ocean | Indian Ocean | Polar oceans | Count | Trans-oceanic connection"
+First table, every row (Pacific / Atlantic / Indian / Polar / Count; "-" = empty cell):
+  South Africa: - / South Atlantic / Indian Ocean / Southern Ocean / 2 or 3
+  Egypt: - / Mediterranean Sea / Red Sea / - / 2
+  Israel: - / Mediterranean Sea / Red Sea / - / 2
+  Thailand: Gulf of Thailand / - / Andaman Sea / - / 2
+  Malaysia: South China Sea / - / Andaman Sea / - / 2
+  East Timor: Savu Sea Flores Sea / - / Timor Sea / - / 2
+  Indonesia: Pacific Ocean / - / Indian Ocean / - / 2
+  Russia: North Pacific / Black Sea, Baltic Sea / - / Arctic Ocean / 3
+  Norway: - / Norwegian Sea / - / Barents Sea / 2
+  Iceland: - / North Atlantic / - / Greenland Sea / 1 or 2
+  Greenland: - / North Atlantic / - / Arctic Ocean / 2
+  Canada: North Pacific / North Atlantic / - / Arctic Ocean / 3
+  US (Alaska): North Pacific / - / - / Arctic Ocean / 2
+  US (Lower 48): North Pacific / North Atlantic / - / - / 2
+  Mexico: Pacific Ocean / Gulf of Mexico, Caribbean Sea / - / - / 2
+  Guatemala: Pacific Ocean / Gulf of Honduras / - / - / 2
+  Honduras: Gulf of Fonseca / Caribbean Sea / - / - / 2
+  Nicaragua: Pacific Ocean / Caribbean Sea / - / - / 2
+  Costa Rica: Pacific Ocean / Caribbean Sea / - / - / 2
+  Panama: Gulf of Panama / Caribbean Sea / - / - / 2
+  Colombia: Pacific Ocean / Caribbean Sea / - / - / 2
+  Chile: South Pacific / Strait of Magellan Beagle Channel Drake Passage / - / Southern Ocean / 2 or 3
+  Argentina: Beagle Channel / South Atlantic / - / Drake Passage / 1, 2 or 3
+  Australia: South Pacific / - / Indian Ocean / Southern Ocean / 2 or 3
+Second table (discontiguous countries), as given:
+  France: Pacific (New Caledonia), Atlantic (Metropolitan France), Indian (Réunion), Southern (Adélie Land), Count 4
+  UK: Pacific (Pitcairn Islands), Atlantic (Great Britain), Indian (BIOT), Southern (British Antarctic Territory), Count 4
+  US: Lower 48 (Pacific/Atlantic), Alaska (Arctic); Count "3" and "2" [the reader gave no more detail]
+Checked names that do NOT appear on this page (reader, yes/no): Singapore, Saudi Arabia, Turkey, Spain, Morocco, Denmark, Myanmar.
+[my note] The counts "1 or 2", "2 or 3" and "1, 2 or 3" suggest the page itself treats Iceland, South Africa, Chile, Argentina and Australia as unclear cases.
+
+(b) WorldAtlas, "Which Countries Border More Than One Ocean?" (Joyce Chepkemoi, April 25, 2017)
+Address: https://www.worldatlas.com/articles/which-countries-border-more-than-one-ocean.html
+Column headings: "Rank, Continent, Country, Pacific Ocean, Atlantic Ocean, Indian Ocean, Polar Oceans, Oceans"
+Every row (Pacific / Atlantic / Indian / Polar / Oceans; "-" = cell the reader showed as [...], which I read as empty):
+  1 Africa, South Africa: - / South Atlantic / Indian Ocean / Southern Ocean / 2 or 3
+  2 Africa & Asia, Egypt: - / Mediterranean Sea / Red Sea / - / 2
+  3 Asia, Israel: - / Mediterranean Sea / Red Sea / - / 2
+  4 Asia, Thailand: Gulf of Thailand / - / Andaman Sea / - / 2
+  5 Asia, Malaysia: South China Sea / - / Andaman Sea / - / 2
+  6 Asia, Indonesia: Pacific Ocean / - / Indian Ocean / - / 2
+  7 Asia, East Timor: Savu Sea, Flores Sea / - / Timor Sea / - / 2
+  8 Asia & Europe, Russia: North Pacific / Black Sea Baltic Sea / - / Arctic Ocean / 3
+  9 Europe, Norway: - / Norwegian Sea / - / Barents Sea / 2
+  10 North America, Greenland: - / North Atlantic / - / Arctic Ocean / 2
+  11 North America, Canada: North Pacific / North Atlantic / - / Arctic Ocean / 3
+  12 North America, United States: North Pacific / - / - / Arctic Ocean / 2
+  13 North America, United States: North Pacific / North Atlantic / - / - / 2
+  14 North America, Mexico: Pacific Ocean / Gulf of Mexico Caribbean Sea / - / - / 2
+  15 North America, Guatemala: Pacific Ocean / Gulf of Honduras / - / - / 2
+  16 North America, Honduras: Gulf of Fonseca / Caribbean Sea / - / - / 2
+  17 North America, Nicaragua: Pacific Ocean / Caribbean Sea / - / - / 2
+  18 North America, Costa Rica: Pacific Ocean / Caribbean Sea / - / - / 2
+  19 North America & South America, Panama: Gulf of Panama / Caribbean Sea / - / - / 2
+  20 South America, Colombia: Pacific Ocean / Caribbean Sea / - / - / 2
+  21 South America, Chile: South Pacific / Straits of Magellan / - / Southern Ocean / 2 or 3
+  22 South America, Argentina: - / South Atlantic / - / Drake Passage / 1 or 2
+  23 Australia, Australia: South Pacific / - / Indian Ocean / Southern Ocean / 2 or 3
+  24 Antartica [sic]: South Pacific / South Atlantic / Indian Ocean / Southern Ocean / 3 or 1
+Names NOT on this page (reader, yes/no): Iceland, Singapore, France, United Kingdom.
+Territories: "Greenland" is its own row. The reader says it is listed "without clarifying its status as a Danish territory". France and the UK do not appear.
+
+(c) World Population Review, "Countries Bordering Two Or More Oceans 2026" (published September 25, 2026)
+Address: https://worldpopulationreview.com/country-rankings/countries-bordering-two-or-more-oceans
+Defining sentence: "There are twenty-two countries worldwide that share borders with two or more oceans, highlighting the diverse geographical landscapes these nations encompass."
+Table "Country | # of Bordering Oceans | Ocean Names", every row (21 rows, not 22):
+  Russia | 3 | Arctic, Atlantic, Pacific
+  South Africa | 3 | Atlantic, Indian, Southern
+  Argentina | 3 | Atlantic, Pacific, Southern
+  Canada | 3 | Arctic, Atlantic, Pacific
+  Australia | 3 | Indian, Pacific, Southern
+  Chile | 3 | Atlantic, Pacific, Southern
+  Indonesia | 2 | Indian, Pacific
+  Mexico | 2 | Atlantic, Pacific
+  Egypt | 2 | Atlantic, Indian
+  Thailand | 2 | Indian, Pacific
+  Colombia | 2 | Atlantic, Pacific
+  Malaysia | 2 | Indian, Pacific
+  Guatemala | 2 | Atlantic, Pacific
+  Honduras | 2 | Atlantic, Pacific
+  Israel | 2 | Atlantic, Indian
+  Nicaragua | 2 | Atlantic, Pacific
+  Norway | 2 | Arctic, Atlantic
+  Costa Rica | 2 | Atlantic, Pacific
+  Panama | 2 | Atlantic, Pacific
+  Timor-Leste | 2 | Atlantic, Pacific
+  Iceland | 2 | Arctic, Atlantic
+The United States is not in the table. It appears only in the text: "The United States presents a similar picture, with 48 states and Alaska bordering the Pacific and Arctic Oceans."
+[my note] This page has clear errors: Timor-Leste is given "Atlantic, Pacific" where (a) and (b) give Pacific and Indian (Timor Sea); Argentina is given a Pacific coast that (b) does not give; it says 22 countries but has 21 rows. I list it only as an example of how much sites disagree. I do NOT count it as a reputable source.
+
+
+----------------------------------------------------------------------
+2.1 LIST C1 - PACIFIC OCEAN
+----------------------------------------------------------------------
+
+SOURCE C1-W1: Wikipedia, "Pacific Ocean"
+Address: https://en.wikipedia.org/wiki/Pacific_Ocean
+Defining sentence: "It stretches from the Arctic Ocean in the north to the Southern Ocean, or, depending on the definition, to Antarctica in the south," / "and is bounded by the continents of Asia and Australia in the west and the Americas in the east."
+Where the list sits: in the Geography part. The reader could not find a heading for it. The sentence just before it: "Since the end of World War II, many former colonies in the Pacific have become independent states."
+Note printed with the list: "(Inhabited dependent territories are denoted by the asterisk (*), with names of the corresponding sovereign states in round brackets. Associated states in the Realm of New Zealand are denoted by the hash sign (#).)"
+Complete list, page order (41 entries; link brackets removed):
+  American Samoa* (US)
+  Australia
+  Brunei
+  Cambodia
+  People's Republic of China
+  Cook Islands#
+  Federated States of Micronesia
+  Fiji
+  French Polynesia* (France)
+  Guam* (US)
+  Hong Kong* (People's Republic of China)
+  Indonesia
+  Japan
+  Kiribati
+  Macau* (People's Republic of China)
+  Malaysia
+  Marshall Islands
+  Nauru
+  New Caledonia* (France)
+  New Zealand
+  Niue#
+  Norfolk Island* (Australia)
+  Northern Mariana Islands* (US)
+  North Korea
+  Palau
+  Papua New Guinea
+  Philippines
+  Pitcairn Islands* (UK)
+  Russia
+  Samoa
+  Singapore
+  Solomon Islands
+  South Korea
+  Taiwan
+  Thailand
+  Tonga
+  Tokelau* (New Zealand)
+  Tuvalu
+  Vanuatu
+  Vietnam
+  Wallis and Futuna* (France)
+Second list, "Territories with no permanent civilian population":
+  Baker Island (US), Clipperton Island (France), Coral Sea Islands (Australia), Howland Island (US), Jarvis Island (US), Johnston Island (US), Kingman Reef (US), Macquarie Island (Australia), Midway Atoll (US), Palmyra Atoll (US), Wake Island (US)
+Checked (reader, yes/no): the list does NOT contain East Timor, Timor-Leste, Canada, United States, Ecuador or El Salvador. No country of the Americas is in any list on the page. The Americas come up only in passing, e.g. "stretches approximately 10,700 nautical miles (19,800 km; 12,300 mi) from Indonesia to the coast of Colombia" and "By occupying Easter Island, Chile joined the imperial nations."
+Marginal seas: "The Pacific has many major marginal seas, including (listed clockwise from the west) the Philippine Sea, South China Sea," / "East China Sea, Sea of Japan, Sea of Okhotsk, Bering Sea, Gulf of Alaska, Gulf of California, Tasman Sea, and Coral Sea." The Gulf of Thailand is not in that sentence, but Thailand, Cambodia and Singapore are in the list.
+Overseas territories: listed as their own entries, marked * with the sovereign state in brackets. Uninhabited ones are in a second list.
+[my note] UN member states in the list (27): Australia, Brunei, Cambodia, People's Republic of China, Federated States of Micronesia, Fiji, Indonesia, Japan, Kiribati, Malaysia, Marshall Islands, Nauru, New Zealand, North Korea, Palau, Papua New Guinea, Philippines, Russia, Samoa, Singapore, Solomon Islands, South Korea, Thailand, Tonga, Tuvalu, Vanuatu, Vietnam. Not UN members: Taiwan, Cook Islands#, Niue#. All other entries are territories.
+
+SOURCE C1-W2: Wikipedia, "Pacific coast"
+Address: https://en.wikipedia.org/wiki/Pacific_coast
+Defining sentence: "Pacific coast may be used to reference any coastline that borders the Pacific Ocean."
+Asia, lead sentence: "Countries and territories on the eastern, north-eastern, and south-eastern sides of Asia have a Pacific coast as a part (or all) of their border."
+Asia list. The visible link text on the page is "Geography of ...", exactly as below:
+  Geography of Brunei
+  Geography of Cambodia
+  Geography of China
+  Geography of East Timor
+  Geography of Indonesia
+  Geography of Japan
+  Geography of Malaysia
+  Geography of North Korea
+  Geography of the Philippines
+  Pacific Coast of Russia
+  Geography of Singapore
+  Geography of South Korea
+  Geography of Taiwan
+  Geography of Thailand
+  Geography of Vietnam
+Oceania, lead sentence: "Except the Ashmore and Cartier Islands and the Australian Indian Ocean Territories, all the other countries and territories in Oceania have their entire border surrounded by the Pacific Ocean."
+Oceania list (visible link text):
+  Geography of American Samoa
+  Geography of Australia
+  Geography of Clipperton Island
+  Geography of the Cook Islands
+  Geography of Easter Island
+  Geography of Fiji
+  Geography of French Polynesia
+  Geography of Guam
+  Geography of Hawaii
+  Geography of Kiribati
+  Geography of the Marshall Islands
+  Geography of the Federated States of Micronesia
+  Geography of Nauru
+  Geography of New Caledonia
+  Geography of New Zealand
+  Geography of Niue
+  Geography of the Northern Mariana Islands
+  Geography of Palau
+  Geography of Papua New Guinea
+  Geography of the Pitcairn Islands
+  Geography of Samoa
+  Geography of Solomon Islands
+  Geography of Tonga
+  Geography of Tuvalu
+  Geography of the U.S. Minor Outlying Islands
+  Geography of Vanuatu
+  Geography of Wallis and Futuna
+Americas: no list, only these sentences: "Countries on the western side of North America have a Pacific coast as their western or south-western border." / "One of the notable exceptions is Panama, where the Pacific coast is primarily on its southern border." / "Only four countries in South America have a Pacific coast as a part (or all) of their border." The four are not named. The reader found no headings on the page.
+Marginal seas: not discussed. Singapore, Thailand and Cambodia are in the Asia list.
+Overseas territories: listed side by side with countries, without naming the sovereign state (e.g. Clipperton Island, Hawaii, Easter Island, U.S. Minor Outlying Islands).
+[my note] UN member states named: Asia list 14 (Brunei, Cambodia, China, East Timor, Indonesia, Japan, Malaysia, North Korea, Philippines, Russia, Singapore, South Korea, Thailand, Vietnam). Oceania list 14 (Australia, Fiji, Kiribati, Marshall Islands, Federated States of Micronesia, Nauru, New Zealand, Palau, Papua New Guinea, Samoa, Solomon Islands, Tonga, Tuvalu, Vanuatu). Americas: only Panama, in prose. Taiwan, Cook Islands and Niue are not UN members.
+
+SOURCE C1-O1 (non-Wikipedia): WorldAtlas, "Which Countries Have Coastlines On Both The Atlantic And The Pacific Oceans?" (Jessica Dillinger, May 21, 2026)
+Address: https://www.worldatlas.com/oceans/which-countries-have-coastlines-on-both-the-atlantic-and-the-pacific-oceans.html
+Defining sentence: "A total of eleven countries have coastlines on both the Atlantic and Pacific Oceans."
+List (from the headings, in order): Canada, United States, Mexico, Guatemala, Honduras, Nicaragua, Costa Rica, Panama, Colombia, Chile, Russia
+Page headings: Which Countries Have Coastlines On Both The Atlantic And The Pacific Oceans? / Atlantic Deep Dive / Canada / United States / Mexico / Guatemala / Honduras / Nicaragua / Costa Rica / Panama / Pacific Deep Dive / Colombia / Chile / Russia / Don't Miss / Why Bi-Oceanic Access Matters / What Lives Down There / More in Bodies of Water
+Marginal seas: "Most count their Atlantic side through marginal seas (the Caribbean, the Gulf of Mexico, the Baltic), while only Canada, the United States, and Chile touch the open Atlantic directly."
+Honduras: "Honduras has one of the shortest Pacific coastlines of any country with one (about 124 kilometers on the Gulf of Fonseca, an inlet shared with El Salvador and Nicaragua)"
+Overseas territories: not mentioned.
+Limit: covers only countries with BOTH coasts. Ecuador and Peru are not mentioned. El Salvador comes up only in the Honduras sentence above.
+
+SOURCE C1-O2 (non-Wikipedia): WorldAtlas, "Pacific Ocean" (John Misachi, March 24, 2021). Link copied from C1-O1 ("Everything about the Pacific Ocean.").
+Address: https://www.worldatlas.com/oceans/pacific-ocean.html
+No country list. Only general references ("from China to California", "between South and North America to the east and Australia and Asia to the west").
+Defining sentence: "The ocean extends from the Arctic region in the north to the Antarctic region in the south."
+Marginal seas: "The Pacific Ocean hosts some of the world's largest seas on its margins, including the Philippines Sea, Coral Sea, South China Sea," / "Tasman Sea, Bering Sea, and the Sea of Okhotsk." The Gulf of Thailand and Sea of Japan are not mentioned.
+
+Also on WorldAtlas (Pacific entries): table 2.0(b) gives a Pacific coast to Thailand (Gulf of Thailand), Malaysia (South China Sea), Indonesia, East Timor (Savu Sea, Flores Sea), Russia, Canada, United States, Mexico, Guatemala, Honduras (Gulf of Fonseca), Nicaragua, Costa Rica, Panama (Gulf of Panama), Colombia, Chile and Australia. Argentina's Pacific cell is empty. "Countries That Border Three Oceans" (2.3, source C3-O3) adds nothing new for the Pacific.
+
+COMPARISON C1 (Wikipedia vs WorldAtlas)
+- Neither site has a complete list of Pacific-coast countries. No other reputable site with such a list turned up in searches 1, 5 and 6.
+- Wikipedia's two lists cover only Asia and Oceania. WorldAtlas covers only the two-ocean countries.
+- Named as Pacific by Wikipedia but on no WorldAtlas page I opened [my note: a gap, not a contradiction]: Brunei, Cambodia, China, Japan, North Korea, South Korea, Philippines, Singapore, Vietnam, Fiji, Kiribati, Marshall Islands, Federated States of Micronesia, Nauru, New Zealand, Palau, Papua New Guinea, Samoa, Solomon Islands, Tonga, Tuvalu, Vanuatu.
+- Named as Pacific by WorldAtlas: Thailand, Malaysia, Indonesia, East Timor, Russia, Canada, United States, Mexico, Guatemala, Honduras, Nicaragua, Costa Rica, Panama, Colombia, Chile, Australia. All of these are also named on some Wikipedia page, but the American ones only in table 2.0(a), not in Wikipedia's Pacific lists.
+- Real conflicts:
+  * East Timor: in "Pacific coast" (W2) and in both tables 2.0(a) and (b), but NOT in the "Pacific Ocean" list (W1). The two Wikipedia pages disagree.
+  * Argentina: table 2.0(a) (Wikipedia) puts the Beagle Channel in its Pacific column, count "1, 2 or 3". Table 2.0(b) (WorldAtlas) leaves Argentina's Pacific cell empty, "1 or 2". (World Population Review gives it the Pacific.)
+- Never named as having a Pacific coast on any reputable page I opened: Ecuador, Peru, El Salvador. El Salvador comes up only as sharing the Gulf of Fonseca. Wikipedia says "Only four countries in South America have a Pacific coast" without naming them.
+- Marginal seas. Wikipedia counts the South China Sea as Pacific and lists Singapore, Cambodia, Thailand, Vietnam and Brunei. WorldAtlas counts the South China Sea and the Gulf of Thailand as Pacific (table rows for Malaysia and Thailand) but never mentions Singapore, Cambodia, Vietnam or Brunei. East Timor's Pacific side is the "Savu Sea, Flores Sea" in both tables.
+- Overseas territories: Wikipedia lists them as separate entries (W1 with the sovereign state in brackets, W2 without it). WorldAtlas's Pacific pages do not mention them. Its 2026 three-oceans page counts them only "If overseas territories count as the home country" (see C3-O3).
+
+
+----------------------------------------------------------------------
+2.2 LIST C2 - INDIAN OCEAN
+----------------------------------------------------------------------
+
+SOURCE C2-W1: Wikipedia, "Indian Ocean"
+Address: https://en.wikipedia.org/wiki/Indian_Ocean
+Defining sentence: "The Indian Ocean is the third-largest of the world's five oceanic divisions, covering 70,560,000 km2 (27,240,000 sq mi)" / "or approximately 20% of the water area of Earth's surface."
+Country list: NONE found. The infobox "Basin countries" field reads, exactly: "South and Southeast Asia, Western Asia, Northeast, East and Southern Africa and Australia". The reader also gave the phrase "bounded by Asia to the north, Africa to the west and Australia to the east".
+CAUTION: the reader's copy of this long article was cut off at the end (its last sentence was "Large"). So a list near the end of the article, if there is one, could not be seen.
+Marginal seas (important):
+  "The Indian Ocean covers 70,560,000 km2 (27,240,000 sq mi), including the Red Sea and the Persian Gulf" / "but excluding the Southern Ocean, or 19.5% of the world's oceans."
+  "The borders of the Indian Ocean, as delineated by the International Hydrographic Organization in 1953," / "included the Southern Ocean but not the marginal seas along the northern rim."
+  "In 2002 the IHO delimited the Southern Ocean separately, which removed waters south of 60°S from the Indian Ocean" / "but included the northern marginal seas."
+  "The Indian Ocean has large marginal or regional seas, including the Andaman Sea, the Arabian Sea, the Bay of Bengal, and the Laccadive Sea."
+  The reader also says the Timor Sea is in the page's table of marginal seas ("Timor Sea – 610,000 km²").
+Overseas territories: none listed.
+Also on Wikipedia, table 2.0(a), Indian Ocean column: South Africa (Indian Ocean), Egypt (Red Sea), Israel (Red Sea), Thailand (Andaman Sea), Malaysia (Andaman Sea), East Timor (Timor Sea), Indonesia (Indian Ocean), Australia (Indian Ocean). In the second table: France (Réunion), UK (BIOT).
+
+SOURCE C2-O1 (non-Wikipedia): Britannica, "What surrounds the Indian Ocean?"
+Address: https://www.britannica.com/question/What-surrounds-the-Indian-Ocean
+Defining sentence: "The Indian Ocean is bounded by Iran, Pakistan, India, and Bangladesh to the north;" / "the Malay Peninsula, the Sunda Islands, and Australia to the east;" / "the Southern Ocean to the south; and Africa and the Arabian Peninsula to the west."
+Every name on the page, in order: Iran, Pakistan, India, Bangladesh, Malay Peninsula, Sunda Islands, Australia, Southern Ocean, Africa, Arabian Peninsula, Atlantic Ocean, Pacific Ocean.
+Marginal seas: not mentioned (no Red Sea, Persian Gulf or Arabian Sea).
+Overseas territories: not mentioned.
+[my note] Only five countries are named (Iran, Pakistan, India, Bangladesh, Australia). Everything else is a region.
+
+SOURCE C2-O2 (non-Wikipedia): WorldAtlas, "Indian Ocean" (John Misachi, March 28, 2021)
+Address: https://www.worldatlas.com/articles/which-continents-border-the-indian-ocean.html
+Country list: NONE. Names appear only in passing. Under "Location and Geography": "Pakistan, Iran, Bangladesh, and India" (north); "Sunda Island (Indonesia), Malay Peninsula, and Australia" (east); "Africa and the Arabian Peninsula" (west); "Antarctica" (south). Opening paragraph: "Africa on the west, Asia on the north, Australia on the east".
+Marginal seas, all treated as part of the Indian Ocean: Red Sea "connected to the Red Sea by the Bab el Mandeb strait"; "Highly saline water from the Red Sea and the Persian Gulf enters the ocean"; Arabian Sea "largest, covering about 3.86 million square kilometers"; Bay of Bengal "second-largest extension at 2.6 million square kilometers". The Andaman Sea and Mozambique Channel are among the "seas, bays, and gulfs of the Indian Ocean".
+Overseas territories: none mentioned (no Réunion, Mayotte, British Indian Ocean Territory).
+
+SOURCE C2-O3 (non-Wikipedia): WorldAtlas, "The Marginal Seas Of The Indian Ocean" (Daniel Maina Wambugu, December 4, 2018)
+Address: https://www.worldatlas.com/articles/the-marginal-seas-of-the-indian-ocean.html
+Definition: "A marginal sea is a section of an ocean partially enclosed by an island, a peninsula, or an archipelago."
+Seas listed (in order): Andaman Sea (Gulf of Martaban), Arabian Sea, Bay of Bengal, Gulf of Aden, Gulf of Oman, Laccadive Sea, Mozambique Channel, Persian Gulf, Red Sea, Timor Sea.
+Names given as bordering each sea (as returned):
+  Andaman Sea: Burma, Thailand, Nicobar Islands, India
+  Arabian Sea: Iran, Pakistan, Arabian Peninsula [...], Indian continent
+  Bay of Bengal: India, Bangladesh, Myanmar, Andaman and Nicobar islands
+  Gulf of Aden: Yemen, Somali, Djibouti, Arabian Sea [...]
+  Gulf of Oman: Pakistan, Iran, United Arab Emirates, Oman
+  Laccadive Sea: Sri Lanka, India, Maldives
+  Mozambique Channel: Mozambique, Madagascar
+  Persian Gulf: [not listed in the text]
+  Red Sea: Asia, Africa
+  Timor Sea: Timor island, Australia
+Red Sea: "The Red Sea lies between Asia and Africa." Persian Gulf: "The Persian Gulf is linked to the Indian Ocean via the Strait of Hormuz."
+
+SOURCE C2-O4 (non-Wikipedia): Nations Online Project, "Map of the Red Sea"
+Address: https://www.nationsonline.org/oneworld/map/Red-Sea.htm
+Defining sentence: "The map shows the Red Sea, an arm of the Indian Ocean, between northeastern Africa and the Arabian Peninsula."
+Red Sea countries, in order: Saudi Arabia, Yemen, Egypt, Sudan, Eritrea, Djibouti, Israel, Jordan.
+
+Also on WorldAtlas, table 2.0(b), Indian Ocean column: South Africa, Egypt (Red Sea), Israel (Red Sea), Thailand (Andaman Sea), Malaysia (Andaman Sea), Indonesia, East Timor (Timor Sea), Australia.
+
+COMPARISON C2
+- No reputable page I opened gives a list of Indian Ocean countries. Wikipedia names regions in its infobox. Britannica and WorldAtlas define the ocean by regions and name only a few countries.
+- Taken together, the pages name these UN members (or what I read as them) as Indian Ocean coastal [my note: a union, not an agreed list]: Iran, Pakistan, India, Bangladesh, Australia, Indonesia, Myanmar ("Burma"), Thailand, Malaysia, Sri Lanka, Maldives, Mozambique, Madagascar, Yemen, Somalia ("Somali"), Djibouti, United Arab Emirates, Oman, South Africa, Egypt, Israel, East Timor, Saudi Arabia, Sudan, Eritrea, Jordan. Only Iran, Pakistan, India, Bangladesh and Australia are named both by Britannica and by WorldAtlas as bounding the ocean.
+- Marginal seas, the core problem:
+  * Wikipedia: by the IHO's 1953 limits the northern marginal seas were NOT in the Indian Ocean. The IHO's 2002 limits included them. Wikipedia's area figure includes the Red Sea and the Persian Gulf.
+  * WorldAtlas: counts the Red Sea, Persian Gulf, Arabian Sea, Andaman Sea, Bay of Bengal, Gulf of Aden, Gulf of Oman, Mozambique Channel and Timor Sea as Indian Ocean.
+  * Nations Online: the Red Sea is "an arm of the Indian Ocean".
+  * Britannica: says nothing about the seas. It names only Iran, Pakistan, India and Bangladesh on the north, and "Africa and the Arabian Peninsula" on the west.
+  So whether Red Sea or Persian Gulf states count (e.g. Jordan, Sudan, Eritrea, Egypt, Israel; the Persian Gulf states are never listed) depends on which definition is used.
+- East Timor: the Timor Sea is Indian Ocean in Wikipedia's and WorldAtlas's tables. (World Population Review instead gives "Atlantic, Pacific", an evident error.)
+- Overseas territories: Wikipedia's second table counts France (Réunion) and the UK (BIOT). The other pages do not mention territories.
+
+
+----------------------------------------------------------------------
+2.3 LIST C3 - ATLANTIC OCEAN
+----------------------------------------------------------------------
+
+SOURCE C3-W1: Wikipedia, "List of countries and territories bordering the Atlantic Ocean"
+Address: https://en.wikipedia.org/wiki/List_of_countries_and_territories_bordering_the_Atlantic_Ocean
+Defining sentence (as returned; it may be the page's lead or a caption): "List of states and dependent territories with a coastline on the Atlantic Ocean" / "— including the North, Baltic, Mediterranean, and Black Seas —" / "(dependent territories italicized with the sovereign state bracketed)."
+Symbols: † = "Asiatic states and territories"; ‡ = "Macaronesia".
+Group headings: could not be read reliably. The reader described the groups differently each time, and the only label it quoted was "Macaronesia". Below are its three groups, in page order.
+COMPLETE LIST AS READ (93 entries; spacing as returned):
+  Group 1 (Europe, Atlantic coast and Mediterranean/Black Sea):
+  Azores(POR) ‡, Faroe Islands(DEN), France, Guernsey(UK), Iceland, Ireland, Isle of Man(UK), Jersey(UK), Norway, Portugal, Spain, Svalbard and Jan Mayen(NOR), United Kingdom, Albania, Bosnia and Herzegovina, Bulgaria, Crimea(UKR), Croatia, Cyprus†, Georgia(country)† [a second, names-only reading gave just "Georgia"], Gibraltar(UK), Greece, Israel†, Lebanon†, Italy, Malta, Monaco, Montenegro, North Cyprus(CYP) †, Palestine†, Romania, Russia†, Slovenia, Syria†, Turkey†, Ukraine
+  Group 2 (Africa):
+  Angola, Benin, Bouvet Island(NOR), Cameroon, Canary Islands(ESP) ‡, Cape Verde‡, Democratic Republic of the Congo, Equatorial Guinea, Gabon, Gambia, Ghana, Guinea, Guinea-Bissau, Ivory Coast, Liberia, Madeira(POR) ‡, Mauritania, Morocco, Namibia, Nigeria, Republic of the Congo, Saint Helena, Ascension and Tristan da Cunha(UK), São Tomé and Príncipe, Senegal, Sierra Leone, South Africa, Togo, Western Sahara
+  Group 3 (Caribbean):
+  Anguilla(UK), Antigua and Barbuda, Aruba(NED), Barbados, British Virgin Islands(UK), Caribbean Netherlands [inc. Bonaire and Saba(NED)], Cayman Islands(UK), Cuba, Curaçao(NED), Dominica, Dominican Republic, Guadeloupe(FRA), Grenada, Haiti, Jamaica, Martinique(FRA), Montserrat(UK), Navassa Island(USA), Puerto Rico(USA), Saint Barthélemy(FRA), Saint Kitts and Nevis, Saint Lucia, Sint Maarten(NED), Saint Martin(FRA), Saint Vincent and the Grenadines, Sint Eustatius(NED), Trinidad and Tobago, Turks and Caicos Islands(UK), United States Virgin Islands(USA)
+THE LIST AS READ IS INCOMPLETE. I asked about each of these by name and the reader said they do NOT appear: Belgium, Netherlands, Germany, Denmark, Sweden, Finland, Estonia, Latvia, Lithuania, Poland, Algeria, Tunisia, Libya, Egypt, Canada, United States, Mexico, Brazil, Argentina, Uruguay, Venezuela, Guyana, Suriname, French Guiana, Colombia, Panama, Costa Rica, Nicaragua, Honduras, Guatemala, Belize, Bahamas, Bermuda, Greenland, Saint Pierre and Miquelon, Falkland Islands, South Georgia and the South Sandwich Islands. The last name it saw was "United States Virgin Islands". It saw no "See also" section and no note saying the list is partial.
+[my note] The page says it includes the North and Baltic Seas, yet no North Sea or Baltic state that is missing above appears, and no mainland American state appears at all. So either the page itself is incomplete, or part of it was lost when the reader converted it. I cannot tell which. It cannot be used as a complete list.
+Marginal seas: explicitly INCLUDES the North, Baltic, Mediterranean and Black Seas, and the Caribbean islands.
+Overseas territories: included as separate entries, italicized, with the sovereign state in brackets (POR, DEN, UK, NOR, UKR, CYP, ESP, NED, FRA, USA).
+[my note] UN member states in the list as read: 61. Group 1: France, Iceland, Ireland, Norway, Portugal, Spain, United Kingdom, Albania, Bosnia and Herzegovina, Bulgaria, Croatia, Cyprus, Georgia, Greece, Israel, Lebanon, Italy, Malta, Monaco, Montenegro, Romania, Russia, Slovenia, Syria, Turkey, Ukraine (26). Group 2: Angola, Benin, Cameroon, Cape Verde, Democratic Republic of the Congo, Equatorial Guinea, Gabon, Gambia, Ghana, Guinea, Guinea-Bissau, Ivory Coast, Liberia, Mauritania, Morocco, Namibia, Nigeria, Republic of the Congo, São Tomé and Príncipe, Senegal, Sierra Leone, South Africa, Togo (23). Group 3: Antigua and Barbuda, Barbados, Cuba, Dominica, Dominican Republic, Grenada, Haiti, Jamaica, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Trinidad and Tobago (12). Not UN members: Palestine, North Cyprus, Western Sahara. Crimea is a region.
+
+SOURCE C3-W2: Wikipedia, "Atlantic Ocean"
+Address: https://en.wikipedia.org/wiki/Atlantic_Ocean
+Infobox "Basin countries", exactly: "List of bordering countries (not drainage basin), ports" (points to C3-W1). C3-W1 is also under "See also".
+Marginal seas: "The Atlantic has irregular coasts indented by numerous bays, gulfs and seas. These include the Baltic Sea, Black Sea, Caribbean Sea," / "Davis Strait, Denmark Strait, part of the Drake Passage, Gulf of Mexico, Labrador Sea, Mediterranean Sea, North Sea, Norwegian Sea," / "almost all of the Scotia Sea, and other tributary water bodies."
+Disagreement noted on the page: "the International Hydrographic Organization (IHO) defined the limits of the oceans and seas in 1953," / "but some of these definitions have been revised since then and some are not recognized by various authorities," / "institutions, and countries, such as the CIA World Factbook, for example."
+The reader saw this page complete, up to "References".
+
+SOURCE C3-O1 (non-Wikipedia): WorldAtlas, "Which Countries Have Coastlines On Both The Atlantic And The Pacific Oceans?" (2026). Same page as C1-O1.
+Address: https://www.worldatlas.com/oceans/which-countries-have-coastlines-on-both-the-atlantic-and-the-pacific-oceans.html
+Atlantic side: "Most count their Atlantic side through marginal seas (the Caribbean, the Gulf of Mexico, the Baltic), while only Canada, the United States, and Chile touch the open Atlantic directly."
+Russia: "Russia's Atlantic access comes through two marginal seas of the Atlantic:" / "the Baltic Sea (via the Gulf of Finland, with St. Petersburg as the largest port)" / "and the Black Sea (which connects to the Atlantic via the Bosporus, the Sea of Marmara, the Dardanelles," / "the Aegean, the Mediterranean, and the Strait of Gibraltar, with Novorossiysk as the largest Russian Black Sea port)."
+Chile: "...a small Atlantic frontage at the southern end of Tierra del Fuego where the Strait of Magellan opens out into the Atlantic."
+List: Canada, United States, Mexico, Guatemala, Honduras, Nicaragua, Costa Rica, Panama, Colombia, Chile, Russia (only two-ocean countries).
+
+SOURCE C3-O2 (non-Wikipedia): WorldAtlas, "Atlantic Ocean" (John Misachi, March 25, 2021). Link copied from C1-O1 ("Everything about the Atlantic Ocean.").
+Address: https://www.worldatlas.com/oceans/atlantic-ocean.html
+Country list: NONE.
+Defining sentence: "The Atlantic is S-shaped and sandwiched between North and South America to the west and Africa and Europe to the east."
+Seas: "The Ocean has numerous seas on its margins, of which 42 seas cover at least 3,200 square miles." / "The Ocean's largest sea is the Sargasso Sea at 1.35 million square miles." / "Other seas of the Atlantic Ocean are the Mediterranean Sea, Gulf of Guinea, Gulf of Mexico, Norwegian Sea, Hudson Bay, Greenland Sea, and the Argentinian Sea."
+Caribbean: "The Caribbean Sea, bordered by Central America, Mexico, and the Greater Antilles, is the second-largest sea"
+The Baltic Sea appears only in a sentence about sea ice. The North Sea and Black Sea are not mentioned.
+
+SOURCE C3-O3 (non-Wikipedia): WorldAtlas, "Countries That Border Three Oceans" (James Burton, May 24, 2026)
+Address: https://www.worldatlas.com/geography/countries-that-border-three-oceans.html
+List: Russia (Arctic, Pacific, Atlantic); Canada (Arctic, Pacific, Atlantic); United States (Arctic, Pacific, Atlantic); Australia (Pacific, Indian, Southern); South Africa (Atlantic, Indian, Southern); Chile (Pacific, Atlantic, Southern)
+Marginal seas: "The Atlantic connection is indirect (Russia has no coastline on the open Atlantic) but it borders the Baltic Sea" / "at Saint Petersburg and the Kaliningrad exclave, and the Black Sea at Sochi and Crimea," / "both of which are marginal seas of the Atlantic system."
+Overseas territories: "If overseas territories count as the home country, two European powers each border four of the five oceans." / "France touches the Atlantic through metropolitan France, French Guiana, Saint Pierre and Miquelon," / "and the French Antilles (Martinique, Guadeloupe); the Pacific through French Polynesia, New Caledonia, and Wallis and Futuna;" / "the Indian through Réunion and Mayotte; and the Southern through Adélie Land."
+
+SOURCE C3-O4 (non-Wikipedia): Nations Online Project, "Mediterranean Region Map". Link copied from C2-O4.
+Address: https://www.nationsonline.org/oneworld/map/Mediterranean-Region-Map.htm
+Relation to the Atlantic: "The Mediterranean Sea is connected with the Atlantic Ocean by the Strait of Gibraltar." (It says "connected with", not "part of".)
+Black Sea: "The Mediterranean Sea is connected with the Black Sea by the Sea of Marmara and the Bosporus."
+Mediterranean countries, in order: Spain, France, Italy, Malta, Monaco, Slovenia, Croatia, Bosnia and Herzegovina, Montenegro, Albania, Greece, Turkey, Syria, Lebanon, Israel, Palestine Gaza Strip, Cyprus, Morocco, Algeria, Tunisia, Libya, Egypt
+
+Also from the tables (Atlantic column): 2.0(a) Wikipedia and 2.0(b) WorldAtlas both put the Mediterranean (Egypt, Israel), the Black and Baltic Seas (Russia), the Norwegian Sea (Norway), the Gulf of Mexico (Mexico), the Gulf of Honduras (Guatemala) and the Caribbean Sea (Honduras, Nicaragua, Costa Rica, Panama, Colombia) in the Atlantic column. 2.0(a) also has Iceland (North Atlantic). WorldAtlas's table does not include Iceland.
+
+COMPARISON C3
+- No complete list. The Wikipedia list as read misses every mainland American state, the North Sea and Baltic states not shown above, and Mediterranean Africa (Algeria, Tunisia, Libya, Egypt). WorldAtlas has no Atlantic list, only two-ocean and three-ocean lists.
+- Marginal seas:
+  * Wikipedia: Atlantic includes the North, Baltic, Mediterranean and Black Seas (list page), plus the Caribbean, Gulf of Mexico and Norwegian Sea (article). The article also notes that the IHO limits "are not recognized by various authorities".
+  * WorldAtlas: counts the Caribbean, Gulf of Mexico, Baltic and Black Sea as "marginal seas of the Atlantic", and names the Mediterranean as a sea of the Atlantic. Its Atlantic page also lists the Norwegian Sea, Hudson Bay and Greenland Sea as Atlantic seas, while its Arctic page lists those same three as Arctic seas (see C4).
+  * Nations Online: calls the Mediterranean only "connected with" the Atlantic.
+  So a country whose only sea is the Mediterranean, Black Sea, Baltic or North Sea is in or out depending on the definition.
+- Overseas territories: Wikipedia lists them separately with the sovereign state bracketed. WorldAtlas counts them only "If overseas territories count as the home country". Nations Online lists "Palestine Gaza Strip".
+
+
+----------------------------------------------------------------------
+2.4 LIST C4 - ARCTIC OCEAN
+----------------------------------------------------------------------
+
+SOURCE C4-W1: Wikipedia, "Arctic Ocean"
+Address: https://en.wikipedia.org/wiki/Arctic_Ocean
+Defining sentence: "The Arctic Ocean is surrounded by the land masses of Eurasia (Russia and Norway)," / "North America (Canada and the U.S. state of Alaska), Greenland, and Iceland."
+Complete list from that sentence, in order: Russia, Norway, Canada, the U.S. state of Alaska, Greenland, Iceland
+Second list on the page, table "Arctic exclusive economic zones" (columns: Country segment / Area / km² / sq mi). Rows in order:
+  Laptev Sea to Chukchi Sea, Russia; Kara Sea, Russia; Barents Sea, Russia; Mainland Norway; Svalbard Island, Norway; Jan Mayen Island, Norway; Mainland Iceland; Mainland Greenland; East Coast [the reader gave no country for this row]; Arctic Canada; Arctic United States; Other
+Marginal seas: "The largest seas in the Arctic Ocean: Barents Sea, Hudson Bay, Greenland Sea, East Siberian Sea, Kara Sea, Laptev Sea, Chukchi Sea, Beaufort Sea" [as returned]
+Disagreement noted on the page: "Different authorities put various marginal seas in either the Arctic Ocean or the Atlantic Ocean," / "including: Hudson Bay, Baffin Bay, the Norwegian Sea, and Hudson Strait."
+IHO: "The International Hydrographic Organization (IHO) recognizes it as an ocean," / "although some oceanographers call it the Arctic Mediterranean Sea or North Polar Sea."
+Overseas territories: Greenland is named on its own. Denmark is not named in the defining sentence.
+
+SOURCE C4-O1 (non-Wikipedia): WorldAtlas, "Countries With Arctic Ocean Coastlines" (Joseph Kiprop, November 28, 2018)
+Address: https://www.worldatlas.com/articles/which-countries-have-coastlines-on-the-arctic-ocean.html
+Defining sentence: "Countries with coastlines in the Arctic Ocean are:"
+Complete list, in order (these are also the page headings): United States, Canada, Russia, Iceland, Norway, Greenland (Denmark)
+All headings: Countries With Arctic Ocean Coastlines / United States / Canada / Russia / Iceland / Norway / Greenland (Denmark) / Territorial Disputes in the Arctic Ocean
+Iceland: "Iceland also has a substantial coastline on the Arctic Ocean."
+Norway: "Norway's coastline on the Arctic Ocean features several towns such as Hammerfest, Honningsvåg, and Vardø."
+Greenland: "an autonomous constituent country of Denmark"
+Marginal seas: Point Barrow "marks the boundary between the Beaufort Sea and the Chukchi Sea, which oceanographers consider as the marginal seas of the Arctic Ocean." The Russia and Greenland sections name no seas.
+Overseas territories: Greenland is listed as its own entry, "Greenland (Denmark)".
+
+SOURCE C4-O2 (non-Wikipedia, extra): Britannica Kids / Britannica student encyclopedia, "Arctic Ocean - Students"
+Address: https://kids.britannica.com/students/article/Arctic-Ocean/272940
+Defining sentence with complete list: "Russia, Canada, Greenland, Iceland, Norway, and the United States (Alaska) border on the Arctic Ocean."
+Seas: no list. Only "at the ocean's borders, where its waters mix with those of the Atlantic and Pacific".
+
+SOURCE C4-O3 (non-Wikipedia, extra): WorldAtlas, "Arctic Ocean" (John Misachi, March 24, 2021)
+Address: https://www.worldatlas.com/seas/arctic-ocean.html
+Defining sentence: "The Arctic Ocean is bounded to the northeast, east, and southeast by Russian Federation," / "northwest by the US, west by Canada, southwest by Greenland, and south by Iceland and Norway."
+List, in order: Russian Federation, US, Canada, Greenland, Iceland, Norway
+Marginal seas: "The Arctic Ocean includes numerous marginal seas, bays, and straits, including Barents Sea, Baffin Bay," / "Beaufort Sea, Greenland Sea, Norwegian Sea, Iceland Sea, Chukchi Sea, Hudson Bay, and East Siberia Sea." Also: "The Labrador Sea and the Greenland Sea connect it to the Atlantic Ocean".
+
+SOURCE C4-W2 (Wikipedia, the dissenting view): "Arctic Five"
+Address: https://en.wikipedia.org/wiki/Arctic_Five
+Defining sentence: "The Arctic Five are the five littoral states bordering the Arctic Ocean"
+List, as spelled: Canada, Danish Realm, Norway, Russia, United States
+Iceland: "Iceland is generally not regarded as an Arctic Ocean littoral State as its Exclusive Economic Zone (EEZ)" / "is not adjacent to the high seas portion of the Central Arctic Ocean."
+Denmark: "the Danish Realm, via the autonomous territory of Greenland"
+
+COMPARISON C4
+- Wikipedia "Arctic Ocean" and WorldAtlas "Countries With Arctic Ocean Coastlines" name the same six: Russia, Norway, Canada, United States (Alaska), Greenland, Iceland. Britannica Kids and WorldAtlas "Arctic Ocean" name the same six too.
+- [my note] UN member states by own land, in all four of those pages: Canada, Iceland, Norway, Russia, United States. Greenland is Denmark's territory: WorldAtlas says "Greenland (Denmark)". Wikipedia names only "Greenland" in its defining sentence.
+- On one source only: none, among those four list pages.
+- Dissent:
+  * Wikipedia "Arctic Five" leaves Iceland out ("generally not regarded as an Arctic Ocean littoral State") and counts the "Danish Realm" through Greenland.
+  * Wikipedia's two-ocean table gives Iceland "1 or 2" oceans, with the Greenland Sea as its polar entry.
+  * WorldAtlas's two-ocean table (2017) does not list Iceland at all, though WorldAtlas's Arctic pages do.
+- Marginal seas: Wikipedia says authorities differ on Hudson Bay, Baffin Bay, the Norwegian Sea and Hudson Strait. WorldAtlas's Arctic page counts the Greenland, Norwegian and Iceland Seas, Hudson Bay and Baffin Bay as Arctic, but its Atlantic page counts the Norwegian Sea, Hudson Bay and Greenland Sea as Atlantic. [my note] None of the disputed seas gives Norway, Russia or the US its Arctic coast on these pages. Norway's is the Barents Sea (polar column in both two-ocean tables). Russia's are the EEZ rows "Laptev Sea to Chukchi Sea", "Kara Sea" and "Barents Sea". The US coast is at Point Barrow, between the Beaufort and Chukchi Seas (WorldAtlas). No page I opened calls any of these seas Atlantic.
+
+
+======================================================================
+3. PLAIN VERDICTS
+======================================================================
+
+C1 PACIFIC: NO.
+- I found no reputable site with a complete list. Wikipedia's two Pacific lists name no American country, apart from Panama in prose. WorldAtlas has no Pacific list, only two-ocean and three-ocean lists. The only complete-looking lists were on small, unvetted sites.
+- Disagreements found:
+  (1) East Timor: in Wikipedia "Pacific coast" and both two-ocean tables, but missing from the Wikipedia "Pacific Ocean" list.
+  (2) Argentina: Wikipedia's table puts the Beagle Channel in the Pacific column ("1, 2 or 3" oceans). WorldAtlas's table gives it no Pacific coast ("1 or 2").
+  (3) Some Pacific coasts are on a marginal sea or gulf in the tables: Thailand (Gulf of Thailand), Malaysia (South China Sea), Honduras (Gulf of Fonseca), Panama (Gulf of Panama), East Timor (Savu Sea, Flores Sea). Those countries count only if these waters count as Pacific. Wikipedia and WorldAtlas both count them. Wikipedia also lists Singapore, Cambodia, Vietnam and Brunei as Pacific, but no WorldAtlas page I opened mentions them. [my note] Which water gives those four their coast is not stated on any page I opened.
+  (4) Ecuador, Peru and El Salvador are never named as Pacific-coast countries on any reputable page I opened.
+
+C2 INDIAN: NO.
+- No reputable page I opened lists the countries. Wikipedia (infobox), Britannica and WorldAtlas all describe the ocean by regions. Britannica names only Iran, Pakistan, India, Bangladesh and Australia.
+- The definition itself has changed, according to Wikipedia: the IHO's 1953 limits excluded the northern marginal seas, and its 2002 limits included them. So Red Sea and Persian Gulf states depend on the definition. Wikipedia's area figure, WorldAtlas and Nations Online count those seas in; Britannica is silent.
+- East Timor (Timor Sea) is Indian Ocean in Wikipedia's and WorldAtlas's tables.
+
+C3 ATLANTIC: NO.
+- I found no complete list. The Wikipedia list, as read, is clearly incomplete: no mainland American state, no Germany, Netherlands, Belgium, Denmark, Poland, Sweden, Finland or the Baltic states, no Algeria, Tunisia, Libya or Egypt. WorldAtlas has no Atlantic list.
+- Disagreements on marginal seas:
+  * Wikipedia counts the North, Baltic, Mediterranean and Black Seas as Atlantic, but notes that the IHO limits are "not recognized by various authorities".
+  * WorldAtlas counts the Caribbean, Gulf of Mexico, Baltic, Black Sea and Mediterranean as Atlantic.
+  * Nations Online calls the Mediterranean only "connected with" the Atlantic.
+  * WorldAtlas puts the Norwegian Sea, Greenland Sea and Hudson Bay in BOTH the Atlantic and the Arctic, on different pages.
+  * Overseas territories (France, UK, Netherlands, US, Denmark) are listed separately by Wikipedia and counted only conditionally by WorldAtlas.
+
+C4 ARCTIC: YES for the two main list sources, but NOT FULLY CLEAR.
+- Wikipedia "Arctic Ocean" and WorldAtlas "Countries With Arctic Ocean Coastlines" agree exactly. By own land the UN members are Canada, Iceland, Norway, Russia and the United States. Greenland (Denmark) is a territory. Britannica Kids and WorldAtlas "Arctic Ocean" give the same six names.
+- BUT another reputable page, Wikipedia "Arctic Five", says "Iceland is generally not regarded as an Arctic Ocean littoral State", and counts the "Danish Realm" via Greenland. Wikipedia's own two-ocean table hedges Iceland as "1 or 2" oceans.
+- So:
+  * Canada, Norway, Russia and the United States are agreed by every page I read.
+  * Iceland is contested.
+  * Denmark counts only through Greenland. That makes it a "no" under the brief's own-land rule, but a "yes" in the "Arctic Five" sense.
+
+
+======================================================================
+4. NOTES
+======================================================================
+
+Pages opened. Each address came from my own search results, or is a link copied from a page I opened on the same site.
+  https://en.wikipedia.org/wiki/Pacific_Ocean (search 1; 4 reads)
+  https://en.wikipedia.org/wiki/Pacific_coast (search 1; 3 reads)
+  https://en.wikipedia.org/wiki/Pacific_Rim (search 1; no country list on the page; the reader said Pacific Rim members are mentioned only scattered in prose about APEC, CPTPP and similar groups)
+  https://en.wikipedia.org/wiki/List_of_countries_bordering_on_two_or_more_oceans (search 1; 6 reads)
+  https://en.wikipedia.org/wiki/Indian_Ocean (search 2; 4 reads; the reader's copy was cut off at the end)
+  https://www.britannica.com/question/What-surrounds-the-Indian-Ocean (search 2)
+  https://www.worldatlas.com/articles/which-continents-border-the-indian-ocean.html (search 2)
+  https://www.worldatlas.com/articles/the-marginal-seas-of-the-indian-ocean.html (search 2)
+  https://www.worldatlas.com/articles/which-countries-border-more-than-one-ocean.html (searches 1 and 2; 2 reads)
+  https://en.wikipedia.org/wiki/List_of_countries_and_territories_bordering_the_Atlantic_Ocean (search 3; 4 reads)
+  https://en.wikipedia.org/wiki/Atlantic_Ocean (search 3)
+  https://www.worldatlas.com/geography/countries-that-border-three-oceans.html (search 3)
+  https://www.worldatlas.com/oceans/which-countries-have-coastlines-on-both-the-atlantic-and-the-pacific-oceans.html (searches 1 and 3; 3 reads)
+  https://www.worldatlas.com/oceans/pacific-ocean.html (link copied from the page above)
+  https://www.worldatlas.com/oceans/atlantic-ocean.html (link copied from the same page; 2 reads)
+  https://www.worldatlas.com/articles/which-countries-have-coastlines-on-the-arctic-ocean.html (search 4; 2 reads)
+  https://www.worldatlas.com/seas/arctic-ocean.html (search 4)
+  https://en.wikipedia.org/wiki/Arctic_Ocean (search 4; 2 reads)
+  https://en.wikipedia.org/wiki/Arctic_Five (search 4)
+  https://kids.britannica.com/students/article/Arctic-Ocean/272940 (search 4)
+  https://worldpopulationreview.com/country-rankings/countries-bordering-two-or-more-oceans (search 6; 2 reads)
+  https://www.nationsonline.org/oneworld/map/Red-Sea.htm (search 6)
+  https://www.nationsonline.org/oneworld/map/Mediterranean-Region-Map.htm (link copied from the Red Sea page)
+  https://www.nationsonline.org/oneworld/map/physical_world_map.htm (search 6; it has no ocean country list. The names the reader pulled from it were just countries mentioned on the page, including landlocked Nepal, so I did not use it.)
+  https://www.wikiwand.com/en/articles/List_of_countries_bordering_on_two_or_more_oceans (search 5; a copy of Wikipedia, opened only to look for links to other ocean pages; none were shown; not used as a source)
+
+Page I could not open:
+  https://kids.britannica.com/scholars/article/Indian-Ocean/106295 (search 6). Error: "URL is disallowed by robots.txt rules". I skipped it and did not retry.
+
+Things that are unclear or limited:
+- The page reader declined my first request on the Wikipedia two-or-more-oceans page. It cited a 125-character quote limit and copyright. After I asked for "names only / table data", it answered. So all long sentences here are in pieces, and lists are names as returned. Italics and flag icons are lost.
+- Long Wikipedia articles were cut off in the reader's copy. This is confirmed for "Indian Ocean", whose last sentence was "Large". So a country list at the end of a long article could have been missed. The "Atlantic Ocean" article was read to the end ("References").
+- The Wikipedia Atlantic list is internally inconsistent as read (see C3). I could not get the missing part. Its group headings could not be read reliably.
+- In the Wikipedia "Pacific Ocean" list, the reader could not identify a section heading. The list has no American countries. The reader confirmed this twice, and also confirmed it has no other list that includes the Americas.
+- The Wikipedia "Pacific coast" page shows its entries as "Geography of X" link text. The Americas are described but not named, apart from Panama.
+- World Population Review (2026) has evident errors: Timor-Leste "Atlantic, Pacific"; a Pacific coast for Argentina; the United States missing from its table; 21 rows against "twenty-two countries". I did not count it as reputable.
+- In the WorldAtlas 2017 table, the reader showed empty cells as "[...]". I took them to be empty cells.
+- In Wikipedia's "Arctic exclusive economic zones" table, one row came back only as "East Coast", with no country.
+- Non-UN entities that appear in the lists [my note]: Taiwan, Cook Islands, Niue (Pacific); Palestine, North Cyprus, Western Sahara, and Crimea as a region (Atlantic list); "Palestine Gaza Strip" (Nations Online). The "Danish Realm" in "Arctic Five" is the Kingdom of Denmark including Greenland.
+- Search results I did not open, because they were not reputable, were staging copies, or were not relevant: completeera.com (2 pages), wisdomwave.blog, iere.org, kids-world-travel-guide.com, studycountry.com, en.namu.wiki, brainly.in; craftstaging.worldatlas.com copies; an older WorldAtlas three-oceans address; "Which Country Has Coastlines On Both The Atlantic And The Indian Oceans?"; "Every Country With Arctic Territory"; Wikipedia pages Costa Rica, Indo-Pacific, Southern Hemisphere, Brittany, List of islands in the Atlantic Ocean, Guinea, Black Sea, List of enclaves and exclaves, Territorial claims in the Arctic, Arctic, Geopolitics of the Arctic; Britannica pages Indo-Pacific and Barents Sea; Britannica Kids pages Canada and Peru; Nations Online pages on Indonesia, Australia and Third World countries; World Population Review's Indonesia location page.
+
+
+####################################################################################################
+# PART D
+####################################################################################################
+
+EVIDENCE FILE D
+Land borders of China and Russia, left-hand traffic, the euro
+Compiled 5 October 2026
+
+HOW THIS WAS MADE
+- Pages were found with WebSearch (mode "standard") and opened with WebFetch.
+- WebFetch reads each page through a small reading model. Text in quotation marks below is what that reader returned when asked to copy word for word. Where something looked shortened or two reads disagreed, I re-read the same address with a narrower request; all such cases are flagged.
+- [...] marks a gap or a cut in the text.
+- [T] is MY marking (it is not on the pages): a place that is not one of the 193 UN member states (territory, dependency, special administrative region or associated state).
+- Nothing below comes from memory except the [T] marks and one clearly labelled note under D4.
+
+
+======================================================================
+PART 1. SEARCH QUERIES (6 of 8 used; 2 left unused)
+======================================================================
+
+1 of 8: "countries that share a land border with China list of neighbouring countries"
+        allowed domains: en.wikipedia.org, worldatlas.com, britannica.com
+2 of 8: "countries that border Russia land borders list Kaliningrad Poland Lithuania Abkhazia South Ossetia"
+        allowed domains: en.wikipedia.org, worldatlas.com, britannica.com
+3 of 8: "list of countries that drive on the left left-hand traffic countries and territories"
+        allowed domains: en.wikipedia.org, worldatlas.com, britannica.com
+4 of 8: "euro area member states 2026 Bulgaria joined euro 1 January 2026 21 countries"
+        allowed domains: ecb.europa.eu, economy-finance.ec.europa.eu, commission.europa.eu, european-union.europa.eu, en.wikipedia.org
+5 of 8: "Eurozone member states list non-EU countries using euro Andorra Monaco San Marino Vatican City Kosovo Montenegro"
+        allowed domains: en.wikipedia.org, ecb.europa.eu
+6 of 8: "Kaliningrad Russian exclave bordered by Poland and Lithuania"
+        allowed domains: worldatlas.com, britannica.com, nationalgeographic.com
+
+Pages I opened that were NOT themselves search results (each is a link on the same website, copied from a page I had opened):
+- https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro_en
+  (link "EU countries and the euro" on the Commission page "Bulgaria and the euro")
+- https://economy-finance.ec.europa.eu/euro_en
+  (link "The euro" on the same Commission page)
+- https://economy-finance.ec.europa.eu/euro/what-euro-area_en
+  (link "What is the euro area?" on the Commission page "The euro")
+- https://economy-finance.ec.europa.eu/euro/use-euro/euro-outside-euro-area_en
+  (link "The euro outside the euro area" on the Commission page "The euro")
+Every other address below came straight from my search results.
+
+
+======================================================================
+PART 2. THE FOUR LISTS
+======================================================================
+
+----------------------------------------------------------------------
+LIST D1. Countries that share a LAND border with CHINA (People's Republic of China)
+----------------------------------------------------------------------
+
+SOURCE D1-A
+Name: Wikipedia, "Borders of China"
+Address opened: https://en.wikipedia.org/wiki/Borders_of_China
+Defining quote: "The People's Republic of China (PRC) shares land borders with 14 countries (tied with Russia for the most in the world)"
+Complete list: first column of the land borders table, in table order, with the lengths given:
+ 1. North Korea - 1,416 km (880 mi)
+ 2. Russia - 3,645 km (2,265 mi)
+ 3. Mongolia - 4,678 km (2,907 mi)
+ 4. Kazakhstan - 1,533 km (953 mi)
+ 5. Kyrgyzstan - 858 km (533 mi)
+ 6. Tajikistan - 414 km (257 mi)
+ 7. Afghanistan - 76 km (47 mi)
+ 8. Pakistan - 596 km (370 mi)
+ 9. India - 3,488 km (2,167 mi)
+10. Nepal - 1,440 km (890 mi)
+11. Bhutan - 470 km (290 mi)
+12. Myanmar - 2,185 km (1,358 mi)
+13. Laos - 423 km (263 mi)
+14. Vietnam - 1,283 km (797 mi)
+Other text from the page:
+- "a 3-kilometre (1.9 mi) internal border with Macau"
+- "a 30-kilometre (19 mi) internal border [...] with the special administrative region of Hong Kong"
+- "contested limits with Taiwan" (at sea). Flag: one read gave the full sentence as starting "To the west, China has maritime borders with South Korea, Japan, and contested limits with Taiwan and other countries in the South China Sea". "To the west" looks wrong, so I do not rely on how that sentence starts.
+
+SOURCE D1-B
+Name: WorldAtlas, "Countries That Border China" (author shown: Benjamin Elisha Sawe; date shown: June 29 2018)
+Address opened: https://www.worldatlas.com/articles/what-countries-border-china.html
+Defining quote: "China has an area of 3,700,000 square miles and shares borders with 14 self-governing states. China is located in East Asia and had an estimated population of 1.379 billion in 2016. The country has a total land border of 13,743 miles making it the country with the longest land border in the world."
+Complete list: one section heading per country, in page order, with the lengths given:
+ 1. Afghanistan - 47 miles
+ 2. Bhutan - 292 miles
+ 3. India - 2,100 miles
+ 4. Kazakhstan - 952 miles
+ 5. Kyrgyzstan - 533 miles
+ 6. Laos - 262 miles
+ 7. Mongolia - 2,906 miles
+ 8. Myanmar - 1,357 miles
+ 9. Nepal - 768 miles
+10. North Korea - 880 miles
+11. Pakistan - 324 miles
+12. Russia - 2,615.54 miles
+13. Tajikistan - 257 miles
+14. Vietnam - 795 miles
+(The other headings on the page are "Country Bordering the Most Countries" and "China's Neighbors".)
+Other quotes:
+- India section: "India borders China to the South with the length of the border-spanning 2,100 miles. Doklam is a region located near the border shared between Bhutan, India, and China. Both China and Bhutan claims the region. In 2017, China had begun extending a road into the region, and this led to a stalemate between the armies of China and Bhutan's ally, India."
+- Pakistan section: "The China-Pakistani border is 324 miles long. The border is made up of the Karakoram highway, Pakistan which stretches past the Gilgit-Baltistan into China to form the China National Highway 314. [...]"
+
+COMPARISON D1
+- Both sources list the same 14 countries:
+  Afghanistan, Bhutan, India, Kazakhstan, Kyrgyzstan, Laos, Mongolia, Myanmar, Nepal, North Korea, Pakistan, Russia, Tajikistan, Vietnam.
+- On one source only: none.
+- Unclear / notes:
+  - Hong Kong and Macau: Wikipedia calls these "internal" borders with special administrative regions, not borders with countries. WorldAtlas does not list them.
+  - Taiwan: Wikipedia mentions only "contested limits" at sea. It is not a land border on either source.
+  - Border lengths differ a lot between the two sources (for example Nepal 1,440 km (890 mi) vs 768 miles; Pakistan 596 km (370 mi) vs 324 miles; Russia 3,645 km (2,265 mi) vs 2,615.54 miles; India 3,488 km (2,167 mi) vs 2,100 miles). This does not matter for a yes/no list, but the two sets of figures should not be mixed.
+  - Disputes: WorldAtlas mentions the Doklam region (claimed by China and Bhutan), and that the Pakistan border runs past Gilgit-Baltistan. Neither source drops India, Bhutan or Pakistan from the list.
+
+
+----------------------------------------------------------------------
+LIST D2. Countries that share a LAND border with RUSSIA
+----------------------------------------------------------------------
+
+SOURCE D2-A
+Name: Wikipedia, "Borders of Russia"
+Address opened: https://en.wikipedia.org/wiki/Borders_of_Russia
+Defining quote: "Russia, the largest country in the world by area, has international land borders with fourteen sovereign states as well as two narrow maritime boundaries with the United States and Japan."
+Second quote: "The borders of the Russian Federation (formerly the Russian SFSR) were mostly drawn since 1956 (save for minor border changes, e.g., with China), and have remained the same after the dissolution of the Soviet Union."
+Table column headers: Country or territory | Land border (km) | Maritime border (km) | Length of total border (km) | More information
+Complete table, every row in table order:
+ 1. Baltic Sea | 0.0 | 126.1 | 126.1 | (blank)
+ 2. Norway | 195.8 | 23.3 | 219.1 | Norway–Russia border
+ 3. Finland | 1271.8 | 54.0 | 1325.8 | Finland–Russia border
+ 4. Estonia | 138.0 | 322.0 | 460 | Estonia–Russia border
+ 5. Latvia | 270.5 | 0.0 | 270.5 | Latvia–Russia border
+ 6. Lithuania | 266.0 | 22.4 | 288.4 | Lithuania–Russia border
+ 7. Poland | 204.1 | 32.2 | 236.3 | Poland–Russia border
+ 8. Belarus | 1239.0 | 0.0 | 1239.0 | Belarus–Russia border
+ 9. Ukraine (de facto until 2014) | 1925.8 | 320 | 2245.8 | Russia–Ukraine border
+10. Black Sea | 0.0 | 389.5 | 389.5 | (blank)
+11. Abkhazia (de facto since 2008) | 255.4 | 0.0 | 255.4 | Abkhazia–Russia border
+12. Georgia (de facto since 2008) | 572.5 | 22.4 | 594.9 | Georgia–Russia border
+13. South Ossetia (de facto since 2008) | 70.0 | 0.0 | 70.0 | Russia–South Ossetia border
+14. Azerbaijan | 327.6 | 22.4 | 350.0 | Azerbaijan–Russia border
+15. Caspian Sea | 0.0 | 580.0 | 580.0 | (blank)
+16. Kazakhstan | 7512.8 | 85.8 | 7598.6 | Kazakhstan–Russia border
+17. China | 4209.3 | 0.0 | 4209.3 | China–Russia border
+18. Mongolia | 3485.0 | 0.0 | 3485.0 | Mongolia–Russia border
+19. North Korea | 17.0 | 22.1 | 39.1 | North Korea–Russia border
+20. Pacific Ocean | 0.0 | 16997.9 | 16997.9 | (blank)
+21. Japan | 0.0 | 194.3 | 194.3 | Japan–Russia border
+22. United States | 0.0 | 49.0 | 49.0 | USSR–USA Maritime Boundary Agreement
+23. Arctic Ocean | 0.0 | 19724.1 | 19724.1 | (blank)
+Rows with a land border above 0 (16 rows): Norway, Finland, Estonia, Latvia, Lithuania, Poland, Belarus, Ukraine (de facto until 2014), Abkhazia (de facto since 2008), Georgia (de facto since 2008), South Ossetia (de facto since 2008), Azerbaijan, Kazakhstan, China, Mongolia, North Korea.
+Sea border only (land 0.0): Japan, United States.
+Kaliningrad: the reader found no sentence containing "Kaliningrad" on this page.
+
+SOURCE D2-B
+Name: WorldAtlas, "Which Countries Border Russia?" (author shown: Joseph Kiprop; date shown: May 10, 2018)
+Address opened: https://www.worldatlas.com/articles/what-countries-border-russia.html
+Defining quote: "Russia is bordered by more countries than any other country in the world, with a total of 16 countries sharing its long land border."
+Second quote: "An additional two countries whose sovereignty is partially recognized, also share a land border with Russia: Abkhazia and South Ossetia."
+The text also names the recognised neighbours in this order (the reader returned it in quotation marks, but not as a full sentence): "North Korea, China, Norway, Finland, Ukraine, Kazakhstan, Poland, Georgia, Mongolia, Latvia, Estonia, Azerbaijan, Belarus, and Lithuania."
+Complete list: table with headers Rank | State | Border Length With Russia (Km):
+ 1 | Kazakhstan | 7,512.80
+ 2 | China | 4,209.30
+ 3 | Mongolia | 3,485
+ 4 | Ukraine | 1,925.80
+ 5 | Finland | 1,271.80
+ 6 | Belarus | 1,239
+ 7 | Georgia | 875.5
+ 8 | Azerbaijan | 372.6
+ 9 | Estonia | 294
+10 | Latvia | 270.5
+11 | Lithuania | 266
+12 | Abkhazia | 255.4
+13 | Poland | 204.1
+14 | Norway | 195.7
+15 | South Ossetia | 70
+16 | North Korea | 17
+Section headings: "The Three Longest International Borders Of Russia", "Kazakhstan", "China", "Mongolia", "What Countries Border Russia?"
+Kaliningrad: no sentence on this page mentions Kaliningrad.
+
+KALININGRAD NOTE (Poland and Lithuania border only Russia's Kaliningrad region)
+- Wikipedia, "Lithuania–Russia border"
+  Address opened: https://en.wikipedia.org/wiki/Lithuania%E2%80%93Russia_border
+  "The Lithuania–Russia border is an international border between the Republic of Lithuania (EU member) and Kaliningrad Oblast, an exclave of the Russian Federation (CIS member)."
+- Wikipedia, "Borders of Poland"
+  Address opened: https://en.wikipedia.org/wiki/Borders_of_Poland
+  "Poland–Russia border( Kaliningrad Oblast): 210 km (130 mi)"
+  Poland borders "the Kaliningrad Oblast of Russia to the northeast"
+  (This page gives 210 km; "Borders of Russia" gives 204.1 km of land border.)
+- Britannica, "Kaliningrad" (city article; title shown "Kaliningrad | History, Map, & Points of Interest | Britannica")
+  Address opened: https://www.britannica.com/place/Kaliningrad
+  "Map highlighting Kaliningrad Oblast, a small Russian exclave on the Baltic Sea, situated between Poland and Lithuania." (map caption)
+  "Detached from the rest of the country, the city is an exclave of the Russian Federation." (appears to be caption text, as returned)
+- Britannica, "Kaliningrad" (oblast article; title shown "Kaliningrad | History, Population, & Map | Britannica")
+  Address opened: https://www.britannica.com/place/Kaliningrad-oblast-Russia
+  "Kaliningrad, oblast (region), extreme western Russia."
+  "From the main part of Russia, it is accessible by land only through other countries, such as Belarus and Lithuania or Poland."
+  "When those republics achieved their independence from the collapsing Soviet Union in 1991, the Kaliningrad oblast became a true exclave completely separated by them from the rest of Russia."
+- WorldAtlas, "Kaliningrad - A Piece of Russia Between Poland and Lithuania" (author shown: Joyce Chepkemoi; date shown: May 29, 2017)
+  Address opened: https://www.worldatlas.com/articles/kaliningrad-a-piece-of-russia-in-between-poland-and-lithuania.html
+  "Kaliningrad is a Russian territory which is Kaliningrad Oblast's administrative center on the Baltic Sea between Lithuania and Poland."
+
+COMPARISON D2
+- Both sources list the same 16 land neighbours: 14 sovereign states plus Abkhazia and South Ossetia.
+  The 14: Azerbaijan, Belarus, China, Estonia, Finland, Georgia, Kazakhstan, Latvia, Lithuania, Mongolia, North Korea, Norway, Poland, Ukraine.
+- On one source only: none.
+- Kaliningrad only: Lithuania and Poland. The two Wikipedia pages above say so directly; Britannica and WorldAtlas place Kaliningrad "between Poland and Lithuania".
+- Partially recognised (to be left out): Abkhazia, South Ossetia. Wikipedia tags both "(de facto since 2008)"; WorldAtlas calls them countries "whose sovereignty is partially recognized".
+- Count: Wikipedia says "fourteen sovereign states"; WorldAtlas says "a total of 16 countries" (it counts Abkhazia and South Ossetia). Without the two partially recognised states, both give the same 14.
+- Unclear / notes:
+  - Wikipedia's table tags "Ukraine (de facto until 2014)" and "Georgia (de facto since 2008)". Neither source drops Ukraine or Georgia.
+  - Lengths differ for some rows: Estonia 138.0 km land (Wikipedia) vs 294 (WorldAtlas); Georgia 572.5 vs 875.5; Azerbaijan 327.6 vs 372.6; Norway 195.8 vs 195.7.
+  - Japan and the United States share sea borders only (Wikipedia land border 0.0). They are not land neighbours.
+  - Reader inconsistency: my first read of the WorldAtlas page returned "Russia shares its borders with 16 sovereign nations." A later read that asked for every sentence containing "16" returned only the "Russia is bordered by more countries..." sentence quoted above. I treat the first wording as a paraphrase by the reader and do not rely on it.
+
+
+----------------------------------------------------------------------
+LIST D3. Countries where traffic DRIVES ON THE LEFT (left-hand traffic)
+----------------------------------------------------------------------
+
+SOURCE D3-A
+Name: Wikipedia, "Left- and right-hand traffic"
+Address opened: https://en.wikipedia.org/wiki/Left-_and_right-hand_traffic
+Defining quote: "Left-hand traffic (LHT) and right-hand traffic (RHT) are the practices, in bidirectional traffic, of keeping to the left side or to the right side of the road, respectively."
+Count quote: "RHT is used in 165 countries and territories, mainly in the Americas, Continental Europe, most of Africa and mainland Asia (except South Asia, Hong Kong, Macau and Thailand), while 75 countries use LHT, which account for about a sixth of the world's land area, a quarter of its roads, and about a third of its population."
+Table column headers: Country | Road traffic | Date of switch | Notes, exceptions
+Complete list: every row marked LHT, in table order, names exactly as written. (Read in four passes by first letter, A-F, G-N, O-S and T-Z, after a first read skipped rows; see notes.)
+ 1. Antigua and Barbuda
+ 2. Australia - note: "British colonies before 1901. Includes Australian external territories."
+ 3. Bahamas
+ 4. Bangladesh
+ 5. Barbados
+ 6. Bhutan
+ 7. Botswana
+ 8. Brunei
+ 9. China (Hong Kong) [T] - note: "Hong Kong was a British colony from 1841 to 1941 and from 1945 to 1997, when the dependent territory was transferred to China."
+10. China (Macau) [T] - note: "Macau was under Portuguese rule until 1999, when the dependent territory was transferred to China."
+11. Cyprus - note: "Under UK administration before 1960. Island nation. De facto divided between the Republic of Cyprus, the Turkish Republic of Northern Cyprus, the UN buffer zone and the British base areas of Akrotiri and Dhekelia. All are LHT."
+12. Dominica
+13. Eswatini
+14. Fiji
+15. Grenada
+16. Guyana
+17. India
+18. Indonesia
+19. Ireland
+20. Jamaica
+21. Japan
+22. Kenya
+23. Kiribati
+24. Lesotho
+25. Malawi
+26. Malaysia
+27. Maldives
+28. Malta
+29. Mauritius
+30. Mozambique
+31. Namibia
+32. Nauru
+33. Nepal
+34. New Zealand - note: "These Pacific islands, including territories Niue and Cook Islands, were former British colonies."
+35. Pakistan
+36. Papua New Guinea
+37. Saint Kitts and Nevis
+38. Saint Lucia
+39. Saint Vincent and the Grenadines
+40. Samoa - date of switch: 7 September 2009
+41. Seychelles
+42. Singapore
+43. Solomon Islands
+44. South Africa
+45. Sri Lanka
+46. Suriname
+47. Tanzania
+48. Thailand
+49. Timor-Leste
+50. Tonga
+51. Trinidad and Tobago
+52. Tuvalu
+53. Uganda
+54. United Kingdom and overseas territories - note: "An island nation with a land border with the Republic of Ireland, which is also LHT. Also LHT are the British Overseas Territories of Anguilla, Ascension Island, Montserrat, Saint Helena, and Tristan da Cunha. The Heathrow airport PRT uses RHT."
+    Sub-rows marked LHT (all [T]): Bermuda; British Virgin Islands; Cayman Islands; Falkland Islands; Guernsey; Isle of Man; Jersey; Pitcairn Islands; South Georgia and the South Sandwich Islands; Turks and Caicos Islands.
+    Sub-row marked RHT: British Indian Ocean Territory.
+55. Zambia
+56. Zimbabwe
+LHT places inside rows whose main entry is RHT:
+- United States (RHT): sub-row "U.S. Virgin Islands" LHT [T], note: "U.S. Virgin Islands, like much of the Caribbean, is LHT and is the only American jurisdiction that still has LHT, because the islands drove on the left when the US purchased the former Danish West Indies in the 1917 Treaty of the Danish West Indies. [...]"
+- Denmark (RHT): note: "Danish West Indies were LHT, and continue to be LHT as United States Virgin Islands after US purchase in 1917."
+Territories named as LHT only inside notes (all [T]):
+- Cyprus row: Turkish Republic of Northern Cyprus; the UN buffer zone; Akrotiri and Dhekelia.
+- New Zealand row: Niue; Cook Islands.
+- United Kingdom row: Anguilla; Ascension Island; Montserrat; Saint Helena; Tristan da Cunha.
+- Australia row: "Australian external territories" (not named one by one).
+UN member states on this source: 54 (every numbered row above except 9 and 10).
+
+SOURCE D3-B
+Name: WorldAtlas, "Countries That Drive on the Left" (author shown: Joseph Kiprop; date shown: January 11, 2019)
+Address opened: https://www.worldatlas.com/articles/list-of-countries-who-drive-on-the-left.html
+Defining quote: "Nearly 75% of countries in the world require drivers to drive on the right side of traffic. Although the majority drive on the right, there is no global standard driving system which causes some countries to require driving on the left. Left side drivers include the majority of former British colonies and the right drivers include US, Latin America and most European nations. The following is a summary of countries who drive on the left."
+Complete list: a one-column table headed "Places With Left-Hand Drive". Every row in page order (78 rows; Mauritius and Seychelles each appear twice on the page):
+ 1. Anguilla [T]
+ 2. Antigua and Barbuda
+ 3. Australia
+ 4. Bangladesh
+ 5. Barbados
+ 6. Bermuda [T]
+ 7. Bhutan
+ 8. Botswana
+ 9. British Virgin Islands [T]
+10. Brunei
+11. Cayman Islands [T]
+12. Christmas Island [T]
+13. Cocos (Keeling) Islands [T]
+14. Cook Islands [T]
+15. Cyprus
+16. Dominica
+17. East Timor
+18. Eswatini
+19. Falkland Islands [T]
+20. Fiji
+21. Grenada
+22. Guernsey [T]
+23. Guyana
+24. Hong Kong [T]
+25. India
+26. Indonesia
+27. Ireland
+28. Isle of Man [T]
+29. Jamaica
+30. Japan
+31. Jersey [T]
+32. Kenya
+33. Kiribati
+34. Lesotho
+35. Macau [T]
+36. Malawi
+37. Malaysia
+38. Maldives
+39. Malta
+40. Mauritius
+41. Mauritius (repeated row on the page)
+42. Montserrat [T]
+43. Mozambique
+44. Namibia
+45. Nauru
+46. Nepal
+47. New Zealand
+48. Niue [T]
+49. Norfolk Island [T]
+50. Pakistan
+51. Papua New Guinea
+52. Pitcairn Islands [T]
+53. Saint Helena, Ascension and Tristan da Cunha [T]
+54. Saint Kitts and Nevis
+55. Saint Lucia
+56. Saint Vincent and the Grenadines
+57. Samoa
+58. Seychelles
+59. Seychelles (repeated row on the page)
+60. Singapore
+61. Solomon Islands
+62. South Africa
+63. South Georgia and the South Sandwich Islands [T]
+64. Sri Lanka
+65. Suriname
+66. Tanzania
+67. Thailand
+68. The Bahamas
+69. Tokelau [T]
+70. Tonga
+71. Trinidad and Tobago
+72. Turks and Caicos [T]
+73. Tuvalu
+74. U.S. Virgin Islands [T] (a second read gave it as "U. S. Virgin Islands")
+75. Uganda
+76. United Kingdom
+77. Zambia
+78. Zimbabwe
+Distinct names: 76 = 54 UN member states + 22 [T].
+
+COMPARISON D3
+- UN member states: the same 54 on both sources:
+  Antigua and Barbuda, Australia, Bahamas, Bangladesh, Barbados, Bhutan, Botswana, Brunei, Cyprus, Dominica, Eswatini, Fiji, Grenada, Guyana, India, Indonesia, Ireland, Jamaica, Japan, Kenya, Kiribati, Lesotho, Malawi, Malaysia, Maldives, Malta, Mauritius, Mozambique, Namibia, Nauru, Nepal, New Zealand, Pakistan, Papua New Guinea, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Samoa, Seychelles, Singapore, Solomon Islands, South Africa, Sri Lanka, Suriname, Tanzania, Thailand, Timor-Leste, Tonga, Trinidad and Tobago, Tuvalu, Uganda, United Kingdom, Zambia, Zimbabwe.
+  Only the spellings differ: "Bahamas" (Wikipedia) vs "The Bahamas" (WorldAtlas); "Timor-Leste" vs "East Timor"; "United Kingdom and overseas territories" vs "United Kingdom".
+- On one source only (all [T], none is a UN member state):
+  - WorldAtlas only, by name: Christmas Island, Cocos (Keeling) Islands, Norfolk Island (Wikipedia covers these only as "Australian external territories", without naming them); Tokelau (not mentioned on the Wikipedia page as read).
+  - Wikipedia only: Turkish Republic of Northern Cyprus, the UN buffer zone, Akrotiri and Dhekelia (all in the Cyprus note).
+  - Same places, grouped differently: WorldAtlas has one row "Saint Helena, Ascension and Tristan da Cunha"; Wikipedia names Ascension Island, Saint Helena and Tristan da Cunha separately. WorldAtlas "Turks and Caicos" = Wikipedia "Turks and Caicos Islands".
+- Unclear / notes:
+  - Wikipedia's count sentence says "75 countries use LHT". Its table has 56 LHT rows (54 UN members plus Hong Kong and Macau), plus territories in sub-rows and notes, so the 75 seems to include territories. WorldAtlas gives no count of left-driving places; its only number is "Nearly 75% of countries in the world require drivers to drive on the right side of traffic."
+  - WorldAtlas lists Mauritius twice and Seychelles twice. A second read confirmed this is on the page.
+  - WorldAtlas's table header says "Left-Hand Drive". Strictly, that term means the steering wheel is on the left, which is not the same as driving on the left. The article itself is clearly about driving on the left.
+  - Wikipedia lists the British Indian Ocean Territory as RHT. WorldAtlas does not list it.
+  - Reader reliability: my first read of the Wikipedia table left out six LHT countries (Bangladesh, Pakistan, Papua New Guinea, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines). The four letter-range reads found all six. The A-F read also skipped Canada (an RHT row), which shows the reader can drop rows. The two sources agree exactly on the 54 UN member states, which is a good cross-check.
+  - The WorldAtlas page is dated January 11, 2019. Samoa's switch to the left (Wikipedia: 7 September 2009) is reflected on both sources.
+
+
+----------------------------------------------------------------------
+LIST D4. Countries that use the EURO
+----------------------------------------------------------------------
+
+(a) MEMBER STATES OF THE EURO AREA, 2026
+
+SOURCE D4-A
+Name: European Commission (Economy and Finance), "EU countries and the euro"
+Address opened: https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro_en
+Defining quote (the same on two reads): "The euro is the currency of 21 EU Member States. Denmark has 'opt-out' clauses in the Treaty exempting him from participation, while the remainder have yet to meet the conditions for adopting the single currency."
+["exempting him" is exactly as returned on both reads. It may be a slip on the page or by the reader.]
+Complete list: the page has one section per EU Member State. All 27, in page order, with the status wording as returned:
+ 1. Austria - "adopted the euro on 1 January 1999"
+ 2. Belgium - "adopt the euro on 1 January 1999"
+ 3. Bulgaria - "adopted the euro on 1 January 2026"
+ 4. Croatia - "adopted the euro on 1 January 2023"
+ 5. Cyprus - "adopted the euro on 1 January 2008"
+ 6. Czechia - "currently preparing to adopt the euro"   [NOT in the euro area]
+ 7. Denmark - "negotiated an opt-out from the euro and is thus not obliged to introduce it"   [NOT in the euro area]
+ 8. Estonia - "adopted the euro on 1 January 2011"
+ 9. Finland - "adopted the euro on 1 January 1999"
+10. France - "adopt the euro on 1 January 1999"
+11. Germany - "adopt the euro on 1 January 1999"
+12. Greece - "adopted the euro in 2001" and "launch euro banknotes and coins on 1 January 2002"
+13. Hungary - "currently preparing to adopt the euro"   [NOT in the euro area]
+14. Ireland - "adopt the euro on 1 January 1999"
+15. Italy - "adopt the euro on 1 January 1999"
+16. Latvia - "adopted the euro on 1 January 2014"
+17. Lithuania - "adopted the euro on 1 January 2015"
+18. Luxembourg - "adopt the euro on 1 January 1999"
+19. Malta - "adopted the euro on 1 January 2008"
+20. Netherlands - "adopt the euro on 1 January 1999"
+21. Poland - "currently preparing to adopt the euro"   [NOT in the euro area]
+22. Portugal - "adopt the euro on 1 January 1999"
+23. Romania - "committed to adopt the euro once it fulfils the necessary conditions"   [NOT in the euro area]
+24. Slovakia - "adopted the euro on 1 January 2009"
+25. Slovenia - "became the first of the new EU countries to adopt the euro" on "1 January 2007"
+26. Spain - "adopt the euro on 1 January 1999"
+27. Sweden - "has not yet adopted the euro, but in accordance with the Treaty it will do so once it meets the necessary conditions"   [NOT in the euro area]
+The euro area = the 21 rows not marked NOT.
+
+Same website, page "What is the euro area?"
+Address opened: https://economy-finance.ec.europa.eu/euro/what-euro-area_en
+"The euro area consists of those Member States of the European Union that have adopted the euro as their currency."
+"Today, the euro area numbers 21 EU Member States."
+List in page order: Austria, Belgium, Bulgaria, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain.
+
+Same website, page "The euro"
+Address opened: https://economy-finance.ec.europa.eu/euro_en
+"Today, around 356 million citizens in 21 countries live in the euro area"
+
+BULGARIA: did it join on 1 January 2026? YES. Quotes:
+- European Commission, "Bulgaria and the euro"
+  Address opened: https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro/bulgaria-and-euro_en
+  "Bulgaria joined the European Union on 1 January 2007 and adopted the euro on 1 January 2026."
+  "Bulgaria joined the euro area on 1 January 2026."
+- European Central Bank, press release "Bulgaria introduces the euro", dated 1 January 2026
+  Address opened: https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html
+  "The euro officially entered into circulation in Bulgaria today, bringing the number of European Union (EU) Member States using the single European currency to 21."
+  "Bulgaria becomes 21st euro area member"
+  "With Bulgaria joining the euro area, Българска народна банка (Bulgarian National Bank), the country's national central bank, becomes part of the Eurosystem and the Governor of the Bulgarian National Bank gains a seat on the Governing Council of the ECB."
+- European Central Bank, "Bulgaria joins the euro area"
+  Address opened: https://www.ecb.europa.eu/euro/changeover/bulgaria/html/index.en.html
+  "Bulgaria joined the euro area on 1 January 2026. This is a historic milestone for the country and a significant opportunity for people and businesses across the euro area."
+
+SOURCE D4-B
+Name: Wikipedia, "Eurozone"
+Address opened: https://en.wikipedia.org/wiki/Eurozone
+Defining quote: "The euro area (EA), commonly called the eurozone (EZ), is a currency union of 21 member states of the European Union (EU) that have adopted the euro ( €) as their primary currency and sole legal tender, and have thus fully implemented Economic and Monetary Union policies."
+Complete list: member states table, in table order, with the adoption year:
+ 1. Austria - 1999
+ 2. Belgium - 1999
+ 3. Bulgaria - 2026
+ 4. Croatia - 2023
+ 5. Cyprus - 2008
+ 6. Estonia - 2011
+ 7. Finland - 1999
+ 8. France - 1999
+ 9. Germany - 1999
+10. Greece - 2001
+11. Ireland - 1999
+12. Italy - 1999
+13. Latvia - 2014
+14. Lithuania - 2015
+15. Luxembourg - 1999
+16. Malta - 2008
+17. Netherlands - 1999
+18. Portugal - 1999
+19. Slovakia - 2009
+20. Slovenia - 2007
+21. Spain - 1999
+Bulgaria on this page:
+"Between 2007 and 2026, nine more states have acceded: Bulgaria, Croatia, Cyprus, Estonia, Latvia, Lithuania, Malta, Slovakia, and Slovenia."
+"At the time of Bulgaria's euro adoption in 2026, the Polish government under Donald Tusk has expressed a lack of economic readiness to join [...]"
+Same website, "Adoption of the euro in Bulgaria"
+Address opened: https://en.wikipedia.org/wiki/Bulgaria_and_the_euro
+"Bulgaria adopted the euro on 1 January 2026, becoming the 21st member state of the eurozone."
+"On that day, the euro became the official currency of Bulgaria; however, during the cash changeover period (1–31 January 2026), the lev and the euro circulated in parallel for cash payments."
+"Since 1 February 2026, the euro has been the sole legal currency in Bulgaria, ending 146 years of Bulgarian lev usage."
+
+(b) OTHER COUNTRIES USING THE EURO (by agreement, or on their own)
+
+SOURCE D4-A (b)
+Name: European Commission (Economy and Finance), "The euro outside the euro area"
+Address opened: https://economy-finance.ec.europa.eu/euro/use-euro/euro-outside-euro-area_en
+Defining quote (page summary line): "Which non-EU members use the euro or link their currency to the euro, and how the euro is used as a global currency."
+Under the heading "The euro as official currency":
+"the Principality of Monaco, the Republic of San Marino, the Vatican City State the Principality of Andorra have concluded monetary agreements with the EU, granting them the rights to produce limited quantities of euro coins with their own design on the national side, but not to issue euro banknotes"
+"the Saint-Pierre-et-Miquelon islands close to the eastern coast of Canada, the Island of Saint-Barthélemy"
+[Both came back without a capital letter or full stop, probably because they are list items on the page. The missing comma after "Vatican City State" is as returned.]
+Under the heading "The euro as de facto currency":
+"Kosovo and Montenegro, in the Balkans, use the euro as a de facto domestic currency, as they have no agreements with the EU."
+Also on the page, about parts of the EU itself (not outside users): "Certain parts of the euro area are part of the European Union even though they are not on the European continent, such as the French overseas departments of Guadeloupe, French Guyana, and Martinique in the Caribbean, as well as Mayotte and Réunion in the Indian Ocean."
+Complete list as returned, in page order:
+ Official currency, with monetary agreements: the Principality of Monaco; the Republic of San Marino; the Vatican City State; the Principality of Andorra; the Saint-Pierre-et-Miquelon islands [T]; the Island of Saint-Barthélemy [T].
+ De facto currency, no agreement: Kosovo; Montenegro.
+Same website, "What is the euro area?"
+Address opened: https://economy-finance.ec.europa.eu/euro/what-euro-area_en
+"Andorra, Monaco, San Marino and the Vatican City have adopted the euro as their national currency by virtue of specific monetary agreements with the EU, and may issue their own euro coins within certain limits."
+
+SOURCE D4-B (b)
+Name: Wikipedia, "Eurozone"
+Address opened: https://en.wikipedia.org/wiki/Eurozone
+"Four non-EU member states, namely Andorra, Monaco, San Marino, and Vatican City, have formal agreements with the EU to use the euro as their official currency and issue their own coins."
+"Kosovo and Montenegro have adopted the euro unilaterally, relying on euros already in circulation rather than printing or minting currencies of their own."
+"Akrotiri and Dhekelia are located on the island of Cyprus but are British Overseas Territories which are part of the United Kingdom. There are agreements between the United Kingdom and Cyprus and between United Kingdom and EU about their partial adoption of Cypriot law, including the usage of euro in Akrotiri and Dhekelia."
+"Three French dependent territories that are not part of the EU have adopted the euro, with France ensuring eurozone laws are implemented" [the reader found no sentence naming the three]
+Complete list:
+ By formal agreement: Andorra; Monaco; San Marino; Vatican City.
+ Unilaterally: Kosovo; Montenegro.
+ Territories: Akrotiri and Dhekelia [T]; "Three French dependent territories" [T] [names not given in the text read].
+
+COMPARISON D4
+(a) Euro area
+- Both sources list the same 21 (the ECB press release also says 21):
+  Austria, Belgium, Bulgaria, Croatia, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain.
+- On one source only: none.
+- Adoption years agree on both: Greece 2001; Slovenia 2007; Cyprus and Malta 2008; Slovakia 2009; Estonia 2011; Latvia 2014; Lithuania 2015; Croatia 2023; Bulgaria 2026; all others 1999.
+- Bulgaria: confirmed. It joined on 1 January 2026, as planned (European Commission, two ECB pages, two Wikipedia pages).
+- EU members NOT using the euro (Commission): Czechia, Denmark, Hungary, Poland, Romania, Sweden.
+(b) Other users
+- Both sources name the same six countries:
+  - By agreement with the EU: Andorra, Monaco, San Marino, Vatican City (the Commission's "outside" page says "the Vatican City State").
+  - On their own: Kosovo, Montenegro (Commission: "de facto domestic currency"; Wikipedia: "unilaterally").
+- On one source only (territories, not countries):
+  - Commission only: Saint-Pierre-et-Miquelon, Saint-Barthélemy.
+  - Wikipedia only: Akrotiri and Dhekelia; also "Three French dependent territories" (not named in the text read).
+- Unclear / notes:
+  - The Commission sentences in (b) came back as fragments (see above). The words are as returned.
+  - MY NOTE, not from these pages and not checked in this session: for a game built on the 193 UN member states, Vatican City and Kosovo are not UN member states. Please confirm this separately before deciding whether to include them.
+
+
+======================================================================
+PART 3. NOTES
+======================================================================
+
+Pages I could not open: none. Every page I tried to open worked, and nothing had to be skipped.
+
+All addresses opened (20):
+ 1. https://en.wikipedia.org/wiki/Borders_of_China (search 1)
+ 2. https://www.worldatlas.com/articles/what-countries-border-china.html (search 1)
+ 3. https://en.wikipedia.org/wiki/Borders_of_Russia (search 2)
+ 4. https://www.worldatlas.com/articles/what-countries-border-russia.html (search 2)
+ 5. https://en.wikipedia.org/wiki/Lithuania%E2%80%93Russia_border (search 2)
+ 6. https://en.wikipedia.org/wiki/Borders_of_Poland (search 2)
+ 7. https://www.britannica.com/place/Kaliningrad-oblast-Russia (search 2)
+ 8. https://www.worldatlas.com/articles/list-of-countries-who-drive-on-the-left.html (search 3)
+ 9. https://en.wikipedia.org/wiki/Left-_and_right-hand_traffic (search 3)
+10. https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html (search 4)
+11. https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro/bulgaria-and-euro_en (search 4)
+12. https://www.ecb.europa.eu/euro/changeover/bulgaria/html/index.en.html (search 4)
+13. https://en.wikipedia.org/wiki/Bulgaria_and_the_euro (search 4; the search result title was "Adoption of the euro in Bulgaria")
+14. https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro_en (same-site link from 11)
+15. https://economy-finance.ec.europa.eu/euro_en (same-site link from 11)
+16. https://economy-finance.ec.europa.eu/euro/what-euro-area_en (same-site link from 15)
+17. https://economy-finance.ec.europa.eu/euro/use-euro/euro-outside-euro-area_en (same-site link from 15)
+18. https://en.wikipedia.org/wiki/Eurozone (search 5)
+19. https://www.worldatlas.com/articles/kaliningrad-a-piece-of-russia-in-between-poland-and-lithuania.html (search 6)
+20. https://www.britannica.com/place/Kaliningrad (search 6)
+
+Link seen but not opened (not needed): the ECB "Bulgaria joins the euro area" page showed a link "List of euro area NCBs" (https://www.ecb.europa.eu/euro/changeover/bulgaria/html/location.en.html).
+
+Reader reliability (summary of the flags above):
+- D2: a WorldAtlas sentence came back in two different wordings. Only the one confirmed by a second, narrower read is used.
+- D3: the first read of the Wikipedia table skipped six LHT countries. The letter-range re-reads found them, and the result matches WorldAtlas on all 54 UN member states.
+- D4: one Commission sentence reads "exempting him" on two reads. The Commission's (b) sentences came back as fragments.
+- D1: the start of one Wikipedia sentence ("To the west, ...") looks wrong and is not relied on.

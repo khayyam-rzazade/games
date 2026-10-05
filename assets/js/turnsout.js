@@ -226,8 +226,11 @@
   function privacyNotes() {
     if (!counterOn()) return;
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (el) {
-      el.textContent = el.getAttribute("data-privacy") === "short"
+      var kind = el.getAttribute("data-privacy");
+      el.textContent = kind === "short"
         ? "No login. No cookies. Your results stay in your browser. Visits are counted without identifying anyone."
+        : kind === "group"
+        ? "No login and no cookies. Your table's best result is kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
     });
   }
@@ -274,6 +277,31 @@
       says: function (r) { return r.r + " of 5"; } }
   ];
   function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+
+  /* ------------------------------------------------------------------
+     The games for groups ("Pass the phone" on the home page): one phone, one to eight players, any time and as
+     often as they like. They are not daily: no day number, no streak, no album. Nothing they store counts in the
+     Today card, the streak of the site, the way onward or the returning-player events, which all read GAMES only.
+     Their own records (a table's best result, the countries hidden lately) are kept apart, under "groups".
+     To add one: add it here and to GROUP in r/site-workshop/build_home.py, and give it a colour in logicers.css.
+     ------------------------------------------------------------------ */
+  var GROUP = [
+    { id: "one-of-193", key: "o193", name: "One of 193", href: "one-of-193/", players: "2+ players",
+      pitch: "The phone hides a country. Ask yes or no, and find it." }
+  ];
+  function group(id) {
+    var all = readAll();
+    return obj(obj(all.groups) && all.groups[id]) || {};
+  }
+  function groupUpdate(id, change) {
+    var all = readAll();
+    all.groups = obj(all.groups) || {};
+    var g = obj(all.groups[id]) || {};
+    change(g);
+    all.groups[id] = g;
+    writeAll(all);                        // no milestones here: a group game is not a daily play
+    return g;
+  }
   /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */
   function todayOf(G) { return Math.max(1, dayNumber(G.start)); }
 
@@ -470,6 +498,9 @@
     MISS: "#f0b429",
     reducedMotion: reducedMotion,
     GAMES: GAMES,
+    GROUP: GROUP,
+    group: group,
+    groupUpdate: groupUpdate,
     todayOf: todayOf,
     playedToday: playedToday,
     onward: onward

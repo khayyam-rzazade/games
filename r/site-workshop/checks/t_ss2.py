@@ -107,7 +107,7 @@ async def main():
         await pg.goto(B+'/'); await pg.wait_for_timeout(400)
         ok('O1 home tile shows the result', await pg.evaluate("document.querySelector('#tile-street .result b').textContent")=='6 doors away' and await pg.evaluate("document.querySelector('#tile-street .go').hidden && !document.querySelector('#tile-street .result').hidden"))
         ok('O2 home: the bar of this game is filled, 1 of 6 played', await pg.evaluate("document.getElementById('pip-street').classList.contains('on')") and await T(pg,'today-count')=='1 of 6 played')
-        ok('O4 Same Street is one of six games on the shelf', await pg.evaluate("document.querySelectorAll('.shelf-row .tile').length===6"))
+        ok('O4 Same Street is one of six games on the shelf of daily games', await pg.evaluate("document.querySelectorAll('#shelf-row .tile').length===6"))
         await pg.screenshot(path='shots/ss-home.png', full_page=True)
         ok('O5 home has no errors and no sideways scroll', pg.errs==[] and await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), pg.errs)
         await pg.click('[data-open="dlg-about"]'); ok('O6 about names the photo source', 'GAPMINDER.ORG' in await pg.evaluate("document.getElementById('dlg-about').innerText"))
