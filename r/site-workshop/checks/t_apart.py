@@ -291,6 +291,16 @@ async def main():
         ok('A27 touch, as on a phone: a tap puts the slider there, a finger drags it along, the page does not scroll, a tap on Measure it measures',
            24 <= v1 <= 26 and 74 <= v2 <= 76 and v3 == v2 and sy == 0 and abs(r.get('g', -99) - 750) <= 10 and not pg.errs, (v1, v2, v3, sy, r, pg.errs))
         await ctx.close()
+
+        # a tab that has no width yet (hidden, or not laid out): the ruler is drawn without broken shapes, and again once there is room
+        ctx, pg = await new(br, 1)
+        await pg.goto(B + '/years-apart/'); await pg.wait_for_timeout(300)
+        await pg.evaluate("document.getElementById('board').style.width = '0px'; window.dispatchEvent(new Event('resize'))"); await pg.wait_for_timeout(150)
+        neg = await pg.evaluate("[...document.querySelectorAll('#ruler rect')].filter(r => parseFloat(r.getAttribute('width')) < 0).length")
+        await pg.evaluate("document.getElementById('board').style.width = ''; window.dispatchEvent(new Event('resize'))"); await pg.wait_for_timeout(150)
+        wide = await pg.evaluate("Math.max(...[...document.querySelectorAll('#ruler rect')].map(r => parseFloat(r.getAttribute('width'))))")
+        ok('A28 a tab with no width yet (a hidden tab) gets a ruler without broken shapes, and the full ruler once it has room', neg == 0 and wide > 200 and not pg.errs, (neg, wide, pg.errs))
+        await ctx.close()
         await br.close()
     bad = [n for n, c in res if not c]
     print(f'\n{len(res) - len(bad)} of {len(res)} checks passed'); print('FAILED:', bad) if bad else None

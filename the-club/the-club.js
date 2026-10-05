@@ -128,6 +128,9 @@
     notice.hidden = false;
   }
 
+  /* the ring on each stamp: defined before the album is first drawn (it is drawn right below, when the page starts) */
+  var RING = '<svg class="tc-ring" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2.6"/>' +
+    '<circle cx="15" cy="16" r="2.7"/><circle cx="24" cy="14" r="2.7"/><circle cx="19" cy="24" r="2.7"/><circle cx="27" cy="23" r="2.7"/><circle cx="3.6" cy="5" r="2.4" opacity=".55"/><circle cx="37" cy="34" r="2.4" opacity=".55"/></svg>';
   TO.wireDialogs();
   renderChip();
   buildPractice();
@@ -277,8 +280,6 @@
     $("st-right").textContent = String(right);
     $("album-empty").hidden = days.length > 0;
   }
-  var RING = '<svg class="tc-ring" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2.6"/>' +
-    '<circle cx="15" cy="16" r="2.7"/><circle cx="24" cy="14" r="2.7"/><circle cx="19" cy="24" r="2.7"/><circle cx="27" cy="23" r="2.7"/><circle cx="3.6" cy="5" r="2.4" opacity=".55"/><circle cx="37" cy="34" r="2.4" opacity=".55"/></svg>';
   function fillStamp(el, p) {
     el.style.setProperty("--hue", TO.colour(p.colour));
     el.innerHTML = RING;

@@ -10,7 +10,9 @@ def ok(name, cond, info=''):
     print(('PASS ' if cond else 'FAIL ') + name + ('' if cond else '  -> ' + str(info)))
 FILES = {'100-of-us': 'data/100-of-us.js', 'your-call': 'your-call/puzzles.js', 'same-street': 'same-street/puzzles.js',
          'long-lost-cousin': 'long-lost-cousin/puzzles.js', 'the-club': 'the-club/puzzles.js', 'years-apart': 'years-apart/puzzles.js'}
-ORDER = ['100-of-us', 'your-call', 'same-street', 'long-lost-cousin', 'the-club', 'years-apart']
+# the order of the shelf: the newest game first, then the others in the order they came. The way onward goes round it,
+# so after The Club comes Years Apart and after Years Apart comes 100 of Us, whichever game stands first.
+ORDER = ['years-apart', '100-of-us', 'your-call', 'same-street', 'long-lost-cousin', 'the-club']
 N = len(ORDER)
 NAME = {'100-of-us': '100 of Us', 'your-call': 'Your Call', 'same-street': 'Same Street', 'long-lost-cousin': 'Long Lost Cousin', 'the-club': 'The Club', 'years-apart': 'Years Apart'}
 def start_of(g):

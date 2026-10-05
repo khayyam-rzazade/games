@@ -237,8 +237,10 @@
   }
 
   /* ------------------------------------------------------------------
-     The games of the site, in the order of the shelf. One list for the home page and for the
-     way onward at the end of every game.
+     The games of the site, in the order of the shelf: the newest game first, then the others in the
+     order they arrived (100 of Us, Your Call, ...). One list for the home page and for the way onward
+     at the end of every game. The way onward goes round this list, so which game stands first does not
+     change which game comes next.
      "start" repeats day 1 from each game's own file, because a game's page loads only its own file.
      The browser checks compare the two (r/site-workshop/checks/t_onward.py).
      "done" says whether a stored result is a finished game, "says" puts it into a few words.
@@ -246,6 +248,10 @@
      ------------------------------------------------------------------ */
   function num(v) { return typeof v === "number" && isFinite(v); }
   var GAMES = [
+    { id: "years-apart", key: "apart", name: "Years Apart", href: "years-apart/", start: "2026-10-05",
+      pitch: "Two real events, one in between. Where does it fall?",
+      done: function (r) { return !!r && num(r.g) && num(r.a) && num(r.y) && r.g >= 0 && r.g <= 1000 && r.y >= 0; },
+      says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } },
     { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
       pitch: "Of 100 people in the world, how many…?",
       done: function (r) { return !!r && num(r.g) && num(r.a); },
@@ -265,11 +271,7 @@
     { id: "the-club", key: "club", name: "The Club", href: "the-club/", start: "2026-10-04",
       pitch: "Work out the secret rule. Who gets in?",
       done: function (r) { return !!r && Array.isArray(r.c) && r.c.length === 5 && num(r.r) && r.r >= 0 && r.r <= 5; },
-      says: function (r) { return r.r + " of 5"; } },
-    { id: "years-apart", key: "apart", name: "Years Apart", href: "years-apart/", start: "2026-10-05",
-      pitch: "Two real events, one in between. Where does it fall?",
-      done: function (r) { return !!r && num(r.g) && num(r.a) && num(r.y) && r.g >= 0 && r.g <= 1000 && r.y >= 0; },
-      says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } }
+      says: function (r) { return r.r + " of 5"; } }
   ];
   function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */

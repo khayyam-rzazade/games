@@ -85,7 +85,7 @@
   var W = 0, X0 = 0, X1 = 0, CAP = 13;
   function xOf(t) { return X0 + (X1 - X0) * t / 1000; }
   function drawRuler() {
-    W = board.clientWidth;
+    W = Math.max(board.clientWidth, 2 * CAP + 40);   // a tab with no width yet (hidden): a small ruler, drawn again on resize
     X0 = CAP + 7; X1 = W - CAP - 7;
     var h = 56, s = [];
     s.push('<defs>' +

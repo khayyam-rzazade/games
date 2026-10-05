@@ -226,16 +226,53 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 
 /* ---------- home: the shelf of games ---------- */
 .sec { font-family: var(--display); font-weight: 700; font-size: 1.375rem; letter-spacing: -0.02em; margin: 0 0 16px 4px; }
-.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-/* five games: five in a row on a wide screen, three and two on a middle one, pairs on a phone with the last one lying down */
-.grid[data-n="5"] { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
-.grid[data-n="5"] .tile h3 { font-size: 1.3rem; }
-.grid[data-n="5"] .pitch { font-size: 0.93rem; }
-.grid[data-n="5"] .foot { flex-wrap: wrap; row-gap: 1px; }
-.grid[data-n="5"] .again { flex-basis: 100%; margin-left: 30px; font-size: 0.86rem; }
-/* six games: three by two on a wide screen and on a tablet, pairs on a phone */
-.grid[data-n="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.grid[data-n="6"] .art { aspect-ratio: 16 / 8; }
+/* one row of games that moves sideways: swipe it, scroll it with a trackpad, or press the round buttons at its ends.
+   A part of the next tile always shows at the right, so that it is clear there is more. Tile width: --tw. */
+.shelf { position: relative; container-type: inline-size; --gap: 18px; --tp: 10px; --ab: 46px;
+  --tw: 243px; --tw: calc((100cqw - 4 * var(--gap)) / 4.3); }
+.shelf-row {
+  display: flex; gap: var(--gap);
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; scroll-padding-inline: 14px;
+  padding: 8px 14px 34px; margin: -8px -14px -34px;       /* room for the lift on hover, the shadows and the focus ring */
+  scrollbar-width: none; overscroll-behavior-x: contain;
+}
+.shelf-row::-webkit-scrollbar { display: none; }
+.shelf-row > .tile { flex: 0 0 var(--tw); min-width: 0; scroll-snap-align: start; }
+.shelf .tile h3 { font-size: 1.3rem; }
+.shelf .pitch { font-size: 0.93rem; }
+.shelf .foot { flex-wrap: wrap; row-gap: 1px; }
+.shelf .again { flex-basis: 100%; margin-left: 30px; font-size: 0.86rem; }
+.shelf-btn {
+  position: absolute; z-index: 2;
+  top: calc(var(--tp) + (var(--tw) - 2 * var(--tp)) * 0.3125 - var(--ab) / 2);     /* level with the middle of the drawings */
+  width: var(--ab); height: var(--ab); border-radius: 50%;
+  display: grid; place-items: center;
+  appearance: none; border: 0; padding: 0; cursor: pointer;
+  background: var(--card); color: var(--ink);
+  box-shadow: 0 1px 2px rgba(21, 23, 43, .14), 0 8px 22px rgba(21, 23, 43, .18);
+  transition: opacity .2s ease, visibility .2s ease, transform .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.shelf-btn .chev { width: 22px; height: 22px; }
+.shelf-btn.prev { left: calc(var(--ab) / -2); }
+.shelf-btn.prev .chev { transform: scaleX(-1); }
+.shelf-btn.next { right: calc(var(--ab) / -2); }
+.shelf-btn.off { opacity: 0; visibility: hidden; }
+.shelf-btn:active { transform: scale(.94); }
+.shelf-btn:focus-visible { border-radius: 50%; }
+@media (hover: hover) {
+  .shelf-btn:hover { transform: scale(1.07); }
+}
+@media (min-width: 701px) {
+  /* where the row is cut inside the page, the cut fades out softly (on a phone the row simply runs off the screen) */
+  .shelf-row.more-r { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent); }
+  .shelf-row.more-l { -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px); mask-image: linear-gradient(90deg, transparent, #000 24px); }
+  .shelf-row.more-l.more-r { -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent); }
+}
+@media (prefers-color-scheme: dark) {
+  .shelf-btn { background: #1D2138; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), 0 10px 26px rgba(0, 0, 0, .55); }
+}
 .tile {
   background: var(--card);
   border-radius: var(--r);
@@ -329,18 +366,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: stretch; }
   .hero h1 { font-size: clamp(3rem, 8vw, 4.2rem); }
   .today-note { display: none; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .grid[data-n="5"] { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
-  .grid[data-n="5"] .tile { grid-column: span 2; }
-  .grid[data-n="5"] .tile:nth-child(n+4) { grid-column: span 3; }
-  .grid[data-n="5"] .tile:nth-child(n+4) .art { aspect-ratio: 16 / 7; }
-  .grid[data-n="5"] .tile h3 { font-size: 1.44rem; }
-  .grid[data-n="5"] .pitch { font-size: 0.97rem; }
-  .grid[data-n="5"] .foot { flex-wrap: nowrap; }
-  .grid[data-n="5"] .again { flex-basis: auto; margin-left: 0; font-size: 0.9rem; }
-  .grid[data-n="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-  .grid[data-n="6"] .art { aspect-ratio: 16 / 10; }
-  .grid[data-n="6"] .foot { flex-wrap: wrap; row-gap: 2px; }
+  .shelf { --tw: 200px; --tw: calc((100cqw - 3 * var(--gap)) / 3.3); }
 }
 @media (max-width: 700px) {
   body { font-size: 1rem; }
@@ -357,17 +383,15 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .today-note { display: none; }
   .pips { margin-top: 10px; }
   .sec { font-size: 1.19rem; margin-bottom: 12px; }
-  .grid { gap: 12px; }
-  .grid[data-n="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .grid[data-n="5"] .tile, .grid[data-n="5"] .tile:nth-child(n+4) { grid-column: auto; }
-  .grid[data-n="5"] .tile:nth-child(n+4) .art { aspect-ratio: 16 / 10; }
-  .grid[data-n="5"] .tile:last-child { grid-column: 1 / -1; flex-direction: row; align-items: stretch; }
-  .grid[data-n="5"] .tile:last-child .art { flex: 0 0 44%; aspect-ratio: auto; min-height: 104px; }
-  .grid[data-n="5"] .tile:last-child .body { flex: 1; min-width: 0; padding: 8px 6px 6px 12px; }
-  .grid[data-n="5"] .tile h3 { font-size: 1.16rem; }
-  .grid[data-n="5"] .pitch { font-size: 0.85rem; }
-  .grid[data-n="6"] { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .grid[data-n="6"] .foot { flex-wrap: nowrap; }
+  /* on a phone the row runs from edge to edge of the screen; two tiles and a part of the third show */
+  .shelf { --gap: 12px; --tp: 7px; --ab: 40px; --tw: 150px; --tw: calc((100cqw - 2 * var(--gap)) / 2.2); }
+  .shelf-row { margin-inline: calc(-1 * var(--pad)); padding-inline: var(--pad); scroll-padding-inline: var(--pad); }
+  .shelf-btn.prev { left: calc(6px - var(--pad)); }
+  .shelf-btn.next { right: calc(6px - var(--pad)); }
+  .shelf-btn .chev { width: 19px; height: 19px; }
+  .shelf .tile h3 { font-size: 1.16rem; }
+  .shelf .pitch { font-size: 0.85rem; }
+  .shelf .foot { flex-wrap: nowrap; }
   .tile { padding: 7px; border-radius: 22px; }
   .art { border-radius: 16px; }
   .tile .body { padding: 10px 7px 6px; }
@@ -392,13 +416,23 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .logo .word { font-size: 1.3rem; }
   .chip { padding: 0 10px; font-size: 0.84rem; }
   .hero h1 { font-size: 2.02rem; }
-  .tile h3, .grid[data-n="5"] .tile h3 { font-size: 1.02rem; }
+  .tile h3, .shelf .tile h3 { font-size: 1.02rem; }
   .go { padding: 0 14px; }
   .go .arrow { display: none; }
 }
+@media (max-width: 359px) {
+  .shelf { --tw: calc((100cqw - var(--gap)) / 1.6); }      /* a small phone: one tile and most of the next */
+}
+@media (min-width: 360px) and (max-width: 374px) {
+  .shelf .go { padding: 0 14px; }                           /* narrow tiles: the word Play without its arrow */
+  .shelf .go .arrow { display: none; }
+}
+@media (min-width: 560px) and (max-width: 700px) {
+  .shelf { --tw: calc((100cqw - 3 * var(--gap)) / 3.25); }  /* a wide phone held sideways: three and a part */
+}
 @media (prefers-reduced-motion: reduce) {
-  .tile, .pips i { transition: none; }
-  .tile:hover, .tile:active, .chip:active { transform: none; }
+  .tile, .pips i, .shelf-btn { transition: none; }
+  .tile:hover, .tile:active, .chip:active, .shelf-btn:hover, .shelf-btn:active { transform: none; }
 }
 
 /* =====================================================================

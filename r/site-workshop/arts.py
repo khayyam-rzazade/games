@@ -3,6 +3,7 @@ MARK = '<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12"
 FLAME = '<svg class="flame" viewBox="0 0 20 20" aria-hidden="true"><path d="M10.4 1.6c.5 3-1.2 4.3-2.6 5.9C6.3 9.2 5 10.8 5 13a5 5 0 0 0 10 0c0-1.7-.7-3.2-1.500-4.300-.3 1-.9 1.700-1.700 2.100.5-3.400-.2-6.800-1.400-9.200z"/></svg>'.replace('1.500-4.300', '1.5-4.3').replace('1.700-1.700 2.100.5-3.400-.2-6.800-1.400-9.200', '1.7-1.7 2.1.5-3.4-.2-6.8-1.4-9.2')
 CHECK = '<svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 ARROW = '<svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.500 4.500" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'.replace('-4.500 4.500', '-4.5 4.5')
+CHEVRON = '<svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'   # the buttons at the ends of the shelf (turned round for "back")
 
 def n(v):
     s = ('%.1f' % v).rstrip('0').rstrip('.')

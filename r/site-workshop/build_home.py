@@ -9,13 +9,17 @@ The look lives in assets/css/logicers.css: light by day, dark when the device is
 To add a game to the shelf: draw its picture in arts.py, add it to GAMES below and to GAMES in assets/js/turnsout.js
 (the one list of games that the home page and the way onward share), give it a colour in logicers.css ([data-g="..."]),
 then run build_home.py. OUT is the folder of the site (or give it as the first argument).
-The shelf is laid out by the number of games: logicers.css has rules for .grid[data-n="5"] and .grid[data-n="6"].
+The shelf is one row that moves sideways: swipe it, scroll it with a trackpad, or use the round buttons at its two
+ends. The newest game (new=True) stands first, with the badge "New"; the others follow in the order they arrived.
+assets/js/turnsout.js keeps its list in the same order (checked by N1 in checks/t_site.py).
+At the end the script sets the versions of the scripts and stylesheets in index.html (stamp.py).
 """
 import os, sys
 OUT = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/work/site2'
 SITE_URL = 'https://logicers.com/'      # the site's own address: link previews, sitemap.xml and robots.txt use it
 
 from arts import *
+import stamp
 
 GAMES = [
     dict(key='hundred', href='100-of-us/', name='100 of Us', art=art_hundred(),
@@ -46,8 +50,10 @@ def tile(g):
       </div>
     </a>'''
 
-tiles = '\n'.join(tile(g) for g in GAMES)
-pips = ''.join(f'<i id="pip-{g["key"]}" data-g="{g["key"]}"></i>' for g in GAMES)
+# the shelf: the newest game first, then the others in the order they arrived (GAMES keeps that order for the sitemap)
+SHELF = [g for g in GAMES if g.get('new')] + [g for g in GAMES if not g.get('new')]
+tiles = '\n'.join(tile(g) for g in SHELF)
+pips = ''.join(f'<i id="pip-{g["key"]}" data-g="{g["key"]}"></i>' for g in SHELF)
 soon_arts = ''.join(f'<div class="art" data-g="{k}">{a}</div>' for k, a in (('half', art_half()), ('piece', art_piece())))
 
 SCRIPT = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'home.js'), encoding='utf-8').read()
@@ -107,8 +113,12 @@ html = f'''<!doctype html>
 
 <section class="games" aria-labelledby="games-title">
   <h2 class="sec" id="games-title">Today's games</h2>
-  <div class="grid" data-n="{len(GAMES)}">
+  <div class="shelf" id="shelf">
+    <button class="shelf-btn prev off" type="button" id="shelf-prev" aria-controls="shelf-row" aria-label="Previous games">{CHEVRON}</button>
+    <div class="shelf-row" id="shelf-row" data-n="{len(SHELF)}">
 {tiles}
+    </div>
+    <button class="shelf-btn next" type="button" id="shelf-next" aria-controls="shelf-row" aria-label="More games">{CHEVRON}</button>
   </div>
 </section>
 
@@ -181,4 +191,5 @@ open(f'{OUT}/sitemap.xml', 'w', encoding='utf-8').write(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + ''.join(f'  <url><loc>{u}</loc><changefreq>daily</changefreq></url>\n' for u in pages) + '</urlset>\n')
 open(f'{OUT}/robots.txt', 'w', encoding='utf-8').write(f'User-agent: *\nAllow: /\nDisallow: /r/\n\nSitemap: {SITE_URL}sitemap.xml\n')
+stamp.stamp_file(OUT, f'{OUT}/index.html')       # the versions of the scripts and stylesheets (see stamp.py)
 print('index.html', len(html), 'bytes')

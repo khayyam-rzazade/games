@@ -118,7 +118,9 @@ async def main():
                 await pg.keyboard.press('Escape')
                 # the album
                 await pg.locator('#streak-chip').click(); await pg.wait_for_timeout(300)
-                ok('S5 album: one day played, one stamp, three right calls', await T(pg, 'st-played') == '1' and await pg.locator('#album .stamp').count() == 1 and await T(pg, 'st-right') == '3')
+                ok('S5 album after a reload: one day played, one stamp with its ring, three right calls; nothing reads "undefined"',
+                   await T(pg, 'st-played') == '1' and await pg.locator('#album .stamp').count() == 1 and await T(pg, 'st-right') == '3'
+                   and await pg.locator('#album .stamp svg.tc-ring').count() == 1 and 'undefined' not in await T(pg, 'album'), await T(pg, 'album'))
             if k == 5:
                 ok('R10 five of five: a perfect night', 'perfect night' in await T(pg, 'offby'))
             await ctx.close()

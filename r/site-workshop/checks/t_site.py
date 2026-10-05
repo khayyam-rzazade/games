@@ -73,6 +73,9 @@ async def main():
         have = _re.findall(r'<meta name="alldle-verify" content="([^"]+)">', head)
         if sorted(have) != sorted(want): miss.append(page)
     ok('V1 the five Alldle verification codes are in the head of the home page and of every game page', not miss, miss)
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    import stamp
+    ok('V2 every page asks for the current version of each of its own scripts and stylesheets (stamp.py), so that right after a push no browser mixes a new page with an old file', not stamp.check(SITE), stamp.check(SITE))
     async with async_playwright() as p:
         br = await p.chromium.launch()
 
@@ -107,7 +110,7 @@ async def main():
         ok('B3 1 of 6 played, its bar filled, streak 2', await T(pg, '#today-count') == '1 of 6 played' and await pg.evaluate("[...document.querySelectorAll('.pips i.on')].map(i => i.id).join()") == 'pip-hundred' and await T(pg, '#streak-n') == '2')
         await pg.locator('.chip.streak').click(); await pg.wait_for_timeout(150)
         rows = await pg.evaluate("[...document.querySelectorAll('#streak-rows li')].map(li => li.innerText.replace(/\\s+/g, ' ').trim())")
-        ok('B4 streak window: the line and one row per game', await pg.evaluate("document.getElementById('dlg-streak').open") and await T(pg, '#streak-line') == 'You have played 2 days in a row.' and rows == ['100 of Us Streak 2 · best 2 · 2 days', 'Your Call Not played yet', 'Same Street Not played yet', 'Long Lost Cousin Not played yet', 'The Club Not played yet', 'Years Apart Not played yet'], rows)
+        ok('B4 streak window: the line and one row per game', await pg.evaluate("document.getElementById('dlg-streak').open") and await T(pg, '#streak-line') == 'You have played 2 days in a row.' and rows == ['Years Apart Not played yet', '100 of Us Streak 2 · best 2 · 2 days', 'Your Call Not played yet', 'Same Street Not played yet', 'Long Lost Cousin Not played yet', 'The Club Not played yet'], rows)
         await pg.keyboard.press('Escape'); await pg.wait_for_timeout(100)
         ok('B5 Escape closes it', not await pg.evaluate("document.getElementById('dlg-streak').open"))
         await pg.locator('.tools .chip.round').click(); await pg.wait_for_timeout(150)
@@ -153,21 +156,109 @@ async def main():
             tl = [await tile(pg, k) for k in KEYS]
             ok(f'E broken storage ({nm}): page works, all tiles offer Play', all(t['play'] and t['result'] is None for t in tl) and await T(pg, '#today-count') == '0 of 6 played' and pg.errs == [], (tl, pg.errs)); await ctx.close()
 
-        # ---------- F: sizes, light and dark
+        # ---------- F: sizes, light and dark: the six games in one row that moves sideways
         for (w, h) in [(320, 568), (360, 640), (390, 844), (430, 932), (600, 900), (768, 1024), (1024, 768), (1280, 800), (1440, 900), (1920, 1080)]:
             for scheme in ('light', 'dark'):
                 ctx, pg = await new(br, ALL if scheme == 'dark' else ONE, w=w, h=h, scheme=scheme); await home(pg)
                 m = await pg.evaluate("""() => { var over = [], q = s => [...document.querySelectorAll(s)];
                     q('.tile, .tile h3, .tile .pitch, .tile .foot, .today, .hero h1, .lede, .site-bar, .soon, .chip, .result, .go').forEach(e => { if (e.scrollWidth > e.clientWidth + 1) over.push(e.className + ':' + e.scrollWidth + '>' + e.clientWidth); });
                     var logo = document.querySelector('.logo').getBoundingClientRect(), tools = document.querySelector('.tools').getBoundingClientRect();
-                    var tiles = q('.tile').map(t => t.getBoundingClientRect());
+                    var row = document.getElementById('shelf-row'), rr = row.getBoundingClientRect(), clipL = Math.max(0, rr.left), clipR = Math.min(innerWidth, rr.right);
+                    var tiles = q('.shelf-row .tile').map(t => t.getBoundingClientRect());
+                    var seen = tiles.map(t => Math.max(0, Math.min(t.right, clipR) - Math.max(t.left, clipL)) / t.width);
                     var inside = q('.tile').every(t => { var r = t.getBoundingClientRect(); return [...t.querySelectorAll('h3, .pitch, .foot > :not([hidden])')].every(e => { var b = e.getBoundingClientRect(); return b.width === 0 || (b.left >= r.left - 0.5 && b.right <= r.right + 0.5 && b.bottom <= r.bottom + 0.5); }); });
                     var h1 = document.querySelector('.hero h1'); var lines = Math.round(h1.getBoundingClientRect().height / parseFloat(getComputedStyle(h1).lineHeight));
+                    var nb = document.getElementById('shelf-next').getBoundingClientRect(), art = document.querySelector('.shelf-row .tile .art').getBoundingClientRect(), mid = (nb.top + nb.bottom) / 2;
                     return { sw: document.documentElement.scrollWidth, iw: innerWidth, over: over, barOk: logo.right <= tools.left && Math.abs((logo.top + logo.bottom) / 2 - (tools.top + tools.bottom) / 2) < 6,
-                             cols: new Set(tiles.map(t => Math.round(t.left))).size, sameH: new Set(tiles.map(t => Math.round(t.height))).size, inside: inside, h1lines: lines, artW: q('.grid .art').map(a => Math.round(a.getBoundingClientRect().width)) }; }""")
-                cols = 3 if w > 700 else 2      # six games: three by two on a wide screen and a tablet, pairs on a phone
-                ok(f'F {w}x{h} {scheme}: no sideways scroll, nothing spills, bar on one line, six tiles laid out for this width', m['sw'] <= m['iw'] and m['over'] == [] and m['barOk'] and m['cols'] == cols and m['inside'] and m['h1lines'] == 1 and min(m['artW']) > 100 and len(m['artW']) == 6 and pg.errs == [], (m, pg.errs))
+                             n: tiles.length, rows: new Set(tiles.map(t => Math.round(t.top))).size, sameH: new Set(tiles.map(t => Math.round(t.height))).size,
+                             first: seen[0], part: seen.some(v => v > 0.04 && v < 0.96), moves: row.scrollWidth > row.clientWidth + 2,
+                             prev: getComputedStyle(document.getElementById('shelf-prev')).visibility, next: getComputedStyle(document.getElementById('shelf-next')).visibility,
+                             nextIn: nb.left >= 0 && nb.right <= innerWidth, nextMid: mid > art.top && mid < art.bottom,
+                             inside: inside, h1lines: lines, artW: q('.shelf-row .art').map(a => Math.round(a.getBoundingClientRect().width)) }; }""")
+                good = (m['sw'] <= m['iw'] and m['over'] == [] and m['barOk'] and m['n'] == 6 and m['rows'] == 1 and m['sameH'] == 1 and m['first'] > 0.99 and m['part'] and m['moves']
+                        and m['prev'] == 'hidden' and m['next'] == 'visible' and m['nextIn'] and m['nextMid'] and m['inside'] and m['h1lines'] == 1 and min(m['artW']) > 100 and pg.errs == [])
+                ok(f'F {w}x{h} {scheme}: no sideways page scroll, nothing spills, bar on one line; the six games in one row, the first one whole and part of another showing, the button for more level with the drawings', good, (m, pg.errs))
                 await ctx.close()
+
+        # ---------- S: the row moves: the two buttons, the keyboard, a finger, a trackpad; the newest game first
+        ROW = """(() => { const r = document.getElementById('shelf-row'); return { x: Math.round(r.scrollLeft), max: r.scrollWidth - r.clientWidth,
+            prev: getComputedStyle(document.getElementById('shelf-prev')).visibility, next: getComputedStyle(document.getElementById('shelf-next')).visibility,
+            sy: Math.round(scrollY), sw: document.documentElement.scrollWidth, iw: innerWidth, focus: document.activeElement ? document.activeElement.id : '' }; })()"""
+        STEP = "(() => { const t = [...document.querySelectorAll('.shelf-row .tile')]; return t[1].getBoundingClientRect().left - t[0].getBoundingClientRect().left; })()"
+        def whole(x, step, mx): return abs(x / step - round(x / step)) < 0.02 or abs(x - mx) <= 2
+        for (w, h) in [(390, 844), (1280, 800)]:
+            ctx, pg = await new(br, FRESH, w=w, h=h); await home(pg)
+            order = await pg.evaluate("[...document.querySelectorAll('.shelf-row .tile')].map(t => t.id.replace('tile-', '')).join()")
+            pips = await pg.evaluate("[...document.querySelectorAll('.pips i')].map(i => i.id.replace('pip-', '')).join()")
+            ok(f'S1 {w}: the newest game first (Years Apart, with the badge New), then the others in the order they came; the bars of the Today card in the same order',
+               order == 'apart,hundred,call,street,cousin,club' and pips == order and await pg.evaluate("!!document.querySelector('.shelf-row .tile:first-child .badge')"), (order, pips))
+            step = await pg.evaluate(STEP)
+            await pg.locator('#shelf-next').click(); await pg.wait_for_timeout(900)
+            a = await pg.evaluate(ROW)
+            ok(f'S2 {w}: "More games" moves the row on by whole tiles (or to the end), and the button back appears', a['x'] > 0 and whole(a['x'], step, a['max']) and a['prev'] == 'visible', (a, step))
+            for _ in range(6):
+                if (await pg.evaluate(ROW))['next'] != 'visible': break
+                await pg.locator('#shelf-next').click(); await pg.wait_for_timeout(900)
+            a = await pg.evaluate(ROW)
+            ok(f'S3 {w}: at the last game the button for more goes away; the page itself never moves sideways', a['next'] == 'hidden' and abs(a['x'] - a['max']) <= 2 and a['sw'] <= a['iw'], a)
+            for _ in range(6):
+                if (await pg.evaluate(ROW))['prev'] != 'visible': break
+                await pg.locator('#shelf-prev').click(); await pg.wait_for_timeout(900)
+            a = await pg.evaluate(ROW)
+            ok(f'S4 {w}: back at the start the button back goes away again', a['x'] == 0 and a['prev'] == 'hidden' and a['next'] == 'visible', a)
+            # the keyboard: Tab goes through the six games, each one comes fully into view
+            await pg.evaluate("document.querySelector('.shelf-row .tile').focus()")
+            seen = []
+            for k in range(6):
+                if k: await pg.keyboard.press('Tab'); await pg.wait_for_timeout(700)
+                seen.append(await pg.evaluate("""(() => { const a = document.activeElement, row = document.getElementById('shelf-row'), cs = getComputedStyle(row), r = row.getBoundingClientRect(), b = a.getBoundingClientRect();
+                    return [a.id, b.left >= r.left + parseFloat(cs.paddingLeft) - 1.5 && b.right <= r.right - parseFloat(cs.paddingRight) + 1.5]; })()"""))
+            ok(f'S5 {w}: with the keyboard, Tab goes through the six games in order and each one in turn comes fully into view', [x[0] for x in seen] == ['tile-apart', 'tile-hundred', 'tile-call', 'tile-street', 'tile-cousin', 'tile-club'] and all(x[1] for x in seen), seen)
+            # the buttons with the keyboard: Enter on "More games" until the end hands the focus to the button back
+            await pg.evaluate("document.getElementById('shelf-row').scrollTo({left: 0, behavior: 'auto'})"); await pg.wait_for_timeout(300)
+            await pg.locator('#shelf-next').focus()
+            for _ in range(6):
+                if (await pg.evaluate(ROW))['next'] != 'visible': break
+                await pg.keyboard.press('Enter'); await pg.wait_for_timeout(900)
+            a = await pg.evaluate(ROW)
+            lab = await pg.evaluate("[...document.querySelectorAll('.shelf-btn')].map(b => [b.getAttribute('aria-label'), b.getAttribute('aria-controls'), b.tagName])")
+            ok(f'S6 {w}: the round buttons are buttons for the keyboard and screen readers ("Previous games", "More games"); when one goes away its focus moves to the other', a['focus'] == 'shelf-prev' and a['next'] == 'hidden'
+               and lab == [['Previous games', 'shelf-row', 'BUTTON'], ['More games', 'shelf-row', 'BUTTON']], (a, lab))
+            ok(f'S {w} no errors', pg.errs == [], pg.errs)
+            await ctx.close()
+        # a finger on a phone (Chromium's own touch input): a sideways swipe moves the row and it settles on a tile;
+        # an up-and-down swipe that starts on the row still scrolls the page
+        ctx, pg = await new(br, FRESH, w=390, h=844); await home(pg)
+        cdp = await ctx.new_cdp_session(pg)
+        async def finger(x0, y0, dx, dy, n=14):
+            await cdp.send('Input.dispatchTouchEvent', {'type': 'touchStart', 'touchPoints': [{'x': x0, 'y': y0}]})
+            for k in range(1, n + 1):
+                await cdp.send('Input.dispatchTouchEvent', {'type': 'touchMove', 'touchPoints': [{'x': x0 + dx * k / n, 'y': y0 + dy * k / n}]}); await pg.wait_for_timeout(16)
+            await cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []}); await pg.wait_for_timeout(1200)
+        b = await pg.evaluate("document.querySelector('#tile-hundred .art').getBoundingClientRect().toJSON()")
+        step = await pg.evaluate(STEP)
+        await finger(b['x'] + b['width'] / 2, b['y'] + b['height'] / 2, -120, 4)
+        a = await pg.evaluate(ROW)
+        ok('S7 390: a finger swipe to the left moves the row on, it settles with a tile at the edge, the button back appears, and the page does not move', a['x'] > 0 and whole(a['x'], step, a['max']) and a['prev'] == 'visible' and a['sy'] == 0 and a['sw'] <= a['iw'], (a, step))
+        b = await pg.evaluate("document.querySelector('#tile-hundred .art').getBoundingClientRect().toJSON()")
+        await finger(200, b['y'] + b['height'] / 2, 3, -260)
+        a2 = await pg.evaluate(ROW)
+        ok('S8 390: an up-and-down swipe that starts on the row scrolls the page, not the row', a2['sy'] > 60 and a2['x'] == a['x'], (a, a2))
+        ok('S 390 finger: no errors', pg.errs == [], pg.errs)
+        await ctx.close()
+        # a trackpad on a laptop: a sideways two-finger scroll moves the row
+        ctx, pg = await new(br, FRESH, w=1280, h=800); await home(pg)
+        b = await pg.evaluate("document.querySelector('#tile-call .art').getBoundingClientRect().toJSON()")
+        await pg.mouse.move(b['x'] + b['width'] / 2, b['y'] + b['height'] / 2); await pg.mouse.wheel(300, 0); await pg.wait_for_timeout(1000)
+        a = await pg.evaluate(ROW)
+        ok('S9 1280: a sideways scroll with a trackpad moves the row, and the button back appears', a['x'] > 0 and a['prev'] == 'visible' and a['sy'] == 0, a)
+        await ctx.close()
+        # reduced motion: the buttons move the row at once, without gliding
+        ctx, pg = await new(br, FRESH, w=1280, h=800, reduced=True); await home(pg)
+        await pg.locator('#shelf-next').click(); await pg.wait_for_timeout(60)
+        x1 = (await pg.evaluate(ROW))['x']; await pg.wait_for_timeout(800); x2 = (await pg.evaluate(ROW))['x']
+        ok('S10 reduced motion: "More games" moves the row at once, without gliding', x1 > 0 and x1 == x2 and await pg.evaluate("getComputedStyle(document.getElementById('shelf-next')).transitionDuration.split(',').every(d => parseFloat(d) === 0)"), (x1, x2))
+        await ctx.close()
 
         # ---------- G: night colours really apply, and text stays readable
         def lum(rgb):
@@ -207,14 +298,14 @@ async def main():
         ctx, pg = await new(br, ONE, base='file://' + SITE); await home(pg, 'file://' + SITE)
         hrefs = await pg.evaluate("[...document.querySelectorAll('.tile')].map(a => a.getAttribute('href'))")
         t = await tile(pg, 'hundred')
-        ok('I1 from a folder: links name the file, results and picture show, fonts load', hrefs == ['100-of-us/index.html', 'your-call/index.html', 'same-street/index.html', 'long-lost-cousin/index.html', 'the-club/index.html', 'years-apart/index.html'] and t['result'] == 'Off by 4' and await pg.evaluate("document.querySelectorAll('#cousin-pic path').length") == 1 and await pg.evaluate("document.fonts.check('800 40px \"Bricolage Grotesque\"')"), (hrefs, t))
+        ok('I1 from a folder: links name the file, results and picture show, fonts load', hrefs == ['years-apart/index.html', '100-of-us/index.html', 'your-call/index.html', 'same-street/index.html', 'long-lost-cousin/index.html', 'the-club/index.html'] and t['result'] == 'Off by 4' and await pg.evaluate("document.querySelectorAll('#cousin-pic path').length") == 1 and await pg.evaluate("document.fonts.check('800 40px \"Bricolage Grotesque\"')"), (hrefs, t))
         await pg.locator('#tile-cousin').click(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(500)
         ok('I2 from a folder: the game opens', pg.url.endswith('/long-lost-cousin/index.html') and await T(pg, '.wordmark') == 'Logicers', pg.url)
         ok('I no errors', pg.errs == [], pg.errs); await ctx.close()
 
         # ---------- J: calm motion, and a new day while the page stays open
         ctx, pg = await new(br, ONE, w=1440, h=900, reduced=True); await home(pg)
-        ok('J1 reduced motion: tiles do not animate', await pg.evaluate("getComputedStyle(document.querySelector('.tile')).transitionDuration.split(',').every(d => parseFloat(d) === 0)") and pg.errs == [], pg.errs); await ctx.close()
+        ok('J1 reduced motion: tiles and the round buttons do not animate', await pg.evaluate("[document.querySelector('.tile'), document.getElementById('shelf-next')].every(e => getComputedStyle(e).transitionDuration.split(',').every(d => parseFloat(d) === 0))") and pg.errs == [], pg.errs); await ctx.close()
         ctx, pg = await new(br, ONE, w=1440, h=900); await home(pg)
         await pg.clock.set_fixed_time(at(CAL + 1, 0) + datetime.timedelta(minutes=1))
         await pg.evaluate("document.dispatchEvent(new Event('visibilitychange'))"); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(500)
@@ -233,7 +324,7 @@ async def main():
         # ---------- N: one list of games in the frame; its start dates and names match the games' own files and the shelf
         ctx, pg = await new(br, FRESH, w=1440, h=900); await home(pg)
         lst = await pg.evaluate("TurnsOut.GAMES.map(g => ({id: g.id, key: g.key, name: g.name, href: g.href, start: g.start, file: (window.TURNSOUT_DATA[g.id] || {}).start, tile: (document.querySelector('#tile-' + g.key + ' h3') || {}).textContent, link: (document.getElementById('tile-' + g.key) || {getAttribute: () => null}).getAttribute('href'), pitch: g.pitch}))")
-        ok('N1 the list of games in the frame has the six games, in the order of the shelf', [g['id'] for g in lst] == ['100-of-us', 'your-call', 'same-street', 'long-lost-cousin', 'the-club', 'years-apart'] and await pg.evaluate("[...document.querySelectorAll('.grid .tile')].map(t => t.id.replace('tile-', '')).join()") == ','.join(g['key'] for g in lst), lst)
+        ok('N1 the list of games in the frame has the six games, in the order of the shelf (the newest first)', [g['id'] for g in lst] == ['years-apart', '100-of-us', 'your-call', 'same-street', 'long-lost-cousin', 'the-club'] and await pg.evaluate("[...document.querySelectorAll('.shelf-row .tile')].map(t => t.id.replace('tile-', '')).join()") == ','.join(g['key'] for g in lst), lst)
         ok('N2 every start date in that list equals the start date in the game\'s own file', all(g['start'] == g['file'] == START[g['id']] for g in lst), [(g['id'], g['start'], g['file']) for g in lst])
         ok('N3 names and addresses in that list equal the tiles on the shelf', all(g['name'] == g['tile'] and g['href'] == g['link'] and g['pitch'] for g in lst), lst)
         ok('N no errors', pg.errs == [], pg.errs); await ctx.close()
