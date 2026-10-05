@@ -12,10 +12,16 @@ The version is the start of the file's SHA-256, so it changes exactly when the f
 changes nothing. Data that only grows (data/*.js and every puzzles.js) gets no version: an old copy of it for a few
 minutes does no harm, and the R script of 100 of Us then never leaves a version out of date.
 build_home.py runs this for index.html by itself.
+
+Since 5 Oct 2026 (late evening) the icons get a version too (favicon.ico, assets/img/favicon.svg and
+apple-touch-icon.png in the <link rel="icon"> and <link rel="apple-touch-icon"> lines): browsers keep a tab icon far
+longer than ten minutes, and some still showed the icon of 3 Oct. A picture that passes through the link to the Mac
+gets origin information added, so after a new icon is delivered, read it back from the folder, put those bytes
+into the copy of the site, and only then run this script.
 """
 import hashlib, os, re, sys
 
-TAG = re.compile(r'(<link rel="stylesheet" href="|<script src=")([^"?#]+)(\?v=[0-9a-f]+)?(")')
+TAG = re.compile(r'(<link rel="stylesheet" href="|<link rel="icon" href="|<link rel="apple-touch-icon" href="|<script src=")([^"?#]+)(\?v=[0-9a-f]+)?(")')
 
 def pages(site):
     """index.html and the page of every game (a folder at the top with an index.html, apart from r/)."""
@@ -29,7 +35,7 @@ def pages(site):
 def wants_version(ref):
     if re.match(r'^[a-z]+:|^//', ref):          # another website, or data: and the like
         return False
-    if not ref.endswith(('.css', '.js')):
+    if not ref.endswith(('.css', '.js', '.svg', '.png', '.ico')):     # pictures only in the icon links (the tab, the phone)
         return False
     return not (ref.endswith('puzzles.js') or ref.startswith('data/') or '/data/' in ref)
 

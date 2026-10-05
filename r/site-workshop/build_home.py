@@ -122,6 +122,7 @@ html = f'''<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/logicers.css">

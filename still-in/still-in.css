@@ -1,5 +1,5 @@
 /* Still In: a group game for one phone. Its colour (plum) is set in logicers.css ([data-g="still"]).
-   Four views (start, play, the list after a rule, the end). Everything fits a 320 by 568 phone without scrolling;
+   Five views (start, passing the phone, play, the list after a rule, the end). Everything fits a 320 by 568 phone without scrolling;
    if a view is still too high, the script steps it down (fit1 to fit3). */
 
 .s-view { margin-top: 6px; }
@@ -117,6 +117,21 @@
 #dlg-quit .actions { flex-wrap: wrap; }
 #dlg-quit .actions .btn { flex: 1 1 auto; }
 
+/* ---------- passing the phone: a whole screen in the game's colour ---------- */
+.s-hand { margin-top: 4px; min-height: min(27rem, calc(100vh - 150px)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  padding: 22px 18px 24px; border-radius: 28px; background: var(--c); color: #fff; text-align: center; box-shadow: 0 14px 34px rgba(21, 23, 43, .18);
+  animation: s-hand-in .28s ease-out both; }
+@keyframes s-hand-in { from { opacity: 0; transform: translateY(18px) scale(.985); } }
+.s-hand-res { max-width: 25rem; margin: 0; padding: 10px 14px; border-radius: 16px; background: rgba(255, 255, 255, .15); font-size: 0.95rem; line-height: 1.35; font-weight: 500; }
+.s-hand-res b { font-weight: 800; }
+.s-hand-ok { color: #fff; }
+.s-hand-ico { width: 76px; height: 48px; margin-top: 4px; }
+.s-hand-t { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; }
+.s-hand-k { font-size: 1.12rem; font-weight: 600; opacity: .94; }
+.s-hand-name { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; font-family: var(--display); font-weight: 800; font-size: 3.2rem; line-height: 1.08; letter-spacing: -0.025em; }
+.s-hand-go { margin-top: 8px; min-height: 56px; min-width: min(100%, 17rem); padding: 0 24px; border: 0; border-radius: 999px; background: #fff; color: var(--c); font-weight: 800; font-size: 1.05rem; box-shadow: 0 6px 16px rgba(21, 23, 43, .16); }
+.s-hand-go:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
 /* ---------- dark ---------- */
 @media (prefers-color-scheme: dark) {
   .s-friend, .s-players, .s-tile, .s-say, .s-outs, .s-rung { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
@@ -132,11 +147,20 @@
   .s-rung.is-bar { background: var(--c); color: #0A0C1A; box-shadow: none; }
   .s-rung.is-bar .s-rung-w { color: #0A0C1A; }
   .s-name-field { background: rgba(255, 255, 255, .06); }
+  .s-hand { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 30%, #0D1022), #0D1022 94%); color: var(--ink); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 55%, transparent), 0 0 40px color-mix(in srgb, var(--c) 16%, transparent); }
+  .s-hand-name { color: #fff; }
+  .s-hand-res { background: rgba(255, 255, 255, .07); }
+  .s-hand-ok { color: var(--c); }
+  .s-hand-ico { color: var(--c); }
+  .s-hand-go { background: var(--c); color: #0A0C1A; box-shadow: 0 0 22px color-mix(in srgb, var(--c) 35%, transparent); }
+  .s-hand-go:focus-visible { outline-color: var(--c); }
 }
 
 /* ---------- small and short screens: a little tighter, so that nothing scrolls ---------- */
 @media (max-height: 37.5rem) {
-  body[data-view="play"] .meta { display: none; }      /* a small phone: the rule card is the heading while playing */
+  body[data-view="play"] .meta, body[data-view="hand"] .meta { display: none; }      /* a small phone: the rule card (or the hand-off) is the heading */
+  .s-hand { gap: 9px; padding: 16px 14px 18px; }
+  .s-hand-name { font-size: 2.7rem; }
   .s-title { font-size: 1.5rem; }
   .s-lede { font-size: 0.95rem; margin-top: 8px; }
   .s-players { margin-top: 12px; }
@@ -166,6 +190,7 @@
   .s-tile-n.long { font-size: 0.84rem; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .s-hand { animation: none; }
   .s-tile { transition: none; }
   .s-tile:active { transform: none; }
   .s-tile.flip { animation: none; }
@@ -203,3 +228,6 @@ body.fit3 .s-tally { display: none; }
 body.fit3 .s-say { min-height: 0; }
 body.fit3 .s-grid { gap: 4px; }
 body.fit3 .s-tile { min-height: 44px; padding: 3px 3px; }
+body.fit1 .s-hand { min-height: 0; gap: 8px; padding: 14px 12px 16px; }
+body.fit2 .s-hand-ico { display: none; }
+body.fit3 .s-hand-res { font-size: 0.84rem; padding: 7px 10px; }

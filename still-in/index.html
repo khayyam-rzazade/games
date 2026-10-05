@@ -22,10 +22,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F4E5F7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="stylesheet" href="../assets/css/logicers.css?v=4cfef43352">
-<link rel="stylesheet" href="still-in.css?v=6803a33bfb">
+<link rel="stylesheet" href="still-in.css?v=5534355681">
 </head>
 <body class="game" data-g="still">
 
@@ -57,6 +58,16 @@
       <button class="btn solid" id="btn-start" type="button">Start</button>
     </div>
     <p class="s-small" id="start-small">2 to 8 players · one phone · about 5 minutes · no map</p>
+  </section>
+
+  <!-- passing the phone: a whole screen, so that nobody misses whose turn it is -->
+  <section class="s-view" id="v-hand" hidden aria-labelledby="hand-title">
+    <div class="s-hand" id="hand">
+      <p class="s-hand-res" id="hand-res" role="status" aria-live="polite"></p>
+      <svg class="s-hand-ico" viewBox="0 0 76 48" aria-hidden="true"><rect x="6" y="3" width="24" height="42" rx="6" fill="none" stroke="currentColor" stroke-width="3.2"/><circle cx="18" cy="38.5" r="2.2" fill="currentColor"/><path d="M39 24h30m-10-10 10 10-10 10" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2 class="s-hand-t" id="hand-title"><span class="s-hand-k">Pass the phone to</span> <span class="s-hand-name" id="hand-name"></span></h2>
+      <button class="btn s-hand-go" id="btn-hand" type="button">Player 1 has the phone</button>
+    </div>
   </section>
 
   <!-- playing: the rule, whose turn it is, the twelve countries -->
@@ -144,7 +155,7 @@
     <h2 id="help-title">How to play</h2>
     <ol>
       <li>The phone shows twelve countries and one rule, such as "More people than Spain".</li>
-      <li>Take turns. Whoever holds the phone taps one country that fits the rule, checks it, and passes the phone on.</li>
+      <li>Take turns. Whoever holds the phone taps one country that fits the rule and checks it. Then the phone says to whom it goes next: hand it over, and that player taps to say they have it.</li>
       <li>The phone shows the real figure (or the real answer). A wrong country puts that player out.</li>
       <li>When no country that fits is left, a new rule comes. The last player still in wins.</li>
     </ol>
@@ -192,6 +203,6 @@
 <script src="../data/one-of-193.js"></script>
 <script src="../data/still-in.js"></script>
 <script src="../assets/js/turnsout.js?v=bb6297fe74"></script>
-<script src="still-in.js?v=09b2fc51f4"></script>
+<script src="still-in.js?v=689640be4d"></script>
 </body>
 </html>

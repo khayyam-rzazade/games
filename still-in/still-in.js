@@ -446,6 +446,7 @@
     cur.hist = Array.isArray(cur.hist) ? cur.hist.filter(poolOk).slice(-12) : [];
     cur.total = num(cur.total) ? cur.total : cur.taps.length;
     cur.first = num(cur.first) ? cur.first : 0;
+    cur.pass = cur.pass && !cur.done ? 1 : 0;
     cur.over = false;
     return cur;
   }
@@ -482,7 +483,7 @@
   }
 
   /* ---------- the views ---------- */
-  var views = { start: $("v-start"), play: $("v-play"), rule: $("v-rule"), end: $("v-end") };
+  var views = { start: $("v-start"), hand: $("v-hand"), play: $("v-play"), rule: $("v-rule"), end: $("v-end") };
   function show(v) {
     view = v;
     Object.keys(views).forEach(function (k) { views[k].hidden = k !== v; });
@@ -650,7 +651,7 @@
     var who = game.p[game.turn];
     if (game.n === 1 && !game.taps.length) say("<b></b>, tap a country that fits the rule.", who + ", tap a country that fits the rule.");
     else if (!game.taps.length) say("A new rule, a little harder. <b></b> starts.", "A new rule, a little harder. " + who + " starts.");
-    else say("The game goes on. <b></b>'s turn.", "The game goes on. " + who + "'s turn.");
+    else say("<b></b>'s turn. Tap a country that fits.", who + "'s turn. Tap a country that fits.");
     $("say").querySelector("b").textContent = who;
   }
   function showPlay() {
@@ -715,19 +716,53 @@
       fit();
       return;
     }
+    home = "";
+    showHand();
+  }
+  /* passing the phone (Khayyam, 5 Oct 2026, late evening: it must say so very plainly). Whenever the phone goes to
+     another player (a game starts, a tap passes the turn, a new rule comes), a whole screen says what just happened
+     and to whom the phone goes, and the next player taps to say they have it. A reload shows it again. */
+  function handRecap() {
+    var last = game.taps[game.taps.length - 1];
+    if (last) {
+      var line = verdict(rule(), game.pool.b, last[0]);
+      if (last[2]) return { mark: "Right.", cls: "s-hand-ok", text: line, spoken: "Right. " + line };
+      var outLine = line + " " + game.p[last[1]] + " is out.";
+      return { mark: "Out!", cls: "s-no", text: outLine, spoken: "Wrong. " + outLine };
+    }
+    var t = game.n === 1 ? "A new game: twelve countries, one rule." : "Rule " + game.n + " is next, a little harder.";
+    return { mark: "", cls: "", text: t, spoken: t };
+  }
+  function showHand() {
+    game.pass = 1;
     save();
-    renderTurn(); renderGrid(id); setCheck();
-    var nextName = game.p[game.turn];
-    if (right) say('<b class="s-ok">Right.</b> <span class="s-v"></span> <span class="s-pass">Pass the phone to <b></b>.</span>',
-                   "Right. " + line + " Pass the phone to " + nextName + ".");
-    else say('<b class="s-no">Out!</b> <span class="s-v"></span> <span class="s-pass"><span class="s-who-out"></span> is out. Pass the phone to <b></b>.</span>',
-             "Wrong. " + line + " " + game.p[who] + " is out. Pass the phone to " + nextName + ".");
-    $("say").querySelector(".s-v").textContent = line;
-    $("say").querySelector(".s-pass b").textContent = nextName;
-    var wo = $("say").querySelector(".s-who-out");
-    if (wo) wo.textContent = game.p[who];
-    flip(id);
+    stage = "hand";
+    picked = "";
+    var who = game.p[game.turn], rc = handRecap(), res = $("hand-res");
+    res.innerHTML = "";
+    if (rc.mark) { res.appendChild(el("b", rc.cls, rc.mark)); res.appendChild(document.createTextNode(" ")); }
+    res.appendChild(document.createTextNode(rc.text));
+    res.setAttribute("aria-label", rc.spoken + " Pass the phone to " + who + ".");
+    $("hand-name").textContent = who;
+    $("btn-hand").textContent = who + " has the phone";
+    show("hand");
+    fitHandName();
+    $("btn-hand").focus();
+  }
+  function fitHandName() {                   // a long name gets smaller until it fits on one line
+    var n = $("hand-name");
+    n.style.fontSize = "";
+    var size = parseFloat(window.getComputedStyle(n).fontSize) || 48;
+    while (n.scrollWidth > n.clientWidth + 1 && size > 22) { size -= 2; n.style.fontSize = size + "px"; }
     fit();
+  }
+  function handed() {                        // the next player has the phone: their turn on the board
+    if (!game || !game.pass) return;
+    game.pass = 0;
+    save();
+    showPlay();
+    var t = $("grid").querySelector('.s-tile[tabindex="0"]') || $("grid").querySelector(".s-tile");
+    if (t) t.focus();
   }
   function flip(id) {
     var t = $("grid").querySelector('[data-c="' + id + '"]');
@@ -804,10 +839,7 @@
     game.done = 0;
     stage = "pick";
     dealPool(null);
-    save();
-    showPlay();
-    var f = $("grid").querySelector(".s-tile");
-    if (f) f.focus();
+    showHand();
   }
 
   /* the end */
@@ -1050,11 +1082,10 @@
     friend = null;
     plainAddress();
     newGame(f);
-    showPlay();
-    var t = $("grid").querySelector(".s-tile");
-    if (t) t.focus();
+    showHand();
   });
   $("btn-check").addEventListener("click", mainButton);
+  $("btn-hand").addEventListener("click", handed);
   $("btn-next").addEventListener("click", function () {
     if ($("btn-next").getAttribute("data-do") === "back") { show("end"); $("btn-again").focus(); return; }
     nextRuleNow();
@@ -1071,9 +1102,7 @@
   $("btn-again").addEventListener("click", function () {
     plainAddress();
     newGame(null);
-    showPlay();
-    var t = $("grid").querySelector(".s-tile");
-    if (t) t.focus();
+    showHand();
   });
   $("btn-change").addEventListener("click", function () { game = null; showStart(); $("btn-more").focus(); });
   $("btn-last").addEventListener("click", function () {
@@ -1108,6 +1137,7 @@
   if (cur && !friend) {
     game = cur;
     if (game.done) { stage = "rule"; endRule(); }       // the rule was over before the reload: its list
+    else if (game.pass) showHand();                      // the phone was being passed: ask again
     else showPlay();
   } else {
     showStart();

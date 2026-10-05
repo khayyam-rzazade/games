@@ -1,4 +1,5 @@
-"""Browser-tab icon, phone home-screen icon, link preview picture and the "not found" page, in the new look.
+"""Browser-tab icon (favicon.svg, and favicon.ico through icons.py), phone home-screen icon, link preview picture and the
+"not found" page, in the new look.
 
     python3 make_brand.py [folder of the site]     the folder must be served at http://localhost:8790 while it runs
 """
@@ -15,6 +16,7 @@ favicon = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 </svg>
 '''.replace('11.500', '11.5')
 open(f'{OUT}/assets/img/favicon.svg', 'w').write(favicon)
+from icons import write_ico; write_ico(OUT)          # the same dots as favicon.ico, for browsers without SVG tab icons
 
 touch = '''<!doctype html><html><head><meta charset="utf-8"><style>
 html, body { margin: 0; width: 180px; height: 180px; background: #ffffff; }

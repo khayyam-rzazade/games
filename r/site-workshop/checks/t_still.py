@@ -19,6 +19,8 @@ answer here on their own, so they hold for whatever figures the World Bank sent.
       a right and a wrong tap with the longest lines, the last one that fits, the twelve in order (a figure and a list),
       the end with seven players out, the last twelve, and the windows (help, wins, who is still in, end the game,
       share); and EVERY rule's tightest twelve at 320x568 and 360x640; nothing spills sideways
+  P8  the screen that passes the phone (since 5 Oct 2026, late evening): at a game's start, after every tap that passes the
+      turn and before every new rule; what it says, its button, the focus; kept over a reload (T2b), in every S size
   K   keys: the grid takes one Tab stop, the arrows, Home and End move inside it, Enter picks, Tab reaches the button
   L   screen-reader labels: the grid, the tiles before and after a tap, the spoken line, the players, the windows
   R   reduced motion: a tapped tile does not turn over; with motion it does
@@ -175,6 +177,16 @@ async def setup(pg, names, n=None):
 async def cur(pg): return (await stored(pg)).get('groups', {}).get('still-in', {}).get('cur')
 async def tap(pg, cid):
     await pg.click(f'.s-tile[data-c="{cid}"]'); await pg.click('#btn-check')
+HAND = """[document.body.dataset.view, document.getElementById('hand-res').getAttribute('aria-label'), document.getElementById('hand-res').textContent,
+          document.getElementById('hand-name').textContent, document.getElementById('btn-hand').textContent, document.activeElement.id]"""
+async def handed(pg):
+    """the screen that passes the phone: what it says; then the next player taps "... has the phone" """
+    h = await pg.evaluate(HAND)
+    if h[0] == 'hand': await pg.click('#btn-hand'); await pg.wait_for_timeout(20)
+    return h
+async def tap_on(pg, cid):
+    """a tap, and the phone passed on when the page asks for it"""
+    await tap(pg, cid); return await handed(pg)
 
 class Model:
     """the game worked out here: who is in, whose turn it is, what the phone must say"""
@@ -188,7 +200,7 @@ class Model:
             if not self.out[j]: return j
         return i
     def tap(self, rule, pool, tapped, cid):
-        """returns the stage after the tap ('pick', 'rule' or 'over') and the spoken line"""
+        """returns the stage after the tap ('hand', 'rule' or 'over') and the spoken line (for 'hand': of the screen that passes the phone)"""
         who, right = self.turn, fits(rule, pool.get('b'), cid)
         self.total += 1; tapped.append((cid, who, right))
         v = verdict(rule, pool.get('b'), cid)
@@ -201,7 +213,15 @@ class Model:
         left = [i for i in pool['c'] if i not in [t[0] for t in tapped] and fits(rule, pool.get('b'), i)]
         if not left: return 'rule', f'Right. {v} That was the last one that fits. Everyone still in goes on to the next rule.'
         nx = self.p[self.turn]
-        return 'pick', (f'Right. {v} Pass the phone to {nx}.' if right else f'Wrong. {v} {self.p[who]} is out. Pass the phone to {nx}.')
+        self.seen = (f'Right. {v}' if right else f'Out! {v} {self.p[who]} is out.')         # what the screen shows
+        return 'hand', (f'Right. {v} Pass the phone to {nx}.' if right else f'Wrong. {v} {self.p[who]} is out. Pass the phone to {nx}.')
+    def hand_start(self):
+        """the screen that passes the phone at a game's start or before a new rule: (spoken, shown)"""
+        t = 'A new game: twelve countries, one rule.' if self.n == 1 else f'Rule {self.n} is next, a little harder.'
+        return f'{t} Pass the phone to {self.p[self.turn]}.', t
+    def board_line(self):
+        """what the board says to the player who now has the phone"""
+        return f"{self.p[self.turn]}'s turn. Tap a country that fits."
 
 LADDER = """() => ({ kicker: document.getElementById('sum-kicker').textContent, head: document.getElementById('sum-head').textContent,
   rows: [...document.querySelectorAll('#ladder li')].map(li => [li.className, (li.querySelector('.s-rung-n') || li).textContent, (li.querySelector('.s-rung-v') || {}).textContent || '',
@@ -335,7 +355,9 @@ async def main():
         # ---------- P: games played through on the page, every tap compared with the data file
         rnd = random.Random(2026)
         games = 6 if QUICK else 30
-        bad_tap, bad_card, bad_rule, bad_end, bad_turn, bad_first = [], [], [], [], [], []
+        bad_tap, bad_card, bad_rule, bad_end, bad_turn, bad_first, bad_hand = [], [], [], [], [], [], []
+        def want_hand(spoken, shown, name):
+            return ['hand', spoken, shown, name, f'{name} has the phone', 'btn-hand']
         ctx, pg = await new(br, w=390, h=664, reduced=True)
         await go(pg)
         played_rules = set()
@@ -346,6 +368,8 @@ async def main():
             await go(pg); await pg.click('#btn-start')
             shown_names = [names[i] if names and names[i] else f'Player {i + 1}' for i in range(n)]
             m = Model(shown_names)
+            h = await handed(pg); sp, sh = m.hand_start()
+            if h != want_hand(sp, sh, m.p[m.turn]): bad_hand.append((g, 'start', h, sp))
             st = await cur(pg)
             if RULE[st['pool']['r']].get('list'): bad_first.append(st['pool'])
             for step in range(400):
@@ -362,16 +386,21 @@ async def main():
                 cid = rnd.choice(fitl) if fitl and (rnd.random() < 0.72 or not nonl) else rnd.choice(nonl)
                 await tap(pg, cid)
                 stage, spoken = m.tap(rule, pool, tapped, cid)
+                if stage == 'hand':
+                    h = await handed(pg)
+                    if h != want_hand(spoken, m.seen, m.p[m.turn]): bad_hand.append((g, cid, h, spoken))
+                    if (await cur(pg) or {}).get('pass'): bad_hand.append((g, cid, 'still marked as passing after the tap'))
                 got = await pg.evaluate(f"""(() => {{ const t = document.querySelector('.s-tile[data-c="{cid}"]');
                     return [t.className, (t.querySelector('.s-tile-v') || {{textContent: ''}}).textContent, t.getAttribute('aria-disabled'), t.getAttribute('aria-label'),
                             document.getElementById('say').getAttribute('aria-label'), document.getElementById('btn-check').textContent, document.getElementById('dots-t').textContent]; }})()""")
                 right = fits(rule, pool.get('b'), cid)
                 want_v = ('✓ ' if right else '✗ ') + (('yes' if right else 'no') if rule.get('list') else tile_value(rule['key'], val(cid, rule['key'])))
-                want_btn = {'pick': 'Tap a country', 'rule': 'See all twelve', 'over': 'Who is still in?'}[stage]
-                if (('right' if right else 'wrong') not in got[0].split() or got[1] != want_v or got[2] != 'true' or got[4] != spoken or got[5] != want_btn
+                want_btn = {'hand': 'Tap a country', 'rule': 'See all twelve', 'over': 'Who is still in?'}[stage]
+                want_say = m.board_line() if stage == 'hand' else spoken
+                if (('right' if right else 'wrong') not in got[0].split() or got[1] != want_v or got[2] != 'true' or got[4] != want_say or got[5] != want_btn
                         or not got[3].startswith(verdict(rule, pool.get('b'), cid) if rule.get('list') else says(rule['key'], cid) + '.')
                         or got[6] != f'{len(m.ins())} of {n} in'):
-                    bad_tap.append((g, cid, got, want_v, spoken, want_btn))
+                    bad_tap.append((g, cid, got, want_v, want_say, want_btn))
                 if stage == 'rule':
                     await pg.click('#btn-check'); await pg.wait_for_timeout(20)
                     lad = await pg.evaluate(LADDER)
@@ -386,6 +415,8 @@ async def main():
                         bad_rule.append((g, pool['r'], lad, want[:3], want_k))
                     await pg.click('#btn-next'); await pg.wait_for_timeout(20)
                     m.n += 1
+                    h = await handed(pg); sp, sh = m.hand_start()
+                    if h != want_hand(sp, sh, m.p[m.turn]): bad_hand.append((g, 'rule', m.n, h, sp))
                     continue
                 if stage == 'over':
                     await pg.click('#btn-check'); await pg.wait_for_timeout(30)
@@ -402,6 +433,8 @@ async def main():
         ok('P3 when no country that fits is left: "See all twelve", then the twelve in order (from the biggest figure down, the bar where it falls; for a list, the ones on it first), who tapped which, how many fit and how many went out, and the sources', not bad_rule, bad_rule[:2])
         ok('P4 the end: the last player in wins; who went out, on which country and which rule; the win is counted and the game is no longer kept', not bad_end, bad_end[:2])
         ok('P5 every game opens with a figure and its bar', not bad_first, bad_first[:2])
+        ok('P8 the screen that passes the phone (Khayyam, 5 Oct 2026, late evening): at every start, after every tap that passes the turn (Right or Out, the figure, who is out) and before every new rule, it names the next player, its button says "… has the phone" and has the focus; after it the board says whose turn it is, and the game is no longer marked as passing',
+           not bad_hand, bad_hand[:3])
         # every rule, dealt once from a link and played to its list
         ctx, pg = await new(br, w=390, h=664, reduced=True); await go(pg)
         bad = []
@@ -409,18 +442,21 @@ async def main():
             pl = await pg.evaluate(f"StillIn.pool('{rid}', 2, 77)")
             rule = RULE[rid]
             await pg.evaluate("localStorage.clear()"); await setup(pg, ['Ana', 'Ben', 'Cy'])
-            await go(pg, link(pl)); await pg.click('#btn-start')
+            await go(pg, link(pl)); await pg.click('#btn-start'); await handed(pg)
             st = await cur(pg)
             if st['pool'] != {'r': pl['r'], 'b': pl['b'], 'c': pl['c']}: bad.append((rid, 'not the same twelve', st['pool'])); continue
             m = Model(['Ana', 'Ben', 'Cy'], st['turn']); tapped = []
             for cid in [c for c in pl['c'] if fits(rule, pl.get('b'), c)]:
                 await tap(pg, cid); stage, spoken = m.tap(rule, pl, tapped, cid)
-                if await pg.evaluate("document.getElementById('say').getAttribute('aria-label')") != spoken: bad.append((rid, cid, spoken))
+                if stage == 'hand':
+                    h = await handed(pg)
+                    if h[1] != spoken: bad.append((rid, cid, spoken, h[1]))
+                elif await pg.evaluate("document.getElementById('say').getAttribute('aria-label')") != spoken: bad.append((rid, cid, spoken))
             await pg.click('#btn-check'); await pg.wait_for_timeout(20)
             lad = await pg.evaluate(LADDER)
             if lad['rows'] != want_ladder(rule, pl, tapped, m.p): bad.append((rid, 'list', lad['rows'][:3]))
         ok(f'P6 every one of the {len(avail)} rules, dealt from a link and played to its list: the spoken lines and the twelve in order match the data file', not bad, bad[:3])
-        ok('P7 the games above dealt most rules by themselves', len(played_rules) >= (8 if QUICK else 16), sorted(played_rules))
+        ok('P7 the games above dealt most rules by themselves', len(played_rules) >= (5 if QUICK else 16), sorted(played_rules))   # quick: six games, often of one or two rules each (8 failed twice by chance)
         await ctx.close()
 
         # ---------- the tightest twelve of every rule: the longest names that still make a fair pool
@@ -457,23 +493,27 @@ async def main():
                 for rid in (top_fig, top_list):
                     pl, rule = TIGHT[rid], RULE[rid]
                     await go(pg, link(pl, 3)); await chk('start with a friend\'s link ' + rid)
-                    await pg.click('#btn-start'); await chk('play ' + rid)
+                    await pg.click('#btn-start'); await chk('passing the phone at the start ' + rid)
+                    await handed(pg); await chk('play ' + rid)
                     fit_ids = sorted([c for c in pl['c'] if fits(rule, pl.get('b'), c)], key=lambda c: -len(verdict(rule, pl.get('b'), c)))
                     non_ids = sorted([c for c in pl['c'] if not fits(rule, pl.get('b'), c)], key=lambda c: -len(verdict(rule, pl.get('b'), c)))
                     await pg.click(f'.s-tile[data-c="{fit_ids[0]}"]'); await chk('a country picked')
-                    await pg.click('#btn-check'); await chk('a right tap, the longest line ' + rid)
-                    await tap(pg, non_ids[0]); await chk('a wrong tap, the longest line ' + rid)
+                    await pg.click('#btn-check'); await chk('passing the phone after a right tap, the longest line ' + rid)
+                    await handed(pg); await chk('the board after a right tap ' + rid)
+                    await tap(pg, non_ids[0]); await chk('passing the phone after a wrong tap, the longest line and a long name ' + rid)
+                    await handed(pg); await chk('the board after a wrong tap ' + rid)
                     await pg.click('#btn-players'); await pg.wait_for_timeout(40); await chk('who is still in')
                     await pg.click('#btn-quit'); await pg.wait_for_timeout(40); await chk('end this game?')
                     await pg.keyboard.press('Escape'); await pg.wait_for_timeout(40)
-                    for c in fit_ids[1:]: await tap(pg, c)
+                    for c in fit_ids[1:]: await tap_on(pg, c)
                     await chk('the last one that fits ' + rid)
                     await pg.click('#btn-check'); await pg.wait_for_timeout(30); await chk('the twelve in order ' + rid)
                     await pg.evaluate("localStorage.removeItem('turnsout:v1')"); await setup(pg, LONG)
                 # eight players: play until the end, every tap wrong after the first
                 await go(pg); await pg.click('#btn-start')
-                for k in range(60):
+                for k in range(90):
                     if await pg.evaluate("document.body.dataset.view") == 'end': break
+                    if await pg.evaluate("document.body.dataset.view") == 'hand': await handed(pg); continue
                     b = await T(pg, '#btn-check')
                     if b.startswith('Who is') or b.startswith('See all'): await pg.click('#btn-check'); await pg.wait_for_timeout(20)
                     if await pg.evaluate("document.body.dataset.view") == 'rule': await pg.click('#btn-next'); continue
@@ -493,7 +533,7 @@ async def main():
                 await pg.click('#btn-last'); await pg.wait_for_timeout(30); await chk('the last twelve')
                 if w == 320 and scheme == 'light':
                     await pg.screenshot(path='shots/still-last-320.png')
-                ok(f'S1 {w}x{h} {scheme}: the start with eight long names, the names window, a friend\'s link, the tightest figure rule and list rule (picked, a right and a wrong tap with the longest lines, the last one that fits, the twelve in order), the windows, and the end with seven players out fit without scrolling',
+                ok(f'S1 {w}x{h} {scheme}: the start with eight long names, the names window, a friend\'s link, the tightest figure rule and list rule (passing the phone at the start, picked, a right and a wrong tap with the longest lines on the screen that passes the phone and on the board, the last one that fits, the twelve in order), the windows, and the end with seven players out fit without scrolling',
                    not bad and pg.errs == [], (bad[:3], pg.errs))
                 await ctx.close()
         for (w, h) in SIZES[:2]:
@@ -501,39 +541,49 @@ async def main():
             bad = []
             for rid in avail:
                 pl, rule = TIGHT[rid], RULE[rid]
-                await pg.evaluate("localStorage.clear()"); await setup(pg, LONG[:3]); await go(pg, link(pl)); await pg.click('#btn-start')
+                await pg.evaluate("localStorage.clear()"); await setup(pg, LONG[:3]); await go(pg, link(pl)); await pg.click('#btn-start'); await handed(pg)
                 m_ = await pg.evaluate(FIT)
                 if not fitsm(m_): bad.append((rid, 'play', m_))
                 fit_ids = sorted([c for c in pl['c'] if fits(rule, pl.get('b'), c)], key=lambda c: -len(verdict(rule, pl.get('b'), c)))
                 non_ids = sorted([c for c in pl['c'] if not fits(rule, pl.get('b'), c)], key=lambda c: -len(verdict(rule, pl.get('b'), c)))
                 await tap(pg, non_ids[0]); m_ = await pg.evaluate(FIT)
+                if not fitsm(m_): bad.append((rid, 'passing the phone after the longest wrong tap', m_))
+                await handed(pg); m_ = await pg.evaluate(FIT)
                 if not fitsm(m_): bad.append((rid, 'wrong', m_))
-                for c in fit_ids: await tap(pg, c)
+                for c in fit_ids: await tap_on(pg, c)
                 m_ = await pg.evaluate(FIT)
                 if not fitsm(m_): bad.append((rid, 'last', m_))
                 await pg.click('#btn-check'); await pg.wait_for_timeout(20); m_ = await pg.evaluate(FIT)
                 if not fitsm(m_): bad.append((rid, 'list', m_))
-            ok(f'S2 {w}x{h}: the tightest twelve of every one of the {len(avail)} rules fits without scrolling while playing, after the longest lines, and in its list', not bad and pg.errs == [], (bad[:3], pg.errs))
+            ok(f'S2 {w}x{h}: the tightest twelve of every one of the {len(avail)} rules fits without scrolling while playing, after the longest lines (on the screen that passes the phone and on the board), and in its list', not bad and pg.errs == [], (bad[:3], pg.errs))
             await ctx.close()
 
         # ---------- K: keys, L: labels, R: motion
         ctx, pg = await new(br, w=1280, h=720, touch=False)
         await go(pg); await pg.focus('#btn-start'); await pg.keyboard.press('Enter'); await pg.wait_for_timeout(50)
+        f0 = await pg.evaluate("document.activeElement.id")
+        hl = await pg.evaluate("""(() => { const v = document.getElementById('v-hand'), r = document.getElementById('hand-res');
+            return [document.getElementById(v.getAttribute('aria-labelledby')).textContent.replace(/\\s+/g, ' ').trim(), r.getAttribute('role'), r.getAttribute('aria-live'), r.getAttribute('aria-label'), document.getElementById('btn-hand').textContent]; })()""")
+        await pg.keyboard.press('Enter'); await pg.wait_for_timeout(50)
         st = await cur(pg); ids = st['pool']['c']
         f1 = await pg.evaluate("[document.activeElement.getAttribute('data-c'), [...document.querySelectorAll('.s-tile')].filter(t => t.tabIndex === 0).length]")
         await pg.keyboard.press('ArrowRight'); f2 = await pg.evaluate("document.activeElement.getAttribute('data-c')")
         await pg.keyboard.press('ArrowDown'); f3 = await pg.evaluate("document.activeElement.getAttribute('data-c')")
         await pg.keyboard.press('End'); f4 = await pg.evaluate("document.activeElement.getAttribute('data-c')")
         await pg.keyboard.press('Home'); f5 = await pg.evaluate("document.activeElement.getAttribute('data-c')")
-        ok('K1 the keyboard: Enter starts and the focus lands on the first country; the arrows move round the grid (three across), Home and End to its ends, and the grid takes one Tab stop',
-           f1 == [ids[0], 1] and f2 == ids[1] and f3 == ids[4] and f4 == ids[11] and f5 == ids[0], (f1, f2, f3, f4, f5))
+        ok('K1 the keyboard: Enter starts, the button of the screen that passes the phone has the focus, Enter there and the focus lands on the first country; the arrows move round the grid (three across), Home and End to its ends, and the grid takes one Tab stop',
+           f0 == 'btn-hand' and f1 == [ids[0], 1] and f2 == ids[1] and f3 == ids[4] and f4 == ids[11] and f5 == ids[0], (f0, f1, f2, f3, f4, f5))
+        ok('L2 the screen that passes the phone is named "Pass the phone to Player 1"; what just happened is a polite status; its button says who has the phone',
+           hl == ['Pass the phone to Player 1', 'status', 'polite', 'A new game: twelve countries, one rule. Pass the phone to Player 1.', 'Player 1 has the phone'], hl)
         await pg.keyboard.press('ArrowRight'); await pg.keyboard.press('Enter'); await pg.wait_for_timeout(30)
         k2 = await pg.evaluate("[document.activeElement.getAttribute('aria-pressed'), document.getElementById('btn-check').disabled, document.getElementById('btn-check').textContent]")
         await pg.keyboard.press('Tab'); k3 = await pg.evaluate("document.activeElement.id")
         await pg.keyboard.press('Enter'); await pg.wait_for_timeout(50)
-        k4 = await pg.evaluate("[document.activeElement.getAttribute('data-c'), document.activeElement.getAttribute('aria-disabled')]")
-        ok('K2 Enter picks a country (the button then names it), Tab goes on to the button, Enter checks it, and the focus returns to the country checked',
-           k2 == ['true', False, 'Check ' + ins(ids[1])] and k3 == 'btn-check' and k4 == [ids[1], 'true'], (k2, k3, k4))
+        k4 = await pg.evaluate("document.activeElement.id")
+        await pg.keyboard.press('Enter'); await pg.wait_for_timeout(50)
+        k5 = await pg.evaluate("[document.activeElement.getAttribute('data-c'), document.querySelector('.s-tile[data-c=\"" + ids[1] + "\"]').getAttribute('aria-disabled')]")
+        ok('K2 Enter picks a country (the button then names it), Tab goes on to the button, Enter checks it; the screen that passes the phone takes the focus on its button, and after Enter the next player starts on the first country left',
+           k2 == ['true', False, 'Check ' + ins(ids[1])] and k3 == 'btn-check' and k4 == 'btn-hand' and k5 == [ids[0], 'true'], (k2, k3, k4, k5))
         await pg.keyboard.press('Escape')
         lab = await pg.evaluate("""(() => { const g = document.getElementById('grid'), s = document.getElementById('say');
             return { grid: [g.getAttribute('role'), g.getAttribute('aria-label')], live: [s.getAttribute('role'), s.getAttribute('aria-live'), s.getAttribute('aria-label')],
@@ -553,12 +603,16 @@ async def main():
         ok('K L no errors', pg.errs == [], pg.errs); await ctx.close()
         for reduced in (True, False):
             ctx, pg = await new(br, w=390, h=664, reduced=reduced)
-            await go(pg); await pg.click('#btn-start')
-            st = await cur(pg)
-            await pg.click(f'.s-tile[data-c="{st["pool"]["c"][0]}"]'); await pg.click('#btn-check')
-            fl = await pg.evaluate(f"""document.querySelector('.s-tile[data-c="{st['pool']['c'][0]}"]').classList.contains('flip')""")
-            if reduced: ok('R1 reduced motion: a tapped country shows its figure at once, without turning over', not fl)
-            else: ok('R2 with motion it turns over once', fl)
+            pl, rule = TIGHT[top_fig], RULE[top_fig]
+            await go(pg, link(pl)); await pg.click('#btn-start')
+            an = await pg.evaluate("getComputedStyle(document.querySelector('.s-hand')).animationName")
+            await handed(pg)
+            fit_ids = [c for c in pl['c'] if fits(rule, pl.get('b'), c)]
+            for c in fit_ids[:-1]: await tap_on(pg, c)
+            await tap(pg, fit_ids[-1])                       # the last one that fits: the board stays
+            fl = await pg.evaluate(f"""document.querySelector('.s-tile[data-c="{fit_ids[-1]}"]').classList.contains('flip')""")
+            if reduced: ok('R1 reduced motion: the screen that passes the phone is simply there, and a tapped country shows its figure without turning over', an == 'none' and not fl, (an, fl))
+            else: ok('R2 with motion the screen that passes the phone slides in, and a tapped country turns over once', an == 's-hand-in' and fl, (an, fl))
             await ctx.close()
 
         # ---------- T: what is kept in the browser
@@ -569,22 +623,28 @@ async def main():
         await inp[0].fill('Ana'); await inp[1].fill('  Ben <b>  '); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
         s = (await stored(pg))['groups']['still-in']
         ok('T1 the number of players and their names are kept under "groups" (names cleaned, at most 14 letters)', s.get('n') == 5 and s.get('names', [])[:3] == ['Ana', 'Ben b', ''] and await T(pg, '#names-line') == 'Ana · Ben b · Player 3 · Player 4 · Player 5', (s, await T(pg, '#names-line')))
-        await pg.click('#btn-start')
+        await pg.click('#btn-start'); await handed(pg)
         st = await cur(pg); rule = RULE[st['pool']['r']]
         non = [c for c in st['pool']['c'] if not fits(rule, st['pool'].get('b'), c)]; fit_ = [c for c in st['pool']['c'] if fits(rule, st['pool'].get('b'), c)]
-        await tap(pg, fit_[0]); await tap(pg, non[0])
+        await tap_on(pg, fit_[0]); await tap(pg, non[0])
+        p1 = (await cur(pg)).get('pass')
         await pg.reload(); await pg.wait_for_timeout(200)
+        h1 = await handed(pg); p2 = (await cur(pg)).get('pass')
+        ok('T2b a reload while the phone is being passed shows that screen again (the same next player and what happened); after the tap the game is no longer marked as passing',
+           p1 == 1 and h1[0] == 'hand' and h1[3] == 'Player 3' and h1[2].startswith('Out! ') and h1[2].endswith(' Ben b is out.') and p2 == 0, (p1, h1, p2))
         r1 = await pg.evaluate("[document.body.dataset.view, document.getElementById('turn-name').textContent, document.getElementById('dots-t').textContent, document.querySelectorAll('.s-tile.right').length, document.querySelectorAll('.s-tile.wrong').length, document.getElementById('rule-head').textContent]")
         ok('T2 a game goes on after a reload: the same rule and twelve, the taps, who is out and whose turn it is', r1 == ['play', 'Player 3', '4 of 5 in', 1, 1, head(rule, st['pool'].get('b'))], r1)
-        for c in fit_[1:]: await tap(pg, c)
+        for c in fit_[1:]: await tap_on(pg, c)
         await pg.reload(); await pg.wait_for_timeout(200)
         r2 = await pg.evaluate("[document.body.dataset.view, document.getElementById('btn-next').textContent]")
         await pg.click('#btn-next'); await pg.wait_for_timeout(50)
+        h3 = await handed(pg)
         r3 = await pg.evaluate("[document.body.dataset.view, document.getElementById('rule-n').textContent]")
-        ok('T3 a rule that was over before a reload shows its twelve in order, and the next rule follows', r2 == ['rule', 'Next rule'] and r3 == ['play', 'Rule 2'], (r2, r3))
-        for k in range(80):
+        ok('T3 a rule that was over before a reload shows its twelve in order, and the next rule follows (after the screen that passes the phone)', r2 == ['rule', 'Next rule'] and h3[0] == 'hand' and h3[2] == 'Rule 2 is next, a little harder.' and r3 == ['play', 'Rule 2'], (r2, h3, r3))
+        for k in range(120):
             v = await pg.evaluate("document.body.dataset.view")
             if v == 'end': break
+            if v == 'hand': await handed(pg); continue
             if v == 'rule': await pg.click('#btn-next'); continue
             b = await T(pg, '#btn-check')
             if b.startswith('Who is') or b.startswith('See all'): await pg.click('#btn-check'); continue
@@ -607,9 +667,10 @@ async def main():
             await go(pg); await pg.evaluate(f"localStorage.setItem('turnsout:v1', {json.dumps(raw)})"); await pg.reload(); await pg.wait_for_timeout(150)
             v = await pg.evaluate("document.body.dataset.view")
             if v == 'start': await pg.click('#btn-start')
+            await handed(pg)
             st = await cur(pg)
             if st:
-                await tap(pg, st['pool']['c'][0])
+                await tap_on(pg, [c for c in st['pool']['c'] if c not in [t[0] for t in st['taps']]][0])
             ok(f'T6 broken storage ({nm}): the page works and a game can be played', st and pg.errs == [] and (await pg.evaluate("document.body.dataset.view")) == 'play', (v, pg.errs))
             await ctx.close()
         ctx, pg = await new(br, w=1280, h=900)
@@ -636,9 +697,10 @@ async def main():
         ok('F3 a broken or unfair link (an unknown country, an unknown rule, the bar among the twelve) is left aside and the game starts as usual', not not_aside, not_aside)
         # play a game to the end and share
         await pg.evaluate("localStorage.clear()"); await go(pg); await pg.click('#btn-start')
-        for k in range(80):
+        for k in range(120):
             v = await pg.evaluate("document.body.dataset.view")
             if v == 'end': break
+            if v == 'hand': await handed(pg); continue
             if v == 'rule': await pg.click('#btn-next'); continue
             b = await T(pg, '#btn-check')
             if b.startswith('Who is') or b.startswith('See all'): await pg.click('#btn-check'); continue
@@ -676,8 +738,8 @@ async def main():
         # ---------- O: opened from a folder; N: a data file missing
         ctx, pg = await new(br, w=390, h=664, reduced=True)
         await pg.goto('file://' + SITE + '/still-in/index.html'); await pg.wait_for_timeout(200)
-        await pg.click('#btn-start'); st = await cur(pg)
-        await tap(pg, st['pool']['c'][0])
+        await pg.click('#btn-start'); await handed(pg); st = await cur(pg)
+        await tap_on(pg, st['pool']['c'][0])
         ok('O1 opened from a folder: it plays, and the wordmark leads to the home page file', (await pg.evaluate("document.querySelector('.s-tile.right, .s-tile.wrong') !== null")) and (await pg.evaluate("document.querySelector('.wordmark').getAttribute('href')")).endswith('index.html') and pg.errs == [], pg.errs)
         await ctx.close()
         ctx, pg = await new(br, w=390, h=664)
@@ -689,7 +751,7 @@ async def main():
         await pg.route('**/data/still-in.js', lambda r: r.abort())
         await go(pg)
         av2 = await pg.evaluate("StillIn.RULES.filter(r => StillIn.available(r.id)).map(r => r.key || r.list)")
-        await pg.click('#btn-start'); st = await cur(pg); await tap(pg, st['pool']['c'][0])
+        await pg.click('#btn-start'); await handed(pg); st = await cur(pg); await tap_on(pg, st['pool']['c'][0])
         srcs = await pg.evaluate("document.getElementById('help-sources').textContent")
         ok('N2 without data/still-in.js the game plays with One of 193\'s five figures and the lists; the help names only the figures it uses',
            not set(av2) & set(MOREKEYS) and set(BASEKEYS) <= set(av2) and 'GDP' not in srcs and 'Population, total' in srcs

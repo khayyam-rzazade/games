@@ -1,6 +1,7 @@
 """Checks of the home page, the name on every page, and that all six games still open. Run against the working copy.
 Since 5 Oct 2026 also the second row, "Pass the phone" (the games for groups): section P, and in F, S, H, I and N.
 Since the evening of 5 Oct 2026 that row holds two games: Still In (the newest, first, with the badge) and One of 193.
+Since the late evening of 5 Oct 2026 also the tab icons: favicon.ico with the three dots, linked first on every page (M1b, M3).
 The site is expected in SITE and served at B (python3 -m http.server 8790 --directory SITE); both can be set from outside:
 LOGICERS_SITE=/path/to/games LOGICERS_URL=http://localhost:8790 python3 t_site.py"""
 import asyncio, datetime, json, os, re, sys
@@ -424,6 +425,21 @@ async def main():
         from PIL import Image
         fav = open(f'{SITE}/assets/img/favicon.svg').read()
         ok('M1 tab icon: three dots', fav.count('<circle') == 3)
+        # favicon.ico: the same dots for browsers that do not use the SVG icon (and for the not-found page, which links none)
+        ico = Image.open(f'{SITE}/favicon.ico'); sizes = sorted(ico.info.get('sizes', []))
+        px = []
+        for s in sizes:
+            ico.size = s; ico.load(); im = ico.convert('RGBA')
+            px.append([im.getpixel((round(x * s[0] / 64), round(y * s[0] / 64)))[:3] for x, y in ((32, 16.5), (14.5, 47), (49.5, 47))])
+        want = [(0x35, 0x58, 0xDC), (0xE0, 0x51, 0x2F), (0x11, 0x99, 0x8B)]
+        ok('M1b favicon.ico at the top of the site: 16, 32 and 48 pixels, each with the blue, coral and teal dot where favicon.svg has them',
+           sizes == [(16, 16), (32, 32), (48, 48)] and all(all(max(abs(a - b) for a, b in zip(p, w)) <= 40 for p, w in zip(row, want)) for row in px), (sizes, px))
+        heads = {}
+        for pg_path in ['index.html'] + [f'{d}/index.html' for d in sorted(os.listdir(SITE)) if os.path.isfile(f'{SITE}/{d}/index.html') and d not in ('r', '.git')]:
+            h = open(f'{SITE}/{pg_path}', encoding='utf-8').read(); up = '' if pg_path == 'index.html' else '../'
+            heads[pg_path] = re.findall(r'<link rel="(?:icon|apple-touch-icon)"[^>]*>', h)
+            heads[pg_path] = [re.sub(r'\?v=[0-9a-f]+', '', l) for l in heads[pg_path]] == [f'<link rel="icon" href="{up}favicon.ico" sizes="32x32">', f'<link rel="icon" href="{up}assets/img/favicon.svg" type="image/svg+xml">', f'<link rel="apple-touch-icon" href="{up}assets/img/apple-touch-icon.png">']
+        ok('M3 every page links favicon.ico first (sizes 32x32, so that Chrome keeps the SVG), then favicon.svg and the phone icon, each with its version (V2)', len(heads) == 9 and all(heads.values()), heads)
         ok('M2 phone icon 180x180 and preview picture 1200x630', Image.open(f'{SITE}/assets/img/apple-touch-icon.png').size == (180, 180) and Image.open(f'{SITE}/assets/img/og.png').size == (1200, 630))
 
         await br.close()
