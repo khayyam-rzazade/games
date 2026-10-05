@@ -222,11 +222,14 @@ for (i in seq_len(nrow(questions))) {
   kept[[length(kept) + 1]] <- q
 }
 
-# Near a line: a figure within half a percent of the line, so a small revision could flip the answer
+# Near a line: a figure within half a percent of the line, so a small revision could flip the answer.
+# For "Bigger than X?" the line is X's own figure (X itself is not listed).
 near <- character(0)
 for (q in kept) {
-  if (q$kind != "above") next
-  v <- fig_value[[q$key]]; line <- as.numeric(q$value)
+  if (!(q$kind %in% c("above", "ref"))) next
+  v <- fig_value[[q$key]]
+  line <- if (q$kind == "above") as.numeric(q$value) else v[[q$value]]
+  if (q$kind == "ref") v <- v[names(v) != q$value]
   close <- names(v)[abs(v - line) <= abs(line) * 0.005]
   if (length(close)) near <- c(near, sprintf("  %-10s %s", q$id, paste(close, collapse = " ")))
 }

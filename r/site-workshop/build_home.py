@@ -9,7 +9,9 @@ The look lives in assets/css/logicers.css: light by day, dark when the device is
 Under "Today's games" stands a second row, "Pass the phone": the games for groups (GROUP below and in turnsout.js).
 They are not daily: their tiles say "2+ players" instead of "1 min" and show no result of the day, and they do not
 count in the Today card or the streak. To add one: draw it in arts.py, add it to GROUP here and to GROUP in
-assets/js/turnsout.js, give it a colour in logicers.css, and run this script.
+assets/js/turnsout.js, give it a colour in logicers.css, and run this script. Its round button for more starts hidden
+(the row of group games still fits on every screen); home.js shows it as soon as the row holds more than it shows.
+Before 5 Oct 2026 (evening) it started visible and faded out on every load, a flash on every screen.
 To add a game to the shelf: draw its picture in arts.py, add it to GAMES below and to GAMES in assets/js/turnsout.js
 (the one list of games that the home page and the way onward share), give it a colour in logicers.css ([data-g="..."]),
 then run build_home.py. OUT is the folder of the site (or give it as the first argument).
@@ -165,7 +167,7 @@ html = f'''<!doctype html>
     <div class="shelf-row" id="shelf2-row" data-n="{len(GSHELF)}">
 {gtiles}
     </div>
-    <button class="shelf-btn next" type="button" id="shelf2-next" aria-controls="shelf2-row" aria-label="More group games">{CHEVRON}</button>
+    <button class="shelf-btn next off" type="button" id="shelf2-next" aria-controls="shelf2-row" aria-label="More group games">{CHEVRON}</button>
   </div>
 </section>
 
