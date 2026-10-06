@@ -233,6 +233,8 @@
         ? "No login and no cookies. Your table's best result is kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "names"
         ? "No login and no cookies. The players' names and wins are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
+        : kind === "table"
+        ? "No login and no cookies. The players' names and your table's best journey are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
     });
   }
@@ -283,19 +285,21 @@
   /* ------------------------------------------------------------------
      The games for groups ("Pass the phone" on the home page): one phone, a group of players, any time and as
      often as they like. In the order of their row: the newest first, then the others in the order they arrived
-     (since 6 Oct 2026: So-Called Expert, One of 193, Still In). They are not daily: no day number, no streak, no album. Nothing they store counts in the
+     (since the evening of 6 Oct 2026: Beat the Phone, One of 193, Still In, So-Called Expert). They are not daily: no day number, no streak, no album. Nothing they store counts in the
      Today card, the streak of the site, the way onward or the returning-player events, which all read GAMES only.
-     Their own records (a table's best result, the countries and cards it had lately, the players' names and wins) are kept
-     apart, under "groups".
+     Their own records (a table's best result or journey, the countries, cards and stops it had lately, the players' names
+     and wins) are kept apart, under "groups".
      To add one: add it here and to GROUP in r/site-workshop/build_home.py, and give it a colour in logicers.css.
      ------------------------------------------------------------------ */
   var GROUP = [
-    { id: "so-called-expert", key: "expert", name: "So-Called Expert", href: "so-called-expert/", players: "3+ players",
-      pitch: "Five facts about a country, one invented. Can the table spot it?" },
+    { id: "beat-the-phone", key: "beat", name: "Beat the Phone", href: "beat-the-phone/", players: "2+ players",
+      pitch: "Ten stops round the world, three lives. The whole table against the phone." },
     { id: "one-of-193", key: "o193", name: "One of 193", href: "one-of-193/", players: "2+ players",
       pitch: "The phone hides a country. Ask yes or no, and find it." },
     { id: "still-in", key: "still", name: "Still In", href: "still-in/", players: "2+ players",
-      pitch: "Twelve countries, one rule. Tap one that fits, or you're out." }
+      pitch: "Twelve countries, one rule. Tap one that fits, or you're out." },
+    { id: "so-called-expert", key: "expert", name: "So-Called Expert", href: "so-called-expert/", players: "3+ players",
+      pitch: "Five facts about a country, one invented. Can the table spot it?" }
   ];
   function group(id) {
     var all = readAll();

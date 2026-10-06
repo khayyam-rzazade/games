@@ -146,3 +146,22 @@ def art_expert():
     s.append('<g transform="rotate(-9 182 140)"><rect class="stamp" x="128" y="124" width="108" height="32" rx="7" fill="none" stroke-width="3.5"/>'
              '<rect class="fg" x="141" y="136" width="82" height="8" rx="4"/></g>')
     return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'
+
+
+def art_beat():
+    """Beat the Phone: the route of ten stops round the world as a line of dots (no map). Five stops are cleared
+    (solid), the table stands at the sixth (ringed), four are still ahead; up right, the table's three lives, one of
+    them lost (yellow). The route starts low on the left, under where the badge "New" sits."""
+    pts = [(40, 158), (68, 140), (97, 148), (126, 126), (155, 110), (185, 122), (213, 102), (240, 86), (265, 96), (288, 76)]
+    s = ['<path class="ln" d="M' + ' L'.join(f'{x} {y}' for x, y in pts) + '" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 9"/>']
+    for k, (x, y) in enumerate(pts):
+        if k < 5:
+            s.append(f'<circle class="fg" cx="{x}" cy="{y}" r="8"/>')
+        elif k == 5:
+            s.append(f'<circle class="q" cx="{x}" cy="{y}" r="9"/><circle class="ring" cx="{x}" cy="{y}" r="14" fill="none" stroke-width="3"/><circle class="fg" cx="{x}" cy="{y}" r="4.5"/>')
+        else:
+            s.append(f'<circle class="q" cx="{x}" cy="{y}" r="7"/><circle class="ring" cx="{x}" cy="{y}" r="7" fill="none" stroke-width="2.5"/>')
+    heart = 'M12 20.6 4.1 12.9C1.5 10.4 1.6 6.3 4.3 4.4c2.2-1.6 5.3-1.1 7 1l.7.9.7-.9c1.7-2.1 4.8-2.6 7-1 2.7 1.9 2.8 6 .2 8.5Z'
+    for i, cls in enumerate(['fg', 'fg', 'miss']):
+        s.append(f'<path class="{cls}" transform="translate({214 + i * 26} 22) scale(1.05)" d="{heart}"/>')
+    return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'

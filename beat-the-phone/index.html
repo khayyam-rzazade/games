@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beat the Phone: a pass-the-phone game for the whole table, ten stops round the world | Logicers</title>
+<link rel="canonical" href="https://logicers.com/beat-the-phone/">
+<meta name="description" content="A game for one phone and two to eight players, all on one team. The phone sets a journey of ten stops round the world. Whoever holds it answers the stop's question alone; a wrong answer costs one of the table's three lives. Reach the tenth stop to beat the phone.">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Beat the Phone">
+<meta property="og:description" content="The whole table against the phone: ten stops round the world, one question each, three lives. For one phone and a group.">
+<meta property="og:url" content="https://logicers.com/beat-the-phone/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#EEEFD8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=e929945ffc">
+<link rel="stylesheet" href="beat-the-phone.css?v=6b3c9f4414">
+</head>
+<body class="game" data-g="beat">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="best-chip" type="button" data-open="dlg-best" aria-label="Your table's best journey">Best</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b>Beat the Phone</b> <span id="mode">Pass the phone</span></p>
+
+  <!-- the start: what to do, in ten seconds, and who plays -->
+  <section class="b-view" id="v-start" aria-labelledby="start-title">
+    <h1 class="b-title" id="start-title">One team, ten stops, three lives.</h1>
+    <p class="b-lede">The whole table plays against the phone. Pass it round: whoever holds it answers alone. Right, and you move on to the next stop; wrong, and you lose a life. Twice a journey, you may ask the table.</p>
+    <p class="b-friend" id="friend" hidden></p>
+    <div class="b-players" role="group" aria-labelledby="players-label">
+      <span class="b-players-label" id="players-label">Players</span>
+      <button class="b-step" id="btn-fewer" type="button" aria-label="One player fewer">−</button>
+      <output class="b-count" id="players-n" aria-live="polite">3</output>
+      <button class="b-step" id="btn-more" type="button" aria-label="One player more">+</button>
+      <button class="b-names-btn" id="btn-names" type="button" data-open="dlg-names">Names</button>
+    </div>
+    <p class="b-names" id="names-line"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-start" type="button">Start</button>
+    </div>
+    <p class="b-small" id="start-small">2 to 8 players&nbsp;· one phone&nbsp;· about 10 minutes&nbsp;· no map</p>
+  </section>
+
+  <!-- passing the phone: a whole screen, so that nobody misses it -->
+  <section class="b-view" id="v-hand" hidden aria-labelledby="hand-title">
+    <div class="b-hand" id="hand">
+      <p class="b-hand-res" id="hand-res" role="status" aria-live="polite"></p>
+      <svg class="b-hand-ico" viewBox="0 0 76 48" aria-hidden="true"><rect x="6" y="3" width="24" height="42" rx="6" fill="none" stroke="currentColor" stroke-width="3.2"/><circle cx="18" cy="38.5" r="2.2" fill="currentColor"/><path d="M39 24h30m-10-10 10 10-10 10" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2 class="b-hand-t" id="hand-title"><span class="b-hand-k">Pass the phone to</span> <span class="b-hand-name" id="hand-name"></span></h2>
+      <p class="b-hand-line" id="hand-line"></p>
+      <button class="btn b-hand-go" id="btn-hand" type="button">Player 1 has the phone</button>
+    </div>
+    <p class="b-small b-hand-small"><span id="hand-k">3 lives left</span>&nbsp;· <button class="b-link" type="button" id="btn-route-h" data-open="dlg-journey">The route</button></p>
+  </section>
+
+  <!-- a stop: its question, answered alone (or with the table), and then the real figures -->
+  <section class="b-view" id="v-play" hidden aria-labelledby="stop-name">
+    <div class="b-top">
+      <button class="b-route" id="btn-route" type="button" data-open="dlg-journey" aria-label="The route">
+        <ol class="b-strip" id="strip" aria-hidden="true"></ol>
+      </button>
+      <p class="b-lives" id="lives" role="img" aria-label="3 lives left"></p>
+    </div>
+    <p class="b-kicker" id="stop-k"></p>
+    <h2 class="b-stop" id="stop-name"></h2>
+    <div class="b-q" id="q">
+      <p class="b-who"><b id="turn-name"></b><span id="turn-cap"></span></p>
+      <h3 class="b-head" id="q-head"></h3>
+      <p class="b-line" id="q-line"></p>
+    </div>
+    <div class="b-pair" id="pair" role="group" aria-labelledby="q-head"></div>
+    <button class="b-ask" id="btn-ask" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-3.6 3v-3H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M19 9h1a2 2 0 0 1 2 2v4.5a2 2 0 0 1-2 2h-.6V20l-3-2.5H13" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="b-ask-t">Stuck? Ask the table</span><span class="b-ask-n" id="asks-n">2 left</span></button>
+    <p class="b-say" id="say" role="status" aria-live="polite" hidden></p>
+    <p class="b-src" id="src" hidden></p>
+    <div class="actions b-play-actions">
+      <button class="btn solid" id="btn-go" type="button" disabled>Pick one</button>
+    </div>
+  </section>
+
+  <!-- the end of a journey -->
+  <section class="b-view" id="v-end" hidden aria-labelledby="end-head">
+    <div class="panel revealed b-reveal">
+      <p class="b-end-k" id="end-k">Journey over</p>
+      <h2 class="b-end-head" id="end-head"></h2>
+      <p class="b-end-line" id="end-line"></p>
+    </div>
+    <ol class="b-trip" id="trip" aria-label="The ten stops"></ol>
+    <p class="b-best" id="best-line" role="status"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-again" type="button">Play again</button>
+      <button class="btn ghost" id="share" type="button">Share</button>
+    </div>
+    <p class="b-small b-end-small"><button class="b-link" type="button" id="btn-all" data-open="dlg-journey">Every question</button>&nbsp;· <button class="b-link" type="button" id="btn-change">New players</button></p>
+  </section>
+</main>
+
+<dialog id="dlg-names" aria-labelledby="names-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="names-title">Who is playing?</h2>
+    <p class="quiet">Names are optional. Sit in this order: the phone goes round the table, one stop each.</p>
+    <div class="b-name-fields" id="name-fields"></div>
+    <div class="actions">
+      <button class="btn solid" type="button" data-close>Done</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-journey" aria-labelledby="journey-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="journey-title">The journey</h2>
+    <ol class="b-jroute" id="journey-route" aria-label="The ten stops"></ol>
+    <h3>Every question</h3>
+    <ol class="b-jqs" id="journey" aria-label="Every question so far, with the real figures and their sources"></ol>
+    <p class="quiet" id="journey-note"></p>
+    <div class="actions">
+      <button class="btn ghost" id="btn-quit" type="button">End this journey</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-best" aria-labelledby="best-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="best-title">Your table's best</h2>
+    <p class="b-best-body" id="best-body"></p>
+    <p class="quiet" id="best-count"></p>
+    <p class="quiet">Kept only in this browser. A game for groups has no streak and no album: play it whenever you are together.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>You are one team: the whole table against the phone. It sets a journey of ten stops round the world, one country per stop.</li>
+      <li>The phone goes round. Whoever holds it gets the stop's question: two countries, pick the one that fits. Answer alone; the others keep quiet.</li>
+      <li>Right: the table moves on to the next stop. Wrong: the table loses one of its three lives, and the next player tries again at the same stop, with a new question.</li>
+      <li>Twice a journey, the one holding the phone may ask the table: then everyone may talk about that question.</li>
+      <li>Reach the tenth stop and you beat the phone. Lose the third life and the journey ends where you are. The questions get harder along the way: big differences at the first stops, close calls at the last.</li>
+    </ol>
+    <h3>Where the facts come from</h3>
+    <p class="quiet">Every answer comes from the World Bank's open data (World Development Indicators, under the CC BY 4.0 licence) or from the lists of One of 193, which were each checked on two websites; a country counts with its own land only, without overseas territories. Each figure is a country's latest one, at most six years old; its year is shown with it. After every answer the phone shows the real figures and the source, and "Every question" lists them all. The World Bank does not endorse this site.</p>
+    <ul class="b-sources" id="help-sources"></ul>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="table">No login, no tracking, no cookies. The players' names and your table's best journey are kept only in this browser.</p>
+    <h3>Contact</h3>
+    <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-quit" aria-labelledby="quit-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="quit-title">End this journey?</h2>
+    <p class="quiet">It does not count, and you go back to the start.</p>
+    <div class="actions">
+      <button class="btn solid" id="btn-quit-yes" type="button">End the journey</button>
+      <button class="btn ghost" type="button" data-close>Keep playing</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share your journey</h2>
+    <p class="quiet">Send the link along with the picture: it deals the same ten stops to your friends' table. Neither shows a question or an answer.</p>
+    <img class="shot" id="share-img" alt="How far the table got, and the ten stops of its route. No question or answer is shown.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="beat-the-phone.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="../data/one-of-193.js"></script>
+<script src="../data/still-in.js"></script>
+<script src="../assets/js/turnsout.js?v=9e92b13046"></script>
+<script src="beat-the-phone.js?v=d799f42109"></script>
+</body>
+</html>

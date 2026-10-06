@@ -52,9 +52,12 @@ GROUP = [
     dict(key='still', href='still-in/', name='Still In', art=art_still(), players='2+ players',
          pitch='Twelve countries and one rule. Take turns tapping one that fits. Wrong, and you are out.',
          short="Twelve countries, one rule. Tap one that fits, or you're out."),
-    dict(key='expert', href='so-called-expert/', name='So-Called Expert', art=art_expert(), new=True, players='3+ players',
+    dict(key='expert', href='so-called-expert/', name='So-Called Expert', art=art_expert(), players='3+ players',
          pitch='One of you gets five facts about a country, one of them invented, and sells all five. Can the table spot it?',
          short='Five facts about a country, one invented. Can the table spot it?'),
+    dict(key='beat', href='beat-the-phone/', name='Beat the Phone', art=art_beat(), new=True, players='2+ players',
+         pitch='The whole table against the phone: ten stops round the world, three lives. Answer alone, or ask the table.',
+         short='Ten stops round the world, three lives. The table against the phone.'),
 ]
 
 def tile(g):
@@ -222,7 +225,7 @@ html = f'''<!doctype html>
     <h3>Where the dates come from</h3>
     <p class="quiet">Years Apart checks every date against two sources, linked under the answer.</p>
     <h3>Where the countries' facts come from</h3>
-    <p class="quiet">One of 193 and Still In, the games for groups, use the World Bank's open data (World Development Indicators, CC BY 4.0) and lists that were each checked on two websites. One of 193 links them with the facts at the end of a round, Still In under the twelve countries after each rule.</p>
+    <p class="quiet">One of 193, Still In and Beat the Phone, games for groups, use the World Bank's open data (World Development Indicators, CC BY 4.0) and lists that were each checked on two websites. One of 193 links them with the facts at the end of a round, Still In under the twelve countries after each rule, Beat the Phone after every answer.</p>
     <h3>Where the experts' facts come from</h3>
     <p class="quiet">So-Called Expert gives one player five facts about a country. Four are true: each was checked on two websites, or comes from the World Bank's open data or the checked lists of One of 193, and its sources are linked when the round is over. One fact is invented on purpose, and the game always marks it as invented by Logicers.</p>
     <h3>Your privacy</h3>
