@@ -2,6 +2,8 @@
 Since 5 Oct 2026 also the second row, "Pass the phone" (the games for groups): section P, and in F, S, H, I and N.
 Since the evening of 5 Oct 2026 that row holds two games: Still In (the newest, first, with the badge) and One of 193.
 Since the late evening of 5 Oct 2026 also the tab icons: favicon.ico with the three dots, linked first on every page (M1b, M3).
+Since the night of 5 to 6 Oct 2026 the row holds three games: So-Called Expert (the newest, first, with the badge), then One of
+193 and Still In in the order they arrived, as in the daily row; "3+ players" on the new one.
 The site is expected in SITE and served at B (python3 -m http.server 8790 --directory SITE); both can be set from outside:
 LOGICERS_SITE=/path/to/games LOGICERS_URL=http://localhost:8790 python3 t_site.py"""
 import asyncio, datetime, json, os, re, sys
@@ -71,7 +73,7 @@ async def main():
     want = ['Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS', 'IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB', 'OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l',
             'M0ixwiXZazUy74GyyApJUl-CTEhxE2aP', 'mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT']
     miss = []
-    for page in ['index.html', '100-of-us/index.html', 'your-call/index.html', 'same-street/index.html', 'long-lost-cousin/index.html', 'the-club/index.html', 'years-apart/index.html', 'one-of-193/index.html', 'still-in/index.html']:
+    for page in ['index.html', '100-of-us/index.html', 'your-call/index.html', 'same-street/index.html', 'long-lost-cousin/index.html', 'the-club/index.html', 'years-apart/index.html', 'one-of-193/index.html', 'still-in/index.html', 'so-called-expert/index.html']:
         head = open(f'{SITE}/{page}', encoding='utf-8').read().split('</head>')[0]
         have = _re.findall(r'<meta name="alldle-verify" content="([^"]+)">', head)
         if sorted(have) != sorted(want): miss.append(page)
@@ -100,7 +102,7 @@ async def main():
         ya_today = YA['puzzles'][(gday('years-apart', CAL) - 1) % len(YA['puzzles'])]
         ok('A7 nothing on the page gives away an answer', LLC['things'][ans]['name'].lower() not in body and club_today['sign'].lower() not in body and club_today['stamp'].lower() not in body
            and YA['events'][ya_today['mid']]['t'].lower() not in body)
-        ok('A7b the New badge sits on the newest game of each row only: Years Apart and Still In', await pg.evaluate("[...document.querySelectorAll('.tile')].filter(t => t.querySelector('.badge')).map(t => t.id).join()") == 'tile-apart,tile-still')
+        ok('A7b the New badge sits on the newest game of each row only: Years Apart and So-Called Expert', await pg.evaluate("[...document.querySelectorAll('.tile')].filter(t => t.querySelector('.badge')).map(t => t.id).join()") == 'tile-apart,tile-expert')
         ok('A8 fonts of the new look are loaded', await pg.evaluate("document.fonts.check('800 40px \"Bricolage Grotesque\"') && document.fonts.check('500 16px \"Figtree\"')") and await pg.evaluate("getComputedStyle(document.querySelector('h1')).fontFamily.indexOf('Bricolage') >= 0"))
         ok('A9 privacy line and the "in the works" strip (Half and Missing Piece) are there', 'No login. No tracking.' in await T(pg, '.foot-note') and await pg.evaluate("[...document.querySelectorAll('.soon-arts .art')].map(a => a.dataset.g + ':' + a.querySelectorAll('svg').length).join()") == 'half:1,piece:1')
         ok('A no errors', pg.errs == [], pg.errs); await ctx.close()
@@ -118,7 +120,7 @@ async def main():
         ok('B5 Escape closes it', not await pg.evaluate("document.getElementById('dlg-streak').open"))
         await pg.locator('.tools .chip.round').click(); await pg.wait_for_timeout(150)
         about = await pg.evaluate("document.getElementById('dlg-about').innerText")
-        ok('B6 the ? opens About, with all six source notes and the one of the games for groups (One of 193 and Still In)', await pg.evaluate("document.getElementById('dlg-about').open") and all(s in about for s in ['About Logicers', 'World Bank', 'Your Call checks', 'Dollar Street', 'PhyloPic', 'The Club checks every rule against two sources', 'Years Apart checks every date against two sources', "One of 193 and Still In, the games for groups, use the World Bank's open data", 'Still In under the twelve countries after each rule', 'No login, no tracking, no cookies']))
+        ok('B6 the ? opens About, with all six source notes and those of the games for groups (One of 193 and Still In; So-Called Expert)', await pg.evaluate("document.getElementById('dlg-about').open") and all(s in about for s in ['About Logicers', 'World Bank', 'Your Call checks', 'Dollar Street', 'PhyloPic', 'The Club checks every rule against two sources', 'Years Apart checks every date against two sources', "One of 193 and Still In, the games for groups, use the World Bank's open data", 'Still In under the twelve countries after each rule', "Where the experts' facts come from", 'So-Called Expert gives one player five facts about a country. Four are true', 'the game always marks it as invented by Logicers', 'No login, no tracking, no cookies']))
         await pg.locator('#dlg-about [data-close]').click(); await pg.wait_for_timeout(100)
         ok('B7 the x closes it', not await pg.evaluate("document.getElementById('dlg-about').open"))
         await pg.locator('.foot-note button').click(); await pg.wait_for_timeout(100)
@@ -188,7 +190,7 @@ async def main():
                         and m['prev'] == 'hidden' and m['next'] == 'visible' and m['nextIn'] and m['nextMid'] and m['inside'] and m['h1lines'] == 1 and min(m['artW']) > 100 and pg.errs == [])
                 ok(f'F {w}x{h} {scheme}: no sideways page scroll, nothing spills, bar on one line; the six games in one row, the first one whole and part of another showing, the button for more level with the drawings', good, (m, pg.errs))
                 gg = m['g']
-                ok(f'F2 {w}x{h} {scheme}: "Pass the phone" stands under it, its three tiles as wide as the daily ones in one row, the first whole; its button for more shows only when the row has more', gg['n'] == 3 and gg['rows'] == 1 and gg['sameH'] == 1 and gg['first'] > 0.99 and gg['wide'] and gg['below'] and gg['prev'] == 'hidden' and (gg['next'] == 'visible') == gg['moves'], gg)
+                ok(f'F2 {w}x{h} {scheme}: "Pass the phone" stands under it, its four tiles as wide as the daily ones in one row, the first whole; its button for more shows only when the row has more', gg['n'] == 4 and gg['rows'] == 1 and gg['sameH'] == 1 and gg['first'] > 0.99 and gg['wide'] and gg['below'] and gg['prev'] == 'hidden' and (gg['next'] == 'visible') == gg['moves'], gg)
                 await ctx.close()
 
         # ---------- S: the row moves: the two buttons, the keyboard, a finger, a trackpad; the newest game first
@@ -292,7 +294,7 @@ async def main():
             ok(f'G {scheme}: page colour is the {"night" if dark else "day"} one', (lum(c['bg']) < 0.02) == dark and (lum(c['ink']) > 0.8) == dark, c)
             ok(f'G {scheme}: text contrast (body, quiet text, tile text at least 4.5:1)', contrast(c['ink'], base) >= 7 and contrast(c['soft'], base) >= 4.5 and contrast(c['pitch'], card) >= 4.5 and contrast(c['mins'], card) >= 4.5, [round(contrast(c['ink'], base), 1), round(contrast(c['soft'], base), 1), round(contrast(c['pitch'], card), 1)])
             ok(f'G {scheme}: Play buttons readable (at least 4.5:1)', len(c['go']) == 5 and all(contrast(bg, fg) >= 4.5 for bg, fg in c['go']), [round(contrast(bg, fg), 2) for bg, fg in c['go']])
-            ok(f'G {scheme}: the row "Pass the phone": its Play buttons, "2+ players" and the line under the title readable (at least 4.5:1)', len(c['ggo']) == 2 and all(contrast(bg, fg) >= 4.5 for bg, fg in c['ggo']) and contrast(c['gmins'], card) >= 4.5 and contrast(c['sub'], base) >= 4.5,
+            ok(f'G {scheme}: the row "Pass the phone": its three Play buttons, "3+ players" and the line under the title readable (at least 4.5:1)', len(c['ggo']) == 3 and all(contrast(bg, fg) >= 4.5 for bg, fg in c['ggo']) and contrast(c['gmins'], card) >= 4.5 and contrast(c['sub'], base) >= 4.5,
                ([round(contrast(bg, fg), 2) for bg, fg in c['ggo']], round(contrast(c['gmins'], card), 2), round(contrast(c['sub'], base), 2)))
             await ctx.close()
 
@@ -321,6 +323,12 @@ async def main():
            and await T(pg, '.wordmark') == 'Logicers' and await pg.evaluate("document.querySelector('meta[property=\"og:site_name\"]').content") == 'Logicers' and pg.errs == [], (pg.url, title, pg.errs))
         await pg.locator('.wordmark').click(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(300)
         ok('H Still In: the wordmark leads back home', pg.url == B + '/' and pg.errs == [], (pg.url, pg.errs))
+        await pg.locator('#tile-expert').click(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(500)
+        title = await pg.title()
+        ok('H So-Called Expert: its tile opens the third game for groups (no day number); title, wordmark and link preview say Logicers', pg.url == f'{B}/so-called-expert/' and title.startswith('So-Called Expert: ') and title.endswith('| Logicers') and 'day' not in title
+           and await T(pg, '.wordmark') == 'Logicers' and await pg.evaluate("document.querySelector('meta[property=\"og:site_name\"]').content") == 'Logicers' and pg.errs == [], (pg.url, title, pg.errs))
+        await pg.locator('.wordmark').click(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(300)
+        ok('H So-Called Expert: the wordmark leads back home', pg.url == B + '/' and pg.errs == [], (pg.url, pg.errs))
         await ctx.close()
 
         # ---------- I: opened from a folder (no web server)
@@ -328,7 +336,7 @@ async def main():
         hrefs = await pg.evaluate("[...document.querySelectorAll('#shelf-row .tile')].map(a => a.getAttribute('href'))")
         ghref = await pg.evaluate("[...document.querySelectorAll('#shelf2-row a.tile')].map(a => a.getAttribute('href')).join()")
         t = await tile(pg, 'hundred')
-        ok('I1 from a folder: links name the file, results and picture show, fonts load', hrefs == ['years-apart/index.html', '100-of-us/index.html', 'your-call/index.html', 'same-street/index.html', 'long-lost-cousin/index.html', 'the-club/index.html'] and ghref == 'still-in/index.html,one-of-193/index.html' and t['result'] == 'Off by 4' and await pg.evaluate("document.querySelectorAll('#cousin-pic path').length") == 1 and await pg.evaluate("document.fonts.check('800 40px \"Bricolage Grotesque\"')"), (hrefs, ghref, t))
+        ok('I1 from a folder: links name the file, results and picture show, fonts load', hrefs == ['years-apart/index.html', '100-of-us/index.html', 'your-call/index.html', 'same-street/index.html', 'long-lost-cousin/index.html', 'the-club/index.html'] and ghref == 'so-called-expert/index.html,one-of-193/index.html,still-in/index.html' and t['result'] == 'Off by 4' and await pg.evaluate("document.querySelectorAll('#cousin-pic path').length") == 1 and await pg.evaluate("document.fonts.check('800 40px \"Bricolage Grotesque\"')"), (hrefs, ghref, t))
         await pg.locator('#tile-cousin').click(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(500)
         ok('I2 from a folder: the game opens', pg.url.endswith('/long-lost-cousin/index.html') and await T(pg, '.wordmark') == 'Logicers', pg.url)
         ok('I no errors', pg.errs == [], pg.errs); await ctx.close()
@@ -356,34 +364,37 @@ async def main():
         lst = await pg.evaluate("TurnsOut.GAMES.map(g => ({id: g.id, key: g.key, name: g.name, href: g.href, start: g.start, file: (window.TURNSOUT_DATA[g.id] || {}).start, tile: (document.querySelector('#tile-' + g.key + ' h3') || {}).textContent, link: (document.getElementById('tile-' + g.key) || {getAttribute: () => null}).getAttribute('href'), pitch: g.pitch}))")
         ok('N1 the list of games in the frame has the six games, in the order of the shelf (the newest first)', [g['id'] for g in lst] == ['years-apart', '100-of-us', 'your-call', 'same-street', 'long-lost-cousin', 'the-club'] and await pg.evaluate("[...document.querySelectorAll('#shelf-row .tile')].map(t => t.id.replace('tile-', '')).join()") == ','.join(g['key'] for g in lst), lst)
         grp = await pg.evaluate("TurnsOut.GROUP.map(g => ({id: g.id, key: g.key, name: g.name, href: g.href, players: g.players, tile: (document.querySelector('#tile-' + g.key + ' h3') || {}).textContent, link: (document.getElementById('tile-' + g.key) || {getAttribute: () => null}).getAttribute('href'), mins: (document.querySelector('#tile-' + g.key + ' .mins') || {}).textContent}))")
-        ok('N4 the frame\'s own list of games for groups (apart from the daily games) equals the row "Pass the phone", the newest first: Still In, One of 193, "2+ players"', [g['id'] for g in grp] == ['still-in', 'one-of-193'] and all(g['name'] == g['tile'] and g['href'] == g['link'] and g['players'] == g['mins'] == '2+ players' for g in grp)
-           and not any(g['id'] in ('one-of-193', 'still-in') for g in lst) and await pg.evaluate("[...document.querySelectorAll('#shelf2-row a.tile')].map(t => t.id.replace('tile-', '')).join()") == ','.join(g['key'] for g in grp), grp)
+        ok('N4 the frame\'s own list of games for groups (apart from the daily games) equals the row "Pass the phone": the newest first, then the others in the order they came: So-Called Expert ("3+ players"), One of 193 and Still In ("2+ players")', [g['id'] for g in grp] == ['so-called-expert', 'one-of-193', 'still-in'] and all(g['name'] == g['tile'] and g['href'] == g['link'] and g['players'] == g['mins'] == ('3+ players' if g['id'] == 'so-called-expert' else '2+ players') for g in grp)
+           and not any(g['id'] in ('one-of-193', 'still-in', 'so-called-expert') for g in lst) and await pg.evaluate("[...document.querySelectorAll('#shelf2-row a.tile')].map(t => t.id.replace('tile-', '')).join()") == ','.join(g['key'] for g in grp), grp)
         ok('N2 every start date in that list equals the start date in the game\'s own file', all(g['start'] == g['file'] == START[g['id']] for g in lst), [(g['id'], g['start'], g['file']) for g in lst])
         ok('N3 names and addresses in that list equal the tiles on the shelf', all(g['name'] == g['tile'] and g['href'] == g['link'] and g['pitch'] for g in lst), lst)
         ok('N no errors', pg.errs == [], pg.errs); await ctx.close()
 
         # ---------- P: the row "Pass the phone": the games for groups, under "Today's games"
         ctx, pg = await new(br, FRESH, w=1440, h=900); await home(pg)
-        pr = await pg.evaluate("""(() => { const secs = [...document.querySelectorAll('main > section')].map(s => s.className), g = document.getElementById('tile-o193'), more = document.getElementById('tile-more-groups'), si = document.getElementById('tile-still');
+        pr = await pg.evaluate("""(() => { const secs = [...document.querySelectorAll('main > section')].map(s => s.className), g = document.getElementById('tile-o193'), more = document.getElementById('tile-more-groups'), si = document.getElementById('tile-still'), ex = document.getElementById('tile-expert');
             return { secs: secs, title: document.getElementById('group-title').textContent, sub: document.querySelector('.group-games .sec-sub').textContent,
                      tiles: [...document.querySelectorAll('#shelf2-row .tile')].map(t => t.id), name: g.querySelector('h3').textContent, href: g.getAttribute('href'), art: g.querySelectorAll('.art svg circle:not(.ring)').length,
                      play: !!g.querySelector('.go'), mins: g.querySelector('.mins').textContent, result: !!g.querySelector('.result, .again'), more: more.tagName + ':' + more.textContent.replace(/\\s+/g, ' ').trim(),
                      still: { name: si.querySelector('h3').textContent, href: si.getAttribute('href'), art: si.querySelectorAll('.art svg rect').length, miss: si.querySelectorAll('.art svg .miss').length,
                               play: !!si.querySelector('.go'), mins: si.querySelector('.mins').textContent, result: !!si.querySelector('.result, .again'), badge: !!si.querySelector('.badge') },
+                     expert: { name: ex.querySelector('h3').textContent, href: ex.getAttribute('href'), rects: ex.querySelectorAll('.art svg rect').length, stamp: ex.querySelectorAll('.art svg .stamp').length, dots: ex.querySelectorAll('.art svg circle').length,
+                              play: !!ex.querySelector('.go'), mins: ex.querySelector('.mins').textContent, result: !!ex.querySelector('.result, .again'), badge: !!ex.querySelector('.badge') },
                      btns: [...document.querySelectorAll('#shelf2 .shelf-btn')].map(b => [b.getAttribute('aria-label'), b.getAttribute('aria-controls')]) }; })()""")
         ok('P1 under "Today\'s games" stands "Pass the phone", with the line "Games for two or more, on one phone."', pr['secs'][:3] == ['hero', 'games', 'games group-games'] and pr['title'] == 'Pass the phone' and pr['sub'] == 'Games for two or more, on one phone.', pr)
-        st = pr['still']
-        ok('P2 its row: Still In first (the newest, with the badge "New"; its drawing of the rule and twelve countries, Play, "2+ players", no result of the day), One of 193 (its drawing of 193 dots), then a quiet "More to come" that is not a link',
-           pr['tiles'] == ['tile-still', 'tile-o193', 'tile-more-groups'] and pr['name'] == 'One of 193' and pr['href'] == 'one-of-193/' and pr['art'] == 193 and pr['play'] and pr['mins'] == '2+ players' and not pr['result']
-           and st['name'] == 'Still In' and st['href'] == 'still-in/' and st['art'] == 16 and st['miss'] == 1 and st['play'] and st['mins'] == '2+ players' and not st['result'] and st['badge']
+        st = pr['still']; ex = pr['expert']
+        ok('P2 its row: So-Called Expert first (the newest, with the badge "New"; its drawing of the expert\'s card with five lines and a stamp, Play, "3+ players", no result of the day), One of 193 (its drawing of 193 dots), Still In (the rule and twelve countries; no badge now), then a quiet "More to come" that is not a link',
+           pr['tiles'] == ['tile-expert', 'tile-o193', 'tile-still', 'tile-more-groups'] and pr['name'] == 'One of 193' and pr['href'] == 'one-of-193/' and pr['art'] == 193 and pr['play'] and pr['mins'] == '2+ players' and not pr['result']
+           and st['name'] == 'Still In' and st['href'] == 'still-in/' and st['art'] == 16 and st['miss'] == 1 and st['play'] and st['mins'] == '2+ players' and not st['result'] and not st['badge']
+           and ex['name'] == 'So-Called Expert' and ex['href'] == 'so-called-expert/' and ex['rects'] == 9 and ex['stamp'] == 1 and ex['dots'] == 5 and ex['play'] and ex['mins'] == '3+ players' and not ex['result'] and ex['badge']
            and pr['more'] == 'DIV:More to come More games for groups are in the works.', pr)
         ok('P3 its round buttons are buttons for the keyboard and screen readers ("Previous group games", "More group games")', pr['btns'] == [['Previous group games', 'shelf2-row'], ['More group games', 'shelf2-row']], pr['btns'])
         ok('P no errors', pg.errs == [], pg.errs); await ctx.close()
         ctx, pg = await new(br, ALL, w=1440, h=900)
-        await pg.add_init_script("try { const a = JSON.parse(localStorage.getItem('turnsout:v1') || '{}'); a.groups = {'one-of-193': {best: 3, rounds: 5, found: 4}, 'still-in': {games: 3, wins: {'Ana': 2}, n: 4, names: ['Ana']}}; localStorage.setItem('turnsout:v1', JSON.stringify(a)); } catch (e) {}")
+        await pg.add_init_script("try { const a = JSON.parse(localStorage.getItem('turnsout:v1') || '{}'); a.groups = {'one-of-193': {best: 3, rounds: 5, found: 4}, 'still-in': {games: 3, wins: {'Ana': 2}, n: 4, names: ['Ana']}, 'so-called-expert': {games: 2, wins: {'Ana': 1}, n: 3, names: ['Ana'], recent: ['KEN']}}; localStorage.setItem('turnsout:v1', JSON.stringify(a)); } catch (e) {}")
         await home(pg)
         ok('P4 rounds of the games for groups never count in the Today card or the streak, and their tiles show no result', await T(pg, '#today-count') == '6 of 6 played' and await pg.evaluate("document.querySelectorAll('.pips i').length") == 6
-           and await pg.evaluate("!document.querySelector('#tile-o193').classList.contains('done') && !document.querySelector('#tile-still').classList.contains('done')") and await T(pg, '#tile-o193 .mins') == '2+ players' and await T(pg, '#tile-still .mins') == '2+ players' and pg.errs == [], pg.errs)
+           and await pg.evaluate("!document.querySelector('#tile-o193').classList.contains('done') && !document.querySelector('#tile-still').classList.contains('done') && !document.querySelector('#tile-expert').classList.contains('done')") and await T(pg, '#tile-o193 .mins') == '2+ players' and await T(pg, '#tile-still .mins') == '2+ players' and await T(pg, '#tile-expert .mins') == '3+ players' and pg.errs == [], pg.errs)
         await ctx.close()
         # on a small phone the second row holds more than it shows: its buttons move it, the keyboard reaches its game
         ctx, pg = await new(br, FRESH, w=320, h=568); await home(pg)
@@ -408,12 +419,17 @@ async def main():
         await pg.evaluate("document.getElementById('tile-still').focus()"); await pg.wait_for_timeout(300)
         f = await pg.evaluate("document.activeElement.id")
         await pg.keyboard.press('Enter'); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(300)
-        ok('P6c the keyboard reaches Still In (the first tile) and Enter opens it', f == 'tile-still' and pg.url == f'{B}/still-in/' and pg.errs == [], (f, pg.url, pg.errs))
+        ok('P6c the keyboard reaches Still In (the third tile) and Enter opens it', f == 'tile-still' and pg.url == f'{B}/still-in/' and pg.errs == [], (f, pg.url, pg.errs))
+        await pg.go_back(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(300)
+        await pg.evaluate("document.getElementById('tile-expert').focus()"); await pg.wait_for_timeout(300)
+        f = await pg.evaluate("document.activeElement.id")
+        await pg.keyboard.press('Enter'); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(300)
+        ok('P6d the keyboard reaches So-Called Expert (the first tile) and Enter opens it', f == 'tile-expert' and pg.url == f'{B}/so-called-expert/' and pg.errs == [], (f, pg.url, pg.errs))
         await ctx.close()
         sm = open(f'{SITE}/sitemap.xml', encoding='utf-8').read()
-        ok('P7 the sitemap lists the two games for groups (as changing monthly); robots.txt still points to the sitemap', '<loc>https://logicers.com/one-of-193/</loc><changefreq>monthly</changefreq>' in sm and '<loc>https://logicers.com/still-in/</loc><changefreq>monthly</changefreq>' in sm and sm.count('<url>') == 9 and 'Sitemap: https://logicers.com/sitemap.xml' in open(f'{SITE}/robots.txt').read())
+        ok('P7 the sitemap lists the three games for groups (as changing monthly); robots.txt still points to the sitemap', '<loc>https://logicers.com/one-of-193/</loc><changefreq>monthly</changefreq>' in sm and '<loc>https://logicers.com/still-in/</loc><changefreq>monthly</changefreq>' in sm and '<loc>https://logicers.com/so-called-expert/</loc><changefreq>monthly</changefreq>' in sm and sm.count('<url>') == 10 and 'Sitemap: https://logicers.com/sitemap.xml' in open(f'{SITE}/robots.txt').read())
         from PIL import Image
-        ok('P8 their thumbnails for directories: r/thumbnails/one-of-193.png and still-in.png, 600 by 400', Image.open(f'{SITE}/r/thumbnails/one-of-193.png').size == (600, 400) and Image.open(f'{SITE}/r/thumbnails/still-in.png').size == (600, 400))
+        ok('P8 their thumbnails for directories: r/thumbnails/one-of-193.png, still-in.png and so-called-expert.png, 600 by 400', all(Image.open(f'{SITE}/r/thumbnails/{g}.png').size == (600, 400) for g in ('one-of-193', 'still-in', 'so-called-expert')))
 
         # ---------- L: the not-found page
         ctx, pg = await new(br, w=390, h=844); await pg.goto(B + '/404.html'); await pg.wait_for_timeout(200)
@@ -439,7 +455,7 @@ async def main():
             h = open(f'{SITE}/{pg_path}', encoding='utf-8').read(); up = '' if pg_path == 'index.html' else '../'
             heads[pg_path] = re.findall(r'<link rel="(?:icon|apple-touch-icon)"[^>]*>', h)
             heads[pg_path] = [re.sub(r'\?v=[0-9a-f]+', '', l) for l in heads[pg_path]] == [f'<link rel="icon" href="{up}favicon.ico" sizes="32x32">', f'<link rel="icon" href="{up}assets/img/favicon.svg" type="image/svg+xml">', f'<link rel="apple-touch-icon" href="{up}assets/img/apple-touch-icon.png">']
-        ok('M3 every page links favicon.ico first (sizes 32x32, so that Chrome keeps the SVG), then favicon.svg and the phone icon, each with its version (V2)', len(heads) == 9 and all(heads.values()), heads)
+        ok('M3 every page links favicon.ico first (sizes 32x32, so that Chrome keeps the SVG), then favicon.svg and the phone icon, each with its version (V2)', len(heads) == 10 and all(heads.values()), heads)
         ok('M2 phone icon 180x180 and preview picture 1200x630', Image.open(f'{SITE}/assets/img/apple-touch-icon.png').size == (180, 180) and Image.open(f'{SITE}/assets/img/og.png').size == (1200, 630))
 
         await br.close()

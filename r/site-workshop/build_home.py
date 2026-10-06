@@ -7,8 +7,10 @@
 
 The look lives in assets/css/logicers.css: light by day, dark when the device is set to dark; one colour per game.
 Under "Today's games" stands a second row, "Pass the phone": the games for groups (GROUP below and in turnsout.js).
-They are not daily: their tiles say "2+ players" instead of "1 min" and show no result of the day, and they do not
-count in the Today card or the streak. To add one: draw it in arts.py, add it to GROUP here and to GROUP in
+They are not daily: their tiles say how many play ("2+ players", "3+ players") instead of "1 min" and show no result of
+the day, and they do not count in the Today card or the streak. The newest stands first with the badge "New", the others
+follow in the order they arrived, as on the shelf; turnsout.js keeps its GROUP in the same order (N4 in checks/t_site.py).
+To add one: draw it in arts.py, add it to GROUP here (new=True, taken off the one before) and to GROUP in
 assets/js/turnsout.js, give it a colour in logicers.css, and run this script. Its round button for more starts hidden
 (the row of group games still fits on every screen); home.js shows it as soon as the row holds more than it shows.
 Before 5 Oct 2026 (evening) it started visible and faded out on every load, a flash on every screen.
@@ -47,9 +49,12 @@ GROUP = [
     dict(key='o193', href='one-of-193/', name='One of 193', art=art_one(), players='2+ players',
          pitch='The phone hides one of 193 countries. Ask it yes or no, and find the country in as few questions as you can.',
          short='The phone hides a country. Ask yes or no, and find it.'),
-    dict(key='still', href='still-in/', name='Still In', art=art_still(), new=True, players='2+ players',
+    dict(key='still', href='still-in/', name='Still In', art=art_still(), players='2+ players',
          pitch='Twelve countries and one rule. Take turns tapping one that fits. Wrong, and you are out.',
          short="Twelve countries, one rule. Tap one that fits, or you're out."),
+    dict(key='expert', href='so-called-expert/', name='So-Called Expert', art=art_expert(), new=True, players='3+ players',
+         pitch='One of you gets five facts about a country, one of them invented, and sells all five. Can the table spot it?',
+         short='Five facts about a country, one invented. Can the table spot it?'),
 ]
 
 def tile(g):
@@ -218,6 +223,8 @@ html = f'''<!doctype html>
     <p class="quiet">Years Apart checks every date against two sources, linked under the answer.</p>
     <h3>Where the countries' facts come from</h3>
     <p class="quiet">One of 193 and Still In, the games for groups, use the World Bank's open data (World Development Indicators, CC BY 4.0) and lists that were each checked on two websites. One of 193 links them with the facts at the end of a round, Still In under the twelve countries after each rule.</p>
+    <h3>Where the experts' facts come from</h3>
+    <p class="quiet">So-Called Expert gives one player five facts about a country. Four are true: each was checked on two websites, or comes from the World Bank's open data or the checked lists of One of 193, and its sources are linked when the round is over. One fact is invented on purpose, and the game always marks it as invented by Logicers.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>

@@ -17,7 +17,8 @@ GAMES = [('100-of-us', 'hundred', '100 of Us', 'Of 100 people in the world, how 
          ('the-club', 'club', 'The Club', 'Work out the secret rule. Who gets in?', art_club()),
          ('years-apart', 'apart', 'Years Apart', 'Two real events, one in between. Where does it fall?', art_apart()),
          ('one-of-193', 'o193', 'One of 193', 'The phone hides a country. Ask yes or no.', art_one()),    # the first game for groups
-         ('still-in', 'still', 'Still In', "Twelve countries, one rule. Tap one that fits.", art_still())]   # the second
+         ('still-in', 'still', 'Still In', "Twelve countries, one rule. Tap one that fits.", art_still()),   # the second
+         ('so-called-expert', 'expert', 'So-Called Expert', 'Five facts about a country, one invented.', art_expert())]   # the third
 # the cousin drawing always shows the hippo, as on the preview picture
 HIPPO = ('<script>window.TurnsOutPic = function (k, p) { var s = document.getElementById("cousin-pic"); if (!s) return; '
          's.setAttribute("viewBox", "0 0 " + p.w + " " + p.h); var a = document.createElementNS("http://www.w3.org/2000/svg", "path"); '

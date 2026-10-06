@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>So-Called Expert: a pass-the-phone game of five facts, one invented | Logicers</title>
+<link rel="canonical" href="https://logicers.com/so-called-expert/">
+<meta name="description" content="A game for one phone and three to eight players. Each of you takes a turn as the expert: you get five facts about a country, and one of them was invented by Logicers. Present all five as true. The others try to spot the invented one.">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="So-Called Expert">
+<meta property="og:description" content="Five facts about a country, one invented. The expert sells all five. Can the table spot the fake? For one phone and a group.">
+<meta property="og:url" content="https://logicers.com/so-called-expert/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FDE4E7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=eb8f60f0e7">
+<link rel="stylesheet" href="so-called-expert.css?v=b211261036">
+</head>
+<body class="game" data-g="expert">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="wins-chip" type="button" data-open="dlg-wins" aria-label="Wins at this table">Wins</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b>So-Called Expert</b> <span id="mode">Pass the phone</span></p>
+
+  <!-- the start: what to do, in ten seconds, and who plays -->
+  <section class="e-view" id="v-start" aria-labelledby="start-title">
+    <h1 class="e-title" id="start-title">Five facts. One is invented.</h1>
+    <p class="e-lede">Take turns as the expert. You get five facts about a country, and Logicers invented one of them. Sell all five as true. The others try to spot the fake.</p>
+    <p class="e-friend" id="friend" hidden></p>
+    <div class="e-players" role="group" aria-labelledby="players-label">
+      <span class="e-players-label" id="players-label">Players</span>
+      <button class="e-step" id="btn-fewer" type="button" aria-label="One player fewer">−</button>
+      <output class="e-count" id="players-n" aria-live="polite">3</output>
+      <button class="e-step" id="btn-more" type="button" aria-label="One player more">+</button>
+      <button class="e-names-btn" id="btn-names" type="button" data-open="dlg-names">Names</button>
+    </div>
+    <p class="e-names" id="names-line"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-start" type="button">Start</button>
+    </div>
+    <p class="e-small" id="start-small">3 to 8 players · one phone · each of you is the expert once · 2 to 3 minutes a turn</p>
+  </section>
+
+  <!-- passing the phone to the expert of the turn: a whole screen, so that nobody misses it; the others look away -->
+  <section class="e-view" id="v-hand" hidden aria-labelledby="hand-title">
+    <div class="e-hand" id="hand">
+      <p class="e-hand-res" id="hand-res" role="status" aria-live="polite"></p>
+      <svg class="e-hand-ico" viewBox="0 0 76 48" aria-hidden="true"><rect x="6" y="3" width="24" height="42" rx="6" fill="none" stroke="currentColor" stroke-width="3.2"/><circle cx="18" cy="38.5" r="2.2" fill="currentColor"/><path d="M39 24h30m-10-10 10 10-10 10" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2 class="e-hand-t" id="hand-title"><span class="e-hand-k">Pass the phone to</span> <span class="e-hand-name" id="hand-name"></span></h2>
+      <p class="e-hand-line" id="hand-line"></p>
+      <button class="btn e-hand-go" id="btn-card" type="button">Player 1 has the phone</button>
+    </div>
+    <p class="e-small e-hand-small"><span id="hand-k">Turn 1 of 3</span> · <button class="e-link" type="button" id="btn-scores" data-open="dlg-scores">Scores</button></p>
+  </section>
+
+  <!-- the expert's card: only the expert sees which fact is invented -->
+  <section class="e-view" id="v-card" hidden aria-labelledby="card-name">
+    <p class="e-kicker e-secret" id="card-k">Only you see this</p>
+    <h2 class="e-country" id="card-name"></h2>
+    <p class="e-task" id="card-task">Logicers invented the one with the stamp. Present all five as true, in your own words. Then take up to three questions.</p>
+    <ol class="e-facts" id="card-facts" aria-label="Your five facts"></ol>
+    <div class="actions">
+      <button class="btn solid" id="btn-table" type="button">Done: show the table</button>
+    </div>
+  </section>
+
+  <!-- the table votes: the five facts, no mark -->
+  <section class="e-view" id="v-vote" hidden aria-labelledby="vote-q">
+    <p class="e-kicker" id="vote-k"></p>
+    <h2 class="e-q" id="vote-q">Which one is invented?</h2>
+    <ol class="e-facts" id="vote-facts" aria-label="The five facts"></ol>
+    <p class="e-line" id="vote-line">On three, everyone but the expert points at a number.</p>
+    <div class="actions">
+      <button class="btn solid" id="btn-reveal" type="button">Reveal</button>
+    </div>
+  </section>
+
+  <!-- the reveal: the invented fact, the truth, and who found it -->
+  <section class="e-view" id="v-reveal" hidden aria-labelledby="rev-head">
+    <div class="panel revealed e-reveal">
+      <p class="e-rev-k" id="rev-k"></p>
+      <h2 class="e-rev-head" id="rev-head"></h2>
+      <p class="e-stamp-big" id="rev-stamp">Invented by Logicers</p>
+      <p class="e-truth" id="rev-truth"></p>
+      <p class="e-src e-rev-src" id="rev-src"></p>
+    </div>
+    <p class="e-who-q" id="who-q">Who found it?</p>
+    <div class="e-who" id="who" role="group" aria-labelledby="who-q"></div>
+    <div class="actions">
+      <button class="btn solid" id="btn-score" type="button">Score it</button>
+    </div>
+  </section>
+
+  <!-- after a turn: the four true facts, their sources, the scores -->
+  <section class="e-view" id="v-sum" hidden aria-labelledby="sum-head">
+    <p class="e-kicker" id="sum-k"></p>
+    <h2 class="e-sum-head" id="sum-head">The four true facts</h2>
+    <ol class="e-facts e-true" id="sum-facts" aria-label="The four true facts and their sources"></ol>
+    <p class="e-score-line" id="sum-scores" role="status"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-next" type="button">Next turn</button>
+    </div>
+  </section>
+
+  <!-- the end: the scores, the winner -->
+  <section class="e-view" id="v-end" hidden aria-labelledby="end-name">
+    <div class="panel revealed e-end">
+      <p class="e-end-k" id="end-k">Game over</p>
+      <h2 class="e-winner" id="end-name"></h2>
+      <p class="e-end-line" id="end-line"></p>
+    </div>
+    <ol class="e-board" id="board" aria-label="Scores"></ol>
+    <p class="e-tally" id="tally"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-again" type="button">Play again</button>
+      <button class="btn ghost" id="share" type="button">Share</button>
+    </div>
+    <p class="e-small e-end-small"><button class="e-link" type="button" id="btn-change">New players</button></p>
+  </section>
+</main>
+
+<dialog id="dlg-names" aria-labelledby="names-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="names-title">Who is playing?</h2>
+    <p class="quiet">Names are optional. Sit in this order: the phone goes round, and each of you is the expert once.</p>
+    <div class="e-name-fields" id="name-fields"></div>
+    <div class="actions">
+      <button class="btn solid" type="button" data-close>Done</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-scores" aria-labelledby="scores-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="scores-title">Scores so far</h2>
+    <ul class="e-roster" id="roster"></ul>
+    <p class="quiet" id="roster-note"></p>
+    <div class="actions">
+      <button class="btn ghost" id="btn-quit" type="button">End this game</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-wins" aria-labelledby="wins-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="wins-title">Wins at this table</h2>
+    <ul class="e-roster" id="wins-list"></ul>
+    <p class="quiet" id="wins-note">Kept only in this browser. A group game has no streak and no album: play it whenever you are together.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>The phone says who is the expert of the turn: hand it over, and the expert taps to say they have it. Only the expert looks: the card shows five facts about a country, and a stamp on the one Logicers invented.</li>
+      <li>The expert presents all five as true, in their own words, and takes up to three questions.</li>
+      <li>The expert puts the phone in the middle. On three, everyone else points at the fact they think is invented.</li>
+      <li>Reveal it, and tap who found it. Each of them gets a point; the expert gets a point for each player fooled.</li>
+      <li>The phone goes round until each of you has been the expert once. Most points wins.</li>
+    </ol>
+    <h3>Where the facts come from</h3>
+    <p class="quiet">Four facts on every card are true. Each was checked on two websites, or comes from the World Bank's open data (World Development Indicators, under the CC BY 4.0 licence) or from the lists of One of 193, which were checked on two websites each. Their sources are linked after every turn. The fifth fact was invented on purpose: the game always marks it as invented by Logicers and shows the truth with its sources. The World Bank does not endorse this site.</p>
+    <p class="quiet" id="help-count"></p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="names">No login, no tracking, no cookies. The players' names and wins are kept only in this browser.</p>
+    <h3>Contact</h3>
+    <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-quit" aria-labelledby="quit-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="quit-title">End this game?</h2>
+    <p class="quiet">Nobody wins it, and you go back to the start.</p>
+    <div class="actions">
+      <button class="btn solid" id="btn-quit-yes" type="button">End the game</button>
+      <button class="btn ghost" type="button" data-close>Keep playing</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share the best bluff</h2>
+    <p class="quiet">Send the link along with the picture: it deals the same country to your friends' table. Neither shows a fact.</p>
+    <img class="shot" id="share-img" alt="The country of the turn that fooled the most players, and how many it fooled. No fact is shown.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="so-called-expert.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="../data/so-called-expert.js"></script>
+<script src="../assets/js/turnsout.js?v=5c51742598"></script>
+<script src="so-called-expert.js?v=93015486e9"></script>
+</body>
+</html>

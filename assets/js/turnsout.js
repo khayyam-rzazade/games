@@ -282,17 +282,20 @@
 
   /* ------------------------------------------------------------------
      The games for groups ("Pass the phone" on the home page): one phone, a group of players, any time and as
-     often as they like. The newest stands first (Still In since 5 Oct 2026, evening). They are not daily: no day number, no streak, no album. Nothing they store counts in the
+     often as they like. In the order of their row: the newest first, then the others in the order they arrived
+     (since 6 Oct 2026: So-Called Expert, One of 193, Still In). They are not daily: no day number, no streak, no album. Nothing they store counts in the
      Today card, the streak of the site, the way onward or the returning-player events, which all read GAMES only.
-     Their own records (a table's best result, the countries hidden lately, the players' names and wins) are kept
+     Their own records (a table's best result, the countries and cards it had lately, the players' names and wins) are kept
      apart, under "groups".
      To add one: add it here and to GROUP in r/site-workshop/build_home.py, and give it a colour in logicers.css.
      ------------------------------------------------------------------ */
   var GROUP = [
-    { id: "still-in", key: "still", name: "Still In", href: "still-in/", players: "2+ players",
-      pitch: "Twelve countries, one rule. Tap one that fits, or you're out." },
+    { id: "so-called-expert", key: "expert", name: "So-Called Expert", href: "so-called-expert/", players: "3+ players",
+      pitch: "Five facts about a country, one invented. Can the table spot it?" },
     { id: "one-of-193", key: "o193", name: "One of 193", href: "one-of-193/", players: "2+ players",
-      pitch: "The phone hides a country. Ask yes or no, and find it." }
+      pitch: "The phone hides a country. Ask yes or no, and find it." },
+    { id: "still-in", key: "still", name: "Still In", href: "still-in/", players: "2+ players",
+      pitch: "Twelve countries, one rule. Tap one that fits, or you're out." }
   ];
   function group(id) {
     var all = readAll();

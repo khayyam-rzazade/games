@@ -1,0 +1,2037 @@
+SO-CALLED EXPERT: THE SEARCH FOR THE SAME GAME, THE NAME AND THE COLOUR
+=======================================================================
+Done on 5 and 6 October 2026 (Rome time), in the chat that built the game, before any of it was built.
+
+VERDICT (C): no SAME game was found, so it was built, as a mixture of known party games.
+  The test for SAME (the brief below): a player is HANDED by the game a set of real facts that hides one false or
+  invented fact, presents them all as true, and the others must find the false one.
+  Closest relatives (told to Khayyam by a short message at about 00:05 on 6 Oct; he did not say stop):
+  - The Unbelievable Truth (BBC Radio 4) and its board game (Ginger Fox): the mirror image. A lecture made of lies
+    with five true facts hidden in it; the panellists buzz in when they hear a truth; the lecturer scores for each
+    truth that slips through. In So-Called Expert the expert presents five facts of which only ONE is false, the
+    facts come from the game (checked, with sources), and everyone votes at once.
+  - Would I Lie to You? (BBC One): the producers hand a player a card with a statement (true or a lie) that the
+    player has never seen; the player defends it under questioning. One statement per turn, true or false, about
+    the player's own life; here five facts about a country, exactly one invented, and the sources after the turn.
+  Others, further away: Cambridge English "That's not right!" (students write five true facts and one false one
+  about a country), a Payhip "Two Truths and a Lie: History and Geography" deck, The Game of Lies (2019), Fake That!,
+  Fact or Fiction (Ludicus, 2024), Mansplaining (Breaking Games), Liar Liar Pants on Fire, LiarLiar (an app in the
+  style of Call My Bluff), the Two Truths and a Lie apps, Lie or Legend (a solo daily app: five statements a day),
+  Call My Bluff, Balderdash, Malarky, Fibbage, Sounds Fishy, and the improv game "Expert Interview".
+  The three helpers' reports are below, word for word (part 3); every rating in them is the helper's own.
+
+THE NAME (C): So-Called Expert
+  - "Expert Interview" (the working name in group-games.md 1.5) is taken: an improv theatre game (Hoopla Impro,
+    SessionLab) and a classroom speaking game (write-out-loud).
+  - "Straight Face" is taken: a drinking game by Paladone.
+  - "So-Called Expert": no game, app or party game of that name was found, neither in the helpers' searches for the
+    names (A, search 5; B, its search for "Straight Face" and "So-Called Expert"; C, queries 1 and 3) nor in
+    Claude's own five searches (part 2). Close but different: "Everyone's an Expert" (a board game of 2021,
+    in the results of the third search). "Instant Expert", "Four and a Fib" and "Our Expert" were not found either.
+
+THE COLOUR (C): crimson
+  - By day #9B0238 (white text on it 8.54 to 1), by night #F6BAD2 (12.1 to 1 on the night background #080A15);
+    pale tints #FDE4E7 by day and #270C12 by night.
+  - Chosen as the colour furthest from every colour that a game uses or has reserved (logicers.css, the plan):
+    in the OKLab colour space it lies 0.135 from mocha (Years Apart), 0.138 from magenta and plum (The Club,
+    Still In), 0.153 from coral (Long Lost Cousin); by night 0.116 from the nearest. The script that measured it
+    was work in the chat (it is not part of the site).
+
+PART 2: CLAUDE'S OWN SEARCHES FOR THE NAME (5, WebSearch, mode "standard", 6 Oct 2026 about 00:02)
+  1. "So-Called Expert" game
+     results: Expert (video game, Wikipedia), pages on expertise, an intellectual game "Expert" in Tashkent, a
+     Madonna "expert test" quiz page. No game called So-Called Expert.
+  2. "So-Called Expert" app iPhone OR Android
+     results: apps named Expert, iFixin Expert, MyPandit Experts, AnyExpert, the Devialet Expert remote. None of
+     that name.
+  3. "So-Called Expert" board game OR card game OR party game
+     results: Mansplaining (Breaking Games; already among the relatives), "Everyone's an Expert" (2021),
+     "Apropos - Of Board Games", a shop's category "jeux experts". None of that name.
+  4. "So Called Expert" quiz OR trivia OR bluffing game
+     results: Finto - Bluff Quiz for Friends (an app), University Games' Bluff Trivia, Poppycock! (a bluffing
+     trivia game), Malarky. None of that name.
+  5. "So-Called Expert" itch.io OR steam OR boardgamegeek
+     results: articles about itch.io and Steam. None of that name.
+
+PART 3: THE BRIEF THE HELPERS HAD, AND THEIR THREE REPORTS (36 searches: A 12, B 12, C 12)
+
+#### THE BRIEF ####
+
+BRIEF FOR THE SEARCH HELPERS (5-6 Oct 2026)
+==========================================
+
+THE IDEA TO CHECK (working name "Expert Interview", for the site Logicers)
+  A party game on ONE phone for 3 to 8 people in the same room.
+  - Each round one player is "our expert" on a country (players take turns).
+  - The phone secretly shows only the expert a card: a country and five short facts about it.
+    Four are TRUE real-world facts (each with sources). ONE is INVENTED by the game, and the card marks it
+    for the expert only ("This one is invented. Say it like the others.").
+  - The expert presents the country for about a minute, in their own words, like an expert on TV, and works
+    all five facts in. The others may ask up to three questions; the expert answers in character.
+  - Then everyone else points at the fact they think is invented. The phone reveals it ("invented by the
+    game"), shows the four true facts with their sources, and keeps score (a point for each player who found
+    it; a point for the expert for each player fooled).
+  What would make it THE SAME GAME: an app, web game, board/card game or TV/radio format in which a player
+  is handed (by the game, not written by themselves) a set of real facts that hides one false/invented
+  fact, presents them all as true, and the others must find the false one; ideally with sources.
+
+KNOWN RELATIVES (look at them closely and say exactly how they differ):
+  Call My Bluff (TV), Would I Lie to You? (TV, and any board game of it), The Unbelievable Truth (BBC radio:
+  lectures that are false except for five true facts), Two Truths and a Lie (icebreaker, and its apps and
+  card versions), Malarky, Catfished, Balderdash, Fibbage (Jackbox), Sounds Fishy (Big Potato), Jackbox
+  "Talking Points" (presenting unseen slides), improv theatre games called "Expert" / "Expert Interview".
+
+NAMES TO CHECK (is any game, app or party game called exactly this?)
+  Straight Face, So-Called Expert, Instant Expert, Four and a Fib, Our Expert, Expert Interview.
+
+RULES (strict)
+  1. You have a FIXED number of web searches (stated in your task). Count them. Never go over.
+     Use WebSearch with mode "standard".
+  2. Open a page (WebFetch) ONLY if its exact address appeared in YOUR OWN search results in this task, or
+     is a link you copied from a page you opened. NEVER type an address from memory or guess one.
+     If a page fails (403/404/blocked), note it and move on; do not try other addresses for it.
+  3. Do not use the Workflow tool. Do not start other agents.
+  4. When you describe what a game does, quote the page word for word in "quotes" where you can, and give
+     the address you opened. "Not opened" = you only saw the title in results; then do not describe it.
+  5. Rate each find: SAME (the same game as the idea) / CLOSE RELATIVE / FAR.
+  6. Write your full report into the file named in your task, as plain text, with every query you used,
+     numbered. Then reply with a short summary (under 250 words): the closest finds and the names.
+
+#### REPORT A: APP STORES AND WEB GAMES ####
+
+REPORT A - APP STORES (Apple App Store, Google Play, and app-review sites that came up)
+Helper A, search done 5-6 Oct 2026, for the idea "Expert Interview" (Logicers)
+=====================================================================================
+
+SHORT ANSWER
+  No SAME game found in the app stores within 12 searches.
+  The stores are full of three kinds of apps:
+    (1) personal "Two Truths and a Lie" apps (the player writes facts about themselves, mostly played remotely),
+    (2) Fibbage/Balderdash clones (the app gives a true fact or question and everyone writes fake answers),
+    (3) imposter / secret-word games (what "fake expert" and "bluff expert" searches mostly return).
+  I found no app where the APP hands one player a set of real facts that hides one fake made up by the app,
+  the player presents them, and the others find the fake. I also found no app that shows sources.
+  The closest relatives turned up OUTSIDE the stores, in reviews that came up in my results:
+    - "The Unbelievable Truth" board game (Ginger Fox) - CLOSE RELATIVE (the closest product)
+    - a classroom version of "The Unbelievable Truth" (tutor2u) - CLOSE RELATIVE (closest in how the facts and lies are mixed)
+    - "The Game of Lies" (2019 board game) and "Fake That!" (Studio H card game) - CLOSE RELATIVE
+  Closest APPS: LiarLiar (Call My Bluff style, with an interrogator) - CLOSE RELATIVE; the Two Truths and a Lie
+  apps - CLOSE RELATIVE; "Lie or Legend" (solo daily game: five statements a day, real or lie) - FAR as a party
+  game, but very close in what the content looks like.
+
+METHOD NOTES
+  - 12 web searches used, all WebSearch mode "standard". Count: 12 of 12.
+  - I opened only addresses that appeared in my own results, plus one link copied from a page I opened
+    (the Lie or Legend App Store link, copied from its Peerlist page).
+  - Quotes are word for word as returned by the WebFetch page reader (it pulls text from the page; I did not see the
+    raw page). Where the reader gave a summary and not a quote, I say so or leave out the quote marks.
+  - "Not opened" = I only saw the title in results; I do not describe those.
+  - Rating scale used:
+      SAME = matches the brief's test (player handed real facts by the game, one false hidden, presents them all
+             as true, others find the false one).
+      CLOSE RELATIVE = shares the core loop (one player presents, a false/true item is hidden, the others hunt it)
+             or the "game supplies true facts + a fake" part, but differs on one or two key points.
+      FAR = shares only a general bluffing / trivia / party theme.
+
+=====================================================================================
+THE 12 SEARCHES (numbered, in the order run) WITH RESULTS
+=====================================================================================
+
+#1  site:apps.apple.com "two truths and a lie" facts game
+    Results:
+    - Truth Truth Lie - https://apps.apple.com/app/id1156900237  [OPENED]
+    - Truth Truth Lie - https://apps.apple.com/us/app/truth-truth-lie/id1156900237?ls=1  (same app)
+    - 2 Truths and a Lie - https://apps.apple.com/app/id6743996674  [OPENED]
+    - Two Truths and A Lie - https://apps.apple.com/py/app/two-truths-and-a-lie/id1494625210  (same app as next)
+    - Two Truths and A Lie - https://apps.apple.com/app/id1494625210  [OPENED]
+    - 2 Truths and a Lie - https://apps.apple.com/py/app/2-truths-and-a-lie/id6743996674  (same app)
+    - 2 Truths and 1 Lie - https://apps.apple.com/app/id6479049086  [OPENED]
+    - 2 Truths and 1 Lie - https://apps.apple.com/py/app/2-truths-and-1-lie/id6479049086  (same app)
+    - Two Truths and a Lie: iMessage - https://apps.apple.com/th/app/two-truths-and-a-lie-imessage/id1601860378  (not opened)
+    - TwoTruths: 2 Truths 1 Lie - https://appgoblin.info/apps/6760158657  [OPENED]
+    Takeaway: every 2T1L app found here is the personal icebreaker (players write facts about themselves).
+
+#2  site:play.google.com bluff party game fake fact
+    (Note: the search engine ignored "site:" - it returned App Store and other pages, no Google Play pages.)
+    Results:
+    - Bamboozle - Party Game - https://apps.apple.com/app/id6746349121  [OPENED]
+    - Finto - https://apps.apple.com/mg/app/finto-bluff-quiz-for-friends/id1481703107  (same app as below)
+    - Fibster - https://apps.apple.com/us/app/fibster/id6758892017  [OPENED]
+    - Finto - Bluff Quiz for Friends - https://apps.apple.com/app/id1481703107  [OPENED]
+    - Truth or Lie: Party Game - https://apps.apple.com/app/id6743404211  [OPENED]
+    - Fibbage (PlayStation Store) - https://store.playstation.com/en-cl/concept/201418  (not opened; known relative)
+    - Truth or Lie: Party Game - https://apps.apple.com/us/app/-/id6743404211  (same app)
+    - what the actual factual - https://shop.parkinsons.org.uk/products/what-the-actual-factual.oembed  [OPENED]
+    - Truth Be Told - https://www.exodusbooks.com/truth-be-told/35710/  [OPENED]
+    - The Game of Lies - https://www.meeplemountain.com/boardgame/the-game-of-lies/  [OPENED]
+
+#3  "pass the phone" bluff expert party game app
+    Results:
+    - Spy - Find the spy partygame - https://apps.apple.com/us/app/-/id6751100410  (not opened)
+    - Spy Partygame - The word is? - https://apps.apple.com/app/id6751100410  (not opened)
+    - Find Who's Different One - https://apps.apple.com/app/id6757858367  (not opened)
+    - mwm.ai (Fake It imposter game) - https://mwm.ai/apps/fake-it-imposter-game/6761764596  (not opened)
+    - Imposter X - Word Game - https://mwm.ai/apps/imposter-x-word-game/6783528261  (not opened)
+    - Impostor Game Undercover Party - https://apps.apple.com/us/app/-/id6747424464  (not opened)
+    - apps.apple.com (no title) - https://apps.apple.com/app/id547805285  [OPENED - turned out to be "Phrase Frenzy - Catch It!"]
+    - Current rank (Spy imposters) - https://mwm.ai/apps/spy-imposters/6754261418  (not opened)
+    - Imposter Game: Spark PartyPass - https://apps.appfollow.io/ios/imposter-game-spark-partypass/6755589571?country=td  (not opened)
+    - Bluffy - Local Party Game - https://appgoblin.info/apps/6762367728  [OPENED]
+    Takeaway: "pass the phone" + bluff = almost only imposter / secret-word games.
+
+#4  site:apps.apple.com OR site:play.google.com "Straight Face" party game      [NAME SEARCH 1 of 4]
+    Results:
+    - Try Not 2 Laugh Challenge 4+ - https://apps.apple.com/qa/app/try-not-2-laugh-challenge/id6751407317  (same app as next)
+    - Try Not 2 Laugh Challenge - https://apps.apple.com/us/app/-/id6751407317  [OPENED]
+    - entertainmentearth.com - https://www.entertainmentearth.com/product/straight-face-drinking-game/pp6511tx  [OPENED]
+    - Emotion-Driven Party Games - https://www.trendhunter.com/trends/facearena  [OPENED]
+    - uncharted.kibocommerce.com - https://uncharted.kibocommerce.com/Mayer-Mayer-Mayer-Laugh-Attack-Party-Game/p/78095000042  (not opened)
+    - apps.apple.com (Partiz) - https://apps.apple.com/us/app/partiz/id6759404644  [OPENED]
+    - straight face - https://gamerules.com/rules/straight-face/  [OPENED]
+    - producthunt (FaceArena) - https://www.producthunt.com/products/facearena  (not opened)
+    - Funny Face Game - https://www.walmart.com/c/kp/funny-face-game  (not opened)
+    - Party Boom: Group Party Games - https://apps.apple.com/app/id664561745  [OPENED]
+
+#5  "So-Called Expert" OR "Instant Expert" party game app bluff      [NAME SEARCH 2 of 4]
+    Results (none has either name in its title):
+    - Fibster - https://apps.apple.com/us/app/fibster/id6758892017  (already opened)
+    - Imposter X - Word Game - https://mwm.ai/apps/imposter-x-word-game/6783528261  (not opened)
+    - Bamboozle - Party Game - https://apps.apple.com/app/id6746349121  (already opened)
+    - Imposter Game: Word Party Game - https://apps.apple.com/us/app/-/id6754060300  (not opened)
+    - spark.mwm.ai - https://spark.mwm.ai/en/apps/imposter-party-word-game/6745120053  (not opened)
+    - Finto - Bluff Quiz for Friends - https://apps.apple.com/app/id1481703107  (already opened)
+    - Imposter Game - Party Edition - https://apps.apple.com/us/app/-/id6745120053  (not opened)
+    - mwm.ai (Fake It imposter game) - https://mwm.ai/apps/fake-it-imposter-game/6761764596  (not opened)
+    - "top of page" (Fake That! review) - https://boardseyeview.net/post/fake-that  [OPENED]
+    - Fake It - The Ultimate Imposter Game - https://peerpush.com/p/fake-it-the-ultimate-imposter-game  (not opened)
+
+#6  "Four and a Fib" OR "Our Expert" game app      [NAME SEARCH 3 of 4]
+    Results (all unrelated - Connect Four and Fibonacci number apps; none opened):
+    - Four in a row Expert - https://apps.apple.com/us/app/id1273846044
+    - Four in a row Expert - https://apps.appfollow.io/ios/four-in-a-row-expert/1273846044?country=us
+    - Four in a Row - Expert AI - https://apps.apple.com/us/app/-/id1149461817
+    - Four in a Row - Expert AI - https://apps.apple.com/hn/app/four-in-a-row-expert-ai/id1149461817
+    - Four in a Row - Expert AI 4+ - https://apps.apple.com/us/app/four-in-a-row-expert-ai/id1149461817?uo=4
+    - Fibonacci Numbers Game - https://just-another-game-dev.itch.io/fibonacci
+    - appfollow.io - https://appfollow.io/ios/four-discs-classic-game/534450592?country=us
+    - Fibonacci: The Number Game - https://apps.apple.com/us/app/id1517534132
+    - Fibonacci Numbers - https://apps.apple.com/qa/app/fibonacci-numbers/id6566185190?l=ar
+    - iPhoneAddict Apps - https://iphoneaddict.fr/apps/jeux/four-in-a-row-merciless-connect-board-game.html
+
+#7  "Expert Interview" party game app iPhone Android      [NAME SEARCH 4 of 4]
+    Results (no app with this name):
+    - What are the best party games apps for Android and iOS? - https://e-learning.kstvet.ac.ke/reference/what-are-the-best-party-games-apps-for-android-and-ios-sben  (not opened; looks like an SEO/spam page)
+    - What are the most popular party games apps? - https://dev.asburyseminary.edu/manual/what-are-the-most-popular-party-games-apps-cwuh.html  (not opened; same)
+    - best ios party game apps 2026 - https://twit.tv/posts/tech/best-ios-party-game-apps-2026  [OPENED]
+    - best ios party game apps 2026 - https://cftest.twit.tv/posts/tech/best-ios-party-game-apps-2026  (copy of the above; not opened)
+    - The Best Party Game Now Available on IOS and Android - https://www.newswire.com/news/the-best-party-game-now-available-on-ios-and-android-27901  [OPENED]
+    - The best party games for mobile phones in 2025 - https://www.mobiles.co.uk/blog/the-best-party-games-for-mobile-phones-in-2025/  [OPENED]
+    - best party game apps - https://geekflare.com/best-party-game-apps  [OPENED]
+    - apps.apple.com - https://apps.apple.com/us/app/id1538296414  [OPENED - "Party Game!"]
+    - apps.apple.com - https://apps.apple.com/us/app/partegames/id1637589697  [OPENED - "ParteGames"]
+
+#8  "Would I Lie to You" OR "Call My Bluff" game app App Store Google Play
+    Results (no official Would I Lie to You? or Call My Bluff app came up):
+    - lie or legend daily trivia game - https://peerlist.io/optimusphil/project/lie-or-legend-daily-trivia-game  [OPENED]
+    - apps.apple.com (BluffMe) - https://apps.apple.com/us/app/bluffme/id6755700831  [OPENED]
+    - Cleverfox - I Doubt It - https://mwm.ai/apps/cleverfox-i-doubt-it/1668811181  [OPENED]
+    - Game Snapshot (Liars Roulette) - https://sourceforge.net/app/liars-roulette/iphone/  (not opened)
+    - Imposter: Guess Who's the Liar - https://apps.apple.com/app/id6752859481  (not opened)
+    - apps.apple.com - https://apps.apple.com/app/id6758053752  [OPENED - "Imposter" by Vanilla b.v.]
+    - Fibster - https://apps.apple.com/us/app/fibster/id6758892017  (already opened)
+    - Truth or Lie: Party Game - https://apps.apple.com/app/id6743404211  (already opened)
+    - Fibber - https://apps.apple.com/np/app/fibber/id1553001427  [OPENED]
+    - spark.mwm.ai - https://spark.mwm.ai/en/apps/imposter-party-word-game/6745120053  (not opened)
+
+#9  "fake fact" party game app one phone friends guess which fact is fake
+    Results:
+    - 2 Truths and a Lie - https://apps.apple.com/app/id6743996674  (already opened)
+    - Two truths and a lie - https://appgrail.itch.io/two-truth  [OPENED]
+    - TwoTruths: 2 Truths 1 Lie - https://appgoblin.info/apps/6760158657  (already opened)
+    - Two Truths and A Lie - https://apps.apple.com/app/id1494625210  (already opened)
+    - Two Truths and A Lie - https://apps.apple.com/py/app/two-truths-and-a-lie/id1494625210  (same app)
+    - Fake It - Guess The Imposter - https://apps.apple.com/app/id6752224070  [OPENED - page now titled "SUS - Guess the Imposter"]
+    - toucharcade.com - https://toucharcade.com/community/threads/297270  [OPENED - Truth Truth Lie for iMessage]
+    - Truth or Lie: Party Game - https://apps.apple.com/app/id6743404211  (already opened)
+    - apps.apple.com - https://apps.apple.com/us/app/-/id1169176132  [OPENED - "lies" by Michael Sayman]
+    - Bamboozle - Party Game - https://apps.apple.com/app/id6746349121  (already opened)
+
+#10 "fake expert" OR "bluff expert" party game app pretend expert
+    Results (all imposter-type, except two already seen):
+    - Fake It - Guess The Imposter - https://apps.apple.com/app/fake-it-guess-the-imposter/id6752224070  (opened under #9)
+    - Imposter: Fakeit Word Game - https://apps.apple.com/us/app/-/id6756875340  (not opened)
+    - Imposter Game: Impostix - https://mwm.ai/apps/imposter-game-impostix/6768711770  (not opened)
+    - Bamboozle - Party Game - https://apps.apple.com/app/id6746349121  (already opened)
+    - Filbaz - The Faker - https://mwm.ai/apps/faker-taeshqaelchy/6744838044  (not opened)
+    - apps.apple.com (Pretending) - https://apps.apple.com/mx/app/pretending/id6670794919  [OPENED]
+    - Fake It - Guess The Imposter - https://apps.apple.com/app/id6752224070  (same)
+    - mwm.ai (Fake It imposter game) - https://mwm.ai/apps/fake-it-imposter-game/6761764596  (not opened)
+    - Fake That! review - https://boardseyeview.net/post/fake-that  (opened under #5)
+    - Fake It - The Ultimate Imposter Game - https://peerpush.com/p/fake-it-the-ultimate-imposter-game  (not opened)
+    Takeaway: in the stores, "fake expert" means imposter word games, not presenting fake facts.
+
+#11 bluff party game facts one is fake pass the phone friends guess the fake fact
+    (search limited to the domain play.google.com, so Google Play is really covered)
+    Results:
+    - Finto - Bluff Quiz for Friends (Google Play) - https://play.google.com/store/apps/details?id=com.rothwiers.finto&hl=en_US  (not opened; same app as the App Store Finto I opened)
+    - Bluffin: Party Word Game - https://play.google.com/store/apps/details?id=com.codixus.impostor&hl=en_US  (not opened; package name says "impostor")
+    - Psych! Outwit your friends - https://play.google.com/store/apps/details?id=com.wb.goog.ellen.psych&amp=&hl=en&amp=&gl=Uk  (same app as next)
+    - Psych! Fun Party game to play - https://play.google.com/store/apps/details?id=com.wb.goog.ellen.psych&hl=en_NZ&gl=US  [OPENED]
+    - Imposter Who? - Word Game - https://play.google.com/store/apps/details?id=com.sokak.imposter&hl=en_US  (not opened)
+    - Bluff - Party Game - https://play.google.com/store/apps/details?id=com.bluffgame.bluff_game&hl=en_US  [OPEN FAILED: 404 - not described]
+    - Bluffin: Party Word Game - https://play.google.com/store/apps/details?id=com.codixus.impostor&hl=en_IN  (same)
+    - Imposter - https://play.google.com/store/apps/details?id=com.vanilla.imposter&hl=en_US  (not opened; same app as the App Store "Imposter" by Vanilla b.v. I opened)
+    - Splash - Imposter Game - https://play.google.com/store/apps/details?id=app.cranberry.splash&hl=en  (not opened)
+    - Imposter Up - Who is the Spy? - https://play.google.com/store/apps/details?id=pt.cosmicode.imposter&hl=en_US  (not opened)
+    Takeaway: Google Play shows the same picture - Fibbage clones and imposter games.
+
+#12 "Unbelievable Truth" style party game app lecture spot the true facts among lies
+    Results:
+    - "top of page" (The Unbelievable Truth board game review) - https://boardseyeview.net/post/2018/08/13/the-unbelievable-truth  [OPENED]
+    - Bamboozle - Party Game - https://apps.apple.com/app/id6746349121  (already opened)
+    - apps.apple.com (LiarLiar) - https://apps.apple.com/app/liarliar/id6450682177  [OPENED]
+    - Two truths and a lie - https://appgrail.itch.io/two-truth  (already opened)
+    - 2 Truths and a Lie - https://apps.apple.com/app/id6743996674  (already opened)
+    - the unbelievable truth - https://www.tutor2u.net/business/blog/the-unbelievable-truth  [OPENED]
+    - TwoTruths: 2 Truths 1 Lie - https://appgoblin.info/apps/6760158657  (already opened)
+    - 2 Truths and 1 Lie - https://apps.apple.com/py/app/2-truths-and-1-lie/id6479049086  (already opened)
+    - Three Truths And A Lie (PDF) - https://projet.infojeunes.bzh/Download_PDFS/3hArfp/6AD192/Three Truths And A Lie.pdf  (not opened; looks like a spam PDF)
+    - three truths and a lie (PDF) - https://stg.hffa.com/archive-th-095/three-truths-and-a-lie.pdf  (not opened; same)
+
+Extra page opened (link copied from a page I opened, allowed by rule 2):
+    - Lie or Legend on the App Store - https://apps.apple.com/us/app/lie-or-legend/id6772761182  [OPENED]
+      (copied from the Peerlist page; that page also links Google Play: https://play.google.com/store/apps/details?id=app.lieorlegend - not opened)
+
+=====================================================================================
+OPENED PAGES - WHAT THE PLAYERS ACTUALLY DO, WITH QUOTES AND RATINGS
+(closest first)
+=====================================================================================
+
+---------- A. CLOSEST FINDS (all CLOSE RELATIVE; none SAME) ----------
+
+A1. THE UNBELIEVABLE TRUTH - board game (Ginger Fox / Hacche Retail), based on the BBC radio show
+    Opened: https://boardseyeview.net/post/2018/08/13/the-unbelievable-truth  (review; not an app)
+    What players do: one player (the "lecturer") takes a card made by the game and gives a lecture. The lecture is
+    mostly false, with three true facts hidden in it. The others race to ring a bell when they think they hear a
+    true fact. The lecturer scores for every true fact nobody catches.
+    Quotes:
+      "The game comprises a set of lecturer cards with the three truths printed in bold."
+      "The lecturer takes a card and delivers the lecture. The other players race to be the first to ring the
+       push-bell (supplied with the game) if they think they've spotted a fact."
+      "If they are correct, the bell-ringer takes a token giving them a point. There are negative point for an
+       incorrect challenge. The lecturer earns a point for every truth smuggled through unnoticed."
+      "Also in the box is a set of cards with five unrelated statements of fact or fiction. These are used for a
+       quick-fire round."  (the reader adds that in this round "the number of true or untrue statements is varied
+       from card to card")
+      Verdict: "If you like the radio show, you'll enjoy The Unbelievable Truth game."
+    How it differs from the idea:
+      - It hides TRUTHS inside a mostly FALSE lecture. The idea hides ONE invented fact inside four true ones.
+      - Three hidden items per card, not one.
+      - The others challenge live with a bell during the talk; in the idea everyone votes after the talk + 3 questions.
+      - The review does not say if the lecturer reads the card out or talks freely.
+      - No sources mentioned. Physical game, not an app. Not about countries.
+      - The quick-fire cards (five statements, fact or fiction) look a lot like the idea's five-fact card, but
+        there is no presenter selling them and the number of false ones varies.
+    RATING: CLOSE RELATIVE (the closest product found; same scoring idea: the presenter scores for what gets past
+            the others).
+
+A2. "THE UNBELIEVABLE TRUTH" CLASSROOM ACTIVITY (tutor2u business teaching blog)
+    Opened: https://www.tutor2u.net/business/blog/the-unbelievable-truth  (a teaching method, not a product)
+    What players do: each student gets a business topic, prepares a short talk based on fact with five lies hidden
+    in it, and gives the talk. The other team interrupts when they think they hear a lie.
+    Quotes:
+      "Each student is given a business topic...and has to prepare a brief speech about their topic. The speech
+       has to be based on fact, but also has to include five lies."
+      "If the interrupting team is correct, they get a point. If they are wrong...the speaker's team gets a point."
+      Topics like "Business Legislation", "Tescos" or "Steve Jobs".
+      "students had enough time to prepare their speech with some research into their topics"
+      (The page reader also says speakers earn points for lies nobody spots - summary, not a quote. No
+       downloadable resources mentioned.)
+    How it differs from the idea:
+      - Closest of all in the MIX (a true talk with lies hidden in it, given in the speaker's own words), but the
+        students research the facts and write the lies themselves. In the idea, the game gives checked true facts
+        and makes up the fake.
+      - Five lies, not one. Teams interrupt during the talk instead of voting after. No sources shown. No phone.
+    RATING: CLOSE RELATIVE.
+
+A3. THE GAME OF LIES - board game (designer James Wendelborn, self-published, 2019)
+    Opened: https://www.meeplemountain.com/boardgame/the-game-of-lies/
+    What players do: race to the middle of a board by answering three kinds of cards. Two of them touch the idea:
+      - "False Memories": players "spot the fake from three ludicrous-sounding entries" (the page reader adds that
+        only one is fabricated by the designers).
+      - "Fact or Fib": "the opposing player either reads out the TRUE surprising fact printed on the card or LIES
+        and changes the highlighted part." The player then decides whether it is true or a lie.
+      - "Fake News": news stories with errors in them, to be found within 60 seconds (reader's summary).
+    How it differs from the idea:
+      - "False Memories" has the game-invented fake among real items, but there is no presenter selling them.
+      - "Fact or Fib" has a player reading a game-supplied true fact who may lie, but it is ONE fact per card and
+        the reader makes up the lie (changes the highlighted part), not the game.
+      - No expert role, no set of five, no sources mentioned. Board game, not an app.
+    RATING: CLOSE RELATIVE.
+
+A4. FAKE THAT! - card/party game (Studio H, distributed by Hachette Board Games UK)
+    Opened: https://boardseyeview.net/post/fake-that
+    What players do: one player (the "gullible") reads a question from a card and hands the card over. All the
+    other players (the page reader calls them the "experts") can see the true answer on the back. Each gives an
+    answer; only one of them gives the true one, the rest make answers up. The gullible knocks out the fakes one
+    by one.
+    Quotes:
+      "the game is notionally playable with 4-8 players"
+      "The 'gullible' reads out the question then hands the card to the other players, all of whom are able to
+       read the actual answer which is on the card's reverse side."
+      "They then in turn offer answers, as per most storytelling games, but just one of the answers should tie in
+       with the true answer on the card"
+      "The deduction process involves the 'gullible' eliminating the fake answers one by one."
+      "If your answer is correctly identified as fake, you put a score token into the kitty. At any point, the
+       'gullible' player can stop and just take the points in the kitty."
+    How it differs from the idea: it is the Call My Bluff pattern turned into a card game - many "experts", each
+    giving one answer; the players make up the fakes; the guesser hunts the one TRUE answer. In the idea ONE expert
+    presents five facts and the GAME makes up the single fake.
+    RATING: CLOSE RELATIVE.
+
+A5. LIARLIAR - app (developer Marco Crivelli), App Store
+    Opened: https://apps.apple.com/app/liarliar/id6450682177
+    What players do: each player writes down a true, surprising fact about themselves. The app gives out roles: one
+    interrogator, one truth-teller, the rest liars. They take turns stating the claim; the interrogator questions
+    them to find the one telling the truth. Each player on their own phone.
+    Quotes:
+      "think of something personal, unbelievable and true" / "express this truth in a concise sentence"
+      "one player will be the interrogator, one player will be telling the truth, and the rest will be liars"
+      "only one person telling the truth and the rest telling lies"
+      "cross-examine each player to try and find the one truth mixed in within the web of lies"
+      "played from 3-6 players, each on their own smart device, one person will create a game and share a code
+       with the rest of the group to play"
+    How it differs from the idea: Call My Bluff / Would I Lie to You? style. It shares the questioning phase (the
+    idea allows up to three questions), but the facts are personal and written by the players, several players
+    each make one claim, the guesser looks for the TRUTH, and it needs several phones. No world facts, no sources.
+    RATING: CLOSE RELATIVE.
+
+A6. "TWO TRUTHS AND A LIE" APPS (the known icebreaker; all CLOSE RELATIVE for the same reason)
+    In all of them, one player shows three statements (two true, one lie) and the others guess the lie - the same
+    basic loop as the idea. But in every one the PLAYER writes the statements, they are ABOUT THE PLAYER, there are
+    no world/country facts and no sources, and most are played at a distance (links, rooms, feeds) rather than on
+    one phone in a room.
+
+    A6a. Truth Truth Lie (Magnate Interactive Ltd)
+         Opened: https://apps.apple.com/app/id1156900237  and the iMessage version thread
+                 https://toucharcade.com/community/threads/297270
+         "How well do your friends know you? Play a game of Two Truths and a Lie to find out. Truth Truth Lie (TTL)
+          is the only video (or text) app version of the hilarious ice-breaker game, 'Two Truths and a Lie'."
+         "Record three short video clips: two truths (e.g. 'my favorite color is blue', 'I can hold my breath for
+          fifteen seconds') and one lie ('I love kale')."  ... "Then tap Shuffle or drag-and-drop to rearrange."
+         Players "send to a friend (or a group message!) for them to guess which one is the lie!"
+         RATING: CLOSE RELATIVE.
+
+    A6b. 2 Truths and a Lie (Pixel Relic)
+         Opened: https://apps.apple.com/app/id6743996674
+         "Create your own personalized challenge by writing two truthful statements and one convincing lie about
+          yourself. The app generates a unique link that you can share with friends, family, or colleagues through
+          your favorite messaging apps. Your friends can then click the link to guess which statement is the lie."
+         RATING: CLOSE RELATIVE.
+
+    A6c. Two Truths and A Lie (DH3 Games)
+         Opened: https://apps.apple.com/app/id1494625210
+         "In this game, players take turns sharing three statements about themselves, two of which are true and one
+          that is a lie. The other players must then guess which statement is the lie."
+         "a great way to break the ice at parties, get to know your friends better, or simply pass the time."
+         (The page does not say whether it is one phone passed around.)
+         RATING: CLOSE RELATIVE.
+
+    A6d. 2 Truths and 1 Lie (Vanilla b.v.)
+         Opened: https://apps.apple.com/app/id6479049086
+         "Spot the lies. Trick your friends. 2 Truths and 1 Lie is the classic icebreaker game where everyone shares
+          two truths and one lie, and the rest of the group has to figure out which one is fake."
+         "Pick 2 truths and 1 lie about yourself" ; update note: "Custom Truths and/or Lie: You can now easily
+          create and add your own truths and/or a lie!" ; "Create or join a room with your friends"
+         My reading (not stated outright): the update note suggests the app also offers ready-made statements to
+         pick from - but they are still statements about the player, not world facts. Online rooms, own phones.
+         RATING: CLOSE RELATIVE.
+
+    A6e. TwoTruths: 2 Truths 1 Lie (Kenichiro Sakamoto)
+         Opened: https://appgoblin.info/apps/6760158657
+         "Write two true statements and one lie about yourself. Post them for the community to see. Other players
+          vote on which statement they think is the lie."  (A public feed with a leaderboard, not a party game.)
+         RATING: CLOSE RELATIVE.
+
+    A6f. Two truths and a lie (AppGrail, web game on itch.io)
+         Opened: https://appgrail.itch.io/two-truth
+         "Each player will have a turn to input their two truths and one lie, and the other players will guess the
+          lie."  Players can "craft up to 10 statements, each containing two truths and one lie"; "Friends can click
+          the link, view your statements, and guess which option is the lie."  Played "directly in your web browser".
+         RATING: CLOSE RELATIVE.
+
+A7. TRUTH OR LIE: PARTY GAME (Applixus), App Store
+    Opened: https://apps.apple.com/app/id6743404211
+    "Get ready to laugh, bluff, and guess! In this party game, you and your friends take turns writing fun or
+     outrageous claims — but are they real or fake? Choose your nickname, pick an avatar, and join the room via
+     invitation link. Guess right, earn points, and climb the leaderboard."  "2 to 6 players", "real-time multiplayer".
+    What players do: one player at a time writes a claim; the others guess real or fake. Like a stripped-down
+    Would I Lie to You?, without the questioning. Player-written, separate phones, one claim at a time (not a set
+    with one fake hidden in it).
+    RATING: CLOSE RELATIVE (weak).
+
+---------- B. WORTH KNOWING, BUT FAR AS A PARTY GAME ----------
+
+B1. LIE OR LEGEND - daily trivia app (App Store developer "Bright & Epic USA Inc."; maker "optimusphil" on Peerlist;
+    posted on Peerlist Launchpad in week 26 of 2026)
+    Opened: https://peerlist.io/optimusphil/project/lie-or-legend-daily-trivia-game
+            https://apps.apple.com/us/app/lie-or-legend/id6772761182
+    What players do: alone, once a day, the player judges five app-written statements as real fact or lie, then
+    sees explanations. Same daily set for everyone; share a result card.
+    Quotes:
+      "Lie or Legend is a daily trivia game, quiz game, and brain teaser where you decide if strange statements are
+       real facts or clever lies."
+      "Each day presents a new set of five statements, offering a unique brain teaser experience."
+      "Daily Challenge: Play one official daily challenge with five intriguing statements."
+      "Learn and Discover: Instantly reveal the truth behind each statement and understand why you might have been
+       fooled."
+      "Double Bluff Mode: Test your discernment with two statements, where only one is true, and pick the Legend
+       before the lie deceives you."
+      "Instant explanations after every answer" ; "Every player gets the same official daily challenge." ;
+      "Share your result card and challenge others to beat your score."
+      Topics include "Science," "Space," "History," "Animals," "Geography," ... "Weird Laws," "Myth and Legend."
+      (The page reader found no mention of sources, and no country focus.)
+    How it differs from the idea: no presenter, no bluffing by a person, no group in a room - a solo quiz.
+    But the CONTENT looks very like the idea's card (a set of five app-written statements, real vs made up, with
+    explanations), and it is a DAILY game - a direct neighbour for Logicers' daily games.
+    RATING: FAR (as a party game) - but flag it to the designer.
+
+B2. "lies" (Michael Sayman, © 2017), App Store
+    Opened: https://apps.apple.com/us/app/-/id1169176132
+    "Introducing the game that ends friendships. 1. Swipe on cards to fill out your profile. 2. Your friends will be
+     shown your name, along with 4 facts about you. The trick is... only one of them is actually true. The rest are
+     lies. 3. See if your friends know which facts are true about you."   Rating shown: 2.9 out of 5 (8 Ratings).
+    What players do: friends see four "facts" about you and pick the one true one. Personal facts; at a distance;
+    no presenter. The page does not say plainly who writes the three lies ("swipe on cards" suggests the app
+    builds the set from your swipes - my reading, not stated).
+    RATING: FAR.
+
+---------- C. FIBBAGE / BALDERDASH FAMILY (the game gives a true fact; everyone writes fakes) - all FAR ----------
+
+C1. Bamboozle - Party Game (Abd Kareem Al Ashi) - https://apps.apple.com/app/id6746349121
+    "Get ready for a laugh-out-loud party game where crafting clever lies is just as important as finding the
+     unbelievable truth!"  Players get "an obscure, often bizarre, true fact with a key piece of information
+     missing", "secretly type in your most convincing (or hilariously absurd!) lie to fill in the blank";
+    "Once everyone has submitted their fibs, all the made-up answers will appear on screen alongside the actual
+     surprising truth."; players "vote for the answer you think is the real one".
+    RATING: FAR (a Fibbage clone).
+
+C2. Finto - Bluff Quiz for Friends (Buttered Apps GbR) - https://apps.apple.com/app/id1481703107
+    "Fool your friends with creative answers! Finto is the hilarious party game with 5,000+ questions, multiple game
+     modes & no annoying ads."  "1. Finto asks you and the other players a bizarre or funny question. 2. Your task:
+     come up with a believable fake answer (a bluff) to fool the other players. 3. All fake answers appear alongside
+     the real one"   (also on Google Play, seen in search #11)
+    RATING: FAR.
+
+C3. Fibster (John Reichel) - https://apps.apple.com/us/app/fibster/id6758892017
+    "Each round, players are shown a prompt — a celebrity's real tweet, a wild headline, or an obscure word to
+     define. Everyone writes a fake answer, then all the options — including the real one — are shuffled together."
+    "Players take turns voting one at a time, so you can watch what everyone picks before making your move."
+    RATING: FAR.
+
+C4. Fibber! (Abdurraheem Abdulhakeem) - https://apps.apple.com/np/app/fibber/id1553001427
+    "Fool your friends with your lies, avoid theirs, and find the (usually outrageous) truth."  Described as "the
+     lying, bluffing, fib-till-you-win multiplayer trivia party game" (2-8 players, online).
+    RATING: FAR.
+
+C5. Psych! (Warner Bros. International Enterprises; from the makers of Heads Up!) - Google Play
+    https://play.google.com/store/apps/details?id=com.wb.goog.ellen.psych&hl=en_NZ&gl=US
+    "each player makes up fake answers to real trivia questions. Can you outwit your buddies and choose the
+     outrageous real answer among your friends' fakes?"  Decks include "The Truth Comes Out", "Is That a Fact?",
+     "Movie bluff", "Word Up", "The Naked Truth". No presenter mode, no 2T1L mode found on the page.
+    RATING: FAR.
+
+C6. What the Actual Factual (party game sold in the Parkinson's UK shop)
+    https://shop.parkinsons.org.uk/products/what-the-actual-factual.oembed
+    "a hilarious new party game where the fake answers win!" ; "Use your detective skills to spot which players have
+     made up an answer and who's telling the truth." ; uses "your bluffing and persuading skills".
+    The page gives few rules; players make up answers (Balderdash / Sounds Fishy family).
+    RATING: FAR.
+
+C7. Truth Be Told (party game; publisher not stated on the page) - https://www.exodusbooks.com/truth-be-told/35710/
+    "The Host writes a truthful answer...All other players pretend to be the Host, and write bluff answers—which
+     seems like something the Host wrote...The Host collects and reads all answers aloud, and players try to guess
+     the True Answer to score points."
+    RATING: FAR.
+
+---------- D. ONE-PHONE BLUFFING APP WITH UNKNOWN RULES ----------
+
+D1. Bluffy - Local Party Game (Zartek) - https://appgoblin.info/apps/6762367728
+    "Bluffy is the ultimate local party game for friends and family! Gather everyone around, pass the device, and
+     dive into hilarious rounds of bluffing, guessing, and laughing."  "Easy pass-and-play gameplay - one device,
+     unlimited fun" ; "Multiple game modes to keep every round fresh" ; "Designed for 3 or more players" ;
+     "Works completely offline" ; "Whether you're a master of deception or terrible at keeping a straight face,
+     Bluffy brings out the best (and funniest) in everyone."
+    The page does not say what a round is (who bluffs about what). Cannot rule it in or out.
+    RATING: FAR (provisional - rules not described; a later check of the app itself would settle it).
+
+---------- E. IMPOSTER / SECRET-WORD GAMES (what "fake expert" returns in the stores) - all FAR ----------
+
+E1. Imposter (Vanilla b.v.) - https://apps.apple.com/app/id6758053752
+    "Everyone gets the same secret word, except the Imposter. Each player gives a clue by giving exactly one word...
+     The Imposter has to fake it by blending in without knowing the word. Vote on who you think is lying... then
+     reveal!"  "One phone. No WiFi needed. Just chaos."   RATING: FAR.
+E2. SUS - Guess the Imposter (Kamil Piekarz) (listed in results as "Fake It - Guess The Imposter")
+    https://apps.apple.com/app/id6752224070
+    "One word. One imposter. Endless fun! Bluff, guess and vote in the ultimate party game." "The entire game is
+     played on a single phone, which makes it perfect for house parties, trips, or any moment when friends are
+     together."   RATING: FAR.
+E3. Pretending (RAHEEM HAIDER) - https://apps.apple.com/mx/app/pretending/id6670794919
+    "All 'Locals' receive a keyword, such as 'jungle,' 'soccer,' or 'coffee shop,' while 'The Pretender' has no
+     idea what the keyword is."   RATING: FAR.
+
+---------- F. OTHER OPENED PAGES - unrelated, all FAR ----------
+
+F1. Bluffme (Jan Kot) - https://apps.apple.com/us/app/bluffme/id6755700831
+    "Bluffme is the ultimate multiplayer card game where deception is your best weapon!" "Play them face down and
+     tell the truth... or bluff."  (a "Cheat"-type card game)   RATING: FAR.
+F2. Cleverfox - I Doubt It (Bitrix Infotech Pvt Ltd) - https://mwm.ai/apps/cleverfox-i-doubt-it/1668811181
+    "Players take turns placing cards face-down on the discard pile, announcing the card's rank aloud. Here's the
+     twist - players are allowed to lie about the cards they play!"   RATING: FAR.
+F3. Phrase Frenzy - Catch It! (Brain Rice Games, LLC) - https://apps.apple.com/app/id547805285
+    "Give clues, race the timer, don't get caught when the alarm sounds."   RATING: FAR.
+F4. Party Game! (GM UNICORN CORPORATION LIMITED) - https://apps.apple.com/us/app/id1538296414
+    "Play and uncover all your friends' deepest secrets & talents. It will be hilarious & crazy!"   RATING: FAR.
+F5. ParteGames (Sancia Berkley) - https://apps.apple.com/us/app/partegames/id1637589697
+    "the guests submit their responses and the app immediately notifies the host who the winner of the game is"
+    RATING: FAR.
+F6. Partiz (VINCENT VIELLE) - https://apps.apple.com/us/app/partiz/id6759404644
+    "Add your friends, pick a game, and let the chaos begin." Games: Impostor, Hot Seat, Truth or Dare, Would You
+    Rather, Never Have I Ever, Most Likely To, Categories.   RATING: FAR.
+F7. Party Boom: Group Party Games (Lunapp, TOO) - https://apps.apple.com/app/id664561745
+    "Pick a game, pass the phone, and let the next prompt decide what happens." (charades, truth or dare, word
+    bomb, riddles)   RATING: FAR.
+F8. Try Not 2 Laugh Challenge (Kevin Hausen) - https://apps.apple.com/us/app/-/id6751407317
+    "The ultimate test of your poker face! Think you can keep a straight face while watching the funniest videos on
+     the internet?"   RATING: FAR.
+F9. FaceArena (browser party game, via Trend Hunter) - https://www.trendhunter.com/trends/facearena
+    uses "webcam emotion detection to respond to players' facial expressions during challenges and games"; a
+    "Don't Laugh" challenge "where keeping a straight face becomes part of the challenge."   RATING: FAR.
+F10. Spin the Vodka (PRIA Labs; press release 21 Jan 2014) -
+     https://www.newswire.com/news/the-best-party-game-now-available-on-ios-and-android-27901
+     "Whomever the bottle points to, the spinner must either kiss, ask him an intimate, personal question or give
+      him a task."   RATING: FAR.
+F11. Straight Face Drinking Game (Paladone Products) -
+     https://www.entertainmentearth.com/product/straight-face-drinking-game/pp6511tx
+     "All you have to do is read out loud what's printed on the card while keeping a straight face." (4 shot cups,
+      100 challenge cards, 2+ players)   RATING: FAR (matters for NAMES).
+F12. "Straight face" drinking game rules (gamerules.com) - https://gamerules.com/rules/straight-face/
+     "Read something out loud and keep a straight face or take a drink." (players write funny slips; the reader
+      must not laugh)   RATING: FAR (matters for NAMES).
+
+App-review / list pages opened (none lists a relevant game or any of the six names):
+  - twit.tv "best ios party game apps 2026" - https://twit.tv/posts/tech/best-ios-party-game-apps-2026
+    Lists: Heads Up, Keep Talking and Nobody Explodes, Spaceteam, Wavelength, Gogogo! The Party Game!
+  - geekflare "best party game apps" - https://geekflare.com/best-party-game-apps
+    Lists: Psych!, Wolvesville, Exploding Kittens, UNO, Triple Agent, Evil Apples, Smule, SpaceTeam, Picolo.
+  - mobiles.co.uk "The best party games for mobile phones in 2025" -
+    https://www.mobiles.co.uk/blog/the-best-party-games-for-mobile-phones-in-2025/
+    Lists: Heads Up!, Psych! Outwit Your Friends, Spaceteam, UNO!, Spyfall, Exploding Kittens, Evil Apples, Catan.
+  The only bluffing app on these lists is Psych! (Fibbage family, FAR).
+
+Failed page:
+  - Bluff - Party Game (Google Play) - https://play.google.com/store/apps/details?id=com.bluffgame.bluff_game&hl=en_US
+    -> 404. Not described. (Per rule 2, I did not try other addresses for it.)
+
+=====================================================================================
+NAMES
+=====================================================================================
+(Checked with searches #4-#7, plus the name check on every page I opened. "Not found" means not found in my 12
+searches and the pages I opened - not proof that nothing exists.)
+
+1. STRAIGHT FACE - TAKEN as a party-game name (different genre, not an app):
+   - "Straight Face Drinking Game" by Paladone Products, a boxed card game: "All you have to do is read out loud
+     what's printed on the card while keeping a straight face."
+     (https://www.entertainmentearth.com/product/straight-face-drinking-game/pp6511tx)
+   - a folk drinking game called "Straight face" on gamerules.com: "Read something out loud and keep a straight
+     face or take a drink." (https://gamerules.com/rules/straight-face/)
+   - No APP called exactly "Straight Face" came up in the stores. The phrase "keep a straight face" is common in
+     app descriptions (Try Not 2 Laugh Challenge, Bluffy, FaceArena) - so it is crowded, and it already suggests
+     "don't laugh" games rather than bluffing.
+   Verdict: taken (by a commercial party/drinking game from Paladone, a well-known UK gift-games maker).
+
+2. SO-CALLED EXPERT - NOT FOUND. No title match in search #5 or on any page opened.
+
+3. INSTANT EXPERT - NOT FOUND as a game or app. No title match in search #5 or on any page opened.
+   (Unverified side note, not from this search: "Instant Expert" is a common title phrase outside games, so it
+    may be crowded in general web search.)
+
+4. FOUR AND A FIB - NOT FOUND. Search #6 returned only Connect Four and Fibonacci apps.
+
+5. OUR EXPERT - NOT FOUND. Search #6 returned only "Four in a row Expert"-type apps.
+
+6. EXPERT INTERVIEW - NOT FOUND as an app or party game in the stores. Search #7 returned only general party-app
+   lists (opened three; the term does not appear in them) and two unrelated apps. (The brief already notes that
+   "Expert" / "Expert Interview" is a name used for improv theatre games - I did not search that side.)
+
+=====================================================================================
+LIMITS OF THIS SEARCH
+=====================================================================================
+  - The web search engine indexes app stores only in part. In search #2 it ignored "site:play.google.com";
+    Google Play was properly covered only by search #11 (domain filter). Non-English store pages were not covered.
+  - Many store descriptions do not explain the rules (e.g. Bluffy), so an app could hide a matching mode.
+  - The four board/card games and the classroom game above are outside my area (app stores); they are included
+    because they came up in my results and are among the closest relatives found. Other helpers may cover them
+    more fully.
+
+#### REPORT B: THE WEB, TELEVISION, RADIO, IMPROV AND CLASSROOMS ####
+
+REPORT B - THE WEB: TV/RADIO FORMATS, BROWSER PARTY GAMES, IMPROV, CLASSROOM, DIRECTORIES
+==========================================================================================
+Helper B, 5 Oct 2026. Idea checked: "Expert Interview" (Logicers), see brief.txt.
+Searches used: 12 of 12 (WebSearch, mode "standard"). No other searches were made.
+Pages opened: only addresses that appeared in my own search results.
+
+NOTE ON QUOTES: every page was read through the WebFetch tool, which passes the page through a
+small model. Text in "double quotes" is what that tool returned as the page's own words. Treat it
+as near-verbatim and re-check on the page before relying on exact wording. Text without quotes
+is my summary.
+
+
+BOTTOM LINE
+-----------
+SAME: none found in my area.
+
+I found no TV/radio format, browser game, improv game or classroom activity where the GAME (or the
+producers) hands ONE player a set of REAL facts that hides ONE invented fact, the player presents
+them all as true, the others hunt for the invented one, and sources are shown at the end.
+
+The parts of the idea do exist, but separately:
+  (a) A lie written by the producers, handed to a player on a card, defended under questioning:
+      WOULD I LIE TO YOU? ("Home Truths"). But: one statement at a time, about the panellist's own
+      life, and the verdict is just "truth or lie".
+  (b) One presenter, one topic, true and false items mixed together, the others spot them, and the
+      presenter scores for what slips past: THE UNBELIEVABLE TRUTH (radio, Australian TV, and a
+      board game where the CARD supplies the lecture). But it is the other way round: mostly lies,
+      with five (board game: three) hidden truths.
+  (c) Facts about a COUNTRY, five true and one false, the others find the false one: Cambridge ESL
+      activity "That's not right!". But the students write the facts AND the lie themselves.
+  (d) Printed cards with two truths and one lie about countries/history: "Two Truths, One Lie:
+      History & Geography Challenge" (Payhip). The lie is written by the game, but there is no
+      confirmed presenter/bluffer role, it is 2+1 not 4+1, and there are no sources.
+
+Sources for the true facts: not seen in ANY relative. The closest is the Payhip pack's teacher
+answer sheet ("brief explanations for the lies"), and NPR's "Bluff the Listener", where the reveal
+plays a clip of a real person from the true story.
+
+
+THE 12 QUERIES, RESULTS, OPENED PAGES, QUOTES, RATINGS
+======================================================
+
+QUERY 1
+"The Unbelievable Truth" Radio 4 lecture entirely false except five true facts smuggled how the game works
+Results: Wikipedia "The Unbelievable Truth (radio show)"; tvtropes.org Radio/TheUnbelievableTruth;
+boardseyeview.net "the-unbelievable-truth" (2018); bendigoadvertiser.com.au "Ask many questions, hear
+many lies"; two spam pages (cscvirtual, stripe.jhu.edu); Audible podcast pages (x2); tutor2u.net
+"the unbelievable truth"; podscripts.co transcript 07x01.
+
+Opened:
+1a. https://en.wikipedia.org/wiki/The_Unbelievable_Truth_(radio_show)
+    "The object of the game is for each panellist to deliver a short lecture about a given subject,
+    which should be completely false save for five true statements which they must attempt to
+    smuggle past the other players."
+    "Members from the Australian comedy group The Chaser, including Craig Reucassel, Andrew Hansen
+    and Julian Morrow, have produced a TV series based on the British series."
+1b. https://www.tvtropes.org/pmwiki/pmwiki.php/Radio/TheUnbelievableTruth
+    "Each lecture is a tissue of lies ranging from the plausible to the obviously absurd, save for
+    five true pieces of information that the panellist should attempt to smuggle past their
+    opponents."
+    "Another player may buzz in if they believe they have spotted a truth; if they're correct, they
+    win a point, but if they get it wrong they lose a point. At the end of their lecture, the
+    panellist wins points depending on how many truths they have managed to smuggle past their
+    opponents."
+    "The format comprises four panellists, generally stand-up comedians or comedy writers"
+1c. https://www.boardseyeview.net/post/2018/08/13/the-unbelievable-truth  (BOARD GAME of the show)
+    Publisher: "Ginger Fox (Hacche Retail)".
+    "The lecturer takes a card and delivers the lecture" - each card has "three truths printed in
+    bold". "The other players race to be the first to ring the push-bell (supplied with the game) if
+    they think they've spotted a fact." "If they are correct, the bell-ringer takes a token giving
+    them a point. There are negative point for an incorrect challenge. The lecturer earns a point
+    for every truth smuggled through unnoticed."
+    Quick-fire round: "cards with five unrelated statements of fact or fiction" where "the number of
+    true or untrue statements is varied from card to card."
+1d. https://www.tutor2u.net/business/blog/the-unbelievable-truth  (CLASSROOM version, business)
+    "Each student is given a business topic...and has to prepare a brief speech about their topic."
+    "The speech has to be based on fact, but also has to include five lies. Those lies must be listed
+    on a separate piece of paper which is given to the teacher."
+    "The other team has to try to spot the lies, and 'buzz in' to interrupt the speaker each time
+    they suspect them of lying." (Summary: points for spotting lies; the speaker's team scores for
+    lies that go undetected.)
+1e. (opened later, from this result list) https://podscripts.co/podcasts/the-unbelievable-truth/07x01-flies-breasts-enid-blyton-curry
+    Host David Mitchell: "Each panellist will present a short lecture that should be entirely false,
+    save for five pieces of true information which they should attempt to smuggle past their
+    opponents, cunningly concealed amongst the lies."
+    "Points are scored by truths that go unnoticed, while other panellists can win points if they
+    spot a truth or lose points if they mistake a lie for a truth."
+    Who writes the radio lectures: NOT stated in this transcript (credits name the chairman's script
+    writers only).
+1f. (opened later, from this result list) https://www.bendigoadvertiser.com.au/story/389925/ask-many-questions-hear-many-lies/?cs=36
+    Headline "Ask many questions, hear many lies", October 11 2012. About the AUSTRALIAN TV version
+    (Channel Seven, with The Chaser; summary).
+    On who writes: "They write their own material and they bring their own style to the show. We've
+    never had a problem - although, after they've written them, we tend to script edit." (the fetch
+    tool attributed this to Graeme Garden)
+    "The other players have to buzz in when they think they've spotted a truth. If it is a truth,
+    they get a point. If they get it wrong, they lose a point."
+Not opened: Audible pages, spam pages.
+
+RATINGS:
+- The Unbelievable Truth (radio + Australian TV): CLOSE RELATIVE.
+  Who writes the false part: the panellist (Australian TV: "They write their own material", then
+  script-edited; radio: not established from pages I opened). Who knows: the lecturer. What is true:
+  only five items; the rest is lies (the REVERSE of the idea). Scoring: buzz-in race, +1 for a spotted
+  truth, -1 for a wrong buzz, lecturer scores for each truth that slips through. Sources: none seen.
+  No questions to the lecturer.
+- The Unbelievable Truth board game (Ginger Fox): CLOSE RELATIVE. The nearest "the game hands the
+  presenter a text with hidden items" find. Differences: reversed ratio (mostly lies, three truths in
+  bold), the lecturer reads a card rather than talking in their own words, buzzer race, no sources.
+- tutor2u classroom version: CLOSE RELATIVE. The ratio points the same way as the idea (a mostly true
+  speech with lies hidden; the speaker's team scores for lies not found). But the STUDENT writes five
+  lies, it is team-based, and there are no sources.
+
+
+QUERY 2
+"Would I Lie to You?" "Call My Bluff" panel show format cards written by producers true or lie definitions bluff
+Results: Wikipedia "Call My Bluff"; boardseyeview.net "fake-that"; assemblies.org.uk "Who's telling
+the truth?" (x2); dicetower.com board-game/7095 "Call My Bluff"; tvtropes Series/WouldILieToYou;
+comedy.co.uk WILTY press page 19; geosirius (spam); boardgamematcher "Call My Bluff".
+
+Opened:
+2a. https://en.wikipedia.org/wiki/Call_My_Bluff
+    "The game comprised two teams of three (a captain and two guests) who would compete to earn
+    points by identifying the correct definitions of obscure words."
+    "The teams took turns to give three definitions, one true and two bluffs, while the other team
+    attempted to determine which was correct."
+    "If the correct choice was made the team earned one point, if not, the bluffing team earned one
+    point."
+    Who writes the bluffs: not stated on the page as returned.
+2b. https://www.assemblies.org.uk/pri/1302/whos-telling-the-truth  (school assembly version)
+    "Begin with a taster of the quiz game 'Call My Bluff'." ... "invite everyone to listen as three
+    colleagues suggest possible meanings of the word." "One of the meanings is true but the other two
+    are made up, or 'bluff'." "The audience must try to decide which of the given meanings are bluffs
+    and to identify which one is true." (vote "by display of hands"; presenters "reveal the answer by
+    displaying 'True' or 'Bluff' cards.")
+2c. https://tvtropes.org/pmwiki/pmwiki.php/Series/WouldILieToYou
+    Home Truths: "The guests take it in turn to read out a statement about themselves from a card that
+    they've never seen before — either something true or a lie made up by the programme researchers."
+    "If they guess 'Truth' or 'Lie' correctly, they get a point; if they guess incorrectly, the other
+    team get a point."
+    This Is My...: "A mystery guest appears, and each member of one team has to explain their
+    connection with the guest. One of the panellists has genuinely met this person before, but the
+    other two have made up their stories."
+    Quick-Fire Lies: "Essentially the same as the first round, except against the clock".
+    "The Board Game: Came out last year." (no year given)
+2d. https://www.comedy.co.uk/tv/would_i_lie_to_you/press/19
+    Press quotes: "a game in which players guess whether incredible facts and embarrassing personal
+    tales are true or false" (What's On TV); compared to Call My Bluff: "basically, replacing words
+    with deeds." No rules detail.
+2e. https://dicetower.com/board-game/7095  (Call My Bluff board game)
+    "Milton Bradley", "1965". "A card is selected and four definitions are read out loud. Three
+    definitions are listed and the active player makes up the fourth." "The players whom have
+    correctly predicted the result get the points they have bet. The incorrect bets are given to the
+    active player."
+2f. https://boardseyeview.net/post/fake-that  ("Fake That!", Studio H / Hachette Board Games UK)
+    "The 'gullible' reads out the question then hands the card to the other players, all of whom are
+    able to read the actual answer which is on the card's reverse side." "one player choosing between
+    three answers, two of which are fake." "The deduction process involves the 'gullible' eliminating
+    the fake answers one by one." (Summary: the other players invent the fakes; push-your-luck scoring.)
+Not opened: boardgamematcher "Call My Bluff", geosirius.
+
+RATINGS:
+- WOULD I LIE TO YOU? (BBC TV), Home Truths round: CLOSE RELATIVE - the closest on "who writes the
+  lie". The producers write the lie ("a lie made up by the programme researchers") and hand it over on
+  a card the player has "never seen before". The player presents it as true and is questioned, then
+  the other team decides. Differences: ONE statement per turn (not one fake hidden among five); the
+  verdict is truth or lie (not "which one"); the content is about the panellist's own life, not world
+  facts about a country; team scoring (right guess = point, wrong guess = point to the other team);
+  no sources. (The player knows whether it is true because it is about their own life - my
+  inference.) "This Is My...": one true story and two made-up stories; the panellists invent their
+  own stories.
+- WILTY board game: exists per TV Tropes, no details seen. Not rated.
+- CALL MY BLUFF (TV): CLOSE RELATIVE (the classic ancestor). Three players each present ONE
+  definition; one is true and two are bluffs; the other team finds the TRUE one. Who writes the bluffs:
+  not established from pages I opened. Team scoring. No sources. The unit is a word definition, not a
+  fact about a place.
+- Call My Bluff school assembly version: CLOSE RELATIVE (same shape as the TV show).
+- Call My Bluff board game (Milton Bradley 1965): FAR - three definitions are printed and the ACTIVE
+  PLAYER makes up the fourth; players bet on which is correct.
+- Fake That! (Studio H): FAR - the players invent the fakes and the guesser finds the true answer
+  (Balderdash family).
+
+
+QUERY 3
+Jackbox "Talking Points" presentation slides you haven't seen and "Fibbage" how to play lie real facts
+Results: gamedeveloper.com "Jackbox Games' Fibbage Is Now a Real-Life Party Game"; engadget (2014);
+avclub (Party Pack 4); gonintendo "'Talking Points' announced for Jackbox Party Pack 7"; target.com
+Fibbage; jackboxgames.com/fibbage-four; engadget tag; player.me; mechanicsofmagic.com.
+
+Opened:
+3a. https://www.jackboxgames.com/fibbage-four
+    "you get an unbelievable true fact with a key word or phrase blanked out. Then you make up a lie
+    that fits the blank to fool your fellow players. Earn points by spotting the truth and tricking
+    your gullible friends with your lies."
+    Modes: Enough About You "allowing you to play an entire game with questions about you and your
+    friends"; Final Fibbage "challenges players to write one lie that works for two entirely different
+    questions"; Fibbage Fan Fact; Cookie's VHS Vault.
+3b. https://gonintendo.com/stories/364420-talking-points-announced-for-jackbox-party-pack-7
+    "you and your friends take turns giving short speeches"; "you'll all take turns being the
+    Assistant to one of the other Speakers. While they speak, you use your phone or tablet to pick the
+    next set of slides."; "responding to slides that you have not seen in advance"; "everyone else
+    responds to the speeches and slides with their moment-to-moment real time reactions".
+3c. https://www.gamedeveloper.com/press-release/jackbox-games-fibbage-is-now-a-real-life-party-game
+    "One player is the Revealer and reads a trivia card aloud, secretly writing the real answer.
+    Everyone else writes a believable fake." "The answers are shuffled and revealed, then everyone
+    votes for the answer they think is true." (Summary: Wilder Toys + Jackbox, announced July 2026,
+    3-6 players, 300 cards, no screens.)
+3d. https://mechanicsofmagic.com/?p=14586
+    "Individually, players use their phones complete the fact by submitting intentionally wrong
+    answers that are as believable as possible." "Once all answers are submitted, players see all the
+    answers submitted (anonymously) and select the one they think is the truth." "After everyone has
+    voted, points are distributed to players who successfully fooled the competitors and to those who
+    guessed the correct answer."
+Not opened: engadget, avclub, target, player.me.
+
+RATINGS:
+- Fibbage (digital, and the 2026 tabletop version): FAR. The PLAYERS write the lies; everyone hunts
+  for the one TRUE fact; there is no presenter. Sources are not shown. Its scoring is similar in
+  spirit (points for spotting the truth + points for fooling people).
+- Talking Points: FAR. It shares only "perform a presentation you did not prepare" (the slides are
+  picked live by another player). Nothing is true or false and there is no lie-hunting.
+
+
+QUERY 4
+improv game "Expert Interview" OR "Expert Double" OR "Dr. Know-It-All" rules expert on a topic answers questions
+Results: improwiki "dr_know-it-all"; write-out-loud.com "expert-interviews"; hooplaimpro "Word at a
+Time Expert"; hooplaimpro "Expert Interview" (?p=21248); improwiki "multi-headed_expert"; hooplaimpro
+"Three Headed Expert"; hooplaimpro "Interview Switch"; sessionlab "Expert interview";
+childrenshour.org episode page.
+
+Opened:
+4a. https://www.hooplaimpro.com/?p=21248  ("Expert Interview", Hoopla Impro, London)
+    "One improviser plays the part of a television host and two more play experts."
+    "The audience suggests their field of expertise (asking for an animal then a sport is great; ants
+    who play tennis)." "Ask the experts to agree with and back each other up."
+    "The host can ask anything; remind them of helpful questions like 'How did you start in this
+    field?' 'What do you think is the future of [suggestion]?' 'Why did you start working together?'"
+4b. https://improwiki.com/en/wiki/improv/dr_know-it-all
+    "Dr. Know-it-all is played by three players (optionally also by two players), sitting beside each
+    other, and who are only allowed to speak one word at a time."
+4c. https://www.write-out-loud.com/expert-interviews  ("Expert Interviews", a speaking game)
+    "One person takes on the role of expert, and the other becomes the interviewer." The expertise is
+    picked at random from 100 options, e.g. "Isaac Flugelhorn" on "the benefits of teaching children
+    to read underwater." "suspend truth, embellish reality and immerse yourself, your friends and
+    family, in fun." The expert should "'own' their given area of expertise realistically and
+    wholeheartedly, regardless of how ridiculous the topic is or how little knowledge they have."
+    "The audience, (namely the pairs who are listening and watching while waiting for their turn),
+    must be positive and supportive."
+4d. https://improwiki.com/en/wiki/improv/multi-headed_expert
+    "At least three players form a character, the multi-headed expert." "the expert is questioned
+    about a subject by a host and tries to answer these questions."
+Not opened: Word at a Time Expert, Three Headed Expert, Interview Switch, childrenshour. (sessionlab
+was opened under Query 9.)
+
+RATINGS: all FAR. In improv "expert" games everything the expert says is made up for laughs; nobody
+is trying to find a false fact, nothing is true, there is no scoring. What they share with the idea:
+the "expert on TV answering questions in character" performance frame and the NAME (see NAMES).
+
+
+QUERY 5
+classroom activity student presents facts about a country one fact is false class guesses which "two truths and a lie" OR "call my bluff" geography
+Results: cambridge.org ESL support page l1u14oa; elrstore.gumroad.com; m.busyteacher.org "2909 true or
+false"; payhip.com/b/MheY1; eur.nl "Two truths, one lie"; eTwinning "schools towns regions and countries
+presentations"; eslgames.com "Lying Games"; teachersfirst.org "Two Truths and a Lie"; eslactive.com;
+enghub.pro "Two Truths And A Lie".
+
+Opened:
+5a. https://www.cambridge.org/us/esl/nic/support/optional/l1u14oa.htm  (activity "That's not right!")
+    "In pairs, students think of a country and write down six statements about it" - "five true and
+    one false". "The members of one pair take turns reading their statements aloud. The other pair
+    tries to identify the false statement and to correct the false information in it."
+5b. https://payhip.com/b/MheY1  ("Two Truths, One Lie: History & Geography Challenge", seller
+    "Essential Language Resources", $6.99)
+    "Two Truths, One Lie is a printable educational card game designed for learners aged 14 to adults.
+    With 100 cards spanning three categories – Countries, Historical Events, and People from the
+    Pas[t]..." (cut off). Includes "100 printable cards", a teacher guide with answers and instructions
+    for "three ways to play the game"; "students debate which statement is the 'lie'"; a "Printable
+    Teacher's Cheat Sheet" with "brief explanations for the lies". Who reads the card, and whether one
+    student knows the lie and bluffs: NOT stated on the page as returned.
+5c. https://elrstore.gumroad.com/l/iLwdn  ("CARDS – Two Truths, One Lie – ESL Speaking Practice")
+    Only the truncated text could be read: "There are 90 printable cards with statement prompts in..."
+    Content of the prompts not visible. Not described further.
+5d. https://www.eur.nl/en/educational-innovation/teacheur/two-truths-one-lie
+    "Ask every student to prepare 3 statements about themselves; one of those statements needs to be a
+    lie." "Voting takes place, where the rest of group guesses which statement was a lie. Give some
+    voters the opportunity to motivate their guess and let the student reveal the answer."
+5e. https://eslgames.com/?p=143  ("Lying Games")
+    "Ask students to write three sentences about themselves—two true, one false."
+    Team version: "Write five sentences about yourself on the board, but make sure two of them are lies."
+    "Poker Face": "Take out as many cards as there are students, making sure one of them is a Joker."
+    "If you have the Joker, you must lie. Everyone else must tell the truth."
+5f. https://m.busyteacher.org/2909-true-or-false.html
+    "two are facts and one is a lie"; "The rest of the class has to guess which one is a lie".
+5g. (opened later, from this result list) https://school-education.ec.europa.eu/sq/etwinning/projects/literary-bridges/twinspace/pages/schools-towns-regions-and-countries-presentations
+    eTwinning project "Literary Bridges": "Create a poster with 3 truths and 1 lie about each school,
+    town… Pictures can be added. (Tools you can use: canva, postermywall, genially...) Students from
+    other countries try to guess which statement is the lie"
+Not opened: teachersfirst, eslactive, enghub.
+
+RATINGS:
+- Cambridge "That's not right!": CLOSE RELATIVE - the closest in SHAPE (a country, 5 true + 1 false,
+  find the false one, then correct it). Differences: the students write all the facts AND the lie;
+  statements are read aloud, not presented in character; no questions; no scoring rule shown; no
+  sources.
+- Payhip "Two Truths, One Lie: History & Geography Challenge": CLOSE RELATIVE - the closest on "the
+  GAME writes the lie" for facts about countries. Differences: 2+1 not 4+1; no confirmed presenter who
+  knows the lie and bluffs ("students debate"); answer explanations but no sources; printable ESL
+  material, not an app.
+- eTwinning poster (3 truths + 1 lie about a school/town): CLOSE RELATIVE (place-based, 3+1), but the
+  students write the lie, and it is a poster, not a talk.
+- Personal "two truths and a lie" (eur.nl, eslgames, busyteacher 2909): FAR (self-written facts about
+  yourself).
+- "Poker Face" (eslgames): FAR. Note, though: a random card secretly tells ONE player to lie, which is
+  similar to the idea's "only the expert sees the mark".
+
+
+QUERY 6
+"fact or fiction" OR "fake expert" presentation game student given true facts and one false fact presents as expert audience spots the fake
+Results: learn.k20center.ou.edu strategy/60 (+ PDF); downloadyouthministry.com "Fact or Fake" (rounds 1-3),
+"Spy the Lie" (vol 1-2); complete.bioone.org "The Credibility Game" (American Biology Teacher 2020);
+bklynlibrary.org "kids explore fake news"; leaders.life.church PDF "SGLG Thats the Truth Wk 1".
+
+Opened:
+6a. https://learn.k20center.ou.edu/strategy/60  ("Fiction in the Facts")
+    "Display three statements relating to specific content area knowledge." "two of these statements
+    should be factual, one should be false." Students "determine which statement in the set of three
+    is a false statement" and "compose a brief paragraph (2-3 sentences) justifying how they know that
+    statement is false."
+6b. https://downloadyouthministry.com/p/spy-the-lie/games-6554.html  ("Spy the Lie")
+    "They will see three facts, two of which are true, and one is a lie. All participants must do is
+    correctly identify the lie." Ways to play: "Students stand up and move to the right, center, or left
+    of the room to match the fact they think is a lie"; "hold up the number of fingers for the fact
+    they think is a lie"; "Bring up some contestants and have them compete".
+6c. https://www.downloadyouthministry.com/p/fact-or-fake/trivia-9192.html  ("Fact or Fake")
+    "In this screen game, they'll consider each statement and make the call, whether it's about Viking
+    helmets, dogs and asthma, or the speed of fingernail and toenail growth, and then make their
+    choice." "The one with the most right answers wins!"
+6d. https://complete.bioone.org/.../The-Credibility-Game/...  FAILED (blocked by an Incapsula security
+    page). Not described.
+6e. (opened later, from this result list) https://leaders.life.church/wp-content/uploads/2023/12/SGLG-Thats-the-Truth-Wk-1.pdf
+    Church small-group "Fake or Fact" game: the leader reads statements; "If you think that statement
+    is a fact, go stand by this wall. If you think the statement is fake, go stand by that wall." "Any
+    students who chose the wrong answer must do one of the dare challenges listed."
+Not opened: K20 PDF, Fact or Fake rounds 2-3, Spy the Lie vol 2, bklynlibrary.
+
+RATINGS: all FAR. The material (2 true + 1 false, written by the teacher or game) is like the idea,
+but these are plain quizzes shown on a screen: no player knows the lie and bluffs, there are no
+questions and no sources.
+
+
+QUERY 7 (NAMES)
+"Straight Face" party game OR "So-Called Expert" game
+Results: gamerules.com "straight face"; entertainmentearth.com "Straight Face Drinking Game";
+boardgamematcher "Laughless 18+"; kibocommerce "Laugh Attack Party Game"; education.com "straight
+face"; native.fm drinking games article; App Store "Try Not 2 Laugh Challenge"; gamerules.com ?p=5753;
+tools.wbez.org "You Laugh You're Out"; walmart "face game".
+No result contained "So-Called Expert".
+
+Opened:
+7a. https://gamerules.com/rules/straight-face/
+    Name: "STRAIGHT FACE". Objective: "Read something out loud and keep a straight face or take a
+    drink." Players: "4+ players, but the more, the better". Equipment: "Alcohol, paper, pens, hat/bowl".
+7b. https://www.entertainmentearth.com/product/straight-face-drinking-game/pp6511tx
+    "Straight Face Drinking Game", brand Paladone Products. "In the printed closed box, you will find 4
+    shot cups and 100 original and unique challenge cards. All you have to do is read out loud what's
+    printed on the card while keeping a straight face."
+7c. https://www.education.com/activity/article/straight-face/
+    "Play Straight Face": "Player A must answer each question with the chosen phrase while keeping a
+    straight face. Player B keeps asking questions until Player A laughs."
+7d. https://gamerules.com/?p=5753 - the game is "YOU LAUGH YOU DRINK" ("people who can't keep a
+    straight face beware!"); the exact phrases "Straight Face" / "So-Called Expert" do not appear.
+RATINGS: all FAR (don't-laugh games). They matter only for the name.
+
+
+QUERY 8 (NAMES)
+"Instant Expert" game OR "Four and a Fib" game
+Results: write-out-loud.com "expert-interviews"; jayden130.itch.io/fib; d23.com ?p=94212; App Store
+"Fibonacci Game"; skich.app fibonacci; itch.io "Fibonacci Numbers Game"; App Store "Fibonacci Numbers";
+haggardhawks.com "sixes-expert"; a spam page.
+No result was a game called "Instant Expert" or "Four and a Fib".
+
+Opened:
+8a. https://www.write-out-loud.com/expert-interviews - "Instant Expert" is NOT a game name there; the
+    page only says "You too can be an instant expert!" (the game is called "Expert Interviews").
+8b. https://jayden130.itch.io/fib - "fib": "Fibonacci game: just enter the sequence. No calculator, no
+    google, no pen or paper, just brain." Unrelated; no "Four and a Fib".
+8c. https://d23.com/?p=94212 - THE BIG FIB (Disney+, from 22 May 2020; host Yvette Nicole Brown;
+    robot C.L.I.V.E. played by Rhys Darby - summary). "Instant Expert" does not appear.
+    "each episode of The Big Fib begins as a kid contestant plays a warm-up round, where a silly liar
+    and an authentic expert share fabulous fibs and fun facts."
+    "the main round finds the contestant asking questions of a true expert who's paired with a really
+    good liar on the same topic—and it's up to the contestant to find the fibber"
+    "the expert and the liar are put into the 'hot seat' for some final rapid-fire queries from the
+    contestant." "if the kid chooses correctly, the liar gets foamed!"
+    Whether the producers brief the liar with facts: not stated.
+8d. https://www.haggardhawks.com/sixes-expert - "THE SIXES GAME: EXPERT!" word puzzle. Unrelated.
+RATINGS:
+- The Big Fib: CLOSE RELATIVE in theme (an "expert" on a topic, questions, find the fibber), but FAR
+  in mechanics: the fake is a PERSON (a fake expert next to a real one), not one invented fact among
+  real ones; the guesser is one child; no sources.
+- Others: FAR / unrelated.
+
+
+QUERY 9 (NAMES)
+"Our Expert" party game OR "Expert Interview" party game OR "Expert Interview" app game
+Results: write-out-loud "expert-interviews"; sessionlab "Expert interview"; everydayspeech.com ?p=39807;
+coaching-at-work.com "No Nonsense Interviewing"; knowledge.unicef.org "expert interview audience";
+tropedia.fandom.com "Whose Line Is It Anyway?/Trivia"; hooplaimpro "Word at a Time Expert"; improwiki
+"multi-headed_expert"; hooplaimpro "Interview Switch".
+No result was a game called "Our Expert".
+
+Opened:
+9a. https://www.sessionlab.com/methods/expert-interview  ("Expert interview", facilitation/improv method)
+    "1 person is expert, 1 person is interviewer". "The host welcomes everyone to the show and
+    introduces the guest". "The host asks the guest how they started in this line of work. Guest
+    answers and then hosts takes questions from the audience." The guest "must answer very quickly
+    without thinking"; "The results are usually hilarious". Aims: "boldness, confidence, support,
+    speaking".
+9b. https://everydayspeech.com/?p=39807 - a game called "Interview the Expert": "Assign each student a
+    specific career or area of expertise. Students take turns interviewing each other as if they were
+    experts in their assigned field."
+9c. https://tropedia.fandom.com/wiki/Whose_Line_Is_It_Anyway%3F/Trivia
+    "Expert: From the UK run. The audience picks an obscure subject, then one player acts as the
+    interviewer speaking to the other player, the 'expert' on the subject."
+    "Expert Translation: also from the UK run but not to be confused with Expert above. ... one player is
+    the 'expert from overseas', lecturing about the subject as the other player 'translates' for him."
+Not opened: coaching-at-work, unicef (title suggests "expert interview" as a research method).
+RATINGS: all FAR (no lie-hunting). They matter for the name.
+
+
+QUERY 10
+game shows and panel shows about bluffing and spotting the lie list "Bluff the Listener" "To Tell the Truth" "Liar's Club"
+Results: Wikipedia "Liar's Club"; imdb tt0063923; npr.org transcripts/668897313; sortiraparis.com "Liars
+Club - The new lying game ... on Prime Video"; streamin.co To Tell the Truth; wikipedia2007 mirror "To
+Tell the Truth"; primevideo "Liars Club"; pro.imdb tt0074018; sk.sagepub.com Encyclopedia of Deception
+"tell truth"; sog.unc.edu "Bluff the Listener".
+
+Opened:
+10a. https://en.wikipedia.org/wiki/Liar%27s_Club  (US/Canada TV, 1969 to 1989 in several runs - summary)
+    "A panel of four celebrity guests was presented with an unusual object, and each panelist gave an
+    explanation of its use." "One was correct, while the other three were bluffing." "Contestants then
+    attempted to guess which panelist was providing the accurate description." Who wrote the
+    descriptions: not stated.
+10b. https://sortiraparis.com/en/what-to-do-in-paris/cinema-series/articles/320015-liars-club-the-new-lying-game-with-kad-et-o-and-mcfly-carlito-on-prime-video
+    French "Liars Club" (Endemol France, Prime Video, 14 March 2025 - summary): "Each duo will tell 3
+    stories they've experienced together. Except that only one of them is true, and the other two are
+    pure invention!" "The duos will have to be convincing in their attempts to deceive the others, but
+    also inventive in their investigations to find each other's true story."
+10c. https://www.npr.org/transcripts/668897313  (Wait Wait... Don't Tell Me!, "Bluff the Listener")
+    "This week, though, we learned that something a fairy tale taught us was not true. Our panelists
+    are going to tell you about it." "Pick the one who's telling the truth, you'll win our prize - the
+    WAIT WAIT-er of your choice doing your voicemail." (three stories, "only one of which is true", per
+    the fetch tool). Reveal: "That was Don Krapohl (ph), a former CIA polygraph examiner, talking about
+    Pinocchio and the effect of shrinking noses. Congratulations. You got it right." Who writes the
+    stories: not stated.
+10d. https://wikipedia2007.classicistranieri.com/t/o/_/To_Tell_the_Truth_0c2a.html
+    "Three contestants, each of whom claims to be the same person, being interrogated by a panel of four
+    celebrities in an attempt to identify who is the real one and who is bluffing." "After each
+    celebrity has had a turn to question the guests, they each vote as to who they think is the real
+    person." "Each incorrect vote in this version was worth $50 to the challengers. Fooling the entire
+    panel won the challengers a total of $500." "Will the real __________ please stand up?"
+10e. (opened later, from this result list) https://sk.sagepub.com/ency/edvol/embed/encyclopedia-of-deception/chpt/tell-truth
+    "One challenger is sworn to tell the truth, and the other two are imposters who lie and attempt to
+    deceive the celebrities into thinking they are the real person." "The host reads a signed
+    affidavit from the real person, and the panelists then ask the challengers questions." "The
+    imposters are not only encouraged to lie, they receive cash prizes for effectively deceiving the
+    panel." Whether producers brief the impostors: not stated.
+10f. https://www.sog.unc.edu/node/347398 - only a fragment could be read: "a caller is asked to
+    distinguish between fictional and ..." Not described further.
+Not opened: imdb pages, streamin, primevideo.
+
+RATINGS:
+- Bluff the Listener (NPR radio): CLOSE RELATIVE (Call My Bluff with news stories): three presenters,
+  one true story, the listener finds the TRUE one. A nice parallel: the reveal plays a clip from a real
+  person in the true story - a kind of "source" moment.
+- Liar's Club (TV): CLOSE RELATIVE (Call My Bluff with objects): four presenters, one true
+  explanation, find the true one.
+- To Tell the Truth (TV): FAR - the fake is a PERSON (impostors), found by questioning; the
+  impostors are paid for each wrong vote, a scoring logic similar to "a point for each player fooled".
+- Liars Club (France, 2025): FAR - personal stories, self-invented, find the true one.
+
+
+QUERY 11
+online "two truths and a lie" game with real facts generator spot the fake fact party game browser
+Results: appgrail.itch.io "two-truth"; App Store "2 Truths and 1 Lie" (id6479049086, x2);
+shapes.inc "2truthsandlie"; jturnerresearch tag page; figma "2 truths and a lie example" template;
+livestorm "two truths and a lie"; appgoblin.info "TwoTruths: 2 Truths 1 Lie"; neura.market "grok two
+truths and a lie".
+
+Opened:
+11a. https://appgrail.itch.io/two-truth  (HTML5 browser game)
+    "Each player will have a turn to input their two truths and one lie, and the other players will
+    guess the lie." "Friends can click the link, view your statements, and guess which option is the lie"
+11b. https://apps.apple.com/app/id6479049086  ("2 Truths and 1 Lie", developer Vanilla b.v.)
+    "Spot the lies. Trick your friends. 2 Truths and 1 Lie is the classic icebreaker game where everyone
+    shares two truths and one lie, and the rest of the group has to figure out which one is fake."
+    "Pick 2 truths and 1 lie about yourself"; "create and add your own truths and/or a lie!"; "Everyone
+    guesses which one is the lie"; "Fool your friends and score points".
+11c. https://appgoblin.info/apps/6760158657  ("TwoTruths: 2 Truths 1 Lie", Kenichiro Sakamoto, released
+    11 March 2026 per AppGoblin)
+    "TwoTruths brings the classic party game '2 Truths and 1 Lie' to your phone!" "Write two true
+    statements and one lie about yourself"; "Post them for the community to see"; "Other players vote on
+    which statement they think is the lie."; "Leaderboard tracking your bluffing skill".
+11d. https://neura.market/ai-tools-directory/games/grok-two-truths-and-a-lie
+    "The statements are generated by the Grok AI model based on its training data." "The user is
+    challenged to identify the lie, testing their knowledge and critical thinking skills." Suggested
+    uses: "Educational icebreaker or trivia game in classrooms", "Team-building exercise in group
+    settings".
+Not opened: shapes.inc, jturnerresearch, figma, livestorm, App Store duplicate.
+
+RATINGS:
+- 2T1L apps and browser game (Vanilla b.v.; TwoTruths; appgrail): FAR - self-written personal facts.
+- Grok "two truths and a lie": FAR - the machine writes 2 truths + 1 lie on any topic (like the idea's
+  content), but it is a solo quiz: no presenter, no bluffing, no sources (AI-generated "based on its
+  training data").
+
+
+QUERY 12
+party game where a player gets a card with true facts and one fake fact, presents them all convincingly, and the others guess which fact is fake
+Results: meeplemountain.com "The Game of Lies"; worlddaily.lewisboropd.gov (spam-like listicle);
+busyteacher.org "Curious History Facts, True or Fake?" (x2); meeplemountain ?p=14882; paperstore
+kibocommerce "Pikkii What the Actual Factual"; giftoftheyear.co.uk "What The Actual Factual";
+tarsasjatekok.com "The Game of Lies (2020)"; cfe.keltyeatingdisorders.ca (spam-like); boardgamematcher
+"Fact or Fiction".
+No result described the same game.
+
+Opened:
+12a. https://www.meeplemountain.com/boardgame/the-game-of-lies/  ("The Game of Lies", designer James
+    Wendelborn, self-published, 2019)
+    "Fact or Fib": "The opposing player either reads out the TRUE surprising fact printed on the card
+    or LIES and changes the highlighted part. Using your powers of deduction, you have to guess whether
+    the player is telling you a fact or fibbing!"
+    "Fake News": "The questions are written like news stories except they contain an intentional error.
+    You have 60 seconds to sniff out the mistake."
+    "False Memories": "Spot the fake from three ludicrous-sounding entries such as reality TV shows,
+    dating shows, made-for-TV movies, game shows, songs, and more."
+    Also "All Play cards where other players have to come up with the fake answers".
+12b. https://tarsasjatekok.com/tarsasjatek/the-game-of-lies-2020 - same game, listed as 2020, "I'm Not
+    Shouting" and self-published, designer James Wendelborn; same three categories.
+12c. https://www.giftoftheyear.co.uk/2022-category/novelty/what-the-actual-factual  (Pikkii)
+    Players test "their ability to come up with answers more believable than the truth, and figure out
+    who has the actual answer." "Players receive points for voting for the correct answer, plus points
+    for every vote their fake answer receives." "the hilarious party game where the fake answers win"
+12d. https://boardgamematcher.com/game/fact-or-fiction  ("Fact or Fiction", Ludicus Games, 2024)
+    "On your turn, you become the Master of Confusion: draw a card, read a question—the correct answer
+    is known only to you." The Master "make[s] up two fake but super-convincing answers and present[s]
+    them along with the real one." "Players earn points if they pick the correct answer, while the
+    Master scores a point for every player fooled by a fake one." (3-8 players - summary)
+12e. https://busyteacher.org/23279-curious-history-facts-true-or-fake.html
+    "This is a set of 16 cards with curious history facts. Some are true, some are fake." "You can use
+    this as a game to see who gets the highest amount of facts right, as a game about convincing others
+    of a fact or even as conversation starters."
+Not opened: worlddaily.lewisboropd.gov, cfe.keltyeatingdisorders.ca, paperstore, meeplemountain ?p=14882.
+
+RATINGS:
+- The Game of Lies: CLOSE RELATIVE. Two of its card types each match part of the idea: "Fact or Fib"
+  (the game supplies a TRUE fact; the reader may secretly falsify the highlighted part and must
+  sell it) and "Fake News" (game-written text that hides one deliberate error to find). But each turn
+  is ONE fact or one text: no set of facts with one invented, no presentation, no sources.
+- "Curious History Facts, True or Fake?" (busyteacher): CLOSE RELATIVE, but weak: the worksheet
+  supplies true and fake facts, and one suggested use is "convincing others of a fact"; one fact per
+  card; no sources.
+- Fact or Fiction (Ludicus 2024): FAR - the presenter knows the truth but INVENTS two fakes (Balderdash
+  family); players find the TRUE answer. Note: its scoring is the same as the idea's ("a point for every
+  player fooled").
+- What The Actual Factual (Pikkii): FAR (Fibbage family; players write the fakes).
+
+
+COMPARISON: HOW THE CLOSEST RELATIVES DIFFER FROM THE IDEA
+==========================================================
+Idea: the GAME writes 1 invented fact; 4 real facts with sources; about a country; ONE presenter who
+alone knows which is invented; presents in own words + up to 3 questions; everyone votes for the
+invented one; +1 to each finder, +1 to the presenter per player fooled; sources shown at the end.
+
+1. Would I Lie to You? - Home Truths (BBC TV) - CLOSE RELATIVE
+   Who writes the lie: producers ("programme researchers"). Who knows: the reader (about their own
+   life). What is true: either the whole statement or nothing (binary). Unit: ONE personal statement.
+   Scoring: team point for a right guess, point to the other team for a wrong guess. Sources: none.
+2. The Unbelievable Truth (BBC Radio 4; Australian TV 2012; Ginger Fox board game) - CLOSE RELATIVE
+   Who writes it: the panellist (Australian TV: "They write their own material", script-edited); the
+   board game: the card. Who knows: the lecturer. What is true: 5 items (board game: 3 in bold), the
+   rest is lies - THE REVERSE ratio. Scoring: buzz-in race, +1/-1 for challengers, lecturer +1 per
+   unspotted truth. Sources: none seen. No questions.
+3. tutor2u "Unbelievable Truth" classroom version - CLOSE RELATIVE
+   Who writes the lies: the student (five lies, listed for the teacher). What is true: the rest of the
+   speech (the SAME direction as the idea). Scoring: team buzz-ins; the speaker's team scores for lies
+   not found. Sources: none.
+4. Cambridge ESL "That's not right!" - CLOSE RELATIVE
+   Who writes the lie: the students. What is true: 5 of 6 statements about a country. Others find the
+   false one and correct it. Scoring: not shown. Sources: none.
+5. "Two Truths, One Lie: History & Geography Challenge" (Payhip) - CLOSE RELATIVE
+   Who writes the lie: the game (printed cards; categories include Countries). What is true: 2 of 3.
+   Presenter/bluffer: not confirmed. Answers with "brief explanations for the lies"; no sources.
+6. The Game of Lies (board game, 2019/2020) - CLOSE RELATIVE (two partial mechanics; see Query 12).
+7. Call My Bluff (TV), Bluff the Listener (NPR), Liar's Club (TV) - CLOSE RELATIVES of the "bluff
+   panel" family: several presenters, ONE item each, find the TRUE one; who writes the bluffs is not
+   established from the pages I opened.
+8. The Big Fib (Disney+ 2020) - CLOSE in theme (expert, questions, find the fibber); the fake is a
+   person, not a fact.
+Everything else (Fibbage, Talking Points, two truths and a lie apps, improv experts, quizzes): FAR.
+
+What seems new in the idea, judging from my area only: the COMBINATION of (1) the game writes the
+one invented fact and marks it only for the presenter, (2) it hides among REAL facts about one
+topic (a country), (3) one presenter performs them in their own words with questions, and (4) the
+reveal shows sources for the true facts. Each piece has a relative. I found no format that does all
+four. Weak spot to know about: "find the false fact about a country" is already an ordinary ESL
+classroom activity, so the new part is the combination, not the core guessing.
+
+
+NAMES
+=====
+Checked in Queries 7, 8, 9 (plus anything that came up elsewhere). Only my US-only web results; the
+OR queries could bury a weaker match; I did not search app stores or BoardGameGeek directly.
+
+- STRAIGHT FACE: TAKEN (as a game name, with a different game). gamerules.com "STRAIGHT FACE" (drinking
+  game: "Read something out loud and keep a straight face or take a drink."); a commercial product,
+  "Straight Face Drinking Game" by Paladone Products (100 challenge cards + 4 shot cups); education.com
+  "Play Straight Face" (kids' don't-laugh game). All are "don't laugh" games. The phrase is also very
+  common in no-laughing games. A commercial product by Paladone means real clash risk.
+- SO-CALLED EXPERT: NOT FOUND (no result contained it in Query 7).
+- INSTANT EXPERT: NOT FOUND as a game name. Only the phrase "You too can be an instant expert!" on
+  write-out-loud.com's "Expert Interviews" page.
+- FOUR AND A FIB: NOT FOUND (results were Fibonacci games and Disney's "The Big Fib"). Note "The Big
+  Fib" is a Disney+ show (2020) with a related "find the fibber" format, so "...Fib" names sit near it.
+- OUR EXPERT: NOT FOUND as a game name in Query 9.
+- EXPERT INTERVIEW: TAKEN as an existing improv / workshop game name. Hoopla Impro "Expert Interview"
+  (improv: host + two experts on an audience-suggested topic); SessionLab method "Expert interview";
+  write-out-loud.com "Expert Interviews" (speaking game); everydayspeech "Interview the Expert";
+  Whose Line Is It Anyway? (UK) had a game called just "Expert". It is also a common research-method
+  term (a UNICEF page title in my results; not opened). Not a trademark-style product clash, but it
+  is generic and already used for an improv game with a different mechanic (no lie-hunting).
+
+
+PAGES THAT FAILED OR WERE ONLY PARTLY READABLE
+==============================================
+- complete.bioone.org "The Credibility Game": blocked (Incapsula security page).
+- sog.unc.edu/node/347398 "Bluff the Listener": only a fragment was readable.
+- elrstore.gumroad.com/l/iLwdn: description cut off after "90 printable cards with statement prompts in..."
+- comedy.co.uk WILTY press page: readable, but no rules detail.
+
+SEARCH COUNT: 12 of 12 used. No other agents or workflow tools were used.
+
+#### REPORT C: BOARD AND CARD GAMES ####
+
+REPORT C - BOARD, CARD AND PARTY GAMES
+Helper C, search done 5 Oct 2026
+Idea checked: "Expert Interview" (Logicers), as described in brief.txt
+
+BUDGET AND RULES
+- Web searches used: 12 of 12 (WebSearch, mode "standard"). No more were made.
+- Names searches: 3 of the 12 (queries 1, 2, 3).
+- Every page opened (WebFetch) had its exact address in my own search results.
+- Pages that failed (403) were noted and not retried at other addresses.
+- No Workflow tool, no other agents.
+- CAVEAT: the WebFetch tool passes page text through a small summarising model. Text in "quotes"
+  below is what the tool returned as word-for-word quotes. Spot-check a quote on the live page before
+  citing it publicly.
+- Searches give a sample of the web, not proof. "Not found" means "not found in these 12 searches".
+
+
+======================================================================
+BOTTOM LINE
+======================================================================
+SAME: none found. No board, card or party game in my results gives a player a card of several REAL
+facts hiding ONE fact invented by the game, has that player present them all as true like an expert,
+and has the others find the invented one.
+
+CLOSEST FINDS (all CLOSE RELATIVE), closest first:
+ 1. The Unbelievable Truth board game (Ginger Fox) - the game gives the lecturer a card, the lecturer
+    "delivers the lecture", the others spot the hidden items, and the lecturer scores for each one
+    "smuggled through unnoticed". The MIRROR IMAGE of the idea: mostly nonsense with 3 hidden TRUTHS,
+    found by racing to a bell during the lecture.
+ 2. The Game of Lies (James Wendelborn, self-published, 2019) - "False Memories" cards hold "two real
+    things from film and television history and one that was written for the game as a lie";
+    "Fake News" cards are a real news item where one "detail was changed". The closest on "game-written
+    fake hidden among real facts", but read out as trivia, with no expert performance and no sources.
+ 3. Would I Lie to You? board game, 2nd edition - the card decides truth or lie, the player bluffs,
+    the other team asks questions. But one statement at a time (binary), the player makes up the lie,
+    and the statements are about the player.
+ 4. Liar Liar Pants on Fire (Boxer Gifts) - "Each entertaining playing card has a selection of true and
+    false facts", the player tries "to convince your fellow players that you're telling the truth".
+    Seems to be one statement at a time, true or false.
+ 5. Two Truths, One Lie: History & Geography Challenge (printable deck, Payhip) - 100 cards incl.
+    "Countries", with a cheat sheet giving "brief explanations for the 'lies'". Closest on CONTENT
+    (country facts, game-written lie, explanations). The page does not say how it is played.
+ 6. A Tale of Two Truths (and a Lie) (Union Square & Co., Feb 2026) - "on each card two of the
+    statements are true, and one is a lie!" (classic literature). The page does not say how it is played.
+ 7. Mansplaining (Breaking Games, 2022) - the closest "fake expert" game: a 60-second expert-style
+    monologue ("Well, actually...") with 4 secret detail words slipped in, which the others must spot.
+    No true/false facts.
+ 8. Fact or Fiction (Ludicus Games, 2024) - one "Master of Confusion" alone knows the truth and
+    "scores a point for every player fooled" (the same scoring as the idea), but the Master writes
+    the fakes and the hidden item is the TRUE answer.
+
+What NOTHING in my area had (so these are the idea's differences):
+ (a) FOUR real facts + ONE game-invented fact, find the invented one (the usual pattern is the reverse:
+     one truth among bluffs; or one statement judged true/false);
+ (b) the invented fact is written by the GAME and flagged secretly to the presenter (only The Game of
+     Lies, Liar Liar Pants on Fire, Bluff It, You Are a Liar and the Two-Truths decks have game-written
+     falsehoods, and none of those has an expert presentation);
+ (c) a free, expert-style presentation in your own words, working all items in, plus up to 3 questions
+     (only The Unbelievable Truth game - a lecture - and Mansplaining have a monologue; Would I Lie to
+     You? has questions);
+ (d) SOURCES shown for the true facts at the reveal (none found; the closest are "brief explanations
+     for the 'lies'" in the Payhip deck and "an extra fun fact" in A Tale of Two Truths);
+ (e) countries as the theme, on one phone (only the Payhip deck has "Countries" as a category).
+
+
+======================================================================
+QUERIES, RESULTS, OPENED PAGES, QUOTES, RATINGS
+======================================================================
+
+----------------------------------------------------------------------
+QUERY 1 (names): boardgamegeek "Straight Face" OR "So-Called Expert" OR "Instant Expert" party game
+----------------------------------------------------------------------
+Results:
+ - Board game, Mansplaining - https://kallax.io/boardgame/ET1OC-Mansplaining [OPENED]
+ - Cover image of Несміяка 18+ (Laughless 18+) - https://boardgamematcher.com/game/18-laughless-18 [not opened]
+ - straight face - https://gamerules.com/rules/straight-face/ [OPENED]
+ - www.entertainmentearth.com - https://www.entertainmentearth.com/product/straight-face-drinking-game/pp6511tx [OPENED]
+ - party games.oembed - https://blackknightgames.ca/collections/party-games.oembed?page=2 [not opened]
+ - board games party games fun for all.oembed - https://blackknightgames.ca/collections/board-games-party-games-fun-for-all.oembed?page=9 [not opened]
+ - board games party games fun for all.oembed - https://blackknightgames.ca/collections/board-games-party-games-fun-for-all.oembed?page=16 [not opened]
+ - Board game, Think: Namen & Gesichter - https://kallax.io/boardgame/TMG7E-Think [not opened]
+ - straight talk - https://boardgamematcher.com/game/straight-talk [not opened]
+No result for "So-Called Expert" or "Instant Expert".
+
+OPENED: https://gamerules.com/rules/straight-face/
+ Name: "STRAIGHT FACE" (a home-made drinking game on gamerules.com).
+ Objective: "Read something out loud and keep a straight face or take a drink."
+ Play: players write something funny on paper and put it in a bowl, then read the slips aloud.
+ "If they laugh or even crack a tiny smile, that player must take a drink. However, if that player
+ manages to keep a straight face while reading the entire sentence, the person that wrote the sentence
+ must fess up and take a drink."
+ RATING: FAR (a don't-laugh game). Relevant for NAMES: "Straight Face" is in use.
+
+OPENED: https://www.entertainmentearth.com/product/straight-face-drinking-game/pp6511tx
+ Product: "Straight Face Drinking Game", manufacturer "Paladone Products".
+ Play: players "read out loud what's printed on the card while keeping a straight face"; whoever
+ "fail[s] to keep a straight face while reading a challenge" faces a forfeit. Contents: "4 shot cups
+ and 100 original and unique challenge cards", "2 or more players".
+ RATING: FAR. Relevant for NAMES: a commercial party card game sold as "Straight Face Drinking Game".
+
+OPENED: https://kallax.io/boardgame/ET1OC-Mansplaining
+ "Mansplaining is a hilarious party game that lets you unleash your inner expert and show off your
+ knowledge, or lack thereof, to your friends." Designers Fertessa Allyse and Mondo Davis, 2022,
+ "2 - 99 Players 30 minutes". Players explain their topic "without using the words on the topic card,
+ starting with the classic phrase 'Well, actually...'", "trying to sound as convincing as possible".
+ (Rules quoted in full from the publisher page under query 2.)
+ RATING: CLOSE RELATIVE (see query 2).
+
+----------------------------------------------------------------------
+QUERY 2 (names): "Four and a Fib" OR "Our Expert" OR "Expert Interview" card game OR board game OR party game
+----------------------------------------------------------------------
+Results:
+ - Welcome to Group Interview: The Game - https://smashattack.itch.io/group-interview-the-card-game/devlog/364281/welcome-to-group-interview-the-game [not opened]
+ - expert interviews - https://www.write-out-loud.com/expert-interviews [OPENED]
+ - Group Interview: The Card Game - https://smashattack.itch.io/group-interview-the-card-game [OPENED]
+ - Bad Interviews - https://www.nobleknight.com/P/2148117363/Bad-Interviews [not opened]
+ - Word at a Time Expert - https://hooplaimpro.com/?p=6313 [OPENED]
+ - Expert At The Card Table - https://ns1.mudfish.net/fetch.php/Te0W4I/703369/Expert At The Card Table.pdf [not opened]
+ - dicetower.com - https://dicetower.com/board-game/830 [OPENED]
+ - Bad Interviews by Funemployed Party Game for Adults and Game Night for 3 or More Players - https://www.walmart.com/ip/seort/5129878640 [not opened]
+ - Breaking Games - https://breakinggames.com/products/mansplaining [OPENED]
+No result for "Four and a Fib" or "Our Expert".
+
+OPENED: https://www.write-out-loud.com/expert-interviews
+ A public-speaking site. "Expert Interviews" is described as "a paired impromptu speaking game".
+ "The name of the expert and their area of expertise is randomly drawn by interviewer" from a list of
+ 100. It is "an invitation to suspend truth, embellish reality and immerse yourself, your friends and
+ family, in fun." The expert's goal is to "'own' their given area of expertise realistically and
+ wholeheartedly, regardless of how ridiculous the topic is or how little knowledge they have on the
+ subject." The audience's role is to "be positive and supportive" - nobody has to detect anything.
+ RATING: FAR (improvised fake expert, no hidden false fact, no detection, no scoring).
+ Relevant for NAMES: "Expert Interviews" (plural) is the name of this speaking game.
+
+OPENED: https://hooplaimpro.com/?p=6313
+ Improv game "Word at a Time Expert": "Three players stand next to each other shoulder to shoulder to
+ play one entire person (or in this case an expert in something), who speaks one word at at time."
+ An interviewer questions this expert. Variations named on the page: "Word at a Time Story",
+ "Three Headed Expert".
+ RATING: FAR (improv; no facts, no detection).
+
+OPENED: https://dicetower.com/board-game/830
+ "FIB-OR-NOT?", publisher "Gather Around Games, Inc.", 2000. "Players select subject cards and take
+ turns telling stories." The storyteller aims to "fool the other players" with an outrageous true story
+ or a believable false one; listeners "properly guess if the story is a FIB . . . or NOT."
+ Categories "Bluffing, Party Game"; "there is no questioning your knowledge of trivial facts."
+ RATING: FAR (the player's own stories; one story judged fib or not; player decides).
+
+OPENED: https://breakinggames.com/products/mansplaining  (publisher page)
+ "Do your friends consider you the expert on everything? Does it make your heart swell every time you
+ teach a stranger how to do something right? If so, then Mansplaining is for you!"
+ "The mansplainer for the round draws a topic card and four detail cards with random words."
+ "They then have 60 seconds to explain their topic - starting with the words, 'Well, actually...' -
+ while slipping in as many detail words as they can." "They cannot use the words on their topic card
+ during this explanation!"
+ Scoring: "When they finish, players write down their guesses for the mansplainer's topic and detail
+ words, scoring 1 point for each correct guess. The mansplainer scores for each detail included in their
+ explanation." "After everyone has mansplained twice, the player with the most points wins."
+ (kallax adds: the mansplainer scores if "at least one but not all of the audience guesses your topic
+ correctly".)
+ RATING: CLOSE RELATIVE - the nearest "fake expert" FORMAT: the game hands the speaker secret items,
+ the speaker performs a timed expert monologue working them in, the audience must spot them.
+ Differences: no real facts and no false fact (random words, not true/false); the speaker WANTS the
+ items found (partly); no questions; no sources.
+
+OPENED: https://smashattack.itch.io/group-interview-the-card-game
+ "Group Interview: The Card Game", Smash Attack Studios (version 2.0 update, May 22, 2022).
+ "The prospects can play one of their action cards before they answer. The interviewer decides which
+ order these cards play out." Players "give their answer in character as best they can! From there the
+ interviewer will decide who gets the point."
+ RATING: FAR (role-play job interview; no facts, no bluff detection).
+
+----------------------------------------------------------------------
+QUERY 3 (names): "Instant Expert" OR "So-Called Expert" OR "Four and a Fib" bluffing card game players
+----------------------------------------------------------------------
+Results:
+ - Publication Date - https://scholarworks.sjsu.edu/etd_projects/568 [OPENED]
+ - Expert At The Card Table - https://ns1.mudfish.net/fetch.php/Te0W4I/703369/Expert At The Card Table.pdf [not opened]
+ - The Ultimate Guide To Bullshit Card Game: 7 Master Strategies To Become A Deception Expert - https://slbubble.studentbridge.com/celebnews006/the-ultimate-guide-to-bullshit-card-game-7-master-strategies-to-become-a-deception-expert-nolyb.html [not opened]
+ - BS Card Game Explained Master the Bluff - https://git.mountainside.com/?p=4792 [not opened]
+ - 5 Expert Strategies To Win The Bullshit Card Game (Cheat/I Doubt It) Every Time - https://slbubble.studentbridge.com/celebnews006/5-expert-strategies-to-win-the-bullshit-card-game-cheati-doubt-it-every-time-syhga.html [not opened]
+ - nactrem.itch.io - https://nactrem.itch.io/blind [not opened]
+ - Introduction: How to Play Bluff - https://www.instructables.com/How-to-play-bluff [not opened]
+ - expert at the card table - https://openui5.skybuffer.com/virtual-library/4GS8bS/2AD080/expert-at__the_card-table.pdf [not opened]
+ - bluff card game 2 - https://skich.app/games/bluff-card-game-2 [not opened]
+No game named "Instant Expert", "So-Called Expert" or "Four and a Fib" in the results.
+
+OPENED: https://scholarworks.sjsu.edu/etd_projects/568
+ "BLUFF" WITH AI, Tina Philip, 2017: AI agents playing the card-shedding game Bluff. The tool reports:
+ "The document does not mention these terms or phrases" (the three names).
+ RATING: FAR.
+
+----------------------------------------------------------------------
+QUERY 4: "Would I Lie to You" board game cards rules how to play
+----------------------------------------------------------------------
+Results:
+ - How To Play The Game Bull Shark - https://folklore.usc.edu/?p=49824 [not opened]
+ - Tag Archives: bullshit - https://folklore.usc.edu/tag/bullshit/ [not opened]
+ - I Doubt It! - https://akitajet.com/wiki/I_Doubt_It! [not opened]
+ - Box for Liar's UNO - https://www.geekyhobbies.com/liars-uno-rules/ [not opened]
+ - Cover image of Honestly? - https://boardgamematcher.com/game/honestly [OPENED]
+ - Lie, Steal, Cheat - https://makayla-hicks.itch.io/lie-steal-cheat [not opened]
+ - would i lie to you 2nd edition - https://zatu.com/en-au/products/would-i-lie-to-you-2nd-edition [OPENED]
+ - game rules - https://ultraboardgames.com/you-are-a-liar-or-maybe-not/game-rules.php [OPENED]
+ - 1. Artist's Statement - https://mechanicsofmagic.com/?p=39816 [not opened]
+
+OPENED: https://zatu.com/en-au/products/would-i-lie-to-you-2nd-edition  (shop page with a Zatu review)
+ The page gives no publisher name or player count. From the review:
+ "Quickfire Lie - The card produces the first and second half of a fact. The player drawing the card
+ must make up their own version of the second half of the fact and read out both their version and the
+ real version."
+ "Ring of Truth - Similar to the first, the card also provides a fact with a second half and each member
+ of the team also comes up with their own versions of the second half."
+ "This Is... - Within the 'This is...' pile are truth cards and lie cards. The team member picks up the
+ card and reads it out if it is true, or makes up the ending to the card if it is a lie."
+ "If it is true there are items at the bottom of the card to help with these questions. If it is a lie
+ then you have to bluff your way through."
+ "The opposing team must guess if this is a truth or lie card, by asking questions about the card."
+ "If the opposing team correctly predicts the right answer, or whether something is true or false, then
+ they earn a point."
+ RATING: CLOSE RELATIVE.
+ How it differs from the idea: (1) one statement at a time, judged truth OR lie (binary), not 4 true +
+ 1 false to pick from; (2) when it is a lie, the PLAYER makes up the ending - the game does not write
+ the lie; (3) "This is..." statements are framed as the player's own life, not facts about a country;
+ (4) team v team. Shared: the card (not the player) decides truth/lie; the other side asks questions;
+ the player must bluff in character. In "Quickfire Lie" the game supplies a REAL fact and the player
+ invents a fake version (the reverse of who invents).
+
+OPENED: https://boardgamematcher.com/game/honestly
+ "Honestly?", 2017, Grim Games, designer Michael Murphey, 3-6 players, about 15 minutes.
+ "Honestly? is a bluffing game. Players win by lying to friends about whether or not they are actually
+ a liar." Players say whether they are a liar; challenges with "I believe you" / "I have concerns" /
+ "honestly?"; "If any player(s) successfully lied, they win. If no players lied about their cards,
+ everyone loses."
+ RATING: FAR (no facts).
+
+OPENED: https://ultraboardgames.com/you-are-a-liar-or-maybe-not/game-rules.php
+ "You Are a Liar (or Maybe Not)". Contents: "120 True Story Cards" and "120 Liar Story Card" plus
+ "24 Finger Cards". "Starting with the player to the left of the 'guesser', each player reads the
+ statement on their card". Players must "cup their hand over the symbol on the front of their card which
+ indicates whether their card is truthful or a lie". "the 'guesser' must decide if their statement is
+ false. The 'guesser' does this by placing a FINGER card (taken from the center pile) in front of that
+ player." "For every correctly guessed LIE card, the 'guesser' places that FINGER card into their
+ winnings pile." "for every TRUE card that the 'guesser' wrongly accused of being a lie, a FINGER card
+ must be placed from their winnings pile into the center pile". Object: "The player with the most FINGER
+ cards in their winnings pile is the winner!" The rules page gives no example card text, no publisher,
+ no player count, and does not say whether players may defend their statement.
+ RATING: CLOSE RELATIVE. Shared: the CARD (game) secretly tells the reader whether the statement is
+ true or a lie; the reader must present it convincingly; the guesser hunts the lies.
+ Differences: each player reads ONE statement; one guesser; several lies may be on the table, not
+ exactly one; no expert presentation, no questions stated, no sources; content type unknown ("Story").
+
+----------------------------------------------------------------------
+QUERY 5: "Call My Bluff" OR "The Unbelievable Truth" board game OR card game boxed
+----------------------------------------------------------------------
+Results:
+ - top of page - https://boardseyeview.net/post/2018/08/13/the-unbelievable-truth [OPENED]
+ - Call My Bluff - https://dicetower.com/board-game/7095 [OPENED]
+ - R2813 Eng - https://service.mattel.com/instruction_sheets/R2813-Eng.pdf [OPENED]
+ - Call My Bluff - https://boardgamematcher.com/game/call-my-bluff [OPENED]
+ - hobsonsbay.vic.gov.au - https://hobsonsbay.vic.gov.au/Libraries/Our-Collections/Library-of-Things/Video-Games-and-Board-Games-Library-of-Things-Collection/Board-Games/Balderdash [not opened]
+ - www.hobsonsbay.vic.gov.au - https://www.hobsonsbay.vic.gov.au/Libraries/Our-collections/Library-of-Things/Video-Games-and-Board-Games-Library-of-Things-Collection/Board-Games/Balderdash [not opened]
+ - www.nobleknight.com - https://www.nobleknight.com/P/2147803541/Bamboozled [OPENED]
+ - Cover image of True or Bluff - https://boardgamematcher.com/game/true-or-bluff [OPENED]
+ - bluff it - https://www.chroniclebooks.com/collections/party-games/products/bluff-it [OPENED]
+ - frontend.dealercommander.com - https://frontend.dealercommander.com/PRO/Mattel-Balderdash-Board-Game-the-Game-Of-Twisting-Truths/Mattel-2C-Inc/MTTCFX43/details.php [not opened]
+
+OPENED: https://boardseyeview.net/post/2018/08/13/the-unbelievable-truth  (review, 2018)
+ Publisher: "Ginger Fox (Hacche Retail)".
+ "The game comprises a set of lecturer cards with the three truths printed in bold."
+ "The lecturer takes a card and delivers the lecture."
+ "The other players race to be the first to ring the push-bell (supplied with the game) if they think
+ they've spotted a fact."
+ "If they are correct, the bell-ringer takes a token giving them a point. There are negative point for
+ an incorrect challenge. The lecturer earns a point for every truth smuggled through unnoticed."
+ Players: "There's no real upper limit for the number of players, except that everyone needs to be
+ reasonably close to the bell."
+ Weakness noted: "We just had a slight problem with a few cards that had paragraphs where the bold type
+ was scattered within text that was obvious nonsense."
+ "you'll find that there's often a mad rush of two or three people darting their hand over to hit the
+ bell."
+ Verdict: "If you like the radio show, you'll enjoy The Unbelievable Truth game. If you don't know the
+ show, try to find it online (for example, on BBC iPlayer), then you'll want to go out and buy this game."
+ The review does NOT say whether the lecture is read word for word or improvised, who wrote the cards,
+ whether truths are explained or sourced, or whether players can ask questions.
+ RATING: CLOSE RELATIVE - the closest in STRUCTURE.
+ Shared with the idea: the GAME hands one player a card that already contains the hidden items and
+ marks them for that player only (bold type); that player presents it to the group as a lecture; the
+ others must spot the hidden items; the presenter scores for each item that gets past the group.
+ How it differs: (1) inverted ratio: the lecture is nonsense with THREE hidden TRUTHS; the idea is four
+ truths with ONE hidden invention; (2) the others race to a bell DURING the lecture (with minus points
+ for wrong rings), not one vote after the talk plus questions; (3) the lecture is printed on the card
+ (no sign of the presenter's own words); (4) no sources mentioned; (5) not about countries; no app.
+
+OPENED: https://dicetower.com/board-game/7095
+ "Call My Bluff", publisher "Milton Bradley", 1965.
+ "Each player has six betting cards. Three cards with values from 5 - 15 labeled 'True' and four cards
+ with values labeled from 5 - 20 'Bluff'." [sic, as quoted]
+ "A card is selected and four definitions are read out loud. Three definitions are listed and the active
+ player makes up the fourth. Players then place a bet based on one of the definitions."
+ "The players whom have correctly predicted the result get the points they have bet. The incorrect bets
+ are given to the active player. The first player to score 250 pts wins." "672 bluff cards", two words
+ per card.
+
+OPENED: https://boardgamematcher.com/game/call-my-bluff
+ Same game: "Milton Bradley" (1965), designers "Mark Goodson" and "Philip Hindin", "2-6 Players", same
+ description text as Dice Tower.
+ RATING (Call My Bluff board game): CLOSE RELATIVE.
+ How it differs: obscure WORD DEFINITIONS, not facts about a place; the active player MAKES UP one of
+ the four definitions (in the idea the game writes the false item); betting on True/Bluff; no expert
+ talk, no questions, no sources. The pages do not make clear how many of the three printed definitions
+ are true.
+
+OPENED: https://service.mattel.com/instruction_sheets/R2813-Eng.pdf  (Mattel Balderdash rules)
+ "Balderdash(R), the hilarious bluffing game". Object: "To make up answers that will bluff the other
+ players. Earn points for fooling other players into believing your bluff as well as for choosing the
+ real answer."
+ Categories: "Weird Words-What is this definition?", "Peculiar People-Who is this person?", "Incredible
+ Initials-What does this stand for?", "Marvelous Movies-What is this movie about?", "Laughable
+ Laws-What is this law?"
+ "Every player, except the DASHER, makes up an answer and writes it down". The DASHER "writes the question
+ on their answer sheet, along with the real answer from the green side of the card", then "arranges them,
+ including the real one, in random order, and reads each answer aloud being careful not to reveal which
+ answer is the real one."
+ Scoring: "1 point...for every vote their answer earned," "2 points...for correctly guessing the REAL
+ answer," and "3 points...if no players guess the real answer."
+ RATING: CLOSE RELATIVE (inverse).
+ How it differs: ONE real answer hidden among many fakes WRITTEN BY THE PLAYERS; players hunt the TRUE
+ one; one reader reads short answers, no expert talk; no sources.
+
+OPENED: https://www.nobleknight.com/P/2147803541/Bamboozled
+ "Bamboozled", "Blue Wasatch Games", 2019, "2 - 8 Players": "In this party style bluffing dice game it
+ is your job to figure out whether you are being bamboozled, or if the other player really got an
+ unbeatable roll."
+ RATING: FAR (dice bluffing).
+
+OPENED: https://boardgamematcher.com/game/true-or-bluff
+ "True or Bluff", "Publisher Cheatwell Games" (2009), "2-8 players, with sessions lasting 30 min".
+ "Each True or Bluff card contains an obscure word and four answers, a) to d), one of which is true".
+ "Each team takes it in turn to read out the word on the card followed by the four answers, one of which
+ they must make up on the spot". "The other team then has 2 guesses to try and work out which is the
+ correct answer". "If the guessing team gets it right with their first guess they score two points. If
+ they get it right on their second guess they only get one point. If the guessing team gets it wrong with
+ both guesses the bluffing team gets a bonus point."
+ RATING: CLOSE RELATIVE (Call My Bluff family). Differences: word definitions; the hidden item is the
+ TRUE answer; the team invents one answer on the spot; no expert talk; no sources.
+
+OPENED: https://www.chroniclebooks.com/collections/party-games/products/bluff-it
+ "Bluff It", "Ridley's Games", date "12/07/2021", "Suitable for 4 or more players, ages 8+".
+ Card: "a card with options of 2 bluff answers and 1 correct answer". "bluffers can read only one of the
+ answers along with the statement" and "Be sure to make the bluff believable, so that no one questions
+ you!" Others try to "'call your bluff'". No scoring described on the page.
+ RATING: CLOSE RELATIVE. Shared: the GAME writes the bluffs (like "invented by the game"); the reader
+ presents one answer convincingly. Differences: ONE answer is read and judged (true or bluff), not a
+ set of true facts with one false; no expert talk, no questions, no sources.
+
+----------------------------------------------------------------------
+QUERY 6: "two truths and a lie" card game deck facts about countries world geography trivia
+----------------------------------------------------------------------
+Results:
+ - payhip.com - https://payhip.com/b/MheY1 [OPENED]
+ - Card game "True-false. Russia". 60 cards - https://karuselbooks.com/en/products/igra-kartochnaya-pravda-lozh-rossiya-60-kartochek [OPENED]
+ - Countries of the World Card Game (Professor Noggin's) - https://www.thechildrensbookshop.co.nz/p/card-games-countries-of-the-world-card-game-professor-noggin-s [not opened]
+ - Professor Noggin Countries of the World - https://canadianhomeeducation.com/professor-noggin-countries-of-the-world-8 [not opened]
+ - Professor Noggin Countries of the World - https://www.wintergreen.ca/professor-noggin-countries-of-the-world-wsp11408 [OPENED]
+ - Prof Noggin's Countries of the World - https://galtmuseum.com/items/professor-noggins-countries-of-the-world [not opened]
+ - professor noggin countries of the world wsp11408 - https://www.wintergreen.ca/support-canadian-2/professor-noggin-countries-of-the-world-wsp11408 [not opened]
+ - A Tale of Two Truths (and a Lie): A Classic Literature Trivia Game - https://www.hbglibrary.com/titles/union-square-co/a-tale-of-two-truths-and-a-lie-a-classic-literature-trivia-game/9781454964353/ [OPENED]
+ - A Tale of Two Truths (and a Lie): A Classic Literature Trivia Game - https://academy.hachettelearning.com/titles/union-square-co/a-tale-of-two-truths-and-a-lie-a-classic-literature-trivia-game/9781454964353/ [not opened]
+ - A Tale of Two Truths (and a Lie): A Classic Literature Trivia Game - https://languageacts-worldmaking.com/titles/union-square-co/a-tale-of-two-truths-and-a-lie-a-classic-literature-trivia-game/9781454964353/ [not opened]
+
+OPENED: https://payhip.com/b/MheY1
+ Title: "Two Truths, One Lie: History & Geography Challenge", seller "Essential Language Resources"
+ (Payhip). "Engage your students with a game of facts and deception! Two Truths, One Lie is a printable
+ educational card game designed for learners aged 14 to adults." "100 cards spanning three categories -
+ Countries, Historical Events, and People from the Pas[t]". "Printable Teacher's Cheat Sheet: A
+ quick-reference guide with the correct answers and brief explanations for the 'lies.'" "Instructions on
+ three ways to play the game and keep it fresh and engaging". "You will get a ZIP (3MB) file", price
+ $6.99. The page does NOT describe how it is played (reader role, bluffing, scoring).
+ RATING: CLOSE RELATIVE - closest on CONTENT: the resource (not the players) supplies true facts plus
+ one lie about countries, with explanations for the lies. Differences: 2 true + 1 false; play format
+ unknown (no sign of a presenter bluffing as an expert); classroom printable; explanations, not sources.
+
+OPENED: https://karuselbooks.com/en/products/igra-kartochnaya-pravda-lozh-rossiya-60-kartochek
+ Card game "True-false. Russia", publisher Геодом (Geodom). "On the cards - 50 interesting facts about
+ Russia and wonderful illustrations." "Contents: 50 fact cards, 10 answer cards, game rules." "Can you
+ figure out what is true and what is false? Play - it will be interesting!" No play mechanics given.
+ RATING: FAR (a true/false quiz about one country; no bluffing presenter described).
+
+OPENED: https://www.wintergreen.ca/professor-noggin-countries-of-the-world-wsp11408
+ "Each of the thirty game cards combines trivia, true or false, and multiple choice questions."
+ "A special three-numbered die is included which adds an element of unpredictability."
+ RATING: FAR (children's quiz).
+
+OPENED: https://www.hbglibrary.com/titles/union-square-co/a-tale-of-two-truths-and-a-lie-a-classic-literature-trivia-game/9781454964353/
+ "A Tale of Two Truths (and a Lie): A Classic Literature Trivia Game", "Union Square Gift" imprint,
+ "By Union Square & Co.", release "Feb 3, 2026", "100 game cards", "divided into four categories:
+ quotes, characters, plot points, and author biography", "on each card two of the statements are true,
+ and one is a lie!", "With each card presenting an extra fun fact about the work in question", "perfect
+ for...parties, car trips and rainy afternoons". The page does not say who reads, whether the reader
+ knows the lie, or how scoring works.
+ RATING: CLOSE RELATIVE (content: game-written lie hidden among real facts, plus a bonus fact).
+ Differences: literature, 2+1, no expert presentation described, no sources.
+
+----------------------------------------------------------------------
+QUERY 7: "Sounds Fishy" Big Potato rules how to play real answer fake answers
+----------------------------------------------------------------------
+Results:
+ - rulespal.com - https://rulespal.com/sounds-fishy/rulebook [OPENED]
+ - Sounds Fishy party game review - https://theboardgamefamily.com/?p=71278 [not opened]
+ - how to play sounds fishy - https://zatu.com/blogs/how-to-play/how-to-play-sounds-fishy [OPENED]
+ - Sounds Fishy party game review - https://www.theboardgamefamily.com/2023/01/sounds-fishy-party-game-review/ [not opened]
+ - Sounds Fishy - https://www.gamenerdz.com/sounds-fishy [not opened]
+ - Sounds Fishy (Travel Edition) - https://pkporthcurno.com/product/sounds-fishy-travel-edition/ [not opened]
+ - Sounds Fishy (Travel Edition) - https://pkporthcurno.com/?p=19011 [not opened]
+ - Sounds Fishy - https://giftoftheyear.co.uk/2023-entries/games/sounds-fishy [not opened]
+ - sounds fishy review hook line and sinker - https://gamingtrend.com/reviews/sounds-fishy-review-hook-line-and-sinker/ [not opened]
+ - sounds fishy review hook line and sinker - https://gamingtrend.com/feature/reviews/sounds-fishy-review-hook-line-and-sinker/ [not opened]
+
+OPENED: https://rulespal.com/sounds-fishy/rulebook
+ Publisher: "Big Potato Ltd, 74 Tabernacle St, London, EC2A 4EA (UK)". 4-10 players. "200 Question
+ cards". "Shuffle the fish face-down and deal one to each player, except the Guesser." "The other
+ players can clearly see the answer (but not the Guesser)." "The Red Herrings have 15 seconds to invent a
+ fake answer." "Going around the table, each player now gives their answer." "They choose an answer they
+ think is fake, and flip over that player's fish." Guesser: "For each Red Herring you flip: 1
+ point...If you flip the True Blue Kipper too early: 0 points for that turn".
+
+OPENED: https://zatu.com/blogs/how-to-play/how-to-play-sounds-fishy
+ "The guesser will draw a question card, reading it aloud and holding it up with the side with the blue
+ answer on facing away so that the other players can see it." "The Red Herrings must each come up with a
+ lie that is convincing enough to try and trick the guesser." "Going round the group they eliminate who
+ they think are Red Herrings, flipping over their fish, while avoiding the True Blue Kipper." Guesser
+ scores "a point for every correctly guessed Red Herring"; Red Herrings score "one point for every flipped
+ fish on the table"; True Blue Kipper scores "one point for every unflipped fish on the table".
+ RATING (Sounds Fishy): CLOSE RELATIVE (inverse).
+ How it differs: ONE real answer (the game's) among fakes INVENTED BY PLAYERS in 15 seconds; one
+ Guesser, not the whole group; each player gives one short answer, no expert talk; everyone but the
+ Guesser sees the real answer; no sources.
+
+----------------------------------------------------------------------
+QUERY 8: Malarky Catfished party game rules who knows the real answer bluff
+----------------------------------------------------------------------
+Results:
+ - t 24629 - https://forums.operationsports.com/fofc/archive/index.php/.../a%3E/t-24629.html [not opened]
+ - Game of the week: Malarky - https://dailyevergreen.com/102708/culture/game-of-the-week-malarky/ [not opened]
+ - game rules - https://ultraboardgames.com/malarky/game-rules.php [OPENED]
+ - boardgamematcher.com - https://boardgamematcher.com/game/malarky [OPENED]
+ - Cover image of Catfished - https://boardgamematcher.com/game/catfished [OPENED]
+ - malarki 1996 - https://tarsasjatekok.com/tarsasjatek/malarki-1996 [not opened]
+ - Team Malarky - https://ultraboardgames.com/malarky/variants.php [not opened]
+ - catfished 2025 - https://tarsasjatekok.com/tarsasjatek/catfished-2025 [OPENED]
+ - Malarky Game - https://games.rjuuc.edu.np/en/malarky-game.html [not opened]
+
+OPENED: https://ultraboardgames.com/malarky/game-rules.php
+ "Malarky cards have three Imponderable questions on one side, and their corresponding answers on the
+ other." "One player, chosen randomly and without anyone knowing who will be given the correct answer.
+ All the other players think of possible answers." "The Bluff Cards have instructions informing the
+ player holding them to think up a believable bluff answer." "The Host then offers his or her answer.
+ Play continues in a clockwise direction as all the bluffs and the correct answer is presented." "After
+ all the answers are presented, players vote secretly for the player they feel presented the real
+ answer." Scoring: "+1: A player earns one point for every vote his or her answer receives"; "+1: A
+ player earns one point for voting for the real answer"; "+2: A player who was forced into a Malarky
+ receives two points for each vote"; "-2: A player who voted with an empty hand will have two points
+ deducted if his or her answer is wrong".
+
+OPENED: https://boardgamematcher.com/game/malarky
+ "Designed by David Feldman" (1996), "3-6 Players", "45 min". Publishers: Alga, N.W. Damm & Son (Damm),
+ Patch Products. "One player receives the real answer hidden inside a wallet" "while the others receive
+ blank 'bluff' cards. Players take turns reading their supposed answers aloud, making up explanations if
+ needed." "After all answers are read, players vote on which one they believe is the true explanation."
+ "Points are awarded for guessing correctly and for fooling others into believing your fake answer."
+ RATING (Malarky): CLOSE RELATIVE (inverse).
+ How it differs: ONE real answer (secretly given to a random player) among answers INVENTED BY THE OTHER
+ PLAYERS; everyone hunts the TRUE one; short answers to an odd question, not an expert talk on a topic;
+ no sources. Shared: the game, not the player, decides secretly who holds what; everyone presents as if
+ true; secret vote; points for fooling.
+
+OPENED: https://boardgamematcher.com/game/catfished
+ "Catfished", "Viral Studios", 2025, "3-8 Players". "The guesser will read the question out loud. One
+ player will provide the correct answer while all other players provide fake ones. The guesser will
+ determine who is telling the truth, being careful not to guess one of the liars, AKA a Catfish!"
+OPENED: https://tarsasjatekok.com/tarsasjatek/catfished-2025  (same description; "3 - 8 játékos részére")
+ RATING (Catfished): CLOSE RELATIVE (inverse, Sounds Fishy pattern). Differences as for Sounds Fishy;
+ no card contents or scoring given on these pages.
+
+----------------------------------------------------------------------
+QUERY 9: "fake expert" OR "pretend to be an expert" party card game bluff others guess
+----------------------------------------------------------------------
+Results:
+ - A Fake Artist Goes to New York (EN) - https://shop.asmodee.ca/en/products/onkfagny [not opened]
+ - A Fake Artist Goes to New York (EN) - https://shop.asmodee.ca/en/onkfagny [not opened]
+ - A Fake Artist Goes to New York (EN) - https://shop.asmodee.ca/produits/onkfagny [not opened]
+ - A Fake Artist Goes to New York - https://bastardcafe.dk/games/a-fake-artist-goes-to-new-york/ [OPENED]
+ - Imposter: Guess Who's the Liar - https://apps.apple.com/app/id6752859481 [not opened]
+ - A Fake Artist Goes to New York (EN) - https://shop.asmodee.ca/oink-games/onkfagny [not opened]
+ - A Fake Artist Goes to New York - https://www.waylandgames.co.uk/a-fake-artist-goes-to-new-york-ok-fany [not opened]
+ - a fake artist goes to new york.oembed - https://abyssgamestore.ca/products/a-fake-artist-goes-to-new-york.oembed [not opened]
+ - A Fake Artist Goes To New York - https://www.tlamagames.com/en/board-games/a-fake-artist-goes-to-new-york/ [not opened]
+ - top of page - https://boardseyeview.net/post/fake-that [OPENED]
+
+OPENED: https://bastardcafe.dk/games/a-fake-artist-goes-to-new-york/
+ "one player will have only an 'X' written on his card: they are the fake artist!" "Players will then go
+ around the table twice, drawing one contiguous stroke each on a paper to draw the word established by
+ the Question Master, then guess who the fake artist is."
+ RATING: FAR (find the hidden fake PLAYER, not a fake fact).
+
+OPENED: https://boardseyeview.net/post/fake-that
+ "Fake That!", Studio H, design Hervé Marly, "notionally playable with 4-8 players, but the sweet spot is
+ probably four or five players". "each round, only one player is guessing at the correct definition so
+ all the other players are designated as 'experts' who are offering definitions from which this player
+ (designated the 'gullible') has to choose." "The game comes with a generous stock of 350 cards, each of
+ which offers a question. The 'gullible' reads out the question then hands the card to the other players,
+ all of whom are able to read the actual answer which is on the card's reverse side." "just one of the
+ answers should tie in with the true answer on the card". "The deduction process involves the 'gullible'
+ eliminating the fake answers one by one." Fakers "put a score token into the kitty"; the gullible can
+ cash out or risk continuing.
+ RATING: CLOSE RELATIVE (inverse, Sounds Fishy pattern). Note: the bluffers are called "experts".
+ Differences: one true answer among player-invented fakes; one guesser; no talk on a topic; no sources.
+
+----------------------------------------------------------------------
+QUERY 10: party card game card shows facts "one of which is false" player bluffs others guess which fact is false
+----------------------------------------------------------------------
+Results:
+ - Bluffing Board Games Party Games Trivia Board Games - https://www.meeplemountain.com/?p=14882 [OPENED]
+ - bluff it - https://www.chroniclebooks.com/collections/party-games/products/bluff-it [already opened, query 5]
+ - Bluffing Board Games Party Games Trivia Board Games - https://www.meeplemountain.com/boardgame/the-game-of-lies/ [OPENED]
+ - www.exodusbooks.com - https://www.exodusbooks.com/truth-be-told/35710/ [OPENED]
+ - header banner header banner header banner - https://www.therange.co.uk/toys/puzzles-board-and-card-games/card-games/family-card-games/liar-liar-pants-on-fire-fun-card-game [OPENED]
+ - CA2080392C - Game apparatus - Google Patents - https://patents.google.com/patent/CA2080392C/en [OPENED]
+ - CA2080392A1 - Game Apparatus - Google Patents - https://patents.google.com/patent/CA2080392A1/en [not opened; same patent family]
+ - Bluffing Board Games Casual Board Games Family Board Games Party Games Trivia Board Games - https://www.meeplemountain.com/?p=14378 [OPENED]
+ - tabletopia.com - https://c.tabletopia.com/games/curious-humans-plus-expansions/rules/tabletopia-rulebook/en [OPENED]
+ - Ridley's Games Room Bluff It Trivia Game - https://archive.a2zscience.com/?p=61618 [not opened; same product as Bluff It]
+
+OPENED: https://www.meeplemountain.com/boardgame/the-game-of-lies/  (game entry)
+OPENED: https://www.meeplemountain.com/?p=14378  (review)
+OPENED: https://www.meeplemountain.com/?p=14882  (same game)
+ "The Game of Lies", designer "James Wendelborn", "(Self-Published)", "2019", "2 - 9" players.
+ Tagline: "a trivia party game where everything is based on bull***t?"
+ "Correctly answer questions across three categories in order to reach the center of the game board, and
+ successfully bluff your way to victory!"
+ False Memories: "Spot the fake from three ludicrous-sounding entries such as reality TV shows, dating
+ shows, made-for-TV movies, game shows, songs, and more. They're all unbelievable, but only one is
+ actually made up by us." (review: cards contain "a selection of two real things from film and television
+ history and one that was written for the game as a lie.")
+ Fake News: "the questions are written like news stories except they contain an intentional error. You
+ have 60 seconds to sniff out the mistake across genres like film, music, arts & literature, history, and
+ sport." (review: one team reads "a newspaper headline, date, and article blurb to the active team, who
+ have 60 seconds to 'identify which detail was changed to make a real news headline... well, fake.'")
+ Fact or Fib: "The opposing player either reads out the TRUE surprising fact printed on the card or LIES
+ and changes the highlighted part. Using your powers of deduction, you have to guess whether the player
+ is telling you a fact or fibbing!" (review: the card has "a completely true statement written on it, but
+ a word or phrase within the statement is highlighted.")
+ Also: "All Play cards where other players have to come up with the fake answers, and you can even lie
+ about how many spaces you move on the game board!" Movement by score cards (1-6): the active team
+ "declares a value" and others decide if they are bluffing; endgame with "two tokens: one wins you the
+ game, one is blank".
+ RATING: CLOSE RELATIVE - the closest on the "game-written fake among real items" point.
+ Shared: "False Memories" = real items + ONE item "written for the game as a lie", find it; "Fake News" =
+ a real news text with ONE game-planted false detail, find it.
+ Differences: these are read out as quiz questions by the opposing team - no presenter performing as an
+ expert, no free talk, no Q&A; small sets (3 items) or a news blurb, film/TV/news topics, not countries;
+ a roll-and-move board race; no sources mentioned. "Fact or Fib" is one statement, true or changed by the
+ player (binary).
+
+OPENED: https://www.exodusbooks.com/truth-be-told/35710/
+ "Truth Be Told", "3-8 Players". "The Host writes a truthful answer" to a question card; "All other
+ players pretend to be the Host, and write bluff answers"; "The Host collects and reads all answers aloud,
+ and players try to guess the True Answer"; "Bluff answers score points too". No publisher/year on page.
+ RATING: FAR (answers about the Host himself; players write the bluffs; Balderdash pattern).
+
+OPENED: https://www.therange.co.uk/toys/puzzles-board-and-card-games/card-games/family-card-games/liar-liar-pants-on-fire-fun-card-game
+ "Liar Liar Pants on Fire", "by Boxer Gifts", "Suitable for 2-8 players or teams".
+ "Each entertaining playing card has a selection of true and false facts". "Simply roll the dice, pick a
+ card and try to convince your fellow players that you're telling the truth". "when it's your turn to
+ guess, shout 'True!' if you believe it, or 'Liar! Liar! Pants on fire!' if you think fibs are told!"
+ "With three stacks of cards to choose from, this is the perfect party game". No scoring on the page.
+ RATING: CLOSE RELATIVE. Shared: the GAME writes the false facts and mixes them with true ones; the
+ player must convince the others it is true. Differences (as far as the page shows): the guess is
+ "True!" or "Liar!" on what is read out (binary), not "which one of five is invented"; no expert
+ presentation, no questions, no sources, no country theme.
+
+OPENED: https://patents.google.com/patent/CA2080392C/en
+ "Game apparatus", inventors Lewis Jessen and Sam Sgro, filed 1992-10-13. Claim 1 (part): "player
+ identification means which identifies a specific player to provide a true statement of the accurate
+ worded description on the card and which further identifies other players to provide untrue statements
+ as to the accurate worded description". Each card: a picture on the front, an accurate description on
+ the back. A "truth teller", "bluffers" and a "guesser".
+ RATING: CLOSE RELATIVE (inverse; an early patent of the Sounds Fishy / Malarky pattern). Differences
+ as for Sounds Fishy.
+
+OPENED: https://c.tabletopia.com/games/curious-humans-plus-expansions/rules/tabletopia-rulebook/en
+ "Curious Humans": "Statement cards which have revealing statements about the players, True and False
+ cards which are used as your answers in each round and, Twist cards". "Answer the statement truthfully
+ by placing either your True card or False card face down in front of you." "The other players then try
+ to match your answer". "If half or more of the other players do not match your answer, then you win the
+ hand. Keep the Statement card as a point."
+ RATING: FAR (personal statements; guess the player's answer).
+
+----------------------------------------------------------------------
+QUERY 11: party game card "one fake fact" OR "one false fact" hidden among true facts player must convince others spot the fake
+----------------------------------------------------------------------
+Results:
+ - Bluffing Board Games Party Games Trivia Board Games - https://www.meeplemountain.com/boardgame/the-game-of-lies/ [opened, query 10]
+ - Bluffing Board Games Party Games Trivia Board Games - https://www.meeplemountain.com/?p=14882 [opened, query 10]
+ - The Game of Lies - https://tarsasjatekok.com/tarsasjatek/the-game-of-lies-2020 [not opened; same game]
+ - Faire Logo - https://www.faire.com/product/p_r758ppdk44 [OPENED]
+ - Bamboozle - Party Game - https://apps.apple.com/app/id6746349121 [OPENED]
+ - header banner header banner header banner - https://www.therange.co.uk/toys/puzzles-board-and-card-games/card-games/family-card-games/liar-liar-pants-on-fire-fun-card-game [opened, query 10]
+ - FV51J Pants on Fire - https://kallax.io/boardgame/FV51J-Pants-on-Fire [OPENED]
+ - Fact or Fiction - https://boardgamematcher.com/game/fact-or-fiction [OPENED]
+ - Hilarious Two Truths And A Lie: The Ultimate Laugh-Out-Loud Game - https://cfe.keltyeatingdisorders.ca/legitkw16/funniest-two-truths-and-a-lie.html [not opened]
+ - top of page - https://boardseyeview.net/post/2018/08/13/the-unbelievable-truth [opened, query 5]
+
+OPENED: https://www.faire.com/product/p_r758ppdk44
+ "What The Actual Factual(TM) | Games For Adults | Family Game", brand "Pikkii USA". "The party game where
+ the fake answers win. What The Actual Factual is the quick-thinking trivia game that puts your bluffing
+ skills to the test. Read a bizarre fact, then everyone writes a fake answer to fool the group. Can you
+ spot the truth or will a clever lie trick you?" Contents "100 fact cards, 9 fake answer cards, 10 voting
+ tokens, 1 scorecard, 1 pen, instructions." "3 to 10" players, "16 and up".
+ RATING: CLOSE RELATIVE (inverse; Balderdash/Fibbage pattern: players write fakes, find the truth).
+
+OPENED: https://apps.apple.com/app/id6746349121  (an APP, outside my area - passed on for the app helper)
+ "Bamboozle - Party Game", developer "Abd Kareem Al Ashi". "Get ready for a laugh-out-loud party game
+ where crafting clever lies is just as important as finding the unbelievable truth!" "You'll be presented
+ with an obscure, often bizarre, true fact with a key piece of information missing." "Secretly type in
+ your most convincing (or hilariously absurd!) lie to fill in the blank." "Once everyone has submitted
+ their fibs, all the made-up answers will appear on screen alongside the actual surprising truth." "Vote
+ for the answer you think is the real one." Points for "Fooling your friends into picking your lie" and
+ "Choosing the correct, often stranger-than-fiction, truth!" No release date on the page.
+ RATING: CLOSE RELATIVE (inverse; a Fibbage-style app).
+
+OPENED: https://kallax.io/boardgame/FV51J-Pants-on-Fire
+ "Pants on Fire!", designers "Stephen Glenn and James Kyle", "2009", "2 to 8 players". "players take
+ turns sharing stories from their own lives, but with a twist - one of the stories is completely made up,
+ one is totally true, and the third can be either true or false." "As each player shares their three
+ stories, the others try to guess which ones are fact and which ones are fiction." (The kallax text reads
+ like a generic summary; treat with care.)
+ RATING: FAR (stories from the player's own life; the player invents the false one).
+
+OPENED: https://boardgamematcher.com/game/fact-or-fiction
+ "Fact or Fiction", "Ludicus Games", 2024, "3-8 Players". One player is the "Master of Confusion":
+ "draw a card, read a question - the correct answer is known only to you." They "make up two fake but
+ super-convincing answers and present them along with the real one." "Players earn points if they pick
+ the correct answer, while the Master scores a point for every player fooled by a fake one." Mechanics
+ "Betting and Bluffing"; bluffing and trivia game.
+ RATING: CLOSE RELATIVE. Shared: ONE presenter alone knows the truth, presents several answers as
+ equally believable, and scores "a point for every player fooled" (the idea's scoring). Differences: the
+ presenter WRITES the fakes; the hidden item is the TRUE answer; one trivia question with 3 short answers,
+ not an expert talk on a topic; no sources.
+
+----------------------------------------------------------------------
+QUERY 12 (allowed_domains: boardgamegeek.com): party game expert lecture bluff "true facts" one false fact players spot the lie
+----------------------------------------------------------------------
+Results:
+ - The Game of Lies - https://boardgamegeek.com/boardgame/288450/the-game-of-lies [not opened; game covered via Meeple Mountain]
+ - Two Truths and a Lie - https://boardgamegeek.com/geeklist/161947/two-truths-and-a-lie [FAILED: 403]
+ - What The Actual Factual: The Party Game Where The Fake Answers Win - https://boardgamegeek.com/video/392784/what-the-actual-factual/what-the-actual-factual-the-party-game-where-the-f [not opened]
+ - Fake Check - https://boardgamegeek.com/boardgame/412158/fake-check [FAILED: 403]
+ - Bluffer - https://boardgamegeek.com/boardgame/58782/bluffer [FAILED: 403]
+ - Liar Liar: The Game of Truths and Lies - https://boardgamegeek.com/boardgame/348694/liar-liar-the-game-of-truths-and-lies [PARTLY OPENED: only the meta description came back]
+ - Telling the Whole Truth & Nuthin' but the Truth? - https://boardgamegeek.com/thread/1223137/telling-the-whole-truth-and-nuthin-but-the-truth [FAILED: 403]
+ - Bullshit - https://boardgamegeek.com/boardgame/189665/bullshit [FAILED: 403]
+ - Tell Me No Lies - https://boardgamegeek.com/boardgame/60575/tell-me-no-lies [FAILED: 403]
+ - The Moment of Truth - https://boardgamegeek.com/boardgame/37678/the-moment-of-truth [FAILED: 403]
+
+PARTLY OPENED: https://boardgamegeek.com/boardgame/348694/liar-liar-the-game-of-truths-and-lies
+ Only the meta description: "A hilarious game about tricking your friends and figuring out who the BEST
+ LIAR is." No year, designer, publisher or rules returned.
+ RATING: not enough information (FAR on what is known).
+
+BGG NOTE: as on 5 Oct 2026, BGG game, geeklist and thread pages returned 403 (one game page returned
+only its meta description). Titles NOT checked (title only, not described): "Fake Check" (BGG 412158),
+"Bluffer" (58782), "Tell Me No Lies" (60575), "The Moment of Truth" (37678), "Bullshit" (189665), the
+geeklist "Two Truths and a Lie" (161947), the thread "Telling the Whole Truth & Nuthin' but the Truth?"
+(1223137). "Fake Check" and the geeklist are the two worth a human look in a normal browser.
+
+
+======================================================================
+KNOWN RELATIVES IN MY AREA - EXACT DIFFERENCES (summary)
+======================================================================
+- The Unbelievable Truth (board game, Ginger Fox): the mirror image. Card = lecture with 3 hidden TRUTHS
+  in nonsense; spot the truths by bell during the talk; lecturer scores per truth unnoticed. Idea = 4 truths
+  + 1 hidden INVENTION; spoken in own words; up to 3 questions; one vote after; sources.
+- Would I Lie to You? (board game, 2nd ed.): the card says truth or lie; when it is a lie the PLAYER
+  invents it; one personal statement at a time; opposing team questions and guesses true/false.
+- Call My Bluff (board game, Milton Bradley 1965): word definitions; the player makes up one of four;
+  betting on True/Bluff.
+- Two Truths and a Lie (card decks): Payhip printable (countries/history/people, 2+1, explanations for the
+  lies) and Union Square & Co. literature deck (2+1, extra fun fact); play format not stated on the pages.
+- Balderdash, Malarky, Sounds Fishy, Catfished, Fake That!, What The Actual Factual, Bamboozle (app,
+  Fibbage-style), Fact or Fiction, True or Bluff: all hide the ONE TRUE answer among bluffs, and in all
+  but True or Bluff / Fact or Fiction the bluffs are WRITTEN BY PLAYERS. The idea reverses both.
+- Fibbage-style board games: only What The Actual Factual (Pikkii) and the Bamboozle app turned up.
+- "Fake expert" party games: Mansplaining (expert monologue + secret words to spot, no true/false);
+  "Expert Interviews" speaking game and improv "Word at a Time Expert" (no detection, no scoring).
+- Not found in my 12 searches: a board game of Call My Bluff other than Milton Bradley's; "Fact or Crap";
+  any Fibbage board game by Jackbox.
+
+
+======================================================================
+NAMES
+======================================================================
+ - Straight Face: TAKEN (as a party/drinking game name). "Straight Face Drinking Game" by Paladone
+   Products (https://www.entertainmentearth.com/product/straight-face-drinking-game/pp6511tx), and a
+   home-made drinking game "STRAIGHT FACE" (https://gamerules.com/rules/straight-face/). Both are
+   don't-laugh games, not fact games, but the name is in commercial use for a card party game.
+ - So-Called Expert: NOT FOUND (queries 1 and 3).
+ - Instant Expert: NOT FOUND as a board, card or party game (queries 1 and 3).
+ - Four and a Fib: NOT FOUND (queries 2 and 3). Nearby names in use: "FIB-OR-NOT?" (Gather Around Games,
+   2000) and "Fact or Fib" (a category in The Game of Lies, 2019).
+ - Our Expert: NOT FOUND (query 2).
+ - Expert Interview: NOT FOUND as a board, card or party game title (query 2). But "Expert Interviews"
+   (plural) is the name of "a paired impromptu speaking game" on write-out-loud.com
+   (https://www.write-out-loud.com/expert-interviews), and improv "expert" games exist ("Word at a Time
+   Expert", "Three Headed Expert" at https://hooplaimpro.com/?p=6313). So the phrase is used generically
+   for speaking/improv exercises.

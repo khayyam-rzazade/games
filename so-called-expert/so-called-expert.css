@@ -1,0 +1,220 @@
+/* So-Called Expert: a group game for one phone. Its colour (crimson) is set in logicers.css ([data-g="expert"]).
+   Seven views (start, the hand-over, the expert's card, the vote, the reveal, the turn's true facts, the end).
+   Everything fits a 320 by 568 phone without scrolling; if a view is still too high, the script steps it down
+   (fit1 to fit3). The stamp on the invented fact shows only on the expert's card and in the reveal. */
+
+.e-view { margin-top: 6px; }
+
+/* ---------- the start ---------- */
+.e-title { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 7.4vw, 2.2rem); line-height: 1.04; letter-spacing: -0.035em; margin-top: 6px; text-wrap: balance; }
+.e-lede { margin-top: 10px; color: var(--soft); font-size: 1.02rem; line-height: 1.4; }
+.e-friend { margin: 12px 0 0; padding: 10px 14px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); line-height: 1.3; font-weight: 500; }
+.e-players { display: flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 8px 8px 16px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); }
+.e-players-label { font-weight: 700; margin-right: auto; }
+.e-step { appearance: none; border: 0; width: 42px; height: 42px; border-radius: 50%; background: var(--tint); color: var(--c); font-weight: 800; font-size: 1.4rem; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent; }
+.e-step[disabled] { opacity: .35; cursor: default; }
+.e-count { min-width: 1.6ch; text-align: center; font-family: var(--display); font-weight: 800; font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+.e-names-btn { appearance: none; border: 0; height: 42px; padding: 0 16px; border-radius: 999px; background: var(--c); color: var(--on-c); font-weight: 700; font-size: 0.92rem; cursor: pointer; margin-left: 4px; -webkit-tap-highlight-color: transparent; }
+.e-names { margin: 8px 4px 0; color: var(--soft); font-size: 0.9rem; font-weight: 600; line-height: 1.35; min-height: 1.35em; }
+.e-small { margin-top: 10px; color: var(--soft); font-size: 0.88rem; line-height: 1.35; }
+#v-start .actions { margin-top: 14px; }
+
+/* ---------- headings shared by the turn's views ---------- */
+.e-kicker { color: var(--soft); font-weight: 700; font-size: 0.86rem; line-height: 1.2; }
+.e-secret { color: var(--c); }
+.e-secret::before { content: ""; display: inline-block; width: 0.95em; height: 0.95em; margin-right: 6px; vertical-align: -0.12em; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C5.5 4 2.3 7.3 1 10c1.3 2.7 4.5 6 9 6s7.7-3.3 9-6c-1.3-2.7-4.5-6-9-6zm0 9.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C5.5 4 2.3 7.3 1 10c1.3 2.7 4.5 6 9 6s7.7-3.3 9-6c-1.3-2.7-4.5-6-9-6zm0 9.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2z'/%3E%3C/svg%3E") center / contain no-repeat; }
+.e-country, .e-q, .e-sum-head { font-family: var(--display); font-weight: 800; font-size: 1.55rem; line-height: 1.06; letter-spacing: -0.03em; margin-top: 2px; text-wrap: balance; }
+.e-also { font-family: var(--text); font-weight: 600; font-size: 0.62em; letter-spacing: 0; color: var(--soft); white-space: nowrap; }
+.e-line, .e-task { margin-top: 7px; color: var(--soft); font-size: 0.9rem; line-height: 1.3; font-weight: 500; }
+/* a view's heading takes the focus when the view opens, for screen readers: it is not a control, so no ring */
+.e-view [tabindex="-1"]:focus, .e-view [tabindex="-1"]:focus-visible { outline: none; }
+
+/* ---------- passing the phone to the expert: a whole screen in the game's colour (as in Still In) ---------- */
+.e-hand { margin-top: 4px; min-height: min(27rem, calc(100vh - 150px)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  padding: 22px 18px 24px; border-radius: 28px; background: var(--c); color: #fff; text-align: center; box-shadow: 0 14px 34px rgba(21, 23, 43, .18);
+  animation: e-hand-in .28s ease-out both; }
+@keyframes e-hand-in { from { opacity: 0; transform: translateY(18px) scale(.985); } }
+.e-hand-res { max-width: 25rem; margin: 0; padding: 10px 14px; border-radius: 16px; background: rgba(255, 255, 255, .15); font-size: 0.95rem; line-height: 1.35; font-weight: 500; }
+.e-hand-ico { width: 76px; height: 48px; margin-top: 4px; }
+.e-hand-t { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; }
+.e-hand-k { font-size: 1.12rem; font-weight: 600; opacity: .94; }
+.e-hand-name { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; font-family: var(--display); font-weight: 800; font-size: 3.2rem; line-height: 1.08; letter-spacing: -0.025em; }
+.e-hand-line { max-width: 24rem; margin: 0; font-size: 0.95rem; line-height: 1.35; font-weight: 500; opacity: .94; }
+.e-hand-go { margin-top: 6px; min-height: 56px; min-width: min(100%, 17rem); padding: 0 24px; border: 0; border-radius: 999px; background: #fff; color: var(--c); font-weight: 800; font-size: 1.05rem; box-shadow: 0 6px 16px rgba(21, 23, 43, .16); }
+.e-hand-go:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.e-score-line { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.6rem, 1fr)); align-items: center; gap: 4px; margin-top: 10px; color: var(--soft); font-weight: 600; font-size: 0.84rem; line-height: 1.2; }
+.e-pts-k { padding-left: 2px; }
+.e-pt { display: flex; align-items: baseline; justify-content: space-between; gap: 5px; min-width: 0; padding: 3px 9px; border-radius: 999px; background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
+.e-pt-n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.e-pt b { color: var(--c); font-weight: 800; font-variant-numeric: tabular-nums; flex: none; }
+.e-view .btn { text-align: center; line-height: 1.12; }
+.e-hand-small { margin-top: 8px; text-align: center; }
+.e-link { appearance: none; border: 0; background: none; padding: 4px 2px; color: var(--soft); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 6px; }
+
+/* ---------- the five facts (the card, the vote, the true facts after a turn) ---------- */
+.e-facts { list-style: none; margin: 9px 0 0; padding: 0; display: grid; gap: 5px; }
+.e-fact { position: relative; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 9px; align-items: start; padding: 7px 11px 8px 8px; border-radius: 14px; background: var(--card); box-shadow: var(--shadow); }
+.e-n { width: 26px; height: 26px; border-radius: 50%; background: var(--tint); color: var(--c); font-family: var(--display); font-weight: 800; font-size: 0.95rem; line-height: 26px; text-align: center; font-variant-numeric: tabular-nums; }
+.e-t { font-size: 0.92rem; line-height: 1.27; font-weight: 500; padding-top: 2px; overflow-wrap: anywhere; }
+.e-fact.is-inv { margin-top: 6px; padding-top: 13px; background: color-mix(in srgb, var(--c) 7%, var(--card)); box-shadow: inset 0 0 0 2px var(--c); }
+.e-fact.is-inv .e-n { background: var(--c); color: var(--on-c); }
+.e-stamp { position: absolute; top: -10px; right: 12px; padding: 2px 9px 1px; border: 2.5px solid var(--c); border-radius: 7px; background: var(--card); color: var(--c); font-family: var(--display); font-weight: 800; font-size: 0.74rem; letter-spacing: .1em; text-transform: uppercase; line-height: 1.25; transform: rotate(-5deg); animation: e-thump .32s ease-out; }
+@keyframes e-thump { 0% { transform: rotate(-5deg) scale(1.6); opacity: 0; } 70% { transform: rotate(-5deg) scale(.94); opacity: 1; } 100% { transform: rotate(-5deg) scale(1); } }
+.e-say { display: block; margin-top: 3px; color: var(--c); font-size: 0.8rem; font-weight: 700; }
+.e-src { display: block; margin-top: 3px; color: var(--soft); font-size: 0.76rem; line-height: 1.25; font-weight: 600; }
+.e-src a { color: inherit; text-underline-offset: 2px; }
+#v-card .actions, #v-vote .actions, #v-sum .actions { margin-top: 10px; }
+
+/* ---------- the reveal ---------- */
+.e-reveal { padding: 12px 16px 13px; margin-top: 4px; }
+.e-rev-k { font-weight: 700; font-size: 0.86rem; opacity: .92; line-height: 1.2; }
+.e-rev-head { font-family: var(--display); font-weight: 700; font-size: 1.18rem; line-height: 1.16; letter-spacing: -0.02em; margin-top: 5px; text-wrap: pretty; }
+.e-stamp-big { display: inline-block; margin-top: 9px; padding: 3px 11px 2px; border: 3px solid currentColor; border-radius: 9px; font-family: var(--display); font-weight: 800; font-size: 0.9rem; letter-spacing: .09em; text-transform: uppercase; line-height: 1.25; transform: rotate(-3deg); animation: e-thump2 .36s ease-out; }
+@keyframes e-thump2 { 0% { transform: rotate(-3deg) scale(1.7); opacity: 0; } 70% { transform: rotate(-3deg) scale(.95); opacity: 1; } 100% { transform: rotate(-3deg) scale(1); } }
+.e-truth { margin-top: 9px; font-size: 0.95rem; line-height: 1.3; font-weight: 500; }
+.e-truth b { font-weight: 800; }
+.e-rev-src { color: inherit; opacity: .9; margin-top: 5px; }
+.e-who-q { margin-top: 12px; font-weight: 700; font-size: 0.98rem; }
+.e-who { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.4rem, 1fr)); gap: 6px; margin-top: 6px; }
+.e-who-b { appearance: none; border: 0; min-height: 42px; padding: 5px 9px; border-radius: 12px; background: var(--card); color: var(--ink); box-shadow: var(--shadow); font-weight: 700; font-size: 0.9rem; line-height: 1.12; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; -webkit-tap-highlight-color: transparent; }
+.e-who-b::before { content: ""; display: inline-block; width: 0.8em; height: 0.8em; margin-right: 6px; border-radius: 50%; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--soft) 70%, transparent); vertical-align: -0.06em; }
+.e-who-b.on { background: var(--c); color: var(--on-c); box-shadow: 0 6px 16px color-mix(in srgb, var(--c) 35%, transparent); }
+.e-who-b.on::before { background: currentColor; box-shadow: none; }
+#v-reveal .actions { margin-top: 10px; }
+
+/* ---------- the end ---------- */
+.e-end { padding: 13px 18px 14px; margin-top: 4px; }
+.e-end-k { font-weight: 700; font-size: 0.9rem; opacity: .9; }
+.e-winner { font-family: var(--display); font-weight: 800; font-size: 2.05rem; line-height: 1.02; letter-spacing: -0.035em; margin-top: 2px; text-wrap: balance; overflow-wrap: anywhere; }
+.e-winner.long { font-size: 1.6rem; }
+.e-end-line { margin-top: 6px; font-weight: 600; font-size: 0.98rem; line-height: 1.25; }
+.e-board { list-style: none; margin: 10px 0 0; padding: 2px 12px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
+.e-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "n p" "d p"; column-gap: 10px; padding: 5px 0 6px; }
+.e-row + .e-row { border-top: 1px solid var(--line); }
+.e-row-n { grid-area: n; font-weight: 700; font-size: 0.95rem; line-height: 1.2; overflow-wrap: anywhere; }
+.e-row-d { grid-area: d; color: var(--soft); font-size: 0.78rem; font-weight: 600; line-height: 1.2; }
+.e-row-p { grid-area: p; align-self: center; font-family: var(--display); font-weight: 800; font-size: 1.3rem; font-variant-numeric: tabular-nums; color: var(--c); }
+.e-row.win .e-row-n::after { content: " ★"; color: var(--c); }
+.e-tally { margin: 9px 2px 0; color: var(--soft); font-weight: 600; font-size: 0.86rem; line-height: 1.3; }
+#v-end .actions { margin-top: 10px; }
+.e-end-small { margin-top: 6px; }
+
+/* ---------- windows: names, scores, wins ---------- */
+.e-name-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.e-name-field { display: flex; align-items: center; gap: 8px; padding: 0 10px; border-radius: 12px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.e-name-n { color: var(--soft); font-weight: 800; font-size: 0.86rem; min-width: 1ch; }
+.e-name-field input { flex: 1 1 auto; width: 100%; min-width: 0; height: 42px; border: 0; padding: 0; background: transparent; color: var(--ink); font: inherit; font-weight: 600; outline: none; }
+.e-name-field:focus-within { box-shadow: inset 0 0 0 2px var(--c); }
+.sheet .e-roster { list-style: none; margin: 12px 0 0; padding: 0; }
+.sheet .e-roster-i { margin-top: 0; display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.98rem; }
+.e-roster-i span { font-weight: 700; overflow-wrap: anywhere; }
+.e-roster-i b { font-weight: 700; color: var(--c); text-align: right; white-space: nowrap; }
+#dlg-quit .actions { flex-wrap: wrap; }
+#dlg-quit .actions .btn { flex: 1 1 auto; }
+
+/* ---------- dark ---------- */
+@media (prefers-color-scheme: dark) {
+  .e-friend, .e-players, .e-fact, .e-board, .e-who-b, .e-pt { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .e-step { background: rgba(255, 255, 255, .08); }
+  .e-names-btn { color: #0A0C1A; }
+  .e-n { background: rgba(255, 255, 255, .08); }
+  .e-fact.is-inv { background: color-mix(in srgb, var(--c) 12%, #12152A); box-shadow: inset 0 0 0 2px var(--c), 0 0 22px color-mix(in srgb, var(--c) 22%, transparent); }
+  .e-fact.is-inv .e-n { color: #0A0C1A; }
+  .e-stamp { background: #12152A; }
+  .e-stamp-big { color: var(--c); }
+  .e-who-b.on { background: var(--c); color: #0A0C1A; box-shadow: 0 0 18px color-mix(in srgb, var(--c) 40%, transparent); }
+  .e-name-field { background: rgba(255, 255, 255, .06); }
+  .e-hand { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 30%, #0D1022), #0D1022 94%); color: var(--ink); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 55%, transparent), 0 0 40px color-mix(in srgb, var(--c) 16%, transparent); }
+  .e-hand-name { color: #fff; }
+  .e-hand-res { background: rgba(255, 255, 255, .07); }
+  .e-hand-ico { color: var(--c); }
+  .e-hand-go { background: var(--c); color: #0A0C1A; box-shadow: 0 0 22px color-mix(in srgb, var(--c) 35%, transparent); }
+  .e-hand-go:focus-visible { outline-color: var(--c); }
+}
+
+/* ---------- small and short screens: a little tighter, so that nothing scrolls ---------- */
+@media (max-height: 37.5rem) {
+  body:not([data-view="start"]):not([data-view="end"]) .meta { display: none; }   /* a small phone: the view's own heading is enough */
+  .e-title { font-size: 1.5rem; }
+  .e-lede { font-size: 0.95rem; margin-top: 8px; }
+  .e-hand { gap: 9px; padding: 16px 14px 18px; }
+  .e-hand-name { font-size: 2.7rem; }
+  .e-players { margin-top: 12px; }
+  .e-country, .e-q, .e-sum-head { font-size: 1.35rem; }
+  .e-t { font-size: 0.88rem; line-height: 1.24; }
+  .e-fact { padding: 6px 10px 6px 7px; }
+  .e-facts { gap: 4px; margin-top: 7px; }
+  .e-line, .e-task { font-size: 0.84rem; margin-top: 5px; }
+  .e-rev-head { font-size: 1.08rem; }
+  .e-truth { font-size: 0.9rem; }
+  .e-who-b { min-height: 38px; }
+  .e-winner { font-size: 1.75rem; }
+  .e-winner.long { font-size: 1.4rem; }
+}
+@media (min-width: 56rem) {
+  .e-title { font-size: 2.4rem; }
+  .e-country, .e-q, .e-sum-head { font-size: 1.75rem; }
+  .e-t { font-size: 0.98rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .e-stamp, .e-stamp-big, .e-hand { animation: none; }
+}
+
+/* a view must fit without scrolling: if it does not, the script steps down (fit1 to fit3) */
+body.fit1 .e-title { font-size: 1.32rem; }
+body.fit1 .e-hand { min-height: 0; gap: 8px; padding: 14px 12px 16px; }
+body.fit2 .e-hand-ico { display: none; }
+body.fit3 .e-hand-res { font-size: 0.84rem; padding: 7px 10px; }
+body.fit1 .e-lede { font-size: 0.88rem; margin-top: 6px; line-height: 1.32; }
+body.fit1 .e-friend { margin-top: 8px; padding: 7px 12px; font-size: 0.88rem; }
+body.fit1 .e-players { margin-top: 10px; padding-top: 5px; padding-bottom: 5px; }
+body.fit1 .e-t { font-size: 0.84rem; line-height: 1.22; }
+body.fit1 .e-n { width: 22px; height: 22px; line-height: 22px; font-size: 0.82rem; }
+body.fit1 .e-fact { grid-template-columns: 22px minmax(0, 1fr); gap: 7px; padding: 5px 9px 5px 6px; }
+body.fit1 .e-fact.is-inv { padding-top: 11px; }
+body.fit1 .e-country, body.fit1 .e-q, body.fit1 .e-sum-head { font-size: 1.22rem; }
+body.fit1 .e-task, body.fit1 .e-line { font-size: 0.8rem; }
+body.fit1 .e-reveal { padding: 9px 14px 10px; }
+body.fit1 .e-rev-head { font-size: 1rem; }
+body.fit1 .e-stamp-big { margin-top: 6px; font-size: 0.8rem; }
+body.fit1 .e-truth { font-size: 0.86rem; margin-top: 6px; }
+body.fit1 .e-who-q { margin-top: 8px; }
+body.fit1 .e-who-b { min-height: 36px; font-size: 0.86rem; }
+body.fit1 .e-src { font-size: 0.72rem; }
+body.fit1 .e-end { padding: 9px 14px 10px; }
+body.fit1 .e-winner { font-size: 1.45rem; }
+body.fit1 .e-row { padding: 3px 0 4px; }
+body.fit1 .actions .btn { min-height: 50px; }
+body.fit2 .meta { display: none; }
+body.fit2 #v-start .e-small { display: none; }
+body.fit2 .e-names { font-size: 0.8rem; }
+body.fit2 .e-kicker { font-size: 0.78rem; }
+body.fit2 .e-t { font-size: 0.8rem; line-height: 1.2; }
+body.fit2 .e-facts { gap: 3px; margin-top: 5px; }
+body.fit2 .e-say { display: none; }
+body.fit2 .e-row-d { display: none; }
+body.fit2 .e-row { grid-template-areas: "n p"; align-items: center; }
+body.fit2 .e-end-line { font-size: 0.86rem; margin-top: 3px; }
+body.fit2 .e-tally { display: none; }
+body.fit2 .e-who { gap: 4px; }
+body.fit2 .e-who-b { min-height: 32px; }
+body.fit2 .e-score-line { margin-top: 7px; font-size: 0.78rem; gap: 3px; }
+body.fit2 .e-pt { padding: 2px 8px; }
+body.fit2 .e-src { margin-top: 1px; }
+body.fit3 .e-names { display: none; }
+body.fit3 .e-task { display: none; }
+body.fit3 .e-line { display: none; }
+body.fit3 .e-end-k { display: none; }
+body.fit3 .e-t { font-size: 0.76rem; }
+body.fit3 .e-rev-head { font-size: 0.92rem; }
+body.fit3 .e-truth { font-size: 0.8rem; }
+body.fit3 .actions .btn { min-height: 46px; }
+body.fit3 .e-winner, body.fit3 .e-winner.long { font-size: 1.25rem; }
+body.fit3 .e-end { padding: 7px 13px 8px; }
+body.fit3 .e-board { margin-top: 7px; }
+body.fit3 .e-row { padding: 2px 0 3px; }
+body.fit3 .e-row-n { font-size: 0.88rem; }
+body.fit3 .e-row-p { font-size: 1.1rem; }
+body.fit3 .e-end-small { margin-top: 2px; }

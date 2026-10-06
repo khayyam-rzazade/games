@@ -130,3 +130,19 @@ def art_still():
         else:
             s.append(f'<rect class="{st}" x="{x}" y="{y}" width="46" height="28" rx="8"/>')
     return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'
+
+def art_expert():
+    """So-Called Expert: the expert's card. A coloured head band, five numbered lines (the five facts), and a rubber
+    stamp across the fourth: the one fact the game invented. The card starts right of where the badge "New" sits."""
+    s = ['<rect class="q" x="78" y="20" width="176" height="164" rx="12"/>',
+         '<path class="fg" d="M78 32a12 12 0 0 1 12-12h152a12 12 0 0 1 12 12v18H78z"/>',
+         '<rect class="cut" x="96" y="31" width="64" height="8" rx="4"/>']
+    widths = [124, 104, 132, 112, 92]
+    for i, w in enumerate(widths):
+        y = 68 + i * 24
+        s.append(f'<circle class="mute" cx="98" cy="{y}" r="6"/>')
+        s.append(f'<rect class="mute" x="112" y="{y - 4}" width="{w}" height="8" rx="4"/>')
+    # the stamp over the fourth line (y = 140): a tilted outline with a bar inside, as an ink stamp reads
+    s.append('<g transform="rotate(-9 182 140)"><rect class="stamp" x="128" y="124" width="108" height="32" rx="7" fill="none" stroke-width="3.5"/>'
+             '<rect class="fg" x="141" y="136" width="82" height="8" rx="4"/></g>')
+    return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'
