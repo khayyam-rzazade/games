@@ -25,14 +25,15 @@
 <link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
 <link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=e929945ffc">
-<link rel="stylesheet" href="still-in.css?v=5534355681">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=85f8f4cc1e">
+<link rel="stylesheet" href="still-in.css?v=874ec2f7e9">
 </head>
 <body class="game" data-g="still">
 
 <header class="bar">
   <a class="wordmark" href="../">Logicers</a>
-  <div class="bar-tools">
+  <div class="bar-tools with-restart">
+    <button class="chip round restart" id="btn-restart" type="button" data-open="dlg-restart" aria-label="Restart the game" title="Restart" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M6.4 2.6v4.4h4.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button class="chip" id="wins-chip" type="button" data-open="dlg-wins" aria-label="Wins at this table">Wins</button>
     <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
   </div>
@@ -134,9 +135,6 @@
     <h2 id="players-title">Who is still in</h2>
     <ul class="s-roster" id="roster"></ul>
     <p class="quiet" id="roster-note"></p>
-    <div class="actions">
-      <button class="btn ghost" id="btn-quit" type="button">End this game</button>
-    </div>
   </div>
 </dialog>
 
@@ -145,7 +143,7 @@
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
     <h2 id="wins-title">Wins at this table</h2>
     <ul class="s-roster" id="wins-list"></ul>
-    <p class="quiet" id="wins-note">Kept only in this browser. A group game has no streak and no album: play it whenever you are together.</p>
+    <p class="quiet" id="wins-note">They count only while this page is open. A group game has no streak and no album: play it whenever you are together.</p>
   </div>
 </dialog>
 
@@ -166,19 +164,19 @@
     <ul class="s-sources" id="help-sources"></ul>
     <p class="quiet">Only each country's own land counts, not its overseas territories: the United Kingdom has no Mediterranean coast here, though Gibraltar has. A coast on the Caspian Sea does not count as a coast, so Kazakhstan is landlocked; Australia counts as a continent, not as an island country.</p>
     <h3>Your privacy</h3>
-    <p class="quiet" data-privacy="names">No login, no tracking, no cookies. The players' names and wins are kept only in this browser.</p>
+    <p class="quiet" data-privacy="names">No login, no tracking, no cookies. The players' names and wins are forgotten when you leave this page.</p>
     <h3>Contact</h3>
     <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
   </div>
 </dialog>
 
-<dialog id="dlg-quit" aria-labelledby="quit-title">
+<dialog id="dlg-restart" aria-labelledby="restart-title">
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
-    <h2 id="quit-title">End this game?</h2>
-    <p class="quiet">Nobody wins it, and you go back to the start.</p>
+    <h2 id="restart-title">Restart the game?</h2>
+    <p class="quiet">Everything starts over: this game, the players' names and the wins at this table.</p>
     <div class="actions">
-      <button class="btn solid" id="btn-quit-yes" type="button">End the game</button>
+      <button class="btn solid" id="btn-restart-yes" type="button">Restart</button>
       <button class="btn ghost" type="button" data-close>Keep playing</button>
     </div>
   </div>
@@ -202,7 +200,7 @@
 
 <script src="../data/one-of-193.js"></script>
 <script src="../data/still-in.js"></script>
-<script src="../assets/js/turnsout.js?v=9e92b13046"></script>
-<script src="still-in.js?v=689640be4d"></script>
+<script src="../assets/js/turnsout.js?v=2156c64a39"></script>
+<script src="still-in.js?v=bcf0adab60"></script>
 </body>
 </html>

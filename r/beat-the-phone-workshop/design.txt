@@ -25,7 +25,7 @@ A turn
      5 of 10.", or "Wrong. One life lost: 2 lives left. A new question at the same stop."), "Pass the phone to" and the
      player's name in big letters, "Stop 5 of 10: Kenya. Bo answers alone.", and the button "Bo has the phone", which
      that player taps. Under it: the lives left, how often the table may still be asked, and "The route" (a window
-     with the ten stops and every question so far). A reload while it shows brings it back.
+     with the ten stops and every question so far).
   2. The stop: on top the route as a line of ten dots (cleared ones full, the current one ringed, a small yellow dot
      under a stop where a life was lost; a tap opens the journey) and the three lives as hearts (a lost one yellow);
      "Stop 4 of 10 · Eastern Africa" (the UN's sub-region), the country in big letters, then the question card in olive:
@@ -114,15 +114,23 @@ Where its facts come from
   - Without data/still-in.js the game plays with the five figures of One of 193 and the lists.
 
 What the browser keeps (under "groups" > "beat-the-phone" in the site's one store; never under the daily games)
-  n (players), names (eight, optional, cleaned, at most 14 letters), best ({s: stops cleared, l: lives left}; more
-  stops is better, then more lives), journeys, world (journeys round the world), perfect, next (who starts the next
-  journey), recent (the last 40 stops), cur (a journey in progress: the players, the route, the seed, the questions
-  of every stop, the stops cleared, the lives, the times left to ask the table, whose turn, who started, every
-  answer [stop, try, player, country picked, right, asked the table], and whether the phone is being passed, a
-  question is open or its answer is shown). A journey whose story does not add up (or whose questions are no longer
-  fair on today's data) is left aside. Nothing counts in the Today card, the streak, the way onward or the
-  returning-player events. The privacy line ("table" in turnsout.js): "The players' names and your table's best
-  journey are kept only in this browser."
+  best ({s: stops cleared, l: lives left}; more stops is better, then more lives), journeys, world (journeys round
+  the world), perfect, recent (the last 40 stops). Nothing counts in the Today card, the streak, the way onward or the
+  returning-player events. The privacy line ("table" in turnsout.js): "Your table's best journey is kept only in this
+  browser; the players' names are forgotten when you leave this page."
+  Since 6 Oct 2026 (Khayyam, the same evening the game was built: the names got stuck in the games for groups; a game
+  must restart when you go to the home page and come back, the names every time it is opened, and a Restart button)
+  nothing about the players is stored: the number of players and their names (eight, optional, cleaned, at most 14
+  letters), who starts the next journey, and the journey going on (the players, the route, the seed, the questions of
+  every stop, the stops cleared, the lives, the times left to ask the table, whose turn, who started, every answer
+  [stop, try, player, country picked, right, asked the table], and whether the phone is being passed, a question is
+  open or its answer is shown) live only while the page is open. Every opening of the page (from the home page, the
+  Back button, a reload, or a page the browser brings back from its memory) starts afresh with 3 players and no
+  names; what the first version stored about the players (n, names, next, cur) is deleted when the page opens. The
+  round button ↻ in the bar (only while a journey is in play) asks "Restart the game?" and then starts everything over
+  the same way (the journey does not count; the table's best stays); so does "New players" at the end. The journey
+  window no longer has "End this journey" (Restart does it). A pull on the page does not reload it
+  (overscroll-behavior). The check hook BeatThePhone.load / .now hands a journey to the page and reads it back.
 
 Sharing (C)
   The picture (1080 by 1350, olive): "Logicers" and "Beat the Phone", "Ten stops round the world, three lives:", "We

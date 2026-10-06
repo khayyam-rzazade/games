@@ -2,6 +2,9 @@
    Three views (start, play, end) and the window for guessing. Everything fits a 320 by 568 phone without scrolling;
    only the list of countries in the guessing window scrolls inside itself. */
 
+/* every opening of the page starts the game afresh, so a pull on the page must not reload it by accident (6 Oct 2026) */
+html, body { overscroll-behavior-y: none; }
+
 .o-view { margin-top: 6px; }
 
 /* ---------- the start ---------- */
@@ -48,8 +51,8 @@
 .o-country.long { font-size: 1.75rem; }
 .o-country.longer { font-size: 1.5rem; }
 .o-alt { font-family: var(--text); font-size: 0.9rem; font-weight: 600; letter-spacing: 0; opacity: .88; white-space: nowrap; }
-#dlg-stop .actions { flex-wrap: wrap; }
-#dlg-stop .actions .btn { flex: 1 1 auto; }
+#dlg-stop .actions, #dlg-restart .actions { flex-wrap: wrap; }
+#dlg-stop .actions .btn, #dlg-restart .actions .btn { flex: 1 1 auto; }
 .o-score { margin-top: 6px; font-weight: 600; font-size: 1rem; line-height: 1.25; }
 .o-min { margin: 10px 2px 0; font-weight: 700; font-size: 0.92rem; line-height: 1.25; }
 /* the questions that would have been enough: one line of text that wraps, each question with its answer */

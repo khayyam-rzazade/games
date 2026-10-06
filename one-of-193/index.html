@@ -25,14 +25,15 @@
 <link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
 <link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=e929945ffc">
-<link rel="stylesheet" href="one-of-193.css?v=c00f2a8716">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=85f8f4cc1e">
+<link rel="stylesheet" href="one-of-193.css?v=c363551fbd">
 </head>
 <body class="game" data-g="o193">
 
 <header class="bar">
   <a class="wordmark" href="../">Logicers</a>
-  <div class="bar-tools">
+  <div class="bar-tools with-restart">
+    <button class="chip round restart" id="btn-restart" type="button" data-open="dlg-restart" aria-label="Restart the game" title="Restart" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M6.4 2.6v4.4h4.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button class="chip" id="best-chip" type="button" data-open="dlg-best" aria-label="Your table's best result">Best <b id="best-n">–</b></button>
     <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
   </div>
@@ -124,6 +125,18 @@
   </div>
 </dialog>
 
+<dialog id="dlg-restart" aria-labelledby="restart-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="restart-title">Restart the game?</h2>
+    <p class="quiet">You go back to the start. This country is dropped, and the round does not count.</p>
+    <div class="actions">
+      <button class="btn solid" id="btn-restart-yes" type="button">Restart</button>
+      <button class="btn ghost" type="button" data-close>Keep playing</button>
+    </div>
+  </div>
+</dialog>
+
 <dialog id="dlg-best" aria-labelledby="best-title">
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
@@ -178,7 +191,7 @@
 <noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
 
 <script src="../data/one-of-193.js"></script>
-<script src="../assets/js/turnsout.js?v=9e92b13046"></script>
-<script src="one-of-193.js?v=45c2af42c4"></script>
+<script src="../assets/js/turnsout.js?v=2156c64a39"></script>
+<script src="one-of-193.js?v=09d3776446"></script>
 </body>
 </html>

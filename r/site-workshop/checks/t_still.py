@@ -17,16 +17,19 @@ answer here on their own, so they hold for whatever figures the World Bank sent.
   S   every screen at 320x568, 360x640, 390x664 and 1280x720, light and dark, without scrolling the page: the start
       with eight long names, the names window, playing the tightest twelve (the longest rule and the longest names),
       a right and a wrong tap with the longest lines, the last one that fits, the twelve in order (a figure and a list),
-      the end with seven players out, the last twelve, and the windows (help, wins, who is still in, end the game,
-      share); and EVERY rule's tightest twelve at 320x568 and 360x640; nothing spills sideways
+      the end with seven players out, the last twelve, and the windows (help, wins, who is still in, restart the game,
+      share); and EVERY rule's tightest twelve at 320x568 and 360x640; nothing spills sideways, the bar with the
+      Restart button neither
   P8  the screen that passes the phone (since 5 Oct 2026, late evening): at a game's start, after every tap that passes the
-      turn and before every new rule; what it says, its button, the focus; kept over a reload (T2b), in every S size
+      turn and before every new rule; what it says, its button, the focus; in every S size
   K   keys: the grid takes one Tab stop, the arrows, Home and End move inside it, Enter picks, Tab reaches the button
   L   screen-reader labels: the grid, the tiles before and after a tap, the spoken line, the players, the windows
   R   reduced motion: a tapped tile does not turn over; with motion it does
-  T   what is kept in the browser: names, players and wins under "groups", never under the daily games; a game goes on
-      after a reload (also when its rule was over); broken data never breaks the page; the home page's Today card and
-      streak do not change
+  T   what is kept in the browser: since 6 Oct 2026 nothing about the players (names, wins, a game going on), only the
+      rules a table had lately and the number of games, under "groups", never under the daily games; every opening of
+      the page starts afresh (a reload, the Back button); the Restart button (shown only while a game is in play, asks
+      first, clears the game, the names and the wins) and "New players"; broken data never breaks the page; the home
+      page's Today card and streak do not change
   C   the counter events; F a friend's link (the same twelve and rule); X the share picture (its layout fits for every
       rule's tightest twelve; it never says which fit) and the message; O opened from a folder; N a data file missing
 """
@@ -154,8 +157,14 @@ async def new(br, w=390, h=664, scheme='light', reduced=False, count=False, touc
     pg.on('pageerror', lambda e: pg.errs.append('PAGEERR ' + str(e)))
     if count: await pg.add_init_script(COUNTED)
     return ctx, pg
+# Since 6 Oct 2026 the page stores nothing about the players: every opening starts afresh. So the players are handed
+# to the next page that opens (go), through the page's own hook for the checks (StillIn.load), and the game going on
+# is read back from the page (StillIn.now).
+PENDING = {}
 async def go(pg, q=''):
     await pg.goto(B + '/still-in/' + q); await pg.evaluate("document.fonts.ready"); await pg.wait_for_timeout(100)
+    s = PENDING.pop(id(pg), None)
+    if s is not None: await pg.evaluate("s => StillIn.load(s)", s); await pg.wait_for_timeout(30)
 stored = lambda pg: pg.evaluate("JSON.parse(localStorage.getItem('turnsout:v1') || '{}')")
 T = lambda pg, sel: pg.evaluate(f"(document.querySelector('{sel}') || {{textContent: null}}).textContent")
 FIT = """() => { const over = []; document.querySelectorAll('main *, header *').forEach(e => { const b = e.getBoundingClientRect();
@@ -171,10 +180,14 @@ def fitsm(m): return m['sh'] <= m['ih'] and m['sw'] <= m['iw'] and not m['over']
 def link(p, k=None):
     return f"?r={p['r']}&b={p.get('b') or '-'}&c={'.'.join(p['c'])}" + (f'&k={k}' if k is not None else '')
 async def setup(pg, names, n=None):
-    """the players, as the page keeps them (number and names), then a fresh page"""
-    n = n or len(names)
-    await pg.evaluate(f"localStorage.setItem('turnsout:v1', JSON.stringify({{groups: {{'still-in': {{n: {n}, names: {json.dumps(names)}}}}}}}))")
-async def cur(pg): return (await stored(pg)).get('groups', {}).get('still-in', {}).get('cur')
+    """the players (number and names), for the next page that opens"""
+    PENDING[id(pg)] = {'n': n or len(names), 'names': names}
+NOW = lambda pg: pg.evaluate("StillIn.now()")
+async def cur(pg):
+    """the game going on (none once it is over), as the page holds it"""
+    g = (await NOW(pg))['game']
+    return g if g and not g.get('over') else None
+PLAYERS = ('names', 'wins', 'next', 'n', 'cur')          # what the page must never store (since 6 Oct 2026)
 async def tap(pg, cid):
     await pg.click(f'.s-tile[data-c="{cid}"]'); await pg.click('#btn-check')
 HAND = """[document.body.dataset.view, document.getElementById('hand-res').getAttribute('aria-label'), document.getElementById('hand-res').textContent,
@@ -424,14 +437,14 @@ async def main():
                     wo = [f'{m.p[w]} went out on {ins(c)} ({head(r, b)[0].lower() + head(r, b)[1:]})' for (w, c, r, b, k) in sorted(m.outs, key=lambda o: o[4])]
                     want_e = ['end', f'{m.p[m.winner]} is still in!', f'The last one in, after {plural(m.n, "rule", "rules")} and {plural(m.total, "tap", "taps")}.', wo]
                     if e != want_e: bad_end.append((g, e, want_e))
-                    s = (await stored(pg))['groups']['still-in']
-                    if 'cur' in s or s.get('wins', {}).get(m.p[m.winner], 0) < 1: bad_end.append((g, 'stored', s))
+                    s = (await stored(pg))['groups']['still-in']; t = await NOW(pg)
+                    if any(k in s for k in PLAYERS) or t['wins'].get(m.p[m.winner], 0) < 1: bad_end.append((g, 'stored', s, t))
                     break
         await ctx.close()
         ok(f'P1 {games} games played through (2 to 8 players, with and without names): after every tap the tile\'s mark and figure, its label, the spoken line, the button and how many are still in match the data file and the game worked out here', not bad_tap, bad_tap[:3])
         ok('P2 the rule card before every tap: the rule\'s number, its words with the bar, the bar\'s own figure and year, whose turn it is', not bad_card, bad_card[:3])
         ok('P3 when no country that fits is left: "See all twelve", then the twelve in order (from the biggest figure down, the bar where it falls; for a list, the ones on it first), who tapped which, how many fit and how many went out, and the sources', not bad_rule, bad_rule[:2])
-        ok('P4 the end: the last player in wins; who went out, on which country and which rule; the win is counted and the game is no longer kept', not bad_end, bad_end[:2])
+        ok('P4 the end: the last player in wins; who went out, on which country and which rule; the win is counted in the page, and nothing about the players is stored', not bad_end, bad_end[:2])
         ok('P5 every game opens with a figure and its bar', not bad_first, bad_first[:2])
         ok('P8 the screen that passes the phone (Khayyam, 5 Oct 2026, late evening): at every start, after every tap that passes the turn (Right or Out, the figure, who is out) and before every new rule, it names the next player, its button says "… has the phone" and has the focus; after it the board says whose turn it is, and the game is no longer marked as passing',
            not bad_hand, bad_hand[:3])
@@ -503,7 +516,8 @@ async def main():
                     await tap(pg, non_ids[0]); await chk('passing the phone after a wrong tap, the longest line and a long name ' + rid)
                     await handed(pg); await chk('the board after a wrong tap ' + rid)
                     await pg.click('#btn-players'); await pg.wait_for_timeout(40); await chk('who is still in')
-                    await pg.click('#btn-quit'); await pg.wait_for_timeout(40); await chk('end this game?')
+                    await pg.keyboard.press('Escape'); await pg.wait_for_timeout(40)
+                    await pg.click('#btn-restart'); await pg.wait_for_timeout(40); await chk('restart the game?')
                     await pg.keyboard.press('Escape'); await pg.wait_for_timeout(40)
                     for c in fit_ids[1:]: await tap_on(pg, c)
                     await chk('the last one that fits ' + rid)
@@ -533,7 +547,7 @@ async def main():
                 await pg.click('#btn-last'); await pg.wait_for_timeout(30); await chk('the last twelve')
                 if w == 320 and scheme == 'light':
                     await pg.screenshot(path='shots/still-last-320.png')
-                ok(f'S1 {w}x{h} {scheme}: the start with eight long names, the names window, a friend\'s link, the tightest figure rule and list rule (passing the phone at the start, picked, a right and a wrong tap with the longest lines on the screen that passes the phone and on the board, the last one that fits, the twelve in order), the windows, and the end with seven players out fit without scrolling',
+                ok(f'S1 {w}x{h} {scheme}: the start with eight long names, the names window, a friend\'s link, the tightest figure rule and list rule (passing the phone at the start, picked, a right and a wrong tap with the longest lines on the screen that passes the phone and on the board, the last one that fits, the twelve in order), the windows, and the end with seven players out fit without scrolling (the windows with Restart, the bar with its button)',
                    not bad and pg.errs == [], (bad[:3], pg.errs))
                 await ctx.close()
         for (w, h) in SIZES[:2]:
@@ -615,50 +629,144 @@ async def main():
             else: ok('R2 with motion the screen that passes the phone slides in, and a tapped country turns over once', an == 's-hand-in' and fl, (an, fl))
             await ctx.close()
 
-        # ---------- T: what is kept in the browser
+        # ---------- T: what is kept in the browser (since 6 Oct 2026 nothing about the players), and starting afresh
+        async def play_out(pg):
+            """wrong taps (or any) until the game is over, through every screen; True at the end"""
+            for k in range(160):
+                v = await pg.evaluate("document.body.dataset.view")
+                if v == 'end': return True
+                if v == 'hand': await handed(pg); continue
+                if v == 'rule': await pg.click('#btn-next'); continue
+                b = await T(pg, '#btn-check')
+                if b.startswith('Who is') or b.startswith('See all'): await pg.click('#btn-check'); continue
+                st = await cur(pg); rule = RULE[st['pool']['r']]
+                left = [c for c in st['pool']['c'] if c not in [t[0] for t in st['taps']]]
+                non = [c for c in left if not fits(rule, st['pool'].get('b'), c)]
+                await tap(pg, (non or left)[0])
+            return False
         ctx, pg = await new(br, w=390, h=664, reduced=True)
-        await go(pg); await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({games: {'100-of-us': {results: {'3': {g: 41, a: 45}}, practice: {}}}, sent: {'players/new': 1}}))")
-        await go(pg); await pg.click('#btn-more'); await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.wait_for_timeout(40)
+        hid = lambda: pg.evaluate("document.getElementById('btn-restart').hidden")
+        old = {'games': {'100-of-us': {'results': {'3': {'g': 41, 'a': 45}}, 'practice': {}}}, 'sent': {'players/new': 1},
+               'groups': {'still-in': {'n': 6, 'names': ['Old', 'Names'], 'wins': {'Old': 4}, 'next': 2, 'games': 7, 'recent': ['more-people.ESP'],
+                                       'cur': {'p': ['Old', 'Names', 'C'], 'out': [0, 0, 0], 'outOn': [None, None, None], 'turn': 0, 'n': 1, 'used': [TIGHT[top_fig]['r']], 'pool': TIGHT[top_fig], 'taps': []}}}}
+        await go(pg); await pg.evaluate("s => localStorage.setItem('turnsout:v1', JSON.stringify(s))", old)
+        await go(pg)
+        g = (await stored(pg))['groups']['still-in']
+        t0 = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#players-n'), await T(pg, '#names-line'), await hid(), await pg.evaluate("[...document.querySelectorAll('#wins-list li b')].map(b => b.textContent).join()")]
+        ok('T1 what earlier versions kept about the players (names, wins, who starts next, a game going on) is cleared when the page opens; the rules a table had lately and the number of games stay; the page starts afresh with 3 players, no names and no wins',
+           t0 == ['start', '3', 'Player 1 · Player 2 · Player 3', True, '0,0,0'] and not any(k in g for k in PLAYERS) and g.get('games') == 7 and g.get('recent') == ['more-people.ESP'], (t0, g))
+        await pg.click('#btn-more'); await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.wait_for_timeout(40)
         inp = await pg.query_selector_all('#name-fields input')
         await inp[0].fill('Ana'); await inp[1].fill('  Ben <b>  '); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
-        s = (await stored(pg))['groups']['still-in']
-        ok('T1 the number of players and their names are kept under "groups" (names cleaned, at most 14 letters)', s.get('n') == 5 and s.get('names', [])[:3] == ['Ana', 'Ben b', ''] and await T(pg, '#names-line') == 'Ana · Ben b · Player 3 · Player 4 · Player 5', (s, await T(pg, '#names-line')))
-        await pg.click('#btn-start'); await handed(pg)
+        g = (await stored(pg))['groups']['still-in']; t = await NOW(pg)
+        ok('T2 the number of players and their names live only in the page (names cleaned, at most 14 letters): nothing about them is stored',
+           t['n'] == 5 and t['names'][:3] == ['Ana', 'Ben b', ''] and await T(pg, '#names-line') == 'Ana · Ben b · Player 3 · Player 4 · Player 5' and not any(k in g for k in PLAYERS), (t, g))
+        r = []
+        for step in ('pass', 'turn', 'rule'):
+            await pg.click('#btn-start'); await handed(pg)
+            st = await cur(pg); rule = RULE[st['pool']['r']]
+            fit_ = [c for c in st['pool']['c'] if fits(rule, st['pool'].get('b'), c)]
+            if step == 'pass': await tap(pg, fit_[0])                  # the screen that passes the phone
+            if step == 'rule':
+                for c in fit_: await tap_on(pg, c)                      # the last one that fits: "See all twelve"
+            v1 = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#btn-check')]
+            await pg.reload(); await pg.wait_for_timeout(150)
+            g = (await stored(pg))['groups']['still-in']
+            r.append([step, v1, await pg.evaluate("document.body.dataset.view"), await T(pg, '#names-line'), await hid(), await cur(pg), any(k in g for k in PLAYERS)])
+        ok('T3 a reload starts afresh at every step of a game (while the phone is being passed, during a turn, after a rule was over): the start with 3 players and no names, no Restart button, no game; nothing about the players stored',
+           [x[1][0] for x in r] == ['hand', 'play', 'play'] and r[2][1][1] == 'See all twelve' and all(x[2] == 'start' and x[3] == 'Player 1 · Player 2 · Player 3' and x[4] and x[5] is None and not x[6] for x in r), r)
+        await pg.click('#btn-more'); await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.wait_for_timeout(40)
+        inp = await pg.query_selector_all('#name-fields input')
+        for i, x in enumerate(['Ana', 'Ben', 'Cy', 'Di', 'Ed']): await inp[i].fill(x)
+        await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
+        await pg.click('#btn-start'); done = await play_out(pg)
+        s = await stored(pg); g = s['groups']['still-in']; t = await NOW(pg)
+        winner = (await T(pg, '#end-name')).replace(' is still in!', '')
+        ok('T4 a finished game: the win is counted for the winner\'s name and the next game starts with the next player, in the page only; the browser counts the game and keeps the rules for the deal, nothing about the players; the daily results and the returning-player marks are untouched',
+           done and not any(k in g for k in PLAYERS) and g.get('games') == 8 and t['wins'] == {winner: 1} and t['next'] == 1 and len(g.get('recent', [])) > 1
+           and s['games'] == {'100-of-us': {'results': {'3': {'g': 41, 'a': 45}}, 'practice': {}}} and s.get('sent') == {'players/new': 1}, (g, t, winner, s.get('games'), s.get('sent')))
+        tally = await T(pg, '#tally')
+        await pg.click('#btn-again'); await handed(pg); st2 = await cur(pg)
+        ok('T5 the wins at this table stand under the end and in their window; "Play again" keeps the players, and the next player starts',
+           tally.startswith('Wins at this table: Ana (') and '(1)' in tally and await pg.evaluate("document.querySelectorAll('#wins-list li').length") == 5
+           and st2 and st2['p'] == ['Ana', 'Ben', 'Cy', 'Di', 'Ed'] and st2['first'] == 1 and st2['turn'] == 1, (tally, st2))
+        ok('T1-T5 no errors', pg.errs == [], pg.errs)
+        await ctx.close()
+        # the Restart button, "New players", and the way back from the home page
+        ctx, pg = await new(br, w=390, h=664, reduced=True)
+        hid = lambda: pg.evaluate("document.getElementById('btn-restart').hidden")
+        async def names3():
+            await pg.click('#btn-names'); await pg.wait_for_timeout(30)
+            inp = await pg.query_selector_all('#name-fields input')
+            for i, x in enumerate(['Ana', 'Bo', 'Cy']): await inp[i].fill(x)
+            await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
+        seen = []
+        async def look():
+            v = await pg.evaluate("document.body.dataset.view"); g_ = (await NOW(pg))['game']
+            seen.append([v, await hid(), bool(g_ and not g_['over'])]); return v
+        await go(pg); await look()
+        await names3(); await pg.click('#btn-start'); await look()
+        await handed(pg); await look()
         st = await cur(pg); rule = RULE[st['pool']['r']]
-        non = [c for c in st['pool']['c'] if not fits(rule, st['pool'].get('b'), c)]; fit_ = [c for c in st['pool']['c'] if fits(rule, st['pool'].get('b'), c)]
-        await tap_on(pg, fit_[0]); await tap(pg, non[0])
-        p1 = (await cur(pg)).get('pass')
-        await pg.reload(); await pg.wait_for_timeout(200)
-        h1 = await handed(pg); p2 = (await cur(pg)).get('pass')
-        ok('T2b a reload while the phone is being passed shows that screen again (the same next player and what happened); after the tap the game is no longer marked as passing',
-           p1 == 1 and h1[0] == 'hand' and h1[3] == 'Player 3' and h1[2].startswith('Out! ') and h1[2].endswith(' Ben b is out.') and p2 == 0, (p1, h1, p2))
-        r1 = await pg.evaluate("[document.body.dataset.view, document.getElementById('turn-name').textContent, document.getElementById('dots-t').textContent, document.querySelectorAll('.s-tile.right').length, document.querySelectorAll('.s-tile.wrong').length, document.getElementById('rule-head').textContent]")
-        ok('T2 a game goes on after a reload: the same rule and twelve, the taps, who is out and whose turn it is', r1 == ['play', 'Player 3', '4 of 5 in', 1, 1, head(rule, st['pool'].get('b'))], r1)
-        for c in fit_[1:]: await tap_on(pg, c)
-        await pg.reload(); await pg.wait_for_timeout(200)
-        r2 = await pg.evaluate("[document.body.dataset.view, document.getElementById('btn-next').textContent]")
-        await pg.click('#btn-next'); await pg.wait_for_timeout(50)
-        h3 = await handed(pg)
-        r3 = await pg.evaluate("[document.body.dataset.view, document.getElementById('rule-n').textContent]")
-        ok('T3 a rule that was over before a reload shows its twelve in order, and the next rule follows (after the screen that passes the phone)', r2 == ['rule', 'Next rule'] and h3[0] == 'hand' and h3[2] == 'Rule 2 is next, a little harder.' and r3 == ['play', 'Rule 2'], (r2, h3, r3))
-        for k in range(120):
+        for c in [c for c in st['pool']['c'] if fits(rule, st['pool'].get('b'), c)]:
+            await tap(pg, c)
+            if await look() == 'hand': await handed(pg)
+        await pg.click('#btn-check'); await look()                     # "See all twelve": the list after the rule
+        await pg.click('#btn-next'); await look()                      # the hand-over of rule 2
+        for k in range(30):
             v = await pg.evaluate("document.body.dataset.view")
             if v == 'end': break
-            if v == 'hand': await handed(pg); continue
-            if v == 'rule': await pg.click('#btn-next'); continue
-            b = await T(pg, '#btn-check')
-            if b.startswith('Who is') or b.startswith('See all'): await pg.click('#btn-check'); continue
+            if v == 'hand': await handed(pg); await look(); continue
+            if (await T(pg, '#btn-check')).startswith('Who is'): await look(); await pg.click('#btn-check'); continue
             st = await cur(pg); rule = RULE[st['pool']['r']]
             left = [c for c in st['pool']['c'] if c not in [t[0] for t in st['taps']]]
             non = [c for c in left if not fits(rule, st['pool'].get('b'), c)]
             await tap(pg, (non or left)[0])
-        s = await stored(pg); g = s['groups']['still-in']
-        winner = await T(pg, '#end-name')
-        ok('T4 a finished game: the win is counted for the winner\'s name, the game is no longer kept, the next game starts with the next player; the daily results and the returning-player marks are untouched',
-           'cur' not in g and g.get('games') == 1 and sum(g.get('wins', {}).values()) == 1 and winner.replace(' is still in!', '') in g['wins'] and g.get('next') == 1
-           and s['games'] == {'100-of-us': {'results': {'3': {'g': 41, 'a': 45}}, 'practice': {}}} and s.get('sent') == {'players/new': 1}, (g, s.get('games'), s.get('sent')))
-        tally = await T(pg, '#tally')
-        ok('T5 the wins at this table stand under the end and in their window', tally.startswith('Wins at this table: Ana (') and '(1)' in tally and await pg.evaluate("document.querySelectorAll('#wins-list li').length") == 5, tally)
+        await look()                                                   # the end
+        await pg.click('#btn-last'); await look()                      # the last twelve, after the end
+        ok('T8 the Restart button (↻ in the bar, named "Restart the game") stands there exactly while a game is in play: the hand-over, the board, the list after a rule; not on the start, not once the last player but one is out, not at the end or on the last twelve',
+           all(h == (not inplay) for v, h, inplay in seen) and {v for v, h, i in seen if not h} >= {'hand', 'play', 'rule'} and {v for v, h, i in seen if h} >= {'start', 'play', 'end', 'rule'}
+           and await pg.evaluate("document.getElementById('btn-restart').getAttribute('aria-label')") == 'Restart the game', seen)
+        await pg.click('#btn-next'); await pg.wait_for_timeout(30)     # "Back" from the last twelve to the end
+        wins1 = (await NOW(pg))['wins']
+        await pg.click('#btn-again'); await handed(pg)
+        st = await cur(pg); await pg.click(f'.s-tile[data-c="{st["pool"]["c"][0]}"]')       # a country picked, not checked
+        before = await cur(pg)
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(40)
+        dlg = await pg.evaluate("[document.getElementById('dlg-restart').open, document.getElementById('restart-title').textContent, document.querySelector('#dlg-restart .quiet').textContent, document.getElementById('btn-restart-yes').textContent, document.querySelector('#dlg-restart .btn.ghost').textContent]")
+        await pg.click('#dlg-restart .btn.ghost'); await pg.wait_for_timeout(30)
+        kept = [await pg.evaluate("document.body.dataset.view"), (await cur(pg)) == before, await pg.evaluate("document.getElementById('dlg-restart').open"), await T(pg, '#btn-check')]
+        ok('T9 Restart asks first ("Restart the game?", what it clears, Restart or Keep playing); Keep playing leaves the game as it was (the country picked too)',
+           dlg == [True, 'Restart the game?', "Everything starts over: this game, the players' names and the wins at this table.", 'Restart', 'Keep playing'] and kept[:3] == ['play', True, False] and kept[3].startswith('Check ') and sum(wins1.values()) == 1, (dlg, kept, wins1))
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(30); await pg.click('#btn-restart-yes'); await pg.wait_for_timeout(40)
+        g = (await stored(pg))['groups']['still-in']; t = await NOW(pg)
+        after = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#players-n'), await T(pg, '#names-line'), await pg.evaluate("document.activeElement.id"), await hid(), t['game'], t['wins'], t['next'],
+                 await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)"), any(k in g for k in PLAYERS)]
+        wl = await pg.evaluate("[...document.querySelectorAll('#wins-list li')].map(li => li.textContent)")
+        ok('T10 Restart starts everything over: the start with 3 players and no names, the focus on Start, no game, no wins at this table (their window lists the new players with 0), player 1 starts next; no window left open; nothing stored about the players',
+           after == ['start', '3', 'Player 1 · Player 2 · Player 3', 'btn-start', True, None, {}, 0, False, False] and wl == ['Player 10', 'Player 20', 'Player 30'], (after, wl))
+        await names3(); await pg.click('#btn-start'); await play_out(pg)
+        e1 = await pg.evaluate("document.body.dataset.view")
+        await pg.click('#btn-again'); await handed(pg); a1 = [(await cur(pg))['p'], dict((await NOW(pg))['wins'])]
+        await play_out(pg)
+        await pg.click('#btn-change'); await pg.wait_for_timeout(30)
+        t = await NOW(pg)
+        nw = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#players-n'), await T(pg, '#names-line'), await pg.evaluate("document.activeElement.id"), t['wins'], t['next'], await hid()]
+        ok('T11 "Play again" keeps the players and their wins; "New players" at the end clears the names and the wins and starts afresh',
+           e1 == 'end' and a1[0] == ['Ana', 'Bo', 'Cy'] and sum(a1[1].values()) == 1 and nw == ['start', '3', 'Player 1 · Player 2 · Player 3', 'btn-more', {}, 0, True], (e1, a1, nw))
+        await names3(); await pg.click('#btn-start'); await handed(pg)
+        await pg.evaluate("window.__marker = 1")
+        await pg.click('.wordmark'); await pg.wait_for_timeout(300)
+        home = await pg.evaluate("location.pathname")
+        await pg.go_back(); await pg.wait_for_timeout(300)
+        b1 = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#names-line'), await hid()]
+        mem = await pg.evaluate("window.__marker === 1")
+        await names3(); await pg.click('#btn-start'); await handed(pg)
+        await pg.evaluate("window.dispatchEvent(new PageTransitionEvent('pageshow', {persisted: true}))"); await pg.wait_for_timeout(60)
+        b2 = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#names-line'), await hid(), await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)")]
+        ok('T12 to the home page and back with the Back button, the game starts afresh (the start, no names, no Restart button); so does a page that the browser brings back from its memory (the event "pageshow")',
+           home == '/' and b1 == ['start', 'Player 1 · Player 2 · Player 3', True] and b2 == ['start', 'Player 1 · Player 2 · Player 3', True, False], (home, b1, b2, 'kept in memory' if mem else 'loaded anew'))
+        ok('T8-T12 no errors', pg.errs == [], pg.errs)
         await ctx.close()
         for nm, raw in [('not JSON', 'hello{'), ('groups is a text', '{"groups": "x"}'), ('a broken game', '{"groups": {"still-in": {"cur": {"p": ["a"], "pool": 5}, "n": "x", "names": 7, "wins": [1]}}}'),
                         ('a game with an unfair pool', '{"groups": {"still-in": {"n": 3, "cur": {"p": ["A","B","C"], "out": [0,0,0], "outOn": [null,null,null], "turn": 0, "n": 1, "used": ["more-people"], "pool": {"r": "more-people", "b": "ESP", "c": ["ESP","FRA","DEU","ITA","GBR","POL","SWE","NOR","GRC","PRT","NLD","CHE"]}, "taps": []}}}}'),
@@ -687,8 +795,11 @@ async def main():
         ok('F1 a friend\'s link: it names the rule and how many players their table lost, and the button deals their twelve', not fr[0] and head(RULE[top_fig], pl['b']) in fr[1] and '2 players' in fr[1] and fr[2] == 'Play their twelve', fr)
         await pg.click('#btn-start')
         st = await cur(pg)
-        ok('F2 the friend\'s twelve and rule are dealt as the first rule, and the address loses the link (a reload goes on with the game)', st['pool'] == {'r': pl['r'], 'b': pl['b'], 'c': pl['c']} and '?' not in pg.url, (st['pool'], pg.url))
-        cnt_all = list(await pg.evaluate("window.__counted"))
+        cnt_pre = list(await pg.evaluate("window.__counted"))       # a reload starts a new list
+        url_ = pg.url; await pg.reload(); await pg.wait_for_timeout(150)
+        rl = await pg.evaluate("[document.body.dataset.view, document.getElementById('friend').hidden, document.getElementById('btn-start').textContent]")
+        ok('F2 the friend\'s twelve and rule are dealt as the first rule, and the address loses the link: a reload starts afresh, without the friend\'s twelve', st['pool'] == {'r': pl['r'], 'b': pl['b'], 'c': pl['c']} and '?' not in url_ and rl == ['start', True, 'Start'], (st['pool'], url_, rl))
+        cnt_all = cnt_pre + list(await pg.evaluate("window.__counted"))
         not_aside = []
         for bad_q in (link({'r': pl['r'], 'b': pl['b'], 'c': pl['c'][:11] + ['XXX']}), link({'r': 'nope', 'b': pl['b'], 'c': pl['c']}), link({'r': pl['r'], 'b': pl['b'], 'c': [pl['b']] + pl['c'][1:]})):
             await pg.evaluate("localStorage.clear()"); await go(pg, bad_q)

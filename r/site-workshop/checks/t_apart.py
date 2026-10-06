@@ -301,6 +301,33 @@ async def main():
         wide = await pg.evaluate("Math.max(...[...document.querySelectorAll('#ruler rect')].map(r => parseFloat(r.getAttribute('width'))))")
         ok('A28 a tab with no width yet (a hidden tab) gets a ruler without broken shapes, and the full ruler once it has room', neg == 0 and wide > 200 and not pg.errs, (neg, wide, pg.errs))
         await ctx.close()
+
+        # A29 (Khayyam, 6 Oct 2026: on day 1 "Cleopatra dies" broke into two lines when the slider went to the right, and
+        # stayed on one line on the way to the left): the tag keeps its own width wherever it hangs, so the words of its
+        # event break the same way all along the line. EVERY puzzle, dragged slowly with the mouse from the middle to the
+        # right end and on to the left end, at a wide screen and two phones.
+        LINES = """() => { const t = document.getElementById('tag-t'), rg = document.createRange(); rg.selectNodeContents(t);
+          const tag = document.getElementById('tag').getBoundingClientRect(), b = document.getElementById('board').getBoundingClientRect();
+          return [rg.getClientRects().length, tag.left >= b.left - 0.5 && tag.right <= b.right + 0.5]; }"""
+        bad = []
+        for (w, h) in ((1280, 720), (390, 664), (320, 568)):
+            ctx, pg = await new(br, 1, w, h, touch=False)
+            for day in range(1, N + 1):
+                await pg.clock.set_fixed_time(at(day))           # nothing is measured, so nothing is stored
+                await pg.goto(B + '/years-apart/'); await pg.wait_for_timeout(120)
+                b = await pg.evaluate("document.getElementById('board').getBoundingClientRect().toJSON()")
+                x0, x1, y = b['x'] + 20, b['x'] + b['width'] - 20, b['y'] + 40
+                first = await pg.evaluate(LINES); seen = set(); out = False
+                await pg.mouse.move((x0 + x1) / 2, y); await pg.mouse.down()
+                steps = 24
+                for i in list(range(1, steps + 1)) + list(range(steps - 1, -steps - 1, -1)):
+                    await pg.mouse.move((x0 + x1) / 2 + (x1 - x0) / 2 * i / steps, y)
+                    r_ = await pg.evaluate(LINES); seen.add(r_[0]); out = out or not r_[1]
+                await pg.mouse.up()
+                if seen != {first[0]} or out: bad.append((w, day, EV[puzzle(day)['mid']]['t'] if isinstance(puzzle(day).get('mid'), str) else day, first[0], sorted(seen), out))
+            await ctx.close()
+        ok('A29 the tag keeps its own width wherever it hangs: the words of every puzzle\'s event break the same way from one end of the line to the other ("Cleopatra dies" on one line at the right end too), and the tag stays on the board, at 1280x720, 390x664 and 320x568',
+           not bad, bad[:4])
         await br.close()
     bad = [n for n, c in res if not c]
     print(f'\n{len(res) - len(bad)} of {len(res)} checks passed'); print('FAILED:', bad) if bad else None

@@ -1,5 +1,5 @@
 """100 of Us and Your Call have no test script from this chat: play each once, end to end, on the renamed site."""
-import asyncio, datetime, json, base64, io, os
+import asyncio, datetime, json, base64, io, math, os
 from playwright.async_api import async_playwright
 from PIL import Image
 B = os.environ.get("LOGICERS_URL", "http://localhost:8790")
@@ -66,6 +66,58 @@ async def main():
             await pg.locator('.wordmark').click(); await pg.wait_for_load_state('load'); await pg.wait_for_timeout(400)
             ok(f'Your Call ({scheme}): home shows the result afterwards', await pg.evaluate("document.querySelector('#tile-call .result b').textContent") == ('Same call' if r['c'] == r['r'] else 'Different call'))
             ok(f'Your Call ({scheme}): no errors', pg.errs == [], pg.errs); await ctx.close()
+        # ---- 100 of Us: a tap adds one; with the finger held down, sliding right adds figures and sliding left takes them
+        # away (Khayyam, 6 Oct 2026), 4 pixels a figure once the finger has moved 10 pixels sideways; a slide that starts
+        # at once counts from before the press, one that starts after holding counts from where the holding got to
+        jsround = lambda v: int(math.floor(v + 0.5))
+        for (w, h) in ((320, 568), (390, 664)):
+            ctx, pg = await new(br, w=w, h=h); await pg.goto(B + '/100-of-us/'); await pg.wait_for_timeout(500)
+            box = await pg.evaluate("document.getElementById('stage').getBoundingClientRect().toJSON()")
+            cx, cy = box['x'] + box['width'] / 2, box['y'] + box['height'] / 2
+            hint0 = await T(pg, 'hint')
+            await pg.mouse.move(cx, cy); await pg.mouse.down(); await pg.mouse.up(); await pg.wait_for_timeout(30)
+            a = int(await T(pg, 'count'))
+            await pg.mouse.move(cx - 60, cy); await pg.mouse.down()
+            for x in range(5, 101, 5): await pg.mouse.move(cx - 60 + x, cy)
+            b = int(await T(pg, 'count'))
+            for x in range(95, -301, -5): await pg.mouse.move(cx - 60 + x, cy)
+            c = int(await T(pg, 'count'))
+            await pg.mouse.up(); await pg.wait_for_timeout(30)
+            hint1 = await T(pg, 'hint'); lock1 = not await pg.evaluate("document.getElementById('lock').hidden")
+            ok(f'100 of Us {w}x{h}: a tap adds one; holding and sliding right adds one figure for every 4 pixels (from the count before the press), sliding left takes them away down to 0; the hints say so',
+               a == 1 and b == 1 + jsround(90 / 4) and c == 0 and lock1 and hint0 == 'Hold or slide. Let go at your guess.' and hint1 == 'Hold to add more, or slide left or right.', (a, b, c, lock1, hint0, hint1))
+            await pg.mouse.move(cx, cy); await pg.mouse.down(); await pg.wait_for_timeout(900)
+            d = int(await T(pg, 'count'))
+            await pg.mouse.move(cx + 10, cy); e0 = int(await T(pg, 'count'))
+            for x in range(15, 51, 5): await pg.mouse.move(cx + x, cy)
+            e1 = int(await T(pg, 'count')); await pg.wait_for_timeout(600); e2 = int(await T(pg, 'count'))
+            await pg.mouse.move(cx + 5, cy, steps=3); e3 = int(await T(pg, 'count'))
+            await pg.mouse.up(); await pg.wait_for_timeout(30)
+            ok(f'100 of Us {w}x{h}: holding still counts by itself; a slide after holding goes on from there (40 pixels: 10 more), and while sliding the count follows the finger only',
+               d >= 3 and e0 >= d and e1 == e0 + 10 and e2 == e1 and e3 == e0 - 1, (d, e0, e1, e2, e3))
+            cdp = await ctx.new_cdp_session(pg)
+            g0 = int(await T(pg, 'count'))
+            await cdp.send('Input.dispatchTouchEvent', {'type': 'touchStart', 'touchPoints': [{'x': cx - 40, 'y': cy}]}); await pg.wait_for_timeout(16)
+            for x in range(4, 81, 4):
+                await cdp.send('Input.dispatchTouchEvent', {'type': 'touchMove', 'touchPoints': [{'x': cx - 40 + x, 'y': cy}]}); await pg.wait_for_timeout(16)
+            await cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []}); await pg.wait_for_timeout(80)
+            g1 = int(await T(pg, 'count')); sy = await pg.evaluate("scrollY")
+            await cdp.send('Input.dispatchTouchEvent', {'type': 'touchStart', 'touchPoints': [{'x': cx, 'y': cy}]}); await pg.wait_for_timeout(40)
+            for y_ in range(6, 61, 6):
+                await cdp.send('Input.dispatchTouchEvent', {'type': 'touchMove', 'touchPoints': [{'x': cx + 3, 'y': cy + y_}]}); await pg.wait_for_timeout(16)
+            await cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []}); await pg.wait_for_timeout(80)
+            g2 = int(await T(pg, 'count'))
+            ok(f'100 of Us {w}x{h}: with a real finger, a slide of 80 pixels to the right adds 17 (the first 12 pixels start it) and the page does not move; a finger that moves up or down does not slide',
+               g1 == g0 + jsround(68 / 4) and sy == 0 and g2 >= g1 + 1, (g0, g1, sy, g2))
+            r0 = int(await T(pg, 'count'))
+            await pg.focus('#a11y-range'); await pg.keyboard.press('ArrowLeft'); await pg.wait_for_timeout(20)
+            r1 = [int(await T(pg, 'count')), await pg.evaluate("document.getElementById('a11y-range').value")]
+            helps = await pg.evaluate("[...document.querySelectorAll('#dlg-help ol li')].map(li => li.textContent)")
+            ok(f'100 of Us {w}x{h}: the keyboard still sets the guess; the help says how to slide', r1 == [r0 - 1, str(r0 - 1)] and 'While you hold, slide right for more and left for fewer.' in helps and any('A tap adds one.' in x for x in helps), (r0, r1, helps))
+            await pg.locator('#lock').click(); await pg.wait_for_timeout(300)
+            st = json.loads(await pg.evaluate("localStorage.getItem('turnsout:v1')"))
+            ok(f'100 of Us {w}x{h}: the guess made by sliding is the one locked in; no errors', st['games']['100-of-us']['results']['2']['g'] == r0 - 1 and pg.errs == [], (st['games']['100-of-us']['results'], pg.errs))
+            await ctx.close()
         await br.close()
     bad = [n for n, c in res if not c]
     print(f'\n{len(res) - len(bad)} of {len(res)} checks passed'); print('FAILED:', bad) if bad else None

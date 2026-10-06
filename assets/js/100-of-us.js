@@ -1,5 +1,6 @@
 /* 100 of Us: one question a day about the world's people.
-   Press and hold to count figures, lock in, see how it really is. */
+   Press and hold to count figures (a tap adds one; holding and sliding sideways changes the number), lock in, see how
+   it really is. */
 (function () {
   "use strict";
 
@@ -45,6 +46,11 @@
   var count = 0;             // figures counted so far
   var phase = "guess";       // guess, then done
   var holding = false, raf = 0, nextAt = 0, steps = 0;
+  /* sliding (Khayyam, 6 Oct 2026): with the finger held down, moving it sideways changes the number, right for more and
+     left for fewer, as when moving between photos in a phone's gallery, but only while the finger stays down */
+  var SLIDE = 10;            // pixels a finger must move sideways before the number follows it
+  var STEP = 4;              // pixels of sliding for one figure
+  var press = null;          // { id, x, y: where the finger went down, before: the count before it, slide: null or { x, base } }
   var cardBlob = null, cardUrl = "";
 
   /* ---------- build the screen ---------- */
@@ -116,7 +122,7 @@
     raf = window.requestAnimationFrame(tick);
   }
   function tick(now) {
-    if (!holding) return;
+    if (!holding || (press && press.slide)) return;
     while (now >= nextAt && count < 100) {
       add(1);
       steps++;
@@ -128,6 +134,7 @@
   function stopHold() {
     if (!holding) return;
     holding = false;
+    press = null;
     window.cancelAnimationFrame(raf);
     range.value = String(count);
     crowd.setAttribute("aria-label", count + " of 100 figures counted");
@@ -136,7 +143,7 @@
   function showGuessButtons() {
     lockBtn.hidden = false;
     redoBtn.hidden = false;
-    hintEl.textContent = count >= 100 ? "That is everyone." : "Hold again to add more.";
+    hintEl.textContent = count >= 100 ? "That is everyone. Slide left for fewer." : "Hold to add more, or slide left or right.";
   }
 
   stage.addEventListener("pointerdown", function (e) {
@@ -144,7 +151,24 @@
     if (e.button) return;                      // only the main button or a finger
     e.preventDefault();
     try { stage.setPointerCapture(e.pointerId); } catch (err) { /* not fatal */ }
+    if (holding) return;
+    press = { id: e.pointerId, x: e.clientX, y: e.clientY, before: count, slide: null };
     startHold();
+  });
+  stage.addEventListener("pointermove", function (e) {
+    if (!holding || !press || e.pointerId !== press.id || phase !== "guess") return;
+    if (!press.slide) {
+      var dx = e.clientX - press.x, dy = e.clientY - press.y;
+      if (Math.abs(dx) < SLIDE || Math.abs(dx) < Math.abs(dy)) return;
+      // the press becomes a slide: the counting by itself stops; a slide that starts at once counts from before the press
+      window.cancelAnimationFrame(raf);
+      press.slide = { x: e.clientX, base: steps === 0 ? press.before : count };
+    }
+    var n = Math.max(0, Math.min(100, press.slide.base + Math.round((e.clientX - press.slide.x) / STEP)));
+    if (n === count) return;
+    if (Math.floor(n / 10) !== Math.floor(count / 10) && window.navigator.vibrate) { try { window.navigator.vibrate(4); } catch (err) { /* ignore */ } }
+    count = n;
+    paint();
   });
   ["pointerup", "pointercancel", "lostpointercapture"].forEach(function (name) {
     stage.addEventListener(name, stopHold);
@@ -167,7 +191,7 @@
     paint();
     lockBtn.hidden = true;
     redoBtn.hidden = true;
-    hintEl.textContent = "Press and hold. Let go at your guess.";
+    hintEl.textContent = "Hold or slide. Let go at your guess.";
   });
 
   lockBtn.addEventListener("click", function () {

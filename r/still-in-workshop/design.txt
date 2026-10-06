@@ -66,7 +66,7 @@ A turn
   miss): what just happened ("Right. Vietnam has 101.6 million people." or "Out! ... Ben is out."), "Pass the phone
   to" and the next player's name in big letters, and the button "Ana has the phone", which the next player taps.
   The same screen comes at the start of a game ("A new game: twelve countries, one rule.") and before every new rule
-  ("Rule 2 is next, a little harder."). A reload while it shows brings it back (the game keeps "pass"). On the board
+  ("Rule 2 is next, a little harder."). On the board
   the line under the grid then says "Ana's turn. Tap a country that fits." The whole figure in words keeps its year
   where it is not the bar's year. In a sentence the
   names that need it take "the" (the Netherlands, the United States, the Central African Republic: 14 names, the
@@ -78,10 +78,16 @@ A turn
   "The last twelve", "New players".
 
 What the browser keeps (under "groups" > "still-in" in the site's one store; never under the daily games)
-  n (players), names (eight, optional, cleaned, at most 14 letters), wins ({name: count}), games, next (who starts
-  the next game), recent (the last 40 rules with their bars), cur (a game in progress, so that a reload goes on:
-  players, who is out and on what, whose turn, the rule's number, the rules used, the pool, the taps, the pools
-  played, done when the rule was over, pass while the phone is being handed on). Broken data is left aside.
+  games (how many finished) and recent (the last 40 rules with their bars). Broken data is left aside.
+  Since 6 Oct 2026 (Khayyam: the names got stuck; the game must restart when you go to the home page and come back,
+  the names every time the game is opened, and a Restart button) nothing about the players is stored: the number of
+  players and their names (eight, optional, cleaned, at most 14 letters), the wins at this table ({name: count}),
+  who starts the next game and the game going on live only while the page is open. Every opening of the page (from
+  the home page, the Back button, a reload, or a page the browser brings back from its memory) starts afresh with
+  3 players and no names; what earlier versions stored about the players (n, names, wins, next, cur) is deleted
+  when the page opens. The round button ↻ in the bar (only while a game is in play) asks "Restart the game?" and
+  then starts everything over the same way; so does "New players" at the end. "Play again" keeps the players and
+  their wins. A pull on the page does not reload it (overscroll-behavior), so that a game is not lost by accident.
 
 Sharing
   The picture (1080 by 1350, plum) shows the rule of the game that put the most players out, the bar's figure or the

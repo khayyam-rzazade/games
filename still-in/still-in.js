@@ -2,7 +2,9 @@
    The players take turns tapping a country that fits; the phone checks it against the World Bank's figures or a
    checked list and shows the real figure. A wrong tap puts that player out. When no country that fits is left,
    a new rule comes. The last player still in wins.
-   Not daily: no day number, no streak, no album. Names and wins are kept in this browser (TO.groupUpdate).
+   Not daily: no day number, no streak, no album. Every opening of the page starts fresh (Khayyam, 6 Oct 2026): the
+   players' names, the game and the wins at this table live only while the page is open, and are never stored. The
+   browser keeps only the rules a table had lately (TO.groupUpdate), so that it deals others first.
    Its countries, lists and five figures come from One of 193's file (data/one-of-193.js); four more figures from
    data/still-in.js (r/make-still-in.R). Without that second file the game plays with the first five. */
 (function () {
@@ -383,19 +385,20 @@
   function clean(s) { return String(s || "").replace(/[\u0000-\u001f<>]/g, "").replace(/\s+/g, " ").trim().slice(0, 14); }
   function stored() { return TO.group(GAME); }
 
-  /* ---------- who plays: how many, and their names (optional, kept in this browser) ---------- */
-  var setup = (function () {
-    var g = stored(), n = num(g.n) && g.n >= PLAYERS_MIN && g.n <= PLAYERS_MAX ? Math.round(g.n) : 3;
-    var nm = Array.isArray(g.names) ? g.names.slice(0, PLAYERS_MAX).map(clean) : [];
+  /* ---------- who plays: how many, and their names (optional). They live only while the page is open. ---------- */
+  function blankSetup() {
+    var nm = [];
     while (nm.length < PLAYERS_MAX) nm.push("");
-    return { n: n, names: nm };
-  })();
-  function nameOf(i) { return setup.names[i] || "Player " + (i + 1); }
-  function saveSetup() {
-    TO.groupUpdate(GAME, function (g) { g.n = setup.n; g.names = setup.names.slice(); });
+    return { n: 3, names: nm };
   }
+  var setup = blankSetup();
+  function nameOf(i) { return setup.names[i] || "Player " + (i + 1); }
+  /* the table of this sitting: the wins per name, and who starts the next game */
+  var table = { wins: {}, next: 0 };
+  /* what earlier versions kept in the browser (names, wins, a game going on) is cleared: nothing about the players stays */
+  TO.groupUpdate(GAME, function (g) { delete g.cur; delete g.names; delete g.wins; delete g.next; delete g.n; });
 
-  /* ---------- the game: kept in the browser, so that a reload or a locked phone does not lose it ----------
+  /* ---------- the game, in the page only: a new opening of the page (or Restart) starts afresh ----------
      { p: names, out: [0/1], outOn: [{n: rule number, c: country}|null], turn, first, n: rule number,
        used: [rule ids], pool: {r, b, c: [12]}, taps: [[country, player, 1 right / 0 wrong]], total, hist: [past pools],
        over, winner } */
@@ -414,9 +417,6 @@
     var r = rule();
     return game.pool.c.filter(function (id) { return !tappedOf(id) && fits(r, game.pool.b, id); });
   }
-  function save() {
-    TO.groupUpdate(GAME, function (g) { if (game && !game.over) g.cur = game; else delete g.cur; });
-  }
   function validGame(x) {
     if (!x || typeof x !== "object" || !Array.isArray(x.p) || x.p.length < PLAYERS_MIN || x.p.length > PLAYERS_MAX) return false;
     if (!Array.isArray(x.out) || x.out.length !== x.p.length || !Array.isArray(x.taps) || !Array.isArray(x.used)) return false;
@@ -433,9 +433,8 @@
     }
     return true;
   }
-  function restore() {
-    var cur = stored().cur;
-    if (!validGame(cur)) return null;
+  function resume(cur) {            // a game as the checks hand it over (CORE.load): only what makes sense is kept
+    cur = JSON.parse(JSON.stringify(cur));
     cur.p = cur.p.map(function (s, i) { return clean(s) || "Player " + (i + 1); });
     cur.outOn = cur.p.map(function (x, i) {          // who went out on what: kept only where it makes sense
       var o = Array.isArray(cur.outOn) ? cur.outOn[i] : null;
@@ -474,11 +473,10 @@
     });
   }
   function newGame(forced) {
-    var g = stored(), first = num(g.next) && g.next >= 0 && g.next < setup.n ? g.next : 0;
+    var first = num(table.next) && table.next >= 0 && table.next < setup.n ? table.next : 0;
     game = { p: [], out: [], outOn: [], turn: first, first: first, n: 1, used: [], pool: null, taps: [], total: 0, hist: [], over: false };
     for (var i = 0; i < setup.n; i++) { game.p.push(nameOf(i)); game.out.push(0); game.outOn.push(null); }
     dealPool(forced);
-    save();
     TO.count(GAME + "/started");
   }
 
@@ -488,8 +486,10 @@
     view = v;
     Object.keys(views).forEach(function (k) { views[k].hidden = k !== v; });
     document.body.setAttribute("data-view", v);
+    restartChip();
     fit();
   }
+  function restartChip() { $("btn-restart").hidden = !(game && !game.over); }      // Restart only while a game is in play
   /* every view must fit the screen without scrolling: step down until it does */
   function fit() {
     var b = document.body;
@@ -534,7 +534,7 @@
         inp.placeholder = "Player " + (i + 1);
         inp.value = setup.names[i];
         inp.setAttribute("aria-label", "Name of player " + (i + 1));
-        inp.addEventListener("input", function () { setup.names[i] = clean(inp.value); saveSetup(); renderSetup(); });
+        inp.addEventListener("input", function () { setup.names[i] = clean(inp.value); renderSetup(); });
         lab.appendChild(inp);
         box.appendChild(lab);
       })(i);
@@ -705,7 +705,6 @@
     game.turn = after(who);
     if (!fitLeft().length) {             // no country that fits is left: the rule is over, everyone still in goes on
       game.done = 1;
-      save();
       stage = "rule";
       renderTurn(); renderGrid(); setCheck();
       say('<b class="s-ok">Right.</b> <span class="s-v"></span> <span class="s-pass">That was the last one that fits.</span>',
@@ -721,7 +720,7 @@
   }
   /* passing the phone (Khayyam, 5 Oct 2026, late evening: it must say so very plainly). Whenever the phone goes to
      another player (a game starts, a tap passes the turn, a new rule comes), a whole screen says what just happened
-     and to whom the phone goes, and the next player taps to say they have it. A reload shows it again. */
+     and to whom the phone goes, and the next player taps to say they have it. */
   function handRecap() {
     var last = game.taps[game.taps.length - 1];
     if (last) {
@@ -735,7 +734,6 @@
   }
   function showHand() {
     game.pass = 1;
-    save();
     stage = "hand";
     picked = "";
     var who = game.p[game.turn], rc = handRecap(), res = $("hand-res");
@@ -759,7 +757,6 @@
   function handed() {                        // the next player has the phone: their turn on the board
     if (!game || !game.pass) return;
     game.pass = 0;
-    save();
     showPlay();
     var t = $("grid").querySelector('.s-tile[tabindex="0"]') || $("grid").querySelector(".s-tile");
     if (t) t.focus();
@@ -848,14 +845,10 @@
     game.winner = winner;
     game.hist.push({ r: game.pool.r, b: game.pool.b, c: game.pool.c.slice(), taps: game.taps.slice() });
     var wname = game.p[winner];
-    TO.groupUpdate(GAME, function (g) {
-      delete g.cur;
-      g.games = (num(g.games) ? g.games : 0) + 1;
-      var w = (g.wins && typeof g.wins === "object" && !Array.isArray(g.wins)) ? g.wins : {};
-      w[wname] = (num(w[wname]) ? w[wname] : 0) + 1;
-      g.wins = w;
-      g.next = (game.first + 1) % game.p.length;            // the next game starts with the next player
-    });
+    table.wins[wname] = (num(table.wins[wname]) ? table.wins[wname] : 0) + 1;
+    table.next = (game.first + 1) % game.p.length;          // the next game starts with the next player
+    TO.groupUpdate(GAME, function (g) { g.games = (num(g.games) ? g.games : 0) + 1; });
+    restartChip();
     TO.count(GAME + "/finished");
     winsLine();
     prepareCard();
@@ -888,12 +881,12 @@
     tallyLine();
   }
   function tallyLine() {
-    var w = stored().wins || {}, parts = [];
+    var w = table.wins, parts = [];
     game.p.forEach(function (x) { parts.push(x + " (" + (num(w[x]) ? w[x] : 0) + ")"); });
     $("tally").textContent = "Wins at this table: " + parts.join(", ") + ".";
   }
   function winsLine() {
-    var w = stored().wins || {}, list = $("wins-list");
+    var w = table.wins, list = $("wins-list");
     list.innerHTML = "";
     var names = [];
     for (var i = 0; i < setup.n; i++) names.push(nameOf(i));
@@ -1069,13 +1062,13 @@
   winsLine();
   if (friend) TO.count(GAME + "/challenge-opened");
 
-  function plainAddress() {           // once a friend's twelve are dealt, the address loses them, so that a reload goes on with the game
+  function plainAddress() {           // once a friend's twelve are dealt, the address loses them: a new opening is a plain start
     if (window.location.search && window.history && window.history.replaceState) {
       try { window.history.replaceState(null, "", window.location.pathname); } catch (e) { /* keep the address */ }
     }
   }
-  $("btn-fewer").addEventListener("click", function () { if (setup.n > PLAYERS_MIN) { setup.n--; saveSetup(); renderSetup(); } });
-  $("btn-more").addEventListener("click", function () { if (setup.n < PLAYERS_MAX) { setup.n++; saveSetup(); renderSetup(); } });
+  $("btn-fewer").addEventListener("click", function () { if (setup.n > PLAYERS_MIN) { setup.n--; renderSetup(); } });
+  $("btn-more").addEventListener("click", function () { if (setup.n < PLAYERS_MAX) { setup.n++; renderSetup(); } });
   $("btn-names").addEventListener("click", renderNameFields);
   $("btn-start").addEventListener("click", function () {
     var f = friend ? friend.pool : null;
@@ -1091,20 +1084,14 @@
     nextRuleNow();
   });
   $("btn-players").addEventListener("click", renderRoster);
-  $("btn-quit").addEventListener("click", function () { TO.closeDialog($("dlg-players")); TO.openDialog($("dlg-quit")); });
-  $("btn-quit-yes").addEventListener("click", function () {
-    TO.closeDialog($("dlg-quit"));
-    TO.groupUpdate(GAME, function (g) { delete g.cur; });
-    game = null;
-    showStart();
-  });
+  $("btn-restart-yes").addEventListener("click", function () { fresh(); $("btn-start").focus(); });
   $("wins-chip").addEventListener("click", winsLine);
   $("btn-again").addEventListener("click", function () {
     plainAddress();
     newGame(null);
     showHand();
   });
-  $("btn-change").addEventListener("click", function () { game = null; showStart(); $("btn-more").focus(); });
+  $("btn-change").addEventListener("click", function () { fresh(); $("btn-more").focus(); });
   $("btn-last").addEventListener("click", function () {
     if (!game) return;
     var last = game.hist[game.hist.length - 1];
@@ -1132,14 +1119,43 @@
     });
   });
 
-  // a game that was going on before a reload goes on (unless a friend's link asks for their twelve)
-  var cur = restore();
-  if (cur && !friend) {
-    game = cur;
-    if (game.done) { stage = "rule"; endRule(); }       // the rule was over before the reload: its list
-    else if (game.pass) showHand();                      // the phone was being passed: ask again
-    else showPlay();
-  } else {
+  /* ---------- starting afresh (Khayyam, 6 Oct 2026: the names must restart every time the game is opened, and the
+     game must restart when you go to the home page and come back; and a Restart button). Every opening of the page
+     (from the home page, the Back button or a reload), Restart and "New players" clear the game, the players' names
+     and the wins at this table, and show the start. ---------- */
+  function fresh() {
+    Array.prototype.forEach.call(document.querySelectorAll("dialog"), function (d) { TO.closeDialog(d); });
+    game = null;
+    picked = "";
+    home = "";
+    stage = "pick";
+    setup = blankSetup();
+    table = { wins: {}, next: 0 };
+    winsLine();
     showStart();
   }
+  /* for the checks (r/site-workshop/checks/t_still.py): the players, the table and a game going on, set as a table
+     would have them, and read back. Nothing of it is stored. */
+  CORE.load = function (s) {
+    s = s || {};
+    fresh();
+    if (num(s.n) && s.n >= PLAYERS_MIN && s.n <= PLAYERS_MAX) setup.n = Math.round(s.n);
+    if (Array.isArray(s.names)) s.names.slice(0, PLAYERS_MAX).forEach(function (x, i) { setup.names[i] = clean(x); });
+    if (s.wins && typeof s.wins === "object") Object.keys(s.wins).forEach(function (k) { if (num(s.wins[k])) table.wins[k] = s.wins[k]; });
+    if (num(s.next)) table.next = s.next;
+    winsLine();
+    if (!validGame(s.cur)) { showStart(); return false; }
+    game = resume(s.cur);
+    if (game.done) { stage = "rule"; endRule(); }       // a rule that was over: its list
+    else if (game.pass) showHand();                      // the phone is being passed
+    else showPlay();
+    return true;
+  };
+  CORE.now = function () {
+    return JSON.parse(JSON.stringify({ game: game, n: setup.n, names: setup.names, wins: table.wins, next: table.next }));
+  };
+
+  // a page that the browser brings back from its memory (the Back button) starts afresh too
+  window.addEventListener("pageshow", function (e) { if (e.persisted) fresh(); });
+  fresh();
 })();

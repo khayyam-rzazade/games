@@ -4,8 +4,9 @@
    people?"). Right: the table moves on to the next stop. Wrong: the table loses one of its three lives, and the next
    player tries again at the same stop, with a new question. Twice a journey the one holding the phone may ask the
    table. The questions get harder along the route. Reach the tenth stop and the table beats the phone.
-   Not daily: no day number, no streak, no album. The players' names and the table's best journey are kept in this
-   browser (TO.groupUpdate).
+   Not daily: no day number, no streak, no album. The table's best journey is kept in this browser (TO.groupUpdate).
+   Every opening of the page starts fresh (Khayyam, 6 Oct 2026): the players' names and the journey going on live only
+   while the page is open, and are never stored.
    Its countries, lists and five figures come from One of 193's file (data/one-of-193.js); four more figures from
    data/still-in.js (r/make-still-in.R). Without that second file the game plays with the first five. */
 (function () {
@@ -474,19 +475,20 @@
     }
   }
 
-  /* ---------- who plays: how many, and their names (optional, kept in this browser) ---------- */
-  var setup = (function () {
-    var g = stored(), n = num(g.n) && g.n >= PLAYERS_MIN && g.n <= PLAYERS_MAX ? Math.round(g.n) : 3;
-    var nm = Array.isArray(g.names) ? g.names.slice(0, PLAYERS_MAX).map(clean) : [];
+  /* ---------- who plays: how many, and their names (optional). They live only while the page is open. ---------- */
+  function blankSetup() {
+    var nm = [];
     while (nm.length < PLAYERS_MAX) nm.push("");
-    return { n: n, names: nm };
-  })();
-  function nameOf(i) { return setup.names[i] || "Player " + (i + 1); }
-  function saveSetup() {
-    TO.groupUpdate(GAME, function (g) { g.n = setup.n; g.names = setup.names.slice(); });
+    return { n: 3, names: nm };
   }
+  var setup = blankSetup();
+  function nameOf(i) { return setup.names[i] || "Player " + (i + 1); }
+  /* the table of this sitting: who starts the next journey */
+  var table = { next: 0 };
+  /* what earlier versions kept in the browser (names, a journey going on) is cleared: nothing about the players stays */
+  TO.groupUpdate(GAME, function (g) { delete g.cur; delete g.names; delete g.next; delete g.n; });
 
-  /* ---------- the journey: kept in the browser, so that a reload or a locked phone does not lose it ----------
+  /* ---------- the journey, in the page only: a new opening of the page (or Restart) starts afresh ----------
      { p: names, route: [ten countries], seed, tab: [[[kind, other] for each of three tries] for each stop],
        stop: the stops cleared (the table stands at stop + 1), lives, asks (times left to ask the table), turn, first,
        log: [[stop, try, player, country picked, 1 right / 0 wrong, 1 if the table was asked]], asked (this question),
@@ -497,9 +499,6 @@
   function curQ() { return qAt(game.stop, triesAt(game.stop)); }
   function lastEntry() { return game.log.length ? game.log[game.log.length - 1] : null; }
   function over() { return game.stop >= STOPS || game.lives <= 0; }
-  function save() {
-    TO.groupUpdate(GAME, function (g) { if (game && !over()) g.cur = game; else delete g.cur; });
-  }
   function validGame(x) {
     if (!x || typeof x !== "object" || !Array.isArray(x.p) || x.p.length < PLAYERS_MIN || x.p.length > PLAYERS_MAX) return false;
     if (!routeOk(x.route) || !num(x.seed) || !Array.isArray(x.tab) || x.tab.length !== STOPS || !Array.isArray(x.log)) return false;
@@ -529,9 +528,8 @@
     if (x.phase === "shown" && !x.log.length) return false;
     return true;
   }
-  function restore() {
-    var cur = stored().cur;
-    if (!validGame(cur)) return null;
+  function resume(cur) {            // a journey as the checks hand it over (CORE.load)
+    cur = JSON.parse(JSON.stringify(cur));
     cur.p = cur.p.map(function (s, i) { return clean(s) || "Player " + (i + 1); });
     cur.asked = cur.asked ? 1 : 0;
     if (cur.phase !== "q") cur.asked = 0;
@@ -542,7 +540,7 @@
     return Array.isArray(r) ? r.filter(function (x) { return typeof x === "string"; }).slice(-RECENT) : [];
   }
   function newJourney(f) {
-    var g = stored(), first = num(g.next) && g.next >= 0 && g.next < setup.n ? g.next : 0;
+    var first = num(table.next) && table.next >= 0 && table.next < setup.n ? table.next : 0;
     var seed = 0, route = null, tab = null;
     if (f) { seed = f.seed; route = f.route.slice(); tab = makeTable(route, seed); if (!tableOk(route, tab)) { route = null; } }
     for (var n = 0; n < 20 && !route; n++) {             // a new journey (a table that cannot be made is never dealt)
@@ -558,7 +556,6 @@
       var r2 = Array.isArray(g2.recent) ? g2.recent.filter(function (x) { return typeof x === "string"; }) : [];
       g2.recent = r2.concat(route).slice(-RECENT);
     });
-    save();
     TO.count(GAME + "/started");
   }
 
@@ -568,8 +565,10 @@
     view = v;
     Object.keys(views).forEach(function (k) { views[k].hidden = k !== v; });
     document.body.setAttribute("data-view", v);
+    restartChip();
     fit();
   }
+  function restartChip() { $("btn-restart").hidden = !(game && !over()); }      // Restart only while a journey is in play
   /* every view must fit the screen without scrolling: step down until it does */
   function fit() {
     var b = document.body;
@@ -624,7 +623,7 @@
         inp.placeholder = "Player " + (i + 1);
         inp.value = setup.names[i];
         inp.setAttribute("aria-label", "Name of player " + (i + 1));
-        inp.addEventListener("input", function () { setup.names[i] = clean(inp.value); saveSetup(); renderSetup(); });
+        inp.addEventListener("input", function () { setup.names[i] = clean(inp.value); renderSetup(); });
         lab.appendChild(inp);
         box.appendChild(lab);
       })(i);
@@ -670,7 +669,7 @@
 
   /* ---------- passing the phone (as in Still In and So-Called Expert): whenever the phone goes to another player,
      a whole screen says what just happened and to whom the phone goes, and the next player taps to say they have it.
-     A reload shows it again. ---------- */
+     ---------- */
   function handRecap() {
     var e = lastEntry();
     if (!e) {
@@ -687,7 +686,6 @@
   function showHand() {
     game.phase = "pass";
     picked = "";
-    save();
     var who = game.p[game.turn], rc = handRecap(), res = $("hand-res"), here = game.route[game.stop];
     res.innerHTML = "";
     if (rc.mark) { res.appendChild(el("b", rc.cls, rc.mark)); res.appendChild(document.createTextNode(" ")); }
@@ -713,7 +711,6 @@
     if (!game || game.phase !== "pass") return;
     game.phase = "q";
     game.asked = 0;
-    save();
     showPlay();
     var t = $("pair").querySelector(".b-ans");
     if (t) t.focus();
@@ -852,7 +849,7 @@
     if (right) game.stop++; else game.lives--;
     game.phase = "shown";
     picked = "";
-    if (over()) finish(); else save();
+    if (over()) finish();
     renderPlay(!right);
     flip();
     fit();
@@ -869,7 +866,6 @@
     if (!game || game.phase !== "q" || game.asked || game.asks <= 0) return;
     game.asks--;
     game.asked = 1;
-    save();
     renderPlay();
     fit();
     var t = $("pair").querySelector(".b-ans.on") || $("pair").querySelector(".b-ans");
@@ -890,13 +886,13 @@
     result.newBest = better(rec, wasOk);
     result.hadBest = !!wasOk;
     TO.groupUpdate(GAME, function (g) {
-      delete g.cur;
       g.journeys = (num(g.journeys) ? g.journeys : 0) + 1;
       if (won) g.world = (num(g.world) ? g.world : 0) + 1;
       if (won && game.lives === LIVES) g.perfect = (num(g.perfect) ? g.perfect : 0) + 1;
       if (better(rec, g.best && num(g.best.s) && num(g.best.l) ? g.best : null)) g.best = rec;
-      g.next = (game.first + 1) % game.p.length;        // the next journey starts with the next player
     });
+    table.next = (game.first + 1) % game.p.length;          // the next journey starts with the next player
+    restartChip();
     TO.count(GAME + "/finished");
     bestLine();
     prepareCard();
@@ -956,7 +952,7 @@
     var g = game, box = $("journey"), route = $("journey-route");
     box.innerHTML = "";
     route.innerHTML = "";
-    if (!g) { $("journey-note").textContent = "No journey going on."; $("btn-quit").hidden = true; return; }
+    if (!g) { $("journey-note").textContent = "No journey going on."; return; }
     g.route.forEach(function (id, s) {
       var x = stopState(s);
       var li = el("li", "b-jr " + x.st);
@@ -989,7 +985,6 @@
       box.appendChild(li);
     });
     $("journey-note").textContent = g.log.length ? "" : "No question answered yet.";
-    $("btn-quit").hidden = over();
   }
 
   /* ---------- the picture to share: how far the table got, and the route; never a question or an answer ---------- */
@@ -1147,13 +1142,13 @@
   bestLine();
   if (friend) TO.count(GAME + "/challenge-opened");
 
-  function plainAddress() {           // once a friend's route is dealt, the address loses it, so that a reload goes on with the journey
+  function plainAddress() {           // once a friend's route is dealt, the address loses it: a new opening is a plain start
     if (window.location.search && window.history && window.history.replaceState) {
       try { window.history.replaceState(null, "", window.location.pathname); } catch (e) { /* keep the address */ }
     }
   }
-  $("btn-fewer").addEventListener("click", function () { if (setup.n > PLAYERS_MIN) { setup.n--; saveSetup(); renderSetup(); } });
-  $("btn-more").addEventListener("click", function () { if (setup.n < PLAYERS_MAX) { setup.n++; saveSetup(); renderSetup(); } });
+  $("btn-fewer").addEventListener("click", function () { if (setup.n > PLAYERS_MIN) { setup.n--; renderSetup(); } });
+  $("btn-more").addEventListener("click", function () { if (setup.n < PLAYERS_MAX) { setup.n++; renderSetup(); } });
   $("btn-names").addEventListener("click", renderNameFields);
   $("btn-start").addEventListener("click", function () {
     var f = friend;
@@ -1170,20 +1165,14 @@
   $("btn-route-h").addEventListener("click", renderJourney);
   $("btn-all").addEventListener("click", renderJourney);
   $("best-chip").addEventListener("click", bestLine);
-  $("btn-quit").addEventListener("click", function () { TO.closeDialog($("dlg-journey")); TO.openDialog($("dlg-quit")); });
-  $("btn-quit-yes").addEventListener("click", function () {
-    TO.closeDialog($("dlg-quit"));
-    TO.groupUpdate(GAME, function (g) { delete g.cur; });
-    game = null;
-    showStart();
-  });
+  $("btn-restart-yes").addEventListener("click", function () { fresh(); $("btn-start").focus(); });
   $("btn-again").addEventListener("click", function () {
     plainAddress();
     result = null;
     newJourney(null);
     showHand();
   });
-  $("btn-change").addEventListener("click", function () { game = null; result = null; showStart(); $("btn-more").focus(); });
+  $("btn-change").addEventListener("click", function () { fresh(); $("btn-more").focus(); });
   $("share").addEventListener("click", function () {
     if (!result) return;
     TO.count(GAME + "/share");
@@ -1202,13 +1191,39 @@
     });
   });
 
-  // a journey that was going on before a reload goes on (unless a friend's link asks for their route)
-  var cur = restore();
-  if (cur && !friend) {
-    game = cur;
-    if (game.phase === "pass") showHand();
-    else showPlay();
-  } else {
+  /* ---------- starting afresh (Khayyam, 6 Oct 2026: the names must restart every time the game is opened, and the
+     game must restart when you go to the home page and come back; and a Restart button). Every opening of the page
+     (from the home page, the Back button or a reload), Restart and "New players" clear the journey and the players'
+     names, and show the start. The table's best journey stays. ---------- */
+  function fresh() {
+    Array.prototype.forEach.call(document.querySelectorAll("dialog"), function (d) { TO.closeDialog(d); });
+    game = null;
+    result = null;
+    picked = "";
+    setup = blankSetup();
+    table = { next: 0 };
+    bestLine();
     showStart();
   }
+  /* for the checks (r/site-workshop/checks/t_beat.py): the players and a journey going on, set as a table would have
+     them, and read back. Nothing of it is stored. */
+  CORE.load = function (s) {
+    s = s || {};
+    fresh();
+    if (num(s.n) && s.n >= PLAYERS_MIN && s.n <= PLAYERS_MAX) setup.n = Math.round(s.n);
+    if (Array.isArray(s.names)) s.names.slice(0, PLAYERS_MAX).forEach(function (x, i) { setup.names[i] = clean(x); });
+    if (num(s.next)) table.next = s.next;
+    if (!validGame(s.cur)) { showStart(); return false; }
+    game = resume(s.cur);
+    if (game.phase === "pass") showHand();
+    else showPlay();
+    return true;
+  };
+  CORE.now = function () {
+    return JSON.parse(JSON.stringify({ game: game, n: setup.n, names: setup.names, next: table.next }));
+  };
+
+  // a page that the browser brings back from its memory (the Back button) starts afresh too
+  window.addEventListener("pageshow", function (e) { if (e.persisted) fresh(); });
+  fresh();
 })();

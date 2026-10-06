@@ -19,10 +19,14 @@ and sentence here on their own, so they hold for whatever figures the World Bank
       eight long names and a friend's link, the names window, the screen that passes the phone with the longest name
       at every step of two journeys (after a right and after a wrong answer; measured once it has slid in), a stop
       with the longest names before and after the answer, asking the table, the end (won and lost, the longest
-      names), and the windows (help, the journey, the table's best, end the journey, share); and EVERY kind's tightest
-      question (the longest names) at 320x568 and 360x640, before and after the answer; nothing spills sideways
-  K   keys; L screen-reader labels; R reduced motion; T what is kept in the browser (names, the journey after a reload at
-      every step, the best, broken data in many ways, nothing under the daily games, the Today card and streak unchanged)
+      names), and the windows (help, the journey, the table's best, restart the game, share); and EVERY kind's tightest
+      question (the longest names) at 320x568 and 360x640, before and after the answer; nothing spills sideways, the
+      bar with the Restart button neither
+  K   keys; L screen-reader labels; R reduced motion; T what is kept in the browser (since 6 Oct 2026 nothing about the
+      players and never a journey: every opening of the page starts afresh, a reload at every step and the Back button;
+      the best; broken data in many ways; nothing under the daily games, the Today card and streak unchanged); the
+      Restart button (shown only while a journey is in play, asks first, clears the journey and the names) and
+      "New players"
   C   the counter events; F a friend's link (the same route and questions; broken links left aside); X the share picture
       (its layout fits; it shows no question or answer) and the message; O opened from a folder; N a data file missing;
       H the page's head
@@ -189,11 +193,21 @@ async def new(br, w=390, h=664, scheme='light', reduced=False, count=False, touc
     pg.on('pageerror', lambda e: pg.errs.append('PAGEERR ' + str(e)))
     if count: await pg.add_init_script(COUNTED)
     return ctx, pg
+# Since 6 Oct 2026 the page stores nothing about the players and never a journey: every opening starts afresh. So the
+# players are handed to the next page that opens (go), through the page's own hook for the checks (BeatThePhone.load),
+# and the journey going on is read back from the page (BeatThePhone.now).
+PENDING = {}
 async def go(pg, q=''):
     await pg.goto(B + '/beat-the-phone/' + q); await pg.evaluate("document.fonts.ready"); await pg.wait_for_timeout(80)
+    s = PENDING.pop(id(pg), None)
+    if s is not None: await pg.evaluate("s => BeatThePhone.load(s)", s); await pg.wait_for_timeout(30)
 stored = lambda pg: pg.evaluate("JSON.parse(localStorage.getItem('turnsout:v1') || '{}')")
 async def mine(pg): return (await stored(pg)).get('groups', {}).get('beat-the-phone', {})
-async def cur(pg): return (await mine(pg)).get('cur')
+NOW = lambda pg: pg.evaluate("BeatThePhone.now()")
+async def cur(pg):
+    """the journey going on (none once it is over), as the page holds it"""
+    g = (await NOW(pg))['game']
+    return g if g and g['stop'] < 10 and g['lives'] > 0 else None
 T = lambda pg, sel: pg.evaluate(f"(document.querySelector('{sel}') || {{textContent: null}}).textContent")
 FIT = """() => { const over = []; document.querySelectorAll('main *, header *').forEach(e => { const b = e.getBoundingClientRect();
     if (b.width > 0 && (b.right > innerWidth + 0.5 || b.left < -0.5) && !e.closest('.sr-only')) over.push(e.tagName + '.' + e.className + '#' + e.id); });
@@ -210,11 +224,15 @@ FIT = """() => { const over = []; document.querySelectorAll('main *, header *').
            boxes: boxes.slice(0, 5), words: words.slice(0, 5), fit: document.body.className }; }"""
 def fitsm(m): return m['sh'] <= m['ih'] and m['sw'] <= m['iw'] and not m['over'] and m['dialogIn'] and not m['inner'] and not m['boxes'] and not m['words']
 async def setup(pg, names, n=None, extra=None):
-    """the players, as the page keeps them (number and names); extra: more of the game's record"""
-    n = n or len(names)
-    rec = {'n': n, 'names': names}
-    if extra: rec.update(extra)
+    """the players (number and names) and who starts, for the next page that opens (never stored); extra: also the
+    table's own record, which the browser keeps (best, journeys, world, perfect, recent)"""
+    load = {'n': n or len(names), 'names': names}
+    rec = {}
+    for k, v in (extra or {}).items():
+        if k == 'next': load['next'] = v
+        else: rec[k] = v
     await pg.evaluate(f"localStorage.setItem('turnsout:v1', JSON.stringify({{groups: {{'beat-the-phone': {json.dumps(rec)}}}}}))")
+    PENDING[id(pg)] = load
 def tab_q(c, s, j): return {'k': c['tab'][s][j][0], 's': c['route'][s], 'o': c['tab'][s][j][1]}
 def link(route, seed, k=None, l=None):
     return f"?j={'.'.join(route)}&s={seed}" + (f'&k={k}' if k is not None else '') + (f'&l={l}' if l is not None else '')
@@ -502,6 +520,7 @@ async def main():
             st = await mine(pg)
             want_rec = {'best': {'s': best[0], 'l': best[1]}, 'journeys': journeys, 'world': world, 'perfect': perfect, 'next': (first + 1) % n}
             got_rec = {k: st.get(k) for k in want_rec}
+            got_rec['next'] = (await NOW(pg))['next'] if not any(k in st for k in ('names', 'n', 'next')) else ('stored', st.get('next'))
             if (want_rec['perfect'] == 0): got_rec['perfect'] = st.get('perfect', 0)
             if (want_rec['world'] == 0): got_rec['world'] = st.get('world', 0)
             if got_rec != want_rec or 'cur' in st or st.get('recent', [])[-10:] != J.c['route'] or len(st.get('recent', [])) > 40: bad_rec.append((g, got_rec, want_rec, st.get('recent', [])[-10:]))
@@ -510,7 +529,7 @@ async def main():
             await pg.click('#btn-all'); await pg.wait_for_timeout(10)
             win = await pg.evaluate("""[[...document.querySelectorAll('#journey-route li')].map(li => [li.className, li.querySelector('.b-jr-c').textContent, li.querySelector('.b-jr-s').textContent]),
                 [...document.querySelectorAll('#journey li')].map(li => [li.className, li.querySelector('.b-jq-k').textContent, li.querySelector('.b-jq-h').textContent, li.querySelector('.b-jq-f').textContent,
-                   li.querySelector('.b-jq-s').textContent, [...li.querySelectorAll('.b-jq-s a')].map(a => a.getAttribute('href'))]), document.getElementById('btn-quit').hidden]""")
+                   li.querySelector('.b-jq-s').textContent, [...li.querySelectorAll('.b-jq-s a')].map(a => a.getAttribute('href'))]), document.getElementById('btn-restart').hidden]""")
             want_route = []
             for s, cid in enumerate(J.c['route']):
                 stt = J.strip()[s].split()[1]
@@ -529,7 +548,7 @@ async def main():
            not bad_p, bad_p[:2])
         ok('P2 every journey is dealt as the page\'s own table for its route and seed, and every question in it is fair (worked out here); it starts with the player whose turn it is', not bad_tab, bad_tab[:2])
         ok('P3 the end: "You beat the phone!" or "The phone wins.", the line (a perfect journey, the lives left, where it ended, "the" in a sentence), the ten stops with what happened at each, the table\'s best', not bad_end, bad_end[:2])
-        ok('P4 what the table keeps after each journey: the best (more stops, then more lives), the journeys, round the world, perfect journeys, who starts the next journey, the last stops; no journey in progress', not bad_rec, bad_rec[:2])
+        ok('P4 what the table keeps after each journey: the best (more stops, then more lives), the journeys, round the world, perfect journeys, the last stops in the browser; who starts the next journey in the page only; no journey and nothing about the players stored', not bad_rec, bad_rec[:2])
         ok('P5 the journey window after each journey: the ten stops and every question in order, with who answered, whether the table was asked, the right answer, both figures and the source',
            not bad_win, bad_win[:1])
         ok(f'P6 the journeys asked {len(kinds_played)} of the 17 kinds', len(kinds_played) >= (8 if QUICK else 15), sorted(kinds_played))
@@ -599,8 +618,8 @@ async def main():
                     await pg.wait_for_timeout(330); await measure(pg, f'{tag} passing the phone, won journey, step {i + 1}')
                     await play_step(pg, J, a, [], 'S2')
                 await measure(pg, tag + ' the end: round the world')
-                await pg.click('#btn-again'); await pg.click('#btn-hand'); await pg.click('#btn-route'); await pg.click('#btn-quit'); await pg.wait_for_timeout(30)
-                await measure(pg, tag + ' the window to end a journey')
+                await pg.click('#btn-again'); await pg.click('#btn-hand'); await pg.click('#btn-restart'); await pg.wait_for_timeout(30)
+                await measure(pg, tag + ' the window to restart the game')
                 await ctx.close()
         ok('S1 every screen at 320x568, 360x640, 390x664 and 1280x720, light and dark, fits without scrolling and nothing spills sideways or out of its box (the start with eight long names and a friend\'s link, the names, passing the phone at every step after a right and a wrong answer, measured once it has slid in, a stop with the longest names, asking the table, the answer with the longest sentences, the end lost and won with the longest names, every window)',
            not bad_s, bad_s[:3])
@@ -687,49 +706,121 @@ async def main():
             if reduced: ok('R1 reduced motion: the screen that passes the phone does not slide in, the answers do not turn over, nothing moves', anim == 'none' and flips == 0 and heart in ('0s', ''), (anim, flips, heart))
             else: ok('R2 with motion: the screen that passes the phone slides in and the two answers turn over', anim == 'b-hand-in' and flips == 2, (anim, flips))
 
-        # ---------- T: what is kept in the browser
-        ctx, pg = await new(br); await go(pg); await setup(pg, ['Ana', 'Bo', 'Cy'], 3); await go(pg)
-        t1 = await pg.evaluate("[document.getElementById('players-n').textContent, document.getElementById('names-line').textContent]")
-        await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.fill('#name-fields label:nth-child(4) input', '  Dee<b>  ')
-        await pg.keyboard.press('Escape'); st = await mine(pg)
-        ok('T1 the number of players and their names are kept (cleaned, at most 14 letters) under "groups" > "beat-the-phone"', t1 == ['3', 'Ana · Bo · Cy'] and st.get('n') == 4 and st.get('names', [])[:4] == ['Ana', 'Bo', 'Cy', 'Deeb'], (t1, st))
-        await pg.click('#btn-start'); c = await cur(pg); J = Journey(c, ['Ana', 'Bo', 'Cy', 'Deeb'])
-        await go(pg); r1 = await pg.evaluate(HAND)
-        await pg.click('#btn-hand'); await go(pg); r2 = await pg.evaluate("[document.body.dataset.view, document.getElementById('stop-name').textContent, document.getElementById('btn-go').textContent]")
-        q = J.q(); await pg.click('#btn-ask'); await go(pg); r3 = await pg.evaluate("[document.getElementById('turn-cap').textContent, document.getElementById('btn-ask').hidden, document.getElementById('say').textContent]")
-        wrongp = [x for x in pair(q) if x != answer(q)][0]
-        await pg.click(f'#pair .b-ans[data-c="{wrongp}"]'); await pg.click('#btn-go'); await go(pg)
-        r4 = await pg.evaluate("[document.body.dataset.view, document.getElementById('btn-go').textContent, document.getElementById('lives').getAttribute('aria-label'), document.querySelectorAll('#pair .b-ans.wrong').length]")
-        await pg.click('#btn-go'); await go(pg); r5 = await pg.evaluate(HAND)
-        J.answer(wrongp, True); J.pass_on()
-        ok('T2 a journey goes on after a reload at every step: the screen that passes the phone, the open question, asking the table, the answer shown, and the next hand-over',
-           r1 == Journey(c, ['Ana', 'Bo', 'Cy', 'Deeb']).hand() and r2 == ['play', NAME[c['route'][0]], 'Pick one'] and r3 == [' asks the table', True, 'Everyone may talk about this one. Ana gives the answer.']
-           and r4 == ['play', 'Pass the phone', '2 lives left', 1] and r5 == J.hand(), (r1, r2, r3, r4, r5))
-        # broken data, in many ways: the page starts fresh, without errors
-        good = await cur(pg)
-        broken = []
+        # ---------- T: what is kept in the browser (since 6 Oct 2026 nothing about the players, never a journey), and starting afresh
+        PLAYERS = ('names', 'n', 'next', 'cur')
+        hid = lambda pg: pg.evaluate("document.getElementById('btn-restart').hidden")
+        ctx, pg = await new(br); await go(pg)
+        await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({groups: {'beat-the-phone': {n: 6, names: ['Old', 'Names'], next: 2, best: {s: 4, l: 0}, journeys: 5, recent: ['KEN']}}}))")
+        await go(pg)
+        st = await mine(pg)
+        t0 = await pg.evaluate("[document.body.dataset.view, document.getElementById('players-n').textContent, document.getElementById('names-line').textContent, document.getElementById('btn-restart').hidden]")
+        ok('T1 what earlier versions kept about the players (names, their number, who starts next, a journey going on) is cleared when the page opens; the table\'s best, its journeys and the last stops stay; the page starts afresh with 3 players and no names',
+           t0 == ['start', '3', 'Player 1 · Player 2 · Player 3', True] and not any(k in st for k in PLAYERS) and st.get('best') == {'s': 4, 'l': 0} and st.get('journeys') == 5 and st.get('recent') == ['KEN'], (t0, st))
+        await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.fill('#name-fields label:nth-child(1) input', 'Ana'); await pg.fill('#name-fields label:nth-child(4) input', '  Dee<b>  ')
+        await pg.keyboard.press('Escape'); st = await mine(pg); t = await NOW(pg)
+        ok('T2 the number of players and their names live only in the page (cleaned, at most 14 letters): nothing about them is stored',
+           t['n'] == 4 and t['names'][:4] == ['Ana', '', '', 'Deeb'] and await T(pg, '#names-line') == 'Ana · Player 2 · Player 3 · Deeb' and not any(k in st for k in PLAYERS), (t, st))
+        r = []
+        for step in ('pass', 'q', 'asked', 'shown'):
+            await pg.click('#btn-start'); await pg.wait_for_timeout(10)
+            if step != 'pass': await pg.click('#btn-hand')
+            if step == 'asked': await pg.click('#btn-ask')
+            if step == 'shown':
+                c = await cur(pg); q = tab_q(c, 0, 0); await pg.click(f'#pair .b-ans[data-c="{answer(q)}"]'); await pg.click('#btn-go')
+            v1 = [await pg.evaluate("document.body.dataset.view"), await hid(pg), (await cur(pg) or {}).get('phase')]
+            await pg.reload(); await pg.wait_for_timeout(150)
+            st = await mine(pg)
+            r.append([step, v1, await pg.evaluate("document.body.dataset.view"), await T(pg, '#names-line'), await hid(pg), await cur(pg), any(k in st for k in PLAYERS)])
+        ok('T3 a reload starts afresh at every step of a journey (passing the phone, the open question, asking the table, the answer shown): the start with 3 players and no names, no Restart button, no journey; nothing about the players stored',
+           [x[1] for x in r] == [['hand', False, 'pass'], ['play', False, 'q'], ['play', False, 'q'], ['play', False, 'shown']]
+           and all(x[2] == 'start' and x[3] == 'Player 1 · Player 2 · Player 3' and x[4] and x[5] is None and not x[6] for x in r), r)
+        # broken data, in many ways: a journey in the browser is never taken up; the page starts fresh, without errors
+        await pg.click('#btn-start'); good = await cur(pg)
+        broken = [good]
         def b_(f): x = json.loads(json.dumps(good)); f(x); broken.append(x)
         b_(lambda x: x.update(stop=3)); b_(lambda x: x.update(lives=5)); b_(lambda x: x['log'].append([0, 0, 0, 'XXX', 1, 0])); b_(lambda x: x['tab'][0][0].__setitem__(1, x['route'][0]))
-        b_(lambda x: x.update(route=x['route'][:9])); b_(lambda x: x.update(phase='later')); b_(lambda x: x.update(turn=7)); b_(lambda x: x['log'][0].__setitem__(4, 1))
+        b_(lambda x: x.update(route=x['route'][:9])); b_(lambda x: x.update(phase='later')); b_(lambda x: x.update(turn=7))
         b_(lambda x: x.update(asks=2)); b_(lambda x: x['route'].__setitem__(0, 'MCO')); broken.append(7); broken.append('nonsense')
         bad_b = []
         for x in broken:
             await pg.evaluate("x => { const all = JSON.parse(localStorage.getItem('turnsout:v1')); all.groups['beat-the-phone'].cur = x; localStorage.setItem('turnsout:v1', JSON.stringify(all)); }", x)
             pg.errs.clear(); await go(pg)
             v = await pg.evaluate("document.body.dataset.view")
-            if v != 'start' or pg.errs: bad_b.append((str(x)[:60], v, pg.errs[:1]))
+            if v != 'start' or pg.errs or 'cur' in await mine(pg): bad_b.append((str(x)[:60], v, pg.errs[:1]))
         await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({groups: {'beat-the-phone': {n: 'x', names: 5, best: {s: 'a'}, recent: 9, next: 99}}, games: 3}))")
         pg.errs.clear(); await go(pg); v = await pg.evaluate("[document.body.dataset.view, document.getElementById('players-n').textContent]")
         await pg.click('#btn-start'); v2 = await pg.evaluate("document.body.dataset.view")
-        ok('T3 broken data never breaks the page: twelve kinds of broken journey are left aside (the start shows), and broken names, best, recent and next are read as nothing', not bad_b and v == ['start', '3'] and v2 == 'hand' and not pg.errs, (bad_b[:3], v, v2, pg.errs[:2]))
+        ok('T4 broken data never breaks the page: a journey in the browser (a good one and eleven broken ones) is never taken up and is cleared (the start shows), and a broken best and recent are read as nothing', not bad_b and v == ['start', '3'] and v2 == 'hand' and not pg.errs, (bad_b[:3], v, v2, pg.errs[:2]))
         await ctx.close()
         ctx, pg = await new(br); await go(pg); await setup(pg, [], 2); await go(pg)
         await pg.click('#btn-start'); c = await cur(pg); J = Journey(c, ['Player 1', 'Player 2'])
-        for a in 'WWW': await play_step(pg, J, a, [], 'T4')
+        for a in 'WWW': await play_step(pg, J, a, [], 'T5')
         st = await stored(pg)
         await pg.goto(B + '/'); await pg.wait_for_timeout(300)
         home = await pg.evaluate("[document.getElementById('today-count').textContent, document.body.innerText.includes('in a row')]")
-        ok('T4 a journey keeps nothing under the daily games and never counts in the Today card or the streak of the site', not st.get('games') and home == ['0 of 6 played', False], (list(st.keys()), home))
+        ok('T5 a journey keeps nothing under the daily games and never counts in the Today card or the streak of the site', not st.get('games') and home == ['0 of 6 played', False], (list(st.keys()), home))
+        await ctx.close()
+        # the Restart button, "New players", and the way back from the home page
+        ctx, pg = await new(br); await go(pg)
+        async def names3():
+            await pg.click('#btn-names'); await pg.wait_for_timeout(20)
+            for i, x in enumerate(['Ana', 'Bo', 'Cy']): await pg.fill(f'#name-fields label:nth-child({i + 1}) input', x)
+            await pg.keyboard.press('Escape'); await pg.wait_for_timeout(20)
+        seen = []
+        async def look(what):
+            g_ = (await NOW(pg))['game']
+            seen.append([what, await pg.evaluate("document.body.dataset.view"), await hid(pg), bool(g_ and g_['stop'] < 10 and g_['lives'] > 0)])
+        await look('start')
+        await names3(); await pg.click('#btn-start'); c = await cur(pg); J = Journey(c, ['Ana', 'Bo', 'Cy'])
+        await look('passing the phone')
+        await pg.click('#btn-hand'); await look('the question')
+        q = J.q(); await pg.click(f'#pair .b-ans[data-c="{answer(q)}"]'); await pg.click('#btn-go'); await look('the answer shown')
+        J.answer(answer(q), False); J.pass_on(); await pg.click('#btn-go'); await pg.wait_for_timeout(10)
+        for a in 'WWW': await play_step(pg, J, a, [], 'T8')
+        await look('the end')
+        await pg.click('#btn-all'); await pg.wait_for_timeout(20); await look('the journey window after the end'); await pg.keyboard.press('Escape')
+        ok('T8 the Restart button (↻ in the bar, named "Restart the game") stands there exactly while a journey is in play: passing the phone, the question, the answer shown; not on the start, not at the end',
+           all(h == (not inplay) for w_, v, h, inplay in seen) and [x[2] for x in seen] == [True, False, False, False, True, True] and await pg.evaluate("document.getElementById('btn-restart').getAttribute('aria-label')") == 'Restart the game', seen)
+        best0 = (await mine(pg)).get('best'); j0 = (await mine(pg)).get('journeys')
+        await pg.click('#btn-again'); await pg.click('#btn-hand'); c = await cur(pg); q = tab_q(c, 0, 0)
+        await pg.click(f'#pair .b-ans[data-c="{pair(q)[0]}"]')                # an answer picked, not given
+        before = await cur(pg)
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(40)
+        dlg = await pg.evaluate("[document.getElementById('dlg-restart').open, document.getElementById('restart-title').textContent, document.querySelector('#dlg-restart .quiet').textContent, document.getElementById('btn-restart-yes').textContent, document.querySelector('#dlg-restart .btn.ghost').textContent]")
+        await pg.click('#dlg-restart .btn.ghost'); await pg.wait_for_timeout(30)
+        kept = [await pg.evaluate("document.body.dataset.view"), (await cur(pg)) == before, await pg.evaluate("document.getElementById('dlg-restart').open"), await T(pg, '#btn-go')]
+        ok('T9 Restart asks first ("Restart the game?", what it clears, Restart or Keep playing); Keep playing leaves the journey as it was (the answer picked too)',
+           dlg == [True, 'Restart the game?', "Everything starts over: this journey and the players' names. The journey does not count; your table's best stays.", 'Restart', 'Keep playing']
+           and kept[:3] == ['play', True, False] and kept[3].startswith('Go with '), (dlg, kept))
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(30); await pg.click('#btn-restart-yes'); await pg.wait_for_timeout(40)
+        st = await mine(pg); t = await NOW(pg)
+        after = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#players-n'), await T(pg, '#names-line'), await pg.evaluate("document.activeElement.id"), await hid(pg), t['game'], t['next'],
+                 await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)"), any(k in st for k in PLAYERS), st.get('best') == best0, st.get('journeys') == j0]
+        ok('T10 Restart starts everything over: the start with 3 players and no names, the focus on Start, no journey, player 1 starts next; no window left open; the journey does not count and the table\'s best stays; nothing stored about the players',
+           after == ['start', '3', 'Player 1 · Player 2 · Player 3', 'btn-start', True, None, 0, False, False, True, True], after)
+        await names3(); await pg.click('#btn-start'); c = await cur(pg); J = Journey(c, ['Ana', 'Bo', 'Cy'])
+        for a in 'WWW': await play_step(pg, J, a, [], 'T11')
+        e1 = await pg.evaluate("document.body.dataset.view")
+        await pg.click('#btn-again'); a1 = [(await cur(pg))['p'], (await cur(pg))['first']]
+        J = Journey(await cur(pg), ['Ana', 'Bo', 'Cy'])
+        for a in 'WWW': await play_step(pg, J, a, [], 'T11b')
+        await pg.click('#btn-change'); await pg.wait_for_timeout(30); t = await NOW(pg)
+        nw = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#players-n'), await T(pg, '#names-line'), await pg.evaluate("document.activeElement.id"), t['next'], await hid(pg)]
+        ok('T11 "Play again" keeps the players, and the next player starts; "New players" at the end clears the names and starts afresh',
+           e1 == 'end' and a1 == [['Ana', 'Bo', 'Cy'], 1] and nw == ['start', '3', 'Player 1 · Player 2 · Player 3', 'btn-more', 0, True], (e1, a1, nw))
+        await names3(); await pg.click('#btn-start'); await pg.click('#btn-hand')
+        await pg.evaluate("window.__marker = 1")
+        await pg.click('.wordmark'); await pg.wait_for_timeout(300)
+        home = await pg.evaluate("location.pathname")
+        await pg.go_back(); await pg.wait_for_timeout(300)
+        b1 = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#names-line'), await hid(pg)]
+        mem = await pg.evaluate("window.__marker === 1")
+        await names3(); await pg.click('#btn-start'); await pg.click('#btn-hand')
+        await pg.evaluate("window.dispatchEvent(new PageTransitionEvent('pageshow', {persisted: true}))"); await pg.wait_for_timeout(60)
+        b2 = [await pg.evaluate("document.body.dataset.view"), await T(pg, '#names-line'), await hid(pg), await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)")]
+        ok('T12 to the home page and back with the Back button, the game starts afresh (the start, no names, no Restart button); so does a page that the browser brings back from its memory (the event "pageshow")',
+           home == '/' and b1 == ['start', 'Player 1 · Player 2 · Player 3', True] and b2 == ['start', 'Player 1 · Player 2 · Player 3', True, False], (home, b1, b2, 'kept in memory' if mem else 'loaded anew'))
+        ok('T8-T12 no errors', pg.errs == [], pg.errs)
         await ctx.close()
 
         # ---------- C: the counter events; F: a friend's link; X: the share picture and the message
@@ -757,7 +848,7 @@ async def main():
             await go(pg, q_); seen.append(await pg.evaluate("[document.getElementById('friend').hidden, document.getElementById('btn-start').textContent]"))
         ok('F3 broken links are left aside (nine stops, a stop twice, a country under a million people, an unknown code, a seed that is no seed)', all(x == [True, 'Start'] for x in seen), seen)
         # play to the end, then share
-        await go(pg)                                         # the journey of F1 goes on (a friend's link left it aside only while it was in the address)
+        await go(pg)                                         # a new opening starts afresh (since 6 Oct 2026): a new journey
         if await pg.evaluate("document.body.dataset.view") == 'start': await pg.click('#btn-start')
         c = await cur(pg); J = Journey(c, ['Player 1', 'Player 2'])
         for a in 'RRRRRWRRRRR':

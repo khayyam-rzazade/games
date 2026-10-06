@@ -3,6 +3,9 @@
    Everything fits a 320 by 568 phone without scrolling; if a view is still too high, the script steps it down
    (fit1 to fit3). The stamp on the invented fact shows only on the expert's card and in the reveal. */
 
+/* every opening of the page starts the game afresh, so a pull on the page must not reload it by accident (6 Oct 2026) */
+html, body { overscroll-behavior-y: none; }
+
 .e-view { margin-top: 6px; }
 
 /* ---------- the start ---------- */
@@ -111,8 +114,8 @@
 .sheet .e-roster-i { margin-top: 0; display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.98rem; }
 .e-roster-i span { font-weight: 700; overflow-wrap: anywhere; }
 .e-roster-i b { font-weight: 700; color: var(--c); text-align: right; white-space: nowrap; }
-#dlg-quit .actions { flex-wrap: wrap; }
-#dlg-quit .actions .btn { flex: 1 1 auto; }
+#dlg-restart .actions { flex-wrap: wrap; }
+#dlg-restart .actions .btn { flex: 1 1 auto; }
 
 /* ---------- dark ---------- */
 @media (prefers-color-scheme: dark) {

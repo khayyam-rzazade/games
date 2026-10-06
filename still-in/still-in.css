@@ -2,6 +2,9 @@
    Five views (start, passing the phone, play, the list after a rule, the end). Everything fits a 320 by 568 phone without scrolling;
    if a view is still too high, the script steps it down (fit1 to fit3). */
 
+/* every opening of the page starts the game afresh, so a pull on the page must not reload it by accident (6 Oct 2026) */
+html, body { overscroll-behavior-y: none; }
+
 .s-view { margin-top: 6px; }
 
 /* ---------- the start ---------- */
@@ -114,8 +117,8 @@
 .s-sources { margin: 8px 0 0; padding-left: 1.1em; color: var(--soft); font-size: 0.88rem; line-height: 1.35; }
 .s-sources li { margin-top: 4px; }
 .s-sources a { color: inherit; text-underline-offset: 2px; }
-#dlg-quit .actions { flex-wrap: wrap; }
-#dlg-quit .actions .btn { flex: 1 1 auto; }
+#dlg-restart .actions { flex-wrap: wrap; }
+#dlg-restart .actions .btn { flex: 1 1 auto; }
 
 /* ---------- passing the phone: a whole screen in the game's colour ---------- */
 .s-hand { margin-top: 4px; min-height: min(27rem, calc(100vh - 150px)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;

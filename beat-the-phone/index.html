@@ -25,14 +25,15 @@
 <link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
 <link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=e929945ffc">
-<link rel="stylesheet" href="beat-the-phone.css?v=6b3c9f4414">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=85f8f4cc1e">
+<link rel="stylesheet" href="beat-the-phone.css?v=68594c3fec">
 </head>
 <body class="game" data-g="beat">
 
 <header class="bar">
   <a class="wordmark" href="../">Logicers</a>
-  <div class="bar-tools">
+  <div class="bar-tools with-restart">
+    <button class="chip round restart" id="btn-restart" type="button" data-open="dlg-restart" aria-label="Restart the game" title="Restart" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M6.4 2.6v4.4h4.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button class="chip" id="best-chip" type="button" data-open="dlg-best" aria-label="Your table's best journey">Best</button>
     <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
   </div>
@@ -133,9 +134,6 @@
     <h3>Every question</h3>
     <ol class="b-jqs" id="journey" aria-label="Every question so far, with the real figures and their sources"></ol>
     <p class="quiet" id="journey-note"></p>
-    <div class="actions">
-      <button class="btn ghost" id="btn-quit" type="button">End this journey</button>
-    </div>
   </div>
 </dialog>
 
@@ -164,19 +162,19 @@
     <p class="quiet">Every answer comes from the World Bank's open data (World Development Indicators, under the CC BY 4.0 licence) or from the lists of One of 193, which were each checked on two websites; a country counts with its own land only, without overseas territories. Each figure is a country's latest one, at most six years old; its year is shown with it. After every answer the phone shows the real figures and the source, and "Every question" lists them all. The World Bank does not endorse this site.</p>
     <ul class="b-sources" id="help-sources"></ul>
     <h3>Your privacy</h3>
-    <p class="quiet" data-privacy="table">No login, no tracking, no cookies. The players' names and your table's best journey are kept only in this browser.</p>
+    <p class="quiet" data-privacy="table">No login, no tracking, no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page.</p>
     <h3>Contact</h3>
     <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
   </div>
 </dialog>
 
-<dialog id="dlg-quit" aria-labelledby="quit-title">
+<dialog id="dlg-restart" aria-labelledby="restart-title">
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
-    <h2 id="quit-title">End this journey?</h2>
-    <p class="quiet">It does not count, and you go back to the start.</p>
+    <h2 id="restart-title">Restart the game?</h2>
+    <p class="quiet">Everything starts over: this journey and the players' names. The journey does not count; your table's best stays.</p>
     <div class="actions">
-      <button class="btn solid" id="btn-quit-yes" type="button">End the journey</button>
+      <button class="btn solid" id="btn-restart-yes" type="button">Restart</button>
       <button class="btn ghost" type="button" data-close>Keep playing</button>
     </div>
   </div>
@@ -200,7 +198,7 @@
 
 <script src="../data/one-of-193.js"></script>
 <script src="../data/still-in.js"></script>
-<script src="../assets/js/turnsout.js?v=9e92b13046"></script>
-<script src="beat-the-phone.js?v=d799f42109"></script>
+<script src="../assets/js/turnsout.js?v=2156c64a39"></script>
+<script src="beat-the-phone.js?v=3ddd0ee23f"></script>
 </body>
 </html>

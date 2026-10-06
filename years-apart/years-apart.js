@@ -128,7 +128,7 @@
         band.setAttribute("x", a); band.setAttribute("width", Math.max(0, b - a)); band.setAttribute("opacity", b - a > 0.5 ? ".9" : "0");
       }
     }
-    var tx = xOf(tagAt), tw = tag.offsetWidth;
+    var tx = xOf(tagAt), tw = tag.getBoundingClientRect().width || tag.offsetWidth;     // the exact width, not rounded
     var left = Math.max(0, Math.min(W - tw, tx - tw / 2));
     tag.style.left = left + "px";
     var hole = Math.max(14, Math.min(tw - 14, tx - left));

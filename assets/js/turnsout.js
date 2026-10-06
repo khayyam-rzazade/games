@@ -232,9 +232,9 @@
         : kind === "group"
         ? "No login and no cookies. Your table's best result is kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "names"
-        ? "No login and no cookies. The players' names and wins are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. The players' names and wins are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "table"
-        ? "No login and no cookies. The players' names and your table's best journey are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
     });
   }
@@ -287,8 +287,9 @@
      often as they like. In the order of their row: the newest first, then the others in the order they arrived
      (since the evening of 6 Oct 2026: Beat the Phone, One of 193, Still In, So-Called Expert). They are not daily: no day number, no streak, no album. Nothing they store counts in the
      Today card, the streak of the site, the way onward or the returning-player events, which all read GAMES only.
-     Their own records (a table's best result or journey, the countries, cards and stops it had lately, the players' names
-     and wins) are kept apart, under "groups".
+     Their own records (a table's best result or journey, the countries, rules, cards and stops it had lately) are kept
+     apart, under "groups". Since 6 Oct 2026 the players' names, the wins and a game going on are never stored: every
+     opening of a game's page starts afresh.
      To add one: add it here and to GROUP in r/site-workshop/build_home.py, and give it a colour in logicers.css.
      ------------------------------------------------------------------ */
   var GROUP = [

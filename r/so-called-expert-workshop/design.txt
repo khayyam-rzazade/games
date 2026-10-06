@@ -35,8 +35,7 @@ Decisions (C), by Khayyam's five rules where he did not decide
   - The five facts are shuffled at every deal, so that the invented one stands in each place as often (checked).
   - No timer and no question counter: the table keeps to "up to three questions" itself; a phone that buzzes would
     break the act. No way back from the vote to the card: the stamp must never show while the phone lies in the middle.
-  - After a reload the game goes on where it was, except the card: the phone asks for the expert first, because
-    someone else may hold it.
+  - Since 6 Oct 2026 every opening of the page starts afresh (below), so the card can never come back by itself.
   - The invented fact is as long and as detailed as the true ones (on 6 Oct the first drafts were the shortest of
     their card on 31 of 46 cards, a tell a table would learn; rewritten, now each place by length about as often:
     t_expert.py D6). Some invented facts use the same words as true facts from the data ("one of only 11 UN members
@@ -62,9 +61,18 @@ Where the facts come from (the stock)
   A table gets the cards it has not had lately first (the last 40 are kept as "recent").
 
 What is kept in the browser (TO.groupUpdate, under groups > so-called-expert)
-  n, names (the setup), wins (by name), games (how many finished), next (who is the first expert of the next game),
-  recent (the card ids of the last 40 turns), cur (the game going on: names, first expert, turn, cards, the order of
-  the facts of each turn, who found it in each turn scored, the view). The privacy line is the frame's "names" one.
+  games (how many finished) and recent (the card ids of the last 40 turns). The privacy line is the frame's "names"
+  one: "The players' names and wins are forgotten when you leave this page."
+  Since 6 Oct 2026 (Khayyam: the names got stuck; the game must restart when you go to the home page and come back,
+  the names every time the game is opened, and a Restart button) nothing about the players is stored: the setup
+  (the number of players and their names), the wins at this table (by name), who is the first expert of the next game
+  and the game going on (names, first expert, turn, cards, the order of the facts of each turn, who found it in each
+  turn scored, the view) live only while the page is open. Every opening of the page (from the home page, the Back
+  button, a reload, or a page the browser brings back from its memory) starts afresh with 4 players and no names;
+  what earlier versions stored about the players (n, names, wins, next, cur) is deleted when the page opens. The round
+  button ↻ in the bar (only while a game is in play) asks "Restart the game?" and then starts everything over the
+  same way; so does "New players" at the end. "Play again" keeps the players and their wins. The window of the scores
+  no longer has "End this game" (Restart does it). A pull on the page does not reload it (overscroll-behavior).
 
 Counter events (GoatCounter, without identifying anyone)
   so-called-expert/started, /finished, /share, /challenge-opened. None names a country or a player.
@@ -72,5 +80,5 @@ Counter events (GoatCounter, without identifying anyone)
 Checks
   r/site-workshop/checks/t_expert.py (D the stock, G the deal, P every card played through on the page, V nothing
   marks the invented fact before the reveal, S every screen of every card at four sizes in light and dark, K keys,
-  L labels, R motion, T storage and reloads, C F X counter, friend's link, share picture, O from a folder, N no data,
+  L labels, R motion, T storage, reloads and Restart, C F X counter, friend's link, share picture, O from a folder, N no data,
   H the head); t_site.py for the home page row; test/test_build.py for the build script.

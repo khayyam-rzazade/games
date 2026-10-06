@@ -16,15 +16,17 @@ whatever figures the World Bank sent.
       data file
   S   every screen at 320x568, 360x640, 390x664 and 1280x720, light and dark, without scrolling the page: the start, the
       menu in each tab, after answers, the guessing window in each region, a wrong guess, the end for the tightest
-      countries, the windows for answers, help, best result and giving up; the end of EVERY country at 320x568 and
-      360x640 with its longest lines (one question, two wrong guesses, a bold right guess); nothing spills sideways
+      countries, the windows for answers, help, best result, giving up and restarting; the end of EVERY country at
+      320x568 and 360x640 with its longest lines (one question, two wrong guesses, a bold right guess); nothing spills
+      sideways, the bar with the Restart button neither
   K   keys: the tabs with the arrows, a question with Enter, the guessing window with the keyboard, Escape
   L   screen-reader labels: tabs and panel, the spoken line, answered questions, the button for all answers, the
       countries in the list, the windows
   R   reduced motion: the number changes at once; with motion it counts down
   T   what is kept in the browser: the table's best, rounds and countries found under "groups", never under the daily
-      games; a round goes on after a reload; broken data never breaks the page; the home page's Today card and streak
-      do not change
+      games; since 6 Oct 2026 never a round: every opening of the page starts afresh (a reload, the Back button); the
+      Restart button (shown only while a round is in play, asks first); broken data never breaks the page; the home
+      page's Today card and streak do not change
   C   the counter events; F a friend's link; X the share picture (its layout fits, it names no country, nor does
       the message); O opened from a folder; N the data file missing
 """
@@ -127,6 +129,7 @@ async def new(br, w=390, h=664, scheme='light', reduced=False, count=False, touc
 async def go(pg, q=''):
     await pg.goto(B + '/one-of-193/' + q); await pg.evaluate("document.fonts.ready"); await pg.wait_for_timeout(120)
 stored = lambda pg: pg.evaluate("JSON.parse(localStorage.getItem('turnsout:v1') || '{}')")
+NOW = lambda pg: pg.evaluate("OneOf193.now()")          # the round going on, as the page holds it (since 6 Oct 2026 never stored)
 T = lambda pg, sel: pg.evaluate(f"(document.querySelector('{sel}') || {{textContent: null}}).textContent")
 FIT = """() => { const over = []; document.querySelectorAll('main *, header *').forEach(e => { const b = e.getBoundingClientRect();
     if (b.width > 0 && (b.right > innerWidth + 0.5 || b.left < -0.5) && !e.closest('.sr-only')) over.push(e.tagName + '.' + e.className + '#' + e.id); });
@@ -307,7 +310,7 @@ async def main():
                 if not fits(m): bad.append(('picked', m))
                 await pg.click('#btn-confirm'); m = await pg.evaluate(FIT)
                 if not fits(m): bad.append(('after a wrong guess', m))
-                for d in ('dlg-answers', 'dlg-help', 'dlg-best'):
+                for d in ('dlg-answers', 'dlg-help', 'dlg-best', 'dlg-restart'):
                     await pg.evaluate(f"document.querySelector('[data-open=\"{d}\"]').click()"); await pg.wait_for_timeout(40)
                     m = await pg.evaluate(FIT)
                     if not fits(m): bad.append((d, m))
@@ -324,7 +327,7 @@ async def main():
                     if not fits(m): bad.append(('end ' + ids[c], m))
                 if w == 320 and scheme == 'light':
                     await pg.screenshot(path='shots/one-end-320.png')
-                ok(f'S1 {w}x{h} {scheme}: start, every tab, all answered, the guessing window in every region (its list scrolls inside, the button stays in view), a wrong guess, the windows, giving up, and the end of the {len(tight)} tightest countries fit without scrolling',
+                ok(f'S1 {w}x{h} {scheme}: start, every tab, all answered, the guessing window in every region (its list scrolls inside, the button stays in view), a wrong guess, the windows (Restart too), giving up, and the end of the {len(tight)} tightest countries fit without scrolling (the bar with the Restart button too)',
                    not bad and pg.errs == [], (bad[:3], pg.errs))
                 await ctx.close()
         for (w, h) in SIZES[:2]:
@@ -378,32 +381,70 @@ async def main():
             ctx, pg = await new(br, w=390, h=664, reduced=reduced)
             await go(pg); await pg.click('#btn-start'); await pg.click('[data-q="' + Q[0]['id'] + '"]')
             early = await T(pg, '#left-n'); await pg.wait_for_timeout(800); late = await T(pg, '#left-n')
-            want = str(len(still(ID[(await stored(pg))['groups']['one-of-193']['cur']['c']], [('q', 0)])))
+            want = str(len(still(ID[(await NOW(pg))['c']], [('q', 0)])))
             if reduced: ok('R1 reduced motion: the number of countries still possible changes at once', early == late == want, (early, late, want))
             else: ok('R2 with motion it counts down to the same number', late == want and early != want, (early, late, want))
             await ctx.close()
 
-        # ---------- T: what is kept in the browser
+        # ---------- T: what is kept in the browser (the table's best; since 6 Oct 2026 never a round), and starting afresh
         ctx, pg = await new(br, w=390, h=664, reduced=True)
-        await go(pg); await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({games: {'100-of-us': {results: {'3': {g: 41, a: 45}}, practice: {}}}, sent: {'players/new': 1}}))")
+        hid = lambda: pg.evaluate("document.getElementById('btn-restart').hidden")
+        await go(pg); await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({games: {'100-of-us': {results: {'3': {g: 41, a: 45}}, practice: {}}}, sent: {'players/new': 1}, groups: {'one-of-193': {cur: {c: 'FRA', s: ['q:" + Q[0]['id'] + "']}}}}))")
+        await go(pg)
+        r0 = [await pg.evaluate("document.body.dataset.view"), await hid(), 'cur' in (await stored(pg))['groups']['one-of-193'], await NOW(pg)]
         await start(pg, 5); await ask(pg, 0); await ask(pg, 1)
+        v1 = [await pg.evaluate("document.body.dataset.view"), await hid(), (await NOW(pg))['s']]
         await pg.reload(); await pg.wait_for_timeout(200)
-        r1 = await pg.evaluate("[document.body.dataset.view, document.getElementById('asked-n').textContent, document.querySelectorAll('.o-q.asked').length, document.getElementById('last').textContent]")
-        ok('T1 a round goes on after a reload: the same questions answered, the same score', r1[0] == 'play' and r1[1] == '2' and r1[2] == 2 and r1[3].startswith('Your round goes on'), r1)
+        r1 = [await pg.evaluate("document.body.dataset.view"), await hid(), await NOW(pg), 'cur' in (await stored(pg))['groups'].get('one-of-193', {}), await T(pg, '#btn-start')]
+        ok('T1 a round that an earlier version kept is cleared when the page opens; a reload in the middle of a round starts afresh (the start, no round, no Restart button); a round is never stored',
+           r0 == ['start', True, False, None] and v1[:2] == ['play', False] and len(v1[2]) == 2 and r1 == ['start', True, None, False, 'Hide a country'], (r0, v1, r1))
+        await start(pg, 5); await ask(pg, 0); await ask(pg, 1)
         await guess(pg, 5)
         s = await stored(pg)
         g = s.get('groups', {}).get('one-of-193', {})
         ok('T2 the table\'s best, its rounds and countries found are kept under "groups"; the daily results and the returning-player marks are untouched',
-           g.get('best') == 2 and g.get('rounds') == 1 and g.get('found') == 1 and 'cur' not in g and g.get('recent') == [ids[5]] and s['games'] == {'100-of-us': {'results': {'3': {'g': 41, 'a': 45}}, 'practice': {}}} and s.get('sent') == {'players/new': 1}, s)
+           g.get('best') == 2 and g.get('rounds') == 1 and g.get('found') == 1 and 'cur' not in g and g.get('recent') == [ids[5], ids[5]] and s['games'] == {'100-of-us': {'results': {'3': {'g': 41, 'a': 45}}, 'practice': {}}} and s.get('sent') == {'players/new': 1}, s)
         ok('T3 the best result shows in the bar and in its window', await T(pg, '#best-n') == '2' and await T(pg, '#st-found') == '1' and await T(pg, '#st-rounds') == '1')
         await pg.click('#btn-again'); await ask(pg, 0); await ask(pg, 1); await ask(pg, 2)
-        h2 = ID[(await stored(pg))['groups']['one-of-193']['cur']['c']]
+        h2 = ID[(await NOW(pg))['c']]
         await guess(pg, h2)
         g = (await stored(pg))['groups']['one-of-193']
         ok('T4 a worse round leaves the best as it is; "Play again" hides another country than the last ones', g['best'] == 2 and g['rounds'] == 2 and h2 != 5 and await T(pg, '#end-best') == "Your table's best: 2 questions.", g)
         await pg.click('#btn-again'); await pg.click('#btn-guess'); await pg.click('#btn-stop'); await pg.click('#btn-giveup')
         g = (await stored(pg))['groups']['one-of-193']
         ok('T5 giving up shows the country and counts the round, not a country found', g['rounds'] == 3 and g['found'] == 2 and (await T(pg, '#end-score')).startswith('You stopped after'), g)
+        # the Restart button, and the way back from the home page
+        seen = [[await pg.evaluate("document.body.dataset.view"), await hid()]]                  # the end
+        await pg.click('#btn-again'); seen.append([await pg.evaluate("document.body.dataset.view"), await hid()])
+        await ask(pg, 0); await pg.click('#btn-guess'); await pg.wait_for_timeout(30)
+        seen.append(['guessing', await hid()]); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
+        before = await NOW(pg)
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(40)
+        dlg = await pg.evaluate("[document.getElementById('dlg-restart').open, document.getElementById('restart-title').textContent, document.querySelector('#dlg-restart .quiet').textContent, document.getElementById('btn-restart-yes').textContent, document.querySelector('#dlg-restart .btn.ghost').textContent]")
+        await pg.click('#dlg-restart .btn.ghost'); await pg.wait_for_timeout(30)
+        kept = [await pg.evaluate("document.body.dataset.view"), (await NOW(pg)) == before, await pg.evaluate("document.getElementById('dlg-restart').open"), await T(pg, '#asked-n')]
+        ok('T8 the Restart button (↻ in the bar, named "Restart the game") stands there only while a round is in play; it asks first ("Restart the game?", what it drops, Restart or Keep playing), and Keep playing leaves the round as it was',
+           seen == [['end', True], ['play', False], ['guessing', False]] and dlg == [True, 'Restart the game?', 'You go back to the start. This country is dropped, and the round does not count.', 'Restart', 'Keep playing']
+           and kept == ['play', True, False, '1'] and await pg.evaluate("document.getElementById('btn-restart').getAttribute('aria-label')") == 'Restart the game', (seen, dlg, kept))
+        g0 = (await stored(pg))['groups']['one-of-193']
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(30); await pg.click('#btn-restart-yes'); await pg.wait_for_timeout(40)
+        g1 = (await stored(pg))['groups']['one-of-193']
+        after = [await pg.evaluate("document.body.dataset.view"), await pg.evaluate("document.activeElement.id"), await hid(), await NOW(pg), await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)"), await T(pg, '#best-n'), await T(pg, '#btn-start')]
+        ok('T9 Restart goes back to the start (the focus on "Hide a country"): no round, no window open; the round does not count, and the table\'s best stays',
+           after == ['start', 'btn-start', True, None, False, '2', 'Hide a country'] and g1.get('rounds') == g0.get('rounds') == 3 and g1.get('best') == 2 and 'cur' not in g1, (after, g0, g1))
+        await pg.click('#btn-start'); await ask(pg, 0)
+        await pg.evaluate("window.__marker = 1")
+        await pg.click('.wordmark'); await pg.wait_for_timeout(300)
+        home = await pg.evaluate("location.pathname")
+        await pg.go_back(); await pg.wait_for_timeout(300)
+        b1 = [await pg.evaluate("document.body.dataset.view"), await hid(), await NOW(pg)]
+        mem = await pg.evaluate("window.__marker === 1")
+        await pg.click('#btn-start'); await ask(pg, 0)
+        await pg.evaluate("window.dispatchEvent(new PageTransitionEvent('pageshow', {persisted: true}))"); await pg.wait_for_timeout(60)
+        b2 = [await pg.evaluate("document.body.dataset.view"), await hid(), await NOW(pg), await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)")]
+        ok('T10 to the home page and back with the Back button, the game starts afresh (the start, no round, no Restart button); so does a page that the browser brings back from its memory (the event "pageshow")',
+           home == '/' and b1 == ['start', True, None] and b2 == ['start', True, None, False], (home, b1, b2, 'kept in memory' if mem else 'loaded anew'))
+        ok('T no errors', pg.errs == [], pg.errs)
         await ctx.close()
         for nm, raw in [('not JSON', 'hello{'), ('groups is a text', '{"groups": "x"}'), ('a broken round', '{"groups": {"one-of-193": {"cur": {"c": "XXX", "s": 5}, "best": "x", "recent": 7}}}'), ('a round with odd steps', '{"groups": {"one-of-193": {"cur": {"c": "FRA", "s": ["q:nope", "g:FRA", "q:africa", "q:africa", 3]}}}}')]:
             ctx, pg = await new(br, w=390, h=664, reduced=True)
@@ -411,7 +452,7 @@ async def main():
             v = await pg.evaluate("[document.body.dataset.view, document.getElementById('asked-n').textContent]")
             if v[0] == 'start': await pg.click('#btn-start')
             await pg.click('#btn-guess'); await pg.click('#btn-stop'); await pg.click('#btn-giveup')
-            ok(f'T6 broken storage ({nm}): the page works and a round can be played', await pg.evaluate("document.body.dataset.view") == 'end' and pg.errs == [] and (nm != 'a round with odd steps' or v == ['play', '1']), (v, pg.errs))
+            ok(f'T6 broken storage ({nm}): the page works and a round can be played', await pg.evaluate("document.body.dataset.view") == 'end' and pg.errs == [] and v[0] == 'start', (v, pg.errs))
             await ctx.close()
         ctx, pg = await new(br, w=1280, h=900)
         await pg.goto(B + '/'); await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({groups: {'one-of-193': {best: 4, rounds: 9, found: 7}}}))"); await pg.reload(); await pg.wait_for_timeout(300)
@@ -450,7 +491,7 @@ async def main():
         for steps, nm in ((NQ, 'every question and a wrong guess'), (0, 'a guess at once')):
             ctx, pg = await new(br, w=390, h=664, reduced=True)
             await go(pg); await pg.click('#btn-start')
-            h = ID[(await stored(pg))['groups']['one-of-193']['cur']['c']]
+            h = ID[(await NOW(pg))['c']]
             for j in range(steps): await ask(pg, j)
             if steps: await guess(pg, twins_of(h)[0] if twins_of(h) else (h + 1) % N)
             await guess(pg, h); await pg.wait_for_timeout(400)
@@ -462,7 +503,7 @@ async def main():
         ctx, pg = await new(br, w=390, h=664, reduced=True)
         await pg.goto('file://' + SITE + '/one-of-193/index.html'); await pg.wait_for_timeout(200)
         await pg.click('#btn-start'); await ask(pg, 0)
-        h = ID[(await stored(pg))['groups']['one-of-193']['cur']['c']]
+        h = ID[(await NOW(pg))['c']]
         await guess(pg, h)
         ok('O1 opened from a folder: it plays, and the wordmark leads to the home page file', await pg.evaluate("document.body.dataset.view") == 'end' and (await pg.evaluate("document.querySelector('.wordmark').getAttribute('href')")).endswith('index.html') and pg.errs == [], pg.errs)
         await ctx.close()

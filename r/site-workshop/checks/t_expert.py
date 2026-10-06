@@ -16,11 +16,14 @@ cards.py and evidence.txt. These checks read the stock file and work out here wh
       it, the four true facts with their sources, the points; the end (the winner, the scores, the wins)
   V   before the reveal the invented fact is marked nowhere but on the expert's card: not on the hand-over, not in the
       vote (the five facts look alike to the eye and to a screen reader), and the card leaves the page when it is put
-      away; a reload never shows the card by itself
+      away; a reload never shows the card (it starts afresh)
   S   every screen of every card (hand-over, card, vote, reveal with seven voters, true facts) at 320x568, 360x640,
-      390x664 and 1280x720, light and dark, with eight long names, without scrolling; the start, the windows, a friend's
-      link and the end; nothing spills sideways
-  K   keys; L screen-reader labels; R reduced motion; T what is kept in the browser (and what a reload does);
+      390x664 and 1280x720, light and dark, with eight long names, without scrolling; the start, the windows (Restart
+      too), a friend's link and the end; nothing spills sideways, the bar with the Restart button neither
+  K   keys; L screen-reader labels; R reduced motion; T what is kept in the browser: since 6 Oct 2026 nothing about the
+      players (names, wins, a game going on), and every opening of the page starts afresh (a reload, the Back button);
+      the Restart button (shown only while a game is in play, asks first, clears the game, the names and the wins) and
+      "New players";
   C   the counter events; F a friend's link; X the share picture (it fits for every card; it shows no fact) and the
       message (it carries no fact); O opened from a folder; N the data file missing; H the head of the page
 """
@@ -71,21 +74,32 @@ async def new(br, w=390, h=664, scheme='light', reduced=False, count=False, touc
     pg.on('pageerror', lambda e: pg.errs.append('PAGEERR ' + str(e)))
     if count: await pg.add_init_script(COUNTED)
     return ctx, pg
+# Since 6 Oct 2026 the page stores nothing about the players: every opening starts afresh. So the players and a game
+# to play are handed to the next page that opens (go), through the page's own hook for the checks (SoCalledExpert.load),
+# and the game going on is read back from the page (SoCalledExpert.now).
+PENDING = {}
 async def go(pg, q=''):
     await pg.goto(B + '/so-called-expert/' + q); await pg.evaluate("document.fonts.ready"); await pg.wait_for_timeout(80)
+    s = PENDING.pop(id(pg), None)
+    if s is not None: await pg.evaluate("s => SoCalledExpert.load(s)", s); await pg.wait_for_timeout(30)
 stored = lambda pg: pg.evaluate("JSON.parse(localStorage.getItem('turnsout:v1') || '{}')")
 T = lambda pg, sel: pg.evaluate(f"(document.querySelector('{sel}') || {{textContent: null}}).textContent")
 VIEW = lambda pg: pg.evaluate("document.body.dataset.view")
-async def cur(pg): return (await stored(pg)).get('groups', {}).get('so-called-expert', {}).get('cur')
+NOW = lambda pg: pg.evaluate("SoCalledExpert.now()")
+async def cur(pg):
+    """the game going on (none once it is over), as the page holds it"""
+    g = (await NOW(pg))['game']
+    return g if g and not g.get('over') else None
 async def setup(pg, names, n=None):
-    n = n or len(names)
-    await pg.evaluate(f"localStorage.setItem('turnsout:v1', JSON.stringify({{groups: {{'so-called-expert': {{n: {n}, names: {json.dumps(names)}}}}}}}))")
+    """the players (number and names), for the next page that opens"""
+    PENDING[id(pg)] = {'n': n or len(names), 'names': names}
 async def inject(pg, names, cards, ords, first=0, extra=None):
-    """a game as the page keeps it, at the hand-over of its first turn (the page then plays it like any other)"""
+    """a game at the hand-over of its first turn, for the next page that opens (the page then plays it like any other)"""
     g = {'p': names, 'first': first, 'k': 0, 'cards': cards, 'ord': ords, 'found': [], 'st': 'hand', 'over': False}
     grp = {'n': len(names), 'names': names, 'cur': g}
     if extra: grp.update(extra)
-    await pg.evaluate(f"localStorage.setItem('turnsout:v1', JSON.stringify({{groups: {{'so-called-expert': {json.dumps(grp)}}}}}))")
+    PENDING[id(pg)] = grp
+PLAYERS = ('names', 'wins', 'next', 'n', 'cur')          # what the page must never store (since 6 Oct 2026)
 FIT = """() => { const over = []; document.querySelectorAll('main *, header *').forEach(e => { const b = e.getBoundingClientRect();
     if (b.width > 0 && (b.right > innerWidth + 0.5 || b.left < -0.5) && !e.closest('.sr-only')) over.push(e.tagName + '.' + e.className + '#' + e.id); });
   const d = [...document.querySelectorAll('dialog')].find(x => x.open), db = d ? d.getBoundingClientRect() : null;
@@ -297,12 +311,12 @@ async def main():
             order_ = sorted(range(n), key=lambda i: (-pts[i], i))
             board = [[m.p[i], f'fooled {n - 1 - len(m.found[(i - m.first) % n])} of {n - 1} on {ins(BY[m.cards[(i - m.first) % n]])}', str(pts[i]), i in w] for i in order_]
             want = ['end', want_name, f'With {plural(best, "point", "points")}, after {plural(n, "turn", "turns")}.', board, 'end-name']
-            g = (await stored(pg))['groups']['so-called-expert']
+            g = (await stored(pg))['groups']['so-called-expert']; t = await NOW(pg)
             if e != want: bad_end.append((gi, [(a, b) for a, b in zip(e, want) if a != b]))
-            if 'cur' in g or g.get('games') != 1 or sorted(k_ for k_, v in g.get('wins', {}).items() if v) != sorted(wnames) or g.get('next') != (m.first + 1) % n: bad_end.append((gi, 'stored', g))
+            if any(k_ in g for k_ in PLAYERS) or g.get('games') != 1 or sorted(k_ for k_, v in t['wins'].items() if v) != sorted(wnames) or t['next'] != (m.first + 1) % n: bad_end.append((gi, 'stored', g, t))
         ok(f'P1 {turns} turns played through on the page ({len(chunks)} games with every one of the {len(CARDS)} cards, and 3 games dealt by the page): at every turn the hand-over, the expert\'s card, the vote, the reveal, who found it, the four true facts with their sources and the points match the stock and the game worked out here',
            not bad and seen_cards >= set(ids), bad[:3])
-        ok('P2 the end of each game: the winner (or those who share the win), the line under it, every player\'s points and how many they fooled as the expert, in order; the wins, the number of games and who starts next are kept', not bad_end, bad_end[:2])
+        ok('P2 the end of each game: the winner (or those who share the win), the line under it, every player\'s points and how many they fooled as the expert, in order; the wins and who starts next are kept in the page, the number of games in the browser, nothing about the players', not bad_end, bad_end[:2])
         ok('V1 before the reveal nothing marks the invented fact but the expert\'s card: the hand-over shows no fact, the vote shows the five facts alike (to the eye and to a screen reader), and the card leaves the page when it is put away',
            not [b for b in bad if b[0].startswith('V')], [b for b in bad if b[0].startswith('V')][:3])
         ok('P V no errors', pg.errs == [], pg.errs)
@@ -338,7 +352,8 @@ async def main():
                         await chk(f'hand-over {cid}')
                         if k == 0:
                             await pg.click('#btn-scores'); await pg.wait_for_timeout(40); await chk('the scores window')
-                            await pg.click('#btn-quit'); await pg.wait_for_timeout(40); await chk('end this game?')
+                            await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
+                            await pg.click('#btn-restart'); await pg.wait_for_timeout(40); await chk('restart the game?')
                             await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
                         await pg.click('#btn-card'); await chk(f'card {cid}')
                         await pg.click('#btn-table'); await chk(f'vote {cid}')
@@ -366,7 +381,7 @@ async def main():
                 if await T(pg, '#end-name') != 'Everyone shares the win!': badS.append(('everyone?', await T(pg, '#end-name')))
                 if w == 320: await pg.screenshot(path=f'shots/expert-end-320-{scheme}.png')
                 await pg.evaluate("navigator.share = undefined"); await pg.click('#share'); await pg.wait_for_timeout(400); await chk('the share window'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
-                ok(f'S1 {w}x{h} {scheme}: every screen of every one of the {len(CARDS)} cards (hand-over, card, vote, reveal with seven voters, true facts), with eight long names, the start, a friend\'s link, the windows and the end fit without scrolling, and nothing spills sideways',
+                ok(f'S1 {w}x{h} {scheme}: every screen of every one of the {len(CARDS)} cards (hand-over, card, vote, reveal with seven voters, true facts), with eight long names, the start, a friend\'s link, the windows (Restart too) and the end fit without scrolling, and nothing spills sideways (the bar with the Restart button neither)',
                    not badS and pg.errs == [], (badS[:3], pg.errs))
                 await ctx.close()
         # screenshots to look at: the tightest card at 320x568, light and dark
@@ -433,38 +448,111 @@ async def main():
             else: ok('R2 with motion the hand-over slides in and the stamps land like a rubber stamp', an0 == 'e-hand-in' and an == 'e-thump' and an2 == 'e-thump2', (an0, an, an2))
             await ctx.close()
 
-        # ---------- T: what is kept in the browser
+        # ---------- T: what is kept in the browser (since 6 Oct 2026 nothing about the players), and starting afresh
         ctx, pg = await new(br, w=390, h=664, reduced=True)
-        await go(pg); await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({games: {'100-of-us': {results: {'3': {g: 41, a: 45}}, practice: {}}}, sent: {'players/new': 1}}))")
-        await go(pg); await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.wait_for_timeout(40)
+        hid = lambda: pg.evaluate("document.getElementById('btn-restart').hidden")
+        await go(pg); await pg.evaluate("localStorage.setItem('turnsout:v1', JSON.stringify({games: {'100-of-us': {results: {'3': {g: 41, a: 45}}, practice: {}}}, sent: {'players/new': 1}, groups: {'so-called-expert': {n: 6, names: ['Old', 'Names'], wins: {Old: 4}, next: 2, games: 7, recent: ['KEN'], cur: {p: ['Old', 'Names', 'C'], first: 0, k: 0, cards: ['KEN', 'ECU', 'PER'], ord: [[0,1,2,3,4],[0,1,2,3,4],[0,1,2,3,4]], found: [], st: 'vote'}}}}))")
+        await go(pg)
+        g = (await stored(pg))['groups']['so-called-expert']
+        t0 = [await VIEW(pg), await T(pg, '#players-n'), await T(pg, '#names-line'), await hid(), await pg.evaluate("[...document.querySelectorAll('#wins-list li b')].map(b => b.textContent).join()")]
+        ok('T1 what earlier versions kept about the players (names, wins, the next expert, a game going on) is cleared when the page opens; the cards a table had lately and the number of games stay; the page starts afresh with 4 players, no names and no wins',
+           t0 == ['start', '4', 'Player 1 · Player 2 · Player 3 · Player 4', True, '0,0,0,0'] and not any(k in g for k in PLAYERS) and g.get('games') == 7 and g.get('recent') == ['KEN'], (t0, g))
+        await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.wait_for_timeout(40)
         inp = await pg.query_selector_all('#name-fields input')
         await inp[0].fill('Ana'); await inp[1].fill('  Ben <b>  '); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
-        s = (await stored(pg))['groups']['so-called-expert']
-        ok('T1 the number of players (4 to start with) and their names are kept under "groups" (names cleaned, at most 14 letters)', s.get('n') == 5 and s.get('names', [])[:3] == ['Ana', 'Ben b', ''] and await T(pg, '#names-line') == 'Ana · Ben b · Player 3 · Player 4 · Player 5', (s, await T(pg, '#names-line')))
-        await pg.click('#btn-start')
-        st = await cur(pg)
+        g = (await stored(pg))['groups']['so-called-expert']; t = await NOW(pg)
+        ok('T2 the number of players and their names live only in the page (names cleaned, at most 14 letters): nothing about them is stored',
+           t['n'] == 5 and t['names'][:3] == ['Ana', 'Ben b', ''] and await T(pg, '#names-line') == 'Ana · Ben b · Player 3 · Player 4 · Player 5' and not any(k in g for k in PLAYERS), (t, g))
         r = []
-        await pg.reload(); await pg.wait_for_timeout(120); r.append(await VIEW(pg))
-        await pg.click('#btn-card'); await pg.reload(); await pg.wait_for_timeout(120); r.append([await VIEW(pg), await pg.evaluate("document.querySelectorAll('.e-stamp').length")])
-        await pg.click('#btn-card'); await pg.click('#btn-table'); await pg.reload(); await pg.wait_for_timeout(120); r.append([await VIEW(pg), [x['t'] for x in await pg.evaluate(FACTS, 'vote-facts')] == [f['t'] for f in facts(st['cards'][0], st['ord'][0])]])
-        await pg.click('#btn-reveal'); await pg.click('#who .e-who-b'); await pg.reload(); await pg.wait_for_timeout(120)
-        r.append([await VIEW(pg), await pg.evaluate("[...document.querySelectorAll('#who .e-who-b')].map(b => b.getAttribute('aria-pressed')).join()")])
-        await pg.click('#who .e-who-b'); await pg.click('#btn-score'); await pg.reload(); await pg.wait_for_timeout(120)
-        r.append([await VIEW(pg), await T(pg, '#sum-scores')])
-        pts1 = await T(pg, '#sum-scores'); await pg.reload(); await pg.wait_for_timeout(120); pts2 = await T(pg, '#sum-scores')
-        ok('T2 a game goes on after a reload: at the hand-over; during the card it goes back to the hand-over (the card never shows by itself); in the vote with the same five facts; in the reveal (nobody pressed yet); after scoring with the same points, counted once',
-           r[0] == 'hand' and r[1] == ['hand', 0] and r[2] == ['vote', True] and r[3][0] == 'reveal' and set(r[3][1].split(',')) == {'false'} and r[4][0] == 'sum' and pts1 == pts2, (r, pts1, pts2))
-        await pg.click('#btn-next')
-        for k in range(4):
+        for step in ('hand', 'card', 'vote', 'reveal', 'sum'):
+            await pg.click('#btn-start')
+            if step != 'hand': await pg.click('#btn-card')
+            if step in ('vote', 'reveal', 'sum'): await pg.click('#btn-table')
+            if step in ('reveal', 'sum'): await pg.click('#btn-reveal'); await pg.click('#who .e-who-b')
+            if step == 'sum': await pg.click('#btn-score')
+            v1 = await VIEW(pg)
+            await pg.reload(); await pg.wait_for_timeout(120)
+            g = (await stored(pg))['groups']['so-called-expert']
+            r.append([step, v1, await VIEW(pg), await T(pg, '#names-line'), await pg.evaluate("document.querySelectorAll('.e-stamp').length"), await hid(), await cur(pg), any(k in g for k in PLAYERS)])
+        ok('T3 a reload starts afresh at every step of a game (the hand-over, the expert\'s card, the vote, the reveal, the true facts): the start with 4 players and no names, no stamp, no Restart button, no game; nothing about the players stored',
+           all(x[1] == x[0] and x[2] == 'start' and x[3] == 'Player 1 · Player 2 · Player 3 · Player 4' and x[4] == 0 and x[5] and x[6] is None and not x[7] for x in r), r)
+        await pg.click('#btn-more'); await pg.click('#btn-names'); await pg.wait_for_timeout(40)
+        inp = await pg.query_selector_all('#name-fields input')
+        for i, x in enumerate(['Ana', 'Ben', 'Cy', 'Di', 'Ed']): await inp[i].fill(x)
+        await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
+        await pg.click('#btn-start'); st = await cur(pg)
+        for k in range(5):
             await pg.click('#btn-card'); await pg.click('#btn-table'); await pg.click('#btn-reveal'); await pg.click('#btn-score'); await pg.click('#btn-next')
-        s = await stored(pg); g = s['groups']['so-called-expert']
-        ok('T3 a finished game: a win for each winner\'s name, the game no longer kept, the next game starts with the next player as the expert; the daily results and the returning-player marks are untouched',
-           await VIEW(pg) == 'end' and 'cur' not in g and g.get('games') == 1 and sum(g.get('wins', {}).values()) >= 1 and g.get('next') == 1 and len(g.get('recent', [])) == 5
-           and s['games'] == {'100-of-us': {'results': {'3': {'g': 41, 'a': 45}}, 'practice': {}}} and s.get('sent') == {'players/new': 1}, (g, s.get('games'), s.get('sent')))
+        s = await stored(pg); g = s['groups']['so-called-expert']; t = await NOW(pg)
+        ok('T4 a finished game: a win for each winner\'s name and the next game\'s first expert, kept in the page only; the browser counts the game and keeps the cards for the deal, nothing about the players; the daily results and the returning-player marks are untouched',
+           await VIEW(pg) == 'end' and not any(k in g for k in PLAYERS) and g.get('games') == 8 and sum(t['wins'].values()) >= 1 and set(t['wins']) <= {'Ana', 'Ben', 'Cy', 'Di', 'Ed'} and t['next'] == 1
+           and set(st['cards']) <= set(g.get('recent', [])) and s['games'] == {'100-of-us': {'results': {'3': {'g': 41, 'a': 45}}, 'practice': {}}} and s.get('sent') == {'players/new': 1}, (g, t, s.get('games'), s.get('sent')))
         tally = await T(pg, '#tally')
-        ok('T4 the wins at this table stand under the end and in their window', tally.startswith('Wins at this table: Ana (') and await pg.evaluate("document.querySelectorAll('#wins-list li').length") == 5, tally)
         await pg.click('#btn-again'); st2 = await cur(pg)
-        ok('T5 "Play again" deals other cards first (the five just played are the recent ones) and the next player starts', st2 and not set(st2['cards']) & set(g['recent']) and st2['first'] == 1, (st2, g.get('recent')))
+        ok('T5 the wins at this table stand under the end and in their window; "Play again" keeps the players, deals other cards first (those just played are the recent ones), and the next player starts',
+           tally.startswith('Wins at this table: Ana (') and await pg.evaluate("document.querySelectorAll('#wins-list li').length") == 5
+           and st2 and st2['p'] == ['Ana', 'Ben', 'Cy', 'Di', 'Ed'] and not set(st2['cards']) & set(st['cards']) and st2['first'] == 1, (tally, st2, st))
+        ok('T1-T5 no errors', pg.errs == [], pg.errs)
+        await ctx.close()
+        # the Restart button, "New players", and the way back from the home page
+        ctx, pg = await new(br, w=390, h=664, reduced=True)
+        hid = lambda: pg.evaluate("document.getElementById('btn-restart').hidden")
+        async def names3():
+            await pg.click('#btn-fewer'); await pg.click('#btn-names'); await pg.wait_for_timeout(30)
+            inp = await pg.query_selector_all('#name-fields input')
+            for i, x in enumerate(['Ana', 'Bo', 'Cy']): await inp[i].fill(x)
+            await pg.keyboard.press('Escape'); await pg.wait_for_timeout(30)
+        await go(pg)
+        seen = [[await VIEW(pg), await hid()]]
+        await names3(); await pg.click('#btn-start')
+        for k in range(3):
+            for sel in ('#btn-card', '#btn-table', '#btn-reveal', '#btn-score', '#btn-next'):
+                seen.append([await VIEW(pg), await hid()]); await pg.click(sel)
+        seen.append([await VIEW(pg), await hid()])
+        ok('T8 the Restart button (↻ in the bar, named "Restart the game") stands there only while a game is in play: not on the start, on every view of every turn, not at the end',
+           len(seen) == 17 and seen[0] == ['start', True] and seen[-1] == ['end', True] and all(v != 'start' and v != 'end' and not h for v, h in seen[1:-1])
+           and await pg.evaluate("[document.getElementById('btn-restart').getAttribute('aria-label'), document.getElementById('btn-restart').closest('.bar-tools') !== null]") == ['Restart the game', True], seen)
+        wins1 = (await NOW(pg))['wins']
+        await pg.click('#btn-again'); await pg.click('#btn-card')
+        before = await cur(pg)
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(40)
+        dlg = await pg.evaluate("[document.getElementById('dlg-restart').open, document.getElementById('restart-title').textContent, document.querySelector('#dlg-restart .quiet').textContent, document.getElementById('btn-restart-yes').textContent, document.querySelector('#dlg-restart .btn.ghost').textContent]")
+        await pg.click('#dlg-restart .btn.ghost'); await pg.wait_for_timeout(30)
+        kept = [await VIEW(pg), (await cur(pg)) == before, await pg.evaluate("document.getElementById('dlg-restart').open"), await pg.evaluate("document.querySelectorAll('#card-facts .e-stamp').length")]
+        ok('T9 Restart asks first ("Restart the game?", what it clears, Restart or Keep playing); Keep playing leaves the game as it was',
+           dlg == [True, 'Restart the game?', "Everything starts over: this game, the players' names and the wins at this table.", 'Restart', 'Keep playing'] and kept == ['card', True, False, 1] and sum(wins1.values()) >= 1, (dlg, kept, wins1))
+        await pg.click('#btn-restart'); await pg.wait_for_timeout(30); await pg.click('#btn-restart-yes'); await pg.wait_for_timeout(40)
+        g = (await stored(pg))['groups']['so-called-expert']; t = await NOW(pg)
+        after = [await VIEW(pg), await T(pg, '#players-n'), await T(pg, '#names-line'), await pg.evaluate("document.activeElement.id"), await hid(), t['game'], t['wins'], t['next'],
+                 await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)"), await pg.evaluate("document.querySelectorAll('.e-stamp').length"), any(k in g for k in PLAYERS)]
+        wl = await pg.evaluate("[...document.querySelectorAll('#wins-list li')].map(li => li.textContent)")
+        ok('T10 Restart starts everything over: the start with 4 players and no names, the focus on Start, no game, no wins at this table (their window lists the new players with 0), player 1 is the next expert; no window and no stamp left; nothing stored about the players',
+           after == ['start', '4', 'Player 1 · Player 2 · Player 3 · Player 4', 'btn-start', True, None, {}, 0, False, 0, False] and wl == ['Player 10', 'Player 20', 'Player 30', 'Player 40'], (after, wl))
+        await names3(); await pg.click('#btn-start')
+        for k in range(3):
+            for sel in ('#btn-card', '#btn-table', '#btn-reveal', '#btn-score', '#btn-next'): await pg.click(sel)
+        e1 = await VIEW(pg)
+        await pg.click('#btn-again'); a1 = [(await cur(pg))['p'], dict((await NOW(pg))['wins'])]
+        for k in range(3):
+            for sel in ('#btn-card', '#btn-table', '#btn-reveal', '#btn-score', '#btn-next'): await pg.click(sel)
+        await pg.click('#btn-change'); await pg.wait_for_timeout(30)
+        t = await NOW(pg)
+        nw = [await VIEW(pg), await T(pg, '#players-n'), await T(pg, '#names-line'), await pg.evaluate("document.activeElement.id"), t['wins'], t['next'], await hid()]
+        ok('T11 "Play again" keeps the players and their wins; "New players" at the end clears the names and the wins and starts afresh',
+           e1 == 'end' and a1[0] == ['Ana', 'Bo', 'Cy'] and sum(a1[1].values()) >= 1 and nw == ['start', '4', 'Player 1 · Player 2 · Player 3 · Player 4', 'btn-more', {}, 0, True], (e1, a1, nw))
+        await names3(); await pg.click('#btn-start'); await pg.click('#btn-card')
+        await pg.evaluate("window.__marker = 1")
+        await pg.click('.wordmark'); await pg.wait_for_timeout(300)
+        home = await pg.evaluate("location.pathname")
+        await pg.go_back(); await pg.wait_for_timeout(300)
+        b1 = [await VIEW(pg), await T(pg, '#names-line'), await hid(), await pg.evaluate("document.querySelectorAll('.e-stamp').length")]
+        mem = await pg.evaluate("window.__marker === 1")
+        await names3(); await pg.click('#btn-start'); await pg.click('#btn-card')
+        await pg.evaluate("window.dispatchEvent(new PageTransitionEvent('pageshow', {persisted: true}))"); await pg.wait_for_timeout(60)
+        b2 = [await VIEW(pg), await T(pg, '#names-line'), await hid(), await pg.evaluate("document.querySelectorAll('.e-stamp').length"), await pg.evaluate("[...document.querySelectorAll('dialog')].some(d => d.open)")]
+        ok('T12 to the home page and back with the Back button, the game starts afresh (the start, no names, no stamp, no Restart button); so does a page that the browser brings back from its memory (the event "pageshow")',
+           home == '/' and b1 == ['start', 'Player 1 · Player 2 · Player 3 · Player 4', True, 0] and b2 == ['start', 'Player 1 · Player 2 · Player 3 · Player 4', True, 0, False], (home, b1, b2, 'kept in memory' if mem else 'loaded anew'))
+        ok('T8-T12 no errors', pg.errs == [], pg.errs)
         await ctx.close()
         for nm, raw in [('not JSON', 'hello{'), ('groups is a text', '{"groups": "x"}'),
                         ('a broken game', '{"groups": {"so-called-expert": {"cur": {"p": ["a"], "cards": 5}, "n": "x", "names": 7, "wins": [1]}}}'),
@@ -490,8 +578,11 @@ async def main():
         fr = await pg.evaluate("[document.getElementById('friend').hidden, document.getElementById('friend').textContent, document.getElementById('btn-start').textContent]")
         ok('F1 a friend\'s link names the country ("the Netherlands") and how many their expert fooled, and the button deals their card', fr == [False, "A friend's table played five facts about the Netherlands, and their expert fooled 2 of 3. Can your table spot the invented one?", 'Play their card'], fr)
         await pg.click('#btn-start'); st = await cur(pg)
-        ok('F2 the friend\'s card is the first turn\'s, and the address loses the link (a reload goes on with the game)', st['cards'][0] == 'NLD' and '?' not in pg.url, (st, pg.url))
-        cnt_all = list(await pg.evaluate("window.__counted"))
+        cnt_pre = list(await pg.evaluate("window.__counted"))       # a reload starts a new list
+        url_ = pg.url; await pg.reload(); await pg.wait_for_timeout(120)
+        rl = await pg.evaluate("[document.body.dataset.view, document.getElementById('friend').hidden, document.getElementById('btn-start').textContent]")
+        ok('F2 the friend\'s card is the first turn\'s, and the address loses the link: a reload starts afresh, without the friend\'s card', st['cards'][0] == 'NLD' and '?' not in url_ and rl == ['start', True, 'Start'], (st, url_, rl))
+        cnt_all = cnt_pre + list(await pg.evaluate("window.__counted"))
         aside = []
         for q, want in [('?card=XXX&f=1&v=3', None), ('?card=nld', "A friend's table played five facts about the Netherlands. Can your table spot the invented one?"), ('?card=KEN&f=5&v=3', "A friend's table played five facts about Kenya. Can your table spot the invented one?"), ('?card=KEN&f=1&v=9', "A friend's table played five facts about Kenya. Can your table spot the invented one?")]:
             await pg.evaluate("localStorage.clear()"); await go(pg, q)

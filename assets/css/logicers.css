@@ -496,6 +496,13 @@ body.game { background: var(--tint); }
 .bar-tools { display: flex; align-items: center; gap: 8px; flex: none; }
 .bar .chip { height: 38px; padding: 0 14px; font-size: 0.9rem; box-shadow: 0 1px 2px rgba(21, 23, 43, .06); }
 .bar .chip.round { width: 38px; padding: 0; }
+/* the games for groups: a round button that restarts the game, shown only while a game is in play (6 Oct 2026) */
+.bar .chip.restart svg { width: 18px; height: 18px; }
+@media (max-width: 350px) {                                 /* a small phone: the three buttons and the name still fit */
+  .bar-tools.with-restart { gap: 5px; }
+  .bar-tools.with-restart .chip:not(.round) { padding: 0 9px; }
+  body[data-g="o193"] .wordmark, body[data-g="still"] .wordmark, body[data-g="expert"] .wordmark, body[data-g="beat"] .wordmark { font-size: 1.3rem; gap: 8px; }
+}
 #streak-chip::before { content: ""; width: 15px; height: 15px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23F28A1B' d='M10.4 1.6c.5 3-1.2 4.3-2.6 5.9C6.3 9.2 5 10.8 5 13a5 5 0 0 0 10 0c0-1.7-.7-3.2-1.5-4.3-.3 1-.9 1.7-1.7 2.1.5-3.4-.2-6.8-1.4-9.2z'/%3E%3C/svg%3E") center / contain no-repeat; }
 @media (prefers-color-scheme: dark) {
   .wordmark::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6.2' r='4.1' fill='%237FA5FF'/%3E%3Ccircle cx='5.3' cy='17.8' r='4.1' fill='%23FF8468'/%3E%3Ccircle cx='18.7' cy='17.8' r='4.1' fill='%233FE0C6'/%3E%3C/svg%3E"); }

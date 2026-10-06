@@ -1,7 +1,8 @@
 /* One of 193: a game for one phone and a group. The phone hides one of the 193 UN member states; the table asks it
    yes-or-no questions from a menu, sees after each answer how many countries are still possible, and guesses.
    At the end: the country, how few questions would have been enough, and three true facts with their sources.
-   Not daily: no day number, no streak, no album. The table's best result is kept in this browser (TO.groupUpdate). */
+   Not daily: no day number, no streak, no album. The table's best result is kept in this browser (TO.groupUpdate).
+   Every opening of the page starts fresh (Khayyam, 6 Oct 2026): a round lives only while the page is open. */
 (function () {
   "use strict";
 
@@ -78,21 +79,19 @@
   var friendC = decode(params.get("c"));
   var friendQ = /^\d{1,3}$/.test(params.get("q") || "") ? parseInt(params.get("q"), 10) : null;
 
-  /* ---------- the round: kept in the browser so that a reload or a locked phone does not lose it ---------- */
+  /* ---------- the round, in the page only: a new opening of the page (or Restart) starts afresh ---------- */
   var round = null;      // { h: hidden country index, seq: [{t: "q", i: question} or {t: "g", i: country guessed wrong}], over, found }
   var tab = TABS[0].id;
   var shownLeft = 193;
   function stored() { return TO.group(GAME); }
   function asked(r) { return r.seq.filter(function (s) { return s.t === "q"; }).map(function (s) { return s.i; }); }
   function wrongs(r) { return r.seq.filter(function (s) { return s.t === "g"; }).map(function (s) { return s.i; }); }
-  function save() {
-    TO.groupUpdate(GAME, function (g) {
-      if (round && !round.over) g.cur = { c: C[round.h].id, s: round.seq.map(function (x) { return x.t + ":" + (x.t === "q" ? Q[x.i].id : C[x.i].id); }) };
-      else delete g.cur;
-    });
+  function saved() {                  // the round in the form the checks read and hand over (CORE.now, CORE.load)
+    return round && !round.over ? { c: C[round.h].id, s: round.seq.map(function (x) { return x.t + ":" + (x.t === "q" ? Q[x.i].id : C[x.i].id); }) } : null;
   }
-  function restore() {
-    var cur = stored().cur;
+  /* what earlier versions kept in the browser (a round going on) is cleared */
+  TO.groupUpdate(GAME, function (g) { delete g.cur; });
+  function resume(cur) {
     if (!cur || typeof cur.c !== "string" || byId[cur.c] === undefined || !Array.isArray(cur.s)) return null;
     var qi = {};
     Q.forEach(function (q, i) { qi[q.id] = i; });
@@ -132,7 +131,6 @@
       r2.push(C[h].id);
       g.recent = r2.slice(-40);
     });
-    save();
     TO.count(GAME + "/started");
   }
 
@@ -196,6 +194,7 @@
     Object.keys(views).forEach(function (k) { views[k].hidden = k !== v; });
     document.body.setAttribute("data-view", v);
     if (v !== "end") document.body.classList.remove("fit1", "fit2", "fit3");
+    $("btn-restart").hidden = !(round && !round.over);      // Restart only while a round is in play
   }
 
   function bestLine() {
@@ -217,6 +216,9 @@
         : "A friend's table could not find their country. It is hidden for you now. Can your table find it?";
       f.hidden = false;
       $("btn-start").textContent = "Play their country";
+    } else {                            // after Restart, a friend's round already played is not offered again
+      $("friend").hidden = true;
+      $("btn-start").textContent = "Hide a country";
     }
   }
 
@@ -305,7 +307,6 @@
   function ask(i) {
     if (!round || round.over || asked(round).indexOf(i) >= 0) return;
     round.seq.push({ t: "q", i: i });
-    save();
     var a = A[round.h][i], rest = possible(round), n = rest.length, next = nextStep(rest);
     setLeft(n, true);
     setAsked();
@@ -412,7 +413,6 @@
     TO.closeDialog($("dlg-guess"));
     if (i === round.h) { finish(true); return; }
     if (wrongs(round).indexOf(i) < 0) round.seq.push({ t: "g", i: i });
-    save();
     var rest = possible(round), n = rest.length, next = nextStep(rest);
     setLeft(n, true);
     setAsked();
@@ -476,7 +476,6 @@
     var s = score(round), res = fewest(round.h);
     var before = stored().best;
     TO.groupUpdate(GAME, function (g) {
-      delete g.cur;
       g.rounds = (num(g.rounds) ? g.rounds : 0) + 1;
       if (found) {
         g.found = (num(g.found) ? g.found : 0) + 1;
@@ -710,7 +709,7 @@
   bestLine();
   if (friendC >= 0) TO.count(GAME + "/challenge-opened");
 
-  function plainAddress() {           // once a friend's country is hidden, the address loses ?c=, so that a reload goes on with the round
+  function plainAddress() {           // once a friend's country is hidden, the address loses ?c=: a new opening is a plain start
     if (window.location.search && window.history && window.history.replaceState) {
       try { window.history.replaceState(null, "", window.location.pathname); } catch (e) { /* keep the address */ }
     }
@@ -729,6 +728,7 @@
   $("btn-stop").addEventListener("click", function () { TO.closeDialog($("dlg-guess")); TO.openDialog($("dlg-stop")); });
   $("btn-giveup").addEventListener("click", function () { TO.closeDialog($("dlg-stop")); if (round && !round.over) finish(false); });
   $("btn-answers").addEventListener("click", renderTrail);
+  $("btn-restart-yes").addEventListener("click", function () { fresh(); $("btn-start").focus(); });
   $("btn-again").addEventListener("click", function () {
     plainAddress();
     newRound(-1);
@@ -754,13 +754,28 @@
     });
   });
 
-  // a round that was going on before a reload goes on (unless a friend's link asks for another country)
-  var cur = restore();
-  if (cur && friendC < 0) {
-    round = cur;
-    if (possible(round).indexOf(round.h) < 0) round.seq = [];         // a broken record: never lose the hidden country
-    showPlay(true);
-  } else {
+  /* ---------- starting afresh (Khayyam, 6 Oct 2026: the game must restart when you go to the home page and come back,
+     and a Restart button). Every opening of the page (from the home page, the Back button or a reload) and Restart
+     drop the round in play and show the start. The table's best stays. ---------- */
+  function fresh() {
+    Array.prototype.forEach.call(document.querySelectorAll("dialog"), function (d) { TO.closeDialog(d); });
+    round = null;
+    tab = TABS[0].id;
     showStart();
   }
+  /* for the checks (r/site-workshop/checks/t_one.py): a round going on, handed over and read back. Nothing is stored. */
+  window.OneOf193.load = function (cur) {
+    fresh();
+    var r = resume(cur);
+    if (!r) return false;
+    round = r;
+    if (possible(round).indexOf(round.h) < 0) round.seq = [];         // a broken record: never lose the hidden country
+    showPlay(true);
+    return true;
+  };
+  window.OneOf193.now = saved;
+
+  // a page that the browser brings back from its memory (the Back button) starts afresh too
+  window.addEventListener("pageshow", function (e) { if (e.persisted) fresh(); });
+  fresh();
 })();

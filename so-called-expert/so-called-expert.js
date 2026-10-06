@@ -4,7 +4,9 @@
    then the phone goes to the middle and everyone else points at the fact they think is invented. The reveal shows
    the invented fact, always marked as invented by Logicers, the truth and its sources; then the four true facts with
    theirs. Each player who found it gets a point; the expert gets a point for each player fooled. Most points wins.
-   Not daily: no day number, no streak, no album. Names and wins are kept in this browser (TO.groupUpdate).
+   Not daily: no day number, no streak, no album. Every opening of the page starts fresh (Khayyam, 6 Oct 2026): the
+   players' names, the game and the wins at this table live only while the page is open, and are never stored. The
+   browser keeps only the cards a table had lately (TO.groupUpdate), so that it deals new ones first.
    The cards come from data/so-called-expert.js (made by r/so-called-expert-workshop/build.py, which checks them). */
 (function () {
   "use strict";
@@ -126,27 +128,25 @@
     return names.length < 2 ? names.join("") : names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
   }
 
-  /* ---------- who plays: how many, and their names (optional, kept in this browser) ---------- */
-  var setup = (function () {
-    var g = stored(), n = num(g.n) && g.n >= PLAYERS_MIN && g.n <= PLAYERS_MAX ? Math.round(g.n) : 4;
-    var nm = Array.isArray(g.names) ? g.names.slice(0, PLAYERS_MAX).map(clean) : [];
+  /* ---------- who plays: how many, and their names (optional). They live only while the page is open. ---------- */
+  function blankSetup() {
+    var nm = [];
     while (nm.length < PLAYERS_MAX) nm.push("");
-    return { n: n, names: nm };
-  })();
-  function nameOf(i) { return setup.names[i] || "Player " + (i + 1); }
-  function saveSetup() {
-    TO.groupUpdate(GAME, function (g) { g.n = setup.n; g.names = setup.names.slice(); });
+    return { n: 4, names: nm };
   }
+  var setup = blankSetup();
+  function nameOf(i) { return setup.names[i] || "Player " + (i + 1); }
+  /* the table of this sitting: the wins per name, and who is the first expert of the next game */
+  var table = { wins: {}, next: 0 };
+  /* what earlier versions kept in the browser (names, wins, a game going on) is cleared: nothing about the players stays */
+  TO.groupUpdate(GAME, function (g) { delete g.cur; delete g.names; delete g.wins; delete g.next; delete g.n; });
 
-  /* ---------- the game: kept in the browser, so that a reload or a locked phone does not lose it ----------
+  /* ---------- the game, in the page only: a new opening of the page (or Restart) starts afresh ----------
      { p: names, first: the first expert, k: the turn (0 to n-1), cards: [card id per turn], ord: [the order of the
        five facts per turn], found: [[the players who found it] per turn scored], st: "hand" | "vote" | "reveal" |
-       "sum", over } . The expert's card is never stored as a view: after a reload the phone asks for the expert again. */
+       "sum", over } */
   var game = null;
   var view = "start";
-  function save() {
-    TO.groupUpdate(GAME, function (g) { if (game && !game.over) g.cur = game; else delete g.cur; });
-  }
   function validGame(x) {
     if (!x || typeof x !== "object" || !Array.isArray(x.p) || x.p.length < PLAYERS_MIN || x.p.length > PLAYERS_MAX) return false;
     var n = x.p.length;
@@ -169,19 +169,12 @@
     }
     return true;
   }
-  function restore() {
-    var cur = stored().cur;
-    if (!validGame(cur)) return null;
-    cur.p = cur.p.map(function (s, i) { return clean(s) || "Player " + (i + 1); });
-    cur.over = false;
-    return cur;
-  }
   function recentList() {
     var r = stored().recent;
     return Array.isArray(r) ? r.filter(function (x) { return typeof x === "string"; }).slice(-RECENT) : [];
   }
   function newGame(forced) {
-    var g = stored(), n = setup.n, first = num(g.next) && g.next >= 0 && g.next < n ? Math.round(g.next) : 0;
+    var n = setup.n, first = num(table.next) && table.next >= 0 && table.next < n ? Math.round(table.next) : 0;
     var rnd = Math.random;
     game = { p: [], first: first, k: 0, cards: deal(n, recentList(), forced, rnd), ord: [], found: [], st: "hand", over: false };
     for (var i = 0; i < n; i++) { game.p.push(nameOf(i)); game.ord.push(order(rnd)); }
@@ -190,7 +183,6 @@
       game.cards.forEach(function (id) { var at = r.indexOf(id); if (at >= 0) r.splice(at, 1); r.push(id); });
       g2.recent = r.slice(-RECENT);
     });
-    save();
     TO.count(GAME + "/started");
   }
   function cur() { return card(game.cards[game.k]); }
@@ -206,6 +198,7 @@
     if (v !== "card") $("card-facts").innerHTML = "";      // the stamp never stays in the page once the card is put away
     if (v !== "vote") $("vote-facts").innerHTML = "";      // nor the facts of a turn in the views that do not show them
     if (v !== "sum") $("sum-facts").innerHTML = "";
+    $("btn-restart").hidden = !(game && !game.over);        // Restart only while a game is in play
     fit();
   }
   /* every view must fit the screen without scrolling: step down until it does */
@@ -258,7 +251,7 @@
         inp.placeholder = "Player " + (i + 1);
         inp.value = setup.names[i];
         inp.setAttribute("aria-label", "Name of player " + (i + 1));
-        inp.addEventListener("input", function () { setup.names[i] = clean(inp.value); saveSetup(); renderSetup(); });
+        inp.addEventListener("input", function () { setup.names[i] = clean(inp.value); renderSetup(); });
         lab.appendChild(inp);
         box.appendChild(lab);
       })(i);
@@ -304,7 +297,7 @@
 
   /* passing the phone (Khayyam, 5 Oct 2026, late evening, after trying Still In: it must say so very plainly):
      before every turn a whole screen says what the last turn gave and to whom the phone goes; the expert taps to say
-     they have it, and only then the card shows. A reload shows this screen again, never the card. */
+     they have it, and only then the card shows. */
   function handRecap() {
     if (game.k === 0) return "A new game: each of you is the expert once.";
     var k = game.k - 1, e = game.p[expertOf(game, k)], c = inText(card(game.cards[k]));
@@ -315,7 +308,6 @@
   function showHand() {
     var e = game.p[expert()];
     game.st = "hand";
-    save();
     show("hand");
     $("hand-res").textContent = handRecap();
     $("hand-name").textContent = e;
@@ -363,7 +355,6 @@
   function showVote() {
     var c = cur(), e = game.p[expert()];
     game.st = "vote";
-    save();
     show("vote");
     $("vote-k").textContent = e + " is the expert · " + title(c);
     var box = $("vote-facts");
@@ -390,7 +381,6 @@
   function showReveal() {
     var c = cur(), e = expert(), inv = facts().filter(function (f) { return f.inv; })[0];
     game.st = "reveal";
-    save();
     show("reveal");
     $("rev-k").textContent = title(c) + " · number " + inv.n + " was invented";
     $("rev-head").textContent = inv.t;
@@ -428,7 +418,6 @@
     if (!game || game.st !== "reveal") return;
     game.found[game.k] = picked.slice().sort(function (a, b) { return a - b; });
     game.st = "sum";
-    save();
     showSum(true);
   }
 
@@ -472,14 +461,9 @@
   function finish() {
     game.over = true;
     var w = winners(game).map(function (i) { return game.p[i]; });
-    TO.groupUpdate(GAME, function (g) {
-      delete g.cur;
-      g.games = (num(g.games) ? g.games : 0) + 1;
-      var wins = (g.wins && typeof g.wins === "object" && !Array.isArray(g.wins)) ? g.wins : {};
-      w.forEach(function (x) { wins[x] = (num(wins[x]) ? wins[x] : 0) + 1; });
-      g.wins = wins;
-      g.next = (game.first + 1) % game.p.length;            // the next game starts with the next player as the expert
-    });
+    w.forEach(function (x) { table.wins[x] = (num(table.wins[x]) ? table.wins[x] : 0) + 1; });
+    table.next = (game.first + 1) % game.p.length;          // the next game starts with the next player as the expert
+    TO.groupUpdate(GAME, function (g) { g.games = (num(g.games) ? g.games : 0) + 1; });
     TO.count(GAME + "/finished");
     winsLine();
     prepareCard();
@@ -512,12 +496,12 @@
     fit();
   }
   function tallyLine() {
-    var w = stored().wins || {}, parts = [];
+    var w = table.wins, parts = [];
     game.p.forEach(function (x) { parts.push(x + " (" + (num(w[x]) ? w[x] : 0) + ")"); });
     $("tally").textContent = "Wins at this table: " + parts.join(", ") + ".";
   }
   function winsLine() {
-    var w = stored().wins || {}, list = $("wins-list");
+    var w = table.wins, list = $("wins-list");
     list.innerHTML = "";
     var names = [];
     for (var i = 0; i < setup.n; i++) names.push(nameOf(i));
@@ -692,13 +676,13 @@
   $("help-count").textContent = "The game has " + CARDS.length + " cards. It deals first the ones your table has not had lately.";
   if (friend) TO.count(GAME + "/challenge-opened");
 
-  function plainAddress() {           // once a friend's card is dealt, the address loses it, so that a reload goes on with the game
+  function plainAddress() {           // once a friend's card is dealt, the address loses it: a new opening is a plain start
     if (window.location.search && window.history && window.history.replaceState) {
       try { window.history.replaceState(null, "", window.location.pathname); } catch (e) { /* keep the address */ }
     }
   }
-  $("btn-fewer").addEventListener("click", function () { if (setup.n > PLAYERS_MIN) { setup.n--; saveSetup(); renderSetup(); } });
-  $("btn-more").addEventListener("click", function () { if (setup.n < PLAYERS_MAX) { setup.n++; saveSetup(); renderSetup(); } });
+  $("btn-fewer").addEventListener("click", function () { if (setup.n > PLAYERS_MIN) { setup.n--; renderSetup(); } });
+  $("btn-more").addEventListener("click", function () { if (setup.n < PLAYERS_MAX) { setup.n++; renderSetup(); } });
   $("btn-names").addEventListener("click", renderNameFields);
   $("btn-start").addEventListener("click", function () {
     var f = friend ? friend.card : null;
@@ -713,21 +697,14 @@
   $("btn-score").addEventListener("click", scoreIt);
   $("btn-next").addEventListener("click", nextTurn);
   $("btn-scores").addEventListener("click", renderRoster);
-  $("btn-quit").addEventListener("click", function () { TO.closeDialog($("dlg-scores")); TO.openDialog($("dlg-quit")); });
-  $("btn-quit-yes").addEventListener("click", function () {
-    TO.closeDialog($("dlg-quit"));
-    TO.groupUpdate(GAME, function (g) { delete g.cur; });
-    game = null;
-    showStart();
-    focusOn("btn-start");
-  });
+  $("btn-restart-yes").addEventListener("click", function () { fresh(); focusOn("btn-start"); });
   $("wins-chip").addEventListener("click", winsLine);
   $("btn-again").addEventListener("click", function () {
     plainAddress();
     newGame(null);
     showHand();
   });
-  $("btn-change").addEventListener("click", function () { game = null; showStart(); focusOn("btn-more"); });
+  $("btn-change").addEventListener("click", function () { fresh(); focusOn("btn-more"); });
   $("share").addEventListener("click", function () {
     if (!best) return;
     TO.count(GAME + "/share");
@@ -746,16 +723,44 @@
     });
   });
 
-  // a game that was going on before a reload goes on (unless a friend's link asks for their card).
-  // The expert's card never comes back by itself: the phone asks for the expert first.
-  var was = restore();
-  if (was && !friend) {
-    game = was;
+  /* ---------- starting afresh (Khayyam, 6 Oct 2026: the names must restart every time the game is opened, and the
+     game must restart when you go to the home page and come back; and a Restart button). Every opening of the page
+     (from the home page, the Back button or a reload), Restart and "New players" clear the game, the players' names
+     and the wins at this table, and show the start. ---------- */
+  function fresh() {
+    Array.prototype.forEach.call(document.querySelectorAll("dialog"), function (d) { TO.closeDialog(d); });
+    game = null;
+    picked = [];
+    setup = blankSetup();
+    table = { wins: {}, next: 0 };
+    winsLine();
+    showStart();
+  }
+  /* for the checks (r/site-workshop/checks/t_expert.py): the players, the table and a game going on, set as a table
+     would have them, and read back. Nothing of it is stored. */
+  CORE.load = function (s) {
+    s = s || {};
+    fresh();
+    if (num(s.n) && s.n >= PLAYERS_MIN && s.n <= PLAYERS_MAX) setup.n = Math.round(s.n);
+    if (Array.isArray(s.names)) s.names.slice(0, PLAYERS_MAX).forEach(function (x, i) { setup.names[i] = clean(x); });
+    if (s.wins && typeof s.wins === "object") Object.keys(s.wins).forEach(function (k) { if (num(s.wins[k])) table.wins[k] = s.wins[k]; });
+    if (num(s.next)) table.next = s.next;
+    winsLine();
+    if (!validGame(s.cur)) { showStart(); return false; }
+    game = JSON.parse(JSON.stringify(s.cur));
+    game.p = game.p.map(function (x, i) { return clean(x) || "Player " + (i + 1); });
+    game.over = false;
     if (game.st === "vote") showVote();
     else if (game.st === "reveal") showReveal();
     else if (game.st === "sum") showSum(false);
     else showHand();
-  } else {
-    showStart();
-  }
+    return true;
+  };
+  CORE.now = function () {
+    return JSON.parse(JSON.stringify({ game: game, n: setup.n, names: setup.names, wins: table.wins, next: table.next }));
+  };
+
+  // a page that the browser brings back from its memory (the Back button) starts afresh too
+  window.addEventListener("pageshow", function (e) { if (e.persisted) fresh(); });
+  fresh();
 })();
