@@ -1,0 +1,146 @@
+/* Who Gets What: one real price, split among the people paid out of it.
+   Its own classes carry a "w-" prefix, because the frame's names (.bar is the header) would otherwise reach in. */
+
+.w-q { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em; font-size: 2.1rem; line-height: 1.02; margin: 8px 0 0; }
+
+/* ---- the panel: a card by day, the game's colour once the real split is in ---- */
+.w-panel { background: var(--card); box-shadow: var(--shadow); padding: 14px 14px 12px; }
+.w-panel.revealed { background: var(--c); box-shadow: 0 12px 30px rgba(21, 23, 43, .16); }
+
+/* ---- what it is, where, when, and what it costs ---- */
+.w-thing { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2px 12px; }
+.w-what { grid-column: 1; font-family: var(--display); font-weight: 800; font-size: 1.26rem; line-height: 1.1; letter-spacing: -0.02em; margin: 0; }
+.w-when { grid-column: 1; margin: 2px 0 0; color: var(--soft); font-weight: 600; font-size: 0.9rem; line-height: 1.1; }
+.w-price { grid-column: 2; grid-row: 1 / span 2; margin: 0; text-align: right; }
+.w-price b { font-family: var(--display); font-weight: 800; font-size: 2.15rem; line-height: 0.96; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; display: block; }
+.w-unit { display: block; color: var(--soft); font-weight: 600; font-size: 0.8rem; margin-top: 2px; }
+.w-panel.revealed .w-when, .w-panel.revealed .w-unit { color: rgba(255, 255, 255, .8); }
+
+/* ---- the bars ---- */
+.w-bars { margin-top: 13px; }
+.w-row + .w-row { margin-top: 9px; }
+.w-rowlab { margin: 0 0 4px; font-weight: 800; font-size: 0.76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.w-panel.revealed .w-rowlab { color: rgba(255, 255, 255, .82); }
+.w-bar { position: relative; height: 66px; border-radius: 13px; overflow: hidden; background: var(--tint); touch-action: none; -webkit-tap-highlight-color: transparent; }
+.w-realbar { height: 52px; }
+.w-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; }
+
+.w-slice { position: absolute; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; overflow: hidden; transition: none; }
+.w-slice .ic { width: 22px; height: 22px; flex: none; }
+.w-slice .ic path, .w-slice .ic circle, .w-slice .ic rect, .w-slice .ic line, .w-slice .ic polyline { vector-effect: non-scaling-stroke; }
+.w-slice .m { font-weight: 800; font-size: 0.8rem; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.w-slice.thin .m { display: none; }
+.w-slice.hair .ic { display: none; }
+/* four shades of the game's own colour, dark to light, so the slices read apart without a second hue */
+.w-slice.s0 { background: var(--c); color: var(--on-c); }
+.w-slice.s1 { background: color-mix(in srgb, var(--c) 74%, #fff); color: var(--on-c); }
+.w-slice.s2 { background: color-mix(in srgb, var(--c) 46%, #fff); color: #15172B; }
+.w-slice.s3 { background: color-mix(in srgb, var(--c) 22%, #fff); color: #15172B; }
+.w-slice + .w-slice { box-shadow: inset 1px 0 0 rgba(255, 255, 255, .55); }
+/* once the panel takes the game's colour, the slices must be lighter than it, or the darkest one disappears */
+.w-panel.revealed .w-bar { background: rgba(255, 255, 255, .16); }
+.w-panel.revealed .w-slice.s0 { background: #fff; color: #083D13; }
+.w-panel.revealed .w-slice.s1 { background: color-mix(in srgb, #fff 85%, var(--c)); color: #083D13; }
+.w-panel.revealed .w-slice.s2 { background: color-mix(in srgb, #fff 68%, var(--c)); color: #083D13; }
+.w-panel.revealed .w-slice.s3 { background: color-mix(in srgb, #fff 50%, var(--c)); color: #083D13; }
+.w-panel.revealed .w-slice + .w-slice { box-shadow: inset 1px 0 0 rgba(8, 61, 19, .22); }
+
+/* the lines you drag */
+.w-div { position: absolute; top: -8px; bottom: -8px; width: 34px; margin-left: -17px; display: flex; align-items: center; justify-content: center; cursor: ew-resize; touch-action: none; z-index: 3; }
+.w-div::before { content: ""; position: absolute; top: 8px; bottom: 8px; width: 3px; background: var(--card); border-radius: 2px; box-shadow: 0 0 0 1px rgba(21, 23, 43, .14); }
+.w-div i { position: relative; width: 22px; height: 30px; border-radius: 11px; background: var(--card); box-shadow: 0 2px 7px rgba(21, 23, 43, .3), 0 0 0 1px rgba(21, 23, 43, .1); display: block; }
+.w-div i::after { content: ""; position: absolute; inset: 0; background:
+    linear-gradient(to right, transparent 7px, var(--soft) 7px, var(--soft) 8.5px, transparent 8.5px,
+                              transparent 13px, var(--soft) 13px, var(--soft) 14.5px, transparent 14.5px); }
+.w-div:active i, .w-div.on i { transform: scale(1.08); }
+.w-div:focus-visible { outline: none; }
+.w-div:focus-visible i { outline: 3px solid var(--c); outline-offset: 3px; }
+.w-bar.done .w-div { display: none; }
+
+/* ---- the key under the bar: an icon, one word, and the money ---- */
+.w-keys { list-style: none; margin: 11px 0 0; padding: 0; display: grid; gap: 5px; }
+.w-keys li { display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 9px; font-weight: 600; font-size: 0.96rem; line-height: 1.1; }
+.w-keys .ic { width: 22px; height: 22px; color: var(--c); }
+.w-panel.revealed .w-keys .ic { color: #fff; }
+.w-keys .n { font-weight: 700; }
+.w-keys .v { font-variant-numeric: tabular-nums; font-weight: 700; display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.w-keys .yours { opacity: .72; font-weight: 600; }
+.w-keys .real { font-weight: 800; }
+.w-keys .off { background: var(--miss); color: #15172B; border-radius: 7px; padding: 1px .36em 2px; font-weight: 800; font-size: 0.86rem; font-variant-numeric: tabular-nums; }
+.w-keys .spot { background: #fff; color: var(--c); border-radius: 7px; padding: 1px .36em 2px; font-weight: 800; font-size: 0.86rem; }
+
+/* ---- the verdict ---- */
+.w-verdict { margin-top: 12px; }
+
+.w-hint { margin: 10px 4px 0; color: var(--soft); font-weight: 500; line-height: 1.25; max-width: 15em; }
+.w-note { margin: 9px 4px 0; line-height: 1.32; font-size: 0.93rem; }
+.w-sources { list-style: none; margin: 12px 0 0; padding: 0; color: var(--soft); font-size: 0.9rem; line-height: 1.4; }
+.w-sources li { margin-top: 3px; }
+.w-sources a { color: inherit; }
+
+/* the stamp in the album: the price, what it was, and where */
+.stamp.wg .p { font-family: var(--display); font-weight: 800; font-size: 1.62rem; letter-spacing: -0.04em; line-height: 0.95; font-variant-numeric: tabular-nums; }
+.stamp.wg .what { font-weight: 600; font-size: 0.8rem; margin-top: 3px; }
+.stamp.wg .of { font-weight: 600; font-size: 0.74rem; opacity: 0.88; margin-top: 2px; }
+.stamp.wg .wgi { width: 26px; height: 26px; opacity: .9; margin-bottom: auto; }
+
+/* ---- room: three steps down for a short screen, set by the script when the page is taller than the window ---- */
+.fit1 .w-q { font-size: 1.86rem; }
+.fit1 .w-price b { font-size: 1.92rem; }
+.fit1 .w-bar { height: 60px; }
+.fit1 .w-realbar { height: 48px; }
+.fit2 .w-q { font-size: 1.66rem; }
+.fit2 .w-what { font-size: 1.14rem; }
+.fit2 .w-price b { font-size: 1.72rem; }
+.fit2 .w-bar { height: 54px; }
+.fit2 .w-realbar { height: 44px; }
+.fit2 .w-keys li { font-size: 0.9rem; }
+.fit2 .w-hint { font-size: 0.92rem; }
+.fit3 .w-q { font-size: 1.46rem; }
+.fit3 .w-what { font-size: 1.06rem; }
+.fit3 .w-when { font-size: 0.84rem; }
+.fit3 .w-price b { font-size: 1.5rem; }
+.fit3 .w-bar { height: 48px; }
+.fit3 .w-realbar { height: 40px; }
+.fit3 .w-slice .ic { width: 18px; height: 18px; }
+.fit3 .w-keys { gap: 3px; }
+.fit3 .w-keys li { font-size: 0.86rem; }
+.fit3 .w-panel { padding: 11px 11px 10px; }
+
+@media (min-width: 560px) {
+  .w-q { font-size: 2.5rem; }
+  .w-what { font-size: 1.5rem; }
+  .w-price b { font-size: 2.6rem; }
+  .w-bar { height: 82px; }
+  .w-realbar { height: 64px; }
+  .w-slice .ic { width: 26px; height: 26px; }
+  .w-slice .m { font-size: 0.92rem; }
+  .w-keys li { font-size: 1.02rem; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .w-panel { background: rgba(255, 255, 255, .045); box-shadow: inset 0 0 0 1px var(--line); }
+  .w-panel.revealed { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 20%, #0D1022), #0D1022 78%); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent), 0 0 44px color-mix(in srgb, var(--c) 16%, transparent); }
+  .w-bar { background: rgba(255, 255, 255, .07); }
+  .w-slice.s0 { background: var(--c); color: #0B1020; }
+  .w-slice.s1 { background: color-mix(in srgb, var(--c) 72%, #0D1022); color: #F3F4FF; }
+  .w-slice.s2 { background: color-mix(in srgb, var(--c) 44%, #0D1022); color: #F3F4FF; }
+  .w-slice.s3 { background: color-mix(in srgb, var(--c) 22%, #0D1022); color: #F3F4FF; }
+  .w-slice + .w-slice { box-shadow: inset 1px 0 0 rgba(0, 0, 0, .4); }
+  .w-panel.revealed .w-bar { background: rgba(255, 255, 255, .1); }
+  .w-panel.revealed .w-slice.s0 { background: var(--c); color: #061508; }
+  .w-panel.revealed .w-slice.s1 { background: color-mix(in srgb, var(--c) 76%, #0D1022); color: #F3F4FF; }
+  .w-panel.revealed .w-slice.s2 { background: color-mix(in srgb, var(--c) 50%, #0D1022); color: #F3F4FF; }
+  .w-panel.revealed .w-slice.s3 { background: color-mix(in srgb, var(--c) 28%, #0D1022); color: #F3F4FF; }
+  .w-panel.revealed .w-slice + .w-slice { box-shadow: inset 1px 0 0 rgba(0, 0, 0, .45); }
+  .w-div::before { background: #F3F4FF; box-shadow: 0 0 0 1px rgba(0, 0, 0, .45); }
+  .w-div i { background: #F3F4FF; box-shadow: 0 2px 7px rgba(0, 0, 0, .55); }
+  .w-div i::after { opacity: .55; }
+  .w-panel.revealed .w-keys .spot { background: #0D1022; color: var(--c); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .w-real { animation: w-slide .5s cubic-bezier(.2, .8, .25, 1) both; }
+  @keyframes w-slide { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+  .w-slice.move { transition: left .5s cubic-bezier(.2, .8, .25, 1), width .5s cubic-bezier(.2, .8, .25, 1); }
+}

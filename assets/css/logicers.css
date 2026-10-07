@@ -69,6 +69,7 @@
 [data-g="expert"]  { --c: #9B0238; --tint: #FDE4E7; }       /* So-Called Expert, the third game for groups: crimson */
 [data-g="beat"]    { --c: #6F6C00; --tint: #EEEFD8; }       /* Beat the Phone, the fourth game for groups: olive */
 [data-g="twin"]    { --c: #845B83; --tint: #F5E6F4; }       /* Twin or Trap, the fifth game for groups: heather */
+[data-g="gets"]    { --c: #005E16; --tint: #DCF2E2; }       /* Who Gets What, the seventh daily game: forest green */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -97,6 +98,7 @@
   [data-g="expert"]  { --c: #F6BAD2; --tint: #270C12; }
   [data-g="beat"]    { --c: #BFD957; --tint: #161906; }
   [data-g="twin"]    { --c: #C29BBB; --tint: #190D18; }
+  [data-g="gets"]    { --c: #35C95F; --tint: #081F0F; }
 }
 
 /* ---------- base ---------- */

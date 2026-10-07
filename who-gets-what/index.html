@@ -4,32 +4,32 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Long Lost Cousin: a daily game about animal family trees | Logicers</title>
-<link rel="canonical" href="https://logicers.com/long-lost-cousin/">
-<meta name="description" content="One animal, three others. Which one is its closest relative? Pick one, then watch the family tree draw itself.">
-<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<title>Who Gets What: a daily game about where the money goes | Logicers</title>
+<link rel="canonical" href="https://logicers.com/who-gets-what/">
+<meta name="description" content="One real price a day. Drag the dividers to split it among the people who are paid out of it, then see the real split and where it comes from.">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
 <meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
 <meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
 <meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
-<meta property="og:title" content="Long Lost Cousin">
-<meta property="og:description" content="One animal, three others. Which one is its closest relative?">
-<meta property="og:url" content="https://logicers.com/long-lost-cousin/">
+<meta property="og:title" content="Who Gets What">
+<meta property="og:description" content="A real price, and the people paid out of it. Who gets what?">
+<meta property="og:url" content="https://logicers.com/who-gets-what/">
 <meta property="og:image" content="https://logicers.com/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FDE6DF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#DCF2E2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
 <link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="stylesheet" href="../assets/css/logicers.css?v=83ffbc1557">
-<link rel="stylesheet" href="long-lost-cousin.css?v=f303581cc6">
+<link rel="stylesheet" href="who-gets-what.css?v=558d050315">
 </head>
-<body class="game" data-g="cousin">
+<body class="game" data-g="gets">
 
 <header class="bar">
   <a class="wordmark" href="../">Logicers</a>
@@ -40,45 +40,46 @@
 </header>
 
 <main class="wrap play" id="app">
-  <p class="meta"><b>Long Lost Cousin</b> <span id="day-label"></span></p>
+  <p class="meta"><b>Who Gets What</b> <span id="day-label"></span></p>
   <p class="notice" id="notice" hidden></p>
-  <h1 class="lc-q" id="question"></h1>
+  <h1 class="w-q" id="question">Who gets what?</h1>
 
-  <section class="panel" id="panel" aria-live="polite">
-    <div class="lc-guess" id="guess">
-      <div class="lc-subject">
-        <span class="lc-pic" id="subject-pic"></span>
-        <span class="lc-name" id="subject-name"></span>
-      </div>
-      <div class="lc-options" id="options" role="group" aria-label="Three possible relatives"></div>
+  <section class="panel w-panel" id="panel" aria-labelledby="question">
+    <div class="w-thing">
+      <p class="w-what" id="what"></p>
+      <p class="w-when"><span id="where"></span> · <span id="when"></span></p>
+      <p class="w-price"><b id="price"></b><span class="w-unit" id="unit" hidden></span></p>
     </div>
 
-    <div class="lc-tree" id="tree" hidden>
-      <div class="lc-leaves" id="leaves"></div>
-      <div class="lc-wood">
-        <svg class="lc-branches" id="branches" viewBox="0 0 400 150" aria-hidden="true"></svg>
-        <p class="lc-when" id="when" hidden></p>
+    <div class="w-bars">
+      <div class="w-row" id="row-you">
+        <p class="w-rowlab" id="lab-you" hidden>You</p>
+        <div class="w-bar" id="bar" role="group" aria-labelledby="bar-label"></div>
+        <p class="w-sr" id="bar-label">The whole price. Drag the lines between the slices to say who gets what.</p>
+      </div>
+      <div class="w-row w-real" id="row-real" hidden>
+        <p class="w-rowlab">Really</p>
+        <div class="w-bar w-realbar" id="realbar" aria-hidden="true"></div>
       </div>
     </div>
 
-    <div class="readout lc-readout">
-      <p class="hint" id="hint">Tap the closest relative.</p>
-      <div class="verdict" id="verdict" hidden>
-        <p class="turnsout" id="turnsout"></p>
-        <p class="offby" id="offby"></p>
-      </div>
+    <ul class="w-keys" id="keys" aria-label="The slices"></ul>
+
+    <div class="verdict w-verdict" id="verdict" hidden>
+      <p class="offby" id="offby" aria-live="polite"></p>
     </div>
   </section>
 
+  <p class="w-hint" id="hint">Drag the lines. Let go when it looks right.</p>
   <div class="actions reserve" id="guess-actions">
-    <button class="btn solid" id="lock" type="button" hidden>See the family tree</button>
+    <button class="btn solid" id="btn-show" type="button">Show the split</button>
   </div>
 
   <section class="after" id="after" hidden>
     <p class="friend" id="friend" hidden></p>
     <p class="sentence" id="sentence"></p>
-    <p class="source">Sources: <a id="src1" href="#" target="_blank" rel="noopener"></a>, <a id="src2" href="#" target="_blank" rel="noopener"></a></p>
-    <p class="source lc-credit" id="pic-credit"></p>
+    <p class="w-note quiet" id="note" hidden></p>
+    <ul class="w-sources" id="sources" aria-label="Sources"></ul>
 
     <div class="actions">
       <button class="btn solid" id="share" type="button">Share</button>
@@ -86,8 +87,8 @@
     </div>
 
     <div class="earned" id="earned" hidden>
-      <div class="stamp lc" id="earned-stamp"></div>
-      <p>This one is now a stamp in your album.</p>
+      <div class="stamp wg" id="earned-stamp"></div>
+      <p>This price is now a stamp in your album.</p>
     </div>
     <p class="next" id="next"></p>
   </section>
@@ -98,17 +99,16 @@
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
     <h2 id="help-title">How to play</h2>
     <ol>
-      <li>Look at the animal or plant at the top.</li>
-      <li>Tap the one of the three below that you think is its closest relative.</li>
-      <li>Tap "See the family tree".</li>
+      <li>At the top is something real and what it costs, in one country, in one year.</li>
+      <li>The bar underneath is that whole price. It is split between the people and the steps that are paid out of it: an icon and one word for each.</li>
+      <li>Drag the lines between the slices until the money looks right to you, then tap Show the split.</li>
+      <li>The real split slides in under yours, and you see how much of the price you put in the wrong place.</li>
     </ol>
-    <p>One puzzle a day, the same for everyone. A new one arrives at midnight.</p>
-    <h3>What "closest relative" means</h3>
-    <p class="quiet">Two living things are close relatives when the ancestor they share lived not so long ago. Looks can fool you: animals that live in the same way often end up looking alike. The game only asks about the three it shows. The closest relative of all may be none of them.</p>
-    <h3>Where the facts come from</h3>
-    <p class="quiet">Every answer is checked against two sources, linked under the answer. The game only uses relationships that scientists agree on.</p>
-    <h3>Where the pictures come from</h3>
-    <p class="quiet">The silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, a free library of drawings of living things. Many are in the public domain. Where the artist asks for credit, the name and the licence stand under the answer. The drawings were simplified for small screens. PhyloPic does not endorse this site.</p>
+    <p>One price a day, the same for everyone. A new one arrives at midnight.</p>
+    <h3>Where the splits come from</h3>
+    <p class="quiet">Each one is published by a body that measures it — a government agency, a regulator, a United Nations agency, a research institute or an industry body — and was read against a second source on another website. Both are linked under the answer, and the year is always on the price, because these figures move.</p>
+    <h3>What a slice really covers</h3>
+    <p class="quiet">A slice is often a whole step of the chain rather than one person's pocket: "Shop" can mean the shop's rent and staff as well as its profit. Where that matters, a line under the answer says so.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <h3>Contact</h3>
@@ -124,9 +124,9 @@
       <div class="stat"><b id="st-played">0</b><span>days played</span></div>
       <div class="stat"><b id="st-streak">0</b><span>streak now</span></div>
       <div class="stat"><b id="st-best">0</b><span>best streak</span></div>
-      <div class="stat"><b id="st-found">0</b><span>cousins found</span></div>
+      <div class="stat"><b id="st-avg">0%</b><span>of the price misplaced, on average</span></div>
     </div>
-    <p class="album-empty" id="album-empty">Find today's cousin to get your first stamp.</p>
+    <p class="album-empty" id="album-empty">Split today's price to get your first stamp.</p>
     <div class="album" id="album"></div>
   </div>
 </dialog>
@@ -135,10 +135,10 @@
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
     <h2 id="practice-title">Practice</h2>
-    <p class="quiet">Yesterday's puzzle. Practice does not count for your streak or your album.</p>
+    <p class="quiet">Yesterday's price. Practice does not count for your streak or your album.</p>
     <p class="quiet" id="practice-empty" hidden>Nothing to practise yet. Come back tomorrow.</p>
     <ul class="days" id="practice-list"></ul>
-    <div class="actions" id="practice-back" hidden><a class="btn solid" href="./">Back to today's puzzle</a></div>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="./">Back to today's price</a></div>
   </div>
 </dialog>
 
@@ -147,9 +147,9 @@
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
     <h2 id="share-title">Share your result</h2>
     <p class="quiet">Send the link along with the picture, so friends can tap it.</p>
-    <img class="shot" id="share-img" alt="Your result as a picture. It does not show which one is the closest relative.">
+    <img class="shot" id="share-img" alt="Your result as a picture. It shows the price, how you split it and how much you put in the wrong place, but not the real split.">
     <div class="actions">
-      <a class="btn solid" id="share-save" download="long-lost-cousin.png">Save picture</a>
+      <a class="btn solid" id="share-save" download="who-gets-what.png">Save picture</a>
       <button class="btn ghost" id="share-copy" type="button">Copy link</button>
     </div>
     <p class="copied" id="share-copied" role="status"></p>
@@ -160,6 +160,6 @@
 
 <script src="puzzles.js"></script>
 <script src="../assets/js/turnsout.js?v=94e4704702"></script>
-<script src="long-lost-cousin.js?v=3abd6c981f"></script>
+<script src="who-gets-what.js?v=44de80aa0f"></script>
 </body>
 </html>
