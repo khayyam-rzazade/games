@@ -285,22 +285,24 @@
   /* ------------------------------------------------------------------
      The games for groups ("Pass the phone" on the home page): one phone, a group of players, any time and as
      often as they like. In the order of their row: the newest first, then the others in the order they arrived
-     (since the evening of 6 Oct 2026: Beat the Phone, One of 193, Still In, So-Called Expert). They are not daily: no day number, no streak, no album. Nothing they store counts in the
+     (since the night of 6 to 7 Oct 2026: Twin or Trap, One of 193, Still In, So-Called Expert, Beat the Phone). They are not daily: no day number, no streak, no album. Nothing they store counts in the
      Today card, the streak of the site, the way onward or the returning-player events, which all read GAMES only.
-     Their own records (a table's best result or journey, the countries, rules, cards and stops it had lately) are kept
+     Their own records (a table's best result or journey, the countries, rules, cards, stops and words it had lately) are kept
      apart, under "groups". Since 6 Oct 2026 the players' names, the wins and a game going on are never stored: every
      opening of a game's page starts afresh.
      To add one: add it here and to GROUP in r/site-workshop/build_home.py, and give it a colour in logicers.css.
      ------------------------------------------------------------------ */
   var GROUP = [
-    { id: "beat-the-phone", key: "beat", name: "Beat the Phone", href: "beat-the-phone/", players: "2+ players",
-      pitch: "Ten stops round the world, three lives. The whole table against the phone." },
+    { id: "twin-or-trap", key: "twin", name: "Twin or Trap", href: "twin-or-trap/", players: "2+ players",
+      pitch: "Same word, two languages. Twin or trap?" },
     { id: "one-of-193", key: "o193", name: "One of 193", href: "one-of-193/", players: "2+ players",
       pitch: "The phone hides a country. Ask yes or no, and find it." },
     { id: "still-in", key: "still", name: "Still In", href: "still-in/", players: "2+ players",
       pitch: "Twelve countries, one rule. Tap one that fits, or you're out." },
     { id: "so-called-expert", key: "expert", name: "So-Called Expert", href: "so-called-expert/", players: "3+ players",
-      pitch: "Five facts about a country, one invented. Can the table spot it?" }
+      pitch: "Five facts about a country, one invented. Can the table spot it?" },
+    { id: "beat-the-phone", key: "beat", name: "Beat the Phone", href: "beat-the-phone/", players: "2+ players",
+      pitch: "Ten stops round the world, three lives. The whole table against the phone." }
   ];
   function group(id) {
     var all = readAll();

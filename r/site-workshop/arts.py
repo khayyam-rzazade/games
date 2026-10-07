@@ -165,3 +165,20 @@ def art_beat():
     for i, cls in enumerate(['fg', 'fg', 'miss']):
         s.append(f'<path class="{cls}" transform="translate({214 + i * 26} 22) scale(1.05)" d="{heart}"/>')
     return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'
+
+
+def art_twin():
+    """Twin or Trap: one word in two languages, as the game shows it: a card with two rows, each a small language label
+    and the same word (bars of the same length), and across its corner a stamp with an "is not equal" sign: is it the
+    same, or a trap? The card starts right of where the badge "New" sits."""
+    s = ['<rect class="q" x="76" y="30" width="190" height="124" rx="14"/>']
+    for y in (52, 106):
+        s.append(f'<rect class="mute" x="94" y="{y + 9}" width="30" height="9" rx="4.5"/>')
+        s.append(f'<rect class="fg" x="136" y="{y}" width="98" height="26" rx="8"/>')
+    s.append('<rect class="mute" x="94" y="91" width="154" height="2.5" rx="1.25"/>')
+    # the stamp: a tilted outline with an "is not equal" sign inside
+    s.append('<g transform="rotate(-9 236 158)"><rect class="q" x="204" y="136" width="64" height="44" rx="9"/>'
+             '<rect class="stamp" x="204" y="136" width="64" height="44" rx="9" fill="none" stroke-width="3.5"/>'
+             '<rect class="fg" x="221" y="149" width="30" height="5.5" rx="2.75"/><rect class="fg" x="221" y="161.5" width="30" height="5.5" rx="2.75"/>'
+             '<rect class="fg" x="233.5" y="141" width="5" height="34" rx="2.5" transform="rotate(32 236 158)"/></g>')
+    return '<svg viewBox="0 0 320 200" aria-hidden="true" focusable="false">' + ''.join(s) + '</svg>'

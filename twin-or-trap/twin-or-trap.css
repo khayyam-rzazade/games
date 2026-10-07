@@ -1,0 +1,259 @@
+/* Twin or Trap: a group game for one phone. Its colour (heather) is set in logicers.css ([data-g="twin"]).
+   Six views (start, the hand-over, the word, the answer, who was right, the end).
+   Everything fits a 320 by 568 phone without scrolling; if a view is still too high, the script steps it down
+   (fit1 to fit3). The words and sentences of other languages are set in Literata (SIL Open Font License, in
+   assets/fonts), which has the letters of every language here: Cyrillic, ı and ş, and ə for Azerbaijani later. */
+
+@font-face { font-family: "Literata"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../assets/fonts/literata-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Literata"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../assets/fonts/literata-latin-ext-600-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Literata"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../assets/fonts/literata-cyrillic-600-normal.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Literata"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../assets/fonts/literata-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Literata"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../assets/fonts/literata-latin-ext-400-italic.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Literata"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../assets/fonts/literata-cyrillic-400-italic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+:root { --lit: "Literata", Georgia, "Times New Roman", serif; }
+/* every opening of the page starts the game afresh, so a pull on the page must not reload it by accident (as in the
+   other games for groups since 6 Oct 2026) */
+html, body { overscroll-behavior-y: none; }
+
+.w-view { margin-top: 6px; }
+
+/* ---------- the start ---------- */
+.w-title { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 7.4vw, 2.2rem); line-height: 1.04; letter-spacing: -0.035em; margin-top: 6px; text-wrap: balance; }
+.w-lede { margin-top: 10px; color: var(--soft); font-size: 1.02rem; line-height: 1.4; }
+.w-friend { margin: 12px 0 0; padding: 10px 14px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); line-height: 1.3; font-weight: 500; }
+.w-players { display: flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 8px 8px 16px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); }
+.w-players-label { font-weight: 700; margin-right: auto; }
+.w-step { appearance: none; border: 0; width: 42px; height: 42px; border-radius: 50%; background: var(--tint); color: var(--c); font-weight: 800; font-size: 1.4rem; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent; }
+.w-step[disabled] { opacity: .35; cursor: default; }
+.w-count { min-width: 1.6ch; text-align: center; font-family: var(--display); font-weight: 800; font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+.w-names-btn { appearance: none; border: 0; height: 42px; padding: 0 16px; border-radius: 999px; background: var(--c); color: var(--on-c); font-weight: 700; font-size: 0.92rem; cursor: pointer; margin-left: 4px; -webkit-tap-highlight-color: transparent; }
+.w-names { margin: 8px 4px 0; color: var(--soft); font-size: 0.9rem; font-weight: 600; line-height: 1.35; min-height: 1.35em; }
+.w-small { margin-top: 10px; color: var(--soft); font-size: 0.88rem; line-height: 1.35; }
+#v-start .actions { margin-top: 14px; }
+
+/* ---------- headings shared by the word's views ---------- */
+.w-kicker { color: var(--soft); font-weight: 700; font-size: 0.86rem; line-height: 1.2; }
+.w-q { font-family: var(--display); font-weight: 800; font-size: 1.55rem; line-height: 1.06; letter-spacing: -0.03em; margin-top: 12px; text-wrap: balance; }
+.w-q-who { margin-top: 2px; }
+.w-line { margin-top: 6px; color: var(--soft); font-size: 0.92rem; line-height: 1.3; font-weight: 500; }
+/* a view's heading takes the focus when the view opens, for screen readers: it is not a control, so no ring */
+.w-view [tabindex="-1"]:focus, .w-view [tabindex="-1"]:focus-visible { outline: none; }
+
+/* ---------- passing the phone: a whole screen in the game's colour (as in the other games for groups) ---------- */
+.w-hand { margin-top: 4px; min-height: min(27rem, calc(100vh - 150px)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  padding: 22px 18px 24px; border-radius: 28px; background: var(--c); color: #fff; text-align: center; box-shadow: 0 14px 34px rgba(21, 23, 43, .18);
+  animation: w-hand-in .28s ease-out both; }
+@keyframes w-hand-in { from { opacity: 0; transform: translateY(18px) scale(.985); } }
+.w-hand-res { max-width: 25rem; margin: 0; padding: 10px 14px; border-radius: 16px; background: rgba(255, 255, 255, .15); font-size: 0.95rem; line-height: 1.35; font-weight: 500; }
+.w-hand-ico { width: 76px; height: 48px; margin-top: 4px; }
+.w-hand-t { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; }
+.w-hand-k { font-size: 1.12rem; font-weight: 600; opacity: .94; }
+.w-hand-name { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; font-family: var(--display); font-weight: 800; font-size: 3.2rem; line-height: 1.08; letter-spacing: -0.025em; }
+.w-hand-line { max-width: 24rem; margin: 0; font-size: 0.95rem; line-height: 1.35; font-weight: 500; opacity: .94; }
+.w-hand-go { margin-top: 6px; min-height: 56px; min-width: min(100%, 17rem); padding: 0 24px; border: 0; border-radius: 999px; background: #fff; color: var(--c); font-weight: 800; font-size: 1.05rem; box-shadow: 0 6px 16px rgba(21, 23, 43, .16); }
+.w-hand-go:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.w-view .btn { text-align: center; line-height: 1.12; }
+.w-hand-small { margin-top: 8px; text-align: center; }
+.w-link { appearance: none; border: 0; background: none; padding: 4px 2px; color: var(--soft); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 6px; }
+
+/* ---------- the word: two words, one under the other, like a dictionary's entry ---------- */
+.w-pair { margin-top: 8px; padding: 4px 16px; border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
+.w-side { display: flex; align-items: baseline; gap: 12px; padding: 9px 0 10px; min-width: 0; }
+.w-side + .w-side { border-top: 1px solid var(--line); }
+.w-lang { flex: 0 0 5.9rem; color: var(--c); font-weight: 800; font-size: 0.74rem; letter-spacing: .08em; text-transform: uppercase; }
+.w-word { min-width: 0; font-family: var(--lit); font-weight: 600; font-size: clamp(1.75rem, 8.4vw, 2.35rem); line-height: 1.1; letter-spacing: -0.01em; white-space: nowrap; }
+.w-tr { color: var(--soft); font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+.w-say { margin-top: 12px; }
+.w-say-k { color: var(--soft); font-weight: 700; font-size: 0.84rem; line-height: 1.2; }
+.w-xs { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; }
+.w-x { display: grid; gap: 2px; }
+#word-say .w-x { padding: 3px 0; }          /* room for the word in the sentence: Literata's upright letters stand a little taller than the line */
+.w-sent { font-family: var(--lit); font-style: italic; font-weight: 400; font-size: 1.24rem; line-height: 1.3; overflow-wrap: anywhere; }
+.w-sent b, .w-sent-tr b { font-style: normal; font-weight: 600; color: var(--c); }
+.w-sent-tr { color: var(--soft); font-size: 0.88rem; font-weight: 600; }
+#v-word .actions { margin-top: 12px; }
+
+/* ---------- the answer ---------- */
+.w-reveal { padding: 12px 16px 13px; margin-top: 4px; }
+.w-rev-k { font-weight: 700; font-size: 0.86rem; opacity: .92; line-height: 1.2; }
+.w-stamp-big { display: inline-block; margin-top: 9px; padding: 3px 13px 2px; border: 3px solid currentColor; border-radius: 10px; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: .06em; text-transform: uppercase; line-height: 1.2; transform: rotate(-3deg); animation: w-thump .36s ease-out; }
+@keyframes w-thump { 0% { transform: rotate(-3deg) scale(1.7); opacity: 0; } 70% { transform: rotate(-3deg) scale(.95); opacity: 1; } 100% { transform: rotate(-3deg) scale(1); } }
+.w-means { margin: 10px 0 0; display: grid; gap: 6px; }
+.w-mean { display: grid; gap: 1px; }
+.w-mean dt { font-weight: 600; font-size: 0.86rem; line-height: 1.2; opacity: .92; }
+.w-mean dt b { font-family: var(--lit); font-weight: 600; font-size: 1.12rem; opacity: 1; }
+.w-mean dd { margin: 0; font-weight: 700; font-size: 1.04rem; line-height: 1.22; }
+.w-xs-ans { margin-top: 10px; gap: 8px; }
+.w-xs-ans .w-x { padding: 9px 13px 10px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
+.w-xs-ans .w-sent { font-size: 1.08rem; }
+.w-en { font-weight: 600; font-size: 0.94rem; line-height: 1.28; }
+.w-mix { margin-top: 3px; color: var(--c); font-weight: 600; font-size: 0.92rem; line-height: 1.28; }
+.w-mix-k { font-weight: 800; }
+.w-src { margin-top: 8px; color: var(--soft); font-size: 0.78rem; line-height: 1.3; font-weight: 600; }
+.w-src a { color: inherit; text-underline-offset: 2px; }
+.w-src-k { font-weight: 800; }
+#v-answer .actions { margin-top: 10px; }
+
+/* ---------- who was right ---------- */
+.w-who { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.4rem, 1fr)); gap: 6px; margin-top: 10px; }
+.w-who-b { appearance: none; border: 0; min-height: 44px; padding: 5px 9px; border-radius: 12px; background: var(--card); color: var(--ink); box-shadow: var(--shadow); font-weight: 700; font-size: 0.92rem; line-height: 1.12; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; -webkit-tap-highlight-color: transparent; }
+.w-who-b::before { content: ""; display: inline-block; width: 0.8em; height: 0.8em; margin-right: 6px; border-radius: 50%; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--soft) 70%, transparent); vertical-align: -0.06em; }
+.w-who-b.on { background: var(--c); color: var(--on-c); box-shadow: 0 6px 16px color-mix(in srgb, var(--c) 35%, transparent); }
+.w-who-b.on::before { background: currentColor; box-shadow: none; }
+#v-score .actions { margin-top: 12px; }
+.w-score-line { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.6rem, 1fr)); align-items: center; gap: 4px; margin-top: 12px; color: var(--soft); font-weight: 600; font-size: 0.84rem; line-height: 1.2; }
+.w-pts-k { padding-left: 2px; }
+.w-pt { display: flex; align-items: baseline; justify-content: space-between; gap: 5px; min-width: 0; padding: 3px 9px; border-radius: 999px; background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
+.w-pt-n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.w-pt b { color: var(--c); font-weight: 800; font-variant-numeric: tabular-nums; flex: none; }
+
+/* ---------- the end ---------- */
+.w-end { padding: 13px 18px 14px; margin-top: 4px; }
+.w-end-k { font-weight: 700; font-size: 0.9rem; opacity: .9; }
+.w-winner { font-family: var(--display); font-weight: 800; font-size: 2.05rem; line-height: 1.02; letter-spacing: -0.035em; margin-top: 2px; text-wrap: balance; overflow-wrap: anywhere; }
+.w-winner.long { font-size: 1.6rem; }
+.w-end-line { margin-top: 6px; font-weight: 600; font-size: 0.98rem; line-height: 1.25; }
+.w-board { list-style: none; margin: 10px 0 0; padding: 2px 12px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
+.w-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "n p" "d p"; column-gap: 10px; padding: 5px 0 6px; }
+.w-row + .w-row { border-top: 1px solid var(--line); }
+.w-row-n { grid-area: n; font-weight: 700; font-size: 0.95rem; line-height: 1.2; overflow-wrap: anywhere; }
+.w-row-d { grid-area: d; color: var(--soft); font-size: 0.78rem; font-weight: 600; line-height: 1.2; }
+.w-row-p { grid-area: p; align-self: center; font-family: var(--display); font-weight: 800; font-size: 1.3rem; font-variant-numeric: tabular-nums; color: var(--c); }
+.w-row.win .w-row-n::after { content: " ★"; color: var(--c); }
+.w-tally { margin: 9px 2px 0; color: var(--soft); font-weight: 600; font-size: 0.86rem; line-height: 1.3; }
+#v-end .actions { margin-top: 10px; }
+.w-end-small { margin-top: 6px; }
+
+/* ---------- windows: names, scores, wins, the ten words ---------- */
+.w-name-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.w-name-field { display: flex; align-items: center; gap: 8px; padding: 0 10px; border-radius: 12px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.w-name-n { color: var(--soft); font-weight: 800; font-size: 0.86rem; min-width: 1ch; }
+.w-name-field input { flex: 1 1 auto; width: 100%; min-width: 0; height: 42px; border: 0; padding: 0; background: transparent; color: var(--ink); font: inherit; font-weight: 600; outline: none; }
+.w-name-field:focus-within { box-shadow: inset 0 0 0 2px var(--c); }
+.sheet .w-roster { list-style: none; margin: 12px 0 0; padding: 0; }
+.sheet .w-roster-i { margin-top: 0; display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.98rem; }
+.w-roster-i span { font-weight: 700; overflow-wrap: anywhere; }
+.w-roster-i b { font-weight: 700; color: var(--c); text-align: right; white-space: nowrap; }
+.sheet .w-wlist { list-style: none; margin: 12px 0 0; padding: 0; }
+.sheet .w-wl { margin-top: 0; display: grid; gap: 2px; padding: 9px 0; border-top: 1px solid var(--line); line-height: 1.3; }
+.w-wl-h { font-weight: 600; font-size: 0.95rem; }
+.w-wl-h b { font-family: var(--lit); font-weight: 600; }
+.w-wl-v { display: inline-block; margin-right: 8px; padding: 1px 8px; border-radius: 6px; background: var(--c); color: var(--on-c); font-weight: 800; font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; vertical-align: 0.1em; }
+.w-wl-v.is-twin { background: var(--tint); color: var(--c); box-shadow: inset 0 0 0 1.5px var(--c); }
+.w-wl-m { color: var(--soft); font-size: 0.9rem; font-weight: 500; }
+.w-wl-r { color: var(--soft); font-size: 0.8rem; font-weight: 700; }
+#dlg-restart .actions { flex-wrap: wrap; }
+#dlg-restart .actions .btn { flex: 1 1 auto; }
+
+/* ---------- dark ---------- */
+@media (prefers-color-scheme: dark) {
+  .w-friend, .w-players, .w-pair, .w-xs-ans .w-x, .w-board, .w-who-b, .w-pt { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .w-step { background: rgba(255, 255, 255, .08); }
+  .w-names-btn { color: #0A0C1A; }
+  .w-who-b.on { background: var(--c); color: #0A0C1A; box-shadow: 0 0 18px color-mix(in srgb, var(--c) 40%, transparent); }
+  .w-name-field { background: rgba(255, 255, 255, .06); }
+  .w-stamp-big { color: var(--c); }
+  .w-wl-v { color: #0A0C1A; }
+  .w-wl-v.is-twin { background: transparent; color: var(--c); }
+  .w-hand { background: linear-gradient(180deg, color-mix(in srgb, var(--c) 30%, #0D1022), #0D1022 94%); color: var(--ink); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 55%, transparent), 0 0 40px color-mix(in srgb, var(--c) 16%, transparent); }
+  .w-hand-name { color: #fff; }
+  .w-hand-res { background: rgba(255, 255, 255, .07); }
+  .w-hand-ico { color: var(--c); }
+  .w-hand-go { background: var(--c); color: #0A0C1A; box-shadow: 0 0 22px color-mix(in srgb, var(--c) 35%, transparent); }
+  .w-hand-go:focus-visible { outline-color: var(--c); }
+}
+
+/* ---------- small and short screens: a little tighter, so that nothing scrolls ---------- */
+@media (max-height: 37.5rem) {
+  body:not([data-view="start"]):not([data-view="end"]) .meta { display: none; }   /* a small phone: the view's own heading is enough */
+  .w-title { font-size: 1.5rem; }
+  .w-lede { font-size: 0.95rem; margin-top: 8px; }
+  .w-hand { gap: 9px; padding: 16px 14px 18px; }
+  .w-hand-name { font-size: 2.7rem; }
+  .w-players { margin-top: 12px; }
+  .w-q { font-size: 1.35rem; margin-top: 10px; }
+  .w-side { padding: 7px 0 8px; }
+  .w-sent { font-size: 1.14rem; }
+  .w-stamp-big { font-size: 1.3rem; margin-top: 7px; }
+  .w-who-b { min-height: 40px; }
+  .w-winner { font-size: 1.75rem; }
+  .w-winner.long { font-size: 1.4rem; }
+}
+@media (min-width: 56rem) {
+  .w-title { font-size: 2.4rem; }
+  .w-q { font-size: 1.75rem; }
+  .w-word { font-size: 2.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w-stamp-big, .w-hand { animation: none; }
+}
+
+/* a view must fit without scrolling: if it does not, the script steps down (fit1 to fit3) */
+body.fit1 .w-title { font-size: 1.32rem; }
+body.fit1 .w-lede { font-size: 0.88rem; margin-top: 6px; line-height: 1.32; }
+body.fit1 .w-friend { margin-top: 8px; padding: 7px 12px; font-size: 0.88rem; }
+body.fit1 .w-players { margin-top: 10px; padding-top: 5px; padding-bottom: 5px; }
+body.fit1 .w-hand { min-height: 0; gap: 8px; padding: 14px 12px 16px; }
+body.fit1 .w-word { font-size: 1.6rem; }
+body.fit1 .w-side { padding: 6px 0 7px; }
+body.fit1 .w-q { font-size: 1.22rem; margin-top: 8px; }
+body.fit1 .w-line { font-size: 0.84rem; }
+body.fit1 .w-sent { font-size: 1.04rem; }
+body.fit1 .w-xs-ans .w-sent { font-size: 0.98rem; }
+body.fit1 .w-en, body.fit1 .w-mix { font-size: 0.86rem; }
+body.fit1 .w-xs-ans .w-x { padding: 7px 11px 8px; }
+body.fit1 .w-reveal { padding: 9px 14px 10px; }
+body.fit1 .w-stamp-big { font-size: 1.15rem; margin-top: 6px; }
+body.fit1 .w-means { margin-top: 7px; gap: 4px; }
+body.fit1 .w-mean dd { font-size: 0.96rem; }
+body.fit1 .w-who-b { min-height: 38px; font-size: 0.88rem; }
+body.fit1 .w-src { font-size: 0.74rem; }
+body.fit1 .w-end { padding: 9px 14px 10px; }
+body.fit1 .w-winner { font-size: 1.45rem; }
+body.fit1 .w-row { padding: 3px 0 4px; }
+body.fit1 .actions .btn { min-height: 50px; }
+body.fit2 .meta { display: none; }
+body.fit2 .w-hand-ico { display: none; }
+body.fit2 #v-start .w-small { display: none; }
+body.fit2 .w-names { font-size: 0.8rem; }
+body.fit2 .w-kicker { font-size: 0.78rem; }
+body.fit2 .w-say { margin-top: 8px; }
+body.fit2 .w-say-k { display: none; }
+body.fit2 .w-xs-ans { margin-top: 7px; gap: 5px; }
+body.fit2 .w-mean dt b { font-size: 1rem; }
+body.fit2 .w-row-d { display: none; }
+body.fit2 .w-row { grid-template-areas: "n p"; align-items: center; }
+body.fit2 .w-end-line { font-size: 0.86rem; margin-top: 3px; }
+body.fit2 .w-tally { display: none; }
+body.fit2 .w-who { gap: 4px; }
+body.fit2 .w-who-b { min-height: 34px; }
+body.fit2 .w-score-line { margin-top: 8px; font-size: 0.78rem; gap: 3px; }
+body.fit2 .w-pt { padding: 2px 8px; }
+body.fit3 .w-hand-res { font-size: 0.84rem; padding: 7px 10px; }
+body.fit3 .w-names { display: none; }
+body.fit3 .w-line { display: none; }
+body.fit3 .w-end-k { display: none; }
+body.fit3 .w-word { font-size: 1.4rem; }
+body.fit3 .w-sent, body.fit3 .w-xs-ans .w-sent { font-size: 0.92rem; }
+body.fit3 .w-en, body.fit3 .w-mix { font-size: 0.8rem; }
+body.fit3 .w-src { font-size: 0.7rem; margin-top: 5px; }
+body.fit3 .actions .btn { min-height: 46px; }
+body.fit3 .w-winner, body.fit3 .w-winner.long { font-size: 1.25rem; }
+body.fit3 .w-end { padding: 7px 13px 8px; }
+body.fit3 .w-board { margin-top: 7px; }
+body.fit3 .w-row { padding: 2px 0 3px; }
+body.fit3 .w-row-n { font-size: 0.88rem; }
+body.fit3 .w-row-p { font-size: 1.1rem; }
+body.fit3 .w-end-small { margin-top: 2px; }

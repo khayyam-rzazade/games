@@ -55,9 +55,12 @@ GROUP = [
     dict(key='expert', href='so-called-expert/', name='So-Called Expert', art=art_expert(), players='3+ players',
          pitch='One of you gets five facts about a country, one of them invented, and sells all five. Can the table spot it?',
          short='Five facts about a country, one invented. Can the table spot it?'),
-    dict(key='beat', href='beat-the-phone/', name='Beat the Phone', art=art_beat(), new=True, players='2+ players',
+    dict(key='beat', href='beat-the-phone/', name='Beat the Phone', art=art_beat(), players='2+ players',
          pitch='The whole table against the phone: ten stops round the world, three lives. Answer alone, or ask the table.',
          short='Ten stops round the world, three lives. The table against the phone.'),
+    dict(key='twin', href='twin-or-trap/', name='Twin or Trap', art=art_twin(), new=True, players='2+ players',
+         pitch='One word, two languages. Read it out, talk it over, then all vote: does it mean the same, or is it a trap?',
+         short='Same word, two languages. Twin or trap?'),
 ]
 
 def tile(g):
@@ -228,9 +231,11 @@ html = f'''<!doctype html>
     <p class="quiet">One of 193, Still In and Beat the Phone, games for groups, use the World Bank's open data (World Development Indicators, CC BY 4.0) and lists that were each checked on two websites. One of 193 links them with the facts at the end of a round, Still In under the twelve countries after each rule, Beat the Phone after every answer.</p>
     <h3>Where the experts' facts come from</h3>
     <p class="quiet">So-Called Expert gives one player five facts about a country. Four are true: each was checked on two websites, or comes from the World Bank's open data or the checked lists of One of 193, and its sources are linked when the round is over. One fact is invented on purpose, and the game always marks it as invented by Logicers.</p>
+    <h3>Where the words come from</h3>
+    <p class="quiet">Twin or Trap, a game for groups, shows words that look the same in two languages. Every meaning was checked in two dictionaries, which are named and linked under each answer. The meanings, the sentences and their English are Logicers' own.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
-    <p class="quiet">Typefaces: Bricolage Grotesque and Figtree, under the SIL Open Font License.</p>
+    <p class="quiet">Typefaces: Bricolage Grotesque, Figtree and Literata, under the SIL Open Font License.</p>
     <h3>Contact</h3>
     <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
   </div>

@@ -68,6 +68,7 @@
 [data-g="still"]   { --c: #6E2C78; --tint: #F4E5F7; }       /* Still In, the second game for groups: plum */
 [data-g="expert"]  { --c: #9B0238; --tint: #FDE4E7; }       /* So-Called Expert, the third game for groups: crimson */
 [data-g="beat"]    { --c: #6F6C00; --tint: #EEEFD8; }       /* Beat the Phone, the fourth game for groups: olive */
+[data-g="twin"]    { --c: #845B83; --tint: #F5E6F4; }       /* Twin or Trap, the fifth game for groups: heather */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -95,6 +96,7 @@
   [data-g="still"]   { --c: #E27FF5; --tint: #1E1024; }
   [data-g="expert"]  { --c: #F6BAD2; --tint: #270C12; }
   [data-g="beat"]    { --c: #BFD957; --tint: #161906; }
+  [data-g="twin"]    { --c: #C29BBB; --tint: #190D18; }
 }
 
 /* ---------- base ---------- */
@@ -501,7 +503,8 @@ body.game { background: var(--tint); }
 @media (max-width: 350px) {                                 /* a small phone: the three buttons and the name still fit */
   .bar-tools.with-restart { gap: 5px; }
   .bar-tools.with-restart .chip:not(.round) { padding: 0 9px; }
-  body[data-g="o193"] .wordmark, body[data-g="still"] .wordmark, body[data-g="expert"] .wordmark, body[data-g="beat"] .wordmark { font-size: 1.3rem; gap: 8px; }
+  body[data-g="o193"] .wordmark, body[data-g="still"] .wordmark, body[data-g="expert"] .wordmark, body[data-g="beat"] .wordmark,
+  body[data-g="twin"] .wordmark { font-size: 1.3rem; gap: 8px; }
 }
 #streak-chip::before { content: ""; width: 15px; height: 15px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23F28A1B' d='M10.4 1.6c.5 3-1.2 4.3-2.6 5.9C6.3 9.2 5 10.8 5 13a5 5 0 0 0 10 0c0-1.7-.7-3.2-1.5-4.3-.3 1-.9 1.7-1.7 2.1.5-3.4-.2-6.8-1.4-9.2z'/%3E%3C/svg%3E") center / contain no-repeat; }
 @media (prefers-color-scheme: dark) {

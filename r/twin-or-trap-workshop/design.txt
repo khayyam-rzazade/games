@@ -1,0 +1,147 @@
+TWIN OR TRAP: how the game is made (night of 6 to 7 Oct 2026)
+==============================================================
+
+What it is
+  A game for one phone and two to eight players, the fifth game for groups ("Pass the phone" on the home page) and
+  the first that is not about countries. Working name "False Friends" (group-games.md 1.7, idea I1 of the long list).
+  Ten words a game. Each looks the same in two languages: a TWIN means the same in both (a true friend), a TRAP
+  means something else (a false friend: German "Gift" is poison). The player holding the phone reads out the word
+  and its sentence in the other language, the table talks it over, and on three everyone votes at once with a thumb:
+  up for twin, down for trap. The answer shows both meanings, the sentences in English and, for a trap, how the
+  sentence sounds to the other language's ear ("To an English ear: 'These berries are a gift.'"), with the two
+  dictionaries of every word. The holder taps who was right; right scores 1 point, right while most of the table
+  was wrong scores 2. Then the phone goes to the next player. Most points after ten words wins.
+  Not daily: no day number, streak or album. Everything below marked (C) in the plan was decided by Claude by
+  Khayyam's five rules (simple, attractive, tempting to share, easy to play, teaches something).
+
+The twist (C): why the table talks and laughs
+  The idea of 1.7 was a vote by thumbs with little talk: for anyone who does not know the language, a coin toss.
+  Three changes make the table talk and laugh, without a rule that takes more than a sentence:
+  1. Read it out. The holder reads the word AND a short sentence with it, in the other language, accent and all.
+     Reading a sentence in a language you do not know is funny in itself, and the sentence is a clue: "Il cane abbaia
+     al postino" - does a walking stick bark? "Tengo once primos" - "I have once cousins"? The table decodes it
+     together, from the words it recognises. Twins and traps both have sentences, so the clue never gives the answer
+     away by itself; it rewards reasoning (the site is Logicers).
+  2. Talk it over, then all vote at once. Nobody can copy, but everybody can argue first.
+  3. Right against the table scores 2. Being right while most of the table was wrong doubles the point. So it pays to
+     argue ("trust me, it's a twin") and to hold your ground against the room; a lone right thumb is the moment the
+     table remembers.
+  The laugh at the reveal: the mix-up line, the sentence as it would sound to the other ear ("Would you like a room
+  in your coffee?", "Bread and donkey, please."). Not a fourth rule: it is just there to be read out.
+  Considered and left out (C): the holder sees the answer first and bluffs (that is So-Called Expert's game); the
+  holder makes up a sentence (stressful for shy players, and the phone cannot check it); a question about the real
+  meaning with four choices (a quiz, less talk); a language setting (below).
+
+The start, in ten seconds
+  "Same word. Same meaning?" and "Each word looks the same in two languages. A twin means the same in both; a trap
+  means something else. Read out the word and its sentence, talk it over, then all vote at once. Right scores 1
+  point, or 2 if most of you got it wrong." Players 2 to 8 with - and + (3 at first), "Names" (optional: a window with
+  one field per player), Start, and "2 to 8 players · one phone · ten words · about 10 minutes".
+
+A word
+  1. Passing the phone (as in Still In, So-Called Expert and Beat the Phone; Khayyam, 5 Oct 2026, late evening): a
+     whole screen in heather says what the last word gave ("A new game: ten words, each in two languages.", "Trap! In
+     German, bald means soon. Only Bo was right: 2 points." or "Twin! In German and English, Rucksack means the same.
+     Everyone was right: 1 point each."), a phone with an arrow, "Pass the phone to" and the player's name in big
+     letters, "Word 3 of 10. Bo reads it out.", and the button "Bo has the phone", which that player taps. Under it:
+     "Word 3 of 10 · Scores" (a window with the points so far).
+  2. The word: "Word 3 of 10 · Bo reads it out"; a card like a dictionary's entry with two rows, the language in small
+     capitals and the word in a book typeface (Literata): "GERMAN Gift" and "ENGLISH gift" (for Russian also the word
+     in Latin letters: "фабрика fabrika"); "In German:" and the sentence in italics, the word in it upright and in the
+     game's colour ("Diese Beeren sind Gift."; for Russian also in Latin letters); "Twin or trap?"; "Talk it over. Then,
+     on three, everyone votes at once: thumbs up for twin, thumbs down for trap."; the button "Show the answer".
+  3. The answer: a panel in heather with "Word 3 of 10 · German and English", a stamp "TRAP!" or "TWIN!", and the
+     meanings ("German Gift: poison", "English gift: a present (or a talent)"; for a twin one line: "German Rucksack and
+     English rucksack: both: a bag you carry on your back"); then every sentence with its English ("Diese Beeren sind
+     Gift." / "These berries are poison."), and under the sentence it belongs to the mix-up line ("To an English ear:
+     'These berries are a gift.'"); then "Dictionaries German: DWDS · Wiktionary. English: Merriam-Webster ·
+     Britannica Dictionary." (each a link); the button "Who said trap?" (or "Who said twin?").
+  4. Who was right: "It's a trap. Who said trap?", "Tap everyone who voted trap. Right scores 1 point; if most of the
+     table got it wrong, 2.", one button per player (pressed or not), and "Score it" (or "Nobody said trap",
+     "Everyone said trap"); under it the points so far. Then the phone goes to the next player, or after the tenth
+     word to the end.
+  5. The end: "Ana wins!" (or "Ana and Bo share the win!", "3 players share the win!", "Everyone shares the win!"),
+     "With 12 points, after ten words.", every player's points and "7 of 10 right, 2 of them for 2 points", the wins
+     at this table, "Play again" (the same players and their wins; the next player reads first), "Share", "All ten
+     words" (a window: twin or trap, both words and meanings, how many were right) and "New players" (clears the names
+     and the wins, as Restart does).
+
+The rules, and why (C)
+  - Points: 1 for each player who was right; 2 each when they were fewer than half of the table (with two players a
+    lone right player is half, so 1). Most points wins; a tie shares the win. No rounds, no target score.
+  - Ten words a game: about ten minutes, and every player reads at least once with up to eight players (two or more
+    times with fewer).
+  - Four, five or six twins in a game, at random (each about a third of the games): about half twins, as 1.7 asks,
+    without a fixed count that a table could use ("five traps gone, so the rest are twins").
+  - No language setting (1.7 proposed one): with 67 pairs a table that keeps only its languages would get one or two
+    games before the words repeat, and the setting would be one more choice before the fun. Every game mixes the
+    languages instead: at most three words of one language (English apart), and one language twice in a row only
+    where it cannot be helped. So a mixed table always has something for everyone.
+  - Fresh words first: the last 40 words a table had come back only when no fresh word of their kind (twin or trap)
+    is left; then the oldest first.
+  - Which sentence is read out: the one in the first word's language (for pairs with English, the other language).
+    Pairs without English have one sentence in each language; both show in the answer.
+  - The holder taps who was right after the reveal (as in So-Called Expert): the thumbs were shown at once, so the
+    holder saw them.
+  - 2 to 8 players: two can play (the bonus then never applies); eight, as in the other games for groups.
+
+The stock (see evidence.txt and build.py)
+  67 pairs: 30 twins and 37 traps (45% twins), in ten languages: English with German, Dutch, French, Spanish, Italian,
+  Portuguese, Swedish, Russian and Turkish, and 13 pairs without English (German with Dutch; French with Spanish;
+  Spanish with Italian and with Portuguese). No Azerbaijani pair: no Azerbaijani dictionary gave two readable entries.
+  Every meaning was read in two dictionaries, each page opened and read, the quotes in evidence.txt; build.py checks
+  every rule and writes data/twin-or-trap.js and words.csv; test/test_build.py breaks each rule once (28 cases).
+  The half-case rule as applied (C): a twin shares its meanings; a trap shares none, however small; senses marked
+  old do not count, and a sense marked slang, jargon or technical decides nothing unless it is a common use. Words with
+  a common rude, drug, insulting or sensitive use are left out (evidence.txt, part A, names every such sense that was
+  kept far down a dictionary's list, and every pair left out with its reason).
+  The meanings, sentences, translations and mix-up lines are Logicers' own words, written to show only the checked
+  meaning; the dictionaries are linked.
+
+Name, colour, typeface (C)
+  Name: Twin or Trap. "False Friends" is taken (a Google Play quiz app, an itch.io game, classroom games), "Friend or
+  Faux" is a party card game, "Word Twins" is near WordTwin (an iPhone synonym game), "Doppelwords" near Doppel-Gengo
+  (a Japanese homonym board game). "Twin or Trap" was found nowhere; the nearest in words is "Truth or Trap", a trivia
+  card game. It says the two answers, it alliterates, and the share line can ask it.
+  Colour: heather, #845B83 by day (tint #F5E6F4), #C29BBB at night (tint #190D18). No other game uses or has reserved
+  it. In OKLab 0.117 from mocha, 0.118 from magenta and 0.125 from plum by day, 0.099 from violet at night; the closest
+  pair of existing games (teal and green) lie 0.059 apart. White text on it: 5.52 to 1; on its tint 4.6 to 1.
+  Typeface for the words and sentences of other languages: Literata (SIL Open Font License; fontsource 5.3.0), three
+  subsets (Latin, Latin Extended, Cyrillic) in two styles (600 upright for the words, 400 italic for the sentences):
+  six files, about 100 KB, loaded only by this page and only for the letters on screen. The site's own typefaces have
+  no Cyrillic and no ə (Azerbaijani): Literata has both, and ı, ş, ğ for Turkish.
+
+Sharing (C)
+  The picture (1080 by 1350, heather): "Same word, two languages:", a white card with the word that fooled the most
+  players, in its two languages, "Twin or trap?", "It fooled 3 of our 4" (or "all 4 of us", or "Nobody at our table
+  was fooled"), "Ten words that look the same in two languages. Does each mean the same?", "Can your table tell?" and
+  the address. Never the answer. The message: "Twin or Trap: Gift in German and gift in English: same meaning or not?
+  It fooled 3 of our 4. Can your table tell twins from traps?" and the link (?w=the ten ids&k=the word&f=fooled&n=
+  players), which deals the same ten words in the same order to a friend's table ("A friend's table played these ten
+  words. Gift (German and English) fooled 3 of their 4. Can your table tell twins from traps?", "Play their words").
+
+Starting afresh, and what is kept in the browser
+  As every game for groups since 6 Oct 2026 (Khayyam, evening; the plan, section 2): every opening of the page (from
+  the home page, the Back button, a reload, or a page the browser brings back from its memory) starts afresh with three
+  players and no names. The number of players, their names (optional, cleaned, at most 14 letters), the wins per name,
+  who reads first next time and the game going on live only while the page is open, and are never stored. A round
+  button in the bar (named "Restart the game"), only while a game is in play, asks "Restart the game?" ("Everything
+  starts over: this game, the players' names and the wins at this table.") with Restart and Keep playing; "New
+  players" at the end does the same; "Play again" keeps the players and their wins. A pull on the page does not reload
+  it (overscroll-behavior). For the checks the page has a hook: TwinOrTrap.load(players, game) and TwinOrTrap.now().
+  The browser keeps under "groups" > "twin-or-trap" only the number of games and the last 40 words. Nothing under the
+  daily games; nothing counts in the Today card, the streak or the returning-player events. The privacy line: "The
+  players' names and wins are forgotten when you leave this page."
+  (This chat first built the game with names, wins and a game in progress kept in the browser, as the games before it
+  did; it found the new rule when it read the plan again before its full run, and changed the game to it.)
+
+Counter events: twin-or-trap/started, /finished, /share, /challenge-opened; none names a word or a player.
+
+Weak spots, plainly
+  - Someone who speaks one of the languages knows the answer at once; the bonus for being right against the table
+    makes that a duel of knowledge and nerve rather than a dead round, but a table of linguists will find it easy.
+  - Some sentences give a trap away to a careful reader (a chandelier "on the table"); that is the reasoning the game
+    wants, but it makes some words easy.
+  - 67 words last about six games before a table meets one again.
+  - English is in 54 of the 67 pairs; Russian has one pair, Turkish six, Azerbaijani none.
+  - Nobody but Claude has played it.

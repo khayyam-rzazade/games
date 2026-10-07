@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Twin or Trap: a pass-the-phone game of true and false friends in ten languages | Logicers</title>
+<link rel="canonical" href="https://logicers.com/twin-or-trap/">
+<meta name="description" content="A game for one phone and two to eight players. Each word looks the same in two languages: does it mean the same in both (a twin) or something else (a trap, a false friend)? Read it out, talk it over, then all vote at once. Every meaning is checked in two dictionaries.">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Twin or Trap">
+<meta property="og:description" content="Same word, two languages: does it mean the same? A party game of true and false friends for one phone and a group.">
+<meta property="og:url" content="https://logicers.com/twin-or-trap/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5E6F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=96f938e4aa">
+<link rel="stylesheet" href="twin-or-trap.css?v=761880ea2b">
+</head>
+<body class="game" data-g="twin">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools with-restart">
+    <button class="chip round restart" id="btn-restart" type="button" data-open="dlg-restart" aria-label="Restart the game" title="Restart" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M6.4 2.6v4.4h4.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="chip" id="wins-chip" type="button" data-open="dlg-wins" aria-label="Wins at this table">Wins</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b>Twin or Trap</b> <span id="mode">Pass the phone</span></p>
+
+  <!-- the start: what to do, in ten seconds, and who plays -->
+  <section class="w-view" id="v-start" aria-labelledby="start-title">
+    <h1 class="w-title" id="start-title">Same word. Same meaning?</h1>
+    <p class="w-lede">Each word looks the same in two languages. A twin means the same in both; a trap means something else. Read out the word and its sentence, talk it over, then all vote at once. Right scores 1 point, or 2 if most of you got it wrong.</p>
+    <p class="w-friend" id="friend" hidden></p>
+    <div class="w-players" role="group" aria-labelledby="players-label">
+      <span class="w-players-label" id="players-label">Players</span>
+      <button class="w-step" id="btn-fewer" type="button" aria-label="One player fewer">−</button>
+      <output class="w-count" id="players-n" aria-live="polite">3</output>
+      <button class="w-step" id="btn-more" type="button" aria-label="One player more">+</button>
+      <button class="w-names-btn" id="btn-names" type="button" data-open="dlg-names">Names</button>
+    </div>
+    <p class="w-names" id="names-line"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-start" type="button">Start</button>
+    </div>
+    <p class="w-small" id="start-small">2 to 8 players&nbsp;· one phone&nbsp;· ten words&nbsp;· about 10 minutes</p>
+  </section>
+
+  <!-- passing the phone to the next reader: a whole screen, so that nobody misses it -->
+  <section class="w-view" id="v-hand" hidden aria-labelledby="hand-title">
+    <div class="w-hand" id="hand">
+      <p class="w-hand-res" id="hand-res" role="status" aria-live="polite"></p>
+      <svg class="w-hand-ico" viewBox="0 0 76 48" aria-hidden="true"><rect x="6" y="3" width="24" height="42" rx="6" fill="none" stroke="currentColor" stroke-width="3.2"/><circle cx="18" cy="38.5" r="2.2" fill="currentColor"/><path d="M39 24h30m-10-10 10 10-10 10" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2 class="w-hand-t" id="hand-title"><span class="w-hand-k">Pass the phone to</span> <span class="w-hand-name" id="hand-name"></span></h2>
+      <p class="w-hand-line" id="hand-line"></p>
+      <button class="btn w-hand-go" id="btn-hand" type="button">Player 1 has the phone</button>
+    </div>
+    <p class="w-small w-hand-small"><span id="hand-k">Word 1 of 10</span>&nbsp;· <button class="w-link" type="button" id="btn-scores" data-open="dlg-scores">Scores</button></p>
+  </section>
+
+  <!-- a word: the two words, the sentence to read out, the question -->
+  <section class="w-view" id="v-word" hidden aria-labelledby="word-q">
+    <p class="w-kicker" id="word-k"></p>
+    <div class="w-pair" id="word-pair" role="group"></div>
+    <div class="w-say">
+      <p class="w-say-k" id="say-k">In German:</p>
+      <ul class="w-xs" id="word-say" aria-labelledby="say-k"></ul>
+    </div>
+    <h2 class="w-q" id="word-q">Twin or trap?</h2>
+    <p class="w-line" id="word-line"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-answer" type="button">Show the answer</button>
+    </div>
+  </section>
+
+  <!-- the answer: twin or trap, both meanings, the sentences in English, the dictionaries -->
+  <section class="w-view" id="v-answer" hidden aria-labelledby="ans-stamp">
+    <div class="panel revealed w-reveal">
+      <p class="w-rev-k" id="ans-k"></p>
+      <h2 class="w-stamp-big" id="ans-stamp">Trap!</h2>
+      <dl class="w-means" id="ans-means"></dl>
+    </div>
+    <ul class="w-xs w-xs-ans" id="ans-x" aria-label="The sentences in English"></ul>
+    <p class="w-src" id="ans-src"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-who" type="button">Who said trap?</button>
+    </div>
+  </section>
+
+  <!-- who was right: the one holding the phone taps them -->
+  <section class="w-view" id="v-score" hidden aria-labelledby="who-q">
+    <p class="w-kicker" id="score-k"></p>
+    <h2 class="w-q w-q-who" id="who-q">Who said trap?</h2>
+    <p class="w-line" id="score-line"></p>
+    <div class="w-who" id="who" role="group" aria-labelledby="who-q"></div>
+    <div class="actions">
+      <button class="btn solid" id="btn-score" type="button">Score it</button>
+    </div>
+    <p class="w-score-line" id="score-pts"></p>
+  </section>
+
+  <!-- the end: the scores, the winner -->
+  <section class="w-view" id="v-end" hidden aria-labelledby="end-name">
+    <div class="panel revealed w-end">
+      <p class="w-end-k" id="end-k">Game over</p>
+      <h2 class="w-winner" id="end-name"></h2>
+      <p class="w-end-line" id="end-line"></p>
+    </div>
+    <ol class="w-board" id="board" aria-label="Scores"></ol>
+    <p class="w-tally" id="tally"></p>
+    <div class="actions">
+      <button class="btn solid" id="btn-again" type="button">Play again</button>
+      <button class="btn ghost" id="share" type="button">Share</button>
+    </div>
+    <p class="w-small w-end-small"><button class="w-link" type="button" id="btn-words" data-open="dlg-words">All ten words</button>&nbsp;· <button class="w-link" type="button" id="btn-change">New players</button></p>
+  </section>
+</main>
+
+<dialog id="dlg-names" aria-labelledby="names-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="names-title">Who is playing?</h2>
+    <p class="quiet">Names are optional. Sit in this order: the phone goes round, and each of you reads a word out in turn.</p>
+    <div class="w-name-fields" id="name-fields"></div>
+    <div class="actions">
+      <button class="btn solid" type="button" data-close>Done</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-scores" aria-labelledby="scores-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="scores-title">Scores so far</h2>
+    <ul class="w-roster" id="roster"></ul>
+    <p class="quiet" id="roster-note"></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-wins" aria-labelledby="wins-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="wins-title">Wins at this table</h2>
+    <ul class="w-roster" id="wins-list"></ul>
+    <p class="quiet" id="wins-note">They count only while this page is open. A group game has no streak and no album: play it whenever you are together.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-words" aria-labelledby="words-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="words-title">All ten words</h2>
+    <ol class="w-wlist" id="words-list"></ol>
+  </div>
+</dialog>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-title">How to play</h2>
+    <ol>
+      <li>The phone goes round. Whoever holds it reads out the word and its sentence, accent and all.</li>
+      <li>Talk it over: is it a twin, the same meaning in both languages, or a trap, a false friend that means something else?</li>
+      <li>On three, everyone votes at once: thumbs up for twin, thumbs down for trap.</li>
+      <li>Show the answer, then tap everyone who was right. Right scores 1 point; right while most of the table was wrong scores 2.</li>
+      <li>Pass the phone on. Ten words make a game, and most points wins.</li>
+    </ol>
+    <h3>Only clear cases</h3>
+    <p class="quiet">A twin shares its meanings in both languages; a trap shares none. A word that is a false friend in only some of its meanings is left out, and so are words that are not family-friendly.</p>
+    <h3>Where the words come from</h3>
+    <p class="quiet">Every meaning was read in two dictionaries, named and linked under each answer. The meanings, the sentences and their English are Logicers' own, written to show only the meaning that was checked.</p>
+    <p class="quiet" id="help-count"></p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="names">No login, no tracking, no cookies. The players' names and wins are forgotten when you leave this page.</p>
+    <h3>Contact</h3>
+    <p class="quiet">A question, a mistake in a word, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-restart" aria-labelledby="restart-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="restart-title">Restart the game?</h2>
+    <p class="quiet">Everything starts over: this game, the players' names and the wins at this table.</p>
+    <div class="actions">
+      <button class="btn solid" id="btn-restart-yes" type="button">Restart</button>
+      <button class="btn ghost" type="button" data-close>Keep playing</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share the trickiest word</h2>
+    <p class="quiet">Send the link along with the picture: it deals the same ten words to your friends' table. Neither gives an answer away.</p>
+    <img class="shot" id="share-img" alt="The word that fooled the most players at your table, in its two languages, and how many it fooled. The answer is not shown.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="twin-or-trap.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="../data/twin-or-trap.js"></script>
+<script src="../assets/js/turnsout.js?v=bf7a829e31"></script>
+<script src="twin-or-trap.js?v=3413e5fe5b"></script>
+</body>
+</html>
