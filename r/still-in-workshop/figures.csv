@@ -1,5 +1,0 @@
-key,indicator,must_contain,unit,min_countries
-gdp,NY.GDP.PCAP.PP.CD,"GDP per capita, PPP",international dollars per person,150
-net,IT.NET.USER.ZS,Internet,percent of people,150
-dense,EN.POP.DNST,Population density,people per square kilometre of land,150
-young,SP.POP.0014.TO.ZS,Population ages 0-14,percent of people,150
