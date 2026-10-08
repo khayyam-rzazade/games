@@ -72,6 +72,7 @@
 [data-g="gets"]    { --c: #005E16; --tint: #DCF2E2; }       /* Who Gets What, the seventh daily game: forest green */
 [data-g="every"]   { --c: #C40045; --tint: #FCE4EB; }       /* Every Beat, the eighth daily game: heart red */
 [data-g="o24"]     { --c: #0A5666; --tint: #DDF0F3; }       /* Out of 24, the ninth daily game: petrol */
+[data-g="energy"]  { --c: #A55200; --tint: #FAE8D7; }       /* Same Energy, the tenth daily game: copper */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -103,6 +104,7 @@
   [data-g="gets"]    { --c: #35C95F; --tint: #081F0F; }
   [data-g="every"]   { --c: #FF6687; --tint: #220C14; }
   [data-g="o24"]     { --c: #12B2C6; --tint: #071A1F; }
+  [data-g="energy"]  { --c: #E08600; --tint: #1E1307; }
 }
 
 /* ---------- base ---------- */

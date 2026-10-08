@@ -255,9 +255,9 @@
      ------------------------------------------------------------------ */
   function num(v) { return typeof v === "number" && isFinite(v); }
   var GAMES = [
-    { id: "out-of-24", key: "o24", name: "Out of 24", href: "out-of-24/", start: "2026-10-09",
-      pitch: "A real animal or country. How many hours a day?",
-      done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 1440 && num(r.y) && typeof r.t === "string"; },
+    { id: "same-energy", key: "energy", name: "Same Energy", href: "same-energy/", start: "2026-10-10",
+      pitch: "A real food or drink. How many of another hold the same energy?",
+      done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 60 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } },
     { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
       pitch: "Of 100 people in the world, how many…?",
@@ -290,6 +290,10 @@
     { id: "every-beat", key: "every", name: "Every Beat", href: "every-beat/", start: "2026-10-09",
       pitch: "One real animal. How fast does its heart beat?",
       done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
+      says: function (r) { return r.t; } },
+    { id: "out-of-24", key: "o24", name: "Out of 24", href: "out-of-24/", start: "2026-10-09",
+      pitch: "A real animal or country. How many hours a day?",
+      done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 1440 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } }
   ];
   function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
