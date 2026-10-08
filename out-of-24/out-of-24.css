@@ -1,0 +1,114 @@
+/* Out of 24: one real day a day, and how many of its 24 hours go on one thing. Every class starts with o-. */
+.o-q { margin-top: 4px; font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 5.9vw, 1.7rem); line-height: 1.12; letter-spacing: -0.03em; text-wrap: balance; }
+
+.o-panel { padding: 14px 14px 12px; background: var(--card); box-shadow: var(--shadow); }
+.o-who { display: flex; align-items: center; gap: 12px; min-height: 52px; }
+.o-pic { width: 70px; height: 52px; flex: none; fill: var(--c); }
+.o-pic.flag { fill: none; filter: drop-shadow(0 1px 2px rgba(21, 23, 43, .18)); }
+.o-name { min-width: 0; flex: 1; }
+.o-face { font-family: var(--display); font-weight: 800; font-size: 1.4rem; line-height: 1.05; letter-spacing: -0.025em; }
+.o-chips { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 5px 6px; }
+.o-chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px 3px 7px; border-radius: 999px; background: var(--tint); color: var(--ink); font-weight: 700; font-size: 0.86rem; line-height: 1.2; }
+.o-chip.soft { font-weight: 600; }
+.o-chip svg { width: 16px; height: 16px; flex: none; fill: none; stroke: var(--c); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* the dial: the 24 hours of a day, from the top round clockwise. Dragging anywhere on it shades the hours. */
+.o-stage { display: flex; justify-content: center; margin-top: 8px; }
+.o-dial { display: block; width: min(100%, 290px); height: auto; aspect-ratio: 1 / 1; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; cursor: pointer; border-radius: 50%; outline-offset: 4px; overflow: visible; }
+.o-panel.revealed .o-dial { cursor: default; }
+.o-face-bg { fill: var(--tint); }
+.o-track { fill: none; stroke: color-mix(in srgb, var(--c) 13%, var(--tint)); stroke-width: 24; }
+.o-you { fill: none; stroke: var(--c); stroke-width: 24; }
+.o-miss, .o-band, .o-real { fill: none; visibility: hidden; }
+.o-miss { stroke: var(--miss); stroke-width: 24; }
+.o-band { stroke: #fff; stroke-opacity: .55; stroke-width: 11; }
+.o-real { stroke: #fff; stroke-width: 11; }
+.o-hours line { stroke: var(--card); stroke-width: 1.3; }
+.o-hours line.six { stroke-width: 2.6; }
+.o-nums text { fill: var(--soft); font-family: var(--text); font-weight: 700; font-size: 12.5px; text-anchor: middle; dominant-baseline: central; }
+.o-thumb { fill: var(--c); stroke: var(--card); stroke-width: 4; }
+.o-thumb { transform-box: fill-box; transform-origin: center; transition: transform .12s ease; }
+.o-stage.on .o-thumb { transform: scale(1.14); }
+#nudge { transform-box: view-box; transform-origin: 120px 120px; }
+/* Show before any move: the thumb nods along the ring twice (it moves; it never flashes) */
+#nudge.nudge { animation: o-nudge .6s ease-in-out 2; }
+@keyframes o-nudge { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(18deg); } }
+.o-cap { fill: var(--soft); font-family: var(--text); font-weight: 800; font-size: 10px; letter-spacing: .1em; text-anchor: middle; dominant-baseline: central; }
+.o-big { fill: var(--c); font-family: var(--display); font-weight: 800; font-size: 31px; letter-spacing: -0.03em; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
+.o-big.two { font-size: 25px; }
+.o-small { fill: var(--soft); font-family: var(--text); font-weight: 600; font-size: 12.5px; text-anchor: middle; dominant-baseline: central; }
+
+.o-hint { margin: 8px 4px 0; color: var(--soft); font-weight: 500; font-size: 0.95rem; line-height: 1.25; }
+.o-verdict { margin-top: 10px; }
+
+/* revealed: the panel takes the game's colour; the real arc is white, yours a shadow of it, yellow the part you got wrong */
+.o-panel.revealed .o-face-bg { fill: rgba(255, 255, 255, .07); }
+.o-panel.revealed .o-track { stroke: rgba(255, 255, 255, .1); }
+.o-panel.revealed .o-you { stroke: rgba(255, 255, 255, .34); }
+.o-panel.revealed .o-miss, .o-panel.revealed .o-band, .o-panel.revealed .o-real { visibility: visible; }
+.o-panel.revealed .o-hours line { stroke: var(--c); }
+.o-panel.revealed .o-nums text { fill: rgba(255, 255, 255, .72); }
+.o-panel.revealed .o-thumb { visibility: hidden; }
+.o-panel.revealed .o-cap { fill: rgba(255, 255, 255, .82); }
+.o-panel.revealed .o-big { fill: #fff; }
+.o-panel.revealed .o-small { fill: rgba(255, 255, 255, .86); }
+.o-panel.revealed .o-pic:not(.flag) { fill: #fff; }
+.o-panel.revealed .o-chip { background: rgba(255, 255, 255, .18); color: #fff; }
+.o-panel.revealed .o-chip svg { stroke: #fff; }
+.o-miss.fade, .o-band.fade { transition: opacity .45s ease; }
+.o-miss.wait, .o-band.wait { opacity: 0; }
+
+.o-note { margin: 10px 6px 0; color: var(--soft); font-size: 0.92rem; line-height: 1.4; }
+.o-sources { margin: 10px 6px 0; padding: 0; list-style: none; color: var(--soft); font-size: 0.9rem; line-height: 1.45; }
+.o-sources li + li { margin-top: 4px; }
+.o-sources a { color: inherit; text-underline-offset: 3px; }
+
+/* the stamp in the album: a small dial with the real hours, the figure, who and what */
+.stamp.o24 .o24d { width: 30px; height: 30px; margin-bottom: auto; overflow: visible; }
+.stamp.o24 .o24d .r { fill: none; stroke: rgba(255, 255, 255, .3); stroke-width: 5; }
+.stamp.o24 .o24d .a { fill: none; stroke: #fff; stroke-width: 5; }
+.stamp.o24 .p { font-family: var(--display); font-weight: 800; font-size: 1.12rem; letter-spacing: -0.03em; line-height: 0.98; font-variant-numeric: tabular-nums; }
+.stamp.o24 .what { font-weight: 600; font-size: 0.8rem; margin-top: 3px; }
+.stamp.o24 .of { font-weight: 600; font-size: 0.74rem; opacity: 0.88; margin-top: 2px; }
+
+/* short screens: step down so that nothing needs scrolling while you play */
+.fit1 .o-dial { width: min(100%, 252px); }
+.fit1 .o-pic { width: 60px; height: 46px; }
+.fit2 .o-dial { width: min(100%, 222px); }
+.fit2 .o-q { font-size: 1.3rem; }
+.fit2 .o-hint { display: none; }
+.fit3 .o-dial { width: min(100%, 196px); }
+.fit3 .o-face { font-size: 1.2rem; }
+.fit3 .o-panel { padding-top: 10px; padding-bottom: 8px; }
+.fit3 .o-who { min-height: 0; }
+
+@media (min-width: 560px) {
+  .o-dial { width: min(100%, 300px); }
+  .o-pic { width: 84px; height: 60px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .o-panel { background: rgba(255, 255, 255, .045); box-shadow: inset 0 0 0 1px var(--line); }
+  .o-chip { background: rgba(255, 255, 255, .07); }
+  .o-face-bg { fill: rgba(255, 255, 255, .05); }
+  .o-track { stroke: rgba(255, 255, 255, .09); }
+  .o-hours line { stroke: var(--bg); }
+  .o-thumb { stroke: var(--bg); }
+  .o-pic.flag { filter: none; }
+  .o-panel.revealed .o-pic:not(.flag) { fill: var(--c); }
+  .o-panel.revealed .o-face-bg { fill: rgba(255, 255, 255, .04); }
+  .o-panel.revealed .o-you { stroke: color-mix(in srgb, var(--c) 34%, transparent); }
+  .o-panel.revealed .o-real { stroke: var(--c); }
+  .o-panel.revealed .o-band { stroke: var(--c); stroke-opacity: .5; }
+  .o-panel.revealed .o-hours line { stroke: #0D1022; }
+  .o-panel.revealed .o-nums text { fill: var(--soft); }
+  .o-panel.revealed .o-cap, .o-panel.revealed .o-small { fill: var(--soft); }
+  .o-panel.revealed .o-big { fill: var(--c); }
+  .o-panel.revealed .o-chip { background: rgba(255, 255, 255, .08); color: var(--ink); }
+  .o-panel.revealed .o-chip svg { stroke: var(--c); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #nudge.nudge { animation: none; }
+  .o-thumb { transition: none; }
+  .o-miss.fade, .o-band.fade { transition: none; }
+}

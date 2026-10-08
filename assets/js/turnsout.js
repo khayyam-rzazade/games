@@ -255,9 +255,9 @@
      ------------------------------------------------------------------ */
   function num(v) { return typeof v === "number" && isFinite(v); }
   var GAMES = [
-    { id: "every-beat", key: "every", name: "Every Beat", href: "every-beat/", start: "2026-10-09",
-      pitch: "One real animal. How fast does its heart beat?",
-      done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
+    { id: "out-of-24", key: "o24", name: "Out of 24", href: "out-of-24/", start: "2026-10-09",
+      pitch: "A real animal or country. How many hours a day?",
+      done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 1440 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } },
     { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
       pitch: "Of 100 people in the world, how many…?",
@@ -286,6 +286,10 @@
     { id: "who-gets-what", key: "gets", name: "Who Gets What", href: "who-gets-what/", start: "2026-10-08",
       pitch: "A real price. Who gets what out of it?",
       done: function (r) { return !!r && Array.isArray(r.g) && r.g.length >= 3 && r.g.length <= 4 && num(r.y) && r.y >= 0 && typeof r.t === "string"; },
+      says: function (r) { return r.t; } },
+    { id: "every-beat", key: "every", name: "Every Beat", href: "every-beat/", start: "2026-10-09",
+      pitch: "One real animal. How fast does its heart beat?",
+      done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } }
   ];
   function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
