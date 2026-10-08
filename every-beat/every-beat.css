@@ -1,0 +1,122 @@
+/* Every Beat: one real animal a day, and how fast its heart beats. Every class starts with e-. */
+.e-q { margin-top: 4px; font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 5.9vw, 1.7rem); line-height: 1.12; letter-spacing: -0.03em; text-wrap: balance; }
+
+.e-panel { padding: 14px 14px 12px; background: var(--card); box-shadow: var(--shadow); }
+.e-who { display: flex; align-items: center; gap: 12px; }
+.e-pic { width: 76px; height: 56px; flex: none; fill: var(--c); }
+.e-name { min-width: 0; flex: 1; }
+.e-face { font-family: var(--display); font-weight: 800; font-size: 1.4rem; line-height: 1.05; letter-spacing: -0.025em; }
+.e-state { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 6px; }
+.e-chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px 3px 7px; border-radius: 999px; background: var(--tint); color: var(--ink); font-weight: 700; font-size: 0.86rem; line-height: 1.2; }
+.e-chip svg { width: 16px; height: 16px; flex: none; fill: none; stroke: var(--c); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.e-feel { appearance: none; flex: none; align-self: flex-start; width: 40px; height: 40px; border-radius: 999px; border: 0; background: var(--tint); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.e-feel svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.e-feel .spk { fill: currentColor; }
+.e-feel .on { display: none; }
+.e-feel[aria-pressed="true"] { background: var(--c); color: #fff; }
+.e-feel[aria-pressed="true"] .on { display: inline; }
+.e-feel[aria-pressed="true"] .off { display: none; }
+
+/* the stage: the heart you set, and the scale beside it. Dragging anywhere on it changes the beat. */
+.e-stage { position: relative; margin-top: 8px; padding-right: 72px; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; cursor: ns-resize; }
+.e-panel.revealed .e-stage { padding-right: 0; cursor: default; }
+.e-hearts { display: flex; justify-content: center; gap: 18px; }
+.e-heart { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.e-hsvg { width: 132px; height: 120px; fill: var(--c); transform-origin: 50% 55%; }
+/* a beat is a change of size, never of brightness (WCAG 2.3.1), and only up to three a second */
+.e-hsvg.pulse { animation: e-beat var(--pulse, .3s) cubic-bezier(.2, .7, .3, 1) both; }
+@keyframes e-beat { 0% { transform: scale(1); } 22% { transform: scale(1.13); } 100% { transform: scale(1); } }
+/* .hum marks a heart that holds still (too fast to pulse, or reduced motion): it has no style of its own */
+.e-rate { margin-top: 2px; display: flex; align-items: baseline; gap: 4px; }
+.e-rate b { font-family: var(--display); font-weight: 800; font-size: clamp(2.3rem, 11vw, 2.8rem); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--c); }
+.e-rate span { color: var(--soft); font-weight: 700; font-size: 0.95rem; }
+.e-lab { font-weight: 800; font-size: 0.78rem; letter-spacing: .08em; text-transform: uppercase; opacity: .82; margin-bottom: 2px; }
+
+/* the scale: a log ruler from 1 to 2,000 beats a minute */
+.e-ladder { position: absolute; top: 4px; bottom: 4px; right: 0; width: 64px; border-radius: 14px; background: var(--tint); outline-offset: 3px; }
+.e-ladder::before { content: ""; position: absolute; left: 13px; top: 12px; bottom: 12px; width: 4px; border-radius: 4px; background: color-mix(in srgb, var(--c) 32%, transparent); }
+.e-tick { position: absolute; right: 6px; bottom: calc(12px + var(--at) * (100% - 24px)); transform: translateY(50%); font-size: 0.68rem; font-weight: 700; color: var(--soft); font-variant-numeric: tabular-nums; }
+.e-tick::before { content: ""; position: absolute; left: -12px; top: 50%; width: 8px; height: 2px; background: color-mix(in srgb, var(--c) 45%, transparent); }
+.e-thumb { position: absolute; left: 5px; width: 20px; height: 20px; margin-bottom: -10px; border-radius: 999px; background: var(--c); box-shadow: 0 0 0 3px var(--card), 0 2px 6px rgba(21, 23, 43, .25); bottom: calc(12px + var(--pos, .54) * (100% - 24px)); }
+.e-stage.on .e-thumb { transform: scale(1.15); }
+/* Show before any move: the thumb nods up and down twice (it moves; it never flashes) */
+.e-thumb.nudge { animation: e-nudge .6s ease-in-out 2; }
+@keyframes e-nudge { 0%, 100% { translate: 0 0; } 25% { translate: 0 -10px; } 75% { translate: 0 10px; } }
+.e-panel.revealed .e-ladder { display: none; }
+
+/* ten seconds of each heart, as a line: a spike for every beat */
+.e-traces { margin-top: 8px; }
+.e-trow { display: flex; align-items: center; gap: 8px; }
+.e-trow + .e-trow { margin-top: 4px; }
+.e-tlab { flex: none; width: 2.6em; font-weight: 800; font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; opacity: .82; }
+.e-trace { display: block; flex: 1; min-width: 0; height: 40px; border-radius: 10px; background: var(--tint); color: var(--c); }
+.e-secs { margin-top: 3px; text-align: right; color: var(--soft); font-size: 0.74rem; font-weight: 600; }
+
+.e-hint { margin: 8px 4px 0; color: var(--soft); font-weight: 500; font-size: 0.95rem; line-height: 1.25; }
+.e-verdict { margin-top: 10px; }
+
+/* revealed: the panel takes the heart's colour, the hearts turn white */
+.e-panel.revealed .e-hsvg { width: 96px; height: 86px; fill: #fff; }
+.e-panel.revealed .e-rate b { color: #fff; font-size: clamp(1.8rem, 8.5vw, 2.2rem); }
+.e-panel.revealed .e-rate span, .e-panel.revealed .e-secs { color: rgba(255, 255, 255, .82); }
+.e-panel.revealed .e-pic { fill: #fff; }
+.e-panel.revealed .e-chip { background: rgba(255, 255, 255, .18); color: #fff; }
+.e-panel.revealed .e-chip svg { stroke: #fff; }
+.e-panel.revealed .e-feel { background: rgba(255, 255, 255, .18); color: #fff; }
+.e-panel.revealed .e-feel[aria-pressed="true"] { background: #fff; color: var(--c); }
+.e-panel.revealed .e-trace { background: rgba(255, 255, 255, .14); color: #fff; }
+.e-panel.revealed .e-you .e-hsvg { opacity: .78; }
+.e-panel.revealed .e-hearts { gap: 34px; }
+
+.e-note { margin: 10px 6px 0; color: var(--soft); font-size: 0.92rem; line-height: 1.4; }
+.e-life { margin: 12px 6px 0; font-weight: 600; font-size: 0.98rem; line-height: 1.38; }
+.e-life a { color: var(--soft); font-weight: 500; font-size: 0.86rem; text-underline-offset: 3px; }
+.e-sources { margin: 10px 6px 0; padding: 0; list-style: none; color: var(--soft); font-size: 0.9rem; line-height: 1.45; }
+.e-sources li + li { margin-top: 4px; }
+.e-sources a { color: inherit; text-underline-offset: 3px; }
+
+/* the stamp in the album: a heart, the band, the animal and what it was doing */
+.stamp.eb .ebh { width: 28px; height: 26px; fill: #fff; opacity: .92; margin-bottom: auto; }
+.stamp.eb .p { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.035em; line-height: 0.95; font-variant-numeric: tabular-nums; }
+.stamp.eb .p small { font-family: var(--text); font-size: 0.62rem; font-weight: 700; letter-spacing: 0; opacity: .88; margin-left: 2px; }
+.stamp.eb .what { font-weight: 600; font-size: 0.8rem; margin-top: 3px; }
+.stamp.eb .of { font-weight: 600; font-size: 0.74rem; opacity: 0.88; margin-top: 2px; }
+
+/* short screens: step down so that nothing needs scrolling while you play */
+.fit1 .e-hsvg { width: 112px; height: 100px; }
+.fit1 .e-trace { height: 34px; }
+.fit1 .e-pic { width: 64px; height: 48px; }
+.fit2 .e-hsvg { width: 96px; height: 86px; }
+.fit2 .e-q { font-size: 1.3rem; }
+.fit2 .e-hint { display: none; }
+.fit2 .e-secs { display: none; }
+.fit3 .e-hsvg { width: 82px; height: 74px; }
+.fit3 .e-trace { height: 28px; }
+.fit3 .e-face { font-size: 1.2rem; }
+.fit3 .e-panel { padding-top: 10px; padding-bottom: 8px; }
+.fit2 .e-panel.revealed .e-hsvg, .fit3 .e-panel.revealed .e-hsvg { width: 78px; height: 70px; }
+
+@media (min-width: 560px) {
+  .e-hsvg { width: 156px; height: 142px; }
+  .e-panel.revealed .e-hsvg { width: 120px; height: 108px; }
+  .e-pic { width: 92px; height: 66px; }
+  .e-trace { height: 46px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .e-panel { background: rgba(255, 255, 255, .045); box-shadow: inset 0 0 0 1px var(--line); }
+  .e-chip, .e-feel, .e-ladder, .e-trace { background: rgba(255, 255, 255, .07); }
+  .e-feel[aria-pressed="true"] { color: #0A0C1A; }
+  .e-thumb { box-shadow: 0 0 0 3px var(--bg); }
+  .e-panel.revealed .e-hsvg, .e-panel.revealed .e-pic { fill: var(--c); }
+  .e-panel.revealed .e-rate b { color: var(--c); }
+  .e-panel.revealed .e-rate span, .e-panel.revealed .e-secs { color: var(--soft); }
+  .e-panel.revealed .e-chip { background: rgba(255, 255, 255, .08); color: var(--ink); }
+  .e-panel.revealed .e-chip svg { stroke: var(--c); }
+  .e-panel.revealed .e-feel { background: rgba(255, 255, 255, .08); color: var(--ink); }
+  .e-panel.revealed .e-feel[aria-pressed="true"] { background: var(--c); color: #0A0C1A; }
+  .e-panel.revealed .e-trace { background: rgba(255, 255, 255, .06); color: var(--c); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .e-hsvg.pulse, .e-thumb.nudge { animation: none; }
+}

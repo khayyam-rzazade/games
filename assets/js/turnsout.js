@@ -255,9 +255,9 @@
      ------------------------------------------------------------------ */
   function num(v) { return typeof v === "number" && isFinite(v); }
   var GAMES = [
-    { id: "who-gets-what", key: "gets", name: "Who Gets What", href: "who-gets-what/", start: "2026-10-08",
-      pitch: "A real price. Who gets what out of it?",
-      done: function (r) { return !!r && Array.isArray(r.g) && r.g.length >= 3 && r.g.length <= 4 && num(r.y) && r.y >= 0 && typeof r.t === "string"; },
+    { id: "every-beat", key: "every", name: "Every Beat", href: "every-beat/", start: "2026-10-09",
+      pitch: "One real animal. How fast does its heart beat?",
+      done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } },
     { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
       pitch: "Of 100 people in the world, how many…?",
@@ -282,7 +282,11 @@
     { id: "years-apart", key: "apart", name: "Years Apart", href: "years-apart/", start: "2026-10-05",
       pitch: "Two real events, one in between. Where does it fall?",
       done: function (r) { return !!r && num(r.g) && num(r.a) && num(r.y) && r.g >= 0 && r.g <= 1000 && r.y >= 0; },
-      says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } }
+      says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } },
+    { id: "who-gets-what", key: "gets", name: "Who Gets What", href: "who-gets-what/", start: "2026-10-08",
+      pitch: "A real price. Who gets what out of it?",
+      done: function (r) { return !!r && Array.isArray(r.g) && r.g.length >= 3 && r.g.length <= 4 && num(r.y) && r.y >= 0 && typeof r.t === "string"; },
+      says: function (r) { return r.t; } }
   ];
   function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 
