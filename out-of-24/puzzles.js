@@ -1555,6 +1555,390 @@ window.TURNSOUT_DATA["out-of-24"] = {
      "url": "https://stat.ethz.ch/Teaching/Datasets/sleep.txt+dat"
     }
    ]
+  },
+  {
+   "id": "cn-women-housework",
+   "colour": "red",
+   "face": "China",
+   "flag": "cn",
+   "act": "care",
+   "label": "housework and care",
+   "chips": [
+    {
+     "i": "care",
+     "t": "housework and care"
+    },
+    {
+     "i": "people",
+     "t": "women"
+    }
+   ],
+   "lo": 228,
+   "hi": 228,
+   "fig": "3 h 48",
+   "sentence": "Women in China spend 3 hours 48 minutes a day on unpaid work, such as housework and care; men 1 hour 32.",
+   "note": "People aged 15 and over, 2018 (National Bureau of Statistics of China). Housework alone: women 2 hours 6, men 45 minutes.",
+   "src": [
+    {
+     "name": "National Bureau of Statistics of China",
+     "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/201901/t20190125_1768278.html"
+    },
+    {
+     "name": "China Daily",
+     "url": "https://cn.chinadaily.com.cn/a/201901/25/WS5c4aa139a31010568bdc67bf.html"
+    }
+   ]
+  },
+  {
+   "id": "hippo-eating",
+   "colour": "green",
+   "face": "Hippo",
+   "pic": "hippo",
+   "act": "eating",
+   "label": "eating",
+   "chips": [
+    {
+     "i": "eating",
+     "t": "eating"
+    }
+   ],
+   "lo": 240,
+   "hi": 360,
+   "fig": "4–6 h",
+   "sentence": "A hippo spends the day in the water and comes out at night to graze for about 4 to 6 hours.",
+   "note": "San Diego Zoo Wildlife Alliance's library says about 5, or 5 to 6; Dublin Zoo 4 to 5. An adult eats 25 to 40 kg of plants a day.",
+   "src": [
+    {
+     "name": "San Diego Zoo Wildlife Alliance Library",
+     "url": "https://ielc.libguides.com/sdzg/factsheets/hippopotamus/diet"
+    },
+    {
+     "name": "Dublin Zoo",
+     "url": "https://dublinzoo.ie/animal/hippopotamus"
+    }
+   ]
+  },
+  {
+   "id": "at-women-sleep",
+   "colour": "violet",
+   "face": "Austria",
+   "flag": "at",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    },
+    {
+     "i": "people",
+     "t": "women"
+    }
+   ],
+   "lo": 532,
+   "hi": 532,
+   "fig": "8 h 52",
+   "sentence": "Women in Austria sleep 8 hours 52 minutes a day on average, men 8 hours 46, by the national survey of 2021–22.",
+   "note": "Everyone aged 10 and over, Monday to Sunday (Statistik Austria, published in December 2023).",
+   "src": [
+    {
+     "name": "Statistik Austria",
+     "url": "https://www.statistik.at/fileadmin/announcement/2023/12/20231218ZVE20212022.pdf"
+    },
+    {
+     "name": "APA, via vienna.at",
+     "url": "https://www.vienna.at/arbeitszeit-weiter-unterschied-zwischen-frauen-und-mannern/8467552"
+    }
+   ]
+  },
+  {
+   "id": "polar-bear-rest",
+   "colour": "green",
+   "face": "Polar bear",
+   "pic": "polar_bear",
+   "act": "rest",
+   "label": "asleep or resting",
+   "chips": [
+    {
+     "i": "rest",
+     "t": "asleep or resting"
+    },
+    {
+     "i": "pin",
+     "t": "on land"
+    }
+   ],
+   "lo": 1253,
+   "hi": 1296,
+   "fig": "20 h 53–21 h 36",
+   "sentence": "Stuck on land in summer, with no sea ice to hunt seals from, a polar bear may rest about 21 hours a day.",
+   "note": "Up to 90% of the time, for some of 20 bears with video collars on Hudson Bay (US Geological Survey, 2024); up to 87% in James Bay, says SeaWorld.",
+   "src": [
+    {
+     "name": "The Wildlife Society",
+     "url": "https://wildlife.org/?p=18848"
+    },
+    {
+     "name": "SeaWorld",
+     "url": "https://seaworld.org/animals/all-about/polar-bear/behavior"
+    }
+   ]
+  },
+  {
+   "id": "de-tv",
+   "colour": "red",
+   "face": "Germany",
+   "flag": "de",
+   "act": "tv",
+   "label": "watching TV",
+   "chips": [
+    {
+     "i": "tv",
+     "t": "watching TV"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 127,
+   "hi": 127,
+   "fig": "2 h 07",
+   "sentence": "People in Germany spend 2 hours 7 minutes a day watching TV or streaming: about a third of their free time.",
+   "note": "Everyone aged 10 and over, 2022 (Federal Statistical Office, figures revised in June 2025). Men 2 hours 12, women 2 hours 2.",
+   "src": [
+    {
+     "name": "Federal Statistical Office (Destatis)",
+     "url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Zeitverwendung/Tabellen/aktivitaeten-mediennutzung-geschlecht-zve.html"
+    },
+    {
+     "name": "dpa, via infranken.de",
+     "url": "https://www.infranken.de/ratgeber/technik/haengen-wir-zu-viel-an-bildschirmen-schockierende-statistik-klaert-auf-art-6225453,PRINT"
+    }
+   ]
+  },
+  {
+   "id": "sea-otter-eating",
+   "colour": "blue",
+   "face": "Sea otter",
+   "pic": "otter",
+   "act": "eating",
+   "label": "eating",
+   "chips": [
+    {
+     "i": "eating",
+     "t": "eating"
+    },
+    {
+     "i": "pin",
+     "t": "in the wild"
+    }
+   ],
+   "lo": 534,
+   "hi": 720,
+   "fig": "8 h 54–12 h",
+   "sentence": "A wild sea otter spends about 9 to 12 hours a day diving for food and eating it.",
+   "note": "8.9 hours in southeast Alaska, from 14 dive recorders (Journal of Wildlife Management, 2007); 40 to 50% of the day in California (UC Santa Cruz).",
+   "src": [
+    {
+     "name": "US Geological Survey",
+     "url": "https://pubs.usgs.gov/publication/70000580"
+    },
+    {
+     "name": "UC Santa Cruz",
+     "url": "https://theinnerotter.ucsc.edu/biology/general-biology"
+    }
+   ]
+  },
+  {
+   "id": "gorilla-sleep",
+   "colour": "green",
+   "face": "Gorilla",
+   "pic": "gorilla",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 720,
+   "hi": 780,
+   "fig": "12–13 h",
+   "sentence": "A gorilla sleeps about 12 to 13 hours a night in a nest, and often rests for hours in the day as well.",
+   "note": "Two gorilla charities: the Dian Fossey Gorilla Fund says about 12 hours of rest a night, the Gorilla Foundation 12 to 13. Neither names a study.",
+   "src": [
+    {
+     "name": "Dian Fossey Gorilla Fund",
+     "url": "https://gorillafund.org/gorilla-night-routines/"
+    },
+    {
+     "name": "The Gorilla Foundation",
+     "url": "https://www.koko.org/?p=3117"
+    }
+   ]
+  },
+  {
+   "id": "cn-paid-work",
+   "colour": "red",
+   "face": "China",
+   "flag": "cn",
+   "act": "work",
+   "label": "paid work",
+   "chips": [
+    {
+     "i": "work",
+     "t": "paid work"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 264,
+   "hi": 264,
+   "fig": "4 h 24",
+   "sentence": "Averaged over everyone in China aged 15 and over, working or not, people do 4 hours 24 minutes of paid work a day.",
+   "note": "2018 (National Bureau of Statistics of China): men 5 hours 15, women 3 hours 35; 4 hours 50 on working days, 3 hours 17 on rest days.",
+   "src": [
+    {
+     "name": "National Bureau of Statistics of China",
+     "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/201901/t20190125_1768278.html"
+    },
+    {
+     "name": "China Daily",
+     "url": "https://cn.chinadaily.com.cn/a/201901/25/WS5c4aa139a31010568bdc67bf.html"
+    }
+   ]
+  },
+  {
+   "id": "sperm-whale-rest",
+   "colour": "blue",
+   "face": "Sperm whale",
+   "pic": "whale",
+   "act": "rest",
+   "label": "asleep or resting",
+   "chips": [
+    {
+     "i": "rest",
+     "t": "asleep or resting"
+    },
+    {
+     "i": "pin",
+     "t": "at sea"
+    }
+   ],
+   "lo": 101,
+   "hi": 102,
+   "fig": "1 h 42",
+   "sentence": "Sperm whales hang upright near the surface to rest, and probably sleep, for only about 7% of the day.",
+   "note": "7.1% of the time recorded by suction-cup tags, in naps of 10 to 15 minutes (Miller and others, Current Biology, 2008). The drawing is of another whale.",
+   "src": [
+    {
+     "name": "University of St Andrews",
+     "url": "https://research-portal.st-andrews.ac.uk/en/publications/stereotypical-resting-behavior-of-the-sperm-whale/"
+    },
+    {
+     "name": "National Geographic",
+     "url": "https://www.nationalgeographic.com/photography/article/sperm-whales-nap-sleeping-photography-spd"
+    }
+   ]
+  },
+  {
+   "id": "kangaroo-eating",
+   "colour": "green",
+   "face": "Red kangaroo",
+   "pic": "kangaroo",
+   "act": "eating",
+   "label": "eating",
+   "chips": [
+    {
+     "i": "eating",
+     "t": "eating"
+    }
+   ],
+   "lo": 600,
+   "hi": 626,
+   "fig": "10 h–10 h 26",
+   "sentence": "A red kangaroo spends about 10 hours a day finding, cropping and chewing grass.",
+   "note": "From a study that compared red kangaroos with sheep: both spent about the same time feeding each day (Munn and others, Journal of Zoology, 2010).",
+   "src": [
+    {
+     "name": "San Diego Zoo Wildlife Alliance Library",
+     "url": "https://ielc.libguides.com/sdzg/factsheets/redkangaroo/behavior"
+    },
+    {
+     "name": "University of Wollongong",
+     "url": "https://ro.uow.edu.au/articles/journal_contribution/Feeding_biology_of_two_functionally_different_foregut-fermenting_mammals_the_marsupial_red_kangaroo_and_the_ruminant_sheep_how_physiological_ecology_can_inform_land_management/27731154"
+    }
+   ]
+  },
+  {
+   "id": "at-men-housework",
+   "colour": "red",
+   "face": "Austria",
+   "flag": "at",
+   "act": "care",
+   "label": "housework and care",
+   "chips": [
+    {
+     "i": "care",
+     "t": "housework and care"
+    },
+    {
+     "i": "people",
+     "t": "men"
+    }
+   ],
+   "lo": 126,
+   "hi": 126,
+   "fig": "2 h 06",
+   "sentence": "Men in Austria spend 2 hours 6 minutes a day on housework and caring for the family; women 3 hours 37.",
+   "note": "Males aged 10 and over, Monday to Sunday, in the national survey of 2021–22 (Statistik Austria): its \"Sorgearbeit in Haushalt und Familie\".",
+   "src": [
+    {
+     "name": "Statistik Austria",
+     "url": "https://www.statistik.at/fileadmin/announcement/2023/12/20231218ZVE20212022.pdf"
+    },
+    {
+     "name": "APA, via vienna.at",
+     "url": "https://www.vienna.at/arbeitszeit-weiter-unterschied-zwischen-frauen-und-mannern/8467552"
+    }
+   ]
+  },
+  {
+   "id": "de-sleep",
+   "colour": "violet",
+   "face": "Germany",
+   "flag": "de",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 516,
+   "hi": 517,
+   "fig": "8 h 36",
+   "sentence": "People in Germany sleep 8 hours 36 minutes a day on average, by the national time-use survey of 2022.",
+   "note": "Everyone aged 10 and over (Federal Statistical Office, figures revised in June 2025). Before the revision it was 8 hours 37.",
+   "src": [
+    {
+     "name": "Federal Statistical Office (Destatis)",
+     "url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Zeitverwendung/Tabellen/aktivitaeten-persoenlBereich-geschlecht-zve.html"
+    },
+    {
+     "name": "PTAheute",
+     "url": "https://www.ptaheute.de/aktuelles/2024/06/20/weniger-schlaf-mit-kindern-im-haushalt"
+    }
+   ]
   }
  ]
 };

@@ -803,6 +803,184 @@ window.TURNSOUT_DATA["every-beat"] = {
      "url": "https://alaskapublic.org/news/2020-12-29/if-ground-squirrels-can-hole-up-for-months-without-starving-or-losing-muscle-why-cant-we"
     }
    ]
+  },
+  {
+   "id": "narwhal-dive",
+   "colour": "blue",
+   "face": "Narwhal",
+   "pic": "narwhal",
+   "state": "diving",
+   "label": "diving",
+   "lo": 10,
+   "hi": 20,
+   "sentence": "On a normal dive, a narwhal's heart slows from about 60 beats a minute to between 10 and 20.",
+   "note": "Wild narwhals fitted with heart monitors, in a University of California, Santa Cruz study of 2017. Fleeing in a hurry, their hearts fell to three or four beats a minute.",
+   "src": [
+    {
+     "name": "UC Santa Cruz, via ScienceDaily",
+     "url": "https://www.sciencedaily.com/releases/2017/12/171207141726.htm"
+    },
+    {
+     "name": "Science News Explores",
+     "url": "https://www.snexplores.org/article/escaping-narwhals-can-freeze-and-flee-same-time"
+    }
+   ]
+  },
+  {
+   "id": "pigeon-rest",
+   "colour": "teal",
+   "face": "Pigeon",
+   "pic": "pigeon",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 110,
+   "hi": 121,
+   "sentence": "A resting homing pigeon's heart beats about 110 to 120 times a minute. In flight it races past 600.",
+   "note": "Homing pigeons: 110 at rest and 663 flying in a wind tunnel (Journal of Experimental Biology, 2005); at rest around the clock, a mean of 112 in one group and 121 in another (Ruether, 1998).",
+   "src": [
+    {
+     "name": "Journal of Experimental Biology",
+     "url": "https://cob.silverchair.com/jeb/article/208/16/3109/15681/Cardiorespiratory-adjustments-of-homing-pigeons-to"
+    },
+    {
+     "name": "Freie Universität Berlin",
+     "url": "https://refubium.fu-berlin.de/handle/fub188/11613?show=full"
+    }
+   ]
+  },
+  {
+   "id": "red-deer-rest",
+   "colour": "green",
+   "face": "Red deer",
+   "pic": "deer",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 40,
+   "hi": 70,
+   "sentence": "A resting red deer's heart beats 65 to 70 times a minute in May, but only about 40 in winter.",
+   "note": "Fifteen female red deer living in near-natural conditions, measured for 18 months by the University of Veterinary Medicine, Vienna (Turbill and others, 2011). The slow winter heart saves energy.",
+   "src": [
+    {
+     "name": "Journal of Experimental Biology",
+     "url": "https://cob.silverchair.com/jeb/article-pdf/1441919/963.pdf"
+    },
+    {
+     "name": "University of Veterinary Medicine, Vienna",
+     "url": "https://www.vetmeduni.ac.at/en/university/infoservice/press-releases/press-releases-2011/press-release-12-16-2011-winter-diets-the-secret-is-to-chill-the-extremities"
+    }
+   ]
+  },
+  {
+   "id": "llama-rest",
+   "colour": "magenta",
+   "face": "Llama",
+   "pic": "llama",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 60,
+   "hi": 90,
+   "sentence": "A calm llama's heart beats 60 to 90 times a minute, much like a person's.",
+   "note": "A veterinary team's chart of normal vital signs for llamas and alpacas; a study of llamas' heart traces found 60 to 80 when quiet, and over 100 after running.",
+   "src": [
+    {
+     "name": "UC Davis veterinary team",
+     "url": "https://cvet.sf.ucdavis.edu/sites/g/files/dgvnsk13661/files/inline-files/CVET%20Vital%20Signs%2006_2024.pdf"
+    },
+    {
+     "name": "Japanese Journal of Veterinary Research",
+     "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/3143/KJ00002377236.pdf"
+    }
+   ]
+  },
+  {
+   "id": "python-rest",
+   "colour": "green",
+   "face": "Burmese python",
+   "pic": "snake",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 16.8,
+   "hi": 24.7,
+   "sentence": "A resting Burmese python's heart beats only about 17 to 25 times a minute. After a big meal it triples.",
+   "note": "Fasting pythons kept at 30 °C, six adults and six young ones, in two laboratory studies (Secor and others, 2000 and 2010). Digesting a meal, their hearts beat 54 to 60 times a minute.",
+   "src": [
+    {
+     "name": "Journal of Experimental Biology",
+     "url": "https://cob.silverchair.com/jeb/article-pdf/213/1/78/1269558/78.pdf"
+    },
+    {
+     "name": "University of Alabama (Secor lab)",
+     "url": "https://ssecor.people.ua.edu/uploads/5/0/8/3/50831879/jeb.secor.etal.2000.pdf"
+    }
+   ]
+  },
+  {
+   "id": "octopus-awake",
+   "colour": "red",
+   "face": "Giant octopus",
+   "pic": "octopus",
+   "state": "awake",
+   "label": "awake",
+   "lo": 8,
+   "hi": 18,
+   "temp": 8,
+   "sentence": "In water at about 8 °C, a giant Pacific octopus's main heart beats only 8 to 18 times a minute.",
+   "note": "Giant Pacific octopuses moving freely in tanks at 7 to 9 °C (Johansen and Martin, 1962; Johansen, 1965). An octopus has three hearts; this is the main one.",
+   "src": [
+    {
+     "name": "Journal of Experimental Biology",
+     "url": "https://cob.silverchair.com/jeb/article-pdf/42/3/475/2208429/jexbio_42_3_475.pdf"
+    },
+    {
+     "name": "TONMO (the 1962 abstract)",
+     "url": "https://tonmo.com/threads/three-hearts-beat-as-one.12107/"
+    }
+   ]
+  },
+  {
+   "id": "polar-bear-den",
+   "colour": "green",
+   "face": "Polar bear",
+   "pic": "polar_bear",
+   "state": "asleep",
+   "label": "asleep",
+   "lo": 27,
+   "hi": 27,
+   "sentence": "Asleep in its winter den, a polar bear's heart slows week by week to just 27 beats a minute.",
+   "note": "From a study of two polar bears in winter dens (Folk and others, Arctic, 1970): their sleeping hearts began at about 60. Their body temperature stays normal, unlike a true hibernator's.",
+   "src": [
+    {
+     "name": "Arctic (journal)",
+     "url": "https://journalhosting.ucalgary.ca/index.php/arctic/article/view/66214"
+    },
+    {
+     "name": "Hungary Today",
+     "url": "https://hungarytoday.hu/polar-bear-twins-born-in-nyiregyhaza-zoo/"
+    }
+   ]
+  },
+  {
+   "id": "frog-rest",
+   "colour": "red",
+   "face": "Bullfrog",
+   "pic": "frog",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 42.5,
+   "hi": 42.5,
+   "temp": 28,
+   "sentence": "In water at 28 °C, a resting bullfrog's heart beats about 42 times a minute, and faster after a meal.",
+   "note": "American bullfrogs in a laboratory, fasting (Claësson, Abe and Wang, 2015). After a meal of a twentieth of their weight, their hearts beat 52.5 times a minute a day later, and 57.5 after 33 hours.",
+   "src": [
+    {
+     "name": "Zoologia (SciELO)",
+     "url": "https://scielo.br/j/zool/a/YZxwPn6NGvjHLMN6vXFq6fQ/?lang=en"
+    },
+    {
+     "name": "UNESP repository",
+     "url": "https://repositorio.unesp.br/items/f4e486e0-7cfd-46ad-b023-9dadc2d979a3"
+    }
+   ]
   }
  ]
 };
