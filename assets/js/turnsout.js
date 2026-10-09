@@ -254,6 +254,11 @@
      The browser checks compare the two (r/site-workshop/checks/t_onward.py).
      "done" says whether a stored result is a finished game, "says" puts it into a few words.
      To add a game: add it here, give it a colour in logicers.css and a tile in r/site-workshop/build_home.py.
+     Same Street was taken off this list on 9 Oct 2026 on Khayyam's word, after bad feedback. Its page,
+     its puzzles and its photos are untouched and logicers.com/same-street/ still works for anyone with
+     a link or coming from Listdle or Alldle; it is simply no longer one of the daily games, so it is
+     not on the shelf, not in the Today card, not in the streak, not in the way onward and not in a
+     duel. Putting it back is this one entry.
      ------------------------------------------------------------------ */
   function num(v) { return typeof v === "number" && isFinite(v); }
   function whole(v) { return num(v) && Math.round(v) === v; }
@@ -276,12 +281,6 @@
       ok: function (v) { return v === 0 || v === 1; },
       done: function (r) { return !!r && num(r.c); },
       says: function (r) { return r.c === r.r ? "Same call" : "Different call"; } },
-    { id: "same-street", key: "street", name: "Same Street", href: "same-street/", start: "2026-10-03",
-      pitch: "One real home. Where on the street is it?",
-      score: function (r) { return Math.abs(r.g - r.a); }, wins: "low",
-      ok: function (v) { return whole(v) && v >= 0 && v <= 99; },
-      done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 100 && r.a >= 1 && r.a <= 100; },
-      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "The right house" : gap === 1 ? "Next door" : gap + " doors away"; } },
     { id: "long-lost-cousin", key: "cousin", name: "Long Lost Cousin", href: "long-lost-cousin/", start: "2026-10-04",
       pitch: "Which one is the closest relative?",
       score: function (r) { return r.r; }, wins: "low",

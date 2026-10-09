@@ -18,7 +18,7 @@
   /* The night colours of logicers.css, for the marks on the dark card.
      r/site-workshop/checks/t_duel.py compares this list with the stylesheet. */
   var DOT = {
-    energy: "#E08600", hundred: "#7FA5FF", call: "#B99DFF", street: "#3FE0C6", cousin: "#FF8468",
+    energy: "#E08600", hundred: "#7FA5FF", call: "#B99DFF", cousin: "#FF8468",
     club: "#FF86BF", apart: "#D9A983", gets: "#35C95F", every: "#FF6687", o24: "#12B2C6"
   };
 
