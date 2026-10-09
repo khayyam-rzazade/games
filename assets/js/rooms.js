@@ -15,11 +15,10 @@
   if (!TO || !D) return;
 
   /* ------------------------------------------------------------------
-     The server's own address. Empty quotes: rooms are switched off and nothing of them shows
-     anywhere. Once the Worker exists (the Cloudflare dashboard names it), its address goes here,
-     for example "https://logicers-rooms.khayyam.workers.dev" — no closing slash.
+     The server's own address (the Cloudflare Worker logicers-rooms, made by Khayyam on 9 Oct 2026).
+     Empty quotes would switch rooms off: nothing of them would show anywhere. No closing slash.
      ------------------------------------------------------------------ */
-  var API = "";
+  var API = "https://logicers-rooms.rza-khay.workers.dev";
 
   /* The checks run the site from localhost and stand a pretend server up; they may point this
      script at it. Only there: a live page never takes an address from anywhere but API above. */
