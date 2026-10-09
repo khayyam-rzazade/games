@@ -72,7 +72,8 @@
 [data-g="gets"]    { --c: #005E16; --tint: #DCF2E2; }       /* Who Gets What, the seventh daily game: forest green */
 [data-g="every"]   { --c: #C40045; --tint: #FCE4EB; }       /* Every Beat, the eighth daily game: heart red */
 [data-g="o24"]     { --c: #0A5666; --tint: #DDF0F3; }       /* Out of 24, the ninth daily game: petrol */
-[data-g="energy"]  { --c: #A55200; --tint: #FAE8D7; }       /* Same Energy, the tenth daily game: copper */
+[data-g="energy"]  { --c: #A55200; --tint: #FAE8D7; }
+[data-g="duel"]    { --c: #3A3F5C; --tint: #ECEEF6; }       /* Who Was Closer is not a game: the site's own slate, so no game colour is spent on it */       /* Same Energy, the tenth daily game: copper */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -105,6 +106,7 @@
   [data-g="every"]   { --c: #FF6687; --tint: #220C14; }
   [data-g="o24"]     { --c: #12B2C6; --tint: #071A1F; }
   [data-g="energy"]  { --c: #E08600; --tint: #1E1307; }
+  [data-g="duel"]    { --c: #AEB6DA; --tint: #141728; }
 }
 
 /* ---------- base ---------- */
@@ -608,6 +610,74 @@ body.game { background: var(--tint); }
 .onbar.duck { visibility: hidden; }
 body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 @keyframes onbar-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+/* ---------- Who Was Closer (the duel): the block at every reveal ---------- */
+/* Loud here and quiet everywhere else. The frame's way onward puts it in, so no game owns it. */
+.duel { margin-top: 26px; padding: 16px 16px 14px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
+.duel-line { font-size: 1.05rem; line-height: 1.35; }
+.duel-line b { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; }
+.duel-tally { margin-top: 6px; color: var(--soft); font-size: 0.92rem; font-weight: 600; }
+.duel-line + .duel-tally { margin-top: 8px; }
+.duel-figure { margin-top: 14px; }
+.duel-say { margin-top: 8px; color: var(--soft); font-size: 0.85rem; font-weight: 600; }
+
+/* the card in miniature: the same numbers as the picture that gets shared */
+.duel-mini { padding: 14px 16px 15px; border-radius: 18px; background: #0E1020; color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+.duel-mini-top { display: flex; align-items: center; gap: 8px; }
+.duel-dots { width: 30px; height: 9px; flex: none; }
+.duel-mini-word { font-family: var(--display); font-weight: 800; font-size: 0.95rem; letter-spacing: -0.02em; }
+.duel-mini-date { margin-left: auto; color: rgba(255, 255, 255, .72); font-size: 0.78rem; font-weight: 600; }
+.duel-mini-head { margin-top: 12px; font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.03em; line-height: 1.1; text-align: center; overflow-wrap: anywhere; }
+.duel-mini-sub { margin-top: 6px; text-align: center; color: rgba(255, 255, 255, .80); font-size: 0.9rem; font-weight: 600; }
+.duel-mini-list { margin: 10px 2px 0; display: grid; gap: 3px; list-style: none; }
+.duel-mini-list li { display: flex; align-items: baseline; gap: 10px; color: rgba(255, 255, 255, .78); font-size: 0.9rem; font-weight: 600; }
+.duel-mini-list li b { margin-left: auto; font-weight: 800; }
+.duel-mini-list li.you { color: #fff; font-weight: 800; }
+/* three shapes a thumb can tell apart at a glance, never colour alone:
+   filled = you were closer, a ring = they were, a ring with a bar = a tie or a game that is never
+   a win, a small faint dot = nobody has played it yet. */
+.duel-mini-marks { margin-top: 13px; display: flex; align-items: center; justify-content: center; gap: 7px; }
+.duel-mini-marks i { width: 14px; height: 14px; border-radius: 99px; border: 2px solid var(--c); }
+.duel-mini-marks i.s-won { background: var(--c); }
+.duel-mini-marks i.s-lost { background: none; }
+.duel-mini-marks i.s-tie, .duel-mini-marks i.s-match, .duel-mini-marks i.s-mixed { background: linear-gradient(var(--c), var(--c)) center/8px 3px no-repeat; }
+.duel-mini-marks i.s-none { width: 8px; height: 8px; border: 0; background: rgba(255, 255, 255, .26); }
+.duel-mini-key { margin-top: 9px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; color: rgba(255, 255, 255, .62); font-size: 0.72rem; font-weight: 600; }
+.duel-mini-key span { display: inline-flex; align-items: center; gap: 5px; }
+.duel-mini-key i { width: 11px; height: 11px; border-radius: 99px; border: 2px solid rgba(255, 255, 255, .62); }
+.duel-mini-key i.s-won { background: rgba(255, 255, 255, .62); }
+.duel-mini-key i.s-tie { background: linear-gradient(rgba(255, 255, 255, .62), rgba(255, 255, 255, .62)) center/7px 3px no-repeat; }
+.duel-mini-foot { margin-top: 11px; text-align: center; color: rgba(255, 255, 255, .72); font-size: 0.78rem; font-weight: 600; }
+
+.duel-acts { margin-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.duel-send { appearance: none; border: 0; min-height: 48px; padding: 0 20px; border-radius: 999px; background: var(--c); color: var(--on-c); font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.duel-send:active { transform: scale(0.985); }
+.duel-what { padding: 4px 0; color: var(--soft); font-weight: 600; font-size: 0.95rem; text-underline-offset: 3px; border-radius: 8px; }
+.duel-note { margin-top: 10px; color: var(--soft); font-size: 0.9rem; font-weight: 600; overflow-wrap: anywhere; }
+
+/* the worked example inside the home page's About sheet */
+.about-duel { margin: 12px 0 4px; max-width: 360px; }
+
+/* the one quiet line on the home page's Today card */
+.today-duel { margin-top: 10px; font-size: 0.875rem; color: var(--soft); }
+.today-duel b { color: var(--ink); font-weight: 800; }
+.today-duel a { color: inherit; font-weight: 600; text-underline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .duel-send:active { transform: none; }
+}
+@media (prefers-color-scheme: dark) {
+  .duel { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .duel-mini { background: #080A15; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
+}
+@media (max-width: 350px) {
+  .duel-mini-head { font-size: 1.32rem; }
+  .duel-mini-marks { gap: 5px; }
+  .duel-mini-marks i { width: 12px; height: 12px; }
+  .duel-mini-marks i.s-none { width: 7px; height: 7px; }
+  .duel-acts { gap: 8px; }
+  .duel-send { padding: 0 16px; font-size: 1rem; }
+}
+
 @media (prefers-color-scheme: dark) {
   .onward { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
   .onward-next { box-shadow: 0 0 30px color-mix(in srgb, var(--c) 34%, transparent); }

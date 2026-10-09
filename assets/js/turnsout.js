@@ -233,6 +233,8 @@
         ? "No login and no cookies. Your table's best result is kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "names"
         ? "No login and no cookies. The players' names and wins are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
+        : kind === "duel"
+        ? "No login and no cookies. A duel link carries only the day, the scores and the nickname of the friend who sent it, inside the link itself: nothing reached a server, not even ours. What your phone has merged is kept only in this browser. Visits are counted with GoatCounter, without identifying anyone."
         : kind === "table"
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
@@ -254,45 +256,66 @@
      To add a game: add it here, give it a colour in logicers.css and a tile in r/site-workshop/build_home.py.
      ------------------------------------------------------------------ */
   function num(v) { return typeof v === "number" && isFinite(v); }
+  function whole(v) { return num(v) && Math.round(v) === v; }
   var GAMES = [
     { id: "same-energy", key: "energy", name: "Same Energy", href: "same-energy/", start: "2026-10-10",
       pitch: "A real food or drink. How many of another hold the same energy?",
+      score: function (r) { return r.y; }, wins: "low",
+      ok: function (v) { return whole(v) && Math.abs(v) <= 120; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 60 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } },
     { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
       pitch: "Of 100 people in the world, how many…?",
+      score: function (r) { return Math.abs(r.g - r.a); }, wins: "low",
+      ok: function (v) { return whole(v) && v >= 0 && v <= 100; },
       done: function (r) { return !!r && num(r.g) && num(r.a); },
       says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "Spot on" : "Off by " + gap; } },
     { id: "your-call", key: "call", name: "Your Call", href: "your-call/", start: "2026-10-03",
       pitch: "A real moment from history. What did they do?",
+      score: function (r) { return r.c === r.r ? 1 : 0; }, wins: "match",
+      ok: function (v) { return v === 0 || v === 1; },
       done: function (r) { return !!r && num(r.c); },
       says: function (r) { return r.c === r.r ? "Same call" : "Different call"; } },
     { id: "same-street", key: "street", name: "Same Street", href: "same-street/", start: "2026-10-03",
       pitch: "One real home. Where on the street is it?",
+      score: function (r) { return Math.abs(r.g - r.a); }, wins: "low",
+      ok: function (v) { return whole(v) && v >= 0 && v <= 99; },
       done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 100 && r.a >= 1 && r.a <= 100; },
       says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "The right house" : gap === 1 ? "Next door" : gap + " doors away"; } },
     { id: "long-lost-cousin", key: "cousin", name: "Long Lost Cousin", href: "long-lost-cousin/", start: "2026-10-04",
       pitch: "Which one is the closest relative?",
+      score: function (r) { return r.r; }, wins: "low",
+      ok: function (v) { return whole(v) && v >= 0 && v <= 2; },
       done: function (r) { return !!r && num(r.c); },
       says: function (r) { return r.r === 0 ? "Found it" : r.r === 1 ? "One branch away" : "Two branches away"; } },
     { id: "the-club", key: "club", name: "The Club", href: "the-club/", start: "2026-10-04",
       pitch: "Work out the secret rule. Who gets in?",
+      score: function (r) { return r.r; }, wins: "high",
+      ok: function (v) { return whole(v) && v >= 0 && v <= 5; },
       done: function (r) { return !!r && Array.isArray(r.c) && r.c.length === 5 && num(r.r) && r.r >= 0 && r.r <= 5; },
       says: function (r) { return r.r + " of 5"; } },
     { id: "years-apart", key: "apart", name: "Years Apart", href: "years-apart/", start: "2026-10-05",
       pitch: "Two real events, one in between. Where does it fall?",
+      score: function (r) { return r.y; }, wins: "low",
+      ok: function (v) { return num(v) && v >= 0 && v <= 9999999; },
       done: function (r) { return !!r && num(r.g) && num(r.a) && num(r.y) && r.g >= 0 && r.g <= 1000 && r.y >= 0; },
       says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } },
     { id: "who-gets-what", key: "gets", name: "Who Gets What", href: "who-gets-what/", start: "2026-10-08",
       pitch: "A real price. Who gets what out of it?",
+      score: function (r) { return r.y; }, wins: "low",
+      ok: function (v) { return whole(v) && v >= 0 && v <= 9999999; },
       done: function (r) { return !!r && Array.isArray(r.g) && r.g.length >= 3 && r.g.length <= 4 && num(r.y) && r.y >= 0 && typeof r.t === "string"; },
       says: function (r) { return r.t; } },
     { id: "every-beat", key: "every", name: "Every Beat", href: "every-beat/", start: "2026-10-09",
       pitch: "One real animal. How fast does its heart beat?",
+      score: function (r) { return r.y; }, wins: "low",
+      ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) >= 11) && Math.abs(v) <= 20000; },
       done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } },
     { id: "out-of-24", key: "o24", name: "Out of 24", href: "out-of-24/", start: "2026-10-09",
       pitch: "A real animal or country. How many hours a day?",
+      score: function (r) { return r.y; }, wins: "low",
+      ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) > 15) && Math.abs(v) <= 1440; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 1440 && num(r.y) && typeof r.t === "string"; },
       says: function (r) { return r.t; } }
   ];
@@ -333,6 +356,36 @@
     writeAll(all);                        // no milestones here: a group game is not a daily play
     return g;
   }
+  /* ------------------------------------------------------------------
+     Who Was Closer (the duel): what one phone has merged from the links it has opened.
+     It lives beside "games" and "groups", never inside them, so a duel can never touch a
+     streak, an album, the Today card or the returning-player events, which all read "games" only.
+       duels: { me: "copper-llama",
+                days: { "20261009": { p: [ { n: "ana-otter", s: { hundred: 3, club: 4 } } ] } } }
+     Only the last few dates are kept, so it never grows. Nothing about a friend is kept but the
+     nickname they chose themselves and the scores their link carried.
+     ------------------------------------------------------------------ */
+  var DUEL_DAYS = 3;                       // how many dates are remembered
+  function duels() {
+    var all = readAll();
+    var d = obj(all.duels) || {};
+    d.days = obj(d.days) || {};
+    if (typeof d.me !== "string") d.me = "";
+    return d;
+  }
+  function duelsUpdate(change) {
+    var all = readAll();
+    all.duels = obj(all.duels) || {};
+    var d = all.duels;
+    d.days = obj(d.days) || {};
+    if (typeof d.me !== "string") d.me = "";
+    change(d);
+    var keys = Object.keys(d.days).sort();                  // dates sort as text, so the newest are last
+    while (keys.length > DUEL_DAYS) delete d.days[keys.shift()];
+    writeAll(all);
+    return d;
+  }
+
   /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */
   function todayOf(G) { return Math.max(1, dayNumber(G.start)); }
 
@@ -453,6 +506,9 @@
     var all = el("a", "onward-all", "All games");
     all.href = here("../");
     box.appendChild(all);
+    if (typeof window.TurnsOut.duelHook === "function") {
+      try { window.TurnsOut.duelHook(after, o, played); } catch (e) { /* a duel must never break a game */ }
+    }
     after.appendChild(box);
 
     if (!next || !("IntersectionObserver" in window)) return box;      // nothing to go to, or an old browser: the block is enough
@@ -532,6 +588,8 @@
     GROUP: GROUP,
     group: group,
     groupUpdate: groupUpdate,
+    duels: duels,
+    duelsUpdate: duelsUpdate,
     todayOf: todayOf,
     playedToday: playedToday,
     onward: onward

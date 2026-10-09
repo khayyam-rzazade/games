@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<!-- The preview card a chat app shows. It stands first in the head on purpose: WhatsApp has been
+     seen to miss these tags when they sit after bulky inline styles. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="A friend has challenged you">
+<meta property="og:description" content="Play today's games and see who was closer. No login, nothing to install.">
+<meta property="og:url" content="https://logicers.com/duel/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who Was Closer: a friend's challenge across today's games | Logicers</title>
+<link rel="canonical" href="https://logicers.com/duel/">
+<meta name="description" content="A friend sent you their day on Logicers. Play the same ten games and see who was closer. No login, no tracking, no cookies, nothing to install.">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=4b0f2eb628">
+<link rel="stylesheet" href="duel.css?v=96621d8a48">
+</head>
+<body class="game d-page" data-g="duel">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="What this is">?</button>
+  </div>
+</header>
+
+<main class="wrap d-wrap" id="app">
+  <p class="meta"><b>Who Was Closer</b> <span id="d-date"></span></p>
+
+  <h1 class="d-h1" id="d-head">A friend has challenged you</h1>
+  <p class="d-lede" id="d-lede">Play today's games and see who was closer.</p>
+
+  <!-- the promise, high up, where a careful person lands -->
+  <p class="d-safe" id="d-safe">
+    <span class="d-tick" aria-hidden="true">✓</span>
+    No login. No tracking. No cookies. Nothing to install.
+    <span class="d-safe-more">Your friend's scores came inside the link itself and never reached a server, not even ours.</span>
+  </p>
+
+  <section class="panel d-panel" id="d-panel" aria-labelledby="d-head">
+    <p class="d-state" id="d-state"></p>
+    <div class="d-who" id="d-who" hidden></div>
+    <a class="d-go" id="d-go" href="../">
+      <span class="d-go-text"><span class="d-go-kicker" id="d-go-kicker">Start here</span><span class="d-go-name" id="d-go-name">Today's games</span></span>
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="d-list" id="d-list"></p>
+  </section>
+
+  <section class="d-demo" aria-labelledby="d-demo-h">
+    <h2 class="d-demo-h" id="d-demo-h">What your friend sees at the end of the day</h2>
+    <figure class="d-figure">
+      <div id="d-example"></div>
+      <figcaption class="duel-say">This is what your friend sees. Nothing on it gives an answer away.</figcaption>
+    </figure>
+  </section>
+
+  <section class="d-steps" aria-labelledby="d-steps-h">
+    <h2 class="d-demo-h" id="d-steps-h">How it works</h2>
+    <ol class="d-ol">
+      <li>Play any of today's games. They take about a minute each.</li>
+      <li>At the end, tap <b>Send my day</b>. Your phone makes one link and you send it yourself.</li>
+      <li>Your friend plays the same day. After each game, you both see who was closer.</li>
+    </ol>
+    <p class="quiet" id="d-mine"></p>
+  </section>
+
+  <div id="after"></div>
+</main>
+
+<dialog id="dlg-help" class="sheet" aria-labelledby="help-h">
+  <div class="sheet-in">
+    <button class="sheet-x" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-h">Who Was Closer</h2>
+    <p>One link carries your scores for one day in the daily games. A friend who opens it plays the same day and, at the end of each game, sees who was closer. At the end there is a card you can send on.</p>
+    <h3>No account, and no server</h3>
+    <p class="quiet">There is nothing to join and nothing to install. The scores travel inside the link itself, in the part after the <b>#</b>, which browsers never send to any server — not to ours either. What your phone has merged is kept only in this browser.</p>
+    <h3>Your name</h3>
+    <p class="quiet">You are never asked to type anything. Your phone picks two words for you, like Copper Llama, and you can roll another. It is not your real name and it goes no further than the links you send yourself.</p>
+    <h3>One day at a time</h3>
+    <p class="quiet">A duel belongs to its own day. A link from an earlier day says so, and a friend in a later time zone can send you a day that opens at your own midnight. Your streak and your album are never touched by any of this.</p>
+    <h3>In a group chat</h3>
+    <p class="quiet">Everyone sends their own link, and every phone adds up the links it has opened. Up to eight players at one table. A link only ever carries the day, the scores and the nickname of the person who sent it.</p>
+    <h3>Your privacy</h3>
+    <p class="quiet" data-privacy="duel">No login, no tracking, no cookies. A duel link carries only the day, the scores and the nickname of the friend who sent it, inside the link itself. What your phone has merged is kept only in this browser.</p>
+    <h3>Contact</h3>
+    <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<script src="../assets/js/turnsout.js?v=32492e97d0"></script>
+<script src="../assets/js/duel.js?v=ea42f3389f"></script>
+<script src="duel.js?v=222c421819"></script>
+</body>
+</html>
