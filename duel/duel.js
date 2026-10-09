@@ -132,21 +132,32 @@
   /* The worked example, drawn from invented numbers, so that the card can be shown and not described */
   $("d-example").appendChild(D.mini(D.example()));
 
-  /* Your own nickname, and a way to change it without typing a single letter */
+  /* Your own name. The site gives nobody one: the first send asks, and this says so. It sits down
+     here, in "How it works", and never on the first screen — the page a wary friend lands on asks
+     for nothing at all. */
   var mineP = $("d-mine");
-  mineP.appendChild(document.createTextNode("You are "));
-  var nick = document.createElement("b");
-  nick.id = "d-nick";
-  nick.textContent = D.pretty(D.me());
-  mineP.appendChild(nick);
-  mineP.appendChild(document.createTextNode(". It is not your real name, and it only ever goes inside the links you send yourself. "));
-  var roll = document.createElement("button");
-  roll.type = "button";
-  roll.className = "d-roll";
-  roll.id = "d-roll";
-  roll.textContent = "Another name";
-  roll.addEventListener("click", function () { nick.textContent = D.pretty(D.roll()); });
-  mineP.appendChild(roll);
+  function sayName() {
+    mineP.innerHTML = "";
+    if (D.named()) {
+      mineP.appendChild(document.createTextNode("Your friends see you as "));
+      var b = document.createElement("b");
+      b.id = "d-nick";
+      b.textContent = D.me();
+      mineP.appendChild(b);
+      mineP.appendChild(document.createTextNode(". It is kept in this browser and travels inside the links you send. "));
+    } else {
+      mineP.appendChild(document.createTextNode(
+        "You have no name here yet. The first time you send a day, a window asks what your friends call you — once, and it is kept in this browser. "));
+    }
+    var set = document.createElement("button");
+    set.type = "button";
+    set.className = "d-setname";
+    set.id = "d-name";
+    set.textContent = D.named() ? "Change it" : "Set it now";
+    set.addEventListener("click", function () { D.askName(sayName); });
+    mineP.appendChild(set);
+  }
+  sayName();
 
   /* A second link tapped while this page is already open changes only the part after the "#", which
      no browser treats as a new page. Reading it needs the page to run again. */
@@ -155,6 +166,7 @@
   if (p && shift === 0 && (how === "merged" || how === "again")) TO.count("duel/opened");
   window.DuelPage = function () {        // read by r/site-workshop/checks/t_duel.py
     return { how: how, shift: shift, key: key, head: head.textContent, state: state.textContent,
+             named: D.named(), myName: D.me(),
              next: next ? next.id : null, live: t.live, players: t.others.length,
              dropped: p ? p.dropped : 0, hash: window.location.hash };
   };

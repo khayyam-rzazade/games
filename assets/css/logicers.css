@@ -648,6 +648,22 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 .duel-mini-key i.s-tie { background: linear-gradient(rgba(255, 255, 255, .62), rgba(255, 255, 255, .62)) center/7px 3px no-repeat; }
 .duel-mini-foot { margin-top: 11px; text-align: center; color: rgba(255, 255, 255, .72); font-size: 0.78rem; font-weight: 600; }
 
+/* who you are on the card: one quiet line, shown only once a player has written a name */
+.duel-who { margin-top: 12px; color: var(--soft); font-size: 0.9rem; font-weight: 600; }
+.duel-who b { color: var(--ink); font-weight: 800; }
+.duel-rename { appearance: none; border: 0; background: none; padding: 2px 0; margin-left: 2px; color: var(--soft); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 6px; }
+
+/* the window that asks for a name, opened by the player's own tap on Send and never by itself */
+.duel-ask-in { position: relative; padding: 24px 24px 22px; }
+.duel-ask-in h2 { font-family: var(--display); font-weight: 800; font-size: 1.45rem; letter-spacing: -0.03em; line-height: 1.12; padding-right: 48px; }
+.duel-ask-x { position: absolute; top: 16px; right: 16px; appearance: none; border: 0; width: 40px; height: 40px; border-radius: 999px; background: var(--tint); color: var(--ink); font-size: 1.3rem; line-height: 1; cursor: pointer; }
+.duel-ask-lede { margin-top: 8px; font-size: 0.98rem; line-height: 1.4; }
+.duel-ask-field { margin-top: 16px; width: 100%; min-height: 52px; padding: 0 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 1.05rem; }
+.duel-ask-field:focus-visible { outline: 2px solid var(--c); outline-offset: 1px; }
+.duel-ask-go { margin-top: 12px; appearance: none; border: 0; width: 100%; min-height: 52px; border-radius: 999px; background: var(--c); color: var(--on-c); font-family: var(--display); font-weight: 800; font-size: 1.08rem; letter-spacing: -0.02em; cursor: pointer; }
+.duel-ask-go:active { transform: scale(0.99); }
+.duel-ask-say { margin-top: 12px; color: var(--soft); font-size: 0.86rem; font-weight: 600; line-height: 1.4; }
+
 .duel-acts { margin-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .duel-send { appearance: none; border: 0; min-height: 48px; padding: 0 20px; border-radius: 999px; background: var(--c); color: var(--on-c); font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .duel-send:active { transform: scale(0.985); }
@@ -663,7 +679,7 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 .today-duel a { color: inherit; font-weight: 600; text-underline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .duel-send:active { transform: none; }
+  .duel-send:active, .duel-ask-go:active { transform: none; }
 }
 @media (prefers-color-scheme: dark) {
   .duel { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
@@ -675,6 +691,8 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
   .duel-mini-marks i { width: 12px; height: 12px; }
   .duel-mini-marks i.s-none { width: 7px; height: 7px; }
   .duel-acts { gap: 8px; }
+  .duel-ask-in { padding: 20px 18px 18px; }
+  .duel-ask-in h2 { font-size: 1.28rem; }
   .duel-send { padding: 0 16px; font-size: 1rem; }
 }
 

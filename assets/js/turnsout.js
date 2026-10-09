@@ -234,7 +234,7 @@
         : kind === "names"
         ? "No login and no cookies. The players' names and wins are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "duel"
-        ? "No login and no cookies. A duel link carries only the day, the scores and the nickname of the friend who sent it, inside the link itself: nothing reached a server, not even ours. What your phone has merged is kept only in this browser. Visits are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. A duel link carries only the day, the scores and the name the sender chose for themselves, inside the link itself: nothing reached a server, not even ours. The name you choose travels in every link you send. What your phone has merged is kept only in this browser. Visits are counted with GoatCounter, without identifying anyone."
         : kind === "table"
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";

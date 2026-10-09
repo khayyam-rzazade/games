@@ -13,7 +13,7 @@
   if (!TO) return;
 
   var MAXP = 8;                         // players at one table, counting you (the same cap as the games for groups)
-  var MAXNICK = 24;                     // a nickname longer than this is not one of ours
+  var MAXNAME = 16;                     // a name longer than this will not fit on the card
 
   /* The night colours of logicers.css, for the marks on the dark card.
      r/site-workshop/checks/t_duel.py compares this list with the stylesheet. */
@@ -22,35 +22,33 @@
     club: "#FF86BF", apart: "#D9A983", gets: "#35C95F", every: "#FF6687", o24: "#12B2C6"
   };
 
-  /* ---------------- the nickname: two plain words, and never a text field ---------------- */
-  /* Words every player can read, whatever their English. 16 x 16 = 256, so a clash among a few
-     friends is unlikely; if two clash, either rolls again. The link carries the WORDS, not a
-     number in these lists, so the lists can change without breaking a link already sent. */
-  var WORD1 = ["amber", "blue", "bronze", "copper", "coral", "golden", "green", "grey",
-               "indigo", "olive", "plum", "red", "sandy", "silver", "teal", "violet"];
-  var WORD2 = ["bear", "crane", "deer", "dolphin", "fox", "heron", "lemur", "llama",
-               "otter", "owl", "panda", "seal", "swan", "tiger", "turtle", "whale"];
-
-  function pick(list) { return list[Math.floor(Math.random() * list.length)]; }
-  function newNick() { return pick(WORD1) + "-" + pick(WORD2); }
-  function nickOk(s) {
-    return typeof s === "string" && s.length > 0 && s.length <= MAXNICK && /^[a-z]+(-[a-z]+)?$/.test(s);
+  /* ---------------- the player's own name ----------------
+     The site never gives anybody a name. A player is asked for one at the moment it is first
+     needed — when they send a day — and never before: nothing is typed to play, and nobody has to
+     hunt for a setting to correct a name they did not choose. It is kept in this browser only and
+     it travels inside every link they send, which the window, the help and the privacy line all say.
+     Letters of ANY script (Xəyyam, Ana, 王), digits, spaces and a few marks; nothing that could
+     break a link or a line of the page. It is shown with textContent and drawn on canvas, never as
+     HTML, and it is encoded on its way into the link. */
+  var BAD = /[\u0000-\u001F\u007F<>&=#?\/\\"`|{}\[\]^~\u200B-\u200F\u2028\u2029]/;
+  function clean(s) {
+    return String(s === undefined || s === null ? "" : s).replace(/\s+/g, " ").trim();
   }
-  function pretty(n) {                   // "copper-llama" -> "Copper Llama"
-    return String(n).split("-").map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(" ");
+  function nameOk(s) {
+    s = clean(s);
+    if (!s || s.length > MAXNAME) return false;
+    if (BAD.test(s)) return false;
+    return /[^\s'.\-]/.test(s);         // it must hold something that is not only punctuation
   }
-  function me() {
-    var d = TO.duels();
-    if (nickOk(d.me)) return d.me;
-    var n = newNick();
-    TO.duelsUpdate(function (s) { s.me = n; });
-    return n;
-  }
-  function roll() {
-    var was = TO.duels().me, n = newNick();
-    for (var i = 0; i < 8 && n === was; i++) n = newNick();
-    TO.duelsUpdate(function (s) { s.me = n; });
-    return n;
+  var nickOk = nameOk;                   // the old name of the same test, kept for the checks
+  function pretty(n) { return clean(n); }
+  function me() { return clean(TO.duels().me); }      // "" until the player has written one
+  function named() { return nameOk(me()); }
+  function setName(v) {
+    var s = clean(v);
+    if (!nameOk(s)) return null;
+    TO.duelsUpdate(function (st) { st.me = s; });
+    return s;
   }
 
   /* ---------------- dates ---------------- */
@@ -115,7 +113,7 @@
      there is nothing hidden in it, and a long string of numbers is itself a reason people distrust
      a link. Everything rides after the "#", which browsers never send to a server. */
   function payload(key, nick, scores) {
-    var bits = ["d=" + key, "me=" + nick];
+    var bits = ["d=" + key, "me=" + encodeURIComponent(nick)];
     TO.GAMES.forEach(function (G) {
       if (scores[G.key] !== undefined) bits.push(G.key + "=" + scores[G.key]);
     });
@@ -140,12 +138,14 @@
   }
   function link(key) {
     key = key || todayKey();
+    if (!named()) return "";             // nothing half-formed can leak out before the player is named
     return linkFor(key, me(), mine(key));
   }
   /* The message is in the sender's own voice, not the site's: no emoji, no urgency, no "you've won",
      because those are what a scam message looks like. */
   function message(key) {
     key = key || todayKey();
+    if (!named()) return "";
     var n = countOf(mine(key));
     return "I played today's Logicers — " + n + " of " + TO.GAMES.length +
       " games. Think you can beat that? " + link(key);
@@ -160,9 +160,9 @@
     if (!raw) return null;
     var p;
     try { p = new URLSearchParams(raw); } catch (e) { return null; }
-    var key = p.get("d"), nick = p.get("me");
+    var key = p.get("d"), nick = clean(p.get("me"));
     if (!dateOf(key)) return null;
-    if (!nickOk(nick)) return null;
+    if (!nameOk(nick)) return null;      // the tidied name is what is kept, compared and shown
     var s = {}, dropped = 0;
     TO.GAMES.forEach(function (G) {
       var v = p.get(G.key);
@@ -530,9 +530,78 @@
     } else make();
   }
 
+  /* ---------------- the window that asks for a name ----------------
+     It opens when a player sends their first day, because that is the first moment the name is
+     needed and the first moment a player is clearly asking for something. It is opened by their own
+     tap, never by itself. Nothing is sent until they have written one; closing it sends nothing. */
+  var asker = null;
+  function askName(after) {
+    if (!asker) {
+      asker = document.createElement("dialog");
+      asker.id = "dlg-duel-name";
+      asker.className = "duel-ask";
+      var inn = el("div", "duel-ask-in");
+      var x = el("button", "duel-ask-x", "×");
+      x.type = "button";
+      x.setAttribute("aria-label", "Close");
+      var h = el("h2", "", "What do your friends call you?");
+      h.id = "duel-ask-h";
+      asker.setAttribute("aria-labelledby", "duel-ask-h");
+      var p = el("p", "duel-ask-lede", "They see this name on the card. There is no account and nothing to sign up for.");
+      var f = document.createElement("input");
+      f.type = "text";
+      f.id = "duel-ask-in";
+      f.className = "duel-ask-field";
+      f.maxLength = MAXNAME;
+      f.autocomplete = "nickname";
+      f.setAttribute("enterkeyhint", "done");
+      f.setAttribute("aria-describedby", "duel-ask-say");
+      f.setAttribute("aria-label", "Your name");
+      f.placeholder = "Your name";
+      var go = el("button", "duel-ask-go", "Save and send");
+      go.type = "button";
+      var say = el("p", "duel-ask-say",
+        "Kept in this browser only. It travels inside every link you send, so pick a name your friends will know you by.");
+      say.id = "duel-ask-say";
+      inn.appendChild(x); inn.appendChild(h); inn.appendChild(p);
+      inn.appendChild(f); inn.appendChild(go); inn.appendChild(say);
+      asker.appendChild(inn);
+      document.body.appendChild(asker);
+      asker.__f = f; asker.__go = go; asker.__say = say;
+      x.addEventListener("click", function () { TO.closeDialog(asker); });
+      function keep() {
+        var got = setName(asker.__f.value);
+        if (!got) {
+          asker.__say.textContent = "That will not fit on the card: up to " + MAXNAME +
+            " letters, and no < > & = # signs.";
+          asker.__f.focus();
+          return;
+        }
+        TO.closeDialog(asker);
+        TO.count("duel/named");
+        if (typeof asker.__after === "function") asker.__after(got);
+      }
+      go.addEventListener("click", keep);
+      f.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); keep(); } });
+    }
+    asker.__after = after;
+    asker.__f.value = me();
+    asker.__say.textContent = "Kept in this browser only. It travels inside every link you send, so pick a name your friends will know you by.";
+    TO.openDialog(asker);
+    window.setTimeout(function () { try { asker.__f.focus(); asker.__f.select(); } catch (e) { /* ignore */ } }, 30);
+    return asker;
+  }
+
   /* ---------------- sending ---------------- */
-  function send(key, onFallback) {
+  function send(key, onFallback, onNamed) {
     key = key || todayKey();
+    if (!named()) {                      // the first send: ask, then carry on where it left off
+      askName(function () {
+        if (typeof onNamed === "function") onNamed(me());
+        send(key, onFallback, onNamed);
+      });
+      return;
+    }
     var t = table(key);
     TO.count("duel/share");
     prepare(t);
@@ -578,6 +647,28 @@
     fig.appendChild(el("figcaption", "duel-say", "This is what your friend sees."));
     box.appendChild(fig);
 
+    /* Who you are on the card. It shows only once a player has a name, because until the first send
+       there is nothing to show: the site gives nobody a name. Tapping it opens the same window the
+       first send opens, so there is one place to change it and it is where the name is. */
+    var who = el("p", "duel-who");
+    var whoName = el("b", "", me());
+    var rename = el("button", "duel-rename", "Change");
+    rename.type = "button";
+    who.appendChild(document.createTextNode("Your friends see you as "));
+    who.appendChild(whoName);
+    who.appendChild(document.createTextNode(" "));
+    who.appendChild(rename);
+    who.hidden = !named();
+    box.appendChild(who);
+
+    function showName(n) {
+      whoName.textContent = n;
+      who.hidden = !n;
+      var m = document.querySelector("#duel .duel-mini");
+      if (m && m.parentNode) m.parentNode.replaceChild(mini(table(key)), m);   // the card wears it at once
+    }
+    rename.addEventListener("click", function () { askName(showName); });
+
     var acts = el("div", "duel-acts");
     var go = el("button", "duel-send", t.live ? "Send my day again" : "Send my day");
     go.type = "button";
@@ -597,7 +688,7 @@
           note.textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + link(key);
           note.hidden = false;
         });
-      });
+      }, showName);
     });
 
     after.appendChild(box);
@@ -619,7 +710,7 @@
     var p = el("p", "quiet");
     p.appendChild(document.createTextNode("Send one link from the end of any game and a friend plays the same day. " +
       "After each game you both see who was closer. No login, nothing to install: the scores ride inside the link " +
-      "itself and never reach a server. "));
+      "itself and never reach a server. The name you choose travels in it too, so pick one your friends will know you by. "));
     var a = document.createElement("a");
     a.href = base();
     a.textContent = "See what your friend sees";
@@ -652,14 +743,15 @@
   }
 
   window.Duel = {
-    me: me, roll: roll, pretty: pretty, nickOk: nickOk,
+    me: me, named: named, setName: setName, askName: askName, pretty: pretty,
+    nickOk: nickOk, nameOk: nameOk, clean: clean, MAXNAME: MAXNAME,
     keyOf: keyOf, dateOf: dateOf, todayKey: todayKey, dayShift: dayShift, dateWords: dateWords,
     dayFor: dayFor, mine: mine, countOf: countOf,
     payload: payload, link: link, linkFor: linkFor, message: message, base: base,
     read: read, merge: merge, take: take, players: players,
     table: table, headline: headline, standings: standings, lineFor: lineFor, tallyWords: tallyWords,
     mini: mini, example: example, drawCard: drawCard, prepare: prepare, send: send, block: block,
-    MAXP: MAXP, DOT: DOT, WORDS: [WORD1, WORD2]
+    MAXP: MAXP, DOT: DOT
   };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", helpLine);
