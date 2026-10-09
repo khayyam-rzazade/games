@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<!-- The preview card a chat app shows. First in the head, as on the duel page: WhatsApp has been
+     seen to miss these tags when they sit after bulky inline styles. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="You are invited to a room">
+<meta property="og:description" content="A room of friends playing the same small daily games: today's table and the month's. No login, nothing to install.">
+<meta property="og:url" content="https://logicers.com/room/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rooms: play the daily games with your friends | Logicers</title>
+<link rel="canonical" href="https://logicers.com/room/">
+<meta name="description" content="A room is 2 to 50 friends playing the same small daily games, with today's table and the month's. Joining is one link. No login, no password, nothing to install.">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=4c9b107d98">
+<link rel="stylesheet" href="room.css?v=ee7aa72631">
+</head>
+<body class="game d-page" data-g="room">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="What this is">?</button>
+  </div>
+</header>
+
+<main class="wrap d-wrap rm-wrap" id="app">
+  <p class="meta"><b>Rooms</b> <span id="rm-date"></span></p>
+
+  <h1 class="d-h1" id="rm-head">Play with your friends</h1>
+  <p class="d-lede" id="rm-lede">A room is 2 to 50 friends playing the same daily games: today's table and the month's.</p>
+
+  <!-- the promise, high up, where a careful person lands; the full words are below and in the help -->
+  <p class="d-safe" id="rm-safe">
+    <span class="d-tick" aria-hidden="true">✓</span>
+    No login. No password. Nothing to install.
+    <span class="d-safe-more" id="rm-safe-more">The link is the key to the room. Joining means that when you finish a daily game, your phone sends the game, your score, the day and your name to this room's table — nothing else. Leaving deletes everything of yours at once.</span>
+  </p>
+
+  <section class="panel rm-panel" id="rm-panel" aria-labelledby="rm-head">
+    <p class="rm-state" id="rm-state"></p>
+
+    <div id="rm-switch" class="rm-switch" hidden role="group" aria-label="Your rooms"></div>
+
+    <div id="rm-join" hidden>
+      <div class="d-who" id="rm-who"></div>
+      <button class="rm-big" id="rm-join-go" type="button">Join this room</button>
+      <p class="quiet rm-small">One tap. If you have no name here yet, a window asks what your friends call you.</p>
+    </div>
+
+    <div id="rm-make" hidden>
+      <button class="rm-big" id="rm-make-go" type="button">Make a room</button>
+      <p class="quiet rm-small">One tap makes the room and its link. You send the link yourself, and whoever opens it is in.</p>
+    </div>
+
+    <div id="rm-table" hidden></div>
+
+    <p class="rm-note" id="rm-note" hidden></p>
+  </section>
+
+  <section class="d-steps" aria-labelledby="rm-steps-h">
+    <h2 class="d-demo-h" id="rm-steps-h">How it works</h2>
+    <ol class="d-ol">
+      <li>One of you makes the room and sends its link to the group chat.</li>
+      <li>Everyone who opens the link is in. Up to 50 of you; no login, no password.</li>
+      <li>Play the daily games as always. Each finished game joins the room's table by itself.</li>
+      <li>The table shows today and the month: who took which game, who leads, who has not played yet.</li>
+    </ol>
+    <p class="quiet" id="rm-words">What a room stores, in full: the game, your score, the day and your name — never an answer, never anything about your phone. The table is kept for this month and the last, then deleted, and a room nobody has played in for 60 days is deleted whole. <b>Leave the room</b> deletes everything of yours at once; whoever made the room can delete the whole room. Anyone with the link can join and see the table, so share it only with your friends.</p>
+  </section>
+
+  <div id="after"></div>
+</main>
+
+<dialog id="dlg-help" class="sheet" aria-labelledby="help-h">
+  <div class="sheet-in">
+    <button class="sheet-x" type="button" data-close aria-label="Close">×</button>
+    <h2 id="help-h">Rooms</h2>
+    <p>A room is a group of friends — 2 to 50 — playing the same small daily games. One link makes you a member; after that, every daily game you finish joins the room's table by itself: today's standings and the month's.</p>
+    <h3>The link is the key</h3>
+    <p class="quiet">There is no login and no password. The room's code is 20 letters and digits drawn at random — far too many to guess — and it rides in the part of the link after the <b>#</b>, which browsers never send to other sites. Whoever has the link is in, so share it only with the friends you mean.</p>
+    <h3>Your name</h3>
+    <p class="quiet">Nobody is given a name here. The first time one is needed, a window asks what your friends call you — the same name you may already have set for Who Was Closer. It is kept in this browser, and in a room it is sent with your scores, so the table can say who took what. Two members of one room cannot share a name.</p>
+    <h3>Who takes a game, and the month</h3>
+    <p class="quiet">A game is taken by whoever was strictly closest that day, by the game's own rule — The Club by most right, and Your Call is never a win, as in Who Was Closer. A tie takes nothing, and a game only you played takes nothing. A point per game taken; the month is the sum of its days, and it starts fresh on the 1st.</p>
+    <h3>What is sent, and what is kept</h3>
+    <p class="quiet" id="rm-privacy" data-privacy="rooms">When you finish a daily game, your phone sends the game, your score, the day and your name to the rooms you are in — nothing else, nothing of any answer, and nothing at all if you are in no room. It goes to the site's own small server and nowhere further. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole, and no address, email or cookie is stored for anyone. Leaving a room deletes everything of yours at once.</p>
+    <h3>Leaving, and deleting a room</h3>
+    <p class="quiet">Leave the room, on the table below, deletes you and every score of yours from the room at once. Whoever made the room can delete the whole room the same way. If anything is ever stuck, write to the contact address and it will be deleted by hand.</p>
+    <h3>Your streak and your albums</h3>
+    <p class="quiet">A room never touches them. The games are scored, kept and shown exactly as always; the room only hears about results you were keeping anyway.</p>
+    <h3>Contact</h3>
+    <p class="quiet">A question, a mistake, or something to delete? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-sure" class="sheet rm-sure" aria-labelledby="sure-h">
+  <div class="sheet-in">
+    <button class="sheet-x" type="button" data-close aria-label="Close">×</button>
+    <h2 id="sure-h">Are you sure?</h2>
+    <p id="sure-words"></p>
+    <button class="rm-big rm-danger" id="sure-go" type="button">Yes</button>
+    <button class="rm-quiet" id="sure-no" type="button" data-close>Keep things as they are</button>
+  </div>
+</dialog>
+
+<script src="../assets/js/turnsout.js?v=c760a4e320"></script>
+<script src="../assets/js/duel.js?v=6cb85e8123"></script>
+<script src="../assets/js/rooms.js?v=85a3f05c80"></script>
+<script src="room.js?v=a8191a2b12"></script>
+</body>
+</html>

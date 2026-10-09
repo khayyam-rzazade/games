@@ -26,7 +26,7 @@
 <link rel="icon" href="favicon.ico?v=30ea955f6d" sizes="32x32">
 <link rel="icon" href="assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
-<link rel="stylesheet" href="assets/css/logicers.css?v=4ef4abbde0">
+<link rel="stylesheet" href="assets/css/logicers.css?v=4c9b107d98">
 </head>
 <body class="home">
 
@@ -51,6 +51,7 @@
     <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
     <p class="today-note" id="today-note">New games at midnight.</p>
     <p class="today-duel" id="today-duel"><a href="duel/">Send one link and your friends play the same 9 games.</a></p>
+    <p class="today-duel" id="today-rooms" hidden><a href="room/">Or make a room: a month-long table for 2 to 50 friends.</a></p>
   </div>
 </section>
 
@@ -290,6 +291,10 @@
     <h3>Who Was Closer</h3>
     <p class="quiet">Send one link from the end of any daily game and a friend plays the same day. After each game you both see who was closer, and at the end there is a card. There is no account and no server: the scores travel inside the link itself, in the part after the <b>#</b>, which browsers never send anywhere. The first time you send one, a window asks what your friends call you; the name is kept in this browser and travels inside the links you send. A link carries only the day, the scores and that name, and what your phone has added up is kept only in this browser. <a href="duel/">See what your friend sees</a>.</p>
     <figure class="about-duel"><div id="about-duel-card"></div><figcaption class="duel-say">This is what your friend sees.</figcaption></figure>
+    <div id="about-rooms" hidden>
+    <h3>Rooms</h3>
+    <p class="quiet">A room is 2 to 50 friends playing the daily games with a shared table, today's and the month's, joined by one link. It is the one thing on this site that stores anything outside your own browser: when a member finishes a daily game, their phone sends the game, the score, the day and their chosen name to the site's own small server — nothing else, and nothing at all for anyone who is in no room. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole; leaving a room deletes everything of yours at once, and the room's maker can delete the whole room. <a href="room/">Make or join a room</a>.</p>
+    </div>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque, Figtree and Literata, under the SIL Open Font License.</p>
@@ -308,8 +313,9 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=3a81e2f029"></script>
-<script src="assets/js/duel.js?v=f9dd66bf06"></script>
+<script src="assets/js/turnsout.js?v=c760a4e320"></script>
+<script src="assets/js/duel.js?v=6cb85e8123"></script>
+<script src="assets/js/rooms.js?v=85a3f05c80"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */

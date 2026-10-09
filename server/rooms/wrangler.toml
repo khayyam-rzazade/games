@@ -1,0 +1,18 @@
+# Logicers Rooms — the Worker's settings, for anyone deploying with wrangler (the command line).
+# Khayyam deploys from the Cloudflare dashboard instead, where the same three things are set by
+# hand: the Worker named logicers-rooms with worker.js as its code, a D1 database bound under the
+# name DB, and the nightly trigger. The database id below is not a secret (using it needs the
+# account's own login), but it is left for wrangler to fill: `wrangler d1 create logicers-rooms`
+# prints it.
+
+name = "logicers-rooms"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+[triggers]
+crons = ["17 3 * * *"]   # the nightly tidy-up: old months out, rooms idle for 60 days out whole
+
+[[d1_databases]]
+binding = "DB"
+database_name = "logicers-rooms"
+database_id = "run `wrangler d1 create logicers-rooms` and paste the id it prints"

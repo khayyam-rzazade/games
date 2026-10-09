@@ -74,6 +74,7 @@
 [data-g="o24"]     { --c: #0A5666; --tint: #DDF0F3; }       /* Out of 24, the ninth daily game: petrol */
 [data-g="energy"]  { --c: #A55200; --tint: #FAE8D7; }
 [data-g="duel"]    { --c: #3A3F5C; --tint: #ECEEF6; }       /* Who Was Closer is not a game: the site's own slate, so no game colour is spent on it */       /* Same Energy, the tenth daily game: copper */
+[data-g="room"]    { --c: #3A3F5C; --tint: #ECEEF6; }       /* Rooms is not a game either: the same slate */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -107,6 +108,7 @@
   [data-g="o24"]     { --c: #12B2C6; --tint: #071A1F; }
   [data-g="energy"]  { --c: #E08600; --tint: #1E1307; }
   [data-g="duel"]    { --c: #AEB6DA; --tint: #141728; }
+  [data-g="room"]    { --c: #AEB6DA; --tint: #141728; }
 }
 
 /* ---------- base ---------- */
@@ -669,6 +671,11 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 .duel-send:active { transform: scale(0.985); }
 .duel-what { padding: 4px 0; color: var(--soft); font-weight: 600; font-size: 0.95rem; text-underline-offset: 3px; border-radius: 8px; }
 .duel-note { margin-top: 10px; color: var(--soft); font-size: 0.9rem; font-weight: 600; overflow-wrap: anywhere; }
+
+/* Rooms: the one quiet line at a reveal (assets/js/rooms.js). The duel block above it is the loud
+   thing; a room is a standing table, so a line and a link are all it gets on a game's page. */
+.rooms-line { margin-top: 10px; color: var(--soft); font-size: 0.9rem; font-weight: 600; }
+.rooms-line a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
 
 /* the worked example inside the home page's About sheet */
 .about-duel { margin: 12px 0 4px; max-width: 360px; }

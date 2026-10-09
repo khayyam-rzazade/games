@@ -282,7 +282,7 @@
     return list;
   }
   /* The line for the game just revealed. It says WHO WAS CLOSER and never the friend's score:
-     one sentence that reads the same in all ten games, needs no game's own vocabulary and gives
+     one sentence that reads the same in every daily game, needs no game's own vocabulary and gives
      nothing of the puzzle away. */
   function lineFor(t, gameId) {
     var row = null;
@@ -535,7 +535,7 @@
      needed and the first moment a player is clearly asking for something. It is opened by their own
      tap, never by itself. Nothing is sent until they have written one; closing it sends nothing. */
   var asker = null;
-  function askName(after) {
+  function askName(after, word) {        // "word": what the button says; Rooms passes "Save" (the name is not sent anywhere by saving it there)
     if (!asker) {
       asker = document.createElement("dialog");
       asker.id = "dlg-duel-name";
@@ -585,6 +585,7 @@
       f.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); keep(); } });
     }
     asker.__after = after;
+    asker.__go.textContent = word || "Save and send";
     asker.__f.value = me();
     asker.__say.textContent = "Kept in this browser only. It travels inside every link you send, so pick a name your friends will know you by.";
     TO.openDialog(asker);

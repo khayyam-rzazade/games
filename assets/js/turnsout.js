@@ -235,6 +235,8 @@
         ? "No login and no cookies. The players' names and wins are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "duel"
         ? "No login and no cookies. A duel link carries only the day, the scores and the name the sender chose for themselves, inside the link itself: nothing reached a server, not even ours. The name you choose travels in every link you send. What your phone has merged is kept only in this browser. Visits are counted with GoatCounter, without identifying anyone."
+        : kind === "rooms"
+        ? "No login and no cookies. A room is the one thing on this site that stores anything outside your own browser: each daily game a member finishes sends the game, the score, the day and their chosen name to the site's own small server, and nothing else — and nothing at all for anyone who is in no room. It keeps this month and the last, then deletes; a room nobody plays in for 60 days is deleted whole, and leaving a room deletes everything of yours at once. Visits are counted with GoatCounter, without identifying anyone."
         : kind === "table"
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
@@ -385,6 +387,34 @@
     return d;
   }
 
+  /* ------------------------------------------------------------------
+     Rooms: which rooms this browser is in, its own random token, and what still waits to be sent.
+     It lives beside "games", "groups" and "duels", never inside them, so a room can never touch a
+     streak, an album, the Today card or the returning-player events, which all read "games" only.
+       rooms: { tok: "4f...", list: [ { code: "...", label: "Ana's room" } ], out: { "20261012": ["code"] } }
+     The token stands for this browser on the room's own server; the name shown at the table is the
+     one the duel's window asked for. A browser in no room has nothing here and sends nothing anywhere.
+     ------------------------------------------------------------------ */
+  function roomsStore() {
+    var all = readAll();
+    var r = obj(all.rooms) || {};
+    if (typeof r.tok !== "string") r.tok = "";
+    r.list = Array.isArray(r.list) ? r.list : [];
+    r.out = obj(r.out) || {};
+    return r;
+  }
+  function roomsUpdate(change) {
+    var all = readAll();
+    all.rooms = obj(all.rooms) || {};
+    var r = all.rooms;
+    if (typeof r.tok !== "string") r.tok = "";
+    r.list = Array.isArray(r.list) ? r.list : [];
+    r.out = obj(r.out) || {};
+    change(r);
+    writeAll(all);
+    return r;
+  }
+
   /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */
   function todayOf(G) { return Math.max(1, dayNumber(G.start)); }
 
@@ -508,6 +538,9 @@
     if (typeof window.TurnsOut.duelHook === "function") {
       try { window.TurnsOut.duelHook(after, o, played); } catch (e) { /* a duel must never break a game */ }
     }
+    if (typeof window.TurnsOut.roomHook === "function") {
+      try { window.TurnsOut.roomHook(after, o, played); } catch (e) { /* a room must never break a game */ }
+    }
     after.appendChild(box);
 
     if (!next || !("IntersectionObserver" in window)) return box;      // nothing to go to, or an old browser: the block is enough
@@ -589,6 +622,8 @@
     groupUpdate: groupUpdate,
     duels: duels,
     duelsUpdate: duelsUpdate,
+    roomsStore: roomsStore,
+    roomsUpdate: roomsUpdate,
     todayOf: todayOf,
     playedToday: playedToday,
     onward: onward
