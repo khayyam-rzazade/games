@@ -90,3 +90,52 @@
   .d-go-name { font-size: 1.3rem; }
   .rm-days { display: none; }
 }
+
+/* ================= the second round: the board, the reactions, the week ================= */
+
+.rm-streak { margin-left: 10px; font-weight: 800; font-size: 0.95rem; }
+.rm-week { margin-top: 8px; color: var(--soft); font-weight: 700; font-size: 0.9rem; }
+.rm-week-last { margin-top: 2px; }
+
+/* the board: one row per friend, one column per game; the header and your own row stay in view */
+.rm-board-wrap { margin-top: 12px; }
+.rm-board-wrap.tall { max-height: 430px; overflow-y: auto; overscroll-behavior: contain; }
+.rm-board { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; min-width: 0; }
+.rm-brow { display: flex; align-items: center; gap: 4px; padding: 5px 0; border-top: 1px solid var(--line); background: var(--bg); }
+.rm-brow:first-child { border-top: 0; }
+.rm-bhead { position: sticky; top: 0; z-index: 3; }
+.rm-brow.you { position: sticky; bottom: 0; top: 34px; z-index: 2; background: var(--tint); border-radius: 10px; border-top-color: transparent; padding-left: 4px; padding-right: 4px; }
+.rm-bwho { flex: 1; min-width: 0; display: flex; align-items: center; gap: 7px; }
+.rm-bname { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; font-size: 0.88rem; }
+.rm-brow.you .rm-bname { font-weight: 800; }
+.rm-flame { font-style: normal; font-size: 0.68rem; font-weight: 800; flex: none; }
+.rm-react-chip { font-style: normal; font-size: 0.85rem; flex: none; }
+.rm-bdot, .rm-cell { flex: none; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; border-radius: 99px; font-style: normal; }
+.rm-bdot { height: 10px; width: 10px; margin: 0 5px; border-radius: 99px; background: var(--c); }
+.rm-cell::before { content: ""; width: 10px; height: 10px; border-radius: 99px; border: 2px solid color-mix(in srgb, var(--c) 55%, transparent); }
+.rm-cell.on::before { background: var(--c); border-color: var(--c); }
+.rm-cell.crown { font-size: 0.85rem; }
+.rm-cell.crown::before { content: none; }
+.rm-bend { flex: none; width: 34px; display: inline-flex; justify-content: flex-end; }
+.rm-poke { appearance: none; border: 0; background: none; font-size: 1rem; min-width: 32px; min-height: 28px; border-radius: 10px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.rm-poke:active { transform: scale(1.15); }
+
+/* the reactions: one tap, yours today, the same tap takes it back */
+.rm-reacts { margin-top: 10px; display: flex; gap: 8px; }
+.rm-react { appearance: none; min-width: 44px; min-height: 38px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); font-size: 1.05rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.rm-react.on { border-color: var(--c); background: var(--tint); box-shadow: 0 0 0 1.5px var(--c) inset; }
+
+/* medals and the gentle jokes of the month */
+.rm-rank { font-variant-emoji: emoji; }
+.rm-joke { font-style: normal; font-size: 0.9rem; }
+.rm-recap { margin-top: 12px; }
+
+@media (max-width: 350px) {
+  .rm-bdot { margin: 0 4px; width: 9px; height: 9px; }
+  .rm-bdot, .rm-cell { width: 18px; height: 18px; }
+  .rm-bend { width: 30px; }
+  .rm-bname { font-size: 0.82rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rm-poke:active { transform: none; }
+}

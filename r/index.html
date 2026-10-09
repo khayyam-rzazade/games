@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<!-- The short door to a room: logicers.com/r/#Name-code. The name is a label for people; only the
+     code opens the room, and this page simply forwards to room/ with it. It is the one file under
+     r/ that is in the repository (.gitignore lets exactly it through); everything else under r/
+     lives on the Mac only, as the security pass of 7 Oct 2026 decided. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="You are invited to a room">
+<meta property="og:description" content="A room of friends playing the same small daily games: today's board and the month's table. No login, nothing to install.">
+<meta property="og:url" content="https://logicers.com/r/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your room | Logicers</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://logicers.com/room/">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<style>
+  html { background: #F3F4F9; }
+  @media (prefers-color-scheme: dark) { html { background: #080A15; } }
+  body { margin: 40px auto; max-width: 28em; font-family: system-ui, sans-serif; color: #15172B; padding: 0 16px; }
+  @media (prefers-color-scheme: dark) { body { color: #F3F4FF; } }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<p>Opening your room… <a href="../room/" id="go">Tap here if nothing happens.</a></p>
+<script>
+(function () {
+  "use strict";
+  /* the code is whatever stands after the last "-" (a name may hold hyphens of its own);
+     a link with no label is just the code. 10 letters since the second round, 20 before it. */
+  var raw = "";
+  try { raw = decodeURIComponent((window.location.hash || "").slice(1)); } catch (e) { raw = (window.location.hash || "").slice(1); }
+  var code = raw.split("-").pop().replace(/\s+/g, "");
+  var okd = /^[23456789abcdefghjkmnpqrstvwxyz]{10}([23456789abcdefghjkmnpqrstvwxyz]{10})?$/.test(code);
+  var to = "../room/" + (okd ? "#r=" + code : "");
+  document.getElementById("go").setAttribute("href", to);
+  window.location.replace(to);
+})();
+</script>
+</body>
+</html>

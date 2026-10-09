@@ -28,8 +28,8 @@
 <link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
 <link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=4c9b107d98">
-<link rel="stylesheet" href="room.css?v=ee7aa72631">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=c75171f168">
+<link rel="stylesheet" href="room.css?v=07d14dbe77">
 </head>
 <body class="game d-page" data-g="room">
 
@@ -46,11 +46,11 @@
   <h1 class="d-h1" id="rm-head">Play with your friends</h1>
   <p class="d-lede" id="rm-lede">A room is 2 to 50 friends playing the same daily games: today's table and the month's.</p>
 
-  <!-- the promise, high up, where a careful person lands; the full words are below and in the help -->
+  <!-- the promise, high up, where a careful person lands: one line, with the full words one tap
+       away under "?" and in the About sheet (the second round cut the paragraphs off the page) -->
   <p class="d-safe" id="rm-safe">
     <span class="d-tick" aria-hidden="true">✓</span>
-    No login. No password. Nothing to install.
-    <span class="d-safe-more" id="rm-safe-more">The link is the key to the room. Joining means that when you finish a daily game, your phone sends the game, your score, the day and your name to this room's table — nothing else. Leaving deletes everything of yours at once.</span>
+    No login, no password. Joining sends only your daily results — the game, your score, your guess, the day, your name. Leaving deletes everything of yours at once. The full words are under <b>?</b>.
   </p>
 
   <section class="panel rm-panel" id="rm-panel" aria-labelledby="rm-head">
@@ -79,10 +79,9 @@
     <ol class="d-ol">
       <li>One of you makes the room and sends its link to the group chat.</li>
       <li>Everyone who opens the link is in. Up to 50 of you; no login, no password.</li>
-      <li>Play the daily games as always. Each finished game joins the room's table by itself.</li>
-      <li>The table shows today and the month: who took which game, who leads, who has not played yet.</li>
+      <li>Play the daily games as always. Each finished game joins the room's board by itself.</li>
+      <li>The board shows today, the table the week and the month: crowns, streaks, who is still to play.</li>
     </ol>
-    <p class="quiet" id="rm-words">What a room stores, in full: the game, your score, the day and your name — never an answer, never anything about your phone. The table is kept for this month and the last, then deleted, and a room nobody has played in for 60 days is deleted whole. <b>Leave the room</b> deletes everything of yours at once; whoever made the room can delete the whole room. Anyone with the link can join and see the table, so share it only with your friends.</p>
   </section>
 
   <div id="after"></div>
@@ -92,19 +91,15 @@
   <div class="sheet-in">
     <button class="sheet-x" type="button" data-close aria-label="Close">×</button>
     <h2 id="help-h">Rooms</h2>
-    <p>A room is a group of friends — 2 to 50 — playing the same small daily games. One link makes you a member; after that, every daily game you finish joins the room's table by itself: today's standings and the month's.</p>
+    <p>A room is 2 to 50 friends playing the same small daily games. One link makes you a member; every daily game you finish then joins the room's board by itself.</p>
     <h3>The link is the key</h3>
-    <p class="quiet">There is no login and no password. The room's code is 20 letters and digits drawn at random — far too many to guess — and it rides in the part of the link after the <b>#</b>, which browsers never send to other sites. Whoever has the link is in, so share it only with the friends you mean.</p>
-    <h3>Your name</h3>
-    <p class="quiet">Nobody is given a name here. The first time one is needed, a window asks what your friends call you — the same name you may already have set for Who Was Closer. It is kept in this browser, and in a room it is sent with your scores, so the table can say who took what. Two members of one room cannot share a name.</p>
-    <h3>Who takes a game, and the month</h3>
-    <p class="quiet">A game is taken by whoever was strictly closest that day, by the game's own rule — The Club by most right, and Your Call is never a win, as in Who Was Closer. A tie takes nothing, and a game only you played takes nothing. A point per game taken; the month is the sum of its days, and it starts fresh on the 1st.</p>
+    <p class="quiet">No login, no password: the room's code is drawn at random — far too many to guess, and the server slows anyone who tries — and rides after the <b>#</b>, which browsers never send to other sites. Whoever has the link is in, so share it only with the friends you mean.</p>
+    <h3>Your name and your face</h3>
+    <p class="quiet">Nobody is given a name. The first time one is needed a window asks what your friends call you; it is kept in this browser and sent with your scores. Your face is a coloured circle drawn from your name — nothing is uploaded. Two members of one room cannot share a name.</p>
+    <h3>Crowns, the week and the month</h3>
+    <p class="quiet">A game's crown goes to whoever was strictly closest that day, by the game's own rule — The Club by most right, Your Call never a win. A tie takes nothing, and a game only you played takes nothing. A point per crown; the week runs Monday to Sunday, and the month starts fresh on the 1st. Friends' guesses show on a game's page only once you have played it yourself, and a room never touches your streak or your albums.</p>
     <h3>What is sent, and what is kept</h3>
-    <p class="quiet" id="rm-privacy" data-privacy="rooms">When you finish a daily game, your phone sends the game, your score, the day and your name to the rooms you are in — nothing else, nothing of any answer, and nothing at all if you are in no room. It goes to the site's own small server and nowhere further. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole, and no address, email or cookie is stored for anyone. Leaving a room deletes everything of yours at once.</p>
-    <h3>Leaving, and deleting a room</h3>
-    <p class="quiet">Leave the room, on the table below, deletes you and every score of yours from the room at once. Whoever made the room can delete the whole room the same way. If anything is ever stuck, write to the contact address and it will be deleted by hand.</p>
-    <h3>Your streak and your albums</h3>
-    <p class="quiet">A room never touches them. The games are scored, kept and shown exactly as always; the room only hears about results you were keeping anyway.</p>
+    <p class="quiet" id="rm-privacy" data-privacy="rooms">When you finish a daily game, your phone sends the game, your score, your guess, the day and your name to the rooms you are in — nothing else, nothing of any answer, and nothing at all if you are in no room. A reaction you tap is kept the same way. It all goes to the site's own small server and nowhere further. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole, and no address, email or cookie is stored for anyone. Leaving a room deletes everything of yours — scores, guesses and reactions — at once, and whoever made the room can delete the whole room. If anything is ever stuck, write to the contact address and it will be deleted by hand.</p>
     <h3>Contact</h3>
     <p class="quiet">A question, a mistake, or something to delete? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
   </div>
@@ -120,9 +115,9 @@
   </div>
 </dialog>
 
-<script src="../assets/js/turnsout.js?v=c760a4e320"></script>
+<script src="../assets/js/turnsout.js?v=4756c9fd11"></script>
 <script src="../assets/js/duel.js?v=6cb85e8123"></script>
-<script src="../assets/js/rooms.js?v=6d24364c88"></script>
-<script src="room.js?v=a8191a2b12"></script>
+<script src="../assets/js/rooms.js?v=e19a1b45b9"></script>
+<script src="room.js?v=1ffe0258df"></script>
 </body>
 </html>

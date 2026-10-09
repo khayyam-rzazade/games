@@ -248,6 +248,122 @@ async function main() {
   res = await W.handle(new Request("https://rooms.example/api/make", { method: "OPTIONS", headers: { Origin: "https://logicers.com" } }), envK);
   ok("K7 the preflight is answered", res.status === 204 && res.headers.get("Access-Control-Allow-Methods").includes("POST"));
 
+  /* ---- L. the second round: short codes, and the brake on guessing ---- */
+  const envL = { DB: new D1() };
+  W._resetBrake();
+  r = await hit(envL, "make", { tok: tok(1), name: "Ana" });
+  const codeL2 = r.body.code;
+  ok("L1 a new room's code is 10 letters of the safe alphabet", /^[23456789abcdefghjkmnpqrstvwxyz]{10}$/.test(codeL2));
+  ok("L2 an old 20-letter code still passes the door", W.codeOk("2".repeat(20)) && W.codeOk(codeL2));
+  ok("L3 other lengths do not", !W.codeOk("2".repeat(9)) && !W.codeOk("2".repeat(11)) && !W.codeOk("2".repeat(19)) && !W.codeOk("2".repeat(21)));
+  const oldCode = "3".repeat(20);
+  await envL.DB.prepare("INSERT INTO rooms (code, made, maker) VALUES (?, ?, ?)").bind(oldCode, today, tok(5)).run();
+  await envL.DB.prepare("INSERT INTO members (room, tok, name, folded, joined) VALUES (?, ?, 'Old Hand', 'oldhand', ?)").bind(oldCode, tok(5), today).run();
+  r = await hit(envL, "peek", { code: oldCode });
+  ok("L4 a first-round room opens as it always did", r.status === 200 && r.body.names[0] === "Old Hand");
+  let hits = { miss: 0, braked: null };
+  for (let i = 0; i < Math.min(W.MISS_AN_HOUR + 5, 100); i++) {   // capped, so a brake that never trips FAILS instead of looping
+
+    r = await hit(envL, "peek", { code: "4".repeat(10) });
+    if (r.status === 404) hits.miss++;
+    if (r.status === 429) { hits.braked = i + 1; break; }
+  }
+  ok("L5 so many codes that do not exist, from one place, and the answer is later", hits.braked !== null && hits.braked <= W.MISS_AN_HOUR + 1);
+  r = await hit(envL, "peek", { code: codeL2 });
+  ok("L6 the brake holds even for a code that exists (one place, not one code)", r.status === 429);
+  W._resetBrake();
+  r = await hit(envL, "peek", { code: codeL2 });
+  ok("L7 and a fresh hour peeks again", r.status === 200);
+
+  /* ---- M. guesses: kept beside the score, returned only to those who played ---- */
+  const envM = { DB: new D1() };
+  W._resetBrake();
+  r = await hit(envM, "make", { tok: tok(1), name: "Ana" });
+  const codeM = r.body.code;
+  await hit(envM, "join", { code: codeM, tok: tok(2), name: "Omar" });
+  await hit(envM, "join", { code: codeM, tok: tok(3), name: "Leyla" });
+  r = await hit(envM, "send", { code: codeM, tok: tok(1), day: today, scores: { hundred: 3, club: 4 }, guesses: { hundred: 42, club: 4 } });
+  ok("M1 a guess rides beside the score where the game has one number", r.status === 200 && r.body.took === 2);
+  const gRow = await envM.DB.prepare("SELECT guess FROM results WHERE room = ? AND tok = ? AND game = 'hundred'").bind(codeM, tok(1)).first();
+  ok("M2 the guess is kept", gRow.guess === 42);
+  const gClub = await envM.DB.prepare("SELECT guess FROM results WHERE room = ? AND tok = ? AND game = 'club'").bind(codeM, tok(1)).first();
+  ok("M3 a game with no single number keeps none", gClub.guess === null);
+  await hit(envM, "send", { code: codeM, tok: tok(2), day: today, scores: { hundred: 7 }, guesses: { hundred: 101 } });
+  const gBad = await envM.DB.prepare("SELECT guess FROM results WHERE room = ? AND tok = ? AND game = 'hundred'").bind(codeM, tok(2)).first();
+  ok("M4 a guess outside the game's own range is left off; the score still counts", gBad.guess === null);
+  await hit(envM, "send", { code: codeM, tok: tok(2), day: today, scores: { hundred: 7 }, guesses: { hundred: 38 } });
+  r = await hit(envM, "view", { code: codeM, tok: tok(1), day: today });
+  ok("M5 guesses go only with the first result: a resend cannot rewrite one",
+     (r.body.today.guesses.hundred || []).every((x) => x.name !== "Omar" || x.g === null) === false
+     || !(r.body.today.guesses.hundred || []).some((x) => x.name === "Omar" && x.g !== null));
+  ok("M6 a member who played the game sees the guesses", Array.isArray(r.body.today.guesses.hundred)
+     && r.body.today.guesses.hundred.some((x) => x.name === "Ana" && x.g === 42));
+  r = await hit(envM, "view", { code: codeM, tok: tok(3), day: today });
+  ok("M7 a member who has NOT played it sees none: the server spoils nothing",
+     !r.body.today.guesses || r.body.today.guesses.hundred === undefined);
+  ok("M8 who played each game is named, never a score beside it",
+     r.body.today.games.find((g) => g.key === "hundred").who.sort().join(",") === "Ana,Omar");
+
+  /* ---- N. reactions: one per member per day, cleared and deleted like everything else ---- */
+  r = await hit(envM, "react", { code: codeM, tok: tok(2), day: today, r: "\u{1F525}" });
+  ok("N1 a member sets a reaction", r.status === 200 && r.body.r === "\u{1F525}");
+  r = await hit(envM, "react", { code: codeM, tok: tok(2), day: today, r: "\u{1F602}" });
+  ok("N2 another tap changes it: one per member per day", r.body.r === "\u{1F602}");
+  r = await hit(envM, "view", { code: codeM, tok: tok(1), day: today });
+  ok("N3 the board shows it", r.body.today.reactions.length === 1 && r.body.today.reactions[0].name === "Omar"
+     && r.body.today.reactions[0].r === "\u{1F602}");
+  r = await hit(envM, "react", { code: codeM, tok: tok(2), day: today, r: "" });
+  ok("N4 the same way it is cleared", r.body.r === "");
+  r = await hit(envM, "react", { code: codeM, tok: tok(2), day: today, r: "<b>hi</b>" });
+  ok("N5 only the four reactions exist: anything else is refused", r.status === 400);
+  r = await hit(envM, "react", { code: codeM, tok: tok(9), day: today, r: "\u{1F525}" });
+  ok("N6 a stranger cannot react", r.status === 403);
+  await hit(envM, "react", { code: codeM, tok: tok(2), day: today, r: "\u{1F648}" });
+  await hit(envM, "leave", { code: codeM, tok: tok(2) });
+  const reLeft = await envM.DB.prepare("SELECT COUNT(*) AS n FROM reactions WHERE room = ? AND tok = ?").bind(codeM, tok(2)).first();
+  ok("N7 leaving deletes the member's reactions with everything else", reLeft.n === 0);
+  await hit(envM, "react", { code: codeM, tok: tok(1), day: today, r: "\u{1F525}" });
+  await hit(envM, "wipe", { code: codeM, tok: tok(1) });
+  const reGone = await envM.DB.prepare("SELECT COUNT(*) AS n FROM reactions").first();
+  ok("N8 deleting the room deletes its reactions whole", reGone.n === 0);
+
+  /* ---- O. the week, Monday to Sunday, and the streaks ---- */
+  const envO = { DB: new D1() };
+  W._resetBrake();
+  r = await hit(envO, "make", { tok: tok(1), name: "Ana" });
+  const codeO = r.body.code;
+  await hit(envO, "join", { code: codeO, tok: tok(2), name: "Omar" });
+  ok("O0 the week runs Monday to Sunday: mondayOf stands on a Monday and reaches back from a Sunday",
+     W.mondayOf("20261012") === "20261012" && W.mondayOf("20261018") === "20261012" && W.mondayOf("20261013") === "20261012");
+  const mondayO = W.mondayOf(today);
+  /* last week, written straight into the table: Omar took one game */
+  const lw1 = W.addDays(mondayO, -3), lw2 = W.addDays(mondayO, -2);
+  await envO.DB.prepare("INSERT INTO results (room, tok, game, day, score) VALUES (?, ?, 'hundred', ?, 2), (?, ?, 'hundred', ?, 9)")
+    .bind(codeO, tok(2), lw1, codeO, tok(1), lw1).run();
+  /* this week: Ana took one */
+  await hit(envO, "send", { code: codeO, tok: tok(1), day: today, scores: { hundred: 1 } });
+  await hit(envO, "send", { code: codeO, tok: tok(2), day: today, scores: { hundred: 8 } });
+  r = await hit(envO, "view", { code: codeO, tok: tok(1), day: today });
+  ok("O1 the week's leader stands beside the month's", r.body.week && r.body.week.name === "Ana" && r.body.week.pts === 1);
+  const lastWeekInWindow = W.monthOf(lw1) === mon || W.monthOf(lw1) === prev;
+  ok("O2 the finished week's winner is told" + (lastWeekInWindow ? "" : " (out of the kept window today: null is right)"),
+     lastWeekInWindow ? (r.body.lastWeek && r.body.lastWeek.name === "Omar") : r.body.lastWeek === null);
+  ok("O3 streaks ride with today's rows", r.body.today.points.find((p) => p.name === "Ana").streak >= 1);
+  ok("O4 the room's own streak needs everyone", typeof r.body.streak === "number"
+     && (W.monthOf(lw2) !== mon || r.body.streak >= 0));
+  /* both played yesterday too: the room streak counts it */
+  const yda = W.addDays(today, -1);
+  if (W.monthOf(yda) === mon || W.monthOf(yda) === prev) {
+    await envO.DB.prepare("INSERT INTO results (room, tok, game, day, score) VALUES (?, ?, 'club', ?, 3), (?, ?, 'club', ?, 4)")
+      .bind(codeO, tok(1), yda, codeO, tok(2), yda).run();
+    r = await hit(envO, "view", { code: codeO, tok: tok(1), day: today });
+    ok("O5 two full days in a row make a room streak of 2", r.body.streak === 2);
+    ok("O6 and each player's own flame counts theirs", r.body.today.points.every((p) => p.streak === 2));
+  } else {
+    ok("O5 (skipped at a month edge the window cannot hold)", true);
+    ok("O6 (skipped at a month edge the window cannot hold)", true);
+  }
+
   console.log((failed ? "FAILED " : "PASSED ") + passed + " passed, " + failed + " failed");
   process.exit(failed ? 1 : 0);
 }

@@ -9,6 +9,9 @@ same-street/unused-photos/
 same-street/photos/f115-*.jpg
 same-street/photos/f133-*.jpg
 # working material for Long Lost Cousin: the R script fetches it again whenever needed
-r/long-lost-cousin-raw/
-r/long-lost-cousin-raw.zip
-r/
+# The whole r/ workshop lives on the Mac only (the security pass of 7 Oct 2026) — with ONE
+# exception: r/index.html, the tiny page that forwards a short room link. "/r/*" ignores
+# everything under r/, and the negation lets exactly that one file through; nothing else in
+# the workshop can ever slip into a push.
+/r/*
+!/r/index.html

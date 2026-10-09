@@ -123,8 +123,9 @@ body {
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100vh;    /* old browsers */
+  min-height: 100svh;   /* the small viewport: Chrome on iPhone measures vh and dvh with the
+                           toolbar hidden, which made every fitting page scroll past its end */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -221,7 +222,8 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .rows .st b { color: var(--ink); font-weight: 700; }
 
 /* ---------- home: the welcome ---------- */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; align-items: end; padding: 44px 0 40px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px 40px; align-items: end; padding: 44px 0 40px; }
+.hero .gameroom { grid-column: -2 / -1; align-self: start; margin-top: 0; }
 .hero-text { position: relative; z-index: 0; }
 .eyebrow { color: var(--soft); font-weight: 600; font-size: 0.94rem; letter-spacing: .01em; min-height: 1.4em; }
 .hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 5.6vw, 4.75rem); line-height: .98; letter-spacing: -0.035em; margin-top: 10px; }
@@ -407,6 +409,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 }
 @media (max-width: 1000px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: stretch; }
+  .hero .gameroom { grid-column: auto; margin-top: -10px; }
   .hero h1 { font-size: clamp(3rem, 8vw, 4.2rem); }
   .today-note { display: none; }
   .shelf { --tw: 200px; --tw: calc((100cqw - 3 * var(--gap)) / 3.3); }
@@ -420,6 +423,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .chip { height: 38px; font-size: 0.9rem; padding: 0 13px; }
   .chip.round { width: 38px; padding: 0; }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 22px 0 24px; }
+  .hero .gameroom { grid-column: auto; margin-top: -6px; }
   .hero h1 { font-size: clamp(2.1rem, 11.2vw, 2.9rem); margin-top: 6px; }
   .lede { font-size: 1.09rem; margin-top: 12px; }
   .today { padding: 14px 16px; border-radius: 20px; }
@@ -677,11 +681,56 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 .rooms-line { margin-top: 10px; color: var(--soft); font-size: 0.9rem; font-weight: 600; }
 .rooms-line a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
 
+/* ---- the faces: a coloured circle with the first letters of the name; the colour comes from
+   assets/js/rooms.js, which gives no two members of one room the same one ---- */
+.rm-face { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 99px; color: #fff; font-weight: 800; font-size: 0.72rem; letter-spacing: .02em; flex: none; }
+.rm-face.you { box-shadow: 0 0 0 2.5px var(--card), 0 0 0 5px var(--c); }
+.rm-face-wrap { position: relative; display: inline-flex; }
+.rm-face-wrap.quiet-face { opacity: .45; }
+.rm-crown { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); font-style: normal; font-size: 0.8rem; line-height: 1; }
+.rm-face-more { align-self: center; color: var(--soft); font-weight: 700; font-size: 0.8rem; }
+
+/* ---- the Game Room box under the Today card (hidden until rooms are switched on) ---- */
+.gameroom { margin-top: 12px; display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); text-decoration: none; color: var(--ink); box-shadow: 0 8px 20px rgba(21, 23, 43, .08); -webkit-tap-highlight-color: transparent; }
+.gameroom:active { transform: scale(0.99); }
+.gameroom-art { flex: none; width: 44px; height: 44px; }
+.gameroom-art svg { width: 100%; height: 100%; display: block; }
+.gameroom-text { flex: 1; min-width: 0; }
+.gameroom-h { display: block; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; line-height: 1.15; }
+.gameroom-sub { display: block; margin-top: 2px; color: var(--soft); font-weight: 600; font-size: 0.85rem; }
+.gameroom-faces { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.gameroom .rm-face { width: 26px; height: 26px; font-size: 0.64rem; }
+@media (prefers-color-scheme: dark) {
+  .gameroom { box-shadow: none; }
+}
+
+/* ---- the strip at a reveal: where the room landed, on this game's own scale ---- */
+.rm-strip { margin-top: 12px; padding: 12px 14px 10px; border-radius: 16px; background: var(--tint); }
+.rm-strip-h { font-weight: 700; font-size: 0.85rem; color: var(--soft); }
+.rm-strip-rail { position: relative; height: 64px; margin: 26px 6px 0; }
+.rm-strip-line { position: absolute; left: 0; right: 0; top: 50%; height: 3px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 18%, transparent); }
+.rm-strip-real { position: absolute; top: 6px; bottom: 6px; width: 3px; border-radius: 3px; background: var(--ink); transform: translateX(-50%); }
+.rm-strip-tag { position: absolute; top: -20px; transform: translateX(-50%); color: var(--ink); font-weight: 700; font-size: 0.72rem; white-space: nowrap; }
+.rm-strip .rm-face { position: absolute; top: 50%; transform: translate(-50%, -50%); }
+.rm-strip .rm-face.you { z-index: 2; }
+.rm-strip-more { appearance: none; margin-top: 6px; min-height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink); font-weight: 700; font-size: 0.8rem; cursor: pointer; }
+
+/* ---- all of today played: the way back to the room ---- */
+.rm-back { display: flex; align-items: center; gap: 12px; margin-top: 4px; padding: 13px 16px 14px 18px; border-radius: 20px; background: var(--c); color: var(--on-c); text-decoration: none; box-shadow: 0 8px 20px rgba(21, 23, 43, .16); -webkit-tap-highlight-color: transparent; }
+.rm-back:active { transform: scale(0.985); }
+.rm-back-text { flex: 1; min-width: 0; }
+.rm-back-kicker { display: block; font-size: 0.82rem; font-weight: 700; opacity: .88; }
+.rm-back-name { display: block; margin-top: 2px; font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.03em; }
+.rm-back svg { width: 26px; height: 26px; flex: none; }
+@media (prefers-reduced-motion: reduce) {
+  .gameroom:active, .rm-back:active { transform: none; }
+}
+
 /* the worked example inside the home page's About sheet */
 .about-duel { margin: 12px 0 4px; max-width: 360px; }
 
 /* the one quiet line on the home page's Today card */
-.today-duel { margin-top: 10px; font-size: 0.875rem; color: var(--soft); }
+.today-duel { margin-top: 10px; font-size: 0.8rem; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .today-duel b { color: var(--ink); font-weight: 800; }
 .today-duel a { color: inherit; font-weight: 600; text-underline-offset: 3px; }
 

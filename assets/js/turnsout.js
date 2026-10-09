@@ -530,7 +530,15 @@
       a.addEventListener("click", function () { count_("onward/" + next.id); });
       box.appendChild(a);
     } else {
-      box.appendChild(el("p", "onward-done", "All done for today. New games at midnight."));
+      /* A day with everything played can end somewhere better than a sentence: a member of a
+         room goes back to its table (assets/js/rooms.js fills this hook in). Wrapped whole,
+         like the duel's and the room's own hooks: nothing here may ever break a game, and for
+         everyone else the words stay exactly what they were. */
+      var doneEl = null;
+      if (typeof window.TurnsOut.allDoneHook === "function") {
+        try { doneEl = window.TurnsOut.allDoneHook(); } catch (e) { /* the sentence stands */ }
+      }
+      box.appendChild(doneEl || el("p", "onward-done", "All done for today. New games at midnight."));
     }
     var all = el("a", "onward-all", "All games");
     all.href = here("../");
