@@ -21,8 +21,8 @@
 .lc-subject { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 18px 18px 14px; text-align: center; }
 .lc-subject .lc-pic {
   width: min(86%, 21rem);
-  height: clamp(5.5rem, calc(100vh - var(--lc-reserve)), 13rem);
-  height: clamp(5.5rem, calc(100dvh - var(--lc-reserve)), 13rem);
+  height: clamp(5.5rem, calc(100vh - var(--lc-reserve) - var(--stamp-room, 0px)), 13rem);
+  height: clamp(5.5rem, calc(100dvh - var(--lc-reserve) - var(--stamp-room, 0px)), 13rem);
   margin: 0 auto;
 }
 .lc-subject .lc-name { margin-top: 10px; font-family: var(--display); font-size: 1.35rem; letter-spacing: -0.02em; }
@@ -178,7 +178,7 @@
 @media (min-width: 56rem) {
   :root { --lc-reserve: 35.2rem; }
   .lc-q { font-size: 1.95rem; }
-  .lc-subject .lc-pic { height: clamp(5.5rem, calc(100vh - var(--lc-reserve)), 14rem); height: clamp(5.5rem, calc(100dvh - var(--lc-reserve)), 14rem); }
+  .lc-subject .lc-pic { height: clamp(5.5rem, calc(100vh - var(--lc-reserve) - var(--stamp-room, 0px)), 14rem); height: clamp(5.5rem, calc(100dvh - var(--lc-reserve) - var(--stamp-room, 0px)), 14rem); }
   .lc-subject .lc-name { font-size: 1.55rem; }
   .lc-opt .lc-pic { height: 5.2rem; }
   .lc-opt .lc-name { font-size: 1.02rem; }
@@ -190,3 +190,7 @@
   .lc-opt:active { transform: none; }
   .lc-leaf, .lc-branches path, .lc-branches circle, .lc-when { transition: none; }
 }
+
+/* once the result stamp has landed (11 Oct 2026) the stamp itself opens the readout, so its own top
+   padding goes, which is the room a desktop's tall tree needs */
+body.stamped .panel.revealed .lc-readout { padding-top: 2px; }

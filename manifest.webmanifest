@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Logicers",
+  "short_name": "Logicers",
+  "description": "Small daily games about the real world. A minute each. One true thing every time.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F4F9",
+  "theme_color": "#F3F4F9",
+  "lang": "en",
+  "categories": ["games", "education"],
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

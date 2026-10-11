@@ -270,54 +270,66 @@
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && Math.abs(v) <= 120; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 60 && num(r.y) && typeof r.t === "string"; },
+      tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 2 ? 2 : a <= 4 ? 1 : 0; },
       says: function (r) { return r.t; } },
     { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
       pitch: "Of 100 people in the world, how many…?",
       score: function (r) { return Math.abs(r.g - r.a); }, wins: "low",
       ok: function (v) { return whole(v) && v >= 0 && v <= 100; },
       done: function (r) { return !!r && num(r.g) && num(r.a); },
+      tier: function (r) { var a = Math.abs(r.g - r.a); return a === 0 ? 3 : a <= 3 ? 2 : a <= 8 ? 1 : 0; },
       says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "Spot on" : "Off by " + gap; } },
     { id: "your-call", key: "call", name: "Your Call", href: "your-call/", start: "2026-10-03",
       pitch: "A real moment from history. What did they do?",
       score: function (r) { return r.c === r.r ? 1 : 0; }, wins: "match",
       ok: function (v) { return v === 0 || v === 1; },
       done: function (r) { return !!r && num(r.c); },
+      tier: function (r) { return r.c === r.r ? 3 : 0; },
+      stampWords: { 3: "Same call!" }, tuck: false,      /* the stamp may never cover a choice's words */
       says: function (r) { return r.c === r.r ? "Same call" : "Different call"; } },
     { id: "long-lost-cousin", key: "cousin", name: "Long Lost Cousin", href: "long-lost-cousin/", start: "2026-10-04",
       pitch: "Which one is the closest relative?",
       score: function (r) { return r.r; }, wins: "low",
       ok: function (v) { return whole(v) && v >= 0 && v <= 2; },
       done: function (r) { return !!r && num(r.c); },
+      tuckMax: 0.5,      /* the stamp may rest on the foot of the tree, which carries no words */
+      tier: function (r) { return r.r === 0 ? 3 : r.r === 1 ? 2 : 0; },
+      stampWords: { 3: "Found it!" },
       says: function (r) { return r.r === 0 ? "Found it" : r.r === 1 ? "One branch away" : "Two branches away"; } },
     { id: "the-club", key: "club", name: "The Club", href: "the-club/", start: "2026-10-04",
       pitch: "Work out the secret rule. Who gets in?",
       score: function (r) { return r.r; }, wins: "high",
       ok: function (v) { return whole(v) && v >= 0 && v <= 5; },
       done: function (r) { return !!r && Array.isArray(r.c) && r.c.length === 5 && num(r.r) && r.r >= 0 && r.r <= 5; },
+      tier: function (r) { return r.r >= 5 ? 3 : r.r === 4 ? 2 : r.r === 3 ? 1 : 0; },
       says: function (r) { return r.r + " of 5"; } },
     { id: "years-apart", key: "apart", name: "Years Apart", href: "years-apart/", start: "2026-10-05",
       pitch: "Two real events, one in between. Where does it fall?",
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return num(v) && v >= 0 && v <= 9999999; },
       done: function (r) { return !!r && num(r.g) && num(r.a) && num(r.y) && r.g >= 0 && r.g <= 1000 && r.y >= 0; },
+      tier: function (r) { var a = Math.abs(r.g - r.a); return a <= 5 ? 3 : a <= 40 ? 2 : a <= 120 ? 1 : 0; },
       says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } },
     { id: "who-gets-what", key: "gets", name: "Who Gets What", href: "who-gets-what/", start: "2026-10-08",
       pitch: "A real price. Who gets what out of it?",
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && v >= 0 && v <= 9999999; },
       done: function (r) { return !!r && Array.isArray(r.g) && r.g.length >= 3 && r.g.length <= 4 && num(r.y) && r.y >= 0 && typeof r.t === "string"; },
+      tier: function (r) { return r.y <= 15 ? 3 : r.y <= 50 ? 2 : r.y <= 120 ? 1 : 0; },
       says: function (r) { return r.t; } },
     { id: "every-beat", key: "every", name: "Every Beat", href: "every-beat/", start: "2026-10-09",
       pitch: "One real animal. How fast does its heart beat?",
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) >= 11) && Math.abs(v) <= 20000; },
       done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
+      tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 13 ? 2 : a <= 20 ? 1 : 0; },
       says: function (r) { return r.t; } },
     { id: "out-of-24", key: "o24", name: "Out of 24", href: "out-of-24/", start: "2026-10-09",
       pitch: "A real animal or country. How many hours a day?",
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) > 15) && Math.abs(v) <= 1440; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 1440 && num(r.y) && typeof r.t === "string"; },
+      tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 45 ? 2 : a <= 120 ? 1 : 0; },
       says: function (r) { return r.t; } }
   ];
   function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
@@ -457,6 +469,120 @@
   }
 
   /* ------------------------------------------------------------------
+     The result stamp (11 Oct 2026, Khayyam: "stamp idea is great!!!!"). At every reveal of a daily
+     game a big white stamp lands just above the game's own verdict, in the game's own colour: one
+     of four words, so a result can be seen at a glance and a miss still earns something. Each game
+     says how good a result is with its own "tier" in GAMES (3 spot on, 2 so close, 1 not far,
+     0 now you know); the frame draws the stamp, so no game script changed. It is never red or
+     green (yellow already means the part you got wrong, and Same Energy's guardrails forbid
+     judging colours), and a miss is a light bulb, never an X: the site promises one true thing
+     every time, and a miss is exactly when the fact lands. Tapping it scrolls to the full results.
+     ------------------------------------------------------------------ */
+  var STAMP_ICONS = [
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4.5 9.5c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0M4.5 15.5c2.5-2.4 5-2.4 7.5 0s5 2.4 7.5 0"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.6 4.6L19 7.6"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg>'
+  ];
+  var STAMP_WORDS = ["Now you know", "Not far", "So close!", "Spot on!"];
+  var stampResize = false;
+  function stampFor(G, r) {
+    if (!G || typeof G.tier !== "function" || !G.done(r)) return null;
+    var t = G.tier(r);
+    if (!(t >= 0 && t <= 3)) return null;
+    var words = (G.stampWords && G.stampWords[t]) || STAMP_WORDS[t];
+    return { tier: t, words: words, kind: ["learn", "near", "close", "spot"][t] };
+  }
+  function stamp(o) {
+    var old = document.getElementById("vstamp");
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    var G = null;
+    GAMES.forEach(function (x) { if (x.id === o.game) G = x; });
+    var verdict = document.getElementById("verdict");
+    if (!G || !verdict || !verdict.parentNode || !num(o.day)) return null;
+    var r = null;
+    try { var g = game(G.id); r = (o.practice ? g.practice : g.results)[o.day]; } catch (e) { r = null; }
+    var st = stampFor(G, r);
+    if (!st) return null;
+    var row = el("div", "vstamp-row");
+    row.id = "vstamp";
+    row.setAttribute("data-tier", String(st.tier));
+    var b = el("button", "vstamp vstamp-" + st.kind);
+    b.type = "button";
+    b.setAttribute("aria-label", st.words + " See the full results below.");
+    var i = el("i", "vstamp-icon");
+    i.innerHTML = STAMP_ICONS[st.tier];
+    b.appendChild(i);
+    var t = el("span", "vstamp-text");
+    t.appendChild(el("span", "vstamp-word", st.words));
+    t.appendChild(el("span", "vstamp-note", "See full results below ↓"));
+    b.appendChild(t);
+    b.addEventListener("click", function () {
+      var after = document.getElementById("after");
+      if (!after) return;
+      try { after.scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" }); }
+      catch (e) { after.scrollIntoView(); }
+    });
+    row.appendChild(b);
+    verdict.parentNode.insertBefore(row, verdict);
+    /* Every game was laid out so that its whole result fits on the screen, above the bar to the next
+       game, on the smallest phone. The stamp must not undo that: where the room is short, it tucks up
+       into its own top margin (never over anything of the picture above),
+       and if that is still not enough it takes its smaller size; on the very smallest phones the last
+       line of the verdict may then sit under the bar, which steps aside once the reader scrolls. Measured, not guessed, because each game's picture
+       ends differently. */
+    function lowest() {
+      var low = 0;
+      [verdict].concat(Array.prototype.slice.call(verdict.querySelectorAll("*"))).forEach(function (x) {
+        var r = x.getBoundingClientRect();
+        if (r.height) low = Math.max(low, r.bottom + window.scrollY);
+      });
+      return low;
+    }
+    function fit() {
+      row.style.marginTop = "";
+      row.classList.remove("tight");
+      var room = window.innerHeight - 76;                     // the bar to the next game and its shadow: the last 76 pixels (as t_energy.py measures)
+      var over = lowest() - room;
+      if (over <= 0) return;
+      if (G.tuck === false) { row.classList.add("tight"); row.style.marginTop = "6px"; return; }
+      var base = parseFloat(window.getComputedStyle(row).marginTop) || 0;
+      var tuck = Math.min(over, base + Math.round(row.offsetHeight * (G.tuckMax || 0)));
+      row.style.marginTop = (base - tuck) + "px";
+      if (lowest() - room > 0) {
+        row.classList.add("tight");
+        over = lowest() - room + tuck;
+        tuck = Math.max(0, Math.min(over, base + Math.round(row.offsetHeight * (G.tuckMax || 0))));
+        row.style.marginTop = (base - tuck) + "px";
+      }
+    }
+    /* Several games fit themselves to the screen when it changes size (Same Energy, Out of 24 and others
+       take their own smaller steps), and they last did so before the stamp existed: one resize event lets
+       each game make its own room for it, in its own way, before the stamp measures what is left. */
+    function refit() {
+      if (!row.parentNode) return;
+      try { window.dispatchEvent(new Event("resize")); } catch (e) { /* an old browser: the stamp still fits itself */ }
+      fit();
+    }
+    refit();
+    /* again once the reveal has settled: several games slide their real answer in over a second, and a
+       measure taken mid-slide would tuck the stamp over words that end up with room to spare */
+    [450, 1300].forEach(function (ms) { window.setTimeout(refit, ms); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (row.parentNode) fit(); }, function () {});
+    if (!stampResize) {
+      stampResize = true;
+      window.addEventListener("resize", function () { var r = document.getElementById("vstamp"); if (r && r.__fit) r.__fit(); });
+    }
+    row.__fit = fit;
+    if (!reducedMotion()) {
+      b.classList.add("thud");
+      window.setTimeout(function () { b.classList.remove("thud"); }, 700);
+    }
+    document.body.classList.add("stamped");
+    return row;
+  }
+
+  /* ------------------------------------------------------------------
      The way onward. A game calls TO.onward({ game, day, today, practice }) when its answer is shown.
      1. A block at the very end of the page, after the story, the sources and the Share button:
         how many of today's games are played, a big button to the next game not yet played today,
@@ -477,6 +603,7 @@
     o = o || {};
     var after = document.getElementById("after");
     if (!after) return null;
+    try { stamp(o); } catch (e) { /* a stamp must never break a game */ }
     var old = document.getElementById("onward"), oldBar = document.getElementById("onbar");
     if (old && old.parentNode) old.parentNode.removeChild(old);
     if (oldBar && oldBar.parentNode) oldBar.parentNode.removeChild(oldBar);
@@ -540,8 +667,12 @@
       }
       box.appendChild(doneEl || el("p", "onward-done", "All done for today. New games at midnight."));
     }
-    var all = el("a", "onward-all", "All games");
+    var all = el("a", "onward-all");
     all.href = here("../");
+    all.insertAdjacentHTML("beforeend", '<svg class="onward-dots" viewBox="0 0 34 10" aria-hidden="true" focusable="false">' +
+      '<circle cx="5" cy="5" r="4" fill="#2D4FC4"/><circle cx="17" cy="5" r="4" fill="#CF4327"/><circle cx="29" cy="5" r="4" fill="#0D7D73"/></svg>');
+    all.appendChild(el("span", "onward-all-name", "All games"));
+    all.insertAdjacentHTML("beforeend", ARROW);
     box.appendChild(all);
     if (typeof window.TurnsOut.duelHook === "function") {
       try { window.TurnsOut.duelHook(after, o, played); } catch (e) { /* a duel must never break a game */ }
@@ -606,6 +737,72 @@
 
   function count_(name) { count(name); }
 
+  /* ------------------------------------------------------------------
+     The installable app (11 Oct 2026). A web app manifest and a service worker (sw.js at the root)
+     let a phone keep Logicers on its home screen and open it full screen, at once, even offline.
+     The service worker runs on the live site only; on the checks' own server it runs only when a
+     check asks for it (window.LOGICERS_SW), so every other check sees the site as it always was.
+     The browser's own install offer is kept quiet (nothing pops up by itself); the About sheet
+     offers it instead, and on an iPhone, which has no such offer, it says how.
+     ------------------------------------------------------------------ */
+  var installEvent = null;
+  function standalone() {
+    try { return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true; }
+    catch (e) { return false; }
+  }
+  function iOS() {
+    var ua = window.navigator.userAgent || "";
+    return /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && window.navigator.maxTouchPoints > 1);
+  }
+  function appStart() {
+    var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+    var wanted = window.location.protocol === "https:" ? !local : (local && window.LOGICERS_SW === true);
+    if (wanted && "serviceWorker" in window.navigator) {
+      var root = /assets\/js\/turnsout\.js/.test(SELF) ? SELF.replace(/assets\/js\/turnsout\.js.*$/, "") : "/";
+      try { window.navigator.serviceWorker.register(root + "sw.js").catch(function () { /* the site works without it */ }); }
+      catch (e) { /* the site works without it */ }
+    }
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();                       // no banner of the browser's own: the About sheet offers it
+      installEvent = e;
+      appUi();
+    });
+    window.addEventListener("appinstalled", function () { installEvent = null; count_("app/installed"); appUi(); });
+    if (standalone()) {
+      try {
+        if (!window.sessionStorage.getItem("logicers-app")) { window.sessionStorage.setItem("logicers-app", "1"); count_("app/open"); }
+      } catch (e) { /* counting is never needed */ }
+    }
+    appUi();
+  }
+  function appUi() {                           // the About sheet's section, wherever it is on the page
+    var on = document.getElementById("app-on");
+    if (!on) return;
+    var add = document.getElementById("app-add"), ios = document.getElementById("app-ios"), other = document.getElementById("app-other");
+    var inApp = standalone();
+    on.hidden = !inApp;
+    add.hidden = inApp || !installEvent;
+    ios.hidden = inApp || !iOS();
+    other.hidden = inApp || !!installEvent || iOS();
+    var go = document.getElementById("app-add-go");
+    if (go && !go.__wired) {
+      go.__wired = true;
+      go.addEventListener("click", function () {
+        if (!installEvent) return;
+        var ev = installEvent;
+        try {
+          ev.prompt();
+          if (ev.userChoice && ev.userChoice.then) ev.userChoice.then(function (c) {
+            if (c && c.outcome === "accepted") installEvent = null;
+            appUi();
+          }, function () {});
+        } catch (e) { /* the browser's menu still offers it */ }
+      });
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", appStart);
+  else appStart();
+
   window.TurnsOut = {
     game: game,
     update: update,
@@ -624,6 +821,9 @@
     colour: colour,
     MISS: "#f0b429",
     reducedMotion: reducedMotion,
+    stamp: stamp,
+    app: { standalone: standalone, installable: function () { return !!installEvent; }, ui: appUi },
+    stampFor: stampFor,
     GAMES: GAMES,
     GROUP: GROUP,
     group: group,

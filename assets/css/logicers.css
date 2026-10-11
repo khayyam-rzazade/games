@@ -607,7 +607,62 @@ body.game { background: var(--tint); }
 .onward-pitch { display: block; margin-top: 4px; font-size: 0.95rem; font-weight: 500; line-height: 1.3; opacity: .94; }
 .onward-next svg { width: 26px; height: 26px; flex: none; }
 .onward-done { margin-top: 14px; font-weight: 600; font-size: 1.05rem; line-height: 1.3; }
-.onward-all { display: inline-block; margin: 12px 2px 0; padding: 4px 0; color: var(--soft); font-weight: 600; font-size: 0.95rem; text-underline-offset: 3px; border-radius: 8px; }
+/* "All games": a slim box as wide as the next game's, with the three dots (11 Oct 2026, Khayyam) */
+.onward-all { margin-top: 10px; display: flex; align-items: center; gap: 12px; padding: 9px 16px 9px 14px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.onward-all:active { transform: scale(0.99); }
+.onward-dots { width: 34px; height: 12px; flex: none; }
+.onward-all-name { flex: 1; font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.03em; line-height: 1.2; }
+.onward-all svg:last-child { width: 22px; height: 22px; flex: none; }
+
+/* ---- the result stamp at every reveal (11 Oct 2026; drawn by TO.stamp in turnsout.js) ----
+   White, in the game's own colour, slightly turned like a rubber stamp; never red or green. */
+.vstamp-row { flex-basis: 100%; width: 100%; margin: 12px 0 12px; }   /* the top margin is the room the turned stamp's right end rises into */
+.vstamp { appearance: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 13px; max-width: 100%;
+  margin-left: -2px; padding: 8px 22px 8px 8px; background: #fff; color: var(--c); border-radius: 999px; text-align: left;
+  transform: rotate(-3deg); transform-origin: left center; box-shadow: 0 10px 24px rgba(10, 12, 30, .24);
+  font: inherit; -webkit-tap-highlight-color: transparent; }
+.vstamp-icon { width: 56px; height: 56px; border-radius: 99px; background: var(--c); color: #fff; display: grid; place-items: center; flex: none; }
+.vstamp-icon svg { width: 32px; height: 32px; display: block; }
+.vstamp-text { min-width: 0; }
+.vstamp-word { display: block; font-family: var(--display); font-weight: 800; font-size: 2.05rem; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+.vstamp-note { display: block; margin-top: 4px; font-weight: 700; font-size: 0.8rem; letter-spacing: .01em; opacity: .75; white-space: nowrap; }
+.vstamp:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.vstamp.thud { animation: vstamp-thud .55s cubic-bezier(.2, 1.5, .45, 1) both; }
+@keyframes vstamp-thud {
+  0%   { transform: rotate(-9deg) scale(1.35); opacity: 0; }
+  55%  { transform: rotate(-2deg) scale(.96); opacity: 1; }
+  100% { transform: rotate(-3deg) scale(1); opacity: 1; }
+}
+.readout:has(.vstamp-row) { flex-wrap: wrap; }
+.vstamp-row { position: relative; z-index: 2; }
+/* a game whose picture scales gives the stamp its room (100 of Us's crowd, Long Lost Cousin's animal) */
+body.stamped { --stamp-room: 4.4rem; }
+/* the smaller stamp, for the shortest screens (TO.stamp measures and chooses it) */
+.vstamp-row.tight { margin: 8px 0 2px; }
+.vstamp-row.tight .vstamp { gap: 8px; padding: 3px 13px 3px 3px; }
+.vstamp-row.tight .vstamp-icon { width: 34px; height: 34px; }
+.vstamp-row.tight .vstamp-icon svg { width: 20px; height: 20px; }
+.vstamp-row.tight .vstamp-word { font-size: 1.25rem; }
+.vstamp-row.tight .vstamp-note { font-size: 0.64rem; margin-top: 1px; }
+@media (max-width: 380px), (max-height: 600px) {
+  .vstamp { gap: 10px; padding: 6px 16px 6px 6px; }
+  .vstamp-icon { width: 44px; height: 44px; }
+  .vstamp-icon svg { width: 26px; height: 26px; }
+  .vstamp-word { font-size: 1.6rem; }
+  .vstamp-note { font-size: 0.72rem; margin-top: 3px; }
+  .vstamp-row { margin: 9px 0 8px; }
+}
+@media (prefers-color-scheme: dark) {
+  /* at night the panel is dark and the game colours are bright: the stamp turns over, the game's
+     own colour with dark ink, so its words keep their contrast */
+  .vstamp { background: var(--c); color: #0A0C1A; box-shadow: 0 10px 28px rgba(0, 0, 0, .5); }
+  .vstamp-icon { background: #0A0C1A; color: var(--c); }
+  .vstamp:focus-visible { outline-color: var(--c); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vstamp.thud { animation: none; }
+  .onward-all:active { transform: none; }
+}
 .onbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px max(12px, env(safe-area-inset-left, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)); background: var(--card); box-shadow: 0 -1px 0 var(--line), 0 -8px 26px rgba(21, 23, 43, .10); animation: onbar-in .35s ease-out; }
 .onbar-next { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px 0 18px; border-radius: 999px; background: var(--c); color: var(--on-c); text-decoration: none; font-weight: 600; font-size: 0.98rem; line-height: 1.1; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
 .onbar-next b { font-weight: 800; }
@@ -800,8 +855,8 @@ body[data-g="hundred"] .panel.revealed { background: var(--c); box-shadow: 0 12p
   grid-template-columns: repeat(10, 1fr);
   gap: 3px 0;
   /* ten rows of figures are 1.1 times as high as wide, plus nine 3px gaps. It shrinks on short screens so nothing scrolls. */
-  width: min(100%, calc((100vh - var(--reserve) - 27px) / 1.1));
-  width: min(100%, calc((100dvh - var(--reserve) - 27px) / 1.1));
+  width: min(100%, calc((100vh - var(--reserve) - var(--stamp-room, 0px) - 27px) / 1.1));
+  width: min(100%, calc((100dvh - var(--reserve) - var(--stamp-room, 0px) - 27px) / 1.1));
   min-width: min(100%, 8rem);
   margin: 0 auto;
 }
@@ -849,3 +904,7 @@ body[data-g="hundred"] .panel.revealed { background: var(--c); box-shadow: 0 12p
   .panel { transition: none; }
   .btn:active { transform: none; }
 }
+
+/* the About sheet's offer of the installable app (11 Oct 2026) */
+.app-add { margin-top: 10px; }
+.app-add .btn { width: 100%; }

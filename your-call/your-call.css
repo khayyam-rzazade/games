@@ -117,3 +117,8 @@
   .yc-choice { min-height: 50px; padding: 7px 12px 7px 8px; font-size: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) { .yc-panel, .yc-panel.revealed .yc-choice { transition: none; } }
+
+/* once the result stamp has landed (11 Oct 2026) the year and the place share one line, as on short
+   screens, so the stamp's room comes out of the header and never out of the three choices */
+body.stamped .yc-year { display: inline-block; margin-top: 4px; font-size: 2.9rem; }
+body.stamped .yc-place { display: inline-block; margin: 0 0 0 10px; }

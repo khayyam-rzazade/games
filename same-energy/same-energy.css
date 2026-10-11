@@ -116,3 +116,7 @@
   #items .it, .e-thumb { transition: none; }
   #items .fade { transition: none; }
 }
+
+/* the result stamp (11 Oct 2026) on the shortest screens: at the game's last fit step the plate gives
+   up a little more, so the plate, the stamp and the verdict all stay above the bar to the next game */
+html.fit3 body.stamped .e-plate { width: min(100%, 176px); }
