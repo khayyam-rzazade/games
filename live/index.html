@@ -24,7 +24,7 @@
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="../assets/css/logicers.css?v=916159e72f">
-<link rel="stylesheet" href="live.css?v=fb18ef41f5">
+<link rel="stylesheet" href="live.css?v=9a9ddf2c06">
 </head>
 <body class="game live" data-g="sure">
 
@@ -191,12 +191,38 @@
   </div>
 </dialog>
 
+<!-- a player's answer goes only when they say so: Send, then this card (Send or Edit) -->
+<dialog id="dlg-send" aria-labelledby="send-title">
+  <div class="sheet hs-confirm">
+    <h2 id="send-title">Send your answer?</h2>
+    <div class="hs-confirm-ans" id="send-ans"></div>
+    <p class="quiet">Once sent, it can't be changed.</p>
+    <div class="actions hs-confirm-btns">
+      <button class="btn ghost" type="button" id="send-edit">Edit</button>
+      <button class="btn solid" type="button" id="send-go">Send</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- the host's Reveal while someone is still answering: wait, or reveal now (from 30 s after the question opened) -->
+<dialog id="dlg-reveal" aria-labelledby="reveal-title">
+  <div class="sheet hs-confirm">
+    <h2 id="reveal-title">Still answering</h2>
+    <div class="hs-dotsrow" id="reveal-dots"></div>
+    <p class="quiet" id="reveal-line"></p>
+    <div class="actions hs-confirm-btns">
+      <button class="btn ghost" type="button" id="reveal-wait">Wait</button>
+      <button class="btn solid" type="button" id="reveal-now">Reveal now</button>
+    </div>
+  </div>
+</dialog>
+
 <noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
 
 <script src="../assets/js/turnsout.js?v=cb9a0728ae"></script>
 <script src="hs-rules.js?v=1a3d7a71d2"></script>
 <script src="sets.js?v=6267b1071a"></script>
 <script src="qrcodegen.js?v=4702b2e275"></script>
-<script src="live.js?v=94b4476077"></script>
+<script src="live.js?v=2f1a257d75"></script>
 </body>
 </html>

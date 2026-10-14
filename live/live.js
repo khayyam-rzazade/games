@@ -441,7 +441,7 @@
           send(app.name ? { t: "join", name: app.name } : { t: "join", pick: true });
         }
         if (app.role === "player" && !m.you) { app.info = { title: m.g.title, np: m.np, ph: m.ph, closed: m.g.closed, teams: m.g.teams, picked: m.g.picked }; joinInfo(); return; }
-        if (m.ph === "question" && app.q && app.q.touched && m.q && m.q.k === app.q.k &&
+        if (m.ph === "question" && app.q && app.q.final && m.q && m.q.k === app.q.k &&
             !(m.you && m.you.ans && m.you.ans.g === app.q.g && m.you.ans.n === app.q.n)) sendSoon(250);   // an answer the server does not have yet
         if (m.you && app.role === "player") {
           var rec = sget("p:" + app.code) || { key: app.key };
@@ -605,6 +605,7 @@
       app.screen = key;
       app.late = false;
       if (s.ph !== "end") { $("after").innerHTML = ""; dropBar(); }
+      TO.closeDialog($("dlg-send"));      // a card left open belongs to the screen that has gone
       var v = $("v-game");
       if (s.ph === "lobby") v.innerHTML = (isDisplay() || app.role === "host") ? lobbyHost(s) : lobbyPlayer(s);
       else if (s.ph === "question") { v.innerHTML = isDisplay() ? questionDisplay(s) : questionPlayer(s); if (!isDisplay()) wireQuestion(s); timerStart(s); countsUpdate(); }
@@ -719,16 +720,21 @@
       ["s", "m", "b"].map(function (n) {
         return '<button class="hs-netbtn" type="button" role="radio" data-n="' + n + '" aria-checked="false">' + netIcon(n) + "<b>" + NET_WORD[n] + "</b><span>" + R.POINTS[n][0] + " or " + R.POINTS[n][1] + "</span></button>";
       }).join("") + "</div>" +
+      '<button class="btn solid hs-sendbtn" type="button" id="q-send" disabled>Send</button>' +
       '<p class="hs-status" id="q-status"></p></div>';
   }
+  /* A guess goes to the server only when the player says so: Send, then the card in the middle (Send or
+     Edit). A sent answer is final, so the host's count means "answered" (Khayyam, 14 Oct 2026). Only when a
+     timer runs out does a guess that was moved but not sent go by itself, as it stands. */
   function wireQuestion(s) {
     var q = s.q;
-    app.q = { q: q, k: q.k, g: R.round(q, R.val(q, 0.5)), n: "m", touched: false, sendT: null };
+    app.q = { q: q, k: q.k, g: R.round(q, R.val(q, 0.5)), n: "m", touched: false, final: false, sendT: null };
     app.sent = null;
+    TO.closeDialog($("dlg-send"));
     var mine = s.you && s.you.ans;
     var kept = sget("ans:" + app.code);
-    if (mine) { app.q.g = mine.g; app.q.n = mine.n; app.q.touched = true; app.sent = { k: q.k, g: mine.g, n: mine.n, r: mine.r }; }
-    else if (kept && kept.k === q.k) { app.q.g = kept.g; app.q.n = kept.n; app.q.touched = true; }
+    if (mine) { app.q.g = mine.g; app.q.n = mine.n; app.q.touched = true; app.q.final = true; app.sent = { k: q.k, g: mine.g, n: mine.n, r: mine.r }; }
+    else if (kept && kept.k === q.k) { app.q.g = kept.g; app.q.n = kept.n; app.q.touched = true; app.q.final = true; sendSoon(250); }   // sent, and lost on the way
     if (!kept || kept.k !== q.k) sdel("ans:" + app.code);
     var scale = $("q-scale");
     var dragging = false;
@@ -738,17 +744,17 @@
       setGuess(R.round(q, R.val(q, p)));
     }
     scale.addEventListener("pointerdown", function (e) {
-      if (locked()) return;
+      if (frozen()) return;
       dragging = true;
       try { scale.setPointerCapture(e.pointerId); } catch (x) { /* fine */ }
       fromX(e.clientX);
     });
     scale.addEventListener("pointermove", function (e) { if (dragging) fromX(e.clientX); });
-    function up() { if (!dragging) return; dragging = false; sendSoon(0); }
+    function up() { if (!dragging) return; dragging = false; }
     scale.addEventListener("pointerup", up);
     scale.addEventListener("pointercancel", up);
     scale.addEventListener("keydown", function (e) {
-      if (locked()) return;
+      if (frozen()) return;
       var g = app.q.g, k = e.key;
       if (k === "ArrowLeft" || k === "ArrowDown") g = R.nudge(q, g, -1);
       else if (k === "ArrowRight" || k === "ArrowUp") g = R.nudge(q, g, 1);
@@ -759,33 +765,50 @@
       else return;
       e.preventDefault();
       setGuess(g);
-      sendSoon(700);
     });
     Array.prototype.forEach.call(document.querySelectorAll(".hs-step"), function (b) {
       b.addEventListener("click", function () {
-        if (locked()) return;
+        if (frozen()) return;
         setGuess(R.nudge(q, app.q.g, +b.getAttribute("data-d")));
-        sendSoon(700);
       });
     });
     Array.prototype.forEach.call(document.querySelectorAll(".hs-netbtn"), function (b) {
       b.addEventListener("click", function () {
-        if (locked()) return;
+        if (frozen()) return;
         app.q.n = b.getAttribute("data-n");
         app.q.touched = true;
         drawGuess();
-        sendSoon(0);
       });
     });
+    $("q-send").addEventListener("click", function () { if (!frozen() && app.q.touched) sendCard(); });
     drawGuess();
     countsUpdate();
     sentUpdate();
   }
-  function locked() { return !app.q || app.late || (app.deadline && now() > app.deadline); }
+  /* closed: the question takes no more answers. frozen: this phone's answer can no longer change */
+  function closed() { return !app.q || app.late || (app.deadline && now() > app.deadline); }
+  function frozen() { return closed() || app.q.final; }
   function setGuess(g) {
     app.q.g = g;
     app.q.touched = true;
     drawGuess();
+  }
+  /* the card in the middle: the answer as it will go, Send or Edit */
+  function sendCard() {
+    var a = app.q, q = a.q, r = R.net(q, a.g, a.n);
+    $("send-ans").innerHTML = '<b class="hs-confirm-val">' + esc(fmt(q, a.g)) + (q.u ? "<small>" + esc(q.u) + "</small>" : "") + "</b>" +
+      '<span class="hs-confirm-net">' + netIcon(a.n) + "<b>" + NET_WORD[a.n] + "</b> " + esc(fmt(q, r[0])) + " to " + esc(withUnit(q, r[1])) + "</span>";
+    TO.openDialog($("dlg-send"));
+    $("send-go").focus();
+  }
+  $("send-edit").addEventListener("click", function () { TO.closeDialog($("dlg-send")); });
+  $("send-go").addEventListener("click", function () { TO.closeDialog($("dlg-send")); sendFinal(); });
+  function sendFinal() {
+    var a = app.q;
+    if (!a || a.final || closed()) return;
+    a.final = true;
+    drawGuess();
+    sendSoon(0);
   }
   function drawGuess() {
     var a = app.q, q = a.q;
@@ -803,6 +826,11 @@
     net.style.left = l + "%";
     net.style.width = Math.max(w, 0.8) + "%";
     Array.prototype.forEach.call(document.querySelectorAll(".hs-netbtn"), function (b) { b.setAttribute("aria-checked", String(b.getAttribute("data-n") === a.n)); });
+    var sb = $("q-send");
+    if (sb) { sb.disabled = !a.touched || frozen(); sb.hidden = a.final; }
+    var card = scale.closest(".live-card");
+    if (card) card.classList.toggle("hs-locked", a.final);
+    sentUpdate();
   }
   function sendSoon(ms) {
     var a = app.q;
@@ -812,7 +840,7 @@
        message in 10 seconds, so a thumb tapping the nets must never cost the answer it ends on */
     var wait = Math.max(ms, app.sentAt + 400 - now());
     a.sendT = setTimeout(function () {
-      if (!app.q || app.q !== a || locked()) return;
+      if (!app.q || app.q !== a || !a.final || closed()) return;
       var msg = { t: "ans", k: a.k, g: a.g, n: a.n };
       sset("ans:" + app.code, { k: a.k, g: a.g, n: a.n, t: now() });     // kept, so a phone that drops sends it again
       if (!send(msg)) { app.sent = null; sentUpdate("wait"); return; }
@@ -824,13 +852,12 @@
     var st = $("q-status");
     if (!st || !app.q) return;
     var a = app.q, s = app.sent, q = a.q;
-    if (app.late || (app.deadline && now() > app.deadline)) { st.innerHTML = "Time's up"; return; }
     if (s && s.k === a.k && s.g === a.g && s.n === a.n) {
       st.innerHTML = '<span class="ok">' + ICON.check + "Sent</span><span class=\"hs-range\">" + esc(fmt(q, s.r[0])) + " to " + esc(withUnit(q, s.r[1])) + "</span>";
       return;
     }
-    if (how === "wait") { st.textContent = "Connecting… your answer goes when it can."; return; }
-    if (how === "sending") { st.textContent = "Sending…"; return; }
+    if (app.late || (app.deadline && now() > app.deadline)) { st.innerHTML = "Time's up"; return; }
+    if (a.final) { st.textContent = how === "wait" ? "Connecting… your answer goes when it can." : "Sending…"; return; }
     st.textContent = a.touched ? "" : "Slide to guess";
   }
   function countsUpdate() {
@@ -856,7 +883,10 @@
       var ring = $("q-ring"), secs = $("q-secs");
       if (ring) ring.setAttribute("stroke-dashoffset", String(100.5 * (1 - left / total)));
       if (secs) secs.textContent = String(Math.ceil(left / 1000));
-      if (left <= 0) { clearInterval(app.tick); sentUpdate(); }
+      /* the time is nearly up: a guess that was moved and never sent goes as it stands (the server allows
+         a moment past the end for answers in flight) */
+      if (left <= 1200 && app.q && app.q.k === s.q.k && app.q.touched && !app.q.final) { TO.closeDialog($("dlg-send")); sendFinal(); }
+      if (left <= 0) { clearInterval(app.tick); sentUpdate(); if (app.q && $("q-val")) drawGuess(); }
     }
     tick();
     app.tick = setInterval(tick, 250);
@@ -1089,7 +1119,12 @@
     document.body.classList.add("live-strip");
     var go = "", say = "", alt = "", dis = false;
     if (s.ph === "lobby") { go = "Start"; dis = !s.np; say = '<b>' + s.np + "</b> " + (s.np === 1 ? "player" : "players"); }
-    else if (s.ph === "question") { go = "Reveal"; say = (s.q.i === 0 ? "Practice · " : "") + "<b>" + (s.cnt ? s.cnt.in : 0) + "</b> of " + (s.cnt ? s.cnt.of : s.np) + " answered"; }
+    else if (s.ph === "question") {
+      var c = counts(s);
+      go = "Reveal";
+      say = (s.q.i === 0 ? "Practice · " : "") + (c.of && c.in >= c.of ? "<b>All " + c.of + "</b> answered" : "<b>" + c.in + "</b> of " + c.of + " answered");
+      seenAt(s);
+    }
     else if (s.ph === "reveal") { go = s.q.i > 0 && s.q.i >= s.q.of ? "The end" : "Next"; say = s.rv ? "<b>" + s.rv.hits + "</b> of " + s.rv.total + " caught it" : ""; }
     else if (s.ph === "standings") { go = "Next question"; say = "Standings"; }
     else if (s.ph === "end") { go = "Play again"; alt = "New game"; say = ""; }
@@ -1099,6 +1134,7 @@
     hsAlt.textContent = alt;
     hsAlt.hidden = !alt;
     hsSay.hidden = !!alt && !isBig();
+    revealCheck(false);                 // an open "still answering" card follows the count, and goes with the question
   }
   /* Where this screen stands ("question|1.0"), sent with every command that moves the game: a double tap,
      or a tap on a screen that is behind, then no longer matches and the server ignores it. */
@@ -1107,9 +1143,53 @@
     var s = app.state;
     if (!s) return;
     if (s.ph === "lobby") { if (send({ t: "start", at: atOf(s) })) TO.count("live/started"); }
-    else if (s.ph === "question") send({ t: "reveal", at: atOf(s) });
+    else if (s.ph === "question") {
+      var c = counts(s);
+      if (c.in >= c.of) send({ t: "reveal", at: atOf(s) });         // everyone has sent: straight to the reveal
+      else revealCheck(true);
+    }
     else if (s.ph === "reveal" || s.ph === "standings") send({ t: "next", at: atOf(s) });
     else if (s.ph === "end") hostMenu("again");
+  });
+
+  /* Reveal while someone is still answering: "Wait", or "Reveal now", which opens 30 seconds after the
+     question did, so nobody is cut off at once and nobody can hold the room forever. The 30 seconds are
+     counted from when this screen first showed the question, kept with the host's record through a reload. */
+  var FORCE_AFTER = (LOCAL && window.LIVE_FORCE_AFTER) || 30000;     // the checks shorten it on this computer only
+  function counts(s) { return s.cnt ? { in: s.cnt.in, of: s.cnt.of } : { in: 0, of: s.np || 0 }; }
+  function seenAt(s) {
+    var rec = sget("host:" + app.code) || null, k = app.code + "|" + s.q.k;
+    if (app.seen && app.seen.k === k) return app.seen.t;
+    app.seen = rec && rec.seen && rec.seen.k === k ? rec.seen : { k: k, t: now() };
+    if (rec && (!rec.seen || rec.seen.k !== k)) { rec.seen = app.seen; sset("host:" + app.code, rec); }
+    return app.seen.t;
+  }
+  var revealTick = 0;
+  function revealCheck(open) {
+    var dlg = $("dlg-reveal"), s = app.state;
+    if (!s || s.ph !== "question" || app.role !== "host") { clearInterval(revealTick); TO.closeDialog(dlg); return; }
+    if (!open && !dlg.open) return;
+    var c = counts(s), wait = c.of - c.in, left = Math.max(0, seenAt(s) + FORCE_AFTER - now());
+    var all = wait <= 0;
+    $("reveal-title").textContent = all ? "Everyone has answered" : wait + " still answering";
+    $("reveal-line").textContent = c.in + " of " + c.of + " sent";
+    var n = Math.min(c.of, 60), on = Math.round(n * (c.of ? c.in / c.of : 0)), h = "";
+    for (var i = 0; i < n; i++) h += i < on ? "<i></i>" : '<i class="wait"></i>';
+    $("reveal-dots").innerHTML = h;
+    var now_ = $("reveal-now");
+    now_.disabled = !all && left > 0;
+    now_.textContent = all ? "Reveal" : left > 0 ? "Reveal 0:" + ("0" + Math.ceil(left / 1000)).slice(-2) : "Reveal now";
+    if (open) {
+      TO.openDialog(dlg);
+      clearInterval(revealTick);
+      revealTick = setInterval(function () { if (!dlg.open) { clearInterval(revealTick); return; } revealCheck(false); }, 250);
+    }
+  }
+  $("reveal-wait").addEventListener("click", function () { TO.closeDialog($("dlg-reveal")); });
+  $("reveal-now").addEventListener("click", function () {
+    var s = app.state;
+    TO.closeDialog($("dlg-reveal"));
+    if (s && s.ph === "question") send({ t: "reveal", at: atOf(s) });
   });
   hsAlt.addEventListener("click", function () {
     var s = app.state;

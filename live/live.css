@@ -142,6 +142,22 @@ body.live-strip .live-main { padding-bottom: 104px; }
 .hs-status .ok { display: inline-flex; align-items: center; gap: 5px; color: var(--c); font-weight: 800; }
 .hs-status .ok svg { width: 16px; height: 16px; }
 .hs-range { font-variant-numeric: tabular-nums; }
+
+/* ---------- Send: nothing goes until the player says so; a sent answer is final ---------- */
+.hs-sendbtn { width: 100%; margin-top: 14px; }
+.hs-sendbtn[disabled] { opacity: .38; box-shadow: none; cursor: default; }
+.hs-locked .hs-scale, .hs-locked .hs-step { cursor: default; }
+.hs-locked .hs-step, .hs-locked .hs-netbtn:not([aria-checked="true"]) { opacity: .4; }
+.hs-locked .hs-handle { display: none; }
+.hs-confirm { text-align: center; }
+.hs-confirm h2 { padding-right: 0; }
+.hs-confirm-ans { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 16px; }
+.hs-confirm-val { font-family: var(--display); font-weight: 800; font-size: 2.7rem; line-height: 1; letter-spacing: -0.03em; color: var(--c); font-variant-numeric: tabular-nums; }
+.hs-confirm-val small { margin-left: 6px; font-size: 1rem; letter-spacing: 0; color: var(--soft); }
+.hs-confirm-net { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.hs-confirm-net .hs-ic { display: inline-block; margin: 0; }
+.hs-confirm-btns .btn { flex: 1 1 0; }
+.hs-confirm .hs-dotsrow { justify-content: center; margin-top: 16px; }
 @media (prefers-color-scheme: dark) {
   .hs-netbtn { background: transparent; }
   .hs-handle { border-color: var(--bg); }
