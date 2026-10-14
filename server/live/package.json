@@ -1,0 +1,13 @@
+{
+  "name": "logicers-live",
+  "private": true,
+  "type": "module",
+  "description": "Logicers Live: the server of the live games (a Cloudflare Worker with one Durable Object per game).",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

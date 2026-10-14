@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=35f2305ce0">
+<link rel="stylesheet" href="assets/css/logicers.css?v=916159e72f">
 </head>
 <body class="home">
 
@@ -42,6 +42,13 @@
 </header>
 
 <main>
+<!-- Join a live game (14 Oct 2026): the code a host gives out goes here. The form has no named field, so even
+     without a script nothing of the code reaches any server: home.js sends the browser to live/#CODE. -->
+<form class="livejoin" id="livejoin" action="live/" autocomplete="off" aria-label="Join a live game">
+  <span class="livejoin-t"><b>Join a game</b><span>The code from the host</span></span>
+  <input class="livejoin-code" id="livejoin-code" maxlength="5" placeholder="CODE" autocapitalize="characters" spellcheck="false" aria-label="Game code">
+  <button class="livejoin-go" type="submit">Join</button>
+</form>
 <section class="hero">
   <div class="hero-text">
     <p class="eyebrow" id="eyebrow"></p>
@@ -251,6 +258,34 @@
   </div>
 </section>
 
+<section class="games group-games live-games" aria-labelledby="live-title">
+  <h2 class="sec" id="live-title">Play live</h2>
+  <p class="sec-sub">Everyone on their own phone. A shared screen is optional.</p>
+  <div class="shelf" id="shelf3">
+    <button class="shelf-btn prev off" type="button" id="shelf3-prev" aria-controls="shelf3-row" aria-label="Previous live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="shelf-row" id="shelf3-row" data-n="1">
+    <a class="tile" id="tile-sure" data-g="sure" href="live/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><defs><pattern id="sure-mesh" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="ln" d="M0 0H8M0 0V8" stroke-width="1.7"/></pattern><pattern id="sure-mesh-y" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H8M0 0V8" stroke="#C98F00" stroke-width="1.7" opacity=".7"/></pattern></defs><rect class="mute" x="36" y="158" width="248" height="8" rx="4"/><rect class="sure-net" x="72" y="62" width="168" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect class="sure-net" x="112" y="94" width="88" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect x="176" y="126" width="38" height="24" rx="9" fill="url(#sure-mesh-y)" stroke="#F0B429" stroke-width="3" stroke-dasharray="7 4"/><rect class="fg" x="149" y="40" width="5" height="132" rx="2.5"/><circle class="fg" cx="151.5" cy="36" r="9"/><rect class="sure-answer" x="129" y="54" width="4" height="112" rx="2"/></svg><span class="badge">New</span></div>
+      <div class="body">
+        <h3>How Sure?</h3>
+        <p class="pitch"><span class="long">Everyone guesses a number on their own phone, then picks a net. A small net scores more, if it catches the answer.</span><span class="short">Guess the number, then pick your net.</span></p>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">3+ players</span>
+        </div>
+      </div>
+    </a>
+    <div class="tile soon-tile" id="tile-more-live">
+      <div class="art soon-art" aria-hidden="true"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="mute" cx="128" cy="100" r="9"/><circle class="mute" cx="160" cy="100" r="9"/><circle class="mute" cx="192" cy="100" r="9"/></svg></div>
+      <div class="body">
+        <h3>More to come</h3>
+        <p class="pitch">More games for a room are in the works.</p>
+      </div>
+    </div>
+    </div>
+    <button class="shelf-btn next off" type="button" id="shelf3-next" aria-controls="shelf3-row" aria-label="More live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</section>
+
 <section class="soons" aria-label="Coming soon">
   <div class="soon">
     <div><h2>More games are in the works</h2><p>New ones join the shelf as they are ready.</p></div>
@@ -260,7 +295,7 @@
 </main>
 
 <footer class="foot-note">
-  <p><span data-privacy="short">No login. No tracking. Your results stay in your browser.</span></p>
+  <p><span data-privacy="short">No login. No cookies. Results stay in your browser, unless you play in a room or a live game.</span></p>
   <button type="button" data-open="dlg-about">About, sources and contact</button>
 </footer>
 </div>
@@ -322,8 +357,10 @@
     <figure class="about-duel"><div id="about-duel-card"></div><figcaption class="duel-say">This is what your friend sees.</figcaption></figure>
     <div id="about-rooms" hidden>
     <h3>Rooms</h3>
-    <p class="quiet">A room is 2 to 50 friends playing the daily games with a shared table, today's and the month's, joined by one link. It is the one thing on this site that stores anything outside your own browser: when a member finishes a daily game, their phone sends the game, the score, the guess, the day and their chosen name to the site's own small server — nothing else, and nothing at all for anyone who is in no room. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole; leaving a room deletes everything of yours at once, and the room's maker can delete the whole room. <a href="room/">Make or join a room</a>.</p>
+    <p class="quiet">A room is 2 to 50 friends playing the daily games with a shared table, today's and the month's, joined by one link. Outside your own browser it stores only this: when a member finishes a daily game, their phone sends the game, the score, the guess, the day and their chosen name to the site's own small server — nothing else, and nothing at all for anyone who is in no room. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole; leaving a room deletes everything of yours at once, and the room's maker can delete the whole room. <a href="room/">Make or join a room</a>.</p>
     </div>
+    <h3>Live games</h3>
+    <p class="quiet">How Sure? is played live, by a room: the host opens a game, everyone joins with its code on their own phone, and a TV, a projector or a laptop is optional. No account for anyone. The name a player types and their answers stay on the site's own small server for the game and are deleted a day after it ends (the server's own backups clear within 30 days); nothing else about anyone is kept. Every answer in Logicers' question sets was checked on two websites, both linked under it. <a href="live/">Play live</a>.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque, Figtree and Literata, under the SIL Open Font License.</p>
@@ -342,7 +379,7 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=0d0f3b0b2d"></script>
+<script src="assets/js/turnsout.js?v=cb9a0728ae"></script>
 <script src="assets/js/duel.js?v=6cb85e8123"></script>
 <script src="assets/js/rooms.js?v=e19a1b45b9"></script>
 <script>
@@ -533,6 +570,24 @@
   }
   shelf("shelf-row", "shelf-prev", "shelf-next");          // Today's games
   shelf("shelf2-row", "shelf2-prev", "shelf2-next");       // Pass the phone
+  shelf("shelf3-row", "shelf3-prev", "shelf3-next");       // Play live
+
+  /* Join a live game: five letters, then the live page with the code after the "#" (never sent to a server). */
+  var join = document.getElementById("livejoin"), code = document.getElementById("livejoin-code");
+  if (join && code) {
+    code.addEventListener("input", function () {
+      var v = code.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 5);
+      if (v !== code.value) code.value = v;
+      join.classList.remove("bad");
+    });
+    join.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var v = code.value.toUpperCase().replace(/[^A-Z]/g, "");
+      if (v.length !== 5) { join.classList.add("bad"); code.focus(); return; }
+      var base = window.location.protocol === "file:" ? "live/index.html" : "live/";
+      window.location.href = base + "#" + v;
+    });
+  }
 })();
 </script>
 </body>

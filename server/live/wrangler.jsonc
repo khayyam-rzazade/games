@@ -1,0 +1,25 @@
+/* Logicers Live: the Worker's settings (14 Oct 2026). Workers Builds reads this file on every deploy:
+   in Cloudflare's dashboard the Worker logicers-live is connected to the GitHub repository with the
+   root directory server/live and the watch path server/live/*, and "npx wrangler deploy" does the rest.
+   The two secrets are set once, by hand, in the dashboard (Settings, Variables and Secrets), never here:
+     SETS_KEY   the key that opens src/sets.js (the same text as r/live-workshop/sets-key.txt on the Mac)
+     ADMIN_KEY  (optional) a password of your own for the totals without names
+   Workers Logs and traces stay OFF: the privacy line on the site promises that nothing else is kept. */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-live",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "durable_objects": {
+    "bindings": [
+      { "name": "GAME", "class_name": "Game" },
+      { "name": "TOTALS", "class_name": "Totals" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Game", "Totals"] }
+  ]
+}

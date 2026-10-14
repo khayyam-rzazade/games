@@ -15,3 +15,8 @@ same-street/photos/f133-*.jpg
 # the workshop can ever slip into a push.
 /r/*
 !/r/index.html
+# The live server's tools, made on a computer by npm and wrangler (and Workers Builds makes its own):
+# never pushed, or GitHub Pages would publish them. .dev.vars would hold local secrets.
+server/live/node_modules/
+server/live/.wrangler/
+server/live/.dev.vars

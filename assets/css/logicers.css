@@ -75,6 +75,7 @@
 [data-g="energy"]  { --c: #A55200; --tint: #FAE8D7; }
 [data-g="duel"]    { --c: #3A3F5C; --tint: #ECEEF6; }       /* Who Was Closer is not a game: the site's own slate, so no game colour is spent on it */       /* Same Energy, the tenth daily game: copper */
 [data-g="room"]    { --c: #3A3F5C; --tint: #ECEEF6; }       /* Rooms is not a game either: the same slate */
+[data-g="sure"]    { --c: #470BA8; --tint: #EAE8FF; }       /* How Sure?, the first live game: indigo (14 Oct 2026) */
 
 /* ---------- colours: night ---------- */
 @media (prefers-color-scheme: dark) {
@@ -109,6 +110,7 @@
   [data-g="energy"]  { --c: #E08600; --tint: #1E1307; }
   [data-g="duel"]    { --c: #AEB6DA; --tint: #141728; }
   [data-g="room"]    { --c: #AEB6DA; --tint: #141728; }
+  [data-g="sure"]    { --c: #D2D3FF; --tint: #17152A; }
 }
 
 /* ---------- base ---------- */
@@ -374,6 +376,33 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .art .dim { fill: var(--c); fill-opacity: .13; }
 .group-games .go .arrow { display: none; }               /* "2+ players" needs the room of the arrow */
 .group-games .go { padding: 0 20px; }
+/* ---------- Join a live game (14 Oct 2026): the box at the very top of the home page ---------- */
+.livejoin { display: flex; align-items: center; gap: 10px; margin: 4px 0 0 auto; max-width: 440px; background: var(--card); border-radius: 20px; box-shadow: var(--shadow); padding: 8px 8px 8px 16px; }
+.livejoin-t { line-height: 1.2; flex: 1 1 auto; min-width: 0; }
+.livejoin-t b { display: block; font-size: .98rem; white-space: nowrap; }
+.livejoin-t span { display: block; font-size: .8rem; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.livejoin-code { width: 108px; flex: none; height: 44px; border-radius: 12px; border: 2px solid transparent; background: #EAE8FF; color: #470BA8; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: .14em; text-align: center; text-transform: uppercase; padding: 0 6px; }
+.livejoin-code::placeholder { color: #8E86B8; letter-spacing: .1em; }
+.livejoin-code:focus { outline: none; border-color: #470BA8; }
+.livejoin.bad .livejoin-code { border-color: var(--miss); }
+.livejoin-go { appearance: none; border: 0; flex: none; height: 44px; padding: 0 18px; border-radius: 999px; background: #470BA8; color: #fff; font: inherit; font-weight: 800; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.livejoin-go:active { transform: scale(.97); }
+@media (max-width: 359px) {                  /* the smallest phones: a narrower code box, so "Join a game" is never cut */
+  .livejoin { gap: 8px; padding-left: 12px; }
+  .livejoin-code { width: 84px; letter-spacing: .08em; font-size: 1.05rem; }
+  .livejoin-go { padding: 0 14px; }
+  .livejoin-t span { display: none; }
+}
+.live-games { margin-top: 34px; }
+.art .sure-net { stroke: var(--c); }
+.art .sure-answer { fill: var(--ink); }
+@media (prefers-color-scheme: dark) {
+  .livejoin { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .livejoin-code { background: #17152A; color: #D2D3FF; }
+  .livejoin-code::placeholder { color: #6E6A99; }
+  .livejoin-code:focus { border-color: #D2D3FF; }
+  .livejoin-go { background: #D2D3FF; color: #0A0C1A; }
+}
 .soon-tile { --c: var(--soft); --tint: transparent; background: transparent; box-shadow: none; border: 1.5px dashed color-mix(in srgb, var(--soft) 38%, transparent); }
 .soon-tile:active { transform: none; }
 .soon-tile .art { background: color-mix(in srgb, var(--soft) 8%, transparent); }

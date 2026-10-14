@@ -228,7 +228,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (el) {
       var kind = el.getAttribute("data-privacy");
       el.textContent = kind === "short"
-        ? "No login. No cookies. Your results stay in your browser. Visits are counted without identifying anyone."
+        ? "No login. No cookies. Results stay in your browser, unless you play in a room or a live game. Visits are counted without identifying anyone."
         : kind === "group"
         ? "No login and no cookies. Your table's best result is kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "names"
@@ -236,7 +236,9 @@
         : kind === "duel"
         ? "No login and no cookies. A duel link carries only the day, the scores and the name the sender chose for themselves, inside the link itself: nothing reached a server, not even ours. The name you choose travels in every link you send. What your phone has merged is kept only in this browser. Visits are counted with GoatCounter, without identifying anyone."
         : kind === "rooms"
-        ? "No login and no cookies. A room is the one thing on this site that stores anything outside your own browser: each daily game a member finishes sends the game, the score, the day and their chosen name to the site's own small server, and nothing else — and nothing at all for anyone who is in no room. It keeps this month and the last, then deletes; a room nobody plays in for 60 days is deleted whole, and leaving a room deletes everything of yours at once. Visits are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. Outside your own browser, a room stores only this: each daily game a member finishes sends the game, the score, the day and their chosen name to the site's own small server, and nothing else — and nothing at all for anyone who is in no room. It keeps this month and the last, then deletes; a room nobody plays in for 60 days is deleted whole, and leaving a room deletes everything of yours at once. Visits are counted with GoatCounter, without identifying anyone."
+        : kind === "live"
+        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends (the server's own backups clear within 30 days). Nothing else about you is kept. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "table"
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
