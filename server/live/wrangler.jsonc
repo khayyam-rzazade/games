@@ -1,9 +1,11 @@
 /* Logicers Live: the Worker's settings (14 Oct 2026; saved games and reports, 15 Oct 2026: the objects Kit,
    Desk, Way (a lost edit link's way back) and Mail (the list of feedback emails), added by the migration v2,
-   which has never been deployed: the four go up together with the first push of step 2). Workers Builds
-   reads this file on every deploy: in Cloudflare's dashboard the Worker logicers-live is connected to the
-   GitHub repository with the root directory server/live and the watch path server/live/*, and
-   "npx wrangler deploy" does the rest.
+   deployed on 15 Oct 2026 with step 2). Workers Builds reads this file on every deploy: in Cloudflare's
+   dashboard the Worker logicers-live is connected to the GitHub repository with the root directory
+   server/live and the watch path server/live/*, and "npx wrangler deploy" does the rest. After a push that
+   changes server/live, a build shows in Deployments, View build history: if none starts, look at Settings,
+   Builds ("disconnected from your Git account" means Cloudflare's GitHub app lost the repository: Manage, then
+   the repository again on GitHub; 15 Oct 2026).
    The two secrets are set once, by hand, in the dashboard (Settings, Variables and Secrets), never here:
      SETS_KEY   the key that opens src/sets.js (the same text as r/live-workshop/sets-key.txt on the Mac);
                 it also keys every stored email of a way back (src/keys.js), so it is set once and never changed
