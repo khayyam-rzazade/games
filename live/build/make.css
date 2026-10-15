@@ -69,8 +69,25 @@ body.mk-page { background: var(--bg); overflow-x: hidden; }
 /* ---------- the grid of the editor ---------- */
 .mk-grid { display: grid; grid-template-columns: 300px minmax(0, 1fr) 290px; gap: 18px; align-items: start; max-width: 1480px; margin: 0 auto; padding: 14px 28px 48px; }
 .mk-col { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 16px; min-width: 0; }
-/* the open question and the settings stay in view while a long list scrolls; each fits the window */
-.mk-c2, .mk-c3 { position: sticky; top: 12px; max-height: calc(100vh - 100px); max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; }
+/* the open question and the settings stay in view while a long list scrolls; each fits the window. While the
+   editor is open (html.mk-shell, set by make.js) a laptop gets the window-filling layout below instead */
+.mk-c2, .mk-c3 { position: sticky; top: 12px; max-height: calc(100vh - 100px); max-height: calc(100dvh - 100px); overflow-y: auto; }
+
+/* ---------- a laptop: the editor fills the window and each column scrolls by itself (Khayyam, 15 Oct 2026: in
+   Safari the middle column stopped short of the bottom, and scrolling over it never moved the page). The top bar
+   with Save and Host it now never scrolls away; nothing else on the page can scroll, so nothing gets stuck. Only with
+   a mouse or a trackpad: a tablet's on-screen keyboard would cover the bottom of a column that cannot move ---------- */
+@media (min-width: 1100px) and (pointer: fine) {
+  html.mk-shell { height: 100%; overflow: hidden; }
+  html.mk-shell body.mk-page { height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+  html.mk-shell .mk-top, html.mk-shell .mk-msgwrap { flex: none; width: 100%; }
+  html.mk-shell .mk-msg { max-height: 32vh; overflow-y: auto; }
+  html.mk-shell .mk-main { flex: 1 1 auto; min-height: 0; width: 100%; display: flex; flex-direction: column; }
+  html.mk-shell #v-edit { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  html.mk-shell .mk-grid { flex: 1 1 auto; min-height: 0; width: 100%; grid-template-rows: minmax(0, 1fr); align-items: stretch; padding-bottom: 18px; }
+  html.mk-shell .mk-col { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  html.mk-shell .mk-c2, html.mk-shell .mk-c3 { position: static; max-height: none; }
+}
 @media (prefers-color-scheme: dark) {
   .mk-col, .mk-card, .mk-msg { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
   .mk-msg { box-shadow: none; border-color: var(--ink); }
@@ -403,7 +420,9 @@ dialog.mk-dlg-wide { width: min(100% - 24px, 36rem); }
 @media (max-width: 1099px) {
   .mk-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); grid-template-areas: "c1 c2" "c3 c2"; }
   .mk-c1 { grid-area: c1; }
-  .mk-c2 { grid-area: c2; }
+  /* one page that scrolls as a whole: no column with a scroll of its own to get stuck in (make.js brings a newly
+     opened question's top into view) */
+  .mk-c2 { grid-area: c2; position: static; max-height: none; overflow: visible; }
   .mk-c3 { grid-area: c3; position: static; max-height: none; overflow: visible; }
   .mk-gamesw { display: none; }
   .mk-gamesbtn { width: 44px; padding: 0; justify-content: center; }

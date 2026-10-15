@@ -611,6 +611,8 @@
     $("mk-topr").hidden = !(id === "v-edit" || id === "v-results");
     $("mk-dock").hidden = id !== "v-edit";
     document.body.classList.toggle("mk-nodock", id !== "v-edit");
+    /* the editor on a laptop fills the window, each column scrolling by itself (make.css, html.mk-shell) */
+    document.documentElement.classList.toggle("mk-shell", id === "v-edit");
     if (id !== "v-edit" && id !== "v-results") $("mk-gtitle").textContent = "";
     window.scrollTo(0, 0);
   }
@@ -629,8 +631,10 @@
     $("mk-gamesbtn").setAttribute("aria-label", t("yourGames"));
     $("mk-gamesbtn").title = t("yourGames");          // on a tablet or a phone the button is its picture only
   }
-  var mqPhone = window.matchMedia("(max-width: 759px)");
+  var mqPhone = window.matchMedia("(max-width: 759px)"), mqWide = window.matchMedia("(min-width: 1100px) and (pointer: fine)");
   function phone() { return mqPhone.matches; }
+  /* the editor filling a laptop's window, each column scrolling by itself (make.css, html.mk-shell) */
+  function shell() { return mqWide.matches && document.documentElement.classList.contains("mk-shell"); }
   /* a radio group: only its chosen radio is in the Tab order, the arrows move within it */
   function rove(g) {
     if (!g) return;
@@ -990,10 +994,9 @@
     }
     drawQ();
     if (phone()) window.scrollTo(0, 0);
-    else if (li && !o.noScroll) {
-      var r = li.getBoundingClientRect();
-      if (r.top < 0 || r.bottom > window.innerHeight) li.scrollIntoView({ block: "nearest" });
-    }
+    /* a laptop: the list scrolls by itself, so its current question is brought into it (a tablet's page instead
+       shows the opened question from its top: drawQ) */
+    else if (li && !o.noScroll && shell()) li.scrollIntoView({ block: "nearest" });
     if (o.focus) focusField(o.focus);
     changed();
   }
@@ -1041,7 +1044,12 @@
     h += '<label class="mk-lab" for="f-s">' + esc(t("srcL")) + '</label><input class="mk-in" id="f-s" type="url" inputmode="url" maxlength="300" autocomplete="off" spellcheck="false" aria-describedby="e-s" placeholder="https://…">' + err("s");
     h += '<div class="mk-prev" id="mk-prev"></div>';
     qcol.innerHTML = h;
-    if (G.drawn !== q.id) { qcol.scrollTop = 0; G.drawn = q.id; }
+    if (G.drawn !== q.id) {
+      qcol.scrollTop = 0;
+      G.drawn = q.id;
+      /* a tablet's page scrolls as a whole: a question opened from far down the list shows from its top */
+      if (!phone() && !shell()) { var qtop = qcol.getBoundingClientRect().top; if (qtop < 0) window.scrollBy(0, qtop - 12); }
+    }
     rove(qcol.querySelector(".mk-ty"));
     /* what a person typed goes into the fields as values, never through HTML */
     $("f-t").value = q.t;
