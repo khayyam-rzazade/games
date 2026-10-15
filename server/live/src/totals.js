@@ -5,16 +5,37 @@
    medium and big nets caught the answer. No name, no code, no address: these are the numbers that tune
    the sets. Days older than a year are dropped.
    It counts and never refuses: a cap on the games made in a day would be a switch anyone could trip
-   with a script, closing Live for everyone until midnight. The Worker brakes each address instead. */
+   with a script, closing Live for everyone until midnight. The Worker brakes each address instead.
+
+   One exception, since 15 Oct 2026: the bytes of saved games (kit.js). Disk is the one thing a stranger
+   could fill on purpose, and a full disk would stop every game, live ones included. So new saved games, and
+   saved games that grow, are counted here in bytes per day, and above the day's budget saving waits until
+   midnight (UTC) while everything else goes on. The budget keeps two months of saved games (they are
+   deleted two months after their last use) well inside the free plan's 5 GB. */
 import { DurableObject } from "cloudflare:workers";
 
 function day(t) { return new Date(t || Date.now()).toISOString().slice(0, 10).replace(/-/g, ""); }
-function blank() { return { made: 0, started: 0, rounds: 0, players: 0 }; }
+function blank() { return { made: 0, started: 0, rounds: 0, players: 0, kits: 0, kbytes: 0, pbytes: 0 }; }
+/* Bytes a day (kbytes: saved games, pbytes: plays alone kept with them). Saved games are deleted two months
+   after their last use, so the two together keep well under the free plan's 5 GB (60 × 70 MB = 4.2 GB at
+   most). With the paid plan, storage has no cap, and both can be raised. */
+const KIT_DAY_BYTES = 40e6;
+const PLAY_DAY_BYTES = 30e6;
 
 export class Totals extends DurableObject {
+  constructor(ctx, env) {
+    super(ctx, env);
+    /* the checks run the server with TEST_TIMES=fast: a "day" of 20 seconds and budgets of a few hundred
+       kilobytes, so a check can spend a day's budget and see it come back; never on Cloudflare */
+    this.fast = !!(env && env.TEST_TIMES === "fast");
+    this.kitDay = this.fast ? 400e3 : KIT_DAY_BYTES;
+    this.playDay = this.fast ? 12e3 : PLAY_DAY_BYTES;
+  }
+  today() { return this.fast ? "f" + Math.floor(Date.now() / 20000) : day(); }
+
   /* one more game made today */
   async made() {
-    const k = "d:" + day();
+    const k = "d:" + this.today();
     const d = Object.assign(blank(), await this.ctx.storage.get(k));
     d.made++;
     await this.ctx.storage.put(k, d);
@@ -24,9 +45,33 @@ export class Totals extends DurableObject {
 
   /* one more game started today: its host pressed Start (made but never started is a script, or a try) */
   async started() {
-    const k = "d:" + day();
+    const k = "d:" + this.today();
     const d = Object.assign(blank(), await this.ctx.storage.get(k));
     d.started++;
+    await this.ctx.storage.put(k, d);
+    return true;
+  }
+
+  /* bytes for saved games (kit.js): true and counted when the day's budget has room, false when it is spent */
+  async spend(bytes, isNew) {
+    const k = "d:" + this.today();
+    const d = Object.assign(blank(), await this.ctx.storage.get(k));
+    if (d.kbytes + bytes > this.kitDay) return false;
+    d.kbytes += bytes;
+    if (isNew) d.kits++;
+    await this.ctx.storage.put(k, d);
+    return true;
+  }
+
+  /* bytes for plays alone kept with saved games: the same, with a budget of its own, so a flood of plays never
+     stops anyone saving a game (and the other way round) */
+  async spendPlays(bytes) {
+    const k = "d:" + this.today();
+    const d = Object.assign(blank(), await this.ctx.storage.get(k));
+    bytes = Math.max(0, bytes | 0);
+    if (d.pbytes + bytes > this.playDay) return false;
+    d.pbytes += bytes;
+    d.alone = (d.alone || 0) + 1;
     await this.ctx.storage.put(k, d);
     return true;
   }
@@ -34,7 +79,7 @@ export class Totals extends DurableObject {
   /* a round finished: { set, by: [{ id, t: { s: [caught, tried], m: [...], b: [...] } }], players } */
   async round(o) {
     if (!o || typeof o.set !== "string" || !Array.isArray(o.by) || o.by.length > 20) return false;
-    const k = "d:" + day();
+    const k = "d:" + this.today();
     const d = Object.assign(blank(), await this.ctx.storage.get(k));
     d.rounds++;
     d.players += Math.max(0, Math.min(5000, o.players | 0));

@@ -10,7 +10,11 @@
    piece of real names, the list lets the real names through.
 
    A game's code: five letters from twenty consonants (3.2 million codes), with no vowel, so a code can
-   hardly spell a word; a few letter groups that still read as rude are refused all the same. */
+   hardly spell a word; a few letter groups that still read as rude are refused all the same.
+   A saved game's code (15 Oct 2026): seven letters from the same twenty (1.28 billion codes), so the one
+   Join box tells it from a live game's, and a sweep finds nothing.
+   A saved game's title is checked against a shorter list than a name (titleRude, below): a title is the
+   maker's own text, and history, biology and geography need words a name never does. */
 
 export const MAXNAME = 14;
 /* Never in a name: the control characters (C0, DEL, C1); < > = # ? / \ " ` | { } [ ] ^ ~, which mean
@@ -139,12 +143,46 @@ const CODE_RUDE = ["FCK", "FK", "SHT", "CNT", "DCK", "CCK", "KKK", "WTF", "STFU"
                    "PRN", "TWT", "WNK", "BTCH", "PSS", "JZZ", "CZZ", "MRD", "VFC", "SK", "MK", "MQ", "PC", "GT", "SS",
                    "HH", "SX", "NZ", "PDF", "PD", "DLD"];
 export function codeOk(s) { return typeof s === "string" && /^[BCDFGHJKLMNPQRSTVWXZ]{5}$/.test(s); }
-export function newCode() {
+export function newCode() { return letters(5); }
+export function kitCodeOk(s) { return typeof s === "string" && /^[BCDFGHJKLMNPQRSTVWXZ]{7}$/.test(s); }
+export function newKitCode() { return letters(7); }
+/* n letters, each of the twenty equally likely (a byte of 240 or more is drawn again), never a rude group */
+function letters(n) {
   for (;;) {
-    const b = new Uint8Array(5);
-    crypto.getRandomValues(b);
     let s = "";
-    for (let i = 0; i < 5; i++) s += CODE_LETTERS[b[i] % 20];   // 256 = 12 × 20 + 16: a hair uneven, and harmless here
+    while (s.length < n) {
+      const b = new Uint8Array(n);
+      crypto.getRandomValues(b);
+      for (let i = 0; i < n && s.length < n; i++) if (b[i] < 240) s += CODE_LETTERS[b[i] % 20];
+    }
     if (!CODE_RUDE.some((r) => s.indexOf(r) >= 0)) return s;
   }
+}
+
+/* ---- the title of a saved game ----
+   Refused only for slurs and obscenities that have no use in a quiz. Left out on purpose, because a lesson
+   needs them: hitler and nazi (history), sex, penis, vagina, rape (biology; rape is also a plant), dick
+   (Moby Dick), cock (a rooster), troia (Troy, in Italian), negro (Spanish and Italian for black), retard
+   (retardation, in physics), porn and shit (vulgar, never hateful). The same readings as a name: fullwidth,
+   look-alike digits, spaced-out letters ("f u c k"). */
+const T_ANYWHERE = [
+  "fuck", "nigg", "faggot", "cocksuck", "blowjob", "pornhub", "jizz",
+  "vaffanculo", "fanculo", "porcodio", "dioporco", "diocane", "pompino",
+  "orospu", "yarrak", "sikis", "siktir", "sikerim", "sikeyim", "gotveren"
+];
+const T_WHOLE = [
+  "cunt", "twat", "wanker", "whore", "bitch", "nigga", "fag", "kkk",
+  "cazzo", "merda", "stronzo", "stronza", "coglione", "minchia", "frocio", "ricchione", "puttana", "mignotta", "zoccola",
+  "porco dio", "dio porco", "dio cane",
+  "amk", "amcik", "ibne", "yavsak", "kahpe", "kaltak", "pezevenk", "serefsiz"
+];
+export function titleRude(s) {
+  return readings(s).some((ws) => {
+    const line = " " + ws.join(" ") + " ";
+    if (T_WHOLE.some((r) => line.includes(" " + r + " ") || line.includes(" " + r + "s ") || line.includes(" " + r + "es "))) return true;
+    return ws.some((w) => {
+      for (const p of NAMEPARTS) w = w.split(p).join(" ");
+      return T_ANYWHERE.some((r) => w.includes(r));
+    });
+  });
 }

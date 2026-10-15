@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How Sure? Play live | Logicers</title>
 <link rel="canonical" href="https://logicers.com/live/">
-<meta name="description" content="A live game for a room. Everyone guesses the number on their own phone, then picks a net: a small net scores more, if it catches the answer. No account for anyone.">
+<meta name="description" content="Live games for a room. Everyone answers on their own phone and says how sure they are. Host How Sure?, or build your own game with numbers, choices, true or false and typed answers. No account for anyone.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
 <meta property="og:title" content="How Sure? Play live">
@@ -23,8 +23,11 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=916159e72f">
-<link rel="stylesheet" href="live.css?v=9a9ddf2c06">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=13f6f29a3c">
+<link rel="stylesheet" href="live.css?v=76259bea3c">
+<!-- People's own words show on these pages: only the site's own scripts (and the visit counter) may run, so even
+     words written to break the page could never run a script here (15 Oct 2026). -->
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://gc.zgo.at">
 </head>
 <body class="game live" data-g="sure">
 
@@ -49,13 +52,26 @@
       <a class="btn solid live-wide" id="go-host" href="#host">Host a game</a>
     </div>
     <form class="live-card live-joinbox" id="joinform" action="#" autocomplete="off">
-      <label class="live-label" for="joincode">Join a game</label>
+      <label class="live-label" for="joincode">Join or play a game</label>
       <div class="live-joinrow">
-        <input class="live-code" id="joincode" name="code" maxlength="5" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="CODE" aria-describedby="joinhint">
-        <button class="btn solid" type="submit">Join</button>
+        <input class="live-code" id="joincode" name="code" maxlength="7" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="CODE" aria-describedby="joinhint">
+        <button class="btn solid" type="submit">Go</button>
       </div>
-      <p class="live-small" id="joinhint">The code is on the host's screen.</p>
+      <p class="live-small" id="joinhint">The code from the host, or of a saved game.</p>
     </form>
+    <!-- build your own (15 Oct 2026; "Make your own" until Khayyam named it, the same day: "something that sends a strong
+         message to the people that you are a builder"): the editor, with four kinds of question, in English, Italian or Turkish -->
+    <div class="live-card live-make" data-kc="teal">
+      <h2 class="live-h">Build your own</h2>
+      <p class="live-small" style="margin-top:6px">Your questions: numbers, choices, true or false, typed answers. In English, Italian or Turkish. No account.</p>
+      <div class="hs-types" aria-hidden="true">
+        <span><svg viewBox="0 0 34 22"><rect x="2" y="13" width="30" height="3" rx="1.5" fill="currentColor" opacity=".35"/><rect x="11" y="6" width="12" height="9" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="16" y="3" width="2" height="16" rx="1" fill="currentColor"/></svg>Number</span>
+        <span><svg viewBox="0 0 34 22"><rect x="4" y="2" width="12" height="8" rx="2.5" fill="currentColor"/><rect x="18" y="2" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/><rect x="4" y="12" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/><rect x="18" y="12" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/></svg>Choice</span>
+        <span><svg viewBox="0 0 34 22"><path d="M4 11.5l3.8 3.8 7-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 6l9 10M30 6l-9 10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity=".45"/></svg>True / false</span>
+        <span><svg viewBox="0 0 34 22"><text x="3" y="17" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="15" fill="currentColor">Aa</text><rect x="25" y="4" width="2.4" height="15" rx="1.2" fill="currentColor"/></svg>Typed</span>
+      </div>
+      <a class="btn solid live-wide" id="go-make" href="build/">Build a game</a>
+    </div>
     <p class="live-small live-privacy" data-privacy="live">No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends (the server's own backups clear within 30 days). Nothing else about you is kept.</p>
   </section>
 
@@ -79,7 +95,7 @@
           <button type="button" data-v="0">Off</button><button type="button" data-v="30">30s</button><button type="button" data-v="60">60s</button><button type="button" data-v="90">90s</button>
         </div>
       </div>
-      <div class="live-row live-toggle">
+      <div class="live-row live-toggle" id="s-practicerow">
         <label for="s-practice">Practice question first</label>
         <input class="live-sw" type="checkbox" id="s-practice" role="switch">
       </div>
@@ -112,10 +128,11 @@
 
   <!-- a phone that has the code: the name, then in -->
   <section class="live-view" id="v-join" hidden>
-    <p class="meta"><b>Play live</b> <span id="j-meta">Join a game</span></p>
+    <p class="meta"><b id="j-play">Play live</b> <span id="j-meta">Join a game</span></p>
     <div class="live-card live-joincard">
       <div class="live-gamechip" id="j-game"></div>
       <div class="live-codeshow" id="j-code" aria-label="Game code"></div>
+      <div id="j-made"></div>
       <div id="j-form">
         <label class="live-label" for="j-name" id="j-namelabel">Your name</label>
         <input class="live-field" id="j-name" maxlength="14" autocomplete="nickname" placeholder="Name">
@@ -141,6 +158,9 @@
 
   <!-- the game itself: drawn by live.js for each phase -->
   <section class="live-view" id="v-game" hidden aria-live="polite"></section>
+
+  <!-- a saved game's own page (a code of seven letters): played alone, at one's own pace -->
+  <section class="live-view" id="v-kit" hidden aria-live="polite"></section>
   <div id="after"></div>
 </main>
 
@@ -156,6 +176,8 @@
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
     <h2 id="help-title">How to play</h2>
+    <div id="help-kit" hidden></div>
+    <div id="help-hs">
     <div class="live-rules live-rules-help" data-rules></div>
     <div class="live-pointsgrid" data-points></div>
     <p class="quiet">The bigger the net, the less it pays, and the less you lose. No points for speed. Ties share the place.</p>
@@ -164,9 +186,12 @@
     <h3>Where the numbers come from</h3>
     <p class="quiet">Every answer in Logicers' sets was checked on two websites, both linked under the answer.</p>
     <h3>Your privacy</h3>
-    <p class="quiet" data-privacy="live">No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends (the server's own backups clear within 30 days). Nothing else about you is kept.</p>
+    <p class="quiet" data-privacy="live-all">No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends. Games people make: a saved game keeps only what its maker typed into it, with no name of the maker, and an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link (the address itself only if they also tick feedback emails, and only for those); it is deleted two months after its last use. Playing one alone keeps the name you type and your answers with the game, for its scoreboard, and they go when the game goes. A report keeps what its sender writes, the game's code, and a name and email only if given, for six months. The server's own backups clear within 30 days. Nothing else about you is kept.</p>
+    <h3>Games people make</h3>
+    <p class="quiet">Anyone can build a game with no account: <a href="build/">Build your own</a>. Logicers does not check games people make; every screen of one has a Report link. <a href="terms/">The terms</a> say what is not allowed and how reports are handled.</p>
     <h3>Contact</h3>
-    <p class="quiet">A question, a mistake in a fact, or an idea? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+    <p class="quiet">A question, a mistake in a fact, or an idea? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>. It is also the contact point for authorities and for anyone using a game made here, in English and Italian.</p>
+    </div>
   </div>
 </dialog>
 
@@ -196,7 +221,7 @@
   <div class="sheet hs-confirm">
     <h2 id="send-title">Send your answer?</h2>
     <div class="hs-confirm-ans" id="send-ans"></div>
-    <p class="quiet">Once sent, it can't be changed.</p>
+    <p class="quiet" id="send-quiet">Once sent, it can't be changed.</p>
     <div class="actions hs-confirm-btns">
       <button class="btn ghost" type="button" id="send-edit">Edit</button>
       <button class="btn solid" type="button" id="send-go">Send</button>
@@ -219,10 +244,11 @@
 
 <noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
 
-<script src="../assets/js/turnsout.js?v=cb9a0728ae"></script>
-<script src="hs-rules.js?v=1a3d7a71d2"></script>
+<script src="../assets/js/turnsout.js?v=456b6eeae8"></script>
+<script src="hs-rules.js?v=be5a07a112"></script>
 <script src="sets.js?v=6267b1071a"></script>
 <script src="qrcodegen.js?v=4702b2e275"></script>
-<script src="live.js?v=2f1a257d75"></script>
+<script src="words.js?v=e34d6082d9"></script>
+<script src="live.js?v=ea06e58251"></script>
 </body>
 </html>

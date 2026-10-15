@@ -143,7 +143,15 @@ const part = (title) => { console.log((bad ? "FAIL " : "ok   ") + title); bad = 
 /* ---------------------------------------------------------------- the module itself */
 {
   const keys = Object.keys(N).sort();
-  check(keys.join(" ") === "CODE_LETTERS MAXNAME cleanName codeOk foldName nameOk newCode pickName rude", "the exports: " + keys.join(" "));
+  check(keys.join(" ") === "CODE_LETTERS MAXNAME cleanName codeOk foldName kitCodeOk nameOk newCode newKitCode pickName rude titleRude", "the exports: " + keys.join(" "));
+  /* saved games' codes (15 Oct 2026): seven of the same twenty letters, told apart from a live game's five */
+  const kc = N.newKitCode();
+  check(N.kitCodeOk(kc) && !N.codeOk(kc) && !N.kitCodeOk(N.newCode()) && !N.kitCodeOk("BCDFGHJ".toLowerCase()) && !N.kitCodeOk("BCDFGHA"), "a saved game's code: seven consonants, never a live game's");
+  /* a title's own list: slurs and obscenities, never the words a lesson needs */
+  const fine = ["Economics 101: warm-up", "La guerra di Troia", "Hitler and the Weimar Republic", "Biology: sex chromosomes", "Moby Dick", "Rapeseed oil", "Retardation in physics", "Negro in Italian art", "Merdan Bey", "Cazzola family", "Nazi Germany 1933-45", "The penis and the vagina: anatomy", "Shitake mushrooms", "Scunthorpe United", "Pornography laws in the EU", "Il cazzotto", "Sikh history"];
+  const bad = ["Fuck this quiz", "f u c k", "Ｆｕｃｋ", "Porco Dio", "Orospu", "Bitches", "Il Cazzo", "Siktir git", "Sikiş", "Nigga please", "c.u.n.t", "Faggots", "Vaffanculo a tutti"];
+  const fp = fine.filter((x) => N.titleRude(x)), fn = bad.filter((x) => !N.titleRude(x));
+  check(!fp.length && !fn.length, "titleRude: " + JSON.stringify({ refused: fp, passed: fn }));
   check(MAXNAME === 14 && CODE_LETTERS === "BCDFGHJKLMNPQRSTVWXZ", "MAXNAME is 14 and CODE_LETTERS the twenty consonants");
   check(cleanName("  Ana " + ch(9) + "  Lee ") === "Ana Lee" && foldName(" Marta  Rossi ") === "martarossi", "cleanName and foldName tidy as before");
   check(rude("Fuck") === true && rude("Ana") === false, "rude answers true or false");

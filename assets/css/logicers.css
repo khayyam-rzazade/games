@@ -226,13 +226,17 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 /* ---------- home: the welcome ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px 40px; align-items: end; padding: 44px 0 40px; }
 .hero .gameroom { grid-column: -2 / -1; align-self: start; margin-top: 0; }
+.hero .livebox { align-self: start; }
+.hero-text { grid-row: 1 / span 3; align-self: center; }
 .hero-text { position: relative; z-index: 0; }
 .eyebrow { color: var(--soft); font-weight: 600; font-size: 0.94rem; letter-spacing: .01em; min-height: 1.4em; }
 .hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 5.6vw, 4.75rem); line-height: .98; letter-spacing: -0.035em; margin-top: 10px; }
 .hero h1 em { font-style: normal; color: #2D4FC4; position: relative; white-space: nowrap; }
 .hero h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: .04em; height: .16em; border-radius: 99px; background: #F5C24B; z-index: -1; opacity: .9; }
 .lede { margin-top: 18px; max-width: 30em; font-size: 1.31rem; color: var(--soft); line-height: 1.4; }
-.today { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 20px 22px 18px; }
+/* the first line says what Logicers is for (Khayyam, 15 Oct 2026: "Learning that feels like play."), the second for whom */
+.lede b { display: block; color: var(--ink); font-weight: 700; }
+.today { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 16px 20px 15px; }
 .today-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .today-label { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
 .today-count { color: var(--soft); font-size: 0.94rem; font-weight: 500; }
@@ -240,7 +244,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .pips { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 7px; margin-top: 14px; }
 .pips i { height: 12px; border-radius: 99px; background: var(--tint); transition: background-color .3s ease; }
 .pips i.on { background: var(--c); }
-.today-note { margin-top: 12px; font-size: 0.875rem; color: var(--soft); }
+.today-note { margin-top: 10px; font-size: 0.875rem; color: var(--soft); }
 @media (prefers-color-scheme: dark) {
   .hero h1 { letter-spacing: -0.04em; }
   .hero h1 em { background: linear-gradient(92deg, #7FA5FF 0%, #B99DFF 48%, #3FE0C6 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
@@ -376,32 +380,62 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .art .dim { fill: var(--c); fill-opacity: .13; }
 .group-games .go .arrow { display: none; }               /* "2+ players" needs the room of the arrow */
 .group-games .go { padding: 0 20px; }
-/* ---------- Join a live game (14 Oct 2026): the box at the very top of the home page ---------- */
-.livejoin { display: flex; align-items: center; gap: 10px; margin: 4px 0 0 auto; max-width: 440px; background: var(--card); border-radius: 20px; box-shadow: var(--shadow); padding: 8px 8px 8px 16px; }
-.livejoin-t { line-height: 1.2; flex: 1 1 auto; min-width: 0; }
-.livejoin-t b { display: block; font-size: .98rem; white-space: nowrap; }
-.livejoin-t span { display: block; font-size: .8rem; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.livejoin-code { width: 108px; flex: none; height: 44px; border-radius: 12px; border: 2px solid transparent; background: #EAE8FF; color: #470BA8; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: .14em; text-align: center; text-transform: uppercase; padding: 0 6px; }
-.livejoin-code::placeholder { color: #8E86B8; letter-spacing: .1em; }
-.livejoin-code:focus { outline: none; border-color: #470BA8; }
-.livejoin.bad .livejoin-code { border-color: var(--miss); }
-.livejoin-go { appearance: none; border: 0; flex: none; height: 44px; padding: 0 18px; border-radius: 999px; background: #470BA8; color: #fff; font: inherit; font-weight: 800; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.livejoin-go:active { transform: scale(.97); }
-@media (max-width: 359px) {                  /* the smallest phones: a narrower code box, so "Join a game" is never cut */
-  .livejoin { gap: 8px; padding-left: 12px; }
-  .livejoin-code { width: 84px; letter-spacing: .08em; font-size: 1.05rem; }
-  .livejoin-go { padding: 0 14px; }
-  .livejoin-t span { display: none; }
+/* ---------- Build your own game · Join a game (15 Oct 2026): right under the Today card and the same width,
+   two windows side by side in the soft colours of the editor (light purple and light green), the box that should
+   draw the eye (Khayyam: "this box has to have a good attention"). Until that day the Join box stood alone at the
+   very top of the page. ---------- */
+.livebox { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.hero .livebox { grid-column: -2 / -1; }
+.lb { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 0; margin: 0; padding: 14px 14px 14px; border-radius: 22px; color: #15172B; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.lb-build { background: linear-gradient(155deg, #F1EBFF 0%, #E6DCFF 52%, #FFE3EE 100%); box-shadow: 0 10px 26px rgba(91, 63, 196, .18), inset 0 0 0 1px rgba(91, 63, 196, .08); transition: transform .15s, box-shadow .15s; }
+.lb-join { background: linear-gradient(155deg, #E6F8EE 0%, #D6F2E3 100%); box-shadow: 0 10px 26px rgba(30, 122, 76, .14), inset 0 0 0 1px rgba(30, 122, 76, .08); }
+.lb-art { display: block; width: 54px; height: 54px; flex: none; }
+.lb-art svg { display: block; width: 100%; height: 100%; }
+.lb-h { display: block; font-family: var(--display); font-weight: 800; font-size: 1.14rem; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+.lb-badge { position: absolute; right: 12px; top: 12px; background: #5B3FC4; color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; line-height: 1.3; }
+.lb-types { display: flex; flex-wrap: nowrap; gap: 4px; color: #5B3FC4; }
+.lb-types svg { flex: 0 1 auto; min-width: 0; width: 23px; height: 15px; padding: 5px 4px; border-radius: 8px; background: rgba(255, 255, 255, .7); box-sizing: content-box; }
+.lb-go { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; height: 42px; padding: 0 14px 0 17px; border-radius: 999px; background: #5B3FC4; color: #fff; font-weight: 800; font-size: 0.98rem; box-shadow: 0 6px 14px rgba(91, 63, 196, .28); }
+.lb-go .arrow { width: 17px; height: 17px; }
+@media (hover: hover) {
+  .lb-build:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(91, 63, 196, .26), inset 0 0 0 1px rgba(91, 63, 196, .12); }
+}
+.lb-build:active { transform: scale(.985); }
+.lb-build:focus-visible { outline: 3px solid #5B3FC4; outline-offset: 3px; }
+/* the Join window: the code, then Join, one under the other (the window is narrow on a phone and beside Today) */
+.lb-join .livejoin-code { width: 100%; height: 46px; margin-top: auto; border-radius: 14px; border: 2px solid transparent; background: #fff; color: #1E7A4C; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: .14em; text-align: center; text-transform: uppercase; padding: 0 6px; }
+.lb-join .livejoin-code::placeholder { color: #7FA897; letter-spacing: .12em; }
+.lb-join .livejoin-code:focus { outline: none; border-color: #1E7A4C; }
+.livejoin.bad .livejoin-code { border-color: var(--miss, #F0B429); }
+.lb-join .livejoin-go { appearance: none; border: 0; width: 100%; height: 42px; border-radius: 999px; background: #1E7A4C; color: #fff; font: inherit; font-weight: 800; cursor: pointer; -webkit-tap-highlight-color: transparent; box-shadow: 0 6px 14px rgba(30, 122, 76, .24); }
+.lb-join .livejoin-go:active { transform: scale(.97); }
+@media (max-width: 359px) {                  /* the smallest phones: a little tighter, so nothing is cut */
+  .livebox { gap: 8px; }
+  .lb { padding: 12px 11px; border-radius: 20px; }
+  .lb-art { width: 46px; height: 46px; }
+  .lb-h { font-size: 1.04rem; }
+  .lb-types { gap: 3px; }
+  .lb-types svg { width: 20px; height: 13px; padding: 4px 3px; }
+  .lb-join .livejoin-code { letter-spacing: .08em; font-size: 1.05rem; }
+  .lb-badge { right: 9px; top: 9px; }
 }
 .live-games { margin-top: 34px; }
 .art .sure-net { stroke: var(--c); }
 .art .sure-answer { fill: var(--ink); }
 @media (prefers-color-scheme: dark) {
-  .livejoin { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
-  .livejoin-code { background: #17152A; color: #D2D3FF; }
-  .livejoin-code::placeholder { color: #6E6A99; }
-  .livejoin-code:focus { border-color: #D2D3FF; }
-  .livejoin-go { background: #D2D3FF; color: #0A0C1A; }
+  .lb { color: #F3F4FF; }
+  .lb-build { background: linear-gradient(155deg, #2B2250 0%, #231C40 55%, #3A1E35 100%); box-shadow: inset 0 0 0 1px rgba(199, 184, 255, .2); }
+  .lb-join { background: linear-gradient(155deg, #17352A 0%, #12291F 100%); box-shadow: inset 0 0 0 1px rgba(143, 227, 181, .18); }
+  .lb-badge { background: #C7B8FF; color: #0A0C1A; }
+  .lb-types { color: #C7B8FF; }
+  .lb-types svg { background: rgba(255, 255, 255, .08); }
+  .lb-go { background: #C7B8FF; color: #0A0C1A; box-shadow: none; }
+  .lb-build:focus-visible { outline-color: #C7B8FF; }
+  .lb-join .livejoin-code { background: #0B1D15; color: #DDF5E7; }
+  .lb-join .livejoin-code::placeholder { color: #5F8F79; }
+  .lb-join .livejoin-code:focus { border-color: #8FE3B5; }
+  .lb-join .livejoin-go { background: #8FE3B5; color: #0A0C1A; box-shadow: none; }
+  @media (hover: hover) { .lb-build:hover { box-shadow: inset 0 0 0 1px rgba(199, 184, 255, .4); } }
 }
 .soon-tile { --c: var(--soft); --tint: transparent; background: transparent; box-shadow: none; border: 1.5px dashed color-mix(in srgb, var(--soft) 38%, transparent); }
 .soon-tile:active { transform: none; }
@@ -438,7 +472,9 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 }
 @media (max-width: 1000px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: stretch; }
+  .hero-text { grid-row: auto; }
   .hero .gameroom { grid-column: auto; margin-top: -10px; }
+  .hero .livebox { grid-column: auto; margin-top: -10px; }
   .hero h1 { font-size: clamp(3rem, 8vw, 4.2rem); }
   .today-note { display: none; }
   .shelf { --tw: 200px; --tw: calc((100cqw - 3 * var(--gap)) / 3.3); }
@@ -453,9 +489,10 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .chip.round { width: 38px; padding: 0; }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 22px 0 24px; }
   .hero .gameroom { grid-column: auto; margin-top: -6px; }
+  .hero .livebox { grid-column: auto; margin-top: -6px; }
   .hero h1 { font-size: clamp(2.1rem, 11.2vw, 2.9rem); margin-top: 6px; }
   .lede { font-size: 1.09rem; margin-top: 12px; }
-  .today { padding: 14px 16px; border-radius: 20px; }
+  .today { padding: 12px 16px 13px; border-radius: 20px; }
   .today-note { display: none; }
   .pips { margin-top: 10px; }
   .sec { font-size: 1.19rem; margin-bottom: 12px; }
@@ -813,10 +850,6 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 /* the worked example inside the home page's About sheet */
 .about-duel { margin: 12px 0 4px; max-width: 360px; }
 
-/* the one quiet line on the home page's Today card */
-.today-duel { margin-top: 10px; font-size: 0.8rem; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.today-duel b { color: var(--ink); font-weight: 800; }
-.today-duel a { color: inherit; font-weight: 600; text-underline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   .duel-send:active, .duel-ask-go:active { transform: none; }

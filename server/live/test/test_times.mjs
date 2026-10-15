@@ -1,6 +1,6 @@
 /* Logicers Live: the checks on time (14 Oct 2026).
-   Part 1 (the normal server on 8787): a question with a 30-second timer reveals itself.
-   The other parts run at the same time, on a second server on 8788 started with TEST_TIMES=fast, where
+   Part 1 (the normal server on 8787, or LIVE_URL): a question with a 30-second timer reveals itself.
+   The other parts run at the same time, on a second server on 8788 (or FAST_URL) started with TEST_TIMES=fast, where
    2 hours are 6 seconds, 12 hours are 20 seconds and a day is 5 seconds:
      part 2: a game nobody touches ends by itself, everyone is told, and its data is then deleted from
              the object's own disk (read straight from the SQLite file wrangler keeps for it);
@@ -17,7 +17,7 @@ const R = globalThis.HSRules;
 
 const S = await sets(process.argv[2]);
 const DIR = process.argv[3];
-const FAST = "http://127.0.0.1:8788";
+const FAST = process.env.FAST_URL || "http://127.0.0.1:8788";
 const ORIGIN = "http://127.0.0.1:8795";
 
 async function make(base, settings) {
@@ -57,7 +57,7 @@ function disk(code, file = "") {
 
 /* ---- part 1: the timer ---- */
 async function part1() {
-  const base = "http://127.0.0.1:8787";
+  const base = process.env.LIVE_URL || "http://127.0.0.1:8787";
   const g = await make(base, { set: "years", practice: false, timer: 30, n: 5 });
   const H = await connect(base, g.code, { t: "hello", v: 1, role: "host", key: g.key });
   const P = await connect(base, g.code, { t: "hello", v: 1, role: "player", key: "k".repeat(30) });
@@ -102,7 +102,7 @@ async function part2() {
   ok(!!before.file && before.keys.includes("m") && before.keys.some((k) => k.startsWith("p:")), "right after the end, the names are still on disk (a day, in real time)");
   await sleep(9000);
   const after = before.file ? await disk(g.code, before.file) : { keys: ["?"] };
-  eq(after.keys.filter((k) => k === "m" || k.startsWith("p:")), [], "a 'day' after the end: no name and no game left on disk");
+  eq(after.keys, [], "a 'day' after the end: nothing of the game is left on disk (no name, no answer, no question, no game)");
 }
 
 /* ---- part 3: a game kept busy still ends, 12 hours (20 s) after it was made ---- */

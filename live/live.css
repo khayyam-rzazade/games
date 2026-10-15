@@ -362,3 +362,157 @@ body.live-big .hs-mbar .paytag { font-size: .9rem; }
 /* colours of the page's own drawings, as classes: a CSS variable in an SVG attribute is not read by every browser */
 .lf-c { fill: var(--c); } .lf-card { fill: var(--card); } .lf-ink { fill: var(--ink); } .lf-onc { fill: var(--on-c); }
 .ls-c { stroke: var(--c); } .ls-card { stroke: var(--card); } .ls-miss { stroke: var(--miss); } .ls-tint { stroke: var(--tint); }
+
+/* ================================================================ games people make (15 Oct 2026)
+   A made game wears its maker's colour (one of eight from the site's palette, by day and by night), asks
+   four kinds of question, and says how sure with three dots. Yellow still means one thing only: the chip of
+   a wrong answer (.hs-chip.yellow), as it meant a missed net. */
+[data-kc="indigo"] { --c: #470BA8; --tint: #EAE8FF; }
+[data-kc="blue"]   { --c: #2D4FC4; --tint: #E3E9FD; }
+[data-kc="teal"]   { --c: #0D7D73; --tint: #D8F3EE; }
+[data-kc="red"]    { --c: #CF4327; --tint: #FDE6DF; }
+[data-kc="pink"]   { --c: #BE3A82; --tint: #FBE2EE; }
+[data-kc="green"]  { --c: #238453; --tint: #DBF3E4; }
+[data-kc="orange"] { --c: #A55200; --tint: #FAE8D7; }
+[data-kc="slate"]  { --c: #3A3F5C; --tint: #ECEEF6; }
+@media (prefers-color-scheme: dark) {
+  [data-kc="indigo"] { --c: #D2D3FF; --tint: #17152A; }
+  [data-kc="blue"]   { --c: #7FA5FF; --tint: #131A33; }
+  [data-kc="teal"]   { --c: #3FE0C6; --tint: #0C2028; }
+  [data-kc="red"]    { --c: #FF8468; --tint: #24151C; }
+  [data-kc="pink"]   { --c: #FF86BF; --tint: #24152A; }
+  [data-kc="green"]  { --c: #63E6A0; --tint: #0F2222; }
+  [data-kc="orange"] { --c: #E08600; --tint: #1E1307; }
+  [data-kc="slate"]  { --c: #AEB6DA; --tint: #141728; }
+}
+/* the host's strip on a phone: its button in the game's colour (the big screen's bar has its own, below) */
+body[data-kc]:not(.live-big) .live-host-go { color: var(--c); }
+@media (prefers-color-scheme: dark) { body[data-kc]:not(.live-big) .live-host-go { color: #0A0C1A; } }
+/* a made game's title at the top shortens itself rather than push the question count to a second line */
+.hs-ttl { display: inline-block; max-width: 52vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+body.live-big .hs-ttl { max-width: 50vw; }
+
+/* ---------- the Live page: Make your own ---------- */
+.live-make .live-h { color: var(--c); }
+.hs-types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+.hs-types span { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px 8px; border: 2px solid var(--line); border-radius: 14px;
+  font-weight: 700; font-size: .84rem; line-height: 1.15; text-align: center; color: var(--c); background: var(--card); }
+.hs-types svg { width: 34px; height: 22px; }
+
+/* ---------- the host's setup: the games kept on this computer ---------- */
+.hs-yours { margin: 10px 0 0; font-weight: 800; font-size: .9rem; color: var(--soft); }
+.hs-kitdot { width: 46px; height: 46px; flex: none; border-radius: 14px; background: var(--tint); color: var(--c); display: inline-flex; align-items: center; justify-content: center; }
+.hs-kitdot svg { width: 30px; height: 20px; }
+.hs-kitset[aria-checked="true"] { border-color: var(--c); background: var(--tint); }
+
+/* ---------- a made game's line: made by the host, not checked by Logicers, Report ---------- */
+.hs-made { margin-top: 12px; color: var(--soft); font-size: .88rem; line-height: 1.35; text-align: center; }
+.hs-made a { color: var(--soft); font-weight: 700; }
+#j-made .hs-made { margin-top: 0; margin-bottom: 4px; }
+
+/* ---------- choices and true / false ---------- */
+.hs-choices { display: grid; gap: 8px; margin-top: 14px; }
+.hs-choice { appearance: none; display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; border: 2px solid var(--line); border-radius: 16px;
+  background: var(--card); color: var(--ink); font: inherit; font-weight: 700; font-size: 1.05rem; text-align: left; line-height: 1.25; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.hs-choice > span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.hs-choice i { flex: none; width: 30px; height: 30px; border-radius: 9px; background: var(--tint); color: var(--c); display: inline-flex; align-items: center; justify-content: center;
+  font-style: normal; font-weight: 800; font-family: var(--display); }
+.hs-choice[aria-checked="true"] { border-color: var(--c); background: var(--tint); }
+.hs-choice[aria-checked="true"] i { background: var(--c); color: var(--on-c); }
+.hs-choice:focus-visible, .hs-surebtn:focus-visible, .hs-tick:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.hs-tf { grid-template-columns: 1fr 1fr; }
+.hs-tf .hs-choice { justify-content: center; text-align: center; font-size: 1.15rem; padding: 18px 10px; }
+.hs-shown .hs-choice { cursor: default; }
+body.live-big .hs-shown .hs-choice { font-size: 1.6rem; padding: 16px 20px; }
+body.live-big .hs-shown .hs-choice i { width: 44px; height: 44px; font-size: 1.4rem; }
+.hs-locked .hs-choice:not([aria-checked="true"]), .hs-locked .hs-surebtn:not([aria-checked="true"]) { opacity: .4; }
+.hs-locked .hs-choice, .hs-locked .hs-surebtn { cursor: default; }
+
+/* ---------- a typed answer ---------- */
+.hs-typein { display: block; width: 100%; margin-top: 14px; border: 2px solid var(--c); border-radius: 16px; padding: 14px 16px; font: inherit; font-size: 1.3rem; font-weight: 700;
+  background: var(--card); color: var(--ink); }
+.hs-typein:focus { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 30%, transparent); }
+.hs-typein[readonly] { border-color: var(--line); color: var(--soft); }
+.hs-typedhint { display: flex; align-items: center; gap: 10px; margin-top: 14px; color: var(--soft); font-weight: 700; }
+.hs-typedhint svg { width: 34px; height: 22px; color: var(--c); flex: none; }
+
+/* ---------- How sure? three levels, three dots ---------- */
+.hs-surelab { margin-top: 16px; font-weight: 800; font-size: .9rem; color: var(--soft); text-align: center; }
+.hs-sure { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.hs-surebtn { appearance: none; border: 2px solid var(--line); background: var(--card); border-radius: 18px; padding: 10px 4px 9px; text-align: center; font: inherit; color: var(--ink);
+  cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.hs-surebtn b { display: block; font-size: .98rem; }
+.hs-surebtn > span:last-child { display: block; font-size: .84rem; color: var(--soft); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.hs-surebtn[aria-checked="true"] { border-color: var(--c); background: var(--tint); }
+.hs-surebtn[aria-checked="true"] b { color: var(--c); }
+.hs-dots3 { display: inline-flex; gap: 4px; margin-bottom: 6px; vertical-align: middle; }
+.hs-dots3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.hs-dots3 i.hs-off { background: color-mix(in srgb, var(--c) 18%, var(--card)); }
+.hs-panel .hs-dots3 i { background: #fff; }
+.hs-panel .hs-dots3 i.hs-off { background: rgba(255, 255, 255, .32); }
+.hs-by .hs-dots3, .hs-mtop .hs-dots3, .hs-confirm-net .hs-dots3 { margin: 0; }
+.hs-levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+.hs-level { background: var(--card); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 16%, transparent); border-radius: 16px; padding: 10px 6px 9px; text-align: center; }
+.hs-level b { display: block; font-size: .95rem; }
+.hs-level > span:not(.hs-dots3) { display: block; color: var(--soft); font-size: .84rem; font-variant-numeric: tabular-nums; }
+.hs-confirm-txt { font-size: 2rem; line-height: 1.15; overflow-wrap: anywhere; display: inline-flex; align-items: center; gap: 10px; }
+.hs-letter { font-style: normal; flex: none; width: 38px; height: 38px; border-radius: 11px; background: var(--c); color: var(--on-c); display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+@media (prefers-color-scheme: dark) {
+  .hs-choice, .hs-surebtn, .hs-typein, .hs-types span { background: transparent; }
+  .hs-panel .hs-dots3 i { background: var(--c); }
+  .hs-panel .hs-dots3 i.hs-off { background: color-mix(in srgb, var(--c) 25%, transparent); }
+}
+
+/* ---------- the host's check of typed answers: each different answer once ---------- */
+.hs-grade { margin-top: 10px; }
+.hs-grp { display: grid; grid-template-columns: 1fr auto 46px; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); font-weight: 700; font-size: 1.08rem; }
+.hs-grp:first-child { border-top: 0; }
+.hs-grptxt { min-width: 0; overflow-wrap: anywhere; }
+.hs-grp > small { color: var(--soft); font-weight: 700; font-variant-numeric: tabular-nums; }
+.hs-listed { color: var(--c); font-size: .8rem; font-weight: 800; white-space: nowrap; }
+.hs-tick { appearance: none; width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--line); background: var(--card); color: transparent; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0; -webkit-tap-highlight-color: transparent; }
+.hs-tick svg { width: 20px; height: 20px; }
+.hs-tick[aria-pressed="true"] { background: var(--c); border-color: var(--c); color: var(--on-c); }
+.hs-masked { letter-spacing: .1em; color: var(--soft); }
+.hs-showbtn { appearance: none; border: 0; background: none; font: inherit; font-size: .85rem; font-weight: 800; color: var(--c); cursor: pointer; padding: 2px 4px; }
+.hs-waitnote { margin-top: 12px; color: var(--soft); font-weight: 700; font-size: .92rem; text-align: center; }
+.hs-mine-ans { margin-top: 12px; font-size: 1.05rem; }
+.hs-mine-ans b { overflow-wrap: anywhere; }
+body.live-big .hs-grp { font-size: 1.4rem; }
+
+/* ---------- the reveal of a choice or a typed answer: a bar each, the right ones white ---------- */
+.hs-bars { margin-top: 12px; display: grid; gap: 8px; }
+.hs-bar { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; border-radius: 12px; background: rgba(255, 255, 255, .12);
+  font-weight: 700; overflow: hidden; }
+.hs-bar em { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(255, 255, 255, .18); }
+.hs-bar > span, .hs-bar > b { position: relative; }
+.hs-bar > span { min-width: 0; overflow-wrap: anywhere; }
+.hs-bar i { font-style: normal; font-family: var(--display); font-weight: 800; margin-right: 8px; opacity: .85; }
+.hs-bar.hs-right { background: #fff; color: var(--c); }
+.hs-bar.hs-right em { background: color-mix(in srgb, var(--c) 16%, #fff); }
+.hs-bar.hs-other { opacity: .8; font-weight: 600; }
+.hs-youtag { display: inline-block; font-size: .76rem; font-weight: 800; padding: 1px 7px; border-radius: 999px; background: rgba(0, 0, 0, .18); margin-left: 6px; vertical-align: 1px; }
+.hs-bar.hs-right .hs-youtag { background: var(--tint); }
+body.live-big .hs-bar { font-size: 1.3rem; padding: 12px 16px; }
+@media (prefers-color-scheme: dark) {
+  .hs-bar.hs-right { background: color-mix(in srgb, var(--c) 30%, #0D1022); color: var(--ink); }
+  .hs-bar.hs-right em { background: color-mix(in srgb, var(--c) 45%, #0D1022); }
+  .hs-bar.hs-right .hs-youtag { background: rgba(255, 255, 255, .16); }
+}
+
+/* ---------- a saved game's own page, and a play alone ---------- */
+.hs-kittitle { font-size: 2.3rem; overflow-wrap: anywhere; }
+.hs-yourplay { margin-top: 14px; font-size: 1.05rem; }
+.hs-note { margin-top: 12px; padding: 10px 14px; border-radius: 14px; background: var(--card); box-shadow: var(--shadow); font-weight: 600; line-height: 1.35; }
+.hs-review summary { cursor: pointer; font-weight: 800; color: var(--c); list-style: none; }
+.hs-review summary::-webkit-details-marker { display: none; }
+.hs-review summary::after { content: " ›"; }
+.hs-review[open] summary::after { content: " ⌄"; }
+.hs-rvw { padding: 12px 0; border-top: 1px solid var(--line); }
+.hs-review summary + .hs-rvw { margin-top: 10px; }
+.hs-rvw > p { margin-top: 4px; line-height: 1.35; overflow-wrap: anywhere; }
+.hs-rvwq { font-weight: 800; font-family: var(--display); font-size: 1.1rem; letter-spacing: -0.01em; }
+.hs-rvw .hs-fact { box-shadow: none; background: var(--bg); margin-top: 8px; font-size: .98rem; }
+.hs-chipsm { font-size: .85rem; padding: 2px 9px; margin-left: 4px; vertical-align: 1px; }
+.hs-chip.white.hs-chipsm { background: var(--tint); color: var(--c); }

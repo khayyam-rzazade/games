@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-count="pixel">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Report a game | Logicers</title>
+<link rel="canonical" href="https://logicers.com/live/report/">
+<meta name="description" content="Report a game someone made on Logicers Live: illegal content, hate, someone's personal data, a wrong fact or anything else. A person reads every report.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Report a game">
+<meta property="og:description" content="Something wrong in a game someone made? Tell Logicers. A person reads every report.">
+<meta property="og:url" content="https://logicers.com/live/report/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ECEEF6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=13f6f29a3c">
+<link rel="stylesheet" href="../desk.css?v=7d243dc3c8">
+<!-- People's own words show on these pages: only the site's own scripts (and the visit counter) may run, so even
+     words written to break the page could never run a script here (15 Oct 2026). -->
+<meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+</head>
+<body class="game dk-page">
+
+<header class="bar">
+  <a class="wordmark" href="../../">Logicers</a>
+</header>
+
+<!-- The report form (the EU's Digital Services Act, Art. 16). It speaks the game's language: a game's
+     screens link here as #CODE or #lang=it&code=CODE. It sends with a script (report.js), because the
+     site's security line lets forms go only to the site itself; and none of its fields has a name, so
+     even a failed script could never put a word of it into the page's address. -->
+<main class="wrap dk-main" id="app">
+  <div class="dk-langs" id="langs" role="group" aria-label="Language">
+    <button type="button" data-lang="en" lang="en" aria-pressed="true"><svg class="dk-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="M0 0l60 30M60 0 0 30"/><path stroke="#C8102E" stroke-width="2" d="M0 0l60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></svg>English</button>
+    <button type="button" data-lang="it" lang="it" aria-pressed="false"><svg class="dk-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg>Italiano</button>
+    <button type="button" data-lang="tr" lang="tr" aria-pressed="false"><svg class="dk-flag" viewBox="0 0 1200 800" aria-hidden="true" focusable="false"><path fill="#E30A17" d="M0 0h1200v800H0z"/><circle cx="400" cy="400" r="200" fill="#fff"/><circle cx="450" cy="400" r="160" fill="#E30A17"/><path fill="#fff" d="M556.7 400L625.8 377.5 625.8 304.9 668.5 363.7 737.6 341.2 694.9 400 737.6 458.8 668.5 436.3 625.8 495.1 625.8 422.5z"/></svg>Türkçe</button>
+  </div>
+
+  <section class="dk-card" id="v-form" aria-labelledby="r-title">
+    <div class="dk-head">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="dk-fc" cx="24" cy="24" r="22"/><path class="dk-fcard" d="M16.5 12h2.6v25h-2.6z"/><path class="dk-fcard" d="M19.1 13h13.4l-3.3 5.3 3.3 5.3H19.1z"/></svg>
+      <h1 class="dk-h1" id="r-title" data-w="title">Report a game</h1>
+    </div>
+    <p class="dk-danger"><svg viewBox="0 0 40 40" aria-hidden="true"><rect class="dk-fc" x="1" y="6" width="38" height="28" rx="10"/><text class="dk-fcard" x="20" y="25.4" text-anchor="middle" font-family="Bricolage Grotesque, Figtree, sans-serif" font-weight="800" font-size="14.5">112</text></svg><span data-w="danger">If someone's life or safety is in danger, call 112 first.</span></p>
+
+    <form class="dk-form" id="form" action="#" novalidate autocomplete="off">
+      <label class="dk-label" for="f-code" data-w="codeLabel">The game's code</label>
+      <input class="dk-code" id="f-code" maxlength="7" inputmode="text" autocapitalize="characters" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="KDNVFRT" aria-describedby="f-code-hint f-code-err">
+      <p class="dk-hint" id="f-code-hint" data-w="codeHint">5 or 7 letters, on the game's screens.</p>
+      <p class="dk-fielderr" id="f-code-err" hidden></p>
+
+      <p class="dk-label" id="f-why-label" data-w="whyLabel">What is wrong?</p>
+      <div class="dk-chips" id="f-why" role="radiogroup" aria-labelledby="f-why-label" aria-describedby="f-why-err">
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="illegal" data-w="whys.illegal">Illegal content</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="hate" data-w="whys.hate">Hate, harassment or threats</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="sexual" data-w="whys.sexual">Sexual content</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="violence" data-w="whys.violence">Violence</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="personal" data-w="whys.personal">Someone's personal data</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="copyright" data-w="whys.copyright">Copyright</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="spam" data-w="whys.spam">Spam or a scam</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="wrong" data-w="whys.wrong">A wrong fact</button>
+        <button class="dk-why" type="button" role="radio" aria-checked="false" data-why="other" data-w="whys.other">Something else</button>
+      </div>
+      <p class="dk-fielderr" id="f-why-err" hidden></p>
+
+      <label class="dk-label" for="f-text" data-w="textLabel">Tell us what is wrong and where (which question)</label>
+      <textarea class="dk-field" id="f-text" maxlength="1000" dir="auto" aria-describedby="f-text-count f-text-err"></textarea>
+      <p class="dk-count" id="f-text-count">0 / 1,000</p>
+      <p class="dk-fielderr" id="f-text-err" hidden></p>
+
+      <label class="dk-label" for="f-name" data-w="nameLabel">Your name (optional)</label>
+      <input class="dk-field" id="f-name" maxlength="80" autocomplete="name" dir="auto" aria-describedby="f-name-err">
+      <p class="dk-fielderr" id="f-name-err" hidden></p>
+
+      <label class="dk-label" for="f-email" data-w="emailLabel">Your email (optional)</label>
+      <input class="dk-field" id="f-email" type="email" maxlength="120" autocomplete="email" inputmode="email" spellcheck="false" dir="auto" aria-describedby="f-contact f-email-err">
+      <p class="dk-hint" id="f-contact" data-w="contactLine">Giving them helps Logicers write back to you with its decision. Reporting the sexual abuse of a child? Then you never need to give them.</p>
+      <p class="dk-fielderr" id="f-email-err" hidden></p>
+
+      <label class="dk-tick" for="f-good"><input type="checkbox" id="f-good" aria-describedby="f-good-err"><span data-w="good">I believe what I report is accurate and complete.</span></label>
+      <p class="dk-fielderr" id="f-good-err" hidden></p>
+
+      <button class="btn solid dk-send" type="submit" id="f-send" data-w="send">Send</button>
+      <p class="dk-err" id="f-err" role="alert" hidden></p>
+    </form>
+  </section>
+
+  <section class="dk-card dk-done" id="v-done" tabindex="-1" aria-labelledby="d-title" hidden>
+    <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="dk-fc" cx="24" cy="24" r="22"/><path class="dk-scard" d="M14 24.5l7 7 13-14" fill="none" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1 class="dk-h1" id="d-title" data-w="thanksTitle">Thank you</h1>
+    <p class="dk-p" data-w="thanks">Logicers reads every report by hand.</p>
+    <p class="dk-p" id="d-mail" hidden></p>
+    <p class="dk-p" data-w="next">If the game breaks the rules or the law, Logicers stops it, with its copies, and its maker sees why.</p>
+    <div class="dk-btns">
+      <a class="btn solid" id="d-back" href="../" data-w="back" hidden>Back to the game</a>
+      <button class="btn ghost" type="button" id="d-again" data-w="again">Report another game</button>
+    </div>
+  </section>
+
+  <p class="dk-small dk-note"><span data-w="privacy">Privacy: a report keeps what you write, the game's code, and your name and email if you give them, for six months (the server's backups clear 30 days later). Nothing else.</span> <span id="counted" data-w="counted" hidden>Visits are counted with GoatCounter, without identifying anyone.</span></p>
+  <p class="dk-small dk-note"><a id="termslink" href="../terms/" data-w="terms">Terms for games people make</a> · <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a></p>
+</main>
+
+<noscript><p class="wrap dk-small">This form needs JavaScript. You can also write to logicers.world@gmail.com.</p></noscript>
+
+<script src="../../assets/js/turnsout.js?v=456b6eeae8"></script>
+<script src="../desk-words.js?v=be53fc6ee8"></script>
+<script src="report.js?v=59bebf6eca"></script>
+</body>
+</html>

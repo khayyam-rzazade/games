@@ -1,9 +1,14 @@
-/* Logicers Live: the Worker's settings (14 Oct 2026). Workers Builds reads this file on every deploy:
-   in Cloudflare's dashboard the Worker logicers-live is connected to the GitHub repository with the
-   root directory server/live and the watch path server/live/*, and "npx wrangler deploy" does the rest.
+/* Logicers Live: the Worker's settings (14 Oct 2026; saved games and reports, 15 Oct 2026: the objects Kit,
+   Desk, Way (a lost edit link's way back) and Mail (the list of feedback emails), added by the migration v2,
+   which has never been deployed: the four go up together with the first push of step 2). Workers Builds
+   reads this file on every deploy: in Cloudflare's dashboard the Worker logicers-live is connected to the
+   GitHub repository with the root directory server/live and the watch path server/live/*, and
+   "npx wrangler deploy" does the rest.
    The two secrets are set once, by hand, in the dashboard (Settings, Variables and Secrets), never here:
-     SETS_KEY   the key that opens src/sets.js (the same text as r/live-workshop/sets-key.txt on the Mac)
-     ADMIN_KEY  (optional) a password of your own for the totals without names
+     SETS_KEY   the key that opens src/sets.js (the same text as r/live-workshop/sets-key.txt on the Mac);
+                it also keys every stored email of a way back (src/keys.js), so it is set once and never changed
+     ADMIN_KEY  a long password of your own (32 random characters or more): the admin page (live/admin/),
+                with the reports, the stop switch and the totals without names
    Workers Logs and traces stay OFF: the privacy line on the site promises that nothing else is kept. */
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
@@ -16,10 +21,15 @@
   "durable_objects": {
     "bindings": [
       { "name": "GAME", "class_name": "Game" },
-      { "name": "TOTALS", "class_name": "Totals" }
+      { "name": "TOTALS", "class_name": "Totals" },
+      { "name": "KIT", "class_name": "Kit" },
+      { "name": "DESK", "class_name": "Desk" },
+      { "name": "WAY", "class_name": "Way" },
+      { "name": "MAIL", "class_name": "Mail" }
     ]
   },
   "migrations": [
-    { "tag": "v1", "new_sqlite_classes": ["Game", "Totals"] }
+    { "tag": "v1", "new_sqlite_classes": ["Game", "Totals"] },
+    { "tag": "v2", "new_sqlite_classes": ["Kit", "Desk", "Way", "Mail"] }
   ]
 }

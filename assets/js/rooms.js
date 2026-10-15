@@ -77,7 +77,7 @@
   }
   function invite(code) {
     var who = D.named() ? D.me() + " invites you to " + (D.me().slice(-1).toLowerCase() === "s" ? D.me() + "'" : D.me() + "'s") + " room on Logicers" : "You are invited to a room on Logicers";
-    return who + " — small daily games, a minute each, with a shared table for the month. " + link(code);
+    return who + " — small daily games, a minute each, with shared tables for the day, the week and the month. " + link(code);
   }
 
   /* ---------------- the faces ----------------

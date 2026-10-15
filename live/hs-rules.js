@@ -1,6 +1,7 @@
-/* How Sure?: the rules of the game, in one file for the page and the server (14 Oct 2026).
-   live/hs-rules.js (the page) and server/live/src/rules.js (the server) are the SAME file, byte for
-   byte: r/site-workshop/checks/t_live.py compares them. Change one, copy it to the other.
+/* How Sure?: the rules of the game, in one file for the page and the server (14 Oct 2026; made games'
+   questions and typed answers, 15 Oct 2026). live/hs-rules.js (the page) and server/live/src/rules.js (the
+   server) are the SAME file, byte for byte: r/site-workshop/checks/t_live.py compares them. Change one, copy
+   it to the other. The editor of made games (live/build/) uses it too.
 
    A question: { lo, hi, log, step, a } — the slider's two ends, whether it is logarithmic (for answers
    that could be anywhere from tens to millions), the step of a straight slider, and the answer.
@@ -77,28 +78,40 @@
     return { place: above + 1, tied: same > 1 };
   }
 
-  /* A player's game, net by net: the sure-meter (caught of tried, for each net) and what other nets
-     would have scored on the same guesses. plays: [{ q, g, n }] — answered questions only (no practice,
-     no skipped question). */
-  function tally(plays) {
-    var t = { pts: 0, s: [0, 0], m: [0, 0], b: [0, 0], gain: { sm: 0, mb: 0, bm: 0, ms: 0 } };
-    for (var i = 0; i < plays.length; i++) {
-      var p = plays[i], q = p.q, g = p.g, n = p.n;
-      var hit = { s: caught(q, g, "s"), m: caught(q, g, "m"), b: caught(q, g, "b") };
-      var got = points(n, hit[n]);
-      t.pts += got;
-      t[n][1]++;
-      if (hit[n]) t[n][0]++;
-      if (n === "s") t.gain.sm += points("m", hit.m) - got;
-      if (n === "b") t.gain.bm += points("m", hit.m) - got;
-      if (n === "m") { t.gain.mb += points("b", hit.b) - got; t.gain.ms += points("s", hit.s) - got; }
-    }
+  /* A player's game, level by level: the sure-meter (right or caught, of tried, at each level: s is Sure or
+     a small net, m Fairly or a medium net, b Not sure or a big net) and what the other levels would have
+     scored on the same answers. plays: [{ q, g, n }] for a number, where the net decides what is caught, and
+     [{ n, hit }] for any other question, where the level changes only the points. Answered questions only
+     (no practice, no skipped question). plain: "Ask how sure" is off in a made game: a right answer scores 1,
+     a wrong one 0, every number uses the medium net, and the levels are not counted. */
+  function blank() { return { pts: 0, ok: [0, 0], s: [0, 0], m: [0, 0], b: [0, 0], gain: { sm: 0, mb: 0, bm: 0, ms: 0 } }; }
+  /* one more answered question added to a tally: a big room's scores grow one reveal at a time */
+  function add(t, p, plain) {
+    var n = plain ? "m" : p.n;
+    var hit = p.q ? { s: caught(p.q, p.g, "s"), m: caught(p.q, p.g, "m"), b: caught(p.q, p.g, "b") }
+                  : { s: !!p.hit, m: !!p.hit, b: !!p.hit };
+    t.ok[1]++;
+    if (hit[n]) t.ok[0]++;
+    if (plain) { if (hit[n]) t.pts++; return t; }
+    var got = points(n, hit[n]);
+    t.pts += got;
+    t[n][1]++;
+    if (hit[n]) t[n][0]++;
+    if (n === "s") t.gain.sm += points("m", hit.m) - got;
+    if (n === "b") t.gain.bm += points("m", hit.m) - got;
+    if (n === "m") { t.gain.mb += points("b", hit.b) - got; t.gain.ms += points("s", hit.s) - got; }
+    return t;
+  }
+  function tally(plays, plain) {
+    var t = blank();
+    for (var i = 0; i < plays.length; i++) add(t, plays[i], plain);
     return t;
   }
   /* The one verdict at the end, worked out from the player's own guesses. A verdict needs at least 3
      nets of the size it speaks about; the larger gain wins; a gain under 2 is "well judged".
      "sure-s": medium nets instead of your small ones; "sure-m": big nets instead of your medium ones;
-     "careful-b": medium nets instead of your big ones; "careful-m": small nets instead of your medium ones. */
+     "careful-b": medium nets instead of your big ones; "careful-m": small nets instead of your medium ones
+     (in a made game with more than numbers: Fairly instead of Sure, and so on). */
   function verdict(t) {
     var best = null, any = false;
     function consider(k, n, gain) {
@@ -115,9 +128,31 @@
     return { k: "well", gain: 0 };
   }
 
+  /* A typed answer as it is compared (made games). Always: compatibility forms read as plain ones (NFKC:
+     fullwidth letters, ligatures), curly quotes and dashes as straight ones, every run of white space as one
+     space, and quotes, brackets and . , ; : ! ? ¡ ¿ cut from the two ends. With `on` (the maker's "Ignore
+     capitals and accents", on by default): lower case, the accents of Latin, Greek and Cyrillic letters
+     dropped (é as e, ü as u, the dotted İ as i), and ı ł ø đ ß æ œ read as i l o d ss ae oe. The marks of
+     other scripts are never dropped: in Hindi or Arabic they are part of the letters. */
+  var PLAIN = { "\u0131": "i", "\u0142": "l", "\u00F8": "o", "\u0111": "d", "\u00DF": "ss", "\u00E6": "ae", "\u0153": "oe" };
+  function fold(x, on) {
+    var s = String(x === undefined || x === null ? "" : x).normalize("NFKC")
+      .replace(/[\u2018\u2019\u201A\u201B\u2032\u02BC\u00B4\u0060]/g, "'")
+      .replace(/[\u201C\u201D\u201E\u201F\u2033\u00AB\u00BB]/g, '"')
+      .replace(/[\u2010-\u2015\u2212]/g, "-")
+      .replace(/\s+/g, " ")
+      .replace(/^[\s"'.,;:!?\u00A1\u00BF()\[\]]+|[\s"'.,;:!?\u00A1\u00BF()\[\]]+$/g, "");
+    if (on) {
+      s = s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036F]/g, "")
+        .replace(/[\u0131\u0142\u00F8\u0111\u00DF\u00E6\u0153]/g, function (c) { return PLAIN[c]; }).normalize("NFC");
+    }
+    return s;
+  }
+
   G.HSRules = {
     SIZES: SIZES, POINTS: POINTS, NETS: NETS,
     pos: pos, val: val, round: round, nudge: nudge, net: net, caught: caught, points: points,
-    validNet: validNet, validGuess: validGuess, place: place, tally: tally, verdict: verdict
+    validNet: validNet, validGuess: validGuess, place: place, blank: blank, add: add, tally: tally, verdict: verdict,
+    fold: fold
   };
 })(typeof globalThis !== "undefined" ? globalThis : this);

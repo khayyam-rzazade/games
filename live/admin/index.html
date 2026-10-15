@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'; default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src https://logicers-live.rza-khay.workers.dev http://127.0.0.1:* http://localhost:*; frame-src 'none'; worker-src 'none'; manifest-src 'self'; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Desk | Logicers</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#ECEEF6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=13f6f29a3c">
+<link rel="stylesheet" href="../desk.css?v=7d243dc3c8">
+</head>
+<body class="game dk-page dk-admin">
+
+<!-- Logicers' own desk (15 Oct 2026): the reports, a game and its family, stop and start, the decisions,
+     a lost edit link, the totals. Not linked from anywhere, kept out of search engines (robots above) and out of the sitemap.
+     Its security line is stricter than the site's: only Logicers' own files may run here and only the live
+     server may be called, no inline code, and the browser refuses HTML put in by a script (Trusted Types),
+     so text written by strangers (reports, titles, questions) can never become code next to the key. It
+     loads no outside script at all, not even the visitor counter. -->
+<header class="bar">
+  <a class="wordmark" href="../../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" type="button" id="forget" hidden>Forget the key</button>
+  </div>
+</header>
+
+<main class="dk-desk" id="app">
+  <section class="dk-card dk-lock" id="v-lock" aria-labelledby="lock-h">
+    <h1 class="dk-h1" id="lock-h">Desk</h1>
+    <p class="dk-p">Reports and games, for Logicers only. The key stays in this tab's memory, never in its storage or its address, and goes to the server inside each call.</p>
+    <form id="lockform" action="#" autocomplete="off" novalidate>
+      <label class="dk-label" for="key">Admin key</label>
+      <div class="dk-keyrow">
+        <input class="dk-field" id="key" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+        <button class="btn solid" type="submit" id="open">Open</button>
+      </div>
+      <p class="dk-err" id="lock-err" role="alert" hidden></p>
+    </form>
+  </section>
+
+  <div id="v-desk" hidden>
+    <div class="dk-top">
+      <h1 class="dk-h1">Desk</h1>
+      <form class="dk-look" id="lookform" action="#" autocomplete="off" novalidate>
+        <label class="sr-only" for="look">Look up a game's code</label>
+        <input class="dk-field" id="look" maxlength="7" placeholder="CODE" autocapitalize="characters" autocorrect="off" spellcheck="false">
+        <button class="dk-mini dk-strong" type="submit">Look up</button>
+      </form>
+      <button class="dk-mini" type="button" id="refresh">Refresh</button>
+    </div>
+    <p class="dk-err" id="desk-err" role="alert" hidden></p>
+
+    <!-- a maker who lost the edit link and left an email as a way back (15 Oct 2026): only the fingerprint of the
+         address typed here goes to the server (../wayprint.js), never the address -->
+    <section class="dk-card dk-wayback" id="way" aria-labelledby="way-h">
+      <h2 class="dk-h2" id="way-h">Lost edit link</h2>
+      <form class="dk-wayform" id="wayform" action="#" autocomplete="off" novalidate>
+        <div class="dk-wayfield">
+          <label class="dk-label" for="way-email">The address they wrote from</label>
+          <input class="dk-field" id="way-email" type="email" maxlength="254" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+        </div>
+        <div class="dk-wayfield dk-waycode">
+          <label class="dk-label" for="way-code">Code, if they know it</label>
+          <input class="dk-field" id="way-code" maxlength="7" placeholder="CODE" autocapitalize="characters" autocorrect="off" spellcheck="false">
+        </div>
+        <button class="dk-mini dk-strong" type="submit" id="way-find">Find their games</button>
+      </form>
+      <details class="dk-details">
+        <summary>How it works</summary>
+        <p class="dk-from">When saving, a maker can leave an email as a way back. Logicers keeps only a one-way fingerprint of it, so type the address in the From line of their message, exactly: not one written in the message, and not a Reply-To. Only the same address finds their games (capitals make no difference; for Gmail, dots and anything after a + make none either, and the + part none for Outlook, iCloud, Proton and Fastmail; elsewhere they count). "Make a new edit link" replaces the game's key at once: the old link stops working. Send the new one with "Email the new link" here, which writes to the address you typed; never with Reply in your mail app, since a message can send its replies somewhere else. Then a forged From line gets nothing: the link goes to the real address. When the email was set long after the game was made, its card says so. This page sends only the fingerprint, never the address.</p>
+      </details>
+      <div id="way-res" aria-live="polite"></div>
+    </section>
+
+    <!-- the makers who ticked "Email me for feedback" (15 Oct 2026, evening): their own addresses, given for this
+         alone (server/live/src/mail.js); written to by hand, in Bcc -->
+    <section class="dk-card dk-fb" id="fb" aria-labelledby="fb-h">
+      <div class="dk-fbhead">
+        <h2 class="dk-h2" id="fb-h">Feedback emails</h2>
+        <button class="dk-mini dk-strong" type="button" id="fb-load">Show the list</button>
+      </div>
+      <details class="dk-details">
+        <summary>How it works</summary>
+        <p class="dk-from">Makers who ticked "Email me for feedback" next to the email of their way back. Only they are here, and only for this: write to them with your own mail app, in their language, with every address in Bcc, never in To or Cc, so nobody sees another's. Anyone can type any address, so a tick is a request, not a proof: say in each email why it came and how to stop (a reply asking it is enough). "Remove" here takes the address off at once and keeps it off: a tick with it is refused from then on. An address also goes by itself when its owner taps Stop in a game they ticked it in, or when those games are deleted or get another email.</p>
+      </details>
+      <div id="fb-res" aria-live="polite"></div>
+    </section>
+
+    <div class="dk-cols" id="cols">
+      <section class="dk-gamecol" id="gamecol" aria-label="The game" hidden></section>
+      <section class="dk-col" id="repcol" aria-labelledby="rep-h">
+        <h2 class="dk-h2" id="rep-h">Reports</h2>
+        <div class="dk-filter">
+          <div class="dk-seg" id="rep-filter" role="radiogroup" aria-label="Show">
+            <button type="button" role="radio" data-f="all" aria-checked="true">All</button>
+            <button type="button" role="radio" data-f="new" aria-checked="false">To do</button>
+          </div>
+          <span class="dk-count-line" id="rep-count"></span>
+        </div>
+        <div id="reps"></div>
+        <button class="dk-mini dk-more" type="button" id="more" hidden>Load 200 older reports</button>
+      </section>
+    </div>
+
+    <section class="dk-totals" id="totals" aria-labelledby="tot-h">
+      <h2 class="dk-h2" id="tot-h">Totals</h2>
+      <div id="tot"></div>
+    </section>
+  </div>
+</main>
+
+<noscript><p class="dk-desk">The desk needs JavaScript.</p></noscript>
+
+<script src="../desk-words.js?v=be53fc6ee8"></script>
+<script src="../wayprint.js?v=f39872182f"></script>
+<script src="admin.js?v=99e8c8ca5d"></script>
+</body>
+</html>

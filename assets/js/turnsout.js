@@ -145,7 +145,9 @@
       if (opener) { openDialog(document.getElementById(opener.getAttribute("data-open"))); return; }
       var closer = e.target.closest ? e.target.closest("[data-close]") : null;
       if (closer) { closeDialog(closer.closest("dialog")); return; }
-      if (e.target && e.target.nodeName === "DIALOG") closeDialog(e.target); // a tap on the dark area around it
+      /* a tap on the dark area around it; not on a dialog marked data-stay (the editor's keep screen, which
+         closes only once the edit link is kept somewhere) */
+      if (e.target && e.target.nodeName === "DIALOG" && !e.target.hasAttribute("data-stay")) closeDialog(e.target);
     });
   }
 
@@ -203,8 +205,34 @@
   function counterOn() {              // not from a folder and not on a test server on this computer
     return !!COUNTER && window.location.protocol !== "file:" && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
   }
+  /* The pages where people type what is theirs (the editor of a game people build, the report form: a game's
+     words, an email, an edit link in the address) load no script from outside (15 Oct 2026). There, marked
+     <html data-count="pixel">, each visit and each event goes to GoatCounter as a small picture, with what its
+     count.js itself sends (the path, the title, the page before, the screen size) and nothing of the page:
+     never what is typed, never the part of the address after "#" or "?". Their CSP lets only the site's own
+     scripts run. As with count.js, a browser where skipgc is set (GoatCounter's way to leave out one's own
+     visits) is not counted. */
+  function pixelMode() { return document.documentElement.getAttribute("data-count") === "pixel"; }
+  var pixels = [];
+  function pixel(path, title, ev) {
+    try {
+      if (window.localStorage && window.localStorage.getItem("skipgc") === "t") return;
+    } catch (e) { /* no storage: counted as usual */ }
+    try {
+      var sc = window.screen || {};
+      var q = "p=" + encodeURIComponent(path) + "&t=" + encodeURIComponent(title || path) + "&e=" + (ev ? "true" : "false") +
+              "&r=" + encodeURIComponent(String(document.referrer || "").replace(/[?#].*$/, "")) +
+              "&s=" + encodeURIComponent([sc.width || 0, sc.height || 0, window.devicePixelRatio || 1].join(",")) +
+              (window.navigator.webdriver ? "&b=153" : "") + "&rnd=" + Math.random().toString(36).slice(2);
+      var img = new Image();           // the browser sends it the site's name only (no path, never the "#" part)
+      pixels.push(img);                // held until it has gone, so the browser never drops it half-way
+      img.onload = img.onerror = function () { var i = pixels.indexOf(img); if (i >= 0) pixels.splice(i, 1); };
+      img.src = "https://" + COUNTER + ".goatcounter.com/count?" + q;
+    } catch (e) { /* counting must never break a page */ }
+  }
   function count(name) {              // an event, for example "100-of-us/played/day-7"
     if (!counterOn()) return;
+    if (pixelMode()) { pixel(name, name, true); return; }
     try {
       if (window.goatcounter && typeof window.goatcounter.count === "function") {
         window.goatcounter.count({ path: name, title: name, event: true });
@@ -215,6 +243,11 @@
   }
   function startCounter() {
     if (!counterOn()) return;
+    if (pixelMode()) {                  // the visit itself, once the page has its title
+      var visit = function () { pixel(window.location.pathname || "/", document.title, false); };
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", visit); else visit();
+      return;
+    }
     var s = document.createElement("script");
     s.async = true;
     s.src = "https://gc.zgo.at/count.js";
@@ -239,6 +272,8 @@
         ? "No login and no cookies. Outside your own browser, a room stores only this: each daily game a member finishes sends the game, the score, the day and their chosen name to the site's own small server, and nothing else — and nothing at all for anyone who is in no room. It keeps this month and the last, then deletes; a room nobody plays in for 60 days is deleted whole, and leaving a room deletes everything of yours at once. Visits are counted with GoatCounter, without identifying anyone."
         : kind === "live"
         ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends (the server's own backups clear within 30 days). Nothing else about you is kept. Visits and plays are counted with GoatCounter, without identifying anyone."
+        : kind === "live-all"
+        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends. Games people make: a saved game keeps only what its maker typed into it, with no name of the maker, and an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link (the address itself only if they also tick feedback emails, and only for those); it is deleted two months after its last use. Playing one alone keeps the name you type and your answers with the game, for its scoreboard, and they go when the game goes. A report keeps what its sender writes, the game's code, and a name and email only if given, for six months. The server's own backups clear within 30 days. Nothing else about you is kept. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "table"
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
@@ -818,6 +853,7 @@
     here: here,
     fixLocalLinks: fixLocalLinks,
     count: count,
+    counting: counterOn,               // whether this page counts visits (its privacy line says so only then)
     address: address,
     figure: figure,
     colour: colour,

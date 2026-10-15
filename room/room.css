@@ -75,6 +75,16 @@
 .rm-pts { flex: none; min-width: 1.6em; text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
 
 .rm-card-go { margin-top: 16px; }
+
+/* Day, Week, Month (15 Oct 2026): three tabs, the chosen one in the room's colour */
+.rm-tabs { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
+.rm-tab { appearance: none; min-height: 40px; padding: 0 8px; border: 0; border-radius: 999px; background: transparent; color: var(--soft); font: inherit; font-weight: 800; font-size: 0.95rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.rm-tab.on { background: var(--c); color: var(--on-c); }
+.rm-tab:focus-visible { outline: 3px solid var(--c); outline-offset: 2px; }
+.rm-tabs + .rm-sec { margin-top: 16px; }
+.rm-span { color: var(--soft); font-weight: 700; font-size: 0.85rem; white-space: nowrap; }
+.rm-daytable { margin-top: 18px; }
+.rm-h3 { font-family: var(--display); font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
 .rm-go { margin-top: 22px; }
 .rm-who-line { margin-top: 18px; }
 .rm-outs { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }

@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en" data-count="pixel">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build your own game | Logicers</title>
+<link rel="canonical" href="https://logicers.com/live/build/">
+<meta name="description" content="Build your own live game: numbers, choices, true or false and typed answers, each with How sure?. Save it with no account, host it live, or let anyone play it alone.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Build your own game">
+<meta property="og:description" content="Write a game in English, Italian or Turkish, save it with no account, and host it live or let anyone play it alone.">
+<meta property="og:url" content="https://logicers.com/live/build/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=13f6f29a3c">
+<link rel="stylesheet" href="make.css?v=4e18204ddc">
+<!-- People's own words show on these pages: only the site's own scripts (and the visit counter) may run, so even
+     words written to break the page could never run a script here (15 Oct 2026). -->
+<meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+</head>
+<body class="mk-page" data-kc="teal">
+
+<!-- the top bar: on a laptop as the mock-up (Your games, Save, Host it now); on a phone Save and Host it now
+     move to the dock at the bottom -->
+<header class="mk-top" id="mk-top">
+  <div class="mk-top-l">
+    <a class="wordmark" href="../../">Logicers</a>
+    <h1 class="mk-where" id="mk-where"><span data-w="make">Build your own</span><span class="mk-gtitle" id="mk-gtitle" dir="auto"></span></h1>
+  </div>
+  <div class="mk-top-r" id="mk-topr" hidden>
+    <button class="chip mk-codechip" type="button" id="mk-codechip" hidden></button>
+    <button class="chip mk-gamesbtn" type="button" id="mk-gamesbtn"><span class="mk-ic" data-icon="games"></span><span class="mk-gamesw" data-w="yourGames">Your games</span></button>
+    <button class="btn ghost mk-tb" type="button" id="mk-resbtn" hidden><span data-w="results">Results</span></button>
+    <button class="btn ghost mk-tb mk-savebtn" type="button" id="mk-save"><span data-w="save">Save</span><i class="mk-dot" hidden></i></button>
+    <button class="btn solid mk-tb" type="button" id="mk-host" data-w="host">Host it now</button>
+  </div>
+</header>
+
+<!-- problems to fix before saving, and what the server said: one panel for every view -->
+<div class="mk-msgwrap"><div class="mk-msg" id="mk-msg" role="alert" hidden></div></div>
+
+<main class="mk-main" id="mk-main">
+
+  <!-- the start: the game's language, the games kept on this computer, a file -->
+  <section class="mk-view mk-start" id="v-start" hidden>
+    <div class="mk-hero">
+      <p class="meta"><b data-w="live">Logicers Live</b></p>
+      <h2 class="mk-h1" data-w="startH">Build your own game</h2>
+      <p class="mk-sub" data-w="startSub">Numbers, choices, true or false, typed answers. Save it with no account.</p>
+      <div class="mk-tiles" id="st-tiles" aria-hidden="true"></div>
+    </div>
+    <div class="mk-card">
+      <h2 class="mk-h2" id="st-langq" data-w="whatLang">What language is your game in?</h2>
+      <div class="mk-langs" role="group" aria-labelledby="st-langq">
+        <button class="mk-lang" type="button" data-lang="en" lang="en"><b><svg class="mk-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="M0 0l60 30M60 0 0 30"/><path stroke="#C8102E" stroke-width="2" d="M0 0l60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></svg></b><span>English</span><small class="mk-langtag"></small></button>
+        <button class="mk-lang" type="button" data-lang="it" lang="it"><b><svg class="mk-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg></b><span>Italiano</span><small class="mk-langtag"></small></button>
+        <button class="mk-lang" type="button" data-lang="tr" lang="tr"><b><svg class="mk-flag" viewBox="0 0 1200 800" aria-hidden="true" focusable="false"><path fill="#E30A17" d="M0 0h1200v800H0z"/><circle cx="400" cy="400" r="200" fill="#fff"/><circle cx="450" cy="400" r="160" fill="#E30A17"/><path fill="#fff" d="M556.7 400L625.8 377.5 625.8 304.9 668.5 363.7 737.6 341.2 694.9 400 737.6 458.8 668.5 436.3 625.8 495.1 625.8 422.5z"/></svg></b><span>Türkçe</span><small class="mk-langtag"></small></button>
+      </div>
+      <p class="mk-small" data-w="langHint">The editor and every screen of your game will speak it.</p>
+    </div>
+    <div class="mk-card">
+      <h2 class="mk-h2" data-w="yourGames">Your games</h2>
+      <ul class="mk-glist" id="st-games"></ul>
+      <p class="mk-small" id="st-nogames" data-w="noGames">Games you keep on this computer show here.</p>
+      <div class="mk-btnrow"><button class="btn ghost mk-iconbtn" type="button" id="st-file"><span class="mk-ic" data-icon="file"></span><span data-w="openFile">Open a file</span></button></div>
+    </div>
+    <p class="mk-small mk-foot"><span data-w="startFoot">No account. A saved game is kept for two months after its last use.</span> <a href="../terms/" data-terms data-w="terms">Terms</a></p>
+  </section>
+
+  <!-- opening a game: a moment -->
+  <section class="mk-view mk-loading" id="v-load" hidden>
+    <p class="mk-wait"><span class="mk-spin" aria-hidden="true"></span><span data-w="loading">Opening…</span></p>
+  </section>
+
+  <!-- the editor: the game and its questions | the open question | the settings -->
+  <section class="mk-view" id="v-edit" hidden>
+    <div class="mk-grid" id="mk-grid" data-pane="list">
+
+      <div class="mk-col mk-c1" id="mk-c1">
+        <p class="mk-note mk-notice" id="g-note" hidden></p>
+        <label class="mk-lab mk-first" for="g-title" data-w="titleL">Title</label>
+        <input class="mk-in" id="g-title" maxlength="80" dir="auto" autocomplete="off" spellcheck="true" aria-describedby="e-title" data-wp="titlePh">
+        <p class="mk-err" id="e-title" hidden></p>
+        <label class="mk-lab" for="g-line" data-w="lineL">A line about it (optional)</label>
+        <input class="mk-in" id="g-line" maxlength="140" dir="auto" autocomplete="off" aria-describedby="e-line" data-wp="linePh">
+        <p class="mk-err" id="e-line" hidden></p>
+        <p class="mk-lab" id="l-colour" data-w="colourL">Colour</p>
+        <div class="mk-sws" id="g-colours" role="radiogroup" aria-labelledby="l-colour"></div>
+        <p class="mk-lab" id="g-qsl"></p>
+        <ol class="mk-list" id="g-list" aria-labelledby="g-qsl"></ol>
+        <p class="mk-err" id="e-qs" hidden></p>
+        <div class="mk-addrow">
+          <button class="btn ghost" type="button" id="g-add" data-w="addQ">+ Add a question</button>
+          <button class="btn ghost" type="button" id="g-paste" data-w="paste">Paste from a spreadsheet</button>
+        </div>
+      </div>
+
+      <div class="mk-col mk-c2" id="mk-qcol" aria-live="off"></div>
+
+      <div class="mk-col mk-c3" id="mk-c3">
+        <p class="mk-lab mk-first" data-w="settingsL">Settings</p>
+        <div class="mk-row">
+          <label for="s-n" data-w="toPlay">Questions to play</label>
+          <select class="mk-select" id="s-n"></select>
+        </div>
+        <div class="mk-row mk-stack">
+          <span id="l-order" data-w="order">Order</span>
+          <div class="mk-seg" id="s-order" role="radiogroup" aria-labelledby="l-order"><button type="button" data-v="0" data-w="asWritten">As written</button><button type="button" data-v="1" data-w="shuffled">Shuffled</button></div>
+        </div>
+        <div class="mk-row mk-stack">
+          <span id="l-timer" data-w="timer">Timer</span>
+          <div class="mk-seg" id="s-timer" role="radiogroup" aria-labelledby="l-timer"><button type="button" data-v="0" data-w="off">Off</button><button type="button" data-v="30" data-ws="30">30s</button><button type="button" data-v="60" data-ws="60">60s</button><button type="button" data-v="90" data-ws="90">90s</button></div>
+        </div>
+        <div class="mk-row mk-stack">
+          <span id="l-names" data-w="names">Names</span>
+          <div class="mk-seg" id="s-names" role="radiogroup" aria-labelledby="l-names" aria-describedby="h-names"><button type="button" data-v="0" data-w="namesTyped">Typed</button><button type="button" data-v="1" data-w="namesPicked">By Logicers</button></div>
+          <p class="mk-small mk-tight" id="h-names" data-w="namesHint"></p>
+        </div>
+        <div class="mk-row"><label for="s-sure" data-w="sure">Ask how sure</label><input class="mk-switch" type="checkbox" id="s-sure" role="switch"></div>
+        <div class="mk-row"><label for="s-standings" data-w="standings">Standings after each question</label><input class="mk-switch" type="checkbox" id="s-standings" role="switch"></div>
+        <div class="mk-row"><label for="s-awards" data-w="awards">Awards</label><input class="mk-switch" type="checkbox" id="s-awards" role="switch"></div>
+        <div class="mk-row mk-stack">
+          <span id="l-lang" data-w="langL">Language</span>
+          <div class="mk-seg mk-seglang" id="s-lang" role="radiogroup" aria-labelledby="l-lang"><button type="button" data-v="en" lang="en"><svg class="mk-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="M0 0l60 30M60 0 0 30"/><path stroke="#C8102E" stroke-width="2" d="M0 0l60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></svg><span>English</span></button><button type="button" data-v="it" lang="it"><svg class="mk-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg><span>Italiano</span></button><button type="button" data-v="tr" lang="tr"><svg class="mk-flag" viewBox="0 0 1200 800" aria-hidden="true" focusable="false"><path fill="#E30A17" d="M0 0h1200v800H0z"/><circle cx="400" cy="400" r="200" fill="#fff"/><circle cx="450" cy="400" r="160" fill="#E30A17"/><path fill="#fff" d="M556.7 400L625.8 377.5 625.8 304.9 668.5 363.7 737.6 341.2 694.9 400 737.6 458.8 668.5 436.3 625.8 495.1 625.8 422.5z"/></svg><span>Türkçe</span></button></div>
+        </div>
+        <p class="mk-lab" id="l-mode" data-w="whoL">Who can use the code?</p>
+        <div class="mk-who" id="s-mode" role="radiogroup" aria-labelledby="l-mode"></div>
+        <p class="mk-note" id="s-surenote"></p>
+        <p class="mk-small" data-w="practiceNote">Good for practice and revision, not for exams that count: there are no accounts.</p>
+        <p class="mk-small mk-terms"><a href="../terms/" data-terms data-w="terms">Terms</a></p>
+        <p class="mk-small" id="mk-privacy"><span data-w="privacyMake">No login and no cookies. A saved game keeps what you type into it, and no name of yours; your email only if you leave it as a way back, and then only as a one-way fingerprint (the address itself only if you also tick feedback emails, and only for them). It is deleted two months after its last use, or when you delete it (the server's own backups clear within 30 days). This browser keeps its edit link only if you turn on “Keep on this computer”.</span> <span data-w="counted" data-counted hidden>Visits are counted with GoatCounter, without identifying anyone.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- the results of a game played alone, and the typed answers to check -->
+  <section class="mk-view" id="v-results" hidden>
+    <div class="mk-rhead">
+      <button class="mk-back" type="button" id="rs-back"><span class="mk-ic" data-icon="back"></span><span data-w="backEditor">Back to the editor</span></button>
+      <button class="chip" type="button" id="rs-refresh"><span class="mk-ic" data-icon="refresh"></span><span data-w="refresh">Refresh</span></button>
+    </div>
+    <div class="mk-rgrid">
+      <div class="mk-col" id="rs-left"></div>
+      <div class="mk-col" id="rs-right"></div>
+    </div>
+  </section>
+
+  <!-- a game Logicers stopped: its reason, and nothing else -->
+  <section class="mk-view mk-start" id="v-stop" hidden>
+    <div class="mk-card mk-stopcard">
+      <h2 class="mk-h1" data-w="stoppedH">Logicers stopped this game</h2>
+      <p class="mk-lab" data-w="stoppedWhy">The reason</p>
+      <p class="mk-why" id="stop-why" dir="auto"></p>
+      <p class="mk-small" data-w="stoppedMail">To ask about it, write to logicers.world@gmail.com.</p>
+      <p class="mk-fbstate" id="stop-fb" hidden><span class="mk-ic" data-icon="mail"></span><span id="stop-fbtext" data-w="fbOn">Feedback emails: on</span><button class="mk-textbtn" type="button" id="stop-fbstop" data-w="fbStop">Stop</button></p>
+      <p class="mk-small mk-status" id="stop-fbmsg" role="status"></p>
+      <div class="mk-btnrow">
+        <button class="btn solid" type="button" id="stop-new" data-w="newGame">New game</button>
+        <button class="mk-del" type="button" id="stop-del" data-w="delGame">Delete this game</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- a phone's Save and Host it now, always at hand -->
+<div class="mk-dock" id="mk-dock" hidden>
+  <button class="btn ghost mk-savebtn" type="button" id="mk-save2"><span data-w="save">Save</span><i class="mk-dot" hidden></i></button>
+  <button class="btn solid" type="button" id="mk-host2" data-w="host">Host it now</button>
+</div>
+
+<div class="mk-toast" id="mk-toast" role="status" aria-live="polite" hidden></div>
+
+<!-- saved: its code, QR code and link, who can use it, the edit link, a copy, a file -->
+<dialog id="dlg-saved" class="mk-dlg-wide" aria-labelledby="sv-h">
+  <div class="sheet mk-sheet">
+    <button class="chip round close" type="button" data-close data-wa="close" aria-label="Close">×</button>
+    <h2 id="sv-h" data-w="savedH">Your game is saved</h2>
+    <div class="mk-svtop">
+      <div class="mk-svcode">
+        <p class="mk-lab" data-w="itsCode">Its code</p>
+        <div class="mk-code" id="sv-code"></div>
+        <p class="mk-link" id="sv-plink"></p>
+        <p class="mk-small" id="sv-liveonly" data-w="liveJoin" hidden>Players join each live game with its own code.</p>
+      </div>
+      <div class="mk-qr" id="sv-qr"></div>
+    </div>
+    <p class="mk-lab" id="l-svmode" data-w="whoL">Who can use the code?</p>
+    <div class="mk-who" id="sv-mode" role="radiogroup" aria-labelledby="l-svmode"></div>
+    <p class="mk-small mk-status" id="sv-modemsg" role="status"></p>
+    <button class="btn solid mk-wide" type="button" id="sv-host" data-w="host">Host it now</button>
+    <div class="mk-svkey">
+      <p class="mk-lab mk-labic"><span class="mk-ic" data-icon="key"></span><span data-w="editL">Your edit link</span><button class="mk-help" type="button" aria-expanded="false" aria-controls="sv-h1" data-wa="more">?</button></p>
+      <p class="mk-helptext" id="sv-h1" data-w="editHelp" hidden>The only key to your game: with it you change it, host it, see its results and delete it. Anyone who has it can do the same, so keep it to yourself.</p>
+      <div class="mk-keyrow">
+        <input class="mk-in mk-mono" id="sv-edit" readonly aria-describedby="sv-h1" data-wa="editL">
+        <button class="chip round mk-eyebtn" type="button" id="sv-showedit" aria-pressed="false" aria-label="Show the link"></button>
+        <button class="chip" type="button" id="sv-copyedit" data-w="copy">Copy</button>
+      </div>
+      <div class="mk-btnrow mk-svways">
+        <a class="chip mk-tintchip mk-lav" id="sv-mail" href="mailto:"><span class="mk-ic" data-icon="mail"></span><span data-w="keepMail">Email it to me</span></a>
+      </div>
+      <div class="mk-row mk-keep"><label for="sv-keep"><span data-w="keepL">Keep on this computer</span><small class="mk-rowsub" id="sv-keepsub" data-w="keepSub">Not on a shared computer.</small></label><input class="mk-switch" type="checkbox" id="sv-keep" role="switch" aria-describedby="sv-keepsub"></div>
+      <div class="mk-svway mk-mint" id="sv-way">
+        <p class="mk-svwayh"><span class="mk-ic" data-icon="wayback"></span><span class="mk-svwayl" data-w="wayL">A way back</span><b class="mk-svwaystate" id="sv-waystate"></b><button class="mk-help" type="button" aria-expanded="false" aria-controls="sv-h2" data-wa="more">?</button></p>
+        <p class="mk-helptext" id="sv-h2" data-w="wayHelp" hidden></p>
+        <div class="mk-keyrow" id="sv-wayform" hidden>
+          <input class="mk-in" id="sv-email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" data-wp="wayPh" data-wa="wayPh">
+          <button class="chip" type="button" id="sv-waysave" data-w="waySave">Save</button>
+        </div>
+        <div class="mk-fbrow" id="sv-fbrow" hidden><label class="mk-fb" for="sv-fb"><input class="mk-fbbox" type="checkbox" id="sv-fb"><span data-w="fbTick">Email me for feedback</span></label><button class="mk-help" type="button" aria-expanded="false" aria-controls="sv-h3" data-wa="more">?</button></div>
+        <p class="mk-helptext" id="sv-h3" data-w="fbHelp" hidden></p>
+        <div class="mk-svwayacts">
+          <button class="chip" type="button" id="sv-wayadd"><span class="mk-ic" data-icon="plus"></span><span data-w="wayAdd">Add your email</span></button>
+          <button class="mk-textbtn" type="button" id="sv-waychange" data-w="wayChange" hidden>Change</button>
+          <button class="mk-textbtn" type="button" id="sv-wayrm" data-w="wayRemove" hidden>Remove</button>
+        </div>
+        <p class="mk-fbstate" id="sv-fbstate" hidden><span class="mk-ic" data-icon="mail"></span><span id="sv-fbtext" data-w="fbOn">Feedback emails: on</span><button class="mk-textbtn" type="button" id="sv-fbstop" data-w="fbStop">Stop</button></p>
+        <p class="mk-small mk-status" id="sv-waymsg" role="status"></p>
+      </div>
+    </div>
+    <div class="mk-btnrow">
+      <button class="chip" type="button" id="sv-share"><span class="mk-ic" data-icon="share"></span><span data-w="shareCopy">Share a copy</span></button>
+      <button class="chip" type="button" id="sv-down"><span class="mk-ic" data-icon="download"></span><span data-w="download">Download a copy</span></button>
+      <button class="chip" type="button" id="sv-results"><span class="mk-ic" data-icon="results"></span><span data-w="results">Results</span></button>
+    </div>
+    <p class="mk-small mk-status" id="sv-sharemsg" role="status"></p>
+    <p class="mk-small" id="sv-until"></p>
+    <button class="mk-del" type="button" id="sv-del" data-w="delGame">Delete this game</button>
+    <p class="mk-small mk-status" id="sv-delmsg" role="alert"></p>
+  </div>
+</dialog>
+
+<!-- keep your edit link: after a game's first save, before the saved sheet (Khayyam, 15 Oct 2026: "we need bigger
+     pop up saying save the link, you will loose it"; "very easy interface ... less and less words, more and more
+     pictures ... all the technical details are in the ? subsections"). It opens on the maker's own tap on Save,
+     and Done opens only once the link is kept somewhere. data-stay: a tap beside it does not close it. -->
+<dialog id="dlg-keep" class="mk-dlg-wide mk-kpdlg" aria-labelledby="kp-h" aria-describedby="kp-lead" data-stay>
+  <div class="sheet mk-sheet mk-kp">
+    <div class="mk-kphero">
+      <span class="mk-kpkey" data-icon="key"></span>
+      <h2 id="kp-h" tabindex="-1" data-w="keepH">Keep your edit link</h2>
+      <p class="mk-kplead"><span id="kp-lead" data-w="keepLead">It's the only key to your game.</span><button class="mk-help" type="button" aria-expanded="false" aria-controls="kp-h1" data-wa="more">?</button></p>
+      <p class="mk-helptext" id="kp-h1" data-w="keepHelp" hidden></p>
+    </div>
+    <div class="mk-kpstep">
+      <p class="mk-kpsh"><span class="mk-kpn" aria-hidden="true">1</span><span data-w="keepStep1">Keep it somewhere</span></p>
+      <div class="mk-kptiles">
+        <a class="mk-kptile mk-lav" id="kp-mail" href="mailto:"><span class="mk-kpic" data-icon="mail"></span><b data-w="keepMail">Email it to me</b><span class="mk-kptick" data-icon="check"></span></a>
+        <button class="mk-kptile mk-mint" type="button" id="kp-copy"><span class="mk-kpic" data-icon="dup"></span><b data-w="keepCopy">Copy it</b><span class="mk-kptick" data-icon="check"></span></button>
+        <button class="mk-kptile mk-peach" type="button" id="kp-here" aria-pressed="false" aria-describedby="kp-heresub"><span class="mk-kpic" data-icon="laptop"></span><b data-w="keepHere">This computer</b><small id="kp-heresub" data-w="keepHereSub">not if shared</small><span class="mk-kptick" data-icon="check"></span></button>
+      </div>
+      <input class="mk-in mk-mono mk-kplink" id="kp-link" readonly hidden data-wa="editL">
+    </div>
+    <div class="mk-kpstep" id="kp-step2">
+      <p class="mk-kpsh"><span class="mk-kpn" aria-hidden="true">2</span><span data-w="keepStep2">A way back</span><small class="mk-kpopt" data-w="optional">optional</small><button class="mk-help" type="button" aria-expanded="false" aria-controls="kp-h2" data-wa="more">?</button></p>
+      <p class="mk-helptext" id="kp-h2" data-w="wayHelp" hidden></p>
+      <label class="mk-kpway mk-mint" for="kp-email"><span class="mk-kpic" data-icon="wayback"></span><input class="mk-in" id="kp-email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" data-wp="wayPh" data-wa="wayPh" aria-describedby="kp-err"></label>
+      <p class="mk-err" id="kp-err" hidden></p>
+      <div class="mk-fbrow"><label class="mk-fb" for="kp-fb"><input class="mk-fbbox" type="checkbox" id="kp-fb"><span data-w="fbTick">Email me for feedback</span></label><button class="mk-help" type="button" aria-expanded="false" aria-controls="kp-h3" data-wa="more">?</button></div>
+      <p class="mk-helptext" id="kp-h3" data-w="fbHelp" hidden></p>
+    </div>
+    <button class="btn solid mk-wide mk-iconbtn" type="button" id="kp-done" disabled><span class="mk-ic" data-icon="check"></span><span data-w="keepDone">Done</span></button>
+    <p class="mk-small mk-kpfoot" id="kp-foot" role="status"></p>
+  </div>
+</dialog>
+
+<!-- paste rows from a spreadsheet -->
+<dialog id="dlg-paste" class="mk-dlg-wide" aria-labelledby="ps-h">
+  <div class="sheet mk-sheet">
+    <button class="chip round close" type="button" data-close data-wa="close" aria-label="Close">×</button>
+    <h2 id="ps-h" data-w="paste">Paste from a spreadsheet</h2>
+    <p class="mk-lab" id="l-pstype" data-w="rowsAre">These rows are:</p>
+    <div class="mk-seg mk-seg4" id="ps-type" role="radiogroup" aria-labelledby="l-pstype"></div>
+    <p class="mk-lab" data-w="colsL">Columns, left to right</p>
+    <ol class="mk-colstrip" id="ps-cols"></ol>
+    <label class="mk-lab" for="ps-box" data-w="pasteBoxL">Copy the rows in your spreadsheet, then paste them here.</label>
+    <textarea class="mk-in mk-pastebox" id="ps-box" rows="6" dir="auto" spellcheck="false" wrap="off"></textarea>
+    <p class="mk-small mk-status" id="ps-status" role="status"></p>
+    <div class="mk-psprev" id="ps-prev"></div>
+    <div class="actions"><button class="btn solid" type="button" id="ps-add" disabled></button></div>
+  </div>
+</dialog>
+
+<!-- the games kept on this computer, a new game, a file -->
+<dialog id="dlg-games" aria-labelledby="gm-h">
+  <div class="sheet mk-sheet">
+    <button class="chip round close" type="button" data-close data-wa="close" aria-label="Close">×</button>
+    <h2 id="gm-h" data-w="yourGames">Your games</h2>
+    <ul class="mk-glist" id="gm-list"></ul>
+    <p class="mk-small" id="gm-empty" data-w="noGames">Games you keep on this computer show here.</p>
+    <p class="mk-warnline" id="gm-leave" role="alert" hidden></p>
+    <div class="mk-btnrow">
+      <button class="btn ghost mk-iconbtn" type="button" id="gm-new"><span class="mk-ic" data-icon="plus"></span><span data-w="newGame">New game</span></button>
+      <button class="btn ghost mk-iconbtn" type="button" id="gm-file"><span class="mk-ic" data-icon="file"></span><span data-w="openFile">Open a file</span></button>
+      <button class="btn ghost mk-iconbtn" type="button" id="gm-down"><span class="mk-ic" data-icon="download"></span><span data-w="download">Download a copy</span></button>
+    </div>
+  </div>
+</dialog>
+
+<input type="file" id="mk-file" accept=".json,application/json" hidden>
+
+<noscript><p class="mk-noscript">The editor needs JavaScript to run.</p></noscript>
+
+<script src="../../assets/js/turnsout.js?v=456b6eeae8"></script>
+<script src="../hs-rules.js?v=be5a07a112"></script>
+<script src="../qrcodegen.js?v=4702b2e275"></script>
+<script src="../wayprint.js?v=f39872182f"></script>
+<script src="words.js?v=ab115c67a3"></script>
+<script src="make.js?v=3b99bccadd"></script>
+</body>
+</html>

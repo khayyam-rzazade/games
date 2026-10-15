@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Logicers: small daily games about the real world</title>
+<title>Logicers: learning that feels like play</title>
 <link rel="canonical" href="https://logicers.com/">
-<meta name="description" content="Small daily games about the real world. A minute each, and one true thing every time, with its source.">
+<meta name="description" content="Learning that feels like play. Games built on real facts, for every curious and intellectual mind.">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
 <meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
 <meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
 <meta property="og:title" content="Logicers. Are you a Logicer?">
-<meta property="og:description" content="Small daily games about the real world. A minute each. One true thing every time.">
+<meta property="og:description" content="Learning that feels like play. Games built on real facts, for every curious and intellectual mind.">
 <meta property="og:url" content="https://logicers.com/">
 <meta property="og:image" content="https://logicers.com/assets/img/og.png">
 <meta property="og:image:width" content="1200">
@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=916159e72f">
+<link rel="stylesheet" href="assets/css/logicers.css?v=13f6f29a3c">
 </head>
 <body class="home">
 
@@ -42,24 +42,34 @@
 </header>
 
 <main>
-<!-- Join a live game (14 Oct 2026): the code a host gives out goes here. The form has no named field, so even
-     without a script nothing of the code reaches any server: home.js sends the browser to live/#CODE. -->
-<form class="livejoin" id="livejoin" action="live/" autocomplete="off" aria-label="Join a live game">
-  <span class="livejoin-t"><b>Join a game</b><span>The code from the host</span></span>
-  <input class="livejoin-code" id="livejoin-code" maxlength="5" placeholder="CODE" autocapitalize="characters" spellcheck="false" aria-label="Game code">
-  <button class="livejoin-go" type="submit">Join</button>
-</form>
 <section class="hero">
   <div class="hero-text">
     <p class="eyebrow" id="eyebrow"></p>
     <h1>Are you a <em>Logicer</em>?</h1>
-    <p class="lede">Small daily games about the real world. A minute each. One true thing every time.</p>
+    <p class="lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
   </div>
   <div class="today">
     <div class="today-top"><span class="today-label">Today</span><span class="today-count" id="today-count"><b>0</b> of 9 played</span></div>
     <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
     <p class="today-note" id="today-note">New games at midnight.</p>
-    <p class="today-duel" id="today-duel"><a href="duel/">One link — friends play the same 9 games.</a></p>
+  </div>
+  <!-- Build your own game · Join a game (15 Oct 2026), right under Today and the same width, the box that should
+       draw the eye. The Join form has no named field, so even without a script nothing of the code reaches any
+       server: home.js sends the browser to live/#CODE. -->
+  <div class="livebox" id="livebox">
+    <a class="lb lb-build" id="lb-build" href="live/build/">
+      <span class="lb-badge">New</span>
+      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
+      <b class="lb-h">Build your own game</b>
+      <span class="lb-types" aria-hidden="true"><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><rect x="2" y="13" width="30" height="3" rx="1.5" fill="currentColor" opacity=".35"/><rect x="11" y="6" width="12" height="9" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="16" y="3" width="2" height="16" rx="1" fill="currentColor"/></svg><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><rect x="4" y="2" width="12" height="8" rx="2.5" fill="currentColor"/><rect x="18" y="2" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/><rect x="4" y="12" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/><rect x="18" y="12" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/></svg><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><path d="M4 11.5l3.8 3.8 7-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 6l9 10M30 6l-9 10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity=".45"/></svg><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><text x="3" y="17" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="15" fill="currentColor">Aa</text><rect x="25" y="4" width="2.4" height="15" rx="1.2" fill="currentColor"/></svg></span>
+      <span class="lb-go"><span>Start</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <form class="lb lb-join livejoin" id="livejoin" action="live/" autocomplete="off" aria-label="Join a live game">
+      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
+      <b class="lb-h">Join a game</b>
+      <input class="livejoin-code" id="livejoin-code" maxlength="7" placeholder="CODE" autocapitalize="characters" spellcheck="false" aria-label="Game code">
+      <button class="livejoin-go" type="submit">Join</button>
+    </form>
   </div>
   <!-- The Game Room box, under the Today card and the same size. It waits hidden until rooms are
        switched on (assets/js/rooms.js unhides it; for a member it fills it with the room itself).
@@ -75,7 +85,7 @@
     </svg></span>
     <span class="gameroom-text">
       <b class="gameroom-h" id="gameroom-h">Game Room</b>
-      <span class="gameroom-sub" id="gameroom-sub">Play with friends: a shared board for the month.</span>
+      <span class="gameroom-sub" id="gameroom-sub">Play with friends: a table for the day, the week and the month.</span>
       <span class="gameroom-faces" id="gameroom-faces" hidden></span>
     </span>
   </a>
@@ -190,6 +200,34 @@
   </div>
 </section>
 
+<section class="games group-games live-games" aria-labelledby="live-title">
+  <h2 class="sec" id="live-title">Play live with friends</h2>
+  <p class="sec-sub">Everyone on their own phone. A shared screen is optional.</p>
+  <div class="shelf" id="shelf3">
+    <button class="shelf-btn prev off" type="button" id="shelf3-prev" aria-controls="shelf3-row" aria-label="Previous live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="shelf-row" id="shelf3-row" data-n="1">
+    <a class="tile" id="tile-sure" data-g="sure" href="live/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><defs><pattern id="sure-mesh" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="ln" d="M0 0H8M0 0V8" stroke-width="1.7"/></pattern><pattern id="sure-mesh-y" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H8M0 0V8" stroke="#C98F00" stroke-width="1.7" opacity=".7"/></pattern></defs><rect class="mute" x="36" y="158" width="248" height="8" rx="4"/><rect class="sure-net" x="72" y="62" width="168" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect class="sure-net" x="112" y="94" width="88" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect x="176" y="126" width="38" height="24" rx="9" fill="url(#sure-mesh-y)" stroke="#F0B429" stroke-width="3" stroke-dasharray="7 4"/><rect class="fg" x="149" y="40" width="5" height="132" rx="2.5"/><circle class="fg" cx="151.5" cy="36" r="9"/><rect class="sure-answer" x="129" y="54" width="4" height="112" rx="2"/></svg><span class="badge">New</span></div>
+      <div class="body">
+        <h3>How Sure?</h3>
+        <p class="pitch"><span class="long">Everyone guesses a number on their own phone, then picks a net. A small net scores more, if it catches the answer.</span><span class="short">Guess the number, then pick your net.</span></p>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">3+ players</span>
+        </div>
+      </div>
+    </a>
+    <div class="tile soon-tile" id="tile-more-live">
+      <div class="art soon-art" aria-hidden="true"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="mute" cx="128" cy="100" r="9"/><circle class="mute" cx="160" cy="100" r="9"/><circle class="mute" cx="192" cy="100" r="9"/></svg></div>
+      <div class="body">
+        <h3>More to come</h3>
+        <p class="pitch">More games for a room are in the works.</p>
+      </div>
+    </div>
+    </div>
+    <button class="shelf-btn next off" type="button" id="shelf3-next" aria-controls="shelf3-row" aria-label="More live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</section>
+
 <section class="games group-games" aria-labelledby="group-title">
   <h2 class="sec" id="group-title">Pass the phone</h2>
   <p class="sec-sub">Games for two or more, on one phone.</p>
@@ -255,34 +293,6 @@
     </div>
     </div>
     <button class="shelf-btn next off" type="button" id="shelf2-next" aria-controls="shelf2-row" aria-label="More group games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  </div>
-</section>
-
-<section class="games group-games live-games" aria-labelledby="live-title">
-  <h2 class="sec" id="live-title">Play live</h2>
-  <p class="sec-sub">Everyone on their own phone. A shared screen is optional.</p>
-  <div class="shelf" id="shelf3">
-    <button class="shelf-btn prev off" type="button" id="shelf3-prev" aria-controls="shelf3-row" aria-label="Previous live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <div class="shelf-row" id="shelf3-row" data-n="1">
-    <a class="tile" id="tile-sure" data-g="sure" href="live/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><defs><pattern id="sure-mesh" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="ln" d="M0 0H8M0 0V8" stroke-width="1.7"/></pattern><pattern id="sure-mesh-y" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H8M0 0V8" stroke="#C98F00" stroke-width="1.7" opacity=".7"/></pattern></defs><rect class="mute" x="36" y="158" width="248" height="8" rx="4"/><rect class="sure-net" x="72" y="62" width="168" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect class="sure-net" x="112" y="94" width="88" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect x="176" y="126" width="38" height="24" rx="9" fill="url(#sure-mesh-y)" stroke="#F0B429" stroke-width="3" stroke-dasharray="7 4"/><rect class="fg" x="149" y="40" width="5" height="132" rx="2.5"/><circle class="fg" cx="151.5" cy="36" r="9"/><rect class="sure-answer" x="129" y="54" width="4" height="112" rx="2"/></svg><span class="badge">New</span></div>
-      <div class="body">
-        <h3>How Sure?</h3>
-        <p class="pitch"><span class="long">Everyone guesses a number on their own phone, then picks a net. A small net scores more, if it catches the answer.</span><span class="short">Guess the number, then pick your net.</span></p>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">3+ players</span>
-        </div>
-      </div>
-    </a>
-    <div class="tile soon-tile" id="tile-more-live">
-      <div class="art soon-art" aria-hidden="true"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="mute" cx="128" cy="100" r="9"/><circle class="mute" cx="160" cy="100" r="9"/><circle class="mute" cx="192" cy="100" r="9"/></svg></div>
-      <div class="body">
-        <h3>More to come</h3>
-        <p class="pitch">More games for a room are in the works.</p>
-      </div>
-    </div>
-    </div>
-    <button class="shelf-btn next off" type="button" id="shelf3-next" aria-controls="shelf3-row" aria-label="More live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 </section>
 
@@ -360,7 +370,7 @@
     <p class="quiet">A room is 2 to 50 friends playing the daily games with a shared table, today's and the month's, joined by one link. Outside your own browser it stores only this: when a member finishes a daily game, their phone sends the game, the score, the guess, the day and their chosen name to the site's own small server — nothing else, and nothing at all for anyone who is in no room. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole; leaving a room deletes everything of yours at once, and the room's maker can delete the whole room. <a href="room/">Make or join a room</a>.</p>
     </div>
     <h3>Live games</h3>
-    <p class="quiet">How Sure? is played live, by a room: the host opens a game, everyone joins with its code on their own phone, and a TV, a projector or a laptop is optional. No account for anyone. The name a player types and their answers stay on the site's own small server for the game and are deleted a day after it ends (the server's own backups clear within 30 days); nothing else about anyone is kept. Every answer in Logicers' question sets was checked on two websites, both linked under it. <a href="live/">Play live</a>.</p>
+    <p class="quiet">How Sure? is played live, by a room: the host opens a game, everyone joins with its code on their own phone, and a TV, a projector or a laptop is optional. No account for anyone. The name a player types and their answers stay on the site's own small server for the game and are deleted a day after it ends (the server's own backups clear within 30 days); nothing else about anyone is kept. Every answer in Logicers' question sets was checked on two websites, both linked under it. Anyone can also build a game of their own, with numbers, choices, true or false and typed answers, in English, Italian or Turkish, and with no account: a saved game holds what its maker typed into it (an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link, and the address itself only if they also tick feedback emails) and, when it is played alone, the names and answers of its players, and is deleted with them two months after its last use. Logicers does not check games people make, and every screen of one has a Report link. <a href="live/">Play live</a> · <a href="live/build/">Build your own</a>.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque, Figtree and Literata, under the SIL Open Font License.</p>
@@ -379,9 +389,9 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=cb9a0728ae"></script>
+<script src="assets/js/turnsout.js?v=456b6eeae8"></script>
 <script src="assets/js/duel.js?v=6cb85e8123"></script>
-<script src="assets/js/rooms.js?v=e19a1b45b9"></script>
+<script src="assets/js/rooms.js?v=cb55b4b70d"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */
@@ -443,22 +453,14 @@
   document.getElementById("today-count").innerHTML = "<b>" + doneToday + "</b> of " + live + " played";
   if (live > 0 && doneToday === live) document.getElementById("today-note").textContent = "All done for today. New games at midnight.";
 
-  /* Who Was Closer: one quiet line. With a duel on it shows where it stands; with none it says, once,
-     that a duel exists at all. Nothing here can change the count, the streak or any game. */
+  /* Who Was Closer: the example card in the About sheet. (Until 15 Oct 2026 a line under the Today card also
+     showed a duel's standing; Khayyam took it off to make room for the Build and Join box: "you can delete 'one
+     link - ...' line". A duel starts from the end of any daily game.) Nothing here can change the count, the
+     streak or any game. */
   (function () {
-    var D = window.Duel, line = document.getElementById("today-duel");
-    if (!D || !line) return;
+    var D = window.Duel;
+    if (!D) return;
     try {
-      var t = D.table(D.todayKey());
-      if (t.live) {
-        line.textContent = "";
-        var a = document.createElement("a");
-        a.href = TO.here("duel/");
-        var b = document.createElement("b");
-        b.textContent = D.tallyWords(t).replace(/^Today: /, "");
-        a.appendChild(b);
-        line.appendChild(a);
-      }
       var card = document.getElementById("about-duel-card");
       if (card && !card.firstChild) card.appendChild(D.mini(D.example()));
     } catch (e) { /* a duel must never break the home page */ }
@@ -572,18 +574,19 @@
   shelf("shelf2-row", "shelf2-prev", "shelf2-next");       // Pass the phone
   shelf("shelf3-row", "shelf3-prev", "shelf3-next");       // Play live
 
-  /* Join a live game: five letters, then the live page with the code after the "#" (never sent to a server). */
+  /* Join a live game (five letters) or play a saved one (seven, 15 Oct 2026): the live page with the code
+     after the "#" (never sent to a server). */
   var join = document.getElementById("livejoin"), code = document.getElementById("livejoin-code");
   if (join && code) {
     code.addEventListener("input", function () {
-      var v = code.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 5);
+      var v = code.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 7);
       if (v !== code.value) code.value = v;
       join.classList.remove("bad");
     });
     join.addEventListener("submit", function (e) {
       e.preventDefault();
       var v = code.value.toUpperCase().replace(/[^A-Z]/g, "");
-      if (v.length !== 5) { join.classList.add("bad"); code.focus(); return; }
+      if (v.length !== 5 && v.length !== 7) { join.classList.add("bad"); code.focus(); return; }
       var base = window.location.protocol === "file:" ? "live/index.html" : "live/";
       window.location.href = base + "#" + v;
     });

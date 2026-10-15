@@ -1,0 +1,263 @@
+/* Logicers Live: the desk pages (15 Oct 2026). The report form (live/report/), the terms for games people
+   make (live/terms/) and Logicers' own desk page (not linked anywhere).
+   Every class here starts with dk-, besides the site's own (bar, wordmark, chip, btn, solid, ghost, meta,
+   wrap, game): the mock-ups once collided with the site's .bar, .q, .stage, .sheet and .miss.
+   The desk judges nothing, so nothing here is yellow (yellow means a wrong or missed answer, nothing else)
+   and nothing is red or green. Its colour is the site's own slate, the colour of pages that are not a
+   game (like Who Was Closer and Rooms): a report is about a game, not part of it. */
+
+body.dk-page { --c: #3A3F5C; --tint: #ECEEF6; }
+@media (prefers-color-scheme: dark) {
+  body.dk-page { --c: #AEB6DA; --tint: #141728; }
+}
+body.dk-page { min-height: 100vh; min-height: 100svh; }
+.dk-main { padding-bottom: 36px; }
+
+/* ---------- cards and words ---------- */
+.dk-card { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 20px 18px 22px; margin-top: 12px; }
+.dk-head { display: flex; align-items: center; gap: 12px; }
+.dk-head svg { width: 46px; height: 46px; flex: none; }
+.dk-h1 { font-family: var(--display); font-weight: 800; font-size: 1.85rem; line-height: 1.05; letter-spacing: -0.035em; overflow-wrap: anywhere; }
+.dk-h2 { font-family: var(--display); font-weight: 800; font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.025em; }
+.dk-p { margin-top: 10px; font-size: 1.05rem; line-height: 1.42; }
+.dk-small { color: var(--soft); font-size: .88rem; line-height: 1.4; margin-top: 12px; }
+.dk-small a { color: inherit; text-underline-offset: 3px; }
+.dk-note { margin-top: 14px; padding: 0 6px; }
+@media (prefers-color-scheme: dark) {
+  .dk-card { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+}
+
+/* the switch between English, Italiano and Türkçe: each language in its own name */
+.dk-langs { display: inline-flex; flex-wrap: wrap; gap: 3px; padding: 3px; margin-top: 8px; background: var(--card); border-radius: 13px; box-shadow: var(--shadow); max-width: 100%; }
+.dk-langs a, .dk-langs button { appearance: none; border: 0; background: none; font: inherit; font-weight: 700; font-size: .92rem; color: var(--soft);
+  padding: 8px 13px; border-radius: 10px; cursor: pointer; text-decoration: none; line-height: 1.1; -webkit-tap-highlight-color: transparent; }
+.dk-langs [aria-pressed="true"], .dk-langs [aria-current="true"] { background: var(--c); color: var(--on-c); }
+/* a small flag before each language (Khayyam, 15 Oct 2026: "for the language sections: small flags are important") */
+.dk-langs a, .dk-langs button { display: inline-flex; align-items: center; gap: 7px; }
+.dk-flag { flex: none; width: 20px; height: 14px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgba(21, 23, 43, .14); }
+@media (prefers-color-scheme: dark) {
+  .dk-langs { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+}
+
+/* "If someone's life or safety is in danger, call 112 first.": a quiet box, never an alarm colour */
+.dk-danger { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding: 11px 14px; border-radius: 16px; background: var(--tint); font-weight: 700; line-height: 1.3; }
+.dk-danger svg { width: 34px; height: 34px; flex: none; }
+
+/* ---------- the report form ---------- */
+.dk-form { margin: 0; }
+.dk-label { display: block; font-weight: 700; font-size: 1rem; margin: 20px 0 8px; }
+.dk-code { width: 100%; height: 58px; border-radius: 16px; border: 2px solid var(--line); background: var(--tint); color: var(--c);
+  font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: .2em; text-align: center; text-transform: uppercase; padding: 0 8px; }
+.dk-code::placeholder { color: color-mix(in srgb, var(--c) 38%, transparent); letter-spacing: .12em; }
+.dk-code:focus { outline: none; border-color: var(--c); }
+.dk-hint { color: var(--soft); font-size: .88rem; line-height: 1.35; margin-top: 6px; }
+.dk-whys { border: 0; margin: 0; padding: 0; min-width: 0; }
+.dk-whys legend { padding: 0; }
+/* the nine reasons: buttons with role="radio", like the site's own segmented choices (no named fields:
+   if the script ever failed, a form with names would put the reason into the page's address) */
+.dk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.dk-why { appearance: none; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 15px; border: 2px solid var(--line); border-radius: 999px; background: var(--card);
+  font: inherit; font-weight: 600; font-size: .98rem; line-height: 1.2; color: var(--ink); text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.dk-why[aria-checked="true"] { border-color: var(--c); background: var(--tint); color: var(--c); font-weight: 800; }
+.dk-chips[aria-invalid="true"] .dk-why { border-style: dashed; }
+.dk-field { display: block; width: 100%; min-height: 50px; border-radius: 14px; border: 2px solid var(--line); padding: 11px 14px; font: inherit; font-size: 1.05rem; color: var(--ink); background: var(--card); }
+textarea.dk-field { min-height: 132px; resize: vertical; line-height: 1.4; }
+.dk-field:focus { outline: none; border-color: var(--c); }
+.dk-field[aria-invalid="true"], .dk-code[aria-invalid="true"] { border-style: dashed; border-color: var(--ink); }
+.dk-count { margin-top: 5px; text-align: right; color: var(--soft); font-size: .84rem; font-variant-numeric: tabular-nums; }
+.dk-tick { display: flex; align-items: flex-start; gap: 12px; margin-top: 20px; font-weight: 600; line-height: 1.35; cursor: pointer; }
+.dk-tick input { width: 24px; height: 24px; flex: none; margin: 0; accent-color: var(--c); cursor: pointer; }
+.dk-fielderr { display: flex; align-items: flex-start; gap: 7px; margin-top: 7px; font-weight: 700; font-size: .92rem; line-height: 1.3; }
+.dk-fielderr::before { content: "!"; flex: none; width: 19px; height: 19px; margin-top: 1px; border-radius: 50%; background: var(--ink); color: var(--bg);
+  font-size: .78rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+.dk-err { margin-top: 14px; padding: 10px 13px; border-radius: 12px; background: color-mix(in srgb, var(--ink) 8%, var(--card)); font-weight: 600; font-size: .96rem; line-height: 1.35; }
+.dk-send { width: 100%; margin-top: 20px; }
+.dk-send[disabled] { opacity: .5; cursor: default; }
+.dk-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.dk-btns .btn { flex: 1 1 auto; }
+@media (prefers-color-scheme: dark) {
+  .dk-why, .dk-field { background: transparent; }
+  .dk-why[aria-checked="true"] { background: var(--tint); }
+}
+
+/* the page's own drawings take their colours from classes: a CSS variable in an SVG attribute is not read
+   by every browser (the same lesson as live.css) */
+.dk-fc { fill: var(--c); } .dk-fcard { fill: var(--card); } .dk-scard { stroke: var(--card); }
+
+/* after sending: thanks, and what happens next */
+.dk-done { text-align: center; padding-top: 28px; }
+.dk-done svg { width: 74px; height: 74px; margin: 0 auto 10px; }
+.dk-done .dk-p { margin-top: 8px; }
+.dk-done .dk-btns { justify-content: center; }
+.dk-mail { font-weight: 800; overflow-wrap: anywhere; }
+
+/* ---------- the terms ----------
+   The three languages stand in the page itself, so the terms read with no script at all; the switch is a
+   plain link to #en, #it or #tr, and CSS shows the one asked for (English when none is). A browser without
+   :has() shows all three, one after the other: longer, never empty. The huge scroll margin keeps the page
+   at its top when a language is picked, so the switch stays in sight. */
+.dk-read { max-width: 44rem; margin: 0 auto; padding: 0 var(--pad) 48px; }
+.dk-terms article { scroll-margin-top: 100vh; }
+@supports selector(:has(a)) {
+  .dk-terms article { display: none; }
+  .dk-terms article:target { display: block; }
+  .dk-terms:not(:has(article:target)) article.dk-en { display: block; }
+  .dk-terms:has(article:target) .dk-langs a { background: none; color: var(--soft); }
+  .dk-terms:has(#en:target) .dk-langs a[href="#en"], .dk-terms:has(#it:target) .dk-langs a[href="#it"],
+  .dk-terms:has(#tr:target) .dk-langs a[href="#tr"] { background: var(--c); color: var(--on-c); }
+}
+.dk-date { margin-top: 8px; color: var(--soft); font-weight: 600; font-size: .94rem; }
+.dk-lead { margin-top: 12px; font-size: 1.14rem; line-height: 1.45; }
+.dk-sec { margin-top: 24px; }
+.dk-sec h2 { font-family: var(--display); font-weight: 800; font-size: 1.28rem; line-height: 1.15; letter-spacing: -0.025em; }
+.dk-sec p, .dk-sec ul { margin-top: 8px; font-size: 1.04rem; line-height: 1.5; }
+.dk-sec ul { padding-left: 1.25em; }
+.dk-sec li { margin-top: 3px; }
+.dk-sec a { text-underline-offset: 3px; }
+.dk-gap { display: inline; padding: 1px 7px; border: 2px dashed var(--c); border-radius: 8px; background: var(--tint); color: var(--c); font-weight: 700; font-size: .95em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.dk-foot { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--soft); font-size: .86rem; line-height: 1.45; }
+.dk-terms .dk-btns { max-width: 26rem; }
+
+/* ---------- the admin page: Logicers' own desk ---------- */
+body.dk-admin .bar { max-width: 1240px; }
+.dk-desk { max-width: 1240px; margin: 0 auto; padding: 0 var(--pad) 60px; }
+.dk-lock { max-width: 25rem; margin: 6vh auto 0; }
+.dk-keyrow { display: flex; gap: 10px; }
+.dk-keyrow .dk-field { flex: 1; min-width: 0; }
+.dk-keyrow .btn { flex: none; min-height: 50px; }
+.dk-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 10px; }
+.dk-top .dk-h1 { margin-right: auto; }
+.dk-look { display: flex; gap: 8px; }
+.dk-look .dk-field { width: 10.5rem; min-height: 44px; padding: 8px 12px; font-family: var(--display); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.dk-mini { appearance: none; border: 2px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; min-height: 40px; padding: 0 15px;
+  font: inherit; font-weight: 700; font-size: .92rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; line-height: 1.1; }
+.dk-mini.dk-strong { background: var(--c); border-color: var(--c); color: var(--on-c); }
+.dk-mini[disabled] { opacity: .45; cursor: default; }
+.dk-mini.dk-armed { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+select.dk-mini { padding-right: 12px; }
+.dk-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 14px; align-items: start; }
+.dk-col h2 { margin-bottom: 4px; }
+.dk-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+.dk-count-line { color: var(--soft); font-weight: 600; font-size: .94rem; }
+.dk-empty { color: var(--soft); font-weight: 600; margin-top: 12px; }
+.dk-rep { background: var(--card); border-radius: 20px; box-shadow: var(--shadow); padding: 14px 16px 16px; margin-top: 12px; border: 2px solid transparent; }
+.dk-rep.dk-new { border-color: var(--c); }
+.dk-rep.dk-open { box-shadow: 0 0 0 3px var(--c); }
+.dk-reptop { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: .9rem; color: var(--soft); font-weight: 600; }
+.dk-tag { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--tint); color: var(--c); font-weight: 800; font-size: .8rem; letter-spacing: .02em; }
+.dk-tag.dk-on { background: var(--c); color: var(--on-c); }
+.dk-why-t { color: var(--ink); font-weight: 800; }
+.dk-game { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-top: 8px; }
+.dk-codebtn { appearance: none; border: 0; background: var(--tint); color: var(--c); border-radius: 9px; padding: 3px 8px; font-family: var(--display); font-weight: 800; font-size: .98rem;
+  letter-spacing: .1em; cursor: pointer; }
+.dk-title { font-weight: 800; font-size: 1.05rem; overflow-wrap: anywhere; }
+.dk-text { margin-top: 8px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.42; }
+.dk-from { margin-top: 8px; color: var(--soft); font-size: .92rem; overflow-wrap: anywhere; }
+.dk-from b { color: var(--ink); font-weight: 700; }
+.dk-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.dk-decided { margin-top: 10px; padding: 9px 12px; border-radius: 12px; background: var(--bg); font-size: .94rem; line-height: 1.4; overflow-wrap: anywhere; }
+.dk-closer { margin-top: 12px; padding: 12px; border-radius: 14px; background: var(--bg); }
+.dk-seg { display: inline-flex; flex-wrap: wrap; gap: 3px; padding: 3px; background: var(--card); border-radius: 12px; }
+.dk-seg button { appearance: none; border: 0; background: none; font: inherit; font-weight: 700; font-size: .9rem; color: var(--soft); padding: 7px 12px; border-radius: 9px; cursor: pointer; }
+.dk-seg button[aria-checked="true"], .dk-seg button[aria-pressed="true"] { background: var(--c); color: var(--on-c); }
+.dk-closer textarea, .dk-stopbox textarea { min-height: 80px; margin-top: 8px; font-size: .98rem; }
+.dk-inline-err { margin-top: 8px; font-weight: 700; font-size: .92rem; }
+.dk-more { margin-top: 14px; }
+
+/* a game, opened: read-only, beside the reports on a laptop */
+.dk-gamecard { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 16px 18px 20px; }
+.dk-gamehead { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px 10px; }
+.dk-gametags { display: flex; flex-wrap: wrap; gap: 6px; }
+.dk-gamecode { font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: .12em; color: var(--c); }
+.dk-facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; margin: 12px 0 0; font-size: .94rem; }
+.dk-facts dt { color: var(--soft); font-weight: 600; }
+.dk-facts dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.dk-sw { display: inline-block; width: 13px; height: 13px; border-radius: 4px; vertical-align: -1px; margin-right: 6px; }
+.dk-sw-indigo { background: #470BA8; } .dk-sw-blue { background: #2D4FC4; } .dk-sw-teal { background: #0D7D73; } .dk-sw-red { background: #CF4327; }
+.dk-sw-pink { background: #BE3A82; } .dk-sw-green { background: #238453; } .dk-sw-orange { background: #A55200; } .dk-sw-slate { background: #3A3F5C; }
+.dk-stopped { margin-top: 12px; padding: 11px 13px; border-radius: 14px; background: var(--ink); color: var(--bg); font-size: .95rem; line-height: 1.4; overflow-wrap: anywhere; }
+.dk-stopped b { display: block; font-size: 1.02rem; }
+.dk-fam { margin-top: 12px; font-size: .94rem; line-height: 1.6; }
+.dk-fam .dk-codebtn { margin: 2px 4px 2px 0; }
+.dk-stopbox { margin-top: 14px; padding: 12px; border-radius: 14px; background: var(--bg); }
+.dk-stopbox select { margin-top: 8px; }
+.dk-preview { margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: var(--card); font-size: .9rem; line-height: 1.4; overflow-wrap: anywhere; }
+.dk-preview small { display: block; color: var(--soft); font-weight: 600; margin-bottom: 3px; }
+.dk-check { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-weight: 600; font-size: .94rem; }
+.dk-check input { width: 20px; height: 20px; accent-color: var(--c); margin: 0; }
+.dk-progress { margin-top: 10px; font-weight: 700; font-size: .94rem; }
+.dk-qs { list-style: none; margin: 14px 0 0; padding: 0; counter-reset: dkq; }
+.dk-q { padding: 12px 0; border-top: 1px solid var(--line); }
+.dk-qtop { display: flex; align-items: center; gap: 8px; color: var(--soft); font-weight: 700; font-size: .84rem; }
+.dk-qn { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; padding: 0 6px; border-radius: 999px; background: var(--tint); color: var(--c); font-weight: 800; }
+.dk-qt { margin-top: 6px; font-weight: 700; font-size: 1.02rem; line-height: 1.32; overflow-wrap: anywhere; }
+.dk-ans { margin-top: 6px; font-size: .94rem; line-height: 1.45; overflow-wrap: anywhere; }
+.dk-opts { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 4px; }
+.dk-opts li { display: flex; align-items: baseline; gap: 8px; padding: 5px 9px; border-radius: 10px; border: 1.5px solid var(--line); font-size: .94rem; overflow-wrap: anywhere; }
+.dk-opts li > span:first-child { font-weight: 800; color: var(--soft); }
+.dk-opts li.dk-right { border-color: var(--c); background: var(--tint); font-weight: 700; }
+.dk-righttag { margin-left: auto; flex: none; font-weight: 800; color: var(--c); font-size: .84rem; }
+.dk-oks { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+.dk-oks span { padding: 2px 10px; border-radius: 999px; background: var(--tint); color: var(--c); font-weight: 700; font-size: .9rem; overflow-wrap: anywhere; }
+.dk-after { margin-top: 6px; color: var(--soft); font-size: .9rem; line-height: 1.4; overflow-wrap: anywhere; }
+.dk-url { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .84rem; overflow-wrap: anywhere; word-break: break-all; }
+
+/* the totals, without names */
+.dk-totals { margin-top: 26px; }
+.dk-tablewrap { overflow-x: auto; margin-top: 10px; -webkit-overflow-scrolling: touch; }
+.dk-table { border-collapse: collapse; width: 100%; font-size: .92rem; font-variant-numeric: tabular-nums; background: var(--card); border-radius: 14px; overflow: hidden; }
+.dk-table th, .dk-table td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.dk-table th:first-child, .dk-table td:first-child { text-align: left; }
+.dk-table thead th { color: var(--soft); font-weight: 700; font-size: .84rem; }
+.dk-table tfoot td { font-weight: 800; border-bottom: 0; }
+.dk-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.dk-stat { background: var(--card); border-radius: 16px; padding: 10px 14px; min-width: 8.5rem; box-shadow: var(--shadow); }
+.dk-stat b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.dk-stat span { color: var(--soft); font-weight: 600; font-size: .86rem; }
+.dk-details { margin-top: 14px; }
+/* a lost edit link (15 Oct 2026): the box, in the editor's soft green */
+.dk-wayback { background: #DDF5E7; box-shadow: none; }
+.dk-wayback .dk-h2 { margin: 0; }
+.dk-wayform { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 12px; }
+.dk-wayfield { flex: 1 1 16rem; min-width: 0; }
+.dk-wayfield.dk-waycode { flex: 0 1 10rem; }
+.dk-wayform .dk-label { margin-top: 10px; font-size: .92rem; }
+.dk-wayform .dk-field { min-height: 46px; }
+#way-code { font-family: var(--display); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.dk-wayform .dk-mini { min-height: 46px; }
+.dk-waycard { margin-top: 10px; }
+.dk-fbhead { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.dk-fbhead .dk-h2 { margin: 0; }
+.dk-fbseg { margin-top: 12px; }
+.dk-fbcopy { margin-top: 8px; min-height: 64px; font-size: .92rem; resize: vertical; }
+.dk-fblist { list-style: none; margin: 12px 0 0; padding: 0; }
+.dk-fbrow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.dk-fbrow:first-child { border-top: 0; }
+.dk-fbmail { font-weight: 700; overflow-wrap: anywhere; min-width: 0; }
+.dk-fbrow .dk-from { margin-top: 0; }
+.dk-fbrow .dk-mini { margin-left: auto; }
+.dk-caution { margin-top: 8px; padding: 8px 12px; border-left: 4px solid var(--c); background: var(--tint); border-radius: 0 12px 12px 0; font-size: .92rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.dk-wayout .dk-keyrow { margin-top: 8px; }
+.dk-wayout .dk-field { min-height: 44px; padding: 8px 12px; }
+.dk-details summary { cursor: pointer; font-weight: 700; color: var(--c); padding: 6px 0; }
+
+@media (min-width: 1000px) {
+  .dk-cols.dk-with-game { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .dk-cols.dk-with-game .dk-gamecol { order: 2; position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; border-radius: 22px; }
+}
+@media (prefers-color-scheme: dark) {
+  .dk-rep, .dk-gamecard, .dk-stat, .dk-table { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .dk-rep.dk-new { box-shadow: none; }
+  .dk-rep.dk-open { box-shadow: 0 0 0 3px var(--c); }
+  .dk-mini { background: transparent; }
+  .dk-mini.dk-strong { background: var(--c); }
+  .dk-closer, .dk-stopbox, .dk-decided { background: rgba(255, 255, 255, .04); }
+  .dk-preview, .dk-seg { background: rgba(255, 255, 255, .06); }
+  .dk-wayback { background: #13291F; }
+  .dk-sw-indigo { background: #D2D3FF; } .dk-sw-blue { background: #7FA5FF; } .dk-sw-teal { background: #3FE0C6; } .dk-sw-red { background: #FF8468; }
+  .dk-sw-pink { background: #FF86BF; } .dk-sw-green { background: #63E6A0; } .dk-sw-orange { background: #E08600; } .dk-sw-slate { background: #AEB6DA; }
+}
+@media (max-width: 420px) {
+  .dk-h1 { font-size: 1.62rem; }
+  .dk-look .dk-field { width: 8.6rem; }
+}

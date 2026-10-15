@@ -1,4 +1,5 @@
-/* Logicers Live: one live game of How Sure? — a Durable Object, one per game code (14 Oct 2026).
+/* Logicers Live: one live game — a Durable Object, one per game code (14 Oct 2026; games that hosts made,
+   with four kinds of question, 15 Oct 2026).
 
    Who talks to it: the host's screen and every player's phone, each over one WebSocket, through the
    Worker (worker.js), which first checks where the call comes from and brakes code-guessing.
@@ -8,25 +9,41 @@
    never setTimeout (except the half-second that gathers a burst of answers into one count, and the
    two seconds that gather them into one write).
 
+   Two kinds of game. How Sure? with Logicers' own sets: number questions only, the sets read from sets.js.
+   A game a host made and saved (kit.js): its questions are copied in when the game is made (a snapshot:
+   changing the saved game later never changes a game being played), and each is a number (the slider and
+   the nets), a choice of 2 to 4 answers, true or false, or a typed answer. Every question asks how sure the
+   player is, with the nets' points: Sure 5 or 0, Fairly 4 or 1, Not sure 3 or 2 (on a number the net's size
+   says it); a maker can switch that off, and then a right answer scores 1. Typed answers are judged by
+   people: the maker lists right answers, and when a player typed something else, the reveal first goes to
+   "check", where the host sees each different answer once and ticks the right ones.
+
    What it stores, on its own disk, and nothing else:
      "m"               the game: code, set, settings, phase, the ids of its questions in order, times
+     "kq"              a made game's questions (the snapshot), with their answers
      "p:<id>"          each player: a random id, the name they typed (or Logicers picked), and a scrambled
                        form (a hash) of their phone's random key, so a phone that drops comes back as itself
-     "o:<r>.<i>"       the answers to the open question so far: id -> [guess, net, time], written at most
+     "o:<r>.<i>"       the answers to the open question so far: id -> [answer, level, time], written at most
                        every 2 seconds and whenever a connection closes, so a restart loses none of them
-     "a:<r>.<i>"       the answers to one question, written once, at its reveal: id -> [guess, net]
+     "a:<r>.<i>"       the answers to one question, written once, at its reveal: id -> [answer, level]
+     "c:<r>.<i>"       a typed question's right answers as compared (folded), the maker's and the host's
    No address, no device detail: nothing about anyone but the name they typed and their answers.
-   A game ends when the host ends it, after 2 hours with nothing happening, or 12 hours after it was
-   made, whatever happens. The alarm deletes everything 24 hours after the end; the code can then be
-   used again.
+   A game ends when the host ends it, after 2 hours with nothing happening, 12 hours after it was made,
+   whatever happens, or when Logicers stops the saved game it came from. The alarm deletes everything 24 hours
+   after the end; the code can then be used again.
 
    The server alone decides scores, and holds each answer until the reveal (rules.js, shared with the
    page). Messages carry a version number (PROTO): the site (GitHub) and this server (Cloudflare)
-   deploy separately, so an old page and a new server must never misread each other. */
+   deploy separately, so an old page and a new server must never misread each other. A page that knows
+   the new kinds of question says so in its hello (kt: 1); a made game turns away a page that does not. */
 import { DurableObject } from "cloudflare:workers";
 import "./rules.js";
 import { loadSets } from "./sets-key.js";
-import { cleanName, nameOk, pickName, foldName, MAXNAME } from "./names.js";
+import { cleanName, nameOk, pickName, foldName, MAXNAME, rude } from "./names.js";
+import { mac, sha, keyOk } from "./keys.js";
+import { cleanAnswer } from "./kit.js";
+
+export { sha, keyOk };
 
 const R = globalThis.HSRules;
 export const PROTO = 1;
@@ -48,12 +65,16 @@ const TIMERS = [0, 30, 60, 90];
 const COUNTS = [5, 10];
 const RATE = 30;                   // messages one connection may send in 10 seconds; the rest are ignored
 const RATE_CLOSE = 90;             // beyond this many it is closed: a real page sends a handful
+const HOST_RATE = 120;             // a host's screen may send more: checking typed answers is many ticks
+const HOST_RATE_CLOSE = 360;
 const MAX_MSG = 1500;              // characters in one message: a real page never sends more
 const KEEP_EVERY = 2000;           // the open question's answers go to disk at most this often
+const CHECK_MAX = 200;             // a typed question's different answers listed for the host to check
+const TOP_TYPED = 6;               // the right typed answers the reveal names, most given first
 /* The commands that move the game carry where the host's screen stood ("question|1.0"): one sent twice
    (a double tap, a resend) or from a screen that is behind no longer matches, and is ignored. */
 const MOVES = new Set(["start", "reveal", "next", "skip", "end", "again", "finish"]);
-const COMMANDS = new Set([...MOVES, "remove", "close", "players"]);
+const COMMANDS = new Set([...MOVES, "remove", "close", "players", "tick"]);
 
 function now() { return Date.now(); }
 function rid(n) {
@@ -63,11 +84,6 @@ function rid(n) {
   for (const x of b) s += a[x % a.length];
   return s;
 }
-export async function sha(s) {
-  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(s)));
-  return [...new Uint8Array(d)].map((x) => x.toString(16).padStart(2, "0")).join("");
-}
-export function keyOk(k) { return typeof k === "string" && /^[A-Za-z0-9_-]{20,64}$/.test(k); }
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const b = new Uint32Array(1);
@@ -80,23 +96,14 @@ function shuffle(a) {
 /* What each connection carries through the object's sleep. `since`: when it came, so a connection that
    never says hello can be told from a page that is still loading. */
 function fresh(since) { return { since, hi: 0, h: 0, pid: null, kh: null, a: null }; }
+function typeOf(q) { return (q && q.type) || "num"; }
 
 /* A phone's pass: proof that it is in this game, so the brake on code-guessing (worker.js) never stops it
    coming back, even when someone's sweep has braked the whole campus behind one address. The first 22
-   characters of an HMAC of the code, keyed with the sets' secret: nobody makes one without having joined. */
-let passKey = null;                // { k, key }: imported once per running copy
+   characters of an HMAC of the code, keyed with the sets' secret (keys.js): nobody makes one without having
+   joined. */
 export async function passFor(env, code) {
-  const k = env && env.SETS_KEY;
-  if (!k || typeof code !== "string") return "";
-  if (!passKey || passKey.k !== k) {
-    const s = atob(String(k).trim()), raw = new Uint8Array(s.length);
-    for (let i = 0; i < s.length; i++) raw[i] = s.charCodeAt(i);
-    passKey = { k, key: await crypto.subtle.importKey("raw", raw, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]) };
-  }
-  const sig = new Uint8Array(await crypto.subtle.sign("HMAC", passKey.key, new TextEncoder().encode("pass:" + code)));
-  let b = "";
-  for (const x of sig) b += String.fromCharCode(x);
-  return btoa(b).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "").slice(0, 22);
+  return typeof code === "string" ? mac(env, "pass:" + code) : "";
 }
 
 /* The settings a host may choose; anything else falls back to the plain choice. Object.hasOwn: a set
@@ -118,18 +125,37 @@ export function cleanSettings(o, sets) {
     }
   };
 }
+/* A made game's settings: how many of its questions (all, or fewer), and no practice question. */
+export function cleanKitSettings(o, count) {
+  o = o && typeof o === "object" ? o : {};
+  return {
+    n: Number.isInteger(o.n) && o.n > 0 && o.n < count ? o.n : count,
+    shuffle: o.shuffle === true,
+    timer: TIMERS.includes(o.timer) ? o.timer : 0,
+    teams: o.teams === true,
+    picked: o.picked === true,
+    practice: false,
+    standings: o.standings !== false,
+    awards: o.awards !== false
+  };
+}
 
 export class Game extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
     this.m = null;              // the game
     this.ps = new Map();        // id -> player
-    this.sets = null;           // the decrypted sets
-    this.ans = new Map();       // "r.i" -> Map(id -> [guess, net]): the revealed questions of this round
-    this.live = new Map();      // the open question's answers: id -> { k, g, n, t }
+    this.sets = null;           // the decrypted sets (Logicers' own games)
+    this.kq = null;             // a made game's questions
+    this.kset = null;           // ...in the shape of a set
+    this.ans = new Map();       // "r.i" -> Map(id -> [answer, level]): the revealed questions of this round
+    this.okk = new Map();       // "r.i" -> Set of folded right answers, for the revealed typed questions
+    this.live = new Map();      // the open question's answers: id -> { k, g, n, t } (g: the answer, of any kind)
     this.dirty = false;         // the open question's answers changed since they were last written
+    this.chk = null;            // the check of a typed question: { k, groups, ok: Set }
     this.pass = "";             // this game's pass, for its host's and its players' connections only
-    this.tallies = null;        // id -> R.tally(...) for this round, worked out when needed
+    this.tallies = null;        // id -> a tally (rules.js) for this round, grown one reveal at a time
+    this.ranks = null;          // every player's points, smallest first, for places
     this.rvc = null;            // the reveal, worked out once per question
     this.timers = {};
     this.rate = new WeakMap();
@@ -149,61 +175,120 @@ export class Game extends DurableObject {
     this.m = (await this.ctx.storage.get("m")) || null;
     this.ps = new Map();
     this.ans = new Map();
+    this.okk = new Map();
     this.live = new Map();
     this.dirty = false;
+    this.chk = null;
+    this.tallies = null;
+    this.ranks = null;
     if (!this.m) return;
     for (const v of (await this.ctx.storage.list({ prefix: "p:" })).values()) this.ps.set(v.id, v);
     if (this.m.ended) return;
     const m = this.m;
     try { this.pass = await passFor(this.env, m.code); } catch (e) { this.pass = ""; }
-    try { this.sets = await loadSets(this.env); } catch (e) { this.sets = null; }
+    if (m.kit) this.useKit((await this.ctx.storage.get("kq")) || null);
+    else { try { this.sets = await loadSets(this.env); } catch (e) { this.sets = null; } }
     for (const [k, v] of await this.ctx.storage.list({ prefix: "a:" + m.round + "." })) this.ans.set(k.slice(2), new Map(Object.entries(v)));
-    if (m.ph === "question") {
+    for (const [k, v] of await this.ctx.storage.list({ prefix: "c:" + m.round + "." })) {
+      if (this.ans.has(k.slice(2))) this.okk.set(k.slice(2), new Set(v.ok || []));
+    }
+    if (m.ph === "question" || m.ph === "check") {
       const k = m.qkey, o = (await this.ctx.storage.get("o:" + k)) || {};
       for (const id of Object.keys(o)) {
         const v = o[id];
         if (Array.isArray(v)) this.live.set(id, { k, g: v[0], n: v[1], t: v[2] || 0 });
       }
-      for (const ws of this.ctx.getWebSockets()) {          // an answer newer than the last write lives on in its connection
-        const at = ws.deserializeAttachment();
-        if (!at || !at.pid || !at.a || at.a.k !== k) continue;
-        const x = this.live.get(at.pid);
-        if (!x || x.t < at.a.t) { this.live.set(at.pid, at.a); this.dirty = true; }
+      if (m.ph === "question") {
+        for (const ws of this.ctx.getWebSockets()) {        // an answer newer than the last write lives on in its connection
+          const at = ws.deserializeAttachment();
+          if (!at || !at.pid || !at.a || at.a.k !== k) continue;
+          const x = this.live.get(at.pid);
+          if (!x || x.t < at.a.t) { this.live.set(at.pid, at.a); this.dirty = true; }
+        }
       }
+    }
+    if (m.ph === "check") {
+      const q = this.cur(), c = (await this.ctx.storage.get("c:" + m.qkey)) || {};
+      if (q) this.chk = { k: m.qkey, groups: this.groups(q), ok: new Set(c.ok || []) };
     }
     /* A deploy that changed the sets can leave the game on a question they no longer have: it is
        skipped, never shown (only when the sets were read: a game without them waits for a fixed deploy). */
-    if (this.sets && (m.ph === "question" || m.ph === "reveal" || m.ph === "standings") && !this.cur()) {
+    if ((this.sets || this.kset) && (m.ph === "question" || m.ph === "check" || m.ph === "reveal" || m.ph === "standings") && !this.cur()) {
       if (m.pos >= 0 && !m.skipped.includes(m.qkey)) m.skipped.push(m.qkey);
       await this.advance();
     }
   }
 
+  useKit(kq) {
+    this.kq = kq;
+    this.kset = kq && Array.isArray(kq.qs) ? { id: "kit", title: kq.title, qs: kq.qs, practice: null } : null;
+  }
+
   /* ------------------------------------------------------------ calls from the Worker */
 
-  /* Make the game. Refused when this code is in use, or ended less than a day ago. */
+  /* Make the game. Refused when this code is in use, or ended less than a day ago.
+     o: { code, hostHash, settings } for Logicers' sets; with kit: { code, title, colour, lang, sure, qs } for a
+     made game (its maker's edit key was checked by the saved game, kit.js). */
   async create(o) {
     if (this.m) return { ok: false, why: "taken" };
-    let sets;
-    try { sets = await loadSets(this.env); } catch (e) { return { ok: false, why: "sets" }; }
-    if (this.m) return { ok: false, why: "taken" };
-    const c = cleanSettings(o && o.settings, sets);
-    if (!c) return { ok: false, why: "set" };
-    this.sets = sets;
     const t = now();
-    this.m = { v: PROTO, code: o.code, made: t, last: t, hostHash: o.hostHash, set: c.set, st: c.st, closed: false,
-               ph: "lobby", round: 1, order: [], pos: -1, qkey: "", deadline: 0, played: {}, skipped: [], ended: 0 };
+    if (o && o.kit) {
+      const k = o.kit;
+      if (!k || typeof k.code !== "string" || !Array.isArray(k.qs) || !k.qs.length) return { ok: false, why: "set" };
+      this.useKit({ title: String(k.title || ""), colour: k.colour, lang: k.lang, sure: k.sure !== false, qs: k.qs });
+      this.m = { v: PROTO, code: o.code, made: t, last: t, hostHash: o.hostHash, set: "kit",
+                 kit: { code: k.code, title: this.kq.title, colour: k.colour, lang: k.lang, sure: k.sure !== false,
+                        mixed: k.qs.some((q) => typeOf(q) !== "num") },
+                 st: cleanKitSettings(o.settings, k.qs.length), closed: false,
+                 ph: "lobby", round: 1, order: [], pos: -1, qkey: "", deadline: 0, played: {}, skipped: [], ended: 0 };
+      await this.ctx.storage.put("kq", this.kq);
+    } else {
+      let sets;
+      try { sets = await loadSets(this.env); } catch (e) { return { ok: false, why: "sets" }; }
+      if (this.m) return { ok: false, why: "taken" };
+      const c = cleanSettings(o && o.settings, sets);
+      if (!c) return { ok: false, why: "set" };
+      this.sets = sets;
+      this.m = { v: PROTO, code: o.code, made: t, last: t, hostHash: o.hostHash, set: c.set, st: c.st, closed: false,
+                 ph: "lobby", round: 1, order: [], pos: -1, qkey: "", deadline: 0, played: {}, skipped: [], ended: 0 };
+    }
     try { this.pass = await passFor(this.env, o.code); } catch (e) { this.pass = ""; }
     await this.save();
     return { ok: true };
   }
 
-  /* What a phone may know before it joins: is there a game, which set, how many are in. */
+  /* What a phone may know before it joins: is there a game, which set, how many are in. A made game also
+     says its colour and language (never its saved game's code: the maker may keep that to themselves). */
   async peek() {
     const m = this.m;
     if (!m || m.ended) return null;
     const S = this.set();
-    return { title: S ? S.title : "", np: this.active(), ph: m.ph, closed: m.closed, teams: m.st.teams, picked: m.st.picked };
+    const info = { title: S ? S.title : "", np: this.active(), ph: m.ph, closed: m.closed, teams: m.st.teams, picked: m.st.picked };
+    if (m.kit) Object.assign(info, { kit: true, colour: m.kit.colour, lang: m.kit.lang, sure: m.kit.sure !== false, mixed: !!m.kit.mixed });
+    return info;
+  }
+
+  /* for a report (worker.js): the game's title, and its saved game's code when it came from one */
+  async reportInfo() {
+    const m = this.m;
+    if (!m) return null;                                 // an ended game can still be reported: it is kept a day
+    const S = this.set();
+    return { title: S ? S.title : "", kit: m.kit ? m.kit.code : "", set: m.kit ? "" : m.set };
+  }
+
+  /* for Logicers' admin page: what this game asks (the Worker checked the admin key) */
+  async adminView() {
+    const m = this.m;
+    if (!m) return null;
+    return { code: m.code, set: m.set, kit: m.kit ? m.kit.code : "", ended: m.ended, made: m.made, np: this.active(),
+             questions: m.kit ? (this.kq || (await this.ctx.storage.get("kq")) || null) : null };
+  }
+
+  /* Logicers stopped the saved game this game came from: it ends now, and every screen says so */
+  async stopByLogicers() {
+    if (!this.m || this.m.ended) return false;
+    await this.finish("stopped");
+    return true;
   }
 
   /* A connection: the Worker passes the WebSocket upgrade on to here. */
@@ -236,13 +321,19 @@ export class Game extends DurableObject {
 
   /* ------------------------------------------------------------ messages */
 
+  /* A connection's messages per 10 seconds: a flood costs a count, nothing more. A host's screen (known from
+     its hello, read again each 10 seconds) may send more, because checking typed answers is many ticks. */
   allow(ws) {
     const t = now();
     let r = this.rate.get(ws);
-    if (!r || t - r.from > 10000) { r = { from: t, n: 0 }; this.rate.set(ws, r); }
+    if (!r || t - r.from > 10000) {
+      const at = ws.deserializeAttachment();
+      r = { from: t, n: 0, h: !!(at && at.h) };
+      this.rate.set(ws, r);
+    }
     r.n++;
-    if (r.n > RATE_CLOSE) { try { ws.close(4008, "too fast"); } catch (e) { /* gone */ } return false; }
-    return r.n <= RATE;
+    if (r.n > (r.h ? HOST_RATE_CLOSE : RATE_CLOSE)) { try { ws.close(4008, "too fast"); } catch (e) { /* gone */ } return false; }
+    return r.n <= (r.h ? HOST_RATE : RATE);
   }
 
   async webSocketMessage(ws, raw) {
@@ -255,7 +346,7 @@ export class Game extends DurableObject {
     try { msg = JSON.parse(raw); } catch (e) { return; }
     if (!msg || typeof msg !== "object") return;
     if (!this.m || this.m.ended) {
-      this.send(ws, { t: "over" });
+      this.send(ws, { t: "over", why: this.m && this.m.stopped ? "stopped" : undefined });
       try { ws.close(4001, "over"); } catch (e) { /* gone */ }
       return;
     }
@@ -294,12 +385,20 @@ export class Game extends DurableObject {
       try { ws.close(4000, "version"); } catch (e) { /* gone */ }
       return;
     }
+    /* a made game asks for a page that knows its kinds of question: an older page is told to reload */
+    if (this.m.kit && msg.kt !== 1) {
+      this.send(ws, { t: "err", e: "old", v: PROTO + 1 });
+      try { ws.close(4000, "version"); } catch (e) { /* gone */ }
+      return;
+    }
     at = fresh(at.since || now());
     at.hi = 1;
     ws.serializeAttachment(at);                          // at once, before any wait: a hello right behind this one finds it said
     if (msg.role === "host") {
       if (!keyOk(msg.key) || (await sha(msg.key)) !== this.m.hostHash) { this.send(ws, { t: "err", e: "host" }); return; }
       at.h = 1;
+      const r = this.rate.get(ws);
+      if (r) r.h = true;                                 // the host's own rate from this hello on, not from the next 10 s
       if (keyOk(msg.pkey)) at.kh = await sha(msg.pkey);
     } else {
       if (!keyOk(msg.key)) { this.send(ws, { t: "err", e: "key" }); return; }
@@ -355,7 +454,7 @@ export class Game extends DurableObject {
     let name;
     if (m.st.picked || msg.pick === true) name = pickName(taken);
     else {
-      name = cleanName(msg.name);
+      name = typeof msg.name === "string" ? cleanName(msg.name) : "";     // a name is words, never a number or a list
       if (!nameOk(name)) { this.send(ws, { t: "err", e: "name" }); return; }
       if (taken.has(foldName(name))) {
         const stem = [...name].slice(0, MAXNAME - 3).join("").trim();
@@ -370,7 +469,7 @@ export class Game extends DurableObject {
     await this.ctx.storage.put("p:" + p.id, p);
     at.pid = p.id;
     ws.serializeAttachment(at);
-    this.tallies = null;
+    if (this.tallies) { this.tallies.set(p.id, R.blank()); this.ranks = null; }
     this.touch();
     this.send(ws, this.stateFor(at));
     this.soon("lobby");
@@ -385,25 +484,34 @@ export class Game extends DurableObject {
     }
     const p = this.ps.get(at.pid);
     if (!p || p.gone) return;
-    if (!this.take(at, msg)) { this.send(ws, { t: "err", e: "bad" }); return; }
+    if (!this.take(at, msg)) { this.send(ws, { t: "err", e: "bad", k: msg.k }); return; }
     ws.serializeAttachment(at);
     this.touch();
-    this.send(ws, { t: "got", k: m.qkey, g: at.a.g, n: at.a.n, r: R.net(this.cur(), at.a.g, at.a.n) });
+    this.send(ws, Object.assign({ t: "got", k: m.qkey }, this.ansOut(this.cur(), at.a)));
     this.soon("cnt");
   }
 
   /* Every answer comes in here, sent or kept by a phone while it was away (its hello): after the
-     deadline, none, or a phone could answer late by reconnecting. */
+     deadline, none, or a phone could answer late by reconnecting. Each kind of question has its own answer:
+     a number on the slider (g), the place of a choice (c: True is 0, False 1), or typed words (x). The level
+     (n: s, m or b) is Sure, Fairly or Not sure; when the maker switched "how sure" off, it is always m. */
   take(at, a) {
     const m = this.m, q = this.cur();
-    if (!q || !a || m.ph !== "question" || a.k !== m.qkey || (m.deadline && now() > m.deadline)) return false;
-    if (!R.validNet(a.n) || typeof a.g !== "number" || !(a.g >= q.lo && a.g <= q.hi)) return false;
-    const g = R.round(q, a.g);
-    if (!R.validGuess(q, g)) return false;
-    at.a = { k: m.qkey, g, n: a.n, t: now() };
+    if (!q || !a || typeof a !== "object" || m.ph !== "question" || a.k !== m.qkey || (m.deadline && now() > m.deadline)) return false;
+    const c = cleanAnswer(q, a, this.plain());                 // kit.js: the same check as a play alone
+    if (!c) return false;
+    at.a = { k: m.qkey, g: c[0], n: c[1], t: now() };
     this.live.set(at.pid, at.a);
     this.keepSoon();
     return true;
+  }
+
+  /* an answer as its phone is told it: { g, n, r } for a number (r: the net's two ends), { c, n }, { x, n } */
+  ansOut(q, a) {
+    const type = typeOf(q);
+    if (type === "num") return { g: a.g, n: a.n, r: R.net(q, a.g, a.n) };
+    if (type === "tx") return { x: a.g, n: a.n };
+    return { c: a.g, n: a.n };
   }
 
   /* The open question's answers on disk: a burst (a lecture answering at once) is gathered for 2 seconds
@@ -420,10 +528,13 @@ export class Game extends DurableObject {
     const m = this.m;
     if (!this.dirty || !m || m.ended || m.ph !== "question") return;
     this.dirty = false;
+    try { await this.ctx.storage.put("o:" + m.qkey, this.openRow()); }
+    catch (e) { this.dirty = true; }                       // written again with the next answer, or the next close
+  }
+  openRow() {
     const o = {};
     for (const [id, a] of this.live) o[id] = [a.g, a.n, a.t];
-    try { await this.ctx.storage.put("o:" + m.qkey, o); }
-    catch (e) { this.dirty = true; }                       // written again with the next answer, or the next close
+    return o;
   }
   /* the question is closed (revealed, skipped, the round ended): its row of answers so far goes */
   async dropOpen(k) {
@@ -432,11 +543,16 @@ export class Game extends DurableObject {
     this.dirty = false;
     try { await this.ctx.storage.delete("o:" + k); } catch (e) { /* deleted with everything a day after the end */ }
   }
+  /* a typed question left in its check (skipped, or the round ended): its ticks go too */
+  async dropCheck(k) {
+    this.chk = null;
+    try { await this.ctx.storage.delete("c:" + k); } catch (e) { /* deleted with everything a day after the end */ }
+  }
 
   /* where the game stands, written as the host's screen writes it: "lobby|", "question|1.p", "end|" */
   where() {
     const m = this.m;
-    return m.ph + "|" + (m.ph === "question" || m.ph === "reveal" || m.ph === "standings" ? m.qkey : "");
+    return m.ph + "|" + (m.ph === "question" || m.ph === "check" || m.ph === "reveal" || m.ph === "standings" ? m.qkey : "");
   }
 
   async command(ws, at, msg) {
@@ -452,7 +568,7 @@ export class Game extends DurableObject {
         if (m.ph !== "lobby") await this.started();
         return;
       case "reveal":
-        if (m.ph === "question") return this.reveal();
+        if (m.ph === "question" || m.ph === "check") return this.reveal();
         return;
       case "next":
         if (m.ph === "reveal") {
@@ -462,20 +578,23 @@ export class Game extends DurableObject {
         if (m.ph === "standings") return this.advance();
         return;
       case "skip":
-        if (m.ph !== "question") return;
+        if (m.ph !== "question" && m.ph !== "check") return;
         if (m.pos >= 0) m.skipped.push(m.qkey);
         return this.advance();
       case "end":                                                  // the round ends; the game stays, for Play again
-        if (m.ph === "question" || m.ph === "reveal" || m.ph === "standings") return this.endRound();
+        if (m.ph === "question" || m.ph === "check" || m.ph === "reveal" || m.ph === "standings") return this.endRound();
         return;
       case "finish":                                               // the whole game ends: from the lobby, or after a round
         if (m.ph === "lobby" || m.ph === "end") return this.finish("host");
         return;
       case "again": {
         if (m.ph !== "end") return;
+        if (m.kit) return this.startRound("kit", false);           // a made game plays its own questions again
         const s = typeof msg.set === "string" && this.sets && Object.hasOwn(this.sets, msg.set) ? msg.set : m.set;
         return this.startRound(s, false);
       }
+      case "tick":                                                 // a typed answer the host marks right (or not)
+        return this.tick(msg);
       case "remove":
         return this.remove(msg.id);
       case "close":
@@ -492,25 +611,28 @@ export class Game extends DurableObject {
   /* ------------------------------------------------------------ the game going on */
 
   async startRound(setId, first) {
-    const m = this.m, S = this.sets && Object.hasOwn(this.sets, setId) ? this.sets[setId] : null;
+    const m = this.m;
+    const S = m.kit ? this.kset : (this.sets && Object.hasOwn(this.sets, setId) ? this.sets[setId] : null);
     if (!S) return;
-    if (!first) { m.round += 1; this.ans = new Map(); }
-    m.set = setId;
+    if (!first) { m.round += 1; this.ans = new Map(); this.okk = new Map(); }
+    m.set = m.kit ? "kit" : setId;
     /* questions by id, never by place: a deploy that adds or reorders questions must not swap them mid-game */
     const ids = S.qs.map((q) => q.id);
-    const done = new Set((m.played[setId] || []).filter((id) => ids.includes(id)));
+    const done = new Set((m.played[m.set] || []).filter((id) => ids.includes(id)));
     let pool = ids.filter((id) => !done.has(id));
-    if (pool.length < Math.min(m.st.n, ids.length)) { pool = ids.slice(); m.played[setId] = []; }
+    if (pool.length < Math.min(m.st.n, ids.length)) { pool = ids.slice(); m.played[m.set] = []; }
     if (m.st.shuffle) shuffle(pool);
     m.order = pool.slice(0, m.st.n);
     m.skipped = [];
     this.tallies = null;
+    this.ranks = null;
     await this.open(first && m.st.practice ? -1 : 0);
   }
 
   async open(pos) {
     const m = this.m;
-    if (m.ph === "question") await this.dropOpen(m.qkey);          // the question left open (skipped)
+    if (m.ph === "question" || m.ph === "check") await this.dropOpen(m.qkey);   // the question left open (skipped)
+    if (m.ph === "check") await this.dropCheck(m.qkey);
     while (pos < m.order.length && !this.question(pos)) pos++;      // one the sets no longer have is never shown
     if (pos >= m.order.length) return this.endRound();
     m.pos = pos;
@@ -520,32 +642,108 @@ export class Game extends DurableObject {
     m.last = now();
     this.live = new Map();
     this.rvc = null;
+    this.chk = null;
     await this.save();
     this.broadcast();
   }
 
+  /* The reveal. A typed question first goes to the host's check when some answer is not on the maker's list
+     (and nobody can change an answer from then on); everything else is revealed at once. */
   async reveal() {
     const m = this.m, k = m.qkey;
-    if (m.ph !== "question") return;
-    if (!this.cur()) {                                    // a question the sets no longer have: skipped, not revealed
+    if (m.ph !== "question" && m.ph !== "check") return;
+    const q = this.cur();
+    if (!q) {                                             // a question the sets no longer have: skipped, not revealed
       if (m.pos >= 0 && !m.skipped.includes(k)) m.skipped.push(k);
       return this.advance();
+    }
+    if (m.ph === "question" && typeOf(q) === "tx") {
+      const groups = this.groups(q), ok = this.listed(q);
+      this.chk = { k, groups, ok };
+      if (groups.some((g) => !ok.has(g.k))) {
+        m.ph = "check";
+        m.deadline = 0;
+        m.last = now();
+        clearTimeout(this.timers.keep);
+        this.timers.keep = null;
+        this.dirty = false;
+        await this.ctx.storage.put({ ["o:" + k]: this.openRow(), ["c:" + k]: { ok: [...ok] } });   // final now, on disk
+        await this.save();
+        this.broadcast();
+        return;
+      }
     }
     const ans = new Map();
     for (const [id, a] of this.live) {
       const p = this.ps.get(id);
       if (p && !p.gone) ans.set(id, [a.g, a.n]);
     }
+    const puts = {};
+    if (typeOf(q) === "tx") {
+      const ok = this.chk && this.chk.k === k ? this.chk.ok : this.listed(q);
+      this.okk.set(k, ok);
+      puts["c:" + k] = { ok: [...ok] };
+    }
     this.ans.set(k, ans);
+    this.addScores(k);                                    // at once, with no wait between: never counted twice
     m.ph = "reveal";
     m.deadline = 0;
     m.last = now();
     this.rvc = null;
-    this.tallies = null;
-    await this.ctx.storage.put("a:" + k, Object.fromEntries(ans));
+    this.chk = null;
+    puts["a:" + k] = Object.fromEntries(ans);
+    await this.ctx.storage.put(puts);
     await this.dropOpen(k);                               // the reveal's row holds them now
     await this.save();
     this.broadcast();
+  }
+
+  /* the maker's right answers to a typed question, as compared */
+  listed(q) { return new Set((q.ok || []).map((x) => R.fold(x, q.fold !== false)).filter(Boolean)); }
+  /* ...and as the maker wrote them: an answer on the list is shown in the maker's spelling, not a player's */
+  spelled(q) {
+    const out = new Map(), fold = q.fold !== false;
+    for (const x of q.ok || []) { const k = R.fold(x, fold); if (k && !out.has(k)) out.set(k, x); }
+    return out;
+  }
+
+  /* The different typed answers to the open question, once each, the most given first: { k (as compared),
+     shown (the first as typed, tidied), n, rude (a word on the names' list: the host's screen hides it until
+     asked, as it may stand on a projector) }. Answers are closed when this is worked out. */
+  groups(q) {
+    const by = new Map(), fold = q.fold !== false, spelled = this.spelled(q);
+    for (const [id, a] of this.live) {
+      const p = this.ps.get(id);
+      if (!p || p.gone || typeof a.g !== "string") continue;
+      const k = R.fold(a.g, fold);
+      if (!k) continue;
+      let g = by.get(k);
+      if (!g) by.set(k, g = { k, shown: spelled.get(k) || R.fold(a.g, false), n: 0, rude: false });
+      g.n++;
+    }
+    const out = [...by.values()].sort((a, b) => b.n - a.n || (a.k < b.k ? -1 : a.k > b.k ? 1 : 0));
+    for (const g of out.slice(0, CHECK_MAX)) g.rude = rude(g.shown);
+    return out;
+  }
+
+  /* the host's list: [shown, how many, on the maker's list, ticked, hidden], at most CHECK_MAX */
+  checkData() {
+    const c = this.chk, q = this.cur();
+    if (!c || !q) return null;
+    const listed = this.listed(q);
+    return { k: c.k, groups: c.groups.slice(0, CHECK_MAX).map((g) => [g.shown, g.n, listed.has(g.k) ? 1 : 0, c.ok.has(g.k) ? 1 : 0, g.rude ? 1 : 0]),
+             more: Math.max(0, c.groups.length - CHECK_MAX) };
+  }
+
+  async tick(msg) {
+    const m = this.m, c = this.chk;
+    if (m.ph !== "check" || !c || msg.k !== m.qkey || c.k !== m.qkey || !Number.isInteger(msg.i) || msg.i < 0 || msg.i >= CHECK_MAX || typeof msg.on !== "boolean") return;
+    const g = c.groups[msg.i];
+    if (!g) return;
+    if (msg.on) c.ok.add(g.k); else c.ok.delete(g.k);
+    await this.ctx.storage.put("c:" + m.qkey, { ok: [...c.ok] });
+    const d = this.checkData();
+    this.sendHosts({ t: "ticks", k: m.qkey, ok: d.groups.map((x) => x[3]) });
   }
 
   async phase(ph) {
@@ -564,9 +762,10 @@ export class Game extends DurableObject {
   async endRound() {
     const m = this.m;
     if (m.ph === "end") return;
-    if (m.ph === "question") {
+    if (m.ph === "question" || m.ph === "check") {
       if (m.pos >= 0 && !m.skipped.includes(m.qkey)) m.skipped.push(m.qkey);    // a question still open is not scored
       await this.dropOpen(m.qkey);
+      if (m.ph === "check") await this.dropCheck(m.qkey);
     }
     const done = new Set(m.played[m.set] || []);
     for (let i = 0; i <= Math.min(m.pos, m.order.length - 1); i++) done.add(m.order[i]);
@@ -575,6 +774,7 @@ export class Game extends DurableObject {
     m.deadline = 0;
     m.last = now();
     this.tallies = null;
+    this.ranks = null;
     this.endc = null;
     await this.save();
     this.broadcast();
@@ -583,9 +783,10 @@ export class Game extends DurableObject {
 
   async finish(why) {
     const m = this.m;
-    if (m.ended) return;
+    if (!m || m.ended) return;
     m.ended = now();
     m.ph = "over";
+    if (why === "stopped") m.stopped = 1;
     clearTimeout(this.timers.keep);
     this.timers.keep = null;
     await this.save();
@@ -601,7 +802,7 @@ export class Game extends DurableObject {
     p.gone = 1;
     await this.ctx.storage.put("p:" + id, p);
     this.live.delete(id);
-    this.tallies = null;
+    if (this.tallies) { this.tallies.delete(id); this.ranks = null; }
     this.rvc = null;
     this.endc = null;
     for (const ws of this.ctx.getWebSockets()) {
@@ -614,22 +815,25 @@ export class Game extends DurableObject {
     this.broadcast();
   }
 
-  /* The anonymous totals: how often each net caught the answer to each of Logicers' questions. */
+  /* The anonymous totals: how often each net caught the answer to each of Logicers' questions. A made game
+     adds only that a round was played, and by how many: its questions are its maker's, not Logicers'. */
   async report() {
     try {
       const m = this.m, by = [];
-      for (const [k, ans] of this.ans) {
-        const pos = k.split(".")[1];
-        if (pos === "p" || m.skipped.includes(k)) continue;
-        const q = this.question(+pos);
-        if (!q) continue;                            // a question the sets no longer have counts as skipped
-        const t = { s: [0, 0], m: [0, 0], b: [0, 0] };
-        for (const [, [g, n]] of ans) { t[n][1]++; if (R.caught(q, g, n)) t[n][0]++; }
-        by.push({ id: q.id, t });
-      }
-      if (!by.length) return;
+      if (!m.kit) {
+        for (const [k, ans] of this.ans) {
+          const pos = k.split(".")[1];
+          if (pos === "p" || m.skipped.includes(k)) continue;
+          const q = this.question(+pos);
+          if (!q) continue;                          // a question the sets no longer have counts as skipped
+          const t = { s: [0, 0], m: [0, 0], b: [0, 0] };
+          for (const [, [g, n]] of ans) { t[n][1]++; if (R.caught(q, g, n)) t[n][0]++; }
+          by.push({ id: q.id, t });
+        }
+        if (!by.length) return;
+      } else if (!this.ans.size) return;
       const stub = this.env.TOTALS.get(this.env.TOTALS.idFromName("all"));
-      await stub.round({ set: m.set, by, players: this.active() });
+      await stub.round({ set: m.kit ? "kit" : m.set, by, players: this.active() });
     } catch (e) { /* the totals are never worth a broken game */ }
   }
 
@@ -671,7 +875,11 @@ export class Game extends DurableObject {
         this.m = null;
         this.ps = new Map();
         this.ans = new Map();
+        this.okk = new Map();
         this.live = new Map();
+        this.kq = null;
+        this.kset = null;
+        this.chk = null;
         return;
       }
       return this.plan();
@@ -684,7 +892,14 @@ export class Game extends DurableObject {
 
   /* ------------------------------------------------------------ what each screen is sent */
 
-  set() { return this.sets && this.m && Object.hasOwn(this.sets, this.m.set) ? this.sets[this.m.set] : null; }
+  set() {
+    const m = this.m;
+    if (!m) return null;
+    if (m.kit) return this.kset;
+    return this.sets && Object.hasOwn(this.sets, m.set) ? this.sets[m.set] : null;
+  }
+  /* a made game whose maker switched "how sure" off: a right answer scores 1, a number uses the medium net */
+  plain() { return !!(this.m && this.m.kit && this.m.kit.sure === false); }
   /* a question by its place in this round: the practice, or the id at that place, looked up in the sets;
      null when the deployed sets no longer have it */
   question(pos) {
@@ -695,6 +910,12 @@ export class Game extends DurableObject {
     return S.qs.find((q) => q.id === id) || null;
   }
   cur() { return this.question(this.m.pos); }
+  /* a revealed question of this round that counts: not the practice, not skipped, still in the set */
+  counted(k) {
+    const pos = k.split(".")[1];
+    if (pos === "p" || this.m.skipped.includes(k)) return null;
+    return this.question(+pos);
+  }
   active() {
     let n = 0;
     for (const p of this.ps.values()) if (!p.gone) n++;
@@ -714,6 +935,13 @@ export class Game extends DurableObject {
     for (const ws of this.ctx.getWebSockets()) {
       const at = ws.deserializeAttachment();
       if (at && (at.h || at.kh)) this.send(ws, s);
+    }
+  }
+  sendHosts(o) {
+    const s = JSON.stringify(o);
+    for (const ws of this.ctx.getWebSockets()) {
+      const at = ws.deserializeAttachment();
+      if (at && at.h) this.send(ws, s);
     }
   }
   broadcast() {
@@ -753,16 +981,20 @@ export class Game extends DurableObject {
       g: { code: m.code, set: m.set, title: S ? S.title : "", n: m.order.length, round: m.round, closed: m.closed,
            teams: m.st.teams, picked: m.st.picked, timer: m.st.timer, practice: m.st.practice,
            standings: m.st.standings, awards: m.st.awards, played: m.played } };
+    if (m.kit) Object.assign(c.g, { kit: true, colour: m.kit.colour, lang: m.kit.lang, sure: !this.plain(), mixed: !!m.kit.mixed });
     if (m.ph === "lobby") {
       const names = this.lobbyNames();
       c.lobby = { names: names.map((x) => x[1]), ids: names.map((x) => x[0]), hosts: names.map((x) => x[2]), more: Math.max(0, c.np - names.length) };
     }
-    const q = m.ph === "question" || m.ph === "reveal" || m.ph === "standings" ? this.cur() : null;
+    const q = m.ph === "question" || m.ph === "check" || m.ph === "reveal" || m.ph === "standings" ? this.cur() : null;
     if (q) {
-      c.q = { k: m.qkey, i: m.pos < 0 ? 0 : m.pos + 1, of: m.order.length, t: q.t, u: q.u, lo: q.lo, hi: q.hi, log: q.log,
-              step: q.step, kind: q.k, left: m.ph === "question" && m.deadline ? Math.max(0, m.deadline - GRACE - now()) : 0 };
+      const type = typeOf(q);
+      c.q = { k: m.qkey, i: m.pos < 0 ? 0 : m.pos + 1, of: m.order.length, t: q.t, type,
+              left: m.ph === "question" && m.deadline ? Math.max(0, m.deadline - GRACE - now()) : 0 };
+      if (type === "num") Object.assign(c.q, { u: q.u, lo: q.lo, hi: q.hi, log: q.log, step: q.step, kind: q.k });
+      if (type === "mc") c.q.o = q.o;
     }
-    if (m.ph === "question") c.cnt = { in: this.answered(), of: c.np };
+    if (m.ph === "question" || m.ph === "check") c.cnt = { in: this.answered(), of: c.np };
     if (m.ph === "reveal" && q) c.rv = this.revealData();
     if (m.ph === "standings" || m.ph === "end") c.top = this.top();
     if (m.ph === "end") c.end = this.endData();
@@ -775,27 +1007,66 @@ export class Game extends DurableObject {
     s.host = !!at.h;
     if ((at.h || s.you) && this.pass) s.pass = this.pass;     // the pass: for the host and players who joined, never for a bare hello
     if (!at.h && s.lobby) s.lobby = { names: s.lobby.names, more: s.lobby.more };     // ids are for the host only
+    if (at.h && s.ph === "check") s.chk = this.checkData();   // the typed answers to check: for the host's screens only
     return s;
   }
 
-  score() {
-    if (this.tallies) return this.tallies;
-    const m = this.m, plays = new Map();
-    for (const [k, ans] of this.ans) {
-      const pos = k.split(".")[1];
-      if (pos === "p" || m.skipped.includes(k)) continue;
-      const q = this.question(+pos);
-      if (!q) continue;                              // a question the sets no longer have scores nothing
-      for (const [id, [g, n]] of ans) {
-        if (!plays.has(id)) plays.set(id, []);
-        plays.get(id).push({ q, g, n });
-      }
+  /* is an answer right? A number is caught or not by its net (rules.js); the others are right or wrong */
+  right(q, k, g) {
+    const type = typeOf(q);
+    if (type === "mc") return g === q.r;
+    if (type === "tf") return g === (q.r ? 0 : 1);
+    if (type === "tx") {
+      const ok = this.okk.get(k);
+      return !!ok && typeof g === "string" && ok.has(R.fold(g, q.fold !== false));
     }
-    const t = new Map();
-    for (const p of this.ps.values()) if (!p.gone) t.set(p.id, R.tally(plays.get(p.id) || []));
-    this.tallies = t;
-    this.allPts = [...t.values()].map((x) => x.pts);
-    return t;
+    return false;
+  }
+  playOf(q, k, g, n) {
+    return typeOf(q) === "num" ? { q, g, n } : { n, hit: this.right(q, k, g) };
+  }
+
+  /* Every player's tally for this round. Worked out in full when it is first needed (after a wake, or the
+     end of a round); from then on each reveal adds its one question (addScores), so a hall of 500 with a
+     hundred questions never sums the whole game again at every question. */
+  score() {
+    const plain = this.plain();
+    if (!this.tallies) {
+      const t = new Map();
+      for (const p of this.ps.values()) if (!p.gone) t.set(p.id, R.blank());
+      for (const [k, ans] of this.ans) {
+        const q = this.counted(k);
+        if (!q) continue;                            // a question the sets no longer have scores nothing
+        for (const [id, [g, n]] of ans) {
+          const x = t.get(id);
+          if (x) R.add(x, this.playOf(q, k, g, n), plain);
+        }
+      }
+      this.tallies = t;
+      this.ranks = null;
+    }
+    if (!this.ranks) this.ranks = [...this.tallies.values()].map((x) => x.pts).sort((a, b) => a - b);
+    return this.tallies;
+  }
+  addScores(k) {
+    if (!this.tallies) return;
+    const q = this.counted(k), ans = this.ans.get(k);
+    if (!q || !ans) return;
+    const plain = this.plain();
+    for (const [id, [g, n]] of ans) {
+      const x = this.tallies.get(id);
+      if (x) R.add(x, this.playOf(q, k, g, n), plain);
+    }
+    this.ranks = null;
+  }
+  /* a player's place: one more than the players with more points, shared when others have as many */
+  placeOf(pts) {
+    const a = this.ranks;
+    let lo = 0, hi = a.length;
+    while (lo < hi) { const mid = (lo + hi) >> 1; if (a[mid] > pts) hi = mid; else lo = mid + 1; }
+    let l2 = 0, h2 = lo;
+    while (l2 < h2) { const mid = (l2 + h2) >> 1; if (a[mid] >= pts) h2 = mid; else l2 = mid + 1; }
+    return { place: a.length - lo + 1, tied: lo - l2 > 1 };
   }
 
   revealData() {
@@ -805,6 +1076,39 @@ export class Game extends DurableObject {
     const by = { s: [0, 0], m: [0, 0], b: [0, 0] }, rows = [];
     if (!q) {                                        // a question the sets no longer have: an empty, skipped reveal
       const data = { by, hits: 0, total: 0, practice: m.pos < 0, skipped: true };
+      this.rvc = { k, data, rowOf: new Map() };
+      return data;
+    }
+    const type = typeOf(q), base = { type, f: q.f, s: q.s, practice: m.pos < 0, skipped: m.skipped.includes(k) };
+    if (type !== "num") {
+      let hits = 0, total = 0;
+      const cnt = type === "tx" ? null : new Array(type === "tf" ? 2 : q.o.length).fill(0);
+      const rightBy = new Map(), fold = q.fold !== false, spelled = type === "tx" ? this.spelled(q) : null;
+      let other = 0;
+      for (const [id, [g, n]] of ans) {
+        const p = this.ps.get(id);
+        if (!p || p.gone) continue;
+        const hit = this.right(q, k, g);
+        total++;
+        by[n][1]++;
+        if (hit) { hits++; by[n][0]++; }
+        if (cnt) cnt[g]++;
+        else if (hit) {
+          const key = R.fold(g, fold);
+          const x = rightBy.get(key) || { shown: spelled.get(key) || R.fold(g, false), n: 0 };
+          x.n++;
+          rightBy.set(key, x);
+        } else other++;
+      }
+      const data = Object.assign(base, { by, hits, total });
+      if (cnt) Object.assign(data, { a: type === "tf" ? (q.r ? 0 : 1) : q.r, cnt });
+      else {
+        /* typed: the right answers by name (each checked by the maker or the host), the rest only counted:
+           a word that was not ticked never stands on every phone */
+        data.ok = (q.ok || []).slice(0, 3);
+        data.top = [...rightBy.values()].sort((a, b) => b.n - a.n || (a.shown < b.shown ? -1 : 1)).slice(0, TOP_TYPED).map((x) => [x.shown, x.n]);
+        data.other = other;
+      }
       this.rvc = { k, data, rowOf: new Map() };
       return data;
     }
@@ -818,8 +1122,7 @@ export class Game extends DurableObject {
       rows.push({ id, r, hit, n, name: p.name });
     }
     rows.sort((x, y) => x.r[0] - y.r[0] || x.r[1] - y.r[1] || (x.name < y.name ? -1 : 1));
-    const data = { a: q.a, at: q.at, f: q.f, s: q.s, by, hits: rows.filter((x) => x.hit).length, total: rows.length,
-                   practice: m.pos < 0, skipped: m.skipped.includes(k) };
+    const data = Object.assign(base, { a: q.a, at: q.at, by, hits: rows.filter((x) => x.hit).length, total: rows.length });
     const rowOf = new Map();
     if (rows.length <= BIG) {
       data.nets = rows.map((x, i) => { rowOf.set(x.id, i); return [x.r[0], x.r[1], x.hit ? 1 : 0, x.n].concat(named ? [x.name] : []); });
@@ -856,9 +1159,12 @@ export class Game extends DurableObject {
 
   endData() {
     if (this.endc && this.endc.round === this.m.round) return this.endc.data;
-    const t = this.score(), m = this.m;
-    const room = { s: [0, 0], m: [0, 0], b: [0, 0] };
-    for (const x of t.values()) for (const n of R.NETS) { room[n][0] += x[n][0]; room[n][1] += x[n][1]; }
+    const t = this.score(), m = this.m, plain = this.plain();
+    const room = { s: [0, 0], m: [0, 0], b: [0, 0] }, ok = [0, 0];
+    for (const x of t.values()) {
+      for (const n of R.NETS) { room[n][0] += x[n][0]; room[n][1] += x[n][1]; }
+      ok[0] += x.ok[0]; ok[1] += x.ok[1];
+    }
     const list = [...t.entries()].map(([id, x]) => [this.ps.get(id).name, x.pts]).sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
     const podium = [];
     let place = 0;
@@ -870,7 +1176,7 @@ export class Game extends DurableObject {
       else podium.push({ place, names: [list[i][0]], more: 0, pts: list[i][1] });
     }
     let awards = null;
-    if (m.st.awards) {
+    if (m.st.awards && !plain) {
       const best = (f) => {
         let k = 0, names = [];
         for (const [id, x] of t) {
@@ -883,8 +1189,8 @@ export class Game extends DurableObject {
       awards = { sharp: best((x) => x.s[0]), bold: best((x) => x.s[1]) };
     }
     /* a question counts as played when it was revealed, not skipped, and is still in the sets */
-    const played = [...this.ans.keys()].filter((k) => !k.endsWith(".p") && !m.skipped.includes(k) && this.question(+k.split(".")[1])).length;
-    const data = { podium, awards, room, played };
+    const played = [...this.ans.keys()].filter((k) => this.counted(k)).length;
+    const data = { podium, awards, room, ok, played, plain };
     this.endc = { round: m.round, data };
     return data;
   }
@@ -895,26 +1201,29 @@ export class Game extends DurableObject {
     const y = { id: p.id, name: p.name };
     const t = this.score().get(p.id);
     if (t) {
-      const pl = R.place(t.pts, this.allPts);
-      y.pts = t.pts; y.place = pl.place; y.tied = pl.tied; y.of = this.allPts.length;
+      const pl = this.placeOf(t.pts);
+      y.pts = t.pts; y.place = pl.place; y.tied = pl.tied; y.of = this.ranks.length;
     }
-    const q = this.cur();
-    if (m.ph === "question" && q) {
+    const q = this.cur(), plain = this.plain();
+    if ((m.ph === "question" || m.ph === "check") && q) {
       const a = this.live.get(p.id);
-      y.ans = a ? { g: a.g, n: a.n, r: R.net(q, a.g, a.n) } : null;
+      y.ans = a ? this.ansOut(q, a) : null;
     }
     if (m.ph === "reveal" && q) {
       const ans = this.ans.get(m.qkey), a = ans && ans.get(p.id);
       if (a) {
-        const r = R.net(q, a[0], a[1]), hit = r[0] <= q.a && q.a <= r[1];
-        y.res = { g: a[0], n: a[1], r, hit, pts: m.pos < 0 ? 0 : R.points(a[1], hit) };
+        const res = this.ansOut(q, { g: a[0], n: a[1] });
+        res.hit = typeOf(q) === "num" ? res.r[0] <= q.a && q.a <= res.r[1] : this.right(q, m.qkey, a[0]);
+        res.pts = m.pos < 0 ? 0 : plain ? (res.hit ? 1 : 0) : R.points(a[1], res.hit);
+        y.res = res;
       } else y.res = null;
       this.revealData();
       y.ri = this.rvc.rowOf.has(p.id) ? this.rvc.rowOf.get(p.id) : -1;
     }
     if (m.ph === "end" && t) {
       y.meter = { s: t.s, m: t.m, b: t.b };
-      y.verdict = R.verdict(t);
+      y.ok = t.ok;
+      y.verdict = plain ? null : R.verdict(t);
       const e = this.endData();
       y.award = [];
       if (e.awards && e.awards.sharp && t.s[0] === e.awards.sharp.k) y.award.push("sharp");
