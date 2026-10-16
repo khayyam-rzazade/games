@@ -1021,7 +1021,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "id": "triceratops",
    "subject": "triceratops",
    "options": [
-    "crocodile",
+    "turtle",
     "chicken",
     "rhino"
    ],
@@ -1031,7 +1031,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     2
    ],
    "colour": "teal",
-   "fact": "Triceratops was a dinosaur, and birds are living dinosaurs. The rhino's horn is a look-alike.",
+   "fact": "Triceratops was a dinosaur, and birds are living dinosaurs. Turtles are reptiles from another branch, and the rhino's horn is a look-alike.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Dinosaur"},
     {"name": "UC Museum of Paleontology", "url": "https://ucmp.berkeley.edu/taxa/verts/dinosauria/"}
@@ -1043,15 +1043,15 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "options": [
     "dog",
     "dolphin",
-    "manatee"
+    "walrus"
    ],
    "rank": [
-    0,
     1,
-    2
+    2,
+    0
    ],
    "colour": "red",
-   "fact": "Seals are carnivores from the dog-like branch, with dogs, bears and weasels. Dolphins and manatees returned to the sea on their own.",
+   "fact": "Seals and walruses are both pinnipeds. They are dog-like carnivores, so the dog comes next. Dolphins went back to the sea on their own.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Pinniped"},
     {"name": "Natural History Museum, London", "url": "https://www.nhm.ac.uk/discover/what-is-a-seal.html"}
@@ -1103,7 +1103,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "meerkat",
    "options": [
     "cat",
-    "weasel",
+    "bear",
     "prairie_dog"
    ],
    "rank": [
@@ -1112,7 +1112,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     2
    ],
    "colour": "red",
-   "fact": "Meerkats are mongooses, on the cat side of the carnivores. Prairie dogs stand up the same way, but they are rodents.",
+   "fact": "Meerkats are mongooses, on the cat side of the carnivores. Bears are on the dog side, and prairie dogs, which stand up the same way, are rodents.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Feliformia"},
     {"name": "UC Museum of Paleontology", "url": "https://ucmp.berkeley.edu/mammal/carnivora/carnivorasy.html"}
@@ -1143,16 +1143,16 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "beaver",
    "options": [
     "otter",
-    "platypus",
+    "rabbit",
     "mouse"
    ],
    "rank": [
-    1,
     2,
+    1,
     0
    ],
    "colour": "red",
-   "fact": "The beaver is a rodent, like the mouse. The platypus has a beaver-like tail but is an egg-laying mammal from a far older branch.",
+   "fact": "The beaver is a rodent, like the mouse. Rabbits are not rodents, but they are the rodents' next of kin. Otters are carnivores.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Rodent"},
     {"name": "Britannica", "url": "https://www.britannica.com/animal/rodent/Evolution-and-classification"}
@@ -1242,17 +1242,17 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "id": "porcupine",
    "subject": "porcupine",
    "options": [
-    "echidna",
+    "mouse",
     "hedgehog",
     "guinea_pig"
    ],
    "rank": [
-    2,
     1,
+    2,
     0
    ],
    "colour": "red",
-   "fact": "Porcupines are rodents from the guinea pig's branch. Hedgehogs and echidnas grew their spines separately.",
+   "fact": "Porcupines are rodents from the guinea pig's branch. Mice are rodents from another branch, and hedgehogs grew their spines separately.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Hystricognathi"},
     {"name": "University of Western Australia", "url": "https://www.uwa.edu.au/study/-/media/Faculties/Science/Docs/Mammalian-clades.pdf"}
@@ -1342,17 +1342,17 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "id": "flea",
    "subject": "flea",
    "options": [
-    "tick",
+    "butterfly",
     "louse",
     "housefly"
    ],
    "rank": [
-    2,
     1,
+    2,
     0
    ],
    "colour": "magenta",
-   "fact": "Fleas are closer to flies than to lice. Ticks are not insects at all.",
+   "fact": "Fleas are closer to flies than to lice. Butterflies are next: like fleas and flies, they go through a pupa. Lice do not.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Holometabola"},
     {"name": "BMC Biology", "url": "https://link.springer.com/article/10.1186/1741-7007-7-34"}
@@ -1364,15 +1364,15 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "options": [
     "cat",
     "armadillo",
-    "anteater"
+    "horse"
    ],
    "rank": [
     0,
-    1,
+    2,
     1
    ],
    "colour": "red",
-   "fact": "The pangolin's closest living relatives are the carnivores: cats, dogs and bears. Its scales only resemble an armadillo's armour.",
+   "fact": "The pangolin's closest living relatives are the carnivores, such as cats. Horses are on a nearby branch. Its scales only resemble an armadillo's armour.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Pangolin"},
     {"name": "Animal Diversity Web", "url": "https://animaldiversity.org/accounts/Manidae/"}
@@ -1382,17 +1382,17 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "id": "barnacle",
    "subject": "barnacle",
    "options": [
-    "snail",
+    "spider",
     "crab",
     "mussel"
    ],
    "rank": [
     1,
     0,
-    1
+    2
    ],
    "colour": "blue",
-   "fact": "Barnacles look like shellfish, but they are crustaceans, relatives of crabs.",
+   "fact": "Barnacles look like shellfish, but they are crustaceans, relatives of crabs. Spiders are other arthropods, and mussels are molluscs.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Barnacle"},
     {"name": "Florida Museum", "url": "https://www.floridamuseum.ufl.edu/science/five-facts-barnacles/"}
@@ -1583,7 +1583,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "tomato",
    "options": [
     "potato",
-    "apple",
+    "mushroom",
     "chili"
    ],
    "rank": [
@@ -1592,7 +1592,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     1
    ],
    "colour": "green",
-   "fact": "Tomato and potato belong to the same genus. Chili peppers are in the same family, the nightshades.",
+   "fact": "Tomato and potato belong to the same genus. Chili peppers are in the same family, the nightshades. Mushrooms are not plants at all.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Tomato"},
     {"name": "Nature", "url": "https://www.nature.com/articles/nature11119"}
@@ -1683,16 +1683,16 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "thylacine",
    "options": [
     "kangaroo",
-    "cat",
+    "platypus",
     "wolf"
    ],
    "rank": [
     0,
-    1,
+    2,
     1
    ],
    "colour": "red",
-   "fact": "The Tasmanian tiger was a marsupial, like the kangaroo. It only looked like a wolf: two animals that evolved the same shape separately.",
+   "fact": "The Tasmanian tiger was a marsupial, like the kangaroo. It only looked like a wolf. The platypus is Australian too, but it lays eggs.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Thylacine"},
     {"name": "Communications Biology", "url": "https://www.nature.com/articles/s42003-020-01569-x"}
@@ -1802,7 +1802,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "id": "dimetrodon",
    "subject": "dimetrodon",
    "options": [
-    "crocodile",
+    "chicken",
     "trex",
     "dog"
    ],
@@ -1812,7 +1812,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     0
    ],
    "colour": "teal",
-   "fact": "Dimetrodon was not a dinosaur. It belongs to the line that led to mammals, so it is closer to a dog than to T. rex.",
+   "fact": "Dimetrodon was not a dinosaur. It belongs to the line that led to mammals, so it is closer to a dog than to T. rex or a chicken.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Dimetrodon"},
     {"name": "Britannica", "url": "https://www.britannica.com/animal/pelycosaur"}
@@ -1822,7 +1822,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "id": "armadillo",
    "subject": "armadillo",
    "options": [
-    "hedgehog",
+    "cat",
     "sloth",
     "pangolin"
    ],
@@ -1832,7 +1832,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     1
    ],
    "colour": "red",
-   "fact": "Armadillos belong with sloths and anteaters. The pangolin wears armour too, but it is not related to them.",
+   "fact": "Armadillos belong with sloths and anteaters. The pangolin wears armour too, but it belongs with cats and other carnivores.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Xenarthra"},
     {"name": "Britannica", "url": "https://www.britannica.com/animal/xenarthran"}
@@ -1884,7 +1884,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "options": [
     "lamprey",
     "salmon",
-    "snake"
+    "frog"
    ],
    "rank": [
     2,
@@ -1892,7 +1892,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     1
    ],
    "colour": "blue",
-   "fact": "Eels are bony fish, like salmon. Lampreys look like eels but are jawless fish from a far older branch. Even a snake is closer to an eel.",
+   "fact": "Eels are bony fish, like salmon. Lampreys look like eels but are jawless fish from a far older branch. Even a frog is closer to an eel.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Actinopterygii"},
     {"name": "PLOS Currents", "url": "https://currents.plos.org/treeoflife/article/the-tree-of-life-and-a-new-classification-of-bony-fishes/"}
@@ -1923,7 +1923,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "dolphin",
    "options": [
     "cow",
-    "seal",
+    "horse",
     "shark"
    ],
    "rank": [
@@ -1932,7 +1932,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     2
    ],
    "colour": "red",
-   "fact": "Dolphins and whales descend from hoofed land mammals, the group of cows, pigs and hippos. Seals went back to the sea separately.",
+   "fact": "Dolphins and whales descend from hoofed land mammals, the group of cows, pigs and hippos. Horses are hoofed too, but from another branch.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Artiodactyla"},
     {"name": "American Museum of Natural History", "url": "https://www.amnh.org/explore/news-blogs/whale-dolphin-evolution-analysis"}
@@ -2065,15 +2065,15 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "options": [
     "guinea_pig",
     "elephant",
-    "rabbit"
+    "aardvark"
    ],
    "rank": [
-    1,
+    2,
     0,
     1
    ],
    "colour": "red",
-   "fact": "The hyrax looks like a guinea pig, but its closest living relatives are elephants and sea cows.",
+   "fact": "The hyrax looks like a guinea pig, but its closest living relatives are elephants and sea cows. The aardvark comes from the same African group.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Hyrax"},
     {"name": "Britannica", "url": "https://www.britannica.com/animal/hyrax"}
@@ -2085,12 +2085,12 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "options": [
     "snake",
     "crocodile",
-    "salamander"
+    "chicken"
    ],
    "rank": [
     0,
     1,
-    2
+    1
    ],
    "colour": "teal",
    "fact": "The Komodo dragon and other monitor lizards share a branch with snakes. Crocodiles are closer to birds.",
@@ -2104,18 +2104,18 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "slug",
    "options": [
     "earthworm",
-    "centipede",
-    "octopus"
+    "octopus",
+    "snail"
    ],
    "rank": [
-    1,
     2,
+    1,
     0
    ],
    "colour": "magenta",
-   "fact": "Slugs are molluscs, like the octopus. Earthworms belong to another group.",
+   "fact": "Slugs are snails that lost their shell. The octopus is a mollusc too, and earthworms belong to another group.",
    "sources": [
-    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Mollusca"},
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Slug"},
     {"name": "Natural History Museum, London", "url": "https://www.nhm.ac.uk/discover/molluscs.html"}
    ]
   },
@@ -2206,19 +2206,19 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "elephant",
    "options": [
     "manatee",
-    "rhino",
+    "mammoth",
     "hippo"
    ],
    "rank": [
-    0,
     1,
-    1
+    0,
+    2
    ],
    "colour": "red",
-   "fact": "Manatees and other sea cows are among the elephant's closest living relatives. Rhinos and hippos only look the part.",
+   "fact": "Mammoths were elephants, from the same family. Manatees come next: sea cows are close relatives of elephants. Hippos only look the part.",
    "sources": [
-    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Paenungulata"},
-    {"name": "Natural History Museum, London", "url": "https://www.nhm.ac.uk/discover/what-is-a-sea-cow.html"}
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Elephantidae"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/mammoth-extinct-mammal"}
    ]
   },
   {
@@ -2267,15 +2267,15 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "options": [
     "mouse",
     "hedgehog",
-    "rabbit"
+    "bat"
    ],
    "rank": [
-    1,
+    2,
     0,
     1
    ],
    "colour": "red",
-   "fact": "A shrew looks like a mouse but is not a rodent. It belongs with hedgehogs and moles. Mice are closer to rabbits.",
+   "fact": "A shrew looks like a mouse but is not a rodent. It belongs with hedgehogs and moles, and even bats are closer to it than mice are.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Eulipotyphla"},
     {"name": "PubMed Central", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3539735"}
@@ -2346,7 +2346,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "tuna",
    "options": [
     "salmon",
-    "shark",
+    "eel",
     "seahorse"
    ],
    "rank": [
@@ -2355,7 +2355,7 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     0
    ],
    "colour": "blue",
-   "fact": "Tunas and seahorses look nothing alike, but they belong to the same group of bony fish. Salmon are on another branch, and sharks are cartilaginous fish.",
+   "fact": "Tunas and seahorses look nothing alike, but they belong to the same group of bony fish. Salmon are on another branch, and eels on an older one.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Percomorpha"},
     {"name": "PLOS Currents", "url": "https://currents.plos.org/treeoflife/article/the-tree-of-life-and-a-new-classification-of-bony-fishes/"}
@@ -2387,15 +2387,15 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "options": [
     "chicken",
     "salamander",
-    "eel"
+    "dog"
    ],
    "rank": [
     0,
-    1,
-    2
+    2,
+    1
    ],
    "colour": "teal",
-   "fact": "Lizards and birds are both amniotes, so a lizard is closer to a chicken than to a salamander. Salamanders are amphibians, like frogs.",
+   "fact": "Lizards and birds are both reptiles, so a lizard is closer to a chicken than to a dog. Salamanders are amphibians, like frogs.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Amniote"},
     {"name": "Systematic Biology", "url": "https://academic.oup.com/sysbio/article/70/1/49/5857591"}
@@ -2466,16 +2466,16 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
    "subject": "apple",
    "options": [
     "tomato",
-    "potato",
+    "moss",
     "oak"
    ],
    "rank": [
     1,
-    1,
+    2,
     0
    ],
    "colour": "green",
-   "fact": "The apple tree and the oak tree both belong to the rosids, a large group of flowering plants. Tomatoes and potatoes belong to the asterids.",
+   "fact": "The apple tree and the oak tree both belong to the rosids, a large group of flowering plants. Tomatoes are flowering plants too. Moss has no flowers.",
    "sources": [
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Rosids"},
     {"name": "Missouri Botanical Garden", "url": "https://www.mobot.org/MOBOT/research/APweb/orders/rosalesweb.htm"}
