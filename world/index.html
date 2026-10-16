@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>World table: which country plays the daily games best? | Logicers</title>
 <link rel="canonical" href="https://logicers.com/world/">
-<meta name="description" content="Every daily game anyone finishes on Logicers counts for their country. The world table ranks the countries for the day and the month, and shows how many games each has played.">
+<meta name="description" content="Every daily game anyone finishes on Logicers counts for their country. The world table ranks the countries for the day, the week and the month, and shows how many games each has played.">
 <meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
@@ -25,7 +25,7 @@
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="../assets/css/logicers.css?v=947d0aa15e">
-<link rel="stylesheet" href="world.css?v=b208437aae">
+<link rel="stylesheet" href="world.css?v=4551cecff5">
 </head>
 <body class="game wt-page" data-g="world">
 
@@ -44,7 +44,8 @@
   <div class="wt-tabs" role="tablist" aria-label="Which table">
     <button class="wt-tab" type="button" role="tab" id="tab-day" data-span="day" aria-selected="true">Today</button>
     <button class="wt-tab" type="button" role="tab" id="tab-yday" data-span="yday" aria-selected="false">Yesterday</button>
-    <button class="wt-tab" type="button" role="tab" id="tab-month" data-span="month" aria-selected="false">This month</button>
+    <button class="wt-tab" type="button" role="tab" id="tab-week" data-span="week" aria-selected="false">Week</button>
+    <button class="wt-tab" type="button" role="tab" id="tab-month" data-span="month" aria-selected="false">Month</button>
   </div>
 
   <!-- your own country: its place, its score, its games, and the invitation -->
@@ -63,7 +64,13 @@
   </section>
 
   <section class="wt-card" id="wt-best-card" hidden aria-labelledby="wt-best-h">
-    <h2 class="wt-h2" id="wt-best-h">Best scores</h2>
+    <div class="wt-head">
+      <h2 class="wt-h2" id="wt-best-h">Best scores</h2>
+      <button class="wt-share" id="wt-share" type="button" hidden>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 12.5V3.2M6.4 6.6L10 3l3.6 3.6M5.5 9.5H4.6v7h10.8v-7h-.9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Share top 10</span>
+      </button>
+    </div>
     <p class="wt-note" id="wt-best-note"></p>
     <ol class="wt-list" id="wt-best"></ol>
     <button class="wt-more" id="wt-best-more" type="button" hidden>Show every country</button>
@@ -87,9 +94,9 @@
       <li>A country's score is the average of its players' games that day, made fair across games, so nobody is ahead for playing the easier ones.</li>
       <li>A country above the world's average is pulled back toward it until it has enough games, so a handful of lucky games can't top the table.</li>
       <li>Every country also gets a small bonus for how many games its players finish: 2 points at 10 games, 4 at 100, 6 at 1,000, and never more than 8. Every friend who plays adds to it; playing well still matters most.</li>
-      <li>A country takes a place from 10 games in a day, or 30 in a month.</li>
+      <li>A country takes a place from 10 games in a day, 20 in a week, or 30 in a month.</li>
     </ol>
-    <p class="quiet">Your Call has no right answer, so it shows how the world chose; it counts in the games played and the bonus, never in the average. Practice never counts. The day is your own calendar day; the month is the month of today, up to today.</p>
+    <p class="quiet">Your Call has no right answer, so it shows how the world chose; it counts in the games played and the bonus, never in the average. Practice never counts. The day is your own calendar day; the week runs from Monday and the month from its first day, both up to today.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="world">No login and no cookies.</p>
     <label class="wt-opt"><input type="checkbox" id="wt-optin" checked> <span>Add my results to the world's counts</span></label>
@@ -99,11 +106,25 @@
   </div>
 </dialog>
 
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <h2 id="share-title">Share the table</h2>
+    <p class="quiet">Post the picture with the text, so others can tap the link and play for their country.</p>
+    <img class="shot" id="share-img" alt="The world table as a picture: the top ten countries, the first with its flag, score and games.">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="logicers-world.png">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button">Copy text</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
 <noscript><p style="padding:18px">This page needs JavaScript to run.</p></noscript>
 
 <script src="../assets/js/turnsout.js?v=8bf7bdbe57"></script>
 <script src="../assets/js/points.js?v=d060d18a9f"></script>
-<script src="../assets/js/world.js?v=a4b6e6931e"></script>
-<script src="world.js?v=717b6ec028"></script>
+<script src="../assets/js/world.js?v=25fb36c849"></script>
+<script src="world.js?v=b0998e775d"></script>
 </body>
 </html>

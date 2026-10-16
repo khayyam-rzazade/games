@@ -518,14 +518,15 @@
        + bonus: BONUS.per points for every tenfold of the games it played (Your Call's too), at most BONUS.most:
                 2 at 10 games, 4 at 100, 6 at 1,000, never more than 8, so inviting friends always helps and
                 playing well still matters most. The score never goes above 100.
-     Continents: the quality only, with the same rule and minimum. */
-  var PULL = { day: 30, month: 90 };
-  var MIN = { day: 10, month: 30 };
+     Continents: the quality only, with the same rule and minimum. A week (from Monday, 16 Oct 2026) sits between
+     the day and the month in both. */
+  var PULL = { day: 30, week: 60, month: 90 };
+  var MIN = { day: 10, week: 20, month: 30 };
   var BONUS = { per: 2, most: 8 };
   function bonus(played) { return played > 1 ? Math.min(BONUS.most, BONUS.per * Math.log(played) / Math.LN10) : 0; }
   function quality(n, a, K, M) { return n && a / n <= M ? a / n : (a + K * M) / (n + K); }
   function rank(d) {
-    var span = d.span === "month" ? "month" : "day", K = PULL[span], M = d.m || 0;
+    var span = d.span === "month" ? "month" : d.span === "week" ? "week" : "day", K = PULL[span], M = d.m || 0;
     /* n: the scored games, which rank; played: those and Your Call's, which count in the games played and the bonus */
     var rows = (d.cs || []).map(function (x) {
       var played = x[2] + (x[4] || 0), q = quality(x[2], x[3], K, M), b = bonus(played);

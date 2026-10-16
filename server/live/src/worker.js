@@ -625,8 +625,9 @@ async function admin(req, env, o) {
                         (YYYYMMDD by its own clock), up to the nine games -> { you, took, ks, view } (ks: the games
                         counted, the brake permitting; view: the view of k)
      POST /stats/view   { v, d, k } one game of one date -> { you, view }
-     POST /stats/world  { v, d, span: "day" | "month" } the world table of a date, or of its month up to it
-                        (a month only up to a date some clock is on now) -> { you, d, span, n, m, calls, games,
+     POST /stats/world  { v, d, span: "day" | "week" | "month" } the world table of a date, or of its week (from
+                        Monday) or month up to it (a week or month only up to a date some clock is on now)
+                        -> { you, d, span, n, m, calls, games,
                         cs: [[c, ct, n, a, calls]], ts, days }
    A date is taken only while some clock on earth is on it (UTC-12 to UTC+14), and read for 70 days. */
 const STATS = 1;                    // the version of these calls; a page that sends another is told "old"
@@ -714,18 +715,19 @@ async function statsWorld(req, env, o) {
   const b = r.body, now = Date.now();
   if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
   if (!dateRead(b.d, now)) return answer(400, { e: "day" }, o);
-  const span = b.span === "month" ? "month" : "day";
-  /* a month is read only up to a date some clock is on now: this month's table (older days are kept 75 days,
-     so an older month would come back with its first days missing) */
-  if (span === "month" && !dateOn(b.d, now)) return answer(400, { e: "day" }, o);
+  const span = b.span === "month" ? "month" : b.span === "week" ? "week" : "day";
+  /* a week or a month is read only up to a date some clock is on now: this week's or this month's table (older
+     days are kept 75 days, so an older month would come back with its first days missing) */
+  if (span !== "day" && !dateOn(b.d, now)) return answer(400, { e: "day" }, o);
   const you = geo(req, env);
   if (span === "day") {
     const s = await summaryOf(env, b.d, now);
     return answer(200, Object.assign({ you, d: b.d, span, days: 1 }, s), o);
   }
-  /* the month of date d, from its first day up to d: each day's points made fair within the day (tally.js),
-     then the days put on one level, the month's own average */
-  const t0 = dayStart(b.d.slice(0, 6) + "01"), t1 = dayStart(b.d);
+  /* the week of date d (from its Monday) or its month (from its first day), up to d: each day's points made fair
+     within the day (tally.js), then the days put on one level, the span's own average */
+  const t1 = dayStart(b.d);
+  const t0 = span === "month" ? dayStart(b.d.slice(0, 6) + "01") : t1 - ((new Date(t1).getUTCDay() + 6) % 7) * 24 * H;
   const dates = [];
   for (let t = t0; t <= t1; t += 24 * H) dates.push(keyOfUTC(t));
   const all = await Promise.all(dates.map((d) => summaryOf(env, d, now).catch(() => null)));

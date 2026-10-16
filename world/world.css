@@ -9,9 +9,9 @@
 .wt-h1 { margin-top: 10px; font-family: var(--display); font-weight: 800; font-size: clamp(1.75rem, 7.4vw, 2.5rem); letter-spacing: -0.035em; line-height: 1.07; }
 .wt-lede { margin-top: 8px; font-size: 1.05rem; line-height: 1.4; }
 
-/* Today · Yesterday · This month */
-.wt-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 18px; padding: 4px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); }
-.wt-tab { appearance: none; min-height: 42px; border: 0; border-radius: 999px; background: none; color: var(--soft); font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* Today · Yesterday · Week · Month */
+.wt-tabs { display: grid; grid-template-columns: repeat(4, auto); justify-content: stretch; gap: 4px; margin-top: 18px; padding: 4px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); }
+.wt-tab { appearance: none; min-height: 42px; padding: 0 6px; border: 0; border-radius: 999px; background: none; color: var(--soft); font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .wt-tab[aria-selected="true"] { background: var(--c); color: var(--on-c); }
 
 /* your country */
@@ -45,6 +45,13 @@
 .wt-card { margin-top: 14px; padding: 16px 16px 12px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
 .wt-card[hidden] { display: none; }
 .wt-h2 { font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+.wt-head .wt-h2 { white-space: nowrap; }
+/* the heading of the best scores, with the way to share them */
+.wt-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.wt-share { appearance: none; display: inline-flex; align-items: center; gap: 6px; flex: none; min-height: 38px; padding: 0 14px 0 11px; border: 0; border-radius: 999px; background: #F6C445; color: #15172B; font: inherit; font-weight: 800; font-size: 0.88rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.wt-share[hidden] { display: none; }
+.wt-share svg { width: 18px; height: 18px; flex: none; }
+.wt-share:active { transform: scale(0.97); }
 .wt-note { margin-top: 3px; color: var(--soft); font-size: 0.84rem; font-weight: 600; line-height: 1.3; }
 .wt-note:empty { display: none; }
 .wt-conts { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
@@ -84,8 +91,9 @@
   .wt-place b { font-size: 2rem; }
   .wt-fact b { font-size: 1.3rem; }
   .wt-conts li { grid-template-columns: minmax(0, 7rem) 1fr 2rem; gap: 8px; }
-  .wt-tab { font-size: 0.88rem; }
+  .wt-tab { font-size: 0.84rem; padding: 0 4px; }
+  .wt-share { padding: 0 11px 0 9px; font-size: 0.82rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .wt-play:active { transform: none; }
+  .wt-play:active, .wt-share:active { transform: none; }
 }

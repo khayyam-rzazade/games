@@ -193,6 +193,14 @@ ok(s.span === "month" && s.days >= 1 && s.n >= 4, "with its days and results");
 ok(s.cs.find((x) => x[0] === X && x[2] >= 2 && x[4] >= 1), "and the country's results of the month, with its Your Call");
 eq((await post("/stats/world", { v: 1, d: far, span: "month" })).status, 400, "a month of a date nobody is on yet is refused");
 eq((await post("/stats/world", { v: 1, d: old, span: "month" })).status, 400, "a month is read only up to a date some clock is on now");
+
+/* the week: from its Monday up to the date */
+s = await post("/stats/world", { v: 1, d: today, span: "week" }, { geo: X + ",OC" });
+eq(s.status, 200, "the week is read");
+const wd = (new Date(Date.UTC(+today.slice(0, 4), +today.slice(4, 6) - 1, +today.slice(6, 8))).getUTCDay() + 6) % 7;   // 0 on a Monday
+ok(s.span === "week" && s.days >= 1 && s.days <= wd + 1 && s.n >= 4, "with its days (at most Monday to today) and its results");
+ok(s.cs.find((x) => x[0] === X && x[2] >= 2 && x[4] >= 1), "and the country's results of the week, with its Your Call");
+eq((await post("/stats/world", { v: 1, d: old, span: "week" })).status, 400, "a week is read only up to a date some clock is on now");
 eq((await post("/stats/world", { v: 1, d: old, span: "day" })).status, 200, "an earlier day is still read");
 
 /* nothing about a player in any answer */
