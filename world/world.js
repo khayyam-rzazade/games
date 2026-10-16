@@ -1,7 +1,8 @@
 /* The World table (16 Oct 2026): which country plays the daily games best, today, yesterday and this month.
    Everything comes from the server's summary of a date or a month (/stats/world, server/live/src/tally.js),
    ranked here by assets/js/world.js (LogicersWorld.rank): a country's score is its players' average points,
-   made fair across games by the server and pulled toward the world's average while it has few games. */
+   made fair across games by the server, pulled toward the world's average while it has few games, plus a small
+   bonus for how many games it played (16 Oct 2026). */
 (function () {
   "use strict";
 
@@ -154,14 +155,14 @@
     /* the best scores: the top 20 (or all), and your country's row where it stands */
     var best = $("wt-best");
     best.textContent = "";
-    var cut = all ? t.ranked.length : 20, meAt = 0;
+    var cut = all ? t.ranked.length : 10, meAt = 0;      // the top 10; "Show every country", all of them
     t.ranked.forEach(function (x) { if (x.c === mine) meAt = x.at; });
     t.ranked.slice(0, cut).forEach(function (x) { best.appendChild(row(x, x.at, mine, String(Math.round(x.s)), games(x.played))); });
     if (meAt > cut) {
       if (meAt > cut + 1) best.appendChild(gap());
       best.appendChild(row(t.ranked[meAt - 1], meAt, mine, String(Math.round(t.ranked[meAt - 1].s)), games(t.ranked[meAt - 1].played)));
     }
-    $("wt-best-more").hidden = all || t.ranked.length <= 20;
+    $("wt-best-more").hidden = all || t.ranked.length <= 10;
     $("wt-best-note").textContent = t.ranked.length
       ? t.ranked.length + (t.ranked.length === 1 ? " country" : " countries") + " with " + t.min + " games or more. Score out of 100."
       : "No country has " + t.min + " games yet " + when(sp) + ". Yours could be the first.";

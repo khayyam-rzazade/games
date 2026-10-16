@@ -510,22 +510,32 @@
   }
 
   /* ---------------- the table itself, worked out from a summary (the World table page and the home box) ----
-     A country's score is its players' average points, made fair across games by the server (tally.js), and
-     pulled toward the world's average as if it had PULL more games at that average: a handful of lucky games
-     never tops the table, and every friend who plays makes a country's own score count for more. */
-  var PULL = { day: 10, month: 30 };
-  var MIN = { day: 3, month: 10 };
+     A country's score (16 Oct 2026, Khayyam's choice "C": quality first, and some credit for bringing players):
+       quality: its players' average points, made fair across games by the server (tally.js); above the world's
+                average it is pulled back toward it as if it had PULL more games at that average, so a handful of
+                lucky games never tops the table, while below it a country keeps its own average (so more
+                players never hurt it); a country takes a place from MIN games;
+       + bonus: BONUS.per points for every tenfold of the games it played (Your Call's too), at most BONUS.most:
+                2 at 10 games, 4 at 100, 6 at 1,000, never more than 8, so inviting friends always helps and
+                playing well still matters most. The score never goes above 100.
+     Continents: the quality only, with the same rule and minimum. */
+  var PULL = { day: 30, month: 90 };
+  var MIN = { day: 10, month: 30 };
+  var BONUS = { per: 2, most: 8 };
+  function bonus(played) { return played > 1 ? Math.min(BONUS.most, BONUS.per * Math.log(played) / Math.LN10) : 0; }
+  function quality(n, a, K, M) { return n && a / n <= M ? a / n : (a + K * M) / (n + K); }
   function rank(d) {
     var span = d.span === "month" ? "month" : "day", K = PULL[span], M = d.m || 0;
-    /* n: the scored games, which rank; played: those and Your Call's, which count in the games played */
+    /* n: the scored games, which rank; played: those and Your Call's, which count in the games played and the bonus */
     var rows = (d.cs || []).map(function (x) {
-      return { c: x[0], ct: x[1], n: x[2], played: x[2] + (x[4] || 0), raw: x[2] ? x[3] / x[2] : 0, s: (x[3] + K * M) / (x[2] + K) };
+      var played = x[2] + (x[4] || 0), q = quality(x[2], x[3], K, M), b = bonus(played);
+      return { c: x[0], ct: x[1], n: x[2], played: played, q: q, bonus: b, s: Math.min(100, q + b) };
     });
     var ranked = rows.filter(function (x) { return x.n >= MIN[span]; })
       .sort(function (a, b) { return b.s - a.s || b.n - a.n || (a.c < b.c ? -1 : 1); });
     ranked.forEach(function (x, i) { x.at = i + 1; });
     var busy = rows.slice().sort(function (a, b) { return b.played - a.played || (a.c < b.c ? -1 : 1); });
-    var conts = (d.ts || []).map(function (x) { return { ct: x[0], n: x[1], s: (x[2] + K * M) / (x[1] + K) }; })
+    var conts = (d.ts || []).map(function (x) { return { ct: x[0], n: x[1], s: quality(x[1], x[2], K, M) }; })
       .filter(function (x) { return CONT[x.ct] && x.ct !== "AN" && x.n >= MIN[span]; })
       .sort(function (a, b) { return b.s - a.s || b.n - a.n; });
     return { rows: rows, ranked: ranked, busy: busy, conts: conts, min: MIN[span], m: M };
@@ -534,7 +544,7 @@
   window.LogicersWorld = {
     on: on, call: call, flush: flush, flushBoth: flushBoth, todayKey: todayKey, shiftKey: shiftKey, dateOf: dateOf,
     countryName: countryName, flag: flag, flagEl: flagEl, contName: contName, CONT: CONT,
-    commas: commas, nth: nth, rank: rank, invite: invite, inviteButton: inviteButton, inviteText: inviteText,
+    commas: commas, nth: nth, rank: rank, bonus: bonus, BONUS: BONUS, invite: invite, inviteButton: inviteButton, inviteText: inviteText,
     off: off, setOff: setOff, block: block, draw: draw, el: el, tableUrl: tableUrl, PULL: PULL, MIN: MIN
   };
 
