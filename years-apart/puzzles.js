@@ -22,6 +22,21 @@ window.TURNSOUT_DATA["years-apart"] = {
     }
    ]
   },
+  "amundsen": {
+   "t": "Amundsen reaches the South Pole",
+   "y": "1911",
+   "stamp": "South Pole",
+   "src": [
+    {
+     "name": "Guinness World Records",
+     "url": "https://guinnessworldrecords.com/world-records/first-person-to-reach-the-south-pole"
+    },
+    {
+     "name": "History UK",
+     "url": "https://www.history.co.uk/this-day-in-history/14-december/amundsen-reaches-south-pole"
+    }
+   ]
+  },
   "bastille": {
    "t": "The storming of the Bastille",
    "y": "1789",
@@ -577,6 +592,21 @@ window.TURNSOUT_DATA["years-apart"] = {
     }
    ]
   },
+  "opera-house": {
+   "t": "The Sydney Opera House is officially opened",
+   "y": "1973",
+   "stamp": "Sydney Opera House",
+   "src": [
+    {
+     "name": "Museums of History NSW",
+     "url": "https://mhnsw.au/stories/general/20-october-1973"
+    },
+    {
+     "name": "Oxford University Press",
+     "url": "https://blog.oup.com/2011/10/soh/"
+    }
+   ]
+  },
   "panama": {
    "t": "The Panama Canal opens",
    "y": "1914",
@@ -802,6 +832,21 @@ window.TURNSOUT_DATA["years-apart"] = {
     }
    ]
   },
+  "terracotta": {
+   "t": "Farmers find the Terracotta Army",
+   "y": "1974",
+   "stamp": "Terracotta Army",
+   "src": [
+    {
+     "name": "History.com",
+     "url": "https://www.history.com/articles/5-things-you-may-not-know-about-the-terra-cotta-army"
+    },
+    {
+     "name": "The China Project",
+     "url": "https://thechinaproject.com/2022/03/30/terracotta-warriors-an-archaeological-find-for-the-ages/"
+    }
+   ]
+  },
   "titanic": {
    "t": "The Titanic sinks",
    "y": "1912",
@@ -844,6 +889,21 @@ window.TURNSOUT_DATA["years-apart"] = {
     {
      "name": "History.com",
      "url": "https://www.history.com/this-day-in-history/november-4/entrance-to-king-tuts-tomb-discovered"
+    }
+   ]
+  },
+  "vikings": {
+   "t": "Vikings cut wood in Newfoundland",
+   "y": "1021",
+   "stamp": "Vikings in America",
+   "src": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/L%27Anse_aux_Meadows"
+    },
+    {
+     "name": "Nature",
+     "url": "https://www.nature.com/articles/s41586-021-03972-8"
     }
    ]
   },
@@ -1563,6 +1623,246 @@ window.TURNSOUT_DATA["years-apart"] = {
    "at": 0.34761,
    "span": 414.257,
    "fact": "Newton's Principia came out 144 years after Copernicus published his model of the universe, and 270 years before Sputnik."
+  },
+  {
+   "id": "alexander-pyramid-titanic",
+   "colour": "red",
+   "left": "pyramid",
+   "mid": "alexander",
+   "right": "titanic",
+   "at": 0.50035,
+   "span": 4470.786,
+   "fact": "Alexander the Great died almost halfway between the Great Pyramid's completion and the sinking of the Titanic: about 2,237 years after one, 2,234 years before the other."
+  },
+  {
+   "id": "galileo-magellan-moon",
+   "colour": "teal",
+   "left": "magellan",
+   "mid": "galileo",
+   "right": "moon",
+   "at": 0.19521,
+   "span": 446.869,
+   "fact": "Galileo turned his telescope to the Moon 87 years after the first voyage around the world ended, and 360 years before astronauts landed on it."
+  },
+  {
+   "id": "genghis-caesar-iphone",
+   "colour": "red",
+   "left": "caesar",
+   "mid": "genghis",
+   "right": "iphone",
+   "at": 0.60933,
+   "span": 2050.29,
+   "fact": "Temüjin became Genghis Khan 1,249 years after Julius Caesar was killed, but only 801 years before the first iPhone."
+  },
+  {
+   "id": "gagarin-wright-moon",
+   "colour": "teal",
+   "left": "wright",
+   "mid": "gagarin",
+   "right": "moon",
+   "at": 0.8739,
+   "span": 65.589,
+   "fact": "Gagarin became the first person in space 57 years after the Wright brothers' first powered flight, and just 8 years before the Moon landing."
+  },
+  {
+   "id": "charlemagne-romefalls-hastings",
+   "colour": "red",
+   "left": "rome-falls",
+   "mid": "charlemagne",
+   "right": "hastings",
+   "at": 0.54957,
+   "span": 590.11,
+   "fact": "Charlemagne was crowned emperor 324 years after Rome's last western emperor was deposed, and 266 years before the Battle of Hastings."
+  },
+  {
+   "id": "tutankhamun-rosetta-moon",
+   "colour": "magenta",
+   "left": "rosetta",
+   "mid": "tutankhamun",
+   "right": "moon",
+   "at": 0.72526,
+   "span": 170.007,
+   "fact": "The steps to Tutankhamun's tomb were found 123 years after the discovery of the Rosetta Stone, and 47 years before the Moon landing."
+  },
+  {
+   "id": "declaration-columbus-iphone",
+   "colour": "red",
+   "left": "columbus",
+   "mid": "declaration",
+   "right": "iphone",
+   "at": 0.55123,
+   "span": 514.713,
+   "fact": "The US Declaration of Independence came 284 years after Columbus reached the Americas, but only 231 years before the first iPhone."
+  },
+  {
+   "id": "everest-amundsen-moon",
+   "colour": "blue",
+   "left": "amundsen",
+   "mid": "everest",
+   "right": "moon",
+   "at": 0.71974,
+   "span": 57.598,
+   "fact": "Hillary and Tenzing reached the top of Everest 41 years after Amundsen reached the South Pole, and 16 years before the Moon landing."
+  },
+  {
+   "id": "operahouse-firstfleet-iphone",
+   "colour": "violet",
+   "left": "first-fleet",
+   "mid": "opera-house",
+   "right": "iphone",
+   "at": 0.84646,
+   "span": 219.422,
+   "fact": "The Sydney Opera House was officially opened 186 years after the First Fleet arrived at Sydney Cove, and only 34 years before the first iPhone."
+  },
+  {
+   "id": "panama-darwin-moon",
+   "colour": "green",
+   "left": "darwin",
+   "mid": "panama",
+   "right": "moon",
+   "at": 0.49906,
+   "span": 109.652,
+   "fact": "The Panama Canal opened almost exactly halfway between Darwin's On the Origin of Species and the Moon landing: 55 years after one, 55 before the other."
+  },
+  {
+   "id": "constantinople-hagia-iphone",
+   "colour": "red",
+   "left": "hagia",
+   "mid": "constantinople",
+   "right": "iphone",
+   "at": 0.62307,
+   "span": 1469.991,
+   "fact": "When Constantinople fell to the Ottomans, the Hagia Sophia was already 916 years old. The first iPhone came 554 years later."
+  },
+  {
+   "id": "colosseum-olympia-athens",
+   "colour": "violet",
+   "left": "olympia",
+   "mid": "colosseum",
+   "right": "olympics-1896",
+   "at": 0.32013,
+   "span": 2670.761,
+   "fact": "The Colosseum opened 855 years after the first recorded Olympic Games, and 1,816 years before the first modern Olympics."
+  },
+  {
+   "id": "terracotta-moon-iphone",
+   "colour": "magenta",
+   "left": "moon",
+   "mid": "terracotta",
+   "right": "iphone",
+   "at": 0.1228,
+   "span": 37.943,
+   "fact": "Farmers digging a well found the Terracotta Army 5 years after the Moon landing, and 33 years before the first iPhone."
+  },
+  {
+   "id": "eiffel-bastille-berlinwall",
+   "colour": "violet",
+   "left": "bastille",
+   "mid": "eiffel",
+   "right": "berlin-wall",
+   "at": 0.49776,
+   "span": 200.323,
+   "fact": "The Eiffel Tower was completed almost exactly halfway between the storming of the Bastille and the fall of the Berlin Wall: 100 years after one, 101 before the other."
+  },
+  {
+   "id": "amundsen-columbus-moon",
+   "colour": "blue",
+   "left": "columbus",
+   "mid": "amundsen",
+   "right": "moon",
+   "at": 0.87919,
+   "span": 476.77,
+   "fact": "Amundsen reached the South Pole 419 years after Columbus reached the Americas, and only 58 years before the Moon landing."
+  },
+  {
+   "id": "blackdeath-romefalls-iphone",
+   "colour": "teal",
+   "left": "rome-falls",
+   "mid": "black-death",
+   "right": "iphone",
+   "at": 0.56905,
+   "span": 1530.817,
+   "fact": "The Black Death reached Sicily 871 years after Rome's last western emperor was deposed, and 660 years before the first iPhone."
+  },
+  {
+   "id": "suez-gama-panama",
+   "colour": "green",
+   "left": "gama",
+   "mid": "suez",
+   "right": "panama",
+   "at": 0.89251,
+   "span": 416.238,
+   "fact": "The Suez Canal opened 371 years after Vasco da Gama reached India by sea, and only 45 years before the Panama Canal opened."
+  },
+  {
+   "id": "dna-darwin-iphone",
+   "colour": "teal",
+   "left": "darwin",
+   "mid": "dna",
+   "right": "iphone",
+   "at": 0.63293,
+   "span": 147.595,
+   "fact": "The double helix of DNA was published 93 years after Darwin's On the Origin of Species, and 54 years before the first iPhone."
+  },
+  {
+   "id": "magellan-hastings-moon",
+   "colour": "blue",
+   "left": "hastings",
+   "mid": "magellan",
+   "right": "moon",
+   "at": 0.505,
+   "span": 902.765,
+   "fact": "The first voyage around the world ended almost halfway between the Battle of Hastings and the Moon landing: 456 years after one, 447 before the other."
+  },
+  {
+   "id": "olympia-pyramid-caesar",
+   "colour": "magenta",
+   "left": "pyramid",
+   "mid": "olympia",
+   "right": "caesar",
+   "at": 0.70915,
+   "span": 2515.701,
+   "fact": "The first recorded Olympic Games were held about 1,784 years after the Great Pyramid was finished, but only 732 years before Julius Caesar was killed."
+  },
+  {
+   "id": "wright-declaration-iphone",
+   "colour": "green",
+   "left": "declaration",
+   "mid": "wright",
+   "right": "iphone",
+   "at": 0.55178,
+   "span": 230.986,
+   "fact": "The Wright brothers' first powered flight came 127 years after the US Declaration of Independence, and 104 years before the first iPhone."
+  },
+  {
+   "id": "vikings-charlemagne-columbus",
+   "colour": "blue",
+   "left": "charlemagne",
+   "mid": "vikings",
+   "right": "columbus",
+   "at": 0.31876,
+   "span": 691.797,
+   "fact": "Vikings were cutting wood in Newfoundland 221 years after Charlemagne was crowned, and 471 years before Columbus reached the Americas."
+  },
+  {
+   "id": "firelondon-magna-moon",
+   "colour": "violet",
+   "left": "magna",
+   "mid": "fire-london",
+   "right": "moon",
+   "at": 0.59835,
+   "span": 754.096,
+   "fact": "The Great Fire of London broke out 451 years after Magna Carta was sealed, and 303 years before the Moon landing."
+  },
+  {
+   "id": "nintendo-railway-titanic",
+   "colour": "green",
+   "left": "railway",
+   "mid": "nintendo",
+   "right": "titanic",
+   "at": 0.73672,
+   "span": 86.548,
+   "fact": "Nintendo began in 1889, making playing cards: 64 years after the first public passenger railway opened, and 23 years before the Titanic sank."
   }
  ]
 };

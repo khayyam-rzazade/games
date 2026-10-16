@@ -1449,10 +1449,16 @@
     if (g.id === "s-order") k.st.shuffle = v === "1";
     else if (g.id === "s-timer") k.st.timer = +v;
     else if (g.id === "s-names") k.st.picked = v === "1";
-    else if (g.id === "s-lang") { setGameLang(v); return; }
     else return;
     segSet(g, v);
     changed();
+  });
+  /* the game's language stands first in the game's column since 16 Oct 2026 (Khayyam: on a phone it was hidden at
+     the bottom of the settings), so it listens for itself */
+  $("s-lang").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-v]");
+    if (!b || !G) return;
+    setGameLang(b.getAttribute("data-v"));
   });
   $("s-n").addEventListener("change", function () { G.kit.st.n = +this.value; changed(); });
   $("s-sure").addEventListener("change", function () {

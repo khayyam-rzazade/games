@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=13f6f29a3c">
+<link rel="stylesheet" href="assets/css/logicers.css?v=947d0aa15e">
 </head>
 <body class="home">
 
@@ -87,6 +87,20 @@
       <b class="gameroom-h" id="gameroom-h">Game Room</b>
       <span class="gameroom-sub" id="gameroom-sub">Play with friends: a table for the day, the week and the month.</span>
       <span class="gameroom-faces" id="gameroom-faces" hidden></span>
+    </span>
+  </a>
+  <!-- The World table box (16 Oct 2026), under the Game Room box and the same size. It waits hidden until the
+       world's counts are switched on (assets/js/world.js unhides it and fills it with your country's place). -->
+  <a class="gameroom worldbox" id="worldbox" href="world/" hidden>
+    <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
+      <circle cx="22" cy="22" r="17" fill="#2D4FC4"/>
+      <path d="M12.5 13.5c3 .4 4.6 2 4.2 4.6-.3 2.2 1.7 3 3.6 3.4 2.3.5 2.5 2.6 1.4 4.4-1.2 2-.6 4.6 1 6.6-4.6.3-8.4-1.8-10.8-5.4-2.6-3.9-2.4-9 .6-13.6zM26.5 8c-.6 1.8.2 3.2 2 3.8 2 .7 2.4 2.4 1.4 4.1-.9 1.6.4 3 2.2 3.2 1.4.2 2.7-.3 3.7-1.2.6 4.4-.9 8.6-4.1 11.6-.9-2-2.4-3-4.4-3.2-2.2-.2-3.4-1.8-2.7-3.9.6-1.7-.3-3.1-2-3.6-1.9-.6-2.5-2.3-1.5-4C22 12.3 24 9.6 26.5 8z" fill="#2FA36B"/>
+      <circle cx="34.5" cy="34.5" r="7.5" fill="#FFB020" stroke="#fff" stroke-width="2"/>
+      <path d="M31.4 34.4l2.2 2.2 4-4.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg></span>
+    <span class="gameroom-text">
+      <b class="gameroom-h" id="worldbox-h">World table</b>
+      <span class="gameroom-sub" id="worldbox-sub">Every game you finish counts for your country.</span>
     </span>
   </a>
 </section>
@@ -369,6 +383,8 @@
     <h3>Rooms</h3>
     <p class="quiet">A room is 2 to 50 friends playing the daily games with a shared table, today's and the month's, joined by one link. Outside your own browser it stores only this: when a member finishes a daily game, their phone sends the game, the score, the guess, the day and their chosen name to the site's own small server — nothing else, and nothing at all for anyone who is in no room. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole; leaving a room deletes everything of yours at once, and the room's maker can delete the whole room. <a href="room/">Make or join a room</a>.</p>
     </div>
+    <h3>The world's counts</h3>
+    <p class="quiet">After every daily game, "The world today" shows how you did beside the world, your continent and your country, and the <a href="world/">World table</a> ranks the countries for the day and the month. For this, each daily game you finish sends the game, how far off you were and, for the games whose guess is one number, your guess, to the site's own small server. The server reads your country and continent from your connection, adds the result to that country's counts for the day and keeps only the counts: no address, nothing that identifies you, and a guess only as an average of two or more. A day's counts are deleted 75 days after it. You can leave your results out on the World table page, under its <b>?</b>.</p>
     <h3>Live games</h3>
     <p class="quiet">How Sure? is played live, by a room: the host opens a game, everyone joins with its code on their own phone, and a TV, a projector or a laptop is optional. No account for anyone. The name a player types and their answers stay on the site's own small server for the game and are deleted a day after it ends (the server's own backups clear within 30 days); nothing else about anyone is kept. Every answer in Logicers' question sets was checked on two websites, both linked under it. Anyone can also build a game of their own, with numbers, choices, true or false and typed answers, in English, Italian or Turkish, and with no account: a saved game holds what its maker typed into it (an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link, and the address itself only if they also tick feedback emails) and, when it is played alone, the names and answers of its players, and is deleted with them two months after its last use. Logicers does not check games people make, and every screen of one has a Report link. <a href="live/">Play live</a> · <a href="live/build/">Build your own</a>.</p>
     <h3>Your privacy</h3>
@@ -389,9 +405,11 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=456b6eeae8"></script>
+<script src="assets/js/turnsout.js?v=e9c33f97f7"></script>
 <script src="assets/js/duel.js?v=6cb85e8123"></script>
 <script src="assets/js/rooms.js?v=cb55b4b70d"></script>
+<script src="assets/js/points.js?v=d060d18a9f"></script>
+<script src="assets/js/world.js?v=60d2f0a58f"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */

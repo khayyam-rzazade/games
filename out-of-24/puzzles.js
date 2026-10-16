@@ -1939,6 +1939,729 @@ window.TURNSOUT_DATA["out-of-24"] = {
      "url": "https://www.ptaheute.de/aktuelles/2024/06/20/weniger-schlaf-mit-kindern-im-haushalt"
     }
    ]
+  },
+  {
+   "id": "frigatebird-flight",
+   "colour": "blue",
+   "face": "Frigatebird",
+   "pic": "albatross",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    },
+    {
+     "i": "pin",
+     "t": "at sea"
+    }
+   ],
+   "lo": 42,
+   "hi": 42,
+   "fig": "42 min",
+   "sentence": "On flights of up to ten days over the ocean, great frigatebirds slept only about 42 minutes a day.",
+   "note": "Brain recordings of great frigatebirds nesting in the Galápagos Islands (Rattenborg and others, Nature Communications, 2016). The drawing is of an albatross, another seabird.",
+   "src": [
+    {
+     "name": "Max Planck Society",
+     "url": "https://www.mpg.de/10673637/frigatebirds-sleep"
+    },
+    {
+     "name": "Popular Science",
+     "url": "https://www.popsci.com/birds-can-sleep-on-wing-sometimes/"
+    }
+   ]
+  },
+  {
+   "id": "jp-mothers-housework",
+   "colour": "red",
+   "face": "Japan",
+   "flag": "jp",
+   "act": "care",
+   "label": "housework and care",
+   "chips": [
+    {
+     "i": "care",
+     "t": "housework and care"
+    },
+    {
+     "i": "people",
+     "t": "mothers, child under 6"
+    }
+   ],
+   "lo": 448,
+   "hi": 448,
+   "fig": "7 h 28",
+   "sentence": "In Japan, mothers of children under 6 spend 7 hours 28 minutes a day on housework, care and shopping.",
+   "note": "Wives in couple households with a child under 6, over the whole week, 2021 (Statistics Bureau of Japan). Their husbands spend 1 hour 54.",
+   "src": [
+    {
+     "name": "Statistics Bureau of Japan",
+     "url": "https://www.stat.go.jp/english/data/shakai/2021/pdf/timeuse-a2021.pdf"
+    },
+    {
+     "name": "Ehime Prefecture",
+     "url": "https://www.pref.ehime.jp/uploaded/attachment/113925.pdf"
+    }
+   ]
+  },
+  {
+   "id": "baboon-sleep",
+   "colour": "teal",
+   "face": "Baboon",
+   "pic": "monkey",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 588,
+   "hi": 618,
+   "fig": "9 h 48–10 h 18",
+   "sentence": "A baboon sleeps about 9.8 to 10.3 hours a day, a little more than a chimpanzee.",
+   "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976). The drawing is of a rhesus macaque, a close cousin.",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "ETH Zurich (Allison and Cicchetti)",
+     "url": "https://stat.ethz.ch/Teaching/Datasets/sleep.txt+dat"
+    }
+   ]
+  },
+  {
+   "id": "cn-men-housework",
+   "colour": "red",
+   "face": "China",
+   "flag": "cn",
+   "act": "care",
+   "label": "housework and care",
+   "chips": [
+    {
+     "i": "care",
+     "t": "housework and care"
+    },
+    {
+     "i": "people",
+     "t": "men"
+    }
+   ],
+   "lo": 92,
+   "hi": 92,
+   "fig": "1 h 32",
+   "sentence": "Men in China spend 1 hour 32 minutes a day on unpaid work, such as housework and care; women 3 hours 48.",
+   "note": "People aged 15 and over, 2018 (National Bureau of Statistics of China). Housework alone: men 45 minutes, women 2 hours 6.",
+   "src": [
+    {
+     "name": "National Bureau of Statistics of China",
+     "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/201901/t20190125_1768278.html"
+    },
+    {
+     "name": "China Daily",
+     "url": "https://cn.chinadaily.com.cn/a/201901/25/WS5c4aa139a31010568bdc67bf.html"
+    }
+   ]
+  },
+  {
+   "id": "ferret-sleep",
+   "colour": "teal",
+   "face": "Ferret",
+   "pic": "weasel",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 840,
+   "hi": 1080,
+   "fig": "14–18 h",
+   "sentence": "A ferret sleeps about 14 to 18 hours a day, and is most active around dawn and dusk.",
+   "note": "The University of Washington's table gives 14.5 hours; Wikipedia 14 to 18. The drawing is of a stoat, a close cousin.",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Ferret"
+    }
+   ]
+  },
+  {
+   "id": "at-women-paid-work",
+   "colour": "red",
+   "face": "Austria",
+   "flag": "at",
+   "act": "work",
+   "label": "paid work",
+   "chips": [
+    {
+     "i": "work",
+     "t": "paid work"
+    },
+    {
+     "i": "people",
+     "t": "women"
+    }
+   ],
+   "lo": 133,
+   "hi": 133,
+   "fig": "2 h 13",
+   "sentence": "Women in Austria do 2 hours 13 minutes of paid work a day on average; men 3 hours 35, by the survey of 2021–22.",
+   "note": "Women and girls aged 10 and over, working or not, Monday to Sunday (Statistik Austria). The 42% who worked on a given day did 7 hours 27.",
+   "src": [
+    {
+     "name": "Statistik Austria",
+     "url": "https://www.statistik.at/fileadmin/announcement/2023/12/20231218ZVE20212022.pdf"
+    },
+    {
+     "name": "APA, via vienna.at",
+     "url": "https://www.vienna.at/arbeitszeit-weiter-unterschied-zwischen-frauen-und-mannern/8467552"
+    }
+   ]
+  },
+  {
+   "id": "us-sleep",
+   "colour": "violet",
+   "face": "USA",
+   "flag": "us",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 542,
+   "hi": 542,
+   "fig": "9 h 02",
+   "sentence": "People in the USA sleep about 9 hours a day on average, counting naps, by the national time-use survey of 2025.",
+   "note": "People aged 15 and over, all seven days (US Bureau of Labor Statistics). It includes naps and spells of sleeplessness: 9.04 hours in 2024, 9.03 in 2025.",
+   "src": [
+    {
+     "name": "US Bureau of Labor Statistics",
+     "url": "https://www.bls.gov/tus/latest-numbers.htm"
+    },
+    {
+     "name": "FRASER, Federal Reserve Bank of St. Louis",
+     "url": "https://fraser.stlouisfed.org/files/docs/releases/atus/atus_20250626.pdf"
+    }
+   ]
+  },
+  {
+   "id": "manatee-eating",
+   "colour": "blue",
+   "face": "Manatee",
+   "pic": "manatee",
+   "act": "eating",
+   "label": "eating",
+   "chips": [
+    {
+     "i": "eating",
+     "t": "eating"
+    }
+   ],
+   "lo": 360,
+   "hi": 480,
+   "fig": "6–8 h",
+   "sentence": "A manatee spends six to eight hours a day grazing on seagrass and other water plants.",
+   "note": "From the US National Park Service (West Indian manatees in Florida) and SeaWorld; neither page names a study. The drawing is of the West African manatee.",
+   "src": [
+    {
+     "name": "US National Park Service",
+     "url": "https://www.nps.gov/foma/learn/nature/manatee.htm"
+    },
+    {
+     "name": "SeaWorld",
+     "url": "https://seaworld.org/animals/all-about/manatee/behavior"
+    }
+   ]
+  },
+  {
+   "id": "de-paid-work",
+   "colour": "red",
+   "face": "Germany",
+   "flag": "de",
+   "act": "work",
+   "label": "paid work",
+   "chips": [
+    {
+     "i": "work",
+     "t": "paid work"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 150,
+   "hi": 158,
+   "fig": "2 h 38",
+   "sentence": "Averaged over everyone in Germany aged 10 and over, working or not, people do 2 hours 38 minutes of paid work a day.",
+   "note": "2022 (Federal Statistical Office, revised in June 2025), counting the way to work and looking for work. The 34% who worked on a given day did 7 hours 42.",
+   "src": [
+    {
+     "name": "Federal Statistical Office (Destatis)",
+     "url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Zeitverwendung/Tabellen/aktivitaeten-erwerbstaetigkeit-arbeitssuche-geschlecht-zve.html"
+    },
+    {
+     "name": "Federal Agency for Civic Education (bpb)",
+     "url": "https://www.bpb.de/kurz-knapp/zahlen-und-fakten/sozialbericht-2024/553241/zeitverwendung-im-ueberblick/"
+    }
+   ]
+  },
+  {
+   "id": "owl-monkey-sleep",
+   "colour": "teal",
+   "face": "Owl monkey",
+   "pic": "monkey",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 1020,
+   "hi": 1020,
+   "fig": "17 h",
+   "sentence": "An owl monkey sleeps about 17 hours a day, more than any other monkey or ape in the two classic tables.",
+   "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976). The drawing is of another monkey, a rhesus macaque.",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "ETH Zurich (Allison and Cicchetti)",
+     "url": "https://stat.ethz.ch/Teaching/Datasets/sleep.txt+dat"
+    }
+   ]
+  },
+  {
+   "id": "frigatebird-land",
+   "colour": "blue",
+   "face": "Frigatebird",
+   "pic": "albatross",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    },
+    {
+     "i": "pin",
+     "t": "on land"
+    }
+   ],
+   "lo": 720,
+   "hi": 720,
+   "fig": "12 h",
+   "sentence": "Back on land, great frigatebirds sleep about 12 hours a day; in flight over the ocean, only about 42 minutes.",
+   "note": "Great frigatebirds nesting in the Galápagos Islands, with brain recorders (Rattenborg and others, Nature Communications, 2016). The drawing is of an albatross.",
+   "src": [
+    {
+     "name": "Max Planck Society",
+     "url": "https://www.mpg.de/10673637/frigatebirds-sleep"
+    },
+    {
+     "name": "Popular Science",
+     "url": "https://www.popsci.com/birds-can-sleep-on-wing-sometimes/"
+    }
+   ]
+  },
+  {
+   "id": "it-men-housework",
+   "colour": "red",
+   "face": "Italy",
+   "flag": "it",
+   "act": "care",
+   "label": "housework and care",
+   "chips": [
+    {
+     "i": "care",
+     "t": "housework and care"
+    },
+    {
+     "i": "people",
+     "t": "men"
+    }
+   ],
+   "lo": 110,
+   "hi": 131,
+   "fig": "1 h 50–2 h 11",
+   "sentence": "Men in Italy spend about 2 hours a day on unpaid work, such as housework and care; women more than 5 hours.",
+   "note": "2 hours 11 for men aged 15 to 64 (OECD figures from ISTAT's survey of 2013–2014); ISTAT itself gives 1 hour 50 for men aged 25 to 64.",
+   "src": [
+    {
+     "name": "JILPT (from the OECD)",
+     "url": "https://www.jil.go.jp/kokunai/statistics/databook/2026/09/d2026_9T-10.pdf"
+    },
+    {
+     "name": "ISTAT",
+     "url": "https://www.istat.it/comunicato-stampa/i-tempi-della-vita-quotidiana-anno-2014/"
+    }
+   ]
+  },
+  {
+   "id": "tree-shrew-sleep",
+   "colour": "teal",
+   "face": "Tree shrew",
+   "pic": "shrew",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 948,
+   "hi": 948,
+   "fig": "15 h 48",
+   "sentence": "A tree shrew sleeps about 15.8 hours a day: about two thirds of its life.",
+   "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976). Tree shrews are not true shrews; the drawing is of a common shrew.",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "ETH Zurich (Allison and Cicchetti)",
+     "url": "https://stat.ethz.ch/Teaching/Datasets/sleep.txt+dat"
+    }
+   ]
+  },
+  {
+   "id": "us-paid-work",
+   "colour": "red",
+   "face": "USA",
+   "flag": "us",
+   "act": "work",
+   "label": "paid work",
+   "chips": [
+    {
+     "i": "work",
+     "t": "paid work"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 206,
+   "hi": 206,
+   "fig": "3 h 26",
+   "sentence": "Averaged over everyone in the USA aged 15 and over, working or not, people do about 3 hours 26 minutes of paid work a day.",
+   "note": "2024, all seven days (US Bureau of Labor Statistics), counting travel for work. The 42.6% who worked on a given day did 8 hours 2.",
+   "src": [
+    {
+     "name": "US Bureau of Labor Statistics",
+     "url": "https://www.bls.gov/news.release/archives/atus_06262025.htm"
+    },
+    {
+     "name": "FRASER, Federal Reserve Bank of St. Louis",
+     "url": "https://fraser.stlouisfed.org/files/docs/releases/atus/atus_20250626.pdf"
+    }
+   ]
+  },
+  {
+   "id": "grey-seal-sleep",
+   "colour": "teal",
+   "face": "Grey seal",
+   "pic": "seal",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 372,
+   "hi": 372,
+   "fig": "6 h 12",
+   "sentence": "A grey seal sleeps only about 6.2 hours a day, less than a person's 8 in the same tables.",
+   "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976). Elephant seals sleep about 2 hours a day at sea and 10 to 11 on land.",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "ETH Zurich (Allison and Cicchetti)",
+     "url": "https://stat.ethz.ch/Teaching/Datasets/sleep.txt+dat"
+    }
+   ]
+  },
+  {
+   "id": "at-men-paid-work",
+   "colour": "red",
+   "face": "Austria",
+   "flag": "at",
+   "act": "work",
+   "label": "paid work",
+   "chips": [
+    {
+     "i": "work",
+     "t": "paid work"
+    },
+    {
+     "i": "people",
+     "t": "men"
+    }
+   ],
+   "lo": 215,
+   "hi": 215,
+   "fig": "3 h 35",
+   "sentence": "Men in Austria do 3 hours 35 minutes of paid work a day on average; women 2 hours 13, by the survey of 2021–22.",
+   "note": "Men and boys aged 10 and over, working or not, Monday to Sunday (Statistik Austria). The 55% who worked on a given day did 8 hours 51.",
+   "src": [
+    {
+     "name": "Statistik Austria",
+     "url": "https://www.statistik.at/fileadmin/announcement/2023/12/20231218ZVE20212022.pdf"
+    },
+    {
+     "name": "APA, via vienna.at",
+     "url": "https://www.vienna.at/arbeitszeit-weiter-unterschied-zwischen-frauen-und-mannern/8467552"
+    }
+   ]
+  },
+  {
+   "id": "platypus-sleep",
+   "colour": "teal",
+   "face": "Platypus",
+   "pic": "platypus",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 840,
+   "hi": 840,
+   "fig": "14 h",
+   "sentence": "A platypus sleeps about 14 hours a day: more than half its life.",
+   "note": "The University of Washington's table; Wikipedia says it is \"said to be as long as 14 hours\". REM sleep, the sleep of dreams, takes 5.8 to 8 hours of it (Siegel and others, 1999).",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Sleep_in_non-human_animals"
+    }
+   ]
+  },
+  {
+   "id": "de-eating",
+   "colour": "violet",
+   "face": "Germany",
+   "flag": "de",
+   "act": "eating",
+   "label": "eating",
+   "chips": [
+    {
+     "i": "eating",
+     "t": "eating"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 100,
+   "hi": 100,
+   "fig": "1 h 40",
+   "sentence": "People in Germany spend 1 hour 40 minutes a day eating and drinking, by the national time-use survey of 2022.",
+   "note": "Everyone aged 10 and over (Federal Statistical Office, figures revised in June 2025). Men 1 hour 39, women 1 hour 40.",
+   "src": [
+    {
+     "name": "Federal Statistical Office (Destatis)",
+     "url": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/Zeitverwendung/Tabellen/aktivitaeten-persoenlBereich-geschlecht-zve.html"
+    },
+    {
+     "name": "Federal Agency for Civic Education (bpb)",
+     "url": "https://www.bpb.de/system/files/dokument_pdf/5.5.pdf"
+    }
+   ]
+  },
+  {
+   "id": "donkey-sleep",
+   "colour": "magenta",
+   "face": "Donkey",
+   "pic": "horse",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 186,
+   "hi": 186,
+   "fig": "3 h 06",
+   "sentence": "A donkey sleeps only about 3.1 hours a day, about as little as a horse.",
+   "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976). The drawing is of a horse, its close cousin.",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "ETH Zurich (Allison and Cicchetti)",
+     "url": "https://stat.ethz.ch/Teaching/Datasets/sleep.txt+dat"
+    }
+   ]
+  },
+  {
+   "id": "jp-women-sleep",
+   "colour": "violet",
+   "face": "Japan",
+   "flag": "jp",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    },
+    {
+     "i": "people",
+     "t": "women"
+    }
+   ],
+   "lo": 469,
+   "hi": 469,
+   "fig": "7 h 49",
+   "sentence": "Women in Japan sleep 7 hours 49 minutes a day, 9 minutes less than men, by the national survey of 2021.",
+   "note": "Women aged 10 and over, whole week, October 2021 (Statistics Bureau of Japan). In Austria, Germany, France and the USA, women sleep a little more than men.",
+   "src": [
+    {
+     "name": "Statistics Bureau of Japan",
+     "url": "https://www.stat.go.jp/english/data/shakai/2021/pdf/timeuse-a2021.pdf"
+    },
+    {
+     "name": "Tottori Prefecture",
+     "url": "https://www.pref.tottori.lg.jp/secure/1315903/R03jikan_kekka.pdf"
+    }
+   ]
+  },
+  {
+   "id": "cn-tv",
+   "colour": "red",
+   "face": "China",
+   "flag": "cn",
+   "act": "tv",
+   "label": "watching TV",
+   "chips": [
+    {
+     "i": "tv",
+     "t": "watching TV"
+    },
+    {
+     "i": "people",
+     "t": "everyone"
+    }
+   ],
+   "lo": 100,
+   "hi": 100,
+   "fig": "1 h 40",
+   "sentence": "People in China spend 1 hour 40 minutes a day watching TV, by the national time-use survey of 2018.",
+   "note": "People aged 15 and over (National Bureau of Statistics of China). Those aged 75 to 84 watch the most, 3 hours 16; those aged 15 to 24 the least, 42 minutes.",
+   "src": [
+    {
+     "name": "National Bureau of Statistics of China",
+     "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/201901/t20190125_1768278.html"
+    },
+    {
+     "name": "China Daily",
+     "url": "https://cn.chinadaily.com.cn/a/201901/25/WS5c4aa139a31010568bdc67bf.html"
+    }
+   ]
+  },
+  {
+   "id": "rhesus-sleep",
+   "colour": "teal",
+   "face": "Rhesus monkey",
+   "pic": "monkey",
+   "act": "asleep",
+   "label": "asleep",
+   "chips": [
+    {
+     "i": "asleep",
+     "t": "asleep"
+    }
+   ],
+   "lo": 576,
+   "hi": 708,
+   "fig": "9 h 36–11 h 48",
+   "sentence": "A rhesus monkey sleeps about 9.6 to 11.8 hours a day, much like a chimpanzee or a little more.",
+   "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976).",
+   "src": [
+    {
+     "name": "University of Washington",
+     "url": "https://faculty.washington.edu/chudler/chasleep.html"
+    },
+    {
+     "name": "ETH Zurich (Allison and Cicchetti)",
+     "url": "https://stat.ethz.ch/Teaching/Datasets/sleep.txt+dat"
+    }
+   ]
+  },
+  {
+   "id": "at-women-housework",
+   "colour": "red",
+   "face": "Austria",
+   "flag": "at",
+   "act": "care",
+   "label": "housework and care",
+   "chips": [
+    {
+     "i": "care",
+     "t": "housework and care"
+    },
+    {
+     "i": "people",
+     "t": "women"
+    }
+   ],
+   "lo": 217,
+   "hi": 217,
+   "fig": "3 h 37",
+   "sentence": "Women in Austria spend 3 hours 37 minutes a day on housework and caring for the family; men 2 hours 6.",
+   "note": "Women and girls aged 10 and over, Monday to Sunday, 2021–22 (Statistik Austria): its \"Sorgearbeit in Haushalt und Familie\". The 95.5% who did any spent 4 hours 5.",
+   "src": [
+    {
+     "name": "Statistik Austria",
+     "url": "https://www.statistik.at/fileadmin/announcement/2023/12/20231218ZVE20212022.pdf"
+    },
+    {
+     "name": "APA, via vienna.at",
+     "url": "https://www.vienna.at/arbeitszeit-weiter-unterschied-zwischen-frauen-und-mannern/8467552"
+    }
+   ]
   }
  ]
 };

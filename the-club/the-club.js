@@ -39,7 +39,49 @@
 
   var byId = {};
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
-  function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+
+  /* The door's order (Khayyam, 15 Oct 2026: "the sequence is always one in, next out, one in, next out... it must
+     be unpredictable"). In the file 59 of the 89 clubs let in, out, in, out, in (and 3 out, in, out, in, out). From day 14, Saturday 17 October
+     2026, the five candidates come in an order drawn from the club's own id: the same for everyone on the same day,
+     different from club to club, never strictly in, out, in, out. A result keeps the order it was played in: a
+     result or a day begun before the change goes on in the file's order ("m": 1 marks a mixed one), so nobody's
+     album or day in progress changes under them. */
+  var MIX_FROM = 14;
+  var mixedById = {};
+  function seedOf(s) {
+    var h = 2166136261;
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    return h;
+  }
+  function draw(a) {                         // a small, fixed sequence of numbers from 0 to 1 (mulberry32)
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function mix(p) {
+    if (mixedById[p.id]) return mixedById[p.id];
+    var r = draw(seedOf("the-club:" + p.id)), order = [];
+    for (var tries = 0; tries < 50; tries++) {
+      order = p.door.map(function (_, i) { return i; });
+      for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(r() * (i + 1)), t = order[i]; order[i] = order[j]; order[j] = t; }
+      var pat = order.map(function (k) { return p.door[k][1] ? "1" : "0"; }).join("");
+      if (!/^(10)+1?$|^(01)+0?$/.test(pat)) break;
+    }
+    var copy = {};
+    Object.keys(p).forEach(function (k) { copy[k] = p[k]; });
+    copy.door = order.map(function (k) { return p.door[k]; });
+    copy.mixed = true;
+    return (mixedById[p.id] = copy);
+  }
+  function rawOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  function puzzleOf(n) { return n >= MIX_FROM ? mix(rawOf(n)) : rawOf(n); }
+  function asPlayed(p, r) { return r && r.m === 1 ? mix(p) : p; }
+  /* for the checks (t_new.py, t_club.py, t_world.py): the door of day n as a new play meets it */
+  window.TheClubDoor = function (n) { return puzzleOf(n).door.map(function (x) { return [x[0], x[1]]; }); };
   var TOPICS = { countries: "Countries", places: "Places", animals: "Animals", food: "Food and plants",
     science: "Science", history: "History", culture: "Culture", sport: "Sport" };
 
@@ -58,8 +100,10 @@
   var stored = TO.game(GAME);
   var earlier = practice ? stored.practice[day] : stored.results[day];
   var q = puzzleOf(day);
-  if (earlier && earlier.id && byId[earlier.id] && valid(earlier, byId[earlier.id])) q = byId[earlier.id];   // show the club that was really played
+  if (earlier && earlier.id && byId[earlier.id] && valid(earlier, byId[earlier.id])) q = asPlayed(byId[earlier.id], earlier);   // show the club that was really played, in its order
   if (!valid(earlier, q)) earlier = null;
+  var begun = practice ? null : stored.open;     // a day begun before the order was mixed goes on in the file's order
+  if (!earlier && q.mixed && begun && begun.d === day && begun.id === q.id && begun.m !== 1) q = byId[q.id];
   var N = q.door.length;
 
   var calls = [];             // what you said so far: 1 = In, 0 = Out
@@ -161,7 +205,7 @@
     calls.push(v);
     if (!practice) {
       var soFar = calls.slice();
-      TO.update(GAME, function (g) { g.open = { d: day, id: q.id, c: soFar }; });
+      TO.update(GAME, function (g) { g.open = { d: day, id: q.id, c: soFar }; if (q.mixed) g.open.m = 1; });
     }
     door.className = "tc-door " + (truth ? "is-in" : "is-out");
     actions.classList.add("wait");
@@ -189,7 +233,7 @@
     var mine = calls.slice(), score = rightOf(q, mine);
     TO.update(GAME, function (g) {
       var slot = practice ? g.practice : g.results;
-      if (!valid(slot[day], q)) slot[day] = { c: mine, r: score, id: q.id };
+      if (!valid(slot[day], q)) { slot[day] = { c: mine, r: score, id: q.id }; if (q.mixed) slot[day].m = 1; }
       if (!practice && g.open && g.open.d === day) delete g.open;
     });
     TO.count(practice ? "the-club/practice-played" : "the-club/played/day-" + day);
@@ -256,7 +300,7 @@
   }
 
   /* ---------- streak chip, album ---------- */
-  function playedPuzzle(r, n) { return (r && r.id && byId[r.id]) || puzzleOf(n); }
+  function playedPuzzle(r, n) { return (r && r.id && byId[r.id]) ? asPlayed(byId[r.id], r) : puzzleOf(n); }
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);

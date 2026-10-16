@@ -1,7 +1,9 @@
 /* Logicers Live: the server of the live games (14 Oct 2026; games that hosts make and save, 15 Oct 2026).
    A Cloudflare Worker named logicers-live, with one Durable Object per live game (game.js), one per saved
    game (kit.js), one for the reports (desk.js), one for the totals without names (totals.js), one per email
-   of a way back (way.js) and one for the list of feedback emails (mail.js).
+   of a way back (way.js), one for the list of feedback emails (mail.js), and since 16 Oct 2026 one per date
+   for the world's counts of the daily games (tally.js), which have nothing to do with live games but ride
+   on this Worker because it deploys by itself from the repository.
    It is separate from Rooms (server/rooms), and deploys by itself: Workers Builds watches
    server/live/ in the repository, so a push that touches this folder deploys it and any other push
    does not. A deploy disconnects every live game for a moment (the phones come back by themselves),
@@ -35,6 +37,9 @@
                             of them; the list of feedback emails, and an address taken off it (the secret
                             ADMIN_KEY)
      POST /totals           the totals without names (ADMIN_KEY)
+     POST /stats/send       the world's counts (16 Oct 2026): a phone's finished daily games of its date, added
+     POST /stats/view       to its country's row (tally.js, one object per date), and one game's counts, or the
+     POST /stats/world      world table of a day or a month (the section "the world's counts" below)
    The code stands in the path, never a key; Workers Logs are switched off (wrangler.jsonc), so no call
    is written down anywhere. The full contract: r/live-workshop/step2-spec.md.
 
@@ -60,12 +65,14 @@ import { Kit, cleanText } from "./kit.js";
 import { Desk, WHYS } from "./desk.js";
 import { Way } from "./way.js";
 import { Mail } from "./mail.js";
+import { Tally } from "./tally.js";
 import "./wayprint.js";               // the browser's own file (live/wayprint.js), byte for byte: globalThis.LogicersWay
+import "./points.js";                 // the pages' own file (assets/js/points.js), byte for byte: globalThis.LogicersPoints
 import { loadSets } from "./sets-key.js";
 import { codeOk, newCode, kitCodeOk, newKitCode } from "./names.js";
 import { mac, sha, same, randomKey, keyOk } from "./keys.js";
 
-export { Game, Totals, Kit, Desk, Way, Mail };
+export { Game, Totals, Kit, Desk, Way, Mail, Tally };
 
 const ORIGINS = ["https://logicers.com", "https://www.logicers.com"];
 const MODES = ["cors", "websocket", "same-origin"];   // Sec-Fetch-Mode of the page's own fetches and WebSockets
@@ -608,6 +615,141 @@ async function admin(req, env, o) {
   return answer(400, { e: "do" }, o);
 }
 
+/* ------------------------------------------------------------ the world's counts (16 Oct 2026) */
+
+/* Every finished daily game adds its points to its country's row for its date (tally.js, one object per date),
+   and the reveal shows the world, the player's continent and country beside the player's own result. The
+   country and the continent are read here from the connection, as Cloudflare gives them (request.cf), and
+   never from the page; nothing about a player is kept, only the counts (tally.js says exactly what).
+     POST /stats/send   { v, d, rs: [{ k, e, g } | { k, c }], k } a phone's finished results of its date d
+                        (YYYYMMDD by its own clock), up to the nine games -> { you, took, ks, view } (ks: the games
+                        counted, the brake permitting; view: the view of k)
+     POST /stats/view   { v, d, k } one game of one date -> { you, view }
+     POST /stats/world  { v, d, span: "day" | "month" } the world table of a date, or of its month up to it
+                        (a month only up to a date some clock is on now) -> { you, d, span, n, m, calls, games,
+                        cs: [[c, ct, n, a, calls]], ts, days }
+   A date is taken only while some clock on earth is on it (UTC-12 to UTC+14), and read for 70 days. */
+const STATS = 1;                    // the version of these calls; a page that sends another is told "old"
+const STATS_SENDS = 300;            // sends from one address in 10 minutes (a class or a mobile network can sit behind one)
+const STATS_READS = 900;            // views and world tables from one address in 10 minutes
+const STATS_BODY = 4000;
+const tallyOf = (env, d) => env.TALLY.get(env.TALLY.idFromName("d:" + d));
+const sums = new Map();             // "YYYYMMDD" -> the summary of a date that no clock is on any more (it can't change)
+Object.assign(counts, { sends: new Map(), reads: new Map() });
+
+function dayStart(d) {
+  const m = /^(\d{4})(\d{2})(\d{2})$/.exec(String(d));
+  if (!m) return NaN;
+  const t = Date.UTC(+m[1], +m[2] - 1, +m[3]);
+  const x = new Date(t);
+  return x.getUTCFullYear() === +m[1] && x.getUTCMonth() === +m[2] - 1 && x.getUTCDate() === +m[3] ? t : NaN;
+}
+const H = 3600e3;
+/* some clock on earth shows date d now: from UTC+14 to UTC-12 */
+function dateOn(d, now) { const t = typeof d === "string" ? dayStart(d) : NaN; return isFinite(t) && now >= t - 14 * H && now < t + 36 * H; }
+/* date d may be read: it has begun somewhere, and is at most 70 days old */
+function dateRead(d, now) { const t = typeof d === "string" ? dayStart(d) : NaN; return isFinite(t) && now >= t - 14 * H && now < t + 71 * 24 * H; }
+function keyOfUTC(t) { return new Date(t).toISOString().slice(0, 10).replace(/-/g, ""); }
+
+/* the country and continent of the connection; the checks may name them (TEST_GEO, never on Cloudflare) */
+function geo(req, env) {
+  let c = req.cf && req.cf.country, ct = req.cf && req.cf.continent;
+  if (env && env.TEST_GEO === "1" && req.headers.get("X-Test-Geo")) [c, ct] = String(req.headers.get("X-Test-Geo")).split(",");
+  c = /^[A-Z]{2}$/.test(String(c || "")) && c !== "XX" && c !== "T1" ? c : "??";
+  ct = /^(AF|AN|AS|EU|NA|OC|SA)$/.test(String(ct || "")) && c !== "??" ? ct : "??";
+  return { c, ct };
+}
+
+async function statsSend(req, env, o) {
+  if (!allowed(counts.sends, req, STATS_SENDS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, STATS_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body;
+  if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  if (!dateOn(b.d, Date.now())) return answer(400, { e: "day" }, o);
+  if (!Array.isArray(b.rs) || b.rs.length > 9) return answer(400, { e: "rs" }, o);
+  const P = globalThis.LogicersPoints;
+  const rs = [];
+  for (const x of b.rs) {
+    if (!x || typeof x !== "object" || !P.valid(x)) return answer(400, { e: "rs" }, o);
+    rs.push(x.c !== undefined ? { k: x.k, c: x.c } : x.g !== undefined ? { k: x.k, e: x.e, g: x.g } : { k: x.k, e: x.e });
+  }
+  const k = typeof b.k === "string" && P.LIMITS.hasOwnProperty(b.k) ? b.k : null;
+  const you = geo(req, env);
+  /* the brake's name for this address on this date: keyed with the secret, so it can't be turned back into
+     the address; held in the date's memory only (tally.js) */
+  const who = (await mac(env, "stats:" + where(req) + ":" + b.d)) || (await sha("stats:" + where(req) + ":" + b.d)).slice(0, 20);
+  const res = await tallyOf(env, b.d).add({ d: b.d, who, c: you.c, ct: you.ct, rs, k });
+  return answer(200, { you, took: res.took, ks: res.ks, view: res.view }, o);
+}
+
+async function statsView(req, env, o) {
+  if (!allowed(counts.reads, req, STATS_READS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, STATS_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body;
+  if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  if (!dateRead(b.d, Date.now())) return answer(400, { e: "day" }, o);
+  const P = globalThis.LogicersPoints;
+  if (typeof b.k !== "string" || !P.LIMITS.hasOwnProperty(b.k)) return answer(400, { e: "k" }, o);
+  const you = geo(req, env);
+  return answer(200, { you, view: await tallyOf(env, b.d).view({ k: b.k, c: you.c, ct: you.ct }) }, o);
+}
+
+/* a date's summary; a date no clock is on any more can't change, so it is kept in this copy's memory */
+async function summaryOf(env, d, now) {
+  if (sums.has(d)) return sums.get(d);
+  const s = await tallyOf(env, d).summary();
+  if (now >= dayStart(d) + 36 * H + 60e3) {
+    sums.set(d, s);
+    if (sums.size > 120) sums.delete(sums.keys().next().value);
+  }
+  return s;
+}
+
+async function statsWorld(req, env, o) {
+  if (!allowed(counts.reads, req, STATS_READS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, STATS_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body, now = Date.now();
+  if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  if (!dateRead(b.d, now)) return answer(400, { e: "day" }, o);
+  const span = b.span === "month" ? "month" : "day";
+  /* a month is read only up to a date some clock is on now: this month's table (older days are kept 75 days,
+     so an older month would come back with its first days missing) */
+  if (span === "month" && !dateOn(b.d, now)) return answer(400, { e: "day" }, o);
+  const you = geo(req, env);
+  if (span === "day") {
+    const s = await summaryOf(env, b.d, now);
+    return answer(200, Object.assign({ you, d: b.d, span, days: 1 }, s), o);
+  }
+  /* the month of date d, from its first day up to d: each day's points made fair within the day (tally.js),
+     then the days put on one level, the month's own average */
+  const t0 = dayStart(b.d.slice(0, 6) + "01"), t1 = dayStart(b.d);
+  const dates = [];
+  for (let t = t0; t <= t1; t += 24 * H) dates.push(keyOfUTC(t));
+  const all = await Promise.all(dates.map((d) => summaryOf(env, d, now).catch(() => null)));
+  let N = 0, S = 0, calls = 0, days = 0;
+  const games = {};
+  for (const s of all) {
+    if (!s || !s.n) { if (s) calls += s.calls; continue; }
+    N += s.n; S += s.n * s.m; calls += s.calls; days++;
+    for (const k of Object.keys(s.games)) games[k] = (games[k] || 0) + s.games[k];
+  }
+  const M = N ? S / N : 0, cs = {}, ts = {};
+  for (const s of all) {
+    if (!s || !(s.n || s.calls)) continue;
+    for (const [c, ct, n, a, k] of s.cs) { const x = cs[c] || (cs[c] = { ct, n: 0, a: 0, k: 0 }); x.n += n; x.a += a + n * (M - s.m); x.k += k || 0; }
+    for (const [ct, n, a] of s.ts) { const y = ts[ct] || (ts[ct] = { n: 0, a: 0 }); y.n += n; y.a += a + n * (M - s.m); }
+  }
+  const r1 = (v) => Math.round(v * 10) / 10;
+  return answer(200, {
+    you, d: b.d, span, days, n: N, m: r1(M), calls, games,
+    cs: Object.keys(cs).sort().map((c) => [c, cs[c].ct, cs[c].n, r1(cs[c].a), cs[c].k]),
+    ts: Object.keys(ts).sort().map((ct) => [ct, ts[ct].n, r1(ts[ct].a)])
+  }, o);
+}
+
 /* the totals without names, for the admin key only (kept for the admin page of step 1) */
 async function totals(req, env, o) {
   if (spentOut(counts.admin, req, WRONG_ADMIN)) return answer(429, { e: "later" }, o);
@@ -655,6 +797,9 @@ export default {
       if (url.pathname === "/report" && req.method === "POST") return await report(req, env, o);
       if (url.pathname === "/admin" && req.method === "POST") return await admin(req, env, o);
       if (url.pathname === "/totals" && req.method === "POST") return await totals(req, env, o);
+      if (url.pathname === "/stats/send" && req.method === "POST") return await statsSend(req, env, o);
+      if (url.pathname === "/stats/view" && req.method === "POST") return await statsView(req, env, o);
+      if (url.pathname === "/stats/world" && req.method === "POST") return await statsWorld(req, env, o);
       return answer(404, { e: "nothing" }, o);
     } catch (e) {
       return answer(500, { e: "server" }, o);

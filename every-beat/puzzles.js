@@ -981,6 +981,319 @@ window.TURNSOUT_DATA["every-beat"] = {
      "url": "https://repositorio.unesp.br/items/f4e486e0-7cfd-46ad-b023-9dadc2d979a3"
     }
    ]
+  },
+  {
+   "id": "freediver-dive",
+   "colour": "violet",
+   "face": "Freediver",
+   "pic": "human",
+   "state": "diving",
+   "label": "diving",
+   "lo": 11,
+   "hi": 11,
+   "sentence": "On a deep breath-hold dive, an elite freediver's heart can slow to just 11 beats a minute.",
+   "note": "Elite freedivers on dives as deep as 107 metres (McKnight and others, 2021). Their hearts fell as low as seals' and whales'.",
+   "src": [
+    {
+     "name": "University of St Andrews",
+     "url": "https://news.st-andrews.ac.uk/archive/divers-beat-seals-during-deep-dives/"
+    },
+    {
+     "name": "DeeperBlue",
+     "url": "https://www.deeperblue.com/new-wearable-device-tracks-freedivers-physiologies-during-deep-dives/"
+    }
+   ]
+  },
+  {
+   "id": "goose-flight",
+   "colour": "teal",
+   "face": "Bar-headed goose",
+   "pic": "duck",
+   "state": "flying",
+   "label": "flying",
+   "lo": 328,
+   "hi": 328,
+   "sentence": "Flying from Mongolia to India over the Himalayas, bar-headed geese kept an average heart rate of 328 a minute.",
+   "note": "Measured on the journey itself (Bishop and others, Science, 2015). Both sources carry the same university report. The picture shows a duck, of the same family.",
+   "src": [
+    {
+     "name": "Bangor University",
+     "url": "https://wetlands.bangor.ac.uk/news/roller-coaster-migratory-flights-of-geese-give-unique-insights-into-bird-physiology-and-biomechanics-at-high-altitudes-21449"
+    },
+    {
+     "name": "Bangor University, via ScienceDaily",
+     "url": "https://www.sciencedaily.com/releases/2015/01/150115142227.htm"
+    }
+   ]
+  },
+  {
+   "id": "horse-gallop",
+   "colour": "magenta",
+   "face": "Horse",
+   "pic": "horse",
+   "state": "fastest",
+   "label": "at its fastest",
+   "lo": 220,
+   "hi": 260,
+   "sentence": "At full effort, a horse's heart can race to 220 to 260 beats a minute. At rest it beats about 30 to 40.",
+   "note": "Mature horses at the very top of their effort: 220 to 260 in an Oklahoma State University guide, 240 to 250 in a Texas A&M guide.",
+   "src": [
+    {
+     "name": "Oklahoma State University Extension",
+     "url": "https://shareok.org/bitstream/11244/49988/1/oksd_ansi_9118_2003-07.pdf"
+    },
+    {
+     "name": "Texas A&M University",
+     "url": "https://texashelp.tamu.edu/wp-content/uploads/2016/02/understanding-vital-life-signs-in-horses.pdf"
+    }
+   ]
+  },
+  {
+   "id": "tuna-awake",
+   "colour": "red",
+   "face": "Bluefin tuna",
+   "pic": "tuna",
+   "state": "awake",
+   "label": "awake",
+   "lo": 40,
+   "hi": 60,
+   "temp": 20,
+   "sentence": "In water at 20 °C, a swimming bluefin tuna's heart beats only about 40 to 60 times a minute.",
+   "note": "Two Pacific bluefin tuna in a holding tank (Clark and others, 2013). Cooled to 10 °C, their hearts settled near 35. The picture shows an Atlantic bluefin.",
+   "src": [
+    {
+     "name": "Journal of Experimental Biology",
+     "url": "https://cob.silverchair.com/jeb/article-pdf/doi/10.1242/jeb.086546/2036896/jeb_086546.pdf"
+    },
+    {
+     "name": "Proc. Royal Society B, via tunaresearch.org",
+     "url": "https://mail.tunaresearch.org/reprints/Shiels_2015_Proc.pdf"
+    }
+   ]
+  },
+  {
+   "id": "chick-rest",
+   "colour": "magenta",
+   "face": "Chick",
+   "pic": "chicken",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 350,
+   "hi": 450,
+   "sentence": "A young chick's heart beats 350 to 450 times a minute, faster than a grown chicken's.",
+   "note": "For a grown chicken the same two sources give 250 to 300 (the manual) and 200 to 400 (WikiVet).",
+   "src": [
+    {
+     "name": "MSD Veterinary Manual",
+     "url": "https://www.msdvetmanual.com/multimedia/table/resting-heart-rates"
+    },
+    {
+     "name": "WikiVet",
+     "url": "https://en.wikivet.net/Chicken_Physiology_-_WikiNormals"
+    }
+   ]
+  },
+  {
+   "id": "orca-dive",
+   "colour": "blue",
+   "face": "Orca",
+   "pic": "orca",
+   "state": "diving",
+   "label": "diving",
+   "lo": 30,
+   "hi": 30,
+   "sentence": "Under water, an orca's heart slows to about 30 beats a minute, half its rate at the surface.",
+   "note": "Wikipedia takes the figures from a study of 1967 (Spencer, Gornall and Poulter); SeaWorld gives the same two from one study. At the surface the heart beat about 60.",
+   "src": [
+    {
+     "name": "SeaWorld",
+     "url": "https://seaworld.org/animals/all-about/killer-whale/adaptations/"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Orca"
+    }
+   ]
+  },
+  {
+   "id": "hedgehog-awake",
+   "colour": "green",
+   "face": "Hedgehog",
+   "pic": "hedgehog",
+   "state": "awake",
+   "label": "awake",
+   "lo": 190,
+   "hi": 190,
+   "sentence": "Out of hibernation, a hedgehog's heart usually beats about 190 times a minute.",
+   "note": "European hedgehog. Hibernating, the same heart drops to about 20.",
+   "src": [
+    {
+     "name": "Woodland Trust",
+     "url": "https://woodlandtrust.org.uk/blog/2020/09/when-hedgehogs-hibernate/"
+    },
+    {
+     "name": "How It Works",
+     "url": "https://www.howitworksdaily.com/how-hedgehogs-make-it-through-winter/"
+    }
+   ]
+  },
+  {
+   "id": "narwhal-surface",
+   "colour": "blue",
+   "face": "Narwhal",
+   "pic": "narwhal",
+   "state": "surface",
+   "label": "at the surface",
+   "lo": 60,
+   "hi": 60,
+   "sentence": "Resting at the surface, a narwhal's heart beats about 60 times a minute, much like yours.",
+   "note": "The same wild narwhals whose hearts slowed to 10 to 20 on normal dives (University of California, Santa Cruz, 2017).",
+   "src": [
+    {
+     "name": "UC Santa Cruz, via ScienceDaily",
+     "url": "https://www.sciencedaily.com/releases/2017/12/171207141726.htm"
+    },
+    {
+     "name": "Science News Explores",
+     "url": "https://www.snexplores.org/article/escaping-narwhals-can-freeze-and-flee-same-time"
+    }
+   ]
+  },
+  {
+   "id": "unborn-baby",
+   "colour": "violet",
+   "face": "Unborn baby",
+   "pic": "human",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 110,
+   "hi": 160,
+   "sentence": "Before birth, a baby's heart beats 110 to 160 times a minute, far faster than a grown-up's.",
+   "note": "The baseline on a heart tracing in pregnancy. Doctors count 110 to 160 as normal; a study of 78,852 tracings in Germany found 120 to 160.",
+   "src": [
+    {
+     "name": "HSE Ireland",
+     "url": "https://www.hse.ie/eng/about/who/acute-hospitals-division/woman-infants/clinical-guidelines/fetal-heart-rate-monitoring-quick-summary-document.pdf"
+    },
+    {
+     "name": "PeerJ",
+     "url": "https://peerj.com/articles/82"
+    }
+   ]
+  },
+  {
+   "id": "grey-seal-dive",
+   "colour": "blue",
+   "face": "Grey seal",
+   "pic": "seal",
+   "state": "diving",
+   "label": "diving",
+   "lo": 4,
+   "hi": 4,
+   "sentence": "On a long dive, a wild grey seal's heart slows to just 4 beats a minute, though it could surface to breathe at any time.",
+   "note": "Free-ranging grey seals off western Scotland (Thompson and Fedak, 1993). In one dive the heart fell to 2; lying still at the surface it beat about 119.",
+   "src": [
+    {
+     "name": "Journal of Experimental Biology",
+     "url": "https://cob.silverchair.com/jeb/article-pdf/3380596/jexbio_174_1_139.pdf"
+    },
+    {
+     "name": "University of St Andrews",
+     "url": "https://research-portal.st-andrews.ac.uk/en/publications/cardiac-responses-of-gray-seals-during-diving-at-sea/"
+    }
+   ]
+  },
+  {
+   "id": "bat-hibernating",
+   "colour": "teal",
+   "face": "Bat",
+   "pic": "bat",
+   "state": "hibernating",
+   "label": "hibernating",
+   "lo": 8,
+   "hi": 8,
+   "sentence": "Hibernating through the winter, a little brown bat's heart can slow to just 8 beats a minute.",
+   "note": "Little brown bats. In summer, in flight, the same heart can beat up to 1,300 times a minute, says MassWildlife.",
+   "src": [
+    {
+     "name": "MassWildlife",
+     "url": "https://www.mass.gov/info-details/species-spotlight-little-brown-bat"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Little_brown_bat"
+    }
+   ],
+   "credit": {
+    "lic": "by3",
+    "by": "Roberto Díaz Sibaja"
+   }
+  },
+  {
+   "id": "rat-rest",
+   "colour": "magenta",
+   "face": "Rat",
+   "pic": "mouse",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 250,
+   "hi": 450,
+   "sentence": "A rat's heart beats about 250 to 450 times a minute.",
+   "note": "The two sources differ at the top: 400 in the veterinary manual, 450 in the university's table. The picture shows a mouse, of the same family.",
+   "src": [
+    {
+     "name": "MSD Veterinary Manual",
+     "url": "https://www.msdvetmanual.com/multimedia/table/resting-heart-rates"
+    },
+    {
+     "name": "Kaohsiung Medical University",
+     "url": "https://animal.kmu.edu.tw/images/%E5%AF%A6%E9%A9%97%E5%8B%95%E7%89%A9%E8%B3%87%E6%96%99/%E5%A4%A7%E9%BC%A0%E7%94%9F%E7%90%86%E5%AD%B8%E6%95%B8%E5%80%BC.pdf"
+    }
+   ]
+  },
+  {
+   "id": "orca-surface",
+   "colour": "blue",
+   "face": "Orca",
+   "pic": "orca",
+   "state": "surface",
+   "label": "at the surface",
+   "lo": 60,
+   "hi": 60,
+   "sentence": "At the surface, an orca's heart beats about 60 times a minute; under water it slows to about 30.",
+   "note": "Wikipedia takes the figures from a study of 1967 (Spencer, Gornall and Poulter); SeaWorld gives the same two from one study.",
+   "src": [
+    {
+     "name": "SeaWorld",
+     "url": "https://seaworld.org/animals/all-about/killer-whale/adaptations/"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Orca"
+    }
+   ]
+  },
+  {
+   "id": "foal-rest",
+   "colour": "magenta",
+   "face": "Foal",
+   "pic": "horse",
+   "state": "rest",
+   "label": "at rest",
+   "lo": 80,
+   "hi": 120,
+   "sentence": "A newborn foal's heart beats 80 to 120 times a minute, far faster than a grown horse's 28 to 40.",
+   "note": "Newborn foals. Older foals slow to 60 to 80 and yearlings to 40 to 60, in the Texas A&M guide.",
+   "src": [
+    {
+     "name": "Texas A&M University",
+     "url": "https://texashelp.tamu.edu/wp-content/uploads/2016/02/understanding-vital-life-signs-in-horses.pdf"
+    },
+    {
+     "name": "Virginia Tech",
+     "url": "https://pubs.ext.vt.edu/APSC/APSC-169/APSC-169.html"
+    }
+   ]
   }
  ]
 };

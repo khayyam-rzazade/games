@@ -2943,6 +2943,1427 @@ window.TURNSOUT_DATA["the-club"] = {
      "url": "https://www.worldatlas.com/geography/island-countries-of-the-world.html"
     }
    ]
+  },
+  {
+   "id": "panthera",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "The genus Panthera",
+   "stamp": "Genus Panthera",
+   "in": [
+    "Tiger",
+    "Jaguar",
+    "Leopard"
+   ],
+   "out": [
+    "Cheetah",
+    "Puma"
+   ],
+   "door": [
+    [
+     "Snow leopard",
+     1
+    ],
+    [
+     "Lynx",
+     0
+    ],
+    [
+     "Lion",
+     1
+    ],
+    [
+     "Clouded leopard",
+     0
+    ],
+    [
+     "Ocelot",
+     0
+    ]
+   ],
+   "fact": "Panthera has five living species: jaguar, leopard, lion, snow leopard and tiger. The puma, sometimes called a panther, is not one.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Panthera"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/Panthera"
+    }
+   ]
+  },
+  {
+   "id": "nobel",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "They won a Nobel Prize",
+   "stamp": "Nobel Prize",
+   "in": [
+    "Albert Einstein",
+    "Marie Curie",
+    "Nelson Mandela"
+   ],
+   "out": [
+    "Isaac Newton",
+    "Charles Darwin"
+   ],
+   "door": [
+    [
+     "Winston Churchill",
+     1
+    ],
+    [
+     "Mahatma Gandhi",
+     0
+    ],
+    [
+     "Martin Luther King",
+     1
+    ],
+    [
+     "Stephen Hawking",
+     0
+    ],
+    [
+     "Ernest Hemingway",
+     1
+    ]
+   ],
+   "fact": "Each won a Nobel Prize. Gandhi never did, though he was nominated five times; Churchill's prize was for literature.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_Nobel_laureates"
+    },
+    {
+     "name": "UCLA",
+     "url": "https://southasia.ucla.edu/history-politics/gandhi/gandhi-nobel-peace-prize"
+    }
+   ]
+  },
+  {
+   "id": "italian-cheeses",
+   "topic": "food",
+   "colour": "green",
+   "sign": "Cheeses from Italy",
+   "stamp": "Italian cheeses",
+   "in": [
+    "Mozzarella",
+    "Parmesan",
+    "Gorgonzola"
+   ],
+   "out": [
+    "Cheddar",
+    "Brie"
+   ],
+   "door": [
+    [
+     "Provolone",
+     1
+    ],
+    [
+     "Feta",
+     0
+    ],
+    [
+     "Pecorino Romano",
+     1
+    ],
+    [
+     "Gouda",
+     0
+    ],
+    [
+     "Camembert",
+     0
+    ]
+   ],
+   "fact": "All are cheeses from Italy. Parmigiano-Reggiano, the real Parmesan, may only be made in designated regions of Italy.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_Italian_cheeses"
+    },
+    {
+     "name": "Cheese.com",
+     "url": "https://www.cheese.com/parmesan/"
+    }
+   ]
+  },
+  {
+   "id": "eight-thousanders",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "Over 8,000 metres high",
+   "stamp": "Eight-thousanders",
+   "in": [
+    "Everest",
+    "K2",
+    "Annapurna"
+   ],
+   "out": [
+    "Kilimanjaro",
+    "Mont Blanc"
+   ],
+   "door": [
+    [
+     "Aconcagua",
+     0
+    ],
+    [
+     "Kangchenjunga",
+     1
+    ],
+    [
+     "Denali",
+     0
+    ],
+    [
+     "Nanga Parbat",
+     1
+    ],
+    [
+     "Elbrus",
+     0
+    ]
+   ],
+   "fact": "Each rises more than 8,000 metres. All 14 mountains that high are in Asia, in the Himalayas and the Karakoram.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Eight-thousander"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/place/K2"
+    }
+   ]
+  },
+  {
+   "id": "michelangelo",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Michelangelo made them",
+   "stamp": "Michelangelo",
+   "in": [
+    "David",
+    "Pietà",
+    "The Creation of Adam"
+   ],
+   "out": [
+    "Mona Lisa",
+    "The Thinker"
+   ],
+   "door": [
+    [
+     "The Last Judgment",
+     1
+    ],
+    [
+     "The School of Athens",
+     0
+    ],
+    [
+     "Moses",
+     1
+    ],
+    [
+     "The Last Supper",
+     0
+    ],
+    [
+     "The Birth of Venus",
+     0
+    ]
+   ],
+   "fact": "Michelangelo made them all. He painted both The Creation of Adam and The Last Judgment in the Sistine Chapel.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_works_by_Michelangelo"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/biography/Michelangelo"
+    }
+   ]
+  },
+  {
+   "id": "metals",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "They are metals",
+   "stamp": "Metals",
+   "in": [
+    "Sodium",
+    "Calcium",
+    "Potassium"
+   ],
+   "out": [
+    "Carbon",
+    "Sulphur"
+   ],
+   "door": [
+    [
+     "Lithium",
+     1
+    ],
+    [
+     "Iodine",
+     0
+    ],
+    [
+     "Magnesium",
+     1
+    ],
+    [
+     "Mercury",
+     1
+    ],
+    [
+     "Phosphorus",
+     0
+    ]
+   ],
+   "fact": "They are all metals. Mercury is one too, although at 20 °C it is a liquid.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Metal"
+    },
+    {
+     "name": "Royal Society of Chemistry",
+     "url": "https://periodic-table.rsc.org/element/80/mercury"
+    }
+   ]
+  },
+  {
+   "id": "crustaceans",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are crustaceans",
+   "stamp": "Crustaceans",
+   "in": [
+    "Crab",
+    "Lobster",
+    "Shrimp"
+   ],
+   "out": [
+    "Spider",
+    "Octopus"
+   ],
+   "door": [
+    [
+     "Woodlouse",
+     1
+    ],
+    [
+     "Scorpion",
+     0
+    ],
+    [
+     "Krill",
+     1
+    ],
+    [
+     "Starfish",
+     0
+    ],
+    [
+     "Barnacle",
+     1
+    ]
+   ],
+   "fact": "They are crustaceans. So is the woodlouse, which lives on land: it is an isopod, a relative of crabs and lobsters.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Crustacean"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/crustacean"
+    }
+   ]
+  },
+  {
+   "id": "roman-built",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Built by the ancient Romans",
+   "stamp": "Built by Romans",
+   "in": [
+    "Colosseum",
+    "Pantheon",
+    "Hadrian's Wall"
+   ],
+   "out": [
+    "Parthenon",
+    "Stonehenge"
+   ],
+   "door": [
+    [
+     "Pont du Gard",
+     1
+    ],
+    [
+     "Trevi Fountain",
+     0
+    ],
+    [
+     "Arch of Constantine",
+     1
+    ],
+    [
+     "Sistine Chapel",
+     0
+    ],
+    [
+     "Leaning Tower of Pisa",
+     0
+    ]
+   ],
+   "fact": "The ancient Romans built them all. The Trevi Fountain in Rome is far younger: it was finished in 1762.",
+   "sources": [
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/topic/Colosseum"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Trevi_Fountain"
+    }
+   ]
+  },
+  {
+   "id": "grass-family",
+   "topic": "food",
+   "colour": "green",
+   "sign": "The grass family",
+   "stamp": "The grass family",
+   "in": [
+    "Wheat",
+    "Rice",
+    "Maize"
+   ],
+   "out": [
+    "Quinoa",
+    "Buckwheat"
+   ],
+   "door": [
+    [
+     "Sugar cane",
+     1
+    ],
+    [
+     "Soybean",
+     0
+    ],
+    [
+     "Bamboo",
+     1
+    ],
+    [
+     "Sesame",
+     0
+    ],
+    [
+     "Barley",
+     1
+    ]
+   ],
+   "fact": "All are grasses, and so are bamboo and sugar cane. Quinoa and buckwheat, eaten like grains, belong to other families.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Poaceae"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/plant/bamboo"
+    }
+   ]
+  },
+  {
+   "id": "danube",
+   "topic": "countries",
+   "colour": "blue",
+   "sign": "The Danube flows through them",
+   "stamp": "On the Danube",
+   "in": [
+    "Germany",
+    "Austria",
+    "Hungary"
+   ],
+   "out": [
+    "Czech Republic",
+    "Poland"
+   ],
+   "door": [
+    [
+     "Serbia",
+     1
+    ],
+    [
+     "Switzerland",
+     0
+    ],
+    [
+     "Romania",
+     1
+    ],
+    [
+     "Italy",
+     0
+    ],
+    [
+     "Slovakia",
+     1
+    ]
+   ],
+   "fact": "The Danube passes through or along ten countries. Parts of the Czech Republic, Poland, Switzerland and Italy only drain into it.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Danube"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/rivers/danube-river.html"
+    }
+   ]
+  },
+  {
+   "id": "japan-martial",
+   "topic": "sport",
+   "colour": "magenta",
+   "sign": "They come from Japan",
+   "stamp": "From Japan",
+   "in": [
+    "Judo",
+    "Sumo",
+    "Kendo"
+   ],
+   "out": [
+    "Kung fu",
+    "Boxing"
+   ],
+   "door": [
+    [
+     "Aikido",
+     1
+    ],
+    [
+     "Taekwondo",
+     0
+    ],
+    [
+     "Muay Thai",
+     0
+    ],
+    [
+     "Capoeira",
+     0
+    ],
+    [
+     "Jujutsu",
+     1
+    ]
+   ],
+   "fact": "Each began in Japan. Taekwondo is Korean, kung fu is Chinese and capoeira is Brazilian.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Japanese_martial_arts"
+    },
+    {
+     "name": "Web Japan",
+     "url": "https://web-japan.org/kidsweb/explore/sports/q10.html"
+    }
+   ]
+  },
+  {
+   "id": "mosquitoes",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Mosquitoes spread them",
+   "stamp": "Spread by mosquitoes",
+   "in": [
+    "Malaria",
+    "Dengue",
+    "Yellow fever"
+   ],
+   "out": [
+    "Cholera",
+    "Measles"
+   ],
+   "door": [
+    [
+     "Zika",
+     1
+    ],
+    [
+     "Rabies",
+     0
+    ],
+    [
+     "West Nile fever",
+     1
+    ],
+    [
+     "Lyme disease",
+     0
+    ],
+    [
+     "Tuberculosis",
+     0
+    ]
+   ],
+   "fact": "Mosquitoes spread each of them. Ticks spread Lyme disease, and dog bites and scratches cause 99 per cent of human rabies cases.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Mosquito-borne_disease"
+    },
+    {
+     "name": "World Health Organization",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/vector-borne-diseases"
+    }
+   ]
+  },
+  {
+   "id": "dog-family",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "The dog family",
+   "stamp": "The dog family",
+   "in": [
+    "Wolf",
+    "Fox",
+    "Jackal"
+   ],
+   "out": [
+    "Hyena",
+    "Raccoon"
+   ],
+   "door": [
+    [
+     "Coyote",
+     1
+    ],
+    [
+     "Meerkat",
+     0
+    ],
+    [
+     "Raccoon dog",
+     1
+    ],
+    [
+     "Badger",
+     0
+    ],
+    [
+     "Dingo",
+     1
+    ]
+   ],
+   "fact": "All belong to the dog family. Hyenas look like dogs but are closer to cats, and the raccoon dog's closest relatives are foxes.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Canidae"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/jackal"
+    }
+   ]
+  },
+  {
+   "id": "china",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Invented in China",
+   "stamp": "Invented in China",
+   "in": [
+    "Paper",
+    "Gunpowder",
+    "Compass"
+   ],
+   "out": [
+    "Glass",
+    "Telescope"
+   ],
+   "door": [
+    [
+     "Porcelain",
+     1
+    ],
+    [
+     "Fortune cookie",
+     0
+    ],
+    [
+     "Silk",
+     1
+    ],
+    [
+     "Microscope",
+     0
+    ],
+    [
+     "Paper money",
+     1
+    ]
+   ],
+   "fact": "All were invented in China. The fortune cookie was not: it most likely began with Japanese immigrants to the United States.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_Chinese_inventions"
+    },
+    {
+     "name": "History Hit",
+     "url": "https://www.historyhit.com/made-in-china-pioneering-chinese-inventions/"
+    }
+   ]
+  },
+  {
+   "id": "caffeine",
+   "topic": "food",
+   "colour": "green",
+   "sign": "They contain caffeine",
+   "stamp": "Caffeine",
+   "in": [
+    "Coffee",
+    "Tea",
+    "Cocoa"
+   ],
+   "out": [
+    "Milk",
+    "Orange juice"
+   ],
+   "door": [
+    [
+     "Yerba mate",
+     1
+    ],
+    [
+     "Rooibos",
+     0
+    ],
+    [
+     "Guarana",
+     1
+    ],
+    [
+     "Carob",
+     0
+    ],
+    [
+     "Kola nut",
+     1
+    ]
+   ],
+   "fact": "Each naturally contains caffeine. Rooibos tea, from South Africa, has none: it is not made from tea leaves.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Caffeine"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/science/caffeine"
+    }
+   ]
+  },
+  {
+   "id": "southern-capitals",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "South of the equator",
+   "stamp": "South of the equator",
+   "in": [
+    "Canberra",
+    "Buenos Aires",
+    "Pretoria"
+   ],
+   "out": [
+    "Cairo",
+    "Bogotá"
+   ],
+   "door": [
+    [
+     "Jakarta",
+     1
+    ],
+    [
+     "Kampala",
+     0
+    ],
+    [
+     "Lima",
+     1
+    ],
+    [
+     "Singapore",
+     0
+    ],
+    [
+     "Nairobi",
+     1
+    ]
+   ],
+   "fact": "All lie south of the equator. Nairobi is 1°17′ south of it, while Kampala, the capital of Uganda, is 0°19′ north.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_national_capitals_by_latitude"
+    },
+    {
+     "name": "timeanddate.com",
+     "url": "https://www.timeanddate.com/worldclock/kenya/nairobi"
+    }
+   ]
+  },
+  {
+   "id": "latin-alphabet",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Written in Latin letters",
+   "stamp": "Latin alphabet",
+   "in": [
+    "Turkish",
+    "Vietnamese",
+    "Swahili"
+   ],
+   "out": [
+    "Russian",
+    "Greek"
+   ],
+   "door": [
+    [
+     "Indonesian",
+     1
+    ],
+    [
+     "Korean",
+     0
+    ],
+    [
+     "Polish",
+     1
+    ],
+    [
+     "Thai",
+     0
+    ],
+    [
+     "Hindi",
+     0
+    ]
+   ],
+   "fact": "All are written with the Latin alphabet, the letters you are reading now. Turkish switched to it in 1928.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Latin_script"
+    },
+    {
+     "name": "Omniglot",
+     "url": "https://www.omniglot.com/writing/turkish.htm"
+    }
+   ]
+  },
+  {
+   "id": "si-units",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "SI base units",
+   "stamp": "SI base units",
+   "in": [
+    "Metre",
+    "Second",
+    "Kilogram"
+   ],
+   "out": [
+    "Litre",
+    "Newton"
+   ],
+   "door": [
+    [
+     "Kelvin",
+     1
+    ],
+    [
+     "Gram",
+     0
+    ],
+    [
+     "Ampere",
+     1
+    ],
+    [
+     "Watt",
+     0
+    ],
+    [
+     "Hour",
+     0
+    ]
+   ],
+   "fact": "They are SI base units. There are seven, and the SI's derived units are defined from them. The kilogram is one; the gram is not.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/SI_base_unit"
+    },
+    {
+     "name": "NIST",
+     "url": "https://www.nist.gov/pml/owm/metric-si/si-units"
+    }
+   ]
+  },
+  {
+   "id": "real-fish",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are fish",
+   "stamp": "Real fish",
+   "in": [
+    "Seahorse",
+    "Shark",
+    "Eel"
+   ],
+   "out": [
+    "Dolphin",
+    "Octopus"
+   ],
+   "door": [
+    [
+     "Starfish",
+     0
+    ],
+    [
+     "Salmon",
+     1
+    ],
+    [
+     "Jellyfish",
+     0
+    ],
+    [
+     "Stingray",
+     1
+    ],
+    [
+     "Cuttlefish",
+     0
+    ]
+   ],
+   "fact": "They are fish. Starfish, jellyfish and cuttlefish are not: a starfish is an echinoderm, a cuttlefish a mollusc.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fish"
+    },
+    {
+     "name": "NOAA Ocean Service",
+     "url": "https://oceanservice.noaa.gov/facts/starfish.html"
+    }
+   ]
+  },
+  {
+   "id": "ancient-greeks",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "They were ancient Greeks",
+   "stamp": "Ancient Greeks",
+   "in": [
+    "Socrates",
+    "Plato",
+    "Aristotle"
+   ],
+   "out": [
+    "Confucius",
+    "Cicero"
+   ],
+   "door": [
+    [
+     "Archimedes",
+     1
+    ],
+    [
+     "Seneca",
+     0
+    ],
+    [
+     "Pythagoras",
+     1
+    ],
+    [
+     "Julius Caesar",
+     0
+    ],
+    [
+     "Euclid",
+     1
+    ]
+   ],
+   "fact": "All were ancient Greeks. Cicero, Seneca and Julius Caesar were Romans, and Confucius was a Chinese philosopher.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_ancient_Greeks"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/biography/Socrates"
+    }
+   ]
+  },
+  {
+   "id": "drupes",
+   "topic": "food",
+   "colour": "green",
+   "sign": "To a botanist, drupes",
+   "stamp": "Drupes",
+   "in": [
+    "Peach",
+    "Cherry",
+    "Plum"
+   ],
+   "out": [
+    "Apple",
+    "Banana"
+   ],
+   "door": [
+    [
+     "Mango",
+     1
+    ],
+    [
+     "Orange",
+     0
+    ],
+    [
+     "Olive",
+     1
+    ],
+    [
+     "Grape",
+     0
+    ],
+    [
+     "Coconut",
+     1
+    ]
+   ],
+   "fact": "They are drupes: the seed sits inside a hard, stony shell. The coconut is a drupe too, and its hard shell is that stone.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Drupe"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/science/drupe"
+    }
+   ]
+  },
+  {
+   "id": "andes",
+   "topic": "countries",
+   "colour": "blue",
+   "sign": "The Andes run through them",
+   "stamp": "The Andes",
+   "in": [
+    "Chile",
+    "Peru",
+    "Bolivia"
+   ],
+   "out": [
+    "Brazil",
+    "Uruguay"
+   ],
+   "door": [
+    [
+     "Ecuador",
+     1
+    ],
+    [
+     "Paraguay",
+     0
+    ],
+    [
+     "Colombia",
+     1
+    ],
+    [
+     "Mexico",
+     0
+    ],
+    [
+     "Argentina",
+     1
+    ]
+   ],
+   "fact": "The Andes run through each of them. They are the longest mountain range on any continent and cross seven countries.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Andes"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/mountains/andes-mountains.html"
+    }
+   ]
+  },
+  {
+   "id": "winter-olympics",
+   "topic": "sport",
+   "colour": "magenta",
+   "sign": "Winter Olympic sports",
+   "stamp": "Winter Olympics",
+   "in": [
+    "Curling",
+    "Biathlon",
+    "Ice hockey"
+   ],
+   "out": [
+    "Golf",
+    "Rugby"
+   ],
+   "door": [
+    [
+     "Luge",
+     1
+    ],
+    [
+     "Surfing",
+     0
+    ],
+    [
+     "Ski jumping",
+     1
+    ],
+    [
+     "Water polo",
+     0
+    ],
+    [
+     "Bobsleigh",
+     1
+    ]
+   ],
+   "fact": "All are Winter Olympic sports. Ice hockey was first played at the Olympics in Antwerp, in 1920.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Winter_Olympic_Games"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/sports/Winter-Olympic-Games"
+    }
+   ]
+  },
+  {
+   "id": "gases",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Gases at 20 °C",
+   "stamp": "Gases at 20 °C",
+   "in": [
+    "Oxygen",
+    "Nitrogen",
+    "Chlorine"
+   ],
+   "out": [
+    "Gold",
+    "Iodine"
+   ],
+   "door": [
+    [
+     "Fluorine",
+     1
+    ],
+    [
+     "Bromine",
+     0
+    ],
+    [
+     "Hydrogen",
+     1
+    ],
+    [
+     "Iron",
+     0
+    ],
+    [
+     "Copper",
+     0
+    ]
+   ],
+   "fact": "All are gases at 20 °C. Bromine and iodine, in the same group as chlorine, are not: one is a liquid, the other a solid.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Gas"
+    },
+    {
+     "name": "Royal Society of Chemistry",
+     "url": "https://periodic-table.rsc.org/element/35/bromine"
+    }
+   ]
+  },
+  {
+   "id": "reptiles",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are reptiles",
+   "stamp": "Reptiles",
+   "in": [
+    "Crocodile",
+    "Tortoise",
+    "Iguana"
+   ],
+   "out": [
+    "Frog",
+    "Salamander"
+   ],
+   "door": [
+    [
+     "Chameleon",
+     1
+    ],
+    [
+     "Newt",
+     0
+    ],
+    [
+     "Komodo dragon",
+     1
+    ],
+    [
+     "Axolotl",
+     0
+    ],
+    [
+     "Gecko",
+     1
+    ]
+   ],
+   "fact": "They are reptiles, with scaly skin. Frogs, newts, salamanders and the axolotl are amphibians: their skin has no scales.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Reptile"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/reptile"
+    }
+   ]
+  },
+  {
+   "id": "us-presidents",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "They were US presidents",
+   "stamp": "US presidents",
+   "in": [
+    "George Washington",
+    "Abraham Lincoln",
+    "Thomas Jefferson"
+   ],
+   "out": [
+    "Benjamin Franklin",
+    "Alexander Hamilton"
+   ],
+   "door": [
+    [
+     "John F. Kennedy",
+     1
+    ],
+    [
+     "Thomas Edison",
+     0
+    ],
+    [
+     "Ulysses S. Grant",
+     1
+    ],
+    [
+     "Neil Armstrong",
+     0
+    ],
+    [
+     "Theodore Roosevelt",
+     1
+    ]
+   ],
+   "fact": "Each was President of the United States: Washington the 1st, Jefferson the 3rd, Lincoln the 16th. Franklin and Hamilton never were.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States"
+    },
+    {
+     "name": "Miller Center",
+     "url": "https://millercenter.org/president"
+    }
+   ]
+  },
+  {
+   "id": "mint-family",
+   "topic": "food",
+   "colour": "green",
+   "sign": "The mint family",
+   "stamp": "The mint family",
+   "in": [
+    "Basil",
+    "Rosemary",
+    "Thyme"
+   ],
+   "out": [
+    "Parsley",
+    "Coriander"
+   ],
+   "door": [
+    [
+     "Oregano",
+     1
+    ],
+    [
+     "Dill",
+     0
+    ],
+    [
+     "Lavender",
+     1
+    ],
+    [
+     "Fennel",
+     0
+    ],
+    [
+     "Sage",
+     1
+    ]
+   ],
+   "fact": "All belong to the mint family. Parsley, coriander, dill and fennel belong to another family, with the carrot and celery.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Lamiaceae"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/plant/Lamiaceae"
+    }
+   ]
+  },
+  {
+   "id": "caspian",
+   "topic": "countries",
+   "colour": "blue",
+   "sign": "On the Caspian Sea",
+   "stamp": "Caspian shores",
+   "in": [
+    "Russia",
+    "Iran",
+    "Kazakhstan"
+   ],
+   "out": [
+    "Georgia",
+    "Turkey"
+   ],
+   "door": [
+    [
+     "Azerbaijan",
+     1
+    ],
+    [
+     "Uzbekistan",
+     0
+    ],
+    [
+     "Turkmenistan",
+     1
+    ],
+    [
+     "Kyrgyzstan",
+     0
+    ],
+    [
+     "Afghanistan",
+     0
+    ]
+   ],
+   "fact": "Five countries share the shores of the Caspian Sea, the world's largest inland body of water.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Caspian_Sea"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/lakes/caspian-sea.html"
+    }
+   ]
+  },
+  {
+   "id": "dickens",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Written by Charles Dickens",
+   "stamp": "Dickens",
+   "in": [
+    "Oliver Twist",
+    "Great Expectations",
+    "A Christmas Carol"
+   ],
+   "out": [
+    "Pride and Prejudice",
+    "Jane Eyre"
+   ],
+   "door": [
+    [
+     "David Copperfield",
+     1
+    ],
+    [
+     "Frankenstein",
+     0
+    ],
+    [
+     "A Tale of Two Cities",
+     1
+    ],
+    [
+     "Robinson Crusoe",
+     0
+    ],
+    [
+     "Moby-Dick",
+     0
+    ]
+   ],
+   "fact": "Charles Dickens wrote them all, from Oliver Twist in 1838 to Great Expectations in 1861.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Charles_Dickens_bibliography"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/biography/Charles-Dickens-British-novelist"
+    }
+   ]
   }
  ]
 };

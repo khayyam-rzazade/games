@@ -189,6 +189,9 @@ textarea.mk-in { resize: none; min-height: 46px; max-height: 16em; overflow-y: a
 .mk-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-weight: 600; font-size: .93rem; }
 .mk-row > label, .mk-row > span { flex: 1; min-width: 0; }
 .mk-row.mk-stack { flex-direction: column; align-items: stretch; gap: 7px; }
+/* the game's language, first in the game's column (16 Oct 2026): a label like the others, then its three flags */
+.mk-row.mk-langrow { padding: 0 0 12px; font-size: .82rem; font-weight: 800; color: var(--soft); letter-spacing: .01em; }
+.mk-row.mk-langrow .mk-seg { color: var(--ink); }
 .mk-select { appearance: none; -webkit-appearance: none; border: 2px solid var(--line); border-radius: 10px; padding: 6px 30px 6px 10px; font: inherit; font-weight: 700; font-size: .9rem; color: var(--ink); background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' fill='none' stroke='%235D6279' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 7px center / 16px no-repeat; max-width: 60%; cursor: pointer; }
 .mk-select:focus { outline: none; border-color: var(--c); }
 @media (prefers-color-scheme: dark) { .mk-select { background-color: rgba(255, 255, 255, .06); } .mk-select option { background: #12152A; color: #F3F4FF; } }
@@ -570,3 +573,11 @@ dialog.mk-kpdlg { width: min(100% - 24px, 31rem); }
 .mk-fbstate { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--soft-ink); font-weight: 800; font-size: .88rem; }
 .mk-fbstate[hidden] { display: none; }
 .mk-fbstate .mk-textbtn { margin-left: auto; }
+
+/* "Download a copy" is a file for a computer: "Open a file" takes it back into the editor. On a phone it only
+   opened as a page of code (Khayyam, 15 Oct 2026), and the edit link already brings a game back there, so a
+   touch screen is not offered it after a save or in the list of games. (When saving fails, the message still
+   offers it, as the one way to keep the work then.) */
+@media (pointer: coarse) {
+  #sv-down, #gm-down { display: none !important; }
+}

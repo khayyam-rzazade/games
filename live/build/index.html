@@ -23,8 +23,8 @@
 <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../../assets/css/logicers.css?v=13f6f29a3c">
-<link rel="stylesheet" href="make.css?v=458f4566a5">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=947d0aa15e">
+<link rel="stylesheet" href="make.css?v=a145cb4754">
 <!-- People's own words show on these pages: only the site's own scripts (and the visit counter) may run, so even
      words written to break the page could never run a script here (15 Oct 2026). -->
 <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
@@ -89,7 +89,13 @@
 
       <div class="mk-col mk-c1" id="mk-c1">
         <p class="mk-note mk-notice" id="g-note" hidden></p>
-        <label class="mk-lab mk-first" for="g-title" data-w="titleL">Title</label>
+        <!-- the game's language first, at the top on every screen (Khayyam, 15 Oct 2026: on a phone it was hidden at
+             the bottom of the settings) -->
+        <div class="mk-row mk-stack mk-langrow">
+          <span id="l-lang" data-w="langL">Language</span>
+          <div class="mk-seg mk-seglang" id="s-lang" role="radiogroup" aria-labelledby="l-lang"><button type="button" data-v="en" lang="en"><svg class="mk-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="M0 0l60 30M60 0 0 30"/><path stroke="#C8102E" stroke-width="2" d="M0 0l60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></svg><span>English</span></button><button type="button" data-v="it" lang="it"><svg class="mk-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg><span>Italiano</span></button><button type="button" data-v="tr" lang="tr"><svg class="mk-flag" viewBox="0 0 1200 800" aria-hidden="true" focusable="false"><path fill="#E30A17" d="M0 0h1200v800H0z"/><circle cx="400" cy="400" r="200" fill="#fff"/><circle cx="450" cy="400" r="160" fill="#E30A17"/><path fill="#fff" d="M556.7 400L625.8 377.5 625.8 304.9 668.5 363.7 737.6 341.2 694.9 400 737.6 458.8 668.5 436.3 625.8 495.1 625.8 422.5z"/></svg><span>Türkçe</span></button></div>
+        </div>
+        <label class="mk-lab" for="g-title" data-w="titleL">Title</label>
         <input class="mk-in" id="g-title" maxlength="80" dir="auto" autocomplete="off" spellcheck="true" aria-describedby="e-title" data-wp="titlePh">
         <p class="mk-err" id="e-title" hidden></p>
         <label class="mk-lab" for="g-line" data-w="lineL">A line about it (optional)</label>
@@ -130,10 +136,6 @@
         <div class="mk-row"><label for="s-sure" data-w="sure">Ask how sure</label><input class="mk-switch" type="checkbox" id="s-sure" role="switch"></div>
         <div class="mk-row"><label for="s-standings" data-w="standings">Standings after each question</label><input class="mk-switch" type="checkbox" id="s-standings" role="switch"></div>
         <div class="mk-row"><label for="s-awards" data-w="awards">Awards</label><input class="mk-switch" type="checkbox" id="s-awards" role="switch"></div>
-        <div class="mk-row mk-stack">
-          <span id="l-lang" data-w="langL">Language</span>
-          <div class="mk-seg mk-seglang" id="s-lang" role="radiogroup" aria-labelledby="l-lang"><button type="button" data-v="en" lang="en"><svg class="mk-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="M0 0l60 30M60 0 0 30"/><path stroke="#C8102E" stroke-width="2" d="M0 0l60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></svg><span>English</span></button><button type="button" data-v="it" lang="it"><svg class="mk-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg><span>Italiano</span></button><button type="button" data-v="tr" lang="tr"><svg class="mk-flag" viewBox="0 0 1200 800" aria-hidden="true" focusable="false"><path fill="#E30A17" d="M0 0h1200v800H0z"/><circle cx="400" cy="400" r="200" fill="#fff"/><circle cx="450" cy="400" r="160" fill="#E30A17"/><path fill="#fff" d="M556.7 400L625.8 377.5 625.8 304.9 668.5 363.7 737.6 341.2 694.9 400 737.6 458.8 668.5 436.3 625.8 495.1 625.8 422.5z"/></svg><span>Türkçe</span></button></div>
-        </div>
         <p class="mk-lab" id="l-mode" data-w="whoL">Who can use the code?</p>
         <div class="mk-who" id="s-mode" role="radiogroup" aria-labelledby="l-mode"></div>
         <p class="mk-note" id="s-surenote"></p>
@@ -312,11 +314,11 @@
 
 <noscript><p class="mk-noscript">The editor needs JavaScript to run.</p></noscript>
 
-<script src="../../assets/js/turnsout.js?v=456b6eeae8"></script>
+<script src="../../assets/js/turnsout.js?v=e9c33f97f7"></script>
 <script src="../hs-rules.js?v=be5a07a112"></script>
 <script src="../qrcodegen.js?v=4702b2e275"></script>
 <script src="../wayprint.js?v=f39872182f"></script>
 <script src="words.js?v=ab115c67a3"></script>
-<script src="make.js?v=2b481effc5"></script>
+<script src="make.js?v=75cd7fd2c3"></script>
 </body>
 </html>

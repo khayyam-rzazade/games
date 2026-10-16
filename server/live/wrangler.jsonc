@@ -6,6 +6,8 @@
    changes server/live, a build shows in Deployments, View build history: if none starts, look at Settings,
    Builds ("disconnected from your Git account" means Cloudflare's GitHub app lost the repository: Manage, then
    the repository again on GitHub; 15 Oct 2026).
+   16 Oct 2026: the object Tally (tally.js, the world's counts of the daily games, one per date), added by the
+   migration v3; it goes up by itself with the first push that carries it, nothing to set by hand.
    The two secrets are set once, by hand, in the dashboard (Settings, Variables and Secrets), never here:
      SETS_KEY   the key that opens src/sets.js (the same text as r/live-workshop/sets-key.txt on the Mac);
                 it also keys every stored email of a way back (src/keys.js), so it is set once and never changed
@@ -27,11 +29,13 @@
       { "name": "KIT", "class_name": "Kit" },
       { "name": "DESK", "class_name": "Desk" },
       { "name": "WAY", "class_name": "Way" },
-      { "name": "MAIL", "class_name": "Mail" }
+      { "name": "MAIL", "class_name": "Mail" },
+      { "name": "TALLY", "class_name": "Tally" }
     ]
   },
   "migrations": [
     { "tag": "v1", "new_sqlite_classes": ["Game", "Totals"] },
-    { "tag": "v2", "new_sqlite_classes": ["Kit", "Desk", "Way", "Mail"] }
+    { "tag": "v2", "new_sqlite_classes": ["Kit", "Desk", "Way", "Mail"] },
+    { "tag": "v3", "new_sqlite_classes": ["Tally"] }
   ]
 }

@@ -3822,6 +3822,642 @@ window.TURNSOUT_DATA["same-energy"] = {
      }
     }
    ]
+  },
+  {
+   "id": "milk-bottle-apples",
+   "kind": "df",
+   "colour": "teal",
+   "a": {
+    "name": "A bottle of milk",
+    "portion": "500 ml",
+    "pic": "bottle",
+    "liquid": "milk"
+   },
+   "b": {
+    "key": "apple",
+    "one": "apple",
+    "many": "apples",
+    "short": [
+     "apple",
+     "apples"
+    ],
+    "portion": "an apple · 180 g",
+    "pic": "apple",
+    "drink": false,
+    "max": 10,
+    "step": 0.5
+   },
+   "ans": 3.5,
+   "band": 0,
+   "sentence": "A bottle of milk has the same energy as 3½ apples.",
+   "note": "A bottle of milk holds 500 ml; 3½ apples weigh 630 g. The same energy, but a drink does not fill you up the way food does.",
+   "src": [
+    {
+     "what": "Milk",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/milk-for-coffee-3-5-fat/"
+     }
+    },
+    {
+     "what": "Apples",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/171688/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://matvaretabellen.no/en/apple-imported-raw"
+     }
+    }
+   ]
+  },
+  {
+   "id": "chocolate-cola",
+   "kind": "fd",
+   "colour": "magenta",
+   "a": {
+    "name": "A small bar of dark chocolate",
+    "portion": "40 g",
+    "pic": "choc"
+   },
+   "b": {
+    "key": "cola",
+    "one": "can of cola",
+    "many": "cans of cola",
+    "short": [
+     "can",
+     "cans"
+    ],
+    "portion": "a can · 330 ml",
+    "pic": "can",
+    "drink": true,
+    "max": 6,
+    "step": 0.5,
+    "liquid": "cola"
+   },
+   "ans": 1.5,
+   "band": 0,
+   "sentence": "A small bar of dark chocolate has the same energy as 1½ cans of cola.",
+   "note": "A small bar of dark chocolate weighs 40 g; 1½ cans of cola hold 495 ml. The same energy, but a drink does not fill you up the way food does.",
+   "src": [
+    {
+     "what": "Dark chocolate",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/170273/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/chocolate-dark-70-cocoa/"
+     }
+    },
+    {
+     "what": "Cola",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/soft-drinks-cola-with-sugar/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "oil-grapes",
+   "kind": "ff",
+   "colour": "blue",
+   "a": {
+    "name": "A spoon of olive oil",
+    "portion": "1 tablespoon",
+    "pic": "oil"
+   },
+   "b": {
+    "key": "grape",
+    "one": "grape",
+    "many": "grapes",
+    "short": [
+     "grape",
+     "grapes"
+    ],
+    "portion": "a grape · 5 g",
+    "pic": "grape",
+    "drink": false,
+    "max": 60,
+    "step": 1
+   },
+   "ans": 35,
+   "band": 3,
+   "sentence": "A spoon of olive oil has the same energy as 35 grapes.",
+   "note": "A spoon of olive oil weighs 13.5 g; 35 grapes weigh 175 g.",
+   "src": [
+    {
+     "what": "Olive oil",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/171413/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://matvaretabellen.no/en/oil-olive-extra-virgin"
+     }
+    },
+    {
+     "what": "Grapes",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/174683/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/grapes-green-raw/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "cola-glass-orange-juice",
+   "kind": "dd",
+   "colour": "violet",
+   "a": {
+    "name": "A glass of cola",
+    "portion": "250 ml",
+    "pic": "glass",
+    "liquid": "cola"
+   },
+   "b": {
+    "key": "oj",
+    "one": "glass of orange juice",
+    "many": "glasses of orange juice",
+    "short": [
+     "glass",
+     "glasses"
+    ],
+    "portion": "a glass · 250 ml",
+    "pic": "glass",
+    "drink": true,
+    "max": 6,
+    "step": 0.5,
+    "liquid": "oj"
+   },
+   "ans": 1,
+   "band": 0,
+   "sentence": "A glass of cola has the same energy as one glass of orange juice.",
+   "note": "A glass of cola holds 250 ml; one glass of orange juice holds 250 ml.",
+   "src": [
+    {
+     "what": "Cola",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/soft-drinks-cola-with-sugar/"
+     }
+    },
+    {
+     "what": "Orange juice",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/2003591/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/orange-juice-from-concentrate/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "beer-can-eggs",
+   "kind": "df",
+   "colour": "teal",
+   "a": {
+    "name": "A can of beer",
+    "portion": "330 ml",
+    "pic": "can",
+    "liquid": "beer"
+   },
+   "b": {
+    "key": "egg",
+    "one": "boiled egg",
+    "many": "boiled eggs",
+    "short": [
+     "egg",
+     "eggs"
+    ],
+    "portion": "an egg · 50 g",
+    "pic": "egg",
+    "drink": false,
+    "max": 10,
+    "step": 0.5
+   },
+   "ans": 2,
+   "band": 0,
+   "sentence": "A can of beer has the same energy as 2 boiled eggs.",
+   "note": "A can of beer holds 330 ml; 2 boiled eggs weigh 100 g. The same energy, but a drink does not fill you up the way food does.",
+   "src": [
+    {
+     "what": "Beer",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/168746/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/beer-4-7-vol-alcohol-pilsner/"
+     }
+    },
+    {
+     "what": "Eggs",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/173424/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://matvaretabellen.no/en/egg-boiled"
+     }
+    }
+   ]
+  },
+  {
+   "id": "oats-milk",
+   "kind": "fd",
+   "colour": "magenta",
+   "a": {
+    "name": "A bowl of oats",
+    "portion": "40 g, dry",
+    "pic": "oats"
+   },
+   "b": {
+    "key": "milk",
+    "one": "glass of milk",
+    "many": "glasses of milk",
+    "short": [
+     "glass",
+     "glasses"
+    ],
+    "portion": "a glass · 250 ml",
+    "pic": "glass",
+    "drink": true,
+    "max": 6,
+    "step": 0.5,
+    "liquid": "milk"
+   },
+   "ans": 1,
+   "band": 0,
+   "sentence": "A bowl of oats has the same energy as one glass of milk.",
+   "note": "A bowl of oats weighs 40 g; one glass of milk holds 250 ml. The same energy, but a drink does not fill you up the way food does.",
+   "src": [
+    {
+     "what": "Oats",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/173904/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/rolled-oats/"
+     }
+    },
+    {
+     "what": "Milk",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/milk-for-coffee-3-5-fat/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "cheese-apples",
+   "kind": "ff",
+   "colour": "blue",
+   "a": {
+    "name": "A slice of cheese",
+    "portion": "20 g",
+    "pic": "cheese"
+   },
+   "b": {
+    "key": "apple",
+    "one": "apple",
+    "many": "apples",
+    "short": [
+     "apple",
+     "apples"
+    ],
+    "portion": "an apple · 180 g",
+    "pic": "apple",
+    "drink": false,
+    "max": 10,
+    "step": 0.5
+   },
+   "ans": 1,
+   "band": 0,
+   "sentence": "A slice of cheese has the same energy as one apple.",
+   "note": "A slice of cheese weighs 20 g; one apple weighs 180 g.",
+   "src": [
+    {
+     "what": "Cheese",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/328637/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://matvaretabellen.no/en/cheese-hard-cheddar"
+     }
+    },
+    {
+     "what": "Apples",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/171688/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://matvaretabellen.no/en/apple-imported-raw"
+     }
+    }
+   ]
+  },
+  {
+   "id": "milk-bottle-cola",
+   "kind": "dd",
+   "colour": "violet",
+   "a": {
+    "name": "A bottle of milk",
+    "portion": "500 ml",
+    "pic": "bottle",
+    "liquid": "milk"
+   },
+   "b": {
+    "key": "cola",
+    "one": "can of cola",
+    "many": "cans of cola",
+    "short": [
+     "can",
+     "cans"
+    ],
+    "portion": "a can · 330 ml",
+    "pic": "can",
+    "drink": true,
+    "max": 6,
+    "step": 0.5,
+    "liquid": "cola"
+   },
+   "ans": 2,
+   "band": 0,
+   "sentence": "A bottle of milk has the same energy as 2 cans of cola.",
+   "note": "A bottle of milk holds 500 ml; 2 cans of cola hold 660 ml.",
+   "src": [
+    {
+     "what": "Milk",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/milk-for-coffee-3-5-fat/"
+     }
+    },
+    {
+     "what": "Cola",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/soft-drinks-cola-with-sugar/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "orange-carton-bananas",
+   "kind": "df",
+   "colour": "teal",
+   "a": {
+    "name": "A carton of orange juice",
+    "portion": "1 litre",
+    "pic": "carton",
+    "liquid": "oj"
+   },
+   "b": {
+    "key": "banana",
+    "one": "banana",
+    "many": "bananas",
+    "short": [
+     "banana",
+     "bananas"
+    ],
+    "portion": "a banana · 120 g, peeled",
+    "pic": "banana",
+    "drink": false,
+    "max": 10,
+    "step": 0.5
+   },
+   "ans": 4.5,
+   "band": 0,
+   "sentence": "A carton of orange juice has the same energy as 4½ bananas.",
+   "note": "A carton of orange juice holds 1,000 ml; 4½ bananas weigh 540 g. The same energy, but a drink does not fill you up the way food does.",
+   "src": [
+    {
+     "what": "Orange juice",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/2003591/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/orange-juice-from-concentrate/"
+     }
+    },
+    {
+     "what": "Bananas",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/173944/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/banana-raw/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bread-cola",
+   "kind": "fd",
+   "colour": "magenta",
+   "a": {
+    "name": "A slice of bread",
+    "portion": "30 g",
+    "pic": "bread"
+   },
+   "b": {
+    "key": "cola",
+    "one": "can of cola",
+    "many": "cans of cola",
+    "short": [
+     "can",
+     "cans"
+    ],
+    "portion": "a can · 330 ml",
+    "pic": "can",
+    "drink": true,
+    "max": 6,
+    "step": 0.5,
+    "liquid": "cola"
+   },
+   "ans": 0.5,
+   "band": 0,
+   "sentence": "A slice of bread has the same energy as half a can of cola.",
+   "note": "A slice of bread weighs 30 g; half a can of cola holds 165 ml. The same energy, but a drink does not fill you up the way food does.",
+   "src": [
+    {
+     "what": "Bread",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/325871/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/bread-white-0-25-industrially-made"
+     }
+    },
+    {
+     "what": "Cola",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/soft-drinks-cola-with-sugar/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "crisps-grapes",
+   "kind": "ff",
+   "colour": "blue",
+   "a": {
+    "name": "A small bag of crisps",
+    "portion": "30 g",
+    "pic": "crisps"
+   },
+   "b": {
+    "key": "grape",
+    "one": "grape",
+    "many": "grapes",
+    "short": [
+     "grape",
+     "grapes"
+    ],
+    "portion": "a grape · 5 g",
+    "pic": "grape",
+    "drink": false,
+    "max": 60,
+    "step": 1
+   },
+   "ans": 45,
+   "band": 4,
+   "sentence": "A small bag of crisps has the same energy as 45 grapes.",
+   "note": "A small bag of crisps weighs 30 g; 45 grapes weigh 225 g.",
+   "src": [
+    {
+     "what": "Crisps",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/169677/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/potato-crisps/"
+     }
+    },
+    {
+     "what": "Grapes",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/174683/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/grapes-green-raw/"
+     }
+    }
+   ]
+  },
+  {
+   "id": "apple-bottle-milk",
+   "kind": "dd",
+   "colour": "violet",
+   "a": {
+    "name": "A bottle of apple juice",
+    "portion": "330 ml",
+    "pic": "bottle",
+    "liquid": "aj"
+   },
+   "b": {
+    "key": "milk",
+    "one": "glass of milk",
+    "many": "glasses of milk",
+    "short": [
+     "glass",
+     "glasses"
+    ],
+    "portion": "a glass · 250 ml",
+    "pic": "glass",
+    "drink": true,
+    "max": 6,
+    "step": 0.5,
+    "liquid": "milk"
+   },
+   "ans": 1,
+   "band": 0,
+   "sentence": "A bottle of apple juice has the same energy as one glass of milk.",
+   "note": "A bottle of apple juice holds 330 ml; one glass of milk holds 250 ml.",
+   "src": [
+    {
+     "what": "Apple juice",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/173933/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/apple-juice/"
+     }
+    },
+    {
+     "what": "Milk",
+     "usda": {
+      "name": "USDA FoodData Central",
+      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
+     },
+     "norway": {
+      "name": "Matvaretabellen",
+      "url": "https://www.matvaretabellen.no/en/milk-for-coffee-3-5-fat/"
+     }
+    }
+   ]
   }
  ]
 };

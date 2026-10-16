@@ -1268,6 +1268,639 @@ window.TURNSOUT_DATA["who-gets-what"] = {
     }
    ],
    "note": "Ofgem's price cap for a typical household paying by direct debit, 1 April to 30 September 2022, before the government's Energy Price Guarantee. “Supplier” is the supplier's operating costs (£203), payment uplift (£16), allowed profit (£35), headroom (£22) and VAT (£94) together."
+  },
+  {
+   "id": "cocoa-ci",
+   "colour": "magenta",
+   "what": "A kilo of cocoa beans at the port",
+   "where": "Côte d'Ivoire",
+   "when": "2018",
+   "cur": "€",
+   "dec": 2,
+   "price": 1.7,
+   "slices": [
+    {
+     "k": "farm",
+     "n": "Farmers",
+     "p": 62.8
+    },
+    {
+     "k": "truck",
+     "n": "Traders",
+     "p": 19.9
+    },
+    {
+     "k": "tax",
+     "n": "Tax",
+     "p": 17.3
+    }
+   ],
+   "fact": "Côte d'Ivoire's cocoa farmers got less than two thirds of what their beans fetched at the port. The state took about a sixth in taxes.",
+   "src": [
+    {
+     "name": "FAO and BASIC",
+     "url": "https://www.eurococoa.com/wp-content/uploads/Comparative-study-on-the-distribution-of-the-value-in-the-European-chocolate-chains-Full-report.pdf"
+    },
+    {
+     "name": "BASIC",
+     "url": "https://lebasic.com/v2/content/uploads/2020/06/Chaine-de-valeur-cacao-France_Rapport-de-recherche_UK.pdf"
+    }
+   ],
+   "note": "The United Nations agency's chocolate study, splitting what a kilo of beans was worth when loaded for export (its value “free on board”), harvest 2017/18. “Farmers” is the farm-gate price; “Traders” is collecting, transporting and storing the beans and the exporters' margin."
+  },
+  {
+   "id": "no-wine",
+   "colour": "red",
+   "what": "A 75 cl bottle of wine",
+   "where": "Norway",
+   "when": "2026",
+   "cur": "kr",
+   "dec": 2,
+   "price": 199.9,
+   "slices": [
+    {
+     "k": "factory",
+     "n": "Maker",
+     "p": 40.4
+    },
+    {
+     "k": "shop",
+     "n": "Shop",
+     "p": 12.5
+    },
+    {
+     "k": "tax",
+     "n": "Duty",
+     "p": 27.1
+    },
+    {
+     "k": "vat",
+     "n": "VAT",
+     "p": 20.0
+    }
+   ],
+   "fact": "Norway's state shop adds 25 kroner to a 200-kroner bottle of wine. The state's duties and VAT take 94, and the wine itself, delivered, 81.",
+   "src": [
+    {
+     "name": "Vinmonopolet",
+     "url": "https://www.vinmonopolet.no/om-oss/drift/priser-og-avgifter"
+    },
+    {
+     "name": "Skatteetaten (the tax office)",
+     "url": "https://www.skatteetaten.no/bedrift-og-organisasjon/avgifter/saravgifter/om/alkohol/"
+    }
+   ],
+   "note": "Vinmonopolet's own worked example for a bottle at 13% alcohol: 80.67 kroner for the supplier, 25.06 for the state shop's margin, 52.75 alcohol duty, 1.45 packaging levy and 39.98 VAT. “Maker” is the supplier's price delivered to the shop."
+  },
+  {
+   "id": "choc-premium",
+   "colour": "magenta",
+   "what": "Premium dark chocolate",
+   "where": "France",
+   "when": "2018",
+   "cur": "€",
+   "dec": 2,
+   "price": 16.41,
+   "slices": [
+    {
+     "k": "farm",
+     "n": "Farm",
+     "p": 7.7
+    },
+    {
+     "k": "ship",
+     "n": "Export",
+     "p": 5.3
+    },
+    {
+     "k": "factory",
+     "n": "Maker",
+     "p": 45.6
+    },
+    {
+     "k": "shop",
+     "n": "Shop",
+     "p": 41.4
+    }
+   ],
+   "fact": "A premium dark bar at €16.41 a kilo paid its cocoa farmers €1.26, barely more than an ordinary bar's €1.05. The brand and the shop took nearly all the difference.",
+   "src": [
+    {
+     "name": "FAO and BASIC",
+     "url": "https://www.eurococoa.com/wp-content/uploads/Comparative-study-on-the-distribution-of-the-value-in-the-European-chocolate-chains-Full-report.pdf"
+    },
+    {
+     "name": "BASIC",
+     "url": "https://lebasic.com/v2/content/uploads/2020/06/Chaine-de-valeur-cacao-France_Rapport-de-recherche_UK.pdf"
+    }
+   ],
+   "unit": "per kilo",
+   "note": "The United Nations agency's study of the French chocolate chain, for a premium national-brand dark tablet with no label. “Maker” is grinding the beans (3.7), the sugar and other ingredients (0.5) and making and branding the bar (41.4)."
+  },
+  {
+   "id": "dk-power",
+   "colour": "teal",
+   "what": "A unit of electricity",
+   "where": "Denmark",
+   "when": "2025",
+   "cur": "kr",
+   "dec": 2,
+   "price": 2.55,
+   "slices": [
+    {
+     "k": "plug",
+     "n": "Energy",
+     "p": 28.2
+    },
+    {
+     "k": "wires",
+     "n": "Wires",
+     "p": 23.1
+    },
+    {
+     "k": "tax",
+     "n": "Duty",
+     "p": 28.3
+    },
+    {
+     "k": "vat",
+     "n": "VAT",
+     "p": 20.4
+    }
+   ],
+   "fact": "In 2025 Denmark's duty on electricity took as much of a household's unit as the electricity itself. On 1 January 2026 it was cut to almost nothing.",
+   "src": [
+    {
+     "name": "Eurostat",
+     "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_204_c?geo=DK&time=2025&nrg_cons=KWH2500-4999&currency=NAC&lang=en"
+    },
+    {
+     "name": "Forsyningstilsynet (the utility regulator)",
+     "url": "https://forsyningstilsynet.dk/analyser-og-tal/forbrugerpriser/elpriser"
+    }
+   ],
+   "unit": "per kWh",
+   "note": "The EU statistics office's average for a household using 2,500 to 4,999 units a year: 0.72 kroner for the electricity and its supplier, 0.59 for the networks, 0.72 electricity duty and 0.52 VAT. The duty fell to 0.8 øre a unit in 2026."
+  },
+  {
+   "id": "cocoa-ec",
+   "colour": "magenta",
+   "what": "A kilo of cocoa beans at the port",
+   "where": "Ecuador",
+   "when": "2018",
+   "cur": "€",
+   "dec": 2,
+   "price": 2.44,
+   "slices": [
+    {
+     "k": "farm",
+     "n": "Farmers",
+     "p": 76.4
+    },
+    {
+     "k": "truck",
+     "n": "Traders",
+     "p": 20.6
+    },
+    {
+     "k": "tax",
+     "n": "Tax",
+     "p": 3.0
+    }
+   ],
+   "fact": "Ecuador taxes its cocoa lightly, three cents in the euro, and its farmers kept more than three quarters of what their beans fetched at the port.",
+   "src": [
+    {
+     "name": "FAO and BASIC",
+     "url": "https://www.eurococoa.com/wp-content/uploads/Comparative-study-on-the-distribution-of-the-value-in-the-European-chocolate-chains-Full-report.pdf"
+    },
+    {
+     "name": "BASIC",
+     "url": "https://lebasic.com/v2/content/uploads/2020/06/Chaine-de-valeur-cacao-France_Rapport-de-recherche_UK.pdf"
+    }
+   ],
+   "note": "The United Nations agency's chocolate study, splitting what a kilo of beans was worth when loaded for export (its value “free on board”), harvest 2017/18. “Farmers” is the farm-gate price; “Traders” is collecting, transporting and storing the beans and the exporters' margin. This is the higher grade, sorted “national” cocoa."
+  },
+  {
+   "id": "es-petrol",
+   "colour": "blue",
+   "what": "A litre of petrol",
+   "where": "Spain",
+   "when": "2026",
+   "cur": "€",
+   "dec": 3,
+   "price": 1.597,
+   "slices": [
+    {
+     "k": "barrel",
+     "n": "Crude",
+     "p": 28.5
+    },
+    {
+     "k": "flask",
+     "n": "Refining",
+     "p": 15.2
+    },
+    {
+     "k": "truck",
+     "n": "Delivery",
+     "p": 18.7
+    },
+    {
+     "k": "tax",
+     "n": "Tax",
+     "p": 37.6
+    }
+   ],
+   "fact": "In July 2026 more than a third of a Spanish litre of petrol was tax, even with the duty cut. The crude oil itself was little more than a quarter.",
+   "src": [
+    {
+     "name": "CNMC (competition and markets regulator)",
+     "url": "https://www.cnmc.es/sites/default/files/6833122.pdf"
+    },
+    {
+     "name": "Selectra",
+     "url": "https://selectra.es/energia/noticias/margen-gasolineras-2026-cnmc-centimos-litro"
+    }
+   ],
+   "note": "The competition regulator's split for July 2026, mainland Spain and the Balearics. “Refining” is what the finished petrol cost on world markets above the crude; “Delivery” is the margin left for storage, transport and the filling station. Spain had cut its fuel duty in 2026; in July 2025 taxes took 48.9%."
+  },
+  {
+   "id": "no-beer",
+   "colour": "red",
+   "what": "A 50 cl bottle of strong beer",
+   "where": "Norway",
+   "when": "2026",
+   "cur": "kr",
+   "dec": 2,
+   "price": 56.9,
+   "slices": [
+    {
+     "k": "factory",
+     "n": "Maker",
+     "p": 34.5
+    },
+    {
+     "k": "shop",
+     "n": "Shop",
+     "p": 16.8
+    },
+    {
+     "k": "tax",
+     "n": "Duty",
+     "p": 28.7
+    },
+    {
+     "k": "vat",
+     "n": "VAT",
+     "p": 20.0
+    }
+   ],
+   "fact": "Nearly half the price of a strong beer in Norway goes to the state. The brewer and the wholesaler together get about a third.",
+   "src": [
+    {
+     "name": "Vinmonopolet",
+     "url": "https://www.vinmonopolet.no/om-oss/drift/priser-og-avgifter"
+    },
+    {
+     "name": "Skatteetaten (the tax office)",
+     "url": "https://www.skatteetaten.no/bedrift-og-organisasjon/avgifter/saravgifter/om/alkohol/"
+    }
+   ],
+   "note": "Vinmonopolet's own worked example for a bottle at 5.5% alcohol: 19.65 kroner for the supplier, 9.54 for the state shop's margin, 14.88 alcohol duty, 1.45 packaging levy and 11.38 VAT. “Maker” is the supplier's price delivered to the shop."
+  },
+  {
+   "id": "in-diesel",
+   "colour": "blue",
+   "what": "A litre of diesel",
+   "where": "India",
+   "when": "2024",
+   "cur": "₹",
+   "dec": 2,
+   "price": 87.62,
+   "slices": [
+    {
+     "k": "barrel",
+     "n": "Diesel",
+     "p": 67.3
+    },
+    {
+     "k": "tax",
+     "n": "Duty",
+     "p": 18.0
+    },
+    {
+     "k": "vat",
+     "n": "VAT",
+     "p": 14.6
+    }
+   ],
+   "fact": "Delhi's diesel paid a little under a third of its price in tax in 2024: a central duty of ₹15.80 a litre, and the state's VAT on top.",
+   "src": [
+    {
+     "name": "Bharat Petroleum",
+     "url": "https://www.bharatpetroleum.in/pdf/HSD_Pricebuildup_1st_April_2024.pdf"
+    },
+    {
+     "name": "Hindustan Petroleum",
+     "url": "https://hpcladmin.hindustanpetroleum.com/img/UploadedFiles/PriceBuildup/Files/English/098f952a2ac843a6815352d681af4fa2.pdf"
+    }
+   ],
+   "note": "The state oil company's own price build-up for Delhi, 1 April 2024. “Diesel” is the price charged to the dealer before tax (₹56.38) together with the dealer's average commission (₹2.62); “VAT” also holds a small air ambience charge of 25 paise a litre."
+  },
+  {
+   "id": "cocoa-cm",
+   "colour": "magenta",
+   "what": "A kilo of cocoa beans at the port",
+   "where": "Cameroon",
+   "when": "2018",
+   "cur": "€",
+   "dec": 2,
+   "price": 1.73,
+   "slices": [
+    {
+     "k": "farm",
+     "n": "Farmers",
+     "p": 66.3
+    },
+    {
+     "k": "truck",
+     "n": "Traders",
+     "p": 19.4
+    },
+    {
+     "k": "tax",
+     "n": "Tax",
+     "p": 14.4
+    }
+   ],
+   "fact": "Cameroon's cocoa farmers kept two thirds of what their beans fetched at the port. Two taxes took about a seventh.",
+   "src": [
+    {
+     "name": "FAO and BASIC",
+     "url": "https://www.eurococoa.com/wp-content/uploads/Comparative-study-on-the-distribution-of-the-value-in-the-European-chocolate-chains-Full-report.pdf"
+    },
+    {
+     "name": "BASIC",
+     "url": "https://lebasic.com/v2/content/uploads/2020/06/Chaine-de-valeur-cacao-France_Rapport-de-recherche_UK.pdf"
+    }
+   ],
+   "note": "The United Nations agency's chocolate study, splitting what a kilo of beans was worth when loaded for export (its value “free on board”), harvest 2017/18. “Farmers” is the farm-gate price; “Traders” is collecting, transporting and storing the beans and the exporters' margin. Cameroon has two taxes in the study, both in “Tax”."
+  },
+  {
+   "id": "es-diesel",
+   "colour": "blue",
+   "what": "A litre of diesel",
+   "where": "Spain",
+   "when": "2026",
+   "cur": "€",
+   "dec": 3,
+   "price": 1.641,
+   "slices": [
+    {
+     "k": "barrel",
+     "n": "Crude",
+     "p": 27.8
+    },
+    {
+     "k": "flask",
+     "n": "Refining",
+     "p": 25.0
+    },
+    {
+     "k": "truck",
+     "n": "Delivery",
+     "p": 15.9
+    },
+    {
+     "k": "tax",
+     "n": "Tax",
+     "p": 31.4
+    }
+   ],
+   "fact": "In July 2026 refining added almost as much to a Spanish litre of diesel as the crude oil itself: 25 cents in the euro, against 28.",
+   "src": [
+    {
+     "name": "CNMC (competition and markets regulator)",
+     "url": "https://www.cnmc.es/sites/default/files/6833122.pdf"
+    },
+    {
+     "name": "Selectra",
+     "url": "https://selectra.es/energia/noticias/margen-gasolineras-2026-cnmc-centimos-litro"
+    }
+   ],
+   "note": "The competition regulator's split for July 2026, mainland Spain and the Balearics. “Refining” is what the finished diesel cost on world markets above the crude; “Delivery” is the margin left for storage, transport and the filling station. Spain had cut its fuel duty in 2026; in July 2025 taxes took 43.8%."
+  },
+  {
+   "id": "no-spirits",
+   "colour": "red",
+   "what": "A 70 cl bottle of spirits",
+   "where": "Norway",
+   "when": "2026",
+   "cur": "kr",
+   "dec": 2,
+   "price": 399.9,
+   "slices": [
+    {
+     "k": "factory",
+     "n": "Maker",
+     "p": 8.8
+    },
+    {
+     "k": "shop",
+     "n": "Shop",
+     "p": 3.8
+    },
+    {
+     "k": "tax",
+     "n": "Duty",
+     "p": 67.4
+    },
+    {
+     "k": "vat",
+     "n": "VAT",
+     "p": 20.0
+    }
+   ],
+   "fact": "Of a 400-kroner bottle of spirits in Norway, 350 kroner go to the state. The spirit itself, delivered to the shop, costs 35.",
+   "src": [
+    {
+     "name": "Vinmonopolet",
+     "url": "https://www.vinmonopolet.no/om-oss/drift/priser-og-avgifter"
+    },
+    {
+     "name": "Skatteetaten (the tax office)",
+     "url": "https://www.skatteetaten.no/bedrift-og-organisasjon/avgifter/saravgifter/om/alkohol/"
+    }
+   ],
+   "note": "Vinmonopolet's own worked example for a bottle at 41.5% alcohol: 35.34 kroner for the supplier, 15 for the state shop's margin, 268.13 alcohol duty, 1.45 packaging levy and 79.98 VAT. “Maker” is the supplier's price delivered to the shop."
+  },
+  {
+   "id": "us-food-21",
+   "colour": "green",
+   "what": "A dollar spent on food",
+   "where": "United States",
+   "when": "2021",
+   "cur": "$",
+   "dec": 2,
+   "price": 1.0,
+   "slices": [
+    {
+     "k": "worker",
+     "n": "Wages",
+     "p": 50.3
+    },
+    {
+     "k": "coin",
+     "n": "Owners",
+     "p": 39.4
+    },
+    {
+     "k": "ship",
+     "n": "Imports",
+     "p": 5.1
+    },
+    {
+     "k": "tax",
+     "n": "Tax",
+     "p": 5.1
+    }
+   ],
+   "fact": "Half of every dollar Americans spent on food in 2021 paid somebody's wages. Taxes and imported ingredients took about five cents each.",
+   "src": [
+    {
+     "name": "USDA Economic Research Service",
+     "url": "https://ers.usda.gov/data-products/charts-of-note/105730"
+    },
+    {
+     "name": "Western Livestock Journal",
+     "url": "https://www.wlj.net/food-dollars-property-income-share-high-in-2021"
+    }
+   ],
+   "note": "The agency's split of the food dollar by who is paid in the end, across every industry from the farm to the restaurant. “Owners” is property income: profits, rent, interest and the wear on buildings and machines. As published in 2023; the agency revised its method in 2026 and now puts 2024 at 54.1 cents for wages."
+  },
+  {
+   "id": "uk-petrol",
+   "colour": "blue",
+   "what": "A litre of petrol",
+   "where": "United Kingdom",
+   "when": "2026",
+   "cur": "£",
+   "dec": 3,
+   "price": 1.749,
+   "slices": [
+    {
+     "k": "barrel",
+     "n": "Petrol",
+     "p": 53.1
+    },
+    {
+     "k": "tax",
+     "n": "Duty",
+     "p": 30.3
+    },
+    {
+     "k": "vat",
+     "n": "VAT",
+     "p": 16.7
+    }
+   ],
+   "fact": "Almost half of a British litre of petrol is tax: a flat duty of 52.95p, and then VAT charged on the fuel and the duty together.",
+   "src": [
+    {
+     "name": "DESNZ, Weekly road fuel prices",
+     "url": "https://assets.publishing.service.gov.uk/media/6acd0403ec9d3aba1e013c7b/CSV__2018_-__.csv"
+    },
+    {
+     "name": "House of Commons Library",
+     "url": "https://researchbriefings.files.parliament.uk/documents/SN04712/SN04712.pdf"
+    }
+   ],
+   "note": "The government's average UK pump price for the week of 5 October 2026 (174.88p), with the duty (52.95p) and the 20% VAT it prints beside it. “Petrol” is everything before tax: the crude oil, the refining, the transport and the filling station."
+  },
+  {
+   "id": "choc-organic",
+   "colour": "magenta",
+   "what": "Organic fair-trade dark chocolate",
+   "where": "France",
+   "when": "2018",
+   "cur": "€",
+   "dec": 2,
+   "price": 23.21,
+   "slices": [
+    {
+     "k": "farm",
+     "n": "Farm",
+     "p": 11.6
+    },
+    {
+     "k": "ship",
+     "n": "Export",
+     "p": 4.5
+    },
+    {
+     "k": "factory",
+     "n": "Maker",
+     "p": 42.4
+    },
+    {
+     "k": "shop",
+     "n": "Shop",
+     "p": 41.4
+    }
+   ],
+   "fact": "Organic fair-trade chocolate paid its cocoa farmers €2.70 a kilo, more than twice the ordinary bar's €1.05. As a share of the price, that was still under twelve cents in the euro.",
+   "src": [
+    {
+     "name": "FAO and BASIC",
+     "url": "https://www.eurococoa.com/wp-content/uploads/Comparative-study-on-the-distribution-of-the-value-in-the-European-chocolate-chains-Full-report.pdf"
+    },
+    {
+     "name": "BASIC",
+     "url": "https://lebasic.com/v2/content/uploads/2020/06/Chaine-de-valeur-cacao-France_Rapport-de-recherche_UK.pdf"
+    }
+   ],
+   "unit": "per kilo",
+   "note": "The United Nations agency's study of the French chocolate chain, for a premium national-brand dark tablet carrying both an organic and a fair-trade label. “Maker” is grinding the beans (3.8), the sugar and other ingredients (0.5) and making and branding the bar (38.1)."
+  },
+  {
+   "id": "uk-diesel",
+   "colour": "blue",
+   "what": "A litre of diesel",
+   "where": "United Kingdom",
+   "when": "2026",
+   "cur": "£",
+   "dec": 3,
+   "price": 1.995,
+   "slices": [
+    {
+     "k": "barrel",
+     "n": "Diesel",
+     "p": 56.8
+    },
+    {
+     "k": "tax",
+     "n": "Duty",
+     "p": 26.5
+    },
+    {
+     "k": "vat",
+     "n": "VAT",
+     "p": 16.7
+    }
+   ],
+   "fact": "British diesel pays exactly the same duty as petrol, 52.95p a litre. In October 2026 it still cost almost 25p more, because the fuel itself cost more.",
+   "src": [
+    {
+     "name": "DESNZ, Weekly road fuel prices",
+     "url": "https://assets.publishing.service.gov.uk/media/6acd0403ec9d3aba1e013c7b/CSV__2018_-__.csv"
+    },
+    {
+     "name": "House of Commons Library",
+     "url": "https://researchbriefings.files.parliament.uk/documents/SN04712/SN04712.pdf"
+    }
+   ],
+   "note": "The government's average UK pump price for the week of 5 October 2026 (199.52p), with the duty (52.95p) and the 20% VAT it prints beside it. “Diesel” is everything before tax: the crude oil, the refining, the transport and the filling station."
   }
  ]
 };

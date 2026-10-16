@@ -255,7 +255,8 @@
     s.onload = function () { var q = waiting; waiting = []; q.forEach(count); };
     document.head.appendChild(s);
   }
-  /* What the pages say about privacy must match what the site does. */
+  /* What the pages say about privacy must match what the site does. The world's counts (16 Oct 2026) add their
+     own sentence to these lines, from assets/js/world.js, on the pages that send (as Rooms add theirs). */
   function privacyNotes() {
     if (!counterOn()) return;
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (el) {
@@ -276,6 +277,8 @@
         ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends. Games people make: a saved game keeps only what its maker typed into it, with no name of the maker, and an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link (the address itself only if they also tick feedback emails, and only for those); it is deleted two months after its last use. Playing one alone keeps the name you type and your answers with the game, for its scoreboard, and they go when the game goes. A report keeps what its sender writes, the game's code, and a name and email only if given, for six months. The server's own backups clear within 30 days. Nothing else about you is kept. Visits and plays are counted with GoatCounter, without identifying anyone."
         : kind === "table"
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
+        : kind === "world"
+        ? "No login and no cookies. Visits are counted with GoatCounter, without identifying anyone."
         : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
     });
   }
@@ -462,6 +465,32 @@
     change(r);
     writeAll(all);
     return r;
+  }
+
+  /* ------------------------------------------------------------------
+     The world's counts (16 Oct 2026, assets/js/world.js): which of today's finished games this browser has
+     already added to the world's counts (and which of those the server counted), and whether its player has
+     chosen to leave them out.
+       world: { off: false, sent: { "20261016": ["hundred", "club"] }, got: { "20261016": ["hundred", "club"] } }
+     It lives beside "games", "groups", "duels" and "rooms", never inside them, so it can never touch a streak,
+     an album, the Today card or the returning-player events. Only the last two dates are kept.
+     ------------------------------------------------------------------ */
+  function worldStore() {
+    var all = readAll();
+    var w = obj(all.world) || {};
+    w.off = w.off === true;
+    w.sent = obj(w.sent) || {};
+    return w;
+  }
+  function worldUpdate(change) {
+    var all = readAll();
+    all.world = obj(all.world) || {};
+    var w = all.world;
+    w.off = w.off === true;
+    w.sent = obj(w.sent) || {};
+    change(w);
+    writeAll(all);
+    return w;
   }
 
   /* Every game counts its days from its own start date, so "today" is worked out for each game on its own. */
@@ -711,6 +740,10 @@
     all.appendChild(el("span", "onward-all-name", "All games"));
     all.insertAdjacentHTML("beforeend", ARROW);
     box.appendChild(all);
+    /* the world today: the world, the continent and the country beside this result (assets/js/world.js) */
+    if (typeof window.TurnsOut.worldHook === "function") {
+      try { window.TurnsOut.worldHook(after, o, played); } catch (e) { /* the world's counts must never break a game */ }
+    }
     if (typeof window.TurnsOut.duelHook === "function") {
       try { window.TurnsOut.duelHook(after, o, played); } catch (e) { /* a duel must never break a game */ }
     }
@@ -870,6 +903,8 @@
     duelsUpdate: duelsUpdate,
     roomsStore: roomsStore,
     roomsUpdate: roomsUpdate,
+    worldStore: worldStore,
+    worldUpdate: worldUpdate,
     todayOf: todayOf,
     playedToday: playedToday,
     onward: onward

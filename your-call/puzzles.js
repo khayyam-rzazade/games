@@ -1442,6 +1442,366 @@ window.TURNSOUT_DATA["your-call"] = {
       ],
       "checked": "2026-10-04",
       "check": "Option 3 is close to the record: he asked Tokyo for instructions first (three times according to Wikipedia, twice according to Smithsonian). Option 1 is plausible only."
+    },
+    {
+      "id": "1948-israel",
+      "year": 1948,
+      "place": "Tel Aviv",
+      "colour": "blue",
+      "pov": "Britain's mandate in Palestine ends within days. Arab states threaten to attack, and the United States proposes a truce instead of independence now. You are the head of the Jewish Agency.",
+      "choices": ["Accept the American truce proposal", "Ask for a UN trusteeship instead", "Declare independence as Britain leaves"],
+      "real": 2,
+      "who": "David Ben-Gurion",
+      "short": "Ben-Gurion",
+      "did": "On 12 May 1948 the People's Administration voted for independence, six of the ten members present in favour. On 14 May Ben-Gurion proclaimed the State of Israel in Tel Aviv.",
+      "next": "The United States recognised it eleven minutes after midnight. On 15 May forces from Egypt, Trans-Jordan, Iraq and Syria entered the former mandate.",
+      "stamp": "Israel declares independence",
+      "sources": [
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/milestones/1945-1952/creation-israel" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Israeli_Declaration_of_Independence" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is in the record: the vote of 12 May was between the American proposal for a truce and independence (Wikipedia). Option 2 is close to the record: the US State Department had recommended a UN trusteeship (Office of the Historian)."
+    },
+    {
+      "id": "1995-bogota-mimes",
+      "year": 1995,
+      "place": "Bogotá",
+      "colour": "teal",
+      "pov": "Your city's streets are chaotic and deadly, with about 1,300 traffic deaths a year. Its 2,000 transit police are notoriously open to bribes. You are the new mayor of Bogotá.",
+      "choices": ["Close the transit police, send in mimes", "Retrain the police and raise their pay", "Hire more police and raise the fines"],
+      "real": 0,
+      "who": "Antanas Mockus",
+      "short": "Mockus",
+      "did": "Mockus closed down the transit police. Instead, 20 mimes shadowed pedestrians who broke crossing rules, and the scheme was so popular that 400 more were trained.",
+      "next": "He also handed out 350,000 thumbs-up and thumbs-down cards for citizens to judge each other's behaviour. Traffic deaths fell by more than half, to about 600 a year.",
+      "stamp": "Bogotá's traffic mimes",
+      "sources": [
+        { "name": "Harvard Gazette", "url": "https://news.harvard.edu/gazette/2004/03.11/01-mockus.html" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Antanas_Mockus" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Options 2 and 3 are plausible only."
+    },
+    {
+      "id": "1970-warsaw",
+      "year": 1970,
+      "place": "Warsaw",
+      "colour": "magenta",
+      "pov": "You have come to Warsaw to sign a treaty accepting Poland's western border. Now you are to lay a wreath at the memorial to the Warsaw Ghetto Uprising. You are the chancellor of West Germany.",
+      "choices": ["Lay the wreath and bow your head", "Kneel in silence at the memorial", "Speak words of apology at the site"],
+      "real": 1,
+      "who": "Willy Brandt",
+      "short": "Brandt",
+      "did": "After laying the wreath, Brandt unexpectedly knelt and stayed there in silence for about 30 seconds. 'I did what humans do when speech fails them,' he later said.",
+      "next": "In a Der Spiegel survey, 48% of West Germans thought it excessive and 41% appropriate. In 1971 Brandt received the Nobel Peace Prize.",
+      "stamp": "Brandt kneels in Warsaw",
+      "sources": [
+        { "name": "Nobel Prize", "url": "https://www.nobelprize.org/prizes/peace/1971/ceremony-speech/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Warschauer_Kniefall" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 was the planned ceremony: he laid the wreath first, then knelt (Wikipedia: 'Was it planned? No, it wasn't.'). Option 3 is plausible only."
+    },
+    {
+      "id": "1895-three-chiefs",
+      "year": 1895,
+      "place": "Bechuanaland",
+      "colour": "blue",
+      "pov": "Cecil Rhodes's British South Africa Company is trying to take over Bechuanaland, a British protectorate in southern Africa, and with it your lands. You are one of its Tswana chiefs.",
+      "choices": ["Accept the company's rule", "Raise your warriors to resist it", "Go to London and plead your case"],
+      "real": 2,
+      "who": "Khama III",
+      "short": "Khama",
+      "did": "In 1895 Khama went to Britain with two other chiefs, Sebele and Bathoen, to plead their case to the colonial secretary, Joseph Chamberlain. They also won an audience with Queen Victoria.",
+      "next": "On 6 November 1895 they agreed to give up land for a railway, and they kept the company out. Bechuanaland became independent as Botswana on 30 September 1966.",
+      "stamp": "Three chiefs go to London",
+      "sources": [
+        { "name": "Times Higher Education", "url": "https://www.timeshighereducation.com/node/87598" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Bechuanaland_Protectorate" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is what the company sought. Option 2 is plausible only. The chiefs accepted that they would be under some form of British protection; they preferred the Queen's to Rhodes's (Times Higher Education)."
+    },
+    {
+      "id": "1928-alphabet",
+      "year": 1928,
+      "place": "Ankara",
+      "colour": "teal",
+      "pov": "Turkish has been written in Arabic letters for over 1,000 years, but they cannot tell some of its vowels apart. Your commission proposes a five-year switch to Latin letters. You are the president of Turkey.",
+      "choices": ["Make the switch within months", "Take the five years, as proposed", "Keep the Arabic letters after all"],
+      "real": 0,
+      "who": "Mustafa Kemal Atatürk",
+      "short": "Atatürk",
+      "did": "Atatürk found five years far too long and cut the transition to three months. The new alphabet became law on 1 November 1928.",
+      "next": "From 1 January 1929 it was compulsory in all public communications. Atatürk toured the country explaining it, and literacy rose greatly.",
+      "stamp": "Turkey switches alphabets",
+      "sources": [
+        { "name": "History.com", "url": "https://www.history.com/topics/middle-east/kemal-ataturk" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Turkish_alphabet" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 2 is in the record: it is what the Language Commission proposed (Wikipedia). Option 3 is plausible only. History.com confirms the change from Arabic to Roman letters and the better literacy, not the dates."
+    },
+    {
+      "id": "1951-macarthur",
+      "year": 1951,
+      "place": "Washington",
+      "colour": "red",
+      "pov": "Your commander in Korea wants to bomb China, and your argument has gone public. His letter, read in Congress, says there is no substitute for victory. You are the president of the United States.",
+      "choices": ["Rebuke him but keep him in command", "Relieve him of his command", "Let him widen the war into China"],
+      "real": 1,
+      "who": "Harry S. Truman",
+      "short": "Truman",
+      "did": "On 11 April 1951 Truman relieved MacArthur of his commands and gave them to Lieutenant General Matthew Ridgway.",
+      "next": "MacArthur came home to a hero's welcome, and public opinion was strongly against Truman. A joint inquiry later found the removal within the president's constitutional powers.",
+      "stamp": "Truman fires MacArthur",
+      "sources": [
+        { "name": "History.com", "url": "https://www.history.com/this-day-in-history/april-11/truman-relieves-macarthur-of-duties-in-korea" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Relief_of_Douglas_MacArthur" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 3 is what MacArthur asked for: permission to bomb China, which Truman flatly refused (History.com). Option 1 is plausible only."
+    },
+    {
+      "id": "1534-supremacy",
+      "year": 1534,
+      "place": "London",
+      "colour": "magenta",
+      "pov": "For years the pope has refused to annul your marriage to Catherine of Aragon, who has given you no son. You desperately want a male heir. You are the king of England.",
+      "choices": ["Keep pressing the pope for an annulment", "Stay married and make peace with Rome", "Break with Rome and head the Church"],
+      "real": 2,
+      "who": "Henry VIII",
+      "short": "Henry",
+      "did": "Henry had Parliament move religious authority from the pope to the Crown. On 3 November 1534 it passed the Act of Supremacy, making him supreme head of the Church of England.",
+      "next": "The Crown took control of the old Church's wealth and buildings. His Catholic daughter, Mary I, repealed the act in 1554.",
+      "stamp": "Henry VIII breaks with Rome",
+      "sources": [
+        { "name": "UK Parliament", "url": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/originsofparliament/birthofparliament/overview/reformation/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Act_of_Supremacy_1534" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is what Henry had done for years (Wikipedia). Option 2 is plausible only. UK Parliament confirms the transfer of religious authority to the Crown, not the date or the name of the act."
+    },
+    {
+      "id": "1990-benin",
+      "year": 1990,
+      "place": "Cotonou",
+      "colour": "violet",
+      "pov": "After a year of strikes over unpaid salaries, a national conference has declared itself sovereign and chosen a new prime minister. Some of your officers object. You are the president of Benin.",
+      "choices": ["Send troops to break up the conference", "Accept it and stay on with little power", "Resign and leave the country"],
+      "real": 1,
+      "who": "Mathieu Kérékou",
+      "short": "Kérékou",
+      "did": "Kérékou called it a 'civilian coup', but he did not act against the conference. He stayed president but lost most of his power.",
+      "next": "He lost the multi-party election of March 1991 to his prime minister, Nicéphore Soglo, and stood down. In 1996 he won the presidency back in a free vote.",
+      "stamp": "Benin's national conference",
+      "sources": [
+        { "name": "The New Humanitarian", "url": "https://www.thenewhumanitarian.org/report/58686/benin-president-mathieu-kerekou-leaves-after-29-years" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Mathieu_K%C3%A9r%C3%A9kou" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is close to the record: some of his officers objected to the conference (Wikipedia). Option 3 is plausible only. The New Humanitarian confirms the transition of 1990, the defeat and the standing down in 1991 and the return in 1996, not the details of the conference."
+    },
+    {
+      "id": "1424-treasure-fleets",
+      "year": 1424,
+      "place": "Beijing",
+      "colour": "green",
+      "pov": "Your late father sent great treasure fleets overseas six times since 1405. Many people have left their homes because of heavy taxes and state demands. You are the new emperor of China.",
+      "choices": ["Stop any further voyages", "Send the fleets out again", "Send smaller fleets, less often"],
+      "real": 0,
+      "who": "Hongxi Emperor",
+      "short": "Hongxi",
+      "did": "On 7 September 1424, the day he took the throne, Hongxi formally ended the long voyages led by Zheng He.",
+      "next": "Hongxi died in May 1425. One more voyage sailed under his son, the Xuande Emperor, and in 1433 the voyages ended for good.",
+      "stamp": "The treasure fleets stop",
+      "sources": [
+        { "name": "National Geographic", "url": "https://www.nationalgeographic.com/history/history-magazine/article/china-zheng-he-naval-explorer-sailed-treasure-fleet-east-africa" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Hongxi_Emperor" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 2 is what came later under his son: a seventh and last voyage. Option 3 is plausible only. National Geographic says only that the programme was 'briefly suspended' in 1424 and does not name Hongxi; Wikipedia says he formally ended the voyages on the day of his enthronement."
+    },
+    {
+      "id": "1938-munich",
+      "year": 1938,
+      "place": "Munich",
+      "colour": "blue",
+      "pov": "Hitler demands the Sudetenland, part of Czechoslovakia where three million people, mainly ethnic Germans, live. He has given Czechoslovakia a deadline: cede it or face war. You are the British prime minister.",
+      "choices": ["Agree that Hitler can have it", "Warn Hitler that Britain will fight", "Stay out: it is not Britain's quarrel"],
+      "real": 0,
+      "who": "Neville Chamberlain",
+      "short": "Chamberlain",
+      "did": "At about 1:30 a.m. on 30 September 1938 Chamberlain signed the Munich Agreement with Hitler, Mussolini and France's Daladier, giving Hitler the Sudetenland. No Czech representative was present.",
+      "next": "Back home he called it 'peace for our time'. In March 1939 German troops took over the rest of Czechoslovakia.",
+      "stamp": "The Munich Agreement",
+      "sources": [
+        { "name": "The National Archives", "url": "https://www.nationalarchives.gov.uk/education/resources/chamberlain-and-hitler/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Munich_Agreement" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Options 2 and 3 are plausible only. Hitler had given Czechoslovakia a deadline of 28 September to cede the Sudetenland or face war (Wikipedia)."
+    },
+    {
+      "id": "1519-cortes-ships",
+      "year": 1519,
+      "place": "Veracruz",
+      "colour": "red",
+      "pov": "You sailed for Mexico with about 500 men, against the orders of the governor of Cuba. Now some of your crew try to seize a ship and sail back. You are the expedition's commander.",
+      "choices": ["Let the doubters sail back to Cuba", "Punish the plotters, keep the ships", "Sink the ships so no one can leave"],
+      "real": 2,
+      "who": "Hernán Cortés",
+      "short": "Cortés",
+      "did": "In July 1519 Cortés had his ten remaining ships scuttled at Villa Rica de la Vera Cruz, to rule out any idea of retreat.",
+      "next": "He marched inland, and on 8 November 1519 Moctezuma II received him peacefully. By 13 August 1521 he had conquered the Aztec capital, Tenochtitlán.",
+      "stamp": "Cortés scuttles his ships",
+      "sources": [
+        { "name": "National Geographic", "url": "https://www.nationalgeographic.com/culture/article/exclusive-clue-underwater-hunt-conquistador-lost-ships-archaeology" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Hern%C3%A1n_Cort%C3%A9s" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Options 1 and 2 are plausible only: neither source says how the plotters were dealt with. Both sources say the ships were scuttled, not burned."
+    },
+    {
+      "id": "1952-andhra",
+      "year": 1952,
+      "place": "New Delhi",
+      "colour": "blue",
+      "pov": "An activist has died on the 58th day of his fast for a separate state for Telugu speakers. Riots have broken out, and police have opened fire. You are the prime minister of India.",
+      "choices": ["Hold firm: no states drawn by language", "Agree to a separate Telugu state", "Ask a commission to study it first"],
+      "real": 1,
+      "who": "Jawaharlal Nehru",
+      "short": "Nehru",
+      "did": "Within days Nehru announced that a separate Andhra State would be formed. It was set up for Telugu speakers on 1 October 1953, with its capital in Kurnool.",
+      "next": "It set a precedent for drawing states by language. In 1956 Parliament passed the States Reorganisation Act, which provided for 14 states and six union territories.",
+      "stamp": "A state for Telugu speakers",
+      "sources": [
+        { "name": "Live History India", "url": "https://livehistoryindia.com/story/eras/many-voices-one-india" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Potti_Sreeramulu" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is close to the record: Nehru had said that 'the security and stability of India' came first, and a Congress committee had not accepted the demand (Live History India; Wikipedia). Option 3 came later for the rest of India: the States Reorganisation Commission reported in 1955. The sources differ on the day of the activist's death (15 or 16 December) and of the announcement (18 or 19 December), so the moment gives neither."
+    },
+    {
+      "id": "1883-health-insurance",
+      "year": 1883,
+      "place": "Berlin",
+      "colour": "teal",
+      "pov": "A socialist movement is growing among your country's workers, though you have already banned socialist organisations, meetings and newspapers. You are the chancellor of Germany.",
+      "choices": ["Crack down on the socialists even harder", "Leave workers' welfare to employers", "Insure workers against sickness by law"],
+      "real": 2,
+      "who": "Otto von Bismarck",
+      "short": "Bismarck",
+      "did": "In 1883 the Reichstag passed Bismarck's sickness insurance law for industrial workers. Workers paid two-thirds of the cost and employers one-third.",
+      "next": "Accident insurance followed in 1884. In 1889 Germany became the first nation with old-age insurance, from the age of 70.",
+      "stamp": "Bismarck insures the workers",
+      "sources": [
+        { "name": "US Social Security Administration", "url": "https://www.ssa.gov/history/ottob.html" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Health_Insurance_Bill_of_1883" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is close to the record: the Anti-Socialist Laws of 1878 already banned socialist organisations (Wikipedia). Option 2 is plausible only. The Social Security Administration gives the motive: to stave off calls for more radical socialist alternatives."
+    },
+    {
+      "id": "1985-nyerere",
+      "year": 1985,
+      "place": "Dar es Salaam",
+      "colour": "magenta",
+      "pov": "You have led your country for over 20 years. Your socialist farm policy has failed, and you are battling the IMF over debt. An election is due. You are the president of Tanzania.",
+      "choices": ["Step down and hand over power", "Run again and stay the course", "Stay on but change your policies"],
+      "real": 0,
+      "who": "Julius Nyerere",
+      "short": "Nyerere",
+      "did": "Nyerere announced that he would retire after the 1985 election. On 5 November 1985 Ali Hassan Mwinyi succeeded him as president.",
+      "next": "Mwinyi reversed many of Nyerere's policies. Nyerere stayed chairman of the ruling party until 1990, supporting a move to a multi-party system.",
+      "stamp": "Nyerere steps down",
+      "sources": [
+        { "name": "East African Community", "url": "https://www.eac.int/about-ncpr/our-work/262-ncpr" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Julius_Nyerere" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Options 2 and 3 are plausible only. His successor took the country into its free market era (East African Community)."
+    },
+    {
+      "id": "1187-jerusalem",
+      "year": 1187,
+      "place": "Jerusalem",
+      "colour": "red",
+      "pov": "Your army has breached the walls of Jerusalem. You have sworn to take the city by force, but its defenders threaten to destroy the holy places and kill 5,000 Muslim captives. You are the sultan.",
+      "choices": ["Storm the city, as you swore", "Let the people buy their freedom", "Let everyone leave free of charge"],
+      "real": 1,
+      "who": "Saladin",
+      "short": "Saladin",
+      "did": "Saladin accepted the city's surrender on 2 October 1187. The people could leave by paying a ransom: ten dinars for a man, five for a woman.",
+      "next": "Some 15,000 who could not pay were enslaved, though Saladin freed the elderly. Latin Christians answered with the Third Crusade in 1189.",
+      "stamp": "Saladin takes Jerusalem",
+      "sources": [
+        { "name": "World History Encyclopedia", "url": "https://www.worldhistory.org/article/1553/saladins-conquest-of-jerusalem-1187-ce/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Siege_of_Jerusalem_(1187)" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is what Saladin had sworn to do (both sources). Option 3 is close to the record in part: Saladin freed the elderly who could not pay, and some others without ransom (both sources). The ransom for a child differs (two dinars on Wikipedia, one in World History Encyclopedia), so the moment gives none."
+    },
+    {
+      "id": "1972-curitiba",
+      "year": 1972,
+      "place": "Curitiba",
+      "colour": "teal",
+      "pov": "A plan to close six blocks of your city's main street to cars has been blocked for years by shopkeepers. Your public works chief says it needs four months. You are the mayor of Curitiba.",
+      "choices": ["Wait until the shopkeepers agree", "Close it to cars within 48 hours", "Take the four months the works need"],
+      "real": 1,
+      "who": "Jaime Lerner",
+      "short": "Lerner",
+      "did": "Lerner ordered the work done in 48 hours. On 20 May 1972 part of the street was closed to cars, and the paving was done over that weekend.",
+      "next": "When a car club planned to drive old cars onto it, city workers rolled out paper and handed paints to passing children. Within days, shopkeepers wanted the car-free zone extended.",
+      "stamp": "Curitiba's street for people",
+      "sources": [
+        { "name": "Planetizen", "url": "https://www.planetizen.com/node/24579" },
+        { "name": "Wikipedia (Portuguese)", "url": "https://pt.wikipedia.org/wiki/Rua_XV_de_Novembro_(Curitiba)" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 1 is what had happened for years: the merchants' objections blocked a plan approved six years earlier (Planetizen). Option 3 is in the record: his secretary of public works asked for four months (Planetizen)."
+    },
+    {
+      "id": "1902-coal-strike",
+      "year": 1902,
+      "place": "Washington",
+      "colour": "green",
+      "pov": "Nearly 150,000 coal miners have been on strike since May. The owners refuse to deal with their union, and cities face a coal famine this winter. You are the president of the United States.",
+      "choices": ["Call both sides to the White House", "Stay out of a private dispute", "Send troops to break the strike"],
+      "real": 0,
+      "who": "Theodore Roosevelt",
+      "short": "Roosevelt",
+      "did": "Roosevelt called both sides to a meeting on 3 October 1902. When the owners refused to deal, he got ready to have the army take over the coalfields.",
+      "next": "The 163-day strike ended on 23 October 1902. An arbitration commission later gave most miners a 10 percent raise and a nine-hour day.",
+      "stamp": "The great coal strike",
+      "sources": [
+        { "name": "US Department of Labor", "url": "https://www.dol.gov/oasam/programs/history/coalstrike.htm" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Coal_strike_of_1902" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Option 2 is plausible only. Option 3 is close to the record in another form: Roosevelt was ready as a last resort to order the army to take over the coalfields (both sources). The number of strikers differs (147,000 at the Department of Labor, 150,000 on Wikipedia), so the pov says nearly 150,000."
+    },
+    {
+      "id": "2005-bhutan",
+      "year": 2005,
+      "place": "Thimphu",
+      "colour": "violet",
+      "pov": "Your country is stable and at peace. A royal decree of 1953 gives you absolute power, and a draft constitution would bring parliamentary democracy. You are the 50-year-old king of Bhutan.",
+      "choices": ["Keep your powers and shelve the draft", "Bring in democracy but reign for life", "Bring in democracy and hand over to your son"],
+      "real": 2,
+      "who": "Jigme Singye Wangchuck",
+      "short": "Jigme Singye",
+      "did": "In December 2005 he told a crowd of 8,000 at Trashiyangtse that the crown prince would take over in 2008. 'Why wait for a revolution?' he asked.",
+      "next": "In the end he abdicated in favour of his son earlier, on 9 December 2006. Bhutan's first democratic elections followed in 2008.",
+      "stamp": "Bhutan's king steps aside",
+      "sources": [
+        { "name": "Al Jazeera", "url": "https://www.aljazeera.com/news/2005/12/19/abdication-shocks-bhutanese" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Jigme_Singye_Wangchuck" }
+      ],
+      "checked": "2026-10-15",
+      "check": "Options 1 and 2 are plausible only. The absolute power of the decree of 1953 is Al Jazeera's description; Wikipedia notes that he had already given an elected Council of Ministers full executive powers."
     }
   ]
 };

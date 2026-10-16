@@ -2300,6 +2300,186 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Odd-toed_ungulate"},
     {"name": "Britannica", "url": "https://www.britannica.com/animal/perissodactyl"}
    ]
+  },
+  {
+   "id": "crane",
+   "subject": "crane",
+   "options": [
+    "heron",
+    "ostrich",
+    "coot"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "violet",
+   "fact": "Cranes may look like herons, but they belong to the same group as the rails, such as the coot. Herons belong to another group of birds.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Gruiformes"},
+    {"name": "The Timetree of Life (book chapter)", "url": "https://timetree.org/public/data/pdf/Houde2009Chap64.pdf"}
+   ]
+  },
+  {
+   "id": "wolf",
+   "subject": "wolf",
+   "options": [
+    "seal",
+    "thylacine",
+    "hyena"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "red",
+   "fact": "Seals are dog-like carnivores, so a wolf is closer to a seal than to a hyena, which is on the cat side. The Tasmanian tiger was a marsupial that only looked like a wolf.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Caniformia"},
+    {"name": "UC Museum of Paleontology", "url": "https://ucmp.berkeley.edu/mammal/carnivora/carnivorasy.html"}
+   ]
+  },
+  {
+   "id": "tuna",
+   "subject": "tuna",
+   "options": [
+    "salmon",
+    "shark",
+    "seahorse"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "blue",
+   "fact": "Tunas and seahorses look nothing alike, but they belong to the same group of bony fish. Salmon are on another branch, and sharks are cartilaginous fish.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Percomorpha"},
+    {"name": "PLOS Currents", "url": "https://currents.plos.org/treeoflife/article/the-tree-of-life-and-a-new-classification-of-bony-fishes/"}
+   ]
+  },
+  {
+   "id": "platypus",
+   "subject": "platypus",
+   "options": [
+    "beaver",
+    "duck",
+    "echidna"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "red",
+   "fact": "The platypus has a duck-like bill and a tail like a beaver's, but it is a mammal. It and the echidnas are the only living mammals that lay eggs.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Platypus"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/monotreme"}
+   ]
+  },
+  {
+   "id": "lizard",
+   "subject": "lizard",
+   "options": [
+    "chicken",
+    "salamander",
+    "eel"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "teal",
+   "fact": "Lizards and birds are both amniotes, so a lizard is closer to a chicken than to a salamander. Salamanders are amphibians, like frogs.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Amniote"},
+    {"name": "Systematic Biology", "url": "https://academic.oup.com/sysbio/article/70/1/49/5857591"}
+   ]
+  },
+  {
+   "id": "manatee",
+   "subject": "manatee",
+   "options": [
+    "aardvark",
+    "dolphin",
+    "walrus"
+   ],
+   "rank": [
+    0,
+    1,
+    1
+   ],
+   "colour": "red",
+   "fact": "Manatees belong to Afrotheria, a group of mammals with aardvarks and elephants. Walruses and dolphins belong to another group, and sea cows evolved to look like them separately.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Afrotheria"},
+    {"name": "University of Western Australia", "url": "https://www.uwa.edu.au/study/-/media/Faculties/Science/Docs/Mammalian-clades.pdf"}
+   ]
+  },
+  {
+   "id": "housefly",
+   "subject": "housefly",
+   "options": [
+    "dragonfly",
+    "bee",
+    "butterfly"
+   ],
+   "rank": [
+    2,
+    1,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Flies, butterflies and bees all go through a pupa, and bees branched off first. Despite its name, the dragonfly is not a fly, and it has no pupal stage.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Fly"},
+    {"name": "BMC Biology", "url": "https://link.springer.com/article/10.1186/1741-7007-7-34"}
+   ]
+  },
+  {
+   "id": "lobster",
+   "subject": "lobster",
+   "options": [
+    "scorpion",
+    "beetle",
+    "octopus"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "blue",
+   "fact": "Insects and crustaceans form one branch of the arthropods, so a lobster is closer to a beetle than to a scorpion. Scorpions are arachnids.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Pancrustacea"},
+    {"name": "Molecular Biology and Evolution", "url": "https://academic.oup.com/mbe/article/29/3/1031/1043286"}
+   ]
+  },
+  {
+   "id": "apple",
+   "subject": "apple",
+   "options": [
+    "tomato",
+    "potato",
+    "oak"
+   ],
+   "rank": [
+    1,
+    1,
+    0
+   ],
+   "colour": "green",
+   "fact": "The apple tree and the oak tree both belong to the rosids, a large group of flowering plants. Tomatoes and potatoes belong to the asterids.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Rosids"},
+    {"name": "Missouri Botanical Garden", "url": "https://www.mobot.org/MOBOT/research/APweb/orders/rosalesweb.htm"}
+   ]
   }
  ]
 };

@@ -5,7 +5,8 @@
      "pass:" + CODE     a live game's pass (game.js): a phone in the game gets back in through the brake
      "copy:" + CODE     a saved game's copy token: whoever has it may start their own copy, and nothing more
      "way:" + PRINT     a maker's email, as the browser's fingerprint of it (kit.js setWay, way.js)
-   The first two are never stored: they are worked out again whenever they are checked. The third is stored, with
+     "stats:" + ADDRESS + DATE   the brake of the world's counts (worker.js, tally.js): held in a date's memory only
+   The first two, and the brake's, are never stored: they are worked out again whenever they are checked. The third is stored, with
    its game and as the name of its Way object, because it has to be found again from an address typed later.
    So a new SETS_KEY would make new passes (live games last hours), new copy links (the old ones would stop
    working), and would end every way back at once: no stored email would match its address any more, and each
