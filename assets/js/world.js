@@ -195,15 +195,19 @@
     return a ? "https://" + a + "/world/" : (function () { try { return new URL(tableHref(), window.location.href).href; } catch (e) { return tableHref(); } })();
   }
   /* place: the country's place on the world table, or, with game (a game's name), its place in that game today */
-  function inviteText(c, place, game) {
+  function inviteText(c, place, game, rival) {
     var name = countryName(c);
     if (!name) return "Small daily games about the real world, a minute each. Every game you finish counts for your country. " + tableUrl();
+    if (place && rival && countryName(rival)) {      // the end of the day (17 Oct 2026): the country just above
+      return flag(c) + " " + name + " is " + nth(place) + " on the Logicers world table today, just behind " + flag(rival) + " " + countryName(rival) +
+        ". Help us pass them: small daily games about the real world, a minute each, and every game you finish counts for your country. " + tableUrl();
+    }
     return (place ? flag(c) + " " + name + " is " + nth(place) + (game ? " at " + game + " on Logicers today" : " on the Logicers world table today") + ". Help us climb: " :
       "Help " + flag(c) + " " + name + " onto the Logicers world table: ") +
       "small daily games about the real world, a minute each, and every game you finish counts for your country. " + tableUrl();
   }
-  function invite(c, place, note, game) {
-    var text = inviteText(c, place, game), nav = window.navigator;
+  function invite(c, place, note, game, rival) {
+    var text = inviteText(c, place, game, rival), nav = window.navigator;
     TO.count("world/invite");
     function copy() {
       TO.copyText(text).then(function (ok) {
@@ -484,6 +488,56 @@
     return box;
   }
   TO.worldHook = block;
+
+  /* ---------------- the end of the day: your country's place today (17 Oct 2026) ----------------
+     Under the clock of the card that closes a day with all nine games played: where your country stands on the
+     world table today, who stands just above it, and one tap to bring friends ("this country is doing better than
+     that", Khayyam, 15 Oct 2026). The same call and the same table as the home page's box. Nothing more is sent. */
+  function pride(host) {
+    if (!on() || !host) return;
+    var key = todayKey();
+    flushBoth(key).then(function () { return call("world", { d: key, span: "day" }); }).then(function (r) {
+      if (!r || r.status !== 200 || !host.parentNode) return;
+      var t = rank(r.data), you = r.data.you || {}, c = you.c;
+      if (!countryName(c)) return;
+      var me = null;
+      t.rows.forEach(function (x) { if (x.c === c) me = x; });
+      var place = me && me.at ? me.at : 0, rival = place > 1 ? t.ranked[place - 2] : null;
+      var btn = el("button", "eod-pride"), line = el("span", "eod-pride-text");
+      btn.type = "button";
+      line.appendChild(flagEl(c));
+      line.appendChild(document.createTextNode(" "));
+      var cta;
+      if (place === 1) {
+        line.appendChild(document.createTextNode(countryName(c) + " leads the world today."));
+        cta = "Keep it there";
+      } else if (place && rival) {
+        line.appendChild(document.createTextNode(countryName(c) + " is "));
+        line.appendChild(el("b", "", nth(place)));
+        line.appendChild(document.createTextNode(" today, just behind "));
+        line.appendChild(flagEl(rival.c));
+        line.appendChild(document.createTextNode(" " + countryName(rival.c) + "."));
+        cta = "Help it climb";
+      } else {
+        var need = Math.max(1, t.min - (me ? me.n : 0));
+        line.appendChild(document.createTextNode(countryName(c) + " needs "));
+        line.appendChild(el("b", "", need + " more"));
+        line.appendChild(document.createTextNode(need === 1 ? " player to take a place today." : " players to take a place today."));
+        cta = "Invite friends";
+      }
+      btn.appendChild(line);
+      btn.appendChild(el("span", "eod-pride-go", cta + " \u203a"));
+      var note = el("p", "wd-note");
+      note.hidden = true;
+      note.setAttribute("role", "status");
+      btn.addEventListener("click", function () { invite(c, place, note, "", rival ? rival.c : ""); });
+      host.textContent = "";
+      host.appendChild(btn);
+      host.appendChild(note);
+      host.hidden = false;
+    }).then(null, function () { /* the line simply stays away */ });
+  }
+  TO.prideHook = pride;
 
   /* today's games not sent yet, and yesterday's (a game finished just before midnight, with no signal) */
   function flushBoth(key) {

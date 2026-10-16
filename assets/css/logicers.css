@@ -1061,3 +1061,76 @@ body[data-g="hundred"] .panel.revealed { background: var(--c); box-shadow: 0 12p
 /* the About sheet's offer of the installable app (11 Oct 2026) */
 .app-add { margin-top: 10px; }
 .app-add .btn { width: 100%; }
+
+/* ---------- The end of the day (17 Oct 2026, assets/js/turnsout.js): the card that closes a day with all games played ----------
+   The clock, the country's place, three cells side by side (today's thread, Tell Khayyam, Share my day), and the small
+   round photo with its hello at the bottom corner. Slim on purpose: nothing here takes a row the old card did not. */
+.eod { margin-top: 12px; }
+.eod-row { display: flex; align-items: center; justify-content: space-between; gap: 6px 10px; flex-wrap: wrap; }
+.eod-clock { color: var(--soft); font-size: 0.92rem; font-weight: 600; line-height: 1.3; }
+.eod-clock b { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+.eod-app { appearance: none; border: 0; min-height: 34px; padding: 0 12px; border-radius: 999px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.84rem; cursor: pointer; box-shadow: inset 0 0 0 1px var(--line); -webkit-tap-highlight-color: transparent; }
+.eod-app[hidden], .eod-pride-wrap[hidden] { display: none; }
+.eod-pride-wrap { margin-top: 10px; }
+.eod-pride { appearance: none; width: 100%; display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 14px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.eod-pride:active { transform: scale(0.99); }
+.eod-pride-text { flex: 1; min-width: 0; font-weight: 600; font-size: 0.93rem; line-height: 1.3; }
+.eod-pride-text b { font-weight: 800; }
+.eod-pride-go { flex: none; color: var(--c, #2D4FC4); font-weight: 800; font-size: 0.86rem; white-space: nowrap; }
+.eod-pride-wrap .wd-note { margin-top: 6px; }
+.eod-strip { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.eod-cell { appearance: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 62px; padding: 6px 4px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.8rem; line-height: 1.15; text-align: center; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.eod-cell:active { transform: scale(0.98); }
+.eod-cell .ico { font-size: 1.3rem; line-height: 1; }
+.eod-cell[aria-busy="true"] { opacity: .6; }
+
+/* Tell Khayyam: the hello and the round photo */
+.khay-launch { position: fixed; right: max(12px, env(safe-area-inset-right, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px)); z-index: 30; display: flex; align-items: flex-end; gap: 8px; max-width: calc(100vw - 24px); transition: opacity .2s ease, transform .2s ease; animation: khay-in .45s cubic-bezier(.2, 1.1, .4, 1) both; }
+.khay-launch[hidden] { display: none; }
+.khay-launch.duck { opacity: 0; pointer-events: none; transform: translateY(10px); }
+.khay-launch.quiet .khay-bubble-wrap { display: none; }
+.khay-bubble-wrap { position: relative; }
+.khay-bubble { appearance: none; border: 0; max-width: 15.5rem; padding: 11px 15px; border-radius: 18px 18px 6px 18px; background: var(--card); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.95rem; line-height: 1.25; text-align: left; cursor: pointer; box-shadow: var(--shadow-up), inset 0 0 0 1px var(--line); }
+.khay-bubble span { display: block; margin-top: 1px; color: var(--soft); font-weight: 600; }
+.khay-x { appearance: none; position: absolute; top: -10px; left: -10px; width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--card); color: var(--soft); font: inherit; font-weight: 800; font-size: 1rem; line-height: 1; cursor: pointer; box-shadow: var(--shadow-up), inset 0 0 0 1px var(--line); }
+.khay-face { appearance: none; flex: none; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%; overflow: hidden; background: var(--card); cursor: pointer; box-shadow: var(--shadow-up), 0 0 0 3px var(--card); -webkit-tap-highlight-color: transparent; }
+.khay-face img, .khay-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@keyframes khay-in { from { opacity: 0; transform: translateY(16px) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* Tell Khayyam: the three questions, a small window at the bottom corner like a chat (not a full-screen sheet) */
+dialog.khay { position: fixed; inset: auto max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) auto; margin: 0; z-index: 40; width: min(100% - 24px, 22rem); max-height: calc(100% - 24px); overflow: auto; padding: 16px 16px 18px; }
+dialog.khay:not([open]) { display: none; }
+.khay-head { display: flex; align-items: center; gap: 10px; padding-right: 2px; }
+.khay-photo { flex: none; width: 44px; height: 44px; border-radius: 50%; overflow: hidden; }
+.khay-who { flex: 1; min-width: 0; line-height: 1.2; }
+.khay-who b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
+.khay-who span { display: block; color: var(--soft); font-size: 0.82rem; font-weight: 600; }
+.khay-intro { margin-top: 12px; font-size: 0.95rem; line-height: 1.4; }
+.khay-q { display: block; margin-top: 14px; font-weight: 800; font-size: 0.95rem; line-height: 1.25; }
+.khay-moods { display: flex; gap: 8px; margin-top: 8px; }
+.khay-mood { appearance: none; width: 48px; height: 48px; padding: 0; border: 2px solid var(--line); border-radius: 14px; background: var(--bg); font-size: 1.5rem; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.khay-mood[aria-pressed="true"] { border-color: var(--c, #2D4FC4); box-shadow: 0 0 0 2px var(--c, #2D4FC4); }
+.khay-text { display: block; width: 100%; margin-top: 6px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--ink); font: inherit; font-size: 1rem; line-height: 1.35; resize: vertical; min-height: 64px; }
+.khay-text:focus { outline: 3px solid var(--c, #2D4FC4); outline-offset: 1px; }
+.khay-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.khay-send { width: 100%; margin-top: 14px; min-height: 52px; }
+.khay-send:disabled { opacity: .45; cursor: default; box-shadow: none; }
+.khay-note { margin-top: 8px; font-weight: 600; font-size: 0.88rem; min-height: 1.2em; }
+.khay-thanks { padding-top: 6px; }
+.khay-thanks[hidden], .khay-form[hidden] { display: none; }
+.khay-thanks p { margin-top: 10px; }
+.khay-thanks .khay-big { font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; }
+.khay-thanks .btn { margin-top: 14px; width: 100%; }
+@media (prefers-color-scheme: dark) {
+  .eod-app, .eod-pride, .eod-cell, .khay-mood, .khay-text { background: rgba(255, 255, 255, .05); }
+  .khay-bubble, .khay-x, .khay-face { background: #1B1F3B; box-shadow: 0 10px 30px rgba(0, 0, 0, .5), inset 0 0 0 1px var(--line); }
+  .khay-face { box-shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 0 0 3px #1B1F3B; }
+}
+@media (max-width: 380px) {
+  .eod-cell { font-size: 0.74rem; }
+  .khay-bubble { max-width: 12.5rem; font-size: 0.9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .khay-launch { animation: none; transition: none; }
+  .eod-pride:active, .eod-cell:active { transform: none; }
+}

@@ -29,6 +29,19 @@
      Once the site has its own domain, write it here, for example "turnsout.games".
      ------------------------------------------------------------------ */
   var ADDRESS = "logicers.com";
+
+  /* ------------------------------------------------------------------
+     "Tell Khayyam" (17 Oct 2026): the end-of-day card's three short questions go by Web3Forms (a free form service)
+     to Logicers' inbox, logicers.world@gmail.com. Get the access key at web3forms.com (enter that address; the key
+     is sent to it) and put it between the quotes. A key of this kind is meant to be public: it only lets a form
+     send to that one inbox.
+     Empty quotes: there is no "Tell Khayyam" (no hello at the bottom corner, no cell in the card), nothing is sent
+     anywhere, and the privacy lines say nothing of it. The rest of the end-of-day card works without it.
+     ------------------------------------------------------------------ */
+  var FEEDBACK_KEY = "";
+
+  /* The Reddit community the end-of-day card points to (16 Oct 2026). */
+  var REDDIT = "https://www.reddit.com/r/Logicers/";
   var SELF = (document.currentScript && document.currentScript.src) || "";
 
   var KEY = "turnsout:v1";
@@ -81,17 +94,23 @@
     return Math.floor((b - a) / 86400000) + 1;
   }
 
-  /* ---- streak: days played in a row. A bad guess never breaks it. ---- */
+  /* ---- streak: days played in a row. A bad guess never breaks it.
+     Streak insurance (17 Oct 2026, Khayyam): one missed day never breaks it either. Two missed days in a row do.
+     A streak counts the days played, so a forgiven day adds nothing. It is alive while the last day played was today,
+     yesterday, or the day before (today is then still there to save it). ---- */
   function streak(results, today) {
     var days = Object.keys(results || {}).map(Number).filter(function (n) { return n >= 1 && n <= today; });
     var played = {};
     days.forEach(function (n) { played[n] = true; });
-    var current = 0;
-    var from = played[today] ? today : today - 1;
-    for (var n = from; n >= 1 && played[n]; n--) current++;
+    var current = 0, n = today;
+    if (!played[n]) n = played[n - 1] ? n - 1 : (played[n - 2] ? n - 2 : 0);
+    while (n >= 1 && played[n]) {
+      current++; n--;
+      if (!played[n] && played[n - 1]) n--;           // one missed day is forgiven
+    }
     var best = 0, run = 0;
-    days.sort(function (x, y) { return x - y; }).forEach(function (n, i, arr) {
-      run = (i > 0 && arr[i - 1] === n - 1) ? run + 1 : 1;
+    days.sort(function (x, y) { return x - y; }).forEach(function (d, i, arr) {
+      run = (i > 0 && d - arr[i - 1] <= 2) ? run + 1 : 1;
       if (run > best) best = run;
     });
     return { current: current, best: Math.max(best, current), played: days.length };
@@ -159,6 +178,7 @@
     note.textContent = "";
     var copy = document.getElementById("to-save-copy"), more = document.getElementById("to-save-more");
     copy.hidden = !o.text;
+    more.hidden = !file;                                   // no system menu here (the end of the day's own picture): no "More ways"
     copy.onclick = function () {
       copyText(o.text || "").then(function (done) {
         note.textContent = done ? "Copied. Paste it with the picture into a chat or a post." : "Copying did not work here.";
@@ -332,6 +352,11 @@
   function secondOn() { return counterOn() && !pixelMode() && /^[0-9a-f]{32}$/.test(WEB_ANALYTICS); }
   /* What the pages say about privacy must match what the site does. The world's counts (16 Oct 2026) add their
      own sentence to these lines, from assets/js/world.js, on the pages that send (as Rooms add theirs). */
+  /* the end-of-day card's form, said where the privacy lines are, only on the pages that have it (the daily games' pages) */
+  function feedbackNote(kind) {
+    if (!feedbackKey() || (kind !== "long" && kind !== "short")) return "";
+    return " If you choose to message Khayyam from the end-of-day card, what you write goes through Web3Forms, a form service, to Logicers' inbox, together with the day and the results of your games, and nothing else about you.";
+  }
   function privacyNotes() {
     if (!counterOn()) return;
     var VP = secondOn()
@@ -342,7 +367,7 @@
       : "Visits are counted with GoatCounter, without identifying anyone.";
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (el) {
       var kind = el.getAttribute("data-privacy");
-      el.textContent = kind === "short"
+      el.textContent = (kind === "short"
         ? "No login. No cookies. Results stay in your browser, unless you play in a room or a live game. Visits are counted without identifying anyone."
         : kind === "group"
         ? "No login and no cookies. Your table's best result is kept only in this browser. " + VP
@@ -360,7 +385,7 @@
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. " + VP
         : kind === "world"
         ? "No login and no cookies. " + V
-        : "No login and no cookies. Your streak and your album are kept only in this browser. " + VP;
+        : "No login and no cookies. Your streak and your album are kept only in this browser. " + VP) + feedbackNote(kind);
     });
   }
 
@@ -813,6 +838,7 @@
         try { doneEl = window.TurnsOut.allDoneHook(); } catch (e) { /* the sentence stands */ }
       }
       box.appendChild(doneEl || el("p", "onward-done", "All done for today. New games at midnight."));
+      try { box.appendChild(endOfDay()); } catch (e) { /* the end of the day must never break a game */ }
     }
     var all = el("a", "onward-all");
     all.href = here("../");
@@ -886,6 +912,440 @@
     return box;
   }
 
+  /* ------------------------------------------------------------------
+     The end of the day (17 Oct 2026). When the last of today's daily games is finished, the block at the end of
+     the page (the way onward) has nothing left to point to, so it ends the day instead, in one slim card:
+       - the time until the new games (the day changes at the player's own midnight);
+       - their country's place today, with an invitation to bring friends (assets/js/world.js fills this in);
+       - three cells side by side: today's thread on Reddit (r/Logicers), "Tell Khayyam", and "Share my day";
+       - on a phone that can keep the site on its home screen, a small offer to (at most once in three days);
+       - and, a moment later, a small round photo of Khayyam at the bottom corner with a short hello, like the
+         assistant of a website. A tap opens three short questions, all optional. Once a day at most, away for
+         3 days after a tap on its cross and for 30 days after a message was sent.
+     "Share my day" is one picture and one text of all nine results with no answers in them: a grid of squares (the
+     result of each game as one of four colours, in the order of the shelf), so friends see a pattern and wonder.
+     Nothing here is shown during a game, and nothing here can break one: every part is wrapped.
+     ------------------------------------------------------------------ */
+  var DAY_MS = 86400000;
+  function eodStore() { return obj(readAll().eod) || {}; }
+  function eodUpdate(change) {
+    var all = readAll();
+    all.eod = obj(all.eod) || {};
+    change(all.eod);
+    writeAll(all);
+    return all.eod;
+  }
+  function siteRoot() { return /assets\/js\/turnsout\.js/.test(SELF) ? SELF.replace(/assets\/js\/turnsout\.js.*$/, "") : "../"; }
+  function onTestServer() { return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname); }
+  /* the key of the form service: on the live site only the one above; the checks may give their own */
+  function feedbackKey() {
+    if (onTestServer()) return typeof window.LOGICERS_FEEDBACK_KEY === "string" ? window.LOGICERS_FEEDBACK_KEY : "";
+    return FEEDBACK_KEY;
+  }
+
+  /* time until the player's next midnight, in words */
+  function untilMidnight(now) {
+    var n = now || new Date(), m = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, 0, 0, 0, 0);
+    var mins = Math.max(1, Math.ceil((m.getTime() - n.getTime()) / 60000)), h = Math.floor(mins / 60), r = mins % 60;
+    return h ? h + " h" + (r ? " " + r + " min" : "") : r + " min";
+  }
+
+  /* ---- the result grid: one square per game, in the order of the shelf ---- */
+  var SQUARES = [String.fromCodePoint(0x2B1C), String.fromCodePoint(0x1F7E6), String.fromCodePoint(0x1F7EA), String.fromCodePoint(0x1F7E7)];
+  var NOT_PLAYED = String.fromCodePoint(0x2B1B);
+  function dayRows() {
+    return GAMES.map(function (G) {
+      var r = null;
+      try { r = game(G.id).results[todayOf(G)]; } catch (e) { r = null; }
+      r = (r && G.done(r)) ? r : null;
+      var t = r && typeof G.tier === "function" ? G.tier(r) : -1;
+      return { G: G, r: r, tier: (t >= 0 && t <= 3) ? t : -1 };
+    });
+  }
+  function dayLabel(now) {
+    var d = now || new Date();
+    try { return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }); } catch (e) { return ""; }
+  }
+  function dayText(rows, now) {
+    rows = rows || dayRows();
+    var done = rows.filter(function (x) { return !!x.r; }).length, lines = [];
+    for (var i = 0; i < rows.length; i += 3) {
+      lines.push(rows.slice(i, i + 3).map(function (x) { return x.tier >= 0 ? SQUARES[x.tier] : NOT_PLAYED; }).join(""));
+    }
+    return "Logicers " + dayLabel(now) + " · " + done + " of " + rows.length + "\n" + lines.join("\n") +
+           "\nCan you beat me? https://" + (address() || "logicers.com");
+  }
+  /* each game's colour on the picture, the same as the light colours in logicers.css */
+  var PIC = { hundred: "#2D4FC4", call: "#6A45CC", cousin: "#CF4327", club: "#BE3A82", apart: "#7A5034",
+              gets: "#005E16", every: "#C40045", o24: "#0A5666", energy: "#A55200" };
+  function rrect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y); c.lineTo(x + w - r, y); c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r); c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    c.lineTo(x + r, y + h); c.quadraticCurveTo(x, y + h, x, y + h - r);
+    c.lineTo(x, y + r); c.quadraticCurveTo(x, y, x + r, y); c.closePath();
+  }
+  function wrapWords(c, text, max) {
+    var words = String(text).split(" "), lines = [], cur = "";
+    words.forEach(function (w) {
+      var t = cur ? cur + " " + w : w;
+      if (cur && c.measureText(t).width > max) { lines.push(cur); cur = w; } else cur = t;
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  /* "My Logicers day": 1080 x 1350. No answers on it: the game's name and how close, as dots (three filled: spot on). */
+  function dayPicture(rows, now) {
+    var W = 1080, H = 1350, cv = document.createElement("canvas");
+    cv.width = W; cv.height = H;
+    var c = cv.getContext("2d");
+    if (!c) return Promise.resolve(null);
+    var D = '"Bricolage Grotesque", "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif';
+    var T = '"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif';
+    var ready = (document.fonts && document.fonts.load)
+      ? Promise.all([document.fonts.load('800 48px "Bricolage Grotesque"'), document.fonts.load('700 34px "Figtree"')]).then(function () {}, function () {})
+      : Promise.resolve();
+    return ready.then(function () {
+      c.fillStyle = "#F3F4F9"; c.fillRect(0, 0, W, H);
+      c.fillStyle = "#15172B"; c.textBaseline = "alphabetic"; c.textAlign = "left";
+      c.font = "800 84px " + D; c.fillText("My Logicers day", 66, 150);
+      c.fillStyle = "#5D6279"; c.font = "700 40px " + T;
+      var done = rows.filter(function (x) { return !!x.r; }).length;
+      c.fillText(dayLabel(now) + "  ·  " + done + " of " + rows.length + " played", 66, 214);
+      var tw = 300, th = 280, gap = 24, x0 = 66, y0 = 290;
+      rows.forEach(function (x, i) {
+        var col = i % 3, row = Math.floor(i / 3), px = x0 + col * (tw + gap), py = y0 + row * (th + gap);
+        c.fillStyle = x.r ? (PIC[x.G.key] || "#2D4FC4") : "#C9CCDC";
+        rrect(c, px, py, tw, th, 38); c.fill();
+        c.fillStyle = "#ffffff"; c.textAlign = "left"; c.font = "800 46px " + D;
+        wrapWords(c, x.G.name, tw - 56).slice(0, 3).forEach(function (ln, k) { c.fillText(ln, px + 28, py + 70 + k * 50); });
+        for (var d = 0; d < 3; d++) {
+          c.beginPath(); c.arc(px + 44 + d * 46, py + th - 40, 15, 0, Math.PI * 2);
+          if (x.tier > d) { c.fillStyle = "#ffffff"; c.fill(); }
+          else { c.lineWidth = 5; c.strokeStyle = "rgba(255,255,255,.7)"; c.stroke(); }
+        }
+      });
+      c.fillStyle = "#15172B"; c.font = "800 52px " + D; c.textAlign = "left";
+      c.fillText("Can you beat me?", 66, 1262);
+      c.fillStyle = "#5D6279"; c.font = "700 38px " + T;
+      c.fillText(address() || "logicers.com", 66, 1314);
+      var dots = [["#2D4FC4", 936], ["#CF4327", 978], ["#0D7D73", 1020]];
+      dots.forEach(function (d) { c.beginPath(); c.arc(d[1], 1290, 15, 0, Math.PI * 2); c.fillStyle = d[0]; c.fill(); });
+      return new Promise(function (resolve) {
+        try { cv.toBlob(function (b) { resolve(b || null); }, "image/png"); } catch (e) { resolve(null); }
+      });
+    });
+  }
+  function shareDay(btn) {
+    count_("eod/share-day");
+    var rows = dayRows(), text = dayText(rows), busy = btn && btn.getAttribute("aria-busy") === "true";
+    if (busy) return;
+    if (btn) btn.setAttribute("aria-busy", "true");
+    function free() { if (btn) btn.removeAttribute("aria-busy"); }
+    dayPicture(rows).then(function (blob) {
+      if (!blob) { copyText(text); free(); return; }
+      var o = { blob: blob, filename: "my-logicers-day.png", text: text };
+      return share(o).then(function (how) {
+        if (how === "fallback") saveSheet(o, null);
+        free();
+      });
+    }).then(null, function () { free(); });
+  }
+
+  /* ---- the offer to keep the site on the home screen ---- */
+  function askInstall() {
+    count_("eod/app-tap");
+    if (installEvent) {
+      var ev = installEvent;
+      try {
+        ev.prompt();
+        if (ev.userChoice && ev.userChoice.then) ev.userChoice.then(function (c) {
+          if (c && c.outcome === "accepted") { installEvent = null; eodUpdate(function (x) { x.appHide = 1; }); eodAppUi(); }
+        }, function () {});
+      } catch (e) { /* the browser's menu still offers it */ }
+      return;
+    }
+    var dlg = document.getElementById("eod-ios");
+    if (!dlg) {
+      dlg = document.createElement("dialog");
+      dlg.id = "eod-ios";
+      dlg.setAttribute("aria-labelledby", "eod-ios-h");
+      dlg.innerHTML = '<div class="sheet"><button class="chip round close" type="button" data-close aria-label="Close">×</button>' +
+        '<h2 id="eod-ios-h">Keep Logicers on your phone</h2>' +
+        '<ol><li>In Safari, tap the <b>Share</b> button (the square with an arrow).</li>' +
+        '<li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol>' +
+        '<p class="quiet">Logicers then opens like an app, full screen, with its own icon.</p>' +
+        '<div class="actions"><button class="btn ghost" id="eod-ios-no" type="button">Don’t show this again</button></div></div>';
+      document.body.appendChild(dlg);
+      document.getElementById("eod-ios-no").addEventListener("click", function () {
+        eodUpdate(function (x) { x.appHide = 1; }); closeDialog(dlg); eodAppUi();
+      });
+    }
+    openDialog(dlg);
+  }
+  function eodAppUi() {
+    var chip = document.getElementById("eod-app");
+    if (!chip) return;
+    var e = eodStore();
+    var can = !standalone() && !computer() && (!!installEvent || iOS()) && e.appHide !== 1;
+    var due = !num(e.appAt) || Date.now() - e.appAt >= 3 * DAY_MS;
+    var show = can && (chip.__shown || due);
+    chip.hidden = !show;
+    if (show && !chip.__shown) {
+      chip.__shown = true;
+      eodUpdate(function (x) { x.appAt = Date.now(); });
+      count_("eod/app-seen");
+    }
+  }
+
+  /* ---- Tell Khayyam ---- */
+  var FORM_URL = "https://api.web3forms.com/submit";
+  var khayOpen = null;
+  function khayReady() { return !!feedbackKey(); }
+  function khayFace(size) {
+    var i = document.createElement("img");
+    i.src = siteRoot() + "assets/img/khayyam.jpg";
+    i.alt = "";
+    i.width = size; i.height = size;
+    i.decoding = "async";
+    return i;
+  }
+  function khayPayload(f) {
+    var rows = dayRows();
+    return {
+      access_key: feedbackKey(),
+      subject: "Logicers: a message from a player",
+      from_name: "Logicers player",
+      botcheck: f.botcheck ? "yes" : "",
+      mood: f.mood || "",
+      liked_and_disliked: f.liked || "",
+      fix_or_build_next: f.next || "",
+      day: "Day " + Math.max(1, dayNumber("2026-10-03")) + " (" + dayLabel() + ")",
+      games_today: rows.map(function (x) { return x.G.name + ": " + (x.r ? x.G.says(x.r) : "not played"); }).join("; "),
+      grid: dayText(rows).split("\n").slice(1, 1 + Math.ceil(rows.length / 3)).join(" / "),
+      page: window.location.pathname,
+      language: window.navigator.language || "",
+      screen: ((window.screen && window.screen.width) || 0) + "x" + ((window.screen && window.screen.height) || 0)
+    };
+  }
+  function khaySend(body) {
+    var ctl = null, timer = null;
+    try { ctl = new window.AbortController(); } catch (e) { ctl = null; }
+    if (ctl) timer = window.setTimeout(function () { ctl.abort(); }, 12000);
+    return window.fetch(FORM_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(body),
+      signal: ctl ? ctl.signal : undefined
+    }).then(function (res) {
+      if (timer) window.clearTimeout(timer);
+      return res.json().then(function (j) { return !!(j && j.success); }, function () { return false; });
+    }, function () { if (timer) window.clearTimeout(timer); return false; });
+  }
+  function khayPanel() {
+    var dlg = document.getElementById("khay");
+    if (dlg) return dlg;
+    dlg = document.createElement("dialog");
+    dlg.id = "khay";
+    dlg.className = "khay";
+    dlg.setAttribute("data-stay", "");                // the frame's tap-outside-to-close must not close this one
+    dlg.setAttribute("aria-labelledby", "khay-h");
+    var head = el("div", "khay-head");
+    var who = el("div", "khay-who");
+    who.appendChild(el("b", "", "Khayyam"));
+    who.appendChild(el("span", "", "Builds Logicers on his own"));
+    var face = el("span", "khay-photo"); face.appendChild(khayFace(44));
+    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("aria-label", "Close");
+    x.id = "khay-x";
+    head.appendChild(face); head.appendChild(who); head.appendChild(x);
+    dlg.appendChild(head);
+    var form = el("form", "khay-form"); form.id = "khay-form"; form.noValidate = true;
+    form.appendChild(el("p", "khay-intro", "I’m Khayyam, an academic researcher, and I build Logicers on my own. Three quick questions, all optional. I read every answer."));
+    var h = el("h2", "sr-only", "Tell Khayyam"); h.id = "khay-h"; form.appendChild(h);
+    form.appendChild(el("p", "khay-q", "How was today?"));
+    var moods = el("div", "khay-moods"); moods.setAttribute("role", "group"); moods.setAttribute("aria-label", "How was today?");
+    [["😍", "Loved it"], ["🙂", "Good"], ["😐", "Okay"], ["🙁", "Not great"]].forEach(function (m) {
+      var b = el("button", "khay-mood", m[0]); b.type = "button"; b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", m[1]); b.setAttribute("data-m", m[0]);
+      b.addEventListener("click", function () {
+        var on = b.getAttribute("aria-pressed") !== "true";
+        Array.prototype.forEach.call(moods.children, function (o) { o.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+        sendable();
+      });
+      moods.appendChild(b);
+    });
+    form.appendChild(moods);
+    function area(id, q, ph) {
+      var l = el("label", "khay-q", q); l.setAttribute("for", id); form.appendChild(l);
+      var t = el("textarea", "khay-text"); t.id = id; t.rows = 2; t.maxLength = 600; t.placeholder = ph;
+      t.addEventListener("input", sendable);
+      form.appendChild(t);
+      return t;
+    }
+    var liked = area("khay-liked", "What do you like, and what don’t you like?", "Anything, big or small");
+    var next = area("khay-next", "What should I fix, or build next?", "A game idea, a bug, a wish");
+    var trap = el("input"); trap.type = "checkbox"; trap.name = "botcheck"; trap.tabIndex = -1; trap.setAttribute("aria-hidden", "true"); trap.className = "khay-trap"; trap.id = "khay-trap";
+    form.appendChild(trap);
+    var send = el("button", "btn solid khay-send", "Send to Khayyam"); send.type = "submit"; send.disabled = true; send.id = "khay-send";
+    form.appendChild(send);
+    var note = el("p", "khay-note"); note.id = "khay-note"; note.setAttribute("role", "status"); form.appendChild(note);
+    var thanks = el("div", "khay-thanks"); thanks.id = "khay-thanks"; thanks.hidden = true;
+    thanks.appendChild(el("p", "khay-big", "Thank you! 🙏"));
+    thanks.appendChild(el("p", "", "I read every message, and it shapes what I build next."));
+    var done = el("button", "btn ghost", "Close"); done.type = "button"; done.id = "khay-done"; thanks.appendChild(done);
+    function sendable() {
+      var any = !!(liked.value.trim() || next.value.trim() || moods.querySelector('[aria-pressed="true"]'));
+      send.disabled = !any;
+    }
+    function close() {
+      closeDialog(dlg);
+      khayOpen = null;
+    }
+    x.addEventListener("click", close);
+    done.addEventListener("click", close);
+    dlg.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (send.disabled || send.getAttribute("aria-busy") === "true") return;
+      var m = moods.querySelector('[aria-pressed="true"]');
+      send.setAttribute("aria-busy", "true"); send.textContent = "Sending…"; note.textContent = "";
+      khaySend(khayPayload({ mood: m ? m.getAttribute("data-m") : "", liked: liked.value.trim(), next: next.value.trim(), botcheck: trap.checked })).then(function (ok) {
+        send.removeAttribute("aria-busy"); send.textContent = "Send to Khayyam";
+        if (ok) {
+          count_("eod/sent");
+          eodUpdate(function (s) { s.sent = Date.now(); });
+          form.hidden = true; thanks.hidden = false;
+          var l = document.getElementById("khay-launch"); if (l && l.parentNode) l.parentNode.removeChild(l);
+          try { done.focus(); } catch (er) { /* no focus */ }
+        } else {
+          note.textContent = "That did not go through. Please try again, or write to logicers.world@gmail.com.";
+        }
+      });
+    });
+    dlg.appendChild(form);
+    dlg.appendChild(thanks);
+    document.body.appendChild(dlg);
+    return dlg;
+  }
+  function khayOpenPanel(from) {
+    if (!khayReady()) return;
+    count_("eod/open-" + from);
+    var dlg = khayPanel();
+    var l = document.getElementById("khay-launch");
+    if (l) l.hidden = true;
+    if (typeof dlg.show === "function") { if (!dlg.open) dlg.show(); } else dlg.setAttribute("open", "");
+    khayOpen = dlg;
+    try { var t = dlg.querySelector(".khay-mood"); if (t) t.focus({ preventScroll: true }); } catch (e) { /* no focus */ }   // not a text box: a phone's keyboard must not open by itself
+  }
+  /* the little round photo and its hello, at the bottom corner, a moment after the day has ended */
+  var launchTimer = 0;
+  var HELLO_DELAY = 5000;            // long enough for the reveal and the first read of the story to have their moment
+  function khayLaunch() {
+    if (!khayReady() || document.getElementById("khay-launch")) return;
+    var e = eodStore(), today = calendarDay(new Date());
+    var away = (num(e.sent) && Date.now() - e.sent < 30 * DAY_MS) || (num(e.hid) && Date.now() - e.hid < 3 * DAY_MS) || e.shown === today;
+    if (away) return;
+    window.clearTimeout(launchTimer);
+    launchTimer = window.setTimeout(function () {
+      if (document.getElementById("khay-launch") || (khayOpen && khayOpen.open)) return;
+      var box = el("div", "khay-launch"); box.id = "khay-launch";
+      var wrap = el("div", "khay-bubble-wrap");
+      var bubble = el("button", "khay-bubble"); bubble.type = "button";
+      bubble.appendChild(document.createTextNode("Hi, I’m Khayyam 👋"));
+      bubble.appendChild(el("span", "", "Got 30 seconds?"));
+      var x = el("button", "khay-x", "×"); x.type = "button"; x.setAttribute("aria-label", "Hide this");
+      wrap.appendChild(bubble); wrap.appendChild(x);
+      var face = el("button", "khay-face"); face.type = "button"; face.setAttribute("aria-label", "Tell Khayyam what you think");
+      face.appendChild(khayFace(56));
+      box.appendChild(wrap); box.appendChild(face);
+      document.body.appendChild(box);
+      eodUpdate(function (s) { s.shown = today; });
+      count_("eod/bubble-seen");
+      bubble.addEventListener("click", function () { khayOpenPanel("bubble"); });
+      face.addEventListener("click", function () { khayOpenPanel("bubble"); });
+      x.addEventListener("click", function () {
+        eodUpdate(function (s) { s.hid = Date.now(); });
+        count_("eod/bubble-hidden");
+        if (box.parentNode) box.parentNode.removeChild(box);
+      });
+      window.setTimeout(function () { box.classList.add("quiet"); }, 9000);       // the hello fades, the face stays
+      /* the face steps aside whenever it would lie over a button the player may be about to press */
+      var avoid = "#share, .eod-strip, .onward-all, #after .actions";
+      var raf = 0;
+      function duck() {
+        raf = 0;
+        if (!box.parentNode) return;
+        var b = box.getBoundingClientRect(), under = false;
+        Array.prototype.forEach.call(document.querySelectorAll(avoid), function (n) {
+          var r = n.getBoundingClientRect();
+          if (r.width && r.height && r.bottom > b.top - 6 && r.top < b.bottom + 6 && r.right > b.left - 6 && r.left < b.right + 6) under = true;
+        });
+        if (document.querySelector("dialog[open]")) under = true;
+        box.classList.toggle("duck", under);
+      }
+      function soon() { if (!raf) raf = window.requestAnimationFrame(duck); }
+      window.addEventListener("scroll", soon, { passive: true });
+      window.addEventListener("resize", soon);
+      duck();
+    }, HELLO_DELAY);
+  }
+
+  /* ---- the card itself ---- */
+  function icon(emoji) { var i = el("span", "ico", emoji); i.setAttribute("aria-hidden", "true"); return i; }
+  function endOfDay() {
+    var wrap = el("div", "eod");
+    wrap.id = "eod";
+    var row = el("div", "eod-row");
+    var clock = el("p", "eod-clock");
+    function tick() {
+      if (!wrap.parentNode && clock.__tick) { window.clearInterval(clock.__tick); return; }
+      clock.textContent = "";
+      clock.appendChild(document.createTextNode("New games in "));
+      clock.appendChild(el("b", "", untilMidnight()));
+    }
+    tick();
+    clock.__tick = window.setInterval(tick, 30000);
+    row.appendChild(clock);
+    var app = el("button", "eod-app", "📲 Keep on your phone");
+    app.type = "button"; app.id = "eod-app"; app.hidden = true;
+    app.addEventListener("click", askInstall);
+    row.appendChild(app);
+    wrap.appendChild(row);
+
+    var pride = el("div", "eod-pride-wrap");
+    pride.id = "eod-pride";
+    pride.hidden = true;
+    wrap.appendChild(pride);
+
+    var strip = el("div", "eod-strip");
+    var cells = 2;
+    var thread = el("a", "eod-cell");
+    thread.href = REDDIT; thread.target = "_blank"; thread.rel = "noopener noreferrer";
+    thread.appendChild(icon("💬")); thread.appendChild(el("span", "", "Today’s thread"));
+    thread.addEventListener("click", function () { count_("eod/reddit"); });
+    strip.appendChild(thread);
+    if (khayReady()) {
+      cells++;
+      var tell = el("button", "eod-cell"); tell.type = "button"; tell.id = "eod-tell";
+      tell.appendChild(icon("✉️")); tell.appendChild(el("span", "", "Tell Khayyam"));
+      tell.addEventListener("click", function () { khayOpenPanel("strip"); });
+      strip.appendChild(tell);
+    }
+    var mine = el("button", "eod-cell"); mine.type = "button"; mine.id = "eod-share";
+    mine.appendChild(icon("📤")); mine.appendChild(el("span", "", "Share my day"));
+    mine.addEventListener("click", function () { shareDay(mine); });
+    strip.appendChild(mine);
+    strip.style.setProperty("--n", String(cells));
+    wrap.appendChild(strip);
+
+    try { eodAppUi(); } catch (e) { /* the offer is optional */ }
+    if (typeof window.TurnsOut.prideHook === "function") {
+      try { window.TurnsOut.prideHook(pride); } catch (e) { /* the country's place must never break the end of the day */ }
+    }
+    try { khayLaunch(); } catch (e) { /* the hello is optional */ }
+    return wrap;
+  }
+
   function count_(name) { count(name); }
 
   /* ------------------------------------------------------------------
@@ -918,7 +1378,11 @@
       installEvent = e;
       appUi();
     });
-    window.addEventListener("appinstalled", function () { installEvent = null; count_("app/installed"); appUi(); });
+    window.addEventListener("appinstalled", function () {
+      installEvent = null; count_("app/installed");
+      try { eodUpdate(function (x) { x.appHide = 1; }); } catch (e) { /* nothing to note */ }
+      appUi();
+    });
     if (standalone()) {
       try {
         if (!window.sessionStorage.getItem("logicers-app")) { window.sessionStorage.setItem("logicers-app", "1"); count_("app/open"); }
@@ -927,6 +1391,7 @@
     appUi();
   }
   function appUi() {                           // the About sheet's section, wherever it is on the page
+    try { eodAppUi(); } catch (e) { /* the end of the day's offer is optional */ }
     var on = document.getElementById("app-on");
     if (!on) return;
     var add = document.getElementById("app-add"), ios = document.getElementById("app-ios"), other = document.getElementById("app-other");
@@ -988,7 +1453,8 @@
     worldUpdate: worldUpdate,
     todayOf: todayOf,
     playedToday: playedToday,
-    onward: onward
+    onward: onward,
+    eod: { text: dayText, until: untilMidnight, rows: dayRows, picture: dayPicture }
   };
 
   privacyNotes();

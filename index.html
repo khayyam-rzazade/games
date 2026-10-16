@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=8e4f119420">
+<link rel="stylesheet" href="assets/css/logicers.css?v=694cea012a">
 </head>
 <body class="home">
 
@@ -408,11 +408,11 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=ae7cc80de8"></script>
+<script src="assets/js/turnsout.js?v=f0212c82ac"></script>
 <script src="assets/js/duel.js?v=6cb85e8123"></script>
 <script src="assets/js/rooms.js?v=cb55b4b70d"></script>
 <script src="assets/js/points.js?v=d060d18a9f"></script>
-<script src="assets/js/world.js?v=25fb36c849"></script>
+<script src="assets/js/world.js?v=d86d3b4920"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */
@@ -487,12 +487,24 @@
     } catch (e) { /* a duel must never break the home page */ }
   })();
 
-  var streak = 0;
-  for (var d = playedOn[todayIndex] ? todayIndex : todayIndex - 1; playedOn[d]; d--) streak++;
+  /* Streak insurance (17 Oct 2026, Khayyam): one missed day never breaks the streak, two in a row do. A forgiven
+     day adds nothing to the count. The streak is alive while the last day played was today, yesterday, or the day
+     before (today is then still there to save it). The same rule as TurnsOut.streak in assets/js/turnsout.js. */
+  var streak = 0, saved = false, d = todayIndex;
+  if (!playedOn[d]) {
+    if (playedOn[d - 1]) d = d - 1;
+    else if (playedOn[d - 2]) { d = d - 2; saved = true; }
+    else d = -1;
+  }
+  while (d >= 0 && playedOn[d]) {
+    streak++; d--;
+    if (!playedOn[d] && playedOn[d - 1]) d--;
+  }
   document.getElementById("streak-n").textContent = String(streak);
   document.getElementById("streak-line").textContent = streak === 0
     ? "No streak yet. Play any game today to start one."
-    : "You have played " + streak + (streak === 1 ? " day" : " days") + " in a row." + (playedOn[todayIndex] ? "" : " Play any game today to keep it.");
+    : "You have played " + streak + (streak === 1 ? " day" : " days") + " in a row." +
+      (playedOn[todayIndex] ? "" : saved ? " Yesterday was missed, but your streak is safe if you play today." : " Play any game today to keep it.");
   var rows = document.getElementById("streak-rows");
   GAMES.forEach(function (G) {
     if (!G.stats) return;
