@@ -15,7 +15,7 @@
   var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var today = W.todayKey();
-  var span = "day", shown = null, all = false;
+  var span = "day", shown = null, all = false, allBusy = false;   // all, allBusy: "Show every country" tapped
 
   /* the way to today's games: how many are played */
   function play() {
@@ -172,11 +172,13 @@
     busy.textContent = "";
     var max = t.busy.length ? t.busy[0].played : 1, busyAt = 0;
     t.busy.forEach(function (x, i) { if (x.c === mine) busyAt = i + 1; });
-    t.busy.slice(0, 10).forEach(function (x, i) { busy.appendChild(row(x, i + 1, mine, W.commas(x.played), "", max)); });
-    if (busyAt > 10) {
-      if (busyAt > 11) busy.appendChild(gap());
+    var busyCut = allBusy ? t.busy.length : 10;
+    t.busy.slice(0, busyCut).forEach(function (x, i) { busy.appendChild(row(x, i + 1, mine, W.commas(x.played), "", max)); });
+    if (busyAt > busyCut) {
+      if (busyAt > busyCut + 1) busy.appendChild(gap());
       busy.appendChild(row(t.busy[busyAt - 1], busyAt, mine, W.commas(t.busy[busyAt - 1].played), "", max));
     }
+    $("wt-busy-more").hidden = allBusy || t.busy.length <= 10;
     $("wt-busy-card").hidden = !t.busy.length;
 
     var total = (d.n || 0) + (d.calls || 0);
@@ -188,6 +190,7 @@
   function load(sp) {
     span = sp;
     all = false;
+    allBusy = false;
     ["day", "yday", "month"].forEach(function (s) { $("tab-" + s).setAttribute("aria-selected", s === sp ? "true" : "false"); });
     var key = sp === "yday" ? W.shiftKey(today, -1) : today;
     $("wt-mine").textContent = "";
@@ -209,6 +212,7 @@
   $("tab-yday").addEventListener("click", function () { load("yday"); });
   $("tab-month").addEventListener("click", function () { load("month"); });
   $("wt-best-more").addEventListener("click", function () { all = true; if (shown) render(shown.d, shown.sp); });
+  $("wt-busy-more").addEventListener("click", function () { allBusy = true; if (shown) render(shown.d, shown.sp); });
 
   play();
   if (!W.on()) {
