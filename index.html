@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=947d0aa15e">
+<link rel="stylesheet" href="assets/css/logicers.css?v=8e4f119420">
 </head>
 <body class="home">
 
@@ -53,22 +53,25 @@
     <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
     <p class="today-note" id="today-note">New games at midnight.</p>
   </div>
-  <!-- Build your own game · Join a game (15 Oct 2026), right under Today and the same width, the box that should
-       draw the eye. The Join form has no named field, so even without a script nothing of the code reaches any
+  <!-- Build a game · Join a game (16 Oct 2026): one slim box in two halves, right under Today and the same width, so the
+       games come into view sooner (Khayyam: "those boxes are too tall vertically and take too much space"). Join is a
+       link to the live page, which has its own code box; with the script a tap opens the code field here instead,
+       across the whole box. The form has no named field, so even without a script nothing of the code reaches any
        server: home.js sends the browser to live/#CODE. -->
   <div class="livebox" id="livebox">
     <a class="lb lb-build" id="lb-build" href="live/build/">
       <span class="lb-badge">New</span>
       <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
-      <b class="lb-h">Build your own game</b>
-      <span class="lb-types" aria-hidden="true"><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><rect x="2" y="13" width="30" height="3" rx="1.5" fill="currentColor" opacity=".35"/><rect x="11" y="6" width="12" height="9" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="16" y="3" width="2" height="16" rx="1" fill="currentColor"/></svg><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><rect x="4" y="2" width="12" height="8" rx="2.5" fill="currentColor"/><rect x="18" y="2" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/><rect x="4" y="12" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/><rect x="18" y="12" width="12" height="8" rx="2.5" fill="currentColor" opacity=".35"/></svg><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><path d="M4 11.5l3.8 3.8 7-8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 6l9 10M30 6l-9 10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity=".45"/></svg><svg viewBox="0 0 34 22" aria-hidden="true" focusable="false"><text x="3" y="17" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="15" fill="currentColor">Aa</text><rect x="25" y="4" width="2.4" height="15" rx="1.2" fill="currentColor"/></svg></span>
-      <span class="lb-go"><span>Start</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <b class="lb-h">Build a game</b>
     </a>
-    <form class="lb lb-join livejoin" id="livejoin" action="live/" autocomplete="off" aria-label="Join a live game">
+    <a class="lb lb-join" id="lb-join" href="live/" aria-controls="livejoin" aria-expanded="false">
       <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
       <b class="lb-h">Join a game</b>
+    </a>
+    <form class="lb-code livejoin" id="livejoin" action="live/" autocomplete="off" aria-label="Join a live game" hidden>
       <input class="livejoin-code" id="livejoin-code" maxlength="7" placeholder="CODE" autocapitalize="characters" spellcheck="false" aria-label="Game code">
       <button class="livejoin-go" type="submit">Join</button>
+      <button class="livejoin-x" id="livejoin-x" type="button" aria-label="Close the code field">&times;</button>
     </form>
   </div>
   <!-- The Game Room box, under the Today card and the same size. It waits hidden until rooms are
@@ -405,7 +408,7 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=8bf7bdbe57"></script>
+<script src="assets/js/turnsout.js?v=ae7cc80de8"></script>
 <script src="assets/js/duel.js?v=6cb85e8123"></script>
 <script src="assets/js/rooms.js?v=cb55b4b70d"></script>
 <script src="assets/js/points.js?v=d060d18a9f"></script>
@@ -593,8 +596,21 @@
   shelf("shelf3-row", "shelf3-prev", "shelf3-next");       // Play live
 
   /* Join a live game (five letters) or play a saved one (seven, 15 Oct 2026): the live page with the code
-     after the "#" (never sent to a server). */
+     after the "#" (never sent to a server). Since 16 Oct 2026 the code field waits behind "Join a game", one
+     half of the slim box: a tap opens it across the whole box, × or Escape closes it again. */
   var join = document.getElementById("livejoin"), code = document.getElementById("livejoin-code");
+  var box = document.getElementById("livebox"), opener = document.getElementById("lb-join"), shut = document.getElementById("livejoin-x");
+  function openJoin(on) {
+    if (!box || !join || !opener) return;
+    box.classList.toggle("joining", on);
+    join.hidden = !on;
+    opener.setAttribute("aria-expanded", on ? "true" : "false");
+    if (on) { try { code.focus(); } catch (e) { /* the field is there all the same */ } if (window.TurnsOut) window.TurnsOut.count("home/join-open"); }
+    else { join.classList.remove("bad"); try { opener.focus(); } catch (e) { /* nothing to focus */ } }
+  }
+  if (opener && join) opener.addEventListener("click", function (e) { e.preventDefault(); openJoin(true); });
+  if (shut) shut.addEventListener("click", function () { openJoin(false); });
+  if (join) join.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.preventDefault(); openJoin(false); } });
   if (join && code) {
     code.addEventListener("input", function () {
       var v = code.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 7);

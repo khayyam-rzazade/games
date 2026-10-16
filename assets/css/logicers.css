@@ -380,44 +380,51 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .art .dim { fill: var(--c); fill-opacity: .13; }
 .group-games .go .arrow { display: none; }               /* "2+ players" needs the room of the arrow */
 .group-games .go { padding: 0 20px; }
-/* ---------- Build your own game · Join a game (15 Oct 2026): right under the Today card and the same width,
-   two windows side by side in the soft colours of the editor (light purple and light green), the box that should
-   draw the eye (Khayyam: "this box has to have a good attention"). Until that day the Join box stood alone at the
-   very top of the page. ---------- */
-.livebox { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+/* ---------- Build a game · Join a game (16 Oct 2026): one slim box in two halves, right under the Today card and
+   the same width, so the games come into view sooner (Khayyam: "those boxes are too tall vertically and take too
+   much space ... make the first box horizontal like other boxes"). The halves keep the editor's soft colours (light
+   purple and light green), so the box still draws the eye. A tap on Join opens the code field across the whole box.
+   Before that day, from 15 Oct: two tall windows side by side; until 15 Oct the Join box stood alone at the very
+   top of the page. ---------- */
+.livebox { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .hero .livebox { grid-column: -2 / -1; }
-.lb { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 0; margin: 0; padding: 14px 14px 14px; border-radius: 22px; color: #15172B; text-decoration: none; -webkit-tap-highlight-color: transparent; }
-.lb-build { background: linear-gradient(155deg, #F1EBFF 0%, #E6DCFF 52%, #FFE3EE 100%); box-shadow: 0 10px 26px rgba(91, 63, 196, .18), inset 0 0 0 1px rgba(91, 63, 196, .08); transition: transform .15s, box-shadow .15s; }
-.lb-join { background: linear-gradient(155deg, #E6F8EE 0%, #D6F2E3 100%); box-shadow: 0 10px 26px rgba(30, 122, 76, .14), inset 0 0 0 1px rgba(30, 122, 76, .08); }
-.lb-art { display: block; width: 54px; height: 54px; flex: none; }
+.lb { position: relative; display: flex; align-items: center; gap: 9px; min-width: 0; min-height: 64px; margin: 0; padding: 10px 10px 10px 10px; border-radius: 18px; color: #15172B; text-decoration: none; -webkit-tap-highlight-color: transparent; transition: transform .15s, box-shadow .15s; }
+.lb-build { background: linear-gradient(155deg, #F1EBFF 0%, #E6DCFF 52%, #FFE3EE 100%); box-shadow: 0 8px 20px rgba(91, 63, 196, .16), inset 0 0 0 1px rgba(91, 63, 196, .08); }
+.lb-join { background: linear-gradient(155deg, #E6F8EE 0%, #D6F2E3 100%); box-shadow: 0 8px 20px rgba(30, 122, 76, .13), inset 0 0 0 1px rgba(30, 122, 76, .08); }
+.lb-art { display: block; width: 36px; height: 36px; flex: none; }
 .lb-art svg { display: block; width: 100%; height: 100%; }
-.lb-h { display: block; font-family: var(--display); font-weight: 800; font-size: 1.14rem; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
-.lb-badge { position: absolute; right: 12px; top: 12px; background: #5B3FC4; color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; line-height: 1.3; }
-.lb-types { display: flex; flex-wrap: nowrap; gap: 4px; color: #5B3FC4; }
-.lb-types svg { flex: 0 1 auto; min-width: 0; width: 23px; height: 15px; padding: 5px 4px; border-radius: 8px; background: rgba(255, 255, 255, .7); box-sizing: content-box; }
-.lb-go { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; height: 42px; padding: 0 14px 0 17px; border-radius: 999px; background: #5B3FC4; color: #fff; font-weight: 800; font-size: 0.98rem; box-shadow: 0 6px 14px rgba(91, 63, 196, .28); }
-.lb-go .arrow { width: 17px; height: 17px; }
+.lb-h { display: block; min-width: 0; font-family: var(--display); font-weight: 800; font-size: 0.98rem; line-height: 1.1; letter-spacing: -0.02em; white-space: nowrap; }
+.lb-badge { position: absolute; right: 10px; top: -8px; background: #5B3FC4; color: #fff; font-size: 0.66rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; line-height: 1.3; }
 @media (hover: hover) {
-  .lb-build:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(91, 63, 196, .26), inset 0 0 0 1px rgba(91, 63, 196, .12); }
+  .lb-build:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(91, 63, 196, .24), inset 0 0 0 1px rgba(91, 63, 196, .12); }
+  .lb-join:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(30, 122, 76, .2), inset 0 0 0 1px rgba(30, 122, 76, .12); }
 }
-.lb-build:active { transform: scale(.985); }
+.lb:active { transform: scale(.985); }
 .lb-build:focus-visible { outline: 3px solid #5B3FC4; outline-offset: 3px; }
-/* the Join window: the code, then Join, one under the other (the window is narrow on a phone and beside Today) */
-.lb-join .livejoin-code { width: 100%; height: 46px; margin-top: auto; border-radius: 14px; border: 2px solid transparent; background: #fff; color: #1E7A4C; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: .14em; text-align: center; text-transform: uppercase; padding: 0 6px; }
-.lb-join .livejoin-code::placeholder { color: #7FA897; letter-spacing: .12em; }
-.lb-join .livejoin-code:focus { outline: none; border-color: #1E7A4C; }
+.lb-join:focus-visible { outline: 3px solid #1E7A4C; outline-offset: 3px; }
+/* the code field, across the whole box once Join is tapped: the code, Join, and × to go back */
+.livebox.joining > .lb { display: none; }
+.lb-code { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; min-height: 64px; margin: 0; padding: 9px; border-radius: 18px; background: linear-gradient(155deg, #E6F8EE 0%, #D6F2E3 100%); box-shadow: 0 8px 20px rgba(30, 122, 76, .13), inset 0 0 0 1px rgba(30, 122, 76, .08); }
+.lb-code .livejoin-code { flex: 1; min-width: 0; height: 46px; border-radius: 14px; border: 2px solid transparent; background: #fff; color: #1E7A4C; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: .14em; text-align: center; text-transform: uppercase; padding: 0 6px; }
+.lb-code .livejoin-code::placeholder { color: #7FA897; letter-spacing: .12em; }
+.lb-code .livejoin-code:focus { outline: none; border-color: #1E7A4C; }
 .livejoin.bad .livejoin-code { border-color: var(--miss, #F0B429); }
-.lb-join .livejoin-go { appearance: none; border: 0; width: 100%; height: 42px; border-radius: 999px; background: #1E7A4C; color: #fff; font: inherit; font-weight: 800; cursor: pointer; -webkit-tap-highlight-color: transparent; box-shadow: 0 6px 14px rgba(30, 122, 76, .24); }
-.lb-join .livejoin-go:active { transform: scale(.97); }
-@media (max-width: 359px) {                  /* the smallest phones: a little tighter, so nothing is cut */
-  .livebox { gap: 8px; }
-  .lb { padding: 12px 11px; border-radius: 20px; }
-  .lb-art { width: 46px; height: 46px; }
-  .lb-h { font-size: 1.04rem; }
-  .lb-types { gap: 3px; }
-  .lb-types svg { width: 20px; height: 13px; padding: 4px 3px; }
-  .lb-join .livejoin-code { letter-spacing: .08em; font-size: 1.05rem; }
-  .lb-badge { right: 9px; top: 9px; }
+.lb-code .livejoin-go { appearance: none; flex: none; border: 0; height: 46px; padding: 0 20px; border-radius: 999px; background: #1E7A4C; color: #fff; font: inherit; font-weight: 800; cursor: pointer; -webkit-tap-highlight-color: transparent; box-shadow: 0 6px 14px rgba(30, 122, 76, .24); }
+.lb-code .livejoin-go:active { transform: scale(.97); }
+.lb-code .livejoin-x { appearance: none; flex: none; width: 40px; height: 40px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .7); color: #1E7A4C; font: inherit; font-size: 1.4rem; font-weight: 700; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+@media (max-width: 379px) {                  /* the smaller phones: a little tighter, so nothing is cut */
+  .lb { gap: 6px; padding: 9px 8px; }
+  .lb-art { width: 28px; height: 28px; }
+  .lb-h { font-size: 0.86rem; }
+  .lb-code .livejoin-code { letter-spacing: .08em; font-size: 1.05rem; }
+  .lb-code .livejoin-go { padding: 0 15px; }
+}
+@media (max-width: 319px) {
+  .lb-art { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb, .lb:active, .lb-code .livejoin-go:active { transition: none; transform: none; }
+  @media (hover: hover) { .lb-build:hover, .lb-join:hover { transform: none; } }
 }
 .live-games { margin-top: 34px; }
 .art .sure-net { stroke: var(--c); }
@@ -425,17 +432,19 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 @media (prefers-color-scheme: dark) {
   .lb { color: #F3F4FF; }
   .lb-build { background: linear-gradient(155deg, #2B2250 0%, #231C40 55%, #3A1E35 100%); box-shadow: inset 0 0 0 1px rgba(199, 184, 255, .2); }
-  .lb-join { background: linear-gradient(155deg, #17352A 0%, #12291F 100%); box-shadow: inset 0 0 0 1px rgba(143, 227, 181, .18); }
+  .lb-join, .lb-code { background: linear-gradient(155deg, #17352A 0%, #12291F 100%); box-shadow: inset 0 0 0 1px rgba(143, 227, 181, .18); }
   .lb-badge { background: #C7B8FF; color: #0A0C1A; }
-  .lb-types { color: #C7B8FF; }
-  .lb-types svg { background: rgba(255, 255, 255, .08); }
-  .lb-go { background: #C7B8FF; color: #0A0C1A; box-shadow: none; }
   .lb-build:focus-visible { outline-color: #C7B8FF; }
-  .lb-join .livejoin-code { background: #0B1D15; color: #DDF5E7; }
-  .lb-join .livejoin-code::placeholder { color: #5F8F79; }
-  .lb-join .livejoin-code:focus { border-color: #8FE3B5; }
-  .lb-join .livejoin-go { background: #8FE3B5; color: #0A0C1A; box-shadow: none; }
-  @media (hover: hover) { .lb-build:hover { box-shadow: inset 0 0 0 1px rgba(199, 184, 255, .4); } }
+  .lb-join:focus-visible { outline-color: #8FE3B5; }
+  .lb-code .livejoin-code { background: #0B1D15; color: #DDF5E7; }
+  .lb-code .livejoin-code::placeholder { color: #5F8F79; }
+  .lb-code .livejoin-code:focus { border-color: #8FE3B5; }
+  .lb-code .livejoin-go { background: #8FE3B5; color: #0A0C1A; box-shadow: none; }
+  .lb-code .livejoin-x { background: rgba(255, 255, 255, .08); color: #8FE3B5; }
+  @media (hover: hover) {
+    .lb-build:hover { box-shadow: inset 0 0 0 1px rgba(199, 184, 255, .4); }
+    .lb-join:hover { box-shadow: inset 0 0 0 1px rgba(143, 227, 181, .38); }
+  }
 }
 .soon-tile { --c: var(--soft); --tint: transparent; background: transparent; box-shadow: none; border: 1.5px dashed color-mix(in srgb, var(--soft) 38%, transparent); }
 .soon-tile:active { transform: none; }
@@ -907,6 +916,11 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 .shot { display: block; width: 100%; height: auto; border-radius: 14px; margin-top: 14px; }
 .copied { margin-top: 10px; font-weight: 600; min-height: 1.4em; }
 .sheet .actions .btn { min-height: 52px; }
+/* the frame's own Save window on a computer (16 Oct 2026, turnsout.js saveSheet): the whole window and its three
+   buttons stay on screen, so the picture is kept to a part of the screen's height */
+.to-save .shot { width: auto; max-width: 100%; max-height: min(52vh, 560px); margin-left: auto; margin-right: auto; }
+.to-save-acts { flex-wrap: wrap; }
+.to-save-acts .btn { white-space: nowrap; padding-left: 16px; padding-right: 16px; }
 
 /* ---------- The world today (16 Oct 2026, assets/js/world.js): the block at every reveal of today's game ----------
    You beside the world, your continent and your country (a score of 100), whom you beat, where the guesses landed,

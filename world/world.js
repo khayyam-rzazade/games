@@ -129,12 +129,47 @@
     }
     box.appendChild(line);
     if (sp !== "yday") {
-      var acts = el("div", "wd-acts");
-      acts.appendChild(W.inviteButton(c, sp === "day" && x ? x.at : 0, note));
-      box.appendChild(acts);
+      box.appendChild(duo(c, sp === "day" && x ? x.at : 0, note));
       box.appendChild(note);
+      fitDuo();
     }
   }
+
+  /* The two ways to bring friends, side by side in one box that never grows taller (16 Oct 2026, Khayyam:
+     "the same size button next to 'invite friends from Italy' saying 'create your room with your friends'",
+     and then "this is how we keep taking more and more space... i don't want it"). The long words show where
+     the box is wide enough; a phone gets the short ones, on one line. A browser already in a room gets "Your
+     room", which opens it, instead of a second room. */
+  var ROOM_ICON = '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="7" cy="7.2" r="2.9" fill="currentColor"/><circle cx="13.6" cy="8.2" r="2.4" fill="currentColor" opacity=".55"/><path d="M1.8 16.4c.4-3 2.5-4.7 5.2-4.7s4.8 1.7 5.2 4.7z" fill="currentColor"/><path d="M12.4 16.4c-.2-1.6-.8-2.9-1.8-3.8.9-.6 1.9-.9 3-.9 2.3 0 4.1 1.5 4.6 4.7z" fill="currentColor" opacity=".55"/></svg>';
+  function inRoom() {
+    try { return TO.roomsStore().list.some(function (r) { return r && typeof r.code === "string"; }); } catch (e) { return false; }
+  }
+  function duo(c, place, note) {
+    var box = el("div", "wt-duo");
+    var inv = W.inviteButton(c, place, note, "wt-duo-inv"), name = W.countryName(c);
+    inv.textContent = "";
+    inv.appendChild(el("span", "wt-long", name ? "Invite friends from " + name : "Invite friends"));
+    inv.appendChild(el("span", "wt-short", "Invite friends"));
+    box.appendChild(inv);
+    var mine = inRoom(), a = el("a", "wt-duo-room");
+    a.href = TO.here("../room/");
+    a.id = "wt-room";
+    a.insertAdjacentHTML("beforeend", ROOM_ICON);
+    a.appendChild(el("span", "", mine ? "Your room" : "Start a room"));
+    a.addEventListener("click", function () { TO.count(mine ? "world/room" : "world/room-new"); });
+    box.appendChild(a);
+    return box;
+  }
+  /* a long country name ("Invite friends from Bosnia and Herzegovina") takes the short words, so nothing is cut */
+  function fitDuo() {
+    Array.prototype.forEach.call(document.querySelectorAll(".wt-duo-inv"), function (b) {
+      b.classList.remove("tight");
+      var long = b.querySelector(".wt-long");
+      if (long && (long.scrollWidth > long.clientWidth + 1 || b.scrollWidth > b.clientWidth + 1)) b.classList.add("tight");
+    });
+  }
+  window.addEventListener("resize", fitDuo);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitDuo, function () {});
 
   function render(d, sp) {
     shown = { d: d, sp: sp };
@@ -191,6 +226,7 @@
     }
     $("wt-busy-more").hidden = allBusy || t.busy.length <= 10;
     $("wt-busy-card").hidden = !t.busy.length;
+    $("wt-share-busy").hidden = !t.busy.length;
 
     var total = (d.n || 0) + (d.calls || 0);
     $("wt-foot").textContent = total
@@ -312,10 +348,18 @@
     if (sp === "week") { var m = W.dateOf(monday(key)); return "Week of " + m.getDate() + " " + MONTHS[m.getMonth()]; }
     return dayWords(key);
   }
-  function topLine(sp) {
-    return sp === "month" ? "Top of the world this month" : sp === "week" ? "Top of the world this week" : sp === "yday" ? "Top of the world that day" : "Top of the world today";
+  function topLine(sp, busy) {
+    var w = sp === "month" ? "this month" : sp === "week" ? "this week" : sp === "yday" ? "that day" : "today";
+    return (busy ? "Most games " : "Top of the world ") + w;
   }
-  function drawTable(d, t, sp) {
+  /* two tables can be shared: the best scores (the default) and, since 16 Oct 2026 on Khayyam's word ("maybe the
+     same share top 10 country for most games played part too?"), the most games played. Both are drawn alike;
+     the second counts games, never players, because the server counts games. */
+  function picRows(t, busy) {
+    if (!busy) return t.ranked.map(function (r) { return { c: r.c, at: r.at, big: String(Math.round(r.s)), s: r.s, played: r.played }; });
+    return t.busy.map(function (r, i) { return { c: r.c, at: i + 1, big: W.commas(r.played), played: r.played }; });
+  }
+  function drawTable(d, t, sp, busy) {
     var WD = 1080, HT = 1350, M = 72;
     var c = document.createElement("canvas");
     c.width = WD; c.height = HT;
@@ -334,14 +378,14 @@
     x.textAlign = "right";
     x.globalAlpha = 0.75;
     x.font = "700 36px " + F;
-    x.fillText("World table", WD - M, 104);
+    x.fillText(busy ? "Most games played" : "World table", WD - M, 104);
     x.globalAlpha = 1;
     x.textAlign = "left";
     fit(x, period(d.d, sp), "800", 76, FD, WD - 2 * M, 40);
     x.fillText(period(d.d, sp), M - 3, 200);
 
     /* the winner */
-    var w1 = t.ranked[0], top = 236, bh = 372;
+    var list = picRows(t, busy), w1 = list[0], top = 236, bh = 372;
     var g = x.createLinearGradient(0, top, 0, top + bh);
     g.addColorStop(0, "#FFD866");
     g.addColorStop(1, "#F2B33A");
@@ -351,7 +395,7 @@
     x.fillStyle = INK;
     crown(x, M + 66, top + 64, 46);
     x.font = "800 30px " + F;
-    x.fillText(topLine(sp).toUpperCase(), M + 104, top + 75);
+    x.fillText(topLine(sp, busy).toUpperCase(), M + 104, top + 75);
     x.textAlign = "right";
     x.font = "800 30px " + F;
     x.fillText("1ST", WD - M - 44, top + 75);
@@ -367,23 +411,35 @@
     x.fillStyle = "rgba(21, 23, 43, .12)";
     x.fillRect(M + 44, top + 266, WD - 2 * M - 88, 2);
     x.fillStyle = INK;
-    var facts = [[String(Math.round(w1.s)), "points"], [W.commas(w1.played), w1.played === 1 ? "game" : "games"]];
-    if (t.ranked[1]) {
-      var lead = Math.round(w1.s - t.ranked[1].s);
-      facts.push(lead >= 1 ? ["+" + lead, "ahead of 2nd"] : ["0", "just ahead"]);
+    var facts;
+    if (busy) {
+      var sum = 0;
+      list.forEach(function (r) { sum += r.played; });
+      var part = sum ? Math.round(100 * w1.played / sum) : 0;
+      facts = [[W.commas(w1.played), w1.played === 1 ? "game" : "games"], [(part < 1 && w1.played ? "<1" : String(part)) + "%", "of all games"]];
+      if (list[1]) {
+        var more = w1.played - list[1].played;
+        facts.push(more >= 1 ? ["+" + W.commas(more), "ahead of 2nd"] : ["0", "level with 2nd"]);
+      }
+    } else {
+      facts = [[String(Math.round(w1.s)), "points"], [W.commas(w1.played), w1.played === 1 ? "game" : "games"]];
+      if (list[1]) {
+        var lead = Math.round(w1.s - list[1].s);
+        facts.push(lead >= 1 ? ["+" + lead, "ahead of 2nd"] : ["0", "just ahead"]);
+      }
     }
     var cw = (WD - 2 * M - 88) / 3;
     facts.forEach(function (f, i) {
       var l = M + 44 + i * cw;
-      x.font = "800 58px " + FD;
+      fit(x, f[0], "800", 58, FD, cw * 0.6, 34);         // a long count of games makes the figure smaller, not wider
       x.fillText(f[0], l, top + 336);
       var vw = x.measureText(f[0]).width;
-      x.font = "700 30px " + F;
+      fit(x, f[1], "700", 30, F, cw - vw - 28, 18);
       x.fillText(f[1], l + vw + 12, top + 334);
     });
 
     /* 2nd to 10th */
-    var rows = t.ranked.slice(1, 10), rh = 58, y0 = top + bh + 34;
+    var rows = list.slice(1, 10), rh = 58, y0 = top + bh + 34;
     var RANK = ["#D9DEEC", "#E9A877"];
     rows.forEach(function (r, i) {
       var y = y0 + i * rh, mid = y + rh / 2;
@@ -396,19 +452,22 @@
       var w = drawFlag(x, r.c, M + 70, mid, 42, false);
       x.fillStyle = "#ffffff";
       var l = M + 70 + w + 18;
-      fit(x, W.countryName(r.c), "700", 38, F, WD - M - 110 - l, 24);
+      x.font = "800 42px " + FD;
+      var bw = x.measureText(r.big).width;
+      fit(x, W.countryName(r.c), "700", 38, F, WD - M - 40 - bw - l, 24);
       x.fillText(W.countryName(r.c), l, mid + 13);
       x.textAlign = "right";
       x.font = "800 42px " + FD;
-      x.fillText(String(Math.round(r.s)), WD - M - 8, mid + 15);
+      x.fillText(r.big, WD - M - 8, mid + 15);
       x.textAlign = "left";
     });
 
     /* the challenge */
     var total = (d.n || 0) + (d.calls || 0);
     x.fillStyle = "#ffffff";
-    fit(x, "Can your country beat them?", "800", 62, FD, WD - 2 * M, 36);
-    x.fillText("Can your country beat them?", M - 2, 1228);
+    var ask = busy ? "Can your country catch them?" : "Can your country beat them?";
+    fit(x, ask, "800", 62, FD, WD - 2 * M, 36);
+    x.fillText(ask, M - 2, 1228);
     var where = TO.address() || "logicers.com";
     x.fillStyle = GOLD;
     x.font = "800 38px " + F;
@@ -422,18 +481,21 @@
     x.textAlign = "left";
     return c;
   }
-  function shareText(d, t, sp) {
-    var w1 = t.ranked[0], name = W.countryName(w1.c), mine = (d.you || {}).c, me = null;
-    t.ranked.forEach(function (r) { if (r.c === mine) me = r; });
-    var lines = [(sp === "yday" ? "🏆 " + name + " was top of the Logicers world table yesterday!" : "🏆 " + name + " is top of the Logicers world table " + when(sp) + "!")];
-    t.ranked.slice(0, 3).forEach(function (r) { lines.push(r.at + ". " + W.flag(r.c) + " " + W.countryName(r.c) + " " + Math.round(r.s)); });
-    if (me && me.at > 3) lines.push("…" + me.at + ". " + W.flag(me.c) + " " + W.countryName(me.c) + " " + Math.round(me.s));
-    lines.push("Can your country beat them? " + W.tableUrl());
+  function shareText(d, t, sp, busy) {
+    var list = picRows(t, busy), w1 = list[0], name = W.countryName(w1.c), mine = (d.you || {}).c, me = null;
+    list.forEach(function (r) { if (r.c === mine) me = r; });
+    var lines = [busy
+      ? (sp === "yday" ? "🎮 " + name + " played the most Logicers games yesterday!" : "🎮 " + name + " has played the most Logicers games " + when(sp) + "!")
+      : (sp === "yday" ? "🏆 " + name + " was top of the Logicers world table yesterday!" : "🏆 " + name + " is top of the Logicers world table " + when(sp) + "!")];
+    function line(r) { return r.at + ". " + W.flag(r.c) + " " + W.countryName(r.c) + " " + r.big + (busy ? (r.played === 1 ? " game" : " games") : ""); }
+    list.slice(0, 3).forEach(function (r) { lines.push(line(r)); });
+    if (me && me.at > 3) lines.push("…" + line(me));
+    lines.push((busy ? "Can your country catch them? " : "Can your country beat them? ") + W.tableUrl());
     return lines.join("\n");
   }
-  function fileName(d, sp) {
+  function fileName(d, sp, busy) {
     var k = String(sp === "week" ? monday(d.d) : d.d), day = k.slice(0, 4) + "-" + k.slice(4, 6) + "-" + k.slice(6, 8);
-    return "logicers-world-" + (sp === "month" ? day.slice(0, 7) : sp === "week" ? "week-" + day : day) + ".png";
+    return "logicers-world-" + (busy ? "games-" : "") + (sp === "month" ? day.slice(0, 7) : sp === "week" ? "week-" + day : day) + ".png";
   }
   function blobOf(url) {
     var b = window.atob(url.split(",")[1]), a = new Uint8Array(b.length);
@@ -441,12 +503,15 @@
     return new Blob([a], { type: "image/png" });
   }
   var shareUrl = null;
-  $("wt-share").addEventListener("click", function () {
-    if (!shown || !shown.t || !shown.t.ranked.length) return;
-    var d = shown.d, t = shown.t, sp = shown.sp, url = "", blob = null, text = shareText(d, t, sp);
-    try { url = drawTable(d, t, sp).toDataURL("image/png"); blob = blobOf(url); } catch (e) { url = ""; blob = null; }
-    TO.count("world/share");
-    TO.share({ blob: blob, filename: fileName(d, sp), text: text }).then(function (how) {
+  function shareTable(busy) {
+    if (!shown || !shown.t || !(busy ? shown.t.busy : shown.t.ranked).length) return;
+    var d = shown.d, t = shown.t, sp = shown.sp, url = "", blob = null, text = shareText(d, t, sp, busy);
+    try { url = drawTable(d, t, sp, busy).toDataURL("image/png"); blob = blobOf(url); } catch (e) { url = ""; blob = null; }
+    TO.count(busy ? "world/share-games" : "world/share");
+    $("share-title").textContent = busy ? "Share the most games played" : "Share the table";
+    $("share-img").alt = busy ? "The most games played as a picture: the top ten countries, the first with its flag and its games."
+      : "The world table as a picture: the top ten countries, the first with its flag, score and games.";
+    TO.share({ blob: blob, filename: fileName(d, sp, busy), text: text }).then(function (how) {
       if (how !== "fallback") return;
       var img = $("share-img"), save = $("share-save");
       if (shareUrl) { window.URL.revokeObjectURL(shareUrl); shareUrl = null; }
@@ -454,7 +519,7 @@
         shareUrl = window.URL.createObjectURL(blob);
         img.src = url; img.hidden = false;
         save.href = shareUrl; save.hidden = false;
-        save.setAttribute("download", fileName(d, sp));
+        save.setAttribute("download", fileName(d, sp, busy));
       } else { img.hidden = true; save.hidden = true; }
       $("share-copied").textContent = "";
       $("share-copy").onclick = function () {
@@ -464,7 +529,9 @@
       };
       TO.openDialog($("dlg-share"));
     });
-  });
+  }
+  $("wt-share").addEventListener("click", function () { shareTable(false); });
+  $("wt-share-busy").addEventListener("click", function () { shareTable(true); });
 
   $("tab-day").addEventListener("click", function () { load("day"); });
   $("tab-yday").addEventListener("click", function () { load("yday"); });

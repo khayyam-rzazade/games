@@ -97,24 +97,79 @@
     return { current: current, best: Math.max(best, current), played: days.length };
   }
 
-  /* ---- sharing: the phone's own share sheet when it can take a picture, otherwise the caller shows a fallback ---- */
+  /* ---- sharing ----
+     On a phone or a tablet: the phone's own share sheet, which can also save the picture.
+     On a computer (16 Oct 2026): the system's share menu there has no Save (Khayyam: "on mac safari i don't have
+     save option, i can just share with apps"), so the frame shows its own small window instead, the same for every
+     game: the picture, Save picture, Copy text, and the system's menu one tap away ("More ways"). A browser with no
+     share menu at all is left as it was: the caller shows its own window ("fallback"). */
+  function computer() {
+    try { return !!(window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches); } catch (e) { return false; }
+  }
   function share(o) {
     var file = null;
     try {
       if (o.blob && typeof File === "function") file = new File([o.blob], o.filename || "turns-out.png", { type: "image/png" });
     } catch (e) { file = null; }
-    var nav = window.navigator;
+    var nav = window.navigator, ok = false;
     if (file && nav.canShare && nav.share) {
-      var ok = false;
       try { ok = nav.canShare({ files: [file] }); } catch (e) { ok = false; }
-      if (ok) {
-        return nav.share({ files: [file], text: o.text }).then(
-          function () { return "shared"; },
-          function (err) { return (err && err.name === "AbortError") ? "closed" : "fallback"; }
-        );
-      }
     }
-    return Promise.resolve("fallback");
+    if (!ok) return Promise.resolve("fallback");
+    if (computer()) return saveSheet(o, file);
+    return nav.share({ files: [file], text: o.text }).then(
+      function () { return "shared"; },
+      function (err) { return (err && err.name === "AbortError") ? "closed" : "fallback"; }
+    );
+  }
+
+  /* the frame's own window, made once and reused; it answers "sheet", so the caller shows nothing more */
+  var sheetUrl = null;
+  function saveSheet(o, file) {
+    var dlg = document.getElementById("to-save");
+    if (!dlg) {
+      dlg = document.createElement("dialog");
+      dlg.id = "to-save";
+      dlg.className = "to-save";
+      dlg.setAttribute("aria-labelledby", "to-save-h");
+      dlg.innerHTML = '<div class="sheet">' +
+        '<button class="chip round close" type="button" id="to-save-x" aria-label="Close">\u00d7</button>' +
+        '<h2 id="to-save-h">Save or share</h2>' +
+        '<p class="quiet">Save the picture and post it with the text, so friends can tap the link.</p>' +
+        '<img class="shot" id="to-save-img" alt="The picture to share.">' +
+        '<div class="actions to-save-acts">' +
+          '<a class="btn solid" id="to-save-pic" download="logicers.png">Save picture</a>' +
+          '<button class="btn ghost" id="to-save-copy" type="button">Copy text</button>' +
+          '<button class="btn ghost" id="to-save-more" type="button">More ways</button>' +
+        '</div>' +
+        '<p class="copied" id="to-save-note" role="status"></p>' +
+        '</div>';
+      document.body.appendChild(dlg);
+      document.getElementById("to-save-x").addEventListener("click", function () { closeDialog(dlg); });
+      dlg.addEventListener("close", function () {
+        if (sheetUrl) { try { window.URL.revokeObjectURL(sheetUrl); } catch (e) { /* nothing to free */ } sheetUrl = null; }
+      });
+    }
+    if (sheetUrl) { try { window.URL.revokeObjectURL(sheetUrl); } catch (e) { /* nothing to free */ } }
+    sheetUrl = window.URL.createObjectURL(o.blob);
+    var img = document.getElementById("to-save-img"), pic = document.getElementById("to-save-pic"), note = document.getElementById("to-save-note");
+    img.src = sheetUrl;
+    pic.href = sheetUrl;
+    pic.setAttribute("download", o.filename || "logicers.png");
+    note.textContent = "";
+    var copy = document.getElementById("to-save-copy"), more = document.getElementById("to-save-more");
+    copy.hidden = !o.text;
+    copy.onclick = function () {
+      copyText(o.text || "").then(function (done) {
+        note.textContent = done ? "Copied. Paste it with the picture into a chat or a post." : "Copying did not work here.";
+      });
+    };
+    pic.onclick = function () { note.textContent = "Saved to your downloads."; };
+    more.onclick = function () {
+      window.navigator.share({ files: [file], text: o.text }).then(function () { closeDialog(dlg); }, function () { /* closed: the window stays */ });
+    };
+    openDialog(dlg);
+    return Promise.resolve("sheet");
   }
 
   function copyText(text) {
