@@ -302,9 +302,10 @@
   }
   /* the privacy words of a made game's screens, in its language (TurnsOut's own words are English only) */
   function counted() { return !!document.querySelector("script[data-goatcounter]"); }
+  function countedTwice() { return !!document.querySelector("script[data-cf-beacon]"); }   // Cloudflare Web Analytics too (16 Oct 2026)
   function privacyLine(kind) {
     var s = kind === "alone" ? W("privacyAlone") + " " + W("privacyBrowser") : W("privacyLive");
-    return s + (counted() ? " " + W("counted") : "");
+    return s + (counted() ? " " + W(countedTwice() ? "countedBoth" : "counted") : "");
   }
   function reportHref() { return TO.here("report/") + "#lang=" + L + (app.code || kit.code ? "&code=" + (app.code || kit.code) : ""); }
   function termsHref() { return TO.here("terms/") + "#" + L; }

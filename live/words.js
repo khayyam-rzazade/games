@@ -33,6 +33,7 @@ window.LIVE_WORDS = {
     privacyAlone: "No login and no cookies. Your name and answers are kept with this game, for its scoreboard, and deleted with it: two months after its last use, or sooner if its maker deletes it (the server's own backups clear within 30 days). Nothing else about you is kept.",
     privacyBrowser: "This browser keeps your answers until you finish, and a random key, so that only your first play goes on the scoreboard.",
     counted: "Visits and plays are counted with GoatCounter, without identifying anyone.",
+    countedBoth: "Visits and plays are counted with GoatCounter, and visits also with Cloudflare Web Analytics, without identifying anyone.",
     /* the lobby */
     joinAtH: "Join at <b>%s</b> with the code", orScanH: "Or scan<br>this code", sendLink: "Send the link", linkCopied: "Link copied",
     playersIn: { one: "%d player in", other: "%d players in" }, nobodyYet: "Nobody yet. Share the code.", youreIn: "You're in!",
@@ -131,6 +132,7 @@ window.LIVE_WORDS = {
     privacyAlone: "Niente login e niente cookie. Il tuo nome e le tue risposte vengono conservati con questo gioco, per la sua classifica, e cancellati insieme al gioco: due mesi dopo l'ultimo utilizzo, o prima se chi l'ha creato lo elimina (i backup del server si cancellano entro 30 giorni). Di te non viene conservato nient'altro.",
     privacyBrowser: "Questo browser conserva le tue risposte finché non finisci e tiene una chiave casuale, così in classifica va solo la tua prima partita.",
     counted: "Le visite e le partite vengono contate con GoatCounter, senza identificare nessuno.",
+    countedBoth: "Le visite e le partite vengono contate con GoatCounter, e le visite anche con Cloudflare Web Analytics, senza identificare nessuno.",
     joinAtH: "Vai su <b>%s</b> e inserisci il codice", orScanH: "Oppure scansiona<br>questo codice", sendLink: "Invia il link", linkCopied: "Link copiato",
     playersIn: { one: "%d giocatore in partita", other: "%d giocatori in partita" }, nobodyYet: "Ancora nessuno. Condividi il codice.", youreIn: "Ci sei!",
     waitingHost: "In attesa di chi conduce", you: "tu", youName: "Tu", youParen: "(tu)", joinOnPhone: "Dal telefono vai su", withCode: "e inserisci il codice",
@@ -220,6 +222,7 @@ window.LIVE_WORDS = {
     privacyAlone: "Üyelik yok, çerez yok. Adın ve cevapların puan tablosu için bu oyunla birlikte saklanır ve onunla birlikte silinir: son kullanımından iki ay sonra ya da hazırlayan kişi daha önce silerse (yedeklerden de 30 gün içinde temizlenir). Seninle ilgili başka hiçbir şey saklanmaz.",
     privacyBrowser: "Bu tarayıcı, oyunu bitirene kadar cevaplarını saklar. Ayrıca rastgele bir anahtar tutar; böylece puan tablosuna yalnızca ilk oyunun girer.",
     counted: "Ziyaretler ve oyunlar GoatCounter ile, kimsenin kimliği belirlenmeden sayılır.",
+    countedBoth: "Ziyaretler ve oyunlar GoatCounter ile, ziyaretler ayrıca Cloudflare Web Analytics ile, kimsenin kimliği belirlenmeden sayılır.",
     joinAtH: "<b>%s</b> adresinden bu kodla katıl", orScanH: "Ya da bu kodu<br>tara", sendLink: "Bağlantıyı gönder", linkCopied: "Bağlantı kopyalandı",
     playersIn: { one: "%d oyuncu oyunda", other: "%d oyuncu oyunda" }, nobodyYet: "Henüz kimse yok. Kodu paylaş.", youreIn: "Oyundasın!",
     waitingHost: "Sunucu bekleniyor", you: "sen", youName: "Sen", youParen: "(sen)", joinOnPhone: "Telefonundan katıl:", withCode: "kod:",

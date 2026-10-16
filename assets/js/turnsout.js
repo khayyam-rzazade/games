@@ -13,6 +13,16 @@
   var COUNTER = "khayyam";
 
   /* ------------------------------------------------------------------
+     The second visitor counter, a double check on the first (16 Oct 2026, Khayyam: "goatcounter is ok but
+     i want to have a double check"): Cloudflare Web Analytics. It counts page visits only (the plays stay
+     GoatCounter's), sets no cookies and keeps nothing in the browser. It runs wherever GoatCounter runs, except
+     on the pages that load no script from outside (data-count="pixel": the editor and the report form).
+     Put the site's token from Cloudflare (Web Analytics, logicers.com) between the quotes.
+     Empty quotes: Cloudflare is never contacted, and the privacy lines name GoatCounter only.
+     ------------------------------------------------------------------ */
+  var WEB_ANALYTICS = "44a4c8f907a04a778c876ab1eb1c9667";
+
+  /* ------------------------------------------------------------------
      The address printed on every share picture, so that people who only
      get the picture know where to play.
      Empty quotes: the site's own web address is used.
@@ -254,32 +264,48 @@
     s.setAttribute("data-goatcounter", "https://" + COUNTER + ".goatcounter.com/count");
     s.onload = function () { var q = waiting; waiting = []; q.forEach(count); };
     document.head.appendChild(s);
+    if (secondOn()) {                   // Cloudflare's own snippet, exactly as its dashboard gives it (16 Oct 2026)
+      try {
+        var c = document.createElement("script");
+        c.type = "module";
+        c.src = "https://static.cloudflareinsights.com/beacon.min.js";
+        c.setAttribute("data-cf-beacon", JSON.stringify({ token: WEB_ANALYTICS }));
+        document.head.appendChild(c);
+      } catch (e) { /* counting must never break a page */ }
+    }
   }
+  function secondOn() { return counterOn() && !pixelMode() && /^[0-9a-f]{32}$/.test(WEB_ANALYTICS); }
   /* What the pages say about privacy must match what the site does. The world's counts (16 Oct 2026) add their
      own sentence to these lines, from assets/js/world.js, on the pages that send (as Rooms add theirs). */
   function privacyNotes() {
     if (!counterOn()) return;
+    var VP = secondOn()
+      ? "Visits and plays are counted with GoatCounter, and visits also with Cloudflare Web Analytics, without identifying anyone."
+      : "Visits and plays are counted with GoatCounter, without identifying anyone.";
+    var V = secondOn()
+      ? "Visits are counted with GoatCounter and Cloudflare Web Analytics, without identifying anyone."
+      : "Visits are counted with GoatCounter, without identifying anyone.";
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (el) {
       var kind = el.getAttribute("data-privacy");
       el.textContent = kind === "short"
         ? "No login. No cookies. Results stay in your browser, unless you play in a room or a live game. Visits are counted without identifying anyone."
         : kind === "group"
-        ? "No login and no cookies. Your table's best result is kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. Your table's best result is kept only in this browser. " + VP
         : kind === "names"
-        ? "No login and no cookies. The players' names and wins are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. The players' names and wins are forgotten when you leave this page. " + VP
         : kind === "duel"
-        ? "No login and no cookies. A duel link carries only the day, the scores and the name the sender chose for themselves, inside the link itself: nothing reached a server, not even ours. The name you choose travels in every link you send. What your phone has merged is kept only in this browser. Visits are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. A duel link carries only the day, the scores and the name the sender chose for themselves, inside the link itself: nothing reached a server, not even ours. The name you choose travels in every link you send. What your phone has merged is kept only in this browser. " + V
         : kind === "rooms"
-        ? "No login and no cookies. Outside your own browser, a room stores only this: each daily game a member finishes sends the game, the score, the day and their chosen name to the site's own small server, and nothing else — and nothing at all for anyone who is in no room. It keeps this month and the last, then deletes; a room nobody plays in for 60 days is deleted whole, and leaving a room deletes everything of yours at once. Visits are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. Outside your own browser, a room stores only this: each daily game a member finishes sends the game, the score, the day and their chosen name to the site's own small server, and nothing else — and nothing at all for anyone who is in no room. It keeps this month and the last, then deletes; a room nobody plays in for 60 days is deleted whole, and leaving a room deletes everything of yours at once. " + V
         : kind === "live"
-        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends (the server's own backups clear within 30 days). Nothing else about you is kept. Visits and plays are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends (the server's own backups clear within 30 days). Nothing else about you is kept. " + VP
         : kind === "live-all"
-        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends. Games people make: a saved game keeps only what its maker typed into it, with no name of the maker, and an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link (the address itself only if they also tick feedback emails, and only for those); it is deleted two months after its last use. Playing one alone keeps the name you type and your answers with the game, for its scoreboard, and they go when the game goes. A report keeps what its sender writes, the game's code, and a name and email only if given, for six months. The server's own backups clear within 30 days. Nothing else about you is kept. Visits and plays are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends. Games people make: a saved game keeps only what its maker typed into it, with no name of the maker, and an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link (the address itself only if they also tick feedback emails, and only for those); it is deleted two months after its last use. Playing one alone keeps the name you type and your answers with the game, for its scoreboard, and they go when the game goes. A report keeps what its sender writes, the game's code, and a name and email only if given, for six months. The server's own backups clear within 30 days. Nothing else about you is kept. " + VP
         : kind === "table"
-        ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. Visits and plays are counted with GoatCounter, without identifying anyone."
+        ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. " + VP
         : kind === "world"
-        ? "No login and no cookies. Visits are counted with GoatCounter, without identifying anyone."
-        : "No login and no cookies. Your streak and your album are kept only in this browser. Visits and plays are counted with GoatCounter, without identifying anyone.";
+        ? "No login and no cookies. " + V
+        : "No login and no cookies. Your streak and your album are kept only in this browser. " + VP;
     });
   }
 
