@@ -38,7 +38,7 @@
      Empty quotes: there is no "Tell Khayyam" (no hello at the bottom corner, no cell in the card), nothing is sent
      anywhere, and the privacy lines say nothing of it. The rest of the end-of-day card works without it.
      ------------------------------------------------------------------ */
-  var FEEDBACK_KEY = "";
+  var FEEDBACK_KEY = "178c5d15-c4af-419e-8199-a5b233101978";
 
   /* The Reddit community the end-of-day card points to (16 Oct 2026). */
   var REDDIT = "https://www.reddit.com/r/Logicers/";
