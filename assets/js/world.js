@@ -525,6 +525,14 @@
         line.appendChild(document.createTextNode(need === 1 ? " player to take a place today." : " players to take a place today."));
         cta = "Invite friends";
       }
+      /* the daily reminder may say it tomorrow, once, when the place changed (turnsout.js keeps and sends it) */
+      try {
+        if (typeof TO.keepTip === "function") {
+          var tip = place === 1 ? countryName(c) + " led the world. Keep it there today."
+            : (place && rival) ? countryName(c) + " was " + nth(place) + ", just behind " + countryName(rival.c) + ". Help it climb today." : "";
+          if (tip) TO.keepTip(tip.length <= 110 ? tip : "", c + ":" + place);
+        }
+      } catch (e) { /* the reminder simply has no country line */ }
       btn.appendChild(line);
       btn.appendChild(el("span", "eod-pride-go", cta + " \u203a"));
       var note = el("p", "wd-note");

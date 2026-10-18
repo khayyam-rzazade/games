@@ -1079,10 +1079,19 @@ body[data-g="hundred"] .panel.revealed { background: var(--c); box-shadow: 0 12p
 .eod-pride-go { flex: none; color: var(--c, #2D4FC4); font-weight: 800; font-size: 0.86rem; white-space: nowrap; }
 .eod-pride-wrap .wd-note { margin-top: 6px; }
 .eod-strip { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
-.eod-cell { appearance: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 62px; padding: 6px 4px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.8rem; line-height: 1.15; text-align: center; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.eod-cell:active { transform: scale(0.98); }
-.eod-cell .ico { font-size: 1.3rem; line-height: 1; }
+.eod-cell, .keep-cell { appearance: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 62px; padding: 6px 4px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.8rem; line-height: 1.15; text-align: center; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.eod-cell:active, .keep-cell:active { transform: scale(0.98); }
+.eod-cell .ico, .keep-cell .ico { font-size: 1.3rem; line-height: 1; }
 .eod-cell[aria-busy="true"] { opacity: .6; }
+/* Keep Logicers close (18 Oct 2026): the install, QR, reminder and calendar halves, side by side, under the way onward */
+.keep[hidden], .keep-cell[hidden] { display: none; }
+.keep { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.keep-cell { border-color: #2D4FC4; gap: 2px; min-height: 62px; }
+.keep-t { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; }
+.keep-s { font-weight: 600; font-size: 0.72rem; color: var(--soft); line-height: 1.2; }
+.keep-qr-code { display: flex; justify-content: center; margin: 14px 0; }
+.keep-qr-code svg { width: 220px; height: 220px; max-width: 100%; border-radius: 12px; }
+.keep-set button { appearance: none; border: 0; background: none; padding: 0; font: inherit; font-weight: 700; color: inherit; text-decoration: underline; cursor: pointer; }
 
 /* Tell Khayyam: the hello and the round photo */
 .khay-launch { position: fixed; right: max(12px, env(safe-area-inset-right, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px)); z-index: 30; display: flex; align-items: flex-end; gap: 8px; max-width: calc(100vw - 24px); transition: opacity .2s ease, transform .2s ease; animation: khay-in .45s cubic-bezier(.2, 1.1, .4, 1) both; }
@@ -1122,15 +1131,16 @@ dialog.khay:not([open]) { display: none; }
 .khay-thanks .khay-big { font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; }
 .khay-thanks .btn { margin-top: 14px; width: 100%; }
 @media (prefers-color-scheme: dark) {
-  .eod-app, .eod-pride, .eod-cell, .khay-mood, .khay-text { background: rgba(255, 255, 255, .05); }
+  .eod-app, .eod-pride, .eod-cell, .keep-cell, .khay-mood, .khay-text { background: rgba(255, 255, 255, .05); }
   .khay-bubble, .khay-x, .khay-face { background: #1B1F3B; box-shadow: 0 10px 30px rgba(0, 0, 0, .5), inset 0 0 0 1px var(--line); }
   .khay-face { box-shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 0 0 3px #1B1F3B; }
 }
 @media (max-width: 380px) {
-  .eod-cell { font-size: 0.74rem; }
+  .eod-cell, .keep-cell { font-size: 0.74rem; }
+  .keep-s { font-size: 0.68rem; }
   .khay-bubble { max-width: 12.5rem; font-size: 0.9rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .khay-launch { animation: none; transition: none; }
-  .eod-pride:active, .eod-cell:active { transform: none; }
+  .eod-pride:active, .eod-cell:active, .keep-cell:active { transform: none; }
 }

@@ -357,6 +357,11 @@
     if (!feedbackKey() || (kind !== "long" && kind !== "short")) return "";
     return " If you choose to message Khayyam from the end-of-day card, what you write goes through Web3Forms, a form service, to Logicers' inbox, together with the day and the results of your games, and nothing else about you.";
   }
+  /* the daily reminder (18 Oct 2026): said where the privacy lines are, on the pages that offer it */
+  function reminderNote(kind) {
+    if (!pushKey() || (kind !== "long" && kind !== "short")) return "";
+    return " If you turn on the daily reminder, Logicers' server keeps your browser's notification address, the hour you usually play, your time zone, your streak, the day you last played and your country until you turn it off (or a month and a half after your last visit), and sends at most one reminder a day.";
+  }
   function privacyNotes() {
     if (!counterOn()) return;
     var VP = secondOn()
@@ -385,7 +390,7 @@
         ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. " + VP
         : kind === "world"
         ? "No login and no cookies. " + V
-        : "No login and no cookies. Your streak and your album are kept only in this browser. " + VP) + feedbackNote(kind);
+        : "No login and no cookies. Your streak and your album are kept only in this browser. " + VP) + feedbackNote(kind) + reminderNote(kind);
     });
   }
 
@@ -776,6 +781,7 @@
     var after = document.getElementById("after");
     if (!after) return null;
     try { stamp(o); } catch (e) { /* a stamp must never break a game */ }
+    try { afterPlay(); } catch (e) { /* a reminder must never break a game */ }
     var old = document.getElementById("onward"), oldBar = document.getElementById("onbar");
     if (old && old.parentNode) old.parentNode.removeChild(old);
     if (oldBar && oldBar.parentNode) oldBar.parentNode.removeChild(oldBar);
@@ -828,6 +834,7 @@
       a.insertAdjacentHTML("beforeend", ARROW);
       a.addEventListener("click", function () { count_("onward/" + next.id); });
       box.appendChild(a);
+      try { box.appendChild(keepStrip()); } catch (e) { /* the offers are optional */ }
     } else {
       /* A day with everything played can end somewhere better than a sentence: a member of a
          room goes back to its table (assets/js/rooms.js fills this hook in). Wrapped whole,
@@ -1052,6 +1059,299 @@
     }).then(null, function () { free(); });
   }
 
+  /* ------------------------------------------------------------------
+     Keep Logicers close (18 Oct 2026, Khayyam: "we have to hook them as soon as they are in and keep them", and the
+     offers "should not be hidden, once installed it won't show, same for notifications").
+     A slim strip of two halves, side by side, that stands under the way onward after the first finished game, and
+     in the card that closes the day. Every half is there until it is done, and then it is gone:
+       Add to home screen   until the site is installed (a phone only)
+       Play on your phone   on a computer: a QR code of the site; gone once it has been shown
+       Daily reminder       until the reminder is on, or the browser has been told no (then the calendar half)
+       Calendar reminder    where a reminder cannot be pushed (an iPhone in Safari, or a no): a daily event for the
+                            calendar, gone once it has been taken
+     The reminder is a push the browser's own service delivers: the phone gives the server (server/live, push.js) its
+     push address, the hour it usually plays at, its clock's offset, its streak and the day it last played, and the
+     server sends at most ONE push a day (never when the phone has played that day). The key below is the public half of
+     the server's signing key (the same text as VAPID_PUBLIC in server/live/wrangler.jsonc); empty means no reminder.
+     ------------------------------------------------------------------ */
+  var PUSH_KEY = "BHTIP9q1jseMP0W-aAJkMUO6dPLmnkAG0Mdmodw6BKARfNYSrhYxg3pBkeeLEM7TJ_kVbRzYlj6nPTOAei1DRC0";
+  var PUSH_API = "https://logicers-live.rza-khay.workers.dev";
+  function pushKey() {
+    if (onTestServer()) return typeof window.LOGICERS_PUSH_KEY === "string" ? window.LOGICERS_PUSH_KEY : "";
+    return PUSH_KEY;
+  }
+  function swWanted() {
+    var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+    return window.location.protocol === "https:" ? !local : (local && window.LOGICERS_SW === true);
+  }
+  function pushSupported() {
+    return !!pushKey() && swWanted() && "serviceWorker" in window.navigator && "PushManager" in window && "Notification" in window;
+  }
+  function permission() {
+    try { return window.Notification.permission; } catch (e) { return "denied"; }
+  }
+  function swReady() {
+    return new Promise(function (resolve, reject) {
+      var t = window.setTimeout(function () { reject(new Error("no service worker")); }, 8000);
+      window.navigator.serviceWorker.ready.then(function (r) { window.clearTimeout(t); resolve(r); }, function (x) { window.clearTimeout(t); reject(x); });
+    });
+  }
+  function keyBytes(s) {
+    var b = atob(String(s).replace(/-/g, "+").replace(/_/g, "/")), out = new Uint8Array(b.length);
+    for (var i = 0; i < b.length; i++) out[i] = b.charCodeAt(i);
+    return out;
+  }
+  function dayKeyOf(d) { return new Date(d * 86400000).toISOString().slice(0, 10).replace(/-/g, ""); }
+
+  /* the calendar days (the phone's own) on which this browser finished at least one game: practice does not count */
+  function siteDays() {
+    var all = readAll(), on = {};
+    GAMES.forEach(function (G) {
+      var res = obj(obj(obj(all.games) && all.games[G.id]) && all.games[G.id].results);
+      if (!res) return;
+      var p = String(G.start).split("-"), first = Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / 86400000), today = calendarDay(new Date());
+      Object.keys(res).forEach(function (k) {
+        var n = Number(k), d = first + n - 1;
+        if (n >= 1 && Math.floor(n) === n && d <= today && G.done(res[k])) on[d] = true;
+      });
+    });
+    return on;
+  }
+  /* the hours of the day at which the last two weeks' first games were finished -> the hour most often (this hour when none yet) */
+  function noteHour() {
+    var key = dayKeyOf(calendarDay(new Date()));
+    var e = eodStore();
+    if (e.hrDay === key) return;
+    eodUpdate(function (x) {
+      var a = Array.isArray(x.hrs) ? x.hrs.filter(function (h) { return typeof h === "number" && h >= 0 && h <= 23; }) : [];
+      a.push(new Date().getHours());
+      x.hrs = a.slice(-14);
+      x.hrDay = key;
+    });
+  }
+  function usualHour() {
+    var a = eodStore().hrs, n = {}, best = new Date().getHours(), top = 0;
+    if (!Array.isArray(a) || !a.length) return best;
+    a.forEach(function (h) { n[h] = (n[h] || 0) + 1; });
+    Object.keys(n).forEach(function (h) { if (n[h] > top || (n[h] === top && +h > best)) { top = n[h]; best = +h; } });
+    return best;
+  }
+  function pushState() {
+    var on = siteDays(), today = calendarDay(new Date()), res = {}, last = 0;
+    Object.keys(on).forEach(function (d) { res[Number(d) - 19000] = 1; last = Math.max(last, Number(d)); });
+    var e = eodStore();
+    return {
+      v: 1, h: usualHour(), z: -new Date().getTimezoneOffset(),
+      st: Math.min(9999, streak(res, today - 19000).current), pl: last ? dayKeyOf(last) : "",
+      tip: typeof e.tip === "string" ? e.tip : ""
+    };
+  }
+  function pushPost(path, body) {
+    var base = onTestServer() && typeof window.LOGICERS_PUSH_API === "string" && window.LOGICERS_PUSH_API ? window.LOGICERS_PUSH_API : PUSH_API;
+    return window.fetch(base + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  }
+  function pushSend(sub) {
+    var s = pushState();
+    s.ep = sub.endpoint;
+    return pushPost("/push/join", s).then(function (r) {
+      if (r && r.ok && s.tip) eodUpdate(function (x) { if (x.tip === s.tip) x.tip = ""; });
+      return r;
+    });
+  }
+  /* the phone still says yes: tell the server how it stands (it has played, its streak, its hour). Quiet when it can't. */
+  function pushSync(force) {
+    try {
+      if (!pushSupported() || permission() !== "granted" || eodStore().remind !== 1) return;
+      var last = 0;
+      try { last = +window.sessionStorage.getItem("logicers-push") || 0; } catch (e) { last = 0; }
+      if (!force && Date.now() - last < 30 * 60000) return;
+      try { window.sessionStorage.setItem("logicers-push", String(Date.now())); } catch (e) { /* no matter */ }
+      swReady().then(function (reg) { return reg.pushManager.getSubscription(); }).then(function (sub) {
+        if (sub) return pushSend(sub);
+        eodUpdate(function (x) { x.remind = 0; });          // the browser lost it: the half comes back
+        keepUi(); remindSettings();
+      }).then(null, function () { /* the server or the network is away: the next visit tries again */ });
+    } catch (e) { /* a reminder must never break a game */ }
+  }
+  function remindOn() {
+    count_("remind/tap");
+    var ask;
+    try { ask = permission() === "granted" ? Promise.resolve("granted") : Promise.resolve(window.Notification.requestPermission()); }
+    catch (e) { ask = Promise.resolve("denied"); }
+    ask.then(function (p) {
+      if (p !== "granted") { count_("remind/no"); keepUi(); return; }
+      return swReady().then(function (reg) {
+        return reg.pushManager.getSubscription().then(function (s) {
+          return s || reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyBytes(pushKey()) });
+        });
+      }).then(pushSend).then(function (r) {
+        if (!r || !r.ok) throw new Error("server");
+        count_("remind/on");
+        eodUpdate(function (x) { x.remind = 1; });
+        keepUi(); remindSettings();
+      });
+    }).then(null, function () { count_("remind/failed"); keepUi(); });
+  }
+  function remindOff() {
+    count_("remind/off");
+    eodUpdate(function (x) { x.remind = 0; });
+    keepUi(); remindSettings();
+    try {
+      swReady().then(function (reg) { return reg.pushManager.getSubscription(); }).then(function (sub) {
+        if (!sub) return;
+        var ep = sub.endpoint;
+        return pushPost("/push/leave", { v: 1, ep: ep }).then(null, function () {}).then(function () { return sub.unsubscribe(); });
+      }).then(null, function () { /* the browser's own switch is still there */ });
+    } catch (e) { /* nothing more to do */ }
+  }
+
+  /* the calendar half: a daily event at the hour this phone usually plays at, starting tomorrow */
+  function icsText() {
+    var n = new Date(), t = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, usualHour(), 0, 0);
+    function p2(v) { return (v < 10 ? "0" : "") + v; }
+    function f(d) { return d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()) + "T" + p2(d.getHours()) + p2(d.getMinutes()) + "00"; }
+    var end = new Date(t.getTime() + 15 * 60000), stamp = n.toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+    return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Logicers//Daily reminder//EN", "CALSCALE:GREGORIAN", "BEGIN:VEVENT",
+      "UID:daily-reminder@logicers.com", "DTSTAMP:" + stamp, "DTSTART:" + f(t), "DTEND:" + f(end), "RRULE:FREQ=DAILY",
+      "SUMMARY:Logicers: today's games", "DESCRIPTION:A minute each. https://logicers.com/", "URL:https://logicers.com/",
+      "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", "DESCRIPTION:Logicers: today's games", "END:VALARM", "END:VEVENT", "END:VCALENDAR", ""].join("\r\n");
+  }
+  function takeCalendar() {
+    count_("remind/ics");
+    var text = icsText();
+    try {
+      var blob = new Blob([text], { type: "text/calendar;charset=utf-8" }), a = document.createElement("a");
+      a.href = window.URL.createObjectURL(blob); a.download = "logicers-reminder.ics";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      window.setTimeout(function () { try { window.URL.revokeObjectURL(a.href); } catch (e) { /* gone */ } }, 4000);
+    } catch (e) {
+      try { window.location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(text); } catch (x) { /* the half stays */ return; }
+    }
+    eodUpdate(function (x) { x.ics = 1; });
+    keepUi();
+  }
+
+  /* the QR half, for a computer: the site's own address as a code, drawn with the library the live games use */
+  function openQr() {
+    count_("qr/tap");
+    var dlg = document.getElementById("keep-qr");
+    if (!dlg) {
+      dlg = document.createElement("dialog");
+      dlg.id = "keep-qr";
+      dlg.setAttribute("aria-labelledby", "keep-qr-h");
+      dlg.innerHTML = '<div class="sheet"><button class="chip round close" type="button" data-close aria-label="Close">×</button>' +
+        '<h2 id="keep-qr-h">Play on your phone</h2><div class="keep-qr-code" id="keep-qr-code" role="img" aria-label="A QR code that opens Logicers"></div>' +
+        '<p class="quiet">Point your phone’s camera at the code. Then add Logicers to your home screen and turn on the daily reminder: one reminder a day, never more.</p></div>';
+      document.body.appendChild(dlg);
+    }
+    openDialog(dlg);
+    function draw() {
+      var host = document.getElementById("keep-qr-code");
+      if (!host || host.firstChild || !window.qrcodegen) return;
+      var Q = window.qrcodegen.QrCode, qr = Q.encodeText("https://logicers.com/?ref=qr", Q.Ecc.MEDIUM), n = qr.size, pad = 3, d = "";
+      for (var y = 0; y < n; y++) for (var x = 0; x < n; x++) if (qr.getModule(x, y)) d += "M" + (x + pad) + "," + (y + pad) + "h1v1h-1z";
+      host.innerHTML = '<svg viewBox="0 0 ' + (n + pad * 2) + " " + (n + pad * 2) + '" width="220" height="220" shape-rendering="crispEdges" aria-hidden="true" focusable="false">' +
+        '<rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>';
+    }
+    if (window.qrcodegen) draw();
+    else {
+      var s = document.createElement("script");
+      s.src = siteRoot() + "live/qrcodegen.js";
+      s.onload = draw;
+      document.head.appendChild(s);
+    }
+    eodUpdate(function (x) { x.qr = 1; });
+    keepUi();
+  }
+
+  /* ---- the strip ---- */
+  function keepWant() {
+    var e = eodStore(), perm = permission(), sup = pushSupported(), on = sup && perm === "granted" && e.remind === 1;
+    var canAsk = sup && perm !== "denied";
+    return {
+      install: !standalone() && !computer() && (!!installEvent || iOS()),
+      qr: computer() && !standalone() && e.qr !== 1,
+      remind: canAsk && !on,
+      ics: !on && !canAsk && e.ics !== 1
+    };
+  }
+  var keepSeen = {};
+  function keepUi() {
+    var want = keepWant();
+    Array.prototype.forEach.call(document.querySelectorAll(".keep"), function (strip) {
+      var n = 0;
+      Array.prototype.forEach.call(strip.children, function (c) {
+        var k = c.getAttribute("data-keep"), show = !!want[k];
+        c.hidden = !show;
+        if (show) {
+          n++;
+          if (!keepSeen[k]) { keepSeen[k] = 1; count_(k === "install" ? "eod/app-seen" : k === "qr" ? "qr/seen" : k === "ics" ? "remind/ics-seen" : "remind/seen"); }
+        }
+      });
+      strip.hidden = n === 0;
+      strip.style.setProperty("--n", String(Math.max(1, n)));
+    });
+  }
+  function keepCell(kind, ico, label, sub, fn) {
+    var b = el("button", "keep-cell");
+    b.type = "button"; b.setAttribute("data-keep", kind); b.hidden = true;
+    var t = el("span", "keep-t");
+    t.appendChild(icon(ico)); t.appendChild(document.createTextNode(label));
+    b.appendChild(t); b.appendChild(el("small", "keep-s", sub));
+    b.addEventListener("click", fn);
+    return b;
+  }
+  function keepStrip() {
+    var strip = el("div", "keep");
+    strip.hidden = true;
+    strip.setAttribute("aria-label", "Keep Logicers close");
+    strip.appendChild(keepCell("install", "📲", "Add to home screen", "opens like an app", askInstall));
+    strip.appendChild(keepCell("qr", "📱", "Play on your phone", "scan the code", openQr));
+    strip.appendChild(keepCell("remind", "🔔", "Daily reminder", "one a day, never more", remindOn));
+    strip.appendChild(keepCell("ics", "🗓️", "Calendar reminder", "daily, no app needed", takeCalendar));
+    window.setTimeout(keepUi, 0);
+    return strip;
+  }
+  /* the number on the app's icon: the daily games not yet played today (only an installed app can show it) */
+  function badgeUi() {
+    try {
+      if (!standalone() || !window.navigator.setAppBadge) return;
+      var left = GAMES.filter(function (G) { return !playedToday(G); }).length;
+      if (left > 0) window.navigator.setAppBadge(left).then(null, function () {});
+      else if (window.navigator.clearAppBadge) window.navigator.clearAppBadge().then(null, function () {});
+    } catch (e) { /* a badge is only a nicety */ }
+  }
+  /* the line about the country that the end-of-day card works out (world.js): sent once when it changes */
+  function keepTip(text, sig) {
+    try {
+      if (typeof text !== "string" || !text || eodStore().remind !== 1 || eodStore().tipSig === sig) return;
+      eodUpdate(function (x) { x.tip = text.slice(0, 110); x.tipSig = sig; });
+      pushSync(true);
+    } catch (e) { /* the reminder simply has no country line */ }
+  }
+  /* the "Daily reminder is on" line with its switch, under the privacy line of every About sheet */
+  function remindSettings() {
+    var on = pushSupported() && permission() === "granted" && eodStore().remind === 1;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (host) {
+      var next = host.nextElementSibling, has = next && next.hasAttribute("data-keep-set");
+      if (!on) { if (has) next.parentNode.removeChild(next); return; }
+      if (has) return;
+      var p = el("p", "quiet keep-set");
+      p.setAttribute("data-keep-set", "");
+      p.appendChild(document.createTextNode("The daily reminder is on. "));
+      var b = el("button", "", "Turn it off");
+      b.type = "button";
+      b.addEventListener("click", remindOff);
+      p.appendChild(b);
+      host.parentNode.insertBefore(p, host.nextSibling);
+    });
+  }
+  function afterPlay() {
+    noteHour();
+    badgeUi();
+    pushSync(true);
+  }
+
   /* ---- the offer to keep the site on the home screen ---- */
   function askInstall() {
     count_("eod/app-tap");
@@ -1060,7 +1360,7 @@
       try {
         ev.prompt();
         if (ev.userChoice && ev.userChoice.then) ev.userChoice.then(function (c) {
-          if (c && c.outcome === "accepted") { installEvent = null; eodUpdate(function (x) { x.appHide = 1; }); eodAppUi(); }
+          if (c && c.outcome === "accepted") { installEvent = null; keepUi(); }
         }, function () {});
       } catch (e) { /* the browser's menu still offers it */ }
       return;
@@ -1074,28 +1374,10 @@
         '<h2 id="eod-ios-h">Keep Logicers on your phone</h2>' +
         '<ol><li>In Safari, tap the <b>Share</b> button (the square with an arrow).</li>' +
         '<li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol>' +
-        '<p class="quiet">Logicers then opens like an app, full screen, with its own icon.</p>' +
-        '<div class="actions"><button class="btn ghost" id="eod-ios-no" type="button">Don’t show this again</button></div></div>';
+        '<p class="quiet">Logicers then opens like an app, full screen, with its own icon. Open it from there once and tap <b>Daily reminder</b>: one reminder a day, never more.</p></div>';
       document.body.appendChild(dlg);
-      document.getElementById("eod-ios-no").addEventListener("click", function () {
-        eodUpdate(function (x) { x.appHide = 1; }); closeDialog(dlg); eodAppUi();
-      });
     }
     openDialog(dlg);
-  }
-  function eodAppUi() {
-    var chip = document.getElementById("eod-app");
-    if (!chip) return;
-    var e = eodStore();
-    var can = !standalone() && !computer() && (!!installEvent || iOS()) && e.appHide !== 1;
-    var due = !num(e.appAt) || Date.now() - e.appAt >= 3 * DAY_MS;
-    var show = can && (chip.__shown || due);
-    chip.hidden = !show;
-    if (show && !chip.__shown) {
-      chip.__shown = true;
-      eodUpdate(function (x) { x.appAt = Date.now(); });
-      count_("eod/app-seen");
-    }
   }
 
   /* ---- Tell Khayyam ---- */
@@ -1306,10 +1588,6 @@
     tick();
     clock.__tick = window.setInterval(tick, 30000);
     row.appendChild(clock);
-    var app = el("button", "eod-app", "📲 Keep on your phone");
-    app.type = "button"; app.id = "eod-app"; app.hidden = true;
-    app.addEventListener("click", askInstall);
-    row.appendChild(app);
     wrap.appendChild(row);
 
     var pride = el("div", "eod-pride-wrap");
@@ -1317,6 +1595,7 @@
     pride.hidden = true;
     wrap.appendChild(pride);
 
+    try { wrap.appendChild(keepStrip()); } catch (e) { /* the offers are optional */ }
     var strip = el("div", "eod-strip");
     var cells = 2;
     var thread = el("a", "eod-cell");
@@ -1338,7 +1617,6 @@
     strip.style.setProperty("--n", String(cells));
     wrap.appendChild(strip);
 
-    try { eodAppUi(); } catch (e) { /* the offer is optional */ }
     if (typeof window.TurnsOut.prideHook === "function") {
       try { window.TurnsOut.prideHook(pride); } catch (e) { /* the country's place must never break the end of the day */ }
     }
@@ -1366,9 +1644,7 @@
     return /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && window.navigator.maxTouchPoints > 1);
   }
   function appStart() {
-    var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
-    var wanted = window.location.protocol === "https:" ? !local : (local && window.LOGICERS_SW === true);
-    if (wanted && "serviceWorker" in window.navigator) {
+    if (swWanted() && "serviceWorker" in window.navigator) {
       var root = /assets\/js\/turnsout\.js/.test(SELF) ? SELF.replace(/assets\/js\/turnsout\.js.*$/, "") : "/";
       try { window.navigator.serviceWorker.register(root + "sw.js").catch(function () { /* the site works without it */ }); }
       catch (e) { /* the site works without it */ }
@@ -1380,7 +1656,6 @@
     });
     window.addEventListener("appinstalled", function () {
       installEvent = null; count_("app/installed");
-      try { eodUpdate(function (x) { x.appHide = 1; }); } catch (e) { /* nothing to note */ }
       appUi();
     });
     if (standalone()) {
@@ -1389,9 +1664,10 @@
       } catch (e) { /* counting is never needed */ }
     }
     appUi();
+    try { remindSettings(); badgeUi(); pushSync(false); } catch (e) { /* the reminder is optional */ }
   }
   function appUi() {                           // the About sheet's section, wherever it is on the page
-    try { eodAppUi(); } catch (e) { /* the end of the day's offer is optional */ }
+    try { keepUi(); } catch (e) { /* the offers are optional */ }
     var on = document.getElementById("app-on");
     if (!on) return;
     var add = document.getElementById("app-add"), ios = document.getElementById("app-ios"), other = document.getElementById("app-other");
@@ -1440,6 +1716,7 @@
     reducedMotion: reducedMotion,
     stamp: stamp,
     app: { standalone: standalone, installable: function () { return !!installEvent; }, ui: appUi },
+    keepTip: keepTip,
     stampFor: stampFor,
     GAMES: GAMES,
     GROUP: GROUP,

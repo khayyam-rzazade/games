@@ -118,11 +118,11 @@
   function whyWord(w) { var en = (WORDS.en && WORDS.en.whys) || {}; return has(en, w) ? en[w] : str(w); }
 
   /* ================================================================ talking to the server */
-  function call(body) {
+  function call(body, path) {
     var payload = { key: KEY };
     Object.keys(body).forEach(function (k) { payload[k] = body[k]; });
     touch();
-    return window.fetch(SERVER + "/admin", {
+    return window.fetch(SERVER + (path || "/admin"), {
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
       credentials: "omit", cache: "no-store", referrerPolicy: "no-referrer"
     }).then(function (res) {
@@ -1131,4 +1131,44 @@
       box.appendChild(det);
     }
   }
+
+  /* ================================================================ the daily reminder (18 Oct 2026)
+     How many phones have said yes, how many got today's reminder, and the one announcement (a new game) that goes out
+     in place of the usual line, once to each phone, within the days chosen. At most one reminder a day per phone, always:
+     an announcement takes the place of that day's line, it never adds a second push. */
+  function drawPush(res) {
+    var box = $("push-res");
+    clear(box);
+    var b = res.b;
+    if (res.status !== 200 || typeof b.n !== "number") { box.appendChild(el("p", "dk-inline-err", trouble(res))); return; }
+    if (!b.sets) box.appendChild(el("p", "dk-inline-err", "The server has no signing key yet (VAPID_PRIVATE): no reminder can go out."));
+    box.appendChild(el("p", "dk-p", n(b.n) + " phones have reminders on · " + n(b.sentToday) + " got one today."));
+    if (Array.isArray(b.top) && b.top.length) {
+      box.appendChild(el("p", "dk-from", "By country: " + b.top.map(function (x) { return str(x[0]) + " " + n(x[1]); }).join(" · ")));
+    }
+    box.appendChild(el("p", "dk-from", b.ann && b.ann.text
+      ? "Announcement waiting until " + when(b.ann.until) + ": " + str(b.ann.text)
+      : "No announcement is waiting."));
+  }
+  function loadPush() {
+    if (!KEY) return;
+    var g = gen;
+    call({ op: "stats" }, "/push/admin").then(function (r) { if (g === gen && !keyGone(r)) drawPush(r); });
+  }
+  $("push-load").addEventListener("click", loadPush);
+  $("push-send").addEventListener("click", function () {
+    if (!KEY) return;
+    var g = gen, text = $("push-text").value.trim(), days = Number($("push-days").value) || 3, btn = this;
+    btn.disabled = true;
+    call({ op: "ann", text: text, days: days }, "/push/admin").then(function (r) {
+      if (g !== gen || keyGone(r)) return;
+      btn.disabled = false;
+      var m = $("push-msg");
+      m.hidden = false;
+      m.textContent = r.status === 200 ? (text ? "Saved. It goes out as each phone's next reminder, once." : "The announcement is cleared.")
+        : (r.b && r.b.e === "text" ? "That text is not allowed (up to 120 characters, no links or addresses)." : trouble(r));
+      if (r.status === 200) loadPush();
+    });
+  });
+  $("push-clear").addEventListener("click", function () { $("push-text").value = ""; $("push-send").click(); });
 })();

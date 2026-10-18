@@ -40,6 +40,10 @@
      POST /stats/send       the world's counts (16 Oct 2026): a phone's finished daily games of its date, added
      POST /stats/view       to its country's row (tally.js, one object per date), and one game's counts, or the
      POST /stats/world      world table of a day or a month (the section "the world's counts" below)
+     POST /push/join        the daily reminder (18 Oct 2026, push.js): a phone says yes, or that it is still here
+     POST /push/leave       { v, ep } the phone says no: its row is deleted at once
+     POST /push/msg         { v, ep } the words of today's push, asked by the phone's service worker (sw.js)
+     POST /push/admin       { key, op: "stats" | "ann", text, days } the numbers, and Khayyam's announcement (ADMIN_KEY)
    The code stands in the path, never a key; Workers Logs are switched off (wrangler.jsonc), so no call
    is written down anywhere. The full contract: r/live-workshop/step2-spec.md.
 
@@ -66,13 +70,14 @@ import { Desk, WHYS } from "./desk.js";
 import { Way } from "./way.js";
 import { Mail } from "./mail.js";
 import { Tally } from "./tally.js";
+import { Push, SHARDS, endpointOk, dateOk, lineOk } from "./push.js";
 import "./wayprint.js";               // the browser's own file (live/wayprint.js), byte for byte: globalThis.LogicersWay
 import "./points.js";                 // the pages' own file (assets/js/points.js), byte for byte: globalThis.LogicersPoints
 import { loadSets } from "./sets-key.js";
 import { codeOk, newCode, kitCodeOk, newKitCode } from "./names.js";
 import { mac, sha, same, randomKey, keyOk } from "./keys.js";
 
-export { Game, Totals, Kit, Desk, Way, Mail, Tally };
+export { Game, Totals, Kit, Desk, Way, Mail, Tally, Push };
 
 const ORIGINS = ["https://logicers.com", "https://www.logicers.com"];
 const MODES = ["cors", "websocket", "same-origin"];   // Sec-Fetch-Mode of the page's own fetches and WebSockets
@@ -765,7 +770,105 @@ async function totals(req, env, o) {
   return answer(200, await totalsOf(env).read(), o);
 }
 
+
+/* ------------------------------------------------------------ the daily reminder (push.js) */
+
+const PUSH_V = 1;
+const PUSH_BODY = 4000;
+const PUSH_JOINS = 40;              // joins (and refreshes) from one address in 10 minutes
+const PUSH_MSGS = 120;              // asks for the words of a push from one address in 10 minutes
+counts.pushes = new Map(); counts.pushmsgs = new Map();
+const pushOf = (env, i) => env.PUSH.get(env.PUSH.idFromName("s" + i));
+const pushId = async (ep) => (await sha("push:" + ep)).slice(0, 32);
+const shardOf = (id) => parseInt(id.slice(0, 2), 16) % SHARDS;
+const wholeIn = (v, lo, hi) => Number.isInteger(v) && v >= lo && v <= hi;
+const PLAIN_WORDS = { t: "Logicers", b: "Today’s games are ready.", n: 9 };
+
+async function pushJoin(req, env, o) {
+  if (!allowed(counts.pushes, req, PUSH_JOINS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, PUSH_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body;
+  if (b.v !== PUSH_V) return answer(409, { e: "old", v: PUSH_V }, o);
+  if (!env.VAPID_PRIVATE || !env.VAPID_PUBLIC) return answer(503, { e: "off" }, o);
+  if (!endpointOk(b.ep, env)) return answer(400, { e: "ep" }, o);
+  if (!wholeIn(b.h, 0, 23) || !wholeIn(b.z, -720, 840) || !wholeIn(b.st, 0, 9999)) return answer(400, { e: "fields" }, o);
+  if (!(b.pl === "" || (typeof b.pl === "string" && dateOk(b.pl)))) return answer(400, { e: "pl" }, o);
+  let tip = "";
+  if (b.tip !== undefined && b.tip !== "") {
+    if (typeof b.tip !== "string" || b.tip.length > 110) return answer(400, { e: "tip" }, o);
+    tip = lineOk(b.tip) ? b.tip : "";                 // a line with a link or an address in it is simply not kept; the phone still joins
+  }
+  const id = await pushId(b.ep);
+  const res = await pushOf(env, shardOf(id)).join({ id, ep: b.ep, h: b.h, z: b.z, cc: geo(req, env).c, st: b.st, pl: b.pl, tip, now: Date.now() });
+  return res.e ? answer(503, { e: res.e }, o) : answer(200, { ok: true }, o);
+}
+
+async function pushLeave(req, env, o) {
+  if (!allowed(counts.pushes, req, PUSH_JOINS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, PUSH_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body;
+  if (b.v !== PUSH_V || !endpointOk(b.ep, env)) return answer(400, { e: "ep" }, o);
+  const id = await pushId(b.ep);
+  await pushOf(env, shardOf(id)).leave(id);
+  return answer(200, { ok: true }, o);
+}
+
+/* the words of the push that woke a phone; a phone that is not on the list, or has had no push, gets the plain line */
+async function pushMsg(req, env, o) {
+  if (!allowed(counts.pushmsgs, req, PUSH_MSGS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, PUSH_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body;
+  if (b.v !== PUSH_V || !endpointOk(b.ep, env)) return answer(400, { e: "ep" }, o);
+  const id = await pushId(b.ep);
+  const w = await pushOf(env, shardOf(id)).msg(id, Date.now());
+  const n = Number(env.DAILY_GAMES) || 9;
+  return answer(200, w || Object.assign({}, PLAIN_WORDS, { n }), o);
+}
+
+async function pushAdmin(req, env, o) {
+  if (spentOut(counts.admin, req, WRONG_ADMIN)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, SMALL);
+  if (r.e) return refused(r, o);
+  const b = r.body, now = Date.now();
+  if (!env.ADMIN_KEY || typeof b.key !== "string" || !same(await sha(b.key), await sha(env.ADMIN_KEY))) {
+    allowed(counts.admin, req, WRONG_ADMIN);
+    return answer(404, { e: "nothing" }, o);
+  }
+  const all = Array.from({ length: SHARDS }, (_, i) => i);
+  if (b.op === "ann") {
+    const text = typeof b.text === "string" ? b.text.replace(/[\u0000-\u001f\u007f<>\u200b-\u200f\u2028\u2029]/g, " ").replace(/\s+/g, " ").trim() : "";
+    if (text.length > 120 || (text && !lineOk(text))) return answer(400, { e: "text" }, o);
+    const days = wholeIn(b.days, 1, 7) ? b.days : 3;
+    const a = text ? { id: String(now), text, until: now + days * 86400e3 } : null;
+    await Promise.all(all.map((i) => pushOf(env, i).setAnn(a)));
+    return answer(200, { ok: true, ann: a }, o);
+  }
+  const parts = await Promise.all(all.map((i) => pushOf(env, i).stats(now)));
+  const by = {};
+  let n = 0, sentToday = 0, ann = null;
+  for (const p of parts) {
+    n += p.n; sentToday += p.sentToday; ann = ann || p.ann;
+    for (const c of Object.keys(p.by)) by[c] = (by[c] || 0) + p.by[c];
+  }
+  const top = Object.keys(by).sort((x, y) => by[y] - by[x]).slice(0, 12).map((c) => [c, by[c]]);
+  return answer(200, { n, sentToday, top, ann, sets: !!(env.VAPID_PRIVATE && env.VAPID_PUBLIC) }, o);
+}
+
+/* the hourly trigger: every object sends to the phones whose hour it is (push.js) */
+async function pushRun(env, now) {
+  const parts = await Promise.all(Array.from({ length: SHARDS }, (_, i) => pushOf(env, i).run(now).catch(() => null)));
+  const sum = { rows: 0, due: 0, ok: 0, gone: 0, retry: 0, dropped: 0 };
+  for (const p of parts) if (p) for (const k of Object.keys(sum)) sum[k] += p[k] || 0;
+  return sum;
+}
+
 export default {
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(pushRun(env, Date.now()));
+  },
   async fetch(req, env) {
     const url = new URL(req.url);
     const o = originOf(req, env);
@@ -781,7 +884,7 @@ export default {
       if (url.pathname === "/" || url.pathname === "/health") {
         let s = false;
         try { s = !!(await loadSets(env)); } catch (e) { /* the key is missing or wrong */ }
-        return answer(200, { ok: true, v: PROTO, sets: s }, o);
+        return answer(200, { ok: true, v: PROTO, sets: s, push: !!(env.VAPID_PRIVATE && env.VAPID_PUBLIC) }, o);
       }
       /* A browser names the kind of call. The page makes only fetches ("cors") and WebSockets; an <img>
          or a link on any site ("no-cors", "navigate") carries no Origin, and could spend a campus's brake
@@ -802,6 +905,15 @@ export default {
       if (url.pathname === "/stats/send" && req.method === "POST") return await statsSend(req, env, o);
       if (url.pathname === "/stats/view" && req.method === "POST") return await statsView(req, env, o);
       if (url.pathname === "/stats/world" && req.method === "POST") return await statsWorld(req, env, o);
+      if (url.pathname === "/push/join" && req.method === "POST") return await pushJoin(req, env, o);
+      if (url.pathname === "/push/leave" && req.method === "POST") return await pushLeave(req, env, o);
+      if (url.pathname === "/push/msg" && req.method === "POST") return await pushMsg(req, env, o);
+      if (url.pathname === "/push/admin" && req.method === "POST") return await pushAdmin(req, env, o);
+      /* the checks only (TEST_PUSH=1, never set on Cloudflare): run the hourly send as if it were the time they name */
+      if (url.pathname === "/push/_run" && req.method === "POST" && env.TEST_PUSH === "1") {
+        const r = await readJson(req, SMALL);
+        return answer(200, await pushRun(env, r.body && Number.isFinite(r.body.now) ? r.body.now : Date.now()), o);
+      }
       return answer(404, { e: "nothing" }, o);
     } catch (e) {
       return answer(500, { e: "server" }, o);

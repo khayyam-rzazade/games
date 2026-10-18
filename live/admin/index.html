@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../../assets/css/logicers.css?v=694cea012a">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=c81dddd8c7">
 <link rel="stylesheet" href="../desk.css?v=7d243dc3c8">
 </head>
 <body class="game dk-page dk-admin">
@@ -94,6 +94,24 @@
       <div id="fb-res" aria-live="polite"></div>
     </section>
 
+    <!-- the daily reminder (18 Oct 2026): the numbers, and the one announcement (server/live/src/push.js) -->
+    <section class="dk-card dk-push" id="push" aria-labelledby="push-h">
+      <div class="dk-fbhead">
+        <h2 class="dk-h2" id="push-h">Daily reminder</h2>
+        <button class="dk-mini dk-strong" type="button" id="push-load">Show the numbers</button>
+      </div>
+      <div id="push-res" aria-live="polite"></div>
+      <label class="dk-label" for="push-text">Announcement (replaces the usual reminder once, for each phone)</label>
+      <input class="dk-field" id="push-text" maxlength="120" placeholder="A new game is here: …" autocomplete="off" spellcheck="true">
+      <div class="dk-keyrow">
+        <label class="sr-only" for="push-days">Days it stays</label>
+        <select class="dk-field" id="push-days"><option value="1">1 day</option><option value="2">2 days</option><option value="3" selected>3 days</option><option value="5">5 days</option><option value="7">7 days</option></select>
+        <button class="btn solid" type="button" id="push-send">Send as the next reminder</button>
+        <button class="dk-mini" type="button" id="push-clear">Clear</button>
+      </div>
+      <p class="dk-from" id="push-msg" role="status" hidden></p>
+    </section>
+
     <div class="dk-cols" id="cols">
       <section class="dk-gamecol" id="gamecol" aria-label="The game" hidden></section>
       <section class="dk-col" id="repcol" aria-labelledby="rep-h">
@@ -121,6 +139,6 @@
 
 <script src="../desk-words.js?v=be53fc6ee8"></script>
 <script src="../wayprint.js?v=f39872182f"></script>
-<script src="admin.js?v=99e8c8ca5d"></script>
+<script src="admin.js?v=94a580d513"></script>
 </body>
 </html>

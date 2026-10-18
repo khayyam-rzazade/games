@@ -8,7 +8,13 @@
    the repository again on GitHub; 15 Oct 2026).
    16 Oct 2026: the object Tally (tally.js, the world's counts of the daily games, one per date), added by the
    migration v3; it goes up by itself with the first push that carries it, nothing to set by hand.
-   The two secrets are set once, by hand, in the dashboard (Settings, Variables and Secrets), never here:
+   18 Oct 2026: the object Push (push.js, the daily reminder), added by the migration v4, and an hourly trigger (the
+   cron below; Cloudflare runs it at 2 minutes past each hour) that sends the reminders. VAPID_PUBLIC (below, not a
+   secret: the page carries the same text) and DAILY_GAMES (how many daily games there are, for the number on the
+   app's icon: change it when a game is added) are plain variables; the third secret is set by hand:
+     VAPID_PRIVATE  the reminder's signing key, one line of JSON (r/push-workshop/vapid-private.json on the Mac);
+                    without it the reminder is off everywhere (/health says "push": false) and nothing is sent
+   The other two secrets are set once, by hand, in the dashboard (Settings, Variables and Secrets), never here:
      SETS_KEY   the key that opens src/sets.js (the same text as r/live-workshop/sets-key.txt on the Mac);
                 it also keys every stored email of a way back (src/keys.js), so it is set once and never changed
      ADMIN_KEY  a long password of your own (32 random characters or more): the admin page (live/admin/),
@@ -22,6 +28,11 @@
   "workers_dev": true,
   "preview_urls": false,
   "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "triggers": { "crons": ["2 * * * *"] },
+  "vars": {
+    "VAPID_PUBLIC": "BHTIP9q1jseMP0W-aAJkMUO6dPLmnkAG0Mdmodw6BKARfNYSrhYxg3pBkeeLEM7TJ_kVbRzYlj6nPTOAei1DRC0",
+    "DAILY_GAMES": "9"
+  },
   "durable_objects": {
     "bindings": [
       { "name": "GAME", "class_name": "Game" },
@@ -30,12 +41,14 @@
       { "name": "DESK", "class_name": "Desk" },
       { "name": "WAY", "class_name": "Way" },
       { "name": "MAIL", "class_name": "Mail" },
-      { "name": "TALLY", "class_name": "Tally" }
+      { "name": "TALLY", "class_name": "Tally" },
+      { "name": "PUSH", "class_name": "Push" }
     ]
   },
   "migrations": [
     { "tag": "v1", "new_sqlite_classes": ["Game", "Totals"] },
     { "tag": "v2", "new_sqlite_classes": ["Kit", "Desk", "Way", "Mail"] },
-    { "tag": "v3", "new_sqlite_classes": ["Tally"] }
+    { "tag": "v3", "new_sqlite_classes": ["Tally"] },
+    { "tag": "v4", "new_sqlite_classes": ["Push"] }
   ]
 }

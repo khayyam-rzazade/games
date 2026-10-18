@@ -117,3 +117,49 @@ self.addEventListener("fetch", function (e) {
   if (versioned(url)) { e.respondWith(cacheFirst(req)); return; }          // rule 2
   e.respondWith(staleWhileRevalidate(req));            // pictures, fonts, icons: the copy at once, a new one behind it
 });
+
+/* ---- the daily reminder (18 Oct 2026) ----
+   The server sends an empty "tickle" to this phone's push address (at most one a day, and never to a phone that has
+   played that day). This file wakes, asks the server what to say (it can be a streak, a country, or an announcement),
+   and shows it. It carries no player data beyond the push address the server already holds. When the server cannot be
+   reached in time, the plain line is shown, because a push must always show something. */
+var PUSH_API = "https://logicers-live.rza-khay.workers.dev";
+var PLAIN = { t: "Logicers", b: "Today’s games are ready.", n: 0 };
+
+function pushWords(reg) {
+  return reg.pushManager.getSubscription().then(function (sub) {
+    if (!sub) return PLAIN;
+    var ctl = typeof AbortController === "function" ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 4500);
+    return fetch(PUSH_API + "/push/msg", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ v: 1, ep: sub.endpoint }), signal: ctl ? ctl.signal : undefined
+    }).then(function (r) {
+      clearTimeout(timer);
+      return r.ok ? r.json() : PLAIN;
+    }).then(function (m) {
+      return m && typeof m.b === "string" && m.b ? { t: String(m.t || "Logicers").slice(0, 60), b: String(m.b).slice(0, 160), n: +m.n || 0 } : PLAIN;
+    }, function () { clearTimeout(timer); return PLAIN; });
+  }, function () { return PLAIN; });
+}
+
+self.addEventListener("push", function (e) {
+  e.waitUntil(pushWords(self.registration).then(function (w) {
+    try { if (w.n > 0 && self.navigator && self.navigator.setAppBadge) self.navigator.setAppBadge(w.n).then(null, function () {}); } catch (x) { /* a badge is a nicety */ }
+    return self.registration.showNotification(w.t, {
+      body: w.b, icon: "/assets/img/icon-192.png", badge: "/assets/img/icon-192.png",
+      tag: "logicers-daily", renotify: false, data: { url: "/" }
+    });
+  }));
+});
+
+self.addEventListener("notificationclick", function (e) {
+  e.notification.close();
+  e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
+    for (var i = 0; i < list.length; i++) {
+      var c = list[i];
+      if (c.url && new URL(c.url).origin === self.location.origin && "focus" in c) return c.focus();
+    }
+    return self.clients.openWindow ? self.clients.openWindow("/") : undefined;
+  }));
+});
