@@ -272,10 +272,6 @@
       (c.need.length
         ? ": " + c.need.join("; ") + "." + (c.free ? " The " + (c.free === 1 ? "other one is" : "others are") + " in the public domain." : "")
         : ", in the public domain.");
-    if (!practice) {
-      fillStamp($("earned-stamp"), q);
-      $("earned").hidden = false;
-    }
     var next = $("next");
     if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s puzzle</a>';
     else next.textContent = "A new cousin to find at midnight.";

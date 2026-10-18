@@ -312,10 +312,6 @@
     $("photo-credit").textContent = "Photos: " + (q.by ? q.by + " for Dollar Street" : "Dollar Street") + (q.year ? " " + q.year : "") + ".";
     $("family-link").href = FAMILY + encodeURIComponent(q.page || "");
 
-    if (!practice) {
-      fillStamp($("earned-stamp"), q);
-      $("earned").hidden = false;
-    }
     var next = $("next");
     if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s home</a>';
     else next.textContent = "A new home at midnight.";

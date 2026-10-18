@@ -40,6 +40,7 @@
      POST /stats/send       the world's counts (16 Oct 2026): a phone's finished daily games of its date, added
      POST /stats/view       to its country's row (tally.js, one object per date), and one game's counts, or the
      POST /stats/world      world table of a day or a month (the section "the world's counts" below)
+     GET  /ics?h=20         the daily reminder as a calendar event at that hour (a link: an iPhone offers "Add to Calendar")
      POST /push/join        the daily reminder (18 Oct 2026, push.js): a phone says yes, or that it is still here
      POST /push/leave       { v, ep } the phone says no: its row is deleted at once
      POST /push/msg         { v, ep } the words of today's push, asked by the phone's service worker (sw.js)
@@ -857,6 +858,25 @@ async function pushAdmin(req, env, o) {
   return answer(200, { n, sentToday, top, ann, sets: !!(env.VAPID_PRIVATE && env.VAPID_PUBLIC) }, o);
 }
 
+/* a daily event at hour h (0-23, the phone's own clock: no time zone, so it follows the phone), from tomorrow, with an alarm */
+function calendarFile(url, head) {
+  const raw = url.searchParams.get("h");
+  const h = raw !== null && /^\d{1,2}$/.test(raw) ? Number(raw) : -1;
+  if (h < 0 || h > 23) return new Response("hour", { status: 400, headers: { "Content-Type": "text/plain; charset=utf-8" } });
+  const p2 = (n) => (n < 10 ? "0" : "") + n;
+  const t = new Date(Date.now() + 86400e3);
+  const day = t.getUTCFullYear() + p2(t.getUTCMonth() + 1) + p2(t.getUTCDate());
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+  const h2 = p2(h);
+  const text = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Logicers//Daily reminder//EN", "CALSCALE:GREGORIAN", "BEGIN:VEVENT",
+    "UID:daily-reminder@logicers.com", "DTSTAMP:" + stamp, "DTSTART:" + day + "T" + h2 + "0000", "DTEND:" + day + "T" + h2 + "1500",
+    "RRULE:FREQ=DAILY", "SUMMARY:Logicers: today's games", "DESCRIPTION:A minute each. https://logicers.com/", "URL:https://logicers.com/",
+    "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", "DESCRIPTION:Logicers: today's games", "END:VALARM", "END:VEVENT", "END:VCALENDAR", ""].join("\r\n");
+  return new Response(head ? null : text, { status: 200, headers: {
+    "Content-Type": "text/calendar; charset=utf-8", "Content-Disposition": 'inline; filename="logicers-reminder.ics"',
+    "Cache-Control": "private, max-age=300", "X-Content-Type-Options": "nosniff" } });
+}
+
 /* the hourly trigger: every object sends to the phones whose hour it is (push.js) */
 async function pushRun(env, now) {
   const parts = await Promise.all(Array.from({ length: SHARDS }, (_, i) => pushOf(env, i).run(now).catch(() => null)));
@@ -877,6 +897,10 @@ export default {
       return new Response(null, { status: 204, headers: { "Access-Control-Allow-Origin": o.allow || "*", "Vary": "Origin",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS", "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Max-Age": "86400" } });
     }
+    /* The daily reminder as a calendar event (18 Oct 2026): a tap on "Calendar reminder" on an iPhone, an iPad or a Mac opens
+       this address, and the phone offers "Add to Calendar". A page that is only read, so (unlike every other call) it may come
+       from a link: no Origin, mode "navigate". It holds nothing of anybody: the hour is the one in the address. */
+    if (url.pathname === "/ics" && (req.method === "GET" || req.method === "HEAD")) return calendarFile(url, req.method === "HEAD");
     if (!o.ok) return answer(403, { e: "origin" }, o);
     try {
       /* "sets": whether the secret SETS_KEY opens the question sets. The one line to look at after the

@@ -804,9 +804,17 @@
     }
     var href = next ? here("../" + next.href) : "";
 
+    var below = document.getElementById("below");
+    if (below && below.parentNode) below.parentNode.removeChild(below);
+    below = el("div", "below");               // the boxes under a game: "Today" first, then the world, a friend's duel, a room
+    below.id = "below";
+
     var box = el("section", "onward");
     box.id = "onward";
     box.setAttribute("aria-label", "Today's games");
+    if (typeof window.TurnsOut.duelBar === "function") {
+      try { var who = window.TurnsOut.duelBar(o); if (who) box.appendChild(who); } catch (e) { /* the name and Send my day are optional */ }
+    }
     var top = el("div", "onward-top");
     top.appendChild(el("h2", "", "Today"));
     var c = el("span", "onward-count");
@@ -856,15 +864,16 @@
     box.appendChild(all);
     /* the world today: the world, the continent and the country beside this result (assets/js/world.js) */
     if (typeof window.TurnsOut.worldHook === "function") {
-      try { window.TurnsOut.worldHook(after, o, played); } catch (e) { /* the world's counts must never break a game */ }
+      try { window.TurnsOut.worldHook(below, o, played); } catch (e) { /* the world's counts must never break a game */ }
     }
     if (typeof window.TurnsOut.duelHook === "function") {
-      try { window.TurnsOut.duelHook(after, o, played); } catch (e) { /* a duel must never break a game */ }
+      try { window.TurnsOut.duelHook(below, o, played); } catch (e) { /* a duel must never break a game */ }
     }
     if (typeof window.TurnsOut.roomHook === "function") {
-      try { window.TurnsOut.roomHook(after, o, played); } catch (e) { /* a room must never break a game */ }
+      try { window.TurnsOut.roomHook(below, o, played); } catch (e) { /* a room must never break a game */ }
     }
-    after.appendChild(box);
+    below.insertBefore(box, below.firstChild);
+    after.appendChild(below);
 
     if (!next || !("IntersectionObserver" in window)) return box;      // nothing to go to, or an old browser: the block is enough
 
@@ -1147,8 +1156,7 @@
     };
   }
   function pushPost(path, body) {
-    var base = onTestServer() && typeof window.LOGICERS_PUSH_API === "string" && window.LOGICERS_PUSH_API ? window.LOGICERS_PUSH_API : PUSH_API;
-    return window.fetch(base + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    return window.fetch(pushBase() + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   }
   function pushSend(sub) {
     var s = pushState();
@@ -1205,30 +1213,38 @@
     } catch (e) { /* nothing more to do */ }
   }
 
-  /* the calendar half: a daily event at the hour this phone usually plays at, starting tomorrow */
-  function icsText() {
-    var n = new Date(), t = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, usualHour(), 0, 0);
+  /* The calendar half: ONE tap, no choice to make (Khayyam, 18 Oct 2026). A daily event at the hour this phone usually
+     plays at, starting tomorrow, with an alarm. Where the calendar is Apple's (an iPhone, an iPad, Safari on a Mac) the tap
+     opens the event as the server serves it, and the phone offers "Add to Calendar"; everywhere else it opens Google
+     Calendar with the event filled in, for one tap on Save. Nothing is signed in to and nothing is stored. */
+  function appleCalendar() {
+    var ua = window.navigator.userAgent || "";
+    return iOS() || (/Macintosh/.test(ua) && /Safari\//.test(ua) && !/Chrome\/|Chromium\/|Edg\/|OPR\/|Firefox\//.test(ua));
+  }
+  function pushBase() {
+    return onTestServer() && typeof window.LOGICERS_PUSH_API === "string" && window.LOGICERS_PUSH_API ? window.LOGICERS_PUSH_API : PUSH_API;
+  }
+  function calendarUrl() {
+    var h = usualHour();
+    if (appleCalendar()) return pushBase() + "/ics?h=" + h;
+    var n = new Date(), t = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, h, 0, 0), end = new Date(t.getTime() + 15 * 60000);
     function p2(v) { return (v < 10 ? "0" : "") + v; }
     function f(d) { return d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()) + "T" + p2(d.getHours()) + p2(d.getMinutes()) + "00"; }
-    var end = new Date(t.getTime() + 15 * 60000), stamp = n.toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
-    return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Logicers//Daily reminder//EN", "CALSCALE:GREGORIAN", "BEGIN:VEVENT",
-      "UID:daily-reminder@logicers.com", "DTSTAMP:" + stamp, "DTSTART:" + f(t), "DTEND:" + f(end), "RRULE:FREQ=DAILY",
-      "SUMMARY:Logicers: today's games", "DESCRIPTION:A minute each. https://logicers.com/", "URL:https://logicers.com/",
-      "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", "DESCRIPTION:Logicers: today's games", "END:VALARM", "END:VEVENT", "END:VCALENDAR", ""].join("\r\n");
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("Logicers: today's games") +
+      "&details=" + encodeURIComponent("A minute each. https://logicers.com/") + "&dates=" + f(t) + "/" + f(end) +
+      "&recur=" + encodeURIComponent("RRULE:FREQ=DAILY");
   }
   function takeCalendar() {
     count_("remind/ics");
-    var text = icsText();
-    try {
-      var blob = new Blob([text], { type: "text/calendar;charset=utf-8" }), a = document.createElement("a");
-      a.href = window.URL.createObjectURL(blob); a.download = "logicers-reminder.ics";
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      window.setTimeout(function () { try { window.URL.revokeObjectURL(a.href); } catch (e) { /* gone */ } }, 4000);
-    } catch (e) {
-      try { window.location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(text); } catch (x) { /* the half stays */ return; }
-    }
+    var url = calendarUrl();
     eodUpdate(function (x) { x.ics = 1; });
     keepUi();
+    try {
+      if (appleCalendar()) { window.location.href = url; return; }
+      var a = document.createElement("a");                    // a link of its own, in a new tab: this page stays where it is
+      a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    } catch (e) { window.location.href = url; }
   }
 
   /* the QR half, for a computer: the site's own address as a code, drawn with the library the live games use */
@@ -1370,11 +1386,15 @@
       dlg = document.createElement("dialog");
       dlg.id = "eod-ios";
       dlg.setAttribute("aria-labelledby", "eod-ios-h");
+      var SHARE = '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L8 7m4-4 4 4M7 10H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      var PLUS = '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      var pad = /iPad/.test(window.navigator.userAgent || "") || (/Macintosh/.test(window.navigator.userAgent || "") && window.navigator.maxTouchPoints > 1);
       dlg.innerHTML = '<div class="sheet"><button class="chip round close" type="button" data-close aria-label="Close">×</button>' +
-        '<h2 id="eod-ios-h">Keep Logicers on your phone</h2>' +
-        '<ol><li>In Safari, tap the <b>Share</b> button (the square with an arrow).</li>' +
-        '<li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol>' +
-        '<p class="quiet">Logicers then opens like an app, full screen, with its own icon. Open it from there once and tap <b>Daily reminder</b>: one reminder a day, never more.</p></div>';
+        '<h2 id="eod-ios-h">Add Logicers to your home screen</h2>' +
+        '<ol class="ios-steps"><li><span class="ios-ico">' + SHARE + '</span><span>Tap <b>Share</b> ' + (pad ? 'at the top of Safari' : 'at the bottom of Safari') + '.</span></li>' +
+        '<li><span class="ios-ico">' + PLUS + '</span><span>Choose <b>Add to Home Screen</b>, then <b>Add</b>.</span></li></ol>' +
+        '<p class="quiet">Then open Logicers from your home screen and tap <b>Daily reminder</b>.</p>' +
+        (pad ? '' : '<p class="ios-point" aria-hidden="true">\u2193</p>') + '</div>';
       document.body.appendChild(dlg);
     }
     openDialog(dlg);

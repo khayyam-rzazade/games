@@ -655,14 +655,10 @@ body.game { background: var(--tint); }
 .sentence { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 15px 18px 16px; font-size: 1.14rem; line-height: 1.36; font-weight: 500; }
 .source { margin: 10px 6px 0; color: var(--soft); font-size: 0.9rem; line-height: 1.4; }
 .source a { color: inherit; text-underline-offset: 3px; }
-.earned { display: flex; align-items: center; gap: 16px; margin-top: 20px; }
-.earned .stamp { flex: 0 0 7.9rem; --edge: var(--tint); }
-.earned p { color: var(--soft); font-weight: 500; line-height: 1.3; }
 .next { margin: 16px 4px 0; color: var(--soft); font-size: 0.95rem; }
 .next a { text-underline-offset: 3px; }
 @media (prefers-color-scheme: dark) {
   .sentence { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
-  .earned .stamp { --edge: var(--bg); }
 }
 
 /* the way onward: what is played today, the next game, and the way back to all games.
@@ -927,6 +923,30 @@ body.onbar-room { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
    and your country's place. It wears the game's own colour; nothing in it moves. */
 .world { margin-top: 26px; padding: 16px 16px 14px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
 .world[hidden] { display: none; }
+
+/* The boxes under a game (18 Oct 2026): "Today" first, then the world, a friend's duel, a room. One column on a phone or a
+   tablet standing up (under 56rem = 896px: each box then keeps the full width of the column); from 56rem up, "Today" and
+   "The world today" stand side by side, in a row as wide as 62rem (992px) or the screen less its two margins. At 896px each
+   box is 422px (390px inside), room for three buttons of the Today card or the world's bars; it only grows from there. */
+.below { margin-top: 26px; display: grid; gap: 20px; }
+.below > * { margin-top: 0; min-width: 0; }
+.who-wrap { margin: 0 0 12px; }
+.who-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.who { display: flex; align-items: baseline; gap: 10px; flex: 1 1 9rem; min-width: 0; }
+.who-name { appearance: none; border: 0; background: none; padding: 0; min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); text-align: left; cursor: pointer; border-radius: 8px; }
+.who-change, .who-add { appearance: none; border: 0; background: none; padding: 2px 0; flex: none; color: var(--soft); font: inherit; font-size: 0.9rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 6px; }
+.who-name[hidden], .who-change[hidden], .who-add[hidden] { display: none; }
+.who-send { appearance: none; border: 0; flex: none; min-height: 40px; padding: 0 18px; border-radius: 999px; background: var(--c); color: var(--on-c); font-family: var(--display); font-weight: 800; font-size: 0.98rem; letter-spacing: -0.02em; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.who-send:active { transform: scale(0.98); }
+.who-note { margin-top: 6px; color: var(--soft); font-size: 0.88rem; font-weight: 600; overflow-wrap: anywhere; }
+.who-note[hidden] { display: none; }
+@media (min-width: 56rem) {
+  .below { --row: min(62rem, calc(100vw - 2 * var(--pad))); width: var(--row); margin-inline: calc((100% - var(--row)) / 2);
+           grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .below > :not(.onward):not(.world) { grid-column: 1 / -1; }
+  /* no world box (the counts are off, or it did not answer): "Today" stands alone, in the middle, one column wide */
+  .below:not(:has(> .world:not([hidden]))) > .onward { grid-column: 1 / -1; width: min(100%, 31rem); justify-self: center; }
+}
 .wd-wait { color: var(--soft); font-weight: 600; font-size: 0.92rem; }
 .wd-top2 { display: flex; align-items: baseline; gap: 10px; }
 .wd-top2 h2 { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.025em; line-height: 1.1; }
@@ -1087,7 +1107,7 @@ body[data-g="hundred"] .panel.revealed { background: var(--c); box-shadow: 0 12p
 .keep[hidden], .keep-cell[hidden] { display: none; }
 .keep { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
 .keep-cell { border-color: #2D4FC4; gap: 2px; min-height: 62px; }
-.keep-t { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; }
+.keep-t { display: flex; flex-direction: column; align-items: center; gap: 3px; font-weight: 800; }
 .keep-s { font-weight: 600; font-size: 0.72rem; color: var(--soft); line-height: 1.2; }
 .keep-qr-code { display: flex; justify-content: center; margin: 14px 0; }
 .keep-qr-code svg { width: 220px; height: 220px; max-width: 100%; border-radius: 12px; }
@@ -1144,3 +1164,11 @@ dialog.khay:not([open]) { display: none; }
   .khay-launch { animation: none; transition: none; }
   .eod-pride:active, .eod-cell:active, .keep-cell:active { transform: none; }
 }
+
+/* the iPhone's steps to the home screen: two short lines with the buttons drawn, and an arrow down towards Safari's Share (18 Oct 2026) */
+.sheet .ios-steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+.ios-steps li { display: flex; align-items: center; gap: 14px; font-weight: 600; line-height: 1.3; }
+.ios-ico { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: var(--tint); color: var(--ink); }
+.ios-point { margin-top: 6px; text-align: center; font-size: 2rem; line-height: 1; color: var(--soft); animation: ios-nudge 1.4s ease-in-out infinite; }
+@keyframes ios-nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .ios-point { animation: none; } }

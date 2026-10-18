@@ -513,21 +513,30 @@
   window.LogicersDuelCard = function () { return shot; };      // read by r/site-workshop/checks/t_duel.py
 
   var blob = null, blobUrl = null;
+  /* draws the card; the promise is kept when the picture is ready (or could not be made): Send waits for it, so the first
+     tap shares the picture too, and does not fall back to copying the text because the picture was a moment late */
   function prepare(t) {
-    function make() {
-      try {
-        drawCard(t).toBlob(function (b) {
-          if (!b) return;
-          blob = b;
-          if (blobUrl) window.URL.revokeObjectURL(blobUrl);
-          blobUrl = window.URL.createObjectURL(b);
-        }, "image/png");
-      } catch (e) { blob = null; }
-    }
-    if (document.fonts && document.fonts.load) {
-      Promise.all([document.fonts.load('800 118px "Bricolage Grotesque"'),
-                   document.fonts.load('600 44px "Figtree"')]).then(make, make);
-    } else make();
+    return new Promise(function (resolve) {
+      var done = false;
+      function finish() { if (!done) { done = true; resolve(); } }
+      window.setTimeout(finish, 2500);
+      function make() {
+        try {
+          drawCard(t).toBlob(function (b) {
+            if (b) {
+              blob = b;
+              if (blobUrl) window.URL.revokeObjectURL(blobUrl);
+              blobUrl = window.URL.createObjectURL(b);
+            }
+            finish();
+          }, "image/png");
+        } catch (e) { blob = null; finish(); }
+      }
+      if (document.fonts && document.fonts.load) {
+        Promise.all([document.fonts.load('800 118px "Bricolage Grotesque"'),
+                     document.fonts.load('600 44px "Figtree"')]).then(make, make);
+      } else make();
+    });
   }
 
   /* ---------------- the window that asks for a name ----------------
@@ -605,84 +614,54 @@
     }
     var t = table(key);
     TO.count("duel/share");
-    prepare(t);
     var text = message(key);
-    window.setTimeout(function () {
+    prepare(t).then(function () {
       TO.share({ blob: blob, filename: "logicers-" + key + ".png", text: text }).then(function (how) {
         if (how === "fallback" && typeof onFallback === "function") onFallback(text, blobUrl);
       });
-    }, 60);
+    });
   }
 
-  /* ---------------- the block at every reveal ---------------- */
-  /* Loud here, quiet everywhere else (Khayyam's requirement 2): the offer stands where the player
-     has just felt something. It is added by the frame's way onward, so no game script changes. */
-  function block(after, o) {
-    var old = document.getElementById("duel");
-    if (old && old.parentNode) old.parentNode.removeChild(old);
-
-    var liveDay = !o.practice && (!o.day || !o.today || o.day === o.today);
+  /* ---------------- the name and "Send my day", on the Today card (18 Oct 2026) ----------------
+     Khayyam: the preview card and its box are gone (the numbers are already in the box above them); what stays is
+     the name, shown big on top of the Today card with a Change button, and the Send my day button beside it.
+     The frame's way onward (turnsout.js) puts this row first in the Today card. */
+  function bar(o) {
     var key = todayKey();
     var t = table(key);
     if (!countOf(t.mine) && !t.live) return null;        // nothing of today to send and no one to answer
-
-    var box = el("section", "duel");
-    box.id = "duel";
-    box.setAttribute("aria-label", "Who Was Closer");
-
-    if (t.live && liveDay && o.game) {
-      var said = lineFor(t, o.game);
-      if (said) {
-        var p = el("p", "duel-line");
-        if (said.flat) p.appendChild(document.createTextNode(said.flat));
-        if (said.strong) p.appendChild(el("b", "", said.strong));
-        box.appendChild(p);
-      }
-      box.appendChild(el("p", "duel-tally", tallyWords(t)));
-    } else if (!t.live) {
-      box.appendChild(el("p", "duel-tally", "Send one link and a friend plays the same day."));
-    }
-
-    var fig = el("figure", "duel-figure");
-    fig.appendChild(mini(t));
-    fig.appendChild(el("figcaption", "duel-say", "This is what your friend sees."));
-    box.appendChild(fig);
-
-    /* Who you are on the card. It shows only once a player has a name, because until the first send
-       there is nothing to show: the site gives nobody a name. Tapping it opens the same window the
-       first send opens, so there is one place to change it and it is where the name is. */
-    var who = el("p", "duel-who");
-    var whoName = el("b", "", me());
-    var rename = el("button", "duel-rename", "Change");
+    var row = el("div", "who-row");
+    var who = el("p", "who");
+    var nameBtn = el("button", "who-name", me());
+    nameBtn.type = "button";
+    var rename = el("button", "who-change", "Change");
     rename.type = "button";
-    who.appendChild(document.createTextNode("Your friends see you as "));
-    who.appendChild(whoName);
-    who.appendChild(document.createTextNode(" "));
+    var add = el("button", "who-add", "Add your name");
+    add.type = "button";
+    who.appendChild(nameBtn);
     who.appendChild(rename);
-    who.hidden = !named();
-    box.appendChild(who);
-
-    function showName(n) {
-      whoName.textContent = n;
-      who.hidden = !n;
-      var m = document.querySelector("#duel .duel-mini");
-      if (m && m.parentNode) m.parentNode.replaceChild(mini(table(key)), m);   // the card wears it at once
+    who.appendChild(add);
+    function paint() {
+      var n = named();
+      nameBtn.textContent = me();
+      nameBtn.hidden = !n; rename.hidden = !n; add.hidden = n;
     }
+    paint();
+    function showName() {
+      paint();
+      var m = document.querySelector("#duel .duel-mini");
+      if (m && m.parentNode) m.parentNode.replaceChild(mini(table(key)), m);   // a friend's card wears it at once
+    }
+    nameBtn.addEventListener("click", function () { askName(showName); });
     rename.addEventListener("click", function () { askName(showName); });
-
-    var acts = el("div", "duel-acts");
-    var go = el("button", "duel-send", t.live ? "Send my day again" : "Send my day");
+    add.addEventListener("click", function () { askName(showName, "Save"); });
+    var go = el("button", "who-send", "Send my day");
     go.type = "button";
-    acts.appendChild(go);
-    var what = el("a", "duel-what", "What is this?");
-    what.href = base();
-    acts.appendChild(what);
-    box.appendChild(acts);
-
-    var note = el("p", "duel-note");
+    row.appendChild(who);
+    row.appendChild(go);
+    var note = el("p", "who-note");
     note.hidden = true;
-    box.appendChild(note);
-
+    note.setAttribute("role", "status");
     go.addEventListener("click", function () {
       send(key, function (text) {
         TO.copyText(text).then(function (ok) {
@@ -691,7 +670,41 @@
         });
       }, showName);
     });
+    var wrap = el("div", "who-wrap");
+    wrap.appendChild(row);
+    wrap.appendChild(note);
+    return wrap;
+  }
+  TO.duelBar = bar;
 
+  /* ---------------- a friend's duel, under the game ----------------
+     Only when a friend's link has been opened today: who was closer in this game, and the table so far. Nothing is
+     shown for a player with no duel (the card that used to say "this is what your friend sees" is gone). */
+  function block(after, o) {
+    var old = document.getElementById("duel");
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+
+    var liveDay = !o.practice && (!o.day || !o.today || o.day === o.today);
+    var key = todayKey();
+    var t = table(key);
+    if (!t.live || !liveDay) return null;
+
+    var box = el("section", "duel");
+    box.id = "duel";
+    box.setAttribute("aria-label", "Who Was Closer");
+    if (o.game) {
+      var said = lineFor(t, o.game);
+      if (said) {
+        var p = el("p", "duel-line");
+        if (said.flat) p.appendChild(document.createTextNode(said.flat));
+        if (said.strong) p.appendChild(el("b", "", said.strong));
+        box.appendChild(p);
+      }
+    }
+    box.appendChild(el("p", "duel-tally", tallyWords(t)));
+    var fig = el("figure", "duel-figure");
+    fig.appendChild(mini(t));
+    box.appendChild(fig);
     after.appendChild(box);
     return box;
   }
@@ -751,7 +764,7 @@
     payload: payload, link: link, linkFor: linkFor, message: message, base: base,
     read: read, merge: merge, take: take, players: players,
     table: table, headline: headline, standings: standings, lineFor: lineFor, tallyWords: tallyWords,
-    mini: mini, example: example, drawCard: drawCard, prepare: prepare, send: send, block: block,
+    mini: mini, example: example, drawCard: drawCard, prepare: prepare, send: send, block: block, bar: bar,
     MAXP: MAXP, DOT: DOT
   };
 

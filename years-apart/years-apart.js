@@ -310,10 +310,6 @@
       });
       list.appendChild(li);
     });
-    if (!practice) {
-      fillStamp($("earned-stamp"), q);
-      $("earned").hidden = false;
-    }
     var next = $("next");
     if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s line</a>';
     else next.textContent = "A new line arrives at midnight.";

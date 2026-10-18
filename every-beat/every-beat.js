@@ -459,7 +459,6 @@
       cr.appendChild(document.createTextNode(", in the public domain."));
     }
     list.appendChild(cr);
-    if (!practice) { fillStamp($("earned-stamp"), q); $("earned").hidden = false; }
     var next = $("next");
     if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s heart</a>';
     else next.textContent = "A new heart arrives at midnight.";

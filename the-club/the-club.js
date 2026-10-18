@@ -287,10 +287,6 @@
       var a = $(p[0]), s = (q.sources || [])[p[1]];
       if (s) { a.textContent = s.name; a.href = s.url; }
     });
-    if (!practice) {
-      fillStamp($("earned-stamp"), q);
-      $("earned").hidden = false;
-    }
     var next = $("next");
     if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s club</a>';
     else next.textContent = "A new club opens at midnight.";

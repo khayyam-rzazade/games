@@ -259,6 +259,20 @@ ok(typeof (await stats()).sentToday === "number", "the admin also sees how many 
   eq(pushedTo(nm("refused")), 5, "an address the service always refuses is tried once a day, five days, and then dropped");
 }
 
+/* ---------- the reminder as a calendar event (18 Oct 2026): a link, so no Origin and mode "navigate" ---------- */
+{
+  const r = await fetch(BASE + "/ics?h=20", { headers: { "Sec-Fetch-Mode": "navigate" } });
+  const txt = await r.text();
+  ok(r.status === 200 && /^text\/calendar/.test(r.headers.get("content-type") || ""), "/ics answers a plain link with a calendar file");
+  ok(/inline/.test(r.headers.get("content-disposition") || ""), "shown inline, so a phone offers to add it");
+  ok(/DTSTART:\d{8}T200000\r\n/.test(txt) && txt.includes("RRULE:FREQ=DAILY") && txt.includes("BEGIN:VALARM") && txt.includes("\r\n"), "a daily event at the hour asked, with an alarm, in the phone's own time");
+  eq((await fetch(BASE + "/ics?h=24")).status, 400, "an hour of 24 is refused");
+  eq((await fetch(BASE + "/ics?h=-1")).status, 400, "and a negative one");
+  eq((await fetch(BASE + "/ics")).status, 400, "and none");
+  eq((await fetch(BASE + "/ics?h=7%0d%0aX:y")).status, 400, "and anything but digits (no header or line can be slipped in)");
+  ok(txt.split("\r\n").slice(0, -1).every((l) => /^[A-Z-]+[:;]/.test(l)), "every line of the file is a well formed property line");
+}
+
 const ip = someIp();
 let last = 0;
 for (let i = 0; i < 45; i++) last = (await join(nm("brake"), {}, { ip })).status;

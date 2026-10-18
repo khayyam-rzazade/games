@@ -267,11 +267,6 @@
     link.href = q.link || "#";
     $("source-exact").textContent = (typeof q.exact === "number") ? " (" + q.exact + " in 100)" : "";
 
-    if (!practice) {
-      var box = $("earned-stamp");
-      fillStamp(box, q, q.answer);
-      $("earned").hidden = false;
-    }
     var next = $("next");
     if (practice) {
       next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s question</a>';
