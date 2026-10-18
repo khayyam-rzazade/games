@@ -572,26 +572,32 @@
   }
 
   /* ---------------- the table itself, worked out from a summary (the World table page and the home box) ----
-     A country's score (16 Oct 2026, Khayyam's choice "C": quality first, and some credit for bringing players):
+     A country's score is one number, from two parts (18 Oct 2026, Khayyam's choice: a country is a team):
        quality: its players' average points, made fair across games by the server (tally.js); above the world's
                 average it is pulled back toward it as if it had PULL more games at that average, so a handful of
-                lucky games never tops the table, while below it a country keeps its own average (so more
-                players never hurt it); a country takes a place from MIN games;
-       + bonus: BONUS.per points for every tenfold of the games it played (Your Call's too), at most BONUS.most:
-                2 at 10 games, 4 at 100, 6 at 1,000, never more than 8, so inviting friends always helps and
-                playing well still matters most. The score never goes above 100.
-     Continents: the quality only, with the same rule and minimum. A week (from Monday, 16 Oct 2026) sits between
-     the day and the month in both. */
-  var PULL = { day: 30, week: 60, month: 90 };
+                lucky games, or one person playing again and again, never tops the table; below the average a
+                country keeps its own average (so more players never hurt it);
+       + team:  up to BONUS.most points for the games its players finished (Your Call's too). It grows with every
+                tenfold of games and is full at BONUS.full games, so 10 games earn 40% of it and 100 games 81%
+                (on a day); after that more players add nothing and only playing well counts. Inviting friends
+                always helps, but it never decides alone.
+     The score never goes above 100. A country takes a place from MIN games. Continents: the quality only, with
+     the same pull and minimum. The week (from Monday) and the month sit between and above the day in all of these.
+     Kept for later (Khayyam, 18 Oct 2026): teams sized by population, the full-team ceiling growing with the
+     square root of the country's population (Penrose), so the USA needs about 2.4 times Italy's players. */
+  var PULL = { day: 100, week: 200, month: 300 };
   var MIN = { day: 10, week: 20, month: 30 };
-  var BONUS = { per: 2, most: 8 };
-  function bonus(played) { return played > 1 ? Math.min(BONUS.most, BONUS.per * Math.log(played) / Math.LN10) : 0; }
+  var BONUS = { most: 25, full: { day: 300, week: 1500, month: 6000 } };
+  function bonus(played, span) {
+    var full = BONUS.full[span] || BONUS.full.day;
+    return played > 1 ? BONUS.most * Math.min(1, Math.log(played) / Math.log(full)) : 0;
+  }
   function quality(n, a, K, M) { return n && a / n <= M ? a / n : (a + K * M) / (n + K); }
   function rank(d) {
     var span = d.span === "month" ? "month" : d.span === "week" ? "week" : "day", K = PULL[span], M = d.m || 0;
     /* n: the scored games, which rank; played: those and Your Call's, which count in the games played and the bonus */
     var rows = (d.cs || []).map(function (x) {
-      var played = x[2] + (x[4] || 0), q = quality(x[2], x[3], K, M), b = bonus(played);
+      var played = x[2] + (x[4] || 0), q = quality(x[2], x[3], K, M), b = bonus(played, span);
       return { c: x[0], ct: x[1], n: x[2], played: played, q: q, bonus: b, s: Math.min(100, q + b) };
     });
     var ranked = rows.filter(function (x) { return x.n >= MIN[span]; })
