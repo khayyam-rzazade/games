@@ -24,6 +24,13 @@
   function play() {
     var n = TO.GAMES.filter(TO.playedToday).length, N = TO.GAMES.length;
     $("wt-play-kicker").textContent = n === N ? "All " + N + " played today" : n + " of " + N + " played today";
+    /* 19 Oct 2026, Khayyam: "it has to bring me to where the games are". The button opens the first game not yet
+       played today (from there every finished game hands on to the next); with all of them played it goes to
+       the games that never run out, on the home page. */
+    var first = null;
+    TO.GAMES.forEach(function (G) { if (!first && !TO.playedToday(G)) first = G; });
+    var a = $("wt-play");
+    a.href = first ? TO.here("../" + first.href) : TO.here("../") + "#more-to-play";
   }
   /* your country's team page, the other half of the button (19 Oct 2026): shown once the country is known (the one
      the last answer named is kept in this browser, so the button is there at once the next time) */

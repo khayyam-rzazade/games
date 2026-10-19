@@ -974,11 +974,28 @@
     function stop() { try { mo.disconnect(); } catch (e) { /* done */ } window.clearTimeout(t); }
     return stop;
   }
-  /* the three taps (surprised / knew it / made me think) that world.js builds; an empty span when it has none to give */
-  function feelRow(o) {
-    var r = null;
-    try { if (typeof window.TurnsOut.reactHook === "function") r = window.TurnsOut.reactHook(o); } catch (e) { r = null; }
-    return r || el("span", "rx-none");
+  /* The last card opens on the day's stats; about two seconds later, once, it slides down by itself to the
+     "More to play" button (19 Oct 2026, Khayyam). It never fights a hand: any touch, wheel, key or click on the
+     card within that time cancels it, it only moves when the button is not already in view, and it stays
+     still for anyone who asked for less motion. Coming back up to the stats is the player's own choice. */
+  function autoDown(sheet, wrap) {
+    if (reducedMotion()) return;
+    var cancelled = false;
+    function stop() { cancelled = true; }
+    ["touchstart", "wheel", "pointerdown", "keydown", "mousedown"].forEach(function (n) {
+      sheet.addEventListener(n, stop, { passive: true, once: true });
+    });
+    window.setTimeout(function () {
+      try {
+        if (cancelled || !wrap.parentNode) return;
+        var more = sheet.querySelector(".fin-more");
+        if (!more) return;
+        var s = sheet.getBoundingClientRect(), m = more.getBoundingClientRect();
+        if (m.bottom <= s.bottom - 8) return;                         // already in view: nothing to show
+        var by = Math.min(m.top - s.top - 70, sheet.scrollHeight - sheet.clientHeight - sheet.scrollTop);
+        if (by > 0) sheet.scrollBy({ top: by, behavior: "smooth" });
+      } catch (e) { /* the card just stays where it is */ }
+    }, 2000);
   }
   function finCard(o, next, played, count, href, box, eodEl) {
     var old = document.getElementById("fin");
@@ -1030,7 +1047,6 @@
         rank.textContent = p.textContent;
         rank.hidden = false;
       });
-      sheet.appendChild(feelRow(o));
       var a = el("a", "fin-next");
       a.href = href;
       a.insertAdjacentHTML("beforeend", PLAY);
@@ -1048,7 +1064,6 @@
       var seat = el("div", "fin-world");
       sheet.appendChild(seat);
       watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
-      sheet.appendChild(feelRow(o));
       var more = el("a", "fin-more");
       more.href = here("../") + "#more-to-play";
       var mw = el("span", "fin-next-words");
@@ -1103,6 +1118,7 @@
       document.addEventListener("keydown", onKey);
       count_(next ? "onward-sheet/seen" : "onward-sheet/day-done");
       try { sheet.focus({ preventScroll: true }); } catch (e) { /* no focus */ }
+      if (!next) autoDown(sheet, wrap);
     }, num(o.wait) ? o.wait : 1400);
     return { closed: function (fn) { if (done) fn(); else fns.push(fn); } };
   }
