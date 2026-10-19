@@ -1265,3 +1265,22 @@ dialog.khay:not([open]) { display: none; }
 .mail { margin: 10px 0; font-size: 1rem; }
 .mail b { font-weight: 800; user-select: all; -webkit-user-select: all; overflow-wrap: anywhere; }
 .foot-note .mail { margin: 6px 0 10px; }
+
+/* A message from Khayyam (19 Oct 2026): a text link under the box after every game, in Tell Khayyam before Send,
+   and under "Made by Khayyam" on the home page; all open the same small window. */
+.msg-link { appearance: none; border: 0; background: none; padding: 0; font: inherit; font-weight: 800; font-size: 1rem; color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.msg-link:active { opacity: .7; }
+.onward-msg { margin: 14px 0 2px; text-align: center; }
+.khay-msg-line { margin: 10px 0 4px; }
+.khay-msg-line .msg-link { font-size: 0.95rem; }
+.foot-note .msg-line { margin: 8px 0 4px; }
+.khay-msg .sheet { max-width: 30rem; }
+.khay-msg-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-right: 44px; }
+.khay-msg-head h2 { margin: 0; font-size: 1.2rem; line-height: 1.15; }
+.khay-msg-head .khay-photo { width: 48px; height: 48px; }
+.khay-msg-p { margin: 0 0 12px; font-size: 1rem; line-height: 1.5; }
+.khay-msg-p:first-of-type { font-weight: 700; }
+.khay-msg-sign { margin: 4px 0 14px; font-family: var(--display); font-weight: 800; font-size: 1.1rem; }
+.khay-msg-more { margin: 0; }
+/* the cells after a mid-day game: a little air after the Next game card */
+.onward-next + .eod { margin-top: 12px; }

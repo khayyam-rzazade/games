@@ -846,7 +846,10 @@
       a.insertAdjacentHTML("beforeend", ARROW);
       a.addEventListener("click", function () { count_("onward/" + next.id); });
       box.appendChild(a);
-      try { box.appendChild(keepStrip()); } catch (e) { /* the offers are optional */ }
+      /* 19 Oct 2026, Khayyam: "it must be same for all the games". The cells that used to come only with the
+         last game (the offers, today's thread, Tell Khayyam, Share my day) now follow every game; only the
+         clock and the country's place wait for the end of the day. */
+      try { box.appendChild(endOfDay(false)); } catch (e) { /* the end of the day must never break a game */ }
     } else {
       /* A day with everything played can end somewhere better than a sentence: a member of a
          room goes back to its table (assets/js/rooms.js fills this hook in). Wrapped whole,
@@ -857,7 +860,7 @@
         try { doneEl = window.TurnsOut.allDoneHook(); } catch (e) { /* the sentence stands */ }
       }
       box.appendChild(doneEl || el("p", "onward-done", "All done for today. New games at midnight."));
-      try { eodEl = endOfDay(); box.appendChild(eodEl); } catch (e) { eodEl = null; /* the end of the day must never break a game */ }
+      try { eodEl = endOfDay(true); box.appendChild(eodEl); } catch (e) { eodEl = null; /* the end of the day must never break a game */ }
     }
     var all = el("a", "onward-all");
     all.href = here("../");
@@ -866,6 +869,7 @@
     all.appendChild(el("span", "onward-all-name", "All games"));
     all.insertAdjacentHTML("beforeend", ARROW);
     box.appendChild(all);
+    try { box.appendChild(messageLine("onward-msg", "A message from Khayyam \u2192", "box")); } catch (e) { /* the message is optional */ }
     /* the world today: the world, the continent and the country beside this result (assets/js/world.js) */
     if (typeof window.TurnsOut.worldHook === "function") {
       try { window.TurnsOut.worldHook(below, o, played); } catch (e) { /* the world's counts must never break a game */ }
@@ -1618,7 +1622,7 @@
     head.appendChild(face); head.appendChild(who); head.appendChild(x);
     dlg.appendChild(head);
     var form = el("form", "khay-form"); form.id = "khay-form"; form.noValidate = true;
-    var intro = el("p", "khay-intro", "I’m Khayyam, an academic researcher, and I build Logicers on my own. Three quick questions, all optional. I read every answer. ");
+    var intro = el("p", "khay-intro", "I’m Khayyam, a scientist, the kind who studies politics. I build Logicers on my own. Three quick questions, all optional. I read every answer. ");
     var more = el("a", "khay-more", "More about me \u2192");     // 19 Oct 2026: a way to reach him directly
     more.href = "https://thekhayyam.com"; more.target = "_blank"; more.rel = "noopener noreferrer";
     more.addEventListener("click", function () { count_("eod/about-me"); });
@@ -1649,6 +1653,8 @@
     var next = area("khay-next", "What should I fix, or build next?", "A game idea, a bug, a wish");
     var trap = el("input"); trap.type = "checkbox"; trap.name = "botcheck"; trap.tabIndex = -1; trap.setAttribute("aria-hidden", "true"); trap.className = "khay-trap"; trap.id = "khay-trap";
     form.appendChild(trap);
+    /* 19 Oct 2026, Khayyam: his message comes last, "right before submitting the feedback", so nobody reads it and forgets to send */
+    try { form.appendChild(messageLine("khay-msg-line", "Read my message to you \u2192", "tell")); } catch (e) { /* the message is optional */ }
     var send = el("button", "btn solid khay-send", "Send to Khayyam"); send.type = "submit"; send.disabled = true; send.id = "khay-send";
     form.appendChild(send);
     var note = el("p", "khay-note"); note.id = "khay-note"; note.setAttribute("role", "status"); form.appendChild(note);
@@ -1753,12 +1759,70 @@
     }, HELLO_DELAY);
   }
 
+  /* ---- a message from Khayyam (19 Oct 2026) ----
+     His own words to the players, one small window, the same wherever it is opened from: the line at the
+     bottom of the box after every game, the line before Send in Tell Khayyam, and the home page's footer
+     (any element marked data-msg opens it). Nothing here can break a game. */
+  var MESSAGE = [
+    "Hi, I’m Khayyam. I’m a scientist, the kind who studies politics. Thank you for playing!",
+    "My goal in life is to teach people, one way or another, and to help science reach more of them. Logicers is part of that, next to the other work I do, and it is free.",
+    "If this matters to you the way it matters to me, please pass it on: to a friend, a colleague, your school or university. That is the only way it grows.",
+    "I’m also building new parts of Logicers for universities, schools, learning centres and companies. If you want one for yours, write to me: logicers.world@gmail.com"
+  ];
+  function messageDialog() {
+    var dlg = document.getElementById("khay-msg");
+    if (dlg) return dlg;
+    dlg = document.createElement("dialog");
+    dlg.id = "khay-msg";
+    dlg.className = "khay-msg";
+    dlg.setAttribute("aria-labelledby", "khay-msg-h");
+    var sheet = el("div", "sheet");
+    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", "Close");
+    sheet.appendChild(x);
+    var head = el("div", "khay-msg-head");
+    var face = el("span", "khay-photo"); face.appendChild(khayFace(56));
+    head.appendChild(face);
+    var h = el("h2", "", "A message from Khayyam"); h.id = "khay-msg-h";
+    head.appendChild(h);
+    sheet.appendChild(head);
+    MESSAGE.forEach(function (t) { sheet.appendChild(el("p", "khay-msg-p", t)); });
+    var sig = el("p", "khay-msg-sign", "– Khayyam");
+    sheet.appendChild(sig);
+    var more = el("a", "khay-more", "More about me \u2192");
+    more.href = "https://thekhayyam.com"; more.target = "_blank"; more.rel = "noopener noreferrer";
+    more.addEventListener("click", function () { count_("msg/about-me"); });
+    var mp = el("p", "khay-msg-more"); mp.appendChild(more);
+    sheet.appendChild(mp);
+    dlg.appendChild(sheet);
+    document.body.appendChild(dlg);
+    return dlg;
+  }
+  function openMessage(from) {
+    count_("msg/open-" + (from || "page"));
+    openDialog(messageDialog());
+  }
+  function messageLine(cls, words, from) {
+    var p = el("p", cls);
+    var b = el("button", "msg-link", words);
+    b.type = "button";
+    b.setAttribute("data-msg", from);
+    p.appendChild(b);
+    return p;
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target && e.target.closest ? e.target.closest("[data-msg]") : null;
+    if (!t) return;
+    e.preventDefault();
+    try { openMessage(t.getAttribute("data-msg")); } catch (err) { /* the message is optional */ }
+  });
+
   /* ---- the card itself ---- */
   function icon(emoji) { var i = el("span", "ico", emoji); i.setAttribute("aria-hidden", "true"); return i; }
-  function endOfDay() {
+  function endOfDay(full) {
     var wrap = el("div", "eod");
-    wrap.id = "eod";
+    if (full) wrap.id = "eod";
     var row = el("div", "eod-row");
+    if (full) {
     var clock = el("p", "eod-clock");
     function tick() {
       if (!wrap.parentNode && clock.__tick) { window.clearInterval(clock.__tick); return; }
@@ -1770,11 +1834,12 @@
     clock.__tick = window.setInterval(tick, 30000);
     row.appendChild(clock);
     wrap.appendChild(row);
+    }
 
     var pride = el("div", "eod-pride-wrap");
     pride.id = "eod-pride";
     pride.hidden = true;
-    wrap.appendChild(pride);
+    if (full) wrap.appendChild(pride);
 
     try { wrap.appendChild(keepStrip()); } catch (e) { /* the offers are optional */ }
     var strip = el("div", "eod-strip");
@@ -1798,10 +1863,10 @@
     strip.style.setProperty("--n", String(cells));
     wrap.appendChild(strip);
 
-    if (typeof window.TurnsOut.prideHook === "function") {
+    if (full && typeof window.TurnsOut.prideHook === "function") {
       try { window.TurnsOut.prideHook(pride); } catch (e) { /* the country's place must never break the end of the day */ }
     }
-    try { khayLaunch(); } catch (e) { /* the hello is optional */ }
+    if (full) { try { khayLaunch(); } catch (e) { /* the hello is optional */ } }
     return wrap;
   }
 
@@ -1893,6 +1958,7 @@
     address: address,
     figure: figure,
     colour: colour,
+    message: openMessage,              // the message to the players (19 Oct 2026)
     MISS: "#f0b429",
     reducedMotion: reducedMotion,
     stamp: stamp,
