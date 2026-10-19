@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=11dd476951">
+<link rel="stylesheet" href="assets/css/logicers.css?v=f8572ebd2a">
 </head>
 <body class="home">
 
@@ -326,8 +326,9 @@
 
 <footer class="foot-note">
   <p><span data-privacy="short">No login. No cookies. Results stay in your browser, unless you play in a room or a live game.</span></p>
-  <p class="made-by">Made by Khayyam, a researcher. <a href="https://thekhayyam.com" target="_blank" rel="noopener noreferrer">More about me &rarr;</a></p>
-  <button type="button" data-open="dlg-about">About, sources and contact</button>
+  <p class="made-by"><a href="https://thekhayyam.com" target="_blank" rel="noopener noreferrer">Made by Khayyam. More about me &rarr;</a></p>
+  <p class="mail">Question, mistake or idea? Write to me: <b>logicers.world@gmail.com</b></p>
+  <button type="button" data-open="dlg-about">About and sources</button>
 </footer>
 </div>
 
@@ -345,60 +346,37 @@
   <div class="sheet">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
     <h2 id="about-title">About Logicers</h2>
-    <p>Small games, once a day, the same for everyone. Each one leaves you with one true thing about the world, and shows where it comes from.</p>
+    <p>Small games, once a day, the same for everyone. Each one leaves you with one true thing about the world.</p>
+    <p class="mail">Question, mistake or idea? Write to me: <b>logicers.world@gmail.com</b></p>
     <!-- The installable app (11 Oct 2026). Offered here only, never by itself: the frame keeps the browser's own
          install offer quiet and shows the button below when the browser allows it (turnsout.js, TO.app). -->
     <div id="about-app">
     <h3>Logicers on your home screen</h3>
     <p class="quiet" id="app-on" hidden>You are playing in the Logicers app.</p>
     <p class="app-add" id="app-add" hidden><button class="btn solid" type="button" id="app-add-go">Add Logicers to your home screen</button></p>
-    <p class="quiet" id="app-ios" hidden>On an iPhone or iPad: in Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>. Logicers then opens like an app, full screen, with its own icon.</p>
-    <p class="quiet" id="app-other">On a phone: add Logicers to your home screen from the browser's menu (in Safari: Share, then Add to Home Screen; in Chrome: Add to Home screen or Install app). It then opens like an app, full screen, with its own icon.</p>
-    <p class="quiet">The app keeps a copy of the site's own files on your phone so that it opens at once, even with a weak signal. Your results stay where they always were, in this browser's own storage.</p>
+    <p class="quiet" id="app-ios" hidden>In Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+    <p class="quiet" id="app-other">Add it from your browser's menu: Share or Add to Home screen. It opens full screen, even with a weak signal.</p>
     </div>
-    <h3>Where the numbers come from</h3>
-    <p class="quiet">100 of Us uses the World Bank's open data (World Development Indicators), under the CC BY 4.0 licence. We round each figure to whole people. The World Bank does not endorse this site.</p>
-    <h3>Where the moments come from</h3>
-    <p class="quiet">Your Call checks every moment against two sources, linked under the answer. Events are at least twenty years old.</p>
-    <h3>Where the photos come from</h3>
-    <p class="quiet">Same Street shows homes that were visited by Dollar Street, a Gapminder project. Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. The photographer is named under each answer. Dollar Street does not endorse this site.</p>
-    <h3>Where the family trees come from</h3>
-    <p class="quiet">Long Lost Cousin checks every answer against two sources, linked under the answer. The silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, a free library of drawings of living things. Artists who ask for credit are named under each answer. PhyloPic does not endorse this site.</p>
-    <h3>Where the clubs' facts come from</h3>
-    <p class="quiet">The Club checks every rule against two sources, linked under the answer. A rule is always a plain fact about the real world.</p>
-    <h3>Where the dates come from</h3>
-    <p class="quiet">Years Apart checks every date against two sources, linked under the answer.</p>
-    <h3>Where the splits come from</h3>
-    <p class="quiet">Who Gets What shows a real price and how it divides among the people and steps paid out of it. Every split is published by a body that measures it — a government agency, a regulator, a United Nations agency, a research institute or an industry body — and was read against a second source on another website. Both are linked under the answer, and the year is always shown with the price, because these figures move.</p>
-    <h3>Where the heart rates come from</h3>
-    <p class="quiet">Every Beat shows one real animal, or a person, and asks how fast its heart beats. Every figure was measured by scientists, vets or doctors, and was read on two websites; both are linked under the answer. Nothing on its page flashes, and nothing pulses more than three times a second. Its silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, like Long Lost Cousin's.</p>
-    <h3>Where the hours come from</h3>
-    <p class="quiet">Out of 24 shows one real animal, or the people of one country, and asks how many hours of the day go on one thing. The animals' figures were measured by scientists and the countries' come from national time-use surveys; every one was read on two websites, both linked under the answer. A country's figure is an average over everyone in the group, on all seven days of the week. Its silhouettes come from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>, like Long Lost Cousin's; the flags are drawn by the page.</p>
-    <h3>Where the energy comes from</h3>
-    <p class="quiet">Same Energy shows one real food or drink and asks how many of another hold the same energy. The energy of every food and drink was read in two official food tables, the United States Department of Agriculture's FoodData Central and Norway's Matvaretabellen, which agree within about a tenth; both are linked under the answer. The game counts food and glasses and never shows a figure for the energy itself. Its foods and drinks are drawn by the page.</p>
+    <h3>Where the facts come from</h3>
+    <p class="quiet">Every fact was checked on two websites, linked under each answer. 100 of Us and the group games also use the World Bank's open data (CC BY 4.0), rounded. The World Bank does not endorse this site.</p>
+    <p class="quiet">Same Street photos: Dollar Street, a Gapminder project. Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. The photographer is named under each answer. Dollar Street does not endorse this site.</p>
+    <p class="quiet">Animal silhouettes: <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>. Artists who ask for credit are named under each answer. PhyloPic does not endorse this site.</p>
+    <p class="quiet">Same Energy: the US FoodData Central and Norway's Matvaretabellen. Twin or Trap: two dictionaries, named under each answer. So-Called Expert: one fact is invented on purpose, and marked as invented.</p>
     <p class="quiet" id="support">If food or eating is hard for you, you are not alone. These help lines are free and open on weekdays: <a href="https://beateatingdisorders.org.uk/support-services/helplines" target="_blank" rel="noopener">Beat</a> in the United Kingdom (0808&nbsp;801&nbsp;0677; in Scotland 0808&nbsp;801&nbsp;0432, in Wales 0808&nbsp;801&nbsp;0433, in Northern Ireland 0808&nbsp;801&nbsp;0434), the <a href="https://www.allianceforeatingdisorders.com/what-is-an-eating-disorder-helpline/" target="_blank" rel="noopener">National Alliance for Eating Disorders</a> in the United States (+1&nbsp;866&nbsp;662&nbsp;1235), and <a href="https://sosdisturbialimentari.it/" target="_blank" rel="noopener">SOS Disturbi Alimentari</a> in Italy (800&nbsp;180&nbsp;969).</p>
-    <h3>Where the countries' facts come from</h3>
-    <p class="quiet">One of 193, Still In and Beat the Phone, games for groups, use the World Bank's open data (World Development Indicators, CC BY 4.0) and lists that were each checked on two websites. One of 193 links them with the facts at the end of a round, Still In under the twelve countries after each rule, Beat the Phone after every answer.</p>
-    <h3>Where the experts' facts come from</h3>
-    <p class="quiet">So-Called Expert gives one player five facts about a country. Four are true: each was checked on two websites, or comes from the World Bank's open data or the checked lists of One of 193, and its sources are linked when the round is over. One fact is invented on purpose, and the game always marks it as invented by Logicers.</p>
-    <h3>Where the words come from</h3>
-    <p class="quiet">Twin or Trap, a game for groups, shows words that look the same in two languages. Every meaning was checked in two dictionaries, which are named and linked under each answer. The meanings, the sentences and their English are Logicers' own.</p>
     <h3>Who Was Closer</h3>
-    <p class="quiet">Send one link from the end of any daily game and a friend plays the same day. After each game you both see who was closer, and at the end there is a card. There is no account and no server: the scores travel inside the link itself, in the part after the <b>#</b>, which browsers never send anywhere. The first time you send one, a window asks what your friends call you; the name is kept in this browser and travels inside the links you send. A link carries only the day, the scores and that name, and what your phone has added up is kept only in this browser. <a href="duel/">See what your friend sees</a>.</p>
+    <p class="quiet">Send a link from any daily game. A friend plays the same day and you both see who was closer. The scores travel inside the link, after the <b>#</b>, which browsers never send anywhere. Your chosen name is kept in this browser and goes inside the links. <a href="duel/">See what your friend sees</a>.</p>
     <figure class="about-duel"><div id="about-duel-card"></div><figcaption class="duel-say">This is what your friend sees.</figcaption></figure>
     <div id="about-rooms" hidden>
     <h3>Rooms</h3>
-    <p class="quiet">A room is 2 to 50 friends playing the daily games with a shared table, today's and the month's, joined by one link. Outside your own browser it stores only this: when a member finishes a daily game, their phone sends the game, the score, the guess, the day and their chosen name to the site's own small server — nothing else, and nothing at all for anyone who is in no room. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole; leaving a room deletes everything of yours at once, and the room's maker can delete the whole room. <a href="room/">Make or join a room</a>.</p>
+    <p class="quiet">A room is 2 to 50 friends with a shared table. When a member finishes a daily game, their phone sends the game, score, guess, day and chosen name to our small server. Nothing at all for anyone in no room. We keep this month and the last. A room nobody plays in for 60 days is deleted. Leaving deletes everything of yours, and the room's maker can delete the room. <a href="room/">Make or join a room</a>.</p>
     </div>
     <h3>The world's counts</h3>
-    <p class="quiet">After every daily game, "The world today" shows how you did beside the world, your continent and your country, and the <a href="world/">World table</a> ranks the countries for the day and the month. For this, each daily game you finish sends the game, how far off you were and, for the games whose guess is one number, your guess, to the site's own small server. The server reads your country and continent from your connection, adds the result to that country's counts for the day and keeps only the counts: no address, nothing that identifies you, and a guess only as an average of two or more. A day's counts are deleted 75 days after it. You can leave your results out on the World table page, under its <b>?</b>.</p>
+    <p class="quiet">"The world today" compares you with your continent and country, and the <a href="world/">World table</a> ranks countries. Each finished daily game sends the game, how far off you were and, for one-number games, your guess to our small server. It reads your country from your connection and keeps only counts: no address, nothing that identifies you, a guess only as an average of two or more. Counts are deleted after 75 days. You can leave your results out under the <b>?</b> on the World table page.</p>
     <h3>Live games</h3>
-    <p class="quiet">How Sure? is played live, by a room: the host opens a game, everyone joins with its code on their own phone, and a TV, a projector or a laptop is optional. No account for anyone. The name a player types and their answers stay on the site's own small server for the game and are deleted a day after it ends (the server's own backups clear within 30 days); nothing else about anyone is kept. Every answer in Logicers' question sets was checked on two websites, both linked under it. Anyone can also build a game of their own, with numbers, choices, true or false and typed answers, in English, Italian or Turkish, and with no account: a saved game holds what its maker typed into it (an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link, and the address itself only if they also tick feedback emails) and, when it is played alone, the names and answers of its players, and is deleted with them two months after its last use. Logicers does not check games people make, and every screen of one has a Report link. <a href="live/">Play live</a> · <a href="live/build/">Build your own</a>.</p>
+    <p class="quiet">In How Sure?, a host opens a game and everyone joins with a code. No account. Names and answers stay on our small server until a day after the game ends (backups clear within 30 days). Anyone can build their own game; Logicers does not check them, and every screen has a Report link. A saved game keeps what its maker typed, plus players' names and answers when played alone, and is deleted two months after its last use. An email left to recover a link is kept only as a one-way fingerprint, and the address itself only if feedback emails are ticked. <a href="live/">Play live</a> · <a href="live/build/">Build your own</a>.</p>
     <h3>Your privacy</h3>
     <p class="quiet" data-privacy="long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
     <p class="quiet">Typefaces: Bricolage Grotesque, Figtree and Literata, under the SIL Open Font License.</p>
-    <h3>Contact</h3>
-    <p class="quiet">A question, a mistake in a fact, or an idea for a game? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
   </div>
 </dialog>
 

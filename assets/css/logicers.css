@@ -1224,8 +1224,9 @@ dialog.khay:not([open]) { display: none; }
 }
 
 /* ---------- bio: the footer line and the link in Tell Khayyam (19 Oct 2026) ---------- */
-.made-by { margin-top: 6px; color: var(--soft); font-size: 0.9rem; font-weight: 500; }
-.made-by a, .khay-more { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
+.made-by { margin-top: 8px; font-size: 1.1rem; }
+.made-by a { color: var(--ink); font-weight: 800; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.khay-more { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
 
 /* ---------- the Play button on each tile breathes (19 Oct 2026): only on games not yet played, and never for
    people who asked their device for less motion ---------- */
@@ -1259,3 +1260,8 @@ dialog.khay:not([open]) { display: none; }
 .group-games .shelf .pitch { margin-top: 3px; font-size: 0.82rem; line-height: 1.3; flex: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .group-games .shelf .foot { margin-top: 8px; min-height: 38px; }
 .group-games .shelf .go { height: 38px; font-size: 0.92rem; }
+
+/* Contact shown as plain text (19 Oct 2026): a mail button opens an app the visitor may not have. One click selects it. */
+.mail { margin: 10px 0; font-size: 1rem; }
+.mail b { font-weight: 800; user-select: all; -webkit-user-select: all; overflow-wrap: anywhere; }
+.foot-note .mail { margin: 6px 0 10px; }
