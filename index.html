@@ -29,7 +29,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=1f556d7cba">
+<link rel="stylesheet" href="assets/css/logicers.css?v=a45ddb50d8">
 </head>
 <body class="home">
 
@@ -81,6 +81,10 @@
   <!-- The Game Room box, under the Today card and the same size. It waits hidden until rooms are
        switched on (assets/js/rooms.js unhides it; for a member it fills it with the room itself).
        A browser in no room gets these still words and fetches nothing. -->
+  <!-- Game Room and World table side by side (20 Oct 2026, Khayyam: "devide it into two, left and right, less tall"):
+       two halves in one row, which frees a row for the players' lines below. A half that is not switched on
+       stays hidden and the other one takes the whole row. -->
+  <div class="pairbox" id="pairbox">
   <a class="gameroom" id="gameroom" href="room/" hidden>
     <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
       <rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/>
@@ -92,7 +96,7 @@
     </svg></span>
     <span class="gameroom-text">
       <b class="gameroom-h" id="gameroom-h">Game Room</b>
-      <span class="gameroom-sub" id="gameroom-sub">Play with friends: a table for the day, the week and the month.</span>
+      <span class="gameroom-sub" id="gameroom-sub">Play with friends: a table for the day, week and month.</span>
       <span class="gameroom-faces" id="gameroom-faces" hidden></span>
     </span>
   </a>
@@ -110,6 +114,7 @@
       <span class="gameroom-sub" id="worldbox-sub">Every game you finish counts for your country.</span>
     </span>
   </a>
+  </div>
   <!-- Yesterday, players said… (19 Oct 2026): a few of the lines players wrote at the end of their day, each
        read by Khayyam before it shows. It waits hidden until assets/js/said.js has some to show. -->
   <section class="gameroom saidbox" id="saidbox" aria-label="What players said" hidden></section>
@@ -399,11 +404,11 @@
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
 <script src="assets/js/turnsout.js?v=fb74e331df"></script>
-<script src="assets/js/duel.js?v=2aca2ba2d2"></script>
-<script src="assets/js/rooms.js?v=cb55b4b70d"></script>
-<script src="assets/js/points.js?v=d060d18a9f"></script>
+<script src="assets/js/duel.js?v=fda7b2b19b"></script>
+<script src="assets/js/rooms.js?v=ec756b09fc"></script>
+<script src="assets/js/points.js?v=8a8e435a1b"></script>
 <script src="assets/js/world.js?v=68caadf206"></script>
-<script src="assets/js/said.js?v=8b04c0fa7a"></script>
+<script src="assets/js/said.js?v=19bfa5791a"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */

@@ -17,7 +17,7 @@
   if (!TO || !W || !W.on()) return;
 
   var MAX = 140;
-  var SHOW = 3;                       // lines on the home page's box
+  var SHOW = 2;                       // lines on the home page's box (it sits in the narrow column beside the title)
   var SHOW_CARD = 4;                  // lines under the question on the finish card
 
   function el(tag, cls, text) {
@@ -141,7 +141,7 @@
       head.appendChild(face(40));
       var hw = el("div", "said-headwords");
       hw.appendChild(el("b", "gameroom-h", r.data.d === d ? "Yesterday, players said…" : "Players said…"));
-      hw.appendChild(el("span", "gameroom-sub", "What surprised them. Khayyam reads every line before it shows."));
+      hw.appendChild(el("span", "gameroom-sub", "Each one read by Khayyam first."));
       head.appendChild(hw);
       box.appendChild(head);
       box.appendChild(linesEl(r.data.lines, SHOW));

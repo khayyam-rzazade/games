@@ -225,7 +225,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 
 /* ---------- home: the welcome ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px 40px; align-items: end; padding: 44px 0 40px; }
-.hero .gameroom { grid-column: -2 / -1; align-self: start; margin-top: 0; }
+.hero > .gameroom, .hero > .pairbox { grid-column: -2 / -1; align-self: start; margin-top: 0; }
 .hero .livebox { align-self: start; }
 .hero-text { grid-row: 1 / span 4; align-self: center; }   /* Today, Build or join, the Game Room, the World table (16 Oct 2026) */
 .hero-text { position: relative; z-index: 0; }
@@ -487,7 +487,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 @media (max-width: 1000px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: stretch; }
   .hero-text { grid-row: auto; }
-  .hero .gameroom { grid-column: auto; margin-top: -10px; }
+  .hero > .gameroom, .hero > .pairbox { grid-column: auto; margin-top: -10px; }
   .hero .livebox { grid-column: auto; margin-top: -10px; }
   .hero h1 { font-size: clamp(3rem, 8vw, 4.2rem); }
   .today-note { display: none; }
@@ -502,7 +502,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .chip { height: 38px; font-size: 0.9rem; padding: 0 13px; }
   .chip.round { width: 38px; padding: 0; }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 22px 0 24px; }
-  .hero .gameroom { grid-column: auto; margin-top: -6px; }
+  .hero > .gameroom, .hero > .pairbox { grid-column: auto; margin-top: -6px; }
   .hero .livebox { grid-column: auto; margin-top: -6px; }
   .hero h1 { font-size: clamp(2.1rem, 11.2vw, 2.9rem); margin-top: 6px; }
   .lede { font-size: 1.09rem; margin-top: 12px; }
@@ -1340,3 +1340,21 @@ dialog.khay:not([open]) { display: none; }
 .saidbox[hidden] { display: none; }
 .saidbox .said-lines { margin-top: 10px; }
 .saidbox .said-line { background: var(--bg); }
+
+/* ---------- Game Room and World table in one row (20 Oct 2026, Khayyam: "devide it into two, left and right, less tall") ----------
+   Two halves like the Build / Join box: the picture on top, the words under it. A half that is not switched on
+   is hidden and the other takes the whole row (auto-fit); with neither on, the row is not there at all. */
+.pairbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; }
+.pairbox:not(:has(> :not([hidden]))) { display: none; }
+.pairbox > .gameroom { margin-top: 0; flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px 13px; min-width: 0; }
+.pairbox > .gameroom .gameroom-art { width: 34px; height: 34px; }
+.pairbox > .gameroom .gameroom-text { flex: none; width: 100%; }
+.pairbox > .gameroom .gameroom-h { font-size: 1.02rem; overflow-wrap: anywhere; }
+.pairbox > .gameroom .gameroom-sub { font-size: 0.78rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pairbox > .gameroom .gameroom-faces { gap: 4px; }
+.pairbox > .gameroom .rm-face { width: 24px; height: 24px; }
+/* the lines of yesterday: two, a bit tighter than the finish card's */
+.saidbox { padding: 12px 14px 13px; }
+.saidbox .gameroom-sub { font-size: 0.8rem; line-height: 1.3; }
+.saidbox .said-line { font-size: 0.9rem; padding: 7px 11px; }
+.saidbox .said-text { display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
