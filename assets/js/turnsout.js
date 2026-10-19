@@ -770,6 +770,9 @@
      Nothing pops up over the text and nothing moves on by itself.
      ------------------------------------------------------------------ */
   var ARROW = '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  /* the play sign of the finish card's button (19 Oct 2026, Khayyam: "not just 'next' but we have to say
+     'next game' with a play symbol to make it easy to understand") */
+  var PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg>';
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -830,6 +833,7 @@
       pips.appendChild(p);
     });
     box.appendChild(pips);
+    var eodEl = null;                     // the end-of-day card, when today is done: it may spend a while in the finish card
     if (next) {
       var a = el("a", "onward-next");
       a.href = href;
@@ -853,7 +857,7 @@
         try { doneEl = window.TurnsOut.allDoneHook(); } catch (e) { /* the sentence stands */ }
       }
       box.appendChild(doneEl || el("p", "onward-done", "All done for today. New games at midnight."));
-      try { box.appendChild(endOfDay()); } catch (e) { /* the end of the day must never break a game */ }
+      try { eodEl = endOfDay(); box.appendChild(eodEl); } catch (e) { eodEl = null; /* the end of the day must never break a game */ }
     }
     var all = el("a", "onward-all");
     all.href = here("../");
@@ -875,6 +879,14 @@
     below.insertBefore(box, below.firstChild);
     after.appendChild(below);
 
+    /* The finish card (19 Oct 2026): a real play of today's own puzzle ends with a card over the bottom of the
+       screen — how far through the day you are and one big way on — so nobody has to hunt for the next game.
+       Practice and old days get none, and nothing moves on by itself. */
+    var fin = null;
+    if (!otherDay) {
+      try { fin = finCard(o, next, played, count, href, box, eodEl); } catch (e) { fin = null; /* the card must never break a game */ }
+    }
+
     if (!next || !("IntersectionObserver" in window)) return box;      // nothing to go to, or an old browser: the block is enough
 
     var bar = el("nav", "onbar");
@@ -884,11 +896,10 @@
     var go = el("a", "onbar-next");
     go.href = href;
     go.setAttribute("data-g", next.key);
+    go.insertAdjacentHTML("beforeend", PLAY);
     var words = el("span", "");
-    words.appendChild(document.createTextNode(next === GAMES[mine] ? "Today: " : "Next: "));
-    words.appendChild(el("b", "", next.name));
+    words.appendChild(el("b", "", next === GAMES[mine] ? "Today's puzzle" : "Next game"));
     go.appendChild(words);
-    go.insertAdjacentHTML("beforeend", ARROW);
     go.addEventListener("click", function () { count_("onward-bar/" + next.id); });
     var stay = el("button", "onbar-stay", "Stay and read");
     stay.type = "button";
@@ -924,8 +935,153 @@
     }, { threshold: 0.2 });
     watch.observe(box);
     stay.addEventListener("click", function () { away = true; place(); });
-    window.setTimeout(function () { ready = true; place(); }, num(o.wait) ? o.wait : 1400);   // let the reveal have its moment first
+    if (fin) fin.closed(function () { ready = true; place(); });                              // the slim bar waits its turn behind the finish card
+    else window.setTimeout(function () { ready = true; place(); }, num(o.wait) ? o.wait : 1400);   // let the reveal have its moment first
     return box;
+  }
+
+  /* ------------------------------------------------------------------
+     The finish card (19 Oct 2026, Khayyam: the way to the next game "must be very obvious, as a first thing to
+     see"). A moment after the reveal it slides up over the bottom of the screen, the same on all nine games:
+     the day's pips, "N of 9 played", one big "Next game" button with a play sign — never the next game's name,
+     which says nothing to a newcomer — and a quiet line down to the stats. A tap on the line, the cross or the
+     dark area puts it away, and only then may the slim bar appear. When the last game of the day is done, the
+     card grows instead and holds the end of the day whole (the clock, the country, the offers, Tell Khayyam);
+     put away, the card gives that end-of-day block back to the page, so nothing is ever on the page twice.
+     ------------------------------------------------------------------ */
+  var finTimer = 0;
+  /* The world's answers arrive when its server does: watch the boxes under the game until the wanted
+     piece appears (up to half a minute), hand it over once, and never break anything while looking. */
+  function watchBelow(box, want, give) {
+    var home = box && box.parentNode;
+    if (!home || !("MutationObserver" in window)) return null;
+    var found = function () {
+      try {
+        var e = home.querySelector(want);
+        if (!e || e.hidden || (e.closest && e.closest("[hidden]"))) return false;
+        give(e);
+        return true;
+      } catch (err) { return true; }      // looking must never break the card
+    };
+    if (found()) return null;
+    var mo = new window.MutationObserver(function () { if (found()) stop(); });
+    mo.observe(home, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden"] });
+    var t = window.setTimeout(function () { stop(); }, 30000);
+    function stop() { try { mo.disconnect(); } catch (e) { /* done */ } window.clearTimeout(t); }
+    return stop;
+  }
+  function finCard(o, next, played, count, href, box, eodEl) {
+    var old = document.getElementById("fin");
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    window.clearTimeout(finTimer);
+
+    var wrap = el("div", "fin");
+    wrap.id = "fin";
+    var scrim = el("div", "fin-scrim");
+    wrap.appendChild(scrim);
+    var sheet = el("section", "fin-sheet" + (next ? "" : " fin-full"));
+    sheet.setAttribute("role", "dialog");
+    sheet.setAttribute("aria-label", next ? "Played. The next game" : "All done for today");
+    sheet.setAttribute("tabindex", "-1");
+    if (next) sheet.setAttribute("data-g", next.key);
+    var top = el("div", "onward-top");
+    top.appendChild(el("h2", "fin-h", next ? "Played!" : "All done! 🎉"));
+    var c = el("span", "onward-count");
+    c.appendChild(el("b", "", String(count)));
+    c.appendChild(document.createTextNode(" of " + GAMES.length + " played"));
+    top.appendChild(c);
+    var x = el("button", "chip round close fin-x", "×");
+    x.type = "button";
+    x.setAttribute("aria-label", "Close");
+    top.appendChild(x);
+    sheet.appendChild(top);
+    var pips = el("div", "pips");
+    pips.setAttribute("aria-hidden", "true");
+    GAMES.forEach(function (G, i) {
+      var p = el("i", played[i] ? "on" : "");
+      p.setAttribute("data-g", G.key);
+      pips.appendChild(p);
+    });
+    sheet.appendChild(pips);
+    /* how the day is going: spot-on count (19 Oct 2026, Khayyam: option C) */
+    var spot = 0;
+    try { dayRows().forEach(function (x) { if (x.tier === 3) spot++; }); } catch (e) { spot = 0; }
+    if (spot > 0 && count > 0) {
+      sheet.appendChild(el("p", "fin-spot", "✓ " + spot + " of " + count + " spot on today"));
+    }
+    var watching = null;                   // the country line and the world box arrive when the server answers
+    if (next) {
+      /* the country's place in this game (option A): the line the world block works out, mirrored here
+         the moment it arrives, so the push to the next game carries the team with it */
+      var rank = el("p", "fin-rank");
+      rank.hidden = true;
+      sheet.appendChild(rank);
+      watching = watchBelow(box, "#world .wd-place", function (p) {
+        rank.textContent = p.textContent;
+        rank.hidden = false;
+      });
+      var a = el("a", "fin-next");
+      a.href = href;
+      a.insertAdjacentHTML("beforeend", PLAY);
+      var at = el("span", "fin-next-words");
+      at.appendChild(el("span", "", "Next game"));
+      at.appendChild(el("small", "", "about 15 seconds"));
+      a.appendChild(at);
+      a.addEventListener("click", function () { count_("onward-sheet/" + next.id); });
+      sheet.appendChild(a);
+    } else if (eodEl) {
+      sheet.appendChild(eodEl);            // borrowed from the page; given back when the card is put away
+      /* the world's scores of the day come along too, once the server has them (19 Oct 2026) */
+      var seat = el("div", "fin-world");
+      sheet.appendChild(seat);
+      watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
+    }
+    var stats = el("button", "fin-stats");
+    stats.type = "button";
+    stats.appendChild(document.createTextNode("See stats & explanation ↓"));
+    sheet.appendChild(stats);
+    wrap.appendChild(sheet);
+
+    var fns = [], done = false;
+    function onKey(e) { if (e.key === "Escape") close(false); }
+    function close(toStats) {
+      if (done) return;
+      done = true;
+      document.removeEventListener("keydown", onKey);
+      if (watching) { try { watching(); } catch (e) { /* nothing to stop */ } }
+      if (eodEl && !next && box) {         // the end of the day goes back to its place on the page
+        try {
+          var allA = box.querySelector(".onward-all");
+          if (allA) box.insertBefore(eodEl, allA); else box.appendChild(eodEl);
+        } catch (e) { /* the card simply keeps it */ }
+      }
+      try {                                // the borrowed world box goes back under the game
+        var wb = wrap.querySelector("#world");
+        if (wb && box && box.parentNode) box.parentNode.appendChild(wb);
+      } catch (e) { /* the card simply keeps it */ }
+      function away() { if (wrap.parentNode) wrap.parentNode.removeChild(wrap); }
+      if (reducedMotion()) away();
+      else { wrap.classList.add("fin-out"); window.setTimeout(away, 200); }
+      if (toStats) {
+        var after = document.getElementById("after");
+        if (after) {
+          try { after.scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" }); }
+          catch (e) { after.scrollIntoView(); }
+        }
+      }
+      fns.forEach(function (f) { try { f(); } catch (e) { /* the bar can live without it */ } });
+    }
+    scrim.addEventListener("click", function () { count_("onward-sheet/away"); close(false); });
+    x.addEventListener("click", function () { count_("onward-sheet/away"); close(false); });
+    stats.addEventListener("click", function () { count_("onward-sheet/stats"); close(true); });
+
+    finTimer = window.setTimeout(function () {         // the reveal has its moment first
+      document.body.appendChild(wrap);
+      document.addEventListener("keydown", onKey);
+      count_(next ? "onward-sheet/seen" : "onward-sheet/day-done");
+      try { sheet.focus({ preventScroll: true }); } catch (e) { /* no focus */ }
+    }, num(o.wait) ? o.wait : 1400);
+    return { closed: function (fn) { if (done) fn(); else fns.push(fn); } };
   }
 
   /* ------------------------------------------------------------------

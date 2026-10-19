@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=13d4d07114">
+<link rel="stylesheet" href="assets/css/logicers.css?v=a50271c154">
 </head>
 <body class="home">
 
@@ -48,11 +48,14 @@
     <h1>Are you a <em>Logicer</em>?</h1>
     <p class="lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
   </div>
-  <div class="today">
-    <div class="today-top"><span class="today-label">Today</span><span class="today-count" id="today-count"><b>0</b> of 9 played</span></div>
+  <!-- The Today card (19 Oct 2026): the first thing on the page now opens the first game not yet played
+       today, and each finished game hands the player to the next, so one tap starts the whole day.
+       home.js below gives it its address and shows the Play chip; a day with everything played is no link. -->
+  <a class="today" id="today-card">
+    <div class="today-top"><span class="today-label">Today</span><span class="today-count" id="today-count"><b>0</b> of 9 played</span><span class="today-go" id="today-go" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg>Play</span></div>
     <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
     <p class="today-note" id="today-note">New games at midnight.</p>
-  </div>
+  </a>
   <!-- Build a game · Join a game (16 Oct 2026): one slim box in two halves, right under Today and the same width, so the
        games come into view sooner (Khayyam: "those boxes are too tall vertically and take too much space"). Join is a
        link to the live page, which has its own code box; with the script a tap opens the code field here instead,
@@ -408,7 +411,7 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=e11fa99037"></script>
+<script src="assets/js/turnsout.js?v=ade57708ff"></script>
 <script src="assets/js/duel.js?v=2aca2ba2d2"></script>
 <script src="assets/js/rooms.js?v=cb55b4b70d"></script>
 <script src="assets/js/points.js?v=d060d18a9f"></script>
@@ -438,7 +441,7 @@
     var p = String(startISO).split("-");
     return Math.min(todayIndex, Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / DAY) + (n - 1));
   }
-  var playedOn = {}, live = 0, doneToday = 0;
+  var playedOn = {}, live = 0, doneToday = 0, firstOpen = null;
 
   GAMES.forEach(function (G) {
     var tile = document.getElementById("tile-" + G.key);
@@ -468,11 +471,24 @@
       tile.querySelector(".mins").hidden = true;
       var pip = document.getElementById("pip-" + G.key);
       if (pip) pip.classList.add("on");
+    } else if (!firstOpen) {
+      firstOpen = G;
     }
   });
 
   document.getElementById("today-count").innerHTML = "<b>" + doneToday + "</b> of " + live + " played";
   if (live > 0 && doneToday === live) document.getElementById("today-note").textContent = "All done for today. New games at midnight.";
+
+  /* The Today card opens the first game not yet played today (19 Oct 2026); from there every finished
+     game hands the player to the next. A day with everything played leaves the card a plain card. */
+  (function () {
+    var card = document.getElementById("today-card"), go = document.getElementById("today-go");
+    if (!card || !firstOpen) return;
+    card.href = firstOpen.href;
+    card.classList.add("today-open");
+    if (go) go.hidden = false;
+    card.addEventListener("click", function () { TO.count("today-card/" + firstOpen.id); });
+  })();
 
   /* Who Was Closer: the example card in the About sheet. (Until 15 Oct 2026 a line under the Today card also
      showed a duel's standing; Khayyam took it off to make room for the Build and Join box: "you can delete 'one

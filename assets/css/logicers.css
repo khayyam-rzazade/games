@@ -236,7 +236,11 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .lede { margin-top: 18px; max-width: 30em; font-size: 1.31rem; color: var(--soft); line-height: 1.4; }
 /* the first line says what Logicers is for (Khayyam, 15 Oct 2026: "Learning that feels like play."), the second for whom */
 .lede b { display: block; color: var(--ink); font-weight: 700; }
-.today { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 16px 20px 15px; }
+.today { display: block; color: inherit; text-decoration: none; background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 16px 20px 15px; }
+.today.today-open:active { transform: scale(0.99); }
+.today-go { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 13px; border-radius: 999px; background: #2D4FC4; color: #fff; font-weight: 800; font-size: 0.84rem; line-height: 1; }
+.today-go svg { width: 13px; height: 13px; flex: none; }
+@media (prefers-reduced-motion: no-preference) { .today.today-open .today-go { animation: fin-pulse 2.4s ease-in-out 1.2s infinite; } }
 .today-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .today-label { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
 .today-count { color: var(--soft); font-size: 0.94rem; font-weight: 500; }
@@ -250,6 +254,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .hero h1 em { background: linear-gradient(92deg, #7FA5FF 0%, #B99DFF 48%, #3FE0C6 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
   .hero h1 em::after { display: none; }
   .today { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); }
+  .today-go { background: #7FA5FF; color: #0A0C1A; }
   .pips i { background: rgba(255, 255, 255, .11); }
   .pips i.on { box-shadow: 0 0 14px color-mix(in srgb, var(--c) 70%, transparent); }
 }
@@ -687,7 +692,7 @@ body.game { background: var(--tint); }
 
 /* ---- the result stamp at every reveal (11 Oct 2026; drawn by TO.stamp in turnsout.js) ----
    White, in the game's own colour, slightly turned like a rubber stamp; never red or green. */
-.vstamp-row { flex-basis: 100%; width: 100%; margin: 12px 0 12px; }   /* the top margin is the room the turned stamp's right end rises into */
+.vstamp-row { flex-basis: 100%; width: 100%; margin: 12px 0 12px; max-width: 100%; overflow: clip; }   /* the top margin is the room the turned stamp's right end rises into; the clip keeps the landing stamp from widening the page for a moment on Android (19 Oct 2026) */
 .vstamp { appearance: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 13px; max-width: 100%;
   margin-left: -2px; padding: 8px 22px 8px 8px; background: #fff; color: var(--c); border-radius: 999px; text-align: left;
   transform: rotate(-3deg); transform-origin: left center; box-shadow: 0 10px 24px rgba(10, 12, 30, .24);
@@ -1172,3 +1177,48 @@ dialog.khay:not([open]) { display: none; }
 .ios-point { margin-top: 6px; text-align: center; font-size: 2rem; line-height: 1; color: var(--soft); animation: ios-nudge 1.4s ease-in-out infinite; }
 @keyframes ios-nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) { .ios-point { animation: none; } }
+
+/* ---------- the finish card (19 Oct 2026): the way to the next game, impossible to miss ---------- */
+.fin { position: fixed; inset: 0; z-index: 35; }
+.fin-scrim { position: absolute; inset: 0; background: rgba(8, 10, 21, .45); animation: fin-fade .25s ease-out both; }
+.fin-sheet { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: min(100% - 16px, 34rem); max-height: min(72vh, 34rem); overflow: auto; overscroll-behavior: contain; background: var(--card); border-radius: 26px 26px 0 0; box-shadow: 0 -12px 44px rgba(21, 23, 43, .3); padding: 18px 18px calc(14px + env(safe-area-inset-bottom, 0px)); animation: fin-up .32s cubic-bezier(.2, .9, .3, 1) both; }
+.fin-full { max-height: 75vh; }
+@media (min-width: 560px) { .fin-sheet { bottom: 16px; width: min(100% - 32px, 34rem); border-radius: 26px; } }
+.fin-x { position: static; flex: none; margin-left: 2px; }
+.fin-sheet .onward-top { position: sticky; top: -18px; z-index: 2; align-items: center; margin: -18px -6px 0; padding: 14px 6px 8px; background: inherit; }
+.fin-h { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; line-height: 1.2; }
+.fin-sheet:focus { outline: none; }
+.fin-sheet .onward-count { white-space: nowrap; }
+.fin-sheet .pips { margin-top: 12px; }
+.fin-sheet .pips i { height: 10px; }
+.fin-next { margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 11px; min-height: 64px; border-radius: 20px; background: var(--c, #2D4FC4); color: var(--on-c, #fff); text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; box-shadow: 0 8px 22px rgba(21, 23, 43, .18); -webkit-tap-highlight-color: transparent; }
+.fin-next:active { transform: scale(0.985); }
+.fin-next svg { width: 26px; height: 26px; flex: none; }
+.fin-stats { appearance: none; display: block; width: 100%; margin-top: 10px; min-height: 48px; padding: 0 14px; border: 2px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.fin-stats:active { transform: scale(0.99); }
+.fin-spot { margin-top: 9px; color: var(--soft); font-weight: 700; font-size: 0.9rem; }
+.fin-rank { margin-top: 12px; padding: 10px 13px; border-radius: 14px; background: var(--tint, #E8EBF7); color: var(--ink); font-weight: 600; font-size: 0.95rem; line-height: 1.35; animation: fin-fade .3s ease-out; }
+.fin-rank[hidden] { display: none; }
+.fin-next-words { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05; }
+.fin-next-words small { font-family: var(--text, inherit); font-weight: 600; font-size: 0.78rem; letter-spacing: 0; opacity: .85; margin-top: 3px; }
+.fin-world { margin-top: 12px; }
+.fin-world:empty { display: none; }
+.fin-world .world { margin: 0; }
+.fin-sheet .eod { margin-top: 4px; }
+.fin-out .fin-scrim { opacity: 0; transition: opacity .2s ease; animation: none; }
+.fin-out .fin-sheet { transform: translateX(-50%) translateY(24px); opacity: 0; transition: transform .2s ease, opacity .2s ease; animation: none; }
+@keyframes fin-fade { from { opacity: 0; } }
+@keyframes fin-up { from { transform: translateX(-50%) translateY(70%); opacity: .5; } }
+@media (prefers-reduced-motion: no-preference) {
+  .fin-next { animation: fin-pulse 2.4s ease-in-out 1.2s 5; }
+  @keyframes fin-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+}
+@media (prefers-color-scheme: dark) {
+  .fin-scrim { background: rgba(0, 0, 0, .6); }
+  .fin-sheet { background: #12152A; box-shadow: inset 0 0 0 1px var(--line), 0 -12px 44px rgba(0, 0, 0, .55); }
+  .fin-next { box-shadow: 0 0 30px color-mix(in srgb, var(--c) 34%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fin-scrim, .fin-sheet { animation: none; }
+  .fin-next:active { transform: none; }
+}
