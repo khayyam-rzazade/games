@@ -1336,25 +1336,30 @@ dialog.khay:not([open]) { display: none; }
 .said-line { display: flex; align-items: flex-start; gap: 6px; padding: 8px 12px; border-radius: 12px; background: var(--card); font-size: 0.95rem; line-height: 1.35; }
 .said-line .wd-flag { flex: none; margin-right: 2px; }
 .said-text { min-width: 0; overflow-wrap: anywhere; }
-.saidbox { display: block; }
 .saidbox[hidden] { display: none; }
-.saidbox .said-lines { margin-top: 10px; }
 .saidbox .said-line { background: var(--bg); }
 
-/* ---------- Game Room and World table in one row (20 Oct 2026, Khayyam: "devide it into two, left and right, less tall") ----------
-   Two halves like the Build / Join box: the picture on top, the words under it. A half that is not switched on
-   is hidden and the other takes the whole row (auto-fit); with neither on, the row is not there at all. */
-.pairbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; }
+/* ---------- Game Room and "players said" in one slim row (20 Oct 2026, Khayyam: "as tall as Build a game or Join a
+   game, right under them") ----------
+   Two halves shaped like Build / Join: a picture and a title, 64px tall, 8px under that row. A half that is hidden
+   leaves the row to the other (auto-fit); with neither, the row is not there, and the World table box moves up. */
+.pairbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.hero > .pairbox { grid-column: -2 / -1; align-self: start; margin-top: -6px; }   /* 8px under Build / Join (the hero's gap is 14px) */
 .pairbox:not(:has(> :not([hidden]))) { display: none; }
-.pairbox > .gameroom { margin-top: 0; flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px 13px; min-width: 0; }
-.pairbox > .gameroom .gameroom-art { width: 34px; height: 34px; }
-.pairbox > .gameroom .gameroom-text { flex: none; width: 100%; }
-.pairbox > .gameroom .gameroom-h { font-size: 1.02rem; overflow-wrap: anywhere; }
-.pairbox > .gameroom .gameroom-sub { font-size: 0.78rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.pairbox > .gameroom .gameroom-faces { gap: 4px; }
-.pairbox > .gameroom .rm-face { width: 24px; height: 24px; }
-/* the lines of yesterday: two, a bit tighter than the finish card's */
-.saidbox { padding: 12px 14px 13px; }
-.saidbox .gameroom-sub { font-size: 0.8rem; line-height: 1.3; }
-.saidbox .said-line { font-size: 0.9rem; padding: 7px 11px; }
-.saidbox .said-text { display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.pairbox > .gameroom { margin-top: 0; display: flex; align-items: center; gap: 9px; min-height: 64px; padding: 10px 12px; border-radius: 18px; min-width: 0; box-sizing: border-box; }
+.pairbox > .gameroom .gameroom-art { width: 36px; height: 36px; }
+.pairbox > .gameroom .gameroom-h { font-size: 0.98rem; line-height: 1.1; }
+.pairbox > .gameroom .gameroom-sub { display: none; }                               /* a slim box: the title alone */
+.pairbox > .gameroom .gameroom-faces { display: none; }
+/* the players' half: a small label and the line, cut after two lines (no photo on the home page) */
+.saidbox { padding: 8px 12px; }
+.saidbox .said-head { gap: 9px; align-items: center; min-width: 0; flex: 1; }
+.saidbox .said-headwords .gameroom-h { font-size: 0.64rem; line-height: 1.2; font-family: inherit; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.saidbox .said-headwords .gameroom-sub { display: none; }
+.saidbox .said-lines { margin: 2px 0 0; gap: 0; }
+.saidbox .said-line { padding: 0; background: none; font-size: 0.82rem; line-height: 1.25; gap: 4px; }
+.saidbox .said-line .wd-flag { font-size: 0.82rem; }
+.saidbox .said-text { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 1000px) { .hero > .pairbox { grid-column: auto; margin-top: -16px; } }   /* the hero's gap is 24px there */
+@media (max-width: 700px) { .hero > .pairbox { margin-top: -10px; } }                        /* and 18px */
+@media (max-width: 360px) { .pairbox > .gameroom .gameroom-art { display: none; } }

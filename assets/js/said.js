@@ -5,8 +5,8 @@
       one line. Khayyam reads every line on his desk before it shows anywhere ("Khayyam will read it", so it
       is a person, not a form). Under the question, the lines of today he has already let through, each with
       the flag of its country.
-   2. On the home page, a box, "Yesterday, players said…": a few of the lines he let through, with their flags,
-      the day after. Hidden until there are some; a day without lines shows the latest day that had some.
+   2. On the home page, a slim box beside the Game Room, "Players said…": yesterday's line he let through, with
+      its flag. Hidden until there is one; a day without lines shows the latest day that had some.
 
    A line is kept with the country of the connection and the date, nothing that identifies anyone (the privacy
    line in the About sheet says so). Every line is put on the page as text (textContent), never as HTML. Nothing
@@ -17,7 +17,7 @@
   if (!TO || !W || !W.on()) return;
 
   var MAX = 140;
-  var SHOW = 2;                       // lines on the home page's box (it sits in the narrow column beside the title)
+  var SHOW = 1;                       // lines on the home page's box (a half of a row, beside the Game Room)
   var SHOW_CARD = 4;                  // lines under the question on the finish card
 
   function el(tag, cls, text) {
@@ -137,14 +137,13 @@
     W.post("/said/view", { d: d, back: true }).then(function (r) {
       if (r.status !== 200 || !Array.isArray(r.data.lines) || r.data.lines.length < 1) return;
       box.textContent = "";
-      var head = el("div", "said-head");
-      head.appendChild(face(40));
+      var head = el("div", "said-head");                        /* no photo here (Khayyam, 20 Oct 2026: "it'd be too much") */
       var hw = el("div", "said-headwords");
-      hw.appendChild(el("b", "gameroom-h", r.data.d === d ? "Yesterday, players said…" : "Players said…"));
-      hw.appendChild(el("span", "gameroom-sub", "Each one read by Khayyam first."));
+      hw.appendChild(el("b", "gameroom-h", "Players said…"));
+      hw.appendChild(linesEl(r.data.lines, SHOW));
       head.appendChild(hw);
       box.appendChild(head);
-      box.appendChild(linesEl(r.data.lines, SHOW));
+      box.title = "What players said: " + r.data.lines.slice(0, SHOW).map(function (x) { return x.text; }).join(" ");
       box.hidden = false;
       TO.count("said/home-seen");
     }, function () { /* the box stays hidden */ });

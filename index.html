@@ -29,7 +29,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=a45ddb50d8">
+<link rel="stylesheet" href="assets/css/logicers.css?v=13a48d0b6e">
 </head>
 <body class="home">
 
@@ -78,12 +78,10 @@
       <button class="livejoin-x" id="livejoin-x" type="button" aria-label="Close the code field">&times;</button>
     </form>
   </div>
-  <!-- The Game Room box, under the Today card and the same size. It waits hidden until rooms are
-       switched on (assets/js/rooms.js unhides it; for a member it fills it with the room itself).
-       A browser in no room gets these still words and fetches nothing. -->
-  <!-- Game Room and World table side by side (20 Oct 2026, Khayyam: "devide it into two, left and right, less tall"):
-       two halves in one row, which frees a row for the players' lines below. A half that is not switched on
-       stays hidden and the other one takes the whole row. -->
+  <!-- Game Room and "players said" (20 Oct 2026, Khayyam: "as tall as Build a game or Join a game, right under
+       them"): two slim halves like those, a picture and a title each. The Game Room waits hidden until rooms are
+       switched on (assets/js/rooms.js); the players' half until assets/js/said.js has a line Khayyam let through.
+       A half alone takes the whole row; with neither, the row is not there. -->
   <div class="pairbox" id="pairbox">
   <a class="gameroom" id="gameroom" href="room/" hidden>
     <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
@@ -100,8 +98,10 @@
       <span class="gameroom-faces" id="gameroom-faces" hidden></span>
     </span>
   </a>
-  <!-- The World table box (16 Oct 2026), under the Game Room box and the same size. It waits hidden until the
-       world's counts are switched on (assets/js/world.js unhides it and fills it with your country's place). -->
+  <section class="gameroom saidbox" id="saidbox" aria-label="What players said" hidden></section>
+  </div>
+  <!-- The World table box (16 Oct 2026), last and the full width. It waits hidden until the world's counts are
+       switched on (assets/js/world.js unhides it and fills it with your country's place). -->
   <a class="gameroom worldbox" id="worldbox" href="world/" hidden>
     <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
       <circle cx="22" cy="22" r="17" fill="#2D4FC4"/>
@@ -114,10 +114,6 @@
       <span class="gameroom-sub" id="worldbox-sub">Every game you finish counts for your country.</span>
     </span>
   </a>
-  </div>
-  <!-- Yesterday, players said… (19 Oct 2026): a few of the lines players wrote at the end of their day, each
-       read by Khayyam before it shows. It waits hidden until assets/js/said.js has some to show. -->
-  <section class="gameroom saidbox" id="saidbox" aria-label="What players said" hidden></section>
 </section>
 
 <section class="games" aria-labelledby="games-title">
@@ -408,7 +404,7 @@
 <script src="assets/js/rooms.js?v=ec756b09fc"></script>
 <script src="assets/js/points.js?v=8a8e435a1b"></script>
 <script src="assets/js/world.js?v=68caadf206"></script>
-<script src="assets/js/said.js?v=19bfa5791a"></script>
+<script src="assets/js/said.js?v=619cfb9753"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */
