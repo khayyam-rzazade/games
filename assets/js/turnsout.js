@@ -980,22 +980,38 @@
      still for anyone who asked for less motion. Coming back up to the stats is the player's own choice. */
   function autoDown(sheet, wrap) {
     if (reducedMotion()) return;
-    var cancelled = false;
-    function stop() { cancelled = true; }
-    ["touchstart", "wheel", "pointerdown", "keydown", "mousedown"].forEach(function (n) {
-      sheet.addEventListener(n, stop, { passive: true, once: true });
-    });
-    window.setTimeout(function () {
-      try {
+    var cancelled = false, born = Date.now(), seen = 0, timer = 0;
+    function stop() { cancelled = true; window.clearTimeout(timer); }
+    /* A trackpad's momentum from the page scroll before the card opened still sends wheel events over it
+       (Safari on a Mac): those first moments don't count; a hand on the card afterwards does. */
+    ["touchstart", "pointerdown", "keydown", "mousedown"].forEach(function (n) { sheet.addEventListener(n, stop, { passive: true, once: true }); });
+    sheet.addEventListener("wheel", function (e) { if (Date.now() - born > 700 && e.deltaY) stop(); }, { passive: true });
+    function slide(to) {                 // our own easing: the same in every browser, no reliance on smooth scrolling
+      var from = sheet.scrollTop, t0 = Date.now(), len = 650;
+      (function step() {
         if (cancelled || !wrap.parentNode) return;
-        var more = sheet.querySelector(".fin-more");
-        if (!more) return;
-        var s = sheet.getBoundingClientRect(), m = more.getBoundingClientRect();
-        if (m.bottom <= s.bottom - 8) return;                         // already in view: nothing to show
-        var by = Math.min(m.top - s.top - 70, sheet.scrollHeight - sheet.clientHeight - sheet.scrollTop);
-        if (by > 0) sheet.scrollBy({ top: by, behavior: "smooth" });
+        var k = Math.min(1, (Date.now() - t0) / len), e = 1 - Math.pow(1 - k, 3);
+        sheet.scrollTop = from + (to - from) * e;
+        if (k < 1) window.requestAnimationFrame(step);
+      })();
+    }
+    function look() {
+      if (cancelled || !wrap.parentNode) return;
+      var more = sheet.querySelector(".fin-more"), seat = sheet.querySelector(".fin-world");
+      if (!more) return;
+      var age = Date.now() - born;
+      /* the world's box may arrive after the card: give it a moment to be read before the card moves on */
+      if (seat && seat.firstChild && !seen) seen = Date.now();
+      var ready = age >= 2000 && ((seat && seat.firstChild && Date.now() - seen >= 1500) || age >= 9000 || !seat);
+      if (!ready) { timer = window.setTimeout(look, 250); return; }
+      try {
+        var sr = sheet.getBoundingClientRect(), mr = more.getBoundingClientRect();
+        if (mr.bottom <= sr.bottom - 8) return;                       // already in view: nothing to show
+        var to = Math.min(sheet.scrollTop + mr.top - sr.top - 70, sheet.scrollHeight - sheet.clientHeight);
+        if (to > sheet.scrollTop) slide(to);
       } catch (e) { /* the card just stays where it is */ }
-    }, 2000);
+    }
+    timer = window.setTimeout(look, 2000);
   }
   function finCard(o, next, played, count, href, box, eodEl) {
     var old = document.getElementById("fin");

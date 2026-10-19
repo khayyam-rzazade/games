@@ -1201,25 +1201,6 @@ dialog.khay:not([open]) { display: none; }
 .fin-rank[hidden] { display: none; }
 .fin-next-words { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05; }
 .fin-next-words small { font-family: var(--text, inherit); font-weight: 600; font-size: 0.78rem; letter-spacing: 0; opacity: .85; margin-top: 3px; }
-/* reactions (19 Oct 2026): three taps, one slim row, the same height before and after a tap */
-.rx { margin-top: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.rx-b { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px; padding: 6px 4px; border: 0; border-radius: 14px; background: var(--tint, #E8EBF7); color: var(--ink); font: inherit; cursor: pointer; box-shadow: inset 0 0 0 1.5px transparent; -webkit-tap-highlight-color: transparent; }
-.rx-b:active { transform: scale(0.97); }
-.rx-b::before { content: ""; position: absolute; left: 0; bottom: 0; height: 100%; width: var(--p, 0%); background: color-mix(in srgb, var(--c, #2D4FC4) 20%, transparent); transition: width .5s ease; z-index: 0; }
-.rx-b > * { position: relative; z-index: 1; }
-.rx-e { font-size: 1.35rem; line-height: 1; }
-.rx-t { font-size: 0.74rem; font-weight: 700; color: var(--soft); line-height: 1.1; }
-.rx-top { display: flex; align-items: center; justify-content: center; gap: 5px; }
-.rx-top .rx-e { font-size: 1.15rem; }
-.rx-n { font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; }
-.rx-low { font-size: 0.74rem; font-weight: 700; color: var(--soft); line-height: 1.1; display: inline-flex; align-items: center; gap: 2px; }
-.rx-low .wd-flag { font-size: 0.85rem; margin-right: 0; }
-.rx-me { box-shadow: inset 0 0 0 1.5px var(--c, #2D4FC4); }
-.rx[data-wait] { opacity: .75; }
-.rx[data-done] .rx-b { cursor: default; }
-.rx[data-done] .rx-b:active { transform: none; }
-.rx-b:disabled { color: var(--ink); opacity: 1; }
-.rx-none { display: none; }
 .fin-world { margin-top: 12px; }
 .fin-world:empty { display: none; }
 .fin-world .world { margin: 0; }
@@ -1270,8 +1251,7 @@ dialog.khay:not([open]) { display: none; }
 /* ---------- narrower tiles, and the same short look for the other two rows (19 Oct 2026, Khayyam: "too wide, less
    wide to match the height"). More tiles in view: about 5.5 on a computer, 4.2 on a tablet; the phone keeps 2.2.
    Play live with friends and Pass the phone keep a short two-line hint, because their names alone say little. ---------- */
-@media (min-width: 1001px) { .shelf { --tw: calc((100cqw - 5 * var(--gap)) / 5.5); } }
-@media (min-width: 701px) and (max-width: 1000px) { .shelf { --tw: calc((100cqw - 4 * var(--gap)) / 4.2); } }
+@media (min-width: 701px) { .shelf { --tw: 164px; } }        /* 20 Oct 2026: one size for every tile of every row, taller than wide, however wide the screen */
 .group-games .shelf .art { aspect-ratio: 1.8 / 1; border-radius: 14px; }
 .group-games .shelf .tile { padding: 8px; }
 .group-games .shelf .tile .body { padding: 10px 6px 4px; }
@@ -1315,3 +1295,16 @@ dialog.khay:not([open]) { display: none; }
 .fin-full .eod { margin-top: 14px; padding-top: 12px; border-top: 2px solid var(--line); }
 .more-line { margin: 0 0 8px; font-weight: 700; font-size: 1.05rem; color: var(--ink); scroll-margin-top: 14px; }
 .more-line[hidden] { display: none; }
+
+/* 20 Oct 2026, Khayyam: "other games are not in the same size like today's daily games", "still too wide in
+   relation to the height". All three rows now share one tile: the same width (--tw above) and the same parts
+   (drawing, name, Play); the live and group rows keep "2+ players" beside Play but no longer a hint line. */
+.group-games .shelf .pitch { display: none; }
+.group-games .shelf .foot { flex-wrap: nowrap; gap: 6px; align-items: center; }
+.group-games .shelf .go { padding: 0 14px; }
+.group-games .shelf .mins { font-size: 0.74rem; line-height: 1.15; white-space: nowrap; }
+.shelf .art { aspect-ratio: 1.55 / 1; }
+.shelf-row > .tile { aspect-ratio: 0.74 / 1; }          /* the same shape for every tile: taller than wide */
+.shelf .tile h3 { font-size: 1.05rem; line-height: 1.2; }
+.shelf .tile .body { flex: 1; display: flex; flex-direction: column; }
+.shelf .tile .foot { margin-top: auto !important; }                 /* Play sits at the same height on every tile */
