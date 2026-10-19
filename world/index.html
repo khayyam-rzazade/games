@@ -24,8 +24,8 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=13d4d07114">
-<link rel="stylesheet" href="world.css?v=93a77de28e">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=2fb9eba94d">
+<link rel="stylesheet" href="world.css?v=100c2bc5ac">
 </head>
 <body class="game wt-page" data-g="world">
 
@@ -53,10 +53,17 @@
     <p class="wt-wait" id="wt-wait">Counting the world…</p>
   </section>
 
-  <a class="wt-play" id="wt-play" href="../">
-    <span class="wt-play-text"><span class="wt-play-kicker" id="wt-play-kicker">Today's games</span><b>Play and count for your country</b></span>
-    <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
+  <!-- two halves (19 Oct 2026, Khayyam): the way to today's games, and your country's team page (shown once the country is known) -->
+  <div class="wt-go" id="wt-go">
+    <a class="wt-play" id="wt-play" href="../">
+      <span class="wt-play-text"><span class="wt-play-kicker" id="wt-play-kicker">Today's games</span><b id="wt-play-b">Play</b></span>
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a class="wt-team" id="wt-team" href="../team/" hidden>
+      <span class="wt-play-text"><span class="wt-play-kicker" id="wt-team-kicker"></span><b>Team page</b></span>
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
 
   <section class="wt-card" id="wt-conts-card" hidden aria-labelledby="wt-conts-h">
     <h2 class="wt-h2" id="wt-conts-h">Continents</h2>
@@ -128,9 +135,9 @@
 
 <noscript><p style="padding:18px">This page needs JavaScript to run.</p></noscript>
 
-<script src="../assets/js/turnsout.js?v=e11fa99037"></script>
+<script src="../assets/js/turnsout.js?v=32aa7f50ac"></script>
 <script src="../assets/js/points.js?v=d060d18a9f"></script>
-<script src="../assets/js/world.js?v=655d6b090b"></script>
-<script src="world.js?v=c159c1d17a"></script>
+<script src="../assets/js/world.js?v=9d7bb542f2"></script>
+<script src="world.js?v=6a06ff786c"></script>
 </body>
 </html>

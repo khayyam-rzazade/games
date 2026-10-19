@@ -1,0 +1,47 @@
+/* A country's team page (19 Oct 2026). It borrows the World table's look (../world/world.css) and adds only what is its own. */
+.tm-hero { margin-top: 12px; padding: 16px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
+.tm-top { display: flex; align-items: center; gap: 12px; }
+.tm-top .wt-bigflag { flex: none; }
+.tm-name { flex: 1; min-width: 0; }
+.tm-name b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1.1; overflow-wrap: anywhere; }
+.tm-name span { color: var(--soft); font-weight: 600; font-size: 0.88rem; }
+.tm-places { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.tm-place { padding: 9px 6px 8px; border-radius: 14px; background: var(--tint, #E8EBF7); text-align: center; }
+.tm-place span { display: block; color: var(--soft); font-weight: 700; font-size: 0.78rem; }
+.tm-place b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; line-height: 1.15; }
+.tm-place small { display: block; color: var(--soft); font-weight: 600; font-size: 0.74rem; min-height: 1em; }
+.tm-line { margin-top: 12px; font-weight: 600; line-height: 1.4; }
+.tm-acts { margin-top: 12px; }
+.tm-acts .wt-duo { margin-top: 0; }
+.tm-acts .wt-play { margin-top: 8px; }
+.tm-acts[hidden] { display: none; }
+.tm-bar { height: 14px; margin-top: 12px; border-radius: 999px; background: var(--tint, #E8EBF7); overflow: hidden; }
+.tm-bar i { display: block; height: 100%; width: 0; border-radius: 999px; background: var(--c); transition: width .6s ease; }
+.tm-best li { grid-template-columns: 1.3rem minmax(0, 1fr) auto; }
+.tm-best .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c); display: inline-block; justify-self: center; }
+.tm-feel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.tm-f { padding: 9px 4px; border-radius: 14px; background: var(--tint, #E8EBF7); text-align: center; }
+.tm-f.top { box-shadow: inset 0 0 0 2px var(--c); }
+.tm-f .e { display: block; font-size: 1.3rem; line-height: 1.1; }
+.tm-f b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.15rem; }
+.tm-f small { display: block; color: var(--soft); font-weight: 600; font-size: 0.74rem; }
+.tm-rec { margin-top: 6px; font-weight: 600; line-height: 1.45; }
+.tm-pick { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.tm-pick select { flex: 1; min-width: 0; min-height: 44px; padding: 0 10px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); font: inherit; font-weight: 700; }
+.tm-vs { margin-top: 12px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0 8px; align-items: center; }
+.tm-vs[hidden] { display: none; }
+.tm-vs .h { text-align: center; font-weight: 800; padding-bottom: 8px; overflow-wrap: anywhere; line-height: 1.15; }
+.tm-vs .h .wd-flag { display: block; margin: 0 0 2px; font-size: 1.8rem; }
+.tm-vs .k { text-align: center; color: var(--soft); font-weight: 700; font-size: 0.78rem; max-width: 5.5rem; }
+.tm-vs .v { text-align: center; padding: 8px 4px; border-top: 1px solid var(--line); font-family: var(--display); font-weight: 800; font-size: 1.2rem; }
+.tm-vs .k.t { padding: 8px 0; border-top: 1px solid var(--line); }
+.tm-vs .v.win { color: var(--ok); }
+.tm-vs-share { margin-top: 12px; }
+.tm-vs-share[hidden], .tm-share-row[hidden] { display: none; }
+.tm-share-row { margin-top: 14px; display: flex; justify-content: center; }
+@media (max-width: 374px) {
+  .tm-name b { font-size: 1.3rem; }
+  .tm-place b { font-size: 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) { .tm-bar i { transition: none; } }
+.wt-duo[hidden] { display: none; }

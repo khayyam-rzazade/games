@@ -23,8 +23,29 @@
   /* the way to today's games: how many are played */
   function play() {
     var n = TO.GAMES.filter(TO.playedToday).length, N = TO.GAMES.length;
-    $("wt-play-kicker").textContent = n === N ? "All " + N + " played today. New games at midnight." : n + " of " + N + " played today";
+    $("wt-play-kicker").textContent = n === N ? "All " + N + " played today" : n + " of " + N + " played today";
   }
+  /* your country's team page, the other half of the button (19 Oct 2026): shown once the country is known (the one
+     the last answer named is kept in this browser, so the button is there at once the next time) */
+  function team(c) {
+    var a = $("wt-team"), name = W.countryName(c);
+    if (!name) { a.hidden = true; $("wt-go").classList.remove("two"); $("wt-play-b").textContent = "Play for your country"; return; }
+    var k = $("wt-team-kicker");
+    k.textContent = "";
+    k.appendChild(W.flagEl(c));
+    k.appendChild(document.createTextNode(name));
+    a.href = W.teamHref(c);
+    a.setAttribute("aria-label", name + " team page");
+    a.hidden = false;
+    $("wt-go").classList.add("two");
+    $("wt-play-b").textContent = "Play";
+  }
+  function home() { var c = TO.worldStore().home; return typeof c === "string" && /^[A-Z]{2}$/.test(c) ? c : ""; }
+  function remember(c) {
+    if (!/^[A-Z]{2}$/.test(String(c)) || home() === c) return;
+    try { TO.worldUpdate(function (w) { w.home = c; }); } catch (e) { /* the button simply waits for the next answer */ }
+  }
+  $("wt-team").addEventListener("click", function () { TO.count("world/team"); });
 
   /* the privacy switch */
   var opt = $("wt-optin");
@@ -55,8 +76,11 @@
     var li = el("li", x.c === mine ? "me" : "");
     li.appendChild(el("span", "at", i ? String(i) : "–"));
     var who = el("span", "who");
-    who.appendChild(W.flagEl(x.c));
-    who.appendChild(document.createTextNode(W.countryName(x.c)));
+    var tl = el("a", "wt-tl");
+    tl.href = W.teamHref(x.c);
+    tl.appendChild(W.flagEl(x.c));
+    tl.appendChild(document.createTextNode(W.countryName(x.c)));
+    who.appendChild(tl);
     if (sub) who.appendChild(el("small", "", sub));
     li.appendChild(who);
     var val = el("span", "val");
@@ -77,6 +101,8 @@
     var box = $("wt-mine");
     box.textContent = "";
     var you = d.you || {}, c = you.c, name = W.countryName(c);
+    if (name) remember(c);
+    team(name ? c : "");
     var x = null;
     t.rows.forEach(function (r) { if (r.c === c) x = r; });
     var note = el("p", "wd-note");
@@ -541,6 +567,7 @@
   $("wt-busy-more").addEventListener("click", function () { allBusy = true; if (shown) render(shown.d, shown.sp); });
 
   play();
+  if (home()) team(home());
   if (!W.on()) {
     var box = $("wt-mine");
     box.textContent = "";

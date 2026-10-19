@@ -974,6 +974,12 @@
     function stop() { try { mo.disconnect(); } catch (e) { /* done */ } window.clearTimeout(t); }
     return stop;
   }
+  /* the three taps (surprised / knew it / made me think) that world.js builds; an empty span when it has none to give */
+  function feelRow(o) {
+    var r = null;
+    try { if (typeof window.TurnsOut.reactHook === "function") r = window.TurnsOut.reactHook(o); } catch (e) { r = null; }
+    return r || el("span", "rx-none");
+  }
   function finCard(o, next, played, count, href, box, eodEl) {
     var old = document.getElementById("fin");
     if (old && old.parentNode) old.parentNode.removeChild(old);
@@ -1024,6 +1030,7 @@
         rank.textContent = p.textContent;
         rank.hidden = false;
       });
+      sheet.appendChild(feelRow(o));
       var a = el("a", "fin-next");
       a.href = href;
       a.insertAdjacentHTML("beforeend", PLAY);
@@ -1041,6 +1048,7 @@
       var seat = el("div", "fin-world");
       sheet.appendChild(seat);
       watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
+      sheet.appendChild(feelRow(o));
       var more = el("a", "fin-more");
       more.href = here("../") + "#more-to-play";
       var mw = el("span", "fin-next-words");

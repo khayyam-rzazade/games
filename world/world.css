@@ -48,13 +48,25 @@
 .wt-duo .wt-duo-inv.tight .wt-short { display: inline; }
 .wt-duo > :active { transform: scale(0.98); }
 
-/* the way to today's games */
-.wt-play { display: flex; align-items: center; gap: 12px; margin-top: 12px; padding: 14px 18px; border-radius: 20px; background: var(--c); color: var(--on-c); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+/* the way to today's games, and your country's team page: two halves of one row (19 Oct 2026) */
+.wt-go { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 12px; }
+.wt-go.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.wt-play, .wt-team { display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 64px; padding: 10px 14px; border-radius: 20px; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.wt-team[hidden] { display: none; }
+.wt-play { background: var(--c); color: var(--on-c); }
+.wt-team { background: var(--card); color: var(--ink); box-shadow: inset 0 0 0 2px var(--c), var(--shadow); }
 .wt-play-text { flex: 1; min-width: 0; }
-.wt-play-kicker { display: block; font-size: 0.82rem; font-weight: 700; opacity: .85; }
-.wt-play b { display: block; margin-top: 2px; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
-.wt-play svg { width: 24px; height: 24px; flex: none; }
-.wt-play:active { transform: scale(0.985); }
+.wt-play-kicker { display: block; font-size: 0.8rem; font-weight: 700; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wt-play b, .wt-team b { display: block; margin-top: 2px; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wt-team .wt-play-kicker { color: var(--soft); opacity: 1; }
+.wt-team .wd-flag { margin-right: 4px; }
+.wt-play svg, .wt-team svg { width: 22px; height: 22px; flex: none; }
+.wt-team svg { color: var(--c); }
+.wt-play:active, .wt-team:active { transform: scale(0.985); }
+.wt-go:not(.two) .wt-play b { font-size: 1.15rem; }
+/* a country's name in the tables leads to its team page, and looks like the plain name */
+.wt-tl { color: inherit; text-decoration: none; }
+.wt-tl:hover { text-decoration: underline; }
 
 /* the tables */
 .wt-card { margin-top: 14px; padding: 16px 16px 12px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
@@ -120,5 +132,5 @@
   .wt-duo-room svg { width: 16px; height: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .wt-play:active, .wt-share:active, .wt-duo > :active { transform: none; }
+  .wt-play:active, .wt-team:active, .wt-share:active, .wt-duo > :active { transform: none; }
 }

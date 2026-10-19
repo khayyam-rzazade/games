@@ -1201,6 +1201,25 @@ dialog.khay:not([open]) { display: none; }
 .fin-rank[hidden] { display: none; }
 .fin-next-words { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05; }
 .fin-next-words small { font-family: var(--text, inherit); font-weight: 600; font-size: 0.78rem; letter-spacing: 0; opacity: .85; margin-top: 3px; }
+/* reactions (19 Oct 2026): three taps, one slim row, the same height before and after a tap */
+.rx { margin-top: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.rx-b { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px; padding: 6px 4px; border: 0; border-radius: 14px; background: var(--tint, #E8EBF7); color: var(--ink); font: inherit; cursor: pointer; box-shadow: inset 0 0 0 1.5px transparent; -webkit-tap-highlight-color: transparent; }
+.rx-b:active { transform: scale(0.97); }
+.rx-b::before { content: ""; position: absolute; left: 0; bottom: 0; height: 100%; width: var(--p, 0%); background: color-mix(in srgb, var(--c, #2D4FC4) 20%, transparent); transition: width .5s ease; z-index: 0; }
+.rx-b > * { position: relative; z-index: 1; }
+.rx-e { font-size: 1.35rem; line-height: 1; }
+.rx-t { font-size: 0.74rem; font-weight: 700; color: var(--soft); line-height: 1.1; }
+.rx-top { display: flex; align-items: center; justify-content: center; gap: 5px; }
+.rx-top .rx-e { font-size: 1.15rem; }
+.rx-n { font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; }
+.rx-low { font-size: 0.74rem; font-weight: 700; color: var(--soft); line-height: 1.1; display: inline-flex; align-items: center; gap: 2px; }
+.rx-low .wd-flag { font-size: 0.85rem; margin-right: 0; }
+.rx-me { box-shadow: inset 0 0 0 1.5px var(--c, #2D4FC4); }
+.rx[data-wait] { opacity: .75; }
+.rx[data-done] .rx-b { cursor: default; }
+.rx[data-done] .rx-b:active { transform: none; }
+.rx-b:disabled { color: var(--ink); opacity: 1; }
+.rx-none { display: none; }
 .fin-world { margin-top: 12px; }
 .fin-world:empty { display: none; }
 .fin-world .world { margin: 0; }

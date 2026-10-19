@@ -40,6 +40,8 @@
      POST /stats/send       the world's counts (16 Oct 2026): a phone's finished daily games of its date, added
      POST /stats/view       to its country's row (tally.js, one object per date), and one game's counts, or the
      POST /stats/world      world table of a day or a month (the section "the world's counts" below)
+     POST /stats/react      a tap of a reaction on a game, and the taps so far (19 Oct 2026)
+     POST /stats/team       one or two countries' day, game by game, the reactions, and the records
      GET  /ics?h=20         the daily reminder as a calendar event at that hour (a link: an iPhone offers "Add to Calendar")
      POST /push/join        the daily reminder (18 Oct 2026, push.js): a phone says yes, or that it is still here
      POST /push/leave       { v, ep } the phone says no: its row is deleted at once
@@ -758,6 +760,85 @@ async function statsWorld(req, env, o) {
   }, o);
 }
 
+/* ------------------------------------------------------------ reactions, team pages and records (19 Oct 2026) */
+
+/* Reactions: after a game a player taps one of three feelings (0 surprised, 1 knew it, 2 made me think); the date's
+   counts are kept by country (tally.js, the table x). With r left out the call only reads the taps so far.
+     POST /stats/react  { v, d, k, r } -> { you, took, view: { k, w: [3 counts], h: [3 counts] | null } }
+   Team pages: one or two countries' day, game by game, with the world's, the reactions, and the records.
+     POST /stats/team   { v, d, c, c2 } -> { you, d, c, c2, team: { world, [c], [c2] }, rec: { "**", [c], [c2] } }
+   A record is a country's biggest day in games, kept by the object named "rec" of the Tally class (tally.js); the
+   hourly trigger feeds it from the days some clock is on, and a team page feeds it too, so it is never behind. */
+const CCODE = /^[A-Z]{2}$/;
+const recOf = (env) => env.TALLY.get(env.TALLY.idFromName("rec"));
+
+async function statsReact(req, env, o) {
+  const r = await readJson(req, STATS_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body, now = Date.now();
+  const tap = b.r !== undefined && b.r !== null;
+  if (!allowed(tap ? counts.taps : counts.reads, req, tap ? STATS_SENDS : STATS_READS)) return answer(429, { e: "later" }, o);
+  if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  const P = globalThis.LogicersPoints;
+  if (typeof b.k !== "string" || !P.LIMITS.hasOwnProperty(b.k)) return answer(400, { e: "k" }, o);
+  if (tap && !(Number.isInteger(b.r) && b.r >= 0 && b.r <= 2)) return answer(400, { e: "r" }, o);
+  /* a tap goes only to a date some clock is on; a plain read to any date still kept */
+  if (!(tap ? dateOn(b.d, now) : dateRead(b.d, now))) return answer(400, { e: "day" }, o);
+  const you = geo(req, env);
+  const who = (await mac(env, "stats:" + where(req) + ":" + b.d)) || (await sha("stats:" + where(req) + ":" + b.d)).slice(0, 20);
+  const res = await tallyOf(env, b.d).react({ d: b.d, who, c: you.c, k: b.k, r: tap ? b.r : null });
+  return answer(200, { you, took: res.took, view: res.view }, o);
+}
+
+async function statsTeam(req, env, o) {
+  if (!allowed(counts.reads, req, STATS_READS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, STATS_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body, now = Date.now();
+  if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  if (!dateRead(b.d, now)) return answer(400, { e: "day" }, o);
+  const you = geo(req, env);
+  const c = typeof b.c === "string" && CCODE.test(b.c) ? b.c : you.c;
+  const c2 = typeof b.c2 === "string" && CCODE.test(b.c2) && b.c2 !== c ? b.c2 : null;
+  if (!CCODE.test(c)) return answer(400, { e: "c" }, o);
+  const want = c2 ? [c, c2] : [c];
+  const team = await tallyOf(env, b.d).team(want);
+  /* the running day is a candidate for the records (only a date some clock is on can still change); the records are
+     an extra, so whatever goes wrong with them leaves the page its team */
+  let rec = null;
+  try {
+    if (dateOn(b.d, now)) await recordList(env, [[b.d, await summaryOf(env, b.d, now)]], now);
+    rec = await recOf(env).records(want);
+  } catch (e) { rec = null; }
+  return answer(200, { you, d: b.d, c, c2, team, rec }, o);
+}
+
+/* [[date, summary]] -> the records, where a date's games per country (Your Call's too) beat what is kept */
+async function recordList(env, days, now) {
+  const list = [];
+  for (const [d, s] of days) {
+    if (!s) continue;
+    for (const x of s.cs || []) {
+      const n = (x[2] || 0) + (x[4] || 0);
+      if (n > 0) list.push([x[0], n, d]);
+    }
+    const all = (s.n || 0) + (s.calls || 0);
+    if (all > 0) list.push(["**", all, d]);
+  }
+  if (list.length) await recOf(env).note(list);
+}
+
+/* the hourly trigger: the days some clock is on (UTC-12 to UTC+14) are read and the records brought up to date */
+async function recordRun(env, now) {
+  try {
+    /* the dates some clock is on now, and those one that was on within the last 70 minutes (the hour's run is at 2 past) */
+    const dates = [...new Set([keyOfUTC(now - 48 * H), keyOfUTC(now - 24 * H), keyOfUTC(now), keyOfUTC(now + 14 * H)])].filter((d) => dateOn(d, now) || dateOn(d, now - 70 * 60e3)).sort();
+    const days = [];
+    for (const d of dates) days.push([d, await summaryOf(env, d, now).catch(() => null)]);
+    await recordList(env, days, now);
+  } catch (e) { /* the records simply wait for the next hour */ }
+}
+
 /* the totals without names, for the admin key only (kept for the admin page of step 1) */
 async function totals(req, env, o) {
   if (spentOut(counts.admin, req, WRONG_ADMIN)) return answer(429, { e: "later" }, o);
@@ -778,7 +859,7 @@ const PUSH_V = 1;
 const PUSH_BODY = 4000;
 const PUSH_JOINS = 40;              // joins (and refreshes) from one address in 10 minutes
 const PUSH_MSGS = 120;              // asks for the words of a push from one address in 10 minutes
-counts.pushes = new Map(); counts.pushmsgs = new Map();
+counts.pushes = new Map(); counts.pushmsgs = new Map(); counts.taps = new Map();
 const pushOf = (env, i) => env.PUSH.get(env.PUSH.idFromName("s" + i));
 const pushId = async (ep) => (await sha("push:" + ep)).slice(0, 32);
 const shardOf = (id) => parseInt(id.slice(0, 2), 16) % SHARDS;
@@ -888,6 +969,7 @@ async function pushRun(env, now) {
 export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(pushRun(env, Date.now()));
+    ctx.waitUntil(recordRun(env, Date.now()));
   },
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -929,6 +1011,8 @@ export default {
       if (url.pathname === "/stats/send" && req.method === "POST") return await statsSend(req, env, o);
       if (url.pathname === "/stats/view" && req.method === "POST") return await statsView(req, env, o);
       if (url.pathname === "/stats/world" && req.method === "POST") return await statsWorld(req, env, o);
+      if (url.pathname === "/stats/react" && req.method === "POST") return await statsReact(req, env, o);
+      if (url.pathname === "/stats/team" && req.method === "POST") return await statsTeam(req, env, o);
       if (url.pathname === "/push/join" && req.method === "POST") return await pushJoin(req, env, o);
       if (url.pathname === "/push/leave" && req.method === "POST") return await pushLeave(req, env, o);
       if (url.pathname === "/push/msg" && req.method === "POST") return await pushMsg(req, env, o);

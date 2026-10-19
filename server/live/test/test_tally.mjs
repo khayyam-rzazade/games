@@ -6,7 +6,7 @@
    is the server's byte for byte. Every run uses countries of its own (two letters drawn at random, never twice in
    a run); the dates are shared, so runs on one server's state can meet by chance: run it on a fresh --persist-to. */
 import { readFileSync } from "node:fs";
-import { BASE, ORIGIN, ok, eq, report, someIp } from "./lib.mjs";
+import { BASE, ORIGIN, ok, eq, report, someIp, sleep } from "./lib.mjs";
 import "../src/points.js";
 const P = globalThis.LogicersPoints;
 
@@ -206,5 +206,101 @@ eq((await post("/stats/world", { v: 1, d: old, span: "day" })).status, 200, "an 
 /* nothing about a player in any answer */
 const text = JSON.stringify(s);
 ok(!/10\.\d+\.\d+\.\d+/.test(text), "no address in any answer");
+
+
+/* ---------------- reactions (19 Oct 2026): three taps after a game, counted by country ---------------- */
+const react = (d, k, r, o) => post("/stats/react", r === undefined ? { v: 1, d, k } : { v: 1, d, k, r }, o);
+const RA = r2(), RB = r2();
+let rr = await react(today, "club", undefined, { geo: RA + ",EU" });
+eq(rr.status, 200, "a plain read of the reactions is answered");
+ok(rr.took === 0 && rr.view && rr.view.k === "club" && Array.isArray(rr.view.w) && rr.view.w.length === 3, "with no tap counted, and the world's three counts");
+const rw0 = rr.view.w.slice();
+ok(rr.view.h === null || rr.view.h.every((n) => n === 0), "a country that has not tapped has no counts of its own");
+const ipR = someIp();
+rr = await react(today, "club", 1, { geo: RA + ",EU", ip: ipR });
+eq(rr.took, 1, "a tap is counted");
+eq(rr.view.h, [0, 1, 0], "the country's counts hold it, in the second place (knew it)");
+eq(rr.view.w[1], rw0[1] + 1, "and so do the world's");
+eq(rr.you, { c: RA, ct: "EU" }, "the answer names the country, as every call does");
+rr = await react(today, "club", 2, { geo: RA + ",EU" });
+eq(rr.view.h, [0, 1, 1], "another browser of the same country taps made me think");
+rr = await react(today, "club", 0, { geo: RB + ",AS" });
+eq(rr.view.h, [1, 0, 0], "a second country has counts of its own");
+ok(rr.view.w[0] >= rw0[0] + 1, "and the world's hold both countries");
+/* a read leaves the counts alone */
+rr = await react(today, "club", undefined, { geo: RA + ",EU" });
+ok(rr.took === 0 && rr.view.h[1] === 1 && rr.view.h[2] === 1, "a read after the taps counts nothing, and shows them");
+/* an unknown country counts in the world only */
+rr = await react(today, "club", 0, { geo: "XX,EU" });
+ok(rr.took === 1 && rr.view.h === null, "an unknown country is counted in the world, has no row of its own");
+/* refusals */
+eq((await react(today, "club", 3)).status, 400, "a feeling that is not 0, 1 or 2 is refused");
+eq((await react(today, "club", -1)).status, 400, "a negative one too");
+eq((await react(today, "club", 1.5)).status, 400, "and a fraction");
+eq((await react(today, "club", "1")).status, 400, "and a word");
+eq((await react(today, "nothing", 1)).status, 400, "an unknown game is refused");
+eq((await react(today, "constructor", 1)).status, 400, "and so is a name from the object's own insides");
+eq((await react(old, "club", 1)).status, 400, "a tap on a date no clock is on any more is refused");
+eq((await react(far, "club", 1)).status, 400, "and one on a date nobody is on yet");
+eq((await react(old, "club")).status, 200, "but an earlier date can still be read");
+eq((await post("/stats/react", { v: 9, d: today, k: "club" })).status, 409, "an old page is told so");
+eq((await post("/stats/react", { v: 1, d: today, k: "club", r: 1 }, { origin: "https://example.com" })).status, 403, "another website may not call it");
+eq((await post("/stats/react", "{nope")).status, 400, "a body that is no JSON is refused");
+/* the brake: one address, one game, one date: 100 taps */
+const ipX = someIp(), RC = r2();
+let tapped = 0;
+for (let i = 0; i < 103; i++) tapped += (await react(ahead, "gets", i % 3, { ip: ipX, geo: RC + ",AF" })).took;
+eq(tapped, 100, "one address adds at most 100 taps to one game of one date");
+rr = await react(ahead, "gets", 0, { ip: ipX, geo: RC + ",AF" });
+ok(rr.status === 200 && rr.took === 0 && rr.view, "past it the answer still comes, and nothing more counts");
+rr = await react(ahead, "hundred", 0, { ip: ipX, geo: RC + ",AF" });
+eq(rr.took, 1, "but another game may still be tapped");
+
+/* ---------------- the team page (19 Oct 2026): a country's day game by game, the feelings, the records ---------------- */
+const team = (d, c, c2, o) => post("/stats/team", { v: 1, d, c, c2 }, o);
+const TA = r2(), TB = r2();
+await send(today, [{ k: "hundred", e: 0, g: 60 }, { k: "call", c: 1 }, { k: "club", e: 1 }], "hundred", { geo: TA + ",EU" });
+await send(today, [{ k: "hundred", e: 6, g: 53 }], "hundred", { geo: TA + ",EU" });      // (a game twice in one send counts once)
+await send(today, [{ k: "hundred", e: 30, g: 30 }], "hundred", { geo: TB + ",AS" });
+await react(today, "hundred", 2, { geo: TA + ",EU" });
+await sleep(31e3);                  // the summary the records are read from is worked out at most every 30 seconds
+let t = await team(today, TA, TB, { geo: TA + ",EU" });
+eq(t.status, 200, "a team page's data is read");
+eq([t.c, t.c2, t.d], [TA, TB, today], "for the country asked, its rival, and the date");
+ok(t.team && t.team.world && t.team[TA] && t.team[TB], "with the world's, the team's and the rival's");
+ok(t.team[TA].g.hundred && t.team[TA].g.hundred[0] === 2 && t.team[TA].g.hundred[1] === 100 + 52, "the team's 100 of Us: 2 results, 100 + 52 points (6 off is 52)", t.team[TA].g);
+ok(t.team[TA].g.call && t.team[TA].g.call[0] === 1 && t.team[TA].g.call[1] === 0, "Your Call is counted, with no points");
+ok(t.team[TB].g.hundred && t.team[TB].g.hundred[0] === 1, "and the rival's");
+ok(t.team.world.g.hundred[0] >= 3, "the world's holds both");
+eq(t.team[TA].x.hundred, [0, 0, 1], "the team's feelings for the game");
+ok(t.team.world.x.hundred && t.team.world.x.hundred[2] >= 1, "and the world's");
+ok(t.rec && t.rec["**"] && t.rec["**"][0] >= 1 && /^\d{8}$/.test(t.rec["**"][1]), "the record of the whole world's biggest day is there");
+ok(t.rec[TA] && t.rec[TA][0] === 4 && t.rec[TA][1] === today, "the team's record: its 4 games of the day (Your Call counts), with the date");
+ok(t.rec[TB] && t.rec[TB][0] === 1, "and the rival's");
+await send(today, [{ k: "cousin", e: 0 }, { k: "gets", e: 15 }], "cousin", { geo: TA + ",EU" });
+await sleep(31e3);
+t = await team(today, TA, undefined, { geo: TA + ",EU" });
+ok(t.rec[TA][0] === 6 && t.team[TB] === undefined && t.c2 === null, "a bigger day raises the record, and with no rival there is none in the answer");
+/* a record never goes down, and the earlier date wins a tie */
+const hold = t.rec[TA][0];
+t = await team(ahead, TA, undefined, { geo: TA + ",EU" });
+eq(t.rec[TA][0], hold, "a quieter day does not lower it");
+/* no country asked: the connection's own; garbage: that too */
+t = await team(today, undefined, undefined, { geo: TA + ",EU" });
+eq(t.c, TA, "with no country asked, the connection's own");
+t = await team(today, "zz", undefined, { geo: TA + ",EU" });
+eq(t.c, TA, "a country that is not two capitals is the connection's own too");
+t = await team(today, TA, TA, { geo: TA + ",EU" });
+eq(t.c2, null, "a country against itself has no rival");
+eq((await team(today, undefined, undefined, { geo: "XX,EU" })).status, 400, "no country asked and none known is refused");
+eq((await team(far, TA)).status, 400, "a date nobody is on yet is refused");
+eq((await team(old, TA, undefined, { geo: TA + ",EU" })).status, 200, "an earlier date is read");
+eq((await post("/stats/team", { v: 9, d: today, c: TA })).status, 409, "an old page is told so");
+eq((await post("/stats/team", { v: 1, d: today, c: TA }, { origin: "https://example.com" })).status, 403, "another website may not call it");
+const tt = JSON.stringify(t);
+ok(!/10\.\d+\.\d+\.\d+/.test(tt), "no address in the answer");
+/* the reactions of an earlier date: the date is kept, so a tap on it is read back */
+t = await team(old, TA, undefined, { geo: TA + ",EU" });
+ok(t.team && t.team.world && Object.keys(t.team.world.g).length >= 0, "an earlier date's page has the same shape, empty or not");
 
 process.exit(report("test_tally") ? 1 : 0);

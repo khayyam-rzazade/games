@@ -18,7 +18,16 @@
    the counts. The table is made by the first result; a date that is only read is never stored.
 
    A date's counts are deleted 75 days after it (an alarm set by its first result), which keeps this month's
-   and last month's tables and nothing older. */
+   and last month's tables and nothing older.
+
+   Reactions (19 Oct 2026, Khayyam: "reactions on the site"): after a game a player may tap one of three feelings
+   (0 surprised, 1 knew it, 2 made me think). The same date's object keeps, in a second table x, how many taps each
+   game got from each country: counts only, like the table above, and under the same brake (one address may add at
+   most PER_GAME taps to one game of one date, held in memory only). Deleted with the date.
+
+   Records (19 Oct 2026, "the lifetime record"): one more object of this class, named "rec", not tied to a date, keeps
+   for each country the most games it ever played in one day and the date, and the world's own biggest day, so a
+   team page can say "our record: 212 games". It holds numbers and dates, nothing else, and is never deleted. */
 import { DurableObject } from "cloudflare:workers";
 import "./points.js";
 
@@ -33,6 +42,7 @@ const SUMMARY_MS = 30e3;            // the summary for the world table is worked
 
 const HB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const HCOLS = HB.map((i) => "h" + i).join(", ");
+const XCOLS = ["r0", "r1", "r2"];
 const CC = /^[A-Z]{2}$/;
 const CT = /^(AF|AN|AS|EU|NA|OC|SA)$/;
 
@@ -61,11 +71,17 @@ const TABLE = `CREATE TABLE IF NOT EXISTS r (
       k0 INTEGER NOT NULL DEFAULT 0, k1 INTEGER NOT NULL DEFAULT 0, k2 INTEGER NOT NULL DEFAULT 0,
       PRIMARY KEY (g, c))`;
 
+const XTABLE = `CREATE TABLE IF NOT EXISTS x (
+      g TEXT NOT NULL, c TEXT NOT NULL,
+      r0 INTEGER NOT NULL DEFAULT 0, r1 INTEGER NOT NULL DEFAULT 0, r2 INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (g, c))`;
+
 export class Tally extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
     this.sql = ctx.storage.sql;
     this.made = null;               // whether the table exists (null: not looked yet)
+    this.madeX = null;              // the same for the reactions' table x
     this.seen = new Map();          // address hash -> { all, games: { k: n } }: memory only
     this.summed = null;             // { at, data }
     this.dated = false;
@@ -84,9 +100,11 @@ export class Tally extends DurableObject {
 
   async alarm() {
     this.sql.exec("DROP TABLE IF EXISTS r");
+    this.sql.exec("DROP TABLE IF EXISTS x");
     await this.ctx.storage.deleteAll();
     this.summed = null;
     this.made = false;
+    this.madeX = false;
     this.dated = false;
   }
 
@@ -102,20 +120,37 @@ export class Tally extends DurableObject {
   }
   rows(q, ...a) { return this.has() ? this.sql.exec(q, ...a).toArray() : []; }
 
-  /* how many more results this address may add to game k now (and counts one in, when take is true) */
-  room(who, k, take) {
+  /* this address's memory for the brake (made when first seen; the oldest tenth is forgotten beyond REMEMBER) */
+  entry(who) {
     let s = this.seen.get(who);
     if (!s) {
-      s = { all: 0, games: {} };
+      s = { all: 0, games: {}, rx: {} };
       this.seen.set(who, s);
       if (this.seen.size > REMEMBER) {
         let n = Math.ceil(REMEMBER / 10);
         for (const key of this.seen.keys()) { if (key === who) continue; this.seen.delete(key); if (--n <= 0) break; }
       }
     }
+    return s;
+  }
+
+  /* how many more results this address may add to game k now (and counts one in, when take is true) */
+  room(who, k, take) {
+    const s = this.entry(who);
     const ok = s.all < PER_DAY && (s.games[k] || 0) < PER_GAME;
     if (ok && take) { s.all++; s.games[k] = (s.games[k] || 0) + 1; }
     return ok;
+  }
+
+  /* the same brake for the taps of the reactions: PER_GAME to one game of the date, PER_DAY to all of them */
+  roomX(who, k) {
+    const s = this.entry(who);
+    s.rx = s.rx || {};
+    s.rxAll = s.rxAll || 0;
+    if (s.rxAll >= PER_DAY || (s.rx[k] || 0) >= PER_GAME) return false;
+    s.rxAll++;
+    s.rx[k] = (s.rx[k] || 0) + 1;
+    return true;
   }
 
   /* results in: { d, who, c, ct, rs: [{ k, e, g } | { k, c }], k } -> { took, view } (the view of game k) */
@@ -176,6 +211,88 @@ export class Tally extends DurableObject {
       top = list.slice(0, 3).map((x) => [x.c, Math.round(x.s)]);
     }
     return { k, w: tidyAgg(w), t: ct !== "??" ? tidyAgg(t) : null, h: h ? tidyAgg(h) : null, rank, top, countries };
+  }
+
+  /* ---------------- reactions ---------------- */
+  hasX() {
+    if (this.madeX === null) this.madeX = this.sql.exec("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'x'").toArray().length > 0;
+    return this.madeX;
+  }
+  makeX() {
+    if (this.hasX()) return;
+    this.sql.exec(XTABLE);
+    this.madeX = true;
+  }
+  xrows(q, ...a) { return this.hasX() ? this.sql.exec(q, ...a).toArray() : []; }
+
+  /* one tap (r: 0, 1 or 2) on game k from country c; -> { took, view }. With r null it only reads. */
+  async react(o) {
+    const c = CC.test(o.c) ? o.c : "??", k = String(o.k || "");
+    if (!P.LIMITS.hasOwnProperty(k)) return { took: 0, view: null };
+    let took = 0;
+    if (Number.isInteger(o.r) && o.r >= 0 && o.r <= 2 && this.roomX(o.who, k)) {
+      this.makeX();
+      await this.date(o.d);
+      const col = XCOLS[o.r];
+      this.sql.exec(`INSERT INTO x (g, c, ${col}) VALUES (?, ?, 1) ON CONFLICT (g, c) DO UPDATE SET ${col} = ${col} + 1`, k, c);
+      took = 1;
+    }
+    return { took, view: this.reactView(k, c) };
+  }
+
+  /* game k's taps: w the world's three counts, h the country's (null where it has none) */
+  reactView(k, c) {
+    const w = [0, 0, 0];
+    let h = null;
+    for (const r of this.xrows("SELECT c, r0, r1, r2 FROM x WHERE g = ?", k)) {
+      w[0] += r.r0; w[1] += r.r1; w[2] += r.r2;
+      if (r.c === c && c !== "??") h = [r.r0, r.r1, r.r2];
+    }
+    return { k, w, h };
+  }
+
+  /* for the team page: each country in cs (one or two), and the world, as the date's games went:
+     g { game: [results, points] } (Your Call has no points, its results are counted), x { game: [r0, r1, r2] } */
+  team(cs) {
+    const want = (Array.isArray(cs) ? cs : []).filter((c) => CC.test(c)).slice(0, 2);
+    const out = { world: { g: {}, x: {} } };
+    for (const c of want) out[c] = { g: {}, x: {} };
+    for (const r of this.rows("SELECT g, c, n, p FROM r")) {
+      const w = out.world.g[r.g] || (out.world.g[r.g] = [0, 0]);
+      w[0] += r.n; w[1] += r.p;
+      if (out[r.c] && r.c !== "world") {
+        const t = out[r.c].g[r.g] || (out[r.c].g[r.g] = [0, 0]);
+        t[0] += r.n; t[1] += r.p;
+      }
+    }
+    for (const r of this.xrows("SELECT g, c, r0, r1, r2 FROM x")) {
+      const w = out.world.x[r.g] || (out.world.x[r.g] = [0, 0, 0]);
+      w[0] += r.r0; w[1] += r.r1; w[2] += r.r2;
+      if (out[r.c] && r.c !== "world") out[r.c].x[r.g] = [r.r0, r.r1, r.r2];
+    }
+    return out;
+  }
+
+  /* ---------------- records (the object named "rec") ---------------- */
+  /* list: [[country or "**" for the world, games played that date, date]]; keeps the biggest day of each (the
+     earlier date wins a tie); returns how many records changed. */
+  async note(list) {
+    const rec = (await this.ctx.storage.get("rec")) || {};
+    let changed = 0;
+    for (const x of Array.isArray(list) ? list.slice(0, 1500) : []) {
+      const c = x[0], n = x[1], d = x[2];
+      if (!(c === "**" || CC.test(c)) || !Number.isInteger(n) || n < 1 || !/^\d{8}$/.test(String(d))) continue;
+      const cur = rec[c];
+      if (!cur || n > cur[0]) { rec[c] = [n, d]; changed++; }
+    }
+    if (changed) await this.ctx.storage.put("rec", rec);
+    return changed;
+  }
+  async records(cs) {
+    const rec = (await this.ctx.storage.get("rec")) || {};
+    const out = { "**": rec["**"] || null };
+    for (const c of Array.isArray(cs) ? cs : []) if (CC.test(c)) out[c] = rec[c] || null;
+    return out;
   }
 
   /* the whole date for the world table: per country and continent, how many scored results and the sum of
