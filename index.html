@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=ce3d5aa629">
+<link rel="stylesheet" href="assets/css/logicers.css?v=1645867a63">
 </head>
 <body class="home">
 
@@ -221,6 +221,7 @@
 </section>
 
 <section class="games group-games live-games" aria-labelledby="live-title">
+  <p class="more-line" id="more-to-play" hidden>Done with today's games? These never run out.</p>
   <h2 class="sec" id="live-title">Play live with friends</h2>
   <p class="sec-sub">Everyone on their own phone. A shared screen is optional.</p>
   <div class="shelf" id="shelf3">
@@ -391,7 +392,7 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=2604325b67"></script>
+<script src="assets/js/turnsout.js?v=a7f61990a6"></script>
 <script src="assets/js/duel.js?v=2aca2ba2d2"></script>
 <script src="assets/js/rooms.js?v=cb55b4b70d"></script>
 <script src="assets/js/points.js?v=d060d18a9f"></script>
@@ -458,6 +459,18 @@
 
   document.getElementById("today-count").innerHTML = "<b>" + doneToday + "</b> of " + live + " played";
   if (live > 0 && doneToday === live) document.getElementById("today-note").textContent = "All done for today. New games at midnight.";
+  /* "More to play" (19 Oct 2026): the last game's card sends people here, to the games that never run out; the
+     line above them shows then, and on any visit with the whole day already played */
+  (function () {
+    var line = document.getElementById("more-to-play");
+    if (!line) return;
+    var sent = window.location.hash === "#more-to-play";
+    if (sent || (live > 0 && doneToday === live)) line.hidden = false;
+    if (sent) {
+      TO.count("home/more-to-play");
+      window.setTimeout(function () { try { line.scrollIntoView({ behavior: "auto", block: "start" }); } catch (e) { /* the browser's own jump will do */ } }, 0);
+    }
+  })();
 
   /* The Today card opens the first game not yet played today (19 Oct 2026); from there every finished
      game hands the player to the next. A day with everything played leaves the card a plain card. */

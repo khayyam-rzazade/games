@@ -1182,7 +1182,7 @@ dialog.khay:not([open]) { display: none; }
 .fin { position: fixed; inset: 0; z-index: 35; }
 .fin-scrim { position: absolute; inset: 0; background: rgba(8, 10, 21, .45); animation: fin-fade .25s ease-out both; }
 .fin-sheet { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: min(100% - 16px, 34rem); max-height: min(72vh, 34rem); overflow: auto; overscroll-behavior: contain; background: var(--card); border-radius: 26px 26px 0 0; box-shadow: 0 -12px 44px rgba(21, 23, 43, .3); padding: 18px 18px calc(14px + env(safe-area-inset-bottom, 0px)); animation: fin-up .32s cubic-bezier(.2, .9, .3, 1) both; }
-.fin-full { max-height: 75vh; }
+.fin-full { max-height: 90vh; max-height: 90dvh; }
 @media (min-width: 560px) { .fin-sheet { bottom: 16px; width: min(100% - 32px, 34rem); border-radius: 26px; } }
 .fin-x { position: static; flex: none; margin-left: 2px; }
 .fin-sheet .onward-top { position: sticky; top: -18px; z-index: 2; align-items: center; margin: -18px -6px 0; padding: 14px 6px 8px; background: inherit; }
@@ -1284,3 +1284,15 @@ dialog.khay:not([open]) { display: none; }
 .khay-msg-more { margin: 0; }
 /* the cells after a mid-day game: a little air after the Next game card */
 .onward-next + .eod { margin-top: 12px; }
+
+/* The last game's card (19 Oct 2026): the world's scores in plain view, then one big way on in a colour no game
+   uses, so the day ends with a door, not a wall. */
+.fin-more { margin-top: 14px; display: flex; align-items: center; justify-content: center; min-height: 64px; padding: 8px 16px; border-radius: 20px; background: #F2B21B; color: #15172B; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; box-shadow: 0 8px 22px rgba(242, 178, 27, .4); -webkit-tap-highlight-color: transparent; }
+.fin-more:active { transform: scale(0.985); }
+.fin-more .fin-next-words { align-items: center; text-align: center; }
+.fin-more .fin-next-words small { opacity: .8; }
+@media (prefers-reduced-motion: no-preference) { .fin-more { animation: go-pulse 2.4s ease-in-out infinite; } }
+.fin-full .fin-world { margin-top: 10px; }
+.fin-full .eod { margin-top: 14px; padding-top: 12px; border-top: 2px solid var(--line); }
+.more-line { margin: 0 0 8px; font-weight: 700; font-size: 1.05rem; color: var(--ink); scroll-margin-top: 14px; }
+.more-line[hidden] { display: none; }

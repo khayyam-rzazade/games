@@ -1033,16 +1033,27 @@
       a.appendChild(at);
       a.addEventListener("click", function () { count_("onward-sheet/" + next.id); });
       sheet.appendChild(a);
-    } else if (eodEl) {
-      sheet.appendChild(eodEl);            // borrowed from the page; given back when the card is put away
-      /* the world's scores of the day come along too, once the server has them (19 Oct 2026) */
+    } else {
+      /* The last game of the day (19 Oct 2026, Khayyam: "it feels like end of Logicers, but it is not"). The
+         card goes up almost the whole screen: the world's scores of the day first, in plain view (they come
+         along once the server has them), then one big way on to the games that never run out, then the end
+         of the day (the clock, the country, the cells). */
       var seat = el("div", "fin-world");
       sheet.appendChild(seat);
       watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
+      var more = el("a", "fin-more");
+      more.href = here("../") + "#more-to-play";
+      var mw = el("span", "fin-next-words");
+      mw.appendChild(el("span", "", "More to play \u2192"));
+      mw.appendChild(el("small", "", "games for friends, live rooms, the world table"));
+      more.appendChild(mw);
+      more.addEventListener("click", function () { count_("onward-sheet/more"); });
+      sheet.appendChild(more);
+      if (eodEl) sheet.appendChild(eodEl);   // borrowed from the page; given back when the card is put away
     }
     var stats = el("button", "fin-stats");
     stats.type = "button";
-    stats.appendChild(document.createTextNode("See stats & explanation ↓"));
+    stats.appendChild(document.createTextNode(next ? "See stats & explanation ↓" : "See the full explanation ↓"));
     sheet.appendChild(stats);
     wrap.appendChild(sheet);
 
