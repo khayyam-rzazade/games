@@ -74,13 +74,14 @@ import { Way } from "./way.js";
 import { Mail } from "./mail.js";
 import { Tally } from "./tally.js";
 import { Push, SHARDS, endpointOk, dateOk, lineOk } from "./push.js";
+import { Said, SAID_MIN, SAID_MAX } from "./said.js";
 import "./wayprint.js";               // the browser's own file (live/wayprint.js), byte for byte: globalThis.LogicersWay
 import "./points.js";                 // the pages' own file (assets/js/points.js), byte for byte: globalThis.LogicersPoints
 import { loadSets } from "./sets-key.js";
 import { codeOk, newCode, kitCodeOk, newKitCode } from "./names.js";
 import { mac, sha, same, randomKey, keyOk } from "./keys.js";
 
-export { Game, Totals, Kit, Desk, Way, Mail, Tally, Push };
+export { Game, Totals, Kit, Desk, Way, Mail, Tally, Push, Said };
 
 const ORIGINS = ["https://logicers.com", "https://www.logicers.com"];
 const MODES = ["cors", "websocket", "same-origin"];   // Sec-Fetch-Mode of the page's own fetches and WebSockets
@@ -910,6 +911,81 @@ async function pushMsg(req, env, o) {
   return answer(200, w || Object.assign({}, PLAIN_WORDS, { n }), o);
 }
 
+/* ------------------------------------------------------------ what players said (19 Oct 2026, said.js)
+   One line a player writes when the day's games are done, read by Khayyam before it shows anywhere. */
+const SAID_SENDS = 30;              // lines sent from one address in 10 minutes (the object itself allows 3 a day)
+const saidOf = (env) => env.SAID.get(env.SAID.idFromName("all"));
+const saidViews = new Map();        // "YYYYMMDD" -> { at, lines }: what pages are shown, kept 2 minutes in this copy
+Object.assign(counts, { said: new Map() });
+/* a line as it may be kept: cleanText's rules (kit.js), then no link, address, email or @handle (push.js's lineOk) */
+function saidText(x) {
+  const s = cleanText(x, SAID_MIN, SAID_MAX);
+  if (s === null || !lineOk(s)) return null;
+  if (!/[\p{L}\p{N}]{2}/u.test(s)) return null;                  // at least two letters or digits in a row: not only signs
+  return s;
+}
+async function saidAdd(req, env, o) {
+  if (!allowed(counts.said, req, SAID_SENDS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, SMALL);
+  if (r.e) return refused(r, o);
+  const b = r.body;
+  if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  if (!dateOn(b.d, Date.now())) return answer(400, { e: "day" }, o);
+  const text = saidText(b.text);
+  if (text === null) return answer(400, { e: "text" }, o);
+  const you = geo(req, env);
+  const who = (await mac(env, "said:" + where(req) + ":" + b.d)) || (await sha("said:" + where(req) + ":" + b.d)).slice(0, 20);
+  const res = await saidOf(env).add({ d: b.d, c: you.c, ct: you.ct, text, who });
+  if (!res.ok) return answer(res.why === "full" ? 503 : 400, { e: res.why }, o);
+  saidViews.delete(b.d);
+  return answer(200, { ok: true, left: res.left }, o);
+}
+/* the lines let through for a date, as a page shows them; a date that has none within the last week gives the
+   latest date that has some, so the home page's box is never empty for a day without lines */
+async function saidShown(env, d, now) {
+  const hit = saidViews.get(d);
+  if (hit && now - hit.at < 120e3) return hit.lines;
+  const t = dayStart(d);
+  const lines = await saidOf(env).shown(d, t - 14 * H, t + 36 * H + 60e3);
+  saidViews.set(d, { at: now, lines });
+  if (saidViews.size > 30) saidViews.delete(saidViews.keys().next().value);
+  return lines;
+}
+async function saidView(req, env, o) {
+  if (!allowed(counts.reads, req, STATS_READS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, STATS_BODY);
+  if (r.e) return refused(r, o);
+  const b = r.body, now = Date.now();
+  if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  if (!dateRead(b.d, now)) return answer(400, { e: "day" }, o);
+  let d = b.d, lines = await saidShown(env, d, now);
+  if (!lines.length && b.back === true) {
+    for (let k = 1; k <= 7 && !lines.length; k++) {
+      const dk = keyOfUTC(dayStart(b.d) - k * 24 * H);
+      if (!dateRead(dk, now)) break;
+      lines = await saidShown(env, dk, now);
+      if (lines.length) d = dk;
+    }
+  }
+  return answer(200, { d, lines }, o);
+}
+async function saidAdmin(req, env, o) {
+  if (spentOut(counts.admin, req, WRONG_ADMIN)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, SMALL);
+  if (r.e) return refused(r, o);
+  const b = r.body;
+  if (!env.ADMIN_KEY || typeof b.key !== "string" || !same(await sha(b.key), await sha(env.ADMIN_KEY))) {
+    allowed(counts.admin, req, WRONG_ADMIN);
+    return answer(404, { e: "nothing" }, o);
+  }
+  if (b.op === "decide") {
+    const res = await saidOf(env).decide({ id: b.id, ok: b.ok === true });
+    if (res.ok) saidViews.clear();
+    return answer(res.ok ? 200 : 404, res, o);
+  }
+  return answer(200, await saidOf(env).list({ before: b.before, onlyNew: b.onlyNew === true }), o);
+}
+
 async function pushAdmin(req, env, o) {
   if (spentOut(counts.admin, req, WRONG_ADMIN)) return answer(429, { e: "later" }, o);
   const r = await readJson(req, SMALL);
@@ -1013,6 +1089,9 @@ export default {
       if (url.pathname === "/stats/world" && req.method === "POST") return await statsWorld(req, env, o);
       if (url.pathname === "/stats/react" && req.method === "POST") return await statsReact(req, env, o);
       if (url.pathname === "/stats/team" && req.method === "POST") return await statsTeam(req, env, o);
+      if (url.pathname === "/said/add" && req.method === "POST") return await saidAdd(req, env, o);
+      if (url.pathname === "/said/view" && req.method === "POST") return await saidView(req, env, o);
+      if (url.pathname === "/said/admin" && req.method === "POST") return await saidAdmin(req, env, o);
       if (url.pathname === "/push/join" && req.method === "POST") return await pushJoin(req, env, o);
       if (url.pathname === "/push/leave" && req.method === "POST") return await pushLeave(req, env, o);
       if (url.pathname === "/push/msg" && req.method === "POST") return await pushMsg(req, env, o);

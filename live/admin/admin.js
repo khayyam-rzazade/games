@@ -186,6 +186,10 @@
     $("way-code").value = "";
     clear($("way-res"));
     clear($("fb-res"));
+    clear($("said-res"));
+    clear($("said-count"));
+    $("said-more").hidden = true;
+    saidLast = "";
     fbAll = [];
     deskErr("");
     $("v-desk").hidden = true;
@@ -1171,4 +1175,76 @@
     });
   });
   $("push-clear").addEventListener("click", function () { $("push-text").value = ""; $("push-send").click(); });
+
+  /* ================================================================ what players said (19 Oct 2026)
+     The lines written at the end of a day (server/live/src/said.js), newest first, the ones to do alone or all of
+     them; each let through or turned down with one tap. Every line is a stranger's text: put on the page with
+     textContent only, in its own direction. */
+  var saidOnlyNew = true, saidLast = "";
+  function dateWords(d) {
+    var m = /^(\d{4})(\d{2})(\d{2})$/.exec(str(d));
+    if (!m) return str(d);
+    try { return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("en-GB", { day: "numeric", month: "short" }); } catch (e) { return str(d); }
+  }
+  function saidRow(x) {
+    var row = el("div", "dk-rep dk-said-row" + (x.state === "new" ? " dk-new" : ""));
+    var top = el("div", "dk-reptop");
+    top.appendChild(el("span", "", (str(x.c) !== "??" ? str(x.c) + " · " : "") + dateWords(x.d) + " · " + when(x.at)));
+    var st = el("span", "dk-said-state", x.state === "ok" ? "Let through" : x.state === "no" ? "Turned down" : "To do");
+    top.appendChild(st);
+    row.appendChild(top);
+    row.appendChild(their("p", "dk-said-text", x.text));
+    var acts = el("div", "dk-keyrow");
+    var yes = el("button", "dk-mini dk-strong", x.state === "ok" ? "Let through ✓" : "Let through");
+    yes.type = "button"; yes.disabled = x.state === "ok";
+    var no = el("button", "dk-mini", x.state === "no" ? "Turned down ✓" : "Turn down");
+    no.type = "button"; no.disabled = x.state === "no";
+    function decide(okay) {
+      if (!KEY) return;
+      var g = gen;
+      yes.disabled = no.disabled = true;
+      call({ op: "decide", id: str(x.id), ok: okay }, "/said/admin").then(function (r) {
+        if (g !== gen || keyGone(r)) return;
+        if (r.status !== 200) { yes.disabled = no.disabled = false; deskErr(trouble(r)); return; }
+        x.state = okay ? "ok" : "no";
+        st.textContent = okay ? "Let through" : "Turned down";
+        row.classList.remove("dk-new");
+        yes.textContent = okay ? "Let through ✓" : "Let through"; yes.disabled = okay;
+        no.textContent = okay ? "Turn down" : "Turned down ✓"; no.disabled = !okay;
+        if (saidOnlyNew) row.classList.add("dk-said-done");
+      });
+    }
+    yes.addEventListener("click", function () { decide(true); });
+    no.addEventListener("click", function () { decide(false); });
+    acts.appendChild(yes); acts.appendChild(no);
+    row.appendChild(acts);
+    return row;
+  }
+  function drawSaid(res, more) {
+    var box = $("said-res");
+    if (!more) clear(box);
+    var b = res.b;
+    if (res.status !== 200 || !Array.isArray(b.lines)) { box.appendChild(el("p", "dk-inline-err", trouble(res))); return; }
+    $("said-count").textContent = n(b.open) + " to do · " + n(b.n) + " kept";
+    if (!b.lines.length && !more) box.appendChild(el("p", "dk-from", saidOnlyNew ? "Nothing to do. Every line has been read." : "No lines yet."));
+    b.lines.forEach(function (x) { box.appendChild(saidRow(x)); });
+    saidLast = b.lines.length ? str(b.lines[b.lines.length - 1].id) : "";
+    $("said-more").hidden = b.lines.length < 200;
+  }
+  function loadSaid(more) {
+    if (!KEY) return;
+    var g = gen, body = { op: "list", onlyNew: saidOnlyNew };
+    if (more && saidLast) body.before = saidLast;
+    call(body, "/said/admin").then(function (r) { if (g === gen && !keyGone(r)) drawSaid(r, more); });
+  }
+  $("said-load").addEventListener("click", function () { loadSaid(false); });
+  $("said-more").addEventListener("click", function () { loadSaid(true); });
+  Array.prototype.forEach.call($("said-filter").querySelectorAll("[data-f]"), function (b) {
+    b.addEventListener("click", function () {
+      Array.prototype.forEach.call($("said-filter").querySelectorAll("[data-f]"), function (o) { o.setAttribute("aria-checked", "false"); });
+      b.setAttribute("aria-checked", "true");
+      saidOnlyNew = b.getAttribute("data-f") === "new";
+      loadSaid(false);
+    });
+  });
 })();

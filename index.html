@@ -29,7 +29,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=b6eb1030d7">
+<link rel="stylesheet" href="assets/css/logicers.css?v=1f556d7cba">
 </head>
 <body class="home">
 
@@ -110,6 +110,9 @@
       <span class="gameroom-sub" id="worldbox-sub">Every game you finish counts for your country.</span>
     </span>
   </a>
+  <!-- Yesterday, players said… (19 Oct 2026): a few of the lines players wrote at the end of their day, each
+       read by Khayyam before it shows. It waits hidden until assets/js/said.js has some to show. -->
+  <section class="gameroom saidbox" id="saidbox" aria-label="What players said" hidden></section>
 </section>
 
 <section class="games" aria-labelledby="games-title">
@@ -375,6 +378,8 @@
     </div>
     <h3>The world's counts</h3>
     <p class="quiet">"The world today" compares you with your continent and country, and the <a href="world/">World table</a> ranks countries. Each finished daily game sends the game, how far off you were and, for one-number games, your guess to our small server. It reads your country from your connection and keeps only counts: no address, nothing that identifies you, a guess only as an average of two or more. Counts are deleted after 75 days. You can leave your results out under the <b>?</b> on the World table page.</p>
+    <h3>What players said</h3>
+    <p class="quiet">When your day's games are done, you can write one line about what surprised you. Khayyam reads it before it shows, and it shows with your country's flag, never with a name. A line he lets through is kept a year; the others are deleted within a month. The line, your country and the date are all that is kept.</p>
     <h3>Live games</h3>
     <p class="quiet">In How Sure?, a host opens a game and everyone joins with a code. No account. Names and answers stay on our small server until a day after the game ends (backups clear within 30 days). Anyone can build their own game; Logicers does not check them, and every screen has a Report link. A saved game keeps what its maker typed, plus players' names and answers when played alone, and is deleted two months after its last use. An email left to recover a link is kept only as a one-way fingerprint, and the address itself only if feedback emails are ticked. <a href="live/">Play live</a> · <a href="live/build/">Build your own</a>.</p>
     <h3>Your privacy</h3>
@@ -393,11 +398,12 @@
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=72c67f9455"></script>
+<script src="assets/js/turnsout.js?v=fb74e331df"></script>
 <script src="assets/js/duel.js?v=2aca2ba2d2"></script>
 <script src="assets/js/rooms.js?v=cb55b4b70d"></script>
 <script src="assets/js/points.js?v=d060d18a9f"></script>
-<script src="assets/js/world.js?v=655d6b090b"></script>
+<script src="assets/js/world.js?v=68caadf206"></script>
+<script src="assets/js/said.js?v=8b04c0fa7a"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */

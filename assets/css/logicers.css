@@ -1308,3 +1308,35 @@ dialog.khay:not([open]) { display: none; }
 .shelf .tile h3 { font-size: 1.05rem; line-height: 1.2; }
 .shelf .tile .body { flex: 1; display: flex; flex-direction: column; }
 .shelf .tile .foot { margin-top: auto !important; }                 /* Play sits at the same height on every tile */
+
+/* ---------- what players said (19 Oct 2026): the question on the last card, and the home page's box ---------- */
+.fin-said { margin-top: 14px; }
+.said { padding: 14px; border: 2px solid var(--line); border-radius: 18px; background: var(--bg); }
+.said-head { display: flex; align-items: center; gap: 10px; }
+.said-face { flex: none; }
+.said-head .khay-photo { width: 36px; height: 36px; }
+.saidbox .said-head .khay-photo { width: 40px; height: 40px; }
+.said-headwords { min-width: 0; flex: 1; }
+.said-h { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; line-height: 1.15; }
+.said-sub { margin: 2px 0 0; color: var(--soft); font-weight: 600; font-size: 0.82rem; line-height: 1.3; }
+.said-form { margin-top: 10px; }
+.said-field { display: block; width: 100%; box-sizing: border-box; padding: 10px 12px; border: 2px solid var(--line); border-radius: 14px; background: var(--card); color: var(--ink); font: inherit; font-size: 1rem; line-height: 1.35; resize: none; }
+.said-field:focus { outline: 3px solid var(--c, #2D4FC4); outline-offset: 1px; }
+.said-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; }
+.said-left { color: var(--soft); font-size: 0.8rem; font-weight: 600; }
+.said-send { min-height: 42px; padding: 0 18px; font-size: 0.95rem; }
+.said-send[disabled] { opacity: .55; }
+.said-note { margin: 8px 0 0; color: var(--soft); font-weight: 600; font-size: 0.85rem; line-height: 1.35; }
+.said-thanks { margin-top: 10px; }
+.said-thanks p { margin: 0 0 4px; font-size: 0.92rem; line-height: 1.35; }
+.said-big { font-family: var(--display); font-weight: 800; font-size: 1.15rem; }
+.said-shown { margin-top: 12px; }
+.said-shown-h { margin: 0 0 6px; color: var(--soft); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .04em; }
+.said-lines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.said-line { display: flex; align-items: flex-start; gap: 6px; padding: 8px 12px; border-radius: 12px; background: var(--card); font-size: 0.95rem; line-height: 1.35; }
+.said-line .wd-flag { flex: none; margin-right: 2px; }
+.said-text { min-width: 0; overflow-wrap: anywhere; }
+.saidbox { display: block; }
+.saidbox[hidden] { display: none; }
+.saidbox .said-lines { margin-top: 10px; }
+.saidbox .said-line { background: var(--bg); }

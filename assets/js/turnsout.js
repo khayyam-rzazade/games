@@ -1088,6 +1088,13 @@
       more.appendChild(mw);
       more.addEventListener("click", function () { count_("onward-sheet/more"); });
       sheet.appendChild(more);
+      /* one line from the player, read by Khayyam before it shows (assets/js/said.js, 19 Oct 2026): right under
+         the way on, so the card's own scroll ends with the question in view */
+      if (typeof window.TurnsOut.saidHook === "function") {
+        var ask = el("div", "fin-said");
+        sheet.appendChild(ask);
+        try { window.TurnsOut.saidHook(ask); } catch (e) { /* the question is optional */ }
+      }
       if (eodEl) sheet.appendChild(eodEl);   // borrowed from the page; given back when the card is put away
     }
     var stats = el("button", "fin-stats");
@@ -2026,6 +2033,7 @@
     roomsUpdate: roomsUpdate,
     worldStore: worldStore,
     worldUpdate: worldUpdate,
+    siteRoot: siteRoot,
     todayOf: todayOf,
     playedToday: playedToday,
     onward: onward,

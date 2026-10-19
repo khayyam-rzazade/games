@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../../assets/css/logicers.css?v=b6eb1030d7">
-<link rel="stylesheet" href="../desk.css?v=7d243dc3c8">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=1f556d7cba">
+<link rel="stylesheet" href="../desk.css?v=80b0ee1fb2">
 </head>
 <body class="game dk-page dk-admin">
 
@@ -94,6 +94,27 @@
       <div id="fb-res" aria-live="polite"></div>
     </section>
 
+    <!-- what players said (19 Oct 2026): the lines written at the end of a day, each let through or not by hand
+         before it shows anywhere (server/live/src/said.js) -->
+    <section class="dk-card dk-said" id="said" aria-labelledby="said-h">
+      <div class="dk-fbhead">
+        <h2 class="dk-h2" id="said-h">Players said</h2>
+        <button class="dk-mini dk-strong" type="button" id="said-load">Show the lines</button>
+      </div>
+      <details class="dk-details">
+        <summary>How it works</summary>
+        <p class="dk-from">At the end of a day's nine games a player may write one line: "What surprised you today?". Nothing shows until you let it through here. A line you let through shows on the finish card of that day and on the home page the next day, with its country's flag and no name, and is kept a year. A line you turn down is deleted after 7 days; one you never look at, after 30. Let through what is honest and harmless; turn down anything about a person, anything rude, and anything that is not a line about the games.</p>
+      </details>
+      <div class="dk-filter">
+        <div class="dk-seg" id="said-filter" role="radiogroup" aria-label="Show">
+          <button type="button" role="radio" data-f="new" aria-checked="true">To do</button>
+          <button type="button" role="radio" data-f="all" aria-checked="false">All</button>
+        </div>
+        <span class="dk-count-line" id="said-count"></span>
+      </div>
+      <div id="said-res" aria-live="polite"></div>
+      <button class="dk-mini dk-more" type="button" id="said-more" hidden>Load older lines</button>
+    </section>
     <!-- the daily reminder (18 Oct 2026): the numbers, and the one announcement (server/live/src/push.js) -->
     <section class="dk-card dk-push" id="push" aria-labelledby="push-h">
       <div class="dk-fbhead">
@@ -139,6 +160,6 @@
 
 <script src="../desk-words.js?v=be53fc6ee8"></script>
 <script src="../wayprint.js?v=f39872182f"></script>
-<script src="admin.js?v=94a580d513"></script>
+<script src="admin.js?v=ca5a510a67"></script>
 </body>
 </html>

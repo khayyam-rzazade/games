@@ -42,13 +42,15 @@
       { "name": "WAY", "class_name": "Way" },
       { "name": "MAIL", "class_name": "Mail" },
       { "name": "TALLY", "class_name": "Tally" },
-      { "name": "PUSH", "class_name": "Push" }
+      { "name": "PUSH", "class_name": "Push" },
+      { "name": "SAID", "class_name": "Said" }
     ]
   },
   "migrations": [
     { "tag": "v1", "new_sqlite_classes": ["Game", "Totals"] },
     { "tag": "v2", "new_sqlite_classes": ["Kit", "Desk", "Way", "Mail"] },
     { "tag": "v3", "new_sqlite_classes": ["Tally"] },
-    { "tag": "v4", "new_sqlite_classes": ["Push"] }
+    { "tag": "v4", "new_sqlite_classes": ["Push"] },
+    { "tag": "v5", "new_sqlite_classes": ["Said"] }
   ]
 }

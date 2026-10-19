@@ -261,3 +261,8 @@ select.dk-mini { padding-right: 12px; }
   .dk-h1 { font-size: 1.62rem; }
   .dk-look .dk-field { width: 8.6rem; }
 }
+
+/* what players said (19 Oct 2026) */
+.dk-said-text { margin: 8px 0 10px; font-size: 1.02rem; line-height: 1.4; overflow-wrap: anywhere; }
+.dk-said-state { margin-left: auto; font-weight: 700; }
+.dk-said-row.dk-said-done { opacity: .55; }

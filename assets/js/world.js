@@ -9,9 +9,7 @@
       day, and draws "The world today" under the result: you beside the world, your continent and your country,
       what share of players you beat, where the guesses landed, and your country's place.
    2. On the home page it fills the World table box with your country's place today.
-   3. It gives the World table page (world/world.js) and the team pages (team/team.js) what they need: the calls,
-      the names, the flags, the ranking, the links to a country's team page.
-   4. Reactions (19 Oct 2026): the row of three taps on the finish card (reactRow, below).
+   3. It gives the World table page (world/world.js) what it needs: the calls, the names, the flags.
    The country is read by the server from the connection; the page never knows more than its two letters.
    Nothing that identifies a player is sent or kept: the server adds each result to its country's counts and
    keeps only the counts (server/live/src/tally.js). A player can leave their results out (the World table's
@@ -41,12 +39,14 @@
   function call(what, body) {
     try { return send(what, body); } catch (e) { return Promise.reject(e); }
   }
-  function send(what, body) {
+  function send(what, body) { return post("/stats/" + what, body); }
+  /* any call to the same server, by its path (what players said, assets/js/said.js, uses /said/...) */
+  function post(path, body) {
     body.v = V;
     var ctl = null, timer = null;
     try { ctl = new window.AbortController(); } catch (e) { ctl = null; }
     if (ctl) timer = window.setTimeout(function () { ctl.abort(); }, WAIT);
-    return window.fetch(apiBase() + "/stats/" + what, {
+    return window.fetch(apiBase() + path, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -195,15 +195,6 @@
   function tableUrl() {
     var a = TO.address();
     return a ? "https://" + a + "/world/" : (function () { try { return new URL(tableHref(), window.location.href).href; } catch (e) { return tableHref(); } })();
-  }
-  /* a country's team page (19 Oct 2026): team/?c=IT, with a rival too (team/?c=IT&v=DE) */
-  function teamHref(c, rival) {
-    if (!/^[A-Z]{2}$/.test(String(c))) return TO.here(ROOT + "team/");
-    return TO.here(ROOT + "team/?c=" + c + (/^[A-Z]{2}$/.test(String(rival || "")) && rival !== c ? "&v=" + rival : ""));
-  }
-  function teamUrl(c, rival) {
-    var a = TO.address(), rel = "team/?c=" + c + (/^[A-Z]{2}$/.test(String(rival || "")) && rival !== c ? "&v=" + rival : "");
-    return a ? "https://" + a + "/" + rel : (function () { try { return new URL(TO.here(ROOT + rel), window.location.href).href; } catch (e) { return TO.here(ROOT + rel); } })();
   }
   /* place: the country's place on the world table, or, with game (a game's name), its place in that game today */
   function inviteText(c, place, game, rival) {
@@ -558,101 +549,6 @@
   }
   TO.prideHook = pride;
 
-  /* ---------------- reactions (19 Oct 2026, Khayyam: "reactions on the site") ----------------
-     One slim row of three taps on the finish card, above the "Next game" button: surprised, knew it, made me think.
-     One tap per game and day (kept in this browser, beside the world's other marks); the tap goes to the server,
-     which counts it by country and answers with everyone's counts, and the three chips turn into the world's share
-     of each feeling, with the country's share under it. The row never grows: the same three chips, the same height.
-     Nothing is typed, nothing identifies anyone, so there is nothing to moderate. A player who left their results
-     out of the world's counts gets no row. Whatever goes wrong, the row simply stays as it is or stays away. */
-  var FEEL = [
-    { e: "\uD83D\uDE2E", t: "Surprised", w: "surprised" },
-    { e: "\uD83D\uDE0F", t: "Knew it", w: "knew it" },
-    { e: "\uD83E\uDD14", t: "Made me think", w: "made them think" }
-  ];
-  function rxMap() { var m = store().rx; return m && typeof m === "object" && !Array.isArray(m) ? m : {}; }
-  function rxGet(key, k) { var d = rxMap()[key], v = d && typeof d === "object" ? d[k] : null; return v === 0 || v === 1 || v === 2 ? v : null; }
-  function rxSet(key, k, r) {
-    TO.worldUpdate(function (w) {
-      if (!w.rx || typeof w.rx !== "object" || Array.isArray(w.rx)) w.rx = {};
-      if (!w.rx[key] || typeof w.rx[key] !== "object") w.rx[key] = {};
-      w.rx[key][k] = r;
-      var keep = shiftKey(todayKey(), -1);
-      Object.keys(w.rx).forEach(function (d) { if (!(d >= keep)) delete w.rx[d]; });
-    });
-  }
-  function sum3(a) { return (a ? a[0] + a[1] + a[2] : 0); }
-  function drawFeel(row, view, you, mine) {
-    var w = view && view.w ? view.w : [0, 0, 0], h = view && view.h ? view.h : null;
-    var tw = sum3(w), th = sum3(h), c = you && you.c;
-    row.setAttribute("data-done", "1");
-    Array.prototype.forEach.call(row.querySelectorAll(".rx-b"), function (b, i) {
-      var pw = tw >= 5 ? Math.round(100 * w[i] / tw) : null;
-      b.classList.toggle("rx-me", i === mine);
-      b.setAttribute("aria-pressed", i === mine ? "true" : "false");
-      b.style.setProperty("--p", (pw === null ? 0 : pw) + "%");
-      b.textContent = "";
-      var top = el("span", "rx-top");
-      top.appendChild(el("span", "rx-e", FEEL[i].e));
-      top.appendChild(el("b", "rx-n", pw === null ? String(w[i]) : pw + "%"));
-      b.appendChild(top);
-      var ph = th >= 5 && countryName(c) ? Math.round(100 * h[i] / th) : null;
-      var low = el("span", "rx-low");
-      if (ph !== null) { low.appendChild(flagEl(c)); low.appendChild(document.createTextNode(" " + ph + "%")); } else low.textContent = FEEL[i].t;
-      b.appendChild(low);
-      b.setAttribute("aria-label", FEEL[i].t + ": " + (pw === null ? w[i] + (w[i] === 1 ? " player" : " players") : pw + "% of the world") +
-        (ph !== null ? ", " + ph + "% of " + countryName(c) : "") + (i === mine ? ". Your pick." : "."));
-      b.disabled = true;
-    });
-  }
-  function reactRow(o) {
-    if (!on() || off() || !o || !o.game) return null;
-    var G = gameBy("id", o.game);
-    var liveDay = !o.practice && (!o.day || !o.today || o.day === o.today);
-    if (!G || !liveDay) return null;
-    var key = o.day > 0 ? keyForDay(G, o.day) : todayKey();
-    if (!resultFor(G, key)) return null;
-    var row = el("div", "rx");
-    row.setAttribute("role", "group");
-    row.setAttribute("aria-label", "How did this one feel?");
-    row.setAttribute("data-g", G.key);
-    FEEL.forEach(function (f, i) {
-      var b = el("button", "rx-b");
-      b.type = "button";
-      b.setAttribute("data-r", String(i));
-      b.setAttribute("aria-label", f.t);
-      b.appendChild(el("span", "rx-e", f.e));
-      b.appendChild(el("span", "rx-t", f.t));
-      row.appendChild(b);
-    });
-    function show(r, res) { drawFeel(row, res && res.data ? res.data.view : null, res && res.data ? res.data.you : null, r); }
-    var had = rxGet(key, G.key);
-    if (had !== null) {                                // tapped before: the counts, read only
-      row.setAttribute("data-wait", "1");
-      call("react", { d: key, k: G.key }).then(function (res) {
-        row.removeAttribute("data-wait");
-        if (res.status === 200 && res.data && res.data.view) show(had, res); else drawFeel(row, null, null, had);
-      }, function () { row.removeAttribute("data-wait"); drawFeel(row, null, null, had); });
-      return row;
-    }
-    Array.prototype.forEach.call(row.querySelectorAll(".rx-b"), function (b) {
-      b.addEventListener("click", function () {
-        if (row.getAttribute("data-wait") || row.getAttribute("data-done")) return;
-        var r = +b.getAttribute("data-r");
-        row.setAttribute("data-wait", "1");
-        b.classList.add("rx-me");
-        TO.count("rx/" + G.key + "/" + r);
-        call("react", { d: key, k: G.key, r: r }).then(function (res) {
-          row.removeAttribute("data-wait");
-          if (res.status === 200 && res.data && res.data.view) { rxSet(key, G.key, r); show(r, res); }
-          else b.classList.remove("rx-me");            // not counted (a refusal, an old page): tap again
-        }, function () { row.removeAttribute("data-wait"); b.classList.remove("rx-me"); });
-      });
-    });
-    return row;
-  }
-  TO.reactHook = reactRow;
-
   /* today's games not sent yet, and yesterday's (a game finished just before midnight, with no signal) */
   function flushBoth(key) {
     function quiet(p) { return p.then(function () {}, function () {}); }
@@ -717,11 +613,10 @@
   }
 
   window.LogicersWorld = {
-    on: on, call: call, flush: flush, flushBoth: flushBoth, todayKey: todayKey, shiftKey: shiftKey, dateOf: dateOf,
+    on: on, call: call, post: post, flush: flush, flushBoth: flushBoth, todayKey: todayKey, shiftKey: shiftKey, dateOf: dateOf,
     countryName: countryName, flag: flag, flagEl: flagEl, contName: contName, CONT: CONT,
     commas: commas, nth: nth, rank: rank, bonus: bonus, BONUS: BONUS, invite: invite, inviteButton: inviteButton, inviteText: inviteText,
-    off: off, setOff: setOff, block: block, draw: draw, el: el, tableUrl: tableUrl, PULL: PULL, MIN: MIN,
-    teamHref: teamHref, teamUrl: teamUrl, FEEL: FEEL, keyForDay: keyForDay
+    off: off, setOff: setOff, block: block, draw: draw, el: el, tableUrl: tableUrl, PULL: PULL, MIN: MIN
   };
 
   /* ---------------- the honest sentence ----------------
@@ -729,7 +624,7 @@
      says it in full). Joined once, as Rooms join theirs; on a page where the world's counts are off, nothing. */
   var SHORT = "Each daily game you finish also adds its score to the world's counts by country, on Logicers' own server: your country is read from your connection, and nothing that identifies you is kept. You can leave your results out on the World table page.";
   var TINY = "Each daily game you finish also adds its score, and nothing that identifies you, to the world's counts by country.";
-  var FULL = "When you finish a daily game, your phone sends the game, how far off you were and, for the games whose guess is one number, your guess, to Logicers' own server. The server reads your country and continent from your connection, adds the result to that country's counts for the day, and keeps only the counts: no address, nothing that identifies you. A guess is shown only as an average of two or more. If you tap how a game felt, that one tap is added to your country's counts in the same way, and a country's biggest day, in games, is kept as one number with its date. A day's counts are deleted 75 days after it. You can leave your results out here and still see everyone else's.";
+  var FULL = "When you finish a daily game, your phone sends the game, how far off you were and, for the games whose guess is one number, your guess, to Logicers' own server. The server reads your country and continent from your connection, adds the result to that country's counts for the day, and keeps only the counts: no address, nothing that identifies you. A guess is shown only as an average of two or more. A day's counts are deleted 75 days after it. You can leave your results out here and still see everyone else's.";
   function honest() {
     if (!on()) return;
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (x) {
