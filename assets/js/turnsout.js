@@ -1618,7 +1618,12 @@
     head.appendChild(face); head.appendChild(who); head.appendChild(x);
     dlg.appendChild(head);
     var form = el("form", "khay-form"); form.id = "khay-form"; form.noValidate = true;
-    form.appendChild(el("p", "khay-intro", "I’m Khayyam, an academic researcher, and I build Logicers on my own. Three quick questions, all optional. I read every answer."));
+    var intro = el("p", "khay-intro", "I’m Khayyam, an academic researcher, and I build Logicers on my own. Three quick questions, all optional. I read every answer. ");
+    var more = el("a", "khay-more", "More about me \u2192");     // 19 Oct 2026: a way to reach him directly
+    more.href = "https://thekhayyam.com"; more.target = "_blank"; more.rel = "noopener noreferrer";
+    more.addEventListener("click", function () { count_("eod/about-me"); });
+    intro.appendChild(more);
+    form.appendChild(intro);
     var h = el("h2", "sr-only", "Tell Khayyam"); h.id = "khay-h"; form.appendChild(h);
     form.appendChild(el("p", "khay-q", "How was today?"));
     var moods = el("div", "khay-moods"); moods.setAttribute("role", "group"); moods.setAttribute("aria-label", "How was today?");

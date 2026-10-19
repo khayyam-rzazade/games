@@ -1222,3 +1222,29 @@ dialog.khay:not([open]) { display: none; }
   .fin-scrim, .fin-sheet { animation: none; }
   .fin-next:active { transform: none; }
 }
+
+/* ---------- bio: the footer line and the link in Tell Khayyam (19 Oct 2026) ---------- */
+.made-by { margin-top: 6px; color: var(--soft); font-size: 0.9rem; font-weight: 500; }
+.made-by a, .khay-more { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
+
+/* ---------- the Play button on each tile breathes (19 Oct 2026): only on games not yet played, and never for
+   people who asked their device for less motion ---------- */
+@keyframes go-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@media (prefers-reduced-motion: no-preference) { .tile:not(.done) .go { animation: go-pulse 2.4s ease-in-out infinite; } }
+
+/* ---------- Today's games as a grid (19 Oct 2026, Khayyam: smaller cards next to each other, all nine in view,
+   no sideways swiping). Phone: two per row. Tablet: three. Computer: five. Only the daily shelf (#shelf);
+   the games for groups keep their own row. The pitch lines are gone: the name, the picture and Play say enough. ---------- */
+#shelf .shelf-btn { display: none !important; }
+#shelf { --gap: 10px; }
+#shelf .shelf-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); overflow: visible; margin: 0; padding: 0; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; }
+#shelf .shelf-row > .tile { flex: none; width: auto; padding: 8px; border-radius: 20px; }
+#shelf .art { aspect-ratio: 2 / 1; border-radius: 14px; }
+#shelf .tile .body { padding: 9px 4px 4px; }
+#shelf .tile h3 { font-size: 1.05rem; }
+#shelf .pitch, #shelf .mins, #shelf .again { display: none; }
+#shelf .foot { margin-top: 8px; min-height: 38px; }
+#shelf .go { height: 38px; padding: 0 14px 0 15px; font-size: 0.92rem; }
+#shelf .result { font-size: 0.88rem; }
+@media (min-width: 701px) { #shelf { --gap: 14px; } #shelf .shelf-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } #shelf .art { aspect-ratio: 16 / 9; } }
+@media (min-width: 1001px) { #shelf .shelf-row { grid-template-columns: repeat(5, minmax(0, 1fr)); } #shelf .tile h3 { font-size: 1.12rem; } }
