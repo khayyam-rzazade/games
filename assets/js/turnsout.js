@@ -974,6 +974,12 @@
     function stop() { try { mo.disconnect(); } catch (e) { /* done */ } window.clearTimeout(t); }
     return stop;
   }
+  /* the three taps (surprised / knew it / made me think) that world.js builds; an empty span when it has none to give */
+  function feelRow(o) {
+    var r = null;
+    try { if (typeof window.TurnsOut.reactHook === "function") r = window.TurnsOut.reactHook(o); } catch (e) { r = null; }
+    return r || el("span", "rx-none");
+  }
   /* The last card opens on the day's stats; about two seconds later, once, it slides down by itself to the
      "More to play" button (19 Oct 2026, Khayyam). It never fights a hand: any touch, wheel, key or click on the
      card within that time cancels it, it only moves when the button is not already in view, and it stays
@@ -1063,6 +1069,7 @@
         rank.textContent = p.textContent;
         rank.hidden = false;
       });
+      sheet.appendChild(feelRow(o));
       var a = el("a", "fin-next");
       a.href = href;
       a.insertAdjacentHTML("beforeend", PLAY);
@@ -1080,6 +1087,7 @@
       var seat = el("div", "fin-world");
       sheet.appendChild(seat);
       watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
+      sheet.appendChild(feelRow(o));
       var more = el("a", "fin-more");
       more.href = here("../") + "#more-to-play";
       var mw = el("span", "fin-next-words");
