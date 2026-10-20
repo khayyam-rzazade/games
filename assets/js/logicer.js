@@ -54,9 +54,9 @@
     box.hidden = false;
   }
   function show(total, L, fresh) {
-    if (L) draw("You are", "Logicer №" + fmt(L.n), soFar(Math.max(total, L.n)) + since(L.d), fresh);
+    if (L) draw("You are", "Logicer №" + fmt(L.n), "of " + fmt(Math.max(total, L.n)), fresh);
     else if (left()) draw("Logicers so far", "№" + fmt(total), "Every one of them finished a game.", false);
-    else draw("Finish a game to be", "Logicer №" + fmt(total + 1), soFar(total), false);
+    else draw("Finish a game to be", "Logicer №" + fmt(total + 1), "", false);
   }
 
   function start() {
