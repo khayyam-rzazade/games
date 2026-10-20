@@ -924,6 +924,34 @@ function saidText(x) {
   if (!/[\p{L}\p{N}]{2}/u.test(s)) return null;                  // at least two letters or digits in a row: not only signs
   return s;
 }
+/* ---- Logicers, counted (20 Oct 2026): "You are Logicer №2,354". A browser that has finished its first game asks once
+   for its number (the page keeps it); the total is the only thing kept here (totals.js). Separate from the world's
+   counts, so nothing here can touch them. One address can ask a good many times (a class on one network), and
+   no more than that. ---- */
+Object.assign(counts, { join: new Map() });
+const COUNT_JOINS = 60;             // numbers given to one address in 10 minutes
+/* where the numbers start from (wrangler.jsonc, LOGICER_START): the players there were before the count began, so the
+   first number given is START + 1. Set once, before the first push that carries the counter, and never lowered after. */
+const countStart = (env) => { const n = Number(env.LOGICER_START); return Number.isInteger(n) && n >= 0 && n < 1e9 ? n : 0; };
+let countSeen = { at: 0, n: 0 };    // the total, kept 30 seconds in this copy
+async function countJoin(req, env, o) {
+  if (!allowed(counts.join, req, COUNT_JOINS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, SMALL);
+  if (r.e) return refused(r, o);
+  if (r.body.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  const n = countStart(env) + (await totalsOf(env).joined());
+  countSeen = { at: Date.now(), n };
+  return answer(200, { n }, o);
+}
+async function countView(req, env, o) {
+  if (!allowed(counts.reads, req, STATS_READS)) return answer(429, { e: "later" }, o);
+  const r = await readJson(req, STATS_BODY);
+  if (r.e) return refused(r, o);
+  if (r.body.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  const now = Date.now();
+  if (now - countSeen.at > 30e3) countSeen = { at: now, n: countStart(env) + (await totalsOf(env).logicers()) };
+  return answer(200, { n: countSeen.n }, o);
+}
 /* an optional short text next to a line (the name, the "I am a…"): empty is fine; otherwise cleanText's rules and no link, email
    or @handle (lineOk); null when it is not allowed */
 function saidOpt(x, max) {
@@ -1107,6 +1135,8 @@ export default {
       if (url.pathname === "/stats/world" && req.method === "POST") return await statsWorld(req, env, o);
       if (url.pathname === "/stats/react" && req.method === "POST") return await statsReact(req, env, o);
       if (url.pathname === "/stats/team" && req.method === "POST") return await statsTeam(req, env, o);
+      if (url.pathname === "/count/join" && req.method === "POST") return await countJoin(req, env, o);
+      if (url.pathname === "/count/view" && req.method === "POST") return await countView(req, env, o);
       if (url.pathname === "/said/add" && req.method === "POST") return await saidAdd(req, env, o);
       if (url.pathname === "/said/view" && req.method === "POST") return await saidView(req, env, o);
       if (url.pathname === "/said/admin" && req.method === "POST") return await saidAdmin(req, env, o);

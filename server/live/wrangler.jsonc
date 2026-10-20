@@ -19,6 +19,10 @@
                 it also keys every stored email of a way back (src/keys.js), so it is set once and never changed
      ADMIN_KEY  a long password of your own (32 random characters or more): the admin page (live/admin/),
                 with the reports, the stop switch and the totals without names
+   20 Oct 2026: the counter of Logicers ("You are Logicer №2,354"; totals.js keeps the running total, the Worker adds
+   LOGICER_START, a plain variable below: the players there were before the count began, so the first number given is
+   LOGICER_START + 1). Set it once, before the push that first carries the counter, and never lower it: a number once
+   given stays with its browser. No migration: the total lives in the existing object Totals.
    Workers Logs and traces stay OFF: the privacy line on the site promises that nothing else is kept. */
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
@@ -31,7 +35,8 @@
   "triggers": { "crons": ["2 * * * *"] },
   "vars": {
     "VAPID_PUBLIC": "BHTIP9q1jseMP0W-aAJkMUO6dPLmnkAG0Mdmodw6BKARfNYSrhYxg3pBkeeLEM7TJ_kVbRzYlj6nPTOAei1DRC0",
-    "DAILY_GAMES": "9"
+    "DAILY_GAMES": "9",
+    "LOGICER_START": "2194"
   },
   "durable_objects": {
     "bindings": [

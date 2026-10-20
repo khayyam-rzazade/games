@@ -98,6 +98,16 @@ export class Totals extends DurableObject {
     return true;
   }
 
+  /* Logicers, counted (20 Oct 2026): one more browser has finished its first game and is given the next number.
+     Only the running total is kept: not who got which number, no address, nothing else (the key "logicers" is
+     neither a day nor a question, so read() below leaves it out). */
+  async joined() {
+    const n = ((await this.ctx.storage.get("logicers")) || 0) + 1;
+    await this.ctx.storage.put("logicers", n);
+    return n;
+  }
+  async logicers() { return (await this.ctx.storage.get("logicers")) || 0; }
+
   /* everything, for Khayyam's eyes only (the Worker checks the admin key first) */
   async read() {
     const out = { days: {}, questions: {} };

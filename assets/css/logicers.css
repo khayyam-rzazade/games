@@ -1404,3 +1404,17 @@ dialog.khay:not([open]) { display: none; }
 .said-by { color: var(--soft); font-weight: 700; font-size: 0.78rem; line-height: 1.25; overflow-wrap: anywhere; }
 .saidbox .said-by { display: none; }                              /* the slim box shows the line alone; the window shows who */
 @media (max-width: 380px) { .said-who { grid-template-columns: 1fr; } }
+
+/* ---------- "You are Logicer №2,354" under the welcome (20 Oct 2026, Khayyam: "explicitly visible, with some colours";
+   then "put 'you are' in the same line with 'Logicer №' and minimize the height") ----------
+   One line: the small "You are" and the big number side by side; the small count goes after them when there is room,
+   and wraps under them when there is not (a phone). */
+.logicer { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 1px 10px; margin-top: 16px; padding: 8px 18px 9px; border-radius: 18px; color: #fff; background: linear-gradient(135deg, #2D4FC4 0%, #5B3FC4 55%, #9A3FC4 100%); box-shadow: 0 8px 20px rgba(61, 56, 196, .28), inset 0 0 0 1px rgba(255, 255, 255, .16); max-width: 100%; box-sizing: border-box; }
+.logicer[hidden] { display: none; }
+.logicer-label { font-weight: 800; font-size: 0.72rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
+.logicer-big { font-family: var(--display); font-weight: 800; font-size: clamp(1.5rem, 2.6vw, 1.95rem); line-height: 1.1; letter-spacing: -0.03em; color: #FFD45E; overflow-wrap: anywhere; }
+.logicer-small { font-weight: 700; font-size: 0.8rem; color: rgba(255, 255, 255, .88); }
+.logicer.fresh { animation: logicer-pop .7s cubic-bezier(.2, 1.3, .4, 1) both; }
+@keyframes logicer-pop { 0% { transform: scale(.82); opacity: 0; } 60% { transform: scale(1.04); opacity: 1; } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .logicer.fresh { animation: none; } }
+@media (max-width: 700px) { .logicer { display: flex; margin-top: 12px; padding: 7px 14px 8px; } .logicer-big { font-size: clamp(1.45rem, 7vw, 1.8rem); } .logicer-small { display: none; } }

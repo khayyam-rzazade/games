@@ -29,7 +29,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="assets/css/logicers.css?v=4d782e6ad7">
+<link rel="stylesheet" href="assets/css/logicers.css?v=be129f9225">
 </head>
 <body class="home">
 
@@ -48,6 +48,8 @@
     <p class="eyebrow" id="eyebrow"></p>
     <h1>Are you a <em>Logicer</em>?</h1>
     <p class="lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
+    <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
+    <div class="logicer" id="logicer" hidden></div>
   </div>
   <!-- The Today card (19 Oct 2026): the first thing on the page now opens the first game not yet played
        today, and each finished game hands the player to the next, so one tap starts the whole day.
@@ -405,6 +407,7 @@
 <script src="assets/js/points.js?v=8a8e435a1b"></script>
 <script src="assets/js/world.js?v=86b8780252"></script>
 <script src="assets/js/said.js?v=3b27e32351"></script>
+<script src="assets/js/logicer.js?v=304bf1aae9"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */
