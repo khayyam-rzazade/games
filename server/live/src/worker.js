@@ -74,7 +74,7 @@ import { Way } from "./way.js";
 import { Mail } from "./mail.js";
 import { Tally } from "./tally.js";
 import { Push, SHARDS, endpointOk, dateOk, lineOk } from "./push.js";
-import { Said, SAID_MIN, SAID_MAX } from "./said.js";
+import { Said, SAID_MIN, SAID_MAX, NAME_MAX, ROLE_MAX } from "./said.js";
 import "./wayprint.js";               // the browser's own file (live/wayprint.js), byte for byte: globalThis.LogicersWay
 import "./points.js";                 // the pages' own file (assets/js/points.js), byte for byte: globalThis.LogicersPoints
 import { loadSets } from "./sets-key.js";
@@ -924,6 +924,14 @@ function saidText(x) {
   if (!/[\p{L}\p{N}]{2}/u.test(s)) return null;                  // at least two letters or digits in a row: not only signs
   return s;
 }
+/* an optional short text next to a line (the name, the "I am a…"): empty is fine; otherwise cleanText's rules and no link, email
+   or @handle (lineOk); null when it is not allowed */
+function saidOpt(x, max) {
+  const s = cleanText(x, 0, max);
+  if (s === null) return null;
+  if (s && (!lineOk(s) || !/[\p{L}\p{N}]/u.test(s))) return null;
+  return s;
+}
 async function saidAdd(req, env, o) {
   if (!allowed(counts.said, req, SAID_SENDS)) return answer(429, { e: "later" }, o);
   const r = await readJson(req, SMALL);
@@ -933,9 +941,12 @@ async function saidAdd(req, env, o) {
   if (!dateOn(b.d, Date.now())) return answer(400, { e: "day" }, o);
   const text = saidText(b.text);
   if (text === null) return answer(400, { e: "text" }, o);
+  const name = saidOpt(b.name, NAME_MAX), role = saidOpt(b.role, ROLE_MAX);       // both optional; one that is not allowed refuses the line
+  if (name === null) return answer(400, { e: "name" }, o);
+  if (role === null) return answer(400, { e: "role" }, o);
   const you = geo(req, env);
   const who = (await mac(env, "said:" + where(req) + ":" + b.d)) || (await sha("said:" + where(req) + ":" + b.d)).slice(0, 20);
-  const res = await saidOf(env).add({ d: b.d, c: you.c, ct: you.ct, text, who });
+  const res = await saidOf(env).add({ d: b.d, c: you.c, ct: you.ct, text, who, name, role });
   if (!res.ok) return answer(res.why === "full" ? 503 : 400, { e: res.why }, o);
   saidViews.delete(b.d);
   return answer(200, { ok: true, left: res.left }, o);

@@ -28,6 +28,8 @@ const BATCH = 128;
 export const SAID_MAX = 140;             // characters of a line
 export const SAID_MIN = 3;
 export const SAID_SHOWN = 12;            // lines a page gets for a date at most
+export const NAME_MAX = 40;              // characters of the optional name (20 Oct 2026: a full name is allowed, the player types it)
+export const ROLE_MAX = 60;              // characters of the optional "I am a…" (a school or a workplace may be in it)
 
 function rid() {
   const a = "abcdefghjkmnpqrstuvwxyz23456789", b = new Uint8Array(6);
@@ -41,6 +43,13 @@ function keyOf(t) { return "l:" + t.toString(36).padStart(9, "0") + "-" + rid();
 const ID = /^[0-9a-z]{9}-[a-z0-9]{6}$/;
 const DATE = /^\d{8}$/;
 /* the same line twice (spaces and case aside) counts once */
+/* what a page may see of a line let through: the country and the words, and the name and the "I am a…" when the player gave them */
+function pub(v) {
+  const o = { c: v.c, text: v.text };
+  if (v.name) o.name = v.name;
+  if (v.role) o.role = v.role;
+  return o;
+}
 function fold(s) { return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim(); }
 
 export class Said extends DurableObject {
@@ -68,6 +77,8 @@ export class Said extends DurableObject {
     if (w.f.includes(f)) return { ok: false, why: "same" };
     const id = keyOf(t);
     const rec = { id: id.slice(2), at: t, d: r.d, c: r.c || "??", ct: r.ct || "??", text: r.text, state: "new", done: 0 };
+    if (typeof r.name === "string" && r.name) rec.name = r.name;
+    if (typeof r.role === "string" && r.role) rec.role = r.role;
     w.n++; w.f.push(f);
     await this.ctx.storage.put({ [id]: rec, [wk]: w, n: n + 1 });
     if (!(await this.ctx.storage.getAlarm())) await this.ctx.storage.setAlarm(t + this.every);
@@ -82,7 +93,7 @@ export class Said extends DurableObject {
     const out = [];
     const o = { prefix: "l:", reverse: true, limit: 2000, start: "l:" + from.toString(36).padStart(9, "0"), end: "l:" + to.toString(36).padStart(9, "0") + "~" };
     for (const v of (await this.ctx.storage.list(o)).values()) {
-      if (v.d === d && v.state === "ok") out.push({ c: v.c, text: v.text });
+      if (v.d === d && v.state === "ok") out.push(pub(v));
       if (out.length >= SAID_SHOWN) break;
     }
     return out;
@@ -96,7 +107,7 @@ export class Said extends DurableObject {
       .filter((v) => v.state === "ok")
       .sort((x, y) => (y.done || y.at) - (x.done || x.at))
       .slice(0, SAID_SHOWN);
-    return got.map((v) => ({ c: v.c, text: v.text }));
+    return got.map(pub);
   }
 
   /* for the desk: the lines newest first, 200 at a time; state "new" alone when asked */

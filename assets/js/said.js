@@ -19,6 +19,8 @@
   var MAX = 140;
   var SHOW = 1;                       // lines on the home page's box (a half of a row, beside the Game Room)
   var SHOW_CARD = 4;                  // lines under the question on the finish card
+  var NAME_MAX = 40, ROLE_MAX = 60;   // the optional name and "I am a…" (the server has the same limits)
+  var ROLES = ["student", "teacher", "parent", "researcher", "curious mind", "gamer"];   // examples to tap
 
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -30,9 +32,16 @@
   function lineEl(x) {
     var li = el("li", "said-line");
     if (W.countryName(x.c)) li.appendChild(W.flagEl(x.c));
+    var body = el("span", "said-body");
     var t = el("span", "said-text", x.text);
     t.dir = "auto";
-    li.appendChild(t);
+    body.appendChild(t);
+    /* who wrote it, when they said (20 Oct 2026): a name and an "I am a…", each only if the player typed it */
+    var by = [];
+    if (typeof x.name === "string" && x.name) by.push(x.name);
+    if (typeof x.role === "string" && x.role) by.push(x.role);
+    if (by.length) { var b = el("span", "said-by", by.join(" \u00b7 ")); b.dir = "auto"; body.appendChild(b); }
+    li.appendChild(body);
     return li;
   }
   function linesEl(lines, n) {
@@ -67,6 +76,23 @@
     ta.rows = 2; ta.maxLength = MAX; ta.placeholder = "I didn’t know that…";
     ta.setAttribute("aria-label", "What surprised you today?");
     form.appendChild(ta);
+    /* two optional lines about the writer; they show next to the line if Khayyam lets it through */
+    var who = el("div", "said-who");
+    var nameIn = el("input", "said-in"); nameIn.type = "text"; nameIn.maxLength = NAME_MAX; nameIn.autocomplete = "off";
+    nameIn.placeholder = "Your name (optional)"; nameIn.setAttribute("aria-label", "Your name, optional");
+    var roleIn = el("input", "said-in"); roleIn.type = "text"; roleIn.maxLength = ROLE_MAX; roleIn.autocomplete = "off";
+    roleIn.placeholder = "I am a\u2026 (optional)"; roleIn.setAttribute("aria-label", "I am a, optional");
+    who.appendChild(nameIn); who.appendChild(roleIn);
+    form.appendChild(who);
+    var egs = el("div", "said-egs");
+    egs.setAttribute("aria-label", "Examples for I am a");
+    ROLES.forEach(function (r) {
+      var c = el("button", "said-eg", r); c.type = "button";
+      c.addEventListener("click", function () { roleIn.value = r; roleIn.focus(); });
+      egs.appendChild(c);
+    });
+    form.appendChild(egs);
+    form.appendChild(el("p", "said-hint", "Both are optional and show with your line if Khayyam lets it through. Write only what you want others to see."));
     var row = el("div", "said-row");
     var left = el("span", "said-left", "");
     var send = el("button", "btn solid said-send", "Send to Khayyam");
@@ -93,7 +119,11 @@
       if (text.length < 3 || send.getAttribute("aria-busy") === "true") return;
       send.setAttribute("aria-busy", "true"); send.textContent = "Sending…"; said("");
       TO.count("said/send");
-      W.post("/said/add", { d: d, text: text }).then(function (r) {
+      var body = { d: d, text: text };
+      var nm = nameIn.value.replace(/\s+/g, " ").trim(), rl = roleIn.value.replace(/\s+/g, " ").trim();
+      if (nm) body.name = nm;
+      if (rl) body.role = rl;
+      W.post("/said/add", body).then(function (r) {
         send.removeAttribute("aria-busy"); send.textContent = "Send to Khayyam";
         if (r.status === 200) {
           form.hidden = true;
@@ -104,6 +134,8 @@
           TO.count("said/sent");
         } else if (r.status === 400 && r.data && r.data.e === "text") {
           said("Only words, please: no links, addresses or emails, 3 to 140 characters.");
+        } else if (r.status === 400 && r.data && (r.data.e === "name" || r.data.e === "role")) {
+          said("No links, emails or @ in " + (r.data.e === "name" ? "the name" : "I am a\u2026") + ", please.");
         } else if (r.status === 400 && r.data && r.data.e === "enough") {
           said("Three lines a day is the most. Thank you for all of them!");
         } else if (r.status === 400 && r.data && r.data.e === "same") {

@@ -1194,6 +1194,8 @@
     top.appendChild(st);
     row.appendChild(top);
     row.appendChild(their("p", "dk-said-text", x.text));
+    /* the name and the "I am a…" the player typed (20 Oct 2026), as text, beside the line they will show with */
+    if (x.name || x.role) row.appendChild(their("p", "dk-from", "By: " + [x.name, x.role].filter(Boolean).map(str).join(" · ")));
     var acts = el("div", "dk-keyrow");
     var yes = el("button", "dk-mini dk-strong", x.state === "ok" ? "Let through ✓" : "Let through");
     yes.type = "button"; yes.disabled = x.state === "ok";

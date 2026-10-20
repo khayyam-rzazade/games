@@ -97,6 +97,39 @@ const admin = (b) => post("/said/admin", Object.assign({ key: ADMIN }, b));
   ok(!v3.lines.some((x) => x.text === "yesterday I learned a lot"), "gone from the page at once");
 }
 
+/* ---------- the optional name and "I am a…" (20 Oct 2026) ---------- */
+{
+  const addN = (text, name, role, o = {}) => post("/said/add", { v: 1, d: today, text, name, role }, o);
+  const r = await addN("a line with a name attached", "Anna Schmidt", "teacher at Lycée Robert Schuman");
+  eq(r.status, 200, "a full name and a school are allowed");
+  const l = await admin({ onlyNew: true });
+  const mine = l.lines.find((x) => x.text === "a line with a name attached");
+  ok(!!mine && mine.name === "Anna Schmidt" && mine.role === "teacher at Lycée Robert Schuman", "the desk sees the name and the role");
+  const v0 = await view(today);
+  ok(!v0.lines.some((x) => x.text === "a line with a name attached"), "nothing shows before it is let through");
+  await admin({ op: "decide", id: mine.id, ok: true });
+  const v = await view(today);
+  const shown = v.lines.find((x) => x.text === "a line with a name attached");
+  ok(!!shown && shown.name === "Anna Schmidt" && shown.role === "teacher at Lycée Robert Schuman", "shown with the name and the role once let through");
+  ok(Object.keys(shown).sort().join(",") === "c,name,role,text", "a page gets the country, the words, the name and the role");
+  const only = await addN("a line with only a role", "", "student");
+  eq(only.status, 200, "a role alone is fine");
+  const nn = await addN("a line with only a name here", "Leyla", undefined);
+  eq(nn.status, 200, "a name alone is fine");
+  const none = await addN("a line with nothing extra here", "", "");
+  eq(none.status, 200, "both empty is fine");
+  const l2 = await admin({ onlyNew: true });
+  const plain = l2.lines.find((x) => x.text === "a line with nothing extra here");
+  ok(!("name" in plain) && !("role" in plain), "an empty one is not kept");
+  eq((await addN("a fine line to try out", "see https://x.com", "")).e, "name", "a link in the name");
+  eq((await addN("a fine line to try out two", "Anna", "write me at a@b.co")).e, "role", "an email in the role");
+  eq((await addN("a fine line to try out three", "@anna", "")).e, "name", "an @handle in the name");
+  eq((await addN("a fine line to try out four", "x".repeat(41), "")).e, "name", "a name that is too long");
+  eq((await addN("a fine line to try out five", "", "y".repeat(61))).e, "role", "a role that is too long");
+  eq((await addN("a fine line to try out six", "!!!", "")).e, "name", "a name of only signs");
+  eq((await addN("a fine line to try out seven", 42, "")).e, "name", "a name that is not text");
+}
+
 /* ---------- the window on the home page: the latest 12 lines let through, any date, the newest on top ---------- */
 {
   const rv = (b) => post("/said/view", Object.assign({ v: 1 }, b));
