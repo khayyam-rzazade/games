@@ -97,6 +97,37 @@ const admin = (b) => post("/said/admin", Object.assign({ key: ADMIN }, b));
   ok(!v3.lines.some((x) => x.text === "yesterday I learned a lot"), "gone from the page at once");
 }
 
+/* ---------- the window on the home page: the latest 12 lines let through, any date, the newest on top ---------- */
+{
+  const rv = (b) => post("/said/view", Object.assign({ v: 1 }, b));
+  const ids = [];
+  for (let i = 1; i <= 13; i++) {
+    const r = await add("window line number " + i + " of thirteen", { ip: someIp() });
+    eq(r.status, 200, "window line " + i + " taken");
+  }
+  const l = await admin({ onlyNew: true });
+  for (let i = 1; i <= 13; i++) {
+    const mine = l.lines.find((x) => x.text === "window line number " + i + " of thirteen");
+    ok(!!mine, "line " + i + " on the desk");
+    eq((await admin({ op: "decide", id: mine.id, ok: true })).status, 200, "line " + i + " let through");
+    await sleep(15);
+  }
+  const v = await rv({ recent: true });
+  eq(v.status, 200, "recent answers");
+  eq(v.lines.length, 12, "at most 12 lines");
+  eq(v.lines[0].text, "window line number 13 of thirteen", "the newest is on top");
+  ok(!v.lines.some((x) => x.text === "window line number 1 of thirteen"), "the 13th pushed the first out");
+  ok(Object.keys(v.lines[0]).sort().join(",") === "c,text", "a page gets the country and the words only");
+  const n2 = (await admin({ onlyNew: true })).lines.find((x) => x.text === "window line number 1 of thirteen");
+  eq(n2, undefined, "(line 1 is no longer new)");
+  const back = await admin({});
+  const one = back.lines.find((x) => x.text === "window line number 13 of thirteen");
+  await admin({ op: "decide", id: one.id, ok: false });
+  const v2 = await rv({ recent: true });
+  ok(!v2.lines.some((x) => x.text === "window line number 13 of thirteen"), "turned down: gone from the window at once");
+  eq(v2.lines.length, 12, "and the first one comes back to make 12 again");
+}
+
 /* ---------- forgotten on time (fast: turned down 4 s, never read 8 s, let through 12 s) ---------- */
 {
   const r = await add("a line that will be forgotten");

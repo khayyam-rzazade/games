@@ -1382,3 +1382,13 @@ dialog.khay:not([open]) { display: none; }
 @media (max-width: 1000px) { .hero > .pairbox { grid-column: auto; margin-top: -16px; } }   /* the hero's gap is 24px there */
 @media (max-width: 700px) { .hero > .pairbox { margin-top: -10px; } }                        /* and 18px */
 @media (max-width: 360px) { .pairbox > .gameroom .gameroom-art { display: none; } }
+
+/* ---------- the home page's "Players said" box opens a window with the latest twelve (20 Oct 2026) ---------- */
+.saidbox[role="button"] { cursor: pointer; }
+.saidbox[role="button"]:focus-visible { outline: 3px solid var(--c, #2D4FC4); outline-offset: 2px; }
+.said-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.said-plus { flex: none; padding: 1px 7px; border-radius: 99px; background: var(--bg); color: var(--soft); font-size: 0.66rem; font-weight: 800; line-height: 1.4; }
+.said-win .sheet { max-width: 30rem; }
+.said-win .said-win-sub { margin: 6px 0 14px; }
+.said-win .said-lines { gap: 8px; }
+.said-win .said-line { background: var(--bg); padding: 10px 12px; }

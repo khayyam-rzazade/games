@@ -5,8 +5,8 @@
       one line. Khayyam reads every line on his desk before it shows anywhere ("Khayyam will read it", so it
       is a person, not a form). Under the question, the lines of today he has already let through, each with
       the flag of its country.
-   2. On the home page, a slim box beside the Game Room, "Players said…": yesterday's line he let through, with
-      its flag. Hidden until there is one; a day without lines shows the latest day that had some.
+   2. On the home page, a slim box beside the Game Room, "Players said…": the newest line he let through, with
+      its flag; a tap opens a window with the latest 12 (any day, the newest on top). Hidden until there is one.
 
    A line is kept with the country of the connection and the date, nothing that identifies anyone (the privacy
    line in the About sheet says so). Every line is put on the page as text (textContent), never as HTML. Nothing
@@ -128,22 +128,56 @@
   }
   TO.saidHook = function (host) { try { card(host); } catch (e) { /* the question is optional */ } };
 
-  /* ---------------- the home page: yesterday's lines ---------------- */
+  /* ---------------- the home page: the newest line, and a window with the latest twelve ----------------
+     Khayyam, 20 Oct 2026: a tap on the box opens a window with the latest 12 lines he let through, whatever their
+     day, the newest on top; the 13th pushes the oldest out. An older server that does not know "recent" answers
+     with the lines of one day instead, and the window shows those. */
+  function win(lines) {
+    var dlg = document.getElementById("said-win");
+    if (dlg) dlg.parentNode.removeChild(dlg);
+    dlg = document.createElement("dialog");
+    dlg.id = "said-win"; dlg.className = "said-win";
+    dlg.setAttribute("aria-labelledby", "said-win-h");
+    var sheet = el("div", "sheet");
+    var x = el("button", "chip round close", "\u00d7"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", "Close");
+    sheet.appendChild(x);
+    var h = el("h2", "", "Players said\u2026"); h.id = "said-win-h";
+    sheet.appendChild(h);
+    sheet.appendChild(el("p", "quiet said-win-sub", "What surprised them. Khayyam reads every line before it shows."));
+    sheet.appendChild(linesEl(lines, 12));
+    dlg.appendChild(sheet);
+    document.body.appendChild(dlg);
+    return dlg;
+  }
+  function openWin(lines) {
+    var dlg = win(lines);
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    TO.count("said/window");
+  }
   function home() {
     var box = document.getElementById("saidbox");
     if (!box) return;
     var d = W.shiftKey ? W.shiftKey(W.todayKey(), -1) : "";
     if (!d) return;
-    W.post("/said/view", { d: d, back: true }).then(function (r) {
+    W.post("/said/view", { d: d, back: true, recent: true }).then(function (r) {
       if (r.status !== 200 || !Array.isArray(r.data.lines) || r.data.lines.length < 1) return;
+      var lines = r.data.lines.filter(function (x) { return x && typeof x.text === "string"; });
+      if (!lines.length) return;
       box.textContent = "";
       var head = el("div", "said-head");                        /* no photo here (Khayyam, 20 Oct 2026: "it'd be too much") */
       var hw = el("div", "said-headwords");
-      hw.appendChild(el("b", "gameroom-h", "Players said…"));
-      hw.appendChild(linesEl(r.data.lines, SHOW));
+      var top = el("div", "said-top");
+      top.appendChild(el("b", "gameroom-h", "Players said\u2026"));
+      if (lines.length > 1) top.appendChild(el("span", "said-plus", "+" + (lines.length - 1)));
+      hw.appendChild(top);
+      hw.appendChild(linesEl(lines, SHOW));
       head.appendChild(hw);
       box.appendChild(head);
-      box.title = "What players said: " + r.data.lines.slice(0, SHOW).map(function (x) { return x.text; }).join(" ");
+      box.setAttribute("role", "button"); box.tabIndex = 0;
+      box.setAttribute("aria-label", "Players said: read the latest " + lines.length + (lines.length === 1 ? " line" : " lines"));
+      function go(e) { e.preventDefault(); try { openWin(lines); } catch (err) { /* the window is optional */ } }
+      box.addEventListener("click", go);
+      box.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") go(e); });
       box.hidden = false;
       TO.count("said/home-seen");
     }, function () { /* the box stays hidden */ });

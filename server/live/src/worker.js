@@ -957,6 +957,13 @@ async function saidView(req, env, o) {
   if (r.e) return refused(r, o);
   const b = r.body, now = Date.now();
   if (b.v !== STATS) return answer(409, { e: "old", v: STATS }, o);
+  if (b.recent === true) {                                            // the latest lines let through, any date
+    const hit = saidViews.get("recent");
+    let lines;
+    if (hit && now - hit.at < 120e3) lines = hit.lines;
+    else { lines = await saidOf(env).recent(); saidViews.set("recent", { at: now, lines }); }
+    return answer(200, { recent: true, lines }, o);
+  }
   if (!dateRead(b.d, now)) return answer(400, { e: "day" }, o);
   let d = b.d, lines = await saidShown(env, d, now);
   if (!lines.length && b.back === true) {

@@ -88,6 +88,17 @@ export class Said extends DurableObject {
     return out;
   }
 
+  /* the latest lines let through, whatever their date (the home page's window, Khayyam 20 Oct 2026: "up to 12
+     lines, in general; the 13th pushes out the first and stays on top"): newest let-through first, at most
+     SAID_SHOWN, as a page may show them: [{ c, text }]. Looks through the newest 2000 lines kept. */
+  async recent() {
+    const got = [...(await this.ctx.storage.list({ prefix: "l:", reverse: true, limit: 2000 })).values()]
+      .filter((v) => v.state === "ok")
+      .sort((x, y) => (y.done || y.at) - (x.done || x.at))
+      .slice(0, SAID_SHOWN);
+    return got.map((v) => ({ c: v.c, text: v.text }));
+  }
+
   /* for the desk: the lines newest first, 200 at a time; state "new" alone when asked */
   async list(o) {
     const q = { prefix: "l:", reverse: true, limit: 200 };
