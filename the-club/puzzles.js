@@ -4364,6 +4364,2897 @@ window.TURNSOUT_DATA["the-club"] = {
      "url": "https://www.britannica.com/biography/Charles-Dickens-British-novelist"
     }
    ]
+  },
+  {
+   "id": "ancient-americas",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Civilisations of the Americas",
+   "stamp": "Ancient Americas",
+   "in": [
+    "Maya",
+    "Aztecs",
+    "Incas"
+   ],
+   "out": [
+    "Babylonians",
+    "Etruscans"
+   ],
+   "door": [
+    [
+     "Olmecs",
+     1
+    ],
+    [
+     "Phoenicians",
+     0
+    ],
+    [
+     "Toltecs",
+     1
+    ],
+    [
+     "Sumerians",
+     0
+    ],
+    [
+     "Hittites",
+     0
+    ]
+   ],
+   "fact": "All flourished in the Americas before Columbus. The Olmecs were the first great civilisation of Mesoamerica.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Pre-Columbian_era"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/facts/Olmec"
+    }
+   ]
+  },
+  {
+   "id": "digestive",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Part of the digestive system",
+   "stamp": "Digestive system",
+   "in": [
+    "Stomach",
+    "Liver",
+    "Pancreas"
+   ],
+   "out": [
+    "Kidney",
+    "Lungs"
+   ],
+   "door": [
+    [
+     "Gallbladder",
+     1
+    ],
+    [
+     "Spleen",
+     0
+    ],
+    [
+     "Oesophagus",
+     1
+    ],
+    [
+     "Thyroid",
+     0
+    ],
+    [
+     "Heart",
+     0
+    ]
+   ],
+   "fact": "Each is part of the digestive system. The liver makes bile, the gallbladder stores it, and the pancreas adds enzymes.",
+   "sources": [
+    {
+     "name": "US National Institutes of Health",
+     "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_systems_of_the_human_body"
+    }
+   ]
+  },
+  {
+   "id": "chess",
+   "topic": "sport",
+   "colour": "magenta",
+   "sign": "Chess pieces",
+   "stamp": "Chess pieces",
+   "in": [
+    "King",
+    "Bishop",
+    "Rook"
+   ],
+   "out": [
+    "Joker",
+    "Ace"
+   ],
+   "door": [
+    [
+     "Knight",
+     1
+    ],
+    [
+     "Jack",
+     0
+    ],
+    [
+     "Pawn",
+     1
+    ],
+    [
+     "Domino",
+     0
+    ],
+    [
+     "Queen",
+     1
+    ]
+   ],
+   "fact": "A chess set has six kinds of piece: king, queen, rook, bishop, knight and pawn.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Chess_piece"
+    },
+    {
+     "name": "FIDE",
+     "url": "https://handbook.fide.com/chapter/E012023"
+    }
+   ]
+  },
+  {
+   "id": "egg-layers",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They lay eggs",
+   "stamp": "Egg-layers",
+   "in": [
+    "Chicken",
+    "Python",
+    "Platypus"
+   ],
+   "out": [
+    "Dolphin",
+    "Kangaroo"
+   ],
+   "door": [
+    [
+     "Echidna",
+     1
+    ],
+    [
+     "Bat",
+     0
+    ],
+    [
+     "Turtle",
+     1
+    ],
+    [
+     "Boa constrictor",
+     0
+    ],
+    [
+     "Horse",
+     0
+    ]
+   ],
+   "fact": "Pythons lay eggs, but boa constrictors give birth to live young. The platypus and the echidna are mammals that lay eggs.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Oviparity"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/articles/what-are-oviparous-animals.html"
+    }
+   ]
+  },
+  {
+   "id": "born-germany",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Born in today's Germany",
+   "stamp": "Born in Germany",
+   "in": [
+    "Bach",
+    "Beethoven",
+    "Brahms"
+   ],
+   "out": [
+    "Mozart",
+    "Chopin"
+   ],
+   "door": [
+    [
+     "Handel",
+     1
+    ],
+    [
+     "Haydn",
+     0
+    ],
+    [
+     "Wagner",
+     1
+    ],
+    [
+     "Vivaldi",
+     0
+    ],
+    [
+     "Schumann",
+     1
+    ]
+   ],
+   "fact": "All were born in what is Germany today. Mozart and Haydn were born in today's Austria, and Chopin in Poland.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Ludwig_van_Beethoven"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/biography/Wolfgang-Amadeus-Mozart"
+    }
+   ]
+  },
+  {
+   "id": "igneous",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Igneous rocks",
+   "stamp": "Igneous rocks",
+   "in": [
+    "Granite",
+    "Basalt",
+    "Obsidian"
+   ],
+   "out": [
+    "Marble",
+    "Sandstone"
+   ],
+   "door": [
+    [
+     "Pumice",
+     1
+    ],
+    [
+     "Limestone",
+     0
+    ],
+    [
+     "Andesite",
+     1
+    ],
+    [
+     "Slate",
+     0
+    ],
+    [
+     "Chalk",
+     0
+    ]
+   ],
+   "fact": "Igneous rocks form when molten rock cools and hardens. Marble and slate are metamorphic; sandstone, limestone and chalk sedimentary.",
+   "sources": [
+    {
+     "name": "US Geological Survey",
+     "url": "https://www.usgs.gov/faqs/what-are-igneous-rocks"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Igneous_rock"
+    }
+   ]
+  },
+  {
+   "id": "med-islands",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "Islands in the Mediterranean",
+   "stamp": "Mediterranean islands",
+   "in": [
+    "Sicily",
+    "Crete",
+    "Cyprus"
+   ],
+   "out": [
+    "Madeira",
+    "Bali"
+   ],
+   "door": [
+    [
+     "Malta",
+     1
+    ],
+    [
+     "Tenerife",
+     0
+    ],
+    [
+     "Sardinia",
+     1
+    ],
+    [
+     "Zanzibar",
+     0
+    ],
+    [
+     "Corsica",
+     1
+    ]
+   ],
+   "fact": "All of them lie in the Mediterranean Sea. Madeira and Tenerife are out in the Atlantic Ocean.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_islands_in_the_Mediterranean"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/articles/biggest-islands-in-the-mediterranean-sea.html"
+    }
+   ]
+  },
+  {
+   "id": "from-wheat",
+   "topic": "food",
+   "colour": "green",
+   "sign": "Made from wheat",
+   "stamp": "From wheat",
+   "in": [
+    "Couscous",
+    "Bulgur",
+    "Seitan"
+   ],
+   "out": [
+    "Polenta",
+    "Quinoa"
+   ],
+   "door": [
+    [
+     "Semolina",
+     1
+    ],
+    [
+     "Tapioca",
+     0
+    ],
+    [
+     "Spaghetti",
+     1
+    ],
+    [
+     "Popcorn",
+     0
+    ],
+    [
+     "Rice noodles",
+     0
+    ]
+   ],
+   "fact": "Couscous and semolina come from durum wheat, bulgur from wheat groats and seitan from wheat gluten. Polenta is cornmeal.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Wheat"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/topic/bulgur"
+    }
+   ]
+  },
+  {
+   "id": "black-sea",
+   "topic": "countries",
+   "colour": "blue",
+   "sign": "On the Black Sea",
+   "stamp": "Black Sea",
+   "in": [
+    "Turkey",
+    "Ukraine",
+    "Romania"
+   ],
+   "out": [
+    "Greece",
+    "Hungary"
+   ],
+   "door": [
+    [
+     "Bulgaria",
+     1
+    ],
+    [
+     "Moldova",
+     0
+    ],
+    [
+     "Georgia",
+     1
+    ],
+    [
+     "Armenia",
+     0
+    ],
+    [
+     "Russia",
+     1
+    ]
+   ],
+   "fact": "Six countries have a coast on the Black Sea: Bulgaria, Georgia, Romania, Russia, Turkey and Ukraine.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Black_Sea"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/articles/which-countries-have-a-coastline-on-the-black-sea.html"
+    }
+   ]
+  },
+  {
+   "id": "palms",
+   "topic": "food",
+   "colour": "green",
+   "sign": "From palm trees",
+   "stamp": "From palms",
+   "in": [
+    "Coconut",
+    "Dates",
+    "Açaí"
+   ],
+   "out": [
+    "Banana",
+    "Pineapple"
+   ],
+   "door": [
+    [
+     "Palm oil",
+     1
+    ],
+    [
+     "Mango",
+     0
+    ],
+    [
+     "Betel nut",
+     1
+    ],
+    [
+     "Olive",
+     0
+    ],
+    [
+     "Papaya",
+     0
+    ]
+   ],
+   "fact": "Coconuts, dates, açaí, palm oil and betel nuts all come from palms. A banana plant is not a palm: it is a giant herb.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Arecaceae"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://britannica.com/plant/palm-tree/Economic-importance"
+    }
+   ]
+  },
+  {
+   "id": "mughals",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Mughal emperors",
+   "stamp": "Mughal emperors",
+   "in": [
+    "Akbar",
+    "Babur",
+    "Shah Jahan"
+   ],
+   "out": [
+    "Ashoka",
+    "Tipu Sultan"
+   ],
+   "door": [
+    [
+     "Aurangzeb",
+     1
+    ],
+    [
+     "Chandragupta",
+     0
+    ],
+    [
+     "Humayun",
+     1
+    ],
+    [
+     "Genghis Khan",
+     0
+    ],
+    [
+     "Jahangir",
+     1
+    ]
+   ],
+   "fact": "They were the first six Mughal emperors, from Babur, the founder, to Aurangzeb. Ashoka ruled the Maurya Empire long before.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_emperors_of_the_Mughal_Empire"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/summary/Mughal-dynasty"
+    }
+   ]
+  },
+  {
+   "id": "energy-units",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Units of energy",
+   "stamp": "Energy units",
+   "in": [
+    "Joule",
+    "Calorie",
+    "Kilowatt-hour"
+   ],
+   "out": [
+    "Watt",
+    "Volt"
+   ],
+   "door": [
+    [
+     "Electronvolt",
+     1
+    ],
+    [
+     "Ampere",
+     0
+    ],
+    [
+     "British thermal unit",
+     1
+    ],
+    [
+     "Newton",
+     0
+    ],
+    [
+     "Ohm",
+     0
+    ]
+   ],
+   "fact": "Each measures energy. The watt measures power, and the kilowatt-hour on a power bill is a unit of energy.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Units_of_energy"
+    },
+    {
+     "name": "NIST",
+     "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes"
+    }
+   ]
+  },
+  {
+   "id": "bears",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are bears",
+   "stamp": "Bears",
+   "in": [
+    "Grizzly bear",
+    "Polar bear",
+    "Giant panda"
+   ],
+   "out": [
+    "Koala",
+    "Red panda"
+   ],
+   "door": [
+    [
+     "Sun bear",
+     1
+    ],
+    [
+     "Raccoon",
+     0
+    ],
+    [
+     "Spectacled bear",
+     1
+    ],
+    [
+     "Wolverine",
+     0
+    ],
+    [
+     "Sloth bear",
+     1
+    ]
+   ],
+   "fact": "They are all bears, and so is the giant panda. The koala is a marsupial, and the red panda is not a bear either.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Bear"
+    },
+    {
+     "name": "Animal Diversity Web",
+     "url": "https://animaldiversity.org/accounts/Ursidae/"
+    }
+   ]
+  },
+  {
+   "id": "brass",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Brass instruments",
+   "stamp": "Brass",
+   "in": [
+    "Trumpet",
+    "Trombone",
+    "Tuba"
+   ],
+   "out": [
+    "Saxophone",
+    "Flute"
+   ],
+   "door": [
+    [
+     "French horn",
+     1
+    ],
+    [
+     "Clarinet",
+     0
+    ],
+    [
+     "Euphonium",
+     1
+    ],
+    [
+     "Oboe",
+     0
+    ],
+    [
+     "Cornet",
+     1
+    ]
+   ],
+   "fact": "They are brass instruments. The saxophone is made of brass, but it is played with a reed, so it counts as a woodwind.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Brass_instrument"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/art/brass-instrument"
+    }
+   ]
+  },
+  {
+   "id": "french-official",
+   "topic": "countries",
+   "colour": "blue",
+   "sign": "French is official",
+   "stamp": "French-speaking",
+   "in": [
+    "France",
+    "Canada",
+    "Monaco"
+   ],
+   "out": [
+    "Algeria",
+    "Vietnam"
+   ],
+   "door": [
+    [
+     "Belgium",
+     1
+    ],
+    [
+     "Tunisia",
+     0
+    ],
+    [
+     "Haiti",
+     1
+    ],
+    [
+     "Egypt",
+     0
+    ],
+    [
+     "Switzerland",
+     1
+    ]
+   ],
+   "fact": "French is an official language by law in each. Algeria and Tunisia use it widely, but not as a legal official language.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_countries_and_territories_where_French_is_an_official_language"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/articles/territories-and-countries-where-french-is-an-official-language.html"
+    }
+   ]
+  },
+  {
+   "id": "onion-family",
+   "topic": "food",
+   "colour": "green",
+   "sign": "The onion family",
+   "stamp": "Onion family",
+   "in": [
+    "Onion",
+    "Garlic",
+    "Leek"
+   ],
+   "out": [
+    "Ginger",
+    "Radish"
+   ],
+   "door": [
+    [
+     "Chives",
+     1
+    ],
+    [
+     "Celery",
+     0
+    ],
+    [
+     "Shallot",
+     1
+    ],
+    [
+     "Turnip",
+     0
+    ],
+    [
+     "Asparagus",
+     0
+    ]
+   ],
+   "fact": "Onions, garlic, leeks, shallots and chives all belong to one genus, Allium. Ginger and radishes come from other families.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Allium"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/plant/Alliaceae"
+    }
+   ]
+  },
+  {
+   "id": "horse-family",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "The horse family",
+   "stamp": "Horse family",
+   "in": [
+    "Horse",
+    "Zebra",
+    "Donkey"
+   ],
+   "out": [
+    "Cow",
+    "Camel"
+   ],
+   "door": [
+    [
+     "Rhino",
+     0
+    ],
+    [
+     "Quagga",
+     1
+    ],
+    [
+     "Tapir",
+     0
+    ],
+    [
+     "Onager",
+     1
+    ],
+    [
+     "Antelope",
+     0
+    ]
+   ],
+   "fact": "Horses, donkeys and zebras make up one family. The quagga was a kind of zebra, and the onager is an Asian wild ass.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Equidae"
+    },
+    {
+     "name": "Animal Diversity Web",
+     "url": "https://animaldiversity.org/accounts/Equidae/"
+    }
+   ]
+  },
+  {
+   "id": "soviet-leaders",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "They led the Soviet Union",
+   "stamp": "Soviet leaders",
+   "in": [
+    "Lenin",
+    "Stalin",
+    "Khrushchev"
+   ],
+   "out": [
+    "Trotsky",
+    "Tito"
+   ],
+   "door": [
+    [
+     "Brezhnev",
+     1
+    ],
+    [
+     "Yeltsin",
+     0
+    ],
+    [
+     "Gorbachev",
+     1
+    ],
+    [
+     "Fidel Castro",
+     0
+    ],
+    [
+     "Ceaușescu",
+     0
+    ]
+   ],
+   "fact": "Each led the Soviet Union, from Lenin to Gorbachev. Yeltsin led Russia after it, and Trotsky never led it.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Leaders_of_the_Soviet_Union"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/biography/Mikhail-Gorbachev"
+    }
+   ]
+  },
+  {
+   "id": "decathlon",
+   "topic": "sport",
+   "colour": "magenta",
+   "sign": "In the decathlon",
+   "stamp": "Decathlon",
+   "in": [
+    "100 metres",
+    "Long jump",
+    "Shot put"
+   ],
+   "out": [
+    "Marathon",
+    "Triple jump"
+   ],
+   "door": [
+    [
+     "Pole vault",
+     1
+    ],
+    [
+     "Hammer throw",
+     0
+    ],
+    [
+     "Javelin",
+     1
+    ],
+    [
+     "Steeplechase",
+     0
+    ],
+    [
+     "High jump",
+     1
+    ]
+   ],
+   "fact": "The decathlon has ten events over two days, from the 100 metres to the 1500 metres.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Decathlon"
+    },
+    {
+     "name": "World Athletics",
+     "url": "https://worldathletics.org/disciplines/combined-events/decathlon"
+    }
+   ]
+  },
+  {
+   "id": "alps",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "In the Alps",
+   "stamp": "The Alps",
+   "in": [
+    "Mont Blanc",
+    "Matterhorn",
+    "Eiger"
+   ],
+   "out": [
+    "Mount Olympus",
+    "Ben Nevis"
+   ],
+   "door": [
+    [
+     "Jungfrau",
+     1
+    ],
+    [
+     "Etna",
+     0
+    ],
+    [
+     "Monte Rosa",
+     1
+    ],
+    [
+     "Elbrus",
+     0
+    ],
+    [
+     "Zugspitze",
+     1
+    ]
+   ],
+   "fact": "All of them stand in the Alps, and Mont Blanc is the highest of them all. Etna is a volcano in Sicily.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Alps"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/mountains/alps-mountain-range.html"
+    }
+   ]
+  },
+  {
+   "id": "weasel-family",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "The weasel family",
+   "stamp": "Weasel family",
+   "in": [
+    "Otter",
+    "Stoat",
+    "Ferret"
+   ],
+   "out": [
+    "Raccoon",
+    "Beaver"
+   ],
+   "door": [
+    [
+     "Wolverine",
+     1
+    ],
+    [
+     "Skunk",
+     0
+    ],
+    [
+     "Mink",
+     1
+    ],
+    [
+     "Meerkat",
+     0
+    ],
+    [
+     "Honey badger",
+     1
+    ]
+   ],
+   "fact": "All belong to the weasel family, with the wolverine and the honey badger. Skunks were moved to a family of their own.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Mustelidae"
+    },
+    {
+     "name": "Animal Diversity Web",
+     "url": "https://animaldiversity.org/accounts/Mustelidae"
+    }
+   ]
+  },
+  {
+   "id": "from-milk",
+   "topic": "food",
+   "colour": "green",
+   "sign": "Made from milk",
+   "stamp": "From milk",
+   "in": [
+    "Cheese",
+    "Yoghurt",
+    "Butter"
+   ],
+   "out": [
+    "Margarine",
+    "Peanut butter"
+   ],
+   "door": [
+    [
+     "Ghee",
+     1
+    ],
+    [
+     "Coconut milk",
+     0
+    ],
+    [
+     "Kefir",
+     1
+    ],
+    [
+     "Mayonnaise",
+     0
+    ],
+    [
+     "Paneer",
+     1
+    ]
+   ],
+   "fact": "Each is made from milk: ghee is clarified butter and paneer a fresh cheese. Most margarine is made from vegetable oil.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Dairy_product"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/print/article/149947"
+    }
+   ]
+  },
+  {
+   "id": "insect-made",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Made by insects",
+   "stamp": "Made by insects",
+   "in": [
+    "Honey",
+    "Silk",
+    "Beeswax"
+   ],
+   "out": [
+    "Pearl",
+    "Wool"
+   ],
+   "door": [
+    [
+     "Shellac",
+     1
+    ],
+    [
+     "Ivory",
+     0
+    ],
+    [
+     "Propolis",
+     1
+    ],
+    [
+     "Amber",
+     0
+    ],
+    [
+     "Royal jelly",
+     1
+    ]
+   ],
+   "fact": "Insects make all of them: bees, silkworms and lac insects. Pearls come from molluscs, and wool from sheep.",
+   "sources": [
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/insect/Insects-as-a-source-of-raw-materials"
+    },
+    {
+     "name": "FAO",
+     "url": "https://www.fao.org/3/X5326E/x5326e0c.htm"
+    }
+   ]
+  },
+  {
+   "id": "new-wonders",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "The New Seven Wonders",
+   "stamp": "New Seven Wonders",
+   "in": [
+    "Petra",
+    "Taj Mahal",
+    "Machu Picchu"
+   ],
+   "out": [
+    "Eiffel Tower",
+    "Stonehenge"
+   ],
+   "door": [
+    [
+     "Great Wall",
+     1
+    ],
+    [
+     "Angkor Wat",
+     0
+    ],
+    [
+     "Christ the Redeemer",
+     1
+    ],
+    [
+     "Acropolis",
+     0
+    ],
+    [
+     "Chichén Itzá",
+     1
+    ]
+   ],
+   "fact": "They were chosen in a worldwide vote in 2007, with the Colosseum. Angkor Wat and the Acropolis did not make it.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/New_7_Wonders_of_the_World"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/list/new-seven-wonders-of-the-world"
+    }
+   ]
+  },
+  {
+   "id": "renewables",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Renewable energy",
+   "stamp": "Renewables",
+   "in": [
+    "Solar power",
+    "Wind power",
+    "Hydropower"
+   ],
+   "out": [
+    "Coal",
+    "Natural gas"
+   ],
+   "door": [
+    [
+     "Geothermal",
+     1
+    ],
+    [
+     "Oil",
+     0
+    ],
+    [
+     "Tidal power",
+     1
+    ],
+    [
+     "Nuclear power",
+     0
+    ],
+    [
+     "Wave power",
+     1
+    ]
+   ],
+   "fact": "Each is a renewable source of energy. Coal, oil and natural gas are not, and neither is nuclear energy.",
+   "sources": [
+    {
+     "name": "US Energy Information Administration",
+     "url": "https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Renewable_energy"
+    }
+   ]
+  },
+  {
+   "id": "assassinated",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "They were assassinated",
+   "stamp": "Assassinated",
+   "in": [
+    "Abraham Lincoln",
+    "Mahatma Gandhi",
+    "John F. Kennedy"
+   ],
+   "out": [
+    "George Washington",
+    "Winston Churchill"
+   ],
+   "door": [
+    [
+     "Julius Caesar",
+     1
+    ],
+    [
+     "Napoleon",
+     0
+    ],
+    [
+     "Martin Luther King",
+     1
+    ],
+    [
+     "Lenin",
+     0
+    ],
+    [
+     "Indira Gandhi",
+     1
+    ]
+   ],
+   "fact": "All were assassinated. Lenin survived being shot in 1918 but died after a series of strokes in 1924.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Assassination"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/topic/assassination"
+    }
+   ]
+  },
+  {
+   "id": "latin-dances",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Dances from Latin America",
+   "stamp": "Latin dances",
+   "in": [
+    "Tango",
+    "Samba",
+    "Merengue"
+   ],
+   "out": [
+    "Flamenco",
+    "Waltz"
+   ],
+   "door": [
+    [
+     "Mambo",
+     1
+    ],
+    [
+     "Charleston",
+     0
+    ],
+    [
+     "Bachata",
+     1
+    ],
+    [
+     "Tarantella",
+     0
+    ],
+    [
+     "Rumba",
+     1
+    ]
+   ],
+   "fact": "All began in Latin America: the tango by the Río de la Plata, the samba in Brazil, merengue in the Dominican Republic.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Latin_dance"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/art/samba-dance"
+    }
+   ]
+  },
+  {
+   "id": "arachnids",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are arachnids",
+   "stamp": "Arachnids",
+   "in": [
+    "Spider",
+    "Scorpion",
+    "Tick"
+   ],
+   "out": [
+    "Ant",
+    "Crab"
+   ],
+   "door": [
+    [
+     "Mite",
+     1
+    ],
+    [
+     "Centipede",
+     0
+    ],
+    [
+     "Tarantula",
+     1
+    ],
+    [
+     "Millipede",
+     0
+    ],
+    [
+     "Harvestman",
+     1
+    ]
+   ],
+   "fact": "They are all arachnids, like mites and harvestmen. Centipedes and millipedes are myriapods, ants are insects and crabs crustaceans.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Arachnid"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/arachnid"
+    }
+   ]
+  },
+  {
+   "id": "red-white-flags",
+   "topic": "countries",
+   "colour": "blue",
+   "sign": "Flag only red and white",
+   "stamp": "Red and white flags",
+   "in": [
+    "Japan",
+    "Poland",
+    "Canada"
+   ],
+   "out": [
+    "Italy",
+    "China"
+   ],
+   "door": [
+    [
+     "Switzerland",
+     1
+    ],
+    [
+     "Germany",
+     0
+    ],
+    [
+     "Denmark",
+     1
+    ],
+    [
+     "Spain",
+     0
+    ],
+    [
+     "Indonesia",
+     1
+    ]
+   ],
+   "fact": "Each of their flags uses only red and white. Italy's adds green, and China's has yellow stars.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_national_flags_of_sovereign_states"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/topic/flag-of-Indonesia"
+    }
+   ]
+  },
+  {
+   "id": "soy",
+   "topic": "food",
+   "colour": "green",
+   "sign": "Made from soybeans",
+   "stamp": "Soy foods",
+   "in": [
+    "Tofu",
+    "Soy sauce",
+    "Miso"
+   ],
+   "out": [
+    "Hummus",
+    "Peanut butter"
+   ],
+   "door": [
+    [
+     "Tempeh",
+     1
+    ],
+    [
+     "Polenta",
+     0
+    ],
+    [
+     "Edamame",
+     1
+    ],
+    [
+     "Couscous",
+     0
+    ],
+    [
+     "Natto",
+     1
+    ]
+   ],
+   "fact": "Tofu, tempeh, miso and natto all start as soybeans. Hummus is made from chickpeas, and polenta from cornmeal.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_soy-based_foods"
+    },
+    {
+     "name": "NDSU Extension",
+     "url": "https://www.ndsu.edu/agriculture/node/2292"
+    }
+   ]
+  },
+  {
+   "id": "hindi-words",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Words from Hindi",
+   "stamp": "From Hindi",
+   "in": [
+    "Shampoo",
+    "Pyjamas",
+    "Jungle"
+   ],
+   "out": [
+    "Tsunami",
+    "Safari"
+   ],
+   "door": [
+    [
+     "Bangle",
+     1
+    ],
+    [
+     "Ketchup",
+     0
+    ],
+    [
+     "Thug",
+     1
+    ],
+    [
+     "Igloo",
+     0
+    ],
+    [
+     "Loot",
+     1
+    ]
+   ],
+   "fact": "All came into English from Hindi. Shampoo comes from a Hindi word meaning to press or knead.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_English_words_of_Hindi_or_Urdu_origin"
+    },
+    {
+     "name": "Etymonline",
+     "url": "https://www.etymonline.com/word/shampoo"
+    }
+   ]
+  },
+  {
+   "id": "gourd-family",
+   "topic": "food",
+   "colour": "green",
+   "sign": "The gourd family",
+   "stamp": "Gourd family",
+   "in": [
+    "Cucumber",
+    "Pumpkin",
+    "Watermelon"
+   ],
+   "out": [
+    "Tomato",
+    "Aubergine"
+   ],
+   "door": [
+    [
+     "Courgette",
+     1
+    ],
+    [
+     "Potato",
+     0
+    ],
+    [
+     "Melon",
+     1
+    ],
+    [
+     "Sweet pepper",
+     0
+    ],
+    [
+     "Butternut squash",
+     1
+    ]
+   ],
+   "fact": "They all belong to the gourd family, with melons, courgettes and squash. Tomatoes and aubergines are nightshades.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Cucurbitaceae"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/topic/list-of-plants-in-the-family-Cucurbitaceae-2038063"
+    }
+   ]
+  },
+  {
+   "id": "primates",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are primates",
+   "stamp": "Primates",
+   "in": [
+    "Lemur",
+    "Baboon",
+    "Human"
+   ],
+   "out": [
+    "Sloth",
+    "Raccoon"
+   ],
+   "door": [
+    [
+     "Tarsier",
+     1
+    ],
+    [
+     "Koala",
+     0
+    ],
+    [
+     "Marmoset",
+     1
+    ],
+    [
+     "Meerkat",
+     0
+    ],
+    [
+     "Aye-aye",
+     1
+    ]
+   ],
+   "fact": "They are all primates, the order of lemurs, tarsiers, monkeys, apes and humans. The aye-aye is a lemur.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Primate"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/primate-mammal"
+    }
+   ]
+  },
+  {
+   "id": "divided-islands",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "Islands split by a border",
+   "stamp": "Divided islands",
+   "in": [
+    "Borneo",
+    "Hispaniola",
+    "New Guinea"
+   ],
+   "out": [
+    "Madagascar",
+    "Iceland"
+   ],
+   "door": [
+    [
+     "Timor",
+     1
+    ],
+    [
+     "Sri Lanka",
+     0
+    ],
+    [
+     "Tierra del Fuego",
+     1
+    ],
+    [
+     "Sicily",
+     0
+    ],
+    [
+     "Saint Martin",
+     1
+    ]
+   ],
+   "fact": "Each island is shared by two or more countries. Borneo is split three ways, between Indonesia, Malaysia and Brunei.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_divided_islands"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/place/Borneo-island-Pacific-Ocean"
+    }
+   ]
+  },
+  {
+   "id": "verdi",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Operas by Verdi",
+   "stamp": "Verdi operas",
+   "in": [
+    "Aida",
+    "La traviata",
+    "Rigoletto"
+   ],
+   "out": [
+    "Carmen",
+    "Tosca"
+   ],
+   "door": [
+    [
+     "Otello",
+     1
+    ],
+    [
+     "La Bohème",
+     0
+    ],
+    [
+     "Nabucco",
+     1
+    ],
+    [
+     "The Magic Flute",
+     0
+    ],
+    [
+     "Falstaff",
+     1
+    ]
+   ],
+   "fact": "Giuseppe Verdi wrote all of them. Tosca and La Bohème are by Puccini, and Carmen by Bizet.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_compositions_by_Giuseppe_Verdi"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/biography/Giuseppe-Verdi"
+    }
+   ]
+  },
+  {
+   "id": "bacteria",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Bacteria cause them",
+   "stamp": "Bacterial diseases",
+   "in": [
+    "Cholera",
+    "Tuberculosis",
+    "Tetanus"
+   ],
+   "out": [
+    "Flu",
+    "Malaria"
+   ],
+   "door": [
+    [
+     "Plague",
+     1
+    ],
+    [
+     "Measles",
+     0
+    ],
+    [
+     "Leprosy",
+     1
+    ],
+    [
+     "Rabies",
+     0
+    ],
+    [
+     "Typhoid",
+     1
+    ]
+   ],
+   "fact": "Bacteria cause each of them. Flu and measles come from viruses, and malaria from a parasite.",
+   "sources": [
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/science/bacterial-disease"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Pathogenic_bacteria"
+    }
+   ]
+  },
+  {
+   "id": "camel-family",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "The camel family",
+   "stamp": "Camel family",
+   "in": [
+    "Dromedary",
+    "Llama",
+    "Alpaca"
+   ],
+   "out": [
+    "Yak",
+    "Horse"
+   ],
+   "door": [
+    [
+     "Vicuña",
+     1
+    ],
+    [
+     "Goat",
+     0
+    ],
+    [
+     "Bactrian camel",
+     1
+    ],
+    [
+     "Okapi",
+     0
+    ],
+    [
+     "Guanaco",
+     1
+    ]
+   ],
+   "fact": "Llamas, alpacas, vicuñas and guanacos are the camels of South America: all belong to the camel family.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Camelidae"
+    },
+    {
+     "name": "Animal Diversity Web",
+     "url": "https://animaldiversity.org/accounts/camelidae/"
+    }
+   ]
+  },
+  {
+   "id": "soviet-space",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Sent to space by the USSR",
+   "stamp": "Soviet space",
+   "in": [
+    "Sputnik 1",
+    "Yuri Gagarin",
+    "Laika"
+   ],
+   "out": [
+    "Apollo 11",
+    "Neil Armstrong"
+   ],
+   "door": [
+    [
+     "Valentina Tereshkova",
+     1
+    ],
+    [
+     "Hubble",
+     0
+    ],
+    [
+     "Vostok 1",
+     1
+    ],
+    [
+     "Voyager 1",
+     0
+    ],
+    [
+     "John Glenn",
+     0
+    ]
+   ],
+   "fact": "The Soviet Union sent them all to space: the first satellite, the first animal in orbit, and the first man and woman.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Soviet_space_program"
+    },
+    {
+     "name": "NASA",
+     "url": "https://www.nasa.gov/history/65-years-ago-sputnik-ushers-in-the-space-age/"
+    }
+   ]
+  },
+  {
+   "id": "borders-china",
+   "topic": "countries",
+   "colour": "blue",
+   "sign": "They border China",
+   "stamp": "Borders China",
+   "in": [
+    "India",
+    "Russia",
+    "Mongolia"
+   ],
+   "out": [
+    "Japan",
+    "Thailand"
+   ],
+   "door": [
+    [
+     "Vietnam",
+     1
+    ],
+    [
+     "South Korea",
+     0
+    ],
+    [
+     "Kazakhstan",
+     1
+    ],
+    [
+     "Bangladesh",
+     0
+    ],
+    [
+     "Nepal",
+     1
+    ]
+   ],
+   "fact": "China shares a land border with each of them. Japan and South Korea are its neighbours only across the sea.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Borders_of_China"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/geography/countries-bordering-the-highest-number-of-other-countries-55526.html"
+    }
+   ]
+  },
+  {
+   "id": "carrot-family",
+   "topic": "food",
+   "colour": "green",
+   "sign": "The carrot family",
+   "stamp": "Carrot family",
+   "in": [
+    "Carrot",
+    "Celery",
+    "Parsley"
+   ],
+   "out": [
+    "Potato",
+    "Lettuce"
+   ],
+   "door": [
+    [
+     "Coriander",
+     1
+    ],
+    [
+     "Spinach",
+     0
+    ],
+    [
+     "Cumin",
+     1
+    ],
+    [
+     "Mint",
+     0
+    ],
+    [
+     "Fennel",
+     1
+    ]
+   ],
+   "fact": "Carrots, celery and parsley belong to one family, and so do coriander, cumin and fennel.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Apiaceae"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/plant/Apiaceae"
+    }
+   ]
+  },
+  {
+   "id": "chinese-dynasties",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Chinese dynasties",
+   "stamp": "Chinese dynasties",
+   "in": [
+    "Han",
+    "Tang",
+    "Ming"
+   ],
+   "out": [
+    "Mughal",
+    "Ottoman"
+   ],
+   "door": [
+    [
+     "Qing",
+     1
+    ],
+    [
+     "Joseon",
+     0
+    ],
+    [
+     "Song",
+     1
+    ],
+    [
+     "Abbasid",
+     0
+    ],
+    [
+     "Yuan",
+     1
+    ]
+   ],
+   "fact": "Each is a Chinese dynasty: the Ming ruled from 1368 to 1644, then the Qing, China's last. Joseon ruled Korea.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Dynasties_in_Chinese_history"
+    },
+    {
+     "name": "Smithsonian National Museum of Asian Art",
+     "url": "https://asia.si.edu/education/educator-resources/teaching-china-with-the-smithsonian/interactives/timelines/timeline-of-chinese-history-art-and-culture/"
+    }
+   ]
+  },
+  {
+   "id": "austen",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Novels by Jane Austen",
+   "stamp": "Jane Austen",
+   "in": [
+    "Pride and Prejudice",
+    "Emma",
+    "Persuasion"
+   ],
+   "out": [
+    "Jane Eyre",
+    "Wuthering Heights"
+   ],
+   "door": [
+    [
+     "Sense and Sensibility",
+     1
+    ],
+    [
+     "Middlemarch",
+     0
+    ],
+    [
+     "Mansfield Park",
+     1
+    ],
+    [
+     "Little Women",
+     0
+    ],
+    [
+     "Northanger Abbey",
+     1
+    ]
+   ],
+   "fact": "Jane Austen wrote six novels, and these are among them. Jane Eyre and Wuthering Heights are by the Brontë sisters.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Jane_Austen"
+    },
+    {
+     "name": "Jane Austen's House",
+     "url": "https://janeaustens.house/?p=251"
+    }
+   ]
+  },
+  {
+   "id": "simple-machines",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "Simple machines",
+   "stamp": "Simple machines",
+   "in": [
+    "Lever",
+    "Pulley",
+    "Wedge"
+   ],
+   "out": [
+    "Spring",
+    "Magnet"
+   ],
+   "door": [
+    [
+     "Screw",
+     1
+    ],
+    [
+     "Engine",
+     0
+    ],
+    [
+     "Inclined plane",
+     1
+    ],
+    [
+     "Battery",
+     0
+    ],
+    [
+     "Wheel and axle",
+     1
+    ]
+   ],
+   "fact": "These are the classic simple machines: the lever, wheel and axle, pulley, inclined plane, wedge and screw.",
+   "sources": [
+    {
+     "name": "NASA",
+     "url": "https://www.nasa.gov/wp-content/uploads/2023/03/simple-machines-classroom-connection-508.pdf"
+    },
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Simple_machine"
+    }
+   ]
+  },
+  {
+   "id": "fungi",
+   "topic": "food",
+   "colour": "green",
+   "sign": "They are fungi",
+   "stamp": "Fungi",
+   "in": [
+    "Mushroom",
+    "Yeast",
+    "Truffle"
+   ],
+   "out": [
+    "Seaweed",
+    "Moss"
+   ],
+   "door": [
+    [
+     "Morel",
+     1
+    ],
+    [
+     "Spirulina",
+     0
+    ],
+    [
+     "Chanterelle",
+     1
+    ],
+    [
+     "Nori",
+     0
+    ],
+    [
+     "Penicillium",
+     1
+    ]
+   ],
+   "fact": "They are all fungi, like moulds. Seaweed and nori are algae, and spirulina is made from cyanobacteria.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fungus"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/print/article/222357"
+    }
+   ]
+  },
+  {
+   "id": "bones",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "They are bones",
+   "stamp": "Bones",
+   "in": [
+    "Femur",
+    "Clavicle",
+    "Tibia"
+   ],
+   "out": [
+    "Tendon",
+    "Cartilage"
+   ],
+   "door": [
+    [
+     "Patella",
+     1
+    ],
+    [
+     "Ligament",
+     0
+    ],
+    [
+     "Stapes",
+     1
+    ],
+    [
+     "Cornea",
+     0
+    ],
+    [
+     "Sternum",
+     1
+    ]
+   ],
+   "fact": "They are all bones, among the 206 of an adult skeleton. The stapes, deep inside the ear, is one of them.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_bones_of_the_human_skeleton"
+    },
+    {
+     "name": "Cleveland Clinic",
+     "url": "https://my.clevelandclinic.org/health/body/21048-skeletal-system"
+    }
+   ]
+  },
+  {
+   "id": "deserts",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "They are deserts",
+   "stamp": "Deserts",
+   "in": [
+    "Sahara",
+    "Gobi",
+    "Atacama"
+   ],
+   "out": [
+    "Amazon",
+    "Serengeti"
+   ],
+   "door": [
+    [
+     "Namib",
+     1
+    ],
+    [
+     "Borneo",
+     0
+    ],
+    [
+     "Antarctica",
+     1
+    ],
+    [
+     "Pampas",
+     0
+    ],
+    [
+     "Mojave",
+     1
+    ]
+   ],
+   "fact": "A desert is a place with very little rain, not always a hot one. By that measure Antarctica is the largest desert of all.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_deserts"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/articles/10-largest-deserts-in-the-world.html"
+    }
+   ]
+  },
+  {
+   "id": "snakes",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are snakes",
+   "stamp": "Snakes",
+   "in": [
+    "Cobra",
+    "Python",
+    "Rattlesnake"
+   ],
+   "out": [
+    "Slow worm",
+    "Eel"
+   ],
+   "door": [
+    [
+     "Anaconda",
+     1
+    ],
+    [
+     "Caecilian",
+     0
+    ],
+    [
+     "Black mamba",
+     1
+    ],
+    [
+     "Komodo dragon",
+     0
+    ],
+    [
+     "Viper",
+     1
+    ]
+   ],
+   "fact": "They are all snakes. The slow worm is a lizard without legs, and the caecilian an amphibian.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Snake"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/snake"
+    }
+   ]
+  },
+  {
+   "id": "grimm",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Collected by the Grimms",
+   "stamp": "Brothers Grimm",
+   "in": [
+    "Snow White",
+    "Hansel and Gretel",
+    "Rapunzel"
+   ],
+   "out": [
+    "The Little Mermaid",
+    "Pinocchio"
+   ],
+   "door": [
+    [
+     "Rumpelstiltskin",
+     1
+    ],
+    [
+     "The Ugly Duckling",
+     0
+    ],
+    [
+     "The Frog Prince",
+     1
+    ],
+    [
+     "Aladdin",
+     0
+    ],
+    [
+     "Peter Pan",
+     0
+    ]
+   ],
+   "fact": "Jacob and Wilhelm Grimm collected all of them. The Little Mermaid and The Ugly Duckling are by Hans Christian Andersen.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Grimms%27_Fairy_Tales"
+    },
+    {
+     "name": "deutschland.de",
+     "url": "https://www.deutschland.de/en/topic/culture/grimms-fairy-tales-germany-significance-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "own-right",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Ruled in their own right",
+   "stamp": "In their own right",
+   "in": [
+    "Elizabeth I",
+    "Queen Victoria",
+    "Catherine the Great"
+   ],
+   "out": [
+    "Marie Antoinette",
+    "Anne Boleyn"
+   ],
+   "door": [
+    [
+     "Isabella of Castile",
+     1
+    ],
+    [
+     "Joséphine",
+     0
+    ],
+    [
+     "Mary I",
+     1
+    ],
+    [
+     "Catherine of Aragon",
+     0
+    ],
+    [
+     "Cleopatra",
+     1
+    ]
+   ],
+   "fact": "Each ruled in her own right. Marie Antoinette, Anne Boleyn and Joséphine were queens or empresses only as wives of rulers.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_female_monarchs"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/biography/Mary-I"
+    }
+   ]
+  },
+  {
+   "id": "daisy-family",
+   "topic": "food",
+   "colour": "green",
+   "sign": "The daisy family",
+   "stamp": "Daisy family",
+   "in": [
+    "Lettuce",
+    "Artichoke",
+    "Sunflower seeds"
+   ],
+   "out": [
+    "Spinach",
+    "Cabbage"
+   ],
+   "door": [
+    [
+     "Chamomile",
+     1
+    ],
+    [
+     "Basil",
+     0
+    ],
+    [
+     "Tarragon",
+     1
+    ],
+    [
+     "Rocket",
+     0
+    ],
+    [
+     "Endive",
+     1
+    ]
+   ],
+   "fact": "Lettuce, artichokes, endive, tarragon and chamomile all belong to the daisy family, like the sunflower.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Asteraceae"
+    },
+    {
+     "name": "Royal Horticultural Society",
+     "url": "https://www.rhs.org.uk/plants/plant-families/asteraceae-plant-family"
+    }
+   ]
+  },
+  {
+   "id": "great-lakes",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "North America's Great Lakes",
+   "stamp": "Great Lakes",
+   "in": [
+    "Lake Superior",
+    "Lake Michigan",
+    "Lake Huron"
+   ],
+   "out": [
+    "Lake Victoria",
+    "Lake Baikal"
+   ],
+   "door": [
+    [
+     "Lake Erie",
+     1
+    ],
+    [
+     "Lake Titicaca",
+     0
+    ],
+    [
+     "Lake Ontario",
+     1
+    ],
+    [
+     "Lake Tahoe",
+     0
+    ],
+    [
+     "Lake Winnipeg",
+     0
+    ]
+   ],
+   "fact": "North America has five Great Lakes: Superior, Michigan, Huron, Erie and Ontario. Africa has Great Lakes too, such as Victoria.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Great_Lakes"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/lakes/great-lakes.html"
+    }
+   ]
+  },
+  {
+   "id": "only-australia",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "Wild only in Australia",
+   "stamp": "Only in Australia",
+   "in": [
+    "Koala",
+    "Wombat",
+    "Platypus"
+   ],
+   "out": [
+    "Opossum",
+    "Raccoon"
+   ],
+   "door": [
+    [
+     "Emu",
+     1
+    ],
+    [
+     "Kiwi",
+     0
+    ],
+    [
+     "Tasmanian devil",
+     1
+    ],
+    [
+     "Lemur",
+     0
+    ],
+    [
+     "Panda",
+     0
+    ]
+   ],
+   "fact": "In the wild, all of them live only in Australia. The kiwi lives only in New Zealand, and opossums in the Americas.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fauna_of_Australia"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/animals/11-iconic-animals-that-live-only-in-australia.html"
+    }
+   ]
+  },
+  {
+   "id": "dutch-words",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "Words from Dutch",
+   "stamp": "From Dutch",
+   "in": [
+    "Cookie",
+    "Boss",
+    "Waffle"
+   ],
+   "out": [
+    "Hamburger",
+    "Kindergarten"
+   ],
+   "door": [
+    [
+     "Brandy",
+     1
+    ],
+    [
+     "Pretzel",
+     0
+    ],
+    [
+     "Easel",
+     1
+    ],
+    [
+     "Bagel",
+     0
+    ],
+    [
+     "Landscape",
+     1
+    ]
+   ],
+   "fact": "All came into English from Dutch: cookie from koekje, little cake, and boss from baas, a master.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_English_words_of_Dutch_origin"
+    },
+    {
+     "name": "Etymonline",
+     "url": "https://www.etymonline.com/word/landscape"
+    }
+   ]
+  },
+  {
+   "id": "halogens",
+   "topic": "science",
+   "colour": "teal",
+   "sign": "They are halogens",
+   "stamp": "Halogens",
+   "in": [
+    "Fluorine",
+    "Chlorine",
+    "Iodine"
+   ],
+   "out": [
+    "Neon",
+    "Sulphur"
+   ],
+   "door": [
+    [
+     "Bromine",
+     1
+    ],
+    [
+     "Oxygen",
+     0
+    ],
+    [
+     "Astatine",
+     1
+    ],
+    [
+     "Nitrogen",
+     0
+    ],
+    [
+     "Carbon",
+     0
+    ]
+   ],
+   "fact": "They are halogens, the elements of group 17 of the periodic table. Neon is a noble gas.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Halogen"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/science/halogen"
+    }
+   ]
+  },
+  {
+   "id": "louvre",
+   "topic": "culture",
+   "colour": "magenta",
+   "sign": "In the Louvre",
+   "stamp": "The Louvre",
+   "in": [
+    "Mona Lisa",
+    "Venus de Milo",
+    "Winged Victory"
+   ],
+   "out": [
+    "The Starry Night",
+    "The Night Watch"
+   ],
+   "door": [
+    [
+     "The Raft of the Medusa",
+     1
+    ],
+    [
+     "The Birth of Venus",
+     0
+    ],
+    [
+     "Code of Hammurabi",
+     1
+    ],
+    [
+     "Guernica",
+     0
+    ],
+    [
+     "The Scream",
+     0
+    ]
+   ],
+   "fact": "All of them are in the Louvre, in Paris. The Starry Night is in New York, and The Night Watch in Amsterdam.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_works_in_the_Louvre"
+    },
+    {
+     "name": "Louvre Museum",
+     "url": "https://api-www.louvre.fr/sites/default/files/2025-09/2025-chefsdoeuvres-ENG-light.pdf"
+    }
+   ]
+  },
+  {
+   "id": "henry-wives",
+   "topic": "history",
+   "colour": "violet",
+   "sign": "Wives of Henry VIII",
+   "stamp": "Henry VIII's wives",
+   "in": [
+    "Anne Boleyn",
+    "Catherine of Aragon",
+    "Jane Seymour"
+   ],
+   "out": [
+    "Mary I",
+    "Elizabeth I"
+   ],
+   "door": [
+    [
+     "Anne of Cleves",
+     1
+    ],
+    [
+     "Queen Victoria",
+     0
+    ],
+    [
+     "Catherine Parr",
+     1
+    ],
+    [
+     "Marie Antoinette",
+     0
+    ],
+    [
+     "Catherine Howard",
+     1
+    ]
+   ],
+   "fact": "Henry VIII had six wives, from Catherine of Aragon in 1509 to Catherine Parr in 1543. Mary I and Elizabeth I were his daughters.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Wives_of_Henry_VIII"
+    },
+    {
+     "name": "Royal Museums Greenwich",
+     "url": "https://www.rmg.co.uk/stories/royal-history/who-were-henry-viiis-wives"
+    }
+   ]
+  },
+  {
+   "id": "amphibians",
+   "topic": "animals",
+   "colour": "red",
+   "sign": "They are amphibians",
+   "stamp": "Amphibians",
+   "in": [
+    "Frog",
+    "Toad",
+    "Salamander"
+   ],
+   "out": [
+    "Lizard",
+    "Crocodile"
+   ],
+   "door": [
+    [
+     "Newt",
+     1
+    ],
+    [
+     "Gecko",
+     0
+    ],
+    [
+     "Axolotl",
+     1
+    ],
+    [
+     "Turtle",
+     0
+    ],
+    [
+     "Caecilian",
+     1
+    ]
+   ],
+   "fact": "They are all amphibians, and so are legless caecilians. Lizards, geckos and crocodiles are reptiles.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Amphibian"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/animal/amphibian"
+    }
+   ]
+  },
+  {
+   "id": "african-rivers",
+   "topic": "places",
+   "colour": "blue",
+   "sign": "Rivers of Africa",
+   "stamp": "African rivers",
+   "in": [
+    "Nile",
+    "Congo",
+    "Niger"
+   ],
+   "out": [
+    "Amazon",
+    "Ganges"
+   ],
+   "door": [
+    [
+     "Zambezi",
+     1
+    ],
+    [
+     "Mekong",
+     0
+    ],
+    [
+     "Limpopo",
+     1
+    ],
+    [
+     "Volga",
+     0
+    ],
+    [
+     "Orange River",
+     1
+    ]
+   ],
+   "fact": "All of them are rivers of Africa. The Nile is the longest in Africa; the Amazon is in South America and the Ganges in Asia.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/List_of_rivers_of_Africa"
+    },
+    {
+     "name": "WorldAtlas",
+     "url": "https://www.worldatlas.com/rivers/10-longest-rivers-in-africa.html"
+    }
+   ]
+  },
+  {
+   "id": "cashew-family",
+   "topic": "food",
+   "colour": "green",
+   "sign": "The cashew family",
+   "stamp": "Cashew family",
+   "in": [
+    "Cashew",
+    "Mango",
+    "Pistachio"
+   ],
+   "out": [
+    "Almond",
+    "Walnut"
+   ],
+   "door": [
+    [
+     "Sumac",
+     1
+    ],
+    [
+     "Hazelnut",
+     0
+    ],
+    [
+     "Pink peppercorn",
+     1
+    ],
+    [
+     "Peanut",
+     0
+    ],
+    [
+     "Coconut",
+     0
+    ]
+   ],
+   "fact": "Mangoes and pistachios belong to the cashew family, and so do sumac and the pink peppercorn.",
+   "sources": [
+    {
+     "name": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Anacardiaceae"
+    },
+    {
+     "name": "Britannica",
+     "url": "https://www.britannica.com/plant/Anacardiaceae"
+    }
+   ]
   }
  ]
 };

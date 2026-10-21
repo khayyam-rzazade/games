@@ -629,7 +629,7 @@ function consentCard(a, b) {
   const acts = el('div', 'fo-actions');
   const yes = el('button', 'btn solid', cc.yes); yes.type = 'button';
   const no = el('button', 'btn ghost', cc.no); no.type = 'button';
-  acts.appendChild(yes); acts.appendChild(no); w.appendChild(acts);
+  acts.appendChild(no); acts.appendChild(yes); w.appendChild(acts);        /* yes on the right, under the thumb (K, 22 Oct) */
   const status = el('p', 'fo-status', ''); w.appendChild(status);
   const cnt = el('p', 'fo-consent-counter', ''); w.appendChild(cnt);
   api('/counter').then((r) => { if (r && r.yes > 100) cnt.textContent = cc.counter.replace('{n}', fmt(r.yes)).replace('{c}', fmt(r.countries)); }).catch(() => {});
