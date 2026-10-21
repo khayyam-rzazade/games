@@ -1,0 +1,27 @@
+/* Find out about yourself: the Worker's settings (B1, 21 Oct 2026). Khayyam deploys it the same way as
+   logicers-live: in Cloudflare's dashboard a Worker named logicers-findout connected to the GitHub
+   repository with the root directory server/findout and the watch path server/findout/*; Workers Builds
+   reads this file and runs "npx wrangler deploy" on every push that changes the folder.
+   Before the first deploy, one thing is made by hand: the D1 database (Storage & Databases, D1, Create:
+   name logicers-findout), and its id is pasted below. The tables make themselves on the first request.
+   Secrets, set once in the dashboard (Settings, Variables and Secrets), never here:
+     ADMIN_KEY         a long password of your own (32 random characters or more): the CSV export
+     TURNSTILE_SECRET  the Turnstile widget's secret key; while it is unset, uploads are taken without a
+                       token (fine for the trial) and /health says "turnstile": false
+   ALLOW_ORIGINS is a plain variable: the sites that may call. "localhost" lets a page on your own computer
+   call the live server for a test; remove it after the trial if you like.
+   Workers Logs and traces stay OFF: the privacy lines promise that nothing else is kept. */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-findout",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "triggers": { "crons": ["7 * * * *"] },
+  "vars": { "ALLOW_ORIGINS": "https://logicers.com localhost" },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "logicers-findout", "database_id": "PASTE THE ID FROM THE DASHBOARD HERE" }
+  ]
+}

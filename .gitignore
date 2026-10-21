@@ -20,3 +20,7 @@ same-street/photos/f133-*.jpg
 server/live/node_modules/
 server/live/.wrangler/
 server/live/.dev.vars
+# The find-out server's tools, as for server/live: never pushed.
+server/findout/node_modules/
+server/findout/.wrangler/
+server/findout/.dev.vars

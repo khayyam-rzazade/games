@@ -1,0 +1,14 @@
+{
+  "name": "logicers-findout",
+  "private": true,
+  "type": "module",
+  "description": "Find out about yourself: the server (a Cloudflare Worker with a D1 database).",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node --test test/*.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

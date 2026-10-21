@@ -2480,6 +2480,1187 @@ window.TURNSOUT_DATA["long-lost-cousin"] = {
     {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Rosids"},
     {"name": "Missouri Botanical Garden", "url": "https://www.mobot.org/MOBOT/research/APweb/orders/rosalesweb.htm"}
    ]
+  },
+  {
+   "id": "pig",
+   "subject": "pig",
+   "options": [
+    "horse",
+    "rabbit",
+    "hippo"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "red",
+   "fact": "Pigs and hippos are both even-toed hoofed mammals. Horses have an odd number of toes, on the same big branch. Rabbits are on another one.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Even-toed_ungulate"},
+    {"name": "University of Western Australia", "url": "https://www.uwa.edu.au/study/-/media/Faculties/Science/Docs/Mammalian-clades.pdf"}
+   ]
+  },
+  {
+   "id": "millipede",
+   "subject": "millipede",
+   "options": [
+    "centipede",
+    "earthworm",
+    "woodlouse"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "magenta",
+   "fact": "Millipedes and centipedes are both myriapods. Woodlice are crustaceans, other arthropods. Earthworms are not arthropods at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Mandibulata"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/myriapod"}
+   ]
+  },
+  {
+   "id": "mastodon",
+   "subject": "mastodon",
+   "options": [
+    "hyrax",
+    "rhino",
+    "mammoth"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "red",
+   "fact": "Mastodons and mammoths were both relatives of elephants. Hyraxes are small African cousins of elephants. Rhinos only look the part.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Mastodon"},
+    {"name": "UC Museum of Paleontology", "url": "https://ucmp.berkeley.edu/mammal/mesaxonia/proboscidea.html"}
+   ]
+  },
+  {
+   "id": "great_white",
+   "subject": "great_white",
+   "options": [
+    "dolphin",
+    "octopus",
+    "ray"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "blue",
+   "fact": "Sharks and rays are close kin, with skeletons of cartilage. Dolphins look like sharks but are mammals. The octopus has no backbone at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Chondrichthyes"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/fish"}
+   ]
+  },
+  {
+   "id": "hornbill",
+   "subject": "hornbill",
+   "options": [
+    "toucan",
+    "parrot",
+    "chicken"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "violet",
+   "fact": "Hornbills and toucans belong to the same group of landbirds. Parrots are landbirds from another branch. Chickens are further away.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Picocoraciae"},
+    {"name": "Science (copy at Mississippi State University)", "url": "https://www.igbb.msstate.edu/downloads/Jarvis_et_al_2014.pdf"}
+   ]
+  },
+  {
+   "id": "chili",
+   "subject": "chili",
+   "options": [
+    "tomato",
+    "moss",
+    "oak"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "green",
+   "fact": "Chilis and tomatoes are both nightshades. Oaks are flowering plants too. Moss has no flowers at all.",
+   "sources": [
+    {"name": "Britannica", "url": "https://www.britannica.com/plant/Solanaceae"},
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Solanaceae"}
+   ]
+  },
+  {
+   "id": "salamander",
+   "subject": "salamander",
+   "options": [
+    "lizard",
+    "frog",
+    "axolotl"
+   ],
+   "rank": [
+    2,
+    1,
+    0
+   ],
+   "colour": "teal",
+   "fact": "The axolotl is a salamander. Frogs are the salamanders' closest relatives. Lizards look like salamanders, but they are reptiles.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Batrachia"},
+    {"name": "Britannica", "url": "https://www.britannica.com/print/article/46337"}
+   ]
+  },
+  {
+   "id": "heron",
+   "subject": "heron",
+   "options": [
+    "crane",
+    "stork",
+    "ostrich"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "violet",
+   "fact": "Herons and storks are both in the big group of waterbirds. Cranes only look like herons: they belong with the rails. Ostriches are further still.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Aequornithes"},
+    {"name": "Science (copy at the University of Florida)", "url": "https://earlybird.biology.ufl.edu/wp-content/uploads/sites/557/Science-2008-Hackett-1763-8.pdf"}
+   ]
+  },
+  {
+   "id": "sponge",
+   "subject": "sponge",
+   "options": [
+    "mushroom",
+    "moss",
+    "coral"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "blue",
+   "fact": "Sponges are animals, like corals. Mushrooms are fungi, which are closer to animals than plants are. Moss is a plant.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Opisthokont"},
+    {"name": "Digital Atlas of Ancient Life", "url": "https://www.digitalatlasofancientlife.org/learn/animal-phylogeny/"}
+   ]
+  },
+  {
+   "id": "moth",
+   "subject": "moth",
+   "options": [
+    "dragonfly",
+    "housefly",
+    "butterfly"
+   ],
+   "rank": [
+    2,
+    1,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Moths and butterflies belong to the same order of insects. Flies also grow up through a pupa. Dragonflies are an older branch.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Holometabola"},
+    {"name": "Australian Museum", "url": "https://australian.museum/learn/animals/insects/moths-butterflies-and-skippers-order-lepidoptera/"}
+   ]
+  },
+  {
+   "id": "orangutan",
+   "subject": "orangutan",
+   "options": [
+    "monkey",
+    "human",
+    "sloth"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "red",
+   "fact": "Orangutans and humans are both great apes, with gorillas and chimps. Monkeys are primates but not apes. Sloths only share the life in trees.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Hominidae"},
+    {"name": "Animal Diversity Web", "url": "https://animaldiversity.org/accounts/Hominidae/"}
+   ]
+  },
+  {
+   "id": "eagle",
+   "subject": "eagle",
+   "options": [
+    "woodpecker",
+    "chicken",
+    "heron"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "violet",
+   "fact": "Eagles and woodpeckers are both landbirds, a big branch of birds. Herons belong to the waterbirds. Chickens branched off even earlier.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Telluraves"},
+    {"name": "Nature (copy at Yale University)", "url": "https://prumlab.yale.edu/sites/default/files/prum_et_al_2015.pdf"}
+   ]
+  },
+  {
+   "id": "leech",
+   "subject": "leech",
+   "options": [
+    "snail",
+    "snake",
+    "earthworm"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Leeches are close kin of earthworms. Snails belong to the same big branch of animals. Snakes only look like worms.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Leech"},
+    {"name": "UC Museum of Paleontology", "url": "https://ucmp.berkeley.edu/phyla/lophotrochozoa.html"}
+   ]
+  },
+  {
+   "id": "dog",
+   "subject": "dog",
+   "options": [
+    "hyena",
+    "cat",
+    "seal"
+   ],
+   "rank": [
+    1,
+    1,
+    0
+   ],
+   "colour": "red",
+   "fact": "Seals are dog-like carnivores, so they are closer to the dog than a hyena is. Hyenas sit on the cat side, so the hyena and the cat tie.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Caniformia"},
+    {"name": "University of Glasgow", "url": "https://www.gla.ac.uk/schools/bohvm/taxonomy/chordata/vertebrata/mammalia/carnivora/"}
+   ]
+  },
+  {
+   "id": "shrimp",
+   "subject": "shrimp",
+   "options": [
+    "lobster",
+    "woodlouse",
+    "scorpion"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "blue",
+   "fact": "Shrimp and lobsters are both decapods. Woodlice are crustaceans too, from another branch. Scorpions are kin to spiders, not crustaceans.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Malacostraca"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/decapod"}
+   ]
+  },
+  {
+   "id": "whale",
+   "subject": "whale",
+   "options": [
+    "rabbit",
+    "cow",
+    "seal"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "red",
+   "fact": "Whales are even-toed hoofed mammals, like cows. Seals belong to the same big branch of mammals. Rabbits sit on the other one.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Laurasiatheria"},
+    {"name": "University of Western Australia", "url": "https://www.uwa.edu.au/study/-/media/Faculties/Science/Docs/Mammalian-clades.pdf"}
+   ]
+  },
+  {
+   "id": "parrot",
+   "subject": "parrot",
+   "options": [
+    "toucan",
+    "falcon",
+    "sparrow"
+   ],
+   "rank": [
+    2,
+    1,
+    0
+   ],
+   "colour": "violet",
+   "fact": "Parrots are the closest relatives of perching birds such as the sparrow. Falcons come next. Toucans only share the bright beak.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Telluraves"},
+    {"name": "Nature Communications", "url": "https://www.nature.com/articles/ncomms1448"}
+   ]
+  },
+  {
+   "id": "oak",
+   "subject": "oak",
+   "options": [
+    "mushroom",
+    "potato",
+    "moss"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "green",
+   "fact": "Oak and potato are both flowering plants. Moss is a plant without flowers. Mushrooms are not plants at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Fagaceae"},
+    {"name": "Britannica", "url": "https://www.britannica.com/plant/Solanaceae"}
+   ]
+  },
+  {
+   "id": "beetle",
+   "subject": "beetle",
+   "options": [
+    "cockroach",
+    "spider",
+    "firefly"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Fireflies are beetles. Cockroaches are insects that only look like beetles. Spiders are not insects at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Firefly"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/firefly-insect"}
+   ]
+  },
+  {
+   "id": "coral",
+   "subject": "coral",
+   "options": [
+    "human",
+    "sponge",
+    "jellyfish"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "blue",
+   "fact": "Corals and jellyfish are both cnidarians. Animals like us are their next closest kin. Sponges branched off before both.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Cnidaria"},
+    {"name": "Digital Atlas of Ancient Life", "url": "https://www.digitalatlasofancientlife.org/learn/animal-phylogeny/"}
+   ]
+  },
+  {
+   "id": "hedgehog",
+   "subject": "hedgehog",
+   "options": [
+    "echidna",
+    "shrew",
+    "porcupine"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "red",
+   "fact": "Hedgehogs and shrews are one natural group, with moles. Porcupines only share the spines: they are rodents. Echidnas are egg-laying mammals.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Eulipotyphla"},
+    {"name": "The Timetree of Life (book chapter)", "url": "https://TimeTree.org/public/data/pdf/Douady2009Chap77.pdf"}
+   ],
+   "mya": 65
+  },
+  {
+   "id": "grasshopper",
+   "subject": "grasshopper",
+   "options": [
+    "dragonfly",
+    "cockroach",
+    "butterfly"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "magenta",
+   "fact": "Grasshoppers and cockroaches belong to the same branch of insects. Butterflies can fold their wings back too. Dragonflies cannot.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Neoptera"},
+    {"name": "Australian Museum", "url": "https://australian.museum/learn/animals/insects/dragonflies-and-damselflies-order-odonata/"}
+   ]
+  },
+  {
+   "id": "stork",
+   "subject": "stork",
+   "options": [
+    "penguin",
+    "flamingo",
+    "ostrich"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "violet",
+   "fact": "Storks and penguins belong to the same group of waterbirds. Flamingos belong with the grebes instead. Ostriches are further still.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Aequornithes"},
+    {"name": "Science (copy at the University of Florida)", "url": "https://earlybird.biology.ufl.edu/wp-content/uploads/sites/557/Science-2008-Hackett-1763-8.pdf"}
+   ]
+  },
+  {
+   "id": "frog",
+   "subject": "frog",
+   "options": [
+    "human",
+    "salamander",
+    "lizard"
+   ],
+   "rank": [
+    1,
+    0,
+    1
+   ],
+   "colour": "teal",
+   "fact": "Frogs and salamanders are each other's closest relatives. Lizards and humans belong to another branch, so they are equally far away.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Batrachia"},
+    {"name": "The Timetree of Life (book chapter)", "url": "https://TimeTree.org/public/data/pdf/Cannatella2009Chap48.pdf"}
+   ]
+  },
+  {
+   "id": "llama",
+   "subject": "llama",
+   "options": [
+    "kangaroo",
+    "whale",
+    "horse"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "red",
+   "fact": "Whales are even-toed hoofed mammals, like llamas, so they are closer kin than horses, which are odd-toed. Kangaroos are marsupials.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Llama"},
+    {"name": "University of Western Australia", "url": "https://www.uwa.edu.au/study/-/media/Faculties/Science/Docs/Mammalian-clades.pdf"}
+   ]
+  },
+  {
+   "id": "spider",
+   "subject": "spider",
+   "options": [
+    "crab",
+    "ant",
+    "scorpion"
+   ],
+   "rank": [
+    1,
+    1,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Spiders and scorpions are both arachnids. Insects such as ants belong inside the crustaceans, so the ant and the crab tie.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Chelicerata"},
+    {"name": "Smithsonian Magazine", "url": "https://www.smithsonianmag.com/science-nature/you-might-think-of-shrimp-as-bugs-of-the-sea-but-a-remarkable-discovery-shows-the-opposite-bugs-are-actually-shrimp-of-the-land-180986303/"}
+   ]
+  },
+  {
+   "id": "starfish",
+   "subject": "starfish",
+   "options": [
+    "crab",
+    "jellyfish",
+    "human"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "blue",
+   "fact": "Starfish and humans belong to the same big branch of animals. Crabs are on the other big branch. Jellyfish branched off before both.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Deuterostome"},
+    {"name": "Digital Atlas of Ancient Life", "url": "https://www.digitalatlasofancientlife.org/learn/animal-phylogeny/"}
+   ]
+  },
+  {
+   "id": "cat",
+   "subject": "cat",
+   "options": [
+    "dog",
+    "rabbit",
+    "pangolin"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "red",
+   "fact": "Cats and dogs are both carnivores. The pangolin, scales and all, belongs to the same big branch of mammals. Rabbits belong to another.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Laurasiatheria"},
+    {"name": "University of Western Australia", "url": "https://www.uwa.edu.au/study/-/media/Faculties/Science/Docs/Mammalian-clades.pdf"}
+   ]
+  },
+  {
+   "id": "elephant_bird",
+   "subject": "elephant_bird",
+   "options": [
+    "chicken",
+    "ostrich",
+    "kiwi"
+   ],
+   "rank": [
+    2,
+    1,
+    0
+   ],
+   "colour": "violet",
+   "fact": "The giant elephant bird was closest to the little kiwi. The ostrich split off earlier. Chickens belong to another branch of birds.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Palaeognathae"},
+    {"name": "Science (copy at the University of British Columbia)", "url": "https://www.zoology.ubc.ca/~jankowsk/Mitchell_et_al_2014_Science.pdf"}
+   ]
+  },
+  {
+   "id": "rabbit",
+   "subject": "rabbit",
+   "options": [
+    "guinea_pig",
+    "human",
+    "kangaroo"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "red",
+   "fact": "Rabbits are not rodents, but rodents such as the guinea pig are their closest kin. Humans sit on the same big branch. Kangaroos are marsupials.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Euarchontoglires"},
+    {"name": "Molecular Phylogenetics and Evolution", "url": "https://www.tau.ac.il/~huchond/MPE2004.pdf"}
+   ]
+  },
+  {
+   "id": "crab",
+   "subject": "crab",
+   "options": [
+    "horseshoe_crab",
+    "lobster",
+    "shrimp"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "blue",
+   "fact": "Crabs and lobsters are the walking decapods. Shrimp are decapods too, but swimmers. The horseshoe crab is no crab: it is kin to spiders.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Decapod"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/horseshoe-crab"}
+   ]
+  },
+  {
+   "id": "albatross",
+   "subject": "albatross",
+   "options": [
+    "duck",
+    "penguin",
+    "eagle"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "violet",
+   "fact": "Albatrosses and penguins both belong to the big group of waterbirds. Eagles are landbirds. Ducks sit on an older branch of birds.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Aequornithes"},
+    {"name": "Science (copy at the University of Florida)", "url": "https://earlybird.biology.ufl.edu/wp-content/uploads/sites/557/Science-2008-Hackett-1763-8.pdf"}
+   ]
+  },
+  {
+   "id": "walrus",
+   "subject": "walrus",
+   "options": [
+    "manatee",
+    "bear",
+    "seal"
+   ],
+   "rank": [
+    2,
+    1,
+    0
+   ],
+   "colour": "red",
+   "fact": "The walrus belongs with seals and sea lions. Bears are dog-like carnivores too, so they are closer than manatees, which only look the part.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Pinniped"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/pinniped"}
+   ]
+  },
+  {
+   "id": "lamprey",
+   "subject": "lamprey",
+   "options": [
+    "leech",
+    "jellyfish",
+    "salmon"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "blue",
+   "fact": "The lamprey is a jawless fish, but it is a vertebrate like the salmon. Leeches are worms with no backbone. Jellyfish are further away still.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Lamprey"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/lamprey"}
+   ]
+  },
+  {
+   "id": "moss",
+   "subject": "moss",
+   "options": [
+    "apple",
+    "human",
+    "mushroom"
+   ],
+   "rank": [
+    0,
+    1,
+    1
+   ],
+   "colour": "green",
+   "fact": "Moss and the apple tree are both plants. Mushrooms and humans are closer to each other than to any plant, so they tie.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Opisthokont"},
+    {"name": "Tree of Life Web Project", "url": "https://tolweb.org/Fungi/2377"}
+   ]
+  },
+  {
+   "id": "dragonfly",
+   "subject": "dragonfly",
+   "options": [
+    "housefly",
+    "crab",
+    "spider"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "magenta",
+   "fact": "The dragonfly is an insect, like the housefly. Insects belong inside the crustaceans, so the crab comes next. Spiders are on another branch.",
+   "sources": [
+    {"name": "Australian Museum", "url": "https://australian.museum/learn/animals/insects/dragonflies-and-damselflies-order-odonata/"},
+    {"name": "Smithsonian Magazine", "url": "https://www.smithsonianmag.com/science-nature/you-might-think-of-shrimp-as-bugs-of-the-sea-but-a-remarkable-discovery-shows-the-opposite-bugs-are-actually-shrimp-of-the-land-180986303/"}
+   ]
+  },
+  {
+   "id": "prairie_dog",
+   "subject": "prairie_dog",
+   "options": [
+    "kangaroo",
+    "mouse",
+    "meerkat"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "red",
+   "fact": "The prairie dog is not a dog. It is a ground squirrel, a rodent like the mouse. Meerkats are carnivores, and kangaroos are marsupials.",
+   "sources": [
+    {"name": "Animal Diversity Web", "url": "https://animaldiversity.org/accounts/Cynomys_ludovicianus/"},
+    {"name": "University of Western Australia", "url": "https://www.uwa.edu.au/study/-/media/Faculties/Science/Docs/Mammalian-clades.pdf"}
+   ]
+  },
+  {
+   "id": "sparrow",
+   "subject": "sparrow",
+   "options": [
+    "eagle",
+    "parrot",
+    "hummingbird"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "violet",
+   "fact": "Sparrows and parrots are each other's closest relatives here. Eagles are landbirds too. Hummingbirds belong with the swifts.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Telluraves"},
+    {"name": "Nature Communications", "url": "https://www.nature.com/articles/ncomms1448"}
+   ]
+  },
+  {
+   "id": "raccoon",
+   "subject": "raccoon",
+   "options": [
+    "weasel",
+    "red_panda",
+    "bear"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "red",
+   "fact": "Raccoons and weasels are close kin. The red panda belongs to the same wider group. Bears are carnivores from another branch.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Musteloidea"},
+    {"name": "Systematic Biology", "url": "https://academic.oup.com/sysbio/article/54/2/317/1642488"}
+   ]
+  },
+  {
+   "id": "chicken",
+   "subject": "chicken",
+   "options": [
+    "pigeon",
+    "duck",
+    "trex"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "violet",
+   "fact": "Chickens and ducks sit together on an early branch of birds. Pigeons are on the main branch. T. rex was a dinosaur, but only a distant cousin.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Neoaves"},
+    {"name": "Natural History Museum, London", "url": "https://www.nhm.ac.uk/discover/how-dinosaurs-evolved-into-birds.html"}
+   ]
+  },
+  {
+   "id": "salmon",
+   "subject": "salmon",
+   "options": [
+    "tuna",
+    "shark",
+    "lungfish"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "blue",
+   "fact": "Salmon and tuna both belong to the ray-finned fish. Lungfish are bony fish too, but lobe-finned. Sharks have skeletons of cartilage.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Osteichthyes"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/bony-fish"}
+   ]
+  },
+  {
+   "id": "kangaroo",
+   "subject": "kangaroo",
+   "options": [
+    "thylacine",
+    "koala",
+    "mouse"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "red",
+   "fact": "Kangaroos and koalas belong to the same order of marsupials. The Tasmanian tiger was a marsupial of another order. Mice are not marsupials.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Diprotodontia"},
+    {"name": "University of Glasgow", "url": "https://www.gla.ac.uk/schools/bohvm/taxonomy/chordata/vertebrata/mammalia/metatheria"}
+   ]
+  },
+  {
+   "id": "louse",
+   "subject": "louse",
+   "options": [
+    "tick",
+    "earthworm",
+    "flea"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Lice and fleas are both wingless insects. Ticks bite too, but they are arachnids. Earthworms are not arthropods at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Louse"},
+    {"name": "Australian Museum", "url": "https://australian.museum/learn/species-identification/ask-an-expert/what-is-a-parasite/patrasites--fleas"}
+   ]
+  },
+  {
+   "id": "iguana",
+   "subject": "iguana",
+   "options": [
+    "komodo",
+    "salamander",
+    "crocodile"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "teal",
+   "fact": "Iguanas and Komodo dragons are both lizards. Crocodiles are reptiles from another branch. Salamanders only look like lizards: they are amphibians.",
+   "sources": [
+    {"name": "UCL Museums", "url": "https://www.ucl.ac.uk/museums-static/obl4he/vertebratediversity/squamata.html"},
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Squamata"}
+   ]
+  },
+  {
+   "id": "capybara",
+   "subject": "capybara",
+   "options": [
+    "pig",
+    "porcupine",
+    "mouse"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "red",
+   "fact": "Capybaras and porcupines belong to the same branch of rodents. Mice are rodents from another branch. Pigs are not rodents at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Hystricognathi"},
+    {"name": "Animal Diversity Web", "url": "https://animaldiversity.org/accounts/Hystricognathi/"}
+   ]
+  },
+  {
+   "id": "cockroach",
+   "subject": "cockroach",
+   "options": [
+    "mantis",
+    "beetle",
+    "termite"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Termites are a kind of cockroach that lives in colonies. Mantises are their close kin. Beetles only look like cockroaches.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Dictyoptera"},
+    {"name": "Science News", "url": "https://sciencenews.org/?p=1830"}
+   ]
+  },
+  {
+   "id": "mussel",
+   "subject": "mussel",
+   "options": [
+    "barnacle",
+    "octopus",
+    "coral"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "blue",
+   "fact": "Mussels and octopuses are both molluscs. Barnacles also live in shells on rocks, but they are crustaceans. Corals are further away still.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Mollusca"},
+    {"name": "Digital Atlas of Ancient Life", "url": "https://www.digitalatlasofancientlife.org/learn/animal-phylogeny/"}
+   ]
+  },
+  {
+   "id": "turkey",
+   "subject": "turkey",
+   "options": [
+    "duck",
+    "chicken",
+    "ostrich"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "violet",
+   "fact": "Turkeys and chickens belong to the same family of landfowl. Ducks are the waterfowl next to them. Ostriches belong to an older branch of birds.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Galliformes"},
+    {"name": "Science (copy at the University of Florida)", "url": "https://earlybird.biology.ufl.edu/wp-content/uploads/sites/557/Science-2008-Hackett-1763-8.pdf"}
+   ]
+  },
+  {
+   "id": "potato",
+   "subject": "potato",
+   "options": [
+    "apple",
+    "mushroom",
+    "chili"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "green",
+   "fact": "Potatoes and chilis are both nightshades. Apples are flowering plants from another family. Mushrooms are not plants at all.",
+   "sources": [
+    {"name": "Britannica", "url": "https://www.britannica.com/plant/Solanaceae"},
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Solanaceae"}
+   ]
+  },
+  {
+   "id": "cow",
+   "subject": "cow",
+   "options": [
+    "deer",
+    "horse",
+    "camel"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "red",
+   "fact": "Cows and deer belong to the same group of ruminants. Camels have an even number of toes too, but sit on another branch. Horses are odd-toed.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Pecora"},
+    {"name": "UC Museum of Paleontology", "url": "https://ucmp.berkeley.edu/mammal/artio/artiosy.html"}
+   ]
+  },
+  {
+   "id": "ray",
+   "subject": "ray",
+   "options": [
+    "octopus",
+    "great_white",
+    "salmon"
+   ],
+   "rank": [
+    2,
+    0,
+    1
+   ],
+   "colour": "blue",
+   "fact": "Rays are close kin of sharks: both have skeletons of cartilage. Salmon are bony fish. The octopus has no backbone at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Chondrichthyes"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/fish"}
+   ]
+  },
+  {
+   "id": "ladybird",
+   "subject": "ladybird",
+   "options": [
+    "cockroach",
+    "tick",
+    "butterfly"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Ladybirds are beetles. Beetles and butterflies both grow up through a pupa; cockroaches do not. Ticks are not insects at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Holometabola"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/ladybug"}
+   ]
+  },
+  {
+   "id": "rhino",
+   "subject": "rhino",
+   "options": [
+    "tapir",
+    "horse",
+    "elephant"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "red",
+   "fact": "Rhinos and tapirs are each other's closest relatives. Horses are odd-toed hoofed mammals too. Elephants only look the part.",
+   "sources": [
+    {"name": "American Museum of Natural History", "url": "https://research.amnh.org/paleontology/perissodactyl/evolution/groups/ceratomorpha"},
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Perissodactyla"}
+   ]
+  },
+  {
+   "id": "coot",
+   "subject": "coot",
+   "options": [
+    "heron",
+    "crane",
+    "duck"
+   ],
+   "rank": [
+    1,
+    0,
+    2
+   ],
+   "colour": "violet",
+   "fact": "Coots and cranes belong to the same order of birds. Herons belong to another group. Ducks are on an older branch.",
+   "sources": [
+    {"name": "Animal Diversity Web", "url": "https://animaldiversity.org/accounts/Rallidae/"},
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Neoaves"}
+   ]
+  },
+  {
+   "id": "gorilla",
+   "subject": "gorilla",
+   "options": [
+    "chimp",
+    "orangutan",
+    "monkey"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "red",
+   "fact": "Gorillas, chimpanzees and humans form one close group of apes. Orangutans branched off earlier. Monkeys are not apes at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Gorilla"},
+    {"name": "Animal Diversity Web", "url": "https://animaldiversity.org/accounts/Hominidae/"}
+   ]
+  },
+  {
+   "id": "squid",
+   "subject": "squid",
+   "options": [
+    "octopus",
+    "snail",
+    "jellyfish"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "blue",
+   "fact": "Squid and octopuses are both cephalopods. Snails are molluscs too, from another class. Jellyfish are not molluscs at all.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Mollusca"},
+    {"name": "Digital Atlas of Ancient Life", "url": "https://www.digitalatlasofancientlife.org/learn/animal-phylogeny/"}
+   ]
+  },
+  {
+   "id": "wasp",
+   "subject": "wasp",
+   "options": [
+    "housefly",
+    "grasshopper",
+    "ant"
+   ],
+   "rank": [
+    1,
+    2,
+    0
+   ],
+   "colour": "magenta",
+   "fact": "Ants and wasps belong to the same order of insects, with bees. Flies also grow up through a pupa. Grasshoppers do not.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Holometabola"},
+    {"name": "Britannica", "url": "https://www.britannica.com/animal/hymenopteran"}
+   ]
+  },
+  {
+   "id": "flying_squirrel",
+   "subject": "flying_squirrel",
+   "options": [
+    "prairie_dog",
+    "mouse",
+    "sugar_glider"
+   ],
+   "rank": [
+    0,
+    1,
+    2
+   ],
+   "colour": "red",
+   "fact": "Flying squirrels and prairie dogs are both squirrels. Mice are rodents too. The sugar glider only looks similar: it is a marsupial.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Sciuridae"},
+    {"name": "Animal Diversity Web", "url": "https://animaldiversity.org/site/accounts/information/Sciuridae.html"}
+   ]
+  },
+  {
+   "id": "emu",
+   "subject": "emu",
+   "options": [
+    "kiwi",
+    "turkey",
+    "ostrich"
+   ],
+   "rank": [
+    0,
+    2,
+    1
+   ],
+   "colour": "violet",
+   "fact": "The kiwi is closer to the emu than the ostrich is: ostriches branched off first. Turkeys sit on a different branch altogether.",
+   "sources": [
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Palaeognathae"},
+    {"name": "Science (copy at the University of British Columbia)", "url": "https://www.zoology.ubc.ca/~jankowsk/Mitchell_et_al_2014_Science.pdf"}
+   ]
   }
  ]
 };

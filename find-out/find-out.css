@@ -1,0 +1,182 @@
+/* Find out about yourself: the section's own styles (B1, 21 Oct 2026). Everything shared with the site
+   comes from assets/css/logicers.css (the bar, the chips, .btn, dialogs, the colours by day and night);
+   this file adds the section's colour and the screens only it has. */
+
+[data-g="findout"] { --c: #3F7A2A; --tint: #E3F2DA; }      /* Find out about yourself: moss green */
+@media (prefers-color-scheme: dark) {
+  [data-g="findout"] { --c: #9EDB6A; --tint: #0F1F0A; }
+}
+body.game { --fo-ink-on-c: var(--on-c); }
+
+/* ---- the frame of every screen ---- */
+.fo-main { min-height: calc(100svh - 70px); display: flex; flex-direction: column; }
+.fo-screen { animation: fo-in .28s ease-out both; }
+@keyframes fo-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .fo-screen { animation: none; } }
+.fo-title { margin-top: 6px; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 7vw, 2.1rem); line-height: 1.08; letter-spacing: -0.035em; text-wrap: balance; }
+.fo-lede { margin-top: 8px; font-size: 1.08rem; line-height: 1.4; font-weight: 500; }
+.fo-quiet { color: var(--soft); font-weight: 500; font-size: 0.95rem; line-height: 1.4; }
+.fo-card { margin-top: 14px; padding: 18px 18px 16px; border-radius: var(--r); background: var(--card); box-shadow: var(--shadow); }
+@media (prefers-color-scheme: dark) { .fo-card { box-shadow: inset 0 0 0 1px var(--line); } }
+.fo-card h2 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1.15; }
+.fo-card .fo-quiet { margin-top: 4px; }
+.fo-actions { display: flex; gap: 10px; margin-top: 14px; align-items: center; }
+.fo-actions .btn.solid { flex: 1 1 auto; }
+.fo-spacer { flex: 1 1 auto; }
+.fo-bottom { margin-top: auto; padding-top: 14px; }
+
+/* ---- the nine circles ---- */
+.fo-circles { display: flex; gap: 8px; margin-top: 14px; justify-content: space-between; }
+.fo-circles a, .fo-circles span { flex: 1 1 0; aspect-ratio: 1; max-width: 42px; border-radius: 99px; border: 2.5px solid color-mix(in srgb, var(--c) 45%, transparent); display: grid; place-items: center; font-weight: 800; font-size: 0.85rem; color: var(--c); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.fo-circles .done { background: var(--c); border-color: var(--c); color: var(--on-c); }
+.fo-circles .now { border-style: dashed; }
+.fo-count { margin-top: 10px; color: var(--soft); font-weight: 600; font-size: 0.95rem; }
+
+/* ---- the list of games on the section's home ---- */
+.fo-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+.fo-list a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.fo-list a:active { transform: scale(0.99); }
+.fo-list .n { width: 32px; height: 32px; border-radius: 99px; display: grid; place-items: center; background: var(--tint); color: var(--c); font-weight: 800; flex: none; }
+.fo-list .n.done { background: var(--c); color: var(--on-c); }
+.fo-list .t { flex: 1; min-width: 0; }
+.fo-list .t b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; line-height: 1.15; }
+.fo-list .t span { display: block; color: var(--soft); font-size: 0.86rem; font-weight: 600; margin-top: 2px; }
+.fo-list .band { color: var(--c); font-weight: 700; font-size: 0.86rem; text-align: right; max-width: 36%; }
+@media (prefers-color-scheme: dark) { .fo-list a { box-shadow: inset 0 0 0 1px var(--line); } .fo-list .n { background: color-mix(in srgb, var(--c) 18%, transparent); } }
+
+/* ---- the guess: a strip with two ends and a dot to drag ---- */
+.fo-strip { position: relative; margin: 26px 2px 0; height: 56px; touch-action: none; -webkit-user-select: none; user-select: none; }
+.fo-strip-rail { position: absolute; left: 0; right: 0; top: 50%; height: 10px; margin-top: -5px; border-radius: 10px; background: color-mix(in srgb, var(--c) 22%, var(--card)); }
+.fo-strip-rail.bands { background: linear-gradient(90deg, color-mix(in srgb, var(--c) 18%, var(--card)) 0 33.3%, color-mix(in srgb, var(--c) 32%, var(--card)) 33.3% 66.6%, color-mix(in srgb, var(--c) 50%, var(--card)) 66.6%); }
+.fo-strip-dot { position: absolute; top: 50%; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 99px; background: var(--c); box-shadow: 0 6px 16px rgba(21, 23, 43, .25); border: 3px solid var(--card); transition: left .6s cubic-bezier(.2, .9, .3, 1.1); cursor: grab; }
+.fo-strip-dot.drag { transition: none; transform: scale(1.1); cursor: grabbing; }
+.fo-strip-dot.ring { background: transparent; border: 3px solid var(--c); box-shadow: none; width: 30px; height: 30px; margin: -15px 0 0 -15px; }
+.fo-strip-dot.still { transition: none; }
+.fo-ends { display: flex; justify-content: space-between; gap: 12px; margin-top: 4px; font-family: var(--display); font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; line-height: 1.15; }
+.fo-ends span { max-width: 48%; }
+.fo-ends span:last-child { text-align: right; }
+.fo-ends.three { font-size: 0.86rem; }
+.fo-ends.three span { max-width: 33%; flex: 1; text-align: center; }
+.fo-ends.three span:first-child { text-align: left; }
+.fo-ends.three span:last-child { text-align: right; }
+.fo-guess-read { margin-top: 14px; min-height: 1.6em; font-weight: 700; font-size: 1.05rem; color: var(--c); }
+
+/* ---- one statement per screen ---- */
+.fo-stem { margin-top: 18px; color: var(--soft); font-weight: 600; font-size: 1rem; }
+.fo-item { margin-top: 6px; font-family: var(--display); font-weight: 700; font-size: clamp(1.3rem, 5.6vw, 1.6rem); line-height: 1.18; letter-spacing: -0.025em; text-wrap: balance; min-height: 3.6em; }
+.fo-item.long { font-size: clamp(1.05rem, 4.4vw, 1.2rem); font-family: var(--text); font-weight: 600; line-height: 1.35; }
+.fo-dots { display: flex; justify-content: space-between; gap: 4px; margin-top: 18px; }
+.fo-dots button { appearance: none; border: 0; flex: 1 1 0; min-width: 0; padding: 0; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; -webkit-tap-highlight-color: transparent; color: var(--ink); }
+.fo-dots i { display: block; width: 34px; height: 34px; border-radius: 99px; background: var(--card); box-shadow: inset 0 0 0 2.5px color-mix(in srgb, var(--c) 55%, transparent); transition: transform .12s ease, background-color .12s ease; }
+.fo-dots.many i { width: 24px; height: 24px; }
+.fo-dots button.on i { background: var(--c); box-shadow: none; transform: scale(1.12); }
+.fo-dots button:active i { transform: scale(0.9); }
+.fo-dots small { font-size: 0.68rem; line-height: 1.15; font-weight: 600; color: var(--soft); text-align: center; text-wrap: balance; hyphens: auto; }
+.fo-dots.many small { display: none; }
+.fo-dots button:focus-visible i { outline: 3px solid var(--c); outline-offset: 2px; }
+.fo-scale-ends { display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; color: var(--soft); font-weight: 700; font-size: 0.82rem; line-height: 1.2; }
+.fo-scale-ends span:last-child { text-align: right; }
+.fo-read { margin-top: 14px; min-height: 2.6em; font-weight: 700; font-size: 1.05rem; color: var(--c); line-height: 1.3; }
+.fo-read small { display: block; font-weight: 600; color: var(--soft); font-size: 0.9rem; }
+.fo-choices { display: grid; gap: 10px; margin-top: 18px; }
+.fo-choices .btn { min-height: 60px; font-size: 1.12rem; text-align: center; white-space: normal; line-height: 1.2; padding: 10px 18px; }
+.fo-choices .btn.ghost { flex: 1 1 auto; }
+.fo-choices .btn.on { background: var(--c); color: var(--on-c); }
+.fo-choices.two { grid-template-columns: 1fr 1fr; }
+.fo-choices.two .btn { min-height: 84px; }
+.fo-or { text-align: center; color: var(--soft); font-weight: 700; margin-top: 10px; }
+.fo-ladder { display: grid; gap: 6px; margin-top: 14px; }
+.fo-ladder button { appearance: none; border: 0; min-height: 40px; border-radius: 12px; background: var(--card); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 35%, transparent); color: var(--ink); font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 0 14px; -webkit-tap-highlight-color: transparent; }
+.fo-ladder button span { color: var(--soft); font-weight: 600; font-size: 0.86rem; }
+.fo-ladder button.on { background: var(--c); color: var(--on-c); box-shadow: none; }
+.fo-ladder button.on span { color: inherit; }
+.fo-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
+.fo-nav .chip { height: 44px; padding: 0 18px; font-size: 0.95rem; }
+.fo-progress { display: flex; gap: 4px; margin-top: 10px; }
+.fo-progress i { flex: 1; height: 5px; border-radius: 5px; background: color-mix(in srgb, var(--c) 22%, transparent); }
+.fo-progress i.on { background: var(--c); }
+.fo-help-btn { appearance: none; border: 0; background: none; color: var(--soft); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 0; font-size: 0.92rem; }
+
+/* ---- the country tap ---- */
+.fo-countries { list-style: none; margin: 12px 0 0; padding: 0; max-height: 52svh; overflow: auto; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); }
+.fo-countries button { appearance: none; border: 0; width: 100%; text-align: left; display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 16px; background: none; color: var(--ink); font: inherit; font-weight: 600; font-size: 1.02rem; cursor: pointer; border-bottom: 1px solid var(--line); }
+.fo-countries li:last-child button { border-bottom: 0; }
+.fo-countries .flag { font-size: 1.3rem; width: 1.6em; }
+.fo-countries .top { background: var(--tint); }
+
+/* ---- the reveal ---- */
+.fo-reveal .fo-bandname { margin-top: 18px; font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 8.5vw, 2.5rem); letter-spacing: -0.04em; line-height: 1.02; color: var(--c); }
+.fo-reveal .fo-lines { margin-top: 10px; font-size: 1.1rem; line-height: 1.4; font-weight: 500; }
+.fo-reveal .fo-lines p + p { margin-top: 6px; }
+.fo-guessline { margin-top: 12px; color: var(--soft); font-weight: 600; font-size: 0.95rem; }
+.fo-guessline b { color: var(--ink); }
+.fo-curve { margin-top: 10px; padding: 12px 14px 10px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); }
+.fo-curve svg { display: block; width: 100%; height: 72px; overflow: visible; }
+.fo-curve.inline { background: none; box-shadow: none; padding: 0; margin: 0 0 4px; }
+.fo-curve.inline svg { height: 44px; }
+.fo-curve.inline .fo-curve-line { font-size: 0.9rem; }
+.fo-curve.inline .fo-curve-wait:empty { display: none; }
+@media (prefers-color-scheme: dark) { .fo-curve.inline { box-shadow: none; } }
+.fo-curve-line { margin-top: 6px; font-weight: 700; font-size: 1.02rem; color: var(--ink); }
+.fo-curve-wait { color: var(--soft); font-weight: 600; font-size: 0.95rem; }
+.fo-locked { margin-top: 8px; color: var(--soft); font-weight: 600; font-size: 0.92rem; display: flex; gap: 8px; align-items: center; }
+.fo-locked::before { content: ""; width: 14px; height: 14px; flex: none; border-radius: 4px; border: 2px solid var(--soft); border-top-width: 5px; opacity: .8; }
+.fo-fact { margin-top: 12px; padding: 14px 16px 15px; border-radius: 20px; background: var(--card); box-shadow: var(--shadow); font-size: 1.04rem; line-height: 1.38; font-weight: 500; }
+.fo-fact b { display: block; color: var(--c); font-weight: 800; font-size: 0.82rem; letter-spacing: .02em; text-transform: uppercase; margin-bottom: 4px; }
+.fo-fact.quiet { background: none; box-shadow: none; padding: 6px 4px 0; color: var(--soft); font-size: 0.92rem; }
+.fo-fact a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
+@media (prefers-color-scheme: dark) { .fo-fact, .fo-curve { box-shadow: inset 0 0 0 1px var(--line); } .fo-fact.quiet { box-shadow: none; } }
+.fo-expl { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.fo-expl li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.98rem; line-height: 1.35; font-weight: 500; }
+.fo-expl .mark { flex: none; width: 24px; height: 24px; border-radius: 99px; display: grid; place-items: center; font-size: 0.8rem; font-weight: 800; background: var(--tint); color: var(--c); }
+.fo-expl .mark.ok { background: var(--c); color: var(--on-c); }
+
+/* ---- the five bars ---- */
+.fo-bars { display: grid; gap: 12px; margin-top: 16px; }
+.fo-bar { display: grid; grid-template-columns: 6.2em 1fr; gap: 10px; align-items: center; }
+.fo-bar b { font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; }
+.fo-bar .rail { position: relative; height: 14px; border-radius: 14px; background: color-mix(in srgb, var(--c) 18%, var(--card)); overflow: hidden; }
+.fo-bar .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 14px; background: var(--c); transition: width .8s cubic-bezier(.2, .9, .3, 1); }
+.fo-bar .ring { position: absolute; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 99px; border: 2px solid var(--ink); background: var(--card); }
+.fo-bar small { grid-column: 2; color: var(--soft); font-weight: 600; font-size: 0.86rem; margin-top: -4px; line-height: 1.3; }
+.fo-bar.skip .rail { opacity: .4; }
+
+/* ---- the portrait ---- */
+.fo-portrait h2 { margin-top: 22px; font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
+.fo-dots-view { display: grid; gap: 14px; margin-top: 12px; }
+.fo-dot-row { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.fo-dot-row .nm { font-weight: 700; font-size: 0.92rem; color: var(--soft); display: flex; justify-content: space-between; gap: 10px; }
+.fo-dot-row .nm b { color: var(--c); font-family: var(--display); font-weight: 800; font-size: 1.02rem; letter-spacing: -0.02em; text-align: right; }
+.fo-dot-row .fo-strip { height: 22px; margin: 4px 2px 0; }
+.fo-dot-row .fo-strip-rail { height: 8px; margin-top: -4px; }
+.fo-dot-row .fo-strip-dot { width: 20px; height: 20px; margin: -10px 0 0 -10px; border-width: 2px; }
+.fo-people { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+.fo-people li { padding: 12px 14px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); font-size: 1.02rem; line-height: 1.38; font-weight: 500; }
+.fo-people li small { display: block; margin-top: 4px; color: var(--soft); font-weight: 600; font-size: 0.82rem; }
+@media (prefers-color-scheme: dark) { .fo-people li { box-shadow: inset 0 0 0 1px var(--line); } }
+.fo-own { margin-top: 8px; display: grid; gap: 6px; font-size: 1.02rem; line-height: 1.4; font-weight: 500; }
+.fo-own p::before { content: "· "; color: var(--c); font-weight: 800; }
+
+/* ---- the consent card ---- */
+.fo-consent { margin-top: 24px; padding: 18px 18px 16px; border-radius: var(--r); background: var(--card); box-shadow: var(--shadow-up); }
+.fo-consent-top { display: flex; gap: 14px; align-items: center; }
+.fo-consent img { width: 64px; height: 64px; border-radius: 99px; object-fit: cover; flex: none; }
+.fo-consent p { font-size: 1.12rem; line-height: 1.4; font-weight: 600; }
+.fo-consent .fo-actions .btn { flex: 1 1 0; min-height: 56px; font-size: 1rem; padding: 0 12px; white-space: normal; line-height: 1.15; text-align: center; }
+.fo-consent-counter { margin-top: 10px; color: var(--soft); font-weight: 600; font-size: 0.92rem; }
+.fo-consent-help { margin-top: 10px; }
+@media (prefers-color-scheme: dark) { .fo-consent { box-shadow: inset 0 0 0 1px var(--line); } }
+
+/* ---- demographics ---- */
+.fo-demo h3 { margin-top: 18px; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+.fo-demo .why { color: var(--soft); font-weight: 600; font-size: 0.9rem; margin-top: 2px; }
+.fo-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.fo-chips .chip { height: 42px; padding: 0 16px; font-size: 0.95rem; font-weight: 700; }
+.fo-chips .chip.on { background: var(--c); color: var(--on-c); }
+
+.fo-status { margin-top: 12px; font-weight: 600; color: var(--soft); min-height: 1.4em; }
+.fo-status.ok { color: var(--c); }
+.fo-foot { margin-top: 24px; color: var(--soft); font-size: 0.88rem; line-height: 1.5; }
+.fo-foot a { color: inherit; text-underline-offset: 3px; }
+.sheet ul { padding-left: 1.2em; }
+.sheet li { margin-top: 6px; line-height: 1.4; }
