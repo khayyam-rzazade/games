@@ -40,10 +40,12 @@
 @keyframes findout-shine { 0%, 55% { background-position: 120% 0; } 85%, 100% { background-position: -120% 0; } }
 @media (prefers-reduced-motion: reduce) { .logicer.findout .logicer-big { animation: none; -webkit-text-fill-color: #fff; background: none; } }
 .findout-games .mins { white-space: nowrap; }
+.findout-games { scroll-margin-top: 14px; }
+.hero-boxes { display: inline-grid; grid-template-columns: minmax(0, max-content); max-width: 100%; vertical-align: top; }
 .hero-text .logicer { display: flex; width: 100%; min-height: 58px; align-items: center; }
 .hero-text .logicer[hidden] { display: none; }
 .logicer.findout .logicer-big { white-space: normal; }
-@media (max-width: 700px) { .hero-text .logicer { min-height: 50px; } }
+@media (max-width: 700px) { .hero-boxes { display: block; } .hero-text .logicer { min-height: 50px; } }
 .logicer.findout .logicer-label { display: none; }
 @media (max-width: 700px) { .logicer.findout .logicer-big { font-size: clamp(1.1rem, 5.4vw, 1.4rem); } .logicer.findout .logicer-small { font-size: 0.78rem; } }
 </style>
@@ -66,12 +68,15 @@
     <h1>Are you a <em>Logicer</em>?</h1>
     <p class="lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
     <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
+    <!-- the two boxes stop where the longer text stops, both the same width (Khayyam, 22 Oct 2026); on the phone they fill the line as before -->
+    <div class="hero-boxes">
     <div class="logicer" id="logicer" hidden></div>
     <!-- Find out about yourself (B2, 22 Oct 2026): the same style as the counter, right under it (Khayyam, 20 Oct) -->
     <a class="logicer findout" id="findout-box" href="find-out/">
       <span class="logicer-label">Find out about yourself…</span>
       <span class="logicer-big findout-big" id="findout-big">Find out who you are</span>
     </a>
+    </div>
   </div>
   <!-- The Today card (19 Oct 2026): the first thing on the page now opens the first game not yet played
        today, and each finished game hands the player to the next, so one tap starts the whole day.
@@ -252,8 +257,7 @@
 
 <!-- Find out about yourself (B2, 22 Oct 2026): the second row, its own section, in the daily games' style.
      Nine one-go games on published research scales; the pages live in find-out/. -->
-<section class="games findout-games" aria-labelledby="findout-title">
-  <p class="more-line" id="more-to-play" hidden>Done with today's games? These never run out.</p>
+<section class="games findout-games" id="more-to-play" aria-labelledby="findout-title">
   <h2 class="sec" id="findout-title">Find out about yourself…</h2>
   <p class="sec-sub">9 short games, about 6 minutes. At the end: your portrait.</p>
   <div class="shelf" id="shelf4">
@@ -587,17 +591,14 @@
 
   document.getElementById("today-count").innerHTML = "<b>" + doneToday + "</b> of " + live + " played";
   if (live > 0 && doneToday === live) document.getElementById("today-note").textContent = "All done for today. New games at midnight.";
-  /* "More to play" (19 Oct 2026): the last game's card sends people here, to the games that never run out; the
-     line above them shows then, and on any visit with the whole day already played */
+  /* "More to play" (19 Oct 2026): the last game's card sends people here, to the games that never run out. The
+     line that stood above them ("Done with today's games? …") was dropped on 22 Oct 2026 (Khayyam); the anchor
+     now sits on the find-out section itself, so the jump lands on the first row that never runs out. */
   (function () {
-    var line = document.getElementById("more-to-play");
-    if (!line) return;
-    var sent = window.location.hash === "#more-to-play";
-    if (sent || (live > 0 && doneToday === live)) line.hidden = false;
-    if (sent) {
-      TO.count("home/more-to-play");
-      window.setTimeout(function () { try { line.scrollIntoView({ behavior: "auto", block: "start" }); } catch (e) { /* the browser's own jump will do */ } }, 0);
-    }
+    var here = document.getElementById("more-to-play");
+    if (!here || window.location.hash !== "#more-to-play") return;
+    TO.count("home/more-to-play");
+    window.setTimeout(function () { try { here.scrollIntoView({ behavior: "auto", block: "start" }); } catch (e) { /* the browser's own jump will do */ } }, 0);
   })();
 
   /* The Today card opens the first game not yet played today (19 Oct 2026); from there every finished
@@ -745,12 +746,12 @@
   shelf("shelf3-row", "shelf3-prev", "shelf3-next");       // Play live
   shelf("shelf4-row", "shelf4-prev", "shelf4-next");       // Find out about yourself (22 Oct 2026)
   /* the find-outs' own count (22 Oct 2026): how many phones finished at least one of the nine games, a plain
-     counter on the find-out server with no ID in it; shown once it passes 100 */
+     counter on the find-out server with no ID in it; shown from the first player on (Khayyam) */
   (function () {
     var big = document.getElementById("findout-big");
     if (!big || !window.fetch) return;
     fetch("https://logicers-findout.rza-khay.workers.dev/counter").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-      if (j && j.played > 100) big.textContent = "Find out who you are – " + Number(j.played).toLocaleString("en-US") + " already did";
+      if (j && j.played >= 1) big.textContent = "Find out who you are – " + Number(j.played).toLocaleString("en-US") + " already did";
     }).catch(function () { /* the box reads the same without the number */ });
   })();
 

@@ -901,8 +901,8 @@ export const COPY = {
  "home": {
   "Home box heading (animated)": "Find out who you are",
   "Home box line": "9 short games · about 6 minutes (no longer shown in the box, 22 Oct)",
-  "Home box, once past 100": "Find out who you are – 1,435 already did",
-  "Section home, once past 100": "1,435 people found out who they are",
+  "Home box, from the first player on (K, 22 Oct": "no waiting for 100): Find out who you are – 1,435 already did",
+  "Section home, from the first player on": "1,435 people found out who they are",
   "Home box button": "Start",
   "Row title on the home page": "Find out about yourself…",
   "Row line on the home page": "9 short games, about 6 minutes. At the end: your portrait.",
@@ -1407,6 +1407,13 @@ export const COPY = {
   "your_turn": "Your turn",
   "unlocked": "{k} of 4 unlocked",
   "open": "Open",
+  "tap_open": "Tap to open",
+  "tap_close": "Tap to close",
+  "tap_me": "Tap me",
+  "everyone": "Everyone",
+  "explore_box": "Compare any two groups",
+  "explore_box_line": "Your country, people your age, the world. Any game.",
+  "explore_open": "Open Explore",
   "changed_mind": "Changed your mind?",
   "changed_mind_btn": "Yes, count me in",
   "send_failed": "Could not send. Your answers are safe on this phone.",
@@ -1423,7 +1430,7 @@ export const COPY = {
    "No name, no email, no address, no IP address. A random code is all that links your answers together.",
    "Nothing has left your phone until now. A no keeps everything here.",
    "Your answers go into a study of how people around the world see politics and themselves. Results are published only as groups, never as one person.",
-   "Delete any time: from your portrait, or from any phone with your code. Data already published cannot be pulled back.",
+   "Delete any time: the link is under this \"?\". On another phone, enter your code first. Data already published cannot be pulled back.",
    "Questions: logicers.world@gmail.com"
   ],
   "counter": "{n} people from {c} countries said yes."

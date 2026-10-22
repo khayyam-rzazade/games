@@ -5,7 +5,7 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=8fb4e4b0ca';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=3affb4f20f';
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
@@ -102,6 +102,30 @@ function sheet(id, title, bodyHtml) {
   d.querySelector('h2').textContent = title;
   d.querySelector('.sheet-body').innerHTML = bodyHtml;
   return d;
+}
+
+/* the "?" sheet of the section: the consent card's lines, and the one place where "Delete my answers" lives
+   (Khayyam, 22 Oct: out of sight, never on the portrait) */
+function howSheet() {
+  const d = sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
+  const st = load();
+  if (st.consent.status === 'yes' || Object.keys(st.games).length) d.querySelector('.sheet-body').appendChild(deleteLink());
+  return d;
+}
+function deleteLink() {
+  const P = C.portrait; const b = el('button', 'fo-help-btn fo-delete', P.delete); b.type = 'button';
+  b.addEventListener('click', () => {
+    const d = sheet('dlg-del', P.delete, `<p>${esc(P.delete_sure)}</p><div class="actions"><button class="btn solid" id="del-yes" type="button">${esc(P.delete_yes)}</button><button class="btn ghost" type="button" data-close>${esc(P.delete_no)}</button></div>`);
+    wireDialogs(d);
+    d.querySelector('#del-yes').addEventListener('click', async () => {
+      const st = load(); const id = st.id, sent = !!st.uploaded.at;
+      try { if (sent) await api('/delete', { id }); } catch (e) { /* the server did not answer: the local copy still goes */ }
+      wipe(); d.close(); const how = document.getElementById('dlg-how'); if (how && how.open) how.close();
+      const root = document.getElementById('fo'); root.textContent = ''; root.appendChild(el('p', 'fo-lede', P.deleted));
+    });
+    d.showModal();
+  });
+  return b;
 }
 
 /* ------------------------------------------------------------------ progress ------ */
@@ -655,7 +679,7 @@ function homePage() {
   w.appendChild(circles(null, ''));
   if (done > 0 && done < 9) w.appendChild(el('p', 'fo-count', `${done} of 9 done · about ${minutesLeft()} ${minutesLeft() === 1 ? 'minute' : 'minutes'} left`));
   const found = el('p', 'fo-count fo-found', ''); w.appendChild(found);
-  api('/counter').then((r) => { if (r && r.played > 100) found.textContent = C.home.found_out.replace('{n}', fmt(r.played)); }).catch(() => {});
+  api('/counter').then((r) => { if (r && r.played >= 1) found.textContent = C.home.found_out.replace('{n}', fmt(r.played)); }).catch(() => {});
   const acts = el('div', 'fo-actions');
   const nx = nextGame(null);
   const start = el('a', 'btn solid', done === 0 ? C.home['Start button'] : nx ? C.home['Returning player, nothing done yet'] : C.shared.see_portrait);
@@ -679,7 +703,7 @@ function homePage() {
   foot.appendChild(document.createElement('br'));
   foot.appendChild(h(`<span>${esc(C.small_print[1].replace('Read how it works →', ''))}<a href="#" data-open="dlg-how">Read how it works →</a></span>`));
   w.appendChild(foot);
-  sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
+  howSheet();
   root.textContent = ''; root.appendChild(w); wireDialogs(w);
 }
 
@@ -697,7 +721,7 @@ function consentCard(a, b) {
   acts.appendChild(no); acts.appendChild(yes); w.appendChild(acts);        /* yes on the right, under the thumb (K, 22 Oct) */
   const status = el('p', 'fo-status', ''); w.appendChild(status);
   const cnt = el('p', 'fo-consent-counter', ''); w.appendChild(cnt);
-  api('/counter').then((r) => { if (r && r.yes > 100) cnt.textContent = cc.counter.replace('{n}', fmt(r.yes)).replace('{c}', fmt(r.countries)); }).catch(() => {});
+  api('/counter').then((r) => { if (r && r.yes >= 10) cnt.textContent = cc.counter.replace('{n}', fmt(r.yes)).replace('{c}', fmt(r.countries)); }).catch(() => {});
   const helpB = el('button', 'fo-help-btn fo-consent-help', '? What is kept'); helpB.type = 'button'; helpB.dataset.open = 'dlg-consent'; w.appendChild(helpB);
   sheet('dlg-consent', 'What a yes means', cc.help.map((l) => `<p>${esc(l)}</p>`).join(''));
   yes.addEventListener('click', async () => {
@@ -723,7 +747,7 @@ function demographics(onDone) {
   const count = el('p', 'fo-unlocked', '');
   const unlocksOf = { age: C.pools.names.age, gender: C.pools.names.gender, education: C.pools.names.education, settlement: C.pools.names.settlement };
   const doors = [];
-  const refresh = () => { const k = d.fields.filter((f) => picked[f.key] !== undefined).length; count.textContent = P.unlocked.replace('{k}', String(k)); go.hidden = k === 0; };
+  const refresh = () => { const k = d.fields.filter((f) => picked[f.key] !== undefined).length; count.textContent = P.unlocked.replace('{k}', String(k)); go.textContent = k === 0 ? C.shared.skip : 'Done'; };   /* a way past the doors even when none is opened */
   for (const f of d.fields) {
     const door = el('div', 'fo-door' + (picked[f.key] !== undefined ? ' open done' : ''));
     const front = el('button', 'fo-door-front'); front.type = 'button';
@@ -744,7 +768,7 @@ function demographics(onDone) {
   }
   w.appendChild(count);
   const acts = el('div', 'fo-actions');
-  const go = el('button', 'btn solid', 'Done'); go.type = 'button'; go.hidden = true;
+  const go = el('button', 'btn solid', C.shared.skip); go.type = 'button';
   const status = el('p', 'fo-status', '');
   go.addEventListener('click', async () => {
     st.demographics = picked; save(); go.disabled = true;
@@ -891,14 +915,25 @@ const ICONS = {
   flag: '<path d="M5 2h2v20H5zM7 3h11l-3 4 3 4H7z"/>',
 };
 function iconSvg(name) { return h(`<svg class="fo-card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">${ICONS[name] || ICONS.star}</svg>`); }
+const TURN_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 8.5"/><path d="M20 4v4.5h-4.5"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 15.5"/><path d="M4 20v-4.5h4.5"/></svg>';
+function cardHint(text) { const sp = el('span', 'fo-card-hint'); sp.appendChild(h(TURN_ICON)); sp.appendChild(document.createTextNode(text)); return sp; }
 function flipCard(front, backLine, backSource, extraClass) {
+  /* a card that turns over: the word in front with "Tap to open", the line and its source behind with "Tap to close" (Khayyam, 22 Oct: it must be obvious that the cards open) */
+  const P = C.portrait;
   const card = el('button', 'fo-flip' + (extraClass ? ' ' + extraClass : '')); card.type = 'button'; card.setAttribute('aria-expanded', 'false');
   const inner = el('div', 'fo-flip-inner');
   const f = el('div', 'fo-flip-front'); f.appendChild(front);
-  const b = el('div', 'fo-flip-back'); b.appendChild(el('p', '', backLine)); if (backSource) b.appendChild(el('small', '', backSource));
+  if (extraClass !== 'secret') front.appendChild(cardHint(P.tap_open));
+  const b = el('div', 'fo-flip-back'); b.appendChild(el('p', '', backLine)); if (backSource) b.appendChild(el('small', '', backSource)); b.appendChild(cardHint(P.tap_close));
   inner.appendChild(f); inner.appendChild(b); card.appendChild(inner);
-  card.addEventListener('click', () => { const on = card.classList.toggle('on'); card.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+  card.addEventListener('click', () => { card.classList.remove('peek'); const on = card.classList.toggle('on'); card.setAttribute('aria-expanded', on ? 'true' : 'false'); });
   return card;
+}
+/* the first card shows how: it turns over by itself for a moment, then back, once per phone */
+function peekCard(card) {
+  if (!card || reduced()) return;
+  const st = load(); if (st.cards_shown) return; st.cards_shown = true; save();
+  setTimeout(() => { if (card.classList.contains('on')) return; card.classList.add('peek'); setTimeout(() => card.classList.remove('peek'), 1800); }, 1400);
 }
 
 /* ---- the dial: how well the player guessed themself ---- */
@@ -923,7 +958,7 @@ function guessDial() {
 function portraitPage() {
   const root = document.getElementById('fo'); const st = load(); const P = C.portrait;
   const done = doneGames();
-  sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
+  howSheet();
   if (done.length < 9) {
     const w = el('section', 'fo-screen fo-portrait');
     w.appendChild(el('h1', 'fo-title', P.title));
@@ -936,7 +971,6 @@ function portraitPage() {
   const r1 = st.games[1].result; const bandsOf = (n) => { const r = st.games[n] && st.games[n].result; return r && r.scored ? bandIndex(n, mainScore(n, r)) : null; };
   const w = el('div', 'fo-stories');
   const story = (cls) => { const s = el('section', 'fo-story' + (cls ? ' ' + cls : '')); w.appendChild(s); return s; };
-  const hint = (s) => { s.appendChild(h(`<p class="fo-swipe" aria-hidden="true">${esc(P.swipe)} <span>⌄</span></p>`)); };
 
   /* 1. the figure */
   const s1 = story('fo-story-figure');
@@ -946,19 +980,18 @@ function portraitPage() {
   [2, 5, 7, 4, 8].forEach((n) => { const b = bandsOf(n); if (b === null) return; const sp = el('span', ''); sp.appendChild(h(`<i style="background:${BAND_COLOURS[b]}"></i>`)); sp.appendChild(document.createTextNode(C.games[n].bands[b].name)); legend.appendChild(sp); });
   s1.appendChild(legend);
   rewritingLine(s1);
-  hint(s1);
 
   /* 2. the bars */
   const s2 = story(); s2.appendChild(el('h2', '', P.sections.personality));
   const bars = el('div', 'fo-bars'); const traitOf = { Outgoing: 'E', Warm: 'A', Organised: 'C', Calm: 'calm', Curious: 'O' };
   for (const bar of C.games[1].bars) { const key = traitOf[bar.name]; const v = key === 'calm' ? r1.calm : r1.traits[key]; const row = el('div', 'fo-bar' + (v === null ? ' skip' : '')); row.appendChild(el('b', '', bar.name)); const rail = el('div', 'rail'); const f = el('div', 'fill'); f.dataset.w = (v === null ? 0 : toP(1, v) * 100) + '%'; f.style.width = '0%'; rail.appendChild(f); row.appendChild(rail); row.appendChild(el('small', '', v === null ? '' : (v >= 3 ? bar.high : bar.low))); bars.appendChild(row); }
-  s2.appendChild(bars); hint(s2);
+  s2.appendChild(bars);
 
   /* 3. the five dots, in their colours */
   const s3 = story(); s3.appendChild(el('h2', '', P.sections.world));
   const dv = el('div', 'fo-dots-view');
   for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = el('div', 'fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm); const sp = strip({ p: 0, bands: true, still: false }); sp.dot.style.background = bandColour(n, v); sp.dot.dataset.p = String(toP(n, v) * 100); row.appendChild(sp); dv.appendChild(row); }
-  s3.appendChild(dv); hint(s3);
+  s3.appendChild(dv);
 
   /* 4. people like you: the cards, and One more */
   const picks = portraitLines();
@@ -966,10 +999,10 @@ function portraitPage() {
     const s4 = story(); s4.appendChild(el('h2', '', P.sections.people)); s4.appendChild(el('p', 'fo-quiet', P.sections.people_intro));
     const grid = el('div', 'fo-cards');
     const main = picks.slice(0, -1), last = picks[picks.length - 1];
-    for (const r of main) { const front = el('div', 'fo-card-face'); front.appendChild(iconSvg(CARD_ICON[r.id])); front.appendChild(el('b', '', CARD_WORD[r.id] || '')); grid.appendChild(flipCard(front, r.line, r.sources.join('; '))); }
-    const front = el('div', 'fo-card-face fo-card-secret'); front.appendChild(el('b', '', P.one_more)); front.appendChild(el('span', 'fo-tap', P.tap));
+    for (const r of main) { const front = el('div', 'fo-card-face'); const top = el('div'); top.appendChild(iconSvg(CARD_ICON[r.id])); front.appendChild(top); const word = el('div'); word.appendChild(el('b', '', CARD_WORD[r.id] || '')); front.appendChild(word); grid.appendChild(flipCard(front, r.line, r.sources.join('; '))); }
+    const front = el('div', 'fo-card-face fo-card-secret'); front.appendChild(el('b', '', P.one_more)); const tapMe = el('span', 'fo-tap'); tapMe.appendChild(h(TURN_ICON)); tapMe.appendChild(document.createTextNode(P.tap_me)); front.appendChild(tapMe);
     grid.appendChild(flipCard(front, last.line, last.sources.join('; '), 'secret'));
-    s4.appendChild(grid); hint(s4);
+    s4.appendChild(grid);
   }
 
   /* 5. the dial and the own-answer lines */
@@ -979,7 +1012,6 @@ function portraitPage() {
   if (own.length) { const d = el('div', 'fo-own'); own.forEach((l) => d.appendChild(el('p', '', l))); s5.appendChild(d); }
   const worldBox = el('div'); s5.appendChild(worldBox);
   api('/guessed').then((r) => { if (!r || !r.lines || !r.lines.length) return; worldBox.appendChild(el('h2', '', P.sections.guessed)); const d = el('div', 'fo-own'); r.lines.forEach((l) => d.appendChild(el('p', '', l))); worldBox.appendChild(d); }).catch(() => {});
-  hint(s5);
 
   /* 6. the twin and the rarest thing, once the world has a hundred players; the doors; the consent; the rest */
   const s6 = story('fo-story-tail');
@@ -1016,8 +1048,15 @@ function portraitPage() {
     rem.appendChild(el('p', 'fo-quiet', P.reminder_date.replace('{date}', longDate(d))));
     rem.appendChild(el('p', 'fo-quiet', P.january.replace('{month}', d.toLocaleDateString('en-GB', { month: 'long' }))));
     const cal = el('a', 'chip', P.add_calendar); cal.href = icsFor(d); cal.download = 'logicers-find-out.ics'; rem.appendChild(cal); box.appendChild(rem);
-    const ex = el('div', 'fo-extra'); const ea = el('a', 'chip', C.pools.explore_heading); ea.href = '../explore/'; ex.appendChild(ea); box.appendChild(ex);
     return box;
+  }
+  function exploreBox() {
+    /* a box people see and want to open (Khayyam, 22 Oct): two overlapping curves drawn small, the words, one button */
+    const a = el('a', 'fo-explore-box'); a.href = '../explore/';
+    a.appendChild(el('b', '', P.explore_box)); a.appendChild(el('p', '', P.explore_box_line));
+    a.appendChild(h('<svg viewBox="0 0 300 56" aria-hidden="true"><path d="M4 50 C 60 50, 90 8, 130 8 S 200 50, 296 50" fill="rgba(255,212,94,.35)" stroke="#FFD45E" stroke-width="3" stroke-linejoin="round"/><path d="M4 50 C 90 50, 130 14, 180 14 S 250 50, 296 50" fill="rgba(255,255,255,.22)" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg>'));
+    a.appendChild(el('span', 'chip', P.explore_open));
+    return a;
   }
   function codeBox() {
     const box = el('div', 'fo-card fo-codebox');
@@ -1040,18 +1079,9 @@ function portraitPage() {
       compared(tail);
       if (st.code) tail.appendChild(codeBox());
     }
+    if (st.consent.status === 'yes' && st.demographics) tail.appendChild(exploreBox());
     tail.appendChild(extras());
-    const del = el('div', 'fo-card'); const b = el('button', 'fo-help-btn', P.delete); b.type = 'button';
-    b.addEventListener('click', () => {
-      const d = sheet('dlg-del', P.delete, `<p>${esc(P.delete_sure)}</p><div class="actions"><button class="btn solid" id="del-yes" type="button">${esc(P.delete_yes)}</button><button class="btn ghost" type="button" data-close>${esc(P.delete_no)}</button></div>`);
-      d.querySelector('#del-yes').addEventListener('click', async () => {
-        const id = st.id, sent = !!st.uploaded.at;
-        try { if (sent) await api('/delete', { id }); } catch (e) { /* the server did not answer: the local copy still goes */ }
-        wipe(); d.close(); root.textContent = ''; root.appendChild(el('p', 'fo-lede', P.deleted));
-      });
-      d.showModal();
-    });
-    del.appendChild(b); tail.appendChild(del);
+    /* "Delete my answers" is not on the portrait any more (Khayyam, 22 Oct): it lives under the consent card's "?" and on the code page */
   }
   tailFor(); specials();
 
@@ -1061,6 +1091,7 @@ function portraitPage() {
     requestAnimationFrame(() => setTimeout(() => {
       s2.querySelectorAll('.fill').forEach((f, i) => setTimeout(() => { f.style.width = f.dataset.w; }, 120 * i));
       s3.querySelectorAll('.fo-strip-dot').forEach((d, i) => setTimeout(() => { d.style.left = d.dataset.p + '%'; }, 160 * i));
+      peekCard(w.querySelector('.fo-cards .fo-flip'));
     }, 60));
   };
   if (!st.portrait_seen && !reduced()) {
@@ -1072,19 +1103,48 @@ function portraitPage() {
   } else { st.portrait_seen = true; save(); animateIn(); }
 
   function compared(where) {
+    /* a picture, not only words (Khayyam, 22 Oct): three figures, You · people from your country · Everyone, then one strip
+       per game with three dots (yours in its band colour, the country's and the world's averages), the percent lines under them */
     const box = el('div'); box.appendChild(el('h2', '', P.sections.compared));
     const cn = st.country && st.country !== 'not said' ? countryOf(st.country) : null;
-    if (!cn) { box.appendChild(el('p', 'fo-quiet', 'You did not say where you are from, so there is no country line here. The world lines are on each game.')); where.appendChild(box); return; }
-    const d = el('div', 'fo-own'); box.appendChild(d); where.appendChild(box);
-    for (const n of [2, 3, 4, 5, 6, 7, 8]) {
-      const res = st.games[n].result; const v = n === 6 ? res.score : mainScore(n, res);
-      api('/pool', { id: st.id, m: `g${n}`, pool: { country: st.country } }).then((c) => {
-        if (!c) return;
-        if (c.n < c.opens_at) { d.appendChild(el('p', '', `${C.games[n].name}: ${cn.name} ${fmt(c.n)} so far · opens at ${c.opens_at}`)); return; }
-        let below = 0, equal = 0; c.bins.forEach((cnt, i) => { const x = c.lo + i * c.step; if (x < v - c.step / 2) below += cnt; else if (Math.abs(x - v) <= c.step / 2) equal += cnt; });
-        d.appendChild(el('p', '', pctWord(C.games[n].comparison, Math.round(100 * (below + equal / 2) / c.n)).replace('the world', `people from ${cn.name}`)));
-      }).catch(() => {});
-    }
+    const countryName = cn ? poolName('country') : null;
+    const figs = el('div', 'fo-cmp-figs'); box.appendChild(figs);
+    const mine = el('div'); mine.appendChild(figureSvg(r1, bandsOf, {})); mine.appendChild(el('small', '', P.compare_you)); figs.appendChild(mine);
+    const legend = el('div', 'fo-cmp-legend');
+    legend.appendChild(h(`<span><i></i>${esc(P.compare_you)}</span>`));
+    if (cn) legend.appendChild(h(`<span><i class="grp-country"></i>${esc(countryName)}</span>`));
+    legend.appendChild(h(`<span><i class="grp-world"></i>${esc(P.everyone.toLowerCase())}</span>`));
+    box.appendChild(legend);
+    const rows = el('div'); box.appendChild(rows); where.appendChild(box);
+    const meanOf = (c) => { let sum = 0; c.bins.forEach((cnt, i) => { sum += cnt * (c.lo + i * c.step); }); return c.n ? sum / c.n : null; };
+    const pctOf = (c, v) => { let below = 0, equal = 0; c.bins.forEach((cnt, i) => { const x = c.lo + i * c.step; if (x < v - c.step / 2) below += cnt; else if (Math.abs(x - v) <= c.step / 2) equal += cnt; }); return Math.round(100 * (below + equal / 2) / c.n); };
+    const open = (c) => c && c.n >= c.opens_at;
+    const groupMeans = { world: {}, country: {} };
+    const fetchGroup = (kind, m) => kind === 'world' ? api('/curve?m=' + m) : api('/pool', { id: st.id, m, pool: { country: st.country } });
+    const groupFigure = (kind, label) => {
+      const g = groupMeans[kind]; if (![2, 5, 7, 4, 8].some((n) => g['g' + n] !== undefined && g['g' + n] !== null)) return;
+      const traits = {}; for (const t of ['E', 'A', 'C', 'N', 'O']) traits[t] = g['g1.' + t] === undefined ? null : g['g1.' + t];
+      const r = { traits, calm: traits.N === null ? null : 6 - traits.N };
+      const d = el('div'); d.appendChild(figureSvg(r, (n) => (g['g' + n] === undefined || g['g' + n] === null ? null : bandIndex(n, g['g' + n])), {})); d.appendChild(el('small', '', label));
+      if (kind === 'country') figs.insertBefore(d, figs.children[1] || null); else figs.appendChild(d);
+    };
+    (async () => {
+      /* the strips first: one row per game, the dots arriving as the answers come */
+      for (const n of [2, 3, 4, 5, 6, 7, 8]) {
+        const res = st.games[n].result; if (!res || !res.scored) continue; const v = n === 6 ? res.score : mainScore(n, res);
+        const row = el('div', 'fo-cmp-row fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm);
+        const sp = strip({ p: toP(n, v), bands: true, still: true }); sp.dot.classList.add('grp-you'); sp.dot.style.background = bandColour(n, v); row.appendChild(sp);
+        const lines = el('div'); row.appendChild(lines); rows.appendChild(row);
+        const addDot = (cls, p, title) => { const d = el('div', 'fo-strip-dot still ' + cls); d.style.left = (p * 100) + '%'; d.title = title; d.setAttribute('aria-hidden', 'true'); sp.insertBefore(d, sp.dot); };
+        try { const w = await fetchGroup('world', 'g' + n); if (open(w)) { const m = meanOf(w); groupMeans.world['g' + n] = m; addDot('grp-world', toP(n, m), P.everyone); lines.appendChild(el('p', 'fo-quiet', pctWord(C.games[n].comparison, pctOf(w, v)))); } } catch (e) {}
+        if (cn) { try { const c = await fetchGroup('country', 'g' + n); if (open(c)) { const m = meanOf(c); groupMeans.country['g' + n] = m; addDot('grp-country', toP(n, m), countryName); lines.appendChild(el('p', 'fo-quiet', pctWord(C.games[n].comparison, pctOf(c, v)).replace('the world', countryName))); } else if (c) lines.appendChild(el('p', 'fo-quiet', `${countryName}: ${fmt(c.n)} so far · opens at ${c.opens_at}`)); } catch (e) {} }
+      }
+      /* then the two group figures: their faces from the five bars' averages, their dots from the five games' averages */
+      for (const kind of cn ? ['world', 'country'] : ['world']) {
+        for (const t of ['E', 'A', 'C', 'N', 'O']) { try { const c = await fetchGroup(kind, 'g1.' + t); if (open(c)) groupMeans[kind]['g1.' + t] = meanOf(c); } catch (e) {} }
+        groupFigure(kind, kind === 'world' ? P.everyone : (cn.flag + ' ' + countryName));
+      }
+    })();
   }
 }
 
@@ -1138,7 +1198,7 @@ function roundRect(x, X, Y, W, H, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcT
 function comparePage() {
   const root = document.getElementById('fo'); const st = load(); const P = C.portrait;
   const w = el('section', 'fo-screen fo-portrait');
-  sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
+  howSheet();
   const f = parseFriend(location.hash);
   w.appendChild(el('h1', 'fo-title', P.compare_friend));
   if (!f) { w.appendChild(el('p', 'fo-lede', 'This link carries no portrait. Ask your friend to send it again from their portrait.')); const a = el('a', 'btn solid', C.home['Start button']); a.href = '../'; w.appendChild(a); root.textContent = ''; root.appendChild(w); return; }
@@ -1173,7 +1233,7 @@ function comparePage() {
 function explorePage() {
   const root = document.getElementById('fo'); const st = load(); const PL = C.pools;
   const w = el('section', 'fo-screen fo-portrait');
-  sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
+  howSheet();
   w.appendChild(el('h1', 'fo-title', PL.explore_heading));
   w.appendChild(el('p', 'fo-quiet', PL.explore_line));
   if (st.consent.status !== 'yes' || !st.uploaded.at) { w.appendChild(el('p', 'fo-lede', PL.opens_after_yes)); const a = el('a', 'btn solid', doneGames().length === 9 ? C.shared.see_portrait : C.home['Start button']); a.href = doneGames().length === 9 ? '../portrait/' : '../'; w.appendChild(a); root.textContent = ''; root.appendChild(w); return; }
