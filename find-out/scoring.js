@@ -25,7 +25,7 @@ export const SPEC = Object.freeze({
     name: 'Who calls the shots?',
     keys: ['POP1', 'POP2', 'POP3', 'POP4', 'POP5', 'POP7'],
     scale: [1, 5],
-    bands: ["The system's friend", 'The watchful middle', "The people's champion"], // < 8/3 · < 11/3 · rest
+    bands: ["With the experts", 'In the middle', "With the people"], // < 8/3 · < 11/3 · rest
   },
   3: {
     name: 'Sunny or cloudy?',
@@ -36,7 +36,7 @@ export const SPEC = Object.freeze({
     fillers: ['2', '5'],
     attention: '6',
     attentionValue: 3, // "agree"
-    bands: ['The realist', 'The hopeful realist', 'The sunny side'], // < 12 · < 18 · rest (on 0-24)
+    bands: ['The realist', 'Realist with hope', 'The optimist'], // < 12 · < 18 · rest (on 0-24)
   },
   4: {
     name: 'What makes a good kid?',
@@ -49,13 +49,13 @@ export const SPEC = Object.freeze({
       5: { options: ['Being considerate', 'Well behaved'], authoritarian: 'Well behaved' },
       6: { options: ['One best friend', 'Lots of friends'], authoritarian: null }, // filler (ours)
     },
-    bands: ['Wings', 'A bit of both', 'Roots'], // nearest whole count: 0-1 · 2 · 3-4
+    bands: ['Freedom first', 'A bit of both', 'Rules first'], // nearest whole count: 0-1 · 2 · 3-4
   },
   5: {
     name: 'Is there more to the story?',
     keys: range(1, 5),
     scale: [0, 10],
-    bands: ['The straight reader', 'The raised eyebrow', 'The detective'], // < 4 · < 6.5 · rest
+    bands: ['Trusts what is said', 'Asks questions first', 'Looks for secret plans'], // < 4 · < 6.5 · rest
   },
   6: {
     name: 'Think twice?',
@@ -67,14 +67,14 @@ export const SPEC = Object.freeze({
       3: { correct: 'Emily', lure: 'June', other: ['July', 'March'] },
       4: { correct: 'None', lure: '27', other: ['9', '3'] },
     },
-    bands: ['Fast and sure', 'Quick with a check', 'Takes a second look'], // 0-1 · 2 · 3-4
+    bands: ['Quick answers', 'Half and half', 'Careful thinker'], // 0-1 · 2 · 3-4
   },
   7: {
     name: 'Who would you believe?',
     keys: ['B6', 'B7', 'B8', 'B9', 'B10', 'B11', 'B12', 'grandmother'],
     scale: [0, 10],
     bandItems: ['B6', 'B7', 'B8', 'B9', 'B10', 'B12'], // B11 (EU only) and the filler never count
-    bands: ['The careful checker', 'The balanced truster', 'The trusting citizen'], // < 4 · < 6.5 · rest
+    bands: ['Careful with trust', 'Trusts some', 'Trusts a lot'], // < 4 · < 6.5 · rest
   },
   8: {
     name: 'Home sweet home?',
@@ -82,7 +82,7 @@ export const SPEC = Object.freeze({
     scale: [1, 5], // ISSP codes: 1 = Agree strongly ... 5 = Disagree strongly
     index: ['Q3a', 'Q3c', 'Q3d', 'Q3e'], // reversed (6 - code): higher = more chauvinist
     single: ['Q3b', 'Q3f'],
-    bands: ['World citizen', 'At home in both', 'Home first'], // < 8/3 · < 11/3 · rest
+    bands: ['World citizen', 'Country and world', 'Country first'], // < 8/3 · < 11/3 · rest
   },
   9: {
     name: 'Quick ones',

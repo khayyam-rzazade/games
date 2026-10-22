@@ -3,7 +3,7 @@
 export const ITEMS = [
  {
   "number": 1,
-  "name": "What's your type?",
+  "name": "Your personality",
   "kind": "likert",
   "stem": "I see myself as someone who…",
   "published_instruction": "How well do the following statements describe your personality?",
@@ -96,7 +96,7 @@ export const ITEMS = [
  },
  {
   "number": 2,
-  "name": "Who calls the shots?",
+  "name": "Who should decide?",
   "kind": "likert",
   "stem": null,
   "instruction_ours": "How much do you agree?",
@@ -151,7 +151,7 @@ export const ITEMS = [
   "scoring_published": "mean of the six items (the authors' populism scale: POP1–POP5 and POP7; POP6 did not load, POP8 was dropped in the original analysis). Higher = more populist.",
   "bands": [
    {
-    "name": "The system's friend",
+    "name": "With the experts",
     "range_text": "< 2.67",
     "lo": null,
     "lo_inclusive": null,
@@ -160,7 +160,7 @@ export const ITEMS = [
     "lower_derived": null
    },
    {
-    "name": "The watchful middle",
+    "name": "In the middle",
     "range_text": "2.67–3.66",
     "lo": 2.67,
     "lo_inclusive": true,
@@ -169,7 +169,7 @@ export const ITEMS = [
     "lower_derived": 2.67
    },
    {
-    "name": "The people's champion",
+    "name": "With the people",
     "range_text": "≥ 3.67",
     "lo": 3.67,
     "lo_inclusive": true,
@@ -184,7 +184,7 @@ export const ITEMS = [
  },
  {
   "number": 3,
-  "name": "Sunny or cloudy?",
+  "name": "Optimist or realist?",
   "kind": "likert",
   "published_instruction": "\"Please be as honest and accurate as you can throughout. Try not to let your response to one statement influence your responses to other statements. There are no \"correct\" or \"incorrect\" answers. Answer according to your own feelings, rather than how you think \"most people\" would answer.\"",
   "items": [
@@ -304,7 +304,7 @@ export const ITEMS = [
     "lower_derived": null
    },
    {
-    "name": "The hopeful realist",
+    "name": "Realist with hope",
     "range_text": "12–17",
     "lo": 12.0,
     "lo_inclusive": true,
@@ -313,7 +313,7 @@ export const ITEMS = [
     "lower_derived": 12.0
    },
    {
-    "name": "The sunny side",
+    "name": "The optimist",
     "range_text": "18–24",
     "lo": 18.0,
     "lo_inclusive": true,
@@ -325,7 +325,7 @@ export const ITEMS = [
  },
  {
   "number": 4,
-  "name": "What makes a good kid?",
+  "name": "Raising a child",
   "kind": "forced_choice",
   "items": [
    {
@@ -393,7 +393,7 @@ export const ITEMS = [
   "scoring_published": "count of authoritarian choices, 0–4, rescaled 0–1. The two fillers are stored but never scored.",
   "bands": [
    {
-    "name": "Wings",
+    "name": "Freedom first",
     "range_text": "0–1",
     "lo": 0.0,
     "lo_inclusive": true,
@@ -411,7 +411,7 @@ export const ITEMS = [
     "lower_derived": 2.0
    },
    {
-    "name": "Roots",
+    "name": "Rules first",
     "range_text": "3–4",
     "lo": 3.0,
     "lo_inclusive": true,
@@ -423,7 +423,7 @@ export const ITEMS = [
  },
  {
   "number": 5,
-  "name": "Is there more to the story?",
+  "name": "Secret plans",
   "kind": "likert",
   "stem": "I think that…",
   "published_instruction": "\"For each of the statements below, please use the respective rating scale to indicate how likely it is in your opinion that the statement is true. Remember that there are no 'objectively' right or wrong answers and that we are interested in your personal opinion.\"",
@@ -509,7 +509,7 @@ export const ITEMS = [
   "scoring_published": "mean of the five, 0–10. No reversed items.",
   "bands": [
    {
-    "name": "The straight reader",
+    "name": "Trusts what is said",
     "range_text": "< 4",
     "lo": null,
     "lo_inclusive": null,
@@ -518,7 +518,7 @@ export const ITEMS = [
     "lower_derived": null
    },
    {
-    "name": "The raised eyebrow",
+    "name": "Asks questions first",
     "range_text": "4–6.4",
     "lo": 4.0,
     "lo_inclusive": true,
@@ -527,7 +527,7 @@ export const ITEMS = [
     "lower_derived": 4.0
    },
    {
-    "name": "The detective",
+    "name": "Looks for secret plans",
     "range_text": "≥ 6.5",
     "lo": 6.5,
     "lo_inclusive": true,
@@ -539,7 +539,7 @@ export const ITEMS = [
  },
  {
   "number": 6,
-  "name": "Think twice?",
+  "name": "Four riddles",
   "kind": "multiple_choice",
   "items": [
    {
@@ -591,7 +591,7 @@ export const ITEMS = [
   ],
   "bands": [
    {
-    "name": "Fast and sure",
+    "name": "Quick answers",
     "range_text": "0–1",
     "lo": 0.0,
     "lo_inclusive": true,
@@ -600,7 +600,7 @@ export const ITEMS = [
     "lower_derived": null
    },
    {
-    "name": "Quick with a check",
+    "name": "Half and half",
     "range_text": "2",
     "lo": 2.0,
     "lo_inclusive": true,
@@ -609,7 +609,7 @@ export const ITEMS = [
     "lower_derived": 2.0
    },
    {
-    "name": "Takes a second look",
+    "name": "Careful thinker",
     "range_text": "3–4",
     "lo": 3.0,
     "lo_inclusive": true,
@@ -623,7 +623,7 @@ export const ITEMS = [
  },
  {
   "number": 7,
-  "name": "Who would you believe?",
+  "name": "Who do you trust?",
   "kind": "dial",
   "items": [
    {
@@ -697,7 +697,7 @@ export const ITEMS = [
   "scoring": "single items 0–10 (the record); for the band, the mean of B6–B10 and B12 (B11 excluded so that EU and non-EU players are on the same scale). Each item is compared with the pools on its own.",
   "bands": [
    {
-    "name": "The careful checker",
+    "name": "Careful with trust",
     "range_text": "< 4",
     "lo": null,
     "lo_inclusive": null,
@@ -706,7 +706,7 @@ export const ITEMS = [
     "lower_derived": null
    },
    {
-    "name": "The balanced truster",
+    "name": "Trusts some",
     "range_text": "4–6.4",
     "lo": 4.0,
     "lo_inclusive": true,
@@ -715,7 +715,7 @@ export const ITEMS = [
     "lower_derived": 4.0
    },
    {
-    "name": "The trusting citizen",
+    "name": "Trusts a lot",
     "range_text": "≥ 6.5",
     "lo": 6.5,
     "lo_inclusive": true,
@@ -730,7 +730,7 @@ export const ITEMS = [
  },
  {
   "number": 8,
-  "name": "Home sweet home?",
+  "name": "Your country",
   "kind": "likert",
   "items": [
    {
@@ -810,7 +810,7 @@ export const ITEMS = [
     "lower_derived": null
    },
    {
-    "name": "At home in both",
+    "name": "Country and world",
     "range_text": "2.67–3.66",
     "lo": 2.67,
     "lo_inclusive": true,
@@ -819,7 +819,7 @@ export const ITEMS = [
     "lower_derived": 2.67
    },
    {
-    "name": "Home first",
+    "name": "Country first",
     "range_text": "≥ 3.67",
     "lo": 3.67,
     "lo_inclusive": true,
@@ -836,7 +836,7 @@ export const ITEMS = [
  },
  {
   "number": 9,
-  "name": "Quick ones",
+  "name": "Nine quick questions",
   "kind": "single_items",
   "items": [
    {
@@ -904,13 +904,13 @@ export const COPY = {
   "Home box button": "Start",
   "Row title on the home page": "Find out about yourself…",
   "Section page title (browser tab)": "Find out who you are — Logicers",
-  "Start card": "Find out who you are. 9 short games, about 6 minutes. At the end: your portrait.",
+  "Start card": "Find out who you are. 9 short games, about 6 minutes. At the end you get your portrait: your personality, how you see the world, and what people like you tend to do.",
   "Start button": "Start with game 1",
   "Under the nine circles, once some are filled": "3 of 9 done · about 4 minutes left",
   "Pick-any-game list heading": "Or pick a game",
   "Returning player, nothing done yet": "Pick up where you left off",
   "start_title": "Find out who you are.",
-  "start_lede": "9 short games, about 6 minutes. At the end: your portrait."
+  "start_lede": "9 short games, about 6 minutes. At the end you get your portrait: your personality, how you see the world, and what people like you tend to do."
  },
  "shared": {
   "guess_q": "Where do you think you'll land?",
@@ -932,16 +932,18 @@ export const COPY = {
   "not_said": "not said",
   "curve_waiting": "12 so far · opens at 30",
   "you_guessed": "You guessed",
-  "you_landed": "You landed"
+  "you_landed": "You landed",
+  "card_line": "Game 3 of 9 · your portrait opens after game 9"
  },
  "games": {
   "1": {
    "number": 1,
-   "name": "What's your type?",
+   "name": "Your personality",
    "search_title": "What's your personality in 10 statements? A 40-second test.",
    "start_line": "10 statements · 40 seconds",
    "instruction": "How well does each one describe you?",
    "help": "Ten statements about you. There are no right answers. This is the shortest personality test that scientists still trust.",
+   "guess_line": "Ten short sentences about you. First, your guess.",
    "guess": {
     "question": "How outgoing are you?",
     "ends": [
@@ -989,21 +991,27 @@ export const COPY = {
   },
   "2": {
    "number": 2,
-   "name": "Who calls the shots?",
+   "name": "Who should decide?",
    "search_title": "Do you side with the people or the politicians? A 25-second test.",
    "start_line": "6 statements · 25 seconds",
    "instruction": "How much do you agree?",
    "help": "Six statements about who should decide. No answer is better than another. Some countries' parliaments have their own names; we use the one you'd say.",
+   "guess_line": "Six sentences about who should decide in a country: the people, or the politicians. First, your guess.",
+   "scale_words": [
+    "disagree",
+    "in between",
+    "agree"
+   ],
    "guess": {
     "question": null,
     "ends": [
-     "The system's friend",
-     "The people's champion"
+     "With the experts",
+     "With the people"
     ]
    },
    "bands": [
     {
-     "name": "The system's friend",
+     "name": "With the experts",
      "note": null,
      "lines": [
       "You believe in letting people who know the job do the job.",
@@ -1011,7 +1019,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The watchful middle",
+     "name": "In the middle",
      "note": null,
      "lines": [
       "You trust the system, but you watch it closely.",
@@ -1019,7 +1027,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The people's champion",
+     "name": "With the people",
      "note": null,
      "lines": [
       "You think ordinary people have good sense and should be heard.",
@@ -1030,7 +1038,7 @@ export const COPY = {
    "looked_at": "Populist attitudes — how far politics should follow the people rather than the politicians — with the scale of Akkerman, Mudde & Zaslove (2014).",
    "dyk": "This way of thinking is not left or right. In nine European countries, supporters of populist parties on both sides scored far above other voters. (Van Hauwaert & van Kessel, 2018)",
    "myth": "Myth: there is a typical populist voter — poor, jobless, against Europe. Fact: across 15 parties in 11 countries, not one of these fitted them all. (Rooduijn, 2018)",
-   "comparison": "Closer to the people's champion than {pct}% of the world",
+   "comparison": "Closer to the people than {pct}% of the world",
    "country_tap": {
     "question": "Are you Italian?",
     "yes": "Yes",
@@ -1042,16 +1050,17 @@ export const COPY = {
   },
   "3": {
    "number": 3,
-   "name": "Sunny or cloudy?",
+   "name": "Optimist or realist?",
    "search_title": "Do you expect good things? A 30-second optimism test.",
    "start_line": "9 statements · 30 seconds",
    "instruction": "How much do you agree?",
    "help": "Nine statements about what you expect from life. Three of them are just for fun.",
+   "guess_line": "Nine sentences about what you expect from life: good things, or bad things. First, your guess.",
    "guess": {
     "question": null,
     "ends": [
      "The realist",
-     "The sunny side"
+     "The optimist"
     ]
    },
    "bands": [
@@ -1064,7 +1073,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The hopeful realist",
+     "name": "Realist with hope",
      "note": null,
      "lines": [
       "You hope for the best and prepare anyway.",
@@ -1072,7 +1081,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The sunny side",
+     "name": "The optimist",
      "note": null,
      "lines": [
       "You expect good things, and that helps you go after them.",
@@ -1087,21 +1096,22 @@ export const COPY = {
   },
   "4": {
    "number": 4,
-   "name": "What makes a good kid?",
+   "name": "Raising a child",
    "search_title": "What matters more for a child? A 15-second test.",
    "start_line": "6 choices · 15 seconds",
    "instruction": "Which matters more for a child? Tap one.",
    "help": "Six pairs. Both answers are good things; you choose which matters more. Two pairs are just for fun.",
+   "guess_line": "Six pairs of good things for a child. You pick which matters more. First, your guess.",
    "guess": {
     "question": null,
     "ends": [
-     "Wings",
-     "Roots"
+     "Freedom first",
+     "Rules first"
     ]
    },
    "bands": [
     {
-     "name": "Wings",
+     "name": "Freedom first",
      "note": null,
      "lines": [
       "You want kids to think for themselves.",
@@ -1117,7 +1127,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "Roots",
+     "name": "Rules first",
      "note": null,
      "lines": [
       "You believe kids do best with clear rules and respect.",
@@ -1128,25 +1138,26 @@ export const COPY = {
    "looked_at": "What researchers call authoritarian predispositions — the balance between order and freedom — measured by what people value in children (Feldman & Stenner, 1997; Stenner, 2005).",
    "dyk": "In many democracies, about one person in three leans toward order and sameness. About as many lean the other way. (Stenner, 2005; Stenner & Haidt, 2018)",
    "myth": "Myth: people who want order are always strict. Fact: this leaning stays quiet in calm times and gets stronger when people feel their way of life is in danger. (Stenner, 2005)",
-   "comparison": "Closer to Roots than {pct}% of the world"
+   "comparison": "Closer to rules first than {pct}% of the world"
   },
   "5": {
    "number": 5,
-   "name": "Is there more to the story?",
+   "name": "Secret plans",
    "search_title": "Do you think there's more going on than we're told? A 25-second test.",
    "start_line": "5 statements · 25 seconds",
    "instruction": "How likely is each one, from 0% to 100%?",
    "help": "Five statements about what happens in secret. Tap how likely each one feels to you.",
+   "guess_line": "Five sentences about things that may happen in secret. How likely does each one feel to you? First, your guess.",
    "guess": {
     "question": null,
     "ends": [
-     "The straight reader",
-     "The detective"
+     "Trusts what is said",
+     "Looks for secret plans"
     ]
    },
    "bands": [
     {
-     "name": "The straight reader",
+     "name": "Trusts what is said",
      "note": null,
      "lines": [
       "You believe what is in front of you until there is a reason not to.",
@@ -1154,7 +1165,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The raised eyebrow",
+     "name": "Asks questions first",
      "note": null,
      "lines": [
       "You believe the simple story most of the time, but you ask a few questions first.",
@@ -1162,7 +1173,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The detective",
+     "name": "Looks for secret plans",
      "note": null,
      "lines": [
       "You think there is often more going on than people are told.",
@@ -1173,15 +1184,16 @@ export const COPY = {
    "looked_at": "Conspiracy mentality — a general feeling that things are decided in secret — with the CMQ (Bruder et al., 2013).",
    "dyk": "This is a general attitude, not about one event. People who suspect one secret plan tend to suspect many. (Bruder et al., 2013)",
    "myth": "Myth: believing in secret plans is a right-wing thing. Fact: in 26 countries it was highest at both political extremes, and among people whose party had lost. (Imhoff et al., 2022)",
-   "comparison": "More of a detective than {pct}% of the world"
+   "comparison": "Suspects secret plans more than {pct}% of the world"
   },
   "6": {
    "number": 6,
-   "name": "Think twice?",
+   "name": "Four riddles",
    "search_title": "Can four riddles catch you? A 45-second thinking test.",
    "start_line": "4 riddles · 45 seconds",
    "instruction": "Each riddle has one trick. Tap your answer.",
    "help": "Four short riddles with four answers each. One answer is the trap. Take your time.",
+   "guess_line": "Four short riddles. Each one has a trap answer. First, your guess.",
    "guess": {
     "question": "How many of the four will catch you?",
     "ends": [
@@ -1191,7 +1203,7 @@ export const COPY = {
    },
    "bands": [
     {
-     "name": "Fast and sure",
+     "name": "Quick answers",
      "note": "0–1 right",
      "lines": [
       "Your first answer comes fast. That is how most minds work, and most of the time it is right.",
@@ -1199,7 +1211,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "Quick with a check",
+     "name": "Half and half",
      "note": "2 right",
      "lines": [
       "You caught half the tricks. That is a good sign: you check when something seems wrong.",
@@ -1207,7 +1219,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "Takes a second look",
+     "name": "Careful thinker",
      "note": "3–4 right",
      "lines": [
       "You slowed down when it mattered. Many people don't.",
@@ -1235,21 +1247,22 @@ export const COPY = {
   },
   "7": {
    "number": 7,
-   "name": "Who would you believe?",
+   "name": "Who do you trust?",
    "search_title": "Who do you trust? A 30-second test.",
    "start_line": "8 quick taps · 30 seconds (7 outside the EU)",
    "instruction": "How much do you trust each one, from 0 to 10?",
    "help": "Each one gets a number from 0 (no trust at all) to 10 (complete trust). One of them is just for fun.",
+   "guess_line": "Eight things like the police, the politicians and the courts. How much do you trust each one? First, your guess.",
    "guess": {
     "question": null,
     "ends": [
-     "The careful checker",
-     "The trusting citizen"
+     "Careful with trust",
+     "Trusts a lot"
     ]
    },
    "bands": [
     {
-     "name": "The careful checker",
+     "name": "Careful with trust",
      "note": null,
      "lines": [
       "You give trust when it is earned.",
@@ -1257,7 +1270,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The balanced truster",
+     "name": "Trusts some",
      "note": null,
      "lines": [
       "You trust some, you check others, and you know the difference.",
@@ -1265,7 +1278,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "The trusting citizen",
+     "name": "Trusts a lot",
      "note": null,
      "lines": [
       "You believe the system mostly works, and that belief is part of what makes it work.",
@@ -1280,16 +1293,17 @@ export const COPY = {
   },
   "8": {
    "number": 8,
-   "name": "Home sweet home?",
+   "name": "Your country",
    "search_title": "How do you feel about your country? A 25-second test.",
    "start_line": "6 statements · 25 seconds",
    "instruction": "How much do you agree?",
    "help": "Six statements about your country. \"Your country\" is the one you said you are from.",
+   "guess_line": "Six sentences about your country and the rest of the world. First, your guess.",
    "guess": {
     "question": null,
     "ends": [
      "World citizen",
-     "Home first"
+     "Country first"
     ]
    },
    "bands": [
@@ -1302,7 +1316,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "At home in both",
+     "name": "Country and world",
      "note": null,
      "lines": [
       "You love your country and you like the rest of the world too.",
@@ -1310,7 +1324,7 @@ export const COPY = {
      ]
     },
     {
-     "name": "Home first",
+     "name": "Country first",
      "note": null,
      "lines": [
       "You stand by your country.",
@@ -1321,11 +1335,11 @@ export const COPY = {
    "looked_at": "National pride and attachment, with questions from the International Social Survey Programme (ISSP), 2013.",
    "dyk": "In a 33-country study, younger and better-educated people were less proud of their country. Pride grew in countries that had been attacked. (Smith & Kim, 2006)",
    "myth": "Myth: the proudest countries are the oldest nations. Fact: in 33 countries the proudest were Venezuela, the United States and Australia; old European nations sat near the bottom. (Smith & Kim, 2006)",
-   "comparison": "Closer to Home first than {pct}% of the world"
+   "comparison": "Closer to country first than {pct}% of the world"
   },
   "9": {
    "number": 9,
-   "name": "Quick ones",
+   "name": "Nine quick questions",
    "search_title": "Nine quick questions about you and the world. 30 seconds.",
    "start_line": "9 quick taps · 30 seconds",
    "instruction": "One tap each. Skip anything you don't want to answer.",
@@ -1514,7 +1528,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P7",
-   "condition_text": "The sunny side",
+   "condition_text": "The optimist",
    "line": "People like you make more friends in their first months somewhere new, and others tend to like them more.",
    "sources": [
     "Carver, Scheier & Segerstrom 2010"
@@ -1523,7 +1537,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P8",
-   "condition_text": "The sunny side",
+   "condition_text": "The optimist",
    "line": "When a goal turns out to be impossible, people like you switch to a better one faster.",
    "sources": [
     "Carver et al. 2010"
@@ -1541,7 +1555,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P10",
-   "condition_text": "Takes a second look",
+   "condition_text": "Careful thinker",
    "line": "People like you are better at telling real news from fake, whatever their politics.",
    "sources": [
     "Pennycook & Rand 2019"
@@ -1550,7 +1564,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P11",
-   "condition_text": "Takes a second look",
+   "condition_text": "Careful thinker",
    "line": "People who check their first answer are more patient with money: more of them wait a month for a bigger sum.",
    "sources": [
     "Frederick 2005"
@@ -1559,7 +1573,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P12",
-   "condition_text": "Fast and sure",
+   "condition_text": "Quick answers",
    "line": "You are in the majority: in the original study, most people gave the quick answer too.",
    "sources": [
     "Frederick 2005",
@@ -1569,7 +1583,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P13",
-   "condition_text": "The straight reader",
+   "condition_text": "Trusts what is said",
    "line": "People like you tend to check ideas step by step, which goes with believing fewer hidden plans.",
    "sources": [
     "Swami et al. 2014"
@@ -1578,7 +1592,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P14",
-   "condition_text": "The detective",
+   "condition_text": "Looks for secret plans",
    "line": "People with your pattern pay close attention to those in power, such as politicians and big companies.",
    "sources": [
     "Imhoff & Bruder 2014"
@@ -1587,7 +1601,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P15",
-   "condition_text": "The detective",
+   "condition_text": "Looks for secret plans",
    "line": "Believing in hidden plans has almost nothing to do with personality: people like you come in every type.",
    "sources": [
     "Bruder et al. 2013",
@@ -1597,7 +1611,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P16",
-   "condition_text": "The people's champion",
+   "condition_text": "With the people",
    "line": "People with your pattern are found on the left and on the right alike.",
    "sources": [
     "Van Hauwaert & van Kessel 2018",
@@ -1607,7 +1621,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P17",
-   "condition_text": "The people's champion and The detective",
+   "condition_text": "With the people and Looks for secret plans",
    "line": "People who think the elite looks after itself often hold both these views. The link is partly about not trusting politicians, but not only.",
    "sources": [
     "Castanho Silva et al. 2017",
@@ -1617,7 +1631,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P18",
-   "condition_text": "The system's friend",
+   "condition_text": "With the experts",
    "line": "People like you usually also trust the institutions more and feel that politicians listen.",
    "sources": [
     "Geurkink et al. 2020"
@@ -1626,7 +1640,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P19",
-   "condition_text": "Roots",
+   "condition_text": "Rules first",
    "line": "About one person in three in many democracies shares your pattern; it values a shared way of life.",
    "sources": [
     "Stenner 2005",
@@ -1636,7 +1650,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P20",
-   "condition_text": "Wings",
+   "condition_text": "Freedom first",
    "line": "About as many people lean your way as the other; in calm times the two sides look much alike.",
    "sources": [
     "Stenner 2005"
@@ -1663,7 +1677,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P23",
-   "condition_text": "Home first",
+   "condition_text": "Country first",
    "line": "Pride like yours is most common in young nations such as the United States and Australia, less in old European ones.",
    "sources": [
     "Smith & Kim 2006 (press release)"
@@ -1681,7 +1695,7 @@ export const PORTRAIT = {
   },
   {
    "id": "P25",
-   "condition_text": "The trusting citizen",
+   "condition_text": "Trusts a lot",
    "line": "In 148 studies, trust was one of the strongest links to well-being.",
    "sources": [
     "DeNeve & Cooper 1998"
@@ -1700,7 +1714,7 @@ export const PORTRAIT = {
  ],
  "own": [
   "- Guess vs result: \"You guessed yourself right in 6 of 8 games.\" / \"You know yourself well: 7 of 8 guesses were close.\" / \"You surprised yourself in 4 of 8 games.\"",
-  "- Fastest game: \"Your fastest game: Quick ones — 19 seconds.\"",
+  "- Fastest game: \"Your fastest game: Nine quick questions — 19 seconds.\"",
   "- Contradiction, told kindly, only when it holds: \"Sunny about your own future, cooler about the country: you are in good company.\" (life ladder ≥ 7 and direction = wrong, or optimism high and satisfaction with democracy ≤ 4)",
   "- Consistency: \"You trust people more than institutions.\" (trust-in-people dial ≥ 7 and game 7 band = careful checker) / \"You trust institutions more than most people trust strangers.\" (the reverse)",
   "- Skips: never mentioned."

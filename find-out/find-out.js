@@ -5,8 +5,8 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=9d3ee0a0ce';
-import { scoreGame, RULES_VERSION } from './scoring.js?v=dfcb83b44b';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=d6d30fb434';
+import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
 const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE || '';   /* empty: sent without a Turnstile token (the trial) */
@@ -200,7 +200,8 @@ function gamePage(n) {
     w.appendChild(el('h1', 'fo-title', cg.name));
     w.appendChild(el('p', 'fo-lede', cg.start_line));
     w.appendChild(el('p', 'fo-quiet', cg.instruction));
-    const acts = el('div', 'fo-actions');
+    w.appendChild(el('p', 'fo-promise', C.shared.card_line.replace('Game 3 of 9', `Game ${n} of 9`)));
+    const acts = el('div', 'fo-actions fo-bottom');
     const b = el('button', 'btn solid', done ? 'See my result' : (play ? 'Carry on' : 'Start')); b.type = 'button';
     b.addEventListener('click', () => done ? reveal(st.games[n]) : begin());
     acts.appendChild(b); w.appendChild(acts);
@@ -225,6 +226,7 @@ function gamePage(n) {
   function shuffledKeys() {
     const keys = ig.items.map(keyOf);
     if (n === 7) { const eu = !!(playerCountry() && playerCountry().eu); return keys.filter((k) => k !== 'B11' || eu); }
+    if (n === 9) return ['1', '2', '4', '5', '6', '7', '8', '9', '3'];     /* the long society ladder last (K, 22 Oct) */
     return (n === 2 || n === 5) ? shuffle(keys) : keys;
   }
 
@@ -249,11 +251,14 @@ function gamePage(n) {
       const skip = el('button', 'chip', ct.skip); skip.type = 'button'; skip.style.marginTop = '10px';
       skip.addEventListener('click', () => finish('not said'));
       v.appendChild(skip);
+      const box = el('input', 'fo-search'); box.type = 'search'; box.placeholder = 'Type the first letters'; box.setAttribute('aria-label', 'Find your country'); box.autocomplete = 'off';
+      v.appendChild(box);
       const list = el('ul', 'fo-countries');
+      box.addEventListener('input', () => { const q = box.value.trim().toLowerCase(); list.querySelectorAll('li').forEach((li) => { li.hidden = !!q && !li.dataset.name.includes(q); }); });
       const sorted = COUNTRIES.slice().sort((a, b) => a.name.localeCompare(b.name));
       const top = hc ? [hc] : [];
       for (const c of top.concat(sorted.filter((c) => !hc || c.iso !== hc.iso))) {
-        const li = el('li'); const b = el('button', top.includes(c) ? 'top' : ''); b.type = 'button';
+        const li = el('li'); li.dataset.name = (c.name + ' ' + c.nationals + ' ' + c.nationality).toLowerCase(); const b = el('button', top.includes(c) ? 'top' : ''); b.type = 'button';
         b.appendChild(el('span', 'flag', c.flag)); b.appendChild(el('span', '', c.name));
         b.addEventListener('click', () => finish(c.iso)); li.appendChild(b); list.appendChild(li);
       }
@@ -266,17 +271,22 @@ function gamePage(n) {
   function guess() {
     const w = el('section', 'fo-screen');
     const q = cg.guess.question || C.shared.guess_q;
-    w.appendChild(el('h1', 'fo-title', q));
-    w.appendChild(el('p', 'fo-quiet', C.shared.guess_hint));
+    w.appendChild(el('p', 'meta', cg.name));
+    if (cg.guess_line) w.appendChild(el('p', 'fo-lede', cg.guess_line));
+    const low = el('div', 'fo-bottom');
+    low.appendChild(el('h1', 'fo-title fo-title-s', q));
+    low.appendChild(el('p', 'fo-quiet', C.shared.guess_hint));
     let p = 0.5; let moved = false;
     const read = el('p', 'fo-guess-read', '');
     const names = cg.bands && n !== 6 ? cg.bands.map((b) => b.name) : cg.guess.ends;
-    const s = strip({ p, bands: !!(cg.bands && n !== 6), snap: n === 6 ? 4 : 0, drag: (np, done) => { p = np; moved = true; read.textContent = guessWord(np); go.disabled = false; } });
-    w.appendChild(s); w.appendChild(ends(names)); w.appendChild(read);
+    const s = strip({ p, bands: !!(cg.bands && n !== 6), snap: n === 6 ? 4 : 0, drag: (np, done) => { p = np; moved = true; s.dot.classList.remove('bob'); read.textContent = guessWord(np); go.disabled = false; } });
+    s.dot.classList.add('bob');
+    low.appendChild(s); low.appendChild(ends(names)); low.appendChild(read);
+    w.appendChild(low);
     const acts = el('div', 'fo-actions');
     const go = el('button', 'btn solid', 'That is my guess'); go.type = 'button'; go.disabled = true;
     go.addEventListener('click', () => { play.guess = { p, value: n === 6 ? Math.round(p * 4) : toScale(n, p) }; save(); items(0); });
-    acts.appendChild(go); w.appendChild(acts);
+    acts.appendChild(go); low.appendChild(acts);
     show(w);
     function guessWord(p) {
       if (n === 6) { const k = Math.round(p * 4); return k === 0 ? cg.guess.ends[0] : k === 4 ? cg.guess.ends[1] : `${k} of 4`; }
@@ -291,23 +301,30 @@ function gamePage(n) {
     const keys = play.order;
     if (i >= keys.length) return afterItems();
     const k = keys[i]; const it = itemByKey(k);
-    const w = el('section', 'fo-screen');
-    w.appendChild(el('p', 'meta', `${i + 1} of ${keys.length}`));
+    const w = el('section', 'fo-screen fo-itemscreen');
+    const top = el('div', 'fo-itemtop');
+    const meta = el('p', 'meta', ''); meta.appendChild(el('b', '', cg.name)); meta.appendChild(document.createTextNode(`${i + 1} of ${keys.length}`)); top.appendChild(meta);
+    const skip = el('button', 'chip fo-skip', C.shared.skip); skip.type = 'button'; top.appendChild(skip);
+    w.appendChild(top);
     w.appendChild(nav(keys.length, i));
     const instr = ig.instruction_ours || cg.instruction;
-    if (n !== 4) w.appendChild(el('p', 'fo-quiet', instr));
-    if (ig.stem) w.appendChild(el('p', 'fo-stem', ig.stem));
+    const mid = el('div', 'fo-mid');
+    if (n !== 4) mid.appendChild(el('p', 'fo-quiet', instr));
+    if (ig.stem) mid.appendChild(el('p', 'fo-stem', ig.stem));
     const text = n === 4 ? instr : itemText(it);
     const tt = el('h1', 'fo-item' + (text.length > 120 ? ' long' : ''), text);
-    w.appendChild(tt);
+    mid.appendChild(tt);
+    w.appendChild(mid);
     const shown = Date.now();
     play.positions[k] = i;
     const answer = (value) => { play.answers[k] = value; play.times[k] = Date.now() - shown; save(); setTimeout(() => items(i + 1), value === null ? 0 : (reduced() ? 120 : 420)); };
-    w.appendChild(control(it, k, answer));
+    skip.addEventListener('click', () => answer(null));
+    const low = el('div', 'fo-bottom fo-controls');
+    low.appendChild(control(it, k, answer));
     const bar = el('div', 'fo-nav');
-    const back = el('button', 'chip', C.shared.back); back.type = 'button'; back.disabled = i === 0; back.addEventListener('click', () => items(i - 1));
-    const skip = el('button', 'chip', C.shared.skip); skip.type = 'button'; skip.addEventListener('click', () => answer(null));
-    bar.appendChild(back); bar.appendChild(skip); w.appendChild(bar);
+    const back = el('button', 'chip', '‹ ' + C.shared.back); back.type = 'button'; back.disabled = i === 0; back.addEventListener('click', () => items(i - 1));
+    bar.appendChild(back); low.appendChild(bar);
+    w.appendChild(low);
     show(w);
   }
   function itemText(it) { return fill(it.text || ''); }
@@ -322,6 +339,7 @@ function gamePage(n) {
         b.setAttribute('aria-label', pt.label ? `${pt.label}` : `${pt.value} of ${outOf}`);
         b.appendChild(el('i'));
         if (labelled && pt.label) b.appendChild(el('small', '', pt.label));
+        if (!labelled && pt.num !== undefined) b.appendChild(el('small', 'num', pt.num));
         b.addEventListener('click', () => { row.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); read.textContent = readFn(pt); answer(pt.value); });
         row.appendChild(b);
       }
@@ -340,11 +358,11 @@ function gamePage(n) {
       wrap.appendChild(row); wrap.appendChild(read); return wrap;
     };
     if (n === 1) return dots(ig.response_points, true, 5, (pt) => `${pt.label} · ${pt.value} of 5`);
-    if (n === 2) return dots(ig.response_points, false, 5, (pt) => `${pt.value} of 5`);
+    if (n === 2) { const pts = ig.response_points.map((p, i) => ({ value: p.value, label: p.label || cg.scale_words[i - 1] })); return dots(pts, true, 5, (pt) => `${pt.label} · ${pt.value} of 5`); }
     if (n === 3) return dots(ig.response_points, true, 4, (pt) => pt.label);
     if (n === 8) return dots(ig.response_points_ISSP_codes.map((p) => ({ value: p.code, label: p.label })), true, 5, (pt) => pt.label);
-    if (n === 5) return dots(ig.response_points, false, 10, (pt) => `${pt.percent}% · ${pt.label}`);
-    if (n === 7) { const pts = []; for (let v = 0; v <= 10; v++) pts.push({ value: v, label: v === 0 ? ig.response_points[0].label : v === 10 ? ig.response_points[1].label : null }); return dots(pts, false, 10, (pt) => `${pt.value} of 10`); }
+    if (n === 5) return dots(ig.response_points.map((p) => Object.assign({ num: p.percent + '%' }, p)), false, 10, (pt) => `${pt.percent}% · ${pt.label}`);
+    if (n === 7) { const pts = []; for (let v = 0; v <= 10; v++) pts.push({ value: v, label: v === 0 ? ig.response_points[0].label : v === 10 ? ig.response_points[1].label : null, num: v }); return dots(pts, false, 10, (pt) => `${pt.value} of 10`); }
     if (n === 4) return choices(it.options.map((o) => ({ value: o, label: o })), 'two');
     if (n === 6) {
       if (!play.option_order) play.option_order = {};
@@ -367,7 +385,7 @@ function gamePage(n) {
         wrap.appendChild(lad); wrap.appendChild(read); return wrap;
       }
       const m = sc.match(/^0 "(.+?)" – 10 "(.+?)"$/);
-      const pts = []; for (let v = 0; v <= 10; v++) pts.push({ value: v, label: v === 0 ? (m ? m[1] : '0') : v === 10 ? (m ? m[2] : '10') : null });
+      const pts = []; for (let v = 0; v <= 10; v++) pts.push({ value: v, label: v === 0 ? (m ? m[1] : '0') : v === 10 ? (m ? m[2] : '10') : null, num: v });
       return dots(pts, false, 10, (pt) => `${pt.value} of 10`);
     }
     return wrap;
@@ -403,7 +421,8 @@ function gamePage(n) {
   function reveal(g) {
     const res = g.result;
     const w = el('section', 'fo-screen fo-reveal');
-    w.appendChild(circles(n));
+    const circ = circles(n); const mine = circ.querySelectorAll('a')[n - 1]; if (mine && mine.classList.contains('done')) mine.classList.add('fresh');
+    w.appendChild(circ);
     w.appendChild(el('p', 'meta', cg.name));
     if (!res || res.scored === false) {
       w.appendChild(el('h1', 'fo-title', C.shared.not_scored));
@@ -455,7 +474,7 @@ function gamePage(n) {
       const s = strip({ p: gp === null ? toP(n, score) : gp, bands: true, guess: gp });
       w.appendChild(s); w.appendChild(ends(names));
       requestAnimationFrame(() => setTimeout(() => { s.dot.style.left = (toP(n, score) * 100) + '%'; }, 80));
-      w.appendChild(el('h1', 'fo-bandname', band.name));
+      w.appendChild(el('h1', 'fo-bandname pop', band.name));
       const lines = el('div', 'fo-lines'); band.lines.forEach((l) => lines.appendChild(el('p', '', l))); w.appendChild(lines);
       if (g.guess) {
         if (n === 6) w.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${g.guess.value} would catch you</b> · <b>${4 - res.score} did</b></p>`));
@@ -532,7 +551,7 @@ function gamePage(n) {
     for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i]; const cx = ((x0 + x1) / 2).toFixed(1); d += `C${cx},${y0.toFixed(1)} ${cx},${y1.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)} `; }
     d += `L${pts[pts.length - 1][0]},${H - 6} Z`;
     const x = pad + ((v - r.lo) / ((r.bins.length - 1) * r.step)) * (W - 2 * pad);
-    return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Where you stand among ${fmt(r.n)} people"><path d="${d}" fill="var(--tint)" stroke="var(--c)" stroke-width="2" stroke-linejoin="round"/><line x1="${x.toFixed(1)}" y1="4" x2="${x.toFixed(1)}" y2="${H - 4}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="${x.toFixed(1)}" cy="8" r="5" fill="var(--c)"/></svg>`);
+    return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Where you stand among ${fmt(r.n)} people"><path class="draw" d="${d}" fill="var(--tint)" stroke="var(--c)" stroke-width="2" stroke-linejoin="round"/><line x1="${x.toFixed(1)}" y1="4" x2="${x.toFixed(1)}" y2="${H - 4}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="${x.toFixed(1)}" cy="8" r="5" fill="var(--c)"/></svg>`);
   }
 
   show(card());
@@ -692,15 +711,15 @@ function portraitLines() {
     P4: () => calm !== null && calm >= TRAIT_HIGH,
     P5: () => (t && t.A !== null && t.A >= TRAIT_HIGH) || (dial('4') !== null && dial('4') >= 7),
     P6: () => t && t.E !== null && t.E <= TRAIT_LOW,
-    P7: () => band(3) === 'The sunny side', P8: () => band(3) === 'The sunny side', P9: () => band(3) === 'The realist',
-    P10: () => band(6) === 'Takes a second look', P11: () => band(6) === 'Takes a second look', P12: () => band(6) === 'Fast and sure',
-    P13: () => band(5) === 'The straight reader', P14: () => band(5) === 'The detective', P15: () => band(5) === 'The detective',
-    P16: () => band(2) === "The people's champion", P17: () => band(2) === "The people's champion" && band(5) === 'The detective',
-    P18: () => band(2) === "The system's friend",
-    P19: () => band(4) === 'Roots', P20: () => band(4) === 'Wings',
+    P7: () => band(3) === 'The optimist', P8: () => band(3) === 'The optimist', P9: () => band(3) === 'The realist',
+    P10: () => band(6) === 'Careful thinker', P11: () => band(6) === 'Careful thinker', P12: () => band(6) === 'Quick answers',
+    P13: () => band(5) === 'Trusts what is said', P14: () => band(5) === 'Looks for secret plans', P15: () => band(5) === 'Looks for secret plans',
+    P16: () => band(2) === "With the people", P17: () => band(2) === "With the people" && band(5) === 'Looks for secret plans',
+    P18: () => band(2) === "With the experts",
+    P19: () => band(4) === 'Rules first', P20: () => band(4) === 'Freedom first',
     P21: () => dial('1') !== null && dial('1') >= 7, P22: () => dial('1') !== null && dial('1') <= 3,
-    P23: () => band(8) === 'Home first', P24: () => band(8) === 'World citizen',
-    P25: () => band(7) === 'The trusting citizen',
+    P23: () => band(8) === 'Country first', P24: () => band(8) === 'World citizen',
+    P25: () => band(7) === 'Trusts a lot',
     P26: () => true,
   };
   const gameOf = { P1: 1, P2: 1, P3: 1, P4: 1, P5: 1, P6: 1, P7: 3, P8: 3, P9: 3, P10: 6, P11: 6, P12: 6, P13: 5, P14: 5, P15: 5, P16: 2, P17: 2, P18: 2, P19: 4, P20: 4, P21: 9, P22: 9, P23: 8, P24: 8, P25: 7, P26: 0 };
@@ -734,11 +753,11 @@ function ownLines() {
   for (const n of ORDER) { const g = st.games[n]; if (g && g.result && g.result.scored !== false && g.duration_ms) { const s = Math.round(g.duration_ms / 1000); if (!fastest || s < fastest.s) fastest = { n, s }; } }
   if (fastest) lines.push(`Your fastest game: ${C.games[fastest.n].name} — ${fastest.s} seconds.`);
   const g9 = st.games[9] && st.games[9].result ? st.games[9].result.items : null; const g3 = st.games[3] && st.games[3].result && st.games[3].result.scored ? st.games[3].result : null;
-  if (g9 && ((g9['2'] !== null && g9['2'] >= 7 && g9['9'] === 2) || (g3 && bandName(3, g3.score) === 'The sunny side' && g9['6'] !== null && g9['6'] <= 4))) lines.push('Sunny about your own future, cooler about the country: you are in good company.');
+  if (g9 && ((g9['2'] !== null && g9['2'] >= 7 && g9['9'] === 2) || (g3 && bandName(3, g3.score) === 'The optimist' && g9['6'] !== null && g9['6'] <= 4))) lines.push('Sunny about your own future, cooler about the country: you are in good company.');
   const g7 = st.games[7] && st.games[7].result && st.games[7].result.scored ? st.games[7].result : null;
   if (g9 && g7 && g9['4'] !== null) {
-    if (g9['4'] >= 7 && bandName(7, g7.score) === 'The careful checker') lines.push('You trust people more than institutions.');
-    if (g9['4'] <= 3 && bandName(7, g7.score) === 'The trusting citizen') lines.push('You trust institutions more than most people trust strangers.');
+    if (g9['4'] >= 7 && bandName(7, g7.score) === 'Careful with trust') lines.push('You trust people more than institutions.');
+    if (g9['4'] <= 3 && bandName(7, g7.score) === 'Trusts a lot') lines.push('You trust institutions more than most people trust strangers.');
   }
   return lines;
 }
