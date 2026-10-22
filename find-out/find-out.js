@@ -5,7 +5,7 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=3affb4f20f';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=d62730f88a';
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';

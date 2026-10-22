@@ -42,12 +42,9 @@
 .findout-games .mins { white-space: nowrap; }
 .findout-games { scroll-margin-top: 14px; }
 .hero-boxes { display: inline-grid; grid-template-columns: minmax(0, max-content); max-width: 100%; vertical-align: top; }
-.hero-text .logicer { display: flex; width: 100%; min-height: 58px; align-items: center; }
-.hero-text .logicer[hidden] { display: none; }
-.logicer.findout .logicer-big { white-space: normal; }
-@media (max-width: 700px) { .hero-boxes { display: block; } .hero-text .logicer { min-height: 50px; } }
-.logicer.findout .logicer-label { display: none; }
-@media (max-width: 700px) { .logicer.findout .logicer-big { font-size: clamp(1.1rem, 5.4vw, 1.4rem); } .logicer.findout .logicer-small { font-size: 0.78rem; } }
+.hero-boxes .logicer { width: 100%; }
+@media (max-width: 700px) { .hero-boxes { display: block; } }
+.logicer.findout .logicer-small:empty { display: none; }
 </style>
 </head>
 <body class="home">
@@ -73,8 +70,9 @@
     <div class="logicer" id="logicer" hidden></div>
     <!-- Find out about yourself (B2, 22 Oct 2026): the same style as the counter, right under it (Khayyam, 20 Oct) -->
     <a class="logicer findout" id="findout-box" href="find-out/">
-      <span class="logicer-label">Find out about yourself…</span>
-      <span class="logicer-big findout-big" id="findout-big">Find out who you are</span>
+      <span class="logicer-label">Find out</span>
+      <span class="logicer-big findout-big">who you are</span>
+      <span class="logicer-small" id="findout-count"></span>
     </a>
     </div>
   </div>
@@ -748,10 +746,10 @@
   /* the find-outs' own count (22 Oct 2026): how many phones finished at least one of the nine games, a plain
      counter on the find-out server with no ID in it; shown from the first player on (Khayyam) */
   (function () {
-    var big = document.getElementById("findout-big");
-    if (!big || !window.fetch) return;
+    var small = document.getElementById("findout-count");
+    if (!small || !window.fetch) return;
     fetch("https://logicers-findout.rza-khay.workers.dev/counter").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-      if (j && j.played >= 1) big.textContent = "Find out who you are – " + Number(j.played).toLocaleString("en-US") + " already did";
+      if (j && j.played >= 1) small.textContent = Number(j.played).toLocaleString("en-US") + " already did";
     }).catch(function () { /* the box reads the same without the number */ });
   })();
 

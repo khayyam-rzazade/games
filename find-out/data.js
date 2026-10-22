@@ -901,7 +901,7 @@ export const COPY = {
  "home": {
   "Home box heading (animated)": "Find out who you are",
   "Home box line": "9 short games · about 6 minutes (no longer shown in the box, 22 Oct)",
-  "Home box, from the first player on (K, 22 Oct": "no waiting for 100): Find out who you are – 1,435 already did",
+  "Home box, from the first player on (K, 22 Oct": "no waiting for 100), in the three sizes of the Logicer box (K, 23 Oct): small line **Find out** · big line **who you are** · small line **1,435 already did** (nothing before the number while it is 0)",
   "Section home, from the first player on": "1,435 people found out who they are",
   "Home box button": "Start",
   "Row title on the home page": "Find out about yourself…",
@@ -918,7 +918,7 @@ export const COPY = {
   "box_line": "Find out who you are – {n} already did"
  },
  "shared": {
-  "guess_q": "Where do you think you'll land?",
+  "guess_q": "Where do you think you will be?",
   "guess_hint": "Drag the dot, then let go.",
   "guess_q6": "How many of the four will catch you?",
   "skip": "Skip",
@@ -932,12 +932,12 @@ export const COPY = {
   "next_game": "Next game ▶",
   "see_portrait": "See your portrait ▶",
   "not_scored": "Too many skips to score this one. Play it again?",
-  "g1_guess_result": "You guessed 3 of 5 · You landed 4 of 5 (the Outgoing bar)",
+  "g1_guess_result": "You guessed 3 of 5 · You are 4 of 5 (the Outgoing bar)",
   "g6_guess_result": "You guessed 2 would catch you · 1 did",
   "not_said": "not said",
   "curve_waiting": "12 so far · opens at 30",
   "you_guessed": "You guessed",
-  "you_landed": "You landed",
+  "you_landed": "You are",
   "card_line": "Game 3 of 9 · your portrait opens after game 9"
  },
  "games": {
