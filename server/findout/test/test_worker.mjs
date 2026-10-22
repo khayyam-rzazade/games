@@ -289,3 +289,33 @@ test("scheduled: the hourly refresh runs", async () => {
   await ran;
   assert.equal(await count(e, "SELECT COUNT(*) FROM aggregates"), Object.keys(_test.METRICS).length);
 });
+
+test("pools: the menu of plan §7, crossed with country, never two demographic fields; claim by code", async () => {
+  const e = env();
+  const A = fullAnswers();
+  for (let i = 0; i < 40; i++) {
+    const id = hex(500 + i);
+    assert.equal((await call(e, "POST", "/upload", batch(id, { player: { created: "x", country: i < 32 ? "IT" : "FR", header_country: null, lang: "it", referral: "direct", device: "phone" } }, A), { ip: "8.8." + i })).status, 200);
+    await call(e, "POST", "/demographics", { id, demographics: { age: i % 2 ? "25–34" : "35–44", gender: "Woman" } }, { ip: "8.8." + i });
+  }
+  const me = hex(500);
+  let r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { gender: "Woman" } });
+  assert.equal(r.json.n, 40); assert.ok(r.json.bins);
+  r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { age: "25–34" } }); assert.equal(r.json.n, 20); assert.equal(r.json.bins, undefined);
+  r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { country: "IT", gender: "Woman" } }); assert.equal(r.json.n, 32); assert.ok(r.json.bins);
+  r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { age: "25–34", gender: "Woman" } }); assert.equal(r.status, 400, "two demographic fields are not a pool");
+  r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { education: "PhD" } }); assert.equal(r.status, 400);
+  r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: {} }); assert.equal(r.status, 400);
+  /* claim */
+  const up = await call(e, "POST", "/upload", batch(me), { ip: "8.9.9.9" });
+  r = await call(e, "POST", "/claim", { code: up.json.code.toLowerCase().replace("-", "") });
+  assert.equal(r.status, 200); assert.equal(r.json.id, me); assert.equal(r.json.player.country, "IT"); assert.equal(r.json.games.length, 9); assert.equal(r.json.demographics.gender, "Woman");
+  assert.equal(r.json.games.find((g) => g.game === 2).sub.band, "With the people");
+  assert.equal((await call(e, "POST", "/claim", { code: "AAA-AAAA" })).status, 404);
+  assert.equal((await call(e, "POST", "/claim", { code: "nope" })).status, 400);
+  let last; for (let i = 0; i < 21; i++) last = await call(e, "POST", "/claim", { code: "AAA-AAAA" }, { ip: "3.3.3.3" });
+  assert.equal(last.status, 429, "claims are braked: guessing codes is useless");
+  /* the hourly refresh keeps the pools that were asked for */
+  await _test.refreshAll(e);
+  assert.ok((await count(e, "SELECT COUNT(*) FROM aggregates WHERE pool = 'gender:Woman'")) >= 1);
+});

@@ -26,7 +26,9 @@
      POST /counter                { event, trial } funnel counters, no ID
      POST /upload                 the batch at the yes (and every later game); returns { ok, code }
      POST /demographics           { id, demographics }
-     POST /pool                   { id, m, pool: { country } } a pool's curve, for a consented ID
+     POST /pool                   { id, m, pool: { country?, age?, gender?, education?, settlement? } } a pool's
+                                  curve, for a consented ID; one field, or one field with country (plan §7)
+     POST /claim                  { code } the record behind a portrait code: id, country, scores, demographics
      POST /delete                 { id } removes everything of that ID
      POST /admin/export           { key, table } CSV of players | answers | games_done | demographics | counters
    Scheduled (hourly): the aggregates table is refreshed (world curves and country pools).
@@ -266,8 +268,13 @@ function binsOf(m) { return Math.round((m.hi - m.lo) / m.step) + 1; }
 async function computeCurve(env, metric, pool) {
   const m = METRICS[metric]; if (!m) return null;
   let where = "g.game = ? AND g.wave = 1 AND g.scored = 1"; const args = [m.game];
-  if (pool.startsWith("country:")) { where += " AND p.country = ?"; args.push(pool.slice(8)); }
-  const sql = `SELECT ${m.expr} AS x FROM games_done g JOIN players p ON p.id = g.player WHERE ${where} AND ${m.expr} IS NOT NULL`;
+  let join = "JOIN players p ON p.id = g.player";
+  for (const part of pool === "world" ? [] : pool.split("|")) {
+    const [k, v] = part.split(":");
+    if (k === "country") { where += " AND p.country = ?"; args.push(v); }
+    else if (DEMO[k]) { if (!join.includes("demographics")) join += " JOIN demographics d ON d.player = g.player"; where += ` AND d.${k} = ?`; args.push(v); }
+  }
+  const sql = `SELECT ${m.expr} AS x FROM games_done g ${join} WHERE ${where} AND ${m.expr} IS NOT NULL`;
   const r = await env.DB.prepare(sql).bind(...args).all();
   const nb = binsOf(m); const bins = new Array(nb).fill(0); let n = 0, sum = 0;
   for (const row of r.results || []) {
@@ -297,6 +304,39 @@ async function refreshAll(env) {
   for (const metric of Object.keys(METRICS)) await curve(env, metric, "world", true);
   const cs = await env.DB.prepare("SELECT country, COUNT(*) AS n FROM players WHERE consent_status = 'yes' AND country != 'not said' GROUP BY country HAVING n >= ?").bind(OPENS_AT).all();
   for (const row of cs.results || []) for (const g of [2, 3, 4, 5, 6, 7, 8]) await curve(env, "g" + g, "country:" + row.country, true);
+  /* every other pool someone has asked for is refreshed too, so Explore stays within the hour */
+  const used = await env.DB.prepare("SELECT DISTINCT metric, pool FROM aggregates WHERE pool != 'world' AND pool NOT LIKE 'country:__'").all();
+  for (const row of used.results || []) await curve(env, row.metric, row.pool, true);
+}
+
+/* ---- the pool menu (plan §7): country, age, gender, education, settlement, each alone or crossed with country ---- */
+function poolKey(p) {
+  if (!p || typeof p !== "object") return null;
+  const parts = [];
+  if (p.country !== undefined && p.country !== null) { if (!ISO.has(p.country)) return null; parts.push("country:" + p.country); }
+  let demo = 0;
+  for (const k of ["age", "gender", "education", "settlement"]) {
+    if (p[k] === undefined || p[k] === null) continue;
+    if (!DEMO[k].includes(p[k])) return null;
+    parts.push(k + ":" + p[k]); demo += 1;
+  }
+  if (demo > 1 || parts.length === 0) return null;
+  return parts.join("|");
+}
+
+/* ---- the record behind a portrait code: the player's own results, for another phone ---- */
+async function claim(env, req, b) {
+  if (typeof b.code !== "string" || !/^[A-Z2-9]{3}-?[A-Z2-9]{4}$/i.test(b.code.trim())) return bad("code");
+  if (!brake("cl:" + ipOf(req), 20, 36e5)) return bad("too many", 429);
+  const code = b.code.trim().toUpperCase().replace(/^(...)-?/, "$1-");
+  const row = await env.DB.prepare("SELECT player FROM codes WHERE code = ?").bind(code).first();
+  if (!row) return bad("unknown", 404);
+  const id = row.player;
+  const p = await env.DB.prepare("SELECT id, created, country, header_country, consent_version, consent_at FROM players WHERE id = ?").bind(id).first();
+  if (!p) return bad("unknown", 404);
+  const games = (await env.DB.prepare("SELECT game, wave, sub, guess, guess_p, started, finished, duration_ms, order_index FROM games_done WHERE player = ? ORDER BY wave, game").bind(id).all()).results || [];
+  const d = await env.DB.prepare("SELECT age, gender, education, settlement FROM demographics WHERE player = ?").bind(id).first();
+  return json({ ok: true, id, code, player: p, games: games.map((g) => Object.assign({}, g, { sub: JSON.parse(g.sub) })), demographics: d || null });
 }
 
 /* ---- "What the world guessed": lines only once a game has GUESSED_AT guesses with a score ---- */
@@ -383,11 +423,12 @@ async function handle(req, env, ctx) {
       if (!brake("pl:" + ipOf(req), 300, 36e5)) return withCors(bad("too many", 429));
       const have = await env.DB.prepare("SELECT id FROM players WHERE id = ? AND consent_status = 'yes'").bind(b.id).first();
       if (!have) return withCors(bad("unknown", 404));
-      const pool = b.pool && typeof b.pool === "object" && ISO.has(b.pool.country) ? "country:" + b.pool.country : null;
+      const pool = poolKey(b.pool);
       if (!pool) return withCors(bad("pool"));
       const c = await curve(env, b.m, pool, false);
       return withCors(json(publicCurve(c)));
     }
+    if (path === "/claim") return withCors(await claim(env, req, b));
     if (path === "/delete") return withCors(await remove(env, req, b));
     if (path === "/admin/export") return withCors(await adminExport(env, req, b));
     return withCors(bad("not found", 404));

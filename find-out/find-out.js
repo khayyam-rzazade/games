@@ -5,7 +5,7 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=d6d30fb434';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=46b2274145';
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
@@ -504,13 +504,21 @@ function gamePage(n) {
     return `${v} of 10`;
   }
   function onward() {
-    const acts = el('div', 'fo-actions');
-    const nx = nextGame(n);
-    const a = el('a', 'btn solid', nx ? C.shared.next_game : C.shared.see_portrait);
-    a.href = nx ? `../${SLUG[nx]}/` : '../portrait/';
-    acts.appendChild(a);
-    const all = el('a', 'btn ghost', 'All games'); all.href = '../'; acts.appendChild(all);
-    return acts;
+    const done = doneGames().length; const nx = nextGame(n);
+    const card = el('section', 'onward fo-onward');
+    const top = el('div', 'onward-top'); top.appendChild(el('h2', '', nx ? `${done} of 9 done` : 'All nine done'));
+    top.appendChild(h(`<span class="onward-count"><b>${9 - done}</b> left</span>`)); card.appendChild(top);
+    const pips = el('div', 'pips'); pips.setAttribute('aria-hidden', 'true'); for (const k of ORDER) pips.appendChild(el('i', isDone(k) ? 'on' : '')); card.appendChild(pips);
+    const a = el('a', 'onward-next'); a.href = nx ? `../${SLUG[nx]}/` : '../portrait/';
+    a.appendChild(h(`<span class="onward-text"><span class="onward-kicker">${nx ? 'Game ' + nx + ' of 9' : 'Your portrait is ready'}</span><span class="onward-name">${esc((nx ? C.shared.next_game : C.shared.see_portrait).replace(' ▶', ''))}</span><span class="onward-pitch">${esc(nx ? C.games[nx].start_line : C.home.start_lede.split('. ').slice(1).join('. '))}</span></span>`));
+    a.appendChild(h('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg>'));
+    card.appendChild(a);
+    const all = el('a', 'onward-all'); all.href = '../';
+    all.appendChild(h('<svg class="onward-dots" viewBox="0 0 34 12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="#2D4FC4"/><circle cx="17" cy="6" r="5" fill="#D5492F"/><circle cx="28" cy="6" r="5" fill="#0D7D73"/></svg>'));
+    all.appendChild(el('span', 'onward-all-name', 'All nine games'));
+    all.appendChild(h('<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'));
+    card.appendChild(all);
+    return card;
   }
 
   /* the world's curve under a result: public, no ID; the country's after the yes */
@@ -524,13 +532,17 @@ function gamePage(n) {
       if (!r || !r.n || r.n < r.opens_at) { line.className = 'fo-curve-line fo-curve-wait'; line.textContent = quietWait ? '' : `${fmt(r ? r.n : 0)} so far · opens at ${r ? r.opens_at : 30}`; }
       else { svgWrap.appendChild(curveSvg(r, value)); line.textContent = pctWord(template, pctOf(metric, r, value)); }
       if (pendingUpload) await pendingUpload;
-      if (st.consent.status === 'yes' && st.uploaded.at && st.country && st.country !== 'not said') {
-        try {
-          const c = await api('/pool', { id: st.id, m: metric, pool: { country: st.country } });
-          const cn = countryOf(st.country);
-          if (c && c.n >= c.opens_at) { const cp = pctOf(metric, c, value); box.appendChild(el('p', 'fo-curve-line', pctWord(template, cp).replace('the world', `people from ${cn.name}`))); }
-          else if (c) box.appendChild(el('p', 'fo-curve-wait', `${cn.name}: ${fmt(c.n)} so far · opens at ${c.opens_at}`));
-        } catch (e) { /* the pools are extra; the world's line already stands */ }
+      if (st.consent.status === 'yes' && st.uploaded.at) {
+        const pools = [];
+        if (st.country && st.country !== 'not said') pools.push({ pool: { country: st.country }, name: poolName('country') });
+        if (st.demographics && st.demographics.age) pools.push({ pool: { age: st.demographics.age }, name: poolName('age') });
+        for (const pl of pools) {
+          try {
+            const c = await api('/pool', { id: st.id, m: metric, pool: pl.pool });
+            if (c && c.n >= c.opens_at) box.appendChild(el('p', 'fo-curve-line', pctWord(template, pctOf(metric, c, value)).replace('the world', pl.name)));
+            else if (c) box.appendChild(el('p', 'fo-curve-wait', `${pl.name}: ${fmt(c.n)} so far · opens at ${c.opens_at}`));
+          } catch (e) { /* the pools are extra; the world's line already stands */ }
+        }
       }
     } catch (e) { line.className = 'fo-curve-line fo-curve-wait'; line.textContent = C.shared.curve_waiting; }
   }
@@ -555,6 +567,32 @@ function gamePage(n) {
   }
 
   show(card());
+}
+
+function poolName(kind) { const c = playerCountry(); return C.pools.names[kind].replace('[Country]', c ? c.name : 'your country'); }
+function reminderDate() {
+  const st = load(); const t = st.games[9] && st.games[9].finished ? st.games[9].finished : Date.now();
+  const d = new Date(t); d.setMonth(d.getMonth() + 3); return d;
+}
+function longDate(d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+function icsFor(d) {
+  const z = (n) => String(n).padStart(2, '0'); const day = `${d.getFullYear()}${z(d.getMonth() + 1)}${z(d.getDate())}`;
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Logicers//Find out//EN', 'BEGIN:VEVENT', `UID:findout-${day}@logicers.com`, `DTSTAMP:${day}T090000Z`, `DTSTART;VALUE=DATE:${day}`, 'SUMMARY:Logicers: see what changed in 3 months', 'URL:https://logicers.com/find-out/', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+}
+/* the friend link carries band indices and rounded bars only: nothing personal, nothing to look up */
+function friendCode() {
+  const st = load(); const bands = [2, 3, 4, 5, 6, 7, 8].map((n) => { const r = st.games[n] && st.games[n].result; const v = r && r.scored ? mainScore(n, r) : null; return v === null ? 'x' : String(bandIndex(n, v)); }).join('');
+  const r1 = st.games[1] && st.games[1].result && st.games[1].result.scored ? st.games[1].result : null;
+  const bars = r1 ? ['E', 'A', 'C', 'N', 'O'].map((t) => (r1.traits[t] === null ? 'x' : Math.round(r1.traits[t] * 10))).join(',') : '';
+  return `b=${bands}&p=${bars}`;
+}
+function parseFriend(hash) {
+  const q = new URLSearchParams(hash.replace(/^#/, '')); const b = q.get('b') || ''; const p = (q.get('p') || '').split(',');
+  if (!/^[012x]{7}$/.test(b)) return null;
+  const bands = {}; [2, 3, 4, 5, 6, 7, 8].forEach((n, i) => { bands[n] = b[i] === 'x' ? null : Number(b[i]); });
+  const bars = {}; ['E', 'A', 'C', 'N', 'O'].forEach((t, i) => { const v = Number(p[i]); bars[t] = p[i] === undefined || p[i] === 'x' || !isFinite(v) ? null : Math.min(5, Math.max(1, v / 10)); });
+  return { bands, bars };
 }
 
 /* ------------------------------------------------------------------ upload ------ */
@@ -628,6 +666,7 @@ function homePage() {
     ul.appendChild(el('li')).appendChild(a);
   }
   w.appendChild(ul);
+  if (st.consent.status !== 'yes') w.appendChild(codeEntry());
   const foot = el('p', 'fo-foot');
   foot.appendChild(h(`<span>${esc(C.small_print[0].replace('For researchers →', ''))}<a href="researchers/">For researchers →</a></span>`));
   foot.appendChild(document.createElement('br'));
@@ -798,6 +837,32 @@ function portraitPage() {
   api('/guessed').then((r) => { if (!r || !r.lines || !r.lines.length) return; worldBox.appendChild(el('h2', '', P.sections.guessed)); const d = el('div', 'fo-own'); r.lines.forEach((l) => d.appendChild(el('p', '', l))); worldBox.appendChild(d); }).catch(() => {});
   /* 6 and the consent */
   const tail = el('div'); w.appendChild(tail);
+  function extras() {
+    const box = el('div', 'fo-card fo-extras');
+    /* share */
+    const sh = el('button', 'btn solid', P.share); sh.type = 'button'; sh.addEventListener('click', () => sharePicture());
+    const acts = el('div', 'fo-actions'); acts.appendChild(sh); box.appendChild(acts);
+    /* compare with a friend */
+    const cmp = el('div', 'fo-extra'); cmp.appendChild(el('b', '', P.compare_friend)); cmp.appendChild(el('p', 'fo-quiet', P.compare_send));
+    const link = `https://logicers.com/find-out/compare/#${friendCode()}`;
+    const cb = el('button', 'chip', P.copy_link); cb.type = 'button'; cb.dataset.link = link; cb.addEventListener('click', async () => { try { await navigator.clipboard.writeText(link); cb.textContent = P.link_copied; } catch (e) { const i = el('input'); i.value = link; cmp.appendChild(i); i.select(); } });
+    cmp.appendChild(cb); box.appendChild(cmp);
+    /* the reminder */
+    const rem = el('div', 'fo-extra'); rem.appendChild(el('b', '', P.reminder)); const d = reminderDate();
+    rem.appendChild(el('p', 'fo-quiet', P.reminder_date.replace('{date}', longDate(d))));
+    const cal = el('a', 'chip', P.add_calendar); cal.href = icsFor(d); cal.download = 'logicers-find-out.ics'; rem.appendChild(cal); box.appendChild(rem);
+    /* explore */
+    const ex = el('div', 'fo-extra'); const ea = el('a', 'chip', C.pools.explore_heading); ea.href = '../explore/'; ex.appendChild(ea); box.appendChild(ex);
+    return box;
+  }
+  function codeBox() {
+    const box = el('div', 'fo-card fo-codebox');
+    box.appendChild(h(`<p class="fo-lede">${esc(C.code.your_code)} <b class="fo-code">${esc(st.code || '')}</b></p>`));
+    box.appendChild(el('p', 'fo-quiet', C.code.save_it));
+    const cb = el('button', 'chip', C.code.copy_code); cb.type = 'button'; cb.addEventListener('click', async () => { try { await navigator.clipboard.writeText(st.code); cb.textContent = C.code.code_copied; } catch (e) {} });
+    box.appendChild(cb);
+    return box;
+  }
   function tailFor() {
     tail.textContent = '';
     if (st.consent.status === null) tail.appendChild(consentCard({ imgBase: '../../' }, (ans) => { if (ans === 'yes') { tail.textContent = ''; tail.appendChild(demographics(() => tailFor())); } else tailFor(); }));
@@ -809,7 +874,9 @@ function portraitPage() {
     } else {
       if (!st.demographics) { tail.appendChild(demographics(() => tailFor())); return; }
       compared(tail);
+      if (st.code) tail.appendChild(codeBox());
     }
+    tail.appendChild(extras());
     const del = el('div', 'fo-card'); const b = el('button', 'fo-help-btn', P.delete); b.type = 'button';
     b.addEventListener('click', () => {
       const d = sheet('dlg-del', P.delete, `<p>${esc(P.delete_sure)}</p><div class="actions"><button class="btn solid" id="del-yes" type="button">${esc(P.delete_yes)}</button><button class="btn ghost" type="button" data-close>${esc(P.delete_no)}</button></div>`);
@@ -841,11 +908,167 @@ function portraitPage() {
   }
 }
 
+/* ------------------------------------------------------------------ the share picture ------ */
+function sharePicture() {
+  const st = load(); const P = C.portrait;
+  const W = 1080, H = 1500; const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const x = cv.getContext('2d');
+  const dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const bg = dark ? '#0F1F0A' : '#E3F2DA', ink = dark ? '#F3F4FF' : '#15172B', green = dark ? '#9EDB6A' : '#3F7A2A', soft = dark ? '#A3A9CB' : '#5D6279', card = dark ? '#12152A' : '#FFFFFF';
+  x.fillStyle = bg; x.fillRect(0, 0, W, H);
+  x.fillStyle = ink; x.font = '800 64px "Bricolage Grotesque", system-ui, sans-serif'; x.fillText(P.title, 72, 130);
+  const c = playerCountry(); if (c) { x.font = '64px system-ui, sans-serif'; x.fillText(c.flag, W - 72 - 70, 130); }
+  let y = 230;
+  const r1 = st.games[1] && st.games[1].result && st.games[1].result.scored ? st.games[1].result : null;
+  if (r1) {
+    x.font = '800 36px "Bricolage Grotesque", system-ui, sans-serif'; x.fillStyle = soft; x.fillText(P.sections.personality, 72, y); y += 40;
+    const traitOf = { Outgoing: 'E', Warm: 'A', Organised: 'C', Calm: 'calm', Curious: 'O' };
+    for (const bar of C.games[1].bars) {
+      const key = traitOf[bar.name]; const v = key === 'calm' ? r1.calm : r1.traits[key];
+      x.fillStyle = ink; x.font = '800 32px "Bricolage Grotesque", system-ui, sans-serif'; x.fillText(bar.name, 72, y + 32);
+      x.fillStyle = dark ? 'rgba(158,219,106,.2)' : 'rgba(63,122,42,.18)'; roundRect(x, 300, y + 8, W - 372, 30, 15); x.fill();
+      if (v !== null) { x.fillStyle = green; roundRect(x, 300, y + 8, (W - 372) * toP(1, v), 30, 15); x.fill(); }
+      y += 66;
+    }
+    y += 30;
+  }
+  x.font = '800 36px "Bricolage Grotesque", system-ui, sans-serif'; x.fillStyle = soft; x.fillText(P.sections.world, 72, y); y += 50;
+  for (const n of [2, 5, 7, 4, 8]) {
+    const r = st.games[n] && st.games[n].result && st.games[n].result.scored ? st.games[n].result : null; if (!r) continue;
+    const v = mainScore(n, r);
+    x.fillStyle = card; roundRect(x, 72, y, W - 144, 118, 26); x.fill();
+    x.fillStyle = soft; x.font = '700 28px system-ui, sans-serif'; x.fillText(C.games[n].name, 100, y + 44);
+    x.fillStyle = green; x.font = '800 40px "Bricolage Grotesque", system-ui, sans-serif'; x.fillText(bandName(n, v), 100, y + 94);
+    x.fillStyle = dark ? 'rgba(158,219,106,.25)' : 'rgba(63,122,42,.2)'; roundRect(x, 640, y + 54, 340, 12, 6); x.fill();
+    x.fillStyle = green; x.beginPath(); x.arc(640 + 340 * toP(n, v), y + 60, 16, 0, Math.PI * 2); x.fill();
+    y += 134;
+  }
+  x.fillStyle = ink; x.font = '700 34px system-ui, sans-serif'; x.fillText(P.share_line, 72, H - 72);
+  const d = sheet('dlg-share', P.share, `<p class="quiet"></p><img class="shot" alt="Your portrait as a picture: the five bars, the five band names, your flag and the address of the section."><div class="actions"><a class="btn solid" id="share-save" download="my-portrait.png">${esc(P.save_picture)}</a><button class="btn ghost" id="share-copy" type="button">${esc(P.copy_link)}</button></div><p class="copied" id="share-copied" role="status"></p>`);
+  const url = cv.toDataURL('image/png'); d.querySelector('img').src = url; d.querySelector('#share-save').href = url;
+  d.querySelector('#share-copy').addEventListener('click', async () => { try { await navigator.clipboard.writeText('https://logicers.com/find-out/'); d.querySelector('#share-copied').textContent = P.link_copied; } catch (e) {} });
+  d.showModal();
+}
+function roundRect(x, X, Y, W, H, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + W, Y, X + W, Y + H, r); x.arcTo(X + W, Y + H, X, Y + H, r); x.arcTo(X, Y + H, X, Y, r); x.arcTo(X, Y, X + W, Y, r); x.closePath(); }
+
+/* ------------------------------------------------------------------ compare with a friend ------ */
+function comparePage() {
+  const root = document.getElementById('fo'); const st = load(); const P = C.portrait;
+  const w = el('section', 'fo-screen fo-portrait');
+  sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
+  const f = parseFriend(location.hash);
+  w.appendChild(el('h1', 'fo-title', P.compare_friend));
+  if (!f) { w.appendChild(el('p', 'fo-lede', 'This link carries no portrait. Ask your friend to send it again from their portrait.')); const a = el('a', 'btn solid', C.home['Start button']); a.href = '../'; w.appendChild(a); root.textContent = ''; root.appendChild(w); return; }
+  const mine = doneGames().length === 9;
+  if (!mine) w.appendChild(el('p', 'fo-lede', P.compare_play));
+  const grid = el('div', 'fo-cmp');
+  grid.appendChild(el('span', 'fo-cmp-h', '')); grid.appendChild(el('span', 'fo-cmp-h', P.compare_you)); grid.appendChild(el('span', 'fo-cmp-h', P.compare_friend));
+  for (const n of [2, 5, 7, 4, 8, 3, 6]) {
+    const r = st.games[n] && st.games[n].result && st.games[n].result.scored ? st.games[n].result : null;
+    const myB = r ? bandIndex(n, mainScore(n, r)) : null; const frB = f.bands[n];
+    grid.appendChild(el('span', 'fo-cmp-n', C.games[n].name));
+    grid.appendChild(el('span', 'fo-cmp-b' + (myB === null ? ' none' : ''), myB === null ? '—' : C.games[n].bands[myB].name));
+    grid.appendChild(el('span', 'fo-cmp-b' + (frB === null ? ' none' : '') + (myB !== null && frB !== null ? (myB === frB ? ' same' : '') : ''), frB === null ? '—' : C.games[n].bands[frB].name));
+  }
+  w.appendChild(grid);
+  const r1 = st.games[1] && st.games[1].result && st.games[1].result.scored ? st.games[1].result : null;
+  const bars = el('div', 'fo-bars'); const traitOf = { Outgoing: 'E', Warm: 'A', Organised: 'C', Calm: 'N', Curious: 'O' };
+  w.appendChild(el('h2', '', P.sections.personality));
+  for (const bar of C.games[1].bars) {
+    const t = traitOf[bar.name]; const fv = bar.name === 'Calm' ? (f.bars.N === null ? null : 6 - f.bars.N) : f.bars[t]; const mv = r1 ? (bar.name === 'Calm' ? r1.calm : r1.traits[t]) : null;
+    const row = el('div', 'fo-bar'); row.appendChild(el('b', '', bar.name));
+    const rail = el('div', 'rail'); const f1 = el('div', 'fill'); f1.style.width = (mv === null ? 0 : toP(1, mv) * 100) + '%'; rail.appendChild(f1);
+    if (fv !== null) { const ring = el('div', 'ring'); ring.style.left = (toP(1, fv) * 100) + '%'; ring.title = P.compare_friend; rail.appendChild(ring); }
+    row.appendChild(rail); row.appendChild(el('small', '', `${P.compare_you}: bar · ${P.compare_friend}: ring`)); bars.appendChild(row);
+  }
+  w.appendChild(bars);
+  const acts = el('div', 'fo-actions'); const a = el('a', 'btn solid', mine ? 'My portrait' : C.home['Start button']); a.href = mine ? '../portrait/' : '../'; acts.appendChild(a); w.appendChild(acts);
+  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+}
+
+/* ------------------------------------------------------------------ explore: any two groups ------ */
+function explorePage() {
+  const root = document.getElementById('fo'); const st = load(); const PL = C.pools;
+  const w = el('section', 'fo-screen fo-portrait');
+  sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
+  w.appendChild(el('h1', 'fo-title', PL.explore_heading));
+  w.appendChild(el('p', 'fo-quiet', PL.explore_line));
+  if (st.consent.status !== 'yes' || !st.uploaded.at) { w.appendChild(el('p', 'fo-lede', PL.opens_after_yes)); const a = el('a', 'btn solid', doneGames().length === 9 ? C.shared.see_portrait : C.home['Start button']); a.href = doneGames().length === 9 ? '../portrait/' : '../'; w.appendChild(a); root.textContent = ''; root.appendChild(w); return; }
+  const sel = (label, opts) => { const l = el('label', 'fo-pick'); l.appendChild(el('span', '', label)); const s = el('select'); opts.forEach(([v, t]) => { const o = el('option', '', t); o.value = v; s.appendChild(o); }); l.appendChild(s); return [l, s]; };
+  const [gl, gs] = sel(PL.pickers.game, [2, 3, 4, 5, 6, 7, 8].map((n) => [String(n), C.games[n].name]));
+  const kinds = [['world', PL.pickers.world]]; const cn = playerCountry(); if (cn && st.country !== 'not said') kinds.push(['country', PL.pickers.country]);
+  for (const f of C.demographics.fields) kinds.push([f.key, f.label]);
+  if (cn && st.country !== 'not said') for (const f of C.demographics.fields) kinds.push(['country+' + f.key, PL.pickers.country_and + ' ' + f.label.toLowerCase()]);
+  const group = (label, start) => {
+    const box = el('div', 'fo-pickbox'); const [kl, ks] = sel(label, kinds); ks.value = start; box.appendChild(kl);
+    const [vl, vs] = sel('', []); vl.hidden = true; box.appendChild(vl);
+    const fill = () => { const k = ks.value.replace('country+', ''); const f = C.demographics.fields.find((x) => x.key === k); vs.textContent = ''; if (!f) { vl.hidden = true; return; } vl.hidden = false; f.options.forEach((o) => { const op = el('option', '', o); op.value = o; vs.appendChild(op); }); const mine = st.demographics && st.demographics[k]; if (mine && f.options.includes(mine)) vs.value = mine; };
+    ks.addEventListener('change', () => { fill(); draw(); }); vs.addEventListener('change', draw); fill();
+    box.pool = () => { const k = ks.value; if (k === 'world') return { key: 'world', name: PL.names.world }; const withC = k.startsWith('country+'); const kk = k.replace('country+', ''); const p = {}; if (kk === 'country' || withC) p.country = st.country; if (kk !== 'country') p[kk] = vs.value; const nm = kk === 'country' ? poolName('country') : (withC ? poolName('country') + ', ' + vs.value : vs.value); return { key: p, name: nm }; };
+    return box;
+  };
+  const A = group(PL.pickers.a, 'world'), B = group(PL.pickers.b, kinds[1] ? kinds[1][0] : 'world');
+  const picks = el('div', 'fo-picks'); picks.appendChild(gl); picks.appendChild(A); picks.appendChild(B); w.appendChild(picks);
+  const out = el('div', 'fo-curve fo-explore-out'); w.appendChild(out);
+  async function one(p, m) { if (p.key === 'world') return api('/curve?m=' + m); return api('/pool', { id: st.id, m, pool: p.key }); }
+  async function draw() {
+    const n = Number(gs.value); const m = 'g' + n; out.textContent = ''; out.appendChild(el('p', 'fo-curve-wait', '…'));
+    const pa = A.pool(), pb = B.pool();
+    try {
+      const [ca, cb] = await Promise.all([one(pa, m), one(pb, m)]);
+      out.textContent = '';
+      const ok = (c) => c && c.n >= c.opens_at;
+      if (ok(ca) || ok(cb)) out.appendChild(twoCurves(ok(ca) ? ca : null, ok(cb) ? cb : null, n));
+      const leg = el('div', 'fo-legend');
+      for (const [c, p, cls] of [[ca, pa, 'a'], [cb, pb, 'b']]) leg.appendChild(el('span', 'fo-leg ' + cls, ok(c) ? `${p.name} · ${fmt(c.n)}` : `${p.name}: ${fmt(c ? c.n : 0)} so far · opens at ${c ? c.opens_at : 30}`));
+      out.appendChild(leg);
+      const names = el('div', 'fo-ends three'); C.games[n].bands.forEach((b) => names.appendChild(el('span', '', b.name))); out.appendChild(names);
+    } catch (e) { out.textContent = ''; out.appendChild(el('p', 'fo-curve-wait', C.shared.curve_waiting)); }
+  }
+  gs.addEventListener('change', draw);
+  root.textContent = ''; root.appendChild(w); wireDialogs(w); draw();
+}
+function twoCurves(a, b, n) {
+  const W = 300, H = 90, pad = 8;
+  const path = (r) => { if (!r) return ''; const k = r.bins.length > 9 ? [1, 2, 3, 2, 1] : [1, 2, 1]; const half = (k.length - 1) / 2; const ks = k.reduce((x, y) => x + y, 0); const sm = r.bins.map((_, i, arr) => k.reduce((acc, wgt, j) => acc + wgt * (arr[i + j - half] || 0), 0) / ks / r.n); const top = Math.max(1e-9, ...sm); const pts = sm.map((c, i) => [pad + (i / (sm.length - 1)) * (W - 2 * pad), H - 6 - (c / top) * (H - 18)]); let d = `M${pts[0][0]},${H - 6} L${pts[0][0]},${pts[0][1].toFixed(1)} `; for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i]; const cx = ((x0 + x1) / 2).toFixed(1); d += `C${cx},${y0.toFixed(1)} ${cx},${y1.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)} `; } return d + `L${pts[pts.length - 1][0]},${H - 6} Z`; };
+  return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Two groups on ${esc(C.games[n].name)}">${a ? `<path d="${path(a)}" fill="var(--c)" fill-opacity=".25" stroke="var(--c)" stroke-width="2"/>` : ''}${b ? `<path d="${path(b)}" fill="var(--ink)" fill-opacity=".12" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 4"/>` : ''}</svg>`);
+}
+
+/* ------------------------------------------------------------------ a code on the section's home ------ */
+function codeEntry() {
+  const st = load(); const K = C.code;
+  const box = el('div', 'fo-card fo-codeentry');
+  const b = el('button', 'fo-help-btn', `${K.have_code} ${K.enter_it}`); b.type = 'button'; box.appendChild(b);
+  const form = el('form', 'fo-codeform'); form.hidden = true;
+  const inp = el('input', 'fo-search'); inp.placeholder = K.type_code; inp.maxLength = 8; inp.autocapitalize = 'characters'; inp.setAttribute('aria-label', K.type_code); form.appendChild(inp);
+  const go = el('button', 'btn solid', K.enter_it); go.type = 'submit'; form.appendChild(go);
+  const status = el('p', 'fo-status', ''); form.appendChild(status);
+  b.addEventListener('click', () => { form.hidden = false; b.hidden = true; inp.focus(); });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); go.disabled = true; status.textContent = '…';
+    try {
+      const r = await api('/claim', { code: inp.value });
+      if (!r || !r.ok) throw new Error('no');
+      adopt(r); status.className = 'fo-status ok'; status.textContent = K.adopted; setTimeout(() => { location.href = 'portrait/'; }, 700);
+    } catch (err) { status.textContent = K.not_found; go.disabled = false; }
+  });
+  box.appendChild(form);
+  return box;
+}
+function adopt(r) {
+  const st = fresh(); st.id = r.id; st.code = r.code; st.created = r.player.created || st.created;
+  st.country = r.player.country; st.header_country = r.player.header_country || ''; st.country_asked = true;
+  st.consent = { status: 'yes', version: r.player.consent_version, at: r.player.consent_at }; st.uploaded = { at: new Date().toISOString(), games: [] };
+  for (const g of r.games) { if (g.wave !== 1) continue; st.games[g.game] = { started: g.started, finished: g.finished, duration_ms: g.duration_ms, answers: {}, times: {}, positions: {}, order: [], guess: g.guess === null ? null : { p: g.guess_p, value: g.guess }, result: g.sub, rules_version: g.sub.rules_version, adopted: true }; if (g.sub.scored !== false) st.done_order.push(g.game); }
+  st.done_order.sort((x, y) => ((r.games.find((g) => g.game === x) || {}).order_index || 0) - ((r.games.find((g) => g.game === y) || {}).order_index || 0));
+  if (r.demographics) st.demographics = r.demographics;
+  S = st; save();
+}
+
 /* ------------------------------------------------------------------ start ------ */
 export function start() {
   const root = document.getElementById('fo'); if (!root) return;
   const page = root.dataset.page; const n = Number(root.dataset.game);
-  if (page === 'home') homePage(); else if (page === 'portrait') portraitPage(); else if (n >= 1 && n <= 9) gamePage(n);
+  if (page === 'home') homePage(); else if (page === 'portrait') portraitPage(); else if (page === 'compare') comparePage(); else if (page === 'explore') explorePage(); else if (n >= 1 && n <= 9) gamePage(n);
 }
 export const _test = { load, save, wipe, batch, bandName, mainScore, portraitLines, ownLines, fill, parliamentName, STORE_KEY };
 start();

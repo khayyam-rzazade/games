@@ -30,6 +30,20 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="assets/css/logicers.css?v=32dcce2ab5">
+<style>
+/* Find out about yourself (B2, 22 Oct 2026): the box and the row. Kept here, not in logicers.css, so no shared file needs re-stamping. */
+[data-g="findout"] { --c: #3F7A2A; --tint: #E3F2DA; }
+@media (prefers-color-scheme: dark) { [data-g="findout"] { --c: #9EDB6A; --tint: #0F1F0A; } }
+.logicer.findout { background: linear-gradient(135deg, #2E6B22 0%, #3F7A2A 55%, #6BA84A 100%); box-shadow: 0 8px 20px rgba(63, 122, 42, .28), inset 0 0 0 1px rgba(255, 255, 255, .16); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.logicer.findout:active { transform: scale(.99); }
+.logicer.findout .logicer-big { color: #fff; background: linear-gradient(90deg, #fff 0%, #fff 40%, #FFD45E 50%, #fff 60%, #fff 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out infinite; }
+@keyframes findout-shine { 0%, 55% { background-position: 120% 0; } 85%, 100% { background-position: -120% 0; } }
+@media (prefers-reduced-motion: reduce) { .logicer.findout .logicer-big { animation: none; -webkit-text-fill-color: #fff; background: none; } }
+.findout-games .mins { white-space: nowrap; }
+.logicer.findout .fo-short { display: none; }
+@media (max-width: 700px) { .logicer.findout .fo-long { display: none; } .logicer.findout .fo-short { display: inline; } }
+@media (max-width: 700px) { .logicer.findout .logicer-label { display: none; } .logicer.findout .logicer-big { font-size: clamp(1.1rem, 5.4vw, 1.4rem); } .logicer.findout .logicer-small { font-size: 0.78rem; } }
+</style>
 </head>
 <body class="home">
 
@@ -50,6 +64,12 @@
     <p class="lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
     <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
     <div class="logicer" id="logicer" hidden></div>
+    <!-- Find out about yourself (B2, 22 Oct 2026): the same style as the counter, right under it (Khayyam, 20 Oct) -->
+    <a class="logicer findout" id="findout-box" href="find-out/">
+      <span class="logicer-label">Find out about yourself…</span>
+      <span class="logicer-big findout-big">Find out who you are</span>
+      <span class="logicer-small fo-long">9 short games · about 6 minutes</span><span class="logicer-small fo-short">9 games · 6 min</span>
+    </a>
   </div>
   <!-- The Today card (19 Oct 2026): the first thing on the page now opens the first game not yet played
        today, and each finished game hands the player to the next, so one tap starts the whole day.
@@ -224,6 +244,101 @@
     </a>
     </div>
     <button class="shelf-btn next" type="button" id="shelf-next" aria-controls="shelf-row" aria-label="More games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</section>
+
+
+<!-- Find out about yourself (B2, 22 Oct 2026): the second row, its own section, in the daily games' style.
+     Nine one-go games on published research scales; the pages live in find-out/. -->
+<section class="games findout-games" aria-labelledby="findout-title">
+  <h2 class="sec" id="findout-title">Find out about yourself…</h2>
+  <p class="sec-sub">9 short games, about 6 minutes. At the end: your portrait.</p>
+  <div class="shelf" id="shelf4">
+    <button class="shelf-btn prev off" type="button" id="shelf4-prev" aria-controls="shelf4-row" aria-label="Previous find-out games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="shelf-row" id="shelf4-row" data-n="9">
+    <a class="tile" id="tile-fo-type" data-g="findout" href="find-out/type/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="60" y="60" width="200" height="16" rx="8"/><rect class="mute" x="60" y="60" width="200" height="16" rx="8"/><rect class="fg" x="60" y="92" width="120" height="16" rx="8"/><rect class="mute" x="180" y="92" width="80" height="16" rx="8"/><rect class="fg" x="60" y="124" width="160" height="16" rx="8"/><rect class="mute" x="220" y="124" width="40" height="16" rx="8"/></svg></div>
+      <div class="body">
+        <h3>Your personality</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">40 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-shots" data-g="findout" href="find-out/shots/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="110" cy="80" r="22"/><circle class="fg" cx="70" cy="120" r="16"/><circle class="fg" cx="150" cy="120" r="16"/><rect class="mute" x="190" y="58" width="70" height="90" rx="10"/><rect class="fg" x="205" y="74" width="40" height="8" rx="4"/><rect class="fg" x="205" y="92" width="40" height="8" rx="4"/><rect class="fg" x="205" y="110" width="26" height="8" rx="4"/></svg></div>
+      <div class="body">
+        <h3>Who should decide?</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">25 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-sunny" data-g="findout" href="find-out/sunny/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="160" cy="120" r="40"/><rect class="mute" x="40" y="118" width="240" height="60" rx="14"/><rect class="fg" x="154" y="40" width="12" height="28" rx="6"/><rect class="fg" x="100" y="60" width="12" height="28" rx="6" transform="rotate(-45 106 74)"/><rect class="fg" x="208" y="60" width="12" height="28" rx="6" transform="rotate(45 214 74)"/></svg></div>
+      <div class="body">
+        <h3>Optimist or realist?</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">30 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-kid" data-g="findout" href="find-out/kid/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="120" cy="62" r="20"/><rect class="fg" x="98" y="88" width="44" height="70" rx="18"/><circle class="fg" cx="200" cy="92" r="13"/><rect class="fg" x="186" y="110" width="28" height="48" rx="12"/></svg></div>
+      <div class="body">
+        <h3>Raising a child</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">15 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-story" data-g="findout" href="find-out/story/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="mute" x="70" y="56" width="180" height="110" rx="14"/><path class="fg" d="M70 70l90 60 90-60v-14H70z"/><circle class="fg" cx="240" cy="150" r="20"/><circle class="mute" cx="240" cy="150" r="8"/></svg></div>
+      <div class="body">
+        <h3>Secret plans</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">25 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-twice" data-g="findout" href="find-out/twice/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M120 80a40 40 0 1 1 56 36c-10 6-16 12-16 24v6h-24v-10c0-20 10-30 20-36a16 16 0 1 0-24-14z"/><circle class="fg" cx="148" cy="166" r="10"/></svg></div>
+      <div class="body">
+        <h3>Four riddles</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">45 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-believe" data-g="findout" href="find-out/believe/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M160 40l70 24v44c0 40-30 64-70 74-40-10-70-34-70-74V64z"/><path d="M130 104l20 20 40-44" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg></div>
+      <div class="body">
+        <h3>Who do you trust?</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">30 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-home" data-g="findout" href="find-out/home/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="90" y="40" width="10" height="130" rx="5"/><path class="fg" d="M100 46h130l-22 30 22 30H100z"/></svg></div>
+      <div class="body">
+        <h3>Your country</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">25 s</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-fo-quick" data-g="findout" href="find-out/quick/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="100" cy="70" r="14"/><circle class="fg" cx="160" cy="70" r="14"/><circle class="fg" cx="220" cy="70" r="14"/><circle class="fg" cx="100" cy="120" r="14"/><circle class="fg" cx="160" cy="120" r="14"/><circle class="fg" cx="220" cy="120" r="14"/><circle class="mute" cx="100" cy="170" r="14"/><circle class="mute" cx="160" cy="170" r="14"/><circle class="mute" cx="220" cy="170" r="14"/></svg></div>
+      <div class="body">
+        <h3>Nine quick questions</h3>
+        <div class="foot">
+          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">30 s</span>
+        </div>
+      </div>
+    </a>
+    </div>
+    <button class="shelf-btn next" type="button" id="shelf4-next" aria-controls="shelf4-row" aria-label="More find-out games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 </section>
 
@@ -626,6 +741,7 @@
   shelf("shelf-row", "shelf-prev", "shelf-next");          // Today's games
   shelf("shelf2-row", "shelf2-prev", "shelf2-next");       // Pass the phone
   shelf("shelf3-row", "shelf3-prev", "shelf3-next");       // Play live
+  shelf("shelf4-row", "shelf4-prev", "shelf4-next");       // Find out about yourself (22 Oct 2026)
 
   /* Join a live game (five letters) or play a saved one (seven, 15 Oct 2026): the live page with the code
      after the "#" (never sent to a server). Since 16 Oct 2026 the code field waits behind "Join a game", one

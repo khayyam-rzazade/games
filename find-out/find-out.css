@@ -222,3 +222,54 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-dots.many i { width: 24px; height: 24px; }
 .fo-dots.many i { width: 30px; height: 30px; }
 .fo-dots button { min-height: 60px; justify-content: flex-start; }
+
+/* ---- B2 (22 Oct 2026): the end card, the code, sharing, the friend page, Explore ---- */
+.fo-onward { margin-top: 22px; }
+.fo-onward .pips { display: flex; gap: 5px; }
+.fo-onward .pips i { flex: 1; height: 10px; border-radius: 10px; background: color-mix(in srgb, var(--c) 22%, transparent); }
+.fo-onward .pips i.on { background: var(--c); }
+.fo-extras { margin-top: 16px; display: grid; gap: 14px; }
+.fo-extra b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; }
+.fo-extra .chip { margin-top: 8px; height: 40px; padding: 0 16px; font-size: 0.92rem; text-decoration: none; display: inline-flex; align-items: center; }
+.fo-extra input { width: 100%; margin-top: 6px; font: inherit; padding: 8px; border-radius: 10px; border: 1px solid var(--line); }
+.fo-codebox { margin-top: 14px; }
+.fo-code { font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: .06em; color: var(--c); }
+.fo-codebox .chip { margin-top: 10px; }
+.fo-codeentry { margin-top: 14px; }
+.fo-codeform { display: grid; gap: 8px; }
+.fo-codeform .fo-search { margin-top: 0; text-transform: uppercase; letter-spacing: .08em; font-weight: 800; }
+.shot { display: block; width: 100%; border-radius: 16px; margin-top: 12px; box-shadow: var(--shadow); }
+.copied { margin-top: 8px; color: var(--soft); font-weight: 600; min-height: 1.3em; }
+.fo-cmp { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 8px 10px; margin-top: 14px; align-items: center; }
+.fo-cmp-h { font-weight: 800; color: var(--soft); font-size: 0.85rem; text-transform: uppercase; letter-spacing: .04em; }
+.fo-cmp-n { font-weight: 700; font-size: 0.92rem; line-height: 1.2; }
+.fo-cmp-b { font-family: var(--display); font-weight: 800; font-size: 0.95rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--c); padding: 8px 10px; border-radius: 12px; background: var(--card); box-shadow: var(--shadow); }
+.fo-cmp-b.same { box-shadow: inset 0 0 0 2px var(--c); }
+.fo-cmp-b.none { color: var(--soft); }
+@media (prefers-color-scheme: dark) { .fo-cmp-b { box-shadow: inset 0 0 0 1px var(--line); } .fo-cmp-b.same { box-shadow: inset 0 0 0 2px var(--c); } }
+.fo-picks { display: grid; gap: 10px; margin-top: 14px; }
+.fo-pick { display: grid; gap: 4px; }
+.fo-pick span { font-weight: 700; font-size: 0.85rem; color: var(--soft); }
+.fo-pick select { width: 100%; min-height: 46px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: inherit; font-weight: 700; font-size: 1rem; }
+.fo-pickbox { display: grid; gap: 6px; padding: 10px 12px; border-radius: 16px; background: var(--tint); }
+.fo-explore-out { margin-top: 14px; }
+.fo-explore-out svg { height: 90px; }
+.fo-legend { display: grid; gap: 4px; margin-top: 8px; font-weight: 700; font-size: 0.9rem; }
+.fo-leg::before { content: ""; display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 8px; vertical-align: -2px; }
+.fo-leg.a::before { background: var(--c); opacity: .6; }
+.fo-leg.b::before { background: var(--ink); opacity: .35; border: 1px dashed var(--ink); }
+
+/* ---- the researcher page: a long document in the site's type ---- */
+.fo-doc { margin-top: 10px; font-size: 0.98rem; line-height: 1.5; }
+.fo-doc h1 { font-family: var(--display); font-weight: 800; font-size: 1.8rem; letter-spacing: -0.03em; line-height: 1.1; margin: 10px 0 12px; }
+.fo-doc h2 { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; margin: 28px 0 8px; }
+.fo-doc h3 { font-weight: 800; font-size: 1.05rem; margin: 18px 0 6px; }
+.fo-doc p { margin: 8px 0; }
+.fo-doc ul, .fo-doc ol { padding-left: 1.3em; margin: 8px 0; }
+.fo-doc li { margin: 4px 0; }
+.fo-doc hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
+.fo-doc table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 0.9rem; display: block; overflow-x: auto; }
+.fo-doc th, .fo-doc td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.fo-doc th { font-weight: 800; color: var(--soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: .03em; }
+.fo-doc code { font-size: 0.9em; background: var(--tint); padding: 1px 5px; border-radius: 6px; }
+.fo-doc a { color: inherit; text-underline-offset: 3px; }
