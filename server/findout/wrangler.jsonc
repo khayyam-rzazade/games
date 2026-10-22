@@ -22,6 +22,6 @@
   "triggers": { "crons": ["7 * * * *"] },
   "vars": { "ALLOW_ORIGINS": "https://logicers.com localhost" },
   "d1_databases": [
-    { "binding": "DB", "database_name": "logicers-findout", "database_id": "PASTE THE ID FROM THE DASHBOARD HERE" }
+    { "binding": "DB", "database_name": "logicers-findout", "database_id": "5d6a95d0-1a20-4e47-a908-a908a1e75c79" }
   ]
 }
