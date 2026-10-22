@@ -31,9 +31,34 @@ It deploys the same way as the live server (server/live): Workers Builds watches
 - **The monthly copy (the backup, plan §10.1):** `npx wrangler d1 export logicers-findout --remote --output findout-YYYY-MM.sql`
   (run in `server/findout` after `npm install`, logged in with `npx wrangler login`). Keep the file on the Mac.
   D1 also keeps 30 days of point-in-time history on its own (Time Travel).
-- **Funnel:** the `counters` table: started, each game finished, portrait, yes, no, deleted — by day, trial rows apart.
+- **Funnel:** the `counters` table: started, first game (once per phone), each game finished, portrait, yes, no, deleted — by day, trial rows apart.
+
+## Endpoints
+
+The full list, with what each one keeps, is the comment at the top of `src/worker.js`. In short:
+
+| Call | What it gives |
+|---|---|
+| `GET /health` | `{ ok, db, turnstile, admin, rules_version }` |
+| `GET /hello` | the phone's country code; nothing stored |
+| `GET /curve?m=g2` | the world's curve (counts only; the shape from 30 people) |
+| `GET /counter` | `{ yes, countries, played, portraits }`: the consent card's counter, and the find-outs counter (`played` = phones that finished a first game, `portraits` = portraits made; both from the funnel, every day, trial rows too) |
+| `GET /guessed` | "What the world guessed" lines, from 100 guesses on a game |
+| `POST /counter` | `{ event, trial }` a funnel event, no ID |
+| `POST /upload` | the batch at the yes, and every game after it |
+| `POST /demographics` | the four optional chips |
+| `POST /pool` | a pool's curve, for a player who said yes |
+| `POST /claim` | the record behind a portrait code |
+| `POST /twin` | `{ id }` → `{ ok, n, twin: { country, bands: { "2": i … "8": i }, bars: { E, A, C, N, O } } }`: the nearest other player who said yes, on games 2–8 (z-scored scores, riddles right for game 6), once 100 players have all seven (before that `twin: null`). `country` is null for "not said", `bars` (rounded to 0.5) null when the twin has no game 1. Never the twin's id or code. A player without all seven gets 400 `games`. |
+| `POST /rare` | `{ id }` → `{ ok, n, pair: { games: [a, b], bands: [i, j], share } }`: of the player's own bands on games 2–8, the pair of games whose two bands together are rarest among the players who said yes and have both games; `share` in whole percent, never below 1. Only pairs with 100 such players count; under that `pair: null`. Fewer than two scored games: 400 `games`. |
+| `POST /delete` | removes everything of one ID |
+| `POST /admin/export` | a table as CSV, behind the key |
+
+`/twin` and `/rare` are braked at 60 calls an hour per address each (in memory, like the others). Both read the
+whole table of scores on each call: fine for tens of thousands of players; if it ever gets slow, cache the z-scores
+in the hourly refresh.
 - **The trial flag:** `FINDOUT_TRIAL` in `find-out/find-out.js` is `true` now. Set it to `false` the day the trial ends.
 
 ## Tests
 
-`node --test test/test_worker.mjs` (Node 22, nothing to install). 13 tests over a SQLite stand-in for D1.
+`node --test test/test_worker.mjs` (Node 22, nothing to install). 19 tests over a SQLite stand-in for D1.

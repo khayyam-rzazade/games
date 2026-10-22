@@ -900,7 +900,9 @@ export const ITEMS = [
 export const COPY = {
  "home": {
   "Home box heading (animated)": "Find out who you are",
-  "Home box line": "9 short games · about 6 minutes",
+  "Home box line": "9 short games · about 6 minutes (no longer shown in the box, 22 Oct)",
+  "Home box, once past 100": "Find out who you are – 1,435 already did",
+  "Section home, once past 100": "1,435 people found out who they are",
   "Home box button": "Start",
   "Row title on the home page": "Find out about yourself…",
   "Row line on the home page": "9 short games, about 6 minutes. At the end: your portrait.",
@@ -911,7 +913,9 @@ export const COPY = {
   "Pick-any-game list heading": "Or pick a game",
   "Returning player, nothing done yet": "Pick up where you left off",
   "start_title": "Find out who you are.",
-  "start_lede": "9 short games, about 6 minutes. At the end you get your portrait: your personality, how you see the world, and what people like you tend to do."
+  "start_lede": "9 short games, about 6 minutes. At the end you get your portrait: your personality, how you see the world, and what people like you tend to do.",
+  "found_out": "{n} people found out who they are",
+  "box_line": "Find out who you are – {n} already did"
  },
  "shared": {
   "guess_q": "Where do you think you'll land?",
@@ -1391,6 +1395,18 @@ export const COPY = {
   "different_bands": "Different bands",
   "share_line": "Find out who you are · logicers.com/find-out",
   "save_picture": "Save picture",
+  "curtain": "Building your portrait…",
+  "one_more": "One more",
+  "tap": "Tap",
+  "dial": "How well you guessed yourself",
+  "swipe": "Swipe",
+  "twin": "Somewhere in the world there is someone with almost your pattern.",
+  "twin_label": "Your twin",
+  "rare": "Only {n} in 100 players have your mix of {a} and {b}.",
+  "january": "In {month} you play again and see what moved.",
+  "your_turn": "Your turn",
+  "unlocked": "{k} of 4 unlocked",
+  "open": "Open",
   "changed_mind": "Changed your mind?",
   "changed_mind_btn": "Yes, count me in",
   "send_failed": "Could not send. Your answers are safe on this phone.",

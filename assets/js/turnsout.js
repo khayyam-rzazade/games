@@ -1019,6 +1019,19 @@
     }
     timer = window.setTimeout(look, 2000);
   }
+  /* has this phone finished all nine find-outs (find-out/find-out.js keeps them under "lg.findout.v1": a game is
+     done when it has a result that did not fail to score)? Read only; anything unreadable counts as not done. */
+  function findOutsDone() {
+    try {
+      var st = JSON.parse(window.localStorage.getItem("lg.findout.v1"));
+      var g = st && st.games;
+      if (!g || typeof g !== "object") return false;
+      for (var n = 1; n <= 9; n++) {
+        if (!g[n] || !g[n].result || g[n].result.scored === false) return false;
+      }
+      return true;
+    } catch (e) { return false; }
+  }
   function finCard(o, next, played, count, href, box, eodEl) {
     var old = document.getElementById("fin");
     if (old && old.parentNode) old.parentNode.removeChild(old);
@@ -1088,6 +1101,19 @@
       sheet.appendChild(seat);
       watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
       sheet.appendChild(feelRow(o));
+      /* "Find out who you are" (B3, 22 Oct 2026, Khayyam): the find-outs, in the same place and style as
+         "More to play", right above it, only while this phone has not finished all nine. Their own store is
+         read here and never written. */
+      if (!findOutsDone()) {
+        var fo = el("a", "fin-more fin-findout");
+        fo.href = here("../find-out/");
+        var fw = el("span", "fin-next-words");
+        fw.appendChild(el("span", "", "Find out who you are →"));
+        fw.appendChild(el("small", "", "9 short games · about 6 minutes"));
+        fo.appendChild(fw);
+        fo.addEventListener("click", function () { count_("onward-sheet/find-out"); });
+        sheet.appendChild(fo);
+      }
       var more = el("a", "fin-more");
       more.href = here("../") + "#more-to-play";
       var mw = el("span", "fin-next-words");

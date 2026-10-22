@@ -34,13 +34,28 @@
       return L && typeof L === "object" && Number.isInteger(L.n) && L.n > 0 ? L : null;
     } catch (e) { return null; }
   }
-  /* has this browser finished at least one daily game, ever (practice does not count: the games' own rule) */
+  /* has this browser finished at least one daily game, ever (practice does not count: the games' own rule),
+     or at least one find-out (B3, 22 Oct 2026, Khayyam: "anyone doing anything on the website is a Logicer") */
   function played() {
+    return playedDaily() || playedFindOut();
+  }
+  function playedDaily() {
     try {
       return TO.GAMES.some(function (G) {
         var res = TO.game(G.id).results;
         return Object.keys(res).some(function (k) { try { return !!G.done(res[k]); } catch (e) { return false; } });
       });
+    } catch (e) { return false; }
+  }
+  /* find-out/find-out.js keeps its games under "lg.findout.v1": one with a result that did not fail to score is
+     finished. Read only, never written. */
+  function playedFindOut() {
+    try {
+      var st = JSON.parse(window.localStorage.getItem("lg.findout.v1"));
+      var g = st && st.games;
+      if (!g || typeof g !== "object") return false;
+      for (var n = 1; n <= 9; n++) if (g[n] && g[n].result && g[n].result.scored !== false) return true;
+      return false;
     } catch (e) { return false; }
   }
   function left() { try { return TO.worldStore().off === true; } catch (e) { return false; } }

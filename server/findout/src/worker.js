@@ -21,7 +21,8 @@
      GET  /health                 { ok, db, turnstile, admin }
      GET  /hello                  { country } from the request's country code, nothing stored
      GET  /curve?m=<metric>       the world's curve: { m, n, opens_at, lo, step, bins } (counts only)
-     GET  /counter                { yes, countries } for the consent card's counter
+     GET  /counter                { yes, countries, played, portraits }: the consent card's counter and the
+                                  find-outs counter (played = phones that finished a first game, from the funnel)
      GET  /guessed                { lines } "What the world guessed", once a game has 100 guesses
      POST /counter                { event, trial } funnel counters, no ID
      POST /upload                 the batch at the yes (and every later game); returns { ok, code }
@@ -29,6 +30,9 @@
      POST /pool                   { id, m, pool: { country?, age?, gender?, education?, settlement? } } a pool's
                                   curve, for a consented ID; one field, or one field with country (plan §7)
      POST /claim                  { code } the record behind a portrait code: id, country, scores, demographics
+     POST /twin                   { id } the nearest other pattern on games 2-8 (z-scored), once 100 people have all
+                                  seven: { n, twin: { country, bands, bars } } — never the twin's id or code
+     POST /rare                   { id } the rarest pair of the player's own bands: { n, pair: { games, bands, share } }
      POST /delete                 { id } removes everything of that ID
      POST /admin/export           { key, table } CSV of players | answers | games_done | demographics | counters
    Scheduled (hourly): the aggregates table is refreshed (world curves and country pools).
@@ -42,9 +46,11 @@ import { COUNTRIES } from "./countries.js";
 
 const OPENS_AT = 30;                 // a curve or pool shows from this many people
 const GUESSED_AT = 100;              // "what the world guessed" from this many guesses on a game
+const TWIN_AT = 100;                 // the twin and the rarest pair from this many players (plan §16b, 11)
+const MAIN = [2, 3, 4, 5, 6, 7, 8];  // the seven games with one main score and three bands
 const MAX_BODY = 250 * 1024;
 const CONSENT_VERSIONS = ["consent-1 (21 Oct 2026)"];
-const EVENTS = new Set(["start", "game_1", "game_2", "game_3", "game_4", "game_5", "game_6", "game_7", "game_8", "game_9", "all_nine", "portrait", "yes", "no", "deleted"]);
+const EVENTS = new Set(["start", "first_game", "game_1", "game_2", "game_3", "game_4", "game_5", "game_6", "game_7", "game_8", "game_9", "all_nine", "portrait", "yes", "no", "deleted"]);
 const REFERRALS = new Set(["site", "reddit", "search", "direct", "other"]);
 const DEVICES = new Set(["phone", "computer"]);
 const DEMO = {
@@ -349,6 +355,79 @@ async function guessed(env) {
   return { lines };
 }
 
+/* ---- the twin and the rarest pair (B3, plan §16b point 11): worked out from consented players' wave-1 scores,
+   only once TWIN_AT of them are in; the reply never carries another player's id, code or answers ---- */
+function bandIdx(game, band) { const i = SPEC[game].bands.indexOf(band); return i >= 0 ? i : null; }
+async function consented(env, id) { return !!(await env.DB.prepare("SELECT id FROM players WHERE id = ? AND consent_status = 'yes'").bind(id).first()); }
+function tieKey(a, b) {                       // FNV-1a over the two ids: equal distances break the same way every time
+  let h = 0x811c9dc5; const s = a + ":" + b;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h;
+}
+const SCORED_2_8 = `FROM games_done g JOIN players p ON p.id = g.player
+   WHERE p.consent_status = 'yes' AND g.wave = 1 AND g.scored = 1 AND g.game BETWEEN 2 AND 8`;
+async function twin(env, req, b) {
+  if (!idOk(b.id)) return bad("id");
+  if (!brake("tw:" + ipOf(req), 60, 36e5)) return bad("too many", 429);
+  if (!(await consented(env, b.id))) return bad("unknown", 404);
+  const rows = (await env.DB.prepare(`SELECT g.player AS p, g.game AS k, g.score AS s ${SCORED_2_8} AND g.score IS NOT NULL`).all()).results || [];
+  const by = new Map();
+  for (const r of rows) { let v = by.get(r.p); if (!v) by.set(r.p, (v = {})); v[r.k] = Number(r.s); }
+  const ids = [], vecs = [];
+  for (const [p, v] of by) if (MAIN.every((k) => isFinite(v[k]))) { ids.push(p); vecs.push(MAIN.map((k) => v[k])); }
+  const n = ids.length, me = ids.indexOf(b.id);
+  if (me < 0) return bad("games");                                   // the player has not scored all seven yet
+  if (n < TWIN_AT) return json({ ok: true, n, twin: null });
+  /* z-scores per game over everyone with all seven (game 6: riddles right); a game where everyone is equal counts 0 */
+  const mean = MAIN.map((_, j) => vecs.reduce((s, x) => s + x[j], 0) / n);
+  const sd = MAIN.map((_, j) => Math.sqrt(vecs.reduce((s, x) => s + (x[j] - mean[j]) ** 2, 0) / n));
+  const z = vecs.map((x) => x.map((v, j) => (sd[j] > 0 ? (v - mean[j]) / sd[j] : 0)));
+  let best = -1, bd = Infinity, bt = 0;
+  for (let i = 0; i < n; i++) {
+    if (i === me) continue;                                           // never the player themself
+    let d = 0; for (let j = 0; j < MAIN.length; j++) d += (z[i][j] - z[me][j]) ** 2;
+    const t = tieKey(b.id, ids[i]);
+    if (d < bd - 1e-9 || (Math.abs(d - bd) <= 1e-9 && t < bt)) { best = i; bd = d; bt = t; }
+  }
+  const tid = ids[best];
+  const p = await env.DB.prepare("SELECT country FROM players WHERE id = ?").bind(tid).first();
+  const gs = (await env.DB.prepare("SELECT game, sub FROM games_done WHERE player = ? AND wave = 1 AND game BETWEEN 1 AND 8").bind(tid).all()).results || [];
+  const bands = {}; let bars = null;
+  for (const g of gs) {
+    const sub = JSON.parse(g.sub);
+    if (g.game === 1) {
+      if (sub.scored && sub.traits) { bars = {}; for (const t of ["E", "A", "C", "N", "O"]) bars[t] = typeof sub.traits[t] === "number" ? Math.round(sub.traits[t] * 2) / 2 : null; }
+    } else bands[String(g.game)] = bandIdx(g.game, sub.band);
+  }
+  return json({ ok: true, n, twin: { country: p && p.country !== "not said" ? p.country : null, bands, bars } });
+}
+async function rare(env, req, b) {
+  if (!idOk(b.id)) return bad("id");
+  if (!brake("ra:" + ipOf(req), 60, 36e5)) return bad("too many", 429);
+  if (!(await consented(env, b.id))) return bad("unknown", 404);
+  const rows = (await env.DB.prepare(`SELECT g.player AS p, g.game AS k, json_extract(g.sub, '$.band') AS band ${SCORED_2_8}`).all()).results || [];
+  const by = new Map();
+  for (const r of rows) { const i = bandIdx(r.k, r.band); if (i === null) continue; let v = by.get(r.p); if (!v) by.set(r.p, (v = {})); v[r.k] = i; }
+  const mine = by.get(b.id);
+  if (!mine || Object.keys(mine).length < 2) return bad("games");   // a pair needs two of the player's own bands
+  let n = 0; for (const v of by.values()) if (Object.keys(v).length >= 2) n++;
+  if (n < TWIN_AT) return json({ ok: true, n, pair: null });
+  /* for every pair of games the player has: how many have both, and how many have the player's two bands */
+  const pairs = [];
+  for (let x = 0; x < MAIN.length; x++) for (let y = x + 1; y < MAIN.length; y++) {
+    const a = MAIN[x], c = MAIN[y];
+    if (a in mine && c in mine) pairs.push({ a, c, both: 0, same: 0 });
+  }
+  for (const v of by.values()) for (const q of pairs) {
+    if (!(q.a in v && q.c in v)) continue;
+    q.both++; if (v[q.a] === mine[q.a] && v[q.c] === mine[q.c]) q.same++;
+  }
+  let pick = null;                                                    // the lowest share among pairs with enough people
+  for (const q of pairs) if (q.both >= TWIN_AT && (!pick || q.same * pick.both < pick.same * q.both)) pick = q;
+  if (!pick) return json({ ok: true, n, pair: null });
+  return json({ ok: true, n, pair: { games: [pick.a, pick.c], bands: [mine[pick.a], mine[pick.c]], share: Math.max(1, Math.round((100 * pick.same) / pick.both)) } });
+}
+
 /* ---- counters: the funnel, no ID ---- */
 async function count(env, event, trial) {
   if (!EVENTS.has(event)) return bad("event");
@@ -357,7 +436,9 @@ async function count(env, event, trial) {
 }
 async function consentCounter(env) {
   const r = await env.DB.prepare("SELECT COUNT(*) AS yes, COUNT(DISTINCT CASE WHEN country != 'not said' THEN country END) AS countries FROM players WHERE consent_status = 'yes'").first();
-  return json({ yes: r ? r.yes : 0, countries: r ? r.countries : 0 }, 200, { "Cache-Control": "public, max-age=300" });
+  /* the find-outs counter (B3): every day, trial rows too, from the funnel; no ID behind either number */
+  const f = await env.DB.prepare("SELECT COALESCE(SUM(CASE WHEN event = 'first_game' THEN n END), 0) AS played, COALESCE(SUM(CASE WHEN event = 'portrait' THEN n END), 0) AS portraits FROM counters").first();
+  return json({ yes: r ? r.yes : 0, countries: r ? r.countries : 0, played: f ? f.played : 0, portraits: f ? f.portraits : 0 }, 200, { "Cache-Control": "public, max-age=300" });
 }
 
 /* ---- delete: everything of one ID ---- */
@@ -429,6 +510,8 @@ async function handle(req, env, ctx) {
       return withCors(json(publicCurve(c)));
     }
     if (path === "/claim") return withCors(await claim(env, req, b));
+    if (path === "/twin") return withCors(await twin(env, req, b));
+    if (path === "/rare") return withCors(await rare(env, req, b));
     if (path === "/delete") return withCors(await remove(env, req, b));
     if (path === "/admin/export") return withCors(await adminExport(env, req, b));
     return withCors(bad("not found", 404));
@@ -441,4 +524,4 @@ export default {
   fetch(req, env, ctx) { return handle(req, env, ctx); },
   async scheduled(event, env, ctx) { ctx.waitUntil(refreshAll(env)); },
 };
-export const _test = { METRICS, cleanGame, cleanPlayer, makeCode, csv, SCHEMA, refreshAll, OPENS_AT, GUESSED_AT };
+export const _test = { METRICS, cleanGame, cleanPlayer, makeCode, csv, SCHEMA, refreshAll, OPENS_AT, GUESSED_AT, TWIN_AT };

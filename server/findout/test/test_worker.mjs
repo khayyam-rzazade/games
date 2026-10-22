@@ -80,7 +80,7 @@ test("counters: the funnel, without an ID; the consent counter", async () => {
   assert.equal(await count(e, "SELECT n FROM counters WHERE event = 'start' AND trial = 1"), 2);
   assert.equal(await count(e, "SELECT n FROM counters WHERE event = 'game_2' AND trial = 0"), 1);
   const r = await call(e, "GET", "/counter");
-  assert.deepEqual(r.json, { yes: 0, countries: 0 });
+  assert.deepEqual(r.json, { yes: 0, countries: 0, played: 0, portraits: 0 });
 });
 
 test("upload: the whole batch lands, scored by the server, with a code", async () => {
@@ -118,7 +118,7 @@ test("upload: the whole batch lands, scored by the server, with a code", async (
     assert.ok(!Object.keys(cols).some((c) => /^ip$|address|agent|remote/i.test(c)), t);
   }
   /* the consent counter */
-  assert.deepEqual((await call(e, "GET", "/counter")).json, { yes: 1, countries: 1 });
+  assert.deepEqual((await call(e, "GET", "/counter")).json, { yes: 1, countries: 1, played: 0, portraits: 0 });
   /* the same code again, and a resend replaces instead of doubling */
   const r2 = await call(e, "POST", "/upload", batch(id));
   assert.equal(r2.json.code, r.json.code);
@@ -318,4 +318,183 @@ test("pools: the menu of plan §7, crossed with country, never two demographic f
   /* the hourly refresh keeps the pools that were asked for */
   await _test.refreshAll(e);
   assert.ok((await count(e, "SELECT COUNT(*) FROM aggregates WHERE pool = 'gender:Woman'")) >= 1);
+});
+
+/* ---- B3: the find-outs counter, the twin, the rarest pair ---- */
+
+test("the find-outs counter: first games and portraits, every day and both trial flags, no ID", async () => {
+  const e = env();
+  for (const [event, trial, ip] of [["first_game", true, "11.0.0.1"], ["first_game", false, "11.0.0.2"], ["first_game", true, "11.0.0.3"], ["portrait", true, "11.0.0.1"], ["start", true, "11.0.0.1"]]) {
+    assert.equal((await call(e, "POST", "/counter", { event, trial }, { ip })).status, 200);
+  }
+  await e.DB.prepare("INSERT INTO counters (event, day, trial, n) VALUES ('first_game', '2026-10-01', 0, 40), ('portrait', '2026-10-01', 1, 7)").run();
+  const r = await call(e, "GET", "/counter");
+  assert.deepEqual(r.json, { yes: 0, countries: 0, played: 43, portraits: 8 });
+  assert.equal(r.headers.get("Cache-Control"), "public, max-age=300");
+  assert.equal(await count(e, "SELECT COUNT(*) FROM counters WHERE event = 'first_game'"), 3, "two days, two flags");
+});
+
+/* answers that land at the top band of every game 2-8 (and riddles all right) */
+function topAnswers() {
+  const A = fullAnswers();
+  A[2] = { POP1: 5, POP2: 5, POP3: 5, POP4: 5, POP5: 5, POP7: 5 };
+  A[3] = { 1: 4, 2: 2, 3: 0, 4: 4, 5: 2, 6: 3, 7: 0, 8: 0, 9: 4 };
+  A[4] = { 1: "Respect for elders", 2: "Good manners", 3: "A good memory", 4: "Obedience", 5: "Well behaved", 6: "Lots of friends" };
+  A[5] = { 1: 10, 2: 10, 3: 10, 4: 10, 5: 10 };
+  A[6] = { 1: "Second", 2: "8", 3: "Emily", 4: "None" };
+  A[7] = { B6: 10, B7: 10, B8: 10, B9: 10, B10: 10, B11: 10, B12: 10, grandmother: 10 };
+  A[8] = { Q3a: 1, Q3b: 4, Q3c: 1, Q3d: 1, Q3e: 1, Q3f: 1 };
+  return A;
+}
+/* a middling crowd: random, but never near the top of any game */
+function crowdAnswers(i) {
+  let s = (i + 1) * 2654435761 >>> 0;
+  const r = (lo, hi) => { s = (Math.imul(s, 1103515245) + 12345) >>> 0; return lo + (s >>> 8) % (hi - lo + 1); };
+  const A = fullAnswers();
+  A[2] = { POP1: r(1, 3), POP2: r(1, 3), POP3: r(1, 3), POP4: r(1, 3), POP5: r(1, 3), POP7: r(1, 3) };
+  A[3] = { 1: r(0, 2), 2: 2, 3: r(2, 4), 4: r(0, 2), 5: 2, 6: 3, 7: r(2, 4), 8: r(2, 4), 9: r(0, 2) };
+  A[5] = { 1: r(0, 6), 2: r(0, 6), 3: r(0, 6), 4: r(0, 6), 5: r(0, 6) };
+  A[6] = { 1: "First", 2: r(0, 1) ? "8" : "7", 3: "June", 4: "27" };
+  A[7] = { B6: r(0, 6), B7: r(0, 6), B8: r(0, 6), B9: r(0, 6), B10: r(0, 6), B11: 5, B12: r(0, 6), grandmother: 5 };
+  A[8] = { Q3a: r(3, 5), Q3b: 3, Q3c: r(3, 5), Q3d: r(3, 5), Q3e: r(3, 5), Q3f: 3 };
+  return A;
+}
+const player = (country) => ({ created: "x", country, header_country: null, lang: "en", referral: "direct", device: "phone" });
+async function up(e, id, country, A, ip) {
+  const r = await call(e, "POST", "/upload", batch(id, { player: player(country) }, A), { ip });
+  assert.equal(r.status, 200, r.text);
+  return r.json.code;
+}
+
+test("twin: nobody's pattern under 100; then the nearest other player, never the player themself, never an id", async () => {
+  const e = env();
+  const me = hex(0xa000), tw = hex(0xa001);
+  const myCode = await up(e, me, "FR", topAnswers(), "12.0.0.1");
+  const T = topAnswers(); T[2] = Object.assign({}, T[2], { POP7: 4 });           // one step from the player
+  T[1] = { 1: 1, 6: 5, 2: 5, 7: 1, 3: 1, 8: 5, 4: 1, 9: 5, 5: 1, 10: 5 };          // every trait at 5: the twin's own bars
+  const twCode = await up(e, tw, "not said", T, "12.0.0.2");
+  for (let i = 0; i < 97; i++) await up(e, hex(0xa100 + i), "IT", crowdAnswers(i), "12.1." + i);
+  /* 99 players with all seven: nothing personal yet */
+  let r = await call(e, "POST", "/twin", { id: me }, { ip: "12.9.0.1" });
+  assert.equal(r.status, 200, r.text);
+  assert.deepEqual(r.json, { ok: true, n: 99, twin: null });
+  /* one who has not finished all seven does not count, and cannot ask */
+  const part = hex(0xa0ff); const P = crowdAnswers(500); const b = batch(part, { player: player("IT") }, P); b.games = [2, 3, 4].map((n) => gameRows(n, P[n]));
+  assert.equal((await call(e, "POST", "/upload", b, { ip: "12.2.0.1" })).status, 200);
+  r = await call(e, "POST", "/twin", { id: part }, { ip: "12.9.0.1" });
+  assert.equal(r.status, 400); assert.equal(r.json.error, "games");
+  assert.equal((await call(e, "POST", "/twin", { id: me }, { ip: "12.9.0.1" })).json.n, 99);
+  /* the hundredth */
+  await up(e, hex(0xa200), "IT", crowdAnswers(200), "12.3.0.1");
+  r = await call(e, "POST", "/twin", { id: me }, { ip: "12.9.0.1" });
+  assert.equal(r.status, 200, r.text);
+  assert.equal(r.json.n, 100);
+  assert.deepEqual(r.json.twin, { country: null, bands: { 2: 2, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2 }, bars: { E: 5, A: 5, C: 5, N: 5, O: 5 } },
+    "the twin's own bands and bars, and 'not said' as null — not the player's (FR, other bars)");
+  assert.deepEqual(Object.keys(r.json).sort(), ["n", "ok", "twin"]);
+  assert.deepEqual(Object.keys(r.json.twin).sort(), ["bands", "bars", "country"]);
+  assert.ok(!/[0-9a-f]{32}/.test(r.text), "no id in the reply");
+  assert.ok(!r.text.includes(twCode) && !r.text.includes(myCode), "no code in the reply");
+  /* the twin asks back: the player is theirs, with the player's country and bars rounded to 0.5 */
+  r = await call(e, "POST", "/twin", { id: tw }, { ip: "12.9.0.2" });
+  const mine = scoreGame(1, fullAnswers()[1]).traits;
+  assert.equal(r.json.twin.country, "FR");
+  assert.deepEqual(r.json.twin.bars, Object.fromEntries(Object.entries(mine).map(([k, v]) => [k, Math.round(v * 2) / 2])));
+  /* a twin without game 1: bars null */
+  await e.DB.prepare("DELETE FROM games_done WHERE player = ? AND game = 1").bind(tw).run();
+  r = await call(e, "POST", "/twin", { id: me }, { ip: "12.9.0.1" });
+  assert.equal(r.json.twin.bars, null); assert.equal(r.json.twin.country, null);
+  /* a crowd player's twin is someone else in the crowd, never themself */
+  for (let i = 0; i < 20; i++) {
+    const id = hex(0xa100 + i);
+    const own = (await e.DB.prepare("SELECT game, sub FROM games_done WHERE player = ? AND game BETWEEN 2 AND 8").bind(id).all()).results;
+    r = await call(e, "POST", "/twin", { id }, { ip: "12.9.1." + i });
+    assert.equal(r.status, 200);
+    assert.equal(r.json.twin.country, "IT");
+    /* the same reply twice: ties break the same way every time */
+    assert.deepEqual((await call(e, "POST", "/twin", { id }, { ip: "12.9.1." + i })).json, r.json);
+    assert.ok(own.length === 7);
+  }
+  /* refused: a bad id, an unknown id, and a deleted one */
+  assert.equal((await call(e, "POST", "/twin", { id: "nope" }, { ip: "12.9.2.1" })).status, 400);
+  assert.equal((await call(e, "POST", "/twin", { id: hex(0xdead) }, { ip: "12.9.2.1" })).status, 404);
+  await call(e, "POST", "/delete", { id: hex(0xa150) }, { ip: "12.9.2.1" });
+  assert.equal((await call(e, "POST", "/twin", { id: hex(0xa150) }, { ip: "12.9.2.1" })).status, 404);
+});
+
+test("twin: the nearest by z-scores, not by raw points", async () => {
+  /* game 3 runs 0-24 and game 2 runs 1-5: a raw distance would let game 3 decide alone. Two candidates:
+     X differs from the player by 1 point on game 3 (about a fifth of its spread), Y by a quarter point on game 2
+     (about a whole spread). By z-scores X is nearer. */
+  const e = env();
+  const base = (pop, lot) => { const A = crowdAnswers(7); A[2] = pop; A[3] = lot; return A; };
+  const meA = base({ POP1: 2, POP2: 2, POP3: 2, POP4: 2, POP5: 2, POP7: 2 }, { 1: 2, 2: 2, 3: 2, 4: 2, 5: 2, 6: 3, 7: 2, 8: 2, 9: 2 });
+  const xA = base({ POP1: 2, POP2: 2, POP3: 2, POP4: 2, POP5: 2, POP7: 2 }, { 1: 3, 2: 2, 3: 2, 4: 2, 5: 2, 6: 3, 7: 2, 8: 2, 9: 2 });
+  const yA = base({ POP1: 2, POP2: 2, POP3: 2, POP4: 2, POP5: 3, POP7: 3 }, { 1: 2, 2: 2, 3: 2, 4: 2, 5: 2, 6: 3, 7: 2, 8: 2, 9: 2 });
+  await up(e, hex(0xb000), "FR", meA, "13.0.0.1");
+  await up(e, hex(0xb001), "DE", xA, "13.0.0.2");
+  await up(e, hex(0xb002), "ES", yA, "13.0.0.3");
+  /* the rest: same games 4-8 as the three, game 2 spread narrowly around 2, game 3 spread widely */
+  for (let i = 0; i < 100; i++) {
+    const v = i % 2 ? 3 : 1;
+    const lot = { 1: i % 5, 2: 2, 3: 4 - (i % 5), 4: (i * 3) % 5, 5: 2, 6: 3, 7: 4 - ((i * 3) % 5), 8: 4 - ((i * 7) % 5), 9: (i * 7) % 5 };
+    if ((i % 5) === 2 && ((i * 3) % 5) === 2 && ((i * 7) % 5) === 2) lot[1] = 0;   // nobody else sits exactly on the player
+    await up(e, hex(0xb100 + i), "IT", base({ POP1: v, POP2: 2, POP3: 2, POP4: 2, POP5: 2, POP7: 2 }, lot), "13.1." + i);
+  }
+  const r = await call(e, "POST", "/twin", { id: hex(0xb000) }, { ip: "13.9.0.1" });
+  assert.equal(r.status, 200, r.text);
+  assert.equal(r.json.twin.country, "DE");
+});
+
+test("rare: the rarest pair of the player's own bands, as a whole percent, only from 100 players", async () => {
+  const e = env();
+  const me = hex(0xc000);
+  const low2 = (A) => { A[2] = { POP1: 1, POP2: 1, POP3: 1, POP4: 1, POP5: 1, POP7: 1 }; return A; };   // With the experts (0)
+  const low5 = (A) => { A[5] = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }; return A; };                         // Trusts what is said (0)
+  await up(e, me, "IT", low5(low2(fullAnswers())), "14.0.0.1");
+  let ip = 0;
+  for (let i = 0; i < 50; i++) await up(e, hex(0xc100 + i), "IT", fullAnswers(), "14.1." + ip++);
+  let r = await call(e, "POST", "/rare", { id: me }, { ip: "14.9.0.1" });
+  assert.equal(r.status, 200, r.text);
+  assert.deepEqual(r.json, { ok: true, n: 51, pair: null });
+  for (let i = 50; i < 120; i++) await up(e, hex(0xc100 + i), "IT", fullAnswers(), "14.1." + ip++);
+  for (let i = 0; i < 10; i++) await up(e, hex(0xc300 + i), "IT", low2(fullAnswers()), "14.1." + ip++);
+  for (let i = 0; i < 10; i++) await up(e, hex(0xc400 + i), "IT", low5(fullAnswers()), "14.1." + ip++);
+  for (let i = 0; i < 5; i++) await up(e, hex(0xc500 + i), "IT", low5(low2(fullAnswers())), "14.1." + ip++);
+  /* 146 players: games 2 and 5 together low for 6 of them (4.1%); either one alone low for 16 (11%) */
+  r = await call(e, "POST", "/rare", { id: me }, { ip: "14.9.0.1" });
+  assert.equal(r.status, 200, r.text);
+  assert.deepEqual(r.json, { ok: true, n: 146, pair: { games: [2, 5], bands: [0, 0], share: 4 } });
+  assert.ok(!/[0-9a-f]{32}/.test(r.text));
+  /* the share never shows below 1: one player in 207 would round to 0 */
+  for (let i = 0; i < 60; i++) await up(e, hex(0xc800 + i), "IT", fullAnswers(), "14.4." + i);
+  const odd = hex(0xc600); const O = low5(low2(fullAnswers())); O[8] = { Q3a: 5, Q3b: 3, Q3c: 5, Q3d: 5, Q3e: 5, Q3f: 3 };   // World citizen: nobody else
+  await up(e, odd, "IT", O, "14.2.0.1");
+  r = await call(e, "POST", "/rare", { id: odd }, { ip: "14.9.0.2" });
+  assert.equal(r.json.n, 207); assert.equal(r.json.pair.share, 1); assert.ok(r.json.pair.games.includes(8)); assert.equal(r.json.pair.bands[r.json.pair.games.indexOf(8)], 0);
+  /* a pair the player has not scored is never used; under two scored games the player cannot ask */
+  const one = hex(0xc700); const b = batch(one, { player: player("IT") }); b.games = [gameRows(2, fullAnswers()[2])];
+  assert.equal((await call(e, "POST", "/upload", b, { ip: "14.3.0.1" })).status, 200);
+  r = await call(e, "POST", "/rare", { id: one }, { ip: "14.9.0.3" });
+  assert.equal(r.status, 400); assert.equal(r.json.error, "games");
+  const two = hex(0xc701); const b2 = batch(two, { player: player("IT") }, low2(fullAnswers())); b2.games = [2, 3].map((n) => gameRows(n, low2(fullAnswers())[n]));
+  assert.equal((await call(e, "POST", "/upload", b2, { ip: "14.3.0.2" })).status, 200);
+  r = await call(e, "POST", "/rare", { id: two }, { ip: "14.9.0.3" });
+  assert.deepEqual(r.json.pair.games, [2, 3]);
+  /* unknown and bad ids */
+  assert.equal((await call(e, "POST", "/rare", { id: hex(0xdead) }, { ip: "14.9.0.4" })).status, 404);
+  assert.equal((await call(e, "POST", "/rare", { id: 12 }, { ip: "14.9.0.4" })).status, 400);
+});
+
+test("twin and rare: braked at 60 an hour per address, each", async () => {
+  const e = env();
+  const id = hex(0xd000);
+  await up(e, id, "IT", fullAnswers(), "15.0.0.1");
+  for (const path of ["/twin", "/rare"]) {
+    let last;
+    for (let i = 0; i < 60; i++) { last = await call(e, "POST", path, { id }, { ip: "15.9.9.9" }); assert.equal(last.status, 200, path + " " + i); }
+    last = await call(e, "POST", path, { id }, { ip: "15.9.9.9" });
+    assert.equal(last.status, 429, path);
+    assert.equal((await call(e, "POST", path, { id }, { ip: "15.9.9.8" })).status, 200, "another address is not braked");
+  }
 });

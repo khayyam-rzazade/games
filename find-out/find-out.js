@@ -5,7 +5,7 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=46b2274145';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=8fb4e4b0ca';
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
@@ -117,6 +117,7 @@ function circles(current, base) {
   const w = el('div', 'fo-circles');
   for (const n of ORDER) {
     const a = el('a', isDone(n) ? 'done' : (n === current ? 'now' : ''), n);
+    if (isDone(n) && n !== 1 && n !== 9) { const r = load().games[n].result; const col = bandColour(n, mainScore(n, r)); a.style.background = col; a.style.borderColor = col; }
     a.href = `${base === undefined ? '../' : base}${SLUG[n]}/`; a.setAttribute('aria-label', `Game ${n}: ${C.games[n].name}${isDone(n) ? ', done' : ''}`);
     w.appendChild(a);
   }
@@ -412,7 +413,11 @@ function gamePage(n) {
     play.finished = Date.now(); play.duration_ms = play.finished - play.started; play.result = result; play.rules_version = RULES_VERSION;
     if (result.scored !== false && !st.done_order.includes(n)) st.done_order.push(n);
     save();
-    if (result.scored !== false) { counter('game_' + n); if (doneGames().length === 9) counter('all_nine'); }
+    if (result.scored !== false) {
+      counter('game_' + n);
+      counter('first_game');   /* the find-outs' own count on the home page; counter() sends each event once per phone */
+      if (doneGames().length === 9) counter('all_nine');
+    }
     if (st.consent.status === 'yes') uploadLater();
     reveal(play);
   }
@@ -473,8 +478,8 @@ function gamePage(n) {
       const gp = g.guess ? (n === 6 ? 1 - g.guess.value / 4 : g.guess.p) : null;
       const s = strip({ p: gp === null ? toP(n, score) : gp, bands: true, guess: gp });
       w.appendChild(s); w.appendChild(ends(names));
-      requestAnimationFrame(() => setTimeout(() => { s.dot.style.left = (toP(n, score) * 100) + '%'; }, 80));
-      w.appendChild(el('h1', 'fo-bandname pop', band.name));
+      requestAnimationFrame(() => setTimeout(() => { s.dot.style.left = (toP(n, score) * 100) + '%'; s.dot.style.background = bandColour(n, score); }, 80));
+      const bn = el('h1', 'fo-bandname pop', band.name); bn.style.color = bandColour(n, score); w.appendChild(bn);
       const lines = el('div', 'fo-lines'); band.lines.forEach((l) => lines.appendChild(el('p', '', l))); w.appendChild(lines);
       if (g.guess) {
         if (n === 6) w.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${g.guess.value} would catch you</b> · <b>${4 - res.score} did</b></p>`));
@@ -649,6 +654,8 @@ function homePage() {
   w.appendChild(el('p', 'fo-lede', C.home.start_lede));
   w.appendChild(circles(null, ''));
   if (done > 0 && done < 9) w.appendChild(el('p', 'fo-count', `${done} of 9 done · about ${minutesLeft()} ${minutesLeft() === 1 ? 'minute' : 'minutes'} left`));
+  const found = el('p', 'fo-count fo-found', ''); w.appendChild(found);
+  api('/counter').then((r) => { if (r && r.played > 100) found.textContent = C.home.found_out.replace('{n}', fmt(r.played)); }).catch(() => {});
   const acts = el('div', 'fo-actions');
   const nx = nextGame(null);
   const start = el('a', 'btn solid', done === 0 ? C.home['Start button'] : nx ? C.home['Returning player, nothing done yet'] : C.shared.see_portrait);
@@ -707,24 +714,37 @@ function consentCard(a, b) {
   return w;
 }
 
-/* ------------------------------------------------------------------ demographics ------ */
+/* ------------------------------------------------------------------ demographics: four doors ------ */
 function demographics(onDone) {
-  const st = load(); const d = C.demographics;
-  const w = el('section', 'fo-screen fo-demo');
+  const st = load(); const d = C.demographics; const P = C.portrait;
+  const w = el('section', 'fo-screen fo-demo fo-doors');
   w.appendChild(el('h2', '', d.heading));
   const picked = Object.assign({}, st.demographics || {});
+  const count = el('p', 'fo-unlocked', '');
+  const unlocksOf = { age: C.pools.names.age, gender: C.pools.names.gender, education: C.pools.names.education, settlement: C.pools.names.settlement };
+  const doors = [];
+  const refresh = () => { const k = d.fields.filter((f) => picked[f.key] !== undefined).length; count.textContent = P.unlocked.replace('{k}', String(k)); go.hidden = k === 0; };
   for (const f of d.fields) {
-    w.appendChild(el('h3', '', f.label)); w.appendChild(el('p', 'why', f.why));
+    const door = el('div', 'fo-door' + (picked[f.key] !== undefined ? ' open done' : ''));
+    const front = el('button', 'fo-door-front'); front.type = 'button';
+    front.appendChild(el('b', '', f.label)); front.appendChild(el('span', 'fo-door-unlock', '→ ' + unlocksOf[f.key]));
+    front.appendChild(el('span', 'fo-door-open', P.open));
+    door.appendChild(front);
+    const inside = el('div', 'fo-door-inside');
+    inside.appendChild(el('p', 'why', f.why));
     const row = el('div', 'fo-chips');
     f.options.concat([C.shared.skip]).forEach((o) => {
       const b = el('button', 'chip' + (picked[f.key] === o ? ' on' : ''), o); b.type = 'button';
-      b.addEventListener('click', () => { row.querySelectorAll('.chip').forEach((x) => x.classList.remove('on')); b.classList.add('on'); picked[f.key] = o === C.shared.skip ? null : o; });
+      b.addEventListener('click', () => { row.querySelectorAll('.chip').forEach((x) => x.classList.remove('on')); b.classList.add('on'); picked[f.key] = o === C.shared.skip ? null : o; door.classList.add('done'); front.querySelector('.fo-door-open').textContent = o === C.shared.skip ? '–' : '✓'; refresh(); });
       row.appendChild(b);
     });
-    w.appendChild(row);
+    inside.appendChild(row); door.appendChild(inside);
+    front.addEventListener('click', () => { doors.forEach((x) => { if (x !== door) x.classList.remove('open'); }); door.classList.toggle('open'); });
+    doors.push(door); w.appendChild(door);
   }
+  w.appendChild(count);
   const acts = el('div', 'fo-actions');
-  const go = el('button', 'btn solid', 'Done'); go.type = 'button';
+  const go = el('button', 'btn solid', 'Done'); go.type = 'button'; go.hidden = true;
   const status = el('p', 'fo-status', '');
   go.addEventListener('click', async () => {
     st.demographics = picked; save(); go.disabled = true;
@@ -732,6 +752,7 @@ function demographics(onDone) {
     catch (e) { status.textContent = C.portrait.send_failed; go.disabled = false; go.textContent = C.portrait.try_again; }
   });
   acts.appendChild(go); w.appendChild(acts); w.appendChild(status);
+  refresh();
   return w;
 }
 
@@ -800,58 +821,201 @@ function ownLines() {
   }
   return lines;
 }
+/* ---- band colours: three hues of equal weight, left to right; games 1 and 9 use the section's green ---- */
+const BAND_COLOURS = ['var(--band0)', 'var(--band1)', 'var(--band2)'];
+function bandColour(n, v) { const i = bandIndex(n, v); return i === null ? 'var(--c)' : BAND_COLOURS[i]; }
+
+/* ---- the figure: one abstract face built from the five bars, the five band dots around it ---- */
+function figureSvg(r1, bandsOf, opts) {
+  const t = r1 ? r1.traits : { E: null, A: null, C: null, N: null, O: null };
+  const v = (k, d) => (t[k] === null || t[k] === undefined ? d : (t[k] - 1) / 4);     /* 0..1 */
+  const E = v('E', .5), A = v('A', .5), Cc = v('C', .5), N = r1 && r1.calm !== null ? (r1.calm - 1) / 4 : .5, O = v('O', .5);
+  const size = 120, cx = 150, cy = 150;
+  const rx = 60 + E * 30, ry = 70 + (1 - Cc) * 10 + 10;                  /* outgoing: wider; organised: neater (rounder) */
+  const rays = Math.round(4 + O * 10);                                      /* curious: more rays */
+  const mouth = 8 + A * 26;                                                 /* warm: bigger smile */
+  const tilt = (0.5 - N) * 14;                                              /* calm: steady; otherwise a tilt */
+  let rayPaths = '';
+  for (let i = 0; i < rays; i++) { const a = (i / rays) * Math.PI * 2 - Math.PI / 2; const r0 = Math.max(rx, ry) + 10, r1b = r0 + 16 + O * 10; rayPaths += `<line x1="${(cx + Math.cos(a) * r0).toFixed(1)}" y1="${(cy + Math.sin(a) * r0).toFixed(1)}" x2="${(cx + Math.cos(a) * r1b).toFixed(1)}" y2="${(cy + Math.sin(a) * r1b).toFixed(1)}" stroke="var(--c)" stroke-width="6" stroke-linecap="round" opacity=".7"/>`; }
+  const eyeY = cy - 14, eyeDx = 22 + E * 8;
+  let dots = '';
+  const order = [2, 5, 7, 4, 8];
+  order.forEach((n, i) => { const b = bandsOf(n); if (b === null) return; const a = -Math.PI / 2 + (i / order.length) * Math.PI * 2; const R = 135; const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R; dots += `<circle class="fo-fig-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11" fill="${BAND_COLOURS[b]}" stroke="var(--card)" stroke-width="3"><title>${esc(C.games[n].name)}: ${esc(C.games[n].bands[b].name)}</title></circle>`; });
+  return h(`<svg class="fo-figure${opts && opts.animate ? ' draw' : ''}" viewBox="0 0 300 300" role="img" aria-label="Your portrait as a figure">
+    <g class="rays">${rayPaths}</g>
+    <g transform="rotate(${tilt.toFixed(1)} ${cx} ${cy})">
+      <ellipse cx="${cx}" cy="${cy}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" fill="var(--c)"/>
+      <circle cx="${(cx - eyeDx).toFixed(1)}" cy="${eyeY}" r="7" fill="var(--card)"/><circle cx="${(cx + eyeDx).toFixed(1)}" cy="${eyeY}" r="7" fill="var(--card)"/>
+      <path d="M${(cx - mouth).toFixed(1)} ${cy + 22} Q${cx} ${cy + 22 + mouth * 0.9} ${(cx + mouth).toFixed(1)} ${cy + 22}" fill="none" stroke="var(--card)" stroke-width="6" stroke-linecap="round"/>
+    </g>
+    <g class="dots">${dots}</g>
+  </svg>`);
+}
+
+/* ---- the one sentence under the figure: the world first, then every group the player unlocked, in turn ---- */
+async function rewritingLine(where) {
+  const st = load();
+  let n = null, v = null;
+  for (const k of [3, 2, 5, 7, 8, 4, 6]) { const r = st.games[k] && st.games[k].result; if (r && r.scored) { n = k; v = k === 6 ? r.score : mainScore(k, r); break; } }
+  if (n === null) return;
+  const line = el('p', 'fo-rewrite', ''); where.appendChild(line);
+  const metric = 'g' + n; const tpl = C.games[n].comparison;
+  const pct = (c) => { let below = 0, equal = 0; c.bins.forEach((cnt, i) => { const x = c.lo + i * c.step; if (x < v - c.step / 2) below += cnt; else if (Math.abs(x - v) <= c.step / 2) equal += cnt; }); return Math.round(100 * (below + equal / 2) / c.n); };
+  const lines = [];
+  try { const w = await api('/curve?m=' + metric); if (w && w.n >= w.opens_at) lines.push(pctWord(tpl, pct(w))); } catch (e) {}
+  if (st.consent.status === 'yes' && st.uploaded.at) {
+    const pools = [];
+    if (st.country && st.country !== 'not said') pools.push([{ country: st.country }, poolName('country')]);
+    for (const k of ['age', 'gender', 'education', 'settlement']) if (st.demographics && st.demographics[k]) pools.push([{ [k]: st.demographics[k] }, poolName(k)]);
+    for (const [pool, name] of pools) { try { const c = await api('/pool', { id: st.id, m: metric, pool }); if (c && c.n >= c.opens_at) lines.push(pctWord(tpl, pct(c)).replace('the world', name)); } catch (e) {} }
+  }
+  if (!lines.length) { line.remove(); return; }
+  let i = 0;
+  const show = () => { line.classList.remove('in'); void line.offsetWidth; line.textContent = lines[i % lines.length]; line.classList.add('in'); i++; };
+  show();
+  if (lines.length > 1 && !reduced()) setInterval(show, 3200);
+}
+
+/* ---- the cards: one word in front, the line behind ---- */
+const CARD_WORD = { P1: 'Work', P2: 'Grades', P3: 'Learning', P4: 'Calm', P5: 'Happier', P6: 'Happiness', P7: 'Friends', P8: 'Switching', P9: 'Patience', P10: 'Real or fake', P11: 'Money', P12: 'Majority', P13: 'Step by step', P14: 'Power', P15: 'Every type', P16: 'Left and right', P17: 'Both views', P18: 'Trust', P19: 'One in three', P20: 'Two sides', P21: 'Risk', P22: 'Majority', P23: 'Pride', P24: 'Younger', P25: 'Well-being', P26: 'Happiness' };
+const CARD_ICON = { P1: 'star', P2: 'star', P3: 'bulb', P4: 'leaf', P5: 'heart', P6: 'heart', P7: 'people', P8: 'arrows', P9: 'leaf', P10: 'bulb', P11: 'coin', P12: 'people', P13: 'arrows', P14: 'shield', P15: 'people', P16: 'arrows', P17: 'bulb', P18: 'shield', P19: 'people', P20: 'arrows', P21: 'star', P22: 'people', P23: 'flag', P24: 'people', P25: 'heart', P26: 'heart' };
+const ICONS = {
+  star: '<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/>',
+  bulb: '<path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2zM9 20h6v1.5H9z"/>',
+  leaf: '<path d="M20 4c-9 0-15 5-15 13 0 1 .1 2 .4 3C9 14 13 11 20 4zM5.4 20C9 17 13 13 20 4c0 9-5 15-13 15-.6 0-1.1 0-1.6-.1z"/>',
+  heart: '<path d="M12 21s-7.5-4.6-9.5-9.3C1.2 8.4 3.3 5 6.7 5c2 0 3.5 1 4.3 2.4C12 6 13.5 5 15.5 5c3.4 0 5.5 3.4 4.2 6.7C19.5 16.4 12 21 12 21z"/>',
+  people: '<circle cx="8" cy="8" r="3.5"/><circle cx="16.5" cy="9" r="3"/><path d="M2.5 19c0-3.5 2.5-5.5 5.5-5.5s5.5 2 5.5 5.5zM13 19c.2-2.5 1.5-4.2 3.5-4.5 2.5 0 4.5 1.8 4.5 4.5z"/>',
+  arrows: '<path d="M4 8h11l-3-3 1.5-1.5L19 9l-5.5 5.5L12 13l3-3H4zM20 16H9l3 3-1.5 1.5L5 15l5.5-5.5L12 11l-3 3h11z"/>',
+  coin: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5" fill="var(--card)"/>',
+  shield: '<path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/>',
+  flag: '<path d="M5 2h2v20H5zM7 3h11l-3 4 3 4H7z"/>',
+};
+function iconSvg(name) { return h(`<svg class="fo-card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">${ICONS[name] || ICONS.star}</svg>`); }
+function flipCard(front, backLine, backSource, extraClass) {
+  const card = el('button', 'fo-flip' + (extraClass ? ' ' + extraClass : '')); card.type = 'button'; card.setAttribute('aria-expanded', 'false');
+  const inner = el('div', 'fo-flip-inner');
+  const f = el('div', 'fo-flip-front'); f.appendChild(front);
+  const b = el('div', 'fo-flip-back'); b.appendChild(el('p', '', backLine)); if (backSource) b.appendChild(el('small', '', backSource));
+  inner.appendChild(f); inner.appendChild(b); card.appendChild(inner);
+  card.addEventListener('click', () => { const on = card.classList.toggle('on'); card.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+  return card;
+}
+
+/* ---- the dial: how well the player guessed themself ---- */
+function guessDial() {
+  const st = load(); let right = 0, total = 0;
+  for (const n of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    const g = st.games[n]; if (!g || !g.result || g.result.scored === false || !g.guess) continue; const res = g.result; total++;
+    if (n === 1) { if (res.traits.E !== null && Math.abs(res.traits.E - g.guess.value) <= 0.5) right++; }
+    else if (n === 6) { if (g.guess.value === 4 - res.score) right++; }
+    else if (bandName(n, g.guess.value) === bandName(n, mainScore(n, res))) right++;
+  }
+  if (!total) return null;
+  const p = right / total; const a = Math.PI * (1 - p);
+  const x = (100 + Math.cos(a) * 80).toFixed(1), y = (100 - Math.sin(a) * 80).toFixed(1);
+  const w = el('div', 'fo-dial');
+  w.appendChild(h(`<svg viewBox="0 0 200 110" role="img" aria-label="${esc(C.portrait.dial)}: ${right} of ${total}"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--tint)" stroke-width="16" stroke-linecap="round"/><path class="fo-dial-arc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--c)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="${(p * 100).toFixed(1)} 100"/><line class="fo-dial-needle" x1="100" y1="100" x2="${x}" y2="${y}" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="var(--ink)"/><text x="100" y="92" text-anchor="middle" font-size="26" font-weight="800" fill="var(--ink)" font-family="Bricolage Grotesque, system-ui">${right} of ${total}</text></svg>`));
+  w.appendChild(el('p', 'fo-quiet', C.portrait.dial));
+  return w;
+}
+
+/* ------------------------------------------------------------------ the portrait ------ */
 function portraitPage() {
   const root = document.getElementById('fo'); const st = load(); const P = C.portrait;
   const done = doneGames();
-  const w = el('section', 'fo-screen fo-portrait');
-  function render() { root.textContent = ''; root.appendChild(w); wireDialogs(w); }
   sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
   if (done.length < 9) {
+    const w = el('section', 'fo-screen fo-portrait');
     w.appendChild(el('h1', 'fo-title', P.title));
     w.appendChild(el('p', 'fo-lede', `${done.length} of 9 done · about ${minutesLeft()} ${minutesLeft() === 1 ? 'minute' : 'minutes'} left. Your portrait opens after all nine.`));
-    const circ = circles(null); w.appendChild(circ);
+    w.appendChild(circles(null));
     const acts = el('div', 'fo-actions'); const nx = nextGame(null); const a = el('a', 'btn solid', C.shared.next_game); a.href = `../${SLUG[nx]}/`; acts.appendChild(a); w.appendChild(acts);
-    render(); return;
+    root.textContent = ''; root.appendChild(w); wireDialogs(w); return;
   }
   counter('portrait');
-  sheet('dlg-how', 'How it works', C.consent.help.map((l) => `<p>${esc(l)}</p>`).join(''));
-  w.appendChild(el('h1', 'fo-title', P.title));
-  /* 1 */
-  w.appendChild(el('h2', '', P.sections.personality));
-  const r1 = st.games[1].result; const bars = el('div', 'fo-bars'); const traitOf = { Outgoing: 'E', Warm: 'A', Organised: 'C', Calm: 'calm', Curious: 'O' };
-  for (const bar of C.games[1].bars) { const key = traitOf[bar.name]; const v = key === 'calm' ? r1.calm : r1.traits[key]; const row = el('div', 'fo-bar' + (v === null ? ' skip' : '')); row.appendChild(el('b', '', bar.name)); const rail = el('div', 'rail'); const f = el('div', 'fill'); f.style.width = (v === null ? 0 : toP(1, v) * 100) + '%'; rail.appendChild(f); row.appendChild(rail); row.appendChild(el('small', '', v === null ? '' : (v >= 3 ? bar.high : bar.low))); bars.appendChild(row); }
-  w.appendChild(bars);
-  /* 2 */
-  w.appendChild(el('h2', '', P.sections.world));
+  const r1 = st.games[1].result; const bandsOf = (n) => { const r = st.games[n] && st.games[n].result; return r && r.scored ? bandIndex(n, mainScore(n, r)) : null; };
+  const w = el('div', 'fo-stories');
+  const story = (cls) => { const s = el('section', 'fo-story' + (cls ? ' ' + cls : '')); w.appendChild(s); return s; };
+  const hint = (s) => { s.appendChild(h(`<p class="fo-swipe" aria-hidden="true">${esc(P.swipe)} <span>⌄</span></p>`)); };
+
+  /* 1. the figure */
+  const s1 = story('fo-story-figure');
+  s1.appendChild(el('h1', 'fo-title', P.title));
+  s1.appendChild(figureSvg(r1, bandsOf, { animate: true }));
+  const legend = el('div', 'fo-figlegend');
+  [2, 5, 7, 4, 8].forEach((n) => { const b = bandsOf(n); if (b === null) return; const sp = el('span', ''); sp.appendChild(h(`<i style="background:${BAND_COLOURS[b]}"></i>`)); sp.appendChild(document.createTextNode(C.games[n].bands[b].name)); legend.appendChild(sp); });
+  s1.appendChild(legend);
+  rewritingLine(s1);
+  hint(s1);
+
+  /* 2. the bars */
+  const s2 = story(); s2.appendChild(el('h2', '', P.sections.personality));
+  const bars = el('div', 'fo-bars'); const traitOf = { Outgoing: 'E', Warm: 'A', Organised: 'C', Calm: 'calm', Curious: 'O' };
+  for (const bar of C.games[1].bars) { const key = traitOf[bar.name]; const v = key === 'calm' ? r1.calm : r1.traits[key]; const row = el('div', 'fo-bar' + (v === null ? ' skip' : '')); row.appendChild(el('b', '', bar.name)); const rail = el('div', 'rail'); const f = el('div', 'fill'); f.dataset.w = (v === null ? 0 : toP(1, v) * 100) + '%'; f.style.width = '0%'; rail.appendChild(f); row.appendChild(rail); row.appendChild(el('small', '', v === null ? '' : (v >= 3 ? bar.high : bar.low))); bars.appendChild(row); }
+  s2.appendChild(bars); hint(s2);
+
+  /* 3. the five dots, in their colours */
+  const s3 = story(); s3.appendChild(el('h2', '', P.sections.world));
   const dv = el('div', 'fo-dots-view');
-  for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = el('div', 'fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); nm.appendChild(el('b', '', bandName(n, v))); row.appendChild(nm); row.appendChild(strip({ p: toP(n, v), bands: true, still: true })); dv.appendChild(row); }
-  w.appendChild(dv);
-  /* 3 */
+  for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = el('div', 'fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm); const sp = strip({ p: 0, bands: true, still: false }); sp.dot.style.background = bandColour(n, v); sp.dot.dataset.p = String(toP(n, v) * 100); row.appendChild(sp); dv.appendChild(row); }
+  s3.appendChild(dv); hint(s3);
+
+  /* 4. people like you: the cards, and One more */
   const picks = portraitLines();
-  if (picks.length) { w.appendChild(el('h2', '', P.sections.people)); w.appendChild(el('p', 'fo-quiet', P.sections.people_intro)); const ul = el('ul', 'fo-people'); picks.forEach((r) => { const li = el('li', '', r.line); li.appendChild(el('small', '', r.sources.join('; '))); ul.appendChild(li); }); w.appendChild(ul); }
-  /* 4 */
-  const own = ownLines();
-  if (own.length) { w.appendChild(el('h2', '', P.sections.own)); const d = el('div', 'fo-own'); own.forEach((l) => d.appendChild(el('p', '', l))); w.appendChild(d); }
-  /* 5: what the world guessed, once the server has 100 guesses and scores on a game */
-  const worldBox = el('div'); w.appendChild(worldBox);
+  if (picks.length) {
+    const s4 = story(); s4.appendChild(el('h2', '', P.sections.people)); s4.appendChild(el('p', 'fo-quiet', P.sections.people_intro));
+    const grid = el('div', 'fo-cards');
+    const main = picks.slice(0, -1), last = picks[picks.length - 1];
+    for (const r of main) { const front = el('div', 'fo-card-face'); front.appendChild(iconSvg(CARD_ICON[r.id])); front.appendChild(el('b', '', CARD_WORD[r.id] || '')); grid.appendChild(flipCard(front, r.line, r.sources.join('; '))); }
+    const front = el('div', 'fo-card-face fo-card-secret'); front.appendChild(el('b', '', P.one_more)); front.appendChild(el('span', 'fo-tap', P.tap));
+    grid.appendChild(flipCard(front, last.line, last.sources.join('; '), 'secret'));
+    s4.appendChild(grid); hint(s4);
+  }
+
+  /* 5. the dial and the own-answer lines */
+  const s5 = story(); s5.appendChild(el('h2', '', P.sections.own));
+  const dial = guessDial(); if (dial) s5.appendChild(dial);
+  const own = ownLines().filter((l) => !/guess/.test(l));
+  if (own.length) { const d = el('div', 'fo-own'); own.forEach((l) => d.appendChild(el('p', '', l))); s5.appendChild(d); }
+  const worldBox = el('div'); s5.appendChild(worldBox);
   api('/guessed').then((r) => { if (!r || !r.lines || !r.lines.length) return; worldBox.appendChild(el('h2', '', P.sections.guessed)); const d = el('div', 'fo-own'); r.lines.forEach((l) => d.appendChild(el('p', '', l))); worldBox.appendChild(d); }).catch(() => {});
-  /* 6 and the consent */
-  const tail = el('div'); w.appendChild(tail);
+  hint(s5);
+
+  /* 6. the twin and the rarest thing, once the world has a hundred players; the doors; the consent; the rest */
+  const s6 = story('fo-story-tail');
+  const special = el('div', 'fo-special'); s6.appendChild(special);
+  const tail = el('div'); s6.appendChild(tail);
+  function specials() {
+    special.textContent = '';
+    if (st.consent.status !== 'yes' || !st.uploaded.at) return;
+    const scored = [2, 3, 4, 5, 6, 7, 8].filter((n) => bandsOf(n) !== null).length;   /* the twin needs all seven, the rarest pair any two */
+    if (scored === 7) api('/twin', { id: st.id }).then((r) => {
+      if (!r || !r.twin) return;
+      const box = el('div', 'fo-card fo-twin'); box.appendChild(el('b', '', P.twin_label)); box.appendChild(el('p', 'fo-lede', P.twin));
+      const two = el('div', 'fo-twin-two');
+      const mine = el('div'); mine.appendChild(figureSvg(r1, bandsOf, {})); mine.appendChild(el('small', '', P.compare_you)); two.appendChild(mine);
+      const tw = r.twin; const twR1 = tw.bars ? { traits: { E: tw.bars.E, A: tw.bars.A, C: tw.bars.C, N: tw.bars.N, O: tw.bars.O }, calm: tw.bars.N === null ? null : 6 - tw.bars.N } : null;
+      const theirs = el('div'); theirs.appendChild(figureSvg(twR1, (n) => (tw.bands && tw.bands[n] !== undefined ? tw.bands[n] : null), {})); const cn = tw.country ? countryOf(tw.country) : null; theirs.appendChild(el('small', '', (cn ? cn.flag + ' ' : '') + P.twin_label)); two.appendChild(theirs);
+      box.appendChild(two); special.appendChild(box);
+    }).catch(() => {});
+    if (scored >= 2) api('/rare', { id: st.id }).then((r) => {
+      if (!r || !r.pair) return;
+      const [a, b] = r.pair.games; const [i, j] = r.pair.bands;
+      special.appendChild(h(`<div class="fo-card fo-rare"><p class="fo-lede">${esc(P.rare.replace('{n}', String(r.pair.share)).replace('{a}', C.games[a].bands[i].name).replace('{b}', C.games[b].bands[j].name))}</p></div>`));
+    }).catch(() => {});
+  }
   function extras() {
     const box = el('div', 'fo-card fo-extras');
-    /* share */
     const sh = el('button', 'btn solid', P.share); sh.type = 'button'; sh.addEventListener('click', () => sharePicture());
     const acts = el('div', 'fo-actions'); acts.appendChild(sh); box.appendChild(acts);
-    /* compare with a friend */
     const cmp = el('div', 'fo-extra'); cmp.appendChild(el('b', '', P.compare_friend)); cmp.appendChild(el('p', 'fo-quiet', P.compare_send));
     const link = `https://logicers.com/find-out/compare/#${friendCode()}`;
     const cb = el('button', 'chip', P.copy_link); cb.type = 'button'; cb.dataset.link = link; cb.addEventListener('click', async () => { try { await navigator.clipboard.writeText(link); cb.textContent = P.link_copied; } catch (e) { const i = el('input'); i.value = link; cmp.appendChild(i); i.select(); } });
     cmp.appendChild(cb); box.appendChild(cmp);
-    /* the reminder */
     const rem = el('div', 'fo-extra'); rem.appendChild(el('b', '', P.reminder)); const d = reminderDate();
     rem.appendChild(el('p', 'fo-quiet', P.reminder_date.replace('{date}', longDate(d))));
+    rem.appendChild(el('p', 'fo-quiet', P.january.replace('{month}', d.toLocaleDateString('en-GB', { month: 'long' }))));
     const cal = el('a', 'chip', P.add_calendar); cal.href = icsFor(d); cal.download = 'logicers-find-out.ics'; rem.appendChild(cal); box.appendChild(rem);
-    /* explore */
     const ex = el('div', 'fo-extra'); const ea = el('a', 'chip', C.pools.explore_heading); ea.href = '../explore/'; ex.appendChild(ea); box.appendChild(ex);
     return box;
   }
@@ -865,14 +1029,14 @@ function portraitPage() {
   }
   function tailFor() {
     tail.textContent = '';
-    if (st.consent.status === null) tail.appendChild(consentCard({ imgBase: '../../' }, (ans) => { if (ans === 'yes') { tail.textContent = ''; tail.appendChild(demographics(() => tailFor())); } else tailFor(); }));
+    if (st.consent.status === null) tail.appendChild(consentCard({ imgBase: '../../' }, (ans) => { if (ans === 'yes') { tail.textContent = ''; tail.appendChild(demographics(() => { tailFor(); specials(); })); } else tailFor(); }));
     else if (st.consent.status === 'no') {
       const box = el('div', 'fo-card'); box.appendChild(el('p', 'fo-lede', P.changed_mind));
       const acts = el('div', 'fo-actions'); const b = el('button', 'btn solid', P.changed_mind_btn); b.type = 'button';
       b.addEventListener('click', () => { st.consent = { status: null, version: null, at: null }; save(); tailFor(); });
       acts.appendChild(b); box.appendChild(acts); tail.appendChild(box);
     } else {
-      if (!st.demographics) { tail.appendChild(demographics(() => tailFor())); return; }
+      if (!st.demographics) { tail.appendChild(demographics(() => { tailFor(); specials(); })); return; }
       compared(tail);
       if (st.code) tail.appendChild(codeBox());
     }
@@ -889,8 +1053,24 @@ function portraitPage() {
     });
     del.appendChild(b); tail.appendChild(del);
   }
-  tailFor();
-  render();
+  tailFor(); specials();
+
+  /* the curtain, once: the nine circles gather into the figure */
+  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+  const animateIn = () => {
+    requestAnimationFrame(() => setTimeout(() => {
+      s2.querySelectorAll('.fill').forEach((f, i) => setTimeout(() => { f.style.width = f.dataset.w; }, 120 * i));
+      s3.querySelectorAll('.fo-strip-dot').forEach((d, i) => setTimeout(() => { d.style.left = d.dataset.p + '%'; }, 160 * i));
+    }, 60));
+  };
+  if (!st.portrait_seen && !reduced()) {
+    const cur = el('div', 'fo-curtain'); cur.appendChild(el('p', 'fo-curtain-text', P.curtain));
+    const ring = el('div', 'fo-curtain-ring'); ORDER.forEach((n, i) => { const c = el('i'); c.style.setProperty('--i', String(i)); const b = n === 1 || n === 9 ? null : bandsOf(n); c.style.background = b === null ? 'var(--c)' : BAND_COLOURS[b]; ring.appendChild(c); }); cur.appendChild(ring);
+    document.body.appendChild(cur);
+    setTimeout(() => { cur.classList.add('gather'); }, 300);
+    setTimeout(() => { cur.classList.add('out'); st.portrait_seen = true; save(); animateIn(); setTimeout(() => cur.remove(), 600); }, 2600);
+  } else { st.portrait_seen = true; save(); animateIn(); }
+
   function compared(where) {
     const box = el('div'); box.appendChild(el('h2', '', P.sections.compared));
     const cn = st.country && st.country !== 'not said' ? countryOf(st.country) : null;
@@ -931,15 +1111,19 @@ function sharePicture() {
     }
     y += 30;
   }
-  x.font = '800 36px "Bricolage Grotesque", system-ui, sans-serif'; x.fillStyle = soft; x.fillText(P.sections.world, 72, y); y += 50;
+  x.font = '800 36px "Bricolage Grotesque", system-ui, sans-serif'; x.fillStyle = soft; x.fillText(P.sections.world, 72, y);
+  x.textAlign = 'right'; x.fillText(P.your_turn, W - 72, y); x.textAlign = 'left'; y += 50;
+  const BC = dark ? ['#8FCCFA', '#9EDB6A', '#FFCB57'] : ['#3E7CB1', '#3F7A2A', '#C2781A'];
   for (const n of [2, 5, 7, 4, 8]) {
     const r = st.games[n] && st.games[n].result && st.games[n].result.scored ? st.games[n].result : null; if (!r) continue;
-    const v = mainScore(n, r);
+    const v = mainScore(n, r); const bi = bandIndex(n, v);
     x.fillStyle = card; roundRect(x, 72, y, W - 144, 118, 26); x.fill();
     x.fillStyle = soft; x.font = '700 28px system-ui, sans-serif'; x.fillText(C.games[n].name, 100, y + 44);
-    x.fillStyle = green; x.font = '800 40px "Bricolage Grotesque", system-ui, sans-serif'; x.fillText(bandName(n, v), 100, y + 94);
-    x.fillStyle = dark ? 'rgba(158,219,106,.25)' : 'rgba(63,122,42,.2)'; roundRect(x, 640, y + 54, 340, 12, 6); x.fill();
-    x.fillStyle = green; x.beginPath(); x.arc(640 + 340 * toP(n, v), y + 60, 16, 0, Math.PI * 2); x.fill();
+    x.fillStyle = BC[bi]; x.font = '800 38px "Bricolage Grotesque", system-ui, sans-serif'; x.fillText(bandName(n, v), 100, y + 94);
+    /* mine: a filled dot on a short rail; the friend's: an empty ring, waiting */
+    x.fillStyle = dark ? 'rgba(255,255,255,.12)' : 'rgba(21,23,43,.1)'; roundRect(x, 700, y + 54, 150, 12, 6); x.fill();
+    x.fillStyle = BC[bi]; x.beginPath(); x.arc(700 + 150 * toP(n, v), y + 60, 16, 0, Math.PI * 2); x.fill();
+    x.strokeStyle = soft; x.lineWidth = 4; x.setLineDash([6, 6]); x.beginPath(); x.arc(930, y + 60, 16, 0, Math.PI * 2); x.stroke(); x.setLineDash([]);
     y += 134;
   }
   x.fillStyle = ink; x.font = '700 34px system-ui, sans-serif'; x.fillText(P.share_line, 72, H - 72);
