@@ -560,6 +560,7 @@ function gamePage(n) {
     const restore = () => { if (!next) return; next.classList.remove('held'); if (orig.href) next.href = orig.href; kicker.textContent = orig.kicker; name.textContent = orig.name; pitch.textContent = orig.pitch; };
     const hold = (text) => { if (!next) return; next.classList.add('held'); next.removeAttribute('href'); kicker.textContent = R.game_of.replace('{n}', String(n)); name.textContent = text; pitch.textContent = ''; };
     const release = (m) => { if (!next) return; next.classList.remove('held'); next.href = `../${SLUG[m]}/`; kicker.textContent = R.game_of.replace('{n}', String(m)); name.textContent = R.next_in_room.replace('{n}', String(m)).replace(' ▶', ''); pitch.textContent = C.games[m].start_line; };
+    hold(R.waiting_host);   /* held from the first moment, before the room has even answered: nobody goes on without the host */
     const stop = roomWatch(rm.code, async (s) => {
       if (!s || s.step === 'ended') { line.textContent = R.player_ended; roomLeave(); restore(); stop(); return; }
       if (s.step === 'play' && s.game === n) await roomDone(n, g.result);
