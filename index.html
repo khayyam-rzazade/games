@@ -45,6 +45,24 @@
 .hero-boxes .logicer { width: 100%; }
 @media (max-width: 700px) { .hero-boxes { display: block; } }
 .logicer.findout .logicer-small:empty { display: none; }
+/* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
+.rooms-sheet { max-width: 440px; }
+.rooms-list { display: grid; gap: 10px; margin-top: 16px; }
+.rooms-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: var(--card); border: 1.5px solid var(--line); text-decoration: none; color: var(--ink); -webkit-tap-highlight-color: transparent; }
+.rooms-item:hover, .rooms-item.on { border-color: #2D4FC4; box-shadow: 0 6px 16px rgba(45, 79, 196, .14); }
+.rooms-art { display: block; width: 40px; height: 40px; flex: none; }
+.rooms-art svg { display: block; width: 100%; height: 100%; }
+.rooms-text { display: block; min-width: 0; }
+.rooms-text b { display: block; font-family: var(--display); font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; line-height: 1.15; }
+.rooms-text span { display: block; margin-top: 3px; color: var(--soft); font-size: 0.86rem; line-height: 1.35; }
+.rooms-code { margin-top: 14px; }
+.rooms-code-row { display: flex; gap: 8px; margin-top: 8px; }
+.rooms-code .livejoin-code { flex: 1; min-width: 0; height: 46px; border-radius: 14px; border: 2px solid var(--line); background: var(--card); color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: .12em; text-align: center; text-transform: uppercase; padding: 0 6px; }
+.rooms-code .livejoin-code:focus { outline: none; border-color: #2D4FC4; }
+.rooms-code.bad .livejoin-code { border-color: #CF4327; animation: rooms-shake .3s; }
+@keyframes rooms-shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.rooms-code .livejoin-go { appearance: none; flex: none; border: 0; height: 46px; padding: 0 20px; border-radius: 999px; background: #2D4FC4; color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
+.gameroom { cursor: pointer; }
 </style>
 </head>
 <body class="home">
@@ -95,22 +113,19 @@
       <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
       <b class="lb-h">Build a game</b>
     </a>
-    <a class="lb lb-join" id="lb-join" href="live/" aria-controls="livejoin" aria-expanded="false">
+    <a class="lb lb-join" id="lb-join" href="live/" aria-haspopup="dialog" aria-controls="dlg-rooms">
       <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
       <b class="lb-h">Join a game</b>
     </a>
-    <form class="lb-code livejoin" id="livejoin" action="live/" autocomplete="off" aria-label="Join a live game" hidden>
-      <input class="livejoin-code" id="livejoin-code" maxlength="7" placeholder="CODE" autocapitalize="characters" spellcheck="false" aria-label="Game code">
-      <button class="livejoin-go" type="submit">Join</button>
-      <button class="livejoin-x" id="livejoin-x" type="button" aria-label="Close the code field">&times;</button>
-    </form>
   </div>
   <!-- Game Room and "players said" (20 Oct 2026, Khayyam: "as tall as Build a game or Join a game, right under
        them"): two slim halves like those, a picture and a title each. The Game Room waits hidden until rooms are
        switched on (assets/js/rooms.js); the players' half until assets/js/said.js has a line Khayyam let through.
        A half alone takes the whole row; with neither, the row is not there. -->
-  <div class="pairbox" id="pairbox">
-  <a class="gameroom" id="gameroom" href="room/" hidden>
+  <div class="pairbox" id="pairbox"><span id="more-to-play"></span>
+  <!-- Game rooms (23 Oct 2026, Khayyam): the hub of the three kinds of room. A tap opens the sheet below with the three
+       choices; the box is always shown. "Join a game" opens the same sheet with a code field. -->
+  <a class="gameroom" id="gameroom" href="room/" role="button" aria-haspopup="dialog" aria-controls="dlg-rooms">
     <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
       <rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/>
       <rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/>
@@ -120,8 +135,8 @@
       <circle cx="28" cy="33" r="5.5" fill="#0D7D73"/>
     </svg></span>
     <span class="gameroom-text">
-      <b class="gameroom-h" id="gameroom-h">Game Room</b>
-      <span class="gameroom-sub" id="gameroom-sub">Play with friends: a table for the day, week and month.</span>
+      <b class="gameroom-h" id="gameroom-h">Game rooms</b>
+      <span class="gameroom-sub" id="gameroom-sub">Daily games, How Sure or Find out who you are — with friends.</span>
       <span class="gameroom-faces" id="gameroom-faces" hidden></span>
     </span>
   </a>
@@ -253,138 +268,8 @@
 </section>
 
 
-<!-- Find out about yourself (B2, 22 Oct 2026): the second row, its own section, in the daily games' style.
-     Nine one-go games on published research scales; the pages live in find-out/. -->
-<section class="games findout-games" id="more-to-play" aria-labelledby="findout-title">
-  <h2 class="sec" id="findout-title">Find out about yourself…</h2>
-  <p class="sec-sub">9 short games, about 6 minutes. At the end: your portrait.</p>
-  <div class="shelf" id="shelf4">
-    <button class="shelf-btn prev off" type="button" id="shelf4-prev" aria-controls="shelf4-row" aria-label="Previous find-out games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <div class="shelf-row" id="shelf4-row" data-n="9">
-    <a class="tile" id="tile-fo-type" data-g="findout" href="find-out/type/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="60" y="60" width="200" height="16" rx="8"/><rect class="mute" x="60" y="60" width="200" height="16" rx="8"/><rect class="fg" x="60" y="92" width="120" height="16" rx="8"/><rect class="mute" x="180" y="92" width="80" height="16" rx="8"/><rect class="fg" x="60" y="124" width="160" height="16" rx="8"/><rect class="mute" x="220" y="124" width="40" height="16" rx="8"/></svg></div>
-      <div class="body">
-        <h3>Your personality</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">40 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-shots" data-g="findout" href="find-out/shots/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="110" cy="80" r="22"/><circle class="fg" cx="70" cy="120" r="16"/><circle class="fg" cx="150" cy="120" r="16"/><rect class="mute" x="190" y="58" width="70" height="90" rx="10"/><rect class="fg" x="205" y="74" width="40" height="8" rx="4"/><rect class="fg" x="205" y="92" width="40" height="8" rx="4"/><rect class="fg" x="205" y="110" width="26" height="8" rx="4"/></svg></div>
-      <div class="body">
-        <h3>Who should decide?</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">25 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-sunny" data-g="findout" href="find-out/sunny/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="160" cy="120" r="40"/><rect class="mute" x="40" y="118" width="240" height="60" rx="14"/><rect class="fg" x="154" y="40" width="12" height="28" rx="6"/><rect class="fg" x="100" y="60" width="12" height="28" rx="6" transform="rotate(-45 106 74)"/><rect class="fg" x="208" y="60" width="12" height="28" rx="6" transform="rotate(45 214 74)"/></svg></div>
-      <div class="body">
-        <h3>Optimist or realist?</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">30 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-kid" data-g="findout" href="find-out/kid/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="120" cy="62" r="20"/><rect class="fg" x="98" y="88" width="44" height="70" rx="18"/><circle class="fg" cx="200" cy="92" r="13"/><rect class="fg" x="186" y="110" width="28" height="48" rx="12"/></svg></div>
-      <div class="body">
-        <h3>Raising a child</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">15 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-story" data-g="findout" href="find-out/story/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="mute" x="70" y="56" width="180" height="110" rx="14"/><path class="fg" d="M70 70l90 60 90-60v-14H70z"/><circle class="fg" cx="240" cy="150" r="20"/><circle class="mute" cx="240" cy="150" r="8"/></svg></div>
-      <div class="body">
-        <h3>Secret plans</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">25 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-twice" data-g="findout" href="find-out/twice/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M120 80a40 40 0 1 1 56 36c-10 6-16 12-16 24v6h-24v-10c0-20 10-30 20-36a16 16 0 1 0-24-14z"/><circle class="fg" cx="148" cy="166" r="10"/></svg></div>
-      <div class="body">
-        <h3>Four riddles</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">45 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-believe" data-g="findout" href="find-out/believe/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M160 40l70 24v44c0 40-30 64-70 74-40-10-70-34-70-74V64z"/><path d="M130 104l20 20 40-44" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg></div>
-      <div class="body">
-        <h3>Who do you trust?</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">30 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-home" data-g="findout" href="find-out/home/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="90" y="40" width="10" height="130" rx="5"/><path class="fg" d="M100 46h130l-22 30 22 30H100z"/></svg></div>
-      <div class="body">
-        <h3>Your country</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">25 s</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-fo-quick" data-g="findout" href="find-out/quick/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="fg" cx="100" cy="70" r="14"/><circle class="fg" cx="160" cy="70" r="14"/><circle class="fg" cx="220" cy="70" r="14"/><circle class="fg" cx="100" cy="120" r="14"/><circle class="fg" cx="160" cy="120" r="14"/><circle class="fg" cx="220" cy="120" r="14"/><circle class="mute" cx="100" cy="170" r="14"/><circle class="mute" cx="160" cy="170" r="14"/><circle class="mute" cx="220" cy="170" r="14"/></svg></div>
-      <div class="body">
-        <h3>Nine quick questions</h3>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">30 s</span>
-        </div>
-      </div>
-    </a>
-    </div>
-    <button class="shelf-btn next" type="button" id="shelf4-next" aria-controls="shelf4-row" aria-label="More find-out games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  </div>
-</section>
-
-<section class="games group-games live-games" aria-labelledby="live-title">
-  <h2 class="sec" id="live-title">Play live with friends</h2>
-  <p class="sec-sub">Everyone on their own phone. A shared screen is optional.</p>
-  <div class="shelf" id="shelf3">
-    <button class="shelf-btn prev off" type="button" id="shelf3-prev" aria-controls="shelf3-row" aria-label="Previous live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <div class="shelf-row" id="shelf3-row" data-n="2">
-    <a class="tile" id="tile-sure" data-g="sure" href="live/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><defs><pattern id="sure-mesh" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="ln" d="M0 0H8M0 0V8" stroke-width="1.7"/></pattern><pattern id="sure-mesh-y" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H8M0 0V8" stroke="#C98F00" stroke-width="1.7" opacity=".7"/></pattern></defs><rect class="mute" x="36" y="158" width="248" height="8" rx="4"/><rect class="sure-net" x="72" y="62" width="168" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect class="sure-net" x="112" y="94" width="88" height="24" rx="9" fill="url(#sure-mesh)" stroke-width="3"/><rect x="176" y="126" width="38" height="24" rx="9" fill="url(#sure-mesh-y)" stroke="#F0B429" stroke-width="3" stroke-dasharray="7 4"/><rect class="fg" x="149" y="40" width="5" height="132" rx="2.5"/><circle class="fg" cx="151.5" cy="36" r="9"/><rect class="sure-answer" x="129" y="54" width="4" height="112" rx="2"/></svg><span class="badge">New</span></div>
-      <div class="body">
-        <h3>How Sure?</h3>
-        <p class="pitch"><span class="long">Everyone guesses a number on their own phone, then picks a net. A small net scores more, if it catches the answer.</span><span class="short">Guess the number, then pick your net.</span></p>
-        <div class="foot">
-          <span class="go"><span>Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">3+ players</span>
-        </div>
-      </div>
-    </a>
-    <!-- Find out, in a room (stage 2, 23 Oct 2026): a host runs the nine find-out games with a room full of phones -->
-    <a class="tile" id="tile-fo-room" data-g="findout" href="find-out/room/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="mute" x="40" y="28" width="240" height="118" rx="12"/><path class="fg" d="M62 124 C 100 124, 120 60, 160 60 S 220 124, 258 124 L258 130 L62 130 Z" opacity=".55"/><path d="M62 124 C 100 124, 120 60, 160 60 S 220 124, 258 124" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" class="fg"/><rect class="mute" x="150" y="146" width="20" height="10" rx="3"/><rect class="fg" x="70" y="160" width="28" height="30" rx="6"/><rect class="fg" x="110" y="160" width="28" height="30" rx="6"/><rect class="fg" x="150" y="160" width="28" height="30" rx="6"/><rect class="fg" x="190" y="160" width="28" height="30" rx="6"/><rect class="fg" x="230" y="160" width="28" height="30" rx="6"/></svg></div>
-      <div class="body">
-        <h3>Find out, in a room</h3>
-        <p class="pitch"><span class="long">A host runs the nine find-out games with a class or friends. Everyone on their own phone; the room's curve on one screen, never one person.</span><span class="short">The nine find-out games with a class or friends, on one screen.</span></p>
-        <div class="foot">
-          <span class="go"><span>Host</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </div>
-    </a>
-    <div class="tile soon-tile" id="tile-more-live">
-      <div class="art soon-art" aria-hidden="true"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="mute" cx="128" cy="100" r="9"/><circle class="mute" cx="160" cy="100" r="9"/><circle class="mute" cx="192" cy="100" r="9"/></svg></div>
-      <div class="body">
-        <h3>More to come</h3>
-        <p class="pitch">More games for a room are in the works.</p>
-      </div>
-    </div>
-    </div>
-    <button class="shelf-btn next off" type="button" id="shelf3-next" aria-controls="shelf3-row" aria-label="More live games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  </div>
-</section>
+<!-- The find-out row and the "Play live with friends" row left the page on 23 Oct 2026 (Khayyam): the green box is the
+     way into the find-outs, and the rooms live in the Game rooms hub above. -->
 
 <section class="games group-games" aria-labelledby="group-title">
   <h2 class="sec" id="group-title">Pass the phone</h2>
@@ -460,6 +345,38 @@
     <div class="soon-arts" aria-hidden="true"><div class="art" data-g="half"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M160 38a62 62 0 0 0 0 124z"/><path class="mute" d="M160 38a62 62 0 0 1 0 124z"/><path class="ln" d="M160 22V178" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10"/></svg></div><div class="art" data-g="piece"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="95" y="34" width="38" height="38" rx="9"/><rect class="mute" x="141" y="34" width="38" height="38" rx="9"/><rect class="fg" x="187" y="34" width="38" height="38" rx="9"/><rect class="mute" x="95" y="80" width="38" height="38" rx="9"/><rect class="fg" x="141" y="80" width="38" height="38" rx="9"/><rect class="gap" x="189" y="82" width="34" height="34" rx="8" fill="none" stroke-width="3.5" stroke-dasharray="6 6"/><rect class="fg" x="95" y="126" width="38" height="38" rx="9"/><rect class="mute" x="141" y="126" width="38" height="38" rx="9"/><rect class="fg" x="187" y="126" width="38" height="38" rx="9"/></svg></div></div>
   </div>
 </section>
+
+<!-- The rooms sheet (23 Oct 2026): three kinds of room, one tap each; from "Join a game" the same three with a code
+     field. Codes never reach a server from here: the page sends the browser to the room's own page with the code
+     after the "#". -->
+<dialog id="dlg-rooms" aria-labelledby="dlg-rooms-t">
+  <div class="sheet rooms-sheet">
+    <button class="chip round close" type="button" id="dlg-rooms-x" aria-label="Close">&times;</button>
+    <h2 id="dlg-rooms-t">Game rooms</h2>
+    <p class="quiet" id="dlg-rooms-sub">Everyone on their own phone.</p>
+    <div class="rooms-list">
+      <a class="rooms-item" data-kind="daily" href="room/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/><rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/><circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/><circle cx="36" cy="27" r="6.5" fill="#CF4327"/><circle cx="28" cy="33" r="5.5" fill="#0D7D73"/></svg></span>
+        <span class="rooms-text"><b>Daily games with friends</b><span>A shared table for the day, the week and the month.</span></span>
+      </a>
+      <a class="rooms-item" data-kind="live" href="live/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="16" fill="#E6F8EE"/><circle cx="22" cy="22" r="9" fill="none" stroke="#1E7A4C" stroke-width="3"/><circle cx="22" cy="22" r="3" fill="#1E7A4C"/><path d="M22 4v6M22 34v6M4 22h6M34 22h6" stroke="#1E7A4C" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        <span class="rooms-text"><b>How Sure with friends</b><span>Everyone guesses a number, then picks a net. 3+ players.</span></span>
+      </a>
+      <a class="rooms-item" data-kind="findout" href="find-out/room/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="20" r="11" fill="#3F7A2A"/><circle cx="17.5" cy="18" r="2" fill="#fff"/><circle cx="26.5" cy="18" r="2" fill="#fff"/><path d="M16 25q6 5 12 0" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="8" cy="36" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="38" r="3.5" fill="#D5492F"/><circle cx="36" cy="36" r="3.5" fill="#0D7D73"/></svg></span>
+        <span class="rooms-text"><b>Find out who you are with friends</b><span>The nine find-out games, the room's curve on one screen, never one person.</span></span>
+      </a>
+    </div>
+    <form class="rooms-code" id="rooms-code" autocomplete="off" hidden aria-label="The code">
+      <p class="quiet" id="rooms-code-h"></p>
+      <div class="rooms-code-row">
+        <input class="livejoin-code" id="rooms-code-in" maxlength="20" placeholder="CODE" autocapitalize="characters" spellcheck="false" aria-label="Game code">
+        <button class="livejoin-go" type="submit">Join</button>
+      </div>
+    </form>
+  </div>
+</dialog>
 </main>
 
 <footer class="foot-note">
@@ -752,8 +669,6 @@
   }
   shelf("shelf-row", "shelf-prev", "shelf-next");          // Today's games
   shelf("shelf2-row", "shelf2-prev", "shelf2-next");       // Pass the phone
-  shelf("shelf3-row", "shelf3-prev", "shelf3-next");       // Play live
-  shelf("shelf4-row", "shelf4-prev", "shelf4-next");       // Find out about yourself (22 Oct 2026)
   /* the find-outs' own count (22 Oct 2026): how many phones finished at least one of the nine games, a plain
      counter on the find-out server with no ID in it; shown from the first player on (Khayyam) */
   (function () {
@@ -764,36 +679,53 @@
     }).catch(function () { /* the box reads the same without the number */ });
   })();
 
-  /* Join a live game (five letters) or play a saved one (seven, 15 Oct 2026): the live page with the code
-     after the "#" (never sent to a server). Since 16 Oct 2026 the code field waits behind "Join a game", one
-     half of the slim box: a tap opens it across the whole box, × or Escape closes it again. */
-  var join = document.getElementById("livejoin"), code = document.getElementById("livejoin-code");
-  var box = document.getElementById("livebox"), opener = document.getElementById("lb-join"), shut = document.getElementById("livejoin-x");
-  function openJoin(on) {
-    if (!box || !join || !opener) return;
-    box.classList.toggle("joining", on);
-    join.hidden = !on;
-    opener.setAttribute("aria-expanded", on ? "true" : "false");
-    if (on) { try { code.focus(); } catch (e) { /* the field is there all the same */ } if (window.TurnsOut) window.TurnsOut.count("home/join-open"); }
-    else { join.classList.remove("bad"); try { opener.focus(); } catch (e) { /* nothing to focus */ } }
-  }
-  if (opener && join) opener.addEventListener("click", function (e) { e.preventDefault(); openJoin(true); });
-  if (shut) shut.addEventListener("click", function () { openJoin(false); });
-  if (join) join.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.preventDefault(); openJoin(false); } });
-  if (join && code) {
-    code.addEventListener("input", function () {
-      var v = code.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 7);
-      if (v !== code.value) code.value = v;
-      join.classList.remove("bad");
-    });
-    join.addEventListener("submit", function (e) {
+  /* Game rooms (23 Oct 2026): the hub box opens the sheet with the three kinds of room; "Join a game" opens the same
+     sheet and, after a choice, a code field. The code goes to the room's own page after the "#", never to a server
+     from here: a daily room (10 letters and digits), a How Sure game (five letters, or seven for a saved one), a
+     find-out room (five letters). */
+  (function () {
+    var dlg = document.getElementById("dlg-rooms"), hub = document.getElementById("gameroom"), opener = document.getElementById("lb-join");
+    if (!dlg || !dlg.showModal) return;
+    var items = dlg.querySelectorAll(".rooms-item"), form = document.getElementById("rooms-code"), inp = document.getElementById("rooms-code-in"), head = document.getElementById("rooms-code-h");
+    var title = document.getElementById("dlg-rooms-t"), sub = document.getElementById("dlg-rooms-sub");
+    var KINDS = {
+      daily: { h: "Daily games with friends", ask: "The room's code (10 letters and digits)", ok: /^[23456789abcdefghjkmnpqrstvwxyz]{10}$/, go: function (v) { return "room/#r=" + v; }, lower: true },
+      live: { h: "How Sure with friends", ask: "The game's code (five letters, or seven for a saved game)", ok: /^[A-Z]{5}$|^[A-Z]{7}$/, go: function (v) { return "live/#" + v; } },
+      findout: { h: "Find out who you are with friends", ask: "The room's code (five letters)", ok: /^[A-Z]{5}$/, go: function (v) { return "find-out/room/#" + v; } }
+    };
+    var mode = "go", kind = null;
+    function open(m) {
+      mode = m; kind = null;
+      title.textContent = m === "join" ? "Join a game" : "Game rooms";
+      sub.textContent = m === "join" ? "Which kind of room?" : "Everyone on their own phone.";
+      form.hidden = true; inp.value = ""; form.classList.remove("bad");
+      for (var i = 0; i < items.length; i++) items[i].classList.remove("on");
+      dlg.showModal();
+      if (window.TurnsOut) window.TurnsOut.count(m === "join" ? "home/join-open" : "home/rooms-open");
+    }
+    if (hub) hub.addEventListener("click", function (e) { e.preventDefault(); open("go"); });
+    if (opener) opener.addEventListener("click", function (e) { e.preventDefault(); open("join"); });
+    document.getElementById("dlg-rooms-x").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    for (var i = 0; i < items.length; i++) items[i].addEventListener("click", function (e) {
+      if (mode !== "join") return;                     // plain mode: the link goes where it goes
       e.preventDefault();
-      var v = code.value.toUpperCase().replace(/[^A-Z]/g, "");
-      if (v.length !== 5 && v.length !== 7) { join.classList.add("bad"); code.focus(); return; }
-      var base = window.location.protocol === "file:" ? "live/index.html" : "live/";
-      window.location.href = base + "#" + v;
+      kind = this.getAttribute("data-kind");
+      for (var k = 0; k < items.length; k++) items[k].classList.toggle("on", items[k] === this);
+      head.textContent = KINDS[kind].ask; form.hidden = false; form.classList.remove("bad"); inp.value = "";
+      try { inp.focus(); } catch (err) { /* the field is there all the same */ }
     });
-  }
+    inp.addEventListener("input", function () { form.classList.remove("bad"); });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!kind) return;
+      var K = KINDS[kind], v = inp.value.trim();
+      v = K.lower ? v.toLowerCase().replace(/[^a-z0-9]/g, "") : v.toUpperCase().replace(/[^A-Z]/g, "");
+      if (!K.ok.test(v)) { form.classList.add("bad"); inp.focus(); return; }
+      var base = window.location.protocol === "file:" ? "" : "";
+      window.location.href = base + K.go(v);
+    });
+  })();
 })();
 </script>
 </body>

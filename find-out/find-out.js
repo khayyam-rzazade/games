@@ -783,7 +783,6 @@ function homePage() {
   /* the room (stage 2): a card for hosts, teachers, a group with a big screen */
   if (!roomOf()) { const rc = el('a', 'fo-card fo-roomcard'); rc.href = 'room/'; rc.appendChild(el('b', '', C.room.tile_title)); rc.appendChild(el('p', 'fo-quiet', C.room.tile_line)); rc.appendChild(el('span', 'chip', C.room.host)); w.appendChild(rc); }
   if (st.consent.status !== 'yes') w.appendChild(codeEntry());
-  w.appendChild(langSwitch(''));
   const foot = el('p', 'fo-foot');
   foot.appendChild(h(`<span>${esc(C.small_print[0].text)} <a href="researchers/">${esc(C.small_print[0].link)}</a></span>`));
   foot.appendChild(document.createElement('br'));
@@ -1168,7 +1167,6 @@ function portraitPage() {
     }
     if (st.consent.status === 'yes' && st.demographics) tail.appendChild(exploreBox());
     tail.appendChild(extras());
-    tail.appendChild(langSwitch('../'));
     /* "Delete my answers" is not on the portrait any more (Khayyam, 22 Oct): it lives under the consent card's "?" and on the code page */
   }
   tailFor(); specials();
@@ -1365,25 +1363,43 @@ function twoCurves(a, b, n) {
   return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(tpl(U.two_groups_aria, { game: C.games[n].name }))}">${a ? `<path d="${path(a)}" fill="var(--c)" fill-opacity=".25" stroke="var(--c)" stroke-width="2"/>` : ''}${b ? `<path d="${path(b)}" fill="var(--ink)" fill-opacity=".12" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 4"/>` : ''}</svg>`);
 }
 
-/* ------------------------------------------------------------------ the language switch ------
-   EN · IT · TR on the section's home and under the portrait: the same page in the other language (one store, one portrait
-   per phone whatever the language). The pick is remembered on the phone (lg.findout.lang). */
-const LANGS = [['en', 'English'], ['it', 'Italiano'], ['tr', 'Türkçe']];
-function langSwitch(toHome) {
-  const row = el('p', 'fo-langs'); row.setAttribute('aria-label', U.switch_label);
-  const page = document.getElementById('fo').dataset.page;                 /* home or portrait */
-  const tail = page === 'portrait' ? 'portrait/' : '';
-  for (const [code, name] of LANGS) {
-    if (code === LANG) { row.appendChild(el('b', '', name)); continue; }
-    const a = el('a', '', name); a.hreflang = code; a.lang = code;
-    /* from find-out/ (en) or find-out/it/ (it): up to find-out/, then into the language's folder */
-    const root = LANG === 'en' ? toHome : toHome + '../';
-    a.href = root + (code === 'en' ? '' : code + '/') + tail;
-    a.addEventListener('click', () => { try { localStorage.setItem('lg.findout.lang', code); } catch (e) {} });
-    row.appendChild(a);
+/* ------------------------------------------------------------------ the language ------
+   A chip in the header shows the language and opens a sheet with the three (flag and word); the sheet opens by itself the
+   first time a phone reaches any find-out page (Khayyam, 23 Oct). The pick is remembered (lg.findout.lang) and every
+   find-out page then opens in that language: one store, one portrait per phone whatever the language. */
+const LANGS = [['en', 'English', '\u{1F1EC}\u{1F1E7}'], ['it', 'Italiano', '\u{1F1EE}\u{1F1F9}'], ['tr', 'Türkçe', '\u{1F1F9}\u{1F1F7}']];
+const LANG_KEY = 'lg.findout.lang';
+function savedLang() { try { const v = localStorage.getItem(LANG_KEY); return LANGS.some((l) => l[0] === v) ? v : null; } catch (e) { return null; } }
+function rememberLang(code) { try { localStorage.setItem(LANG_KEY, code); } catch (e) {} }
+/* the same page in another language: find-out/<page> ↔ find-out/it/<page> ↔ find-out/tr/<page>, the hash kept (a room code, a friend's portrait) */
+function samePageIn(code) {
+  const m = location.pathname.match(/^(.*\/find-out\/)(?:(it|tr)\/)?(.*)$/);
+  if (!m) return null;
+  return m[1] + (code === 'en' ? '' : code + '/') + m[3] + location.search + location.hash;
+}
+function langSheet(open) {
+  let d = document.getElementById('dlg-lang');
+  if (!d) {
+    d = h(`<dialog id="dlg-lang" aria-labelledby="dlg-lang-t"><div class="sheet fo-langsheet"><button class="chip round close" type="button" data-close aria-label="${esc(U.close)}">×</button><h2 id="dlg-lang-t">Language · Lingua · Dil</h2><div class="fo-langlist"></div></div></dialog>`);
+    const list = d.querySelector('.fo-langlist');
+    for (const [code, name, flag] of LANGS) {
+      const a = el('a', 'fo-langpick' + (code === LANG ? ' on' : '')); a.lang = code; a.hreflang = code;
+      a.appendChild(el('span', 'flag', flag)); a.appendChild(el('b', '', name));
+      const to = samePageIn(code); a.href = to || '#';
+      a.addEventListener('click', (e) => { rememberLang(code); if (code === LANG) { e.preventDefault(); d.close(); } });
+      list.appendChild(a);
+    }
+    document.body.appendChild(d); wireDialogs(d);
   }
-  try { localStorage.setItem('lg.findout.lang', LANG); } catch (e) {}
-  return row;
+  if (open && d.showModal && !d.open) d.showModal();
+  return d;
+}
+function langChip() {
+  const chip = document.getElementById('fo-langchip'); if (!chip) return;
+  const me = LANGS.find((l) => l[0] === LANG) || LANGS[0];
+  chip.textContent = ''; chip.appendChild(el('span', 'flag', me[2])); chip.appendChild(document.createTextNode(' ' + LANG.toUpperCase()));
+  chip.setAttribute('aria-label', U.switch_label + ': ' + me[1]); chip.hidden = false;
+  chip.addEventListener('click', () => langSheet(true));
 }
 function progressLine(done) { const m = minutesLeft(); return tpl(m === 1 ? U.progress_line_1 : U.progress_line, { done, m }); }
 
@@ -1422,6 +1438,11 @@ function adopt(r) {
 /* ------------------------------------------------------------------ start ------ */
 export function start() {
   const root = document.getElementById('fo'); if (!root) return;
+  /* the language first: a remembered pick opens this page in that language; no pick yet, the sheet asks (and the page shows under it) */
+  const want = savedLang();
+  if (want && want !== LANG) { const to = samePageIn(want); if (to) { location.replace(to); return; } }
+  langChip();
+  if (!want) langSheet(true);
   const page = root.dataset.page; const n = Number(root.dataset.game);
   if (page === 'home') homePage(); else if (page === 'room') roomPage(); else if (page === 'portrait') portraitPage(); else if (page === 'compare') comparePage(); else if (page === 'explore') explorePage(); else if (n >= 1 && n <= 9) gamePage(n);
 }
