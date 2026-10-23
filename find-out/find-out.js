@@ -5,7 +5,7 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=3be2daca21';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=2ac405e6f4';
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
@@ -753,6 +753,8 @@ function homePage() {
     ul.appendChild(el('li')).appendChild(a);
   }
   w.appendChild(ul);
+  /* the room (stage 2): a card for hosts, teachers, a group with a big screen */
+  if (!roomOf()) { const rc = el('a', 'fo-card fo-roomcard'); rc.href = 'room/'; rc.appendChild(el('b', '', C.room.tile_title)); rc.appendChild(el('p', 'fo-quiet', C.room.tile_line)); rc.appendChild(el('span', 'chip', C.room.host)); w.appendChild(rc); }
   if (st.consent.status !== 'yes') w.appendChild(codeEntry());
   const foot = el('p', 'fo-foot');
   foot.appendChild(h(`<span>${esc(C.small_print[0].replace('For researchers →', ''))}<a href="researchers/">For researchers →</a></span>`));

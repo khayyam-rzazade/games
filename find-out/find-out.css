@@ -426,3 +426,7 @@ body.game { --fo-ink-on-c: var(--on-c); }
 }
 .fo-circles span.shut, .fo-list span.shut { opacity: .45; cursor: default; }
 .fo-list span.shut { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); }
+.fo-roomcard { display: block; margin-top: 18px; text-decoration: none; color: var(--ink); border-left: 5px solid var(--c); }
+.fo-roomcard b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+.fo-roomcard .fo-quiet { margin: 4px 0 10px; }
+.fo-roomcard .chip { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; background: var(--c); color: var(--on-c); border: 0; font-weight: 800; }
