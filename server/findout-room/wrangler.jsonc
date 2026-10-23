@@ -1,0 +1,25 @@
+/* Find out about yourself, the room server: the Worker's settings (S1, 23 Oct 2026). Its own Worker, so a deploy
+   never disconnects the live games (logicers-live) and never touches the research database (logicers-findout).
+   Khayyam connects it once, the same way as logicers-findout: in Cloudflare's dashboard a Worker named
+   logicers-findout-room connected to the GitHub repository with the root directory server/findout-room and the
+   watch path server/findout-room/*; Workers Builds reads this file and runs "npx wrangler deploy" on every push
+   that changes the folder. The Durable Object class Room is made by the migration below on the first deploy:
+   nothing to set by hand, no database, no secrets.
+   ALLOW_ORIGINS is a plain variable: the sites that may call ("localhost" lets a page on your own computer call it).
+   Workers Logs and traces stay OFF: nothing else is kept. */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-findout-room",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "vars": { "ALLOW_ORIGINS": "https://logicers.com localhost" },
+  "durable_objects": {
+    "bindings": [{ "name": "ROOM", "class_name": "Room" }]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Room"] }
+  ]
+}

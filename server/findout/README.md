@@ -45,14 +45,20 @@ The full list, with what each one keeps, is the comment at the top of `src/worke
 | `GET /counter` | `{ yes, countries, played, portraits }`: the consent card's counter, and the find-outs counter (`played` = phones that finished a first game, `portraits` = portraits made; both from the funnel, every day, trial rows too) |
 | `GET /guessed` | "What the world guessed" lines, from 100 guesses on a game |
 | `POST /counter` | `{ event, trial }` a funnel event, no ID |
-| `POST /upload` | the batch at the yes, and every game after it |
+| `POST /upload` | the batch at the yes, and every game after it. May carry `room: "<tag>"` (12 letters A–Z and 2–7, from the room server); kept the first time, never changed by a later batch; anything else is refused with `room` |
 | `POST /demographics` | the four optional chips |
-| `POST /pool` | a pool's curve, for a player who said yes |
-| `POST /claim` | the record behind a portrait code |
+| `POST /pool` | a pool's curve, for a player who said yes. `{ room: "<tag>" }` is "My room": only for a player whose own tag it is (else 403 `room`), crossed with nothing, opens at 30 like every pool |
+| `POST /claim` | the record behind a portrait code (with the room tag, so "My room" follows the player to a new phone) |
 | `POST /twin` | `{ id }` → `{ ok, n, twin: { country, bands: { "2": i … "8": i }, bars: { E, A, C, N, O } } }`: the nearest other player who said yes, on games 2–8 (z-scored scores, riddles right for game 6), once 100 players have all seven (before that `twin: null`). `country` is null for "not said", `bars` (rounded to 0.5) null when the twin has no game 1. Never the twin's id or code. A player without all seven gets 400 `games`. |
 | `POST /rare` | `{ id }` → `{ ok, n, pair: { games: [a, b], bands: [i, j], share } }`: of the player's own bands on games 2–8, the pair of games whose two bands together are rarest among the players who said yes and have both games; `share` in whole percent, never below 1. Only pairs with 100 such players count; under that `pair: null`. Fewer than two scored games: 400 `games`. |
 | `POST /delete` | removes everything of one ID |
 | `POST /admin/export` | a table as CSV, behind the key |
+
+**The room tag (S1, 23 Oct 2026).** `players.room` holds the tag of the room a player played in (empty when they
+played alone). A database made before S1 gets the column by itself on the first request after the push; nothing to
+do by hand. The export's `players` table carries it. Room pools are counted when a member asks (every 5 minutes
+while under 30, then hourly), not by the hourly refresh, and a room's counts nobody asked for in a week are dropped.
+The twin and the rarest pair ignore it. The room server itself is `server/findout-room` (its own README).
 
 `/twin` and `/rare` are braked at 60 calls an hour per address each (in memory, like the others). Both read the
 whole table of scores on each call: fine for tens of thousands of players; if it ever gets slow, cache the z-scores
@@ -61,4 +67,4 @@ in the hourly refresh.
 
 ## Tests
 
-`node --test test/test_worker.mjs` (Node 22, nothing to install). 19 tests over a SQLite stand-in for D1.
+`node --test test/test_worker.mjs` (Node 22, nothing to install). 22 tests over a SQLite stand-in for D1.

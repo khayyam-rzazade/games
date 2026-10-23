@@ -7,6 +7,9 @@
    demographic chips. No name, no email, no address: no IP is ever written, and the rate brakes are
    in memory only. A player's random ID links their rows; their portrait code (codes table) lets
    them find or delete those rows from another phone. Deleting removes every row of that ID at once.
+   A player who played in a room (S1, 23 Oct 2026) also carries the room's tag: twelve random letters the room
+   server (server/findout-room) gave everyone in that room, which say nothing about anyone; it makes the room a
+   pool ("My room") for its own members and a cluster in the analysis.
 
    Nothing arrives before the yes: the site holds everything in the browser and sends it in one
    batch at the yes (POST /upload). Before that the site only asks where the phone is (GET /hello,
@@ -25,11 +28,13 @@
                                   find-outs counter (played = phones that finished a first game, from the funnel)
      GET  /guessed                { lines } "What the world guessed", once a game has 100 guesses
      POST /counter                { event, trial } funnel counters, no ID
-     POST /upload                 the batch at the yes (and every later game); returns { ok, code }
+     POST /upload                 the batch at the yes (and every later game); returns { ok, code }. May carry
+                                  room: "<tag>" (12 base32 letters from the room server): kept once, never changed
      POST /demographics           { id, demographics }
      POST /pool                   { id, m, pool: { country?, age?, gender?, education?, settlement? } } a pool's
-                                  curve, for a consented ID; one field, or one field with country (plan §7)
-     POST /claim                  { code } the record behind a portrait code: id, country, scores, demographics
+                                  curve, for a consented ID; one field, or one field with country (plan §7);
+                                  or { room: "<tag>" } alone, only for a player whose own room is that tag
+     POST /claim                  { code } the record behind a portrait code: id, country, room, scores, demographics
      POST /twin                   { id } the nearest other pattern on games 2-8 (z-scored), once 100 people have all
                                   seven: { n, twin: { country, bands, bars } } — never the twin's id or code
      POST /rare                   { id } the rarest pair of the player's own bands: { n, pair: { games, bands, share } }
@@ -61,6 +66,7 @@ const DEMO = {
 };
 const ISO = new Set(COUNTRIES.map((c) => c.iso));
 const CODE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ2345679";   // no 0/O, 1/I/L, 8/B
+const ROOM_TAG = /^[A-Z2-7]{12}$/;   // a room's tag, made by the room server (server/findout-room)
 
 /* ---- the metrics: where each number lives and how its curve is binned ---- */
 const METRICS = {};
@@ -79,7 +85,7 @@ const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS players (
      id TEXT PRIMARY KEY, created TEXT, country TEXT, header_country TEXT, lang TEXT, referral TEXT, device TEXT,
      trial INTEGER NOT NULL DEFAULT 0, consent_status TEXT, consent_version TEXT, consent_at TEXT,
-     first_upload TEXT, last_upload TEXT)`,
+     first_upload TEXT, last_upload TEXT, room TEXT)`,
   `CREATE TABLE IF NOT EXISTS answers (
      player TEXT NOT NULL, wave INTEGER NOT NULL, game INTEGER NOT NULL, item TEXT NOT NULL, item_version INTEGER NOT NULL,
      value TEXT, skipped INTEGER NOT NULL, ms INTEGER, pos INTEGER, opts TEXT,
@@ -100,6 +106,13 @@ const ensuredDbs = new WeakSet();     // once per database object (one copy of t
 async function ensure(env) {
   if (ensuredDbs.has(env.DB)) return;
   await env.DB.batch(SCHEMA.map((s) => env.DB.prepare(s)));
+  /* S1 (23 Oct 2026): the room tag. A database made before it gets the column here, once. */
+  const cols = (await env.DB.prepare("PRAGMA table_info(players)").all()).results || [];
+  if (!cols.some((c) => c.name === "room")) {
+    try { await env.DB.prepare("ALTER TABLE players ADD COLUMN room TEXT").run(); }
+    catch (e) { if (!/duplicate column/i.test(String(e && e.message))) throw e; }   // another copy of the Worker was first
+  }
+  await env.DB.prepare("CREATE INDEX IF NOT EXISTS players_room ON players (room)").run();
   ensuredDbs.add(env.DB);
 }
 
@@ -224,17 +237,20 @@ async function upload(env, req, b) {
   if (!(await turnstileOk(env, b.token, req))) return bad("turnstile", 403);
   const p = cleanPlayer(b.player);
   if (!p) return bad("player");
+  const room = b.room === undefined || b.room === null ? null : b.room;
+  if (room !== null && !(typeof room === "string" && ROOM_TAG.test(room))) return bad("room");
   if (!Array.isArray(b.games) || b.games.length > 18) return bad("games");
   const games = [];
   for (const g of b.games) { const c = cleanGame(g); if (c.error) return bad(c.error); games.push(c); }
   const now = new Date().toISOString();
   const stmts = [];
   stmts.push(env.DB.prepare(
-    `INSERT INTO players (id, created, country, header_country, lang, referral, device, trial, consent_status, consent_version, consent_at, first_upload, last_upload)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'yes', ?, ?, ?, ?)
+    `INSERT INTO players (id, created, country, header_country, lang, referral, device, trial, consent_status, consent_version, consent_at, first_upload, last_upload, room)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'yes', ?, ?, ?, ?, ?)
      ON CONFLICT(id) DO UPDATE SET country = excluded.country, header_country = excluded.header_country, lang = excluded.lang,
-       device = excluded.device, consent_status = 'yes', consent_version = excluded.consent_version, consent_at = excluded.consent_at, last_upload = excluded.last_upload`)
-    .bind(b.id, p.created, p.country, p.header, p.lang, p.referral, p.device, b.trial ? 1 : 0, b.consent.version, str(b.consent.at, 40), now, now));
+       device = excluded.device, consent_status = 'yes', consent_version = excluded.consent_version, consent_at = excluded.consent_at, last_upload = excluded.last_upload,
+       room = COALESCE(players.room, excluded.room)`)   // a room tag is kept once and never changed
+    .bind(b.id, p.created, p.country, p.header, p.lang, p.referral, p.device, b.trial ? 1 : 0, b.consent.version, str(b.consent.at, 40), now, now, room));
   for (const g of games) {
     stmts.push(env.DB.prepare("DELETE FROM answers WHERE player = ? AND wave = ? AND game = ?").bind(b.id, g.wave, g.game));
     for (let i = 0; i < g.rows.length; i += 9) {          // D1 allows 100 bound values a statement: 9 rows of 10
@@ -278,6 +294,7 @@ async function computeCurve(env, metric, pool) {
   for (const part of pool === "world" ? [] : pool.split("|")) {
     const [k, v] = part.split(":");
     if (k === "country") { where += " AND p.country = ?"; args.push(v); }
+    else if (k === "room") { where += " AND p.room = ?"; args.push(v); }
     else if (DEMO[k]) { if (!join.includes("demographics")) join += " JOIN demographics d ON d.player = g.player"; where += ` AND d.${k} = ?`; args.push(v); }
   }
   const sql = `SELECT ${m.expr} AS x FROM games_done g ${join} WHERE ${where} AND ${m.expr} IS NOT NULL`;
@@ -310,14 +327,22 @@ async function refreshAll(env) {
   for (const metric of Object.keys(METRICS)) await curve(env, metric, "world", true);
   const cs = await env.DB.prepare("SELECT country, COUNT(*) AS n FROM players WHERE consent_status = 'yes' AND country != 'not said' GROUP BY country HAVING n >= ?").bind(OPENS_AT).all();
   for (const row of cs.results || []) for (const g of [2, 3, 4, 5, 6, 7, 8]) await curve(env, "g" + g, "country:" + row.country, true);
-  /* every other pool someone has asked for is refreshed too, so Explore stays within the hour */
-  const used = await env.DB.prepare("SELECT DISTINCT metric, pool FROM aggregates WHERE pool != 'world' AND pool NOT LIKE 'country:__'").all();
+  /* every other pool someone has asked for is refreshed too, so Explore stays within the hour. Rooms are not:
+     there can be many, each is counted afresh when a member asks after the hour, and a room's counts not asked
+     for in a week are dropped */
+  const used = await env.DB.prepare("SELECT DISTINCT metric, pool FROM aggregates WHERE pool != 'world' AND pool NOT LIKE 'country:__' AND pool NOT LIKE 'room:%'").all();
   for (const row of used.results || []) await curve(env, row.metric, row.pool, true);
+  await env.DB.prepare("DELETE FROM aggregates WHERE pool LIKE 'room:%' AND at < ?").bind(new Date(Date.now() - 7 * 864e5).toISOString()).run();
 }
 
 /* ---- the pool menu (plan §7): country, age, gender, education, settlement, each alone or crossed with country ---- */
 function poolKey(p) {
   if (!p || typeof p !== "object") return null;
+  if (p.room !== undefined && p.room !== null) {           // "My room": the room alone, crossed with nothing
+    if (typeof p.room !== "string" || !ROOM_TAG.test(p.room)) return null;
+    for (const k of ["country", "age", "gender", "education", "settlement"]) if (p[k] !== undefined && p[k] !== null) return null;
+    return "room:" + p.room;
+  }
   const parts = [];
   if (p.country !== undefined && p.country !== null) { if (!ISO.has(p.country)) return null; parts.push("country:" + p.country); }
   let demo = 0;
@@ -338,7 +363,7 @@ async function claim(env, req, b) {
   const row = await env.DB.prepare("SELECT player FROM codes WHERE code = ?").bind(code).first();
   if (!row) return bad("unknown", 404);
   const id = row.player;
-  const p = await env.DB.prepare("SELECT id, created, country, header_country, consent_version, consent_at FROM players WHERE id = ?").bind(id).first();
+  const p = await env.DB.prepare("SELECT id, created, country, header_country, consent_version, consent_at, room FROM players WHERE id = ?").bind(id).first();
   if (!p) return bad("unknown", 404);
   const games = (await env.DB.prepare("SELECT game, wave, sub, guess, guess_p, started, finished, duration_ms, order_index FROM games_done WHERE player = ? ORDER BY wave, game").bind(id).all()).results || [];
   const d = await env.DB.prepare("SELECT age, gender, education, settlement FROM demographics WHERE player = ?").bind(id).first();
@@ -502,10 +527,11 @@ async function handle(req, env, ctx) {
     if (path === "/pool") {
       if (!idOk(b.id) || !METRICS[b.m]) return withCors(bad("pool"));
       if (!brake("pl:" + ipOf(req), 300, 36e5)) return withCors(bad("too many", 429));
-      const have = await env.DB.prepare("SELECT id FROM players WHERE id = ? AND consent_status = 'yes'").bind(b.id).first();
+      const have = await env.DB.prepare("SELECT id, room FROM players WHERE id = ? AND consent_status = 'yes'").bind(b.id).first();
       if (!have) return withCors(bad("unknown", 404));
       const pool = poolKey(b.pool);
       if (!pool) return withCors(bad("pool"));
+      if (pool.startsWith("room:") && pool !== "room:" + have.room) return withCors(bad("room", 403));   // only one's own room
       const c = await curve(env, b.m, pool, false);
       return withCors(json(publicCurve(c)));
     }

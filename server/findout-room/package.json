@@ -1,0 +1,14 @@
+{
+  "name": "logicers-findout-room",
+  "private": true,
+  "type": "module",
+  "description": "Find out about yourself, the room: a Cloudflare Worker with one Durable Object per room.",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node --test test/test_room.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

@@ -908,6 +908,7 @@ export const COPY = {
   "Row line on the home page": "9 short games, about 6 minutes. At the end: your portrait.",
   "Section page title (browser tab)": "Find out who you are — Logicers",
   "Start card": "Find out who you are. 9 short games, about 6 minutes. At the end you get your portrait: your personality, how you see the world, and what people like you tend to do.",
+  "Start card, second line (K, 23 Oct": "tell them early): One play per game. The next is in 3 months, so answer as you really are.",
   "Start button": "Start with game 1",
   "Under the nine circles, once some are filled": "3 of 9 done · about 4 minutes left",
   "Pick-any-game list heading": "Or pick a game",
@@ -938,7 +939,9 @@ export const COPY = {
   "curve_waiting": "12 so far · opens at 30",
   "you_guessed": "You guessed",
   "you_landed": "You are",
-  "card_line": "Game 3 of 9 · your portrait opens after game 9"
+  "card_line": "Game 3 of 9 · your portrait opens after game 9",
+  "once_line": "One play per game. The next is in 3 months, so answer as you really are.",
+  "played_on": "Played on {date} · play again from {date2}"
  },
  "games": {
   "1": {
@@ -1431,7 +1434,8 @@ export const COPY = {
    "Nothing has left your phone until now. A no keeps everything here.",
    "Your answers go into a study of how people around the world see politics and themselves. Results are published only as groups, never as one person.",
    "Delete any time: the link is under this \"?\". On another phone, enter your code first. Data already published cannot be pulled back.",
-   "Questions: logicers.world@gmail.com"
+   "Questions: logicers.world@gmail.com",
+   "In a room (23 Oct): In a room, one number per game goes to the room's screen while you play: where your dot landed. Nothing else, and never your name."
   ],
   "counter": "{n} people from {c} countries said yes."
  },
@@ -1523,13 +1527,60 @@ export const COPY = {
    "gender": "Gender",
    "education": "Education",
    "settlement": "Where you live",
-   "country_and": "My country and…"
+   "country_and": "My country and…",
+   "room": "My room"
   }
  },
  "small_print": [
   "For researchers →",
   "Nothing here identifies you. Read how it works →"
- ]
+ ],
+ "room": {
+  "title": "Run a room",
+  "lede": "One screen for the room, every phone its own. Nine games, one by one, at your pace. The room sees its own curve, never one person.",
+  "run": "Run a room",
+  "join_line": "Join at logicers.com/find-out/room · code {code}",
+  "play_too": "Want to play too? Open the link on your phone.",
+  "here": "{n} here",
+  "start": "Start",
+  "nobody": "Waiting for people to join…",
+  "game_of": "Game {n} of 9",
+  "done_of": "{done} of {joined} done",
+  "reveal": "Reveal",
+  "reveal_in": "Reveal opens in {s} s",
+  "all_done": "Everyone is done",
+  "the_room": "The room",
+  "the_world": "The world",
+  "in_picture": "{n} in the picture",
+  "opens_at": "{n} here · opens at 10",
+  "most": "Most of the room: {band} ({pct}%)",
+  "next": "Next",
+  "next_game": "Next game ▶",
+  "end": "End the room",
+  "end_sure": "The phones go on alone from here: the rest of the games and the portrait.",
+  "end_yes": "End",
+  "end_no": "Keep going",
+  "ended": "The room has ended. Everyone goes on alone from here.",
+  "your_room": "Your room",
+  "share": "Share the room's picture",
+  "another": "Run another room",
+  "not_found": "No room with that code. Rooms close two hours after the last game.",
+  "full": "This room is full (100 phones).",
+  "join_title": "Join a room",
+  "type_code": "Type the code",
+  "join": "Join",
+  "joined": "You're in",
+  "keep_open": "The host starts the games. Keep this page open.",
+  "notice": "The room sees everyone's dots together, never a name.",
+  "open_game": "Game {n} is open in your room ▶",
+  "waiting_host": "Waiting for the host…",
+  "room_line": "Your room: {k} of {n} are {band}",
+  "room_few": "Your room: {n} so far · opens at 10",
+  "waiting_next": "Waiting for the next game…",
+  "next_in_room": "Game {n} ▶",
+  "player_ended": "The room has ended. Carry on alone: your portrait waits at the end.",
+  "leave": "Leave the room"
+ }
 };
 export const PORTRAIT = {
  "rules": [

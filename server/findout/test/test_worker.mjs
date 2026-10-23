@@ -498,3 +498,97 @@ test("twin and rare: braked at 60 an hour per address, each", async () => {
     assert.equal((await call(e, "POST", path, { id }, { ip: "15.9.9.8" })).status, 200, "another address is not braked");
   }
 });
+
+/* ---- S1: the room tag ---- */
+const TAG = "ABCDEFGHJK23", TAG2 = "ZZZZZZZZZZ77";
+
+test("room tag: kept with the yes, checked, kept once and never changed", async () => {
+  const e = env();
+  const id = hex(0xe000);
+  let r = await call(e, "POST", "/upload", batch(id, { room: TAG }), { ip: "16.0.0.1" });
+  assert.equal(r.status, 200, r.text);
+  assert.equal(await count(e, "SELECT room FROM players WHERE id = ?", id), TAG);
+  /* a later batch with another tag, or none, does not change it */
+  await call(e, "POST", "/upload", batch(id, { room: TAG2 }), { ip: "16.0.0.1" });
+  assert.equal(await count(e, "SELECT room FROM players WHERE id = ?", id), TAG);
+  await call(e, "POST", "/upload", batch(id), { ip: "16.0.0.1" });
+  assert.equal(await count(e, "SELECT room FROM players WHERE id = ?", id), TAG);
+  /* a player without a room gets one with a later batch */
+  const solo = hex(0xe001);
+  await call(e, "POST", "/upload", batch(solo), { ip: "16.0.0.2" });
+  assert.equal(await count(e, "SELECT room FROM players WHERE id = ?", solo), null);
+  await call(e, "POST", "/upload", batch(solo, { room: null }), { ip: "16.0.0.2" });
+  assert.equal(await count(e, "SELECT room FROM players WHERE id = ?", solo), null);
+  await call(e, "POST", "/upload", batch(solo, { room: TAG2 }), { ip: "16.0.0.2" });
+  assert.equal(await count(e, "SELECT room FROM players WHERE id = ?", solo), TAG2);
+  /* refused, and nothing of a refused batch kept */
+  for (const bad of ["abcdefghjk23", "ABCDEFGHJK2", "ABCDEFGHJK231", "ABCDEFGHJK18", "BCDFG", 12, true, {}]) {
+    r = await call(e, "POST", "/upload", batch(hex(0xe100), { room: bad }), { ip: "16.0.0.3" });
+    assert.equal(r.status, 400, String(bad)); assert.equal(r.json.error, "room");
+  }
+  assert.equal(await count(e, "SELECT COUNT(*) FROM players WHERE id = ?", hex(0xe100)), 0);
+  /* the claim brings the tag to a new phone; the export carries the column; delete takes it away */
+  r = await call(e, "POST", "/claim", { code: (await call(e, "POST", "/upload", batch(id), { ip: "16.0.0.1" })).json.code }, { ip: "16.0.0.4" });
+  assert.equal(r.json.player.room, TAG);
+  e.ADMIN_KEY = "a-long-key-of-thirty-two-chars!!";
+  const ex = await call(e, "POST", "/admin/export", { key: "a-long-key-of-thirty-two-chars!!", table: "players" }, { ip: "16.0.0.5" });
+  const lines = ex.text.trim().split("\n"); const cols = lines[0].split(",");
+  assert.ok(cols.includes("room"));
+  const rows = lines.slice(1).map((l) => l.split(","));
+  assert.deepEqual(rows.map((x) => x[cols.indexOf("room")]).sort(), [TAG, TAG2]);
+  await call(e, "POST", "/delete", { id }, { ip: "16.0.0.1" });
+  assert.equal(await count(e, "SELECT COUNT(*) FROM players WHERE room = ?", TAG), 0);
+});
+
+test("room tag: a database made before S1 gets the column on the first request, rows intact", async () => {
+  const e = env();
+  e.DB.db.exec(`CREATE TABLE players (
+     id TEXT PRIMARY KEY, created TEXT, country TEXT, header_country TEXT, lang TEXT, referral TEXT, device TEXT,
+     trial INTEGER NOT NULL DEFAULT 0, consent_status TEXT, consent_version TEXT, consent_at TEXT,
+     first_upload TEXT, last_upload TEXT)`);
+  e.DB.db.exec(`INSERT INTO players (id, country, consent_status) VALUES ('${hex(0xe200)}', 'IT', 'yes')`);
+  assert.equal((await call(e, "GET", "/health")).json.db, true);
+  const cols = e.DB.db.prepare("PRAGMA table_info(players)").all().map((c) => c.name);
+  assert.ok(cols.includes("room"));
+  assert.equal(await count(e, "SELECT COUNT(*) FROM players WHERE room IS NULL"), 1);
+  assert.equal((await call(e, "POST", "/upload", batch(hex(0xe201), { room: TAG }), { ip: "16.1.0.1" })).status, 200);
+  assert.equal(await count(e, "SELECT room FROM players WHERE id = ?", hex(0xe201)), TAG);
+  /* a second copy of the Worker (a fresh ensure) finds the column there and changes nothing */
+  const again = { DB: e.DB, ALLOW_ORIGINS: e.ALLOW_ORIGINS };
+  assert.equal((await call(again, "GET", "/health")).json.db, true);
+});
+
+test("\"My room\": a pool for the room's own members only, from 30, crossed with nothing", async () => {
+  const e = env();
+  const A = fullAnswers();
+  for (let i = 0; i < 29; i++) assert.equal((await call(e, "POST", "/upload", batch(hex(0xe300 + i), { room: TAG }, A), { ip: "16.2." + i })).status, 200);
+  for (let i = 0; i < 40; i++) assert.equal((await call(e, "POST", "/upload", batch(hex(0xe400 + i), i < 5 ? { room: TAG2 } : {}, A), { ip: "16.3." + i })).status, 200);
+  const me = hex(0xe300), outsider = hex(0xe400), solo = hex(0xe420);
+  let r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { room: TAG } });
+  assert.equal(r.status, 200, r.text); assert.equal(r.json.n, 29); assert.equal(r.json.bins, undefined, "29: the count only");
+  assert.equal((await call(e, "POST", "/upload", batch(hex(0xe300 + 29), { room: TAG }, A), { ip: "16.2.99" })).status, 200);
+  await _test.refreshAll(e);
+  r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { room: TAG } });
+  assert.equal(r.json.n, 29, "a young pool is cached for five minutes, like every pool");
+  await e.DB.prepare("DELETE FROM aggregates WHERE pool = ?").bind("room:" + TAG).run();
+  r = await call(e, "POST", "/pool", { id: me, m: "g2", pool: { room: TAG } });
+  assert.equal(r.json.n, 30); assert.equal(r.json.bins.length, 17); assert.equal(r.json.bins.reduce((a, b) => a + b), 30, "only the room's 30, not the other 40");
+  /* someone else's room, no room, crossed, or a bad tag */
+  r = await call(e, "POST", "/pool", { id: outsider, m: "g2", pool: { room: TAG } }); assert.equal(r.status, 403); assert.equal(r.json.error, "room");
+  r = await call(e, "POST", "/pool", { id: solo, m: "g2", pool: { room: TAG } }); assert.equal(r.status, 403);
+  r = await call(e, "POST", "/pool", { id: outsider, m: "g2", pool: { room: TAG2 } }); assert.equal(r.status, 200); assert.equal(r.json.n, 5);
+  assert.equal((await call(e, "POST", "/pool", { id: me, m: "g2", pool: { room: TAG, country: "IT" } })).status, 400);
+  assert.equal((await call(e, "POST", "/pool", { id: me, m: "g2", pool: { room: TAG, gender: "Woman" } })).status, 400);
+  assert.equal((await call(e, "POST", "/pool", { id: me, m: "g2", pool: { room: "nope" } })).status, 400);
+  assert.equal((await call(e, "POST", "/pool", { id: hex(0xdead), m: "g2", pool: { room: TAG } })).status, 404);
+  r = await call(e, "POST", "/pool", { id: me, m: "g1.E", pool: { room: TAG } }); assert.equal(r.json.n, 30);
+  /* the hourly refresh leaves rooms alone and drops a room's counts nobody asked for in a week */
+  await e.DB.prepare("UPDATE aggregates SET at = '2026-01-01T00:00:00.000Z' WHERE pool = ?").bind("room:" + TAG2).run();
+  const before = await count(e, "SELECT at FROM aggregates WHERE pool = ? AND metric = 'g2'", "room:" + TAG);
+  await _test.refreshAll(e);
+  assert.equal(await count(e, "SELECT at FROM aggregates WHERE pool = ? AND metric = 'g2'", "room:" + TAG), before, "not recounted by the hour");
+  assert.equal(await count(e, "SELECT COUNT(*) FROM aggregates WHERE pool = ?", "room:" + TAG2), 0, "a week old: dropped");
+  /* the twin and the rarest pair never mention a room */
+  r = await call(e, "POST", "/twin", { id: me }, { ip: "16.9.0.1" }); assert.ok(!r.text.includes(TAG) && !/room/.test(r.text));
+  r = await call(e, "POST", "/rare", { id: me }, { ip: "16.9.0.1" }); assert.ok(!r.text.includes(TAG) && !/room/.test(r.text));
+});

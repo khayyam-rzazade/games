@@ -5,11 +5,15 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=d62730f88a';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=dbd2d90162';
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
 const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE || '';   /* empty: sent without a Turnstile token (the trial) */
+/* the room (stage 2): its own small server, the same bins as the world's curves, nothing shown under ten phones */
+const ROOM_API = window.FINDOUT_ROOM_API || 'https://logicers-findout-room.rza-khay.workers.dev';
+const ROOM_BINS = { 1: [1, 5, 0.5], 2: [1, 5, 0.25], 3: [0, 24, 1], 4: [0, 4, 1], 5: [0, 10, 0.5], 6: [0, 4, 1], 7: [0, 10, 0.5], 8: [1, 5, 0.25] };
+const ROOM_MIN = 10;
 const TRIAL = window.FINDOUT_TRIAL !== undefined ? !!window.FINDOUT_TRIAL : true;
 const STORE_KEY = 'lg.findout.v1';
 const SLUG = { 1: 'type', 2: 'shots', 3: 'sunny', 4: 'kid', 5: 'story', 6: 'twice', 7: 'believe', 8: 'home', 9: 'quick' };
@@ -214,7 +218,7 @@ function gamePage(n) {
   counter('start');
   let play = st.games[n] && !st.games[n].result ? st.games[n] : null;   /* a game left half-way resumes */
 
-  function show(node) { root.textContent = ''; root.appendChild(node); wireDialogs(node); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  function show(node) { root.textContent = ''; root.appendChild(node); wireDialogs(node); root.classList.toggle('fo-wide', node.classList.contains('fo-reveal')); window.scrollTo({ top: 0, behavior: 'instant' }); }
   function nav(count, i) { const p = el('div', 'fo-progress'); for (let k = 0; k < count; k++) p.appendChild(el('i', k < i ? 'on' : '')); return p; }
 
   /* ---- 1. the game card ---- */
@@ -226,9 +230,10 @@ function gamePage(n) {
     w.appendChild(el('p', 'fo-lede', cg.start_line));
     w.appendChild(el('p', 'fo-quiet', cg.instruction));
     w.appendChild(el('p', 'fo-promise', C.shared.card_line.replace('Game 3 of 9', `Game ${n} of 9`)));
+    if (!done) w.appendChild(el('p', 'fo-once', C.shared.once_line));
     const acts = el('div', 'fo-actions fo-bottom');
     const b = el('button', 'btn solid', done ? 'See my result' : (play ? 'Carry on' : 'Start')); b.type = 'button';
-    b.addEventListener('click', () => done ? reveal(st.games[n]) : begin());
+    b.addEventListener('click', () => done ? reveal(st.games[n], true) : begin());
     acts.appendChild(b); w.appendChild(acts);
     helpSheet();
     return w;
@@ -447,12 +452,14 @@ function gamePage(n) {
   }
 
   /* ---- 4. the reveal ---- */
-  function reveal(g) {
+  function reveal(g, again) {
     const res = g.result;
     const w = el('section', 'fo-screen fo-reveal');
     const circ = circles(n); const mine = circ.querySelectorAll('a')[n - 1]; if (mine && mine.classList.contains('done')) mine.classList.add('fresh');
     w.appendChild(circ);
     w.appendChild(el('p', 'meta', cg.name));
+    if (again && g.finished) { const d = new Date(g.finished), d2 = new Date(g.finished); d2.setMonth(d2.getMonth() + 3); w.appendChild(el('p', 'fo-played-on', C.shared.played_on.replace('{date}', shortDate(d)).replace('{date2}', shortDate(d2)))); }
+    const main = el('div', 'fo-result'); const facts = el('div', 'fo-facts');
     if (!res || res.scored === false) {
       w.appendChild(el('h1', 'fo-title', C.shared.not_scored));
       const acts = el('div', 'fo-actions');
@@ -463,7 +470,7 @@ function gamePage(n) {
     }
     const score = mainScore(n, res);
     if (n === 9) {
-      w.appendChild(el('h1', 'fo-title', 'Your nine answers'));
+      main.appendChild(el('h1', 'fo-title', 'Your nine answers'));
       const list = el('div', 'fo-bars');
       for (const it of G[9].items) {
         const k = String(it.n); const v = res.items[k];
@@ -475,11 +482,11 @@ function gamePage(n) {
         requestAnimationFrame(() => setTimeout(() => { fillEl.style.width = (p * 100) + '%'; }, 60));
         row.appendChild(el('small', '', v === null ? C.shared.skipped : dialWord(k, v)));
         list.appendChild(row);
-        if (v !== null) curveLine(w, `g9.${k}`, v, cg.comparison[k], row, k !== '1');
+        if (v !== null) curveLine(main, `g9.${k}`, v, cg.comparison[k], row, k !== '1');
       }
-      w.appendChild(list);
+      main.appendChild(list);
     } else if (n === 1) {
-      w.appendChild(el('h1', 'fo-title', 'Your five bars'));
+      main.appendChild(el('h1', 'fo-title', 'Your five bars'));
       const bars = el('div', 'fo-bars');
       const traitOf = { Outgoing: 'E', Warm: 'A', Organised: 'C', Calm: 'calm', Curious: 'O' };
       for (const bar of cg.bars) {
@@ -492,38 +499,59 @@ function gamePage(n) {
         row.appendChild(el('small', '', v === null ? C.shared.skipped : (v >= 3 ? bar.high : bar.low)));
         bars.appendChild(row);
         requestAnimationFrame(() => setTimeout(() => { fillEl.style.width = (v === null ? 0 : toP(1, v) * 100) + '%'; }, 60));
-        if (v !== null) curveLine(w, `g1.${key}`, v, cg.comparison[bar.name], row, bar.name !== 'Outgoing');
+        if (v !== null) curveLine(main, `g1.${key}`, v, cg.comparison[bar.name], row, bar.name !== 'Outgoing');
       }
-      w.appendChild(bars);
-      if (g.guess && res.traits.E !== null) w.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${Math.round(g.guess.value)} of 5</b> · ${esc(C.shared.you_landed)} <b>${Math.round(res.traits.E)} of 5</b></p>`));
+      main.appendChild(bars);
+      if (g.guess && res.traits.E !== null) main.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${Math.round(g.guess.value)} of 5</b> · ${esc(C.shared.you_landed)} <b>${Math.round(res.traits.E)} of 5</b></p>`));
     } else {
       const bi = bandIndex(n, score); const band = cg.bands[bi];
       const names = cg.bands.map((b) => b.name);
       const gp = g.guess ? (n === 6 ? 1 - g.guess.value / 4 : g.guess.p) : null;
       const s = strip({ p: gp === null ? toP(n, score) : gp, bands: true, guess: gp });
-      w.appendChild(s); w.appendChild(ends(names));
+      main.appendChild(s); main.appendChild(ends(names));
       requestAnimationFrame(() => setTimeout(() => { s.dot.style.left = (toP(n, score) * 100) + '%'; s.dot.style.background = bandColour(n, score); }, 80));
-      const bn = el('h1', 'fo-bandname pop', band.name); bn.style.color = bandColour(n, score); w.appendChild(bn);
-      const lines = el('div', 'fo-lines'); band.lines.forEach((l) => lines.appendChild(el('p', '', l))); w.appendChild(lines);
+      const bn = el('h1', 'fo-bandname pop', band.name); bn.style.color = bandColour(n, score); main.appendChild(bn);
+      const lines = el('div', 'fo-lines'); band.lines.forEach((l) => lines.appendChild(el('p', '', l))); main.appendChild(lines);
       if (g.guess) {
-        if (n === 6) w.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${g.guess.value} would catch you</b> · <b>${4 - res.score} did</b></p>`));
-        else w.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${esc(bandName(n, g.guess.value))}</b> · ${esc(C.shared.you_landed)} <b>${esc(band.name)}</b></p>`));
+        if (n === 6) main.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${g.guess.value} would catch you</b> · <b>${4 - res.score} did</b></p>`));
+        else main.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${esc(bandName(n, g.guess.value))}</b> · ${esc(C.shared.you_landed)} <b>${esc(band.name)}</b></p>`));
       }
       if (n === 6) {
         const ul = el('ul', 'fo-expl');
         G[6].items.forEach((it, i) => { const li = el('li'); const code = res.codes[String(it.n)]; li.appendChild(el('span', 'mark' + (code === 'correct' ? ' ok' : ''), code === 'correct' ? '✓' : code === 'skipped' ? '–' : '✗')); li.appendChild(el('span', '', cg.explanations[i])); ul.appendChild(li); });
-        w.appendChild(ul);
+        main.appendChild(ul);
       }
       const metric = n === 6 ? 'g6' : `g${n}`;
-      curveLine(w, metric, n === 6 ? res.score : score, cg.comparison);
+      curveLine(main, metric, n === 6 ? res.score : score, cg.comparison);
     }
-    if (st.consent.status !== 'yes') w.appendChild(el('p', 'fo-locked', C.shared.locked));
-    w.appendChild(h(`<div class="fo-fact quiet"><b>${esc(C.shared.looked_at)}</b>${esc(cg.looked_at)}</div>`));
-    w.appendChild(h(`<div class="fo-fact"><b>${esc(C.shared.teaching)}</b>${esc(cg.dyk)}</div>`));
-    w.appendChild(h(`<div class="fo-fact"><b>${esc(C.shared.myth)}</b>${esc(cg.myth)}</div>`));
-    w.appendChild(h(`<p class="fo-fact quiet"><a href="../researchers/#game-${n}">${esc(C.shared.read_study)}</a></p>`));
-    w.appendChild(onward());
+    if (st.consent.status !== 'yes') main.appendChild(el('p', 'fo-locked', C.shared.locked));
+    facts.appendChild(h(`<div class="fo-fact quiet"><b>${esc(C.shared.looked_at)}</b>${esc(cg.looked_at)}</div>`));
+    facts.appendChild(h(`<div class="fo-fact"><b>${esc(C.shared.teaching)}</b>${esc(cg.dyk)}</div>`));
+    facts.appendChild(h(`<div class="fo-fact"><b>${esc(C.shared.myth)}</b>${esc(cg.myth)}</div>`));
+    facts.appendChild(h(`<p class="fo-fact quiet"><a href="../researchers/#game-${n}">${esc(C.shared.read_study)}</a></p>`));
+    w.appendChild(main); w.appendChild(facts);
+    const on = onward(); w.appendChild(on);
     show(w);
+    if (roomOf()) roomReveal(main, on, g);
+  }
+  /* in a room (stage 2): one bin to the room when the game scores, the room's line under the result once the host
+     has revealed, and the next game only when the host opens it */
+  function roomReveal(main, on, g) {
+    const rm = roomOf(); const R = C.room;
+    const box = el('div', 'fo-card fo-roombox'); const line = el('p', 'fo-roomline', R.waiting_host); box.appendChild(line); main.appendChild(box);
+    const next = on.querySelector('.onward-next'); const kicker = next && next.querySelector('.onward-kicker'), name = next && next.querySelector('.onward-name'), pitch = next && next.querySelector('.onward-pitch');
+    const orig = next ? { href: next.getAttribute('href'), kicker: kicker.textContent, name: name.textContent, pitch: pitch.textContent } : null;
+    const restore = () => { if (!next) return; next.classList.remove('held'); if (orig.href) next.href = orig.href; kicker.textContent = orig.kicker; name.textContent = orig.name; pitch.textContent = orig.pitch; };
+    const hold = (text) => { if (!next) return; next.classList.add('held'); next.removeAttribute('href'); kicker.textContent = R.game_of.replace('{n}', String(n)); name.textContent = text; pitch.textContent = ''; };
+    const release = (m) => { if (!next) return; next.classList.remove('held'); next.href = `../${SLUG[m]}/`; kicker.textContent = R.game_of.replace('{n}', String(m)); name.textContent = R.next_in_room.replace('{n}', String(m)).replace(' ▶', ''); pitch.textContent = C.games[m].start_line; };
+    const stop = roomWatch(rm.code, async (s) => {
+      if (!s || s.step === 'ended') { line.textContent = R.player_ended; roomLeave(); restore(); stop(); return; }
+      if (s.step === 'play' && s.game === n) await roomDone(n, g.result);
+      line.textContent = roomPlayerLine(n, s);
+      if (s.game === n && s.step === 'play') hold(R.waiting_host);
+      else if (s.game && s.game !== n && !isDone(s.game)) release(s.game);
+      else if (s.game === n && s.step === 'reveal') hold(R.waiting_next);
+    });
   }
   function dialName(k) { return { 1: 'Risk', 2: 'Your life', 3: 'Your place', 4: 'Trust in people', 5: 'Politics', 6: 'Democracy', 7: 'Newcomers', 8: 'Left–right', 9: 'Direction' }[k]; }
   function dialWord(k, v) {
@@ -595,7 +623,8 @@ function gamePage(n) {
     return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Where you stand among ${fmt(r.n)} people"><path class="draw" d="${d}" fill="var(--tint)" stroke="var(--c)" stroke-width="2" stroke-linejoin="round"/><line x1="${x.toFixed(1)}" y1="4" x2="${x.toFixed(1)}" y2="${H - 4}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="${x.toFixed(1)}" cy="8" r="5" fill="var(--c)"/></svg>`);
   }
 
-  show(card());
+  /* a finished game opens on its result (Khayyam, 23 Oct: no empty screen with a small button); a game not started, or left half-way, on its card */
+  if (isDone(n)) reveal(st.games[n], true); else show(card());
 }
 
 function poolName(kind) { const c = playerCountry(); return C.pools.names[kind].replace('[Country]', c ? c.name : 'your country'); }
@@ -603,6 +632,7 @@ function reminderDate() {
   const st = load(); const t = st.games[9] && st.games[9].finished ? st.games[9].finished : Date.now();
   const d = new Date(t); d.setMonth(d.getMonth() + 3); return d;
 }
+function shortDate(d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }); }
 function longDate(d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
 function icsFor(d) {
   const z = (n) => String(n).padStart(2, '0'); const day = `${d.getFullYear()}${z(d.getMonth() + 1)}${z(d.getDate())}`;
@@ -635,7 +665,7 @@ function batch() {
     games.push({ game: n, wave: 1, answers, guess: g.guess, started: g.started, finished: g.finished, duration_ms: g.duration_ms, order_index: st.done_order.indexOf(n), result: g.result, rules_version: g.rules_version, seen_before: g.seen_before === undefined ? null : g.seen_before });
   }
   return {
-    id: st.id, trial: TRIAL, consent: st.consent,
+    id: st.id, trial: TRIAL, consent: st.consent, room: st.room && st.room.tag ? st.room.tag : undefined,   /* the room tag, when this phone played in a room (stage 2) */
     player: { created: st.created, country: st.country || 'not said', header_country: st.header_country || null, lang: navigator.language || null, referral: referral(), device: /Mobi|Android/i.test(navigator.userAgent) ? 'phone' : 'computer' },
     games,
   };
@@ -675,7 +705,9 @@ function homePage() {
   const w = el('section', 'fo-screen');
   const done = doneGames().length;
   w.appendChild(el('h1', 'fo-title', C.home.start_title));
+  if (roomOf()) { const rc = roomJoinCard(); w.appendChild(rc); roomWatch(roomOf().code, (s) => rc.update(s)); }
   w.appendChild(el('p', 'fo-lede', C.home.start_lede));
+  if (done === 0) w.appendChild(el('p', 'fo-once', C.shared.once_line));
   w.appendChild(circles(null, ''));
   if (done > 0 && done < 9) w.appendChild(el('p', 'fo-count', `${done} of 9 done · about ${minutesLeft()} ${minutesLeft() === 1 ? 'minute' : 'minutes'} left`));
   const found = el('p', 'fo-count fo-found', ''); w.appendChild(found);
@@ -1086,7 +1118,7 @@ function portraitPage() {
   tailFor(); specials();
 
   /* the curtain, once: the nine circles gather into the figure */
-  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+  root.textContent = ''; root.appendChild(w); wireDialogs(w); root.classList.add('fo-wide');
   const animateIn = () => {
     requestAnimationFrame(() => setTimeout(() => {
       s2.querySelectorAll('.fill').forEach((f, i) => setTimeout(() => { f.style.width = f.dataset.w; }, 120 * i));
@@ -1242,12 +1274,13 @@ function explorePage() {
   const kinds = [['world', PL.pickers.world]]; const cn = playerCountry(); if (cn && st.country !== 'not said') kinds.push(['country', PL.pickers.country]);
   for (const f of C.demographics.fields) kinds.push([f.key, f.label]);
   if (cn && st.country !== 'not said') for (const f of C.demographics.fields) kinds.push(['country+' + f.key, PL.pickers.country_and + ' ' + f.label.toLowerCase()]);
+  if (st.room && st.room.tag) kinds.push(['room', PL.pickers.room]);   /* a phone that played in a room (stage 2) */
   const group = (label, start) => {
     const box = el('div', 'fo-pickbox'); const [kl, ks] = sel(label, kinds); ks.value = start; box.appendChild(kl);
     const [vl, vs] = sel('', []); vl.hidden = true; box.appendChild(vl);
     const fill = () => { const k = ks.value.replace('country+', ''); const f = C.demographics.fields.find((x) => x.key === k); vs.textContent = ''; if (!f) { vl.hidden = true; return; } vl.hidden = false; f.options.forEach((o) => { const op = el('option', '', o); op.value = o; vs.appendChild(op); }); const mine = st.demographics && st.demographics[k]; if (mine && f.options.includes(mine)) vs.value = mine; };
     ks.addEventListener('change', () => { fill(); draw(); }); vs.addEventListener('change', draw); fill();
-    box.pool = () => { const k = ks.value; if (k === 'world') return { key: 'world', name: PL.names.world }; const withC = k.startsWith('country+'); const kk = k.replace('country+', ''); const p = {}; if (kk === 'country' || withC) p.country = st.country; if (kk !== 'country') p[kk] = vs.value; const nm = kk === 'country' ? poolName('country') : (withC ? poolName('country') + ', ' + vs.value : vs.value); return { key: p, name: nm }; };
+    box.pool = () => { const k = ks.value; if (k === 'world') return { key: 'world', name: PL.names.world }; if (k === 'room') return { key: { room: st.room.tag }, name: PL.pickers.room }; const withC = k.startsWith('country+'); const kk = k.replace('country+', ''); const p = {}; if (kk === 'country' || withC) p.country = st.country; if (kk !== 'country') p[kk] = vs.value; const nm = kk === 'country' ? poolName('country') : (withC ? poolName('country') + ', ' + vs.value : vs.value); return { key: p, name: nm }; };
     return box;
   };
   const A = group(PL.pickers.a, 'world'), B = group(PL.pickers.b, kinds[1] ? kinds[1][0] : 'world');
@@ -1305,6 +1338,7 @@ function adopt(r) {
   for (const g of r.games) { if (g.wave !== 1) continue; st.games[g.game] = { started: g.started, finished: g.finished, duration_ms: g.duration_ms, answers: {}, times: {}, positions: {}, order: [], guess: g.guess === null ? null : { p: g.guess_p, value: g.guess }, result: g.sub, rules_version: g.sub.rules_version, adopted: true }; if (g.sub.scored !== false) st.done_order.push(g.game); }
   st.done_order.sort((x, y) => ((r.games.find((g) => g.game === x) || {}).order_index || 0) - ((r.games.find((g) => g.game === y) || {}).order_index || 0));
   if (r.demographics) st.demographics = r.demographics;
+  if (r.player && r.player.room) st.room = { code: null, tag: r.player.room, key: null, joined: null, ended: true, done: {} };   /* "My room" follows the player to a new phone (the room itself is over) */
   S = st; save();
 }
 
@@ -1312,7 +1346,239 @@ function adopt(r) {
 export function start() {
   const root = document.getElementById('fo'); if (!root) return;
   const page = root.dataset.page; const n = Number(root.dataset.game);
-  if (page === 'home') homePage(); else if (page === 'portrait') portraitPage(); else if (page === 'compare') comparePage(); else if (page === 'explore') explorePage(); else if (n >= 1 && n <= 9) gamePage(n);
+  if (page === 'home') homePage(); else if (page === 'room') roomPage(); else if (page === 'portrait') portraitPage(); else if (page === 'compare') comparePage(); else if (page === 'explore') explorePage(); else if (n >= 1 && n <= 9) gamePage(n);
 }
 export const _test = { load, save, wipe, batch, bandName, mainScore, portraitLines, ownLines, fill, parliamentName, STORE_KEY };
 start();
+
+/* ------------------------------------------------------------------ the room (stage 2, 23 Oct 2026) ------
+   A host runs all nine games, one by one, with up to 100 phones. The room server (server/findout-room, its own
+   Worker) keeps counts and one bin per phone key; the phones keep everything else. The contract is in
+   claude/find-outs-s2-handoff.md. Nothing here names anyone. */
+async function roomApi(path, body) {
+  const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 9000);
+  try {
+    const r = await fetch(ROOM_API + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal } : { signal: ctl.signal, cache: 'no-store' });
+    clearTimeout(t);
+    const j = await r.json().catch(() => null);
+    if (r.status === 404) return { ok: false, error: 'not_found' };
+    return j || { ok: false, error: 'bad' };
+  } catch (e) { clearTimeout(t); return { ok: false, error: 'network' }; }
+}
+/* the bin of a scored game, the same bins as the world's curves; null for game 9 and for anything unscored */
+function roomBin(n, res) {
+  if (!res || !res.scored || !ROOM_BINS[n]) return null;
+  const v = n === 1 ? (res.traits ? res.traits.E : null) : res.score;
+  if (v === null || v === undefined) return null;
+  const [lo, hi, step] = ROOM_BINS[n];
+  return Math.min(Math.round((hi - lo) / step), Math.max(0, Math.round((v - lo) / step)));
+}
+/* a chart's counts by band (games 2-8), and the band most of the room landed in */
+function roomBandCounts(n, chart) {
+  const out = [0, 0, 0]; if (!chart || !chart.bins || !ROOM_BINS[n] || n === 1) return out;
+  const [lo, , step] = ROOM_BINS[n];
+  chart.bins.forEach((c, i) => { const b = bandIndex(n, lo + i * step); if (b !== null) out[b] += c; });
+  return out;
+}
+function roomTop(n, chart) { const c = roomBandCounts(n, chart); const total = c[0] + c[1] + c[2]; if (!total) return null; let b = 0; for (let i = 1; i < 3; i++) if (c[i] > c[b]) b = i; return { band: b, k: c[b], n: total, pct: Math.round(100 * c[b] / total) }; }
+function roomOf() { const st = load(); return st.room && !st.room.ended ? st.room : null; }
+function roomLeave() { const st = load(); if (st.room) { st.room.ended = true; save(); } }
+/* one poll loop per page, only while the page is visible */
+function roomWatch(code, onState, every) {
+  let stop = false, timer = null;
+  const tick = async () => {
+    if (stop) return;
+    if (document.visibilityState !== 'hidden') {
+      const r = await roomApi('/room/' + encodeURIComponent(code));
+      if (stop) return;
+      if (r && r.ok && r.state) onState(r.state); else if (r && r.error === 'not_found') onState(null);
+    }
+    timer = setTimeout(tick, every || 2500);
+  };
+  tick();
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && !stop) { clearTimeout(timer); tick(); } });
+  return () => { stop = true; clearTimeout(timer); };
+}
+/* the phone tells the room it is done with a game (one bin, replaced on a redo); quiet when the room is not on that game */
+async function roomDone(n, res) {
+  const st = load(); const rm = roomOf(); if (!rm) return;
+  if (rm.done && rm.done[n] === (roomBin(n, res) ?? 'x')) return;
+  const r = await roomApi('/room/' + encodeURIComponent(rm.code) + '/done', { key: rm.key, game: n, bin: roomBin(n, res) });
+  if (r && r.ok) { rm.done = rm.done || {}; rm.done[n] = roomBin(n, res) ?? 'x'; save(); }
+}
+function roomJoinCard(onState) {
+  /* the card on the section's home and under a reveal: where the room is, what to do next */
+  const R = C.room; const rm = roomOf(); if (!rm) return null;
+  const box = el('div', 'fo-card fo-roombox');
+  const head = el('b', '', R.joined); box.appendChild(head);
+  const line = el('p', 'fo-quiet', R.keep_open); box.appendChild(line);
+  const act = el('div', 'fo-actions'); box.appendChild(act);
+  const leave = el('button', 'fo-help-btn', R.leave); leave.type = 'button'; leave.addEventListener('click', () => { roomLeave(); location.href = location.pathname; }); box.appendChild(leave);
+  box.update = (s) => {
+    act.textContent = '';
+    if (!s || s.step === 'ended') { head.textContent = ''; line.textContent = R.player_ended; roomLeave(); return; }
+    head.textContent = `${R.joined} · ${R.here.replace('{n}', fmt(s.joined))}`;
+    if (s.step === 'lobby') { line.textContent = R.keep_open; return; }
+    if (s.game && !isDone(s.game)) { line.textContent = ''; const a = el('a', 'btn solid fo-pop', R.open_game.replace('{n}', String(s.game))); a.href = (document.getElementById('fo').dataset.page === 'home' ? '' : '../') + SLUG[s.game] + '/'; act.appendChild(a); }
+    else line.textContent = s.game && isDone(s.game) ? R.waiting_next : R.keep_open;
+    if (onState) onState(s);
+  };
+  return box;
+}
+function roomPlayerLine(n, s) {
+  /* under a reveal in a room: waiting for the host, or the room's line */
+  const R = C.room;
+  if (!s || s.step === 'ended') return R.player_ended;
+  const ch = s.charts && s.charts[String(n)];
+  if (!ch) return s.game === n ? R.waiting_host : (s.opened && s.opened.includes(n) ? '' : R.waiting_host);
+  if (!ch.bins || ch.n < ROOM_MIN) return R.room_few.replace('{n}', fmt(ch.n));
+  if (n === 1 || n === 9) return s.game === n && s.step === 'reveal' ? R.waiting_next : '';   /* no bands on these two: the host's screen has the picture */
+  const t = roomTop(n, ch); if (!t) return '';
+  return R.room_line.replace('{k}', fmt(t.k)).replace('{n}', fmt(t.n)).replace('{band}', C.games[n].bands[t.band].name);
+}
+function roomCurveSvg(room, world, n) {
+  /* the room's curve, filled, over the world's thin line; both smoothed as in Explore */
+  const W = 300, H = 90, pad = 8;
+  const path = (r, closed) => { if (!r || !r.bins) return ''; const k = r.bins.length > 9 ? [1, 2, 3, 2, 1] : [1, 2, 1]; const half = (k.length - 1) / 2; const ks = k.reduce((x, y) => x + y, 0); const sm = r.bins.map((_, i, arr) => k.reduce((acc, wgt, j) => acc + wgt * (arr[i + j - half] || 0), 0) / ks / r.n); const top = Math.max(1e-9, ...sm); const pts = sm.map((c, i) => [pad + (i / (sm.length - 1)) * (W - 2 * pad), H - 6 - (c / top) * (H - 18)]); let d = `M${pts[0][0]},${H - 6} L${pts[0][0]},${pts[0][1].toFixed(1)}`; for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i]; const cx = ((x0 + x1) / 2).toFixed(1); d += `C${cx},${y0.toFixed(1)} ${cx},${y1.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`; } return closed ? d + `L${pts[pts.length - 1][0]},${H - 6} Z` : d; };
+  return h(`<svg class="fo-roomcurve" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(C.room.the_room)} · ${esc(C.games[n].name)}">${world ? `<path d="${path(world, false)}" fill="none" stroke="var(--ink)" stroke-opacity=".45" stroke-width="1.5" stroke-dasharray="4 3"/>` : ''}${room ? `<path class="draw" d="${path(room, true)}" fill="var(--c)" fill-opacity=".3" stroke="var(--c)" stroke-width="2.5"/>` : ''}</svg>`);
+}
+function roomBandBar(n, chart) {
+  const c = roomBandCounts(n, chart); const total = c[0] + c[1] + c[2]; const bar = el('div', 'fo-bandbar');
+  if (!total) return bar;
+  c.forEach((k, i) => { const seg = el('span', ''); seg.style.width = (100 * k / total) + '%'; seg.style.background = BAND_COLOURS[i]; seg.title = `${C.games[n].bands[i].name} ${Math.round(100 * k / total)}%`; if (k / total >= 0.12) seg.textContent = Math.round(100 * k / total) + '%'; bar.appendChild(seg); });
+  return bar;
+}
+function qrSvg(text, label) {
+  const Q = window.qrcodegen; if (!Q) return null;
+  try {
+    const q = Q.QrCode.encodeText(text, Q.QrCode.Ecc.MEDIUM); let d = ''; const n = q.size;
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (q.getModule(x, y)) d += `M${x + 2} ${y + 2}h1v1h-1z`;
+    return h(`<svg class="fo-qr" viewBox="0 0 ${n + 4} ${n + 4}" role="img" aria-label="${esc(label)}"><rect width="100%" height="100%" fill="#fff"/><path d="${d}" fill="#15172B"/></svg>`);
+  } catch (e) { return null; }
+}
+
+/* ---- the room page: the host's screen, or a phone joining with #CODE ---- */
+function roomPage() {
+  const root = document.getElementById('fo'); const R = C.room; const st = load();
+  howSheet();
+  const codeIn = (location.hash || '').replace(/^#/, '').trim().toUpperCase();
+  if (codeIn) return roomJoinPage(codeIn);
+  let hostKeys = null; try { hostKeys = JSON.parse(localStorage.getItem('lg.findout.room.host')); } catch (e) {}
+  if (hostKeys && hostKeys.code && hostKeys.host_key) return roomHostPage(hostKeys);
+
+  /* the front: run a room, or join one with a code */
+  const w = el('section', 'fo-screen');
+  w.appendChild(el('h1', 'fo-title', R.title));
+  w.appendChild(el('p', 'fo-lede', R.lede));
+  const acts = el('div', 'fo-actions'); const run = el('button', 'btn solid', R.run); run.type = 'button'; acts.appendChild(run); w.appendChild(acts);
+  const status = el('p', 'fo-status', ''); w.appendChild(status);
+  run.addEventListener('click', async () => {
+    run.disabled = true; status.textContent = '…';
+    const r = await roomApi('/room/new', {});
+    if (!r || !r.ok) { status.textContent = C.portrait.send_failed; run.disabled = false; return; }
+    const keys = { code: r.code, host_key: r.host_key, tag: r.tag, made: Date.now() };
+    try { localStorage.setItem('lg.findout.room.host', JSON.stringify(keys)); } catch (e) {}
+    roomHostPage(keys);
+  });
+  const join = el('div', 'fo-card fo-roomjoin'); join.appendChild(el('b', '', R.join_title));
+  const form = el('form', 'fo-codeform'); const inp = el('input', 'fo-search'); inp.placeholder = R.type_code; inp.maxLength = 5; inp.autocapitalize = 'characters'; inp.setAttribute('aria-label', R.type_code); form.appendChild(inp);
+  const go = el('button', 'btn solid', R.join); go.type = 'submit'; form.appendChild(go); join.appendChild(form); w.appendChild(join);
+  form.addEventListener('submit', (e) => { e.preventDefault(); const c = inp.value.trim().toUpperCase(); if (c) { location.hash = c; roomJoinPage(c); } });
+  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+}
+function roomJoinPage(code) {
+  const root = document.getElementById('fo'); const R = C.room; const st = load();
+  const w = el('section', 'fo-screen');
+  w.appendChild(el('h1', 'fo-title', R.join_title));
+  const status = el('p', 'fo-lede', '…'); w.appendChild(status);
+  const body = el('div'); w.appendChild(body);
+  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+  (async () => {
+    if (!st.room || st.room.code !== code || st.room.ended) {
+      const key = hex(16);
+      const r = await roomApi('/room/' + encodeURIComponent(code) + '/join', { key });
+      if (!r || !r.ok) { status.textContent = r && r.error === 'full' ? R.full : R.not_found; const a = el('a', 'btn ghost', R.title); a.href = './'; a.addEventListener('click', () => { location.hash = ''; }); body.appendChild(a); return; }
+      st.room = { code, tag: r.tag, key, joined: Date.now(), ended: false, done: {} }; save();
+    }
+    status.textContent = ''; const show = el('div', 'fo-codeshow small'); code.split('').forEach((c) => show.appendChild(el('i', '', c))); status.appendChild(show);
+    body.appendChild(el('p', 'fo-quiet fo-roomnotice', R.notice));
+    const card = roomJoinCard(); body.appendChild(card);
+    body.appendChild(circles(null, '../'));
+    body.appendChild(el('p', 'fo-lede', C.home.start_lede));
+    roomWatch(code, (s) => { card.update(s); if (s && s.step === 'play' && s.game && !isDone(s.game) && !card.dataset.sent) { card.dataset.sent = '1'; } });
+  })();
+}
+function roomHostPage(keys) {
+  const root = document.getElementById('fo'); const R = C.room; root.classList.add('fo-wide');
+  const w = el('section', 'fo-screen fo-host');
+  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+  const link = `https://logicers.com/find-out/room/#${keys.code}`;
+  let state = null, stop = null, worldCache = {};
+  const host = async (action) => { const r = await roomApi('/room/' + encodeURIComponent(keys.code) + '/host', { host_key: keys.host_key, action }); if (r && r.ok && r.state) { state = r.state; draw(); } return r; };
+  const world = async (n) => { if (worldCache[n] !== undefined) return worldCache[n]; try { const c = await api('/curve?m=' + (n === 1 ? 'g1.E' : 'g' + n)); worldCache[n] = c && c.n >= c.opens_at ? c : null; } catch (e) { worldCache[n] = null; } return worldCache[n]; };
+  const forget = () => { try { localStorage.removeItem('lg.findout.room.host'); } catch (e) {} };
+  function header() {
+    const top = el('div', 'fo-host-top');
+    top.appendChild(el('p', 'meta', R.title));
+    const code = el('div', 'fo-codeshow'); keys.code.split('').forEach((c) => code.appendChild(el('i', '', c))); top.appendChild(code);
+    top.appendChild(el('p', 'fo-joinline', R.join_line.replace('{code}', keys.code)));
+    return top;
+  }
+  function draw() {
+    w.textContent = '';
+    if (!state) { w.appendChild(header()); w.appendChild(el('p', 'fo-quiet', '…')); return; }
+    const s = state;
+    if (s.step === 'lobby') {
+      w.appendChild(header());
+      const two = el('div', 'fo-host-two'); const qr = qrSvg(link, R.join_line.replace('{code}', keys.code)); if (qr) two.appendChild(qr);
+      const side = el('div'); side.appendChild(el('p', 'fo-host-count', s.joined ? R.here.replace('{n}', fmt(s.joined)) : R.nobody));
+      side.appendChild(el('p', 'fo-quiet', R.play_too));
+      const acts = el('div', 'fo-actions'); const start = el('button', 'btn solid', R.start); start.type = 'button'; start.disabled = !s.joined; start.addEventListener('click', () => host('start')); acts.appendChild(start); side.appendChild(acts);
+      two.appendChild(side); w.appendChild(two);
+      return;
+    }
+    if (s.step === 'ended') {
+      w.appendChild(el('h1', 'fo-title', R.your_room));
+      w.appendChild(el('p', 'fo-lede', R.ended));
+      const bars = el('div', 'fo-roombars');
+      for (const n of [2, 5, 7, 4, 8]) { const ch = s.charts && s.charts[String(n)]; const row = el('div', 'fo-roombar'); row.appendChild(el('b', '', C.games[n].name)); if (ch && ch.bins) row.appendChild(roomBandBar(n, ch)); else row.appendChild(el('span', 'fo-quiet', R.opens_at.replace('{n}', fmt(ch ? ch.n : 0)))); bars.appendChild(row); }
+      w.appendChild(bars);
+      const acts = el('div', 'fo-actions'); const again = el('a', 'btn solid', R.another); again.href = './'; again.addEventListener('click', () => forget()); acts.appendChild(again); w.appendChild(acts);
+      if (stop) { stop(); stop = null; }
+      return;
+    }
+    /* play or reveal */
+    const n = s.game;
+    w.appendChild(el('p', 'meta', `${R.title} · ${R.game_of.replace('{n}', String(n))}`));
+    w.appendChild(el('h1', 'fo-title', C.games[n].name));
+    w.appendChild(circles(n, '../'));
+    const count = el('p', 'fo-host-count', R.done_of.replace('{done}', fmt(s.done)).replace('{joined}', fmt(s.joined))); w.appendChild(count);
+    if (s.step === 'play') {
+      const acts = el('div', 'fo-actions');
+      const rev = el('button', 'btn solid', n === 9 ? R.next : R.reveal); rev.type = 'button'; acts.appendChild(rev); w.appendChild(acts);
+      const wait = el('p', 'fo-quiet', ''); w.appendChild(wait);
+      const tickLock = () => { const left = Math.ceil(((s.reveal_at || 0) - Date.now()) / 1000); const all = s.joined > 0 && s.done >= s.joined; rev.disabled = left > 0 && !all; wait.textContent = all ? R.all_done : (left > 0 ? R.reveal_in.replace('{s}', String(left)) : ''); };
+      tickLock(); const lockTimer = setInterval(() => { if (!w.contains(rev)) { clearInterval(lockTimer); return; } tickLock(); }, 1000);
+      rev.addEventListener('click', () => host(n === 9 ? 'reveal' : 'reveal'));
+    } else {
+      const ch = s.charts && s.charts[String(n)];
+      const pic = el('div', 'fo-card fo-roompic'); w.appendChild(pic);
+      if (n === 9) pic.appendChild(el('p', 'fo-lede', R.done_of.replace('{done}', fmt(s.done)).replace('{joined}', fmt(s.joined))));
+      else if (!ch || !ch.bins) pic.appendChild(el('p', 'fo-lede', R.opens_at.replace('{n}', fmt(ch ? ch.n : 0))));
+      else {
+        const holder = el('div', 'fo-curve'); pic.appendChild(holder);
+        world(n).then((wc) => { holder.appendChild(roomCurveSvg({ bins: ch.bins, n: ch.n }, wc, n)); });
+        const names = el('div', 'fo-ends three'); if (n !== 1) C.games[n].bands.forEach((b) => names.appendChild(el('span', '', b.name))); else { names.className = 'fo-ends'; C.games[1].guess.ends.forEach((e) => names.appendChild(el('span', '', e))); } pic.appendChild(names);
+        const leg = el('div', 'fo-legend'); leg.appendChild(el('span', 'fo-leg a', `${R.the_room} · ${R.in_picture.replace('{n}', fmt(ch.n))}`)); leg.appendChild(el('span', 'fo-leg b', R.the_world)); pic.appendChild(leg);
+        if (n !== 1) { pic.appendChild(roomBandBar(n, ch)); const t = roomTop(n, ch); if (t) pic.appendChild(el('p', 'fo-roomline', R.most.replace('{band}', C.games[n].bands[t.band].name).replace('{pct}', String(t.pct)))); }
+      }
+      const acts = el('div', 'fo-actions');
+      if (n < 9) { const nx = el('button', 'btn solid', R.next_game); nx.type = 'button'; nx.addEventListener('click', () => host('next')); acts.appendChild(nx); }
+      const end = el('button', n < 9 ? 'btn ghost' : 'btn solid', R.end); end.type = 'button';
+      end.addEventListener('click', () => { if (n === 9) { host('end'); return; } const d = sheet('dlg-end', R.end, `<p>${esc(R.end_sure)}</p><div class="actions"><button class="btn solid" id="end-yes" type="button">${esc(R.end_yes)}</button><button class="btn ghost" type="button" data-close>${esc(R.end_no)}</button></div>`); wireDialogs(d); d.querySelector('#end-yes').addEventListener('click', () => { d.close(); host('end'); }); d.showModal(); });
+      acts.appendChild(end); w.appendChild(acts);
+    }
+  }
+  draw();
+  stop = roomWatch(keys.code, (s) => { if (!s) { forget(); state = { step: 'ended', charts: {} }; draw(); return; } const changed = JSON.stringify(s) !== JSON.stringify(state); state = s; if (changed) draw(); }, 2000);
+}
