@@ -5,7 +5,7 @@
    yes on the consent card; only then does anything with an ID leave the phone (POST /upload). Before that
    the page asks the server three harmless things: where the phone is (GET /hello, no ID, nothing stored),
    the world's curve (GET /curve, public) and the funnel counters (POST /counter, no ID). */
-import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=dbd2d90162';
+import { ITEMS, COPY, COUNTRIES, PORTRAIT } from './data.js?v=3be2daca21';
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
@@ -142,11 +142,12 @@ function nextGame(after) {
 }
 function minutesLeft() { const s = ORDER.filter((n) => !isDone(n)).reduce((a, n) => a + SECONDS[n], 0); return Math.max(1, Math.round(s / 60)); }
 function circles(current, base) {
-  const w = el('div', 'fo-circles');
+  const w = el('div', 'fo-circles'); w.dataset.cur = current === null || current === undefined ? '' : String(current); w.dataset.base = base === undefined ? '../' : base;
   for (const n of ORDER) {
-    const a = el('a', isDone(n) ? 'done' : (n === current ? 'now' : ''), n);
+    const a = el(roomAllows(n) ? 'a' : 'span', (isDone(n) ? 'done' : (n === current ? 'now' : '')) + (roomAllows(n) ? '' : ' shut'), n);
     if (isDone(n) && n !== 1 && n !== 9) { const r = load().games[n].result; const col = bandColour(n, mainScore(n, r)); a.style.background = col; a.style.borderColor = col; }
-    a.href = `${base === undefined ? '../' : base}${SLUG[n]}/`; a.setAttribute('aria-label', `Game ${n}: ${C.games[n].name}${isDone(n) ? ', done' : ''}`);
+    if (roomAllows(n)) a.href = `${base === undefined ? '../' : base}${SLUG[n]}/`; else a.title = C.room.not_yet;
+    a.setAttribute('aria-label', `Game ${n}: ${C.games[n].name}${isDone(n) ? ', done' : ''}${roomAllows(n) ? '' : ', ' + C.room.not_yet}`);
     w.appendChild(a);
   }
   return w;
@@ -235,6 +236,21 @@ function gamePage(n) {
     const b = el('button', 'btn solid', done ? 'See my result' : (play ? 'Carry on' : 'Start')); b.type = 'button';
     b.addEventListener('click', () => done ? reveal(st.games[n], true) : begin());
     acts.appendChild(b); w.appendChild(acts);
+    helpSheet();
+    return w;
+  }
+  function againCard() {
+    const R = C.room;
+    const w = el('section', 'fo-screen');
+    w.appendChild(circles(n));
+    w.appendChild(el('h1', 'fo-title', cg.name));
+    w.appendChild(el('p', 'fo-lede', cg.start_line));
+    w.appendChild(el('p', 'fo-quiet', R.play_again_note));
+    const acts = el('div', 'fo-actions fo-bottom');
+    const b = el('button', 'btn solid', R.play_again); b.type = 'button';
+    b.addEventListener('click', () => { archivePlay(n); play = null; begin(); });
+    const see = el('button', 'fo-help-btn', 'See my result'); see.type = 'button'; see.addEventListener('click', () => reveal(st.games[n], true));
+    acts.appendChild(b); acts.appendChild(see); w.appendChild(acts);
     helpSheet();
     return w;
   }
@@ -549,7 +565,7 @@ function gamePage(n) {
       if (s.step === 'play' && s.game === n) await roomDone(n, g.result);
       line.textContent = roomPlayerLine(n, s);
       if (s.game === n && s.step === 'play') hold(R.waiting_host);
-      else if (s.game && s.game !== n && !isDone(s.game)) release(s.game);
+      else if (s.game && s.game !== n) release(s.game);   /* played already or not: the room's game is the next thing to open */
       else if (s.game === n && s.step === 'reveal') hold(R.waiting_next);
     });
   }
@@ -623,8 +639,11 @@ function gamePage(n) {
     return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Where you stand among ${fmt(r.n)} people"><path class="draw" d="${d}" fill="var(--tint)" stroke="var(--c)" stroke-width="2" stroke-linejoin="round"/><line x1="${x.toFixed(1)}" y1="4" x2="${x.toFixed(1)}" y2="${H - 4}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="${x.toFixed(1)}" cy="8" r="5" fill="var(--c)"/></svg>`);
   }
 
-  /* a finished game opens on its result (Khayyam, 23 Oct: no empty screen with a small button); a game not started, or left half-way, on its card */
-  if (isDone(n)) reveal(st.games[n], true); else show(card());
+  /* a finished game opens on its result (Khayyam, 23 Oct: no empty screen with a small button); a game not started, or left half-way, on its card.
+     In a room, a game played before the room reached it can be played once more (#again, or the room card's button) */
+  const rm = roomOf();
+  if (rm && isDone(n) && !roomPlayed(n) && rm.state && rm.state.game === n && rm.state.step === 'play' && location.hash === '#again') { history.replaceState(null, '', location.pathname); show(againCard()); }
+  else if (isDone(n)) reveal(st.games[n], true); else show(card());
 }
 
 function poolName(kind) { const c = playerCountry(); return C.pools.names[kind].replace('[Country]', c ? c.name : 'your country'); }
@@ -659,10 +678,13 @@ function batch() {
   const st = load();
   const games = [];
   for (const n of ORDER) {
-    const g = st.games[n]; if (!g || !g.result) continue;
+    const plays = ((st.plays && st.plays[n]) || []).concat(st.games[n] && st.games[n].result ? [st.games[n]] : []);   /* the first play and any room replays, each under its wave */
+    for (const g of plays) {
+    if (!g || !g.result) continue;
     const answers = [];
     for (const k of g.order) answers.push({ item: `${n}:${k}`, v: ITEM_VERSION, value: k in g.answers ? g.answers[k] : null, skipped: !(k in g.answers) || g.answers[k] === null, ms: g.times[k] ?? null, pos: g.positions[k] ?? null, opts: g.option_order && g.option_order[k] ? g.option_order[k] : null });
-    games.push({ game: n, wave: 1, answers, guess: g.guess, started: g.started, finished: g.finished, duration_ms: g.duration_ms, order_index: st.done_order.indexOf(n), result: g.result, rules_version: g.rules_version, seen_before: g.seen_before === undefined ? null : g.seen_before });
+    games.push({ game: n, wave: waveOf(n, g), answers, guess: g.guess, started: g.started, finished: g.finished, duration_ms: g.duration_ms, order_index: st.done_order.indexOf(n), result: g.result, rules_version: g.rules_version, seen_before: g.seen_before === undefined ? null : g.seen_before });
+    }
   }
   return {
     id: st.id, trial: TRIAL, consent: st.consent, room: st.room && st.room.tag ? st.room.tag : undefined,   /* the room tag, when this phone played in a room (stage 2) */
@@ -722,10 +744,11 @@ function homePage() {
   const ul = el('ul', 'fo-list');
   for (const n of ORDER) {
     const g = st.games[n]; const res = g && g.result && g.result.scored !== false ? g.result : null;
-    const a = el('a'); a.href = `${SLUG[n]}/`;
+    const a = el(roomAllows(n) ? 'a' : 'span', roomAllows(n) ? '' : 'shut'); if (roomAllows(n)) a.href = `${SLUG[n]}/`;
     a.appendChild(el('span', 'n' + (res ? ' done' : ''), res ? '✓' : n));
     const t = el('span', 't'); t.appendChild(el('b', '', C.games[n].name)); t.appendChild(el('span', '', C.games[n].start_line)); a.appendChild(t);
     if (res) a.appendChild(el('span', 'band', n === 1 ? 'Five bars' : n === 9 ? 'Done' : bandName(n, mainScore(n, res))));
+    else if (!roomAllows(n)) a.appendChild(el('span', 'band', C.room.not_yet));
     ul.appendChild(el('li')).appendChild(a);
   }
   w.appendChild(ul);
@@ -1382,8 +1405,25 @@ function roomBandCounts(n, chart) {
 }
 function roomTop(n, chart) { const c = roomBandCounts(n, chart); const total = c[0] + c[1] + c[2]; if (!total) return null; let b = 0; for (let i = 1; i < 3; i++) if (c[i] > c[b]) b = i; return { band: b, k: c[b], n: total, pct: Math.round(100 * c[b] / total) }; }
 function roomOf() { const st = load(); return st.room && !st.room.ended ? st.room : null; }
+/* was this game played inside the open room (a replay or a first play after joining)? */
+function roomPlayed(n) { const rm = roomOf(); const g = load().games[n]; return !!(rm && g && g.started && g.started >= rm.joined); }
+/* a replay in a room (Khayyam, 23 Oct): the earlier play is kept for the upload under its own wave (1 for the first
+   play, 3, 4, … for room replays; 2 is the three-month retake), and the new play takes its place on the phone */
+function archivePlay(n) {
+  const st = load(); const g = st.games[n]; if (!g || !g.result) return;
+  st.plays = st.plays || {}; st.plays[n] = st.plays[n] || []; st.plays[n].push(g);
+  delete st.games[n]; st.done_order = st.done_order.filter((k) => k !== n); save();
+}
+function waveOf(n, g) { const st = load(); const earlier = (st.plays && st.plays[n]) || []; const i = earlier.indexOf(g); if (i === 0 || (i < 0 && !earlier.length)) return 1; return 2 + (i < 0 ? earlier.length : i); }
 function roomLeave() { const st = load(); if (st.room) { st.room.ended = true; save(); } }
 /* one poll loop per page, only while the page is visible */
+function roomRemember(s) {
+  const st = load(); if (!st.room || st.room.code !== (s && s.code)) return;
+  const was = st.room.state && st.room.state.game; st.room.state = { game: s.game, step: s.step }; save();
+  if (was !== s.game) document.querySelectorAll('.fo-circles').forEach((c) => c.replaceWith(circles(c.dataset.cur === '' ? null : Number(c.dataset.cur), c.dataset.base)));   /* the shut games follow the room */
+}
+/* the games the room has not reached yet are closed on this phone while the room is open (no playing ahead) */
+function roomAllows(n) { const rm = roomOf(); if (!rm || !rm.state || !rm.state.game) return true; return n <= rm.state.game; }
 function roomWatch(code, onState, every) {
   let stop = false, timer = null;
   const tick = async () => {
@@ -1391,7 +1431,7 @@ function roomWatch(code, onState, every) {
     if (document.visibilityState !== 'hidden') {
       const r = await roomApi('/room/' + encodeURIComponent(code));
       if (stop) return;
-      if (r && r.ok && r.state) onState(r.state); else if (r && r.error === 'not_found') onState(null);
+      if (r && r.ok && r.state) { roomRemember(r.state); onState(r.state); } else if (r && r.error === 'not_found') onState(null);
     }
     timer = setTimeout(tick, every || 2500);
   };
@@ -1419,8 +1459,15 @@ function roomJoinCard(onState) {
     if (!s || s.step === 'ended') { head.textContent = ''; line.textContent = R.player_ended; roomLeave(); return; }
     head.textContent = `${R.joined} · ${R.here.replace('{n}', fmt(s.joined))}`;
     if (s.step === 'lobby') { line.textContent = R.keep_open; return; }
-    if (s.game && !isDone(s.game)) { line.textContent = ''; const a = el('a', 'btn solid fo-pop', R.open_game.replace('{n}', String(s.game))); a.href = (document.getElementById('fo').dataset.page === 'home' ? '' : '../') + SLUG[s.game] + '/'; act.appendChild(a); }
-    else line.textContent = s.game && isDone(s.game) ? R.waiting_next : R.keep_open;
+    if (s.game) {
+      /* a phone that played this game before the room reached it still counts: its bin goes up by itself, and the
+         button opens its result with the room's line (Khayyam, 23 Oct: his own phone, all nine done, never counted) */
+      const g = load().games[s.game];
+      if (s.step === 'play' && isDone(s.game) && g && g.result) roomDone(s.game, g.result);
+      line.textContent = s.step === 'reveal' ? (roomPlayerLine(s.game, s) || R.waiting_next) : '';
+      const again = s.step === 'play' && isDone(s.game) && !roomPlayed(s.game);
+      const a = el('a', 'btn solid fo-pop', (again ? R.open_again : R.open_game).replace('{n}', String(s.game))); a.href = (document.getElementById('fo').dataset.page === 'home' ? '' : '../') + SLUG[s.game] + '/' + (again ? '#again' : ''); act.appendChild(a);
+    } else line.textContent = R.keep_open;
     if (onState) onState(s);
   };
   return box;

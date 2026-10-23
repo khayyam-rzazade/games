@@ -424,3 +424,5 @@ body.game { --fo-ink-on-c: var(--on-c); }
   .fo-bandbar { height: 44px; }
   .fo-bandbar span { font-size: 1.1rem; }
 }
+.fo-circles span.shut, .fo-list span.shut { opacity: .45; cursor: default; }
+.fo-list span.shut { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); }
