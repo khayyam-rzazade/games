@@ -3,29 +3,29 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["same-energy"] = {
  "15": {
   "a": {
-   "name": "A spoon of olive oil",
-   "portion": "1 tablespoon",
+   "name": "Una cucharada de aceite de oliva",
+   "portion": "1 cucharada",
    "pic": "oil"
   },
   "b": {
    "key": "bread",
-   "one": "slice of bread",
-   "many": "slices of bread",
+   "one": "rebanada de pan",
+   "many": "rebanadas de pan",
    "short": [
-    "slice",
-    "slices"
+    "rebanada",
+    "rebanadas"
    ],
-   "portion": "a slice · 30 g",
+   "portion": "una rebanada · 30 g",
    "pic": "bread",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A spoon of olive oil has the same energy as 1½ slices of bread.",
-  "note": "A spoon of olive oil weighs 13.5 g; 1½ slices of bread weigh 45 g.",
+  "sentence": "Una cucharada de aceite de oliva tiene la misma energía que 1½ rebanadas de pan.",
+  "note": "Una cucharada de aceite de oliva pesa 13,5 g; 1½ rebanadas de pan pesan 45 g.",
   "src": [
    {
-    "what": "Olive oil",
+    "what": "Aceite de oliva",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171413/nutrients"
@@ -36,7 +36,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Bread",
+    "what": "Pan",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/325871/nutrients"
@@ -50,31 +50,31 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "16": {
   "a": {
-   "name": "A can of beer",
+   "name": "Una lata de cerveza",
    "portion": "330 ml",
    "pic": "can",
    "liquid": "beer"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "vaso de leche",
+   "many": "vasos de leche",
    "short": [
-    "glass",
-    "glasses"
+    "vaso",
+    "vasos"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "un vaso · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A can of beer has the same energy as one glass of milk.",
-  "note": "A can of beer holds 330 ml; one glass of milk holds 250 ml.",
+  "sentence": "Una lata de cerveza tiene la misma energía que un vaso de leche.",
+  "note": "Una lata de cerveza contiene 330 ml; un vaso de leche contiene 250 ml.",
   "src": [
    {
-    "what": "Beer",
+    "what": "Cerveza",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/168746/nutrients"
@@ -85,7 +85,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Leche",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -99,27 +99,27 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "17": {
   "a": {
-   "name": "A can of cola",
+   "name": "Una lata de cola",
    "portion": "330 ml",
    "pic": "can",
    "liquid": "cola"
   },
   "b": {
    "key": "grape",
-   "one": "grape",
-   "many": "grapes",
+   "one": "uva",
+   "many": "uvas",
    "short": [
-    "grape",
-    "grapes"
+    "uva",
+    "uvas"
    ],
-   "portion": "a grape · 5 g",
+   "portion": "una uva · 5 g",
    "pic": "grape",
    "drink": false,
    "max": 60,
    "step": 1
   },
-  "sentence": "A can of cola has the same energy as 40 grapes.",
-  "note": "A can of cola holds 330 ml; 40 grapes weigh 200 g. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Una lata de cola tiene la misma energía que 40 uvas.",
+  "note": "Una lata de cola contiene 330 ml; 40 uvas pesan 200 g. La misma energía, pero una bebida no sacia como lo hace la comida.",
   "src": [
    {
     "what": "Cola",
@@ -133,7 +133,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Grapes",
+    "what": "Uvas",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174683/nutrients"
@@ -147,30 +147,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "18": {
   "a": {
-   "name": "A small bar of dark chocolate",
+   "name": "Una barrita pequeña de chocolate negro",
    "portion": "40 g",
    "pic": "choc"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "vaso de leche",
+   "many": "vasos de leche",
    "short": [
-    "glass",
-    "glasses"
+    "vaso",
+    "vasos"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "un vaso · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A small bar of dark chocolate has the same energy as 1½ glasses of milk.",
-  "note": "A small bar of dark chocolate weighs 40 g; 1½ glasses of milk hold 375 ml. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Una barrita pequeña de chocolate negro tiene la misma energía que 1½ vasos de leche.",
+  "note": "Una barrita pequeña de chocolate negro pesa 40 g; 1½ vasos de leche contienen 375 ml. La misma energía, pero una bebida no sacia como lo hace la comida.",
   "src": [
    {
-    "what": "Dark chocolate",
+    "what": "Chocolate negro",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/170273/nutrients"
@@ -181,7 +181,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Leche",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -195,29 +195,29 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "19": {
   "a": {
-   "name": "A handful of dates",
+   "name": "Un puñado de dátiles",
    "portion": "50 g",
    "pic": "dates"
   },
   "b": {
    "key": "banana",
-   "one": "banana",
-   "many": "bananas",
+   "one": "plátano",
+   "many": "plátanos",
    "short": [
-    "banana",
-    "bananas"
+    "plátano",
+    "plátanos"
    ],
-   "portion": "a banana · 120 g, peeled",
+   "portion": "un plátano · 120 g, pelado",
    "pic": "banana",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A handful of dates has the same energy as 1½ bananas.",
-  "note": "A handful of dates weighs 50 g; 1½ bananas weigh 180 g.",
+  "sentence": "Un puñado de dátiles tiene la misma energía que 1½ plátanos.",
+  "note": "Un puñado de dátiles pesa 50 g; 1½ plátanos pesan 180 g.",
   "src": [
    {
-    "what": "Dates",
+    "what": "Dátiles",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171726/nutrients"
@@ -228,7 +228,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Bananas",
+    "what": "Plátanos",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173944/nutrients"
@@ -242,31 +242,31 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "20": {
   "a": {
-   "name": "A glass of milk",
+   "name": "Un vaso de leche",
    "portion": "250 ml",
    "pic": "glass",
    "liquid": "milk"
   },
   "b": {
    "key": "cola",
-   "one": "can of cola",
-   "many": "cans of cola",
+   "one": "lata de cola",
+   "many": "latas de cola",
    "short": [
-    "can",
-    "cans"
+    "lata",
+    "latas"
    ],
-   "portion": "a can · 330 ml",
+   "portion": "una lata · 330 ml",
    "pic": "can",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "cola"
   },
-  "sentence": "A glass of milk has the same energy as one can of cola.",
-  "note": "A glass of milk holds 250 ml; one can of cola holds 330 ml.",
+  "sentence": "Un vaso de leche tiene la misma energía que una lata de cola.",
+  "note": "Un vaso de leche contiene 250 ml; una lata de cola contiene 330 ml.",
   "src": [
    {
-    "what": "Milk",
+    "what": "Leche",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -291,30 +291,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "21": {
   "a": {
-   "name": "A glass of orange juice",
+   "name": "Un vaso de jugo de naranja",
    "portion": "250 ml",
    "pic": "glass",
    "liquid": "oj"
   },
   "b": {
    "key": "egg",
-   "one": "boiled egg",
-   "many": "boiled eggs",
+   "one": "huevo cocido",
+   "many": "huevos cocidos",
    "short": [
-    "egg",
-    "eggs"
+    "huevo",
+    "huevos"
    ],
-   "portion": "an egg · 50 g",
+   "portion": "un huevo · 50 g",
    "pic": "egg",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A glass of orange juice has the same energy as 1½ boiled eggs.",
-  "note": "A glass of orange juice holds 250 ml; 1½ boiled eggs weigh 75 g. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Un vaso de jugo de naranja tiene la misma energía que 1½ huevos cocidos.",
+  "note": "Un vaso de jugo de naranja contiene 250 ml; 1½ huevos cocidos pesan 75 g. La misma energía, pero una bebida no sacia como lo hace la comida.",
   "src": [
    {
-    "what": "Orange juice",
+    "what": "Jugo de naranja",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/2003591/nutrients"
@@ -325,7 +325,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Eggs",
+    "what": "Huevos",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173424/nutrients"
@@ -339,30 +339,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "22": {
   "a": {
-   "name": "A small bag of crisps",
+   "name": "Una bolsita de papas fritas",
    "portion": "30 g",
    "pic": "crisps"
   },
   "b": {
    "key": "cola",
-   "one": "can of cola",
-   "many": "cans of cola",
+   "one": "lata de cola",
+   "many": "latas de cola",
    "short": [
-    "can",
-    "cans"
+    "lata",
+    "latas"
    ],
-   "portion": "a can · 330 ml",
+   "portion": "una lata · 330 ml",
    "pic": "can",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "cola"
   },
-  "sentence": "A small bag of crisps has the same energy as one can of cola.",
-  "note": "A small bag of crisps weighs 30 g; one can of cola holds 330 ml. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Una bolsita de papas fritas tiene la misma energía que una lata de cola.",
+  "note": "Una bolsita de papas fritas pesa 30 g; una lata de cola contiene 330 ml. La misma energía, pero una bebida no sacia como lo hace la comida.",
   "src": [
    {
-    "what": "Crisps",
+    "what": "Papas fritas",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/169677/nutrients"
@@ -387,29 +387,29 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "23": {
   "a": {
-   "name": "A spoon of peanut butter",
-   "portion": "1 tablespoon",
+   "name": "Una cucharada de mantequilla de cacahuete",
+   "portion": "1 cucharada",
    "pic": "pb"
   },
   "b": {
    "key": "grape",
-   "one": "grape",
-   "many": "grapes",
+   "one": "uva",
+   "many": "uvas",
    "short": [
-    "grape",
-    "grapes"
+    "uva",
+    "uvas"
    ],
-   "portion": "a grape · 5 g",
+   "portion": "una uva · 5 g",
    "pic": "grape",
    "drink": false,
    "max": 60,
    "step": 1
   },
-  "sentence": "A spoon of peanut butter has the same energy as 28 grapes.",
-  "note": "A spoon of peanut butter weighs 16 g; 28 grapes weigh 140 g.",
+  "sentence": "Una cucharada de mantequilla de cacahuete tiene la misma energía que 28 uvas.",
+  "note": "Una cucharada de mantequilla de cacahuete pesa 16 g; 28 uvas pesan 140 g.",
   "src": [
    {
-    "what": "Peanut butter",
+    "what": "Mantequilla de cacahuete",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/172470/nutrients"
@@ -420,7 +420,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Grapes",
+    "what": "Uvas",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174683/nutrients"
@@ -434,31 +434,31 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "24": {
   "a": {
-   "name": "A large beer",
+   "name": "Una cerveza grande",
    "portion": "500 ml",
    "pic": "beer",
    "liquid": "beer"
   },
   "b": {
    "key": "cola",
-   "one": "can of cola",
-   "many": "cans of cola",
+   "one": "lata de cola",
+   "many": "latas de cola",
    "short": [
-    "can",
-    "cans"
+    "lata",
+    "latas"
    ],
-   "portion": "a can · 330 ml",
+   "portion": "una lata · 330 ml",
    "pic": "can",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "cola"
   },
-  "sentence": "A large beer has the same energy as 1½ cans of cola.",
-  "note": "A large beer holds 500 ml; 1½ cans of cola hold 495 ml.",
+  "sentence": "Una cerveza grande tiene la misma energía que 1½ latas de cola.",
+  "note": "Una cerveza grande contiene 500 ml; 1½ latas de cola contienen 495 ml.",
   "src": [
    {
-    "what": "Beer",
+    "what": "Cerveza",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/168746/nutrients"
@@ -483,30 +483,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "25": {
   "a": {
-   "name": "A carton of apple juice",
-   "portion": "1 litre",
+   "name": "Un cartón de jugo de manzana",
+   "portion": "1 litro",
    "pic": "carton",
    "liquid": "aj"
   },
   "b": {
    "key": "apple",
-   "one": "apple",
-   "many": "apples",
+   "one": "manzana",
+   "many": "manzanas",
    "short": [
-    "apple",
-    "apples"
+    "manzana",
+    "manzanas"
    ],
-   "portion": "an apple · 180 g",
+   "portion": "una manzana · 180 g",
    "pic": "apple",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A carton of apple juice has the same energy as 5 apples.",
-  "note": "A carton of apple juice holds 1,000 ml; 5 apples weigh 900 g. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Un cartón de jugo de manzana tiene la misma energía que 5 manzanas.",
+  "note": "Un cartón de jugo de manzana contiene 1000 ml; 5 manzanas pesan 900 g. La misma energía, pero una bebida no sacia como lo hace la comida.",
   "src": [
    {
-    "what": "Apple juice",
+    "what": "Jugo de manzana",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173933/nutrients"
@@ -517,7 +517,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Apples",
+    "what": "Manzanas",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171688/nutrients"
@@ -531,27 +531,27 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "26": {
   "a": {
-   "name": "A croissant",
+   "name": "Un croissant",
    "portion": "60 g",
    "pic": "croissant"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "vaso de leche",
+   "many": "vasos de leche",
    "short": [
-    "glass",
-    "glasses"
+    "vaso",
+    "vasos"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "un vaso · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A croissant has the same energy as 1½ glasses of milk.",
-  "note": "A croissant weighs 60 g; 1½ glasses of milk hold 375 ml. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Un croissant tiene la misma energía que 1½ vasos de leche.",
+  "note": "Un croissant pesa 60 g; 1½ vasos de leche contienen 375 ml. La misma energía, pero una bebida no sacia como lo hace la comida.",
   "src": [
    {
     "what": "Croissant",
@@ -565,7 +565,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Leche",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -579,29 +579,29 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "27": {
   "a": {
-   "name": "A bowl of oats",
-   "portion": "40 g, dry",
+   "name": "Un tazón de avena",
+   "portion": "40 g, en seco",
    "pic": "oats"
   },
   "b": {
    "key": "egg",
-   "one": "boiled egg",
-   "many": "boiled eggs",
+   "one": "huevo cocido",
+   "many": "huevos cocidos",
    "short": [
-    "egg",
-    "eggs"
+    "huevo",
+    "huevos"
    ],
-   "portion": "an egg · 50 g",
+   "portion": "un huevo · 50 g",
    "pic": "egg",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A bowl of oats has the same energy as 2 boiled eggs.",
-  "note": "A bowl of oats weighs 40 g; 2 boiled eggs weigh 100 g.",
+  "sentence": "Un tazón de avena tiene la misma energía que 2 huevos cocidos.",
+  "note": "Un tazón de avena pesa 40 g; 2 huevos cocidos pesan 100 g.",
   "src": [
    {
-    "what": "Oats",
+    "what": "Avena",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173904/nutrients"
@@ -612,7 +612,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Eggs",
+    "what": "Huevos",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173424/nutrients"
@@ -626,28 +626,28 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "28": {
   "a": {
-   "name": "A big bottle of cola",
-   "portion": "1.5 litres",
+   "name": "Una botella grande de cola",
+   "portion": "1,5 litros",
    "pic": "bigbottle",
    "liquid": "cola"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "vaso de leche",
+   "many": "vasos de leche",
    "short": [
-    "glass",
-    "glasses"
+    "vaso",
+    "vasos"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "un vaso · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A big bottle of cola has the same energy as 4 glasses of milk.",
-  "note": "A big bottle of cola holds 1,500 ml; 4 glasses of milk hold 1,000 ml.",
+  "sentence": "Una botella grande de cola tiene la misma energía que 4 vasos de leche.",
+  "note": "Una botella grande de cola contiene 1500 ml; 4 vasos de leche contienen 1000 ml.",
   "src": [
    {
     "what": "Cola",
@@ -661,7 +661,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Leche",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"

@@ -2,365 +2,365 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["long-lost-cousin"] = {
  "21": {
-  "fact": "Meerkats are mongooses, on the cat side of the carnivores. Bears are on the dog side, and prairie dogs, which stand up the same way, are rodents."
+  "fact": "I suricati sono manguste, dalla parte dei gatti tra i carnivori. Gli orsi sono dalla parte dei cani, e i cani della prateria, che si alzano in piedi nello stesso modo, sono roditori."
  },
  "22": {
-  "fact": "Ants evolved from wasps and belong with wasps and bees. Termites are relatives of cockroaches."
+  "fact": "Le formiche derivano dalle vespe e appartengono allo stesso gruppo di vespe e api. Le termiti sono parenti degli scarafaggi."
  },
  "23": {
-  "fact": "The beaver is a rodent, like the mouse. Rabbits are not rodents, but they are the rodents' next of kin. Otters are carnivores."
+  "fact": "Il castoro è un roditore, come il topo. I conigli non sono roditori, ma sono i parenti più stretti dei roditori. Le lontre sono carnivori."
  },
  "24": {
-  "fact": "The axolotl is a salamander, and salamanders are amphibians, like frogs. Lizards are reptiles."
+  "fact": "L'axolotl è una salamandra, e le salamandre sono anfibi, come le rane. Le lucertole sono rettili."
  },
  "25": {
-  "fact": "Camels and llamas belong to the same family. Llamas are South America's camels."
+  "fact": "I cammelli e i lama appartengono alla stessa famiglia. I lama sono i cammelli del Sud America."
  },
  "26": {
-  "fact": "The seahorse is a bony fish, in the same big group as the tuna."
+  "fact": "Il cavalluccio marino è un pesce osseo, nello stesso grande gruppo del tonno."
  },
  "27": {
-  "fact": "Toucans belong to the woodpecker order. Hornbills grew their big bill separately."
+  "fact": "I tucani appartengono all'ordine dei picchi. I buceri hanno sviluppato il loro grosso becco per conto proprio."
  },
  "28": {
-  "fact": "Porcupines are rodents from the guinea pig's branch. Mice are rodents from another branch, and hedgehogs grew their spines separately."
+  "fact": "Gli istrici sono roditori del ramo della cavia. I topi sono roditori di un altro ramo, e i ricci hanno sviluppato gli aculei per conto proprio."
  },
  "29": {
-  "fact": "The praying mantis's closest relatives are cockroaches and termites."
+  "fact": "I parenti più stretti della mantide religiosa sono gli scarafaggi e le termiti."
  },
  "30": {
-  "fact": "The narwhal and the beluga are the only two living members of their whale family."
+  "fact": "Il narvalo e il beluga sono gli unici due membri viventi della loro famiglia di balene."
  },
  "31": {
-  "fact": "Velociraptor had feathers and was a close relative of birds."
+  "fact": "Il Velociraptor aveva le piume ed era un parente stretto degli uccelli."
  },
  "32": {
-  "fact": "The orca, or killer whale, is the largest member of the dolphin family."
+  "fact": "L'orca è il membro più grande della famiglia dei delfini."
  },
  "33": {
-  "fact": "Fleas are closer to flies than to lice. Butterflies are next: like fleas and flies, they go through a pupa. Lice do not."
+  "fact": "Le pulci sono più vicine alle mosche che ai pidocchi. Le farfalle vengono dopo: come le pulci e le mosche, passano per una pupa. I pidocchi no."
  },
  "34": {
-  "fact": "The pangolin's closest living relatives are the carnivores, such as cats. Horses are on a nearby branch. Its scales only resemble an armadillo's armour."
+  "fact": "I parenti viventi più stretti del pangolino sono i carnivori, come i gatti. I cavalli sono su un ramo vicino. Le sue squame somigliano soltanto all'armatura di un armadillo."
  }
 };
 window.LG_PUZZLES["long-lost-cousin.things"] = {
  "meerkat": {
-  "name": "Meerkat",
-  "the": "the meerkat",
-  "of": "the meerkat's",
-  "bare": "meerkat"
+  "name": "Suricato",
+  "the": "il suricato",
+  "of": "del suricato",
+  "bare": "suricato"
  },
  "cat": {
-  "name": "Cat",
-  "the": "the cat",
-  "of": "the cat's",
-  "bare": "cat"
+  "name": "Gatto",
+  "the": "il gatto",
+  "of": "del gatto",
+  "bare": "gatto"
  },
  "bear": {
-  "name": "Bear",
-  "the": "the bear",
-  "of": "the bear's",
-  "bare": "bear"
+  "name": "Orso",
+  "the": "l'orso",
+  "of": "dell'orso",
+  "bare": "orso"
  },
  "prairie_dog": {
-  "name": "Prairie dog",
-  "the": "the prairie dog",
-  "of": "the prairie dog's",
-  "bare": "prairie dog"
+  "name": "Cane della prateria",
+  "the": "il cane della prateria",
+  "of": "del cane della prateria",
+  "bare": "cane della prateria"
  },
  "ant": {
-  "name": "Ant",
-  "the": "the ant",
-  "of": "the ant's",
-  "bare": "ant"
+  "name": "Formica",
+  "the": "la formica",
+  "of": "della formica",
+  "bare": "formica"
  },
  "bee": {
-  "name": "Bee",
-  "the": "the bee",
-  "of": "the bee's",
-  "bare": "bee"
+  "name": "Ape",
+  "the": "l'ape",
+  "of": "dell'ape",
+  "bare": "ape"
  },
  "termite": {
   "name": "Termite",
-  "the": "the termite",
-  "of": "the termite's",
+  "the": "la termite",
+  "of": "della termite",
   "bare": "termite"
  },
  "spider": {
-  "name": "Spider",
-  "the": "the spider",
-  "of": "the spider's",
-  "bare": "spider"
+  "name": "Ragno",
+  "the": "il ragno",
+  "of": "del ragno",
+  "bare": "ragno"
  },
  "beaver": {
-  "name": "Beaver",
-  "the": "the beaver",
-  "of": "the beaver's",
-  "bare": "beaver"
+  "name": "Castoro",
+  "the": "il castoro",
+  "of": "del castoro",
+  "bare": "castoro"
  },
  "otter": {
-  "name": "Otter",
-  "the": "the otter",
-  "of": "the otter's",
-  "bare": "otter"
+  "name": "Lontra",
+  "the": "la lontra",
+  "of": "della lontra",
+  "bare": "lontra"
  },
  "rabbit": {
-  "name": "Rabbit",
-  "the": "the rabbit",
-  "of": "the rabbit's",
-  "bare": "rabbit"
+  "name": "Coniglio",
+  "the": "il coniglio",
+  "of": "del coniglio",
+  "bare": "coniglio"
  },
  "mouse": {
-  "name": "Mouse",
-  "the": "the mouse",
-  "of": "the mouse's",
-  "bare": "mouse"
+  "name": "Topo",
+  "the": "il topo",
+  "of": "del topo",
+  "bare": "topo"
  },
  "axolotl": {
   "name": "Axolotl",
-  "the": "the axolotl",
-  "of": "the axolotl's",
+  "the": "l'axolotl",
+  "of": "dell'axolotl",
   "bare": "axolotl"
  },
  "eel": {
-  "name": "Eel",
-  "the": "the eel",
-  "of": "the eel's",
-  "bare": "eel"
+  "name": "Anguilla",
+  "the": "l'anguilla",
+  "of": "dell'anguilla",
+  "bare": "anguilla"
  },
  "lizard": {
-  "name": "Lizard",
-  "the": "the lizard",
-  "of": "the lizard's",
-  "bare": "lizard"
+  "name": "Lucertola",
+  "the": "la lucertola",
+  "of": "della lucertola",
+  "bare": "lucertola"
  },
  "frog": {
-  "name": "Frog",
-  "the": "the frog",
-  "of": "the frog's",
-  "bare": "frog"
+  "name": "Rana",
+  "the": "la rana",
+  "of": "della rana",
+  "bare": "rana"
  },
  "camel": {
-  "name": "Camel",
-  "the": "the camel",
-  "of": "the camel's",
-  "bare": "camel"
+  "name": "Cammello",
+  "the": "il cammello",
+  "of": "del cammello",
+  "bare": "cammello"
  },
  "horse": {
-  "name": "Horse",
-  "the": "the horse",
-  "of": "the horse's",
-  "bare": "horse"
+  "name": "Cavallo",
+  "the": "il cavallo",
+  "of": "del cavallo",
+  "bare": "cavallo"
  },
  "llama": {
-  "name": "Llama",
-  "the": "the llama",
-  "of": "the llama's",
-  "bare": "llama"
+  "name": "Lama",
+  "the": "il lama",
+  "of": "del lama",
+  "bare": "lama"
  },
  "cow": {
-  "name": "Cow",
-  "the": "the cow",
-  "of": "the cow's",
-  "bare": "cow"
+  "name": "Mucca",
+  "the": "la mucca",
+  "of": "della mucca",
+  "bare": "mucca"
  },
  "seahorse": {
-  "name": "Seahorse",
-  "the": "the seahorse",
-  "of": "the seahorse's",
-  "bare": "seahorse"
+  "name": "Cavalluccio marino",
+  "the": "il cavalluccio marino",
+  "of": "del cavalluccio marino",
+  "bare": "cavalluccio marino"
  },
  "squid": {
-  "name": "Squid",
-  "the": "the squid",
-  "of": "the squid's",
-  "bare": "squid"
+  "name": "Calamaro",
+  "the": "il calamaro",
+  "of": "del calamaro",
+  "bare": "calamaro"
  },
  "tuna": {
-  "name": "Tuna",
-  "the": "the tuna",
-  "of": "the tuna's",
-  "bare": "tuna"
+  "name": "Tonno",
+  "the": "il tonno",
+  "of": "del tonno",
+  "bare": "tonno"
  },
  "shark": {
-  "name": "Shark",
-  "the": "the shark",
-  "of": "the shark's",
-  "bare": "shark"
+  "name": "Squalo",
+  "the": "lo squalo",
+  "of": "dello squalo",
+  "bare": "squalo"
  },
  "toucan": {
-  "name": "Toucan",
-  "the": "the toucan",
-  "of": "the toucan's",
-  "bare": "toucan"
+  "name": "Tucano",
+  "the": "il tucano",
+  "of": "del tucano",
+  "bare": "tucano"
  },
  "parrot": {
-  "name": "Parrot",
-  "the": "the parrot",
-  "of": "the parrot's",
-  "bare": "parrot"
+  "name": "Pappagallo",
+  "the": "il pappagallo",
+  "of": "del pappagallo",
+  "bare": "pappagallo"
  },
  "hornbill": {
-  "name": "Hornbill",
-  "the": "the hornbill",
-  "of": "the hornbill's",
-  "bare": "hornbill"
+  "name": "Bucero",
+  "the": "il bucero",
+  "of": "del bucero",
+  "bare": "bucero"
  },
  "woodpecker": {
-  "name": "Woodpecker",
-  "the": "the woodpecker",
-  "of": "the woodpecker's",
-  "bare": "woodpecker"
+  "name": "Picchio",
+  "the": "il picchio",
+  "of": "del picchio",
+  "bare": "picchio"
  },
  "porcupine": {
-  "name": "Porcupine",
-  "the": "the porcupine",
-  "of": "the porcupine's",
-  "bare": "porcupine"
+  "name": "Istrice",
+  "the": "l'istrice",
+  "of": "dell'istrice",
+  "bare": "istrice"
  },
  "hedgehog": {
-  "name": "Hedgehog",
-  "the": "the hedgehog",
-  "of": "the hedgehog's",
-  "bare": "hedgehog"
+  "name": "Riccio",
+  "the": "il riccio",
+  "of": "del riccio",
+  "bare": "riccio"
  },
  "guinea_pig": {
-  "name": "Guinea pig",
-  "the": "the guinea pig",
-  "of": "the guinea pig's",
-  "bare": "guinea pig"
+  "name": "Cavia",
+  "the": "la cavia",
+  "of": "della cavia",
+  "bare": "cavia"
  },
  "mantis": {
-  "name": "Praying mantis",
-  "the": "the praying mantis",
-  "of": "the praying mantis's",
-  "bare": "praying mantis"
+  "name": "Mantide religiosa",
+  "the": "la mantide religiosa",
+  "of": "della mantide religiosa",
+  "bare": "mantide religiosa"
  },
  "cockroach": {
-  "name": "Cockroach",
-  "the": "the cockroach",
-  "of": "the cockroach's",
-  "bare": "cockroach"
+  "name": "Scarafaggio",
+  "the": "lo scarafaggio",
+  "of": "dello scarafaggio",
+  "bare": "scarafaggio"
  },
  "grasshopper": {
-  "name": "Grasshopper",
-  "the": "the grasshopper",
-  "of": "the grasshopper's",
-  "bare": "grasshopper"
+  "name": "Cavalletta",
+  "the": "la cavalletta",
+  "of": "della cavalletta",
+  "bare": "cavalletta"
  },
  "dragonfly": {
-  "name": "Dragonfly",
-  "the": "the dragonfly",
-  "of": "the dragonfly's",
-  "bare": "dragonfly"
+  "name": "Libellula",
+  "the": "la libellula",
+  "of": "della libellula",
+  "bare": "libellula"
  },
  "narwhal": {
-  "name": "Narwhal",
-  "the": "the narwhal",
-  "of": "the narwhal's",
-  "bare": "narwhal"
+  "name": "Narvalo",
+  "the": "il narvalo",
+  "of": "del narvalo",
+  "bare": "narvalo"
  },
  "walrus": {
-  "name": "Walrus",
-  "the": "the walrus",
-  "of": "the walrus's",
-  "bare": "walrus"
+  "name": "Tricheco",
+  "the": "il tricheco",
+  "of": "del tricheco",
+  "bare": "tricheco"
  },
  "marlin": {
   "name": "Marlin",
-  "the": "the marlin",
-  "of": "the marlin's",
+  "the": "il marlin",
+  "of": "del marlin",
   "bare": "marlin"
  },
  "beluga": {
   "name": "Beluga",
-  "the": "the beluga",
-  "of": "the beluga's",
+  "the": "il beluga",
+  "of": "del beluga",
   "bare": "beluga"
  },
  "velociraptor": {
   "name": "Velociraptor",
-  "the": "the Velociraptor",
-  "of": "the Velociraptor's",
+  "the": "il Velociraptor",
+  "of": "del Velociraptor",
   "bare": "Velociraptor"
  },
  "eagle": {
-  "name": "Eagle",
-  "the": "the eagle",
-  "of": "the eagle's",
-  "bare": "eagle"
+  "name": "Aquila",
+  "the": "l'aquila",
+  "of": "dell'aquila",
+  "bare": "aquila"
  },
  "triceratops": {
   "name": "Triceratops",
-  "the": "the Triceratops",
-  "of": "the Triceratops's",
+  "the": "il Triceratops",
+  "of": "del Triceratops",
   "bare": "Triceratops"
  },
  "crocodile": {
-  "name": "Crocodile",
-  "the": "the crocodile",
-  "of": "the crocodile's",
-  "bare": "crocodile"
+  "name": "Coccodrillo",
+  "the": "il coccodrillo",
+  "of": "del coccodrillo",
+  "bare": "coccodrillo"
  },
  "orca": {
   "name": "Orca",
-  "the": "the orca",
-  "of": "the orca's",
+  "the": "l'orca",
+  "of": "dell'orca",
   "bare": "orca"
  },
  "humpback": {
-  "name": "Humpback whale",
-  "the": "the humpback whale",
-  "of": "the humpback whale's",
-  "bare": "humpback whale"
+  "name": "Megattera",
+  "the": "la megattera",
+  "of": "della megattera",
+  "bare": "megattera"
  },
  "great_white": {
-  "name": "Great white shark",
-  "the": "the great white shark",
-  "of": "the great white shark's",
-  "bare": "great white shark"
+  "name": "Squalo bianco",
+  "the": "lo squalo bianco",
+  "of": "dello squalo bianco",
+  "bare": "squalo bianco"
  },
  "dolphin": {
-  "name": "Dolphin",
-  "the": "the dolphin",
-  "of": "the dolphin's",
-  "bare": "dolphin"
+  "name": "Delfino",
+  "the": "il delfino",
+  "of": "del delfino",
+  "bare": "delfino"
  },
  "flea": {
-  "name": "Flea",
-  "the": "the flea",
-  "of": "the flea's",
-  "bare": "flea"
+  "name": "Pulce",
+  "the": "la pulce",
+  "of": "della pulce",
+  "bare": "pulce"
  },
  "butterfly": {
-  "name": "Butterfly",
-  "the": "the butterfly",
-  "of": "the butterfly's",
-  "bare": "butterfly"
+  "name": "Farfalla",
+  "the": "la farfalla",
+  "of": "della farfalla",
+  "bare": "farfalla"
  },
  "louse": {
-  "name": "Louse",
-  "the": "the louse",
-  "of": "the louse's",
-  "bare": "louse"
+  "name": "Pidocchio",
+  "the": "il pidocchio",
+  "of": "del pidocchio",
+  "bare": "pidocchio"
  },
  "housefly": {
-  "name": "Fly",
-  "the": "the fly",
-  "of": "the fly's",
-  "bare": "fly"
+  "name": "Mosca",
+  "the": "la mosca",
+  "of": "della mosca",
+  "bare": "mosca"
  },
  "pangolin": {
-  "name": "Pangolin",
-  "the": "the pangolin",
-  "of": "the pangolin's",
-  "bare": "pangolin"
+  "name": "Pangolino",
+  "the": "il pangolino",
+  "of": "del pangolino",
+  "bare": "pangolino"
  },
  "armadillo": {
   "name": "Armadillo",
-  "the": "the armadillo",
-  "of": "the armadillo's",
+  "the": "l'armadillo",
+  "of": "dell'armadillo",
   "bare": "armadillo"
  }
 };

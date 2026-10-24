@@ -3,29 +3,29 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["same-energy"] = {
  "15": {
   "a": {
-   "name": "A spoon of olive oil",
-   "portion": "1 tablespoon",
+   "name": "Bir kaşık zeytinyağı",
+   "portion": "1 yemek kaşığı",
    "pic": "oil"
   },
   "b": {
    "key": "bread",
-   "one": "slice of bread",
-   "many": "slices of bread",
+   "one": "dilim ekmek",
+   "many": "dilim ekmek",
    "short": [
-    "slice",
-    "slices"
+    "dilim",
+    "dilim"
    ],
-   "portion": "a slice · 30 g",
+   "portion": "bir dilim · 30 g",
    "pic": "bread",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A spoon of olive oil has the same energy as 1½ slices of bread.",
-  "note": "A spoon of olive oil weighs 13.5 g; 1½ slices of bread weigh 45 g.",
+  "sentence": "Bir kaşık zeytinyağı, 1½ dilim ekmekle aynı enerjiye sahip.",
+  "note": "Bir kaşık zeytinyağı 13,5 g; 1½ dilim ekmek 45 g.",
   "src": [
    {
-    "what": "Olive oil",
+    "what": "Zeytinyağı",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171413/nutrients"
@@ -36,7 +36,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Bread",
+    "what": "Ekmek",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/325871/nutrients"
@@ -50,31 +50,31 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "16": {
   "a": {
-   "name": "A can of beer",
+   "name": "Bir kutu bira",
    "portion": "330 ml",
    "pic": "can",
    "liquid": "beer"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "bardak süt",
+   "many": "bardak süt",
    "short": [
-    "glass",
-    "glasses"
+    "bardak",
+    "bardak"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "bir bardak · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A can of beer has the same energy as one glass of milk.",
-  "note": "A can of beer holds 330 ml; one glass of milk holds 250 ml.",
+  "sentence": "Bir kutu bira, bir bardak sütle aynı enerjiye sahip.",
+  "note": "Bir kutu bira 330 ml; bir bardak süt 250 ml.",
   "src": [
    {
-    "what": "Beer",
+    "what": "Bira",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/168746/nutrients"
@@ -85,7 +85,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Süt",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -99,30 +99,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "17": {
   "a": {
-   "name": "A can of cola",
+   "name": "Bir kutu kola",
    "portion": "330 ml",
    "pic": "can",
    "liquid": "cola"
   },
   "b": {
    "key": "grape",
-   "one": "grape",
-   "many": "grapes",
+   "one": "üzüm tanesi",
+   "many": "üzüm tanesi",
    "short": [
-    "grape",
-    "grapes"
+    "üzüm",
+    "üzüm"
    ],
-   "portion": "a grape · 5 g",
+   "portion": "bir üzüm tanesi · 5 g",
    "pic": "grape",
    "drink": false,
    "max": 60,
    "step": 1
   },
-  "sentence": "A can of cola has the same energy as 40 grapes.",
-  "note": "A can of cola holds 330 ml; 40 grapes weigh 200 g. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Bir kutu kola, 40 üzüm tanesiyle aynı enerjiye sahip.",
+  "note": "Bir kutu kola 330 ml; 40 üzüm tanesi 200 g. Enerji aynı, ama bir içecek yiyecek kadar doyurmaz.",
   "src": [
    {
-    "what": "Cola",
+    "what": "Kola",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
@@ -133,7 +133,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Grapes",
+    "what": "Üzüm",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174683/nutrients"
@@ -147,30 +147,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "18": {
   "a": {
-   "name": "A small bar of dark chocolate",
+   "name": "Küçük bir bitter çikolata",
    "portion": "40 g",
    "pic": "choc"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "bardak süt",
+   "many": "bardak süt",
    "short": [
-    "glass",
-    "glasses"
+    "bardak",
+    "bardak"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "bir bardak · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A small bar of dark chocolate has the same energy as 1½ glasses of milk.",
-  "note": "A small bar of dark chocolate weighs 40 g; 1½ glasses of milk hold 375 ml. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Küçük bir bitter çikolata, 1½ bardak sütle aynı enerjiye sahip.",
+  "note": "Küçük bir bitter çikolata 40 g; 1½ bardak süt 375 ml. Enerji aynı, ama bir içecek yiyecek kadar doyurmaz.",
   "src": [
    {
-    "what": "Dark chocolate",
+    "what": "Bitter çikolata",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/170273/nutrients"
@@ -181,7 +181,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Süt",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -195,29 +195,29 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "19": {
   "a": {
-   "name": "A handful of dates",
+   "name": "Bir avuç hurma",
    "portion": "50 g",
    "pic": "dates"
   },
   "b": {
    "key": "banana",
-   "one": "banana",
-   "many": "bananas",
+   "one": "muz",
+   "many": "muz",
    "short": [
-    "banana",
-    "bananas"
+    "muz",
+    "muz"
    ],
-   "portion": "a banana · 120 g, peeled",
+   "portion": "bir muz · 120 g, soyulmuş",
    "pic": "banana",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A handful of dates has the same energy as 1½ bananas.",
-  "note": "A handful of dates weighs 50 g; 1½ bananas weigh 180 g.",
+  "sentence": "Bir avuç hurma, 1½ muzla aynı enerjiye sahip.",
+  "note": "Bir avuç hurma 50 g; 1½ muz 180 g.",
   "src": [
    {
-    "what": "Dates",
+    "what": "Hurma",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171726/nutrients"
@@ -228,7 +228,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Bananas",
+    "what": "Muz",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173944/nutrients"
@@ -242,31 +242,31 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "20": {
   "a": {
-   "name": "A glass of milk",
+   "name": "Bir bardak süt",
    "portion": "250 ml",
    "pic": "glass",
    "liquid": "milk"
   },
   "b": {
    "key": "cola",
-   "one": "can of cola",
-   "many": "cans of cola",
+   "one": "kutu kola",
+   "many": "kutu kola",
    "short": [
-    "can",
-    "cans"
+    "kutu",
+    "kutu"
    ],
-   "portion": "a can · 330 ml",
+   "portion": "bir kutu · 330 ml",
    "pic": "can",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "cola"
   },
-  "sentence": "A glass of milk has the same energy as one can of cola.",
-  "note": "A glass of milk holds 250 ml; one can of cola holds 330 ml.",
+  "sentence": "Bir bardak süt, bir kutu kolayla aynı enerjiye sahip.",
+  "note": "Bir bardak süt 250 ml; bir kutu kola 330 ml.",
   "src": [
    {
-    "what": "Milk",
+    "what": "Süt",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -277,7 +277,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Cola",
+    "what": "Kola",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
@@ -291,30 +291,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "21": {
   "a": {
-   "name": "A glass of orange juice",
+   "name": "Bir bardak portakal suyu",
    "portion": "250 ml",
    "pic": "glass",
    "liquid": "oj"
   },
   "b": {
    "key": "egg",
-   "one": "boiled egg",
-   "many": "boiled eggs",
+   "one": "haşlanmış yumurta",
+   "many": "haşlanmış yumurta",
    "short": [
-    "egg",
-    "eggs"
+    "yumurta",
+    "yumurta"
    ],
-   "portion": "an egg · 50 g",
+   "portion": "bir yumurta · 50 g",
    "pic": "egg",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A glass of orange juice has the same energy as 1½ boiled eggs.",
-  "note": "A glass of orange juice holds 250 ml; 1½ boiled eggs weigh 75 g. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Bir bardak portakal suyu, 1½ haşlanmış yumurtayla aynı enerjiye sahip.",
+  "note": "Bir bardak portakal suyu 250 ml; 1½ haşlanmış yumurta 75 g. Enerji aynı, ama bir içecek yiyecek kadar doyurmaz.",
   "src": [
    {
-    "what": "Orange juice",
+    "what": "Portakal suyu",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/2003591/nutrients"
@@ -325,7 +325,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Eggs",
+    "what": "Yumurta",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173424/nutrients"
@@ -339,30 +339,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "22": {
   "a": {
-   "name": "A small bag of crisps",
+   "name": "Küçük bir paket cips",
    "portion": "30 g",
    "pic": "crisps"
   },
   "b": {
    "key": "cola",
-   "one": "can of cola",
-   "many": "cans of cola",
+   "one": "kutu kola",
+   "many": "kutu kola",
    "short": [
-    "can",
-    "cans"
+    "kutu",
+    "kutu"
    ],
-   "portion": "a can · 330 ml",
+   "portion": "bir kutu · 330 ml",
    "pic": "can",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "cola"
   },
-  "sentence": "A small bag of crisps has the same energy as one can of cola.",
-  "note": "A small bag of crisps weighs 30 g; one can of cola holds 330 ml. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Küçük bir paket cips, bir kutu kolayla aynı enerjiye sahip.",
+  "note": "Küçük bir paket cips 30 g; bir kutu kola 330 ml. Enerji aynı, ama bir içecek yiyecek kadar doyurmaz.",
   "src": [
    {
-    "what": "Crisps",
+    "what": "Cips",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/169677/nutrients"
@@ -373,7 +373,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Cola",
+    "what": "Kola",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
@@ -387,29 +387,29 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "23": {
   "a": {
-   "name": "A spoon of peanut butter",
-   "portion": "1 tablespoon",
+   "name": "Bir kaşık fıstık ezmesi",
+   "portion": "1 yemek kaşığı",
    "pic": "pb"
   },
   "b": {
    "key": "grape",
-   "one": "grape",
-   "many": "grapes",
+   "one": "üzüm tanesi",
+   "many": "üzüm tanesi",
    "short": [
-    "grape",
-    "grapes"
+    "üzüm",
+    "üzüm"
    ],
-   "portion": "a grape · 5 g",
+   "portion": "bir üzüm tanesi · 5 g",
    "pic": "grape",
    "drink": false,
    "max": 60,
    "step": 1
   },
-  "sentence": "A spoon of peanut butter has the same energy as 28 grapes.",
-  "note": "A spoon of peanut butter weighs 16 g; 28 grapes weigh 140 g.",
+  "sentence": "Bir kaşık fıstık ezmesi, 28 üzüm tanesiyle aynı enerjiye sahip.",
+  "note": "Bir kaşık fıstık ezmesi 16 g; 28 üzüm tanesi 140 g.",
   "src": [
    {
-    "what": "Peanut butter",
+    "what": "Fıstık ezmesi",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/172470/nutrients"
@@ -420,7 +420,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Grapes",
+    "what": "Üzüm",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174683/nutrients"
@@ -434,31 +434,31 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "24": {
   "a": {
-   "name": "A large beer",
+   "name": "Büyük bir bira",
    "portion": "500 ml",
    "pic": "beer",
    "liquid": "beer"
   },
   "b": {
    "key": "cola",
-   "one": "can of cola",
-   "many": "cans of cola",
+   "one": "kutu kola",
+   "many": "kutu kola",
    "short": [
-    "can",
-    "cans"
+    "kutu",
+    "kutu"
    ],
-   "portion": "a can · 330 ml",
+   "portion": "bir kutu · 330 ml",
    "pic": "can",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "cola"
   },
-  "sentence": "A large beer has the same energy as 1½ cans of cola.",
-  "note": "A large beer holds 500 ml; 1½ cans of cola hold 495 ml.",
+  "sentence": "Büyük bir bira, 1½ kutu kolayla aynı enerjiye sahip.",
+  "note": "Büyük bir bira 500 ml; 1½ kutu kola 495 ml.",
   "src": [
    {
-    "what": "Beer",
+    "what": "Bira",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/168746/nutrients"
@@ -469,7 +469,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Cola",
+    "what": "Kola",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
@@ -483,30 +483,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "25": {
   "a": {
-   "name": "A carton of apple juice",
+   "name": "Bir paket elma suyu",
    "portion": "1 litre",
    "pic": "carton",
    "liquid": "aj"
   },
   "b": {
    "key": "apple",
-   "one": "apple",
-   "many": "apples",
+   "one": "elma",
+   "many": "elma",
    "short": [
-    "apple",
-    "apples"
+    "elma",
+    "elma"
    ],
-   "portion": "an apple · 180 g",
+   "portion": "bir elma · 180 g",
    "pic": "apple",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A carton of apple juice has the same energy as 5 apples.",
-  "note": "A carton of apple juice holds 1,000 ml; 5 apples weigh 900 g. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Bir paket elma suyu, 5 elmayla aynı enerjiye sahip.",
+  "note": "Bir paket elma suyu 1.000 ml; 5 elma 900 g. Enerji aynı, ama bir içecek yiyecek kadar doyurmaz.",
   "src": [
    {
-    "what": "Apple juice",
+    "what": "Elma suyu",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173933/nutrients"
@@ -517,7 +517,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Apples",
+    "what": "Elma",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171688/nutrients"
@@ -531,30 +531,30 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "26": {
   "a": {
-   "name": "A croissant",
+   "name": "Bir kruvasan",
    "portion": "60 g",
    "pic": "croissant"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "bardak süt",
+   "many": "bardak süt",
    "short": [
-    "glass",
-    "glasses"
+    "bardak",
+    "bardak"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "bir bardak · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A croissant has the same energy as 1½ glasses of milk.",
-  "note": "A croissant weighs 60 g; 1½ glasses of milk hold 375 ml. The same energy, but a drink does not fill you up the way food does.",
+  "sentence": "Bir kruvasan, 1½ bardak sütle aynı enerjiye sahip.",
+  "note": "Bir kruvasan 60 g; 1½ bardak süt 375 ml. Enerji aynı, ama bir içecek yiyecek kadar doyurmaz.",
   "src": [
    {
-    "what": "Croissant",
+    "what": "Kruvasan",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174987/nutrients"
@@ -565,7 +565,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Süt",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"
@@ -579,29 +579,29 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "27": {
   "a": {
-   "name": "A bowl of oats",
-   "portion": "40 g, dry",
+   "name": "Bir kase yulaf",
+   "portion": "40 g, kuru",
    "pic": "oats"
   },
   "b": {
    "key": "egg",
-   "one": "boiled egg",
-   "many": "boiled eggs",
+   "one": "haşlanmış yumurta",
+   "many": "haşlanmış yumurta",
    "short": [
-    "egg",
-    "eggs"
+    "yumurta",
+    "yumurta"
    ],
-   "portion": "an egg · 50 g",
+   "portion": "bir yumurta · 50 g",
    "pic": "egg",
    "drink": false,
    "max": 10,
    "step": 0.5
   },
-  "sentence": "A bowl of oats has the same energy as 2 boiled eggs.",
-  "note": "A bowl of oats weighs 40 g; 2 boiled eggs weigh 100 g.",
+  "sentence": "Bir kase yulaf, 2 haşlanmış yumurtayla aynı enerjiye sahip.",
+  "note": "Bir kase yulaf 40 g; 2 haşlanmış yumurta 100 g.",
   "src": [
    {
-    "what": "Oats",
+    "what": "Yulaf",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173904/nutrients"
@@ -612,7 +612,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Eggs",
+    "what": "Yumurta",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/173424/nutrients"
@@ -626,31 +626,31 @@ window.LG_PUZZLES["same-energy"] = {
  },
  "28": {
   "a": {
-   "name": "A big bottle of cola",
-   "portion": "1.5 litres",
+   "name": "Büyük bir şişe kola",
+   "portion": "1,5 litre",
    "pic": "bigbottle",
    "liquid": "cola"
   },
   "b": {
    "key": "milk",
-   "one": "glass of milk",
-   "many": "glasses of milk",
+   "one": "bardak süt",
+   "many": "bardak süt",
    "short": [
-    "glass",
-    "glasses"
+    "bardak",
+    "bardak"
    ],
-   "portion": "a glass · 250 ml",
+   "portion": "bir bardak · 250 ml",
    "pic": "glass",
    "drink": true,
    "max": 6,
    "step": 0.5,
    "liquid": "milk"
   },
-  "sentence": "A big bottle of cola has the same energy as 4 glasses of milk.",
-  "note": "A big bottle of cola holds 1,500 ml; 4 glasses of milk hold 1,000 ml.",
+  "sentence": "Büyük bir şişe kola, 4 bardak sütle aynı enerjiye sahip.",
+  "note": "Büyük bir şişe kola 1.500 ml; 4 bardak süt 1.000 ml.",
   "src": [
    {
-    "what": "Cola",
+    "what": "Kola",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients"
@@ -661,7 +661,7 @@ window.LG_PUZZLES["same-energy"] = {
     }
    },
    {
-    "what": "Milk",
+    "what": "Süt",
     "usda": {
      "name": "USDA FoodData Central",
      "url": "https://fdc.nal.usda.gov/food-details/171265/nutrients"

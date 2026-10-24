@@ -2,212 +2,212 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["out-of-24"] = {
  "16": {
-  "face": "Japan",
-  "label": "eating",
-  "fig": "1 h 39",
-  "sentence": "People in Japan spend 1 hour 39 minutes a day on meals, by the national survey of 2021.",
-  "note": "Everyone aged 10 and over, averaged over the whole week (Statistics Bureau of Japan).",
+  "face": "Japonya",
+  "label": "yemek yerken",
+  "fig": "1 sa 39",
+  "sentence": "Japonya'da insanlar günde yemeklere 1 saat 39 dakika harcıyor; 2021 ulusal araştırmasına göre.",
+  "note": "10 yaş ve üstü herkes, bütün haftanın ortalaması (Japonya İstatistik Bürosu).",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "yemek yerken"
    },
    {
     "i": "people",
-    "t": "everyone"
+    "t": "herkes"
    }
   ]
  },
  "17": {
-  "face": "Rabbit",
-  "label": "asleep",
-  "fig": "8 h 24",
-  "sentence": "A rabbit sleeps about 8.4 hours a day: about a third of its life.",
-  "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976).",
+  "face": "Tavşan",
+  "label": "uyurken",
+  "fig": "8 sa 24",
+  "sentence": "Bir tavşan günde yaklaşık 8,4 saat uyur: hayatının yaklaşık üçte biri.",
+  "note": "Hayvan uykusuyla ilgili iki klasik tablodan: Washington Üniversitesi'nin tablosu ile Allison ve Cicchetti'nin tablosu (Science, 1976).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "uyurken"
    }
   ]
  },
  "18": {
   "face": "Koala",
-  "label": "asleep",
-  "fig": "18–22 h",
-  "sentence": "Tucked into the fork of a tree, a koala may sleep 18 to 22 hours a day.",
-  "note": "No source names a study or says whether the koalas were wild or in a zoo. Taronga Zoo says 18 to 20.",
+  "label": "uyurken",
+  "fig": "18–22 sa",
+  "sentence": "Bir ağacın çatalına sokulmuş bir koala günde 18 ila 22 saat uyuyabilir.",
+  "note": "Hiçbir kaynak bir çalışma adı vermiyor ya da koalaların doğada mı yoksa hayvanat bahçesinde mi olduğunu söylemiyor. Taronga Hayvanat Bahçesi 18 ila 20 diyor.",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "uyurken"
    }
   ]
  },
  "19": {
-  "face": "China",
-  "label": "asleep or resting",
-  "fig": "9 h 19",
-  "sentence": "People in China spend 9 hours 19 minutes a day asleep or resting, by the national time-use survey of 2018.",
-  "note": "People aged 15 and over (National Bureau of Statistics of China). The survey counts sleeping and resting together.",
+  "face": "Çin",
+  "label": "uyurken ya da dinlenirken",
+  "fig": "9 sa 19",
+  "sentence": "Çin'de insanlar günde 9 saat 19 dakikayı uyuyarak ya da dinlenerek geçiriyor; 2018 ulusal zaman kullanımı araştırmasına göre.",
+  "note": "15 yaş ve üstü kişiler (Çin Ulusal İstatistik Bürosu). Araştırma uykuyu ve dinlenmeyi birlikte sayar.",
   "chips": [
    {
     "i": "rest",
-    "t": "asleep or resting"
+    "t": "uyurken ya da dinlenirken"
    },
    {
     "i": "people",
-    "t": "everyone"
+    "t": "herkes"
    }
   ]
  },
  "20": {
-  "face": "Pig",
-  "label": "asleep",
-  "fig": "7 h 48–8 h 24",
-  "sentence": "A pig sleeps about 7.8 to 8.4 hours a day, more than a cow or a horse.",
-  "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976).",
+  "face": "Domuz",
+  "label": "uyurken",
+  "fig": "7 sa 48–8 sa 24",
+  "sentence": "Bir domuz günde yaklaşık 7,8 ila 8,4 saat uyur; bir inekten ya da attan daha fazla.",
+  "note": "Hayvan uykusuyla ilgili iki klasik tablodan: Washington Üniversitesi'nin tablosu ile Allison ve Cicchetti'nin tablosu (Science, 1976).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "uyurken"
    }
   ]
  },
  "21": {
-  "face": "Fire ant queen",
-  "label": "asleep",
-  "fig": "9 h 24",
-  "sentence": "A fire ant queen takes about 92 naps a day, of about six minutes each: about 9.4 hours of sleep.",
-  "note": "Red imported fire ants (Cassill and others, Journal of Insect Behavior, 2009). The workers sleep about half as long.",
+  "face": "Ateş karıncası kraliçesi",
+  "label": "uyurken",
+  "fig": "9 sa 24",
+  "sentence": "Bir ateş karıncası kraliçesi günde yaklaşık 92 kez, her biri yaklaşık altı dakika süren şekerleme yapar: yaklaşık 9,4 saat uyku.",
+  "note": "Kızıl ateş karıncaları (Cassill ve ark., Journal of Insect Behavior, 2009). İşçiler yaklaşık yarısı kadar uyur.",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "uyurken"
    }
   ]
  },
  "22": {
-  "face": "USA",
-  "label": "eating",
-  "fig": "1 h 02–1 h 13",
-  "sentence": "People in the USA spend only about an hour a day eating and drinking: less than in any other country compared.",
-  "note": "1 hour 13 in 2025 (US Bureau of Labor Statistics, ages 15 and over); 1 hour 2 in an older OECD comparison.",
+  "face": "ABD",
+  "label": "yemek yerken",
+  "fig": "1 sa 02–1 sa 13",
+  "sentence": "ABD'de insanlar günde yalnızca yaklaşık bir saatini yemeye ve içmeye ayırıyor: karşılaştırılan başka hiçbir ülkeden daha az.",
+  "note": "2025'te 1 saat 13 dakika (ABD Çalışma İstatistikleri Bürosu, 15 yaş ve üstü); daha eski bir OECD karşılaştırmasında 1 saat 2 dakika.",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "yemek yerken"
    },
    {
     "i": "people",
-    "t": "everyone"
+    "t": "herkes"
    }
   ]
  },
  "23": {
-  "face": "Hedgehog",
-  "label": "asleep",
-  "fig": "10 h 06–10 h 42",
-  "sentence": "A European hedgehog sleeps 10 to 10.7 hours a day, almost half the day.",
-  "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976).",
+  "face": "Kirpi",
+  "label": "uyurken",
+  "fig": "10 sa 06–10 sa 42",
+  "sentence": "Bir Avrupa kirpisi günde 10 ila 10,7 saat uyur; neredeyse günün yarısı.",
+  "note": "Hayvan uykusuyla ilgili iki klasik tablodan: Washington Üniversitesi'nin tablosu ile Allison ve Cicchetti'nin tablosu (Science, 1976).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "uyurken"
    }
   ]
  },
  "24": {
-  "face": "Japan",
-  "label": "paid work or study",
-  "fig": "7 h 32",
-  "sentence": "Men in Japan aged 15 to 64 do 7 hours 32 minutes of paid work or study a day, counting weekends.",
-  "note": "OECD figures from Japan's 2016 survey: all men aged 15 to 64, working or not, all seven days. American men: 5 hours 32.",
+  "face": "Japonya",
+  "label": "ücretli iş ya da okul",
+  "fig": "7 sa 32",
+  "sentence": "Japonya'da 15 ila 64 yaş arası erkekler, hafta sonları da sayılırsa, günde 7 saat 32 dakikayı ücretli işte ya da okulda geçiriyor.",
+  "note": "Japonya'nın 2016 araştırmasından OECD rakamları: 15 ila 64 yaş arasındaki bütün erkekler, çalışsın çalışmasın, haftanın yedi günü. Amerikalı erkekler: 5 saat 32 dakika.",
   "chips": [
    {
     "i": "workstudy",
-    "t": "paid work or study"
+    "t": "ücretli iş ya da okul"
    },
    {
     "i": "people",
-    "t": "men"
+    "t": "erkekler"
    }
   ]
  },
  "25": {
-  "face": "Hunter-gatherers",
-  "label": "asleep",
-  "fig": "6 h 25",
-  "sentence": "Three peoples who live by hunting and gathering slept about 6 hours 25 minutes a night on average.",
-  "note": "The Hadza of Tanzania, the San of Namibia and the Tsimane of Bolivia, with wrist sleep trackers (Yetish and others, Current Biology, 2015).",
+  "face": "Avcı-toplayıcılar",
+  "label": "uyurken",
+  "fig": "6 sa 25",
+  "sentence": "Avcılık ve toplayıcılıkla yaşayan üç halk, geceleri ortalama yaklaşık 6 saat 25 dakika uyudu.",
+  "note": "Tanzanya'nın Hadza'ları, Namibya'nın San'ları ve Bolivya'nın Tsimane'leri, bilek uyku takipçileriyle (Yetish ve ark., Current Biology, 2015).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "uyurken"
    }
   ]
  },
  "26": {
-  "face": "Sloth",
-  "label": "asleep",
-  "fig": "9 h 38",
-  "sentence": "Wild three-toed sloths slept just under 10 hours a day: some six hours less than sloths kept in captivity.",
-  "note": "Brown-throated three-toed sloths in the rainforest canopy of Panama, wearing tiny brain recorders (Rattenborg and others, Biology Letters, 2008).",
+  "face": "Tembel hayvan",
+  "label": "uyurken",
+  "fig": "9 sa 38",
+  "sentence": "Doğadaki üç parmaklı tembel hayvanlar günde 10 saatin biraz altında uyudu: insan bakımındakilerden yaklaşık altı saat az.",
+  "note": "Panama yağmur ormanının tepe katmanındaki kahverengi boğazlı üç parmaklı tembel hayvanlar, küçük beyin kaydedicileri takarak (Rattenborg ve ark., Biology Letters, 2008).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "uyurken"
    },
    {
     "i": "pin",
-    "t": "in the wild"
+    "t": "doğada"
    }
   ]
  },
  "27": {
-  "face": "Dairy cow",
-  "label": "eating",
-  "fig": "3–5 h",
-  "sentence": "A dairy cow eats for 3 to 5 hours a day, in 9 to 14 meals.",
-  "note": "Housed dairy cows, not grazing. A Czech study found 4 to 5 hours, within 3 to 6.",
+  "face": "Süt ineği",
+  "label": "yemek yerken",
+  "fig": "3–5 sa",
+  "sentence": "Bir süt ineği günde 3 ila 5 saat yemek yer; 9 ila 14 öğünde.",
+  "note": "Ahırda tutulan, otlamayan süt inekleri. Bir Çek çalışması 3 ila 6 saat aralığında 4 ila 5 saat buldu.",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "yemek yerken"
    },
    {
     "i": "pin",
-    "t": "on a farm"
+    "t": "çiftlikte"
    }
   ]
  },
  "28": {
-  "face": "France",
-  "label": "housework and care",
-  "fig": "2 h 15",
-  "sentence": "Men in France spend 2 hours 15 minutes a day on unpaid work, such as housework and care; women 3 hours 44.",
-  "note": "OECD figures, men aged 15 to 64, all seven days, from INSEE's survey of 2009–2010.",
+  "face": "Fransa",
+  "label": "ev işi ve bakım",
+  "fig": "2 sa 15",
+  "sentence": "Fransa'da erkekler günde 2 saat 15 dakikayı ev işi ve bakım gibi ücretsiz işlere harcıyor; kadınlar 3 saat 44 dakika.",
+  "note": "OECD rakamları, 15 ila 64 yaş arası erkekler, haftanın yedi günü, INSEE'nin 2009–2010 araştırmasından.",
   "chips": [
    {
     "i": "care",
-    "t": "housework and care"
+    "t": "ev işi ve bakım"
    },
    {
     "i": "people",
-    "t": "men"
+    "t": "erkekler"
    }
   ]
  },
  "29": {
-  "face": "Giant panda",
-  "label": "eating",
-  "fig": "10–14 h",
-  "sentence": "A giant panda spends 10 to 14 hours a day munching bamboo.",
-  "note": "Two zoos' figures: 12 to 14 hours from Smithsonian's National Zoo, 10 to 14 from San Diego Zoo Wildlife Alliance.",
+  "face": "Dev panda",
+  "label": "yemek yerken",
+  "fig": "10–14 sa",
+  "sentence": "Bir dev panda günde 10 ila 14 saatini bambu çiğneyerek geçirir.",
+  "note": "İki hayvanat bahçesinin rakamları: Smithsonian Ulusal Hayvanat Bahçesi 12 ila 14 saat, San Diego Hayvanat Bahçesi Yaban Hayatı Birliği 10 ila 14 saat diyor.",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "yemek yerken"
    }
   ]
  }

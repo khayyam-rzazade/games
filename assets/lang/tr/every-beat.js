@@ -2,88 +2,88 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["every-beat"] = {
  "16": {
-  "face": "Elephant seal",
-  "label": "diving",
-  "sentence": "On a dive, an elephant seal's heart slows to about a third of its rate at the surface.",
-  "note": "Northern elephant seals. About 35 beats a minute on average while diving, in a laboratory study."
+  "face": "Fil foku",
+  "label": "dalarken",
+  "sentence": "Dalış sırasında bir fil fokunun kalbi, yüzeydeki hızının yaklaşık üçte birine yavaşlar.",
+  "note": "Kuzey fil fokları. Bir laboratuvar çalışmasında dalış sırasında dakikada ortalama yaklaşık 35 atış."
  },
  "17": {
-  "face": "Lobster",
-  "label": "at rest",
-  "sentence": "In water at about 15 °C, a lobster's heart beats 35 to 60 times a minute, a little slower than yours.",
-  "note": "American lobsters: slower in winter, faster in summer, and about 60 in the wild."
+  "face": "Istakoz",
+  "label": "dinlenirken",
+  "sentence": "Yaklaşık 15 °C'lik suda bir ıstakozun kalbi dakikada 35 ila 60 kez atar; seninkinden biraz daha yavaş.",
+  "note": "Amerikan ıstakozları: kışın daha yavaş, yazın daha hızlı; doğada yaklaşık 60."
  },
  "18": {
-  "face": "Penguin",
-  "label": "at rest",
-  "sentence": "Resting on the ice, an emperor penguin's heart beats about as fast as yours: 63 to 84 times a minute.",
-  "note": "Emperor penguins at rest, in Antarctica, about 73 a minute on average."
+  "face": "Penguen",
+  "label": "dinlenirken",
+  "sentence": "Buzun üstünde dinlenirken bir imparator penguenin kalbi yaklaşık seninki kadar hızlı atar: dakikada 63 ila 84 kez.",
+  "note": "Antarktika'da dinlenen imparator penguenler, ortalama dakikada yaklaşık 73."
  },
  "19": {
-  "face": "Bat",
-  "label": "in torpor",
-  "sentence": "To save energy, a resting noctule bat can slow its heart to six beats a minute.",
-  "note": "Wild common noctules, measured in 2024. Torpor is a deep rest that saves energy; in flight the same bats' hearts beat about 900 times a minute."
+  "face": "Yarasa",
+  "label": "derin dinlenmede",
+  "sentence": "Enerji tasarrufu için dinlenen bir akşam yarasası kalbini dakikada altı atışa kadar yavaşlatabilir.",
+  "note": "Doğadaki yaygın akşam yarasaları, 2024'te ölçüldü. Torpor, enerji tasarrufu sağlayan derin bir dinlenmedir; uçarken aynı yarasaların kalbi dakikada yaklaşık 900 kez atar."
  },
  "20": {
-  "face": "Cow",
-  "label": "at rest",
-  "sentence": "A cow's heart beats 40 to 80 times a minute.",
-  "note": "Adult cattle at rest."
+  "face": "İnek",
+  "label": "dinlenirken",
+  "sentence": "Bir ineğin kalbi dakikada 40 ila 80 kez atar.",
+  "note": "Dinlenen yetişkin sığırlar."
  },
  "21": {
-  "face": "Newborn baby",
-  "label": "awake",
-  "sentence": "A newborn baby's heart beats 120 to 160 times a minute, much faster than a grown-up's.",
-  "note": "Awake, in the first weeks. It can be much slower when the baby sleeps."
+  "face": "Yenidoğan bebek",
+  "label": "uyanıkken",
+  "sentence": "Yenidoğan bir bebeğin kalbi dakikada 120 ila 160 kez atar; bir yetişkininkinden çok daha hızlı.",
+  "note": "Uyanıkken, ilk haftalarda. Bebek uyurken çok daha yavaş olabilir."
  },
  "22": {
-  "face": "Trout",
-  "label": "at rest",
-  "sentence": "In water at about 15 °C, a resting trout's heart beats about 60 times a minute, and faster as the water warms.",
-  "note": "Rainbow trout. At 24 °C the same fish reached about 125. The picture shows a salmon, of the same family."
+  "face": "Alabalık",
+  "label": "dinlenirken",
+  "sentence": "Yaklaşık 15 °C'lik suda dinlenen bir alabalığın kalbi dakikada yaklaşık 60 kez atar; su ısındıkça daha hızlı.",
+  "note": "Gökkuşağı alabalığı. 24 °C'de aynı balık yaklaşık 125'e ulaştı. Resimde aynı aileden bir somon görünüyor."
  },
  "23": {
-  "face": "Camel",
-  "label": "at rest",
-  "sentence": "A camel's heart beats 35 to 50 times a minute, slower than a person's.",
-  "note": "Dromedary camels, examined in the field. Young camels' hearts beat faster."
+  "face": "Deve",
+  "label": "dinlenirken",
+  "sentence": "Bir devenin kalbi dakikada 35 ila 50 kez atar; bir insanınkinden daha yavaş.",
+  "note": "Tek hörgüçlü develer, sahada incelendi. Genç develerin kalbi daha hızlı atar."
  },
  "24": {
-  "face": "Pig",
-  "label": "at rest",
-  "sentence": "A pig's heart beats 70 to 120 times a minute.",
-  "note": "A pig's pulse is hard to find: vets feel the heart itself."
+  "face": "Domuz",
+  "label": "dinlenirken",
+  "sentence": "Bir domuzun kalbi dakikada 70 ila 120 kez atar.",
+  "note": "Domuzun nabzını bulmak zordur: veterinerler kalbin kendisini hisseder."
  },
  "25": {
-  "face": "Blue whale",
-  "label": "at the surface",
-  "sentence": "Back at the surface to breathe, a blue whale's heart speeds up to 25 to 37 beats a minute.",
-  "note": "The same whale as on its dives, which went as low as 2 beats a minute (Goldbogen and others, PNAS, 2019)."
+  "face": "Mavi balina",
+  "label": "yüzeyde",
+  "sentence": "Nefes almak için yüzeye dönünce mavi balinanın kalbi hızlanıp dakikada 25 ila 37 atışa çıkar.",
+  "note": "Dalışlarında dakikada 2 atışa kadar düşen aynı balina (Goldbogen ve ark., PNAS, 2019)."
  },
  "26": {
-  "face": "Rabbit",
-  "label": "at rest",
-  "sentence": "A rabbit's heart beats somewhere between 120 and 350 times a minute at rest.",
-  "note": "The two sources disagree: one says 180 to 350, the other 120 to 220. Every answer in either counts."
+  "face": "Tavşan",
+  "label": "dinlenirken",
+  "sentence": "Bir tavşanın kalbi dinlenirken dakikada 120 ile 350 arasında bir hızla atar.",
+  "note": "İki kaynak birbirini tutmuyor: biri 180 ila 350, öbürü 120 ila 220 diyor. İkisinden birine giren her cevap sayılır."
  },
  "27": {
-  "face": "Black bear",
-  "label": "in summer",
-  "sentence": "In summer, a black bear's heart beats 55 to 95 times a minute, about as fast as a person's.",
-  "note": "The same bears slow to 10 to 25 beats a minute in their winter dens. When active they can briefly pass 200."
+  "face": "Kara ayı",
+  "label": "yazın",
+  "sentence": "Yazın bir kara ayının kalbi dakikada 55 ila 95 kez atar; yaklaşık bir insanınki kadar hızlı.",
+  "note": "Aynı ayılar kış inlerinde dakikada 10 ila 25 atışa yavaşlar. Hareketliyken kısa süre 200'ü geçebilir."
  },
  "28": {
-  "face": "Penguin",
-  "label": "at the surface",
-  "sentence": "Between very deep dives, an emperor penguin's heart can race to 256 beats a minute.",
-  "note": "The highest reading, just before and after a dive. Deep in a dive the same heart can slow to 3."
+  "face": "Penguen",
+  "label": "yüzeyde",
+  "sentence": "Çok derin dalışlar arasında bir imparator penguenin kalbi dakikada 256 atışa kadar hızlanabilir.",
+  "note": "En yüksek ölçüm; dalıştan hemen önce ve sonra. Dalışın derinliklerinde aynı kalp 3'e kadar yavaşlayabilir."
  },
  "29": {
-  "face": "Adult",
-  "label": "asleep",
-  "sentence": "Asleep, most healthy adults' hearts slow to 40 to 60 beats a minute.",
-  "note": "Deep sleep slows the heart most. Older people's hearts stay a little faster at night."
+  "face": "Yetişkin",
+  "label": "uyurken",
+  "sentence": "Uyurken sağlıklı yetişkinlerin çoğunun kalbi dakikada 40 ila 60 atışa yavaşlar.",
+  "note": "En çok derin uyku kalbi yavaşlatır. Yaşlıların kalbi geceleri biraz daha hızlı kalır."
  }
 };
-window.LG_PUZZLES["every-beat.lifetime"] = {"line": "Small hearts beat fast, big hearts slowly. Most mammals get about the same number of beats in a life: several hundred million. People get far more: about three billion."};
+window.LG_PUZZLES["every-beat.lifetime"] = {"line": "Küçük kalpler hızlı, büyük kalpler yavaş atar. Çoğu memeli bir ömürde yaklaşık aynı sayıda atış alır: birkaç yüz milyon. İnsanlar çok daha fazlasını alır: yaklaşık üç milyar."};

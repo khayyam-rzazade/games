@@ -2,73 +2,73 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["100-of-us"] = {
  "22": {
-  "q": "Of 100 people in the world, how many live on less than 3 dollars a day?",
-  "sentence": "The 3 dollars are adjusted for what money can buy in each country.",
-  "stamp": "live on less than 3 dollars a day"
+  "q": "De 100 personas en el mundo, ¿cuántas viven con menos de 3 dólares al día?",
+  "sentence": "Los 3 dólares están ajustados a lo que se puede comprar con el dinero en cada país.",
+  "stamp": "viven con menos de 3 dólares al día"
  },
  "23": {
-  "q": "Of 100 people in the world, how many are 65 or older?",
-  "sentence": "The other 90 are younger than 65.",
-  "stamp": "are 65 or older"
+  "q": "De 100 personas en el mundo, ¿cuántas tienen 65 años o más?",
+  "sentence": "Las otras 90 tienen menos de 65 años.",
+  "stamp": "tienen 65 años o más"
  },
  "24": {
-  "q": "Of 100 people in the world's workforce, how many are women?",
-  "sentence": "The workforce counts everyone who has a job or is looking for one.",
-  "stamp": "workers are women"
+  "q": "De 100 personas de la fuerza laboral del mundo, ¿cuántas son mujeres?",
+  "sentence": "La fuerza laboral cuenta a todas las personas que tienen un empleo o lo buscan.",
+  "stamp": "personas de la fuerza laboral son mujeres"
  },
  "25": {
-  "q": "Of 100 people in the world, how many have a safe toilet at home?",
-  "sentence": "Safe means a toilet not shared with other homes, where the waste is safely disposed of or treated.",
-  "stamp": "have a safe toilet at home"
+  "q": "De 100 personas en el mundo, ¿cuántas tienen un baño seguro en casa?",
+  "sentence": "Seguro quiere decir un baño que no se comparte con otros hogares y cuyos desechos se eliminan o se tratan de forma segura.",
+  "stamp": "tienen un baño seguro en casa"
  },
  "26": {
-  "q": "Of 100 adults in the world, how many have a bank or mobile-money account?",
-  "sentence": "A mobile-money account lives on a phone, with no bank branch needed.",
-  "stamp": "adults have a bank or mobile-money account"
+  "q": "De 100 adultos en el mundo, ¿cuántos tienen una cuenta en un banco o de dinero móvil?",
+  "sentence": "Una cuenta de dinero móvil está en el teléfono y no hace falta ninguna sucursal de banco.",
+  "stamp": "adultos tienen una cuenta en un banco o de dinero móvil"
  },
  "27": {
-  "q": "Of 100 people in the world, how many do not get enough food?",
-  "sentence": "Not enough means too few calories for a normal, active life.",
-  "stamp": "do not get enough food"
+  "q": "De 100 personas en el mundo, ¿cuántas no tienen suficiente comida?",
+  "sentence": "No suficiente quiere decir muy pocas calorías para una vida normal y activa.",
+  "stamp": "no tienen suficiente comida"
  },
  "28": {
-  "q": "Of 100 workers in the world, how many work in services, such as shops, schools and offices?",
-  "sentence": "Services cover trade, transport, hotels, teaching, health care and office work.",
-  "stamp": "workers work in services"
+  "q": "De 100 personas que trabajan en el mundo, ¿cuántas trabajan en servicios, como tiendas, escuelas y oficinas?",
+  "sentence": "Los servicios incluyen el comercio, el transporte, los hoteles, la enseñanza, la atención de la salud y el trabajo de oficina.",
+  "stamp": "personas trabajan en servicios"
  },
  "29": {
-  "q": "Of 100 people in the world, how many cook with clean fuel, such as gas or electricity?",
-  "sentence": "The other 26 cook with fuels like wood, charcoal or coal.",
-  "stamp": "cook with clean fuel"
+  "q": "De 100 personas en el mundo, ¿cuántas cocinan con combustibles limpios, como el gas o la electricidad?",
+  "sentence": "Las otras 26 cocinan con combustibles como la leña, el carbón vegetal o el carbón mineral.",
+  "stamp": "cocinan con combustibles limpios"
  },
  "30": {
-  "q": "Of 100 people in the world, how many are women or girls?",
-  "sentence": "So about 50 are men or boys.",
-  "stamp": "are women or girls"
+  "q": "De 100 personas en el mundo, ¿cuántas son mujeres o niñas?",
+  "sentence": "Así que unas 50 son hombres o niños.",
+  "stamp": "son mujeres o niñas"
  },
  "31": {
-  "q": "Of 100 births in the world, how many are attended by a trained health worker?",
-  "sentence": "Trained means a doctor, a nurse or a midwife.",
-  "stamp": "births are attended by a trained health worker"
+  "q": "De 100 nacimientos en el mundo, ¿cuántos son atendidos por personal de salud capacitado?",
+  "sentence": "Capacitado quiere decir un médico, una enfermera o una partera.",
+  "stamp": "nacimientos son atendidos por personal de salud capacitado"
  },
  "32": {
-  "q": "Of 100 workers in the world, how many work in industry, such as factories and construction?",
-  "sentence": "Industry means mining, factories, construction, and energy and water supply.",
-  "stamp": "workers work in industry"
+  "q": "De 100 personas que trabajan en el mundo, ¿cuántas trabajan en la industria, como fábricas y construcción?",
+  "sentence": "La industria incluye la minería, las fábricas, la construcción y el suministro de energía y agua.",
+  "stamp": "personas trabajan en la industria"
  },
  "33": {
-  "q": "Of 100 people in the world's towns and cities, how many live in a slum?",
-  "sentence": "A slum home lacks at least one basic thing, such as clean water, a toilet, enough space or solid walls.",
-  "stamp": "city dwellers live in a slum"
+  "q": "De 100 personas que viven en los pueblos y ciudades del mundo, ¿cuántas viven en un asentamiento precario?",
+  "sentence": "Una vivienda de un asentamiento precario carece de al menos algo básico, como agua limpia, un baño, espacio suficiente o paredes firmes.",
+  "stamp": "habitantes de ciudades viven en un asentamiento precario"
  },
  "34": {
-  "q": "Of 100 adults in the world, how many use tobacco?",
-  "sentence": "Adults here means everyone aged 15 or older. Tobacco is more than cigarettes.",
-  "stamp": "adults use tobacco"
+  "q": "De 100 adultos en el mundo, ¿cuántos consumen tabaco?",
+  "sentence": "Aquí, adultos son todas las personas de 15 años o más. El tabaco es más que cigarrillos.",
+  "stamp": "adultos consumen tabaco"
  },
  "35": {
-  "q": "Of 100 workers in the world, how many work for themselves?",
-  "sentence": "That includes people who help in a family business or farm without a wage.",
-  "stamp": "workers work for themselves"
+  "q": "De 100 personas que trabajan en el mundo, ¿cuántas trabajan por cuenta propia?",
+  "sentence": "Eso incluye a quienes ayudan en un negocio o una granja de la familia sin cobrar un sueldo.",
+  "stamp": "personas trabajan por cuenta propia"
  }
 };

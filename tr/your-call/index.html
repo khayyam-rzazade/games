@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title data-s="call.page_title">Your Call: a daily history game | Logicers</title>
+<title data-s="call.page_title">Karar Senin: günlük bir tarih oyunu | Logicers</title>
 <link rel="canonical" href="https://logicers.com/tr/your-call/">
 <link rel="alternate" hreflang="en" href="https://logicers.com/your-call/">
 <link rel="alternate" hreflang="it" href="https://logicers.com/it/your-call/">
@@ -16,7 +16,7 @@
 <link rel="alternate" hreflang="tr" href="https://logicers.com/tr/your-call/">
 <link rel="alternate" hreflang="es" href="https://logicers.com/es/your-call/">
 <link rel="alternate" hreflang="x-default" href="https://logicers.com/your-call/">
-<meta name="description" content="One real moment from history a day. Three choices. Make your call, then see what the real leader did and what happened next." data-s-content="call.page_desc">
+<meta name="description" content="Günde tarihten gerçek bir an. Üç seçenek. Kararını ver, sonra gerçek liderin ne yaptığını ve sonra ne olduğunu gör." data-s-content="call.page_desc">
 <meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
 <meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
@@ -24,8 +24,8 @@
 <meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
-<meta property="og:title" content="Your Call" data-s-content="game.call.name">
-<meta property="og:description" content="A real moment from history and three choices. What did they actually do?" data-s-content="call.og_desc">
+<meta property="og:title" content="Karar Senin" data-s-content="game.call.name">
+<meta property="og:description" content="Tarihten gerçek bir an ve üç seçenek. Gerçekte ne yaptılar?" data-s-content="call.og_desc">
 <meta property="og:url" content="https://logicers.com/tr/your-call/">
 <meta property="og:image" content="https://logicers.com/assets/img/og.png">
 <meta property="og:image:width" content="1200">
@@ -40,7 +40,7 @@
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="../../assets/css/logicers.css?v=e165ea97e7">
-<script src="../../assets/lang/tr.js?v=be9c81aa31"></script>
+<script src="../../assets/lang/tr.js?v=800cf276bd"></script>
 <script src="../../assets/js/lang.js?v=b48aebb299"></script>
 <link rel="stylesheet" href="../../your-call/your-call.css?v=55e63f22d1">
 </head>
@@ -49,14 +49,14 @@
 <header class="bar">
   <a class="wordmark" href="../../tr/">Logicers</a>
   <div class="bar-tools">
-    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Streak 0</button>
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Seri 0</button>
     <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
-    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play" data-s-aria-label="site.how_to_play">?</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Nasıl oynanır" data-s-aria-label="site.how_to_play">?</button>
   </div>
 </header>
 
 <main class="wrap play" id="app">
-  <p class="meta"><b data-s="game.call.name">Your Call</b> <span id="day-label"></span></p>
+  <p class="meta"><b data-s="game.call.name">Karar Senin</b> <span id="day-label"></span></p>
   <p class="notice" id="notice" hidden></p>
   <p class="yc-year" id="year"></p>
   <p class="yc-place" id="place"></p>
@@ -68,19 +68,19 @@
   </section>
 
   <div class="actions reserve" id="guess-actions">
-    <button class="btn solid" id="lock" type="button" hidden data-s="call.see_what">See what they did</button>
+    <button class="btn solid" id="lock" type="button" hidden data-s="call.see_what">Ne yaptıklarını gör</button>
   </div>
 
   <section class="after" id="after" hidden>
     <p class="friend" id="friend" hidden></p>
     <p class="sentence" id="did"></p>
-    <p class="yc-h" data-s="call.what_next">What happened next</p>
+    <p class="yc-h" data-s="call.what_next">Sonra ne oldu</p>
     <p class="sentence" id="next-text"></p>
-    <p class="source"><span data-s="site.sources">Sources:</span> <a id="src1" href="#" target="_blank" rel="noopener"></a>, <a id="src2" href="#" target="_blank" rel="noopener"></a></p>
+    <p class="source"><span data-s="site.sources">Kaynaklar:</span> <a id="src1" href="#" target="_blank" rel="noopener"></a>, <a id="src2" href="#" target="_blank" rel="noopener"></a></p>
 
     <div class="actions">
-      <button class="btn solid" id="share" type="button" data-s="site.share">Share</button>
-      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">Practice</button>
+      <button class="btn solid" id="share" type="button" data-s="site.share">Paylaş</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">Alıştırma</button>
     </div>
 
     <p class="next" id="next"></p>
@@ -89,67 +89,67 @@
 
 <dialog id="dlg-help" aria-labelledby="help-title">
   <div class="sheet">
-    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
-    <h2 id="help-title" data-s="site.how_to_play">How to play</h2>
+    <button class="chip round close" type="button" data-close aria-label="Kapat" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">Nasıl oynanır</h2>
     <ol>
-      <li data-s="call.help_1">Read the moment. It really happened.</li>
-      <li data-s="call.help_2">Tap the choice you would make, then tap "See what they did".</li>
-      <li data-s="call.help_3">See what the real leader did, and what happened next.</li>
+      <li data-s="call.help_1">Anı oku. Gerçekten yaşandı.</li>
+      <li data-s="call.help_2">Vereceğin kararın seçeneğine dokun, sonra “Ne yaptıklarını gör” düğmesine dokun.</li>
+      <li data-s="call.help_3">Gerçek liderin ne yaptığını ve sonra ne olduğunu gör.</li>
     </ol>
-    <p data-s="call.help_no_wrong">There is no right or wrong choice here. The game only shows what was actually done.</p>
-    <p data-s="call.help_daily">One moment a day, the same for everyone. A new one arrives at midnight.</p>
-    <h3 data-s="site.facts_from">Where the facts come from</h3>
-    <p class="quiet" data-s="call.help_facts">Every moment is checked against two sources, linked under the answer. Events are at least twenty years old.</p>
-    <h3 data-s="site.your_privacy">Your privacy</h3>
-    <p class="quiet" data-privacy="long" data-s="priv.long_page">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
-    <p class="mail" data-s="site.mistake_mail">Spotted a mistake? Write to me: <b>logicers.world@gmail.com</b></p>
+    <p data-s="call.help_no_wrong">Burada doğru ya da yanlış seçenek yok. Oyun yalnızca gerçekte ne yapıldığını gösterir.</p>
+    <p data-s="call.help_daily">Günde bir an, herkes için aynı. Yenisi gece yarısı gelir.</p>
+    <h3 data-s="site.facts_from">Bilgiler nereden geliyor</h3>
+    <p class="quiet" data-s="call.help_facts">Her an iki kaynakla kontrol edilir; kaynaklar cevabın altında bağlantılıdır. Olaylar en az yirmi yıl öncesine aittir.</p>
+    <h3 data-s="site.your_privacy">Gizliliğin</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">Giriş yok, izleme yok, çerez yok. Serin ve albümün yalnızca bu tarayıcıda saklanır.</p>
+    <p class="mail" data-s="site.mistake_mail">Bir hata mı gördün? Bana yaz: <b>logicers.world@gmail.com</b></p>
   </div>
 </dialog>
 
 <dialog id="dlg-album" aria-labelledby="album-title">
   <div class="sheet">
-    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
-    <h2 id="album-title" data-s="site.your_album">Your album</h2>
+    <button class="chip round close" type="button" data-close aria-label="Kapat" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Albümün</h2>
     <div class="stats">
-      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">days played</span></div>
-      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">streak now</span></div>
-      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">best streak</span></div>
-      <div class="stat"><b id="st-same">0</b><span data-s="call.same_calls">same calls as the leader</span></div>
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">oynanan gün</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">şu anki seri</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">en iyi seri</span></div>
+      <div class="stat"><b id="st-same">0</b><span data-s="call.same_calls">liderle aynı karar</span></div>
     </div>
-    <p class="album-empty" id="album-empty" data-s="call.album_empty">Make today's call to get your first stamp.</p>
+    <p class="album-empty" id="album-empty" data-s="call.album_empty">İlk pulunu almak için bugünün kararını ver.</p>
     <div class="album" id="album"></div>
   </div>
 </dialog>
 
 <dialog id="dlg-practice" aria-labelledby="practice-title">
   <div class="sheet">
-    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
-    <h2 id="practice-title" data-s="site.practice">Practice</h2>
-    <p class="quiet" data-s="call.practice_lede">Yesterday's moment. Practice does not count for your streak or your album.</p>
-    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Nothing to practise yet. Come back tomorrow.</p>
+    <button class="chip round close" type="button" data-close aria-label="Kapat" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">Alıştırma</h2>
+    <p class="quiet" data-s="call.practice_lede">Dünün anı. Alıştırma serine ya da albümüne sayılmaz.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Henüz alıştırılacak bir şey yok. Yarın tekrar gel.</p>
     <ul class="days" id="practice-list"></ul>
-    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../tr/your-call/" data-s="call.back_today">Back to today's moment</a></div>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../tr/your-call/" data-s="call.back_today">Bugünün anına dön</a></div>
   </div>
 </dialog>
 
 <dialog id="dlg-share" aria-labelledby="share-title">
   <div class="sheet">
-    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
-    <h2 id="share-title" data-s="call.share_title">Share your call</h2>
-    <p class="quiet" data-s="site.share_lede">Send the link along with the picture, so friends can tap it.</p>
-    <img class="shot" id="share-img" alt="Your result as a picture. It does not show what the real leader did." data-s-alt="call.share_alt">
+    <button class="chip round close" type="button" data-close aria-label="Kapat" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="call.share_title">Kararını paylaş</h2>
+    <p class="quiet" data-s="site.share_lede">Bağlantıyı resimle birlikte gönder; arkadaşların dokunabilsin.</p>
+    <img class="shot" id="share-img" alt="Sonucun, resim olarak. Gerçek liderin ne yaptığını göstermez." data-s-alt="call.share_alt">
     <div class="actions">
-      <a class="btn solid" id="share-save" download="your-call.png" data-s="share.save">Save picture</a>
-      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copy link</button>
+      <a class="btn solid" id="share-save" download="your-call.png" data-s="share.save">Resmi kaydet</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Bağlantıyı kopyala</button>
     </div>
     <p class="copied" id="share-copied" role="status"></p>
   </div>
 </dialog>
 
-<noscript><p style="padding:18px" data-s="site.noscript">This game needs JavaScript to run.</p></noscript>
+<noscript><p style="padding:18px" data-s="site.noscript">Bu oyunun çalışması için JavaScript gerekir.</p></noscript>
 
 <script src="../../your-call/puzzles.js"></script>
-<script src="../../assets/lang/tr/your-call.js?v=769ed65ee1"></script>
+<script src="../../assets/lang/tr/your-call.js?v=014fbbc2d8"></script>
 <script src="../../assets/js/turnsout.js?v=b0b0239919"></script>
 <script src="../../assets/js/duel.js?v=04294e8296"></script>
 <script src="../../assets/js/rooms.js?v=a42d4cf6f9"></script>

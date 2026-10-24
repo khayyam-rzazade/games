@@ -2,185 +2,185 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["your-call"] = {
  "22": {
-  "place": "Copenhagen",
-  "pov": "Norway has just left its union with Sweden, and its government offers you the crown. But Norwegians still debate whether they want a king at all. You are the Danish prince they have chosen.",
-  "short": "Prince Carl",
-  "did": "Prince Carl said he would accept only if Norwegians approved in a referendum. In November 1905, 79 percent voted for a monarchy.",
-  "next": "Parliament elected him king on 18 November 1905, and he took the Old Norse name Haakon. He reigned as Haakon VII until his death in 1957.",
-  "stamp": "Norway votes for a king",
+  "place": "Copenhague",
+  "pov": "Noruega acaba de dejar su unión con Suecia, y su gobierno te ofrece la corona. Pero los noruegos todavía discuten si quieren un rey. Eres el príncipe danés que han elegido.",
+  "short": "Carlos",
+  "did": "El príncipe Carlos dijo que solo aceptaría si los noruegos lo aprobaban en un referéndum. En noviembre de 1905, el 79 % votó a favor de una monarquía.",
+  "next": "El Parlamento lo eligió rey el 18 de noviembre de 1905, y él adoptó el antiguo nombre nórdico de Haakon. Reinó como Haakon VII hasta su muerte en 1957.",
+  "stamp": "Noruega vota por un rey",
   "choices": [
-   "Accept the crown at once",
-   "Accept only if the people vote for it",
-   "Decline and stay in Denmark"
+   "Aceptar la corona de inmediato",
+   "Aceptar solo si el pueblo lo vota",
+   "Rechazarla y quedarte en Dinamarca"
   ]
  },
  "23": {
   "place": "Washington",
-  "pov": "Soviet forces have cut all road, rail and canal routes into West Berlin, deep inside their zone. Its people depend on you for food and coal. You are the president of the United States.",
+  "pov": "Las fuerzas soviéticas han cortado todas las carreteras, vías de tren y canales que llevan a Berlín Occidental, muy adentro de su zona. Sus habitantes dependen de ti para tener comida y carbón. Eres el presidente de Estados Unidos.",
   "short": "Truman",
-  "did": "Truman's government decided to stay and supply West Berlin by air. The airlift began on 26 June 1948.",
-  "next": "By the time it ended, planes had made 278,228 flights and carried more than 2.3 million tons. The Soviet Union lifted the blockade in May 1949.",
-  "stamp": "The Berlin airlift",
+  "did": "El gobierno de Truman decidió quedarse y abastecer Berlín Occidental por aire. El puente aéreo empezó el 26 de junio de 1948.",
+  "next": "Cuando terminó, los aviones habían hecho 278 228 vuelos y habían llevado más de 2,3 millones de toneladas. La Unión Soviética levantó el bloqueo en mayo de 1949.",
+  "stamp": "El puente aéreo de Berlín",
   "choices": [
-   "Pull out of Berlin",
-   "Force an armed convoy through",
-   "Supply the city by air"
+   "Retirarte de Berlín",
+   "Forzar el paso de un convoy armado",
+   "Abastecer la ciudad por aire"
   ]
  },
  "24": {
-  "place": "Moscow",
-  "pov": "You have just returned from a great embassy abroad and want to modernise your country. Your nobles wear beards, as tradition and the Church expect. You are the tsar of Russia.",
-  "short": "Peter",
-  "did": "In 1698 Peter set up a beard tax, and men who paid it had to carry a token. He also shaved some of his guests' beards himself.",
-  "next": "Rich merchants paid up to 100 roubles a year. Many resisted, and the tax lasted until Catherine the Great repealed it in 1772.",
-  "stamp": "Peter taxes beards",
+  "place": "Moscú",
+  "pov": "Acabas de volver de una gran embajada en el extranjero y quieres modernizar tu país. Tus nobles llevan barba, como esperan la tradición y la Iglesia. Eres el zar de Rusia.",
+  "short": "Pedro el Grande",
+  "did": "En 1698 Pedro creó un impuesto a la barba, y los hombres que lo pagaban tenían que llevar una ficha. Además, él mismo afeitó la barba de algunos de sus invitados.",
+  "next": "Los comerciantes ricos pagaban hasta 100 rublos al año. Muchos se resistieron, y el impuesto duró hasta que Catalina la Grande lo abolió en 1772.",
+  "stamp": "Pedro y el impuesto a la barba",
   "choices": [
-   "Leave the beards alone",
-   "Ban beards outright",
-   "Make men pay to keep a beard"
+   "Dejar las barbas como están",
+   "Prohibir las barbas del todo",
+   "Hacer que los hombres paguen por llevar barba"
   ]
  },
  "25": {
   "place": "Washington",
-  "pov": "Arkansas's governor used the National Guard to keep nine Black students out of a white high school. Now a mob of 400 threatens them at the school. You are the president of the United States.",
+  "pov": "El gobernador de Arkansas usó la Guardia Nacional para impedir que nueve estudiantes negros entraran en una escuela secundaria para blancos. Ahora una multitud de 400 personas los amenaza en la escuela. Eres el presidente de Estados Unidos.",
   "short": "Eisenhower",
-  "did": "Eisenhower put the Arkansas National Guard under federal command and sent in the army. On 25 September 1957 the nine entered the school, escorted by the 101st Airborne Division.",
-  "next": "Troops stayed all year, and in May 1958 Ernest Green became the school's first Black graduate. That September the governor closed Little Rock's high schools rather than integrate them.",
-  "stamp": "Troops to Little Rock",
+  "did": "Eisenhower puso a la Guardia Nacional de Arkansas bajo mando federal y envió al ejército. El 25 de septiembre de 1957 los nueve entraron en la escuela, escoltados por la 101.ª División Aerotransportada.",
+  "next": "Las tropas se quedaron todo el año, y en mayo de 1958 Ernest Green se convirtió en el primer graduado negro de la escuela. Ese septiembre el gobernador cerró las escuelas secundarias de Little Rock antes que integrarlas.",
+  "stamp": "Tropas a Little Rock",
   "choices": [
-   "Send federal troops to the school",
-   "Leave it to the state of Arkansas",
-   "Ask the students to wait a year"
+   "Enviar tropas federales a la escuela",
+   "Dejarlo en manos del estado de Arkansas",
+   "Pedir a los estudiantes que esperen un año"
   ]
  },
  "26": {
-  "place": "Cairo",
-  "pov": "Israel has occupied your country's Sinai Peninsula since 1967. In 1973 you went to war to win it back. Now you want peace, and the land. You are the president of Egypt.",
+  "place": "El Cairo",
+  "pov": "Israel ocupa la península del Sinaí, en tu país, desde 1967. En 1973 fuiste a la guerra para recuperarla. Ahora quieres la paz, y la tierra. Eres el presidente de Egipto.",
   "short": "Sadat",
-  "did": "Sadat flew to Israel, the first Arab leader to visit officially. On 20 November 1977 he spoke to the Knesset in Jerusalem and proposed peace.",
-  "next": "Egypt and Israel signed a peace treaty in 1979, and Sadat and Begin won the Nobel Peace Prize. In 1981 Sadat was assassinated during a parade in Cairo.",
-  "stamp": "Sadat goes to Jerusalem",
+  "did": "Sadat voló a Israel, el primer líder árabe en hacer una visita oficial. El 20 de noviembre de 1977 habló ante la Knéset en Jerusalén y propuso la paz.",
+  "next": "Egipto e Israel firmaron un tratado de paz en 1979, y Sadat y Begin recibieron el Premio Nobel de la Paz. En 1981 Sadat fue asesinado durante un desfile en El Cairo.",
+  "stamp": "Sadat viaja a Jerusalén",
   "choices": [
-   "Go to Jerusalem and speak to Israel",
-   "Prepare for another war",
-   "Wait for a peace conference"
+   "Ir a Jerusalén y hablar ante Israel",
+   "Prepararte para otra guerra",
+   "Esperar una conferencia de paz"
   ]
  },
  "27": {
-  "place": "Rio de Janeiro",
-  "pov": "Portugal's parliament wants to return Brazil to its old colonial status. It has stripped you of your remaining powers and ordered you back to Portugal. You are the prince regent of Brazil.",
+  "place": "Río de Janeiro",
+  "pov": "El parlamento de Portugal quiere devolver a Brasil a su antiguo estatus de colonia. Te ha quitado los poderes que te quedaban y te ha ordenado volver a Portugal. Eres el príncipe regente de Brasil.",
   "short": "Pedro",
-  "did": "On 7 September 1822, by the Ipiranga brook, Pedro cried 'Independence or death!' and proclaimed Brazil's independence from Portugal.",
-  "next": "He was acclaimed emperor on 12 October 1822. After fighting that lasted until 1824, Portugal recognised Brazil's independence in 1825.",
-  "stamp": "Brazil declares independence",
+  "did": "El 7 de septiembre de 1822, junto al arroyo del Ipiranga, Pedro gritó «¡Independencia o muerte!» y proclamó la independencia de Brasil respecto de Portugal.",
+  "next": "Fue aclamado emperador el 12 de octubre de 1822. Tras unos combates que duraron hasta 1824, Portugal reconoció la independencia de Brasil en 1825.",
+  "stamp": "Brasil declara su independencia",
   "choices": [
-   "Obey and sail back to Portugal",
-   "Declare Brazil independent",
-   "Stay on as Portugal's regent"
+   "Obedecer y navegar de vuelta a Portugal",
+   "Declarar la independencia de Brasil",
+   "Seguir como regente de Portugal"
   ]
  },
  "28": {
-  "place": "The Hague",
-  "pov": "Oil-producing countries are boycotting your country because it supported Israel in the Yom Kippur War. You must cut oil use fast. You are the prime minister of the Netherlands.",
+  "place": "La Haya",
+  "pov": "Los países productores de petróleo boicotean a tu país porque apoyó a Israel en la guerra de Yom Kipur. Debes reducir el uso de petróleo con rapidez. Eres el primer ministro de los Países Bajos.",
   "short": "Den Uyl",
-  "did": "Den Uyl's government banned driving on Sundays and rationed fuel. Only essential workers, doctors and emergency services were allowed to drive.",
-  "next": "On the empty motorways people cycled, rode horses and even had picnics. On television Den Uyl said things would never return to the way they were.",
-  "stamp": "Car-free Sundays",
+  "did": "El gobierno de Den Uyl prohibió conducir los domingos y racionó el combustible. Solo podían conducir los trabajadores esenciales, los médicos y los servicios de emergencia.",
+  "next": "En las autopistas vacías la gente iba en bicicleta, montaba a caballo e incluso hacía picnics. En la televisión Den Uyl dijo que las cosas nunca volverían a ser como antes.",
+  "stamp": "Domingos sin coches",
   "choices": [
-   "Ban driving on Sundays",
-   "Raise petrol prices sharply",
-   "Wait for the boycott to end"
+   "Prohibir conducir los domingos",
+   "Subir mucho el precio de la gasolina",
+   "Esperar a que termine el boicot"
   ]
  },
  "29": {
   "place": "Ahmedabad",
-  "pov": "You plan civil disobedience against British rule and must choose the first target. One colleague wants a boycott of land taxes. British law forbids Indians to collect or sell salt. You are the movement's leader.",
+  "pov": "Planeas una desobediencia civil contra el dominio británico y debes elegir el primer objetivo. Un colega quiere un boicot a los impuestos sobre la tierra. La ley británica prohíbe a los indios recoger o vender sal. Eres el líder del movimiento.",
   "short": "Gandhi",
-  "did": "Gandhi set out on 12 March 1930 with 78 followers and walked 240 miles to the sea at Dandi. On 6 April he broke the salt law there.",
-  "next": "Millions broke the salt laws, and more than 60,000 people were arrested. Gandhi was jailed in May, but in 1931 he negotiated with the viceroy.",
-  "stamp": "Gandhi's salt march",
+  "did": "Gandhi salió el 12 de marzo de 1930 con 78 seguidores y caminó 240 millas hasta el mar, en Dandi. El 6 de abril rompió allí la ley de la sal.",
+  "next": "Millones de personas rompieron las leyes de la sal, y más de 60 000 fueron arrestadas. Gandhi fue encarcelado en mayo, pero en 1931 negoció con el virrey.",
+  "stamp": "La marcha de la sal de Gandhi",
   "choices": [
-   "Refuse to pay the land tax",
-   "Break the salt law in public",
-   "Hold talks with the viceroy first"
+   "Negarte a pagar el impuesto sobre la tierra",
+   "Romper la ley de la sal en público",
+   "Hablar primero con el virrey"
   ]
  },
  "30": {
   "place": "Annapolis",
-  "pov": "You have spent eight years away from home leading the army, and last spring you put down the Newburgh conspiracy. The war is over. You are the commander in chief of the Continental Army.",
+  "pov": "Llevas ocho años lejos de casa al mando del ejército, y la primavera pasada acabaste con la conspiración de Newburgh. La guerra ha terminado. Eres el comandante en jefe del Ejército Continental.",
   "short": "Washington",
-  "did": "On 23 December 1783 Washington handed back his commission to Congress in Annapolis. The next day he was home at Mount Vernon for his first Christmas in eight years.",
-  "next": "King George III is said to have remarked that if he did that, he would be the greatest man in the world. Later Washington was unanimously elected the first president.",
-  "stamp": "Washington goes home",
+  "did": "El 23 de diciembre de 1783 Washington devolvió su cargo al Congreso en Annapolis. Al día siguiente estaba en casa, en Mount Vernon, en su primera Navidad en ocho años.",
+  "next": "Se dice que el rey Jorge III comentó que, si hacía eso, sería el hombre más grande del mundo. Más tarde Washington fue elegido por unanimidad primer presidente.",
+  "stamp": "Washington vuelve a casa",
   "choices": [
-   "Use the army to take power",
-   "Stay on as commander in peacetime",
-   "Resign and go home"
+   "Usar el ejército para tomar el poder",
+   "Seguir como comandante en tiempos de paz",
+   "Renunciar e irte a casa"
   ]
  },
  "31": {
-  "place": "Kyiv",
-  "pov": "Your new country holds the third-largest nuclear arsenal in the world, left behind by the Soviet Union. Some say you should keep it as a deterrent against Russia. You are the president of Ukraine.",
+  "place": "Kiev",
+  "pov": "Tu nuevo país tiene el tercer mayor arsenal nuclear del mundo, que dejó la Unión Soviética. Hay quien dice que deberías conservarlo para disuadir a Rusia. Eres el presidente de Ucrania.",
   "short": "Kravchuk",
-  "did": "In January 1994 Kravchuk's Ukraine agreed to give up all its nuclear weapons, in return for economic support and security assurances from the United States and Russia.",
-  "next": "The Budapest Memorandum of 5 December 1994 confirmed the assurances. Ukraine sent its last nuclear warhead to Russia on 1 June 1996.",
-  "stamp": "Ukraine gives up the bomb",
+  "did": "En enero de 1994 la Ucrania de Kravchuk aceptó entregar todas sus armas nucleares, a cambio de apoyo económico y garantías de seguridad de Estados Unidos y Rusia.",
+  "next": "El Memorándum de Budapest del 5 de diciembre de 1994 confirmó las garantías. Ucrania envió su última ojiva nuclear a Rusia el 1 de junio de 1996.",
+  "stamp": "Ucrania renuncia a la bomba",
   "choices": [
-   "Keep the weapons as a deterrent",
-   "Give them up for security promises",
-   "Keep a few, give up the rest"
+   "Conservar las armas para disuadir",
+   "Entregarlas a cambio de garantías de seguridad",
+   "Conservar unas pocas y entregar el resto"
   ]
  },
  "32": {
   "place": "Ottawa",
-  "pov": "Separatist militants have kidnapped a British diplomat and a Quebec minister and demand prisoners freed. Quebec's premier asks you for emergency powers to arrest suspects. You are the prime minister of Canada.",
+  "pov": "Militantes separatistas han secuestrado a un diplomático británico y a un ministro de Quebec, y exigen que se liberen unos presos. El primer ministro de Quebec te pide poderes de emergencia para arrestar a sospechosos. Eres el primer ministro de Canadá.",
   "short": "Trudeau",
-  "did": "On 16 October 1970 Trudeau invoked the War Measures Act, letting police arrest and detain people on suspicion alone. In all, 497 people were arrested.",
-  "next": "The next day the kidnappers announced that they had killed the minister, Pierre Laporte. The diplomat, James Cross, was freed on 3 December.",
-  "stamp": "Trudeau's War Measures Act",
+  "did": "El 16 de octubre de 1970 Trudeau invocó la Ley de Medidas de Guerra, que permitía a la policía arrestar y detener a personas solo por sospecha. En total fueron arrestadas 497 personas.",
+  "next": "Al día siguiente los secuestradores anunciaron que habían matado al ministro, Pierre Laporte. El diplomático, James Cross, fue liberado el 3 de diciembre.",
+  "stamp": "La Ley de Medidas de Guerra",
   "choices": [
-   "Invoke wartime emergency powers",
-   "Negotiate with the kidnappers",
-   "Leave it to the Quebec police"
+   "Invocar poderes de emergencia de tiempos de guerra",
+   "Negociar con los secuestradores",
+   "Dejarlo en manos de la policía de Quebec"
   ]
  },
  "33": {
-  "place": "Paris",
-  "pov": "Five years after the Second World War, France must decide how to live with West Germany. Coal and steel are the most important materials for making weapons. You are the foreign minister of France.",
+  "place": "París",
+  "pov": "Cinco años después de la Segunda Guerra Mundial, Francia debe decidir cómo convivir con Alemania Occidental. El carbón y el acero son los materiales más importantes para fabricar armas. Eres el ministro de Asuntos Exteriores de Francia.",
   "short": "Schuman",
-  "did": "On 9 May 1950 Schuman proposed placing French and West German coal and steel production under a single authority. He had drawn up the plan with Jean Monnet.",
-  "next": "The idea was that a country without control over coal and steel could not fight a war. In 1951 six countries signed the treaty that put it into practice.",
-  "stamp": "Europe pools coal and steel",
+  "did": "El 9 de mayo de 1950 Schuman propuso poner la producción francesa y alemana occidental de carbón y acero bajo una sola autoridad. Había preparado el plan con Jean Monnet.",
+  "next": "La idea era que un país sin control sobre el carbón y el acero no podía hacer una guerra. En 1951 seis países firmaron el tratado que lo puso en práctica.",
+  "stamp": "Europa une el carbón y el acero",
   "choices": [
-   "Keep strict limits on German industry",
-   "Pool French and German coal and steel",
-   "Seek a military pact against Germany"
+   "Mantener límites estrictos a la industria alemana",
+   "Unir el carbón y el acero de Francia y de Alemania",
+   "Buscar un pacto militar contra Alemania"
   ]
  },
  "34": {
   "place": "Manila",
-  "pov": "You were declared winner of a snap election marred by fraud. Two top officials have defected, and over two million people are protesting in Manila. You are the president of the Philippines.",
+  "pov": "Te declararon ganador de unas elecciones anticipadas manchadas por el fraude. Dos altos cargos han desertado, y más de dos millones de personas protestan en Manila. Eres el presidente de Filipinas.",
   "short": "Marcos",
-  "did": "'My order is not to attack,' Marcos said. Around midnight on 25 February 1986 his family left the palace by US helicopter.",
-  "next": "An American senator had advised him to 'cut and cut cleanly'. Marcos arrived in Hawaii on 26 February.",
-  "stamp": "People Power in Manila",
+  "did": "«Mi orden es no atacar», dijo Marcos. Hacia la medianoche del 25 de febrero de 1986 su familia salió del palacio en un helicóptero de Estados Unidos.",
+  "next": "Un senador estadounidense le había aconsejado «cortar, y cortar limpiamente». Marcos llegó a Hawái el 26 de febrero.",
+  "stamp": "El poder del pueblo en Manila",
   "choices": [
-   "Order the troops to clear them",
-   "Hold fire and leave the country",
-   "Hold fire and stay in the palace"
+   "Ordenar a las tropas que los despejen",
+   "No disparar y salir del país",
+   "No disparar y quedarte en el palacio"
   ]
  },
  "35": {
-  "place": "East Berlin",
-  "pov": "About 3.5 million people, a fifth of your population, have left for the West, and in Berlin the border is still open. You are the leader of East Germany.",
+  "place": "Berlín Este",
+  "pov": "Unos 3,5 millones de personas, una quinta parte de tu población, se han ido al Oeste, y en Berlín la frontera sigue abierta. Eres el líder de Alemania Oriental.",
   "short": "Ulbricht",
-  "did": "On 13 August 1961 Berliners woke to find that, on Ulbricht's orders, a barbed wire fence had gone up overnight. It became the Berlin Wall.",
-  "next": "Only two months earlier he had said that no one intended to build a wall. It stood until 9 November 1989.",
-  "stamp": "The Berlin Wall goes up",
+  "did": "El 13 de agosto de 1961 los berlineses despertaron y vieron que, por orden de Ulbricht, durante la noche había aparecido una valla de alambre de púas. Después se convirtió en el Muro de Berlín.",
+  "next": "Solo dos meses antes había dicho que nadie tenía intención de construir un muro. Estuvo en pie hasta el 9 de noviembre de 1989.",
+  "stamp": "Se levanta el Muro de Berlín",
   "choices": [
-   "Seal the border with a barrier",
-   "Raise wages to make people stay",
-   "Let people leave freely"
+   "Cerrar la frontera con una barrera",
+   "Subir los sueldos para que la gente se quede",
+   "Dejar que la gente se vaya libremente"
   ]
  }
 };

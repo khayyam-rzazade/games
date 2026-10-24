@@ -2,21 +2,21 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["the-club"] = {
  "21": {
-  "sign": "They are woodwinds",
-  "stamp": "Woodwinds",
-  "fact": "They are woodwinds, whatever they are made of. The saxophone is made of brass but played with a reed, so it counts as one.",
+  "sign": "Son instrumentos de viento madera",
+  "stamp": "Viento madera",
+  "fact": "Son instrumentos de viento madera, sea cual sea el material con que se hacen. El saxofón es de metal, pero se toca con una lengüeta, así que cuenta como uno.",
   "in": [
-   "Clarinet",
+   "Clarinete",
    "Oboe",
-   "Flute"
+   "Flauta"
   ],
   "out": [
-   "Trumpet",
-   "Trombone"
+   "Trompeta",
+   "Trombón"
   ],
   "door": [
    [
-    "Saxophone",
+    "Saxofón",
     1
    ],
    [
@@ -24,31 +24,31 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "Bassoon",
+    "Fagot",
     1
    ],
    [
-    "French horn",
+    "Trompa",
     0
    ],
    [
-    "Piccolo",
+    "Flautín",
     1
    ]
   ]
  },
  "22": {
-  "sign": "They are mammals",
-  "stamp": "Mammals of the sea",
-  "fact": "They are mammals, not fish. The whale shark is the other way round: a fish, and the biggest fish alive.",
+  "sign": "Son mamíferos",
+  "stamp": "Mamíferos del mar",
+  "fact": "Son mamíferos, no peces. El tiburón ballena es al revés: un pez, y el pez más grande que existe.",
   "in": [
-   "Dolphin",
-   "Seal",
-   "Manatee"
+   "Delfín",
+   "Foca",
+   "Manatí"
   ],
   "out": [
-   "Shark",
-   "Penguin"
+   "Tiburón",
+   "Pingüino"
   ],
   "door": [
    [
@@ -56,79 +56,79 @@ window.LG_PUZZLES["the-club"] = {
     1
    ],
    [
-    "Whale shark",
+    "Tiburón ballena",
     0
    ],
    [
-    "Walrus",
+    "Morsa",
     1
    ],
    [
-    "Sea turtle",
+    "Tortuga marina",
     0
    ],
    [
-    "Narwhal",
+    "Narval",
     1
    ]
   ]
  },
  "23": {
-  "sign": "To a botanist, fruits",
-  "stamp": "Botanical fruits",
-  "fact": "To a botanist they are all fruits: each grows from a flower and holds the seeds. Rhubarb is a leaf stalk.",
+  "sign": "Para un botánico, son frutas",
+  "stamp": "Frutas botánicas",
+  "fact": "Para un botánico, todos son frutas: cada uno nace de una flor y guarda las semillas. El ruibarbo es el tallo de una hoja.",
   "in": [
-   "Tomato",
-   "Cucumber",
-   "Pumpkin"
+   "Tomate",
+   "Pepino",
+   "Calabaza"
   ],
   "out": [
-   "Carrot",
-   "Lettuce"
+   "Zanahoria",
+   "Lechuga"
   ],
   "door": [
    [
-    "Courgette",
+    "Calabacín",
     1
    ],
    [
-    "Potato",
+    "Papa",
     0
    ],
    [
-    "Aubergine",
+    "Berenjena",
     1
    ],
    [
-    "Rhubarb",
+    "Ruibarbo",
     0
    ],
    [
-    "Sweet pepper",
+    "Pimiento",
     1
    ]
   ]
  },
  "24": {
-  "sign": "They are stars",
-  "stamp": "Stars",
-  "fact": "They are stars. So is the Sun. After it, the nearest star is Proxima Centauri, about four light years away.",
+  "sign": "Son estrellas",
+  "stamp": "Estrellas",
+  "fact": "Son estrellas. El Sol también lo es. Después de él, la estrella más cercana es Próxima Centauri, a unos cuatro años luz.",
   "in": [
-   "Sirius",
+   "Sirio",
    "Polaris",
    "Betelgeuse"
   ],
   "out": [
    "Venus",
-   "Pluto"
+   "Plutón"
   ],
   "door": [
    [
-    "The Sun",
+    "El Sol",
     1
    ],
    [
-    "Jupiter",
+    "Júpiter",
     0
    ],
    [
@@ -136,31 +136,31 @@ window.LG_PUZZLES["the-club"] = {
     1
    ],
    [
-    "Halley's Comet",
+    "El cometa Halley",
     0
    ],
    [
-    "Proxima Centauri",
+    "Próxima Centauri",
     1
    ]
   ]
  },
  "25": {
-  "sign": "Official UN languages",
-  "stamp": "UN languages",
-  "fact": "They are the six official languages of the United Nations. Hindi and Portuguese are not among them.",
+  "sign": "Idiomas oficiales de la ONU",
+  "stamp": "Idiomas de la ONU",
+  "fact": "Son los seis idiomas oficiales de las Naciones Unidas. El hindi y el portugués no están entre ellos.",
   "in": [
-   "English",
-   "French",
-   "Russian"
+   "Inglés",
+   "Francés",
+   "Ruso"
   ],
   "out": [
-   "German",
-   "Japanese"
+   "Alemán",
+   "Japonés"
   ],
   "door": [
    [
-    "Arabic",
+    "Árabe",
     1
    ],
    [
@@ -168,143 +168,143 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "Chinese",
+    "Chino",
     1
    ],
    [
-    "Portuguese",
+    "Portugués",
     0
    ],
    [
-    "Spanish",
+    "Español",
     1
    ]
   ]
  },
  "26": {
-  "sign": "They are molluscs",
-  "stamp": "Molluscs",
-  "fact": "They are molluscs. An octopus is a relative of the garden snail; a barnacle is a crustacean, like a crab.",
+  "sign": "Son moluscos",
+  "stamp": "Moluscos",
+  "fact": "Son moluscos. Un pulpo es pariente del caracol de jardín; un percebe es un crustáceo, como un cangrejo.",
   "in": [
-   "Octopus",
-   "Snail",
-   "Oyster"
+   "Pulpo",
+   "Caracol",
+   "Ostra"
   ],
   "out": [
-   "Crab",
-   "Starfish"
+   "Cangrejo",
+   "Estrella de mar"
   ],
   "door": [
    [
-    "Squid",
+    "Calamar",
     1
    ],
    [
-    "Shrimp",
+    "Camarón",
     0
    ],
    [
-    "Slug",
+    "Babosa",
     1
    ],
    [
-    "Barnacle",
+    "Percebe",
     0
    ],
    [
-    "Mussel",
+    "Mejillón",
     1
    ]
   ]
  },
  "27": {
-  "sign": "They are legumes",
-  "stamp": "Legumes",
-  "fact": "They are legumes, plants of the pea family whose seeds grow in pods. The peanut is one: to a botanist it is not a nut.",
+  "sign": "Son legumbres",
+  "stamp": "Legumbres",
+  "fact": "Son legumbres, plantas de la familia de los guisantes cuyas semillas crecen en vainas. El cacahuete es una: para un botánico no es una nuez.",
   "in": [
-   "Pea",
-   "Lentil",
-   "Chickpea"
+   "Guisante",
+   "Lenteja",
+   "Garbanzo"
   ],
   "out": [
-   "Coffee bean",
-   "Almond"
+   "Grano de café",
+   "Almendra"
   ],
   "door": [
    [
-    "Peanut",
+    "Cacahuete",
     1
    ],
    [
-    "Potato",
+    "Papa",
     0
    ],
    [
-    "Soybean",
+    "Soja",
     1
    ],
    [
-    "Black pepper",
+    "Pimienta negra",
     0
    ],
    [
-    "Cucumber",
+    "Pepino",
     0
    ]
   ]
  },
  "28": {
-  "sign": "They are alloys",
-  "stamp": "Alloys",
-  "fact": "They are alloys, metals melted together. Bronze is copper and tin; brass is copper and zinc.",
+  "sign": "Son aleaciones",
+  "stamp": "Aleaciones",
+  "fact": "Son aleaciones, metales fundidos juntos. El bronce es cobre y estaño; el latón es cobre y zinc.",
   "in": [
-   "Steel",
-   "Bronze",
-   "Brass"
+   "Acero",
+   "Bronce",
+   "Latón"
   ],
   "out": [
-   "Iron",
-   "Copper"
+   "Hierro",
+   "Cobre"
   ],
   "door": [
    [
-    "Pewter",
+    "Peltre",
     1
    ],
    [
-    "Aluminium",
+    "Aluminio",
     0
    ],
    [
-    "Sterling silver",
+    "Plata de ley",
     1
    ],
    [
-    "Titanium",
+    "Titanio",
     0
    ],
    [
-    "Tin",
+    "Estaño",
     0
    ]
   ]
  },
  "29": {
-  "sign": "Tales by H. C. Andersen",
-  "stamp": "Andersen's tales",
-  "fact": "Hans Christian Andersen made up each of these tales. Cinderella and Snow White are old folk tales that others wrote down.",
+  "sign": "Cuentos de H. C. Andersen",
+  "stamp": "Cuentos de Andersen",
+  "fact": "Hans Christian Andersen inventó cada uno de estos cuentos. La Cenicienta y Blancanieves son cuentos populares antiguos que otros pusieron por escrito.",
   "in": [
-   "The Little Mermaid",
-   "The Ugly Duckling",
-   "Thumbelina"
+   "La Sirenita",
+   "El patito feo",
+   "Pulgarcita"
   ],
   "out": [
-   "Cinderella",
-   "Snow White"
+   "La Cenicienta",
+   "Blancanieves"
   ],
   "door": [
    [
-    "The Snow Queen",
+    "La reina de las nieves",
     1
    ],
    [
@@ -312,75 +312,75 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "The Princess and the Pea",
+    "La princesa y el guisante",
     1
    ],
    [
-    "Pinocchio",
+    "Pinocho",
     0
    ],
    [
-    "Hansel and Gretel",
+    "Hansel y Gretel",
     0
    ]
   ]
  },
  "30": {
-  "sign": "They were Roman emperors",
-  "stamp": "Roman emperors",
-  "fact": "Each was a Roman emperor. Julius Caesar never was: Augustus became the first emperor in 27 BC.",
+  "sign": "Fueron emperadores romanos",
+  "stamp": "Emperadores romanos",
+  "fact": "Todos fueron emperadores romanos. Julio César nunca lo fue: Augusto se convirtió en el primer emperador en el 27 a. C.",
   "in": [
-   "Augustus",
-   "Nero",
-   "Hadrian"
+   "Augusto",
+   "Nerón",
+   "Adriano"
   ],
   "out": [
-   "Julius Caesar",
-   "Cicero"
+   "Julio César",
+   "Cicerón"
   ],
   "door": [
    [
-    "Marcus Aurelius",
+    "Marco Aurelio",
     1
    ],
    [
-    "Hannibal",
+    "Aníbal",
     0
    ],
    [
-    "Constantine",
+    "Constantino",
     1
    ],
    [
-    "Spartacus",
+    "Espartaco",
     0
    ],
    [
-    "Trajan",
+    "Trajano",
     1
    ]
   ]
  },
  "31": {
-  "sign": "They have no sea coast",
-  "stamp": "Landlocked",
-  "fact": "None of them touches the sea. Ethiopia, with more than 100 million people, is the most populous country without a coast.",
+  "sign": "No tienen salida al mar",
+  "stamp": "Sin mar",
+  "fact": "Ninguno toca el mar. Etiopía, con más de 100 millones de habitantes, es el país sin costa con más población.",
   "in": [
-   "Switzerland",
+   "Suiza",
    "Mongolia",
    "Bolivia"
   ],
   "out": [
-   "Peru",
-   "Norway"
+   "Perú",
+   "Noruega"
   ],
   "door": [
    [
-    "Ethiopia",
+    "Etiopía",
     1
    ],
    [
-    "Jordan",
+    "Jordania",
     0
    ],
    [
@@ -398,21 +398,21 @@ window.LG_PUZZLES["the-club"] = {
   ]
  },
  "32": {
-  "sign": "In the first modern Olympics",
-  "stamp": "Athens 1896",
-  "fact": "All were part of the first modern Olympics, Athens 1896. Rowing was planned too, but bad weather stopped it.",
+  "sign": "En los primeros Juegos Olímpicos modernos",
+  "stamp": "Atenas 1896",
+  "fact": "Todos formaron parte de los primeros Juegos Olímpicos modernos, Atenas 1896. También estaba previsto el remo, pero el mal tiempo lo impidió.",
   "in": [
-   "Athletics",
-   "Swimming",
-   "Fencing"
+   "Atletismo",
+   "Natación",
+   "Esgrima"
   ],
   "out": [
-   "Basketball",
-   "Volleyball"
+   "Baloncesto",
+   "Voleibol"
   ],
   "door": [
    [
-    "Cycling",
+    "Ciclismo",
     1
    ],
    [
@@ -420,27 +420,27 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "Wrestling",
+    "Lucha",
     1
    ],
    [
-    "Rowing",
+    "Remo",
     0
    ],
    [
-    "Tennis",
+    "Tenis",
     1
    ]
   ]
  },
  "33": {
-  "sign": "Over 2,000 metres high",
-  "stamp": "High capitals",
-  "fact": "Each lies more than 2,000 metres above the sea. La Paz, at about 3,600 metres, is the highest capital in the world.",
+  "sign": "A más de 2000 metros de altura",
+  "stamp": "Capitales altas",
+  "fact": "Todas están a más de 2000 metros sobre el nivel del mar. La Paz, a unos 3600 metros, es la capital más alta del mundo.",
   "in": [
-   "Mexico City",
+   "Ciudad de México",
    "Bogotá",
-   "Addis Ababa"
+   "Adís Abeba"
   ],
   "out": [
    "Lima",
@@ -452,7 +452,7 @@ window.LG_PUZZLES["the-club"] = {
     1
    ],
    [
-    "Kathmandu",
+    "Katmandú",
     0
    ],
    [
@@ -470,37 +470,37 @@ window.LG_PUZZLES["the-club"] = {
   ]
  },
  "34": {
-  "sign": "They have no bones",
-  "stamp": "No bones",
-  "fact": "None of them has a single bone. A shark's skeleton is made of cartilage, the gristly stuff of your ears and nose.",
+  "sign": "No tienen huesos",
+  "stamp": "Sin huesos",
+  "fact": "Ninguno tiene un solo hueso. El esqueleto de un tiburón es de cartílago, el material blando y firme de tus orejas y tu nariz.",
   "in": [
-   "Shark",
-   "Octopus",
-   "Jellyfish"
+   "Tiburón",
+   "Pulpo",
+   "Medusa"
   ],
   "out": [
-   "Snake",
-   "Tuna"
+   "Serpiente",
+   "Atún"
   ],
   "door": [
    [
-    "Squid",
+    "Calamar",
     1
    ],
    [
-    "Eel",
+    "Anguila",
     0
    ],
    [
-    "Stingray",
+    "Raya",
     1
    ],
    [
-    "Seahorse",
+    "Caballito de mar",
     0
    ],
    [
-    "Lobster",
+    "Langosta",
     1
    ]
   ]

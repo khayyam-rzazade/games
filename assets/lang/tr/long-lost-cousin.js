@@ -2,365 +2,365 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["long-lost-cousin"] = {
  "21": {
-  "fact": "Meerkats are mongooses, on the cat side of the carnivores. Bears are on the dog side, and prairie dogs, which stand up the same way, are rodents."
+  "fact": "Mirketler firavun faresi gibi hayvanlardandır ve etoburların kedi tarafında yer alır. Ayılar köpek tarafındadır; mirketler gibi dik duran çayır köpekleri ise kemirgendir."
  },
  "22": {
-  "fact": "Ants evolved from wasps and belong with wasps and bees. Termites are relatives of cockroaches."
+  "fact": "Karıncalar yaban arılarından evrildi ve yaban arıları ile arılarla aynı gruba girer. Termitler hamamböceklerinin akrabasıdır."
  },
  "23": {
-  "fact": "The beaver is a rodent, like the mouse. Rabbits are not rodents, but they are the rodents' next of kin. Otters are carnivores."
+  "fact": "Kunduz, fare gibi bir kemirgendir. Tavşanlar kemirgen değildir ama kemirgenlerin en yakın akrabasıdır. Su samurları etoburdur."
  },
  "24": {
-  "fact": "The axolotl is a salamander, and salamanders are amphibians, like frogs. Lizards are reptiles."
+  "fact": "Aksolot bir semenderdir ve semenderler, kurbağalar gibi iki yaşamlılardır. Kertenkeleler sürüngendir."
  },
  "25": {
-  "fact": "Camels and llamas belong to the same family. Llamas are South America's camels."
+  "fact": "Develer ve lamalar aynı ailedendir. Lamalar, Güney Amerika'nın develeridir."
  },
  "26": {
-  "fact": "The seahorse is a bony fish, in the same big group as the tuna."
+  "fact": "Denizatı kemikli bir balıktır; ton balığıyla aynı büyük gruptadır."
  },
  "27": {
-  "fact": "Toucans belong to the woodpecker order. Hornbills grew their big bill separately."
+  "fact": "Tukanlar ağaçkakanlarla aynı takımdandır. Boynuzgagalar büyük gagalarını ayrı bir yoldan geliştirdi."
  },
  "28": {
-  "fact": "Porcupines are rodents from the guinea pig's branch. Mice are rodents from another branch, and hedgehogs grew their spines separately."
+  "fact": "Oklu kirpiler, kobayın koluna ait kemirgenlerdir. Fareler başka bir koldan kemirgenlerdir; kirpiler ise dikenlerini ayrı bir yoldan geliştirdi."
  },
  "29": {
-  "fact": "The praying mantis's closest relatives are cockroaches and termites."
+  "fact": "Peygamber devesinin en yakın akrabaları hamamböcekleri ve termitlerdir."
  },
  "30": {
-  "fact": "The narwhal and the beluga are the only two living members of their whale family."
+  "fact": "Narval ve beluga, kendi balina ailelerinin yaşayan tek iki üyesidir."
  },
  "31": {
-  "fact": "Velociraptor had feathers and was a close relative of birds."
+  "fact": "Velociraptor'un tüyleri vardı ve kuşların yakın akrabasıydı."
  },
  "32": {
-  "fact": "The orca, or killer whale, is the largest member of the dolphin family."
+  "fact": "Orka, yunus ailesinin en büyük üyesidir."
  },
  "33": {
-  "fact": "Fleas are closer to flies than to lice. Butterflies are next: like fleas and flies, they go through a pupa. Lice do not."
+  "fact": "Pireler, bitlerden çok sineklere yakındır. Sonra kelebekler gelir: pireler ve sinekler gibi onlar da pupa evresinden geçer. Bitler geçmez."
  },
  "34": {
-  "fact": "The pangolin's closest living relatives are the carnivores, such as cats. Horses are on a nearby branch. Its scales only resemble an armadillo's armour."
+  "fact": "Pangolinin yaşayan en yakın akrabaları kedi gibi etoburlardır. Atlar yakındaki bir koldadır. Pulları yalnızca armadillonun zırhına benzer."
  }
 };
 window.LG_PUZZLES["long-lost-cousin.things"] = {
  "meerkat": {
-  "name": "Meerkat",
-  "the": "the meerkat",
-  "of": "the meerkat's",
-  "bare": "meerkat"
+  "name": "Mirket",
+  "the": "mirket",
+  "of": "mirketin",
+  "bare": "mirket"
  },
  "cat": {
-  "name": "Cat",
-  "the": "the cat",
-  "of": "the cat's",
-  "bare": "cat"
+  "name": "Kedi",
+  "the": "kedi",
+  "of": "kedinin",
+  "bare": "kedi"
  },
  "bear": {
-  "name": "Bear",
-  "the": "the bear",
-  "of": "the bear's",
-  "bare": "bear"
+  "name": "Ayı",
+  "the": "ayı",
+  "of": "ayının",
+  "bare": "ayı"
  },
  "prairie_dog": {
-  "name": "Prairie dog",
-  "the": "the prairie dog",
-  "of": "the prairie dog's",
-  "bare": "prairie dog"
+  "name": "Çayır köpeği",
+  "the": "çayır köpeği",
+  "of": "çayır köpeğinin",
+  "bare": "çayır köpeği"
  },
  "ant": {
-  "name": "Ant",
-  "the": "the ant",
-  "of": "the ant's",
-  "bare": "ant"
+  "name": "Karınca",
+  "the": "karınca",
+  "of": "karıncanın",
+  "bare": "karınca"
  },
  "bee": {
-  "name": "Bee",
-  "the": "the bee",
-  "of": "the bee's",
-  "bare": "bee"
+  "name": "Arı",
+  "the": "arı",
+  "of": "arının",
+  "bare": "arı"
  },
  "termite": {
-  "name": "Termite",
-  "the": "the termite",
-  "of": "the termite's",
-  "bare": "termite"
+  "name": "Termit",
+  "the": "termit",
+  "of": "termitin",
+  "bare": "termit"
  },
  "spider": {
-  "name": "Spider",
-  "the": "the spider",
-  "of": "the spider's",
-  "bare": "spider"
+  "name": "Örümcek",
+  "the": "örümcek",
+  "of": "örümceğin",
+  "bare": "örümcek"
  },
  "beaver": {
-  "name": "Beaver",
-  "the": "the beaver",
-  "of": "the beaver's",
-  "bare": "beaver"
+  "name": "Kunduz",
+  "the": "kunduz",
+  "of": "kunduzun",
+  "bare": "kunduz"
  },
  "otter": {
-  "name": "Otter",
-  "the": "the otter",
-  "of": "the otter's",
-  "bare": "otter"
+  "name": "Su samuru",
+  "the": "su samuru",
+  "of": "su samurunun",
+  "bare": "su samuru"
  },
  "rabbit": {
-  "name": "Rabbit",
-  "the": "the rabbit",
-  "of": "the rabbit's",
-  "bare": "rabbit"
+  "name": "Tavşan",
+  "the": "tavşan",
+  "of": "tavşanın",
+  "bare": "tavşan"
  },
  "mouse": {
-  "name": "Mouse",
-  "the": "the mouse",
-  "of": "the mouse's",
-  "bare": "mouse"
+  "name": "Fare",
+  "the": "fare",
+  "of": "farenin",
+  "bare": "fare"
  },
  "axolotl": {
-  "name": "Axolotl",
-  "the": "the axolotl",
-  "of": "the axolotl's",
-  "bare": "axolotl"
+  "name": "Aksolot",
+  "the": "aksolot",
+  "of": "aksolotun",
+  "bare": "aksolot"
  },
  "eel": {
-  "name": "Eel",
-  "the": "the eel",
-  "of": "the eel's",
-  "bare": "eel"
+  "name": "Yılan balığı",
+  "the": "yılan balığı",
+  "of": "yılan balığının",
+  "bare": "yılan balığı"
  },
  "lizard": {
-  "name": "Lizard",
-  "the": "the lizard",
-  "of": "the lizard's",
-  "bare": "lizard"
+  "name": "Kertenkele",
+  "the": "kertenkele",
+  "of": "kertenkelenin",
+  "bare": "kertenkele"
  },
  "frog": {
-  "name": "Frog",
-  "the": "the frog",
-  "of": "the frog's",
-  "bare": "frog"
+  "name": "Kurbağa",
+  "the": "kurbağa",
+  "of": "kurbağanın",
+  "bare": "kurbağa"
  },
  "camel": {
-  "name": "Camel",
-  "the": "the camel",
-  "of": "the camel's",
-  "bare": "camel"
+  "name": "Deve",
+  "the": "deve",
+  "of": "devenin",
+  "bare": "deve"
  },
  "horse": {
-  "name": "Horse",
-  "the": "the horse",
-  "of": "the horse's",
-  "bare": "horse"
+  "name": "At",
+  "the": "at",
+  "of": "atın",
+  "bare": "at"
  },
  "llama": {
-  "name": "Llama",
-  "the": "the llama",
-  "of": "the llama's",
-  "bare": "llama"
+  "name": "Lama",
+  "the": "lama",
+  "of": "lamanın",
+  "bare": "lama"
  },
  "cow": {
-  "name": "Cow",
-  "the": "the cow",
-  "of": "the cow's",
-  "bare": "cow"
+  "name": "İnek",
+  "the": "inek",
+  "of": "ineğin",
+  "bare": "inek"
  },
  "seahorse": {
-  "name": "Seahorse",
-  "the": "the seahorse",
-  "of": "the seahorse's",
-  "bare": "seahorse"
+  "name": "Denizatı",
+  "the": "denizatı",
+  "of": "denizatının",
+  "bare": "denizatı"
  },
  "squid": {
-  "name": "Squid",
-  "the": "the squid",
-  "of": "the squid's",
-  "bare": "squid"
+  "name": "Kalamar",
+  "the": "kalamar",
+  "of": "kalamarın",
+  "bare": "kalamar"
  },
  "tuna": {
-  "name": "Tuna",
-  "the": "the tuna",
-  "of": "the tuna's",
-  "bare": "tuna"
+  "name": "Ton balığı",
+  "the": "ton balığı",
+  "of": "ton balığının",
+  "bare": "ton balığı"
  },
  "shark": {
-  "name": "Shark",
-  "the": "the shark",
-  "of": "the shark's",
-  "bare": "shark"
+  "name": "Köpekbalığı",
+  "the": "köpekbalığı",
+  "of": "köpekbalığının",
+  "bare": "köpekbalığı"
  },
  "toucan": {
-  "name": "Toucan",
-  "the": "the toucan",
-  "of": "the toucan's",
-  "bare": "toucan"
+  "name": "Tukan",
+  "the": "tukan",
+  "of": "tukanın",
+  "bare": "tukan"
  },
  "parrot": {
-  "name": "Parrot",
-  "the": "the parrot",
-  "of": "the parrot's",
-  "bare": "parrot"
+  "name": "Papağan",
+  "the": "papağan",
+  "of": "papağanın",
+  "bare": "papağan"
  },
  "hornbill": {
-  "name": "Hornbill",
-  "the": "the hornbill",
-  "of": "the hornbill's",
-  "bare": "hornbill"
+  "name": "Boynuzgaga",
+  "the": "boynuzgaga",
+  "of": "boynuzgaganın",
+  "bare": "boynuzgaga"
  },
  "woodpecker": {
-  "name": "Woodpecker",
-  "the": "the woodpecker",
-  "of": "the woodpecker's",
-  "bare": "woodpecker"
+  "name": "Ağaçkakan",
+  "the": "ağaçkakan",
+  "of": "ağaçkakanın",
+  "bare": "ağaçkakan"
  },
  "porcupine": {
-  "name": "Porcupine",
-  "the": "the porcupine",
-  "of": "the porcupine's",
-  "bare": "porcupine"
+  "name": "Oklu kirpi",
+  "the": "oklu kirpi",
+  "of": "oklu kirpinin",
+  "bare": "oklu kirpi"
  },
  "hedgehog": {
-  "name": "Hedgehog",
-  "the": "the hedgehog",
-  "of": "the hedgehog's",
-  "bare": "hedgehog"
+  "name": "Kirpi",
+  "the": "kirpi",
+  "of": "kirpinin",
+  "bare": "kirpi"
  },
  "guinea_pig": {
-  "name": "Guinea pig",
-  "the": "the guinea pig",
-  "of": "the guinea pig's",
-  "bare": "guinea pig"
+  "name": "Kobay",
+  "the": "kobay",
+  "of": "kobayın",
+  "bare": "kobay"
  },
  "mantis": {
-  "name": "Praying mantis",
-  "the": "the praying mantis",
-  "of": "the praying mantis's",
-  "bare": "praying mantis"
+  "name": "Peygamber devesi",
+  "the": "peygamber devesi",
+  "of": "peygamber devesinin",
+  "bare": "peygamber devesi"
  },
  "cockroach": {
-  "name": "Cockroach",
-  "the": "the cockroach",
-  "of": "the cockroach's",
-  "bare": "cockroach"
+  "name": "Hamamböceği",
+  "the": "hamamböceği",
+  "of": "hamamböceğinin",
+  "bare": "hamamböceği"
  },
  "grasshopper": {
-  "name": "Grasshopper",
-  "the": "the grasshopper",
-  "of": "the grasshopper's",
-  "bare": "grasshopper"
+  "name": "Çekirge",
+  "the": "çekirge",
+  "of": "çekirgenin",
+  "bare": "çekirge"
  },
  "dragonfly": {
-  "name": "Dragonfly",
-  "the": "the dragonfly",
-  "of": "the dragonfly's",
-  "bare": "dragonfly"
+  "name": "Yusufçuk",
+  "the": "yusufçuk",
+  "of": "yusufçuğun",
+  "bare": "yusufçuk"
  },
  "narwhal": {
-  "name": "Narwhal",
-  "the": "the narwhal",
-  "of": "the narwhal's",
-  "bare": "narwhal"
+  "name": "Narval",
+  "the": "narval",
+  "of": "narvalın",
+  "bare": "narval"
  },
  "walrus": {
-  "name": "Walrus",
-  "the": "the walrus",
-  "of": "the walrus's",
-  "bare": "walrus"
+  "name": "Mors",
+  "the": "mors",
+  "of": "morsun",
+  "bare": "mors"
  },
  "marlin": {
   "name": "Marlin",
-  "the": "the marlin",
-  "of": "the marlin's",
+  "the": "marlin",
+  "of": "marlinin",
   "bare": "marlin"
  },
  "beluga": {
   "name": "Beluga",
-  "the": "the beluga",
-  "of": "the beluga's",
+  "the": "beluga",
+  "of": "beluganın",
   "bare": "beluga"
  },
  "velociraptor": {
   "name": "Velociraptor",
-  "the": "the Velociraptor",
-  "of": "the Velociraptor's",
+  "the": "Velociraptor",
+  "of": "Velociraptor'un",
   "bare": "Velociraptor"
  },
  "eagle": {
-  "name": "Eagle",
-  "the": "the eagle",
-  "of": "the eagle's",
-  "bare": "eagle"
+  "name": "Kartal",
+  "the": "kartal",
+  "of": "kartalın",
+  "bare": "kartal"
  },
  "triceratops": {
   "name": "Triceratops",
-  "the": "the Triceratops",
-  "of": "the Triceratops's",
+  "the": "Triceratops",
+  "of": "Triceratops'un",
   "bare": "Triceratops"
  },
  "crocodile": {
-  "name": "Crocodile",
-  "the": "the crocodile",
-  "of": "the crocodile's",
-  "bare": "crocodile"
+  "name": "Timsah",
+  "the": "timsah",
+  "of": "timsahın",
+  "bare": "timsah"
  },
  "orca": {
-  "name": "Orca",
-  "the": "the orca",
-  "of": "the orca's",
-  "bare": "orca"
+  "name": "Orka",
+  "the": "orka",
+  "of": "orkanın",
+  "bare": "orka"
  },
  "humpback": {
-  "name": "Humpback whale",
-  "the": "the humpback whale",
-  "of": "the humpback whale's",
-  "bare": "humpback whale"
+  "name": "Kambur balina",
+  "the": "kambur balina",
+  "of": "kambur balinanın",
+  "bare": "kambur balina"
  },
  "great_white": {
-  "name": "Great white shark",
-  "the": "the great white shark",
-  "of": "the great white shark's",
-  "bare": "great white shark"
+  "name": "Büyük beyaz köpekbalığı",
+  "the": "büyük beyaz köpekbalığı",
+  "of": "büyük beyaz köpekbalığının",
+  "bare": "büyük beyaz köpekbalığı"
  },
  "dolphin": {
-  "name": "Dolphin",
-  "the": "the dolphin",
-  "of": "the dolphin's",
-  "bare": "dolphin"
+  "name": "Yunus",
+  "the": "yunus",
+  "of": "yunusun",
+  "bare": "yunus"
  },
  "flea": {
-  "name": "Flea",
-  "the": "the flea",
-  "of": "the flea's",
-  "bare": "flea"
+  "name": "Pire",
+  "the": "pire",
+  "of": "pirenin",
+  "bare": "pire"
  },
  "butterfly": {
-  "name": "Butterfly",
-  "the": "the butterfly",
-  "of": "the butterfly's",
-  "bare": "butterfly"
+  "name": "Kelebek",
+  "the": "kelebek",
+  "of": "kelebeğin",
+  "bare": "kelebek"
  },
  "louse": {
-  "name": "Louse",
-  "the": "the louse",
-  "of": "the louse's",
-  "bare": "louse"
+  "name": "Bit",
+  "the": "bit",
+  "of": "bitin",
+  "bare": "bit"
  },
  "housefly": {
-  "name": "Fly",
-  "the": "the fly",
-  "of": "the fly's",
-  "bare": "fly"
+  "name": "Sinek",
+  "the": "sinek",
+  "of": "sineğin",
+  "bare": "sinek"
  },
  "pangolin": {
   "name": "Pangolin",
-  "the": "the pangolin",
-  "of": "the pangolin's",
+  "the": "pangolin",
+  "of": "pangolinin",
   "bare": "pangolin"
  },
  "armadillo": {
   "name": "Armadillo",
-  "the": "the armadillo",
-  "of": "the armadillo's",
+  "the": "armadillo",
+  "of": "armadillonun",
   "bare": "armadillo"
  }
 };

@@ -2,21 +2,21 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["the-club"] = {
  "21": {
-  "sign": "They are woodwinds",
-  "stamp": "Woodwinds",
-  "fact": "They are woodwinds, whatever they are made of. The saxophone is made of brass but played with a reed, so it counts as one.",
+  "sign": "Tahta nefesli çalgılardır",
+  "stamp": "Tahta nefesliler",
+  "fact": "Hangi malzemeden yapılmış olurlarsa olsunlar, hepsi tahta nefesli çalgıdır. Saksofon pirinçten yapılır ama kamışla çalınır; bu yüzden o da sayılır.",
   "in": [
-   "Clarinet",
-   "Oboe",
-   "Flute"
+   "Klarnet",
+   "Obua",
+   "Flüt"
   ],
   "out": [
-   "Trumpet",
-   "Trombone"
+   "Trompet",
+   "Trombon"
   ],
   "door": [
    [
-    "Saxophone",
+    "Saksofon",
     1
    ],
    [
@@ -24,111 +24,111 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "Bassoon",
+    "Fagot",
     1
    ],
    [
-    "French horn",
+    "Korno",
     0
    ],
    [
-    "Piccolo",
+    "Pikolo",
     1
    ]
   ]
  },
  "22": {
-  "sign": "They are mammals",
-  "stamp": "Mammals of the sea",
-  "fact": "They are mammals, not fish. The whale shark is the other way round: a fish, and the biggest fish alive.",
+  "sign": "Memelilerdir",
+  "stamp": "Denizin memelileri",
+  "fact": "Hepsi memelidir, balık değil. Balina köpekbalığı bunun tersidir: bir balıktır, hem de yaşayan en büyük balık.",
   "in": [
-   "Dolphin",
-   "Seal",
-   "Manatee"
+   "Yunus",
+   "Fok",
+   "Manati"
   ],
   "out": [
-   "Shark",
-   "Penguin"
+   "Köpekbalığı",
+   "Penguen"
   ],
   "door": [
    [
-    "Orca",
+    "Orka",
     1
    ],
    [
-    "Whale shark",
+    "Balina köpekbalığı",
     0
    ],
    [
-    "Walrus",
+    "Mors",
     1
    ],
    [
-    "Sea turtle",
+    "Deniz kaplumbağası",
     0
    ],
    [
-    "Narwhal",
+    "Narval",
     1
    ]
   ]
  },
  "23": {
-  "sign": "To a botanist, fruits",
-  "stamp": "Botanical fruits",
-  "fact": "To a botanist they are all fruits: each grows from a flower and holds the seeds. Rhubarb is a leaf stalk.",
+  "sign": "Bir botanikçiye göre meyvedirler",
+  "stamp": "Botanik meyveler",
+  "fact": "Bir botanikçiye göre hepsi meyvedir: her biri bir çiçekten büyür ve tohumları taşır. Ravent ise bir yaprak sapıdır.",
   "in": [
-   "Tomato",
-   "Cucumber",
-   "Pumpkin"
+   "Domates",
+   "Salatalık",
+   "Balkabağı"
   ],
   "out": [
-   "Carrot",
-   "Lettuce"
+   "Havuç",
+   "Marul"
   ],
   "door": [
    [
-    "Courgette",
+    "Kabak",
     1
    ],
    [
-    "Potato",
+    "Patates",
     0
    ],
    [
-    "Aubergine",
+    "Patlıcan",
     1
    ],
    [
-    "Rhubarb",
+    "Ravent",
     0
    ],
    [
-    "Sweet pepper",
+    "Dolmalık biber",
     1
    ]
   ]
  },
  "24": {
-  "sign": "They are stars",
-  "stamp": "Stars",
-  "fact": "They are stars. So is the Sun. After it, the nearest star is Proxima Centauri, about four light years away.",
+  "sign": "Yıldızdırlar",
+  "stamp": "Yıldızlar",
+  "fact": "Hepsi yıldızdır. Güneş de öyle. Ondan sonra en yakın yıldız, yaklaşık dört ışık yılı uzaktaki Proxima Centauri'dir.",
   "in": [
    "Sirius",
-   "Polaris",
+   "Kutup Yıldızı",
    "Betelgeuse"
   ],
   "out": [
-   "Venus",
-   "Pluto"
+   "Venüs",
+   "Plüton"
   ],
   "door": [
    [
-    "The Sun",
+    "Güneş",
     1
    ],
    [
-    "Jupiter",
+    "Jüpiter",
     0
    ],
    [
@@ -136,7 +136,7 @@ window.LG_PUZZLES["the-club"] = {
     1
    ],
    [
-    "Halley's Comet",
+    "Halley Kometi",
     0
    ],
    [
@@ -146,125 +146,125 @@ window.LG_PUZZLES["the-club"] = {
   ]
  },
  "25": {
-  "sign": "Official UN languages",
-  "stamp": "UN languages",
-  "fact": "They are the six official languages of the United Nations. Hindi and Portuguese are not among them.",
+  "sign": "Birleşmiş Milletler'in resmî dilleridir",
+  "stamp": "BM dilleri",
+  "fact": "Bunlar Birleşmiş Milletler'in altı resmî dilidir. Hintçe ve Portekizce bunların arasında değildir.",
   "in": [
-   "English",
-   "French",
-   "Russian"
+   "İngilizce",
+   "Fransızca",
+   "Rusça"
   ],
   "out": [
-   "German",
-   "Japanese"
+   "Almanca",
+   "Japonca"
   ],
   "door": [
    [
-    "Arabic",
+    "Arapça",
     1
    ],
    [
-    "Hindi",
+    "Hintçe",
     0
    ],
    [
-    "Chinese",
+    "Çince",
     1
    ],
    [
-    "Portuguese",
+    "Portekizce",
     0
    ],
    [
-    "Spanish",
+    "İspanyolca",
     1
    ]
   ]
  },
  "26": {
-  "sign": "They are molluscs",
-  "stamp": "Molluscs",
-  "fact": "They are molluscs. An octopus is a relative of the garden snail; a barnacle is a crustacean, like a crab.",
+  "sign": "Yumuşakçalardır",
+  "stamp": "Yumuşakçalar",
+  "fact": "Hepsi yumuşakçadır. Ahtapot, bahçe salyangozunun akrabasıdır; barnakıl ise yengeç gibi bir kabukludur.",
   "in": [
-   "Octopus",
-   "Snail",
-   "Oyster"
+   "Ahtapot",
+   "Salyangoz",
+   "İstiridye"
   ],
   "out": [
-   "Crab",
-   "Starfish"
+   "Yengeç",
+   "Denizyıldızı"
   ],
   "door": [
    [
-    "Squid",
+    "Kalamar",
     1
    ],
    [
-    "Shrimp",
+    "Karides",
     0
    ],
    [
-    "Slug",
+    "Sümüklüböcek",
     1
    ],
    [
-    "Barnacle",
+    "Barnakıl",
     0
    ],
    [
-    "Mussel",
+    "Midye",
     1
    ]
   ]
  },
  "27": {
-  "sign": "They are legumes",
-  "stamp": "Legumes",
-  "fact": "They are legumes, plants of the pea family whose seeds grow in pods. The peanut is one: to a botanist it is not a nut.",
+  "sign": "Baklagillerdir",
+  "stamp": "Baklagiller",
+  "fact": "Hepsi baklagildir: tohumları bir kılıf içinde büyüyen bezelye ailesinin bitkileri. Yerfıstığı da onlardan biridir: bir botanikçiye göre fındık değildir.",
   "in": [
-   "Pea",
-   "Lentil",
-   "Chickpea"
+   "Bezelye",
+   "Mercimek",
+   "Nohut"
   ],
   "out": [
-   "Coffee bean",
-   "Almond"
+   "Kahve çekirdeği",
+   "Badem"
   ],
   "door": [
    [
-    "Peanut",
+    "Yerfıstığı",
     1
    ],
    [
-    "Potato",
+    "Patates",
     0
    ],
    [
-    "Soybean",
+    "Soya fasulyesi",
     1
    ],
    [
-    "Black pepper",
+    "Karabiber",
     0
    ],
    [
-    "Cucumber",
+    "Salatalık",
     0
    ]
   ]
  },
  "28": {
-  "sign": "They are alloys",
-  "stamp": "Alloys",
-  "fact": "They are alloys, metals melted together. Bronze is copper and tin; brass is copper and zinc.",
+  "sign": "Alaşımlardır",
+  "stamp": "Alaşımlar",
+  "fact": "Hepsi alaşımdır, yani birlikte eritilmiş metallerdir. Bronz bakır ile kalaydır; pirinç bakır ile çinkodur.",
   "in": [
-   "Steel",
-   "Bronze",
-   "Brass"
+   "Çelik",
+   "Bronz",
+   "Pirinç"
   ],
   "out": [
-   "Iron",
-   "Copper"
+   "Demir",
+   "Bakır"
   ],
   "door": [
    [
@@ -272,39 +272,39 @@ window.LG_PUZZLES["the-club"] = {
     1
    ],
    [
-    "Aluminium",
+    "Alüminyum",
     0
    ],
    [
-    "Sterling silver",
+    "Ayar gümüşü",
     1
    ],
    [
-    "Titanium",
+    "Titanyum",
     0
    ],
    [
-    "Tin",
+    "Kalay",
     0
    ]
   ]
  },
  "29": {
-  "sign": "Tales by H. C. Andersen",
-  "stamp": "Andersen's tales",
-  "fact": "Hans Christian Andersen made up each of these tales. Cinderella and Snow White are old folk tales that others wrote down.",
+  "sign": "H. C. Andersen masallarıdır",
+  "stamp": "Andersen masalları",
+  "fact": "Hans Christian Andersen bu masalların her birini kendisi uydurdu. Külkedisi ve Pamuk Prenses, başkalarının yazıya döktüğü eski halk masallarıdır.",
   "in": [
-   "The Little Mermaid",
-   "The Ugly Duckling",
-   "Thumbelina"
+   "Küçük Deniz Kızı",
+   "Çirkin Ördek Yavrusu",
+   "Parmak Kız"
   ],
   "out": [
-   "Cinderella",
-   "Snow White"
+   "Külkedisi",
+   "Pamuk Prenses"
   ],
   "door": [
    [
-    "The Snow Queen",
+    "Kar Kraliçesi",
     1
    ],
    [
@@ -312,30 +312,30 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "The Princess and the Pea",
+    "Prenses ve Bezelye",
     1
    ],
    [
-    "Pinocchio",
+    "Pinokyo",
     0
    ],
    [
-    "Hansel and Gretel",
+    "Hansel ile Gretel",
     0
    ]
   ]
  },
  "30": {
-  "sign": "They were Roman emperors",
-  "stamp": "Roman emperors",
-  "fact": "Each was a Roman emperor. Julius Caesar never was: Augustus became the first emperor in 27 BC.",
+  "sign": "Roma imparatorlarıydılar",
+  "stamp": "Roma imparatorları",
+  "fact": "Hepsi Roma imparatoruydu. Jül Sezar hiçbir zaman imparator olmadı: Augustus, MÖ 27'de ilk imparator oldu.",
   "in": [
    "Augustus",
-   "Nero",
-   "Hadrian"
+   "Neron",
+   "Hadrianus"
   ],
   "out": [
-   "Julius Caesar",
+   "Jül Sezar",
    "Cicero"
   ],
   "door": [
@@ -348,7 +348,7 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "Constantine",
+    "Konstantin",
     1
    ],
    [
@@ -356,31 +356,31 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "Trajan",
+    "Traianus",
     1
    ]
   ]
  },
  "31": {
-  "sign": "They have no sea coast",
-  "stamp": "Landlocked",
-  "fact": "None of them touches the sea. Ethiopia, with more than 100 million people, is the most populous country without a coast.",
+  "sign": "Denize kıyıları yoktur",
+  "stamp": "Denize kıyısı yok",
+  "fact": "Hiçbiri denize kıyısı olan bir ülke değil. 100 milyondan fazla nüfusuyla Etiyopya, kıyısı olmayan en kalabalık ülkedir.",
   "in": [
-   "Switzerland",
-   "Mongolia",
-   "Bolivia"
+   "İsviçre",
+   "Moğolistan",
+   "Bolivya"
   ],
   "out": [
    "Peru",
-   "Norway"
+   "Norveç"
   ],
   "door": [
    [
-    "Ethiopia",
+    "Etiyopya",
     1
    ],
    [
-    "Jordan",
+    "Ürdün",
     0
    ],
    [
@@ -388,31 +388,31 @@ window.LG_PUZZLES["the-club"] = {
     1
    ],
    [
-    "Chile",
+    "Şili",
     0
    ],
    [
-    "Austria",
+    "Avusturya",
     1
    ]
   ]
  },
  "32": {
-  "sign": "In the first modern Olympics",
-  "stamp": "Athens 1896",
-  "fact": "All were part of the first modern Olympics, Athens 1896. Rowing was planned too, but bad weather stopped it.",
+  "sign": "İlk modern Olimpiyatlar'da vardılar",
+  "stamp": "Atina 1896",
+  "fact": "Hepsi ilk modern Olimpiyatlar'da, Atina 1896'da yer aldı. Kürek de planlanmıştı ama kötü hava onu engelledi.",
   "in": [
-   "Athletics",
-   "Swimming",
-   "Fencing"
+   "Atletizm",
+   "Yüzme",
+   "Eskrim"
   ],
   "out": [
-   "Basketball",
-   "Volleyball"
+   "Basketbol",
+   "Voleybol"
   ],
   "door": [
    [
-    "Cycling",
+    "Bisiklet",
     1
    ],
    [
@@ -420,27 +420,27 @@ window.LG_PUZZLES["the-club"] = {
     0
    ],
    [
-    "Wrestling",
+    "Güreş",
     1
    ],
    [
-    "Rowing",
+    "Kürek",
     0
    ],
    [
-    "Tennis",
+    "Tenis",
     1
    ]
   ]
  },
  "33": {
-  "sign": "Over 2,000 metres high",
-  "stamp": "High capitals",
-  "fact": "Each lies more than 2,000 metres above the sea. La Paz, at about 3,600 metres, is the highest capital in the world.",
+  "sign": "Yükseklikleri 2.000 metreden fazladır",
+  "stamp": "Yüksek başkentler",
+  "fact": "Hepsi deniz seviyesinden 2.000 metreden daha yüksekte yer alır. Yaklaşık 3.600 metredeki La Paz, dünyanın en yüksek başkentidir.",
   "in": [
-   "Mexico City",
-   "Bogotá",
-   "Addis Ababa"
+   "Meksiko",
+   "Bogota",
+   "Addis Abeba"
   ],
   "out": [
    "Lima",
@@ -452,7 +452,7 @@ window.LG_PUZZLES["the-club"] = {
     1
    ],
    [
-    "Kathmandu",
+    "Katmandu",
     0
    ],
    [
@@ -470,37 +470,37 @@ window.LG_PUZZLES["the-club"] = {
   ]
  },
  "34": {
-  "sign": "They have no bones",
-  "stamp": "No bones",
-  "fact": "None of them has a single bone. A shark's skeleton is made of cartilage, the gristly stuff of your ears and nose.",
+  "sign": "Hiç kemikleri yoktur",
+  "stamp": "Kemiksizler",
+  "fact": "Hiçbirinin tek bir kemiği bile yok. Köpekbalığının iskeleti, kulağındaki ve burnundaki esnek madde olan kıkırdaktan yapılmıştır.",
   "in": [
-   "Shark",
-   "Octopus",
-   "Jellyfish"
+   "Köpekbalığı",
+   "Ahtapot",
+   "Denizanası"
   ],
   "out": [
-   "Snake",
-   "Tuna"
+   "Yılan",
+   "Ton balığı"
   ],
   "door": [
    [
-    "Squid",
+    "Kalamar",
     1
    ],
    [
-    "Eel",
+    "Yılan balığı",
     0
    ],
    [
-    "Stingray",
+    "Vatoz",
     1
    ],
    [
-    "Seahorse",
+    "Denizatı",
     0
    ],
    [
-    "Lobster",
+    "Istakoz",
     1
    ]
   ]

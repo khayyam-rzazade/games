@@ -2,216 +2,216 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["years-apart"] = {
  "20": {
-  "fact": "The Bastille was stormed 186 years after Tokugawa Ieyasu became shogun, and 78 years before Japan's emperor was restored to power.",
+  "fact": "Bastille'in basılması, Tokugawa Ieyasu'nun şogun olmasından 186 yıl sonra, Japonya imparatorunun yeniden iktidara gelmesinden 78 yıl önce gerçekleşti.",
   "about": false
  },
  "21": {
-  "fact": "Bell was granted the telephone patent 50 years after the first public passenger railway opened, and 93 years before the Moon landing.",
+  "fact": "Bell'e telefon patenti, ilk halka açık yolcu demiryolunun açılmasından 50 yıl sonra, Ay'a inişten 93 yıl önce verildi.",
   "about": false
  },
  "22": {
-  "fact": "The first modern Olympics opened 81 years after the Battle of Waterloo, and 49 years before the Second World War ended.",
+  "fact": "İlk modern Olimpiyatlar, Waterloo Savaşı'ndan 81 yıl sonra, İkinci Dünya Savaşı'nın bitmesinden 49 yıl önce açıldı.",
   "about": false
  },
  "23": {
-  "fact": "Newton's Principia came out 1,211 years after Rome's last western emperor was deposed, and 282 years before the Moon landing.",
+  "fact": "Newton'un Principia'sı, Batı Roma'nın son imparatorunun tahttan indirilmesinden 1.211 yıl sonra, Ay'a inişten 282 yıl önce yayımlandı.",
   "about": false
  },
  "24": {
-  "fact": "The Hagia Sophia was finished 566 years after Cleopatra died, and 916 years before Constantinople fell to the Ottomans.",
+  "fact": "Ayasofya, Kleopatra'nın ölümünden 566 yıl sonra tamamlandı; İstanbul'un fethinden 916 yıl önce.",
   "about": false
  },
  "25": {
-  "fact": "Columbus reached the Americas about 4,051 years after the Great Pyramid was finished, and only 477 years before the Moon landing.",
+  "fact": "Kolomb Amerika'ya, Büyük Piramit'in tamamlanmasından yaklaşık 4.051 yıl sonra, Ay'a inişten yalnızca 477 yıl önce ulaştı.",
   "about": true
  },
  "26": {
-  "fact": "The Declaration of Independence came 160 years after Shakespeare died, and 83 years before Darwin's On the Origin of Species.",
+  "fact": "Bağımsızlık Bildirgesi, Shakespeare'in ölümünden 160 yıl sonra, Darwin'in Türlerin Kökeni'nden 83 yıl önce yayımlandı.",
   "about": false
  },
  "27": {
-  "fact": "The Panama Canal opened 45 years after the Suez Canal, and 55 years before the Moon landing.",
+  "fact": "Panama Kanalı, Süveyş Kanalı'ndan 45 yıl sonra, Ay'a inişten 55 yıl önce açıldı.",
   "about": false
  },
  "28": {
-  "fact": "The Battle of Hastings came 529 years after the Hagia Sophia was finished, and 387 years before Constantinople fell to the Ottomans.",
+  "fact": "Hastings Savaşı, Ayasofya'nın tamamlanmasından 529 yıl sonra, İstanbul'un fethinden 387 yıl önce yapıldı.",
   "about": false
  },
  "29": {
-  "fact": "The Titanic sank 697 years after Magna Carta was sealed, and only 57 years before the Moon landing.",
+  "fact": "Titanik, Magna Carta'nın mühürlenmesinden 697 yıl sonra, Ay'a inişten yalnızca 57 yıl önce battı.",
   "about": false
  },
  "30": {
-  "fact": "China got its first emperor 102 years after Alexander the Great died, and 177 years before Julius Caesar was killed.",
+  "fact": "Çin'in ilk imparatoru, Büyük İskender'in ölümünden 102 yıl sonra, Jül Sezar'ın öldürülmesinden 177 yıl önce tahta çıktı.",
   "about": false
  },
  "31": {
-  "fact": "The Wright brothers flew 451 years after Constantinople fell, and just 66 years before the Moon landing.",
+  "fact": "Wright kardeşler, İstanbul'un fethinden 451 yıl sonra, Ay'a inişten yalnızca 66 yıl önce uçtu.",
   "about": false
  },
  "32": {
-  "fact": "Cortés entered the Aztec capital 21 years after Vasco da Gama reached India by sea, and 96 years before Shakespeare died.",
+  "fact": "Cortés Aztek başkentine, Vasco da Gama'nın denizden Hindistan'a ulaşmasından 21 yıl sonra, Shakespeare'in ölümünden 96 yıl önce girdi.",
   "about": false
  },
  "33": {
-  "fact": "The Great Fire of London broke out 600 years after the Battle of Hastings, and 303 years before the Moon landing.",
+  "fact": "Büyük Londra Yangını, Hastings Savaşı'ndan 600 yıl sonra, Ay'a inişten 303 yıl önce çıktı.",
   "about": false
  }
 };
 window.LG_PUZZLES["years-apart.events"] = {
  "tokugawa": {
-  "t": "Tokugawa Ieyasu becomes shogun",
+  "t": "Tokugawa Ieyasu şogun oluyor",
   "y": "1603",
-  "stamp": "Tokugawa shogun"
+  "stamp": "Tokugawa şogunluğu"
  },
  "bastille": {
-  "t": "The storming of the Bastille",
+  "t": "Bastille'in basılması",
   "y": "1789",
-  "stamp": "The Bastille"
+  "stamp": "Bastille"
  },
  "meiji": {
-  "t": "Japan's emperor is restored to power",
+  "t": "Japonya imparatoru yeniden iktidara geliyor",
   "y": "1868",
-  "stamp": "Meiji Restoration"
+  "stamp": "Meiji Restorasyonu"
  },
  "railway": {
-  "t": "The first public passenger railway opens",
+  "t": "İlk halka açık yolcu demiryolu açılıyor",
   "y": "1825",
-  "stamp": "First railway"
+  "stamp": "İlk demiryolu"
  },
  "telephone": {
-  "t": "Bell is granted the telephone patent",
+  "t": "Bell telefon patentini alıyor",
   "y": "1876",
-  "stamp": "The telephone"
+  "stamp": "Telefon"
  },
  "moon": {
-  "t": "Apollo 11 lands on the Moon",
+  "t": "Apollo 11 Ay'a iniyor",
   "y": "1969",
-  "stamp": "Moon landing"
+  "stamp": "Ay'a iniş"
  },
  "waterloo": {
-  "t": "The Battle of Waterloo",
+  "t": "Waterloo Savaşı",
   "y": "1815",
   "stamp": "Waterloo"
  },
  "olympics-1896": {
-  "t": "The first modern Olympics open in Athens",
+  "t": "İlk modern Olimpiyatlar Atina'da açılıyor",
   "y": "1896",
-  "stamp": "Athens 1896"
+  "stamp": "Atina 1896"
  },
  "ww2-end": {
-  "t": "The Second World War ends",
+  "t": "İkinci Dünya Savaşı sona eriyor",
   "y": "1945",
-  "stamp": "War's end, 1945"
+  "stamp": "Savaşın sonu, 1945"
  },
  "rome-falls": {
-  "t": "Rome's last western emperor is deposed",
-  "y": "AD 476",
-  "stamp": "Rome's last emperor"
+  "t": "Batı Roma'nın son imparatoru tahttan indiriliyor",
+  "y": "MS 476",
+  "stamp": "Roma'nın son imparatoru"
  },
  "principia": {
-  "t": "Newton's Principia is published",
+  "t": "Newton'un Principia'sı yayımlanıyor",
   "y": "1687",
-  "stamp": "Newton's Principia"
+  "stamp": "Newton'un Principia'sı"
  },
  "cleopatra": {
-  "t": "Cleopatra dies",
-  "y": "30 BC",
-  "stamp": "Cleopatra dies"
+  "t": "Kleopatra ölüyor",
+  "y": "MÖ 30",
+  "stamp": "Kleopatra'nın ölümü"
  },
  "hagia": {
-  "t": "The Hagia Sophia is finished",
-  "y": "AD 537",
-  "stamp": "Hagia Sophia"
+  "t": "Ayasofya tamamlanıyor",
+  "y": "MS 537",
+  "stamp": "Ayasofya"
  },
  "constantinople": {
-  "t": "Constantinople falls to the Ottomans",
+  "t": "İstanbul'un fethi",
   "y": "1453",
-  "stamp": "Constantinople falls"
+  "stamp": "İstanbul'un fethi"
  },
  "pyramid": {
-  "t": "The Great Pyramid of Giza is finished",
-  "y": "about 2560 BC",
-  "stamp": "Great Pyramid"
+  "t": "Gize'deki Büyük Piramit tamamlanıyor",
+  "y": "yaklaşık MÖ 2560",
+  "stamp": "Büyük Piramit"
  },
  "columbus": {
-  "t": "Columbus reaches the Americas",
+  "t": "Kolomb Amerika'ya ulaşıyor",
   "y": "1492",
-  "stamp": "Columbus lands"
+  "stamp": "Kolomb karaya çıkıyor"
  },
  "shakespeare": {
-  "t": "Shakespeare dies",
+  "t": "Shakespeare ölüyor",
   "y": "1616",
-  "stamp": "Shakespeare dies"
+  "stamp": "Shakespeare'in ölümü"
  },
  "declaration": {
-  "t": "The US Declaration of Independence",
+  "t": "ABD Bağımsızlık Bildirgesi",
   "y": "1776",
-  "stamp": "Independence declared"
+  "stamp": "Bağımsızlık Bildirgesi"
  },
  "darwin": {
-  "t": "Darwin publishes On the Origin of Species",
+  "t": "Darwin, Türlerin Kökeni'ni yayımlıyor",
   "y": "1859",
-  "stamp": "Origin of Species"
+  "stamp": "Türlerin Kökeni"
  },
  "suez": {
-  "t": "The Suez Canal opens",
+  "t": "Süveyş Kanalı açılıyor",
   "y": "1869",
-  "stamp": "Suez Canal"
+  "stamp": "Süveyş Kanalı"
  },
  "panama": {
-  "t": "The Panama Canal opens",
+  "t": "Panama Kanalı açılıyor",
   "y": "1914",
-  "stamp": "Panama Canal"
+  "stamp": "Panama Kanalı"
  },
  "hastings": {
-  "t": "The Battle of Hastings",
+  "t": "Hastings Savaşı",
   "y": "1066",
   "stamp": "Hastings"
  },
  "magna": {
-  "t": "Magna Carta is sealed",
+  "t": "Magna Carta mühürleniyor",
   "y": "1215",
   "stamp": "Magna Carta"
  },
  "titanic": {
-  "t": "The Titanic sinks",
+  "t": "Titanik batıyor",
   "y": "1912",
-  "stamp": "Titanic sinks"
+  "stamp": "Titanik"
  },
  "alexander": {
-  "t": "Alexander the Great dies",
-  "y": "323 BC",
-  "stamp": "Alexander dies"
+  "t": "Büyük İskender ölüyor",
+  "y": "MÖ 323",
+  "stamp": "İskender'in ölümü"
  },
  "qin": {
-  "t": "Qin Shi Huang becomes China's first emperor",
-  "y": "221 BC",
-  "stamp": "China's first emperor"
+  "t": "Qin Shi Huang, Çin'in ilk imparatoru oluyor",
+  "y": "MÖ 221",
+  "stamp": "Çin'in ilk imparatoru"
  },
  "caesar": {
-  "t": "Julius Caesar is assassinated",
-  "y": "44 BC",
-  "stamp": "Caesar's last day"
+  "t": "Jül Sezar öldürülüyor",
+  "y": "MÖ 44",
+  "stamp": "Sezar'ın son günü"
  },
  "wright": {
-  "t": "The Wright brothers' first powered flight",
+  "t": "Wright kardeşlerin ilk motorlu uçuşu",
   "y": "1903",
-  "stamp": "First flight"
+  "stamp": "İlk uçuş"
  },
  "gama": {
-  "t": "Vasco da Gama reaches India by sea",
+  "t": "Vasco da Gama denizden Hindistan'a ulaşıyor",
   "y": "1498",
-  "stamp": "Da Gama in India"
+  "stamp": "Gama Hindistan'da"
  },
  "cortes": {
-  "t": "Cortés enters the Aztec capital",
+  "t": "Cortés Aztek başkentine giriyor",
   "y": "1519",
-  "stamp": "Cortés in Tenochtitlan"
+  "stamp": "Cortés Tenochtitlan'da"
  },
  "fire-london": {
-  "t": "The Great Fire of London",
+  "t": "Büyük Londra Yangını",
   "y": "1666",
-  "stamp": "Great Fire of London"
+  "stamp": "Büyük Londra Yangını"
  }
 };

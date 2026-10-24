@@ -1116,4 +1116,4 @@ window.LG_DICT = {
  "rm.yes": "Yes",
  "rm.keep": "Keep things as they are"
 };
-window.LG_ONLY = {"it": "This page is in English only for now.", "tr": "This page is in English only for now.", "es": "This page is in English only for now."};
+window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora."};

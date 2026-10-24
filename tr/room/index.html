@@ -7,8 +7,8 @@
      seen to miss these tags when they sit after bulky inline styles. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
-<meta property="og:title" content="You are invited to a room" data-s-content="rm.og_title">
-<meta property="og:description" content="A room of friends playing the same small daily games, with a table for the day, the week and the month. No login, nothing to install." data-s-content="rm.og_desc">
+<meta property="og:title" content="Bir odaya davetlisin" data-s-content="rm.og_title">
+<meta property="og:description" content="Aynı küçük günlük oyunları oynayan bir arkadaş odası; gün, hafta ve ay için bir tablo. Giriş yok, kurulacak bir şey yok." data-s-content="rm.og_desc">
 <meta property="og:url" content="https://logicers.com/tr/room/">
 <meta property="og:image" content="https://logicers.com/assets/img/og.png">
 <meta property="og:image:width" content="1200">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title data-s="rm.page_title">Rooms: play the daily games with your friends | Logicers</title>
+<title data-s="rm.page_title">Odalar: günlük oyunları arkadaşlarınla oyna | Logicers</title>
 <link rel="canonical" href="https://logicers.com/tr/room/">
 <link rel="alternate" hreflang="en" href="https://logicers.com/room/">
 <link rel="alternate" hreflang="it" href="https://logicers.com/it/room/">
@@ -28,7 +28,7 @@
 <link rel="alternate" hreflang="tr" href="https://logicers.com/tr/room/">
 <link rel="alternate" hreflang="es" href="https://logicers.com/es/room/">
 <link rel="alternate" hreflang="x-default" href="https://logicers.com/room/">
-<meta name="description" content="A room is 2 to 50 friends playing the same small daily games, with a table for the day, the week and the month. Joining is one link. No login, no password, nothing to install." data-s-content="rm.page_desc">
+<meta name="description" content="Bir oda, aynı küçük günlük oyunları oynayan 2 ila 50 arkadaştır; gün, hafta ve ay için bir tablosu vardır. Katılmak tek bir bağlantıdır. Giriş yok, şifre yok, kurulacak bir şey yok." data-s-content="rm.page_desc">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
 <meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
 <meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
@@ -42,7 +42,7 @@
 <link rel="manifest" href="../../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="../../assets/css/logicers.css?v=e165ea97e7">
-<script src="../../assets/lang/tr.js?v=be9c81aa31"></script>
+<script src="../../assets/lang/tr.js?v=800cf276bd"></script>
 <script src="../../assets/js/lang.js?v=b48aebb299"></script>
 <link rel="stylesheet" href="../../room/room.css?v=bd9537a1ed">
 </head>
@@ -52,37 +52,37 @@
   <a class="wordmark" href="../../tr/">Logicers</a>
   <div class="bar-tools">
     <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
-    <button class="chip round" type="button" data-open="dlg-help" aria-label="What this is" data-s-aria-label="rm.what_aria">?</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Bu ne" data-s-aria-label="rm.what_aria">?</button>
   </div>
 </header>
 
 <main class="wrap d-wrap rm-wrap" id="app">
-  <p class="meta"><b data-s="rm.rooms">Rooms</b> <span id="rm-date"></span></p>
+  <p class="meta"><b data-s="rm.rooms">Odalar</b> <span id="rm-date"></span></p>
 
-  <h1 class="d-h1" id="rm-head" data-s="rm.play_with_friends">Play with your friends</h1>
-  <p class="d-lede" id="rm-lede" data-s="rm.lede">A room is 2 to 50 friends playing the same daily games, with a table for the day, the week and the month.</p>
+  <h1 class="d-h1" id="rm-head" data-s="rm.play_with_friends">Arkadaşlarınla oyna</h1>
+  <p class="d-lede" id="rm-lede" data-s="rm.lede">Bir oda, aynı günlük oyunları oynayan 2 ila 50 arkadaştır; gün, hafta ve ay için bir tablosu vardır.</p>
 
   <!-- the promise, high up, where a careful person lands: one line, with the full words one tap
        away under "?" and in the About sheet (the second round cut the paragraphs off the page) -->
   <p class="d-safe" id="rm-safe">
     <span class="d-tick" aria-hidden="true">✓</span>
-    <span data-s="rm.safe">No login, no password. Joining sends only your daily results — the game, your score, your guess, the day, your name. Leaving deletes everything of yours at once. The full words are under <b>?</b>.</span>
+    <span data-s="rm.safe">Giriş yok, şifre yok. Katılmak yalnızca günlük sonuçlarını gönderir: oyun, puanın, tahminin, gün, adın. Ayrılmak sana ait her şeyi hemen siler. Tam açıklama <b>?</b> işaretinin altında.</span>
   </p>
 
   <section class="panel rm-panel" id="rm-panel" aria-labelledby="rm-head">
     <p class="rm-state" id="rm-state"></p>
 
-    <div id="rm-switch" class="rm-switch" hidden role="group" aria-label="Your rooms" data-s-aria-label="rm.your_rooms_aria"></div>
+    <div id="rm-switch" class="rm-switch" hidden role="group" aria-label="Odaların" data-s-aria-label="rm.your_rooms_aria"></div>
 
     <div id="rm-join" hidden>
       <div class="d-who" id="rm-who"></div>
-      <button class="rm-big" id="rm-join-go" type="button" data-s="rm.join_this">Join this room</button>
-      <p class="quiet rm-small" data-s="rm.join_note">One tap. If you have no name here yet, a window asks what your friends call you.</p>
+      <button class="rm-big" id="rm-join-go" type="button" data-s="rm.join_this">Bu odaya katıl</button>
+      <p class="quiet rm-small" data-s="rm.join_note">Tek dokunuş. Burada henüz bir adın yoksa bir pencere arkadaşlarının sana ne dediğini sorar.</p>
     </div>
 
     <div id="rm-make" hidden>
-      <button class="rm-big" id="rm-make-go" type="button" data-s="rm.make">Make a room</button>
-      <p class="quiet rm-small" data-s="rm.make_note">One tap makes the room and its link. You send the link yourself, and whoever opens it is in.</p>
+      <button class="rm-big" id="rm-make-go" type="button" data-s="rm.make">Oda kur</button>
+      <p class="quiet rm-small" data-s="rm.make_note">Tek dokunuş odayı ve bağlantısını yapar. Bağlantıyı kendin gönderirsin; açan herkes odaya girer.</p>
     </div>
 
     <div id="rm-table" hidden></div>
@@ -91,12 +91,12 @@
   </section>
 
   <section class="d-steps" aria-labelledby="rm-steps-h">
-    <h2 class="d-demo-h" id="rm-steps-h" data-s="rm.how_h">How it works</h2>
+    <h2 class="d-demo-h" id="rm-steps-h" data-s="rm.how_h">Nasıl çalışır</h2>
     <ol class="d-ol">
-      <li data-s="rm.how_1">One of you makes the room and sends its link to the group chat.</li>
-      <li data-s="rm.how_2">Everyone who opens the link is in. Up to 50 of you; no login, no password.</li>
-      <li data-s="rm.how_3">Play the daily games as always. Each finished game joins the room's board by itself.</li>
-      <li data-s="rm.how_4">Day, Week, Month: one tap shows each table, with crowns, streaks and who is still to play.</li>
+      <li data-s="rm.how_1">İçinizden biri odayı kurar ve bağlantısını grup sohbetine gönderir.</li>
+      <li data-s="rm.how_2">Bağlantıyı açan herkes odaya girer. En çok 50 kişi; giriş yok, şifre yok.</li>
+      <li data-s="rm.how_3">Günlük oyunları her zamanki gibi oyna. Bitirdiğin her oyun kendiliğinden odanın tablosuna katılır.</li>
+      <li data-s="rm.how_4">Gün, Hafta, Ay: tek dokunuşla her tablo görünür; taçlar, seriler ve henüz oynamayanlar da.</li>
     </ol>
   </section>
 
@@ -105,29 +105,29 @@
 
 <dialog id="dlg-help" class="sheet" aria-labelledby="help-h">
   <div class="sheet-in">
-    <button class="sheet-x" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
-    <h2 id="help-h" data-s="rm.rooms">Rooms</h2>
-    <p data-s="rm.help_lede">A room is 2 to 50 friends playing the same small daily games. One link makes you a member; every daily game you finish then joins the room's board by itself.</p>
-    <h3 data-s="rm.help_key_h">The link is the key</h3>
-    <p class="quiet" data-s="rm.help_key">No login, no password: the room's code is drawn at random — far too many to guess, and the server slows anyone who tries — and rides after the <b>#</b>, which browsers never send to other sites. Whoever has the link is in, so share it only with the friends you mean.</p>
-    <h3 data-s="rm.help_name_h">Your name and your face</h3>
-    <p class="quiet" data-s="rm.help_name">Nobody is given a name. The first time one is needed a window asks what your friends call you; it is kept in this browser and sent with your scores. Your face is a coloured circle drawn from your name — nothing is uploaded. Two members of one room cannot share a name.</p>
-    <h3 data-s="rm.help_crowns_h">Crowns, the day, the week and the month</h3>
-    <p class="quiet" data-s="rm.help_crowns">A game's crown goes to whoever was strictly closest that day, by the game's own rule — The Club by most right, Your Call never a win. A tie takes nothing, and a game only you played takes nothing. A point per crown, the same in every table: the day's, the week's (Monday to Sunday) and the month's, which starts fresh on the 1st; each can also show the one before. Friends' guesses show on a game's page only once you have played it yourself, and a room never touches your streak or your albums.</p>
-    <h3 data-s="rm.help_sent_h">What is sent, and what is kept</h3>
-    <p class="quiet" id="rm-privacy" data-privacy="rooms" data-s="priv.rooms_page">When you finish a daily game, your phone sends the game, your score, your guess, the day and your name to the rooms you are in — nothing else, nothing of any answer, and nothing at all if you are in no room. A reaction you tap is kept the same way. It all goes to the site's own small server and nowhere further. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole, and no address, email or cookie is stored for anyone. Leaving a room deletes everything of yours — scores, guesses and reactions — at once, and whoever made the room can delete the whole room. If anything is ever stuck, write to the contact address and it will be deleted by hand.</p>
-    <h3 data-s="wt.contact_h">Contact</h3>
-    <p class="quiet" data-s="rm.contact">A question, a mistake, or something to delete? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+    <button class="sheet-x" type="button" data-close aria-label="Kapat" data-s-aria-label="site.close">×</button>
+    <h2 id="help-h" data-s="rm.rooms">Odalar</h2>
+    <p data-s="rm.help_lede">Bir oda, aynı küçük günlük oyunları oynayan 2 ila 50 arkadaştır. Tek bir bağlantı seni üye yapar; bitirdiğin her günlük oyun kendiliğinden odanın tablosuna katılır.</p>
+    <h3 data-s="rm.help_key_h">Bağlantı anahtardır</h3>
+    <p class="quiet" data-s="rm.help_key">Giriş yok, şifre yok: odanın kodu rastgele seçilir — tahmin edilemeyecek kadar çok ihtimal vardır ve deneyen kişiyi sunucu yavaşlatır — ve <b>#</b> işaretinden sonra gelir; tarayıcılar bunu diğer sitelere hiçbir zaman göndermez. Bağlantısı olan herkes odaya girer, bu yüzden onu yalnızca kastettiğin arkadaşlarla paylaş.</p>
+    <h3 data-s="rm.help_name_h">Adın ve yüzün</h3>
+    <p class="quiet" data-s="rm.help_name">Kimseye ad verilmez. Bir ad ilk gerektiğinde bir pencere arkadaşlarının sana ne dediğini sorar; bu tarayıcıda saklanır ve puanlarınla birlikte gider. Yüzün, adından çizilen renkli bir dairedir: hiçbir şey yüklenmez. Bir odadaki iki üye aynı adı kullanamaz.</p>
+    <h3 data-s="rm.help_crowns_h">Taçlar, gün, hafta ve ay</h3>
+    <p class="quiet" data-s="rm.help_crowns">Bir oyunun tacı, o gün oyunun kendi kuralına göre kesinlikle en yakın olan kişiye gider: Kulüp oyununda en çok doğru bilene, Karar Senin oyununda ise hiçbir zaman kimseye. Beraberlik hiçbir şey almaz ve yalnızca senin oynadığın oyun da hiçbir şey almaz. Her taç bir puandır, her tabloda aynı: günün tablosunda, haftanın (Pazartesi'den Pazar'a) ve ayın tablosunda; ay, ayın ilk günü baştan başlar ve her biri bir öncekini de gösterebilir. Arkadaşlarının tahminleri bir oyunun sayfasında yalnızca sen o oyunu oynadıktan sonra görünür ve bir oda serine ya da albümlerine hiçbir zaman dokunmaz.</p>
+    <h3 data-s="rm.help_sent_h">Ne gönderilir, ne saklanır</h3>
+    <p class="quiet" id="rm-privacy" data-privacy="rooms" data-s="priv.rooms_page">Bir günlük oyunu bitirdiğinde telefonun, içinde bulunduğun odalara oyunu, puanını, tahminini, günü ve adını gönderir; başka hiçbir şey, hiçbir cevap ve hiçbir odada değilsen hiçbir şey gönderilmez. Dokunduğun bir tepki de aynı şekilde saklanır. Hepsi sitenin kendi küçük sunucusuna gider, başka hiçbir yere gitmez. Sunucu bu ayı ve geçen ayı saklar, sonra siler; 60 gündür kimsenin oynamadığı oda tamamen silinir ve kimse için adres, e-posta ya da çerez saklanmaz. Bir odadan ayrılmak sana ait her şeyi — puanları, tahminleri ve tepkileri — hemen siler ve odayı kuran kişi odanın tamamını silebilir. Bir şey takılı kalırsa iletişim adresine yaz, elle silinir.</p>
+    <h3 data-s="wt.contact_h">İletişim</h3>
+    <p class="quiet" data-s="rm.contact">Bir soru, bir hata ya da silinmesi gereken bir şey mi var? <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a> adresine yaz.</p>
   </div>
 </dialog>
 
 <dialog id="dlg-sure" class="sheet rm-sure" aria-labelledby="sure-h">
   <div class="sheet-in">
-    <button class="sheet-x" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
-    <h2 id="sure-h" data-s="rm.sure_h">Are you sure?</h2>
+    <button class="sheet-x" type="button" data-close aria-label="Kapat" data-s-aria-label="site.close">×</button>
+    <h2 id="sure-h" data-s="rm.sure_h">Emin misin?</h2>
     <p id="sure-words"></p>
-    <button class="rm-big rm-danger" id="sure-go" type="button" data-s="rm.yes">Yes</button>
-    <button class="rm-quiet" id="sure-no" type="button" data-close data-s="rm.keep">Keep things as they are</button>
+    <button class="rm-big rm-danger" id="sure-go" type="button" data-s="rm.yes">Evet</button>
+    <button class="rm-quiet" id="sure-no" type="button" data-close data-s="rm.keep">Her şey olduğu gibi kalsın</button>
   </div>
 </dialog>
 

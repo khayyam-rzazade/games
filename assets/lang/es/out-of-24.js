@@ -2,212 +2,212 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["out-of-24"] = {
  "16": {
-  "face": "Japan",
-  "label": "eating",
+  "face": "Japón",
+  "label": "comiendo",
   "fig": "1 h 39",
-  "sentence": "People in Japan spend 1 hour 39 minutes a day on meals, by the national survey of 2021.",
-  "note": "Everyone aged 10 and over, averaged over the whole week (Statistics Bureau of Japan).",
+  "sentence": "En Japón la gente dedica 1 hora y 39 minutos al día a las comidas, según la encuesta nacional de 2021.",
+  "note": "Todas las personas de 10 años o más, con el promedio de toda la semana (Oficina de Estadística de Japón).",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "comiendo"
    },
    {
     "i": "people",
-    "t": "everyone"
+    "t": "todos"
    }
   ]
  },
  "17": {
-  "face": "Rabbit",
-  "label": "asleep",
+  "face": "Conejo",
+  "label": "durmiendo",
   "fig": "8 h 24",
-  "sentence": "A rabbit sleeps about 8.4 hours a day: about a third of its life.",
-  "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976).",
+  "sentence": "Un conejo duerme unas 8,4 horas al día: casi un tercio de su vida.",
+  "note": "De dos tablas clásicas sobre el sueño de los animales: la de la Universidad de Washington y la de Allison y Cicchetti (Science, 1976).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "durmiendo"
    }
   ]
  },
  "18": {
   "face": "Koala",
-  "label": "asleep",
+  "label": "durmiendo",
   "fig": "18–22 h",
-  "sentence": "Tucked into the fork of a tree, a koala may sleep 18 to 22 hours a day.",
-  "note": "No source names a study or says whether the koalas were wild or in a zoo. Taronga Zoo says 18 to 20.",
+  "sentence": "Acomodado en la horquilla de un árbol, un koala puede dormir de 18 a 22 horas al día.",
+  "note": "Ninguna fuente nombra un estudio ni dice si los koalas eran salvajes o de zoológico. El zoológico de Taronga dice de 18 a 20.",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "durmiendo"
    }
   ]
  },
  "19": {
   "face": "China",
-  "label": "asleep or resting",
+  "label": "durmiendo o descansando",
   "fig": "9 h 19",
-  "sentence": "People in China spend 9 hours 19 minutes a day asleep or resting, by the national time-use survey of 2018.",
-  "note": "People aged 15 and over (National Bureau of Statistics of China). The survey counts sleeping and resting together.",
+  "sentence": "En China la gente pasa 9 horas y 19 minutos al día durmiendo o descansando, según la encuesta nacional de uso del tiempo de 2018.",
+  "note": "Personas de 15 años o más (Oficina Nacional de Estadística de China). La encuesta cuenta juntos el dormir y el descansar.",
   "chips": [
    {
     "i": "rest",
-    "t": "asleep or resting"
+    "t": "durmiendo o descansando"
    },
    {
     "i": "people",
-    "t": "everyone"
+    "t": "todos"
    }
   ]
  },
  "20": {
-  "face": "Pig",
-  "label": "asleep",
+  "face": "Cerdo",
+  "label": "durmiendo",
   "fig": "7 h 48–8 h 24",
-  "sentence": "A pig sleeps about 7.8 to 8.4 hours a day, more than a cow or a horse.",
-  "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976).",
+  "sentence": "Un cerdo duerme de 7,8 a 8,4 horas al día, más que una vaca o un caballo.",
+  "note": "De dos tablas clásicas sobre el sueño de los animales: la de la Universidad de Washington y la de Allison y Cicchetti (Science, 1976).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "durmiendo"
    }
   ]
  },
  "21": {
-  "face": "Fire ant queen",
-  "label": "asleep",
+  "face": "Reina de hormigas de fuego",
+  "label": "durmiendo",
   "fig": "9 h 24",
-  "sentence": "A fire ant queen takes about 92 naps a day, of about six minutes each: about 9.4 hours of sleep.",
-  "note": "Red imported fire ants (Cassill and others, Journal of Insect Behavior, 2009). The workers sleep about half as long.",
+  "sentence": "La reina de las hormigas de fuego echa unas 92 siestas al día, de unos seis minutos cada una: unas 9,4 horas de sueño.",
+  "note": "Hormigas de fuego rojas importadas (Cassill y otros, Journal of Insect Behavior, 2009). Las obreras duermen más o menos la mitad.",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "durmiendo"
    }
   ]
  },
  "22": {
-  "face": "USA",
-  "label": "eating",
+  "face": "Estados Unidos",
+  "label": "comiendo",
   "fig": "1 h 02–1 h 13",
-  "sentence": "People in the USA spend only about an hour a day eating and drinking: less than in any other country compared.",
-  "note": "1 hour 13 in 2025 (US Bureau of Labor Statistics, ages 15 and over); 1 hour 2 in an older OECD comparison.",
+  "sentence": "En Estados Unidos la gente dedica solo una hora al día a comer y beber: menos que en cualquier otro país comparado.",
+  "note": "1 hora y 13 minutos en 2025 (Oficina de Estadísticas Laborales de Estados Unidos, personas de 15 años o más); 1 hora y 2 minutos en una comparación anterior de la OCDE.",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "comiendo"
    },
    {
     "i": "people",
-    "t": "everyone"
+    "t": "todos"
    }
   ]
  },
  "23": {
-  "face": "Hedgehog",
-  "label": "asleep",
+  "face": "Erizo",
+  "label": "durmiendo",
   "fig": "10 h 06–10 h 42",
-  "sentence": "A European hedgehog sleeps 10 to 10.7 hours a day, almost half the day.",
-  "note": "From two classic tables of animal sleep: the University of Washington's and Allison and Cicchetti's (Science, 1976).",
+  "sentence": "Un erizo europeo duerme de 10 a 10,7 horas al día, casi la mitad del día.",
+  "note": "De dos tablas clásicas sobre el sueño de los animales: la de la Universidad de Washington y la de Allison y Cicchetti (Science, 1976).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "durmiendo"
    }
   ]
  },
  "24": {
-  "face": "Japan",
-  "label": "paid work or study",
+  "face": "Japón",
+  "label": "trabajo remunerado o estudio",
   "fig": "7 h 32",
-  "sentence": "Men in Japan aged 15 to 64 do 7 hours 32 minutes of paid work or study a day, counting weekends.",
-  "note": "OECD figures from Japan's 2016 survey: all men aged 15 to 64, working or not, all seven days. American men: 5 hours 32.",
+  "sentence": "Los hombres de Japón de 15 a 64 años dedican 7 horas y 32 minutos al día al trabajo remunerado o al estudio, contando los fines de semana.",
+  "note": "Cifras de la OCDE de la encuesta de Japón de 2016: todos los hombres de 15 a 64 años, trabajen o no, los siete días. Hombres estadounidenses: 5 horas y 32 minutos.",
   "chips": [
    {
     "i": "workstudy",
-    "t": "paid work or study"
+    "t": "trabajo remunerado o estudio"
    },
    {
     "i": "people",
-    "t": "men"
+    "t": "hombres"
    }
   ]
  },
  "25": {
-  "face": "Hunter-gatherers",
-  "label": "asleep",
+  "face": "Cazadores-recolectores",
+  "label": "durmiendo",
   "fig": "6 h 25",
-  "sentence": "Three peoples who live by hunting and gathering slept about 6 hours 25 minutes a night on average.",
-  "note": "The Hadza of Tanzania, the San of Namibia and the Tsimane of Bolivia, with wrist sleep trackers (Yetish and others, Current Biology, 2015).",
+  "sentence": "Tres pueblos que viven de la caza y la recolección dormían unas 6 horas y 25 minutos por noche en promedio.",
+  "note": "Los hadza de Tanzania, los san de Namibia y los tsimane de Bolivia, con pulseras de seguimiento del sueño (Yetish y otros, Current Biology, 2015).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "durmiendo"
    }
   ]
  },
  "26": {
-  "face": "Sloth",
-  "label": "asleep",
+  "face": "Perezoso",
+  "label": "durmiendo",
   "fig": "9 h 38",
-  "sentence": "Wild three-toed sloths slept just under 10 hours a day: some six hours less than sloths kept in captivity.",
-  "note": "Brown-throated three-toed sloths in the rainforest canopy of Panama, wearing tiny brain recorders (Rattenborg and others, Biology Letters, 2008).",
+  "sentence": "Los perezosos de tres dedos salvajes dormían poco menos de 10 horas al día: unas seis horas menos que los perezosos en cautiverio.",
+  "note": "Perezosos de tres dedos de garganta marrón en el dosel de la selva de Panamá, con diminutos registradores cerebrales (Rattenborg y otros, Biology Letters, 2008).",
   "chips": [
    {
     "i": "asleep",
-    "t": "asleep"
+    "t": "durmiendo"
    },
    {
     "i": "pin",
-    "t": "in the wild"
+    "t": "en la naturaleza"
    }
   ]
  },
  "27": {
-  "face": "Dairy cow",
-  "label": "eating",
+  "face": "Vaca lechera",
+  "label": "comiendo",
   "fig": "3–5 h",
-  "sentence": "A dairy cow eats for 3 to 5 hours a day, in 9 to 14 meals.",
-  "note": "Housed dairy cows, not grazing. A Czech study found 4 to 5 hours, within 3 to 6.",
+  "sentence": "Una vaca lechera come de 3 a 5 horas al día, en 9 a 14 comidas.",
+  "note": "Vacas lecheras estabuladas, sin pastar. Un estudio checo halló de 4 a 5 horas, dentro del rango de 3 a 6.",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "comiendo"
    },
    {
     "i": "pin",
-    "t": "on a farm"
+    "t": "en una granja"
    }
   ]
  },
  "28": {
-  "face": "France",
-  "label": "housework and care",
+  "face": "Francia",
+  "label": "tareas del hogar y cuidados",
   "fig": "2 h 15",
-  "sentence": "Men in France spend 2 hours 15 minutes a day on unpaid work, such as housework and care; women 3 hours 44.",
-  "note": "OECD figures, men aged 15 to 64, all seven days, from INSEE's survey of 2009–2010.",
+  "sentence": "Los hombres de Francia dedican 2 horas y 15 minutos al día al trabajo no remunerado, como las tareas del hogar y los cuidados; las mujeres, 3 horas y 44 minutos.",
+  "note": "Cifras de la OCDE, hombres de 15 a 64 años, los siete días, de la encuesta del INSEE de 2009-2010.",
   "chips": [
    {
     "i": "care",
-    "t": "housework and care"
+    "t": "tareas del hogar y cuidados"
    },
    {
     "i": "people",
-    "t": "men"
+    "t": "hombres"
    }
   ]
  },
  "29": {
-  "face": "Giant panda",
-  "label": "eating",
+  "face": "Panda gigante",
+  "label": "comiendo",
   "fig": "10–14 h",
-  "sentence": "A giant panda spends 10 to 14 hours a day munching bamboo.",
-  "note": "Two zoos' figures: 12 to 14 hours from Smithsonian's National Zoo, 10 to 14 from San Diego Zoo Wildlife Alliance.",
+  "sentence": "Un panda gigante pasa de 10 a 14 horas al día masticando bambú.",
+  "note": "Cifras de dos zoológicos: de 12 a 14 horas del Zoológico Nacional del Smithsonian, de 10 a 14 de la San Diego Zoo Wildlife Alliance.",
   "chips": [
    {
     "i": "eating",
-    "t": "eating"
+    "t": "comiendo"
    }
   ]
  }

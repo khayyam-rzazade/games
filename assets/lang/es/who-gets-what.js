@@ -2,33 +2,33 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["who-gets-what"] = {
  "17": {
-  "what": "A litre of diesel",
-  "where": "France",
-  "fact": "France taxes diesel more lightly than petrol: 44 cents in the euro against 50.",
-  "note": "The “diesel” slice is the finished fuel delivered and sold, so it holds the crude oil, the refining, the lorries and the filling station together. From the European Commission's weekly oil bulletin.",
+  "what": "Un litro de diésel",
+  "where": "Francia",
+  "fact": "Francia aplica al diésel menos impuestos que a la gasolina: 44 céntimos de cada euro frente a 50.",
+  "note": "La parte de «diésel» es el combustible ya terminado, entregado y vendido, así que reúne el petróleo crudo, el refinado, los camiones y la gasolinera. Del boletín petrolero semanal de la Comisión Europea.",
   "slices": [
    {
     "k": "barrel",
-    "n": "Diesel",
+    "n": "Diésel",
     "p": 56.1
    },
    {
     "k": "tax",
-    "n": "Duty",
+    "n": "Impuesto especial",
     "p": 27.2
    },
    {
     "k": "vat",
-    "n": "VAT",
+    "n": "IVA",
     "p": 16.7
    }
   ]
  },
  "18": {
-  "what": "An iPhone 4",
-  "where": "the world",
-  "fact": "Of the full price of an early iPhone, the people who physically built it and its parts were paid about five dollars in every hundred. Apple kept fifty-eight.",
-  "note": "Three universities' estimate of where the value of one phone went. “Parts” is the materials bought in; “Makers” is the firms that made the components, in South Korea, the United States, Japan, Taiwan, the European Union and elsewhere; “Workers” is the labour that made the components and assembled them. The $549 is the unsubsidised worldwide price; an American on a contract paid $199 at the counter.",
+  "what": "Un iPhone 4",
+  "where": "el mundo",
+  "fact": "De cada cien dólares del precio de uno de los primeros iPhone, las personas que fabricaron el teléfono y sus piezas cobraron unos cinco. Apple se quedó con cincuenta y ocho.",
+  "note": "Estimación de tres universidades sobre adónde fue el valor de un teléfono. «Piezas» son los materiales comprados; «Fabricantes» son las empresas que hicieron los componentes, en Corea del Sur, Estados Unidos, Japón, Taiwán, la Unión Europea y otros lugares; «Obreros» es el trabajo que hizo los componentes y los montó. Los 549 dólares son el precio mundial sin subsidio; un estadounidense con un contrato de telefonía pagaba 199 dólares en la tienda.",
   "slices": [
    {
     "k": "brand",
@@ -37,276 +37,276 @@ window.LG_PUZZLES["who-gets-what"] = {
    },
    {
     "k": "chip",
-    "n": "Parts",
+    "n": "Piezas",
     "p": 21.9
    },
    {
     "k": "factory",
-    "n": "Makers",
+    "n": "Fabricantes",
     "p": 14.5
    },
    {
     "k": "worker",
-    "n": "Workers",
+    "n": "Obreros",
     "p": 5.3
    }
   ]
  },
  "19": {
-  "what": "A kilo of Dominican bananas",
-  "where": "European Union",
-  "fact": "The Dominican Republic's fruit crosses the European border duty free, and its growers keep nearly a quarter of the price.",
-  "note": "A study for a campaign group, modelled on Eurostat, CIRAD and Comtrade figures. “Growers” is the plantation's own costs and margin plus the workers' wages; “Shipping” is the export, the sea freight, the import and the ripening room in Europe. The split is from 2013 figures; the price is the average a European paid for a kilo in 2014.",
+  "what": "Un kilo de plátanos dominicanos",
+  "where": "la Unión Europea",
+  "fact": "La fruta de la República Dominicana cruza la frontera europea libre de aranceles, y sus productores se quedan con casi una cuarta parte del precio.",
+  "note": "Un estudio para un grupo de campaña, basado en cifras de Eurostat, CIRAD y Comtrade. «Productores» son los gastos y el margen propios de la plantación más los sueldos de los trabajadores; «Transporte» es la exportación, el flete marítimo, la importación y la cámara de maduración en Europa. El reparto es de cifras de 2013; el precio es el promedio que pagó un europeo por un kilo en 2014.",
   "slices": [
    {
     "k": "farm",
-    "n": "Growers",
+    "n": "Productores",
     "p": 23.6
    },
    {
     "k": "ship",
-    "n": "Shipping",
+    "n": "Transporte",
     "p": 33.0
    },
    {
     "k": "shop",
-    "n": "Shop",
+    "n": "Tienda",
     "p": 43.4
    }
   ]
  },
  "20": {
-  "what": "A litre of diesel",
-  "where": "Germany",
-  "fact": "German diesel carries a lighter duty than petrol but a heavier carbon price, because burning it gives off more.",
-  "note": "Money per litre as published: 128.3 cents for the fuel, the trade and its profit, 47.0 energy and eco duty, 36.6 VAT, 17.3 the carbon price.",
+  "what": "Un litro de diésel",
+  "where": "Alemania",
+  "fact": "El diésel alemán lleva un impuesto menor que la gasolina, pero un precio del carbono mayor, porque al quemarlo emite más.",
+  "note": "Dinero por litro, según lo publicado: 128,3 céntimos por el combustible, el comercio y su ganancia, 47,0 de impuesto sobre la energía y el medio ambiente, 36,6 de IVA y 17,3 del precio del carbono.",
   "slices": [
    {
     "k": "barrel",
-    "n": "Diesel",
+    "n": "Diésel",
     "p": 56.0
    },
    {
     "k": "tax",
-    "n": "Duty",
+    "n": "Impuesto especial",
     "p": 20.5
    },
    {
     "k": "vat",
-    "n": "VAT",
+    "n": "IVA",
     "p": 16.0
    },
    {
     "k": "leaf",
-    "n": "Carbon",
+    "n": "Carbono",
     "p": 7.5
    }
   ]
  },
  "21": {
-  "what": "A pack of 20 cigarettes",
-  "where": "France",
-  "fact": "Four fifths of a French pack was tax. Everything else — growing it, making it, shipping it, selling it — shared the last fifth.",
-  "note": "The European Commission's excise duty table for the most popular pack. “Duty” is the two excises together, the flat one and the one charged as a share of the price; “Rest” is everything the maker and the shop divide between them. The price is the table's own figure per 1,000 cigarettes, which is fifty packs of twenty.",
+  "what": "Un paquete de 20 cigarrillos",
+  "where": "Francia",
+  "fact": "Cuatro quintos de un paquete francés eran impuestos. Todo lo demás —cultivarlo, fabricarlo, transportarlo, venderlo— se repartía el último quinto.",
+  "note": "La tabla de impuestos especiales de la Comisión Europea para el paquete más popular. «Impuesto especial» reúne los dos impuestos especiales, el fijo y el que se cobra como parte del precio; «Resto» es todo lo que se reparten el fabricante y la tienda. El precio es la cifra de la propia tabla por cada 1000 cigarrillos, que son cincuenta paquetes de veinte.",
   "slices": [
    {
     "k": "tax",
-    "n": "Duty",
+    "n": "Impuesto especial",
     "p": 64.0
    },
    {
     "k": "vat",
-    "n": "VAT",
+    "n": "IVA",
     "p": 16.4
    },
    {
     "k": "coin",
-    "n": "Rest",
+    "n": "Resto",
     "p": 19.6
    }
   ]
  },
  "22": {
-  "what": "A kilo of bananas from Colombia",
-  "where": "European Union",
-  "fact": "Colombia's supermarket share is the smallest of the five, and its growers' share one of the larger ones.",
-  "note": "A study for a campaign group, modelled on Eurostat, CIRAD and Comtrade figures. “Growers” is the plantation's own costs and margin plus the workers' wages; “Shipping” is the export, the sea freight, the import and the ripening room in Europe. The split is from 2013 figures; the price is the average a European paid for a kilo in 2014.",
+  "what": "Un kilo de plátanos de Colombia",
+  "where": "la Unión Europea",
+  "fact": "La parte del supermercado en los plátanos de Colombia es la más pequeña de las cinco, y la de sus productores, una de las más grandes.",
+  "note": "Un estudio para un grupo de campaña, basado en cifras de Eurostat, CIRAD y Comtrade. «Productores» son los gastos y el margen propios de la plantación más los sueldos de los trabajadores; «Transporte» es la exportación, el flete marítimo, la importación y la cámara de maduración en Europa. El reparto es de cifras de 2013; el precio es el promedio que pagó un europeo por un kilo en 2014.",
   "slices": [
    {
     "k": "farm",
-    "n": "Growers",
+    "n": "Productores",
     "p": 19.5
    },
    {
     "k": "ship",
-    "n": "Shipping",
+    "n": "Transporte",
     "p": 35.1
    },
    {
     "k": "tax",
-    "n": "Duty",
+    "n": "Arancel",
     "p": 8.6
    },
    {
     "k": "shop",
-    "n": "Shop",
+    "n": "Tienda",
     "p": 36.8
    }
   ]
  },
  "23": {
-  "what": "A unit of electricity",
-  "where": "Germany",
-  "fact": "Germany splits a unit of electricity almost in three: the power, the grid, and the state.",
-  "note": "The industry association's own analysis for a household using 3,500 units a year. “Tax” holds VAT, the electricity duty, the concession fee and the remaining levies.",
+  "what": "Una unidad de electricidad",
+  "where": "Alemania",
+  "fact": "Alemania reparte una unidad de electricidad casi en tres partes: la energía, la red y el Estado.",
+  "note": "Análisis de la propia asociación del sector para un hogar que usa 3500 unidades al año. «Impuestos» incluye el IVA, el impuesto sobre la electricidad, la tasa de concesión y los demás gravámenes.",
   "slices": [
    {
     "k": "plug",
-    "n": "Energy",
+    "n": "Energía",
     "p": 40.4
    },
    {
     "k": "wires",
-    "n": "Wires",
+    "n": "Red",
     "p": 27.6
    },
    {
     "k": "tax",
-    "n": "Tax",
+    "n": "Impuestos",
     "p": 32.0
    }
   ]
  },
  "24": {
-  "what": "An average bottle of wine",
-  "where": "United Kingdom",
-  "fact": "Four pounds of a £6.75 bottle is tax. The other £2.75 has to cover the wine, the bottle, the shipping and the shop.",
-  "note": "Money per bottle as published: £2.88 duty and £1.13 VAT, leaving £2.75 for “the retailer's margin, plus shipping, logistics and bottling, and the wine itself”. British wine duty now depends on the strength, so this holds for a bottle at 13% alcohol.",
+  "what": "Una botella de vino promedio",
+  "where": "el Reino Unido",
+  "fact": "Cuatro libras de una botella de 6,75 libras son impuestos. Las otras 2,75 libras tienen que cubrir el vino, la botella, el transporte y la tienda.",
+  "note": "Dinero por botella, según lo publicado: 2,88 libras de impuesto especial y 1,13 libras de IVA, y quedan 2,75 libras para «el margen del minorista, más el transporte, la logística y el embotellado, y el propio vino». El impuesto británico sobre el vino ahora depende de la graduación, así que esto vale para una botella de 13 % de alcohol.",
   "slices": [
    {
     "k": "tax",
-    "n": "Duty",
+    "n": "Impuesto especial",
     "p": 42.7
    },
    {
     "k": "vat",
-    "n": "VAT",
+    "n": "IVA",
     "p": 16.7
    },
    {
     "k": "coin",
-    "n": "Rest",
+    "n": "Resto",
     "p": 40.7
    }
   ]
  },
  "25": {
-  "what": "A dollar spent on food",
-  "where": "United States",
-  "fact": "Of every dollar Americans spend on food, under nine cents reaches a farm. Restaurants alone take almost thirty-nine.",
-  "note": "The agency's own industry-group split of the food dollar. “Selling” is restaurants (38.6 cents), shops (13.8) and wholesalers (6.3); “Farm” is crops (2.5), livestock (3.3) and the firms that sell farms their seed and fertiliser (3.0); “Rest” is transport, energy, finance and the smaller groups. These are shares of value added, not mark-ups.",
+  "what": "Un dólar gastado en comida",
+  "where": "Estados Unidos",
+  "fact": "De cada dólar que los estadounidenses gastan en comida, menos de nueve centavos llega a una granja. Solo los restaurantes se llevan casi treinta y nueve.",
+  "note": "La división del dólar de la comida por grupos de industrias que hace el propio organismo. «Ventas» son los restaurantes (38,6 centavos), las tiendas (13,8) y los mayoristas (6,3); «Granja» son los cultivos (2,5), la ganadería (3,3) y las empresas que venden a las granjas semillas y fertilizantes (3,0); «Resto» es transporte, energía, finanzas y los grupos más pequeños. Son partes del valor agregado, no sobreprecios.",
   "slices": [
    {
     "k": "shop",
-    "n": "Selling",
+    "n": "Ventas",
     "p": 58.7
    },
    {
     "k": "factory",
-    "n": "Factories",
+    "n": "Fábricas",
     "p": 16.1
    },
    {
     "k": "farm",
-    "n": "Farm",
+    "n": "Granja",
     "p": 8.8
    },
    {
     "k": "coin",
-    "n": "Rest",
+    "n": "Resto",
     "p": 16.4
    }
   ]
  },
  "26": {
-  "what": "€100 of medicine, before VAT",
-  "where": "Italy",
-  "fact": "Italian law fixed how the price of a medicine was shared: two thirds to the maker, almost a third to the pharmacy, and three cents in every euro to the wholesaler.",
-  "note": "The shares the law set in 2010 for medicines the national health service pays for (class A), as parts of the price before VAT, which is 10% on medicines: the same for every box. The pharmacy's part is before the discounts it owes the health service. In 2025 the wholesaler's part rose to 3.65%.",
+  "what": "100 euros de medicamentos, antes del IVA",
+  "where": "Italia",
+  "fact": "La ley italiana fijaba cómo se repartía el precio de un medicamento: dos tercios para el fabricante, casi un tercio para la farmacia y tres céntimos de cada euro para el mayorista.",
+  "note": "Los porcentajes que fijó la ley en 2010 para los medicamentos que paga el servicio nacional de salud (clase A), como partes del precio antes del IVA, que es del 10 % en los medicamentos: son iguales para todas las cajas. La parte de la farmacia es anterior a los descuentos que debe al servicio de salud. En 2025 la parte del mayorista subió al 3,65 %.",
   "slices": [
    {
     "k": "factory",
-    "n": "Maker",
+    "n": "Fabricante",
     "p": 66.65
    },
    {
     "k": "truck",
-    "n": "Wholesale",
+    "n": "Mayorista",
     "p": 3.0
    },
    {
     "k": "shop",
-    "n": "Pharmacy",
+    "n": "Farmacia",
     "p": 30.35
    }
   ]
  },
  "27": {
-  "what": "A year of electricity",
+  "what": "Un año de electricidad",
   "where": "Australia",
-  "fact": "Getting electricity to an Australian home cost more than making it: the poles and wires took 45 cents of every dollar, the power stations 32.",
-  "note": "The regulator's cost of supplying an average household in the National Electricity Market (the eastern and southern states, not Western Australia or the Northern Territory) in the year 2020–21, before GST. “Green” is the cost of the environmental schemes; “Retailer” is the retailers' own costs (10%) and margins (3%) together.",
+  "fact": "Llevar la electricidad a un hogar australiano costó más que producirla: los postes y cables se llevaron 45 centavos de cada dólar, y las centrales eléctricas 32.",
+  "note": "El costo que calcula el regulador de abastecer a un hogar promedio en el Mercado Nacional de Electricidad (los estados del este y del sur, no Australia Occidental ni el Territorio del Norte) en el año 2020-21, antes del GST. «Verde» es el costo de los programas ambientales; «Minorista» reúne los costos propios (10 %) y los márgenes (3 %) de los minoristas.",
   "slices": [
    {
     "k": "plug",
-    "n": "Energy",
+    "n": "Energía",
     "p": 32.0
    },
    {
     "k": "wires",
-    "n": "Wires",
+    "n": "Red",
     "p": 45.0
    },
    {
     "k": "leaf",
-    "n": "Green",
+    "n": "Verde",
     "p": 10.0
    },
    {
     "k": "supplier",
-    "n": "Retailer",
+    "n": "Minorista",
     "p": 13.0
    }
   ]
  },
  "28": {
-  "what": "An average bottle of Scotch whisky",
-  "where": "United Kingdom",
-  "fact": "Three quarters of the price of an average bottle of Scotch in Britain went in tax in 2023. Duty alone took more than half.",
-  "note": "The Scotch Whisky Association's figures for an average-priced bottle after the duty rise of 2023 (to £31.64 a litre of pure alcohol): £11.40 of the £15.22 was duty and VAT. VAT is a sixth of the price (20%), so duty is the other £8.86. “Rest” is everything else: the distillers, the sellers and the shops.",
+  "what": "Una botella promedio de whisky escocés",
+  "where": "el Reino Unido",
+  "fact": "Tres cuartas partes del precio de una botella promedio de whisky escocés en Gran Bretaña se fueron en impuestos en 2023. Solo el impuesto especial se llevó más de la mitad.",
+  "note": "Cifras de la Asociación del Whisky Escocés para una botella de precio promedio tras la subida del impuesto de 2023 (a 31,64 libras por litro de alcohol puro): 11,40 libras de las 15,22 libras eran impuesto especial e IVA. El IVA es una sexta parte del precio (20 %), así que el impuesto especial son las otras 8,86 libras. «Resto» es todo lo demás: los destiladores, los vendedores y las tiendas.",
   "slices": [
    {
     "k": "tax",
-    "n": "Duty",
+    "n": "Impuesto especial",
     "p": 58.2
    },
    {
     "k": "vat",
-    "n": "VAT",
+    "n": "IVA",
     "p": 16.7
    },
    {
     "k": "coin",
-    "n": "Rest",
+    "n": "Resto",
     "p": 25.1
    }
   ]
  },
  "29": {
-  "what": "A first iPad",
-  "where": "the world",
-  "fact": "Apple kept about thirty dollars of every hundred paid for the first iPad. The people who built it and its parts got less than seven.",
-  "note": "Three universities' estimate for the cheapest iPad of 2010 (16 GB, Wi-Fi). “Parts” is the materials bought in (30.9%) and the profits of the firms that made the components, in South Korea, the United States, Japan, Taiwan, the European Union and elsewhere (17.6%); “Workers” is the labour that made the components and assembled the iPad; “Shops” is distribution and retail.",
+  "what": "Un primer iPad",
+  "where": "el mundo",
+  "fact": "Apple se quedó con unos treinta dólares de cada cien pagados por el primer iPad. Las personas que lo construyeron, a él y a sus piezas, recibieron menos de siete.",
+  "note": "Estimación de tres universidades para el iPad más barato de 2010 (16 GB, Wi-Fi). «Piezas» son los materiales comprados (30,9 %) y las ganancias de las empresas que hicieron los componentes, en Corea del Sur, Estados Unidos, Japón, Taiwán, la Unión Europea y otros lugares (17,6 %); «Obreros» es el trabajo que hizo los componentes y montó el iPad; «Tiendas» es la distribución y la venta al por menor.",
   "slices": [
    {
     "k": "brand",
@@ -315,45 +315,45 @@ window.LG_PUZZLES["who-gets-what"] = {
    },
    {
     "k": "chip",
-    "n": "Parts",
+    "n": "Piezas",
     "p": 48.5
    },
    {
     "k": "worker",
-    "n": "Workers",
+    "n": "Obreros",
     "p": 6.6
    },
    {
     "k": "shop",
-    "n": "Shops",
+    "n": "Tiendas",
     "p": 15.0
    }
   ]
  },
  "30": {
-  "what": "A year of gas and electricity",
-  "where": "Great Britain",
-  "fact": "In the spring of 2022 more than half of a typical British energy bill paid for the gas and the electricity themselves.",
-  "note": "Ofgem's price cap for a typical household paying by direct debit, 1 April to 30 September 2022, before the government's Energy Price Guarantee. “Supplier” is the supplier's operating costs (£203), payment uplift (£16), allowed profit (£35), headroom (£22) and VAT (£94) together.",
+  "what": "Un año de gas y electricidad",
+  "where": "Gran Bretaña",
+  "fact": "En la primavera de 2022, más de la mitad de una factura de energía típica de Gran Bretaña se iba en el gas y la electricidad mismos.",
+  "note": "El tope de precios de Ofgem para un hogar típico que paga por débito automático, del 1 de abril al 30 de septiembre de 2022, antes de la Garantía de Precio de la Energía del gobierno. «Proveedor» reúne los costos de funcionamiento del proveedor (203 libras), el recargo por forma de pago (16), la ganancia permitida (35), el margen de holgura (22) y el IVA (94).",
   "slices": [
    {
     "k": "plug",
-    "n": "Energy",
+    "n": "Energía",
     "p": 54.64
    },
    {
     "k": "wires",
-    "n": "Wires",
+    "n": "Red",
     "p": 18.82
    },
    {
     "k": "leaf",
-    "n": "Policies",
+    "n": "Políticas",
     "p": 7.76
    },
    {
     "k": "supplier",
-    "n": "Supplier",
+    "n": "Proveedor",
     "p": 18.77
    }
   ]

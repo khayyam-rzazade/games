@@ -2,88 +2,88 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["every-beat"] = {
  "16": {
-  "face": "Elephant seal",
-  "label": "diving",
-  "sentence": "On a dive, an elephant seal's heart slows to about a third of its rate at the surface.",
-  "note": "Northern elephant seals. About 35 beats a minute on average while diving, in a laboratory study."
+  "face": "Elefante marino",
+  "label": "buceando",
+  "sentence": "En una inmersión, el corazón de un elefante marino baja a un tercio de su ritmo en la superficie, más o menos.",
+  "note": "Elefantes marinos del norte. Unos 35 latidos por minuto en promedio al bucear, en un estudio de laboratorio."
  },
  "17": {
-  "face": "Lobster",
-  "label": "at rest",
-  "sentence": "In water at about 15 °C, a lobster's heart beats 35 to 60 times a minute, a little slower than yours.",
-  "note": "American lobsters: slower in winter, faster in summer, and about 60 in the wild."
+  "face": "Langosta",
+  "label": "en reposo",
+  "sentence": "En agua a unos 15 °C, el corazón de una langosta late de 35 a 60 veces por minuto, un poco más despacio que el tuyo.",
+  "note": "Langostas americanas: más despacio en invierno, más rápido en verano, y unas 60 en la naturaleza."
  },
  "18": {
-  "face": "Penguin",
-  "label": "at rest",
-  "sentence": "Resting on the ice, an emperor penguin's heart beats about as fast as yours: 63 to 84 times a minute.",
-  "note": "Emperor penguins at rest, in Antarctica, about 73 a minute on average."
+  "face": "Pingüino",
+  "label": "en reposo",
+  "sentence": "Descansando sobre el hielo, el corazón de un pingüino emperador late casi tan rápido como el tuyo: de 63 a 84 veces por minuto.",
+  "note": "Pingüinos emperador en reposo, en la Antártida, unos 73 por minuto en promedio."
  },
  "19": {
-  "face": "Bat",
-  "label": "in torpor",
-  "sentence": "To save energy, a resting noctule bat can slow its heart to six beats a minute.",
-  "note": "Wild common noctules, measured in 2024. Torpor is a deep rest that saves energy; in flight the same bats' hearts beat about 900 times a minute."
+  "face": "Murciélago",
+  "label": "en letargo",
+  "sentence": "Para ahorrar energía, un murciélago nóctulo en reposo puede bajar su corazón a seis latidos por minuto.",
+  "note": "Nóctulos comunes salvajes, medidos en 2024. El letargo es un descanso profundo que ahorra energía; en vuelo, el corazón de esos mismos murciélagos late unas 900 veces por minuto."
  },
  "20": {
-  "face": "Cow",
-  "label": "at rest",
-  "sentence": "A cow's heart beats 40 to 80 times a minute.",
-  "note": "Adult cattle at rest."
+  "face": "Vaca",
+  "label": "en reposo",
+  "sentence": "El corazón de una vaca late de 40 a 80 veces por minuto.",
+  "note": "Ganado adulto en reposo."
  },
  "21": {
-  "face": "Newborn baby",
-  "label": "awake",
-  "sentence": "A newborn baby's heart beats 120 to 160 times a minute, much faster than a grown-up's.",
-  "note": "Awake, in the first weeks. It can be much slower when the baby sleeps."
+  "face": "Bebé recién nacido",
+  "label": "despierto",
+  "sentence": "El corazón de un bebé recién nacido late de 120 a 160 veces por minuto, mucho más rápido que el de un adulto.",
+  "note": "Despierto, en las primeras semanas. Puede ser mucho más lento cuando el bebé duerme."
  },
  "22": {
-  "face": "Trout",
-  "label": "at rest",
-  "sentence": "In water at about 15 °C, a resting trout's heart beats about 60 times a minute, and faster as the water warms.",
-  "note": "Rainbow trout. At 24 °C the same fish reached about 125. The picture shows a salmon, of the same family."
+  "face": "Trucha",
+  "label": "en reposo",
+  "sentence": "En agua a unos 15 °C, el corazón de una trucha en reposo late unas 60 veces por minuto, y más rápido cuando el agua se calienta.",
+  "note": "Trucha arcoíris. A 24 °C el mismo pez llegó a unas 125. La imagen muestra un salmón, de la misma familia."
  },
  "23": {
-  "face": "Camel",
-  "label": "at rest",
-  "sentence": "A camel's heart beats 35 to 50 times a minute, slower than a person's.",
-  "note": "Dromedary camels, examined in the field. Young camels' hearts beat faster."
+  "face": "Camello",
+  "label": "en reposo",
+  "sentence": "El corazón de un camello late de 35 a 50 veces por minuto, más despacio que el de una persona.",
+  "note": "Dromedarios, examinados en el campo. El corazón de los camellos jóvenes late más rápido."
  },
  "24": {
-  "face": "Pig",
-  "label": "at rest",
-  "sentence": "A pig's heart beats 70 to 120 times a minute.",
-  "note": "A pig's pulse is hard to find: vets feel the heart itself."
+  "face": "Cerdo",
+  "label": "en reposo",
+  "sentence": "El corazón de un cerdo late de 70 a 120 veces por minuto.",
+  "note": "El pulso de un cerdo es difícil de encontrar: los veterinarios sienten el propio corazón."
  },
  "25": {
-  "face": "Blue whale",
-  "label": "at the surface",
-  "sentence": "Back at the surface to breathe, a blue whale's heart speeds up to 25 to 37 beats a minute.",
-  "note": "The same whale as on its dives, which went as low as 2 beats a minute (Goldbogen and others, PNAS, 2019)."
+  "face": "Ballena azul",
+  "label": "en la superficie",
+  "sentence": "De vuelta en la superficie para respirar, el corazón de una ballena azul se acelera a entre 25 y 37 latidos por minuto.",
+  "note": "La misma ballena de sus inmersiones, en las que llegó a bajar hasta 2 latidos por minuto (Goldbogen y otros, PNAS, 2019)."
  },
  "26": {
-  "face": "Rabbit",
-  "label": "at rest",
-  "sentence": "A rabbit's heart beats somewhere between 120 and 350 times a minute at rest.",
-  "note": "The two sources disagree: one says 180 to 350, the other 120 to 220. Every answer in either counts."
+  "face": "Conejo",
+  "label": "en reposo",
+  "sentence": "El corazón de un conejo late entre 120 y 350 veces por minuto en reposo.",
+  "note": "Las dos fuentes no coinciden: una dice de 180 a 350, la otra de 120 a 220. Cuenta cualquier respuesta que caiga en alguno de los dos rangos."
  },
  "27": {
-  "face": "Black bear",
-  "label": "in summer",
-  "sentence": "In summer, a black bear's heart beats 55 to 95 times a minute, about as fast as a person's.",
-  "note": "The same bears slow to 10 to 25 beats a minute in their winter dens. When active they can briefly pass 200."
+  "face": "Oso negro",
+  "label": "en verano",
+  "sentence": "En verano, el corazón de un oso negro late de 55 a 95 veces por minuto, casi tan rápido como el de una persona.",
+  "note": "Los mismos osos bajan a entre 10 y 25 latidos por minuto en sus guaridas de invierno. Cuando están activos pueden pasar brevemente de 200."
  },
  "28": {
-  "face": "Penguin",
-  "label": "at the surface",
-  "sentence": "Between very deep dives, an emperor penguin's heart can race to 256 beats a minute.",
-  "note": "The highest reading, just before and after a dive. Deep in a dive the same heart can slow to 3."
+  "face": "Pingüino",
+  "label": "en la superficie",
+  "sentence": "Entre inmersiones muy profundas, el corazón de un pingüino emperador puede dispararse hasta 256 latidos por minuto.",
+  "note": "La lectura más alta, justo antes y después de una inmersión. En lo más hondo de una inmersión, el mismo corazón puede bajar a 3."
  },
  "29": {
-  "face": "Adult",
-  "label": "asleep",
-  "sentence": "Asleep, most healthy adults' hearts slow to 40 to 60 beats a minute.",
-  "note": "Deep sleep slows the heart most. Older people's hearts stay a little faster at night."
+  "face": "Adulto",
+  "label": "durmiendo",
+  "sentence": "Mientras duermen, el corazón de la mayoría de los adultos sanos baja a entre 40 y 60 latidos por minuto.",
+  "note": "El sueño profundo es lo que más frena el corazón. En las personas mayores el corazón sigue un poco más rápido por la noche."
  }
 };
-window.LG_PUZZLES["every-beat.lifetime"] = {"line": "Small hearts beat fast, big hearts slowly. Most mammals get about the same number of beats in a life: several hundred million. People get far more: about three billion."};
+window.LG_PUZZLES["every-beat.lifetime"] = {"line": "Los corazones pequeños laten rápido y los grandes, despacio. La mayoría de los mamíferos tienen más o menos el mismo número de latidos en la vida: varios cientos de millones. Las personas tienen muchos más: unos tres mil millones."};

@@ -2,216 +2,216 @@
 window.LG_PUZZLES = window.LG_PUZZLES || {};
 window.LG_PUZZLES["years-apart"] = {
  "20": {
-  "fact": "The Bastille was stormed 186 years after Tokugawa Ieyasu became shogun, and 78 years before Japan's emperor was restored to power.",
+  "fact": "La Bastilla fue tomada 186 años después de que Tokugawa Ieyasu se convirtiera en shogun, y 78 años antes de que el emperador de Japón recuperara el poder.",
   "about": false
  },
  "21": {
-  "fact": "Bell was granted the telephone patent 50 years after the first public passenger railway opened, and 93 years before the Moon landing.",
+  "fact": "Bell obtuvo la patente del teléfono 50 años después de que se abriera el primer ferrocarril público de pasajeros, y 93 años antes de la llegada a la Luna.",
   "about": false
  },
  "22": {
-  "fact": "The first modern Olympics opened 81 years after the Battle of Waterloo, and 49 years before the Second World War ended.",
+  "fact": "Los primeros Juegos Olímpicos modernos se inauguraron 81 años después de la batalla de Waterloo, y 49 años antes de que terminara la Segunda Guerra Mundial.",
   "about": false
  },
  "23": {
-  "fact": "Newton's Principia came out 1,211 years after Rome's last western emperor was deposed, and 282 years before the Moon landing.",
+  "fact": "Los Principia de Newton salieron 1211 años después de que fuera depuesto el último emperador romano de Occidente, y 282 años antes de la llegada a la Luna.",
   "about": false
  },
  "24": {
-  "fact": "The Hagia Sophia was finished 566 years after Cleopatra died, and 916 years before Constantinople fell to the Ottomans.",
+  "fact": "Santa Sofía se terminó 566 años después de la muerte de Cleopatra, y 916 años antes de que Constantinopla cayera en manos de los otomanos.",
   "about": false
  },
  "25": {
-  "fact": "Columbus reached the Americas about 4,051 years after the Great Pyramid was finished, and only 477 years before the Moon landing.",
+  "fact": "Colón llegó a América unos 4051 años después de que se terminara la Gran Pirámide, y solo 477 años antes de la llegada a la Luna.",
   "about": true
  },
  "26": {
-  "fact": "The Declaration of Independence came 160 years after Shakespeare died, and 83 years before Darwin's On the Origin of Species.",
+  "fact": "La Declaración de Independencia llegó 160 años después de la muerte de Shakespeare, y 83 años antes de que Darwin publicara El origen de las especies.",
   "about": false
  },
  "27": {
-  "fact": "The Panama Canal opened 45 years after the Suez Canal, and 55 years before the Moon landing.",
+  "fact": "El canal de Panamá se inauguró 45 años después del canal de Suez, y 55 años antes de la llegada a la Luna.",
   "about": false
  },
  "28": {
-  "fact": "The Battle of Hastings came 529 years after the Hagia Sophia was finished, and 387 years before Constantinople fell to the Ottomans.",
+  "fact": "La batalla de Hastings ocurrió 529 años después de que se terminara Santa Sofía, y 387 años antes de que Constantinopla cayera en manos de los otomanos.",
   "about": false
  },
  "29": {
-  "fact": "The Titanic sank 697 years after Magna Carta was sealed, and only 57 years before the Moon landing.",
+  "fact": "El Titanic se hundió 697 años después de que se sellara la Carta Magna, y solo 57 años antes de la llegada a la Luna.",
   "about": false
  },
  "30": {
-  "fact": "China got its first emperor 102 years after Alexander the Great died, and 177 years before Julius Caesar was killed.",
+  "fact": "China tuvo su primer emperador 102 años después de la muerte de Alejandro Magno, y 177 años antes de que asesinaran a Julio César.",
   "about": false
  },
  "31": {
-  "fact": "The Wright brothers flew 451 years after Constantinople fell, and just 66 years before the Moon landing.",
+  "fact": "Los hermanos Wright volaron 451 años después de la caída de Constantinopla, y solo 66 años antes de la llegada a la Luna.",
   "about": false
  },
  "32": {
-  "fact": "Cortés entered the Aztec capital 21 years after Vasco da Gama reached India by sea, and 96 years before Shakespeare died.",
+  "fact": "Cortés entró en la capital azteca 21 años después de que Vasco da Gama llegara a la India por mar, y 96 años antes de la muerte de Shakespeare.",
   "about": false
  },
  "33": {
-  "fact": "The Great Fire of London broke out 600 years after the Battle of Hastings, and 303 years before the Moon landing.",
+  "fact": "El Gran Incendio de Londres estalló 600 años después de la batalla de Hastings, y 303 años antes de la llegada a la Luna.",
   "about": false
  }
 };
 window.LG_PUZZLES["years-apart.events"] = {
  "tokugawa": {
-  "t": "Tokugawa Ieyasu becomes shogun",
+  "t": "Tokugawa Ieyasu se convierte en shogun",
   "y": "1603",
-  "stamp": "Tokugawa shogun"
+  "stamp": "Shogun Tokugawa"
  },
  "bastille": {
-  "t": "The storming of the Bastille",
+  "t": "La toma de la Bastilla",
   "y": "1789",
-  "stamp": "The Bastille"
+  "stamp": "La Bastilla"
  },
  "meiji": {
-  "t": "Japan's emperor is restored to power",
+  "t": "El emperador de Japón recupera el poder",
   "y": "1868",
-  "stamp": "Meiji Restoration"
+  "stamp": "Restauración Meiji"
  },
  "railway": {
-  "t": "The first public passenger railway opens",
+  "t": "Se inaugura el primer ferrocarril público de pasajeros",
   "y": "1825",
-  "stamp": "First railway"
+  "stamp": "Primer ferrocarril"
  },
  "telephone": {
-  "t": "Bell is granted the telephone patent",
+  "t": "Bell obtiene la patente del teléfono",
   "y": "1876",
-  "stamp": "The telephone"
+  "stamp": "El teléfono"
  },
  "moon": {
-  "t": "Apollo 11 lands on the Moon",
+  "t": "El Apolo 11 aterriza en la Luna",
   "y": "1969",
-  "stamp": "Moon landing"
+  "stamp": "Llegada a la Luna"
  },
  "waterloo": {
-  "t": "The Battle of Waterloo",
+  "t": "La batalla de Waterloo",
   "y": "1815",
   "stamp": "Waterloo"
  },
  "olympics-1896": {
-  "t": "The first modern Olympics open in Athens",
+  "t": "Se inauguran en Atenas los primeros Juegos Olímpicos modernos",
   "y": "1896",
-  "stamp": "Athens 1896"
+  "stamp": "Atenas 1896"
  },
  "ww2-end": {
-  "t": "The Second World War ends",
+  "t": "Termina la Segunda Guerra Mundial",
   "y": "1945",
-  "stamp": "War's end, 1945"
+  "stamp": "Fin de la guerra, 1945"
  },
  "rome-falls": {
-  "t": "Rome's last western emperor is deposed",
-  "y": "AD 476",
-  "stamp": "Rome's last emperor"
+  "t": "Es depuesto el último emperador romano de Occidente",
+  "y": "476 d. C.",
+  "stamp": "Último emperador de Roma"
  },
  "principia": {
-  "t": "Newton's Principia is published",
+  "t": "Se publican los Principia de Newton",
   "y": "1687",
-  "stamp": "Newton's Principia"
+  "stamp": "Principia de Newton"
  },
  "cleopatra": {
-  "t": "Cleopatra dies",
-  "y": "30 BC",
-  "stamp": "Cleopatra dies"
+  "t": "Muere Cleopatra",
+  "y": "30 a. C.",
+  "stamp": "Muere Cleopatra"
  },
  "hagia": {
-  "t": "The Hagia Sophia is finished",
-  "y": "AD 537",
-  "stamp": "Hagia Sophia"
+  "t": "Se termina Santa Sofía",
+  "y": "537 d. C.",
+  "stamp": "Santa Sofía"
  },
  "constantinople": {
-  "t": "Constantinople falls to the Ottomans",
+  "t": "Constantinopla cae en manos de los otomanos",
   "y": "1453",
-  "stamp": "Constantinople falls"
+  "stamp": "Cae Constantinopla"
  },
  "pyramid": {
-  "t": "The Great Pyramid of Giza is finished",
-  "y": "about 2560 BC",
-  "stamp": "Great Pyramid"
+  "t": "Se termina la Gran Pirámide de Guiza",
+  "y": "hacia 2560 a. C.",
+  "stamp": "Gran Pirámide"
  },
  "columbus": {
-  "t": "Columbus reaches the Americas",
+  "t": "Colón llega a América",
   "y": "1492",
-  "stamp": "Columbus lands"
+  "stamp": "Llega Colón"
  },
  "shakespeare": {
-  "t": "Shakespeare dies",
+  "t": "Muere Shakespeare",
   "y": "1616",
-  "stamp": "Shakespeare dies"
+  "stamp": "Muere Shakespeare"
  },
  "declaration": {
-  "t": "The US Declaration of Independence",
+  "t": "La Declaración de Independencia de Estados Unidos",
   "y": "1776",
-  "stamp": "Independence declared"
+  "stamp": "Independencia declarada"
  },
  "darwin": {
-  "t": "Darwin publishes On the Origin of Species",
+  "t": "Darwin publica El origen de las especies",
   "y": "1859",
-  "stamp": "Origin of Species"
+  "stamp": "Origen de las especies"
  },
  "suez": {
-  "t": "The Suez Canal opens",
+  "t": "Se inaugura el canal de Suez",
   "y": "1869",
-  "stamp": "Suez Canal"
+  "stamp": "Canal de Suez"
  },
  "panama": {
-  "t": "The Panama Canal opens",
+  "t": "Se inaugura el canal de Panamá",
   "y": "1914",
-  "stamp": "Panama Canal"
+  "stamp": "Canal de Panamá"
  },
  "hastings": {
-  "t": "The Battle of Hastings",
+  "t": "La batalla de Hastings",
   "y": "1066",
   "stamp": "Hastings"
  },
  "magna": {
-  "t": "Magna Carta is sealed",
+  "t": "Se sella la Carta Magna",
   "y": "1215",
-  "stamp": "Magna Carta"
+  "stamp": "Carta Magna"
  },
  "titanic": {
-  "t": "The Titanic sinks",
+  "t": "Se hunde el Titanic",
   "y": "1912",
-  "stamp": "Titanic sinks"
+  "stamp": "El Titanic"
  },
  "alexander": {
-  "t": "Alexander the Great dies",
-  "y": "323 BC",
-  "stamp": "Alexander dies"
+  "t": "Muere Alejandro Magno",
+  "y": "323 a. C.",
+  "stamp": "Muere Alejandro"
  },
  "qin": {
-  "t": "Qin Shi Huang becomes China's first emperor",
-  "y": "221 BC",
-  "stamp": "China's first emperor"
+  "t": "Qin Shi Huang se convierte en el primer emperador de China",
+  "y": "221 a. C.",
+  "stamp": "Primer emperador chino"
  },
  "caesar": {
-  "t": "Julius Caesar is assassinated",
-  "y": "44 BC",
-  "stamp": "Caesar's last day"
+  "t": "Asesinan a Julio César",
+  "y": "44 a. C.",
+  "stamp": "Último día de César"
  },
  "wright": {
-  "t": "The Wright brothers' first powered flight",
+  "t": "El primer vuelo con motor de los hermanos Wright",
   "y": "1903",
-  "stamp": "First flight"
+  "stamp": "Primer vuelo"
  },
  "gama": {
-  "t": "Vasco da Gama reaches India by sea",
+  "t": "Vasco da Gama llega a la India por mar",
   "y": "1498",
-  "stamp": "Da Gama in India"
+  "stamp": "Da Gama en la India"
  },
  "cortes": {
-  "t": "Cortés enters the Aztec capital",
+  "t": "Cortés entra en la capital azteca",
   "y": "1519",
-  "stamp": "Cortés in Tenochtitlan"
+  "stamp": "Cortés en Tenochtitlan"
  },
  "fire-london": {
-  "t": "The Great Fire of London",
+  "t": "El Gran Incendio de Londres",
   "y": "1666",
-  "stamp": "Great Fire of London"
+  "stamp": "Gran Incendio de Londres"
  }
 };
