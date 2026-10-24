@@ -716,6 +716,12 @@
     if (!anchor || document.getElementById("duel-help")) return;
     var host = anchor.parentNode;
     if (!host) return;
+    /* A sheet that already tells about Who Was Closer (the home page's About window has its own entry,
+       the friend's page its own title) is left as it is; only a game's help sheet gets the line. */
+    var sheet = anchor.closest("dialog");
+    if (sheet && (sheet.querySelector('[data-s="duel.title"], #about-duel-card') || [].some.call(sheet.querySelectorAll("h1, h2, h3"), function (x) {
+      return x.textContent.replace(/\s+/g, " ").trim() === T("duel.title");
+    }))) return;
     var h = document.createElement("h3");
     h.id = "duel-help";
     h.textContent = T("duel.title");

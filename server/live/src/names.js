@@ -7,7 +7,8 @@
    < > = # ? / \ " ` | { } [ ] ^ ~, a control character, an invisible character (so it can never look
    blank), or a word from a short list of rude words in English, Italian and Turkish. A list never catches
    everything, which is why the host can remove a player with one tap; so where a rude word is also a
-   piece of real names, the list lets the real names through.
+   piece of real names, the list lets the real names through (24 Oct 2026: six such words are read in
+   their place in the name, see AMBIG below).
 
    A game's code: five letters from twenty consonants (3.2 million codes), with no vowel, so a code can
    hardly spell a word; a few letter groups that still read as rude are refused all the same.
@@ -68,6 +69,49 @@ const WHOLE = [
 ];
 const NAMEPARTS = ["cazzol", "merdan", "niggl", "niggem"];
 
+/* AMBIG (24 Oct 2026): six words on WHOLE that are also real names or parts of them, each one a rude word
+   only in one place: Dick, De Cock, Paolo Negro, Anne-Sophie Pic (Piç, with the cedilla, stays refused),
+   Kim Jae-sik, Ibne Safi. The check is still whole words only; these are read by where they stand in the name.
+   Each is let through only as a plain word of letters (not "Dick!", "D1ck", "D.I.C.K."), only when no word
+   beside it is one of the words that turn it into an insult (NEIGHBOUR: "Big Dick", "Dick Pic", "Black Cock")
+   or another word of this list ("Ibne Dick"),
+   and only in its own place:
+     dick, cock  anywhere in a name, even alone;
+     pic         without a cedilla (Piç is the Turkish word), anywhere;
+     negro       after another word (Paolo Negro), never alone or first;
+     sik         only joined by a hyphen to a part before it (Kim Jae-sik); "Sik" alone stays refused;
+     ibne        only first, with a longer word after it (Ibne Safi); "Ibne" alone stays refused.
+   A word let through is swapped for a harmless one before the lists are read, so the rest of the name is
+   still checked. A short run like "Ibne Herif" gets through: the filter cannot read what an insult means. */
+const AMBIG = ["dick", "cock", "negro", "pic", "sik", "ibne"];
+const NEIGHBOUR = ["big", "huge", "small", "tiny", "little", "fat", "long", "thick", "hard", "limp", "bald", "black", "dirty",
+                   "stupid", "dumb", "ugly", "filthy", "lazy", "nasty", "suck", "sucks", "sucker", "sucking", "sucked", "lick",
+                   "licker", "licking", "head", "face", "brain", "wad", "hole", "pic", "pics", "pix", "my", "your", "ur", "you",
+                   "a", "an", "the"];
+function excuse(s) {
+  s = cleanName(s);
+  const found = [...s.matchAll(/[\p{L}\p{M}]+/gu)];
+  if (!found.some((m) => AMBIG.includes(fold(m[0])))) return s;
+  const ws = found.map((m) => fold(m[0]));
+  let out = "", at = 0;
+  found.forEach((m, i) => {
+    const w = ws[i], from = m.index, to = from + m[0].length;
+    let pass = AMBIG.includes(w);
+    if (pass) {
+      const next = ws[i + 1], prev = ws[i - 1];
+      const dec = /[0-9!$@*]/;                                   // a look-alike or hidden letter touching the word
+      if ((from > 0 && dec.test(s[from - 1])) || (to < s.length && dec.test(s[to]))) pass = false;
+      else if ([next, prev].some((x) => NEIGHBOUR.includes(x) || AMBIG.includes(x))) pass = false;
+      else if (w === "pic") pass = !/[cC]\u0327/.test(m[0].normalize("NFD"));
+      else if (w === "negro") pass = prev !== undefined;
+      else if (w === "sik") pass = prev !== undefined && s[from - 1] === "-";
+      else if (w === "ibne") pass = i === 0 && next !== undefined && next.length >= 3 && s[to] === " ";
+    }
+    out += s.slice(at, from) + (pass ? "Zzz" : m[0]);
+    at = to;
+  });
+  return out + s.slice(at);
+}
 /* Folded: fullwidth and "fancy" letters read as plain ones (NFKD), lower case, accents off, the Turkish
    ı ş ç ğ ö ü read as i s c g o u (ş ç ğ ö ü lose their marks with the other accents; ı, like ə ø ł đ ß
    æ œ, has none to lose and is mapped by hand), the look-alikes read as letters (0 as o, 1 and ! as i,
@@ -105,7 +149,7 @@ function hit(ws) {
   });
 }
 export function rude(s) {
-  return readings(s).some(hit);
+  return readings(excuse(s)).some(hit);
 }
 
 export function nameOk(s) {
@@ -177,7 +221,7 @@ const T_WHOLE = [
   "amk", "amcik", "ibne", "yavsak", "kahpe", "kaltak", "pezevenk", "serefsiz"
 ];
 export function titleRude(s) {
-  return readings(s).some((ws) => {
+  return readings(excuse(s)).some((ws) => {
     const line = " " + ws.join(" ") + " ";
     if (T_WHOLE.some((r) => line.includes(" " + r + " ") || line.includes(" " + r + "s ") || line.includes(" " + r + "es "))) return true;
     return ws.some((w) => {

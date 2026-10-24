@@ -71,6 +71,28 @@ const part = (title) => { console.log((bad ? "FAIL " : "ok   ") + title); bad = 
   part("more rude names are refused (" + MORE.length + ": spaced out, look-alikes, plurals, two-word entries, fancy letters)");
 }
 
+/* ---------------------------------------------------------------- real names that hold a rude word (24 Oct 2026) */
+{
+  // each of these is a real name that held a word on the WHOLE list, and was refused
+  const REAL = ["Paolo Negro", "Dick", "De Cock", "Kim Jae-sik", "Ibne Safi", "Sophie Pic",
+    "Dick Van Dyke", "Moby Dick", "Dick Cheney", "Dick Grayson", "Cock", "Jan De Cock", "Dong-sik", "Min-sik Choi", "Pic",
+    "Maria Negro", "Giulia Negro", "Ibne Battuta", "Sandro Negro", "Pierre Pic"];
+  for (const n of REAL) check(nameOk(n) && !rude(n), "a real name passes: " + n);
+  check(!rude("Anne-Sophie Pic") && nameOk("A-Sophie Pic"), "Anne-Sophie Pic is not read as rude (the name is 15 characters, one over the limit, so only its length stops it)");
+  // the same words, used as insults, are still refused
+  const INSULT = ["Big Dick", "Dick!", "D1ck", "D.I.C.K.", "Dick Pic", "Dickhead", "Dick Head", "Small Dick", "Dick Sucker", "Suck My Dick",
+    "Black Cock", "Cock Sucker", "Cocksucker", "Huge Cock", "Cock!", "C0ck", "Hard Cock", "Dick69", "Dick1",
+    "Negro", "Dirty Negro", "Stupid Negro", "Negro!", "Nigga", "Nigger",
+    "Pi" + ch(0xE7), "PI" + ch(0xC7), "Pic" + ch(0x327), "Pi" + ch(0x63, 0x327), "Big Pi" + ch(0xE7),
+    "Sik", "SIK", "Sik Sik", "Sik!", "S" + ch(0x131) + "k", "Kim Sik", "Siktir", "Siki" + ch(0x15F),
+    "Ibne", "IBNE", "Ibne!", "Ibne Dick", "Big Ibne", "Ibne Fuck", "Amk Ibne",
+    "Fuck Dick", "Dick Fuck", "Sh1t Dick", "f u c k Dick", "Dick Nazi", "Dick Hitler", "Nazi Cock"];
+  for (const n of INSULT) check(!nameOk(n) && rude(n), "still refused as rude: " + n);
+  // a word that is let through does not shield the rest of the name
+  check(rude("Dick Wanker") && rude("De Cock Porn") && rude("Paolo Negro Cunt") && rude("Ibne Safi Shit"), "a rude word beside a let-through word is still refused");
+  part("real names with a rude word in them pass, the insults stay refused (" + (REAL.length + 1 + INSULT.length + 1) + ": Paolo Negro, Dick, De Cock, Anne-Sophie Pic, Kim Jae-sik, Ibne Safi)");
+}
+
 /* ---------------------------------------------------------------- characters */
 {
   check(!nameOk("<b>"), "refused: <b>");
@@ -148,7 +170,7 @@ const part = (title) => { console.log((bad ? "FAIL " : "ok   ") + title); bad = 
   const kc = N.newKitCode();
   check(N.kitCodeOk(kc) && !N.codeOk(kc) && !N.kitCodeOk(N.newCode()) && !N.kitCodeOk("BCDFGHJ".toLowerCase()) && !N.kitCodeOk("BCDFGHA"), "a saved game's code: seven consonants, never a live game's");
   /* a title's own list: slurs and obscenities, never the words a lesson needs */
-  const fine = ["Economics 101: warm-up", "La guerra di Troia", "Hitler and the Weimar Republic", "Biology: sex chromosomes", "Moby Dick", "Rapeseed oil", "Retardation in physics", "Negro in Italian art", "Merdan Bey", "Cazzola family", "Nazi Germany 1933-45", "The penis and the vagina: anatomy", "Shitake mushrooms", "Scunthorpe United", "Pornography laws in the EU", "Il cazzotto", "Sikh history"];
+  const fine = ["Economics 101: warm-up", "La guerra di Troia", "Hitler and the Weimar Republic", "Biology: sex chromosomes", "Moby Dick", "Rapeseed oil", "Retardation in physics", "Negro in Italian art", "Merdan Bey", "Cazzola family", "Nazi Germany 1933-45", "The penis and the vagina: anatomy", "Shitake mushrooms", "Scunthorpe United", "Pornography laws in the EU", "Il cazzotto", "Sikh history", "Ibne Battuta"];
   const bad = ["Fuck this quiz", "f u c k", "Ｆｕｃｋ", "Porco Dio", "Orospu", "Bitches", "Il Cazzo", "Siktir git", "Sikiş", "Nigga please", "c.u.n.t", "Faggots", "Vaffanculo a tutti"];
   const fp = fine.filter((x) => N.titleRude(x)), fn = bad.filter((x) => !N.titleRude(x));
   check(!fp.length && !fn.length, "titleRude: " + JSON.stringify({ refused: fp, passed: fn }));
