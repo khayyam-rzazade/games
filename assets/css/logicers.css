@@ -682,6 +682,8 @@ body.game { background: var(--tint); }
 .onward-name { display: block; margin-top: 2px; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; line-height: 1.1; }
 .onward-pitch { display: block; margin-top: 4px; font-size: 0.95rem; font-weight: 500; line-height: 1.3; opacity: .94; }
 .onward-next svg { width: 26px; height: 26px; flex: none; }
+@media (prefers-reduced-motion: no-preference) { .onward-next svg { animation: onward-nudge 1.6s ease-in-out 1s infinite; } }
+@keyframes onward-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
 .onward-done { margin-top: 14px; font-weight: 600; font-size: 1.05rem; line-height: 1.3; }
 /* "All games": a slim box as wide as the next game's, with the three dots (11 Oct 2026, Khayyam) */
 .onward-all { margin-top: 10px; display: flex; align-items: center; gap: 12px; padding: 9px 16px 9px 14px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); text-decoration: none; -webkit-tap-highlight-color: transparent; }
@@ -1197,6 +1199,11 @@ dialog.khay:not([open]) { display: none; }
 .fin-stats { appearance: none; display: block; width: 100%; margin-top: 10px; min-height: 48px; padding: 0 14px; border: 2px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .fin-stats:active { transform: scale(0.99); }
 .fin-spot { margin-top: 9px; color: var(--soft); font-weight: 700; font-size: 0.9rem; }
+.fin-result { display: flex; align-items: center; gap: 9px; margin-top: 12px; padding: 10px 13px; border-radius: 14px; background: var(--tint, #E8EBF7); color: var(--ink); font-size: 1.02rem; line-height: 1.3; }
+.fin-result b { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; font-size: 1.1rem; }
+.fin-result-icon { flex: none; width: 26px; height: 26px; display: inline-flex; }
+.fin-result-icon svg { width: 26px; height: 26px; }
+.fin-stats { white-space: normal; line-height: 1.25; padding: 9px 14px; }
 .fin-rank { margin-top: 12px; padding: 10px 13px; border-radius: 14px; background: var(--tint, #E8EBF7); color: var(--ink); font-weight: 600; font-size: 0.95rem; line-height: 1.35; animation: fin-fade .3s ease-out; }
 .fin-rank[hidden] { display: none; }
 .fin-next-words { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05; }
@@ -1211,6 +1218,8 @@ dialog.khay:not([open]) { display: none; }
 .rx-t { font-size: 0.74rem; font-weight: 700; color: var(--soft); line-height: 1.1; }
 .rx-top { display: flex; align-items: center; justify-content: center; gap: 5px; }
 .rx-top .rx-e { font-size: 1.15rem; }
+.rx-globe { font-size: 0.8rem; margin-right: 1px; }
+.rx-people { grid-column: 1 / -1; margin: -2px 0 0; text-align: center; font-size: 0.74rem; font-weight: 700; color: var(--soft); }
 .rx-n { font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; }
 .rx-low { font-size: 0.74rem; font-weight: 700; color: var(--soft); line-height: 1.1; display: inline-flex; align-items: center; gap: 2px; }
 .rx-low .wd-flag { font-size: 0.85rem; margin-right: 0; }
@@ -1417,7 +1426,8 @@ dialog.khay:not([open]) { display: none; }
 .logicer.fresh { animation: logicer-pop .7s cubic-bezier(.2, 1.3, .4, 1) both; }
 @keyframes logicer-pop { 0% { transform: scale(.82); opacity: 0; } 60% { transform: scale(1.04); opacity: 1; } 100% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .logicer.fresh { animation: none; } }
-@media (max-width: 700px) { .logicer { display: flex; flex-wrap: nowrap; gap: 0 7px; margin-top: 12px; padding: 7px 14px 8px; } .logicer-label { font-size: 0.62rem; letter-spacing: .08em; white-space: nowrap; } .logicer-big { font-size: clamp(1.2rem, 6vw, 1.5rem); white-space: nowrap; } .logicer-small { font-size: 0.8rem; white-space: nowrap; } .logicer-small:empty { display: none; } }
+@media (max-width: 700px) { .logicer { display: flex; flex-wrap: wrap; gap: 0 7px; margin-top: 12px; padding: 7px 14px 8px; } .logicer-label { font-size: 0.62rem; letter-spacing: .08em; white-space: nowrap; } .logicer-big { font-size: clamp(1.2rem, 6vw, 1.5rem); white-space: nowrap; } .logicer-small { font-size: 0.8rem; white-space: nowrap; } .logicer-small:empty { display: none; } }   /* flex-wrap: wrap (24 Oct 2026): a long label (Turkish) goes to its own line instead of past the box */
+@media (max-width: 700px) { .logicer:lang(tr) .logicer-label { flex-basis: 100%; margin-bottom: -2px; } }
 
 /* ---------- the language (23 Oct 2026): the sheet that rises from the bottom on the first visit, the chip in the
    header, the quiet lines (assets/js/lang.js) ---------- */

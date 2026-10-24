@@ -579,6 +579,7 @@
       b.textContent = "";
       var top = el("span", "rx-top");
       top.appendChild(el("span", "rx-e", FEEL[i].e));
+      top.appendChild(el("span", "rx-globe", "\uD83C\uDF0D"));          // the big number is the world's (24 Oct 2026, Khayyam)
       top.appendChild(el("b", "rx-n", pw === null ? String(w[i]) : pw + "%"));
       b.appendChild(top);
       var ph = th >= 5 && countryName(c) ? Math.round(100 * h[i] / th) : null;
@@ -589,7 +590,12 @@
         (ph !== null ? ", " + T("world.pct_of_country", { pct: ph, country: countryName(c) }) : "") + (i === mine ? ". " + T("world.your_pick") : "."));
       b.disabled = true;
     });
+    /* how many people stand behind the numbers, so the scale is plain (24 Oct 2026, Khayyam) */
+    var old = row.querySelector(".rx-people");
+    if (old) row.removeChild(old);
+    if (tw > 0) row.appendChild(el("p", "rx-people", "\uD83C\uDF0D " + T.n(tw, "world.reacted", { n: fmtN(tw) })));
   }
+  function fmtN(n) { try { return Number(n).toLocaleString(LG ? LG.locale : "en-US"); } catch (e) { return String(n); } }
   function reactRow(o) {
     if (!on() || off() || !o || !o.game) return null;
     var G = gameBy("id", o.game);

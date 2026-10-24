@@ -830,10 +830,10 @@
       var a = el("a", "onward-next");
       a.href = href;
       a.setAttribute("data-g", next.key);
+      /* 24 Oct 2026, Khayyam: "Next game" is the big line (it is the thing to do), the game's name small under it */
       var t = el("span", "onward-text");
-      t.appendChild(el("span", "onward-kicker", kicker));
-      t.appendChild(el("span", "onward-name", next.name));
-      t.appendChild(el("span", "onward-pitch", next.pitch));
+      t.appendChild(el("span", "onward-name", kicker));
+      t.appendChild(el("span", "onward-kicker", next.name + " · " + next.pitch));
       a.appendChild(t);
       a.insertAdjacentHTML("beforeend", ARROW);
       a.addEventListener("click", function () { count_("onward/" + next.id); });
@@ -880,6 +880,7 @@
        Practice and old days get none, and nothing moves on by itself. */
     var fin = null;
     if (!otherDay) {
+      try { revealScroll(o); } catch (e) { /* the page simply stays where it is */ }
       try { fin = finCard(o, next, played, count, href, box, eodEl); } catch (e) { fin = null; /* the card must never break a game */ }
     }
 
@@ -1024,6 +1025,52 @@
       return true;
     } catch (e) { return false; }
   }
+  var FIN_WAIT = 5000;                     // the reveal's moment before the finish card (24 Oct 2026)
+  var touchedAt = 0, ourScroll = 0;        // the player's last touch, scroll or key; scrolls we started are not theirs
+  function lastTouch() { return touchedAt; }
+  function noteTouch() { if (Date.now() > ourScroll) touchedAt = Date.now(); }
+  try {
+    ["touchstart", "touchmove", "wheel", "keydown", "pointerdown"].forEach(function (ev) { window.addEventListener(ev, noteTouch, { passive: true }); });
+    window.addEventListener("scroll", noteTouch, { passive: true });
+  } catch (e) { /* no listeners: the card simply keeps its time */ }
+  /* the reveal scrolls the page by itself, a moment after the stamp lands, so the stamp sits near the top and the
+     explanation shows under it: "there is something here" (24 Oct 2026, Khayyam). Not when motion is reduced. */
+  function revealScroll(o) {
+    if (reducedMotion()) return;
+    var when = Math.max(900, Math.min(num(o.wait) ? o.wait - 300 : 1100, 2200)), started = Date.now();
+    window.setTimeout(function () {
+      if (touchedAt > started + 250) return;                     // the player moved after the reveal's tap: leave them to it
+      var st = document.getElementById("vstamp") || document.getElementById("verdict") || document.getElementById("after");
+      if (!st) return;
+      var r = st.getBoundingClientRect();
+      var to = window.pageYOffset + r.top - Math.round(window.innerHeight * 0.16);
+      if (to <= window.pageYOffset + 24) return;                // already there
+      ourScroll = Date.now() + 1200;                             // our own scroll events are not the player's
+      try { window.scrollTo({ top: to, behavior: "smooth" }); } catch (e) { window.scrollTo(0, to); }
+    }, when);
+  }
+  /* the result in one line, as the stamp and the home tile say it: the stamp's icon, its words, the game's words */
+  function resultLine(o) {
+    var G = null;
+    GAMES.forEach(function (x) { if (x.id === o.game) G = x; });
+    if (!G || !num(o.day)) return null;
+    var r = null;
+    try { r = game(G.id).results[o.day]; } catch (e) { r = null; }
+    if (!r || !G.done(r)) return null;
+    var st = stampFor(G, r), says = "";
+    try { says = typeof G.says === "function" ? G.says(r) : ""; } catch (e) { says = ""; }
+    if (!st && !says) return null;
+    var line = el("p", "fin-result" + (st ? " fin-result-" + st.kind : ""));
+    if (st) {
+      line.setAttribute("data-tier", String(st.tier));
+      var i = el("i", "fin-result-icon");
+      i.innerHTML = STAMP_ICONS[st.tier];
+      line.appendChild(i);
+      line.appendChild(el("b", "", st.words));
+    }
+    if (says && (!st || says !== st.words)) line.appendChild(el("span", "", (st ? " · " : "") + says));
+    return line;
+  }
   function finCard(o, next, played, count, href, box, eodEl) {
     var old = document.getElementById("fin");
     if (old && old.parentNode) old.parentNode.removeChild(old);
@@ -1048,6 +1095,12 @@
     x.setAttribute("aria-label", T("site.close"));
     top.appendChild(x);
     sheet.appendChild(top);
+    /* 24 Oct 2026, Khayyam: the card came too fast and said nothing of the result. Its first line is now the result,
+       as the stamp and the home tile say it ("Now you know · Off by 39 years"), so nobody has to look under the card. */
+    try {
+      var rl = resultLine(o);
+      if (rl) sheet.appendChild(rl);
+    } catch (e) { /* the card can live without the line */ }
     var pips = el("div", "pips");
     pips.setAttribute("aria-hidden", "true");
     GAMES.forEach(function (G, i) {
@@ -1161,13 +1214,21 @@
     x.addEventListener("click", function () { count_("onward-sheet/away"); close(false); });
     stats.addEventListener("click", function () { count_("onward-sheet/stats"); close(true); });
 
-    finTimer = window.setTimeout(function () {         // the reveal has its moment first
+    /* 24 Oct 2026, Khayyam: "it pops up too fast, people can't really see the results". The card now waits about
+       five seconds after the reveal, and while the player is scrolling or touching the page it waits until they
+       have been still for two seconds: it never rises under a reading finger. */
+    var wait = Math.max(num(o.wait) ? o.wait : 0, FIN_WAIT), born = Date.now();
+    function rise() {
+      if (done) return;
+      var idle = Date.now() - lastTouch();
+      if (idle < 2000) { finTimer = window.setTimeout(rise, 2000 - idle + 50); return; }
       document.body.appendChild(wrap);
       document.addEventListener("keydown", onKey);
       count_(next ? "onward-sheet/seen" : "onward-sheet/day-done");
       try { sheet.focus({ preventScroll: true }); } catch (e) { /* no focus */ }
       if (!next) autoDown(sheet, wrap);
-    }, num(o.wait) ? o.wait : 1400);
+    }
+    finTimer = window.setTimeout(rise, wait);
     return { closed: function (fn) { if (done) fn(); else fns.push(fn); } };
   }
 
