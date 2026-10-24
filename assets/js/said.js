@@ -13,14 +13,14 @@
    here can break a game: every part is wrapped, and the whole file does nothing when the world's server is off. */
 (function () {
   "use strict";
-  var TO = window.TurnsOut, W = window.LogicersWorld;
+  var TO = window.TurnsOut, W = window.LogicersWorld, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   if (!TO || !W || !W.on()) return;
 
   var MAX = 140;
   var SHOW = 1;                       // lines on the home page's box (a half of a row, beside the Game Room)
   var SHOW_CARD = 4;                  // lines under the question on the finish card
   var NAME_MAX = 40, ROLE_MAX = 60;   // the optional name and "I am a…" (the server has the same limits)
-  var ROLES = ["student", "teacher", "parent", "researcher", "curious mind", "gamer"];   // examples to tap
+  var ROLES = [T("said.role_student"), T("said.role_teacher"), T("said.role_parent"), T("said.role_researcher"), T("said.role_curious"), T("said.role_gamer")];   // examples to tap
 
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -62,40 +62,40 @@
     if (!host) return;
     var d = W.todayKey();
     var box = el("section", "said");
-    box.setAttribute("aria-label", "What surprised you today?");
+    box.setAttribute("aria-label", T("said.q"));
     var head = el("div", "said-head");
     head.appendChild(face(36));
     var hw = el("div", "said-headwords");
-    hw.appendChild(el("h3", "said-h", "What surprised you today?"));
-    hw.appendChild(el("p", "said-sub", "One line. Khayyam reads every one before it shows."));
+    hw.appendChild(el("h3", "said-h", T("said.q")));
+    hw.appendChild(el("p", "said-sub", T("said.sub")));
     head.appendChild(hw);
     box.appendChild(head);
     var form = el("form", "said-form");
     form.noValidate = true;
     var ta = el("textarea", "said-field");
-    ta.rows = 2; ta.maxLength = MAX; ta.placeholder = "I didn’t know that…";
-    ta.setAttribute("aria-label", "What surprised you today?");
+    ta.rows = 2; ta.maxLength = MAX; ta.placeholder = T("said.ph");
+    ta.setAttribute("aria-label", T("said.q"));
     form.appendChild(ta);
     /* two optional lines about the writer; they show next to the line if Khayyam lets it through */
     var who = el("div", "said-who");
     var nameIn = el("input", "said-in"); nameIn.type = "text"; nameIn.maxLength = NAME_MAX; nameIn.autocomplete = "off";
-    nameIn.placeholder = "Your name (optional)"; nameIn.setAttribute("aria-label", "Your name, optional");
+    nameIn.placeholder = T("said.name_ph"); nameIn.setAttribute("aria-label", T("said.name_aria"));
     var roleIn = el("input", "said-in"); roleIn.type = "text"; roleIn.maxLength = ROLE_MAX; roleIn.autocomplete = "off";
-    roleIn.placeholder = "I am a\u2026 (optional)"; roleIn.setAttribute("aria-label", "I am a, optional");
+    roleIn.placeholder = T("said.role_ph"); roleIn.setAttribute("aria-label", T("said.role_aria"));
     who.appendChild(nameIn); who.appendChild(roleIn);
     form.appendChild(who);
     var egs = el("div", "said-egs");
-    egs.setAttribute("aria-label", "Examples for I am a");
+    egs.setAttribute("aria-label", T("said.examples_aria"));
     ROLES.forEach(function (r) {
       var c = el("button", "said-eg", r); c.type = "button";
       c.addEventListener("click", function () { roleIn.value = r; roleIn.focus(); });
       egs.appendChild(c);
     });
     form.appendChild(egs);
-    form.appendChild(el("p", "said-hint", "Both are optional and show with your line if Khayyam lets it through. Write only what you want others to see."));
+    form.appendChild(el("p", "said-hint", T("said.hint")));
     var row = el("div", "said-row");
     var left = el("span", "said-left", "");
-    var send = el("button", "btn solid said-send", "Send to Khayyam");
+    var send = el("button", "btn solid said-send", T("tell.send"));
     send.type = "submit"; send.disabled = true;
     row.appendChild(left); row.appendChild(send);
     form.appendChild(row);
@@ -110,50 +110,50 @@
     ta.addEventListener("input", function () {
       var v = tidy();
       send.disabled = v.length < 3;
-      left.textContent = v.length > MAX - 30 ? (MAX - v.length) + " left" : "";
+      left.textContent = v.length > MAX - 30 ? T("said.n_left", { n: MAX - v.length }) : "";
     });
     function said(t) { note.textContent = t; note.hidden = !t; }
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var text = tidy();
       if (text.length < 3 || send.getAttribute("aria-busy") === "true") return;
-      send.setAttribute("aria-busy", "true"); send.textContent = "Sending…"; said("");
+      send.setAttribute("aria-busy", "true"); send.textContent = T("tell.sending"); said("");
       TO.count("said/send");
       var body = { d: d, text: text };
       var nm = nameIn.value.replace(/\s+/g, " ").trim(), rl = roleIn.value.replace(/\s+/g, " ").trim();
       if (nm) body.name = nm;
       if (rl) body.role = rl;
       W.post("/said/add", body).then(function (r) {
-        send.removeAttribute("aria-busy"); send.textContent = "Send to Khayyam";
+        send.removeAttribute("aria-busy"); send.textContent = T("tell.send");
         if (r.status === 200) {
           form.hidden = true;
           var th = el("div", "said-thanks");
-          th.appendChild(el("p", "said-big", "Thank you! 🙏"));
-          th.appendChild(el("p", "", "Khayyam will read it. Lines he lets through show here today and on the home page tomorrow."));
+          th.appendChild(el("p", "said-big", T("tell.thanks")));
+          th.appendChild(el("p", "", T("said.thanks_sub")));
           box.insertBefore(th, shown);
           TO.count("said/sent");
         } else if (r.status === 400 && r.data && r.data.e === "text") {
-          said("Only words, please: no links, addresses or emails, 3 to 140 characters.");
+          said(T("said.err_text"));
         } else if (r.status === 400 && r.data && (r.data.e === "name" || r.data.e === "role")) {
-          said("No links, emails or @ in " + (r.data.e === "name" ? "the name" : "I am a\u2026") + ", please.");
+          said(r.data.e === "name" ? T("said.err_name") : T("said.err_role"));
         } else if (r.status === 400 && r.data && r.data.e === "enough") {
-          said("Three lines a day is the most. Thank you for all of them!");
+          said(T("said.err_enough"));
         } else if (r.status === 400 && r.data && r.data.e === "same") {
-          said("You sent that one already. Thank you!");
+          said(T("said.err_same"));
         } else if (r.status === 429) {
-          said("Too many from here for the moment. Try again in a few minutes.");
+          said(T("said.err_many"));
         } else {
-          said("That did not go through. Please try again.");
+          said(T("said.err_failed"));
         }
       }, function () {
-        send.removeAttribute("aria-busy"); send.textContent = "Send to Khayyam";
-        said("That did not go through. Please try again.");
+        send.removeAttribute("aria-busy"); send.textContent = T("tell.send");
+        said(T("said.err_failed"));
       });
     });
     /* today's lines he has let through, if any */
     W.post("/said/view", { d: d }).then(function (r) {
       if (r.status !== 200 || !Array.isArray(r.data.lines) || !r.data.lines.length) return;
-      shown.appendChild(el("p", "said-shown-h", "Players said today"));
+      shown.appendChild(el("p", "said-shown-h", T("said.today_h")));
       shown.appendChild(linesEl(r.data.lines, SHOW_CARD));
       shown.hidden = false;
     }, function () { /* then only the question */ });
@@ -171,11 +171,11 @@
     dlg.id = "said-win"; dlg.className = "said-win";
     dlg.setAttribute("aria-labelledby", "said-win-h");
     var sheet = el("div", "sheet");
-    var x = el("button", "chip round close", "\u00d7"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", "Close");
+    var x = el("button", "chip round close", "\u00d7"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", T("site.close"));
     sheet.appendChild(x);
-    var h = el("h2", "", "Players said\u2026"); h.id = "said-win-h";
+    var h = el("h2", "", T("said.title")); h.id = "said-win-h";
     sheet.appendChild(h);
-    sheet.appendChild(el("p", "quiet said-win-sub", "What surprised them. Khayyam reads every line before it shows."));
+    sheet.appendChild(el("p", "quiet said-win-sub", T("said.win_sub")));
     sheet.appendChild(linesEl(lines, 12));
     dlg.appendChild(sheet);
     document.body.appendChild(dlg);
@@ -199,14 +199,14 @@
       var head = el("div", "said-head");                        /* no photo here (Khayyam, 20 Oct 2026: "it'd be too much") */
       var hw = el("div", "said-headwords");
       var top = el("div", "said-top");
-      top.appendChild(el("b", "gameroom-h", "Players said\u2026"));
+      top.appendChild(el("b", "gameroom-h", T("said.title")));
       if (lines.length > 1) top.appendChild(el("span", "said-plus", "+" + (lines.length - 1)));
       hw.appendChild(top);
       hw.appendChild(linesEl(lines, SHOW));
       head.appendChild(hw);
       box.appendChild(head);
       box.setAttribute("role", "button"); box.tabIndex = 0;
-      box.setAttribute("aria-label", "Players said: read the latest " + lines.length + (lines.length === 1 ? " line" : " lines"));
+      box.setAttribute("aria-label", T.n(lines.length, "said.box_aria"));
       function go(e) { e.preventDefault(); try { openWin(lines); } catch (err) { /* the window is optional */ } }
       box.addEventListener("click", go);
       box.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") go(e); });

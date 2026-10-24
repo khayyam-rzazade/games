@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "out-of-24";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -13,7 +13,7 @@
   var arcYou = $("arc-you"), arcMiss = $("arc-miss"), arcBand = $("arc-band"), arcReal = $("arc-real");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length) {
-    $("question").textContent = "Today's day could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("o24.not_loaded");
     panel.hidden = true; actions.hidden = true; hint.hidden = true;
     return;
   }
@@ -121,6 +121,7 @@
   var byId = {};
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
   function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  if (LG) { LG.puzzleAll(GAME, puzzleOf); LG.puzzleNote(LG.puzzleHas(GAME, day)); }
 
   function valid(r) {
     return !!r && num(r.g) && r.g >= 0 && r.g <= DAY && r.g % STEP === 0 && scoreOk(r.y) && typeof r.t === "string";
@@ -140,15 +141,15 @@
   function fmt(m) {                         // 0 h, 45 min, 2 h, 7 h 05
     m = Math.round(m);
     var h = Math.floor(m / 60), mm = m % 60;
-    if (m === 0) return "0 h";
-    if (h === 0) return mm + " min";
-    if (mm === 0) return h + " h";
-    return h + " h " + (mm < 10 ? "0" : "") + mm;
+    if (m === 0) return T("o24.h", { h: 0 });
+    if (h === 0) return T("o24.min", { m: mm });
+    if (mm === 0) return T("o24.h", { h: h });
+    return T("o24.h", { h: h }) + " " + (mm < 10 ? "0" : "") + mm;
   }
   function spoken(m) {                      // for screen readers: 7 hours 45 minutes
     var h = Math.floor(m / 60), mm = m % 60, out = [];
-    if (h || !mm) out.push(h + (h === 1 ? " hour" : " hours"));
-    if (mm) out.push(mm + (mm === 1 ? " minute" : " minutes"));
+    if (h || !mm) out.push(T.n(h, "o24.hours"));
+    if (mm) out.push(T.n(mm, "o24.minutes"));
     return out.join(" ");
   }
   function scoreOf(g) {                     // 0 is spot on; otherwise minutes off the band, + too long, − too short
@@ -156,13 +157,13 @@
     if (g > q.hi + TOL) return g - q.hi;
     return 0;
   }
-  function scoreText(y) { return y === 0 ? "Spot on" : fmt(Math.abs(y)) + (y > 0 ? " too long" : " too short"); }
+  function scoreText(y) { return y === 0 ? T("says.spot_on") : (y > 0 ? T("o24.too_long", { t: fmt(Math.abs(y)) }) : T("o24.too_short", { t: fmt(Math.abs(y)) })); }
   function snap(m) { return Math.max(0, Math.min(DAY, Math.round(m / STEP) * STEP)); }
   function chipsText(p) { return p.chips.map(function (c) { return c.t; }).join(", "); }
 
   /* ---------- the screen ---------- */
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Out of 24, day " + day + " | Logicers";
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("o24.title_day", { n: day });
   $("face").textContent = q.face;
   var chips = $("chips");
   q.chips.forEach(function (c, i) {
@@ -189,7 +190,7 @@
     };
     (function () {
       var s = document.createElement("script");
-      s.src = "pics/" + q.pic + ".js";
+      s.src = (LG ? LG.root + "out-of-24/" : "") + "pics/" + q.pic + ".js";
       s.async = true;
       document.head.appendChild(s);
     })();
@@ -243,23 +244,23 @@
     if (m === v) return;
     v = m;
     moved = true;
-    if (nudgeTimer) { window.clearTimeout(nudgeTimer); nudgeTimer = 0; btnShow.textContent = "Show the real hours"; }
+    if (nudgeTimer) { window.clearTimeout(nudgeTimer); nudgeTimer = 0; btnShow.textContent = T("o24.show_real"); }
     paint();
   }
   function paint() {
     arc(arcYou, 0, v);
     thumbAt.setAttribute("transform", "rotate(" + (v / DAY * 360).toFixed(2) + " 120 120)");
-    if (phase === "play") centre([fmt(v)], "", "a day");
+    if (phase === "play") centre([fmt(v)], "", T("o24.a_day"));
     dial.setAttribute("aria-valuenow", String(v));
-    dial.setAttribute("aria-valuetext", spoken(v) + " a day");
+    dial.setAttribute("aria-valuetext", spoken(v) + " " + T("o24.a_day"));
   }
   function nudge() {
-    btnShow.textContent = "First drag round the dial";
+    btnShow.textContent = T("o24.first_drag");
     $("say").textContent = "";
-    $("say").textContent = "First shade the hours: drag round the dial, or use the arrow keys on it.";
+    $("say").textContent = T("o24.first_shade");
     if (!reduced) { nudgeG.classList.remove("nudge"); void nudgeG.getBoundingClientRect(); nudgeG.classList.add("nudge"); }
     window.clearTimeout(nudgeTimer);
-    nudgeTimer = window.setTimeout(function () { nudgeTimer = 0; btnShow.textContent = "Show the real hours"; }, 1800);
+    nudgeTimer = window.setTimeout(function () { nudgeTimer = 0; btnShow.textContent = T("o24.show_real"); }, 1800);
   }
 
   /* Where the finger is, as minutes round the dial from the top, or null too near the middle to tell. The value
@@ -339,12 +340,11 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 0 ? "A friend was spot on. Can you match that?"
-      : "A friend was " + scoreText(friend) + ". Can you beat that?") +
-      (practice ? " It is an earlier day, so it does not count for your streak." : "");
+    notice.textContent = (friend === 0 ? T("o24.friend_spot") : T("o24.friend_was", { how: scoreText(friend) })) +
+      (practice ? " " + T("o24.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -405,7 +405,7 @@
     if (y > 0) arc(arcMiss, q.hi, g);
     else if (y < 0) arc(arcMiss, g, q.lo);
     else arc(arcMiss, 0, 0);
-    var you = "You: " + fmt(g);
+    var you = T("o24.you_colon", { g: fmt(g) });
     function finish() {
       drawing = 0;
       arc(arcReal, 0, q.lo);
@@ -421,7 +421,7 @@
         if (t0 === null) t0 = t;
         var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
         arc(arcReal, 0, q.lo * e);
-        centre([fmt(q.lo * e)], "REAL", you);
+        centre([fmt(q.lo * e)], T("o24.real_caps"), you);
         if (p < 1) drawing = window.requestAnimationFrame(frame);
         else finish();
       };
@@ -433,7 +433,7 @@
     var b = document.createElement("b");
     b.textContent = scoreText(y);
     o.appendChild(b);
-    o.appendChild(document.createTextNode(" You said " + fmt(g) + "; the real figure is " + q.fig + "."));
+    o.appendChild(document.createTextNode(" " + T("o24.you_said", { g: fmt(g), fig: q.fig })));
     o.classList.toggle("hit", y === 0);
     $("verdict").hidden = false;
     fillAfter(y);
@@ -451,9 +451,9 @@
   function fillAfter(y) {
     var f = $("friend");
     if (friend !== null) {
-      var said = friend === 0 ? "Your friend was spot on" : "Your friend was " + scoreText(friend);
+      var said = friend === 0 ? T("o24.friend_was_spot") : T("o24.friend_was_how", { how: scoreText(friend) });
       var a = Math.abs(y), c = Math.abs(friend);
-      f.textContent = a < c ? said + ". You were closer." : a === c ? said + ", like you. A tie." : said + ". Closer than you.";
+      f.textContent = a < c ? T("o24.friend_you_closer", { f: said }) : a === c ? T("o24.friend_tie", { f: said }) : T("o24.friend_closer", { f: said });
       f.hidden = false;
     }
     $("sentence").textContent = q.sentence;
@@ -461,7 +461,7 @@
     var list = $("sources");
     list.innerHTML = "";
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode("The figure: "));
+    li.appendChild(document.createTextNode(T("every.the_figure") + " "));
     q.src.forEach(function (s, i) {
       if (i) li.appendChild(document.createTextNode(" · "));
       li.appendChild(link(s));
@@ -469,22 +469,22 @@
     list.appendChild(li);
     if (q.pic) {
       var cr = document.createElement("li");
-      cr.appendChild(document.createTextNode("Silhouette from "));
+      cr.appendChild(document.createTextNode(T("every.silhouette_from") + " "));
       cr.appendChild(link({ name: "PhyloPic", url: "https://www.phylopic.org/" }));
       if (q.credit && q.credit.lic) {
         var L = { by3: ["CC BY 3.0", "https://creativecommons.org/licenses/by/3.0/"],
                   by4: ["CC BY 4.0", "https://creativecommons.org/licenses/by/4.0/"] }[q.credit.lic];
-        cr.appendChild(document.createTextNode(": " + q.face + " by " + (q.credit.by || "an unnamed artist") + " ("));
+        cr.appendChild(document.createTextNode(": " + T("cous.credit", { thing: q.face, by: q.credit.by || T("cous.unnamed_artist") }) + " ("));
         if (L) cr.appendChild(link({ name: L[0], url: L[1] })); else cr.appendChild(document.createTextNode(q.credit.lic));
         cr.appendChild(document.createTextNode(")."));
       } else {
-        cr.appendChild(document.createTextNode(", in the public domain."));
+        cr.appendChild(document.createTextNode(T("every.public_domain")));
       }
       list.appendChild(cr);
     }
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today</a>';
-    else next.textContent = "A new day arrives at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("o24.back_today") + '</a>';
+    else next.textContent = T("o24.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });
     prepareCard(y);
@@ -495,7 +495,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1 && valid(res[n]); })
       .sort(function (a, b) { return b - a; });
     $("st-played").textContent = String(s.played);
@@ -538,10 +538,10 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
       var t = document.createElement("span"); t.className = "q"; t.textContent = p.face + ", " + chipsText(p);
       var s = document.createElement("span"); s.className = "s";
-      s.textContent = r ? r.t : "Not played yet";
+      s.textContent = r ? r.t : T("site.not_played_yet");
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -556,8 +556,7 @@
     return base + "?d=" + day + "&g=" + y;
   }
   function shareText(y) {
-    return "Out of 24, day " + day + ": how many hours a day? " + q.face + ", " + chipsText(q) + ". " +
-      (y === 0 ? "I was spot on." : "I was " + scoreText(y) + ".") + " Can you beat that? " + shareUrl(y);
+    return T("o24.share", { n: day, face: q.face, chips: chipsText(q), mine: y === 0 ? T("every.i_spot") : T("every.i_was", { how: scoreText(y) }) }) + " " + shareUrl(y);
   }
   function roundRect(x, a, b, w, h, rad) {
     x.beginPath();
@@ -602,11 +601,11 @@
     x.fillStyle = "#fff"; x.textAlign = "left"; x.font = "800 48px " + FD;
     x.fillText("Logicers", MG, 118);
     x.textAlign = "right"; x.font = "600 40px " + Fn;
-    x.fillText("Out of 24, day " + day, W - MG, 118);
+    x.fillText(T("o24.day_header", { n: day }), W - MG, 118);
 
     x.textAlign = "left";
-    var tq = wrap(x, "How many hours a day?", "800", 92, FD, W - 2 * MG, 1, 66);
-    if (!tq.fits) tq = wrap(x, "How many hours a day?", "800", 92, FD, W - 2 * MG, 2, 60);
+    var tq = wrap(x, T("o24.how_many"), "800", 92, FD, W - 2 * MG, 1, 66);
+    if (!tq.fits) tq = wrap(x, T("o24.how_many"), "800", 92, FD, W - 2 * MG, 2, 60);
     fits = fits && tq.fits;
     tq.lines.forEach(function (l, i) { x.font = "800 " + tq.size + "px " + FD; x.fillText(l, MG - 4, 250 + i * tq.size * 1.06); });
     var after = 250 + (tq.lines.length - 1) * tq.size * 1.06;
@@ -666,10 +665,10 @@
     x.fillText(head, W / 2, vy);
 
     x.font = "800 70px " + FD;
-    x.fillText("Can you beat that?", W / 2, 1204);
+    x.fillText(T("every.beat_that"), W / 2, 1204);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, ws = 40;
+      var line = T("duel.play_at", { where: where }), ws = 40;
       x.font = "600 " + ws + "px " + Fn;
       while (x.measureText(line).width > W - 2 * MG && ws > 24) { ws -= 2; x.font = "600 " + ws + "px " + Fn; }
       x.fillText(line, W / 2, 1270);
@@ -716,7 +715,7 @@
   $("share-copy").addEventListener("click", function () {
     var y = scoreOf(v);
     TO.copyText(shareText(y)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(y);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(y) });
     });
   });
 

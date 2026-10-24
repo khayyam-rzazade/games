@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "long-lost-cousin";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -11,7 +11,7 @@
   var panel = $("panel"), optionsEl = $("options"), lockBtn = $("lock");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length || !DATA.things) {
-    $("question").textContent = "Today's puzzle could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("cous.not_loaded");
     return;
   }
 
@@ -36,18 +36,21 @@
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
   function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
   function thing(key) { return THINGS[key] || { name: key, the: "the " + key }; }
-  function bare(key) { return thing(key).the.replace(/^the /, ""); }          // "the hippo" -> "hippo"
+  function ofThing(key) { var t = thing(key); return t.of || (t.the + "'s"); }     // "the hippo's" (a language file gives its own form)
+  function bare(key) { var t = thing(key); return t.bare || t.the.replace(/^the /, ""); }          // "the hippo" -> "hippo"
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function closestOf(p) { return p.options[p.rank.indexOf(0)]; }
-  function branches(rank) { return rank === 0 ? "Found it" : rank === 1 ? "One branch away" : "Two branches away"; }
+  function branches(rank) { return rank === 0 ? T("says.found_it") : rank === 1 ? T("says.one_branch") : T("says.two_branches"); }
 
   var LICENCE = {
     by3: ["CC BY 3.0", "https://creativecommons.org/licenses/by/3.0/"],
     by4: ["CC BY 4.0", "https://creativecommons.org/licenses/by/4.0/"]
   };
 
+  if (LG) { LG.puzzleAll(GAME, puzzleOf); var lt = window.LG_PUZZLES && window.LG_PUZZLES[GAME + ".things"]; if (lt) { for (var tk in lt) if (Object.prototype.hasOwnProperty.call(lt, tk)) THINGS[tk] = Object.assign({}, THINGS[tk] || {}, lt[tk]); } }
   var q = puzzleOf(day);
+  if (LG) LG.puzzleNote(LG.puzzleHas(GAME, day));
   var hue = TO.colour(q.colour);
   var best = q.rank.indexOf(0);       // which of the three is the closest relative
   var picked = -1;                    // which one is selected
@@ -63,7 +66,7 @@
     if (waiting[key]) { waiting[key].push(done); return; }
     waiting[key] = [done];
     var s = document.createElement("script");
-    s.src = "pics/" + key + ".js";
+    s.src = (LG ? LG.root + "long-lost-cousin/" : "") + "pics/" + key + ".js";
     s.async = true;
     s.onload = s.onerror = function () {
       var list = waiting[key] || [];
@@ -92,9 +95,9 @@
   /* ---------- build the screen ---------- */
   panel.style.setProperty("--hue", hue);
   // "T. rex" must not break between its two halves
-  $("question").textContent = "Which of these is " + thing(q.subject).the.replace(/\b([A-Z])\. /g, "$1.\u00a0") + "'s closest relative?";
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Long Lost Cousin, day " + day + " | Logicers";
+  $("question").textContent = T("cous.question", { of: ofThing(q.subject).replace(/\b([A-Z])\. /g, "$1.\u00a0") });
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("cous.title_day", { n: day });
   $("subject-name").textContent = thing(q.subject).name;
   drawInto($("subject-pic"), q.subject);
 
@@ -114,11 +117,11 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 0 ? "A friend found the long lost cousin. Can you?" : "A friend was " + branches(friend).toLowerCase() + ". Can you find the cousin?") +
-      (practice ? " It is an earlier puzzle, so it does not count for your streak." : "");
+    notice.textContent = (friend === 0 ? T("cous.friend_found") : T("cous.friend_was", { how: branches(friend).toLowerCase() })) +
+      (practice ? " " + T("cous.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -192,7 +195,7 @@
     dot.setAttribute("cx", "100"); dot.setAttribute("cy", "46"); dot.setAttribute("r", "8");
     svg.appendChild(dot);
     var when = $("when");
-    if (typeof q.mya === "number") { when.textContent = "about " + q.mya + " million years ago"; when.hidden = false; }
+    if (typeof q.mya === "number") { when.textContent = T("cous.mya", { n: q.mya }); when.hidden = false; }
     else when.hidden = true;
   }
   function grow(then) {
@@ -229,9 +232,9 @@
 
     function finish() {
       $("tree").classList.add("done");
-      $("turnsout").textContent = "Turns out, " + thing(q.options[best]).the + ".";
-      $("offby").innerHTML = rank === 0 ? "You found the long lost cousin."
-        : "You picked " + esc(thing(q.options[picked]).the) + ". <b>" + branches(rank) + ".</b>";
+      $("turnsout").textContent = T("cous.turns_out", { the: thing(q.options[best]).the });
+      $("offby").innerHTML = rank === 0 ? T("cous.you_found")
+        : T("cous.you_picked", { the: esc(thing(q.options[picked]).the) }) + " <b>" + branches(rank) + ".</b>";
       $("verdict").hidden = false;
       fillAfter(rank);
       renderChip();
@@ -248,7 +251,7 @@
     [q.subject].concat(q.options).forEach(function (key) {
       var t = thing(key), l = LICENCE[t.lic];
       if (!l) { free++; return; }
-      var who = bare(key) + " by " + (t.by || "an unnamed artist");
+      var who = T("cous.credit", { thing: bare(key), by: t.by || T("cous.unnamed_artist") });
       need.push(html ? esc(who) + ' (<a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + "</a>)" : who + " (" + l[0] + ")");
     });
     return { need: need, free: free };
@@ -258,8 +261,8 @@
     var f = $("friend");
     if (friend !== null) {
       f.textContent = friend === 0
-        ? "Your friend found the cousin" + (rank === 0 ? " too." : ".")
-        : "Your friend was " + branches(friend).toLowerCase() + (rank === friend ? " too." : ".");
+        ? (rank === 0 ? T("cous.friend_found_too") : T("cous.friend_found_dot"))
+        : (rank === friend ? T("cous.friend_was_too", { how: branches(friend).toLowerCase() }) : T("cous.friend_was_dot", { how: branches(friend).toLowerCase() }));
       f.hidden = false;
     }
     $("sentence").textContent = q.fact;
@@ -268,13 +271,12 @@
       if (s) { a.textContent = s.name; a.href = s.url; }
     });
     var c = credits(true);
-    $("pic-credit").innerHTML = 'Silhouettes from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>' +
-      (c.need.length
-        ? ": " + c.need.join("; ") + "." + (c.free ? " The " + (c.free === 1 ? "other one is" : "others are") + " in the public domain." : "")
-        : ", in the public domain.");
+    $("pic-credit").innerHTML = (c.need.length
+        ? T("cous.credits_some", { list: c.need.join("; ") }) + (c.free ? " " + T(c.free === 1 ? "cous.credits_other_free" : "cous.credits_others_free") : "")
+        : T("cous.credits_all_free"));
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s puzzle</a>';
-    else next.textContent = "A new cousin to find at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("site.back_today_puzzle") + '</a>';
+    else next.textContent = T("cous.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });   // what is played today, and the next game
     prepareCard(rank);
@@ -284,7 +286,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1; }).sort(function (a, b) { return b - a; });
     var found = 0;
     days.forEach(function (n) { if (res[n].r === 0) found++; });
@@ -308,7 +310,7 @@
     el.innerHTML = "";
     var pic = picBox();
     var what = document.createElement("span"); what.className = "what"; what.textContent = thing(p.subject).name;
-    var of = document.createElement("span"); of.className = "of"; of.textContent = "and " + thing(closestOf(p)).the;
+    var of = document.createElement("span"); of.className = "of"; of.textContent = T("cous.and_the", { the: thing(closestOf(p)).the });
     el.appendChild(pic); el.appendChild(what); el.appendChild(of);
     drawInto(pic, p.subject);
   }
@@ -324,11 +326,11 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
       var t = document.createElement("span"); t.className = "q"; t.textContent = cap(thing(p.subject).the);
       var s = document.createElement("span"); s.className = "s";
       var r = g.results[n] || g.practice[n];
-      s.textContent = r ? (r.r === 0 ? "You found the cousin" : branches(r.r)) : "Not played yet";
+      s.textContent = r ? (r.r === 0 ? T("cous.you_found_short") : branches(r.r)) : T("site.not_played_yet");
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -342,10 +344,9 @@
     var base = window.location.href.split("#")[0].split("?")[0];
     return base + "?d=" + day + "&g=" + rank;
   }
-  function mine(rank) { return rank === 0 ? "I found the long lost cousin." : "I was " + branches(rank).toLowerCase() + "."; }
+  function mine(rank) { return rank === 0 ? T("cous.i_found") : T("cous.i_was", { how: branches(rank).toLowerCase() }); }
   function shareText(rank) {
-    return "Long Lost Cousin, day " + day + ": which of these is " + thing(q.subject).the + "'s closest relative? " +
-      mine(rank) + " Can you find it? " + shareUrl(rank);
+    return T("cous.share", { n: day, of: ofThing(q.subject), mine: mine(rank) }) + " " + shareUrl(rank);
   }
   function wrapLines(ctx, text, maxWidth) {
     var words = String(text).split(/\s+/), lines = [], line = "";
@@ -396,7 +397,7 @@
     x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
-    x.fillText("Long Lost Cousin, day " + day, W - M, 118);
+    x.fillText(T("cous.day_header", { n: day }), W - M, 118);
 
     // the subject, large
     paintPic(x, PICS[q.subject], M, 178, W - 2 * M, 340);
@@ -406,7 +407,7 @@
     var fs = 60, lines;
     do {
       x.font = "700 " + fs + "px " + FD;
-      lines = wrapLines(x, "Which of these is " + thing(q.subject).the + "'s closest relative?", W - 2 * M);
+      lines = wrapLines(x, T("cous.question", { of: ofThing(q.subject) }), W - 2 * M);
       fs -= 2;
     } while (lines.length > 2 && fs > 40);
     var lh = Math.round((fs + 2) * 1.16), y = 610;
@@ -430,15 +431,15 @@
     x.font = "600 40px " + F;
     x.fillText(mine(rank), M, 1112);
     x.font = "800 72px " + FD;
-    x.fillText(rank === 0 ? "Can you find it too?" : "Can you find it?", M, 1204);
+    x.fillText(rank === 0 ? T("cous.find_it_too") : T("cous.find_it"), M, 1204);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where;
+      var line = T("duel.play_at", { where: where });
       fitText(x, line, "600", 40, 24, W - 2 * M, F);
       x.fillText(line, M, 1264);
     }
     var cr = credits(false);
-    var note = "Silhouettes: PhyloPic" + (cr.need.length ? ". " + cr.need.join("; ") : "");
+    var note = T("cous.pic_silhouettes") + (cr.need.length ? ". " + cr.need.join("; ") : "");
     x.globalAlpha = 0.85;
     fitText(x, note, "500", 26, 15, W - 2 * M, F);
     x.fillText(note, M, 1314);
@@ -481,7 +482,7 @@
   $("share-copy").addEventListener("click", function () {
     var rank = q.rank[picked];
     TO.copyText(shareText(rank)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(rank);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(rank) });
     });
   });
 

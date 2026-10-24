@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="tr" data-lg-path="" data-lg-root="../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="home.page_title">Logicers: learning that feels like play</title>
+<link rel="canonical" href="https://logicers.com/tr/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/">
+<meta name="description" content="Learning that feels like play. Games built on real facts, for every curious and intellectual mind." data-s-content="home.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta name="listdle-verification" content="100f2dd2-bc9b-4fab-b723-202d82596bac">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Logicers. Are you a Logicer?" data-s-content="home.og_title">
+<meta property="og:description" content="Learning that feels like play. Games built on real facts, for every curious and intellectual mind." data-s-content="home.page_desc">
+<meta property="og:url" content="https://logicers.com/tr/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=e165ea97e7">
+<script src="../assets/lang/tr.js?v=be9c81aa31"></script>
+<script src="../assets/js/lang.js?v=b48aebb299"></script>
+<style>
+/* Find out about yourself (B2, 22 Oct 2026): the box and the row. Kept here, not in logicers.css, so no shared file needs re-stamping. */
+[data-g="findout"] { --c: #3F7A2A; --tint: #E3F2DA; }
+@media (prefers-color-scheme: dark) { [data-g="findout"] { --c: #9EDB6A; --tint: #0F1F0A; } }
+.logicer.findout { background: linear-gradient(135deg, #2E6B22 0%, #3F7A2A 55%, #6BA84A 100%); box-shadow: 0 8px 20px rgba(63, 122, 42, .28), inset 0 0 0 1px rgba(255, 255, 255, .16); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.logicer.findout:active { transform: scale(.99); }
+.logicer.findout .logicer-big { color: #fff; background: linear-gradient(90deg, #fff 0%, #fff 40%, #FFD45E 50%, #fff 60%, #fff 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out infinite; }
+@keyframes findout-shine { 0%, 55% { background-position: 120% 0; } 85%, 100% { background-position: -120% 0; } }
+@media (prefers-reduced-motion: reduce) { .logicer.findout .logicer-big { animation: none; -webkit-text-fill-color: #fff; background: none; } }
+.findout-games .mins { white-space: nowrap; }
+.findout-games { scroll-margin-top: 14px; }
+.hero-boxes { display: inline-grid; grid-template-columns: minmax(0, max-content); max-width: 100%; vertical-align: top; }
+.hero-boxes .logicer { width: 100%; }
+@media (max-width: 700px) { .hero-boxes { display: block; } }
+.logicer.findout .logicer-small:empty { display: none; }
+/* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
+.rooms-sheet { max-width: 440px; }
+.rooms-list { display: grid; gap: 10px; margin-top: 16px; }
+.rooms-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: var(--card); border: 1.5px solid var(--line); text-decoration: none; color: var(--ink); -webkit-tap-highlight-color: transparent; }
+.rooms-item:hover, .rooms-item.on { border-color: #2D4FC4; box-shadow: 0 6px 16px rgba(45, 79, 196, .14); }
+.rooms-art { display: block; width: 40px; height: 40px; flex: none; }
+.rooms-art svg { display: block; width: 100%; height: 100%; }
+.rooms-text { display: block; min-width: 0; }
+.rooms-text b { display: block; font-family: var(--display); font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; line-height: 1.15; }
+.rooms-text span { display: block; margin-top: 3px; color: var(--soft); font-size: 0.86rem; line-height: 1.35; }
+.rooms-code { margin-top: 14px; }
+.rooms-code-row { display: flex; gap: 8px; margin-top: 8px; }
+.rooms-code .livejoin-code { flex: 1; min-width: 0; height: 46px; border-radius: 14px; border: 2px solid var(--line); background: var(--card); color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: .12em; text-align: center; text-transform: uppercase; padding: 0 6px; }
+.rooms-code .livejoin-code:focus { outline: none; border-color: #2D4FC4; }
+.rooms-code.bad .livejoin-code { border-color: #CF4327; animation: rooms-shake .3s; }
+@keyframes rooms-shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.rooms-code .livejoin-go { appearance: none; flex: none; border: 0; height: 46px; padding: 0 20px; border-radius: 999px; background: #2D4FC4; color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
+.gameroom { cursor: pointer; }
+</style>
+</head>
+<body class="home">
+
+<div class="page">
+<header class="site-bar">
+  <a class="logo" href="../tr/" aria-label="Logicers, home" data-s-aria-label="site.home_aria"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6.2" r="4.1"/><circle cx="5.3" cy="17.8" r="4.1"/><circle cx="18.7" cy="17.8" r="4.1"/></svg><span class="word">Logicers</span></a>
+  <div class="tools">
+    <button class="chip streak" type="button" data-open="dlg-streak" aria-label="Your streak" data-s-aria-label="site.streak_aria"><svg class="flame" viewBox="0 0 20 20" aria-hidden="true"><path d="M10.4 1.6c.5 3-1.2 4.3-2.6 5.9C6.3 9.2 5 10.8 5 13a5 5 0 0 0 10 0c0-1.7-.7-3.2-1.5-4.3-.3 1-.9 1.7-1.7 2.1.5-3.4-.2-6.8-1.4-9.2z"/></svg><span data-s="site.streak_0b">Streak <b id="streak-n">0</b></span></button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-about" aria-label="About and sources" data-s-aria-label="site.about_aria">?</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 data-s="home.h1">Are you a <em>Logicer</em>?</h1>
+    <p class="lede" data-s="home.lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
+    <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
+    <!-- the two boxes stop where the longer text stops, both the same width (Khayyam, 22 Oct 2026); on the phone they fill the line as before -->
+    <div class="hero-boxes">
+    <div class="logicer" id="logicer" hidden></div>
+    <!-- Find out about yourself (B2, 22 Oct 2026): the same style as the counter, right under it (Khayyam, 20 Oct) -->
+    <a class="logicer findout" id="findout-box" href="../find-out/tr/">
+      <span class="logicer-label" data-s="home.findout_label">Find out</span>
+      <span class="logicer-big findout-big" data-s="home.findout_big">who you are</span>
+      <span class="logicer-small" id="findout-count"></span>
+    </a>
+    </div>
+  </div>
+  <!-- The Today card (19 Oct 2026): the first thing on the page now opens the first game not yet played
+       today, and each finished game hands the player to the next, so one tap starts the whole day.
+       home.js below gives it its address and shows the Play chip; a day with everything played is no link. -->
+  <a class="today" id="today-card">
+    <div class="today-top"><span class="today-label" data-s="end.today">Today</span><span class="today-count" id="today-count" data-s="home.today_count"><b>0</b> of 9 played</span><span class="today-go" id="today-go" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg><span data-s="site.play">Play</span></span></div>
+    <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
+    <p class="today-note" id="today-note" data-s="home.new_at_midnight">New games at midnight.</p>
+  </a>
+  <!-- Build a game · Join a game (16 Oct 2026): one slim box in two halves, right under Today and the same width, so the
+       games come into view sooner (Khayyam: "those boxes are too tall vertically and take too much space"). Join is a
+       link to the live page, which has its own code box; with the script a tap opens the code field here instead,
+       across the whole box. The form has no named field, so even without a script nothing of the code reaches any
+       server: home.js sends the browser to live/#CODE. -->
+  <div class="livebox" id="livebox">
+    <a class="lb lb-build" id="lb-build" href="../live/build/">
+      <span class="lb-badge" data-s="site.new">New</span>
+      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
+      <b class="lb-h" data-s="home.build_game">Build a game</b>
+    </a>
+    <a class="lb lb-join" id="lb-join" href="../live/" aria-haspopup="dialog" aria-controls="dlg-rooms">
+      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
+      <b class="lb-h" data-s="home.join_game">Join a game</b>
+    </a>
+  </div>
+  <!-- Game Room and "players said" (20 Oct 2026, Khayyam: "as tall as Build a game or Join a game, right under
+       them"): two slim halves like those, a picture and a title each. The Game Room waits hidden until rooms are
+       switched on (assets/js/rooms.js); the players' half until assets/js/said.js has a line Khayyam let through.
+       A half alone takes the whole row; with neither, the row is not there. -->
+  <div class="pairbox" id="pairbox"><span id="more-to-play"></span>
+  <!-- Game rooms (23 Oct 2026, Khayyam): the hub of the three kinds of room. A tap opens the sheet below with the three
+       choices; the box is always shown. "Join a game" opens the same sheet with a code field. -->
+  <a class="gameroom" id="gameroom" href="../tr/room/" role="button" aria-haspopup="dialog" aria-controls="dlg-rooms">
+    <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
+      <rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/>
+      <rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/>
+      <circle cx="19.5" cy="22" r="1.6" fill="#3A3F5C"/>
+      <circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/>
+      <circle cx="36" cy="27" r="6.5" fill="#CF4327"/>
+      <circle cx="28" cy="33" r="5.5" fill="#0D7D73"/>
+    </svg></span>
+    <span class="gameroom-text">
+      <b class="gameroom-h" id="gameroom-h" data-s="home.game_rooms">Game rooms</b>
+      <span class="gameroom-sub" id="gameroom-sub" data-s="home.game_rooms_sub">Daily games, How Sure or Find out who you are — with friends.</span>
+      <span class="gameroom-faces" id="gameroom-faces" hidden></span>
+    </span>
+  </a>
+  <section class="gameroom saidbox" id="saidbox" aria-label="What players said" data-s-aria-label="home.players_said_aria" hidden></section>
+  </div>
+  <!-- The World table box (16 Oct 2026), last and the full width. It waits hidden until the world's counts are
+       switched on (assets/js/world.js unhides it and fills it with your country's place). -->
+  <a class="gameroom worldbox" id="worldbox" href="../tr/world/" hidden>
+    <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
+      <circle cx="22" cy="22" r="17" fill="#2D4FC4"/>
+      <path d="M12.5 13.5c3 .4 4.6 2 4.2 4.6-.3 2.2 1.7 3 3.6 3.4 2.3.5 2.5 2.6 1.4 4.4-1.2 2-.6 4.6 1 6.6-4.6.3-8.4-1.8-10.8-5.4-2.6-3.9-2.4-9 .6-13.6zM26.5 8c-.6 1.8.2 3.2 2 3.8 2 .7 2.4 2.4 1.4 4.1-.9 1.6.4 3 2.2 3.2 1.4.2 2.7-.3 3.7-1.2.6 4.4-.9 8.6-4.1 11.6-.9-2-2.4-3-4.4-3.2-2.2-.2-3.4-1.8-2.7-3.9.6-1.7-.3-3.1-2-3.6-1.9-.6-2.5-2.3-1.5-4C22 12.3 24 9.6 26.5 8z" fill="#2FA36B"/>
+      <circle cx="34.5" cy="34.5" r="7.5" fill="#FFB020" stroke="#fff" stroke-width="2"/>
+      <path d="M31.4 34.4l2.2 2.2 4-4.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg></span>
+    <span class="gameroom-text">
+      <b class="gameroom-h" id="worldbox-h" data-s="world.table">World table</b>
+      <span class="gameroom-sub" id="worldbox-sub" data-s="world.counts_for_country">Every game you finish counts for your country.</span>
+    </span>
+  </a>
+</section>
+
+<section class="games" aria-labelledby="games-title">
+  <h2 class="sec" id="games-title" data-s="home.daily_games_h">Today's daily games</h2>
+  <div class="shelf" id="shelf">
+    <button class="shelf-btn prev off" type="button" id="shelf-prev" aria-controls="shelf-row" aria-label="Previous games" data-s-aria-label="site.previous_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="shelf-row" id="shelf-row" data-n="9">
+    <a class="tile" id="tile-energy" data-g="energy" href="../tr/same-energy/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="64" y="50" width="52" height="100" rx="9"/><rect class="cut" x="64" y="84" width="52" height="30"/><ellipse class="q" cx="90" cy="54" rx="21" ry="4.5"/><rect class="fg" x="136" y="88" width="30" height="8" rx="4"/><rect class="fg" x="136" y="104" width="30" height="8" rx="4"/><ellipse class="mute" cx="240" cy="149" rx="68" ry="12"/><path class="fg" transform="translate(184 90.4) scale(0.6)" d="M50 31C42 24 22 22 17 43C12 63 27 88 41 89C45 89.5 47 87.5 50 87.5C53 87.5 55 89.5 59 89C73 88 88 63 83 43C78 22 58 24 50 31Z"/><path class="ln" fill="none" stroke-width="4" stroke-linecap="round" d="M214 110C213.7 105 215 101 218 98"/><path class="fg" transform="translate(236 90.4) scale(0.6)" d="M50 31C42 24 22 22 17 43C12 63 27 88 41 89C45 89.5 47 87.5 50 87.5C53 87.5 55 89.5 59 89C73 88 88 63 83 43C78 22 58 24 50 31Z"/><path class="ln" fill="none" stroke-width="4" stroke-linecap="round" d="M266 110C265.7 105 267 101 270 98"/><path class="fg" transform="translate(210 52.4) scale(0.6)" d="M50 31C42 24 22 22 17 43C12 63 27 88 41 89C45 89.5 47 87.5 50 87.5C53 87.5 55 89.5 59 89C73 88 88 63 83 43C78 22 58 24 50 31Z"/><path class="ln" fill="none" stroke-width="4" stroke-linecap="round" d="M240 72C239.7 67 241 63 244 60"/></svg><span class="badge" data-s="site.new">New</span></div>
+      <div class="body">
+        <h3 data-s="game.energy.name">Same Energy</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_energy_long">One real food or drink. Fill a plate or pour glasses of another until it holds the same energy, then see the real amount.</span><span class="short" data-s="game.energy.pitch">A real food or drink. How many of another hold the same energy?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-hundred" data-g="hundred" href="../tr/100-of-us/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><g class="fg"><circle cx="22" cy="34" r="3.6"/><path d="M16.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="36.5" cy="34" r="3.6"/><path d="M31.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="51" cy="34" r="3.6"/><path d="M45.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="65.5" cy="34" r="3.6"/><path d="M60.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="80" cy="34" r="3.6"/><path d="M74.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="94.5" cy="34" r="3.6"/><path d="M89.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="109" cy="34" r="3.6"/><path d="M103.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="123.5" cy="34" r="3.6"/><path d="M118.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="138" cy="34" r="3.6"/><path d="M132.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="152.5" cy="34" r="3.6"/><path d="M147.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="167" cy="34" r="3.6"/><path d="M161.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="181.5" cy="34" r="3.6"/><path d="M176.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="196" cy="34" r="3.6"/><path d="M190.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="210.5" cy="34" r="3.6"/><path d="M205.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="225" cy="34" r="3.6"/><path d="M219.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="239.5" cy="34" r="3.6"/><path d="M234.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="254" cy="34" r="3.6"/><path d="M248.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="268.5" cy="34" r="3.6"/><path d="M263.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="283" cy="34" r="3.6"/><path d="M277.8 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="297.5" cy="34" r="3.6"/><path d="M292.3 50v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="22" cy="65" r="3.6"/><path d="M16.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="36.5" cy="65" r="3.6"/><path d="M31.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="51" cy="65" r="3.6"/><path d="M45.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="65.5" cy="65" r="3.6"/><path d="M60.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="80" cy="65" r="3.6"/><path d="M74.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="94.5" cy="65" r="3.6"/><path d="M89.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="109" cy="65" r="3.6"/><path d="M103.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="123.5" cy="65" r="3.6"/><path d="M118.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="138" cy="65" r="3.6"/><path d="M132.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="152.5" cy="65" r="3.6"/><path d="M147.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="167" cy="65" r="3.6"/><path d="M161.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="181.5" cy="65" r="3.6"/><path d="M176.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="196" cy="65" r="3.6"/><path d="M190.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="210.5" cy="65" r="3.6"/><path d="M205.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="225" cy="65" r="3.6"/><path d="M219.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="239.5" cy="65" r="3.6"/><path d="M234.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="254" cy="65" r="3.6"/><path d="M248.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="268.5" cy="65" r="3.6"/><path d="M263.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="283" cy="65" r="3.6"/><path d="M277.8 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="297.5" cy="65" r="3.6"/><path d="M292.3 81v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="22" cy="96" r="3.6"/><path d="M16.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="fg"><circle cx="36.5" cy="96" r="3.6"/><path d="M31.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="51" cy="96" r="3.6"/><path d="M45.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="65.5" cy="96" r="3.6"/><path d="M60.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="80" cy="96" r="3.6"/><path d="M74.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="94.5" cy="96" r="3.6"/><path d="M89.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="109" cy="96" r="3.6"/><path d="M103.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="123.5" cy="96" r="3.6"/><path d="M118.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="138" cy="96" r="3.6"/><path d="M132.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="152.5" cy="96" r="3.6"/><path d="M147.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="167" cy="96" r="3.6"/><path d="M161.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="181.5" cy="96" r="3.6"/><path d="M176.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="196" cy="96" r="3.6"/><path d="M190.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="210.5" cy="96" r="3.6"/><path d="M205.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="225" cy="96" r="3.6"/><path d="M219.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="239.5" cy="96" r="3.6"/><path d="M234.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="254" cy="96" r="3.6"/><path d="M248.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="268.5" cy="96" r="3.6"/><path d="M263.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="283" cy="96" r="3.6"/><path d="M277.8 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="297.5" cy="96" r="3.6"/><path d="M292.3 112v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="22" cy="127" r="3.6"/><path d="M16.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="36.5" cy="127" r="3.6"/><path d="M31.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="51" cy="127" r="3.6"/><path d="M45.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="65.5" cy="127" r="3.6"/><path d="M60.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="80" cy="127" r="3.6"/><path d="M74.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="94.5" cy="127" r="3.6"/><path d="M89.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="109" cy="127" r="3.6"/><path d="M103.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="123.5" cy="127" r="3.6"/><path d="M118.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="138" cy="127" r="3.6"/><path d="M132.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="152.5" cy="127" r="3.6"/><path d="M147.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="167" cy="127" r="3.6"/><path d="M161.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="181.5" cy="127" r="3.6"/><path d="M176.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="196" cy="127" r="3.6"/><path d="M190.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="210.5" cy="127" r="3.6"/><path d="M205.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="225" cy="127" r="3.6"/><path d="M219.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="239.5" cy="127" r="3.6"/><path d="M234.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="254" cy="127" r="3.6"/><path d="M248.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="268.5" cy="127" r="3.6"/><path d="M263.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="283" cy="127" r="3.6"/><path d="M277.8 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="297.5" cy="127" r="3.6"/><path d="M292.3 143v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="22" cy="158" r="3.6"/><path d="M16.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="36.5" cy="158" r="3.6"/><path d="M31.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="51" cy="158" r="3.6"/><path d="M45.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="65.5" cy="158" r="3.6"/><path d="M60.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="80" cy="158" r="3.6"/><path d="M74.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="94.5" cy="158" r="3.6"/><path d="M89.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="109" cy="158" r="3.6"/><path d="M103.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="123.5" cy="158" r="3.6"/><path d="M118.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="138" cy="158" r="3.6"/><path d="M132.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="152.5" cy="158" r="3.6"/><path d="M147.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="167" cy="158" r="3.6"/><path d="M161.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="181.5" cy="158" r="3.6"/><path d="M176.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="196" cy="158" r="3.6"/><path d="M190.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="210.5" cy="158" r="3.6"/><path d="M205.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="225" cy="158" r="3.6"/><path d="M219.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="239.5" cy="158" r="3.6"/><path d="M234.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="254" cy="158" r="3.6"/><path d="M248.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="268.5" cy="158" r="3.6"/><path d="M263.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="283" cy="158" r="3.6"/><path d="M277.8 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g><g class="mute"><circle cx="297.5" cy="158" r="3.6"/><path d="M292.3 174v-5.2a5.2 5.2 0 0 1 10.4 0v5.2z"/></g></svg></div>
+      <div class="body">
+        <h3 data-s="game.hundred.name">100 of Us</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_hundred_long">Of 100 people in the world, how many…? Hold, let go at your guess, see how it really is.</span><span class="short" data-s="game.hundred.pitch">Of 100 people in the world, how many…?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-call" data-g="call" href="../tr/your-call/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><g class="opt"><rect class="pill" x="46" y="30" width="228" height="38" rx="19"/><circle class="dot" cx="67" cy="49" r="8.5"/><rect class="txt" x="88" y="44.5" width="118" height="9" rx="4.5"/></g><g class="pick"><rect class="pill" x="46" y="81" width="228" height="38" rx="19"/><circle class="dot" cx="67" cy="100" r="8.5"/><path class="tick" d="M62.6 100.4l3 3 5.6-6.2" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect class="txt" x="88" y="95.5" width="150" height="9" rx="4.5"/></g><g class="opt"><rect class="pill" x="46" y="132" width="228" height="38" rx="19"/><circle class="dot" cx="67" cy="151" r="8.5"/><rect class="txt" x="88" y="146.5" width="96" height="9" rx="4.5"/></g></svg></div>
+      <div class="body">
+        <h3 data-s="game.call.name">Your Call</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_call_long">A real moment from history and three choices. What did they actually do?</span><span class="short" data-s="game.call.pitch">A real moment from history. What did they do?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-cousin" data-g="cousin" href="../tr/long-lost-cousin/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><svg class="fg" id="cousin-pic" x="50" y="12" width="220" height="92" preserveAspectRatio="xMidYMax meet"></svg><path class="ln" d="M160 112V130M86 148V130H234V148M160 130V148" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle class="q" cx="86" cy="165" r="15"/><text class="qm" x="86" y="171.5" text-anchor="middle" font-size="19" font-weight="800">?</text><circle class="q" cx="160" cy="165" r="15"/><text class="qm" x="160" y="171.5" text-anchor="middle" font-size="19" font-weight="800">?</text><circle class="q" cx="234" cy="165" r="15"/><text class="qm" x="234" y="171.5" text-anchor="middle" font-size="19" font-weight="800">?</text></svg></div>
+      <div class="body">
+        <h3 data-s="game.cousin.name">Long Lost Cousin</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_cousin_long">One animal, three others. Which one is its closest relative?</span><span class="short" data-s="game.cousin.pitch">Which one is the closest relative?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-club" data-g="club" href="../tr/the-club/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="ring" cx="160" cy="102" r="66" fill="none" stroke-width="4"/><circle class="fg" cx="138" cy="84" r="9"/><circle class="fg" cx="172" cy="72" r="9"/><circle class="fg" cx="150" cy="118" r="9"/><circle class="fg" cx="186" cy="110" r="9"/><circle class="fg" cx="164" cy="138" r="9"/><circle class="mute" cx="62" cy="60" r="9"/><circle class="mute" cx="258" cy="70" r="9"/><circle class="mute" cx="250" cy="146" r="9"/><circle class="mute" cx="70" cy="140" r="9"/></svg></div>
+      <div class="body">
+        <h3 data-s="game.club.name">The Club</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_club_long">Some are in the club, some are not. Work out the secret rule and decide who else gets in.</span><span class="short" data-s="game.club.pitch">Work out the secret rule. Who gets in?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-apart" data-g="apart" href="../tr/years-apart/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="mute" x="28" y="66" width="264" height="46" rx="6"/><rect class="fg" x="28" y="66" width="13" height="46" rx="4"/><rect class="fg" x="279" y="66" width="13" height="46" rx="4"/><rect class="fg" x="48.3" y="66" width="1.4" height="15" opacity=".55"/><rect class="fg" x="53.8" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="59.4" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="65" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="70.5" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="76" y="66" width="1.4" height="10" opacity=".55"/><rect class="fg" x="81.6" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="87.1" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="92.7" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="98.2" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="103.8" y="66" width="1.4" height="15" opacity=".55"/><rect class="fg" x="109.3" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="114.9" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="120.4" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="126" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="131.6" y="66" width="1.4" height="10" opacity=".55"/><rect class="fg" x="137.1" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="142.7" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="148.2" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="153.8" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="159.3" y="66" width="1.4" height="15" opacity=".55"/><rect class="fg" x="164.9" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="170.4" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="175.9" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="181.5" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="187.1" y="66" width="1.4" height="10" opacity=".55"/><rect class="fg" x="192.6" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="198.2" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="203.7" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="209.2" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="214.8" y="66" width="1.4" height="15" opacity=".55"/><rect class="fg" x="220.3" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="225.9" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="231.5" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="237" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="242.6" y="66" width="1.4" height="10" opacity=".55"/><rect class="fg" x="248.1" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="253.7" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="259.2" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="264.8" y="66" width="1.4" height="6" opacity=".55"/><rect class="fg" x="270.3" y="66" width="1.4" height="15" opacity=".55"/><rect class="fg" x="186" y="52" width="24" height="74" rx="6"/><rect class="cut" x="197" y="58" width="2.4" height="62" rx="1.2"/><path class="ln" d="M198 126V142" fill="none" stroke-width="3" stroke-linecap="round"/><rect class="q" x="146" y="142" width="104" height="38" rx="8"/><rect class="mute" x="162" y="156" width="72" height="9" rx="4.5"/></svg></div>
+      <div class="body">
+        <h3 data-s="game.apart.name">Years Apart</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_apart_long">Two real events, and a third one in between. Slide it to where you think it falls, then see the years.</span><span class="short" data-s="game.apart.pitch">Two real events, one in between. Where does it fall?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-gets" data-g="gets" href="../tr/who-gets-what/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="mute" x="28" y="34" width="86" height="12" rx="6"/><rect class="fg" x="234" y="28" width="58" height="22" rx="7"/><rect class="fg" x="28" y="62" width="89.8" height="50" rx="8" opacity="1"/><rect class="fg" x="117.8" y="62" width="68.6" height="50" opacity="0.7"/><rect class="fg" x="186.4" y="62" width="58.1" height="50" opacity="0.5"/><rect class="fg" x="244.5" y="62" width="47.5" height="50" rx="8" opacity="0.2"/><rect class="cut" x="28" y="62" width="89.8" height="50" opacity="0"/><rect class="q" x="175.4" y="55" width="22" height="64" rx="10"/><path class="ln" d="M182.9 80.0v14M189.9 80.0v14" fill="none" stroke-width="2.4" stroke-linecap="round"/><rect class="fg" x="28" y="132" width="29" height="30" rx="6" opacity="1"/><rect class="fg" x="57" y="132" width="21.1" height="30" opacity="0.7"/><rect class="fg" x="78.2" y="132" width="116.2" height="30" opacity="0.5"/><rect class="fg" x="194.3" y="132" width="97.7" height="30" rx="6" opacity="0.2"/></svg></div>
+      <div class="body">
+        <h3 data-s="game.gets.name">Who Gets What</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_gets_long">One real price, and the people paid out of it. Drag the lines to say who gets what, then see the real split.</span><span class="short" data-s="game.gets.pitch">A real price. Who gets what out of it?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-every" data-g="every" href="../tr/every-beat/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="mute" x="258" y="22" width="38" height="118" rx="13"/><rect class="fg" x="266" y="38.8" width="11" height="2.4" rx="1.2" opacity=".5"/><rect class="fg" x="266" y="66.8" width="11" height="2.4" rx="1.2" opacity=".5"/><rect class="fg" x="266" y="94.8" width="11" height="2.4" rx="1.2" opacity=".5"/><rect class="fg" x="266" y="122.8" width="11" height="2.4" rx="1.2" opacity=".5"/><circle class="fg" cx="282" cy="62" r="11"/><path class="fg" transform="translate(66 10) scale(5.3)" d="M12 21.2s-7.7-4.7-9.9-9.4C.5 8.4 2.4 4 6.6 4 9 4 10.7 5.3 12 7.1 13.3 5.3 15 4 17.4 4c4.2 0 6.1 4.4 4.5 7.8C19.7 16.5 12 21.2 12 21.2z"/><path class="ln" d="M24 172H92l9-20 12 36 10-28 7 12H168l9-20 12 36 10-28 7 12H296" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="body">
+        <h3 data-s="game.every.name">Every Beat</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_every_long">One real animal and its heart. Drag to set how fast you think it beats, then see the real heart beat beside yours.</span><span class="short" data-s="game.every.pitch">One real animal. How fast does its heart beat?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-o24" data-g="o24" href="../tr/out-of-24/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="mute" fill-rule="evenodd" d="M186 18A82 82 0 1 1 186 182A82 82 0 1 1 186 18ZM186 44A56 56 0 1 0 186 156A56 56 0 1 0 186 44Z"/><path class="fg" d="M186 18A82 82 0 0 1 227 171L214 148.5A56 56 0 0 0 186 44Z"/><rect class="cut" x="184.4" y="17" width="3.2" height="28" transform="rotate(0 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(15 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(30 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(45 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(60 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(75 186 100)"/><rect class="cut" x="184.4" y="17" width="3.2" height="28" transform="rotate(90 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(105 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(120 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(135 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(150 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(165 186 100)"/><rect class="cut" x="184.4" y="17" width="3.2" height="28" transform="rotate(180 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(195 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(210 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(225 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(240 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(255 186 100)"/><rect class="cut" x="184.4" y="17" width="3.2" height="28" transform="rotate(270 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(285 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(300 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(315 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(330 186 100)"/><rect class="cut" x="185.1" y="17" width="1.8" height="28" transform="rotate(345 186 100)"/><circle class="q" cx="220.5" cy="159.8" r="17"/><circle class="fg" cx="220.5" cy="159.8" r="12"/><path class="fg" transform="translate(155 69) scale(2.6)" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></div>
+      <div class="body">
+        <h3 data-s="game.o24.name">Out of 24</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_o24_long">An animal, or the people of a country. Shade how many hours a day they sleep, eat or work, then see the real hours.</span><span class="short" data-s="game.o24.pitch">A real animal or country. How many hours a day?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">See again</span>
+        </div>
+      </div>
+    </a>
+    </div>
+    <button class="shelf-btn next" type="button" id="shelf-next" aria-controls="shelf-row" aria-label="More games" data-s-aria-label="site.more_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</section>
+
+
+<!-- The find-out row and the "Play live with friends" row left the page on 23 Oct 2026 (Khayyam): the green box is the
+     way into the find-outs, and the rooms live in the Game rooms hub above. -->
+
+<section class="games group-games" aria-labelledby="group-title">
+  <h2 class="sec" id="group-title" data-s="home.pass_h">Pass the phone</h2>
+  <p class="sec-sub" data-s="home.pass_sub">Games for two or more, on one phone.</p>
+  <div class="shelf" id="shelf2">
+    <button class="shelf-btn prev off" type="button" id="shelf2-prev" aria-controls="shelf2-row" aria-label="Previous group games" data-s-aria-label="site.previous_group_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="shelf-row" id="shelf2-row" data-n="5">
+    <a class="tile" id="tile-twin" data-g="twin" href="../twin-or-trap/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="q" x="76" y="30" width="190" height="124" rx="14"/><rect class="mute" x="94" y="61" width="30" height="9" rx="4.5"/><rect class="fg" x="136" y="52" width="98" height="26" rx="8"/><rect class="mute" x="94" y="115" width="30" height="9" rx="4.5"/><rect class="fg" x="136" y="106" width="98" height="26" rx="8"/><rect class="mute" x="94" y="91" width="154" height="2.5" rx="1.25"/><g transform="rotate(-9 236 158)"><rect class="q" x="204" y="136" width="64" height="44" rx="9"/><rect class="stamp" x="204" y="136" width="64" height="44" rx="9" fill="none" stroke-width="3.5"/><rect class="fg" x="221" y="149" width="30" height="5.5" rx="2.75"/><rect class="fg" x="221" y="161.5" width="30" height="5.5" rx="2.75"/><rect class="fg" x="233.5" y="141" width="5" height="34" rx="2.5" transform="rotate(32 236 158)"/></g></svg><span class="badge" data-s="site.new">New</span></div>
+      <div class="body">
+        <h3 data-s="group.twin.name">Twin or Trap</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_twin_long">One word, two languages. Read it out, talk it over, then all vote: does it mean the same, or is it a trap?</span><span class="short" data-s="group.twin.pitch">Same word, two languages. Twin or trap?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-o193" data-g="o193" href="../one-of-193/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="dim" cx="37" cy="39" r="3.6"/><circle class="dim" cx="50.2" cy="39" r="3.6"/><circle class="dim" cx="63.4" cy="39" r="3.6"/><circle class="dim" cx="76.6" cy="39" r="3.6"/><circle class="dim" cx="89.8" cy="39" r="3.6"/><circle class="dim" cx="103" cy="39" r="3.6"/><circle class="mute" cx="116.2" cy="39" r="4.6"/><circle class="dim" cx="129.4" cy="39" r="3.6"/><circle class="dim" cx="142.6" cy="39" r="3.6"/><circle class="dim" cx="155.8" cy="39" r="3.6"/><circle class="dim" cx="169" cy="39" r="3.6"/><circle class="dim" cx="182.2" cy="39" r="3.6"/><circle class="dim" cx="195.4" cy="39" r="3.6"/><circle class="dim" cx="208.6" cy="39" r="3.6"/><circle class="dim" cx="221.8" cy="39" r="3.6"/><circle class="dim" cx="235" cy="39" r="3.6"/><circle class="dim" cx="248.2" cy="39" r="3.6"/><circle class="dim" cx="261.4" cy="39" r="3.6"/><circle class="dim" cx="274.6" cy="39" r="3.6"/><circle class="dim" cx="287.8" cy="39" r="3.6"/><circle class="dim" cx="37" cy="52.6" r="3.6"/><circle class="dim" cx="50.2" cy="52.6" r="3.6"/><circle class="dim" cx="63.4" cy="52.6" r="3.6"/><circle class="dim" cx="76.6" cy="52.6" r="3.6"/><circle class="dim" cx="89.8" cy="52.6" r="3.6"/><circle class="dim" cx="103" cy="52.6" r="3.6"/><circle class="dim" cx="116.2" cy="52.6" r="3.6"/><circle class="dim" cx="129.4" cy="52.6" r="3.6"/><circle class="dim" cx="142.6" cy="52.6" r="3.6"/><circle class="dim" cx="155.8" cy="52.6" r="3.6"/><circle class="dim" cx="169" cy="52.6" r="3.6"/><circle class="dim" cx="182.2" cy="52.6" r="3.6"/><circle class="dim" cx="195.4" cy="52.6" r="3.6"/><circle class="dim" cx="208.6" cy="52.6" r="3.6"/><circle class="dim" cx="221.8" cy="52.6" r="3.6"/><circle class="dim" cx="235" cy="52.6" r="3.6"/><circle class="dim" cx="248.2" cy="52.6" r="3.6"/><circle class="dim" cx="261.4" cy="52.6" r="3.6"/><circle class="dim" cx="274.6" cy="52.6" r="3.6"/><circle class="mute" cx="287.8" cy="52.6" r="4.6"/><circle class="dim" cx="37" cy="66.2" r="3.6"/><circle class="dim" cx="50.2" cy="66.2" r="3.6"/><circle class="dim" cx="63.4" cy="66.2" r="3.6"/><circle class="dim" cx="76.6" cy="66.2" r="3.6"/><circle class="mute" cx="89.8" cy="66.2" r="4.6"/><circle class="dim" cx="103" cy="66.2" r="3.6"/><circle class="mute" cx="116.2" cy="66.2" r="4.6"/><circle class="dim" cx="129.4" cy="66.2" r="3.6"/><circle class="dim" cx="142.6" cy="66.2" r="3.6"/><circle class="dim" cx="155.8" cy="66.2" r="3.6"/><circle class="dim" cx="169" cy="66.2" r="3.6"/><circle class="dim" cx="182.2" cy="66.2" r="3.6"/><circle class="dim" cx="195.4" cy="66.2" r="3.6"/><circle class="mute" cx="208.6" cy="66.2" r="4.6"/><circle class="dim" cx="221.8" cy="66.2" r="3.6"/><circle class="mute" cx="235" cy="66.2" r="4.6"/><circle class="dim" cx="248.2" cy="66.2" r="3.6"/><circle class="mute" cx="261.4" cy="66.2" r="4.6"/><circle class="dim" cx="274.6" cy="66.2" r="3.6"/><circle class="mute" cx="287.8" cy="66.2" r="4.6"/><circle class="dim" cx="37" cy="79.8" r="3.6"/><circle class="dim" cx="50.2" cy="79.8" r="3.6"/><circle class="dim" cx="63.4" cy="79.8" r="3.6"/><circle class="dim" cx="76.6" cy="79.8" r="3.6"/><circle class="dim" cx="89.8" cy="79.8" r="3.6"/><circle class="dim" cx="103" cy="79.8" r="3.6"/><circle class="mute" cx="116.2" cy="79.8" r="4.6"/><circle class="dim" cx="129.4" cy="79.8" r="3.6"/><circle class="dim" cx="142.6" cy="79.8" r="3.6"/><circle class="mute" cx="155.8" cy="79.8" r="4.6"/><circle class="dim" cx="169" cy="79.8" r="3.6"/><circle class="mute" cx="182.2" cy="79.8" r="4.6"/><circle class="dim" cx="195.4" cy="79.8" r="3.6"/><circle class="dim" cx="208.6" cy="79.8" r="3.6"/><circle class="dim" cx="221.8" cy="79.8" r="3.6"/><circle class="dim" cx="235" cy="79.8" r="3.6"/><circle class="mute" cx="248.2" cy="79.8" r="4.6"/><circle class="dim" cx="261.4" cy="79.8" r="3.6"/><circle class="dim" cx="274.6" cy="79.8" r="3.6"/><circle class="mute" cx="287.8" cy="79.8" r="4.6"/><circle class="dim" cx="37" cy="93.4" r="3.6"/><circle class="dim" cx="50.2" cy="93.4" r="3.6"/><circle class="mute" cx="63.4" cy="93.4" r="4.6"/><circle class="dim" cx="76.6" cy="93.4" r="3.6"/><circle class="dim" cx="89.8" cy="93.4" r="3.6"/><circle class="dim" cx="103" cy="93.4" r="3.6"/><circle class="dim" cx="116.2" cy="93.4" r="3.6"/><circle class="mute" cx="142.6" cy="93.4" r="4.6"/><circle class="dim" cx="155.8" cy="93.4" r="3.6"/><circle class="dim" cx="169" cy="93.4" r="3.6"/><circle class="dim" cx="182.2" cy="93.4" r="3.6"/><circle class="dim" cx="195.4" cy="93.4" r="3.6"/><circle class="dim" cx="208.6" cy="93.4" r="3.6"/><circle class="dim" cx="221.8" cy="93.4" r="3.6"/><circle class="dim" cx="235" cy="93.4" r="3.6"/><circle class="dim" cx="248.2" cy="93.4" r="3.6"/><circle class="dim" cx="261.4" cy="93.4" r="3.6"/><circle class="dim" cx="274.6" cy="93.4" r="3.6"/><circle class="dim" cx="287.8" cy="93.4" r="3.6"/><circle class="dim" cx="37" cy="107" r="3.6"/><circle class="dim" cx="50.2" cy="107" r="3.6"/><circle class="dim" cx="63.4" cy="107" r="3.6"/><circle class="dim" cx="76.6" cy="107" r="3.6"/><circle class="dim" cx="89.8" cy="107" r="3.6"/><circle class="dim" cx="103" cy="107" r="3.6"/><circle class="dim" cx="116.2" cy="107" r="3.6"/><circle class="dim" cx="129.4" cy="107" r="3.6"/><circle class="dim" cx="142.6" cy="107" r="3.6"/><circle class="dim" cx="155.8" cy="107" r="3.6"/><circle class="dim" cx="169" cy="107" r="3.6"/><circle class="dim" cx="182.2" cy="107" r="3.6"/><circle class="dim" cx="195.4" cy="107" r="3.6"/><circle class="dim" cx="208.6" cy="107" r="3.6"/><circle class="dim" cx="221.8" cy="107" r="3.6"/><circle class="dim" cx="235" cy="107" r="3.6"/><circle class="mute" cx="248.2" cy="107" r="4.6"/><circle class="dim" cx="261.4" cy="107" r="3.6"/><circle class="mute" cx="274.6" cy="107" r="4.6"/><circle class="dim" cx="287.8" cy="107" r="3.6"/><circle class="dim" cx="37" cy="120.6" r="3.6"/><circle class="dim" cx="50.2" cy="120.6" r="3.6"/><circle class="dim" cx="63.4" cy="120.6" r="3.6"/><circle class="dim" cx="76.6" cy="120.6" r="3.6"/><circle class="mute" cx="89.8" cy="120.6" r="4.6"/><circle class="dim" cx="103" cy="120.6" r="3.6"/><circle class="dim" cx="116.2" cy="120.6" r="3.6"/><circle class="dim" cx="129.4" cy="120.6" r="3.6"/><circle class="mute" cx="142.6" cy="120.6" r="4.6"/><circle class="dim" cx="155.8" cy="120.6" r="3.6"/><circle class="dim" cx="169" cy="120.6" r="3.6"/><circle class="dim" cx="182.2" cy="120.6" r="3.6"/><circle class="dim" cx="195.4" cy="120.6" r="3.6"/><circle class="dim" cx="208.6" cy="120.6" r="3.6"/><circle class="mute" cx="221.8" cy="120.6" r="4.6"/><circle class="dim" cx="235" cy="120.6" r="3.6"/><circle class="dim" cx="248.2" cy="120.6" r="3.6"/><circle class="dim" cx="261.4" cy="120.6" r="3.6"/><circle class="dim" cx="274.6" cy="120.6" r="3.6"/><circle class="mute" cx="287.8" cy="120.6" r="4.6"/><circle class="dim" cx="37" cy="134.2" r="3.6"/><circle class="dim" cx="50.2" cy="134.2" r="3.6"/><circle class="mute" cx="63.4" cy="134.2" r="4.6"/><circle class="mute" cx="76.6" cy="134.2" r="4.6"/><circle class="dim" cx="89.8" cy="134.2" r="3.6"/><circle class="dim" cx="103" cy="134.2" r="3.6"/><circle class="dim" cx="116.2" cy="134.2" r="3.6"/><circle class="dim" cx="129.4" cy="134.2" r="3.6"/><circle class="dim" cx="142.6" cy="134.2" r="3.6"/><circle class="dim" cx="155.8" cy="134.2" r="3.6"/><circle class="dim" cx="169" cy="134.2" r="3.6"/><circle class="dim" cx="182.2" cy="134.2" r="3.6"/><circle class="dim" cx="195.4" cy="134.2" r="3.6"/><circle class="mute" cx="208.6" cy="134.2" r="4.6"/><circle class="dim" cx="221.8" cy="134.2" r="3.6"/><circle class="dim" cx="235" cy="134.2" r="3.6"/><circle class="dim" cx="248.2" cy="134.2" r="3.6"/><circle class="dim" cx="261.4" cy="134.2" r="3.6"/><circle class="dim" cx="274.6" cy="134.2" r="3.6"/><circle class="dim" cx="287.8" cy="134.2" r="3.6"/><circle class="dim" cx="37" cy="147.8" r="3.6"/><circle class="dim" cx="50.2" cy="147.8" r="3.6"/><circle class="dim" cx="63.4" cy="147.8" r="3.6"/><circle class="dim" cx="76.6" cy="147.8" r="3.6"/><circle class="dim" cx="89.8" cy="147.8" r="3.6"/><circle class="dim" cx="103" cy="147.8" r="3.6"/><circle class="dim" cx="116.2" cy="147.8" r="3.6"/><circle class="dim" cx="129.4" cy="147.8" r="3.6"/><circle class="mute" cx="142.6" cy="147.8" r="4.6"/><circle class="mute" cx="155.8" cy="147.8" r="4.6"/><circle class="mute" cx="169" cy="147.8" r="4.6"/><circle class="dim" cx="182.2" cy="147.8" r="3.6"/><circle class="dim" cx="195.4" cy="147.8" r="3.6"/><circle class="mute" cx="208.6" cy="147.8" r="4.6"/><circle class="dim" cx="221.8" cy="147.8" r="3.6"/><circle class="dim" cx="235" cy="147.8" r="3.6"/><circle class="mute" cx="248.2" cy="147.8" r="4.6"/><circle class="dim" cx="261.4" cy="147.8" r="3.6"/><circle class="dim" cx="274.6" cy="147.8" r="3.6"/><circle class="dim" cx="287.8" cy="147.8" r="3.6"/><circle class="dim" cx="37" cy="161.4" r="3.6"/><circle class="dim" cx="50.2" cy="161.4" r="3.6"/><circle class="dim" cx="63.4" cy="161.4" r="3.6"/><circle class="dim" cx="76.6" cy="161.4" r="3.6"/><circle class="dim" cx="89.8" cy="161.4" r="3.6"/><circle class="dim" cx="103" cy="161.4" r="3.6"/><circle class="dim" cx="116.2" cy="161.4" r="3.6"/><circle class="dim" cx="129.4" cy="161.4" r="3.6"/><circle class="mute" cx="142.6" cy="161.4" r="4.6"/><circle class="dim" cx="155.8" cy="161.4" r="3.6"/><circle class="dim" cx="169" cy="161.4" r="3.6"/><circle class="dim" cx="182.2" cy="161.4" r="3.6"/><circle class="dim" cx="195.4" cy="161.4" r="3.6"/><circle class="ring" cx="129.4" cy="93.4" r="10.5" fill="none" stroke-width="3"/><circle class="fg" cx="129.4" cy="93.4" r="6"/></svg></div>
+      <div class="body">
+        <h3 data-s="group.o193.name">One of 193</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_o193_long">The phone hides one of 193 countries. Ask it yes or no, and find the country in as few questions as you can.</span><span class="short" data-s="group.o193.pitch">The phone hides a country. Ask yes or no, and find it.</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-still" data-g="still" href="../still-in/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="56" y="28" width="208" height="34" rx="11"/><rect class="q" x="120" y="37" width="118" height="7" rx="3.5"/><rect class="q" x="120" y="49" width="74" height="5" rx="2.5" opacity=".7"/><rect class="q" x="56" y="74" width="46" height="28" rx="8"/><rect class="fg" x="110" y="74" width="46" height="28" rx="8"/><rect class="q" x="164" y="74" width="46" height="28" rx="8"/><rect class="ring" x="161" y="71" width="52" height="34" rx="10" fill="none" stroke-width="3"/><rect class="q" x="218" y="74" width="46" height="28" rx="8"/><rect class="fg" x="56" y="110" width="46" height="28" rx="8"/><rect class="q" x="110" y="110" width="46" height="28" rx="8"/><rect class="fg" x="164" y="110" width="46" height="28" rx="8"/><rect class="q" x="218" y="110" width="46" height="28" rx="8"/><rect class="q" x="56" y="146" width="46" height="28" rx="8"/><rect class="miss" x="110" y="146" width="46" height="28" rx="8"/><rect class="q" x="164" y="146" width="46" height="28" rx="8"/><rect class="fg" x="218" y="146" width="46" height="28" rx="8"/></svg></div>
+      <div class="body">
+        <h3 data-s="group.still.name">Still In</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_still_long">Twelve countries and one rule. Take turns tapping one that fits. Wrong, and you are out.</span><span class="short" data-s="group.still.pitch">Twelve countries, one rule. Tap one that fits, or you're out.</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-expert" data-g="expert" href="../so-called-expert/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="q" x="78" y="20" width="176" height="164" rx="12"/><path class="fg" d="M78 32a12 12 0 0 1 12-12h152a12 12 0 0 1 12 12v18H78z"/><rect class="cut" x="96" y="31" width="64" height="8" rx="4"/><circle class="mute" cx="98" cy="68" r="6"/><rect class="mute" x="112" y="64" width="124" height="8" rx="4"/><circle class="mute" cx="98" cy="92" r="6"/><rect class="mute" x="112" y="88" width="104" height="8" rx="4"/><circle class="mute" cx="98" cy="116" r="6"/><rect class="mute" x="112" y="112" width="132" height="8" rx="4"/><circle class="mute" cx="98" cy="140" r="6"/><rect class="mute" x="112" y="136" width="112" height="8" rx="4"/><circle class="mute" cx="98" cy="164" r="6"/><rect class="mute" x="112" y="160" width="92" height="8" rx="4"/><g transform="rotate(-9 182 140)"><rect class="stamp" x="128" y="124" width="108" height="32" rx="7" fill="none" stroke-width="3.5"/><rect class="fg" x="141" y="136" width="82" height="8" rx="4"/></g></svg></div>
+      <div class="body">
+        <h3 data-s="group.expert.name">So-Called Expert</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_expert_long">One of you gets five facts about a country, one of them invented, and sells all five. Can the table spot it?</span><span class="short" data-s="group.expert.pitch">Five facts about a country, one invented. Can the table spot it?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_3">3+ players</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-beat" data-g="beat" href="../beat-the-phone/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="ln" d="M40 158 L68 140 L97 148 L126 126 L155 110 L185 122 L213 102 L240 86 L265 96 L288 76" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 9"/><circle class="fg" cx="40" cy="158" r="8"/><circle class="fg" cx="68" cy="140" r="8"/><circle class="fg" cx="97" cy="148" r="8"/><circle class="fg" cx="126" cy="126" r="8"/><circle class="fg" cx="155" cy="110" r="8"/><circle class="q" cx="185" cy="122" r="9"/><circle class="ring" cx="185" cy="122" r="14" fill="none" stroke-width="3"/><circle class="fg" cx="185" cy="122" r="4.5"/><circle class="q" cx="213" cy="102" r="7"/><circle class="ring" cx="213" cy="102" r="7" fill="none" stroke-width="2.5"/><circle class="q" cx="240" cy="86" r="7"/><circle class="ring" cx="240" cy="86" r="7" fill="none" stroke-width="2.5"/><circle class="q" cx="265" cy="96" r="7"/><circle class="ring" cx="265" cy="96" r="7" fill="none" stroke-width="2.5"/><circle class="q" cx="288" cy="76" r="7"/><circle class="ring" cx="288" cy="76" r="7" fill="none" stroke-width="2.5"/><path class="fg" transform="translate(214 22) scale(1.05)" d="M12 20.6 4.1 12.9C1.5 10.4 1.6 6.3 4.3 4.4c2.2-1.6 5.3-1.1 7 1l.7.9.7-.9c1.7-2.1 4.8-2.6 7-1 2.7 1.9 2.8 6 .2 8.5Z"/><path class="fg" transform="translate(240 22) scale(1.05)" d="M12 20.6 4.1 12.9C1.5 10.4 1.6 6.3 4.3 4.4c2.2-1.6 5.3-1.1 7 1l.7.9.7-.9c1.7-2.1 4.8-2.6 7-1 2.7 1.9 2.8 6 .2 8.5Z"/><path class="miss" transform="translate(266 22) scale(1.05)" d="M12 20.6 4.1 12.9C1.5 10.4 1.6 6.3 4.3 4.4c2.2-1.6 5.3-1.1 7 1l.7.9.7-.9c1.7-2.1 4.8-2.6 7-1 2.7 1.9 2.8 6 .2 8.5Z"/></svg></div>
+      <div class="body">
+        <h3 data-s="group.beat.name">Beat the Phone</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_beat_long">The whole table against the phone: ten stops round the world, three lives. Answer alone, or ask the table.</span><span class="short" data-s="home.pitch_beat_short">Ten stops round the world, three lives. The table against the phone.</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
+        </div>
+      </div>
+    </a>
+    <div class="tile soon-tile" id="tile-more-groups">
+      <div class="art soon-art" aria-hidden="true"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="mute" cx="128" cy="100" r="9"/><circle class="mute" cx="160" cy="100" r="9"/><circle class="mute" cx="192" cy="100" r="9"/></svg></div>
+      <div class="body">
+        <h3 data-s="home.more_to_come">More to come</h3>
+        <p class="pitch" data-s="home.more_to_come_sub">More games for groups are in the works.</p>
+      </div>
+    </div>
+    </div>
+    <button class="shelf-btn next off" type="button" id="shelf2-next" aria-controls="shelf2-row" aria-label="More group games" data-s-aria-label="site.more_group_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</section>
+
+<section class="soons" aria-label="Coming soon" data-s-aria-label="home.coming_aria">
+  <div class="soon">
+    <div><h2 data-s="home.soon_h">More games are in the works</h2><p data-s="home.soon_sub">New ones join the shelf as they are ready.</p></div>
+    <div class="soon-arts" aria-hidden="true"><div class="art" data-g="half"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M160 38a62 62 0 0 0 0 124z"/><path class="mute" d="M160 38a62 62 0 0 1 0 124z"/><path class="ln" d="M160 22V178" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10"/></svg></div><div class="art" data-g="piece"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="95" y="34" width="38" height="38" rx="9"/><rect class="mute" x="141" y="34" width="38" height="38" rx="9"/><rect class="fg" x="187" y="34" width="38" height="38" rx="9"/><rect class="mute" x="95" y="80" width="38" height="38" rx="9"/><rect class="fg" x="141" y="80" width="38" height="38" rx="9"/><rect class="gap" x="189" y="82" width="34" height="34" rx="8" fill="none" stroke-width="3.5" stroke-dasharray="6 6"/><rect class="fg" x="95" y="126" width="38" height="38" rx="9"/><rect class="mute" x="141" y="126" width="38" height="38" rx="9"/><rect class="fg" x="187" y="126" width="38" height="38" rx="9"/></svg></div></div>
+  </div>
+</section>
+
+<!-- The rooms sheet (23 Oct 2026): three kinds of room, one tap each; from "Join a game" the same three with a code
+     field. Codes never reach a server from here: the page sends the browser to the room's own page with the code
+     after the "#". -->
+<dialog id="dlg-rooms" aria-labelledby="dlg-rooms-t">
+  <div class="sheet rooms-sheet">
+    <button class="chip round close" type="button" id="dlg-rooms-x" aria-label="Close" data-s-aria-label="site.close">&times;</button>
+    <h2 id="dlg-rooms-t" data-s="home.game_rooms">Game rooms</h2>
+    <p class="quiet" id="dlg-rooms-sub" data-s="home.own_phone">Everyone on their own phone.</p>
+    <div class="rooms-list">
+      <a class="rooms-item" data-kind="daily" href="../tr/room/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/><rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/><circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/><circle cx="36" cy="27" r="6.5" fill="#CF4327"/><circle cx="28" cy="33" r="5.5" fill="#0D7D73"/></svg></span>
+        <span class="rooms-text"><b data-s="home.room_daily">Daily games with friends</b><span data-s="home.room_daily_sub">A shared table for the day, the week and the month.</span></span>
+      </a>
+      <a class="rooms-item" data-kind="live" href="../live/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="16" fill="#E6F8EE"/><circle cx="22" cy="22" r="9" fill="none" stroke="#1E7A4C" stroke-width="3"/><circle cx="22" cy="22" r="3" fill="#1E7A4C"/><path d="M22 4v6M22 34v6M4 22h6M34 22h6" stroke="#1E7A4C" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        <span class="rooms-text"><b data-s="home.room_live">How Sure with friends</b><span data-s="home.room_live_sub">Everyone guesses a number, then picks a net. 3+ players.</span></span>
+      </a>
+      <a class="rooms-item" data-kind="findout" href="../find-out/tr/room/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="20" r="11" fill="#3F7A2A"/><circle cx="17.5" cy="18" r="2" fill="#fff"/><circle cx="26.5" cy="18" r="2" fill="#fff"/><path d="M16 25q6 5 12 0" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="8" cy="36" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="38" r="3.5" fill="#D5492F"/><circle cx="36" cy="36" r="3.5" fill="#0D7D73"/></svg></span>
+        <span class="rooms-text"><b data-s="home.room_findout">Find out who you are with friends</b><span data-s="home.room_findout_sub">The nine find-out games, the room's curve on one screen, never one person.</span></span>
+      </a>
+    </div>
+    <form class="rooms-code" id="rooms-code" autocomplete="off" hidden aria-label="The code" data-s-aria-label="home.code_aria">
+      <p class="quiet" id="rooms-code-h"></p>
+      <div class="rooms-code-row">
+        <input class="livejoin-code" id="rooms-code-in" maxlength="20" placeholder="CODE" data-s-placeholder="home.code_ph" autocapitalize="characters" spellcheck="false" aria-label="Game code" data-s-aria-label="home.code_field_aria">
+        <button class="livejoin-go" type="submit" data-s="home.join">Join</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+</main>
+
+<footer class="foot-note">
+  <p><span data-privacy="short" data-s="priv.short_page">No login. No cookies. Results stay in your browser, unless you play in a room or a live game.</span></p>
+  <p class="made-by"><a href="https://thekhayyam.com" target="_blank" rel="noopener noreferrer" data-s="home.made_by">Made by Khayyam. More about me →</a></p>
+  <p class="msg-line"><button class="msg-link" type="button" data-msg="home" data-s="msg.read">Read my message to you →</button></p>
+  <p class="mail" data-s="home.mail">Question, mistake or idea? Write to me: <b>logicers.world@gmail.com</b></p>
+  <button type="button" data-open="dlg-about" data-s="site.about_aria">About and sources</button>
+</footer>
+</div>
+
+<dialog id="dlg-streak" aria-labelledby="streak-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="streak-title" data-s="site.streak_aria">Your streak</h2>
+    <p id="streak-line"></p>
+    <ul class="rows" id="streak-rows"></ul>
+    <p class="quiet" data-s="home.streak_lede">A streak counts the days you played in a row. A wrong answer never breaks it. Everything is kept only in this browser.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-about" aria-labelledby="about-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="about-title" data-s="home.about_h">About Logicers</h2>
+    <p data-s="home.about_lede">Small games, once a day, the same for everyone. Each one leaves you with one true thing about the world.</p>
+    <p class="mail" data-s="home.mail">Question, mistake or idea? Write to me: <b>logicers.world@gmail.com</b></p>
+    <!-- The installable app (11 Oct 2026). Offered here only, never by itself: the frame keeps the browser's own
+         install offer quiet and shows the button below when the browser allows it (turnsout.js, TO.app). -->
+    <div id="about-app">
+    <h3 data-s="home.app_h">Logicers on your home screen</h3>
+    <p class="quiet" id="app-on" hidden data-s="home.app_on">You are playing in the Logicers app.</p>
+    <p class="app-add" id="app-add" hidden><button class="btn solid" type="button" id="app-add-go" data-s="home.app_add">Add Logicers to your home screen</button></p>
+    <p class="quiet" id="app-ios" hidden data-s="home.app_ios">In Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+    <p class="quiet" id="app-other" data-s="home.app_other">Add it from your browser's menu: Share or Add to Home screen. It opens full screen, even with a weak signal.</p>
+    </div>
+    <h3 data-s="site.facts_from">Where the facts come from</h3>
+    <p class="quiet" data-s="home.facts_1">Every fact was checked on two websites, linked under each answer. 100 of Us and the group games also use the World Bank's open data (CC BY 4.0), rounded. The World Bank does not endorse this site.</p>
+    <p class="quiet" data-s="home.facts_2">Same Street photos: Dollar Street, a Gapminder project. Free material from <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noopener">GAPMINDER.ORG</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY LICENSE</a>. The photographer is named under each answer. Dollar Street does not endorse this site.</p>
+    <p class="quiet" data-s="home.facts_3">Animal silhouettes: <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>. Artists who ask for credit are named under each answer. PhyloPic does not endorse this site.</p>
+    <p class="quiet" data-s="home.facts_4">Same Energy: the US FoodData Central and Norway's Matvaretabellen. Twin or Trap: two dictionaries, named under each answer. So-Called Expert: one fact is invented on purpose, and marked as invented.</p>
+    <p class="quiet" id="support" data-s="energy.help_talk">If food or eating is hard for you, you are not alone. These help lines are free and open on weekdays: <a href="https://beateatingdisorders.org.uk/support-services/helplines" target="_blank" rel="noopener">Beat</a> in the United Kingdom (0808&nbsp;801&nbsp;0677; in Scotland 0808&nbsp;801&nbsp;0432, in Wales 0808&nbsp;801&nbsp;0433, in Northern Ireland 0808&nbsp;801&nbsp;0434), the <a href="https://www.allianceforeatingdisorders.com/what-is-an-eating-disorder-helpline/" target="_blank" rel="noopener">National Alliance for Eating Disorders</a> in the United States (+1&nbsp;866&nbsp;662&nbsp;1235), and <a href="https://sosdisturbialimentari.it/" target="_blank" rel="noopener">SOS Disturbi Alimentari</a> in Italy (800&nbsp;180&nbsp;969).</p>
+    <h3 data-s="duel.title">Who Was Closer</h3>
+    <p class="quiet" data-s="home.duel_lede">Send a link from any daily game. A friend plays the same day and you both see who was closer. The scores travel inside the link, after the <b>#</b>, which browsers never send anywhere. Your chosen name is kept in this browser and goes inside the links. <a href="../duel/">See what your friend sees</a>.</p>
+    <figure class="about-duel"><div id="about-duel-card"></div><figcaption class="duel-say" data-s="home.duel_caption">This is what your friend sees.</figcaption></figure>
+    <div id="about-rooms" hidden>
+    <h3 data-s="home.rooms_h">Rooms</h3>
+    <p class="quiet" data-s="home.rooms_lede">A room is 2 to 50 friends with a shared table. When a member finishes a daily game, their phone sends the game, score, guess, day and chosen name to our small server. Nothing at all for anyone in no room. We keep this month and the last. A room nobody plays in for 60 days is deleted. Leaving deletes everything of yours, and the room's maker can delete the room. <a href="../tr/room/">Make or join a room</a>.</p>
+    </div>
+    <h3 data-s="home.world_h">The world's counts</h3>
+    <p class="quiet" data-s="home.world_lede">"The world today" compares you with your continent and country, and the <a href="../tr/world/">World table</a> ranks countries. Each finished daily game sends the game, how far off you were and, for one-number games, your guess to our small server. It reads your country from your connection and keeps only counts: no address, nothing that identifies you, a guess only as an average of two or more. Counts are deleted after 75 days. You can leave your results out under the <b>?</b> on the World table page.</p>
+    <h3 data-s="home.said_h">What players said</h3>
+    <p class="quiet" data-s="home.said_lede">When your day's games are done, you can write one line about what surprised you. Khayyam reads it before it shows, and it shows with your country's flag. You can also add a name and an “I am a…” (a student, a teacher…); both are optional, and they show with your line only if you typed them and he lets it through. Write only what you want others to see. A line he lets through is kept a year; the others are deleted within a month. The line, what you typed with it, your country and the date are all that is kept. To have yours removed, write to logicers.world@gmail.com.</p>
+    <h3 data-s="home.live_h">Live games</h3>
+    <p class="quiet" data-s="home.live_lede">In How Sure?, a host opens a game and everyone joins with a code. No account. Names and answers stay on our small server until a day after the game ends (backups clear within 30 days). Anyone can build their own game; Logicers does not check them, and every screen has a Report link. A saved game keeps what its maker typed, plus players' names and answers when played alone, and is deleted two months after its last use. An email left to recover a link is kept only as a one-way fingerprint, and the address itself only if feedback emails are ticked. <a href="../live/">Play live</a> · <a href="../live/build/">Build your own</a>.</p>
+    <h3 data-s="site.your_privacy">Your privacy</h3>
+    <p class="quiet" data-privacy="long" data-s="home.privacy_long">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
+    <p class="quiet" data-s="home.typefaces">Typefaces: Bricolage Grotesque, Figtree and Literata, under the SIL Open Font License.</p>
+  </div>
+</dialog>
+
+<script src="../data/100-of-us.js"></script>
+<script src="../your-call/puzzles.js"></script>
+<script src="../same-street/puzzles.js"></script>
+<script src="../long-lost-cousin/puzzles.js"></script>
+<script src="../the-club/puzzles.js"></script>
+<script src="../years-apart/puzzles.js"></script>
+<script src="../who-gets-what/puzzles.js"></script>
+<script src="../every-beat/puzzles.js"></script>
+<script src="../out-of-24/puzzles.js"></script>
+<script src="../same-energy/puzzles.js"></script>
+<script src="../assets/js/turnsout.js?v=b0b0239919"></script>
+<script src="../assets/js/duel.js?v=04294e8296"></script>
+<script src="../assets/js/rooms.js?v=a42d4cf6f9"></script>
+<script src="../assets/js/points.js?v=d060d18a9f"></script>
+<script src="../assets/js/world.js?v=a7598250ec"></script>
+<script src="../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../assets/js/logicer.js?v=f998ff3c11"></script>
+<script>
+/* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
+   It never shows an answer before you have played. */
+(function () {
+  "use strict";
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
+  if (!TO) return;
+  TO.wireDialogs();
+  TO.fixLocalLinks();
+  var D = window.TURNSOUT_DATA || {};
+  var now = new Date();
+  var DAY = 86400000;
+
+  try {
+    document.getElementById("eyebrow").textContent = LG ? LG.date(now, { weekday: "long", day: "numeric", month: "long" }) : now.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+  } catch (e) { /* no date line then */ }
+
+  var GAMES = TO.GAMES;       // the one list of games, kept in assets/js/turnsout.js
+
+  /* which calendar days had any game played: that is the streak of the whole site */
+  var todayIndex = Math.round(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / DAY);
+  function dayIndex(startISO, n) {
+    var p = String(startISO).split("-");
+    return Math.min(todayIndex, Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / DAY) + (n - 1));
+  }
+  var playedOn = {}, live = 0, doneToday = 0, firstOpen = null;
+
+  GAMES.forEach(function (G) {
+    var tile = document.getElementById("tile-" + G.key);
+    if (!tile) return;
+    live++;
+    var data = D[G.id];
+    G.stats = { current: 0, best: 0, played: 0 };
+    if (!data || !data.start) return;                      // the game's file did not load: the tile still opens the game
+    if (data.start !== G.start && window.console) window.console.warn("Start date of " + G.id + " differs: " + data.start + " in its file, " + G.start + " in turnsout.js");
+    var today = Math.max(1, TO.dayNumber(data.start));
+    var results = {};
+    try { results = TO.game(G.id).results; } catch (e) { /* what the browser kept is broken: treat it as nothing played */ }
+    if (!results || typeof results !== "object") results = {};
+    Object.keys(results).forEach(function (k) {
+      var n = Number(k);
+      if (n >= 1 && n <= today) playedOn[dayIndex(data.start, n)] = true;
+    });
+    G.stats = TO.streak(results, today);
+    var r = results[today];
+    if (G.done(r)) {
+      doneToday++;
+      tile.classList.add("done");
+      tile.querySelector(".result b").textContent = G.says(r);
+      tile.querySelector(".result").hidden = false;
+      tile.querySelector(".again").hidden = false;
+      tile.querySelector(".go").hidden = true;
+      tile.querySelector(".mins").hidden = true;
+      var pip = document.getElementById("pip-" + G.key);
+      if (pip) pip.classList.add("on");
+    } else if (!firstOpen) {
+      firstOpen = G;
+    }
+  });
+
+  document.getElementById("today-count").innerHTML = T("end.of_played", { n: doneToday, of: live });
+  if (live > 0 && doneToday === live) document.getElementById("today-note").textContent = T("end.all_done");
+  /* "More to play" (19 Oct 2026): the last game's card sends people here, to the games that never run out. The
+     line that stood above them ("Done with today's games? …") was dropped on 22 Oct 2026 (Khayyam); the anchor
+     now sits on the find-out section itself, so the jump lands on the first row that never runs out. */
+  (function () {
+    var here = document.getElementById("more-to-play");
+    if (!here || window.location.hash !== "#more-to-play") return;
+    TO.count("home/more-to-play");
+    window.setTimeout(function () { try { here.scrollIntoView({ behavior: "auto", block: "start" }); } catch (e) { /* the browser's own jump will do */ } }, 0);
+  })();
+
+  /* The Today card opens the first game not yet played today (19 Oct 2026); from there every finished
+     game hands the player to the next. A day with everything played leaves the card a plain card. */
+  (function () {
+    var card = document.getElementById("today-card"), go = document.getElementById("today-go");
+    if (!card || !firstOpen) return;
+    card.href = firstOpen.href;
+    card.classList.add("today-open");
+    if (go) go.hidden = false;
+    card.addEventListener("click", function () { TO.count("today-card/" + firstOpen.id); });
+  })();
+
+  /* Who Was Closer: the example card in the About sheet. (Until 15 Oct 2026 a line under the Today card also
+     showed a duel's standing; Khayyam took it off to make room for the Build and Join box: "you can delete 'one
+     link - ...' line". A duel starts from the end of any daily game.) Nothing here can change the count, the
+     streak or any game. */
+  (function () {
+    var D = window.Duel;
+    if (!D) return;
+    try {
+      var card = document.getElementById("about-duel-card");
+      if (card && !card.firstChild) card.appendChild(D.mini(D.example()));
+    } catch (e) { /* a duel must never break the home page */ }
+  })();
+
+  /* Streak insurance (17 Oct 2026, Khayyam): one missed day never breaks the streak, two in a row do. A forgiven
+     day adds nothing to the count. The streak is alive while the last day played was today, yesterday, or the day
+     before (today is then still there to save it). The same rule as TurnsOut.streak in assets/js/turnsout.js. */
+  var streak = 0, saved = false, d = todayIndex;
+  if (!playedOn[d]) {
+    if (playedOn[d - 1]) d = d - 1;
+    else if (playedOn[d - 2]) { d = d - 2; saved = true; }
+    else d = -1;
+  }
+  while (d >= 0 && playedOn[d]) {
+    streak++; d--;
+    if (!playedOn[d] && playedOn[d - 1]) d--;
+  }
+  document.getElementById("streak-n").textContent = String(streak);
+  document.getElementById("streak-line").textContent = streak === 0
+    ? T("home.no_streak")
+    : T.n(streak, "home.streak_days") +
+      (playedOn[todayIndex] ? "" : saved ? " " + T("home.streak_saved") : " " + T("home.streak_keep"));
+  var rows = document.getElementById("streak-rows");
+  GAMES.forEach(function (G) {
+    if (!G.stats) return;
+    var li = document.createElement("li");
+    li.setAttribute("data-g", G.key);
+    var dot = document.createElement("span"); dot.className = "dot";
+    var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = G.name;
+    var st = document.createElement("span"); st.className = "st";
+    st.innerHTML = G.stats.played === 0 ? T("site.not_played_yet")
+      : T.n(G.stats.played, "home.streak_row", { current: G.stats.current, best: G.stats.best });
+    li.appendChild(dot); li.appendChild(nm); li.appendChild(st);
+    rows.appendChild(li);
+  });
+
+  /* Long Lost Cousin: today's animal or plant stands on the tile. Its small picture file is fetched here. */
+  var cousin = D["long-lost-cousin"];
+  var slot = document.getElementById("cousin-pic");
+  if (cousin && cousin.puzzles && cousin.puzzles.length && slot) {
+    var day = Math.max(1, TO.dayNumber(cousin.start));
+    var q = cousin.puzzles[(day - 1) % cousin.puzzles.length];
+    var pics = window.TURNSOUT_PICS = window.TURNSOUT_PICS || {};
+    window.TurnsOutPic = function (key, pic) { pics[key] = pic; };
+    var file = document.createElement("script");
+    file.src = (LG ? LG.root : "") + "long-lost-cousin/pics/" + q.subject + ".js";
+    file.onload = function () {
+      var pic = pics[q.subject];
+      if (!pic) return;
+      slot.setAttribute("viewBox", "0 0 " + pic.w + " " + pic.h);
+      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", pic.d);
+      slot.appendChild(path);
+    };
+    document.head.appendChild(file);
+  }
+
+  /* a new day while the page stays open: show it when the visitor comes back to the tab */
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState !== "visible") return;
+    var t = new Date();
+    if (Math.round(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) / DAY) !== todayIndex) window.location.reload();
+  });
+})();
+
+/* The shelves of games: "Today's games" and, under it, "Pass the phone" (the games for groups). Each is one row that
+   moves sideways. Swipe it, scroll it with a trackpad, or press the round buttons at its two ends. The button back
+   shows once the row has moved; the button for more goes away at the last game.
+   It needs nothing from the rest of the page, so it works even if a game's file did not load. */
+(function () {
+  "use strict";
+  var calm = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function px(v) { return parseFloat(v) || 0; }
+  function shelf(rowId, prevId, nextId) {
+    var row = document.getElementById(rowId), prev = document.getElementById(prevId), next = document.getElementById(nextId);
+    if (!row || !prev || !next) return;
+    function step() {                      // one press moves as many whole tiles as the row shows, at least one
+      var t = row.querySelector(".tile"), cs = window.getComputedStyle(row);
+      if (!t) return row.clientWidth;
+      var gap = px(cs.columnGap), w = t.getBoundingClientRect().width + gap;
+      var room = row.clientWidth - px(cs.paddingLeft) - px(cs.paddingRight) + gap;
+      return Math.max(1, Math.floor(room / w)) * w;
+    }
+    function ends() {
+      var max = row.scrollWidth - row.clientWidth;
+      var atStart = row.scrollLeft <= 2, atEnd = row.scrollLeft >= max - 2;
+      var had = document.activeElement;
+      prev.classList.toggle("off", atStart);
+      next.classList.toggle("off", atEnd);
+      row.classList.toggle("more-l", !atStart);            // the soft fade at a cut edge (wide screens)
+      row.classList.toggle("more-r", !atEnd);
+      // a button that goes away while it has the focus hands it to the other one, so the keyboard never loses its place
+      if (had === prev && atStart && !atEnd) next.focus();
+      if (had === next && atEnd && !atStart) prev.focus();
+    }
+    function go(dir) {
+      try { row.scrollBy({ left: dir * step(), behavior: calm ? "auto" : "smooth" }); }
+      catch (e) { row.scrollLeft += dir * step(); }        // an old browser without scrollBy options
+    }
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    // the keyboard: a game that gets the focus while it is cut off at an edge is brought fully into view
+    row.addEventListener("focusin", function (e) {
+      var t = e.target && e.target.closest ? e.target.closest(".tile") : null;
+      if (!t) return;
+      var cs = window.getComputedStyle(row), r = row.getBoundingClientRect(), b = t.getBoundingClientRect();
+      var left = r.left + px(cs.paddingLeft), right = r.right - px(cs.paddingRight);
+      if (b.left >= left - 1 && b.right <= right + 1) return;
+      try { row.scrollTo({ left: row.scrollLeft + (b.left - left), behavior: calm ? "auto" : "smooth" }); }
+      catch (err) { row.scrollLeft += b.left - left; }
+    });
+    var queued = false;
+    row.addEventListener("scroll", function () {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(function () { queued = false; ends(); });
+    }, { passive: true });
+    window.addEventListener("resize", ends);
+    ends();
+  }
+  shelf("shelf-row", "shelf-prev", "shelf-next");          // Today's games
+  shelf("shelf2-row", "shelf2-prev", "shelf2-next");       // Pass the phone
+  /* the find-outs' own count (22 Oct 2026): how many phones finished at least one of the nine games, a plain
+     counter on the find-out server with no ID in it; shown from the first player on (Khayyam) */
+  (function () {
+    var small = document.getElementById("findout-count");
+    if (!small || !window.fetch) return;
+    fetch("https://logicers-findout.rza-khay.workers.dev/counter").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (j && j.played >= 1) small.textContent = T("home.findout_count", { n: LG ? LG.num(j.played) : Number(j.played).toLocaleString("en-US") });
+    }).catch(function () { /* the box reads the same without the number */ });
+  })();
+
+  /* Game rooms (23 Oct 2026): the hub box opens the sheet with the three kinds of room; "Join a game" opens the same
+     sheet and, after a choice, a code field. The code goes to the room's own page after the "#", never to a server
+     from here: a daily room (10 letters and digits), a How Sure game (five letters, or seven for a saved one), a
+     find-out room (five letters). */
+  (function () {
+    var dlg = document.getElementById("dlg-rooms"), hub = document.getElementById("gameroom"), opener = document.getElementById("lb-join");
+    if (!dlg || !dlg.showModal) return;
+    var items = dlg.querySelectorAll(".rooms-item"), form = document.getElementById("rooms-code"), inp = document.getElementById("rooms-code-in"), head = document.getElementById("rooms-code-h");
+    var title = document.getElementById("dlg-rooms-t"), sub = document.getElementById("dlg-rooms-sub");
+    var KINDS = {
+      daily: { ask: T("home.code_daily"), ok: /^[23456789abcdefghjkmnpqrstvwxyz]{10}$/, go: function (v) { return (LG ? LG.href("room/") : "room/") + "#r=" + v; }, lower: true },
+      live: { ask: T("home.code_live"), ok: /^[A-Z]{5}$|^[A-Z]{7}$/, go: function (v) { return (LG ? LG.href("live/") : "live/") + "#" + v; } },
+      findout: { ask: T("home.code_findout"), ok: /^[A-Z]{5}$/, go: function (v) { return (LG ? LG.href("find-out/room/") : "find-out/room/") + "#" + v; } }
+    };
+    var mode = "go", kind = null;
+    function open(m) {
+      mode = m; kind = null;
+      title.textContent = m === "join" ? T("home.join_game") : T("home.game_rooms");
+      sub.textContent = m === "join" ? T("home.which_room") : T("home.own_phone");
+      form.hidden = true; inp.value = ""; form.classList.remove("bad");
+      for (var i = 0; i < items.length; i++) items[i].classList.remove("on");
+      dlg.showModal();
+      if (window.TurnsOut) window.TurnsOut.count(m === "join" ? "home/join-open" : "home/rooms-open");
+    }
+    if (hub) hub.addEventListener("click", function (e) { e.preventDefault(); open("go"); });
+    if (opener) opener.addEventListener("click", function (e) { e.preventDefault(); open("join"); });
+    document.getElementById("dlg-rooms-x").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    for (var i = 0; i < items.length; i++) items[i].addEventListener("click", function (e) {
+      if (mode !== "join") return;                     // plain mode: the link goes where it goes
+      e.preventDefault();
+      kind = this.getAttribute("data-kind");
+      for (var k = 0; k < items.length; k++) items[k].classList.toggle("on", items[k] === this);
+      head.textContent = KINDS[kind].ask; form.hidden = false; form.classList.remove("bad"); inp.value = "";
+      try { inp.focus(); } catch (err) { /* the field is there all the same */ }
+    });
+    inp.addEventListener("input", function () { form.classList.remove("bad"); });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!kind) return;
+      var K = KINDS[kind], v = inp.value.trim();
+      v = K.lower ? v.toLowerCase().replace(/[^a-z0-9]/g, "") : v.toUpperCase().replace(/[^A-Z]/g, "");
+      if (!K.ok.test(v)) { form.classList.add("bad"); inp.focus(); return; }
+      var base = window.location.protocol === "file:" ? "" : "";
+      window.location.href = base + K.go(v);
+    });
+  })();
+})();
+</script>
+</body>
+</html>

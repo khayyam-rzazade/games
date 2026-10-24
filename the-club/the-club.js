@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "the-club";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -15,7 +15,7 @@
   var actions = $("guess-actions"), btnIn = $("btn-in"), btnOut = $("btn-out");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length) {
-    $("question").textContent = "Today's club could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("club.not_loaded");
     panel.hidden = true;
     actions.hidden = true;
     return;
@@ -78,12 +78,13 @@
     return (mixedById[p.id] = copy);
   }
   function rawOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  if (LG) { LG.puzzleAll(GAME, rawOf); LG.puzzleNote(LG.puzzleHas(GAME, Math.max(1, TO.dayNumber(DATA.start)))); }
   function puzzleOf(n) { return n >= MIX_FROM ? mix(rawOf(n)) : rawOf(n); }
   function asPlayed(p, r) { return r && r.m === 1 ? mix(p) : p; }
   /* for the checks (t_new.py, t_club.py, t_world.py): the door of day n as a new play meets it */
   window.TheClubDoor = function (n) { return puzzleOf(n).door.map(function (x) { return [x[0], x[1]]; }); };
-  var TOPICS = { countries: "Countries", places: "Places", animals: "Animals", food: "Food and plants",
-    science: "Science", history: "History", culture: "Culture", sport: "Sport" };
+  var TOPICS = { countries: T("club.topic_countries"), places: T("club.topic_places"), animals: T("club.topic_animals"), food: T("club.topic_food"),
+    science: T("club.topic_science"), history: T("club.topic_history"), culture: T("club.topic_culture"), sport: T("club.topic_sport") };
 
   /* a stored result is five calls, each 1 (In) or 0 (Out) */
   function goodCalls(c, n) {
@@ -114,8 +115,8 @@
 
   /* ---------- build the screen ---------- */
   panel.style.setProperty("--hue", TO.colour(q.colour));
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "The Club, day " + day + " | Logicers";
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("club.title_day", { n: day });
 
   function chip(name, kind, mine, ok, fresh) {
     var li = document.createElement("li");
@@ -124,7 +125,7 @@
     if (mine) {
       var sr = document.createElement("span");
       sr.className = "sr-only";
-      sr.textContent = ok ? ", you were right" : ", you were wrong";
+      sr.textContent = ok ? T("club.sr_right") : T("club.sr_wrong");
       li.appendChild(sr);
     }
     (kind ? inList : outList).appendChild(li);
@@ -139,9 +140,9 @@
     pips.forEach(function (p, i) {
       var done = i < calls.length, ok = done && ((calls[i] === 1) === isIn(q, i));
       p.className = done ? (ok ? "ok" : "miss") : (i === calls.length && phase === "play" ? "now" : "");
-      if (done) words.push(ok ? "right" : "wrong");
+      if (done) words.push(ok ? T("club.right_lower") : T("club.wrong_lower"));
     });
-    pipsEl.setAttribute("aria-label", words.length ? words.length + " of " + N + " answered: " + words.join(", ") : "No answers yet");
+    pipsEl.setAttribute("aria-label", words.length ? T("club.answered_aria", { n: words.length, of: N, list: words.join(", ") }) : T("club.no_answers"));
   }
 
   function fitName() {                        // a long name gets smaller letters instead of a second line
@@ -154,7 +155,7 @@
     door.className = "tc-door";
     candEl.textContent = q.door[i][0];
     truthEl.textContent = "";
-    $("step").textContent = "At the door, " + (i + 1) + " of " + N;
+    $("step").textContent = T("club.at_the_door", { n: i + 1, of: N });
     actions.classList.remove("wait");
     busy = false;
     paintPips();
@@ -163,12 +164,11 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 5 ? "A friend got all five right at the door. Can you match that?"
-      : "A friend got " + friend + " of 5 at the door. Can you do better?") +
-      (practice ? " It is an earlier club, so it does not count for your streak." : "");
+    notice.textContent = (friend === 5 ? T("club.friend_all") : T("club.friend_n", { n: friend })) +
+      (practice ? " " + T("club.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -209,8 +209,8 @@
     }
     door.className = "tc-door " + (truth ? "is-in" : "is-out");
     actions.classList.add("wait");
-    truthEl.innerHTML = '<span class="sr-only"></span>' + (truth ? "In the club" : "Not in the club") +
-      ' <b class="tc-mark ' + (ok ? "ok" : "miss") + '">' + (ok ? "Right" : "You said " + (v === 1 ? "In" : "Out")) + "</b>";
+    truthEl.innerHTML = '<span class="sr-only"></span>' + (truth ? T("club.in_the_club") : T("club.not_in_the_club")) +
+      ' <b class="tc-mark ' + (ok ? "ok" : "miss") + '">' + (ok ? T("club.right") : T("club.you_said", { what: v === 1 ? T("club.in") : T("club.out") })) + "</b>";
     truthEl.firstChild.textContent = name + ": ";
     paintPips();
     if (!ok && window.navigator.vibrate) { try { window.navigator.vibrate(12); } catch (e) { /* ignore */ } }
@@ -250,15 +250,14 @@
     door.hidden = true;
     paintPips();
     ruleEl.textContent = q.sign;
-    sign.setAttribute("aria-label", "The rule of the club: " + q.sign);
+    sign.setAttribute("aria-label", T("club.rule_aria", { rule: q.sign }));
     panel.classList.add("revealed");
 
     function done() {
       sign.classList.remove("lighting");
       sign.classList.add("lit");
       var v = $("offby");
-      v.innerHTML = score === N ? "You got <b>" + N + " of " + N + "</b>. A perfect night at the door."
-        : "You got <b>" + score + " of " + N + "</b> at the door.";
+      v.innerHTML = score === N ? T("club.got_all", { n: N, of: N }) : T("club.got_n", { n: score, of: N });
       v.classList.toggle("hit", score === N);            // yellow is kept for a miss
       $("verdict").hidden = false;
       fillAfter(score);
@@ -276,10 +275,10 @@
   function fillAfter(score) {
     var f = $("friend");
     if (friend !== null) {
-      var said = "Your friend got " + (friend === 5 ? "all five" : friend + " of 5");
-      f.textContent = score > friend ? said + ". You did better."
-        : score === friend ? said + " too. A tie."
-        : said + ". Better than you.";
+      var said = friend === 5 ? T("club.friend_got_all") : T("club.friend_got_n", { n: friend });
+      f.textContent = score > friend ? T("club.friend_you_better", { f: said })
+        : score === friend ? T("club.friend_tie", { f: said })
+        : T("club.friend_better", { f: said });
       f.hidden = false;
     }
     $("sentence").textContent = q.fact;
@@ -288,8 +287,8 @@
       if (s) { a.textContent = s.name; a.href = s.url; }
     });
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s club</a>';
-    else next.textContent = "A new club opens at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("club.back_today") + '</a>';
+    else next.textContent = T("club.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });   // what is played today, and the next game
     prepareCard(score);
@@ -300,7 +299,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1 && valid(res[n], playedPuzzle(res[n], n)); })
       .sort(function (a, b) { return b - a; });
     var right = 0;
@@ -329,7 +328,7 @@
   }
 
   /* ---------- practice: earlier clubs ---------- */
-  function listed(names) { return names.slice(0, -1).join(", ") + " and " + names[names.length - 1]; }
+  function listed(names) { return names.slice(0, -1).join(", ") + " " + T("site.and") + " " + names[names.length - 1]; }
   function buildPractice() {
     var list = $("practice-list");
     list.innerHTML = "";
@@ -342,10 +341,10 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
       var t = document.createElement("span"); t.className = "q"; t.textContent = listed(p["in"]);
       var s = document.createElement("span"); s.className = "s";
-      s.textContent = r ? "You got " + rightOf(p, r.c) + " of " + p.door.length + ". " + p.sign + "." : "Not played yet";   // the rule stays hidden until you have played
+      s.textContent = r ? T("club.practice_got", { n: rightOf(p, r.c), of: p.door.length, rule: p.sign }) : T("site.not_played_yet");   // the rule stays hidden until you have played
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -360,8 +359,7 @@
     return base + "?d=" + day + "&g=" + score;
   }
   function shareText(score) {
-    return "The Club, day " + day + ": " + listed(q["in"]) + " are in. " + listed(q.out) + " are not. " +
-      "I got " + score + " of " + N + " at the door. Can you work out the rule? " + shareUrl(score);
+    return T("club.share", { n: day, ins: listed(q["in"]), outs: listed(q.out), got: score, of: N }) + " " + shareUrl(score);
   }
   function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath();
@@ -389,11 +387,11 @@
     x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
-    x.fillText("The Club, day " + day, W - M, 118);
+    x.fillText(T("club.day_header", { n: day }), W - M, 118);
 
     x.textAlign = "left";
     x.font = "800 104px " + FD;
-    x.fillText("Who else gets in?", M - 4, 268);
+    x.fillText(T("club.who_else"), M - 4, 268);
 
     // the names as pills: filled for the members, outlined for the others.
     // First a dry run to see how many rows they need, then the whole block is set in the middle of the free space.
@@ -438,9 +436,9 @@
       });
       y += ph;
     }
-    pills("IN THE CLUB", q["in"], true);
+    pills(T("club.pic_in"), q["in"], true);
     y += 40;
-    pills("NOT IN THE CLUB", q.out, false);
+    pills(T("club.pic_out"), q.out, false);
     y += 64;
 
     // the five answers at the door: right or wrong, in order, with no names
@@ -464,14 +462,14 @@
     x.fillStyle = "#ffffff";
     x.textAlign = "right";
     x.font = "800 104px " + FD;
-    x.fillText(score + " of " + N, W - M, cy + 36);
+    x.fillText(T("club.n_of", { n: score, of: N }), W - M, cy + 36);
 
     x.textAlign = "left";
     x.font = "800 72px " + FD;
-    x.fillText("Can you work out the rule?", M - 3, 1204);
+    x.fillText(T("club.work_out"), M - 3, 1204);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, ws = 40;
+      var line = T("duel.play_at", { where: where }), ws = 40;
       x.font = "600 " + ws + "px " + F;
       while (x.measureText(line).width > W - 2 * M && ws > 24) { ws -= 2; x.font = "600 " + ws + "px " + F; }
       x.fillText(line, M, 1270);
@@ -515,7 +513,7 @@
   $("share-copy").addEventListener("click", function () {
     var score = rightOf(q, calls);
     TO.copyText(shareText(score)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(score);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(score) });
     });
   });
 

@@ -5,7 +5,7 @@
    Why each decision was taken: r/rooms-workshop/design.txt on the Mac. */
 (function () {
   "use strict";
-  var TO = window.TurnsOut, D = window.Duel, R = window.Rooms;
+  var TO = window.TurnsOut, D = window.Duel, R = window.Rooms, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   if (!TO || !D || !R) return;
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -34,7 +34,9 @@
   var MONTHS = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"];
   function monthOf(key) { return String(key).slice(0, 6); }
-  function monthWords(mon) { return MONTHS[+mon.slice(4, 6) - 1] + " " + mon.slice(0, 4); }
+  function monthWords(mon) { return LG ? LG.date(new Date(+mon.slice(0, 4), +mon.slice(4, 6) - 1, 15), { month: "long", year: "numeric" }) : MONTHS[+mon.slice(4, 6) - 1] + " " + mon.slice(0, 4); }
+  function monthName(mon) { return LG ? LG.date(new Date(+mon.slice(0, 4), +mon.slice(4, 6) - 1, 15), { month: "long" }) : MONTHS[+mon.slice(4, 6) - 1]; }
+  function roomLabel(room) { return !room.label || room.label === "Your room" ? T("room.your_room") : room.label; }
   function prevMonth(mon) {
     var y = +mon.slice(0, 4), m = +mon.slice(4, 6) - 1;
     if (m < 1) { m = 12; y--; }
@@ -66,9 +68,9 @@
   /* ---------------- the states of the page ---------------- */
   function start() {
     if (!R.on()) {
-      head.textContent = "Rooms are not open yet";
-      lede.textContent = "A room is 2 to 50 friends playing the same daily games, with a table for the day, the week and the month. This part of the site is still being switched on.";
-      say("Come back soon — the daily games themselves are all open.");
+      head.textContent = T("rm.not_open");
+      lede.textContent = T("rm.not_open_lede");
+      say(T("rm.come_back"));
       show(null);
       return;
     }
@@ -80,15 +82,15 @@
   }
 
   function fresh(keepWords) {            // no room yet: the page that makes one
-    if (!keepWords) { head.textContent = "Play with your friends"; say(""); }
+    if (!keepWords) { head.textContent = T("rm.play_with_friends"); say(""); }
     show(paneMake);
     $("rm-make-go").onclick = function () {
-      if (!D.named()) { D.askName(function () { fresh(); make(); }, "Save"); return; }
+      if (!D.named()) { D.askName(function () { fresh(); make(); }, T("duel.save")); return; }
       make();
     };
   }
   function make() {
-    say("Making the room…");
+    say(T("rm.making"));
     R.call("make", { tok: R.token(), name: D.me() }).then(function (r) {
       if (r.status !== 200) { say(""); tell(oops(r)); return; }
       remember(r.data.code, "Your room");
@@ -98,27 +100,27 @@
   }
 
   function landing(code) {               // a friend's link, not joined yet
-    say("Looking at the room…");
+    say(T("rm.looking"));
     show(null);
     R.call("peek", { code: code }).then(function (r) {
       say("");
       if (r.status === 404) {
-        head.textContent = "That room is gone";
-        lede.textContent = "Rooms that nobody plays in are deleted after 60 days, and a room's maker can delete it at any time.";
+        head.textContent = T("rm.gone_h");
+        lede.textContent = T("rm.gone_lede");
         if (R.myRooms().length) { table(R.myRooms()[0]); } else { fresh(true); }
         return;
       }
       if (r.status !== 200) { tell(oops(r)); fresh(); return; }
       var who = r.data.names || [], count = r.data.count || 0;
-      var label = (r.data.makerName ? r.data.makerName + "'s room" : "A room");
-      head.textContent = "You are invited to " + label;
-      lede.textContent = "Join, and every daily game you finish counts on this room's table.";
+      var label = (r.data.makerName ? T("rm.someones_room", { name: r.data.makerName }) : T("rm.a_room"));
+      head.textContent = T("rm.invited_to", { room: label });
+      lede.textContent = T("rm.join_lede");
       var box = $("rm-who");
       box.textContent = "";
       var line = who.slice(0, 4).join(", ");
-      if (count > 4) line += " and " + (count - 4) + " more";
-      box.appendChild(pair("Already in", count ? line : "nobody yet"));
-      box.appendChild(pair("Since", D.dateWords(r.data.made) || ""));
+      if (count > 4) line += " " + T("rm.and_n_more", { n: count - 4 });
+      box.appendChild(pair(T("rm.already_in"), count ? line : T("rm.nobody_yet")));
+      box.appendChild(pair(T("rm.since"), D.dateWords(r.data.made) || ""));
       show(paneJoin);
       $("rm-join-go").onclick = function () { join(code, label); };
     }, function () { say(""); tell(oops(null)); });
@@ -131,8 +133,8 @@
   }
 
   function join(code, label) {
-    if (!D.named()) { D.askName(function () { join(code, label); }, "Save"); return; }
-    say("Joining…");
+    if (!D.named()) { D.askName(function () { join(code, label); }, T("duel.save")); return; }
+    say(T("rm.joining"));
     R.call("join", { code: code, tok: R.token(), name: D.me() }).then(function (r) {
       say("");
       if (r.status === 200) {
@@ -144,19 +146,19 @@
         return;
       }
       if (r.data && r.data.err === "name-taken") {
-        tell("Someone in this room is already called " + D.me() + ". Pick another name and join again.");
-        D.askName(function () { tell(""); join(code, label); }, "Save");
+        tell(T("rm.name_taken", { name: D.me() }));
+        D.askName(function () { tell(""); join(code, label); }, T("duel.save"));
         return;
       }
-      if (r.data && r.data.err === "full") { tell("This room is full: 50 is as many as one room holds."); return; }
-      if (r.status === 404) { tell("That room is gone."); return; }
+      if (r.data && r.data.err === "full") { tell(T("rm.full")); return; }
+      if (r.status === 404) { tell(T("rm.gone")); return; }
       tell(oops(r));
     }, function () { say(""); tell(oops(null)); });
   }
 
   function oops(r) {
-    if (r && r.status === 429) return "The server is busy. Try again in a little while.";
-    return "The server cannot be reached right now. Your games all work as always; the room comes back when it can.";
+    if (r && r.status === 429) return T("rm.busy");
+    return T("rm.unreachable");
   }
 
   /* ---------------- the table: Day, Week, Month ----------------
@@ -167,7 +169,7 @@
      points come from the server by its own rule (a game is taken by whoever was strictly closest, among two
      or more who played it), the rule of the month too, so no two tables can disagree. */
   var TAB_KEY = "logicers-room:tab";
-  var TABS = [["day", "Day"], ["week", "Week"], ["month", "Month"]];
+  var TABS = [["day", T("rm.tab_day")], ["week", T("rm.tab_week")], ["month", T("rm.tab_month")]];
   function savedTab() {
     try { var t = window.localStorage.getItem(TAB_KEY); return t === "week" || t === "month" ? t : "day"; }
     catch (e) { return "day"; }
@@ -181,7 +183,7 @@
   function addDays(k, n) { return keyOfDate(new Date(dateOfKey(k).getTime() + n * 86400000)); }
   function mondayOf(k) { return addDays(k, -((dateOfKey(k).getUTCDay() + 6) % 7)); }
   var SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  function shortDay(k) { return (+k.slice(6, 8)) + " " + SHORT[+k.slice(4, 6) - 1]; }
+  function shortDay(k) { return LG ? LG.date(new Date(+k.slice(0, 4), +k.slice(4, 6) - 1, +k.slice(6, 8)), { day: "numeric", month: "short" }) : (+k.slice(6, 8)) + " " + SHORT[+k.slice(4, 6) - 1]; }
   function spanWords(a, z) {             // "12 – 18 Oct", or "28 Sep – 4 Oct"
     return a.slice(4, 6) === z.slice(4, 6) ? (+a.slice(6, 8)) + " – " + shortDay(z) : shortDay(a) + " – " + shortDay(z);
   }
@@ -194,7 +196,7 @@
     paneSwitch.textContent = "";
     if (rooms.length < 2) return;
     rooms.forEach(function (room) {
-      var b = el("button", "rm-chip" + (room.code === current.code ? " on" : ""), room.label || "A room");
+      var b = el("button", "rm-chip" + (room.code === current.code ? " on" : ""), room.label ? roomLabel(room) : T("rm.a_room"));
       b.type = "button";
       b.setAttribute("aria-pressed", room.code === current.code ? "true" : "false");
       b.onclick = function () { table(room); };
@@ -208,11 +210,11 @@
     var mon = tab === "month" && back ? prevMonth(thisMon) : thisMon;
     showing = { room: room, tab: tab, back: back, mon: mon };
     var my = ++gen;
-    head.textContent = room.label === "Your room" || !room.label ? "Your room" : room.label;
-    lede.textContent = "The day, the week and the month, each with its own table. Each daily game you finish joins them by itself.";
+    head.textContent = roomLabel(room);
+    lede.textContent = T("rm.table_lede");
     switcher(room);
     show(paneTable);
-    say("Fetching the table…");
+    say(T("rm.fetching"));
     /* Today's finished games go up BEFORE the table is read, every time. Making a room (or just
        opening the page) used to send nothing, so games played earlier in the day were missing and
        a friend could stand alone on a game and take nothing. A resend is free: the first result
@@ -251,13 +253,13 @@
     }
     function fixLabel(data) {
       if (room.label === "Your room" && !data.maker) {        // an older label put right
-        room.label = (data.standings && data.standings[0] ? data.standings[0].name + "'s room" : room.label);
+        room.label = (data.standings && data.standings[0] ? T("rm.someones_room", { name: data.standings[0].name }) : room.label);
       }
     }
     function trouble(r) {
       say("");
-      if (r.status === 404) { tell("That room is gone."); R.forget(room.code); fresh(); return; }
-      if (r.status === 403) { tell("You are no longer in this room."); R.forget(room.code); fresh(); return; }
+      if (r.status === 404) { tell(T("rm.gone")); R.forget(room.code); fresh(); return; }
+      if (r.status === 403) { tell(T("rm.no_longer")); R.forget(room.code); fresh(); return; }
       paneTable.textContent = "";
       say(oops(r));
     }
@@ -269,12 +271,12 @@
     paneTable.textContent = "";
     if (justMade) {
       var made = el("div", "rm-made");
-      made.appendChild(el("p", "rm-made-h", "The room is made."));
-      made.appendChild(el("p", "rm-made-p", "Send its link to your friends: whoever opens it is in. Without the link, nobody can find the room."));
+      made.appendChild(el("p", "rm-made-h", T("rm.made")));
+      made.appendChild(el("p", "rm-made-p", T("rm.made_lede")));
       paneTable.appendChild(made);
     }
     var share = el("div", "rm-share");
-    var sgo = el("button", "rm-big", justMade ? "Send the room's link" : "Invite a friend: send the link");
+    var sgo = el("button", "rm-big", justMade ? T("rm.send_link") : T("rm.invite_link"));
     sgo.type = "button";
     share.appendChild(sgo);
     var snote = el("p", "quiet rm-small");
@@ -287,13 +289,13 @@
       var nav = window.navigator;
       if (nav.share) { nav.share({ text: text }).catch(function () { /* closed */ }); return; }
       TO.copyText(text).then(function (ok) {
-        snote.textContent = ok ? "Copied. Paste it into your group chat." : "Copying did not work here. The link is: " + link;
+        snote.textContent = ok ? T("rm.copied_chat") : T("world.copy_failed", { url: link });
         snote.hidden = false;
       });
     };
     var tabs = el("div", "rm-tabs");
     tabs.setAttribute("role", "group");
-    tabs.setAttribute("aria-label", "Show the table of");
+    tabs.setAttribute("aria-label", T("rm.tabs_aria"));
     TABS.forEach(function (t) {
       var on = t[0] === showing.tab;
       var b = el("button", "rm-tab" + (on ? " on" : ""), t[1]);
@@ -335,7 +337,7 @@
       var li = el("li", x.you ? "you" : "");
       if (fold && i >= 5 && i !== youAt) li.className += " folded";
       li.appendChild(el("span", "rm-rank", i < 3 && x.pts > 0 ? MEDALS[i] : String(i + 1)));
-      var nm = el("span", "rm-name", x.you ? x.name + " (you)" : x.name);
+      var nm = el("span", "rm-name", x.you ? T("rm.name_you", { name: x.name }) : x.name);
       if (joked && joked[x.name]) {
         var j = el("i", "rm-joke", " " + joked[x.name][0]);
         j.title = joked[x.name][1];
@@ -349,7 +351,7 @@
     });
     sec.appendChild(list);
     if (fold) {
-      var more = el("button", "rm-flip rm-more", "See all " + rows.length);
+      var more = el("button", "rm-flip rm-more", T("rm.see_all", { n: rows.length }));
       more.type = "button";
       more.onclick = function () {
         list.classList.add("open");
@@ -358,8 +360,8 @@
       sec.appendChild(more);
     }
   }
-  function daysWords(n) { return n + (n === 1 ? " day" : " days"); }
-  function gamesWords(n) { return n + (n === 1 ? " game" : " games"); }
+  function daysWords(n) { return T.n(n, "rm.days"); }
+  function gamesWords(n) { return T.n(n, "wt.games"); }
   function byPoints(a, c) { return c.pts - a.pts || c.n - a.n || (a.name < c.name ? -1 : a.name > c.name ? 1 : 0); }
 
   /* ---- Day: the board (one row per friend, one column per game; a filled dot played, an empty one not
@@ -370,10 +372,10 @@
     var t = el("section", "rm-sec");
     var streak = null;
     if (today && data.streak > 1) {
-      streak = el("span", "rm-streak", "🔥 " + data.streak + " days");
-      streak.title = "The whole room has played " + data.streak + " days in a row";
+      streak = el("span", "rm-streak", "🔥 " + T.n(data.streak, "rm.days"));
+      streak.title = T("rm.room_streak_title", { n: data.streak });
     }
-    periodHead(t, today ? "Today" : "Yesterday", today ? "" : shortDay(day), today ? "Yesterday" : "Today",
+    periodHead(t, today ? T("end.today") : T("wt.tab_yesterday"), today ? "" : shortDay(day), today ? T("wt.tab_yesterday") : T("end.today"),
       function () { table(room, false, "day", today ? 1 : 0); }, streak);
 
     var names = data.standings.map(function (x) { return x.name; });
@@ -385,13 +387,13 @@
     var anyPlayed = data.today.points.some(function (p) { return p.sent > 0; });
 
     if (!anyPlayed) {
-      t.appendChild(el("p", "rm-quiet-line", today ? "Nobody has played yet today. The games are a tap away below." : "Nobody played that day."));
+      t.appendChild(el("p", "rm-quiet-line", today ? T("rm.nobody_today") : T("rm.nobody_that_day")));
     } else {
       /* at 40 the board scrolls, and the header and your own row stay in view */
       var wrap = el("div", "rm-board-wrap" + (data.count > 12 ? " tall" : ""));
       var board = el("div", "rm-board");
       board.setAttribute("role", "table");
-      board.setAttribute("aria-label", today ? "Who has played which game today" : "Who played which game that day");
+      board.setAttribute("aria-label", today ? T("rm.board_today") : T("rm.board_that_day"));
       var hr = el("div", "rm-brow rm-bhead");
       hr.setAttribute("role", "row");
       hr.appendChild(el("span", "rm-bwho", ""));
@@ -414,10 +416,10 @@
         row.setAttribute("role", "row");
         var who = el("span", "rm-bwho");
         who.appendChild(R.faceEl(x.name, book));
-        if (small) who.appendChild(el("span", "rm-bname", x.you ? x.name + " (you)" : x.name));
+        if (small) who.appendChild(el("span", "rm-bname", x.you ? T("rm.name_you", { name: x.name }) : x.name));
         if (p.streak > 1) {
           var flame = el("i", "rm-flame", "🔥" + p.streak);
-          flame.title = x.name + " has played " + p.streak + " days in a row";
+          flame.title = T("rm.player_streak_title", { name: x.name, n: p.streak });
           who.appendChild(flame);
         }
         if (reacted[f]) who.appendChild(el("i", "rm-react-chip", reacted[f]));
@@ -437,8 +439,8 @@
         if (today && !p.sent && !x.you) {
           var poke = el("button", "rm-poke", "👉");
           poke.type = "button";
-          poke.title = "Poke " + x.name;
-          poke.setAttribute("aria-label", "Poke " + x.name + ", who has not played today");
+          poke.title = T("rm.poke", { name: x.name });
+          poke.setAttribute("aria-label", T("rm.poke_aria", { name: x.name }));
           poke.onclick = function () { pokeOne(room, x.name); };
           end.appendChild(poke);
         }
@@ -454,7 +456,7 @@
         (data.today.reactions || []).forEach(function (x) { if (x.you) mineReact = x.r; });
         var rr = el("div", "rm-reacts");
         rr.setAttribute("role", "group");
-        rr.setAttribute("aria-label", "Your reaction to today's board");
+        rr.setAttribute("aria-label", T("rm.react_aria"));
         ["🔥", "😂", "😮", "🙈"].forEach(function (emo) {
           var b = el("button", "rm-react" + (mineReact === emo ? " on" : ""), emo);
           b.type = "button";
@@ -473,18 +475,18 @@
       var rows = data.today.points.map(function (p) { return { name: p.name, you: !!p.you, pts: p.pts || 0, n: p.sent || 0 }; })
         .filter(function (x) { return x.n > 0 || x.pts > 0; }).sort(byPoints);
       var dt = el("div", "rm-daytable");
-      dt.appendChild(el("h3", "rm-h3", today ? "Today's table" : "That day's table"));
+      dt.appendChild(el("h3", "rm-h3", today ? T("rm.todays_table") : T("rm.that_days_table")));
       standList(dt, rows, gamesWords, null);
       t.appendChild(dt);
     }
     if (today && data.today.notPlayed.length) {
       var np = data.today.notPlayed;
-      var words = np.length <= 10 ? np.join(", ") : String(np.length) + " of you";
-      t.appendChild(el("p", "rm-quiet-line", "Not played yet: " + words + "."));
+      var words = np.length <= 10 ? np.join(", ") : T("rm.n_of_you", { n: np.length });
+      t.appendChild(el("p", "rm-quiet-line", T("rm.not_played_yet", { who: words })));
     }
     /* the day's recap card: offered from the evening, never pushed, never an answer */
     if (today && anyPlayed && new Date().getHours() >= 17) {
-      var rec = el("button", "rm-quiet rm-recap", "Share today's recap");
+      var rec = el("button", "rm-quiet rm-recap", T("rm.share_recap"));
       rec.type = "button";
       var rnote = el("p", "quiet rm-small");
       rnote.hidden = true;
@@ -501,7 +503,7 @@
     frame(room, justMade);
     var data = datas[datas.length - 1];
     var w = el("section", "rm-sec");
-    periodHead(w, back ? "Last week" : "This week", spanWords(first, addDays(first, 6)), back ? "This week" : "Last week",
+    periodHead(w, back ? T("rm.last_week") : T("rm.this_week"), spanWords(first, addDays(first, 6)), back ? T("rm.this_week") : T("rm.last_week"),
       function () { table(room, false, "week", back ? 0 : 1); });
     var by = {}, order = [];
     datas.forEach(function (d) {
@@ -514,11 +516,10 @@
     });
     var rows = order.map(function (f) { return by[f]; }).sort(byPoints);
     if (!rows.some(function (x) { return x.pts > 0 || x.n > 0; })) {
-      w.appendChild(el("p", "rm-quiet-line", back ? "Nothing was played that week."
-        : "The week's table fills as the room plays, Monday to Sunday. A game is taken by whoever was strictly closest that day."));
+      w.appendChild(el("p", "rm-quiet-line", back ? T("rm.nothing_that_week") : T("rm.week_fills")));
     } else {
       standList(w, rows, daysWords, null);
-      if (!back && new Date().getDay() === 0) w.appendChild(el("p", "rm-week", "The week ends tonight."));
+      if (!back && new Date().getDay() === 0) w.appendChild(el("p", "rm-week", T("rm.week_ends")));
     }
     paneTable.appendChild(w);
     foot(room, data, !back);
@@ -528,14 +529,12 @@
   function drawMonth(room, data, mon, back, justMade) {
     frame(room, justMade);
     var m = el("section", "rm-sec");
-    periodHead(m, monthWords(mon), "", back ? "This month" : "Last month",
+    periodHead(m, monthWords(mon), "", back ? T("rm.this_month") : T("rm.last_month"),
       function () { table(room, false, "month", back ? 0 : 1); });
     var rows = (data.standings || []).map(function (x) { return { name: x.name, you: !!x.you, pts: x.pts || 0, n: x.days || 0 }; });
     var any = rows.some(function (x) { return x.pts > 0 || x.n > 0; });
     if (!any) {
-      m.appendChild(el("p", "rm-quiet-line", !back
-        ? "The month's table fills as the room plays. A game is taken by whoever was strictly closest that day."
-        : "Nothing was played in " + monthWords(mon) + "."));
+      m.appendChild(el("p", "rm-quiet-line", !back ? T("rm.month_fills") : T("rm.nothing_that_month", { month: monthWords(mon) })));
     } else {
       /* the bottom three get a gentle joke only once the month has a real field (six playing),
          and the label rotates by the day, so nobody carries the same one twice running */
@@ -543,7 +542,7 @@
       var joked = {};
       if (active.length >= 6) active.slice(-3).forEach(function (x) { joked[x.name] = jokeFor(x.name); });
       standList(m, rows, daysWords, joked);
-      var card = el("button", "rm-big rm-card-go", "Share the month");
+      var card = el("button", "rm-big rm-card-go", T("rm.share_month"));
       card.type = "button";
       var cnote = el("p", "quiet rm-small");
       cnote.hidden = true;
@@ -564,8 +563,8 @@
       go.href = TO.here(next ? "../" + next.href : "../");
       go.setAttribute("data-g", next ? next.key : "room");
       var tx = el("span", "d-go-text");
-      tx.appendChild(el("span", "d-go-kicker", next ? "Play for the table" : "All played today"));
-      tx.appendChild(el("span", "d-go-name", next ? next.name : "See the games"));
+      tx.appendChild(el("span", "d-go-kicker", next ? T("rm.play_for_table") : T("rm.all_played_today")));
+      tx.appendChild(el("span", "d-go-name", next ? next.name : T("rm.see_games")));
       go.appendChild(tx);
       go.insertAdjacentHTML("beforeend",
         '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
@@ -573,36 +572,36 @@
     }
 
     var who = el("p", "duel-who rm-who-line");
-    who.appendChild(document.createTextNode("This table sees you as "));
+    who.appendChild(document.createTextNode(T("rm.sees_you_as") + " "));
     who.appendChild(el("b", "", data.you));
     who.appendChild(document.createTextNode(" "));
-    var rename = el("button", "duel-rename", "Change");
+    var rename = el("button", "duel-rename", T("duel.change"));
     rename.type = "button";
     rename.onclick = function () {
       D.askName(function () {
         R.flush(D.todayKey(), function () { table(room, false, showing.tab, showing.back); });   // the new name travels with the next send
-      }, "Save");
+      }, T("duel.save"));
     };
     who.appendChild(rename);
     paneTable.appendChild(who);
 
     var outs = el("div", "rm-outs");
-    var leave = el("button", "rm-quiet", "Leave the room");
+    var leave = el("button", "rm-quiet", T("rm.leave"));
     leave.type = "button";
     leave.onclick = function () {
-      sure("Leaving deletes you and every score of yours from this room, at once. The others keep their table.", function () {
+      sure(T("rm.leave_sure"), function () {
         R.call("leave", { code: room.code, tok: R.token() }).then(done, function () { tell(oops(null)); });
-        function done() { R.forget(room.code); tell("You left the room, and everything of yours in it was deleted."); start(); }
+        function done() { R.forget(room.code); tell(T("rm.left")); start(); }
       });
     };
     outs.appendChild(leave);
     if (data.maker) {
-      var wipe = el("button", "rm-quiet rm-danger-link", "Delete the whole room");
+      var wipe = el("button", "rm-quiet rm-danger-link", T("rm.delete_room"));
       wipe.type = "button";
       wipe.onclick = function () {
-        sure("This deletes the room for all " + data.count + " of you — every member and every score, at once. Nobody can bring it back.", function () {
+        sure(T("rm.delete_sure", { n: data.count }), function () {
           R.call("wipe", { code: room.code, tok: R.token() }).then(done, function () { tell(oops(null)); });
-          function done() { R.forget(room.code); tell("The room was deleted, with everything in it."); start(); }
+          function done() { R.forget(room.code); tell(T("rm.deleted")); start(); }
         });
       };
       outs.appendChild(wipe);
@@ -623,16 +622,16 @@
   /* One tap makes the message; the friends do the reminding, the site sends nothing by itself. */
   function pokeOne(room, name) {
     TO.count("room/poke");
-    var text = name + ", the room is waiting 👀 " + roomLink(room.code);
+    var text = T("rm.poke_text", { name: name }) + " " + roomLink(room.code);
     var nav = window.navigator;
     if (nav.share) { nav.share({ text: text }).catch(function () { /* closed */ }); return; }
     TO.copyText(text).then(function (okd) {
-      tell(okd ? "Copied. Paste it to " + name + "." : "Copying did not work here. The message is: " + text);
+      tell(okd ? T("rm.copied_to", { name: name }) : T("rm.copy_failed_msg", { text: text }));
     });
   }
 
   /* the gentle jokes of the month's foot, rotated by the day so nobody carries one twice running */
-  var JOKES = [["🐢", "slow and steady"], ["🛌", "still waking up"], ["🌱", "just getting started"]];
+  var JOKES = [["🐢", T("rm.joke_1")], ["🛌", T("rm.joke_2")], ["🌱", T("rm.joke_3")]];
   function jokeFor(name) {
     var h = 5381, f = R.foldN(name);
     for (var i = 0; i < f.length; i++) h = ((h * 33) ^ f.charCodeAt(i)) >>> 0;
@@ -674,13 +673,13 @@
     x.textAlign = "center"; x.fillStyle = "#fff";
     var top = rows.filter(function (r) { return r.pts > 0 || r.days > 0; });
     var lead = top[0];
-    var head2 = lead ? (lead.you ? "You lead" : lead.name + " leads") : "A quiet month";
+    var head2 = lead ? (lead.you ? T("rm.you_lead") : T("rm.name_leads", { name: lead.name })) : T("rm.quiet_month");
     var hs = 110;
     x.font = "800 " + hs + "px " + FD;
     while (x.measureText(head2).width > W - 2 * MG && hs > 44) { hs -= 2; x.font = "800 " + hs + "px " + FD; }
     x.fillText(head2, W / 2, 330);
     x.font = "600 42px " + F; x.fillStyle = "rgba(255, 255, 255, .78)";
-    x.fillText(label || "A room of friends", W / 2, 400);
+    x.fillText(label || T("rm.room_of_friends"), W / 2, 400);
 
     /* the podium: up to five rows, then where you stand */
     var y = 520, shown = rows.slice(0, 5);
@@ -688,7 +687,7 @@
       var fs = 46;
       x.font = (r.you ? "800 " : "600 ") + fs + "px " + F;
       x.textAlign = "left"; x.fillStyle = r.you ? "#fff" : "rgba(255, 255, 255, .78)";
-      var nm = (i + 1) + ".  " + r.name + (r.you ? " (you)" : "");
+      var nm = (i + 1) + ".  " + (r.you ? T("rm.name_you", { name: r.name }) : r.name);
       var room = W - 2 * MG - 170, ns = fs;
       while (x.measureText(nm).width > room && ns > 26) { ns -= 2; x.font = (r.you ? "800 " : "600 ") + ns + "px " + F; }
       x.fillText(nm, MG + 30, y);
@@ -701,15 +700,14 @@
     rows.forEach(function (r, i) { if (r.you) meAt = i; });
     if (meAt >= 5) {
       x.textAlign = "center"; x.font = "700 44px " + F; x.fillStyle = "#fff";
-      x.fillText("You: " + (meAt + 1) + ". of " + rows.length + " · " + rows[meAt].pts +
-        (rows[meAt].pts === 1 ? " point" : " points"), W / 2, y + 26);
+      x.fillText(T("rm.pic_you_at", { at: meAt + 1, of: rows.length, points: T.n(rows[meAt].pts, "rm.points") }), W / 2, y + 26);
     }
 
     x.textAlign = "center"; x.fillStyle = "#fff"; x.font = "800 62px " + FD;
-    x.fillText("A new month starts on the 1st.", W / 2, 1160);
+    x.fillText(T("rm.new_month"), W / 2, 1160);
     var where = TO.address() || "logicers.com";
     x.font = "600 40px " + F; x.fillStyle = "rgba(255, 255, 255, .72)";
-    x.fillText("Play at " + where, W / 2, 1254);
+    x.fillText(T("duel.play_at", { where: where }), W / 2, 1254);
     window.LogicersRoomCard = { head: head2, rows: shown.length, month: monthWords(mon) };   // read by the checks
     return c;
   }
@@ -741,13 +739,13 @@
 
     x.textAlign = "center"; x.fillStyle = "#fff";
     var played = data.today.points.filter(function (p) { return p.sent > 0; });
-    var head2 = "Today in our room";
+    var head2 = T("rm.today_in_room");
     var hs = 96;
     x.font = "800 " + hs + "px " + FD;
     while (x.measureText(head2).width > W - 2 * MG && hs > 44) { hs -= 2; x.font = "800 " + hs + "px " + FD; }
     x.fillText(head2, W / 2, 300);
     x.font = "600 46px " + F; x.fillStyle = "rgba(255, 255, 255, .80)";
-    x.fillText(played.length + " of " + data.count + " played" + (data.streak > 1 ? " · 🔥 " + data.streak + " days" : ""), W / 2, 372);
+    x.fillText(T("rm.n_of_played", { n: played.length, of: data.count }) + (data.streak > 1 ? " · 🔥 " + T.n(data.streak, "rm.days") : ""), W / 2, 372);
 
     /* the faces of who played, a row of coloured circles */
     var names = data.standings.map(function (s) { return s.name; });
@@ -778,7 +776,7 @@
       x.textAlign = "left"; x.fillStyle = "rgba(255, 255, 255, .78)";
       x.fillText(G ? G.name : g.key, MG + 52, y);
       x.textAlign = "right"; x.fillStyle = "#fff";
-      var who = "👑 " + (g.took === data.you ? "you" : g.took);
+      var who = "👑 " + (g.took === data.you ? T("duel.you_lower") : g.took);
       var room2 = (W - 2 * MG) * 0.45, ws = 42;
       x.font = "700 " + ws + "px " + F;
       while (x.measureText(who).width > room2 && ws > 24) { ws -= 2; x.font = "700 " + ws + "px " + F; }
@@ -788,14 +786,14 @@
     });
     if (!tookRows.length) {
       x.fillStyle = "rgba(255, 255, 255, .78)"; x.font = "600 44px " + F;
-      x.fillText("No crowns yet — every game is still open.", W / 2, 640);
+      x.fillText(T("rm.no_crowns"), W / 2, 640);
     }
 
     x.textAlign = "center"; x.fillStyle = "#fff"; x.font = "800 62px " + FD;
-    x.fillText("New games at midnight.", W / 2, 1160);
+    x.fillText(T("home.new_at_midnight"), W / 2, 1160);
     var where = TO.address() || "logicers.com";
     x.font = "600 40px " + F; x.fillStyle = "rgba(255, 255, 255, .72)";
-    x.fillText("Play at " + where, W / 2, 1254);
+    x.fillText(T("duel.play_at", { where: where }), W / 2, 1254);
     window.LogicersRoomDayCard = { head: head2, played: played.length, crowns: tookRows.length,
                                    streak: data.streak || 0 };    // read by the checks
     return c;
@@ -803,15 +801,14 @@
   function shareDay(room, data, rnote) {
     TO.count("room/share");
     var link = roomLink(room.code);
-    var text = "Today in our Logicers room: " + data.today.points.filter(function (p) { return p.sent > 0; }).length +
-      " of " + data.count + " played. " + link;
+    var text = T("rm.recap_text", { n: data.today.points.filter(function (p) { return p.sent > 0; }).length, of: data.count }) + " " + link;
     function go() {
       var c = drawDayCard(data);
       c.toBlob(function (b) {
         TO.share({ blob: b, filename: "logicers-room-day-" + D.todayKey() + ".png", text: text }).then(function (how) {
           if (how !== "fallback") return;
           TO.copyText(text).then(function (okd) {
-            rnote.textContent = okd ? "Copied. Paste it into your group chat." : "Copying did not work here. The link is: " + link;
+            rnote.textContent = okd ? T("rm.copied_chat") : T("world.copy_failed", { url: link });
             rnote.hidden = false;
           });
         });
@@ -826,15 +823,15 @@
     TO.count("room/share");
     var link = roomLink(room.code);
     var lead = rows[0];
-    var text = (lead && lead.pts ? (lead.you ? "I lead" : lead.name + " leads") + " our Logicers room in " + monthWords(mon).split(" ")[0] + "."
-      : "Our Logicers room, " + monthWords(mon) + ".") + " " + link;
+    var text = (lead && lead.pts ? (lead.you ? T("rm.i_lead_month", { month: monthName(mon) }) : T("rm.leads_month", { name: lead.name, month: monthName(mon) }))
+      : T("rm.our_room_month", { month: monthWords(mon) })) + " " + link;
     function go() {
-      var c = drawMonthCard(rows, mon, room.label === "Your room" ? "" : room.label);
+      var c = drawMonthCard(rows, mon, !room.label || room.label === "Your room" ? "" : room.label);
       c.toBlob(function (b) {
         TO.share({ blob: b, filename: "logicers-room-" + mon + ".png", text: text }).then(function (how) {
           if (how !== "fallback") return;
           TO.copyText(text).then(function (ok) {
-            cnote.textContent = ok ? "Copied. Paste it into your group chat." : "Copying did not work here. The link is: " + link;
+            cnote.textContent = ok ? T("rm.copied_chat") : T("world.copy_failed", { url: link });
             cnote.hidden = false;
           });
         });

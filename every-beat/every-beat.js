@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "every-beat";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -12,7 +12,7 @@
   var actions = $("guess-actions"), btnShow = $("btn-show"), hint = $("hint"), feelBtn = $("feel");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length) {
-    $("question").textContent = "Today's heart could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("every.not_loaded");
     panel.hidden = true; actions.hidden = true; hint.hidden = true;
     return;
   }
@@ -64,6 +64,7 @@
   var byId = {};
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
   function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  if (LG) { LG.puzzleAll(GAME, puzzleOf); LG.puzzleNote(LG.puzzleHas(GAME, day)); var ll = window.LG_PUZZLES && window.LG_PUZZLES[GAME + ".lifetime"]; if (ll && DATA.lifetime) DATA.lifetime.line = ll.line; }
 
   function valid(r) {
     return !!r && num(r.g) && r.g >= MINR && r.g <= MAXR && num(r.y) && Math.round(r.y) === r.y &&
@@ -82,7 +83,7 @@
   var reduced = TO.reducedMotion();
 
   /* ---------- numbers ---------- */
-  function commas(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function commas(n) { return LG ? LG.num(n) : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function fmt(v) {
     if (v < 10) return String(Math.round(v * 10) / 10);
     return commas(Math.round(v));
@@ -97,20 +98,20 @@
     var f = Math.abs(y) / 10;
     return (f < 10 ? String(Math.round(f * 10) / 10) : commas(Math.round(f))) + "×";
   }
-  function scoreText(y) { return y === 0 ? "Spot on" : times(y) + (y > 0 ? " too fast" : " too slow"); }
+  function scoreText(y) { return y === 0 ? T("says.spot_on") : (y > 0 ? T("every.too_fast", { times: times(y) }) : T("every.too_slow", { times: times(y) })); }
   function round1(v) { return Math.round(v * 10) / 10; }
   function clamp(v) { return Math.max(MINR, Math.min(MAXR, v)); }
   function posOf(v) { return Math.log(v) / Math.log(MAXR); }
 
   /* ---------- the screen ---------- */
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Every Beat, day " + day + " | Logicers";
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("every.title_day", { n: day });
   $("face").textContent = q.face;
   $("state").innerHTML = icon(q.state);
   $("state").appendChild(document.createTextNode(q.label));
   if (q.temp) {
     $("temp").innerHTML = icon("temp");
-    $("temp").appendChild(document.createTextNode("water " + q.temp + " °C"));
+    $("temp").appendChild(document.createTextNode(T("every.water_temp", { t: q.temp })));
     $("temp").hidden = false;
   }
 
@@ -124,7 +125,7 @@
   };
   (function () {
     var s = document.createElement("script");
-    s.src = "pics/" + q.pic + ".js";
+    s.src = (LG ? LG.root + "every-beat/" : "") + "pics/" + q.pic + ".js";
     s.async = true;
     document.head.appendChild(s);
   })();
@@ -272,22 +273,22 @@
     if (phase !== "play") return;
     bpm = clamp(v);
     moved = true;
-    if (nudgeTimer) { window.clearTimeout(nudgeTimer); nudgeTimer = 0; btnShow.textContent = "Show its heart"; }
+    if (nudgeTimer) { window.clearTimeout(nudgeTimer); nudgeTimer = 0; btnShow.textContent = T("every.show_heart"); }
     paint();
   }
   function nudge() {
-    btnShow.textContent = "First drag up or down";
+    btnShow.textContent = T("every.first_drag");
     $("say").textContent = "";
-    $("say").textContent = "First set the beat: drag the heart up or down, or use the arrow keys on the scale.";
+    $("say").textContent = T("every.first_set");
     if (!reduced) { thumb.classList.remove("nudge"); void thumb.offsetWidth; thumb.classList.add("nudge"); }
     window.clearTimeout(nudgeTimer);
-    nudgeTimer = window.setTimeout(function () { nudgeTimer = 0; btnShow.textContent = "Show its heart"; }, 1800);
+    nudgeTimer = window.setTimeout(function () { nudgeTimer = 0; btnShow.textContent = T("every.show_heart"); }, 1800);
   }
   function paint() {
     $("rate-you").textContent = fmt(bpm);
     thumb.style.setProperty("--pos", posOf(bpm).toFixed(4));
     ladder.setAttribute("aria-valuenow", String(round1(bpm)));
-    ladder.setAttribute("aria-valuetext", fmt(bpm) + " beats a minute");
+    ladder.setAttribute("aria-valuetext", T("every.bpm_aria", { n: fmt(bpm) }));
   }
   function fromLadder(y) {
     var r = ladder.getBoundingClientRect(), top = r.top + 12, height = Math.max(1, r.height - 24);
@@ -337,12 +338,11 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 0 ? "A friend was spot on. Can you match that?"
-      : "A friend was " + scoreText(friend).toLowerCase() + ". Can you beat that?") +
-      (practice ? " It is an earlier heart, so it does not count for your streak." : "");
+    notice.textContent = (friend === 0 ? T("every.friend_spot") : T("every.friend_was", { how: scoreText(friend).toLowerCase() })) +
+      (practice ? " " + T("every.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -404,7 +404,7 @@
     var b = document.createElement("b");
     b.textContent = scoreText(y);
     v.appendChild(b);
-    v.appendChild(document.createTextNode(" You set " + fmt(g) + " a minute; the real heart beats " + band(q) + "."));
+    v.appendChild(document.createTextNode(" " + T("every.you_set", { g: fmt(g), band: band(q) })));
     v.classList.toggle("hit", y === 0);
     $("verdict").hidden = false;
     fillAfter(y);
@@ -423,9 +423,9 @@
   function fillAfter(y) {
     var f = $("friend");
     if (friend !== null) {
-      var said = friend === 0 ? "Your friend was spot on" : "Your friend was " + scoreText(friend).toLowerCase();
+      var said = friend === 0 ? T("every.friend_was_spot") : T("every.friend_was_how", { how: scoreText(friend).toLowerCase() });
       var a = Math.abs(y), c = Math.abs(friend);
-      f.textContent = a < c ? said + ". You were closer." : a === c ? said + ", like you. A tie." : said + ". Closer than you.";
+      f.textContent = a < c ? T("every.friend_you_closer", { f: said }) : a === c ? T("every.friend_tie", { f: said }) : T("every.friend_closer", { f: said });
       f.hidden = false;
     }
     $("sentence").textContent = q.sentence;
@@ -440,28 +440,28 @@
     var list = $("sources");
     list.innerHTML = "";
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode("The figure: "));
+    li.appendChild(document.createTextNode(T("every.the_figure") + " "));
     q.src.forEach(function (s, i) {
       if (i) li.appendChild(document.createTextNode(" · "));
       li.appendChild(link(s));
     });
     list.appendChild(li);
     var cr = document.createElement("li");
-    cr.appendChild(document.createTextNode("Silhouette from "));
+    cr.appendChild(document.createTextNode(T("every.silhouette_from") + " "));
     cr.appendChild(link({ name: "PhyloPic", url: "https://www.phylopic.org/" }));
     if (q.credit && q.credit.lic) {
       var L = { by3: ["CC BY 3.0", "https://creativecommons.org/licenses/by/3.0/"],
                 by4: ["CC BY 4.0", "https://creativecommons.org/licenses/by/4.0/"] }[q.credit.lic];
-      cr.appendChild(document.createTextNode(": " + q.face + " by " + (q.credit.by || "an unnamed artist") + " ("));
+      cr.appendChild(document.createTextNode(": " + T("cous.credit", { thing: q.face, by: q.credit.by || T("cous.unnamed_artist") }) + " ("));
       if (L) cr.appendChild(link({ name: L[0], url: L[1] })); else cr.appendChild(document.createTextNode(q.credit.lic));
       cr.appendChild(document.createTextNode(")."));
     } else {
-      cr.appendChild(document.createTextNode(", in the public domain."));
+      cr.appendChild(document.createTextNode(T("every.public_domain")));
     }
     list.appendChild(cr);
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s heart</a>';
-    else next.textContent = "A new heart arrives at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("every.back_today") + '</a>';
+    else next.textContent = T("every.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });
     prepareCard(y);
@@ -472,7 +472,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1 && valid(res[n]); })
       .sort(function (a, b) { return b - a; });
     $("st-played").textContent = String(s.played);
@@ -513,10 +513,10 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
       var t = document.createElement("span"); t.className = "q"; t.textContent = p.face + ", " + p.label;
       var s = document.createElement("span"); s.className = "s";
-      s.textContent = r ? r.t : "Not played yet";
+      s.textContent = r ? r.t : T("site.not_played_yet");
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -531,8 +531,7 @@
     return base + "?d=" + day + "&g=" + y;
   }
   function shareText(y) {
-    return "Every Beat, day " + day + ": how fast does a heart beat? " + q.face + ", " + q.label + ". " +
-      (y === 0 ? "I was spot on." : "I was " + scoreText(y).toLowerCase() + ".") + " Can you beat that? " + shareUrl(y);
+    return T("every.share", { n: day, face: q.face, label: q.label, mine: y === 0 ? T("every.i_spot") : T("every.i_was", { how: scoreText(y).toLowerCase() }) }) + " " + shareUrl(y);
   }
   function roundRect(x, a, b, w, h, rad) {
     x.beginPath();
@@ -577,10 +576,10 @@
     x.fillStyle = "#fff"; x.textAlign = "left"; x.font = "800 48px " + FD;
     x.fillText("Logicers", MG, 118);
     x.textAlign = "right"; x.font = "600 40px " + F;
-    x.fillText("Every Beat, day " + day, W - MG, 118);
+    x.fillText(T("every.day_header", { n: day }), W - MG, 118);
 
     x.textAlign = "left";
-    var tq = wrap(x, "How fast does its heart beat?", "800", 92, FD, W - 2 * MG, 2, 60);
+    var tq = wrap(x, T("every.how_fast"), "800", 92, FD, W - 2 * MG, 2, 60);
     fits = fits && tq.fits;
     tq.lines.forEach(function (l, i) { x.font = "800 " + tq.size + "px " + FD; x.fillText(l, MG - 4, 252 + i * tq.size * 1.06); });
     var after = 252 + (tq.lines.length - 1) * tq.size * 1.06;
@@ -621,10 +620,10 @@
     x.fillText(head, W / 2, vy);
 
     x.font = "800 70px " + FD;
-    x.fillText("Can you beat that?", W / 2, 1204);
+    x.fillText(T("every.beat_that"), W / 2, 1204);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, ws = 40;
+      var line = T("duel.play_at", { where: where }), ws = 40;
       x.font = "600 " + ws + "px " + F;
       while (x.measureText(line).width > W - 2 * MG && ws > 24) { ws -= 2; x.font = "600 " + ws + "px " + F; }
       x.fillText(line, W / 2, 1270);
@@ -670,7 +669,7 @@
   $("share-copy").addEventListener("click", function () {
     var y = scoreOf(round1(bpm));
     TO.copyText(shareText(y)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(y);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(y) });
     });
   });
 

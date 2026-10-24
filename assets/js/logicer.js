@@ -8,7 +8,7 @@
    the whole file does nothing when the world's server is off. */
 (function () {
   "use strict";
-  var TO = window.TurnsOut, W = window.LogicersWorld;
+  var TO = window.TurnsOut, W = window.LogicersWorld, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   if (!TO || !W || !W.on()) return;
   var box = document.getElementById("logicer");
   if (!box) return;
@@ -19,14 +19,15 @@
     if (text !== undefined && text !== null) e.textContent = String(text);
     return e;
   }
-  function soFar(n) { return fmt(n) + (n === 1 ? " Logicer" : " Logicers") + " so far"; }
-  function fmt(n) { try { return Number(n).toLocaleString("en-US"); } catch (e) { return String(n); } }
+  function soFar(n) { return T.n(n, "logicer.so_far", { n: fmt(n) }); }
+  function fmt(n) { try { return Number(n).toLocaleString(LG ? LG.locale : "en-US"); } catch (e) { return String(n); } }
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   function since(d) {
     var s = String(d || "");
     if (!/^\d{8}$/.test(s)) return "";
     var m = +s.slice(4, 6) - 1, day = +s.slice(6, 8);
-    return m >= 0 && m < 12 && day > 0 ? " · since " + day + " " + MONTHS[m] : "";
+    var when = m >= 0 && m < 12 && day > 0 ? (LG ? LG.date(new Date(+s.slice(0, 4), m, day), { day: "numeric", month: "short" }) : day + " " + MONTHS[m]) : "";
+    return when ? " · " + T("logicer.since", { date: when }) : "";
   }
   function mine() {
     try {
@@ -69,9 +70,9 @@
     box.hidden = false;
   }
   function show(total, L, fresh) {
-    if (L) draw("You are", "Logicer №" + fmt(L.n), "of " + fmt(Math.max(total, L.n)), fresh);
-    else if (left()) draw("Logicers so far", "№" + fmt(total), "Every one of them finished a game.", false);
-    else draw("Finish a game to be", "Logicer №" + fmt(total + 1), "", false);
+    if (L) draw(T("logicer.you_are"), T("logicer.number", { n: fmt(L.n) }), T("logicer.of_total", { n: fmt(Math.max(total, L.n)) }), fresh);
+    else if (left()) draw(T("logicer.so_far_label"), "№" + fmt(total), T("logicer.all_finished"), false);
+    else draw(T("logicer.finish_to_be"), T("logicer.number", { n: fmt(total + 1) }), "", false);
   }
 
   function start() {

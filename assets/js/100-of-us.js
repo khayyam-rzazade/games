@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "100-of-us";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -14,7 +14,7 @@
   var lockBtn = $("lock"), redoBtn = $("redo"), range = $("a11y-range");
 
   if (!TO || !DATA || !DATA.questions || !DATA.questions.length) {
-    $("question").textContent = "Today's question could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("hund.not_loaded");
     stage.setAttribute("data-phase", "done");
     hintEl.hidden = true;
     countEl.hidden = true;
@@ -40,7 +40,9 @@
   var byId = {};
   DATA.questions.forEach(function (x) { byId[x.id] = x; });
   function questionOf(n) { return DATA.questions[(n - 1) % DATA.questions.length]; }
+  if (LG) { LG.puzzleAll(GAME, questionOf); }
   var q = questionOf(day);
+  if (LG) LG.puzzleNote(LG.puzzleHas(GAME, day));
   var hue = TO.colour(q.colour);
 
   var count = 0;             // figures counted so far
@@ -72,16 +74,16 @@
   fitQuestion();
   window.addEventListener("resize", fitQuestion);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitQuestion);
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "100 of Us, day " + day + " | Logicers";
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("hund.title_day", { n: day });
 
   var notice = $("notice");
   if (friendGap !== null) {
-    notice.textContent = (friendGap === 0 ? "A friend got this exactly right. Can you match it?" : "A friend was off by " + friendGap + ". Can you get closer?") +
-      (practice ? " It is an earlier question, so it does not count for your streak." : "");
+    notice.textContent = (friendGap === 0 ? T("hund.friend_exact") : T("hund.friend_off", { n: friendGap })) +
+      (practice ? " " + T("hund.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -105,7 +107,7 @@
     for (var k = 0; k < 100; k++) figs[k].classList.toggle("on", k < count);
     countEl.textContent = String(count);
     range.value = String(count);
-    crowd.setAttribute("aria-label", count + " of 100 figures counted");
+    crowd.setAttribute("aria-label", T("hund.counted_aria", { n: count }));
   }
   function add(n) {
     if (count >= 100) return;
@@ -137,13 +139,13 @@
     press = null;
     window.cancelAnimationFrame(raf);
     range.value = String(count);
-    crowd.setAttribute("aria-label", count + " of 100 figures counted");
+    crowd.setAttribute("aria-label", T("hund.counted_aria", { n: count }));
     showGuessButtons();
   }
   function showGuessButtons() {
     lockBtn.hidden = false;
     redoBtn.hidden = false;
-    hintEl.textContent = count >= 100 ? "That is everyone. Slide left for fewer." : "Hold to add more, or slide left or right.";
+    hintEl.textContent = count >= 100 ? T("hund.hint_full") : T("hund.hint_more");
   }
 
   stage.addEventListener("pointerdown", function (e) {
@@ -191,7 +193,7 @@
     paint();
     lockBtn.hidden = true;
     redoBtn.hidden = true;
-    hintEl.textContent = "Hold or slide. Let go at your guess.";
+    hintEl.textContent = T("hund.hint_start");
   });
 
   lockBtn.addEventListener("click", function () {
@@ -225,10 +227,10 @@
         figs[n].classList.toggle("missed", real && !said);     // real people you did not count
         figs[n].classList.toggle("phantom", !real && said);    // people you counted who are not there
       }
-      crowd.setAttribute("aria-label", "The answer is " + answer + " of 100. You said " + guess + ".");
+      crowd.setAttribute("aria-label", T("hund.answer_aria", { a: answer, g: guess }));
       countEl.hidden = true;
-      $("turnsout").textContent = "Turns out, about " + answer + ".";
-      $("offby").innerHTML = "You said " + guess + ". <b>" + (gap === 0 ? "Spot on." : "Off by " + gap + ".") + "</b>";
+      $("turnsout").textContent = T("hund.turns_out", { a: answer });
+      $("offby").innerHTML = T("hund.you_said", { g: guess }) + " <b>" + (gap === 0 ? T("hund.spot_on_dot") : T("hund.off_by_dot", { n: gap })) + "</b>";
       $("offby").classList.toggle("hit", gap === 0);        // yellow is kept for a miss
       verdictEl.hidden = false;
       fillAfter(guess, gap);
@@ -255,23 +257,23 @@
   function fillAfter(guess, gap) {
     var friend = $("friend");
     if (friendGap !== null) {
-      var f = friendGap === 0 ? "Your friend got it exactly right" : "Your friend was off by " + friendGap;
-      friend.textContent = gap < friendGap ? f + ". You got closer."
-        : gap === friendGap ? (gap === 0 ? "Your friend got it exactly right too." : f + " too. A tie.")
-        : f + ". Closer than you.";
+      var f = friendGap === 0 ? T("hund.friend_got_exact") : T("hund.friend_was_off", { n: friendGap });
+      friend.textContent = gap < friendGap ? T("hund.friend_you_closer", { f: f })
+        : gap === friendGap ? (gap === 0 ? T("hund.friend_exact_too") : T("hund.friend_tie", { f: f }))
+        : T("hund.friend_closer", { f: f });
       friend.hidden = false;
     }
     $("sentence").textContent = q.sentence || "";
     var link = $("source-link");
-    link.textContent = (q.source || "World Bank") + (q.year ? ", " + q.year : "");
+    link.textContent = (q.source || T("hund.world_bank")) + (q.year ? ", " + q.year : "");
     link.href = q.link || "#";
-    $("source-exact").textContent = (typeof q.exact === "number") ? " (" + q.exact + " in 100)" : "";
+    $("source-exact").textContent = (typeof q.exact === "number") ? " (" + T("hund.exact_in_100", { n: q.exact }) + ")" : "";
 
     var next = $("next");
     if (practice) {
-      next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s question</a>';
+      next.innerHTML = '<a href="' + TO.here("./") + '">' + T("hund.back_today") + '</a>';
     } else {
-      next.textContent = "A new question at midnight.";
+      next.textContent = T("hund.new_at_midnight");
     }
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });   // what is played today, and the next game
@@ -281,14 +283,14 @@
   /* ---------- streak chip, album ---------- */
   function renderChip() {
     var s = TO.streak(TO.game(GAME).results, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     renderAlbum(s);
   }
   function fillStamp(el, question, answer) {
     el.style.setProperty("--hue", TO.colour(question.colour));
     el.innerHTML = "";
     var n = document.createElement("span"); n.className = "n"; n.textContent = String(answer);
-    var of = document.createElement("span"); of.className = "of"; of.textContent = "of 100";
+    var of = document.createElement("span"); of.className = "of"; of.textContent = T("hund.of_100");
     var what = document.createElement("span"); what.className = "what"; what.textContent = question.stamp || "";
     el.appendChild(n); el.appendChild(of); el.appendChild(what);
   }
@@ -323,11 +325,11 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
       var t = document.createElement("span"); t.className = "q"; t.textContent = questionOf(n).q;
       var s = document.createElement("span"); s.className = "s";
       var r = g.results[n] || g.practice[n];
-      s.textContent = r ? (Math.abs(r.g - r.a) === 0 ? "You were spot on" : "You were off by " + Math.abs(r.g - r.a)) : "Not played yet";
+      s.textContent = r ? (Math.abs(r.g - r.a) === 0 ? T("hund.you_were_spot_on") : T("hund.you_were_off", { n: Math.abs(r.g - r.a) })) : T("site.not_played_yet");
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -342,7 +344,7 @@
     return base + "?d=" + day + "&g=" + gap;
   }
   function shareText(gap) {
-    return "100 of Us, day " + day + ": " + (gap === 0 ? "spot on. Can you match it? " : "off by " + gap + ". Can you get closer? ") + shareUrl(gap);
+    return (gap === 0 ? T("hund.share_exact", { n: day }) : T("hund.share_off", { n: day, gap: gap })) + " " + shareUrl(gap);
   }
   function wrapLines(ctx, text, maxWidth) {
     var words = String(text).split(/\s+/), lines = [], line = "";
@@ -393,9 +395,9 @@
     x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
-    x.fillText("100 of Us, day " + day, W - M, 118);
+    x.fillText(T("hund.day_header", { n: day }), W - M, 118);
 
-    var head = gap === 0 ? "Spot on" : "Off by " + gap;
+    var head = gap === 0 ? T("says.spot_on") : T("says.off_by", { n: gap });
     var size = 196;
     x.textAlign = "left";
     x.font = "800 " + size + "px " + FD;
@@ -435,17 +437,17 @@
     x.fillStyle = "#ffffff";
     x.textAlign = "left";
     x.font = "700 46px " + FD;
-    x.fillText(gap === 0 ? "Can you match it?" : "Can you get closer?", M, 1250);
+    x.fillText(gap === 0 ? T("hund.match_it") : T("hund.get_closer"), M, 1250);
     var st = TO.streak(TO.game(GAME).results, today).current;
     if (!practice && st >= 2) {
       x.textAlign = "right";
       x.font = "500 38px " + F;
-      x.fillText(st + " days in a row", W - M, 1250);
+      x.fillText(T("site.days_in_a_row", { n: st }), W - M, 1250);
     }
     // where to play: a picture cannot carry a link you can tap, so it carries the address in words
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, fs = 40;
+      var line = T("duel.play_at", { where: where }), fs = 40;
       x.textAlign = "left";
       x.font = "600 " + fs + "px " + F;
       while (x.measureText(line).width > W - 2 * M && fs > 24) { fs -= 2; x.font = "600 " + fs + "px " + F; }
@@ -491,7 +493,7 @@
   $("share-copy").addEventListener("click", function () {
     var gap = Math.abs(count - q.answer);
     TO.copyText(shareText(gap)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(gap);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(gap) });
     });
   });
 

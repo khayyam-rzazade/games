@@ -8,7 +8,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut, W = window.LogicersWorld;
+  var TO = window.TurnsOut, W = window.LogicersWorld, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   function $(id) { return document.getElementById(id); }
   if (!TO || !W) return;
   var el = W.el;
@@ -23,29 +23,29 @@
   /* the way to today's games: how many are played */
   function play() {
     var n = TO.GAMES.filter(TO.playedToday).length, N = TO.GAMES.length;
-    $("wt-play-kicker").textContent = n === N ? "All " + N + " played today" : n + " of " + N + " played today";
+    $("wt-play-kicker").textContent = n === N ? T("wt.all_played", { n: N }) : T("wt.n_played_today", { n: n, of: N });
     /* 19 Oct 2026, Khayyam: "it has to bring me to where the games are". The button opens the first game not yet
        played today (from there every finished game hands on to the next); with all of them played it goes to
        the games that never run out, on the home page. */
     var first = null;
     TO.GAMES.forEach(function (G) { if (!first && !TO.playedToday(G)) first = G; });
     var a = $("wt-play");
-    a.href = first ? TO.here("../" + first.href) : TO.here("../") + "#more-to-play";
+    a.href = first ? TO.here("../" + first.href) : TO.here("../") + "#more-to-play";   /* ../ is this language's home and games */
   }
   /* your country's team page, the other half of the button (19 Oct 2026): shown once the country is known (the one
      the last answer named is kept in this browser, so the button is there at once the next time) */
   function team(c) {
     var a = $("wt-team"), name = W.countryName(c);
-    if (!name) { a.hidden = true; $("wt-go").classList.remove("two"); $("wt-play-b").textContent = "Play for your country"; return; }
+    if (!name) { a.hidden = true; $("wt-go").classList.remove("two"); $("wt-play-b").textContent = T("wt.play_for_country"); return; }
     var k = $("wt-team-kicker");
     k.textContent = "";
     k.appendChild(W.flagEl(c));
     k.appendChild(document.createTextNode(name));
     a.href = W.teamHref(c);
-    a.setAttribute("aria-label", name + " team page");
+    a.setAttribute("aria-label", T("wt.team_page_aria", { country: name }));
     a.hidden = false;
     $("wt-go").classList.add("two");
-    $("wt-play-b").textContent = "Play";
+    $("wt-play-b").textContent = T("site.play");
   }
   function home() { var c = TO.worldStore().home; return typeof c === "string" && /^[A-Z]{2}$/.test(c) ? c : ""; }
   function remember(c) {
@@ -59,24 +59,23 @@
   opt.checked = !W.off();
   opt.addEventListener("change", function () {
     W.setOff(!opt.checked);
-    $("wt-optnote").textContent = opt.checked
-      ? "Your results are added to the world's counts again, from your next game."
-      : "Your results stay out of the world's counts from now on, on this browser. You still see everyone else's.";
+    $("wt-optnote").textContent = opt.checked ? T("wt.opt_in_note") : T("wt.opt_out_note");
     $("wt-optnote").hidden = false;
     TO.count(opt.checked ? "world/opt-in" : "world/opt-out");
   });
 
   /* the week runs from Monday, as the server counts it */
   function monday(key) { var d = W.dateOf(key); return d ? W.shiftKey(key, -((d.getDay() + 6) % 7)) : key; }
-  function dayWords(key) { var d = W.dateOf(key); return d ? DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS[d.getMonth()] : ""; }
+  function dayWords(key) { var d = W.dateOf(key); return d ? (LG ? LG.date(d, { weekday: "long", day: "numeric", month: "long" }) : DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS[d.getMonth()]) : ""; }
+  function monthWords(d) { return LG ? LG.date(d, { month: "long", year: "numeric" }) : MONTHS[d.getMonth()] + " " + d.getFullYear(); }
   function words(key, sp) {
     var d = W.dateOf(key);
     if (!d) return "";
-    if (sp === "month") return MONTHS[d.getMonth()] + " " + d.getFullYear() + ", up to today";
-    if (sp === "week") return "From " + dayWords(monday(key)) + ", up to today";
+    if (sp === "month") return T("wt.month_up_to_today", { month: monthWords(d) });
+    if (sp === "week") return T("wt.from_up_to_today", { day: dayWords(monday(key)) });
     return dayWords(key);
   }
-  function when(sp) { return sp === "month" ? "this month" : sp === "week" ? "this week" : sp === "yday" ? "yesterday" : "today"; }
+  function when(sp) { return sp === "month" ? T("wt.this_month") : sp === "week" ? T("wt.this_week") : sp === "yday" ? T("wt.yesterday") : T("wt.today_lower"); }
   function ofSpan(sp) { return sp === "yday" ? "day" : sp; }        // the table the server and the ranking know
 
   function row(x, i, mine, value, sub, barMax) {
@@ -102,7 +101,7 @@
     return li;
   }
   function gap() { var li = el("li", "gap"); li.appendChild(el("span", "", "···")); li.setAttribute("aria-hidden", "true"); return li; }
-  function games(n) { return W.commas(n) + (n === 1 ? " game" : " games"); }
+  function games(n) { return T.n(n, "wt.games", { n: W.commas(n) }); }
 
   function mineCard(d, t, sp) {
     var box = $("wt-mine");
@@ -116,7 +115,7 @@
     note.hidden = true;
     note.setAttribute("role", "status");
     if (!name) {
-      box.appendChild(el("p", "wt-mine-line", "Your connection did not say which country you are in, so your games count for the world only."));
+      box.appendChild(el("p", "wt-mine-line", T("wt.no_country")));
       return;
     }
     var top = el("div", "wt-mine-top");
@@ -125,40 +124,38 @@
     top.appendChild(f);
     var nm = el("div", "wt-mine-name");
     nm.appendChild(el("b", "", name));
-    nm.appendChild(el("span", "", "Your country " + when(sp)));
+    nm.appendChild(el("span", "", T("wt.your_country_when", { when: when(sp) })));
     top.appendChild(nm);
     if (x && x.at) {
       var pl = el("div", "wt-place");
       pl.appendChild(el("b", "", W.nth(x.at)));
-      pl.appendChild(el("span", "", "of " + t.ranked.length));
+      pl.appendChild(el("span", "", T("wt.of_n", { n: t.ranked.length })));
       top.appendChild(pl);
     }
     box.appendChild(top);
 
     var facts = el("div", "wt-mine-facts");
     function fact(v, label) { var e = el("div", "wt-fact"); e.appendChild(el("b", "", v)); e.appendChild(el("span", "", label)); facts.appendChild(e); }
-    fact(x && x.at ? String(Math.round(x.s)) : "–", "score");
-    fact(x ? W.commas(x.played) : "0", x && x.played === 1 ? "game played" : "games played");
-    fact(String(Math.round(t.m)), "world's average");
+    fact(x && x.at ? String(Math.round(x.s)) : "–", T("wt.score"));
+    fact(x ? W.commas(x.played) : "0", x && x.played === 1 ? T("wt.game_played") : T("wt.games_played"));
+    fact(String(Math.round(t.m)), T("wt.world_avg"));
     box.appendChild(facts);
 
     var line = el("p", "wt-mine-line");
     if (x && x.at === 1) {
-      line.appendChild(document.createTextNode("Top of the world " + when(sp) + "!"));
+      line.appendChild(document.createTextNode(T("wt.top_of_world", { when: when(sp) })));
       if (t.ranked[1]) {
         var lead = Math.round(x.s - t.ranked[1].s);
-        line.appendChild(document.createTextNode(lead >= 1 ? " " + lead + (lead === 1 ? " point" : " points") + " ahead of " + W.countryName(t.ranked[1].c) + "." : " Only just ahead of " + W.countryName(t.ranked[1].c) + "."));
+        line.appendChild(document.createTextNode(" " + (lead >= 1 ? T.n(lead, "wt.points_ahead", { country: W.countryName(t.ranked[1].c) }) : T("wt.just_ahead_of", { country: W.countryName(t.ranked[1].c) }))));
       }
     } else if (x && x.at) {
       var above = t.ranked[x.at - 2], diff = Math.max(1, Math.round(above.s - x.s));
-      line.appendChild(el("b", "", diff + (diff === 1 ? " point" : " points")));
-      line.appendChild(document.createTextNode(" behind " + W.flag(above.c) + " " + W.countryName(above.c) + " (" + W.nth(above.at) + "). Every game a friend plays counts."));
+      line.innerHTML = T.n(diff, "wt.points_behind", { flag: W.flag(above.c), country: W.esc(W.countryName(above.c)), place: W.nth(above.at) });
     } else if (x && x.played) {
       var need = Math.max(1, t.min - x.n);
-      line.appendChild(el("b", "", need + " more " + (need === 1 ? "game" : "games")));
-      line.appendChild(document.createTextNode(" and " + name + " takes a place on the table."));
+      line.innerHTML = T.n(need, "wt.more_games_place", { country: W.esc(name) });
     } else {
-      line.textContent = sp === "day" ? "No games from " + name + " yet today. Be the first." : "No games from " + name + " " + when(sp) + ".";
+      line.textContent = sp === "day" ? T("wt.no_games_today", { country: name }) : T("wt.no_games_when", { country: name, when: when(sp) });
     }
     box.appendChild(line);
     if (sp !== "yday") {
@@ -181,14 +178,14 @@
     var box = el("div", "wt-duo");
     var inv = W.inviteButton(c, place, note, "wt-duo-inv"), name = W.countryName(c);
     inv.textContent = "";
-    inv.appendChild(el("span", "wt-long", name ? "Invite friends from " + name : "Invite friends"));
-    inv.appendChild(el("span", "wt-short", "Invite friends"));
+    inv.appendChild(el("span", "wt-long", name ? T("world.invite_from", { country: name }) : T("world.invite")));
+    inv.appendChild(el("span", "wt-short", T("world.invite")));
     box.appendChild(inv);
     var mine = inRoom(), a = el("a", "wt-duo-room");
     a.href = TO.here("../room/");
     a.id = "wt-room";
     a.insertAdjacentHTML("beforeend", ROOM_ICON);
-    a.appendChild(el("span", "", mine ? "Your room" : "Start a room"));
+    a.appendChild(el("span", "", mine ? T("wt.your_room") : T("wt.start_room")));
     a.addEventListener("click", function () { TO.count(mine ? "world/room" : "world/room-new"); });
     box.appendChild(a);
     return box;
@@ -241,8 +238,8 @@
     }
     $("wt-best-more").hidden = all || t.ranked.length <= 10;
     $("wt-best-note").textContent = t.ranked.length
-      ? t.ranked.length + (t.ranked.length === 1 ? " country" : " countries") + " with " + t.min + " games or more. Score out of 100."
-      : "No country has " + t.min + " games yet " + when(sp) + ". Yours could be the first.";
+      ? T.n(t.ranked.length, "wt.countries_with", { min: t.min })
+      : T("wt.no_country_yet", { min: t.min, when: when(sp) });
     $("wt-best-card").hidden = !t.rows.length;
     $("wt-share").hidden = !t.ranked.length;
 
@@ -263,8 +260,8 @@
 
     var total = (d.n || 0) + (d.calls || 0);
     $("wt-foot").textContent = total
-      ? W.commas(total) + (total === 1 ? " game" : " games") + " played " + when(sp) + ", in " + t.rows.length + (t.rows.length === 1 ? " country" : " countries") + "."
-      : "Nobody has finished a game " + when(sp) + " yet.";
+      ? T("wt.foot", { games: games(total), when: when(sp), countries: T.n(t.rows.length, "wt.countries") })
+      : T("wt.nobody_yet", { when: when(sp) });
   }
 
   function load(sp) {
@@ -274,7 +271,7 @@
     ["day", "yday", "week", "month"].forEach(function (s) { $("tab-" + s).setAttribute("aria-selected", s === sp ? "true" : "false"); });
     var key = sp === "yday" ? W.shiftKey(today, -1) : today;
     $("wt-mine").textContent = "";
-    $("wt-mine").appendChild(el("p", "wt-wait", "Counting the world…"));
+    $("wt-mine").appendChild(el("p", "wt-wait", T("world.counting")));
     return W.call("world", { d: key, span: ofSpan(sp) }).then(function (r) {
       if (span !== sp) return;                      // another tab was tapped meanwhile
       if (r.status !== 200) { fail(); return; }
@@ -285,7 +282,7 @@
     shown = null;
     var box = $("wt-mine");
     box.textContent = "";
-    box.appendChild(el("p", "wt-mine-line", "The world table can't be reached just now. Try again in a minute."));
+    box.appendChild(el("p", "wt-mine-line", T("wt.unreachable")));
     ["wt-conts-card", "wt-best-card", "wt-busy-card"].forEach(function (id) { $(id).hidden = true; });
   }
 
@@ -377,13 +374,13 @@
   function period(key, sp) {
     var d = W.dateOf(key);
     if (!d) return "";
-    if (sp === "month") return MONTHS[d.getMonth()] + " " + d.getFullYear();
-    if (sp === "week") { var m = W.dateOf(monday(key)); return "Week of " + m.getDate() + " " + MONTHS[m.getMonth()]; }
+    if (sp === "month") return monthWords(d);
+    if (sp === "week") { var m = W.dateOf(monday(key)); return T("wt.week_of", { day: LG ? LG.date(m, { day: "numeric", month: "long" }) : m.getDate() + " " + MONTHS[m.getMonth()] }); }
     return dayWords(key);
   }
   function topLine(sp, busy) {
-    var w = sp === "month" ? "this month" : sp === "week" ? "this week" : sp === "yday" ? "that day" : "today";
-    return (busy ? "Most games " : "Top of the world ") + w;
+    var w = sp === "month" ? T("wt.this_month") : sp === "week" ? T("wt.this_week") : sp === "yday" ? T("wt.that_day") : T("wt.today_lower");
+    return busy ? T("wt.pic_most_games", { when: w }) : T("wt.pic_top", { when: w });
   }
   /* two tables can be shared: the best scores (the default) and, since 16 Oct 2026 on Khayyam's word ("maybe the
      same share top 10 country for most games played part too?"), the most games played. Both are drawn alike;
@@ -411,7 +408,7 @@
     x.textAlign = "right";
     x.globalAlpha = 0.75;
     x.font = "700 36px " + F;
-    x.fillText(busy ? "Most games played" : "World table", WD - M, 104);
+    x.fillText(busy ? T("wt.most_games_played") : T("world.table"), WD - M, 104);
     x.globalAlpha = 1;
     x.textAlign = "left";
     fit(x, period(d.d, sp), "800", 76, FD, WD - 2 * M, 40);
@@ -431,13 +428,13 @@
     x.fillText(topLine(sp, busy).toUpperCase(), M + 104, top + 75);
     x.textAlign = "right";
     x.font = "800 30px " + F;
-    x.fillText("1ST", WD - M - 44, top + 75);
+    x.fillText(T("wt.pic_first"), WD - M - 44, top + 75);
     x.textAlign = "left";
     var fw = drawFlag(x, w1.c, M + 44, top + 178, 120, true);
     x.fillStyle = INK;
     var nl = M + 44 + fw + 30, nw = WD - M - 44 - nl;
     x.font = "700 40px " + F;
-    x.fillText("Congratulations,", nl, top + 150);
+    x.fillText(T("wt.congratulations"), nl, top + 150);
     fit(x, W.countryName(w1.c) + "!", "800", 76, FD, nw, 36);
     x.fillText(W.countryName(w1.c) + "!", nl - 2, top + 226);
     /* its score, games and lead */
@@ -449,16 +446,16 @@
       var sum = 0;
       list.forEach(function (r) { sum += r.played; });
       var part = sum ? Math.round(100 * w1.played / sum) : 0;
-      facts = [[W.commas(w1.played), w1.played === 1 ? "game" : "games"], [(part < 1 && w1.played ? "<1" : String(part)) + "%", "of all games"]];
+      facts = [[W.commas(w1.played), w1.played === 1 ? T("wt.game") : T("wt.games_word")], [(part < 1 && w1.played ? "<1" : String(part)) + "%", T("wt.of_all_games")]];
       if (list[1]) {
         var more = w1.played - list[1].played;
-        facts.push(more >= 1 ? ["+" + W.commas(more), "ahead of 2nd"] : ["0", "level with 2nd"]);
+        facts.push(more >= 1 ? ["+" + W.commas(more), T("wt.ahead_of_2nd")] : ["0", T("wt.level_with_2nd")]);
       }
     } else {
-      facts = [[String(Math.round(w1.s)), "points"], [W.commas(w1.played), w1.played === 1 ? "game" : "games"]];
+      facts = [[String(Math.round(w1.s)), T("wt.points")], [W.commas(w1.played), w1.played === 1 ? T("wt.game") : T("wt.games_word")]];
       if (list[1]) {
         var lead = Math.round(w1.s - list[1].s);
-        facts.push(lead >= 1 ? ["+" + lead, "ahead of 2nd"] : ["0", "just ahead"]);
+        facts.push(lead >= 1 ? ["+" + lead, T("wt.ahead_of_2nd")] : ["0", T("wt.just_ahead")]);
       }
     }
     var cw = (WD - 2 * M - 88) / 3;
@@ -498,17 +495,17 @@
     /* the challenge */
     var total = (d.n || 0) + (d.calls || 0);
     x.fillStyle = "#ffffff";
-    var ask = busy ? "Can your country catch them?" : "Can your country beat them?";
+    var ask = busy ? T("wt.catch_them") : T("wt.beat_them");
     fit(x, ask, "800", 62, FD, WD - 2 * M, 36);
     x.fillText(ask, M - 2, 1228);
     var where = TO.address() || "logicers.com";
     x.fillStyle = GOLD;
     x.font = "800 38px " + F;
-    x.fillText(where + "/world", M, 1290);
-    var pw = x.measureText(where + "/world").width;
+    x.fillText(where + "/" + (LG ? LG.base : "") + "world", M, 1290);
+    var pw = x.measureText(where + "/" + (LG ? LG.base : "") + "world").width;
     x.textAlign = "right";
     x.fillStyle = "rgba(255, 255, 255, .7)";
-    var sum = W.commas(total) + (total === 1 ? " game, " : " games, ") + t.rows.length + (t.rows.length === 1 ? " country" : " countries");
+    var sum = games(total) + ", " + T.n(t.rows.length, "wt.countries");
     fit(x, sum, "600", 32, F, WD - 2 * M - pw - 30, 20);
     x.fillText(sum, WD - M, 1290);
     x.textAlign = "left";
@@ -518,12 +515,12 @@
     var list = picRows(t, busy), w1 = list[0], name = W.countryName(w1.c), mine = (d.you || {}).c, me = null;
     list.forEach(function (r) { if (r.c === mine) me = r; });
     var lines = [busy
-      ? (sp === "yday" ? "🎮 " + name + " played the most Logicers games yesterday!" : "🎮 " + name + " has played the most Logicers games " + when(sp) + "!")
-      : (sp === "yday" ? "🏆 " + name + " was top of the Logicers world table yesterday!" : "🏆 " + name + " is top of the Logicers world table " + when(sp) + "!")];
-    function line(r) { return r.at + ". " + W.flag(r.c) + " " + W.countryName(r.c) + " " + r.big + (busy ? (r.played === 1 ? " game" : " games") : ""); }
+      ? (sp === "yday" ? "🎮 " + T("wt.share_most_yday", { country: name }) : "🎮 " + T("wt.share_most", { country: name, when: when(sp) }))
+      : (sp === "yday" ? "🏆 " + T("wt.share_top_yday", { country: name }) : "🏆 " + T("wt.share_top", { country: name, when: when(sp) }))];
+    function line(r) { return r.at + ". " + W.flag(r.c) + " " + W.countryName(r.c) + " " + r.big + (busy ? " " + (r.played === 1 ? T("wt.game") : T("wt.games_word")) : ""); }
     list.slice(0, 3).forEach(function (r) { lines.push(line(r)); });
     if (me && me.at > 3) lines.push("…" + line(me));
-    lines.push((busy ? "Can your country catch them? " : "Can your country beat them? ") + W.tableUrl());
+    lines.push((busy ? T("wt.catch_them") : T("wt.beat_them")) + " " + W.tableUrl());
     return lines.join("\n");
   }
   function fileName(d, sp, busy) {
@@ -541,9 +538,8 @@
     var d = shown.d, t = shown.t, sp = shown.sp, url = "", blob = null, text = shareText(d, t, sp, busy);
     try { url = drawTable(d, t, sp, busy).toDataURL("image/png"); blob = blobOf(url); } catch (e) { url = ""; blob = null; }
     TO.count(busy ? "world/share-games" : "world/share");
-    $("share-title").textContent = busy ? "Share the most games played" : "Share the table";
-    $("share-img").alt = busy ? "The most games played as a picture: the top ten countries, the first with its flag and its games."
-      : "The world table as a picture: the top ten countries, the first with its flag, score and games.";
+    $("share-title").textContent = busy ? T("wt.share_most_title") : T("wt.share_title");
+    $("share-img").alt = busy ? T("wt.share_most_alt") : T("wt.share_alt");
     TO.share({ blob: blob, filename: fileName(d, sp, busy), text: text }).then(function (how) {
       if (how !== "fallback") return;
       var img = $("share-img"), save = $("share-save");
@@ -557,7 +553,7 @@
       $("share-copied").textContent = "";
       $("share-copy").onclick = function () {
         TO.copyText(text).then(function (ok) {
-          $("share-copied").textContent = ok ? "Copied. Paste it into a chat or a post." : "Copying did not work here. The link is: " + W.tableUrl();
+          $("share-copied").textContent = ok ? T("wt.copied_post") : T("world.copy_failed", { url: W.tableUrl() });
         });
       };
       TO.openDialog($("dlg-share"));
@@ -578,7 +574,7 @@
   if (!W.on()) {
     var box = $("wt-mine");
     box.textContent = "";
-    box.appendChild(el("p", "wt-mine-line", "The world table is not switched on here."));
+    box.appendChild(el("p", "wt-mine-line", T("wt.off_here")));
     return;
   }
   /* today's games not yet counted go first, so your own country already holds them */

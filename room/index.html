@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lg-path="room/" data-lg-root="../">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
@@ -7,17 +7,22 @@
      seen to miss these tags when they sit after bulky inline styles. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Logicers">
-<meta property="og:title" content="You are invited to a room">
-<meta property="og:description" content="A room of friends playing the same small daily games, with a table for the day, the week and the month. No login, nothing to install.">
+<meta property="og:title" content="You are invited to a room" data-s-content="rm.og_title">
+<meta property="og:description" content="A room of friends playing the same small daily games, with a table for the day, the week and the month. No login, nothing to install." data-s-content="rm.og_desc">
 <meta property="og:url" content="https://logicers.com/room/">
 <meta property="og:image" content="https://logicers.com/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rooms: play the daily games with your friends | Logicers</title>
+<title data-s="rm.page_title">Rooms: play the daily games with your friends | Logicers</title>
 <link rel="canonical" href="https://logicers.com/room/">
-<meta name="description" content="A room is 2 to 50 friends playing the same small daily games, with a table for the day, the week and the month. Joining is one link. No login, no password, nothing to install.">
+<link rel="alternate" hreflang="en" href="https://logicers.com/room/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/room/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/room/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/room/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/room/">
+<meta name="description" content="A room is 2 to 50 friends playing the same small daily games, with a table for the day, the week and the month. Joining is one link. No login, no password, nothing to install." data-s-content="rm.page_desc">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
 <meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
 <meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
@@ -30,7 +35,9 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=32dcce2ab5">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=e165ea97e7">
+<script src="../assets/lang/en.js?v=493f688067"></script>
+<script src="../assets/js/lang.js?v=b48aebb299"></script>
 <link rel="stylesheet" href="room.css?v=bd9537a1ed">
 </head>
 <body class="game d-page" data-g="room">
@@ -38,37 +45,38 @@
 <header class="bar">
   <a class="wordmark" href="../">Logicers</a>
   <div class="bar-tools">
-    <button class="chip round" type="button" data-open="dlg-help" aria-label="What this is">?</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="What this is" data-s-aria-label="rm.what_aria">?</button>
   </div>
 </header>
 
 <main class="wrap d-wrap rm-wrap" id="app">
-  <p class="meta"><b>Rooms</b> <span id="rm-date"></span></p>
+  <p class="meta"><b data-s="rm.rooms">Rooms</b> <span id="rm-date"></span></p>
 
-  <h1 class="d-h1" id="rm-head">Play with your friends</h1>
-  <p class="d-lede" id="rm-lede">A room is 2 to 50 friends playing the same daily games, with a table for the day, the week and the month.</p>
+  <h1 class="d-h1" id="rm-head" data-s="rm.play_with_friends">Play with your friends</h1>
+  <p class="d-lede" id="rm-lede" data-s="rm.lede">A room is 2 to 50 friends playing the same daily games, with a table for the day, the week and the month.</p>
 
   <!-- the promise, high up, where a careful person lands: one line, with the full words one tap
        away under "?" and in the About sheet (the second round cut the paragraphs off the page) -->
   <p class="d-safe" id="rm-safe">
     <span class="d-tick" aria-hidden="true">✓</span>
-    No login, no password. Joining sends only your daily results — the game, your score, your guess, the day, your name. Leaving deletes everything of yours at once. The full words are under <b>?</b>.
+    <span data-s="rm.safe">No login, no password. Joining sends only your daily results — the game, your score, your guess, the day, your name. Leaving deletes everything of yours at once. The full words are under <b>?</b>.</span>
   </p>
 
   <section class="panel rm-panel" id="rm-panel" aria-labelledby="rm-head">
     <p class="rm-state" id="rm-state"></p>
 
-    <div id="rm-switch" class="rm-switch" hidden role="group" aria-label="Your rooms"></div>
+    <div id="rm-switch" class="rm-switch" hidden role="group" aria-label="Your rooms" data-s-aria-label="rm.your_rooms_aria"></div>
 
     <div id="rm-join" hidden>
       <div class="d-who" id="rm-who"></div>
-      <button class="rm-big" id="rm-join-go" type="button">Join this room</button>
-      <p class="quiet rm-small">One tap. If you have no name here yet, a window asks what your friends call you.</p>
+      <button class="rm-big" id="rm-join-go" type="button" data-s="rm.join_this">Join this room</button>
+      <p class="quiet rm-small" data-s="rm.join_note">One tap. If you have no name here yet, a window asks what your friends call you.</p>
     </div>
 
     <div id="rm-make" hidden>
-      <button class="rm-big" id="rm-make-go" type="button">Make a room</button>
-      <p class="quiet rm-small">One tap makes the room and its link. You send the link yourself, and whoever opens it is in.</p>
+      <button class="rm-big" id="rm-make-go" type="button" data-s="rm.make">Make a room</button>
+      <p class="quiet rm-small" data-s="rm.make_note">One tap makes the room and its link. You send the link yourself, and whoever opens it is in.</p>
     </div>
 
     <div id="rm-table" hidden></div>
@@ -77,12 +85,12 @@
   </section>
 
   <section class="d-steps" aria-labelledby="rm-steps-h">
-    <h2 class="d-demo-h" id="rm-steps-h">How it works</h2>
+    <h2 class="d-demo-h" id="rm-steps-h" data-s="rm.how_h">How it works</h2>
     <ol class="d-ol">
-      <li>One of you makes the room and sends its link to the group chat.</li>
-      <li>Everyone who opens the link is in. Up to 50 of you; no login, no password.</li>
-      <li>Play the daily games as always. Each finished game joins the room's board by itself.</li>
-      <li>Day, Week, Month: one tap shows each table, with crowns, streaks and who is still to play.</li>
+      <li data-s="rm.how_1">One of you makes the room and sends its link to the group chat.</li>
+      <li data-s="rm.how_2">Everyone who opens the link is in. Up to 50 of you; no login, no password.</li>
+      <li data-s="rm.how_3">Play the daily games as always. Each finished game joins the room's board by itself.</li>
+      <li data-s="rm.how_4">Day, Week, Month: one tap shows each table, with crowns, streaks and who is still to play.</li>
     </ol>
   </section>
 
@@ -91,35 +99,35 @@
 
 <dialog id="dlg-help" class="sheet" aria-labelledby="help-h">
   <div class="sheet-in">
-    <button class="sheet-x" type="button" data-close aria-label="Close">×</button>
-    <h2 id="help-h">Rooms</h2>
-    <p>A room is 2 to 50 friends playing the same small daily games. One link makes you a member; every daily game you finish then joins the room's board by itself.</p>
-    <h3>The link is the key</h3>
-    <p class="quiet">No login, no password: the room's code is drawn at random — far too many to guess, and the server slows anyone who tries — and rides after the <b>#</b>, which browsers never send to other sites. Whoever has the link is in, so share it only with the friends you mean.</p>
-    <h3>Your name and your face</h3>
-    <p class="quiet">Nobody is given a name. The first time one is needed a window asks what your friends call you; it is kept in this browser and sent with your scores. Your face is a coloured circle drawn from your name — nothing is uploaded. Two members of one room cannot share a name.</p>
-    <h3>Crowns, the day, the week and the month</h3>
-    <p class="quiet">A game's crown goes to whoever was strictly closest that day, by the game's own rule — The Club by most right, Your Call never a win. A tie takes nothing, and a game only you played takes nothing. A point per crown, the same in every table: the day's, the week's (Monday to Sunday) and the month's, which starts fresh on the 1st; each can also show the one before. Friends' guesses show on a game's page only once you have played it yourself, and a room never touches your streak or your albums.</p>
-    <h3>What is sent, and what is kept</h3>
-    <p class="quiet" id="rm-privacy" data-privacy="rooms">When you finish a daily game, your phone sends the game, your score, your guess, the day and your name to the rooms you are in — nothing else, nothing of any answer, and nothing at all if you are in no room. A reaction you tap is kept the same way. It all goes to the site's own small server and nowhere further. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole, and no address, email or cookie is stored for anyone. Leaving a room deletes everything of yours — scores, guesses and reactions — at once, and whoever made the room can delete the whole room. If anything is ever stuck, write to the contact address and it will be deleted by hand.</p>
-    <h3>Contact</h3>
-    <p class="quiet">A question, a mistake, or something to delete? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+    <button class="sheet-x" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="help-h" data-s="rm.rooms">Rooms</h2>
+    <p data-s="rm.help_lede">A room is 2 to 50 friends playing the same small daily games. One link makes you a member; every daily game you finish then joins the room's board by itself.</p>
+    <h3 data-s="rm.help_key_h">The link is the key</h3>
+    <p class="quiet" data-s="rm.help_key">No login, no password: the room's code is drawn at random — far too many to guess, and the server slows anyone who tries — and rides after the <b>#</b>, which browsers never send to other sites. Whoever has the link is in, so share it only with the friends you mean.</p>
+    <h3 data-s="rm.help_name_h">Your name and your face</h3>
+    <p class="quiet" data-s="rm.help_name">Nobody is given a name. The first time one is needed a window asks what your friends call you; it is kept in this browser and sent with your scores. Your face is a coloured circle drawn from your name — nothing is uploaded. Two members of one room cannot share a name.</p>
+    <h3 data-s="rm.help_crowns_h">Crowns, the day, the week and the month</h3>
+    <p class="quiet" data-s="rm.help_crowns">A game's crown goes to whoever was strictly closest that day, by the game's own rule — The Club by most right, Your Call never a win. A tie takes nothing, and a game only you played takes nothing. A point per crown, the same in every table: the day's, the week's (Monday to Sunday) and the month's, which starts fresh on the 1st; each can also show the one before. Friends' guesses show on a game's page only once you have played it yourself, and a room never touches your streak or your albums.</p>
+    <h3 data-s="rm.help_sent_h">What is sent, and what is kept</h3>
+    <p class="quiet" id="rm-privacy" data-privacy="rooms" data-s="priv.rooms_page">When you finish a daily game, your phone sends the game, your score, your guess, the day and your name to the rooms you are in — nothing else, nothing of any answer, and nothing at all if you are in no room. A reaction you tap is kept the same way. It all goes to the site's own small server and nowhere further. The server keeps this month and the last, then deletes; a room nobody has played in for 60 days is deleted whole, and no address, email or cookie is stored for anyone. Leaving a room deletes everything of yours — scores, guesses and reactions — at once, and whoever made the room can delete the whole room. If anything is ever stuck, write to the contact address and it will be deleted by hand.</p>
+    <h3 data-s="wt.contact_h">Contact</h3>
+    <p class="quiet" data-s="rm.contact">A question, a mistake, or something to delete? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
   </div>
 </dialog>
 
 <dialog id="dlg-sure" class="sheet rm-sure" aria-labelledby="sure-h">
   <div class="sheet-in">
-    <button class="sheet-x" type="button" data-close aria-label="Close">×</button>
-    <h2 id="sure-h">Are you sure?</h2>
+    <button class="sheet-x" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="sure-h" data-s="rm.sure_h">Are you sure?</h2>
     <p id="sure-words"></p>
-    <button class="rm-big rm-danger" id="sure-go" type="button">Yes</button>
-    <button class="rm-quiet" id="sure-no" type="button" data-close>Keep things as they are</button>
+    <button class="rm-big rm-danger" id="sure-go" type="button" data-s="rm.yes">Yes</button>
+    <button class="rm-quiet" id="sure-no" type="button" data-close data-s="rm.keep">Keep things as they are</button>
   </div>
 </dialog>
 
-<script src="../assets/js/turnsout.js?v=c9f5c572f3"></script>
-<script src="../assets/js/duel.js?v=fda7b2b19b"></script>
-<script src="../assets/js/rooms.js?v=ec756b09fc"></script>
-<script src="room.js?v=cd4640069f"></script>
+<script src="../assets/js/turnsout.js?v=b0b0239919"></script>
+<script src="../assets/js/duel.js?v=04294e8296"></script>
+<script src="../assets/js/rooms.js?v=a42d4cf6f9"></script>
+<script src="room.js?v=a676065984"></script>
 </body>
 </html>

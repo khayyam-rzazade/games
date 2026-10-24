@@ -79,7 +79,7 @@
                 "July", "August", "September", "October", "November", "December"];
   function dateWords(key) {
     var d = dateOf(key);
-    return d ? d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.getFullYear() : "";
+    return d ? (LG ? LG.date(d, { day: "numeric", month: "long", year: "numeric" }) : d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.getFullYear()) : "";
   }
 
   /* Which day number a game was on, on that date. 0 means the game had not started yet. */
@@ -124,6 +124,7 @@
      nothing about how deep in the site we are. */
   var SELF = (document.currentScript && document.currentScript.src) || "";
   var ROOT = /assets\/js\/duel\.js/.test(SELF) ? SELF.replace(/assets\/js\/duel\.js.*$/, "") : "";
+  var LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   function base() {
     if (ROOT) return TO.here(ROOT + "duel/");
     var dir = window.location.pathname.replace(/[^\/]*$/, "");          // the folder we stand in
@@ -147,8 +148,7 @@
     key = key || todayKey();
     if (!named()) return "";
     var n = countOf(mine(key));
-    return "I played today's Logicers — " + n + " of " + TO.GAMES.length +
-      " games. Think you can beat that? " + link(key);
+    return T("duel.message", { n: n, of: TO.GAMES.length }) + " " + link(key);
   }
 
   /* ---------------- reading a link ---------------- */
@@ -266,9 +266,9 @@
 
   /* ---------------- the words ---------------- */
   function headline(t) {
-    if (!t.live) return "Who was closer?";
-    if (t.others.length === 1) return "You " + t.you + " – " + t.scores[t.others[0].n] + " " + pretty(t.others[0].n);
-    return "You " + t.you + " of " + playableCount(t);
+    if (!t.live) return T("duel.who_closer");
+    if (t.others.length === 1) return T("duel.you_vs", { you: t.you, them: t.scores[t.others[0].n], name: pretty(t.others[0].n) });
+    return T("duel.you_of", { you: t.you, of: playableCount(t) });
   }
   function playableCount(t) {
     var n = 0;
@@ -290,31 +290,31 @@
     if (!row || !row.played) return null;
     var one = t.others.length === 1 ? pretty(t.others[0].n) : null;
     if (!row.them.length) {
-      return { flat: one ? one + " has not played this one yet." : "No one else has played this one yet.", strong: "" };
+      return { flat: one ? T("duel.not_played_one", { name: one }) : T("duel.not_played_any"), strong: "" };
     }
     if (row.match) {
       var same = row.them.filter(function (x) { return x.same; }).length;
-      if (one) return { flat: "", strong: same ? one + " made your call." : one + " chose differently." };
-      return { flat: "", strong: same + " of " + row.them.length + " made your call." };
+      if (one) return { flat: "", strong: same ? T("duel.same_call_one", { name: one }) : T("duel.different_call_one", { name: one }) };
+      return { flat: "", strong: T("duel.same_call_n", { n: same, of: row.them.length }) };
     }
     if (one) {
-      if (row.state === "won") return { flat: "", strong: "You were closer than " + one + "." };
-      if (row.state === "lost") return { flat: "", strong: one + " was closer." };
-      return { flat: "", strong: "A tie with " + one + "." };
+      if (row.state === "won") return { flat: "", strong: T("duel.closer_than_one", { name: one }) };
+      if (row.state === "lost") return { flat: "", strong: T("duel.one_was_closer", { name: one }) };
+      return { flat: "", strong: T("duel.tie_with_one", { name: one }) };
     }
-    if (row.lostTo === 0 && row.tied === 0) return { flat: "", strong: "You were closest." };
-    if (row.beat === 0 && row.tied === 0) return { flat: "", strong: "All " + row.lostTo + " were closer." };
-    return { flat: "", strong: "Closer than " + row.beat + " of " + row.them.length + "." };
+    if (row.lostTo === 0 && row.tied === 0) return { flat: "", strong: T("duel.closest") };
+    if (row.beat === 0 && row.tied === 0) return { flat: "", strong: T("duel.all_closer", { n: row.lostTo }) };
+    return { flat: "", strong: T("duel.closer_than_n", { n: row.beat, of: row.them.length }) };
   }
   function tallyWords(t) {
     if (!t.live) return "";
     if (t.others.length === 1) {
-      return "Today: you " + t.you + " – " + t.scores[t.others[0].n] + " " + pretty(t.others[0].n) +
-        (t.ties ? " · " + t.ties + (t.ties === 1 ? " tie" : " ties") : "");
+      return T("duel.today_vs", { you: t.you, them: t.scores[t.others[0].n], name: pretty(t.others[0].n) }) +
+        (t.ties ? " · " + T.n(t.ties, "duel.ties") : "");
     }
-    return "Today: " + standings(t).map(function (r) {
-      return (r.you ? "you" : pretty(r.n)) + " " + r.v;
-    }).join(" · ");
+    return T("duel.today_list", { list: standings(t).map(function (r) {
+      return (r.you ? T("duel.you_lower") : pretty(r.n)) + " " + r.v;
+    }).join(" · ") });
   }
 
   /* ---------------- little pieces of page ---------------- */
@@ -340,12 +340,12 @@
     box.appendChild(top);
     box.appendChild(el("p", "duel-mini-head", headline(t)));
     if (!t.live) {
-      box.appendChild(el("p", "duel-mini-sub", "I played " + countOf(t.mine) + " of " + TO.GAMES.length + " today."));
+      box.appendChild(el("p", "duel-mini-sub", T("duel.i_played", { n: countOf(t.mine), of: TO.GAMES.length })));
     } else if (t.others.length > 1) {
       var ol = el("ul", "duel-mini-list");
       standings(t).forEach(function (r) {
         var li = el("li", r.you ? "you" : "");
-        li.appendChild(el("span", "", r.you ? "You" : pretty(r.n)));
+        li.appendChild(el("span", "", r.you ? T("duel.you") : pretty(r.n)));
         li.appendChild(el("b", "", String(r.v)));
         ol.appendChild(li);
       });
@@ -365,7 +365,7 @@
     box.appendChild(marks);
     if (t.live) {                        // the same legend the drawn card carries, so the two really match
       var key = el("p", "duel-mini-key");
-      [["won", "you"], ["lost", "them"], ["tie", "a tie"]].forEach(function (b) {
+      [["won", T("duel.key_you")], ["lost", T("duel.key_them")], ["tie", T("duel.key_tie")]].forEach(function (b) {
         var sp = el("span", "");
         sp.appendChild(el("i", "s-" + b[0]));
         sp.appendChild(document.createTextNode(b[1]));
@@ -428,13 +428,13 @@
     var y = 450, my;
     if (!t.live) {
       x.font = "600 44px " + F; x.fillStyle = "rgba(255, 255, 255, .80)";
-      x.fillText("I played " + countOf(t.mine) + " of " + TO.GAMES.length + " today.", W / 2, y);
+      x.fillText(T("duel.i_played", { n: countOf(t.mine), of: TO.GAMES.length }), W / 2, y);
       my = 700;
     } else if (t.others.length > 1) {
       var rows = standings(t);
       var step = rows.length > 5 ? 56 : 66, fs = rows.length > 5 ? 38 : 44;
       rows.forEach(function (r) {
-        var nm = r.you ? "You" : pretty(r.n);
+        var nm = r.you ? T("duel.you") : pretty(r.n);
         x.font = (r.you ? "800 " : "600 ") + fs + "px " + F;
         x.textAlign = "left"; x.fillStyle = r.you ? "#fff" : "rgba(255, 255, 255, .78)";
         var room = W - 2 * MG - 160, ns = fs;
@@ -450,7 +450,7 @@
     } else {
       if (t.ties) {
         x.font = "600 42px " + F; x.fillStyle = "rgba(255, 255, 255, .72)";
-        x.fillText("and " + t.ties + (t.ties === 1 ? " tie" : " ties"), W / 2, y);
+        x.fillText(T("duel.and_ties", { ties: T.n(t.ties, "duel.ties") }), W / 2, y);
       }
       my = 700;
     }
@@ -480,7 +480,7 @@
        only when there is room for it, which a big table may not leave. */
     var legend = my + 104 <= 1080 && t.live;
     if (legend) {
-      var ly = my + 104, bits = [["won", "you"], ["lost", "them"], ["tie", "a tie"]];
+      var ly = my + 104, bits = [["won", T("duel.key_you")], ["lost", T("duel.key_them")], ["tie", T("duel.key_tie")]];
       x.font = "600 30px " + F;
       var wide = bits.reduce(function (a, b) { return a + 40 + x.measureText(b[1]).width + 34; }, 0) - 34;
       var lx = W / 2 - wide / 2;
@@ -500,13 +500,13 @@
 
     /* the invitation, plain: no "you've won", no countdown, no urgency */
     x.textAlign = "center"; x.fillStyle = "#fff"; x.font = "800 64px " + FD;
-    x.fillText(t.live ? "Who was closer?" : "Same games, same day.", W / 2, 1182);
+    x.fillText(t.live ? T("duel.who_closer") : T("duel.same_games"), W / 2, 1182);
     var where = TO.address() || "logicers.com";
     x.font = "600 40px " + F; x.fillStyle = "rgba(255, 255, 255, .72)";
-    x.fillText("Play at " + where, W / 2, 1254);
+    x.fillText(T("duel.play_at", { where: where }), W / 2, 1254);
 
     shot = { fits: fits, head: head, marks: t.rows.map(function (r) { return t.live ? r.state : (r.played ? "won" : "none"); }),
-             words: [head, t.live ? "Who was closer?" : "Same games, same day.", "Play at " + where, dateWords(t.key)],
+             words: [head, t.live ? T("duel.who_closer") : T("duel.same_games"), T("duel.play_at", { where: where }), dateWords(t.key)],
              dotY: my, legend: legend, rows: t.live && t.others.length > 1 ? standings(t).length : 0 };
     return c;
   }
@@ -552,11 +552,11 @@
       var inn = el("div", "duel-ask-in");
       var x = el("button", "duel-ask-x", "×");
       x.type = "button";
-      x.setAttribute("aria-label", "Close");
-      var h = el("h2", "", "What do your friends call you?");
+      x.setAttribute("aria-label", T("site.close"));
+      var h = el("h2", "", T("duel.ask_name"));
       h.id = "duel-ask-h";
       asker.setAttribute("aria-labelledby", "duel-ask-h");
-      var p = el("p", "duel-ask-lede", "They see this name on the card. There is no account and nothing to sign up for.");
+      var p = el("p", "duel-ask-lede", T("duel.ask_lede"));
       var f = document.createElement("input");
       f.type = "text";
       f.id = "duel-ask-in";
@@ -565,12 +565,11 @@
       f.autocomplete = "nickname";
       f.setAttribute("enterkeyhint", "done");
       f.setAttribute("aria-describedby", "duel-ask-say");
-      f.setAttribute("aria-label", "Your name");
-      f.placeholder = "Your name";
-      var go = el("button", "duel-ask-go", "Save and send");
+      f.setAttribute("aria-label", T("duel.your_name"));
+      f.placeholder = T("duel.your_name");
+      var go = el("button", "duel-ask-go", T("duel.save_send"));
       go.type = "button";
-      var say = el("p", "duel-ask-say",
-        "Kept in this browser only. It travels inside every link you send, so pick a name your friends will know you by.");
+      var say = el("p", "duel-ask-say", T("duel.ask_say"));
       say.id = "duel-ask-say";
       inn.appendChild(x); inn.appendChild(h); inn.appendChild(p);
       inn.appendChild(f); inn.appendChild(go); inn.appendChild(say);
@@ -581,8 +580,7 @@
       function keep() {
         var got = setName(asker.__f.value);
         if (!got) {
-          asker.__say.textContent = "That will not fit on the card: up to " + MAXNAME +
-            " letters, and no < > & = # signs.";
+          asker.__say.textContent = T("duel.name_too_long", { n: MAXNAME });
           asker.__f.focus();
           return;
         }
@@ -594,9 +592,9 @@
       f.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); keep(); } });
     }
     asker.__after = after;
-    asker.__go.textContent = word || "Save and send";
+    asker.__go.textContent = word || T("duel.save_send");
     asker.__f.value = me();
-    asker.__say.textContent = "Kept in this browser only. It travels inside every link you send, so pick a name your friends will know you by.";
+    asker.__say.textContent = T("duel.ask_say");
     TO.openDialog(asker);
     window.setTimeout(function () { try { asker.__f.focus(); asker.__f.select(); } catch (e) { /* ignore */ } }, 30);
     return asker;
@@ -634,9 +632,9 @@
     var who = el("p", "who");
     var nameBtn = el("button", "who-name", me());
     nameBtn.type = "button";
-    var rename = el("button", "who-change", "Change");
+    var rename = el("button", "who-change", T("duel.change"));
     rename.type = "button";
-    var add = el("button", "who-add", "Add your name");
+    var add = el("button", "who-add", T("duel.add_name"));
     add.type = "button";
     who.appendChild(nameBtn);
     who.appendChild(rename);
@@ -654,8 +652,8 @@
     }
     nameBtn.addEventListener("click", function () { askName(showName); });
     rename.addEventListener("click", function () { askName(showName); });
-    add.addEventListener("click", function () { askName(showName, "Save"); });
-    var go = el("button", "who-send", "Send my day");
+    add.addEventListener("click", function () { askName(showName, T("duel.save")); });
+    var go = el("button", "who-send", T("duel.send_day"));
     go.type = "button";
     row.appendChild(who);
     row.appendChild(go);
@@ -665,7 +663,7 @@
     go.addEventListener("click", function () {
       send(key, function (text) {
         TO.copyText(text).then(function (ok) {
-          note.textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + link(key);
+          note.textContent = ok ? T("world.copied") : T("world.copy_failed", { url: link(key) });
           note.hidden = false;
         });
       }, showName);
@@ -691,7 +689,7 @@
 
     var box = el("section", "duel");
     box.id = "duel";
-    box.setAttribute("aria-label", "Who Was Closer");
+    box.setAttribute("aria-label", T("duel.title"));
     if (o.game) {
       var said = lineFor(t, o.game);
       if (said) {
@@ -720,14 +718,12 @@
     if (!host) return;
     var h = document.createElement("h3");
     h.id = "duel-help";
-    h.textContent = "Who Was Closer";
+    h.textContent = T("duel.title");
     var p = el("p", "quiet");
-    p.appendChild(document.createTextNode("Send one link from the end of any game and a friend plays the same day. " +
-      "After each game you both see who was closer. No login, nothing to install: the scores ride inside the link " +
-      "itself and never reach a server. The name you choose travels in it too, so pick one your friends will know you by. "));
+    p.appendChild(document.createTextNode(T("duel.help") + " "));
     var a = document.createElement("a");
     a.href = base();
-    a.textContent = "See what your friend sees";
+    a.textContent = T("duel.see_friend");
     p.appendChild(a);
     p.appendChild(document.createTextNode("."));
     var before = anchor.previousElementSibling && anchor.previousElementSibling.nodeName === "H3"

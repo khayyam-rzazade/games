@@ -45,6 +45,7 @@
   var SELF = (document.currentScript && document.currentScript.src) || "";
 
   var KEY = "turnsout:v1";
+  var LG = window.LG, T = LG ? LG.t : function (k) { return k; };   // the language layer (assets/js/lang.js): every word a player reads
   var memory = null; // used when the browser will not let us store anything (private mode)
 
   function obj(v) { return (v && typeof v === "object" && !Array.isArray(v)) ? v : null; }
@@ -152,14 +153,14 @@
       dlg.className = "to-save";
       dlg.setAttribute("aria-labelledby", "to-save-h");
       dlg.innerHTML = '<div class="sheet">' +
-        '<button class="chip round close" type="button" id="to-save-x" aria-label="Close">\u00d7</button>' +
-        '<h2 id="to-save-h">Save or share</h2>' +
-        '<p class="quiet">Save the picture and post it with the text, so friends can tap the link.</p>' +
-        '<img class="shot" id="to-save-img" alt="The picture to share.">' +
+        '<button class="chip round close" type="button" id="to-save-x" aria-label="' + esc(T("site.close")) + '">\u00d7</button>' +
+        '<h2 id="to-save-h">' + esc(T("share.title")) + '</h2>' +
+        '<p class="quiet">' + esc(T("share.lead")) + '</p>' +
+        '<img class="shot" id="to-save-img" alt="' + esc(T("share.alt")) + '">' +
         '<div class="actions to-save-acts">' +
-          '<a class="btn solid" id="to-save-pic" download="logicers.png">Save picture</a>' +
-          '<button class="btn ghost" id="to-save-copy" type="button">Copy text</button>' +
-          '<button class="btn ghost" id="to-save-more" type="button">More ways</button>' +
+          '<a class="btn solid" id="to-save-pic" download="logicers.png">' + esc(T("share.save")) + '</a>' +
+          '<button class="btn ghost" id="to-save-copy" type="button">' + esc(T("share.copy")) + '</button>' +
+          '<button class="btn ghost" id="to-save-more" type="button">' + esc(T("share.more")) + '</button>' +
         '</div>' +
         '<p class="copied" id="to-save-note" role="status"></p>' +
         '</div>';
@@ -181,10 +182,10 @@
     more.hidden = !file;                                   // no system menu here (the end of the day's own picture): no "More ways"
     copy.onclick = function () {
       copyText(o.text || "").then(function (done) {
-        note.textContent = done ? "Copied. Paste it with the picture into a chat or a post." : "Copying did not work here.";
+        note.textContent = done ? T("share.copied") : T("share.copy_failed");
       });
     };
-    pic.onclick = function () { note.textContent = "Saved to your downloads."; };
+    pic.onclick = function () { note.textContent = T("share.saved"); };
     more.onclick = function () {
       window.navigator.share({ files: [file], text: o.text }).then(function () { closeDialog(dlg); }, function () { /* closed: the window stays */ });
     };
@@ -192,6 +193,7 @@
     return Promise.resolve("sheet");
   }
 
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function copyText(text) {
     if (window.navigator.clipboard && window.navigator.clipboard.writeText) {
       return window.navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
@@ -355,42 +357,38 @@
   /* the end-of-day card's form, said where the privacy lines are, only on the pages that have it (the daily games' pages) */
   function feedbackNote(kind) {
     if (!feedbackKey() || (kind !== "long" && kind !== "short")) return "";
-    return " If you choose to message Khayyam from the end-of-day card, what you write goes through Web3Forms, a form service, to Logicers' inbox, together with the day and the results of your games, and nothing else about you.";
+    return " " + T("priv.feedback");
   }
   /* the daily reminder (18 Oct 2026): said where the privacy lines are, on the pages that offer it */
   function reminderNote(kind) {
     if (!pushKey() || (kind !== "long" && kind !== "short")) return "";
-    return " If you turn on the daily reminder, Logicers' server keeps your browser's notification address, the hour you usually play, your time zone, your streak, the day you last played and your country until you turn it off (or a month and a half after your last visit), and sends at most one reminder a day.";
+    return " " + T("priv.reminder");
   }
   function privacyNotes() {
     if (!counterOn()) return;
-    var VP = secondOn()
-      ? "Visits and plays are counted with GoatCounter, and visits also with Cloudflare Web Analytics, without identifying anyone."
-      : "Visits and plays are counted with GoatCounter, without identifying anyone.";
-    var V = secondOn()
-      ? "Visits are counted with GoatCounter and Cloudflare Web Analytics, without identifying anyone."
-      : "Visits are counted with GoatCounter, without identifying anyone.";
+    var VP = T(secondOn() ? "priv.counted_vp2" : "priv.counted_vp");
+    var V = T(secondOn() ? "priv.counted_v2" : "priv.counted_v");
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (el) {
       var kind = el.getAttribute("data-privacy");
       el.textContent = (kind === "short"
-        ? "No login. No cookies. Results stay in your browser, unless you play in a room or a live game. Visits are counted without identifying anyone."
+        ? T("priv.short")
         : kind === "group"
-        ? "No login and no cookies. Your table's best result is kept only in this browser. " + VP
+        ? T("priv.group") + " " + VP
         : kind === "names"
-        ? "No login and no cookies. The players' names and wins are forgotten when you leave this page. " + VP
+        ? T("priv.names") + " " + VP
         : kind === "duel"
-        ? "No login and no cookies. A duel link carries only the day, the scores and the name the sender chose for themselves, inside the link itself: nothing reached a server, not even ours. The name you choose travels in every link you send. What your phone has merged is kept only in this browser. " + V
+        ? T("priv.duel") + " " + V
         : kind === "rooms"
-        ? "No login and no cookies. Outside your own browser, a room stores only this: each daily game a member finishes sends the game, the score, the day and their chosen name to the site's own small server, and nothing else — and nothing at all for anyone who is in no room. It keeps this month and the last, then deletes; a room nobody plays in for 60 days is deleted whole, and leaving a room deletes everything of yours at once. " + V
+        ? T("priv.rooms") + " " + V
         : kind === "live"
-        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends (the server's own backups clear within 30 days). Nothing else about you is kept. " + VP
+        ? T("priv.live") + " " + VP
         : kind === "live-all"
-        ? "No login and no cookies. Live games: the name you type and your answers stay on Logicers' server for the game and are deleted a day after it ends. Games people make: a saved game keeps only what its maker typed into it, with no name of the maker, and an email only as a one-way fingerprint, if the maker leaves one as a way back to a lost link (the address itself only if they also tick feedback emails, and only for those); it is deleted two months after its last use. Playing one alone keeps the name you type and your answers with the game, for its scoreboard, and they go when the game goes. A report keeps what its sender writes, the game's code, and a name and email only if given, for six months. The server's own backups clear within 30 days. Nothing else about you is kept. " + VP
+        ? T("priv.live_all") + " " + VP
         : kind === "table"
-        ? "No login and no cookies. Your table's best journey is kept only in this browser; the players' names are forgotten when you leave this page. " + VP
+        ? T("priv.table") + " " + VP
         : kind === "world"
-        ? "No login and no cookies. " + V
-        : "No login and no cookies. Your streak and your album are kept only in this browser. " + VP) + feedbackNote(kind) + reminderNote(kind);
+        ? T("priv.world") + " " + V
+        : T("priv.long") + " " + VP) + feedbackNote(kind) + reminderNote(kind);
     });
   }
 
@@ -416,74 +414,74 @@
   function num(v) { return typeof v === "number" && isFinite(v); }
   function whole(v) { return num(v) && Math.round(v) === v; }
   var GAMES = [
-    { id: "same-energy", key: "energy", name: "Same Energy", href: "same-energy/", start: "2026-10-10",
-      pitch: "A real food or drink. How many of another hold the same energy?",
+    { id: "same-energy", key: "energy", name: T("game.energy.name"), href: "same-energy/", start: "2026-10-10",
+      pitch: T("game.energy.pitch"),
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && Math.abs(v) <= 120; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 60 && num(r.y) && typeof r.t === "string"; },
       tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 2 ? 2 : a <= 4 ? 1 : 0; },
       says: function (r) { return r.t; } },
-    { id: "100-of-us", key: "hundred", name: "100 of Us", href: "100-of-us/", start: "2026-10-03",
-      pitch: "Of 100 people in the world, how many…?",
+    { id: "100-of-us", key: "hundred", name: T("game.hundred.name"), href: "100-of-us/", start: "2026-10-03",
+      pitch: T("game.hundred.pitch"),
       score: function (r) { return Math.abs(r.g - r.a); }, wins: "low",
       ok: function (v) { return whole(v) && v >= 0 && v <= 100; },
       done: function (r) { return !!r && num(r.g) && num(r.a); },
       tier: function (r) { var a = Math.abs(r.g - r.a); return a === 0 ? 3 : a <= 3 ? 2 : a <= 8 ? 1 : 0; },
-      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? "Spot on" : "Off by " + gap; } },
-    { id: "your-call", key: "call", name: "Your Call", href: "your-call/", start: "2026-10-03",
-      pitch: "A real moment from history. What did they do?",
+      says: function (r) { var gap = Math.abs(r.g - r.a); return gap === 0 ? T("says.spot_on") : T("says.off_by", { n: gap }); } },
+    { id: "your-call", key: "call", name: T("game.call.name"), href: "your-call/", start: "2026-10-03",
+      pitch: T("game.call.pitch"),
       score: function (r) { return r.c === r.r ? 1 : 0; }, wins: "match",
       ok: function (v) { return v === 0 || v === 1; },
       done: function (r) { return !!r && num(r.c); },
       tier: function (r) { return r.c === r.r ? 3 : 0; },
-      stampWords: { 3: "Same call!" }, tuck: false,      /* the stamp may never cover a choice's words */
-      says: function (r) { return r.c === r.r ? "Same call" : "Different call"; } },
-    { id: "long-lost-cousin", key: "cousin", name: "Long Lost Cousin", href: "long-lost-cousin/", start: "2026-10-04",
-      pitch: "Which one is the closest relative?",
+      stampWords: { 3: T("stamp.same_call") }, tuck: false,      /* the stamp may never cover a choice's words */
+      says: function (r) { return r.c === r.r ? T("says.same_call") : T("says.different_call"); } },
+    { id: "long-lost-cousin", key: "cousin", name: T("game.cousin.name"), href: "long-lost-cousin/", start: "2026-10-04",
+      pitch: T("game.cousin.pitch"),
       score: function (r) { return r.r; }, wins: "low",
       ok: function (v) { return whole(v) && v >= 0 && v <= 2; },
       done: function (r) { return !!r && num(r.c); },
       tuckMax: 0.5,      /* the stamp may rest on the foot of the tree, which carries no words */
       tier: function (r) { return r.r === 0 ? 3 : r.r === 1 ? 2 : 0; },
-      stampWords: { 3: "Found it!" },
-      says: function (r) { return r.r === 0 ? "Found it" : r.r === 1 ? "One branch away" : "Two branches away"; } },
-    { id: "the-club", key: "club", name: "The Club", href: "the-club/", start: "2026-10-04",
-      pitch: "Work out the secret rule. Who gets in?",
+      stampWords: { 3: T("stamp.found_it") },
+      says: function (r) { return r.r === 0 ? T("says.found_it") : r.r === 1 ? T("says.one_branch") : T("says.two_branches"); } },
+    { id: "the-club", key: "club", name: T("game.club.name"), href: "the-club/", start: "2026-10-04",
+      pitch: T("game.club.pitch"),
       score: function (r) { return r.r; }, wins: "high",
       ok: function (v) { return whole(v) && v >= 0 && v <= 5; },
       done: function (r) { return !!r && Array.isArray(r.c) && r.c.length === 5 && num(r.r) && r.r >= 0 && r.r <= 5; },
       tier: function (r) { return r.r >= 5 ? 3 : r.r === 4 ? 2 : r.r === 3 ? 1 : 0; },
-      says: function (r) { return r.r + " of 5"; } },
-    { id: "years-apart", key: "apart", name: "Years Apart", href: "years-apart/", start: "2026-10-05",
-      pitch: "Two real events, one in between. Where does it fall?",
+      says: function (r) { return T("says.n_of_5", { n: r.r }); } },
+    { id: "years-apart", key: "apart", name: T("game.apart.name"), href: "years-apart/", start: "2026-10-05",
+      pitch: T("game.apart.pitch"),
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return num(v) && v >= 0 && v <= 9999999; },
       done: function (r) { return !!r && num(r.g) && num(r.a) && num(r.y) && r.g >= 0 && r.g <= 1000 && r.y >= 0; },
       tier: function (r) { var a = Math.abs(r.g - r.a); return a <= 5 ? 3 : a <= 40 ? 2 : a <= 120 ? 1 : 0; },
-      says: function (r) { return Math.abs(r.g - r.a) <= 5 ? "Spot on" : r.y < 1 ? "Under a year off" : "Off by " + commas(r.y) + (Math.round(r.y) === 1 ? " year" : " years"); } },
-    { id: "who-gets-what", key: "gets", name: "Who Gets What", href: "who-gets-what/", start: "2026-10-08",
-      pitch: "A real price. Who gets what out of it?",
+      says: function (r) { return Math.abs(r.g - r.a) <= 5 ? T("says.spot_on") : r.y < 1 ? T("says.under_a_year") : T.n(Math.round(r.y), "says.off_by_years", { n: commas(r.y) }); } },
+    { id: "who-gets-what", key: "gets", name: T("game.gets.name"), href: "who-gets-what/", start: "2026-10-08",
+      pitch: T("game.gets.pitch"),
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && v >= 0 && v <= 9999999; },
       done: function (r) { return !!r && Array.isArray(r.g) && r.g.length >= 3 && r.g.length <= 4 && num(r.y) && r.y >= 0 && typeof r.t === "string"; },
       tier: function (r) { return r.y <= 15 ? 3 : r.y <= 50 ? 2 : r.y <= 120 ? 1 : 0; },
       says: function (r) { return r.t; } },
-    { id: "every-beat", key: "every", name: "Every Beat", href: "every-beat/", start: "2026-10-09",
-      pitch: "One real animal. How fast does its heart beat?",
+    { id: "every-beat", key: "every", name: T("game.every.name"), href: "every-beat/", start: "2026-10-09",
+      pitch: T("game.every.pitch"),
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) >= 11) && Math.abs(v) <= 20000; },
       done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
       tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 13 ? 2 : a <= 20 ? 1 : 0; },
       says: function (r) { return r.t; } },
-    { id: "out-of-24", key: "o24", name: "Out of 24", href: "out-of-24/", start: "2026-10-09",
-      pitch: "A real animal or country. How many hours a day?",
+    { id: "out-of-24", key: "o24", name: T("game.o24.name"), href: "out-of-24/", start: "2026-10-09",
+      pitch: T("game.o24.pitch"),
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) > 15) && Math.abs(v) <= 1440; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 1440 && num(r.y) && typeof r.t === "string"; },
       tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 45 ? 2 : a <= 120 ? 1 : 0; },
       says: function (r) { return r.t; } }
   ];
-  function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function commas(n) { return LG ? LG.num(Math.round(n)) : String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 
   /* ------------------------------------------------------------------
      The games for groups ("Pass the phone" on the home page): one phone, a group of players, any time and as
@@ -496,16 +494,11 @@
      To add one: add it here and to GROUP in r/site-workshop/build_home.py, and give it a colour in logicers.css.
      ------------------------------------------------------------------ */
   var GROUP = [
-    { id: "twin-or-trap", key: "twin", name: "Twin or Trap", href: "twin-or-trap/", players: "2+ players",
-      pitch: "Same word, two languages. Twin or trap?" },
-    { id: "one-of-193", key: "o193", name: "One of 193", href: "one-of-193/", players: "2+ players",
-      pitch: "The phone hides a country. Ask yes or no, and find it." },
-    { id: "still-in", key: "still", name: "Still In", href: "still-in/", players: "2+ players",
-      pitch: "Twelve countries, one rule. Tap one that fits, or you're out." },
-    { id: "so-called-expert", key: "expert", name: "So-Called Expert", href: "so-called-expert/", players: "3+ players",
-      pitch: "Five facts about a country, one invented. Can the table spot it?" },
-    { id: "beat-the-phone", key: "beat", name: "Beat the Phone", href: "beat-the-phone/", players: "2+ players",
-      pitch: "Ten stops round the world, three lives. The whole table against the phone." }
+    { id: "twin-or-trap", key: "twin", name: T("group.twin.name"), href: "twin-or-trap/", players: T("group.players_2"), pitch: T("group.twin.pitch") },
+    { id: "one-of-193", key: "o193", name: T("group.o193.name"), href: "one-of-193/", players: T("group.players_2"), pitch: T("group.o193.pitch") },
+    { id: "still-in", key: "still", name: T("group.still.name"), href: "still-in/", players: T("group.players_2"), pitch: T("group.still.pitch") },
+    { id: "so-called-expert", key: "expert", name: T("group.expert.name"), href: "so-called-expert/", players: T("group.players_3"), pitch: T("group.expert.pitch") },
+    { id: "beat-the-phone", key: "beat", name: T("group.beat.name"), href: "beat-the-phone/", players: T("group.players_2"), pitch: T("group.beat.pitch") }
   ];
   function group(id) {
     var all = readAll();
@@ -661,7 +654,7 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.6 4.6L19 7.6"/></svg>',
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg>'
   ];
-  var STAMP_WORDS = ["Now you know", "Not far", "So close!", "Spot on!"];
+  var STAMP_WORDS = [T("stamp.learn"), T("stamp.near"), T("stamp.close"), T("stamp.spot")];
   var stampResize = false;
   function stampFor(G, r) {
     if (!G || typeof G.tier !== "function" || !G.done(r)) return null;
@@ -686,13 +679,13 @@
     row.setAttribute("data-tier", String(st.tier));
     var b = el("button", "vstamp vstamp-" + st.kind);
     b.type = "button";
-    b.setAttribute("aria-label", st.words + " See the full results below.");
+    b.setAttribute("aria-label", st.words + " " + T("stamp.aria_tail"));
     var i = el("i", "vstamp-icon");
     i.innerHTML = STAMP_ICONS[st.tier];
     b.appendChild(i);
     var t = el("span", "vstamp-text");
     t.appendChild(el("span", "vstamp-word", st.words));
-    t.appendChild(el("span", "vstamp-note", "See full results below ↓"));
+    t.appendChild(el("span", "vstamp-note", T("stamp.note")));
     b.appendChild(t);
     b.addEventListener("click", function () {
       var after = document.getElementById("after");
@@ -795,10 +788,10 @@
     var count = played.filter(Boolean).length;
 
     // where to go: back to this game's own puzzle of today when the page showed another day, otherwise the next game not played today
-    var next = null, kicker = "Next game";
+    var next = null, kicker = T("end.next_game");
     var otherDay = !!o.practice || (num(o.day) && num(o.today) && o.day !== o.today);
     if (mine >= 0 && otherDay && !played[mine]) {
-      next = GAMES[mine]; kicker = "Not played yet today";
+      next = GAMES[mine]; kicker = T("end.not_played_today");
     } else {
       for (var k = 1; k <= GAMES.length && !next; k++) {
         var j = (Math.max(mine, 0) + k) % GAMES.length;
@@ -814,15 +807,14 @@
 
     var box = el("section", "onward");
     box.id = "onward";
-    box.setAttribute("aria-label", "Today's games");
+    box.setAttribute("aria-label", T("end.today_games"));
     if (typeof window.TurnsOut.duelBar === "function") {
       try { var who = window.TurnsOut.duelBar(o); if (who) box.appendChild(who); } catch (e) { /* the name and Send my day are optional */ }
     }
     var top = el("div", "onward-top");
-    top.appendChild(el("h2", "", "Today"));
+    top.appendChild(el("h2", "", T("end.today")));
     var c = el("span", "onward-count");
-    c.appendChild(el("b", "", String(count)));
-    c.appendChild(document.createTextNode(" of " + GAMES.length + " played"));
+    c.innerHTML = T("end.of_played", { n: count, of: GAMES.length });
     top.appendChild(c);
     box.appendChild(top);
     var pips = el("div", "pips");
@@ -859,17 +851,17 @@
       if (typeof window.TurnsOut.allDoneHook === "function") {
         try { doneEl = window.TurnsOut.allDoneHook(); } catch (e) { /* the sentence stands */ }
       }
-      box.appendChild(doneEl || el("p", "onward-done", "All done for today. New games at midnight."));
+      box.appendChild(doneEl || el("p", "onward-done", T("end.all_done")));
       try { eodEl = endOfDay(true); box.appendChild(eodEl); } catch (e) { eodEl = null; /* the end of the day must never break a game */ }
     }
     var all = el("a", "onward-all");
-    all.href = here("../");
+    all.href = here(LG ? LG.href("") : "../");
     all.insertAdjacentHTML("beforeend", '<svg class="onward-dots" viewBox="0 0 34 10" aria-hidden="true" focusable="false">' +
       '<circle cx="5" cy="5" r="4" fill="#2D4FC4"/><circle cx="17" cy="5" r="4" fill="#CF4327"/><circle cx="29" cy="5" r="4" fill="#0D7D73"/></svg>');
-    all.appendChild(el("span", "onward-all-name", "All games"));
+    all.appendChild(el("span", "onward-all-name", T("end.all_games")));
     all.insertAdjacentHTML("beforeend", ARROW);
     box.appendChild(all);
-    try { box.appendChild(messageLine("onward-msg", "A message from Khayyam \u2192", "box")); } catch (e) { /* the message is optional */ }
+    try { box.appendChild(messageLine("onward-msg", T("msg.line"), "box")); } catch (e) { /* the message is optional */ }
     /* the world today: the world, the continent and the country beside this result (assets/js/world.js) */
     if (typeof window.TurnsOut.worldHook === "function") {
       try { window.TurnsOut.worldHook(below, o, played); } catch (e) { /* the world's counts must never break a game */ }
@@ -895,17 +887,17 @@
 
     var bar = el("nav", "onbar");
     bar.id = "onbar";
-    bar.setAttribute("aria-label", "Next game");
+    bar.setAttribute("aria-label", T("end.next_game"));
     bar.hidden = true;
     var go = el("a", "onbar-next");
     go.href = href;
     go.setAttribute("data-g", next.key);
     go.insertAdjacentHTML("beforeend", PLAY);
     var words = el("span", "");
-    words.appendChild(el("b", "", next === GAMES[mine] ? "Today's puzzle" : "Next game"));
+    words.appendChild(el("b", "", next === GAMES[mine] ? T("end.todays_puzzle") : T("end.next_game")));
     go.appendChild(words);
     go.addEventListener("click", function () { count_("onward-bar/" + next.id); });
-    var stay = el("button", "onbar-stay", "Stay and read");
+    var stay = el("button", "onbar-stay", T("end.stay"));
     stay.type = "button";
     bar.appendChild(go);
     bar.appendChild(stay);
@@ -1043,18 +1035,17 @@
     wrap.appendChild(scrim);
     var sheet = el("section", "fin-sheet" + (next ? "" : " fin-full"));
     sheet.setAttribute("role", "dialog");
-    sheet.setAttribute("aria-label", next ? "Played. The next game" : "All done for today");
+    sheet.setAttribute("aria-label", next ? T("fin.aria_next") : T("fin.aria_done"));
     sheet.setAttribute("tabindex", "-1");
     if (next) sheet.setAttribute("data-g", next.key);
     var top = el("div", "onward-top");
-    top.appendChild(el("h2", "fin-h", next ? "Played!" : "All done! 🎉"));
+    top.appendChild(el("h2", "fin-h", next ? T("fin.played") : T("fin.all_done")));
     var c = el("span", "onward-count");
-    c.appendChild(el("b", "", String(count)));
-    c.appendChild(document.createTextNode(" of " + GAMES.length + " played"));
+    c.innerHTML = T("end.of_played", { n: count, of: GAMES.length });
     top.appendChild(c);
     var x = el("button", "chip round close fin-x", "×");
     x.type = "button";
-    x.setAttribute("aria-label", "Close");
+    x.setAttribute("aria-label", T("site.close"));
     top.appendChild(x);
     sheet.appendChild(top);
     var pips = el("div", "pips");
@@ -1069,7 +1060,7 @@
     var spot = 0;
     try { dayRows().forEach(function (x) { if (x.tier === 3) spot++; }); } catch (e) { spot = 0; }
     if (spot > 0 && count > 0) {
-      sheet.appendChild(el("p", "fin-spot", "✓ " + spot + " of " + count + " spot on today"));
+      sheet.appendChild(el("p", "fin-spot", T("fin.spot_on", { n: spot, of: count })));
     }
     var watching = null;                   // the country line and the world box arrive when the server answers
     if (next) {
@@ -1087,8 +1078,8 @@
       a.href = href;
       a.insertAdjacentHTML("beforeend", PLAY);
       var at = el("span", "fin-next-words");
-      at.appendChild(el("span", "", "Next game"));
-      at.appendChild(el("small", "", "about 15 seconds"));
+      at.appendChild(el("span", "", T("end.next_game")));
+      at.appendChild(el("small", "", T("fin.about_15s")));
       a.appendChild(at);
       a.addEventListener("click", function () { count_("onward-sheet/" + next.id); });
       sheet.appendChild(a);
@@ -1106,19 +1097,19 @@
          read here and never written. */
       if (!findOutsDone()) {
         var fo = el("a", "fin-more fin-findout");
-        fo.href = here("../find-out/");
+        fo.href = here(LG ? LG.href("find-out/") : "../find-out/");
         var fw = el("span", "fin-next-words");
-        fw.appendChild(el("span", "", "Find out who you are →"));
-        fw.appendChild(el("small", "", "9 short games · about 6 minutes"));
+        fw.appendChild(el("span", "", T("fin.findout")));
+        fw.appendChild(el("small", "", T("fin.findout_sub")));
         fo.appendChild(fw);
         fo.addEventListener("click", function () { count_("onward-sheet/find-out"); });
         sheet.appendChild(fo);
       }
       var more = el("a", "fin-more");
-      more.href = here("../") + "#more-to-play";
+      more.href = here(LG ? LG.href("") : "../") + "#more-to-play";
       var mw = el("span", "fin-next-words");
-      mw.appendChild(el("span", "", "More to play \u2192"));
-      mw.appendChild(el("small", "", "games for friends, live rooms, the world table"));
+      mw.appendChild(el("span", "", T("fin.more")));
+      mw.appendChild(el("small", "", T("fin.more_sub")));
       more.appendChild(mw);
       more.addEventListener("click", function () { count_("onward-sheet/more"); });
       sheet.appendChild(more);
@@ -1133,7 +1124,7 @@
     }
     var stats = el("button", "fin-stats");
     stats.type = "button";
-    stats.appendChild(document.createTextNode(next ? "See stats & explanation ↓" : "See the full explanation ↓"));
+    stats.appendChild(document.createTextNode(next ? T("fin.stats") : T("fin.explanation")));
     sheet.appendChild(stats);
     wrap.appendChild(sheet);
 
@@ -1215,7 +1206,7 @@
   function untilMidnight(now) {
     var n = now || new Date(), m = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, 0, 0, 0, 0);
     var mins = Math.max(1, Math.ceil((m.getTime() - n.getTime()) / 60000)), h = Math.floor(mins / 60), r = mins % 60;
-    return h ? h + " h" + (r ? " " + r + " min" : "") : r + " min";
+    return h ? T("eod.h", { h: h }) + (r ? " " + T("eod.min", { m: r }) : "") : T("eod.min", { m: r });
   }
 
   /* ---- the result grid: one square per game, in the order of the shelf ---- */
@@ -1232,7 +1223,7 @@
   }
   function dayLabel(now) {
     var d = now || new Date();
-    try { return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }); } catch (e) { return ""; }
+    try { return LG ? LG.date(d, { day: "numeric", month: "short" }) : d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }); } catch (e) { return ""; }
   }
   function dayText(rows, now) {
     rows = rows || dayRows();
@@ -1240,8 +1231,8 @@
     for (var i = 0; i < rows.length; i += 3) {
       lines.push(rows.slice(i, i + 3).map(function (x) { return x.tier >= 0 ? SQUARES[x.tier] : NOT_PLAYED; }).join(""));
     }
-    return "Logicers " + dayLabel(now) + " · " + done + " of " + rows.length + "\n" + lines.join("\n") +
-           "\nCan you beat me? https://" + (address() || "logicers.com");
+    return T("eod.day_text", { date: dayLabel(now), n: done, of: rows.length }) + "\n" + lines.join("\n") +
+           "\n" + T("eod.beat_me") + " https://" + (address() || "logicers.com") + (LG && LG.base ? "/" + LG.base.replace(/\/$/, "") : "");
   }
   /* each game's colour on the picture, the same as the light colours in logicers.css */
   var PIC = { hundred: "#2D4FC4", call: "#6A45CC", cousin: "#CF4327", club: "#BE3A82", apart: "#7A5034",
@@ -1276,10 +1267,10 @@
     return ready.then(function () {
       c.fillStyle = "#F3F4F9"; c.fillRect(0, 0, W, H);
       c.fillStyle = "#15172B"; c.textBaseline = "alphabetic"; c.textAlign = "left";
-      c.font = "800 84px " + D; c.fillText("My Logicers day", 66, 150);
+      c.font = "800 84px " + D; c.fillText(T("eod.my_day"), 66, 150);
       c.fillStyle = "#5D6279"; c.font = "700 40px " + T;
       var done = rows.filter(function (x) { return !!x.r; }).length;
-      c.fillText(dayLabel(now) + "  ·  " + done + " of " + rows.length + " played", 66, 214);
+      c.fillText(dayLabel(now) + "  ·  " + T("eod.n_of_played", { n: done, of: rows.length }), 66, 214);
       var tw = 300, th = 280, gap = 24, x0 = 66, y0 = 290;
       rows.forEach(function (x, i) {
         var col = i % 3, row = Math.floor(i / 3), px = x0 + col * (tw + gap), py = y0 + row * (th + gap);
@@ -1294,9 +1285,9 @@
         }
       });
       c.fillStyle = "#15172B"; c.font = "800 52px " + D; c.textAlign = "left";
-      c.fillText("Can you beat me?", 66, 1262);
+      c.fillText(T("eod.beat_me"), 66, 1262);
       c.fillStyle = "#5D6279"; c.font = "700 38px " + T;
-      c.fillText(address() || "logicers.com", 66, 1314);
+      c.fillText((address() || "logicers.com") + (LG && LG.base ? "/" + LG.base.replace(/\/$/, "") : ""), 66, 1314);
       var dots = [["#2D4FC4", 936], ["#CF4327", 978], ["#0D7D73", 1020]];
       dots.forEach(function (d) { c.beginPath(); c.arc(d[1], 1290, 15, 0, Math.PI * 2); c.fillStyle = d[0]; c.fill(); });
       return new Promise(function (resolve) {
@@ -1482,8 +1473,8 @@
     var n = new Date(), t = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, h, 0, 0), end = new Date(t.getTime() + 15 * 60000);
     function p2(v) { return (v < 10 ? "0" : "") + v; }
     function f(d) { return d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()) + "T" + p2(d.getHours()) + p2(d.getMinutes()) + "00"; }
-    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("Logicers: today's games") +
-      "&details=" + encodeURIComponent("A minute each. https://logicers.com/") + "&dates=" + f(t) + "/" + f(end) +
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(T("keep.cal_title")) +
+      "&details=" + encodeURIComponent(T("keep.cal_details") + " https://logicers.com/" + (LG ? LG.base : "")) + "&dates=" + f(t) + "/" + f(end) +
       "&recur=" + encodeURIComponent("RRULE:FREQ=DAILY");
   }
   function takeCalendar() {
@@ -1507,16 +1498,16 @@
       dlg = document.createElement("dialog");
       dlg.id = "keep-qr";
       dlg.setAttribute("aria-labelledby", "keep-qr-h");
-      dlg.innerHTML = '<div class="sheet"><button class="chip round close" type="button" data-close aria-label="Close">×</button>' +
-        '<h2 id="keep-qr-h">Play on your phone</h2><div class="keep-qr-code" id="keep-qr-code" role="img" aria-label="A QR code that opens Logicers"></div>' +
-        '<p class="quiet">Point your phone’s camera at the code. Then add Logicers to your home screen and turn on the daily reminder: one reminder a day, never more.</p></div>';
+      dlg.innerHTML = '<div class="sheet"><button class="chip round close" type="button" data-close aria-label="' + esc(T("site.close")) + '">×</button>' +
+        '<h2 id="keep-qr-h">' + esc(T("keep.qr")) + '</h2><div class="keep-qr-code" id="keep-qr-code" role="img" aria-label="' + esc(T("keep.qr_aria")) + '"></div>' +
+        '<p class="quiet">' + esc(T("keep.qr_lead")) + '</p></div>';
       document.body.appendChild(dlg);
     }
     openDialog(dlg);
     function draw() {
       var host = document.getElementById("keep-qr-code");
       if (!host || host.firstChild || !window.qrcodegen) return;
-      var Q = window.qrcodegen.QrCode, qr = Q.encodeText("https://logicers.com/?ref=qr", Q.Ecc.MEDIUM), n = qr.size, pad = 3, d = "";
+      var Q = window.qrcodegen.QrCode, qr = Q.encodeText("https://logicers.com/" + (LG ? LG.base : "") + "?ref=qr", Q.Ecc.MEDIUM), n = qr.size, pad = 3, d = "";
       for (var y = 0; y < n; y++) for (var x = 0; x < n; x++) if (qr.getModule(x, y)) d += "M" + (x + pad) + "," + (y + pad) + "h1v1h-1z";
       host.innerHTML = '<svg viewBox="0 0 ' + (n + pad * 2) + " " + (n + pad * 2) + '" width="220" height="220" shape-rendering="crispEdges" aria-hidden="true" focusable="false">' +
         '<rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>';
@@ -1572,11 +1563,11 @@
   function keepStrip() {
     var strip = el("div", "keep");
     strip.hidden = true;
-    strip.setAttribute("aria-label", "Keep Logicers close");
-    strip.appendChild(keepCell("install", "📲", "Add to home screen", "opens like an app", askInstall));
-    strip.appendChild(keepCell("qr", "📱", "Play on your phone", "scan the code", openQr));
-    strip.appendChild(keepCell("remind", "🔔", "Daily reminder", "one a day, never more", remindOn));
-    strip.appendChild(keepCell("ics", "🗓️", "Calendar reminder", "daily, no app needed", takeCalendar));
+    strip.setAttribute("aria-label", T("keep.aria"));
+    strip.appendChild(keepCell("install", "📲", T("keep.install"), T("keep.install_sub"), askInstall));
+    strip.appendChild(keepCell("qr", "📱", T("keep.qr"), T("keep.qr_sub"), openQr));
+    strip.appendChild(keepCell("remind", "🔔", T("keep.remind"), T("keep.remind_sub"), remindOn));
+    strip.appendChild(keepCell("ics", "🗓️", T("keep.ics"), T("keep.ics_sub"), takeCalendar));
     window.setTimeout(keepUi, 0);
     return strip;
   }
@@ -1606,8 +1597,8 @@
       if (has) return;
       var p = el("p", "quiet keep-set");
       p.setAttribute("data-keep-set", "");
-      p.appendChild(document.createTextNode("The daily reminder is on. "));
-      var b = el("button", "", "Turn it off");
+      p.appendChild(document.createTextNode(T("keep.remind_on") + " "));
+      var b = el("button", "", T("keep.turn_off"));
       b.type = "button";
       b.addEventListener("click", remindOff);
       p.appendChild(b);
@@ -1641,11 +1632,11 @@
       var SHARE = '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M12 15V3m0 0L8 7m4-4 4 4M7 10H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       var PLUS = '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
       var pad = /iPad/.test(window.navigator.userAgent || "") || (/Macintosh/.test(window.navigator.userAgent || "") && window.navigator.maxTouchPoints > 1);
-      dlg.innerHTML = '<div class="sheet"><button class="chip round close" type="button" data-close aria-label="Close">×</button>' +
-        '<h2 id="eod-ios-h">Add Logicers to your home screen</h2>' +
-        '<ol class="ios-steps"><li><span class="ios-ico">' + SHARE + '</span><span>Tap <b>Share</b> ' + (pad ? 'at the top of Safari' : 'at the bottom of Safari') + '.</span></li>' +
-        '<li><span class="ios-ico">' + PLUS + '</span><span>Choose <b>Add to Home Screen</b>, then <b>Add</b>.</span></li></ol>' +
-        '<p class="quiet">Then open Logicers from your home screen and tap <b>Daily reminder</b>.</p>' +
+      dlg.innerHTML = '<div class="sheet"><button class="chip round close" type="button" data-close aria-label="' + esc(T("site.close")) + '">×</button>' +
+        '<h2 id="eod-ios-h">' + esc(T("app.add_title")) + '</h2>' +
+        '<ol class="ios-steps"><li><span class="ios-ico">' + SHARE + '</span><span>' + T(pad ? "app.step1_top" : "app.step1_bottom") + '</span></li>' +
+        '<li><span class="ios-ico">' + PLUS + '</span><span>' + T("app.step2") + '</span></li></ol>' +
+        '<p class="quiet">' + T("app.then") + '</p>' +
         (pad ? '' : '<p class="ios-point" aria-hidden="true">\u2193</p>') + '</div>';
       document.body.appendChild(dlg);
     }
@@ -1679,6 +1670,7 @@
       grid: dayText(rows).split("\n").slice(1, 1 + Math.ceil(rows.length / 3)).join(" / "),
       page: window.location.pathname,
       language: window.navigator.language || "",
+      site_language: LG ? LG.lang : "en",
       screen: ((window.screen && window.screen.width) || 0) + "x" + ((window.screen && window.screen.height) || 0)
     };
   }
@@ -1706,24 +1698,24 @@
     dlg.setAttribute("aria-labelledby", "khay-h");
     var head = el("div", "khay-head");
     var who = el("div", "khay-who");
-    who.appendChild(el("b", "", "Khayyam"));
-    who.appendChild(el("span", "", "Builds Logicers on his own"));
+    who.appendChild(el("b", "", T("tell.name")));
+    who.appendChild(el("span", "", T("tell.sub")));
     var face = el("span", "khay-photo"); face.appendChild(khayFace(44));
-    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("aria-label", "Close");
+    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("aria-label", T("site.close"));
     x.id = "khay-x";
     head.appendChild(face); head.appendChild(who); head.appendChild(x);
     dlg.appendChild(head);
     var form = el("form", "khay-form"); form.id = "khay-form"; form.noValidate = true;
-    var intro = el("p", "khay-intro", "I’m Khayyam, a scientist, the kind who studies politics. I build Logicers on my own. Three quick questions, all optional. I read every answer. ");
-    var more = el("a", "khay-more", "More about me \u2192");     // 19 Oct 2026: a way to reach him directly
+    var intro = el("p", "khay-intro", T("tell.intro") + " ");
+    var more = el("a", "khay-more", T("site.more_about_me"));     // 19 Oct 2026: a way to reach him directly
     more.href = "https://thekhayyam.com"; more.target = "_blank"; more.rel = "noopener noreferrer";
     more.addEventListener("click", function () { count_("eod/about-me"); });
     intro.appendChild(more);
     form.appendChild(intro);
-    var h = el("h2", "sr-only", "Tell Khayyam"); h.id = "khay-h"; form.appendChild(h);
-    form.appendChild(el("p", "khay-q", "How was today?"));
-    var moods = el("div", "khay-moods"); moods.setAttribute("role", "group"); moods.setAttribute("aria-label", "How was today?");
-    [["😍", "Loved it"], ["🙂", "Good"], ["😐", "Okay"], ["🙁", "Not great"]].forEach(function (m) {
+    var h = el("h2", "sr-only", T("tell.title")); h.id = "khay-h"; form.appendChild(h);
+    form.appendChild(el("p", "khay-q", T("tell.q_mood")));
+    var moods = el("div", "khay-moods"); moods.setAttribute("role", "group"); moods.setAttribute("aria-label", T("tell.q_mood"));
+    [["😍", T("tell.mood_love")], ["🙂", T("tell.mood_good")], ["😐", T("tell.mood_okay")], ["🙁", T("tell.mood_bad")]].forEach(function (m) {
       var b = el("button", "khay-mood", m[0]); b.type = "button"; b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", m[1]); b.setAttribute("data-m", m[0]);
       b.addEventListener("click", function () {
         var on = b.getAttribute("aria-pressed") !== "true";
@@ -1741,19 +1733,19 @@
       form.appendChild(t);
       return t;
     }
-    var liked = area("khay-liked", "What do you like, and what don’t you like?", "Anything, big or small");
-    var next = area("khay-next", "What should I fix, or build next?", "A game idea, a bug, a wish");
+    var liked = area("khay-liked", T("tell.q_like"), T("tell.ph_like"));
+    var next = area("khay-next", T("tell.q_next"), T("tell.ph_next"));
     var trap = el("input"); trap.type = "checkbox"; trap.name = "botcheck"; trap.tabIndex = -1; trap.setAttribute("aria-hidden", "true"); trap.className = "khay-trap"; trap.id = "khay-trap";
     form.appendChild(trap);
     /* 19 Oct 2026, Khayyam: his message comes last, "right before submitting the feedback", so nobody reads it and forgets to send */
-    try { form.appendChild(messageLine("khay-msg-line", "Read my message to you \u2192", "tell")); } catch (e) { /* the message is optional */ }
-    var send = el("button", "btn solid khay-send", "Send to Khayyam"); send.type = "submit"; send.disabled = true; send.id = "khay-send";
+    try { form.appendChild(messageLine("khay-msg-line", T("msg.read"), "tell")); } catch (e) { /* the message is optional */ }
+    var send = el("button", "btn solid khay-send", T("tell.send")); send.type = "submit"; send.disabled = true; send.id = "khay-send";
     form.appendChild(send);
     var note = el("p", "khay-note"); note.id = "khay-note"; note.setAttribute("role", "status"); form.appendChild(note);
     var thanks = el("div", "khay-thanks"); thanks.id = "khay-thanks"; thanks.hidden = true;
-    thanks.appendChild(el("p", "khay-big", "Thank you! 🙏"));
-    thanks.appendChild(el("p", "", "I read every message, and it shapes what I build next."));
-    var done = el("button", "btn ghost", "Close"); done.type = "button"; done.id = "khay-done"; thanks.appendChild(done);
+    thanks.appendChild(el("p", "khay-big", T("tell.thanks")));
+    thanks.appendChild(el("p", "", T("tell.thanks_sub")));
+    var done = el("button", "btn ghost", T("site.close")); done.type = "button"; done.id = "khay-done"; thanks.appendChild(done);
     function sendable() {
       var any = !!(liked.value.trim() || next.value.trim() || moods.querySelector('[aria-pressed="true"]'));
       send.disabled = !any;
@@ -1769,9 +1761,9 @@
       e.preventDefault();
       if (send.disabled || send.getAttribute("aria-busy") === "true") return;
       var m = moods.querySelector('[aria-pressed="true"]');
-      send.setAttribute("aria-busy", "true"); send.textContent = "Sending…"; note.textContent = "";
+      send.setAttribute("aria-busy", "true"); send.textContent = T("tell.sending"); note.textContent = "";
       khaySend(khayPayload({ mood: m ? m.getAttribute("data-m") : "", liked: liked.value.trim(), next: next.value.trim(), botcheck: trap.checked })).then(function (ok) {
-        send.removeAttribute("aria-busy"); send.textContent = "Send to Khayyam";
+        send.removeAttribute("aria-busy"); send.textContent = T("tell.send");
         if (ok) {
           count_("eod/sent");
           eodUpdate(function (s) { s.sent = Date.now(); });
@@ -1779,7 +1771,7 @@
           var l = document.getElementById("khay-launch"); if (l && l.parentNode) l.parentNode.removeChild(l);
           try { done.focus(); } catch (er) { /* no focus */ }
         } else {
-          note.textContent = "That did not go through. Please try again, or write to logicers.world@gmail.com.";
+          note.textContent = T("tell.failed");
         }
       });
     });
@@ -1812,11 +1804,11 @@
       var box = el("div", "khay-launch"); box.id = "khay-launch";
       var wrap = el("div", "khay-bubble-wrap");
       var bubble = el("button", "khay-bubble"); bubble.type = "button";
-      bubble.appendChild(document.createTextNode("Hi, I’m Khayyam 👋"));
-      bubble.appendChild(el("span", "", "Got 30 seconds?"));
-      var x = el("button", "khay-x", "×"); x.type = "button"; x.setAttribute("aria-label", "Hide this");
+      bubble.appendChild(document.createTextNode(T("tell.hi")));
+      bubble.appendChild(el("span", "", T("tell.hi_sub")));
+      var x = el("button", "khay-x", "×"); x.type = "button"; x.setAttribute("aria-label", T("tell.hide"));
       wrap.appendChild(bubble); wrap.appendChild(x);
-      var face = el("button", "khay-face"); face.type = "button"; face.setAttribute("aria-label", "Tell Khayyam what you think");
+      var face = el("button", "khay-face"); face.type = "button"; face.setAttribute("aria-label", T("tell.face_aria"));
       face.appendChild(khayFace(56));
       box.appendChild(wrap); box.appendChild(face);
       document.body.appendChild(box);
@@ -1855,12 +1847,7 @@
      His own words to the players, one small window, the same wherever it is opened from: the line at the
      bottom of the box after every game, the line before Send in Tell Khayyam, and the home page's footer
      (any element marked data-msg opens it). Nothing here can break a game. */
-  var MESSAGE = [
-    "Hi, I’m Khayyam. I’m a scientist, the kind who studies politics. Thank you for playing!",
-    "My goal in life is to teach people, one way or another, and to help science reach more of them. Logicers is part of that, next to the other work I do, and it is free.",
-    "If this matters to you the way it matters to me, please pass it on: to a friend, a colleague, your school or university. That is the only way it grows.",
-    "I’m also building new parts of Logicers for universities, schools, learning centres and companies. If you want one for yours, write to me: logicers.world@gmail.com"
-  ];
+  var MESSAGE = [T("msg.p1"), T("msg.p2"), T("msg.p3"), T("msg.p4")];
   function messageDialog() {
     var dlg = document.getElementById("khay-msg");
     if (dlg) return dlg;
@@ -1869,18 +1856,18 @@
     dlg.className = "khay-msg";
     dlg.setAttribute("aria-labelledby", "khay-msg-h");
     var sheet = el("div", "sheet");
-    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", "Close");
+    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", T("site.close"));
     sheet.appendChild(x);
     var head = el("div", "khay-msg-head");
     var face = el("span", "khay-photo"); face.appendChild(khayFace(56));
     head.appendChild(face);
-    var h = el("h2", "", "A message from Khayyam"); h.id = "khay-msg-h";
+    var h = el("h2", "", T("msg.title")); h.id = "khay-msg-h";
     head.appendChild(h);
     sheet.appendChild(head);
     MESSAGE.forEach(function (t) { sheet.appendChild(el("p", "khay-msg-p", t)); });
-    var sig = el("p", "khay-msg-sign", "– Khayyam");
+    var sig = el("p", "khay-msg-sign", T("msg.sign"));
     sheet.appendChild(sig);
-    var more = el("a", "khay-more", "More about me \u2192");
+    var more = el("a", "khay-more", T("site.more_about_me"));
     more.href = "https://thekhayyam.com"; more.target = "_blank"; more.rel = "noopener noreferrer";
     more.addEventListener("click", function () { count_("msg/about-me"); });
     var mp = el("p", "khay-msg-more"); mp.appendChild(more);
@@ -1918,9 +1905,7 @@
     var clock = el("p", "eod-clock");
     function tick() {
       if (!wrap.parentNode && clock.__tick) { window.clearInterval(clock.__tick); return; }
-      clock.textContent = "";
-      clock.appendChild(document.createTextNode("New games in "));
-      clock.appendChild(el("b", "", untilMidnight()));
+      clock.innerHTML = T("eod.new_games_in", { t: esc(untilMidnight()) });
     }
     tick();
     clock.__tick = window.setInterval(tick, 30000);
@@ -1938,18 +1923,18 @@
     var cells = 2;
     var thread = el("a", "eod-cell");
     thread.href = REDDIT; thread.target = "_blank"; thread.rel = "noopener noreferrer";
-    thread.appendChild(icon("💬")); thread.appendChild(el("span", "", "Today’s thread"));
+    thread.appendChild(icon("💬")); thread.appendChild(el("span", "", T("eod.thread")));
     thread.addEventListener("click", function () { count_("eod/reddit"); });
     strip.appendChild(thread);
     if (khayReady()) {
       cells++;
       var tell = el("button", "eod-cell"); tell.type = "button"; tell.id = "eod-tell";
-      tell.appendChild(icon("✉️")); tell.appendChild(el("span", "", "Tell Khayyam"));
+      tell.appendChild(icon("✉️")); tell.appendChild(el("span", "", T("tell.title")));
       tell.addEventListener("click", function () { khayOpenPanel("strip"); });
       strip.appendChild(tell);
     }
     var mine = el("button", "eod-cell"); mine.type = "button"; mine.id = "eod-share";
-    mine.appendChild(icon("📤")); mine.appendChild(el("span", "", "Share my day"));
+    mine.appendChild(icon("📤")); mine.appendChild(el("span", "", T("eod.share_day")));
     mine.addEventListener("click", function () { shareDay(mine); });
     strip.appendChild(mine);
     strip.style.setProperty("--n", String(cells));

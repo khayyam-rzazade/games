@@ -1369,7 +1369,8 @@ function twoCurves(a, b, n) {
    find-out page then opens in that language: one store, one portrait per phone whatever the language. */
 const LANGS = [['en', 'English', '\u{1F1EC}\u{1F1E7}'], ['it', 'Italiano', '\u{1F1EE}\u{1F1F9}'], ['tr', 'Türkçe', '\u{1F1F9}\u{1F1F7}']];
 const LANG_KEY = 'lg.findout.lang';
-function savedLang() { try { const v = localStorage.getItem(LANG_KEY); return LANGS.some((l) => l[0] === v) ? v : null; } catch (e) { return null; } }
+/* a saved code the find-outs do not have (Spanish, from the rest of the site) counts as a pick: English here, no sheet */
+function savedLang() { try { const v = localStorage.getItem(LANG_KEY); return !v ? null : LANGS.some((l) => l[0] === v) ? v : 'en'; } catch (e) { return null; } }
 function rememberLang(code) { try { localStorage.setItem(LANG_KEY, code); } catch (e) {} }
 /* the same page in another language: find-out/<page> ↔ find-out/it/<page> ↔ find-out/tr/<page>, the hash kept (a room code, a friend's portrait) */
 function samePageIn(code) {

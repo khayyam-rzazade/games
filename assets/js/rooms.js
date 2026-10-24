@@ -66,7 +66,8 @@
      20-letter /room/#r= link keeps working for ever. */
   var SELF = (document.currentScript && document.currentScript.src) || "";
   var ROOT = /assets\/js\/rooms\.js/.test(SELF) ? SELF.replace(/assets\/js\/rooms\.js.*$/, "") : "../";
-  function roomsHref() { return TO.here(ROOT + "room/"); }
+  var LG = window.LG, T = LG ? LG.t : function (k) { return k; };
+  function roomsHref() { return TO.here(ROOT + (LG ? LG.base : "") + "room/"); }
   var HREF = roomsHref();
   function absolute(href) {
     try { return new URL(href, window.location.href).href; } catch (e) { return href; }
@@ -76,8 +77,8 @@
     return absolute(TO.here(ROOT + "r/")) + "#" + label + code;
   }
   function invite(code) {
-    var who = D.named() ? D.me() + " invites you to " + (D.me().slice(-1).toLowerCase() === "s" ? D.me() + "'" : D.me() + "'s") + " room on Logicers" : "You are invited to a room on Logicers";
-    return who + " — small daily games, a minute each, with shared tables for the day, the week and the month. " + link(code);
+    var who = D.named() ? T("room.invite_named", { name: D.me() }) : T("room.invite");
+    return who + " " + link(code);
   }
 
   /* ---------------- the faces ----------------
@@ -238,8 +239,8 @@
 
     var box = el("div", "rm-strip");
     box.setAttribute("role", "img");
-    box.setAttribute("aria-label", "Where your room landed: " + others.length + (others.length === 1 ? " friend" : " friends") + " and you, beside the answer.");
-    var head = el("p", "rm-strip-h", "Where your room landed");
+    box.setAttribute("aria-label", T.n(others.length, "room.strip_aria"));
+    var head = el("p", "rm-strip-h", T("room.strip"));
     box.appendChild(head);
     var rail = el("div", "rm-strip-rail");
     var line = el("i", "rm-strip-line");
@@ -247,7 +248,7 @@
     var mark = el("i", "rm-strip-real");
     mark.style.left = at(real) + "%";
     rail.appendChild(mark);
-    var tag = el("span", "rm-strip-tag", "the answer");
+    var tag = el("span", "rm-strip-tag", T("room.the_answer"));
     tag.style.left = at(real) + "%";
     rail.appendChild(tag);
 
@@ -270,7 +271,7 @@
     fill(false);
     box.appendChild(rail);
     if (folded) {
-      var more = el("button", "rm-strip-more", "+" + folded + " more");
+      var more = el("button", "rm-strip-more", T("room.n_more", { n: folded }));
       more.type = "button";
       more.addEventListener("click", function () {
         Array.prototype.forEach.call(rail.querySelectorAll(".rm-face"), function (x) { rail.removeChild(x); });
@@ -292,19 +293,17 @@
     if (!liveDay) return null;
     var p = el("p", "rooms-line");
     p.id = "rooms-line";
-    var word = el("span", "", "Sending to your room…");
+    var word = el("span", "", T("room.sending"));
     p.appendChild(word);
     p.appendChild(document.createTextNode(" "));
-    var a = el("a", "", myRooms().length === 1 ? "See the table" : "See the tables");
+    var a = el("a", "", myRooms().length === 1 ? T("room.see_table") : T("room.see_tables"));
     a.href = HREF;
     p.appendChild(a);
     after.appendChild(p);
     var key = D.todayKey();
     flush(key, function (r) {
       if (!r) { if (p.parentNode) p.parentNode.removeChild(p); return; }
-      word.textContent = r.failed
-        ? "Your room's table gets this when the server can be reached again."
-        : (myRooms().length === 1 ? "Sent to your room." : "Sent to your " + myRooms().length + " rooms.");
+      word.textContent = r.failed ? T("room.send_later") : T.n(myRooms().length, "room.sent");
       if (r.failed || !o.game) return;
       /* the strip: the first room's friends, on this game's own scale */
       var G = null;
@@ -329,8 +328,8 @@
     a.href = HREF;
     a.setAttribute("data-g", "room");
     var t = el("span", "rm-back-text");
-    t.appendChild(el("span", "rm-back-kicker", "All done for today"));
-    t.appendChild(el("span", "rm-back-name", "Back to the room"));
+    t.appendChild(el("span", "rm-back-kicker", T("room.all_done")));
+    t.appendChild(el("span", "rm-back-name", T("room.back")));
     a.appendChild(t);
     a.insertAdjacentHTML("beforeend",
       '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
@@ -349,7 +348,7 @@
       if (elx.getAttribute("data-privacy") === "rooms") return;    // the room page's own words already say it all
       if (elx.getAttribute("data-rooms")) return;
       elx.setAttribute("data-rooms", "1");
-      elx.textContent += " You are in a room, so each game you finish also sends its result — the game, the score, your guess, the day and your name — to your room's table on the site's own server.";
+      elx.textContent += " " + T("room.priv_member");
     });
   }
 
@@ -377,8 +376,8 @@
       var played = d.today.points.filter(function (p) { return p.sent > 0; }).length;
       var h = document.getElementById("gameroom-h");
       var sub = document.getElementById("gameroom-sub");
-      if (h) h.textContent = played + " of " + d.count + " played today";
-      if (sub) sub.textContent = d.streak > 1 ? "Room streak: " + d.streak + " days" : (room.label || "Your room");
+      if (h) h.textContent = T("room.n_played_today", { n: played, of: d.count });
+      if (sub) sub.textContent = d.streak > 1 ? T("room.streak_days", { n: d.streak }) : (room.label || T("room.your_room"));
       var row = document.getElementById("gameroom-faces");
       if (!row) return;
       row.textContent = "";

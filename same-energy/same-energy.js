@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "same-energy";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -13,7 +13,7 @@
   var actions = $("guess-actions"), btnShow = $("btn-show"), hint = $("hint"), thumb = $("thumb");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length) {
-    $("question").textContent = "Today's day could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("energy.not_loaded");
     panel.hidden = true; actions.hidden = true; hint.hidden = true;
     return;
   }
@@ -227,6 +227,7 @@
   var byId = {};
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
   function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  if (LG) { LG.puzzleAll(GAME, puzzleOf); LG.puzzleNote(LG.puzzleHas(GAME, day)); }
 
   /* a score is kept in halves of a unit: y = 2 × (yours − the real amount), and 0 when spot on */
   function scoreOk(p, y) {
@@ -270,26 +271,26 @@
     if (Math.abs(d) <= p.band + 1e-9) return 0;
     return Math.round(2 * d);
   }
-  function scoreText(y, p) { return y === 0 ? "Spot on" : "Off by " + many(Math.abs(y) / 2, p); }
+  function scoreText(y, p) { return y === 0 ? T("says.spot_on") : T("energy.off_by", { many: many(Math.abs(y) / 2, p) }); }
   function snap(x) { return Math.max(0, Math.min(MAX, Math.round(x / STEP) * STEP)); }
   function spoken(x) {                      // for screen readers: "one and a half apples"
-    if (x === 0) return "none";
+    if (x === 0) return T("energy.none");
     var w = Math.floor(x), h = x - w > 0.25;
-    var words = (w ? String(w) : "") + (h ? (w ? " and a half" : "a half") : "");
+    var words = (w ? String(w) : "") + (h ? (w ? " " + T("energy.and_a_half") : T("energy.a_half")) : "");
     return words + " " + (x <= 1 ? B.one : B.many);
   }
 
   /* ---------- the screen ---------- */
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Same Energy, day " + day + " | Logicers";
-  $("question").textContent = "How many " + B.many + " have the same energy?";
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("energy.title_day", { n: day });
+  $("question").textContent = T("energy.question", { many: B.many });
   $("face").textContent = q.a.name;
   $("portion").textContent = q.a.portion;
   $("pic").innerHTML = '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">' + svgOf(layers(q.a.pic, q.a.liquid)) + '</svg>';
   $("unit-portion").textContent = B.portion;
   plate.setAttribute("aria-valuemax", String(MAX));
-  plate.setAttribute("aria-label", "How many " + B.many);
-  hint.textContent = DRINK ? (B.pic === "can" ? "Drag up to pour, or tap the cans." : "Drag up to pour, or tap the glasses.") : "Drag up on the plate to add, or tap it.";
+  plate.setAttribute("aria-label", T("energy.plate_aria", { many: B.many }));
+  hint.textContent = DRINK ? (B.pic === "can" ? T("energy.hint_cans") : T("energy.hint_glasses")) : T("energy.hint_plate");
 
   /* the plate, or the table the glasses stand on */
   baseG.innerHTML = DRINK
@@ -415,14 +416,13 @@
     if (x === v) return;
     v = x;
     moved = true;
-    if (nudgeTimer) { window.clearTimeout(nudgeTimer); nudgeTimer = 0; btnShow.textContent = "Show the real amount"; }
+    if (nudgeTimer) { window.clearTimeout(nudgeTimer); nudgeTimer = 0; btnShow.textContent = T("energy.show_real"); }
     paint();
   }
   function nudge() {
-    btnShow.textContent = DRINK ? "First drag up to pour" : "First drag up on the plate";
+    btnShow.textContent = DRINK ? T("energy.first_pour") : T("energy.first_plate");
     $("say").textContent = "";
-    $("say").textContent = DRINK ? "First pour: drag up on the glasses, tap them, or use the arrow keys."
-      : "First fill the plate: drag up on it, tap it, or use the arrow keys.";
+    $("say").textContent = DRINK ? T("energy.first_pour_say") : T("energy.first_plate_say");
     if (!reduced) {
       [items, baseG].forEach(function (el) { el.classList.remove("nudge"); void el.getBoundingClientRect(); el.classList.add("nudge"); });
     }
@@ -482,12 +482,11 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 0 ? "A friend was spot on. Can you match that?"
-      : "A friend was off by " + many(Math.abs(friend) / 2) + ". Can you beat that?") +
-      (practice ? " It is an earlier day, so it does not count for your streak." : "");
+    notice.textContent = (friend === 0 ? T("energy.friend_spot") : T("energy.friend_off", { many: many(Math.abs(friend) / 2) })) +
+      (practice ? " " + T("o24.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -542,12 +541,12 @@
     stage.classList.remove("on");
     plate.setAttribute("tabindex", "-1");
     plate.setAttribute("aria-hidden", "true");
-    var you = "You: " + half(g);
+    var you = T("o24.you_colon", { g: half(g) });
     // the real amount enters the page only now, and fills in over yours
     function finish() {
       drawing = 0;
       drawReal(q.ans, true);
-      count(q.ans, "THE SAME ENERGY", you);
+      count(q.ans, T("energy.same_caps"), you);
       panel.setAttribute("data-drawn", "1");
       fit();
     }
@@ -558,12 +557,12 @@
         var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 2.4);
         var upto = Math.round(q.ans * e / STEP) * STEP;
         drawReal(upto, false);
-        count(upto, "THE SAME ENERGY", you);
+        count(upto, T("energy.same_caps"), you);
         if (p < 1) drawing = window.requestAnimationFrame(frame);
         else finish();
       };
       drawReal(0, false);
-      count(0, "THE SAME ENERGY", you);
+      count(0, T("energy.same_caps"), you);
       drawing = window.requestAnimationFrame(frame);
     } else finish();
 
@@ -572,7 +571,7 @@
     var b = document.createElement("b");
     b.textContent = scoreText(y);
     o.appendChild(b);
-    o.appendChild(document.createTextNode(" You said " + many(g) + "; the real answer is " + many(q.ans) + "."));
+    o.appendChild(document.createTextNode(" " + T("energy.you_said", { g: many(g), a: many(q.ans) })));
     o.classList.toggle("hit", y === 0);
     $("verdict").hidden = false;
     fillAfter(y);
@@ -590,9 +589,9 @@
   function fillAfter(y) {
     var f = $("friend");
     if (friend !== null) {
-      var said = friend === 0 ? "Your friend was spot on" : "Your friend was off by " + many(Math.abs(friend) / 2);
+      var said = friend === 0 ? T("energy.friend_was_spot") : T("energy.friend_was_off", { many: many(Math.abs(friend) / 2) });
       var a = Math.abs(y), c = Math.abs(friend);
-      f.textContent = a < c ? said + ". You were closer." : a === c ? said + ", like you. A tie." : said + ". Closer than you.";
+      f.textContent = a < c ? T("energy.friend_you_closer", { f: said }) : a === c ? T("energy.friend_tie", { f: said }) : T("energy.friend_closer", { f: said });
       f.hidden = false;
     }
     $("sentence").textContent = q.sentence;
@@ -608,8 +607,8 @@
       list.appendChild(li);
     });
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today</a>';
-    else next.textContent = "A new day arrives at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("o24.back_today") + '</a>';
+    else next.textContent = T("o24.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });
     prepareCard(y);
@@ -620,7 +619,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1 && valid(res[n]); })
       .sort(function (a, b) { return b - a; });
     $("st-played").textContent = String(s.played);
@@ -660,10 +659,10 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
-      var t = document.createElement("span"); t.className = "q"; t.textContent = p.a.name + " = how many " + p.b.many + "?";
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
+      var t = document.createElement("span"); t.className = "q"; t.textContent = p.a.name + " " + T("energy.eq_how_many", { many: p.b.many });
       var s = document.createElement("span"); s.className = "s";
-      s.textContent = r ? r.t : "Not played yet";
+      s.textContent = r ? r.t : T("site.not_played_yet");
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -679,8 +678,7 @@
     return base + "?d=" + day + "&g=" + y;
   }
   function shareText(y) {
-    return "Same Energy, day " + day + ": " + q.a.name.charAt(0).toLowerCase() + q.a.name.slice(1) + " has the same energy as how many " +
-      B.many + "? " + (y === 0 ? "I was spot on." : "I was off by " + many(Math.abs(y) / 2) + ".") + " Can you beat that? " + shareUrl(y);
+    return T("energy.share", { n: day, a: q.a.name.charAt(0).toLowerCase() + q.a.name.slice(1), many: B.many, mine: y === 0 ? T("every.i_spot") : T("energy.i_off", { many: many(Math.abs(y) / 2) }) }) + " " + shareUrl(y);
   }
   function roundRect(x, a, b, w, h, rad) {
     x.beginPath();
@@ -725,7 +723,7 @@
     x.fillStyle = "#fff"; x.textAlign = "left"; x.font = "800 48px " + FD;
     x.fillText("Logicers", MG, 118);
     x.textAlign = "right"; x.font = "600 40px " + Fn;
-    x.fillText("Same Energy, day " + day, W - MG, 118);
+    x.fillText(T("energy.day_header", { n: day }), W - MG, 118);
 
     // the thing at the top and the unit, side by side, with "=" and "?" between them: never an amount
     var box = 300, gap = 150, top = 250, lx = W / 2 - gap / 2 - box, rx = W / 2 + gap / 2;
@@ -743,7 +741,7 @@
     fits = fits && q1.fits;
     x.font = "800 " + q1.size + "px " + FD; x.fillStyle = "#fff";
     x.fillText(q1.lines[0], W / 2, top + box + 112);
-    var q2 = wrap(x, "= how many " + B.many + "?", "700", 58, FD, W - 2 * MG, 1, 38);
+    var q2 = wrap(x, T("energy.eq_how_many", { many: B.many }), "700", 58, FD, W - 2 * MG, 1, 38);
     fits = fits && q2.fits;
     x.font = "700 " + q2.size + "px " + FD; x.fillStyle = "rgba(255, 255, 255, .9)";
     x.fillText(q2.lines[0], W / 2, top + box + 112 + 84);
@@ -755,10 +753,10 @@
     x.fillText(head, W / 2, vy);
 
     x.font = "800 70px " + FD;
-    x.fillText("Can you beat that?", W / 2, 1204);
+    x.fillText(T("every.beat_that"), W / 2, 1204);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, ws = 40;
+      var line = T("duel.play_at", { where: where }), ws = 40;
       x.font = "600 " + ws + "px " + Fn;
       while (x.measureText(line).width > W - 2 * MG && ws > 24) { ws -= 2; x.font = "600 " + ws + "px " + Fn; }
       x.fillText(line, W / 2, 1270);
@@ -805,7 +803,7 @@
   $("share-copy").addEventListener("click", function () {
     var y = scoreOf(v);
     TO.copyText(shareText(y)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(y);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(y) });
     });
   });
 

@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "who-gets-what";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -17,7 +17,7 @@
   var actions = $("guess-actions"), btnShow = $("btn-show"), hint = $("hint");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length) {
-    $("question").textContent = "Today's price could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("gets.not_loaded");
     panel.hidden = true; actions.hidden = true; hint.hidden = true;
     return;
   }
@@ -68,6 +68,7 @@
   var byId = {};
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
   function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  if (LG) { LG.puzzleAll(GAME, puzzleOf); LG.puzzleNote(LG.puzzleHas(GAME, day)); }
 
   var MIN = 20;              // a slice is never thinner than two points, so every line stays grabbable
   var SPOT = 15;             // within a point and a half of the real split: spot on
@@ -102,11 +103,11 @@
   var phase = "play", cardBlob = null, cardUrl = "", layout = null;
 
   /* ---------- money ---------- */
-  function commas(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function commas(n) { return LG && LG.lang !== "en" ? Number(n).toLocaleString(LG.locale) : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function money(v) {
     var s = Math.abs(v).toFixed(q.dec);
     var p = s.split(".");
-    s = commas(p[0]) + (p[1] ? "." + p[1] : "");
+    s = commas(p[0]) + (p[1] ? (LG && LG.lang !== "en" ? "," : ".") + p[1] : "");
     return q.cur === "c" ? s + "c" : q.cur + s;
   }
   function ofPrice(tenths) { return q.price * tenths / 1000; }       // tenths of a point of the price, as money
@@ -116,11 +117,11 @@
     for (var i = 0; i < N; i++) m += Math.abs(g[i] - REAL[i]);
     return Math.round(m / 2);
   }
-  function missText(y) { return y <= SPOT ? "Spot on" : "Off by " + money(ofPrice(y)); }
+  function missText(y) { return y <= SPOT ? T("says.spot_on") : T("gets.off_by_money", { money: money(ofPrice(y)) }); }
 
   /* ---------- the screen ---------- */
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Who Gets What, day " + day + " | Logicers";
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("gets.title_day", { n: day });
   $("what").textContent = q.what;
   $("where").textContent = q.where;
   $("when").textContent = q.when;
@@ -186,7 +187,7 @@
     divs.forEach(function (h, i) {
       h.style.left = (c[i + 1] / 10) + "%";
       h.setAttribute("aria-valuenow", String(Math.round(c[i + 1] / 10)));
-      h.setAttribute("aria-label", "The line between " + q.slices[i].n + " and " + q.slices[i + 1].n);
+      h.setAttribute("aria-label", T("gets.line_between", { a: q.slices[i].n, b: q.slices[i + 1].n }));
       h.setAttribute("aria-valuetext", q.slices[i].n + " " + money(ofPrice(guess[i])) + ", " +
         q.slices[i + 1].n + " " + money(ofPrice(guess[i + 1])));
     });
@@ -280,12 +281,11 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend <= SPOT ? "A friend was spot on. Can you match that?"
-      : "A friend put " + money(ofPrice(friend)) + " in the wrong place. Can you do better?") +
-      (practice ? " It is an earlier price, so it does not count for your streak." : "");
+    notice.textContent = (friend <= SPOT ? T("gets.friend_spot") : T("gets.friend_wrong", { money: money(ofPrice(friend)) })) +
+      (practice ? " " + T("gets.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -349,9 +349,7 @@
     fillKeys();
 
     var v = $("offby");
-    v.innerHTML = y <= SPOT
-      ? "<b>Spot on.</b> You put the money almost exactly where it goes."
-      : "You put <b>" + money(ofPrice(y)) + "</b> of " + money(q.price) + " in the wrong place.";
+    v.innerHTML = y <= SPOT ? T("gets.spot_on_line") : T("gets.you_put_wrong", { money: money(ofPrice(y)), price: money(q.price) });
     v.classList.toggle("hit", y <= SPOT);
     $("verdict").hidden = false;
     fillAfter(y);
@@ -365,8 +363,8 @@
   function fillAfter(y) {
     var f = $("friend");
     if (friend !== null) {
-      var said = friend <= SPOT ? "Your friend was spot on" : "Your friend put " + money(ofPrice(friend)) + " in the wrong place";
-      f.textContent = y < friend ? said + ". You did better." : y === friend ? said + ", like you. A tie." : said + ". Closer than you.";
+      var said = friend <= SPOT ? T("gets.friend_was_spot") : T("gets.friend_put_wrong", { money: money(ofPrice(friend)) });
+      f.textContent = y < friend ? T("gets.friend_you_better", { f: said }) : y === friend ? T("gets.friend_tie", { f: said }) : T("gets.friend_closer", { f: said });
       f.hidden = false;
     }
     $("sentence").textContent = q.fact;
@@ -374,7 +372,7 @@
     var list = $("sources");
     list.innerHTML = "";
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode("The split: "));
+    li.appendChild(document.createTextNode(T("gets.the_split") + " "));
     q.src.forEach(function (s, i) {
       if (i) li.appendChild(document.createTextNode(" · "));
       var a = document.createElement("a");
@@ -383,8 +381,8 @@
     });
     list.appendChild(li);
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s price</a>';
-    else next.textContent = "A new price arrives at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("gets.back_today") + '</a>';
+    else next.textContent = T("gets.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });
     prepareCard(y);
@@ -395,7 +393,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1 && valid(res[n]); })
       .sort(function (a, b) { return b - a; });
     $("st-played").textContent = String(s.played);
@@ -438,10 +436,10 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
       var t = document.createElement("span"); t.className = "q"; t.textContent = p.what + ", " + p.where + " " + p.when;
       var s = document.createElement("span"); s.className = "s";
-      s.textContent = r ? r.t : "Not played yet";
+      s.textContent = r ? r.t : T("site.not_played_yet");
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -456,10 +454,7 @@
     return base + "?d=" + day + "&g=" + y;
   }
   function shareText(y) {
-    return "Who Gets What, day " + day + ": " + q.what.toLowerCase() + " in " + q.where + ", " + q.when +
-      ", costs " + money(q.price) + ". Who gets what? " +
-      (y <= SPOT ? "I was spot on." : "I put " + money(ofPrice(y)) + " in the wrong place.") +
-      " Can you do better? " + shareUrl(y);
+    return T("gets.share", { n: day, what: q.what.toLowerCase(), where: q.where, when: q.when, price: money(q.price), mine: y <= SPOT ? T("gets.i_spot") : T("gets.i_wrong", { money: money(ofPrice(y)) }) }) + " " + shareUrl(y);
   }
   function roundRect(x, a, b, w, h, rad) {
     x.beginPath();
@@ -504,10 +499,10 @@
     x.fillStyle = "#fff"; x.textAlign = "left"; x.font = "800 48px " + FD;
     x.fillText("Logicers", MG, 118);
     x.textAlign = "right"; x.font = "600 40px " + F;
-    x.fillText("Who Gets What, day " + day, W - MG, 118);
+    x.fillText(T("gets.day_header", { n: day }), W - MG, 118);
 
     x.textAlign = "left"; x.font = "800 104px " + FD;
-    x.fillText("Who gets what?", MG - 4, 268);
+    x.fillText(T("gets.who_gets_what_q"), MG - 4, 268);
 
     // the thing and its price
     var tw = wrap(x, q.what, "700", 56, FD, W - 2 * MG, 2, 38);
@@ -550,13 +545,13 @@
       roundRect(x, MG, barY, barW, barH, 18); x.stroke();
       barY += barH + 64;
     }
-    drawBar("You", guess, true);
-    if (SPOIL) drawBar("Really", REAL.map(Math.round), true);
+    drawBar(T("world.you"), guess, true);
+    if (SPOIL) drawBar(T("gets.really"), REAL.map(Math.round), true);
 
     // how much you misplaced, held low on the card so that one bar does not leave a hole in the middle
     var missY = Math.max(barY + 36, 912);
     x.textAlign = "left"; x.fillStyle = "#fff"; x.font = "800 86px " + FD;
-    var head = y <= SPOT ? "Spot on" : "Off by " + money(ofPrice(y));
+    var head = y <= SPOT ? T("says.spot_on") : T("gets.off_by_money", { money: money(ofPrice(y)) });
     var hs = 86; while (x.measureText(head).width > W - 2 * MG && hs > 50) { hs -= 2; x.font = "800 " + hs + "px " + FD; }
     x.fillText(head, MG - 3, missY);
     var mb = missY + 34, frac = Math.min(1, y / 500);
@@ -564,10 +559,10 @@
     x.fillStyle = TO.MISS; roundRect(x, MG, mb, Math.max(22, (W - 2 * MG) * frac), 22, 11); x.fill();
 
     x.fillStyle = "#fff"; x.font = "800 72px " + FD;
-    x.fillText("Can you split it better?", MG - 3, 1204);
+    x.fillText(T("gets.split_better"), MG - 3, 1204);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, ws = 40;
+      var line = T("duel.play_at", { where: where }), ws = 40;
       x.font = "600 " + ws + "px " + F;
       while (x.measureText(line).width > W - 2 * MG && ws > 24) { ws -= 2; x.font = "600 " + ws + "px " + F; }
       x.fillText(line, MG, 1270);
@@ -614,7 +609,7 @@
   $("share-copy").addEventListener("click", function () {
     var y = missOf(guess);
     TO.copyText(shareText(y)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(y);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(y) });
     });
   });
 

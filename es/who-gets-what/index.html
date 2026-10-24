@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es" data-lg-path="who-gets-what/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="gets.page_title">Who Gets What: a daily game about where the money goes | Logicers</title>
+<link rel="canonical" href="https://logicers.com/es/who-gets-what/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/who-gets-what/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/who-gets-what/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/who-gets-what/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/who-gets-what/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/who-gets-what/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/who-gets-what/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/who-gets-what/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/who-gets-what/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/who-gets-what/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/who-gets-what/">
+<meta name="description" content="One real price a day. Drag the dividers to split it among the people who are paid out of it, then see the real split and where it comes from." data-s-content="gets.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Who Gets What" data-s-content="game.gets.name">
+<meta property="og:description" content="A real price, and the people paid out of it. Who gets what?" data-s-content="gets.og_desc">
+<meta property="og:url" content="https://logicers.com/es/who-gets-what/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#DCF2E2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=e165ea97e7">
+<script src="../../assets/lang/es.js?v=566ab49f76"></script>
+<script src="../../assets/js/lang.js?v=b48aebb299"></script>
+<link rel="stylesheet" href="../../who-gets-what/who-gets-what.css?v=558d050315">
+</head>
+<body class="game" data-g="gets">
+
+<header class="bar">
+  <a class="wordmark" href="../../es/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Streak 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.gets.name">Who Gets What</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="w-q" id="question" data-s="gets.who_gets_what_q">Who gets what?</h1>
+
+  <section class="panel w-panel" id="panel" aria-labelledby="question">
+    <div class="w-thing">
+      <p class="w-what" id="what"></p>
+      <p class="w-when"><span id="where"></span> · <span id="when"></span></p>
+      <p class="w-price"><b id="price"></b><span class="w-unit" id="unit" hidden></span></p>
+    </div>
+
+    <div class="w-bars">
+      <div class="w-row" id="row-you">
+        <p class="w-rowlab" id="lab-you" hidden data-s="world.you">You</p>
+        <div class="w-bar" id="bar" role="group" aria-labelledby="bar-label"></div>
+        <p class="w-sr" id="bar-label" data-s="gets.bar_aria">The whole price. Drag the lines between the slices to say who gets what.</p>
+      </div>
+      <div class="w-row w-real" id="row-real" hidden>
+        <p class="w-rowlab" data-s="gets.really">Really</p>
+        <div class="w-bar w-realbar" id="realbar" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <ul class="w-keys" id="keys" aria-label="The slices" data-s-aria-label="gets.slices_aria"></ul>
+
+    <div class="verdict w-verdict" id="verdict" hidden>
+      <p class="offby" id="offby" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <p class="w-hint" id="hint" data-s="gets.hint">Drag the lines. Let go when it looks right.</p>
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="btn-show" type="button" data-s="gets.show_split">Show the split</button>
+  </div>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="w-note quiet" id="note" hidden></p>
+    <ul class="w-sources" id="sources" aria-label="Sources" data-s-aria-label="apart.sources_aria"></ul>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Share</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">Practice</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">How to play</h2>
+    <ol>
+      <li data-s="gets.help_1">Something real and its price, in one country, in one year.</li>
+      <li data-s="gets.help_2">The bar is that whole price. Drag the lines until the split looks right to you.</li>
+      <li data-s="gets.help_3">Tap Show the split, and see how much you put in the wrong place.</li>
+    </ol>
+    <p data-s="gets.help_daily">One price a day, the same for everyone. A new one arrives at midnight.</p>
+    <h3 data-s="gets.help_splits_h">Where the splits come from</h3>
+    <p class="quiet" data-s="gets.help_splits">Published by bodies that measure them, checked against a second source; both linked under the answer. A slice is often a whole step of the chain: "Shop" can mean rent and staff as well as profit.</p>
+    <h3 data-s="site.your_privacy">Your privacy</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
+    <p class="mail" data-s="site.mistake_mail">Spotted a mistake? Write to me: <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Your album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">days played</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">streak now</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">best streak</span></div>
+      <div class="stat"><b id="st-avg">0%</b><span data-s="gets.avg_misplaced">of the price misplaced, on average</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="gets.album_empty">Split today's price to get your first stamp.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">Practice</h2>
+    <p class="quiet" data-s="gets.practice_lede">Yesterday's price. Practice does not count for your streak or your album.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Nothing to practise yet. Come back tomorrow.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../es/who-gets-what/" data-s="gets.back_today">Back to today's price</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Share your result</h2>
+    <p class="quiet" data-s="site.share_lede">Send the link along with the picture, so friends can tap it.</p>
+    <img class="shot" id="share-img" alt="Your result as a picture. It shows the price, how you split it and how much you put in the wrong place, but not the real split." data-s-alt="gets.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="who-gets-what.png" data-s="share.save">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">This game needs JavaScript to run.</p></noscript>
+
+<script src="../../who-gets-what/puzzles.js"></script>
+<script src="../../assets/lang/es/who-gets-what.js?v=8fc7d84f50"></script>
+<script src="../../assets/js/turnsout.js?v=b0b0239919"></script>
+<script src="../../assets/js/duel.js?v=04294e8296"></script>
+<script src="../../assets/js/rooms.js?v=a42d4cf6f9"></script>
+<script src="../../assets/js/points.js?v=d060d18a9f"></script>
+<script src="../../assets/js/world.js?v=a7598250ec"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../who-gets-what/who-gets-what.js?v=4b804aaa36"></script>
+</body>
+</html>

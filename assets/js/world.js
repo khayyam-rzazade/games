@@ -20,7 +20,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut, P = window.LogicersPoints;
+  var TO = window.TurnsOut, P = window.LogicersPoints, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   if (!TO || !P) return;
 
   /* ------------------------------------------------------------------
@@ -161,9 +161,9 @@
   }
 
   /* ---------------- names, flags, numbers ---------------- */
-  var CONT = { AF: "Africa", AN: "Antarctica", AS: "Asia", EU: "Europe", NA: "North America", OC: "Oceania", SA: "South America" };
+  var CONT = { AF: T("world.cont_af"), AN: T("world.cont_an"), AS: T("world.cont_as"), EU: T("world.cont_eu"), NA: T("world.cont_na"), OC: T("world.cont_oc"), SA: T("world.cont_sa") };
   var names = null;
-  try { names = new window.Intl.DisplayNames(["en"], { type: "region" }); } catch (e) { names = null; }
+  try { names = new window.Intl.DisplayNames([LG ? LG.lang : "en"], { type: "region" }); } catch (e) { names = null; }
   function countryName(c) {
     if (!/^[A-Z]{2}$/.test(String(c))) return "";
     var n = "";
@@ -175,8 +175,9 @@
     return String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65, 0x1F1E6 + c.charCodeAt(1) - 65);
   }
   function contName(ct) { return CONT[ct] || ""; }
-  function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function commas(n) { return LG ? LG.num(Math.round(n)) : String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function nth(n) {
+    if (LG) return LG.nth(n);
     var s = ["th", "st", "nd", "rd"], v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   }
@@ -187,16 +188,17 @@
     if (text !== undefined) e.textContent = text;
     return e;
   }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function flagEl(c) { var f = el("span", "wd-flag", flag(c)); f.setAttribute("aria-hidden", "true"); return f; }
   function avg(a) { return a && a.n ? a.p / a.n : null; }
 
   /* ---------------- the invitation ---------------- */
   var SELF = (document.currentScript && document.currentScript.src) || "";
   var ROOT = /assets\/js\/world\.js/.test(SELF) ? SELF.replace(/assets\/js\/world\.js.*$/, "") : "../";
-  function tableHref() { return TO.here(ROOT + "world/"); }
+  function tableHref() { return TO.here(ROOT + (LG ? LG.base : "") + "world/"); }
   function tableUrl() {
     var a = TO.address();
-    return a ? "https://" + a + "/world/" : (function () { try { return new URL(tableHref(), window.location.href).href; } catch (e) { return tableHref(); } })();
+    return a ? "https://" + a + "/" + (LG ? LG.base : "") + "world/" : (function () { try { return new URL(tableHref(), window.location.href).href; } catch (e) { return tableHref(); } })();
   }
   /* a country's team page (19 Oct 2026): team/?c=IT, with a rival too (team/?c=IT&v=DE) */
   function teamHref(c, rival) {
@@ -210,14 +212,12 @@
   /* place: the country's place on the world table, or, with game (a game's name), its place in that game today */
   function inviteText(c, place, game, rival) {
     var name = countryName(c);
-    if (!name) return "Small daily games about the real world, a minute each. Every game you finish counts for your country. " + tableUrl();
+    if (!name) return T("world.invite_plain") + " " + tableUrl();
     if (place && rival && countryName(rival)) {      // the end of the day (17 Oct 2026): the country just above
-      return flag(c) + " " + name + " is " + nth(place) + " on the Logicers world table today, just behind " + flag(rival) + " " + countryName(rival) +
-        ". Help us pass them: small daily games about the real world, a minute each, and every game you finish counts for your country. " + tableUrl();
+      return T("world.invite_behind", { flag: flag(c), country: name, place: nth(place), rflag: flag(rival), rival: countryName(rival) }) + " " + tableUrl();
     }
-    return (place ? flag(c) + " " + name + " is " + nth(place) + (game ? " at " + game + " on Logicers today" : " on the Logicers world table today") + ". Help us climb: " :
-      "Help " + flag(c) + " " + name + " onto the Logicers world table: ") +
-      "small daily games about the real world, a minute each, and every game you finish counts for your country. " + tableUrl();
+    return (place ? (game ? T("world.invite_place_game", { flag: flag(c), country: name, place: nth(place), game: game }) : T("world.invite_place", { flag: flag(c), country: name, place: nth(place) })) :
+      T("world.invite_onto", { flag: flag(c), country: name })) + " " + tableUrl();
   }
   function invite(c, place, note, game, rival) {
     var text = inviteText(c, place, game, rival), nav = window.navigator;
@@ -225,7 +225,7 @@
     function copy() {
       TO.copyText(text).then(function (ok) {
         if (!note) return;
-        note.textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + tableUrl();
+        note.textContent = ok ? T("world.copied") : T("world.copy_failed", { url: tableUrl() });
         note.hidden = false;
       });
     }
@@ -236,13 +236,13 @@
   function inviteButton(c, place, note, cls, game) {
     var b = el("button", "wd-invite" + (cls ? " " + cls : ""));
     b.type = "button";
-    b.appendChild(el("span", "", countryName(c) ? "Invite friends from " + countryName(c) : "Invite friends"));
+    b.appendChild(el("span", "", countryName(c) ? T("world.invite_from", { country: countryName(c) }) : T("world.invite")));
     b.addEventListener("click", function () { invite(c, place, note, game); });
     return b;
   }
 
   /* ---------------- the reveal: "The world today" ---------------- */
-  var SPOT = { cousin: "found it", club: "got all five right" };
+  var SPOT = { cousin: T("world.spot_cousin"), club: T("world.spot_club") };
   /* where the answer is, from the player's own result (as Rooms' strip reads it) */
   var REAL = {
     hundred: function (r) { return r.a; },
@@ -255,7 +255,7 @@
     if (k === "hundred") return String(Math.round(v));
     if (k === "o24") {
       var m = Math.round(v / 5) * 5, h = Math.floor(m / 60), mm = m % 60;
-      return h + " h" + (mm ? " " + two(mm) : "");
+      return T("world.hours", { h: h }) + (mm ? " " + two(mm) : "");
     }
     if (k === "energy") {
       var x = Math.round(v * 2) / 2, w = Math.floor(x);
@@ -287,14 +287,14 @@
       if (sub) li.setAttribute("aria-label", sub);
       ul.appendChild(li);
     }
-    row("You", me, "r-you", "Your score: " + me + " of 100");
-    row("World", avg(v.w), "r-world", "The world's average: " + Math.round(avg(v.w)) + " of 100");
-    if (v.t && v.t.n) row(contName(you.ct), avg(v.t), "r-cont", contName(you.ct) + "'s average: " + Math.round(avg(v.t)) + " of 100");
+    row(T("world.you"), me, "r-you", T("world.your_score", { n: me }));
+    row(T("world.world"), avg(v.w), "r-world", T("world.world_avg", { n: Math.round(avg(v.w)) }));
+    if (v.t && v.t.n) row(contName(you.ct), avg(v.t), "r-cont", T("world.place_avg", { place: contName(you.ct), n: Math.round(avg(v.t)) }));
     if (v.h && v.h.n) {
       var lab = el("span", "wd-cname");
       lab.appendChild(flagEl(you.c));
       lab.appendChild(document.createTextNode(countryName(you.c)));
-      row(lab, avg(v.h), "r-home", countryName(you.c) + "'s average: " + Math.round(avg(v.h)) + " of 100");
+      row(lab, avg(v.h), "r-home", T("world.place_avg", { place: countryName(you.c), n: Math.round(avg(v.h)) }));
     }
     return ul;
   }
@@ -314,9 +314,9 @@
     var real = REAL[k](r), wv = guessAvg(k, v.w), hv = guessAvg(k, v.h);
     if (wv === null || !isFinite(real)) return null;
     var log = P.GUESS[k] === "log";
-    var pts = [{ id: "ans", v: real, label: "Answer" + (fmt(k, real) ? " " + fmt(k, real) : "") },
-               { id: "you", v: mine.g, label: "You" + (fmt(k, mine.g) ? " " + fmt(k, mine.g) : "") },
-               { id: "world", v: wv, label: "World" + (fmt(k, wv) ? " " + fmt(k, wv) : "") }];
+    var pts = [{ id: "ans", v: real, label: T("world.answer") + (fmt(k, real) ? " " + fmt(k, real) : "") },
+               { id: "you", v: mine.g, label: T("world.you") + (fmt(k, mine.g) ? " " + fmt(k, mine.g) : "") },
+               { id: "world", v: wv, label: T("world.world") + (fmt(k, wv) ? " " + fmt(k, wv) : "") }];
     if (hv !== null && v.h.gn >= 2) pts.push({ id: "home", v: hv, label: flag(you.c) + (fmt(k, hv) ? " " + fmt(k, hv) : " " + you.c) });
     var tr = function (x) { return log ? Math.log(Math.max(x, 0.5)) : x; };
     var vals = pts.map(function (p) { return tr(p.v); });
@@ -327,8 +327,8 @@
 
     var box = el("div", "wd-rail");
     box.setAttribute("role", "img");
-    box.setAttribute("aria-label", "Where the guesses landed: " + pts.map(function (p) { return p.label; }).join(", ") + ".");
-    box.appendChild(el("p", "wd-h", "Where the guesses landed"));
+    box.setAttribute("aria-label", T("world.rail") + ": " + pts.map(function (p) { return p.label; }).join(", ") + ".");
+    box.appendChild(el("p", "wd-h", T("world.rail")));
     var line = el("div", "wd-track");
     /* labels in four lanes, two above the line and two below, so none sits on another */
     var lanes = [-1e9, -1e9, -1e9, -1e9];
@@ -356,26 +356,22 @@
     if (named && v.rank && v.rank.at) {
       place = v.rank.at;
       p.appendChild(flagEl(c));
-      p.appendChild(document.createTextNode(countryName(c) + (place === 1 ? " leads this game today" : " is ")));
-      if (place !== 1) {
-        p.appendChild(el("b", "", nth(place)));
-        p.appendChild(document.createTextNode(" of " + v.rank.of + " countries in this game today"));
-      } else p.appendChild(document.createTextNode(v.rank.of > 1 ? ", ahead of " + (v.rank.of - 1) + (v.rank.of === 2 ? " other country" : " other countries") : ""));
-      p.appendChild(document.createTextNode(place === 1 ? "!" : "."));
+      p.appendChild(document.createTextNode(" "));
+      if (place !== 1) p.insertAdjacentHTML("beforeend", T("world.place_in_game", { country: esc(countryName(c)), place: nth(place), of: v.rank.of }));
+      else p.appendChild(document.createTextNode(v.rank.of > 1 ? T.n(v.rank.of - 1, "world.leads_game_ahead", { country: countryName(c) }) : T("world.leads_game", { country: countryName(c) })));
     } else if (named && v.h && v.h.n && v.rank) {
       var need = Math.max(1, v.rank.min - v.h.n);
       p.appendChild(flagEl(c));
-      p.appendChild(document.createTextNode(countryName(c) + ": " + v.h.n + (v.h.n === 1 ? " player" : " players") + " so far. "));
-      p.appendChild(el("b", "", need + " more"));
-      p.appendChild(document.createTextNode(" and it takes a place."));
+      p.appendChild(document.createTextNode(" "));
+      p.insertAdjacentHTML("beforeend", T.n(v.h.n, "world.players_so_far_need", { country: esc(countryName(c)), need: need }));
     } else if (named && v.h && v.h.n) {
       p.appendChild(flagEl(c));
-      p.appendChild(document.createTextNode(countryName(c) + ": " + v.h.n + (v.h.n === 1 ? " player" : " players") + " so far."));
+      p.appendChild(document.createTextNode(" " + T.n(v.h.n, "world.players_so_far", { country: countryName(c) })));
     } else p.hidden = true;
     wrap.appendChild(p);
     if (v.top && v.top.length) {
       var t = el("p", "wd-top3");
-      t.appendChild(el("span", "", "Top today"));
+      t.appendChild(el("span", "", T("world.top_today")));
       v.top.forEach(function (x, i) {
         var s = el("span", "wd-chip" + (x[0] === c ? " me" : ""));
         s.appendChild(flagEl(x[0]));
@@ -389,7 +385,7 @@
     acts.appendChild(inviteButton(c, place, note, "", place ? G.name : ""));
     var a = el("a", "wd-table");
     a.href = tableHref();
-    a.appendChild(el("span", "", "World table"));
+    a.appendChild(el("span", "", T("world.table")));
     a.insertAdjacentHTML("beforeend", '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
     a.addEventListener("click", function () { TO.count("world/from-game"); });
     acts.appendChild(a);
@@ -410,7 +406,7 @@
       try { text = b.querySelector(".t").textContent; letter = b.querySelector(".k").textContent || letter; } catch (e) { text = ""; }
       li.appendChild(el("span", "k", letter));
       var mid = el("span", "wd-cmid");
-      mid.appendChild(el("span", "t", text || "Choice " + letter));
+      mid.appendChild(el("span", "t", text || T("world.choice", { letter: letter })));
       var bar = el("span", "wd-bar");
       var fill = el("i", "");
       var share = pct(v.w.k[i], n);
@@ -424,12 +420,10 @@
     box.appendChild(ul);
     var same = pct(v.w.k[r.c] || 0, v.w.n);
     var line = el("p", "wd-big");
-    line.appendChild(document.createTextNode("You chose like "));
-    line.appendChild(el("b", "", same + "%"));
-    line.appendChild(document.createTextNode(" of the world" + (v.h && v.h.n > 1 ? " and " + pct(v.h.k[r.c], v.h.n) + "% of " + countryName(you.c) : "") + "."));
+    line.innerHTML = v.h && v.h.n > 1 ? T("world.chose_like_both", { pct: same, hpct: pct(v.h.k[r.c], v.h.n), country: esc(countryName(you.c)) }) : T("world.chose_like", { pct: same });
     box.appendChild(line);
     var real = el("p", "wd-line");
-    real.textContent = pct(v.w.k[r.r] || 0, v.w.n) + "% of the world made the same call as the real leader.";
+    real.textContent = T("world.same_as_leader", { pct: pct(v.w.k[r.r] || 0, v.w.n) });
     box.appendChild(real);
     return box;
   }
@@ -440,10 +434,9 @@
     if (!v || !v.w || !v.w.n) { box.hidden = true; return; }
     box.hidden = false;
     var top = el("div", "wd-top2");
-    top.appendChild(el("h2", "", "The world today"));
+    top.appendChild(el("h2", "", T("world.today")));
     var n = el("span", "wd-n");
-    n.appendChild(el("b", "", commas(v.w.n)));
-    n.appendChild(document.createTextNode(" played"));
+    n.innerHTML = T("world.n_played", { n: commas(v.w.n) });
     top.appendChild(n);
     box.appendChild(top);
     var note = el("p", "wd-note");
@@ -455,23 +448,19 @@
       return;
     }
     var me = P.points(G.key, mine.e);
-    box.appendChild(el("p", "wd-sub", "Score out of 100"));
+    box.appendChild(el("p", "wd-sub", T("world.score_of_100")));
     box.appendChild(bars(G, me, v, you));
     var b = beat(v, me, counted), big = el("p", "wd-big");
-    if (b === null) big.textContent = counted ? "You are the first in the world to finish this one today." : "Nobody else has finished this one yet today.";
-    else {
-      big.appendChild(document.createTextNode("You beat "));
-      big.appendChild(el("b", "", b + "%"));
-      big.appendChild(document.createTextNode(" of players today."));
-    }
+    if (b === null) big.textContent = counted ? T("world.first_today") : T("world.nobody_yet");
+    else big.innerHTML = T("world.you_beat", { pct: b });
     box.appendChild(big);
     var rl = rail(G, r, mine, v, you);
     if (rl) box.appendChild(rl);
     if (v.w.n >= 2) {
       var spot = el("p", "wd-line");
       var sp = pct(v.w.h[10], v.w.n);
-      spot.textContent = sp + "% of players in the world " + (SPOT[G.key] || "were spot on") +
-        (v.h && v.h.n >= 3 ? "; " + pct(v.h.h[10], v.h.n) + "% in " + countryName(you.c) + "." : ".");
+      spot.textContent = (v.h && v.h.n >= 3 ? T("world.spot_share_both", { pct: sp, did: SPOT[G.key] || T("world.spot_were"), hpct: pct(v.h.h[10], v.h.n), country: countryName(you.c) })
+        : T("world.spot_share", { pct: sp, did: SPOT[G.key] || T("world.spot_were") }));
       box.appendChild(spot);
     }
     box.appendChild(standing(G, v, you, note));
@@ -490,9 +479,9 @@
     if (!mine) return null;
     var box = el("section", "world");
     box.id = "world";
-    box.setAttribute("aria-label", "The world today");
+    box.setAttribute("aria-label", T("world.today"));
     box.setAttribute("data-g", G.key);
-    box.appendChild(el("p", "wd-wait", "Counting the world…"));
+    box.appendChild(el("p", "wd-wait", T("world.counting")));
     after.appendChild(box);
     flush(key, G.key).then(function (res) {
       if (!res || res.status !== 200 || !res.data || !res.data.view) { box.hidden = true; return; }
@@ -522,27 +511,21 @@
       line.appendChild(document.createTextNode(" "));
       var cta;
       if (place === 1) {
-        line.appendChild(document.createTextNode(countryName(c) + " leads the world today."));
-        cta = "Keep it there";
+        line.appendChild(document.createTextNode(T("world.leads_world", { country: countryName(c) })));
+        cta = T("world.keep_it_there");
       } else if (place && rival) {
-        line.appendChild(document.createTextNode(countryName(c) + " is "));
-        line.appendChild(el("b", "", nth(place)));
-        line.appendChild(document.createTextNode(" today, just behind "));
-        line.appendChild(flagEl(rival.c));
-        line.appendChild(document.createTextNode(" " + countryName(rival.c) + "."));
-        cta = "Help it climb";
+        line.insertAdjacentHTML("beforeend", T("world.is_behind", { country: esc(countryName(c)), place: nth(place), rflag: flag(rival.c), rival: esc(countryName(rival.c)) }));
+        cta = T("world.help_climb");
       } else {
         var need = Math.max(1, t.min - (me ? me.n : 0));
-        line.appendChild(document.createTextNode(countryName(c) + " needs "));
-        line.appendChild(el("b", "", need + " more"));
-        line.appendChild(document.createTextNode(need === 1 ? " player to take a place today." : " players to take a place today."));
-        cta = "Invite friends";
+        line.insertAdjacentHTML("beforeend", T.n(need, "world.needs_more", { country: esc(countryName(c)), need: need }));
+        cta = T("world.invite");
       }
       /* the daily reminder may say it tomorrow, once, when the place changed (turnsout.js keeps and sends it) */
       try {
         if (typeof TO.keepTip === "function") {
-          var tip = place === 1 ? countryName(c) + " led the world. Keep it there today."
-            : (place && rival) ? countryName(c) + " was " + nth(place) + ", just behind " + countryName(rival.c) + ". Help it climb today." : "";
+          var tip = place === 1 ? T("world.tip_led", { country: countryName(c) })
+            : (place && rival) ? T("world.tip_behind", { country: countryName(c), place: nth(place), rival: countryName(rival.c) }) : "";
           if (tip) TO.keepTip(tip.length <= 110 ? tip : "", c + ":" + place);
         }
       } catch (e) { /* the reminder simply has no country line */ }
@@ -568,9 +551,9 @@
      Nothing is typed, nothing identifies anyone, so there is nothing to moderate. A player who left their results
      out of the world's counts gets no row. Whatever goes wrong, the row simply stays as it is or stays away. */
   var FEEL = [
-    { e: "\uD83D\uDE2E", t: "Surprised", w: "surprised" },
-    { e: "\uD83D\uDE0F", t: "Knew it", w: "knew it" },
-    { e: "\uD83E\uDD14", t: "Made me think", w: "made them think" }
+    { e: "\uD83D\uDE2E", t: T("world.feel_surprised"), w: T("world.felt_surprised") },
+    { e: "\uD83D\uDE0F", t: T("world.feel_knew"), w: T("world.felt_knew") },
+    { e: "\uD83E\uDD14", t: T("world.feel_think"), w: T("world.felt_think") }
   ];
   function rxMap() { var m = store().rx; return m && typeof m === "object" && !Array.isArray(m) ? m : {}; }
   function rxGet(key, k) { var d = rxMap()[key], v = d && typeof d === "object" ? d[k] : null; return v === 0 || v === 1 || v === 2 ? v : null; }
@@ -602,8 +585,8 @@
       var low = el("span", "rx-low");
       if (ph !== null) { low.appendChild(flagEl(c)); low.appendChild(document.createTextNode(" " + ph + "%")); } else low.textContent = FEEL[i].t;
       b.appendChild(low);
-      b.setAttribute("aria-label", FEEL[i].t + ": " + (pw === null ? w[i] + (w[i] === 1 ? " player" : " players") : pw + "% of the world") +
-        (ph !== null ? ", " + ph + "% of " + countryName(c) : "") + (i === mine ? ". Your pick." : "."));
+      b.setAttribute("aria-label", FEEL[i].t + ": " + (pw === null ? T.n(w[i], "world.n_players") : T("world.pct_of_world", { pct: pw })) +
+        (ph !== null ? ", " + T("world.pct_of_country", { pct: ph, country: countryName(c) }) : "") + (i === mine ? ". " + T("world.your_pick") : "."));
       b.disabled = true;
     });
   }
@@ -616,7 +599,7 @@
     if (!resultFor(G, key)) return null;
     var row = el("div", "rx");
     row.setAttribute("role", "group");
-    row.setAttribute("aria-label", "How did this one feel?");
+    row.setAttribute("aria-label", T("world.how_feel"));
     row.setAttribute("data-g", G.key);
     FEEL.forEach(function (f, i) {
       var b = el("button", "rx-b");
@@ -673,9 +656,9 @@
       var h = document.getElementById("worldbox-h"), sub = document.getElementById("worldbox-sub");
       var mine = null;
       t.rows.forEach(function (x) { if (x.c === you.c) mine = x; });
-      if (h && mine && mine.at) h.textContent = flag(you.c) + " " + countryName(you.c) + " is " + nth(mine.at) + " today";
-      else if (h && countryName(you.c)) h.textContent = flag(you.c) + " " + countryName(you.c) + " on the world table";
-      if (sub) sub.textContent = r.data.n ? commas(r.data.n + (r.data.calls || 0)) + " games played today, in " + t.rows.length + (t.rows.length === 1 ? " country." : " countries.") : "Every game you finish counts for your country.";
+      if (h && mine && mine.at) h.textContent = flag(you.c) + " " + T("world.is_today", { country: countryName(you.c), place: nth(mine.at) });
+      else if (h && countryName(you.c)) h.textContent = flag(you.c) + " " + T("world.on_table", { country: countryName(you.c) });
+      if (sub) sub.textContent = r.data.n ? T.n(t.rows.length, "world.games_today_in", { games: commas(r.data.n + (r.data.calls || 0)) }) : T("world.counts_for_country");
     }, function () { /* the box keeps its plain words */ });
   }
 
@@ -722,16 +705,14 @@
     on: on, call: call, post: post, flush: flush, flushBoth: flushBoth, todayKey: todayKey, shiftKey: shiftKey, dateOf: dateOf,
     countryName: countryName, flag: flag, flagEl: flagEl, contName: contName, CONT: CONT,
     commas: commas, nth: nth, rank: rank, bonus: bonus, BONUS: BONUS, invite: invite, inviteButton: inviteButton, inviteText: inviteText,
-    off: off, setOff: setOff, block: block, draw: draw, el: el, tableUrl: tableUrl, PULL: PULL, MIN: MIN,
+    off: off, setOff: setOff, block: block, draw: draw, el: el, esc: esc, tableUrl: tableUrl, PULL: PULL, MIN: MIN,
     teamHref: teamHref, teamUrl: teamUrl, FEEL: FEEL, keyForDay: keyForDay
   };
 
   /* ---------------- the honest sentence ----------------
      Every page that sends says so where it speaks about privacy, in the same words (and the World table page
      says it in full). Joined once, as Rooms join theirs; on a page where the world's counts are off, nothing. */
-  var SHORT = "Each daily game you finish also adds its score to the world's counts by country, on Logicers' own server: your country is read from your connection, and nothing that identifies you is kept. You can leave your results out on the World table page.";
-  var TINY = "Each daily game you finish also adds its score, and nothing that identifies you, to the world's counts by country.";
-  var FULL = "When you finish a daily game, your phone sends the game, how far off you were and, for the games whose guess is one number, your guess, to Logicers' own server. The server reads your country and continent from your connection, adds the result to that country's counts for the day, and keeps only the counts: no address, nothing that identifies you. A guess is shown only as an average of two or more. If you tap how a game felt, that one tap is added to your country's counts in the same way, and a country's biggest day, in games, is kept as one number with its date. A day's counts are deleted 75 days after it. You can leave your results out here and still see everyone else's.";
+  var SHORT = T("world.priv_short"), TINY = T("world.priv_tiny"), FULL = T("world.priv_full");
   function honest() {
     if (!on()) return;
     Array.prototype.forEach.call(document.querySelectorAll("[data-privacy]"), function (x) {

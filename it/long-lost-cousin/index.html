@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="it" data-lg-path="long-lost-cousin/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="cous.page_title">Long Lost Cousin: a daily game about animal family trees | Logicers</title>
+<link rel="canonical" href="https://logicers.com/it/long-lost-cousin/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/long-lost-cousin/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/long-lost-cousin/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/long-lost-cousin/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/long-lost-cousin/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/long-lost-cousin/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/long-lost-cousin/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/long-lost-cousin/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/long-lost-cousin/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/long-lost-cousin/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/long-lost-cousin/">
+<meta name="description" content="One animal, three others. Which one is its closest relative? Pick one, then watch the family tree draw itself." data-s-content="cous.page_desc">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Long Lost Cousin" data-s-content="game.cousin.name">
+<meta property="og:description" content="One animal, three others. Which one is its closest relative?" data-s-content="cous.og_desc">
+<meta property="og:url" content="https://logicers.com/it/long-lost-cousin/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FDE6DF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=e165ea97e7">
+<script src="../../assets/lang/it.js?v=bda2bf9825"></script>
+<script src="../../assets/js/lang.js?v=b48aebb299"></script>
+<link rel="stylesheet" href="../../long-lost-cousin/long-lost-cousin.css?v=1abac0edf8">
+</head>
+<body class="game" data-g="cousin">
+
+<header class="bar">
+  <a class="wordmark" href="../../it/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Streak 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How to play" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.cousin.name">Long Lost Cousin</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="lc-q" id="question"></h1>
+
+  <section class="panel" id="panel" aria-live="polite">
+    <div class="lc-guess" id="guess">
+      <div class="lc-subject">
+        <span class="lc-pic" id="subject-pic"></span>
+        <span class="lc-name" id="subject-name"></span>
+      </div>
+      <div class="lc-options" id="options" role="group" aria-label="Three possible relatives" data-s-aria-label="cous.options_aria"></div>
+    </div>
+
+    <div class="lc-tree" id="tree" hidden>
+      <div class="lc-leaves" id="leaves"></div>
+      <div class="lc-wood">
+        <svg class="lc-branches" id="branches" viewBox="0 0 400 150" aria-hidden="true"></svg>
+        <p class="lc-when" id="when" hidden></p>
+      </div>
+    </div>
+
+    <div class="readout lc-readout">
+      <p class="hint" id="hint" data-s="cous.hint">Tap the closest relative.</p>
+      <div class="verdict" id="verdict" hidden>
+        <p class="turnsout" id="turnsout"></p>
+        <p class="offby" id="offby"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="lock" type="button" hidden data-s="cous.see_tree">See the family tree</button>
+  </div>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="source"><span data-s="site.sources">Sources:</span> <a id="src1" href="#" target="_blank" rel="noopener"></a>, <a id="src2" href="#" target="_blank" rel="noopener"></a></p>
+    <p class="source lc-credit" id="pic-credit"></p>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Share</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">Practice</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">How to play</h2>
+    <ol>
+      <li data-s="cous.help_1">Look at the animal or plant at the top.</li>
+      <li data-s="cous.help_2">Tap the one of the three below that you think is its closest relative.</li>
+      <li data-s="cous.help_3">Tap "See the family tree".</li>
+    </ol>
+    <p data-s="cous.help_daily">One puzzle a day, the same for everyone. A new one arrives at midnight.</p>
+    <h3 data-s="cous.help_meaning_h">What "closest relative" means</h3>
+    <p class="quiet" data-s="cous.help_meaning">Close relatives share a recent ancestor. Looks can fool you: animals that live alike often look alike.</p>
+    <h3 data-s="site.facts_from">Where the facts come from</h3>
+    <p class="quiet" data-s="cous.help_facts">Every answer is checked against two sources, linked under the answer.</p>
+    <h3 data-s="cous.help_pictures_h">The pictures</h3>
+    <p class="quiet" data-s="cous.help_pictures">Silhouettes from <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>; credits, where asked, under the answer. PhyloPic does not endorse this site.</p>
+    <h3 data-s="site.your_privacy">Your privacy</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">No login, no tracking, no cookies. Your streak and your album are kept only in this browser.</p>
+    <p class="mail" data-s="site.mistake_mail">Spotted a mistake? Write to me: <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Your album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">days played</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">streak now</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">best streak</span></div>
+      <div class="stat"><b id="st-found">0</b><span data-s="cous.cousins_found">cousins found</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="cous.album_empty">Find today's cousin to get your first stamp.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">Practice</h2>
+    <p class="quiet" data-s="site.practice_lede_puzzle">Yesterday's puzzle. Practice does not count for your streak or your album.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Nothing to practise yet. Come back tomorrow.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../it/long-lost-cousin/" data-s="site.back_today_puzzle">Back to today's puzzle</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Share your result</h2>
+    <p class="quiet" data-s="site.share_lede">Send the link along with the picture, so friends can tap it.</p>
+    <img class="shot" id="share-img" alt="Your result as a picture. It does not show which one is the closest relative." data-s-alt="cous.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="long-lost-cousin.png" data-s="share.save">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copy link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">This game needs JavaScript to run.</p></noscript>
+
+<script src="../../long-lost-cousin/puzzles.js"></script>
+<script src="../../assets/lang/it/long-lost-cousin.js?v=a264345eed"></script>
+<script src="../../assets/js/turnsout.js?v=b0b0239919"></script>
+<script src="../../assets/js/duel.js?v=04294e8296"></script>
+<script src="../../assets/js/rooms.js?v=a42d4cf6f9"></script>
+<script src="../../assets/js/points.js?v=d060d18a9f"></script>
+<script src="../../assets/js/world.js?v=a7598250ec"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../long-lost-cousin/long-lost-cousin.js?v=56e52cd525"></script>
+</body>
+</html>

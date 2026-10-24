@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "years-apart";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -13,7 +13,7 @@
   var tag = $("tag"), stringPath = $("string-path"), actions = $("guess-actions"), btnMeasure = $("btn-measure"), hint = $("hint");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length || !DATA.events) {
-    $("question").textContent = "Today's line could not be loaded. Please try again in a moment.";
+    $("question").textContent = T("apart.not_loaded");
     panel.hidden = true;
     actions.hidden = true;
     hint.hidden = true;
@@ -41,18 +41,20 @@
   var byId = {};
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
   function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  if (LG) { LG.puzzleAll(GAME, puzzleOf); var le = window.LG_PUZZLES && window.LG_PUZZLES[GAME + ".events"]; if (le) { for (var ek in le) if (Object.prototype.hasOwnProperty.call(le, ek)) EV[ek] = Object.assign({}, EV[ek] || {}, le[ek]); } }
 
   /* a stored result: g = where you put it, a = where it really is (both in thousandths of the line), y = years off */
   function valid(r) {
     return !!r && num(r.g) && r.g >= 0 && r.g <= 1000 && num(r.a) && r.a >= 0 && r.a <= 1000 && num(r.y) && r.y >= 0;
   }
   function spotOn(r) { return Math.abs(r.g - r.a) <= 5; }      // within half a percent of the line
-  function commas(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
-  function yearsText(y) { return y < 1 ? "less than a year" : commas(y) + (Math.round(y) === 1 ? " year" : " years"); }
+  function commas(n) { return LG ? LG.num(Math.round(n)) : String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function yearsText(y) { return y < 1 ? T("apart.less_than_year") : T.n(Math.round(y), "apart.years", { n: commas(y) }); }
 
   var stored = TO.game(GAME);
   var earlier = practice ? stored.practice[day] : stored.results[day];
   var q = puzzleOf(day);
+  if (LG) LG.puzzleNote(LG.puzzleHas(GAME, day));
   if (earlier && earlier.id && byId[earlier.id] && valid(earlier)) q = byId[earlier.id];   // show the line that was really played
   if (!valid(earlier)) earlier = null;
 
@@ -67,17 +69,17 @@
     '<path d="M7 4v4M12 4v3M17 4v4M22 4v5M27 4v4M32 4v3M37 4v4" stroke="currentColor" stroke-width="1.2"/><rect x="25" y="1" width="5" height="16" rx="1.5" fill="currentColor"/></svg>';
 
   function yearsOff(g) { return Math.round(Math.abs(g / 1000 - q.at) * q.span); }
-  function about() { return /^about /.test(L.y) || /^about /.test(R.y); }
+  function about() { return q.about === true || /^about /.test(L.y) || /^about /.test(R.y); }
 
   /* ---------- build the screen ---------- */
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Years Apart, day " + day + " | Logicers";
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("apart.title_day", { n: day });
   $("left-t").textContent = L.t;
   $("right-t").textContent = R.t;
   $("tag-t").textContent = M.t;
   if (L.t.length > 34) $("end-l").classList.add("small-text");
   if (R.t.length > 34) $("end-r").classList.add("small-text");
-  cursor.setAttribute("aria-label", "Where " + lower(M.t) + " falls, on a line from " + lower(L.t) + " (left) to " + lower(R.t) + " (right)");
+  cursor.setAttribute("aria-label", T("apart.cursor_aria", { mid: lower(M.t), left: lower(L.t), right: lower(R.t) }));
   function lower(t) { return t.charAt(0).toLowerCase() + t.slice(1); }
 
   /* the ruler is drawn to the width of the board: brass caps at both ends, a hundred ticks in between */
@@ -141,7 +143,7 @@
   function describe() {
     var pct = Math.round(guess / 10);
     cursor.setAttribute("aria-valuenow", String(pct));
-    cursor.setAttribute("aria-valuetext", pct + " percent of the way" + (pct < 50 ? ", closer to the left end" : pct > 50 ? ", closer to the right end" : ", halfway"));
+    cursor.setAttribute("aria-valuetext", T("apart.pct_of_way", { pct: pct }) + (pct < 50 ? T("apart.closer_left") : pct > 50 ? T("apart.closer_right") : T("apart.halfway")));
   }
   function setGuess(g) {
     g = Math.max(0, Math.min(1000, Math.round(g)));
@@ -206,12 +208,11 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 0 ? "A friend was spot on to the year. Can you match that?"
-      : "A friend was " + yearsText(friend) + " off. Can you get closer?") +
-      (practice ? " It is an earlier line, so it does not count for your streak." : "");
+    notice.textContent = (friend === 0 ? T("apart.friend_spot") : T("apart.friend_off", { years: yearsText(friend) })) +
+      (practice ? " " + T("apart.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -273,8 +274,8 @@
     if (motion) window.setTimeout(function () { tag.classList.remove("travel"); place(); }, 950);
 
     var v = $("offby");
-    var line = "The line is " + (about() ? "about " : "") + commas(q.span) + " years long.";
-    v.innerHTML = spotOn(r) ? "<b>Spot on.</b> Just " + yearsText(r.y) + " off." : "You were <b>" + yearsText(r.y) + "</b> off.";
+    var line = about() ? T("apart.line_about", { n: commas(q.span) }) : T("apart.line_long", { n: commas(q.span) });
+    v.innerHTML = spotOn(r) ? T("apart.spot_just", { years: yearsText(r.y) }) : T("apart.you_were_off", { years: yearsText(r.y) });
     v.insertAdjacentHTML("beforeend", '<span class="ya-line"></span>');
     v.lastChild.textContent = line;
     v.classList.toggle("hit", spotOn(r));               // yellow is kept for a miss
@@ -290,8 +291,8 @@
   function fillAfter(r) {
     var f = $("friend");
     if (friend !== null) {
-      var said = friend === 0 ? "Your friend was spot on to the year" : "Your friend was " + yearsText(friend) + " off";
-      f.textContent = r.y < friend ? said + ". You did better." : r.y === friend ? said + ", like you. A tie." : said + ". Closer than you.";
+      var said = friend === 0 ? T("apart.friend_was_spot") : T("apart.friend_was_off", { years: yearsText(friend) });
+      f.textContent = r.y < friend ? T("apart.friend_you_better", { f: said }) : r.y === friend ? T("apart.friend_tie", { f: said }) : T("apart.friend_closer", { f: said });
       f.hidden = false;
     }
     $("sentence").textContent = q.fact;
@@ -311,8 +312,8 @@
       list.appendChild(li);
     });
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s line</a>';
-    else next.textContent = "A new line arrives at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("apart.back_today") + '</a>';
+    else next.textContent = T("apart.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });   // what is played today, and the next game
     prepareCard(r);
@@ -323,7 +324,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1 && valid(res[n]); })
       .sort(function (a, b) { return b - a; });
     $("st-played").textContent = String(s.played);
@@ -363,10 +364,10 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
-      var t = document.createElement("span"); t.className = "q"; t.textContent = "Where does it fall? " + EV[p.mid].t;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
+      var t = document.createElement("span"); t.className = "q"; t.textContent = T("apart.where_falls") + " " + EV[p.mid].t;
       var s = document.createElement("span"); s.className = "s";
-      s.textContent = r ? "You were " + yearsText(r.y) + " off. " + EV[p.mid].y + "." : "Not played yet";   // the year stays hidden until you have played
+      s.textContent = r ? T("apart.practice_off", { years: yearsText(r.y), year: EV[p.mid].y }) : T("site.not_played_yet");   // the year stays hidden until you have played
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -381,8 +382,7 @@
     return base + "?d=" + day + "&g=" + r.y;
   }
   function shareText(r) {
-    return "Years Apart, day " + day + ": where does “" + M.t + "” fall between “" + L.t + "” and “" + R.t + "”? " +
-      (spotOn(r) ? "I was spot on." : "I was " + yearsText(r.y) + " off.") + " Can you get closer? " + shareUrl(r);
+    return T("apart.share", { n: day, mid: M.t, left: L.t, right: R.t, mine: spotOn(r) ? T("apart.i_spot") : T("apart.i_off", { years: yearsText(r.y) }) }) + " " + shareUrl(r);
   }
   function roundRect(ctx, x, y, w, h, rad) {
     ctx.beginPath();
@@ -432,11 +432,11 @@
     x.fillText("Logicers", MG, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
-    x.fillText("Years Apart, day " + day, W2 - MG, 118);
+    x.fillText(T("apart.day_header", { n: day }), W2 - MG, 118);
 
     x.textAlign = "left";
     x.font = "800 100px " + FD;
-    x.fillText("Where does it fall?", MG - 4, 262);
+    x.fillText(T("apart.where_falls"), MG - 4, 262);
 
     // the two ends, above the ruler
     var colW = (W2 - 2 * MG - 40) / 2, gold = "#F2D7A2";
@@ -479,14 +479,14 @@
     x.fillStyle = "#FBF4E4"; roundRect(x, tx0, ty, tagW, tagH, 14); x.fill();
     x.fillStyle = "#6E4429"; x.beginPath(); x.arc(W2 / 2, ty + 22, 9, 0, Math.PI * 2); x.fill();
     x.textAlign = "center"; x.fillStyle = "#8C6A47"; x.font = "800 24px " + F;
-    x.fillText("SOMEWHERE IN BETWEEN", W2 / 2, ty + 70);
+    x.fillText(T("apart.pic_between"), W2 / 2, ty + 70);
     x.fillStyle = "#2A1B10";
     mw.lines.forEach(function (l, i) { x.font = "700 " + mw.size + "px " + FD; x.fillText(l, W2 / 2, ty + 70 + 18 + mlh * (i + 0.8)); });
 
     // how far off: the yellow part is the miss, as on the ruler in the game. It starts at the left, so it says nothing about where.
     var resY = ty + tagH + 104;
     x.textAlign = "left"; x.fillStyle = "#ffffff"; x.font = "800 86px " + FD;
-    var head = spotOn(r) ? "Spot on" : "Off by " + yearsText(r.y);
+    var head = spotOn(r) ? T("says.spot_on") : T("apart.off_by_years", { years: yearsText(r.y) });
     var hs = 86; while (x.measureText(head).width > W2 - 2 * MG && hs > 50) { hs -= 2; x.font = "800 " + hs + "px " + FD; }
     x.fillText(head, MG - 3, resY);
     var barY = resY + 34, barW = W2 - 2 * MG, frac = Math.min(1, Math.abs(r.g - r.a) / 1000);
@@ -495,10 +495,10 @@
 
     x.fillStyle = "#ffffff"; x.textAlign = "left";
     x.font = "800 72px " + FD;
-    x.fillText("Can you get closer?", MG - 3, 1204);
+    x.fillText(T("apart.get_closer"), MG - 3, 1204);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, ws = 40;
+      var line = T("duel.play_at", { where: where }), ws = 40;
       x.font = "600 " + ws + "px " + F;
       while (x.measureText(line).width > W2 - 2 * MG && ws > 24) { ws -= 2; x.font = "600 " + ws + "px " + F; }
       x.fillText(line, MG, 1270);
@@ -545,7 +545,7 @@
   $("share-copy").addEventListener("click", function () {
     var r = { g: guess, a: ANSWER, y: yearsOff(guess) };
     TO.copyText(shareText(r)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(r);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(r) });
     });
   });
 

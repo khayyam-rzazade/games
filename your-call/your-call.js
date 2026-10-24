@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var TO = window.TurnsOut;
+  var TO = window.TurnsOut, LG = window.LG, T = LG ? LG.t : function (k) { return k; };
   var GAME = "your-call";
   var DATA = (window.TURNSOUT_DATA || {})[GAME];
   function $(id) { return document.getElementById(id); }
@@ -12,7 +12,7 @@
   var panel = $("panel"), choicesEl = $("choices"), lockBtn = $("lock");
 
   if (!TO || !DATA || !DATA.puzzles || !DATA.puzzles.length) {
-    $("pov").textContent = "Today's moment could not be loaded. Please try again in a moment.";
+    $("pov").textContent = T("call.not_loaded");
     return;
   }
 
@@ -35,7 +35,9 @@
   var byId = {};
   DATA.puzzles.forEach(function (x) { byId[x.id] = x; });
   function puzzleOf(n) { return DATA.puzzles[(n - 1) % DATA.puzzles.length]; }
+  if (LG) { LG.puzzleAll(GAME, puzzleOf); }
   var q = puzzleOf(day);
+  if (LG) LG.puzzleNote(LG.puzzleHas(GAME, day));
   var hue = TO.colour(q.colour);
   var LETTERS = ["A", "B", "C"];
 
@@ -47,9 +49,9 @@
   panel.style.setProperty("--hue", hue);
   $("year").textContent = String(q.year);
   $("place").textContent = q.place;
-  $("pov").textContent = "POV: " + q.pov + " Your call.";
-  $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Your Call, day " + day + " | Logicers";
+  $("pov").textContent = T("call.pov", { pov: q.pov });
+  $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
+  document.title = T("call.title_day", { n: day });
 
   var buttons = q.choices.map(function (text, i) {
     var b = document.createElement("button");
@@ -69,11 +71,11 @@
 
   var notice = $("notice");
   if (friendSame !== null) {
-    notice.textContent = (friendSame ? "A friend made the same call as the real leader." : "A friend chose differently from the real leader.") +
-      " Your call." + (practice ? " It is an earlier moment, so it does not count for your streak." : "");
+    notice.textContent = (friendSame ? T("call.friend_same") : T("call.friend_different")) +
+      (practice ? " " + T("call.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
-    notice.textContent = "Practice. This one does not count for your streak.";
+    notice.textContent = T("site.practice_notice");
     notice.hidden = false;
   }
 
@@ -127,11 +129,11 @@
         b.classList.toggle("real", n === q.real);
         b.classList.toggle("mine", n === picked && !same);
         var tag = b.querySelector(".tag");
-        tag.textContent = n === q.real ? (same ? "Your call, and what " + q.short + " did" : "What " + q.short + " did")
-          : (n === picked ? "Your call" : "");
+        tag.textContent = n === q.real ? (same ? T("call.tag_both", { who: q.short }) : T("call.tag_real", { who: q.short }))
+          : (n === picked ? T("call.tag_yours") : "");
       });
       var v = $("verdict");
-      v.textContent = same ? "Same call. That is what " + q.short + " did." : q.short + " made a different call.";
+      v.textContent = same ? T("call.verdict_same", { who: q.short }) : T("call.verdict_different", { who: q.short });
       v.hidden = false;
       fillAfter(same);
       renderChip();
@@ -155,8 +157,8 @@
     var friend = $("friend");
     if (friendSame !== null) {
       friend.textContent = friendSame
-        ? (same ? "Your friend made that call too." : "Your friend made the leader's call.")
-        : (same ? "Your friend chose differently." : "Your friend chose differently too.");
+        ? (same ? T("call.friend_too") : T("call.friend_leaders"))
+        : (same ? T("call.friend_diff") : T("call.friend_diff_too"));
       friend.hidden = false;
     }
     $("did").textContent = q.did;
@@ -166,8 +168,8 @@
       if (s) { a.textContent = s.name; a.href = s.url; }
     });
     var next = $("next");
-    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">Back to today\'s moment</a>';
-    else next.textContent = "A new moment at midnight.";
+    if (practice) next.innerHTML = '<a href="' + TO.here("./") + '">' + T("call.back_today") + '</a>';
+    else next.textContent = T("call.new_at_midnight");
     $("after").hidden = false;
     TO.onward({ game: GAME, day: day, today: today, practice: practice });   // what is played today, and the next game
     prepareCard(same);
@@ -177,7 +179,7 @@
   function renderChip() {
     var res = TO.game(GAME).results;
     var s = TO.streak(res, today);
-    $("streak-chip").textContent = "Streak " + s.current;
+    $("streak-chip").textContent = T("site.streak") + " " + s.current;
     var days = Object.keys(res).map(Number).filter(function (n) { return n >= 1; }).sort(function (a, b) { return b - a; });
     var same = 0;
     days.forEach(function (n) { if (res[n].c === res[n].r) same++; });
@@ -215,11 +217,11 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = TO.here("?p=" + n);
-      var d = document.createElement("span"); d.className = "d"; d.textContent = "Day " + n;
+      var d = document.createElement("span"); d.className = "d"; d.textContent = T("site.day_n", { n: n });
       var t = document.createElement("span"); t.className = "q"; t.textContent = p.year + ", " + p.place;
       var s = document.createElement("span"); s.className = "s";
       var r = g.results[n] || g.practice[n];
-      s.textContent = r ? (r.c === r.r ? "You made the leader's call" : "You chose differently") : "Not played yet";
+      s.textContent = r ? (r.c === r.r ? T("call.you_made_leaders") : T("call.you_chose_diff")) : T("site.not_played_yet");
       a.appendChild(d); a.appendChild(t); a.appendChild(s);
       li.appendChild(a);
       list.appendChild(li);
@@ -234,9 +236,7 @@
     return base + "?d=" + day + "&m=" + (same ? "1" : "0");
   }
   function shareText(same) {
-    return "Your Call, day " + day + ": " + q.year + ", " + q.place + ". " +
-      (same ? "I made the same call as the real leader." : "I chose differently from the real leader.") +
-      " Your call. " + shareUrl(same);
+    return T("call.share", { n: day, year: q.year, place: q.place, said: same ? T("call.i_same") : T("call.i_different") }) + " " + shareUrl(same);
   }
   function wrapLines(ctx, text, maxWidth) {
     var words = String(text).split(/\s+/), lines = [], line = "";
@@ -274,7 +274,7 @@
     x.fillText("Logicers", M, 118);
     x.textAlign = "right";
     x.font = "600 40px " + F;
-    x.fillText("Your Call, day " + day, W - M, 118);
+    x.fillText(T("call.day_header", { n: day }), W - M, 118);
 
     x.textAlign = "left";
     x.font = "800 190px " + FD;
@@ -287,7 +287,7 @@
     var fs = 44, lines;
     do {
       x.font = "600 " + fs + "px " + F;
-      lines = wrapLines(x, "POV: " + q.pov, W - 2 * M);
+      lines = wrapLines(x, T("call.pov_pic", { pov: q.pov }), W - 2 * M);
       fs -= 2;
     } while (lines.length > 6 && fs > 30);
     var lh = Math.round((fs + 2) * 1.24), y = 372;
@@ -311,13 +311,13 @@
 
     var ry = boxTop + 3 * (boxH + gap) + 44;
     x.font = "600 40px " + F;
-    x.fillText(same ? "I made the same call as the real leader." : "I chose differently from the real leader.", M, ry);
+    x.fillText(same ? T("call.i_same") : T("call.i_different"), M, ry);
 
     x.font = "800 72px " + FD;
-    x.fillText("Your call.", M, 1258);
+    x.fillText(T("call.your_call_dot"), M, 1258);
     var where = TO.address();
     if (where) {
-      var line = "Play at " + where, ws = 40;
+      var line = T("duel.play_at", { where: where }), ws = 40;
       x.font = "600 " + ws + "px " + F;
       while (x.measureText(line).width > W - 2 * M && ws > 24) { ws -= 2; x.font = "600 " + ws + "px " + F; }
       x.fillText(line, M, 1314);
@@ -356,7 +356,7 @@
   $("share-copy").addEventListener("click", function () {
     var same = picked === q.real;
     TO.copyText(shareText(same)).then(function (ok) {
-      $("share-copied").textContent = ok ? "Copied. Paste it into a chat." : "Copying did not work here. The link is: " + shareUrl(same);
+      $("share-copied").textContent = ok ? T("world.copied") : T("world.copy_failed", { url: shareUrl(same) });
     });
   });
 

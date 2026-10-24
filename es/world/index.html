@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es" data-lg-path="world/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<!-- The preview card a chat app shows, first in the head, as on the duel and room pages. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="The Logicers world table" data-s-content="wt.og_title">
+<meta property="og:description" content="Small daily games about the real world, a minute each. Every game you finish counts for your country. Where is yours today?" data-s-content="wt.og_desc">
+<meta property="og:url" content="https://logicers.com/es/world/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="wt.page_title">World table: which country plays the daily games best? | Logicers</title>
+<link rel="canonical" href="https://logicers.com/es/world/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/world/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/world/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/world/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/world/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/world/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/world/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/world/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/world/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/world/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/world/">
+<meta name="description" content="Every daily game anyone finishes on Logicers counts for their country. The world table ranks the countries for the day, the week and the month, and shows how many games each has played." data-s-content="wt.page_desc">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=e165ea97e7">
+<script src="../../assets/lang/es.js?v=566ab49f76"></script>
+<script src="../../assets/js/lang.js?v=b48aebb299"></script>
+<link rel="stylesheet" href="../../world/world.css?v=100c2bc5ac">
+</head>
+<body class="game wt-page" data-g="world">
+
+<header class="bar">
+  <a class="wordmark" href="../../es/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="How the table works" data-s-aria-label="wt.how_aria">?</button>
+  </div>
+</header>
+
+<main class="wrap wt-wrap" id="app">
+  <p class="meta"><b data-s="world.table">World table</b> <span id="wt-date"></span></p>
+  <h1 class="wt-h1" data-s="wt.h1">Which country plays best?</h1>
+  <p class="wt-lede" data-s="wt.lede">Every daily game anyone finishes counts for their country. The closer you get, the higher it climbs.</p>
+
+  <div class="wt-tabs" role="tablist" aria-label="Which table" data-s-aria-label="wt.which_table">
+    <button class="wt-tab" type="button" role="tab" id="tab-day" data-span="day" aria-selected="true" data-s="end.today">Today</button>
+    <button class="wt-tab" type="button" role="tab" id="tab-yday" data-span="yday" aria-selected="false" data-s="wt.tab_yesterday">Yesterday</button>
+    <button class="wt-tab" type="button" role="tab" id="tab-week" data-span="week" aria-selected="false" data-s="wt.tab_week">Week</button>
+    <button class="wt-tab" type="button" role="tab" id="tab-month" data-span="month" aria-selected="false" data-s="wt.tab_month">Month</button>
+  </div>
+
+  <!-- your own country: its place, its score, its games, and the invitation -->
+  <section class="wt-mine" id="wt-mine" aria-live="polite">
+    <p class="wt-wait" id="wt-wait" data-s="world.counting">Counting the world…</p>
+  </section>
+
+  <!-- two halves (19 Oct 2026, Khayyam): the way to today's games, and your country's team page (shown once the country is known) -->
+  <div class="wt-go" id="wt-go">
+    <a class="wt-play" id="wt-play" href="../../es/">
+      <span class="wt-play-text"><span class="wt-play-kicker" id="wt-play-kicker" data-s="end.today_games">Today's games</span><b id="wt-play-b" data-s="site.play">Play</b></span>
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a class="wt-team" id="wt-team" href="../../team/" hidden>
+      <span class="wt-play-text"><span class="wt-play-kicker" id="wt-team-kicker"></span><b data-s="wt.team_page">Team page</b></span>
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <section class="wt-card" id="wt-conts-card" hidden aria-labelledby="wt-conts-h">
+    <h2 class="wt-h2" id="wt-conts-h" data-s="wt.continents">Continents</h2>
+    <ul class="wt-conts" id="wt-conts"></ul>
+  </section>
+
+  <section class="wt-card" id="wt-best-card" hidden aria-labelledby="wt-best-h">
+    <div class="wt-head">
+      <h2 class="wt-h2" id="wt-best-h" data-s="wt.best_scores">Best scores</h2>
+      <button class="wt-share" id="wt-share" type="button" hidden>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 12.5V3.2M6.4 6.6L10 3l3.6 3.6M5.5 9.5H4.6v7h10.8v-7h-.9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="wt-s-long" data-s="wt.share_top10">Share top 10</span><span class="wt-s-short" data-s="site.share">Share</span>
+      </button>
+    </div>
+    <p class="wt-note" id="wt-best-note"></p>
+    <ol class="wt-list" id="wt-best"></ol>
+    <button class="wt-more" id="wt-best-more" type="button" hidden data-s="wt.show_every">Show every country</button>
+  </section>
+
+  <section class="wt-card" id="wt-busy-card" hidden aria-labelledby="wt-busy-h">
+    <div class="wt-head">
+      <h2 class="wt-h2" id="wt-busy-h" data-s="wt.most_games_played">Most games played</h2>
+      <button class="wt-share" id="wt-share-busy" type="button" hidden>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 12.5V3.2M6.4 6.6L10 3l3.6 3.6M5.5 9.5H4.6v7h10.8v-7h-.9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="wt-s-long" data-s="wt.share_top10">Share top 10</span><span class="wt-s-short" data-s="site.share">Share</span>
+      </button>
+    </div>
+    <ol class="wt-list wt-busy" id="wt-busy"></ol>
+    <button class="wt-more" id="wt-busy-more" type="button" hidden data-s="wt.show_every">Show every country</button>
+  </section>
+
+  <p class="wt-foot quiet" id="wt-foot"></p>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="wt.how_aria">How the table works</h2>
+    <ol>
+      <li data-s="wt.help_1">Every daily game you finish scores from 0 to 100: spot on is 100, and the further off, the fewer.</li>
+      <li data-s="wt.help_2">A country's score is the average of its players' games that day, made fair across games, so nobody is ahead for playing the easier ones.</li>
+      <li data-s="wt.help_3">A country above the world's average is pulled back toward it until it has plenty of games, so a handful of lucky games, or one person playing again and again, can't top the table.</li>
+      <li data-s="wt.help_4">A country is a team: every game its players finish adds to a team bonus of up to 25 points. It grows fast at first and is full at 300 games in a day (1,500 in a week, 6,000 in a month). Every friend who plays helps, but past that only playing well counts.</li>
+      <li data-s="wt.help_5">A country takes a place from 10 games in a day, 20 in a week, or 30 in a month.</li>
+    </ol>
+    <p class="quiet" data-s="wt.help_6">Your Call has no right answer, so it shows how the world chose; it counts in the games played and the bonus, never in the average. Practice never counts. The day is your own calendar day; the week runs from Monday and the month from its first day, both up to today.</p>
+    <h3 data-s="site.your_privacy">Your privacy</h3>
+    <p class="quiet" data-privacy="world" data-s="priv.world">No login and no cookies.</p>
+    <label class="wt-opt"><input type="checkbox" id="wt-optin" checked> <span data-s="wt.opt_in">Add my results to the world's counts</span></label>
+    <p class="quiet" id="wt-optnote" hidden data-s="wt.opt_out_note">Your results stay out of the world's counts from now on, on this browser. You still see everyone else's.</p>
+    <h3 data-s="wt.contact_h">Contact</h3>
+    <p class="quiet" data-s="wt.contact">A question, or something that looks wrong? Write to <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="wt.share_title">Share the table</h2>
+    <p class="quiet" data-s="wt.share_lede">Post the picture with the text, so others can tap the link and play for their country.</p>
+    <img class="shot" id="share-img" alt="The world table as a picture: the top ten countries, the first with its flag, score and games." data-s-alt="wt.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="logicers-world.png" data-s="share.save">Save picture</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="share.copy">Copy text</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="wt.noscript">This page needs JavaScript to run.</p></noscript>
+
+<script src="../../assets/js/turnsout.js?v=b0b0239919"></script>
+<script src="../../assets/js/points.js?v=d060d18a9f"></script>
+<script src="../../assets/js/world.js?v=a7598250ec"></script>
+<script src="../../world/world.js?v=f0bf1437d9"></script>
+</body>
+</html>
