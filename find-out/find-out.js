@@ -21,7 +21,7 @@ function tpl(t, vars) { return String(t).replace(/\{(\w+)\}/g, (m, k) => (k in v
 function ofN(a, b) { return tpl(U.of, { a, b }); }
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
-const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE || '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* the live widget; empty would send without a Turnstile token */
+const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE || '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* Turnstile, invisible (24 Oct 2026); the secret lives on the Worker */
 /* the room (stage 2): its own small server, the same bins as the world's curves, nothing shown under ten phones */
 const ROOM_API = window.FINDOUT_ROOM_API || 'https://logicers-findout-room.rza-khay.workers.dev';
 const ROOM_BINS = { 1: [1, 5, 0.5], 2: [1, 5, 0.25], 3: [0, 24, 1], 4: [0, 4, 1], 5: [0, 10, 0.5], 6: [0, 4, 1], 7: [0, 10, 0.5], 8: [1, 5, 0.25] };
@@ -727,10 +727,13 @@ let turnstileToken = null;
 async function turnstile() {
   if (!TURNSTILE_SITE_KEY) return null;
   if (turnstileToken) return turnstileToken;
-  await new Promise((res, rej) => { if (window.turnstile) return res(); const s = document.createElement('script'); s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  try { await new Promise((res, rej) => { if (window.turnstile) return res(); const s = document.createElement('script'); s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
+  catch (e) { return null; }   /* the script blocked (an ad blocker, a school filter): send without a token and let the server decide */
+  if (!window.turnstile) return null;
   return new Promise((res) => {
     const holder = document.createElement('div'); holder.style.position = 'fixed'; holder.style.left = '-9999px'; document.body.appendChild(holder);
-    window.turnstile.render(holder, { sitekey: TURNSTILE_SITE_KEY, size: 'invisible', callback: (t) => { turnstileToken = t; res(t); }, 'error-callback': () => res(null) });
+    try { window.turnstile.render(holder, { sitekey: TURNSTILE_SITE_KEY, callback: (t) => { turnstileToken = t; res(t); }, 'error-callback': () => res(null) }); }   /* the widget's mode (Invisible) is set in Cloudflare; 'size' takes only normal/flexible/compact */
+    catch (e) { res(null); }
     setTimeout(() => res(null), 12000);
   });
 }
