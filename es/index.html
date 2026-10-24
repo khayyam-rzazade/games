@@ -618,12 +618,17 @@
     document.head.appendChild(file);
   }
 
-  /* a new day while the page stays open: show it when the visitor comes back to the tab */
-  document.addEventListener("visibilitychange", function () {
+  /* a new day while the page stays open: reload. Checked when the tab comes back, when the window gets focus (a
+     computer woken from sleep with the tab in front never hides it), and once a minute while it is visible. */
+  function newDayCheck() {
     if (document.visibilityState !== "visible") return;
     var t = new Date();
     if (Math.round(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) / DAY) !== todayIndex) window.location.reload();
-  });
+  }
+  document.addEventListener("visibilitychange", newDayCheck);
+  window.addEventListener("focus", newDayCheck);
+  window.addEventListener("pageshow", newDayCheck);
+  setInterval(newDayCheck, 60000);
 })();
 
 /* The shelves of games: "Today's games" and, under it, "Pass the phone" (the games for groups). Each is one row that
