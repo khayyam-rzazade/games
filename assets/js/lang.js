@@ -20,7 +20,7 @@
   var LANGS = [["en", "English", "🇬🇧", "en-GB"], ["it", "Italiano", "🇮🇹", "it-IT"],
                ["tr", "Türkçe", "🇹🇷", "tr-TR"], ["es", "Español", "🇪🇸", "es-ES"]];
   var KEY = "lg.findout.lang";             // the find-outs' key (find-out/find-out.js): one pick per phone
-  var FINDOUT = { it: "it/", tr: "tr/" };  // the find-outs exist in these (Spanish find-outs come later: English)
+  var FINDOUT = { it: "it/", tr: "tr/", es: "es/" };  // the find-outs exist in these (Spanish since 26 Oct 2026)
   var html = document.documentElement;
   function known(c) { for (var i = 0; i < LANGS.length; i++) if (LANGS[i][0] === c) return LANGS[i]; return null; }
   var me = known(String(html.lang || "en").slice(0, 2).toLowerCase()) || LANGS[0];

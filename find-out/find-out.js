@@ -8,9 +8,9 @@
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 /* the language: the page says it (<html lang>); its data module carries every word (built from that language's copy doc and
    item sheet), the English one is data.js. One store, one portrait per phone whatever the language; each play records the
-   language it was played in (item_version 1 = English, 10 = Italian, 20 = Turkish). The ?v= stamps are written by build_pages. */
+   language it was played in (item_version 1 = English, 10 = Italian, 20 = Turkish, 30 = Spanish). The ?v= stamps are written by build_pages. */
 const LANG = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
-const DATA_V = { en: 'c650fe836a', it: 'aaaefa3b46', tr: '15c84b7654' };
+const DATA_V = { en: 'c650fe836a', it: 'aaaefa3b46', tr: '15c84b7654', es: '614dddce9c' };
 const DATA = await import(`./data${LANG === 'en' ? '' : '.' + LANG}.js?v=${DATA_V[LANG] || ''}`);
 const { ITEMS, COPY, COUNTRIES, PORTRAIT, UI } = DATA;
 const L = DATA.LANG || { code: 'en', item_version: 1, locale: 'en-GB', num_locale: 'en-US', base: '' };
@@ -21,7 +21,7 @@ function tpl(t, vars) { return String(t).replace(/\{(\w+)\}/g, (m, k) => (k in v
 function ofN(a, b) { return tpl(U.of, { a, b }); }
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
-const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE || '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* the live widget; empty would send without a Turnstile token */
+const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE ?? '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* the live widget; empty would send without a Turnstile token */
 /* the room (stage 2): its own small server, the same bins as the world's curves, nothing shown under ten phones */
 const ROOM_API = window.FINDOUT_ROOM_API || 'https://logicers-findout-room.rza-khay.workers.dev';
 const ROOM_BINS = { 1: [1, 5, 0.5], 2: [1, 5, 0.25], 3: [0, 24, 1], 4: [0, 4, 1], 5: [0, 10, 0.5], 6: [0, 4, 1], 7: [0, 10, 0.5], 8: [1, 5, 0.25] };
@@ -32,7 +32,7 @@ const SLUG = { 1: 'type', 2: 'shots', 3: 'sunny', 4: 'kid', 5: 'story', 6: 'twic
 const ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const SECONDS = { 1: 40, 2: 25, 3: 30, 4: 15, 5: 25, 6: 45, 7: 30, 8: 25, 9: 30 };
 const NEEDS_COUNTRY = { 2: true, 7: true, 8: true, 9: true };
-const ITEM_VERSION = L.item_version;   /* 1 English, 10 Italian, 20 Turkish (D22): recorded with every play */
+const ITEM_VERSION = L.item_version;   /* 1 English, 10 Italian, 20 Turkish, 30 Spanish (D22): recorded with every play */
 const RETAKE_DAYS = 90;
 const G = Object.fromEntries(ITEMS.map((g) => [g.number, g]));
 const C = COPY;
@@ -88,13 +88,16 @@ function parliamentName(c) {
   return /^the /i.test(p) ? p : 'the ' + p;
 }
 /* the forms a country takes inside the items, per language (the English sheet's [Parliament], [Country], [Nationals], [Nationality];
-   the Italian sheet's articles, prepositions and genders; the Turkish sheet's case endings). Without a country: the language's "your country" */
+   the Italian sheet's articles, prepositions and genders; the Turkish sheet's case endings; the Spanish sheet's articles and "de" forms).
+   Without a country: the language's "your country" */
 const FORMS = {
   en: (c) => ({ '[Parliament]': parliamentName(c), '[Country]': c ? c.name : 'your country', '[Nationals]': c ? c.nationals.replace(/^the /i, '') : 'people from your country', '[Nationality]': c ? c.nationality : 'from your country' }),
   it: (c) => ({ '[Il Parlamento]': c ? c.parliament : 'Il Parlamento del tuo Paese', '[nel Parlamento]': c ? c.parliament_in : 'nel Parlamento del tuo Paese', '[il Paese]': c ? c.art : 'il tuo Paese', '[in Paese]': c ? c.in : 'nel tuo Paese', '[del Paese]': c ? c.di : 'del tuo Paese',
                 '[cittadino m / f]': c ? c.cittadino : 'un cittadino / una cittadina del tuo Paese', '[ai Nazionali m / f]': c ? c.ai : 'alle persone del tuo Paese', '[nazionalità m/f]': c ? c.nazionalita : 'del tuo Paese' }),
   tr: (c) => ({ '[Parliament]': c ? c.parliament : 'ülkenizin meclisi', '[Parliament-deki]': c ? c.parliament_deki : 'ülkenizin meclisindeki', '[Country]': c ? c.name : 'ülkeniz', '[Country-de]': c ? c.de : 'ülkenizde', '[Country-deki]': c ? c.deki : 'ülkenizdeki',
                 '[Country-ye]': c ? c.ye : 'ülkenize', '[Country-den]': c ? c.den : 'ülkenizden', '[Nationals]': c ? c.nationals : 'ülkenizin insanları', '[Nationality]': c ? c.nationality : 'ülkenizden biri' }),
+  es: (c) => ({ '[El Parlamento]': c ? c.parliament : 'El parlamento de tu país', '[El País]': c ? c.el : 'tu país', '[de País]': c ? c.de : 'de tu país', '[en País]': c ? c.en : 'en tu país',
+                '[los Nacionales]': c ? c.los : 'las personas de tu país', '[nacionalidad m/f]': c ? c.nacionalidad : 'de tu país' }),
 };
 function playerCountry() {
   const st = load();
@@ -103,10 +106,12 @@ function playerCountry() {
 }
 function fill(text) {
   const forms = (FORMS[LANG] || FORMS.en)(playerCountry());
-  return String(text).replace(/\[[^\]]+\]/g, (m) => (m in forms ? forms[m] : m));
+  const out = String(text).replace(/\[[^\]]+\]/g, (m) => (m in forms ? forms[m] : m));
+  /* Spanish contracts "de el" and "a el" ("ha hecho de el Reino Unido" → "del Reino Unido"); a capital El (El Salvador) never contracts */
+  return LANG === 'es' ? out.replace(/\bde el /g, 'del ').replace(/\ba el /g, 'al ') : out;
 }
-/* the country's own word in a pool name: English "people from Italy", Italian "persone dall'Italia", Turkish "İtalya halkı" */
-function countryWord(c) { if (!c) return null; return LANG === 'it' ? c.from : c.name; }
+/* the country's own word in a pool name: English "people from Italy", Italian "persone dall'Italia", Turkish "İtalya halkı", Spanish "personas de Italia" */
+function countryWord(c) { if (!c) return null; return (LANG === 'it' || LANG === 'es') ? c.from : c.name; }
 async function hello() {
   const st = load();
   if (st.header_country !== null || st.hello_failed) return;
@@ -303,7 +308,7 @@ function gamePage(n) {
     const w = el('section', 'fo-screen');
     const finish = (iso) => { st.country = iso; st.country_asked = true; save(); begin(); };
     if (hc) {
-      w.appendChild(el('h1', 'fo-title', LANG === 'en' ? tpl(U.are_you, { x: hc.nationality }) : LANG === 'it' ? tpl(U.are_you, { x: hc.from }) : hc.are_you));
+      w.appendChild(el('h1', 'fo-title', U.are_you_form === 'are_you' ? hc.are_you : tpl(U.are_you, { x: U.are_you_form === 'from' ? hc.from : hc.nationality })));
       const acts = el('div', 'fo-choices two');
       const yes = el('button', 'btn ghost', ct.yes); yes.type = 'button'; yes.addEventListener('click', () => finish(hc.iso));
       const no = el('button', 'btn ghost', ct.no); no.type = 'button'; no.addEventListener('click', () => show(whereFrom()));
@@ -669,7 +674,7 @@ function gamePage(n) {
 }
 
 const TRAITS = ['E', 'A', 'C', 'calm', 'O'];   /* the five bars of game 1, in the copy doc's order */
-function poolName(kind) { const c = playerCountry(); return C.pools.names[kind].replace(/\[[^\]]+\]/, countryWord(c) || (LANG === 'it' ? 'dal tuo Paese' : LANG === 'tr' ? 'ülken' : 'your country')); }
+function poolName(kind) { const c = playerCountry(); return C.pools.names[kind].replace(/\[[^\]]+\]/, countryWord(c) || (LANG === 'it' ? 'dal tuo Paese' : LANG === 'tr' ? 'ülken' : LANG === 'es' ? 'de tu país' : 'your country')); }
 /* a comparison line for a pool: the world's word gives way to the pool's (English "the world" → "people from Italy"; Italian "del mondo" →
    "di chi viene dall'Italia"; Turkish "Dünya" → "Türkiye halkı") */
 function poolSentence(kind) { const nm = C.pools.names_in ? C.pools.names_in[kind] : C.pools.names[kind]; const c = playerCountry(); return nm.replace(/\[[^\]]+\]/, countryWord(c) || ''); }
@@ -1364,24 +1369,25 @@ function twoCurves(a, b, n) {
 }
 
 /* ------------------------------------------------------------------ the language ------
-   A chip in the header shows the language and opens a sheet with the three (flag and word); the sheet opens by itself the
+   A chip in the header shows the language and opens a sheet with the four (flag and word); the sheet opens by itself the
    first time a phone reaches any find-out page (Khayyam, 23 Oct). The pick is remembered (lg.findout.lang) and every
    find-out page then opens in that language: one store, one portrait per phone whatever the language. */
-const LANGS = [['en', 'English', '\u{1F1EC}\u{1F1E7}'], ['it', 'Italiano', '\u{1F1EE}\u{1F1F9}'], ['tr', 'Türkçe', '\u{1F1F9}\u{1F1F7}']];
+const LANGS = [['en', 'English', '\u{1F1EC}\u{1F1E7}'], ['it', 'Italiano', '\u{1F1EE}\u{1F1F9}'], ['tr', 'Türkçe', '\u{1F1F9}\u{1F1F7}'], ['es', 'Español', '\u{1F1EA}\u{1F1F8}']];
 const LANG_KEY = 'lg.findout.lang';
-/* a saved code the find-outs do not have (Spanish, from the rest of the site) counts as a pick: English here, no sheet */
+/* a saved code the find-outs do not have (one the rest of the site may add later) counts as a pick: English here, no sheet.
+   Spanish is one of the four since 26 Oct 2026: a saved "es" opens the Spanish pages */
 function savedLang() { try { const v = localStorage.getItem(LANG_KEY); return !v ? null : LANGS.some((l) => l[0] === v) ? v : 'en'; } catch (e) { return null; } }
 function rememberLang(code) { try { localStorage.setItem(LANG_KEY, code); } catch (e) {} }
-/* the same page in another language: find-out/<page> ↔ find-out/it/<page> ↔ find-out/tr/<page>, the hash kept (a room code, a friend's portrait) */
+/* the same page in another language: find-out/<page> ↔ find-out/it/<page> ↔ find-out/tr/<page> ↔ find-out/es/<page>, the hash kept (a room code, a friend's portrait) */
 function samePageIn(code) {
-  const m = location.pathname.match(/^(.*\/find-out\/)(?:(it|tr)\/)?(.*)$/);
+  const m = location.pathname.match(/^(.*\/find-out\/)(?:(it|tr|es)\/)?(.*)$/);
   if (!m) return null;
   return m[1] + (code === 'en' ? '' : code + '/') + m[3] + location.search + location.hash;
 }
 function langSheet(open) {
   let d = document.getElementById('dlg-lang');
   if (!d) {
-    d = h(`<dialog id="dlg-lang" aria-labelledby="dlg-lang-t"><div class="sheet fo-langsheet"><button class="chip round close" type="button" data-close aria-label="${esc(U.close)}">×</button><h2 id="dlg-lang-t">Language · Lingua · Dil</h2><div class="fo-langlist"></div></div></dialog>`);
+    d = h(`<dialog id="dlg-lang" aria-labelledby="dlg-lang-t"><div class="sheet fo-langsheet"><button class="chip round close" type="button" data-close aria-label="${esc(U.close)}">×</button><h2 id="dlg-lang-t">Language · Lingua · Dil · Idioma</h2><div class="fo-langlist"></div></div></dialog>`);
     const list = d.querySelector('.fo-langlist');
     for (const [code, name, flag] of LANGS) {
       const a = el('a', 'fo-langpick' + (code === LANG ? ' on' : '')); a.lang = code; a.hreflang = code;
