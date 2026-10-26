@@ -111,7 +111,7 @@ export const ITEMS = [
   "items": [
    {
     "id": "POP1",
-    "text": "I politici [nel Parlamento] devono seguire la volontà del popolo."
+    "text": "I politici [nel Parlamento] devono seguire la volontà dei cittadini"
    },
    {
     "id": "POP2",
@@ -119,19 +119,19 @@ export const ITEMS = [
    },
    {
     "id": "POP3",
-    "text": "Le differenze politiche tra l'élite e il popolo sono più grandi delle differenze all'interno del popolo."
+    "text": "Le differenze fra i politici e il popolo sono maggiori delle differenze che ci sono all'interno del popolo"
    },
    {
     "id": "POP4",
-    "text": "Preferirei essere rappresentato/a da un cittadino comune piuttosto che da un politico di professione."
+    "text": "Preferirei essere rappresentato da una persona comune piuttosto che da un politico di professione"
    },
    {
     "id": "POP5",
-    "text": "I politici eletti parlano troppo e agiscono troppo poco."
+    "text": "I politici parlano tanto ma fanno poco"
    },
    {
     "id": "POP7",
-    "text": "Fare compromessi in politica significa in realtà svendere i propri principi."
+    "text": "Fare compromessi in politica significa in realtà svendere i propri principi"
    }
   ],
   "response_points": [
@@ -3714,7 +3714,7 @@ export const COUNTRIES = [
   "ai": "agli italiani / alle italiane",
   "nazionalita": "italiano/a",
   "parliament": "Il Parlamento italiano",
-  "parliament_in": "nel Parlamento italiano",
+  "parliament_in": "in Parlamento",
   "search": "italiano italiani"
  },
  {

@@ -10,7 +10,7 @@ import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
    item sheet), the English one is data.js. One store, one portrait per phone whatever the language; each play records the
    language it was played in (item_version 1 = English, 10 = Italian, 20 = Turkish). The ?v= stamps are written by build_pages. */
 const LANG = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
-const DATA_V = { en: 'c650fe836a', it: '76a067831f', tr: 'c1e18a37c7' };
+const DATA_V = { en: 'c650fe836a', it: 'aaaefa3b46', tr: '15c84b7654' };
 const DATA = await import(`./data${LANG === 'en' ? '' : '.' + LANG}.js?v=${DATA_V[LANG] || ''}`);
 const { ITEMS, COPY, COUNTRIES, PORTRAIT, UI } = DATA;
 const L = DATA.LANG || { code: 'en', item_version: 1, locale: 'en-GB', num_locale: 'en-US', base: '' };
@@ -21,7 +21,7 @@ function tpl(t, vars) { return String(t).replace(/\{(\w+)\}/g, (m, k) => (k in v
 function ofN(a, b) { return tpl(U.of, { a, b }); }
 
 const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
-const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE || '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* Turnstile, invisible (24 Oct 2026); the secret lives on the Worker */
+const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE || '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* the live widget; empty would send without a Turnstile token */
 /* the room (stage 2): its own small server, the same bins as the world's curves, nothing shown under ten phones */
 const ROOM_API = window.FINDOUT_ROOM_API || 'https://logicers-findout-room.rza-khay.workers.dev';
 const ROOM_BINS = { 1: [1, 5, 0.5], 2: [1, 5, 0.25], 3: [0, 24, 1], 4: [0, 4, 1], 5: [0, 10, 0.5], 6: [0, 4, 1], 7: [0, 10, 0.5], 8: [1, 5, 0.25] };
@@ -727,13 +727,10 @@ let turnstileToken = null;
 async function turnstile() {
   if (!TURNSTILE_SITE_KEY) return null;
   if (turnstileToken) return turnstileToken;
-  try { await new Promise((res, rej) => { if (window.turnstile) return res(); const s = document.createElement('script'); s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
-  catch (e) { return null; }   /* the script blocked (an ad blocker, a school filter): send without a token and let the server decide */
-  if (!window.turnstile) return null;
+  await new Promise((res, rej) => { if (window.turnstile) return res(); const s = document.createElement('script'); s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
   return new Promise((res) => {
     const holder = document.createElement('div'); holder.style.position = 'fixed'; holder.style.left = '-9999px'; document.body.appendChild(holder);
-    try { window.turnstile.render(holder, { sitekey: TURNSTILE_SITE_KEY, callback: (t) => { turnstileToken = t; res(t); }, 'error-callback': () => res(null) }); }   /* the widget's mode (Invisible) is set in Cloudflare; 'size' takes only normal/flexible/compact */
-    catch (e) { res(null); }
+    window.turnstile.render(holder, { sitekey: TURNSTILE_SITE_KEY, size: 'invisible', callback: (t) => { turnstileToken = t; res(t); }, 'error-callback': () => res(null) });
     setTimeout(() => res(null), 12000);
   });
 }

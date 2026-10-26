@@ -46,9 +46,10 @@
   <article class="fo-doc"><h1>Per chi fa ricerca</h1>
 <p>Ogni domanda di Scopri chi sei viene da una scala di ricerca pubblicata ed è mostrata parola per parola, con la sua scala di risposta pubblicata. Quello che è nostro (i nomi, le istruzioni di una riga, qualche frase di riempimento, i nomi dei Paesi) è segnalato. Ogni piccolo cambiamento fatto per il telefono è nella tabella delle deviazioni. I punteggi si calcolano con le regole qui sotto, lo stesso codice sul telefono e sul server. Le risposte sono conservate solo per chi dice di sì alla fine, senza nome, email o indirizzo; i dati anonimi saranno pubblicati dopo il primo articolo, resi meno precisi perché nessuno possa essere riconosciuto. Domande: logicers.world@gmail.com</p>
 <p>Questa pagina è il foglio delle domande in italiano (item_version 10). Le regole di punteggio e l'elenco degli studi sono in inglese, come nel foglio inglese: <a href="../../researchers/">For researchers</a>.</p>
-<h1>Find out about yourself — item sheet, Italian (version 1, 23 October 2026; item_version 10)</h1>
+<h1>Find out about yourself — item sheet, Italian (version 2, 24 October 2026; item_version 10)</h1>
 <p>The Italian companion to claude/find-outs-items.md (English v1.1): the same nine games, the same scoring, the same bands (their Italian names come from the copy doc, left blank here), the same conventions on screen (one item per screen, Skip, Back, the readout "4 di 5"). Only the words change. Everything below the English sheet's rules is unchanged unless this file says otherwise.</p>
 <p><strong>How each text was chosen</strong> (the handoff's order): 1. an official or authors' Italian version; 2. a validated Italian version printed in a peer-reviewed article; 3. our translation, back-translated into English beside it, marked in the Deviations table as "our translation, back-translated, not validated". Every Italian source below was opened on 23 October 2026. All reading went through a fetch tool that extracts the text of a page or PDF (the shell has no internet); the ESS PDFs were also opened in a browser and their text layer read directly. Where a quote came only through the fetch tool's extraction, this is said. Nothing is quoted from memory.</p>
+<p><strong>24 October 2026.</strong> Khayyam supplied the PDFs this sheet had listed as not opened. They were read from the files themselves (<code>pdftotext -layout</code>, each passage read twice), not through a fetch tool. What they changed is in "What changed on 24 October" below; every line they changed now names them.</p>
 <p><strong>Where each game stands</strong></p>
 <table>
 <thead>
@@ -62,12 +63,12 @@
 <tr>
 <td>1 BFI-10</td>
 <td>published, validated</td>
-<td>Guido et al. 2015, Appendix A</td>
+<td>Guido et al. 2015, Appendix A (publisher's own PDF, 24 Oct)</td>
 </tr>
 <tr>
 <td>2 Populism</td>
-<td>2 of 6 official (CSES Italy), 4 ours</td>
-<td>CSES Module 5 Italy 2018; ours</td>
+<td><strong>all 6 official</strong> (24 Oct)</td>
+<td>ITANES 2018 pre-electoral, block Itanes7pop1–pop6; confirmed by ITANES 2022 pre-electoral; labels CSES Module 5 Italy 2018</td>
 </tr>
 <tr>
 <td>3 LOT-R</td>
@@ -106,6 +107,15 @@
 </tr>
 </tbody>
 </table>
+<h2>What changed on 24 October 2026</h2>
+<p>Seven PDFs arrived. Two of them changed this sheet.</p>
+<ol>
+<li><strong>Game 2 is now fully published.</strong> The ITANES questionnaires carry all eight Akkerman items in Italian, nationally fielded. The four items that were our translation are replaced; game 2 has nothing of ours left in it (D27). One knock-on: ITANES names the parliament with the bare preposition, so the Italian [nel Parlamento] slot is "in Parlamento" for Italy, not "nel Parlamento italiano" — game 7 keeps the ESS's "Il Parlamento italiano". The two slots are now two different phrases.</li>
+<li><strong>Game 1 is settled.</strong> The publisher's PDF of Guido et al. 2015 confirms Appendix A word for word and shows that the Table 1 / Appendix A difference is in the article itself. The sheet's choice (Appendix A) stands; nothing changes on screen.</li>
+<li><strong>Nothing for game 3.</strong> Giannini et al. 2008 was not among the PDFs, so the Italian LOT-R is still a mixed form (D29) and that paper is still the one worth getting.</li>
+<li><strong>Nothing for games 4, 5, 6, 8 or 9.</strong> The ITANES pre- and post-electoral questionnaires were searched for child-rearing pairs, a CMQ, a LOT-R, riddles, the ISSP chauvinism items, a risk item and either ladder: none of them is in any of the four. ITANES's own trust battery and its 4-point satisfaction-with-democracy item exist but are not the instruments this section uses (the ESS Italian is, and it is already verbatim).</li>
+<li><strong><code>item_version</code> does not move.</strong> Version 1 of this sheet was built but never pushed, so no answer was ever recorded under the old Italian wording. The version stays 10.</li>
+</ol>
 <p><strong>Register.</strong> The Italian survey sources address the respondent formally ("Lei"), as every Italian questionnaire does. Their items are kept verbatim, so our own item translations use "Lei" too, and so do the instructions under "?". The on-screen lines around the items are ours and live in the copy doc (which may use "tu"); a mix of "tu" around the items and "Lei" inside them is normal in Italian web surveys. Khayyam decides (D37).</p>
 <p><strong>Gender.</strong> Italian adjectives agree with the person. Where the source writes both forms with a slash ("soddisfatta/o", "un cittadino svizzero / una cittadina svizzera") we keep the slash, as published. Where a source uses the masculine alone (ESS "interessato") we keep it, as published. Our own translations use the slash only where Italian leaves no neutral way (D37).</p>
 <p><strong>Placeholders.</strong> Italian needs more forms of a country's name than English. The items below use these, shown here for Italy; the build needs each of them for every country (see "What the build needs" at the end):</p>
@@ -163,7 +173,7 @@
 </tr>
 <tr>
 <td>[nel Parlamento]</td>
-<td>nel Parlamento italiano</td>
+<td>in Parlamento (ITANES's own words, 24 Oct)</td>
 <td>(from the copy doc's frame)</td>
 <td>POP1</td>
 </tr>
@@ -172,7 +182,7 @@
 <p>Nationality words are civic, never ethnic (Khayyam, 21 Oct); where a country has no civic adjective, "un cittadino / una cittadina di [Paese]", "agli abitanti di [Paese]" and "cittadino/a di [Paese]" replace the adjective forms.</p>
 <hr />
 <h2>Game 1 — "Your personality" · Big Five personality · BFI-10</h2>
-<p><strong>Source (opened).</strong> Guido, G., Peluso, A. M., Capestro, M., &amp; Miglietta, M. (2015). An Italian version of the 10-item Big Five Inventory: An application to hedonic and utilitarian shopping values. <em>Personality and Individual Differences, 76</em>, 135–140. doi:10.1016/j.paid.2014.11.053. Read from the full-text copy on academia.edu (item 25313501): Method (professional forward–backward translation), Table 1 and Appendix A ("Italian version of the BFI-10 scale"). The publisher's page and the IRIS Pavia record (no file) could not be opened.</p>
+<p><strong>Source (opened).</strong> Guido, G., Peluso, A. M., Capestro, M., &amp; Miglietta, M. (2015). An Italian version of the 10-item Big Five Inventory: An application to hedonic and utilitarian shopping values. <em>Personality and Individual Differences, 76</em>, 135–140. doi:10.1016/j.paid.2014.11.053. Read twice: on 23 October from the full-text copy on academia.edu (item 25313501), and on 24 October from the publisher's own PDF (Elsevier, <code>1-s2.0-S0191886914007028-main.pdf</code>, supplied by Khayyam) — Method (professional forward–backward translation), Table 1 and Appendix A, "Italian version of the BFI-10 scale". The two readings agree letter for letter, stem, items, ends and scoring key. The IRIS Pavia record (no file) was not opened and is no longer needed.</p>
 <p><strong>Published stem (Appendix A, verbatim):</strong> Mi vedo come una persona che…
 <strong>Instruction under "?" (ours — the Italian paper prints none):</strong> Quanto bene descrivono la Sua personalità le seguenti affermazioni?
 Back-translation: "How well do the following statements describe your personality?" (D25)</p>
@@ -249,67 +259,78 @@ Back-translation: "How well do the following statements describe your personalit
 </tbody>
 </table>
 <p>Appendix A keeps Rammstedt &amp; John's order, so the numbers match the English sheet. The adjectives agree with "una persona", so the items read the same for women and men.</p>
-<p><strong>A difference inside the paper.</strong> Table 1 prints item 8 as "è coscienziosa al lavoro" and item 4 without "bene" ("è rilassata, sopporta lo stress"). Appendix A — the instrument as administered — has "nel lavoro" and "sopporta bene lo stress". We use Appendix A. Worth one look at the publisher's PDF with Genoa access.</p>
+<p><strong>A difference inside the paper.</strong> Table 1 prints item 8 as "è coscienziosa al lavoro" and item 4 without "bene" ("è rilassata, sopporta lo stress"). Appendix A — the instrument as administered — has "nel lavoro" and "sopporta bene lo stress". <strong>Settled on 24 October against the publisher's PDF:</strong> the difference is in the published article itself, not in the academia.edu copy. Table 1 prints "è coscienziosa al lavoro" and "è rilassata, sopporta lo stress" (beside the English gloss "is relaxed, handles stress very well"); Appendix A prints "è coscienziosa nel lavoro" and "è rilassata, sopporta bene lo stress", under the stem "Mi vedo come una persona che..." with the ends "Per niente d'accordo" and "Del tutto d'accordo" over the numbers 1–5. Appendix A is the instrument, and it stands. Nothing to change.</p>
 <p><strong>Response format (verbatim ends, Appendix A):</strong> 1 Per niente d'accordo … 5 Del tutto d'accordo. Points 2–4 are unlabelled in the Italian version. On screen they carry our words (D26):
 2 In parte in disaccordo · 3 Né d'accordo né in disaccordo · 4 In parte d'accordo
 Back-translation: "Disagree in part · Neither agree nor disagree · Agree in part".
 <strong>Scoring (Appendix A's key, the same as the English):</strong> Guido et al. name the fourth trait emotional stability (item 4 +, item 9 R); that is the reverse of Neuroticism, i.e. our "Calm" bar. Reverse 1, 3, 4 (for N), 5, 7; each trait the mean of its two items. Nothing changes.</p>
 <h2>Game 2 — "Who should decide?" · Populist attitudes · Akkerman, Mudde &amp; Zaslove (2014)</h2>
-<p><strong>Official Italian (opened).</strong> CSES Module 5, Italy 2018 (ITANES), Italian questionnaire "CSES - Modulo 5", block Q04, pp. 4–5: https://cses.org/datacenter/module5/survey/ITA_2018_Untrans_Italian.pdf (read twice through the fetch tool; the two readings agree). CSES Module 5 carries two of the Akkerman items word for word in its English master (Q04a = POP7, Q04f = POP2; cses5_Questionnaire.txt, opened). The other four items are in no Italian document we could open.</p>
-<p><strong>Italian versions that exist but could not be opened:</strong> the ITANES 2022 pre-election questionnaire (itanes.org blocks automated reading); Roccato, Corbetta, Cavazza &amp; Colloca (2019), who used an Italian translation of the eight Akkerman items but do not print it (opened); Castanho Silva et al.'s Online Appendix C (nine countries, Italy among them); Van Hauwaert, Schimpf &amp; Azevedo's appendix (figshare, no download). Any of them would replace our four.</p>
-<p><strong>Stem under "?" (verbatim, CSES Q04):</strong> Per favore indichi quanto Lei è d'accordo con le seguenti affermazioni.</p>
+<p><strong>Official Italian, all six items (opened 24 October 2026).</strong> The whole Akkerman battery exists in Italian, nationally fielded, in the questionnaires of ITANES (Italian National Election Study). Source: <em>Italian National Election Survey 2018 — Fieldwork PRE-ELECTORAL questionnaire, Italian version, Release 01 (November 2019)</em>, edited by Cristiano Vezzoni, block <strong>Itanes7pop1–itanes7pop8</strong>, p. 16. PDF supplied by Khayyam and read from the file (<code>pdftotext -layout</code>), the block read twice with the same result. ITANES carries all eight items in Akkerman's order; our six are its pop1–pop5 and pop6 (Akkerman's POP7, the compromise item).</p>
+<p><strong>Confirmed, letter for letter:</strong> <em>ITANES — Questionario Pre-elettorale 2022</em>, Sezione 7: Populismo, items <strong>D07_01–D07_08</strong>, p. 11 (version 20/04/2023). That file is marked "RISERVATO / Versione Beta 02", so the 2018 release is the source cited and the 2022 draft is the second reading.</p>
+<p><strong>Searched and not there:</strong> the post-electoral questionnaires of 2018 (release 01) and 2022, both opened the same day, carry no populism battery at all. The 2022 post-electoral Q05 ("L'Italia sarebbe governata meglio se le decisioni politiche importanti fossero delegate…") is a technocracy item, not Akkerman's.</p>
+<p>Two of the six were already verbatim before this, from CSES Module 5 Italy 2018 (Q04f and Q04a); ITANES prints those two identically, so they did not change. The four that were our translation are replaced (D27). <strong>No item in this game is ours any more.</strong></p>
+<p><strong>Stem under "?" (verbatim, CSES Module 5 Italy 2018, Q04):</strong> Per favore indichi quanto Lei è d'accordo con le seguenti affermazioni.
+Why the CSES lead-in and not ITANES's own: ITANES 2018 reads "Consideri le seguenti affermazioni ed esprima il suo grado di accordo su una scala che va da "molto d'accordo" a "molto in disaccordo"", which names the scale agree-first and so contradicts the direction we show; ITANES 2022's reads "Ora le proporremo alcune frasi che riguardano i politici, i partiti e le istituzioni. Può indicare quanto è d'accordo con ciascuna frasi?" and carries a typo in the source ("ciascuna frasi"). The CSES line is published Italian, says the same thing and matches our direction. Khayyam may swap in either (D27).</p>
 <table>
 <thead>
 <tr>
 <th>#</th>
-<th>Item</th>
-<th>Status</th>
-<th>Back-translation (ours only)</th>
+<th>Item (verbatim, ITANES)</th>
+<th>ITANES code</th>
+<th>Also published as</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>POP1</td>
-<td>I politici [nel Parlamento] devono seguire la volontà del popolo.</td>
-<td>ours (D27)</td>
-<td>"The politicians in [Parliament] must follow the will of the people."</td>
+<td>I politici [nel Parlamento] devono seguire la volontà dei cittadini</td>
+<td>pop1 / D07_01</td>
+<td>—</td>
 </tr>
 <tr>
 <td>POP2</td>
 <td>I cittadini, e non i politici, dovrebbero prendere le decisioni politiche più importanti</td>
-<td>verbatim, CSES Q04f (no final full stop in the source)</td>
-<td>—</td>
+<td>pop2 / D07_02</td>
+<td>CSES Q04f, same words</td>
 </tr>
 <tr>
 <td>POP3</td>
-<td>Le differenze politiche tra l'élite e il popolo sono più grandi delle differenze all'interno del popolo.</td>
-<td>ours (D27)</td>
-<td>"The political differences between the elite and the people are greater than the differences within the people."</td>
+<td>Le differenze fra i politici e il popolo sono maggiori delle differenze che ci sono all'interno del popolo</td>
+<td>pop3 / D07_03</td>
+<td>—</td>
 </tr>
 <tr>
 <td>POP4</td>
-<td>Preferirei essere rappresentato/a da un cittadino comune piuttosto che da un politico di professione.</td>
-<td>ours (D27)</td>
-<td>"I would rather be represented by an ordinary citizen than by a professional politician."</td>
+<td>Preferirei essere rappresentato da una persona comune piuttosto che da un politico di professione</td>
+<td>pop4 / D07_04</td>
+<td>—</td>
 </tr>
 <tr>
 <td>POP5</td>
-<td>I politici eletti parlano troppo e agiscono troppo poco.</td>
-<td>ours (D27)</td>
-<td>"Elected politicians talk too much and act too little."</td>
+<td>I politici parlano tanto ma fanno poco</td>
+<td>pop5 / D07_05</td>
+<td>—</td>
 </tr>
 <tr>
 <td>POP7</td>
-<td>Fare compromessi in politica significa in realtà svendere i propri principi.</td>
-<td>verbatim, CSES Q04a</td>
-<td>—</td>
+<td>Fare compromessi in politica significa in realtà svendere i propri principi</td>
+<td>pop6 / D07_06</td>
+<td>CSES Q04a, same words</td>
 </tr>
 </tbody>
 </table>
-<p>Notes on ours. POP1: "devono" for "need to". POP4: "specialized politician" has no Italian calque; "politico di professione" is the usual phrase; this is the item the English sheet already marks as sensitive to translation, so it is the first to replace if a published version turns up. CSES renders "the people" in POP2 as "I cittadini"; our POP1 and POP3 keep "il popolo", because both items set the people against the elite and "i cittadini" would lose that.</p>
-<p><strong>Response format.</strong> Akkerman's ends are "I very much disagree" (1) and "I very much agree" (5), points 2–4 unlabelled (English D23 gives them our words). In Italian we use the official CSES Italian five labels for all five points, in Akkerman's direction (D28):
+<p><strong>What the published Italian does with the words we had chosen.</strong> Worth reading once, because four of these differ from our translation of 23 October and from the English:</p>
+<ul>
+<li><strong>POP1.</strong> "The will of the people" is <strong>la volontà dei cittadini</strong> — the will of the citizens, not "del popolo", which is what we had written. And the parliament is named with the bare preposition: <strong>in Parlamento</strong>, not "nel Parlamento italiano". An Italian player now sees the item exactly as ITANES fielded it. For every other country [nel Parlamento] still gives the copy doc's frame ("nel Bundestag", "nella Knesset", "nel Congresso").</li>
+<li><strong>POP3.</strong> ITANES sets <strong>i politici</strong> against <strong>il popolo</strong>, where Akkerman has "the elite"; and it keeps "il popolo" on both sides of the comparison. Our translation had "l'élite" on one side and "il popolo" on the other — closer to the English, further from what Italians were asked.</li>
+<li><strong>POP4.</strong> "A citizen" is <strong>una persona comune</strong> (an ordinary person), and the participle is masculine, <strong>rappresentato</strong>, with no slash. Published; kept as printed, so this one item does not agree with the player's gender (D37). This is the item the English sheet already marks as sensitive to translation, and it is now the fielded wording rather than a guess.</li>
+<li><strong>POP5.</strong> <strong>I politici parlano tanto ma fanno poco</strong> — plainer than the English "Elected officials talk too much and take too little action", and about politicians rather than elected officials.</li>
+<li>Two further items in ITANES, pop7 and pop8 ("I giornalisti sono troppo a contatto con i poteri forti per informare le persone comuni", "Le grandi banche internazionali stanno colonizzando il nostro Paese"), are ITANES's own additions, not Akkerman's. Not used.</li>
+</ul>
+<p><strong>Punctuation.</strong> ITANES prints no final full stop on any of the eight, so none of the six carries one now. POP2 and POP7 never did; the four replaced items lost theirs. Display only, no effect on anything.</p>
+<p><strong>Response format.</strong> Unchanged, and now in two published sources: the five Italian labels of CSES Module 5 Italy 2018, which ITANES 2022 prints identically — 1 Molto d'accordo · 2 Abbastanza d'accordo · 3 Né d'accordo né in disaccordo · 4 Abbastanza in disaccordo · 5 Molto in disaccordo. We show and code them disagree-first, as Akkerman (D28):
 1 Molto in disaccordo · 2 Abbastanza in disaccordo · 3 Né d'accordo né in disaccordo · 4 Abbastanza d'accordo · 5 Molto d'accordo
-(CSES prints them agree-first, coded 1–5 from "Molto d'accordo"; we show and code them disagree-first, as Akkerman. "Preferisco non rispondere" and "Non so" = our Skip.)
+(ITANES 2018 labels its points 4 and 5 "Poco d'accordo" and "Per niente d'accordo" instead; the CSES / ITANES 2022 set is the one we use. "Preferisco non rispondere" and "Non so" = our Skip.)
 <strong>Scoring, order, bands:</strong> as in English.</p>
 <h2>Game 3 — "Optimist or realist?" · Optimism · LOT-R</h2>
 <p><strong>Validated Italian version — not opened.</strong> Giannini, M., Schuldberg, D., Di Fabio, A., &amp; Gargaro, D. (2008). Misurare l'ottimismo: proprietà psicometriche della versione italiana del Life Orientation Test-Revised (LOT-R). <em>Counseling, 1</em>, 73–83 (record on FLORE, Florence, no file). Also not opened: Monzani, Steca &amp; Greco (2014, <em>Journal of Adolescence</em>) and Steca et al. (2015, <em>Assessment</em>; closed file). Steca et al. 2017 (open, opened) says it used "the Italian version of the LOT-R" but prints no item. Carver's own page (opened) lists an Italian version, but its link could not be read.</p>
@@ -761,15 +782,15 @@ Q3f back-translation: "When my country does well in international sports competi
 <tr>
 <td>D27</td>
 <td>Akkerman IT</td>
-<td>POP1, POP3, POP4, POP5: our translation, back-translated, not validated. POP2 and POP7 verbatim from CSES Module 5 Italy 2018 (Q04f, Q04a), which renders "the people" as "i cittadini"</td>
-<td>no Italian document printing the four could be opened</td>
-<td>none; but the scale mixes official and own wording — report it; replace the four if a published Italian version is opened</td>
+<td><strong>Changed 24 Oct: all six items verbatim from ITANES</strong> (Italian National Election Survey 2018 pre-electoral, release 01, block Itanes7pop1–pop6; identical in ITANES 2022 pre-electoral, D07_01–D07_06). POP2 and POP7 are the same words as CSES Module 5 Italy 2018 (Q04f, Q04a). The four items that were our translation on 23 October are gone. No final full stops, as printed. The lead-in under "?" stays the CSES one; ITANES's own two lead-ins are set out in the game's section and either may be swapped in</td>
+<td>the nationally fielded Italian version of the whole battery could be opened</td>
+<td>none on the score, and the scale is now one published Italian instrument throughout. For the paper: ITANES renders "the will of the people" as "la volontà dei cittadini", sets "i politici" (not "l'élite") against "il popolo" in POP3, and says "una persona comune" in POP4 — report these three beside the English</td>
 </tr>
 <tr>
 <td>D28</td>
 <td>Akkerman IT</td>
-<td>The five CSES Italian labels used for all five points (Molto in disaccordo … Molto d'accordo), shown and coded disagree-first as Akkerman; replaces D23's words in Italian</td>
-<td>published Italian degree words exist; use them</td>
+<td>The five CSES Italian labels used for all five points (Molto in disaccordo … Molto d'accordo), shown and coded disagree-first as Akkerman; replaces D23's words in Italian. ITANES 2022 prints the same five (ITANES 2018 has "Poco d'accordo" and "Per niente d'accordo" at points 4 and 5, and is not used for the labels)</td>
+<td>published Italian degree words exist in two sources; use them</td>
 <td>none; 1–5 with 5 = most populist</td>
 </tr>
 <tr>
@@ -831,7 +852,7 @@ Q3f back-translation: "When my country does well in international sports competi
 <tr>
 <td>D37</td>
 <td>All IT</td>
-<td>Register and gender: published items keep their "Lei" and their gender forms (slash or masculine) as printed; our translations use "Lei" (riddles "tu") and the slash where Italian has no neutral form; the on-screen lines around items are the copy doc's</td>
+<td>Register and gender: published items keep their "Lei" and their gender forms (slash or masculine) as printed; our translations use "Lei" (riddles "tu") and the slash where Italian has no neutral form; the on-screen lines around items are the copy doc's. Since 24 October game 2 is published throughout, and ITANES's POP4 is masculine ("Preferirei essere rappresentato…") with no slash, so that game no longer carries one</td>
 <td>Italian grammar; items verbatim</td>
 <td>none</td>
 </tr>
@@ -840,11 +861,21 @@ Q3f back-translation: "When my country does well in international sports competi
 <h2>What the build needs (for Fable and the Italian copy chat)</h2>
 <ol>
 <li>The placeholder forms in the table at the top for every country, Italian and both genders where the table shows two. The countries file the copy chat writes has <code>name, nationality_singular, nationality_plural, from_form</code>; the items also need the article form (l'Italia), the "in" form (in Italia, negli Stati Uniti), the "di" form (dell'Italia), the feminine of the nationality, and "agli / alle" plurals. They can be derived by rule for most countries but not all (in Italia / a Cuba / nelle Filippine), so a column each is safest. The copy chat owns that file; this sheet only lists what the items need.</li>
-<li>[Il Parlamento] and [nel Parlamento] for every country, in Italian, from the copy doc's frame around the English table's proper names (e.g. "Il Bundestag", "nel Bundestag"). For Italy: "Il Parlamento italiano", "nel Parlamento italiano" (the ESS's own words).</li>
+<li>[Il Parlamento] and [nel Parlamento] for every country, in Italian, from the copy doc's frame around the English table's proper names (e.g. "Il Bundestag", "nel Bundestag"). <strong>For Italy the two slots are not the same phrase</strong>, because they come from two different published instruments: [Il Parlamento] is "Il Parlamento italiano" (the ESS's own words, game 7) and [nel Parlamento] is "in Parlamento" (ITANES's own words, game 2). The build holds both (<code>it_parliament</code> in build_lang.py).</li>
 <li>The response words above replace the English ones per game; the readout is "4 di 5", "7 di 10", "60%".</li>
 <li>item_version 10 for every Italian answer.</li>
 </ol>
-<h2>Sources opened for this sheet (23 October 2026)</h2>
+<h2>Sources opened for this sheet (23 and 24 October 2026)</h2>
+<p><strong>From the PDFs Khayyam supplied on 24 October</strong> (read from the files, <code>pdftotext -layout</code>):</p>
+<ul>
+<li>Guido, Peluso, Capestro &amp; Miglietta 2015, <em>Personality and Individual Differences</em> 76, <strong>the publisher's own PDF</strong> (Elsevier <code>1-s2.0-S0191886914007028</code>): Method, Table 1, Appendix A, scoring key.</li>
+<li>ITANES, <em>Italian National Election Survey 2018 — Fieldwork PRE-ELECTORAL questionnaire, Italian version, Release 01 (November 2019)</em>, ed. Cristiano Vezzoni: block Itanes7pop1–pop8 (p. 16), and the rest of the questionnaire searched for the other games' items.</li>
+<li>ITANES, <em>Italian National Election Survey 2018 — Fieldwork POST-ELECTORAL questionnaire, Italian version, Release 01</em>: searched; no populism battery, nothing else of ours.</li>
+<li>ITANES, <em>Questionario Pre-elettorale 2022</em> (20/04/2023, Beta 02): Sezione 7 Populismo, D07_01–D07_08 (p. 11), as the second reading of the eight items.</li>
+<li>ITANES, <em>Questionario Post-elettorale 2022</em>: searched; no populism battery. Its Q05 (technocracy), Q07 (4-point institutional trust) and Q22 (4-point satisfaction with democracy) are not the instruments this section uses.</li>
+<li>The two other PDFs in the batch are Turkish; they are accounted for in the Turkish sheet (SOEP Survey Papers 268, and one paper that turned out to hold none of our items).</li>
+</ul>
+<p><strong>Opened on 23 October:</strong></p>
 <ul>
 <li>Guido, Peluso, Capestro &amp; Miglietta 2015, <em>PAID</em> 76, full text (academia.edu 25313501): Method, Table 1, Appendix A.</li>
 <li>CSES Module 5, Italy 2018, Italian questionnaire (cses.org ITA_2018_Untrans_Italian.pdf), Q04; CSES Module 5 English master questionnaire (cses5_Questionnaire.txt).</li>
@@ -857,7 +888,7 @@ Q3f back-translation: "When my country does well in international sports competi
 <li>Eurobarometer Italian questionnaires 77.3, 74.2, 89.2, 85.1OVR (unidata.unimib.it) and 71.1 (GESIS), fetch tool only.</li>
 <li>Fondazione Agnelli WP 40 (HBSC Italy, 2011), for the children's Cantril wording (not used).</li>
 </ul>
-<p><strong>Not opened</strong> (and why): Giannini et al. 2008 (no file online — the first to get via Genoa); Monzani, Steca &amp; Greco 2014 and Steca et al. 2015 (closed); the <em>PAID</em> publisher PDF of Guido et al. 2015 (redirect only); the ITANES 2018 and 2022 questionnaires (itanes.org blocks automated reading — the best chance for the four populism items); Castanho Silva et al.'s Online Appendix C and Van Hauwaert, Schimpf &amp; Azevedo's appendix (downloads failed); the 2025 <em>JPA</em> CMQ paper (publisher page failed); Imhoff et al. 2022's translated questionnaires (restricted files); Carver's Italian LOT-R link (the page's link could not be read); the GPS Italian questionnaires (request form); the SHARE wave 8 Italian questionnaires and the ISSP 1995 Italy questionnaire (files unreadable); the Swiss Household Panel Italian questionnaire (page failed); the Gallup World Poll Italian questionnaire (not public).</p></article>
+<p><strong>Not opened</strong> (and why; the ITANES questionnaires and the Guido publisher PDF left this list on 24 October): Giannini et al. 2008 (no file online — <strong>now the only paper on this sheet still worth getting</strong>, and the one that would finish game 3); Monzani, Steca &amp; Greco 2014 and Steca et al. 2015 (closed); Castanho Silva et al.'s Online Appendix C and Van Hauwaert, Schimpf &amp; Azevedo's appendix (downloads failed); the 2025 <em>JPA</em> CMQ paper (publisher page failed); Imhoff et al. 2022's translated questionnaires (restricted files); Carver's Italian LOT-R link (the page's link could not be read); the GPS Italian questionnaires (request form); the SHARE wave 8 Italian questionnaires and the ISSP 1995 Italy questionnaire (files unreadable); the Swiss Household Panel Italian questionnaire (page failed); the Gallup World Poll Italian questionnaire (not public).</p></article>
 </main>
 
 <noscript><p style="padding:18px">Questa parte di Logicers ha bisogno di JavaScript.</p></noscript>
