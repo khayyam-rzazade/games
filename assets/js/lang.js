@@ -6,7 +6,13 @@
      2. The pick. The first time a phone reaches any page a sheet rises from the bottom and asks the language
         (flag and word). The pick is remembered under the find-outs' own key, lg.findout.lang, so one pick serves
         the whole site; a remembered pick opens every page in that language (location.replace before anything is
-        drawn). A chip in the header shows the language and opens the same sheet for a change.
+        drawn). A chip in the header shows the language and opens the same sheet for a change. On a first visit the
+        sheet puts the phone's own language (navigator.language) first and marked, if it is one of the four; the
+        player still chooses. The home pages also carry a small line under the subtitle (#lg-line: the four names,
+        each in its own tongue); its links are plain addresses (/, /it/, /tr/, /es/) that work without a script, and
+        here they pick exactly as the sheet does (pick()). Every real change of language is counted once, as the
+        event lang/<code> through the frame's own TurnsOut.count (not when the player taps the language already
+        remembered, not on the automatic redirect).
      3. The pages that exist in one language only (the pass-the-phone games, Who Was Closer, the team page, the
         live games) say so in one quiet line, in the phone's language, and are never redirected.
      4. Numbers, dates and ordinals in the language's own way (LG.num, LG.date, LG.nth), country names from the
@@ -129,7 +135,52 @@
     if (text !== undefined) e.textContent = text;
     return e;
   }
-  var dlg = null;
+  /* the phone's own language, if it is one of the four ("it-IT" -> Italiano); null for any other */
+  function phone() {
+    var n = "";
+    try { n = String(window.navigator.language || window.navigator.userLanguage || ""); } catch (e) { n = ""; }
+    return known(n.slice(0, 2).toLowerCase());
+  }
+  /* counting a pick: lang/en, lang/it, lang/tr, lang/es, through the frame's own TurnsOut.count */
+  function countPick(code) {
+    try { if (window.TurnsOut && typeof window.TurnsOut.count === "function") window.TurnsOut.count("lang/" + code); } catch (e) { /* counting never breaks a page */ }
+  }
+  /* A player's pick, from the sheet or from the home's line (26 Oct 2026): remembered, counted once if it is a real
+     change (a different language from the one remembered; on a first visit nothing is remembered yet, so the first
+     pick counts; tapping the language already remembered does not), then the page in that language. The automatic
+     redirect of a remembered pick never comes through here, so it is never counted. A short moment passes before
+     the page leaves, so the counter's small request is on its way; a click with a modifier key is left to the
+     browser (a new tab). "after" runs when the pick keeps the player on this page. */
+  function pick(code, e, a, after) {
+    var before = saved(), changed = code !== before;
+    remember(code);
+    if (changed) countPick(code);
+    if (code === lang || only) { e.preventDefault(); if (after) after(); return; }
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || (e.button || 0) > 0) return;
+    e.preventDefault();
+    var to = a.href;
+    window.setTimeout(function () { window.location.assign(to); }, changed ? 200 : 0);
+  }
+  var dlg = null, list = null;
+  /* the sheet's four rows. On a first visit (nothing remembered) the phone's own language comes first and is the
+     marked one, if it is one of the four; otherwise the usual order, this page's language marked */
+  function fillList() {
+    var lead = saved() ? null : phone();
+    var order = lead ? [lead].concat(LANGS.filter(function (l) { return l !== lead; })) : LANGS;
+    var on = lead ? lead[0] : lang;
+    list.textContent = "";
+    order.forEach(function (l) {
+      var a = el("a", "lg-pick" + (l[0] === on ? " on" : ""));
+      a.lang = l[0]; a.hreflang = l[0];
+      a.href = only ? "#" : hrefIn(l[0]);
+      a.appendChild(el("span", "lg-flag", l[2]));
+      a.appendChild(el("b", "", l[1]));
+      a.addEventListener("click", function (e) {
+        pick(l[0], e, a, function () { dlg.close(); if (only) note(); });
+      });
+      list.appendChild(a);
+    });
+  }
   function sheet(open) {
     if (!dlg) {
       dlg = document.createElement("dialog");
@@ -142,26 +193,29 @@
       box.appendChild(x);
       box.appendChild(el("h2", "lg-h", T("lang.title")));
       box.appendChild(el("p", "quiet lg-sub", "Language · Lingua · Dil · Idioma"));
-      var list = el("div", "lg-list");
-      LANGS.forEach(function (l) {
-        var a = el("a", "lg-pick" + (l[0] === lang ? " on" : ""));
-        a.lang = l[0]; a.hreflang = l[0];
-        a.href = only ? "#" : hrefIn(l[0]);
-        a.appendChild(el("span", "lg-flag", l[2]));
-        a.appendChild(el("b", "", l[1]));
-        a.addEventListener("click", function (e) {
-          remember(l[0]);
-          if (l[0] === lang || only) { e.preventDefault(); dlg.close(); if (only) note(); }
-        });
-        list.appendChild(a);
-      });
+      list = el("div", "lg-list");
       box.appendChild(list);
       dlg.appendChild(box);
       dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
       document.body.appendChild(dlg);
     }
+    if (!dlg.open) fillList();
     if (open) { try { if (dlg.showModal && !dlg.open) dlg.showModal(); else dlg.setAttribute("open", ""); } catch (e) { dlg.setAttribute("open", ""); } }
     return dlg;
+  }
+  /* the home's line under the subtitle: the page's own language is marked (aria-current; the bold itself is CSS on
+     <html lang>, so it shows without a script too), every name picks like the sheet's rows */
+  function line() {
+    var box = document.getElementById("lg-line");
+    if (!box) return;
+    var links = box.querySelectorAll("a[hreflang]");
+    for (var i = 0; i < links.length; i++) (function (a) {
+      var code = a.getAttribute("hreflang");
+      if (!known(code)) return;
+      if (code === lang) a.setAttribute("aria-current", "true");
+      if (!only) a.href = hrefIn(code);          // the sheet's own address: this page's path, ?query and #hash kept (without a script the plain / /it/ /tr/ /es/ stay)
+      a.addEventListener("click", function (e) { pick(code, e, a); });
+    })(links[i]);
   }
   function chip() {
     var c = document.getElementById("lg-chip");
@@ -185,6 +239,7 @@
   function start() {
     if (only) { note(); return; }
     chip();
+    line();
     if (!saved()) sheet(true);
   }
 

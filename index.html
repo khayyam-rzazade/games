@@ -36,7 +36,7 @@
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="assets/css/logicers.css?v=73704e683c">
 <script src="assets/lang/en.js?v=b7737c497f"></script>
-<script src="assets/js/lang.js?v=c0d3bbfa8c"></script>
+<script src="assets/js/lang.js?v=b98f8d533f"></script>
 <style>
 /* Find out about yourself (B2, 22 Oct 2026): the box and the row. Kept here, not in logicers.css, so no shared file needs re-stamping. */
 [data-g="findout"] { --c: #3F7A2A; --tint: #E3F2DA; }
@@ -51,6 +51,14 @@
 .hero-boxes { display: inline-grid; grid-template-columns: minmax(0, max-content); max-width: 100%; vertical-align: top; }
 .hero-boxes .logicer { width: 100%; }
 @media (max-width: 700px) { .hero-boxes { display: block; } }
+/* the language line (26 Oct 2026): small, quiet, inside the page; wraps only between names; the current language is bold, not bigger */
+.lg-line { display: flex; flex-wrap: wrap; align-items: center; margin: 4px 0 0 -4px; max-width: 100%; font-size: .85rem; line-height: 1.2; color: var(--soft); }
+.lg-line a { position: relative; display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 4px; color: var(--soft); text-decoration: none; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+.lg-line a:not(:last-child)::after { content: "·"; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); color: var(--soft); font-weight: 400; }
+.lg-line a:hover .lg-name { text-decoration: underline; }
+.lg-line .lg-flag { font-size: 1.05em; line-height: 1; }
+@media (max-width: 339px) { .lg-line { font-size: .8rem; } }
+html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="it"], html[lang="tr"] .lg-line a[hreflang="tr"], html[lang="es"] .lg-line a[hreflang="es"] { color: var(--ink); font-weight: 800; }
 .logicer.findout .logicer-small:empty { display: none; }
 /* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
 .rooms-sheet { max-width: 440px; }
@@ -90,6 +98,13 @@
     <p class="eyebrow" id="eyebrow"></p>
     <h1 data-s="home.h1">Are you a <em>Logicer</em>?</h1>
     <p class="lede" data-s="home.lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
+    <!-- the language line (Khayyam, 26 Oct 2026): names in their own language, never translated, the same on all four homes. Each is a plain link to the home in that language (works without JavaScript); assets/js/lang.js adds the remembered pick and the count. The four hrefs are root links: build_lang.py leaves them alone. -->
+    <nav class="lg-line" id="lg-line" aria-label="Change the language" data-s-aria-label="lang.change">
+      <a href="/" lang="en" hreflang="en"><span class="lg-flag" aria-hidden="true">🇬🇧</span><span class="lg-name">English</span></a>
+      <a href="/it/" lang="it" hreflang="it"><span class="lg-flag" aria-hidden="true">🇮🇹</span><span class="lg-name">Italiano</span></a>
+      <a href="/tr/" lang="tr" hreflang="tr"><span class="lg-flag" aria-hidden="true">🇹🇷</span><span class="lg-name">Türkçe</span></a>
+      <a href="/es/" lang="es" hreflang="es"><span class="lg-flag" aria-hidden="true">🇪🇸</span><span class="lg-name">Español</span></a>
+    </nav>
     <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
     <!-- the two boxes stop where the longer text stops, both the same width (Khayyam, 22 Oct 2026); on the phone they fill the line as before -->
     <div class="hero-boxes">
