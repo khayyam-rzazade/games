@@ -35,9 +35,14 @@
 
   var PROTO = 1;
   var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+  /* Two addresses for the server (27 Oct 2026): live.logicers.com first, because some campus Wi-Fi blocks workers.dev;
+     the workers.dev one only when the first gives no answer at all (not even an error) before anything has been heard
+     from it, and then for the rest of the page. Nothing is probed on load. */
+  var SERVER_NEW = "https://live.logicers.com", SERVER_OLD = "https://logicers-live.rza-khay.workers.dev";
+  var TWIN = !LOCAL, heard = false;
   /* the checks may point the page at another local server; on the site, never (an element with that id could
      otherwise stand in for it: a string set by a script on this computer only) */
-  var SERVER = (LOCAL && typeof window.LIVE_SERVER === "string" && window.LIVE_SERVER) || (LOCAL ? "http://127.0.0.1:8787" : "https://logicers-live.rza-khay.workers.dev");
+  var SERVER = (LOCAL && typeof window.LIVE_SERVER === "string" && window.LIVE_SERVER) || (LOCAL ? "http://127.0.0.1:8787" : SERVER_NEW);
   var SITE = "logicers.com";
   var CONTACT = "logicers.world@gmail.com";
   var KEYP = "logicers-live:";
@@ -498,7 +503,7 @@
       body = { v: PROTO, settings: { set: setup.set, n: setup.n, shuffle: setup.shuffle, timer: setup.timer, teams: setup.teams, picked: setup.picked,
                                      practice: setup.practice, standings: setup.standings, awards: setup.awards } };
     }
-    window.fetch(SERVER + "/new", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+    reach("/new", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
       .then(function (res) { return res.json().then(function (b) { return { status: res.status, b: b }; }); })
       .then(function (r) {
         opening = false;
@@ -584,7 +589,7 @@
   }
 
   function peek(code) {
-    window.fetch(SERVER + "/game/" + code).then(function (res) {
+    reach("/game/" + code).then(function (res) {
       if (res.status === 404 && app.role === "host") {
         forget();
         note("done", "This game is over", "", [{ text: "Host a game", solid: true, href: "#host" }], true);
@@ -614,11 +619,27 @@
     });
   }
 
+  /* one call to the server, by its path: the first address's failure to answer at all (before it has ever answered)
+     moves the page to the second; any answer, even an error, settles it */
+  function reach(path, init) {
+    var base = SERVER;
+    return window.fetch(base + path, init).then(function (res) {
+      if (base === SERVER_NEW) heard = true;
+      return res;
+    }, function (err) {
+      if (!TWIN || heard || base !== SERVER_NEW) throw err;
+      SERVER = SERVER_OLD;
+      return window.fetch(SERVER_OLD + path, init);
+    });
+  }
+
   function unreachable() {
     note("signal", W("cantReach"), W("signal"), [
       { text: W("tryAgain"), solid: true, go: function () { var c = app.code; app.code = ""; openGame(c); } }]);
   }
 
+  /* the socket goes to whichever address the page's own calls settled on (every game starts with a call, /game/ or /new,
+     so a blocked first address has already moved the page to the second by the time the socket opens) */
   function wsUrl() { return SERVER.replace(/^http/, "ws") + "/ws/" + app.code; }
   /* "lv1", and once this browser is in the game, its pass ("p.<pass>"): the server's brake on guessing
      codes then never stops it coming back, even when the whole campus behind one address is braked */
@@ -1844,7 +1865,7 @@
     setLook(null);
     document.title = "Play · " + code + " | Logicers";
     kitView('<div class="live-card live-notecard"><p class="hs-waiting" style="justify-content:center"><span class="hs-dots"><i></i><i></i><i></i></span></p></div>');
-    window.fetch(SERVER + "/kit/" + code).then(function (res) {
+    reach("/kit/" + code).then(function (res) {
       if (res.status === 404) { note("lost", W("noGame"), "", [{ text: W("typeAgain"), solid: true, href: "./" }]); return null; }
       if (res.status === 429) { note("lost", W("tooMany"), W("waitRetry"), [{ text: W("back"), href: "./" }]); return null; }
       if (!res.ok) throw new Error("server");
@@ -1906,7 +1927,7 @@
   /* a play on the scoreboard: its points and place as they are now (the maker's ticks can change them) */
   function kitMine() {
     var r = kitRec(), code = kit.code;
-    window.fetch(SERVER + "/kit/" + code + "/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key: r.key }) })
+    reach("/kit/" + code + "/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key: r.key }) })
       .then(function (res) { return res.ok ? res.json() : null; }).then(function (me) {
         if (!me || kit.code !== code) return;
         var rec = kitRec();
@@ -1920,7 +1941,7 @@
   function kitLoad(then) {
     var code = kit.code;
     if (kit.qs) { then(); return; }
-    window.fetch(SERVER + "/kit/" + code + "/play").then(function (res) {
+    reach("/kit/" + code + "/play").then(function (res) {
       if (!res.ok) throw new Error(String(res.status));
       return res.json();
     }).then(function (p) {
@@ -1986,7 +2007,7 @@
     });
     kitView(kitTop("") + '<div class="live-card live-notecard"><p class="hs-waiting" style="justify-content:center"><span>' + esc(W("sendingPlay")) + ' <span class="hs-dots"><i></i><i></i><i></i></span></span></p></div>');
     var body = { v: PROTO, key: rec.key, name: rec.name || "", pick: !!(kit.info && kit.info.picked), ans: ans };
-    window.fetch(SERVER + "/kit/" + code + "/play", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+    reach("/kit/" + code + "/play", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
       .then(function (res) { return res.json().then(function (b) { return { status: res.status, b: b }; }, function () { return { status: res.status, b: {} }; }); })
       .then(function (r) {
         if (kit.code !== code) return;

@@ -123,23 +123,30 @@ self.addEventListener("fetch", function (e) {
    played that day). This file wakes, asks the server what to say (it can be a streak, a country, or an announcement),
    and shows it. It carries no player data beyond the push address the server already holds. When the server cannot be
    reached in time, the plain line is shown, because a push must always show something. */
-var PUSH_API = "https://logicers-live.rza-khay.workers.dev";
+var PUSH_API = "https://live.logicers.com";                          // first: our own address (some campus Wi-Fi blocks workers.dev)
+var PUSH_API_OLD = "https://logicers-live.rza-khay.workers.dev";     // second: the same server, tried only when the first gives no answer
 var PLAIN = { t: "Logicers", b: "Today’s games are ready.", n: 0 };
+
+/* one ask: the response, or null when nothing came back at all (blocked, no connection, no answer in time) */
+function pushAsk(base, sub, ms) {
+  var ctl = typeof AbortController === "function" ? new AbortController() : null;
+  var timer = setTimeout(function () { if (ctl) ctl.abort(); }, ms);
+  return fetch(base + "/push/msg", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ v: 1, ep: sub.endpoint }), signal: ctl ? ctl.signal : undefined
+  }).then(function (r) { clearTimeout(timer); return r; }, function () { clearTimeout(timer); return null; });
+}
 
 function pushWords(reg) {
   return reg.pushManager.getSubscription().then(function (sub) {
     if (!sub) return PLAIN;
-    var ctl = typeof AbortController === "function" ? new AbortController() : null;
-    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 4500);
-    return fetch(PUSH_API + "/push/msg", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ v: 1, ep: sub.endpoint }), signal: ctl ? ctl.signal : undefined
+    return pushAsk(PUSH_API, sub, 3000).then(function (r) {
+      return r || pushAsk(PUSH_API_OLD, sub, 3500);
     }).then(function (r) {
-      clearTimeout(timer);
-      return r.ok ? r.json() : PLAIN;
+      return r && r.ok ? r.json() : PLAIN;
     }).then(function (m) {
       return m && typeof m.b === "string" && m.b ? { t: String(m.t || "Logicers").slice(0, 60), b: String(m.b).slice(0, 160), n: +m.n || 0 } : PLAIN;
-    }, function () { clearTimeout(timer); return PLAIN; });
+    }, function () { return PLAIN; });
   }, function () { return PLAIN; });
 }
 

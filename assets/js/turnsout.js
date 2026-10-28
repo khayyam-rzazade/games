@@ -1388,7 +1388,12 @@
      the server's signing key (the same text as VAPID_PUBLIC in server/live/wrangler.jsonc); empty means no reminder.
      ------------------------------------------------------------------ */
   var PUSH_KEY = "BHTIP9q1jseMP0W-aAJkMUO6dPLmnkAG0Mdmodw6BKARfNYSrhYxg3pBkeeLEM7TJ_kVbRzYlj6nPTOAei1DRC0";
-  var PUSH_API = "https://logicers-live.rza-khay.workers.dev";
+  /* Two addresses for the same server (27 Oct 2026): live.logicers.com first, because some campus Wi-Fi blocks workers.dev;
+     the workers.dev one only when the first gives no answer at all (not even an error) before anything has been heard
+     from it, and then for the rest of the page. */
+  var PUSH_API = "https://live.logicers.com";
+  var PUSH_API_OLD = "https://logicers-live.rza-khay.workers.dev";
+  var pushHeard = false, pushOld = false;
   function pushKey() {
     if (onTestServer()) return typeof window.LOGICERS_PUSH_KEY === "string" ? window.LOGICERS_PUSH_KEY : "";
     return PUSH_KEY;
@@ -1460,7 +1465,15 @@
     };
   }
   function pushPost(path, body) {
-    return window.fetch(pushBase() + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    var base = pushBase(), init = { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
+    return window.fetch(base + path, init).then(function (r) {
+      if (base === PUSH_API) pushHeard = true;
+      return r;
+    }, function (err) {
+      if (base !== PUSH_API || pushHeard) throw err;      // only the first address, and only while it has never answered
+      pushOld = true;
+      return window.fetch(PUSH_API_OLD + path, init);
+    });
   }
   function pushSend(sub) {
     var s = pushState();
@@ -1526,7 +1539,7 @@
     return iOS() || (/Macintosh/.test(ua) && /Safari\//.test(ua) && !/Chrome\/|Chromium\/|Edg\/|OPR\/|Firefox\//.test(ua));
   }
   function pushBase() {
-    return onTestServer() && typeof window.LOGICERS_PUSH_API === "string" && window.LOGICERS_PUSH_API ? window.LOGICERS_PUSH_API : PUSH_API;
+    return onTestServer() && typeof window.LOGICERS_PUSH_API === "string" && window.LOGICERS_PUSH_API ? window.LOGICERS_PUSH_API : (pushOld ? PUSH_API_OLD : PUSH_API);
   }
   function calendarUrl() {
     var h = usualHour();

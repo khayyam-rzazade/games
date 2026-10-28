@@ -20,10 +20,13 @@ const UP = L.base ? '../' : '';                                  /* language pag
 function tpl(t, vars) { return String(t).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m)); }
 function ofN(a, b) { return tpl(U.of, { a, b }); }
 
-const API = window.FINDOUT_API || 'https://logicers-findout.rza-khay.workers.dev';
+/* Each server answers on two addresses (27 Oct 2026): its logicers.com one first, because some campus Wi-Fi blocks workers.dev;
+   the workers.dev one only when the first gives no answer at all (not even an error) before anything has been heard from it,
+   and then for the rest of the page. A test address set by the checks stands alone. Nothing is probed on load. */
+const API_ADDR = window.FINDOUT_API ? { use: window.FINDOUT_API, alt: '', heard: true } : { use: 'https://findout.logicers.com', alt: 'https://logicers-findout.rza-khay.workers.dev', heard: false };
 const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE ?? '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* the live widget; empty would send without a Turnstile token */
 /* the room (stage 2): its own small server, the same bins as the world's curves, nothing shown under ten phones */
-const ROOM_API = window.FINDOUT_ROOM_API || 'https://logicers-findout-room.rza-khay.workers.dev';
+const ROOM_ADDR = window.FINDOUT_ROOM_API ? { use: window.FINDOUT_ROOM_API, alt: '', heard: true } : { use: 'https://findout-room.logicers.com', alt: 'https://logicers-findout-room.rza-khay.workers.dev', heard: false };
 const ROOM_BINS = { 1: [1, 5, 0.5], 2: [1, 5, 0.25], 3: [0, 24, 1], 4: [0, 4, 1], 5: [0, 10, 0.5], 6: [0, 4, 1], 7: [0, 10, 0.5], 8: [1, 5, 0.25] };
 const ROOM_MIN = 10;
 const TRIAL = window.FINDOUT_TRIAL !== undefined ? !!window.FINDOUT_TRIAL : true;
@@ -61,16 +64,29 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const reduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
 
+/* one call to a server with two addresses (see API_ADDR): the first address's failure to answer at all, before it has ever
+   answered, moves the page to the second; any answer, even an error, settles it */
+async function reach(a, path, o, ms) {
+  for (;;) {
+    const base = a.use, ctl = new AbortController(), t = setTimeout(() => ctl.abort(), ms);
+    try {
+      const r = await fetch(base + path, Object.assign({}, o, { signal: ctl.signal }));
+      clearTimeout(t);
+      if (base !== a.alt) a.heard = true;
+      return r;
+    } catch (e) {
+      clearTimeout(t);
+      if (a.heard || !a.alt || base === a.alt) throw e;
+      a.use = a.alt;
+    }
+  }
+}
 async function api(path, body, opts) {
   const o = Object.assign({ method: body ? 'POST' : 'GET', headers: {} }, opts || {});
   if (body) { o.headers['Content-Type'] = 'application/json'; o.body = JSON.stringify(body); }
-  const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), o.timeout || 8000); o.signal = ctl.signal;
-  try {
-    const r = await fetch(API + path, o);
-    clearTimeout(t);
-    if (!r.ok) throw new Error('http ' + r.status);
-    return await r.json();
-  } catch (e) { clearTimeout(t); throw e; }
+  const r = await reach(API_ADDR, path, o, o.timeout || 8000);
+  if (!r.ok) throw new Error('http ' + r.status);
+  return await r.json();
 }
 function counter(event) {
   const st = load();
@@ -1461,14 +1477,12 @@ start();
    Worker) keeps counts and one bin per phone key; the phones keep everything else. The contract is in
    claude/find-outs-s2-handoff.md. Nothing here names anyone. */
 async function roomApi(path, body) {
-  const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 9000);
   try {
-    const r = await fetch(ROOM_API + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal } : { signal: ctl.signal, cache: 'no-store' });
-    clearTimeout(t);
+    const r = await reach(ROOM_ADDR, path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : { cache: 'no-store' }, 9000);
     const j = await r.json().catch(() => null);
     if (r.status === 404) return { ok: false, error: 'not_found' };
     return j || { ok: false, error: 'bad' };
-  } catch (e) { clearTimeout(t); return { ok: false, error: 'network' }; }
+  } catch (e) { return { ok: false, error: 'network' }; }
 }
 /* the bin of a scored game, the same bins as the world's curves; null for game 9 and for anything unscored */
 function roomBin(n, res) {

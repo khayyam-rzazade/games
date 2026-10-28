@@ -27,12 +27,17 @@
      The server's address: Logicers Live's Worker, which also keeps the world's counts (it deploys by itself
      from the repository). Empty quotes would switch the world's counts off everywhere. No closing slash.
      ------------------------------------------------------------------ */
-  var API = "https://logicers-live.rza-khay.workers.dev";
+  /* Two addresses (27 Oct 2026): live.logicers.com first, because some campus Wi-Fi blocks workers.dev; the workers.dev
+     one only when the first gives no answer at all (not even an error) before anything has been heard from it, and then
+     for the rest of the page. Nothing is probed on load. */
+  var API = "https://live.logicers.com";
+  var API_OLD = "https://logicers-live.rza-khay.workers.dev";
+  var heard = false, useOld = false;
   var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) || window.location.protocol === "file:";
   /* the checks run the site from localhost and may point this at a server of their own; nothing else may */
   function apiBase() {
     if (LOCAL) return typeof window.LOGICERS_WORLD_API === "string" ? window.LOGICERS_WORLD_API : "";
-    return API;
+    return useOld ? API_OLD : API;
   }
   function on() { return !!apiBase(); }
   var V = 1;
@@ -45,21 +50,27 @@
   /* any call to the same server, by its path (what players said, assets/js/said.js, uses /said/...) */
   function post(path, body) {
     body.v = V;
+    return attempt(apiBase(), path, body);
+  }
+  function attempt(base, path, body) {
     var ctl = null, timer = null;
     try { ctl = new window.AbortController(); } catch (e) { ctl = null; }
     if (ctl) timer = window.setTimeout(function () { ctl.abort(); }, WAIT);
-    return window.fetch(apiBase() + path, {
+    return window.fetch(base + path, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
       signal: ctl ? ctl.signal : undefined
     }).then(function (res) {
       if (timer) window.clearTimeout(timer);
+      if (base === API) heard = true;
       return res.json().then(function (data) { return { status: res.status, data: data || {} }; },
                              function () { return { status: res.status, data: {} }; });
     }, function (e) {
       if (timer) window.clearTimeout(timer);
-      throw e;
+      if (base !== API || heard || LOCAL) throw e;      // only the first address, and only while it has never answered
+      useOld = true;
+      return attempt(API_OLD, path, body);
     });
   }
 

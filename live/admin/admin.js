@@ -33,10 +33,28 @@
   "use strict";
   var WORDS = window.DESK_WORDS || {};
   var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+  /* Two addresses for the server (27 Oct 2026): live.logicers.com first, because some campus Wi-Fi blocks workers.dev;
+     the workers.dev one only when the first gives no answer at all (not even an error) before anything has been heard
+     from it, and then for the rest of the page. Nothing is probed on load. */
+  var SERVER_NEW = "https://live.logicers.com", SERVER_OLD = "https://logicers-live.rza-khay.workers.dev";
+  var TWIN = !LOCAL, heard = false;
   /* The server, as live.js picks it, with one difference: another server is taken only on this computer, and
      only as a string. On the live site nothing in the page can send the key elsewhere, not even an element
      whose id happened to be LIVE_SERVER (the security line would refuse the call anyway). */
-  var SERVER = (LOCAL && typeof window.LIVE_SERVER === "string" && window.LIVE_SERVER) || (LOCAL ? "http://127.0.0.1:8787" : "https://logicers-live.rza-khay.workers.dev");
+  var SERVER = (LOCAL && typeof window.LIVE_SERVER === "string" && window.LIVE_SERVER) || (LOCAL ? "http://127.0.0.1:8787" : SERVER_NEW);
+  /* one call to the server, by its path: the first address's failure to answer at all (before it has ever answered)
+     moves the page to the second; any answer, even an error, settles it */
+  function reach(path, init) {
+    var base = SERVER;
+    return window.fetch(base + path, init).then(function (res) {
+      if (base === SERVER_NEW) heard = true;
+      return res;
+    }, function (err) {
+      if (!TWIN || heard || base !== SERVER_NEW) throw err;
+      SERVER = SERVER_OLD;
+      return window.fetch(SERVER_OLD + path, init);
+    });
+  }
   /* 30 minutes; only the checks, on this computer, shorten it */
   var IDLE = (LOCAL && window.DESK_IDLE) || 30 * 60e3;
   var PAGE = 200;                                          // reports the server sends at a time
@@ -122,7 +140,7 @@
     var payload = { key: KEY };
     Object.keys(body).forEach(function (k) { payload[k] = body[k]; });
     touch();
-    return window.fetch(SERVER + (path || "/admin"), {
+    return reach(path || "/admin", {
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
       credentials: "omit", cache: "no-store", referrerPolicy: "no-referrer"
     }).then(function (res) {

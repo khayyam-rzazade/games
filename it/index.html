@@ -477,11 +477,11 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="../every-beat/puzzles.js"></script>
 <script src="../out-of-24/puzzles.js"></script>
 <script src="../same-energy/puzzles.js"></script>
-<script src="../assets/js/turnsout.js?v=e189b48764"></script>
+<script src="../assets/js/turnsout.js?v=7127452852"></script>
 <script src="../assets/js/duel.js?v=c4e6a61b81"></script>
-<script src="../assets/js/rooms.js?v=a42d4cf6f9"></script>
+<script src="../assets/js/rooms.js?v=496d2fe661"></script>
 <script src="../assets/js/points.js?v=d060d18a9f"></script>
-<script src="../assets/js/world.js?v=da64c2981d"></script>
+<script src="../assets/js/world.js?v=a0265c5f03"></script>
 <script src="../assets/js/said.js?v=5d6cde48e4"></script>
 <script src="../assets/js/logicer.js?v=f998ff3c11"></script>
 <script>
@@ -708,7 +708,9 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   (function () {
     var small = document.getElementById("findout-count");
     if (!small || !window.fetch) return;
-    fetch("https://logicers-findout.rza-khay.workers.dev/counter").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    /* findout.logicers.com first (some campus Wi-Fi blocks workers.dev); the workers.dev address only when nothing comes back from it */
+    function ask(url, next) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }, function (e) { if (next) return ask(next); throw e; }); }
+    ask("https://findout.logicers.com/counter", "https://logicers-findout.rza-khay.workers.dev/counter").then(function (j) {
       if (j && j.played >= 1) small.textContent = T("home.findout_count", { n: LG ? LG.num(j.played) : Number(j.played).toLocaleString("en-US") });
     }).catch(function () { /* the box reads the same without the number */ });
   })();

@@ -20,15 +20,20 @@
   /* ------------------------------------------------------------------
      The server's own address (the Cloudflare Worker logicers-rooms, made by Khayyam on 9 Oct 2026).
      Empty quotes would switch rooms off: nothing of them would show anywhere. No closing slash.
+     It answers on two addresses (27 Oct 2026): rooms.logicers.com first, because some campus Wi-Fi blocks
+     workers.dev; the workers.dev one only when the first gives no answer at all (not even an error) before
+     anything has been heard from it, and then for the rest of the page. Nothing is probed on load.
      ------------------------------------------------------------------ */
-  var API = "https://logicers-rooms.rza-khay.workers.dev";
+  var API = "https://rooms.logicers.com";
+  var API_OLD = "https://logicers-rooms.rza-khay.workers.dev";
+  var heard = false, useOld = false;
 
   /* The checks run the site from localhost and stand a pretend server up; they may point this
      script at it. Only there: a live page never takes an address from anywhere but API above. */
   function apiBase() {
     var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) || window.location.protocol === "file:";
     if (local && typeof window.LOGICERS_ROOMS_API === "string") return window.LOGICERS_ROOMS_API;
-    return API;
+    return useOld ? API_OLD : API;
   }
   function on() { return !!apiBase(); }
 
@@ -48,8 +53,19 @@
   function inRooms() { return myRooms().length > 0; }
 
   /* ---------------- talking to the server ---------------- */
+  function reach(what, init) {
+    var base = apiBase();
+    return window.fetch(base + "/api/" + what, init).then(function (res) {
+      if (base === API) heard = true;
+      return res;
+    }, function (err) {
+      if (base !== API || heard) throw err;      // only the first address, and only while it has never answered
+      useOld = true;
+      return window.fetch(API_OLD + "/api/" + what, init);
+    });
+  }
   function call(what, body) {
-    return window.fetch(apiBase() + "/api/" + what, {
+    return reach(what, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)

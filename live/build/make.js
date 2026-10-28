@@ -37,9 +37,27 @@
   var LINK = takeLink();
 
   var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+  /* Two addresses for the server (27 Oct 2026): live.logicers.com first, because some campus Wi-Fi blocks workers.dev;
+     the workers.dev one only when the first gives no answer at all (not even an error) before anything has been heard
+     from it, and then for the rest of the page. Nothing is probed on load. */
+  var SERVER_NEW = "https://live.logicers.com", SERVER_OLD = "https://logicers-live.rza-khay.workers.dev";
+  var TWIN = !LOCAL, heard = false;
   /* the checks may point the page at another local server; on the site, never (an element with that id could
      otherwise stand in for it: a string set by a script on this computer only) */
-  var SERVER = (LOCAL && typeof window.LIVE_SERVER === "string" && window.LIVE_SERVER) || (LOCAL ? "http://127.0.0.1:8787" : "https://logicers-live.rza-khay.workers.dev");
+  var SERVER = (LOCAL && typeof window.LIVE_SERVER === "string" && window.LIVE_SERVER) || (LOCAL ? "http://127.0.0.1:8787" : SERVER_NEW);
+  /* one call to the server, by its path: the first address's failure to answer at all (before it has ever answered)
+     moves the page to the second; any answer, even an error, settles it */
+  function reach(path, init) {
+    var base = SERVER;
+    return window.fetch(base + path, init).then(function (res) {
+      if (base === SERVER_NEW) heard = true;
+      return res;
+    }, function (err) {
+      if (!TWIN || heard || base !== SERVER_NEW) throw err;
+      SERVER = SERVER_OLD;
+      return window.fetch(SERVER_OLD + path, init);
+    });
+  }
   var SITE = "https://logicers.com";
   var PROTO = 1;
   var COLOURS = ["indigo", "blue", "teal", "red", "pink", "green", "orange", "slate"];
@@ -147,7 +165,7 @@
   function call(path, body) {
     var o = { method: body ? "POST" : "GET", cache: "no-store", credentials: "omit" };
     if (body) { o.headers = { "Content-Type": "application/json" }; o.body = JSON.stringify(body); }
-    return window.fetch(SERVER + path, o).then(function (res) {
+    return reach(path, o).then(function (res) {
       return res.json().then(function (b) { return { status: res.status, b: obj(b) }; }, function () { return { status: res.status, b: {} }; });
     }, function () { return { status: 0, b: {} }; });
   }
