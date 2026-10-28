@@ -41,6 +41,17 @@
 /* Find out about yourself (B2, 22 Oct 2026): the box and the row. Kept here, not in logicers.css, so no shared file needs re-stamping. */
 [data-g="findout"] { --c: #3F7A2A; --tint: #E3F2DA; }
 @media (prefers-color-scheme: dark) { [data-g="findout"] { --c: #9EDB6A; --tint: #0F1F0A; } }
+/* Word games (28 Oct 2026): Altitude's colour, glacier granite, and the row made to look exactly like the
+   daily row above (#shelf): wide picture, no pitch line, the same short tile. One tile for now. */
+[data-g="altitude"] { --c: #4F6B80; --tint: #E3EBF1; }
+@media (prefers-color-scheme: dark) { [data-g="altitude"] { --c: #A9C6DA; --tint: #0E1821; } }
+#shelf3 .art { aspect-ratio: 1.8 / 1; border-radius: 14px; }
+#shelf3 .tile { padding: 8px; }
+#shelf3 .tile .body { padding: 10px 6px 4px; }
+#shelf3 .tile h3 { font-size: 1.15rem; }
+#shelf3 .pitch, #shelf3 .mins { display: none; }
+#shelf3 .foot { margin-top: 8px; min-height: 38px; }
+#shelf3 .go { height: 38px; padding: 0 14px 0 15px; font-size: 0.92rem; }
 .logicer.findout { background: linear-gradient(135deg, #2E6B22 0%, #3F7A2A 55%, #6BA84A 100%); box-shadow: 0 8px 20px rgba(63, 122, 42, .28), inset 0 0 0 1px rgba(255, 255, 255, .16); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .logicer.findout:active { transform: scale(.99); }
 .logicer.findout .logicer-big { color: #fff; background: linear-gradient(90deg, #fff 0%, #fff 40%, #FFD45E 50%, #fff 60%, #fff 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out infinite; }
@@ -287,6 +298,30 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     </a>
     </div>
     <button class="shelf-btn next" type="button" id="shelf-next" aria-controls="shelf-row" aria-label="More games" data-s-aria-label="site.more_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</section>
+
+
+<!-- Word games (28 Oct 2026, Khayyam): their own row right under the daily games. Altitude is not one of the
+     nine: it is not in GAMES (turnsout.js), so it is outside the chain, the streak and the "x/9 played" count, and
+     its tile carries no result stamp. The round shelf buttons come when there are two or more word games.
+     ORDER: Altitude stays the first tile of this row (Khayyam, 28 Oct 2026). A new word game is added AFTER it,
+     inside the same shelf-row — unlike the daily row above, where the newest game goes first. -->
+<section class="games word-games" aria-labelledby="words-title">
+  <h2 class="sec" id="words-title" data-s="home.word_games_h">Word games</h2>
+  <div class="shelf" id="shelf3">
+    <div class="shelf-row" id="shelf3-row" data-n="1">
+    <a class="tile" id="tile-altitude" data-g="altitude" href="altitude/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="mute" d="M118 38h84l5 18h-94z"/><path class="mute" d="M107 60h106l5 18H102z"/><path class="fg" d="M96 82h128l5 18H91z"/><path class="fg" d="M85 104h150l5 18H80z"/><path class="fg" d="M74 126h172l5 18H69z"/><path class="fg" d="M63 148h194l5 18H58z"/><path class="ln" d="M44 174h232" fill="none" stroke-width="4" stroke-linecap="round"/><path class="ln" d="M126 38V12" fill="none" stroke-width="4" stroke-linecap="round"/><path class="fg" d="M126 12l24 8-24 8z"/></svg><span class="badge" data-s="site.new">New</span></div>
+      <div class="body">
+        <h3 data-s="game.altitude.name">Altitude</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_altitude_long">A 2-letter word, then 3, 4, up to 8, on one budget of guesses. How high can you get?</span><span class="short" data-s="game.altitude.pitch">A word a letter longer each time. How high can you get?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.two_min">2 min</span>
+        </div>
+      </div>
+    </a>
+    </div>
   </div>
 </section>
 

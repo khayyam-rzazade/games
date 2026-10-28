@@ -39,6 +39,11 @@ const REMEMBER = 50000;             // addresses held in memory at most; beyond,
 const MIN_GAME = 3;                 // a country takes a place in one game's order from this many results
 const PULL_GAME = 5;                // ...and is pulled toward the world's average as if it had this many more at it
 const SUMMARY_MS = 30e3;            // the summary for the world table is worked out at most once in this time
+/* The nine daily games, taken from points.js itself, so this list can never drift from it. Ids outside it
+   (Altitude, the word climb, 28 Oct 2026: altitude-en and its five sisters) are kept and shown game by game
+   like any other, but they never reach the world table, the team page or a country's record: they are not
+   one of the nine, so no daily-game count may change because of them. */
+const DAILY = new Set(P.SCORED.concat(["call"]));
 
 const HB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const HCOLS = HB.map((i) => "h" + i).join(", ");
@@ -258,6 +263,7 @@ export class Tally extends DurableObject {
     const out = { world: { g: {}, x: {} } };
     for (const c of want) out[c] = { g: {}, x: {} };
     for (const r of this.rows("SELECT g, c, n, p FROM r")) {
+      if (!DAILY.has(r.g)) continue;
       const w = out.world.g[r.g] || (out.world.g[r.g] = [0, 0]);
       w[0] += r.n; w[1] += r.p;
       if (out[r.c] && r.c !== "world") {
@@ -266,6 +272,7 @@ export class Tally extends DurableObject {
       }
     }
     for (const r of this.xrows("SELECT g, c, r0, r1, r2 FROM x")) {
+      if (!DAILY.has(r.g)) continue;
       const w = out.world.x[r.g] || (out.world.x[r.g] = [0, 0, 0]);
       w[0] += r.r0; w[1] += r.r1; w[2] += r.r2;
       if (out[r.c] && r.c !== "world") out[r.c].x[r.g] = [r.r0, r.r1, r.r2];
@@ -303,7 +310,7 @@ export class Tally extends DurableObject {
   summary() {
     const now = Date.now();
     if (this.summed && now - this.summed.at < SUMMARY_MS) return this.summed.data;
-    const rows = this.rows("SELECT g, c, ct, n, p FROM r");
+    const rows = this.rows("SELECT g, c, ct, n, p FROM r").filter((r) => DAILY.has(r.g));
     const games = {}, gp = {};
     let N = 0, S = 0, calls = 0;
     for (const r of rows) {

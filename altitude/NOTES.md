@@ -1,20 +1,40 @@
-# Climb: notes for the base chat
+# Altitude: notes
 
-Working name **Climb**. Everything is in `climb/`; nothing outside it was touched, and `climb/words/` was not written to.
+The game is **Altitude** (28 Oct 2026; it was built under the working name Climb). Everything is in `altitude/`.
+
+## What changed with the name (28 Oct 2026)
+
+* `climb/` became `altitude/`, and `climb.css` / `climb.js` became `altitude.css` / `altitude.js`. `words/` is unchanged.
+* The game ids are now `altitude-en | altitude-it | altitude-es | altitude-pt | altitude-fr | altitude-tr`.
+* The name reads **Altitude** in all six languages (`name` in `strings.json`), on the page, in the tab and in the
+  share text (`Logicers Altitude · 7 letters · 14 guesses · 🇮🇹`, `https://logicers.com/altitude/?beat=7`).
+* Storage is `altitude:v1` and `altitude.lang`; the counted paths are `altitude/played/<lang>` and `altitude/share`;
+  the colour token is `[data-g="altitude"]`; the saved picture is `altitude.png`.
+* The word "climb" is still used as an ordinary English word where the game talks about a climb ("Share your climb",
+  "A new climb at midnight"). That is the feeling the game wants; only the name changed.
+* Sections 1 and 2 below are **done** (see "Still open" at the end for the two places that are not).
 
 ## Files
 
 | File | What it is |
 |---|---|
 | `index.html` | the page (own six-language layer, so it carries `data-lg-only`: the site's language sheet and redirect stay off) |
-| `climb.css` | the game's own look (board, keyboard, mountain, end card); uses the shared `logicers.css` for bar, chips, dialogs, buttons, end-card classes |
-| `climb.js` | all logic (day, words, play, hint, streak, server calls, end card, share) |
+| `altitude.css` | the game's own look (board, keyboard, mountain, end card); uses the shared `logicers.css` for bar, chips, dialogs, buttons, end-card classes |
+| `altitude.js` | all logic (day, words, play, hint, streak, server calls, end card, share) |
 | `strings.json` | all UI text: `en it tr es pt fr`, 62 keys each (checked: same keys and same `{placeholders}` in every language) |
 | `words/<lang>.json` | from the other chat (format fixed: `lang, keyboard, fold, answers, allowed`) |
 
 It needs a web server (it loads JSON); opened from a folder it shows "The words did not load" with a Try again button.
 
-## 1. Home page: the "Word games" row
+## 1. Home page: the "Word games" row — DONE (28 Oct 2026)
+
+Built as described below, with `altitude` in place of `climb`. The row sits right under "Today's daily games" in all
+four home pages the site has (`index.html`, `it/`, `tr/`, `es/`); its tile is the same size as a daily tile and the
+row scrolls sideways the same way. The colour tokens and the `#shelf3` rules live in each page's own `<style>`
+block, beside the `findout` colour. Altitude is not in `GAMES` (turnsout.js), so the nine-game chain, the streak
+and the "x/9 played" count are untouched — checked in a browser.
+
+The original plan follows, for reference:
 
 Climb sits outside the nine daily games (own storage, no "Next game" chain, not in `GAMES`), so the tile has no result stamp.
 
@@ -25,7 +45,9 @@ Climb sits outside the nine daily games (own storage, no "Next game" chain, not 
 @media (prefers-color-scheme: dark) { [data-g="climb"] { --c: #A9C6DA; --tint: #0E1821; } }
 ```
 
-**b)** The row, e.g. right after the daily-games `</section>` and before "Pass the phone". Tested on a copy of the home page, light and dark, at 390 px. One tile; add the next word game inside the same `shelf-row` (and the shelf buttons when there are two or more):
+**b)** The row, e.g. right after the daily-games `</section>` and before "Pass the phone". Tested on a copy of the home page, light and dark, at 390 px. One tile; add the next word game inside the same `shelf-row` (and the shelf buttons when there are two or
+more). **Altitude stays first** in this row (Khayyam, 28 Oct 2026): a new word game is added *after* it,
+not before — unlike the daily row above, where the newest game stands first. The markup carries that note.
 
 ```html
 <section class="games" aria-labelledby="words-title">
@@ -61,7 +83,16 @@ Climb sits outside the nine daily games (own storage, no "Next game" chain, not 
 
 **d)** `sitemap.xml`: `https://logicers.com/climb/` (daily). No change needed in `sw.js` (the page and files fill the cache as they are seen).
 
-## 2. Results server: what the card needs (I did not touch the Worker)
+## 2. Results server — DONE (28 Oct 2026)
+
+`assets/js/points.js` and its byte-for-byte copy `server/live/src/points.js` now carry the six `altitude-*` ids
+(curve `[[0, 100], [8, 0]]`, limits `{ e: [0, 8], skip: [7, 7], g: [0, 26], whole: true }`, guess `"lin"`).
+`server/live/src/tally.js` gained one constant, `DAILY` (the nine daily games, taken from `points.js`'s own
+`SCORED` so it can never drift), and skips anything outside it in `summary()` and `team()` — so a word game can
+never reach the world table, the team page or a country's record. Nothing else in the Worker changed, and no
+migration is needed. The deploy steps are in `DEPLOY-altitude.md` beside this file.
+
+What the card needs, as it was worked out:
 
 Climb sends the same call the other games make, one game id per language:
 
@@ -121,3 +152,30 @@ Tested in Chromium (Playwright) at 390×844, 360×640 and 1280×800, light and d
 Also tested for the "going up" version: the +1 flying into the counter (18 → 19), the flag and cheer by height, the sky colour at each height in light and dark, the given first letter at 7 and 8 letters (it cannot be deleted, the hint never lands on it), the warm counter at 3 and 1 left (amber, not red; not warm at 4), the end card for a climb that ran out of guesses ("You reached 4 letters · Higher than 28% of players today · It was FLOOR"), the summit, and the longest possible climb (26 guesses sent).
 
 Not tested: the real Worker (it does not know the ids yet), the haptic tap on a phone (the code path runs; a desktop has no motor), the real system share sheet (`navigator.share` with a file) on a phone, Safari/iOS, and the midnight reload.
+
+
+## Still open (28 Oct 2026)
+
+Two places were left alone on purpose, because they are not this chat's to change and both are regenerated:
+
+* **`r/site-workshop/build_home.py`** writes `index.html` and `sitemap.xml`. The Word games row was put into the
+  four `index.html` files by hand, so the next run of that script would drop it. The row needs to go into the
+  script (a `WORDS` list beside `GAMES`/`GROUP`, the `#shelf3` style block and the four dictionary keys below),
+  and `https://logicers.com/altitude/` needs to join the sitemap as a daily page.
+* **`r/climb/`** (the word-list workshop, on the Mac only, gitignored) still writes to `climb/words/`. Point it at
+  `altitude/words/` before it is run again, or it will fill a folder nothing reads.
+
+Dictionary keys the row uses. The page works without them (each language's own text is in its markup), but the
+next rebuild of the language pages needs them in `assets/lang/<code>.js`:
+
+| key | en | it | tr | es |
+|---|---|---|---|---|
+| `home.word_games_h` | Word games | Giochi di parole | Kelime oyunları | Juegos de palabras |
+| `game.altitude.name` | Altitude | Altitude | Altitude | Altitude |
+| `game.altitude.pitch` | A word a letter longer each time. How high can you get? | Una parola con una lettera in più ogni volta. Fin dove arrivi? | Her seferinde bir harf daha uzun bir kelime. Ne kadar yükselebilirsin? | Una palabra con una letra más cada vez. ¿Hasta dónde llegas? |
+| `home.pitch_altitude_long` | A 2-letter word, then 3, 4, up to 8, on one budget of guesses. How high can you get? | Una parola di 2 lettere, poi 3, 4, fino a 8, con un'unica riserva di tentativi. Fin dove arrivi? | 2 harfli bir kelime, sonra 3, 4, 8'e kadar; hepsi tek bir tahmin hakkından. Ne kadar yükselebilirsin? | Una palabra de 2 letras, luego 3, 4, hasta 8, con una única reserva de intentos. ¿Hasta dónde llegas? |
+| `site.two_min` | 2 min | 2 min | 2 dk | 2 min |
+
+(`site.play` and `site.new` already exist. The site has no `pt` or `fr` dictionary yet, so the home page has four
+languages, not six; Altitude itself has all six in its own `strings.json`. When `pt.js` and `fr.js` arrive, the
+Portuguese and French rows are: "Jogos de palavras" / "Jeux de mots", "Altitude", and "2 min" for both.)

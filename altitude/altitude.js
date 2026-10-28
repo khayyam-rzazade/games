@@ -1,6 +1,6 @@
-/* Climb (working name): a daily word climb. Stage 1 is a 2-letter word, then 3, 4 ... up to 8, Wordle colours,
+/* Altitude: a daily word climb. Stage 1 is a 2-letter word, then 3, 4 ... up to 8, Wordle colours,
    and ONE budget of guesses for the whole climb. Same words for everyone (answers[L][day mod length]).
-   Everything this game needs lives in this folder: climb.css, strings.json (six languages), words/<lang>.json
+   Everything this game needs lives in this folder: altitude.css, strings.json (six languages), words/<lang>.json
    (made by another chat). It reads the site's frame (assets/js/turnsout.js) and writes nothing outside its own
    storage key and the results server's existing calls. */
 (function () {
@@ -21,8 +21,8 @@
   var NEED_COUNTRY = 3;            // a country's average is shown from this many players
   var NEED_WORLD = 2;              // the day's picture of everyone from this many players
 
-  var STORE_KEY = "climb:v1";      // this game's own storage; no other game's data is touched
-  var LANG_KEY = "climb.lang";
+  var STORE_KEY = "altitude:v1";   // this game's own storage; no other game's data is touched
+  var LANG_KEY = "altitude.lang";
   var SITE_LANG_KEY = "lg.findout.lang";
   var LANGS = [["en", "English", "🇬🇧"], ["it", "Italiano", "🇮🇹"],
                ["tr", "Türkçe", "🇹🇷"], ["es", "Español", "🇪🇸"],
@@ -643,7 +643,7 @@
     if (!store.main[day]) store.main[day] = lang;            // the day's first climb counts for the streak; a second language never does
     if (run.h > (store.best || 0)) store.best = run.h;
     save();
-    if (TO && TO.count) TO.count("climb/played/" + lang);
+    if (TO && TO.count) TO.count("altitude/played/" + lang);
   }
   function afterFinish(won) {
     renderStatus();
@@ -689,7 +689,7 @@
      first word), g = guesses used. That is the shape every other game sends, so the Worker needs only the six ids. */
   var refused = {};
   function sendRun(l, r) {
-    var key = dateKey(), tag = key + ":" + l, id = "climb-" + l;
+    var key = dateKey(), tag = key + ":" + l, id = "altitude-" + l;
     if (optedOut() || store.sent[tag] || refused[tag]) return Promise.resolve(null);
     store.sent[tag] = 1;
     save();
@@ -712,7 +712,7 @@
     }
   }
   function loadView(l) {
-    return post("/stats/view", { d: dateKey(), k: "climb-" + l }).then(function (res) {
+    return post("/stats/view", { d: dateKey(), k: "altitude-" + l }).then(function (res) {
       if (res.status === 200) {
         takeYou(res.data.you);
         if (res.data.view) srv.views[l] = res.data.view;
@@ -721,7 +721,7 @@
   }
   function ensureCountry() {
     if (srv.cc) return Promise.resolve();
-    /* climb-* ids may not be on the server yet (400 carries no country): ask an existing game, only for where the player is */
+    /* altitude-* ids may not be on the server yet (400 carries no country): ask an existing game, only for where the player is */
     return post("/stats/view", { d: dateKey(), k: "hundred" }).then(function (res) {
       if (res.status === 200) takeYou(res.data.you);
     }).then(null, noop);
@@ -986,10 +986,10 @@
   /* ------------------------------------------------------------------ share: the mountain as a picture, a line of text, a challenge link */
   function baseUrl() {
     var u = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
-    return LOCAL ? u : "https://logicers.com/climb/";
+    return LOCAL ? u : "https://logicers.com/altitude/";
   }
   function shareText() {
-    var parts = ["Logicers Climb", run.h ? T("letters", { n: run.h }) : T("base"), T("used", { n: run.used })];
+    var parts = ["Logicers Altitude", run.h ? T("letters", { n: run.h }) : T("base"), T("used", { n: run.used })];
     var cc = srv.cc || store.cc, fl = cc ? flagOf(cc.c) : "";
     if (fl) parts.push(fl);
     return parts.join(" · ") + "\n" + baseUrl() + (run.h >= FIRST ? "?beat=" + run.h : "");
@@ -1056,7 +1056,7 @@
       ctx.fillStyle = SOFT; ctx.font = "700 46px " + X;
       ctx.fillText(T("used", { n: run.used }) + " · " + clock(run.ms), 540, 1196);
       ctx.fillStyle = ACC; ctx.font = "700 40px " + X;
-      ctx.fillText("logicers.com/climb", 540, 1256);
+      ctx.fillText("logicers.com/altitude", 540, 1256);
       return new Promise(function (resolve) {
         if (cv.toBlob) cv.toBlob(function (bl) { resolve(bl); }, "image/png");
         else resolve(null);
@@ -1068,7 +1068,7 @@
     if (!run || !run.done) return;
     picture().then(function (blob) {
       var text = shareText(), file = null, can = false;
-      try { if (blob && typeof File === "function") file = new File([blob], "climb.png", { type: "image/png" }); } catch (e) { file = null; }
+      try { if (blob && typeof File === "function") file = new File([blob], "altitude.png", { type: "image/png" }); } catch (e) { file = null; }
       var nav = window.navigator;
       if (file && nav.canShare && nav.share) { try { can = nav.canShare({ files: [file] }); } catch (e) { can = false; } }
       if (can && !computer()) {
@@ -1079,7 +1079,7 @@
       }
       shareDialog(blob, text, file, can);
     }).then(null, noop);
-    if (TO && TO.count) TO.count("climb/share");
+    if (TO && TO.count) TO.count("altitude/share");
   }
   function shareDialog(blob, text, file, can) {
     var dlg = $("dlg-share"), img = $("share-img"), save = $("share-save"), note = $("share-note");

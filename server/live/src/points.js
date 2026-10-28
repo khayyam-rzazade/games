@@ -25,7 +25,17 @@
     o24:     [[0, 100], [45, 70], [120, 40], [480, 0]],    // minutes off
     energy:  [[0, 100], [2, 70], [4, 40], [12, 0]],        // twice the portions off
     club:    [[0, 100], [5, 0]],                           // wrong calls at the door, of 5
-    cousin:  [[0, 100], [2, 0]]                            // branches away: 0, 1 or 2
+    cousin:  [[0, 100], [2, 0]],                           // branches away: 0, 1 or 2
+
+    /* Altitude (28 Oct 2026), the word climb: one id per language, outside the nine daily games. Its error is
+       how many levels short of the summit the climb stopped (0 the summit, 8 the first word missed), so a height
+       h is worth round(100 * h / 8) points. Straight down from 100 to 0, no stamps to follow. */
+    "altitude-en": [[0, 100], [8, 0]],
+    "altitude-it": [[0, 100], [8, 0]],
+    "altitude-tr": [[0, 100], [8, 0]],
+    "altitude-es": [[0, 100], [8, 0]],
+    "altitude-pt": [[0, 100], [8, 0]],
+    "altitude-fr": [[0, 100], [8, 0]]
   };
 
   /* What the server accepts, game by game: the error (whole numbers), and the guess where there is one.
@@ -40,12 +50,23 @@
     energy:  { e: [0, 120], g: [0, 60] },
     club:    { e: [0, 5] },
     cousin:  { e: [0, 2] },
-    call:    { c: [0, 2] }
+    call:    { c: [0, 2] },
+
+    /* Altitude: e the levels short of the summit (7 can never happen: there is no 1-letter word), g the guesses
+       used, at most BUDGET + BONUS * 6 = 26 (a hint counts 2; finding the 8-letter word ends the climb). */
+    "altitude-en": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
+    "altitude-it": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
+    "altitude-tr": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
+    "altitude-es": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
+    "altitude-pt": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
+    "altitude-fr": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true }
   };
 
   /* The five games whose guess is one number, and the scale their guesses are averaged on: Every Beat's
      guesses run from 1 to 2,000 beats a minute, so their average is taken on a log scale (a geometric mean). */
-  var GUESS = { hundred: "lin", apart: "lin", o24: "lin", energy: "lin", every: "log" };
+  var GUESS = { hundred: "lin", apart: "lin", o24: "lin", energy: "lin", every: "log",
+    "altitude-en": "lin", "altitude-it": "lin", "altitude-tr": "lin",
+    "altitude-es": "lin", "altitude-pt": "lin", "altitude-fr": "lin" };
 
   function num(v) { return typeof v === "number" && isFinite(v); }
   function whole(v) { return num(v) && Math.round(v) === v; }

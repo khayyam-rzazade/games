@@ -1,10 +1,10 @@
-/* Climb (working name): the game's own look. Everything the games share (bar, chips, dialogs, buttons,
+/* Altitude: the game's own look. Everything the games share (bar, chips, dialogs, buttons,
    end-of-game sheet, language sheet) comes from ../assets/css/logicers.css; this file only adds
-   Climb's colour, the board, the keyboard, the mountain. Nothing here reaches another page. */
+   Altitude's colour, the board, the keyboard, the mountain. Nothing here reaches another page. */
 
-/* Climb's colour: glacier granite. It is not one of the other games' colours, and it stays away from the
+/* Altitude's colour: glacier granite. It is not one of the other games' colours, and it stays away from the
    tile green and yellow, so the board's colours always mean the same thing. */
-[data-g="climb"] { --c: #4F6B80; --tint: #E3EBF1; }
+[data-g="altitude"] { --c: #4F6B80; --tint: #E3EBF1; }
 :root {
   --hit: #2E9F63;  --on-hit: #fff;                /* right letter, right place */
   --near: #E3B01E; --on-near: #15172B;            /* right letter, wrong place */
@@ -17,7 +17,7 @@
   --kh: clamp(42px, 6.6svh, 54px);                /* key height */
 }
 @media (prefers-color-scheme: dark) {
-  [data-g="climb"] { --c: #A9C6DA; --tint: #0E1821; }
+  [data-g="altitude"] { --c: #A9C6DA; --tint: #0E1821; }
   :root {
     --hit: #2BA866;  --on-hit: #fff;
     --near: #D2A21C; --on-near: #15172B;

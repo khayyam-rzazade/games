@@ -1,6 +1,6 @@
 {
  "en": {
-  "name": "Climb",
+  "name": "Altitude",
   "day": "Day {n}",
   "streak": "Streak {n}",
   "help": "How to play",
@@ -71,7 +71,7 @@
   "higher": "Higher than {p} of players today"
  },
  "it": {
-  "name": "Climb",
+  "name": "Altitude",
   "day": "Giorno {n}",
   "streak": "Serie {n}",
   "help": "Come si gioca",
@@ -142,7 +142,7 @@
   "higher": "Più in alto del {p} dei giocatori oggi"
  },
  "tr": {
-  "name": "Climb",
+  "name": "Altitude",
   "day": "{n}. gün",
   "streak": "Seri {n}",
   "help": "Nasıl oynanır",
@@ -213,7 +213,7 @@
   "higher": "Bugün geçtiğin oyuncular: {p}"
  },
  "es": {
-  "name": "Climb",
+  "name": "Altitude",
   "day": "Día {n}",
   "streak": "Racha {n}",
   "help": "Cómo se juega",
@@ -284,7 +284,7 @@
   "higher": "Más alto que el {p} de los jugadores hoy"
  },
  "pt": {
-  "name": "Climb",
+  "name": "Altitude",
   "day": "Dia {n}",
   "streak": "Sequência {n}",
   "help": "Como jogar",
@@ -355,7 +355,7 @@
   "higher": "Mais alto que {p} dos jogadores hoje"
  },
  "fr": {
-  "name": "Climb",
+  "name": "Altitude",
   "day": "Jour {n}",
   "streak": "Série {n}",
   "help": "Comment jouer",
