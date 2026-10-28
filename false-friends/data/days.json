@@ -1,0 +1,7502 @@
+[
+ {
+  "day": 1,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "journée",
+     "en": "journey"
+    },
+    "meaning": {
+     "fr": {
+      "en": "day",
+      "it": "giornata",
+      "es": "día",
+      "pt": "dia",
+      "fr": "journée",
+      "tr": "gün"
+     },
+     "en": {
+      "en": "journey",
+      "it": "viaggio",
+      "es": "viaje",
+      "pt": "viagem",
+      "fr": "voyage",
+      "tr": "yolculuk"
+     }
+    },
+    "decoy": {
+     "en": "newspaper",
+     "it": "giornale",
+     "es": "periódico",
+     "pt": "jornal",
+     "fr": "journal",
+     "tr": "gazete"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/journ%C3%A9e",
+     "https://www.merriam-webster.com/dictionary/journey"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "stampa",
+     "en": "stamp"
+    },
+    "meaning": {
+     "it": {
+      "en": "the press",
+      "it": "stampa",
+      "es": "prensa",
+      "pt": "imprensa",
+      "fr": "presse",
+      "tr": "basın"
+     },
+     "en": {
+      "en": "stamp",
+      "it": "francobollo",
+      "es": "sello",
+      "pt": "selo",
+      "fr": "timbre",
+      "tr": "pul"
+     }
+    },
+    "decoy": {
+     "en": "crutch",
+     "it": "stampella",
+     "es": "muleta",
+     "pt": "muleta",
+     "fr": "béquille",
+     "tr": "koltuk değneği"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/stampa/",
+     "https://www.merriam-webster.com/dictionary/stamp"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "it"
+    ],
+    "word": {
+     "tr": "mama",
+     "it": "mamma"
+    },
+    "meaning": {
+     "tr": {
+      "en": "baby food",
+      "it": "pappa",
+      "es": "papilla",
+      "pt": "papinha",
+      "fr": "bouillie",
+      "tr": "mama"
+     },
+     "it": {
+      "en": "mum",
+      "it": "mamma",
+      "es": "mamá",
+      "pt": "mamãe",
+      "fr": "maman",
+      "tr": "anne"
+     }
+    },
+    "decoy": {
+     "en": "mammoth",
+     "it": "mammut",
+     "es": "mamut",
+     "pt": "mamute",
+     "fr": "mammouth",
+     "tr": "mamut"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=mama",
+     "https://www.treccani.it/vocabolario/mamma/"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 2,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "es"
+    ],
+    "word": {
+     "tr": "kaza",
+     "es": "caza"
+    },
+    "meaning": {
+     "tr": {
+      "en": "accident",
+      "it": "incidente",
+      "es": "accidente",
+      "pt": "acidente",
+      "fr": "accident",
+      "tr": "kaza"
+     },
+     "es": {
+      "en": "hunting",
+      "it": "caccia",
+      "es": "caza",
+      "pt": "caça",
+      "fr": "chasse",
+      "tr": "avcılık"
+     }
+    },
+    "decoy": {
+     "en": "cauldron",
+     "it": "calderone",
+     "es": "caldero",
+     "pt": "caldeirão",
+     "fr": "chaudron",
+     "tr": "kazan"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=kaza",
+     "https://dle.rae.es/caza"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "botte",
+     "fr": "botte"
+    },
+    "meaning": {
+     "it": {
+      "en": "barrel",
+      "it": "botte",
+      "es": "barril",
+      "pt": "barril",
+      "fr": "tonneau",
+      "tr": "fıçı"
+     },
+     "fr": {
+      "en": "boot",
+      "it": "stivale",
+      "es": "bota",
+      "pt": "bota",
+      "fr": "botte",
+      "tr": "çizme"
+     }
+    },
+    "decoy": {
+     "en": "button",
+     "it": "bottone",
+     "es": "botón",
+     "pt": "botão",
+     "fr": "bouton",
+     "tr": "düğme"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/botte/",
+     "https://www.larousse.fr/dictionnaires/francais/botte"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "grade",
+     "en": "grade"
+    },
+    "meaning": {
+     "pt": {
+      "en": "railings",
+      "it": "inferriata",
+      "es": "reja",
+      "pt": "grade",
+      "fr": "grille",
+      "tr": "parmaklık"
+     },
+     "en": {
+      "en": "grade",
+      "it": "voto",
+      "es": "nota",
+      "pt": "nota",
+      "fr": "note",
+      "tr": "not"
+     }
+    },
+    "decoy": {
+     "en": "big",
+     "it": "grande",
+     "es": "grande",
+     "pt": "grande",
+     "fr": "grand",
+     "tr": "büyük"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/grade",
+     "https://www.merriam-webster.com/dictionary/grade"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 3,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "tasca",
+     "en": "task"
+    },
+    "meaning": {
+     "it": {
+      "en": "pocket",
+      "it": "tasca",
+      "es": "bolsillo",
+      "pt": "bolso",
+      "fr": "poche",
+      "tr": "cep"
+     },
+     "en": {
+      "en": "task",
+      "it": "compito",
+      "es": "tarea",
+      "pt": "tarefa",
+      "fr": "tâche",
+      "tr": "görev"
+     }
+    },
+    "decoy": {
+     "en": "tax",
+     "it": "tassa",
+     "es": "impuesto",
+     "pt": "imposto",
+     "fr": "impôt",
+     "tr": "vergi"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/tasca/",
+     "https://www.merriam-webster.com/dictionary/task"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "pain",
+     "en": "pain"
+    },
+    "meaning": {
+     "fr": {
+      "en": "bread",
+      "it": "pane",
+      "es": "pan",
+      "pt": "pão",
+      "fr": "pain",
+      "tr": "ekmek"
+     },
+     "en": {
+      "en": "pain",
+      "it": "dolore",
+      "es": "dolor",
+      "pt": "dor",
+      "fr": "douleur",
+      "tr": "acı"
+     }
+    },
+    "decoy": {
+     "en": "pine tree",
+     "it": "pino",
+     "es": "pino",
+     "pt": "pinheiro",
+     "fr": "pin",
+     "tr": "çam"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/pain",
+     "https://www.merriam-webster.com/dictionary/pain"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "colegio",
+     "en": "college"
+    },
+    "meaning": {
+     "es": {
+      "en": "school",
+      "it": "scuola",
+      "es": "colegio",
+      "pt": "escola",
+      "fr": "école",
+      "tr": "okul"
+     },
+     "en": {
+      "en": "university",
+      "it": "università",
+      "es": "universidad",
+      "pt": "faculdade",
+      "fr": "université",
+      "tr": "üniversite"
+     }
+    },
+    "decoy": {
+     "en": "colleague",
+     "it": "collega",
+     "es": "colega",
+     "pt": "colega",
+     "fr": "collègue",
+     "tr": "meslektaş"
+    },
+    "sources": [
+     "https://dle.rae.es/colegio",
+     "https://www.merriam-webster.com/dictionary/college"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 4,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "can",
+     "en": "can"
+    },
+    "meaning": {
+     "tr": {
+      "en": "life",
+      "it": "vita",
+      "es": "vida",
+      "pt": "vida",
+      "fr": "vie",
+      "tr": "can"
+     },
+     "en": {
+      "en": "tin can",
+      "it": "lattina",
+      "es": "lata",
+      "pt": "lata",
+      "fr": "canette",
+      "tr": "teneke kutu"
+     }
+    },
+    "decoy": {
+     "en": "channel",
+     "it": "canale",
+     "es": "canal",
+     "pt": "canal",
+     "fr": "chaîne",
+     "tr": "kanal"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=can",
+     "https://www.merriam-webster.com/dictionary/can"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "patente",
+     "en": "patent"
+    },
+    "meaning": {
+     "it": {
+      "en": "driving licence",
+      "it": "patente",
+      "es": "carné de conducir",
+      "pt": "carteira de motorista",
+      "fr": "permis de conduire",
+      "tr": "ehliyet"
+     },
+     "en": {
+      "en": "patent",
+      "it": "brevetto",
+      "es": "patente",
+      "pt": "patente",
+      "fr": "brevet",
+      "tr": "patent"
+     }
+    },
+    "decoy": {
+     "en": "potato",
+     "it": "patata",
+     "es": "patata",
+     "pt": "batata",
+     "fr": "pomme de terre",
+     "tr": "patates"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/patente2/",
+     "https://www.merriam-webster.com/dictionary/patent"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "noce",
+     "fr": "noce"
+    },
+    "meaning": {
+     "it": {
+      "en": "walnut",
+      "it": "noce",
+      "es": "nuez",
+      "pt": "noz",
+      "fr": "noix",
+      "tr": "ceviz"
+     },
+     "fr": {
+      "en": "wedding",
+      "it": "matrimonio",
+      "es": "boda",
+      "pt": "casamento",
+      "fr": "noce",
+      "tr": "düğün"
+     }
+    },
+    "decoy": {
+     "en": "nose",
+     "it": "naso",
+     "es": "nariz",
+     "pt": "nariz",
+     "fr": "nez",
+     "tr": "burun"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/noce1/",
+     "https://www.larousse.fr/dictionnaires/francais/noce"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 5,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "car",
+     "en": "car"
+    },
+    "meaning": {
+     "fr": {
+      "en": "because",
+      "it": "perché",
+      "es": "porque",
+      "pt": "porque",
+      "fr": "parce que",
+      "tr": "çünkü"
+     },
+     "en": {
+      "en": "car",
+      "it": "macchina",
+      "es": "coche",
+      "pt": "carro",
+      "fr": "voiture",
+      "tr": "araba"
+     }
+    },
+    "decoy": {
+     "en": "carrot",
+     "it": "carota",
+     "es": "zanahoria",
+     "pt": "cenoura",
+     "fr": "carotte",
+     "tr": "havuç"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/car/13044",
+     "https://www.merriam-webster.com/dictionary/car"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "data",
+     "en": "data"
+    },
+    "meaning": {
+     "it": {
+      "en": "date",
+      "it": "data",
+      "es": "fecha",
+      "pt": "data",
+      "fr": "date",
+      "tr": "tarih"
+     },
+     "en": {
+      "en": "data",
+      "it": "dati",
+      "es": "datos",
+      "pt": "dados",
+      "fr": "données",
+      "tr": "veri"
+     }
+    },
+    "decoy": {
+     "en": "lady",
+     "it": "dama",
+     "es": "dama",
+     "pt": "dama",
+     "fr": "dame",
+     "tr": "hanım"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/data1/",
+     "https://www.merriam-webster.com/dictionary/data"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "chute",
+     "en": "chute"
+    },
+    "meaning": {
+     "pt": {
+      "en": "kick",
+      "it": "calcio",
+      "es": "patada",
+      "pt": "chute",
+      "fr": "coup de pied",
+      "tr": "tekme"
+     },
+     "en": {
+      "en": "chute",
+      "it": "scivolo",
+      "es": "tobogán",
+      "pt": "tobogã",
+      "fr": "toboggan",
+      "tr": "kaydırak"
+     }
+    },
+    "decoy": {
+     "en": "silence",
+     "it": "silenzio",
+     "es": "silencio",
+     "pt": "silêncio",
+     "fr": "silence",
+     "tr": "sessizlik"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/chute",
+     "https://www.merriam-webster.com/dictionary/chute"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 6,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "ropa",
+     "en": "rope"
+    },
+    "meaning": {
+     "es": {
+      "en": "clothes",
+      "it": "vestiti",
+      "es": "ropa",
+      "pt": "roupa",
+      "fr": "vêtements",
+      "tr": "giysi"
+     },
+     "en": {
+      "en": "rope",
+      "it": "corda",
+      "es": "cuerda",
+      "pt": "corda",
+      "fr": "corde",
+      "tr": "ip"
+     }
+    },
+    "decoy": {
+     "en": "wheel",
+     "it": "ruota",
+     "es": "rueda",
+     "pt": "roda",
+     "fr": "roue",
+     "tr": "tekerlek"
+    },
+    "sources": [
+     "https://dle.rae.es/ropa",
+     "https://www.merriam-webster.com/dictionary/rope"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "rester",
+     "en": "rest"
+    },
+    "meaning": {
+     "fr": {
+      "en": "to stay",
+      "it": "restare",
+      "es": "quedarse",
+      "pt": "ficar",
+      "fr": "rester",
+      "tr": "kalmak"
+     },
+     "en": {
+      "en": "to rest",
+      "it": "riposare",
+      "es": "descansar",
+      "pt": "descansar",
+      "fr": "se reposer",
+      "tr": "dinlenmek"
+     }
+    },
+    "decoy": {
+     "en": "to subtract",
+     "it": "sottrarre",
+     "es": "restar",
+     "pt": "subtrair",
+     "fr": "soustraire",
+     "tr": "çıkarmak"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/rester",
+     "https://www.merriam-webster.com/dictionary/rest"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "mostra",
+     "fr": "montre"
+    },
+    "meaning": {
+     "it": {
+      "en": "exhibition",
+      "it": "mostra",
+      "es": "exposición",
+      "pt": "exposição",
+      "fr": "exposition",
+      "tr": "sergi"
+     },
+     "fr": {
+      "en": "watch",
+      "it": "orologio",
+      "es": "reloj",
+      "pt": "relógio",
+      "fr": "montre",
+      "tr": "kol saati"
+     }
+    },
+    "decoy": {
+     "en": "monster",
+     "it": "mostro",
+     "es": "monstruo",
+     "pt": "monstro",
+     "fr": "monstre",
+     "tr": "canavar"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/mostra/",
+     "https://www.larousse.fr/dictionnaires/francais/montre/52529"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 7,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "testa",
+     "en": "test"
+    },
+    "meaning": {
+     "it": {
+      "en": "head",
+      "it": "testa",
+      "es": "cabeza",
+      "pt": "cabeça",
+      "fr": "tête",
+      "tr": "baş"
+     },
+     "en": {
+      "en": "test",
+      "it": "verifica",
+      "es": "examen",
+      "pt": "prova",
+      "fr": "contrôle",
+      "tr": "sınav"
+     }
+    },
+    "decoy": {
+     "en": "witness",
+     "it": "testimone",
+     "es": "testigo",
+     "pt": "testemunha",
+     "fr": "témoin",
+     "tr": "tanık"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/testa1/",
+     "https://www.merriam-webster.com/dictionary/test"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "ten",
+     "en": "ten"
+    },
+    "meaning": {
+     "tr": {
+      "en": "skin tone",
+      "it": "carnagione",
+      "es": "tono de piel",
+      "pt": "tom de pele",
+      "fr": "teint",
+      "tr": "ten"
+     },
+     "en": {
+      "en": "ten",
+      "it": "dieci",
+      "es": "diez",
+      "pt": "dez",
+      "fr": "dix",
+      "tr": "on"
+     }
+    },
+    "decoy": {
+     "en": "tent",
+     "it": "tenda",
+     "es": "tienda de campaña",
+     "pt": "barraca",
+     "fr": "tente",
+     "tr": "çadır"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=ten",
+     "https://www.merriam-webster.com/dictionary/ten"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "dent",
+     "en": "dent"
+    },
+    "meaning": {
+     "fr": {
+      "en": "tooth",
+      "it": "dente",
+      "es": "diente",
+      "pt": "dente",
+      "fr": "dent",
+      "tr": "diş"
+     },
+     "en": {
+      "en": "dent",
+      "it": "ammaccatura",
+      "es": "abolladura",
+      "pt": "amassado",
+      "fr": "enfoncement",
+      "tr": "göçük"
+     }
+    },
+    "decoy": {
+     "en": "inside",
+     "it": "dentro",
+     "es": "dentro",
+     "pt": "dentro",
+     "fr": "dedans",
+     "tr": "içeride"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/dent",
+     "https://www.merriam-webster.com/dictionary/dent"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 8,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "pt"
+    ],
+    "word": {
+     "fr": "mot",
+     "pt": "moto"
+    },
+    "meaning": {
+     "fr": {
+      "en": "word",
+      "it": "parola",
+      "es": "palabra",
+      "pt": "palavra",
+      "fr": "mot",
+      "tr": "kelime"
+     },
+     "pt": {
+      "en": "motorbike",
+      "it": "moto",
+      "es": "moto",
+      "pt": "moto",
+      "fr": "moto",
+      "tr": "motosiklet"
+     }
+    },
+    "decoy": {
+     "en": "fashion",
+     "it": "moda",
+     "es": "moda",
+     "pt": "moda",
+     "fr": "mode",
+     "tr": "moda"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/mot",
+     "https://dicionario.priberam.org/moto"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "caldo",
+     "pt": "caldo"
+    },
+    "meaning": {
+     "it": {
+      "en": "hot",
+      "it": "caldo",
+      "es": "caliente",
+      "pt": "quente",
+      "fr": "chaud",
+      "tr": "sıcak"
+     },
+     "pt": {
+      "en": "broth",
+      "it": "brodo",
+      "es": "caldo",
+      "pt": "caldo",
+      "fr": "bouillon",
+      "tr": "et suyu"
+     }
+    },
+    "decoy": {
+     "en": "bald",
+     "it": "calvo",
+     "es": "calvo",
+     "pt": "careca",
+     "fr": "chauve",
+     "tr": "kel"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/caldo/",
+     "https://dicionario.priberam.org/caldo"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "mais",
+     "fr": "mais"
+    },
+    "meaning": {
+     "it": {
+      "en": "corn",
+      "it": "mais",
+      "es": "maíz",
+      "pt": "milho",
+      "fr": "maïs",
+      "tr": "mısır"
+     },
+     "fr": {
+      "en": "but",
+      "it": "ma",
+      "es": "pero",
+      "pt": "mas",
+      "fr": "mais",
+      "tr": "ama"
+     }
+    },
+    "decoy": {
+     "en": "May",
+     "it": "maggio",
+     "es": "mayo",
+     "pt": "maio",
+     "fr": "mai",
+     "tr": "mayıs"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/mais/",
+     "https://www.larousse.fr/dictionnaires/francais/mais"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 9,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "educato",
+     "en": "educated"
+    },
+    "meaning": {
+     "it": {
+      "en": "polite",
+      "it": "educato",
+      "es": "educado",
+      "pt": "educado",
+      "fr": "poli",
+      "tr": "kibar"
+     },
+     "en": {
+      "en": "educated",
+      "it": "istruito",
+      "es": "instruido",
+      "pt": "instruído",
+      "fr": "instruit",
+      "tr": "eğitimli"
+     }
+    },
+    "decoy": {
+     "en": "dedicated",
+     "it": "dedicato",
+     "es": "dedicado",
+     "pt": "dedicado",
+     "fr": "dévoué",
+     "tr": "kendini adamış"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/educato/",
+     "https://www.merriam-webster.com/dictionary/educated"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "sort",
+     "en": "sort"
+    },
+    "meaning": {
+     "fr": {
+      "en": "fate",
+      "it": "destino",
+      "es": "destino",
+      "pt": "destino",
+      "fr": "sort",
+      "tr": "kader"
+     },
+     "en": {
+      "en": "kind",
+      "it": "tipo",
+      "es": "tipo",
+      "pt": "tipo",
+      "fr": "genre",
+      "tr": "tür"
+     }
+    },
+    "decoy": {
+     "en": "exit",
+     "it": "uscita",
+     "es": "salida",
+     "pt": "saída",
+     "fr": "sortie",
+     "tr": "çıkış"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/sort",
+     "https://www.merriam-webster.com/dictionary/sort"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "cartón",
+     "en": "cartoon"
+    },
+    "meaning": {
+     "es": {
+      "en": "cardboard",
+      "it": "cartone",
+      "es": "cartón",
+      "pt": "papelão",
+      "fr": "carton",
+      "tr": "karton"
+     },
+     "en": {
+      "en": "cartoon",
+      "it": "cartone animato",
+      "es": "dibujos animados",
+      "pt": "desenho animado",
+      "fr": "dessin animé",
+      "tr": "çizgi film"
+     }
+    },
+    "decoy": {
+     "en": "poster",
+     "it": "cartellone",
+     "es": "cartel",
+     "pt": "cartaz",
+     "fr": "affiche",
+     "tr": "afiş"
+    },
+    "sources": [
+     "https://dle.rae.es/cart%C3%B3n",
+     "https://www.merriam-webster.com/dictionary/cartoon"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 10,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "son",
+     "en": "son"
+    },
+    "meaning": {
+     "tr": {
+      "en": "end",
+      "it": "fine",
+      "es": "final",
+      "pt": "fim",
+      "fr": "fin",
+      "tr": "son"
+     },
+     "en": {
+      "en": "son",
+      "it": "figlio",
+      "es": "hijo",
+      "pt": "filho",
+      "fr": "fils",
+      "tr": "oğul"
+     }
+    },
+    "decoy": {
+     "en": "sleep",
+     "it": "sonno",
+     "es": "sueño",
+     "pt": "sono",
+     "fr": "sommeil",
+     "tr": "uyku"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=son",
+     "https://www.merriam-webster.com/dictionary/son"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "pretender",
+     "en": "pretend"
+    },
+    "meaning": {
+     "pt": {
+      "en": "to intend",
+      "it": "avere intenzione",
+      "es": "planear",
+      "pt": "pretender",
+      "fr": "avoir l'intention",
+      "tr": "niyetinde olmak"
+     },
+     "en": {
+      "en": "to pretend",
+      "it": "fingere",
+      "es": "fingir",
+      "pt": "fingir",
+      "fr": "faire semblant",
+      "tr": "rol yapmak"
+     }
+    },
+    "decoy": {
+     "en": "to lend",
+     "it": "prestare",
+     "es": "prestar",
+     "pt": "emprestar",
+     "fr": "prêter",
+     "tr": "ödünç vermek"
+    },
+    "sources": [
+     "https://www.dicio.com.br/pretender/",
+     "https://www.merriam-webster.com/dictionary/pretend"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "neveu",
+     "it": "neve"
+    },
+    "meaning": {
+     "fr": {
+      "en": "nephew",
+      "it": "nipote",
+      "es": "sobrino",
+      "pt": "sobrinho",
+      "fr": "neveu",
+      "tr": "yeğen"
+     },
+     "it": {
+      "en": "snow",
+      "it": "neve",
+      "es": "nieve",
+      "pt": "neve",
+      "fr": "neige",
+      "tr": "kar"
+     }
+    },
+    "decoy": {
+     "en": "nerve",
+     "it": "nervo",
+     "es": "nervio",
+     "pt": "nervo",
+     "fr": "nerf",
+     "tr": "sinir"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/neveu",
+     "https://www.treccani.it/vocabolario/neve/"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 11,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "basket",
+     "en": "basket"
+    },
+    "meaning": {
+     "fr": {
+      "en": "trainers",
+      "it": "scarpe da ginnastica",
+      "es": "zapatillas",
+      "pt": "tênis",
+      "fr": "baskets",
+      "tr": "spor ayakkabı"
+     },
+     "en": {
+      "en": "basket",
+      "it": "cesto",
+      "es": "cesta",
+      "pt": "cesta",
+      "fr": "panier",
+      "tr": "sepet"
+     }
+    },
+    "decoy": {
+     "en": "biscuit",
+     "it": "biscotto",
+     "es": "galleta",
+     "pt": "biscoito",
+     "fr": "biscuit",
+     "tr": "bisküvi"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/basket",
+     "https://www.merriam-webster.com/dictionary/basket"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "tasto",
+     "en": "taste"
+    },
+    "meaning": {
+     "it": {
+      "en": "key",
+      "it": "tasto",
+      "es": "tecla",
+      "pt": "tecla",
+      "fr": "touche",
+      "tr": "tuş"
+     },
+     "en": {
+      "en": "taste",
+      "it": "gusto",
+      "es": "sabor",
+      "pt": "sabor",
+      "fr": "goût",
+      "tr": "tat"
+     }
+    },
+    "decoy": {
+     "en": "toast",
+     "it": "toast",
+     "es": "tostada",
+     "pt": "torrada",
+     "fr": "pain grillé",
+     "tr": "tost"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/tasto/",
+     "https://www.merriam-webster.com/dictionary/taste"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "es"
+    ],
+    "word": {
+     "pt": "esquisito",
+     "es": "exquisito"
+    },
+    "meaning": {
+     "pt": {
+      "en": "weird",
+      "it": "strano",
+      "es": "raro",
+      "pt": "esquisito",
+      "fr": "bizarre",
+      "tr": "tuhaf"
+     },
+     "es": {
+      "en": "delicious",
+      "it": "squisito",
+      "es": "exquisito",
+      "pt": "delicioso",
+      "fr": "exquis",
+      "tr": "nefis"
+     }
+    },
+    "decoy": {
+     "en": "sketch",
+     "it": "schizzo",
+     "es": "boceto",
+     "pt": "esboço",
+     "fr": "esquisse",
+     "tr": "taslak"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/esquisito",
+     "https://dle.rae.es/exquisito"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 12,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "sale",
+     "it": "sale"
+    },
+    "meaning": {
+     "fr": {
+      "en": "dirty",
+      "it": "sporco",
+      "es": "sucio",
+      "pt": "sujo",
+      "fr": "sale",
+      "tr": "kirli"
+     },
+     "it": {
+      "en": "salt",
+      "it": "sale",
+      "es": "sal",
+      "pt": "sal",
+      "fr": "sel",
+      "tr": "tuz"
+     }
+    },
+    "decoy": {
+     "en": "living room",
+     "it": "salotto",
+     "es": "salón",
+     "pt": "sala",
+     "fr": "salon",
+     "tr": "salon"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/sale",
+     "https://www.treccani.it/vocabolario/sale/"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "parente",
+     "en": "parent"
+    },
+    "meaning": {
+     "pt": {
+      "en": "relative",
+      "it": "parente",
+      "es": "pariente",
+      "pt": "parente",
+      "fr": "proche",
+      "tr": "akraba"
+     },
+     "en": {
+      "en": "parent",
+      "it": "genitore",
+      "es": "padre o madre",
+      "pt": "pai ou mãe",
+      "fr": "parent",
+      "tr": "ebeveyn"
+     }
+    },
+    "decoy": {
+     "en": "wall",
+     "it": "parete",
+     "es": "pared",
+     "pt": "parede",
+     "fr": "mur",
+     "tr": "duvar"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/parente",
+     "https://www.merriam-webster.com/dictionary/parent"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "salir",
+     "es": "salir"
+    },
+    "meaning": {
+     "fr": {
+      "en": "to make dirty",
+      "it": "sporcare",
+      "es": "ensuciar",
+      "pt": "sujar",
+      "fr": "salir",
+      "tr": "kirletmek"
+     },
+     "es": {
+      "en": "to go out",
+      "it": "uscire",
+      "es": "salir",
+      "pt": "sair",
+      "fr": "sortir",
+      "tr": "dışarı çıkmak"
+     }
+    },
+    "decoy": {
+     "en": "to greet",
+     "it": "salutare",
+     "es": "saludar",
+     "pt": "cumprimentar",
+     "fr": "saluer",
+     "tr": "selamlamak"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/salir",
+     "https://dle.rae.es/salir"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 13,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "main",
+     "en": "main"
+    },
+    "meaning": {
+     "fr": {
+      "en": "hand",
+      "it": "mano",
+      "es": "mano",
+      "pt": "mão",
+      "fr": "main",
+      "tr": "el"
+     },
+     "en": {
+      "en": "main",
+      "it": "principale",
+      "es": "principal",
+      "pt": "principal",
+      "fr": "principal",
+      "tr": "ana"
+     }
+    },
+    "decoy": {
+     "en": "house",
+     "it": "casa",
+     "es": "casa",
+     "pt": "casa",
+     "fr": "maison",
+     "tr": "ev"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/main",
+     "https://www.merriam-webster.com/dictionary/main"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "attualmente",
+     "en": "actually"
+    },
+    "meaning": {
+     "it": {
+      "en": "currently",
+      "it": "attualmente",
+      "es": "actualmente",
+      "pt": "atualmente",
+      "fr": "actuellement",
+      "tr": "şu anda"
+     },
+     "en": {
+      "en": "in fact",
+      "it": "in realtà",
+      "es": "en realidad",
+      "pt": "na verdade",
+      "fr": "en fait",
+      "tr": "aslında"
+     }
+    },
+    "decoy": {
+     "en": "usually",
+     "it": "abitualmente",
+     "es": "habitualmente",
+     "pt": "habitualmente",
+     "fr": "habituellement",
+     "tr": "genellikle"
+    },
+    "sources": [
+     "https://dizionario.internazionale.it/parola/attualmente",
+     "https://www.merriam-webster.com/dictionary/actually"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "es"
+    ],
+    "word": {
+     "tr": "kol",
+     "es": "col"
+    },
+    "meaning": {
+     "tr": {
+      "en": "arm",
+      "it": "braccio",
+      "es": "brazo",
+      "pt": "braço",
+      "fr": "bras",
+      "tr": "kol"
+     },
+     "es": {
+      "en": "cabbage",
+      "it": "cavolo",
+      "es": "col",
+      "pt": "repolho",
+      "fr": "chou",
+      "tr": "lahana"
+     }
+    },
+    "decoy": {
+     "en": "hill",
+     "it": "collina",
+     "es": "colina",
+     "pt": "colina",
+     "fr": "colline",
+     "tr": "tepe"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=kol",
+     "https://dle.rae.es/col"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 14,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "chato",
+     "fr": "chat"
+    },
+    "meaning": {
+     "pt": {
+      "en": "annoying",
+      "it": "noioso",
+      "es": "pesado",
+      "pt": "chato",
+      "fr": "énervant",
+      "tr": "sinir bozucu"
+     },
+     "fr": {
+      "en": "cat",
+      "it": "gatto",
+      "es": "gato",
+      "pt": "gato",
+      "fr": "chat",
+      "tr": "kedi"
+     }
+    },
+    "decoy": {
+     "en": "castle",
+     "it": "castello",
+     "es": "castillo",
+     "pt": "castelo",
+     "fr": "château",
+     "tr": "kale"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/chato",
+     "https://www.larousse.fr/dictionnaires/francais/chat"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "prejuízo",
+     "en": "prejudice"
+    },
+    "meaning": {
+     "pt": {
+      "en": "loss",
+      "it": "perdita",
+      "es": "pérdida",
+      "pt": "prejuízo",
+      "fr": "perte",
+      "tr": "zarar"
+     },
+     "en": {
+      "en": "prejudice",
+      "it": "pregiudizio",
+      "es": "prejuicio",
+      "pt": "preconceito",
+      "fr": "préjugé",
+      "tr": "önyargı"
+     }
+    },
+    "decoy": {
+     "en": "prize",
+     "it": "premio",
+     "es": "premio",
+     "pt": "prêmio",
+     "fr": "prix",
+     "tr": "ödül"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/preju%C3%ADzo",
+     "https://www.merriam-webster.com/dictionary/prejudice"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "palestra",
+     "pt": "palestra"
+    },
+    "meaning": {
+     "it": {
+      "en": "gym",
+      "it": "palestra",
+      "es": "gimnasio",
+      "pt": "academia",
+      "fr": "salle de sport",
+      "tr": "spor salonu"
+     },
+     "pt": {
+      "en": "talk",
+      "it": "conferenza",
+      "es": "charla",
+      "pt": "palestra",
+      "fr": "conférence",
+      "tr": "konferans"
+     }
+    },
+    "decoy": {
+     "en": "palette",
+     "it": "tavolozza",
+     "es": "paleta",
+     "pt": "paleta",
+     "fr": "palette",
+     "tr": "palet"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/palestra/",
+     "https://dicionario.priberam.org/palestra"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 15,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "fermare",
+     "fr": "fermer"
+    },
+    "meaning": {
+     "it": {
+      "en": "to stop",
+      "it": "fermare",
+      "es": "parar",
+      "pt": "parar",
+      "fr": "arrêter",
+      "tr": "durdurmak"
+     },
+     "fr": {
+      "en": "to close",
+      "it": "chiudere",
+      "es": "cerrar",
+      "pt": "fechar",
+      "fr": "fermer",
+      "tr": "kapatmak"
+     }
+    },
+    "decoy": {
+     "en": "to sign",
+     "it": "firmare",
+     "es": "firmar",
+     "pt": "assinar",
+     "fr": "signer",
+     "tr": "imzalamak"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/fermare/",
+     "https://www.larousse.fr/dictionnaires/francais/fermer"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "four",
+     "en": "four"
+    },
+    "meaning": {
+     "fr": {
+      "en": "oven",
+      "it": "forno",
+      "es": "horno",
+      "pt": "forno",
+      "fr": "four",
+      "tr": "fırın"
+     },
+     "en": {
+      "en": "four",
+      "it": "quattro",
+      "es": "cuatro",
+      "pt": "quatro",
+      "fr": "quatre",
+      "tr": "dört"
+     }
+    },
+    "decoy": {
+     "en": "fork",
+     "it": "forchetta",
+     "es": "tenedor",
+     "pt": "garfo",
+     "fr": "fourchette",
+     "tr": "çatal"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/four",
+     "https://www.merriam-webster.com/dictionary/four"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "estate",
+     "en": "estate"
+    },
+    "meaning": {
+     "it": {
+      "en": "summer",
+      "it": "estate",
+      "es": "verano",
+      "pt": "verão",
+      "fr": "été",
+      "tr": "yaz"
+     },
+     "en": {
+      "en": "property",
+      "it": "proprietà",
+      "es": "propiedad",
+      "pt": "propriedade",
+      "fr": "propriété",
+      "tr": "mülk"
+     }
+    },
+    "decoy": {
+     "en": "statue",
+     "it": "statua",
+     "es": "estatua",
+     "pt": "estátua",
+     "fr": "statue",
+     "tr": "heykel"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/estate/",
+     "https://www.merriam-webster.com/dictionary/estate"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 16,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "boy",
+     "en": "boy"
+    },
+    "meaning": {
+     "tr": {
+      "en": "height",
+      "it": "altezza",
+      "es": "altura",
+      "pt": "altura",
+      "fr": "taille",
+      "tr": "boy"
+     },
+     "en": {
+      "en": "boy",
+      "it": "ragazzo",
+      "es": "chico",
+      "pt": "menino",
+      "fr": "garçon",
+      "tr": "oğlan"
+     }
+    },
+    "decoy": {
+     "en": "buoy",
+     "it": "boa",
+     "es": "boya",
+     "pt": "boia",
+     "fr": "bouée",
+     "tr": "şamandıra"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=boy",
+     "https://www.merriam-webster.com/dictionary/boy"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "sapo",
+     "fr": "sapin"
+    },
+    "meaning": {
+     "pt": {
+      "en": "toad",
+      "it": "rospo",
+      "es": "sapo",
+      "pt": "sapo",
+      "fr": "crapaud",
+      "tr": "kurbağa"
+     },
+     "fr": {
+      "en": "fir tree",
+      "it": "abete",
+      "es": "abeto",
+      "pt": "abeto",
+      "fr": "sapin",
+      "tr": "köknar"
+     }
+    },
+    "decoy": {
+     "en": "soap",
+     "it": "sapone",
+     "es": "jabón",
+     "pt": "sabão",
+     "fr": "savon",
+     "tr": "sabun"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/sapo",
+     "https://www.larousse.fr/dictionnaires/francais/sapin"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "vélo",
+     "es": "vela"
+    },
+    "meaning": {
+     "fr": {
+      "en": "bike",
+      "it": "bici",
+      "es": "bici",
+      "pt": "bicicleta",
+      "fr": "vélo",
+      "tr": "bisiklet"
+     },
+     "es": {
+      "en": "candle",
+      "it": "candela",
+      "es": "vela",
+      "pt": "vela",
+      "fr": "bougie",
+      "tr": "mum"
+     }
+    },
+    "decoy": {
+     "en": "velvet",
+     "it": "velluto",
+     "es": "terciopelo",
+     "pt": "veludo",
+     "fr": "velours",
+     "tr": "kadife"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/v%C3%A9lo",
+     "https://dle.rae.es/vela"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 17,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "location",
+     "en": "location"
+    },
+    "meaning": {
+     "fr": {
+      "en": "rental",
+      "it": "noleggio",
+      "es": "alquiler",
+      "pt": "aluguel",
+      "fr": "location",
+      "tr": "kiralama"
+     },
+     "en": {
+      "en": "location",
+      "it": "posizione",
+      "es": "ubicación",
+      "pt": "localização",
+      "fr": "emplacement",
+      "tr": "konum"
+     }
+    },
+    "decoy": {
+     "en": "lotion",
+     "it": "lozione",
+     "es": "loción",
+     "pt": "loção",
+     "fr": "lotion",
+     "tr": "losyon"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/location",
+     "https://www.merriam-webster.com/dictionary/location"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "net",
+     "en": "net"
+    },
+    "meaning": {
+     "tr": {
+      "en": "clear",
+      "it": "nitido",
+      "es": "nítido",
+      "pt": "nítido",
+      "fr": "clair",
+      "tr": "net"
+     },
+     "en": {
+      "en": "fishing net",
+      "it": "rete",
+      "es": "red",
+      "pt": "rede",
+      "fr": "filet",
+      "tr": "ağ"
+     }
+    },
+    "decoy": {
+     "en": "nest",
+     "it": "nido",
+     "es": "nido",
+     "pt": "ninho",
+     "fr": "nid",
+     "tr": "yuva"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=net",
+     "https://www.merriam-webster.com/dictionary/net"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "ape",
+     "en": "ape"
+    },
+    "meaning": {
+     "it": {
+      "en": "bee",
+      "it": "ape",
+      "es": "abeja",
+      "pt": "abelha",
+      "fr": "abeille",
+      "tr": "arı"
+     },
+     "en": {
+      "en": "ape",
+      "it": "scimmia",
+      "es": "mono",
+      "pt": "macaco",
+      "fr": "singe",
+      "tr": "maymun"
+     }
+    },
+    "decoy": {
+     "en": "apple",
+     "it": "mela",
+     "es": "manzana",
+     "pt": "maçã",
+     "fr": "pomme",
+     "tr": "elma"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/ape/",
+     "https://www.merriam-webster.com/dictionary/ape"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 18,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "firma",
+     "fr": "firme"
+    },
+    "meaning": {
+     "it": {
+      "en": "signature",
+      "it": "firma",
+      "es": "firma",
+      "pt": "assinatura",
+      "fr": "signature",
+      "tr": "imza"
+     },
+     "fr": {
+      "en": "company",
+      "it": "azienda",
+      "es": "empresa",
+      "pt": "empresa",
+      "fr": "entreprise",
+      "tr": "şirket"
+     }
+    },
+    "decoy": {
+     "en": "bus stop",
+     "it": "fermata",
+     "es": "parada",
+     "pt": "ponto de ônibus",
+     "fr": "arrêt",
+     "tr": "durak"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/firma/",
+     "https://www.larousse.fr/dictionnaires/francais/firme"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "fin",
+     "en": "fin"
+    },
+    "meaning": {
+     "es": {
+      "en": "end",
+      "it": "fine",
+      "es": "fin",
+      "pt": "fim",
+      "fr": "fin",
+      "tr": "son"
+     },
+     "en": {
+      "en": "fin",
+      "it": "pinna",
+      "es": "aleta",
+      "pt": "barbatana",
+      "fr": "nageoire",
+      "tr": "yüzgeç"
+     }
+    },
+    "decoy": {
+     "en": "finger",
+     "it": "dito",
+     "es": "dedo",
+     "pt": "dedo",
+     "fr": "doigt",
+     "tr": "parmak"
+    },
+    "sources": [
+     "https://dle.rae.es/fin",
+     "https://www.merriam-webster.com/dictionary/fin"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "aceto",
+     "pt": "aceito"
+    },
+    "meaning": {
+     "it": {
+      "en": "vinegar",
+      "it": "aceto",
+      "es": "vinagre",
+      "pt": "vinagre",
+      "fr": "vinaigre",
+      "tr": "sirke"
+     },
+     "pt": {
+      "en": "accepted",
+      "it": "accettato",
+      "es": "aceptado",
+      "pt": "aceito",
+      "fr": "accepté",
+      "tr": "kabul edilmiş"
+     }
+    },
+    "decoy": {
+     "en": "oil",
+     "it": "olio",
+     "es": "aceite",
+     "pt": "azeite",
+     "fr": "huile",
+     "tr": "yağ"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/aceto/",
+     "https://dicionario.priberam.org/aceito"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 19,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "fr"
+    ],
+    "word": {
+     "tr": "fil",
+     "fr": "fil"
+    },
+    "meaning": {
+     "tr": {
+      "en": "elephant",
+      "it": "elefante",
+      "es": "elefante",
+      "pt": "elefante",
+      "fr": "éléphant",
+      "tr": "fil"
+     },
+     "fr": {
+      "en": "thread",
+      "it": "filo",
+      "es": "hilo",
+      "pt": "fio",
+      "fr": "fil",
+      "tr": "iplik"
+     }
+    },
+    "decoy": {
+     "en": "row",
+     "it": "fila",
+     "es": "fila",
+     "pt": "fileira",
+     "fr": "rangée",
+     "tr": "sıra"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=fil",
+     "https://www.larousse.fr/dictionnaires/francais/fil"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "annoiato",
+     "en": "annoyed"
+    },
+    "meaning": {
+     "it": {
+      "en": "bored",
+      "it": "annoiato",
+      "es": "aburrido",
+      "pt": "entediado",
+      "fr": "qui s'ennuie",
+      "tr": "sıkılmış"
+     },
+     "en": {
+      "en": "annoyed",
+      "it": "infastidito",
+      "es": "molesto",
+      "pt": "irritado",
+      "fr": "agacé",
+      "tr": "sinirli"
+     }
+    },
+    "decoy": {
+     "en": "yearly",
+     "it": "annuale",
+     "es": "anual",
+     "pt": "anual",
+     "fr": "annuel",
+     "tr": "yıllık"
+    },
+    "sources": [
+     "https://dizionario.internazionale.it/parola/annoiato",
+     "https://www.merriam-webster.com/dictionary/annoyed"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "stage",
+     "en": "stage"
+    },
+    "meaning": {
+     "fr": {
+      "en": "internship",
+      "it": "tirocinio",
+      "es": "prácticas",
+      "pt": "estágio",
+      "fr": "stage",
+      "tr": "staj"
+     },
+     "en": {
+      "en": "stage",
+      "it": "palco",
+      "es": "escenario",
+      "pt": "palco",
+      "fr": "scène",
+      "tr": "sahne"
+     }
+    },
+    "decoy": {
+     "en": "season",
+     "it": "stagione",
+     "es": "estación",
+     "pt": "estação",
+     "fr": "saison",
+     "tr": "mevsim"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/stage",
+     "https://www.merriam-webster.com/dictionary/stage"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 20,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "mayor",
+     "en": "mayor"
+    },
+    "meaning": {
+     "es": {
+      "en": "bigger",
+      "it": "più grande",
+      "es": "mayor",
+      "pt": "maior",
+      "fr": "plus grand",
+      "tr": "daha büyük"
+     },
+     "en": {
+      "en": "mayor",
+      "it": "sindaco",
+      "es": "alcalde",
+      "pt": "prefeito",
+      "fr": "maire",
+      "tr": "belediye başkanı"
+     }
+    },
+    "decoy": {
+     "en": "mayonnaise",
+     "it": "maionese",
+     "es": "mayonesa",
+     "pt": "maionese",
+     "fr": "mayonnaise",
+     "tr": "mayonez"
+    },
+    "sources": [
+     "https://dle.rae.es/mayor",
+     "https://www.merriam-webster.com/dictionary/mayor"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "pil",
+     "en": "pill"
+    },
+    "meaning": {
+     "tr": {
+      "en": "battery",
+      "it": "pila",
+      "es": "pila",
+      "pt": "pilha",
+      "fr": "pile",
+      "tr": "pil"
+     },
+     "en": {
+      "en": "pill",
+      "it": "pillola",
+      "es": "pastilla",
+      "pt": "comprimido",
+      "fr": "comprimé",
+      "tr": "hap"
+     }
+    },
+    "decoy": {
+     "en": "pillow",
+     "it": "cuscino",
+     "es": "almohada",
+     "pt": "travesseiro",
+     "fr": "oreiller",
+     "tr": "yastık"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=pil",
+     "https://www.merriam-webster.com/dictionary/pill"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "pt"
+    ],
+    "word": {
+     "fr": "pâte",
+     "pt": "pato"
+    },
+    "meaning": {
+     "fr": {
+      "en": "dough",
+      "it": "impasto",
+      "es": "masa",
+      "pt": "massa",
+      "fr": "pâte",
+      "tr": "hamur"
+     },
+     "pt": {
+      "en": "duck",
+      "it": "anatra",
+      "es": "pato",
+      "pt": "pato",
+      "fr": "canard",
+      "tr": "ördek"
+     }
+    },
+    "decoy": {
+     "en": "paw",
+     "it": "zampa",
+     "es": "pata",
+     "pt": "pata",
+     "fr": "patte",
+     "tr": "pati"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/p%C3%A2te",
+     "https://dicionario.priberam.org/pato"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 21,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "raisin",
+     "en": "raisin"
+    },
+    "meaning": {
+     "fr": {
+      "en": "grape",
+      "it": "uva",
+      "es": "uva",
+      "pt": "uva",
+      "fr": "raisin",
+      "tr": "üzüm"
+     },
+     "en": {
+      "en": "raisin",
+      "it": "uvetta",
+      "es": "pasa",
+      "pt": "uva-passa",
+      "fr": "raisin sec",
+      "tr": "kuru üzüm"
+     }
+    },
+    "decoy": {
+     "en": "reason",
+     "it": "ragione",
+     "es": "razón",
+     "pt": "razão",
+     "fr": "raison",
+     "tr": "sebep"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/raisin",
+     "https://www.merriam-webster.com/dictionary/raisin"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "dove",
+     "en": "dove"
+    },
+    "meaning": {
+     "it": {
+      "en": "where",
+      "it": "dove",
+      "es": "dónde",
+      "pt": "onde",
+      "fr": "où",
+      "tr": "nerede"
+     },
+     "en": {
+      "en": "dove",
+      "it": "colomba",
+      "es": "paloma",
+      "pt": "pomba",
+      "fr": "colombe",
+      "tr": "güvercin"
+     }
+    },
+    "decoy": {
+     "en": "duvet",
+     "it": "piumone",
+     "es": "edredón",
+     "pt": "edredom",
+     "fr": "couette",
+     "tr": "yorgan"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/dove/",
+     "https://www.merriam-webster.com/dictionary/dove"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "lupo",
+     "fr": "loupe"
+    },
+    "meaning": {
+     "it": {
+      "en": "wolf",
+      "it": "lupo",
+      "es": "lobo",
+      "pt": "lobo",
+      "fr": "loup",
+      "tr": "kurt"
+     },
+     "fr": {
+      "en": "magnifying glass",
+      "it": "lente d'ingrandimento",
+      "es": "lupa",
+      "pt": "lupa",
+      "fr": "loupe",
+      "tr": "büyüteç"
+     }
+    },
+    "decoy": {
+     "en": "moon",
+     "it": "luna",
+     "es": "luna",
+     "pt": "lua",
+     "fr": "lune",
+     "tr": "ay"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/lupo/",
+     "https://www.larousse.fr/dictionnaires/francais/loupe"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 22,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "sol",
+     "es": "sol"
+    },
+    "meaning": {
+     "fr": {
+      "en": "floor",
+      "it": "pavimento",
+      "es": "suelo",
+      "pt": "chão",
+      "fr": "sol",
+      "tr": "zemin"
+     },
+     "es": {
+      "en": "sun",
+      "it": "sole",
+      "es": "sol",
+      "pt": "sol",
+      "fr": "soleil",
+      "tr": "güneş"
+     }
+    },
+    "decoy": {
+     "en": "alone",
+     "it": "solo",
+     "es": "solo",
+     "pt": "sozinho",
+     "fr": "seul",
+     "tr": "yalnız"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/sol",
+     "https://dle.rae.es/sol"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "it"
+    ],
+    "word": {
+     "tr": "sera",
+     "it": "sera"
+    },
+    "meaning": {
+     "tr": {
+      "en": "greenhouse",
+      "it": "serra",
+      "es": "invernadero",
+      "pt": "estufa",
+      "fr": "serre",
+      "tr": "sera"
+     },
+     "it": {
+      "en": "evening",
+      "it": "sera",
+      "es": "tarde",
+      "pt": "noite",
+      "fr": "soir",
+      "tr": "akşam"
+     }
+    },
+    "decoy": {
+     "en": "series",
+     "it": "serie",
+     "es": "serie",
+     "pt": "série",
+     "fr": "série",
+     "tr": "dizi"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=sera",
+     "https://www.treccani.it/vocabolario/sera/"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "borraccia",
+     "pt": "borracha"
+    },
+    "meaning": {
+     "it": {
+      "en": "water bottle",
+      "it": "borraccia",
+      "es": "cantimplora",
+      "pt": "garrafinha",
+      "fr": "gourde",
+      "tr": "matara"
+     },
+     "pt": {
+      "en": "eraser",
+      "it": "gomma",
+      "es": "goma",
+      "pt": "borracha",
+      "fr": "gomme",
+      "tr": "silgi"
+     }
+    },
+    "decoy": {
+     "en": "bag",
+     "it": "borsa",
+     "es": "bolso",
+     "pt": "bolsa",
+     "fr": "sac",
+     "tr": "çanta"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/borraccia/",
+     "https://dicionario.priberam.org/borracha"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 23,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "crayon",
+     "en": "crayon"
+    },
+    "meaning": {
+     "fr": {
+      "en": "pencil",
+      "it": "matita",
+      "es": "lápiz",
+      "pt": "lápis",
+      "fr": "crayon",
+      "tr": "kurşun kalem"
+     },
+     "en": {
+      "en": "crayon",
+      "it": "pastello a cera",
+      "es": "lápiz de cera",
+      "pt": "giz de cera",
+      "fr": "crayon de cire",
+      "tr": "pastel boya"
+     }
+    },
+    "decoy": {
+     "en": "crab",
+     "it": "granchio",
+     "es": "cangrejo",
+     "pt": "caranguejo",
+     "fr": "crabe",
+     "tr": "yengeç"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/crayon",
+     "https://www.merriam-webster.com/dictionary/crayon"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "time",
+     "en": "time"
+    },
+    "meaning": {
+     "pt": {
+      "en": "team",
+      "it": "squadra",
+      "es": "equipo",
+      "pt": "equipe",
+      "fr": "équipe",
+      "tr": "takım"
+     },
+     "en": {
+      "en": "time",
+      "it": "tempo",
+      "es": "tiempo",
+      "pt": "tempo",
+      "fr": "temps",
+      "tr": "zaman"
+     }
+    },
+    "decoy": {
+     "en": "thyme",
+     "it": "timo",
+     "es": "tomillo",
+     "pt": "tomilho",
+     "fr": "thym",
+     "tr": "kekik"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/time",
+     "https://www.merriam-webster.com/dictionary/time"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "pace",
+     "en": "pace"
+    },
+    "meaning": {
+     "it": {
+      "en": "peace",
+      "it": "pace",
+      "es": "paz",
+      "pt": "paz",
+      "fr": "paix",
+      "tr": "barış"
+     },
+     "en": {
+      "en": "pace",
+      "it": "andatura",
+      "es": "ritmo",
+      "pt": "ritmo",
+      "fr": "allure",
+      "tr": "tempo"
+     }
+    },
+    "decoy": {
+     "en": "parcel",
+     "it": "pacco",
+     "es": "paquete",
+     "pt": "pacote",
+     "fr": "colis",
+     "tr": "paket"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/pace/",
+     "https://www.merriam-webster.com/dictionary/pace"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 24,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "es"
+    ],
+    "word": {
+     "pt": "taça",
+     "es": "taza"
+    },
+    "meaning": {
+     "pt": {
+      "en": "wine glass",
+      "it": "calice",
+      "es": "copa",
+      "pt": "taça",
+      "fr": "verre à vin",
+      "tr": "kadeh"
+     },
+     "es": {
+      "en": "cup",
+      "it": "tazza",
+      "es": "taza",
+      "pt": "xícara",
+      "fr": "tasse",
+      "tr": "fincan"
+     }
+    },
+    "decoy": {
+     "en": "heel",
+     "it": "tacco",
+     "es": "tacón",
+     "pt": "salto",
+     "fr": "talon",
+     "tr": "topuk"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/ta%C3%A7a",
+     "https://dle.rae.es/taza"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "sensible",
+     "en": "sensible"
+    },
+    "meaning": {
+     "es": {
+      "en": "sensitive",
+      "it": "sensibile",
+      "es": "sensible",
+      "pt": "sensível",
+      "fr": "sensible",
+      "tr": "hassas"
+     },
+     "en": {
+      "en": "sensible",
+      "it": "ragionevole",
+      "es": "sensato",
+      "pt": "sensato",
+      "fr": "raisonnable",
+      "tr": "mantıklı"
+     }
+    },
+    "decoy": {
+     "en": "amazing",
+     "it": "fantastico",
+     "es": "sensacional",
+     "pt": "incrível",
+     "fr": "génial",
+     "tr": "harika"
+    },
+    "sources": [
+     "https://dle.rae.es/sensible",
+     "https://www.merriam-webster.com/dictionary/sensible"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "es"
+    ],
+    "word": {
+     "it": "camino",
+     "es": "camino"
+    },
+    "meaning": {
+     "it": {
+      "en": "fireplace",
+      "it": "camino",
+      "es": "chimenea",
+      "pt": "lareira",
+      "fr": "cheminée",
+      "tr": "şömine"
+     },
+     "es": {
+      "en": "path",
+      "it": "cammino",
+      "es": "camino",
+      "pt": "caminho",
+      "fr": "chemin",
+      "tr": "yol"
+     }
+    },
+    "decoy": {
+     "en": "truck",
+     "it": "camion",
+     "es": "camión",
+     "pt": "caminhão",
+     "fr": "camion",
+     "tr": "kamyon"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/camino1/",
+     "https://dle.rae.es/camino"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 25,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "ride",
+     "en": "ride"
+    },
+    "meaning": {
+     "fr": {
+      "en": "wrinkle",
+      "it": "ruga",
+      "es": "arruga",
+      "pt": "ruga",
+      "fr": "ride",
+      "tr": "kırışıklık"
+     },
+     "en": {
+      "en": "ride",
+      "it": "giro",
+      "es": "paseo",
+      "pt": "passeio",
+      "fr": "balade",
+      "tr": "gezinti"
+     }
+    },
+    "decoy": {
+     "en": "laugh",
+     "it": "risata",
+     "es": "risa",
+     "pt": "risada",
+     "fr": "rire",
+     "tr": "kahkaha"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/ride",
+     "https://www.merriam-webster.com/dictionary/ride"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "ferme",
+     "it": "fermo"
+    },
+    "meaning": {
+     "fr": {
+      "en": "farm",
+      "it": "fattoria",
+      "es": "granja",
+      "pt": "fazenda",
+      "fr": "ferme",
+      "tr": "çiftlik"
+     },
+     "it": {
+      "en": "motionless",
+      "it": "fermo",
+      "es": "quieto",
+      "pt": "parado",
+      "fr": "immobile",
+      "tr": "hareketsiz"
+     }
+    },
+    "decoy": {
+     "en": "fair",
+     "it": "fiera",
+     "es": "feria",
+     "pt": "feira",
+     "fr": "foire",
+     "tr": "fuar"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/ferme",
+     "https://www.treccani.it/vocabolario/fermo1/"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "pt"
+    ],
+    "word": {
+     "tr": "karne",
+     "pt": "carne"
+    },
+    "meaning": {
+     "tr": {
+      "en": "report card",
+      "it": "pagella",
+      "es": "boletín de notas",
+      "pt": "boletim escolar",
+      "fr": "bulletin scolaire",
+      "tr": "karne"
+     },
+     "pt": {
+      "en": "meat",
+      "it": "carne",
+      "es": "carne",
+      "pt": "carne",
+      "fr": "viande",
+      "tr": "et"
+     }
+    },
+    "decoy": {
+     "en": "carnival",
+     "it": "carnevale",
+     "es": "carnaval",
+     "pt": "carnaval",
+     "fr": "carnaval",
+     "tr": "karnaval"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=karne",
+     "https://dicionario.priberam.org/carne"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 26,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "es"
+    ],
+    "word": {
+     "tr": "sopa",
+     "es": "sopa"
+    },
+    "meaning": {
+     "tr": {
+      "en": "stick",
+      "it": "bastone",
+      "es": "palo",
+      "pt": "bastão",
+      "fr": "bâton",
+      "tr": "sopa"
+     },
+     "es": {
+      "en": "soup",
+      "it": "zuppa",
+      "es": "sopa",
+      "pt": "sopa",
+      "fr": "soupe",
+      "tr": "çorba"
+     }
+    },
+    "decoy": {
+     "en": "sofa",
+     "it": "divano",
+     "es": "sofá",
+     "pt": "sofá",
+     "fr": "canapé",
+     "tr": "kanepe"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=sopa",
+     "https://dle.rae.es/sopa"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "confetti",
+     "en": "confetti"
+    },
+    "meaning": {
+     "it": {
+      "en": "sugared almonds",
+      "it": "confetti",
+      "es": "almendras confitadas",
+      "pt": "amêndoas confeitadas",
+      "fr": "dragées",
+      "tr": "badem şekeri"
+     },
+     "en": {
+      "en": "confetti",
+      "it": "coriandoli",
+      "es": "confeti",
+      "pt": "confete",
+      "fr": "confettis",
+      "tr": "konfeti"
+     }
+    },
+    "decoy": {
+     "en": "jam",
+     "it": "marmellata",
+     "es": "mermelada",
+     "pt": "geleia",
+     "fr": "confiture",
+     "tr": "reçel"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/confetto2/",
+     "https://www.merriam-webster.com/dictionary/confetti"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "fr"
+    ],
+    "word": {
+     "es": "pantalla",
+     "fr": "pantalon"
+    },
+    "meaning": {
+     "es": {
+      "en": "screen",
+      "it": "schermo",
+      "es": "pantalla",
+      "pt": "tela",
+      "fr": "écran",
+      "tr": "ekran"
+     },
+     "fr": {
+      "en": "trousers",
+      "it": "pantaloni",
+      "es": "pantalones",
+      "pt": "calça",
+      "fr": "pantalon",
+      "tr": "pantolon"
+     }
+    },
+    "decoy": {
+     "en": "panther",
+     "it": "pantera",
+     "es": "pantera",
+     "pt": "pantera",
+     "fr": "panthère",
+     "tr": "panter"
+    },
+    "sources": [
+     "https://dle.rae.es/pantalla",
+     "https://www.larousse.fr/dictionnaires/francais/pantalon"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 27,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "es"
+    ],
+    "word": {
+     "it": "carta",
+     "es": "carta"
+    },
+    "meaning": {
+     "it": {
+      "en": "paper",
+      "it": "carta",
+      "es": "papel",
+      "pt": "papel",
+      "fr": "papier",
+      "tr": "kağıt"
+     },
+     "es": {
+      "en": "letter",
+      "it": "lettera",
+      "es": "carta",
+      "pt": "carta",
+      "fr": "lettre",
+      "tr": "mektup"
+     }
+    },
+    "decoy": {
+     "en": "shopping cart",
+     "it": "carrello",
+     "es": "carrito",
+     "pt": "carrinho",
+     "fr": "chariot",
+     "tr": "alışveriş arabası"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/carta/",
+     "https://es.thefreedictionary.com/carta"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "boate",
+     "en": "boat"
+    },
+    "meaning": {
+     "pt": {
+      "en": "nightclub",
+      "it": "discoteca",
+      "es": "discoteca",
+      "pt": "casa noturna",
+      "fr": "boîte de nuit",
+      "tr": "gece kulübü"
+     },
+     "en": {
+      "en": "boat",
+      "it": "barca",
+      "es": "barco",
+      "pt": "barco",
+      "fr": "bateau",
+      "tr": "tekne"
+     }
+    },
+    "decoy": {
+     "en": "beret",
+     "it": "basco",
+     "es": "boina",
+     "pt": "boina",
+     "fr": "béret",
+     "tr": "bere"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/boate",
+     "https://www.merriam-webster.com/dictionary/boat"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "colher",
+     "fr": "collier"
+    },
+    "meaning": {
+     "pt": {
+      "en": "spoon",
+      "it": "cucchiaio",
+      "es": "cuchara",
+      "pt": "colher",
+      "fr": "cuillère",
+      "tr": "kaşık"
+     },
+     "fr": {
+      "en": "necklace",
+      "it": "collana",
+      "es": "collar",
+      "pt": "colar",
+      "fr": "collier",
+      "tr": "kolye"
+     }
+    },
+    "decoy": {
+     "en": "cauliflower",
+     "it": "cavolfiore",
+     "es": "coliflor",
+     "pt": "couve-flor",
+     "fr": "chou-fleur",
+     "tr": "karnabahar"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/colher",
+     "https://www.larousse.fr/dictionnaires/francais/collier"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 28,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "viso",
+     "fr": "vis"
+    },
+    "meaning": {
+     "it": {
+      "en": "face",
+      "it": "viso",
+      "es": "cara",
+      "pt": "rosto",
+      "fr": "visage",
+      "tr": "yüz"
+     },
+     "fr": {
+      "en": "screw",
+      "it": "vite",
+      "es": "tornillo",
+      "pt": "parafuso",
+      "fr": "vis",
+      "tr": "vida"
+     }
+    },
+    "decoy": {
+     "en": "visa",
+     "it": "visto",
+     "es": "visado",
+     "pt": "visto",
+     "fr": "visa",
+     "tr": "vize"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/viso/",
+     "https://www.larousse.fr/dictionnaires/francais/vis"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "cane",
+     "en": "cane"
+    },
+    "meaning": {
+     "it": {
+      "en": "dog",
+      "it": "cane",
+      "es": "perro",
+      "pt": "cachorro",
+      "fr": "chien",
+      "tr": "köpek"
+     },
+     "en": {
+      "en": "walking stick",
+      "it": "bastone",
+      "es": "bastón",
+      "pt": "bengala",
+      "fr": "canne",
+      "tr": "baston"
+     }
+    },
+    "decoy": {
+     "en": "song",
+     "it": "canzone",
+     "es": "canción",
+     "pt": "canção",
+     "fr": "chanson",
+     "tr": "şarkı"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/cane/",
+     "https://www.merriam-webster.com/dictionary/cane"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "nine",
+     "en": "nine"
+    },
+    "meaning": {
+     "tr": {
+      "en": "granny",
+      "it": "nonna",
+      "es": "abuela",
+      "pt": "vovó",
+      "fr": "mamie",
+      "tr": "nine"
+     },
+     "en": {
+      "en": "nine",
+      "it": "nove",
+      "es": "nueve",
+      "pt": "nove",
+      "fr": "neuf",
+      "tr": "dokuz"
+     }
+    },
+    "decoy": {
+     "en": "lullaby",
+     "it": "ninna nanna",
+     "es": "nana",
+     "pt": "canção de ninar",
+     "fr": "berceuse",
+     "tr": "ninni"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=nine",
+     "https://www.merriam-webster.com/dictionary/nine"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 29,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "lecture",
+     "en": "lecture"
+    },
+    "meaning": {
+     "fr": {
+      "en": "reading",
+      "it": "lettura",
+      "es": "lectura",
+      "pt": "leitura",
+      "fr": "lecture",
+      "tr": "okuma"
+     },
+     "en": {
+      "en": "lecture",
+      "it": "lezione",
+      "es": "clase",
+      "pt": "aula",
+      "fr": "cours",
+      "tr": "ders"
+     }
+    },
+    "decoy": {
+     "en": "lettuce",
+     "it": "lattuga",
+     "es": "lechuga",
+     "pt": "alface",
+     "fr": "laitue",
+     "tr": "marul"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/lecture",
+     "https://www.merriam-webster.com/dictionary/lecture"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "conto",
+     "pt": "conto"
+    },
+    "meaning": {
+     "it": {
+      "en": "bill",
+      "it": "conto",
+      "es": "cuenta",
+      "pt": "conta",
+      "fr": "addition",
+      "tr": "hesap"
+     },
+     "pt": {
+      "en": "short story",
+      "it": "racconto",
+      "es": "cuento",
+      "pt": "conto",
+      "fr": "conte",
+      "tr": "öykü"
+     }
+    },
+    "decoy": {
+     "en": "contract",
+     "it": "contratto",
+     "es": "contrato",
+     "pt": "contrato",
+     "fr": "contrat",
+     "tr": "sözleşme"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/conto/",
+     "https://dicionario.priberam.org/conto"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "fábrica",
+     "en": "fabric"
+    },
+    "meaning": {
+     "es": {
+      "en": "factory",
+      "it": "fabbrica",
+      "es": "fábrica",
+      "pt": "fábrica",
+      "fr": "usine",
+      "tr": "fabrika"
+     },
+     "en": {
+      "en": "fabric",
+      "it": "tessuto",
+      "es": "tela",
+      "pt": "tecido",
+      "fr": "tissu",
+      "tr": "kumaş"
+     }
+    },
+    "decoy": {
+     "en": "fable",
+     "it": "favola",
+     "es": "fábula",
+     "pt": "fábula",
+     "fr": "fable",
+     "tr": "masal"
+    },
+    "sources": [
+     "https://dle.rae.es/f%C3%A1brica",
+     "https://www.merriam-webster.com/dictionary/fabric"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 30,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "manche",
+     "es": "mancha"
+    },
+    "meaning": {
+     "fr": {
+      "en": "sleeve",
+      "it": "manica",
+      "es": "manga",
+      "pt": "manga",
+      "fr": "manche",
+      "tr": "kol"
+     },
+     "es": {
+      "en": "stain",
+      "it": "macchia",
+      "es": "mancha",
+      "pt": "mancha",
+      "fr": "tache",
+      "tr": "leke"
+     }
+    },
+    "decoy": {
+     "en": "tip (money)",
+     "it": "mancia",
+     "es": "propina",
+     "pt": "gorjeta",
+     "fr": "pourboire",
+     "tr": "bahşiş"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/manche",
+     "https://dle.rae.es/mancha"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "porta",
+     "en": "port"
+    },
+    "meaning": {
+     "pt": {
+      "en": "door",
+      "it": "porta",
+      "es": "puerta",
+      "pt": "porta",
+      "fr": "porte",
+      "tr": "kapı"
+     },
+     "en": {
+      "en": "port",
+      "it": "porto",
+      "es": "puerto",
+      "pt": "porto",
+      "fr": "port",
+      "tr": "liman"
+     }
+    },
+    "decoy": {
+     "en": "pig",
+     "it": "maiale",
+     "es": "cerdo",
+     "pt": "porco",
+     "fr": "cochon",
+     "tr": "domuz"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/porta",
+     "https://www.merriam-webster.com/dictionary/port"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "noioso",
+     "en": "noisy"
+    },
+    "meaning": {
+     "it": {
+      "en": "boring",
+      "it": "noioso",
+      "es": "aburrido",
+      "pt": "chato",
+      "fr": "ennuyeux",
+      "tr": "sıkıcı"
+     },
+     "en": {
+      "en": "noisy",
+      "it": "rumoroso",
+      "es": "ruidoso",
+      "pt": "barulhento",
+      "fr": "bruyant",
+      "tr": "gürültülü"
+     }
+    },
+    "decoy": {
+     "en": "nervous",
+     "it": "nervoso",
+     "es": "nervioso",
+     "pt": "nervoso",
+     "fr": "nerveux",
+     "tr": "gergin"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/noioso/",
+     "https://www.merriam-webster.com/dictionary/noisy"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 31,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "fr"
+    ],
+    "word": {
+     "tr": "pire",
+     "fr": "pire"
+    },
+    "meaning": {
+     "tr": {
+      "en": "flea",
+      "it": "pulce",
+      "es": "pulga",
+      "pt": "pulga",
+      "fr": "puce",
+      "tr": "pire"
+     },
+     "fr": {
+      "en": "worse",
+      "it": "peggio",
+      "es": "peor",
+      "pt": "pior",
+      "fr": "pire",
+      "tr": "daha kötü"
+     }
+    },
+    "decoy": {
+     "en": "pirate",
+     "it": "pirata",
+     "es": "pirata",
+     "pt": "pirata",
+     "fr": "pirate",
+     "tr": "korsan"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=pire",
+     "https://www.larousse.fr/dictionnaires/francais/pire"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "prato",
+     "pt": "prato"
+    },
+    "meaning": {
+     "it": {
+      "en": "meadow",
+      "it": "prato",
+      "es": "prado",
+      "pt": "prado",
+      "fr": "pré",
+      "tr": "çayır"
+     },
+     "pt": {
+      "en": "plate",
+      "it": "piatto",
+      "es": "plato",
+      "pt": "prato",
+      "fr": "assiette",
+      "tr": "tabak"
+     }
+    },
+    "decoy": {
+     "en": "practice",
+     "it": "pratica",
+     "es": "práctica",
+     "pt": "prática",
+     "fr": "pratique",
+     "tr": "pratik"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/prato/",
+     "https://dicionario.priberam.org/prato"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "pull",
+     "en": "pull"
+    },
+    "meaning": {
+     "fr": {
+      "en": "jumper",
+      "it": "maglione",
+      "es": "jersey",
+      "pt": "suéter",
+      "fr": "pull",
+      "tr": "kazak"
+     },
+     "en": {
+      "en": "to pull",
+      "it": "tirare",
+      "es": "tirar de",
+      "pt": "puxar",
+      "fr": "tirer",
+      "tr": "çekmek"
+     }
+    },
+    "decoy": {
+     "en": "swimming pool",
+     "it": "piscina",
+     "es": "piscina",
+     "pt": "piscina",
+     "fr": "piscine",
+     "tr": "havuz"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/pull-over",
+     "https://www.merriam-webster.com/dictionary/pull"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 32,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "carpeta",
+     "en": "carpet"
+    },
+    "meaning": {
+     "es": {
+      "en": "folder",
+      "it": "cartellina",
+      "es": "carpeta",
+      "pt": "pasta",
+      "fr": "dossier",
+      "tr": "dosya"
+     },
+     "en": {
+      "en": "carpet",
+      "it": "tappeto",
+      "es": "alfombra",
+      "pt": "tapete",
+      "fr": "tapis",
+      "tr": "halı"
+     }
+    },
+    "decoy": {
+     "en": "wallet",
+     "it": "portafoglio",
+     "es": "cartera",
+     "pt": "carteira",
+     "fr": "portefeuille",
+     "tr": "cüzdan"
+    },
+    "sources": [
+     "https://dle.rae.es/carpeta",
+     "https://www.merriam-webster.com/dictionary/carpet"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "mamão",
+     "fr": "maman"
+    },
+    "meaning": {
+     "pt": {
+      "en": "papaya",
+      "it": "papaya",
+      "es": "papaya",
+      "pt": "mamão",
+      "fr": "papaye",
+      "tr": "papaya"
+     },
+     "fr": {
+      "en": "mum",
+      "it": "mamma",
+      "es": "mamá",
+      "pt": "mamãe",
+      "fr": "maman",
+      "tr": "anne"
+     }
+    },
+    "decoy": {
+     "en": "mango",
+     "it": "mango",
+     "es": "mango",
+     "pt": "manga",
+     "fr": "mangue",
+     "tr": "mango"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/mam%C3%A3o",
+     "https://www.larousse.fr/dictionnaires/francais/maman"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "colle",
+     "it": "collo"
+    },
+    "meaning": {
+     "fr": {
+      "en": "glue",
+      "it": "colla",
+      "es": "pegamento",
+      "pt": "cola",
+      "fr": "colle",
+      "tr": "yapıştırıcı"
+     },
+     "it": {
+      "en": "neck",
+      "it": "collo",
+      "es": "cuello",
+      "pt": "pescoço",
+      "fr": "cou",
+      "tr": "boyun"
+     }
+    },
+    "decoy": {
+     "en": "anger",
+     "it": "rabbia",
+     "es": "enojo",
+     "pt": "raiva",
+     "fr": "colère",
+     "tr": "öfke"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/colle",
+     "https://www.treccani.it/vocabolario/collo1/"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 33,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "male",
+     "en": "male"
+    },
+    "meaning": {
+     "it": {
+      "en": "badly",
+      "it": "male",
+      "es": "mal",
+      "pt": "mal",
+      "fr": "mal",
+      "tr": "kötü"
+     },
+     "en": {
+      "en": "male",
+      "it": "maschio",
+      "es": "masculino",
+      "pt": "masculino",
+      "fr": "mâle",
+      "tr": "erkek"
+     }
+    },
+    "decoy": {
+     "en": "suitcase",
+     "it": "valigia",
+     "es": "maleta",
+     "pt": "mala",
+     "fr": "valise",
+     "tr": "bavul"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/male/",
+     "https://www.merriam-webster.com/dictionary/male"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "chair",
+     "en": "chair"
+    },
+    "meaning": {
+     "fr": {
+      "en": "flesh",
+      "it": "carne",
+      "es": "carne",
+      "pt": "carne",
+      "fr": "chair",
+      "tr": "et"
+     },
+     "en": {
+      "en": "chair",
+      "it": "sedia",
+      "es": "silla",
+      "pt": "cadeira",
+      "fr": "chaise",
+      "tr": "sandalye"
+     }
+    },
+    "decoy": {
+     "en": "expensive",
+     "it": "caro",
+     "es": "caro",
+     "pt": "caro",
+     "fr": "cher",
+     "tr": "pahalı"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/chair",
+     "https://www.merriam-webster.com/dictionary/chair"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "es"
+    ],
+    "word": {
+     "pt": "doce",
+     "es": "doce"
+    },
+    "meaning": {
+     "pt": {
+      "en": "sweet",
+      "it": "dolce",
+      "es": "dulce",
+      "pt": "doce",
+      "fr": "sucré",
+      "tr": "tatlı"
+     },
+     "es": {
+      "en": "twelve",
+      "it": "dodici",
+      "es": "doce",
+      "pt": "doze",
+      "fr": "douze",
+      "tr": "on iki"
+     }
+    },
+    "decoy": {
+     "en": "shower",
+     "it": "doccia",
+     "es": "ducha",
+     "pt": "chuveiro",
+     "fr": "douche",
+     "tr": "duş"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/doce",
+     "https://dle.rae.es/doce"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 34,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "batom",
+     "en": "baton"
+    },
+    "meaning": {
+     "pt": {
+      "en": "lipstick",
+      "it": "rossetto",
+      "es": "labial",
+      "pt": "batom",
+      "fr": "rouge à lèvres",
+      "tr": "ruj"
+     },
+     "en": {
+      "en": "baton",
+      "it": "bacchetta",
+      "es": "batuta",
+      "pt": "batuta",
+      "fr": "bâton",
+      "tr": "değnek"
+     }
+    },
+    "decoy": {
+     "en": "battle",
+     "it": "battaglia",
+     "es": "batalla",
+     "pt": "batalha",
+     "fr": "bataille",
+     "tr": "savaş"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/batom",
+     "https://www.merriam-webster.com/dictionary/baton"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "es"
+    ],
+    "word": {
+     "it": "rata",
+     "es": "rata"
+    },
+    "meaning": {
+     "it": {
+      "en": "instalment",
+      "it": "rata",
+      "es": "cuota",
+      "pt": "parcela",
+      "fr": "mensualité",
+      "tr": "taksit"
+     },
+     "es": {
+      "en": "rat",
+      "it": "ratto",
+      "es": "rata",
+      "pt": "ratazana",
+      "fr": "rat",
+      "tr": "sıçan"
+     }
+    },
+    "decoy": {
+     "en": "route",
+     "it": "rotta",
+     "es": "ruta",
+     "pt": "rota",
+     "fr": "route",
+     "tr": "rota"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/rata/",
+     "https://dle.rae.es/rata"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "fr"
+    ],
+    "word": {
+     "tr": "et",
+     "fr": "et"
+    },
+    "meaning": {
+     "tr": {
+      "en": "meat",
+      "it": "carne",
+      "es": "carne",
+      "pt": "carne",
+      "fr": "viande",
+      "tr": "et"
+     },
+     "fr": {
+      "en": "and",
+      "it": "e",
+      "es": "y",
+      "pt": "e",
+      "fr": "et",
+      "tr": "ve"
+     }
+    },
+    "decoy": {
+     "en": "to eat",
+     "it": "mangiare",
+     "es": "comer",
+     "pt": "comer",
+     "fr": "manger",
+     "tr": "yemek"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=et",
+     "https://www.larousse.fr/dictionnaires/francais/et"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 35,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "es"
+    ],
+    "word": {
+     "pt": "oficina",
+     "es": "oficina"
+    },
+    "meaning": {
+     "pt": {
+      "en": "workshop",
+      "it": "officina",
+      "es": "taller",
+      "pt": "oficina",
+      "fr": "atelier",
+      "tr": "atölye"
+     },
+     "es": {
+      "en": "office",
+      "it": "ufficio",
+      "es": "oficina",
+      "pt": "escritório",
+      "fr": "bureau",
+      "tr": "ofis"
+     }
+    },
+    "decoy": {
+     "en": "offer",
+     "it": "offerta",
+     "es": "oferta",
+     "pt": "oferta",
+     "fr": "offre",
+     "tr": "teklif"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/oficina",
+     "https://dle.rae.es/oficina"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "gros",
+     "en": "gross"
+    },
+    "meaning": {
+     "fr": {
+      "en": "big",
+      "it": "grosso",
+      "es": "grande",
+      "pt": "grande",
+      "fr": "gros",
+      "tr": "büyük"
+     },
+     "en": {
+      "en": "gross",
+      "it": "schifoso",
+      "es": "asqueroso",
+      "pt": "nojento",
+      "fr": "dégoûtant",
+      "tr": "iğrenç"
+     }
+    },
+    "decoy": {
+     "en": "grey",
+     "it": "grigio",
+     "es": "gris",
+     "pt": "cinza",
+     "fr": "gris",
+     "tr": "gri"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/gros",
+     "https://www.merriam-webster.com/dictionary/gross"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "pera",
+     "fr": "père"
+    },
+    "meaning": {
+     "it": {
+      "en": "pear",
+      "it": "pera",
+      "es": "pera",
+      "pt": "pera",
+      "fr": "poire",
+      "tr": "armut"
+     },
+     "fr": {
+      "en": "father",
+      "it": "padre",
+      "es": "padre",
+      "pt": "pai",
+      "fr": "père",
+      "tr": "baba"
+     }
+    },
+    "decoy": {
+     "en": "pearl",
+     "it": "perla",
+     "es": "perla",
+     "pt": "pérola",
+     "fr": "perle",
+     "tr": "inci"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/pera/",
+     "https://www.larousse.fr/dictionnaires/francais/p%C3%A8re"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 36,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "it"
+    ],
+    "word": {
+     "pt": "lama",
+     "it": "lama"
+    },
+    "meaning": {
+     "pt": {
+      "en": "mud",
+      "it": "fango",
+      "es": "barro",
+      "pt": "lama",
+      "fr": "boue",
+      "tr": "çamur"
+     },
+     "it": {
+      "en": "blade",
+      "it": "lama",
+      "es": "hoja",
+      "pt": "lâmina",
+      "fr": "lame",
+      "tr": "bıçak ağzı"
+     }
+    },
+    "decoy": {
+     "en": "lamp",
+     "it": "lampada",
+     "es": "lámpara",
+     "pt": "lâmpada",
+     "fr": "lampe",
+     "tr": "lamba"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/lama",
+     "https://www.treccani.it/vocabolario/lama1/"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "pie",
+     "en": "pie"
+    },
+    "meaning": {
+     "es": {
+      "en": "foot",
+      "it": "piede",
+      "es": "pie",
+      "pt": "pé",
+      "fr": "pied",
+      "tr": "ayak"
+     },
+     "en": {
+      "en": "pie",
+      "it": "torta",
+      "es": "tarta",
+      "pt": "torta",
+      "fr": "tarte",
+      "tr": "turta"
+     }
+    },
+    "decoy": {
+     "en": "stone",
+     "it": "pietra",
+     "es": "piedra",
+     "pt": "pedra",
+     "fr": "pierre",
+     "tr": "taş"
+    },
+    "sources": [
+     "https://es.thefreedictionary.com/pie",
+     "https://www.merriam-webster.com/dictionary/pie"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "bolo",
+     "fr": "bol"
+    },
+    "meaning": {
+     "pt": {
+      "en": "cake",
+      "it": "torta",
+      "es": "tarta",
+      "pt": "bolo",
+      "fr": "gâteau",
+      "tr": "pasta"
+     },
+     "fr": {
+      "en": "bowl",
+      "it": "ciotola",
+      "es": "cuenco",
+      "pt": "tigela",
+      "fr": "bol",
+      "tr": "kase"
+     }
+    },
+    "decoy": {
+     "en": "bubble",
+     "it": "bolla",
+     "es": "burbuja",
+     "pt": "bolha",
+     "fr": "bulle",
+     "tr": "baloncuk"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/bolo",
+     "https://www.larousse.fr/dictionnaires/francais/bol"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 37,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "it"
+    ],
+    "word": {
+     "es": "loro",
+     "it": "loro"
+    },
+    "meaning": {
+     "es": {
+      "en": "parrot",
+      "it": "pappagallo",
+      "es": "loro",
+      "pt": "papagaio",
+      "fr": "perroquet",
+      "tr": "papağan"
+     },
+     "it": {
+      "en": "they",
+      "it": "loro",
+      "es": "ellos",
+      "pt": "eles",
+      "fr": "ils",
+      "tr": "onlar"
+     }
+    },
+    "decoy": {
+     "en": "gold",
+     "it": "oro",
+     "es": "oro",
+     "pt": "ouro",
+     "fr": "or",
+     "tr": "altın"
+    },
+    "sources": [
+     "https://dle.rae.es/loro",
+     "https://www.treccani.it/vocabolario/loro/"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "kale",
+     "en": "kale"
+    },
+    "meaning": {
+     "tr": {
+      "en": "castle",
+      "it": "castello",
+      "es": "castillo",
+      "pt": "castelo",
+      "fr": "château",
+      "tr": "kale"
+     },
+     "en": {
+      "en": "kale",
+      "it": "cavolo nero",
+      "es": "col rizada",
+      "pt": "couve",
+      "fr": "chou frisé",
+      "tr": "kara lahana"
+     }
+    },
+    "decoy": {
+     "en": "street",
+     "it": "strada",
+     "es": "calle",
+     "pt": "rua",
+     "fr": "rue",
+     "tr": "sokak"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=kale",
+     "https://www.merriam-webster.com/dictionary/kale"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "fr"
+    ],
+    "word": {
+     "es": "cerdo",
+     "fr": "cerf"
+    },
+    "meaning": {
+     "es": {
+      "en": "pig",
+      "it": "maiale",
+      "es": "cerdo",
+      "pt": "porco",
+      "fr": "cochon",
+      "tr": "domuz"
+     },
+     "fr": {
+      "en": "deer",
+      "it": "cervo",
+      "es": "ciervo",
+      "pt": "cervo",
+      "fr": "cerf",
+      "tr": "geyik"
+     }
+    },
+    "decoy": {
+     "en": "brain",
+     "it": "cervello",
+     "es": "cerebro",
+     "pt": "cérebro",
+     "fr": "cerveau",
+     "tr": "beyin"
+    },
+    "sources": [
+     "https://es.thefreedictionary.com/cerdo",
+     "https://www.larousse.fr/dictionnaires/francais/cerf"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 38,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "cantina",
+     "en": "canteen"
+    },
+    "meaning": {
+     "it": {
+      "en": "cellar",
+      "it": "cantina",
+      "es": "bodega",
+      "pt": "adega",
+      "fr": "cave",
+      "tr": "mahzen"
+     },
+     "en": {
+      "en": "canteen",
+      "it": "mensa",
+      "es": "comedor",
+      "pt": "refeitório",
+      "fr": "cantine",
+      "tr": "yemekhane"
+     }
+    },
+    "decoy": {
+     "en": "singer",
+     "it": "cantante",
+     "es": "cantante",
+     "pt": "cantor",
+     "fr": "chanteur",
+     "tr": "şarkıcı"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/cantina/",
+     "https://www.merriam-webster.com/dictionary/canteen"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "ballo",
+     "fr": "balle"
+    },
+    "meaning": {
+     "it": {
+      "en": "dance",
+      "it": "ballo",
+      "es": "baile",
+      "pt": "dança",
+      "fr": "danse",
+      "tr": "dans"
+     },
+     "fr": {
+      "en": "ball",
+      "it": "pallina",
+      "es": "pelota",
+      "pt": "bola",
+      "fr": "balle",
+      "tr": "top"
+     }
+    },
+    "decoy": {
+     "en": "beautiful",
+     "it": "bello",
+     "es": "bello",
+     "pt": "belo",
+     "fr": "beau",
+     "tr": "güzel"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/ballo/",
+     "https://www.larousse.fr/dictionnaires/francais/balle"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "pt"
+    ],
+    "word": {
+     "fr": "pont",
+     "pt": "ponto"
+    },
+    "meaning": {
+     "fr": {
+      "en": "bridge",
+      "it": "ponte",
+      "es": "puente",
+      "pt": "ponte",
+      "fr": "pont",
+      "tr": "köprü"
+     },
+     "pt": {
+      "en": "dot",
+      "it": "punto",
+      "es": "punto",
+      "pt": "ponto",
+      "fr": "point",
+      "tr": "nokta"
+     }
+    },
+    "decoy": {
+     "en": "pony",
+     "it": "pony",
+     "es": "poni",
+     "pt": "pônei",
+     "fr": "poney",
+     "tr": "midilli"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/pont",
+     "https://dicionario.priberam.org/ponto"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 39,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "natte",
+     "es": "nata"
+    },
+    "meaning": {
+     "fr": {
+      "en": "braid",
+      "it": "treccia",
+      "es": "trenza",
+      "pt": "trança",
+      "fr": "natte",
+      "tr": "örgü"
+     },
+     "es": {
+      "en": "cream",
+      "it": "panna",
+      "es": "nata",
+      "pt": "creme de leite",
+      "fr": "crème",
+      "tr": "krema"
+     }
+    },
+    "decoy": {
+     "en": "swimming",
+     "it": "nuoto",
+     "es": "natación",
+     "pt": "natação",
+     "fr": "natation",
+     "tr": "yüzme"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/natte",
+     "https://dle.rae.es/nata"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "es"
+    ],
+    "word": {
+     "pt": "criança",
+     "es": "crianza"
+    },
+    "meaning": {
+     "pt": {
+      "en": "child",
+      "it": "bambino",
+      "es": "niño",
+      "pt": "criança",
+      "fr": "enfant",
+      "tr": "çocuk"
+     },
+     "es": {
+      "en": "upbringing",
+      "it": "educazione",
+      "es": "crianza",
+      "pt": "criação",
+      "fr": "éducation",
+      "tr": "yetiştirme"
+     }
+    },
+    "decoy": {
+     "en": "belief",
+     "it": "credenza",
+     "es": "creencia",
+     "pt": "crença",
+     "fr": "croyance",
+     "tr": "inanç"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/crian%C3%A7a",
+     "https://es.thefreedictionary.com/crianza"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "notícia",
+     "en": "notice"
+    },
+    "meaning": {
+     "pt": {
+      "en": "news",
+      "it": "notizia",
+      "es": "noticia",
+      "pt": "notícia",
+      "fr": "nouvelle",
+      "tr": "haber"
+     },
+     "en": {
+      "en": "notice",
+      "it": "avviso",
+      "es": "aviso",
+      "pt": "aviso",
+      "fr": "avis",
+      "tr": "duyuru"
+     }
+    },
+    "decoy": {
+     "en": "night",
+     "it": "notte",
+     "es": "noche",
+     "pt": "noite",
+     "fr": "nuit",
+     "tr": "gece"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/not%C3%ADcia",
+     "https://www.merriam-webster.com/dictionary/notice"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 40,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "fr"
+    ],
+    "word": {
+     "tr": "bal",
+     "fr": "bal"
+    },
+    "meaning": {
+     "tr": {
+      "en": "honey",
+      "it": "miele",
+      "es": "miel",
+      "pt": "mel",
+      "fr": "miel",
+      "tr": "bal"
+     },
+     "fr": {
+      "en": "dance party",
+      "it": "ballo",
+      "es": "baile",
+      "pt": "baile",
+      "fr": "bal",
+      "tr": "balo"
+     }
+    },
+    "decoy": {
+     "en": "whale",
+     "it": "balena",
+     "es": "ballena",
+     "pt": "baleia",
+     "fr": "baleine",
+     "tr": "balina"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=bal",
+     "https://www.larousse.fr/dictionnaires/francais/bal"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "pasto",
+     "pt": "pasto"
+    },
+    "meaning": {
+     "it": {
+      "en": "meal",
+      "it": "pasto",
+      "es": "comida",
+      "pt": "refeição",
+      "fr": "repas",
+      "tr": "öğün"
+     },
+     "pt": {
+      "en": "pasture",
+      "it": "pascolo",
+      "es": "pasto",
+      "pt": "pasto",
+      "fr": "pâturage",
+      "tr": "otlak"
+     }
+    },
+    "decoy": {
+     "en": "step",
+     "it": "passo",
+     "es": "paso",
+     "pt": "passo",
+     "fr": "pas",
+     "tr": "adım"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/pasto2/",
+     "https://dicionario.priberam.org/pasto"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "es"
+    ],
+    "word": {
+     "it": "burro",
+     "es": "burro"
+    },
+    "meaning": {
+     "it": {
+      "en": "butter",
+      "it": "burro",
+      "es": "mantequilla",
+      "pt": "manteiga",
+      "fr": "beurre",
+      "tr": "tereyağı"
+     },
+     "es": {
+      "en": "donkey",
+      "it": "asino",
+      "es": "burro",
+      "pt": "burro",
+      "fr": "âne",
+      "tr": "eşek"
+     }
+    },
+    "decoy": {
+     "en": "burrow",
+     "it": "tana",
+     "es": "madriguera",
+     "pt": "toca",
+     "fr": "terrier",
+     "tr": "hayvan yuvası"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/burro/",
+     "https://dle.rae.es/burro"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 41,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "pele",
+     "fr": "pelle"
+    },
+    "meaning": {
+     "pt": {
+      "en": "skin",
+      "it": "pelle",
+      "es": "piel",
+      "pt": "pele",
+      "fr": "peau",
+      "tr": "cilt"
+     },
+     "fr": {
+      "en": "shovel",
+      "it": "pala",
+      "es": "pala",
+      "pt": "pá",
+      "fr": "pelle",
+      "tr": "kürek"
+     }
+    },
+    "decoy": {
+     "en": "hair",
+     "it": "capelli",
+     "es": "pelo",
+     "pt": "cabelo",
+     "fr": "cheveux",
+     "tr": "saç"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/pele",
+     "https://www.larousse.fr/dictionnaires/francais/pelle"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "pt"
+    ],
+    "word": {
+     "tr": "para",
+     "pt": "para"
+    },
+    "meaning": {
+     "tr": {
+      "en": "money",
+      "it": "soldi",
+      "es": "dinero",
+      "pt": "dinheiro",
+      "fr": "argent",
+      "tr": "para"
+     },
+     "pt": {
+      "en": "for",
+      "it": "per",
+      "es": "para",
+      "pt": "para",
+      "fr": "pour",
+      "tr": "için"
+     }
+    },
+    "decoy": {
+     "en": "umbrella",
+     "it": "ombrello",
+     "es": "paraguas",
+     "pt": "guarda-chuva",
+     "fr": "parapluie",
+     "tr": "şemsiye"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=para",
+     "https://dicionario.priberam.org/para"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "red",
+     "en": "red"
+    },
+    "meaning": {
+     "es": {
+      "en": "net",
+      "it": "rete",
+      "es": "red",
+      "pt": "rede",
+      "fr": "filet",
+      "tr": "ağ"
+     },
+     "en": {
+      "en": "red",
+      "it": "rosso",
+      "es": "rojo",
+      "pt": "vermelho",
+      "fr": "rouge",
+      "tr": "kırmızı"
+     }
+    },
+    "decoy": {
+     "en": "to read",
+     "it": "leggere",
+     "es": "leer",
+     "pt": "ler",
+     "fr": "lire",
+     "tr": "okumak"
+    },
+    "sources": [
+     "https://dle.rae.es/red",
+     "https://www.merriam-webster.com/dictionary/red"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 42,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "camera",
+     "en": "camera"
+    },
+    "meaning": {
+     "it": {
+      "en": "room",
+      "it": "stanza",
+      "es": "habitación",
+      "pt": "quarto",
+      "fr": "chambre",
+      "tr": "oda"
+     },
+     "en": {
+      "en": "camera",
+      "it": "macchina fotografica",
+      "es": "cámara",
+      "pt": "câmera",
+      "fr": "appareil photo",
+      "tr": "fotoğraf makinesi"
+     }
+    },
+    "decoy": {
+     "en": "camel",
+     "it": "cammello",
+     "es": "camello",
+     "pt": "camelo",
+     "fr": "chameau",
+     "tr": "deve"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/camera/",
+     "https://www.merriam-webster.com/dictionary/camera"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "pt"
+    ],
+    "word": {
+     "es": "oso",
+     "pt": "osso"
+    },
+    "meaning": {
+     "es": {
+      "en": "bear",
+      "it": "orso",
+      "es": "oso",
+      "pt": "urso",
+      "fr": "ours",
+      "tr": "ayı"
+     },
+     "pt": {
+      "en": "bone",
+      "it": "osso",
+      "es": "hueso",
+      "pt": "osso",
+      "fr": "os",
+      "tr": "kemik"
+     }
+    },
+    "decoy": {
+     "en": "eye",
+     "it": "occhio",
+     "es": "ojo",
+     "pt": "olho",
+     "fr": "œil",
+     "tr": "göz"
+    },
+    "sources": [
+     "https://dle.rae.es/oso",
+     "https://dicionario.priberam.org/osso"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "mare",
+     "it": "mare"
+    },
+    "meaning": {
+     "fr": {
+      "en": "pond",
+      "it": "stagno",
+      "es": "charca",
+      "pt": "lagoa",
+      "fr": "mare",
+      "tr": "gölet"
+     },
+     "it": {
+      "en": "sea",
+      "it": "mare",
+      "es": "mar",
+      "pt": "mar",
+      "fr": "mer",
+      "tr": "deniz"
+     }
+    },
+    "decoy": {
+     "en": "tide",
+     "it": "marea",
+     "es": "marea",
+     "pt": "maré",
+     "fr": "marée",
+     "tr": "gelgit"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/mare",
+     "https://www.treccani.it/vocabolario/mare/"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 43,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "bay",
+     "en": "bay"
+    },
+    "meaning": {
+     "tr": {
+      "en": "Mr",
+      "it": "signore",
+      "es": "señor",
+      "pt": "senhor",
+      "fr": "monsieur",
+      "tr": "bay"
+     },
+     "en": {
+      "en": "bay",
+      "it": "baia",
+      "es": "bahía",
+      "pt": "baía",
+      "fr": "baie",
+      "tr": "koy"
+     }
+    },
+    "decoy": {
+     "en": "goodbye",
+     "it": "arrivederci",
+     "es": "adiós",
+     "pt": "tchau",
+     "fr": "au revoir",
+     "tr": "hoşça kal"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=bay",
+     "https://www.merriam-webster.com/dictionary/bay"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "sombre",
+     "es": "sombrero"
+    },
+    "meaning": {
+     "fr": {
+      "en": "dark",
+      "it": "scuro",
+      "es": "oscuro",
+      "pt": "escuro",
+      "fr": "sombre",
+      "tr": "karanlık"
+     },
+     "es": {
+      "en": "hat",
+      "it": "cappello",
+      "es": "sombrero",
+      "pt": "chapéu",
+      "fr": "chapeau",
+      "tr": "şapka"
+     }
+    },
+    "decoy": {
+     "en": "envelope",
+     "it": "busta",
+     "es": "sobre",
+     "pt": "envelope",
+     "fr": "enveloppe",
+     "tr": "zarf"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/sombre",
+     "https://dle.rae.es/sombrero"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "topo",
+     "pt": "topo"
+    },
+    "meaning": {
+     "it": {
+      "en": "mouse",
+      "it": "topo",
+      "es": "ratón",
+      "pt": "camundongo",
+      "fr": "souris",
+      "tr": "fare"
+     },
+     "pt": {
+      "en": "top",
+      "it": "cima",
+      "es": "cima",
+      "pt": "topo",
+      "fr": "sommet",
+      "tr": "tepe"
+     }
+    },
+    "decoy": {
+     "en": "cork",
+     "it": "tappo",
+     "es": "tapón",
+     "pt": "rolha",
+     "fr": "bouchon",
+     "tr": "tıpa"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/topo1/",
+     "https://dicionario.priberam.org/topo"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 44,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "pipa",
+     "en": "pipe"
+    },
+    "meaning": {
+     "pt": {
+      "en": "kite",
+      "it": "aquilone",
+      "es": "cometa",
+      "pt": "pipa",
+      "fr": "cerf-volant",
+      "tr": "uçurtma"
+     },
+     "en": {
+      "en": "pipe",
+      "it": "tubo",
+      "es": "tubo",
+      "pt": "cano",
+      "fr": "tuyau",
+      "tr": "boru"
+     }
+    },
+    "decoy": {
+     "en": "popcorn",
+     "it": "popcorn",
+     "es": "palomitas",
+     "pt": "pipoca",
+     "fr": "pop-corn",
+     "tr": "patlamış mısır"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/pipa",
+     "https://www.merriam-webster.com/dictionary/pipe"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "cabelo",
+     "fr": "câble"
+    },
+    "meaning": {
+     "pt": {
+      "en": "hair",
+      "it": "capelli",
+      "es": "pelo",
+      "pt": "cabelo",
+      "fr": "cheveux",
+      "tr": "saç"
+     },
+     "fr": {
+      "en": "cable",
+      "it": "cavo",
+      "es": "cable",
+      "pt": "cabo",
+      "fr": "câble",
+      "tr": "kablo"
+     }
+    },
+    "decoy": {
+     "en": "goat",
+     "it": "capra",
+     "es": "cabra",
+     "pt": "cabra",
+     "fr": "chèvre",
+     "tr": "keçi"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/cabelo",
+     "https://www.larousse.fr/dictionnaires/francais/c%C3%A2ble"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "bin",
+     "en": "bin"
+    },
+    "meaning": {
+     "tr": {
+      "en": "thousand",
+      "it": "mille",
+      "es": "mil",
+      "pt": "mil",
+      "fr": "mille",
+      "tr": "bin"
+     },
+     "en": {
+      "en": "bin",
+      "it": "cestino",
+      "es": "papelera",
+      "pt": "lixeira",
+      "fr": "poubelle",
+      "tr": "çöp kutusu"
+     }
+    },
+    "decoy": {
+     "en": "two",
+     "it": "due",
+     "es": "dos",
+     "pt": "dois",
+     "fr": "deux",
+     "tr": "iki"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=bin",
+     "https://www.merriam-webster.com/dictionary/bin"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 45,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "pt"
+    ],
+    "word": {
+     "es": "sótano",
+     "pt": "sótão"
+    },
+    "meaning": {
+     "es": {
+      "en": "basement",
+      "it": "seminterrato",
+      "es": "sótano",
+      "pt": "porão",
+      "fr": "sous-sol",
+      "tr": "bodrum"
+     },
+     "pt": {
+      "en": "attic",
+      "it": "soffitta",
+      "es": "desván",
+      "pt": "sótão",
+      "fr": "grenier",
+      "tr": "çatı katı"
+     }
+    },
+    "decoy": {
+     "en": "soprano",
+     "it": "soprano",
+     "es": "soprano",
+     "pt": "soprano",
+     "fr": "soprano",
+     "tr": "soprano"
+    },
+    "sources": [
+     "https://dle.rae.es/s%C3%B3tano",
+     "https://dicionario.priberam.org/s%C3%B3t%C3%A3o"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "médecin",
+     "en": "medicine"
+    },
+    "meaning": {
+     "fr": {
+      "en": "doctor",
+      "it": "medico",
+      "es": "médico",
+      "pt": "médico",
+      "fr": "médecin",
+      "tr": "doktor"
+     },
+     "en": {
+      "en": "medicine",
+      "it": "medicina",
+      "es": "medicina",
+      "pt": "remédio",
+      "fr": "médicament",
+      "tr": "ilaç"
+     }
+    },
+    "decoy": {
+     "en": "middle",
+     "it": "mezzo",
+     "es": "medio",
+     "pt": "meio",
+     "fr": "milieu",
+     "tr": "orta"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/m%C3%A9decin",
+     "https://www.merriam-webster.com/dictionary/medicine"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "es"
+    ],
+    "word": {
+     "it": "guardare",
+     "es": "guardar"
+    },
+    "meaning": {
+     "it": {
+      "en": "to look",
+      "it": "guardare",
+      "es": "mirar",
+      "pt": "olhar",
+      "fr": "regarder",
+      "tr": "bakmak"
+     },
+     "es": {
+      "en": "to keep",
+      "it": "conservare",
+      "es": "guardar",
+      "pt": "guardar",
+      "fr": "garder",
+      "tr": "saklamak"
+     }
+    },
+    "decoy": {
+     "en": "to wait",
+     "it": "aspettare",
+     "es": "esperar",
+     "pt": "esperar",
+     "fr": "attendre",
+     "tr": "beklemek"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/guardare/",
+     "https://dle.rae.es/guardar"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 46,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "es"
+    ],
+    "word": {
+     "tr": "hasta",
+     "es": "hasta"
+    },
+    "meaning": {
+     "tr": {
+      "en": "sick",
+      "it": "malato",
+      "es": "enfermo",
+      "pt": "doente",
+      "fr": "malade",
+      "tr": "hasta"
+     },
+     "es": {
+      "en": "until",
+      "it": "fino a",
+      "es": "hasta",
+      "pt": "até",
+      "fr": "jusqu'à",
+      "tr": "kadar"
+     }
+    },
+    "decoy": {
+     "en": "hurry",
+     "it": "fretta",
+     "es": "prisa",
+     "pt": "pressa",
+     "fr": "hâte",
+     "tr": "acele"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=hasta",
+     "https://dle.rae.es/hasta"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "cena",
+     "pt": "cena"
+    },
+    "meaning": {
+     "it": {
+      "en": "dinner",
+      "it": "cena",
+      "es": "cena",
+      "pt": "jantar",
+      "fr": "dîner",
+      "tr": "akşam yemeği"
+     },
+     "pt": {
+      "en": "scene",
+      "it": "scena",
+      "es": "escena",
+      "pt": "cena",
+      "fr": "scène",
+      "tr": "sahne"
+     }
+    },
+    "decoy": {
+     "en": "ash",
+     "it": "cenere",
+     "es": "ceniza",
+     "pt": "cinza",
+     "fr": "cendre",
+     "tr": "kül"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/cena/",
+     "https://dicionario.priberam.org/cena"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "fame",
+     "en": "fame"
+    },
+    "meaning": {
+     "it": {
+      "en": "hunger",
+      "it": "fame",
+      "es": "hambre",
+      "pt": "fome",
+      "fr": "faim",
+      "tr": "açlık"
+     },
+     "en": {
+      "en": "fame",
+      "it": "fama",
+      "es": "fama",
+      "pt": "fama",
+      "fr": "célébrité",
+      "tr": "şöhret"
+     }
+    },
+    "decoy": {
+     "en": "family",
+     "it": "famiglia",
+     "es": "familia",
+     "pt": "família",
+     "fr": "famille",
+     "tr": "aile"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/fame/",
+     "https://www.merriam-webster.com/dictionary/fame"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 47,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "coin",
+     "en": "coin"
+    },
+    "meaning": {
+     "fr": {
+      "en": "corner",
+      "it": "angolo",
+      "es": "esquina",
+      "pt": "canto",
+      "fr": "coin",
+      "tr": "köşe"
+     },
+     "en": {
+      "en": "coin",
+      "it": "moneta",
+      "es": "moneda",
+      "pt": "moeda",
+      "fr": "pièce",
+      "tr": "madeni para"
+     }
+    },
+    "decoy": {
+     "en": "cushion",
+     "it": "cuscino",
+     "es": "cojín",
+     "pt": "almofada",
+     "fr": "coussin",
+     "tr": "minder"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/coin",
+     "https://www.merriam-webster.com/dictionary/coin"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "panne",
+     "it": "pane"
+    },
+    "meaning": {
+     "fr": {
+      "en": "breakdown",
+      "it": "guasto",
+      "es": "avería",
+      "pt": "pane",
+      "fr": "panne",
+      "tr": "arıza"
+     },
+     "it": {
+      "en": "bread",
+      "it": "pane",
+      "es": "pan",
+      "pt": "pão",
+      "fr": "pain",
+      "tr": "ekmek"
+     }
+    },
+    "decoy": {
+     "en": "sign",
+     "it": "cartello",
+     "es": "letrero",
+     "pt": "placa",
+     "fr": "panneau",
+     "tr": "tabela"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/panne",
+     "https://www.treccani.it/vocabolario/pane/"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "lanche",
+     "en": "lunch"
+    },
+    "meaning": {
+     "pt": {
+      "en": "snack",
+      "it": "spuntino",
+      "es": "merienda",
+      "pt": "lanche",
+      "fr": "goûter",
+      "tr": "atıştırmalık"
+     },
+     "en": {
+      "en": "lunch",
+      "it": "pranzo",
+      "es": "almuerzo",
+      "pt": "almoço",
+      "fr": "déjeuner",
+      "tr": "öğle yemeği"
+     }
+    },
+    "decoy": {
+     "en": "spear",
+     "it": "lancia",
+     "es": "lanza",
+     "pt": "lança",
+     "fr": "lance",
+     "tr": "mızrak"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/lanche",
+     "https://www.merriam-webster.com/dictionary/lunch"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 48,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "es"
+    ],
+    "word": {
+     "pt": "brincar",
+     "es": "brincar"
+    },
+    "meaning": {
+     "pt": {
+      "en": "to play",
+      "it": "giocare",
+      "es": "jugar",
+      "pt": "brincar",
+      "fr": "jouer",
+      "tr": "oynamak"
+     },
+     "es": {
+      "en": "to jump",
+      "it": "saltare",
+      "es": "brincar",
+      "pt": "pular",
+      "fr": "sauter",
+      "tr": "zıplamak"
+     }
+    },
+    "decoy": {
+     "en": "to shine",
+     "it": "brillare",
+     "es": "brillar",
+     "pt": "brilhar",
+     "fr": "briller",
+     "tr": "parlamak"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/brincar",
+     "https://dle.rae.es/brincar"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "once",
+     "en": "once"
+    },
+    "meaning": {
+     "es": {
+      "en": "eleven",
+      "it": "undici",
+      "es": "once",
+      "pt": "onze",
+      "fr": "onze",
+      "tr": "on bir"
+     },
+     "en": {
+      "en": "once",
+      "it": "una volta",
+      "es": "una vez",
+      "pt": "uma vez",
+      "fr": "une fois",
+      "tr": "bir kez"
+     }
+    },
+    "decoy": {
+     "en": "uncle",
+     "it": "zio",
+     "es": "tío",
+     "pt": "tio",
+     "fr": "oncle",
+     "tr": "amca"
+    },
+    "sources": [
+     "https://dle.rae.es/once",
+     "https://www.merriam-webster.com/dictionary/once"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "it"
+    ],
+    "word": {
+     "es": "seta",
+     "it": "seta"
+    },
+    "meaning": {
+     "es": {
+      "en": "mushroom",
+      "it": "fungo",
+      "es": "seta",
+      "pt": "cogumelo",
+      "fr": "champignon",
+      "tr": "mantar"
+     },
+     "it": {
+      "en": "silk",
+      "it": "seta",
+      "es": "seda",
+      "pt": "seda",
+      "fr": "soie",
+      "tr": "ipek"
+     }
+    },
+    "decoy": {
+     "en": "thirst",
+     "it": "sete",
+     "es": "sed",
+     "pt": "sede",
+     "fr": "soif",
+     "tr": "susuzluk"
+    },
+    "sources": [
+     "https://dle.rae.es/seta",
+     "https://www.treccani.it/vocabolario/seta/"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 49,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "pt"
+    ],
+    "word": {
+     "fr": "sucre",
+     "pt": "suco"
+    },
+    "meaning": {
+     "fr": {
+      "en": "sugar",
+      "it": "zucchero",
+      "es": "azúcar",
+      "pt": "açúcar",
+      "fr": "sucre",
+      "tr": "şeker"
+     },
+     "pt": {
+      "en": "juice",
+      "it": "succo",
+      "es": "jugo",
+      "pt": "suco",
+      "fr": "jus",
+      "tr": "meyve suyu"
+     }
+    },
+    "decoy": {
+     "en": "sweat",
+     "it": "sudore",
+     "es": "sudor",
+     "pt": "suor",
+     "fr": "sueur",
+     "tr": "ter"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/sucre",
+     "https://dicionario.priberam.org/suco"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "pt"
+    ],
+    "word": {
+     "tr": "masa",
+     "pt": "massa"
+    },
+    "meaning": {
+     "tr": {
+      "en": "table",
+      "it": "tavolo",
+      "es": "mesa",
+      "pt": "mesa",
+      "fr": "table",
+      "tr": "masa"
+     },
+     "pt": {
+      "en": "dough",
+      "it": "impasto",
+      "es": "masa",
+      "pt": "massa",
+      "fr": "pâte",
+      "tr": "hamur"
+     }
+    },
+    "decoy": {
+     "en": "mask",
+     "it": "maschera",
+     "es": "máscara",
+     "pt": "máscara",
+     "fr": "masque",
+     "tr": "maske"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=masa",
+     "https://dicionario.priberam.org/massa"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "cadenas",
+     "es": "cadena"
+    },
+    "meaning": {
+     "fr": {
+      "en": "padlock",
+      "it": "lucchetto",
+      "es": "candado",
+      "pt": "cadeado",
+      "fr": "cadenas",
+      "tr": "asma kilit"
+     },
+     "es": {
+      "en": "chain",
+      "it": "catena",
+      "es": "cadena",
+      "pt": "corrente",
+      "fr": "chaîne",
+      "tr": "zincir"
+     }
+    },
+    "decoy": {
+     "en": "rhythm",
+     "it": "ritmo",
+     "es": "ritmo",
+     "pt": "ritmo",
+     "fr": "rythme",
+     "tr": "ritim"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/cadenas",
+     "https://dle.rae.es/cadena"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 50,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "it"
+    ],
+    "word": {
+     "pt": "presunto",
+     "it": "presunto"
+    },
+    "meaning": {
+     "pt": {
+      "en": "ham",
+      "it": "prosciutto",
+      "es": "jamón",
+      "pt": "presunto",
+      "fr": "jambon",
+      "tr": "jambon"
+     },
+     "it": {
+      "en": "alleged",
+      "it": "presunto",
+      "es": "presunto",
+      "pt": "suposto",
+      "fr": "présumé",
+      "tr": "iddia edilen"
+     }
+    },
+    "decoy": {
+     "en": "gift",
+     "it": "regalo",
+     "es": "regalo",
+     "pt": "presente",
+     "fr": "cadeau",
+     "tr": "hediye"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/presunto",
+     "https://www.treccani.it/vocabolario/presunto/"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "vite",
+     "it": "vita"
+    },
+    "meaning": {
+     "fr": {
+      "en": "quickly",
+      "it": "velocemente",
+      "es": "rápido",
+      "pt": "rápido",
+      "fr": "vite",
+      "tr": "hızlı"
+     },
+     "it": {
+      "en": "life",
+      "it": "vita",
+      "es": "vida",
+      "pt": "vida",
+      "fr": "vie",
+      "tr": "hayat"
+     }
+    },
+    "decoy": {
+     "en": "windowpane",
+     "it": "vetro",
+     "es": "cristal",
+     "pt": "vidro",
+     "fr": "vitre",
+     "tr": "cam"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/vite",
+     "https://www.treccani.it/vocabolario/vita/"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "en"
+    ],
+    "word": {
+     "tr": "pasta",
+     "en": "pasta"
+    },
+    "meaning": {
+     "tr": {
+      "en": "cake",
+      "it": "torta",
+      "es": "tarta",
+      "pt": "bolo",
+      "fr": "gâteau",
+      "tr": "pasta"
+     },
+     "en": {
+      "en": "pasta",
+      "it": "pasta",
+      "es": "pasta",
+      "pt": "macarrão",
+      "fr": "pâtes",
+      "tr": "makarna"
+     }
+    },
+    "decoy": {
+     "en": "mail",
+     "it": "posta",
+     "es": "correo",
+     "pt": "correio",
+     "fr": "courrier",
+     "tr": "posta"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=pasta",
+     "https://www.merriam-webster.com/dictionary/pasta"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 51,
+  "words": [
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "vent",
+     "en": "vent"
+    },
+    "meaning": {
+     "fr": {
+      "en": "wind",
+      "it": "vento",
+      "es": "viento",
+      "pt": "vento",
+      "fr": "vent",
+      "tr": "rüzgar"
+     },
+     "en": {
+      "en": "vent",
+      "it": "presa d'aria",
+      "es": "respiradero",
+      "pt": "saída de ar",
+      "fr": "aération",
+      "tr": "havalandırma"
+     }
+    },
+    "decoy": {
+     "en": "sale",
+     "it": "vendita",
+     "es": "venta",
+     "pt": "venda",
+     "fr": "vente",
+     "tr": "satış"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/vent",
+     "https://www.merriam-webster.com/dictionary/vent"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "éxito",
+     "en": "exit"
+    },
+    "meaning": {
+     "es": {
+      "en": "success",
+      "it": "successo",
+      "es": "éxito",
+      "pt": "sucesso",
+      "fr": "succès",
+      "tr": "başarı"
+     },
+     "en": {
+      "en": "exit",
+      "it": "uscita",
+      "es": "salida",
+      "pt": "saída",
+      "fr": "sortie",
+      "tr": "çıkış"
+     }
+    },
+    "decoy": {
+     "en": "exile",
+     "it": "esilio",
+     "es": "exilio",
+     "pt": "exílio",
+     "fr": "exil",
+     "tr": "sürgün"
+    },
+    "sources": [
+     "https://dle.rae.es/%C3%A9xito",
+     "https://www.merriam-webster.com/dictionary/exit"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "atual",
+     "en": "actual"
+    },
+    "meaning": {
+     "pt": {
+      "en": "current",
+      "it": "attuale",
+      "es": "actual",
+      "pt": "atual",
+      "fr": "actuel",
+      "tr": "güncel"
+     },
+     "en": {
+      "en": "real",
+      "it": "vero",
+      "es": "verdadero",
+      "pt": "verdadeiro",
+      "fr": "réel",
+      "tr": "gerçek"
+     }
+    },
+    "decoy": {
+     "en": "active",
+     "it": "attivo",
+     "es": "activo",
+     "pt": "ativo",
+     "fr": "actif",
+     "tr": "aktif"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/atual",
+     "https://www.merriam-webster.com/dictionary/actual"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 52,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "peperoni",
+     "en": "pepperoni"
+    },
+    "meaning": {
+     "it": {
+      "en": "peppers",
+      "it": "peperoni",
+      "es": "pimientos",
+      "pt": "pimentões",
+      "fr": "poivrons",
+      "tr": "biber"
+     },
+     "en": {
+      "en": "pepperoni",
+      "it": "salame piccante",
+      "es": "salami picante",
+      "pt": "salame picante",
+      "fr": "saucisson piquant",
+      "tr": "acılı salam"
+     }
+    },
+    "decoy": {
+     "en": "cucumbers",
+     "it": "cetrioli",
+     "es": "pepinos",
+     "pt": "pepinos",
+     "fr": "concombres",
+     "tr": "salatalık"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/peperone/",
+     "https://www.merriam-webster.com/dictionary/pepperoni"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "fr"
+    ],
+    "word": {
+     "tr": "tas",
+     "fr": "tas"
+    },
+    "meaning": {
+     "tr": {
+      "en": "bowl",
+      "it": "ciotola",
+      "es": "cuenco",
+      "pt": "tigela",
+      "fr": "bol",
+      "tr": "tas"
+     },
+     "fr": {
+      "en": "pile",
+      "it": "mucchio",
+      "es": "montón",
+      "pt": "monte",
+      "fr": "tas",
+      "tr": "yığın"
+     }
+    },
+    "decoy": {
+     "en": "stone",
+     "it": "pietra",
+     "es": "piedra",
+     "pt": "pedra",
+     "fr": "pierre",
+     "tr": "taş"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=tas",
+     "https://www.larousse.fr/dictionnaires/francais/tas"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "pt"
+    ],
+    "word": {
+     "es": "ola",
+     "pt": "olá"
+    },
+    "meaning": {
+     "es": {
+      "en": "wave",
+      "it": "onda",
+      "es": "ola",
+      "pt": "onda",
+      "fr": "vague",
+      "tr": "dalga"
+     },
+     "pt": {
+      "en": "hello",
+      "it": "ciao",
+      "es": "hola",
+      "pt": "oi",
+      "fr": "salut",
+      "tr": "merhaba"
+     }
+    },
+    "decoy": {
+     "en": "pot",
+     "it": "pentola",
+     "es": "olla",
+     "pt": "panela",
+     "fr": "marmite",
+     "tr": "tencere"
+    },
+    "sources": [
+     "https://dle.rae.es/ola",
+     "https://dicionario.priberam.org/ol%C3%A1"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 53,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "it"
+    ],
+    "word": {
+     "tr": "kasa",
+     "it": "casa"
+    },
+    "meaning": {
+     "tr": {
+      "en": "checkout",
+      "it": "cassa",
+      "es": "caja",
+      "pt": "caixa",
+      "fr": "caisse",
+      "tr": "kasa"
+     },
+     "it": {
+      "en": "house",
+      "it": "casa",
+      "es": "casa",
+      "pt": "casa",
+      "fr": "maison",
+      "tr": "ev"
+     }
+    },
+    "decoy": {
+     "en": "helmet",
+     "it": "casco",
+     "es": "casco",
+     "pt": "capacete",
+     "fr": "casque",
+     "tr": "kask"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=kasa",
+     "https://www.treccani.it/vocabolario/casa/"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "es"
+    ],
+    "word": {
+     "fr": "plat",
+     "es": "plata"
+    },
+    "meaning": {
+     "fr": {
+      "en": "dish",
+      "it": "piatto",
+      "es": "plato",
+      "pt": "prato",
+      "fr": "plat",
+      "tr": "yemek"
+     },
+     "es": {
+      "en": "silver",
+      "it": "argento",
+      "es": "plata",
+      "pt": "prata",
+      "fr": "argent",
+      "tr": "gümüş"
+     }
+    },
+    "decoy": {
+     "en": "beach",
+     "it": "spiaggia",
+     "es": "playa",
+     "pt": "praia",
+     "fr": "plage",
+     "tr": "plaj"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/plat/61521",
+     "https://es.thefreedictionary.com/plata"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "trem",
+     "en": "tram"
+    },
+    "meaning": {
+     "pt": {
+      "en": "train",
+      "it": "treno",
+      "es": "tren",
+      "pt": "trem",
+      "fr": "train",
+      "tr": "tren"
+     },
+     "en": {
+      "en": "tram",
+      "it": "tram",
+      "es": "tranvía",
+      "pt": "bonde",
+      "fr": "tramway",
+      "tr": "tramvay"
+     }
+    },
+    "decoy": {
+     "en": "tremor",
+     "it": "tremore",
+     "es": "temblor",
+     "pt": "tremor",
+     "fr": "tremblement",
+     "tr": "titreme"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/trem",
+     "https://www.oxfordlearnersdictionaries.com/definition/english/tram"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 54,
+  "words": [
+   {
+    "pair": [
+     "pt",
+     "it"
+    ],
+    "word": {
+     "pt": "calça",
+     "it": "calza"
+    },
+    "meaning": {
+     "pt": {
+      "en": "trousers",
+      "it": "pantaloni",
+      "es": "pantalones",
+      "pt": "calça",
+      "fr": "pantalon",
+      "tr": "pantolon"
+     },
+     "it": {
+      "en": "sock",
+      "it": "calza",
+      "es": "calcetín",
+      "pt": "meia",
+      "fr": "chaussette",
+      "tr": "çorap"
+     }
+    },
+    "decoy": {
+     "en": "heat",
+     "it": "calore",
+     "es": "calor",
+     "pt": "calor",
+     "fr": "chaleur",
+     "tr": "sıcaklık"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/cal%C3%A7a",
+     "https://www.treccani.it/vocabolario/calza/"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "sole",
+     "en": "sole"
+    },
+    "meaning": {
+     "it": {
+      "en": "sun",
+      "it": "sole",
+      "es": "sol",
+      "pt": "sol",
+      "fr": "soleil",
+      "tr": "güneş"
+     },
+     "en": {
+      "en": "shoe sole",
+      "it": "suola",
+      "es": "suela",
+      "pt": "sola",
+      "fr": "semelle",
+      "tr": "taban"
+     }
+    },
+    "decoy": {
+     "en": "soul",
+     "it": "anima",
+     "es": "alma",
+     "pt": "alma",
+     "fr": "âme",
+     "tr": "ruh"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/sole/",
+     "https://www.merriam-webster.com/dictionary/sole"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "but",
+     "en": "but"
+    },
+    "meaning": {
+     "fr": {
+      "en": "goal",
+      "it": "gol",
+      "es": "gol",
+      "pt": "gol",
+      "fr": "but",
+      "tr": "gol"
+     },
+     "en": {
+      "en": "but",
+      "it": "ma",
+      "es": "pero",
+      "pt": "mas",
+      "fr": "mais",
+      "tr": "ama"
+     }
+    },
+    "decoy": {
+     "en": "bus",
+     "it": "autobus",
+     "es": "autobús",
+     "pt": "ônibus",
+     "fr": "bus",
+     "tr": "otobüs"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/but",
+     "https://www.merriam-webster.com/dictionary/but"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 55,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "fr"
+    ],
+    "word": {
+     "tr": "sel",
+     "fr": "sel"
+    },
+    "meaning": {
+     "tr": {
+      "en": "flood",
+      "it": "alluvione",
+      "es": "inundación",
+      "pt": "enchente",
+      "fr": "inondation",
+      "tr": "sel"
+     },
+     "fr": {
+      "en": "salt",
+      "it": "sale",
+      "es": "sal",
+      "pt": "sal",
+      "fr": "sel",
+      "tr": "tuz"
+     }
+    },
+    "decoy": {
+     "en": "saddle",
+     "it": "sella",
+     "es": "silla de montar",
+     "pt": "sela",
+     "fr": "selle",
+     "tr": "eyer"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=sel",
+     "https://www.larousse.fr/dictionnaires/francais/sel"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "it"
+    ],
+    "word": {
+     "es": "gamba",
+     "it": "gamba"
+    },
+    "meaning": {
+     "es": {
+      "en": "prawn",
+      "it": "gambero",
+      "es": "gamba",
+      "pt": "camarão",
+      "fr": "crevette",
+      "tr": "karides"
+     },
+     "it": {
+      "en": "leg",
+      "it": "gamba",
+      "es": "pierna",
+      "pt": "perna",
+      "fr": "jambe",
+      "tr": "bacak"
+     }
+    },
+    "decoy": {
+     "en": "ham",
+     "it": "prosciutto",
+     "es": "jamón",
+     "pt": "presunto",
+     "fr": "jambon",
+     "tr": "jambon"
+    },
+    "sources": [
+     "https://dle.rae.es/gamba",
+     "https://www.treccani.it/vocabolario/gamba/"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "horno",
+     "en": "horn"
+    },
+    "meaning": {
+     "es": {
+      "en": "oven",
+      "it": "forno",
+      "es": "horno",
+      "pt": "forno",
+      "fr": "four",
+      "tr": "fırın"
+     },
+     "en": {
+      "en": "horn",
+      "it": "corno",
+      "es": "cuerno",
+      "pt": "chifre",
+      "fr": "corne",
+      "tr": "boynuz"
+     }
+    },
+    "decoy": {
+     "en": "hornet",
+     "it": "calabrone",
+     "es": "avispón",
+     "pt": "vespão",
+     "fr": "frelon",
+     "tr": "eşek arısı"
+    },
+    "sources": [
+     "https://dle.rae.es/horno",
+     "https://www.merriam-webster.com/dictionary/horn"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 56,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "fr"
+    ],
+    "word": {
+     "es": "mantel",
+     "fr": "manteau"
+    },
+    "meaning": {
+     "es": {
+      "en": "tablecloth",
+      "it": "tovaglia",
+      "es": "mantel",
+      "pt": "toalha de mesa",
+      "fr": "nappe",
+      "tr": "masa örtüsü"
+     },
+     "fr": {
+      "en": "coat",
+      "it": "cappotto",
+      "es": "abrigo",
+      "pt": "casaco",
+      "fr": "manteau",
+      "tr": "mont"
+     }
+    },
+    "decoy": {
+     "en": "butter",
+     "it": "burro",
+     "es": "mantequilla",
+     "pt": "manteiga",
+     "fr": "beurre",
+     "tr": "tereyağı"
+    },
+    "sources": [
+     "https://dle.rae.es/mantel",
+     "https://www.larousse.fr/dictionnaires/francais/manteau"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "rua",
+     "fr": "roue"
+    },
+    "meaning": {
+     "pt": {
+      "en": "street",
+      "it": "strada",
+      "es": "calle",
+      "pt": "rua",
+      "fr": "rue",
+      "tr": "sokak"
+     },
+     "fr": {
+      "en": "wheel",
+      "it": "ruota",
+      "es": "rueda",
+      "pt": "roda",
+      "fr": "roue",
+      "tr": "tekerlek"
+     }
+    },
+    "decoy": {
+     "en": "noise",
+     "it": "rumore",
+     "es": "ruido",
+     "pt": "ruído",
+     "fr": "bruit",
+     "tr": "gürültü"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/rua",
+     "https://www.larousse.fr/dictionnaires/francais/roue"
+    ]
+   },
+   {
+    "pair": [
+     "tr",
+     "it"
+    ],
+    "word": {
+     "tr": "fare",
+     "it": "fare"
+    },
+    "meaning": {
+     "tr": {
+      "en": "mouse",
+      "it": "topo",
+      "es": "ratón",
+      "pt": "camundongo",
+      "fr": "souris",
+      "tr": "fare"
+     },
+     "it": {
+      "en": "to do",
+      "it": "fare",
+      "es": "hacer",
+      "pt": "fazer",
+      "fr": "faire",
+      "tr": "yapmak"
+     }
+    },
+    "decoy": {
+     "en": "lighthouse",
+     "it": "faro",
+     "es": "faro",
+     "pt": "farol",
+     "fr": "phare",
+     "tr": "deniz feneri"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=fare",
+     "https://www.treccani.it/vocabolario/fare/"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 57,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "en"
+    ],
+    "word": {
+     "es": "pan",
+     "en": "pan"
+    },
+    "meaning": {
+     "es": {
+      "en": "bread",
+      "it": "pane",
+      "es": "pan",
+      "pt": "pão",
+      "fr": "pain",
+      "tr": "ekmek"
+     },
+     "en": {
+      "en": "pan",
+      "it": "padella",
+      "es": "sartén",
+      "pt": "frigideira",
+      "fr": "poêle",
+      "tr": "tava"
+     }
+    },
+    "decoy": {
+     "en": "cloth",
+     "it": "panno",
+     "es": "paño",
+     "pt": "pano",
+     "fr": "chiffon",
+     "tr": "bez"
+    },
+    "sources": [
+     "https://dle.rae.es/pan",
+     "https://www.merriam-webster.com/dictionary/pan"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "en"
+    ],
+    "word": {
+     "pt": "lata",
+     "en": "late"
+    },
+    "meaning": {
+     "pt": {
+      "en": "tin can",
+      "it": "lattina",
+      "es": "lata",
+      "pt": "lata",
+      "fr": "canette",
+      "tr": "teneke kutu"
+     },
+     "en": {
+      "en": "late",
+      "it": "tardi",
+      "es": "tarde",
+      "pt": "atrasado",
+      "fr": "en retard",
+      "tr": "geç"
+     }
+    },
+    "decoy": {
+     "en": "milk",
+     "it": "latte",
+     "es": "leche",
+     "pt": "leite",
+     "fr": "lait",
+     "tr": "süt"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/lata",
+     "https://www.merriam-webster.com/dictionary/late"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "fr"
+    ],
+    "word": {
+     "it": "tetto",
+     "fr": "tête"
+    },
+    "meaning": {
+     "it": {
+      "en": "roof",
+      "it": "tetto",
+      "es": "tejado",
+      "pt": "telhado",
+      "fr": "toit",
+      "tr": "çatı"
+     },
+     "fr": {
+      "en": "head",
+      "it": "testa",
+      "es": "cabeza",
+      "pt": "cabeça",
+      "fr": "tête",
+      "tr": "baş"
+     }
+    },
+    "decoy": {
+     "en": "text",
+     "it": "testo",
+     "es": "texto",
+     "pt": "texto",
+     "fr": "texte",
+     "tr": "metin"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/tetto/",
+     "https://www.larousse.fr/dictionnaires/francais/t%C3%AAte"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 58,
+  "words": [
+   {
+    "pair": [
+     "tr",
+     "it"
+    ],
+    "word": {
+     "tr": "tavla",
+     "it": "tavola"
+    },
+    "meaning": {
+     "tr": {
+      "en": "backgammon",
+      "it": "backgammon",
+      "es": "backgammon",
+      "pt": "gamão",
+      "fr": "backgammon",
+      "tr": "tavla"
+     },
+     "it": {
+      "en": "table",
+      "it": "tavolo",
+      "es": "mesa",
+      "pt": "mesa",
+      "fr": "table",
+      "tr": "masa"
+     }
+    },
+    "decoy": {
+     "en": "tablet",
+     "it": "tablet",
+     "es": "tableta",
+     "pt": "tablet",
+     "fr": "tablette",
+     "tr": "tablet"
+    },
+    "sources": [
+     "https://sozluk.gov.tr/gts?ara=tavla",
+     "https://www.treccani.it/vocabolario/tavola/"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "en"
+    ],
+    "word": {
+     "fr": "pour",
+     "en": "pour"
+    },
+    "meaning": {
+     "fr": {
+      "en": "for",
+      "it": "per",
+      "es": "para",
+      "pt": "para",
+      "fr": "pour",
+      "tr": "için"
+     },
+     "en": {
+      "en": "to pour",
+      "it": "versare",
+      "es": "verter",
+      "pt": "despejar",
+      "fr": "verser",
+      "tr": "dökmek"
+     }
+    },
+    "decoy": {
+     "en": "poor",
+     "it": "povero",
+     "es": "pobre",
+     "pt": "pobre",
+     "fr": "pauvre",
+     "tr": "fakir"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/pour",
+     "https://www.merriam-webster.com/dictionary/pour"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "es"
+    ],
+    "word": {
+     "pt": "roxo",
+     "es": "rojo"
+    },
+    "meaning": {
+     "pt": {
+      "en": "purple",
+      "it": "viola",
+      "es": "morado",
+      "pt": "roxo",
+      "fr": "violet",
+      "tr": "mor"
+     },
+     "es": {
+      "en": "red",
+      "it": "rosso",
+      "es": "rojo",
+      "pt": "vermelho",
+      "fr": "rouge",
+      "tr": "kırmızı"
+     }
+    },
+    "decoy": {
+     "en": "rock",
+     "it": "roccia",
+     "es": "roca",
+     "pt": "rocha",
+     "fr": "roche",
+     "tr": "kaya"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/roxo",
+     "https://dle.rae.es/rojo"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 59,
+  "words": [
+   {
+    "pair": [
+     "it",
+     "en"
+    ],
+    "word": {
+     "it": "fattoria",
+     "en": "factory"
+    },
+    "meaning": {
+     "it": {
+      "en": "farm",
+      "it": "fattoria",
+      "es": "granja",
+      "pt": "fazenda",
+      "fr": "ferme",
+      "tr": "çiftlik"
+     },
+     "en": {
+      "en": "factory",
+      "it": "fabbrica",
+      "es": "fábrica",
+      "pt": "fábrica",
+      "fr": "usine",
+      "tr": "fabrika"
+     }
+    },
+    "decoy": {
+     "en": "invoice",
+     "it": "fattura",
+     "es": "factura",
+     "pt": "fatura",
+     "fr": "facture",
+     "tr": "fatura"
+    },
+    "sources": [
+     "https://dizionario.internazionale.it/parola/fattoria",
+     "https://www.merriam-webster.com/dictionary/factory"
+    ]
+   },
+   {
+    "pair": [
+     "pt",
+     "fr"
+    ],
+    "word": {
+     "pt": "lápis",
+     "fr": "lapin"
+    },
+    "meaning": {
+     "pt": {
+      "en": "pencil",
+      "it": "matita",
+      "es": "lápiz",
+      "pt": "lápis",
+      "fr": "crayon",
+      "tr": "kurşun kalem"
+     },
+     "fr": {
+      "en": "rabbit",
+      "it": "coniglio",
+      "es": "conejo",
+      "pt": "coelho",
+      "fr": "lapin",
+      "tr": "tavşan"
+     }
+    },
+    "decoy": {
+     "en": "lip",
+     "it": "labbro",
+     "es": "labio",
+     "pt": "lábio",
+     "fr": "lèvre",
+     "tr": "dudak"
+    },
+    "sources": [
+     "https://dicionario.priberam.org/l%C3%A1pis",
+     "https://www.larousse.fr/dictionnaires/francais/lapin"
+    ]
+   },
+   {
+    "pair": [
+     "es",
+     "it"
+    ],
+    "word": {
+     "es": "largo",
+     "it": "largo"
+    },
+    "meaning": {
+     "es": {
+      "en": "long",
+      "it": "lungo",
+      "es": "largo",
+      "pt": "comprido",
+      "fr": "long",
+      "tr": "uzun"
+     },
+     "it": {
+      "en": "wide",
+      "it": "largo",
+      "es": "ancho",
+      "pt": "largo",
+      "fr": "large",
+      "tr": "geniş"
+     }
+    },
+    "decoy": {
+     "en": "lizard",
+     "it": "lucertola",
+     "es": "lagarto",
+     "pt": "lagarto",
+     "fr": "lézard",
+     "tr": "kertenkele"
+    },
+    "sources": [
+     "https://es.thefreedictionary.com/largo",
+     "https://www.treccani.it/vocabolario/largo/"
+    ]
+   }
+  ]
+ },
+ {
+  "day": 60,
+  "words": [
+   {
+    "pair": [
+     "es",
+     "fr"
+    ],
+    "word": {
+     "es": "tasa",
+     "fr": "tasse"
+    },
+    "meaning": {
+     "es": {
+      "en": "rate",
+      "it": "tasso",
+      "es": "tasa",
+      "pt": "taxa",
+      "fr": "taux",
+      "tr": "oran"
+     },
+     "fr": {
+      "en": "cup",
+      "it": "tazza",
+      "es": "taza",
+      "pt": "xícara",
+      "fr": "tasse",
+      "tr": "fincan"
+     }
+    },
+    "decoy": {
+     "en": "pocket",
+     "it": "tasca",
+     "es": "bolsillo",
+     "pt": "bolso",
+     "fr": "poche",
+     "tr": "cep"
+    },
+    "sources": [
+     "https://dle.rae.es/tasa",
+     "https://www.larousse.fr/dictionnaires/francais/tasse"
+    ]
+   },
+   {
+    "pair": [
+     "fr",
+     "it"
+    ],
+    "word": {
+     "fr": "gâteau",
+     "it": "gatto"
+    },
+    "meaning": {
+     "fr": {
+      "en": "cake",
+      "it": "torta",
+      "es": "tarta",
+      "pt": "bolo",
+      "fr": "gâteau",
+      "tr": "pasta"
+     },
+     "it": {
+      "en": "cat",
+      "it": "gatto",
+      "es": "gato",
+      "pt": "gato",
+      "fr": "chat",
+      "tr": "kedi"
+     }
+    },
+    "decoy": {
+     "en": "gate",
+     "it": "cancello",
+     "es": "portón",
+     "pt": "portão",
+     "fr": "portail",
+     "tr": "bahçe kapısı"
+    },
+    "sources": [
+     "https://www.larousse.fr/dictionnaires/francais/g%C3%A2teau",
+     "https://www.treccani.it/vocabolario/gatto/"
+    ]
+   },
+   {
+    "pair": [
+     "it",
+     "pt"
+    ],
+    "word": {
+     "it": "bolla",
+     "pt": "bola"
+    },
+    "meaning": {
+     "it": {
+      "en": "bubble",
+      "it": "bolla",
+      "es": "burbuja",
+      "pt": "bolha",
+      "fr": "bulle",
+      "tr": "baloncuk"
+     },
+     "pt": {
+      "en": "ball",
+      "it": "palla",
+      "es": "pelota",
+      "pt": "bola",
+      "fr": "ballon",
+      "tr": "top"
+     }
+    },
+    "decoy": {
+     "en": "bag",
+     "it": "borsa",
+     "es": "bolso",
+     "pt": "bolsa",
+     "fr": "sac",
+     "tr": "çanta"
+    },
+    "sources": [
+     "https://www.treccani.it/vocabolario/bolla1/",
+     "https://dicionario.priberam.org/bola"
+    ]
+   }
+  ]
+ }
+]

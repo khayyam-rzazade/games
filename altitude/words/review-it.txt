@@ -1,7 +1,7 @@
-Climb — Italian answers (it)
+Altitude — Italian answers (it)
 
 These are the words that can be the day's word, by length, in alphabetical order.
-In the game they come in a fixed shuffled order (climb/words/it.json, "answers"):
+In the game they come in a fixed shuffled order (altitude/words/it.json, "answers"):
 day N takes word number (N mod list length).
 To remove or add words, list them and Claude rebuilds the file; the order of the
 remaining days stays fixed only if words are added at the end, so changes are best
@@ -43,39 +43,39 @@ test  tipo  tiro  tono  topo  toro  tram  trio  tris  tubo  tuta  uomo  uovo
 urlo  urto  vago  vaso  vela  velo  vena  vero  vice  vino  viso  vita  vite
 vivo  voce  volo  voto  zero  zona
 
-== 5 letters: 344 words ==
-abito  acido  acqua  addio  aiuto  album  altro  amare  amaro  amico  amore
-anche  anima  ansia  arena  asilo  audio  avere  bacio  bagno  ballo  banca
-banco  banda  barba  barca  basso  becco  bello  bimbo  birra  bocca  bolla
-bontà  bordo  borsa  bosco  botta  brano  bravo  breve  buono  burro  busta
-caffè  caldo  calma  campo  canto  carne  carro  carta  cassa  causa  cento
-certo  ciclo  cieco  cielo  cifra  circa  circo  città  clima  collo  colpa
-colpo  conto  copia  coppa  corda  corpo  corsa  corso  corto  costa  costo
-cotta  crema  crisi  cuore  curva  danno  danza  dieci  dieta  disco  dolce
-donna  duomo  entro  epoca  esame  falso  fango  fatto  fermo  ferro  festa
-fiato  fibra  fiera  fiero  finta  finto  fiore  firma  fisso  fiume  folla
-folle  fondo  fonte  forma  forno  forse  forte  forza  frase  frigo  fuoco
-fuori  gallo  gamba  gatto  genio  gente  gesto  gioco  gioia  golfo  gomma
-grado  grano  grave  grido  guida  gusto  hotel  invio  isola  largo  latte
-legge  legno  lento  leone  letto  libro  liceo  linea  lista  lotta  lungo
-luogo  lusso  madre  magia  mamma  mappa  marca  marmo  marzo  massa  matto
-media  medio  mensa  mente  meteo  metro  mezzo  miele  mille  misto  molto
-mondo  monte  mosca  mossa  motto  multa  museo  nonno  notte  nulla  nuoto
-nuovo  odore  oltre  ombra  onore  opera  ormai  ovest  ovvio  pacco  padre
-paese  palco  palma  parco  parte  passo  pasta  pasto  patto  paura  pausa
-pazzo  pelle  penna  pesca  petto  pezzo  piano  picco  piede  piega  pieno
-pista  pizza  podio  poeta  pollo  ponte  porta  porto  posta  posto  pozzo
-prato  preda  presa  prima  primo  prova  pugno  punta  punto  puzza  quale
-quasi  radio  reale  regia  regno  resto  retro  retta  ricco  ritmo  robot
-rosso  rotto  ruolo  ruota  sacco  salsa  salto  salvo  sasso  scala  scena
-scopo  scudo  scuro  scusa  secco  sedia  segno  senso  senza  serio  serra
-sesto  sette  sfera  sfida  sfogo  sigla  sogno  somma  sonno  sopra  sosta
-sotto  spesa  spina  sport  stare  stile  succo  suono  tanto  tappa  tardi
-targa  tasca  tasto  tempo  tenda  terra  terzo  testa  testo  tetto  tizio
-tocco  torre  torta  torto  trama  treno  tribù  trono  turno  tutto  umano
-umore  unico  unire  unità  usare  usato  utile  valle  vario  vasca  venti
-vento  verbo  verde  verso  vetro  viale  video  villa  viola  vista  volta
-vuoto  zaino  zitto
+== 5 letters: 345 words ==
+abito  acido  acqua  addio  aereo  aiuto  album  altro  amare  amaro  amico
+amore  anche  anima  ansia  arena  asilo  audio  avere  bacio  bagno  ballo
+banca  banco  banda  barba  barca  basso  becco  bello  bimbo  birra  bocca
+bolla  bontà  bordo  borsa  bosco  botta  brano  bravo  breve  buono  burro
+busta  caffè  caldo  calma  campo  canto  carne  carro  carta  cassa  causa
+cento  certo  ciclo  cieco  cielo  cifra  circa  circo  città  clima  collo
+colpa  colpo  conto  copia  coppa  corda  corpo  corsa  corso  corto  costa
+costo  cotta  crema  crisi  cuore  curva  danno  danza  dieci  dieta  disco
+dolce  donna  duomo  entro  epoca  esame  falso  fango  fatto  fermo  ferro
+festa  fiato  fibra  fiera  fiero  finta  finto  fiore  firma  fisso  fiume
+folla  folle  fondo  fonte  forma  forno  forse  forte  forza  frase  frigo
+fuoco  fuori  gallo  gamba  gatto  genio  gente  gesto  gioco  gioia  golfo
+gomma  grado  grano  grave  grido  guida  gusto  hotel  invio  isola  largo
+latte  legge  legno  lento  leone  letto  libro  liceo  linea  lista  lotta
+lungo  luogo  lusso  madre  magia  mamma  mappa  marca  marmo  marzo  massa
+matto  media  medio  mensa  mente  meteo  metro  mezzo  miele  mille  misto
+molto  mondo  monte  mosca  mossa  motto  multa  museo  nonno  notte  nulla
+nuoto  nuovo  odore  oltre  ombra  onore  opera  ormai  ovest  ovvio  pacco
+padre  paese  palco  palma  parco  parte  passo  pasta  pasto  patto  paura
+pausa  pazzo  pelle  penna  pesca  petto  pezzo  piano  picco  piede  piega
+pieno  pista  pizza  podio  poeta  pollo  ponte  porta  porto  posta  posto
+pozzo  prato  preda  presa  prima  primo  prova  pugno  punta  punto  puzza
+quale  quasi  radio  reale  regia  regno  resto  retro  retta  ricco  ritmo
+robot  rosso  rotto  ruolo  ruota  sacco  salsa  salto  salvo  sasso  scala
+scena  scopo  scudo  scuro  scusa  secco  sedia  segno  senso  senza  serio
+serra  sesto  sette  sfera  sfida  sfogo  sigla  sogno  somma  sonno  sopra
+sosta  sotto  spesa  spina  sport  stare  stile  succo  suono  tanto  tappa
+tardi  targa  tasca  tasto  tempo  tenda  terra  terzo  testa  testo  tetto
+tizio  tocco  torre  torta  torto  trama  treno  tribù  trono  turno  tutto
+umano  umore  unico  unire  unità  usare  usato  utile  valle  vario  vasca
+venti  vento  verbo  verde  verso  vetro  viale  video  villa  viola  vista
+volta  vuoto  zaino  zitto
 
 == 6 letters: 370 words ==
 acceso  adatto  adesso  adulto  affare  agenda  agosto  albero  allora
@@ -121,7 +121,7 @@ urlare  uscire  valere  valido  valore  vapore  vedere  veloce  venire
 verità  vicino  visita  vivere  voglia  volare  volere  volume  vostro
 votare
 
-== 7 letters: 423 words ==
+== 7 letters: 424 words ==
 abilità  abitare  accanto  accento  acciaio  accordo  agnello  aiutare
 albergo  allarme  allegro  altezza  animale  anonimo  anziano  appunto
 arbitro  argento  armadio  armonia  artista  aspetto  assente  assenza
@@ -159,22 +159,22 @@ pensare  pentola  perdere  perfino  periodo  persino  persona  pesante
 pessimo  piacere  pianeta  pianura  piccolo  pioggia  piscina  pittore
 pittura  pizzico  plurale  polizia  pollice  polvere  portare  postale
 potente  potenza  pratica  pratico  preciso  premere  preside  privato
-profilo  profumo  provare  pulizia  pullman  puntare  qualche  qualità
-quattro  quercia  ragazza  ragazzo  ragione  reagire  recente  regione
-regista  rendere  respiro  restare  ribelle  ricerca  ricetta  ricordo
-ridurre  rifiuto  rifugio  rimedio  rischio  riserva  ritardo  ritorno
-rivista  romanzo  rompere  rottura  rubrica  salotto  saltare  salvare
-sbaglio  scambio  scarico  scatola  scavare  schermo  scherzo  schiena
-scienza  scimmia  scritta  scritto  secondo  segnale  segnare  segreto
-seguire  sentire  servire  settimo  sezione  sfilata  sguardo  siccome
-signore  simbolo  sincero  singolo  sistema  sognare  sorella  sorriso
-sottile  sparire  spedire  sperare  spirale  sposare  squadra  stasera
-stomaco  storico  stretto  suonare  sveglio  tabella  talento  tappeto
-tattica  tecnica  tecnico  tedesco  terreno  tessera  tessuto  toccare
-tornare  traccia  tragico  tredici  trovare  turista  ufficio  umidità
-urgente  vacanza  valigia  vampiro  vecchio  vendere  venerdì  ventina
-verdura  vernice  versare  vestire  vestito  vetrina  viaggio  vietare
-vigilia  vincere  violino  volante  volgare  volontà  vulcano
+profilo  profumo  proprio  provare  pulizia  pullman  puntare  qualche
+qualità  quattro  quercia  ragazza  ragazzo  ragione  reagire  recente
+regione  regista  rendere  respiro  restare  ribelle  ricerca  ricetta
+ricordo  ridurre  rifiuto  rifugio  rimedio  rischio  riserva  ritardo
+ritorno  rivista  romanzo  rompere  rottura  rubrica  salotto  saltare
+salvare  sbaglio  scambio  scarico  scatola  scavare  schermo  scherzo
+schiena  scienza  scimmia  scritta  scritto  secondo  segnale  segnare
+segreto  seguire  sentire  servire  settimo  sezione  sfilata  sguardo
+siccome  signore  simbolo  sincero  singolo  sistema  sognare  sorella
+sorriso  sottile  sparire  spedire  sperare  spirale  sposare  squadra
+stasera  stomaco  storico  stretto  suonare  sveglio  tabella  talento
+tappeto  tattica  tecnica  tecnico  tedesco  terreno  tessera  tessuto
+toccare  tornare  traccia  tragico  tredici  trovare  turista  ufficio
+umidità  urgente  vacanza  valigia  vampiro  vecchio  vendere  venerdì
+ventina  verdura  vernice  versare  vestire  vestito  vetrina  viaggio
+vietare  vigilia  vincere  violino  volante  volgare  volontà  vulcano
 
 == 8 letters: 375 words ==
 allegato  allegria  ambiente  amicizia  annuncio  anticipo  apertura
@@ -232,4 +232,4 @@ tramonto  trappola  trecento  trentina  umorismo  universo  vegetale
 velocità  vergogna  verifica  versione  vignetta  vincente  virtuale
 visibile  visitare  vittoria  zucchero
 
-Total: 1899 answers.
+Total: 1901 answers.

@@ -1,7 +1,7 @@
-Climb — Brazilian Portuguese answers (pt)
+Altitude — Brazilian Portuguese answers (pt)
 
 These are the words that can be the day's word, by length, in alphabetical order.
-In the game they come in a fixed shuffled order (climb/words/pt.json, "answers"):
+In the game they come in a fixed shuffled order (altitude/words/pt.json, "answers"):
 day N takes word number (N mod list length).
 To remove or add words, list them and Claude rebuilds the file; the order of the
 remaining days stays fixed only if words are added at the end, so changes are best
@@ -24,7 +24,7 @@ sim  sob  sol  som  sou  sua  sul  tal  tão  tem  ter  teu  tia  tio  tom
 tua  uma  une  uns  usa  use  uso  vai  van  vão  vem  ver  vez  via  vim
 vir  viu  voo  vou  voz
 
-== 4 letters: 262 words ==
+== 4 letters: 263 words ==
 ação  agir  água  além  algo  alho  alma  alto  alvo  amar  amor  anão  anel
 aqui  arco  área  arte  ator  aula  azar  azul  baía  base  bebê  belo  bico
 bobo  boca  bola  bolo  bota  boxe  cabo  cada  café  cair  cama  cano  caos
@@ -43,233 +43,236 @@ pico  pior  pipa  piso  poço  pois  polo  pote  povo  puro  qual  quem  raio
 raiz  raro  rato  real  rede  reto  rico  rima  riso  robô  roda  rolo  rosa
 rota  roxo  ruim  rumo  saga  saia  sair  sala  sapo  seco  sede  seis  selo
 sete  sino  sofá  soja  solo  soma  sono  sopa  suco  sujo  suor  taça  táxi
-tela  tema  teto  time  tipo  todo  topo  trem  três  trio  tubo  tudo  unha
-unir  urso  usar  útil  vaga  vale  vaso  veia  vela  vida  vila  vivo  voar
-você  zero
+tela  tema  teto  time  tipo  todo  topo  trás  trem  três  trio  tubo  tudo
+unha  unir  urso  usar  útil  vaga  vale  vaso  veia  vela  vida  vila  vivo
+voar  você  zero
 
-== 5 letters: 432 words ==
+== 5 letters: 436 words ==
 abril  abrir  acaso  achar  ácido  acima  adeus  aéreo  agora  ainda  ajuda
-álbum  algum  aliás  aluno  amigo  andar  antes  anual  apoio  árabe  areia
-arena  arroz  assim  ativo  atlas  atriz  atual  atuar  áudio  autor  avião
-aviso  bacia  baile  baixo  banco  banda  bando  banho  barba  barco  barra
-bater  beber  beijo  beira  bicho  bloco  bolsa  bolso  bônus  botão  braço
-bravo  breve  briga  bruto  busca  caixa  calar  calça  calma  calmo  calor
-campo  canal  canto  capaz  carga  carne  carro  carta  casal  casar  causa
-cerca  certo  chama  chapa  chato  chave  chefe  cheio  chuva  ciclo  cinco
-cinza  circo  citar  claro  clima  clipe  clube  cobra  cobre  coisa  colar
-comum  conta  conto  cópia  coral  corda  coroa  corpo  corte  costa  couro
-creme  criar  cruel  culpa  curar  curso  curto  curva  custo  dança  dente
-desde  dever  dieta  disco  dizer  dobro  doido  drama  dupla  duplo  durar
-enfim  então  entre  época  estar  etapa  exame  exato  extra  fácil  faixa
-falar  falha  falso  falta  favor  fazer  febre  feira  feliz  ferro  festa
-ficar  ficha  filho  filme  final  firme  focar  folga  folha  fonte  força
-forma  forte  fraco  frase  fruta  fruto  fugir  fundo  ganho  gênio  gente
-geral  gesto  gordo  gosto  graça  grade  grama  grave  grego  gripe  grito
-grupo  herói  homem  honra  horta  hotel  humor  ícone  idade  ideal  ideia
-igual  irmão  jogar  jovem  juízo  julho  junho  junto  justo  lagoa  lance
-largo  lavar  lazer  legal  leite  lenda  lento  leste  letra  levar  lição
-lidar  líder  ligar  limão  limpo  lindo  linha  lista  livre  livro  local
-longe  longo  louco  lugar  macho  magia  maior  mamãe  manga  manhã  marca
-março  massa  média  médio  medir  menor  menos  mesmo  metal  metrô  mídia
-milho  moeda  molho  monte  moral  morar  morro  motor  móvel  mover  mudar
-muito  multa  mundo  museu  nariz  navio  negar  nível  nobre  noção  noite
-norte  nosso  notar  nunca  nuvem  óbvio  oeste  olhar  ombro  ontem  opção
-ordem  ótimo  outro  ouvir  pagar  palco  papai  papel  parar  parte  passe
-passo  pasta  pátio  pausa  pedir  pedra  pegar  peito  peixe  perda  perna
-perto  pesca  piada  piano  pires  pista  pizza  placa  plano  pobre  poder
-poema  poeta  ponta  ponte  ponto  porco  porta  porto  posto  pouco  praça
-praga  praia  prata  prato  prazo  preço  preto  primo  prova  pular  quase
-queda  radar  rádio  raiva  rapaz  razão  redor  regra  reino  resto  rever
-risco  rival  rocha  rosto  roupa  rural  russo  saber  sabor  saída  salão
-saldo  salto  samba  saúde  senha  série  sério  serra  sigla  sinal  sítio
-sobra  sobre  solar  solto  sonho  sorte  suave  subir  tanto  tarde  tempo
-tênis  termo  terra  testa  teste  texto  tigre  tirar  tocar  tomar  toque
-torre  total  trato  tribo  trigo  troca  trono  túnel  turco  turma  turnê
-turno  união  único  valer  valor  vapor  vazio  velho  venda  vento  verão
-verde  vídeo  vidro  vilão  vinda  vinho  vinte  virar  vírus  visão  vista
-viver  vôlei  volta
+álbum  algum  aliás  aluno  amigo  andar  antes  anual  aonde  apoio  árabe
+areia  arena  arroz  assim  ativo  atlas  atrás  atriz  atual  atuar  áudio
+autor  avião  aviso  bacia  baile  baixo  banco  banda  bando  banho  barba
+barco  barra  bater  beber  beijo  beira  bicho  bloco  bolsa  bolso  bônus
+botão  braço  bravo  breve  briga  bruto  busca  caixa  calar  calça  calma
+calmo  calor  campo  canal  canto  capaz  carga  carne  carro  carta  casal
+casar  causa  cerca  certo  chama  chapa  chato  chave  chefe  cheio  chuva
+ciclo  cinco  cinza  circo  citar  claro  clima  clipe  clube  cobra  cobre
+coisa  colar  comum  conta  conto  cópia  coral  corda  coroa  corpo  corte
+costa  couro  creme  criar  cruel  culpa  curar  curso  curto  curva  custo
+dança  dente  desde  dever  dieta  disco  dizer  dobro  doido  drama  dupla
+duplo  durar  enfim  então  entre  época  estar  etapa  exame  exato  extra
+fácil  faixa  falar  falha  falso  falta  favor  fazer  febre  feira  feliz
+ferro  festa  ficar  ficha  filho  filme  final  firme  focar  folga  folha
+fonte  força  forma  forte  fraco  frase  fruta  fruto  fugir  fundo  ganho
+gênio  gente  geral  gesto  gordo  gosto  graça  grade  grama  grave  grego
+gripe  grito  grupo  herói  homem  honra  horta  hotel  humor  ícone  idade
+ideal  ideia  igual  irmão  jeito  jogar  jovem  juízo  julho  junho  junto
+justo  lagoa  lance  largo  lavar  lazer  legal  leite  lenda  lento  leste
+letra  levar  lição  lidar  líder  ligar  limão  limpo  lindo  linha  lista
+livre  livro  local  longe  longo  louco  lugar  macho  magia  maior  mamãe
+manga  manhã  marca  março  massa  média  médio  medir  menor  menos  mesmo
+metal  metrô  mídia  milho  moeda  molho  monte  moral  morar  morro  motor
+móvel  mover  mudar  muito  multa  mundo  museu  nariz  navio  negar  nível
+nobre  noção  noite  norte  nosso  notar  nunca  nuvem  óbvio  oeste  olhar
+ombro  ontem  opção  ordem  ótimo  outro  ouvir  pagar  palco  papai  papel
+parar  parte  passe  passo  pasta  pátio  pausa  pedir  pedra  pegar  peito
+peixe  perda  perna  perto  pesca  piada  piano  pires  pista  pizza  placa
+plano  pobre  poder  poema  poeta  ponta  ponte  ponto  porco  porta  porto
+posto  pouco  praça  praga  praia  prata  prato  prazo  preço  preto  primo
+prova  pular  quase  queda  radar  rádio  raiva  rapaz  razão  redor  regra
+reino  resto  rever  risco  rival  rocha  rosto  roupa  rural  russo  saber
+sabor  saída  salão  saldo  salto  samba  saúde  seção  senha  série  sério
+serra  sigla  sinal  sítio  sobra  sobre  solar  solto  sonho  sorte  suave
+subir  tanto  tarde  tempo  tênis  termo  terra  testa  teste  texto  tigre
+tirar  tocar  tomar  toque  torre  total  trato  tribo  trigo  troca  trono
+túnel  turco  turma  turnê  turno  união  único  valer  valor  vapor  vazio
+velho  venda  vento  verão  verde  vídeo  vidro  vilão  vinda  vinho  vinte
+virar  vírus  visão  vista  viver  vôlei  volta
 
-== 6 letters: 402 words ==
-abaixo  aberto  abraço  abrigo  acabar  acesso  acordo  açúcar  adoção
-adorar  adotar  adulto  afinal  agenda  agente  agosto  ajudar  aldeia
-alegre  alemão  alerta  alguém  aliado  alívio  almoço  altura  amanhã
-ângulo  animal  antigo  apagar  apenas  apesar  apoiar  aquele  artigo
-árvore  atleta  atrair  atraso  avanço  avisar  bairro  baixar  banana
-barata  barato  básico  batata  batida  bebida  beijar  beleza  bilhão
-bocado  bonito  branco  brigar  brilho  bronze  buraco  buscar  cabeça
-cabelo  camada  câmera  camisa  canção  caneta  cantar  cantor  cartão
-cartaz  carvão  casaco  casado  causar  cavalo  centro  chamar  chance
-chapéu  chegar  cheiro  chinês  choque  chorar  cidade  cinema  classe
-clique  cobrar  cobrir  código  coelho  colega  coleta  colher  coluna
-começo  comida  comigo  compra  contar  contra  correr  cortar  cuidar
-curtir  dançar  debate  década  defesa  deitar  deixar  demais  demora
-dentro  depois  desejo  desvio  diária  diário  direto  doação  dormir
-doutor  dragão  dúvida  edição  editar  editor  efeito  elenco  embora
-emoção  empate  engano  enorme  enredo  ensaio  ensino  entrar  enviar
-equipe  errado  escada  escala  escola  escudo  escuro  esfera  esgoto
-espaço  espera  estado  estilo  estudo  eterno  evento  evitar  faltar
-famoso  fechar  feijão  férias  ficção  fígado  figura  filmar  fingir
-físico  forçar  formal  formar  frágil  frango  frente  fumaça  função
-futuro  ganhar  garoto  gastar  gentil  global  gostar  grande  grátis
-gravar  gritar  grosso  guarda  hábito  humano  idioma  ilusão  imagem
-imenso  inglês  início  inútil  inveja  ironia  jamais  janela  jantar
-jardim  joelho  jogada  jornal  julgar  júnior  juntar  lançar  largar
-latino  leitor  limite  limpar  língua  livrar  lógica  lógico  mágica
-mágico  maluco  mandar  mansão  manter  manual  marcar  marcha  margem
-marido  máximo  médico  medida  melhor  membro  menino  mensal  mental
-mentir  mestre  metade  método  milhão  mínimo  minuto  missão  modelo
-montar  moreno  motivo  mulher  música  músico  namoro  nenhum  normal
-novela  número  objeto  oceano  óculos  ocupar  oferta  olhada  ônibus
-operar  oposto  orelha  origem  outono  ouvido  pacote  padrão  página
-painel  paixão  panela  pânico  parada  parede  parque  partir  passar
-patrão  pedaço  pedido  pensar  perdão  perder  perfil  perigo  pesado
-pessoa  piloto  pintar  piorar  placar  planta  poeira  poesia  porção
-porque  portal  portão  prazer  prédio  prêmio  pressa  pronto  propor
-provar  quadra  quadro  quando  quanto  quarto  quatro  quebra  queijo
-queixa  quente  querer  quieto  quinto  quinze  rainha  rápido  reação
-reagir  recado  recusa  região  relato  resumo  reunir  rodada  romano
-rotina  sábado  salvar  sapato  século  seguir  seguro  semana  sempre
-senhor  sentar  sentir  servir  social  sofrer  soltar  sombra  sonhar
-sorrir  subida  surgir  tabela  também  tanque  tarefa  teatro  tecido
-tensão  tentar  teoria  testar  típico  título  tomada  tópico  tratar
-trazer  trecho  treino  trilha  trinta  triste  trocar  troféu  último
-urbano  vacina  variar  vencer  vender  versão  vestir  viajar  violão
-virada  visita  visual  voltar  volume  xadrez
+== 6 letters: 406 words ==
+abaixo  aberto  abraço  abrigo  acabar  acerca  acesso  acordo  açúcar
+adoção  adorar  adotar  adulto  afinal  agenda  agente  agosto  ajudar
+aldeia  alegre  alemão  alerta  alguém  aliado  alívio  almoço  altura
+amanhã  ângulo  animal  antigo  apagar  apenas  apesar  apoiar  aquele
+artigo  árvore  atleta  atrair  atraso  avanço  avisar  bairro  baixar
+banana  barata  barato  básico  batata  batida  bebida  beijar  beleza
+bilhão  bocado  bonito  branco  brigar  brilho  bronze  buraco  buscar
+cabeça  cabelo  camada  câmera  camisa  canção  caneta  cantar  cantor
+cartão  cartaz  carvão  casaco  casado  causar  cavalo  centro  chamar
+chance  chapéu  chegar  cheiro  chinês  choque  chorar  cidade  cinema
+classe  clique  cobrar  cobrir  código  coelho  colega  coleta  colher
+coluna  começo  comida  comigo  compra  contar  contra  correr  cortar
+cuidar  curtir  dançar  debate  década  defesa  deitar  deixar  demais
+demora  dentro  depois  desejo  desvio  diária  diário  direto  doação
+dormir  doutor  dragão  dúvida  edição  editar  editor  efeito  elenco
+embora  emoção  empate  engano  enorme  enredo  ensaio  ensino  entrar
+enviar  equipe  errado  escada  escala  escola  escudo  escuro  esfera
+esgoto  espaço  espera  estado  estilo  estudo  eterno  evento  evitar
+faltar  famoso  fechar  feijão  férias  ficção  fígado  figura  filmar
+fingir  físico  forçar  formal  formar  frágil  frango  frente  fumaça
+função  futuro  ganhar  garoto  gastar  gentil  global  gostar  grande
+grátis  gravar  gritar  grosso  guarda  hábito  humano  idioma  ilusão
+imagem  imenso  inglês  início  inútil  inveja  ironia  jamais  janela
+jantar  jardim  joelho  jogada  jornal  julgar  júnior  juntar  lançar
+largar  latino  leitor  limite  limpar  língua  livrar  lógica  lógico
+mágica  mágico  maluco  mandar  mansão  manter  manual  marcar  marcha
+margem  marido  máximo  médico  medida  melhor  membro  menino  mensal
+mental  mentir  mestre  metade  método  milhão  mínimo  minuto  missão
+modelo  montar  moreno  motivo  mulher  música  músico  namoro  nenhum
+normal  novela  número  objeto  oceano  óculos  ocupar  oferta  olhada
+ônibus  operar  oposto  orelha  origem  outono  ouvido  pacote  padrão
+página  painel  paixão  panela  pânico  parada  parede  parque  partir
+passar  patrão  pedaço  pedido  pensar  perdão  perder  perfil  perigo
+pesado  pessoa  piloto  pintar  piorar  placar  planta  poeira  poesia
+porção  porque  portal  portão  prazer  prédio  prêmio  pressa  pronto
+propor  provar  quadra  quadro  quando  quanto  quarto  quatro  quebra
+queijo  queixa  quente  querer  quieto  quinto  quinze  rainha  rápido
+reação  reagir  recado  recusa  região  relato  resumo  reunir  rodada
+romano  rotina  sábado  salvar  sapato  século  seguir  seguro  semana
+sempre  senhor  sentar  sentir  servir  sessão  social  sofrer  soltar
+sombra  sonhar  sorrir  subida  surgir  tabela  talvez  também  tanque
+tarefa  teatro  tecido  tensão  tentar  teoria  testar  típico  título
+tomada  tópico  tratar  trazer  trecho  treino  trilha  trinta  triste
+trocar  troféu  último  urbano  vacina  variar  vencer  vender  versão
+vestir  viagem  viajar  violão  virada  visita  visual  voltar  volume
+xadrez
 
-== 7 letters: 500 words ==
+== 7 letters: 505 words ==
 abraçar  abrigar  absurdo  acalmar  aceitar  acertar  acessar  acordar
 adaptar  admirar  admitir  afastar  agradar  alcance  alegria  alertar
 algodão  aliança  aliviar  almoçar  aluguel  amarelo  ambição  amizade
 amoroso  amostra  ampliar  animado  anônimo  anúncio  apelido  apertar
 apetite  aplicar  apontar  aprovar  aquário  árbitro  armário  arquivo
 arrumar  artista  assinar  assumir  assunto  atenção  atender  atitude
-atração  atrasar  audição  aumento  ausente  avaliar  avançar  avenida
-bagagem  bagunça  balança  balanço  barraca  barriga  barulho  bateria
-bengala  bilhete  bobagem  boletim  bondade  brilhar  brincar  cadeira
-caderno  calçada  cálculo  camarão  caminho  campeão  cansaço  cansado
-capital  capitão  carinho  cartola  castelo  castigo  caverna  celular
-cenário  central  cérebro  certeza  chamada  chegada  chileno  ciência
-cimento  cintura  círculo  citação  cliente  clínica  coberta  coleção
-colégio  coletar  colisão  colocar  colônia  comando  começar  comédia
-comprar  confiar  confuso  contato  convite  coração  coragem  coreano
-correio  correto  corrida  cortina  costume  covarde  cozinha  criação
-criador  criança  cristal  crítica  crítico  cuidado  cultura  cumprir
-cunhado  curioso  debater  decidir  decisão  dedicar  defeito  definir
-delícia  demorar  derrota  desafio  desejar  desenho  deserto  desfile
-destino  desviar  detalhe  devagar  dezoito  diálogo  difícil  digital
-diploma  direção  direito  diretor  dirigir  disputa  dividir  divisão
-dominar  domingo  dourado  duração  durante  eclipse  educado  egoísta
-emprego  empresa  encanto  encarar  energia  enganar  engolir  ensinar
-entrada  entrega  equação  escalar  escapar  escolar  escolha  escrita
-escutar  esforço  espécie  espelho  esperar  esperto  esporte  esquema
-esquina  estação  estádio  estágio  estátua  estoque  estrada  estreia
-estrela  estudar  estúdio  europeu  evoluir  exemplo  existir  externo
-extremo  fábrica  fachada  família  farinha  fazenda  fechado  feriado
-filhote  foguete  formato  formiga  fórmula  fortuna  francês  frontal
-futebol  galáxia  galeria  galinha  garagem  garrafa  geração  gerente
-gigante  ginásio  goleiro  gordura  gráfico  gramado  guardar  higiene
-honesto  horário  humilde  ignorar  impedir  império  impulso  incapaz
-incluir  incomum  indiano  indicar  inédito  infeliz  inicial  iniciar
-injeção  injusto  inteiro  intenso  interno  inverno  irônico  isolado
-janeiro  japonês  jogador  juvenil  lâmpada  laranja  largura  lateral
-legenda  leitura  lembrar  liberar  licença  liderar  ligação  limitar
-limpeza  líquido  litoral  loucura  machado  madeira  maestro  maioria
-maldade  maneira  manobra  máquina  marinho  martelo  máscara  mascote
-matéria  medalha  melhora  melodia  memória  mentira  mercado  merecer
-mineral  mistura  mochila  moderno  molhado  momento  monitor  monstro
-morador  mostrar  mudança  mundial  muralha  músculo  musical  namorar
-natação  natural  navegar  negócio  nervoso  ninguém  nojento  notícia
-noturno  noventa  obrigar  ocupado  ofender  oficial  oficina  oitenta
-opinião  orgulho  outubro  palácio  palavra  palhaço  palpite  paraíso
-parecer  parente  paródia  partida  passado  pássaro  passear  passeio
-pequeno  perdido  perdoar  perfume  período  pescoço  péssimo  pessoal
-pimenta  pintura  planeta  plantão  plantar  plateia  popular  posição
-postura  prática  prático  preciso  pressão  prestar  privado  procura
-produto  projeto  próprio  próximo  público  quebrar  queimar  querido
-questão  químico  quintal  rebelde  receber  receita  recente  recorde
-recurso  recusar  redação  reduzir  reflexo  reforço  regular  relação
-relaxar  relógio  remédio  remover  renovar  reparar  repetir  resenha
-reserva  resgate  retirar  retorno  retrato  reunião  revelar  revisão
-revista  riqueza  rodovia  romance  roteiro  salário  salgado  saudade
-secreto  segredo  segundo  segurar  seleção  semanal  semente  sentido
-separar  serviço  setenta  símbolo  simples  sincero  sinopse  sistema
-socorro  solidão  solução  sombrio  sorriso  sorteio  sorvete  sotaque
-sucesso  sudeste  sugerir  sujeira  sujeito  superar  suporte  surreal
-talento  tamanho  teclado  técnica  técnico  telhado  terapia  término
-terreno  tesouro  titular  torcida  torneio  trágico  traição  treinar
-tubarão  turismo  turista  unidade  urgente  usuário  valente  vampiro
-varanda  vegetal  verdade  véspera  vestido  virtual  visitar  visível
-vitória  vizinho  volante  vontade
+atração  atrasar  através  audição  aumento  ausente  avaliar  avançar
+avenida  bagagem  bagunça  balança  balanço  barraca  barriga  barulho
+bateria  bengala  bilhete  bobagem  boletim  bondade  brilhar  brincar
+cadeira  caderno  calçada  cálculo  camarão  caminho  campeão  cansaço
+cansado  capital  capitão  carinho  cartola  castelo  castigo  caverna
+celular  cenário  central  cérebro  certeza  chamada  chegada  chileno
+ciência  cimento  cintura  círculo  citação  cliente  clínica  coberta
+coleção  colégio  coletar  colisão  colocar  colônia  comando  começar
+comédia  comprar  conexão  confiar  confuso  contato  convite  coração
+coragem  coreano  correio  correto  corrida  cortina  costume  covarde
+cozinha  crescer  criação  criador  criança  cristal  crítica  crítico
+cuidado  cultura  cumprir  cunhado  curioso  debater  decidir  decisão
+dedicar  defeito  definir  delícia  demorar  derrota  desafio  desejar
+desenho  deserto  desfile  destino  desviar  detalhe  devagar  dezoito
+diálogo  difícil  digital  diploma  direção  direito  diretor  dirigir
+disputa  dividir  divisão  dominar  domingo  dourado  duração  durante
+eclipse  educado  egoísta  emprego  empresa  encanto  encarar  energia
+enganar  engolir  ensinar  entrada  entrega  equação  escalar  escapar
+escolar  escolha  escrita  escutar  esforço  espécie  espelho  esperar
+esperto  esporte  esquema  esquina  estação  estádio  estágio  estátua
+estoque  estrada  estreia  estrela  estudar  estúdio  europeu  evoluir
+exemplo  existir  externo  extremo  fábrica  fachada  família  farinha
+fazenda  fechado  feriado  filhote  foguete  formato  formiga  fórmula
+fortuna  francês  frontal  futebol  galáxia  galeria  galinha  garagem
+garrafa  geração  gerente  gigante  ginásio  goleiro  gordura  gráfico
+gramado  guardar  higiene  honesto  horário  humilde  ignorar  impedir
+império  impulso  incapaz  incluir  incomum  indiano  indicar  inédito
+infeliz  inicial  iniciar  injeção  injusto  inteiro  intenso  interno
+inverno  irônico  isolado  janeiro  japonês  jogador  juvenil  lâmpada
+laranja  largura  lateral  legenda  leitura  lembrar  liberar  licença
+liderar  ligação  limitar  limpeza  líquido  litoral  loucura  machado
+madeira  maestro  maioria  maldade  maneira  manobra  máquina  marinho
+martelo  máscara  mascote  matéria  medalha  melhora  melodia  memória
+mentira  mercado  merecer  mineral  mistura  mochila  moderno  molhado
+momento  monitor  monstro  morador  mostrar  mudança  mundial  muralha
+músculo  musical  namorar  natação  natural  navegar  negócio  nervoso
+ninguém  nojento  notícia  noturno  noventa  obrigar  ocupado  ofender
+oficial  oficina  oitenta  opinião  orgulho  outubro  palácio  palavra
+palhaço  palpite  paraíso  parecer  parente  paródia  partida  passado
+pássaro  passear  passeio  pequeno  perdido  perdoar  perfume  período
+pescoço  péssimo  pessoal  pimenta  pintura  piscina  planeta  plantão
+plantar  plateia  popular  posição  postura  prática  prático  preciso
+pressão  prestar  privado  procura  produto  projeto  próprio  próximo
+público  quebrar  queimar  querido  questão  químico  quintal  rebelde
+receber  receita  recente  recorde  recurso  recusar  redação  reduzir
+reflexo  reforço  regular  relação  relaxar  relógio  remédio  remover
+renovar  reparar  repente  repetir  resenha  reserva  resgate  retirar
+retorno  retrato  reunião  revelar  revisão  revista  riqueza  rodovia
+romance  roteiro  salário  salgado  saudade  secreto  segredo  segundo
+segurar  seleção  semanal  semente  sentido  separar  serviço  setenta
+símbolo  simples  sincero  sinopse  sistema  socorro  solidão  solução
+sombrio  sorriso  sorteio  sorvete  sotaque  sucesso  sudeste  sugerir
+sujeira  sujeito  superar  suporte  surreal  talento  tamanho  teclado
+técnica  técnico  telhado  terapia  término  terreno  tesouro  titular
+torcida  torneio  trágico  traição  treinar  tubarão  turismo  turista
+unidade  urgente  usuário  valente  vampiro  varanda  vegetal  verdade
+véspera  vestido  virtual  visitar  visível  vitória  vizinho  volante
+vontade
 
-== 8 letters: 483 words ==
+== 8 letters: 487 words ==
 abertura  absoluto  academia  acelerar  acomodar  acordado  acústico
-adorável  africano  agitação  aguentar  alcançar  alfabeto  alimento
-altitude  alumínio  ambiente  amigável  animação  anterior  anunciar
-aparecer  aparelho  apertado  aprender  aprendiz  armadura  arrancar
-arranjar  arriscar  asiático  assistir  assustar  atacante  atlético
-atraente  atrasado  aumentar  ausência  autônomo  avançado  aventura
-bandeira  banheira  banheiro  barreira  basquete  bastante  beisebol
-besteira  biologia  biscoito  bloquear  bloqueio  borracha  cachorro
-calcular  caminhão  caminhar  camiseta  camisola  campanha  cancelar
-capacete  capítulo  capturar  caravana  caridade  carnaval  carneiro
-carregar  carreira  carrinho  carteira  castanho  catálogo  celebrar
-cerâmica  chateado  chuveiro  circuito  circular  clássico  cobertor
-cobrança  coletivo  colheita  colorido  comandar  combinar  comentar
-comparar  competir  completo  complexo  conceito  concluir  concreto
-concurso  condição  conectar  conferir  conforto  confusão  conhecer
-conjunto  conselho  consulta  consumir  contador  contagem  contente
-conteúdo  contexto  controle  conversa  convidar  conviver  corporal
-correção  corredor  corrente  correria  corretor  corrigir  cortesia
-cozinhar  criativo  criatura  criticar  cultivar  cultural  decidido
-decisivo  declarar  dedicado  defender  defensor  delicado  dentista
-depender  depósito  depressa  derrotar  derrubar  desafiar  desconto
-desculpa  desenhar  desfazer  desistir  desligar  desordem  desprezo
-destacar  destaque  detectar  detetive  devolver  dezembro  diamante
-diâmetro  dimensão  diminuir  dinâmica  dinheiro  discurso  discutir
-disposto  disputar  distante  diversão  divertir  divulgar  doloroso
-duzentos  ecologia  edifício  educação  elefante  elegante  elemento
-elétrico  elevador  eliminar  embarque  encontro  endereço  enquanto
-entender  entregar  envolver  episódio  escalada  escolher  esconder
-escrever  escritor  esforçar  espacial  espalhar  espanhol  especial
-esquecer  esquerdo  estímulo  estômago  estragar  estranho  estresse
-evolução  examinar  exibição  explicar  explorar  expulsão  expulsar
-exterior  familiar  fantasia  fantasma  farmácia  favorito  feminino
-fenômeno  festival  filmagem  filósofo  flexível  floresta  folclore
-fracasso  fraqueza  ganhador  garantia  garantir  garganta  gasolina
-grandeza  gratidão  gratuito  gravação  guardião  guitarra  harmonia
-herdeiro  história  holandês  horrível  hospital  imaginar  imediato
-imperial  importar  impresso  imprimir  incrível  indígena  infância
-infantil  inferior  infinito  informal  informar  ingresso  inocente
-inovador  insistir  inspirar  instalar  instante  instável  integral
-interior  intuição  invenção  inventar  irlandês  irritado  italiano
-lanterna  lealdade  legítimo  levantar  limitado  livraria  logotipo
-macarrão  manchete  mandioca  manteiga  maratona  marcação  marcante
-material  mecânico  medicina  medieval  melhorar  melhoria  mensagem
-mercúrio  mergulho  metáfora  mexicano  mistério  misturar  montagem
-montanha  mosquito  multidão  muscular  nacional  namorado  narração
-narrador  natureza  negativo  negociar  nordeste  noroeste  novembro
-novidade  nutrição  obedecer  objetivo  obrigado  observar  oferecer
-olímpico  operário  oponente  orgânico  oriental  original  oxigênio
-paciente  pacífico  padrinho  paisagem  palestra  parabéns  parceiro
-parceria  parecido  passagem  perceber  percurso  perfeito  pergunta
-perigoso  permitir  pesadelo  pinheiro  pioneiro  pirâmide  planejar
-plástico  poderoso  polêmica  poluição  porcaria  portaria  portátil
-positivo  possível  potência  praticar  precioso  precisão  precisar
-preferir  preguiça  preparar  presença  presente  prevenir  previsão
-primário  primeiro  princesa  príncipe  problema  procurar  produtor
-produzir  profundo  programa  proibido  projeção  promessa  promoção
-proposta  proteção  proteger  proteína  protetor  provável  provocar
-publicar  quadrado  qualquer  quarenta  quebrado  racional  rastrear
-razoável  realista  realizar  reclamar  recolher  recordar  refeição
-refletir  reforçar  registro  relativo  repórter  resgatar  resistir
-resolver  respeito  respirar  resposta  restante  restrito  retornar
-ridículo  satélite  saudável  seguinte  selvagem  semestre  sensação
-sensível  separado  serpente  servidor  setembro  silêncio  simpatia
-sinônimo  situação  sobrinho  solteiro  sudoeste  sugestão  superior
-suportar  suspense  tatuagem  telefone  temporal  terceiro  terminal
-terminar  terrível  torcedor  trabalho  tradição  tradução  tradutor
-traduzir  trânsito  trilogia  tristeza  tropical  uniforme  universo
-urgência  validade  vantagem  variável  vencedor  vendedor  vergonha
-vermelho  vertical  veterano  viajante  vilarejo  vitamina  zagueiro
+adorável  advogado  africano  agitação  aguentar  alcançar  alfabeto
+alimento  altitude  alumínio  ambiente  amigável  animação  anterior
+anunciar  aparecer  aparelho  apertado  aprender  aprendiz  armadura
+arrancar  arranjar  arriscar  asiático  assistir  assustar  atacante
+atlético  atraente  atrasado  aumentar  ausência  autônomo  avançado
+aventura  bandeira  banheira  banheiro  barreira  basquete  bastante
+beisebol  besteira  biologia  biscoito  bloquear  bloqueio  borracha
+cachorro  calcular  caminhão  caminhar  camiseta  camisola  campanha
+cancelar  capacete  capítulo  capturar  caravana  caridade  carnaval
+carneiro  carregar  carreira  carrinho  carteira  castanho  catálogo
+celebrar  cerâmica  chateado  chuveiro  circuito  circular  clássico
+cobertor  cobrança  coletivo  colheita  colorido  comandar  combinar
+comentar  comparar  competir  completo  complexo  conceito  concluir
+concreto  concurso  condição  conectar  conferir  conforto  confusão
+conhecer  conjunto  conselho  consulta  consumir  contador  contagem
+contente  conteúdo  contexto  controle  conversa  convidar  conviver
+corporal  correção  corredor  corrente  correria  corretor  corrigir
+cortesia  cozinhar  criativo  criatura  criticar  cultivar  cultural
+decidido  decisivo  declarar  dedicado  defender  defensor  delicado
+dentista  depender  depósito  depressa  derrotar  derrubar  desafiar
+desconto  desculpa  desenhar  desfazer  desistir  desligar  desordem
+desprezo  destacar  destaque  detectar  detetive  devolver  dezembro
+diamante  diâmetro  dimensão  diminuir  dinâmica  dinheiro  discurso
+discutir  disposto  disputar  distante  diversão  divertir  divulgar
+doloroso  duzentos  ecologia  edifício  educação  elefante  elegante
+elemento  elétrico  elevador  eliminar  embarque  encontro  endereço
+enquanto  entender  entregar  envolver  episódio  escalada  escolher
+esconder  escrever  escritor  esforçar  espacial  espalhar  espanhol
+especial  esquecer  esquerdo  estímulo  estômago  estragar  estranho
+estresse  evolução  examinar  exibição  explicar  explorar  expulsão
+expulsar  extensão  exterior  familiar  fantasia  fantasma  farmácia
+favorito  feminino  fenômeno  festival  filmagem  filósofo  flexível
+floresta  folclore  fracasso  fraqueza  ganhador  garantia  garantir
+garganta  gasolina  grandeza  gratidão  gratuito  gravação  guardião
+guitarra  harmonia  herdeiro  história  holandês  horrível  hospital
+imaginar  imediato  imperial  importar  impresso  imprimir  incrível
+indígena  infância  infantil  inferior  infinito  informal  informar
+ingresso  inocente  inovador  insistir  inspirar  instalar  instante
+instável  integral  intenção  interior  invenção  inventar  irlandês
+irritado  italiano  lanterna  lealdade  legítimo  levantar  limitado
+livraria  logotipo  macarrão  manchete  mandioca  manteiga  maratona
+marcação  marcante  material  mecânico  medicina  medieval  melhorar
+melhoria  mensagem  mercúrio  mergulho  metáfora  mexicano  mistério
+misturar  montagem  montanha  mosquito  multidão  muscular  nacional
+namorado  narração  narrador  natureza  negativo  negociar  nordeste
+noroeste  novembro  novidade  nutrição  obedecer  objetivo  obrigado
+observar  oferecer  olímpico  operário  oponente  orgânico  oriental
+original  oxigênio  paciente  pacífico  padrinho  paisagem  palestra
+parabéns  parceiro  parceria  parecido  passagem  perceber  percurso
+perfeito  pergunta  perigoso  permitir  pesadelo  pesquisa  pinheiro
+pioneiro  pirâmide  planejar  plástico  poderoso  polêmica  poluição
+porcaria  portaria  portátil  positivo  possível  potência  praticar
+precioso  precisão  precisar  preferir  preguiça  preparar  presença
+presente  prevenir  previsão  primário  primeiro  princesa  príncipe
+problema  procurar  produtor  produzir  profundo  programa  proibido
+projeção  promessa  promoção  proposta  proteção  proteger  proteína
+protetor  provável  provocar  publicar  quadrado  qualquer  quarenta
+quebrado  racional  rastrear  razoável  realista  realizar  reclamar
+recolher  recordar  refeição  refletir  reforçar  registro  relativo
+repórter  resgatar  resistir  resolver  respeito  respirar  resposta
+restante  restrito  retornar  ridículo  satélite  saudável  seguinte
+selvagem  semestre  sensação  sensível  separado  serpente  servidor
+setembro  silêncio  simpatia  sinônimo  situação  sobrinho  solteiro
+sudoeste  sugestão  superior  suportar  surpresa  suspense  tatuagem
+telefone  temporal  terceiro  terminal  terminar  terrível  torcedor
+trabalho  tradição  tradução  tradutor  traduzir  trânsito  trilogia
+tristeza  tropical  uniforme  universo  urgência  validade  vantagem
+variável  vencedor  vendedor  vergonha  vermelho  vertical  veterano
+viajante  vilarejo  vitamina  zagueiro
 
-Total: 2262 answers.
+Total: 2280 answers.
