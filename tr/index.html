@@ -51,6 +51,8 @@
    daily row above (#shelf): wide picture, no pitch line, the same short tile. One tile for now. */
 [data-g="altitude"] { --c: #4F6B80; --tint: #E3EBF1; }
 @media (prefers-color-scheme: dark) { [data-g="altitude"] { --c: #A9C6DA; --tint: #0E1821; } }
+.word-games { margin-top: 34px; }   /* the same air above it as "Pass the phone" has (28 Oct 2026, Khayyam) */
+@media (max-width: 700px) { .word-games { margin-top: 24px; } }   /* ...on a phone too, where that row drops to 24 */
 #shelf3 .art { aspect-ratio: 1.8 / 1; border-radius: 14px; }
 #shelf3 .tile { padding: 8px; }
 #shelf3 .tile .body { padding: 10px 6px 4px; }
@@ -314,7 +316,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
      ORDER: Altitude stays the first tile of this row (Khayyam, 28 Oct 2026). A new word game is added AFTER it,
      inside the same shelf-row — unlike the daily row above, where the newest game goes first. -->
 <section class="games word-games" aria-labelledby="words-title">
-  <h2 class="sec" id="words-title" data-s="home.word_games_h">Kelime oyunları</h2>
+  <h2 class="sec" id="words-title" data-s="home.word_games_h">Bugünün kelime oyunları</h2>
   <div class="shelf" id="shelf3">
     <div class="shelf-row" id="shelf3-row" data-n="1">
     <a class="tile" id="tile-altitude" data-g="altitude" href="../altitude/">

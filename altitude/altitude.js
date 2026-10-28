@@ -17,7 +17,10 @@
   var REVEAL_FROM = 7;             // from this many letters, the word's first letter is given
   var WARM_AT = 3;                 // the counter turns warm (never red) when this many guesses or fewer are left
   var FIRST = 2, LAST = 8;         // letters of the first stage and of the summit
-  var HOLD = 1300;                 // ms a found word stays on screen (flag, cheer, +1) before the climb moves up
+  var HOLD = 2300;                 // ms a found word stays on screen (flag, cheer, +1) before the climb moves up
+                                   /* 28 Oct 2026, Khayyam: the climb was flicking past. Every step is now walked
+                                      through — the letters turn over one at a time, the flag goes in, the cheer
+                                      reads, the +1 flies, and only then does the next word come. */
   var NEED_COUNTRY = 3;            // a country's average is shown from this many players
   var NEED_WORLD = 2;              // the day's picture of everyone from this many players
 
@@ -57,6 +60,7 @@
   }
   function two(n) { return (n < 10 ? "0" : "") + n; }
   function dateKey() { var d = new Date(); return String(d.getFullYear()) + two(d.getMonth() + 1) + two(d.getDate()); }
+  function yesterKey() { var d = new Date(); d.setDate(d.getDate() - 1); return String(d.getFullYear()) + two(d.getMonth() + 1) + two(d.getDate()); }
   function dayNo() {                                    // as the other games count it: day 1 is the start date, the day turns at the player's midnight
     if (TO && TO.dayNumber) return Math.max(1, TO.dayNumber(START));
     var p = START.split("-"), d = new Date();
@@ -91,7 +95,7 @@
   var curRow = null;
   var busy = false;
   var beat = 0;                    // ?beat=N
-  var srv = { views: {}, cc: null, tried: {} };
+  var srv = { views: {}, yviews: {}, cc: null, tried: {} };
   var toastTimer = 0, shakeTimer = 0, cheerTimer = 0;
   var lag = 0;                     // guesses given back that the counter has not shown yet (the "+1" is still flying)
   var cardOpen = false;
@@ -309,7 +313,7 @@
     r.style.setProperty("--n", L);
     return r;
   }
-  function flipMs(L) { return reduced() ? 0 : (L - 1) * 90 + 560; }
+  function flipMs(L) { return reduced() ? 0 : (L - 1) * 120 + 700; }
 
   function renderBoard(o) {
     o = o || {};
@@ -540,7 +544,7 @@
             renderBudget(true);
             renderLeft(true);
           });
-        }, reduced() ? 0 : 350);
+        }, reduced() ? 0 : 650);
         later(advance, reduced() ? 600 : HOLD);
       } else {
         renderStatus();
@@ -652,7 +656,7 @@
     $("kb").hidden = true;
     busy = false;
     syncServer(lang);
-    cardAuto = later(function () { openCard(); }, reduced() ? 300 : (won ? 1900 : 1000));      // the summit's cheer plays first
+    cardAuto = later(function () { openCard(); }, reduced() ? 300 : (won ? 2600 : 1400));      // the summit's cheer plays first
   }
 
   /* ------------------------------------------------------------------ the results server (the calls the other games make) */
@@ -719,6 +723,18 @@
       }
     }).then(null, noop);
   }
+  /* Yesterday (28 Oct 2026, Khayyam: the card must hook). A new game has almost nobody on it at the moment you
+     finish, so today's picture is often empty. The server keeps 70 days, so when today is too thin the card shows
+     yesterday's instead, said plainly. Asked for only when it is needed. */
+  function loadYesterday(l) {
+    return post("/stats/view", { d: yesterKey(), k: "altitude-" + l }).then(function (res) {
+      if (res.status === 200 && res.data.view) srv.yviews[l] = res.data.view;
+    }).then(null, noop);
+  }
+  function needYesterday() {
+    var v = srv.views[lang];
+    return !(v && v.w && v.w.n >= NEED_WORLD);
+  }
   function ensureCountry() {
     if (srv.cc) return Promise.resolve();
     /* altitude-* ids may not be on the server yet (400 carries no country): ask an existing game, only for where the player is */
@@ -738,6 +754,10 @@
     }).then(null, noop).then(function () {
       if (refused[dateKey() + ":" + l]) return null;       // the server does not know these ids yet: its views would be refused too
       return Promise.all(CODES.map(loadView));
+    }).then(function () {
+      if (refused[dateKey() + ":" + l] || !needYesterday()) return null;
+      liveUpdate();                                        // show what today has while yesterday is on its way
+      return Promise.all(CODES.map(loadYesterday));
     }).then(function () { return ensureCountry(); }).then(function () { liveUpdate(); });
   }
 
@@ -876,10 +896,24 @@
     live1.id = "cl-live1";
     sheet.appendChild(live1);
 
+    var live3 = el("div", "cl-live3");                  // the language race: the six languages against each other
+    live3.id = "cl-live3";
+    sheet.appendChild(live3);
+
+    /* Share, and beside it a challenge (28 Oct 2026): the challenge link was already built into the share text but
+       nothing on the card pointed at it, so nobody used the one thing that brings a second player. */
+    var acts = el("div", "cl-acts");
     var sh = el("button", "btn solid cl-share", T("share"));
     sh.type = "button";
     sh.addEventListener("click", function () { shareNow(); });
-    sheet.appendChild(sh);
+    acts.appendChild(sh);
+    if (run.h >= FIRST) {
+      var ch = el("button", "btn ghost cl-chal", T("challenge"));
+      ch.type = "button";
+      ch.addEventListener("click", function () { challengeNow(); });
+      acts.appendChild(ch);
+    }
+    sheet.appendChild(acts);
 
     var live2 = el("div", "cl-live2");                  // the averages
     live2.id = "cl-live2";
@@ -901,10 +935,6 @@
     });
     tries.appendChild(tb);
     sheet.appendChild(tries);
-
-    var live3 = el("div", "cl-live3");                  // the language race
-    live3.id = "cl-live3";
-    sheet.appendChild(live3);
 
     var more = el("a", "fin-more cl-more");
     var siteL = siteLang();
@@ -928,15 +958,31 @@
   function renderLive() {
     var a = $("cl-live1"), b = $("cl-live2"), c = $("cl-live3");
     if (!a || !run) return;
-    var v = srv.views[lang], dist = distOf(v);
+
+    /* Today when it has enough players, else yesterday, said plainly. A card that shows nothing is the one thing
+       this game cannot afford: it is finished at the moment the player is most likely to look. */
+    var today = srv.views[lang], dist = distOf(today), old = false;
+    if (!dist) {
+      var yd = distOf(srv.yviews[lang]);
+      if (yd) { dist = yd; old = true; }
+    }
+    var views = old ? srv.yviews : srv.views;
+    var v = views[lang];
+    function tag(h3) { if (old) h3.appendChild(el("small", "cl-when", T("yesterday"))); return h3; }
+
     var hiEl = $("cl-higher"), hp = higherThan(dist, run.h);
-    if (hiEl) { hiEl.hidden = hp === null; if (hp !== null) hiEl.textContent = T("higher", { p: pct(hp) }); }
+    if (hiEl) {
+      if (hp !== null) { hiEl.hidden = false; hiEl.textContent = T(old ? "higher_y" : "higher", { p: pct(hp) }); }
+      else if (today && today.w && today.w.n === 1) { hiEl.hidden = false; hiEl.textContent = T("first_today"); }
+      else hiEl.hidden = true;
+    }
+
     a.textContent = "";
     if (dist) {
       var hd = el("div", "cl-sec");
       var h3 = el("h3", "", T("fell"));
       h3.appendChild(el("small", "", T("players", { n: dist.n.toLocaleString ? dist.n.toLocaleString(lang) : dist.n })));
-      hd.appendChild(h3);
+      hd.appendChild(tag(h3));
       a.appendChild(hd);
     }
     a.insertAdjacentHTML("beforeend", mountainSVG({ h: run.h, beat: beat, dist: dist ? dist : null }));
@@ -946,21 +992,22 @@
     var cAvg = avgOf(v && v.h, NEED_COUNTRY), wAvg = avgOf(v && v.w, NEED_WORLD);
     if (cAvg !== null || wAvg !== null) {
       var g = el("div", "cl-avgs");
-      if (cAvg !== null && cc) g.appendChild(avgCell(nf(cAvg, 1), flagOf(cc.c) + " " + T("avg_country", { country: countryName(cc.c) })));
-      if (wAvg !== null) g.appendChild(avgCell(nf(wAvg, 1), T("avg_world")));
+      var when = old ? " · " + T("yesterday") : "";
+      if (cAvg !== null && cc) g.appendChild(avgCell(nf(cAvg, 1), flagOf(cc.c) + " " + T("avg_country", { country: countryName(cc.c) }) + when));
+      if (wAvg !== null) g.appendChild(avgCell(nf(wAvg, 1), T("avg_world") + when));
       b.appendChild(g);
     }
 
     c.textContent = "";
     var rows = [];
     CODES.forEach(function (l) {
-      var x = avgOf(srv.views[l] && srv.views[l].w, NEED_WORLD);
+      var x = avgOf(views[l] && views[l].w, NEED_WORLD);
       if (x !== null) rows.push({ l: l, v: x });
     });
     if (rows.length >= 2) {
       rows.sort(function (p, q) { return q.v - p.v; });
       var sec = el("div", "cl-sec");
-      sec.appendChild(el("h3", "", T("race")));
+      sec.appendChild(tag(el("h3", "", T("race"))));
       var ul = el("ul", "cl-race");
       rows.forEach(function (r) {
         var li = el("li", r.l === lang ? "me" : "");
@@ -1080,6 +1127,19 @@
       shareDialog(blob, text, file, can);
     }).then(null, noop);
     if (TO && TO.count) TO.count("altitude/share");
+  }
+  /* The challenge (28 Oct 2026): the plain words plus the ?beat= link, no picture. It is the shortest thing a
+     player can paste into a group chat, and it is what brings the second player a new game needs. */
+  function challengeNow() {
+    if (!run || !run.done || run.h < FIRST) return;
+    var text = T("beat_them", { n: run.h }) + "\n" + baseUrl() + "?beat=" + run.h;
+    var nav = window.navigator;
+    if (nav.share && !computer()) {
+      nav.share({ text: text }).then(noop, noop);
+    } else {
+      shareDialog(null, text, null, false);
+    }
+    if (TO && TO.count) TO.count("altitude/challenge");
   }
   function shareDialog(blob, text, file, can) {
     var dlg = $("dlg-share"), img = $("share-img"), save = $("share-save"), note = $("share-note");

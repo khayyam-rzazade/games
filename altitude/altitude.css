@@ -33,16 +33,28 @@
 /* ---------- the sky: it rises with the climb (--alt, 0 at the foot, 1 at the summit) and gets lighter ---------- */
 .sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
   background-color: color-mix(in srgb, var(--sky-hi) calc(var(--alt, 0) * 100%), var(--sky-lo));
-  transition: background-color 1.6s ease; }
+  transition: background-color 2.2s ease; }
 .sky::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--sky-hi) 55%, transparent), transparent 55%); opacity: .7; }
 .sky .cloud { position: absolute; height: 74px; border-radius: 60px; background: var(--cloud); filter: blur(16px);
-  transform: translateY(calc(var(--alt, 0) * 150px)); transition: transform 1.8s cubic-bezier(.3, .6, .3, 1); }
+  transform: translateY(calc(var(--alt, 0) * 150px)); transition: transform 2.4s cubic-bezier(.3, .6, .3, 1); }
 .sky .cloud.a { left: -12%; top: 16%; width: 58%; }
-.sky .cloud.b { right: -14%; top: 40%; width: 52%; height: 60px; transition-duration: 2.2s; }
-.sky .cloud.c { left: 18%; top: 64%; width: 44%; height: 54px; transition-duration: 2.6s; }
-.sky .ridge { position: absolute; left: -4%; right: -4%; bottom: -2px; height: 36%; background: var(--ridge);
-  clip-path: polygon(0 100%, 0 66%, 12% 46%, 25% 62%, 44% 24%, 60% 54%, 77% 36%, 100% 64%, 100% 100%);
-  transform: translateY(calc(var(--alt, 0) * 105%)); transition: transform 2s cubic-bezier(.3, .6, .3, 1); }
+.sky .cloud.b { right: -14%; top: 40%; width: 52%; height: 60px; transition-duration: 2.9s; }
+.sky .cloud.c { left: 18%; top: 64%; width: 44%; height: 54px; transition-duration: 3.4s; }
+/* Three ranges of peaks behind the game (28 Oct 2026, Khayyam: "more mountain kind designs ... showing why that
+   name"). They sink at different rates as --alt rises, so the player is not watching one hill drop: the near range
+   goes first, the far one last, and at the summit you are looking down on all three. That parallax is what makes
+   the name mean something without a word of explanation. The clouds sit between the far and near ranges. */
+.sky .range { position: absolute; left: -6%; right: -6%; bottom: -2px; background: var(--ridge);
+  transition: transform 2.6s cubic-bezier(.3, .6, .3, 1); }
+.sky .range.far { height: 76%; opacity: .40;
+  clip-path: polygon(0 100%, 0 76%, 9% 54%, 18% 68%, 31% 30%, 43% 60%, 52% 42%, 64% 64%, 78% 24%, 89% 56%, 100% 44%, 100% 100%);
+  transform: translateY(calc(var(--alt, 0) * 72%)); transition-duration: 3.4s; }
+.sky .range.mid { height: 62%; opacity: .62;
+  clip-path: polygon(0 100%, 0 68%, 14% 44%, 27% 62%, 38% 32%, 50% 56%, 63% 36%, 74% 60%, 86% 38%, 100% 62%, 100% 100%);
+  transform: translateY(calc(var(--alt, 0) * 96%)); transition-duration: 3s; }
+.sky .range.near { height: 48%;
+  clip-path: polygon(0 100%, 0 70%, 12% 48%, 25% 66%, 44% 26%, 60% 58%, 77% 38%, 100% 66%, 100% 100%);
+  transform: translateY(calc(var(--alt, 0) * 120%)); }
 
 /* ---------- the page: a column, the keyboard at the bottom where the thumb is ---------- */
 .cl { display: flex; flex-direction: column; height: calc(100vh - 64px); height: calc(100svh - 64px); min-height: 30rem; padding-bottom: 12px; position: relative; }
@@ -59,7 +71,7 @@
 .ladder i .fl { position: absolute; right: 3px; top: -9px; width: 11px; height: 15px; overflow: visible; pointer-events: none; }
 .ladder i .fl .pole { stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; fill: none; }
 .ladder i .fl .pen { fill: var(--flag); }
-.ladder i .fl.plant { transform-origin: 2px 15px; animation: cl-plant .6s cubic-bezier(.3, 1.4, .5, 1) both; }
+.ladder i .fl.plant { transform-origin: 2px 15px; animation: cl-plant .85s cubic-bezier(.3, 1.4, .5, 1) both; }
 @keyframes cl-plant { 0% { transform: translateY(9px) scale(.2); opacity: 0; } 55% { transform: translateY(-3px) scale(1.2) rotate(-7deg); opacity: 1; } 100% { transform: none; opacity: 1; } }
 .ladder i { position: relative; }
 .ladder i.beat::after { content: ""; position: absolute; left: 24%; right: 24%; bottom: -6px; height: 3px; border-radius: 2px; background: var(--flag); }
@@ -81,9 +93,9 @@
 .t.g { background: var(--hit); color: var(--on-hit); box-shadow: none; --fb: var(--hit); --fc: var(--on-hit); }
 .t.y { background: var(--near); color: var(--on-near); box-shadow: none; --fb: var(--near); --fc: var(--on-near); }
 .t.x { background: var(--none); color: var(--on-none); box-shadow: none; --fb: var(--none); --fc: var(--on-none); }
-.t.flip { animation: cl-flip .56s ease both; animation-delay: calc(var(--i) * 90ms); }
+.t.flip { animation: cl-flip .7s ease both; animation-delay: calc(var(--i) * 120ms); }
 .row.shake { animation: cl-shake .42s ease; }
-.row.win .t { animation: cl-bounce .6s ease both; animation-delay: calc(var(--i) * 70ms); }
+.row.win .t { animation: cl-bounce .7s ease both; animation-delay: calc(var(--i) * 95ms); }
 .row.reveal .t { background: transparent; box-shadow: inset 0 0 0 2px var(--c); color: var(--ink); }
 @keyframes cl-flip {
   0%   { transform: rotateX(0); background: var(--card); color: var(--ink); box-shadow: inset 0 0 0 2px var(--c); }
@@ -104,7 +116,7 @@
   background: var(--hit); color: var(--on-hit); font-family: var(--display); font-weight: 800; font-size: 1.22rem; letter-spacing: -0.01em; white-space: nowrap;
   box-shadow: 0 8px 22px rgba(46, 159, 99, .35); pointer-events: none; }
 .cheer[hidden] { display: none; }
-.cheer.show { animation: cl-cheer 1.6s ease both; }
+.cheer.show { animation: cl-cheer 2.1s ease both; }
 @keyframes cl-cheer {
   0% { opacity: 0; transform: translate(-50%, 12px) scale(.8); } 12% { opacity: 1; transform: translate(-50%, 0) scale(1.08); } 20% { transform: translate(-50%, 0) scale(1); }
   78% { opacity: 1; transform: translate(-50%, 0) scale(1); } 100% { opacity: 0; transform: translate(-50%, -8px) scale(1); }
@@ -169,7 +181,13 @@
 .cl-sec { margin-top: 18px; }
 .cl-sec h3 { margin: 0 0 6px; font-family: var(--display); font-weight: 700; font-size: 1.02rem; letter-spacing: -0.015em; }
 .cl-sec h3 small { font-family: var(--text); font-weight: 600; color: var(--soft); font-size: 0.82rem; margin-left: 6px; }
-.fin-sheet .cl-share { margin-top: 14px; width: 100%; }
+/* Share and Challenge side by side (28 Oct 2026): Share is the wider one, the challenge sits next to it. */
+.cl-acts { display: flex; gap: 8px; margin-top: 14px; }
+.fin-sheet .cl-share { flex: 1 1 auto; width: auto; margin-top: 0; }
+.fin-sheet .cl-chal { flex: 0 1 auto; margin-top: 0; white-space: nowrap; }
+@media (max-width: 380px) { .cl-acts { flex-direction: column; } .fin-sheet .cl-chal { width: 100%; } }
+/* "yesterday" next to a heading, when today has too few players to show a picture of */
+.cl-when { margin-left: 6px; font-weight: 600; color: var(--soft); font-size: 0.82rem; text-transform: lowercase; }
 .cl-avgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
 .cl-avg { padding: 10px 12px; border-radius: 14px; background: var(--tint); }
 .cl-avg b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1.05; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
@@ -225,5 +243,5 @@
 @media (prefers-reduced-motion: reduce) {
   .t.flip, .row.win .t, .row.shake, .ladder i.pulse, .t.f.pop, .ladder i .fl.plant, .left b.bump, .budget i.new { animation: none; }
   .cheer.show { animation: none; opacity: 1; }
-  .sky, .sky .cloud, .sky .ridge { transition: none; }
+  .sky, .sky .cloud, .sky .range { transition: none; }
 }
