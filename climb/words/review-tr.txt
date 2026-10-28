@@ -1,0 +1,238 @@
+Climb — Turkish answers (tr)
+
+These are the words that can be the day's word, by length, in alphabetical order.
+In the game they come in a fixed shuffled order (climb/words/tr.json, "answers"):
+day N takes word number (N mod list length).
+To remove or add words, list them and Claude rebuilds the file; the order of the
+remaining days stays fixed only if words are added at the end, so changes are best
+made before the game opens.
+
+== 2 letters: 48 words ==
+aç  ad  ağ  ah  al  an  as  at  ay  az  bu  da  de  ek  el  en  eş  et  ev
+ha  iç  il  in  ip  iş  iz  ki  mı  mi  mu  mü  ne  oh  ok  ol  on  oy  ön
+öp  öz  su  şu  uç  un  üç  ve  ya  ye
+
+== 3 letters: 260 words ==
+abi  acı  açı  ada  adı  ait  alo  alt  ama  ana  anı  ani  ara  arı  asi
+aşı  aşk  ata  aya  ayı  bağ  bak  bal  bar  bas  baş  bay  bel  ben  beş
+bey  bil  bin  bir  bit  biz  bol  boş  bot  boy  boz  bul  buz  cam  can
+caz  cep  çağ  çal  çam  çay  çek  çık  çiğ  çim  çok  çöl  çöp  dağ  dal
+dar  der  dev  dış  dik  dil  diş  diz  don  dön  dur  duş  dün  düş  düz
+ele  eli  eşi  eve  evi  fan  far  fen  fil  gaz  geç  gel  gir  git  gol
+göç  gök  göl  gör  göz  gri  güç  gül  gün  gür  hak  hal  ham  hat  hem
+hep  her  hey  hız  hiç  his  hoş  ısı  içe  içi  iki  ile  ilk  iri  ise
+işe  işi  iyi  jet  kaç  kal  kan  kap  kar  kas  kaş  kat  kaz  kek  kel
+kes  kez  kıl  kır  kış  kız  kim  kin  koç  kod  kol  koş  koy  kök  kör
+köy  kum  kur  kuş  kül  laf  lig  maç  mod  mor  mum  muz  nem  net  not
+oda  oku  ona  onu  öne  öte  pas  pay  pek  pes  pil  pis  pop  poz  pul
+ray  rol  ruh  saç  saf  sağ  sap  sat  say  seç  sen  ses  set  sık  sır
+sil  sis  siz  sol  son  sor  sos  soy  söz  sus  süs  süt  şef  şey  şık
+şok  şov  taç  tak  tam  taş  tat  tek  tel  ten  ter  tıp  tır  tip  tok
+ton  top  toz  tur  tut  tuz  tüm  tüp  tür  tüy  uyu  üst  üye  var  vay
+ver  yağ  yak  yan  yap  yaş  yat  yay  yaz  yem  yer  yıl  yok  yol  yön
+yük  yüz  zar  zıt  zor
+
+== 4 letters: 352 words ==
+abla  acil  açık  adam  aday  adet  adım  adil  ağaç  ağır  ağız  ağrı  aile
+ajan  akıl  aksi  alan  alay  alet  alev  alın  altı  amaç  amca  anne  araç
+arka  artı  arzu  asıl  asil  asla  asma  aşık  atak  ateş  avuç  ayak  ayar
+ayıp  ayna  aynı  ayrı  baba  bale  bant  bari  batı  bazı  beri  bile  bina
+biri  blok  boğa  boks  borç  boru  boya  burç  burs  büyü  cadı  ceza  cilt
+cins  cuma  cüce  çaba  çare  çatı  çene  çift  çoğu  daha  dana  dans  dede
+defa  deli  denk  depo  dere  deri  ders  dert  deve  diri  disk  dişi  diye
+dizi  doğa  doğu  dolu  dost  dört  dram  eğer  ekim  ekip  ekşi  elli  elma
+emek  emin  emir  epey  erik  esas  eser  eski  eşek  eşit  eşya  etek  etki
+evet  evli  fare  fark  fena  film  form  gece  gemi  genç  gene  geri  gezi
+gibi  gişe  golf  göre  grip  grup  hala  halı  halk  hani  harf  hata  hava
+hele  hile  hobi  hoca  ışık  iade  icat  için  iğne  ikiz  ikna  ilçe  ilgi
+imza  ince  inci  inek  ipek  isim  işçi  işte  izin  jüri  kaba  kafa  kale
+kalp  kamp  kaos  kapı  kara  kare  kart  kasa  katı  kaya  keçi  kedi  kere
+kına  kırk  kısa  kıyı  kilo  kira  kişi  klip  koca  koku  kola  konu  koşu
+kova  koyu  köşe  kötü  kral  kriz  kule  kupa  kura  kurt  kuru  kutu  kuzu
+küme  lale  leke  lens  lira  lise  lüks  maaş  maça  mama  mart  masa  mavi
+maya  mert  mide  mini  moda  mola  müze  neşe  niye  ocak  odun  ofis  oğul
+okul  olay  omuz  onay  onca  onur  oran  orta  otel  otuz  oyun  öbür  ödev
+ödül  öfke  öğle  ölçü  ömür  önce  önem  öykü  öyle  özel  özen  özet  özür
+para  park  peki  peri  plaj  plan  puan  razı  renk  rica  risk  rota  rüya
+saat  sade  saha  sahi  salı  sarı  sayı  semt  sene  seri  sert  sıkı  sıra
+sırf  sırt  sıvı  site  skor  solo  soru  spor  stil  sulu  süre  sürü  şair
+şaka  şans  şarj  şart  şifa  şiir  şişe  tane  tarz  taze  tema  tepe  terk
+ters  test  tren  tura  ucuz  uçak  ufak  ufuk  uğur  umut  uslu  usta  uydu
+uyku  uyum  uzak  uzay  uzun  ülke  ümit  ürün  üvey  üzüm  veda  veli  veya
+yana  yani  yapı  yara  yarı  yaya  yazı  yedi  yeni  yine  yurt  yuva  zeki
+zevk
+
+== 5 letters: 500 words ==
+acaba  acele  açlık  açmak  adres  ahşap  akşam  aktif  alarm  albüm  alçak
+almak  altın  ancak  anket  anlam  anlık  antik  araba  artık  aslan  aşağı
+aşırı  atmak  aylık  aynen  bacak  bahar  bahçe  bakım  bakır  bakış  balık
+banka  banyo  baraj  barış  basit  baskı  başka  bayan  bazen  bebek  beden
+belki  belli  bence  besin  beste  beton  beyaz  beyin  bıçak  biber  biçim
+bilet  bilgi  bilim  biraz  bitki  boğaz  boyun  boyut  bozuk  böcek  bölge
+bölüm  böyle  buçuk  bugün  buhar  bulut  bunca  burun  bütün  büyük  cadde
+canlı  cesur  cevap  ciddi  cihaz  cümle  çabuk  çamur  çanta  çekim  çelik
+çeşit  çeşme  çevre  çıkış  çınar  çiçek  çizgi  çoban  çocuk  çorba  çözüm
+çünkü  dahil  daire  dalga  damat  damla  davet  değer  değil  delik  demek
+demet  demir  deney  denge  deniz  dergi  derin  detay  devam  devre  diğer
+dilek  dilim  direk  doğal  doğru  doğum  dokuz  dolar  dosya  dönem  döner
+duman  durum  duvar  duygu  düğün  dünya  düşük  düzen  ekmek  ekran  eksik
+elmas  engel  erkek  erken  esmer  etmek  evcil  evren  eylül  fakat  fakir
+falan  fayda  fazla  fikir  filan  final  fiyat  fizik  forma  galip  garip
+gayet  geçen  geçit  gelin  genel  geniş  gerçi  gerek  giriş  gitar  giyim
+gizli  göğüs  gölge  görev  görüş  gövde  gurur  güçlü  gümüş  güneş  güney
+güven  güzel  haber  hafif  hafta  hakem  halka  hangi  hanım  hariç  hasar
+hasta  hatta  havuz  hayal  hayat  haydi  hayır  hazır  hedef  hemen  henüz
+hepsi  hesap  hızlı  huzur  ıslak  ısrar  içeri  içmek  idare  iddia  ideal
+ifade  iklim  ikram  ileri  ilham  insan  iptal  istek  işlem  kablo  kabul
+kadar  kader  kadın  kadro  kahve  kalem  kalın  kalıp  kanal  kanat  kanıt
+kapak  karar  kargo  karın  karma  karşı  kasım  kayak  kayıp  kayıt  kazan
+kemer  kemik  kendi  kesim  kesin  keşif  keşke  keyif  kırık  kızıl  kilit
+kimse  kimya  kiraz  kitap  kolay  komik  komşu  konum  kopya  korku  koyun
+köfte  kömür  köpek  kulak  kural  kurgu  kuruş  kuzey  küçük  kürek  lazer
+lazım  lider  liman  limon  liste  madde  madem  marka  masaj  masal  maske
+masum  mayıs  merak  mesaj  metal  metin  metro  meyve  mezun  mısır  mimar
+minik  mizah  model  moral  motor  mutlu  müdür  müzik  nasıl  neden  nefes
+nefis  nehir  nesil  neyse  nisan  nişan  niyet  nokta  nöbet  olgun  olmak
+opera  organ  orman  ortak  ortam  öğlen  örnek  öteki  özgür  özlem  paket
+pamuk  panik  parça  pasif  pasta  pazar  pembe  perde  pilot  pizza  polis
+posta  prens  proje  radyo  rahat  rakip  rapor  rekor  resim  rezil  robot
+roman  sabah  sabır  sabit  saçma  sadık  sağır  sahil  sahip  sahne  sahte
+sakin  saklı  salon  sanal  sanat  sanki  saray  sayfa  saygı  sebep  sebze
+sefer  sekiz  selam  sergi  sesli  sevgi  sezon  sıcak  sıfır  sınav  sınıf
+sınır  sinir  siyah  soğuk  sokak  sonra  sonuç  sorun  sözlü  stres  süper
+şahin  şarkı  şehir  şeker  şekil  şeref  şifre  şimdi  şirin  şöyle  şubat
+şüphe  tablo  tahta  takım  takip  taksi  tamam  tamir  taraf  tarif  tarih
+tatil  tatlı  tavan  tavuk  teker  tekne  temel  temiz  tenis  tepki  teyze
+tıpkı  tipik  toplu  tören  tuhaf  tünel  türkü  türlü  utanç  uyarı  uygun
+uzman  üstün  üzgün  vakit  video  virüs  vücut  yakın  yakıt  yalan  yapay
+yapım  yarar  yarım  yarın  yarış  yasak  yaşam  yatak  yatay  yavaş  yavru
+yayın  yazar  yazık  yazım  yedek  yemek  yemin  yerli  yeşil  yılan  yirmi
+yoğun  yoksa  yolcu  yorum  yunus  yüzde  yüzey  yüzük  zafer  zaman  zarar
+zaten  zayıf  zemin  zirve  zorla
+
+== 6 letters: 318 words ==
+acayip  acilen  aferin  afiyet  akraba  aksine  alıntı  alışık  amatör
+aniden  aralık  aramak  asfalt  ayrıca  azıcık  bahane  bakmak  bardak
+başarı  başlık  başrol  bayrak  bayram  bedava  beğeni  bencil  benzer
+benzin  berbat  bilmek  birden  bitmek  bodrum  boşluk  boşuna  bozmak
+böbrek  buğday  bulmak  candan  ceylan  cidden  çakmak  çapraz  çekici
+çekmek  çeviri  çeyrek  çığlık  çıkmak  çıkmaz  çılgın  çiftçi  çirkin
+çözmek  dahası  dakika  defter  deneme  derece  destek  devasa  dışarı
+dikkat  doktor  dönmek  durmak  duymak  duyuru  dürüst  düzgün  efsane
+eğitim  ekstra  elbise  eleman  emanet  endişe  enerji  ertesi  etiket
+fatura  favori  fındık  fırsat  fıstık  fincan  forvet  futbol  galeri
+galiba  gayret  gazete  geçici  geçmek  geçmiş  gelmek  gerçek  gergin
+girmek  gitmek  gömlek  görmek  görsel  gözlem  gözlük  grafik  güncel
+gündüz  günlük  hafıza  hamile  harika  harita  hasret  hassas  hatıra
+hayran  hayret  hayvan  hazine  hediye  heykel  içecek  içerik  iğrenç
+ikinci  ilgili  ilginç  ilişki  isabet  iskele  işaret  itiraf  itiraz
+kaçmak  kaleci  kalite  kalkan  kalmak  kamera  kamyon  kapalı  kaplan
+kaptan  kardeş  kartal  kasaba  kaynak  kelime  keskin  kesmek  kırmak
+kısmen  kızgın  kimlik  koltuk  komedi  komple  konser  korkak  kostüm
+koymak  körfez  kritik  kulübe  kurmak  kuvvet  kuyruk  kültür  lastik
+lezzet  lütfen  macera  mağara  mağaza  makale  makyaj  manken  mantar
+mantık  market  maymun  mecbur  mektup  memnun  merkez  mermer  mesafe
+mesele  meslek  meşgul  meşhur  mevsim  meydan  miktar  millet  milyar
+milyon  modern  montaj  mucize  mutfak  mutsuz  mümkün  müsait  müthiş
+normal  numara  okumak  olumlu  otobüs  ödemek  pahalı  pardon  parfüm
+parlak  parmak  patron  peynir  piknik  pirinç  pişman  piyano  pratik
+profil  rağmen  rehber  resmen  ressam  sadece  sağlam  sağlık  salata
+samimi  sandık  saniye  satmak  seçmek  servis  sessiz  sevinç  seviye
+sevmek  sıkıcı  sinema  sinyal  sistem  sohbet  sonsuz  sormak  sosyal
+soyadı  sözcük  sözlük  sporcu  stüdyo  sunmak  sunucu  sürücü  şahane
+şahsen  şimşek  şirket  şişman  tablet  tahmin  takdir  taklit  taktik
+takvim  tavşan  tebrik  teklif  teknik  tekrar  temmuz  tercih  teslim
+tırnak  tişört  toplam  toprak  trafik  turist  tutmak  ufacık  ulaşım
+uyanık  uyumak  üçüncü  üzüntü  vampir  vermek  vicdan  volkan  yağmur
+yakmak  yapmak  yaprak  yardım  yastık  yatmak  yazılı  yazmak  yelken
+yengeç  yıldız  yıllık  yorgun  yöntem  yukarı  yüksek  yüzyıl  zahmet
+zengin  zeytin  zincir
+
+== 7 letters: 364 words ==
+aceleci  agresif  ağırlık  ağlamak  ağustos  ahtapot  ailecek  akciğer
+aksilik  aksiyon  alerjik  alınmak  alışkın  alışmak  altıncı  ambalaj
+anahtar  anlamak  anlaşma  anlatım  anlayış  anormal  arabesk  arkadaş
+asansör  asistan  aslında  atasözü  atlamak  atletik  avantaj  ayırmak
+aylarca  ayrılık  ayrıntı  babacan  bağlama  baharat  baklava  barınak
+bariyer  basamak  başıboş  başkent  batarya  belirli  beraber  beşinci
+beyzbol  bezelye  bilardo  bilezik  birbiri  biricik  birinci  bitişik
+boyunca  böylece  bulanık  bulaşık  bulmaca  büyümek  canavar  cesaret
+çabucak  çamaşır  çekiliş  çekirge  çerçeve  çiftlik  çimento  çocukça
+dağınık  dalgalı  daracık  değerli  değişik  değişim  denemek  deneyim
+dijital  dilemek  dilenci  dinozor  diploma  diyalog  dizüstü  dolunay
+domates  dostluk  dörtlük  düşünce  düzenli  egzotik  eğitmek  eğitmen
+eğlence  ehliyet  ejderha  ekipman  eklemek  ekspres  elastik  elbette
+eldiven  enerjik  eskiden  fabrika  fanatik  fasulye  fenomen  feribot
+fırtına  filozof  firavun  fragman  garanti  gecelik  geçerli  gelecek
+gelenek  genelde  gerekli  gerilim  gezegen  gezinti  giyecek  gökyüzü
+görüntü  görünüş  gösteri  gözleme  gözyaşı  gürültü  hareket  hastane
+hayalet  haziran  hemşire  hentbol  heyecan  hoşgörü  ihtimal  ihtiyaç
+ihtiyar  ilkokul  iltifat  inanmak  indirim  iskelet  istemek  işlemek
+itfaiye  iyimser  izlemek  kabarık  kaçamak  kahkaha  kalkmak  kanarya
+kaplıca  karavan  kargaşa  karınca  karışık  karışım  karides  karmaşa
+katalog  kavanoz  kavurma  kehanet  kelebek  kesinti  kestane  kırmızı
+kıskanç  kıyafet  kişilik  kişisel  kocaman  kontrol  koridor  korkmak
+korkunç  korumak  koskoca  kötülük  kraliçe  kristal  kumanda  kurbağa
+küçücük  lokanta  madalya  magazin  mahalle  makarna  malzeme  manzara
+maraton  masmavi  mazeret  mecburi  meğerse  menajer  menekşe  menemen
+merhaba  metalik  midilli  minibüs  minicik  minimum  misafir  mobilya
+mutlaka  müşteri  müzikal  nadiren  nasılsa  nedense  negatif  nezaket
+okyanus  oldukça  olimpik  olumsuz  onlarca  organik  ortalık  otopark
+oturmak  oynamak  oyuncak  öğrenci  öksürük  önceden  öncelik  önlemek
+örneğin  örümcek  özellik  palavra  palmiye  palyaço  pankart  papağan
+papatya  paraşüt  patates  penaltı  pencere  penguen  perişan  piramit
+piyango  plastik  popüler  pozitif  prenses  problem  program  randevu
+rezalet  röntgen  sağanak  sahiden  samuray  sandviç  sarışın  satılık
+satranç  sayısal  seçenek  sempati  senaryo  seramik  serbest  serseri
+sevecen  sevgili  sevimli  seyirci  sıcacık  sıkıntı  sımsıkı  sıradan
+sızıntı  sinirli  sipariş  sivilce  solucan  sorumlu  soytarı  sportif
+stadyum  süpürge  sürekli  şampuan  şeftali  şemsiye  şımarık  şövalye
+tamamen  tanıdık  tanımak  tanıtım  tasarım  taşımak  tavsiye  tecrübe
+tehlike  telefon  tencere  tersine  tesadüf  testere  tiyatro  trajedi
+traktör  tramvay  trilyon  turnuva  turuncu  tuvalet  tükürük  ulaşmak
+unutmak  utangaç  uyanmak  uyarmak  uydurma  uzaktan  uzatmak  uzunluk
+üretmek  üstelik  vanilya  vitamin  yabancı  yakında  yaramaz  yaratık
+yaşamak  yedinci  yeniden  yenilgi  yenilik  yepyeni  yeryüzü  yetenek
+yeterli  yıkamak  yılbaşı  yırtıcı  yiyecek  yumurta  yumuşak  yürümek
+zavallı  ziyafet  ziyaret  zorunlu
+
+== 8 letters: 258 words ==
+acımasız  açıkçası  açıklama  aktivite  akvaryum  alabalık  anaokulu
+anlaşmak  anlatmak  antrenör  apartman  arkeolog  astronot  atletizm
+ayrılmak  azaltmak  bağırmak  bağırsak  bağlamak  bağlantı  bambaşka
+başarmak  başlamak  bataklık  beklemek  belgesel  belirsiz  bembeyaz
+berabere  beslemek  bırakmak  bildirim  bileklik  bilindik  binlerce
+birazcık  birazdan  birlikte  bisiklet  bitirmek  biyoloji  buluşmak
+büyütmek  coğrafya  çağırmak  çalışkan  çalışmak  çarşamba  çekirdek
+çevirmek  çevirmen  çıkarmak  çikolata  çocukluk  dağıtmak  davetiye
+davranış  dedektif  dedikodu  değersiz  değirmen  derinlik  dershane
+devirmek  dikkatli  dinlemek  disiplin  doğaüstü  doğuştan  dokunmak
+dolaşmak  dondurma  dosdoğru  dördüncü  dramatik  durmadan  duyurmak
+düşünmek  düşürmek  edebiyat  efsanevi  eğlenmek  elektrik  ergenlik
+erkenden  evlenmek  fazladan  festival  fotoğraf  fotokopi  geçersiz
+geçirmek  gelincik  gelinlik  genişlik  geometri  getirmek  gittikçe
+gizlemek  görünmek  görünmez  görüşmek  gösteriş  götürmek  günlerce
+güvenlik  güvenmek  güvercin  harcamak  hastalık  hazırlık  herhangi
+hizmetçi  hoparlör  ikiyüzlü  iletişim  ilkbahar  indirmek  istasyon
+kaçırmak  kafatası  kahraman  kahvaltı  kaldırım  kampanya  kamyonet
+kapatmak  karakter  karalama  karamsar  karanfil  karanlık  karbonat
+karışmak  karmaşık  karnaval  karşılık  kategori  katılmak  kavuşmak
+kazanmak  kırılgan  kısacası  kıvılcım  kıvırcık  kitabevi  komedyen
+konserve  konuşmak  kozmetik  kraliyet  kurabiye  kutlamak  labirent
+lacivert  limonata  maksimum  marangoz  masaüstü  mecburen  memleket
+mercimek  merdiven  mıknatıs  mikrofon  milyoner  minyatür  muhabbet
+muhteşem  mücevher  mühendis  mükemmel  mürekkep  müzisyen  nostalji
+olasılık  operatör  orkestra  ortalama  ortaokul  otomatik  öğrenmek
+öğretmek  öğretmen  öylesine  özgürlük  parantez  pasaport  patlıcan
+paylaşım  pazarlık  pehlivan  perşembe  pırlanta  piyanist  polisiye
+porselen  portakal  pozisyon  profesör  psikolog  restoran  romantik
+saçmalık  saklamak  sarımsak  savunmak  sekreter  sempatik  senarist
+sıcaklık  sınırsız  sihirbaz  sonbahar  sonradan  sorumsuz  söylemek
+standart  strateji  şampiyon  şimdiden  şimdilik  tahminen  tanışmak
+taraftar  taşınmak  tedirgin  tekerlek  tertemiz  tonlarca  toplamak
+toplantı  topluluk  transfer  tropikal  turistik  tükenmez  uğraşmak
+üniforma  versiyon  voleybol  yakından  yaklaşık  yanardağ  yapışkan
+yaratmak  yardımcı  yetersiz  yetişkin  yıldırım  yıllarca  yönetmek
+yönetmen  yuvarlak  yüklemek  yürekten  yüzlerce  zorlamak
+
+Total: 2100 answers.

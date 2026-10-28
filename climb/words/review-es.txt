@@ -1,0 +1,221 @@
+Climb — Spanish (neutral) answers (es)
+
+These are the words that can be the day's word, by length, in alphabetical order.
+In the game they come in a fixed shuffled order (climb/words/es.json, "answers"):
+day N takes word number (N mod list length).
+To remove or add words, list them and Claude rebuilds the file; the order of the
+remaining days stays fixed only if words are added at the end, so changes are best
+made before the game opens.
+
+== 2 letters: 36 words ==
+ah  al  as  ay  da  de  di  eh  el  en  es  ex  fe  ha  he  ir  la  le  lo
+me  mi  ni  no  oh  se  si  su  te  ti  tu  un  va  ve  vi  ya  yo
+
+== 3 letters: 109 words ==
+ala  ama  amo  así  ave  año  bar  bus  cae  con  dan  dar  das  del  den
+des  día  dio  don  dos  doy  eco  ego  eje  era  esa  ese  eso  fan  fea
+feo  fin  fue  fui  gas  gol  han  has  hay  hoy  iba  ida  ido  iré  las
+lee  leo  les  ley  los  luz  mal  mar  mes  mía  mil  mío  mis  muy  nos
+oír  ojo  ola  oro  oso  pan  par  paz  pez  pie  pon  pop  por  que  red
+rey  río  rol  sal  sea  sed  ser  sin  sol  son  soy  sur  sus  tal  tan
+ten  tía  tío  tus  una  uno  usa  uso  van  vas  ven  veo  ver  ves  vez
+vía  vio  voy  voz
+
+== 4 letters: 253 words ==
+agua  aire  algo  allá  allí  alma  alto  amar  amor  aquí  arco  área  arte
+asco  atún  aula  ayer  azar  azul  baba  bajo  base  bate  baño  bebé  beca
+beso  bici  bien  boca  boda  bola  bote  buen  cada  caer  café  caja  cama
+caos  capa  cara  caro  casa  casi  caso  caña  cena  cera  cero  chip  cien
+cima  cine  cita  clan  clip  club  coco  codo  coma  como  copa  coro  cosa
+cría  cruz  cubo  cuna  dado  dato  daño  diez  doce  duda  duro  edad  este
+fama  faro  fase  fiel  fijo  fila  filo  fino  flor  foco  foto  frío  gato
+gira  giro  golf  goma  gota  gran  gris  guía  hijo  hilo  hoja  hola  hora
+huir  humo  idea  isla  jefe  joya  juez  kilo  lado  lago  lana  lata  lava
+lazo  leal  leer  león  leña  liga  lima  lobo  loco  lodo  logo  lomo  lujo
+luna  mago  maíz  malo  mamá  mano  mapa  masa  mayo  menú  mesa  meta  miel
+mito  moda  modo  mono  moto  mudo  muro  nada  nave  nido  niña  niño  nota
+nube  nuca  nudo  obra  ocho  oído  olla  olor  once  onda  otro  pago  país
+pala  palo  para  pase  paso  pata  pato  pavo  pelo  pena  peor  pera  pero
+peso  piel  pila  pino  piso  piña  plan  poco  polo  pozo  pues  puro  puño
+raíz  rama  ramo  rana  raro  rata  rato  rayo  real  reír  reto  rico  risa
+roca  rojo  ropa  rosa  roto  ruso  ruta  saco  saga  sala  sano  seco  seda
+seis  sofá  solo  sopa  suyo  tapa  taxi  taza  tela  tele  tema  tipo  todo
+tono  toro  tren  tres  trío  tuyo  unir  usar  útil  vaca  vago  vaso  vela
+vena  vida  vino  vivo  yeso  zona
+
+== 5 letters: 382 words ==
+abajo  abril  abrir  acero  ácido  actor  adiós  ahora  álbum  ambos  amigo
+ancho  andar  ánimo  antes  apoyo  aquel  árabe  árbol  arena  arroz  atrás
+audio  autor  avión  aviso  ayuda  bahía  baile  bajar  balón  banco  banda
+barba  barco  barra  barro  beber  bolsa  bolso  borde  botón  bravo  brazo
+broma  bruto  bueno  burla  cable  caída  calle  calma  calor  campo  canal
+canto  capaz  carga  carne  carta  casco  causa  cenar  cerca  cerdo  chica
+chico  chino  ciclo  ciego  cielo  cinco  cinta  circo  claro  clase  clave
+clima  cobra  cobre  color  comer  común  copia  corte  corto  costa  crear
+creer  crema  cruce  crudo  cruel  cuero  cueva  culpa  curso  curva  danza
+deber  débil  decir  dejar  desde  deseo  dicho  dieta  disco  doble  dolor
+donde  drama  ducha  dueño  dulce  enero  entre  época  error  estar  etapa
+éxito  extra  fácil  falso  falta  fatal  favor  fecha  feliz  feria  ficha
+final  firma  firme  flaco  fondo  forma  frase  fruta  fruto  fuego  funda
+ganar  genio  gente  gesto  globo  golfo  gordo  grado  grano  grasa  grave
+grito  grupo  guapo  gusto  hacer  harto  hasta  héroe  hielo  himno  hogar
+horno  hotel  hueco  hueso  humor  ideal  igual  jamás  joven  juego  jugar
+julio  junio  junto  justo  largo  lavar  leche  lejos  lento  letra  libre
+libro  líder  limón  línea  lista  listo  llama  llave  lleno  local  logro
+luego  lugar  lunes  madre  magia  manga  marca  marco  marzo  mayor  media
+medio  medir  mejor  menor  menos  mente  metal  meter  metro  miedo  mirar
+mismo  mitad  monte  motor  mover  mucho  mujer  multa  mundo  museo  nacer
+nadie  nariz  negar  nieto  nieve  nivel  noche  norte  notar  novio  nueve
+nuevo  nunca  obvio  oeste  ojalá  orden  otoño  padre  pagar  palma  papel
+parar  pared  parte  pasar  paseo  pasta  patio  pecho  pedir  pegar  perro
+pesar  pesca  piano  pieza  pilar  pista  pizza  placa  plano  plata  plato
+playa  plaza  pobre  poder  poema  poeta  pollo  poner  prima  primo  prisa
+punta  punto  queja  queso  quien  quizá  rabia  radio  razón  regla  reina
+reino  reloj  resto  revés  ritmo  rival  robot  rollo  ronda  rubio  rueda
+ruido  rumor  saber  sabio  sabor  sacar  salir  salón  salsa  salto  salud
+saque  según  sello  selva  serie  serio  sexto  señal  señor  siete  siglo
+signo  silla  sitio  sobre  solar  sonar  suave  subir  sucio  suelo  sueño
+sumar  tabla  talla  tanto  tarde  tarea  techo  tener  tenis  texto  tigre
+tirar  tocar  tomar  toque  torre  total  traer  traje  trama  trato  trece
+tribu  trigo  trono  truco  túnel  turno  único  vacío  valle  valor  vapor
+venir  verde  viaje  viejo  vista  vivir  volar  vuelo
+
+== 6 letters: 365 words ==
+abrazo  abuela  abuelo  acabar  acción  aceite  acento  acorde  activo
+actriz  actual  actuar  además  adulto  agenda  agosto  alarma  alegre
+alemán  alerta  alguno  alivio  altura  alumno  amable  amplio  ángulo
+animal  anoche  aparte  apenas  apoyar  arriba  atento  atraer  aunque
+avance  ayudar  azúcar  añadir  bailar  barato  barrio  básico  basura
+bestia  blanco  bloque  bonito  borrar  bosque  bronce  buscar  cabeza
+cadena  cámara  cambio  camino  camión  camisa  cantar  carbón  cargar
+cariño  casado  causar  centro  cerrar  charla  chiste  choque  ciento
+cierre  cierto  ciudad  cobrar  cocina  código  comida  cómodo  compra
+contar  contra  corona  correa  correo  correr  cortar  crecer  cruzar
+cuadro  cuando  cuarto  cuatro  cubano  cubrir  cuello  cuenta  cuento
+cuerda  cuerpo  cuesta  cuidar  debajo  dentro  desear  detrás  diario
+dibujo  dinero  diseño  doctor  dorado  dormir  efecto  elegir  empate
+encima  engaño  enlace  enorme  ensayo  entero  entrar  enviar  equipo
+escala  escape  escena  escudo  esfera  espejo  espera  esposo  estado
+estilo  estrés  eterno  evento  evitar  exacto  examen  faltar  famoso
+fiebre  fiesta  figura  filtro  firmar  física  físico  formal  formar
+frente  fresco  fuente  fuerte  fuerza  fútbol  futuro  gastar  genial
+grabar  gracia  grande  granja  gratis  griego  gritar  gustar  hablar
+hambre  harina  helado  hierro  hombre  hombro  huella  humano  idioma
+imagen  inglés  inicio  jardín  jueves  jugada  jurado  juzgar  laguna
+lanzar  latino  lavado  lector  lengua  lesión  ligero  límite  limpio
+llamar  llegar  llenar  llevar  llorar  lluvia  locura  lógica  lógico
+lograr  madera  mágico  mancha  mandar  manera  manual  marcar  marcha
+marido  martes  máximo  mañana  médico  medida  mejora  mental  mentir
+método  mezcla  millón  mínimo  minuto  mirada  misión  modelo  moneda
+montar  montón  moreno  motivo  música  músico  nombre  normal  novela
+número  objeto  océano  ocupar  oferta  opción  órgano  origen  orilla
+oscuro  página  pánico  parada  pareja  parque  partir  pasado  pasear
+pasión  pastel  pedazo  pedido  pelota  pensar  perder  perdón  perfil
+pesado  piedra  pierna  piloto  pintar  pintor  placer  planta  poesía
+porque  precio  premio  probar  pronto  propio  prueba  pueblo  puente
+puerta  puerto  puesto  quedar  quemar  querer  quince  quinto  quitar
+quizás  rápido  receta  recién  récord  regalo  región  relato  reseña
+reunir  rincón  romano  romper  rutina  sábado  salida  saltar  saludo
+salvar  seguir  seguro  semana  sentir  servir  sesión  señora  sierra
+simple  social  sombra  sonido  sorteo  subida  suerte  sufrir  taller
+tamaño  teatro  teoría  tesoro  tiempo  tienda  tierra  típico  título
+tomate  torneo  trampa  tratar  triple  triste  último  unidad  vecino
+veinte  vencer  vender  verano  verdad  vestir  viajar  vidrio  viento
+visión  visita  visual  volver  vuelta
+
+== 7 letters: 400 words ==
+abierto  absurdo  aceptar  aclarar  activar  acuerdo  adentro  admitir
+adoptar  agarrar  ajedrez  alambre  alegría  algodón  alguien  aliento
+almacén  amistad  anciano  anónimo  antiguo  anuncio  aparato  apetito
+aplauso  apostar  aprobar  apuesta  apuntar  árbitro  archivo  armario
+arquero  arreglo  artista  asiento  asistir  atender  atrapar  ausente
+autobús  avanzar  avenida  balanza  bandeja  bandera  barrera  batería
+béisbol  belleza  billete  bloqueo  botella  burbuja  caballo  cálculo
+calzado  cambiar  caminar  campana  campeón  canasta  canción  capital
+capitán  carpeta  carrera  cartera  castaño  castigo  catorce  cebolla
+celeste  cemento  cerebro  charlar  chileno  ciencia  cintura  círculo
+clásico  clínica  cocinar  colchón  colegio  columna  comedia  comedor
+comprar  confiar  confuso  conocer  consejo  consola  control  corazón
+corbata  cordero  coreano  corteza  cortina  creador  cristal  crucero
+cuchara  cuidado  cultura  cumplir  curioso  decente  decidir  dedicar
+defecto  defensa  delante  delgado  derecho  derrota  desafío  desfile
+después  destino  detalle  diálogo  dibujar  difícil  digital  diploma
+directo  diseñar  disfraz  dividir  dominar  domingo  durante  eclipse
+egipcio  egoísta  ejemplo  emoción  empatía  empezar  enemigo  energía
+enfermo  engañar  enseñar  entrada  envidia  escalar  escapar  escoger
+escolar  escuela  espacio  espalda  español  esperar  espiral  esquema
+esquina  estadio  estatua  estreno  estudio  europeo  existir  exitoso
+experto  extraño  fábrica  familia  febrero  ficción  fracaso  francés
+furioso  galaxia  gallina  ganador  general  gigante  gráfico  guardar
+hermana  hermano  honesto  horario  humedad  humilde  ignorar  ilusión
+incluir  incluso  insulto  intento  interés  invento  invitar  irónico
+japonés  jugador  juguete  juvenil  lámpara  lástima  lección  lectura
+leyenda  liberar  limpiar  líquido  literal  llamada  llegada  lotería
+maestro  mansión  manzana  máquina  maratón  máscara  mascota  materia
+medalla  mediano  mejilla  mejorar  melodía  memoria  mensaje  mentira
+mercado  mezclar  mineral  mochila  moderno  molesto  momento  monitor
+montaña  mostrar  mundial  muralla  músculo  musical  naranja  natural
+navegar  ninguno  nombrar  noreste  noticia  noventa  nuestro  obligar
+ochenta  octubre  ocultar  ocurrir  ofender  oficina  olvidar  opinión
+ordenar  orgullo  oxígeno  padrino  paisaje  palabra  palacio  paquete
+paraíso  parecer  parodia  párrafo  partida  partido  pasillo  pañuelo
+peinado  peligro  pequeño  perdido  perfume  permiso  persona  peruano
+pescado  picante  pintura  plancha  planear  planeta  plantar  policía
+popular  porción  portada  portero  posible  potente  presión  prestar
+primero  privado  próximo  público  puntual  querido  química  químico
+rapidez  rebelde  recibir  recoger  redondo  reflejo  refugio  regalar
+regreso  regular  relleno  remedio  reparar  repetir  rescate  respeto
+resumen  resumir  retraso  retrato  revisar  revista  revivir  romance
+saludar  secreto  segundo  semanal  sembrar  semilla  sentido  separar
+séptimo  sesenta  setenta  siempre  símbolo  sincero  síntoma  sobrino
+socorro  soledad  soltero  sonreír  sonrisa  sudeste  superar  suponer
+sureste  suspiro  tablero  talento  también  tampoco  tarjeta  tatuaje
+taxista  teclado  temblor  tercero  ternura  terraza  tiburón  todavía
+tortuga  trabajo  tráfico  trágico  treinta  turista  urgente  usuario
+valioso  vampiro  vegetal  ventaja  ventana  versión  vestido  viajero
+viernes  vigilar  villano  violeta  virtual  visitar  volante  volumen
+
+== 8 letters: 282 words ==
+aburrido  academia  acelerar  adelante  adivinar  africano  aguantar
+alcanzar  alfombra  aluminio  amanecer  amarillo  amigable  amistoso
+anécdota  antorcha  anunciar  aparecer  apellido  aprender  aprobado
+armadura  arrancar  arreglar  arruinar  asiático  atención  atrevido
+avanzado  aventura  ayudante  bastante  biología  bloquear  borrador
+buscador  calcular  calentar  callejón  caminata  camiseta  cancelar
+cantante  cantidad  capítulo  capricho  cargador  carnaval  castigar
+castillo  celebrar  chaqueta  chimenea  ciclismo  ciclista  cinturón
+combinar  comentar  comenzar  comparar  competir  completo  conectar
+confesar  conocido  contento  convivir  correcto  corredor  corregir
+creativo  criatura  cuaderno  cuadrado  cuarenta  cuchillo  decisión
+defender  delicado  dentista  depender  derrotar  descanso  desierto
+desorden  despacio  despedir  devolver  diamante  director  disculpa
+discutir  distinto  división  doloroso  ecuación  edificio  elefante
+elegante  eliminar  encender  ensalada  entender  entonces  entregar
+entrenar  episodio  escalada  escalera  esconder  escribir  escritor
+escuchar  esfuerzo  espacial  especial  estación  estatura  estómago
+estrella  estricto  estudiar  explicar  explorar  expulsar  extrañar
+fabricar  familiar  fanático  fantasía  fantasma  farmacia  favorito
+festejar  festival  flamenco  flexible  fracción  fractura  garganta
+generoso  gimnasia  gimnasio  gracioso  guardián  guitarra  historia
+holandés  horrible  hospital  imaginar  importar  imprimir  infancia
+infantil  infinito  informal  inocente  insistir  instalar  instinto
+insultar  intentar  inventar  invierno  invitado  italiano  ladrillo
+levantar  limpieza  marcador  mariposa  mecánico  medicina  medieval
+mediocre  mediodía  merecido  metálico  mexicano  mientras  misterio
+molestar  molestia  narrador  natación  negativo  nervioso  nocturno
+noroeste  nosotros  obedecer  observar  obsesión  olímpico  original
+orquesta  paciente  pantalla  pantalón  paraguas  parecido  pasajero
+patético  película  perdedor  perdonar  perfecto  permitir  pimienta
+pirámide  plástico  poderoso  portátil  positivo  práctica  práctico
+precioso  pregunta  preparar  presente  presumir  princesa  príncipe
+problema  profesor  programa  prohibir  promedio  proteger  proteína
+provecho  proyecto  publicar  realidad  realista  rechazar  recordar
+recorrer  recuerdo  redactar  regresar  repartir  rescatar  resistir
+resolver  respetar  respirar  ridículo  sarcasmo  satélite  sencillo
+sensible  silencio  simpatía  sinónimo  solución  sombrero  soportar
+sorpresa  suplente  supuesto  suroeste  teléfono  temprano  terminar
+terrible  tontería  tormenta  trabajar  traducir  tremendo  tristeza
+tropical  uniforme  universo  valentía  valiente  vendedor  vertical
+victoria  zapatero
+
+Total: 1827 answers.
