@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR" data-lg-path="who-gets-what/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="gets.page_title">Quem fica com o quê: um jogo diário sobre para onde vai o dinheiro | Logicers</title>
+<link rel="canonical" href="https://logicers.com/pt/who-gets-what/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/who-gets-what/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/who-gets-what/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/who-gets-what/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/who-gets-what/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/who-gets-what/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/who-gets-what/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/who-gets-what/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/who-gets-what/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/who-gets-what/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/who-gets-what/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/who-gets-what/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/who-gets-what/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/who-gets-what/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/who-gets-what/">
+<meta name="description" content="Um preço de verdade por dia. Arraste os divisores para repartir o preço entre as pessoas que são pagas com ele e veja a divisão real e de onde ela vem." data-s-content="gets.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Quem fica com o quê" data-s-content="game.gets.name">
+<meta property="og:description" content="Um preço de verdade e as pessoas que são pagas com ele. Quem fica com o quê?" data-s-content="gets.og_desc">
+<meta property="og:url" content="https://logicers.com/pt/who-gets-what/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#DCF2E2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=faf653756c">
+<script src="../../assets/lang/pt.js?v=dfc19791aa"></script>
+<script src="../../assets/js/lang.js?v=01632acb08"></script>
+<link rel="stylesheet" href="../../who-gets-what/who-gets-what.css?v=558d050315">
+</head>
+<body class="game" data-g="gets">
+
+<header class="bar">
+  <a class="wordmark" href="../../pt/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Sequência 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Como jogar" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.gets.name">Quem fica com o quê</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="w-q" id="question" data-s="gets.who_gets_what_q">Quem fica com o quê?</h1>
+
+  <section class="panel w-panel" id="panel" aria-labelledby="question">
+    <div class="w-thing">
+      <p class="w-what" id="what"></p>
+      <p class="w-when"><span id="where"></span> · <span id="when"></span></p>
+      <p class="w-price"><b id="price"></b><span class="w-unit" id="unit" hidden></span></p>
+    </div>
+
+    <div class="w-bars">
+      <div class="w-row" id="row-you">
+        <p class="w-rowlab" id="lab-you" hidden data-s="world.you">Você</p>
+        <div class="w-bar" id="bar" role="group" aria-labelledby="bar-label"></div>
+        <p class="w-sr" id="bar-label" data-s="gets.bar_aria">O preço inteiro. Arraste as linhas entre as fatias para dizer quem fica com o quê.</p>
+      </div>
+      <div class="w-row w-real" id="row-real" hidden>
+        <p class="w-rowlab" data-s="gets.really">De verdade</p>
+        <div class="w-bar w-realbar" id="realbar" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <ul class="w-keys" id="keys" aria-label="As fatias" data-s-aria-label="gets.slices_aria"></ul>
+
+    <div class="verdict w-verdict" id="verdict" hidden>
+      <p class="offby" id="offby" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <p class="w-hint" id="hint" data-s="gets.hint">Arraste as linhas. Solte quando achar que está certo.</p>
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="btn-show" type="button" data-s="gets.show_split">Mostrar a divisão</button>
+  </div>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="w-note quiet" id="note" hidden></p>
+    <ul class="w-sources" id="sources" aria-label="Fontes" data-s-aria-label="apart.sources_aria"></ul>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Compartilhar</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">Treinar</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">Como jogar</h2>
+    <ol>
+      <li data-s="gets.help_1">Uma coisa de verdade e o preço dela, em um país, em um ano.</li>
+      <li data-s="gets.help_2">A barra é o preço inteiro. Arraste as linhas até a divisão parecer certa para você.</li>
+      <li data-s="gets.help_3">Toque em Mostrar a divisão e veja quanto do dinheiro você colocou em outra fatia.</li>
+    </ol>
+    <p data-s="gets.help_daily">Um preço por dia, o mesmo para todo mundo. Um novo chega à meia-noite.</p>
+    <h3 data-s="gets.help_splits_h">De onde vêm as divisões</h3>
+    <p class="quiet" data-s="gets.help_splits">Publicadas por instituições que as medem e conferidas em uma segunda fonte; as duas têm link embaixo da resposta. Uma fatia costuma ser uma etapa inteira da cadeia: “Loja” pode ser aluguel e funcionários, além do lucro.</p>
+    <h3 data-s="site.your_privacy">Sua privacidade</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">Sem cadastro, sem rastreamento, sem cookies. Sua sequência e seu álbum ficam guardados só neste navegador.</p>
+    <p class="mail" data-s="site.mistake_mail">Viu um erro? Escreva para mim: <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Seu álbum</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">dias jogados</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">sequência agora</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">melhor sequência</span></div>
+      <div class="stat"><b id="st-avg">0%</b><span data-s="gets.avg_misplaced">do preço em outra fatia, em média</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="gets.album_empty">Divida o preço de hoje para ganhar seu primeiro carimbo.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">Treinar</h2>
+    <p class="quiet" data-s="gets.practice_lede">O preço de ontem. O treino não conta para a sua sequência nem para o seu álbum.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Ainda não há nada para treinar. Volte amanhã.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../pt/who-gets-what/" data-s="gets.back_today">Voltar para o preço de hoje</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Compartilhe seu resultado</h2>
+    <p class="quiet" data-s="site.share_lede">Envie o link junto com a imagem, para seus amigos poderem tocar nele.</p>
+    <img class="shot" id="share-img" alt="Seu resultado em imagem. Ela mostra o preço, como você dividiu e quanto colocou em outra fatia, mas não a divisão real." data-s-alt="gets.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="who-gets-what.png" data-s="share.save">Salvar imagem</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copiar link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">Este jogo precisa de JavaScript para funcionar.</p></noscript>
+
+<script src="../../who-gets-what/puzzles.js"></script>
+<script src="../../assets/lang/pt/who-gets-what.js?v=d077e8366b"></script>
+<script src="../../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../../assets/js/duel.js?v=c4e6a61b81"></script>
+<script src="../../assets/js/rooms.js?v=496d2fe661"></script>
+<script src="../../assets/js/points.js?v=f3d487d081"></script>
+<script src="../../assets/js/world.js?v=a0265c5f03"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../who-gets-what/who-gets-what.js?v=4b804aaa36"></script>
+</body>
+</html>

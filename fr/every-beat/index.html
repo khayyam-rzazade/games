@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr" data-lg-path="every-beat/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="every.page_title">Chaque battement : un jeu quotidien sur la vitesse du cœur | Logicers</title>
+<link rel="canonical" href="https://logicers.com/fr/every-beat/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/every-beat/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/every-beat/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/every-beat/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/every-beat/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/every-beat/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/every-beat/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/every-beat/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/every-beat/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/every-beat/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/every-beat/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/every-beat/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/every-beat/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/every-beat/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/every-beat/">
+<meta name="description" content="Un vrai animal par jour. Règle à quelle vitesse tu penses que son cœur bat, puis vois le vrai battement à côté du tien, avec le chiffre et d’où il vient." data-s-content="every.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Chaque battement" data-s-content="game.every.name">
+<meta property="og:description" content="Un vrai animal par jour. À quelle vitesse bat son cœur ?" data-s-content="every.og_desc">
+<meta property="og:url" content="https://logicers.com/fr/every-beat/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FCE4EB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=faf653756c">
+<script src="../../assets/lang/fr.js?v=fb24f9c348"></script>
+<script src="../../assets/js/lang.js?v=01632acb08"></script>
+<link rel="stylesheet" href="../../every-beat/every-beat.css?v=0c4757d03a">
+</head>
+<body class="game" data-g="every">
+
+<header class="bar">
+  <a class="wordmark" href="../../fr/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Série 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Comment jouer" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.every.name">Chaque battement</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="e-q" id="question" data-s="every.how_fast">À quelle vitesse bat son cœur ?</h1>
+
+  <section class="panel e-panel" id="panel" aria-labelledby="question">
+    <div class="e-who">
+      <svg class="e-pic" id="pic" viewBox="0 0 100 100" aria-hidden="true" focusable="false"></svg>
+      <div class="e-name">
+        <p class="e-face" id="face"></p>
+        <p class="e-state"><span class="e-chip" id="state"></span><span class="e-chip e-temp" id="temp" hidden></span></p>
+      </div>
+      <button class="e-feel" id="feel" type="button" aria-pressed="false" aria-label="Son et vibration" data-s-aria-label="every.feel_aria">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="spk" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="on" d="M15.5 9a4.2 4.2 0 0 1 0 6 M18 6.5a7.6 7.6 0 0 1 0 11"/><path class="off" d="M16 9.5l5 5 M21 9.5l-5 5"/></svg>
+      </button>
+    </div>
+
+    <div class="e-stage" id="stage">
+      <div class="e-hearts" id="hearts">
+        <div class="e-heart e-you" id="you">
+          <p class="e-lab" id="lab-you" hidden data-s="world.you">Toi</p>
+          <svg class="e-hsvg" id="heart-you" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7.7-4.7-9.9-9.4C.5 8.4 2.4 4 6.6 4 9 4 10.7 5.3 12 7.1 13.3 5.3 15 4 17.4 4c4.2 0 6.1 4.4 4.5 7.8C19.7 16.5 12 21.2 12 21.2z"/></svg>
+          <p class="e-rate"><b id="rate-you">60</b><span data-s="every.per_min">/min</span></p>
+        </div>
+        <div class="e-heart e-real" id="real" hidden>
+          <p class="e-lab" data-s="every.real">Réel</p>
+          <svg class="e-hsvg" id="heart-real" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7.7-4.7-9.9-9.4C.5 8.4 2.4 4 6.6 4 9 4 10.7 5.3 12 7.1 13.3 5.3 15 4 17.4 4c4.2 0 6.1 4.4 4.5 7.8C19.7 16.5 12 21.2 12 21.2z"/></svg>
+          <p class="e-rate"><b id="rate-real"></b><span data-s="every.per_min">/min</span></p>
+        </div>
+      </div>
+      <div class="e-ladder" id="ladder" role="slider" tabindex="0" aria-valuemin="1" aria-valuemax="2000" aria-valuenow="60"
+           aria-label="À quelle vitesse bat le cœur, en battements par minute" data-s-aria-label="every.ladder_aria">
+        <span class="e-tick" style="--at:.9088" data-s="every.tick_1000">1 000</span><span class="e-tick" style="--at:.6059">100</span><span class="e-tick" style="--at:.3029">10</span><span class="e-tick" style="--at:0">1</span>
+        <i class="e-thumb" id="thumb"></i>
+      </div>
+    </div>
+
+    <div class="e-traces">
+      <div class="e-trow"><span class="e-tlab" id="tlab-you" hidden data-s="world.you">Toi</span><canvas class="e-trace" id="trace-you" aria-hidden="true"></canvas></div>
+      <div class="e-trow" id="trow-real" hidden><span class="e-tlab" data-s="every.real">Réel</span><canvas class="e-trace" id="trace-real" aria-hidden="true"></canvas></div>
+      <p class="e-secs" id="secs" data-s="every.ten_seconds">10 secondes</p>
+    </div>
+
+    <div class="verdict e-verdict" id="verdict" hidden>
+      <p class="offby" id="offby" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <p class="e-hint" id="hint" data-s="every.hint">Fais glisser vers le haut pour plus vite, vers le bas pour plus lentement.</p>
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="btn-show" type="button" data-s="every.show_heart">Montrer son cœur</button>
+  </div>
+  <p class="sr-only" id="say" role="status"></p>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="e-note quiet" id="note" hidden></p>
+    <p class="e-life" id="life"></p>
+    <ul class="e-sources" id="sources" aria-label="Sources" data-s-aria-label="apart.sources_aria"></ul>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Partager</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">S’entraîner</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">Comment jouer</h2>
+    <ol>
+      <li data-s="every.help_1">Un vrai animal par jour, qui fait une seule chose.</li>
+      <li data-s="every.help_2">Fais glisser vers le haut ou vers le bas, ou glisse sur l’échelle, jusqu’à ce que son battement te semble juste.</li>
+      <li data-s="every.help_3">Touche Montrer son cœur et vois ton écart. Touche le haut-parleur pour l’entendre.</li>
+    </ol>
+    <p data-s="every.help_daily">Un cœur par jour, le même pour tout le monde. Un nouveau arrive à minuit.</p>
+    <h3 data-s="every.help_figures_h">D’où viennent les chiffres</h3>
+    <p class="quiet" data-s="every.help_figures">Ils sont mesurés par des scientifiques, des vétérinaires ou des médecins ; deux sources, liées sous la réponse. Une marge de 15 % compte comme exact.</p>
+    <p class="quiet" data-s="every.help_flash">Rien sur cette page ne clignote ni ne pulse plus de trois fois par seconde.</p>
+    <h3 data-s="cous.help_pictures_h">Les images</h3>
+    <p class="quiet" data-s="every.help_pictures">Silhouettes de <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a> ; les artistes qui demandent un crédit sont nommés sous la réponse. PhyloPic n’approuve pas ce site.</p>
+    <h3 data-s="site.your_privacy">Ta vie privée</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">Sans inscription, sans suivi, sans cookies. Ta série et ton album sont gardés seulement dans ce navigateur.</p>
+    <p class="mail" data-s="site.mistake_mail">Une erreur ? Écris-moi : <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Ton album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">jours joués</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">série en cours</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">meilleure série</span></div>
+      <div class="stat"><b id="st-spot">0</b><span data-s="every.spot_on_count">exacts</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="every.album_empty">Règle le cœur du jour pour obtenir ton premier tampon.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">S’entraîner</h2>
+    <p class="quiet" data-s="every.practice_lede">Le cœur d’hier. L’entraînement ne compte ni pour ta série ni pour ton album.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Rien à pratiquer pour le moment. Reviens demain.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../fr/every-beat/" data-s="every.back_today">Retour au cœur du jour</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Partage ton résultat</h2>
+    <p class="quiet" data-s="site.share_lede">Envoie le lien avec l’image, pour que tes amis puissent le toucher.</p>
+    <img class="shot" id="share-img" alt="Ton résultat en image. Elle montre l’animal du jour et ton écart, mais pas le vrai rythme du cœur." data-s-alt="every.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="every-beat.png" data-s="share.save">Enregistrer l’image</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copier le lien</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+
+<script src="../../every-beat/puzzles.js"></script>
+<script src="../../assets/lang/fr/every-beat.js?v=28b0b0c651"></script>
+<script src="../../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../../assets/js/duel.js?v=c4e6a61b81"></script>
+<script src="../../assets/js/rooms.js?v=496d2fe661"></script>
+<script src="../../assets/js/points.js?v=f3d487d081"></script>
+<script src="../../assets/js/world.js?v=a0265c5f03"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../every-beat/every-beat.js?v=bbfb474812"></script>
+</body>
+</html>

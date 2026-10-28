@@ -1026,6 +1026,22 @@
     } catch (e) { return false; }
   }
   var FIN_WAIT = 5000;                     // the reveal's moment before the finish card (24 Oct 2026)
+  var FIN_HOLD = 2000;                     // the most a reading finger can add to it: the card is up by about 7 s (29 Oct 2026)
+  /* the words of the last card's "Play word games" button. They are not in the string docs yet: once fin.words and
+     fin.words_sub are added there and the dictionaries rebuilt, the dictionary's words are used and these are not. */
+  var WORDS_BTN = {
+    en: ["Play word games →", "Altitude · how high can you get?"],
+    it: ["Gioca con le parole →", "Altitude · fin dove arrivi?"],
+    tr: ["Kelime oyunları oyna →", "Altitude · ne kadar yükselebilirsin?"],
+    es: ["Juega con las palabras →", "Altitude · ¿hasta dónde llegas?"],
+    pt: ["Jogue com as palavras →", "Altitude · até onde você chega?"],
+    fr: ["Joue avec les mots →", "Altitude · jusqu’où iras-tu ?"]
+  };
+  function wordsLine(key) {
+    try { if (T.has && T.has(key)) return T(key); } catch (e) { /* the words below */ }
+    var w = WORDS_BTN[(LG && LG.lang) || "en"] || WORDS_BTN.en;
+    return key === "fin.words" ? w[0] : w[1];
+  }
   var touchedAt = 0, ourScroll = 0;        // the player's last touch, scroll or key; scrolls we started are not theirs
   function lastTouch() { return touchedAt; }
   function noteTouch() { if (Date.now() > ourScroll) touchedAt = Date.now(); }
@@ -1158,13 +1174,16 @@
         fo.addEventListener("click", function () { count_("onward-sheet/find-out"); });
         sheet.appendChild(fo);
       }
-      var more = el("a", "fin-more");
-      more.href = here(LG ? LG.href("") : "../") + "#more-to-play";
+      /* "Play word games" (29 Oct 2026, Khayyam), where "More to play" was: straight to Altitude, in the same
+         yellow, pulsing style. Altitude is one page for all six languages at /altitude/ and takes the site's
+         language from the phone's pick, so every language page links to the same place, as the home pages do. */
+      var more = el("a", "fin-more fin-words");
+      more.href = here(LG ? LG.href("altitude/") : "../altitude/");
       var mw = el("span", "fin-next-words");
-      mw.appendChild(el("span", "", T("fin.more")));
-      mw.appendChild(el("small", "", T("fin.more_sub")));
+      mw.appendChild(el("span", "", wordsLine("fin.words")));
+      mw.appendChild(el("small", "", wordsLine("fin.words_sub")));
       more.appendChild(mw);
-      more.addEventListener("click", function () { count_("onward-sheet/more"); });
+      more.addEventListener("click", function () { count_("onward-sheet/words"); });
       sheet.appendChild(more);
       /* one line from the player, read by Khayyam before it shows (assets/js/said.js, 19 Oct 2026): right under
          the way on, so the card's own scroll ends with the question in view */
@@ -1216,12 +1235,15 @@
 
     /* 24 Oct 2026, Khayyam: "it pops up too fast, people can't really see the results". The card now waits about
        five seconds after the reveal, and while the player is scrolling or touching the page it waits until they
-       have been still for two seconds: it never rises under a reading finger. */
-    var wait = Math.max(num(o.wait) ? o.wait : 0, FIN_WAIT), born = Date.now();
+       have been still for two seconds: it never rises under a reading finger.
+       29 Oct 2026, Khayyam: that second wait could start again and again, so a player who kept scrolling never got
+       the card. It may now hold the card back by at most FIN_HOLD in all: about seven seconds after the reveal the
+       card is up, finger or not. */
+    var wait = Math.max(num(o.wait) ? o.wait : 0, FIN_WAIT), born = Date.now(), latest = born + wait + FIN_HOLD;
     function rise() {
       if (done) return;
-      var idle = Date.now() - lastTouch();
-      if (idle < 2000) { finTimer = window.setTimeout(rise, 2000 - idle + 50); return; }
+      var now = Date.now(), idle = now - lastTouch();
+      if (idle < 2000 && now < latest - 50) { finTimer = window.setTimeout(rise, Math.min(2000 - idle + 50, latest - now)); return; }
       document.body.appendChild(wrap);
       document.addEventListener("keydown", onKey);
       count_(next ? "onward-sheet/seen" : "onward-sheet/day-done");
@@ -1883,7 +1905,7 @@
       var x = el("button", "khay-x", "×"); x.type = "button"; x.setAttribute("aria-label", T("tell.hide"));
       wrap.appendChild(bubble); wrap.appendChild(x);
       var face = el("button", "khay-face"); face.type = "button"; face.setAttribute("aria-label", T("tell.face_aria"));
-      face.appendChild(khayFace(56));
+      face.appendChild(khayFace(68));
       box.appendChild(wrap); box.appendChild(face);
       document.body.appendChild(box);
       eodUpdate(function (s) { s.shown = today; });
@@ -1896,23 +1918,53 @@
         if (box.parentNode) box.parentNode.removeChild(box);
       });
       window.setTimeout(function () { box.classList.add("quiet"); }, 9000);       // the hello fades, the face stays
-      /* the face steps aside whenever it would lie over a button the player may be about to press */
+      /* The face steps aside whenever it would lie over a button the player may be about to press (29 Oct 2026,
+         Khayyam: it used to vanish instead, which on the last card was most of the time). First the hello folds
+         away and only the face stays in its corner; if the face still covers a button, it rises to just above it.
+         With the finish card up, only the card's own big buttons count (the page's lie under the scrim; the small
+         chips and the text boxes do not) and the card's own scroll moves them. If nowhere above is free, it stays in its corner, in plain view. It is away only
+         while one of the site's windows is open. */
       var avoid = "#share, .eod-strip, .onward-all, #after .actions";
-      var raf = 0;
+      var onCard = ".fin-sheet .fin-next, .fin-sheet .fin-more, .fin-sheet .fin-stats, .fin-sheet .said-send, .fin-sheet .eod-strip, .fin-sheet .keep";
+      var raf = 0, beat = 0;
       function duck() {
         raf = 0;
-        if (!box.parentNode) return;
-        var b = box.getBoundingClientRect(), under = false;
-        Array.prototype.forEach.call(document.querySelectorAll(avoid), function (n) {
-          var r = n.getBoundingClientRect();
-          if (r.width && r.height && r.bottom > b.top - 6 && r.top < b.bottom + 6 && r.right > b.left - 6 && r.left < b.right + 6) under = true;
+        if (!box.parentNode) { window.clearInterval(beat); return; }
+        if (document.querySelector("dialog[open]")) { box.classList.add("duck"); return; }
+        box.classList.remove("duck");
+        var H = window.innerHeight, sheet = document.querySelector("#fin:not(.fin-out) .fin-sheet"), clip = null, obs = [];
+        if (sheet) { var s = sheet.getBoundingClientRect(); clip = { top: Math.max(0, s.top), bottom: Math.min(H, s.bottom), left: s.left, right: s.right }; }
+        Array.prototype.forEach.call(document.querySelectorAll(sheet ? onCard : avoid), function (n) {
+          var r = n.getBoundingClientRect(), t = r.top, b = r.bottom;
+          if (clip) { t = Math.max(t, clip.top); b = Math.min(b, clip.bottom); }   // only the part the card shows
+          if (r.width && b - t > 1 && b > 0 && t < H) obs.push({ top: t, bottom: b, left: r.left, right: r.right });
         });
-        if (document.querySelector("dialog[open]")) under = true;
-        box.classList.toggle("duck", under);
+        var cs = window.getComputedStyle(box);
+        var base = H - (parseFloat(cs.bottom) || 12), right = window.innerWidth - (parseFloat(cs.right) || 12);
+        function at(lift) {                // where the box is with a lift, from its layout size (not its moving picture)
+          return { top: base - lift - box.offsetHeight, bottom: base - lift, left: right - box.offsetWidth, right: right };
+        }
+        function hit(b) {
+          return obs.filter(function (r) { return r.bottom > b.top - 6 && r.top < b.bottom + 6 && r.right > b.left - 6 && r.left < b.right + 6; });
+        }
+        var lift = 0;
+        box.classList.remove("aside");
+        if (hit(at(0)).length) {
+          box.classList.add("aside");      // the hello folds away, the face stays
+          for (var i = 0; i < 12; i++) {
+            var h = hit(at(lift));
+            if (!h.length) break;
+            lift = Math.max(lift + 1, base - (Math.min.apply(null, h.map(function (r) { return r.top; })) - 10));
+          }
+          var b = at(lift);
+          if (b.top < 72 || hit(b).length) lift = 0;           // nowhere above is free: the corner, in plain view
+        }
+        box.style.setProperty("--khay-lift", Math.round(lift) + "px");
       }
       function soon() { if (!raf) raf = window.requestAnimationFrame(duck); }
-      window.addEventListener("scroll", soon, { passive: true });
+      document.addEventListener("scroll", soon, { passive: true, capture: true });   // the page's scroll and the card's own
       window.addEventListener("resize", soon);
+      beat = window.setInterval(soon, 400);                    // the card rising, the world's box arriving
       duck();
     }, HELLO_DELAY);
   }

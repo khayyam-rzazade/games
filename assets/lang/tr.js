@@ -1116,6 +1116,11 @@ window.LG_DICT = {
  "rm.contact": "Bir soru, bir hata ya da silinmesi gereken bir şey mi var? <a href=\"mailto:logicers.world@gmail.com\">logicers.world@gmail.com</a> adresine yaz.",
  "rm.sure_h": "Emin misin?",
  "rm.yes": "Evet",
- "rm.keep": "Her şey olduğu gibi kalsın"
+ "rm.keep": "Her şey olduğu gibi kalsın",
+ "home.word_games_h": "Bugünün kelime oyunları",
+ "game.altitude.name": "Altitude",
+ "home.pitch_altitude_long": "2 harfli bir kelime, sonra 3, 4, 8'e kadar; hepsi tek bir tahmin hakkından. Ne kadar yükselebilirsin?",
+ "game.altitude.pitch": "Her seferinde bir harf daha uzun bir kelime. Ne kadar yükselebilirsin?",
+ "site.two_min": "2 dk"
 };
-window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora."};
+window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora.", "pt": "Esta página está só em inglês por enquanto.", "fr": "Cette page n’existe qu’en anglais pour le moment."};

@@ -8,9 +8,10 @@
 import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
 /* the language: the page says it (<html lang>); its data module carries every word (built from that language's copy doc and
    item sheet), the English one is data.js. One store, one portrait per phone whatever the language; each play records the
-   language it was played in (item_version 1 = English, 10 = Italian, 20 = Turkish, 30 = Spanish). The ?v= stamps are written by build_pages. */
+   language it was played in (item_version 1 = English, 10 = Italian, 20 = Turkish, 30 = Spanish, 40 = Portuguese, 50 = French). The ?v= stamps are
+   written by build_pages. */
 const LANG = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
-const DATA_V = { en: 'c650fe836a', it: 'aaaefa3b46', tr: '15c84b7654', es: '614dddce9c' };
+const DATA_V = { en: 'c650fe836a', it: 'aaaefa3b46', tr: '15c84b7654', es: '614dddce9c', pt: '7e3bd3d29d', fr: 'de1c3cdb45' };
 const DATA = await import(`./data${LANG === 'en' ? '' : '.' + LANG}.js?v=${DATA_V[LANG] || ''}`);
 const { ITEMS, COPY, COUNTRIES, PORTRAIT, UI } = DATA;
 const L = DATA.LANG || { code: 'en', item_version: 1, locale: 'en-GB', num_locale: 'en-US', base: '' };
@@ -18,6 +19,7 @@ const U = UI;
 const SITE = 'https://logicers.com/find-out/' + L.base;          /* the section's address in this language, for links and QR codes */
 const UP = L.base ? '../' : '';                                  /* language pages sit one folder deeper: the root is one step further up */
 function tpl(t, vars) { return String(t).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m)); }
+const COLON = LANG === 'fr' ? '\u00a0: ' : ': ';                  /* French puts a no-break space before a colon (28 Oct 2026) */
 function ofN(a, b) { return tpl(U.of, { a, b }); }
 
 /* Each server answers on two addresses (27 Oct 2026): its logicers.com one first, because some campus Wi-Fi blocks workers.dev;
@@ -104,8 +106,9 @@ function parliamentName(c) {
   return /^the /i.test(p) ? p : 'the ' + p;
 }
 /* the forms a country takes inside the items, per language (the English sheet's [Parliament], [Country], [Nationals], [Nationality];
-   the Italian sheet's articles, prepositions and genders; the Turkish sheet's case endings; the Spanish sheet's articles and "de" forms).
-   Without a country: the language's "your country" */
+   the Italian sheet's articles, prepositions and genders; the Turkish sheet's case endings; the Spanish sheet's articles and "de" forms;
+   the Portuguese and French sheets' forms, which their countries files carry as columns). Without a country: the language's "your country" */
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const FORMS = {
   en: (c) => ({ '[Parliament]': parliamentName(c), '[Country]': c ? c.name : 'your country', '[Nationals]': c ? c.nationals.replace(/^the /i, '') : 'people from your country', '[Nationality]': c ? c.nationality : 'from your country' }),
   it: (c) => ({ '[Il Parlamento]': c ? c.parliament : 'Il Parlamento del tuo Paese', '[nel Parlamento]': c ? c.parliament_in : 'nel Parlamento del tuo Paese', '[il Paese]': c ? c.art : 'il tuo Paese', '[in Paese]': c ? c.in : 'nel tuo Paese', '[del Paese]': c ? c.di : 'del tuo Paese',
@@ -114,6 +117,10 @@ const FORMS = {
                 '[Country-ye]': c ? c.ye : 'ülkenize', '[Country-den]': c ? c.den : 'ülkenizden', '[Nationals]': c ? c.nationals : 'ülkenizin insanları', '[Nationality]': c ? c.nationality : 'ülkenizden biri' }),
   es: (c) => ({ '[El Parlamento]': c ? c.parliament : 'El parlamento de tu país', '[El País]': c ? c.el : 'tu país', '[de País]': c ? c.de : 'de tu país', '[en País]': c ? c.en : 'en tu país',
                 '[los Nacionales]': c ? c.los : 'las personas de tu país', '[nacionalidad m/f]': c ? c.nacionalidad : 'de tu país' }),
+  pt: (c) => ({ '[O Parlamento]': c ? c.parliament : 'O Parlamento do seu país', '[o País]': c ? c.name_def : 'o seu país', '[O País]': c ? cap(c.name_def) : 'O seu país', '[do País]': c ? c.de : 'do seu país', '[no País]': c ? c.in : 'no seu país',
+                '[os Nacionais]': c ? c.nationals : 'as pessoas do seu país', '[nacionalidade f]': c ? c.nac_f : 'do seu país', '[nacionalidade m/f]': c ? c.nac_mf : 'do seu país' }),
+  fr: (c) => ({ '[le Parlement]': c ? cap(c.parliament) : 'Le Parlement de ton pays', '[au Parlement]': c ? c.parliament_au : 'au Parlement de ton pays', '[le Pays]': c ? c.name_def : 'ton pays', '[en Pays]': c ? c.in : 'dans ton pays', '[En Pays]': c ? cap(c.in) : 'Dans ton pays',
+                '[du Pays]': c ? c.de : 'de ton pays', '[les Nationaux]': c ? c.nationals : 'les gens de ton pays', '[aux Nationaux]': c ? c.aux : 'aux gens de ton pays', '[nationalité m/f]': c ? c.nat_mf : 'de ton pays' }),
 };
 function playerCountry() {
   const st = load();
@@ -121,13 +128,18 @@ function playerCountry() {
   return countryOf(iso);
 }
 function fill(text) {
-  const forms = (FORMS[LANG] || FORMS.en)(playerCountry());
-  const out = String(text).replace(/\[[^\]]+\]/g, (m) => (m in forms ? forms[m] : m));
+  const c = playerCountry();
+  const forms = (FORMS[LANG] || FORMS.en)(c);
+  let out = String(text).replace(/\[[^\]]+\]/g, (m) => (m in forms ? forms[m] : m));
   /* Spanish contracts "de el" and "a el" ("ha hecho de el Reino Unido" → "del Reino Unido"); a capital El (El Salvador) never contracts */
-  return LANG === 'es' ? out.replace(/\bde el /g, 'del ').replace(/\ba el /g, 'al ') : out;
+  if (LANG === 'es') out = out.replace(/\bde el /g, 'del ').replace(/\ba el /g, 'al ');
+  /* French: a plural country name (les Pays-Bas, les États-Unis) takes the plural verb in Q3d and Q3f (the sheet's rule) */
+  if (LANG === 'fr' && c && c.plural) out = out.replace(' est un pays meilleur', ' sont un pays meilleur').replace(' réussit bien dans', ' réussissent bien dans');
+  return out;
 }
-/* the country's own word in a pool name: English "people from Italy", Italian "persone dall'Italia", Turkish "İtalya halkı", Spanish "personas de Italia" */
-function countryWord(c) { if (!c) return null; return (LANG === 'it' || LANG === 'es') ? c.from : c.name; }
+/* the country's own word in a pool name: English "people from Italy", Italian "persone dall'Italia", Turkish "İtalya halkı", Spanish "personas de Italia",
+   Portuguese "pessoas da Itália", French "les gens d'Italie" */
+function countryWord(c) { if (!c) return null; return (LANG === 'it' || LANG === 'es' || LANG === 'pt' || LANG === 'fr') ? c.from : c.name; }
 async function hello() {
   const st = load();
   if (st.header_country !== null || st.hello_failed) return;
@@ -656,7 +668,7 @@ function gamePage(n) {
           try {
             const c = await api('/pool', { id: st.id, m: metric, pool: pl.pool });
             if (c && c.n >= c.opens_at) box.appendChild(el('p', 'fo-curve-line', forPool(pctWord(template, pctOf(metric, c, value)), pl.kind)));
-            else if (c) box.appendChild(el('p', 'fo-curve-wait', `${poolName(pl.kind)}: ${soFar(c.n, c.opens_at)}`));
+            else if (c) box.appendChild(el('p', 'fo-curve-wait', `${poolName(pl.kind)}${COLON}${soFar(c.n, c.opens_at)}`));
           } catch (e) { /* the pools are extra; the world's line already stands */ }
         }
       }
@@ -690,7 +702,7 @@ function gamePage(n) {
 }
 
 const TRAITS = ['E', 'A', 'C', 'calm', 'O'];   /* the five bars of game 1, in the copy doc's order */
-function poolName(kind) { const c = playerCountry(); return C.pools.names[kind].replace(/\[[^\]]+\]/, countryWord(c) || (LANG === 'it' ? 'dal tuo Paese' : LANG === 'tr' ? 'ülken' : LANG === 'es' ? 'de tu país' : 'your country')); }
+function poolName(kind) { const c = playerCountry(); return C.pools.names[kind].replace(/\[[^\]]+\]/, countryWord(c) || (LANG === 'it' ? 'dal tuo Paese' : LANG === 'tr' ? 'ülken' : LANG === 'es' ? 'de tu país' : LANG === 'pt' ? 'do seu país' : LANG === 'fr' ? 'de ton pays' : 'your country')); }
 /* a comparison line for a pool: the world's word gives way to the pool's (English "the world" → "people from Italy"; Italian "del mondo" →
    "di chi viene dall'Italia"; Turkish "Dünya" → "Türkiye halkı") */
 function poolSentence(kind) { const nm = C.pools.names_in ? C.pools.names_in[kind] : C.pools.names[kind]; const c = playerCountry(); return nm.replace(/\[[^\]]+\]/, countryWord(c) || ''); }
@@ -971,7 +983,7 @@ function figureSvg(r1, bandsOf, opts) {
   const eyeY = cy - 14, eyeDx = 22 + E * 8;
   let dots = '';
   const order = [2, 5, 7, 4, 8];
-  order.forEach((n, i) => { const b = bandsOf(n); if (b === null) return; const a = -Math.PI / 2 + (i / order.length) * Math.PI * 2; const R = 135; const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R; dots += `<circle class="fo-fig-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11" fill="${BAND_COLOURS[b]}" stroke="var(--card)" stroke-width="3"><title>${esc(C.games[n].name)}: ${esc(C.games[n].bands[b].name)}</title></circle>`; });
+  order.forEach((n, i) => { const b = bandsOf(n); if (b === null) return; const a = -Math.PI / 2 + (i / order.length) * Math.PI * 2; const R = 135; const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R; dots += `<circle class="fo-fig-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11" fill="${BAND_COLOURS[b]}" stroke="var(--card)" stroke-width="3"><title>${esc(C.games[n].name)}${COLON}${esc(C.games[n].bands[b].name)}</title></circle>`; });
   return h(`<svg class="fo-figure${opts && opts.animate ? ' draw' : ''}" viewBox="0 0 300 300" role="img" aria-label="${esc(U.figure_aria)}">
     <g class="rays">${rayPaths}</g>
     <g transform="rotate(${tilt.toFixed(1)} ${cx} ${cy})">
@@ -1056,7 +1068,7 @@ function guessDial() {
   const p = right / total; const a = Math.PI * (1 - p);
   const x = (100 + Math.cos(a) * 80).toFixed(1), y = (100 - Math.sin(a) * 80).toFixed(1);
   const w = el('div', 'fo-dial');
-  w.appendChild(h(`<svg viewBox="0 0 200 110" role="img" aria-label="${esc(C.portrait.dial)}: ${esc(ofN(right, total))}"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--tint)" stroke-width="16" stroke-linecap="round"/><path class="fo-dial-arc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--c)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="${(p * 100).toFixed(1)} 100"/><line class="fo-dial-needle" x1="100" y1="100" x2="${x}" y2="${y}" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="var(--ink)"/><text x="100" y="92" text-anchor="middle" font-size="26" font-weight="800" fill="var(--ink)" font-family="Bricolage Grotesque, system-ui">${esc(ofN(right, total))}</text></svg>`));
+  w.appendChild(h(`<svg viewBox="0 0 200 110" role="img" aria-label="${esc(C.portrait.dial)}${COLON}${esc(ofN(right, total))}"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--tint)" stroke-width="16" stroke-linecap="round"/><path class="fo-dial-arc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--c)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="${(p * 100).toFixed(1)} 100"/><line class="fo-dial-needle" x1="100" y1="100" x2="${x}" y2="${y}" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="var(--ink)"/><text x="100" y="92" text-anchor="middle" font-size="26" font-weight="800" fill="var(--ink)" font-family="Bricolage Grotesque, system-ui">${esc(ofN(right, total))}</text></svg>`));
   w.appendChild(el('p', 'fo-quiet', C.portrait.dial));
   return w;
 }
@@ -1244,7 +1256,7 @@ function portraitPage() {
         const lines = el('div'); row.appendChild(lines); rows.appendChild(row);
         const addDot = (cls, p, title) => { const d = el('div', 'fo-strip-dot still ' + cls); d.style.left = (p * 100) + '%'; d.title = title; d.setAttribute('aria-hidden', 'true'); sp.insertBefore(d, sp.dot); };
         try { const w = await fetchGroup('world', 'g' + n); if (open(w)) { const m = meanOf(w); groupMeans.world['g' + n] = m; addDot('grp-world', toP(n, m), P.everyone); lines.appendChild(el('p', 'fo-quiet', pctWord(C.games[n].comparison, pctOf(w, v)))); } } catch (e) {}
-        if (cn) { try { const c = await fetchGroup('country', 'g' + n); if (open(c)) { const m = meanOf(c); groupMeans.country['g' + n] = m; addDot('grp-country', toP(n, m), countryName); lines.appendChild(el('p', 'fo-quiet', forPool(pctWord(C.games[n].comparison, pctOf(c, v)), 'country'))); } else if (c) lines.appendChild(el('p', 'fo-quiet', `${countryName}: ${soFar(c.n, c.opens_at)}`)); } catch (e) {} }
+        if (cn) { try { const c = await fetchGroup('country', 'g' + n); if (open(c)) { const m = meanOf(c); groupMeans.country['g' + n] = m; addDot('grp-country', toP(n, m), countryName); lines.appendChild(el('p', 'fo-quiet', forPool(pctWord(C.games[n].comparison, pctOf(c, v)), 'country'))); } else if (c) lines.appendChild(el('p', 'fo-quiet', `${countryName}${COLON}${soFar(c.n, c.opens_at)}`)); } catch (e) {} }
       }
       /* then the two group figures: their faces from the five bars' averages, their dots from the five games' averages */
       for (const kind of cn ? ['world', 'country'] : ['world']) {
@@ -1328,7 +1340,7 @@ function comparePage() {
     const row = el('div', 'fo-bar'); row.appendChild(el('b', '', bar.name));
     const rail = el('div', 'rail'); const f1 = el('div', 'fill'); f1.style.width = (mv === null ? 0 : toP(1, mv) * 100) + '%'; rail.appendChild(f1);
     if (fv !== null) { const ring = el('div', 'ring'); ring.style.left = (toP(1, fv) * 100) + '%'; ring.title = P.compare_friend; rail.appendChild(ring); }
-    row.appendChild(rail); row.appendChild(el('small', '', `${P.compare_you}: ${U.bar} · ${P.compare_friend}: ${U.ring}`)); bars.appendChild(row);
+    row.appendChild(rail); row.appendChild(el('small', '', `${P.compare_you}${COLON}${U.bar} · ${P.compare_friend}${COLON}${U.ring}`)); bars.appendChild(row);
   });
   w.appendChild(bars);
   const acts = el('div', 'fo-actions'); const a = el('a', 'btn solid', mine ? U.my_portrait : C.home['Start button']); a.href = mine ? '../portrait/' : '../'; acts.appendChild(a); w.appendChild(acts);
@@ -1370,7 +1382,7 @@ function explorePage() {
       const ok = (c) => c && c.n >= c.opens_at;
       if (ok(ca) || ok(cb)) out.appendChild(twoCurves(ok(ca) ? ca : null, ok(cb) ? cb : null, n));
       const leg = el('div', 'fo-legend');
-      for (const [c, p, cls] of [[ca, pa, 'a'], [cb, pb, 'b']]) leg.appendChild(el('span', 'fo-leg ' + cls, ok(c) ? `${p.name} · ${fmt(c.n)}` : `${p.name}: ${soFar(c ? c.n : 0, c ? c.opens_at : 30)}`));
+      for (const [c, p, cls] of [[ca, pa, 'a'], [cb, pb, 'b']]) leg.appendChild(el('span', 'fo-leg ' + cls, ok(c) ? `${p.name} · ${fmt(c.n)}` : `${p.name}${COLON}${soFar(c ? c.n : 0, c ? c.opens_at : 30)}`));
       out.appendChild(leg);
       const names = el('div', 'fo-ends three'); C.games[n].bands.forEach((b) => names.appendChild(el('span', '', b.name))); out.appendChild(names);
     } catch (e) { out.textContent = ''; out.appendChild(el('p', 'fo-curve-wait', C.shared.curve_waiting)); }
@@ -1385,25 +1397,26 @@ function twoCurves(a, b, n) {
 }
 
 /* ------------------------------------------------------------------ the language ------
-   A chip in the header shows the language and opens a sheet with the four (flag and word); the sheet opens by itself the
+   A chip in the header shows the language and opens a sheet with the six (flag and word); the sheet opens by itself the
    first time a phone reaches any find-out page (Khayyam, 23 Oct). The pick is remembered (lg.findout.lang) and every
    find-out page then opens in that language: one store, one portrait per phone whatever the language. */
-const LANGS = [['en', 'English', '\u{1F1EC}\u{1F1E7}'], ['it', 'Italiano', '\u{1F1EE}\u{1F1F9}'], ['tr', 'Türkçe', '\u{1F1F9}\u{1F1F7}'], ['es', 'Español', '\u{1F1EA}\u{1F1F8}']];
+const LANGS = [['en', 'English', '\u{1F1EC}\u{1F1E7}'], ['it', 'Italiano', '\u{1F1EE}\u{1F1F9}'], ['tr', 'Türkçe', '\u{1F1F9}\u{1F1F7}'], ['es', 'Español', '\u{1F1EA}\u{1F1F8}'],
+               ['pt', 'Português', '\u{1F1E7}\u{1F1F7}'], ['fr', 'Français', '\u{1F1EB}\u{1F1F7}']];
 const LANG_KEY = 'lg.findout.lang';
 /* a saved code the find-outs do not have (one the rest of the site may add later) counts as a pick: English here, no sheet.
-   Spanish is one of the four since 26 Oct 2026: a saved "es" opens the Spanish pages */
+   Spanish is one of them since 26 Oct 2026, Portuguese (Brazil) and French since 28 Oct 2026 */
 function savedLang() { try { const v = localStorage.getItem(LANG_KEY); return !v ? null : LANGS.some((l) => l[0] === v) ? v : 'en'; } catch (e) { return null; } }
 function rememberLang(code) { try { localStorage.setItem(LANG_KEY, code); } catch (e) {} }
-/* the same page in another language: find-out/<page> ↔ find-out/it/<page> ↔ find-out/tr/<page> ↔ find-out/es/<page>, the hash kept (a room code, a friend's portrait) */
+/* the same page in another language: find-out/<page> ↔ find-out/it/<page> ↔ … ↔ find-out/fr/<page>, the hash kept (a room code, a friend's portrait) */
 function samePageIn(code) {
-  const m = location.pathname.match(/^(.*\/find-out\/)(?:(it|tr|es)\/)?(.*)$/);
+  const m = location.pathname.match(/^(.*\/find-out\/)(?:(it|tr|es|pt|fr)\/)?(.*)$/);
   if (!m) return null;
   return m[1] + (code === 'en' ? '' : code + '/') + m[3] + location.search + location.hash;
 }
 function langSheet(open) {
   let d = document.getElementById('dlg-lang');
   if (!d) {
-    d = h(`<dialog id="dlg-lang" aria-labelledby="dlg-lang-t"><div class="sheet fo-langsheet"><button class="chip round close" type="button" data-close aria-label="${esc(U.close)}">×</button><h2 id="dlg-lang-t">Language · Lingua · Dil · Idioma</h2><div class="fo-langlist"></div></div></dialog>`);
+    d = h(`<dialog id="dlg-lang" aria-labelledby="dlg-lang-t"><div class="sheet fo-langsheet"><button class="chip round close" type="button" data-close aria-label="${esc(U.close)}">×</button><h2 id="dlg-lang-t">Language · Lingua · Dil · Idioma · Língua · Langue</h2><div class="fo-langlist"></div></div></dialog>`);
     const list = d.querySelector('.fo-langlist');
     for (const [code, name, flag] of LANGS) {
       const a = el('a', 'fo-langpick' + (code === LANG ? ' on' : '')); a.lang = code; a.hreflang = code;
@@ -1421,7 +1434,7 @@ function langChip() {
   const chip = document.getElementById('fo-langchip'); if (!chip) return;
   const me = LANGS.find((l) => l[0] === LANG) || LANGS[0];
   chip.textContent = ''; chip.appendChild(el('span', 'flag', me[2])); chip.appendChild(document.createTextNode(' ' + LANG.toUpperCase()));
-  chip.setAttribute('aria-label', U.switch_label + ': ' + me[1]); chip.hidden = false;
+  chip.setAttribute('aria-label', U.switch_label + COLON + me[1]); chip.hidden = false;
   chip.addEventListener('click', () => langSheet(true));
 }
 function progressLine(done) { const m = minutesLeft(); return tpl(m === 1 ? U.progress_line_1 : U.progress_line, { done, m }); }

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr" data-lg-path="room/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<!-- The preview card a chat app shows. First in the head, as on the duel page: WhatsApp has been
+     seen to miss these tags when they sit after bulky inline styles. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="On t’invite dans un salon" data-s-content="rm.og_title">
+<meta property="og:description" content="Un salon d’amis qui jouent aux mêmes petits jeux du jour, avec un classement pour le jour, la semaine et le mois. Sans inscription, rien à installer." data-s-content="rm.og_desc">
+<meta property="og:url" content="https://logicers.com/fr/room/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="rm.page_title">Salons : joue aux jeux du jour avec tes amis | Logicers</title>
+<link rel="canonical" href="https://logicers.com/fr/room/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/room/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/room/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/room/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/room/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/room/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/room/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/room/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/room/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/room/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/room/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/room/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/room/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/room/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/room/">
+<meta name="description" content="Un salon réunit de 2 à 50 amis qui jouent aux mêmes petits jeux du jour, avec un classement pour le jour, la semaine et le mois. Pour rejoindre, un seul lien. Sans inscription, sans mot de passe, rien à installer." data-s-content="rm.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=faf653756c">
+<script src="../../assets/lang/fr.js?v=fb24f9c348"></script>
+<script src="../../assets/js/lang.js?v=01632acb08"></script>
+<link rel="stylesheet" href="../../room/room.css?v=bd9537a1ed">
+</head>
+<body class="game d-page" data-g="room">
+
+<header class="bar">
+  <a class="wordmark" href="../../fr/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="De quoi il s’agit" data-s-aria-label="rm.what_aria">?</button>
+  </div>
+</header>
+
+<main class="wrap d-wrap rm-wrap" id="app">
+  <p class="meta"><b data-s="rm.rooms">Salons</b> <span id="rm-date"></span></p>
+
+  <h1 class="d-h1" id="rm-head" data-s="rm.play_with_friends">Joue avec tes amis</h1>
+  <p class="d-lede" id="rm-lede" data-s="rm.lede">Un salon réunit de 2 à 50 amis qui jouent aux mêmes jeux du jour, avec un classement pour le jour, la semaine et le mois.</p>
+
+  <!-- the promise, high up, where a careful person lands: one line, with the full words one tap
+       away under "?" and in the About sheet (the second round cut the paragraphs off the page) -->
+  <p class="d-safe" id="rm-safe">
+    <span class="d-tick" aria-hidden="true">✓</span>
+    <span data-s="rm.safe">Sans inscription, sans mot de passe. Rejoindre n’envoie que tes résultats du jour : le jeu, ton score, ta réponse, le jour, ton nom. Quitter supprime tout ce qui est à toi d’un coup. Les détails complets sont sous le <b>?</b>.</span>
+  </p>
+
+  <section class="panel rm-panel" id="rm-panel" aria-labelledby="rm-head">
+    <p class="rm-state" id="rm-state"></p>
+
+    <div id="rm-switch" class="rm-switch" hidden role="group" aria-label="Tes salons" data-s-aria-label="rm.your_rooms_aria"></div>
+
+    <div id="rm-join" hidden>
+      <div class="d-who" id="rm-who"></div>
+      <button class="rm-big" id="rm-join-go" type="button" data-s="rm.join_this">Rejoindre ce salon</button>
+      <p class="quiet rm-small" data-s="rm.join_note">D’un seul toucher. Si tu n’as pas encore de nom ici, une fenêtre te demande comment tes amis t’appellent.</p>
+    </div>
+
+    <div id="rm-make" hidden>
+      <button class="rm-big" id="rm-make-go" type="button" data-s="rm.make">Créer un salon</button>
+      <p class="quiet rm-small" data-s="rm.make_note">D’un seul toucher, le salon et son lien sont créés. Tu envoies le lien toi-même, et la personne qui l’ouvre est dedans.</p>
+    </div>
+
+    <div id="rm-table" hidden></div>
+
+    <p class="rm-note" id="rm-note" hidden></p>
+  </section>
+
+  <section class="d-steps" aria-labelledby="rm-steps-h">
+    <h2 class="d-demo-h" id="rm-steps-h" data-s="rm.how_h">Comment ça marche</h2>
+    <ol class="d-ol">
+      <li data-s="rm.how_1">L’un de vous crée le salon et envoie son lien dans la discussion du groupe.</li>
+      <li data-s="rm.how_2">Toute personne qui ouvre le lien est dedans. Jusqu’à 50 personnes ; sans inscription, sans mot de passe.</li>
+      <li data-s="rm.how_3">Jouez aux jeux du jour comme d’habitude. Chaque jeu terminé rejoint tout seul le classement du salon.</li>
+      <li data-s="rm.how_4">Jour, Semaine, Mois : un toucher affiche chaque classement, avec les couronnes, les séries et ceux qui n’ont pas encore joué.</li>
+    </ol>
+  </section>
+
+  <div id="after"></div>
+</main>
+
+<dialog id="dlg-help" class="sheet" aria-labelledby="help-h">
+  <div class="sheet-in">
+    <button class="sheet-x" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="help-h" data-s="rm.rooms">Salons</h2>
+    <p data-s="rm.help_lede">Un salon réunit de 2 à 50 amis qui jouent aux mêmes petits jeux du jour. Un lien fait de toi un membre ; ensuite, chaque jeu du jour que tu termines rejoint tout seul le classement du salon.</p>
+    <h3 data-s="rm.help_key_h">Le lien est la clé</h3>
+    <p class="quiet" data-s="rm.help_key">Sans inscription, sans mot de passe : le code du salon est tiré au hasard — bien trop de possibilités pour le deviner, et le serveur ralentit toute personne qui essaie — et il voyage après le <b>#</b>, que les navigateurs n’envoient jamais à d’autres sites. Toute personne qui a le lien est dedans, alors ne le partage qu’avec les amis que tu choisis.</p>
+    <h3 data-s="rm.help_name_h">Ton nom et ton visage</h3>
+    <p class="quiet" data-s="rm.help_name">Personne ne reçoit de nom d’office. La première fois qu’il en faut un, une fenêtre te demande comment tes amis t’appellent ; il reste dans ce navigateur et part avec tes scores. Ton visage est un cercle de couleur tiré de ton nom : rien n’est envoyé. Deux membres d’un même salon ne peuvent pas avoir le même nom.</p>
+    <h3 data-s="rm.help_crowns_h">Les couronnes, le jour, la semaine et le mois</h3>
+    <p class="quiet" data-s="rm.help_crowns">La couronne d’un jeu va à la personne qui a été la plus près ce jour-là, selon la règle propre au jeu : au Club, celle qui a le plus de bonnes réponses ; À toi de choisir ne donne jamais de victoire. Une égalité ne donne rien, et un jeu auquel tu es seul à avoir joué ne donne rien. Un point par couronne, pareil dans tous les classements : celui du jour, celui de la semaine (du lundi au dimanche) et celui du mois, qui repart de zéro le 1er ; chacun peut aussi montrer le précédent. Les réponses des amis ne s’affichent sur la page d’un jeu qu’une fois que tu y as joué toi-même, et un salon ne touche jamais à ta série ni à tes albums.</p>
+    <h3 data-s="rm.help_sent_h">Ce qui est envoyé, et ce qui est gardé</h3>
+    <p class="quiet" id="rm-privacy" data-privacy="rooms" data-s="priv.rooms_page">Quand tu termines un jeu du jour, ton téléphone envoie le jeu, ton score, ta réponse, le jour et ton nom aux salons dans lesquels tu es : rien d’autre, jamais la bonne réponse, et rien du tout si tu n’es dans aucun salon. Une réaction que tu touches est gardée de la même façon. Tout va vers le petit serveur du site et nulle part ailleurs. Le serveur garde ce mois-ci et le mois dernier, puis supprime ; un salon où personne n’a joué depuis 60 jours est supprimé en entier, et aucune adresse, aucun e-mail ni cookie n’est gardé pour personne. Quitter un salon supprime d’un coup tout ce qui est à toi (scores, réponses et réactions), et la personne qui a créé le salon peut supprimer le salon entier. Si quelque chose reste jamais bloqué, écris à l’adresse de contact et ce sera supprimé à la main.</p>
+    <h3 data-s="wt.contact_h">Contact</h3>
+    <p class="quiet" data-s="rm.contact">Une question, une erreur, ou quelque chose à supprimer ? Écris à <a href="mailto:logicers.world@gmail.com">logicers.world@gmail.com</a>.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg-sure" class="sheet rm-sure" aria-labelledby="sure-h">
+  <div class="sheet-in">
+    <button class="sheet-x" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="sure-h" data-s="rm.sure_h">C’est bien ce que tu veux ?</h2>
+    <p id="sure-words"></p>
+    <button class="rm-big rm-danger" id="sure-go" type="button" data-s="rm.yes">Oui</button>
+    <button class="rm-quiet" id="sure-no" type="button" data-close data-s="rm.keep">Laisser les choses comme elles sont</button>
+  </div>
+</dialog>
+
+<script src="../../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../../assets/js/duel.js?v=c4e6a61b81"></script>
+<script src="../../assets/js/rooms.js?v=496d2fe661"></script>
+<script src="../../room/room.js?v=a676065984"></script>
+</body>
+</html>

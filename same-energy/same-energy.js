@@ -276,8 +276,10 @@
   function spoken(x) {                      // for screen readers: "one and a half apples"
     if (x === 0) return T("energy.none");
     var w = Math.floor(x), h = x - w > 0.25;
-    var words = (w ? String(w) : "") + (h ? (w ? " " + T("energy.and_a_half") : T("energy.a_half")) : "");
-    return words + " " + (x <= 1 ? B.one : B.many);
+    var half = T("energy.and_a_half"), glued = half === "½";          // Portuguese writes "1½", joined (28 Oct 2026)
+    var words = (w ? String(w) : "") + (h ? (w ? (glued ? "" : " ") + half : T("energy.a_half")) : "");
+    var one = (window.LG && (LG.lang === "pt" || LG.lang === "fr")) ? x < 2 : x <= 1;   // Portuguese and French keep the singular below 2 ("1½ lata", "1,5 jour")
+    return words + " " + (one ? B.one : B.many);
   }
 
   /* ---------- the screen ---------- */

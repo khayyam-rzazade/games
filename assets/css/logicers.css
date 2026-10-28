@@ -544,6 +544,17 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
   .foot-note { margin-top: 30px; font-size: 0.85rem; }
   .plain h1 { font-size: 2.1rem; }
 }
+/* a crowded header on a phone (28 Oct 2026): six languages, and a streak word as long as "Sequência" beside the language chip and the ? must still fit at 390 px */
+@media (max-width: 430px) {
+  .tools, .bar-tools { gap: 6px; }
+  .tools .chip:not(.round), .bar-tools .chip:not(.round) { padding: 0 10px; font-size: 0.84rem; }
+}
+@media (max-width: 400px) {
+  .lg-chip .lg-code { display: none; }             /* the language chip shows its flag alone; the sheet and the aria-label name the language */
+  .bar, .site-bar { gap: 8px; }
+  .wordmark { font-size: 1.3rem; }
+  .logo .word { font-size: 1.4rem; }
+}
 @media (max-width: 350px) {
   .logo .word { font-size: 1.3rem; }
   .chip { padding: 0 10px; font-size: 0.84rem; }
@@ -1121,15 +1132,18 @@ body[data-g="hundred"] .panel.revealed { background: var(--c); box-shadow: 0 12p
 .keep-set button { appearance: none; border: 0; background: none; padding: 0; font: inherit; font-weight: 700; color: inherit; text-decoration: underline; cursor: pointer; }
 
 /* Tell Khayyam: the hello and the round photo */
-.khay-launch { position: fixed; right: max(12px, env(safe-area-inset-right, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px)); z-index: 30; display: flex; align-items: flex-end; gap: 8px; max-width: calc(100vw - 24px); transition: opacity .2s ease, transform .2s ease; animation: khay-in .45s cubic-bezier(.2, 1.1, .4, 1) both; }
+/* 29 Oct 2026: above the finish card (35) and below the Tell Khayyam window (40); it rises over a button instead of
+   vanishing (--khay-lift, set by khayLaunch; "translate" so the arrival's own animation of "transform" is untouched) */
+.khay-launch { position: fixed; right: max(12px, env(safe-area-inset-right, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px)); z-index: 38; display: flex; align-items: flex-end; gap: 8px; max-width: calc(100vw - 24px); translate: 0 calc(-1 * var(--khay-lift, 0px)); transition: opacity .2s ease, translate .28s cubic-bezier(.2, .9, .3, 1); animation: khay-in .45s cubic-bezier(.2, 1.1, .4, 1) both; }
 .khay-launch[hidden] { display: none; }
-.khay-launch.duck { opacity: 0; pointer-events: none; transform: translateY(10px); }
-.khay-launch.quiet .khay-bubble-wrap { display: none; }
+.khay-launch.duck { opacity: 0; pointer-events: none; }
+.khay-launch.quiet .khay-bubble-wrap, .khay-launch.aside .khay-bubble-wrap { display: none; }
 .khay-bubble-wrap { position: relative; }
-.khay-bubble { appearance: none; border: 0; max-width: 15.5rem; padding: 11px 15px; border-radius: 18px 18px 6px 18px; background: var(--card); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.95rem; line-height: 1.25; text-align: left; cursor: pointer; box-shadow: var(--shadow-up), inset 0 0 0 1px var(--line); }
+.khay-bubble { appearance: none; border: 0; max-width: 15.5rem; padding: 11px 15px; border-radius: 18px 18px 6px 18px; background: var(--card); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.95rem; line-height: 1.25; text-align: left; cursor: pointer; box-shadow: 0 4px 10px rgba(21, 23, 43, .12), 0 16px 36px rgba(21, 23, 43, .24), inset 0 0 0 1.5px #C9D2F2; }
 .khay-bubble span { display: block; margin-top: 1px; color: var(--soft); font-weight: 600; }
 .khay-x { appearance: none; position: absolute; top: -10px; left: -10px; width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--card); color: var(--soft); font: inherit; font-weight: 800; font-size: 1rem; line-height: 1; cursor: pointer; box-shadow: var(--shadow-up), inset 0 0 0 1px var(--line); }
-.khay-face { appearance: none; flex: none; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%; overflow: hidden; background: var(--card); cursor: pointer; box-shadow: var(--shadow-up), 0 0 0 3px var(--card); -webkit-tap-highlight-color: transparent; }
+/* 68px (was 56) with a white ring and a blue one round it, so it reads on the white card as on the page */
+.khay-face { appearance: none; flex: none; width: 68px; height: 68px; margin: 5px; padding: 0; border: 0; border-radius: 50%; overflow: hidden; background: var(--card); cursor: pointer; box-shadow: 0 0 0 3px #fff, 0 0 0 5.5px #2D4FC4, 0 8px 18px rgba(21, 23, 43, .22), 0 18px 40px rgba(21, 23, 43, .22); -webkit-tap-highlight-color: transparent; }
 .khay-face img, .khay-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 @keyframes khay-in { from { opacity: 0; transform: translateY(16px) scale(.96); } to { opacity: 1; transform: none; } }
 
@@ -1160,7 +1174,8 @@ dialog.khay:not([open]) { display: none; }
 @media (prefers-color-scheme: dark) {
   .eod-app, .eod-pride, .eod-cell, .keep-cell, .khay-mood, .khay-text { background: rgba(255, 255, 255, .05); }
   .khay-bubble, .khay-x, .khay-face { background: #1B1F3B; box-shadow: 0 10px 30px rgba(0, 0, 0, .5), inset 0 0 0 1px var(--line); }
-  .khay-face { box-shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 0 0 3px #1B1F3B; }
+  .khay-bubble { background: #232849; box-shadow: 0 10px 30px rgba(0, 0, 0, .6), inset 0 0 0 1.5px rgba(255, 255, 255, .22); }
+  .khay-face { box-shadow: 0 0 0 3px #0B0D1A, 0 0 0 5.5px #F2B21B, 0 10px 30px rgba(0, 0, 0, .6); }
 }
 @media (max-width: 380px) {
   .eod-cell, .keep-cell { font-size: 0.74rem; }

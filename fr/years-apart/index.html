@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr" data-lg-path="years-apart/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="apart.page_title">Entre deux dates : un jeu quotidien sur les distances dans le temps | Logicers</title>
+<link rel="canonical" href="https://logicers.com/fr/years-apart/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/years-apart/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/years-apart/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/years-apart/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/years-apart/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/years-apart/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/years-apart/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/years-apart/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/years-apart/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/years-apart/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/years-apart/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/years-apart/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/years-apart/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/years-apart/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/years-apart/">
+<meta name="description" content="Deux vrais événements, et un troisième arrivé entre les deux. Fais-le glisser là où tu penses qu’il tombe, puis vois les années et l’écart réel entre eux." data-s-content="apart.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Entre deux dates" data-s-content="game.apart.name">
+<meta property="og:description" content="Deux vrais événements, un entre les deux. Où tombe-t-il sur la ligne ?" data-s-content="apart.og_desc">
+<meta property="og:url" content="https://logicers.com/fr/years-apart/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F1E7DC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=faf653756c">
+<script src="../../assets/lang/fr.js?v=fb24f9c348"></script>
+<script src="../../assets/js/lang.js?v=01632acb08"></script>
+<link rel="stylesheet" href="../../years-apart/years-apart.css?v=b9111b9ed5">
+</head>
+<body class="game" data-g="apart">
+
+<header class="bar">
+  <a class="wordmark" href="../../fr/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Série 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Comment jouer" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.apart.name">Entre deux dates</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="ya-q" id="question" data-s="apart.where_falls">Où tombe-t-il ?</h1>
+
+  <section class="panel ya-mat" id="panel" aria-labelledby="question">
+    <div class="ya-ends">
+      <p class="ya-end" id="end-l"><small data-s="apart.from">De</small><span class="ya-end-t" id="left-t"></span><span class="ya-year" id="left-y" hidden></span></p>
+      <p class="ya-end r" id="end-r"><small data-s="apart.to">À</small><span class="ya-end-t" id="right-t"></span><span class="ya-year" id="right-y" hidden></span></p>
+    </div>
+    <div class="ya-board" id="board">
+      <svg class="ya-ruler" id="ruler" aria-hidden="true" focusable="false"></svg>
+      <div class="ya-pin" id="pin" aria-hidden="true" hidden></div>
+      <svg class="ya-string" id="string" aria-hidden="true" focusable="false"><path id="string-path" d=""/></svg>
+      <div class="ya-cursor" id="cursor" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i aria-hidden="true"></i></div>
+      <div class="ya-tag" id="tag"><span class="ya-tag-t" id="tag-t"></span><span class="ya-tag-y" id="tag-y" hidden></span></div>
+    </div>
+    <div class="verdict ya-verdict" id="verdict" hidden>
+      <p class="offby" id="offby" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <p class="ya-hint" id="hint" data-s="apart.hint">Fais-le glisser le long de la règle jusqu’à l’endroit où tu penses qu’il tombe.</p>
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="btn-measure" type="button" data-s="apart.measure">Mesurer</button>
+  </div>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <ul class="ya-sources" id="sources" aria-label="Sources" data-s-aria-label="apart.sources_aria"></ul>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Partager</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">S’entraîner</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">Comment jouer</h2>
+    <ol>
+      <li data-s="apart.help_1">Une règle va d’un vrai événement à un autre : le plus ancien à gauche, le plus récent à droite.</li>
+      <li data-s="apart.help_2">Un troisième événement s’est passé quelque part entre les deux. Fais-le glisser là où tu penses qu’il tombe, puis touche Mesurer.</li>
+      <li data-s="apart.help_3">Les années apparaissent, et tu vois ton écart en années.</li>
+    </ol>
+    <p data-s="apart.help_daily">Une ligne par jour, la même pour tout le monde. Une nouvelle arrive à minuit.</p>
+    <h3 data-s="apart.help_years_h">Les années</h3>
+    <p class="quiet" data-s="apart.help_years">Elles restent cachées jusqu’à ce que tu mesures. Une année marquée « vers » n’est pas connue avec exactitude ; une telle date n’est utilisée que là où elle change à peine la réponse.</p>
+    <h3 data-s="apart.help_dates_h">D’où viennent les dates</h3>
+    <p class="quiet" data-s="apart.help_dates">Chaque date est vérifiée avec deux sources, liées sous la réponse.</p>
+    <h3 data-s="site.your_privacy">Ta vie privée</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">Sans inscription, sans suivi, sans cookies. Ta série et ton album sont gardés seulement dans ce navigateur.</p>
+    <p class="mail" data-s="site.mistake_mail">Une erreur ? Écris-moi : <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Ton album</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">jours joués</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">série en cours</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">meilleure série</span></div>
+      <div class="stat"><b id="st-avg">0%</b><span data-s="apart.avg_off">d’écart sur la ligne, en moyenne</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="apart.album_empty">Mesure la ligne du jour pour obtenir ton premier tampon.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">S’entraîner</h2>
+    <p class="quiet" data-s="apart.practice_lede">La ligne d’hier. L’entraînement ne compte ni pour ta série ni pour ton album.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Rien à pratiquer pour le moment. Reviens demain.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../fr/years-apart/" data-s="apart.back_today">Retour à la ligne du jour</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fermer" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Partage ton résultat</h2>
+    <p class="quiet" data-s="site.share_lede">Envoie le lien avec l’image, pour que tes amis puissent le toucher.</p>
+    <img class="shot" id="share-img" alt="Ton résultat en image. Elle montre les trois événements et ton écart en années, mais pas où tombe celui du milieu." data-s-alt="apart.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="years-apart.png" data-s="share.save">Enregistrer l’image</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copier le lien</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">Ce jeu a besoin de JavaScript pour fonctionner.</p></noscript>
+
+<script src="../../years-apart/puzzles.js"></script>
+<script src="../../assets/lang/fr/years-apart.js?v=b7c442b684"></script>
+<script src="../../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../../assets/js/duel.js?v=c4e6a61b81"></script>
+<script src="../../assets/js/rooms.js?v=496d2fe661"></script>
+<script src="../../assets/js/points.js?v=f3d487d081"></script>
+<script src="../../assets/js/world.js?v=a0265c5f03"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../years-apart/years-apart.js?v=7f9e957558"></script>
+</body>
+</html>

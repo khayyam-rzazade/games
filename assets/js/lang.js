@@ -1,4 +1,4 @@
-/* Logicers in four languages (23 Oct 2026, Khayyam): English, Italian, Turkish and Spanish.
+/* Logicers in six languages (23 Oct 2026, Khayyam): English, Italian, Turkish, Spanish, Portuguese (Brazil, 28 Oct) and French (28 Oct).
    This file is the site's language layer. It loads first on every page, after the page's dictionary
    (assets/lang/<code>.js, built from the string docs by claude/logicers-data/scripts/build_lang.py), and it does
    four things:
@@ -8,8 +8,8 @@
         the whole site; a remembered pick opens every page in that language (location.replace before anything is
         drawn). A chip in the header shows the language and opens the same sheet for a change. On a first visit the
         sheet puts the phone's own language (navigator.language) first and marked, if it is one of the four; the
-        player still chooses. The home pages also carry a small line under the subtitle (#lg-line: the four names,
-        each in its own tongue); its links are plain addresses (/, /it/, /tr/, /es/) that work without a script, and
+        player still chooses. The home pages also carry a small line under the subtitle (#lg-line: the six names,
+        each in its own tongue); its links are plain addresses (/, /it/, /tr/, /es/, /pt/, /fr/) that work without a script, and
         here they pick exactly as the sheet does (pick()). Every real change of language is counted once, as the
         event lang/<code> through the frame's own TurnsOut.count (not when the player taps the language already
         remembered, not on the automatic redirect).
@@ -24,9 +24,10 @@
 (function () {
   "use strict";
   var LANGS = [["en", "English", "🇬🇧", "en-GB"], ["it", "Italiano", "🇮🇹", "it-IT"],
-               ["tr", "Türkçe", "🇹🇷", "tr-TR"], ["es", "Español", "🇪🇸", "es-ES"]];
+               ["tr", "Türkçe", "🇹🇷", "tr-TR"], ["es", "Español", "🇪🇸", "es-ES"],
+               ["pt", "Português", "🇧🇷", "pt-BR"], ["fr", "Français", "🇫🇷", "fr-FR"]];
   var KEY = "lg.findout.lang";             // the find-outs' key (find-out/find-out.js): one pick per phone
-  var FINDOUT = { it: "it/", tr: "tr/", es: "es/" };  // the find-outs exist in these (Spanish since 26 Oct 2026)
+  var FINDOUT = { it: "it/", tr: "tr/", es: "es/", pt: "pt/", fr: "fr/" };  // the find-outs exist in these (Spanish since 26 Oct, Portuguese and French since 28 Oct 2026)
   var html = document.documentElement;
   function known(c) { for (var i = 0; i < LANGS.length; i++) if (LANGS[i][0] === c) return LANGS[i]; return null; }
   var me = known(String(html.lang || "en").slice(0, 2).toLowerCase()) || LANGS[0];
@@ -81,12 +82,13 @@
   function date(d, opts) {
     try { return (d || new Date()).toLocaleDateString(locale, opts || { day: "numeric", month: "long" }); } catch (e) { return ""; }
   }
-  /* 1st, 2nd, 3rd / 1º, 2º / 1., 2. / 1.º, 2.º */
+  /* 1st, 2nd, 3rd / 1º, 2º / 1., 2. / 1.º, 2.º / 1º, 2º (Portuguese) / 1er, 2e (French) */
   function nth(n) {
     n = Number(n);
     if (lang === "en") { var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
-    if (lang === "it") return n + "º";
+    if (lang === "it" || lang === "pt") return n + "º";
     if (lang === "es") return n + ".º";
+    if (lang === "fr") return n + (n === 1 ? "er" : "e");
     return n + ".";
   }
   var names = null;
@@ -135,13 +137,13 @@
     if (text !== undefined) e.textContent = text;
     return e;
   }
-  /* the phone's own language, if it is one of the four ("it-IT" -> Italiano); null for any other */
+  /* the phone's own language, if it is one of the six ("it-IT" -> Italiano, "pt-BR" -> Português); null for any other */
   function phone() {
     var n = "";
     try { n = String(window.navigator.language || window.navigator.userLanguage || ""); } catch (e) { n = ""; }
     return known(n.slice(0, 2).toLowerCase());
   }
-  /* counting a pick: lang/en, lang/it, lang/tr, lang/es, through the frame's own TurnsOut.count */
+  /* counting a pick: lang/en, lang/it, lang/tr, lang/es, lang/pt, lang/fr, through the frame's own TurnsOut.count */
   function countPick(code) {
     try { if (window.TurnsOut && typeof window.TurnsOut.count === "function") window.TurnsOut.count("lang/" + code); } catch (e) { /* counting never breaks a page */ }
   }
@@ -162,8 +164,8 @@
     window.setTimeout(function () { window.location.assign(to); }, changed ? 200 : 0);
   }
   var dlg = null, list = null;
-  /* the sheet's four rows. On a first visit (nothing remembered) the phone's own language comes first and is the
-     marked one, if it is one of the four; otherwise the usual order, this page's language marked */
+  /* the sheet's six rows. On a first visit (nothing remembered) the phone's own language comes first and is the
+     marked one, if it is one of the six; otherwise the usual order, this page's language marked */
   function fillList() {
     var lead = saved() ? null : phone();
     var order = lead ? [lead].concat(LANGS.filter(function (l) { return l !== lead; })) : LANGS;
@@ -192,7 +194,7 @@
       x.addEventListener("click", function () { dlg.close(); });
       box.appendChild(x);
       box.appendChild(el("h2", "lg-h", T("lang.title")));
-      box.appendChild(el("p", "quiet lg-sub", "Language · Lingua · Dil · Idioma"));
+      box.appendChild(el("p", "quiet lg-sub", "Language · Lingua · Dil · Idioma · Língua · Langue"));
       list = el("div", "lg-list");
       box.appendChild(list);
       dlg.appendChild(box);
@@ -213,7 +215,7 @@
       var code = a.getAttribute("hreflang");
       if (!known(code)) return;
       if (code === lang) a.setAttribute("aria-current", "true");
-      if (!only) a.href = hrefIn(code);          // the sheet's own address: this page's path, ?query and #hash kept (without a script the plain / /it/ /tr/ /es/ stay)
+      if (!only) a.href = hrefIn(code);          // the sheet's own address: this page's path, ?query and #hash kept (without a script the plain / /it/ … /fr/ stay)
       a.addEventListener("click", function (e) { pick(code, e, a); });
     })(links[i]);
   }
@@ -223,7 +225,7 @@
     var pick = known(saved()) || me;
     c.textContent = "";
     c.appendChild(el("span", "lg-flag", pick[2]));
-    c.appendChild(document.createTextNode(" " + pick[0].toUpperCase()));
+    c.appendChild(el("span", "lg-code", " " + pick[0].toUpperCase()));   // the letters; a narrow phone shows the flag alone (CSS)
     c.setAttribute("aria-label", T("lang.change") + ": " + pick[1]);
     c.hidden = false;
     c.addEventListener("click", function () { sheet(true); });

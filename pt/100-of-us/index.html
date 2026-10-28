@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR" data-lg-path="100-of-us/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="hund.page_title">O mundo em 100: um jogo diário sobre as pessoas do mundo | Logicers</title>
+<link rel="canonical" href="https://logicers.com/pt/100-of-us/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/100-of-us/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/100-of-us/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/100-of-us/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/100-of-us/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/100-of-us/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/100-of-us/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/100-of-us/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/100-of-us/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/100-of-us/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/100-of-us/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/100-of-us/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/100-of-us/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/100-of-us/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/100-of-us/">
+<meta name="description" content="Uma pergunta por dia sobre as pessoas do mundo. Toque e segure, solte no seu palpite e veja como é de verdade." data-s-content="hund.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="O mundo em 100" data-s-content="game.hundred.name">
+<meta property="og:description" content="De cada 100 pessoas no mundo, quantas…? Uma pergunta por dia." data-s-content="hund.og_desc">
+<meta property="og:url" content="https://logicers.com/pt/100-of-us/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#E3E9FD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=faf653756c">
+<script src="../../assets/lang/pt.js?v=dfc19791aa"></script>
+<script src="../../assets/js/lang.js?v=01632acb08"></script>
+</head>
+<body class="game" data-g="hundred">
+
+<svg class="defs" aria-hidden="true" focusable="false">
+  <symbol id="p" viewBox="0 0 20 22">
+    <circle cx="10" cy="5" r="4.4"/>
+    <path d="M2.2 22v-4.2a7.8 7.8 0 0 1 15.6 0V22z"/>
+  </symbol>
+</svg>
+
+<header class="bar">
+  <a class="wordmark" href="../../pt/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Sequência 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Como jogar" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.hundred.name">O mundo em 100</b> <span id="day-label"></span></p>
+  <div class="stage" id="stage" data-phase="guess">
+    <p class="notice" id="notice" hidden></p>
+    <h1 class="question three" id="question"></h1>
+
+    <section class="panel" id="panel" aria-live="polite">
+      <div class="crowd" id="crowd" role="img" aria-label="0 de 100 figuras contadas" data-s-aria-label="hund.counted_aria_0"></div>
+      <div class="readout">
+        <output class="count" id="count">0</output>
+        <p class="hint" id="hint" data-s="hund.hint_start">Toque e segure, ou deslize. Solte no seu palpite.</p>
+        <div class="verdict" id="verdict" hidden>
+          <p class="turnsout" id="turnsout"></p>
+          <p class="offby" id="offby"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn ghost" id="redo" type="button" hidden data-s="hund.redo">Recomeçar</button>
+    <button class="btn solid" id="lock" type="button" hidden data-s="hund.lock_in">Confirmar</button>
+  </div>
+
+  <label class="sr-only" for="a11y-range" data-s="hund.range_label">Seu palpite, de 0 a 100. Use as setas do teclado e depois aperte Confirmar.</label>
+  <input class="sr-only" id="a11y-range" type="range" min="0" max="100" step="1" value="0">
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="source"><span data-s="site.source">Fonte:</span> <a id="source-link" href="#" target="_blank" rel="noopener"></a><span id="source-exact"></span></p>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Compartilhar</button>
+      <button class="btn ghost" id="open-practice" type="button" data-open="dlg-practice" data-s="site.practice">Treinar</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">Como jogar</h2>
+    <ol>
+      <li data-s="hund.help_1">Toque e segure. As figuras são contadas uma a uma. Um toque soma uma.</li>
+      <li data-s="hund.help_2">Enquanto você segura, deslize para a direita para somar mais e para a esquerda para tirar.</li>
+      <li data-s="hund.help_3">Solte no seu palpite. Segure de novo para somar mais, ou toque em Recomeçar.</li>
+      <li data-s="hund.help_4">Toque em Confirmar para ver como é de verdade.</li>
+    </ol>
+    <p data-s="site.help_daily">Uma pergunta por dia, a mesma para todo mundo. Uma nova chega à meia-noite.</p>
+    <h3 data-s="hund.help_numbers_h">De onde vêm os números</h3>
+    <p class="quiet" data-s="hund.help_numbers">Os dados abertos do Banco Mundial (CC BY 4.0), arredondados para pessoas inteiras. O Banco Mundial não endossa este site.</p>
+    <h3 data-s="site.your_privacy">Sua privacidade</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">Sem cadastro, sem rastreamento, sem cookies. Sua sequência e seu álbum ficam guardados só neste navegador.</p>
+    <p class="mail" data-s="site.mistake_mail">Viu um erro? Escreva para mim: <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Seu álbum</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">dias jogados</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">sequência agora</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">melhor sequência</span></div>
+      <div class="stat"><b id="st-gap">0</b><span data-s="hund.average_miss">diferença média</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="hund.album_empty">Jogue a pergunta de hoje para ganhar seu primeiro carimbo.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">Treinar</h2>
+    <p class="quiet" data-s="hund.practice_lede">A pergunta de ontem. O treino não conta para a sua sequência nem para o seu álbum.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Ainda não há nada para treinar. Volte amanhã.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../pt/100-of-us/" data-s="hund.back_today">Voltar para a pergunta de hoje</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Compartilhe seu resultado</h2>
+    <p class="quiet" data-s="site.share_lede">Envie o link junto com a imagem, para seus amigos poderem tocar nele.</p>
+    <img class="shot" id="share-img" alt="Seu resultado em imagem. Ela não mostra a resposta." data-s-alt="hund.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="100-of-us.png" data-s="share.save">Salvar imagem</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copiar link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">Este jogo precisa de JavaScript para funcionar.</p></noscript>
+
+<script src="../../data/100-of-us.js"></script>
+<script src="../../assets/lang/pt/100-of-us.js?v=e2643e548d"></script>
+<script src="../../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../../assets/js/duel.js?v=c4e6a61b81"></script>
+<script src="../../assets/js/rooms.js?v=496d2fe661"></script>
+<script src="../../assets/js/points.js?v=f3d487d081"></script>
+<script src="../../assets/js/world.js?v=a0265c5f03"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../assets/js/100-of-us.js?v=3d9dae240a"></script>
+</body>
+</html>

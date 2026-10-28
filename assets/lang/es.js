@@ -1116,6 +1116,11 @@ window.LG_DICT = {
  "rm.contact": "¿Una pregunta, un error o algo que borrar? Escribe a <a href=\"mailto:logicers.world@gmail.com\">logicers.world@gmail.com</a>.",
  "rm.sure_h": "¿Confirmas?",
  "rm.yes": "Sí",
- "rm.keep": "Dejar todo como está"
+ "rm.keep": "Dejar todo como está",
+ "home.word_games_h": "Los juegos de palabras de hoy",
+ "game.altitude.name": "Altitude",
+ "home.pitch_altitude_long": "Una palabra de 2 letras, luego 3, 4, hasta 8, con una única reserva de intentos. ¿Hasta dónde llegas?",
+ "game.altitude.pitch": "Una palabra con una letra más cada vez. ¿Hasta dónde llegas?",
+ "site.two_min": "2 min"
 };
-window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora."};
+window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora.", "pt": "Esta página está só em inglês por enquanto.", "fr": "Cette page n’existe qu’en anglais pour le moment."};

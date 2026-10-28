@@ -10,11 +10,15 @@
 <link rel="alternate" hreflang="it" href="https://logicers.com/it/">
 <link rel="alternate" hreflang="tr" href="https://logicers.com/tr/">
 <link rel="alternate" hreflang="es" href="https://logicers.com/es/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/">
 <link rel="alternate" hreflang="x-default" href="https://logicers.com/">
 <link rel="alternate" hreflang="en" href="https://logicers.com/">
 <link rel="alternate" hreflang="it" href="https://logicers.com/it/">
 <link rel="alternate" hreflang="tr" href="https://logicers.com/tr/">
 <link rel="alternate" hreflang="es" href="https://logicers.com/es/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/">
 <link rel="alternate" hreflang="x-default" href="https://logicers.com/">
 <meta name="description" content="Oyun gibi öğrenme. Gerçek bilgilere dayanan oyunlar, meraklı ve düşünen her zihin için." data-s-content="home.page_desc">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
@@ -40,9 +44,9 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=73704e683c">
-<script src="../assets/lang/tr.js?v=ee95f51ca9"></script>
-<script src="../assets/js/lang.js?v=b98f8d533f"></script>
+<link rel="stylesheet" href="../assets/css/logicers.css?v=faf653756c">
+<script src="../assets/lang/tr.js?v=b27a8c854d"></script>
+<script src="../assets/js/lang.js?v=01632acb08"></script>
 <style>
 /* Find out about yourself (B2, 22 Oct 2026): the box and the row. Kept here, not in logicers.css, so no shared file needs re-stamping. */
 [data-g="findout"] { --c: #3F7A2A; --tint: #E3F2DA; }
@@ -77,7 +81,7 @@
 .lg-line a:hover .lg-name { text-decoration: underline; }
 .lg-line .lg-flag { font-size: 1.05em; line-height: 1; }
 @media (max-width: 339px) { .lg-line { font-size: .8rem; } }
-html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="it"], html[lang="tr"] .lg-line a[hreflang="tr"], html[lang="es"] .lg-line a[hreflang="es"] { color: var(--ink); font-weight: 800; }
+html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="it"], html[lang="tr"] .lg-line a[hreflang="tr"], html[lang="es"] .lg-line a[hreflang="es"], html[lang|="pt"] .lg-line a[hreflang="pt"], html[lang="fr"] .lg-line a[hreflang="fr"] { color: var(--ink); font-weight: 800; }
 .logicer.findout .logicer-small:empty { display: none; }
 /* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
 .rooms-sheet { max-width: 440px; }
@@ -117,12 +121,14 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     <p class="eyebrow" id="eyebrow"></p>
     <h1 data-s="home.h1">Sen bir <em>Logicer</em> misin?</h1>
     <p class="lede" data-s="home.lede"><b>Oyun gibi öğrenme.</b> Gerçek bilgilere dayanan oyunlar, meraklı ve düşünen her zihin için.</p>
-    <!-- the language line (Khayyam, 26 Oct 2026): names in their own language, never translated, the same on all four homes. Each is a plain link to the home in that language (works without JavaScript); assets/js/lang.js adds the remembered pick and the count. The four hrefs are root links: build_lang.py leaves them alone. -->
+    <!-- the language line (Khayyam, 26 Oct 2026; six names since 28 Oct): names in their own language, never translated, the same on all six homes. Each is a plain link to the home in that language (works without JavaScript); assets/js/lang.js adds the remembered pick and the count. The six hrefs are root links: build_lang.py leaves them alone. -->
     <nav class="lg-line" id="lg-line" aria-label="Dili değiştir" data-s-aria-label="lang.change">
       <a href="/" lang="en" hreflang="en"><span class="lg-flag" aria-hidden="true">🇬🇧</span><span class="lg-name">English</span></a>
       <a href="/it/" lang="it" hreflang="it"><span class="lg-flag" aria-hidden="true">🇮🇹</span><span class="lg-name">Italiano</span></a>
       <a href="/tr/" lang="tr" hreflang="tr"><span class="lg-flag" aria-hidden="true">🇹🇷</span><span class="lg-name">Türkçe</span></a>
       <a href="/es/" lang="es" hreflang="es"><span class="lg-flag" aria-hidden="true">🇪🇸</span><span class="lg-name">Español</span></a>
+      <a href="/pt/" lang="pt" hreflang="pt"><span class="lg-flag" aria-hidden="true">🇧🇷</span><span class="lg-name">Português</span></a>
+      <a href="/fr/" lang="fr" hreflang="fr"><span class="lg-flag" aria-hidden="true">🇫🇷</span><span class="lg-name">Français</span></a>
     </nav>
     <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
     <!-- the two boxes stop where the longer text stops, both the same width (Khayyam, 22 Oct 2026); on the phone they fill the line as before -->
@@ -517,7 +523,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="../assets/js/turnsout.js?v=7127452852"></script>
 <script src="../assets/js/duel.js?v=c4e6a61b81"></script>
 <script src="../assets/js/rooms.js?v=496d2fe661"></script>
-<script src="../assets/js/points.js?v=d060d18a9f"></script>
+<script src="../assets/js/points.js?v=f3d487d081"></script>
 <script src="../assets/js/world.js?v=a0265c5f03"></script>
 <script src="../assets/js/said.js?v=5d6cde48e4"></script>
 <script src="../assets/js/logicer.js?v=f998ff3c11"></script>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR" data-lg-path="same-energy/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="energy.page_title">Mesma energia: um jogo diário sobre comida e bebida | Logicers</title>
+<link rel="canonical" href="https://logicers.com/pt/same-energy/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/same-energy/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/same-energy/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/same-energy/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/same-energy/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/same-energy/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/same-energy/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/same-energy/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/same-energy/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/same-energy/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/same-energy/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/same-energy/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/same-energy/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/same-energy/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/same-energy/">
+<meta name="description" content="Uma comida ou bebida por dia. Encha um prato ou sirva copos de outra coisa até chegar à mesma energia e veja a quantidade real, segundo duas tabelas oficiais de alimentos." data-s-content="energy.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Mesma energia" data-s-content="game.energy.name">
+<meta property="og:description" content="Uma comida ou bebida por dia. Que quantidade de outra coisa tem a mesma energia?" data-s-content="energy.og_desc">
+<meta property="og:url" content="https://logicers.com/pt/same-energy/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAE8D7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=faf653756c">
+<script src="../../assets/lang/pt.js?v=dfc19791aa"></script>
+<script src="../../assets/js/lang.js?v=01632acb08"></script>
+<link rel="stylesheet" href="../../same-energy/same-energy.css?v=da9c946b94">
+</head>
+<body class="game" data-g="energy">
+
+<header class="bar">
+  <a class="wordmark" href="../../pt/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Sequência 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Como jogar" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.energy.name">Mesma energia</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="e-q" id="question" data-s="energy.question_plain">Que quantidade tem a mesma energia?</h1>
+
+  <section class="panel e-panel" id="panel" aria-labelledby="question">
+    <div class="e-top">
+      <span class="e-pic" id="pic" aria-hidden="true"></span>
+      <div class="e-name">
+        <p class="e-face" id="face"></p>
+        <p class="e-chips"><span class="e-chip" id="portion"></span></p>
+      </div>
+    </div>
+    <p class="e-same" aria-hidden="true" data-s="energy.same_as"><span>=</span> mesma energia que</p>
+
+    <div class="e-stage" id="stage">
+      <svg class="e-plate" id="plate" viewBox="0 0 320 152" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="10"
+           aria-valuenow="0" aria-valuetext="nada" data-s-aria-valuetext="energy.none" aria-label="Que quantidade" data-s-aria-label="energy.how_many_short" focusable="true">
+        <defs>
+          <clipPath id="clip-l" clipPathUnits="objectBoundingBox"><rect x="0" y="0" width=".5" height="1"/></clipPath>
+          <clipPath id="clip-r" clipPathUnits="objectBoundingBox"><rect x=".5" y="0" width=".5" height="1"/></clipPath>
+        </defs>
+        <g id="base"></g>
+        <g id="items"></g>
+        <g class="e-gauge" id="gauge"><rect class="e-track" x="304" y="12" width="6" height="116" rx="3"/><circle class="e-thumb" id="thumb" cx="307" cy="128" r="10"/></g>
+      </svg>
+    </div>
+    <p class="e-count" aria-hidden="true"><span class="e-cap" id="cap"></span><b id="count">0</b> <span id="unit"></span><span class="e-you" id="you"></span></p>
+    <p class="e-unit" id="unit-portion"></p>
+
+    <div class="verdict e-verdict" id="verdict" hidden>
+      <p class="offby" id="offby" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <p class="e-hint" id="hint" data-s="energy.hint_plate">Arraste para cima no prato para colocar, ou toque nele.</p>
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="btn-show" type="button" data-s="energy.show_real">Mostrar a quantidade real</button>
+  </div>
+  <p class="sr-only" id="say" role="status"></p>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="e-note quiet" id="note"></p>
+    <ul class="e-sources" id="sources" aria-label="Fontes" data-s-aria-label="apart.sources_aria"></ul>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Compartilhar</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">Treinar</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">Como jogar</h2>
+    <ol>
+      <li data-s="energy.help_1">Uma comida ou bebida do dia a dia lá em cima.</li>
+      <li data-s="energy.help_2">Arraste para cima no prato para colocar e para baixo para tirar. Pare quando a energia for a mesma.</li>
+      <li data-s="energy.help_3">Toque em Mostrar a quantidade real. O amarelo marca a parte em que você teve diferença.</li>
+    </ol>
+    <p data-s="o24.help_daily">Um por dia, o mesmo para todo mundo. Um novo chega à meia-noite.</p>
+    <h3 data-s="every.help_figures_h">De onde vêm os números</h3>
+    <p class="quiet" data-s="energy.help_figures">Duas tabelas oficiais de alimentos, a FoodData Central (EUA) e a Matvaretabellen (Noruega), as duas com link embaixo da resposta. Arredondado para meia porção.</p>
+    <p class="quiet" data-s="energy.help_portions">Cada unidade: maçã 180&nbsp;g, banana 120&nbsp;g, fatia de pão de forma 30&nbsp;g, ovo 50&nbsp;g, uva 5&nbsp;g; copo 250&nbsp;ml, lata 330&nbsp;ml.</p>
+    <h3 data-s="energy.help_talk_h">Alguém para conversar</h3>
+    <p class="quiet" id="support" data-s="energy.help_talk">Se a comida ou o ato de comer é difícil para você, você não está só. No Brasil, o <a href="https://cvv.org.br/" target="_blank" rel="noopener">CVV</a> atende de graça pelo 188, a qualquer hora do dia ou da noite; é um apoio para conversar sobre o que estiver pesando, não só sobre comida. Estas linhas de ajuda sobre alimentação, em outros países, são gratuitas e abrem nos dias úteis: <a href="https://beateatingdisorders.org.uk/support-services/helplines" target="_blank" rel="noopener">Beat</a>, no Reino Unido (0808&nbsp;801&nbsp;0677; na Escócia 0808&nbsp;801&nbsp;0432, no País de Gales 0808&nbsp;801&nbsp;0433, na Irlanda do Norte 0808&nbsp;801&nbsp;0434), a <a href="https://www.allianceforeatingdisorders.com/what-is-an-eating-disorder-helpline/" target="_blank" rel="noopener">National Alliance for Eating Disorders</a>, nos Estados Unidos (+1&nbsp;866&nbsp;662&nbsp;1235), e a <a href="https://sosdisturbialimentari.it/" target="_blank" rel="noopener">SOS Disturbi Alimentari</a>, na Itália (800&nbsp;180&nbsp;969).</p>
+    <h3 data-s="site.your_privacy">Sua privacidade</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">Sem cadastro, sem rastreamento, sem cookies. Sua sequência e seu álbum ficam guardados só neste navegador.</p>
+    <p class="mail" data-s="site.mistake_mail">Viu um erro? Escreva para mim: <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Seu álbum</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">dias jogados</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">sequência agora</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">melhor sequência</span></div>
+      <div class="stat"><b id="st-spot">0</b><span data-s="every.spot_on_count">na mosca</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="energy.album_empty">Encha o prato de hoje para ganhar seu primeiro carimbo.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">Treinar</h2>
+    <p class="quiet" data-s="o24.practice_lede">O dia de ontem. O treino não conta para a sua sequência nem para o seu álbum.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Ainda não há nada para treinar. Volte amanhã.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../pt/same-energy/" data-s="o24.back_today">Voltar para hoje</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Compartilhe seu resultado</h2>
+    <p class="quiet" data-s="site.share_lede">Envie o link junto com a imagem, para seus amigos poderem tocar nele.</p>
+    <img class="shot" id="share-img" alt="Seu resultado em imagem. Ela mostra a comida ou a bebida de hoje e a diferença que você teve, mas não a quantidade real." data-s-alt="energy.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="same-energy.png" data-s="share.save">Salvar imagem</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copiar link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">Este jogo precisa de JavaScript para funcionar.</p></noscript>
+
+<script src="../../same-energy/puzzles.js"></script>
+<script src="../../assets/lang/pt/same-energy.js?v=49ca74b618"></script>
+<script src="../../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../../assets/js/duel.js?v=c4e6a61b81"></script>
+<script src="../../assets/js/rooms.js?v=496d2fe661"></script>
+<script src="../../assets/js/points.js?v=f3d487d081"></script>
+<script src="../../assets/js/world.js?v=a0265c5f03"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../same-energy/same-energy.js?v=5ef539d12a"></script>
+</body>
+</html>

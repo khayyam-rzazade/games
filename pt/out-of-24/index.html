@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR" data-lg-path="out-of-24/" data-lg-root="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-s="o24.page_title">Em 24 horas: um jogo diário sobre as horas de um dia | Logicers</title>
+<link rel="canonical" href="https://logicers.com/pt/out-of-24/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/out-of-24/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/out-of-24/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/out-of-24/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/out-of-24/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/out-of-24/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/out-of-24/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/out-of-24/">
+<link rel="alternate" hreflang="en" href="https://logicers.com/out-of-24/">
+<link rel="alternate" hreflang="it" href="https://logicers.com/it/out-of-24/">
+<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/out-of-24/">
+<link rel="alternate" hreflang="es" href="https://logicers.com/es/out-of-24/">
+<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/out-of-24/">
+<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/out-of-24/">
+<link rel="alternate" hreflang="x-default" href="https://logicers.com/out-of-24/">
+<meta name="description" content="Um animal de verdade, ou as pessoas de um país, por dia. Pinte quantas das 24 horas vão para dormir, comer ou trabalhar e veja as horas de verdade desenhadas sobre as suas, com a fonte de onde vêm." data-s-content="o24.page_desc">
+<meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
+<meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
+<meta name="alldle-verify" content="OIvqAvl7Lhitf_wc1FK6Pddj1IL5a10l">
+<meta name="alldle-verify" content="M0ixwiXZazUy74GyyApJUl-CTEhxE2aP">
+<meta name="alldle-verify" content="mkKeMN-rbYrsTbEV-hII61j1xOzSKHCT">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Em 24 horas" data-s-content="game.o24.name">
+<meta property="og:description" content="Um animal ou um país de verdade por dia. Quantas horas do dia?" data-s-content="o24.og_desc">
+<meta property="og:url" content="https://logicers.com/pt/out-of-24/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#DDF0F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css?v=faf653756c">
+<script src="../../assets/lang/pt.js?v=dfc19791aa"></script>
+<script src="../../assets/js/lang.js?v=01632acb08"></script>
+<link rel="stylesheet" href="../../out-of-24/out-of-24.css?v=d3dab2a4fd">
+</head>
+<body class="game" data-g="o24">
+
+<header class="bar">
+  <a class="wordmark" href="../../pt/">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album" data-s="site.streak_0">Sequência 0</button>
+    <button class="chip lg-chip" type="button" id="lg-chip" hidden>EN</button>
+    <button class="chip round" type="button" data-open="dlg-help" aria-label="Como jogar" data-s-aria-label="site.how_to_play">?</button>
+  </div>
+</header>
+
+<main class="wrap play" id="app">
+  <p class="meta"><b data-s="game.o24.name">Em 24 horas</b> <span id="day-label"></span></p>
+  <p class="notice" id="notice" hidden></p>
+  <h1 class="o-q" id="question" data-s="o24.how_many">Quantas horas por dia?</h1>
+
+  <section class="panel o-panel" id="panel" aria-labelledby="question">
+    <div class="o-who">
+      <svg class="o-pic" id="pic" viewBox="0 0 100 100" aria-hidden="true" focusable="false"></svg>
+      <div class="o-name">
+        <p class="o-face" id="face"></p>
+        <p class="o-chips" id="chips"></p>
+      </div>
+    </div>
+
+    <div class="o-stage" id="stage">
+      <svg class="o-dial" id="dial" viewBox="0 0 240 240" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="1440"
+           aria-valuenow="0" aria-valuetext="0 horas" data-s-aria-valuetext="o24.zero_hours" aria-label="Quantas horas por dia" data-s-aria-label="o24.dial_aria" focusable="true">
+        <circle class="o-face-bg" cx="120" cy="120" r="117"/>
+        <circle class="o-track" cx="120" cy="120" r="96"/>
+        <circle class="o-you" id="arc-you" cx="120" cy="120" r="96" transform="rotate(-90 120 120)"/>
+        <circle class="o-miss" id="arc-miss" cx="120" cy="120" r="96" transform="rotate(-90 120 120)"/>
+        <circle class="o-band" id="arc-band" cx="120" cy="120" r="96" transform="rotate(-90 120 120)"/>
+        <circle class="o-real" id="arc-real" cx="120" cy="120" r="96" transform="rotate(-90 120 120)"/>
+        <g class="o-hours" id="hours"></g>
+        <g class="o-nums"><text x="120" y="51">24</text><text x="189" y="120">6</text><text x="120" y="189">12</text><text x="51" y="120">18</text></g>
+        <g id="nudge"><g id="thumb-at"><circle class="o-thumb" id="thumb" cx="120" cy="24" r="14"/></g></g>
+        <text class="o-cap" id="cap" x="120" y="92"></text>
+        <text class="o-big" id="big" x="120" y="116" data-s="o24.zero_h">0 h</text>
+        <text class="o-big o-big2" id="big2" x="120" y="146"></text>
+        <text class="o-small" id="small" x="120" y="146" data-s="o24.a_day">por dia</text>
+      </svg>
+    </div>
+
+    <div class="verdict o-verdict" id="verdict" hidden>
+      <p class="offby" id="offby" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <p class="o-hint" id="hint" data-s="o24.hint">Arraste em volta do círculo para pintar as horas.</p>
+  <div class="actions reserve" id="guess-actions">
+    <button class="btn solid" id="btn-show" type="button" data-s="o24.show_real">Mostrar as horas de verdade</button>
+  </div>
+  <p class="sr-only" id="say" role="status"></p>
+
+  <section class="after" id="after" hidden>
+    <p class="friend" id="friend" hidden></p>
+    <p class="sentence" id="sentence"></p>
+    <p class="o-note quiet" id="note" hidden></p>
+    <ul class="o-sources" id="sources" aria-label="Fontes" data-s-aria-label="apart.sources_aria"></ul>
+
+    <div class="actions">
+      <button class="btn solid" id="share" type="button" data-s="site.share">Compartilhar</button>
+      <button class="btn ghost" type="button" data-open="dlg-practice" data-s="site.practice">Treinar</button>
+    </div>
+
+    <p class="next" id="next"></p>
+  </section>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="help-title" data-s="site.how_to_play">Como jogar</h2>
+    <ol>
+      <li data-s="o24.help_1">Um animal, ou as pessoas de um país, e uma coisa em que passam horas.</li>
+      <li data-s="o24.help_2">Arraste em volta do círculo para pintar o seu palpite dessas horas.</li>
+      <li data-s="o24.help_3">Toque em Mostrar as horas de verdade. O amarelo marca a parte em que você teve diferença.</li>
+    </ol>
+    <p data-s="o24.help_daily">Um por dia, o mesmo para todo mundo. Um novo chega à meia-noite.</p>
+    <h3 data-s="every.help_figures_h">De onde vêm os números</h3>
+    <p class="quiet" data-s="o24.help_figures">Medidas por cientistas ou institutos de estatística; duas fontes, com link embaixo da resposta. Até 15 minutos de diferença conta como na mosca. O número de um país é a média de todas as pessoas, em todos os dias da semana.</p>
+    <h3 data-s="cous.help_pictures_h">As imagens</h3>
+    <p class="quiet" data-s="every.help_pictures">Silhuetas do <a href="https://www.phylopic.org/" target="_blank" rel="noopener">PhyloPic</a>; os artistas que pedem crédito são citados embaixo da resposta. O PhyloPic não endossa este site.</p>
+    <h3 data-s="site.your_privacy">Sua privacidade</h3>
+    <p class="quiet" data-privacy="long" data-s="priv.long_page">Sem cadastro, sem rastreamento, sem cookies. Sua sequência e seu álbum ficam guardados só neste navegador.</p>
+    <p class="mail" data-s="site.mistake_mail">Viu um erro? Escreva para mim: <b>logicers.world@gmail.com</b></p>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="album-title" data-s="site.your_album">Seu álbum</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span data-s="site.days_played">dias jogados</span></div>
+      <div class="stat"><b id="st-streak">0</b><span data-s="site.streak_now">sequência agora</span></div>
+      <div class="stat"><b id="st-best">0</b><span data-s="site.best_streak">melhor sequência</span></div>
+      <div class="stat"><b id="st-spot">0</b><span data-s="every.spot_on_count">na mosca</span></div>
+    </div>
+    <p class="album-empty" id="album-empty" data-s="o24.album_empty">Pinte as horas de hoje para ganhar seu primeiro carimbo.</p>
+    <div class="album" id="album"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-practice" aria-labelledby="practice-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="practice-title" data-s="site.practice">Treinar</h2>
+    <p class="quiet" data-s="o24.practice_lede">O dia de ontem. O treino não conta para a sua sequência nem para o seu álbum.</p>
+    <p class="quiet" id="practice-empty" hidden data-s="site.practice_empty">Ainda não há nada para treinar. Volte amanhã.</p>
+    <ul class="days" id="practice-list"></ul>
+    <div class="actions" id="practice-back" hidden><a class="btn solid" href="../../pt/out-of-24/" data-s="o24.back_today">Voltar para hoje</a></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="Fechar" data-s-aria-label="site.close">×</button>
+    <h2 id="share-title" data-s="site.share_title">Compartilhe seu resultado</h2>
+    <p class="quiet" data-s="site.share_lede">Envie o link junto com a imagem, para seus amigos poderem tocar nele.</p>
+    <img class="shot" id="share-img" alt="Seu resultado em imagem. Ela mostra o animal ou o país de hoje e a diferença que você teve, mas não as horas de verdade." data-s-alt="o24.share_alt">
+    <div class="actions">
+      <a class="btn solid" id="share-save" download="out-of-24.png" data-s="share.save">Salvar imagem</a>
+      <button class="btn ghost" id="share-copy" type="button" data-s="site.copy_link">Copiar link</button>
+    </div>
+    <p class="copied" id="share-copied" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px" data-s="site.noscript">Este jogo precisa de JavaScript para funcionar.</p></noscript>
+
+<script src="../../out-of-24/puzzles.js"></script>
+<script src="../../assets/lang/pt/out-of-24.js?v=a66a723318"></script>
+<script src="../../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../../assets/js/duel.js?v=c4e6a61b81"></script>
+<script src="../../assets/js/rooms.js?v=496d2fe661"></script>
+<script src="../../assets/js/points.js?v=f3d487d081"></script>
+<script src="../../assets/js/world.js?v=a0265c5f03"></script>
+<script src="../../assets/js/said.js?v=5d6cde48e4"></script>
+<script src="../../out-of-24/out-of-24.js?v=4ba5a2acdf"></script>
+</body>
+</html>
