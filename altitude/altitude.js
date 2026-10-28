@@ -111,8 +111,19 @@
   function nf(n, d) {
     try { return Number(n).toLocaleString(lang, { minimumFractionDigits: d, maximumFractionDigits: d }); } catch (e) { return Number(n).toFixed(d); }
   }
+  function nInt(n) {
+    try { return Number(n).toLocaleString(lang); } catch (e) { return String(n); }
+  }
   function pct(x) {
     try { return new window.Intl.NumberFormat(lang, { style: "percent", maximumFractionDigits: 0 }).format(x); } catch (e) { return Math.round(x * 100) + "%"; }
+  }
+  function nth(n) {
+    n = Number(n);
+    if (lang === "en") { var e = ["th", "st", "nd", "rd"], v = n % 100; return n + (e[(v - 20) % 10] || e[v] || e[0]); }
+    if (lang === "it" || lang === "pt") return n + "º";
+    if (lang === "es") return n + ".º";
+    if (lang === "fr") return n === 1 ? "1er" : n + "e";
+    return n + ".";
   }
   function countryName(c) {
     if (!/^[A-Z]{2}$/.test(String(c || ""))) return "";
@@ -766,12 +777,46 @@
     var p = Math.round(100 * (1 - (LAST - h) / LAST));        // the points the Worker gives that height
     return p >= 100 ? 10 : Math.max(0, Math.min(9, Math.floor(p / 10)));
   }
+  /* The day's shape, read two ways (28 Oct 2026, Khayyam: "i like % but i also like the real numbers").
+     stopped[h] = the people whose climb ended at h. reached[h] = the people who got AT LEAST that high, which is
+     what the mountain shows: it thins out as it rises, the way a real one does, and it answers the question a
+     player actually has — "did many get this far?" — instead of "where did people fall?". Counts come with it,
+     because "6%" and "74 people" say different things and both are worth saying. */
   function distOf(v) {
     var w = v && v.w;
     if (!w || !(w.n >= NEED_WORLD) || !Array.isArray(w.h)) return null;
-    var o = {};
-    for (var h = 0; h <= LAST; h++) if (h !== 1) o[h] = (w.h[tenthOf(h)] || 0) / w.n;
-    return { share: o, n: w.n };
+    var n = w.n, stopped = {}, stoppedN = {}, reached = {}, reachedN = {}, run = 0;
+    for (var h = 0; h <= LAST; h++) {
+      if (h === 1) continue;                                  // a 1-letter word does not exist, so nobody stops there
+      stoppedN[h] = w.h[tenthOf(h)] || 0;
+      stopped[h] = stoppedN[h] / n;
+    }
+    for (var k = LAST; k >= 0; k--) {
+      if (k === 1) continue;
+      run += stoppedN[k] || 0;
+      reachedN[k] = run;
+      reached[k] = run / n;
+    }
+    return { share: stopped, n: n, stopped: stopped, stoppedN: stoppedN, reached: reached, reachedN: reachedN };
+  }
+  /* the day's word that ended the most climbs: the stage after the one most people stopped on */
+  function wallOf(dist) {
+    if (!dist) return null;
+    var best = null;
+    for (var h = 0; h <= LAST - 1; h++) {                     // LAST means they finished, so it never "stopped" them
+      if (h === 1) continue;
+      var c = dist.stoppedN[h] || 0;
+      if (c > 0 && (!best || c > best.n)) best = { h: h, n: c, p: dist.stopped[h] };
+    }
+    if (!best || best.n < 2) return null;                     // never a single player's result
+    best.L = best.h === 0 ? FIRST : best.h + 1;               // the word they could not get
+    return best;
+  }
+  /* the average guesses a climb took, from the sums the server already keeps */
+  function guessAvg(v) {
+    var w = v && v.w;
+    if (!w || !(w.gn >= NEED_WORLD)) return null;
+    return w.gs / w.gn;
   }
   function avgOf(a, need) { return (a && a.n >= need) ? a.p / a.n * LAST / 100 : null; }
 
@@ -788,28 +833,29 @@
   }
   function f1(n) { return Math.round(n * 10) / 10; }
   function mountainSVG(o) {
-    var h = o.h, dist = o.dist, w = dist ? 360 : 280, s = "";
+    var h = o.h, dist = o.dist, w = dist ? 408 : 280, s = "";
     s += '<svg class="mt" viewBox="0 0 ' + w + ' 284" role="img" aria-label="' + (h ? T("letters", { n: h }) : T("base")).replace(/"/g, "&quot;") + '">';
     s += '<line class="ground" x1="8" y1="' + MG.ground + '" x2="272" y2="' + MG.ground + '"/>';
-    var maxShare = 0;
-    if (dist) { for (var k in dist.share) if (dist.share[k] > maxShare) maxShare = dist.share[k]; }
-    function bar(yc, share, me) {
+    var maxShare = dist ? Math.max(dist.reached[FIRST] || 0, 0.0001) : 0;
+    function bar(yc, share, count, me) {
       if (!dist || !(maxShare > 0)) return "";
-      var len = share > 0 ? Math.max(3, share / maxShare * 56) : 0;
+      var len = share > 0 ? Math.max(3, share / maxShare * 48) : 0;
       var t = share > 0 ? pct(share) : "";
+      var c = count > 0 ? String(nInt(count)) : "";
       return (len ? '<rect class="dbar' + (me ? " me" : "") + '" x="278" y="' + f1(yc - 6) + '" width="' + f1(len) + '" height="12" rx="4"/>' : "") +
-        '<text class="pct" x="' + f1(282 + len) + '" y="' + f1(yc + 4) + '">' + t + '</text>';
+        '<text class="pct" x="' + f1(282 + len) + '" y="' + f1(yc + 4) + '">' + t +
+        (c ? '<tspan class="cnt" dx="5">' + c + '</tspan>' : "") + '</text>';
     }
     for (var i = 0; i <= LAST - FIRST; i++) {
       var b = band(i), on = h >= b.L;
       s += '<polygon class="' + (on ? "on" : "off") + '" points="' + f1(MG.cx - b.hb) + "," + b.yb + " " + f1(MG.cx + b.hb) + "," + b.yb + " " +
         f1(MG.cx + b.ht) + "," + b.yt + " " + f1(MG.cx - b.ht) + "," + b.yt + '"/>';
       s += '<text class="num ' + (on ? "on" : "off") + '" x="' + MG.cx + '" y="' + f1(b.yc + 4.6) + '">' + b.L + '</text>';
-      if (dist) s += bar(b.yc, dist.share[b.L] || 0, h === b.L);
+      if (dist) s += bar(b.yc, dist.reached[b.L] || 0, dist.reachedN[b.L] || 0, h === b.L);
     }
     if (dist) {
       s += '<text class="num off" x="' + MG.cx + '" y="273.5">0</text>';       // the row under the ground: those who did not find the first word
-      s += bar(269, dist.share[0] || 0, h === 0);
+      s += bar(269, dist.stopped[0] || 0, dist.stoppedN[0] || 0, h === 0);
     }
     if (o.beat >= FIRST && o.beat <= LAST) {
       var bb = band(o.beat - FIRST), x1 = MG.cx - bb.ht - 5, x2 = MG.cx + bb.ht + 5, y = bb.yt - 0.5;
@@ -851,7 +897,7 @@
   function higherThan(dist, h) {                        // the share of today's players who ended lower than this
     if (!dist || h < FIRST) return null;
     var p = 0;
-    for (var k in dist.share) if (+k < h) p += dist.share[k];
+    for (var k in dist.stopped) if (+k < h) p += dist.stopped[k];
     return p > 0.005 ? Math.min(1, p) : null;
   }
   function openCard() {
@@ -879,6 +925,11 @@
     sheet.appendChild(hi);
     sheet.appendChild(el("p", "cl-sub", T("used", { n: run.used }) + " · " + clock(run.ms)));
 
+    var gv = el("p", "cl-gavg");                        // what a climb takes everyone else, beside what it took you
+    gv.id = "cl-gavg";
+    gv.hidden = true;
+    sheet.appendChild(gv);
+
     var fw = failedWord();
     if (fw) {
       var wd = el("p", "cl-word");                      // the word that stopped the climb, said softly
@@ -892,9 +943,19 @@
       sheet.appendChild(bt);
     }
 
-    var live1 = el("div", "cl-live1");                  // "where everyone fell" + the mountain
+    var live1 = el("div", "cl-live1");                  // how far everyone got + the mountain
     live1.id = "cl-live1";
     sheet.appendChild(live1);
+
+    var wl = el("p", "cl-wall");                        // the word that ended the most climbs today
+    wl.id = "cl-wall";
+    wl.hidden = true;
+    sheet.appendChild(wl);
+
+    var cr = el("p", "cl-rank");                        // where this country stands, as the nine games say it
+    cr.id = "cl-rank";
+    cr.hidden = true;
+    sheet.appendChild(cr);
 
     var live3 = el("div", "cl-live3");                  // the language race: the six languages against each other
     live3.id = "cl-live3";
@@ -954,7 +1015,21 @@
   }
 
   /* the parts of the sheet that come from the server */
-  function liveUpdate() { if (cardOpen) renderLive(); }
+  function liveUpdate() { paintToday(); if (cardOpen) renderLive(); }
+  /* How many are on the mountain today, shown WHILE you play (28 Oct 2026, Khayyam). Every other signal in this
+     game waits for the end card, which a player only reaches once; this one is there from the first word. */
+  function paintToday() {
+    var e = $("today-n");
+    if (!e) return;
+    var v = srv.views[lang], n = v && v.w ? v.w.n : 0;
+    if (n >= NEED_WORLD) { e.textContent = T("on_today", { n: nInt(n) }); e.hidden = false; }
+    else e.hidden = true;
+  }
+  /* asked for once as the page opens, so the counter is there before the climb is over */
+  function loadToday() {
+    if (!serverOn() || refused[dateKey() + ":" + lang]) return Promise.resolve();
+    return loadView(lang).then(function () { paintToday(); });
+  }
   function renderLive() {
     var a = $("cl-live1"), b = $("cl-live2"), c = $("cl-live3");
     if (!a || !run) return;
@@ -975,6 +1050,36 @@
       if (hp !== null) { hiEl.hidden = false; hiEl.textContent = T(old ? "higher_y" : "higher", { p: pct(hp) }); }
       else if (today && today.w && today.w.n === 1) { hiEl.hidden = false; hiEl.textContent = T("first_today"); }
       else hiEl.hidden = true;
+    }
+
+    /* What a climb costs everyone else, beside what it cost you: height says how far, guesses say how well. */
+    var gEl = $("cl-gavg"), ga = guessAvg(v);
+    if (gEl) {
+      if (ga !== null) { gEl.hidden = false; gEl.textContent = T("guess_avg", { n: nf(ga, 0) }) + (old ? " · " + T("yesterday") : ""); }
+      else gEl.hidden = true;
+    }
+
+    /* The word that ended the most climbs. It is the line people repeat to each other, and it costs the server
+       nothing: the day's word at each stage is the same for everyone, so the shape of the day names it. */
+    var wEl = $("cl-wall"), wall = wallOf(dist);
+    if (wEl) {
+      if (wall && W && W.answers && W.answers[wall.L]) {
+        wEl.hidden = false;
+        wEl.innerHTML = "";
+        var parts = T("wall", { w: "\u0000", n: nInt(wall.n), p: pct(wall.p) }).split("\u0000");
+        wEl.appendChild(document.createTextNode(parts[0] || ""));
+        wEl.appendChild(el("b", "", up(ans(wall.L))));
+        wEl.appendChild(document.createTextNode(parts[1] || ""));
+      } else wEl.hidden = true;
+    }
+
+    /* Where this country stands today, the same line the other nine games carry. */
+    var rEl = $("cl-rank"), rk = v && v.rank, cc0 = srv.cc || store.cc;
+    if (rEl) {
+      if (rk && rk.at > 0 && rk.of >= 2 && cc0 && countryName(cc0.c)) {
+        rEl.hidden = false;
+        rEl.textContent = flagOf(cc0.c) + " " + T("country_rank", { country: countryName(cc0.c), nth: nth(rk.at), of: nInt(rk.of) });
+      } else rEl.hidden = true;
     }
 
     a.textContent = "";
@@ -1020,6 +1125,16 @@
         ul.appendChild(li);
       });
       sec.appendChild(ul);
+      /* the race in one sentence: the bars show the order, this says what it means */
+      if (rows.length >= 3) {
+        var top = rows[0], low = rows[rows.length - 1];
+        if (low.v + 0.15 < top.v) {
+          var say = el("p", "cl-raceline");
+          say.textContent = T("race_top", { lang: T("langs")[top.l] || top.l }) + " · " +
+                            T("race_low", { lang: T("langs")[low.l] || low.l });
+          sec.appendChild(say);
+        }
+      }
       c.appendChild(sec);
     }
   }
@@ -1220,8 +1335,10 @@
       renderAll();
       $("app").style.visibility = "";
       if (run.done) {
-        syncServer(lang);
+        syncServer(lang);                                  // sending also brings back today's numbers
         if (showCard) openCard();
+      } else {
+        loadToday();                                       // still climbing: just ask how many others are up here
       }
     }, function () {
       W = null;

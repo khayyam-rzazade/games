@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-lg-only data-lg-path="false-friends/" data-lg-root="../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- The game's name lives only in strings.json: the tab title and the description are filled from it by false-friends.js. -->
+<title>Logicers</title>
+<link rel="canonical" href="https://logicers.com/false-friends/">
+<meta name="description" content="A daily word game on Logicers.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Logicers">
+<meta property="og:title" content="Logicers">
+<meta property="og:description" content="A daily word game on Logicers.">
+<meta property="og:url" content="https://logicers.com/false-friends/">
+<meta property="og:image" content="https://logicers.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../assets/css/logicers.css">
+<link rel="stylesheet" href="false-friends.css?v=1">
+<script src="../assets/lang/en.js"></script>
+<script src="../assets/js/lang.js"></script>
+</head>
+<body class="game" data-g="ff">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <button class="chip" id="streak-chip" type="button" data-open="dlg-album">Streak 0</button>
+    <button class="chip lg-chip" id="lg-chip" type="button" data-open="dlg-lang"><span class="lg-flag">🇬🇧</span> EN</button>
+    <button class="chip round" id="help-btn" type="button" data-open="dlg-help" aria-label="?">?</button>
+  </div>
+</header>
+
+<main class="wrap play ff" id="app" style="visibility:hidden">
+  <div class="ff-top">
+    <p class="meta"><b id="m-name"></b> <span id="day-label"></span></p>
+    <div class="ff-pips" id="pips" aria-hidden="true"></div>
+  </div>
+
+  <section class="ff-stage" id="stage" aria-live="polite">
+    <p class="ff-word" id="word"></p>
+    <div class="ff-langs" id="langs"></div>
+    <p class="ff-q" id="q"></p>
+  </section>
+
+  <section class="ff-done" id="done" hidden></section>
+
+  <div class="ff-dock" id="dock"></div>
+
+  <div class="actions endstrip" id="strip" hidden>
+    <button class="btn solid" id="strip-share" type="button"></button>
+    <button class="btn ghost" id="strip-result" type="button"></button>
+  </div>
+  <p class="midnight" id="midnight" hidden></p>
+  <p class="loaderr" id="loaderr" hidden><span id="loaderr-t"></span> <button class="btn ghost" id="loaderr-b" type="button"></button></p>
+</main>
+
+<dialog id="dlg-help" aria-labelledby="help-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="×">×</button>
+    <h2 id="help-title"></h2>
+    <ol>
+      <li id="h1"></li>
+      <li id="h2"></li>
+      <li id="h3"></li>
+    </ol>
+  </div>
+</dialog>
+
+<dialog id="dlg-album" aria-labelledby="album-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="×">×</button>
+    <h2 id="album-title"></h2>
+    <div class="stats">
+      <div class="stat"><b id="st-played">0</b><span id="st-played-l"></span></div>
+      <div class="stat"><b id="st-streak">0</b><span id="st-streak-l"></span></div>
+      <div class="stat"><b id="st-best">0</b><span id="st-best-l"></span></div>
+      <div class="stat"><b id="st-perfect">0</b><span id="st-perfect-l"></span></div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlg-lang" class="lg-sheet" aria-labelledby="lang-title">
+  <div class="sheet lg-box">
+    <button class="chip round close" type="button" data-close aria-label="×">×</button>
+    <h2 class="lg-h" id="lang-title"></h2>
+    <div class="lg-list" id="lang-list"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-share" class="to-save" aria-labelledby="share-title">
+  <div class="sheet">
+    <button class="chip round close" type="button" data-close aria-label="×">×</button>
+    <h2 id="share-title"></h2>
+    <img class="shot" id="share-img" alt="">
+    <div class="actions to-save-acts">
+      <a class="btn solid" id="share-save" download="false-friends.png"></a>
+      <button class="btn ghost" id="share-copy" type="button"></button>
+      <button class="btn ghost" id="share-more" type="button" hidden></button>
+    </div>
+    <p class="copied" id="share-note" role="status"></p>
+  </div>
+</dialog>
+
+<noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
+
+<script src="../assets/js/turnsout.js"></script>
+<script src="false-friends.js?v=1"></script>
+</body>
+</html>

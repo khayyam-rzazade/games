@@ -1,0 +1,3330 @@
+[
+ {
+  "day": 1,
+  "forms": {
+   "en": "robot",
+   "it": "robot",
+   "es": "robot",
+   "pt": "robô",
+   "fr": "robot",
+   "tr": "robot"
+  },
+  "origin": "cs",
+  "options": [
+   "ru",
+   "cs",
+   "de",
+   "pl"
+  ],
+  "route": [
+   {
+    "lang": "cs",
+    "form": "robot"
+   },
+   {
+    "lang": "fr",
+    "form": "robot"
+   }
+  ],
+  "lastHop": {
+   "en": "cs",
+   "it": "fr",
+   "es": "en",
+   "pt": "fr",
+   "fr": "cs",
+   "tr": null
+  },
+  "line": {
+   "en": "Czech robota means forced labour; Čapek's 1920 play turned it into robots.",
+   "it": "In ceco robota è il lavoro forzato; Čapek ne fece i robot nel 1920.",
+   "es": "En checo, robota es trabajo forzado; Čapek lo convirtió en robot en 1920.",
+   "pt": "Em tcheco, robota é trabalho forçado; Čapek criou o robô numa peça de 1920.",
+   "fr": "En tchèque, robota, c'est le travail forcé ; Čapek en tira ses robots en 1920.",
+   "tr": "Çekçe robota “angarya” demek; robot adını Čapek'in 1920 tarihli oyunu yaydı."
+  },
+  "year": 1920,
+  "sources": [
+   "https://www.etymonline.com/word/robot",
+   "https://www.treccani.it/vocabolario/robot/",
+   "https://dle.rae.es/robot",
+   "https://dicionario.priberam.org/robô",
+   "https://www.larousse.fr/dictionnaires/francais/robot",
+   "https://www.nisanyansozluk.com/kelime/robot"
+  ]
+ },
+ {
+  "day": 2,
+  "forms": {
+   "en": "kiosk",
+   "it": "chiosco",
+   "es": "quiosco",
+   "pt": "quiosque",
+   "fr": "kiosque",
+   "tr": "köşk"
+  },
+  "origin": "fa",
+  "options": [
+   "fa",
+   "hi",
+   "el",
+   "ar"
+  ],
+  "route": [
+   {
+    "lang": "fa",
+    "form": "kōšk"
+   },
+   {
+    "lang": "ota",
+    "form": "köşk"
+   },
+   {
+    "lang": "it",
+    "form": "chiosco"
+   },
+   {
+    "lang": "fr",
+    "form": "kiosque"
+   },
+   {
+    "lang": "en",
+    "form": "kiosk"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "ota",
+   "es": "fr",
+   "pt": "fr",
+   "fr": "it",
+   "tr": "fa"
+  },
+  "line": {
+   "en": "In Persian, a kōšk was a palace; now it sells newspapers.",
+   "it": "In persiano il kōšk era un palazzo: oggi ci compri il giornale.",
+   "es": "En persa, un kōšk era un palacio; hoy vende periódicos.",
+   "pt": "Em persa, kōšk era um palácio; hoje vende jornal na esquina.",
+   "fr": "En persan, un kōšk était un palais ; aujourd'hui, on y achète le journal.",
+   "tr": "Farsçada saray demekti; Avrupa'da gazete satılan kulübeye dönüştü."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/kiosk",
+   "https://www.treccani.it/vocabolario/chiosco/",
+   "https://dle.rae.es/quiosco",
+   "https://dicionario.priberam.org/quiosque",
+   "https://www.larousse.fr/dictionnaires/francais/kiosque/45572",
+   "https://kaikki.org/dictionary/French/meaning/k/ki/kiosque.html",
+   "https://www.nisanyansozluk.com/kelime/k%C3%B6%C5%9Fk"
+  ]
+ },
+ {
+  "day": 3,
+  "forms": {
+   "en": "tsunami",
+   "it": "tsunami",
+   "es": "tsunami",
+   "pt": "tsunami",
+   "fr": "tsunami",
+   "tr": "tsunami"
+  },
+  "origin": "ja",
+  "options": [
+   "haw",
+   "zh",
+   "ko",
+   "ja"
+  ],
+  "route": [
+   {
+    "lang": "ja",
+    "form": "tsunami"
+   },
+   {
+    "lang": "en",
+    "form": "tsunami"
+   }
+  ],
+  "lastHop": {
+   "en": "ja",
+   "it": "ja",
+   "es": "en",
+   "pt": "ja",
+   "fr": "ja",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Tsu means 'harbour' and nami 'wave': a harbour wave.",
+   "it": "Tsu vuol dire «porto», nami «onda»: l'onda del porto.",
+   "es": "Tsu significa «puerto» y nami «ola»: la ola del puerto.",
+   "pt": "Tsu quer dizer “porto”, e nami, “onda”: a onda do porto.",
+   "fr": "Tsu signifie « port », nami « vague » : la vague du port.",
+   "tr": "Japonca tsu “liman”, nami “dalga”: liman dalgası."
+  },
+  "year": 1896,
+  "sources": [
+   "https://www.etymonline.com/word/tsunami",
+   "https://www.treccani.it/vocabolario/tsunami/",
+   "https://dle.rae.es/tsunami",
+   "https://dicionario.priberam.org/tsunami",
+   "https://www.larousse.fr/dictionnaires/francais/tsunami",
+   "https://www.nisanyansozluk.com/kelime/tsunami"
+  ]
+ },
+ {
+  "day": 4,
+  "forms": {
+   "en": "chocolate",
+   "it": "cioccolato",
+   "es": "chocolate",
+   "pt": "chocolate",
+   "fr": "chocolat",
+   "tr": "çikolata"
+  },
+  "origin": "nah",
+  "options": [
+   "nah",
+   "tnq",
+   "qu",
+   "tup"
+  ],
+  "route": [
+   {
+    "lang": "nah",
+    "form": "xocolatl"
+   },
+   {
+    "lang": "es",
+    "form": "chocolate"
+   },
+   {
+    "lang": "it",
+    "form": "cioccolata"
+   }
+  ],
+  "lastHop": {
+   "en": "es",
+   "it": "es",
+   "es": null,
+   "pt": "es",
+   "fr": "es",
+   "tr": "it"
+  },
+  "line": {
+   "en": "Perhaps Nahuatl for 'bitter water'; the Aztecs drank it cold.",
+   "it": "Forse «acqua amara» in nahuatl; gli aztechi lo bevevano freddo.",
+   "es": "Quizá «agua amarga» en náhuatl; los aztecas lo tomaban frío.",
+   "pt": "Talvez “água amarga” em náuatle; os astecas o bebiam frio.",
+   "fr": "Peut-être « eau amère » en nahuatl ; les Aztèques le buvaient froid.",
+   "tr": "Nahuatl dilinde muhtemelen “acı su”; Aztekler soğuk içerdi, bize İtalyancadan geldi."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/chocolate",
+   "https://www.treccani.it/vocabolario/cioccolato/",
+   "https://dle.rae.es/chocolate",
+   "https://dicionario.priberam.org/chocolate",
+   "https://www.larousse.fr/dictionnaires/francais/chocolat",
+   "https://www.nisanyansozluk.com/kelime/%C3%A7ikolata"
+  ]
+ },
+ {
+  "day": 5,
+  "forms": {
+   "en": "algebra",
+   "it": "algebra",
+   "es": "álgebra",
+   "pt": "álgebra",
+   "fr": "algèbre",
+   "tr": "cebir"
+  },
+  "origin": "ar",
+  "options": [
+   "ar",
+   "sa",
+   "fa",
+   "grc"
+  ],
+  "route": [
+   {
+    "lang": "ar",
+    "form": "al-jabr"
+   },
+   {
+    "lang": "la",
+    "form": "algebra"
+   }
+  ],
+  "lastHop": {
+   "en": "la",
+   "it": "la",
+   "es": "ar",
+   "pt": "la",
+   "fr": "la",
+   "tr": "ar"
+  },
+  "line": {
+   "en": "Al-jabr meant setting broken bones before it meant equations.",
+   "it": "Prima della matematica, al-jabr indicava la riduzione delle fratture.",
+   "es": "Antes de las ecuaciones, al-jabr significaba recomponer huesos rotos.",
+   "pt": "Antes da matemática, al-jabr queria dizer pôr no lugar ossos quebrados.",
+   "fr": "Avant les équations, al-jabr, c'était remettre en place les os brisés.",
+   "tr": "Arapça cabr önce kırık kemiği kaynaştırmaktı; matematik anlamı sonra geldi."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/algebra",
+   "https://www.treccani.it/vocabolario/algebra/",
+   "https://kaikki.org/dictionary/Spanish/meaning/á/ál/álgebra.html",
+   "https://kaikki.org/dictionary/Portuguese/meaning/á/ál/álgebra.html",
+   "https://www.larousse.fr/dictionnaires/francais/algèbre",
+   "https://www.nisanyansozluk.com/kelime/cebir"
+  ]
+ },
+ {
+  "day": 6,
+  "forms": {
+   "en": "sandwich",
+   "it": "sandwich",
+   "es": "sándwich",
+   "pt": "sanduíche",
+   "fr": "sandwich",
+   "tr": "sandviç"
+  },
+  "origin": "en",
+  "options": [
+   "fr",
+   "de",
+   "nl",
+   "en"
+  ],
+  "route": [
+   {
+    "lang": "en",
+    "form": "sandwich"
+   }
+  ],
+  "lastHop": {
+   "en": "en",
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Named after the Earl of Sandwich, who supposedly ate it at the card table.",
+   "it": "Dal conte di Sandwich: pare lo mangiasse per non alzarsi dal tavolo da gioco.",
+   "es": "Del conde de Sandwich: dicen que comía así para no dejar las cartas.",
+   "pt": "Do conde de Sandwich, que dizem ter comido assim para não largar o jogo.",
+   "fr": "Du comte de Sandwich, qui en mangeait, dit-on, à sa table de jeu.",
+   "tr": "Adını, kumar masasından kalkmamak için böyle yediği anlatılan Sandwich Kontu'ndan alır."
+  },
+  "year": 1762,
+  "sources": [
+   "https://www.etymonline.com/word/sandwich",
+   "https://www.treccani.it/vocabolario/sandwich/",
+   "https://dle.rae.es/sándwich",
+   "https://dicionario.priberam.org/sanduíche",
+   "https://www.larousse.fr/dictionnaires/francais/sandwich",
+   "https://www.nisanyansozluk.com/kelime/sandvi%C3%A7"
+  ]
+ },
+ {
+  "day": 7,
+  "forms": {
+   "en": "shampoo",
+   "it": "shampoo",
+   "es": "champú",
+   "pt": "xampu",
+   "fr": "shampooing",
+   "tr": "şampuan"
+  },
+  "origin": "hi",
+  "options": [
+   "hi",
+   "ar",
+   "fa",
+   "ms"
+  ],
+  "route": [
+   {
+    "lang": "hi",
+    "form": "chāmpo"
+   },
+   {
+    "lang": "en",
+    "form": "shampoo"
+   },
+   {
+    "lang": "fr",
+    "form": "shampooing"
+   }
+  ],
+  "lastHop": {
+   "en": "hi",
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "In 1762 'to shampoo' meant to massage; hair-washing came about a century later.",
+   "it": "Nel 1762 «shampoo» era un massaggio; per i capelli si dovette aspettare un secolo.",
+   "es": "En hindi era «masaje»; lo de lavarse el pelo llegó casi un siglo después.",
+   "pt": "Em hindi era “massagem”; o sentido de lavar cabelo veio quase um século depois.",
+   "fr": "En hindi, c'était un massage ; le lavage des cheveux n'est venu qu'un siècle après.",
+   "tr": "Hintçede “masaj” demekti; saç yıkama anlamı neredeyse bir asır sonra geldi."
+  },
+  "year": 1762,
+  "sources": [
+   "https://www.etymonline.com/word/shampoo",
+   "https://www.treccani.it/vocabolario/shampoo/",
+   "https://dle.rae.es/champú",
+   "https://dicionario.priberam.org/xampu",
+   "https://www.larousse.fr/dictionnaires/francais/shampooing",
+   "https://www.nisanyansozluk.com/kelime/%C5%9Fampuan"
+  ]
+ },
+ {
+  "day": 8,
+  "forms": {
+   "en": "kangaroo",
+   "it": "canguro",
+   "es": "canguro",
+   "pt": "canguru",
+   "fr": "kangourou",
+   "tr": "kanguru"
+  },
+  "origin": "gvn",
+  "options": [
+   "ms",
+   "mi",
+   "haw",
+   "gvn"
+  ],
+  "route": [
+   {
+    "lang": "gvn",
+    "form": "gangurru"
+   },
+   {
+    "lang": "en",
+    "form": "kangaroo"
+   },
+   {
+    "lang": "fr",
+    "form": "kangourou"
+   }
+  ],
+  "lastHop": {
+   "en": "gvn",
+   "it": "fr",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Probably Guugu Yimithirr gangurru, a large black kangaroo, noted by Cook's crew in 1770.",
+   "it": "Nel 1770 la spedizione di Cook sentì probabilmente gangurru: un grande canguro nero.",
+   "es": "En 1770, la expedición de Cook oyó probablemente gangurru: un canguro grande y negro.",
+   "pt": "Em 1770, a expedição de Cook provavelmente ouviu gangurru: um canguru grande e preto.",
+   "fr": "En 1770, l'expédition de Cook entend sans doute gangurru : un grand kangourou noir.",
+   "tr": "Cook'un ekibi 1770'te muhtemelen gangurru sözünü duydu: iri, kara bir kanguru."
+  },
+  "year": 1770,
+  "sources": [
+   "https://www.etymonline.com/word/kangaroo",
+   "https://www.treccani.it/vocabolario/canguro1/",
+   "https://dle.rae.es/canguro",
+   "https://kaikki.org/dictionary/Portuguese/meaning/c/ca/canguru.html",
+   "https://www.larousse.fr/dictionnaires/francais/kangourou",
+   "https://www.nisanyansozluk.com/kelime/kanguru"
+  ]
+ },
+ {
+  "day": 9,
+  "forms": {
+   "en": "quarantine",
+   "it": "quarantena",
+   "es": "cuarentena",
+   "pt": "quarentena",
+   "fr": "quarantaine",
+   "tr": "karantina"
+  },
+  "origin": "vec",
+  "options": [
+   "ar",
+   "vec",
+   "es",
+   "el"
+  ],
+  "route": [
+   {
+    "lang": "vec",
+    "form": "quarantena"
+   }
+  ],
+  "lastHop": {
+   "en": "it",
+   "it": "vec",
+   "es": null,
+   "pt": null,
+   "fr": null,
+   "tr": "vec"
+  },
+  "line": {
+   "en": "Forty days: how long Venice kept ships from plague ports waiting offshore.",
+   "it": "Quaranta giorni, in veneziano: tanto aspettavano al largo le navi sospette di peste.",
+   "es": "Cuarenta días: el tiempo que Venecia retenía los barcos sospechosos de traer peste.",
+   "pt": "Quarenta dias: o tempo que Veneza mantinha ao largo os navios suspeitos de peste.",
+   "fr": "Quarante jours : le temps que Venise faisait attendre les navires venus de ports pestiférés.",
+   "tr": "Kırk gün: Venedik'in vebalı limanlardan gelen gemileri açıkta beklettiği süre."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/quarantine",
+   "https://www.treccani.it/vocabolario/quarantena/",
+   "https://kaikki.org/dictionary/Spanish/meaning/c/cu/cuarentena.html",
+   "https://dicionario.priberam.org/quarentena",
+   "https://www.nisanyansozluk.com/kelime/karantina"
+  ]
+ },
+ {
+  "day": 10,
+  "forms": {
+   "en": "llama",
+   "it": "lama",
+   "es": "llama",
+   "pt": "lhama",
+   "fr": "lama",
+   "tr": "lama"
+  },
+  "origin": "qu",
+  "options": [
+   "bo",
+   "qu",
+   "tup",
+   "nah"
+  ],
+  "route": [
+   {
+    "lang": "qu",
+    "form": "llama"
+   },
+   {
+    "lang": "es",
+    "form": "llama"
+   }
+  ],
+  "lastHop": {
+   "en": "es",
+   "it": "es",
+   "es": "qu",
+   "pt": "es",
+   "fr": "es",
+   "tr": "es"
+  },
+  "line": {
+   "en": "Not the Tibetan lama, the monk: this one is Quechua.",
+   "it": "Non è il lama tibetano, il monaco: questo viene dal quechua.",
+   "es": "Ojo: no es la llama del fuego, que viene del latín flamma.",
+   "pt": "Nome quíchua, registrado pelos espanhóis já em 1535.",
+   "fr": "Rien à voir avec le lama tibétain, le moine : celui-ci vient du quechua.",
+   "tr": "Tibetli rahip lama ile karıştırmayın: bu lama Keçuvacadan gelir."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/llama",
+   "https://www.treccani.it/vocabolario/lama4/",
+   "https://dle.rae.es/llama",
+   "https://dicionario.priberam.org/lhama",
+   "https://www.larousse.fr/dictionnaires/francais/lama",
+   "https://www.nisanyansozluk.com/kelime/lama"
+  ]
+ },
+ {
+  "day": 11,
+  "forms": {
+   "en": "emoji",
+   "it": "emoji",
+   "es": "emoji",
+   "pt": "emoji",
+   "fr": "émoji",
+   "tr": "emoji"
+  },
+  "origin": "ja",
+  "options": [
+   "ko",
+   "zh",
+   "la",
+   "ja"
+  ],
+  "route": [
+   {
+    "lang": "ja",
+    "form": "emoji"
+   },
+   {
+    "lang": "en",
+    "form": "emoji"
+   }
+  ],
+  "lastHop": {
+   "en": "ja",
+   "it": "ja",
+   "es": null,
+   "pt": "en",
+   "fr": "ja",
+   "tr": "ja"
+  },
+  "line": {
+   "en": "Not from 'emotion': e means picture, moji means character.",
+   "it": "Niente a che fare con «emozione»: la e significa «immagine», moji «carattere».",
+   "es": "Nada que ver con «emoción»: e es «imagen» y moji, «carácter».",
+   "pt": "Nada a ver com “emoção”: o e significa “imagem”; moji, “caractere”.",
+   "fr": "Rien à voir avec « émotion » : e veut dire image, moji caractère.",
+   "tr": "İngilizce emotion'la ilgisi yok: Japonca e “resim”, moji “harf” demek."
+  },
+  "year": 1999,
+  "sources": [
+   "https://www.etymonline.com/word/emoji",
+   "https://www.treccani.it/vocabolario/emoji_res-2de604be-89c2-11e8-a7cb-00271042e8d9_(Neologismi)/",
+   "https://kaikki.org/dictionary/Spanish/meaning/e/em/emoji.html",
+   "https://dicionario.priberam.org/emoji",
+   "https://www.larousse.fr/dictionnaires/francais/émoji",
+   "https://www.nisanyansozluk.com/kelime/emoji"
+  ]
+ },
+ {
+  "day": 12,
+  "forms": {
+   "en": "cobalt",
+   "it": "cobalto",
+   "es": "cobalto",
+   "pt": "cobalto",
+   "fr": "cobalt",
+   "tr": "kobalt"
+  },
+  "origin": "de",
+  "options": [
+   "hu",
+   "sv",
+   "de",
+   "nl"
+  ],
+  "route": [
+   {
+    "lang": "de",
+    "form": "Kobalt"
+   },
+   {
+    "lang": "fr",
+    "form": "cobalt"
+   }
+  ],
+  "lastHop": {
+   "en": "de",
+   "it": null,
+   "es": "fr",
+   "pt": "de",
+   "fr": "de",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "From Kobold, a goblin German miners blamed for worthless ore.",
+   "it": "Dal Kobold, folletto che i minatori tedeschi accusavano di rubare il minerale buono.",
+   "es": "Del Kobold, un duende al que los mineros alemanes culpaban del mineral inútil.",
+   "pt": "Do Kobold, o duende que os mineiros alemães culpavam pelo minério sem valor.",
+   "fr": "Du Kobold, le lutin que les mineurs allemands accusaient de gâter le minerai.",
+   "tr": "Alman madencilerin değersiz cevherden sorumlu tuttuğu cin Kobold'dan gelir."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/cobalt",
+   "https://www.treccani.it/vocabolario/cobalto/",
+   "https://dle.rae.es/cobalto",
+   "https://kaikki.org/dictionary/Portuguese/meaning/c/co/cobalto.html",
+   "https://www.larousse.fr/dictionnaires/francais/cobalt",
+   "https://www.nisanyansozluk.com/kelime/kobalt"
+  ]
+ },
+ {
+  "day": 13,
+  "forms": {
+   "en": "alcohol",
+   "it": "alcol",
+   "es": "alcohol",
+   "pt": "álcool",
+   "fr": "alcool",
+   "tr": "alkol"
+  },
+  "origin": "ar",
+  "options": [
+   "fa",
+   "grc",
+   "ar",
+   "de"
+  ],
+  "route": [
+   {
+    "lang": "ar",
+    "form": "al-kuḥl"
+   },
+   {
+    "lang": "es",
+    "form": "alcohol"
+   },
+   {
+    "lang": "fr",
+    "form": "alcool"
+   }
+  ],
+  "lastHop": {
+   "en": "la",
+   "it": "ar",
+   "es": "ar",
+   "pt": "ar",
+   "fr": "es",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "It began as al-kuḥl: kohl, the black powder for lining eyes.",
+   "it": "All'inizio al-kuḥl era il kohl, la polvere nera per truccare gli occhi.",
+   "es": "Al principio, al-kuḥl era el kohl: el polvo negro para pintarse los ojos.",
+   "pt": "No começo, al-kuḥl era o kohl, o pó preto para pintar os olhos.",
+   "fr": "Au départ, al-kuḥl désignait le khôl, la poudre noire pour les yeux.",
+   "tr": "Arapça al-kuḥl, göze çekilen sürme demekti; damıtılmış içki anlamı çok sonra geldi."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/alcohol",
+   "https://www.treccani.it/vocabolario/alcole/",
+   "https://kaikki.org/dictionary/Spanish/meaning/a/al/alcohol.html",
+   "https://dicionario.priberam.org/álcool",
+   "https://www.larousse.fr/dictionnaires/francais/alcool",
+   "https://www.nisanyansozluk.com/kelime/alkol"
+  ]
+ },
+ {
+  "day": 14,
+  "forms": {
+   "en": "sugar",
+   "it": "zucchero",
+   "es": "azúcar",
+   "pt": "açúcar",
+   "fr": "sucre",
+   "tr": "şeker"
+  },
+  "origin": "sa",
+  "options": [
+   "ta",
+   "ms",
+   "sa",
+   "zh"
+  ],
+  "route": [
+   {
+    "lang": "sa",
+    "form": "śarkarā"
+   },
+   {
+    "lang": "fa",
+    "form": "šakar"
+   },
+   {
+    "lang": "ar",
+    "form": "sukkar"
+   },
+   {
+    "lang": "it",
+    "form": "zucchero"
+   },
+   {
+    "lang": "fr",
+    "form": "sucre"
+   },
+   {
+    "lang": "en",
+    "form": "sugar"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "ar",
+   "es": "ar",
+   "pt": "ar",
+   "fr": "it",
+   "tr": null
+  },
+  "line": {
+   "en": "In Sanskrit, śarkarā first meant grit or gravel.",
+   "it": "In sanscrito śarkarā in origine voleva dire «ghiaia».",
+   "es": "En sánscrito, śarkarā significaba primero «grava».",
+   "pt": "Em sânscrito, śarkarā queria dizer primeiro “cascalho”.",
+   "fr": "En sanskrit, śarkarā voulait d'abord dire « gravier ».",
+   "tr": "Sanskritçe śarkarā'nın ilk anlamı “çakıl taşı”, sonra “kristal şeker”."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/sugar",
+   "https://www.treccani.it/vocabolario/zucchero/",
+   "https://kaikki.org/dictionary/Spanish/meaning/a/az/azúcar.html",
+   "https://dicionario.priberam.org/açúcar",
+   "https://www.larousse.fr/dictionnaires/francais/sucre",
+   "https://www.nisanyansozluk.com/kelime/%C5%9Feker"
+  ]
+ },
+ {
+  "day": 15,
+  "forms": {
+   "en": "sauna",
+   "it": "sauna",
+   "es": "sauna",
+   "pt": "sauna",
+   "fr": "sauna",
+   "tr": "sauna"
+  },
+  "origin": "fi",
+  "options": [
+   "fi",
+   "sv",
+   "no",
+   "ru"
+  ],
+  "route": [
+   {
+    "lang": "fi",
+    "form": "sauna"
+   }
+  ],
+  "lastHop": {
+   "en": "fi",
+   "it": "fi",
+   "es": "fi",
+   "pt": "fi",
+   "fr": "fi",
+   "tr": "fi"
+  },
+  "line": {
+   "en": "English first used it in 1881, only for saunas in Finland.",
+   "it": "In finlandese sauna è, propriamente, la «stanza da bagno».",
+   "es": "Del finés, sin cambiar ni una letra en seis idiomas.",
+   "pt": "Do finlandês, sem mudar uma letra em seis idiomas.",
+   "fr": "Du finnois, sans changer une lettre dans six langues.",
+   "tr": "Fince; altı dilde de tek harfi değişmeden kullanılıyor."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/sauna",
+   "https://www.treccani.it/vocabolario/sauna/",
+   "https://dle.rae.es/sauna",
+   "https://dicionario.priberam.org/sauna",
+   "https://www.larousse.fr/dictionnaires/francais/sauna",
+   "https://www.nisanyansozluk.com/kelime/sauna"
+  ]
+ },
+ {
+  "day": 16,
+  "forms": {
+   "en": "taboo",
+   "it": "tabù",
+   "es": "tabú",
+   "pt": "tabu",
+   "fr": "tabou",
+   "tr": "tabu"
+  },
+  "origin": "to",
+  "options": [
+   "ms",
+   "ja",
+   "to",
+   "tl"
+  ],
+  "route": [
+   {
+    "lang": "to",
+    "form": "tabu"
+   },
+   {
+    "lang": "en",
+    "form": "taboo"
+   }
+  ],
+  "lastHop": {
+   "en": "to",
+   "it": null,
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Captain Cook heard it in Tonga in 1777: tabu, 'set apart, forbidden'.",
+   "it": "Il capitano Cook lo sentì a Tonga nel 1777: tabu, «sacro, proibito».",
+   "es": "El capitán Cook lo oyó en Tonga en 1777: tabu, «sagrado, prohibido».",
+   "pt": "O capitão Cook ouviu a palavra em Tonga, em 1777: tabu, “sagrado, proibido”.",
+   "fr": "Le capitaine Cook l'a entendu aux Tonga en 1777 : tabu, « sacré, interdit ».",
+   "tr": "Kaptan Cook 1777'de Tonga'da duydu: tabu, yani “ayrı tutulan, yasak”."
+  },
+  "year": 1777,
+  "sources": [
+   "https://www.etymonline.com/word/taboo",
+   "https://www.treccani.it/vocabolario/tabu/",
+   "https://kaikki.org/dictionary/Spanish/meaning/t/ta/tabú.html",
+   "https://dicionario.priberam.org/tabu",
+   "https://www.larousse.fr/dictionnaires/francais/tabou",
+   "https://www.nisanyansozluk.com/kelime/tabu"
+  ]
+ },
+ {
+  "day": 17,
+  "forms": {
+   "en": "jaguar",
+   "it": "giaguaro",
+   "es": "jaguar",
+   "pt": "jaguar",
+   "fr": "jaguar",
+   "tr": "jaguar"
+  },
+  "origin": "tup",
+  "options": [
+   "nah",
+   "qu",
+   "tnq",
+   "tup"
+  ],
+  "route": [
+   {
+    "lang": "tup",
+    "form": "jaguara"
+   },
+   {
+    "lang": "pt",
+    "form": "jaguar"
+   },
+   {
+    "lang": "en",
+    "form": "jaguar"
+   }
+  ],
+  "lastHop": {
+   "en": "pt",
+   "it": "pt",
+   "es": null,
+   "pt": "tup",
+   "fr": "en",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "In Tupi, jaguara could mean any large beast of prey.",
+   "it": "In tupi jaguara poteva indicare qualsiasi grande belva.",
+   "es": "En tupí, yaguará podía nombrar a cualquier fiera grande.",
+   "pt": "Em tupi, jaguara podia designar qualquer grande fera.",
+   "fr": "En tupi, jaguara pouvait désigner n'importe quel grand fauve.",
+   "tr": "Tupi dilinde jaguara, her türlü büyük yırtıcı hayvan demekti."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/jaguar",
+   "https://www.treccani.it/vocabolario/giaguaro/",
+   "https://kaikki.org/dictionary/Italian/meaning/g/gi/giaguaro.html",
+   "https://dle.rae.es/jaguar",
+   "https://dicionario.priberam.org/jaguar",
+   "https://www.larousse.fr/dictionnaires/francais/jaguar",
+   "https://www.nisanyansozluk.com/kelime/jaguar"
+  ]
+ },
+ {
+  "day": 18,
+  "forms": {
+   "en": "galaxy",
+   "it": "galassia",
+   "es": "galaxia",
+   "pt": "galáxia",
+   "fr": "galaxie",
+   "tr": "galaksi"
+  },
+  "origin": "grc",
+  "options": [
+   "ar",
+   "grc",
+   "sa",
+   "he"
+  ],
+  "route": [
+   {
+    "lang": "grc",
+    "form": "galaxías"
+   },
+   {
+    "lang": "la",
+    "form": "galaxias"
+   }
+  ],
+  "lastHop": {
+   "en": null,
+   "it": "la",
+   "es": "la",
+   "pt": "la",
+   "fr": "grc",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Greek gala means milk: a galaxy is, literally, a milky way.",
+   "it": "In greco gala è il latte: la galassia è, alla lettera, una via lattea.",
+   "es": "En griego, gala es leche: una galaxia es, literalmente, una vía láctea.",
+   "pt": "Em grego, gala é leite: galáxia é, ao pé da letra, uma via láctea.",
+   "fr": "En grec, gala veut dire lait : une galaxie, c'est littéralement une voie lactée.",
+   "tr": "Yunanca gala “süt” demek; galaksi düpedüz “süt yolu”dur, yani Samanyolu."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/galaxy",
+   "https://www.treccani.it/vocabolario/galassia/",
+   "https://dle.rae.es/galaxia",
+   "https://kaikki.org/dictionary/Portuguese/meaning/g/ga/galáxia.html",
+   "https://www.larousse.fr/dictionnaires/francais/galaxie",
+   "https://www.nisanyansozluk.com/kelime/galaksi"
+  ]
+ },
+ {
+  "day": 19,
+  "forms": {
+   "en": "yogurt",
+   "it": "yogurt",
+   "es": "yogur",
+   "pt": "iogurte",
+   "fr": "yaourt",
+   "tr": "yoğurt"
+  },
+  "origin": "tr",
+  "options": [
+   "bg",
+   "el",
+   "fa",
+   "tr"
+  ],
+  "route": [
+   {
+    "lang": "tr",
+    "form": "yoğurt"
+   }
+  ],
+  "lastHop": {
+   "en": "tr",
+   "it": "tr",
+   "es": "fr",
+   "pt": "en",
+   "fr": "tr",
+   "tr": "tr"
+  },
+  "line": {
+   "en": "From the Turkish verb yoğur-, 'to knead, to thicken'.",
+   "it": "Dal verbo turco yoğur-, «impastare, addensare».",
+   "es": "Del verbo turco yoğur-, «amasar, espesar».",
+   "pt": "Do verbo turco yoğur-, “amassar, engrossar”.",
+   "fr": "Du verbe turc yoğur-, « pétrir, épaissir ».",
+   "tr": "Eski Türkçe yoġrut, “katılaştırılmış süt”; yoğurmak ve yoğun ile aynı kökten."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/yogurt",
+   "https://www.treccani.it/vocabolario/yogurt/",
+   "https://kaikki.org/dictionary/Spanish/meaning/y/yo/yogur.html",
+   "https://dicionario.priberam.org/iogurte",
+   "https://www.larousse.fr/dictionnaires/francais/yaourt",
+   "https://www.nisanyansozluk.com/kelime/yo%C4%9Furt"
+  ]
+ },
+ {
+  "day": 20,
+  "forms": {
+   "en": "catamaran",
+   "it": "catamarano",
+   "es": "catamarán",
+   "pt": "catamarã",
+   "fr": "catamaran",
+   "tr": "katamaran"
+  },
+  "origin": "ta",
+  "options": [
+   "ms",
+   "el",
+   "ta",
+   "haw"
+  ],
+  "route": [
+   {
+    "lang": "ta",
+    "form": "kaṭṭumaram"
+   },
+   {
+    "lang": "en",
+    "form": "catamaran"
+   }
+  ],
+  "lastHop": {
+   "en": null,
+   "it": "ta",
+   "es": "en",
+   "pt": "ta",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Tamil kaṭṭumaram means 'tied wood': logs lashed into a raft.",
+   "it": "In tamil kaṭṭumaram significa «legno legato»: tronchi uniti a formare una zattera.",
+   "es": "En tamil, kaṭṭumaram significa «madera atada»: troncos unidos en una balsa.",
+   "pt": "Em tâmil, kaṭṭumaram quer dizer “madeira amarrada”: troncos unidos numa jangada.",
+   "fr": "En tamoul, kaṭṭumaram veut dire « bois attaché » : des troncs liés en radeau.",
+   "tr": "Tamilce kaṭṭumaram “bağlanmış ağaç” demek: birbirine bağlanmış kütüklerden bir sal."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/catamaran",
+   "https://www.treccani.it/vocabolario/catamarano/",
+   "https://dle.rae.es/catamarán",
+   "https://dicionario.priberam.org/catamarã",
+   "https://www.larousse.fr/dictionnaires/francais/catamaran",
+   "https://www.nisanyansozluk.com/kelime/katamaran"
+  ]
+ },
+ {
+  "day": 21,
+  "forms": {
+   "en": "restaurant",
+   "it": "ristorante",
+   "es": "restaurante",
+   "pt": "restaurante",
+   "fr": "restaurant",
+   "tr": "restoran"
+  },
+  "origin": "fr",
+  "options": [
+   "en",
+   "fr",
+   "it",
+   "es"
+  ],
+  "route": [
+   {
+    "lang": "fr",
+    "form": "restaurant"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "fr",
+   "es": "fr",
+   "pt": "fr",
+   "fr": "fr",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Before it was a place, a restaurant was food that 'restores' you.",
+   "it": "Prima di essere un locale, il restaurant francese era un cibo che «ristora».",
+   "es": "Antes de ser un lugar, el restaurant francés era una comida que «restaura» fuerzas.",
+   "pt": "Antes de ser um lugar, o restaurant francês era uma comida que “restaurava”.",
+   "fr": "Avant d'être un lieu, un restaurant était un mets qui vous « restaure ».",
+   "tr": "Önce bir mekân değil, insanı canlandıran, güç veren bir yiyecekti."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/restaurant",
+   "https://www.treccani.it/vocabolario/ristorante/",
+   "https://dle.rae.es/restaurante",
+   "https://dicionario.priberam.org/restaurante",
+   "https://www.larousse.fr/dictionnaires/francais/restaurant",
+   "https://www.nisanyansozluk.com/kelime/restoran"
+  ]
+ },
+ {
+  "day": 22,
+  "forms": {
+   "en": "barbecue",
+   "it": "barbecue",
+   "es": "barbacoa",
+   "pt": "barbecue",
+   "fr": "barbecue",
+   "tr": "barbekü"
+  },
+  "origin": "tnq",
+  "options": [
+   "fr",
+   "tnq",
+   "qu",
+   "nah"
+  ],
+  "route": [
+   {
+    "lang": "tnq",
+    "form": "barbakoa"
+   },
+   {
+    "lang": "es",
+    "form": "barbacoa"
+   },
+   {
+    "lang": "en",
+    "form": "barbecue"
+   }
+  ],
+  "lastHop": {
+   "en": "es",
+   "it": "en",
+   "es": "tnq",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Taíno barbacoa was a frame of sticks, for curing meat — or sleeping on.",
+   "it": "La barbacoa taíno era un graticcio di bastoni: per la carne o per dormire.",
+   "es": "La barbacoa taína era un armazón de palos: para curar carne o para dormir.",
+   "pt": "Para os taínos, barbacoa era uma armação de varas: para secar carne ou dormir.",
+   "fr": "La barbacoa taïno : une claie de bâtons pour sécher la viande ou dormir dessus.",
+   "tr": "Taino dilinde barbacoa, et kurutmak ya da üstünde uyumak için çubuklardan çatılmış bir düzenekti."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/barbecue",
+   "https://www.treccani.it/vocabolario/barbecue/",
+   "https://kaikki.org/dictionary/Spanish/meaning/b/ba/barbacoa.html",
+   "https://dicionario.priberam.org/barbecue",
+   "https://www.larousse.fr/dictionnaires/francais/barbecue",
+   "https://www.nisanyansozluk.com/kelime/barbek%C3%BC"
+  ]
+ },
+ {
+  "day": 23,
+  "forms": {
+   "en": "orangutan",
+   "it": "orango",
+   "es": "orangután",
+   "pt": "orangotango",
+   "fr": "orang-outan",
+   "tr": "orangutan"
+  },
+  "origin": "ms",
+  "options": [
+   "tl",
+   "th",
+   "sw",
+   "ms"
+  ],
+  "route": [
+   {
+    "lang": "ms",
+    "form": "orang hutan"
+   },
+   {
+    "lang": "nl",
+    "form": "orang-outang"
+   },
+   {
+    "lang": "fr",
+    "form": "orang-outan"
+   },
+   {
+    "lang": "en",
+    "form": "orangutan"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": null,
+   "es": "en",
+   "pt": null,
+   "fr": "ms",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Malay orang hutan means 'person of the forest'.",
+   "it": "In malese orang hutan significa «uomo della foresta».",
+   "es": "En malayo, orang hutan significa «persona del bosque».",
+   "pt": "Em malaio, orang hutan quer dizer “homem da floresta”.",
+   "fr": "En malais, orang hutan signifie « homme de la forêt ».",
+   "tr": "Malayca orang hutan “orman adamı” demek."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/orangutan",
+   "https://www.treccani.it/vocabolario/orango/",
+   "https://kaikki.org/dictionary/Spanish/meaning/o/or/orangután.html",
+   "https://www.larousse.fr/dictionnaires/francais/orang-outan",
+   "https://www.nisanyansozluk.com/kelime/orangutan"
+  ]
+ },
+ {
+  "day": 24,
+  "forms": {
+   "en": "azure",
+   "it": "azzurro",
+   "es": "azul",
+   "pt": "azul",
+   "fr": "azur",
+   "tr": "lacivert"
+  },
+  "origin": "fa",
+  "options": [
+   "tr",
+   "he",
+   "zh",
+   "fa"
+  ],
+  "route": [
+   {
+    "lang": "fa",
+    "form": "lāzhward"
+   },
+   {
+    "lang": "ar",
+    "form": "lāzaward"
+   },
+   {
+    "lang": "la",
+    "form": "lazur"
+   },
+   {
+    "lang": "fr",
+    "form": "azur"
+   },
+   {
+    "lang": "en",
+    "form": "azure"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "ar",
+   "es": null,
+   "pt": "ar",
+   "fr": "la",
+   "tr": "fa"
+  },
+  "line": {
+   "en": "It lost its first letter: the l in lazur was mistaken for French l'.",
+   "it": "Era il nome persiano del lapislazzuli; per strada ha perso la «l» iniziale.",
+   "es": "Era el nombre persa del lapislázuli; en el camino perdió la «l» inicial.",
+   "pt": "Era o nome persa do lápis-lazúli; no caminho, perdeu o “l” do começo.",
+   "fr": "Le l de lazur a été pris pour l'article l' : il a disparu.",
+   "tr": "Avrupa dilleri baştaki l'yi yolda kaybetti; Türkçe lacivert onu hâlâ taşıyor."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/azure",
+   "https://www.treccani.it/vocabolario/azzurro/",
+   "https://dle.rae.es/azul",
+   "https://dicionario.priberam.org/azul",
+   "https://www.larousse.fr/dictionnaires/francais/azur",
+   "https://www.nisanyansozluk.com/kelime/lacivert"
+  ]
+ },
+ {
+  "day": 25,
+  "forms": {
+   "en": "tundra",
+   "it": "tundra",
+   "es": "tundra",
+   "pt": "tundra",
+   "fr": "toundra",
+   "tr": "tundra"
+  },
+  "origin": "smi",
+  "options": [
+   "mn",
+   "no",
+   "iu",
+   "smi"
+  ],
+  "route": [
+   {
+    "lang": "smi",
+    "form": "tundar"
+   },
+   {
+    "lang": "ru",
+    "form": "tundra"
+   },
+   {
+    "lang": "en",
+    "form": "tundra"
+   }
+  ],
+  "lastHop": {
+   "en": "ru",
+   "it": "ru",
+   "es": "fi",
+   "pt": "smi",
+   "fr": "ru",
+   "tr": "en"
+  },
+  "line": {
+   "en": "A Sámi word that reached the rest of Europe through Russian.",
+   "it": "Una parola sami, arrivata al resto d'Europa attraverso il russo.",
+   "es": "Una palabra sami que llegó al resto de Europa a través del ruso.",
+   "pt": "Palavra sámi que chegou ao resto da Europa pelo russo.",
+   "fr": "Un mot same, parvenu au reste de l'Europe par le russe.",
+   "tr": "Saamice bir sözcük; Avrupa'nın geri kalanına Rusça üzerinden yayıldı."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/tundra",
+   "https://www.treccani.it/vocabolario/tundra/",
+   "https://dle.rae.es/tundra",
+   "https://dicionario.priberam.org/tundra",
+   "https://www.larousse.fr/dictionnaires/francais/toundra",
+   "https://www.nisanyansozluk.com/kelime/tundra"
+  ]
+ },
+ {
+  "day": 26,
+  "forms": {
+   "en": "avatar",
+   "it": "avatar",
+   "es": "avatar",
+   "pt": "avatar",
+   "fr": "avatar",
+   "tr": "avatar"
+  },
+  "origin": "sa",
+  "options": [
+   "sa",
+   "el",
+   "ja",
+   "ar"
+  ],
+  "route": [
+   {
+    "lang": "sa",
+    "form": "avatāra"
+   },
+   {
+    "lang": "en",
+    "form": "avatar"
+   }
+  ],
+  "lastHop": {
+   "en": "sa",
+   "it": null,
+   "es": null,
+   "pt": "fr",
+   "fr": "sa",
+   "tr": "en"
+  },
+  "line": {
+   "en": "In Sanskrit, a god's descent to Earth; online, it's your picture.",
+   "it": "In sanscrito, la discesa di un dio sulla Terra; oggi, la foto profilo.",
+   "es": "En sánscrito, un dios que baja a la Tierra; hoy, tu foto de perfil.",
+   "pt": "Em sânscrito, a descida de um deus à Terra; hoje, sua foto de perfil.",
+   "fr": "En sanskrit, la descente d'un dieu sur Terre ; aujourd'hui, ta photo de profil.",
+   "tr": "Sanskritçede bir tanrının yeryüzüne inişiydi; bugün profil fotoğrafın."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/avatar",
+   "https://www.treccani.it/vocabolario/avatar/",
+   "https://dicionario.priberam.org/avatar",
+   "https://www.larousse.fr/dictionnaires/francais/avatar",
+   "https://www.nisanyansozluk.com/kelime/avatar"
+  ]
+ },
+ {
+  "day": 27,
+  "forms": {
+   "en": "ukulele",
+   "it": "ukulele",
+   "es": "ukelele",
+   "pt": "ukulele",
+   "fr": "ukulélé",
+   "tr": "ukulele"
+  },
+  "origin": "haw",
+  "options": [
+   "haw",
+   "ms",
+   "pt",
+   "es"
+  ],
+  "route": [
+   {
+    "lang": "haw",
+    "form": "ʻukulele"
+   },
+   {
+    "lang": "en",
+    "form": "ukulele"
+   }
+  ],
+  "lastHop": {
+   "en": "haw",
+   "it": "haw",
+   "es": "haw",
+   "pt": "en",
+   "fr": null,
+   "tr": "en"
+  },
+  "line": {
+   "en": "Hawaiian for 'jumping flea' — but the instrument grew out of a Portuguese one.",
+   "it": "In hawaiano «pulce che salta»; lo strumento però nasce da uno portoghese.",
+   "es": "En hawaiano, «pulga saltarina»; el instrumento, en cambio, deriva de uno portugués.",
+   "pt": "Em havaiano, “pulga que pula”; o instrumento, porém, deriva de um modelo português.",
+   "fr": "En hawaïen, « puce sauteuse » ; l'instrument, lui, dérive d'une guitare portugaise.",
+   "tr": "Havaice “zıplayan pire”; çalgı ise Portekiz kökenli bir modelden türedi."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/ukulele",
+   "https://www.treccani.it/vocabolario/ukulele/",
+   "https://dle.rae.es/ukelele",
+   "https://dicionario.priberam.org/ukulele",
+   "https://www.larousse.fr/dictionnaires/francais/ukulélé",
+   "https://www.nisanyansozluk.com/kelime/ukulele"
+  ]
+ },
+ {
+  "day": 28,
+  "forms": {
+   "en": "gazette",
+   "it": "gazzetta",
+   "es": "gaceta",
+   "pt": "gazeta",
+   "fr": "gazette",
+   "tr": "gazete"
+  },
+  "origin": "vec",
+  "options": [
+   "de",
+   "es",
+   "ar",
+   "vec"
+  ],
+  "route": [
+   {
+    "lang": "vec",
+    "form": "gazeta"
+   },
+   {
+    "lang": "it",
+    "form": "gazzetta"
+   },
+   {
+    "lang": "fr",
+    "form": "gazette"
+   },
+   {
+    "lang": "en",
+    "form": "gazette"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "vec",
+   "es": "it",
+   "pt": "it",
+   "fr": "it",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "The gazeta was a small Venetian coin: the price of the news sheet.",
+   "it": "La gazeta era una monetina veneziana: il prezzo del foglio di notizie.",
+   "es": "La gazeta era una moneda veneciana: lo que costaba la hoja de noticias.",
+   "pt": "A gazeta era uma moedinha veneziana: o preço da folha de notícias.",
+   "fr": "La gazeta était une petite pièce vénitienne : le prix de la feuille de nouvelles.",
+   "tr": "Gazeta, küçük bir Venedik parasıydı: haber bülteninin fiyatı buydu."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/gazette",
+   "https://www.treccani.it/vocabolario/gazzetta1/ and https://www.treccani.it/vocabolario/gazzetta2/ (plain /gazzetta/ failed with SERVER_ERROR)",
+   "https://dle.rae.es/gaceta",
+   "https://kaikki.org/dictionary/Portuguese/meaning/g/ga/gazeta.html",
+   "https://www.larousse.fr/dictionnaires/francais/gazette",
+   "https://www.nisanyansozluk.com/kelime/gazete"
+  ]
+ },
+ {
+  "day": 29,
+  "forms": {
+   "en": "avocado",
+   "it": "avocado",
+   "es": "aguacate",
+   "pt": "abacate",
+   "fr": "avocat",
+   "tr": "avokado"
+  },
+  "origin": "nah",
+  "options": [
+   "tup",
+   "qu",
+   "tnq",
+   "nah"
+  ],
+  "route": [
+   {
+    "lang": "nah",
+    "form": "āhuacatl"
+   },
+   {
+    "lang": "es",
+    "form": "aguacate"
+   },
+   {
+    "lang": "en",
+    "form": "avocado"
+   }
+  ],
+  "lastHop": {
+   "en": "es",
+   "it": null,
+   "es": "nah",
+   "pt": "nah",
+   "fr": "es",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Spanish speakers bent aguacate into avocado, their old word for 'lawyer'.",
+   "it": "Lo spagnolo aguacate fu storpiato in avocado, che voleva dire «avvocato».",
+   "es": "Aguacate se deformó en «avocado», la vieja forma de «abogado».",
+   "pt": "No espanhol antigo, avocado queria dizer “advogado”: por isso o inglês diz avocado.",
+   "fr": "Même mot que l'avocat du tribunal : l'espagnol a confondu aguacate et abogado.",
+   "tr": "İspanyolca aguacate, eski dilde “avukat” demek olan avocado'ya dönüştü."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/avocado",
+   "https://www.treccani.it/vocabolario/avocado/",
+   "https://kaikki.org/dictionary/Spanish/meaning/a/ag/aguacate.html",
+   "https://dicionario.priberam.org/abacate",
+   "https://www.larousse.fr/dictionnaires/francais/avocat/7135",
+   "https://www.nisanyansozluk.com/kelime/avokado"
+  ]
+ },
+ {
+  "day": 30,
+  "forms": {
+   "en": "coffee",
+   "it": "caffè",
+   "es": "café",
+   "pt": "café",
+   "fr": "café",
+   "tr": "kahve"
+  },
+  "origin": "ar",
+  "options": [
+   "fa",
+   "ar",
+   "el",
+   "hi"
+  ],
+  "route": [
+   {
+    "lang": "ar",
+    "form": "qahwa"
+   },
+   {
+    "lang": "ota",
+    "form": "kahve"
+   },
+   {
+    "lang": "it",
+    "form": "caffè"
+   },
+   {
+    "lang": "fr",
+    "form": "café"
+   }
+  ],
+  "lastHop": {
+   "en": "nl",
+   "it": "ota",
+   "es": "it",
+   "pt": "fr",
+   "fr": "it",
+   "tr": "ar"
+  },
+  "line": {
+   "en": "Arabic qahwa once also meant wine; English got it through Dutch koffie.",
+   "it": "In arabo qahwa voleva dire anche «vino»; l'italiano l'ha preso dal turco kahve.",
+   "es": "En árabe, qahwa también significaba «vino»; el español lo tomó del italiano.",
+   "pt": "Em árabe, qahwa também queria dizer “vinho” — e chegou ao português pelo francês.",
+   "fr": "En arabe, qahwa voulait aussi dire « vin » ; le français l'a reçu de l'italien.",
+   "tr": "Arapça qahwa eskiden “şarap” anlamına da geliyordu; Avrupa'ya Türkçedeki kahve sözünden geçti."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/coffee",
+   "https://www.treccani.it/vocabolario/caffe/",
+   "https://dle.rae.es/café",
+   "https://dicionario.priberam.org/café",
+   "https://www.larousse.fr/dictionnaires/francais/café",
+   "https://www.nisanyansozluk.com/kelime/kahve"
+  ]
+ },
+ {
+  "day": 31,
+  "forms": {
+   "en": "dollar",
+   "it": "dollaro",
+   "es": "dólar",
+   "pt": "dólar",
+   "fr": "dollar",
+   "tr": "dolar"
+  },
+  "origin": "de",
+  "options": [
+   "es",
+   "de",
+   "nl",
+   "cs"
+  ],
+  "route": [
+   {
+    "lang": "de",
+    "form": "Taler"
+   },
+   {
+    "lang": "nds",
+    "form": "daler"
+   },
+   {
+    "lang": "en",
+    "form": "dollar"
+   }
+  ],
+  "lastHop": {
+   "en": "nds",
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Named after Joachimsthal, a Bohemian valley whose silver coins were first struck in 1519.",
+   "it": "Da Joachimsthal, valle boema d'argento: lì nel 1519 si coniarono i primi talleri.",
+   "es": "De Joachimsthal, valle bohemio de plata donde se acuñó la moneda en 1519.",
+   "pt": "De Joachimsthal, vale de prata na Boêmia onde a moeda foi cunhada em 1519.",
+   "fr": "De Joachimsthal, vallée d'argent de Bohême où la pièce fut frappée en 1519.",
+   "tr": "Adını, gümüş paranın ilk kez 1519'da basıldığı Bohemya'daki Joachim Vadisi'nden alır."
+  },
+  "year": 1519,
+  "sources": [
+   "https://www.etymonline.com/word/dollar",
+   "https://www.treccani.it/vocabolario/dollaro/",
+   "https://dle.rae.es/dólar",
+   "https://dicionario.priberam.org/dólar",
+   "https://www.larousse.fr/dictionnaires/francais/dollar",
+   "https://www.nisanyansozluk.com/kelime/dolar"
+  ]
+ },
+ {
+  "day": 32,
+  "forms": {
+   "en": "karaoke",
+   "it": "karaoke",
+   "es": "karaoke",
+   "pt": "karaokê",
+   "fr": "karaoké",
+   "tr": "karaoke"
+  },
+  "origin": "ja",
+  "options": [
+   "ja",
+   "zh",
+   "tl",
+   "ko"
+  ],
+  "route": [
+   {
+    "lang": "ja",
+    "form": "karaoke"
+   },
+   {
+    "lang": "en",
+    "form": "karaoke"
+   }
+  ],
+  "lastHop": {
+   "en": "ja",
+   "it": "ja",
+   "es": "ja",
+   "pt": "ja",
+   "fr": "ja",
+   "tr": "en"
+  },
+  "line": {
+   "en": "'Empty orchestra' — and the oke part is English 'orchestra' itself.",
+   "it": "«Orchestra vuota»: e oke è proprio l'inglese orchestra, accorciato in giapponese.",
+   "es": "«Orquesta vacía»: y ese oke es el inglés orchestra, acortado en japonés.",
+   "pt": "“Orquestra vazia” — e o oke é o inglês orchestra, encurtado em japonês.",
+   "fr": "« Orchestre vide » : et cet oke, c'est l'anglais orchestra, raccourci en japonais.",
+   "tr": "“Boş orkestra”: oke kısmı, Japoncaya girip kısalmış İngilizce orchestra."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/karaoke",
+   "https://www.treccani.it/vocabolario/karaoke/",
+   "https://dle.rae.es/karaoke",
+   "https://dicionario.priberam.org/karaoke",
+   "https://kaikki.org/dictionary/Portuguese/meaning/k/ka/karaokê.html",
+   "https://www.larousse.fr/dictionnaires/francais/karaoké",
+   "https://www.nisanyansozluk.com/kelime/karaoke"
+  ]
+ },
+ {
+  "day": 33,
+  "forms": {
+   "en": "polo",
+   "it": "polo",
+   "es": "polo",
+   "pt": "polo",
+   "fr": "polo",
+   "tr": "polo"
+  },
+  "origin": "bft",
+  "options": [
+   "bft",
+   "hi",
+   "mn",
+   "fa"
+  ],
+  "route": [
+   {
+    "lang": "bft",
+    "form": "polo"
+   },
+   {
+    "lang": "en",
+    "form": "polo"
+   }
+  ],
+  "lastHop": {
+   "en": "bft",
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "In Balti, a Tibetan language of the Indus valley, polo means 'ball'.",
+   "it": "In balti, lingua tibetana della valle dell'Indo, polo vuol dire «palla».",
+   "es": "En baltí, lengua tibetana del valle del Indo, polo significa «pelota».",
+   "pt": "Em balti, língua tibetana do vale do Indo, polo quer dizer “bola”.",
+   "fr": "En balti, langue tibétaine de la vallée de l'Indus, polo veut dire « balle ».",
+   "tr": "İndus vadisinin Tibet dillerinden Balti dilinde polo, “top” demek."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/polo",
+   "https://www.treccani.it/vocabolario/polo2/",
+   "https://dle.rae.es/polo",
+   "https://dicionario.priberam.org/polo",
+   "https://www.larousse.fr/dictionnaires/francais/polo",
+   "https://www.nisanyansozluk.com/kelime/polo"
+  ]
+ },
+ {
+  "day": 34,
+  "forms": {
+   "en": "jubilee",
+   "it": "giubileo",
+   "es": "jubileo",
+   "pt": "jubileu",
+   "fr": "jubilé",
+   "tr": "jübile"
+  },
+  "origin": "he",
+  "options": [
+   "he",
+   "ar",
+   "egy",
+   "fa"
+  ],
+  "route": [
+   {
+    "lang": "he",
+    "form": "yōbēl"
+   },
+   {
+    "lang": "grc",
+    "form": "iōbēlaios"
+   },
+   {
+    "lang": "la",
+    "form": "iubilaeus"
+   },
+   {
+    "lang": "fr",
+    "form": "jubilé"
+   },
+   {
+    "lang": "en",
+    "form": "jubilee"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "la",
+   "es": "la",
+   "pt": "la",
+   "fr": "la",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Hebrew yōbēl was the ram's horn that announced every fiftieth year.",
+   "it": "In ebraico yōbēl era il corno che annunciava il cinquantesimo anno.",
+   "es": "En hebreo, yōbēl era el cuerno de carnero que se tocaba cada cincuenta años.",
+   "pt": "Em hebraico, yōbēl era o chifre de carneiro tocado a cada cinquenta anos.",
+   "fr": "En hébreu, le yobel était la corne qui annonçait chaque cinquantième année.",
+   "tr": "İbranice yōbēl, her ellinci yılı ilan eden koç boynuzuydu."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/jubilee",
+   "https://www.treccani.it/vocabolario/giubileo/",
+   "https://dle.rae.es/jubileo",
+   "https://dicionario.priberam.org/jubileu",
+   "https://www.larousse.fr/dictionnaires/francais/jubilé",
+   "https://www.nisanyansozluk.com/kelime/j%C3%BCbile"
+  ]
+ },
+ {
+  "day": 35,
+  "forms": {
+   "en": "slogan",
+   "it": "slogan",
+   "es": "eslogan",
+   "pt": "slogan",
+   "fr": "slogan",
+   "tr": "slogan"
+  },
+  "origin": "gd",
+  "options": [
+   "no",
+   "gd",
+   "de",
+   "la"
+  ],
+  "route": [
+   {
+    "lang": "gd",
+    "form": "sluagh-ghairm"
+   },
+   {
+    "lang": "en",
+    "form": "slogan"
+   }
+  ],
+  "lastHop": {
+   "en": "gd",
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "A Scottish Gaelic battle cry: sluagh 'army' + gairm 'shout'.",
+   "it": "Era un grido di guerra gaelico: sluagh «esercito» e gairm «grido».",
+   "es": "Era un grito de guerra gaélico: sluagh, «ejército», y gairm, «grito».",
+   "pt": "Era um grito de guerra gaélico: sluagh, “exército”, e gairm, “grito”.",
+   "fr": "C'était un cri de guerre gaélique : sluagh « armée » et gairm « cri ».",
+   "tr": "İskoç dağ klanlarının savaş narasıydı: sluagh “ordu”, gairm “nara”."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/slogan",
+   "https://www.treccani.it/vocabolario/slogan/",
+   "https://dle.rae.es/eslogan",
+   "https://dicionario.priberam.org/slogan",
+   "https://www.larousse.fr/dictionnaires/francais/slogan",
+   "https://www.nisanyansozluk.com/kelime/slogan"
+  ]
+ },
+ {
+  "day": 36,
+  "forms": {
+   "en": "piranha",
+   "it": "piranha",
+   "es": "piraña",
+   "pt": "piranha",
+   "fr": "piranha",
+   "tr": "pirana"
+  },
+  "origin": "tup",
+  "options": [
+   "tup",
+   "tnq",
+   "qu",
+   "nah"
+  ],
+  "route": [
+   {
+    "lang": "tup",
+    "form": "pirãia"
+   },
+   {
+    "lang": "pt",
+    "form": "piranha"
+   }
+  ],
+  "lastHop": {
+   "en": "pt",
+   "it": "pt",
+   "es": "pt",
+   "pt": "tup",
+   "fr": "pt",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Pirá is Tupi for 'fish'; the rest may mean 'teeth' — or 'devil'.",
+   "it": "In tupi-guaranì pirá è il «pesce»; il resto forse vuol dire «denti», o «diavolo».",
+   "es": "Pirá es «pez» en tupí; lo demás, quizá «dientes»… o «diablo».",
+   "pt": "Em tupi, pirá é “peixe”; o resto pode ser “dentes” — ou “diabo”.",
+   "fr": "En tupi, pirá veut dire « poisson » ; la suite, peut-être « dents »… ou « diable ».",
+   "tr": "Tupi dilinde pirá “balık”; ikinci kısmı için “diş” de “şeytan” da deniyor."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/piranha",
+   "https://www.treccani.it/vocabolario/piranha/",
+   "https://dle.rae.es/piraña",
+   "https://dicionario.priberam.org/piranha",
+   "https://www.larousse.fr/dictionnaires/francais/piranha",
+   "https://www.nisanyansozluk.com/kelime/pirana"
+  ]
+ },
+ {
+  "day": 37,
+  "forms": {
+   "en": "panic",
+   "it": "panico",
+   "es": "pánico",
+   "pt": "pânico",
+   "fr": "panique",
+   "tr": "panik"
+  },
+  "origin": "grc",
+  "options": [
+   "de",
+   "ar",
+   "grc",
+   "he"
+  ],
+  "route": [
+   {
+    "lang": "grc",
+    "form": "panikón"
+   },
+   {
+    "lang": "fr",
+    "form": "panique"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "la",
+   "es": null,
+   "pt": "grc",
+   "fr": "grc",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "From Pan, the god whose sudden sounds sent herds into a frenzy.",
+   "it": "Da Pan, il dio dei boschi i cui rumori improvvisi seminavano il terrore.",
+   "es": "De Pan, el dios de los bosques cuyos ruidos repentinos sembraban el terror.",
+   "pt": "De Pã, o deus dos bosques cujos ruídos repentinos espalhavam o terror.",
+   "fr": "De Pan, le dieu des bois dont les bruits soudains semaient la terreur.",
+   "tr": "Keçi ayaklı orman tanrısı Pan'dan: ıssız yerlerde aniden duyulan korku."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/panic",
+   "https://www.treccani.it/vocabolario/panico_res-7c707877-002c-11de-9d89-0016357eee51/ (from search result; /panico/ shows only the plant homograph)",
+   "https://dicionario.priberam.org/pânico",
+   "https://www.larousse.fr/dictionnaires/francais/panique",
+   "https://www.nisanyansozluk.com/kelime/panik"
+  ]
+ },
+ {
+  "day": 38,
+  "forms": {
+   "en": "taekwondo",
+   "it": "taekwondo",
+   "es": "taekwondo",
+   "pt": "taekwondo",
+   "fr": "taekwondo",
+   "tr": "tekvando"
+  },
+  "origin": "ko",
+  "options": [
+   "ja",
+   "zh",
+   "ko",
+   "th"
+  ],
+  "route": [
+   {
+    "lang": "ko",
+    "form": "taegwondo"
+   },
+   {
+    "lang": "en",
+    "form": "taekwondo"
+   }
+  ],
+  "lastHop": {
+   "en": "ko",
+   "it": "ko",
+   "es": "ko",
+   "pt": "ko",
+   "fr": "ko",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Tae 'kick', kwon 'fist', do 'way': the name dates from 1955.",
+   "it": "Tae «calcio», kwon «pugno», do «via»: il nome risale al 1955.",
+   "es": "Tae, «patada»; kwon, «puño»; do, «camino»: el nombre es de 1955.",
+   "pt": "Tae, “chute”; kwon, “soco”; do, “caminho”: o nome é de 1955.",
+   "fr": "Tae « coup de pied », kwon « poing », do « voie » : nom adopté en 1955.",
+   "tr": "Tae “tekme”, kwon “yumruk”, do “yol”: adı 1955'te kondu."
+  },
+  "year": 1955,
+  "sources": [
+   "https://kaikki.org/dictionary/English/meaning/t/ta/taekwondo.html",
+   "https://www.treccani.it/vocabolario/taekwondo/",
+   "https://kaikki.org/dictionary/Spanish/meaning/t/ta/taekwondo.html",
+   "https://dicionario.priberam.org/taekwondo",
+   "https://www.larousse.fr/dictionnaires/francais/taekwondo",
+   "https://www.nisanyansozluk.com/kelime/tekvando"
+  ]
+ },
+ {
+  "day": 39,
+  "forms": {
+   "en": "jackal",
+   "it": "sciacallo",
+   "es": "chacal",
+   "pt": "chacal",
+   "fr": "chacal",
+   "tr": "çakal"
+  },
+  "origin": "fa",
+  "options": [
+   "ar",
+   "fa",
+   "ru",
+   "hi"
+  ],
+  "route": [
+   {
+    "lang": "fa",
+    "form": "šaġāl"
+   },
+   {
+    "lang": "ota",
+    "form": "çakal"
+   },
+   {
+    "lang": "fr",
+    "form": "chacal"
+   },
+   {
+    "lang": "en",
+    "form": "jackal"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "fr",
+   "es": "fr",
+   "pt": "fr",
+   "fr": "ota",
+   "tr": "fa"
+  },
+  "line": {
+   "en": "Europe learned it from Turkish çakal, which took it from Persian.",
+   "it": "In Europa è arrivato dal turco çakal, che l'aveva preso dal persiano.",
+   "es": "Llegó a Europa por el turco çakal, que lo había tomado del persa.",
+   "pt": "Chegou à Europa pelo turco çakal, que por sua vez veio do persa.",
+   "fr": "L'Europe l'a appris du turc çakal, qui le tenait du persan.",
+   "tr": "Avrupa bu hayvanın adını Türkçedeki çakal sözünden aldı; bize de Farsçadan gelmişti."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/jackal",
+   "https://www.treccani.it/vocabolario/sciacallo/",
+   "https://dle.rae.es/chacal",
+   "https://dicionario.priberam.org/chacal",
+   "https://www.larousse.fr/dictionnaires/francais/chacal",
+   "https://www.nisanyansozluk.com/kelime/%C3%A7akal"
+  ]
+ },
+ {
+  "day": 40,
+  "forms": {
+   "en": "igloo",
+   "it": "iglù",
+   "es": "iglú",
+   "pt": "iglu",
+   "fr": "igloo",
+   "tr": "iglu"
+  },
+  "origin": "iu",
+  "options": [
+   "fi",
+   "ru",
+   "is",
+   "iu"
+  ],
+  "route": [
+   {
+    "lang": "iu",
+    "form": "iglu"
+   },
+   {
+    "lang": "en",
+    "form": "igloo"
+   }
+  ],
+  "lastHop": {
+   "en": "iu",
+   "it": "en",
+   "es": "iu",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "In Inuit languages, iglu means any house, not only one of snow.",
+   "it": "Nelle lingue inuit iglu vuol dire «casa», di qualunque tipo, non solo di neve.",
+   "es": "En las lenguas inuit, iglu es cualquier casa, no solo la de nieve.",
+   "pt": "Nas línguas inuítes, iglu é qualquer casa, não só a de neve.",
+   "fr": "En inuit, iglu désigne n'importe quelle maison, pas seulement de neige.",
+   "tr": "İnuit dillerinde iglu sadece kardan değil, her türlü ev demek."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/igloo",
+   "https://www.treccani.it/vocabolario/iglu/",
+   "https://dle.rae.es/iglú",
+   "https://kaikki.org/dictionary/Portuguese/meaning/i/ig/iglu.html",
+   "https://www.larousse.fr/dictionnaires/francais/igloo",
+   "https://www.nisanyansozluk.com/kelime/iglu"
+  ]
+ },
+ {
+  "day": 41,
+  "forms": {
+   "en": "geyser",
+   "it": "geyser",
+   "es": "géiser",
+   "pt": "gêiser",
+   "fr": "geyser",
+   "tr": "gayzer"
+  },
+  "origin": "is",
+  "options": [
+   "is",
+   "da",
+   "no",
+   "fi"
+  ],
+  "route": [
+   {
+    "lang": "is",
+    "form": "Geysir"
+   },
+   {
+    "lang": "en",
+    "form": "geyser"
+   }
+  ],
+  "lastHop": {
+   "en": "is",
+   "it": "is",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Geysir is one particular hot spring in Iceland; its name means 'the gusher'.",
+   "it": "Geysir è una precisa sorgente calda islandese: il nome vuol dire «quello che zampilla».",
+   "es": "Geysir es un manantial concreto de Islandia; su nombre significa «el que brota».",
+   "pt": "Geysir é uma fonte termal da Islândia; o nome quer dizer “o que jorra”.",
+   "fr": "Geysir est une source chaude bien précise d'Islande ; son nom signifie « qui jaillit ».",
+   "tr": "Geysir, İzlanda'daki tek bir sıcak su kaynağının adı; “fışkıran” demek."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/geyser",
+   "https://www.treccani.it/vocabolario/geyser/",
+   "https://dle.rae.es/géiser",
+   "https://dicionario.priberam.org/gêiser",
+   "https://www.larousse.fr/dictionnaires/francais/geyser",
+   "https://www.nisanyansozluk.com/kelime/gayzer",
+   "https://sozluk.gov.tr/gts?ara=gayzer"
+  ]
+ },
+ {
+  "day": 42,
+  "forms": {
+   "en": "curry",
+   "it": "curry",
+   "es": "curri",
+   "pt": "curry",
+   "fr": "curry",
+   "tr": "köri"
+  },
+  "origin": "ta",
+  "options": [
+   "th",
+   "fa",
+   "ta",
+   "hi"
+  ],
+  "route": [
+   {
+    "lang": "ta",
+    "form": "kari"
+   },
+   {
+    "lang": "en",
+    "form": "curry"
+   }
+  ],
+  "lastHop": {
+   "en": null,
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "In Tamil, kari simply meant 'sauce'; English made it a whole dish.",
+   "it": "In tamil kari era semplicemente la «salsa»; l'inglese ne ha fatto un piatto.",
+   "es": "En tamil, kari era simplemente «salsa»; el inglés lo convirtió en un plato.",
+   "pt": "Em tâmil, kari era só “molho”; o inglês o transformou em nome de prato.",
+   "fr": "En tamoul, kari désignait simplement la sauce ; l'anglais en a fait un plat.",
+   "tr": "Tamilce kari sadece “sos” demekti; İngilizce onu bir yemeğin adı yaptı."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/curry",
+   "https://www.treccani.it/vocabolario/curry/",
+   "https://dle.rae.es/curri",
+   "https://dicionario.priberam.org/curry",
+   "https://www.larousse.fr/dictionnaires/francais/curry",
+   "https://www.nisanyansozluk.com/kelime/k%C3%B6ri"
+  ]
+ },
+ {
+  "day": 43,
+  "forms": {
+   "en": "bus",
+   "it": "autobus",
+   "es": "autobús",
+   "pt": "ônibus",
+   "fr": "bus",
+   "tr": "otobüs"
+  },
+  "origin": "la",
+  "options": [
+   "el",
+   "de",
+   "it",
+   "la"
+  ],
+  "route": [
+   {
+    "lang": "la",
+    "form": "omnibus"
+   },
+   {
+    "lang": "fr",
+    "form": "omnibus"
+   },
+   {
+    "lang": "en",
+    "form": "bus"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "fr",
+   "es": "fr",
+   "pt": "la",
+   "fr": "en",
+   "tr": null
+  },
+  "line": {
+   "en": "Bus is just a Latin ending: omnibus means 'for all'.",
+   "it": "Bus è solo una desinenza latina: omnibus vuol dire «per tutti».",
+   "es": "Ese «bus» es solo una terminación latina: omnibus significa «para todos».",
+   "pt": "Ônibus é latim puro: quer dizer “para todos”.",
+   "fr": "Notre omnibus, « pour tous » en latin, est revenu d'Angleterre raccourci en bus.",
+   "tr": "Otobüsün sonundaki “büs”, “herkes için” demek olan Latince omnibus'tan kalma."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/bus",
+   "https://www.etymonline.com/word/omnibus",
+   "https://www.treccani.it/vocabolario/autobus/",
+   "https://dle.rae.es/autobús",
+   "https://dicionario.priberam.org/ônibus",
+   "https://www.larousse.fr/dictionnaires/francais/bus",
+   "https://www.larousse.fr/dictionnaires/francais/omnibus",
+   "https://www.nisanyansozluk.com/kelime/otob%C3%BCs"
+  ]
+ },
+ {
+  "day": 44,
+  "forms": {
+   "en": "safari",
+   "it": "safari",
+   "es": "safari",
+   "pt": "safári",
+   "fr": "safari",
+   "tr": "safari"
+  },
+  "origin": "ar",
+  "options": [
+   "zu",
+   "am",
+   "hi",
+   "ar"
+  ],
+  "route": [
+   {
+    "lang": "ar",
+    "form": "safar"
+   },
+   {
+    "lang": "sw",
+    "form": "safari"
+   },
+   {
+    "lang": "en",
+    "form": "safari"
+   }
+  ],
+  "lastHop": {
+   "en": "sw",
+   "it": "sw",
+   "es": "sw",
+   "pt": "en",
+   "fr": "sw",
+   "tr": "en"
+  },
+  "line": {
+   "en": "In Swahili, from Arabic safar, safari simply means 'journey'.",
+   "it": "In swahili safari vuol dire semplicemente «viaggio»: la parola viene dall'arabo.",
+   "es": "En suajili, safari significa simplemente «viaje»; la palabra viene del árabe.",
+   "pt": "Em suaíli, safari quer dizer apenas “viagem”; a palavra veio do árabe.",
+   "fr": "En swahili, safari veut simplement dire « voyage » ; le mot vient de l'arabe.",
+   "tr": "Türkçedeki “sefer” ile kardeştir: ikisi de Arapça safar “yolculuk” sözcüğünden gelir."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/safari",
+   "https://www.treccani.it/vocabolario/safari/",
+   "https://kaikki.org/dictionary/Spanish/meaning/s/sa/safari.html",
+   "https://dicionario.priberam.org/safári",
+   "https://www.larousse.fr/dictionnaires/francais/safari",
+   "https://www.nisanyansozluk.com/kelime/safari"
+  ]
+ },
+ {
+  "day": 45,
+  "forms": {
+   "en": "puma",
+   "it": "puma",
+   "es": "puma",
+   "pt": "puma",
+   "fr": "puma",
+   "tr": "puma"
+  },
+  "origin": "qu",
+  "options": [
+   "nah",
+   "tup",
+   "tnq",
+   "qu"
+  ],
+  "route": [
+   {
+    "lang": "qu",
+    "form": "puma"
+   },
+   {
+    "lang": "es",
+    "form": "puma"
+   }
+  ],
+  "lastHop": {
+   "en": "es",
+   "it": "es",
+   "es": "qu",
+   "pt": "es",
+   "fr": "es",
+   "tr": "es"
+  },
+  "line": {
+   "en": "From Quechua, the language of the Inca, by way of Spanish.",
+   "it": "Dal quechua, la lingua degli inca, passando per lo spagnolo.",
+   "es": "Del quechua, la lengua de los incas; el español lo difundió.",
+   "pt": "Do quíchua, a língua dos incas, passando pelo espanhol.",
+   "fr": "Du quechua, la langue des Incas, par l'intermédiaire de l'espagnol.",
+   "tr": "İnkaların dili Keçuvacadan, İspanyolca aracılığıyla geldi."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/puma",
+   "https://www.treccani.it/vocabolario/puma/",
+   "https://dle.rae.es/puma",
+   "https://dicionario.priberam.org/puma",
+   "https://www.larousse.fr/dictionnaires/francais/puma",
+   "https://www.nisanyansozluk.com/kelime/puma"
+  ]
+ },
+ {
+  "day": 46,
+  "forms": {
+   "en": "boycott",
+   "it": "boicottaggio",
+   "es": "boicot",
+   "pt": "boicote",
+   "fr": "boycott",
+   "tr": "boykot"
+  },
+  "origin": "en",
+  "options": [
+   "nl",
+   "de",
+   "en",
+   "ga"
+  ],
+  "route": [
+   {
+    "lang": "en",
+    "form": "boycott"
+   }
+  ],
+  "lastHop": {
+   "en": "en",
+   "it": "fr",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "In 1880 Irish tenants shunned Captain Charles Boycott, and his name became a verb.",
+   "it": "Nel 1880 i fittavoli irlandesi isolarono il capitano Boycott, e nacque un verbo.",
+   "es": "En 1880, los arrendatarios irlandeses aislaron al capitán Boycott, y nació un verbo.",
+   "pt": "Em 1880, arrendatários irlandeses isolaram o capitão Boycott — e nasceu um verbo.",
+   "fr": "En 1880, des fermiers irlandais isolèrent le capitaine Boycott : un mot était né.",
+   "tr": "1880'de İrlandalı çiftçiler Yüzbaşı Boycott'la tüm ilişkiyi kesti; soyadı yeni bir sözcük oldu."
+  },
+  "year": 1880,
+  "sources": [
+   "https://www.etymonline.com/word/boycott",
+   "https://www.treccani.it/vocabolario/boicottaggio/",
+   "https://dle.rae.es/boicot",
+   "https://dicionario.priberam.org/boicote",
+   "https://www.larousse.fr/dictionnaires/francais/boycott",
+   "https://www.nisanyansozluk.com/kelime/boykot"
+  ]
+ },
+ {
+  "day": 47,
+  "forms": {
+   "en": "aubergine",
+   "it": "melanzana",
+   "es": "berenjena",
+   "pt": "berinjela",
+   "fr": "aubergine",
+   "tr": "patlıcan"
+  },
+  "origin": "fa",
+  "options": [
+   "el",
+   "fa",
+   "la",
+   "tr"
+  ],
+  "route": [
+   {
+    "lang": "fa",
+    "form": "bādingān"
+   },
+   {
+    "lang": "ar",
+    "form": "bāḏinjān"
+   },
+   {
+    "lang": "ca",
+    "form": "alberginia"
+   },
+   {
+    "lang": "fr",
+    "form": "aubergine"
+   },
+   {
+    "lang": "en",
+    "form": "aubergine"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "ar",
+   "es": "ar",
+   "pt": null,
+   "fr": "ca",
+   "tr": "ar"
+  },
+  "line": {
+   "en": "The Romans never knew it: Arabs brought the plant to the Mediterranean.",
+   "it": "Dall'arabo bādingiān, incrociato con «mela»: per questo diciamo melanzana.",
+   "es": "Los romanos no la conocieron: la trajeron los árabes al Mediterráneo.",
+   "pt": "Os romanos não a conheciam: foram os árabes que a trouxeram ao Mediterrâneo.",
+   "fr": "Inconnue des Romains, elle est arrivée en Méditerranée avec les Arabes.",
+   "tr": "Farsça bādingān Arapçaya, oradan bize geçti; Romalılar bu sebzeyi hiç tanımadı."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/aubergine",
+   "https://www.treccani.it/vocabolario/melanzana/",
+   "https://dle.rae.es/berenjena",
+   "https://dicionario.priberam.org/berinjela",
+   "https://www.larousse.fr/dictionnaires/francais/aubergine",
+   "https://www.nisanyansozluk.com/kelime/patl%C4%B1can"
+  ]
+ },
+ {
+  "day": 48,
+  "forms": {
+   "en": "bungalow",
+   "it": "bungalow",
+   "es": "bungaló",
+   "pt": "bangalô",
+   "fr": "bungalow",
+   "tr": "bungalov"
+  },
+  "origin": "hi",
+  "options": [
+   "ms",
+   "ta",
+   "hi",
+   "fa"
+  ],
+  "route": [
+   {
+    "lang": "hi",
+    "form": "banglā"
+   },
+   {
+    "lang": "gu",
+    "form": "bangalo"
+   },
+   {
+    "lang": "en",
+    "form": "bungalow"
+   }
+  ],
+  "lastHop": {
+   "en": "gu",
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Hindi banglā means 'Bengali': a house in the Bengal style.",
+   "it": "Banglā, in hindi, vuol dire «bengalese»: una casa alla maniera del Bengala.",
+   "es": "En hindi, banglā quiere decir «de Bengala»: una casa al estilo bengalí.",
+   "pt": "Em hindi, banglā quer dizer “de Bengala”: uma casa no estilo bengali.",
+   "fr": "En hindi, banglā veut dire « bengali » : une maison de style bengali.",
+   "tr": "Hintçe banglā “Bengalli” demek: Bengal usulü yapılmış alçak bir ev."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/bungalow",
+   "https://www.treccani.it/vocabolario/bungalow/",
+   "https://dle.rae.es/bungaló",
+   "https://dicionario.priberam.org/bangalô",
+   "https://www.larousse.fr/dictionnaires/francais/bungalow",
+   "https://www.nisanyansozluk.com/kelime/bungalov"
+  ]
+ },
+ {
+  "day": 49,
+  "forms": {
+   "en": "yacht",
+   "it": "yacht",
+   "es": "yate",
+   "pt": "iate",
+   "fr": "yacht",
+   "tr": "yat"
+  },
+  "origin": "nl",
+  "options": [
+   "sv",
+   "da",
+   "fr",
+   "nl"
+  ],
+  "route": [
+   {
+    "lang": "nl",
+    "form": "jacht"
+   },
+   {
+    "lang": "en",
+    "form": "yacht"
+   }
+  ],
+  "lastHop": {
+   "en": null,
+   "it": "en",
+   "es": "en",
+   "pt": "en",
+   "fr": "en",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Dutch jachtschip: a 'hunting ship', built fast enough to chase.",
+   "it": "L'olandese jachtschip era una «nave da caccia», abbastanza veloce da inseguire.",
+   "es": "El neerlandés jachtschip era un «barco de caza», rápido para perseguir.",
+   "pt": "O holandês jachtschip era um “navio de caça”, rápido para perseguir.",
+   "fr": "Le jachtschip néerlandais était un « navire de chasse », rapide, taillé pour la poursuite.",
+   "tr": "Felemenkçe jachtschip “av gemisi” demekti: kovalayacak kadar hızlı bir tekne."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/yacht",
+   "https://www.treccani.it/vocabolario/yacht/",
+   "https://dle.rae.es/yate",
+   "https://dicionario.priberam.org/iate",
+   "https://www.larousse.fr/dictionnaires/francais/yacht",
+   "https://www.nisanyansozluk.com/kelime/yat"
+  ]
+ },
+ {
+  "day": 50,
+  "forms": {
+   "en": "savanna",
+   "it": "savana",
+   "es": "sabana",
+   "pt": "savana",
+   "fr": "savane",
+   "tr": "savana"
+  },
+  "origin": "tnq",
+  "options": [
+   "tnq",
+   "qu",
+   "nah",
+   "sw"
+  ],
+  "route": [
+   {
+    "lang": "tnq",
+    "form": "zabana"
+   },
+   {
+    "lang": "es",
+    "form": "sabana"
+   },
+   {
+    "lang": "fr",
+    "form": "savane"
+   }
+  ],
+  "lastHop": {
+   "en": "es",
+   "it": "es",
+   "es": "tnq",
+   "pt": "es",
+   "fr": "es",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "A Taíno word for a grassy plain, noted by the Spanish chronicler Oviedo.",
+   "it": "Parola taíno per «prato, pianura fertile», annotata dal cronista spagnolo Oviedo.",
+   "es": "Voz taína para la llanura, anotada por el cronista Oviedo en el siglo XVI.",
+   "pt": "Palavra taína para “campo, planície”, anotada pelo cronista espanhol Oviedo.",
+   "fr": "Mot taïno pour une plaine herbeuse, noté par le chroniqueur espagnol Oviedo.",
+   "tr": "Taino dilinde “ova, çayır”; İspanyol tarihçi Oviedo 1500'lerde kayda geçirdi."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/savannah",
+   "https://www.treccani.it/vocabolario/savana/",
+   "https://dle.rae.es/sabana",
+   "https://dicionario.priberam.org/savana",
+   "https://www.larousse.fr/dictionnaires/francais/savane",
+   "https://www.nisanyansozluk.com/kelime/savana"
+  ]
+ },
+ {
+  "day": 51,
+  "forms": {
+   "en": "mammoth",
+   "it": "mammut",
+   "es": "mamut",
+   "pt": "mamute",
+   "fr": "mammouth",
+   "tr": "mamut"
+  },
+  "origin": "ru",
+  "options": [
+   "ru",
+   "pl",
+   "de",
+   "hu"
+  ],
+  "route": [
+   {
+    "lang": "ru",
+    "form": "mamont"
+   },
+   {
+    "lang": "fr",
+    "form": "mammouth"
+   }
+  ],
+  "lastHop": {
+   "en": "ru",
+   "it": "fr",
+   "es": "fr",
+   "pt": "fr",
+   "fr": "ru",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "In Siberia it was thought to live underground, burrowing like a mole.",
+   "it": "In Siberia si credeva che vivesse sottoterra, scavando come una talpa.",
+   "es": "En Siberia se creía que vivía bajo tierra, cavando como un topo.",
+   "pt": "Na Sibéria, acreditava-se que vivia debaixo da terra, cavando como toupeira.",
+   "fr": "En Sibérie, on le croyait vivant sous terre, creusant comme une taupe.",
+   "tr": "Sibirya'da bu hayvanın köstebek gibi yeraltında yaşadığına inanılırdı."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/mammoth",
+   "https://www.treccani.it/vocabolario/mammut/",
+   "https://dle.rae.es/mamut",
+   "https://dicionario.priberam.org/mamute",
+   "https://www.larousse.fr/dictionnaires/francais/mammouth",
+   "https://www.nisanyansozluk.com/kelime/mamut"
+  ]
+ },
+ {
+  "day": 52,
+  "forms": {
+   "en": "oasis",
+   "it": "oasi",
+   "es": "oasis",
+   "pt": "oásis",
+   "fr": "oasis",
+   "tr": "vaha"
+  },
+  "origin": "egy",
+  "options": [
+   "sw",
+   "egy",
+   "fa",
+   "he"
+  ],
+  "route": [
+   {
+    "lang": "egy",
+    "form": "wehat"
+   },
+   {
+    "lang": "grc",
+    "form": "óasis"
+   },
+   {
+    "lang": "la",
+    "form": "oasis"
+   },
+   {
+    "lang": "fr",
+    "form": "oasis"
+   }
+  ],
+  "lastHop": {
+   "en": null,
+   "it": "la",
+   "es": "la",
+   "pt": "fr",
+   "fr": "la",
+   "tr": "ar"
+  },
+  "line": {
+   "en": "An Ancient Egyptian word that reached Europe through Greek and Latin.",
+   "it": "Una parola dell'antico Egitto, arrivata a noi attraverso il greco e il latino.",
+   "es": "Una palabra del antiguo Egipto que llegó por el griego y el latín.",
+   "pt": "Palavra do antigo Egito que chegou até nós pelo grego e pelo latim.",
+   "fr": "Un mot de l'Égypte ancienne, arrivé par le grec puis le latin.",
+   "tr": "Eski Mısırca bir sözcük; Avrupa'ya Yunanca, bize ise Arapça vāḥa yoluyla ulaştı."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/oasis",
+   "https://www.treccani.it/vocabolario/oasi/",
+   "https://kaikki.org/dictionary/Spanish/meaning/o/oa/oasis.html",
+   "https://dicionario.priberam.org/oásis",
+   "https://www.larousse.fr/dictionnaires/francais/oasis",
+   "https://www.nisanyansozluk.com/kelime/vaha"
+  ]
+ },
+ {
+  "day": 53,
+  "forms": {
+   "en": "chauffeur",
+   "it": "chauffeur",
+   "es": "chofer",
+   "pt": "chofer",
+   "fr": "chauffeur",
+   "tr": "şoför"
+  },
+  "origin": "fr",
+  "options": [
+   "it",
+   "fr",
+   "de",
+   "en"
+  ],
+  "route": [
+   {
+    "lang": "fr",
+    "form": "chauffeur"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "fr",
+   "es": "fr",
+   "pt": "fr",
+   "fr": "fr",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "French for 'stoker': the first cars ran on steam.",
+   "it": "In francese era il «fochista»: le prime automobili andavano a vapore.",
+   "es": "En francés era el «fogonero»: los primeros automóviles iban a vapor.",
+   "pt": "Em francês era o “foguista”: os primeiros carros andavam a vapor.",
+   "fr": "Le chauffeur chauffait d'abord la chaudière : les premières autos marchaient à la vapeur.",
+   "tr": "Fransızcada önce “ateşçi” demekti: ilk otomobiller buharla çalışıyordu."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/chauffeur",
+   "https://www.treccani.it/vocabolario/chauffeur/",
+   "https://dle.rae.es/chofer (from search result; dle.rae.es/chófer failed with client_error)",
+   "https://dicionario.priberam.org/chofer",
+   "https://www.nisanyansozluk.com/kelime/%C5%9Fof%C3%B6r"
+  ]
+ },
+ {
+  "day": 54,
+  "forms": {
+   "en": "zero",
+   "it": "zero",
+   "es": "cero",
+   "pt": "zero",
+   "fr": "zéro",
+   "tr": "sıfır"
+  },
+  "origin": "ar",
+  "options": [
+   "ar",
+   "grc",
+   "he",
+   "fa"
+  ],
+  "route": [
+   {
+    "lang": "ar",
+    "form": "ṣifr"
+   },
+   {
+    "lang": "la",
+    "form": "zephirum"
+   },
+   {
+    "lang": "it",
+    "form": "zero"
+   },
+   {
+    "lang": "fr",
+    "form": "zéro"
+   }
+  ],
+  "lastHop": {
+   "en": null,
+   "it": "la",
+   "es": "la",
+   "pt": "fr",
+   "fr": "it",
+   "tr": "ar"
+  },
+  "line": {
+   "en": "Arabic ṣifr, 'empty', also gave 'cipher'; Fibonacci latinized it in 1202.",
+   "it": "Fibonacci lo latinizzò nel 1202 come zephirum; da lì zefiro, poi zero.",
+   "es": "Del árabe ṣifr, «vacío», vienen a la vez cero y cifra.",
+   "pt": "Do árabe ṣifr, “vazio”, vieram ao mesmo tempo zero e cifra.",
+   "fr": "De l'arabe ṣifr, « vide », viennent à la fois zéro et chiffre.",
+   "tr": "Arapça ṣifr “boş” demekti; Avrupa dillerindeki zero ve cifra da ondan türedi."
+  },
+  "year": 1202,
+  "sources": [
+   "https://www.etymonline.com/word/zero",
+   "https://www.treccani.it/vocabolario/zero/",
+   "https://kaikki.org/dictionary/Spanish/meaning/c/ce/cero.html",
+   "https://dicionario.priberam.org/zero",
+   "https://www.larousse.fr/dictionnaires/francais/zéro",
+   "https://www.nisanyansozluk.com/kelime/s%C4%B1f%C4%B1r"
+  ]
+ },
+ {
+  "day": 55,
+  "forms": {
+   "en": "tungsten",
+   "it": "tungsteno",
+   "es": "tungsteno",
+   "pt": "tungstênio",
+   "fr": "tungstène",
+   "tr": "tungsten"
+  },
+  "origin": "sv",
+  "options": [
+   "da",
+   "sv",
+   "no",
+   "de"
+  ],
+  "route": [
+   {
+    "lang": "sv",
+    "form": "tungsten"
+   },
+   {
+    "lang": "en",
+    "form": "tungsten"
+   }
+  ],
+  "lastHop": {
+   "en": "sv",
+   "it": "sv",
+   "es": "la",
+   "pt": "fr",
+   "fr": "sv",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Swedish for 'heavy stone' — yet its symbol is W, from German Wolfram.",
+   "it": "In svedese «pietra pesante»; ma il simbolo è W, dal tedesco Wolfram.",
+   "es": "En sueco, «piedra pesada»; en español también se llama wolframio, de ahí la W.",
+   "pt": "Em sueco, “pedra pesada”; o símbolo, porém, é W, do alemão Wolfram.",
+   "fr": "En suédois, « pierre lourde » ; son symbole est pourtant W, pour Wolfram.",
+   "tr": "İsveççe “ağır taş”; ama simgesi W, Almanca Wolfram'dan."
+  },
+  "year": 1780,
+  "sources": [
+   "https://www.etymonline.com/word/tungsten",
+   "https://www.treccani.it/vocabolario/tungsteno/",
+   "https://dle.rae.es/tungsteno",
+   "https://dicionario.priberam.org/tungstênio",
+   "https://www.larousse.fr/dictionnaires/francais/tungstène",
+   "https://www.nisanyansozluk.com/kelime/tungsten"
+  ]
+ },
+ {
+  "day": 56,
+  "forms": {
+   "en": "horde",
+   "it": "orda",
+   "es": "horda",
+   "pt": "horda",
+   "fr": "horde",
+   "tr": "ordu"
+  },
+  "origin": "tr",
+  "options": [
+   "tr",
+   "ru",
+   "hu",
+   "fa"
+  ],
+  "route": [
+   {
+    "lang": "tr",
+    "form": "ordu"
+   }
+  ],
+  "lastHop": {
+   "en": null,
+   "it": "tr",
+   "es": "fr",
+   "pt": "fr",
+   "fr": "tr",
+   "tr": "tr"
+  },
+  "line": {
+   "en": "Turkish ordu means 'army'; Polish seems to have added the h.",
+   "it": "In turco ordu significa «esercito», ma in origine era la tenda del khan.",
+   "es": "En turco, ordu es «ejército»; la h, al parecer, se la puso el polaco.",
+   "pt": "Em turco, ordu é “exército”; o h parece ter vindo do polonês.",
+   "fr": "En turc, ordu signifie « armée » ; le h viendrait du polonais.",
+   "tr": "İngilizcede “güruh” anlamındaki horde, bizim ordu sözcüğünden gelir."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/horde",
+   "https://www.treccani.it/vocabolario/orda/",
+   "https://kaikki.org/dictionary/Spanish/meaning/h/ho/horda.html",
+   "https://kaikki.org/dictionary/Portuguese/meaning/h/ho/horda.html",
+   "https://www.larousse.fr/dictionnaires/francais/horde",
+   "https://www.nisanyansozluk.com/kelime/ordu"
+  ]
+ },
+ {
+  "day": 57,
+  "forms": {
+   "en": "marmalade",
+   "it": "marmellata",
+   "es": "mermelada",
+   "pt": "marmelada",
+   "fr": "marmelade",
+   "tr": "marmelat"
+  },
+  "origin": "grc",
+  "options": [
+   "it",
+   "es",
+   "ar",
+   "grc"
+  ],
+  "route": [
+   {
+    "lang": "grc",
+    "form": "melímēlon"
+   },
+   {
+    "lang": "la",
+    "form": "melimelum"
+   },
+   {
+    "lang": "pt",
+    "form": "marmelada"
+   },
+   {
+    "lang": "fr",
+    "form": "marmelade"
+   },
+   {
+    "lang": "en",
+    "form": "marmalade"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "pt",
+   "es": "pt",
+   "pt": null,
+   "fr": "pt",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Portuguese marmelada was quince jam; Greek melimēlon meant 'honey apple'.",
+   "it": "In portoghese marmelada era la cotognata; il greco melimēlon era una «mela di miele».",
+   "es": "En portugués, marmelada era dulce de membrillo; en griego, melimēlon, «manzana de miel».",
+   "pt": "Marmelada vem de marmelo; no grego, melimēlon era a “maçã de mel”.",
+   "fr": "La marmelada portugaise était à base de coing ; le grec disait « pomme de miel ».",
+   "tr": "Portekizce marmelada ayva reçeliydi; kökündeki Yunanca melimēlon “bal elması” demek."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/marmalade",
+   "https://www.treccani.it/vocabolario/marmellata/",
+   "https://dle.rae.es/mermelada",
+   "https://dicionario.priberam.org/marmelada",
+   "https://www.larousse.fr/dictionnaires/francais/marmelade",
+   "https://www.nisanyansozluk.com/kelime/marmelat"
+  ]
+ },
+ {
+  "day": 58,
+  "forms": {
+   "en": "guerrilla",
+   "it": "guerriglia",
+   "es": "guerrilla",
+   "pt": "guerrilha",
+   "fr": "guérilla",
+   "tr": "gerilla"
+  },
+  "origin": "es",
+  "options": [
+   "la",
+   "pt",
+   "es",
+   "it"
+  ],
+  "route": [
+   {
+    "lang": "es",
+    "form": "guerrilla"
+   },
+   {
+    "lang": "en",
+    "form": "guerrilla"
+   }
+  ],
+  "lastHop": {
+   "en": "es",
+   "it": "es",
+   "es": "es",
+   "pt": "es",
+   "fr": "es",
+   "tr": "en"
+  },
+  "line": {
+   "en": "Spanish for 'little war': the name of the fight against Napoleon's army.",
+   "it": "In spagnolo «piccola guerra»: così si chiamava la lotta contro Napoleone.",
+   "es": "Diminutivo de guerra: así se llamó la lucha contra las tropas de Napoleón.",
+   "pt": "Em espanhol, “pequena guerra”: o nome da luta contra as tropas de Napoleão.",
+   "fr": "En espagnol, « petite guerre » : le nom de la lutte contre l'armée napoléonienne.",
+   "tr": "İspanyolcada “küçük savaş”; Napolyon'a karşı verilen düzensiz mücadelenin adıydı."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/guerrilla",
+   "https://www.treccani.it/vocabolario/guerriglia/",
+   "https://dicionario.priberam.org/guerrilha",
+   "https://www.larousse.fr/dictionnaires/francais/guérilla",
+   "https://www.nisanyansozluk.com/kelime/gerilla"
+  ]
+ },
+ {
+  "day": 59,
+  "forms": {
+   "en": "silhouette",
+   "it": "silhouette",
+   "es": "silueta",
+   "pt": "silhueta",
+   "fr": "silhouette",
+   "tr": "silüet"
+  },
+  "origin": "fr",
+  "options": [
+   "it",
+   "es",
+   "fr",
+   "nl"
+  ],
+  "route": [
+   {
+    "lang": "fr",
+    "form": "silhouette"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "fr",
+   "es": "fr",
+   "pt": "fr",
+   "fr": "fr",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Named after Étienne de Silhouette, a finance minister mocked for his penny-pinching.",
+   "it": "Da Étienne de Silhouette, ministro delle finanze deriso per la sua estrema parsimonia.",
+   "es": "Por Étienne de Silhouette, un ministro de Finanzas del que se burlaban por tacaño.",
+   "pt": "De Étienne de Silhouette, ministro das Finanças ridicularizado por sua sovinice.",
+   "fr": "D'Étienne de Silhouette, ministre des Finances moqué pour ses économies de bouts de chandelle.",
+   "tr": "Cimriliğiyle alay edilen Fransız maliye bakanı Étienne de Silhouette'in adından."
+  },
+  "year": 1759,
+  "sources": [
+   "https://www.etymonline.com/word/silhouette",
+   "https://www.treccani.it/vocabolario/silhouette/",
+   "https://kaikki.org/dictionary/Spanish/meaning/s/si/silueta.html",
+   "https://dicionario.priberam.org/silhueta",
+   "https://www.larousse.fr/dictionnaires/francais/silhouette",
+   "https://www.nisanyansozluk.com/kelime/sil%C3%BCet"
+  ]
+ },
+ {
+  "day": 60,
+  "forms": {
+   "en": "academy",
+   "it": "accademia",
+   "es": "academia",
+   "pt": "academia",
+   "fr": "académie",
+   "tr": "akademi"
+  },
+  "origin": "grc",
+  "options": [
+   "he",
+   "ar",
+   "egy",
+   "grc"
+  ],
+  "route": [
+   {
+    "lang": "grc",
+    "form": "Akadēmeia"
+   },
+   {
+    "lang": "la",
+    "form": "academia"
+   },
+   {
+    "lang": "it",
+    "form": "accademia"
+   },
+   {
+    "lang": "fr",
+    "form": "académie"
+   }
+  ],
+  "lastHop": {
+   "en": "fr",
+   "it": "la",
+   "es": "la",
+   "pt": "la",
+   "fr": "it",
+   "tr": "fr"
+  },
+  "line": {
+   "en": "Named after the grove of the hero Akademos, where Plato taught.",
+   "it": "Dal boschetto dell'eroe Akademos, ad Atene, dove insegnava Platone.",
+   "es": "Del bosque del héroe Akademos, en Atenas, donde enseñaba Platón.",
+   "pt": "Hoje se malha na academia; a primeira foi o jardim onde Platão ensinava.",
+   "fr": "Du jardin d'Akadêmos, à Athènes, où enseignait Platon.",
+   "tr": "Adını, Platon'un ders verdiği, kahraman Akademos'un korusundan alır."
+  },
+  "year": null,
+  "sources": [
+   "https://www.etymonline.com/word/academy",
+   "https://www.treccani.it/vocabolario/accademia/",
+   "https://dle.rae.es/academia",
+   "https://dicionario.priberam.org/academia",
+   "https://www.larousse.fr/dictionnaires/francais/académie",
+   "https://www.nisanyansozluk.com/kelime/akademi"
+  ]
+ }
+]

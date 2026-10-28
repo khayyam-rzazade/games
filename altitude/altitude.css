@@ -59,6 +59,9 @@
 /* ---------- the page: a column, the keyboard at the bottom where the thumb is ---------- */
 .cl { display: flex; flex-direction: column; height: calc(100vh - 64px); height: calc(100svh - 64px); min-height: 30rem; padding-bottom: 12px; position: relative; }
 .cl .meta { margin-top: 6px; }
+/* how many are on the mountain today, beside the day (28 Oct 2026): the one live signal during play */
+.today-n { margin-left: 8px; color: var(--soft); font-weight: 600; }
+.today-n::before { content: "·"; margin-right: 8px; opacity: .55; }
 .cl .notice { margin-top: 8px; padding: 8px 12px; font-size: 0.92rem; font-weight: 600; text-align: center; }
 
 .ladder { display: flex; gap: 6px; margin-top: 10px; }
@@ -188,6 +191,13 @@
 @media (max-width: 380px) { .cl-acts { flex-direction: column; } .fin-sheet .cl-chal { width: 100%; } }
 /* "yesterday" next to a heading, when today has too few players to show a picture of */
 .cl-when { margin-left: 6px; font-weight: 600; color: var(--soft); font-size: 0.82rem; text-transform: lowercase; }
+/* The lines added 28 Oct 2026: what a climb costs everyone, the word that ended the most of them, and where
+   this country stands. Quiet type — they sit under the player's own result, not over it. */
+.cl-gavg { margin: 2px 0 0; color: var(--soft); font-size: 0.93rem; font-weight: 600; }
+.cl-wall { margin: 12px 0 0; font-size: 0.97rem; font-weight: 600; }
+.cl-wall b { font-weight: 800; letter-spacing: .02em; }
+.cl-rank { margin: 6px 0 0; color: var(--soft); font-size: 0.93rem; font-weight: 600; }
+.cl-raceline { margin: 8px 0 0; color: var(--soft); font-size: 0.9rem; font-weight: 600; line-height: 1.35; }
 .cl-avgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
 .cl-avg { padding: 10px 12px; border-radius: 14px; background: var(--tint); }
 .cl-avg b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1.05; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
@@ -220,6 +230,7 @@
 .mt .dbar { fill: color-mix(in srgb, var(--c) 40%, transparent); }
 .mt .dbar.me { fill: var(--c); }
 .mt .pct { font-size: 11px; fill: var(--soft); font-weight: 700; }
+.mt .cnt { font-size: 9.5px; font-weight: 600; opacity: .62; }   /* the real number beside the share (28 Oct 2026): both, the share leading */
 .mt .pole { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
 .mt .pennant { fill: var(--c); }
 .mt .knob { fill: var(--ink); }

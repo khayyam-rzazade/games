@@ -18,7 +18,7 @@
     "summit": "Summit!",
     "base": "Base camp",
     "used": "{n} guesses",
-    "fell": "How high everyone got",
+    "fell": "How far everyone got",
     "players": "{n} players",
     "avg_country": "Average: {country}",
     "avg_world": "Average: world",
@@ -73,7 +73,13 @@
     "challenge": "Challenge a friend",
     "beat_them": "I got to {n} letters on Logicers Altitude. Can you beat me?",
     "yesterday": "yesterday",
-    "higher_y": "Higher than {p} of players yesterday"
+    "higher_y": "Higher than {p} of players yesterday",
+    "wall": "{w} stopped {n} people today — {p} of everyone",
+    "guess_avg": "Everyone averages {n} guesses today",
+    "country_rank": "{country} is {nth} of {of} countries today",
+    "race_top": "{lang} is getting highest today",
+    "race_low": "The {lang} words are proving hardest",
+    "on_today": "{n} on the mountain today"
   },
   "it": {
     "name": "Altitude",
@@ -149,7 +155,13 @@
     "challenge": "Sfida un amico",
     "beat_them": "Sono arrivato a {n} lettere su Logicers Altitude. Mi batti?",
     "yesterday": "ieri",
-    "higher_y": "Più in alto del {p} dei giocatori di ieri"
+    "higher_y": "Più in alto del {p} dei giocatori di ieri",
+    "wall": "{w} ha fermato {n} persone oggi — il {p} di tutti",
+    "guess_avg": "Oggi la media è di {n} tentativi",
+    "country_rank": "{country} è {nth} su {of} paesi oggi",
+    "race_top": "Oggi {lang} arriva più in alto",
+    "race_low": "Le parole in {lang} si stanno rivelando le più difficili",
+    "on_today": "{n} sulla montagna oggi"
   },
   "tr": {
     "name": "Altitude",
@@ -170,7 +182,7 @@
     "summit": "Zirve!",
     "base": "Ana kamp",
     "used": "{n} hak",
-    "fell": "Herkes ne kadar yükseldi",
+    "fell": "Herkes nereye kadar çıktı",
     "players": "{n} oyuncu",
     "avg_country": "Ortalama: {country}",
     "avg_world": "Ortalama: dünya",
@@ -225,7 +237,13 @@
     "challenge": "Arkadaşına meydan oku",
     "beat_them": "Logicers Altitude'da {n} harfe çıktım. Beni geçebilir misin?",
     "yesterday": "dün",
-    "higher_y": "Dün oynayanların {p} kadarından daha yükseğe"
+    "higher_y": "Dün oynayanların {p} kadarından daha yükseğe",
+    "wall": "{w} bugün {n} kişiyi durdurdu — herkesin {p} kadarı",
+    "guess_avg": "Bugün ortalama {n} tahmin",
+    "country_rank": "{country} bugün {of} ülke arasında {nth}",
+    "race_top": "Bugün en yükseğe {lang} çıkıyor",
+    "race_low": "En zor kelimeler {lang} tarafında",
+    "on_today": "Bugün dağda {n} kişi"
   },
   "es": {
     "name": "Altitude",
@@ -246,7 +264,7 @@
     "summit": "¡Cima!",
     "base": "Campo base",
     "used": "{n} intentos",
-    "fell": "Hasta dónde llegó cada uno",
+    "fell": "Hasta dónde llegaron todos",
     "players": "{n} jugadores",
     "avg_country": "Media: {country}",
     "avg_world": "Media: mundo",
@@ -301,7 +319,13 @@
     "challenge": "Reta a un amigo",
     "beat_them": "Llegué a {n} letras en Logicers Altitude. ¿Me ganas?",
     "yesterday": "ayer",
-    "higher_y": "Más alto que el {p} de los jugadores de ayer"
+    "higher_y": "Más alto que el {p} de los jugadores de ayer",
+    "wall": "{w} detuvo a {n} personas hoy — el {p} de todos",
+    "guess_avg": "Hoy la media es de {n} intentos",
+    "country_rank": "{country} es {nth} de {of} países hoy",
+    "race_top": "Hoy {lang} llega más alto",
+    "race_low": "Las palabras en {lang} están resultando las más difíciles",
+    "on_today": "{n} en la montaña hoy"
   },
   "pt": {
     "name": "Altitude",
@@ -322,7 +346,7 @@
     "summit": "Cume!",
     "base": "Acampamento base",
     "used": "{n} tentativas",
-    "fell": "Até onde cada um chegou",
+    "fell": "Até onde todos chegaram",
     "players": "{n} jogadores",
     "avg_country": "Média: {country}",
     "avg_world": "Média: mundo",
@@ -377,7 +401,13 @@
     "challenge": "Desafie um amigo",
     "beat_them": "Cheguei a {n} letras no Logicers Altitude. Consegue me superar?",
     "yesterday": "ontem",
-    "higher_y": "Mais alto que {p} dos jogadores de ontem"
+    "higher_y": "Mais alto que {p} dos jogadores de ontem",
+    "wall": "{w} parou {n} pessoas hoje — {p} de todos",
+    "guess_avg": "Hoje a média é de {n} tentativas",
+    "country_rank": "{country} está em {nth} de {of} países hoje",
+    "race_top": "Hoje {lang} chega mais alto",
+    "race_low": "As palavras em {lang} estão sendo as mais difíceis",
+    "on_today": "{n} na montanha hoje"
   },
   "fr": {
     "name": "Altitude",
@@ -398,7 +428,7 @@
     "summit": "Au sommet !",
     "base": "Camp de base",
     "used": "{n} essais",
-    "fell": "Jusqu’où chacun est monté",
+    "fell": "Jusqu'où tout le monde est monté",
     "players": "{n} joueurs",
     "avg_country": "Moyenne : {country}",
     "avg_world": "Moyenne : monde",
@@ -453,6 +483,12 @@
     "challenge": "Défie un ami",
     "beat_them": "Je suis monté à {n} lettres sur Logicers Altitude. Tu fais mieux ?",
     "yesterday": "hier",
-    "higher_y": "Plus haut que {p} des joueurs d'hier"
+    "higher_y": "Plus haut que {p} des joueurs d'hier",
+    "wall": "{w} a arrêté {n} personnes aujourd'hui — {p} de tout le monde",
+    "guess_avg": "Aujourd'hui la moyenne est de {n} essais",
+    "country_rank": "{country} est {nth} sur {of} pays aujourd'hui",
+    "race_top": "Aujourd'hui {lang} monte le plus haut",
+    "race_low": "Les mots en {lang} sont les plus difficiles",
+    "on_today": "{n} sur la montagne aujourd'hui"
   }
 }
