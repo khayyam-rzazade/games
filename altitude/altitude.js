@@ -747,7 +747,8 @@
      only if still stuck. Every answer is read out of Logicers' own puzzle data, so nothing here is invented.
      A wrong answer costs nothing — it shows the right one and offers another question — because the point is
      to keep someone climbing, not to punish them for a guess. */
-  var BANK = null, QT = null;              // the questions, and the language's words for them (LG_QUESTIONS)
+  var BANK = null, QT = null;              // the questions, and the current language's words for them (LG_QUESTIONS)
+  var QTS = {};                            // every language's words once read, so a switch back needs no new fetch
   var qCur = null;                         // the question on screen: { q, opts: [{text, right}] }
 
   function loadBank() {
@@ -760,17 +761,24 @@
   /* the language's words for the questions: assets/lang/<code>/questions.js, which sets window.LG_QUESTIONS.
      English is the bank itself. (Not to be confused with loadWords(), which loads the climb's word lists.)
      It is read as text and its object parsed, not added as a <script>, so it can be asked for fresh like the
-     game's other files (see SELF_V); the build writes the object as plain JSON. */
+     game's other files (see SELF_V); the build writes the object as plain JSON.
+     The words belong to the language they were read for (29 Oct 2026): after a switch with the chip the questions
+     used to keep the first language's words, even in English. QT is set only for the language still on screen,
+     so a file that arrives after a switch cannot paint the wrong language either. */
   function loadQWords() {
-    if (lang === "en" || QT) return Promise.resolve(QT);
-    return window.fetch(freshURL("../assets/lang/" + lang + "/questions.js"), { cache: "no-cache" }).then(function (r) {
+    var l = lang;
+    if (l === "en") { QT = null; return Promise.resolve(null); }
+    if (QTS[l]) { QT = QTS[l]; return Promise.resolve(QT); }
+    return window.fetch(freshURL("../assets/lang/" + l + "/questions.js"), { cache: "no-cache" }).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.text();
     }).then(function (src) {
       var a = src.indexOf("{", src.indexOf("LG_QUESTIONS")), b = src.lastIndexOf("}");
-      QT = (a >= 0 && b > a) ? JSON.parse(src.slice(a, b + 1)) : null;
-      return QT;
-    }).catch(function () { QT = null; return null; });         // no file: the question is asked in English
+      var words = (a >= 0 && b > a) ? JSON.parse(src.slice(a, b + 1)) : null;
+      if (words) QTS[l] = words;
+      if (lang === l) QT = words;
+      return lang === l ? QT : null;
+    }).catch(function () { if (lang === l) QT = null; return null; });   // no file: the question is asked in English
   }
   function qText(en) { return (QT && QT.text && QT.text[en]) || en; }
   function qStem(q) {
@@ -1579,6 +1587,8 @@
     closeCard(true);
     rememberLang(l);
     lang = l;
+    QT = QTS[l] || null;                                   // the hint questions speak the new language (loadQWords)
+    closeQuestion();                                       // a question half asked in the old language is not kept
     cur = [];
     busy = false;
     $("loaderr").hidden = true;
