@@ -4,78 +4,82 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 
 ## The 7 questions (stems)
 
-↳ to do · `q.stem.beat_faster` — Whose heart beats faster?
-↳ to do · `q.stem.came_first` — Which came first?
-↳ to do · `q.stem.closest_relative` — Which is the {x}'s closest relative?
+- `q.stem.beat_faster` — Il cuore di chi batte più veloce?
+- `q.stem.came_first` — Cosa è successo prima?
+- `q.stem.closest_relative` — Qual è il parente più stretto {x.of}?
   ↳ {x} is an animal or plant of Long Lost Cousin; in English it takes the name form ("Emu"). If your language needs an article or a case there, write {x.the} or {x.of} instead of {x}: the game then puts in that thing's `the` or `of` form from your Long Lost Cousin doc.
-↳ to do · `q.stem.biggest_share` — Who takes the biggest share of the price of {x}?
+- `q.stem.biggest_share` — Chi prende la fetta più grande del prezzo di {x}?
   ↳ {x} is the `what` line of a Who Gets What puzzle ("A kilo of dark chocolate"), exactly as you translated it there. Write the stem so that such a phrase fits after it.
-↳ to do · `q.stem.o24_longer_asleep` — Which sleeps longer?
-↳ to do · `q.stem.o24_longer_eating` — Which spends longer eating?
-↳ to do · `q.stem.o24_longer_care` — Which spends longer on housework and care?
+- `q.stem.o24_longer_asleep` — Chi dorme di più?
+- `q.stem.o24_longer_eating` — Chi passa più tempo a mangiare?
+- `q.stem.o24_longer_care` — Quale Paese passa più tempo a fare i lavori di casa e a prendersi cura degli altri?
   ↳ The options here are countries (the Out of 24 puzzles about housework): "Which country" may read better than "Which" in your language.
 ## New names: the subjects of Out of 24 (who sleeps, eats, works)
 
-↳ to do · `q.opt.austria` — Austria
-↳ to do · `q.opt.baboon` — Baboon
-↳ to do · `q.opt.chimpanzee` — Chimpanzee
-↳ to do · `q.opt.china` — China
-↳ to do · `q.opt.donkey` — Donkey
-↳ to do · `q.opt.elephant-seal` — Elephant seal
-↳ to do · `q.opt.ferret` — Ferret
-↳ to do · `q.opt.fire-ant-queen` — Fire ant queen
-↳ to do · `q.opt.fire-ant-worker` — Fire ant worker
-↳ to do · `q.opt.frigatebird` — Frigatebird
-↳ to do · `q.opt.giant-armadillo` — Giant armadillo
-↳ to do · `q.opt.grey-seal` — Grey seal
-↳ to do · `q.opt.hunter-gatherers` — Hunter-gatherers
-↳ to do · `q.opt.japan` — Japan
-↳ to do · `q.opt.little-brown-bat` — Little brown bat
-↳ to do · `q.opt.owl-monkey` — Owl monkey
-↳ to do · `q.opt.rhesus-monkey` — Rhesus monkey
-↳ to do · `q.opt.tree-shrew` — Tree shrew
+- `q.opt.austria` — Austria
+- `q.opt.baboon` — Babbuino
+- `q.opt.chimpanzee` — Scimpanzé
+- `q.opt.china` — Cina
+- `q.opt.donkey` — Asino
+- `q.opt.elephant-seal` — Elefante marino
+- `q.opt.ferret` — Furetto
+- `q.opt.fire-ant-queen` — Regina della formica di fuoco
+- `q.opt.fire-ant-worker` — Operaia della formica di fuoco
+- `q.opt.frigatebird` — Fregata
+- `q.opt.giant-armadillo` — Armadillo gigante
+- `q.opt.grey-seal` — Foca grigia
+- `q.opt.hunter-gatherers` — Cacciatori-raccoglitori
+- `q.opt.japan` — Giappone
+- `q.opt.little-brown-bat` — Piccolo pipistrello bruno
+- `q.opt.owl-monkey` — Scimmia notturna
+- `q.opt.rhesus-monkey` — Macaco rhesus
+- `q.opt.tree-shrew` — Tupaia
 ## New names: the subjects of Every Beat (whose heart)
 
-↳ to do · `q.opt.athlete` — Athlete
-↳ to do · `q.opt.black-bear` — Black bear
-↳ to do · `q.opt.blue-whale` — Blue whale
-↳ to do · `q.opt.bullfrog` — Bullfrog
-↳ to do · `q.opt.burmese-python` — Burmese python
-↳ to do · `q.opt.chick` — Chick
-↳ to do · `q.opt.etruscan-shrew` — Etruscan shrew
-↳ to do · `q.opt.foal` — Foal
-↳ to do · `q.opt.giant-octopus` — Giant octopus
-↳ to do · `q.opt.ground-squirrel` — Ground squirrel
-↳ to do · `q.opt.newborn-baby` — Newborn baby
-↳ to do · `q.opt.rat` — Rat
-↳ to do · `q.opt.red-deer` — Red deer
-↳ to do · `q.opt.sea-turtle` — Sea turtle
-↳ to do · `q.opt.trout` — Trout
+- `q.opt.athlete` — Atleta
+- `q.opt.black-bear` — Orso nero
+- `q.opt.blue-whale` — Balenottera azzurra
+- `q.opt.bullfrog` — Rana toro
+- `q.opt.burmese-python` — Pitone birmano
+- `q.opt.chick` — Pulcino
+- `q.opt.etruscan-shrew` — Mustiolo
+- `q.opt.foal` — Puledro
+- `q.opt.giant-octopus` — Polpo gigante
+- `q.opt.ground-squirrel` — Scoiattolo di terra
+- `q.opt.newborn-baby` — Neonato
+- `q.opt.rat` — Ratto
+- `q.opt.red-deer` — Cervo nobile
+- `q.opt.sea-turtle` — Tartaruga marina
+- `q.opt.trout` — Trota
 ## New names: the slices of Who Gets What (who is paid)
 
-↳ to do · `q.opt.cloth` — Cloth
-↳ to do · `q.opt.crude` — Crude
-↳ to do · `q.opt.delivery` — Delivery
-↳ to do · `q.opt.diesel` — Diesel
-↳ to do · `q.opt.duty` — Duty
-↳ to do · `q.opt.energy` — Energy
-↳ to do · `q.opt.factories` — Factories
-↳ to do · `q.opt.farmers` — Farmers
-↳ to do · `q.opt.maker` — Maker
-↳ to do · `q.opt.makers` — Makers
-↳ to do · `q.opt.parts` — Parts
-↳ to do · `q.opt.petrol` — Petrol
-↳ to do · `q.opt.pharmacy` — Pharmacy
-↳ to do · `q.opt.rest` — Rest
-↳ to do · `q.opt.selling` — Selling
-↳ to do · `q.opt.shipping` — Shipping
-↳ to do · `q.opt.shop` — Shop
-↳ to do · `q.opt.shops` — Shops
-↳ to do · `q.opt.supplier` — Supplier
-↳ to do · `q.opt.tax` — Tax
-↳ to do · `q.opt.traders` — Traders
-↳ to do · `q.opt.vat` — VAT
-↳ to do · `q.opt.wholesale` — Wholesale
-↳ to do · `q.opt.wires` — Wires
+- `q.opt.cloth` — Tessuto
+- `q.opt.crude` — Greggio
+- `q.opt.delivery` — Consegna
+- `q.opt.diesel` — Gasolio
+- `q.opt.duty` — Accise
+- `q.opt.energy` — Energia
+- `q.opt.factories` — Fabbriche
+- `q.opt.farmers` — Agricoltori
+- `q.opt.maker` — Produttore
+- `q.opt.makers` — Produttori
+- `q.opt.parts` — Componenti
+- `q.opt.petrol` — Benzina
+- `q.opt.pharmacy` — Farmacia
+- `q.opt.rest` — Resto
+- `q.opt.selling` — Vendita
+- `q.opt.shipping` — Trasporto
+- `q.opt.shop` — Negozio
+- `q.opt.shops` — Negozi
+- `q.opt.supplier` — Fornitore
+- `q.opt.tax` — Tasse
+- `q.opt.traders` — Commercianti
+- `q.opt.vat` — IVA
+- `q.opt.wholesale` — Grossista
+- `q.opt.wires` — Rete
 
 ## U. Doubts for Khayyam
+
+- q.opt.duty — "Accise" — second option: "Dazio" — every question that shows this button is about spirits, cigarettes, petrol or diesel, where the tax is the excise ("accise"). The three banana puzzles of Who Gets What (first batch, not touched) call their import duty "Dazio", but no question uses them.
+- q.stem.came_first — "Cosa è successo prima?" — second option: "Quale è venuto prima?" — the answer buttons are events written as sentences ("Muore Cleopatra"), so "cosa è successo" fits them better.
+- q.stem.biggest_share — "Chi prende la fetta più grande del prezzo di {x}?" — second option: "Chi incassa di più sul prezzo di {x}?" — the `what` lines start with a capital ("Un chilo di…"); the stem assumes the game puts it in lower case after "di", as it must in English too.

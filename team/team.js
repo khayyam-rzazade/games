@@ -6,7 +6,10 @@
    is each country's biggest day, a small record of its own (tally.js, "rec").
    Opened by one click from the World table (the button's other half, or any country's name), and from the
    links people share: team/?c=IT, and team/?c=IT&v=DE for a face-off with a rival.
-   Nothing is typed anywhere, so there is nothing to moderate. */
+   Nothing is typed anywhere, so there is nothing to moderate.
+   Two tables (29 Oct 2026): the same switch as the World table's, Daily games and Word games, at the top; the word
+   side shows the team in the word games (the server's t: "words"), game by game and language by language, with a
+   record of its own. team/?c=IT&t=words opens on it. */
 (function () {
   "use strict";
 
@@ -24,6 +27,73 @@
   function codeOf(v) { v = String(v || "").toUpperCase(); return CC.test(v) ? v : ""; }
   var homeC = (function () { var c = TO.worldStore().home; return codeOf(c); })();
   var S = { c: codeOf(q.get("c")), v: codeOf(q.get("v")), day: null, yday: null, week: null, month: null, team: null, vteam: null, rec: null, you: "" };
+
+  /* ---------------- the two tables: daily games and word games (29 Oct 2026) ---------------- */
+  var side = q.get("t") === "words" ? "words" : "daily", tot = null;
+  function isWords() { return side === "words"; }
+  function sideQ() { return isWords() ? "&t=words" : ""; }
+  var WORD_GAMES = [                               /* as on the World table (world/world.js): one line per word game */
+    { id: "altitude", name: "Altitude", href: "altitude/", store: "altitude:v1" },
+    { id: "lookalike", name: "Lookalike", href: "lookalike/", store: "lookalike:v1" },
+    { id: "passport", name: "Passport", href: "passport/", store: "passport:v1" }
+  ];
+  var LANG_NAMES = { en: "English", it: "Italian", tr: "Turkish", es: "Spanish", pt: "Portuguese", fr: "French" };
+  function wordPlayed(G) {
+    try { var st = JSON.parse(window.localStorage.getItem(G.store) || "null"); return !!(st && st.main && st.main[today]); } catch (e) { return false; }
+  }
+  /* a word game's id is the game and its language: "altitude-it" is Altitude in Italian */
+  function wordName(k) {
+    var m = /^([a-z]+)-([a-z]{2})$/.exec(String(k)), G = null;
+    if (!m) return k;
+    WORD_GAMES.forEach(function (x) { if (x.id === m[1]) G = x; });
+    return (G ? G.name : m[1].charAt(0).toUpperCase() + m[1].slice(1)) + (LANG_NAMES[m[2]] ? " in " + LANG_NAMES[m[2]] : "");
+  }
+  /* the games one side ranks: the nine daily games, or every word game in every language the team played */
+  function gamesOf(tm) {
+    if (!isWords()) return TO.GAMES.filter(function (G) { return G.key !== "call"; }).map(function (G) { return { key: G.key, name: G.name }; });
+    return Object.keys((tm && tm.g) || {}).sort().map(function (k) { return { key: k, name: wordName(k) }; });
+  }
+  function sideBox() {
+    var box = $("tm-side");
+    if (!box) return;
+    if (!box.firstChild) {
+      [["daily", "Daily games"], ["words", "Word games"]].forEach(function (x) {
+        var b = el("button", "wt-sd");
+        b.type = "button";
+        b.id = "side-" + x[0];
+        b.setAttribute("role", "tab");
+        b.appendChild(el("b", "", x[1]));
+        var n = el("span", "wt-sd-n");
+        n.appendChild(el("span", "wt-sd-day", ""));
+        n.appendChild(el("span", "wt-sd-all", ""));
+        b.appendChild(n);
+        b.addEventListener("click", function () { if (side !== x[0]) setSide(x[0]); });
+        box.appendChild(b);
+      });
+      box.hidden = false;
+    }
+    ["daily", "words"].forEach(function (t) {
+      var b = $("side-" + t), on = side === t, x = tot && tot[t];
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.tabIndex = on ? 0 : -1;
+      b.querySelector(".wt-sd-day").textContent = x ? W.commas(x[0]) + " today" : "";
+      b.querySelector(".wt-sd-all").textContent = x ? W.commas(x[1]) + " in all" : "";
+    });
+    var chip = $("tm-world");
+    if (chip) chip.href = TO.here("../world/") + (isWords() ? "?t=words" : "");
+  }
+  function address() {
+    try { window.history.replaceState(null, "", "?c=" + S.c + (S.v ? "&v=" + S.v : "") + sideQ()); } catch (e) { /* the address just stays */ }
+  }
+  function setSide(t) {
+    side = t === "words" ? "words" : "daily";
+    TO.count(isWords() ? "team/side-words" : "team/side-daily");
+    if (S.c) address();
+    S.day = S.yday = S.week = S.month = S.team = S.vteam = S.rec = null;
+    sideBox();
+    if (W.on()) start();
+  }
+
   var BEST_MIN = 3;                        // a game must have this many of the team's results to be called one of its best
   var FEEL_MIN = 5;                        // and the feelings show from this many taps
 
@@ -44,7 +114,7 @@
     if (!name) {
       box.appendChild(el("p", "wt-mine-line", "Pick a country from the World table to see its team."));
       var a = el("a", "wt-more");
-      a.href = TO.here("../world/");
+      a.href = TO.here("../world/") + (isWords() ? "?t=words" : "");
       a.textContent = "Open the World table";
       box.appendChild(a);
       return;
@@ -110,8 +180,7 @@
     var tm = S.team && S.team[S.c], w = S.team && S.team.world;
     if (!tm || !w) { show("tm-best-card", false); return; }
     var list = [];
-    TO.GAMES.forEach(function (G) {
-      if (G.key === "call") return;
+    gamesOf(tm).forEach(function (G) {
       var a = tm.g[G.key], b = w.g[G.key];
       if (!a || !b || a[0] < BEST_MIN || !b[0]) return;
       list.push({ G: G, n: a[0], d: a[1] / a[0] - b[1] / b[0] });
@@ -121,7 +190,7 @@
     ol.textContent = "";
     list.slice(0, 3).forEach(function (x, i) {
       var li = el("li", "");
-      li.setAttribute("data-g", x.G.key);
+      li.setAttribute("data-g", isWords() ? x.G.key.replace(/-[a-z]{2}$/, "") : x.G.key);
       var at = el("span", "at");
       at.appendChild(el("i", "dot"));
       li.appendChild(at);
@@ -190,6 +259,15 @@
     var c = S.c, name = W.countryName(c);
     if (!name) { show("tm-acts", false); return; }
     var n = TO.GAMES.filter(TO.playedToday).length, N = TO.GAMES.length, own = c === homeC || c === S.you;
+    var first = null;
+    if (isWords()) {
+      n = WORD_GAMES.filter(wordPlayed).length; N = WORD_GAMES.length;
+      WORD_GAMES.forEach(function (G) { if (!first && !wordPlayed(G)) first = G; });
+      $("tm-play").href = first ? TO.here("../" + first.href) : TO.here("../") + "#words-title";
+    } else {
+      TO.GAMES.forEach(function (G) { if (!first && !TO.playedToday(G)) first = G; });
+      $("tm-play").href = first ? TO.here("../" + first.href) : TO.here("../");
+    }
     var duo = $("tm-duo");
     duo.textContent = "";
     var x = rowOf(tableOf(S.day, "day"), c);
@@ -206,7 +284,7 @@
     a.addEventListener("click", function () { TO.count(mine ? "team/room" : "team/room-new"); });
     duo.appendChild(a);
     $("tm-play-kicker").textContent = n === N ? "All " + N + " played today" : n + " of " + N + " played today";
-    $("tm-play").querySelector("b").textContent = own ? "Play for " + name : "Play today's games";
+    $("tm-play").querySelector("b").textContent = own ? "Play for " + name : (isWords() ? "Play today's word games" : "Play today's games");
     show("tm-acts", true);
     duo.hidden = !own;                       // inviting friends "from Italy" is for Italians; a visitor can still play
     fit();
@@ -274,11 +352,11 @@
   $("tm-rival").addEventListener("change", function () {
     S.v = codeOf($("tm-rival").value);
     S.vteam = null;
-    try { window.history.replaceState(null, "", "?c=" + S.c + (S.v ? "&v=" + S.v : "")); } catch (e) { /* the address just stays */ }
+    address();
     TO.count(S.v ? "team/rival" : "team/rival-none");
     duel();
     if (S.v) {
-      W.call("team", { d: today, c: S.c, c2: S.v }).then(function (r) {
+      W.call("team", { d: today, c: S.c, c2: S.v, t: side }).then(function (r) {
         if (done(r) && S.v === r.data.c2) { S.rec = r.data.rec; S.vteam = r.data.team; record(); duel(); }
       }, function () { /* the face-off just keeps what it has */ });
     }
@@ -378,7 +456,7 @@
   function drawTeam() {
     var o = canvas(), x = o.x, c = S.c, t = tableOf(S.day, "day"), r = rowOf(t, c);
     x.textAlign = "right"; x.globalAlpha = 0.75; x.font = "700 36px " + F;
-    x.fillText("Team page", 1008, 104);
+    x.fillText(isWords() ? "Team page · Word games" : "Team page", 1008, 104);
     x.globalAlpha = 1; x.textAlign = "left";
     x.fillStyle = "#ffffff";
     fitText(x, dayLabel(today), "800", 76, FD, 936, 40);
@@ -415,9 +493,9 @@
     lines.push(["This week", wk && wk.at ? W.nth(wk.at) : "–"]);
     lines.push(["This month", mo && mo.at ? W.nth(mo.at) : "–"]);
     var tm = S.team && S.team[c], bestG = null;
-    if (tm && S.team.world) TO.GAMES.forEach(function (G) {
+    if (tm && S.team.world) gamesOf(tm).forEach(function (G) {
       var a = tm.g[G.key], b = S.team.world.g[G.key];
-      if (G.key === "call" || !a || !b || a[0] < BEST_MIN || !b[0]) return;
+      if (!a || !b || a[0] < BEST_MIN || !b[0]) return;
       var d = a[1] / a[0] - b[1] / b[0];
       if (!bestG || d > bestG.d) bestG = { name: G.name, d: d };
     });
@@ -445,13 +523,13 @@
     x.fillStyle = "rgba(255, 255, 255, .7)";
     x.font = "600 30px " + F;
     x.fillText("Team bar: " + W.commas(played) + " of " + W.commas(full) + " games", 72, by + 70);
-    footer(x, "Can your country beat us?", "/team/?c=" + c);
+    footer(x, "Can your country beat us?", "/team/?c=" + c + sideQ());
     return o.c;
   }
   function drawDuel(d) {
     var o = canvas(), x = o.x;
     x.textAlign = "right"; x.globalAlpha = 0.75; x.font = "700 36px " + F;
-    x.fillText("Face-off", 1008, 104);
+    x.fillText(isWords() ? "Face-off · Word games" : "Face-off", 1008, 104);
     x.globalAlpha = 1; x.textAlign = "left";
     x.fillStyle = "#ffffff";
     fitText(x, dayLabel(today), "800", 76, FD, 936, 40);
@@ -489,7 +567,7 @@
       x.fillText(r[2], 990, y + 40);
     });
     x.textAlign = "left";
-    footer(x, "Which side are you on?", "/team/?c=" + S.c + "&v=" + S.v);
+    footer(x, "Which side are you on?", "/team/?c=" + S.c + "&v=" + S.v + sideQ());
     return o.c;
   }
   function blobOf(url) {
@@ -506,15 +584,15 @@
     if (face) {
       var vn = W.countryName(S.v), b = d.b;
       text = W.flag(S.c) + " " + name + " vs " + W.flag(S.v) + " " + vn + " on Logicers today: " +
-        (d.a && d.a.at ? W.nth(d.a.at) : "no place yet") + " against " + (b && b.at ? W.nth(b.at) : "no place yet") + ". Which side are you on? " + W.teamUrl(S.c, S.v);
+        (d.a && d.a.at ? W.nth(d.a.at) : "no place yet") + " against " + (b && b.at ? W.nth(b.at) : "no place yet") + (isWords() ? " in the word games" : "") + ". Which side are you on? " + W.teamUrl(S.c, S.v) + sideQ();
     } else {
-      text = W.flag(S.c) + " " + name + " " + (r && r.at ? "is " + W.nth(r.at) + " on the Logicers world table today" : "is playing the Logicers daily games today") +
-        ", with " + games(r ? r.played : 0) + " so far. Can your country beat us? " + W.teamUrl(S.c);
+      text = W.flag(S.c) + " " + name + " " + (r && r.at ? "is " + W.nth(r.at) + " on the Logicers " + (isWords() ? "word games table" : "world table") + " today" : "is playing the Logicers " + (isWords() ? "word" : "daily") + " games today") +
+        ", with " + games(r ? r.played : 0) + " so far. Can your country beat us? " + W.teamUrl(S.c) + sideQ();
     }
     loadFonts();
     try { url = (face ? drawDuel(d) : drawTeam()).toDataURL("image/png"); blob = blobOf(url); } catch (e) { url = ""; blob = null; }
     TO.count(face ? "team/share-duel" : "team/share");
-    var file = "logicers-" + (face ? "faceoff-" + S.c + "-" + S.v : "team-" + S.c) + "-" + today + ".png";
+    var file = "logicers-" + (isWords() ? "words-" : "") + (face ? "faceoff-" + S.c + "-" + S.v : "team-" + S.c) + "-" + today + ".png";
     $("share-title").textContent = face ? "Share the face-off" : "Share the team";
     TO.share({ blob: blob, filename: file, text: text }).then(function (how) {
       if (how !== "fallback") return;
@@ -542,7 +620,7 @@
   function foot() {
     var d = S.day, total = d ? (d.n || 0) + (d.calls || 0) : 0, name = W.countryName(S.c);
     $("tm-foot").textContent = d && name && W.on()
-      ? "Counted from every game finished on Logicers today, " + W.commas(total) + " in all. Nobody's name is kept, only the country."
+      ? "Counted from every " + (isWords() ? "word game" : "game") + " finished on Logicers today, " + W.commas(total) + " in all. Nobody's name is kept, only the country."
       : "";
   }
   function paint() {
@@ -555,7 +633,7 @@
     bar(); best(); feel(); record(); actions(); pickRival(); duel();
     show("tm-share-row", !!S.day);
     foot();
-    document.title = W.countryName(S.c) + " team page | Logicers";
+    document.title = W.countryName(S.c) + " team page" + (isWords() ? " · Word games" : "") + " | Logicers";
   }
   function fail(why) {
     var box = $("tm-hero");
@@ -563,12 +641,19 @@
     box.appendChild(el("p", "wt-mine-line", why || "The team page can't be reached just now. Try again in a minute."));
   }
 
+  sideBox();
   if (!W.on()) { fail("The team pages are not switched on here."); return; }
   loadFonts();
+  var round = 0;                                   // the latest round of calls: an older one's answers are dropped
+  function start() {
+  var mine = ++round, t = side;
+  function cur() { return mine === round; }
   W.flushBoth(today).then(function () {}, function () {}).then(function () {
-    return W.call("world", { d: today, span: "day" });
+    return W.call("world", { d: today, span: "day", t: t, tot: 1 });
   }).then(function (r) {
+    if (!cur()) return;
     if (!done(r)) { fail(); return; }
+    if (r.data.tot && r.data.tot.d === today) { tot = r.data.tot; sideBox(); }
     S.day = r.data;
     S.you = codeOf(r.data.you && r.data.you.c);
     if (!S.c) S.c = homeC || S.you;
@@ -577,11 +662,13 @@
     if (!W.countryName(S.c)) return;
     /* the rest arrive when they arrive; each repaints the page */
     var jobs = [
-      W.call("world", { d: yesterday, span: "day" }).then(function (x) { if (done(x)) S.yday = x.data; }),
-      W.call("world", { d: today, span: "week" }).then(function (x) { if (done(x)) S.week = x.data; }),
-      W.call("world", { d: today, span: "month" }).then(function (x) { if (done(x)) S.month = x.data; }),
-      W.call("team", { d: today, c: S.c, c2: S.v || undefined }).then(function (x) { if (done(x)) { S.team = x.data.team; S.rec = x.data.rec; S.vteam = x.data.team; } })
+      W.call("world", { d: yesterday, span: "day", t: t }).then(function (x) { if (cur() && done(x)) S.yday = x.data; }),
+      W.call("world", { d: today, span: "week", t: t }).then(function (x) { if (cur() && done(x)) S.week = x.data; }),
+      W.call("world", { d: today, span: "month", t: t }).then(function (x) { if (cur() && done(x)) S.month = x.data; }),
+      W.call("team", { d: today, c: S.c, c2: S.v || undefined, t: t }).then(function (x) { if (cur() && done(x)) { S.team = x.data.team; S.rec = x.data.rec; S.vteam = x.data.team; } })
     ];
-    jobs.forEach(function (j) { j.then(paint, function () { /* that part simply stays out */ }); });
-  }, function () { fail(); });
+    jobs.forEach(function (j) { j.then(function () { if (cur()) paint(); }, function () { /* that part simply stays out */ }); });
+  }, function () { if (cur()) fail(); });
+  }
+  start();
 })();

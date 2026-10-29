@@ -1,81 +1,87 @@
 # Logicers: Altitude’s hint questions, in Turkish (the English with every rule is assets/lang/src/questions.md)
 
-Written as a skeleton by questions_doc.py on 29 October 2026: every line is a ↳ note holding the English. Turn each into a real line `- \`key\` — your words` (keep the key). Nothing else in the questions comes from this file: the animals, events and Who Gets What `what` lines are in your puzzle docs.
+Written on 29 October 2026 from the skeleton. Nothing else in the questions comes from this file: the animals, events and Who Gets What `what` lines are in the puzzle docs. The names below are copied from the puzzle docs word for word, so a button reads the same here and there.
 
 ## The 7 questions (stems)
 
-↳ to do · `q.stem.beat_faster` — Whose heart beats faster?
-↳ to do · `q.stem.came_first` — Which came first?
-↳ to do · `q.stem.closest_relative` — Which is the {x}'s closest relative?
+- `q.stem.beat_faster` — Hangisinin kalbi daha hızlı atıyor?
+- `q.stem.came_first` — Hangisi daha önce oldu?
+- `q.stem.closest_relative` — Hangisi {x.of} en yakın akrabası?
   ↳ {x} is an animal or plant of Long Lost Cousin; in English it takes the name form ("Emu"). If your language needs an article or a case there, write {x.the} or {x.of} instead of {x}: the game then puts in that thing's `the` or `of` form from your Long Lost Cousin doc.
-↳ to do · `q.stem.biggest_share` — Who takes the biggest share of the price of {x}?
+- `q.stem.biggest_share` — {x}: fiyatın en büyük payı kime gidiyor?
   ↳ {x} is the `what` line of a Who Gets What puzzle ("A kilo of dark chocolate"), exactly as you translated it there. Write the stem so that such a phrase fits after it.
-↳ to do · `q.stem.o24_longer_asleep` — Which sleeps longer?
-↳ to do · `q.stem.o24_longer_eating` — Which spends longer eating?
-↳ to do · `q.stem.o24_longer_care` — Which spends longer on housework and care?
+- `q.stem.o24_longer_asleep` — Hangisi daha uzun uyuyor?
+- `q.stem.o24_longer_eating` — Hangisi yemek yemeye daha çok zaman ayırıyor?
+- `q.stem.o24_longer_care` — Hangi ülke ev işine ve bakıma daha çok zaman ayırıyor?
   ↳ The options here are countries (the Out of 24 puzzles about housework): "Which country" may read better than "Which" in your language.
 ## New names: the subjects of Out of 24 (who sleeps, eats, works)
 
-↳ to do · `q.opt.austria` — Austria
-↳ to do · `q.opt.baboon` — Baboon
-↳ to do · `q.opt.chimpanzee` — Chimpanzee
-↳ to do · `q.opt.china` — China
-↳ to do · `q.opt.donkey` — Donkey
-↳ to do · `q.opt.elephant-seal` — Elephant seal
-↳ to do · `q.opt.ferret` — Ferret
-↳ to do · `q.opt.fire-ant-queen` — Fire ant queen
-↳ to do · `q.opt.fire-ant-worker` — Fire ant worker
-↳ to do · `q.opt.frigatebird` — Frigatebird
-↳ to do · `q.opt.giant-armadillo` — Giant armadillo
-↳ to do · `q.opt.grey-seal` — Grey seal
-↳ to do · `q.opt.hunter-gatherers` — Hunter-gatherers
-↳ to do · `q.opt.japan` — Japan
-↳ to do · `q.opt.little-brown-bat` — Little brown bat
-↳ to do · `q.opt.owl-monkey` — Owl monkey
-↳ to do · `q.opt.rhesus-monkey` — Rhesus monkey
-↳ to do · `q.opt.tree-shrew` — Tree shrew
+- `q.opt.austria` — Avusturya
+- `q.opt.baboon` — Babun
+- `q.opt.chimpanzee` — Şempanze
+- `q.opt.china` — Çin
+- `q.opt.donkey` — Eşek
+- `q.opt.elephant-seal` — Fil foku
+- `q.opt.ferret` — Ferret
+- `q.opt.fire-ant-queen` — Ateş karıncası kraliçesi
+- `q.opt.fire-ant-worker` — Ateş karıncası işçisi
+- `q.opt.frigatebird` — Fregat kuşu
+- `q.opt.giant-armadillo` — Dev armadillo
+- `q.opt.grey-seal` — Gri fok
+- `q.opt.hunter-gatherers` — Avcı-toplayıcılar
+- `q.opt.japan` — Japonya
+- `q.opt.little-brown-bat` — Küçük kahverengi yarasa
+- `q.opt.owl-monkey` — Baykuş maymunu
+- `q.opt.rhesus-monkey` — Rhesus maymunu
+- `q.opt.tree-shrew` — Ağaç sivrifaresi
 ## New names: the subjects of Every Beat (whose heart)
 
-↳ to do · `q.opt.athlete` — Athlete
-↳ to do · `q.opt.black-bear` — Black bear
-↳ to do · `q.opt.blue-whale` — Blue whale
-↳ to do · `q.opt.bullfrog` — Bullfrog
-↳ to do · `q.opt.burmese-python` — Burmese python
-↳ to do · `q.opt.chick` — Chick
-↳ to do · `q.opt.etruscan-shrew` — Etruscan shrew
-↳ to do · `q.opt.foal` — Foal
-↳ to do · `q.opt.giant-octopus` — Giant octopus
-↳ to do · `q.opt.ground-squirrel` — Ground squirrel
-↳ to do · `q.opt.newborn-baby` — Newborn baby
-↳ to do · `q.opt.rat` — Rat
-↳ to do · `q.opt.red-deer` — Red deer
-↳ to do · `q.opt.sea-turtle` — Sea turtle
-↳ to do · `q.opt.trout` — Trout
+- `q.opt.athlete` — Sporcu
+- `q.opt.black-bear` — Kara ayı
+- `q.opt.blue-whale` — Mavi balina
+- `q.opt.bullfrog` — Boğa kurbağası
+- `q.opt.burmese-python` — Birmanya pitonu
+- `q.opt.chick` — Civciv
+- `q.opt.etruscan-shrew` — Etrüsk cüce faresi
+- `q.opt.foal` — Tay
+- `q.opt.giant-octopus` — Dev ahtapot
+- `q.opt.ground-squirrel` — Yer sincabı
+- `q.opt.newborn-baby` — Yenidoğan bebek
+- `q.opt.rat` — Sıçan
+- `q.opt.red-deer` — Kızıl geyik
+- `q.opt.sea-turtle` — Deniz kaplumbağası
+- `q.opt.trout` — Alabalık
 ## New names: the slices of Who Gets What (who is paid)
 
-↳ to do · `q.opt.cloth` — Cloth
-↳ to do · `q.opt.crude` — Crude
-↳ to do · `q.opt.delivery` — Delivery
-↳ to do · `q.opt.diesel` — Diesel
-↳ to do · `q.opt.duty` — Duty
-↳ to do · `q.opt.energy` — Energy
-↳ to do · `q.opt.factories` — Factories
-↳ to do · `q.opt.farmers` — Farmers
-↳ to do · `q.opt.maker` — Maker
-↳ to do · `q.opt.makers` — Makers
-↳ to do · `q.opt.parts` — Parts
-↳ to do · `q.opt.petrol` — Petrol
-↳ to do · `q.opt.pharmacy` — Pharmacy
-↳ to do · `q.opt.rest` — Rest
-↳ to do · `q.opt.selling` — Selling
-↳ to do · `q.opt.shipping` — Shipping
-↳ to do · `q.opt.shop` — Shop
-↳ to do · `q.opt.shops` — Shops
-↳ to do · `q.opt.supplier` — Supplier
-↳ to do · `q.opt.tax` — Tax
-↳ to do · `q.opt.traders` — Traders
-↳ to do · `q.opt.vat` — VAT
-↳ to do · `q.opt.wholesale` — Wholesale
-↳ to do · `q.opt.wires` — Wires
+- `q.opt.cloth` — Kumaş
+- `q.opt.crude` — Ham petrol
+- `q.opt.delivery` — Dağıtım
+- `q.opt.diesel` — Dizel
+- `q.opt.duty` — ÖTV
+- `q.opt.energy` — Enerji
+- `q.opt.factories` — Fabrikalar
+- `q.opt.farmers` — Çiftçiler
+- `q.opt.maker` — Üretici
+- `q.opt.makers` — Üreticiler
+- `q.opt.parts` — Parçalar
+- `q.opt.petrol` — Benzin
+- `q.opt.pharmacy` — Eczane
+- `q.opt.rest` — Kalan
+- `q.opt.selling` — Satış
+- `q.opt.shipping` — Nakliye
+- `q.opt.shop` — Mağaza
+- `q.opt.shops` — Mağazalar
+- `q.opt.supplier` — Tedarikçi
+- `q.opt.tax` — Vergi
+- `q.opt.traders` — Tüccarlar
+- `q.opt.vat` — KDV
+- `q.opt.wholesale` — Toptan
+- `q.opt.wires` — Şebeke
 
 ## U. Doubts for Khayyam
+
+- q.stem.biggest_share — {x}: fiyatın en büyük payı kime gidiyor? · second option: {x} için ödenen paranın en büyük payı kime gidiyor? · Turkish cannot add "fiyatı" to a phrase like "Yemeğe harcanan bir dolar" or "Bir kilo bitter çikolata", so I put the thing first with a colon; the second option reads well only for things you buy.
+- q.stem.closest_relative — Hangisi {x.of} en yakın akrabası? · second option: {x.of} en yakın akrabası hangisi? · The `of` form starts with a small letter ("mirketin"), so it cannot open the sentence; I put "Hangisi" first.
+- q.opt.duty — ÖTV · second option: Gümrük · In the Turkish puzzles "Duty" is ÖTV where it is an excise tax (petrol, diesel, spirits, cigarettes, the only ones Altitude asks about) and Gümrük only in three banana puzzles.
+- q.opt.shop — Mağaza · second option: Market · Mağaza is what the jeans puzzle uses (the only Altitude question with "Shop"); Market is used in the banana puzzles.
+- q.opt.wholesale — Toptan · second option: Toptancı · Copied from the medicine puzzle; "Toptan" alone is a bit short as a bare button, "Toptancı" says who is paid.

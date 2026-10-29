@@ -9,6 +9,28 @@
 .wt-h1 { margin-top: 10px; font-family: var(--display); font-weight: 800; font-size: clamp(1.75rem, 7.4vw, 2.5rem); letter-spacing: -0.035em; line-height: 1.07; }
 .wt-lede { margin-top: 8px; font-size: 1.05rem; line-height: 1.4; }
 
+/* Daily games · Word games (29 Oct 2026): one slim box at the top, two halves, each with its games today and ever.
+   The chosen half wears the page's slate; the other stays quiet but plainly tappable. On a phone the two counts sit
+   on two short lines; where the half is wide enough, on one. The box keeps its height while the counts arrive. */
+.wt-side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-top: 12px; padding: 4px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
+.wt-side[hidden] { display: none; }
+.wt-sd { appearance: none; display: block; min-width: 0; padding: 10px 12px 9px; border: 0; border-radius: 18px; background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.wt-sd b { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(0.86rem, 4vw, 1.04rem); letter-spacing: -0.02em; line-height: 1.15; }
+.wt-sd-n { display: block; min-height: 2.5em; margin-top: 3px; color: var(--soft); font-size: 0.8rem; font-weight: 700; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.wt-sd-n > span { display: block; }
+.wt-sd[aria-selected="true"] { background: var(--c); color: var(--on-c); }
+.wt-sd[aria-selected="true"] .wt-sd-n { color: var(--on-c); opacity: .86; }
+.wt-sd[aria-selected="false"]:hover { background: var(--tint); }
+.wt-sd:active { transform: scale(0.985); }
+.wt-sd:focus-visible { outline: 3px solid var(--c); outline-offset: 2px; }
+@media (max-width: 420px) { .wt-sd { padding: 10px 10px 9px; } }
+@media (min-width: 600px) {
+  .wt-sd-n { min-height: 1.25em; }
+  .wt-sd-n > span { display: inline; }
+  .wt-sd-n > .wt-sd-all:not(:empty)::before { content: " · "; }
+}
+.wt-help-words[hidden] { display: none; }
+
 /* Today · Yesterday · Week · Month */
 .wt-tabs { display: grid; grid-template-columns: repeat(4, auto); justify-content: stretch; gap: 4px; margin-top: 18px; padding: 4px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); }
 .wt-tab { appearance: none; min-height: 42px; padding: 0 6px; border: 0; border-radius: 999px; background: none; color: var(--soft); font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -73,6 +95,7 @@
 .wt-card[hidden] { display: none; }
 .wt-h2 { font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
 .wt-head .wt-h2 { white-space: nowrap; }
+@media (max-width: 420px) { .wt-head .wt-h2 { min-width: 0; white-space: normal; } }   /* "Más partidas jugadas" beside "Compartir" at 360 px (29 Oct 2026) */
 /* the heading of the best scores, with the way to share them */
 .wt-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .wt-share { appearance: none; display: inline-flex; align-items: center; gap: 6px; flex: none; min-height: 38px; padding: 0 14px 0 11px; border: 0; border-radius: 999px; background: #F6C445; color: #15172B; font: inherit; font-weight: 800; font-size: 0.88rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }

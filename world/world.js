@@ -4,7 +4,16 @@
    made fair across games by the server, pulled toward the world's average while it has few games, plus a small
    bonus for how many games it played (16 Oct 2026). Each table can be shared as a picture of its top 10, the
    winner given the most room (16 Oct 2026, Khayyam: "it has to trigger competition, but simple, at the same time
-   attractive"). */
+   attractive").
+
+   Two tables (29 Oct 2026, Khayyam: "on top there is 2 big windows to choose daily word games and daily games",
+   and the total "like 30343 today's word games of 4385934854 total"): one slim box at the top, split into two
+   halves, Daily games and Word games, each with its games today and its games ever. Tapping a half switches the
+   whole page below it to that table (the server's t: "words", tally.js), without loading a new page; the address
+   keeps it (?t=words), so a reload, a shared link and a change of language stay on it. The page opens on the word
+   games' side when it is opened from a word game or with ?t=words, otherwise on the daily games'.
+   The few new words are kept here, in the six languages, until the next build of the dictionaries takes them in
+   (the keys wt.side_*): a key the dictionary already has always wins. */
 (function () {
   "use strict";
 
@@ -20,8 +29,133 @@
   var today = W.todayKey();
   var span = "day", shown = null, all = false, allBusy = false;   // all, allBusy: "Show every country" tapped
 
+  /* ---------------- the two tables: daily games and word games (29 Oct 2026) ---------------- */
+  var LANG = LG && LG.lang ? LG.lang : "en";
+  var NB = "\u00a0";
+  var WORDS_T = {
+    en: { daily: "Daily games", words: "Word games", today: "{n} today", all: "{n} in all", aria: "Which games",
+          lede: "Every word game anyone finishes counts for their country. The better you play, the higher it climbs.",
+          help: "Word games have a table of their own, never mixed with the daily games. Each language is scored against its own players that day, so a hard word never sinks a country." },
+    it: { daily: "Giochi quotidiani", words: "Giochi di parole", today: "{n} oggi", all: "{n} in tutto", aria: "Quali giochi",
+          lede: "Ogni gioco di parole che qualcuno finisce conta per il suo Paese. Più giochi bene, più sale.",
+          help: "I giochi di parole hanno una classifica tutta loro, mai mescolata con quella dei giochi quotidiani. Ogni lingua si misura con chi l'ha giocata quel giorno, così una parola difficile non affonda mai un Paese." },
+    tr: { daily: "Günlük oyunlar", words: "Kelime oyunları", today: "bugün {n}", all: "toplam {n}", aria: "Hangi oyunlar",
+          lede: "Herkesin bitirdiği her kelime oyunu kendi ülkesi için sayılır. Ne kadar iyi oynarsan ülken o kadar yükselir.",
+          help: "Kelime oyunlarının kendi tablosu var; günlük oyunlarla hiç karışmaz. Her dil, o gün o dilde oynayanlarla karşılaştırılır; böylece zor bir kelime hiçbir ülkeyi aşağı çekmez." },
+    es: { daily: "Juegos diarios", words: "Juegos de palabras", today: "{n} hoy", all: "{n} en total", aria: "Qué juegos",
+          lede: "Cada juego de palabras que alguien termina cuenta para su país. Cuanto mejor juegues, más sube.",
+          help: "Los juegos de palabras tienen su propia clasificación, que nunca se mezcla con la de los juegos diarios. Cada idioma se mide con quienes lo jugaron ese día, así que una palabra difícil nunca hunde a un país." },
+    pt: { daily: "Jogos diários", words: "Jogos de palavras", today: "{n} hoje", all: "{n} no total", aria: "Quais jogos",
+          lede: "Todo jogo de palavras que alguém termina conta para o país dessa pessoa. Quanto melhor você joga, mais alto o país sobe.",
+          help: "Os jogos de palavras têm um ranking só deles, que nunca se mistura com o dos jogos diários. Cada idioma é comparado com quem jogou nele naquele dia, então uma palavra difícil nunca derruba um país." },
+    fr: { daily: "Jeux du jour", words: "Jeux de mots", today: "{n} aujourd’hui", all: "{n} au total", aria: "Quels jeux",
+          lede: "Chaque jeu de mots que quelqu’un termine compte pour son pays. Mieux tu joues, plus il monte.",
+          help: "Les jeux de mots ont leur propre classement, jamais mêlé à celui des jeux du jour. Chaque langue est comparée à ceux qui l’ont jouée ce jour-là" + NB + ": un mot difficile ne fait donc jamais plonger un pays." }
+  };
+  function L(k, vars) {
+    var key = "wt.side_" + k;
+    if (LG && T.has && T.has(key)) return T(key, vars);
+    var s = (WORDS_T[LANG] || WORDS_T.en)[k] || WORDS_T.en[k] || "";
+    return vars ? s.replace(/\{([a-z]+)\}/g, function (m, v) { return Object.prototype.hasOwnProperty.call(vars, v) ? String(vars[v]) : m; }) : s;
+  }
+  /* The word games, in the order of the home page's row. A word game joins the word table on the server by itself;
+     here it needs one line, for "Play" and for opening on the word side: its folder and its own storage key, whose
+     "main" holds the day's first finished play (the three games write it so). */
+  var WORD_GAMES = [
+    { id: "altitude", href: "altitude/", store: "altitude:v1" },
+    { id: "lookalike", href: "lookalike/", store: "lookalike:v1" },
+    { id: "passport", href: "passport/", store: "passport:v1" }
+  ];
+  function wordPlayed(G) {
+    try { var s = JSON.parse(window.localStorage.getItem(G.store) || "null"); return !!(s && s.main && s.main[today]); } catch (e) { return false; }
+  }
+  var query = (function () { try { return new window.URLSearchParams(window.location.search); } catch (e) { return null; } })();
+  var side = (function () {
+    var t = query ? query.get("t") : "";
+    if (t === "words" || t === "daily") return t;
+    try {
+      var r = document.referrer ? new URL(document.referrer) : null;
+      if (r && r.origin === window.location.origin && WORD_GAMES.some(function (G) { return r.pathname.indexOf("/" + G.href) >= 0; })) return "words";
+    } catch (e) { /* no referrer: the daily games */ }
+    return "daily";
+  })();
+  function isWords() { return side === "words"; }
+  function sideQ(first) { return isWords() ? (first ? "?" : "&") + "t=words" : ""; }
+  var tot = null;                                  // { d, daily: [today, ever], words: [today, ever] }, today's
+  function sideBox() {
+    var box = $("wt-side");
+    if (!box) return;
+    if (!box.firstChild) {
+      box.setAttribute("aria-label", L("aria"));
+      ["daily", "words"].forEach(function (t) {
+        var b = el("button", "wt-sd");
+        b.type = "button";
+        b.id = "side-" + t;
+        b.setAttribute("role", "tab");
+        b.setAttribute("data-t", t);
+        b.appendChild(el("b", "", L(t)));
+        var n = el("span", "wt-sd-n");
+        n.appendChild(el("span", "wt-sd-day", ""));
+        n.appendChild(el("span", "wt-sd-all", ""));
+        b.appendChild(n);
+        b.addEventListener("click", function () { if (side !== t) setSide(t); });
+        box.appendChild(b);
+      });
+      box.hidden = false;
+    }
+    ["daily", "words"].forEach(function (t) {
+      var b = $("side-" + t), on = side === t;
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.tabIndex = on ? 0 : -1;
+      var x = tot && tot[t];
+      b.querySelector(".wt-sd-day").textContent = x ? L("today", { n: W.commas(x[0]) }) : "";
+      b.querySelector(".wt-sd-all").textContent = x ? L("all", { n: W.commas(x[1]) }) : "";
+      b.setAttribute("aria-label", L(t) + (x ? ": " + L("today", { n: W.commas(x[0]) }) + ", " + L("all", { n: W.commas(x[1]) }) : ""));
+    });
+  }
+  var LEDE = null;                                 // the daily games' lede, as the page came
+  function sideWords() {
+    var lede = document.querySelector(".wt-lede");
+    if (lede) {
+      if (LEDE === null) LEDE = lede.textContent;
+      lede.textContent = isWords() ? L("lede") : LEDE;
+    }
+    var help = $("wt-help-words");
+    if (!help) {
+      var ol = document.querySelector("#dlg-help ol");
+      if (ol) {
+        help = el("p", "quiet wt-help-words", L("help"));
+        help.id = "wt-help-words";
+        ol.parentNode.insertBefore(help, ol.nextSibling);
+      }
+    }
+    if (help) help.hidden = !isWords();
+  }
+  function setSide(t) {
+    side = t === "words" ? "words" : "daily";
+    try {
+      var q2 = new window.URLSearchParams(window.location.search);
+      if (isWords()) q2.set("t", "words"); else q2.delete("t");
+      var qs = q2.toString();
+      window.history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : "") + window.location.hash);
+    } catch (e) { /* the address just stays */ }
+    TO.count(isWords() ? "world/side-words" : "world/side-daily");
+    sideBox();
+    sideWords();
+    play();
+    if (home()) team(home());
+    if (W.on()) load(span);
+  }
+
   /* the way to today's games: how many are played */
   function play() {
+    if (isWords()) {                                 /* the word games: the first not played today, else their row at home */
+      var wn = WORD_GAMES.filter(wordPlayed).length, WN = WORD_GAMES.length, wf = null;
+      WORD_GAMES.forEach(function (G) { if (!wf && !wordPlayed(G)) wf = G; });
+      $("wt-play-kicker").textContent = wn === WN ? T("wt.all_played", { n: WN }) : T("wt.n_played_today", { n: wn, of: WN });
+      $("wt-play").href = wf ? TO.here(LG ? LG.href(wf.href) : "../" + wf.href) : TO.here("../") + "#words-title";
+      return;
+    }
     var n = TO.GAMES.filter(TO.playedToday).length, N = TO.GAMES.length;
     $("wt-play-kicker").textContent = n === N ? T("wt.all_played", { n: N }) : T("wt.n_played_today", { n: n, of: N });
     /* 19 Oct 2026, Khayyam: "it has to bring me to where the games are". The button opens the first game not yet
@@ -41,7 +175,7 @@
     k.textContent = "";
     k.appendChild(W.flagEl(c));
     k.appendChild(document.createTextNode(name));
-    a.href = W.teamHref(c);
+    a.href = W.teamHref(c) + sideQ();
     a.setAttribute("aria-label", T("wt.team_page_aria", { country: name }));
     a.hidden = false;
     $("wt-go").classList.add("two");
@@ -83,7 +217,7 @@
     li.appendChild(el("span", "at", i ? String(i) : "–"));
     var who = el("span", "who");
     var tl = el("a", "wt-tl");
-    tl.href = W.teamHref(x.c);
+    tl.href = W.teamHref(x.c) + sideQ();
     tl.appendChild(W.flagEl(x.c));
     tl.appendChild(document.createTextNode(W.countryName(x.c)));
     who.appendChild(tl);
@@ -264,19 +398,21 @@
       : T("wt.nobody_yet", { when: when(sp) });
   }
 
+  var asked = 0;                                   // the latest call: an answer to an earlier one is dropped
   function load(sp) {
     span = sp;
     all = false;
     allBusy = false;
     ["day", "yday", "week", "month"].forEach(function (s) { $("tab-" + s).setAttribute("aria-selected", s === sp ? "true" : "false"); });
-    var key = sp === "yday" ? W.shiftKey(today, -1) : today;
+    var key = sp === "yday" ? W.shiftKey(today, -1) : today, mine = ++asked;
     $("wt-mine").textContent = "";
     $("wt-mine").appendChild(el("p", "wt-wait", T("world.counting")));
-    return W.call("world", { d: key, span: ofSpan(sp) }).then(function (r) {
-      if (span !== sp) return;                      // another tab was tapped meanwhile
+    return W.call("world", { d: key, span: ofSpan(sp), t: side, tot: 1 }).then(function (r) {
+      if (mine !== asked) return;                   // another tab or half was tapped meanwhile
       if (r.status !== 200) { fail(); return; }
+      if (r.data && r.data.tot && r.data.tot.d === today) { tot = r.data.tot; sideBox(); }
       render(r.data, sp);
-    }, function () { if (span === sp) fail(); });
+    }, function () { if (mine === asked) fail(); });
   }
   function fail() {
     shown = null;
@@ -408,7 +544,9 @@
     x.textAlign = "right";
     x.globalAlpha = 0.75;
     x.font = "700 36px " + F;
-    x.fillText(busy ? T("wt.most_games_played") : T("world.table"), WD - M, 104);
+    var label = (busy ? T("wt.most_games_played") : T("world.table")) + (isWords() ? " · " + L("words") : "");
+    fit(x, label, "700", 36, F, WD - 2 * M - 250, 22);
+    x.fillText(label, WD - M, 104);
     x.globalAlpha = 1;
     x.textAlign = "left";
     fit(x, period(d.d, sp), "800", 76, FD, WD - 2 * M, 40);
@@ -517,15 +655,16 @@
     var lines = [busy
       ? (sp === "yday" ? "🎮 " + T("wt.share_most_yday", { country: name }) : "🎮 " + T("wt.share_most", { country: name, when: when(sp) }))
       : (sp === "yday" ? "🏆 " + T("wt.share_top_yday", { country: name }) : "🏆 " + T("wt.share_top", { country: name, when: when(sp) }))];
+    if (isWords()) lines[0] += " (" + L("words") + ")";
     function line(r) { return r.at + ". " + W.flag(r.c) + " " + W.countryName(r.c) + " " + r.big + (busy ? " " + (r.played === 1 ? T("wt.game") : T("wt.games_word")) : ""); }
     list.slice(0, 3).forEach(function (r) { lines.push(line(r)); });
     if (me && me.at > 3) lines.push("…" + line(me));
-    lines.push((busy ? T("wt.catch_them") : T("wt.beat_them")) + " " + W.tableUrl());
+    lines.push((busy ? T("wt.catch_them") : T("wt.beat_them")) + " " + W.tableUrl() + sideQ(true));
     return lines.join("\n");
   }
   function fileName(d, sp, busy) {
     var k = String(sp === "week" ? monday(d.d) : d.d), day = k.slice(0, 4) + "-" + k.slice(4, 6) + "-" + k.slice(6, 8);
-    return "logicers-world-" + (busy ? "games-" : "") + (sp === "month" ? day.slice(0, 7) : sp === "week" ? "week-" + day : day) + ".png";
+    return "logicers-world-" + (isWords() ? "words-" : "") + (busy ? "games-" : "") + (sp === "month" ? day.slice(0, 7) : sp === "week" ? "week-" + day : day) + ".png";
   }
   function blobOf(url) {
     var b = window.atob(url.split(",")[1]), a = new Uint8Array(b.length);
@@ -569,6 +708,8 @@
   $("wt-best-more").addEventListener("click", function () { all = true; if (shown) render(shown.d, shown.sp); });
   $("wt-busy-more").addEventListener("click", function () { allBusy = true; if (shown) render(shown.d, shown.sp); });
 
+  sideBox();
+  sideWords();
   play();
   if (home()) team(home());
   if (!W.on()) {

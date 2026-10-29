@@ -4,78 +4,84 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 
 ## The 7 questions (stems)
 
-↳ to do · `q.stem.beat_faster` — Whose heart beats faster?
-↳ to do · `q.stem.came_first` — Which came first?
-↳ to do · `q.stem.closest_relative` — Which is the {x}'s closest relative?
+- `q.stem.beat_faster` — ¿El corazón de quién late más rápido?
+- `q.stem.came_first` — ¿Qué ocurrió primero?
+- `q.stem.closest_relative` — ¿Cuál es el pariente más cercano {x.of}?
   ↳ {x} is an animal or plant of Long Lost Cousin; in English it takes the name form ("Emu"). If your language needs an article or a case there, write {x.the} or {x.of} instead of {x}: the game then puts in that thing's `the` or `of` form from your Long Lost Cousin doc.
-↳ to do · `q.stem.biggest_share` — Who takes the biggest share of the price of {x}?
+- `q.stem.biggest_share` — ¿Quién se lleva la mayor parte del precio de «{x}»?
   ↳ {x} is the `what` line of a Who Gets What puzzle ("A kilo of dark chocolate"), exactly as you translated it there. Write the stem so that such a phrase fits after it.
-↳ to do · `q.stem.o24_longer_asleep` — Which sleeps longer?
-↳ to do · `q.stem.o24_longer_eating` — Which spends longer eating?
-↳ to do · `q.stem.o24_longer_care` — Which spends longer on housework and care?
+- `q.stem.o24_longer_asleep` — ¿Cuál duerme más?
+- `q.stem.o24_longer_eating` — ¿Cuál pasa más tiempo comiendo?
+- `q.stem.o24_longer_care` — ¿Qué país dedica más tiempo a las tareas del hogar y a los cuidados?
   ↳ The options here are countries (the Out of 24 puzzles about housework): "Which country" may read better than "Which" in your language.
 ## New names: the subjects of Out of 24 (who sleeps, eats, works)
 
-↳ to do · `q.opt.austria` — Austria
-↳ to do · `q.opt.baboon` — Baboon
-↳ to do · `q.opt.chimpanzee` — Chimpanzee
-↳ to do · `q.opt.china` — China
-↳ to do · `q.opt.donkey` — Donkey
-↳ to do · `q.opt.elephant-seal` — Elephant seal
-↳ to do · `q.opt.ferret` — Ferret
-↳ to do · `q.opt.fire-ant-queen` — Fire ant queen
-↳ to do · `q.opt.fire-ant-worker` — Fire ant worker
-↳ to do · `q.opt.frigatebird` — Frigatebird
-↳ to do · `q.opt.giant-armadillo` — Giant armadillo
-↳ to do · `q.opt.grey-seal` — Grey seal
-↳ to do · `q.opt.hunter-gatherers` — Hunter-gatherers
-↳ to do · `q.opt.japan` — Japan
-↳ to do · `q.opt.little-brown-bat` — Little brown bat
-↳ to do · `q.opt.owl-monkey` — Owl monkey
-↳ to do · `q.opt.rhesus-monkey` — Rhesus monkey
-↳ to do · `q.opt.tree-shrew` — Tree shrew
+- `q.opt.austria` — Austria
+- `q.opt.baboon` — Babuino
+- `q.opt.chimpanzee` — Chimpancé
+- `q.opt.china` — China
+- `q.opt.donkey` — Burro
+- `q.opt.elephant-seal` — Elefante marino
+- `q.opt.ferret` — Hurón
+- `q.opt.fire-ant-queen` — Reina de hormigas de fuego
+- `q.opt.fire-ant-worker` — Obrera de hormigas de fuego
+- `q.opt.frigatebird` — Fragata
+- `q.opt.giant-armadillo` — Armadillo gigante
+- `q.opt.grey-seal` — Foca gris
+- `q.opt.hunter-gatherers` — Cazadores-recolectores
+- `q.opt.japan` — Japón
+- `q.opt.little-brown-bat` — Murciélago marrón pequeño
+- `q.opt.owl-monkey` — Mono nocturno
+- `q.opt.rhesus-monkey` — Macaco rhesus
+- `q.opt.tree-shrew` — Musaraña arborícola
 ## New names: the subjects of Every Beat (whose heart)
 
-↳ to do · `q.opt.athlete` — Athlete
-↳ to do · `q.opt.black-bear` — Black bear
-↳ to do · `q.opt.blue-whale` — Blue whale
-↳ to do · `q.opt.bullfrog` — Bullfrog
-↳ to do · `q.opt.burmese-python` — Burmese python
-↳ to do · `q.opt.chick` — Chick
-↳ to do · `q.opt.etruscan-shrew` — Etruscan shrew
-↳ to do · `q.opt.foal` — Foal
-↳ to do · `q.opt.giant-octopus` — Giant octopus
-↳ to do · `q.opt.ground-squirrel` — Ground squirrel
-↳ to do · `q.opt.newborn-baby` — Newborn baby
-↳ to do · `q.opt.rat` — Rat
-↳ to do · `q.opt.red-deer` — Red deer
-↳ to do · `q.opt.sea-turtle` — Sea turtle
-↳ to do · `q.opt.trout` — Trout
+- `q.opt.athlete` — Atleta
+- `q.opt.black-bear` — Oso negro
+- `q.opt.blue-whale` — Ballena azul
+- `q.opt.bullfrog` — Rana toro
+- `q.opt.burmese-python` — Pitón birmano
+- `q.opt.chick` — Pollito
+- `q.opt.etruscan-shrew` — Musaraña etrusca
+- `q.opt.foal` — Potro
+- `q.opt.giant-octopus` — Pulpo gigante
+- `q.opt.ground-squirrel` — Ardilla terrestre
+- `q.opt.newborn-baby` — Bebé recién nacido
+- `q.opt.rat` — Rata
+- `q.opt.red-deer` — Ciervo rojo
+- `q.opt.sea-turtle` — Tortuga marina
+- `q.opt.trout` — Trucha
 ## New names: the slices of Who Gets What (who is paid)
 
-↳ to do · `q.opt.cloth` — Cloth
-↳ to do · `q.opt.crude` — Crude
-↳ to do · `q.opt.delivery` — Delivery
-↳ to do · `q.opt.diesel` — Diesel
-↳ to do · `q.opt.duty` — Duty
-↳ to do · `q.opt.energy` — Energy
-↳ to do · `q.opt.factories` — Factories
-↳ to do · `q.opt.farmers` — Farmers
-↳ to do · `q.opt.maker` — Maker
-↳ to do · `q.opt.makers` — Makers
-↳ to do · `q.opt.parts` — Parts
-↳ to do · `q.opt.petrol` — Petrol
-↳ to do · `q.opt.pharmacy` — Pharmacy
-↳ to do · `q.opt.rest` — Rest
-↳ to do · `q.opt.selling` — Selling
-↳ to do · `q.opt.shipping` — Shipping
-↳ to do · `q.opt.shop` — Shop
-↳ to do · `q.opt.shops` — Shops
-↳ to do · `q.opt.supplier` — Supplier
-↳ to do · `q.opt.tax` — Tax
-↳ to do · `q.opt.traders` — Traders
-↳ to do · `q.opt.vat` — VAT
-↳ to do · `q.opt.wholesale` — Wholesale
-↳ to do · `q.opt.wires` — Wires
+- `q.opt.cloth` — Tela
+- `q.opt.crude` — Crudo
+- `q.opt.delivery` — Reparto
+- `q.opt.diesel` — Diésel
+- `q.opt.duty` — Impuesto especial
+- `q.opt.energy` — Energía
+- `q.opt.factories` — Fábricas
+- `q.opt.farmers` — Agricultores
+- `q.opt.maker` — Fabricante
+- `q.opt.makers` — Fabricantes
+- `q.opt.parts` — Piezas
+- `q.opt.petrol` — Gasolina
+- `q.opt.pharmacy` — Farmacia
+- `q.opt.rest` — Resto
+- `q.opt.selling` — Ventas
+- `q.opt.shipping` — Transporte
+- `q.opt.shop` — Tienda
+- `q.opt.shops` — Tiendas
+- `q.opt.supplier` — Proveedor
+- `q.opt.tax` — Impuestos
+- `q.opt.traders` — Comerciantes
+- `q.opt.vat` — IVA
+- `q.opt.wholesale` — Mayorista
+- `q.opt.wires` — Red
 
 ## U. Doubts for Khayyam
+
+- q.stem.biggest_share — ¿Quién se lleva la mayor parte del precio de «{x}»? Second option: Precio de «{x}»: ¿quién se lleva la mayor parte? The `what` lines start with a capital ("Un kilo de…"), so the phrase goes inside « » to read right after "del precio de".
+- q.stem.beat_faster — ¿El corazón de quién late más rápido? Second option: ¿Cuál tiene el corazón más rápido? Keeps the English "whose"; the second is shorter if the button text is long.
+- q.stem.o24_longer_care — ¿Qué país dedica más tiempo a las tareas del hogar y a los cuidados? Second option: ¿Qué país dedica más tiempo a la casa y a cuidar de otros? "Which country" as the note suggests; "cuidados" means looking after children and relatives.
+- q.opt.little-brown-bat — Murciélago marrón pequeño. Second option: Murciélago pardo pequeño. Same name as the Out of 24 and Every Beat puzzles; Spanish sources use both, "marrón" is the one used in more of them.
+- q.opt.duty — Impuesto especial. Second option: Arancel. Chosen for the excise tax on fuel, tobacco and alcohol; in the banana puzzles the border duty is written "Arancel" there, so it never appears as this button.

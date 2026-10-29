@@ -27,7 +27,19 @@
 
    Records (19 Oct 2026, "the lifetime record"): one more object of this class, named "rec", not tied to a date, keeps
    for each country the most games it ever played in one day and the date, and the world's own biggest day, so a
-   team page can say "our record: 212 games". It holds numbers and dates, nothing else, and is never deleted. */
+   team page can say "our record: 212 games". It holds numbers and dates, nothing else, and is never deleted.
+
+   Word games (29 Oct 2026, Khayyam: "we do have more than 1 and we will have many"): the word games (Altitude,
+   Lookalike, Passport and those to come, one id per language each) get a world table of their own, beside the
+   nine daily games' table, never mixed into it. A word game is any id points.js knows that is not one of the nine,
+   so a new word game joins the word table the day its ids are in points.js, with nothing to change here. Each id
+   (one game in one language) is made fair against its own world average, exactly as the nine daily games are
+   against theirs, so a hard Turkish word never sinks Turkey: a player is measured against the others who played
+   that same word. The summary, the team view and the records each take a kind ("daily" or "words").
+
+   All-time totals (29 Oct 2026, "30343 today's word games of 4385934854 total"): the "rec" object also keeps, for
+   each kind, the games of every date that can no longer change, added up once per date (fold); the Worker adds the
+   days still open to it when asked. Numbers only. */
 import { DurableObject } from "cloudflare:workers";
 import "./points.js";
 
@@ -44,6 +56,17 @@ const SUMMARY_MS = 30e3;            // the summary for the world table is worked
    like any other, but they never reach the world table, the team page or a country's record: they are not
    one of the nine, so no daily-game count may change because of them. */
 const DAILY = new Set(P.SCORED.concat(["call"]));
+/* the kind of a game id: "daily" for the nine, "words" for every other id points.js knows (29 Oct 2026) */
+function kindOf(g) { return DAILY.has(g) ? "daily" : P.LIMITS.hasOwnProperty(g) ? "words" : null; }
+function kindIn(k) { return k === "words" ? "words" : "daily"; }
+/* the totals start here: the first date the world's counts had (the 16 Oct 2026 push; a day early, for a phone far
+   east of it). Every date from this one on is folded in once, in order, never skipped. */
+export const TOTALS_FROM = "20261015";
+export function nextKey(d) {
+  const t = dayStart(d);
+  if (!isFinite(t)) return "";
+  return new Date(t + 86400e3).toISOString().slice(0, 10).replace(/-/g, "");
+}
 
 const HB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const HCOLS = HB.map((i) => "h" + i).join(", ");
@@ -88,7 +111,7 @@ export class Tally extends DurableObject {
     this.made = null;               // whether the table exists (null: not looked yet)
     this.madeX = null;              // the same for the reactions' table x
     this.seen = new Map();          // address hash -> { all, games: { k: n } }: memory only
-    this.summed = null;             // { at, data }
+    this.summed = {};               // kind -> { at, data }
     this.dated = false;
   }
 
@@ -107,7 +130,7 @@ export class Tally extends DurableObject {
     this.sql.exec("DROP TABLE IF EXISTS r");
     this.sql.exec("DROP TABLE IF EXISTS x");
     await this.ctx.storage.deleteAll();
-    this.summed = null;
+    this.summed = {};
     this.made = false;
     this.madeX = false;
     this.dated = false;
@@ -161,6 +184,11 @@ export class Tally extends DurableObject {
   /* results in: { d, who, c, ct, rs: [{ k, e, g } | { k, c }], k } -> { took, view } (the view of game k) */
   async add(o) {
     const c = CC.test(o.c) ? o.c : "??", ct = CT.test(o.ct) ? o.ct : "??";
+    /* a date closes 36 hours after it begins in UTC (UTC-12 is the last clock on it), and its totals are folded
+       after that (worker.js): the Worker refuses later results, and so does the date itself, by its own clock,
+       for one that reached it late (29 Oct 2026) */
+    const start = dayStart(o.d);
+    if (isFinite(start) && Date.now() >= start + 36 * 3600e3) return { took: 0, ks: [], view: typeof o.k === "string" ? this.view({ k: o.k, c, ct }) : null };
     let took = 0;
     const ks = [];
     const seenK = {};
@@ -184,7 +212,7 @@ export class Tally extends DurableObject {
       took++;
       ks.push(x.k);
     }
-    if (took) this.summed = null;
+    if (took) this.summed = {};
     return { took, ks, view: typeof o.k === "string" ? this.view({ k: o.k, c, ct }) : null };
   }
 
@@ -256,14 +284,16 @@ export class Tally extends DurableObject {
     return { k, w, h };
   }
 
-  /* for the team page: each country in cs (one or two), and the world, as the date's games went:
-     g { game: [results, points] } (Your Call has no points, its results are counted), x { game: [r0, r1, r2] } */
-  team(cs) {
+  /* for the team page: each country in cs (one or two), and the world, as the date's games of one kind went
+     ("daily", the nine, or "words", 29 Oct 2026): g { game: [results, points] } (Your Call has no points, its
+     results are counted), x { game: [r0, r1, r2] } */
+  team(cs, kind) {
+    const K = kindIn(kind);
     const want = (Array.isArray(cs) ? cs : []).filter((c) => CC.test(c)).slice(0, 2);
     const out = { world: { g: {}, x: {} } };
     for (const c of want) out[c] = { g: {}, x: {} };
     for (const r of this.rows("SELECT g, c, n, p FROM r")) {
-      if (!DAILY.has(r.g)) continue;
+      if (kindOf(r.g) !== K) continue;
       const w = out.world.g[r.g] || (out.world.g[r.g] = [0, 0]);
       w[0] += r.n; w[1] += r.p;
       if (out[r.c] && r.c !== "world") {
@@ -272,7 +302,7 @@ export class Tally extends DurableObject {
       }
     }
     for (const r of this.xrows("SELECT g, c, r0, r1, r2 FROM x")) {
-      if (!DAILY.has(r.g)) continue;
+      if (kindOf(r.g) !== K) continue;
       const w = out.world.x[r.g] || (out.world.x[r.g] = [0, 0, 0]);
       w[0] += r.r0; w[1] += r.r1; w[2] += r.r2;
       if (out[r.c] && r.c !== "world") out[r.c].x[r.g] = [r.r0, r.r1, r.r2];
@@ -282,35 +312,74 @@ export class Tally extends DurableObject {
 
   /* ---------------- records (the object named "rec") ---------------- */
   /* list: [[country or "**" for the world, games played that date, date]]; keeps the biggest day of each (the
-     earlier date wins a tie); returns how many records changed. */
-  async note(list) {
+     earlier date wins a tie); returns how many records changed. The word games' records (kind "words", 29 Oct
+     2026) are kept beside the daily games', under "w:" and the country ("w:**" the world's), and read back under
+     the plain names, so a team page reads both kinds alike. */
+  async note(list, kind) {
+    const pre = kindIn(kind) === "words" ? "w:" : "";
     const rec = (await this.ctx.storage.get("rec")) || {};
     let changed = 0;
     for (const x of Array.isArray(list) ? list.slice(0, 1500) : []) {
       const c = x[0], n = x[1], d = x[2];
       if (!(c === "**" || CC.test(c)) || !Number.isInteger(n) || n < 1 || !/^\d{8}$/.test(String(d))) continue;
-      const cur = rec[c];
-      if (!cur || n > cur[0]) { rec[c] = [n, d]; changed++; }
+      const cur = rec[pre + c];
+      if (!cur || n > cur[0]) { rec[pre + c] = [n, d]; changed++; }
     }
     if (changed) await this.ctx.storage.put("rec", rec);
     return changed;
   }
-  async records(cs) {
+  async records(cs, kind) {
+    const pre = kindIn(kind) === "words" ? "w:" : "";
     const rec = (await this.ctx.storage.get("rec")) || {};
-    const out = { "**": rec["**"] || null };
-    for (const c of Array.isArray(cs) ? cs : []) if (CC.test(c)) out[c] = rec[c] || null;
+    const out = { "**": rec[pre + "**"] || null };
+    for (const c of Array.isArray(cs) ? cs : []) if (CC.test(c)) out[c] = rec[pre + c] || null;
     return out;
+  }
+
+  /* ---------------- all-time totals (the object named "rec", 29 Oct 2026) ----------------
+     Kept under the key "all": { through: the last date folded in, or "", daily: games, words: games }.
+     fold(days): days [[date, daily games, word games]], dates that can no longer change, in order. Each is added
+     only if it is exactly the date after the last one folded (the first is TOTALS_FROM), so a date is never added
+     twice and never skipped: a gap stops the fold, and the next run starts again from the gap. -> the new "all" */
+  async fold(days) {
+    const all = Object.assign({ through: "", daily: 0, words: 0 }, (await this.ctx.storage.get("all")) || {});
+    let moved = 0;
+    for (const x of Array.isArray(days) ? days.slice(0, 120) : []) {
+      const d = String(x && x[0]), a = x && x[1], b = x && x[2];
+      const want = all.through ? nextKey(all.through) : TOTALS_FROM;
+      if (d !== want || !Number.isInteger(a) || !Number.isInteger(b) || a < 0 || b < 0) break;
+      all.daily += a;
+      all.words += b;
+      all.through = d;
+      moved++;
+    }
+    if (moved) await this.ctx.storage.put("all", all);
+    return all;
+  }
+  async alltime() {
+    return Object.assign({ through: "", daily: 0, words: 0 }, (await this.ctx.storage.get("all")) || {});
   }
 
   /* the whole date for the world table: per country and continent, how many scored results and the sum of
      their points, each made fair across games: a result counts as its points minus its game's world average,
      plus the date's average over all games (so a country is not ahead for having played the easier games);
      and per country how many played Your Call, which counts in the games played but has no points.
-     -> { n, m, calls, games: { k: n }, cs: [[c, ct, n, a, calls]], ts: [[ct, n, a]] } */
-  summary() {
-    const now = Date.now();
-    if (this.summed && now - this.summed.at < SUMMARY_MS) return this.summed.data;
-    const rows = this.rows("SELECT g, c, ct, n, p FROM r").filter((r) => DAILY.has(r.g));
+     -> { n, m, calls, games: { k: n }, cs: [[c, ct, n, a, calls]], ts: [[ct, n, a]] }
+     kind "daily" (the default) is the nine daily games' table; "words" the word games' own (29 Oct 2026), made
+     the same way, each language's id against its own average; it has no Your Call, so its calls are 0. */
+  summary(kind) {
+    const K = kindIn(kind);
+    const now = Date.now(), had = this.summed[K];
+    if (had && now - had.at < SUMMARY_MS) return had.data;
+    const all = this.rows("SELECT g, c, ct, n, p FROM r");
+    for (const k2 of ["daily", "words"]) if (k2 !== K) this.summed[k2] = { at: now, data: this.sumOf(all.filter((r) => kindOf(r.g) === k2)) };
+    const data = this.sumOf(all.filter((r) => kindOf(r.g) === K));
+    this.summed[K] = { at: now, data };
+    return data;
+  }
+  /* both kinds at once, for the World page's two halves: one call, one scan (29 Oct 2026) */
+  pair() { return { daily: this.summary("daily"), words: this.summary("words") }; }
+  sumOf(rows) {
     const games = {}, gp = {};
     let N = 0, S = 0, calls = 0;
     for (const r of rows) {
@@ -343,7 +412,6 @@ export class Tally extends DurableObject {
       cs: Object.keys(cs).sort().map((c) => [c, cs[c].ct, cs[c].n, r1(cs[c].a), cs[c].k]),
       ts: Object.keys(ts).sort().map((ct) => [ct, ts[ct].n, r1(ts[ct].a)])
     };
-    this.summed = { at: now, data };
     return data;
   }
 }

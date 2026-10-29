@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="../assets/css/logicers.css?v=434db1d833">
 <script src="../assets/lang/en.js?v=469f78f223"></script>
 <script src="../assets/js/lang.js?v=01632acb08"></script>
-<link rel="stylesheet" href="../world/world.css?v=100c2bc5ac">
+<link rel="stylesheet" href="../world/world.css?v=277c68a451">
 <link rel="stylesheet" href="team.css?v=c7d32afaf2">
 </head>
 <body class="game wt-page tm-page" data-g="world">
@@ -33,13 +33,15 @@
 <header class="bar">
   <a class="wordmark" href="../">Logicers</a>
   <div class="bar-tools">
-    <a class="chip" href="../world/">World table</a>
+    <a class="chip" id="tm-world" href="../world/">World table</a>
   </div>
 </header>
 <p class="lg-only wrap" id="lg-only" hidden></p>
 
 <main class="wrap wt-wrap" id="app">
   <p class="meta"><b>Team page</b> <span id="tm-date"></span></p>
+  <!-- Daily games · Word games (29 Oct 2026): the World table's two halves, drawn by team.js -->
+  <div class="wt-side" id="tm-side" role="tablist" aria-label="Which games" hidden></div>
 
   <section class="tm-hero" id="tm-hero" aria-live="polite">
     <p class="wt-wait" id="tm-wait">Counting the team…</p>
@@ -116,6 +118,6 @@
 <script src="../assets/js/turnsout.js?v=fcf5c73083"></script>
 <script src="../assets/js/points.js?v=0ff18e835f"></script>
 <script src="../assets/js/world.js?v=a0265c5f03"></script>
-<script src="team.js?v=61181f454e"></script>
+<script src="team.js?v=ab9e52ba6f"></script>
 </body>
 </html>

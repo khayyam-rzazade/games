@@ -72,7 +72,7 @@ import { Kit, cleanText } from "./kit.js";
 import { Desk, WHYS } from "./desk.js";
 import { Way } from "./way.js";
 import { Mail } from "./mail.js";
-import { Tally } from "./tally.js";
+import { Tally, TOTALS_FROM, nextKey } from "./tally.js";
 import { Push, SHARDS, endpointOk, dateOk, lineOk } from "./push.js";
 import { Said, SAID_MIN, SAID_MAX, NAME_MAX, ROLE_MAX } from "./said.js";
 import "./wayprint.js";               // the browser's own file (live/wayprint.js), byte for byte: globalThis.LogicersWay
@@ -522,7 +522,7 @@ async function report(req, env, o) {
   }
   if (!found) { miss(req, code); return answer(404, { e: "nogame" }, o); }
   if (!allowed(counts.reports, req, REPORTS)) return answer(429, { e: "later" }, o);
-  const lang = ["en", "it", "tr"].includes(b.lang) ? b.lang : "";          // the form's language, to answer in it
+  const lang = ["en", "it", "tr", "es", "pt", "fr"].includes(b.lang) ? b.lang : "";          // the form's language, to answer in it
   const saved = await deskOf(env).add(Object.assign(found, { why: b.why, text, name, email, lang }));
   if (!saved || !saved.ok) return answer(503, { e: "busy" }, o);
   return answer(200, { ok: true }, o);
@@ -634,17 +634,21 @@ async function admin(req, env, o) {
                         (YYYYMMDD by its own clock), up to the nine games -> { you, took, ks, view } (ks: the games
                         counted, the brake permitting; view: the view of k)
      POST /stats/view   { v, d, k } one game of one date -> { you, view }
-     POST /stats/world  { v, d, span: "day" | "week" | "month" } the world table of a date, or of its week (from
-                        Monday) or month up to it (a week or month only up to a date some clock is on now)
-                        -> { you, d, span, n, m, calls, games,
-                        cs: [[c, ct, n, a, calls]], ts, days }
+     POST /stats/world  { v, d, span: "day" | "week" | "month", t, tot } the world table of a date, or of its week
+                        (from Monday) or month up to it (a week or month only up to a date some clock is on now)
+                        -> { you, d, span, t, n, m, calls, games,
+                        cs: [[c, ct, n, a, calls]], ts, days, tot }
+                        t (29 Oct 2026): "daily" (the default: the nine daily games) or "words" (the word games'
+                        own table, tally.js). With tot: 1 the answer also carries the counts the World page's two
+                        halves show: tot { d, daily: [games on date d, games ever], words: [the same], through: the
+                        last date folded into the totals } (null when they could not be worked out).
    A date is taken only while some clock on earth is on it (UTC-12 to UTC+14), and read for 70 days. */
 const STATS = 1;                    // the version of these calls; a page that sends another is told "old"
 const STATS_SENDS = 300;            // sends from one address in 10 minutes (a class or a mobile network can sit behind one)
 const STATS_READS = 900;            // views and world tables from one address in 10 minutes
 const STATS_BODY = 4000;
 const tallyOf = (env, d) => env.TALLY.get(env.TALLY.idFromName("d:" + d));
-const sums = new Map();             // "YYYYMMDD" -> the summary of a date that no clock is on any more (it can't change)
+const sums = new Map();             // "YYYYMMDD" -> both summaries of a date no clock is on any more (it can't change)
 Object.assign(counts, { sends: new Map(), reads: new Map() });
 
 function dayStart(d) {
@@ -706,15 +710,71 @@ async function statsView(req, env, o) {
   return answer(200, { you, view: await tallyOf(env, b.d).view({ k: b.k, c: you.c, ct: you.ct }) }, o);
 }
 
-/* a date's summary; a date no clock is on any more can't change, so it is kept in this copy's memory */
-async function summaryOf(env, d, now) {
+/* a date's two summaries, { daily, words }, in one call to the date (tally.js, pair); a date no clock is on any
+   more can't change, so they are kept in this copy's memory. summaryOf: the one of a kind ("daily", the default,
+   or "words") */
+function kindT(t) { return t === "words" ? "words" : "daily"; }
+async function pairOf(env, d, now) {
   if (sums.has(d)) return sums.get(d);
-  const s = await tallyOf(env, d).summary();
+  const s = await tallyOf(env, d).pair();
   if (now >= dayStart(d) + 36 * H + 60e3) {
     sums.set(d, s);
-    if (sums.size > 120) sums.delete(sums.keys().next().value);
+    if (sums.size > 150) sums.delete(sums.keys().next().value);
   }
   return s;
+}
+async function summaryOf(env, d, now, kind) { return (await pairOf(env, d, now))[kindT(kind)]; }
+/* the games a summary counts: the scored ones and Your Call's (the word games have no Your Call) */
+function gamesIn(s) { return s ? (s.n || 0) + (s.calls || 0) : 0; }
+
+/* All-time totals (29 Oct 2026, Khayyam: "30343 today's word games of 4385934854 total"). The dates that can no
+   longer change are added up once each, in order, by the hourly trigger (totalsRun, into the object "rec",
+   tally.js); the dates still open, and any closed one not folded yet, are added here from their summaries. So
+   the total counts every game exactly once, whether its date is folded or not. Worked out at most once in
+   TOT_MS by each copy of the Worker. */
+const TOT_MS = 30e3;
+const BASE_MS = 10 * 60e3;          // the folded part changes once an hour, and is always read with its own "through"
+let totCache = null;                // { at, data: { daily, words, through } }
+let baseCache = null;               // { at, base }
+async function allTime(env, now) {
+  if (totCache && now - totCache.at < TOT_MS) return totCache.data;
+  if (!baseCache || now - baseCache.at >= BASE_MS) baseCache = { at: now, base: await recOf(env).alltime() };
+  const base = baseCache.base;
+  /* the dates after the last one folded, up to the newest some clock is on; should the folding ever stop for long,
+     the newest 90 are the ones kept (older ones are deleted after 75 days anyway), so today is always counted */
+  const last = keyOfUTC(now + 14 * H);
+  let open = [];
+  for (let d = base.through ? nextKey(base.through) : TOTALS_FROM, i = 0; d && d <= last && i < 400; d = nextKey(d), i++) open.push(d);
+  open = open.slice(-90);
+  /* a date that can't be read leaves the total out (the page keeps what it had) rather than a total too low */
+  const parts = await Promise.all(open.map((d) => pairOf(env, d, now)));
+  const data = { daily: base.daily || 0, words: base.words || 0, through: base.through || "" };
+  for (const p of parts) { data.daily += gamesIn(p.daily); data.words += gamesIn(p.words); }
+  totCache = { at: now, data };
+  return data;
+}
+async function totOf(env, d, now) {
+  const [p, all] = await Promise.all([pairOf(env, d, now), allTime(env, now)]);
+  const da = gamesIn(p.daily), dw = gamesIn(p.words);
+  return { d, daily: [da, Math.max(da, all.daily)], words: [dw, Math.max(dw, all.words)], through: all.through };
+}
+/* the hourly trigger's part: every date that can no longer change and is not folded yet, in order, into the totals.
+   A date whose summary can't be read stops the run there; the next hour starts again from it. The checks may run
+   this clock ahead (TEST_SHIFT_H, only with TEST_GEO=1, never on Cloudflare), to fold a date they have just filled. */
+function foldClock(env) {
+  const s = env && env.TEST_GEO === "1" ? Number(env.TEST_SHIFT_H || 0) : 0;
+  return Date.now() + (isFinite(s) ? s : 0) * H;
+}
+async function totalsRun(env, now) {
+  try {
+    const rec = recOf(env), base = await rec.alltime(), days = [];
+    for (let d = base.through ? nextKey(base.through) : TOTALS_FROM; d && days.length < 100 && now >= dayStart(d) + 36 * H + 60e3; d = nextKey(d)) {
+      let p;
+      try { p = await pairOf(env, d, now); } catch (e) { break; }
+      days.push([d, gamesIn(p.daily), gamesIn(p.words)]);
+    }
+    if (days.length) { await rec.fold(days); totCache = null; baseCache = null; }
+  } catch (e) { /* the totals simply wait for the next hour; the open days are still counted live */ }
 }
 
 async function statsWorld(req, env, o) {
@@ -728,10 +788,13 @@ async function statsWorld(req, env, o) {
   /* a week or a month is read only up to a date some clock is on now: this week's or this month's table (older
      days are kept 75 days, so an older month would come back with its first days missing) */
   if (span !== "day" && !dateOn(b.d, now)) return answer(400, { e: "day" }, o);
-  const you = geo(req, env);
+  const you = geo(req, env), kind = kindT(b.t);
+  /* the counts of the two halves, when the page asks for them, worked out beside the table; if they fail, the table
+     still comes, with tot: null */
+  const totP = b.tot ? totOf(env, b.d, now).catch(() => null) : Promise.resolve(undefined);
   if (span === "day") {
-    const s = await summaryOf(env, b.d, now);
-    return answer(200, Object.assign({ you, d: b.d, span, days: 1 }, s), o);
+    const [s, tot] = await Promise.all([summaryOf(env, b.d, now, kind), totP]);
+    return answer(200, Object.assign({ you, d: b.d, span, t: kind, days: 1 }, s, tot !== undefined ? { tot } : {}), o);
   }
   /* the week of date d (from its Monday) or its month (from its first day), up to d: each day's points made fair
      within the day (tally.js), then the days put on one level, the span's own average */
@@ -739,7 +802,8 @@ async function statsWorld(req, env, o) {
   const t0 = span === "month" ? dayStart(b.d.slice(0, 6) + "01") : t1 - ((new Date(t1).getUTCDay() + 6) % 7) * 24 * H;
   const dates = [];
   for (let t = t0; t <= t1; t += 24 * H) dates.push(keyOfUTC(t));
-  const all = await Promise.all(dates.map((d) => summaryOf(env, d, now).catch(() => null)));
+  const all = await Promise.all(dates.map((d) => summaryOf(env, d, now, kind).catch(() => null)));
+  const tot = await totP;
   let N = 0, S = 0, calls = 0, days = 0;
   const games = {};
   for (const s of all) {
@@ -754,11 +818,11 @@ async function statsWorld(req, env, o) {
     for (const [ct, n, a] of s.ts) { const y = ts[ct] || (ts[ct] = { n: 0, a: 0 }); y.n += n; y.a += a + n * (M - s.m); }
   }
   const r1 = (v) => Math.round(v * 10) / 10;
-  return answer(200, {
-    you, d: b.d, span, days, n: N, m: r1(M), calls, games,
+  return answer(200, Object.assign({
+    you, d: b.d, span, t: kind, days, n: N, m: r1(M), calls, games,
     cs: Object.keys(cs).sort().map((c) => [c, cs[c].ct, cs[c].n, r1(cs[c].a), cs[c].k]),
     ts: Object.keys(ts).sort().map((ct) => [ct, ts[ct].n, r1(ts[ct].a)])
-  }, o);
+  }, tot !== undefined ? { tot } : {}), o);
 }
 
 /* ------------------------------------------------------------ reactions, team pages and records (19 Oct 2026) */
@@ -767,7 +831,8 @@ async function statsWorld(req, env, o) {
    counts are kept by country (tally.js, the table x). With r left out the call only reads the taps so far.
      POST /stats/react  { v, d, k, r } -> { you, took, view: { k, w: [3 counts], h: [3 counts] | null } }
    Team pages: one or two countries' day, game by game, with the world's, the reactions, and the records.
-     POST /stats/team   { v, d, c, c2 } -> { you, d, c, c2, team: { world, [c], [c2] }, rec: { "**", [c], [c2] } }
+     POST /stats/team   { v, d, c, c2, t } -> { you, d, c, c2, t, team: { world, [c], [c2] }, rec: { "**", [c], [c2] } }
+                        t (29 Oct 2026): "daily" (the default) or "words", the word games' team, records and all
    A record is a country's biggest day in games, kept by the object named "rec" of the Tally class (tally.js); the
    hourly trigger feeds it from the days some clock is on, and a team page feeds it too, so it is never behind. */
 const CCODE = /^[A-Z]{2}$/;
@@ -802,20 +867,20 @@ async function statsTeam(req, env, o) {
   const c = typeof b.c === "string" && CCODE.test(b.c) ? b.c : you.c;
   const c2 = typeof b.c2 === "string" && CCODE.test(b.c2) && b.c2 !== c ? b.c2 : null;
   if (!CCODE.test(c)) return answer(400, { e: "c" }, o);
-  const want = c2 ? [c, c2] : [c];
-  const team = await tallyOf(env, b.d).team(want);
+  const want = c2 ? [c, c2] : [c], t = kindT(b.t);
+  const team = await tallyOf(env, b.d).team(want, t);
   /* the running day is a candidate for the records (only a date some clock is on can still change); the records are
      an extra, so whatever goes wrong with them leaves the page its team */
   let rec = null;
   try {
-    if (dateOn(b.d, now)) await recordList(env, [[b.d, await summaryOf(env, b.d, now)]], now);
-    rec = await recOf(env).records(want);
+    if (dateOn(b.d, now)) await recordList(env, [[b.d, await summaryOf(env, b.d, now, t)]], now, t);
+    rec = await recOf(env).records(want, t);
   } catch (e) { rec = null; }
-  return answer(200, { you, d: b.d, c, c2, team, rec }, o);
+  return answer(200, { you, d: b.d, c, c2, t, team, rec }, o);
 }
 
-/* [[date, summary]] -> the records, where a date's games per country (Your Call's too) beat what is kept */
-async function recordList(env, days, now) {
+/* [[date, summary]] -> the records of one kind, where a date's games per country (Your Call's too) beat what is kept */
+async function recordList(env, days, now, kind) {
   const list = [];
   for (const [d, s] of days) {
     if (!s) continue;
@@ -826,7 +891,7 @@ async function recordList(env, days, now) {
     const all = (s.n || 0) + (s.calls || 0);
     if (all > 0) list.push(["**", all, d]);
   }
-  if (list.length) await recOf(env).note(list);
+  if (list.length) await recOf(env).note(list, kindT(kind));
 }
 
 /* the hourly trigger: the days some clock is on (UTC-12 to UTC+14) are read and the records brought up to date */
@@ -834,9 +899,11 @@ async function recordRun(env, now) {
   try {
     /* the dates some clock is on now, and those one that was on within the last 70 minutes (the hour's run is at 2 past) */
     const dates = [...new Set([keyOfUTC(now - 48 * H), keyOfUTC(now - 24 * H), keyOfUTC(now), keyOfUTC(now + 14 * H)])].filter((d) => dateOn(d, now) || dateOn(d, now - 70 * 60e3)).sort();
-    const days = [];
-    for (const d of dates) days.push([d, await summaryOf(env, d, now).catch(() => null)]);
-    await recordList(env, days, now);
+    for (const t of ["daily", "words"]) {
+      const days = [];
+      for (const d of dates) days.push([d, await summaryOf(env, d, now, t).catch(() => null)]);
+      await recordList(env, days, now, t);
+    }
   } catch (e) { /* the records simply wait for the next hour */ }
 }
 
@@ -1092,6 +1159,7 @@ export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(pushRun(env, Date.now()));
     ctx.waitUntil(recordRun(env, Date.now()));
+    ctx.waitUntil(totalsRun(env, foldClock(env)));
   },
   async fetch(req, env) {
     const url = new URL(req.url);

@@ -2,7 +2,178 @@
 
 The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by day) were moved here on 29 October 2026 by claude/logicers-data/scripts/migrate_overlays.py, word for word, under the id of the puzzle each day played; nothing else changed. New puzzles go under their own heading, as in the English doc, with their id in the key. The doubts of the first batch stay in section U of claude/logicers-strings-it.md.
 
-## The puzzles of Who Gets What (14 of 45 translated)
+## The puzzles of Who Gets What (45 of 45 translated)
+
+#### 1/45 · `dark-choc` · day 1 (8 Oct 2026), 46 (22 Nov 2026), 91 (6 Jan 2027), 136 (20 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.dark-choc.what` — Un chilo di cioccolato fondente
+- `p.who-gets-what.dark-choc.where` — Francia
+- `p.who-gets-what.dark-choc.slice1` — Campo
+- `p.who-gets-what.dark-choc.slice2` — Export
+- `p.who-gets-what.dark-choc.slice3` — Produttore
+- `p.who-gets-what.dark-choc.slice4` — Negozio
+- `p.who-gets-what.dark-choc.fact` — Chi coltiva il cacao riceve circa undici centesimi ogni euro. Il negozio che vende la tavoletta ne prende trentasette.
+- `p.who-gets-what.dark-choc.note` — Lo studio di un'agenzia delle Nazioni Unite sulla filiera francese del cioccolato. “Produttore” è la macinazione dei chicchi (5,8), il latte, lo zucchero e gli altri ingredienti (1,7) e la produzione e il marchio della tavoletta (37,0).
+
+#### 2/45 · `us-petrol` · day 2 (9 Oct 2026), 47 (23 Nov 2026), 92 (7 Jan 2027), 137 (21 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.us-petrol.what` — Un gallone di benzina
+- `p.who-gets-what.us-petrol.where` — Stati Uniti
+- `p.who-gets-what.us-petrol.slice1` — Greggio
+- `p.who-gets-what.us-petrol.slice2` — Raffinazione
+- `p.who-gets-what.us-petrol.slice3` — Consegna
+- `p.who-gets-what.us-petrol.slice4` — Tasse
+- `p.who-gets-what.us-petrol.fact` — Più della metà di un pieno americano è il petrolio greggio vero e proprio. Le tasse ne prendono circa un sesto, e altrettanto costa portare la benzina dalla raffineria al distributore.
+- `p.who-gets-what.us-petrol.note` — “Consegna” è la “distribuzione e commercializzazione” dell'agenzia: tutto ciò che va dal cancello della raffineria alla pompa, compreso il margine della stazione di servizio.
+
+#### 3/45 · `it-power` · day 3 (10 Oct 2026), 48 (24 Nov 2026), 93 (8 Jan 2027), 138 (22 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.it-power.what` — Un kilowattora di elettricità
+- `p.who-gets-what.it-power.where` — Italia
+- `p.who-gets-what.it-power.slice1` — Energia
+- `p.who-gets-what.it-power.slice2` — Rete
+- `p.who-gets-what.it-power.slice3` — Oneri
+- `p.who-gets-what.it-power.slice4` — Tasse
+- `p.who-gets-what.it-power.fact` — Poco meno di due terzi di un kilowattora italiano erano l'elettricità vera e propria. I cavi lungo cui viaggia costavano più delle tasse.
+- `p.who-gets-what.it-power.note` — La cifra dell'autorità di regolazione per la tariffa delle famiglie tutelate. “Energia” è l'acquisto dell'elettricità e la sua vendita a te (15,79 centesimi e 2,16 centesimi su 28,29); “Oneri” sono gli oneri di sistema.
+
+#### 4/45 · `banana-ec` · day 4 (11 Oct 2026), 49 (25 Nov 2026), 94 (9 Jan 2027), 139 (23 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.banana-ec.what` — Un chilo di banane ecuadoriane
+- `p.who-gets-what.banana-ec.where` — Unione europea
+- `p.who-gets-what.banana-ec.slice1` — Piantagione
+- `p.who-gets-what.banana-ec.slice2` — Trasporto
+- `p.who-gets-what.banana-ec.slice3` — Dazio
+- `p.who-gets-what.banana-ec.slice4` — Negozio
+- `p.who-gets-what.banana-ec.fact` — La piantagione e tutti quelli che ci lavorano ricevono circa quattordici centesimi ogni euro. Il supermercato ne tiene quarantadue.
+- `p.who-gets-what.banana-ec.note` — Uno studio fatto per un gruppo di attivisti, costruito sui dati di Eurostat, CIRAD e Comtrade. “Piantagione” sono i costi e il margine della piantagione più i salari di chi ci lavora; “Trasporto” sono l'esportazione, il viaggio in nave, l'importazione e la sala di maturazione in Europa. La ripartizione è calcolata sui dati del 2013; il prezzo è la media pagata da un europeo per un chilo nel 2014.
+
+#### 5/45 · `fr-petrol` · day 5 (12 Oct 2026), 50 (26 Nov 2026), 95 (10 Jan 2027), 140 (24 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.fr-petrol.what` — Un litro di benzina
+- `p.who-gets-what.fr-petrol.where` — Francia
+- `p.who-gets-what.fr-petrol.slice1` — Benzina
+- `p.who-gets-what.fr-petrol.slice2` — Accise
+- `p.who-gets-what.fr-petrol.slice3` — IVA
+- `p.who-gets-what.fr-petrol.fact` — Metà di un litro francese è tassa: un'accisa sul carburante, e poi l'IVA calcolata sopra l'accisa.
+- `p.who-gets-what.fr-petrol.note` — La fetta “benzina” è il carburante finito, consegnato e venduto, quindi contiene insieme il petrolio greggio, la raffinazione, i camion e la stazione di servizio. Dal bollettino petrolifero settimanale della Commissione europea.
+
+#### 6/45 · `jeans` · day 6 (13 Oct 2026), 51 (27 Nov 2026), 96 (11 Jan 2027), 141 (25 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.jeans.what` — Un paio di jeans da supermercato
+- `p.who-gets-what.jeans.where` — Regno Unito
+- `p.who-gets-what.jeans.slice1` — Tessuto
+- `p.who-gets-what.jeans.slice2` — Fabbrica
+- `p.who-gets-what.jeans.slice3` — Trasporto
+- `p.who-gets-what.jeans.slice4` — Negozio
+- `p.who-gets-what.jeans.fact` — Quasi metà del prezzo di un paio di jeans economici va al negozio. La fabbrica in Bangladesh che li ha tagliati e cuciti ne ha ricevuto circa un decimo.
+- `p.who-gets-what.jeans.note` — Un'analisi di Bloomberg su un paio preciso di jeans fatto in Bangladesh per un supermercato britannico, letta da una rivista di settore. “Tessuto” è la stoffa (18%) più cerniere e bottoni (5%); “Fabbrica” è la cucitura (5%) più lavaggio, carte e spese di trasporto (5%). Sono costi e margini, quindi il salario di chi cuce a macchina è dentro la fetta della fabbrica, non a parte.
+
+#### 7/45 · `cocoa-chain` · day 7 (14 Oct 2026), 52 (28 Nov 2026), 97 (12 Jan 2027), 142 (26 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.cocoa-chain.what` — Una tonnellata di cacao, dal campo al negozio
+- `p.who-gets-what.cocoa-chain.where` — il mondo
+- `p.who-gets-what.cocoa-chain.slice1` — Agricoltori
+- `p.who-gets-what.cocoa-chain.slice2` — Trasporto
+- `p.who-gets-what.cocoa-chain.slice3` — Produttori
+- `p.who-gets-what.cocoa-chain.slice4` — Negozi
+- `p.who-gets-what.cocoa-chain.fact` — Segui una tonnellata di cacao dal campo allo scaffale e gli agricoltori si ritrovano con circa sette dollari ogni cento.
+- `p.who-gets-what.cocoa-chain.note` — Il valore aggiunto a ogni passaggio della filiera, non la divisione del prezzo di uno scaffale. “Trasporto” sono i camion nell'entroterra, le tasse dell'ente statale che commercializza il cacao, il viaggio in nave, il porto e i commercianti; “Produttori” sono la macinazione (7,6) e la produzione (35,2); “Negozi” comprende insieme il rivenditore e le tasse alla cassa.
+
+#### 8/45 · `in-petrol` · day 8 (15 Oct 2026), 53 (29 Nov 2026), 98 (13 Jan 2027), 143 (27 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.in-petrol.what` — Un litro di benzina
+- `p.who-gets-what.in-petrol.where` — India
+- `p.who-gets-what.in-petrol.slice1` — Benzina
+- `p.who-gets-what.in-petrol.slice2` — Accise
+- `p.who-gets-what.in-petrol.slice3` — IVA
+- `p.who-gets-what.in-petrol.slice4` — Pompa
+- `p.who-gets-what.in-petrol.fact` — L'India è l'unico Paese qui il cui prezzo pubblicato indica la parte della stazione di servizio. Sono meno di quattro rupie ogni cento.
+- `p.who-gets-what.in-petrol.note` — Il prezzo scomposto dalla compagnia petrolifera stessa per Delhi: il prezzo al gestore, l'accisa del governo centrale, la provvigione del gestore e l'IVA dello Stato calcolata su entrambe.
+
+#### 9/45 · `cigs-uk` · day 9 (16 Oct 2026), 54 (30 Nov 2026), 99 (14 Jan 2027), 144 (28 Feb 2027) … · every 45 days
+
+- `p.who-gets-what.cigs-uk.what` — Un pacchetto da 20 sigarette
+- `p.who-gets-what.cigs-uk.where` — Regno Unito
+- `p.who-gets-what.cigs-uk.slice1` — Accise
+- `p.who-gets-what.cigs-uk.slice2` — IVA
+- `p.who-gets-what.cigs-uk.slice3` — Resto
+- `p.who-gets-what.cigs-uk.fact` — Il Regno Unito ha puntato sull'accisa fissa dove la Francia ha puntato su quella in percentuale, e sono finiti quasi nello stesso punto: poco più di tre quarti di tasse.
+- `p.who-gets-what.cigs-uk.note` — La tabella delle accise della Commissione europea per il pacchetto più venduto. “Accise” sono le due accise insieme, quella fissa e quella calcolata come quota del prezzo; “Resto” è tutto ciò che il produttore e il negozio si dividono. Il prezzo è la cifra della tabella per 1.000 sigarette, cioè cinquanta pacchetti da venti.
+
+#### 10/45 · `banana-cm` · day 10 (17 Oct 2026), 55 (1 Dec 2026), 100 (15 Jan 2027), 145 (1 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.banana-cm.what` — Un chilo di banane camerunesi
+- `p.who-gets-what.banana-cm.where` — Unione europea
+- `p.who-gets-what.banana-cm.slice1` — Piantagione
+- `p.who-gets-what.banana-cm.slice2` — Trasporto
+- `p.who-gets-what.banana-cm.slice3` — Negozio
+- `p.who-gets-what.banana-cm.fact` — I coltivatori del Camerun si tengono più di un quarto del prezzo, quasi il doppio della quota dell'Ecuador, e la loro frutta non paga dazi alla frontiera europea.
+- `p.who-gets-what.banana-cm.note` — Uno studio fatto per un gruppo di attivisti, costruito sui dati di Eurostat, CIRAD e Comtrade. “Piantagione” sono i costi e il margine della piantagione più i salari di chi ci lavora; “Trasporto” sono l'esportazione, il viaggio in nave, l'importazione e la sala di maturazione in Europa. La ripartizione è calcolata sui dati del 2013; il prezzo è la media pagata da un europeo per un chilo nel 2014.
+
+#### 11/45 · `de-petrol` · day 11 (18 Oct 2026), 56 (2 Dec 2026), 101 (16 Jan 2027), 146 (2 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.de-petrol.what` — Un litro di benzina
+- `p.who-gets-what.de-petrol.where` — Germania
+- `p.who-gets-what.de-petrol.slice1` — Benzina
+- `p.who-gets-what.de-petrol.slice2` — Accise
+- `p.who-gets-what.de-petrol.slice3` — IVA
+- `p.who-gets-what.de-petrol.slice4` — CO₂
+- `p.who-gets-what.de-petrol.fact` — La Germania applica tre tasse su un litro: l'accisa sull'energia, un prezzo per il carbonio in cui si trasformerà, e l'IVA su tutto. Insieme prendono più della metà.
+- `p.who-gets-what.de-petrol.note` — Soldi per litro come pubblicati: 95,3 centesimi per il carburante, il commercio e il suo guadagno, 65,5 per le accise sull'energia e sull'ambiente, 33,5 di IVA, 15,7 per il prezzo della CO₂.
+
+#### 12/45 · `gb-energy` · day 12 (19 Oct 2026), 57 (3 Dec 2026), 102 (17 Jan 2027), 147 (3 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.gb-energy.what` — Un anno di gas ed elettricità
+- `p.who-gets-what.gb-energy.where` — Gran Bretagna
+- `p.who-gets-what.gb-energy.slice1` — Energia
+- `p.who-gets-what.gb-energy.slice2` — Rete
+- `p.who-gets-what.gb-energy.slice3` — Oneri
+- `p.who-gets-what.gb-energy.slice4` — Fornitore
+- `p.who-gets-what.gb-energy.fact` — Meno di due quinti di una bolletta energetica britannica serve a comprare il gas e l'elettricità. Quasi un quarto va a tubi e cavi, e un altro quarto all'azienda che ti manda la bolletta.
+- `p.who-gets-what.gb-energy.note` — Gli importi che l'ente regolatore stesso ammette per una famiglia tipica che paga con addebito diretto: 690 sterline di costi all'ingrosso, 397 di reti, 236 di oneri. La fetta “Fornitore” comprende i suoi costi di gestione e dei debiti non pagati (279 sterline), il suo profitto consentito e il margine di sicurezza (72) e l'IVA (84).
+
+#### 13/45 · `milk-choc` · day 13 (20 Oct 2026), 58 (4 Dec 2026), 103 (18 Jan 2027), 148 (4 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.milk-choc.what` — Un chilo di cioccolato al latte
+- `p.who-gets-what.milk-choc.where` — Francia
+- `p.who-gets-what.milk-choc.slice1` — Campo
+- `p.who-gets-what.milk-choc.slice2` — Export
+- `p.who-gets-what.milk-choc.slice3` — Produttore
+- `p.who-gets-what.milk-choc.slice4` — Negozio
+- `p.who-gets-what.milk-choc.fact` — Aggiungi latte e zucchero e la parte di chi coltiva il cacao quasi si dimezza: da undici centesimi ogni euro a sette.
+- `p.who-gets-what.milk-choc.note` — Lo stesso studio, per il cioccolato al latte. “Produttore” sono il latte, lo zucchero e gli altri ingredienti (15,1), la macinazione dei chicchi (6,5) e la produzione e il marchio della tavoletta (27,3).
+
+#### 14/45 · `au-petrol` · day 14 (21 Oct 2026), 59 (5 Dec 2026), 104 (19 Jan 2027), 149 (5 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.au-petrol.what` — Un litro di benzina
+- `p.who-gets-what.au-petrol.where` — Australia
+- `p.who-gets-what.au-petrol.slice1` — Benzina
+- `p.who-gets-what.au-petrol.slice2` — Tasse
+- `p.who-gets-what.au-petrol.slice3` — Venditori
+- `p.who-gets-what.au-petrol.fact` — La tassa su un litro australiano è quasi grande quanto la benzina stessa. Tutti quelli che la trasportano e la vendono si dividono l'ultimo quinto.
+- `p.who-gets-what.au-petrol.note` — La cifra in tre parti dell'ente regolatore: il prezzo mondiale della benzina raffinata, poi accise e GST (l'imposta australiana sui beni e servizi) insieme, poi i costi e i margini di grossisti e rivenditori. La media delle cinque città più grandi, nel trimestre di dicembre.
+
+#### 15/45 · `cigs-de` · day 15 (22 Oct 2026), 60 (6 Dec 2026), 105 (20 Jan 2027), 150 (6 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.cigs-de.what` — Un pacchetto da 20 sigarette
+- `p.who-gets-what.cigs-de.where` — Germania
+- `p.who-gets-what.cigs-de.slice1` — Accise
+- `p.who-gets-what.cigs-de.slice2` — IVA
+- `p.who-gets-what.cigs-de.slice3` — Resto
+- `p.who-gets-what.cigs-de.fact` — Il pacchetto tedesco era il più economico dei tre e lasciava di più, poco meno di un quarto, al produttore e al negozio.
+- `p.who-gets-what.cigs-de.note` — La tabella delle accise della Commissione europea per il pacchetto più venduto. “Accise” sono le due accise insieme, quella fissa e quella calcolata come quota del prezzo; “Resto” è tutto ciò che il produttore e il negozio si dividono. Il prezzo è la cifra della tabella per 1.000 sigarette, cioè cinquanta pacchetti da venti.
+
+#### 16/45 · `banana-cr` · day 16 (23 Oct 2026), 61 (7 Dec 2026), 106 (21 Jan 2027), 151 (7 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.banana-cr.what` — Un chilo di banane costaricane
+- `p.who-gets-what.banana-cr.where` — Unione europea
+- `p.who-gets-what.banana-cr.slice1` — Piantagione
+- `p.who-gets-what.banana-cr.slice2` — Trasporto
+- `p.who-gets-what.banana-cr.slice3` — Dazio
+- `p.who-gets-what.banana-cr.slice4` — Negozio
+- `p.who-gets-what.banana-cr.fact` — Portare la frutta in Europa e farla maturare costa circa il doppio di quello che si tiene la piantagione.
+- `p.who-gets-what.banana-cr.note` — Uno studio fatto per un gruppo di attivisti, costruito sui dati di Eurostat, CIRAD e Comtrade. “Piantagione” sono i costi e il margine della piantagione più i salari di chi ci lavora; “Trasporto” sono l'esportazione, il viaggio in nave, l'importazione e la sala di maturazione in Europa. La ripartizione è calcolata sui dati del 2013; il prezzo è la media pagata da un europeo per un chilo nel 2014.
 
 #### 17/45 · `fr-diesel` · day 17 (24 Oct 2026), 62 (8 Dec 2026), 107 (22 Jan 2027), 152 (8 Mar 2027) … · every 45 days · from day 17 of the first batch
 
@@ -150,3 +321,171 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.who-gets-what.gb-energy-22.slice4` — Fornitore
 - `p.who-gets-what.gb-energy-22.fact` — Nella primavera del 2022 più della metà di una tipica bolletta britannica pagava il gas e l'elettricità veri e propri.
 - `p.who-gets-what.gb-energy-22.note` — Il tetto ai prezzi dell'Ofgem per una famiglia tipica che paga con addebito diretto, dal 1º aprile al 30 settembre 2022, prima della Garanzia sul prezzo dell'energia del governo. “Fornitore” sono insieme i costi di gestione del fornitore (203 sterline), l'aumento per il tipo di pagamento (16), il profitto consentito (35), il margine di sicurezza (22) e l'IVA (94).
+
+#### 31/45 · `cocoa-ci` · day 31 (7 Nov 2026), 76 (22 Dec 2026), 121 (5 Feb 2027), 166 (22 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.cocoa-ci.what` — Un chilo di fave di cacao al porto
+- `p.who-gets-what.cocoa-ci.where` — Costa d'Avorio
+- `p.who-gets-what.cocoa-ci.slice1` — Agricoltori
+- `p.who-gets-what.cocoa-ci.slice2` — Commercianti
+- `p.who-gets-what.cocoa-ci.slice3` — Tasse
+- `p.who-gets-what.cocoa-ci.fact` — Gli agricoltori del cacao della Costa d'Avorio hanno ricevuto meno di due terzi di quanto fruttavano le loro fave al porto. Lo Stato ne ha preso circa un sesto in tasse.
+- `p.who-gets-what.cocoa-ci.note` — Lo studio sul cioccolato dell'agenzia delle Nazioni Unite, che divide quanto valeva un chilo di fave al momento del carico per l'esportazione (il suo valore “franco a bordo”), raccolto 2017/18. “Agricoltori” è il prezzo pagato all'azienda agricola; “Commercianti” sono la raccolta, il trasporto e lo stoccaggio delle fave e il margine degli esportatori.
+
+#### 32/45 · `no-wine` · day 32 (8 Nov 2026), 77 (23 Dec 2026), 122 (6 Feb 2027), 167 (23 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.no-wine.what` — Una bottiglia di vino da 75 cl
+- `p.who-gets-what.no-wine.where` — Norvegia
+- `p.who-gets-what.no-wine.slice1` — Produttore
+- `p.who-gets-what.no-wine.slice2` — Negozio
+- `p.who-gets-what.no-wine.slice3` — Accise
+- `p.who-gets-what.no-wine.slice4` — IVA
+- `p.who-gets-what.no-wine.fact` — Il negozio statale norvegese aggiunge 25 corone a una bottiglia di vino da 200 corone. Le accise e l'IVA dello Stato ne prendono 94, e il vino stesso, consegnato, 81.
+- `p.who-gets-what.no-wine.note` — L'esempio svolto da Vinmonopolet stesso per una bottiglia al 13% di alcol: 80,67 corone per il fornitore, 25,06 per il margine del negozio statale, 52,75 di accisa sull'alcol, 1,45 di tassa sugli imballaggi e 39,98 di IVA. “Produttore” è il prezzo del fornitore consegnato al negozio.
+
+#### 33/45 · `choc-premium` · day 33 (9 Nov 2026), 78 (24 Dec 2026), 123 (7 Feb 2027), 168 (24 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.choc-premium.what` — Cioccolato fondente premium
+- `p.who-gets-what.choc-premium.where` — Francia
+- `p.who-gets-what.choc-premium.slice1` — Campo
+- `p.who-gets-what.choc-premium.slice2` — Export
+- `p.who-gets-what.choc-premium.slice3` — Produttore
+- `p.who-gets-what.choc-premium.slice4` — Negozio
+- `p.who-gets-what.choc-premium.fact` — Una tavoletta di fondente premium a 16,41 euro al chilo pagava 1,26 euro a chi coltiva il cacao, appena più degli 1,05 euro di una tavoletta normale. Il marchio e il negozio si presero quasi tutta la differenza.
+- `p.who-gets-what.choc-premium.note` — Lo studio dell'agenzia delle Nazioni Unite sulla filiera francese del cioccolato, per una tavoletta di fondente premium di marca nazionale senza marchi di certificazione. “Produttore” sono la macinazione dei chicchi (3,7), lo zucchero e gli altri ingredienti (0,5) e la produzione e il marchio della tavoletta (41,4).
+
+#### 34/45 · `dk-power` · day 34 (10 Nov 2026), 79 (25 Dec 2026), 124 (8 Feb 2027), 169 (25 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.dk-power.what` — Un kilowattora di elettricità
+- `p.who-gets-what.dk-power.where` — Danimarca
+- `p.who-gets-what.dk-power.slice1` — Energia
+- `p.who-gets-what.dk-power.slice2` — Rete
+- `p.who-gets-what.dk-power.slice3` — Accise
+- `p.who-gets-what.dk-power.slice4` — IVA
+- `p.who-gets-what.dk-power.fact` — Nel 2025 l'accisa danese sull'elettricità prendeva, su un kilowattora di una famiglia, tanto quanto l'elettricità stessa. Il 1º gennaio 2026 è stata ridotta a quasi niente.
+- `p.who-gets-what.dk-power.note` — La media dell'ufficio statistico dell'UE per una famiglia che usa da 2.500 a 4.999 kilowattora l'anno: 0,72 corone per l'elettricità e il suo fornitore, 0,59 per le reti, 0,72 di accisa sull'elettricità e 0,52 di IVA. L'accisa è scesa a 0,8 øre al kilowattora nel 2026.
+
+#### 35/45 · `cocoa-ec` · day 35 (11 Nov 2026), 80 (26 Dec 2026), 125 (9 Feb 2027), 170 (26 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.cocoa-ec.what` — Un chilo di fave di cacao al porto
+- `p.who-gets-what.cocoa-ec.where` — Ecuador
+- `p.who-gets-what.cocoa-ec.slice1` — Agricoltori
+- `p.who-gets-what.cocoa-ec.slice2` — Commercianti
+- `p.who-gets-what.cocoa-ec.slice3` — Tasse
+- `p.who-gets-what.cocoa-ec.fact` — L'Ecuador tassa poco il suo cacao, tre centesimi ogni euro, e i suoi agricoltori si sono tenuti più di tre quarti di quanto fruttavano le fave al porto.
+- `p.who-gets-what.cocoa-ec.note` — Lo studio sul cioccolato dell'agenzia delle Nazioni Unite, che divide quanto valeva un chilo di fave al momento del carico per l'esportazione (il suo valore “franco a bordo”), raccolto 2017/18. “Agricoltori” è il prezzo pagato all'azienda agricola; “Commercianti” sono la raccolta, il trasporto e lo stoccaggio delle fave e il margine degli esportatori. Questa è la qualità più alta, il cacao “nazionale” selezionato.
+
+#### 36/45 · `es-petrol` · day 36 (12 Nov 2026), 81 (27 Dec 2026), 126 (10 Feb 2027), 171 (27 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.es-petrol.what` — Un litro di benzina
+- `p.who-gets-what.es-petrol.where` — Spagna
+- `p.who-gets-what.es-petrol.slice1` — Greggio
+- `p.who-gets-what.es-petrol.slice2` — Raffinazione
+- `p.who-gets-what.es-petrol.slice3` — Consegna
+- `p.who-gets-what.es-petrol.slice4` — Tasse
+- `p.who-gets-what.es-petrol.fact` — A luglio 2026 più di un terzo di un litro di benzina spagnolo era tassa, anche con l'accisa ridotta. Il petrolio greggio in sé era poco più di un quarto.
+- `p.who-gets-what.es-petrol.note` — La ripartizione dell'autorità garante della concorrenza per luglio 2026, Spagna continentale e Baleari. “Raffinazione” è quanto costava la benzina finita sui mercati mondiali oltre al greggio; “Consegna” è il margine che resta per stoccaggio, trasporto e stazione di servizio. La Spagna aveva ridotto l'accisa sui carburanti nel 2026; a luglio 2025 le tasse prendevano il 48,9%.
+
+#### 37/45 · `no-beer` · day 37 (13 Nov 2026), 82 (28 Dec 2026), 127 (11 Feb 2027), 172 (28 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.no-beer.what` — Una bottiglia di birra forte da 50 cl
+- `p.who-gets-what.no-beer.where` — Norvegia
+- `p.who-gets-what.no-beer.slice1` — Produttore
+- `p.who-gets-what.no-beer.slice2` — Negozio
+- `p.who-gets-what.no-beer.slice3` — Accise
+- `p.who-gets-what.no-beer.slice4` — IVA
+- `p.who-gets-what.no-beer.fact` — Quasi la metà del prezzo di una birra forte in Norvegia va allo Stato. Il birrificio e il grossista insieme ricevono circa un terzo.
+- `p.who-gets-what.no-beer.note` — L'esempio svolto da Vinmonopolet stesso per una bottiglia al 5,5% di alcol: 19,65 corone per il fornitore, 9,54 per il margine del negozio statale, 14,88 di accisa sull'alcol, 1,45 di tassa sugli imballaggi e 11,38 di IVA. “Produttore” è il prezzo del fornitore consegnato al negozio.
+
+#### 38/45 · `in-diesel` · day 38 (14 Nov 2026), 83 (29 Dec 2026), 128 (12 Feb 2027), 173 (29 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.in-diesel.what` — Un litro di gasolio
+- `p.who-gets-what.in-diesel.where` — India
+- `p.who-gets-what.in-diesel.slice1` — Gasolio
+- `p.who-gets-what.in-diesel.slice2` — Accise
+- `p.who-gets-what.in-diesel.slice3` — IVA
+- `p.who-gets-what.in-diesel.fact` — Nel 2024 il gasolio di Delhi pagava in tasse poco meno di un terzo del suo prezzo: un'accisa centrale di 15,80 rupie al litro, e sopra l'IVA dello Stato.
+- `p.who-gets-what.in-diesel.note` — Il prezzo scomposto dalla compagnia petrolifera statale per Delhi, 1º aprile 2024. “Gasolio” è il prezzo applicato al gestore prima delle tasse (56,38 rupie) insieme alla provvigione media del gestore (2,62 rupie); “IVA” comprende anche un piccolo contributo per la qualità dell'aria di 25 paise al litro.
+
+#### 39/45 · `cocoa-cm` · day 39 (15 Nov 2026), 84 (30 Dec 2026), 129 (13 Feb 2027), 174 (30 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.cocoa-cm.what` — Un chilo di fave di cacao al porto
+- `p.who-gets-what.cocoa-cm.where` — Camerun
+- `p.who-gets-what.cocoa-cm.slice1` — Agricoltori
+- `p.who-gets-what.cocoa-cm.slice2` — Commercianti
+- `p.who-gets-what.cocoa-cm.slice3` — Tasse
+- `p.who-gets-what.cocoa-cm.fact` — Gli agricoltori del cacao del Camerun si sono tenuti due terzi di quanto fruttavano le loro fave al porto. Due tasse ne hanno preso circa un settimo.
+- `p.who-gets-what.cocoa-cm.note` — Lo studio sul cioccolato dell'agenzia delle Nazioni Unite, che divide quanto valeva un chilo di fave al momento del carico per l'esportazione (il suo valore “franco a bordo”), raccolto 2017/18. “Agricoltori” è il prezzo pagato all'azienda agricola; “Commercianti” sono la raccolta, il trasporto e lo stoccaggio delle fave e il margine degli esportatori. Il Camerun ha due tasse nello studio, tutte e due in “Tasse”.
+
+#### 40/45 · `es-diesel` · day 40 (16 Nov 2026), 85 (31 Dec 2026), 130 (14 Feb 2027), 175 (31 Mar 2027) … · every 45 days
+
+- `p.who-gets-what.es-diesel.what` — Un litro di gasolio
+- `p.who-gets-what.es-diesel.where` — Spagna
+- `p.who-gets-what.es-diesel.slice1` — Greggio
+- `p.who-gets-what.es-diesel.slice2` — Raffinazione
+- `p.who-gets-what.es-diesel.slice3` — Consegna
+- `p.who-gets-what.es-diesel.slice4` — Tasse
+- `p.who-gets-what.es-diesel.fact` — A luglio 2026 la raffinazione ha aggiunto a un litro di gasolio spagnolo quasi quanto il petrolio greggio stesso: 25 centesimi ogni euro, contro 28.
+- `p.who-gets-what.es-diesel.note` — La ripartizione dell'autorità garante della concorrenza per luglio 2026, Spagna continentale e Baleari. “Raffinazione” è quanto costava il gasolio finito sui mercati mondiali oltre al greggio; “Consegna” è il margine che resta per stoccaggio, trasporto e stazione di servizio. La Spagna aveva ridotto l'accisa sui carburanti nel 2026; a luglio 2025 le tasse prendevano il 43,8%.
+
+#### 41/45 · `no-spirits` · day 41 (17 Nov 2026), 86 (1 Jan 2027), 131 (15 Feb 2027), 176 (1 Apr 2027) … · every 45 days
+
+- `p.who-gets-what.no-spirits.what` — Una bottiglia di distillato da 70 cl
+- `p.who-gets-what.no-spirits.where` — Norvegia
+- `p.who-gets-what.no-spirits.slice1` — Produttore
+- `p.who-gets-what.no-spirits.slice2` — Negozio
+- `p.who-gets-what.no-spirits.slice3` — Accise
+- `p.who-gets-what.no-spirits.slice4` — IVA
+- `p.who-gets-what.no-spirits.fact` — Di una bottiglia di distillato da 400 corone in Norvegia, 350 corone vanno allo Stato. Il distillato stesso, consegnato al negozio, ne costa 35.
+- `p.who-gets-what.no-spirits.note` — L'esempio svolto da Vinmonopolet stesso per una bottiglia al 41,5% di alcol: 35,34 corone per il fornitore, 15 per il margine del negozio statale, 268,13 di accisa sull'alcol, 1,45 di tassa sugli imballaggi e 79,98 di IVA. “Produttore” è il prezzo del fornitore consegnato al negozio.
+
+#### 42/45 · `us-food-21` · day 42 (18 Nov 2026), 87 (2 Jan 2027), 132 (16 Feb 2027), 177 (2 Apr 2027) … · every 45 days
+
+- `p.who-gets-what.us-food-21.what` — Un dollaro speso in cibo
+- `p.who-gets-what.us-food-21.where` — Stati Uniti
+- `p.who-gets-what.us-food-21.slice1` — Salari
+- `p.who-gets-what.us-food-21.slice2` — Proprietari
+- `p.who-gets-what.us-food-21.slice3` — Importazioni
+- `p.who-gets-what.us-food-21.slice4` — Tasse
+- `p.who-gets-what.us-food-21.fact` — Metà di ogni dollaro che gli americani hanno speso in cibo nel 2021 è andata a pagare i salari di qualcuno. Le tasse e gli ingredienti importati si sono presi circa cinque centesimi ciascuno.
+- `p.who-gets-what.us-food-21.note` — La ripartizione del dollaro del cibo secondo chi viene pagato alla fine, in tutti i settori dall'azienda agricola al ristorante. “Proprietari” sono i redditi da proprietà: profitti, affitti, interessi e il logorio di edifici e macchine. Come pubblicato nel 2023; l'agenzia ha rivisto il suo metodo nel 2026 e ora indica per il 2024 54,1 centesimi di salari.
+
+#### 43/45 · `uk-petrol` · day 43 (19 Nov 2026), 88 (3 Jan 2027), 133 (17 Feb 2027), 178 (3 Apr 2027) … · every 45 days
+
+- `p.who-gets-what.uk-petrol.what` — Un litro di benzina
+- `p.who-gets-what.uk-petrol.where` — Regno Unito
+- `p.who-gets-what.uk-petrol.slice1` — Benzina
+- `p.who-gets-what.uk-petrol.slice2` — Accise
+- `p.who-gets-what.uk-petrol.slice3` — IVA
+- `p.who-gets-what.uk-petrol.fact` — Quasi metà di un litro di benzina britannico è tassa: un'accisa fissa di 52,95 penny, e poi l'IVA calcolata sul carburante e sull'accisa insieme.
+- `p.who-gets-what.uk-petrol.note` — Il prezzo medio alla pompa nel Regno Unito secondo il governo, per la settimana del 5 ottobre 2026 (174,88 penny), con l'accisa (52,95 penny) e l'IVA al 20% che il governo riporta accanto. “Benzina” è tutto ciò che viene prima delle tasse: il petrolio greggio, la raffinazione, il trasporto e la stazione di servizio.
+
+#### 44/45 · `choc-organic` · day 44 (20 Nov 2026), 89 (4 Jan 2027), 134 (18 Feb 2027), 179 (4 Apr 2027) … · every 45 days
+
+- `p.who-gets-what.choc-organic.what` — Cioccolato fondente biologico equosolidale
+- `p.who-gets-what.choc-organic.where` — Francia
+- `p.who-gets-what.choc-organic.slice1` — Campo
+- `p.who-gets-what.choc-organic.slice2` — Export
+- `p.who-gets-what.choc-organic.slice3` — Produttore
+- `p.who-gets-what.choc-organic.slice4` — Negozio
+- `p.who-gets-what.choc-organic.fact` — Il cioccolato biologico equosolidale pagava a chi coltiva il cacao 2,70 euro al chilo, più del doppio degli 1,05 euro di una tavoletta normale. In quota sul prezzo, era comunque meno di dodici centesimi ogni euro.
+- `p.who-gets-what.choc-organic.note` — Lo studio dell'agenzia delle Nazioni Unite sulla filiera francese del cioccolato, per una tavoletta di fondente premium di marca nazionale con insieme un'etichetta biologica e una equosolidale. “Produttore” sono la macinazione dei chicchi (3,8), lo zucchero e gli altri ingredienti (0,5) e la produzione e il marchio della tavoletta (38,1).
+
+#### 45/45 · `uk-diesel` · day 45 (21 Nov 2026), 90 (5 Jan 2027), 135 (19 Feb 2027), 180 (5 Apr 2027) … · every 45 days
+
+- `p.who-gets-what.uk-diesel.what` — Un litro di gasolio
+- `p.who-gets-what.uk-diesel.where` — Regno Unito
+- `p.who-gets-what.uk-diesel.slice1` — Gasolio
+- `p.who-gets-what.uk-diesel.slice2` — Accise
+- `p.who-gets-what.uk-diesel.slice3` — IVA
+- `p.who-gets-what.uk-diesel.fact` — Il gasolio britannico paga esattamente la stessa accisa della benzina, 52,95 penny al litro. A ottobre 2026 costava comunque quasi 25 penny in più, perché il carburante stesso costava di più.
+- `p.who-gets-what.uk-diesel.note` — Il prezzo medio alla pompa nel Regno Unito secondo il governo, per la settimana del 5 ottobre 2026 (199,52 penny), con l'accisa (52,95 penny) e l'IVA al 20% che il governo riporta accanto. “Gasolio” è tutto ciò che viene prima delle tasse: il petrolio greggio, la raffinazione, il trasporto e la stazione di servizio.
+
+## U. Doubts for Khayyam
+
+- p.who-gets-what.it-power.what — "Un kilowattora di elettricità"; second option "Un'unità di elettricità". The English says "a unit" (British for one kilowatt-hour). I wrote the kilowatt-hour so it matches the German one already done; same in dk-power and the Italian/Danish facts.
+- p.who-gets-what.dark-choc.slice1 — "Campo"; second option "Coltivatori" (or "Piantagione", as in the banana cards). "Campo" is short enough for the slice and means the farm stage.
+- p.who-gets-what.in-diesel.note — "un piccolo contributo per la qualità dell'aria di 25 paise al litro"; the English says "air ambience charge", the name of a Delhi levy. I described what it is for, I did not keep the Hindi-English name.
+- p.who-gets-what.no-spirits.what — "Una bottiglia di distillato da 70 cl"; second option "di superalcolico". "Distillato" is the neutral word; "liquore" would mean sweet liqueurs in Italian.
+- p.who-gets-what.us-food-21.slice2 — "Proprietari" (owners); second option "Profitti". The note explains it is rent, profit, interest and wear, so "Proprietari" is the wider word.
+- p.who-gets-what.dark-choc.slice3 — "Produttore" for "Maker" on every chocolate card. It is long for a narrow slice; the short second option is "Fabbrica".
