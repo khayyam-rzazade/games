@@ -1,7 +1,10 @@
-/* Logicers: the tr words of who-gets-what for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the tr words of who-gets-what, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-who-gets-what-tr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["who-gets-what"] = {
- "17": {
+(function () {
+  var byId = {
+ "fr-diesel": {
   "what": "Bir litre dizel",
   "where": "Fransa",
   "fact": "Fransa dizeli benzinden daha hafif vergilendirir: fiyatın her avrosunda 44 sent; benzinde 50 sent.",
@@ -24,7 +27,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "18": {
+ "iphone": {
   "what": "Bir iPhone 4",
   "where": "Dünya",
   "fact": "İlk iPhone'lardan birinin tam fiyatının her yüz dolarından yaklaşık beşi, onu ve parçalarını fiilen üretenlere ödendi. Apple elli sekiz doları kendine ayırdı.",
@@ -52,7 +55,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "19": {
+ "banana-do": {
   "what": "Bir kilo Dominik muzu",
   "where": "Avrupa Birliği",
   "fact": "Dominik Cumhuriyeti'nin meyvesi Avrupa sınırından gümrük vergisi ödemeden geçer ve yetiştiriciler fiyatın neredeyse dörtte birini alır.",
@@ -75,7 +78,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "20": {
+ "de-diesel": {
   "what": "Bir litre dizel",
   "where": "Almanya",
   "fact": "Almanya'da dizelin ÖTV'si benzinden daha hafif, karbon bedeli ise daha ağırdır; çünkü yanarken daha fazla karbon salar.",
@@ -103,7 +106,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "21": {
+ "cigs-fr": {
   "what": "20 sigaralık bir paket",
   "where": "Fransa",
   "fact": "Bir Fransız paketinin beşte dördü vergiydi. Geri kalan her şey — yetiştirmek, üretmek, taşımak, satmak — son beşte biri paylaştı.",
@@ -126,7 +129,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "22": {
+ "banana-co": {
   "what": "Bir kilo Kolombiya muzu",
   "where": "Avrupa Birliği",
   "fact": "Kolombiya'da market payı beşin en küçüğüdür, yetiştiricilerin payı ise daha büyüklerden biridir.",
@@ -154,7 +157,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "23": {
+ "de-power": {
   "what": "Bir birim elektrik",
   "where": "Almanya",
   "fact": "Almanya bir birim elektriği neredeyse üçe böler: enerji, şebeke ve devlet.",
@@ -177,7 +180,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "24": {
+ "wine": {
   "what": "Ortalama bir şişe şarap",
   "where": "Birleşik Krallık",
   "fact": "6,75 sterlinlik bir şişenin 4 sterlini vergidir. Kalan 2,75 sterlin; şarabı, şişeyi, nakliyeyi ve mağazayı karşılar.",
@@ -200,7 +203,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "25": {
+ "us-food": {
   "what": "Yemeğe harcanan bir dolar",
   "where": "Amerika Birleşik Devletleri",
   "fact": "Amerikalıların yemeğe harcadığı her doların dokuz sentten azı çiftliğe ulaşır. Yalnızca restoranlar neredeyse otuz dokuz sent alır.",
@@ -228,7 +231,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "26": {
+ "it-medicine": {
   "what": "KDV'den önce 100 € değerinde ilaç",
   "where": "İtalya",
   "fact": "İtalyan yasası bir ilacın fiyatının nasıl paylaşılacağını belirledi: üçte ikisi üreticiye, neredeyse üçte biri eczaneye, her avronun üç senti toptancıya.",
@@ -251,7 +254,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "27": {
+ "au-power": {
   "what": "Bir yıllık elektrik",
   "where": "Avustralya",
   "fact": "Elektriği bir Avustralya evine ulaştırmak, onu üretmekten daha pahalıya geldi: direkler ve kablolar her doların 45 sentini, santraller 32 sentini aldı.",
@@ -279,7 +282,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "28": {
+ "uk-whisky": {
   "what": "Ortalama bir şişe İskoç viskisi",
   "where": "Birleşik Krallık",
   "fact": "2023'te Britanya'da ortalama bir şişe İskoç viskisinin fiyatının dörtte üçü vergiye gitti. Yalnızca ÖTV yarısından fazlasını aldı.",
@@ -302,7 +305,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "29": {
+ "ipad": {
   "what": "Bir ilk model iPad",
   "where": "Dünya",
   "fact": "İlk iPad için ödenen her yüz doların yaklaşık otuzunu Apple kendine ayırdı. Onu ve parçalarını üretenlerin payı yediden azdı.",
@@ -330,7 +333,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "30": {
+ "gb-energy-22": {
   "what": "Bir yıllık gaz ve elektrik",
   "where": "Büyük Britanya",
   "fact": "2022 baharında tipik bir Britanya enerji faturasının yarısından fazlası gazın ve elektriğin kendisi için ödendi.",
@@ -359,3 +362,8 @@ window.LG_PUZZLES["who-gets-what"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["who-gets-what"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["who-gets-what"] = days;
+  window.LG_PUZZLES["who-gets-what.byId"] = byId;
+})();

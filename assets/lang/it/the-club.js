@@ -1,7 +1,10 @@
-/* Logicers: the it words of the-club for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the it words of the-club, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-the-club-it.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["the-club"] = {
- "21": {
+(function () {
+  var byId = {
+ "woodwinds": {
   "sign": "Sono strumenti a fiato di legno",
   "stamp": "Fiati di legno",
   "fact": "Sono strumenti a fiato di legno, di qualunque materiale siano fatti. Il sassofono è di ottone ma si suona con un'ancia, quindi ne fa parte.",
@@ -37,7 +40,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "22": {
+ "sea-mammals": {
   "sign": "Sono mammiferi",
   "stamp": "Mammiferi del mare",
   "fact": "Sono mammiferi, non pesci. Lo squalo balena è il contrario: un pesce, e il più grande pesce vivente.",
@@ -73,7 +76,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "23": {
+ "botanical-fruits": {
   "sign": "Per un botanico, sono frutti",
   "stamp": "Frutti per i botanici",
   "fact": "Per un botanico sono tutti frutti: ognuno nasce da un fiore e contiene i semi. Il rabarbaro è il gambo di una foglia.",
@@ -109,7 +112,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "24": {
+ "stars": {
   "sign": "Sono stelle",
   "stamp": "Stelle",
   "fact": "Sono stelle. Lo è anche il Sole. Dopo di lui, la stella più vicina è Proxima Centauri, a circa quattro anni luce.",
@@ -145,7 +148,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "25": {
+ "un-languages": {
   "sign": "Sono lingue ufficiali dell'ONU",
   "stamp": "Lingue dell'ONU",
   "fact": "Sono le sei lingue ufficiali delle Nazioni Unite. L'hindi e il portoghese non ne fanno parte.",
@@ -181,7 +184,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "26": {
+ "molluscs": {
   "sign": "Sono molluschi",
   "stamp": "Molluschi",
   "fact": "Sono molluschi. Il polpo è parente della chiocciola del giardino; il balano è un crostaceo, come il granchio.",
@@ -217,7 +220,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "27": {
+ "legumes": {
   "sign": "Sono legumi",
   "stamp": "Legumi",
   "fact": "Sono legumi, piante della famiglia del pisello con i semi nei baccelli. L'arachide è un legume: per un botanico non è una noce.",
@@ -253,7 +256,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "28": {
+ "alloys": {
   "sign": "Sono leghe",
   "stamp": "Leghe",
   "fact": "Sono leghe, metalli fusi insieme. Il bronzo è rame e stagno; l'ottone è rame e zinco.",
@@ -289,7 +292,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "29": {
+ "andersen": {
   "sign": "Sono fiabe di H. C. Andersen",
   "stamp": "Fiabe di Andersen",
   "fact": "Hans Christian Andersen ha inventato ognuna di queste fiabe. Cenerentola e Biancaneve sono vecchie fiabe popolari che altri hanno messo per iscritto.",
@@ -325,7 +328,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "30": {
+ "roman-emperors": {
   "sign": "Sono stati imperatori romani",
   "stamp": "Imperatori romani",
   "fact": "Ognuno fu imperatore romano. Giulio Cesare non lo fu mai: Augusto diventò il primo imperatore nel 27 a.C.",
@@ -361,7 +364,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "31": {
+ "landlocked": {
   "sign": "Non hanno sbocco sul mare",
   "stamp": "Senza mare",
   "fact": "Nessuno di loro tocca il mare. L'Etiopia, con più di 100 milioni di abitanti, è il Paese più popoloso senza coste.",
@@ -397,7 +400,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "32": {
+ "olympics-1896": {
   "sign": "C'erano alle prime Olimpiadi moderne",
   "stamp": "Atene 1896",
   "fact": "Erano tutti nelle prime Olimpiadi moderne, Atene 1896. Era previsto anche il canottaggio, ma il maltempo lo fermò.",
@@ -433,7 +436,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "33": {
+ "high-capitals": {
   "sign": "Stanno a più di 2.000 metri di altezza",
   "stamp": "Capitali in alto",
   "fact": "Ognuna sta a più di 2.000 metri sopra il mare. La Paz, a circa 3.600 metri, è la capitale più alta del mondo.",
@@ -469,7 +472,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "34": {
+ "no-bones": {
   "sign": "Non hanno ossa",
   "stamp": "Senza ossa",
   "fact": "Nessuno di loro ha nemmeno un osso. Lo scheletro dello squalo è fatto di cartilagine, la parte morbida ed elastica delle tue orecchie e del tuo naso.",
@@ -506,3 +509,8 @@ window.LG_PUZZLES["the-club"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["the-club"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["the-club"] = days;
+  window.LG_PUZZLES["the-club.byId"] = byId;
+})();

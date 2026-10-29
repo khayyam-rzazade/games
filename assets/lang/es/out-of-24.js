@@ -1,7 +1,10 @@
-/* Logicers: the es words of out-of-24 for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the es words of out-of-24, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-out-of-24-es.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["out-of-24"] = {
- "16": {
+(function () {
+  var byId = {
+ "jp-eating": {
   "face": "Japón",
   "label": "comiendo",
   "fig": "1 h 39",
@@ -18,7 +21,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "17": {
+ "rabbit-sleep": {
   "face": "Conejo",
   "label": "durmiendo",
   "fig": "8 h 24",
@@ -31,7 +34,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "18": {
+ "koala-sleep": {
   "face": "Koala",
   "label": "durmiendo",
   "fig": "18–22 h",
@@ -44,7 +47,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "19": {
+ "cn-sleep": {
   "face": "China",
   "label": "durmiendo o descansando",
   "fig": "9 h 19",
@@ -61,7 +64,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "20": {
+ "pig-sleep": {
   "face": "Cerdo",
   "label": "durmiendo",
   "fig": "7 h 48–8 h 24",
@@ -74,7 +77,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "21": {
+ "ant-queen-sleep": {
   "face": "Reina de hormigas de fuego",
   "label": "durmiendo",
   "fig": "9 h 24",
@@ -87,7 +90,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "22": {
+ "us-eating": {
   "face": "Estados Unidos",
   "label": "comiendo",
   "fig": "1 h 02–1 h 13",
@@ -104,7 +107,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "23": {
+ "hedgehog-sleep": {
   "face": "Erizo",
   "label": "durmiendo",
   "fig": "10 h 06–10 h 42",
@@ -117,7 +120,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "24": {
+ "jp-men-paid-work": {
   "face": "Japón",
   "label": "trabajo remunerado o estudio",
   "fig": "7 h 32",
@@ -134,7 +137,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "25": {
+ "hunter-gatherer-sleep": {
   "face": "Cazadores-recolectores",
   "label": "durmiendo",
   "fig": "6 h 25",
@@ -147,7 +150,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "26": {
+ "sloth-wild-sleep": {
   "face": "Perezoso",
   "label": "durmiendo",
   "fig": "9 h 38",
@@ -164,7 +167,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "27": {
+ "cow-eating": {
   "face": "Vaca lechera",
   "label": "comiendo",
   "fig": "3–5 h",
@@ -181,7 +184,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "28": {
+ "fr-men-housework": {
   "face": "Francia",
   "label": "tareas del hogar y cuidados",
   "fig": "2 h 15",
@@ -198,7 +201,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "29": {
+ "panda-eating": {
   "face": "Panda gigante",
   "label": "comiendo",
   "fig": "10–14 h",
@@ -212,3 +215,8 @@ window.LG_PUZZLES["out-of-24"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["out-of-24"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["out-of-24"] = days;
+  window.LG_PUZZLES["out-of-24.byId"] = byId;
+})();

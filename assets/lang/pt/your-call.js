@@ -1,7 +1,10 @@
-/* Logicers: the pt words of your-call for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the pt words of your-call, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-your-call-pt.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["your-call"] = {
- "27": {
+(function () {
+  var byId = {
+ "1822-brazil": {
   "place": "Rio de Janeiro",
   "pov": "As Cortes de Lisboa, o parlamento de Portugal, querem devolver o Brasil à antiga condição de colônia. Elas tiraram o que restava dos seus poderes e mandaram você voltar para Portugal. Você é o príncipe regente do Brasil.",
   "short": "Dom Pedro",
@@ -14,7 +17,7 @@ window.LG_PUZZLES["your-call"] = {
    "Continuar como regente de Portugal"
   ]
  },
- "28": {
+ "1973-carfree": {
   "place": "Haia",
   "pov": "Os países produtores de petróleo estão boicotando o seu país porque ele apoiou Israel na Guerra do Yom Kippur. Você precisa reduzir rápido o uso de petróleo. Você é o primeiro-ministro da Holanda.",
   "short": "Den Uyl",
@@ -27,7 +30,7 @@ window.LG_PUZZLES["your-call"] = {
    "Esperar o boicote acabar"
   ]
  },
- "29": {
+ "1930-salt": {
   "place": "Ahmedabad",
   "pov": "Você planeja uma campanha de desobediência civil contra o domínio britânico e precisa escolher o primeiro alvo. Um colega quer um boicote aos impostos sobre a terra. A lei britânica proíbe os indianos de coletar ou vender sal. Você é o líder do movimento.",
   "short": "Gandhi",
@@ -40,7 +43,7 @@ window.LG_PUZZLES["your-call"] = {
    "Conversar primeiro com o vice-rei"
   ]
  },
- "30": {
+ "1783-washington": {
   "place": "Annapolis",
   "pov": "Você passou oito anos longe de casa comandando o exército e, na primavera passada, acabou com a conspiração de Newburgh. A guerra terminou. Você é o comandante em chefe do Exército Continental.",
   "short": "Washington",
@@ -53,7 +56,7 @@ window.LG_PUZZLES["your-call"] = {
    "Renunciar e voltar para casa"
   ]
  },
- "31": {
+ "1994-ukraine": {
   "place": "Kiev",
   "pov": "O seu novo país tem o terceiro maior arsenal nuclear do mundo, deixado pela União Soviética. Alguns dizem que você deve mantê-lo para se proteger da Rússia. Você é o presidente da Ucrânia.",
   "short": "Kravtchuk",
@@ -66,7 +69,7 @@ window.LG_PUZZLES["your-call"] = {
    "Manter algumas e entregar o resto"
   ]
  },
- "32": {
+ "1970-october": {
   "place": "Ottawa",
   "pov": "Militantes separatistas sequestraram um diplomata britânico e um ministro de Quebec e exigem a libertação de presos. O premiê de Quebec pede a você poderes de emergência para prender suspeitos. Você é o primeiro-ministro do Canadá.",
   "short": "Trudeau",
@@ -79,7 +82,7 @@ window.LG_PUZZLES["your-call"] = {
    "Deixar com a polícia de Quebec"
   ]
  },
- "33": {
+ "1950-schuman": {
   "place": "Paris",
   "pov": "Cinco anos depois da Segunda Guerra Mundial, a França precisa decidir como viver ao lado da Alemanha Ocidental. Carvão e aço são os materiais mais importantes para fazer armas. Você é o ministro das Relações Exteriores da França.",
   "short": "Schuman",
@@ -92,7 +95,7 @@ window.LG_PUZZLES["your-call"] = {
    "Buscar uma aliança militar contra a Alemanha"
   ]
  },
- "34": {
+ "1986-marcos": {
   "place": "Manila",
   "pov": "Você foi declarado vencedor de uma eleição antecipada marcada por fraude. Dois altos oficiais mudaram de lado, e mais de dois milhões de pessoas protestam em Manila. Você é o presidente das Filipinas.",
   "short": "Marcos",
@@ -105,7 +108,7 @@ window.LG_PUZZLES["your-call"] = {
    "Não atacar e ficar no palácio"
   ]
  },
- "35": {
+ "1961-wall": {
   "place": "Berlim Oriental",
   "pov": "Cerca de 3,5 milhões de pessoas, um quinto da sua população, foram para o Ocidente, e em Berlim a fronteira ainda está aberta. Você é o líder da Alemanha Oriental.",
   "short": "Ulbricht",
@@ -119,3 +122,8 @@ window.LG_PUZZLES["your-call"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["your-call"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["your-call"] = days;
+  window.LG_PUZZLES["your-call.byId"] = byId;
+})();

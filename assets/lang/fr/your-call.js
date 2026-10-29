@@ -1,7 +1,10 @@
-/* Logicers: the fr words of your-call for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the fr words of your-call, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-your-call-fr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["your-call"] = {
- "27": {
+(function () {
+  var byId = {
+ "1822-brazil": {
   "place": "Rio de Janeiro",
   "pov": "Le Parlement du Portugal veut remettre le Brésil dans son ancien statut de colonie. Il t’a retiré les pouvoirs qui te restaient et t’a ordonné de rentrer au Portugal. Tu es le prince régent du Brésil.",
   "short": "Pedro",
@@ -14,7 +17,7 @@ window.LG_PUZZLES["your-call"] = {
    "Rester comme régent pour le Portugal"
   ]
  },
- "28": {
+ "1973-carfree": {
   "place": "La Haye",
   "pov": "Les pays producteurs de pétrole boycottent ton pays parce qu’il a soutenu Israël pendant la guerre du Kippour. Tu dois réduire vite la consommation de pétrole. Tu es le Premier ministre des Pays-Bas.",
   "short": "Den Uyl",
@@ -27,7 +30,7 @@ window.LG_PUZZLES["your-call"] = {
    "Attendre la fin du boycott"
   ]
  },
- "29": {
+ "1930-salt": {
   "place": "Ahmedabad",
   "pov": "Tu prépares la désobéissance civile contre la domination britannique et tu dois choisir la première cible. Un collègue veut boycotter l’impôt sur les terres. La loi britannique interdit aux Indiens de ramasser ou de vendre du sel. Tu es le chef du mouvement.",
   "short": "Gandhi",
@@ -40,7 +43,7 @@ window.LG_PUZZLES["your-call"] = {
    "D’abord, discuter avec le vice-roi"
   ]
  },
- "30": {
+ "1783-washington": {
   "place": "Annapolis",
   "pov": "Tu es loin de chez toi depuis huit ans à la tête de l’armée, et au printemps dernier tu as fait échouer la conspiration de Newburgh. La guerre est finie. Tu es le commandant en chef de l’armée continentale.",
   "short": "Washington",
@@ -53,7 +56,7 @@ window.LG_PUZZLES["your-call"] = {
    "Démissionner et rentrer chez toi"
   ]
  },
- "31": {
+ "1994-ukraine": {
   "place": "Kiev",
   "pov": "Ton nouveau pays détient le troisième plus grand arsenal nucléaire du monde, laissé par l’Union soviétique. Certains disent que tu devrais le garder pour dissuader la Russie. Tu es le président de l’Ukraine.",
   "short": "Kravtchouk",
@@ -66,7 +69,7 @@ window.LG_PUZZLES["your-call"] = {
    "En garder quelques-unes, renoncer au reste"
   ]
  },
- "32": {
+ "1970-october": {
   "place": "Ottawa",
   "pov": "Des militants séparatistes ont enlevé un diplomate britannique et un ministre du Québec, et exigent la libération de prisonniers. Le premier ministre du Québec te demande des pouvoirs d’urgence pour arrêter des suspects. Tu es le Premier ministre du Canada.",
   "short": "Trudeau",
@@ -79,7 +82,7 @@ window.LG_PUZZLES["your-call"] = {
    "Laisser faire la police du Québec"
   ]
  },
- "33": {
+ "1950-schuman": {
   "place": "Paris",
   "pov": "Cinq ans après la Seconde Guerre mondiale, la France doit décider comment vivre avec l’Allemagne de l’Ouest. Le charbon et l’acier sont les matières les plus importantes pour fabriquer des armes. Tu es le ministre des Affaires étrangères de la France.",
   "short": "Schuman",
@@ -92,7 +95,7 @@ window.LG_PUZZLES["your-call"] = {
    "Chercher une alliance militaire contre l’Allemagne"
   ]
  },
- "34": {
+ "1986-marcos": {
   "place": "Manille",
   "pov": "On t’a déclaré vainqueur d’une élection anticipée entachée de fraude. Deux hauts responsables ont changé de camp, et plus de deux millions de personnes manifestent à Manille. Tu es le président des Philippines.",
   "short": "Marcos",
@@ -105,7 +108,7 @@ window.LG_PUZZLES["your-call"] = {
    "Ne pas tirer et rester au palais"
   ]
  },
- "35": {
+ "1961-wall": {
   "place": "Berlin-Est",
   "pov": "Environ 3,5 millions de personnes, un cinquième de ta population, sont parties vers l’Ouest, et à Berlin la frontière est encore ouverte. Tu es le dirigeant de l’Allemagne de l’Est.",
   "short": "Ulbricht",
@@ -119,3 +122,8 @@ window.LG_PUZZLES["your-call"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["your-call"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["your-call"] = days;
+  window.LG_PUZZLES["your-call.byId"] = byId;
+})();

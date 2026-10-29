@@ -1,7 +1,10 @@
-/* Logicers: the pt words of the-club for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the pt words of the-club, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-the-club-pt.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["the-club"] = {
- "26": {
+(function () {
+  var byId = {
+ "molluscs": {
   "sign": "São moluscos",
   "stamp": "Moluscos",
   "fact": "São moluscos. O polvo é parente do caracol; a craca é um crustáceo, como o caranguejo.",
@@ -37,7 +40,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "27": {
+ "legumes": {
   "sign": "São leguminosas",
   "stamp": "Leguminosas",
   "fact": "São leguminosas, plantas da família da ervilha cujas sementes crescem em vagens. O amendoim é uma delas: para um botânico, ele não é uma castanha.",
@@ -73,7 +76,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "28": {
+ "alloys": {
   "sign": "São ligas metálicas",
   "stamp": "Ligas",
   "fact": "São ligas, metais fundidos juntos. O bronze é cobre e estanho; o latão é cobre e zinco.",
@@ -109,7 +112,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "29": {
+ "andersen": {
   "sign": "Contos de H. C. Andersen",
   "stamp": "Contos de Andersen",
   "fact": "Hans Christian Andersen inventou cada um destes contos. Cinderela e Branca de Neve são contos populares antigos que outras pessoas registraram por escrito.",
@@ -145,7 +148,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "30": {
+ "roman-emperors": {
   "sign": "Foram imperadores romanos",
   "stamp": "Imperadores romanos",
   "fact": "Cada um foi imperador romano. Júlio César nunca foi: Augusto virou o primeiro imperador em 27 a.C.",
@@ -181,7 +184,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "31": {
+ "landlocked": {
   "sign": "Não têm litoral",
   "stamp": "Sem litoral",
   "fact": "Nenhum deles toca o mar. A Etiópia, com mais de 100 milhões de pessoas, é o país mais populoso sem litoral.",
@@ -217,7 +220,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "32": {
+ "olympics-1896": {
   "sign": "Estavam nos primeiros Jogos Olímpicos modernos",
   "stamp": "Atenas 1896",
   "fact": "Todos fizeram parte dos primeiros Jogos Olímpicos modernos, Atenas 1896. O remo também estava planejado, mas o mau tempo o impediu.",
@@ -253,7 +256,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "33": {
+ "high-capitals": {
   "sign": "Ficam a mais de 2.000 metros de altitude",
   "stamp": "Capitais altas",
   "fact": "Cada uma fica a mais de 2.000 metros acima do nível do mar. La Paz, a cerca de 3.600 metros, é a capital mais alta do mundo.",
@@ -289,7 +292,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "34": {
+ "no-bones": {
   "sign": "Não têm nenhum osso",
   "stamp": "Sem ossos",
   "fact": "Nenhum deles tem um único osso. O esqueleto de um tubarão é feito de cartilagem, aquele material firme e flexível que existe na sua orelha e no seu nariz.",
@@ -326,3 +329,8 @@ window.LG_PUZZLES["the-club"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["the-club"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["the-club"] = days;
+  window.LG_PUZZLES["the-club.byId"] = byId;
+})();

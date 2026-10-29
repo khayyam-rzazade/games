@@ -1,55 +1,81 @@
-/* Logicers: the tr words of long-lost-cousin for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the tr words of long-lost-cousin, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-long-lost-cousin-tr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["long-lost-cousin"] = {
- "21": {
+(function () {
+  var byId = {
+ "meerkat": {
   "fact": "Mirketler firavun faresi gibi hayvanlardandır ve etoburların kedi tarafında yer alır. Ayılar köpek tarafındadır; mirketler gibi dik duran çayır köpekleri ise kemirgendir."
  },
- "22": {
+ "ant": {
   "fact": "Karıncalar yaban arılarından evrildi ve yaban arıları ile arılarla aynı gruba girer. Termitler hamamböceklerinin akrabasıdır."
  },
- "23": {
+ "beaver": {
   "fact": "Kunduz, fare gibi bir kemirgendir. Tavşanlar kemirgen değildir ama kemirgenlerin en yakın akrabasıdır. Su samurları etoburdur."
  },
- "24": {
+ "axolotl": {
   "fact": "Aksolot bir semenderdir ve semenderler, kurbağalar gibi iki yaşamlılardır. Kertenkeleler sürüngendir."
  },
- "25": {
+ "camel": {
   "fact": "Develer ve lamalar aynı ailedendir. Lamalar, Güney Amerika'nın develeridir."
  },
- "26": {
+ "seahorse": {
   "fact": "Denizatı kemikli bir balıktır; ton balığıyla aynı büyük gruptadır."
  },
- "27": {
+ "toucan": {
   "fact": "Tukanlar ağaçkakanlarla aynı takımdandır. Boynuzgagalar büyük gagalarını ayrı bir yoldan geliştirdi."
  },
- "28": {
+ "porcupine": {
   "fact": "Oklu kirpiler, kobayın koluna ait kemirgenlerdir. Fareler başka bir koldan kemirgenlerdir; kirpiler ise dikenlerini ayrı bir yoldan geliştirdi."
  },
- "29": {
+ "mantis": {
   "fact": "Peygamber devesinin en yakın akrabaları hamamböcekleri ve termitlerdir."
  },
- "30": {
+ "narwhal": {
   "fact": "Narval ve beluga, kendi balina ailelerinin yaşayan tek iki üyesidir."
  },
- "31": {
+ "velociraptor": {
   "fact": "Velociraptor'un tüyleri vardı ve kuşların yakın akrabasıydı."
  },
- "32": {
+ "orca": {
   "fact": "Orka, yunus ailesinin en büyük üyesidir."
  },
- "33": {
+ "flea": {
   "fact": "Pireler, bitlerden çok sineklere yakındır. Sonra kelebekler gelir: pireler ve sinekler gibi onlar da pupa evresinden geçer. Bitler geçmez."
  },
- "34": {
+ "pangolin": {
   "fact": "Pangolinin yaşayan en yakın akrabaları kedi gibi etoburlardır. Atlar yakındaki bir koldadır. Pulları yalnızca armadillonun zırhına benzer."
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["long-lost-cousin"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["long-lost-cousin"] = days;
+  window.LG_PUZZLES["long-lost-cousin.byId"] = byId;
+})();
 window.LG_PUZZLES["long-lost-cousin.things"] = {
- "meerkat": {
-  "name": "Mirket",
-  "the": "mirket",
-  "of": "mirketin",
-  "bare": "mirket"
+ "crocodile": {
+  "name": "Timsah",
+  "the": "timsah",
+  "of": "timsahın",
+  "bare": "timsah"
+ },
+ "termite": {
+  "name": "Termit",
+  "the": "termit",
+  "of": "termitin",
+  "bare": "termit"
+ },
+ "ant": {
+  "name": "Karınca",
+  "the": "karınca",
+  "of": "karıncanın",
+  "bare": "karınca"
+ },
+ "cockroach": {
+  "name": "Hamamböceği",
+  "the": "hamamböceği",
+  "of": "hamamböceğinin",
+  "bare": "hamamböceği"
  },
  "cat": {
   "name": "Kedi",
@@ -63,35 +89,113 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "ayının",
   "bare": "ayı"
  },
- "prairie_dog": {
-  "name": "Çayır köpeği",
-  "the": "çayır köpeği",
-  "of": "çayır köpeğinin",
-  "bare": "çayır köpeği"
+ "shark": {
+  "name": "Köpekbalığı",
+  "the": "köpekbalığı",
+  "of": "köpekbalığının",
+  "bare": "köpekbalığı"
  },
- "ant": {
-  "name": "Karınca",
-  "the": "karınca",
-  "of": "karıncanın",
-  "bare": "karınca"
+ "dolphin": {
+  "name": "Yunus",
+  "the": "yunus",
+  "of": "yunusun",
+  "bare": "yunus"
  },
- "bee": {
-  "name": "Arı",
-  "the": "arı",
-  "of": "arının",
-  "bare": "arı"
+ "tuna": {
+  "name": "Ton balığı",
+  "the": "ton balığı",
+  "of": "ton balığının",
+  "bare": "ton balığı"
  },
- "termite": {
-  "name": "Termit",
-  "the": "termit",
-  "of": "termitin",
-  "bare": "termit"
+ "horse": {
+  "name": "At",
+  "the": "at",
+  "of": "atın",
+  "bare": "at"
+ },
+ "mouse": {
+  "name": "Fare",
+  "the": "fare",
+  "of": "farenin",
+  "bare": "fare"
+ },
+ "lizard": {
+  "name": "Kertenkele",
+  "the": "kertenkele",
+  "of": "kertenkelenin",
+  "bare": "kertenkele"
+ },
+ "frog": {
+  "name": "Kurbağa",
+  "the": "kurbağa",
+  "of": "kurbağanın",
+  "bare": "kurbağa"
  },
  "spider": {
   "name": "Örümcek",
   "the": "örümcek",
   "of": "örümceğin",
   "bare": "örümcek"
+ },
+ "eagle": {
+  "name": "Kartal",
+  "the": "kartal",
+  "of": "kartalın",
+  "bare": "kartal"
+ },
+ "parrot": {
+  "name": "Papağan",
+  "the": "papağan",
+  "of": "papağanın",
+  "bare": "papağan"
+ },
+ "dragonfly": {
+  "name": "Yusufçuk",
+  "the": "yusufçuk",
+  "of": "yusufçuğun",
+  "bare": "yusufçuk"
+ },
+ "housefly": {
+  "name": "Sinek",
+  "the": "sinek",
+  "of": "sineğin",
+  "bare": "sinek"
+ },
+ "pangolin": {
+  "name": "Pangolin",
+  "the": "pangolin",
+  "of": "pangolinin",
+  "bare": "pangolin"
+ },
+ "triceratops": {
+  "name": "Triceratops",
+  "the": "Triceratops",
+  "of": "Triceratops'un",
+  "bare": "Triceratops"
+ },
+ "walrus": {
+  "name": "Mors",
+  "the": "mors",
+  "of": "morsun",
+  "bare": "mors"
+ },
+ "meerkat": {
+  "name": "Mirket",
+  "the": "mirket",
+  "of": "mirketin",
+  "bare": "mirket"
+ },
+ "prairie_dog": {
+  "name": "Çayır köpeği",
+  "the": "çayır köpeği",
+  "of": "çayır köpeğinin",
+  "bare": "çayır köpeği"
+ },
+ "bee": {
+  "name": "Arı",
+  "the": "arı",
+  "of": "arının",
+  "bare": "arı"
  },
  "beaver": {
   "name": "Kunduz",
@@ -111,12 +215,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "tavşanın",
   "bare": "tavşan"
  },
- "mouse": {
-  "name": "Fare",
-  "the": "fare",
-  "of": "farenin",
-  "bare": "fare"
- },
  "axolotl": {
   "name": "Aksolot",
   "the": "aksolot",
@@ -129,29 +227,11 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "yılan balığının",
   "bare": "yılan balığı"
  },
- "lizard": {
-  "name": "Kertenkele",
-  "the": "kertenkele",
-  "of": "kertenkelenin",
-  "bare": "kertenkele"
- },
- "frog": {
-  "name": "Kurbağa",
-  "the": "kurbağa",
-  "of": "kurbağanın",
-  "bare": "kurbağa"
- },
  "camel": {
   "name": "Deve",
   "the": "deve",
   "of": "devenin",
   "bare": "deve"
- },
- "horse": {
-  "name": "At",
-  "the": "at",
-  "of": "atın",
-  "bare": "at"
  },
  "llama": {
   "name": "Lama",
@@ -177,29 +257,11 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "kalamarın",
   "bare": "kalamar"
  },
- "tuna": {
-  "name": "Ton balığı",
-  "the": "ton balığı",
-  "of": "ton balığının",
-  "bare": "ton balığı"
- },
- "shark": {
-  "name": "Köpekbalığı",
-  "the": "köpekbalığı",
-  "of": "köpekbalığının",
-  "bare": "köpekbalığı"
- },
  "toucan": {
   "name": "Tukan",
   "the": "tukan",
   "of": "tukanın",
   "bare": "tukan"
- },
- "parrot": {
-  "name": "Papağan",
-  "the": "papağan",
-  "of": "papağanın",
-  "bare": "papağan"
  },
  "hornbill": {
   "name": "Boynuzgaga",
@@ -237,35 +299,17 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "peygamber devesinin",
   "bare": "peygamber devesi"
  },
- "cockroach": {
-  "name": "Hamamböceği",
-  "the": "hamamböceği",
-  "of": "hamamböceğinin",
-  "bare": "hamamböceği"
- },
  "grasshopper": {
   "name": "Çekirge",
   "the": "çekirge",
   "of": "çekirgenin",
   "bare": "çekirge"
  },
- "dragonfly": {
-  "name": "Yusufçuk",
-  "the": "yusufçuk",
-  "of": "yusufçuğun",
-  "bare": "yusufçuk"
- },
  "narwhal": {
   "name": "Narval",
   "the": "narval",
   "of": "narvalın",
   "bare": "narval"
- },
- "walrus": {
-  "name": "Mors",
-  "the": "mors",
-  "of": "morsun",
-  "bare": "mors"
  },
  "marlin": {
   "name": "Marlin",
@@ -285,24 +329,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "Velociraptor'un",
   "bare": "Velociraptor"
  },
- "eagle": {
-  "name": "Kartal",
-  "the": "kartal",
-  "of": "kartalın",
-  "bare": "kartal"
- },
- "triceratops": {
-  "name": "Triceratops",
-  "the": "Triceratops",
-  "of": "Triceratops'un",
-  "bare": "Triceratops"
- },
- "crocodile": {
-  "name": "Timsah",
-  "the": "timsah",
-  "of": "timsahın",
-  "bare": "timsah"
- },
  "orca": {
   "name": "Orka",
   "the": "orka",
@@ -321,12 +347,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "büyük beyaz köpekbalığının",
   "bare": "büyük beyaz köpekbalığı"
  },
- "dolphin": {
-  "name": "Yunus",
-  "the": "yunus",
-  "of": "yunusun",
-  "bare": "yunus"
- },
  "flea": {
   "name": "Pire",
   "the": "pire",
@@ -344,18 +364,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "the": "bit",
   "of": "bitin",
   "bare": "bit"
- },
- "housefly": {
-  "name": "Sinek",
-  "the": "sinek",
-  "of": "sineğin",
-  "bare": "sinek"
- },
- "pangolin": {
-  "name": "Pangolin",
-  "the": "pangolin",
-  "of": "pangolinin",
-  "bare": "pangolin"
  },
  "armadillo": {
   "name": "Armadillo",

@@ -1,7 +1,10 @@
-/* Logicers: the tr words of out-of-24 for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the tr words of out-of-24, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-out-of-24-tr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["out-of-24"] = {
- "16": {
+(function () {
+  var byId = {
+ "jp-eating": {
   "face": "Japonya",
   "label": "yemek yerken",
   "fig": "1 sa 39",
@@ -18,7 +21,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "17": {
+ "rabbit-sleep": {
   "face": "Tavşan",
   "label": "uyurken",
   "fig": "8 sa 24",
@@ -31,7 +34,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "18": {
+ "koala-sleep": {
   "face": "Koala",
   "label": "uyurken",
   "fig": "18–22 sa",
@@ -44,7 +47,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "19": {
+ "cn-sleep": {
   "face": "Çin",
   "label": "uyurken ya da dinlenirken",
   "fig": "9 sa 19",
@@ -61,7 +64,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "20": {
+ "pig-sleep": {
   "face": "Domuz",
   "label": "uyurken",
   "fig": "7 sa 48–8 sa 24",
@@ -74,7 +77,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "21": {
+ "ant-queen-sleep": {
   "face": "Ateş karıncası kraliçesi",
   "label": "uyurken",
   "fig": "9 sa 24",
@@ -87,7 +90,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "22": {
+ "us-eating": {
   "face": "ABD",
   "label": "yemek yerken",
   "fig": "1 sa 02–1 sa 13",
@@ -104,7 +107,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "23": {
+ "hedgehog-sleep": {
   "face": "Kirpi",
   "label": "uyurken",
   "fig": "10 sa 06–10 sa 42",
@@ -117,7 +120,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "24": {
+ "jp-men-paid-work": {
   "face": "Japonya",
   "label": "ücretli iş ya da okul",
   "fig": "7 sa 32",
@@ -134,7 +137,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "25": {
+ "hunter-gatherer-sleep": {
   "face": "Avcı-toplayıcılar",
   "label": "uyurken",
   "fig": "6 sa 25",
@@ -147,7 +150,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "26": {
+ "sloth-wild-sleep": {
   "face": "Tembel hayvan",
   "label": "uyurken",
   "fig": "9 sa 38",
@@ -164,7 +167,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "27": {
+ "cow-eating": {
   "face": "Süt ineği",
   "label": "yemek yerken",
   "fig": "3–5 sa",
@@ -181,7 +184,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "28": {
+ "fr-men-housework": {
   "face": "Fransa",
   "label": "ev işi ve bakım",
   "fig": "2 sa 15",
@@ -198,7 +201,7 @@ window.LG_PUZZLES["out-of-24"] = {
    }
   ]
  },
- "29": {
+ "panda-eating": {
   "face": "Dev panda",
   "label": "yemek yerken",
   "fig": "10–14 sa",
@@ -212,3 +215,8 @@ window.LG_PUZZLES["out-of-24"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["out-of-24"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["out-of-24"] = days;
+  window.LG_PUZZLES["out-of-24.byId"] = byId;
+})();

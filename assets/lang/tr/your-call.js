@@ -1,7 +1,10 @@
-/* Logicers: the tr words of your-call for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the tr words of your-call, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-your-call-tr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["your-call"] = {
- "22": {
+(function () {
+  var byId = {
+ "1905-norway-king": {
   "place": "Kopenhag",
   "pov": "Norveç, İsveç'le birliğinden yeni ayrıldı ve hükümeti sana tacı sunuyor. Ama Norveçliler bir kral isteyip istemediklerini hâlâ tartışıyor. Sen, onların seçtiği Danimarkalı prenssin.",
   "short": "Prens Carl",
@@ -14,7 +17,7 @@ window.LG_PUZZLES["your-call"] = {
    "Reddet ve Danimarka'da kal"
   ]
  },
- "23": {
+ "1948-berlin-airlift": {
   "place": "Washington",
   "pov": "Sovyet güçleri, kendi bölgelerinin derinlerindeki Batı Berlin'e giden bütün kara, demiryolu ve kanal yollarını kesti. Şehrin insanları yiyecek ve kömür için sana güveniyor. Sen Amerika Birleşik Devletleri'nin başkanısın.",
   "short": "Truman",
@@ -27,7 +30,7 @@ window.LG_PUZZLES["your-call"] = {
    "Şehre havadan erzak ver"
   ]
  },
- "24": {
+ "1698-beard-tax": {
   "place": "Moskova",
   "pov": "Büyük bir elçilik gezisinden yeni döndün ve ülkeni modernleştirmek istiyorsun. Soylular, gelenek ve Kilise gereği sakal bırakıyor. Sen Rusya'nın çarısın.",
   "short": "Petro",
@@ -40,7 +43,7 @@ window.LG_PUZZLES["your-call"] = {
    "Sakal bırakmak için vergi ödet"
   ]
  },
- "25": {
+ "1957-little-rock": {
   "place": "Washington",
   "pov": "Arkansas valisi, dokuz siyah öğrenciyi beyazlara ait bir liseden uzak tutmak için Ulusal Muhafızlar'ı kullandı. Şimdi 400 kişilik bir kalabalık onları okulda tehdit ediyor. Sen Amerika Birleşik Devletleri'nin başkanısın.",
   "short": "Eisenhower",
@@ -53,7 +56,7 @@ window.LG_PUZZLES["your-call"] = {
    "Öğrencilerden bir yıl beklemelerini iste"
   ]
  },
- "26": {
+ "1977-sadat": {
   "place": "Kahire",
   "pov": "İsrail, 1967'den beri ülkenin Sina Yarımadası'nı elinde tutuyor. 1973'te onu geri almak için savaşa girdin. Şimdi barış ve topraklarını istiyorsun. Sen Mısır'ın cumhurbaşkanısın.",
   "short": "Sedat",
@@ -66,7 +69,7 @@ window.LG_PUZZLES["your-call"] = {
    "Bir barış konferansını bekle"
   ]
  },
- "27": {
+ "1822-brazil": {
   "place": "Rio de Janeiro",
   "pov": "Portekiz parlamentosu Brezilya'yı eski sömürge statüsüne döndürmek istiyor. Elindeki kalan yetkileri aldı ve seni Portekiz'e geri çağırdı. Sen Brezilya'nın naip prensisin.",
   "short": "Pedro",
@@ -79,7 +82,7 @@ window.LG_PUZZLES["your-call"] = {
    "Portekiz'in naibi olarak kal"
   ]
  },
- "28": {
+ "1973-carfree": {
   "place": "Lahey",
   "pov": "Petrol üreten ülkeler, Yom Kippur Savaşı'nda İsrail'i desteklediği için ülkene boykot uyguluyor. Petrol kullanımını hızla azaltmalısın. Sen Hollanda'nın başbakanısın.",
   "short": "Den Uyl",
@@ -92,7 +95,7 @@ window.LG_PUZZLES["your-call"] = {
    "Boykotun bitmesini bekle"
   ]
  },
- "29": {
+ "1930-salt": {
   "place": "Ahmedabad",
   "pov": "İngiliz yönetimine karşı sivil itaatsizlik planlıyorsun ve ilk hedefi seçmelisin. Bir yol arkadaşın toprak vergisinin boykot edilmesini istiyor. İngiliz yasası Hintlilerin tuz toplamasını ya da satmasını yasaklıyor. Sen hareketin liderisin.",
   "short": "Gandi",
@@ -105,7 +108,7 @@ window.LG_PUZZLES["your-call"] = {
    "Önce genel valiyle görüş"
   ]
  },
- "30": {
+ "1783-washington": {
   "place": "Annapolis",
   "pov": "Sekiz yıldır evden uzakta orduya komuta ettin ve geçen bahar Newburgh komplosunu bastırdın. Savaş bitti. Sen Kıta Ordusu'nun başkomutanısın.",
   "short": "Washington",
@@ -118,7 +121,7 @@ window.LG_PUZZLES["your-call"] = {
    "İstifa et ve eve dön"
   ]
  },
- "31": {
+ "1994-ukraine": {
   "place": "Kiev",
   "pov": "Yeni ülken, Sovyetler Birliği'nden kalan, dünyanın üçüncü büyük nükleer cephaneliğine sahip. Bazıları, Rusya'ya karşı caydırıcı olarak tutman gerektiğini söylüyor. Sen Ukrayna'nın cumhurbaşkanısın.",
   "short": "Kravçuk",
@@ -131,7 +134,7 @@ window.LG_PUZZLES["your-call"] = {
    "Birkaçını tut, geri kalanından vazgeç"
   ]
  },
- "32": {
+ "1970-october": {
   "place": "Ottawa",
   "pov": "Ayrılıkçı militanlar bir İngiliz diplomatı ve Quebec'ten bir bakanı kaçırdı ve tutukluların serbest bırakılmasını istiyor. Quebec'in başbakanı, şüphelileri tutuklamak için senden olağanüstü yetkiler istiyor. Sen Kanada'nın başbakanısın.",
   "short": "Trudeau",
@@ -144,7 +147,7 @@ window.LG_PUZZLES["your-call"] = {
    "İşi Quebec polisine bırak"
   ]
  },
- "33": {
+ "1950-schuman": {
   "place": "Paris",
   "pov": "İkinci Dünya Savaşı'ndan beş yıl sonra Fransa, Batı Almanya'yla nasıl yaşayacağına karar vermeli. Kömür ve çelik, silah yapımı için en önemli malzemeler. Sen Fransa'nın dışişleri bakanısın.",
   "short": "Schuman",
@@ -157,7 +160,7 @@ window.LG_PUZZLES["your-call"] = {
    "Almanya'ya karşı bir askerî ittifak ara"
   ]
  },
- "34": {
+ "1986-marcos": {
   "place": "Manila",
   "pov": "Hileyle gölgelenen ani bir seçimin kazananı ilan edildin. İki üst düzey yetkili saf değiştirdi ve Manila'da iki milyondan fazla kişi protesto yapıyor. Sen Filipinler'in cumhurbaşkanısın.",
   "short": "Marcos",
@@ -170,7 +173,7 @@ window.LG_PUZZLES["your-call"] = {
    "Ateş açma ve sarayda kal"
   ]
  },
- "35": {
+ "1961-wall": {
   "place": "Doğu Berlin",
   "pov": "Nüfusunun beşte biri olan yaklaşık 3,5 milyon kişi Batı'ya gitti ve Berlin'de sınır hâlâ açık. Sen Doğu Almanya'nın liderisin.",
   "short": "Ulbricht",
@@ -184,3 +187,8 @@ window.LG_PUZZLES["your-call"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["your-call"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["your-call"] = days;
+  window.LG_PUZZLES["your-call.byId"] = byId;
+})();

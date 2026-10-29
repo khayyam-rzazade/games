@@ -1,7 +1,10 @@
-/* Logicers: the it words of your-call for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the it words of your-call, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-your-call-it.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["your-call"] = {
- "22": {
+(function () {
+  var byId = {
+ "1905-norway-king": {
   "place": "Copenaghen",
   "pov": "La Norvegia ha appena lasciato l'unione con la Svezia e il suo governo ti offre la corona. Ma in Norvegia si discute ancora se si voglia un re. Sei il principe danese che hanno scelto.",
   "short": "Carl",
@@ -14,7 +17,7 @@ window.LG_PUZZLES["your-call"] = {
    "Rifiutare e restare in Danimarca"
   ]
  },
- "23": {
+ "1948-berlin-airlift": {
   "place": "Washington",
   "pov": "Le forze sovietiche hanno chiuso tutte le strade, le ferrovie e i canali verso Berlino Ovest, in piena zona sovietica. I suoi abitanti dipendono da te per cibo e carbone. Sei il presidente degli Stati Uniti.",
   "short": "Truman",
@@ -27,7 +30,7 @@ window.LG_PUZZLES["your-call"] = {
    "Rifornire la città per via aerea"
   ]
  },
- "24": {
+ "1698-beard-tax": {
   "place": "Mosca",
   "pov": "Torni da una grande ambasceria all'estero e vuoi modernizzare il tuo Paese. I tuoi nobili portano la barba, come vogliono la tradizione e la Chiesa. Sei lo zar di Russia.",
   "short": "Pietro",
@@ -40,7 +43,7 @@ window.LG_PUZZLES["your-call"] = {
    "Far pagare chi tiene la barba"
   ]
  },
- "25": {
+ "1957-little-rock": {
   "place": "Washington",
   "pov": "Il governatore dell'Arkansas ha usato la Guardia Nazionale per tenere nove studenti neri fuori da una scuola superiore di soli bianchi. Ora una folla di 400 persone li minaccia davanti alla scuola. Sei il presidente degli Stati Uniti.",
   "short": "Eisenhower",
@@ -53,7 +56,7 @@ window.LG_PUZZLES["your-call"] = {
    "Chiedere agli studenti di aspettare un anno"
   ]
  },
- "26": {
+ "1977-sadat": {
   "place": "Il Cairo",
   "pov": "Dal 1967 Israele occupa la penisola del Sinai, nel tuo Paese. Nel 1973 hai combattuto una guerra per riprenderla. Ora vuoi la pace, e la tua terra. Sei il presidente dell'Egitto.",
   "short": "Sadat",
@@ -66,7 +69,7 @@ window.LG_PUZZLES["your-call"] = {
    "Aspettare una conferenza di pace"
   ]
  },
- "27": {
+ "1822-brazil": {
   "place": "Rio de Janeiro",
   "pov": "Il parlamento del Portogallo vuole riportare il Brasile al suo vecchio stato di colonia. Ti ha tolto i poteri che ti restavano e ti ha ordinato di tornare in Portogallo. Sei il principe reggente del Brasile.",
   "short": "Pedro",
@@ -79,7 +82,7 @@ window.LG_PUZZLES["your-call"] = {
    "Restare come reggente del Portogallo"
   ]
  },
- "28": {
+ "1973-carfree": {
   "place": "L'Aia",
   "pov": "I Paesi produttori di petrolio boicottano il tuo Paese perché ha appoggiato Israele nella guerra del Kippur. Devi ridurre in fretta il consumo di petrolio. Sei il primo ministro dei Paesi Bassi.",
   "short": "Den Uyl",
@@ -92,7 +95,7 @@ window.LG_PUZZLES["your-call"] = {
    "Aspettare che il boicottaggio finisca"
   ]
  },
- "29": {
+ "1930-salt": {
   "place": "Ahmedabad",
   "pov": "Stai preparando la disobbedienza civile contro il dominio britannico e devi scegliere il primo obiettivo. Un collega vuole il boicottaggio delle tasse sulla terra. La legge britannica vieta agli indiani di raccogliere o vendere il sale. Sei il capo del movimento.",
   "short": "Gandhi",
@@ -105,7 +108,7 @@ window.LG_PUZZLES["your-call"] = {
    "Parlare prima con il viceré"
   ]
  },
- "30": {
+ "1783-washington": {
   "place": "Annapolis",
   "pov": "Per otto anni hai guidato l'esercito lontano da casa, e la scorsa primavera hai fermato la congiura di Newburgh. La guerra è finita. Sei il comandante in capo dell'esercito continentale.",
   "short": "Washington",
@@ -118,7 +121,7 @@ window.LG_PUZZLES["your-call"] = {
    "Dimettersi e tornare a casa"
   ]
  },
- "31": {
+ "1994-ukraine": {
   "place": "Kiev",
   "pov": "Il tuo nuovo Paese ha il terzo arsenale nucleare più grande del mondo, lasciato dall'Unione Sovietica. Alcuni dicono che dovresti tenerlo come deterrente contro la Russia. Sei il presidente dell'Ucraina.",
   "short": "Kravchuk",
@@ -131,7 +134,7 @@ window.LG_PUZZLES["your-call"] = {
    "Tenerne alcune e rinunciare al resto"
   ]
  },
- "32": {
+ "1970-october": {
   "place": "Ottawa",
   "pov": "Militanti separatisti hanno rapito un diplomatico britannico e un ministro del Québec e chiedono la liberazione di alcuni prigionieri. Il primo ministro del Québec ti chiede poteri di emergenza per arrestare i sospetti. Sei il primo ministro del Canada.",
   "short": "Trudeau",
@@ -144,7 +147,7 @@ window.LG_PUZZLES["your-call"] = {
    "Lasciare fare alla polizia del Québec"
   ]
  },
- "33": {
+ "1950-schuman": {
   "place": "Parigi",
   "pov": "Cinque anni dopo la seconda guerra mondiale, la Francia deve decidere come vivere accanto alla Germania Ovest. Carbone e acciaio sono i materiali più importanti per fabbricare armi. Sei il ministro degli Esteri della Francia.",
   "short": "Schuman",
@@ -157,7 +160,7 @@ window.LG_PUZZLES["your-call"] = {
    "Cercare un patto militare contro la Germania"
   ]
  },
- "34": {
+ "1986-marcos": {
   "place": "Manila",
   "pov": "Ti hanno dichiarato vincitore di elezioni anticipate segnate da brogli. Due alti funzionari sono passati dall'altra parte, e più di due milioni di persone protestano a Manila. Sei il presidente delle Filippine.",
   "short": "Marcos",
@@ -170,7 +173,7 @@ window.LG_PUZZLES["your-call"] = {
    "Non sparare e restare nel palazzo"
   ]
  },
- "35": {
+ "1961-wall": {
   "place": "Berlino Est",
   "pov": "Circa 3,5 milioni di persone, un quinto della tua popolazione, sono partite per l'Ovest, e a Berlino il confine è ancora aperto. Sei il leader della Germania Est.",
   "short": "Ulbricht",
@@ -184,3 +187,8 @@ window.LG_PUZZLES["your-call"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["your-call"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["your-call"] = days;
+  window.LG_PUZZLES["your-call.byId"] = byId;
+})();

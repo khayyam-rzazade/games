@@ -1,7 +1,10 @@
-/* Logicers: the fr words of who-gets-what for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the fr words of who-gets-what, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-who-gets-what-fr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["who-gets-what"] = {
- "22": {
+(function () {
+  var byId = {
+ "banana-co": {
   "what": "Un kilo de bananes de Colombie",
   "where": "Union européenne",
   "fact": "Pour la Colombie, la part du supermarché est la plus petite des cinq, et celle des planteurs l’une des plus grandes.",
@@ -29,7 +32,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "23": {
+ "de-power": {
   "what": "Un kilowattheure d’électricité",
   "where": "Allemagne",
   "fact": "En Allemagne, un kilowattheure d’électricité se partage presque en trois : l’énergie, le réseau et l’État.",
@@ -52,7 +55,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "24": {
+ "wine": {
   "what": "Une bouteille de vin moyenne",
   "where": "Royaume-Uni",
   "fact": "Quatre livres sterling d’une bouteille à 6,75 £ sont des taxes. Les 2,75 £ restantes doivent couvrir le vin, la bouteille, le transport et le magasin.",
@@ -75,7 +78,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "25": {
+ "us-food": {
   "what": "Un dollar dépensé en nourriture",
   "where": "États-Unis",
   "fact": "Sur chaque dollar que les gens aux États-Unis dépensent en nourriture, moins de neuf cents arrivent à une ferme. Les restaurants à eux seuls en prennent presque trente-neuf.",
@@ -103,7 +106,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "26": {
+ "it-medicine": {
   "what": "100 € de médicaments, avant TVA",
   "where": "Italie",
   "fact": "En Italie, la loi fixait le partage du prix d’un médicament : deux tiers pour le fabricant, presque un tiers pour la pharmacie, et trois centimes par euro pour le grossiste.",
@@ -126,7 +129,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "27": {
+ "au-power": {
   "what": "Une année d’électricité",
   "where": "Australie",
   "fact": "Amener l’électricité jusqu’à un foyer australien coûtait plus cher que la produire : les poteaux et les fils prenaient 45 cents de chaque dollar, les centrales 32.",
@@ -154,7 +157,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "28": {
+ "uk-whisky": {
   "what": "Une bouteille moyenne de whisky écossais",
   "where": "Royaume-Uni",
   "fact": "Les trois quarts du prix d’une bouteille moyenne de whisky écossais en Grande-Bretagne sont partis en taxes en 2023. Les accises à elles seules en prenaient plus de la moitié.",
@@ -177,7 +180,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "29": {
+ "ipad": {
   "what": "Un iPad de première génération",
   "where": "le monde",
   "fact": "Apple a gardé environ trente dollars sur chaque centaine payée pour le premier iPad. Les personnes qui l’ont construit, lui et ses pièces, en ont reçu moins de sept.",
@@ -205,7 +208,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "30": {
+ "gb-energy-22": {
   "what": "Une année de gaz et d’électricité",
   "where": "Grande-Bretagne",
   "fact": "Au printemps 2022, plus de la moitié d’une facture d’énergie britannique moyenne payait le gaz et l’électricité eux-mêmes.",
@@ -234,3 +237,8 @@ window.LG_PUZZLES["who-gets-what"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["who-gets-what"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["who-gets-what"] = days;
+  window.LG_PUZZLES["who-gets-what.byId"] = byId;
+})();

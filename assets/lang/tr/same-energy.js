@@ -1,7 +1,10 @@
-/* Logicers: the tr words of same-energy for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the tr words of same-energy, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-same-energy-tr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["same-energy"] = {
- "15": {
+(function () {
+  var byId = {
+ "oil-bread": {
   "a": {
    "name": "Bir kaşık zeytinyağı",
    "portion": "1 yemek kaşığı",
@@ -48,7 +51,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "16": {
+ "beer-can-milk": {
   "a": {
    "name": "Bir kutu bira",
    "portion": "330 ml",
@@ -97,7 +100,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "17": {
+ "cola-grapes": {
   "a": {
    "name": "Bir kutu kola",
    "portion": "330 ml",
@@ -145,7 +148,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "18": {
+ "chocolate-milk": {
   "a": {
    "name": "Küçük bir bitter çikolata",
    "portion": "40 g",
@@ -193,7 +196,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "19": {
+ "dates-bananas": {
   "a": {
    "name": "Bir avuç hurma",
    "portion": "50 g",
@@ -240,7 +243,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "20": {
+ "milk-cola": {
   "a": {
    "name": "Bir bardak süt",
    "portion": "250 ml",
@@ -289,7 +292,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "21": {
+ "orange-juice-eggs": {
   "a": {
    "name": "Bir bardak portakal suyu",
    "portion": "250 ml",
@@ -337,7 +340,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "22": {
+ "crisps-cola": {
   "a": {
    "name": "Küçük bir paket cips",
    "portion": "30 g",
@@ -385,7 +388,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "23": {
+ "peanut-butter-grapes": {
   "a": {
    "name": "Bir kaşık fıstık ezmesi",
    "portion": "1 yemek kaşığı",
@@ -432,7 +435,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "24": {
+ "beer-cola": {
   "a": {
    "name": "Büyük bir bira",
    "portion": "500 ml",
@@ -481,7 +484,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "25": {
+ "apple-juice-apples": {
   "a": {
    "name": "Bir paket elma suyu",
    "portion": "1 litre",
@@ -529,7 +532,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "26": {
+ "croissant-milk": {
   "a": {
    "name": "Bir kruvasan",
    "portion": "60 g",
@@ -577,7 +580,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "27": {
+ "oats-eggs": {
   "a": {
    "name": "Bir kase yulaf",
    "portion": "40 g, kuru",
@@ -624,7 +627,7 @@ window.LG_PUZZLES["same-energy"] = {
    }
   ]
  },
- "28": {
+ "big-cola-milk": {
   "a": {
    "name": "Büyük bir şişe kola",
    "portion": "1,5 litre",
@@ -674,3 +677,8 @@ window.LG_PUZZLES["same-energy"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["same-energy"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["same-energy"] = days;
+  window.LG_PUZZLES["same-energy.byId"] = byId;
+})();

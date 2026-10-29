@@ -1,7 +1,10 @@
-/* Logicers: the it words of who-gets-what for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the it words of who-gets-what, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-who-gets-what-it.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["who-gets-what"] = {
- "17": {
+(function () {
+  var byId = {
+ "fr-diesel": {
   "what": "Un litro di gasolio",
   "where": "Francia",
   "fact": "La Francia tassa il gasolio meno della benzina: 44 centesimi per ogni euro, contro 50.",
@@ -24,7 +27,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "18": {
+ "iphone": {
   "what": "Un iPhone 4",
   "where": "il mondo",
   "fact": "Sul prezzo pieno di uno dei primi iPhone, chi lo costruì con le mani, insieme ai suoi componenti, ricevette circa cinque dollari ogni cento. Apple ne tenne cinquantotto.",
@@ -52,7 +55,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "19": {
+ "banana-do": {
   "what": "Un chilo di banane dominicane",
   "where": "Unione europea",
   "fact": "La frutta della Repubblica Dominicana passa la frontiera europea senza dazi, e chi la coltiva si tiene quasi un quarto del prezzo.",
@@ -75,7 +78,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "20": {
+ "de-diesel": {
   "what": "Un litro di gasolio",
   "where": "Germania",
   "fact": "Il gasolio tedesco ha un'accisa più leggera della benzina ma un prezzo del carbonio più pesante, perché bruciandolo se ne produce di più.",
@@ -103,7 +106,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "21": {
+ "cigs-fr": {
   "what": "Un pacchetto da 20 sigarette",
   "where": "Francia",
   "fact": "Quattro quinti di un pacchetto francese erano tasse. Tutto il resto — coltivarlo, produrlo, spedirlo, venderlo — si divideva l'ultimo quinto.",
@@ -126,7 +129,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "22": {
+ "banana-co": {
   "what": "Un chilo di banane colombiane",
   "where": "Unione europea",
   "fact": "La parte del supermercato per le banane colombiane è la più piccola delle cinque, e quella di chi le coltiva una delle più grandi.",
@@ -154,7 +157,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "23": {
+ "de-power": {
   "what": "Un kilowattora di elettricità",
   "where": "Germania",
   "fact": "La Germania divide un kilowattora di elettricità quasi in tre parti: l'energia, la rete e lo Stato.",
@@ -177,7 +180,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "24": {
+ "wine": {
   "what": "Una bottiglia di vino media",
   "where": "Regno Unito",
   "fact": "Quattro sterline di una bottiglia da 6,75 sterline sono tasse. Le altre 2,75 devono coprire il vino, la bottiglia, il trasporto e il negozio.",
@@ -200,7 +203,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "25": {
+ "us-food": {
   "what": "Un dollaro speso in cibo",
   "where": "Stati Uniti",
   "fact": "Di ogni dollaro che gli americani spendono in cibo, meno di nove centesimi arrivano a un'azienda agricola. I soli ristoranti ne prendono quasi trentanove.",
@@ -228,7 +231,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "26": {
+ "it-medicine": {
   "what": "100 euro di medicinali, prima dell'IVA",
   "where": "Italia",
   "fact": "La legge italiana fissava come si divideva il prezzo di un medicinale: due terzi al produttore, quasi un terzo alla farmacia e tre centesimi per ogni euro al grossista.",
@@ -251,7 +254,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "27": {
+ "au-power": {
   "what": "Un anno di elettricità",
   "where": "Australia",
   "fact": "Portare l'elettricità in una casa australiana costava più che produrla: pali e cavi si prendevano 45 centesimi per ogni dollaro, le centrali 32.",
@@ -279,7 +282,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "28": {
+ "uk-whisky": {
   "what": "Una bottiglia media di whisky scozzese",
   "where": "Regno Unito",
   "fact": "Tre quarti del prezzo di una bottiglia media di whisky scozzese in Gran Bretagna se ne andarono in tasse nel 2023. Le sole accise presero più della metà.",
@@ -302,7 +305,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "29": {
+ "ipad": {
   "what": "Un iPad della prima generazione",
   "where": "il mondo",
   "fact": "Apple tenne circa trenta dollari ogni cento pagati per il primo iPad. Chi lo costruì, insieme ai suoi componenti, ne ricevette meno di sette.",
@@ -330,7 +333,7 @@ window.LG_PUZZLES["who-gets-what"] = {
    }
   ]
  },
- "30": {
+ "gb-energy-22": {
   "what": "Un anno di gas ed elettricità",
   "where": "Gran Bretagna",
   "fact": "Nella primavera del 2022 più della metà di una tipica bolletta britannica pagava il gas e l'elettricità veri e propri.",
@@ -359,3 +362,8 @@ window.LG_PUZZLES["who-gets-what"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["who-gets-what"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["who-gets-what"] = days;
+  window.LG_PUZZLES["who-gets-what.byId"] = byId;
+})();

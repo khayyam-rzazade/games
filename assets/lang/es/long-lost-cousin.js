@@ -1,55 +1,81 @@
-/* Logicers: the es words of long-lost-cousin for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the es words of long-lost-cousin, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-long-lost-cousin-es.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["long-lost-cousin"] = {
- "21": {
+(function () {
+  var byId = {
+ "meerkat": {
   "fact": "Los suricatos son mangostas, que están del lado de los gatos entre los carnívoros. Los osos están del lado de los perros, y los perros de las praderas, que se ponen de pie igual que ellos, son roedores."
  },
- "22": {
+ "ant": {
   "fact": "Las hormigas evolucionaron a partir de las avispas y pertenecen al grupo de las avispas y las abejas. Las termitas son parientes de las cucarachas."
  },
- "23": {
+ "beaver": {
   "fact": "El castor es un roedor, igual que el ratón. Los conejos no son roedores, pero son los parientes más próximos de los roedores. Las nutrias son carnívoras."
  },
- "24": {
+ "axolotl": {
   "fact": "El ajolote es una salamandra, y las salamandras son anfibios, igual que las ranas. Los lagartos son reptiles."
  },
- "25": {
+ "camel": {
   "fact": "Los camellos y las llamas pertenecen a la misma familia. Las llamas son los camellos de Sudamérica."
  },
- "26": {
+ "seahorse": {
   "fact": "El caballito de mar es un pez óseo, del mismo gran grupo que el atún."
  },
- "27": {
+ "toucan": {
   "fact": "Los tucanes pertenecen al orden de los pájaros carpinteros. Los cálaos desarrollaron su gran pico por separado."
  },
- "28": {
+ "porcupine": {
   "fact": "Los puercoespines son roedores de la rama de la cobaya. Los ratones son roedores de otra rama, y los erizos desarrollaron sus púas por separado."
  },
- "29": {
+ "mantis": {
   "fact": "Los parientes más cercanos de la mantis religiosa son las cucarachas y las termitas."
  },
- "30": {
+ "narwhal": {
   "fact": "El narval y la beluga son los únicos dos miembros vivos de su familia de ballenas."
  },
- "31": {
+ "velociraptor": {
   "fact": "El Velociraptor tenía plumas y era un pariente cercano de las aves."
  },
- "32": {
+ "orca": {
   "fact": "La orca es el miembro más grande de la familia de los delfines."
  },
- "33": {
+ "flea": {
   "fact": "Las pulgas están más cerca de las moscas que de los piojos. Las mariposas vienen después: igual que las pulgas y las moscas, pasan por una fase de pupa. Los piojos no."
  },
- "34": {
+ "pangolin": {
   "fact": "Los parientes vivos más cercanos del pangolín son los carnívoros, como los gatos. Los caballos están en una rama cercana. Sus escamas solo se parecen a la armadura de un armadillo."
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["long-lost-cousin"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["long-lost-cousin"] = days;
+  window.LG_PUZZLES["long-lost-cousin.byId"] = byId;
+})();
 window.LG_PUZZLES["long-lost-cousin.things"] = {
- "meerkat": {
-  "name": "Suricato",
-  "the": "el suricato",
-  "of": "del suricato",
-  "bare": "suricato"
+ "crocodile": {
+  "name": "Cocodrilo",
+  "the": "el cocodrilo",
+  "of": "del cocodrilo",
+  "bare": "cocodrilo"
+ },
+ "termite": {
+  "name": "Termita",
+  "the": "la termita",
+  "of": "de la termita",
+  "bare": "termita"
+ },
+ "ant": {
+  "name": "Hormiga",
+  "the": "la hormiga",
+  "of": "de la hormiga",
+  "bare": "hormiga"
+ },
+ "cockroach": {
+  "name": "Cucaracha",
+  "the": "la cucaracha",
+  "of": "de la cucaracha",
+  "bare": "cucaracha"
  },
  "cat": {
   "name": "Gato",
@@ -63,35 +89,113 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "del oso",
   "bare": "oso"
  },
- "prairie_dog": {
-  "name": "Perro de las praderas",
-  "the": "el perro de las praderas",
-  "of": "del perro de las praderas",
-  "bare": "perro de las praderas"
+ "shark": {
+  "name": "Tiburón",
+  "the": "el tiburón",
+  "of": "del tiburón",
+  "bare": "tiburón"
  },
- "ant": {
-  "name": "Hormiga",
-  "the": "la hormiga",
-  "of": "de la hormiga",
-  "bare": "hormiga"
+ "dolphin": {
+  "name": "Delfín",
+  "the": "el delfín",
+  "of": "del delfín",
+  "bare": "delfín"
  },
- "bee": {
-  "name": "Abeja",
-  "the": "la abeja",
-  "of": "de la abeja",
-  "bare": "abeja"
+ "tuna": {
+  "name": "Atún",
+  "the": "el atún",
+  "of": "del atún",
+  "bare": "atún"
  },
- "termite": {
-  "name": "Termita",
-  "the": "la termita",
-  "of": "de la termita",
-  "bare": "termita"
+ "horse": {
+  "name": "Caballo",
+  "the": "el caballo",
+  "of": "del caballo",
+  "bare": "caballo"
+ },
+ "mouse": {
+  "name": "Ratón",
+  "the": "el ratón",
+  "of": "del ratón",
+  "bare": "ratón"
+ },
+ "lizard": {
+  "name": "Lagarto",
+  "the": "el lagarto",
+  "of": "del lagarto",
+  "bare": "lagarto"
+ },
+ "frog": {
+  "name": "Rana",
+  "the": "la rana",
+  "of": "de la rana",
+  "bare": "rana"
  },
  "spider": {
   "name": "Araña",
   "the": "la araña",
   "of": "de la araña",
   "bare": "araña"
+ },
+ "eagle": {
+  "name": "Águila",
+  "the": "el águila",
+  "of": "del águila",
+  "bare": "águila"
+ },
+ "parrot": {
+  "name": "Loro",
+  "the": "el loro",
+  "of": "del loro",
+  "bare": "loro"
+ },
+ "dragonfly": {
+  "name": "Libélula",
+  "the": "la libélula",
+  "of": "de la libélula",
+  "bare": "libélula"
+ },
+ "housefly": {
+  "name": "Mosca",
+  "the": "la mosca",
+  "of": "de la mosca",
+  "bare": "mosca"
+ },
+ "pangolin": {
+  "name": "Pangolín",
+  "the": "el pangolín",
+  "of": "del pangolín",
+  "bare": "pangolín"
+ },
+ "triceratops": {
+  "name": "Triceratops",
+  "the": "el Triceratops",
+  "of": "del Triceratops",
+  "bare": "Triceratops"
+ },
+ "walrus": {
+  "name": "Morsa",
+  "the": "la morsa",
+  "of": "de la morsa",
+  "bare": "morsa"
+ },
+ "meerkat": {
+  "name": "Suricato",
+  "the": "el suricato",
+  "of": "del suricato",
+  "bare": "suricato"
+ },
+ "prairie_dog": {
+  "name": "Perro de las praderas",
+  "the": "el perro de las praderas",
+  "of": "del perro de las praderas",
+  "bare": "perro de las praderas"
+ },
+ "bee": {
+  "name": "Abeja",
+  "the": "la abeja",
+  "of": "de la abeja",
+  "bare": "abeja"
  },
  "beaver": {
   "name": "Castor",
@@ -111,12 +215,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "del conejo",
   "bare": "conejo"
  },
- "mouse": {
-  "name": "Ratón",
-  "the": "el ratón",
-  "of": "del ratón",
-  "bare": "ratón"
- },
  "axolotl": {
   "name": "Ajolote",
   "the": "el ajolote",
@@ -129,29 +227,11 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "de la anguila",
   "bare": "anguila"
  },
- "lizard": {
-  "name": "Lagarto",
-  "the": "el lagarto",
-  "of": "del lagarto",
-  "bare": "lagarto"
- },
- "frog": {
-  "name": "Rana",
-  "the": "la rana",
-  "of": "de la rana",
-  "bare": "rana"
- },
  "camel": {
   "name": "Camello",
   "the": "el camello",
   "of": "del camello",
   "bare": "camello"
- },
- "horse": {
-  "name": "Caballo",
-  "the": "el caballo",
-  "of": "del caballo",
-  "bare": "caballo"
  },
  "llama": {
   "name": "Llama",
@@ -177,29 +257,11 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "del calamar",
   "bare": "calamar"
  },
- "tuna": {
-  "name": "Atún",
-  "the": "el atún",
-  "of": "del atún",
-  "bare": "atún"
- },
- "shark": {
-  "name": "Tiburón",
-  "the": "el tiburón",
-  "of": "del tiburón",
-  "bare": "tiburón"
- },
  "toucan": {
   "name": "Tucán",
   "the": "el tucán",
   "of": "del tucán",
   "bare": "tucán"
- },
- "parrot": {
-  "name": "Loro",
-  "the": "el loro",
-  "of": "del loro",
-  "bare": "loro"
  },
  "hornbill": {
   "name": "Cálao",
@@ -237,35 +299,17 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "de la mantis religiosa",
   "bare": "mantis religiosa"
  },
- "cockroach": {
-  "name": "Cucaracha",
-  "the": "la cucaracha",
-  "of": "de la cucaracha",
-  "bare": "cucaracha"
- },
  "grasshopper": {
   "name": "Saltamontes",
   "the": "el saltamontes",
   "of": "del saltamontes",
   "bare": "saltamontes"
  },
- "dragonfly": {
-  "name": "Libélula",
-  "the": "la libélula",
-  "of": "de la libélula",
-  "bare": "libélula"
- },
  "narwhal": {
   "name": "Narval",
   "the": "el narval",
   "of": "del narval",
   "bare": "narval"
- },
- "walrus": {
-  "name": "Morsa",
-  "the": "la morsa",
-  "of": "de la morsa",
-  "bare": "morsa"
  },
  "marlin": {
   "name": "Marlín",
@@ -285,24 +329,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "del Velociraptor",
   "bare": "Velociraptor"
  },
- "eagle": {
-  "name": "Águila",
-  "the": "el águila",
-  "of": "del águila",
-  "bare": "águila"
- },
- "triceratops": {
-  "name": "Triceratops",
-  "the": "el Triceratops",
-  "of": "del Triceratops",
-  "bare": "Triceratops"
- },
- "crocodile": {
-  "name": "Cocodrilo",
-  "the": "el cocodrilo",
-  "of": "del cocodrilo",
-  "bare": "cocodrilo"
- },
  "orca": {
   "name": "Orca",
   "the": "la orca",
@@ -321,12 +347,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "of": "del tiburón blanco",
   "bare": "tiburón blanco"
  },
- "dolphin": {
-  "name": "Delfín",
-  "the": "el delfín",
-  "of": "del delfín",
-  "bare": "delfín"
- },
  "flea": {
   "name": "Pulga",
   "the": "la pulga",
@@ -344,18 +364,6 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "the": "el piojo",
   "of": "del piojo",
   "bare": "piojo"
- },
- "housefly": {
-  "name": "Mosca",
-  "the": "la mosca",
-  "of": "de la mosca",
-  "bare": "mosca"
- },
- "pangolin": {
-  "name": "Pangolín",
-  "the": "el pangolín",
-  "of": "del pangolín",
-  "bare": "pangolín"
  },
  "armadillo": {
   "name": "Armadillo",

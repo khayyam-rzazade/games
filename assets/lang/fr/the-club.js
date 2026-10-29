@@ -1,7 +1,10 @@
-/* Logicers: the fr words of the-club for the first days, laid over the English puzzles at play time (build_lang.py). */
+/* Logicers: the fr words of the-club, one entry per puzzle (by its id), laid under every day number that plays it up to day 1000
+   (build_lang.py, from assets/lang/src/puzzles-the-club-fr.md). Day d plays puzzles[(d - 1) % stock], as in the game's own script, so a
+   puzzle that comes round again keeps its words. Do not edit by hand: change the doc, rebuild. */
 window.LG_PUZZLES = window.LG_PUZZLES || {};
-window.LG_PUZZLES["the-club"] = {
- "26": {
+(function () {
+  var byId = {
+ "molluscs": {
   "sign": "Ce sont des mollusques",
   "stamp": "Mollusques",
   "fact": "Ce sont des mollusques. Une pieuvre est une cousine de l’escargot de jardin ; la balane est un crustacé, comme le crabe.",
@@ -37,7 +40,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "27": {
+ "legumes": {
   "sign": "Ce sont des légumineuses",
   "stamp": "Légumineuses",
   "fact": "Ce sont des légumineuses, des plantes de la famille du pois dont les graines poussent dans des gousses. L’arachide en est une : pour les botanistes, ce n’est pas une noix.",
@@ -73,7 +76,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "28": {
+ "alloys": {
   "sign": "Ce sont des alliages",
   "stamp": "Alliages",
   "fact": "Ce sont des alliages, des métaux fondus ensemble. Le bronze est du cuivre et de l’étain ; le laiton est du cuivre et du zinc.",
@@ -109,7 +112,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "29": {
+ "andersen": {
   "sign": "Des contes de H. C. Andersen",
   "stamp": "Contes d’Andersen",
   "fact": "Hans Christian Andersen a inventé chacun de ces contes. Cendrillon et Blanche-Neige sont de vieux contes populaires que d’autres ont mis par écrit.",
@@ -145,7 +148,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "30": {
+ "roman-emperors": {
   "sign": "C’étaient des empereurs romains",
   "stamp": "Empereurs romains",
   "fact": "Chacun a été empereur romain. Jules César ne l’a jamais été : Auguste est devenu le premier empereur en 27 av. J.-C.",
@@ -181,7 +184,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "31": {
+ "landlocked": {
   "sign": "Ils n’ont pas d’accès à la mer",
   "stamp": "Pays sans littoral",
   "fact": "Aucun de ces pays ne touche la mer. L’Éthiopie, avec plus de 100 millions d’habitants, est le pays le plus peuplé sans côte.",
@@ -217,7 +220,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "32": {
+ "olympics-1896": {
   "sign": "Aux premiers Jeux olympiques modernes",
   "stamp": "Athènes 1896",
   "fact": "Tous faisaient partie des premiers Jeux olympiques modernes, Athènes 1896. L’aviron était prévu aussi, mais le mauvais temps l’a empêché.",
@@ -253,7 +256,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "33": {
+ "high-capitals": {
   "sign": "À plus de 2 000 mètres d’altitude",
   "stamp": "Capitales d’altitude",
   "fact": "Chacune se trouve à plus de 2 000 mètres au-dessus de la mer. La Paz, à environ 3 600 mètres, est la capitale la plus haute du monde.",
@@ -289,7 +292,7 @@ window.LG_PUZZLES["the-club"] = {
    ]
   ]
  },
- "34": {
+ "no-bones": {
   "sign": "Ils n’ont pas d’os",
   "stamp": "Sans os",
   "fact": "Aucun n’a le moindre os. Le squelette d’un requin est fait de cartilage, la matière souple de tes oreilles et de ton nez.",
@@ -326,3 +329,8 @@ window.LG_PUZZLES["the-club"] = {
   ]
  }
 };
+  var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["the-club"], list = D && (D.puzzles || D.questions), days = {};
+  if (list && list.length) for (var d = 1; d <= 1000; d++) { var t = byId[list[(d - 1) % list.length].id]; if (t) days[d] = t; }
+  window.LG_PUZZLES["the-club"] = days;
+  window.LG_PUZZLES["the-club.byId"] = byId;
+})();
