@@ -102,7 +102,7 @@ POST /stats/send   {"v":1,"d":"20261028","rs":[{"k":"climb-it","e":1,"g":14}],"k
 
 * `k` = `climb-en | climb-it | climb-es | climb-pt | climb-fr | climb-tr`
 * `e` = **levels short of the summit** = `8 - height` (height 8 → `e:0`; 7 letters → `e:1`; first word missed → `e:8`; `e:7` never happens)
-* `g` = guesses used (1 to 26; a hint counts 2). A climb starts with 20 and every word found gives 1 back, so the most it can use is `BUDGET + BONUS * 6` = 26 (the 8-letter word, if found, ends the climb)
+* `g` = guesses used (1 to 26; since 29 Oct 2026 a hint costs no guesses, so this is guesses only). A climb starts with 20 and every word found gives 1 back, so the most it can use is `BUDGET + BONUS * 6` = 26 (the 8-letter word, if found, ends the climb)
 
 So the Worker needs only three table entries (in `assets/js/points.js` **and** the server's byte-copy `server/live/src/points.js`), repeated for the six ids:
 
@@ -134,7 +134,7 @@ If a result is sent twice the server's existing rule (one per player per game pe
 
 ## 4. Behaviour you may want to change
 
-* Constants at the top of `climb.js`: `BUDGET = 20` (guesses to start with), `BONUS = 1` (given back for every word found), `HINT_COST = 2`, `REVEAL_FROM = 7` (from this many letters the first letter is given), `WARM_AT = 3` (the counter turns warm at this many guesses left or fewer), `HOLD` (the moment a found word stays: flag, cheer, +1), `START`.
+* Constants at the top of `climb.js`: `BUDGET = 20` (guesses to start with), `BONUS = 1` (given back for every word found), `HINTS_FREE = 2` and `HINTS_EARN = 2` (the hint pool), `REVEAL_FROM = 7` (from this many letters the first letter is given), `WARM_AT = 3` (the counter turns warm at this many guesses left or fewer), `HOLD` (the moment a found word stays: flag, cheer, +1), `START`.
 * **Going up** (28 Oct 2026, Khayyam): every word found plants a small flag on the ladder, gives a short haptic tap (`navigator.vibrate` on Android; on iPhone a hidden switch toggle, Safari 17.4+, untested on a device), shows a one-or-two-word cheer that changes with the height (`cheer_2` … `cheer_8` in `strings.json`) and flies a "+1" into the counter. The page's sky (`--alt`, set on `<html>`, 0 at the foot, 1 at the summit) gets lighter with each height, the clouds drift down and the ridge at the bottom sinks away; with reduced motion it just changes. The counter and the bar's remaining segments turn amber (never red) at the last 3 guesses.
 * **The end never says failed**: the card opens with "You reached 6 letters" (or "You reached the summit!", "You're at base camp"), then "Higher than 64% of players today" when the server can say it (it is left out when the share would be 0), then guesses and time, and the word that stopped the climb said softly ("It was FICTION"). "Where everyone fell" became "How high everyone got". The share picture still says "6 letters".
 * **Language**: follows the site's language chip (`lg.findout.lang`), else the phone's language, else English. Picking another language inside Climb (the chip, or "Try it in…") holds only until the site's chip is changed. One run per language per day; a second language never touches the streak.
@@ -153,6 +153,35 @@ Also tested for the "going up" version: the +1 flying into the counter (18 → 1
 
 Not tested: the real Worker (it does not know the ids yet), the haptic tap on a phone (the code path runs; a desktop has no motor), the real system share sheet (`navigator.share` with a file) on a phone, Safari/iOS, and the midnight reload.
 
+
+## Hints and the questions (29 Oct 2026, Khayyam)
+
+A climb starts with **two hints** and can **earn two more**, one question at a time. Hints cost no guesses:
+the pool is the limit, and so is the cap per word — **one** hint on the 2- and 3-letter words (a letter is most
+of a short word), **two** from 4 letters up. A hint reveals one letter in place, as a ghost tile, choosing a
+place the player cannot already work out (not the given first letter, not one a guess turned green, not one a
+hint already showed).
+
+**One chip, two jobs.** While hints are in hand `#hint` spends one and shows how many are left. With none left
+and a question still to answer it becomes "Earn a hint" and opens the question sheet. That keeps the status row
+to two controls on a phone and puts the offer where the player looks when stuck. When hints remain but the word
+has had its share, the chip goes quiet and its label says so.
+
+**The questions** are `altitude/questions.json` — a copy of `claude/altitude-questions.json`, also kept at
+`assets/lang/src/altitude-questions.json` for the translation build. 180 questions on 7 stems, every answer read
+out of another Logicers game's puzzle data, so nothing in it was written by hand. If the bank changes, copy it
+to all three places. The words come from `assets/lang/<code>/questions.js` (`window.LG_QUESTIONS`), loaded on
+demand the first time a player opens a question; English uses the bank's own text, and a language whose file is
+missing falls back to English rather than failing.
+
+**Two things the code must keep doing.** The bank writes the right answer first in 163 of its 180 questions, so
+the options are **shuffled on every showing** — without that, tapping the first one wins nine times in ten. And
+a question already asked today is not asked again (`run.qs`).
+
+**A wrong answer costs nothing** (Khayyam, 29 Oct 2026): it shows the right answer, keeps the pool and the
+guess count untouched, and offers another question. After a right answer the player chooses — earn the second
+hint now, or go back to the climb. The run carries `hp` (hints in hand), `he` (earned so far), `hi` (the places
+shown, per word) and `qs` (questions used); a climb saved under the old one-hint model is migrated on load.
 
 ## Still open (28 Oct 2026)
 

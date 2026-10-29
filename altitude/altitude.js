@@ -13,7 +13,11 @@
   var START = "2026-10-28";        // day 1 (the day number only picks the words and labels the day)
   var BUDGET = 20;                 // guesses to start with; when they run out, the climb ends
   var BONUS = 1;                   // guesses given back for every word found ("+1" flies into the counter)
-  var HINT_COST = 2;               // what the day's one hint costs
+  /* Hints (29 Oct 2026, Khayyam): a climb starts with two, and two more can be earned by answering a question
+     from Logicers' own puzzles. They cost no guesses — the pool is the limit, and so is the cap per word:
+     one hint on the 2- and 3-letter words (where one letter is most of the answer), two from 4 letters up. */
+  var HINTS_FREE = 2;              // hints a climb begins with
+  var HINTS_EARN = 2;              // the most that can be earned on top, one question each
   var REVEAL_FROM = 7;             // from this many letters, the word's first letter is given
   var WARM_AT = 3;                 // the counter turns warm (never red) when this many guesses or fewer are left
   var FIRST = 2, LAST = 8;         // letters of the first stage and of the summit
@@ -156,8 +160,14 @@
   }
   function runOf(l, d) { return (store.runs[l] && store.runs[l][d]) || null; }
   function blank() {
-    return { d: day, L: FIRST, g: {}, used: 0, found: [], hint: null, h: null, done: false, ms: 0, t: 0 };
+    return { d: day, L: FIRST, g: {}, used: 0, found: [], h: null, done: false, ms: 0, t: 0,
+             hp: HINTS_FREE, he: 0, hi: {}, qs: [] };
   }
+  /* how many hints one word may take: a letter is most of a 2- or 3-letter word, so it gets one */
+  function hintCap(L) { return L <= 3 ? 1 : 2; }
+  function hintsOn(L) { return (run.hi && run.hi[String(L)]) || []; }
+  function canHint() { return canPlay() && run.hp > 0 && hintsOn(run.L).length < hintCap(run.L); }
+  function canEarn() { return canPlay() && run.he < HINTS_EARN; }
   function attach() {
     if (!store.runs[lang]) store.runs[lang] = {};
     store.runs[lang][day] = run;
@@ -170,6 +180,20 @@
     if (!isNum(r.used)) r.used = 0;
     if (!isNum(r.ms)) r.ms = 0;
     if (!isNum(r.L) || r.L < FIRST || r.L > LAST) r.L = FIRST;
+    /* hints: a climb saved before 29 Oct 2026 carries one `hint` object and paid guesses for it. Keep the
+       letter it revealed, and give the climb the new pool; the guesses it already spent are left spent. */
+    if (!r.hi || typeof r.hi !== "object") r.hi = {};
+    if (r.hint && isNum(r.hint.L) && isNum(r.hint.i)) {
+      if (!r.hi[String(r.hint.L)]) r.hi[String(r.hint.L)] = [r.hint.i];
+      delete r.hint;
+    }
+    if (!Array.isArray(r.qs)) r.qs = [];
+    if (!isNum(r.he) || r.he < 0 || r.he > HINTS_EARN) r.he = 0;
+    if (!isNum(r.hp) || r.hp < 0) {
+      var spent = 0;
+      Object.keys(r.hi).forEach(function (k) { spent += r.hi[k].length; });
+      r.hp = Math.max(0, HINTS_FREE + r.he - spent);
+    }
     if (!r.done) {
       while (r.found.indexOf(r.L) >= 0 && r.L < LAST) r.L++;
       if (r.found.indexOf(LAST) >= 0 || r.used >= capOf(r)) { r.done = true; r.h = height(r); }
@@ -256,14 +280,12 @@
     $("m-name").textContent = T("name");
     $("day-label").textContent = T("day", { n: day });
     $("hint-t").textContent = T("hint");
-    $("hint-c").textContent = "−" + HINT_COST;
-    $("hint").setAttribute("aria-label", T("hint_aria", { c: HINT_COST }));
     $("giveup").textContent = T("give_btn");
     $("help-btn").setAttribute("aria-label", T("help"));
     $("help-title").textContent = T("help");
     $("h1").textContent = T("h1");
     $("h2").textContent = T("h2", { n: BUDGET, b: BONUS });
-    $("h3").textContent = T("h3", { c: HINT_COST, r: REVEAL_FROM });
+    $("h3").textContent = T("h3", { r: REVEAL_FROM });
     $("album-title").textContent = T("album");
     $("st-played-l").textContent = T("st_played");
     $("st-streak-l").textContent = T("st_now");
@@ -359,14 +381,14 @@
   }
   function drawCur(pop) {
     if (!curRow) return;
-    var L = view.L, h = run.hint && run.hint.L === L ? run.hint : null;
-    var ghost = h ? Array.from(ans(L))[h.i] : null, lock = lockN(L), a = Array.from(ans(L));
+    var L = view.L, lock = lockN(L), a = Array.from(ans(L));
+    var shown = view.L === run.L ? hintsOn(L) : [];                                 // hints belong to the word they were spent on
     curRow.textContent = "";
     for (var i = 0; i < L; i++) {
       var t;
       if (i < lock) t = tile(a[i], "g lock");                                       // given: shown with its accent, and it stays
       else if (i < cur.length) { t = tile(cur[i], "f"); if (pop && i === cur.length - 1 && !reduced()) t.classList.add("pop"); }
-      else if (h && i === h.i) t = tile(ghost, "gh");
+      else if (shown.indexOf(i) >= 0) t = tile(a[i], "gh");
       else t = tile("", "");
       curRow.appendChild(t);
     }
@@ -422,10 +444,19 @@
   }
   function renderStatus() {
     renderLeft(false);
-    var hb = $("hint");
-    var spent = !!run.hint;
-    hb.disabled = spent || run.done || leftNow() < HINT_COST + 1;
-    $("hint-c").textContent = spent ? "✓" : "−" + HINT_COST;
+    /* One chip, two jobs (29 Oct 2026, Khayyam): while there are hints it spends one and shows how many are
+       left; with none left and a question still to answer it becomes the way to earn the next one. That keeps
+       the row to two controls on a phone and puts the offer exactly where the player looks when stuck. */
+    var hb = $("hint"), earn = run.hp <= 0 && canEarn();
+    var capped = run.hp > 0 && hintsOn(run.L).length >= hintCap(run.L);        // hints in hand, but this word has had its share
+    hb.disabled = run.done || (!canHint() && !earn);
+    hb.classList.toggle("earn", earn);
+    $("hint-t").textContent = earn ? T("earn") : T("hint");
+    $("hint-c").textContent = earn ? "" : String(run.hp);
+    $("hint-c").hidden = earn;
+    var label = earn ? T("earn_aria") : capped ? T("hint_full") : T("hint_aria", { n: run.hp });
+    hb.setAttribute("aria-label", label);
+    hb.setAttribute("title", label);
     $("srow").hidden = run.done;
     $("kb").hidden = run.done;
     $("strip").hidden = !run.done;
@@ -564,8 +595,8 @@
         }, reduced() ? 0 : 650);
         later(advance, reduced() ? 600 : HOLD);
       } else {
+        busy = false;                 // free the game first: renderStatus() asks canPlay(), which reads busy
         renderStatus();
-        busy = false;
       }
     }, flipMs(L));
   }
@@ -581,8 +612,8 @@
     renderBoard();
     renderKeyboard();
     renderBudget();
+    busy = false;                     // before renderStatus(): the hint chip asks canPlay(), which reads busy
     renderStatus();
-    busy = false;
   }
 
   /* ---- the feel of going up: sky, cheer, haptic tap, the flying "+1" ---- */
@@ -667,25 +698,160 @@
     later(end, 1500);                                                      // never leave the counter waiting
   }
 
-  function useHint() {
-    if (!canPlay() || run.hint || leftNow() < HINT_COST + 1) return;
-    var L = run.L, af = Array.from(fold(ans(L))), known = [];
+  /* where the next hint should land: a place the player cannot already work out — not the given first letter,
+     not one a guess has already turned green, and not one a hint has already shown. */
+  function hintSpot(L) {
+    var af = Array.from(fold(ans(L))), known = [], j;
     for (var k = 0; k < lockN(L); k++) known[k] = true;                    // the given first letter is not worth a hint
     (run.g[L] || []).forEach(function (g) {
       scoreOf(g, L).forEach(function (s, i) { if (s === "g") known[i] = true; });
     });
-    var i = -1, j;                                                         // the hint goes where it can be seen: the first open place not yet known
+    hintsOn(L).forEach(function (i) { known[i] = true; });
+    var i = -1;                                                            // the hint goes where it can be seen: the first open place not yet known
     for (j = Math.min(cur.length, af.length); j < af.length && i < 0; j++) if (!known[j]) i = j;
     for (j = 0; j < af.length && i < 0; j++) if (!known[j]) i = j;
-    if (i < 0) i = 0;
+    return i;
+  }
+  function useHint() {
+    if (!canHint()) { if (canEarn() && run.hp <= 0) openQuestion(); return; }
+    var L = run.L, i = hintSpot(L);
+    if (i < 0) return;                                                     // every letter is already known: nothing a hint could add
     touchTime();
     attach();
-    run.hint = { L: L, i: i };
-    run.used += HINT_COST;
+    if (!run.hi[String(L)]) run.hi[String(L)] = [];
+    run.hi[String(L)].push(i);
+    run.hp -= 1;
     save();
+    if (TO && TO.count) TO.count("altitude/hint");
     drawCur(false);
-    renderBudget();
     renderStatus();
+  }
+
+  /* ------------------------------------------------------------------ earning a hint (29 Oct 2026, Khayyam)
+     One question at a time, never a pair: the player answers, takes the hint, and comes back for the second
+     only if still stuck. Every answer is read out of Logicers' own puzzle data, so nothing here is invented.
+     A wrong answer costs nothing — it shows the right one and offers another question — because the point is
+     to keep someone climbing, not to punish them for a guess. */
+  var BANK = null, QT = null;              // the questions, and the language's words for them (LG_QUESTIONS)
+  var qCur = null;                         // the question on screen: { q, opts: [{text, right}] }
+
+  function loadBank() {
+    if (BANK) return Promise.resolve(BANK);
+    return getJSON("questions.json").then(function (b) {
+      BANK = (b && b.questions && b.stems) ? b : { stems: {}, questions: [] };
+      return BANK;
+    }, function () { BANK = { stems: {}, questions: [] }; return BANK; });
+  }
+  /* the language's words for the questions: assets/lang/<code>/questions.js sets window.LG_QUESTIONS.
+     English is the bank itself. (Not to be confused with loadWords(), which loads the climb's word lists.) */
+  function loadQWords() {
+    if (lang === "en" || QT) return Promise.resolve(QT);
+    return new Promise(function (done) {
+      var s = document.createElement("script");
+      s.src = "../assets/lang/" + lang + "/questions.js";
+      s.onload = function () { QT = window.LG_QUESTIONS || null; done(QT); };
+      s.onerror = function () { QT = null; done(null); };     // no file: the question is asked in English
+      document.head.appendChild(s);
+    });
+  }
+  function qText(en) { return (QT && QT.text && QT.text[en]) || en; }
+  function qStem(q) {
+    var t = (QT && QT.stems && QT.stems[q.stem]) || (BANK.stems && BANK.stems[q.stem]) || "";
+    if (!q.x) return t;
+    var forms = (QT && QT.forms && QT.forms[q.x]) || null;
+    return t.replace(/\{x\.the\}/g, (forms && forms.the) || qText(q.x))
+            .replace(/\{x\.of\}/g, (forms && forms.of) || qText(q.x))
+            .replace(/\{x\}/g, qText(q.x));
+  }
+  /* the day picks where in the bank to start, so two players of the same day meet the same questions, and the
+     options are shuffled every time: in the bank the right answer is nearly always written first. */
+  function pickQuestion() {
+    var qs = BANK.questions || [];
+    if (!qs.length) return null;
+    var used = run.qs || [], start = ((day - 1) * 7) % qs.length;
+    for (var k = 0; k < qs.length; k++) {
+      var q = qs[(start + k) % qs.length];
+      if (used.indexOf(q.id) < 0 && qStem(q)) return q;
+    }
+    return null;
+  }
+  function shuffled(q) {
+    var opts = q.opts.map(function (t, i) { return { text: qText(t), right: i === q.a }; });
+    for (var i = opts.length - 1; i > 0; i--) {                 // Fisher–Yates, so the first tile is never the answer
+      var j = Math.floor(Math.random() * (i + 1)), t = opts[i];
+      opts[i] = opts[j]; opts[j] = t;
+    }
+    return opts;
+  }
+  function openQuestion() {
+    if (!canEarn()) return;
+    var dlg = $("dlg-q");
+    if (!dlg || !dlg.showModal) return;
+    loadBank().then(loadQWords).then(function () { showQuestion(); });
+    try { if (!dlg.open) dlg.showModal(); } catch (e) { return; }
+    if (TO && TO.count) TO.count("altitude/question-open");
+  }
+  function showQuestion() {
+    var q = pickQuestion();
+    $("q-kicker").textContent = T("q_h");
+    $("q-after").hidden = true;
+    var opts = $("q-opts");
+    opts.textContent = "";
+    if (!q) {                                                    // the bank is spent for today: say so and go back
+      $("q-title").textContent = T("q_empty");
+      $("q-after").hidden = false;
+      $("q-said").textContent = "";
+      $("q-more").hidden = true;
+      $("q-play").textContent = T("q_play");
+      return;
+    }
+    qCur = { q: q, opts: shuffled(q) };
+    $("q-title").textContent = qStem(q);
+    qCur.opts.forEach(function (o, i) {
+      var b = el("button", "q-opt", o.text);
+      b.type = "button";
+      b.addEventListener("click", function () { answer(i); });
+      opts.appendChild(b);
+    });
+  }
+  function answer(i) {
+    if (!qCur) return;
+    var picked = qCur.opts[i], right = picked.right;
+    var btns = Array.prototype.slice.call($("q-opts").querySelectorAll(".q-opt"));
+    btns.forEach(function (b, k) {
+      b.disabled = true;
+      if (k === i) b.classList.add(right ? "right" : "wrong");
+      else if (qCur.opts[k].right) b.classList.add(right ? "" : "was");
+    });
+    touchTime();
+    attach();
+    run.qs.push(qCur.q.id);
+    if (right) {
+      run.he += 1;
+      run.hp += 1;
+      if (TO && TO.count) TO.count("altitude/question-right");
+    } else if (TO && TO.count) TO.count("altitude/question-wrong");
+    save();
+    renderStatus();
+    var said = $("q-said"), more = $("q-more"), play = $("q-play");
+    if (right) {
+      said.textContent = canEarn() ? T("q_right") : T("q_right") + " " + T("q_done");
+      more.hidden = !canEarn();
+      more.textContent = T("q_more");
+    } else {
+      var a = qCur.opts.filter(function (o) { return o.right; })[0];
+      said.textContent = T("q_wrong", { a: a ? a.text : "" });   // nothing is taken away: another question is free
+      more.hidden = !canEarn();
+      more.textContent = T("q_another");
+    }
+    play.textContent = T("q_play");
+    $("q-kicker").textContent = "";          // the offer has been taken: the line above it would read stale
+    $("q-after").hidden = false;
+    qCur = null;
+  }
+  function closeQuestion() {
+    var dlg = $("dlg-q");
+    if (dlg && dlg.open) { try { dlg.close(); } catch (e) { /* already shut */ } }
   }
 
   /* ------------------------------------------------------------------ giving up (29 Oct 2026, Khayyam)
@@ -702,9 +868,11 @@
     $("give-title").textContent = T("give_h");
     var h = height(run);
     $("give-sub").textContent = h >= FIRST ? T("give_sub", { n: h, m: h + 1 }) : T("give_sub0");
-    var hb = $("give-hint"), spent = !!run.hint, canHint = !spent && leftNow() >= HINT_COST + 1;
-    hb.hidden = !canHint;
-    hb.textContent = T("give_hint");
+    /* the ways on, before the way out: a hint if one is in hand, otherwise a question to earn one */
+    var hb = $("give-hint"), hint = canHint(), earn = !hint && canEarn();
+    hb.hidden = !hint && !earn;
+    hb.textContent = hint ? T("give_hint") : T("give_earn");
+    hb.setAttribute("data-act", hint ? "hint" : "earn");
     $("give-stay").textContent = T("give_stay");
     $("give-show").textContent = T("give_show");
     $("give-title2").textContent = T("give_h2");
@@ -1489,7 +1657,13 @@
     $("giveup").addEventListener("click", openGive);
     $("give-stay").addEventListener("click", closeGive);
     $("give-back").addEventListener("click", closeGive);
-    $("give-hint").addEventListener("click", function () { closeGive(); useHint(); });
+    $("give-hint").addEventListener("click", function () {
+      var act = this.getAttribute("data-act");
+      closeGive();
+      if (act === "earn") openQuestion(); else useHint();
+    });
+    $("q-more").addEventListener("click", showQuestion);
+    $("q-play").addEventListener("click", closeQuestion);
     $("give-show").addEventListener("click", function () {      // one more ask, then it is their call
       $("give-step1").hidden = true;
       $("give-step2").hidden = false;

@@ -119,6 +119,25 @@
   </div>
 </dialog>
 
+<!-- Earning a hint (29 Oct 2026, Khayyam): one question at a time, from Logicers' own puzzle data. A wrong
+     answer costs nothing — the right one is shown and another question is offered. After a right answer the
+     player chooses: earn the second hint now, or go back to the climb. -->
+<dialog id="dlg-q" aria-labelledby="q-title">
+  <div class="sheet q">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <p class="q-kicker" id="q-kicker"></p>
+    <h2 id="q-title"></h2>
+    <div class="q-opts" id="q-opts"></div>
+    <div class="q-after" id="q-after" hidden>
+      <p class="q-said" id="q-said"></p>
+      <div class="give-acts">
+        <button class="btn solid" id="q-more" type="button"></button>
+        <button class="btn ghost" id="q-play" type="button"></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <dialog id="dlg-lang" class="lg-sheet" aria-labelledby="lang-title">
   <div class="sheet lg-box">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
