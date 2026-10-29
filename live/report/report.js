@@ -4,7 +4,7 @@
    statement of good faith. A person reads every report on Logicers' own admin page.
 
    The page speaks the game's language: a made game's screens link here as #KDNVFRT or as
-   #lang=it&code=KDNVFRT, and the switch at the top changes it (English, Italiano, Türkçe). Without a
+   #lang=it&code=KDNVFRT, and the switch at the top changes it (English, Italiano, Türkçe, Español, Português, Français). Without a
    language in the address it takes the browser's, when it is one of the three, else English.
 
    It sends with fetch, as JSON, to the live server's POST /report: the site's security line lets a form go
@@ -18,7 +18,7 @@
   if (!WORDS || !WORDS.en) return;
 
   var PROTO = 1;
-  var LANGS = ["en", "it", "tr"];
+  var LANGS = ["en", "it", "tr", "es", "pt", "fr"];
   var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
   /* Two addresses for the server (27 Oct 2026): live.logicers.com first, because some campus Wi-Fi blocks workers.dev;
      the workers.dev one only when the first gives no answer at all (not even an error) before anything has been heard

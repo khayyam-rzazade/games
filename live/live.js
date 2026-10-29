@@ -6,7 +6,7 @@
    the editor (make/): its questions are numbers (the same slider and nets), choices of 2 to 4 answers, true
    or false, or typed answers, and every question asks how sure the player is (Sure 5 or 0, Fairly 4 or 1,
    Not sure 3 or 2) unless its maker switched that off. A made game wears its maker's colour and speaks its
-   language (words.js: English, Italian, Turkish), and every screen of it says it was made by the host, not
+   language (words.js: English, Italian, Turkish, Spanish, Portuguese, French), and every screen of it says it was made by the host, not
    checked by Logicers, with a Report link. Typed answers are judged by people: when an answer is not on the
    maker's list, the host first sees each different answer once and ticks the right ones ("check").
 
@@ -46,7 +46,7 @@
   var SITE = "logicers.com";
   var CONTACT = "logicers.world@gmail.com";
   var KEYP = "logicers-live:";
-  var LOC = { en: "en-US", it: "it-IT", tr: "tr-TR" };
+  var LOC = { en: "en-US", it: "it-IT", tr: "tr-TR", es: "es-ES", pt: "pt-BR", fr: "fr-FR" };
   var COLOURS = ["indigo", "blue", "teal", "red", "pink", "green", "orange", "slate"];
   var LEVELS = ["s", "m", "b"];
   var LETTERS = "ABCD";
@@ -187,8 +187,10 @@
   }
   function withUnit(q, x) { return fmt(q, x) + (q.u ? " " + q.u : ""); }
   function ord(n) {
-    if (L === "it") return n + "º";
+    if (L === "it" || L === "pt") return n + "º";
     if (L === "tr") return n + ".";
+    if (L === "es") return n + ".º";
+    if (L === "fr") return n + (n === 1 ? "er" : "e");
     var s = ["th", "st", "nd", "rd"], v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   }
@@ -272,6 +274,9 @@
     made = m || null;
     L = made && WORDS[made.lang] ? made.lang : "en";
     document.documentElement.lang = L;
+    /* the site's own words on this page (the way on to today's games at the end, 29 Oct 2026): the player's own
+       language when they have picked one, otherwise the game's; and no "English only" line over a made game */
+    if (made && window.LG && window.LG.speak) { try { window.LG.speak(window.LG.saved() || L); } catch (e) { /* stays English */ } }
     if (made && COLOURS.indexOf(made.colour) >= 0) document.body.setAttribute("data-kc", made.colour);
     else document.body.removeAttribute("data-kc");
     if (made) {

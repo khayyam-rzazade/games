@@ -34,13 +34,14 @@ self.addEventListener("activate", function (e) {
 
 function versioned(url) { return /[?&]v=[0-9a-f]{6,}/.test(url.search); }
 /* 29 Oct 2026: also every .json file anywhere on the site (the word games' strings, questions, word lists and day
-   data live in their own folders, not in data/) and the hint questions' words (assets/lang/<code>/questions.js),
-   which the word games read while they run. They used to be served from the copy first, so the first visit after
-   a push paired a new script with old words. */
+   data live in their own folders, not in data/) and any language file read while a page runs, without a ?v= stamp
+   (the hint questions' words, assets/lang/<code>/questions.js; a language's site words, assets/lang/<code>.js, when
+   Logicers Live plays a made game in it). They used to be served from the copy first, so the first visit after a
+   push paired a new script with old words. */
 function fresh(url, req) {
   return req.mode === "navigate" || /\.html$|\/$/.test(url.pathname) ||
          /(^|\/)puzzles\.js$/.test(url.pathname) || /^\/?data\//.test(url.pathname.replace(/^\//, "")) ||
-         /\.webmanifest$|\.json$/.test(url.pathname) || /^\/assets\/lang\/[a-z]{2}\/questions\.js$/.test(url.pathname);
+         /\.webmanifest$|\.json$/.test(url.pathname) || (/^\/assets\/lang\//.test(url.pathname) && !versioned(url));
 }
 
 function trim(cache) {

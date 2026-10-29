@@ -104,7 +104,8 @@ textarea.dk-field { min-height: 132px; resize: vertical; line-height: 1.4; }
   .dk-terms:not(:has(article:target)) article.dk-en { display: block; }
   .dk-terms:has(article:target) .dk-langs a { background: none; color: var(--soft); }
   .dk-terms:has(#en:target) .dk-langs a[href="#en"], .dk-terms:has(#it:target) .dk-langs a[href="#it"],
-  .dk-terms:has(#tr:target) .dk-langs a[href="#tr"] { background: var(--c); color: var(--on-c); }
+  .dk-terms:has(#tr:target) .dk-langs a[href="#tr"], .dk-terms:has(#es:target) .dk-langs a[href="#es"],
+  .dk-terms:has(#pt:target) .dk-langs a[href="#pt"], .dk-terms:has(#fr:target) .dk-langs a[href="#fr"] { background: var(--c); color: var(--on-c); }
 }
 .dk-date { margin-top: 8px; color: var(--soft); font-weight: 600; font-size: .94rem; }
 .dk-lead { margin-top: 12px; font-size: 1.14rem; line-height: 1.45; }

@@ -5,7 +5,8 @@
    A typed name may hold letters of any language, digits, spaces and everyday punctuation, "&" included
    (names are always shown escaped). It needs at least one letter or digit, and it is refused if it holds
    < > = # ? / \ " ` | { } [ ] ^ ~, a control character, an invisible character (so it can never look
-   blank), or a word from a short list of rude words in English, Italian and Turkish. A list never catches
+   blank), or a word from a short list of rude words in English, Italian and Turkish (and, since 29 Oct 2026,
+   Spanish, Portuguese and French, the other three languages a made game can speak). A list never catches
    everything, which is why the host can remove a player with one tap; so where a rude word is also a
    piece of real names, the list lets the real names through (24 Oct 2026: six such words are read in
    their place in the name, see AMBIG below).
@@ -57,7 +58,13 @@ const ANYWHERE = [
   "pedophil", "paedophil", "bullshit", "shithead", "shitty", "dipshit", "cocksuck", "dickhead", "blowjob", "pornhub",
   "cazzo", "merda", "stronz", "vaffanculo", "fanculo", "coglion", "minchia", "frocio", "ricchion", "zoccola",
   "mignotta", "porcodio", "dioporco", "diocane", "pompino", "segaiol",
-  "orospu", "yarrak", "sikis", "siktir", "sikerim", "sikeyim", "pezevenk", "serefsiz", "gotveren"
+  "orospu", "yarrak", "sikis", "siktir", "sikerim", "sikeyim", "pezevenk", "serefsiz", "gotveren",
+  /* Spanish, Portuguese, French (29 Oct 2026). Kept out on purpose: verga (Giovanni Verga), puto (a Filipino rice
+     cake), pinto and rola (names), foda (Fodé, Foday), cono (a cone), polla and zorra (a hen, a fox), negre (a Catalan surname), bite
+     (English), and salope inside a word (Salopek, a Croatian surname: it is in WHOLE). */
+  "hijueputa", "hijoputa", "hijodeputa", "malparid", "gilipoll", "maricon", "chingad", "culero", "mierda", "pendej",
+  "caralh", "buceta", "boceta", "filhodaputa", "filhadaputa", "punheta", "arrombad", "xoxota", "fodase", "piroca",
+  "connard", "connass", "encule", "putain", "bougnoul", "youpin", "niquetamere"
 ];
 const WHOLE = [
   "dick", "cock", "cunt", "pussy", "slut", "wank", "wanker", "twat", "shit", "shite", "porn", "porno", "rape",
@@ -65,7 +72,9 @@ const WHOLE = [
   "fag", "fck",
   "figa", "fica", "culo", "negro", "vaffa", "cazz", "troia", "puttana",
   "porco dio", "dio porco", "dio cane", "porca madonna",
-  "amk", "pic", "sik", "yarak", "ibne", "gavat", "kancik", "kahpe", "amcik", "yavsak", "kaltak"
+  "amk", "pic", "sik", "yarak", "ibne", "gavat", "kancik", "kahpe", "amcik", "yavsak", "kaltak",
+  "puta", "joder", "follar", "cabron", "viado", "fdp", "pute", "merde", "nique", "ntm", "batard", "couille",
+  "salope"
 ];
 const NAMEPARTS = ["cazzol", "merdan", "niggl", "niggem"];
 
@@ -212,13 +221,16 @@ function letters(n) {
 const T_ANYWHERE = [
   "fuck", "nigg", "faggot", "cocksuck", "blowjob", "pornhub", "jizz",
   "vaffanculo", "fanculo", "porcodio", "dioporco", "diocane", "pompino",
-  "orospu", "yarrak", "sikis", "siktir", "sikerim", "sikeyim", "gotveren"
+  "orospu", "yarrak", "sikis", "siktir", "sikerim", "sikeyim", "gotveren",
+  "hijueputa", "hijoputa", "hijodeputa", "gilipoll", "filhodaputa", "filhadaputa", "punheta", "connard", "connass",
+  "bougnoul", "youpin"
 ];
 const T_WHOLE = [
   "cunt", "twat", "wanker", "whore", "bitch", "nigga", "fag", "kkk",
   "cazzo", "merda", "stronzo", "stronza", "coglione", "minchia", "frocio", "ricchione", "puttana", "mignotta", "zoccola",
   "porco dio", "dio porco", "dio cane",
-  "amk", "amcik", "ibne", "yavsak", "kahpe", "kaltak", "pezevenk", "serefsiz"
+  "amk", "amcik", "ibne", "yavsak", "kahpe", "kaltak", "pezevenk", "serefsiz",
+  "puta", "maricon", "cabron", "viado", "caralho", "buceta", "salope", "encule", "pute", "fdp", "ntm"
 ];
 export function titleRude(s) {
   return readings(excuse(s)).some((ws) => {

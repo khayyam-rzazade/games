@@ -245,9 +245,43 @@
     if (!saved()) sheet(true);
   }
 
+  /* ---- a page that speaks its content's language ----
+     Logicers Live plays a made game in the game's own language (29 Oct 2026). LG.speak(code) reads that language's
+     words (assets/lang/<code>.js, asked for fresh with this script's own stamp, like the word games' files) and from
+     then on T, the numbers, the dates, the country names and the links of the site's frame speak it, above all the
+     block at the end of a game that leads on to today's games; TurnsOut.relabel gives the games their names in it.
+     The quiet "English only" line goes, since the page no longer is. It never moves the page, and a file that cannot
+     be read leaves everything as it was. Returns a promise of true when the page speaks the language. */
+  var SELF_V = (function () {
+    try { var m = /[?&]v=([0-9a-f]+)/.exec((document.currentScript && document.currentScript.src) || ""); return m ? m[1] : ""; }
+    catch (e) { return ""; }
+  })();
+  function speak(code) {
+    var L = known(code), p = document.getElementById("lg-only");
+    if (p) { p.textContent = ""; p.hidden = true; }
+    if (!L) return Promise.resolve(false);
+    if (L[0] === lang) return Promise.resolve(true);
+    if (!window.fetch) return Promise.resolve(false);
+    return window.fetch(root + "assets/lang/" + L[0] + ".js" + (SELF_V ? "?s=" + SELF_V : ""), { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(String(r.status));
+      return r.text();
+    }).then(function (src) {
+      var a = src.indexOf("{", src.indexOf("LG_DICT")), b = src.indexOf("\n};", a);
+      var words = JSON.parse(src.slice(a, b + 2));
+      if (!words || typeof words["site.close"] !== "string") return false;
+      D = words; lang = L[0]; locale = L[3];
+      try { names = new window.Intl.DisplayNames([lang], { type: "region" }); } catch (e) { names = null; }
+      var G = window.LG;
+      G.lang = lang; G.locale = locale; G.base = lang === "en" ? "" : lang + "/"; G.findout = FINDOUT[lang] || "";
+      try { if (window.TurnsOut && window.TurnsOut.relabel) window.TurnsOut.relabel(); } catch (e) { /* the names stay as they were */ }
+      return true;
+    }).catch(function () { return false; });
+  }
+
   window.LG = { lang: lang, locale: locale, base: lang === "en" ? "" : lang + "/", root: root, path: path, LANGS: LANGS,
                 t: T, num: num, date: date, nth: nth, country: country, href: href, hrefIn: hrefIn, saved: saved, remember: remember,
-                sheet: sheet, puzzle: puzzle, puzzleAll: puzzleAll, puzzleHas: puzzleHas, puzzleNote: puzzleNote, findout: FINDOUT[lang] || "", KEY: KEY };
+                sheet: sheet, puzzle: puzzle, puzzleAll: puzzleAll, puzzleHas: puzzleHas, puzzleNote: puzzleNote, findout: FINDOUT[lang] || "", KEY: KEY,
+                speak: speak };
   window.T = T;
 
   /* the remembered pick, before anything is drawn */

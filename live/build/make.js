@@ -1,5 +1,5 @@
 /* Logicers Live, Build your own (live/build/; "Make your own" until 15 Oct 2026): the editor (15 Oct 2026). Anyone writes a game here with no account, in
-   English, Italian or Turkish, saves it on Logicers' server and gets back a code, a QR code, a link for the
+   English, Italian, Turkish, Spanish, Portuguese or French, saves it on Logicers' server and gets back a code, a QR code, a link for the
    players and an edit link, the only key. The contract with the server and the other pages is
    r/live-workshop/step2-spec.md (sections 3 to 8 and 12); the look is the approved mock-up (sheet5.png).
 
@@ -8,7 +8,7 @@
      "#edit=CODE.KEY" at once and keeps it in this tab's sessionStorage. Nothing here ever logs it.
    - The editor speaks the game's language, chosen first ("very important for international reach",
      Khayyam, 15 Oct 2026): every word comes from words.js, numbers are typed and shown the language's way
-     (a decimal comma in Italian and Turkish) and kept as plain numbers.
+     (a decimal comma in every language but English) and kept as plain numbers.
    - Everything a person typed is drawn as text (esc(), or a field's value set in script), in elements with
      dir="auto"; no inline handlers, no eval. The checks the server makes (kit.js, cleanKit) are made here
      first, in words next to the field, so a save never fails on something the page could have said.
@@ -61,18 +61,18 @@
   var SITE = "https://logicers.com";
   var PROTO = 1;
   var COLOURS = ["indigo", "blue", "teal", "red", "pink", "green", "orange", "slate"];
-  var LANGS = ["en", "it", "tr"];
+  var LANGS = ["en", "it", "tr", "es", "pt", "fr"];             // Spanish, Brazilian Portuguese, French: 29 Oct 2026
   var TYPES = ["num", "mc", "tf", "tx"];
   var TIMERS = [0, 30, 60, 90];
-  var LOC = { en: "en-US", it: "it-IT", tr: "tr-TR" };
-  var DEC = { en: ".", it: ",", tr: "," }, GRP = { en: ",", it: ".", tr: "." };
+  var LOC = { en: "en-US", it: "it-IT", tr: "tr-TR", es: "es-ES", pt: "pt-BR", fr: "fr-FR" };
+  var DEC = { en: ".", it: ",", tr: ",", es: ",", pt: ",", fr: "," }, GRP = { en: ",", it: ".", tr: ".", es: ".", pt: ".", fr: "\u202F" };
   var MAXQ = 100;
   var CODE_RE = /^[BCDFGHJKLMNPQRSTVWXZ]{7}$/, KEY_RE = /^[A-Za-z0-9_-]{20,64}$/;
   var KS = { games: "logicers-make:games", open: "logicers-make:open", draft: "logicers-make:draft", lang: "logicers-make:lang", host: "logicers-live:hostkit" };
   var LETTERS = "ABCD";
   var NETW = { s: "netS", m: "netM", b: "netB" };
-  /* a question about a year, in the three languages: the editor then offers "Year" by itself */
-  var YEARISH = /(^|[^\p{L}])(year|years|anno|anni|yıl|yılı|yılında|yılda|yil)(?=[^\p{L}]|$)/iu;
+  /* a question about a year, in the six languages: the editor then offers "Year" by itself */
+  var YEARISH = /(^|[^\p{L}])(year|years|anno|anni|yıl|yılı|yılında|yılda|yil|año|años|ano|anos|année|années)(?=[^\p{L}]|$)/iu;
 
   function $(id) { return document.getElementById(id); }
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
@@ -333,12 +333,15 @@
     eye: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M1.8 10s3-5.6 8.2-5.6 8.2 5.6 8.2 5.6-3 5.6-8.2 5.6S1.8 10 1.8 10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
     eyeoff: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M1.8 10s3-5.6 8.2-5.6 8.2 5.6 8.2 5.6-3 5.6-8.2 5.6S1.8 10 1.8 10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.6 3.6l12.8 12.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>'
   };
-  /* the three languages' flags (Khayyam, 15 Oct 2026: "for the language sections: small flags are important"),
+  /* the six languages' flags (Khayyam, 15 Oct 2026: "for the language sections: small flags are important"),
      drawn here so they look the same on every computer (an emoji flag is two letters on Windows) */
   var FLAG = {
     en: '<svg class="mk-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="M0 0l60 30M60 0 0 30"/><path stroke="#C8102E" stroke-width="2" d="M0 0l60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></svg>',
     it: '<svg class="mk-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg>',
-    tr: '<svg class="mk-flag" viewBox="0 0 1200 800" aria-hidden="true" focusable="false"><path fill="#E30A17" d="M0 0h1200v800H0z"/><circle cx="400" cy="400" r="200" fill="#fff"/><circle cx="450" cy="400" r="160" fill="#E30A17"/><path fill="#fff" d="M556.7 400L625.8 377.5 625.8 304.9 668.5 363.7 737.6 341.2 694.9 400 737.6 458.8 668.5 436.3 625.8 495.1 625.8 422.5z"/></svg>'
+    tr: '<svg class="mk-flag" viewBox="0 0 1200 800" aria-hidden="true" focusable="false"><path fill="#E30A17" d="M0 0h1200v800H0z"/><circle cx="400" cy="400" r="200" fill="#fff"/><circle cx="450" cy="400" r="160" fill="#E30A17"/><path fill="#fff" d="M556.7 400L625.8 377.5 625.8 304.9 668.5 363.7 737.6 341.2 694.9 400 737.6 458.8 668.5 436.3 625.8 495.1 625.8 422.5z"/></svg>',
+    es: '<svg class="mk-flag" viewBox="0 0 750 500" aria-hidden="true" focusable="false"><path fill="#AA151B" d="M0 0h750v500H0z"/><path fill="#F1BF00" d="M0 125h750v250H0z"/></svg>',
+    pt: '<svg class="mk-flag" viewBox="0 0 720 504" aria-hidden="true" focusable="false"><path fill="#009C3B" d="M0 0h720v504H0z"/><path fill="#FFDF00" d="M360 46 674 252 360 458 46 252z"/><circle cx="360" cy="252" r="124" fill="#002776"/><path fill="none" stroke="#fff" stroke-width="16" d="M243 222c80-16 166-3 233 42"/></svg>',
+    fr: '<svg class="mk-flag" viewBox="0 0 3 2" aria-hidden="true" focusable="false"><path fill="#002395" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ED2939" d="M2 0h1v2H2z"/></svg>'
   };
   function dots(n) {
     var h = '<span class="mk-dots" aria-hidden="true">';

@@ -59,7 +59,7 @@ import { sha, same, keyOk, randomKey } from "./keys.js";
 const R = globalThis.HSRules;
 
 export const COLOURS = ["indigo", "blue", "teal", "red", "pink", "green", "orange", "slate"];
-export const LANGS = ["en", "it", "tr"];
+export const LANGS = ["en", "it", "tr", "es", "pt", "fr"];   // 29 Oct 2026: Spanish, Brazilian Portuguese and French join
 export const TYPES = ["num", "mc", "tf", "tx"];
 export const MAX_QS = 100;
 const TIMERS = [0, 30, 60, 90];

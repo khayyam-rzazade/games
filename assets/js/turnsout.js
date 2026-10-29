@@ -482,6 +482,16 @@
       says: function (r) { return r.t; } }
   ];
   function commas(n) { return LG ? LG.num(Math.round(n)) : String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  /* The games' names and lines in the language the page has just started to speak (29 Oct 2026): LG.speak, when
+     Logicers Live plays a made game in its own language, calls this, so the way on to today's games reads in it. */
+  function relabel() {
+    GAMES.forEach(function (g) {
+      g.name = T("game." + g.key + ".name");
+      g.pitch = T("game." + g.key + ".pitch");
+      if (g.id === "your-call") g.stampWords = { 3: T("stamp.same_call") };
+      if (g.id === "long-lost-cousin") g.stampWords = { 3: T("stamp.found_it") };
+    });
+  }
 
   /* ------------------------------------------------------------------
      The games for groups ("Pass the phone" on the home page): one phone, a group of players, any time and as
@@ -2145,6 +2155,7 @@
   else appStart();
 
   window.TurnsOut = {
+    relabel: relabel,
     game: game,
     update: update,
     dayNumber: dayNumber,

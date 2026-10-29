@@ -60,7 +60,7 @@
   var PAGE = 200;                                          // reports the server sends at a time
   var CODE_OK = /^(?:[BCDFGHJKLMNPQRSTVWXZ]{5}|[BCDFGHJKLMNPQRSTVWXZ]{7})$/;
   var EMAIL_OK = /^[^\s@<>"',;]+@[^\s@<>"',;]+\.[^\s@<>"',;]+$/;
-  var LANG_NAMES = { en: "English", it: "Italiano", tr: "Türkçe" };
+  var LANG_NAMES = { en: "English", it: "Italiano", tr: "Türkçe", es: "Español", pt: "Português", fr: "Français" };
   var LOCALES = { en: "en-GB", it: "it-IT", tr: "tr-TR" };
   var COLOURS = ["indigo", "blue", "teal", "red", "pink", "green", "orange", "slate"];
   var TYPE_WORDS = { num: "Number", mc: "Choice", tf: "True / false", tx: "Typed" };

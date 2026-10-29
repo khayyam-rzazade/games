@@ -347,6 +347,9 @@ dialog.mk-dlg-wide { width: min(100% - 24px, 36rem); }
 .mk-lang[data-lang="en"] { --soft-bg: var(--lav); --soft-ink: var(--lav-ink); }
 .mk-lang[data-lang="it"] { --soft-bg: var(--mint); --soft-ink: var(--mint-ink); }
 .mk-lang[data-lang="tr"] { --soft-bg: var(--peach); --soft-ink: var(--peach-ink); }
+.mk-lang[data-lang="es"] { --soft-bg: var(--aqua); --soft-ink: var(--aqua-ink); }
+.mk-lang[data-lang="pt"] { --soft-bg: var(--sky); --soft-ink: var(--sky-ink); }
+.mk-lang[data-lang="fr"] { --soft-bg: var(--rose); --soft-ink: var(--rose-ink); }
 .mk-langs .mk-lang { background: var(--soft-bg); border-color: transparent; }
 .mk-langs .mk-lang b { background: var(--card); }
 .mk-langs .mk-lang.mk-mine { border-color: var(--soft-ink); background: var(--soft-bg); }
@@ -483,6 +486,9 @@ dialog.mk-dlg-wide { width: min(100% - 24px, 36rem); }
 
 /* ---------- flags (Khayyam, 15 Oct 2026: "for the language sections: small flags are important") ---------- */
 .mk-flag { display: inline-block; flex: none; width: 24px; height: 16px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgba(21, 23, 43, .14); vertical-align: -3px; }
+/* six languages (29 Oct 2026): two rows of three on a phone, one row of six from 640 px */
+.mk-seglang { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 640px) { .mk-seglang { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 .mk-seglang button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
 .mk-seglang .mk-flag { width: 18px; height: 12px; border-radius: 2px; }
 .mk-gitem .mk-gdot .mk-flag { width: 24px; height: 16px; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .92); }
@@ -490,9 +496,11 @@ dialog.mk-dlg-wide { width: min(100% - 24px, 36rem); }
 
 /* ---------- the soft colours of the keep screen and the key part of the saved sheet (Khayyam, 15 Oct 2026:
    "light purple, light green kind of nice colours, warm colours"); never yellow, which means a wrong answer ---------- */
-body.mk-page { --lav: #EEE8FF; --lav-ink: #5B3FC4; --mint: #DDF5E7; --mint-ink: #1E7A4C; --peach: #FFE7D6; --peach-ink: #9A4416; }
+body.mk-page { --lav: #EEE8FF; --lav-ink: #5B3FC4; --mint: #DDF5E7; --mint-ink: #1E7A4C; --peach: #FFE7D6; --peach-ink: #9A4416;
+  --aqua: #D9F3F1; --aqua-ink: #0F6B66; --sky: #DCEFFF; --sky-ink: #1F5F99; --rose: #FFE3EC; --rose-ink: #A3285A; }
 @media (prefers-color-scheme: dark) {
-  body.mk-page { --lav: #241D3F; --lav-ink: #C7B8FF; --mint: #13291F; --mint-ink: #8FE3B5; --peach: #2E1F16; --peach-ink: #FFB98A; }
+  body.mk-page { --lav: #241D3F; --lav-ink: #C7B8FF; --mint: #13291F; --mint-ink: #8FE3B5; --peach: #2E1F16; --peach-ink: #FFB98A;
+    --aqua: #10292A; --aqua-ink: #8EE0D8; --sky: #12243A; --sky-ink: #9FD0FF; --rose: #33161F; --rose-ink: #FFB3CB; }
 }
 .mk-lav { --soft-bg: var(--lav); --soft-ink: var(--lav-ink); }
 .mk-mint { --soft-bg: var(--mint); --soft-ink: var(--mint-ink); }
