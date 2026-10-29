@@ -1,0 +1,455 @@
+# Logicers: Altitude’s hint questions, in English (keyed on the question; written by claude/logicers-data/scripts/questions_doc.py from assets/lang/src/altitude-questions.json)
+
+Altitude gives a stuck player two free hints and two more for answering two questions. The bank has 180 questions built on 7 stems, each answered from a Logicers puzzle (the `src` in the bank). To translate them all a language needs the 7 stems and the 57 names below — the other 155 answer buttons are strings of the puzzle docs and come from there.
+
+## How to read and translate this doc
+
+- A string is one line: `` - `key` — the words ``. The key never changes; only the words after the dash. One string per line, never two lines. Lines starting with ↳ are notes for you, never shown.
+- Write your file as `assets/lang/src/questions-<code>.md` (it, tr, es, pt, fr): the same headings, the same keys, only your words after the dash. A skeleton of it is written for you with every line as a ↳ note holding the English; turn each note into a real `- \`key\` — your words` line. Do not change a line that is already a real line (someone did it).
+- These are Altitude's hint questions: a player stuck on a word answers one and earns a hint. Each question is a stem plus two or three answer buttons; the right answer is always the one a 12-year-old would mostly guess. The voice and the level are the site's: "tu" in Italian, "sen" in Turkish, "tú" in Spanish, "você" in Portuguese, "tu" in French; nothing negative; written for the language rather than word by word.
+- Keep a `{placeholder}` exactly as written, unless a note under the stem offers you a form such as `{x.the}`.
+- Most answer buttons are NOT in this doc: they are the animals and plants of Long Lost Cousin (their `name` lines), the events of Years Apart (their `t` lines) and the `what` lines of Who Gets What, and the game takes them from your translation of those puzzle docs. They are listed at the end so you can see them, with their keys; write them there, not here.
+- Your doubts go at the end of your file, in a last section `## U. Doubts for Khayyam`: one bullet per line you were unsure about — the key without backticks, the line as you wrote it, a second option, a few words on why.
+
+## Where each language stands
+
+- it (Italian): 0 of 64 lines of this doc done · 53 of 155 reused puzzle strings already translated in its puzzle docs
+- tr (Turkish): 0 of 64 lines of this doc done · 53 of 155 reused puzzle strings already translated in its puzzle docs
+- es (Spanish): 0 of 64 lines of this doc done · 53 of 155 reused puzzle strings already translated in its puzzle docs
+- pt (Brazilian Portuguese): 0 of 64 lines of this doc done · 33 of 155 reused puzzle strings already translated in its puzzle docs
+- fr (French): 0 of 64 lines of this doc done · 33 of 155 reused puzzle strings already translated in its puzzle docs
+
+## The 7 questions (stems) (7)
+
+- `q.stem.beat_faster` — Whose heart beats faster?
+- `q.stem.came_first` — Which came first?
+- `q.stem.closest_relative` — Which is the {x}'s closest relative?
+  ↳ {x} is an animal or plant of Long Lost Cousin; in English it takes the name form ("Emu"). If your language needs an article or a case there, write {x.the} or {x.of} instead of {x}: the game then puts in that thing's `the` or `of` form from your Long Lost Cousin doc.
+- `q.stem.biggest_share` — Who takes the biggest share of the price of {x}?
+  ↳ {x} is the `what` line of a Who Gets What puzzle ("A kilo of dark chocolate"), exactly as you translated it there. Write the stem so that such a phrase fits after it.
+- `q.stem.o24_longer_asleep` — Which sleeps longer?
+- `q.stem.o24_longer_eating` — Which spends longer eating?
+- `q.stem.o24_longer_care` — Which spends longer on housework and care?
+  ↳ The options here are countries (the Out of 24 puzzles about housework): "Which country" may read better than "Which" in your language.
+## New names: the subjects of Out of 24 (who sleeps, eats, works) (18)
+
+↳ Each is the `face` of an Out of 24 puzzle, shown on its own as an answer button. A capital first letter as in English; a plural stays a plural ("Hunter-gatherers"); a country is its usual name in your language.
+
+- `q.opt.austria` — Austria
+- `q.opt.baboon` — Baboon
+- `q.opt.chimpanzee` — Chimpanzee
+- `q.opt.china` — China
+- `q.opt.donkey` — Donkey
+- `q.opt.elephant-seal` — Elephant seal
+- `q.opt.ferret` — Ferret
+- `q.opt.fire-ant-queen` — Fire ant queen
+- `q.opt.fire-ant-worker` — Fire ant worker
+- `q.opt.frigatebird` — Frigatebird
+- `q.opt.giant-armadillo` — Giant armadillo
+- `q.opt.grey-seal` — Grey seal
+- `q.opt.hunter-gatherers` — Hunter-gatherers
+- `q.opt.japan` — Japan
+- `q.opt.little-brown-bat` — Little brown bat
+- `q.opt.owl-monkey` — Owl monkey
+- `q.opt.rhesus-monkey` — Rhesus monkey
+- `q.opt.tree-shrew` — Tree shrew
+## New names: the subjects of Every Beat (whose heart) (15)
+
+↳ Each is the `face` of an Every Beat puzzle, shown on its own as an answer button. "Newborn baby", "Athlete" and "Foal" are people and young animals, not species.
+
+- `q.opt.athlete` — Athlete
+- `q.opt.black-bear` — Black bear
+- `q.opt.blue-whale` — Blue whale
+- `q.opt.bullfrog` — Bullfrog
+- `q.opt.burmese-python` — Burmese python
+- `q.opt.chick` — Chick
+- `q.opt.etruscan-shrew` — Etruscan shrew
+- `q.opt.foal` — Foal
+- `q.opt.giant-octopus` — Giant octopus
+- `q.opt.ground-squirrel` — Ground squirrel
+- `q.opt.newborn-baby` — Newborn baby
+- `q.opt.rat` — Rat
+- `q.opt.red-deer` — Red deer
+- `q.opt.sea-turtle` — Sea turtle
+- `q.opt.trout` — Trout
+## New names: the slices of Who Gets What (who is paid) (24)
+
+↳ Each is a slice name of a Who Gets What puzzle: who is paid out of the price. One or two words, as in English, and the same rule as the puzzles: the name must not hint at the size of the share ("Rest" is the remainder, "Duty" the excise tax, "Crude" the oil itself, "Wires" the grid).
+
+- `q.opt.cloth` — Cloth
+- `q.opt.crude` — Crude
+- `q.opt.delivery` — Delivery
+- `q.opt.diesel` — Diesel
+- `q.opt.duty` — Duty
+- `q.opt.energy` — Energy
+- `q.opt.factories` — Factories
+- `q.opt.farmers` — Farmers
+- `q.opt.maker` — Maker
+- `q.opt.makers` — Makers
+- `q.opt.parts` — Parts
+- `q.opt.petrol` — Petrol
+- `q.opt.pharmacy` — Pharmacy
+- `q.opt.rest` — Rest
+- `q.opt.selling` — Selling
+- `q.opt.shipping` — Shipping
+- `q.opt.shop` — Shop
+- `q.opt.shops` — Shops
+- `q.opt.supplier` — Supplier
+- `q.opt.tax` — Tax
+- `q.opt.traders` — Traders
+- `q.opt.vat` — VAT
+- `q.opt.wholesale` — Wholesale
+- `q.opt.wires` — Wires
+
+## Answer buttons that are puzzle strings already (155: nothing to write here)
+
+↳ Listed so you can see them; their translations live in the puzzle docs named in each key (long-lost-cousin, years-apart, who-gets-what) and the build takes them from there. If one of them reads badly as a bare answer button, say so in your doubts.
+
+#### from Long Lost Cousin (84)
+
+- Aardvark → `p.long-lost-cousin.thing.aardvark.name`
+- African elephant → `p.long-lost-cousin.thing.african_elephant.name`
+- Ant → `p.long-lost-cousin.thing.ant.name`
+- Apple → `p.long-lost-cousin.thing.apple.name`
+- Asian elephant → `p.long-lost-cousin.thing.asian_elephant.name`
+- Axolotl → `p.long-lost-cousin.thing.axolotl.name`
+- Bear → `p.long-lost-cousin.thing.bear.name`
+- Camel → `p.long-lost-cousin.thing.camel.name`
+- Capybara → `p.long-lost-cousin.thing.capybara.name`
+- Cat → `p.long-lost-cousin.thing.cat.name`
+- Centipede → `p.long-lost-cousin.thing.centipede.name`
+- Chicken → `p.long-lost-cousin.thing.chicken.name`
+- Cockroach → `p.long-lost-cousin.thing.cockroach.name`
+- Coral → `p.long-lost-cousin.thing.coral.name`
+- Cow → `p.long-lost-cousin.thing.cow.name`
+- Crab → `p.long-lost-cousin.thing.crab.name`
+- Crane → `p.long-lost-cousin.thing.crane.name`
+- Deer → `p.long-lost-cousin.thing.deer.name`
+- Dimetrodon → `p.long-lost-cousin.thing.dimetrodon.name`
+- Dodo → `p.long-lost-cousin.thing.dodo.name`
+- Dog → `p.long-lost-cousin.thing.dog.name`
+- Dolphin → `p.long-lost-cousin.thing.dolphin.name`
+- Earthworm → `p.long-lost-cousin.thing.earthworm.name`
+- Elephant → `p.long-lost-cousin.thing.elephant.name`
+- Emu → `p.long-lost-cousin.thing.emu.name`
+- Flamingo → `p.long-lost-cousin.thing.flamingo.name`
+- Flying squirrel → `p.long-lost-cousin.thing.flying_squirrel.name`
+- Frog → `p.long-lost-cousin.thing.frog.name`
+- Giant panda → `p.long-lost-cousin.thing.giant_panda.name`
+- Gorilla → `p.long-lost-cousin.thing.gorilla.name`
+- Grebe → `p.long-lost-cousin.thing.grebe.name`
+- Guinea pig → `p.long-lost-cousin.thing.guinea_pig.name`
+- Hedgehog → `p.long-lost-cousin.thing.hedgehog.name`
+- Heron → `p.long-lost-cousin.thing.heron.name`
+- Hippo → `p.long-lost-cousin.thing.hippo.name`
+- Horse → `p.long-lost-cousin.thing.horse.name`
+- Horseshoe crab → `p.long-lost-cousin.thing.horseshoe_crab.name`
+- Human → `p.long-lost-cousin.thing.human.name`
+- Hyrax → `p.long-lost-cousin.thing.hyrax.name`
+- Jellyfish → `p.long-lost-cousin.thing.jellyfish.name`
+- Kangaroo → `p.long-lost-cousin.thing.kangaroo.name`
+- Kiwi → `p.long-lost-cousin.thing.kiwi.name`
+- Koala → `p.long-lost-cousin.thing.koala.name`
+- Lizard → `p.long-lost-cousin.thing.lizard.name`
+- Llama → `p.long-lost-cousin.thing.llama.name`
+- Lobster → `p.long-lost-cousin.thing.lobster.name`
+- Mammoth → `p.long-lost-cousin.thing.mammoth.name`
+- Manatee → `p.long-lost-cousin.thing.manatee.name`
+- Millipede → `p.long-lost-cousin.thing.millipede.name`
+- Monkey → `p.long-lost-cousin.thing.monkey.name`
+- Moss → `p.long-lost-cousin.thing.moss.name`
+- Mouse → `p.long-lost-cousin.thing.mouse.name`
+- Mushroom → `p.long-lost-cousin.thing.mushroom.name`
+- Narwhal → `p.long-lost-cousin.thing.narwhal.name`
+- Octopus → `p.long-lost-cousin.thing.octopus.name`
+- Orangutan → `p.long-lost-cousin.thing.orangutan.name`
+- Orca → `p.long-lost-cousin.thing.orca.name`
+- Ostrich → `p.long-lost-cousin.thing.ostrich.name`
+- Penguin → `p.long-lost-cousin.thing.penguin.name`
+- Pig → `p.long-lost-cousin.thing.pig.name`
+- Pigeon → `p.long-lost-cousin.thing.pigeon.name`
+- Platypus → `p.long-lost-cousin.thing.platypus.name`
+- Porcupine → `p.long-lost-cousin.thing.porcupine.name`
+- Prairie dog → `p.long-lost-cousin.thing.prairie_dog.name`
+- Rabbit → `p.long-lost-cousin.thing.rabbit.name`
+- Raccoon → `p.long-lost-cousin.thing.raccoon.name`
+- Red panda → `p.long-lost-cousin.thing.red_panda.name`
+- Salamander → `p.long-lost-cousin.thing.salamander.name`
+- Shrew → `p.long-lost-cousin.thing.shrew.name`
+- Shrimp → `p.long-lost-cousin.thing.shrimp.name`
+- Sloth → `p.long-lost-cousin.thing.sloth.name`
+- Slug → `p.long-lost-cousin.thing.slug.name`
+- Snail → `p.long-lost-cousin.thing.snail.name`
+- Spider → `p.long-lost-cousin.thing.spider.name`
+- Sponge → `p.long-lost-cousin.thing.sponge.name`
+- Starfish → `p.long-lost-cousin.thing.starfish.name`
+- Stork → `p.long-lost-cousin.thing.stork.name`
+- Sugar glider → `p.long-lost-cousin.thing.sugar_glider.name`
+- T. rex → `p.long-lost-cousin.thing.trex.name`
+- Termite → `p.long-lost-cousin.thing.termite.name`
+- Turkey → `p.long-lost-cousin.thing.turkey.name`
+- Wasp → `p.long-lost-cousin.thing.wasp.name`
+- Weasel → `p.long-lost-cousin.thing.weasel.name`
+- Woodlouse → `p.long-lost-cousin.thing.woodlouse.name`
+
+#### from Years Apart (58)
+
+- Alexander the Great dies → `p.years-apart.event.alexander.t`
+- Amundsen reaches the South Pole → `p.years-apart.event.amundsen.t`
+- Apollo 11 lands on the Moon → `p.years-apart.event.moon.t`
+- Bell is granted the telephone patent → `p.years-apart.event.telephone.t`
+- Charlemagne is crowned emperor → `p.years-apart.event.charlemagne.t`
+- Cleopatra dies → `p.years-apart.event.cleopatra.t`
+- Columbus reaches the Americas → `p.years-apart.event.columbus.t`
+- Constantinople falls to the Ottomans → `p.years-apart.event.constantinople.t`
+- Copernicus publishes his model of the universe → `p.years-apart.event.copernicus.t`
+- Cortés enters the Aztec capital → `p.years-apart.event.cortes.t`
+- Darwin publishes On the Origin of Species → `p.years-apart.event.darwin.t`
+- Farmers find the Terracotta Army → `p.years-apart.event.terracotta.t`
+- Fleming discovers penicillin → `p.years-apart.event.penicillin.t`
+- Gagarin is the first person in space → `p.years-apart.event.gagarin.t`
+- Galileo turns his telescope to the Moon → `p.years-apart.event.galileo.t`
+- Google becomes a company → `p.years-apart.event.google.t`
+- Hillary and Tenzing reach the top of Everest → `p.years-apart.event.everest.t`
+- Julius Caesar is assassinated → `p.years-apart.event.caesar.t`
+- Magna Carta is sealed → `p.years-apart.event.magna.t`
+- Nintendo is founded to make playing cards → `p.years-apart.event.nintendo.t`
+- Qin Shi Huang becomes China's first emperor → `p.years-apart.event.qin.t`
+- Rome's last western emperor is deposed → `p.years-apart.event.rome-falls.t`
+- Shakespeare dies → `p.years-apart.event.shakespeare.t`
+- Sputnik 1, the first satellite, is launched → `p.years-apart.event.sputnik.t`
+- Star Wars opens in American cinemas → `p.years-apart.event.star-wars.t`
+- Temüjin becomes Genghis Khan → `p.years-apart.event.genghis.t`
+- The Battle of Hastings → `p.years-apart.event.hastings.t`
+- The Battle of Marathon → `p.years-apart.event.marathon.t`
+- The Berlin Wall falls → `p.years-apart.event.berlin-wall.t`
+- The Black Death reaches Sicily → `p.years-apart.event.black-death.t`
+- The Colosseum opens → `p.years-apart.event.colosseum.t`
+- The East India Company gets its charter → `p.years-apart.event.east-india.t`
+- The Eiffel Tower is completed → `p.years-apart.event.eiffel.t`
+- The First Fleet arrives at Sydney Cove → `p.years-apart.event.first-fleet.t`
+- The Great Fire of London → `p.years-apart.event.fire-london.t`
+- The Great Pyramid of Giza is finished → `p.years-apart.event.pyramid.t`
+- The Hagia Sophia is finished → `p.years-apart.event.hagia.t`
+- The Panama Canal opens → `p.years-apart.event.panama.t`
+- The Rosetta Stone is found → `p.years-apart.event.rosetta.t`
+- The Suez Canal opens → `p.years-apart.event.suez.t`
+- The Sydney Opera House is officially opened → `p.years-apart.event.opera-house.t`
+- The Titanic sinks → `p.years-apart.event.titanic.t`
+- The US Declaration of Independence → `p.years-apart.event.declaration.t`
+- The Wright brothers' first powered flight → `p.years-apart.event.wright.t`
+- The double helix of DNA is published → `p.years-apart.event.dna.t`
+- The first football World Cup kicks off → `p.years-apart.event.world-cup.t`
+- The first iPhone goes on sale → `p.years-apart.event.iphone.t`
+- The first modern Olympics open in Athens → `p.years-apart.event.olympics-1896.t`
+- The first recorded Olympic Games → `p.years-apart.event.olympia.t`
+- The first voyage around the world ends → `p.years-apart.event.magellan.t`
+- The steps to Tutankhamun's tomb are found → `p.years-apart.event.tutankhamun.t`
+- The storming of the Bastille → `p.years-apart.event.bastille.t`
+- The world's first adhesive stamp goes on sale → `p.years-apart.event.penny-black.t`
+- Tokugawa Ieyasu becomes shogun → `p.years-apart.event.tokugawa.t`
+- Vasco da Gama reaches India by sea → `p.years-apart.event.gama.t`
+- Vesuvius buries Pompeii → `p.years-apart.event.pompeii.t`
+- Vikings cut wood in Newfoundland → `p.years-apart.event.vikings.t`
+- Wikipedia goes online → `p.years-apart.event.wikipedia.t`
+
+#### from Who Gets What (13)
+
+- A 70 cl bottle of spirits → `p.who-gets-what.no-spirits.what`
+- A dollar spent on food → `p.who-gets-what.us-food-21.what`
+- A first iPad → `p.who-gets-what.ipad.what`
+- A gallon of petrol → `p.who-gets-what.us-petrol.what`
+- A kilo of cocoa beans at the port → `p.who-gets-what.cocoa-cm.what`
+- A litre of diesel → `p.who-gets-what.uk-diesel.what`
+- A litre of petrol → `p.who-gets-what.uk-petrol.what`
+- A pack of 20 cigarettes → `p.who-gets-what.cigs-fr.what`
+- A pair of supermarket jeans → `p.who-gets-what.jeans.what`
+- A unit of electricity → `p.who-gets-what.dk-power.what`
+- A year of gas and electricity → `p.who-gets-what.gb-energy-22.what`
+- An iPhone 4 → `p.who-gets-what.iphone.what`
+- €100 of medicine, before VAT → `p.who-gets-what.it-medicine.what`
+
+## The 180 questions, for reference (not strings)
+
+↳ stem · options (the right one first is NOT implied: `a` is its index) · {x}
+
+- aq001 · came_first · Vesuvius buries Pompeii / The Sydney Opera House is officially opened · a = 0 · years-apart:pompeii
+- aq002 · closest_relative · Kiwi / Turkey / Ostrich · x = Emu · a = 0 · long-lost-cousin:emu
+- aq003 · o24_longer_asleep · Orangutan / Frigatebird · a = 0 · out-of-24:orangutan-sleep
+- aq004 · came_first · The Great Pyramid of Giza is finished / The US Declaration of Independence · a = 0 · years-apart:pyramid
+- aq005 · came_first · Shakespeare dies / The Berlin Wall falls · a = 0 · years-apart:shakespeare
+- aq006 · closest_relative · Heron / Grebe / Stork · x = Flamingo · a = 1 · long-lost-cousin:flamingo
+- aq007 · o24_longer_care · Austria / Japan · a = 0 · out-of-24:at-men-housework
+- aq008 · closest_relative · Weasel / Red panda / Bear · x = Raccoon · a = 0 · long-lost-cousin:raccoon
+- aq009 · came_first · The Black Death reaches Sicily / The first modern Olympics open in Athens · a = 0 · years-apart:black-death
+- aq010 · beat_faster · Chick / Camel · a = 0 · every-beat:chick-rest
+- aq011 · o24_longer_asleep · Sloth / Elephant seal · a = 0 · out-of-24:sloth-wild-sleep
+- aq012 · o24_longer_asleep · Gorilla / Frigatebird · a = 0 · out-of-24:gorilla-sleep
+- aq013 · came_first · The Battle of Hastings / Constantinople falls to the Ottomans · a = 0 · years-apart:hastings
+- aq014 · o24_longer_asleep · Little brown bat / Guinea pig · a = 0 · out-of-24:bat-sleep
+- aq015 · came_first · The first recorded Olympic Games / The double helix of DNA is published · a = 0 · years-apart:olympia
+- aq016 · came_first · The Colosseum opens / Vasco da Gama reaches India by sea · a = 0 · years-apart:colosseum
+- aq017 · o24_longer_asleep · Hedgehog / Frigatebird · a = 0 · out-of-24:hedgehog-sleep
+- aq018 · beat_faster · Newborn baby / Giant octopus · a = 0 · every-beat:newborn
+- aq019 · o24_longer_asleep · Gorilla / Elephant seal · a = 0 · out-of-24:gorilla-sleep
+- aq020 · came_first · The East India Company gets its charter / The Titanic sinks · a = 0 · years-apart:east-india
+- aq021 · biggest_share · Parts / Apple / Shops · x = A first iPad · a = 0 · who-gets-what:ipad
+- aq022 · closest_relative · Guinea pig / Elephant / Aardvark · x = Hyrax · a = 1 · long-lost-cousin:hyrax
+- aq023 · closest_relative · Lizard / Frog / Axolotl · x = Salamander · a = 2 · long-lost-cousin:salamander
+- aq024 · came_first · Magna Carta is sealed / The US Declaration of Independence · a = 0 · years-apart:magna
+- aq025 · o24_longer_asleep · Fire ant queen / Donkey · a = 0 · out-of-24:ant-queen-sleep
+- aq026 · came_first · Magna Carta is sealed / The storming of the Bastille · a = 0 · years-apart:magna
+- aq027 · beat_faster · Sea turtle / Grey seal · a = 0 · every-beat:turtle-dive
+- aq028 · o24_longer_asleep · Koala / Chimpanzee · a = 0 · out-of-24:koala-sleep
+- aq029 · came_first · Vesuvius buries Pompeii / The Battle of Hastings · a = 0 · years-apart:pompeii
+- aq030 · came_first · The East India Company gets its charter / Farmers find the Terracotta Army · a = 0 · years-apart:east-india
+- aq031 · came_first · Shakespeare dies / The first football World Cup kicks off · a = 0 · years-apart:shakespeare
+- aq032 · closest_relative · Manatee / Mammoth / Hippo · x = Elephant · a = 1 · long-lost-cousin:elephant
+- aq033 · beat_faster · Sea turtle / Penguin · a = 0 · every-beat:turtle-dive
+- aq034 · beat_faster · Mouse / Camel · a = 0 · every-beat:mouse-rest
+- aq035 · o24_longer_asleep · Baboon / Cow · a = 0 · out-of-24:baboon-sleep
+- aq036 · o24_longer_asleep · Little brown bat / Fire ant queen · a = 0 · out-of-24:bat-sleep
+- aq037 · o24_longer_asleep · Cow / Frigatebird · a = 0 · out-of-24:cow-sleep
+- aq038 · biggest_share · Duty / VAT / Maker · x = A 70 cl bottle of spirits · a = 0 · who-gets-what:no-spirits
+- aq039 · came_first · Charlemagne is crowned emperor / The First Fleet arrives at Sydney Cove · a = 0 · years-apart:charlemagne
+- aq040 · came_first · Vikings cut wood in Newfoundland / The first iPhone goes on sale · a = 0 · years-apart:vikings
+- aq041 · came_first · Alexander the Great dies / The Battle of Hastings · a = 0 · years-apart:alexander
+- aq042 · biggest_share · Farmers / Traders / Tax · x = A kilo of cocoa beans at the port · a = 0 · who-gets-what:cocoa-ec
+- aq043 · came_first · Cleopatra dies / Wikipedia goes online · a = 0 · years-apart:cleopatra
+- aq044 · o24_longer_asleep · Platypus / Fire ant worker · a = 0 · out-of-24:platypus-sleep
+- aq045 · came_first · The Battle of Hastings / Copernicus publishes his model of the universe · a = 0 · years-apart:hastings
+- aq046 · o24_longer_asleep · Tree shrew / Donkey · a = 0 · out-of-24:tree-shrew-sleep
+- aq047 · o24_longer_asleep · Little brown bat / African elephant · a = 0 · out-of-24:bat-sleep
+- aq048 · o24_longer_asleep · Elephant seal / Cow · a = 0 · out-of-24:seal-beach-sleep
+- aq049 · beat_faster · Orca / Blue whale · a = 0 · every-beat:orca-dive
+- aq050 · o24_longer_asleep · Rhesus monkey / Asian elephant · a = 0 · out-of-24:rhesus-sleep
+- aq051 · beat_faster · Mouse / Cat · a = 0 · every-beat:mouse-rest
+- aq052 · closest_relative · Monkey / Human / Sloth · x = Orangutan · a = 1 · long-lost-cousin:orangutan
+- aq053 · came_first · Vesuvius buries Pompeii / Vikings cut wood in Newfoundland · a = 0 · years-apart:pompeii
+- aq054 · beat_faster · Dolphin / Penguin · a = 0 · every-beat:dolphin-dive
+- aq055 · beat_faster · Rabbit / Red deer · a = 0 · every-beat:rabbit-rest
+- aq056 · came_first · Cleopatra dies / Nintendo is founded to make playing cards · a = 0 · years-apart:cleopatra
+- aq057 · came_first · Qin Shi Huang becomes China's first emperor / The Eiffel Tower is completed · a = 0 · years-apart:qin
+- aq058 · came_first · Rome's last western emperor is deposed / The US Declaration of Independence · a = 0 · years-apart:rome-falls
+- aq059 · biggest_share · Duty / Rest / VAT · x = A pack of 20 cigarettes · a = 0 · who-gets-what:cigs-de
+- aq060 · closest_relative · Pig / Porcupine / Mouse · x = Capybara · a = 1 · long-lost-cousin:capybara
+- aq061 · beat_faster · Chicken / Cow · a = 0 · every-beat:chicken-rest
+- aq062 · came_first · The Hagia Sophia is finished / The first voyage around the world ends · a = 0 · years-apart:hagia
+- aq063 · came_first · The Great Fire of London / Apollo 11 lands on the Moon · a = 0 · years-apart:fire-london
+- aq064 · came_first · The Battle of Marathon / Shakespeare dies · a = 0 · years-apart:marathon
+- aq065 · o24_longer_care · China / Japan · a = 0 · out-of-24:cn-women-housework
+- aq066 · came_first · The Hagia Sophia is finished / Temüjin becomes Genghis Khan · a = 0 · years-apart:hagia
+- aq067 · came_first · The Black Death reaches Sicily / The US Declaration of Independence · a = 0 · years-apart:black-death
+- aq068 · came_first · Constantinople falls to the Ottomans / Fleming discovers penicillin · a = 0 · years-apart:constantinople
+- aq069 · o24_longer_asleep · Owl monkey / Cow · a = 0 · out-of-24:owl-monkey-sleep
+- aq070 · came_first · Columbus reaches the Americas / The Berlin Wall falls · a = 0 · years-apart:columbus
+- aq071 · closest_relative · Turkey / Ostrich / Pigeon · x = Dodo · a = 2 · long-lost-cousin:dodo
+- aq072 · biggest_share · Apple / Parts / Makers · x = An iPhone 4 · a = 0 · who-gets-what:iphone
+- aq073 · came_first · Alexander the Great dies / Hillary and Tenzing reach the top of Everest · a = 0 · years-apart:alexander
+- aq074 · came_first · Cleopatra dies / Google becomes a company · a = 0 · years-apart:cleopatra
+- aq075 · came_first · Alexander the Great dies / The Hagia Sophia is finished · a = 0 · years-apart:alexander
+- aq076 · o24_longer_asleep · Koala / Fire ant worker · a = 0 · out-of-24:koala-sleep
+- aq077 · o24_longer_asleep · Sloth / Donkey · a = 0 · out-of-24:sloth-captive-sleep
+- aq078 · came_first · The first recorded Olympic Games / The Rosetta Stone is found · a = 0 · years-apart:olympia
+- aq079 · came_first · Rome's last western emperor is deposed / The storming of the Bastille · a = 0 · years-apart:rome-falls
+- aq080 · came_first · Julius Caesar is assassinated / The double helix of DNA is published · a = 0 · years-apart:caesar
+- aq081 · beat_faster · Hedgehog / Giant octopus · a = 0 · every-beat:hedgehog-awake
+- aq082 · beat_faster · Dolphin / Grey seal · a = 0 · every-beat:dolphin-dive
+- aq083 · came_first · Constantinople falls to the Ottomans / Bell is granted the telephone patent · a = 0 · years-apart:constantinople
+- aq084 · biggest_share · Crude / Delivery / Tax · x = A gallon of petrol · a = 0 · who-gets-what:us-petrol
+- aq085 · o24_longer_asleep · Ferret / Grey seal · a = 0 · out-of-24:ferret-sleep
+- aq086 · came_first · Qin Shi Huang becomes China's first emperor / Cortés enters the Aztec capital · a = 0 · years-apart:qin
+- aq087 · beat_faster · Rabbit / Camel · a = 0 · every-beat:rabbit-rest
+- aq088 · came_first · Vikings cut wood in Newfoundland / Gagarin is the first person in space · a = 0 · years-apart:vikings
+- aq089 · came_first · Tokugawa Ieyasu becomes shogun / Farmers find the Terracotta Army · a = 0 · years-apart:tokugawa
+- aq090 · o24_longer_asleep · Penguin / Horse · a = 0 · out-of-24:penguin-microsleep
+- aq091 · o24_longer_asleep · Giant armadillo / Pig · a = 0 · out-of-24:armadillo-sleep
+- aq092 · beat_faster · Rat / Cow · a = 0 · every-beat:rat-rest
+- aq093 · came_first · The Colosseum opens / Sputnik 1, the first satellite, is launched · a = 0 · years-apart:colosseum
+- aq094 · o24_longer_asleep · Baboon / Horse · a = 0 · out-of-24:baboon-sleep
+- aq095 · closest_relative · Horseshoe crab / Lobster / Shrimp · x = Crab · a = 1 · long-lost-cousin:crab
+- aq096 · came_first · The Colosseum opens / The US Declaration of Independence · a = 0 · years-apart:colosseum
+- aq097 · came_first · The Great Pyramid of Giza is finished / Amundsen reaches the South Pole · a = 0 · years-apart:pyramid
+- aq098 · closest_relative · Pig / Kangaroo / Elephant · x = Aardvark · a = 2 · long-lost-cousin:aardvark
+- aq099 · closest_relative · Shrew / Kangaroo / Human · x = Mouse · a = 2 · long-lost-cousin:mouse
+- aq100 · o24_longer_asleep · Frigatebird / Horse · a = 0 · out-of-24:frigatebird-land
+- aq101 · o24_longer_asleep · Pig / Elephant seal · a = 0 · out-of-24:pig-sleep
+- aq102 · came_first · Shakespeare dies / The steps to Tutankhamun's tomb are found · a = 0 · years-apart:shakespeare
+- aq103 · came_first · The Battle of Marathon / The Berlin Wall falls · a = 0 · years-apart:marathon
+- aq104 · came_first · Galileo turns his telescope to the Moon / Star Wars opens in American cinemas · a = 0 · years-apart:galileo
+- aq105 · closest_relative · Flamingo / Crane / Emu · x = Ostrich · a = 2 · long-lost-cousin:ostrich
+- aq106 · came_first · The first voyage around the world ends / The first football World Cup kicks off · a = 0 · years-apart:magellan
+- aq107 · came_first · Temüjin becomes Genghis Khan / The first iPhone goes on sale · a = 0 · years-apart:genghis
+- aq108 · beat_faster · Elephant seal / Grey seal · a = 0 · every-beat:seal-dive
+- aq109 · o24_longer_asleep · Giant armadillo / Guinea pig · a = 0 · out-of-24:armadillo-sleep
+- aq110 · came_first · Cortés enters the Aztec capital / Farmers find the Terracotta Army · a = 0 · years-apart:cortes
+- aq111 · came_first · Galileo turns his telescope to the Moon / Gagarin is the first person in space · a = 0 · years-apart:galileo
+- aq112 · came_first · Magna Carta is sealed / Farmers find the Terracotta Army · a = 0 · years-apart:magna
+- aq113 · biggest_share · Petrol / Duty / VAT · x = A litre of petrol · a = 0 · who-gets-what:uk-petrol
+- aq114 · came_first · Copernicus publishes his model of the universe / The first football World Cup kicks off · a = 0 · years-apart:copernicus
+- aq115 · beat_faster · Mouse / Red deer · a = 0 · every-beat:mouse-rest
+- aq116 · closest_relative · Earthworm / Octopus / Snail · x = Slug · a = 2 · long-lost-cousin:slug
+- aq117 · beat_faster · Chick / Trout · a = 0 · every-beat:chick-rest
+- aq118 · came_first · The Battle of Hastings / Shakespeare dies · a = 0 · years-apart:hastings
+- aq119 · came_first · Julius Caesar is assassinated / The first football World Cup kicks off · a = 0 · years-apart:caesar
+- aq120 · came_first · Temüjin becomes Genghis Khan / Darwin publishes On the Origin of Species · a = 0 · years-apart:genghis
+- aq121 · o24_longer_asleep · Hunter-gatherers / Horse · a = 0 · out-of-24:hunter-gatherer-sleep
+- aq122 · beat_faster · Chicken / Burmese python · a = 0 · every-beat:chicken-rest
+- aq123 · beat_faster · Orca / Grey seal · a = 0 · every-beat:orca-dive
+- aq124 · o24_longer_asleep · Frigatebird / Donkey · a = 0 · out-of-24:frigatebird-land
+- aq125 · came_first · Cortés enters the Aztec capital / Star Wars opens in American cinemas · a = 0 · years-apart:cortes
+- aq126 · closest_relative · Chicken / T. rex / Dog · x = Dimetrodon · a = 2 · long-lost-cousin:dimetrodon
+- aq127 · closest_relative · Ant / Wasp / Cockroach · x = Termite · a = 2 · long-lost-cousin:termite
+- aq128 · biggest_share · Energy / Supplier / Wires · x = A year of gas and electricity · a = 0 · who-gets-what:gb-energy
+- aq129 · closest_relative · Crab / Jellyfish / Human · x = Starfish · a = 2 · long-lost-cousin:starfish
+- aq130 · came_first · The first recorded Olympic Games / Qin Shi Huang becomes China's first emperor · a = 0 · years-apart:olympia
+- aq131 · o24_longer_asleep · Elephant seal / Asian elephant · a = 0 · out-of-24:seal-beach-sleep
+- aq132 · beat_faster · Rat / Bullfrog · a = 0 · every-beat:rat-rest
+- aq133 · came_first · The Hagia Sophia is finished / Shakespeare dies · a = 0 · years-apart:hagia
+- aq134 · closest_relative · Lobster / Spider / Crab · x = Horseshoe crab · a = 1 · long-lost-cousin:horseshoe_crab
+- aq135 · closest_relative · Prairie dog / Mouse / Sugar glider · x = Flying squirrel · a = 0 · long-lost-cousin:flying_squirrel
+- aq136 · biggest_share · Selling / Rest / Factories · x = A dollar spent on food · a = 0 · who-gets-what:us-food
+- aq137 · o24_longer_asleep · Penguin / Asian elephant · a = 0 · out-of-24:penguin-microsleep
+- aq138 · beat_faster · Guinea pig / Trout · a = 0 · every-beat:guinea-pig-rest
+- aq139 · o24_longer_asleep · Ferret / Horse · a = 0 · out-of-24:ferret-sleep
+- aq140 · closest_relative · Centipede / Earthworm / Woodlouse · x = Millipede · a = 0 · long-lost-cousin:millipede
+- aq141 · biggest_share · Diesel / Duty / VAT · x = A litre of diesel · a = 0 · who-gets-what:uk-diesel
+- aq142 · beat_faster · Chicken / Llama · a = 0 · every-beat:chicken-rest
+- aq143 · o24_longer_asleep · Guinea pig / African elephant · a = 0 · out-of-24:guinea-pig-sleep
+- aq144 · beat_faster · Foal / Burmese python · a = 0 · every-beat:foal-rest
+- aq145 · closest_relative · Mushroom / Moss / Coral · x = Sponge · a = 2 · long-lost-cousin:sponge
+- aq146 · came_first · Copernicus publishes his model of the universe / The Panama Canal opens · a = 0 · years-apart:copernicus
+- aq147 · o24_longer_asleep · Baboon / Fire ant worker · a = 0 · out-of-24:baboon-sleep
+- aq148 · beat_faster · Narwhal / Penguin · a = 0 · every-beat:narwhal-dive
+- aq149 · came_first · The Battle of Marathon / Wikipedia goes online · a = 0 · years-apart:marathon
+- aq150 · o24_longer_asleep · Owl monkey / Horse · a = 0 · out-of-24:owl-monkey-sleep
+- aq151 · beat_faster · Cat / Burmese python · a = 0 · every-beat:cat-rest
+- aq152 · biggest_share · Maker / Pharmacy / Wholesale · x = €100 of medicine, before VAT · a = 0 · who-gets-what:it-medicine
+- aq153 · came_first · Qin Shi Huang becomes China's first emperor / The Panama Canal opens · a = 0 · years-apart:qin
+- aq154 · beat_faster · Penguin / Orca · a = 0 · every-beat:penguin-surface
+- aq155 · biggest_share · Energy / Wires / Tax · x = A unit of electricity · a = 0 · who-gets-what:it-power
+- aq156 · came_first · Charlemagne is crowned emperor / Star Wars opens in American cinemas · a = 0 · years-apart:charlemagne
+- aq157 · beat_faster · Rat / Burmese python · a = 0 · every-beat:rat-rest
+- aq158 · came_first · The Black Death reaches Sicily / The Suez Canal opens · a = 0 · years-apart:black-death
+- aq159 · beat_faster · Etruscan shrew / Horse · a = 0 · every-beat:shrew-peak
+- aq160 · o24_longer_asleep · Koala / Hunter-gatherers · a = 0 · out-of-24:koala-sleep
+- aq161 · o24_longer_asleep · Sloth / Horse · a = 0 · out-of-24:sloth-wild-sleep
+- aq162 · beat_faster · Black bear / Ground squirrel · a = 0 · every-beat:bear-hibernating
+- aq163 · o24_longer_asleep · Cat / Elephant seal · a = 0 · out-of-24:cat-sleep
+- aq164 · came_first · Columbus reaches the Americas / The Wright brothers' first powered flight · a = 0 · years-apart:columbus
+- aq165 · came_first · Charlemagne is crowned emperor / Apollo 11 lands on the Moon · a = 0 · years-apart:charlemagne
+- aq166 · came_first · Vikings cut wood in Newfoundland / The world's first adhesive stamp goes on sale · a = 0 · years-apart:vikings
+- aq167 · o24_longer_asleep · Ferret / Asian elephant · a = 0 · out-of-24:ferret-sleep
+- aq168 · came_first · Copernicus publishes his model of the universe / The first iPhone goes on sale · a = 0 · years-apart:copernicus
+- aq169 · o24_longer_eating · Giant panda / Hippo · a = 0 · out-of-24:panda-eating
+- aq170 · o24_longer_asleep · Gorilla / Grey seal · a = 0 · out-of-24:gorilla-sleep
+- aq171 · closest_relative · Deer / Horse / Camel · x = Cow · a = 0 · long-lost-cousin:cow
+- aq172 · came_first · The Great Pyramid of Giza is finished / The First Fleet arrives at Sydney Cove · a = 0 · years-apart:pyramid
+- aq173 · came_first · Columbus reaches the Americas / Bell is granted the telephone patent · a = 0 · years-apart:columbus
+- aq174 · biggest_share · Shop / Cloth / Shipping · x = A pair of supermarket jeans · a = 0 · who-gets-what:jeans
+- aq175 · beat_faster · Guinea pig / Athlete · a = 0 · every-beat:guinea-pig-rest
+- aq176 · beat_faster · Cat / Elephant · a = 0 · every-beat:cat-rest
+- aq177 · came_first · Temüjin becomes Genghis Khan / The Berlin Wall falls · a = 0 · years-apart:genghis
+- aq178 · came_first · Rome's last western emperor is deposed / The East India Company gets its charter · a = 0 · years-apart:rome-falls
+- aq179 · came_first · Constantinople falls to the Ottomans / The double helix of DNA is published · a = 0 · years-apart:constantinople
+- aq180 · beat_faster · Chick / Burmese python · a = 0 · every-beat:chick-rest
