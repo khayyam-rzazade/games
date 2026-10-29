@@ -35,7 +35,26 @@
     "altitude-tr": [[0, 100], [8, 0]],
     "altitude-es": [[0, 100], [8, 0]],
     "altitude-pt": [[0, 100], [8, 0]],
-    "altitude-fr": [[0, 100], [8, 0]]
+    "altitude-fr": [[0, 100], [8, 0]],
+
+    /* Lookalike (29 Oct 2026), three words a day: one id per language, outside the nine. Its error is a mask of the
+       traps fallen for (bit 0 the first word, bit 1 the second, bit 2 the third), so 0 is no trap and 7 all three;
+       round(100 * (1 - e / 7)) puts the eight masks in eight different tenths, which is how the page reads them. */
+    "lookalike-en": [[0, 100], [7, 0]],
+    "lookalike-it": [[0, 100], [7, 0]],
+    "lookalike-tr": [[0, 100], [7, 0]],
+    "lookalike-es": [[0, 100], [7, 0]],
+    "lookalike-pt": [[0, 100], [7, 0]],
+    "lookalike-fr": [[0, 100], [7, 0]],
+
+    /* Passport (29 Oct 2026), one word a day and where it came from: one id per language, outside the nine. 0 the
+       right origin (100 points), 1 a wrong one (0). */
+    "passport-en": [[0, 100], [1, 0]],
+    "passport-it": [[0, 100], [1, 0]],
+    "passport-tr": [[0, 100], [1, 0]],
+    "passport-es": [[0, 100], [1, 0]],
+    "passport-pt": [[0, 100], [1, 0]],
+    "passport-fr": [[0, 100], [1, 0]]
   };
 
   /* What the server accepts, game by game: the error (whole numbers), and the guess where there is one.
@@ -59,7 +78,13 @@
     "altitude-tr": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
     "altitude-es": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
     "altitude-pt": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
-    "altitude-fr": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true }
+    "altitude-fr": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
+
+    /* Lookalike: e the mask of the traps fallen for, 0 to 7, no guess. Passport: e 0 or 1, no guess. */
+    "lookalike-en": { e: [0, 7] }, "lookalike-it": { e: [0, 7] }, "lookalike-tr": { e: [0, 7] },
+    "lookalike-es": { e: [0, 7] }, "lookalike-pt": { e: [0, 7] }, "lookalike-fr": { e: [0, 7] },
+    "passport-en": { e: [0, 1] }, "passport-it": { e: [0, 1] }, "passport-tr": { e: [0, 1] },
+    "passport-es": { e: [0, 1] }, "passport-pt": { e: [0, 1] }, "passport-fr": { e: [0, 1] }
   };
 
   /* The five games whose guess is one number, and the scale their guesses are averaged on: Every Beat's

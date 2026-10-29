@@ -1,0 +1,151 @@
+/* The word-origin game's own look. Everything the games share (bar, chips, dialogs, buttons, end-of-game
+   sheet, language sheet, stats) comes from ../assets/css/logicers.css; this file only adds the game's colour,
+   the word card, the map scene, the answer chips and the stamps. Nothing here reaches another page. */
+
+/* The game's colour: orchid. It is not one of the other games' colours, and it stays away from the greens, so
+   "right" (green) and the game's own accent never blur. */
+[data-g="passport"] { --c: #9A3FC4; --tint: #F1E4F8; }
+:root {
+  --hit: #2E9F63;  --on-hit: #fff;                /* a right answer */
+  --miss: #8D93AB; --on-miss: #fff;               /* a wrong one: grey, never red */
+  --pp-line: #C9D0E0;
+  --kh: clamp(52px, 7.4svh, 62px);                /* answer chip height */
+  --wm-land: #E2E7F3; --wm-coast: #C3CBE0;
+}
+@media (prefers-color-scheme: dark) {
+  [data-g="passport"] { --c: #D79AF0; --tint: #1B1024; }
+  :root {
+    --hit: #2BA866;  --on-hit: #fff;
+    --miss: #3A4062; --on-miss: #E8EAFF;
+    --pp-line: rgba(255, 255, 255, .20);
+    --wm-land: #1E2342; --wm-coast: #394272;
+  }
+}
+
+/* ---------- the page: a column, the answer chips at the bottom where the thumb is ---------- */
+.pp { display: flex; flex-direction: column; height: calc(100vh - 64px); height: calc(100svh - 64px); min-height: 30rem; padding-bottom: 12px; position: relative; }
+.pp .meta { margin-top: 6px; }
+
+.pp-card { position: relative; flex: 1 1 auto; min-height: 0; margin-top: 10px; padding: 16px 14px 10px; border-radius: 24px; background: var(--card); box-shadow: var(--shadow);
+  display: flex; flex-direction: column; overflow: hidden; }
+@media (prefers-color-scheme: dark) { .pp-card { box-shadow: inset 0 0 0 1px var(--line); } }
+
+.pp-word { flex: none; text-align: center; font-family: var(--display); font-weight: 800; font-size: 3.4rem; line-height: 1.02; letter-spacing: -0.035em;
+  white-space: nowrap; overflow: hidden; text-overflow: clip; padding: 0 2px 2px; min-height: 1.05em; }
+.pp-ask { flex: none; margin: 6px 0 0; text-align: center; color: var(--soft); font-weight: 600; font-size: 1.05rem; line-height: 1.6rem; height: 1.6rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.pp-ask.yes { color: var(--hit); font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; }
+.pp-ask.no { color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; }
+
+/* ---------- the map ---------- */
+.pp-map { position: relative; flex: 1 1 auto; min-height: 9rem; margin-top: 8px; }
+.pp-map .wm { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pp-replay { position: absolute; right: 0; top: 0; z-index: 2; width: 38px; height: 38px; background: var(--bg); box-shadow: none; }
+.pp-replay svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.pp-replay[hidden] { display: none; }
+
+.pp-map .arc { fill: none; stroke: var(--c); stroke-width: 2.3; stroke-linecap: round; }
+.pp-map .head { fill: var(--c); }
+.pp-map .dot { fill: var(--c); stroke: var(--card); stroke-width: 1.8; }
+.pp-map .ring { fill: none; stroke: var(--c); stroke-width: 1.5; opacity: .5; }
+.pp-map .scene.idle .dot { fill: var(--soft); }
+.pp-map .scene.idle .ring { stroke: var(--soft); opacity: .35; }
+.pp-map .scene.idle .st { cursor: pointer; }
+.pp-map .scene.idle .pill rect { stroke: var(--line); }
+.pp-map .st.me .dot { fill: var(--ink); }
+.pp-map .st.me .ring { stroke: var(--ink); }
+.pp-map .pill rect { fill: var(--card); stroke: color-mix(in srgb, var(--c) 55%, transparent); stroke-width: 1.1; }
+.pp-map .pill text { text-anchor: middle; }
+.pp-map .pill .f { font: 800 12.5px var(--display); fill: var(--ink); letter-spacing: -0.01em; }
+.pp-map .pill .n { font: 700 8.5px var(--text); fill: var(--soft); }
+.pp-map .st.me .pill rect { fill: var(--c); stroke: none; }
+.pp-map .st.me .pill .f { fill: var(--on-c); }
+.pp-map .st.me .pill .n { fill: var(--on-c); opacity: .85; }
+.pp-map .arc, .pp-map .head, .pp-map .dot, .pp-map .ring, .pp-map .pill { transform-box: fill-box; transform-origin: center; }
+
+/* ---------- the answer chips ---------- */
+.pp-low { flex: none; margin-top: 10px; }
+.pp-slot { display: grid; grid-template-columns: minmax(0, 1fr); }     /* one column as wide as the card, never as wide as a long address in the sources (29 Oct 2026) */
+.pp-slot > * { grid-area: 1 / 1; align-self: end; }
+.off { visibility: hidden; pointer-events: none; }
+.pp-opts { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 10px; height: 100%; max-height: 152px; touch-action: manipulation; }
+.pp-opt { appearance: none; min-width: 0; min-height: var(--kh); padding: 6px 10px; border: 0; border-radius: 18px; background: var(--card); color: var(--ink); box-shadow: var(--shadow);
+  font-family: var(--display); font-weight: 800; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 1.1; text-align: center; cursor: pointer; overflow-wrap: anywhere;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: background-color .2s ease, color .2s ease, opacity .25s ease, transform .1s ease; }
+.pp-opt:active { transform: scale(.97); }
+.pp-opt.ok { background: var(--hit); color: var(--on-hit); box-shadow: none; }
+.pp-opt.no { background: var(--miss); color: var(--on-miss); box-shadow: none; }
+.pp-opt.dim { opacity: .4; }
+.pp-opt[disabled] { cursor: default; }
+@media (prefers-color-scheme: dark) {
+  .pp-opt { background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px var(--line); }
+  .pp-opt.ok, .pp-opt.no { box-shadow: none; }
+}
+
+.pp-after { text-align: center; }
+.pp-after:not(.off) { animation: pp-in .45s ease both; }
+.pp-own { margin: 0 0 4px; color: var(--soft); font-weight: 700; font-size: 0.92rem; }
+.pp-own[hidden] { display: none; }
+.pp-line { margin: 0; font-weight: 600; font-size: 1.06rem; line-height: 1.35; text-wrap: balance; }
+.pp-year { display: inline-block; margin: 8px 0 0; padding: 3px 12px; border-radius: 999px; background: color-mix(in srgb, var(--c) 16%, transparent); color: var(--c);
+  font-family: var(--display); font-weight: 800; font-size: 0.98rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.pp-year[hidden], .pp-src[hidden] { display: none; }
+.pp-src { margin: 6px 0 0; color: var(--soft); font-size: 0.8rem; line-height: 1.3; overflow-wrap: anywhere; }
+.pp-src a { color: inherit; text-underline-offset: 2px; }
+.pp-after .endstrip { margin-top: 10px; }
+.pp-after .btn { min-height: 52px; }
+.pp-count { appearance: none; display: block; margin: 4px auto 0; padding: 6px 12px; border: 0; background: none; color: var(--soft); font: inherit; font-weight: 600; font-size: 0.88rem; cursor: pointer; border-radius: 10px; -webkit-tap-highlight-color: transparent; }
+.pp-count:empty { display: none; }
+.midnight { margin: 8px 4px 0; color: var(--soft); font-weight: 600; font-size: 0.88rem; text-align: center; }
+.loaderr { margin: 18px 4px 0; text-align: center; font-weight: 600; }
+.loaderr[hidden] { display: none; }
+.loaderr .btn { margin-top: 10px; min-height: 48px; }
+@keyframes pp-in { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: none; } }
+
+/* ---------- stamps ---------- */
+.pp-sub { margin: 6px 0 0; color: var(--soft); font-weight: 600; font-size: 0.95rem; }
+.pp-stampgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; max-height: 38vh; overflow: auto; padding: 4px 2px; }
+.pp-stamp { aspect-ratio: 1; min-width: 0; border-radius: 50%; display: grid; place-items: center; text-align: center; padding: 7px;
+  font-family: var(--display); font-weight: 800; font-size: 0.74rem; line-height: 1.05; letter-spacing: -0.01em; color: var(--c);
+  background: color-mix(in srgb, var(--c) 10%, transparent); border: 2.5px dashed color-mix(in srgb, var(--c) 70%, transparent);
+  box-shadow: inset 0 0 0 4px var(--card), inset 0 0 0 5.5px color-mix(in srgb, var(--c) 35%, transparent);
+  transform: rotate(var(--r, -5deg)); overflow: hidden; overflow-wrap: anywhere; }
+.pp-stamp.empty { color: var(--soft); background: transparent; border-color: var(--line); box-shadow: none; transform: none; font-size: 1.2rem; font-weight: 700; opacity: .65; }
+.pp-stamp.new { animation: pp-thunk .6s cubic-bezier(.3, 1.3, .5, 1) both; }
+@keyframes pp-thunk { 0% { transform: rotate(8deg) scale(1.8); opacity: 0; } 60% { transform: rotate(var(--r, -5deg)) scale(.94); opacity: 1; } 100% { transform: rotate(var(--r, -5deg)) scale(1); opacity: 1; } }
+.stats { grid-template-columns: repeat(4, 1fr); }
+
+/* ---------- the end sheet ---------- */
+.pp-fin-line { margin: 10px 0 0; font-weight: 600; font-size: 1rem; line-height: 1.35; }
+.pp-fin-year { color: var(--c); font-family: var(--display); font-weight: 800; margin-left: 6px; font-variant-numeric: tabular-nums; }
+.pp-avgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.pp-avgs:empty { display: none; }
+.pp-avg { padding: 10px 12px; border-radius: 14px; background: var(--tint); }
+.pp-avg b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.9rem; line-height: 1.05; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.pp-avg span { display: block; margin-top: 3px; color: var(--soft); font-weight: 600; font-size: 0.82rem; line-height: 1.2; overflow-wrap: anywhere; }
+.pp-avgs .pp-avg:only-child { grid-column: 1 / -1; }
+.pp-fin-stamp { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.pp-fin-stamp .pp-stamp { flex: none; width: 74px; }
+.pp-fin-stamp p { margin: 0; font-weight: 700; line-height: 1.25; }
+.pp-fin-stamp small { display: block; margin-top: 2px; color: var(--soft); font-weight: 600; font-size: 0.86rem; }
+.fin-sheet .pp-share { margin-top: 14px; display: flex; gap: 10px; }
+.fin-sheet .pp-share .btn { min-height: 54px; }
+.pp-more { margin-top: 14px; }
+
+/* a small screen: everything a little tighter so the map keeps its room */
+@media (max-height: 40rem) {
+  .pp .meta { margin-top: 2px; }
+  .pp-card { margin-top: 6px; padding-top: 10px; }
+  .pp-word { font-size: 2.7rem; }
+  .pp-low { margin-top: 6px; }
+  .pp-opts { gap: 8px; }
+  .pp-opt { min-height: 48px; font-size: 1.08rem; }
+  .pp-count { margin-top: 0; padding: 4px 12px; }
+}
+@media (min-width: 56rem) {
+  .pp { height: calc(100vh - 90px); height: calc(100svh - 90px); }
+  .pp-opt:hover { filter: brightness(.97); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pp-after, .pp-stamp.new { animation: none; }
+  .pp-opt { transition: none; }
+}

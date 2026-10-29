@@ -1,0 +1,152 @@
+/* The word game with two meanings: the game's own look. Everything the games share (bar, chips, dialogs, buttons,
+   the end-of-game sheet, the language sheet) comes from ../assets/css/logicers.css; this file only adds the
+   game's colour, the word stage, the answer buttons, the split card and the end rows. Nothing here reaches another page. */
+
+/* The game's colour: lagoon cyan. Not one of the other games' colours, and not Altitude's glacier grey-blue. */
+[data-g="lookalike"] { --c: #0087A8; --tint: #DAF1F7; }
+:root {
+  --hit: #2E9F63;  --on-hit: #fff;                /* the right meaning */
+  --trap: #E8780C; --on-trap: #fff;               /* the other language's meaning: the trap (amber, never red) */
+  --miss: #8D93AB; --on-miss: #fff;               /* the decoy */
+}
+@media (prefers-color-scheme: dark) {
+  [data-g="lookalike"] { --c: #4FD0EE; --tint: #071C24; }
+  :root {
+    --hit: #2BA866;  --on-hit: #fff;
+    --trap: #F59A33; --on-trap: #15172B;
+    --miss: #4A5078; --on-miss: #E8EAFF;
+  }
+}
+
+/* ---------- the page: a column, the answers at the bottom where the thumb is ---------- */
+.lk { display: flex; flex-direction: column; min-height: calc(100vh - 64px); min-height: calc(100svh - 64px); padding-bottom: 14px; }
+.lk-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
+.lk-top .meta { margin: 0; }
+
+.lk-pips { display: flex; gap: 6px; }
+.lk-pips i { display: block; width: 26px; height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--c) 18%, transparent); transition: background-color .25s ease, transform .25s ease; }
+.lk-pips i.now { background: var(--c); }
+.lk-pips i.r { background: var(--hit); }
+.lk-pips i.t { background: var(--trap); }
+.lk-pips i.m { background: var(--miss); }
+
+/* ---------- the stage: the word, the two languages, the question ---------- */
+.lk-stage { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 10px 0 14px; text-align: center; min-height: 0; }
+.lk-stage[hidden] { display: none; }
+.lk-word { margin: 0; max-width: 100%; font-family: var(--display); font-weight: 800; font-size: min(clamp(2.7rem, 15.5vw, 4.6rem), var(--fit, 9rem)); line-height: 1.02; letter-spacing: -0.035em; overflow-wrap: anywhere; color: var(--ink); animation: lk-rise .32s cubic-bezier(.2, .9, .3, 1) both; }
+.lk-word.long { font-size: min(clamp(2.1rem, 11.5vw, 3.6rem), var(--fit, 9rem)); }
+.lk-langs { display: flex; align-items: center; justify-content: center; gap: 7px; flex-wrap: wrap; }
+.lk-lang { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 13px 0 10px; border-radius: 999px; font-weight: 700; font-size: 0.94rem; line-height: 1;
+  color: var(--soft); background: color-mix(in srgb, var(--c) 10%, transparent); }
+.lk-lang .fl { font-size: 1.15rem; line-height: 1; }
+.lk-lang.ask { color: var(--on-c); background: var(--c); }
+.lk-langs .sep { color: var(--soft); font-weight: 800; font-size: 1.1rem; }
+.lk-q { margin: 2px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(1.15rem, 5.4vw, 1.4rem); letter-spacing: -0.015em; line-height: 1.2; color: var(--ink); }
+
+/* ---------- the dock: three answers, or the split card and Next ---------- */
+.lk-dock { display: grid; gap: 10px; margin-top: auto; }
+.lk-dock:empty { display: none; }
+.lk-opt { appearance: none; width: 100%; min-height: 64px; padding: 10px 18px; border: 0; border-radius: 20px; background: var(--card); color: var(--ink); box-shadow: var(--shadow);
+  font-family: var(--display); font-weight: 700; font-size: clamp(1.1rem, 5vw, 1.3rem); letter-spacing: -0.015em; line-height: 1.2; text-align: center; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation; overflow-wrap: anywhere; animation: lk-rise .3s cubic-bezier(.2, .9, .3, 1) both; animation-delay: calc(var(--i, 0) * 50ms); }
+.lk-opt:active { transform: scale(.985); background: var(--tint); }
+.lk-opt[disabled] { cursor: default; }
+
+.lk-verdict { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 16px; border-radius: 16px; font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; animation: lk-pop .38s cubic-bezier(.2, 1.3, .4, 1) both; }
+.lk-verdict i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-style: normal; font-size: 1rem; line-height: 1; background: rgba(255, 255, 255, .28); }
+.lk-verdict.r { background: var(--hit); color: var(--on-hit); }
+.lk-verdict.t { background: var(--trap); color: var(--on-trap); }
+.lk-verdict.m { background: var(--miss); color: var(--on-miss); }
+
+/* the split card: the same word, two languages, two meanings */
+.lk-split { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--card); border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
+.lk-split::before { content: ""; position: absolute; left: 50%; top: 14px; bottom: 14px; width: 2px; margin-left: -1px; border-radius: 1px; background: var(--line); }
+.lk-split::after { content: "≠"; position: absolute; left: 50%; top: 50%; width: 32px; height: 32px; margin: -16px 0 0 -16px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--card); box-shadow: 0 0 0 2px var(--line); color: var(--soft); font-family: var(--display); font-weight: 800; font-size: 1.1rem; line-height: 1; }
+.lk-half { position: relative; display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 14px 24px 14px 14px; border-top: 4px solid transparent; }
+.lk-half.b { padding: 14px 14px 14px 24px; }
+.lk-half.a { animation: lk-from-l .4s cubic-bezier(.2, .9, .3, 1) both; }
+.lk-half.b { animation: lk-from-r .4s cubic-bezier(.2, .9, .3, 1) both; }
+.lk-half.ask { border-top-color: var(--hit); }
+.lk-half.fell { border-top-color: var(--trap); }
+.lk-half .l { display: flex; align-items: center; gap: 6px; color: var(--soft); font-weight: 700; font-size: 0.84rem; line-height: 1.1; }
+.lk-half .l .fl { font-size: 1.05rem; line-height: 1; }
+.lk-half .w { font-family: var(--display); font-weight: 800; font-size: min(1.45rem, calc((100vw - 108px) / (var(--n, 8) * 1.2))); line-height: 1.1; letter-spacing: -0.03em; overflow-wrap: anywhere; margin-top: 3px; }
+.lk-half .m { font-weight: 700; font-size: 1.04rem; line-height: 1.2; overflow-wrap: anywhere; }
+.lk-half .m::before { content: "= "; color: var(--soft); }
+
+.lk-next { min-height: 60px; width: 100%; font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; gap: 9px; animation: lk-rise .3s ease both; animation-delay: .12s; }
+.lk-next svg { width: 22px; height: 22px; flex: none; }
+
+@keyframes lk-rise { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: none; } }
+@keyframes lk-pop { 0% { opacity: 0; transform: scale(.86); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes lk-from-l { 0% { opacity: 0; transform: translateX(-22px); } 100% { opacity: 1; transform: none; } }
+@keyframes lk-from-r { 0% { opacity: 0; transform: translateX(22px); } 100% { opacity: 1; transform: none; } }
+
+/* ---------- the day done: the three results ---------- */
+.lk-done { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 10px 0 14px; min-height: 0; }
+.lk-done[hidden] { display: none; }
+.lk-score { margin: 0; text-align: center; font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 20vw, 5.4rem); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.lk-score small { font-size: .5em; color: var(--soft); letter-spacing: -0.02em; }
+.lk-rows { display: grid; gap: 10px; }
+.lk-row { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; padding: 12px 14px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); }
+.lk-row .mk { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font-style: normal; font-weight: 800; font-size: 1.1rem; line-height: 1; margin-top: 1px; }
+.lk-row.r .mk { background: var(--hit); color: var(--on-hit); }
+.lk-row.t .mk { background: var(--trap); color: var(--on-trap); }
+.lk-row.m .mk { background: var(--miss); color: var(--on-miss); }
+.lk-row .w { display: block; font-family: var(--display); font-weight: 800; font-size: 1.25rem; line-height: 1.15; letter-spacing: -0.025em; overflow-wrap: anywhere; }
+.lk-row .ms { display: flex; flex-wrap: wrap; gap: 2px 12px; margin-top: 3px; color: var(--soft); font-weight: 600; font-size: 0.92rem; line-height: 1.25; }
+.lk-row .ms span { overflow-wrap: anywhere; }
+.lk-row .ms b { display: inline-block; margin-right: 5px; padding: 1px 5px; border-radius: 6px; background: color-mix(in srgb, var(--c) 14%, transparent); color: var(--ink); font-size: 0.72rem; font-weight: 800; letter-spacing: .04em; }
+.lk-row .fellp { display: block; margin-top: 6px; color: var(--ink); font-weight: 700; font-size: 0.95rem; line-height: 1.25; }
+.lk-row .fellp[hidden] { display: none; }
+.lk-row .bar-p { display: block; height: 6px; margin-top: 6px; border-radius: 3px; background: color-mix(in srgb, var(--trap) 16%, transparent); overflow: hidden; }
+.lk-row .bar-p i { display: block; height: 100%; border-radius: 3px; background: var(--trap); }
+
+.endstrip { margin-top: 12px; }
+.endstrip[hidden] { display: none; }
+.endstrip .btn.solid { flex: 1 1 auto; }
+.midnight { margin: 12px 4px 0; color: var(--soft); font-weight: 600; text-align: center; }
+.loaderr { margin: 22vh 4px 0; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; font-weight: 600; }
+.loaderr[hidden] { display: none; }
+.loaderr .btn { min-height: 48px; }
+
+/* ---------- the end sheet (the shared .fin-* classes do the rest) ---------- */
+.lk-fin-score { margin: 4px 0 0; text-align: center; font-family: var(--display); font-weight: 800; font-size: 3.2rem; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.lk-fin-pips { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.lk-fin-pips i { display: block; width: 44px; height: 10px; border-radius: 5px; }
+.lk-fin-pips i.r { background: var(--hit); }
+.lk-fin-pips i.t { background: var(--trap); }
+.lk-fin-pips i.m { background: var(--miss); }
+.lk-fin-sub { margin: 10px 0 0; text-align: center; color: var(--soft); font-weight: 600; font-size: 0.9rem; }
+.fin-sheet .lk-rows { margin-top: 14px; }
+.fin-sheet .lk-row { box-shadow: none; background: var(--tint); }
+.fin-sheet .lk-share { margin-top: 14px; width: 100%; }
+.lk-more { margin-top: 14px; }
+
+/* a small screen: everything a little tighter so the answers keep their room */
+@media (max-height: 40rem) {
+  .lk-stage { gap: 9px; padding: 4px 0 8px; }
+  .lk-word { font-size: min(clamp(2.2rem, 13vw, 3.6rem), var(--fit, 9rem)); }
+  .lk-lang { min-height: 32px; }
+  .lk-opt { min-height: 56px; padding: 6px 14px; }
+  .lk-dock { gap: 8px; }
+  .lk-verdict { min-height: 40px; }
+  .lk-half { padding-top: 10px; padding-bottom: 10px; }
+  .lk-next { min-height: 54px; }
+}
+@media (min-width: 56rem) {
+  .lk { min-height: calc(100vh - 90px); min-height: calc(100svh - 90px); }
+  .lk-opt:hover { background: var(--tint); }
+}
+@media (prefers-color-scheme: dark) {
+  .lk-opt { box-shadow: inset 0 0 0 1px var(--line); background: rgba(255, 255, 255, .07); }
+  .lk-opt:active { background: color-mix(in srgb, var(--c) 18%, transparent); }
+  .lk-split, .lk-row { box-shadow: inset 0 0 0 1px var(--line); background: rgba(255, 255, 255, .06); }
+  .lk-split::after { background: #12152A; }
+  .lk-lang.ask { box-shadow: 0 0 22px color-mix(in srgb, var(--c) 30%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lk-word, .lk-opt, .lk-verdict, .lk-half.a, .lk-half.b, .lk-next { animation: none; }
+  .lk-pips i { transition: none; }
+}

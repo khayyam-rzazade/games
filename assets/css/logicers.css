@@ -1467,3 +1467,32 @@ dialog.khay:not([open]) { display: none; }
 @keyframes lg-fade { from { opacity: 0; } }
 @media (prefers-color-scheme: dark) { .lg-sheet { box-shadow: inset 0 0 0 1px var(--line), 0 -12px 44px rgba(0, 0, 0, .55); } }
 @media (prefers-reduced-motion: reduce) { .lg-sheet, .lg-sheet::backdrop { animation: none; } }
+
+/* ---------- the header on a small phone (29 Oct 2026) ----------
+   At 360 px the header was wider than the screen on most pages, by 3 to 45 px ("Sequência 0" in Portuguese was the
+   longest), so the page scrolled sideways and the "?" sat partly off the screen. Up to 460 px (every phone held
+   upright) the chips and the gaps tighten, the language chip shows its flag alone (the language stays in its label
+   for screen readers) and the wordmark is a little smaller: every page then fits a 360 px phone in all six languages,
+   even with a streak of three figures. Below 360 px the wordmark keeps its three dots and drops the word. And the
+   wordmark is the one part that may give way, so no label in any language can ever push a page wider than the screen. */
+@media (max-width: 460px) {
+  .bar, .site-bar { gap: 8px; }
+  .bar-tools, .site-bar .tools { gap: 5px; }
+  .bar .chip, .site-bar .chip { padding: 0 9px; gap: 5px; font-size: 0.86rem; }
+  .bar .chip.round, .site-bar .chip.round { width: 36px; padding: 0; }
+  .bar .chip.lg-chip, .site-bar .chip.lg-chip, .bar .chip.fo-langchip { width: 36px; padding: 0; justify-content: center; gap: 0; font-size: 0; }
+  .bar .chip.lg-chip .lg-flag, .site-bar .chip.lg-chip .lg-flag, .bar .chip.fo-langchip .flag { margin: 0; font-size: 1.15rem; line-height: 1; }
+  .bar .wordmark { min-width: 0; overflow: hidden; gap: 7px; font-size: 1.22rem; }
+  .bar .wordmark::before { width: 20px; height: 20px; }
+  .site-bar .logo { min-width: 0; overflow: hidden; gap: 8px; }
+  .site-bar .logo .word { font-size: 1.32rem; }
+  .site-bar .logo .mark { width: 23px; height: 23px; }
+  #streak-chip::before { width: 14px; height: 14px; }
+}
+@media (max-width: 350px) {
+  .bar .chip, .site-bar .chip { font-size: 0.84rem; }
+}
+@media (max-width: 359px) {
+  .bar a.wordmark { gap: 0; font-size: 0; }
+  .site-bar .logo .word { display: none; }
+}

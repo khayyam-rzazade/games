@@ -44,7 +44,7 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=faf653756c">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=434db1d833">
 <script src="../assets/lang/pt.js?v=dfc19791aa"></script>
 <script src="../assets/js/lang.js?v=01632acb08"></script>
 <style>
@@ -55,6 +55,10 @@
    daily row above (#shelf): wide picture, no pitch line, the same short tile. One tile for now. */
 [data-g="altitude"] { --c: #4F6B80; --tint: #E3EBF1; }
 @media (prefers-color-scheme: dark) { [data-g="altitude"] { --c: #A9C6DA; --tint: #0E1821; } }
+/* Lookalike's lagoon cyan and Passport's orchid (29 Oct 2026), the colours of their own pages */
+[data-g="lookalike"] { --c: #0087A8; --tint: #DAF1F7; }
+[data-g="passport"] { --c: #9A3FC4; --tint: #F1E4F8; }
+@media (prefers-color-scheme: dark) { [data-g="lookalike"] { --c: #4FD0EE; --tint: #071C24; } [data-g="passport"] { --c: #D79AF0; --tint: #1B1024; } }
 .word-games { margin-top: 34px; }   /* the same air above it as "Pass the phone" has (28 Oct 2026, Khayyam) */
 @media (max-width: 700px) { .word-games { margin-top: 24px; } }   /* ...on a phone too, where that row drops to 24 */
 #shelf3 .art { aspect-ratio: 1.8 / 1; border-radius: 14px; }
@@ -318,13 +322,16 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 
 <!-- Word games (28 Oct 2026, Khayyam): their own row right under the daily games. Altitude is not one of the
      nine: it is not in GAMES (turnsout.js), so it is outside the chain, the streak and the "x/9 played" count, and
-     its tile carries no result stamp. The round shelf buttons come when there are two or more word games.
-     ORDER: Altitude stays the first tile of this row (Khayyam, 28 Oct 2026). A new word game is added AFTER it,
-     inside the same shelf-row — unlike the daily row above, where the newest game goes first. -->
+     its tile carries no result stamp. Lookalike and Passport joined it on 29 Oct 2026, outside the nine in the same
+     way, with the round shelf buttons (wired below, shelf("shelf3-row", ...)).
+     ORDER: Altitude stays the first tile of this row (Khayyam, 28 Oct 2026); then Lookalike, then Passport
+     (Khayyam, 29 Oct 2026). A new word game is added AFTER them, inside the same shelf-row — unlike the daily
+     row above, where the newest game goes first. -->
 <section class="games word-games" aria-labelledby="words-title">
   <h2 class="sec" id="words-title" data-s="home.word_games_h">Os jogos de palavras de hoje</h2>
   <div class="shelf" id="shelf3">
-    <div class="shelf-row" id="shelf3-row" data-n="1">
+    <button class="shelf-btn prev off" type="button" id="shelf3-prev" aria-controls="shelf3-row" aria-label="Jogos de palavras anteriores" data-s-aria-label="site.previous_word_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="shelf-row" id="shelf3-row" data-n="3">
     <a class="tile" id="tile-altitude" data-g="altitude" href="../altitude/">
       <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="mute" d="M118 38h84l5 18h-94z"/><path class="mute" d="M107 60h106l5 18H102z"/><path class="fg" d="M96 82h128l5 18H91z"/><path class="fg" d="M85 104h150l5 18H80z"/><path class="fg" d="M74 126h172l5 18H69z"/><path class="fg" d="M63 148h194l5 18H58z"/><path class="ln" d="M44 174h232" fill="none" stroke-width="4" stroke-linecap="round"/><path class="ln" d="M126 38V12" fill="none" stroke-width="4" stroke-linecap="round"/><path class="fg" d="M126 12l24 8-24 8z"/></svg><span class="badge" data-s="site.new">Novo</span></div>
       <div class="body">
@@ -335,7 +342,28 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         </div>
       </div>
     </a>
+    <a class="tile" id="tile-lookalike" data-g="lookalike" href="../lookalike/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="mute" d="M62 88h68a22 22 0 0 1 22 22v20a22 22 0 0 1-22 22H92l-26 20v-20h-4a22 22 0 0 1-22-22v-20a22 22 0 0 1 22-22z"/><path class="fg" d="M258 36h-68a22 22 0 0 0-22 22v20a22 22 0 0 0 22 22h38l26 20v-20h4a22 22 0 0 0 22-22V58a22 22 0 0 0-22-22z"/><path class="ln" d="M62 112h44M62 128h28" fill="none" stroke-width="7" stroke-linecap="round" style="stroke-opacity:1"/><path d="M192 60h44M192 76h28" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--tint)"/></svg><span class="badge" data-s="site.new">Novo</span></div>
+      <div class="body">
+        <h3 data-s="game.lookalike.name">Lookalike</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_lookalike_long">Três palavras por dia, parecidas em dois idiomas, mas com sentidos diferentes. Você consegue fugir da pegadinha?</span><span class="short" data-s="game.lookalike.pitch">Parecidas, mas com outro sentido. Fuja da pegadinha.</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Jogar</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+        </div>
+      </div>
+    </a>
+    <a class="tile" id="tile-passport" data-g="passport" href="../passport/">
+      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="mute" d="M22 138c2-34 42-60 86-58c34 2 50 22 44 46c-6 26-40 44-78 44c-34 0-54-12-52-32z"/><path class="mute" d="M150 74c16-32 76-46 122-30c30 10 32 42 6 60c-30 20-90 22-118 6c-18-10-20-24-10-36z"/><path class="ln" d="M70 140Q98 74 158 96" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1 11"/><path class="ln" d="M158 96Q186 50 220 62" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1 11"/><circle class="fg" cx="70" cy="140" r="12"/><circle class="fg" cx="158" cy="96" r="12"/><path class="fg" d="M214 52l16 12-18 8z"/><rect class="fg" x="234" y="48" width="64" height="32" rx="16"/></svg><span class="badge" data-s="site.new">Novo</span></div>
+      <div class="body">
+        <h3 data-s="game.passport.name">Passport</h3>
+        <p class="pitch"><span class="long" data-s="home.pitch_passport_long">Uma palavra por dia: de onde ela vem? Veja a viagem dela pelo mundo até o seu idioma.</span><span class="short" data-s="game.passport.pitch">De onde vem a palavra de hoje?</span></p>
+        <div class="foot">
+          <span class="go"><span data-s="site.play">Jogar</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+        </div>
+      </div>
+    </a>
     </div>
+    <button class="shelf-btn next off" type="button" id="shelf3-next" aria-controls="shelf3-row" aria-label="Mais jogos de palavras" data-s-aria-label="site.more_word_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 </section>
 
@@ -520,10 +548,10 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="../every-beat/puzzles.js"></script>
 <script src="../out-of-24/puzzles.js"></script>
 <script src="../same-energy/puzzles.js"></script>
-<script src="../assets/js/turnsout.js?v=7127452852"></script>
+<script src="../assets/js/turnsout.js?v=fcf5c73083"></script>
 <script src="../assets/js/duel.js?v=c4e6a61b81"></script>
 <script src="../assets/js/rooms.js?v=496d2fe661"></script>
-<script src="../assets/js/points.js?v=f3d487d081"></script>
+<script src="../assets/js/points.js?v=0ff18e835f"></script>
 <script src="../assets/js/world.js?v=a0265c5f03"></script>
 <script src="../assets/js/said.js?v=5d6cde48e4"></script>
 <script src="../assets/js/logicer.js?v=f998ff3c11"></script>
@@ -746,6 +774,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   }
   shelf("shelf-row", "shelf-prev", "shelf-next");          // Today's games
   shelf("shelf2-row", "shelf2-prev", "shelf2-next");       // Pass the phone
+  shelf("shelf3-row", "shelf3-prev", "shelf3-next");       // Word games (29 Oct 2026)
   /* the find-outs' own count (22 Oct 2026): how many phones finished at least one of the nine games, a plain
      counter on the find-out server with no ID in it; shown from the first player on (Khayyam) */
   (function () {

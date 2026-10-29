@@ -1,0 +1,686 @@
+{
+ "am": {
+  "name": {
+   "en": "Amharic",
+   "it": "Amarico",
+   "es": "Amárico",
+   "pt": "Amárico",
+   "fr": "Amharique",
+   "tr": "Amharca"
+  },
+  "lat": 9.03,
+  "lon": 38.74
+ },
+ "ar": {
+  "name": {
+   "en": "Arabic",
+   "it": "Arabo",
+   "es": "Árabe",
+   "pt": "Árabe",
+   "fr": "Arabe",
+   "tr": "Arapça"
+  },
+  "lat": 33.31,
+  "lon": 44.36
+ },
+ "bft": {
+  "name": {
+   "en": "Balti",
+   "it": "Balti",
+   "es": "Baltí",
+   "pt": "Balti",
+   "fr": "Balti",
+   "tr": "Balti dili"
+  },
+  "lat": 35.3,
+  "lon": 75.63
+ },
+ "bg": {
+  "name": {
+   "en": "Bulgarian",
+   "it": "Bulgaro",
+   "es": "Búlgaro",
+   "pt": "Búlgaro",
+   "fr": "Bulgare",
+   "tr": "Bulgarca"
+  },
+  "lat": 42.7,
+  "lon": 23.32
+ },
+ "bo": {
+  "name": {
+   "en": "Tibetan",
+   "it": "Tibetano",
+   "es": "Tibetano",
+   "pt": "Tibetano",
+   "fr": "Tibétain",
+   "tr": "Tibetçe"
+  },
+  "lat": 29.65,
+  "lon": 91.13
+ },
+ "ca": {
+  "name": {
+   "en": "Catalan",
+   "it": "Catalano",
+   "es": "Catalán",
+   "pt": "Catalão",
+   "fr": "Catalan",
+   "tr": "Katalanca"
+  },
+  "lat": 41.39,
+  "lon": 2.17
+ },
+ "cs": {
+  "name": {
+   "en": "Czech",
+   "it": "Ceco",
+   "es": "Checo",
+   "pt": "Tcheco",
+   "fr": "Tchèque",
+   "tr": "Çekçe"
+  },
+  "lat": 50.08,
+  "lon": 14.44
+ },
+ "da": {
+  "name": {
+   "en": "Danish",
+   "it": "Danese",
+   "es": "Danés",
+   "pt": "Dinamarquês",
+   "fr": "Danois",
+   "tr": "Danca"
+  },
+  "lat": 55.68,
+  "lon": 12.57
+ },
+ "de": {
+  "name": {
+   "en": "German",
+   "it": "Tedesco",
+   "es": "Alemán",
+   "pt": "Alemão",
+   "fr": "Allemand",
+   "tr": "Almanca"
+  },
+  "lat": 50.94,
+  "lon": 6.96
+ },
+ "egy": {
+  "name": {
+   "en": "Ancient Egyptian",
+   "it": "Egizio antico",
+   "es": "Egipcio antiguo",
+   "pt": "Egípcio antigo",
+   "fr": "Égyptien ancien",
+   "tr": "Eski Mısırca"
+  },
+  "lat": 25.7,
+  "lon": 32.64
+ },
+ "el": {
+  "name": {
+   "en": "Greek",
+   "it": "Greco",
+   "es": "Griego",
+   "pt": "Grego",
+   "fr": "Grec",
+   "tr": "Yunanca"
+  },
+  "lat": 37.98,
+  "lon": 23.73
+ },
+ "en": {
+  "name": {
+   "en": "English",
+   "it": "Inglese",
+   "es": "Inglés",
+   "pt": "Inglês",
+   "fr": "Anglais",
+   "tr": "İngilizce"
+  },
+  "lat": 51.51,
+  "lon": -0.13
+ },
+ "es": {
+  "name": {
+   "en": "Spanish",
+   "it": "Spagnolo",
+   "es": "Español",
+   "pt": "Espanhol",
+   "fr": "Espagnol",
+   "tr": "İspanyolca"
+  },
+  "lat": 40.42,
+  "lon": -3.7
+ },
+ "fa": {
+  "name": {
+   "en": "Persian",
+   "it": "Persiano",
+   "es": "Persa",
+   "pt": "Persa",
+   "fr": "Persan",
+   "tr": "Farsça"
+  },
+  "lat": 32.65,
+  "lon": 51.67
+ },
+ "fi": {
+  "name": {
+   "en": "Finnish",
+   "it": "Finlandese",
+   "es": "Finlandés",
+   "pt": "Finlandês",
+   "fr": "Finnois",
+   "tr": "Fince"
+  },
+  "lat": 60.17,
+  "lon": 24.94
+ },
+ "fr": {
+  "name": {
+   "en": "French",
+   "it": "Francese",
+   "es": "Francés",
+   "pt": "Francês",
+   "fr": "Français",
+   "tr": "Fransızca"
+  },
+  "lat": 48.86,
+  "lon": 2.35
+ },
+ "ga": {
+  "name": {
+   "en": "Irish",
+   "it": "Irlandese",
+   "es": "Irlandés",
+   "pt": "Irlandês",
+   "fr": "Irlandais",
+   "tr": "İrlandaca"
+  },
+  "lat": 53.27,
+  "lon": -9.05
+ },
+ "gd": {
+  "name": {
+   "en": "Scottish Gaelic",
+   "it": "Gaelico scozzese",
+   "es": "Gaélico escocés",
+   "pt": "Gaélico escocês",
+   "fr": "Gaélique écossais",
+   "tr": "İskoç Galcesi"
+  },
+  "lat": 57.48,
+  "lon": -4.22
+ },
+ "grc": {
+  "name": {
+   "en": "Ancient Greek",
+   "it": "Greco antico",
+   "es": "Griego antiguo",
+   "pt": "Grego antigo",
+   "fr": "Grec ancien",
+   "tr": "Eski Yunanca"
+  },
+  "lat": 37.98,
+  "lon": 23.73
+ },
+ "gu": {
+  "name": {
+   "en": "Gujarati",
+   "it": "Gujarati",
+   "es": "Guyaratí",
+   "pt": "Guzerate",
+   "fr": "Gujarati",
+   "tr": "Güceratça"
+  },
+  "lat": 23.02,
+  "lon": 72.57
+ },
+ "gvn": {
+  "name": {
+   "en": "Guugu Yimithirr",
+   "it": "Guugu Yimithirr",
+   "es": "Guugu Yimithirr",
+   "pt": "Guugu Yimithirr",
+   "fr": "Guugu Yimithirr",
+   "tr": "Guugu Yimithirr"
+  },
+  "lat": -15.47,
+  "lon": 145.25
+ },
+ "haw": {
+  "name": {
+   "en": "Hawaiian",
+   "it": "Hawaiano",
+   "es": "Hawaiano",
+   "pt": "Havaiano",
+   "fr": "Hawaïen",
+   "tr": "Hawaii dili"
+  },
+  "lat": 21.31,
+  "lon": -157.86
+ },
+ "he": {
+  "name": {
+   "en": "Hebrew",
+   "it": "Ebraico",
+   "es": "Hebreo",
+   "pt": "Hebraico",
+   "fr": "Hébreu",
+   "tr": "İbranice"
+  },
+  "lat": 31.78,
+  "lon": 35.22
+ },
+ "hi": {
+  "name": {
+   "en": "Hindi",
+   "it": "Hindi",
+   "es": "Hindi",
+   "pt": "Hindi",
+   "fr": "Hindi",
+   "tr": "Hintçe"
+  },
+  "lat": 28.61,
+  "lon": 77.21
+ },
+ "hu": {
+  "name": {
+   "en": "Hungarian",
+   "it": "Ungherese",
+   "es": "Húngaro",
+   "pt": "Húngaro",
+   "fr": "Hongrois",
+   "tr": "Macarca"
+  },
+  "lat": 47.5,
+  "lon": 19.04
+ },
+ "is": {
+  "name": {
+   "en": "Icelandic",
+   "it": "Islandese",
+   "es": "Islandés",
+   "pt": "Islandês",
+   "fr": "Islandais",
+   "tr": "İzlandaca"
+  },
+  "lat": 64.15,
+  "lon": -21.94
+ },
+ "it": {
+  "name": {
+   "en": "Italian",
+   "it": "Italiano",
+   "es": "Italiano",
+   "pt": "Italiano",
+   "fr": "Italien",
+   "tr": "İtalyanca"
+  },
+  "lat": 43.77,
+  "lon": 11.26
+ },
+ "iu": {
+  "name": {
+   "en": "Inuit",
+   "it": "Inuit",
+   "es": "Inuit",
+   "pt": "Inuíte",
+   "fr": "Inuit",
+   "tr": "İnuit dili"
+  },
+  "lat": 63.75,
+  "lon": -68.52
+ },
+ "ja": {
+  "name": {
+   "en": "Japanese",
+   "it": "Giapponese",
+   "es": "Japonés",
+   "pt": "Japonês",
+   "fr": "Japonais",
+   "tr": "Japonca"
+  },
+  "lat": 35.68,
+  "lon": 139.69
+ },
+ "ko": {
+  "name": {
+   "en": "Korean",
+   "it": "Coreano",
+   "es": "Coreano",
+   "pt": "Coreano",
+   "fr": "Coréen",
+   "tr": "Korece"
+  },
+  "lat": 37.57,
+  "lon": 126.98
+ },
+ "la": {
+  "name": {
+   "en": "Latin",
+   "it": "Latino",
+   "es": "Latín",
+   "pt": "Latim",
+   "fr": "Latin",
+   "tr": "Latince"
+  },
+  "lat": 41.89,
+  "lon": 12.49
+ },
+ "mi": {
+  "name": {
+   "en": "Māori",
+   "it": "Maori",
+   "es": "Maorí",
+   "pt": "Maori",
+   "fr": "Maori",
+   "tr": "Maorice"
+  },
+  "lat": -38.14,
+  "lon": 176.25
+ },
+ "mn": {
+  "name": {
+   "en": "Mongolian",
+   "it": "Mongolo",
+   "es": "Mongol",
+   "pt": "Mongol",
+   "fr": "Mongol",
+   "tr": "Moğolca"
+  },
+  "lat": 47.92,
+  "lon": 106.92
+ },
+ "ms": {
+  "name": {
+   "en": "Malay",
+   "it": "Malese",
+   "es": "Malayo",
+   "pt": "Malaio",
+   "fr": "Malais",
+   "tr": "Malayca"
+  },
+  "lat": 2.19,
+  "lon": 102.25
+ },
+ "nah": {
+  "name": {
+   "en": "Nahuatl",
+   "it": "Nahuatl",
+   "es": "Náhuatl",
+   "pt": "Náuatle",
+   "fr": "Nahuatl",
+   "tr": "Nahuatl dili"
+  },
+  "lat": 19.43,
+  "lon": -99.13
+ },
+ "nds": {
+  "name": {
+   "en": "Low German",
+   "it": "Basso tedesco",
+   "es": "Bajo alemán",
+   "pt": "Baixo-alemão",
+   "fr": "Bas allemand",
+   "tr": "Aşağı Almanca"
+  },
+  "lat": 53.55,
+  "lon": 9.99
+ },
+ "nl": {
+  "name": {
+   "en": "Dutch",
+   "it": "Olandese",
+   "es": "Neerlandés",
+   "pt": "Holandês",
+   "fr": "Néerlandais",
+   "tr": "Felemenkçe"
+  },
+  "lat": 52.37,
+  "lon": 4.9
+ },
+ "no": {
+  "name": {
+   "en": "Norwegian",
+   "it": "Norvegese",
+   "es": "Noruego",
+   "pt": "Norueguês",
+   "fr": "Norvégien",
+   "tr": "Norveççe"
+  },
+  "lat": 59.91,
+  "lon": 10.75
+ },
+ "ota": {
+  "name": {
+   "en": "Ottoman Turkish",
+   "it": "Turco ottomano",
+   "es": "Turco otomano",
+   "pt": "Turco otomano",
+   "fr": "Turc ottoman",
+   "tr": "Osmanlıca"
+  },
+  "lat": 41.01,
+  "lon": 28.98
+ },
+ "pl": {
+  "name": {
+   "en": "Polish",
+   "it": "Polacco",
+   "es": "Polaco",
+   "pt": "Polonês",
+   "fr": "Polonais",
+   "tr": "Lehçe"
+  },
+  "lat": 52.23,
+  "lon": 21.01
+ },
+ "pt": {
+  "name": {
+   "en": "Portuguese",
+   "it": "Portoghese",
+   "es": "Portugués",
+   "pt": "Português",
+   "fr": "Portugais",
+   "tr": "Portekizce"
+  },
+  "lat": 38.72,
+  "lon": -9.14
+ },
+ "qu": {
+  "name": {
+   "en": "Quechua",
+   "it": "Quechua",
+   "es": "Quechua",
+   "pt": "Quíchua",
+   "fr": "Quechua",
+   "tr": "Keçuva dili"
+  },
+  "lat": -13.53,
+  "lon": -71.97
+ },
+ "ru": {
+  "name": {
+   "en": "Russian",
+   "it": "Russo",
+   "es": "Ruso",
+   "pt": "Russo",
+   "fr": "Russe",
+   "tr": "Rusça"
+  },
+  "lat": 55.75,
+  "lon": 37.62
+ },
+ "sa": {
+  "name": {
+   "en": "Sanskrit",
+   "it": "Sanscrito",
+   "es": "Sánscrito",
+   "pt": "Sânscrito",
+   "fr": "Sanskrit",
+   "tr": "Sanskritçe"
+  },
+  "lat": 25.32,
+  "lon": 83.01
+ },
+ "smi": {
+  "name": {
+   "en": "Sámi",
+   "it": "Sami",
+   "es": "Sami",
+   "pt": "Sámi",
+   "fr": "Same",
+   "tr": "Saamice"
+  },
+  "lat": 68.1,
+  "lon": 33.5
+ },
+ "sv": {
+  "name": {
+   "en": "Swedish",
+   "it": "Svedese",
+   "es": "Sueco",
+   "pt": "Sueco",
+   "fr": "Suédois",
+   "tr": "İsveççe"
+  },
+  "lat": 59.33,
+  "lon": 18.07
+ },
+ "sw": {
+  "name": {
+   "en": "Swahili",
+   "it": "Swahili",
+   "es": "Suajili",
+   "pt": "Suaíli",
+   "fr": "Swahili",
+   "tr": "Svahili"
+  },
+  "lat": -6.16,
+  "lon": 39.19
+ },
+ "ta": {
+  "name": {
+   "en": "Tamil",
+   "it": "Tamil",
+   "es": "Tamil",
+   "pt": "Tâmil",
+   "fr": "Tamoul",
+   "tr": "Tamilce"
+  },
+  "lat": 13.08,
+  "lon": 80.27
+ },
+ "th": {
+  "name": {
+   "en": "Thai",
+   "it": "Thailandese",
+   "es": "Tailandés",
+   "pt": "Tailandês",
+   "fr": "Thaï",
+   "tr": "Tayca"
+  },
+  "lat": 13.76,
+  "lon": 100.5
+ },
+ "tl": {
+  "name": {
+   "en": "Tagalog",
+   "it": "Tagalog",
+   "es": "Tagalo",
+   "pt": "Tagalo",
+   "fr": "Tagalog",
+   "tr": "Tagalogca"
+  },
+  "lat": 14.6,
+  "lon": 120.98
+ },
+ "tnq": {
+  "name": {
+   "en": "Taíno",
+   "it": "Taíno",
+   "es": "Taíno",
+   "pt": "Taino",
+   "fr": "Taïno",
+   "tr": "Taino dili"
+  },
+  "lat": 18.9,
+  "lon": -70.4
+ },
+ "to": {
+  "name": {
+   "en": "Tongan",
+   "it": "Tongano",
+   "es": "Tongano",
+   "pt": "Tonganês",
+   "fr": "Tongien",
+   "tr": "Tongaca"
+  },
+  "lat": -21.14,
+  "lon": -175.2
+ },
+ "tr": {
+  "name": {
+   "en": "Turkish",
+   "it": "Turco",
+   "es": "Turco",
+   "pt": "Turco",
+   "fr": "Turc",
+   "tr": "Türkçe"
+  },
+  "lat": 39.93,
+  "lon": 32.86
+ },
+ "tup": {
+  "name": {
+   "en": "Tupi",
+   "it": "Tupi",
+   "es": "Tupí",
+   "pt": "Tupi",
+   "fr": "Tupi",
+   "tr": "Tupi dili"
+  },
+  "lat": -22.91,
+  "lon": -43.17
+ },
+ "vec": {
+  "name": {
+   "en": "Venetian",
+   "it": "Veneziano",
+   "es": "Véneto",
+   "pt": "Vêneto",
+   "fr": "Vénitien",
+   "tr": "Venedikçe"
+  },
+  "lat": 45.44,
+  "lon": 12.33
+ },
+ "zh": {
+  "name": {
+   "en": "Chinese",
+   "it": "Cinese",
+   "es": "Chino",
+   "pt": "Chinês",
+   "fr": "Chinois",
+   "tr": "Çince"
+  },
+  "lat": 24.48,
+  "lon": 118.09
+ },
+ "zu": {
+  "name": {
+   "en": "Zulu",
+   "it": "Zulu",
+   "es": "Zulú",
+   "pt": "Zulu",
+   "fr": "Zoulou",
+   "tr": "Zuluca"
+  },
+  "lat": -28.53,
+  "lon": 30.9
+ }
+}
