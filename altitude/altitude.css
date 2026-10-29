@@ -115,14 +115,43 @@
   border-radius: 12px; background: var(--ink); color: var(--bg); font-weight: 700; font-size: 0.98rem; line-height: 1.2; text-align: center;
   box-shadow: 0 8px 22px rgba(21, 23, 43, .25); pointer-events: none; }
 .toast[hidden] { display: none; }
-.cheer { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); margin: 0; z-index: 4; padding: 8px 18px; border-radius: 999px;
-  background: var(--hit); color: var(--on-hit); font-family: var(--display); font-weight: 800; font-size: 1.22rem; letter-spacing: -0.01em; white-space: nowrap;
-  box-shadow: 0 8px 22px rgba(46, 159, 99, .35); pointer-events: none; }
+/* The step window (29 Oct 2026): a card over the board when a word is found. It rises, holds long enough to
+   read three short lines, then lifts away as the next word comes up. */
+.cheer { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); margin: 0; z-index: 4;
+  display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 14px 22px 15px; border-radius: 20px;
+  background: var(--card); box-shadow: 0 14px 40px rgba(21, 23, 43, .28), inset 0 0 0 2px var(--hit);
+  pointer-events: none; width: min(100% - 24px, 17.5rem); text-align: center; }
 .cheer[hidden] { display: none; }
-.cheer.show { animation: cl-cheer 2.1s ease both; }
+.step-head { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em;
+  color: var(--hit); line-height: 1.1; }
+/* the word itself, in small tiles: the thing they just earned */
+.step-word { display: flex; gap: 4px; }
+.step-word i { display: grid; place-items: center; min-width: 22px; height: 26px; padding: 0 4px; border-radius: 6px;
+  background: var(--hit); color: var(--on-hit); font-family: var(--display); font-weight: 800; font-size: 0.95rem;
+  font-style: normal; line-height: 1; }
+.step-try { font-weight: 700; font-size: 0.95rem; color: var(--ink); line-height: 1.2; }
+.step-stat { font-weight: 600; font-size: 0.87rem; color: var(--soft); line-height: 1.25; }
+.cheer.show { animation: cl-cheer 2.75s cubic-bezier(.2, .9, .3, 1) both; }
+.cheer.show .step-head { animation: cl-pop-in .5s cubic-bezier(.2, 1.5, .4, 1) both; }
+.cheer.show .step-word i { animation: cl-letter .45s cubic-bezier(.2, 1.4, .4, 1) both; }
+.cheer.show .step-word i:nth-child(2) { animation-delay: .06s; }
+.cheer.show .step-word i:nth-child(3) { animation-delay: .12s; }
+.cheer.show .step-word i:nth-child(4) { animation-delay: .18s; }
+.cheer.show .step-word i:nth-child(5) { animation-delay: .24s; }
+.cheer.show .step-word i:nth-child(6) { animation-delay: .30s; }
+.cheer.show .step-word i:nth-child(7) { animation-delay: .36s; }
+.cheer.show .step-word i:nth-child(8) { animation-delay: .42s; }
+.cheer.show .step-try { animation: cl-rise-in .45s ease both; animation-delay: .34s; }
+.cheer.show .step-stat { animation: cl-rise-in .45s ease both; animation-delay: .52s; }
+@keyframes cl-pop-in { 0% { opacity: 0; transform: scale(.6); } 100% { opacity: 1; transform: none; } }
+@keyframes cl-letter { 0% { opacity: 0; transform: translateY(8px) scale(.5); } 100% { opacity: 1; transform: none; } }
+@keyframes cl-rise-in { 0% { opacity: 0; transform: translateY(6px); } 100% { opacity: 1; transform: none; } }
 @keyframes cl-cheer {
-  0% { opacity: 0; transform: translate(-50%, 12px) scale(.8); } 12% { opacity: 1; transform: translate(-50%, 0) scale(1.08); } 20% { transform: translate(-50%, 0) scale(1); }
-  78% { opacity: 1; transform: translate(-50%, 0) scale(1); } 100% { opacity: 0; transform: translate(-50%, -8px) scale(1); }
+  0% { opacity: 0; transform: translate(-50%, 18px) scale(.9); }
+  9% { opacity: 1; transform: translate(-50%, 0) scale(1.02); }
+  15% { transform: translate(-50%, 0) scale(1); }
+  86% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -14px) scale(.97); }
 }
 .plus { position: fixed; z-index: 70; margin: 0; font-family: var(--display); font-weight: 800; font-size: 2rem; line-height: 1; color: var(--hit);
   text-shadow: 0 0 10px var(--card), 0 2px 10px rgba(21, 23, 43, .25); pointer-events: none; will-change: transform, opacity; }
@@ -139,6 +168,22 @@
 .hintbtn svg { width: 17px; height: 17px; fill: var(--flag); flex: none; }
 .hintbtn b { font-weight: 800; color: var(--soft); }
 .hintbtn[disabled] { opacity: .45; cursor: default; }
+/* Giving up (29 Oct 2026): quiet on purpose — it sits between the hint and the counter and never competes
+   with them, because the point is that it is there if you need it, not that you are invited to press it. */
+.giveup { appearance: none; border: 0; background: none; padding: 6px 2px; font: inherit; font-size: 0.82rem;
+  font-weight: 600; color: var(--soft); text-decoration: underline; text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent; white-space: nowrap; }
+.giveup:active { opacity: .6; }
+@media (max-width: 340px) { .giveup { display: none; } }   /* a very small phone keeps the hint and the counter */
+.sheet.give h2 { margin: 0; }
+.give-sub { margin: 8px 0 0; color: var(--soft); font-size: 0.97rem; line-height: 1.35; }
+.give-acts { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.give-acts .btn { width: 100%; }
+/* the way out: always one tap, never hidden, just not the loudest thing on the sheet */
+.give-show { appearance: none; border: 0; background: none; padding: 8px 2px; font: inherit; font-size: 0.95rem;
+  font-weight: 600; color: var(--soft); text-decoration: underline; text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px; cursor: pointer; }
+.give-show:active { opacity: .6; }
 .left { margin: 0; color: var(--soft); font-weight: 600; font-size: 0.98rem; white-space: nowrap; }
 .left.warm b { color: var(--warm); }
 .left b.bump { animation: cl-bump .55s ease; }
@@ -180,6 +225,9 @@
 .cl-higher[hidden] { display: none; }
 .cl-word { margin: 8px 0 0; color: var(--soft); font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
 .cl-word b { color: var(--ink); font-weight: 700; letter-spacing: .03em; }
+/* the answer in the game's own boxes, a size down from the board so a long word still fits the card */
+.cl-wordrow { margin: 6px 0 4px; width: min(100%, calc(var(--n) * 2.6rem)); gap: 5px; }
+.cl-wordrow .t { border-radius: 8px; font-size: clamp(0.85rem, 4.4vw, 1.2rem); }
 .cl-beat { margin: 10px 0 0; padding: 10px 13px; border-radius: 14px; background: color-mix(in srgb, var(--flag) 18%, transparent); font-weight: 700; }
 .cl-sec { margin-top: 18px; }
 .cl-sec h3 { margin: 0 0 6px; font-family: var(--display); font-weight: 700; font-size: 1.02rem; letter-spacing: -0.015em; }
@@ -253,6 +301,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .t.flip, .row.win .t, .row.shake, .ladder i.pulse, .t.f.pop, .ladder i .fl.plant, .left b.bump, .budget i.new { animation: none; }
-  .cheer.show { animation: none; opacity: 1; }
+  .cheer.show, .cheer.show .step-head, .cheer.show .step-word i, .cheer.show .step-try, .cheer.show .step-stat { animation: none; opacity: 1; transform: none; }
   .sky, .sky .cloud, .sky .range { transition: none; }
 }

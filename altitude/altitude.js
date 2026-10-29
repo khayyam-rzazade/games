@@ -17,7 +17,7 @@
   var REVEAL_FROM = 7;             // from this many letters, the word's first letter is given
   var WARM_AT = 3;                 // the counter turns warm (never red) when this many guesses or fewer are left
   var FIRST = 2, LAST = 8;         // letters of the first stage and of the summit
-  var HOLD = 2300;                 // ms a found word stays on screen (flag, cheer, +1) before the climb moves up
+  var HOLD = 3000;                 // ms a found word stays on screen (flag, cheer, +1) before the climb moves up
                                    /* 28 Oct 2026, Khayyam: the climb was flicking past. Every step is now walked
                                       through — the letters turn over one at a time, the flag goes in, the cheer
                                       reads, the +1 flies, and only then does the next word come. */
@@ -99,6 +99,7 @@
   var toastTimer = 0, shakeTimer = 0, cheerTimer = 0;
   var lag = 0;                     // guesses given back that the counter has not shown yet (the "+1" is still flying)
   var cardOpen = false;
+  var shownThisVisit = false;      // the card opens itself once a visit, not every time it is closed
   var cardAuto = 0;
 
   function T(k, v) {
@@ -257,6 +258,7 @@
     $("hint-t").textContent = T("hint");
     $("hint-c").textContent = "−" + HINT_COST;
     $("hint").setAttribute("aria-label", T("hint_aria", { c: HINT_COST }));
+    $("giveup").textContent = T("give_btn");
     $("help-btn").setAttribute("aria-label", T("help"));
     $("help-title").textContent = T("help");
     $("h1").textContent = T("h1");
@@ -438,21 +440,25 @@
     kb.textContent = "";
     var rows = W.rows, lastIdx = rows.length - 1;
     var stacked = rows[lastIdx].length >= 9;               // a long last row leaves Enter and Delete a row of their own
+    /* 29 Oct 2026, Khayyam: Enter goes under the RIGHT thumb, where the hand that holds the phone can reach it,
+       and Delete to the left. The same way round in both layouts (a last row of 9 or more letters, as Turkish has,
+       puts the two on a row of their own), so the thumb only ever learns one place. It is the other way round from
+       Wordle, which costs a regular player a day of muscle memory and then reads as obvious. */
     rows.forEach(function (r, ri) {
       var line = el("div", "kr");
-      if (ri === lastIdx && !stacked) line.appendChild(special("enter"));
+      if (ri === lastIdx && !stacked) line.appendChild(special("back"));
       r.forEach(function (k) {
         var b = el("button", "k", up(k));
         b.type = "button"; b.tabIndex = -1; b.setAttribute("data-k", k);
         line.appendChild(b);
       });
-      if (ri === lastIdx && !stacked) line.appendChild(special("back"));
+      if (ri === lastIdx && !stacked) line.appendChild(special("enter"));
       kb.appendChild(line);
     });
     if (stacked) {
       var line2 = el("div", "kr");
-      line2.appendChild(special("enter", true));
       line2.appendChild(special("back", true));
+      line2.appendChild(special("enter", true));
       kb.appendChild(line2);
     }
   }
@@ -582,15 +588,46 @@
   /* ---- the feel of going up: sky, cheer, haptic tap, the flying "+1" ---- */
   function altOf(h) { return h >= FIRST ? Math.min(1, (h - 1) / (LAST - 1)) : 0; }
   function paintSky() { document.documentElement.style.setProperty("--alt", String(altOf(height(run)))); }
+  /* The step window (29 Oct 2026, Khayyam: "it has to feel alive and communicating"). A word found is the one
+     moment the game has the player's full attention, so it says three things and then gets out of the way:
+     a cheer that changes with the height, how many tries it took, and — when the server has numbers — the share
+     of people who got past this very word. No dictionary text: the day's own figures are more alive than a
+     definition, they are in every language already, and they cost nothing to write. */
+  function stepStat(L) {
+    var dist = distOf(srv.views[lang]) || distOf(srv.yviews[lang]);
+    if (!dist) return "";
+    if (L >= LAST) {
+      var top = dist.reached[LAST];
+      return top > 0 ? T("step_top", { p: pct(top) }) : "";
+    }
+    var past = dist.reached[L + 1];                       // the people who went on from here
+    if (!(past > 0)) return "";
+    return T(past < 0.5 ? "step_past" : "step_past_hi", { p: pct(past) });
+  }
   function cheer(L) {
     var c = $("cheer");
-    c.textContent = T("cheer_" + L);
+    c.textContent = "";
     c.hidden = false;
     c.classList.remove("show");
+
+    var head = el("b", "step-head", T("cheer_" + L));
+    c.appendChild(head);
+
+    var row = el("div", "step-word");
+    Array.from(ans(L)).forEach(function (ch) { row.appendChild(el("i", "", up(ch))); });
+    c.appendChild(row);
+
+    var tries = (run.g[L] || []).length;
+    c.appendChild(el("span", "step-try", tries <= 1 ? T("step_first") : T("step_try", { nth: nth(tries) })));
+
+    var stat = stepStat(L);
+    if (stat) c.appendChild(el("span", "step-stat", stat));
+    else if (L < LAST) c.appendChild(el("span", "step-stat", T("step_next", { n: L + 1 })));
+
     void c.offsetWidth;
     c.classList.add("show");
     window.clearTimeout(cheerTimer);
-    cheerTimer = later(function () { c.hidden = true; c.classList.remove("show"); }, 1600);
+    cheerTimer = later(function () { c.hidden = true; c.classList.remove("show"); }, HOLD - 250);
   }
   function haptic(strong) {
     try {
@@ -649,6 +686,52 @@
     drawCur(false);
     renderBudget();
     renderStatus();
+  }
+
+  /* ------------------------------------------------------------------ giving up (29 Oct 2026, Khayyam)
+     A player who is stuck and cannot see the word has two ways out of the game: close the tab, or be shown the
+     word. The second keeps them. So the button is there, quietly — but pressing it offers the ways on first (a
+     hint, and later a question to earn one), and asks once more before it ends the day. Two steps and no more:
+     a third would stop reading as encouragement and start reading as a trap, and either step ends it in one tap. */
+  function openGive() {
+    if (!canPlay()) return;
+    var dlg = $("dlg-give");
+    if (!dlg || !dlg.showModal) return;
+    $("give-step1").hidden = false;
+    $("give-step2").hidden = true;
+    $("give-title").textContent = T("give_h");
+    var h = height(run);
+    $("give-sub").textContent = h >= FIRST ? T("give_sub", { n: h, m: h + 1 }) : T("give_sub0");
+    var hb = $("give-hint"), spent = !!run.hint, canHint = !spent && leftNow() >= HINT_COST + 1;
+    hb.hidden = !canHint;
+    hb.textContent = T("give_hint");
+    $("give-stay").textContent = T("give_stay");
+    $("give-show").textContent = T("give_show");
+    $("give-title2").textContent = T("give_h2");
+    $("give-back").textContent = T("give_stay");
+    $("give-yes").textContent = T("give_yes");
+    try { dlg.showModal(); } catch (e) { /* an old browser: the button simply does nothing */ }
+    if (TO && TO.count) TO.count("altitude/giveup-open");
+  }
+  function closeGive() {
+    var dlg = $("dlg-give");
+    if (dlg && dlg.open) { try { dlg.close(); } catch (e) { /* already shut */ } }
+  }
+  /* the climb ends where it stands: the same result running out of guesses would give, so it is sent to the
+     server like any other and cannot be used to duck a bad day */
+  function giveUp() {
+    closeGive();
+    if (!canPlay()) return;
+    if (TO && TO.count) TO.count("altitude/gaveup");
+    run.gaveUp = true;
+    touchTime();
+    attach();                           // a climb given up before the first guess was never in the store yet
+    finishRun();
+    save();
+    view.L = run.L;
+    renderBoard();                      // the word they could not get, revealed on the board
+    renderBudget();
+    afterFinish(false);                 // paints the rest and opens the card
   }
 
   /* ------------------------------------------------------------------ the end of the climb */
@@ -930,13 +1013,16 @@
     gv.hidden = true;
     sheet.appendChild(gv);
 
+    /* The word that stopped the climb, shown in the game's own tiles rather than as a sentence (29 Oct 2026,
+       Khayyam: "the last word should be written like in boxes as in the game, it is something important").
+       Green, because it is the answer — the colour the player never got to see. */
     var fw = failedWord();
     if (fw) {
-      var wd = el("p", "cl-word");                      // the word that stopped the climb, said softly
-      wd.innerHTML = T("word_was", { w: "<b></b>" });
-      var bold = wd.querySelector("b");
-      if (bold) bold.textContent = up(fw);
+      var wd = el("p", "cl-word", T("word_was", { w: "" }).replace(/\s+$/, ""));
       sheet.appendChild(wd);
+      var wrow = rowBox(Array.from(fw).length, "cl-wordrow");   // not .reveal: that is the board's outline, here it is the answer
+      Array.from(fw).forEach(function (ch) { wrow.appendChild(tile(ch, "g")); });
+      sheet.appendChild(wrow);
     }
     if (beat >= FIRST && beat <= LAST) {
       var bt = el("p", "cl-beat", run.h > beat ? T("beat_won") : run.h === beat ? T("beat_tie") : T("beat_lost"));
@@ -1028,7 +1114,12 @@
   /* asked for once as the page opens, so the counter is there before the climb is over */
   function loadToday() {
     if (!serverOn() || refused[dateKey() + ":" + lang]) return Promise.resolve();
-    return loadView(lang).then(function () { paintToday(); });
+    return loadView(lang).then(function () {
+      paintToday();
+      /* the step window wants a figure from the first word on, so when today is still thin pull yesterday too —
+         this language only, one more call, not all six */
+      if (needYesterday()) return loadYesterday(lang);
+    }).then(null, noop);
   }
   function renderLive() {
     var a = $("cl-live1"), b = $("cl-live2"), c = $("cl-live3");
@@ -1044,6 +1135,7 @@
     var views = old ? srv.yviews : srv.views;
     var v = views[lang];
     function tag(h3) { if (old) h3.appendChild(el("small", "cl-when", T("yesterday"))); return h3; }
+    function K(key) { return old ? key + "_y" : key; }      // the same line, said for the day it describes
 
     var hiEl = $("cl-higher"), hp = higherThan(dist, run.h);
     if (hiEl) {
@@ -1055,7 +1147,7 @@
     /* What a climb costs everyone else, beside what it cost you: height says how far, guesses say how well. */
     var gEl = $("cl-gavg"), ga = guessAvg(v);
     if (gEl) {
-      if (ga !== null) { gEl.hidden = false; gEl.textContent = T("guess_avg", { n: nf(ga, 0) }) + (old ? " · " + T("yesterday") : ""); }
+      if (ga !== null) { gEl.hidden = false; gEl.textContent = T(K("guess_avg"), { n: nf(ga, 0) }); }
       else gEl.hidden = true;
     }
 
@@ -1066,7 +1158,7 @@
       if (wall && W && W.answers && W.answers[wall.L]) {
         wEl.hidden = false;
         wEl.innerHTML = "";
-        var parts = T("wall", { w: "\u0000", n: nInt(wall.n), p: pct(wall.p) }).split("\u0000");
+        var parts = T(K("wall"), { w: "\u0000", n: nInt(wall.n), p: pct(wall.p) }).split("\u0000");
         wEl.appendChild(document.createTextNode(parts[0] || ""));
         wEl.appendChild(el("b", "", up(ans(wall.L))));
         wEl.appendChild(document.createTextNode(parts[1] || ""));
@@ -1078,7 +1170,7 @@
     if (rEl) {
       if (rk && rk.at > 0 && rk.of >= 2 && cc0 && countryName(cc0.c)) {
         rEl.hidden = false;
-        rEl.textContent = flagOf(cc0.c) + " " + T("country_rank", { country: countryName(cc0.c), nth: nth(rk.at), of: nInt(rk.of) });
+        rEl.textContent = flagOf(cc0.c) + " " + T(K("country_rank"), { country: countryName(cc0.c), nth: nth(rk.at), of: nInt(rk.of) });
       } else rEl.hidden = true;
     }
 
@@ -1130,7 +1222,7 @@
         var top = rows[0], low = rows[rows.length - 1];
         if (low.v + 0.15 < top.v) {
           var say = el("p", "cl-raceline");
-          say.textContent = T("race_top", { lang: T("langs")[top.l] || top.l }) + " · " +
+          say.textContent = T(K("race_top"), { lang: T("langs")[top.l] || top.l }) + " · " +
                             T("race_low", { lang: T("langs")[low.l] || low.l });
           sec.appendChild(say);
         }
@@ -1336,7 +1428,10 @@
       $("app").style.visibility = "";
       if (run.done) {
         syncServer(lang);                                  // sending also brings back today's numbers
-        if (showCard) openCard();
+        /* 29 Oct 2026, Khayyam: coming back to a finished climb used to leave the player on a dead board with a
+           Result button to find. The card opens by itself instead — once per visit, so closing it still means
+           closed, and the Result button is still there to open it again. */
+        if (showCard || !shownThisVisit) { shownThisVisit = true; later(function () { openCard(); }, 260); }
       } else {
         loadToday();                                       // still climbing: just ask how many others are up here
       }
@@ -1391,6 +1486,15 @@
       else if (a === "back") backspace();
     });
     $("hint").addEventListener("click", useHint);
+    $("giveup").addEventListener("click", openGive);
+    $("give-stay").addEventListener("click", closeGive);
+    $("give-back").addEventListener("click", closeGive);
+    $("give-hint").addEventListener("click", function () { closeGive(); useHint(); });
+    $("give-show").addEventListener("click", function () {      // one more ask, then it is their call
+      $("give-step1").hidden = true;
+      $("give-step2").hidden = false;
+    });
+    $("give-yes").addEventListener("click", giveUp);
     $("strip-share").addEventListener("click", shareNow);
     $("strip-result").addEventListener("click", function () { openCard(); });
     $("loaderr-b").addEventListener("click", function () { start(false); });

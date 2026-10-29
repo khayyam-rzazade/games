@@ -18,15 +18,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#E3EBF1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="../favicon.ico?v=30ea955f6d" sizes="32x32">
-<link rel="icon" href="../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=434db1d833">
-<link rel="stylesheet" href="altitude.css?v=7a1f3b15ad">
-<script src="../assets/lang/en.js?v=469f78f223"></script>
-<script src="../assets/js/lang.js?v=01632acb08"></script>
+<link rel="stylesheet" href="../assets/css/logicers.css">
+<link rel="stylesheet" href="altitude.css?v=1">
+<script src="../assets/lang/en.js"></script>
+<script src="../assets/js/lang.js"></script>
 </head>
 <body class="game" data-g="altitude">
 <div class="sky" aria-hidden="true"><i class="range far"></i><i class="range mid"></i><i class="cloud a"></i><i class="cloud b"></i><i class="cloud c"></i><i class="range near"></i></div>
@@ -58,6 +58,7 @@
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8a5.6 5.6 0 0 0-3.3 10.1c.5.4.8.9.8 1.5v.6h5v-.6c0-.6.3-1.1.8-1.5A5.6 5.6 0 0 0 10 1.8zM7.6 16h4.8v.6a1.2 1.2 0 0 1-1.2 1.2H8.8a1.2 1.2 0 0 1-1.2-1.2z"/></svg>
       <span id="hint-t">Hint</span> <b id="hint-c">−2</b>
     </button>
+    <button class="giveup" id="giveup" type="button"></button>
     <p class="left" id="left"></p>
   </div>
 
@@ -96,6 +97,28 @@
   </div>
 </dialog>
 
+<dialog id="dlg-give" aria-labelledby="give-title">
+  <div class="sheet give">
+    <button class="chip round close" type="button" data-close aria-label="Close">×</button>
+    <div id="give-step1">
+      <h2 id="give-title"></h2>
+      <p class="give-sub" id="give-sub"></p>
+      <div class="give-acts">
+        <button class="btn solid" id="give-hint" type="button" hidden></button>
+        <button class="btn ghost" id="give-stay" type="button"></button>
+        <button class="give-show" id="give-show" type="button"></button>
+      </div>
+    </div>
+    <div id="give-step2" hidden>
+      <h2 id="give-title2"></h2>
+      <div class="give-acts">
+        <button class="btn solid" id="give-back" type="button"></button>
+        <button class="give-show" id="give-yes" type="button"></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <dialog id="dlg-lang" class="lg-sheet" aria-labelledby="lang-title">
   <div class="sheet lg-box">
     <button class="chip round close" type="button" data-close aria-label="Close">×</button>
@@ -120,7 +143,7 @@
 
 <noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
 
-<script src="../assets/js/turnsout.js?v=fcf5c73083"></script>
-<script src="altitude.js?v=0d75983489"></script>
+<script src="../assets/js/turnsout.js"></script>
+<script src="altitude.js?v=1"></script>
 </body>
 </html>
