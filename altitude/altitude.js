@@ -9,6 +9,17 @@
   var TO = window.TurnsOut || null;
   var LG = window.LG || null;
 
+  /* Every file this game reads while it runs is asked for fresh (29 Oct 2026). A push used to pair the new script
+     with an older strings.json kept by the browser or by the app's offline copy (sw.js), and players saw raw names
+     such as "q_wrong". Now each address carries this script's own stamp ("?s="), so a new script never meets an
+     older copy, and each request says "no-cache", so a file changed without a new script is still checked with the
+     server (an unchanged file costs a short "not modified" answer, not a new download). */
+  var SELF_V = (function () {
+    try { var m = /[?&]v=([0-9a-f]+)/.exec((document.currentScript && document.currentScript.src) || ""); return m ? m[1] : ""; }
+    catch (e) { return ""; }
+  })();
+  function freshURL(url) { return SELF_V ? url + (url.indexOf("?") < 0 ? "?" : "&") + "s=" + SELF_V : url; }
+
   /* ------------------------------------------------------------------ the numbers to tune */
   var START = "2026-10-28";        // day 1 (the day number only picks the words and labels the day)
   var BUDGET = 20;                 // guesses to start with; when they run out, the climb ends
@@ -72,7 +83,7 @@
     return Math.max(1, Math.floor((b - a) / 86400000) + 1);
   }
   function getJSON(url) {
-    return window.fetch(url).then(function (r) {
+    return window.fetch(freshURL(url), { cache: "no-cache" }).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.json();
     });
@@ -110,7 +121,11 @@
     var s = null;
     if (STR && STR[lang] && STR[lang][k] != null) s = STR[lang][k];
     else if (STR && STR.en && STR.en[k] != null) s = STR.en[k];
-    return s == null ? k : fill(s, v);
+    if (s == null) {                // a word the strings file does not have: say nothing rather than show its name
+      if (window.console) window.console.warn("Logicers: no words for " + k);
+      return "";
+    }
+    return fill(s, v);
   }
   function up(ch) { return String(ch).toLocaleUpperCase(lang); }
   function nf(n, d) {
@@ -742,17 +757,20 @@
       return BANK;
     }, function () { BANK = { stems: {}, questions: [] }; return BANK; });
   }
-  /* the language's words for the questions: assets/lang/<code>/questions.js sets window.LG_QUESTIONS.
-     English is the bank itself. (Not to be confused with loadWords(), which loads the climb's word lists.) */
+  /* the language's words for the questions: assets/lang/<code>/questions.js, which sets window.LG_QUESTIONS.
+     English is the bank itself. (Not to be confused with loadWords(), which loads the climb's word lists.)
+     It is read as text and its object parsed, not added as a <script>, so it can be asked for fresh like the
+     game's other files (see SELF_V); the build writes the object as plain JSON. */
   function loadQWords() {
     if (lang === "en" || QT) return Promise.resolve(QT);
-    return new Promise(function (done) {
-      var s = document.createElement("script");
-      s.src = "../assets/lang/" + lang + "/questions.js";
-      s.onload = function () { QT = window.LG_QUESTIONS || null; done(QT); };
-      s.onerror = function () { QT = null; done(null); };     // no file: the question is asked in English
-      document.head.appendChild(s);
-    });
+    return window.fetch(freshURL("../assets/lang/" + lang + "/questions.js"), { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(String(r.status));
+      return r.text();
+    }).then(function (src) {
+      var a = src.indexOf("{", src.indexOf("LG_QUESTIONS")), b = src.lastIndexOf("}");
+      QT = (a >= 0 && b > a) ? JSON.parse(src.slice(a, b + 1)) : null;
+      return QT;
+    }).catch(function () { QT = null; return null; });         // no file: the question is asked in English
   }
   function qText(en) { return (QT && QT.text && QT.text[en]) || en; }
   function qStem(q) {

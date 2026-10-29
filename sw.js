@@ -3,9 +3,9 @@
    with a weak signal or none. It must never make anyone play yesterday's puzzle as today's, or run
    an old script after a push, so it follows three rules:
 
-   1. Pages and data (every page, every puzzles.js and data/*.js) come from the NETWORK first; the
-      copy is used only when the network does not answer in time. A new day and a new push therefore
-      arrive exactly as they do in a browser.
+   1. Pages and data (every page, every puzzles.js and data/*.js, every .json, the hint questions' words)
+      come from the NETWORK first; the copy is used only when the network does not answer in time. A new
+      day and a new push therefore arrive exactly as they do in a browser.
    2. Scripts and stylesheets carry a version in their address (stamp.py: ?v=…), so a copy of one can
       never be the wrong one: they are served from the copy, and a push changes their address.
    3. Anything from another site (the visitor counter, the Rooms server) and anything that is not a
@@ -33,10 +33,14 @@ self.addEventListener("activate", function (e) {
 });
 
 function versioned(url) { return /[?&]v=[0-9a-f]{6,}/.test(url.search); }
+/* 29 Oct 2026: also every .json file anywhere on the site (the word games' strings, questions, word lists and day
+   data live in their own folders, not in data/) and the hint questions' words (assets/lang/<code>/questions.js),
+   which the word games read while they run. They used to be served from the copy first, so the first visit after
+   a push paired a new script with old words. */
 function fresh(url, req) {
   return req.mode === "navigate" || /\.html$|\/$/.test(url.pathname) ||
          /(^|\/)puzzles\.js$/.test(url.pathname) || /^\/?data\//.test(url.pathname.replace(/^\//, "")) ||
-         /\.webmanifest$/.test(url.pathname);
+         /\.webmanifest$|\.json$/.test(url.pathname) || /^\/assets\/lang\/[a-z]{2}\/questions\.js$/.test(url.pathname);
 }
 
 function trim(cache) {

@@ -10,6 +10,17 @@
   var LG = window.LG || null;
   var WM = window.WorldMap || null;
 
+  /* Every file this game reads while it runs is asked for fresh (29 Oct 2026). A push used to pair the new script
+     with an older strings.json kept by the browser or by the app's offline copy (sw.js), and players saw raw names
+     such as "q_wrong". Now each address carries this script's own stamp ("?s="), so a new script never meets an
+     older copy, and each request says "no-cache", so a file changed without a new script is still checked with the
+     server (an unchanged file costs a short "not modified" answer, not a new download). */
+  var SELF_V = (function () {
+    try { var m = /[?&]v=([0-9a-f]+)/.exec((document.currentScript && document.currentScript.src) || ""); return m ? m[1] : ""; }
+    catch (e) { return ""; }
+  })();
+  function freshURL(url) { return SELF_V ? url + (url.indexOf("?") < 0 ? "?" : "&") + "s=" + SELF_V : url; }
+
   /* ------------------------------------------------------------------ the numbers to tune */
   var START = "2026-10-29";        // day 1 (the day number picks the word: entry (day - 1) mod the list's length)
   var STAMP_ON_MISS = false;       // true: a stamp for the day's origin even when the guess was wrong
@@ -72,7 +83,7 @@
     return Math.max(1, Math.floor((b - a) / 86400000) + 1);
   }
   function getJSON(url) {
-    return window.fetch(url).then(function (r) {
+    return window.fetch(freshURL(url), { cache: "no-cache" }).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.json();
     });
@@ -104,7 +115,11 @@
     var s = null;
     if (STR && STR[lang] && STR[lang][k] != null) s = STR[lang][k];
     else if (STR && STR.en && STR.en[k] != null) s = STR.en[k];
-    return s == null ? k : fill(s, v);
+    if (s == null) {                // a word the strings file does not have: say nothing rather than show its name
+      if (window.console) window.console.warn("Logicers: no words for " + k);
+      return "";
+    }
+    return fill(s, v);
   }
   function pct(x) {
     try { return new window.Intl.NumberFormat(lang, { style: "percent", maximumFractionDigits: 0 }).format(x); } catch (e) { return Math.round(x * 100) + "%"; }
