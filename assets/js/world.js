@@ -667,15 +667,20 @@
     if (!box || !on()) return;
     box.hidden = false;
     var key = todayKey();
-    flushBoth(key).then(function () { return call("world", { d: key, span: "day" }); }).then(function (r) {
+    flushBoth(key).then(function () { return call("world", { d: key, span: "day", tot: 1 }); }).then(function (r) {
       if (!r || r.status !== 200) return;
       var t = rank(r.data), you = r.data.you || {};
+      /* the games played today: the daily games and the word games together (29 Oct 2026, Khayyam: the box counted
+         the daily games only). tot comes with the answer (the server's two halves of the World page); without it,
+         the daily games as before. */
+      var tot = r.data.tot, played = r.data.n + (r.data.calls || 0);
+      if (tot && tot.d === key && tot.daily && tot.words && isFinite(tot.daily[0]) && isFinite(tot.words[0])) played = Math.max(played, tot.daily[0]) + tot.words[0];
       var h = document.getElementById("worldbox-h"), sub = document.getElementById("worldbox-sub");
       var mine = null;
       t.rows.forEach(function (x) { if (x.c === you.c) mine = x; });
       if (h && mine && mine.at) h.textContent = flag(you.c) + " " + T("world.is_today", { country: countryName(you.c), place: nth(mine.at) });
       else if (h && countryName(you.c)) h.textContent = flag(you.c) + " " + T("world.on_table", { country: countryName(you.c) });
-      if (sub) sub.textContent = r.data.n ? T.n(t.rows.length, "world.games_today_in", { games: commas(r.data.n + (r.data.calls || 0)) }) : T("world.counts_for_country");
+      if (sub) sub.textContent = played ? T.n(Math.max(1, t.rows.length), "world.games_today_in", { games: commas(played) }) : T("world.counts_for_country");
     }, function () { /* the box keeps its plain words */ });
   }
 

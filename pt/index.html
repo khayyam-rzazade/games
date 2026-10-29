@@ -61,6 +61,24 @@
 @media (prefers-color-scheme: dark) { [data-g="lookalike"] { --c: #4FD0EE; --tint: #071C24; } [data-g="passport"] { --c: #D79AF0; --tint: #1B1024; } }
 .word-games { margin-top: 34px; }   /* the same air above it as "Pass the phone" has (28 Oct 2026, Khayyam) */
 @media (max-width: 700px) { .word-games { margin-top: 24px; } }   /* ...on a phone too, where that row drops to 24 */
+/* The Today card (29 Oct 2026, Khayyam): a second, slim row of dashes for today's word games under the daily
+   games' row, and the count of both; the card opens the first game of the day not yet played, daily first. */
+.today .pips-words { margin-top: 6px; }
+/* On a phone and a narrow window the card sits right under the language line again, above the Logicer and Find
+   out boxes (Khayyam, 29 Oct 2026: "it was supposed to be on top, right under the languages"). The text block is
+   opened up (display: contents) so the card can stand between its lines; the gaps are kept as margins. */
+@media (max-width: 1000px) {
+  .hero { row-gap: 0; }
+  .hero-text { display: contents; }
+  .hero h1 { position: relative; z-index: 0; }
+  .hero > .today { order: 1; margin-top: 18px; }
+  .hero-text > .hero-boxes { order: 2; }
+  .hero > .livebox, .hero > .pairbox, .hero > .worldbox { order: 3; margin-top: 14px; }
+}
+@media (max-width: 700px) {
+  .hero > .today { margin-top: 14px; }
+  .hero > .livebox, .hero > .pairbox, .hero > .worldbox { margin-top: 12px; }
+}
 #shelf3 .art { aspect-ratio: 1.8 / 1; border-radius: 14px; }
 #shelf3 .tile { padding: 8px; }
 #shelf3 .tile .body { padding: 10px 6px 4px; }
@@ -152,6 +170,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   <a class="today" id="today-card">
     <div class="today-top"><span class="today-label" data-s="end.today">Hoje</span><span class="today-count" id="today-count" data-s="home.today_count"><b>0</b> de 9 jogados</span><span class="today-go" id="today-go" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg><span data-s="site.play">Jogar</span></span></div>
     <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
+    <div class="pips pips-words" aria-hidden="true"><i id="pip-altitude" data-g="altitude"></i><i id="pip-lookalike" data-g="lookalike"></i><i id="pip-passport" data-g="passport"></i></div>
     <p class="today-note" id="today-note" data-s="home.new_at_midnight">Jogos novos à meia-noite.</p>
   </a>
   <!-- Build a game · Join a game (16 Oct 2026): one slim box in two halves, right under Today and the same width, so the
@@ -552,7 +571,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="../assets/js/duel.js?v=c4e6a61b81"></script>
 <script src="../assets/js/rooms.js?v=496d2fe661"></script>
 <script src="../assets/js/points.js?v=0ff18e835f"></script>
-<script src="../assets/js/world.js?v=a0265c5f03"></script>
+<script src="../assets/js/world.js?v=c01eb20f56"></script>
 <script src="../assets/js/said.js?v=5d6cde48e4"></script>
 <script src="../assets/js/logicer.js?v=f998ff3c11"></script>
 <script>
@@ -615,8 +634,24 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     }
   });
 
-  document.getElementById("today-count").innerHTML = T("end.of_played", { n: doneToday, of: live });
-  if (live > 0 && doneToday === live) document.getElementById("today-note").textContent = T("end.all_done");
+  /* today's word games (29 Oct 2026): each keeps its own storage, and marks the day it was finished in "main" (the
+     first language played that day). Their first days are the START of altitude.js, lookalike.js, passport.js. */
+  var WORDS = [{ id: "altitude", key: "altitude:v1", start: "2026-10-28" }, { id: "lookalike", key: "lookalike:v1", start: "2026-10-29" },
+               { id: "passport", key: "passport:v1", start: "2026-10-29" }];
+  var wordsLive = 0, wordsDone = 0, firstWord = null;
+  WORDS.forEach(function (w) {
+    var tile = document.getElementById("tile-" + w.id);
+    if (!tile || TO.dayNumber(w.start) < 1) return;
+    wordsLive++;
+    var done = false;
+    try { var s = JSON.parse(window.localStorage.getItem(w.key) || "null"), d = Math.max(1, TO.dayNumber(w.start)); done = !!(s && s.main && (s.main[d] || s.main[String(d)])); }
+    catch (e) { done = false; }
+    var pip = document.getElementById("pip-" + w.id);
+    if (done) { wordsDone++; if (pip) pip.classList.add("on"); }
+    else if (!firstWord) firstWord = { id: w.id, href: tile.getAttribute("href") };
+  });
+  document.getElementById("today-count").innerHTML = T("end.of_played", { n: doneToday + wordsDone, of: live + wordsLive });
+  if (live + wordsLive > 0 && doneToday + wordsDone === live + wordsLive) document.getElementById("today-note").textContent = T("end.all_done");
   /* "More to play" (19 Oct 2026): the last game's card sends people here, to the games that never run out. The
      line that stood above them ("Done with today's games? …") was dropped on 22 Oct 2026 (Khayyam); the anchor
      now sits on the find-out section itself, so the jump lands on the first row that never runs out. */
@@ -631,11 +666,12 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
      game hands the player to the next. A day with everything played leaves the card a plain card. */
   (function () {
     var card = document.getElementById("today-card"), go = document.getElementById("today-go");
-    if (!card || !firstOpen) return;
-    card.href = firstOpen.href;
+    var next = firstOpen || firstWord;                  // the daily games first, then the word games (29 Oct 2026)
+    if (!card || !next) return;
+    card.href = next.href;
     card.classList.add("today-open");
     if (go) go.hidden = false;
-    card.addEventListener("click", function () { TO.count("today-card/" + firstOpen.id); });
+    card.addEventListener("click", function () { TO.count("today-card/" + next.id); });
   })();
 
   /* Who Was Closer: the example card in the About sheet. (Until 15 Oct 2026 a line under the Today card also
