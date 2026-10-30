@@ -1175,6 +1175,1022 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    "Demokrasiyi getir ama ömür boyu hüküm sür",
    "Demokrasiyi getir ve tahtı oğluna devret"
   ]
+ },
+ "1968-dissolution": {
+  "place": "Paris",
+  "pov": "Bir öğrenci ayaklanması ve yayılan grevler Fransa'yı sarstı. Halk oylaması çağrın ortalığı yatıştırmadı ve sendikalar bir teklifi reddetti. Sen Fransa'nın cumhurbaşkanısın.",
+  "short": "De Gaulle",
+  "did": "De Gaulle, 30 Mayıs 1968'de halk oylamasını erteledi, Ulusal Meclis'i feshetti ve seçim çağrısı yaptı. “Fransa diktatörlükle tehdit ediliyor,” dedi.",
+  "next": "Grevler yerini ücret anlaşmalarına bıraktı. 23 ve 30 Haziran 1968 seçimlerinde Gaullistler mutlak çoğunluğu kazandı; bu, Fransız Cumhuriyeti tarihinde bir ilkti.",
+  "stamp": "De Gaulle parlamentoyu feshediyor",
+  "choices": [
+   "Halk oylamasını planlandığı gibi yap",
+   "Ulusal Meclis'i feshet, seçim çağır",
+   "Ulusal Meclis'i koru ve kararlı dur"
+  ]
+ },
+ "1564-jizya": {
+  "place": "Agra",
+  "pov": "11. yüzyıldan beri Hindistan'daki Müslüman hükümdarlar, Müslüman olmayanlardan askerlik yerine ödenen cizye vergisini alıyor. 1562'de bir racanın kızıyla evlendin. Sen Babür imparatorusun.",
+  "short": "Ekber",
+  "did": "Ekber, 1564'te cizyeyi kaldırdı. Hacılardan alınan vergiyi ve savaş esirlerinin zorla Müslüman edilmesini de sona erdirdi.",
+  "next": "1679'da sonraki bir imparator, Evrengzib, cizyeyi yeniden getirdi; bu adım birçok Hindu hükümdar ve Babür saray görevlisi tarafından sert biçimde eleştirildi.",
+  "stamp": "Ekber cizyeyi kaldırıyor",
+  "choices": [
+   "Cizyeyi toplamaya devam et",
+   "Cizyeyi herkes için kaldır",
+   "Cizyeyi düşür ama sürdür"
+  ]
+ },
+ "1992-czech-split": {
+  "place": "Brno",
+  "pov": "Haziran 1992 seçimlerinde Slovaklar, Slovakya'nın kendi ordusu, merkez bankası ve dış politikası olacak bir konfederasyon isteyen bir popülisti destekledi. Halkın çoğu ortak bir devletten yana. Sen Çek başbakanısın.",
+  "short": "Klaus",
+  "did": "Klaus ve Mečiar, ortak devleti halk oylaması yapmadan dağıtmak üzere anlaştı. Anlaşmayı 26 Ağustos 1992'de Brno'daki Tugendhat Villası'nda imzaladılar.",
+  "next": "Bölünmeye karşı mücadele etmiş olan Cumhurbaşkanı Václav Havel istifa etti. Çekoslovakya 1 Ocak 1993'te sona erdi ve bağımsız bir Çek Cumhuriyeti doğdu.",
+  "stamp": "Çekoslovakya ikiye bölünüyor",
+  "choices": [
+   "Daha gevşek bir konfederasyonu kabul et",
+   "Konuyu halk oylamasına götür",
+   "Ülkeyi ikiye bölmeyi kabul et"
+  ]
+ },
+ "1953-prisoner-release": {
+  "place": "Seul",
+  "pov": "BM Komutanlığı, senin karşı çıktığın komünistlerle bir ateşkes anlaşması görüşüyor. Ülkenin dört bir yanındaki kamplarda komünizm karşıtı binlerce savaş esiri tutuluyor. Sen Güney Kore'nin cumhurbaşkanısın.",
+  "short": "Rhee",
+  "did": "Rhee, 18 Haziran 1953'te kendi sorumluluğunda askerî polise komünizm karşıtı esirleri serbest bırakma emri verdi.",
+  "next": "Serbest bırakma Birleşik Devletler'i, BM'yi ve komünist tarafı şok etti. Rhee ateşkes anlaşmasını imzalamayı reddetti ve bu, Birleşik Devletler'le karşılıklı bir savunma antlaşmasına yol açtı.",
+  "stamp": "Rhee esirleri serbest bırakıyor",
+  "choices": [
+   "Onları ateşkes anlaşmasının işleyişine bırak",
+   "Askerî polisine onları serbest bırakma emri ver",
+   "Ateşkesi reddet ve tek başına savaşmaya devam et"
+  ]
+ },
+ "1981-martial-law": {
+  "place": "Varşova",
+  "pov": "Dayanışma sendikası, komünist yönetime karşı siyasi muhalefetin başında geliyor. Hoşnut olmayan Kremlin, silahlı müdahaleyle tehdit ediyor. Sen Polonya hükümetinin başındaki askersin.",
+  "short": "Jaruzelski",
+  "did": "13 Aralık 1981'de Jaruzelski, televizyondan yaptığı bir konuşmayla sıkıyönetim ilan etti. Dayanışma yasadışı ilan edildi ve liderlerinin çoğu gözaltına alındı.",
+  "next": "Wujek kömür madeninde madenciler öldürüldü ve sıkıyönetim Temmuz 1983'e kadar sürdü. Jaruzelski, bu olmasaydı askerî bir müdahalenin kaçınılmaz olacağına inanıyordu.",
+  "stamp": "Polonya'da sıkıyönetim",
+  "choices": [
+   "Dayanışma'yla uzlaşma ara",
+   "Sıkıyönetim ilan et",
+   "Sovyet birliklerinin düzeni sağlamasına izin ver"
+  ]
+ },
+ "1946-parity": {
+  "place": "Manila",
+  "pov": "Ülken yeni bağımsız oldu. Birleşik Devletler, 620 milyon dolarlık savaş tazminatını yalnızca Amerikalılara doğal kaynaklarında eşit haklar tanınırsa ödeyecek. Sen Filipinler'in cumhurbaşkanısın.",
+  "short": "Roxas",
+  "did": "Roxas kabul etti. Solcu Demokratik İttifak'ın altı üyesi Temsilciler Meclisi'ndeki koltuklarına oturtulmayınca, değişikliğin Kongre'den 18 Eylül'de onay almasını sağladı.",
+  "next": "1947'de bir halk oylaması bunu onayladı, ama seçmenlerin yalnızca yüzde 40'ı oy kullandı. Eleştirmenler eşit haklar maddesini ulusal egemenliğin affedilemez bir teslimi olarak gördü.",
+  "stamp": "Roxas eşitlik şartını kabul ediyor",
+  "choices": [
+   "Kabul et ve anayasayı değiştir",
+   "Reddet ve parasız kal",
+   "Daha iyi şartlar için direnmeye devam et"
+  ]
+ },
+ "1981-juan-carlos": {
+  "place": "Madrid",
+  "pov": "Silahlı 200 Guardia Civil görevlisi, oylama sırasında parlamentoyu bastı ve milletvekillerini rehin tutuyor. Bir general Valensiya sokaklarına tanklar sürdü. Sen İspanya'nın kralısın.",
+  "short": "Juan Carlos",
+  "did": "Juan Carlos, Ordu Kaptan Generali üniformasıyla televizyonda darbeyi kınadı. Konuşma 24 Şubat 1981'de saat 01.14'te yayına verildi.",
+  "next": "Tejero öğlene kadar direndi ve Kongre binasının önünde tutuklandı. Tejero, Milans del Bosch ve Armada sonradan 30'ar yıl hapse mahkûm edildi.",
+  "stamp": "Kral darbeye karşı çıkıyor",
+  "choices": [
+   "Sonucun belli olmasını bekle",
+   "Televizyona çıkıp darbeye karşı çık",
+   "Çıkış yolu bulmak için darbecilerle konuş"
+  ]
+ },
+ "2000-pyongyang": {
+  "place": "Pyongyang",
+  "pov": "Güneş Politikan, Kuzey Kore'yle yakınlaşmayı amaçlıyor. Kuzey'le yapılan görüşmeler, Kore'nin bölünmesinden beri iki liderin ilk buluşmasının yolunu açıyor. Sen Güney Kore'nin cumhurbaşkanısın.",
+  "short": "Kim Dae-jung",
+  "did": "Kim Dae-jung, 13-15 Haziran 2000 arasındaki zirve için Pyongyang'a gitti ve Kim Jong-il tarafından karşılandı. Yeniden birleşme, ailelerin buluşması ve ekonomik iş birliği için çalışmayı kararlaştırdılar.",
+  "next": "Kim Dae-jung, 13 Ekim 2000'de Nobel Barış Ödülü'nü kazandı. Üç yıl sonra, Güney Kore'nin zirveye katılması için Kuzey'e gizlice para ödediği ortaya çıktı.",
+  "stamp": "İki Kore arasındaki ilk zirve",
+  "choices": [
+   "Kuzey'in liderinin Seul'e gelmesinde ısrar et",
+   "Herhangi bir zirveden önce nükleer görüşme talep et",
+   "Kim Jong-il'le görüşmek için Pyongyang'a git"
+  ]
+ },
+ "1982-falklands": {
+  "place": "Londra",
+  "pov": "2 Nisan 1982'de Arjantin güçleri, Güney Atlantik'te 8.000 mil uzaktaki bir İngiliz toprağı olan Falkland Adaları'nın başkenti Port Stanley'i işgal etti. Sen İngiltere'nin başbakanısın.",
+  "short": "Thatcher",
+  "did": "Acil toplanan bir kabine toplantısının ardından Thatcher, adaları geri almak için bir donanma görev gücü gönderdi; 5 Nisan'da görev gücü yoldaydı. Güç sonunda 44 savaş gemisine ulaştı.",
+  "next": "Arjantin, 74 gün sonra, 14 Haziran 1982'de teslim oldu. Savaşta 649 Arjantinli ve 255 İngiliz asker ile 3 Falkland Adası sakini öldü.",
+  "stamp": "Falkland Adaları'na görev gücü",
+  "choices": [
+   "BM'ye ve diplomasiye bel bağla",
+   "ABD'nin arabuluculuk yaptığı bir uzlaşmayı kabul et",
+   "Adaları geri almak için bir görev gücü gönder"
+  ]
+ },
+ "1639-sakoku": {
+  "place": "Edo",
+  "pov": "1637'de Hristiyan köylüler Şimabara'da isyan etti ve binlerce kişi öldürüldü. 1636'dan beri Portekiz ticareti Nagasaki'deki Dejima ile sınırlı tutuluyor. Sen Japonya'nın şogunusun.",
+  "short": "İemitsu",
+  "did": "1639'da İemitsu'nun hükümeti Portekizlileri sürdü ve gemilerini yasakladı. Yalnızca az sayıda Hollandalı tüccar, küçücük Dejima adasında kalabildi.",
+  "next": "1640'ta Makao, ticareti yeniden açmak için elçiler gönderdi; dört büyükelçi ile maiyetlerinden ve mürettebatlarından 57 kişi idam edildi.",
+  "stamp": "Japonya Portekizlileri yasaklıyor",
+  "choices": [
+   "Ticarete sıkı denetim altında devam et",
+   "Portekiz gemilerini Japonya'dan yasakla",
+   "Japonya'yı bütün Avrupalılara kapat"
+  ]
+ },
+ "2003-iraq-vote": {
+  "place": "Londra",
+  "pov": "Irak konusunda ikinci bir BM kararı almayı başaramadın. Kendi partindeki birçok kişi savaşa karşı ve bir bakan bu yüzden istifa edeceğini söyledi. Sen İngiltere'nin başbakanısın.",
+  "short": "Blair",
+  "did": "Blair, savaşı 18 Mart 2003'te Avam Kamarası'nın oyuna sundu ve askerlerin geri çekilmesi yönünde verilecek bir oyun kendisini de görevden uzaklaştıracağını söyledi. Önerge 412'ye 149 oyla kabul edildi.",
+  "next": "Robin Cook, protesto için hükümetten istifa etti. İngiltere'nin Irak harekâtı, Telic Harekâtı, oylamadan bir gün sonra başladı.",
+  "stamp": "Blair İngiltere'yi savaşa sokuyor",
+  "choices": [
+   "Herhangi bir savaştan önce BM'nin desteğini bekle",
+   "Asker gönder ve milletvekillerinin oylamasına sun",
+   "Destek ver ama muharip birlik gönderme"
+  ]
+ },
+ "261bc-kalinga": {
+  "place": "Pataliputra",
+  "year": "MÖ 261",
+  "pov": "Ordun Kalinga'yı fethetti. Kendi hesabına göre orada 100.000 kişi öldürüldü, 150.000 kişi sürgün edildi ve çok daha fazlası hayatını kaybetti. Sen Maurya imparatorusun.",
+  "short": "Aşoka",
+  "did": "Aşoka, Kalinga'yı elinde tuttu ama derin bir pişmanlık duydu ve bir daha asla fetih savaşı yapmayacağına söz verdi. Fermanlarında ahlaki fethi en önemli fetih olarak andı.",
+  "next": "İmparatorluğunun askerî genişlemesine son verdi, bunun yerine dharma yoluyla fetih arayışına girdi. MÖ 232'de öldüğünde Hint Alt Kıtası'nın büyük bölümünü yönetmişti.",
+  "stamp": "Aşoka fetihten vazgeçiyor",
+  "choices": [
+   "Yeni fetihlere devam et",
+   "Kalinga'ya özgürlüğünü geri ver",
+   "Kalinga'yı elinde tut ama bir daha fethe çıkma"
+  ]
+ },
+ "1985-anti-alcohol": {
+  "place": "Moskova",
+  "pov": "Aşırı içki; işe gelmeme, iş kazaları ve erkeklerde artan ölüm oranlarıyla bağlantılı. Yine de 1979'da alkol satışları devlete vergi olarak yaklaşık 25,4 milyar ruble kazandırdı. Sen yeni Sovyet liderisin.",
+  "short": "Gorbaçov",
+  "did": "Mayıs 1985'te Gorbaçov içkiye karşı bir kampanya başlattı. Votka fiyatları yüzde 20 ile 30 arttı, satış saatleri kısıldı ve üzüm bağları yok edildi.",
+  "next": "Yaşam beklentisi 1984'te 67,7 yıldan 1987'de 69,8 yıla yükseldi. Ama evde kaçak içki üretimi patladı, devletin geliri düştü ve kampanyadan 1987'den sonra vazgeçildi.",
+  "stamp": "Gorbaçov'un içkiyle savaşı",
+  "choices": [
+   "Ülke çapında bir kampanyayla içkiyi azalt",
+   "Dokunma: devletin gelire ihtiyacı var",
+   "Tedaviyi finanse et ama satışlara dokunma"
+  ]
+ },
+ "1945-surrender": {
+  "place": "Tokyo",
+  "pov": "Hiroşima ve Nagasaki'ye atom bombaları düştü ve Sovyetler Birliği savaş ilan etti. Savaş konseyin kayıtsız şartsız teslim konusunda çıkmaza girdi. Sen Japonya'nın imparatorusun.",
+  "short": "Hirohito",
+  "did": "10 Ağustos 1945'in erken saatlerinde Hirohito savaş konseyine şöyle dedi: “Gözyaşlarımı yutuyor ve Müttefiklerin bildirisini kabul etme önerisini onaylıyorum.”",
+  "next": "Konuşması 15 Ağustos 1945'te öğle vakti radyodan yayınlandı; bir imparator ilk kez ulusa radyodan seslenmişti. Konuşmada “teslim” sözcüğü hiç geçmedi.",
+  "stamp": "Japonya yenilgiyi kabul ediyor",
+  "choices": [
+   "Müttefiklerin şartlarını kabul et ve savaşı bitir",
+   "Savaşa devam et ve Müttefik şartlarını reddet",
+   "Sessiz kal ve kararı hükümete bırak"
+  ]
+ },
+ "2003-congestion-charge": {
+  "place": "Londra",
+  "pov": "Londra'da trafik saatte ortalama 12 mille sürünüyor ve şehrin ulaşımı sürekli para sıkıntısı çekiyor. Sen Londra'nın belediye başkanısın.",
+  "short": "Livingstone",
+  "did": "Livingstone, Londra'nın merkezine araçla girenleri hafta içi 07.00 ile 18.30 arasında 5 sterlin ödemeye zorladı. Ücret 17 Şubat 2003'te başladı.",
+  "next": "İlk haftada trafik yüzde 25 azaldı ve otobüsler tarifenin önünde gitti. Paris'in belediye başkanı, uygulamayı incelemek için Londra'yı ziyaret etmeyi ayarladı.",
+  "stamp": "Londra'nın tıkanıklık ücreti",
+  "choices": [
+   "Otobüslere ve trenlere daha çok harca",
+   "Merkeze araçla girenlerden 5 sterlin al",
+   "Yolları şimdilik olduğu gibi bırak"
+  ]
+ },
+ "1631-taj-mahal": {
+  "place": "Agra",
+  "pov": "En sevdiğin eşin, hamile olmasına rağmen Dekkan seferinde seninle birlikte geldi. Haziran 1631'de 14. çocuğunu doğururken öldü. Geçici olarak gömüldü. Sen Babür imparatorusun.",
+  "short": "Şah Cihan",
+  "did": "Şah Cihan, 1631'de onun anısına bir anıt mezar yapılması için emir verdi. İnşaat 1632'de, saray mimarı Ustad Ahmad Lahori'nin yönetiminde başladı.",
+  "next": "20.000'den fazla işçi ve usta Tac Mahal'i inşa etti. 1658'de Evrengzib tarafından tahttan indirilen Şah Cihan, 1666'da orada eşinin yanına gömüldü.",
+  "stamp": "Tac Mahal inşa ediliyor",
+  "choices": [
+   "Ona gösterişsiz bir mezar yaptır ve yoluna devam et",
+   "Onu bir cami ve hayır işleriyle an",
+   "Ona şimdiye kadarki en güzel mezarı yaptır"
+  ]
+ },
+ "1968-prague": {
+  "place": "Moskova",
+  "pov": "Çekoslovakya'nın komünist hükümeti sansüre son verdi ve reform yapmakta ısrar ediyor. Görüşmeler onları durduramadı ve diğer uydu devletlerin de aynı yolu izlemesinden korkuyorsun. Sen Sovyet liderisin.",
+  "short": "Brejnev",
+  "did": "Brejnev harekete geçti. 20 Ağustos 1968 gecesi 250.000 Varşova Paktı askeri ve 2.000 tank Çekoslovakya'ya girdi ve Dubček Moskova'ya götürüldü.",
+  "next": "İşgalde 137 Çek ve Slovak öldü. Nisan 1969'da Dubček iktidardan zorla uzaklaştırıldı ve Moskova, komünist yönetimin tehdit altında olduğu her yerde müdahale hakkı olduğunu öne sürdü.",
+  "stamp": "Sovyetler Çekoslovakya'yı işgal ediyor",
+  "choices": [
+   "Varşova Paktı birliklerini gönder",
+   "Görüşmeleri ve siyasi baskıyı sürdür",
+   "Reformları kabul et ve bekle"
+  ]
+ },
+ "1994-real-plan": {
+  "place": "Brasília",
+  "pov": "Enflasyon, onu denetim altına almaya çalışan bir dizi planı yendi; öncekiler fiyatları ve ücretleri dondurmaya dayanıyordu. Sen Brezilya'nın maliye bakanısın.",
+  "short": "Cardoso",
+  "did": "Cardoso'nun ekibi, değeri yaklaşık 1 ABD dolarına eşit, gerçek para olmayan bir birim olan URV'yi yarattı. URV'yle belirlenen fiyatlar sonra 1 Temmuz 1994'te yeni para birimi real'e çevrildi.",
+  "next": "Önceki planların aksine genel bir fiyat ve ücret dondurması kullanmadı. 1996 sonlarına gelindiğinde enflasyon, bazı ölçümlere göre yılda yüzde 20'nin altına yaklaşıyordu.",
+  "stamp": "Real Planı",
+  "choices": [
+   "Fiyatları ve ücretleri bir kez daha dondur",
+   "Yeni bir para birimini aşamalı olarak getir",
+   "ABD dolarını Brezilya'nın para birimi yap"
+  ]
+ },
+ "1593-saint-denis": {
+  "place": "Saint-Denis",
+  "pov": "Selefinin suikastıyla kral oldun, ama Protestansın. İspanyol askerleri ve ateşli Katolik halk Paris'i savunuyor ve surlarını aşamıyorsun. Sen Fransa'nın kralısın.",
+  "short": "Henri",
+  "did": "25 Temmuz 1593'te Saint-Denis'de Henri, Protestan inancından resmen vazgeçti. Birkaç hafta içinde Katolik Birlik'in desteği eridi.",
+  "next": "17 Şubat 1594'te Chartres'ta taç giydi ve Paris 22 Mart'ta teslim oldu. 1598'de çıkardığı Nantes Fermanı, Protestanlara sınırlı hoşgörü tanıdı.",
+  "stamp": "IV. Henri Katolik oluyor",
+  "choices": [
+   "Paris teslim olana dek kuşatmayı sürdür",
+   "Protestan kal ve bir ateşkes ara",
+   "Protestan inancından vazgeç"
+  ]
+ },
+ "1952-bolivia-tin": {
+  "place": "La Paz",
+  "pov": "Partin halk devrimiyle iktidara geldi. En büyük kalay madenleri üç madencilik baronuna ait. Sen Bolivya'nın cumhurbaşkanısın.",
+  "short": "Paz Estenssoro",
+  "did": "31 Ekim 1952'de Paz Estenssoro, Patiño, Hochschild ve Aramayo'nun madenlerini millîleştiren kararnameyi imzaladı. Kararname tazminat ilkesini tanıyordu.",
+  "next": "Yeni devlet madencilik şirketi COMIBOL, 29.000 işçinin çalıştığı 163 madeni devraldı. On yıllar boyunca Bolivya'nın başlıca döviz kaynağı ve en büyük işvereni oldu.",
+  "stamp": "Bolivya kalayını millîleştiriyor",
+  "choices": [
+   "Madenleri sahiplerinde bırak",
+   "Tazminat vererek millîleştir",
+   "Sahiplerine ödeme yapmadan el koy"
+  ]
+ },
+ "1991-yeltsin-tank": {
+  "place": "Moskova",
+  "pov": "Sert çizgideki komünistler yönetime el koymaya çalışıyor ve Sovyet cumhurbaşkanını yazlık evinde alıkoyuyor. Birlikler Moskova'ya giriyor ve sen KGB'nin tutuklama listesindesin. Sen Rusya'nın cumhurbaşkanısın.",
+  "short": "Yeltsin",
+  "did": "Yeltsin Beyaz Saray'a gitti, bir tankın üstüne çıktı ve halka bir çağrı okudu. Çağrı, olayları bir darbe girişimi olarak niteliyor ve genel grev çağrısı yapıyordu.",
+  "next": "Kalabalıklar Beyaz Saray'ın çevresinde barikatlar kurdu ve üç kişi öldü. Darbe iki günde çöktü; 25 Aralık'ta Gorbaçov istifa etti.",
+  "stamp": "Yeltsin tankın üstünde",
+  "choices": [
+   "Moskova dışındaki yazlık evinde sessizce bekle",
+   "Bir tankın üstüne çık ve darbeyi kına",
+   "Darbecilerle müzakere et"
+  ]
+ },
+ "1810-cry-of-dolores": {
+  "place": "Dolores",
+  "pov": "Katıldığın bağımsızlık komplosu İspanyollara ihbar edildi ve birkaç üye tutuklandı. Kaçman için uyarıldın. Sen Dolores kasabasının papazısın.",
+  "short": "Hidalgo",
+  "did": "Hidalgo hemen harekete geçmeye karar verdi. 16 Eylül 1810'da sabaha karşı saat 02.30 sularında kilise çanlarını çaldırdı ve cemaatini isyana çağırdı.",
+  "next": "Binlerce yerli ve melezin katılımıyla Guanajuato'yu aldı; Ocak 1811'de yenildi, yakalandı ve kurşuna dizildi. 16 Eylül bugün Meksika'nın Bağımsızlık Günü.",
+  "stamp": "Dolores Çağrısı",
+  "choices": [
+   "Vakit varken kaç",
+   "Sessiz kal ve daha uygun bir zamanı bekle",
+   "Cemaatini hemen isyana çağır"
+  ]
+ },
+ "1955-austria-neutral": {
+  "place": "Viyana",
+  "pov": "Dört güç, savaştan beri ülkeni işgal altında tutuyor. Moskova'da Sovyetler, ülken kalıcı olarak tarafsız olduğunu ilan ederse birliklerini çekmeyi teklif ediyor. Sen Avusturya'nın şansölyesisin.",
+  "short": "Raab",
+  "did": "Raab kabul etti. 15 Nisan 1955'te, Avusturya'nın tarafsızlığını “İsviçre Konfederasyonu'nun uyguladığı gibi” ilan edeceğini bildiren bir açıklama okudu.",
+  "next": "Devlet Antlaşması 15 Mayıs 1955'te Viyana'daki Belvedere Sarayı'nda imzalandı. 26 Ekim'de Avusturya parlamentosu ülkenin kalıcı tarafsızlığını onayladı.",
+  "stamp": "Avusturya tarafsızlığı seçiyor",
+  "choices": [
+   "Reddet ve daha iyi bir teklifi bekle",
+   "İşgalin bitmesi için tarafsızlığı kabul et",
+   "Batı ittifakında yer aramaya çalış"
+  ]
+ },
+ "1971-7-march": {
+  "place": "Dakka",
+  "pov": "Partin Doğu Pakistan'ın 169 koltuğunun 167'sini kazandı, ama Pakistan cumhurbaşkanı hükümetinin yemin törenini erteledi. Birçok kişi açıkça bağımsızlık ilan etmeni istiyor. Sen Awami Ligi'nin liderisin.",
+  "short": "Mücibür Rahman",
+  "did": "7 Mart 1971'de Dakka'da bir milyondan fazla insanın önünde Mücibür Rahman, bu seferki mücadelenin bağımsızlık için olduğunu söyledi. Ama doğrudan bir bağımsızlık ilanında bulunmadı ve sıkıyönetimin sona ermesi gibi şartlar öne sürdü.",
+  "next": "25 Mart 1971'de Pakistan ordusu Searchlight Harekâtı'nı başlattı ve Mücibür Rahman'ı tutukladı; Kurtuluş Savaşı bunu izledi.",
+  "stamp": "Mücibür Rahman'ın 7 Mart konuşması",
+  "choices": [
+   "Pakistan'dan bağımsızlığı hemen ilan et",
+   "Mücadele için toplan ama bağımsızlık ilan etme",
+   "Protestoları durdur ve görüşmeleri bekle"
+  ]
+ },
+ "1860-teano": {
+  "place": "Teano",
+  "pov": "Gönüllülerin, diktatörü olduğun Sicilya'yı ve Napoli'yi fethetti. Şimdi Teano'da Sardinya kralıyla buluşacaksın. Sen fetheden generalsin.",
+  "short": "Garibaldi",
+  "did": "26 Ekim 1860'ta Teano'da Garibaldi, II. Vittorio Emanuele'yi İtalya Kralı olarak selamladı ve elini sıktı. Güney İtalya'daki fetihlerini krala devretti.",
+  "next": "9 Kasım'da hiçbir ödülü kabul etmeyerek Napoli'den kayalık Caprera adasına gitti. Birleşik İtalya Krallığı 17 Mart 1861'de kuruldu.",
+  "stamp": "Garibaldi Teano'da",
+  "choices": [
+   "Gönüllülerinle Roma'ya ilerlemeye devam et",
+   "Güneyi diktatör olarak yönetmeyi sürdür",
+   "Fetihlerini krala devret"
+  ]
+ },
+ "1997-baht-float": {
+  "place": "Bangkok",
+  "pov": "Tayland'ın yurt dışına yaklaşık 105 milyar dolar borcu var, ama rezervlerinde yalnızca 25,5 milyar dolar bulunuyor. Spekülatörler, bahtın dolara bağlı sabit kuruna saldırıp duruyor. Sen Tayland'ın yeni maliye bakanısın.",
+  "short": "Thanong",
+  "did": "2 Temmuz 1997'de Thanong ve Tayland Merkez Bankası, ABD dolarına on yıllardır süren bağlılığa son verdi. Baht yönetilen dalgalı kura geçti ve değerini piyasa güçleri belirledi.",
+  "next": "Baht, dolar başına 25'ten 56'ya çakıldı, sonra 40 civarında dengelendi. Thanong Ağustos'ta bir IMF kurtarma paketini kabul etti ve Ekim'de istifa etti.",
+  "stamp": "Tayland bahtı dalgalandırıyor",
+  "choices": [
+   "Dolara bağlı kuru savunmaya devam et",
+   "Bahtı dalgalanmaya bırak, piyasa belirlesin",
+   "Bahtı yeni bir sabit kura devalüe et"
+  ]
+ },
+ "1940-war-cabinet": {
+  "place": "Londra",
+  "pov": "Fransa çökmenin eşiğinde ve ordun Dunkirk'e doğru geri çekiliyor. Dışişleri bakanın, Mussolini aracılığıyla Hitler'le müzakereye dayalı bir barışı araştırmak istiyor. Sen İngiltere'nin başbakanısın.",
+  "short": "Churchill",
+  "did": "28 Mayıs 1940'taki savaş kabinesi toplantısında Churchill, Mussolini aracılığıyla arabuluculuk aranmasını reddetti. 25 üyeli geniş kabinesi de ardından oybirliğiyle savaşa devam etmeyi destekledi.",
+  "next": "Halifax, önerisinin reddedilmesini kabul etti. Tahminen 338.226 asker tahliye edildi, ama neredeyse bütün teçhizatları kaybedildi.",
+  "stamp": "Churchill savaşa devam ediyor",
+  "choices": [
+   "Mussolini'den barış şartlarını yoklamasını iste",
+   "Her türlü görüşmeyi reddet ve savaşa devam et",
+   "Birleşik Devletler'den arabuluculuk yapmasını iste"
+  ]
+ },
+ "1947-womens-vote": {
+  "place": "Buenos Aires",
+  "pov": "Kocan cumhurbaşkanı ve ülkende kadınlar hâlâ oy kullanamıyor; kampanyasında bunu değiştireceğine söz verdi. Sen Arjantin'in birinci hanımısın.",
+  "short": "Eva Perón",
+  "did": "Eva Perón, kadınlara oy hakkı için etkin bir kampanya başlattı. Hükümetin onun zorlamasıyla hazırladığı tasarı 9 Eylül 1947'de Kongre'den geçti ve 23 Eylül'de 13.010 sayılı Yasa oldu.",
+  "next": "1951'de kadınlar ilk kez bir ulusal seçimde oy kullandı ve seçmen kütüğündeki kadınların yüzde 90'ından fazlası katıldı.",
+  "stamp": "Arjantinli kadınlar oy hakkı kazanıyor",
+  "choices": [
+   "Oy hakkı için kendin alenen kampanya yap",
+   "İşi kocana ve Kongre'ye bırak",
+   "Hayır işlerinde kal, siyasetten uzak dur"
+  ]
+ },
+ "1912-qing-abdication": {
+  "place": "Pekin",
+  "pov": "Ekim 1911'de devrim patlak verdi ve 18 eyaletin 13'ü ayrıldı. Kendi başbakanın bile artık cumhuriyeti destekliyor. Sen altı yaşındaki imparator adına hareket eden dul imparatoriçesin.",
+  "short": "Longyu",
+  "did": "12 Şubat 1912'de Longyu şartları kabul etti ve altı yaşındaki Puyi adına tahttan çekilme fermanını yayımladı. Puyi'nin imparator unvanını korumasına izin verildi.",
+  "next": "Bu, Qing Hanedanı'na ve 2.000 yılı aşkın monarşiye son verdi. Cumhuriyet, Puyi'ye yılda dört milyon tael gümüş vaat etti ve o, 1924'e kadar Yasak Şehir'de yaşadı.",
+  "stamp": "Son imparator tahttan çekiliyor",
+  "choices": [
+   "Bazı sadıkların istediği gibi savaşmaya devam et",
+   "Onun adına cömert şartlarla tahttan çekil",
+   "Anayasal bir monarşi için direnmeye devam et"
+  ]
+ },
+ "1492-columbus": {
+  "place": "Santa Fe",
+  "pov": "Granada düştü. Bir denizci, batıya, Hindistan'a bir sefer için desteğini istiyor. Uzmanların bunu akla yatmaz buluyor; denizci ise unvanlar ve zenginliklerin onda birini istiyor. Sen Kastilya'nın kraliçesisin.",
+  "short": "Isabella",
+  "did": "Kral kâtibi Luis de Santángel tarafından ikna edilen Isabella, Kolomb'u geri getirmesi için bir kraliyet muhafızı gönderdi. 17 Nisan 1492'de hükümdarlar Santa Fe Anlaşması'nı imzaladı.",
+  "next": "Kolomb, 3 Ağustos 1492'de üç gemiyle Palos de la Frontera'dan yola çıktı. 12 Ekim'de Amerika'ya ulaştı.",
+  "stamp": "Isabella Kolomb'u destekliyor",
+  "choices": [
+   "Uzmanlarının önerdiği gibi onu geri çevir",
+   "Seferi destekle ve şartlarını kabul et",
+   "Seferi destekle ama taleplerini reddet"
+  ]
+ },
+ "1977-canal-treaties": {
+  "place": "Panama",
+  "pov": "Yıllar süren görüşmelerin ardından Birleşik Devletler, kanalı 31 Aralık 1999'da ülkene devretmeyi, ama onu savunma konusunda kalıcı bir hakkı elinde tutmayı öneriyor. Sen Panama'nın liderisin.",
+  "short": "Torrijos",
+  "did": "7 Eylül 1977'de Torrijos ve Carter iki antlaşmayı Washington'da imzaladı. Panamalı seçmenler antlaşmaları 23 Ekim 1977'de oyların yüzde 67,4'üyle onayladı.",
+  "next": "ABD Senatosu 1978'de iki antlaşmayı da 68'e 32 oyla onayladı. 31 Aralık 1999'da Panama kanalın tam denetimini aldı.",
+  "stamp": "Panama Kanalı antlaşmaları",
+  "choices": [
+   "Antlaşmaları bu şartlarla imzala",
+   "Daha erken bir devir için direnmeye devam et",
+   "Birleşik Devletler'in kanalı savunma hakkını reddet"
+  ]
+ },
+ "221bc-standards": {
+  "place": "Xianyang",
+  "year": "MÖ 221",
+  "pov": "MÖ 221'de orduların Çin'in öteki altı büyük devletinin fethini tamamladı. Şimdi yeni imparatorluğu bir arada tutmalısın. Sen Qin hükümdarısın.",
+  "short": "Qin Shi Huang",
+  "did": "Bakanı Li Si'yle birlikte Qin Shi Huang, Qin'in mühür yazısını resmî standart yaptı ve devletlerin paralarının yerine Ban Liang'ı getirdi. Ağırlıklar ve ölçüler standartlaştırıldı.",
+  "next": "Araba dingillerine bile, yollardaki tekerlek izlerine uysun diye standart bir uzunluk verildi. MÖ 210'daki ölümüne kadar hüküm sürdü; hanedanı sonra devrildi ve yerini Han aldı.",
+  "stamp": "Tek yazı, tek para",
+  "choices": [
+   "Her eski devlet kendi geleneklerini korusun",
+   "Tek yazı, tek para birimi, tek ölçü dayat",
+   "Yasaları birleştir, yerel gelenekleri olduğu gibi bırak"
+  ]
+ },
+ "1979-shah-leaves": {
+  "place": "Tahran",
+  "pov": "1941'den beri İran'ı yönetiyorsun. Aylarca süren şiddetli gösterilerden ve bir ordu isyanından sonra, sürgündeki Ayetullah Humeyni hükümetin yerini alacak bir konsey ilan etti. Sen İran şahısın.",
+  "short": "Muhammed Rıza",
+  "did": "16 Ocak 1979'da kendisi ve İmparatoriçe Ferah, Mısır'ın Asvan kentine uçtu. Resmen bir tatildi; aslında yeni başbakanı ondan ayrılmasını istemişti.",
+  "next": "Ayrılışı kitlesel kutlamalarla karşılandı. 1 Nisan'da Humeyni İslam Cumhuriyeti'ni ilan etti; şah, Temmuz 1980'de Mısır'da sürgünde öldü.",
+  "stamp": "Şah İran'dan ayrılıyor",
+  "choices": [
+   "Resmen tatile çıkarak İran'dan ayrıl",
+   "Orduya isyanı bastırmasını emret",
+   "Kal ve yeni başbakanını destekle"
+  ]
+ },
+ "1905-october-manifesto": {
+  "place": "Saint Petersburg",
+  "pov": "Devrimin ortasında bir genel grev, imparatorluğunun ulaşımını ve kamu hizmetlerini felç etti. Seçmelisin: askerî bir diktatörlük ya da bir anayasa. Sen Rusya'nın çarısın.",
+  "short": "II. Nikolay",
+  "did": "II. Nikolay boyun eğdi ve 30 Ekim 1905'te Ekim Manifestosu'nu yayımladı. Manifesto, medeni özgürlükler ve onayı olmadan hiçbir yasanın çıkarılamayacağı seçilmiş bir Duma vaat ediyordu.",
+  "next": "Manifesto muhalefeti böldü. Duma'nın bütçe üzerinde yalnızca sınırlı denetimi vardı ve 1906-07'ye gelindiğinde Rusya'nın büyük bölümü sıkıyönetim altındaydı.",
+  "stamp": "Ekim Manifestosu",
+  "choices": [
+   "Askerî bir diktatör ata",
+   "Medeni haklar tanı ve bir parlamento kur",
+   "Grevlerin sönmesini bekle"
+  ]
+ },
+ "1980-reconciliation": {
+  "place": "Salisbury",
+  "pov": "Seçim zaferin, beyaz yönetici kesimi şoka uğrattı. Seni, her şeyi millîleştirecek bir radikal olarak gösterdiler. Hükümeti kurmak üzeresin. Sen Zimbabve'nin seçilmiş başbakanısın.",
+  "short": "Mugabe",
+  "did": "Mugabe birlik çağrısı yaptı: “Kılıçlarımızı saban demirine çevirelim.” 19 Nisan 1980'de yemin eden kabinede iki beyazı, David Smith ve Denis Norman'ı bakan yaptı.",
+  "next": "Ayrıca Rodezya ordusunun eski komutanı Peter Walls'u da atadı, ama Walls yıl bitmeden görevden ayrıldı. Yıllar sonra Mugabe, beyazlara ait çiftlikleri tazminat ödemeden ele geçirdi.",
+  "stamp": "Mugabe'nin uzlaşma politikası",
+  "choices": [
+   "Yalnızca kendi partinden bir kabine kur",
+   "Beyazları rahatlat ve onları kabineye al",
+   "Beyazlara ait çiftlikleri ve şirketleri millîleştir"
+  ]
+ },
+ "1867-maximilian": {
+  "place": "San Luis Potosí",
+  "pov": "Bir mahkeme, esir alınan İmparator Maximilian'ı ölüme mahkûm etti. Victor Hugo, Giuseppe Garibaldi ve Avrupa'nın birçok kralı ve imparatoru, hayatını bağışlamanı istiyor. Sen Meksika'nın cumhurbaşkanısın.",
+  "short": "Juárez",
+  "did": "Juárez affı reddetti. 19 Haziran 1867'de Maximilian ve generalleri Miramón ile Mejía, Querétaro'daki Çanlar Tepesi'nde kurşuna dizildi.",
+  "next": "Juárez 15 Temmuz'da, halkın alkışları ve çan sesleri arasında başkente yeniden girdi.",
+  "stamp": "Maximilian'a bağışlama yok",
+  "choices": [
+   "Cezanın uygulanmasına izin ver",
+   "Onu bağışla ve sürgüne gönder",
+   "Cezayı ömür boyu hapse çevir"
+  ]
+ },
+ "1947-partition": {
+  "place": "Yeni Delhi",
+  "pov": "Yönetimi 30 Haziran 1948'e kadar Hintlilere devretmeli ve bölünmeyi önlemelisin. Delhi ve Bombay'da toplumlar arası çatışmalar şiddetleniyor ve Müslüman Birliği Pakistan'ı talep ediyor. Sen Hindistan'ın genel valisisin.",
+  "short": "Mountbatten",
+  "did": "Mountbatten, birleşik bir Hindistan'ın artık mümkün olmadığı sonucuna vardı. 3 Haziran 1947'de yönetimin, planlanandan bir yıl önce, Hindistan ve Pakistan adlı iki hükümete geçeceğini duyurdu.",
+  "next": "Bölünme 15 Ağustos 1947'de yürürlüğe girdi, sınırlar iki gün sonra açıklandı. 15 milyondan fazla insanın bu sınırları aşarak göç ettiği sanılıyor.",
+  "stamp": "Bölünme öne çekiliyor",
+  "choices": [
+   "Haziran 1948'e dayan ve birleşik bir Hindistan'ı koru",
+   "Hindistan'ı böl ve yönetimi erken devret",
+   "Düzen dönene kadar İngiliz yönetimini sürdür"
+  ]
+ },
+ "1862-emancipation": {
+  "place": "Washington",
+  "pov": "Temmuz 1862. İsyan hâlindeki eyaletlerdeki köleleri özgür bırakan bir bildiri taslağı hazırladın. Birlik orduları Virginia'da yeni aksilikler yaşadı. Sen Amerika Birleşik Devletleri'nin başkanısın.",
+  "short": "Lincoln",
+  "did": "Seward bir Birlik zaferini beklemeyi önerdi ve Lincoln bildiriyi bekletti. Antietam'ın ardından 22 Eylül 1862'de bir ön bildiri yayımladı.",
+  "next": "1 Ocak 1863'teki son bildiri yalnızca isyan hâlindeki bölgeler için geçerliydi; Maryland gibi sınır eyaletlerini kapsamıyordu. Kölelik, yasal olarak Aralık 1865'te 13. Anayasa Değişikliği'yle sona erdi.",
+  "stamp": "Özgürlük Bildirgesi",
+  "choices": [
+   "Bildiriyi hemen yayımla",
+   "Bir Birlik zaferini bekle, sonra yayımla",
+   "Sınır eyaletlerini sadık tutmak için rafa kaldır"
+  ]
+ },
+ "1963-oau": {
+  "place": "Addis Abeba",
+  "pov": "Afrika'nın bağımsız devletleri rakip bloklara bölündü. Gana'nın başında olduğu biri bütün Afrika'yı kapsayan bir federasyon istiyor; öteki ise birliğin adım adım gerçekleşmesini istiyor. Sen Etiyopya'nın imparatorusun.",
+  "short": "Haile Selassie",
+  "did": "Haile Selassie iki grubu Addis Abeba'ya davet etti. 25 Mayıs 1963'te orada Afrika Birliği Örgütü'nün tüzüğü imzalandı ve şehir örgütün merkezi oldu.",
+  "next": "Örgüt, sömürgeciliği ve beyaz azınlık yönetimini sona erdirmek için çalıştı, ama müdahale etmeme politikası onu sınırladı. Daha sonra yerini Afrika Birliği aldı.",
+  "stamp": "Afrika Addis Abeba'da birleşiyor",
+  "choices": [
+   "İki bloğu da başkentinde bir araya getir",
+   "Hemen federasyon isteyen bloğa katıl",
+   "Blokların kavgasının dışında kal"
+  ]
+ },
+ "1990-batmonkh": {
+  "place": "Ulan Batur",
+  "pov": "Sühbatar Meydanı'ndaki açlık grevcileri hükümetinin istifa etmesini istiyor. Göstericilere karşı sert müdahale kararnamesini imzalaman isteniyor. Sen komünist Moğolistan'ın liderisin.",
+  "short": "Batmönkh",
+  "did": "Batmönkh reddetti: “Biz az sayıdaki Moğol, birbirimizin burnunu kanatacak noktaya henüz gelmedik.” 9 Mart 1990'da başında olduğu Politbüro istifa etti.",
+  "next": "10 Mayıs 1990'da parlamento, Temmuz'da özgür, çok partili seçimler yapılacağını ilan etti. Eski iktidar partisi sandalyelerin neredeyse dörtte üçünü kazandı.",
+  "stamp": "Moğolistan'ın liderleri çekiliyor",
+  "choices": [
+   "Kararnameyi imzala ve meydanı boşalt",
+   "Grevcilerle müzakere et ve görevde kal",
+   "Güç kullanmayı reddet; Politbüro'yla birlikte istifa et"
+  ]
+ },
+ "1967-nasser-resigns": {
+  "place": "Kahire",
+  "pov": "Dört gün önce başlayan İsrail'le savaş, silahlı kuvvetlerinin yenilgisiyle sona erdi. Bu akşam ulusa konuşacaksın. Sen Mısır'ın cumhurbaşkanısın.",
+  "short": "Nasır",
+  "did": "9 Haziran 1967'de Nasır, yenilginin tüm sorumluluğunu üstlendi ve cumhurbaşkanlığından istifa etti. Kalabalıklar onu desteklemek için sokaklara döküldü.",
+  "next": "Kabine ve Ulusal Meclis istifayı kabul etmedi ve Nasır bunu geri çekti. 19 Haziran'da başbakan da oldu.",
+  "stamp": "Nasır istifa ediyor, sonra kalıyor",
+  "choices": [
+   "Suçu üstlen ve istifa et",
+   "Görevde kal ve generallerini değiştir",
+   "Görevde kal ve karşılık vereceğine söz ver"
+  ]
+ },
+ "1983-rigueur": {
+  "place": "Paris",
+  "pov": "Ekonomiyi canlandırma politikan, bütçe ve dış ticaret açıklarını hızla kötüleştirdi. Frank iki kez devalüe edildi ve sol, yerel seçimleri az önce kaybetti. Sen Fransa'nın cumhurbaşkanısın.",
+  "short": "Mitterrand",
+  "did": "Mart 1983'te Mitterrand, frankı Avrupa Para Sistemi'nde tuttu ve “tournant de la rigueur” denen kemer sıkma dönüşünü yaptı. Vergiler arttı ve ücretler artık fiyatlara bağlı olmaktan çıktı.",
+  "next": "Başbakan Mauroy ve Maliye Bakanı Jacques Delors sert bir kemer sıkma planı uyguladı. Sol, bu dönüşü siyaseten hiçbir zaman sahiplenmedi; ona “parantez” demeyi yeğledi.",
+  "stamp": "Mitterrand'ın kemer sıkma dönüşü",
+  "choices": [
+   "Avrupa Para Sistemi'nden çık ve harcamaya devam et",
+   "Sanayiyi ithalat sınırlamalarıyla koru",
+   "Avrupa Para Sistemi'nde kal, kemer sıkmaya yönel"
+  ]
+ },
+ "1822-san-martin": {
+  "place": "Lima",
+  "pov": "Büyük ve iyi silahlanmış bir kralcı ordu hâlâ Cuzco'yu elinde tutuyor. Guayaquil'de Bolívar'dan Peru'ya bir ordu göndermesini istedin; o 2.000'den az asker önerdi. Sen Peru'nun Koruyucusu'sun.",
+  "short": "San Martín",
+  "did": "20 Eylül 1822'de, Peru'nun ilk Kurucu Kongresi toplanırken San Martín istifa etti ve Koruyucu kuşağını bıraktı. 21 Eylül'ün erken saatlerinde Valparaíso'ya doğru yola çıktı.",
+  "next": "Sonradan Güney Amerika'yı büsbütün terk edip Fransa'da emekliliğe çekildi. Kurtuluş savaşını Bolívar sürdürdü.",
+  "stamp": "San Martín kenara çekiliyor",
+  "choices": [
+   "Elindeki güçlerle savaşmaya devam et",
+   "Çekil ve Peru'yu başkalarına bırak",
+   "Bolívar'ın komutası altında görev yap"
+  ]
+ },
+ "1990-one-for-one": {
+  "place": "Bonn",
+  "pov": "Doğu Almanya, Alman markını benimseyecek. Karaborsada bir Alman markı beş ila on Doğu markıyla alınabiliyor, ama Doğu Almanlar bire bir değişim istiyor. Sen Batı Almanya'nın şansölyesisin.",
+  "short": "Kohl",
+  "did": "Önde gelen iktisatçıların tavsiyesine karşın Kohl'un hükümeti ücretleri, maaşları, emekli aylıklarını ve kiraları bire bir çevirdi. Birikimler yaşa göre 2.000 ile 6.000 mark arasında bire bir çevrildi.",
+  "next": "Alman markı 1 Temmuz 1990'da Doğu Almanya'ya geldi. Birçok Doğu Alman firması artık rekabet edemedi; kapanmalar ve toplu işten çıkarmalar izledi.",
+  "stamp": "Bir Doğu markına bir Alman markı",
+  "choices": [
+   "İki Doğu markına karşılık bir mark ver",
+   "Ücretleri ve birikimleri bire bir değiştir",
+   "Para birliğini şimdilik ertele"
+  ]
+ },
+ "1977-hunting-ban": {
+  "place": "Nairobi",
+  "pov": "Ülkenin bir zamanlar sayısız olan yaban hayatı azalıyor ve kaçak avcılar çok sayıda fil ve gergedan öldürüyor. Ruhsatlı profesyonel avcılar ise ödeme yapan müşterileri safariye çıkarmayı sürdürüyor. Sen Kenya'nın cumhurbaşkanısın.",
+  "short": "Kenyatta",
+  "did": "Mayıs 1977'de Kenyatta'nın hükümeti, safarilerin tamamlanması için süre tanımadan bütün spor avcılığını yasakladı. Kenya'nın 106 ruhsatlı avcısının çoğu yasağı sahada av bekçilerinden öğrendi.",
+  "next": "O Aralık'ta Kenyatta, hediyelik eşya dükkânlarının av ganimetlerini ve av ürünlerini satmasını da yasakladı. Kaçak avcılar azdı ve Kenya'nın fil sayısı 1973 ile 2013 arasında hızla düştü.",
+  "stamp": "Kenya avcılığı yasaklıyor",
+  "choices": [
+   "Bütün spor avcılığını hemen yasakla",
+   "Ruhsatlı avcılığı sürdür, kaçak avcılarla savaş",
+   "Av ganimetlerinin ve av ürünlerinin satışını yasakla"
+  ]
+ },
+ "1840-waitangi": {
+  "place": "Waitangi",
+  "pov": "Yeni Zelanda'ya gelen İngiliz yerleşimcilerin sayısı artıyor, bazıları başına buyruk, ve Fransa da orayı ilhak etmekle ilgileniyor gibi görünüyor. İngiliz egemenliğini sağlamalısın. Sen yeni İngiliz teğmen valisisin.",
+  "short": "Hobson",
+  "did": "Hobson birkaç günde bir antlaşma yazdırdı. 6 Şubat 1840'ta Waitangi'de yaklaşık 40 şef antlaşmayı imzaladı; Hobson her birine “He iwi tahi tātou”, yani “Biz tek bir halkız” dedi.",
+  "next": "Toplam yaklaşık 540 şef imzaladı ve İngiliz egemenliği 21 Mayıs 1840'ta ilan edildi. Maori metni “egemenlik” sözcüğünü “kawanatanga” (yönetim) diye çevirmişti.",
+  "stamp": "Waitangi Antlaşması",
+  "choices": [
+   "Maori şefleriyle bir antlaşma yap",
+   "İngiliz egemenliğini sadece ilan et",
+   "Yalnızca küçük toprak parçaları üzerinde hak iddia et"
+  ]
+ },
+ "1991-gulf-ceasefire": {
+  "place": "Washington",
+  "pov": "Koalisyon güçleri Kuveyt şehrine girdi ve Iraklı askerler kaçıyor. Bir ABD tümeni Bağdat'a 250 km'den daha az uzaklıkta. Sen Amerika Birleşik Devletleri'nin başkanısın.",
+  "short": "Bush",
+  "did": "28 Şubat 1991'de Bush bir ateşkes açıkladı; Kuveyt'in özgür olduğunu ve Irak ordusunun yenildiğini ilan etti. Saddam Hüseyin'i devirmeyi hiçbir zaman amaçlamamıştı.",
+  "next": "Kara savaşı yaklaşık 100 saat sürmüştü. Bu karar tartışmalı kaldı: Saddam ancak 2003'te, Bush'un oğlu başkanken devrildi.",
+  "stamp": "Bush Körfez Savaşı'nı durduruyor",
+  "choices": [
+   "Bağdat'a ilerle ve Saddam'ı devir",
+   "Kuveyt özgür olduğuna göre ateşkes ilan et",
+   "Irak ordusu yok edilene kadar savaşmaya devam et"
+  ]
+ },
+ "1987-june-29": {
+  "place": "Seul",
+  "pov": "Demokrasi yanlısı protestolar Güney Kore'ye yayılıyor. 10 Haziran'da partin seni cumhurbaşkanının halefi olarak seçti ve 1988 Seul Olimpiyatları yaklaşıyor. Sen iktidar partisinin adayısın.",
+  "short": "Roh",
+  "did": "Roh, 29 Haziran 1987'de doğrudan cumhurbaşkanlığı seçimi talebini kabul etti. Ayrıca aralarında muhalefet lideri Kim Dae-jung'un da bulunduğu siyasi tutukluları serbest bırakacağına söz verdi.",
+  "next": "Ekim'de yeni bir anayasa oyların yüzde 94,4'üyle onaylandı. Muhalefetin oyları bölününce Roh, oyların yüzde 36,6'sıyla cumhurbaşkanı seçildi.",
+  "stamp": "29 Haziran Bildirisi",
+  "choices": [
+   "Dolaylı cumhurbaşkanlığı seçimini sürdür",
+   "Doğrudan cumhurbaşkanlığı seçimini kabul et",
+   "Protestoları bitirmek için sert müdahaleyi destekle"
+  ]
+ },
+ "2001-argentina-default": {
+  "place": "Buenos Aires",
+  "pov": "Ayaklanmalar cumhurbaşkanını istifaya zorladı. Kongre seni seçime kadar geçici cumhurbaşkanı yaptı. IMF 1,3 milyar dolarlık yardımı reddetti; borç 132 milyar dolar. Sen Arjantin'in cumhurbaşkanısın.",
+  "short": "Rodríguez Saá",
+  "did": "23 Aralık 2001'de yemin eder etmez Rodríguez Saá, devletin dış borç ödemelerini askıya alacağını duyurdu. Pesoyu dolara bire bir bağlı tutacağını söyledi.",
+  "next": "132 milyar dolarlık borçta ödemelerin durdurulması, bir ülkenin şimdiye kadar yaptığı en büyük borç ödememe olarak anıldı. Peronist partisinin desteği olmadan bir hafta sonra istifa etti.",
+  "stamp": "Arjantin ödemeyi durduruyor",
+  "choices": [
+   "Dış borcu ödemeyi bırak",
+   "Ödemeye devam et ve IMF'yle yeni bir anlaşma ara",
+   "Pesonun dolara bire bir bağlılığına son ver"
+  ]
+ },
+ "1962-slavery": {
+  "place": "Riyad",
+  "pov": "Kral Haziran'da insan alım satımını yasakladı, ama köle sahibi olmak hâlâ yasal. Birleşik Devletler reform için baskı yapıyor. Sen Suudi Arabistan'ın başbakanısın.",
+  "short": "Faysal",
+  "did": "Kasım 1962'de Faysal, on maddelik reform programının bir parçası olarak Suudi Arabistan'da köle sahibi olmayı yasakladı.",
+  "next": "Gelenekçiler itiraz etti ve uygulama yavaş ilerledi: bazı raporlara göre köle ticareti en az yirmi yıl daha sürdü. Özgürleştirilen bazı köleler eski sahipleri için çalışmaya devam etti.",
+  "stamp": "Suudi Arabistan köleliği bitiriyor",
+  "choices": [
+   "Köle sahibi olmayı tamamen yasakla",
+   "Yasağı yalnızca satışla sınırlı tut",
+   "Köleleri yıllara yayarak aşamalı olarak özgür bırak"
+  ]
+ },
+ "1898-philippines": {
+  "place": "Washington",
+  "pov": "İspanya'yla savaştan sonra Paris'te barış görüşmeleri başlıyor. Filipinli isyancılar bağımsızlık istiyor; sen çekilirsen Almanya devreye girmeye hazır görünüyor. Sen Amerika Birleşik Devletleri'nin başkanısın.",
+  "short": "McKinley",
+  "did": "McKinley, görevin kendisine bütün takımadaları talep etmekten başka seçenek bırakmadığını telgrafla bildirdi. 10 Aralık 1898 tarihli Paris Antlaşması'yla İspanya, takımadaları 20 milyon dolar karşılığında devretti.",
+  "next": "Senato antlaşmayı 6 Şubat 1899'da 57'ye 27 oyla onayladı; bu, Manila'da Filipin güçleriyle çatışmanın çıkmasından iki gün sonraydı. Birleşik Devletler bu savaşı 1902'de kazandı.",
+  "stamp": "ABD Filipinler'i elinde tutuyor",
+  "choices": [
+   "Yalnızca Manila'yı deniz üssü olarak elinde tut",
+   "Bütün adaları İspanya'dan al",
+   "Filipinler'e bağımsızlık ver"
+  ]
+ },
+ "1967-referendum": {
+  "place": "Canberra",
+  "pov": "Anayasan, Aborijinlerin nüfus sayımına dâhil edilmeyeceğini söylüyor ve Parlamento'nun onlar için yasa yapmasını engelliyor. Kampanyacılar bunun değişmesini istiyor. Sen Avustralya'nın başbakanısın.",
+  "short": "Holt",
+  "did": "22 Şubat 1967'de Holt'un Kabinesi, iki değişiklik için bir halk oylaması yapmaya karar verdi. Parlamento tasarıyı oybirliğiyle geçirdiği için resmî bir “Hayır” kampanyası olmadı.",
+  "next": "27 Mayıs 1967'de seçmenlerin yüzde 90,77'si evet dedi ve her eyalette çoğunluk sağlandı. Parlamento artık Aborijinler için yasa yapabiliyordu ve onlar nüfusa dâhil edilebilecekti.",
+  "stamp": "1967 halk oylaması",
+  "choices": [
+   "Yalnızca onları saymaya getirilen engeli kaldır",
+   "Anayasa'yı olduğu gibi bırak",
+   "İki değişikliği de halk oylamasına sun"
+  ]
+ },
+ "1893-mekong": {
+  "place": "Bangkok",
+  "pov": "Fransız gambotları nehirden zorla Bangkok'a kadar geldi. Fransa, Mekong'un doğusundaki bütün toprakları ve üç milyon frank istiyor. İngiltere yardım etmeyecek. Sen Siyam'ın kralısın.",
+  "short": "Chulalongkorn",
+  "did": "Siyam, Fransız şartlarına tamamen boyun eğdi. Chulalongkorn, Mekong'un doğusundaki bütün Laos topraklarını Fransa'ya bıraktı ve 3 Ekim 1893'te bir antlaşma imzalandı.",
+  "next": "Fransa, 1907'ye kadar Chanthaburi'yi işgal altında tuttu. Chulalongkorn, Siyam'ın genel bağımsızlığını koruyabileceği umuduyla Batı'ya toprak tavizleri vermeyi sürdürdü.",
+  "stamp": "Siyam Laos'tan vazgeçiyor",
+  "choices": [
+   "Savaşmaya devam et ve Bangkok'u savun",
+   "Fransa'nın şartlarını tamamen kabul et",
+   "Taleplerin yalnızca bir kısmını kabul et"
+  ]
+ },
+ "2000-zedillo-concedes": {
+  "place": "Meksiko",
+  "pov": "Partin yaklaşık 70 yıldır cumhurbaşkanlığını elinde tutuyor. Seçim gecesi ön sonuçlar muhalefet adayının kazandığını gösteriyor. Partinin adayı henüz yenilgiyi kabul etmedi. Sen Meksika'nın cumhurbaşkanısın.",
+  "short": "Zedillo",
+  "did": "O gece Zedillo ulusal televizyonda konuştu ve seçim kurumunun ön sonuçlarına dayandı. Vicente Fox'un zaferini kabul etti, onu az önce telefonla aradığını söyledi ve tebrik etti.",
+  "next": "PRI, yaklaşık 70 yıl sonra ilk kez cumhurbaşkanlığını kaybetti. Kabulün PRI adayı Francisco Labastida'dan değil kendisinden gelmesi, sonradan ikisi arasında gerginliğe yol açtı.",
+  "stamp": "Meksika'da seçim gecesi",
+  "choices": [
+   "Resmî sayımın bitmesini bekle",
+   "Hemen televizyona çık ve kazananı tanı",
+   "Önce partinin adayının yenilgiyi kabul etmesine izin ver"
+  ]
+ },
+ "1666-great-fire": {
+  "place": "Londra",
+  "pov": "Yangın başkentindeki yaklaşık 13.000 evi ve St. Paul Katedrali'ni yok etti. Christopher Wren ve başkaları, ızgara düzeninde geniş sokaklı yeni bir şehir öneriyor. Sen İngiltere'nin kralısın.",
+  "short": "Charles",
+  "did": "Charles köklü planları teşvik etmişti, ama sahiplere tam bir yeniden düzenleme için ödeme yapmak gerçekçi çıkmadı. Eski sokak planının büyük bölümü, daha geniş sokaklarla yeniden oluşturuldu.",
+  "next": "Yeni binaların ahşap yerine tuğla ya da taştan olması gerekiyordu. Özel konutların çoğu 1671'e kadar tamamlandı ve Wren 51 yeni kilise tasarladı.",
+  "stamp": "Büyük Yangın'dan sonra Londra",
+  "choices": [
+   "Eski sokakları tuğla ve taşla yeniden yap",
+   "Wren'in geniş sokaklı yeni şehrini kur",
+   "Sahipler istedikleri gibi yeniden yapsın"
+  ]
+ },
+ "1970-black-september": {
+  "place": "Amman",
+  "pov": "Silahlı Filistinli gruplar Irbid şehrini ele geçirdi ve açıkça devrilmeni istiyor. Kaçırılan yolcu uçakları topraklarında havaya uçuruldu. Sen Ürdün'ün kralısın.",
+  "short": "Hüseyin",
+  "did": "Hüseyin bir sıkıyönetim hükümeti kurdu ve Eylül 1970'te orduya saldırı emri verdi. Ordu, Amman'daki fedailerin karargâhına vurdu.",
+  "next": "Suriye tankları 18 Eylül'de Ürdün'e girdi; 22 Eylül'e gelindiğinde durum tersine dönmüştü. 27 Eylül'de Kahire'de bir ateşkes imzalandı ve Temmuz 1971'de kral son savaşçıları ülkeden çıkardı.",
+  "stamp": "Ürdün'de Kara Eylül",
+  "choices": [
+   "Orduya onlara saldırmasını emret",
+   "Liderleriyle yeni bir anlaşma ara",
+   "Arap liderlerden arabuluculuk yapmasını iste"
+  ]
+ },
+ "1967-arusha": {
+  "place": "Arusha",
+  "pov": "Ülkenin kalkınma planları büyük ölçüde dış yardıma ve dışarıdan gelen desteğe dayanıyor. İktidardaki partin şimdi önümüzdeki yıllar için rotasını belirlemeli. Sen Tanzanya'nın cumhurbaşkanısın.",
+  "short": "Nyerere",
+  "did": "5 Şubat 1967'de Nyerere, sosyalizm ve kendi kendine yeterlilik ilkelerini içeren Arusha Bildirgesi'ni yayımladı. Sıkı kurallar, liderlerin ne kadar servet edinebileceğini sınırlıyordu.",
+  "next": "Bankalar, doğal kaynaklar ve büyük sanayiler hemen millîleştirildi. 1973'ten itibaren insanlar, çoğu zaman zorla, Ujamaa köylerine taşındı: Nyerere'nin hesabına göre Haziran 1975'e kadar yedi milyondan fazla kişi.",
+  "stamp": "Arusha Bildirgesi",
+  "choices": [
+   "Daha fazla dış yardım ve yatırım ara",
+   "Sosyalizmi kendi kendine yeterlilik üzerine kur",
+   "Ekonomiyi özel işletmelere aç"
+  ]
+ },
+ "1983-franklin-dam": {
+  "place": "Canberra",
+  "pov": "Tazmanya hükümeti, Dünya Mirası alanındaki Franklin Nehri'ne bir baraj yapmakta ısrar ediyor. Protestocular Aralık'tan beri şantiyeyi abluka altında tutuyor. Sen Avustralya'nın yeni başbakanısın.",
+  "short": "Hawke",
+  "did": "Hawke'un hükümeti, baraj çalışmalarını durdurmak için 1983 tarihli Dünya Mirası Varlıklarını Koruma Yasası'nı çıkardı ve Tazmanya'yı Yüksek Mahkeme'ye taşıdı.",
+  "next": "Yüksek Mahkeme 4'e 3 oyla federal hükümet lehine karar verdi ve Tazmanya barajdan vazgeçmek zorunda kaldı. Planlar bir daha hiç canlandırılmadı.",
+  "stamp": "Hawke Franklin Barajı'nı durduruyor",
+  "choices": [
+   "Bir eyalet meselesi olarak Tazmanya'ya bırak",
+   "Barajı federal bir yasayla durdur",
+   "Tazmanya'ya barajdan vazgeçmesi için para teklif et"
+  ]
+ },
+ "1948-eo-9981": {
+  "place": "Washington",
+  "pov": "İkinci Dünya Savaşı'nda bir milyondan fazla siyah Amerikalı, ırk ayrımının uygulandığı birliklerde görev yaptı. Güneyli senatörler, sivil haklar tekliflerini uzun konuşmalarla engellemekle tehdit ediyor. Sen Amerika Birleşik Devletleri'nin başkanısın.",
+  "short": "Truman",
+  "did": "26 Temmuz 1948'de Truman, 9981 sayılı Başkanlık Kararnamesi'ni imzaladı. Kararname, “silahlı kuvvetlerdeki bütün kişiler için muamelede ve fırsatta eşitlik” ilan ediyordu.",
+  "next": "Ordu önce direndi, ama Kore Savaşı'nın sonuna gelindiğinde neredeyse tamamında ırk ayrımı kaldırılmıştı. Yalnızca siyahlardan oluşan son birlik Eylül 1954'te kaldırıldı.",
+  "stamp": "Ordudaki ırk ayrımı kalkıyor",
+  "choices": [
+   "Kongre'nin yasa çıkarması için baskıyı sürdür",
+   "Kararı orduya bırak",
+   "Irk ayrımını başkanlık kararnamesiyle yasakla"
+  ]
+ },
+ "1993-oslo": {
+  "place": "Kudüs",
+  "pov": "Norveç, Oslo'da gizli bir kanal kurdu; orada iki İsrailli akademisyen ve Filistin Kurtuluş Örgütü (FKÖ) bir anlaşma taslağı hazırladı. Taslak senin desteğine ihtiyaç duyuyor. Sen İsrail'in başbakanısın.",
+  "short": "Rabin",
+  "did": "Rabin anlaşmayı destekledi. Eylül 1993'te İsrail'in, FKÖ'yü Filistin halkının temsilcisi olarak tanıyan mektubunu imzaladı.",
+  "next": "13 Eylül 1993'te Beyaz Saray'da İlkeler Bildirgesi imzalandı; Rabin ile Arafat arasında tarihî bir tokalaşma da yaşandı. Rabin Kasım 1995'te suikasta uğradı.",
+  "stamp": "Oslo Anlaşmaları",
+  "choices": [
+   "Anlaşmayı destekle ve FKÖ'yü tanı",
+   "Gizli görüşmeleri sahiplenme",
+   "Görüşmeye devam et ama FKÖ'yle değil"
+  ]
+ },
+ "1978-reform-opening": {
+  "place": "Pekin",
+  "pov": "Yıllarca süren kitlesel sınıf mücadelesinin ardından Komünist Parti ana görevini seçmeli. Merkez Komitesi Aralık 1978'de Pekin'de toplanıyor. Sen partinin yükselen liderisin.",
+  "short": "Deng",
+  "did": "Merkez Komitesi'nin 18-22 Aralık 1978 tarihli genel toplantısı, kitlesel sınıf mücadelesinin büyük ölçüde sona erdiğini söyledi ve sosyalist modernleşmeyi partinin odağı yaptı.",
+  "next": "Bu, reform ve dışa açılma politikasının başlangıcı oldu. Deng'in, Hua Guofeng'in yerine Çin'in en güçlü lideri olduğu an olarak yaygın biçimde görülüyor.",
+  "stamp": "Reform ve dışa açılma",
+  "choices": [
+   "Sınıf mücadelesini ana görev olarak sürdür",
+   "Ekonominin modernleştirilmesini ana görev yap",
+   "Büyümeyi daha büyük devlet planlarıyla hızlandır"
+  ]
+ },
+ "1956-personal-status": {
+  "place": "Tunus",
+  "pov": "Yeni bağımsızlığına kavuşan ülkenin aile hukuku, bir erkeğin dört eşe kadar almasına ve karısını yalnızca üç kez “boşadım” diyerek boşamasına izin veriyor. Sen Tunus'un başbakanısın.",
+  "short": "Burgiba",
+  "did": "Burgiba döneminde Kişisel Statü Yasası 13 Ağustos 1956'da ilan edildi. Çok eşliliği ve tek taraflı boşamayı kaldırdı: boşanma artık yalnızca mahkeme önünde olabiliyordu.",
+  "next": "Yasaya karşı vaaz veren imamlar tutuklandı ve ona karşı fetva imzalayan yargıçların neredeyse hepsi görevden alındı ya da emekliye ayrıldı. Yasa 1 Ocak 1957'de yürürlüğe girdi.",
+  "stamp": "Tunus çok eşliliği yasaklıyor",
+  "choices": [
+   "Aile hukukunu olduğu gibi bırak",
+   "Çok eşliliği sınırla ama yasaklama",
+   "Çok eşliliği ve tek taraflı boşamayı yasakla"
+  ]
+ },
+ "1971-copper": {
+  "place": "Santiago",
+  "pov": "Kongre, ABD'ye ait büyük bakır madenlerinin millîleştirilmesini oybirliğiyle kabul etti. Şirketlere ne ödeneceğini belirlemek sana kalıyor. Sen Şili'nin cumhurbaşkanısın.",
+  "short": "Allende",
+  "did": "Allende 28 Eylül'de, Anaconda ve Kennecott'a ödenecek tutardan 774 milyon dolarlık aşırı kârın düşüleceğini açıkladı.",
+  "next": "Şirketler Chuquicamata, El Salvador ve El Teniente madenleri için hiç tazminat alamadı. ABD Dışişleri Bakanlığı bunu uluslararası uygulamanın ciddi bir ihlali olarak nitelendirdi.",
+  "stamp": "Şili bakırı millîleştiriyor",
+  "choices": [
+   "Şirketlerle bir fiyat üzerinde pazarlık et",
+   "Madenlerin defter değerinin tamamını öde",
+   "Ödemeden “aşırı kârı” düş"
+  ]
+ },
+ "2003-rose-revolution": {
+  "place": "Tiflis",
+  "pov": "Parlamento seçiminin hileli olduğunu söyleyen göstericiler elinde güllerle parlamentoya daldı. Olağanüstü hâl ilan ettin, ama seçkin ordu birlikleri seni desteklemeyi reddediyor. Sen Gürcistan'ın cumhurbaşkanısın.",
+  "short": "Şevardnadze",
+  "did": "23 Kasım 2003 akşamı, muhalefet liderleri Saakaşvili ve Jvania'yla görüştükten sonra Şevardnadze istifasını açıkladı.",
+  "next": "Parlamento başkanı Nino Burcanadze geçici cumhurbaşkanı oldu. 4 Ocak 2004'te Saakaşvili, rakipsiz olarak oyların yüzde 96,2'siyle cumhurbaşkanı seçildi.",
+  "stamp": "Gül Devrimi",
+  "choices": [
+   "Sadık polise sokakları boşaltmasını emret",
+   "İstifa et ve yönetimi devret",
+   "Yeni bir seçim sözü ver ama görevde kal"
+  ]
+ },
+ "1988-ceasefire": {
+  "place": "Tahran",
+  "pov": "Sekiz yıldır ülken Irak'la çok büyük bir bedel ödeyerek savaşıyor. Nisan'dan beri güçlerin yer kaybediyor. Bir BM kararı ateşkes çağrısı yapıyor. Sen İran'ın dinî liderisin.",
+  "short": "Humeyni",
+  "did": "İran, Temmuz 1988'de BM'nin 598 sayılı kararını kabul etti. Humeyni ulusa, bu kararı almanın “zehir içmekten daha ölümcül” olduğunu söyledi.",
+  "next": "Ateşkes 20 Ağustos 1988'de yürürlüğe girdi. BM'nin UNIIMOG misyonunun gözlemcileri 1991'e kadar İran-Irak sınırında kaldı.",
+  "stamp": "İran ateşkesi kabul ediyor",
+  "choices": [
+   "BM ateşkesini kabul et",
+   "Irak'ın lideri düşene kadar savaşmaya devam et",
+   "Önce daha iyi şartlar için direnmeye devam et"
+  ]
+ },
+ "1965-udi": {
+  "place": "Salisbury",
+  "pov": "İngiltere, siyahların çoğunluk yönetimine giden bir yol olmadan ülkene bağımsızlık vermeyecek. Halkın yaklaşık yüzde 5'ini oluşturan beyazlar iktidarı elinde tutuyor. Londra bir Kraliyet Komisyonu öneriyor. Sen Rodezya'nın başbakanısın.",
+  "short": "Smith",
+  "did": "11 Kasım 1965'te Smith ve kabinesi İngiltere'den bağımsızlıklarını ilan etti. İngiltere bunu yasadışı olarak niteledi ve güç kullanmak yerine yaptırım istedi; hiçbir ülke bağımsızlığı tanımadı.",
+  "next": "Gerilla savaşı büyürken Rodezya 1970'te kendini cumhuriyet ilan etti. İlan 1979 tarihli Lancaster House Anlaşması'yla geçersiz kılındı ve Zimbabve 1980'de bağımsız oldu.",
+  "stamp": "Rodezya İngiltere'den kopuyor",
+  "choices": [
+   "Bir İngiliz Kraliyet Komisyonu'na güven",
+   "Tek taraflı olarak bağımsızlığını ilan et",
+   "Çoğunluk yönetimi için bir takvimi kabul et"
+  ]
+ },
+ "1945-hiroshima": {
+  "place": "Washington",
+  "pov": "Bilim insanların yeni bir tür bomba denedi. Japonya savaşmaya devam ediyor ve Japonya'nın işgali planlanıyor. Sen Amerika Birleşik Devletleri'nin başkanısın.",
+  "short": "Truman",
+  "did": "Truman bombanın kullanılmasına izin verdi: günlüğüne göre silah, 10 Ağustos'tan önce Japonya'ya karşı kullanılacaktı. 6 Ağustos 1945'te Enola Gay bombayı Hiroşima'ya attı.",
+  "next": "Bomba Hiroşima'da 90.000 ile 166.000 arasında insanı öldürdü; yaklaşık yarısı ilk gün. 9 Ağustos'ta ikinci bir bomba Nagasaki'ye düşünce Japonya teslim olacağını açıkladı.",
+  "stamp": "Truman ve atom bombası",
+  "choices": [
+   "Özel bir uyarı yapmadan bir şehirde kullan",
+   "Önce kimsenin yaşamadığı bir yerde göster",
+   "Elinde tut ve planlandığı gibi işgal et"
+  ]
+ },
+ "1889-pedro-exile": {
+  "place": "Rio de Janeiro",
+  "pov": "Komplocular darbe yaptı, başbakanını tutukladı ve cumhuriyet ilan etti. Politikacılar ve askerî liderler isyanı bastırmak için yollar öneriyor. Sen Brezilya'nın imparatorusun.",
+  "short": "II. Pedro",
+  "did": "II. Pedro, isyanı bastırmak için sunulan bütün önerileri geri çevirdi. İç çatışmaya yol açmak istemediği için direnmeden sürgünü kabul etti.",
+  "next": "17 Kasım 1889'da öğle vakti o ve ailesi Avrupa'ya sürgüne yelken açtı. 5 Aralık 1891'de Paris'te öldü.",
+  "stamp": "Brezilya'nın imparatoru gidiyor",
+  "choices": [
+   "Sadık birliklere isyanı ezme emri ver",
+   "Sürgünü kabul et ve savaşmadan ayrıl",
+   "Kızın lehine tahttan çekil"
+  ]
+ },
+ "1984-snap-election": {
+  "place": "Wellington",
+  "pov": "Seçim yılındasın ve çoğunluğun küçük. Milletvekillerinden biri, muhalefetin nükleer karşıtı tasarısı konusunda seni desteklemeyecek. Sen Yeni Zelanda'nın başbakanısın.",
+  "short": "Muldoon",
+  "did": "14 Haziran 1984 gecesi Muldoon ulusal televizyonda erken seçim ilan etti. Seçim bir ay sonra, 14 Temmuz'da yapıldı.",
+  "next": "David Lange'in önderliğindeki İşçi Partisi 95 sandalyenin 56'sını kazandı; Ulusal Parti yalnızca 37 sandalye aldı. Muldoon başta doları devalüe etmeyi reddetti ve bir anayasal krize yol açtı.",
+  "stamp": "Muldoon'un erken seçimi",
+  "choices": [
+   "O oylamayı kaybetsen bile yönetmeye devam et",
+   "Gelecek ay için erken seçim ilan et",
+   "Oylamayı bir güven meselesi yap"
+  ]
+ },
+ "1923-ankara": {
+  "place": "Ankara",
+  "pov": "Kurtuluş Savaşı, Anadolu'da mütevazı bir kasaba olan Ankara'dan yönetildi. Bazı milletvekilleri, eski imparatorluk şehri İstanbul'un başkent kalması gerektiğini savunuyor. Sen yeni Türk devletinin liderisin.",
+  "short": "Atatürk",
+  "did": "Ülkenin yönetimi Ankara'yı seçti. İsmet Paşa'nın önerdiği tek maddelik bir kanun, 13 Ekim 1923'te Meclis'te büyük bir çoğunlukla kabul edildi.",
+  "next": "Cumhuriyet 16 gün sonra, 29 Ekim 1923'te ilan edildi. Anadolu'nun mütevazı kasabası modern bir başkente dönüştü.",
+  "stamp": "Ankara başkent oluyor",
+  "choices": [
+   "Ankara'yı başkent yap",
+   "İstanbul'u başkent olarak koru",
+   "Ankara'yı yalnızca şimdilik koru"
+  ]
+ },
+ "1989-martial-law-beijing": {
+  "place": "Pekin",
+  "pov": "Açlık grevindeki öğrenciler Tiananmen Meydanı'nda protesto yapıyor. Partinin Daimi Komitesi'nin beş üyesi nasıl yanıt verileceği konusunda anlaşamıyor. Sen Çin'de son sözü söyleyen liderisin.",
+  "short": "Deng",
+  "did": "17 Mayıs 1989'da Deng, beş Daimi Komite üyesine orduyu çağırıp sıkıyönetim ilan etme zamanının geldiğini söyledi. Li Peng bunu 20 Mayıs'ın erken saatlerinde duyurdu.",
+  "next": "Göstericiler barikatlarla birçok birliğin yolunu kesti. Deng, güç kullanımının 3 Haziran gecesi başlamasını emretti; yüzlerce kişi, belki daha da fazlası öldü.",
+  "stamp": "Pekin'de sıkıyönetim",
+  "choices": [
+   "Görüşmeler yoluyla uzlaşmacı bir yol ara",
+   "Başkentte sıkıyönetim ilan et",
+   "Protestonun sönmesini bekle"
+  ]
+ },
+ "1948-cominform": {
+  "place": "Belgrad",
+  "pov": "Sovyetler Birliği'nin ve müttefiklerinin komünist partileri, partinin Sovyetler Birliği'ne yönelik “dostça olmayan politikasını” kınamak için Bükreş'te toplanıyor. Partin de davet edildi. Sen Yugoslavya'nın liderisin.",
+  "short": "Tito",
+  "did": "Tito'nun partisi katılmayı reddetti. Büro 28 Haziran 1948'de liderlerini kınadığında Yugoslav partisi eleştiriyi reddetti.",
+  "next": "Karar, Yugoslav partisini Enformasyon Bürosu'nun saflarının dışına koydu. Partideki “sağlıklı unsurlara” liderlerin yerine geçme çağrısı yaptı.",
+  "stamp": "Tito Kominform'a meydan okuyor",
+  "choices": [
+   "Gitme ve suçlamaları reddet",
+   "Bükreş'e git ve suçlamalara yanıt ver",
+   "Eleştiriyi kabul et ve yön değiştir"
+  ]
+ },
+ "1983-juntas-trial": {
+  "place": "Buenos Aires",
+  "pov": "1976'dan beri süren askerî yönetim az önce sona erdi. Görevi bırakan cunta, kendine af tanıyan bir yasa çıkarmıştı. Sen Arjantin'in yeni cumhurbaşkanısın.",
+  "short": "Alfonsín",
+  "did": "13 Aralık 1983'te Alfonsín, ilk üç cuntanın dokuz subayı hakkında dava açılmasını emreden 158 sayılı Kararnameyi imzaladı. 29 Aralık'ta Kongre, kendine af yasasını iptal etti.",
+  "next": "Bir askerî mahkeme onları yargılamayı reddedince Nisan 1985'ten itibaren bir sivil mahkeme yargıladı. Videla ve Massera müebbet hapis aldı; Carlos Menem sonradan mahkûm edilenleri affetti.",
+  "stamp": "Cuntaların yargılanması",
+  "choices": [
+   "Affa saygı göster ve ileriye bak",
+   "Affı iptal et ve cunta liderlerini yargıla",
+   "Suçlanan her subayı yargıla"
+  ]
+ },
+ "1871-prefectures": {
+  "place": "Tokyo",
+  "pov": "1869'da Japonya'nın derebeyleri topraklarını imparatora devretti, ama 261 derebeyliği ayakta ve hâlâ eski beyleri tarafından vali olarak yönetiliyor. Sen Japonya'nın yeni hükümetinde önde gelen bir reformcusun.",
+  "short": "Okubo",
+  "did": "Ağustos 1871'de Okubo, Saigo Takamori'nin yardımıyla derebeyliklerini kaldıran bir imparatorluk fermanını zorla kabul ettirdi. Yerlerine Tokyo'daki hükümete bağlı prefektörlükler geldi.",
+  "next": "Eski derebeyleri Tokyo'da yaşayan, maaş bağlanmış bir soylu sınıfa dönüştü ve devlet derebeyliklerinin borçlarını üstlendi. 1874'te maaşları hükümet tahvillerine çevrildi.",
+  "stamp": "Derebeylikler prefektörlük oluyor",
+  "choices": [
+   "Derebeylerini vali olarak yerinde bırak",
+   "Derebeyliklerini kaldır, prefektörlükler kur",
+   "Derebeyliklerini yıllara yayarak aşamalı kaldır"
+  ]
+ },
+ "1999-republic-referendum": {
+  "place": "Canberra",
+  "pov": "Toplattığın konvansiyon açıkça bir cumhuriyet modelini desteklerse halk oylaması yapacağına söz vermiştin. Konvansiyon, cumhurbaşkanının Parlamento tarafından seçilmesini 73'e 57 oyla, 22 çekimserle destekledi. Sen Avustralya'nın başbakanısın.",
+  "short": "Howard",
+  "did": "Howard, modeli 6 Kasım 1999'da halk oylamasına sundu; cumhurbaşkanı, Parlamento'nun üçte iki çoğunluğuyla atanacaktı. İkinci bir soru, yeni bir başlangıç metni öneriyordu.",
+  "next": "Öneri reddedildi: oyların yüzde 54,87'si Hayır dedi ve hiçbir eyalette Evet çoğunluğu çıkmadı. Bir halk oylaması daha yapılması çağrıları Howard hükümetince dikkate alınmadı.",
+  "stamp": "Avustralya'nın cumhuriyet oylaması",
+  "choices": [
+   "O modeli halk oylamasına sun",
+   "Vazgeç: destek yeterince net değildi",
+   "Bunun yerine doğrudan seçilen bir cumhurbaşkanı iste"
+  ]
+ },
+ "1972-nixon-china": {
+  "place": "Washington",
+  "pov": "Ülkenin Komünist Çin'le resmî bir ilişkisi yok, ama Mao seninle konuşmaktan memnun olacağını söylüyor. Vietnam'daki savaş tırmanıyor. Sen Amerika Birleşik Devletleri'nin başkanısın.",
+  "short": "Nixon",
+  "did": "Nixon, 15 Temmuz 1971'de canlı televizyonda gideceğini duyurdu. 21-28 Şubat 1972'de Çin'i ziyaret etti ve Mao'yla görüştü; görevdeyken bunu yapan ilk ABD başkanıydı.",
+  "next": "Nixon buna “dünyayı değiştiren hafta” dedi. ABD, Tayvan'daki kalan birliklerini çekeceğini söyledi ve resmî diplomatik ilişkiler 1979'da kuruldu.",
+  "stamp": "Nixon Çin'e gidiyor",
+  "choices": [
+   "Yalnızca elçiler aracılığıyla gizlice görüş",
+   "Çin'i eskisi gibi yalıtılmış tut",
+   "Çin'e git ve Mao'yla kendin görüş"
+  ]
+ },
+ "1990-zambia-multiparty": {
+  "place": "Lusaka",
+  "pov": "Yasal olan tek parti seninki. Lusaka'da üç gün süren ayaklanmaların ve başarısız bir darbenin ardından muhalefet çok partili siyaset istiyor. Bu konuda bir halk oylaması planlanıyor. Sen Zambiya'nın cumhurbaşkanısın.",
+  "short": "Kaunda",
+  "did": "Eylül 1990'da Kaunda halk oylamasını iptal etti ve partisinin tekeline son veren değişiklikleri destekledi. 1993 seçimlerini de 1991'e çekti.",
+  "next": "31 Ekim 1991'de Frederick Chiluba'ya ezici bir farkla yenildi; Chiluba'nın partisi 150 sandalyenin 125'ini kazandı. Kaunda sonucu kabul etti ve siyasetten çekildi.",
+  "stamp": "Zambiya çok partili düzene geçiyor",
+  "choices": [
+   "Halk oylamasını planlandığı gibi yap",
+   "İptal et ve diğer partileri yasallaştır",
+   "Reddet: tek partili devleti sürdür"
+  ]
+ },
+ "1989-hungary-border": {
+  "place": "Budapeşte",
+  "pov": "Ülkende, Batı'ya Avusturya üzerinden kaçmayı umut eden binlerce Doğu Alman var. Onların gitmesine izin vermek Doğu Almanya'yı ve Moskova'daki sert çizgiyi öfkelendirir. Sen Macaristan'ın başbakanısın.",
+  "short": "Németh",
+  "did": "Németh, Batı Almanya şansölyesi Helmut Kohl'e gizlice Macaristan'ın sınırını açacağını söyledi. Macaristan, 10-11 Eylül 1989 gecesi karşılığında hiçbir şey istemeden sınırı açtı.",
+  "next": "İlk 24 saatte 10.000'den fazla Doğu Alman Avusturya üzerinden ayrıldı. 9 Kasım'da Batı Berlin'e giden kapılar açıldı.",
+  "stamp": "Macaristan sınırını açıyor",
+  "choices": [
+   "Onları Doğu Almanya'ya geri gönder",
+   "Sınırı şimdilik kapalı tut",
+   "Sınırı aç ve gitmelerine izin ver"
+  ]
  }
 };
   var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["your-call"], list = D && (D.puzzles || D.questions), days = {};

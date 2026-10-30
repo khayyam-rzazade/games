@@ -2,7 +2,7 @@
 
 The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by day) were moved here on 29 October 2026 by claude/logicers-data/scripts/migrate_overlays.py, word for word, under the id of the puzzle each day played; nothing else changed. New puzzles go under their own heading, as in the English doc, with their id in the key. The doubts of the first batch stay in section U of claude/logicers-strings-es.md.
 
-## The puzzles of Your Call (90 of 90 translated)
+## The puzzles of Your Call (168 of 168 translated)
 
 #### 1/90 · `1962-cuba` · day 1 (3 Oct 2026), 91 (1 Jan 2027), 181 (1 Apr 2027), 271 (30 Jun 2027) … · every 90 days · second batch
 
@@ -1086,6 +1086,944 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.your-call.2005-bhutan.next` — Al final abdicó en favor de su hijo antes de lo previsto, el 9 de diciembre de 2006. Las primeras elecciones democráticas de Bután llegaron en 2008.
 - `p.your-call.2005-bhutan.stamp` — El rey de Bután se aparta
 
+#### 91/168 · `1968-dissolution` · day 91 (1 Jan 2027), 259 (18 Jun 2027), 427 (3 Dec 2027), 595 (19 May 2028) … · every 168 days
+
+- `p.your-call.1968-dissolution.place` — París
+- `p.your-call.1968-dissolution.pov` — Una revuelta estudiantil y una oleada de huelgas han sacudido Francia. Tu convocatoria de un referéndum no ha calmado las cosas, y los sindicatos han rechazado una oferta. Eres el presidente de Francia.
+- `p.your-call.1968-dissolution.choice1` — Celebrar el referéndum previsto
+- `p.your-call.1968-dissolution.choice2` — Disolver la Asamblea y convocar elecciones
+- `p.your-call.1968-dissolution.choice3` — Mantener la Asamblea y no ceder
+- `p.your-call.1968-dissolution.short` — De Gaulle
+- `p.your-call.1968-dissolution.did` — El 30 de mayo de 1968 De Gaulle aplazó el referéndum, disolvió la Asamblea Nacional y convocó elecciones. «Francia está amenazada por la dictadura», dijo.
+- `p.your-call.1968-dissolution.next` — Las huelgas se fueron cerrando con acuerdos salariales. En las elecciones del 23 y el 30 de junio de 1968, los gaullistas lograron la mayoría absoluta, la primera vez en la historia de la República Francesa.
+- `p.your-call.1968-dissolution.stamp` — De Gaulle disuelve la Asamblea
+
+#### 92/168 · `1564-jizya` · day 92 (2 Jan 2027), 260 (19 Jun 2027), 428 (4 Dec 2027), 596 (20 May 2028) … · every 168 days
+
+- `p.your-call.1564-jizya.place` — Agra
+- `p.your-call.1564-jizya.pov` — Desde el siglo XI, los gobernantes musulmanes de la India cobran a los no musulmanes la yizia, un impuesto que se paga en lugar del servicio militar. En 1562 te casaste con la hija de un rajá. Eres el emperador mogol.
+- `p.your-call.1564-jizya.choice1` — Seguir cobrando la yizia
+- `p.your-call.1564-jizya.choice2` — Abolir la yizia para todos
+- `p.your-call.1564-jizya.choice3` — Rebajar la yizia, pero mantenerla
+- `p.your-call.1564-jizya.short` — Akbar
+- `p.your-call.1564-jizya.did` — En 1564 Akbar abolió la yizia. También puso fin al impuesto sobre los peregrinos y a la conversión forzosa al islam de los prisioneros de guerra.
+- `p.your-call.1564-jizya.next` — En 1679 un emperador posterior, Aurangzeb, volvió a imponer la yizia, una medida muy criticada por muchos gobernantes hindúes y funcionarios de la corte mogol.
+- `p.your-call.1564-jizya.stamp` — Akbar suprime la yizia
+
+#### 93/168 · `1992-czech-split` · day 93 (3 Jan 2027), 261 (20 Jun 2027), 429 (5 Dec 2027), 597 (21 May 2028) … · every 168 days
+
+- `p.your-call.1992-czech-split.place` — Brno
+- `p.your-call.1992-czech-split.pov` — En las elecciones de junio de 1992, los eslovacos votaron por un populista que quiere una confederación, con ejército, banco nacional y política exterior propios para Eslovaquia. La mayoría de la gente quiere un Estado común. Eres el primer ministro checo.
+- `p.your-call.1992-czech-split.choice1` — Aceptar una confederación más flexible
+- `p.your-call.1992-czech-split.choice2` — Someter la cuestión a referéndum
+- `p.your-call.1992-czech-split.choice3` — Acordar dividir el país en dos
+- `p.your-call.1992-czech-split.short` — Klaus
+- `p.your-call.1992-czech-split.did` — Klaus y Mečiar acordaron disolver el Estado común sin referéndum. Firmaron el acuerdo en la Villa Tugendhat, en Brno, el 26 de agosto de 1992.
+- `p.your-call.1992-czech-split.next` — El presidente Václav Havel, que había luchado contra la división, dimitió. Checoslovaquia dejó de existir el 1 de enero de 1993, cuando nació la República Checa independiente.
+- `p.your-call.1992-czech-split.stamp` — La división de Checoslovaquia
+
+#### 94/168 · `1953-prisoner-release` · day 94 (4 Jan 2027), 262 (21 Jun 2027), 430 (6 Dec 2027), 598 (22 May 2028) … · every 168 days
+
+- `p.your-call.1953-prisoner-release.place` — Seúl
+- `p.your-call.1953-prisoner-release.pov` — El Comando de la ONU negocia con los comunistas un armisticio al que tú te opones. Miles de prisioneros de guerra anticomunistas están retenidos en campos de todo tu país. Eres el presidente de Corea del Sur.
+- `p.your-call.1953-prisoner-release.choice1` — Dejarlos al procedimiento del armisticio
+- `p.your-call.1953-prisoner-release.choice2` — Ordenar a tu policía militar que los libere
+- `p.your-call.1953-prisoner-release.choice3` — Rechazar el armisticio y seguir luchando solo
+- `p.your-call.1953-prisoner-release.short` — Rhee
+- `p.your-call.1953-prisoner-release.did` — El 18 de junio de 1953 Rhee, bajo su propia responsabilidad, ordenó a la policía militar que liberara a los prisioneros anticomunistas.
+- `p.your-call.1953-prisoner-release.next` — La liberación conmocionó a Estados Unidos, a la ONU y al bando comunista. Rhee se negó a firmar el armisticio, lo que llevó a un tratado de defensa mutua con Estados Unidos.
+- `p.your-call.1953-prisoner-release.stamp` — Rhee libera a los prisioneros
+
+#### 95/168 · `1981-martial-law` · day 95 (5 Jan 2027), 263 (22 Jun 2027), 431 (7 Dec 2027), 599 (23 May 2028) … · every 168 days
+
+- `p.your-call.1981-martial-law.place` — Varsovia
+- `p.your-call.1981-martial-law.pov` — El sindicato Solidaridad encabeza la oposición política al régimen comunista. El Kremlin, descontento, amenaza con una intervención armada. Eres el militar que dirige el gobierno de Polonia.
+- `p.your-call.1981-martial-law.choice1` — Buscar un acuerdo con Solidaridad
+- `p.your-call.1981-martial-law.choice2` — Declarar la ley marcial
+- `p.your-call.1981-martial-law.choice3` — Dejar que las tropas soviéticas pongan orden
+- `p.your-call.1981-martial-law.short` — Jaruzelski
+- `p.your-call.1981-martial-law.did` — El 13 de diciembre de 1981 Jaruzelski anunció la ley marcial en un discurso televisado. Solidaridad fue declarada ilegal y la mayoría de sus dirigentes fueron internados.
+- `p.your-call.1981-martial-law.next` — Varios mineros murieron en la mina de carbón Wujek, y la ley marcial duró hasta julio de 1983. Jaruzelski creía que, sin ella, una intervención militar era inevitable.
+- `p.your-call.1981-martial-law.stamp` — Ley marcial en Polonia
+
+#### 96/168 · `1946-parity` · day 96 (6 Jan 2027), 264 (23 Jun 2027), 432 (8 Dec 2027), 600 (24 May 2028) … · every 168 days
+
+- `p.your-call.1946-parity.place` — Manila
+- `p.your-call.1946-parity.pov` — Tu país acaba de lograr la independencia. Estados Unidos solo pagará 620 millones de dólares por los daños de la guerra si los estadounidenses obtienen los mismos derechos que los filipinos sobre los recursos naturales del país. Eres el presidente de Filipinas.
+- `p.your-call.1946-parity.choice1` — Aceptar y reformar la Constitución
+- `p.your-call.1946-parity.choice2` — Negarte y renunciar al dinero
+- `p.your-call.1946-parity.choice3` — Resistir para lograr mejores condiciones
+- `p.your-call.1946-parity.short` — Roxas
+- `p.your-call.1946-parity.did` — Roxas aceptó. Con seis miembros de la izquierdista Alianza Democrática privados de sus escaños en la Cámara, el 18 de septiembre logró que el Congreso aprobara la enmienda.
+- `p.your-call.1946-parity.next` — En 1947 un plebiscito la aprobó, aunque solo participó el 40 % del electorado. Los críticos vieron en la cláusula de paridad una rendición inexcusable de la soberanía nacional.
+- `p.your-call.1946-parity.stamp` — Roxas acepta la paridad
+
+#### 97/168 · `1981-juan-carlos` · day 97 (7 Jan 2027), 265 (24 Jun 2027), 433 (9 Dec 2027), 601 (25 May 2028) … · every 168 days
+
+- `p.your-call.1981-juan-carlos.place` — Madrid
+- `p.your-call.1981-juan-carlos.pov` — Durante una votación, 200 guardias civiles armados han asaltado el Congreso y retienen como rehenes a los diputados. Un general ha sacado los tanques a las calles de Valencia. Eres el rey de España.
+- `p.your-call.1981-juan-carlos.choice1` — Esperar a que el desenlace esté claro
+- `p.your-call.1981-juan-carlos.choice2` — Salir en televisión contra el golpe
+- `p.your-call.1981-juan-carlos.choice3` — Hablar con los golpistas para hallar una salida
+- `p.your-call.1981-juan-carlos.short` — Juan Carlos
+- `p.your-call.1981-juan-carlos.did` — Con el uniforme de capitán general del Ejército, Juan Carlos condenó el golpe por televisión. El mensaje salió al aire a la 1:14 de la madrugada del 24 de febrero de 1981.
+- `p.your-call.1981-juan-carlos.next` — Tejero resistió hasta el mediodía y fue arrestado a la salida del Congreso. Tejero, Milans del Bosch y Armada fueron condenados después a 30 años de prisión.
+- `p.your-call.1981-juan-carlos.stamp` — El rey contra el golpe
+
+#### 98/168 · `2000-pyongyang` · day 98 (8 Jan 2027), 266 (25 Jun 2027), 434 (10 Dec 2027), 602 (26 May 2028) … · every 168 days
+
+- `p.your-call.2000-pyongyang.place` — Pionyang
+- `p.your-call.2000-pyongyang.pov` — Tu Política del Sol busca el acercamiento con Corea del Norte. Las conversaciones con el Norte abren el camino al primer encuentro entre los dos líderes desde la división de Corea. Eres el presidente de Corea del Sur.
+- `p.your-call.2000-pyongyang.choice1` — Insistir en que el líder del Norte venga a Seúl
+- `p.your-call.2000-pyongyang.choice2` — Exigir diálogo nuclear antes de toda cumbre
+- `p.your-call.2000-pyongyang.choice3` — Viajar a Pionyang y reunirte con Kim Jong-il
+- `p.your-call.2000-pyongyang.short` — Kim Dae-jung
+- `p.your-call.2000-pyongyang.did` — Kim Dae-jung viajó a Pionyang para la cumbre del 13 al 15 de junio de 2000, y allí lo recibió Kim Jong-il. Acordaron trabajar por la reunificación, los reencuentros de familias y la cooperación económica.
+- `p.your-call.2000-pyongyang.next` — Kim Dae-jung ganó el Premio Nobel de la Paz el 13 de octubre de 2000. Tres años después se supo que Corea del Sur había pagado en secreto al Norte para que asistiera a la cumbre.
+- `p.your-call.2000-pyongyang.stamp` — La primera cumbre intercoreana
+
+#### 99/168 · `1982-falklands` · day 99 (9 Jan 2027), 267 (26 Jun 2027), 435 (11 Dec 2027), 603 (27 May 2028) … · every 168 days
+
+- `p.your-call.1982-falklands.place` — Londres
+- `p.your-call.1982-falklands.pov` — El 2 de abril de 1982 fuerzas argentinas ocuparon Puerto Stanley, la capital de las islas Malvinas, un territorio británico situado a 8000 millas de distancia, en el Atlántico Sur. Eres la primera ministra británica.
+- `p.your-call.1982-falklands.choice1` — Confiar en la ONU y en la diplomacia
+- `p.your-call.1982-falklands.choice2` — Aceptar un pacto mediado por Estados Unidos
+- `p.your-call.1982-falklands.choice3` — Enviar una fuerza naval a recuperarlas
+- `p.your-call.1982-falklands.short` — Thatcher
+- `p.your-call.1982-falklands.did` — Tras una reunión de emergencia del gabinete, Thatcher envió una fuerza naval a recuperar las islas; el 5 de abril ya estaba en camino. Llegó a contar con 44 buques de guerra.
+- `p.your-call.1982-falklands.next` — Argentina se rindió el 14 de junio de 1982, tras 74 días. La guerra costó la vida a 649 militares argentinos, 255 británicos y 3 habitantes de las islas.
+- `p.your-call.1982-falklands.stamp` — La fuerza naval hacia las Malvinas
+
+#### 100/168 · `1639-sakoku` · day 100 (10 Jan 2027), 268 (27 Jun 2027), 436 (12 Dec 2027), 604 (28 May 2028) … · every 168 days
+
+- `p.your-call.1639-sakoku.place` — Edo
+- `p.your-call.1639-sakoku.pov` — En 1637 campesinos cristianos se sublevaron en Shimabara, y miles de personas murieron. Desde 1636 el comercio portugués está limitado a Dejima, en Nagasaki. Eres el shogun de Japón.
+- `p.your-call.1639-sakoku.choice1` — Seguir comerciando, bajo estricta vigilancia
+- `p.your-call.1639-sakoku.choice2` — Prohibir los barcos portugueses en Japón
+- `p.your-call.1639-sakoku.choice3` — Cerrar Japón a todos los europeos
+- `p.your-call.1639-sakoku.short` — Iemitsu
+- `p.your-call.1639-sakoku.did` — En 1639 el gobierno de Iemitsu expulsó a los portugueses y prohibió sus barcos. Solo unos pocos comerciantes holandeses pudieron quedarse, en la diminuta isla de Dejima.
+- `p.your-call.1639-sakoku.next` — En 1640 Macao envió emisarios para reabrir el comercio; cuatro embajadores y 57 de sus acompañantes y tripulantes fueron ejecutados.
+- `p.your-call.1639-sakoku.stamp` — Japón prohíbe a los portugueses
+
+#### 101/168 · `2003-iraq-vote` · day 101 (11 Jan 2027), 269 (28 Jun 2027), 437 (13 Dec 2027), 605 (29 May 2028) … · every 168 days
+
+- `p.your-call.2003-iraq-vote.place` — Londres
+- `p.your-call.2003-iraq-vote.pov` — No has conseguido una segunda resolución de la ONU sobre Irak. Muchos en tu propio partido se oponen a la guerra, y una ministra ha dicho que dimitirá por ello. Eres el primer ministro británico.
+- `p.your-call.2003-iraq-vote.choice1` — Esperar el respaldo de la ONU antes de cualquier guerra
+- `p.your-call.2003-iraq-vote.choice2` — Enviar tropas y dejar que los diputados lo voten
+- `p.your-call.2003-iraq-vote.choice3` — Ofrecer apoyo, pero sin tropas de combate
+- `p.your-call.2003-iraq-vote.short` — Blair
+- `p.your-call.2003-iraq-vote.did` — Blair sometió la guerra a votación en la Cámara de los Comunes el 18 de marzo de 2003, y dijo que un voto a favor de retirar las tropas lo apartaría también a él del cargo. La moción se aprobó por 412 votos contra 149.
+- `p.your-call.2003-iraq-vote.next` — Robin Cook dimitió del gobierno en señal de protesta. La campaña británica en Irak, la Operación Telic, empezó un día después de la votación.
+- `p.your-call.2003-iraq-vote.stamp` — Gran Bretaña va a la guerra
+
+#### 102/168 · `261bc-kalinga` · day 102 (12 Jan 2027), 270 (29 Jun 2027), 438 (14 Dec 2027), 606 (30 May 2028) … · every 168 days
+
+- `p.your-call.261bc-kalinga.place` — Pataliputra
+- `p.your-call.261bc-kalinga.year` — 261 a. C.
+- `p.your-call.261bc-kalinga.pov` — Tu ejército ha conquistado Kalinga. Según tu propio recuento, allí murieron 100 000 personas, 150 000 fueron deportadas y muchas más perecieron. Eres el emperador maurya.
+- `p.your-call.261bc-kalinga.choice1` — Seguir adelante con nuevas conquistas
+- `p.your-call.261bc-kalinga.choice2` — Devolver su libertad a Kalinga
+- `p.your-call.261bc-kalinga.choice3` — Quedarte con Kalinga, sin conquistar más
+- `p.your-call.261bc-kalinga.short` — Ashoka
+- `p.your-call.261bc-kalinga.did` — Ashoka se quedó con Kalinga, pero sintió un profundo remordimiento y prometió no volver a hacer nunca una guerra de conquista. Sus edictos proclamaban que la conquista moral era la conquista más importante.
+- `p.your-call.261bc-kalinga.next` — Puso fin a la expansión militar de su imperio y buscó en cambio la conquista mediante el dharma. Murió en el 232 a. C., tras gobernar la mayor parte del subcontinente indio.
+- `p.your-call.261bc-kalinga.stamp` — Ashoka renuncia a conquistar
+
+#### 103/168 · `1985-anti-alcohol` · day 103 (13 Jan 2027), 271 (30 Jun 2027), 439 (15 Dec 2027), 607 (31 May 2028) … · every 168 days
+
+- `p.your-call.1985-anti-alcohol.place` — Moscú
+- `p.your-call.1985-anti-alcohol.pov` — Beber en exceso se asocia con faltas al trabajo, accidentes laborales y una mortalidad creciente entre los hombres. Sin embargo, en 1979 las ventas de alcohol aportaron al Estado unos 25 400 millones de rublos en impuestos. Eres el nuevo líder soviético.
+- `p.your-call.1985-anti-alcohol.choice1` — Frenar el consumo con una campaña nacional
+- `p.your-call.1985-anti-alcohol.choice2` — Dejarlo así: el Estado necesita los ingresos
+- `p.your-call.1985-anti-alcohol.choice3` — Costear tratamientos sin tocar las ventas
+- `p.your-call.1985-anti-alcohol.short` — Gorbachov
+- `p.your-call.1985-anti-alcohol.did` — En mayo de 1985 Gorbachov lanzó una campaña contra el alcohol. Los precios del vodka subieron entre un 20 y un 30 %, se recortaron los horarios de venta y se destruyeron viñedos.
+- `p.your-call.1985-anti-alcohol.next` — La esperanza de vida pasó de 67,7 años en 1984 a 69,8 en 1987. Pero se disparó el alcohol casero, los ingresos del Estado cayeron y la campaña se abandonó después de 1987.
+- `p.your-call.1985-anti-alcohol.stamp` — Gorbachov contra el alcohol
+
+#### 104/168 · `1945-surrender` · day 104 (14 Jan 2027), 272 (1 Jul 2027), 440 (16 Dec 2027), 608 (1 Jun 2028) … · every 168 days
+
+- `p.your-call.1945-surrender.place` — Tokio
+- `p.your-call.1945-surrender.pov` — Las bombas atómicas han caído sobre Hiroshima y Nagasaki, y la Unión Soviética ha declarado la guerra. Tu consejo de guerra no logra ponerse de acuerdo sobre una rendición incondicional. Eres el emperador de Japón.
+- `p.your-call.1945-surrender.choice1` — Aceptar las condiciones aliadas y acabar la guerra
+- `p.your-call.1945-surrender.choice2` — Seguir luchando y rechazar las condiciones aliadas
+- `p.your-call.1945-surrender.choice3` — Callar y dejar que decida el gobierno
+- `p.your-call.1945-surrender.short` — Hirohito
+- `p.your-call.1945-surrender.did` — A primera hora del 10 de agosto de 1945, Hirohito dijo al consejo de guerra: «Me trago mis propias lágrimas y doy mi aprobación a la propuesta de aceptar la proclamación aliada».
+- `p.your-call.1945-surrender.next` — Su discurso se transmitió al mediodía del 15 de agosto de 1945, la primera vez que un emperador se dirigía a la nación por radio. Nunca usó la palabra «rendición».
+- `p.your-call.1945-surrender.stamp` — Japón acepta la derrota
+
+#### 105/168 · `2003-congestion-charge` · day 105 (15 Jan 2027), 273 (2 Jul 2027), 441 (17 Dec 2027), 609 (2 Jun 2028) … · every 168 days
+
+- `p.your-call.2003-congestion-charge.place` — Londres
+- `p.your-call.2003-congestion-charge.pov` — El tráfico de Londres avanza a paso de tortuga, a una media de 12 millas por hora, y su transporte sufre una falta crónica de dinero. Eres el alcalde de Londres.
+- `p.your-call.2003-congestion-charge.choice1` — Invertir más en autobuses y trenes
+- `p.your-call.2003-congestion-charge.choice2` — Cobrar 5 libras por conducir en el centro
+- `p.your-call.2003-congestion-charge.choice3` — Dejar las calles como están por ahora
+- `p.your-call.2003-congestion-charge.short` — Livingstone
+- `p.your-call.2003-congestion-charge.did` — Livingstone hizo que los conductores pagaran 5 libras por circular por el centro de Londres, de lunes a viernes, de 7:00 a 18:30. El cobro empezó el 17 de febrero de 2003.
+- `p.your-call.2003-congestion-charge.next` — El tráfico bajó un 25 % en la primera semana y los autobuses iban adelantados respecto al horario. El alcalde de París organizó una visita a Londres para estudiar el sistema.
+- `p.your-call.2003-congestion-charge.stamp` — El peaje urbano de Londres
+
+#### 106/168 · `1631-taj-mahal` · day 106 (16 Jan 2027), 274 (3 Jul 2027), 442 (18 Dec 2027), 610 (3 Jun 2028) … · every 168 days
+
+- `p.your-call.1631-taj-mahal.place` — Agra
+- `p.your-call.1631-taj-mahal.pov` — Tu esposa favorita te acompañó en la campaña del Decán, aunque estaba embarazada. En junio de 1631 murió al dar a luz a tu decimocuarto hijo. Está enterrada de forma provisional. Eres el emperador mogol.
+- `p.your-call.1631-taj-mahal.choice1` — Darle una tumba modesta y seguir adelante
+- `p.your-call.1631-taj-mahal.choice2` — Honrarla con una mezquita y obras de caridad
+- `p.your-call.1631-taj-mahal.choice3` — Construirle la tumba más bella jamás vista
+- `p.your-call.1631-taj-mahal.short` — Shah Jahan
+- `p.your-call.1631-taj-mahal.did` — Shah Jahan encargó un mausoleo en su memoria en 1631. La construcción empezó en 1632, a cargo de su arquitecto de la corte, Ustad Ahmad Lahori.
+- `p.your-call.1631-taj-mahal.next` — Más de 20 000 trabajadores y artesanos construyeron el Taj Mahal. Depuesto por Aurangzeb en 1658, Shah Jahan fue enterrado allí junto a su esposa en 1666.
+- `p.your-call.1631-taj-mahal.stamp` — La construcción del Taj Mahal
+
+#### 107/168 · `1968-prague` · day 107 (17 Jan 2027), 275 (4 Jul 2027), 443 (19 Dec 2027), 611 (4 Jun 2028) … · every 168 days
+
+- `p.your-call.1968-prague.place` — Moscú
+- `p.your-call.1968-prague.pov` — El gobierno comunista de Checoslovaquia ha puesto fin a la censura e impulsa reformas. Las negociaciones no han logrado frenarlas, y temes que otros Estados satélite las imiten. Eres el líder soviético.
+- `p.your-call.1968-prague.choice1` — Enviar tropas del Pacto de Varsovia
+- `p.your-call.1968-prague.choice2` — Seguir con las conversaciones y la presión política
+- `p.your-call.1968-prague.choice3` — Aceptar las reformas y esperar
+- `p.your-call.1968-prague.short` — Brézhnev
+- `p.your-call.1968-prague.did` — Brézhnev siguió adelante. En la noche del 20 de agosto de 1968, 250 000 soldados del Pacto de Varsovia y 2000 tanques entraron en Checoslovaquia, y Dubček fue llevado a Moscú.
+- `p.your-call.1968-prague.next` — La invasión causó la muerte de 137 checos y eslovacos. En abril de 1969 Dubček fue apartado del poder, y Moscú reclamó el derecho a intervenir dondequiera que peligrara el régimen comunista.
+- `p.your-call.1968-prague.stamp` — Los soviéticos invaden Checoslovaquia
+
+#### 108/168 · `1994-real-plan` · day 108 (18 Jan 2027), 276 (5 Jul 2027), 444 (20 Dec 2027), 612 (5 Jun 2028) … · every 168 days
+
+- `p.your-call.1994-real-plan.place` — Brasilia
+- `p.your-call.1994-real-plan.pov` — La inflación ha derrotado a una serie de planes para controlarla; los anteriores se basaban en congelar precios y salarios. Eres el ministro de Finanzas de Brasil.
+- `p.your-call.1994-real-plan.choice1` — Volver a congelar precios y salarios
+- `p.your-call.1994-real-plan.choice2` — Introducir una moneda nueva por etapas
+- `p.your-call.1994-real-plan.choice3` — Adoptar el dólar como moneda de Brasil
+- `p.your-call.1994-real-plan.short` — Cardoso
+- `p.your-call.1994-real-plan.did` — El equipo de Cardoso creó una unidad de cuenta que no era dinero de verdad, la URV, equivalente a cerca de 1 dólar estadounidense. Los precios fijados en URV se convirtieron después a una moneda nueva, el real, el 1 de julio de 1994.
+- `p.your-call.1994-real-plan.next` — A diferencia de los planes anteriores, no recurrió a una congelación general de precios y salarios. A finales de 1996, según algunas mediciones, la inflación se acercaba a situarse por debajo del 20 % anual.
+- `p.your-call.1994-real-plan.stamp` — El Plan Real
+
+#### 109/168 · `1593-saint-denis` · day 109 (19 Jan 2027), 277 (6 Jul 2027), 445 (21 Dec 2027), 613 (6 Jun 2028) … · every 168 days
+
+- `p.your-call.1593-saint-denis.place` — Saint-Denis
+- `p.your-call.1593-saint-denis.pov` — Te convertiste en rey tras el asesinato de tu predecesor, pero eres protestante. Soldados españoles y un pueblo fervientemente católico defienden París, y no puedes romper sus murallas. Eres el rey de Francia.
+- `p.your-call.1593-saint-denis.choice1` — Seguir sitiando París hasta que se rinda
+- `p.your-call.1593-saint-denis.choice2` — Seguir siendo protestante y buscar una tregua
+- `p.your-call.1593-saint-denis.choice3` — Renunciar a tu fe protestante
+- `p.your-call.1593-saint-denis.short` — Enrique
+- `p.your-call.1593-saint-denis.did` — El 25 de julio de 1593, en Saint-Denis, Enrique renunció formalmente a su fe protestante. En pocas semanas, el apoyo a la Liga Católica se desvaneció.
+- `p.your-call.1593-saint-denis.next` — Fue coronado en Chartres el 17 de febrero de 1594, y París se rindió el 22 de marzo. En 1598 su Edicto de Nantes concedió a los protestantes una tolerancia limitada.
+- `p.your-call.1593-saint-denis.stamp` — Enrique IV se hace católico
+
+#### 110/168 · `1952-bolivia-tin` · day 110 (20 Jan 2027), 278 (7 Jul 2027), 446 (22 Dec 2027), 614 (7 Jun 2028) … · every 168 days
+
+- `p.your-call.1952-bolivia-tin.place` — La Paz
+- `p.your-call.1952-bolivia-tin.pov` — Tu partido ha llegado al poder en una revolución popular. Las mayores minas de estaño pertenecen a tres barones mineros. Eres el presidente de Bolivia.
+- `p.your-call.1952-bolivia-tin.choice1` — Dejar las minas a sus dueños
+- `p.your-call.1952-bolivia-tin.choice2` — Nacionalizarlas, con indemnización
+- `p.your-call.1952-bolivia-tin.choice3` — Confiscarlas sin pagar a los dueños
+- `p.your-call.1952-bolivia-tin.short` — Paz Estenssoro
+- `p.your-call.1952-bolivia-tin.did` — El 31 de octubre de 1952 Paz Estenssoro firmó un decreto que nacionalizaba las minas de Patiño, Hochschild y Aramayo. Reconocía el principio de la indemnización.
+- `p.your-call.1952-bolivia-tin.next` — La nueva empresa minera estatal, COMIBOL, se hizo cargo de 163 minas con 29 000 trabajadores. Durante décadas fue la principal fuente de divisas de Bolivia y su mayor empleador.
+- `p.your-call.1952-bolivia-tin.stamp` — Bolivia nacionaliza su estaño
+
+#### 111/168 · `1991-yeltsin-tank` · day 111 (21 Jan 2027), 279 (8 Jul 2027), 447 (23 Dec 2027), 615 (8 Jun 2028) … · every 168 days
+
+- `p.your-call.1991-yeltsin-tank.place` — Moscú
+- `p.your-call.1991-yeltsin-tank.pov` — Comunistas de línea dura intentan tomar el poder y retienen al presidente soviético en su dacha. Las tropas entran en Moscú, y estás en la lista de arrestos de la KGB. Eres el presidente de Rusia.
+- `p.your-call.1991-yeltsin-tank.choice1` — Esconderte en tu dacha a las afueras de Moscú
+- `p.your-call.1991-yeltsin-tank.choice2` — Subirte a un tanque y denunciar el golpe
+- `p.your-call.1991-yeltsin-tank.choice3` — Negociar con los líderes del golpe
+- `p.your-call.1991-yeltsin-tank.short` — Yeltsin
+- `p.your-call.1991-yeltsin-tank.did` — Yeltsin fue a la Casa Blanca rusa, se subió a un tanque y leyó un llamamiento al pueblo. En él calificaba los hechos de intento de golpe de Estado y pedía una huelga nacional.
+- `p.your-call.1991-yeltsin-tank.next` — La multitud levantó barricadas alrededor de la Casa Blanca, y tres hombres murieron. El golpe se derrumbó en dos días; el 25 de diciembre dimitió Gorbachov.
+- `p.your-call.1991-yeltsin-tank.stamp` — Yeltsin sobre el tanque
+
+#### 112/168 · `1810-cry-of-dolores` · day 112 (22 Jan 2027), 280 (9 Jul 2027), 448 (24 Dec 2027), 616 (9 Jun 2028) … · every 168 days
+
+- `p.your-call.1810-cry-of-dolores.place` — Dolores
+- `p.your-call.1810-cry-of-dolores.pov` — La conspiración por la independencia a la que te has unido ha sido delatada a los españoles, y varios de sus miembros han sido arrestados. Te avisan de que huyas. Eres el cura párroco de Dolores.
+- `p.your-call.1810-cry-of-dolores.choice1` — Huir mientras aún hay tiempo
+- `p.your-call.1810-cry-of-dolores.choice2` — Esconderte y esperar un momento mejor
+- `p.your-call.1810-cry-of-dolores.choice3` — Llamar a tus feligreses a rebelarse ya
+- `p.your-call.1810-cry-of-dolores.short` — Hidalgo
+- `p.your-call.1810-cry-of-dolores.did` — Hidalgo decidió actuar de inmediato. Hacia las 2:30 de la madrugada del 16 de septiembre de 1810 hizo repicar las campanas de la iglesia e instó a sus feligreses a sublevarse.
+- `p.your-call.1810-cry-of-dolores.next` — Con miles de indígenas y mestizos a su lado, tomó Guanajuato; derrotado en enero de 1811, fue capturado y fusilado. El 16 de septiembre es hoy el Día de la Independencia de México.
+- `p.your-call.1810-cry-of-dolores.stamp` — El Grito de Dolores
+
+#### 113/168 · `1955-austria-neutral` · day 113 (23 Jan 2027), 281 (10 Jul 2027), 449 (25 Dec 2027), 617 (10 Jun 2028) … · every 168 days
+
+- `p.your-call.1955-austria-neutral.place` — Viena
+- `p.your-call.1955-austria-neutral.pov` — Cuatro potencias ocupan tu país desde la guerra. En Moscú, los soviéticos ofrecen retirar sus tropas si tu país se declara neutral para siempre. Eres el canciller de Austria.
+- `p.your-call.1955-austria-neutral.choice1` — Rechazar y esperar una oferta mejor
+- `p.your-call.1955-austria-neutral.choice2` — Aceptar ser neutral y acabar la ocupación
+- `p.your-call.1955-austria-neutral.choice3` — Buscar un lugar en la alianza occidental
+- `p.your-call.1955-austria-neutral.short` — Raab
+- `p.your-call.1955-austria-neutral.did` — Raab aceptó. El 15 de abril de 1955 leyó una declaración según la cual Austria proclamaría su neutralidad «como la que practica la Confederación Suiza».
+- `p.your-call.1955-austria-neutral.next` — El Tratado de Estado se firmó en el Palacio del Belvedere de Viena el 15 de mayo de 1955. El 26 de octubre el Parlamento austríaco confirmó la neutralidad permanente del país.
+- `p.your-call.1955-austria-neutral.stamp` — Austria elige la neutralidad
+
+#### 114/168 · `1971-7-march` · day 114 (24 Jan 2027), 282 (11 Jul 2027), 450 (26 Dec 2027), 618 (11 Jun 2028) … · every 168 days
+
+- `p.your-call.1971-7-march.place` — Daca
+- `p.your-call.1971-7-march.pov` — Tu partido ganó 167 de los 169 escaños de Pakistán Oriental, pero el presidente de Pakistán ha aplazado la toma de posesión de tu gobierno. Muchos te piden abiertamente que declares la independencia. Eres el líder de la Liga Awami.
+- `p.your-call.1971-7-march.choice1` — Declarar ya la independencia de Pakistán
+- `p.your-call.1971-7-march.choice2` — Llamar a la lucha, pero sin declarar nada
+- `p.your-call.1971-7-march.choice3` — Suspender las protestas y esperar a negociar
+- `p.your-call.1971-7-march.short` — Mujib
+- `p.your-call.1971-7-march.did` — El 7 de marzo de 1971, ante más de un millón de personas en Daca, Mujib dijo que esta vez la lucha era por la independencia. Pero no hizo una declaración directa y puso condiciones, como el fin de la ley marcial.
+- `p.your-call.1971-7-march.next` — El 25 de marzo de 1971 el ejército de Pakistán lanzó la Operación Searchlight y arrestó a Mujib; siguió la Guerra de Liberación.
+- `p.your-call.1971-7-march.stamp` — El discurso del 7 de marzo
+
+#### 115/168 · `1860-teano` · day 115 (25 Jan 2027), 283 (12 Jul 2027), 451 (27 Dec 2027), 619 (12 Jun 2028) … · every 168 days
+
+- `p.your-call.1860-teano.place` — Teano
+- `p.your-call.1860-teano.pov` — Tus voluntarios han conquistado Sicilia, donde eres dictador, y Nápoles. Ahora debes reunirte con el rey de Cerdeña en Teano. Eres el general conquistador.
+- `p.your-call.1860-teano.choice1` — Seguir hasta Roma con tus voluntarios
+- `p.your-call.1860-teano.choice2` — Seguir gobernando el sur como dictador
+- `p.your-call.1860-teano.choice3` — Entregar tus conquistas al rey
+- `p.your-call.1860-teano.short` — Garibaldi
+- `p.your-call.1860-teano.did` — En Teano, el 26 de octubre de 1860, Garibaldi saludó a Víctor Manuel II como rey de Italia y le estrechó la mano. Entregó al rey sus conquistas del sur de Italia.
+- `p.your-call.1860-teano.next` — El 9 de noviembre dejó Nápoles rumbo a la isla rocosa de Caprera, rechazando cualquier recompensa. El 17 de marzo de 1861 se creó el Reino de Italia unificado.
+- `p.your-call.1860-teano.stamp` — Garibaldi en Teano
+
+#### 116/168 · `1997-baht-float` · day 116 (26 Jan 2027), 284 (13 Jul 2027), 452 (28 Dec 2027), 620 (13 Jun 2028) … · every 168 days
+
+- `p.your-call.1997-baht-float.place` — Bangkok
+- `p.your-call.1997-baht-float.pov` — Tailandia debe unos 105 000 millones de dólares al extranjero, pero solo tiene 25 500 millones en reservas. Los especuladores no dejan de atacar la paridad fija del baht con el dólar. Eres el nuevo ministro de Finanzas de Tailandia.
+- `p.your-call.1997-baht-float.choice1` — Seguir defendiendo la paridad con el dólar
+- `p.your-call.1997-baht-float.choice2` — Dejar flotar el baht y que decida el mercado
+- `p.your-call.1997-baht-float.choice3` — Devaluar el baht a un nuevo tipo fijo
+- `p.your-call.1997-baht-float.short` — Thanong
+- `p.your-call.1997-baht-float.did` — El 2 de julio de 1997 Thanong y el Banco de Tailandia pusieron fin a la paridad con el dólar estadounidense, que duraba desde hacía décadas. El baht pasó a flotar de forma controlada, con su valor fijado por las fuerzas del mercado.
+- `p.your-call.1997-baht-float.next` — El baht se desplomó de 25 a 56 por dólar antes de estabilizarse en torno a 40. Thanong aceptó un rescate del FMI en agosto y dimitió en octubre.
+- `p.your-call.1997-baht-float.stamp` — Tailandia deja flotar el baht
+
+#### 117/168 · `1940-war-cabinet` · day 117 (27 Jan 2027), 285 (14 Jul 2027), 453 (29 Dec 2027), 621 (14 Jun 2028) … · every 168 days
+
+- `p.your-call.1940-war-cabinet.place` — Londres
+- `p.your-call.1940-war-cabinet.pov` — Francia está al borde del colapso y tu ejército se retira hacia Dunkerque. Tu ministro de Exteriores quiere explorar una paz negociada con Hitler a través de Mussolini. Eres el primer ministro británico.
+- `p.your-call.1940-war-cabinet.choice1` — Pedir a Mussolini que explore condiciones de paz
+- `p.your-call.1940-war-cabinet.choice2` — Rechazar cualquier negociación y seguir luchando
+- `p.your-call.1940-war-cabinet.choice3` — Pedir a Estados Unidos que actúe de mediador
+- `p.your-call.1940-war-cabinet.short` — Churchill
+- `p.your-call.1940-war-cabinet.did` — En el gabinete de guerra del 28 de mayo de 1940, Churchill rechazó buscar una mediación a través de Mussolini. Su gabinete ampliado, de 25 miembros, apoyó después por unanimidad seguir luchando.
+- `p.your-call.1940-war-cabinet.next` — Halifax aceptó que se rechazara su propuesta. Se calcula que 338 226 militares fueron evacuados, pero casi todo su equipo se perdió.
+- `p.your-call.1940-war-cabinet.stamp` — Churchill sigue luchando
+
+#### 118/168 · `1947-womens-vote` · day 118 (28 Jan 2027), 286 (15 Jul 2027), 454 (30 Dec 2027), 622 (15 Jun 2028) … · every 168 days
+
+- `p.your-call.1947-womens-vote.place` — Buenos Aires
+- `p.your-call.1947-womens-vote.pov` — Tu marido es el presidente y las mujeres de tu país todavía no pueden votar; él prometió cambiar eso en su campaña. Eres la primera dama de Argentina.
+- `p.your-call.1947-womens-vote.choice1` — Hacer tú misma campaña pública por el voto
+- `p.your-call.1947-womens-vote.choice2` — Dejarlo en manos de tu marido y del Congreso
+- `p.your-call.1947-womens-vote.choice3` — Limitarte a la beneficencia, lejos de la política
+- `p.your-call.1947-womens-vote.short` — Eva Perón
+- `p.your-call.1947-womens-vote.did` — Eva Perón lanzó una campaña activa a favor del sufragio femenino. El proyecto de ley del gobierno, impulsado por ella, fue aprobado por el Congreso el 9 de septiembre de 1947 y se convirtió en la Ley 13 010 el 23 de septiembre.
+- `p.your-call.1947-womens-vote.next` — En 1951 las mujeres votaron por primera vez en unas elecciones nacionales, y más del 90 % de las mujeres inscritas en el padrón electoral participó.
+- `p.your-call.1947-womens-vote.stamp` — Las argentinas ganan el voto
+
+#### 119/168 · `1912-qing-abdication` · day 119 (29 Jan 2027), 287 (16 Jul 2027), 455 (31 Dec 2027), 623 (16 Jun 2028) … · every 168 days
+
+- `p.your-call.1912-qing-abdication.place` — Pekín
+- `p.your-call.1912-qing-abdication.pov` — La revolución estalló en octubre de 1911 y 13 de las 18 provincias se han separado. Tu propio primer ministro apoya ahora una república. Eres la emperatriz viuda y gobiernas en nombre de un emperador de seis años.
+- `p.your-call.1912-qing-abdication.choice1` — Seguir luchando, como piden algunos leales
+- `p.your-call.1912-qing-abdication.choice2` — Abdicar por él en condiciones generosas
+- `p.your-call.1912-qing-abdication.choice3` — Resistir hasta lograr una monarquía constitucional
+- `p.your-call.1912-qing-abdication.short` — Longyu
+- `p.your-call.1912-qing-abdication.did` — El 12 de febrero de 1912 Longyu aceptó las condiciones y emitió el edicto de abdicación del emperador Puyi, de seis años. A él se le permitió conservar su título imperial.
+- `p.your-call.1912-qing-abdication.next` — Puso fin a la dinastía Qing y a más de 2000 años de monarquía. La República prometió a Puyi cuatro millones de taeles de plata al año, y él vivió en la Ciudad Prohibida hasta 1924.
+- `p.your-call.1912-qing-abdication.stamp` — El último emperador abdica
+
+#### 120/168 · `1492-columbus` · day 120 (30 Jan 2027), 288 (17 Jul 2027), 456 (1 Jan 2028), 624 (17 Jun 2028) … · every 168 days
+
+- `p.your-call.1492-columbus.place` — Santa Fe
+- `p.your-call.1492-columbus.pov` — Granada ha caído. Un marino te pide que apoyes un viaje hacia el oeste, hasta las Indias. Tus expertos lo consideran poco creíble; él quiere títulos y la décima parte de las riquezas. Eres la reina de Castilla.
+- `p.your-call.1492-columbus.choice1` — Rechazarlo, como aconsejan tus expertos
+- `p.your-call.1492-columbus.choice2` — Apoyar el viaje y conceder sus condiciones
+- `p.your-call.1492-columbus.choice3` — Apoyarlo, pero rechazar sus exigencias
+- `p.your-call.1492-columbus.short` — Isabel
+- `p.your-call.1492-columbus.did` — Convencida por el escribano del rey, Luis de Santángel, Isabel envió a un guardia real a buscar a Colón para que volviera. El 17 de abril de 1492 los monarcas firmaron las Capitulaciones de Santa Fe.
+- `p.your-call.1492-columbus.next` — Colón zarpó de Palos de la Frontera el 3 de agosto de 1492 con tres barcos. Llegó a América el 12 de octubre.
+- `p.your-call.1492-columbus.stamp` — Isabel apoya a Colón
+
+#### 121/168 · `1977-canal-treaties` · day 121 (31 Jan 2027), 289 (18 Jul 2027), 457 (2 Jan 2028), 625 (18 Jun 2028) … · every 168 days
+
+- `p.your-call.1977-canal-treaties.place` — Ciudad de Panamá
+- `p.your-call.1977-canal-treaties.pov` — Tras años de negociaciones, Estados Unidos ofrece entregar el canal a tu país el 31 de diciembre de 1999, conservando el derecho permanente a defenderlo. Eres el líder de Panamá.
+- `p.your-call.1977-canal-treaties.choice1` — Firmar los tratados en estos términos
+- `p.your-call.1977-canal-treaties.choice2` — Insistir en una entrega más temprana
+- `p.your-call.1977-canal-treaties.choice3` — Negar a Estados Unidos el derecho a defenderlo
+- `p.your-call.1977-canal-treaties.short` — Torrijos
+- `p.your-call.1977-canal-treaties.did` — El 7 de septiembre de 1977 Torrijos y Carter firmaron los dos tratados en Washington, D. C. Los votantes panameños los aprobaron el 23 de octubre de 1977 con el 67,4 % de los votos.
+- `p.your-call.1977-canal-treaties.next` — El Senado de Estados Unidos ratificó ambos tratados por 68 votos contra 32 en 1978. El 31 de diciembre de 1999 Panamá asumió el control total del canal.
+- `p.your-call.1977-canal-treaties.stamp` — Los tratados del Canal de Panamá
+
+#### 122/168 · `221bc-standards` · day 122 (1 Feb 2027), 290 (19 Jul 2027), 458 (3 Jan 2028), 626 (19 Jun 2028) … · every 168 days
+
+- `p.your-call.221bc-standards.place` — Xianyang
+- `p.your-call.221bc-standards.year` — 221 a. C.
+- `p.your-call.221bc-standards.pov` — En el 221 a. C. tus ejércitos completaron la conquista de los otros seis grandes estados chinos. Ahora debes mantener unido el nuevo imperio. Eres el gobernante de Qin.
+- `p.your-call.221bc-standards.choice1` — Dejar que cada antiguo estado siga a su manera
+- `p.your-call.221bc-standards.choice2` — Imponer una escritura, una moneda y una medida
+- `p.your-call.221bc-standards.choice3` — Unificar las leyes y respetar las costumbres
+- `p.your-call.221bc-standards.short` — Qin Shi Huang
+- `p.your-call.221bc-standards.did` — Junto con su ministro Li Si, Qin Shi Huang convirtió la escritura de sello de Qin en el estándar oficial y sustituyó las monedas de los estados por la Ban Liang. También se unificaron los pesos y las medidas.
+- `p.your-call.221bc-standards.next` — Hasta los ejes de los carros recibieron una longitud única, para encajar en las huellas de los caminos. Gobernó hasta su muerte, en el 210 a. C.; después su dinastía fue derrocada y reemplazada por los Han.
+- `p.your-call.221bc-standards.stamp` — Una escritura, una moneda
+
+#### 123/168 · `1979-shah-leaves` · day 123 (2 Feb 2027), 291 (20 Jul 2027), 459 (4 Jan 2028), 627 (20 Jun 2028) … · every 168 days
+
+- `p.your-call.1979-shah-leaves.place` — Teherán
+- `p.your-call.1979-shah-leaves.pov` — Gobiernas Irán desde 1941. Tras meses de manifestaciones violentas y un motín en el ejército, el ayatolá Jomeini, desde el exilio, ha proclamado un consejo para reemplazar al gobierno. Eres el sah de Irán.
+- `p.your-call.1979-shah-leaves.choice1` — Salir de Irán, oficialmente de vacaciones
+- `p.your-call.1979-shah-leaves.choice2` — Ordenar al ejército aplastar la revuelta
+- `p.your-call.1979-shah-leaves.choice3` — Quedarte y respaldar a tu nuevo primer ministro
+- `p.your-call.1979-shah-leaves.short` — Mohammad Reza
+- `p.your-call.1979-shah-leaves.did` — El 16 de enero de 1979 el sah y la emperatriz Farah volaron a Asuán, en Egipto. Oficialmente eran unas vacaciones; en realidad su nuevo primer ministro le había pedido que se fuera.
+- `p.your-call.1979-shah-leaves.next` — Su partida fue recibida con celebraciones masivas. El 1 de abril Jomeini proclamó una república islámica; el sah murió en el exilio, en Egipto, en julio de 1980.
+- `p.your-call.1979-shah-leaves.stamp` — El sah deja Irán
+
+#### 124/168 · `1905-october-manifesto` · day 124 (3 Feb 2027), 292 (21 Jul 2027), 460 (5 Jan 2028), 628 (21 Jun 2028) … · every 168 days
+
+- `p.your-call.1905-october-manifesto.place` — San Petersburgo
+- `p.your-call.1905-october-manifesto.pov` — Una huelga general ha paralizado el transporte y los servicios públicos de tu imperio en plena revolución. Debes elegir: una dictadura militar o una constitución. Eres el zar de Rusia.
+- `p.your-call.1905-october-manifesto.choice1` — Nombrar a un dictador militar
+- `p.your-call.1905-october-manifesto.choice2` — Conceder derechos civiles y un parlamento
+- `p.your-call.1905-october-manifesto.choice3` — Esperar a que las huelgas se apaguen
+- `p.your-call.1905-october-manifesto.short` — Nicolás
+- `p.your-call.1905-october-manifesto.did` — Nicolás cedió y publicó el Manifiesto de Octubre el 30 de octubre de 1905. Prometía libertades civiles y una Duma elegida, sin cuya aprobación no podía entrar en vigor ninguna ley.
+- `p.your-call.1905-october-manifesto.next` — El manifiesto dividió a la oposición. La Duma solo tenía un control limitado del presupuesto, y en 1906-1907 buena parte de Rusia estaba bajo la ley marcial.
+- `p.your-call.1905-october-manifesto.stamp` — El Manifiesto de Octubre
+
+#### 125/168 · `1980-reconciliation` · day 125 (4 Feb 2027), 293 (22 Jul 2027), 461 (6 Jan 2028), 629 (22 Jun 2028) … · every 168 days
+
+- `p.your-call.1980-reconciliation.place` — Salisbury
+- `p.your-call.1980-reconciliation.pov` — Tu victoria electoral ha conmocionado a la élite blanca. Te han presentado como un radical que lo nacionalizaría todo. Estás a punto de formar gobierno. Eres el primer ministro electo de Zimbabue.
+- `p.your-call.1980-reconciliation.choice1` — Formar un gabinete solo con tu partido
+- `p.your-call.1980-reconciliation.choice2` — Tranquilizar a los blancos e incluirlos en el gabinete
+- `p.your-call.1980-reconciliation.choice3` — Nacionalizar las granjas y empresas de los blancos
+- `p.your-call.1980-reconciliation.short` — Mugabe
+- `p.your-call.1980-reconciliation.did` — Mugabe pidió unidad: «Convirtamos las espadas en arados». Nombró ministros a dos blancos, David Smith y Denis Norman, en el gabinete que juró el cargo el 19 de abril de 1980.
+- `p.your-call.1980-reconciliation.next` — También nombró a Peter Walls, antiguo jefe del ejército rodesiano, aunque Walls salió antes de que acabara el año. Años después, Mugabe se apoderó de granjas de blancos sin indemnización.
+- `p.your-call.1980-reconciliation.stamp` — La reconciliación de Mugabe
+
+#### 126/168 · `1867-maximilian` · day 126 (5 Feb 2027), 294 (23 Jul 2027), 462 (7 Jan 2028), 630 (23 Jun 2028) … · every 168 days
+
+- `p.your-call.1867-maximilian.place` — San Luis Potosí
+- `p.your-call.1867-maximilian.pov` — Un tribunal ha condenado a muerte al emperador Maximiliano, ya capturado. Víctor Hugo, Giuseppe Garibaldi y muchas testas coronadas de Europa te piden que le salves la vida. Eres el presidente de México.
+- `p.your-call.1867-maximilian.choice1` — Dejar que se cumpla la sentencia
+- `p.your-call.1867-maximilian.choice2` — Perdonarlo y enviarlo al exilio
+- `p.your-call.1867-maximilian.choice3` — Conmutar la pena por cadena perpetua
+- `p.your-call.1867-maximilian.short` — Juárez
+- `p.your-call.1867-maximilian.did` — Juárez negó el indulto. El 19 de junio de 1867 Maximiliano y sus generales Miramón y Mejía fueron fusilados en el Cerro de las Campanas, en Querétaro.
+- `p.your-call.1867-maximilian.next` — Juárez volvió a entrar en la capital el 15 de julio, entre la aclamación del pueblo y el repique de campanas.
+- `p.your-call.1867-maximilian.stamp` — Sin clemencia para Maximiliano
+
+#### 127/168 · `1947-partition` · day 127 (6 Feb 2027), 295 (24 Jul 2027), 463 (8 Jan 2028), 631 (24 Jun 2028) … · every 168 days
+
+- `p.your-call.1947-partition.place` — Nueva Delhi
+- `p.your-call.1947-partition.pov` — Debes entregar el poder a los indios antes del 30 de junio de 1948 y evitar la partición. Los disturbios entre comunidades religiosas arrasan Delhi y Bombay, y la Liga Musulmana exige Pakistán. Eres el virrey de la India.
+- `p.your-call.1947-partition.choice1` — Esperar a junio de 1948 y a una India unida
+- `p.your-call.1947-partition.choice2` — Dividir la India y entregar el poder antes
+- `p.your-call.1947-partition.choice3` — Mantener el dominio británico hasta que vuelva el orden
+- `p.your-call.1947-partition.short` — Mountbatten
+- `p.your-call.1947-partition.did` — Mountbatten concluyó que ya no era posible una India unida. El 3 de junio de 1947 anunció que el poder pasaría a dos gobiernos, el de la India y el de Pakistán, un año antes de lo previsto.
+- `p.your-call.1947-partition.next` — La partición entró en vigor el 15 de agosto de 1947, y las fronteras se dieron a conocer dos días después. Se cree que más de 15 millones de personas migraron a través de ellas.
+- `p.your-call.1947-partition.stamp` — Se adelanta la partición
+
+#### 128/168 · `1862-emancipation` · day 128 (7 Feb 2027), 296 (25 Jul 2027), 464 (9 Jan 2028), 632 (25 Jun 2028) … · every 168 days
+
+- `p.your-call.1862-emancipation.place` — Washington
+- `p.your-call.1862-emancipation.pov` — Julio de 1862. Has redactado una proclama que libera a los esclavos de los estados en rebelión. Los ejércitos de la Unión acaban de sufrir reveses en Virginia. Eres el presidente de Estados Unidos.
+- `p.your-call.1862-emancipation.choice1` — Publicar la proclama de inmediato
+- `p.your-call.1862-emancipation.choice2` — Esperar una victoria de la Unión para publicarla
+- `p.your-call.1862-emancipation.choice3` — Archivarla y mantener leales a los estados fronterizos
+- `p.your-call.1862-emancipation.short` — Lincoln
+- `p.your-call.1862-emancipation.did` — Seward le sugirió esperar una victoria de la Unión, y Lincoln la retuvo. Tras Antietam, publicó una proclama preliminar el 22 de septiembre de 1862.
+- `p.your-call.1862-emancipation.next` — La proclama definitiva, del 1 de enero de 1863, se aplicó solo a las zonas en rebelión, no a estados fronterizos como Maryland. La esclavitud terminó legalmente con la 13.ª Enmienda en diciembre de 1865.
+- `p.your-call.1862-emancipation.stamp` — La Proclamación de Emancipación
+
+#### 129/168 · `1963-oau` · day 129 (8 Feb 2027), 297 (26 Jul 2027), 465 (10 Jan 2028), 633 (26 Jun 2028) … · every 168 days
+
+- `p.your-call.1963-oau.place` — Adís Abeba
+- `p.your-call.1963-oau.pov` — Los Estados independientes de África se han dividido en bloques rivales. Uno, encabezado por Ghana, quiere una federación de toda África; el otro quiere que la unidad llegue poco a poco. Eres el emperador de Etiopía.
+- `p.your-call.1963-oau.choice1` — Reunir a ambos bloques en tu capital
+- `p.your-call.1963-oau.choice2` — Unirte al bloque que quiere una federación ya
+- `p.your-call.1963-oau.choice3` — Mantenerte al margen de la disputa entre bloques
+- `p.your-call.1963-oau.short` — Haile Selassie
+- `p.your-call.1963-oau.did` — Haile Selassie invitó a los dos grupos a Adís Abeba. Allí, el 25 de mayo de 1963, se firmó la carta de la Organización de la Unidad Africana, y la ciudad pasó a ser su sede.
+- `p.your-call.1963-oau.next` — La OUA trabajó para acabar con el colonialismo y con el gobierno de las minorías blancas, pero su política de no injerencia la limitó. Más tarde fue reemplazada por la Unión Africana.
+- `p.your-call.1963-oau.stamp` — África se une en Adís Abeba
+
+#### 130/168 · `1990-batmonkh` · day 130 (9 Feb 2027), 298 (27 Jul 2027), 466 (11 Jan 2028), 634 (27 Jun 2028) … · every 168 days
+
+- `p.your-call.1990-batmonkh.place` — Ulán Bator
+- `p.your-call.1990-batmonkh.pov` — Unos huelguistas de hambre en la plaza de Sujbaatar exigen que tu gobierno dimita. Te piden que firmes un decreto para reprimir a los manifestantes. Eres el líder de la Mongolia comunista.
+- `p.your-call.1990-batmonkh.choice1` — Firmar el decreto y despejar la plaza
+- `p.your-call.1990-batmonkh.choice2` — Negociar con los huelguistas y seguir en el poder
+- `p.your-call.1990-batmonkh.choice3` — Rechazar la fuerza y dimitir con el Politburó
+- `p.your-call.1990-batmonkh.short` — Batmönkh
+- `p.your-call.1990-batmonkh.did` — Batmönkh se negó: «Los pocos mongoles que somos aún no hemos llegado al punto de hacernos sangrar la nariz unos a otros». El 9 de marzo de 1990 dimitió el Politburó que él encabezaba.
+- `p.your-call.1990-batmonkh.next` — El 10 de mayo de 1990 el parlamento declaró que en julio se celebrarían elecciones libres con varios partidos. El antiguo partido gobernante ganó casi tres cuartas partes de los escaños.
+- `p.your-call.1990-batmonkh.stamp` — Los líderes de Mongolia dimiten
+
+#### 131/168 · `1967-nasser-resigns` · day 131 (10 Feb 2027), 299 (28 Jul 2027), 467 (12 Jan 2028), 635 (28 Jun 2028) … · every 168 days
+
+- `p.your-call.1967-nasser-resigns.place` — El Cairo
+- `p.your-call.1967-nasser-resigns.pov` — Una guerra con Israel que empezó hace cuatro días ha terminado en una derrota para tus fuerzas armadas. Esta noche hablarás a la nación. Eres el presidente de Egipto.
+- `p.your-call.1967-nasser-resigns.choice1` — Asumir la culpa y dimitir
+- `p.your-call.1967-nasser-resigns.choice2` — Seguir en el cargo y cambiar a tus generales
+- `p.your-call.1967-nasser-resigns.choice3` — Seguir en el cargo y prometer contraatacar
+- `p.your-call.1967-nasser-resigns.short` — Nasser
+- `p.your-call.1967-nasser-resigns.did` — El 9 de junio de 1967 Nasser asumió toda la responsabilidad de la derrota y dimitió como presidente. Multitudes salieron a la calle para apoyarlo.
+- `p.your-call.1967-nasser-resigns.next` — El gabinete y la Asamblea Nacional se negaron a aceptar la dimisión, y Nasser la retiró. El 19 de junio pasó a ser también primer ministro.
+- `p.your-call.1967-nasser-resigns.stamp` — Nasser dimite y se queda
+
+#### 132/168 · `1983-rigueur` · day 132 (11 Feb 2027), 300 (29 Jul 2027), 468 (13 Jan 2028), 636 (29 Jun 2028) … · every 168 days
+
+- `p.your-call.1983-rigueur.place` — París
+- `p.your-call.1983-rigueur.pov` — Tu política de estímulo ha agravado rápidamente los déficits presupuestario y comercial. El franco ha sido devaluado dos veces, y la izquierda acaba de perder las elecciones locales. Eres el presidente de Francia.
+- `p.your-call.1983-rigueur.choice1` — Salir del SME y mantener el gasto
+- `p.your-call.1983-rigueur.choice2` — Proteger la industria con controles de importación
+- `p.your-call.1983-rigueur.choice3` — Seguir en el SME y optar por la austeridad
+- `p.your-call.1983-rigueur.short` — Mitterrand
+- `p.your-call.1983-rigueur.did` — En marzo de 1983 Mitterrand mantuvo el franco en el Sistema Monetario Europeo e hizo el «tournant de la rigueur», el giro hacia la austeridad. Subieron los impuestos y los salarios dejaron de estar ligados a los precios.
+- `p.your-call.1983-rigueur.next` — El primer ministro Mauroy y el ministro de Finanzas Jacques Delors llevaron a cabo un drástico plan de austeridad. La izquierda nunca asumió políticamente ese giro y prefirió llamarlo un «paréntesis».
+- `p.your-call.1983-rigueur.stamp` — El giro de austeridad de Mitterrand
+
+#### 133/168 · `1822-san-martin` · day 133 (12 Feb 2027), 301 (30 Jul 2027), 469 (14 Jan 2028), 637 (30 Jun 2028) … · every 168 days
+
+- `p.your-call.1822-san-martin.place` — Lima
+- `p.your-call.1822-san-martin.pov` — Un gran ejército realista, bien armado, sigue controlando Cuzco. En Guayaquil pediste a Bolívar que enviara un ejército al Perú; te ofreció menos de 2000 hombres. Eres el Protector del Perú.
+- `p.your-call.1822-san-martin.choice1` — Seguir luchando con las fuerzas que tienes
+- `p.your-call.1822-san-martin.choice2` — Renunciar y dejar el Perú en manos de otros
+- `p.your-call.1822-san-martin.choice3` — Servir a las órdenes de Bolívar
+- `p.your-call.1822-san-martin.short` — San Martín
+- `p.your-call.1822-san-martin.did` — El 20 de septiembre de 1822, cuando se reunía el primer Congreso Constituyente del Perú, San Martín renunció y dejó la banda de Protector. A primera hora del 21 de septiembre zarpó hacia Valparaíso.
+- `p.your-call.1822-san-martin.next` — Más tarde abandonó por completo Sudamérica y se retiró en Francia. Bolívar siguió con la guerra de liberación.
+- `p.your-call.1822-san-martin.stamp` — San Martín se aparta
+
+#### 134/168 · `1990-one-for-one` · day 134 (13 Feb 2027), 302 (31 Jul 2027), 470 (15 Jan 2028), 638 (1 Jul 2028) … · every 168 days
+
+- `p.your-call.1990-one-for-one.place` — Bonn
+- `p.your-call.1990-one-for-one.pov` — Alemania Oriental va a adoptar el marco alemán. En el mercado negro, un marco alemán costaba entre cinco y diez marcos orientales, pero los alemanes orientales exigen el cambio uno por uno. Eres el canciller de Alemania Occidental.
+- `p.your-call.1990-one-for-one.choice1` — Cambiar a dos marcos orientales por uno
+- `p.your-call.1990-one-for-one.choice2` — Cambiar sueldos y ahorros uno por uno
+- `p.your-call.1990-one-for-one.choice3` — Aplazar por ahora la unión monetaria
+- `p.your-call.1990-one-for-one.short` — Kohl
+- `p.your-call.1990-one-for-one.did` — Contra el consejo de los principales economistas, el gobierno de Kohl cambió uno por uno los sueldos, los salarios, las pensiones y los alquileres. Los ahorros se cambiaron uno por uno hasta un límite de entre 2000 y 6000 marcos, según la edad.
+- `p.your-call.1990-one-for-one.next` — El marco alemán llegó a Alemania Oriental el 1 de julio de 1990. Muchas empresas de Alemania Oriental ya no pudieron competir, y siguieron cierres y despidos masivos.
+- `p.your-call.1990-one-for-one.stamp` — Un marco por un marco oriental
+
+#### 135/168 · `1977-hunting-ban` · day 135 (14 Feb 2027), 303 (1 Aug 2027), 471 (16 Jan 2028), 639 (2 Jul 2028) … · every 168 days
+
+- `p.your-call.1977-hunting-ban.place` — Nairobi
+- `p.your-call.1977-hunting-ban.pov` — La fauna de tu país, antes incontable, está disminuyendo, y los cazadores furtivos matan elefantes y rinocerontes en gran número. Cazadores profesionales con licencia siguen llevando de safari a clientes que pagan. Eres el presidente de Kenia.
+- `p.your-call.1977-hunting-ban.choice1` — Prohibir de golpe toda la caza deportiva
+- `p.your-call.1977-hunting-ban.choice2` — Mantener la caza con licencia y combatir a los furtivos
+- `p.your-call.1977-hunting-ban.choice3` — Prohibir la venta de trofeos y productos de caza
+- `p.your-call.1977-hunting-ban.short` — Kenyatta
+- `p.your-call.1977-hunting-ban.did` — En mayo de 1977 el gobierno de Kenyatta prohibió toda la caza deportiva, sin plazo para terminar los safaris. Muchos de los 106 cazadores con licencia de Kenia se enteraron por los guardas de caza, en pleno campo.
+- `p.your-call.1977-hunting-ban.next` — En diciembre Kenyatta prohibió también que las tiendas de recuerdos vendieran trofeos y productos de caza. Los cazadores furtivos se desataron, y la población de elefantes de Kenia cayó drásticamente entre 1973 y 2013.
+- `p.your-call.1977-hunting-ban.stamp` — Kenia prohíbe la caza
+
+#### 136/168 · `1840-waitangi` · day 136 (15 Feb 2027), 304 (2 Aug 2027), 472 (17 Jan 2028), 640 (3 Jul 2028) … · every 168 days
+
+- `p.your-call.1840-waitangi.place` — Waitangi
+- `p.your-call.1840-waitangi.pov` — Llegan cada vez más colonos británicos a Nueva Zelanda, algunos de ellos indisciplinados, y Francia parece interesada en anexionarla. Debes asegurar la soberanía británica. Eres el nuevo teniente gobernador británico.
+- `p.your-call.1840-waitangi.choice1` — Firmar un tratado con los jefes maoríes
+- `p.your-call.1840-waitangi.choice2` — Proclamar sin más la soberanía británica
+- `p.your-call.1840-waitangi.choice3` — Reclamar solo pequeñas porciones de tierra
+- `p.your-call.1840-waitangi.short` — Hobson
+- `p.your-call.1840-waitangi.did` — Hobson hizo redactar un tratado en pocos días. El 6 de febrero de 1840, en Waitangi, lo firmaron unos 40 jefes; a cada uno le dijo: «He iwi tahi tātou», «Somos un solo pueblo».
+- `p.your-call.1840-waitangi.next` — En total firmaron unos 540 jefes, y la soberanía británica se proclamó el 21 de mayo de 1840. El texto maorí había traducido «soberanía» como «kawanatanga» (gobierno).
+- `p.your-call.1840-waitangi.stamp` — El Tratado de Waitangi
+
+#### 137/168 · `1991-gulf-ceasefire` · day 137 (16 Feb 2027), 305 (3 Aug 2027), 473 (18 Jan 2028), 641 (4 Jul 2028) … · every 168 days
+
+- `p.your-call.1991-gulf-ceasefire.place` — Washington
+- `p.your-call.1991-gulf-ceasefire.pov` — Las fuerzas de la coalición han entrado en la ciudad de Kuwait y las tropas iraquíes huyen. Una división estadounidense está a menos de 250 km de Bagdad. Eres el presidente de Estados Unidos.
+- `p.your-call.1991-gulf-ceasefire.choice1` — Avanzar hasta Bagdad y derrocar a Sadam
+- `p.your-call.1991-gulf-ceasefire.choice2` — Declarar el alto el fuego, con Kuwait libre
+- `p.your-call.1991-gulf-ceasefire.choice3` — Combatir hasta destruir el ejército iraquí
+- `p.your-call.1991-gulf-ceasefire.short` — Bush
+- `p.your-call.1991-gulf-ceasefire.did` — El 28 de febrero de 1991 Bush anunció un alto el fuego, declarando libre a Kuwait y derrotado al ejército iraquí. Nunca había tenido la intención de derrocar a Sadam Huseín.
+- `p.your-call.1991-gulf-ceasefire.next` — La guerra terrestre había durado unas 100 horas. La decisión siguió siendo polémica: Sadam solo fue derrocado en 2003, cuando el presidente era el hijo de Bush.
+- `p.your-call.1991-gulf-ceasefire.stamp` — Bush detiene la guerra del Golfo
+
+#### 138/168 · `1987-june-29` · day 138 (17 Feb 2027), 306 (4 Aug 2027), 474 (19 Jan 2028), 642 (5 Jul 2028) … · every 168 days
+
+- `p.your-call.1987-june-29.place` — Seúl
+- `p.your-call.1987-june-29.pov` — Las protestas a favor de la democracia se extienden por Corea del Sur. El 10 de junio tu partido te designó para suceder al presidente, y los Juegos Olímpicos de Seúl de 1988 se acercan. Eres el candidato del partido en el poder.
+- `p.your-call.1987-june-29.choice1` — Mantener la elección presidencial indirecta
+- `p.your-call.1987-june-29.choice2` — Aceptar elecciones presidenciales directas
+- `p.your-call.1987-june-29.choice3` — Apoyar una represión para acabar con las protestas
+- `p.your-call.1987-june-29.short` — Roh
+- `p.your-call.1987-june-29.did` — El 29 de junio de 1987 Roh aceptó la exigencia de elecciones presidenciales directas. También prometió liberar a los presos políticos, entre ellos el líder de la oposición Kim Dae-jung.
+- `p.your-call.1987-june-29.next` — En octubre, el 94,4 % de los votantes aprobó una nueva constitución. Con el voto de la oposición dividido, Roh fue elegido presidente con el 36,6 % de los votos.
+- `p.your-call.1987-june-29.stamp` — La declaración del 29 de junio
+
+#### 139/168 · `2001-argentina-default` · day 139 (18 Feb 2027), 307 (5 Aug 2027), 475 (20 Jan 2028), 643 (6 Jul 2028) … · every 168 days
+
+- `p.your-call.2001-argentina-default.place` — Buenos Aires
+- `p.your-call.2001-argentina-default.pov` — Los disturbios han obligado al presidente a dimitir. El Congreso te ha nombrado presidente interino hasta que haya elecciones. El FMI se ha negado a darte 1300 millones de dólares de ayuda; la deuda es de 132 000 millones de dólares. Eres el presidente de Argentina.
+- `p.your-call.2001-argentina-default.choice1` — Dejar de pagar la deuda externa
+- `p.your-call.2001-argentina-default.choice2` — Pagar y buscar otro acuerdo con el FMI
+- `p.your-call.2001-argentina-default.choice3` — Poner fin a la paridad de un peso por un dólar
+- `p.your-call.2001-argentina-default.short` — Rodríguez Saá
+- `p.your-call.2001-argentina-default.did` — Al asumir el cargo, el 23 de diciembre de 2001, Rodríguez Saá anunció que el Estado suspendería los pagos de la deuda externa. Dijo que mantendría el peso a la par con el dólar, uno a uno.
+- `p.your-call.2001-argentina-default.next` — La moratoria sobre 132 000 millones de dólares fue calificada como la mayor cesación de pagos de un país soberano. Sin el apoyo de su partido peronista, dimitió al cabo de una semana.
+- `p.your-call.2001-argentina-default.stamp` — Argentina deja de pagar
+
+#### 140/168 · `1962-slavery` · day 140 (19 Feb 2027), 308 (6 Aug 2027), 476 (21 Jan 2028), 644 (7 Jul 2028) … · every 168 days
+
+- `p.your-call.1962-slavery.place` — Riad
+- `p.your-call.1962-slavery.pov` — En junio el rey prohibió la compraventa de personas, pero tener esclavos sigue siendo legal. Estados Unidos presiona para que haya reformas. Eres el primer ministro de Arabia Saudita.
+- `p.your-call.1962-slavery.choice1` — Prohibir por completo tener esclavos
+- `p.your-call.1962-slavery.choice2` — Mantener solo la prohibición de las ventas
+- `p.your-call.1962-slavery.choice3` — Liberar a los esclavos poco a poco, durante años
+- `p.your-call.1962-slavery.short` — Faisal
+- `p.your-call.1962-slavery.did` — En noviembre de 1962 Faisal prohibió tener esclavos en Arabia Saudita, como parte de su programa de reformas de diez puntos.
+- `p.your-call.1962-slavery.next` — Los tradicionalistas se opusieron y la aplicación fue lenta: según algunos informes, el comercio de esclavos continuó durante al menos veinte años. Algunos esclavos liberados siguieron trabajando para sus antiguos dueños.
+- `p.your-call.1962-slavery.stamp` — Arabia Saudita acaba con la esclavitud
+
+#### 141/168 · `1898-philippines` · day 141 (20 Feb 2027), 309 (7 Aug 2027), 477 (22 Jan 2028), 645 (8 Jul 2028) … · every 168 days
+
+- `p.your-call.1898-philippines.place` — Washington
+- `p.your-call.1898-philippines.pov` — Tras la guerra con España, se abren conversaciones de paz en París. Los rebeldes filipinos quieren la independencia; Alemania parece dispuesta a intervenir si te vas. Eres el presidente de Estados Unidos.
+- `p.your-call.1898-philippines.choice1` — Quedarte solo con Manila como base naval
+- `p.your-call.1898-philippines.choice2` — Quitar a España todas las islas
+- `p.your-call.1898-philippines.choice3` — Conceder la independencia a Filipinas
+- `p.your-call.1898-philippines.short` — McKinley
+- `p.your-call.1898-philippines.did` — McKinley telegrafió que el deber no le dejaba más opción que exigir todo el archipiélago. Por el Tratado de París del 10 de diciembre de 1898, España lo cedió por 20 millones de dólares.
+- `p.your-call.1898-philippines.next` — El Senado aprobó el tratado por 57 votos contra 27 el 6 de febrero de 1899, dos días después de que estallaran los combates con las fuerzas filipinas en Manila. Estados Unidos ganó esa guerra en 1902.
+- `p.your-call.1898-philippines.stamp` — Estados Unidos se queda con Filipinas
+
+#### 142/168 · `1967-referendum` · day 142 (21 Feb 2027), 310 (8 Aug 2027), 478 (23 Jan 2028), 646 (9 Jul 2028) … · every 168 days
+
+- `p.your-call.1967-referendum.place` — Canberra
+- `p.your-call.1967-referendum.pov` — Tu Constitución dice que los aborígenes no se contarán en la población e impide que tu Parlamento haga leyes para ellos. Hay activistas que quieren cambiarlo. Eres el primer ministro de Australia.
+- `p.your-call.1967-referendum.choice1` — Quitar solo la prohibición de contarlos
+- `p.your-call.1967-referendum.choice2` — Dejar la Constitución como está
+- `p.your-call.1967-referendum.choice3` — Someter ambos cambios a referéndum
+- `p.your-call.1967-referendum.short` — Holt
+- `p.your-call.1967-referendum.did` — El 22 de febrero de 1967 el gabinete de Holt decidió celebrar un referéndum sobre ambos cambios. El Parlamento aprobó el proyecto por unanimidad, así que no hubo una campaña oficial por el «No».
+- `p.your-call.1967-referendum.next` — El 27 de mayo de 1967, el 90,77 % de los votantes dijo que sí, con mayorías en todos los estados. El Parlamento pudo legislar para los aborígenes, y estos pasaron a contarse en la población.
+- `p.your-call.1967-referendum.stamp` — El referéndum de 1967
+
+#### 143/168 · `1893-mekong` · day 143 (22 Feb 2027), 311 (9 Aug 2027), 479 (24 Jan 2028), 647 (10 Jul 2028) … · every 168 days
+
+- `p.your-call.1893-mekong.place` — Bangkok
+- `p.your-call.1893-mekong.pov` — Cañoneras francesas han remontado el río a la fuerza hasta Bangkok. Francia exige todo el territorio al este del Mekong y tres millones de francos. Gran Bretaña no ayudará. Eres el rey de Siam.
+- `p.your-call.1893-mekong.choice1` — Seguir luchando y defender Bangkok
+- `p.your-call.1893-mekong.choice2` — Aceptar íntegramente las condiciones de Francia
+- `p.your-call.1893-mekong.choice3` — Aceptar solo una parte de las exigencias
+- `p.your-call.1893-mekong.short` — Chulalongkorn
+- `p.your-call.1893-mekong.did` — Siam se sometió por completo a las condiciones francesas. Chulalongkorn cedió a Francia todos los territorios laosianos al este del Mekong, y el 3 de octubre de 1893 se firmó un tratado.
+- `p.your-call.1893-mekong.next` — Francia ocupó Chantaburi hasta 1907. Chulalongkorn siguió haciendo concesiones territoriales a Occidente, con la esperanza de que Siam pudiera conservar su independencia en conjunto.
+- `p.your-call.1893-mekong.stamp` — Siam renuncia a Laos
+
+#### 144/168 · `2000-zedillo-concedes` · day 144 (23 Feb 2027), 312 (10 Aug 2027), 480 (25 Jan 2028), 648 (11 Jul 2028) … · every 168 days
+
+- `p.your-call.2000-zedillo-concedes.place` — Ciudad de México
+- `p.your-call.2000-zedillo-concedes.pov` — Tu partido ha ocupado la presidencia durante unos 70 años. En la noche electoral, los resultados preliminares muestran que gana el candidato de la oposición. El candidato de tu partido aún no ha reconocido la derrota. Eres el presidente de México.
+- `p.your-call.2000-zedillo-concedes.choice1` — Esperar a que termine el conteo oficial
+- `p.your-call.2000-zedillo-concedes.choice2` — Hablar por televisión y reconocer al ganador
+- `p.your-call.2000-zedillo-concedes.choice3` — Dejar que tu candidato reconozca antes la derrota
+- `p.your-call.2000-zedillo-concedes.short` — Zedillo
+- `p.your-call.2000-zedillo-concedes.did` — Esa noche Zedillo habló por televisión nacional, citando los resultados preliminares del instituto electoral. Reconoció la victoria de Vicente Fox, dijo que acababa de llamarlo por teléfono y lo felicitó.
+- `p.your-call.2000-zedillo-concedes.next` — El PRI perdió la presidencia por primera vez en unos 70 años. Que el reconocimiento viniera de él y no del candidato del PRI, Francisco Labastida, causó más tarde tensiones entre ambos.
+- `p.your-call.2000-zedillo-concedes.stamp` — Noche electoral en México
+
+#### 145/168 · `1666-great-fire` · day 145 (24 Feb 2027), 313 (11 Aug 2027), 481 (26 Jan 2028), 649 (12 Jul 2028) … · every 168 days
+
+- `p.your-call.1666-great-fire.place` — Londres
+- `p.your-call.1666-great-fire.pov` — El fuego ha destruido unas 13 000 casas de tu capital, y la catedral de San Pablo. Christopher Wren y otros proponen una ciudad nueva, de calles anchas trazadas en cuadrícula. Eres el rey de Inglaterra.
+- `p.your-call.1666-great-fire.choice1` — Reconstruir las antiguas calles en ladrillo y piedra
+- `p.your-call.1666-great-fire.choice2` — Construir la nueva ciudad de calles anchas de Wren
+- `p.your-call.1666-great-fire.choice3` — Dejar que los propietarios reconstruyan a su gusto
+- `p.your-call.1666-great-fire.short` — Carlos
+- `p.your-call.1666-great-fire.did` — Carlos había alentado planes radicales, pero pagar a los propietarios por una remodelación completa resultó poco realista. Gran parte del antiguo trazado de las calles se recreó, con calles más anchas.
+- `p.your-call.1666-great-fire.next` — Los edificios nuevos debían ser de ladrillo o de piedra, no de madera. La mayor parte de la reconstrucción privada estaba terminada en 1671, y Wren diseñó 51 iglesias nuevas.
+- `p.your-call.1666-great-fire.stamp` — Londres tras el Gran Incendio
+
+#### 146/168 · `1970-black-september` · day 146 (25 Feb 2027), 314 (12 Aug 2027), 482 (27 Jan 2028), 650 (13 Jul 2028) … · every 168 days
+
+- `p.your-call.1970-black-september.place` — Amán
+- `p.your-call.1970-black-september.pov` — Grupos palestinos armados se han apoderado de la ciudad de Irbid y piden abiertamente tu derrocamiento. En tu territorio han hecho explotar aviones de pasajeros secuestrados. Eres el rey de Jordania.
+- `p.your-call.1970-black-september.choice1` — Ordenar al ejército que los ataque
+- `p.your-call.1970-black-september.choice2` — Buscar un nuevo acuerdo con sus líderes
+- `p.your-call.1970-black-september.choice3` — Pedir a los líderes árabes que medien
+- `p.your-call.1970-black-september.short` — Hussein
+- `p.your-call.1970-black-september.did` — Hussein formó un gobierno de ley marcial y en septiembre de 1970 ordenó al ejército atacar. Este golpeó el cuartel general de los fedayines en Amán.
+- `p.your-call.1970-black-september.next` — Tanques sirios entraron en Jordania el 18 de septiembre; el 22 la situación había cambiado. El 27 de septiembre se firmó un alto el fuego en El Cairo, y en julio de 1971 el rey expulsó a los últimos combatientes.
+- `p.your-call.1970-black-september.stamp` — Septiembre Negro en Jordania
+
+#### 147/168 · `1967-arusha` · day 147 (26 Feb 2027), 315 (13 Aug 2027), 483 (28 Jan 2028), 651 (14 Jul 2028) … · every 168 days
+
+- `p.your-call.1967-arusha.place` — Arusha
+- `p.your-call.1967-arusha.pov` — Los planes de desarrollo de tu país dependen en gran medida de la ayuda exterior y del apoyo de fuera. Tu partido gobernante debe fijar ahora el rumbo para los próximos años. Eres el presidente de Tanzania.
+- `p.your-call.1967-arusha.choice1` — Buscar más ayuda e inversión extranjeras
+- `p.your-call.1967-arusha.choice2` — Construir el socialismo sobre la autosuficiencia
+- `p.your-call.1967-arusha.choice3` — Abrir la economía a la empresa privada
+- `p.your-call.1967-arusha.short` — Nyerere
+- `p.your-call.1967-arusha.did` — El 5 de febrero de 1967 Nyerere promulgó la Declaración de Arusha: socialismo y autosuficiencia. Normas estrictas limitaban hasta dónde podían enriquecerse los dirigentes.
+- `p.your-call.1967-arusha.next` — Los bancos, los recursos naturales y las principales industrias fueron nacionalizados de inmediato. Desde 1973 se trasladó a la gente, a menudo por la fuerza, a aldeas ujamaa: según la cuenta de Nyerere, a más de siete millones en junio de 1975.
+- `p.your-call.1967-arusha.stamp` — La Declaración de Arusha
+
+#### 148/168 · `1983-franklin-dam` · day 148 (27 Feb 2027), 316 (14 Aug 2027), 484 (29 Jan 2028), 652 (15 Jul 2028) … · every 168 days
+
+- `p.your-call.1983-franklin-dam.place` — Canberra
+- `p.your-call.1983-franklin-dam.pov` — El gobierno de Tasmania sigue adelante con una presa en el río Franklin, en una zona Patrimonio de la Humanidad. Desde diciembre, los manifestantes bloquean el lugar de las obras. Eres el nuevo primer ministro de Australia.
+- `p.your-call.1983-franklin-dam.choice1` — Dejárselo a Tasmania, un asunto estatal
+- `p.your-call.1983-franklin-dam.choice2` — Detener la presa con una ley federal
+- `p.your-call.1983-franklin-dam.choice3` — Ofrecer dinero a Tasmania para que desista
+- `p.your-call.1983-franklin-dam.short` — Hawke
+- `p.your-call.1983-franklin-dam.did` — El gobierno de Hawke aprobó la Ley de Conservación de Bienes del Patrimonio Mundial de 1983 para detener las obras de la presa, y llevó a Tasmania ante el Tribunal Superior.
+- `p.your-call.1983-franklin-dam.next` — El Tribunal Superior falló por 4 votos contra 3 a favor del gobierno federal, y Tasmania tuvo que abandonar la presa. Los planes nunca se han retomado.
+- `p.your-call.1983-franklin-dam.stamp` — Hawke frena la presa Franklin
+
+#### 149/168 · `1948-eo-9981` · day 149 (28 Feb 2027), 317 (15 Aug 2027), 485 (30 Jan 2028), 653 (16 Jul 2028) … · every 168 days
+
+- `p.your-call.1948-eo-9981.place` — Washington
+- `p.your-call.1948-eo-9981.pov` — Más de un millón de estadounidenses negros sirvieron en la Segunda Guerra Mundial, en fuerzas segregadas. Los senadores del Sur amenazan con bloquear con discursos interminables tus propuestas de derechos civiles. Eres el presidente de Estados Unidos.
+- `p.your-call.1948-eo-9981.choice1` — Seguir presionando al Congreso por una ley
+- `p.your-call.1948-eo-9981.choice2` — Dejar que lo decidan los militares
+- `p.your-call.1948-eo-9981.choice3` — Prohibir la segregación con una orden ejecutiva
+- `p.your-call.1948-eo-9981.short` — Truman
+- `p.your-call.1948-eo-9981.did` — El 26 de julio de 1948 Truman firmó la Orden Ejecutiva 9981. Declaraba «igualdad de trato y de oportunidades para todas las personas en las fuerzas armadas».
+- `p.your-call.1948-eo-9981.next` — Los militares se resistieron al principio, pero al terminar la guerra de Corea casi todas las fuerzas estaban integradas. La última unidad compuesta solo por negros se disolvió en septiembre de 1954.
+- `p.your-call.1948-eo-9981.stamp` — Se integran las fuerzas armadas
+
+#### 150/168 · `1993-oslo` · day 150 (1 Mar 2027), 318 (16 Aug 2027), 486 (31 Jan 2028), 654 (17 Jul 2028) … · every 168 days
+
+- `p.your-call.1993-oslo.place` — Jerusalén
+- `p.your-call.1993-oslo.pov` — Noruega ha montado en Oslo un canal secreto en el que dos académicos israelíes y la OLP han redactado un acuerdo. Necesita tu respaldo. Eres el primer ministro de Israel.
+- `p.your-call.1993-oslo.choice1` — Respaldar el acuerdo y reconocer a la OLP
+- `p.your-call.1993-oslo.choice2` — Desautorizar las conversaciones secretas
+- `p.your-call.1993-oslo.choice3` — Seguir conversando, pero no con la OLP
+- `p.your-call.1993-oslo.short` — Rabin
+- `p.your-call.1993-oslo.did` — Rabin respaldó el acuerdo. En septiembre de 1993 firmó la carta de Israel en la que reconocía a la OLP como representante del pueblo palestino.
+- `p.your-call.1993-oslo.next` — El 13 de septiembre de 1993 se firmó la Declaración de Principios en la Casa Blanca, con un histórico apretón de manos entre Rabin y Arafat. Rabin fue asesinado en noviembre de 1995.
+- `p.your-call.1993-oslo.stamp` — Los Acuerdos de Oslo
+
+#### 151/168 · `1978-reform-opening` · day 151 (2 Mar 2027), 319 (17 Aug 2027), 487 (1 Feb 2028), 655 (18 Jul 2028) … · every 168 days
+
+- `p.your-call.1978-reform-opening.place` — Pekín
+- `p.your-call.1978-reform-opening.pov` — Tras años de lucha de clases masiva, el Partido Comunista debe elegir su tarea principal. Su Comité Central se reúne en Pekín en diciembre de 1978. Eres el líder en ascenso del partido.
+- `p.your-call.1978-reform-opening.choice1` — Mantener la lucha de clases como tarea principal
+- `p.your-call.1978-reform-opening.choice2` — Poner la modernización económica como tarea principal
+- `p.your-call.1978-reform-opening.choice3` — Impulsar el crecimiento con planes estatales mayores
+- `p.your-call.1978-reform-opening.short` — Deng
+- `p.your-call.1978-reform-opening.did` — El pleno del 18 al 22 de diciembre de 1978 declaró que la lucha de clases masiva había terminado en lo esencial, e hizo de la modernización socialista el centro de la labor del partido.
+- `p.your-call.1978-reform-opening.next` — Marcó el inicio de la política de reforma y apertura. Se considera ampliamente el momento en que Deng se convirtió en el máximo dirigente de China, en lugar de Hua Guofeng.
+- `p.your-call.1978-reform-opening.stamp` — Reforma y apertura de China
+
+#### 152/168 · `1956-personal-status` · day 152 (3 Mar 2027), 320 (18 Aug 2027), 488 (2 Feb 2028), 656 (19 Jul 2028) … · every 168 days
+
+- `p.your-call.1956-personal-status.place` — Túnez
+- `p.your-call.1956-personal-status.pov` — El derecho de familia de tu país, recién independizado, permite a un hombre tener hasta cuatro esposas y divorciarse de su mujer con solo decirlo tres veces. Eres el primer ministro de Túnez.
+- `p.your-call.1956-personal-status.choice1` — Dejar el derecho de familia como está
+- `p.your-call.1956-personal-status.choice2` — Restringir la poligamia sin prohibirla
+- `p.your-call.1956-personal-status.choice3` — Prohibir la poligamia y el repudio
+- `p.your-call.1956-personal-status.short` — Burguiba
+- `p.your-call.1956-personal-status.did` — Bajo Burguiba, el Código del Estatuto Personal se promulgó el 13 de agosto de 1956. Abolió la poligamia y el repudio: el divorcio solo podía darse ya ante un tribunal.
+- `p.your-call.1956-personal-status.next` — Los imanes que predicaron contra el Código fueron arrestados, y los jueces que firmaron una fetua en su contra fueron casi todos destituidos o jubilados. Entró en vigor el 1 de enero de 1957.
+- `p.your-call.1956-personal-status.stamp` — Túnez prohíbe la poligamia
+
+#### 153/168 · `1971-copper` · day 153 (4 Mar 2027), 321 (19 Aug 2027), 489 (3 Feb 2028), 657 (20 Jul 2028) … · every 168 days
+
+- `p.your-call.1971-copper.place` — Santiago
+- `p.your-call.1971-copper.pov` — El Congreso ha votado por unanimidad nacionalizar las grandes minas de cobre de propiedad estadounidense. A ti te toca fijar lo que se pagará a las empresas. Eres el presidente de Chile.
+- `p.your-call.1971-copper.choice1` — Negociar un precio con las empresas
+- `p.your-call.1971-copper.choice2` — Pagar todo el valor contable de las minas
+- `p.your-call.1971-copper.choice3` — Descontar del pago las «ganancias excesivas»
+- `p.your-call.1971-copper.short` — Allende
+- `p.your-call.1971-copper.did` — El 28 de septiembre Allende anunció que de lo que se pagara a Anaconda y Kennecott se descontarían 774 millones de dólares en ganancias excesivas.
+- `p.your-call.1971-copper.next` — Las empresas no recibieron ninguna compensación por las minas de Chuquicamata, El Salvador y El Teniente. El Departamento de Estado de Estados Unidos lo calificó de grave infracción de la práctica internacional.
+- `p.your-call.1971-copper.stamp` — Chile nacionaliza el cobre
+
+#### 154/168 · `2003-rose-revolution` · day 154 (5 Mar 2027), 322 (20 Aug 2027), 490 (4 Feb 2028), 658 (21 Jul 2028) … · every 168 days
+
+- `p.your-call.2003-rose-revolution.place` — Tiflis
+- `p.your-call.2003-rose-revolution.pov` — Manifestantes que dicen que las elecciones parlamentarias fueron fraudulentas han irrumpido en el parlamento con rosas. Declaraste el estado de emergencia, pero unidades de élite del ejército se niegan a respaldarte. Eres el presidente de Georgia.
+- `p.your-call.2003-rose-revolution.choice1` — Ordenar a la policía leal que despeje las calles
+- `p.your-call.2003-rose-revolution.choice2` — Dimitir y entregar el poder
+- `p.your-call.2003-rose-revolution.choice3` — Prometer nuevas elecciones, pero seguir en el cargo
+- `p.your-call.2003-rose-revolution.short` — Shevardnadze
+- `p.your-call.2003-rose-revolution.did` — En la tarde del 23 de noviembre de 2003, tras reunirse con los líderes de la oposición Saakashvili y Zhvania, Shevardnadze anunció su dimisión.
+- `p.your-call.2003-rose-revolution.next` — La presidenta del parlamento, Nino Burdjanadze, asumió como presidenta interina. El 4 de enero de 2004 Saakashvili, sin rivales, fue elegido presidente con el 96,2 % de los votos.
+- `p.your-call.2003-rose-revolution.stamp` — La Revolución de las Rosas
+
+#### 155/168 · `1988-ceasefire` · day 155 (6 Mar 2027), 323 (21 Aug 2027), 491 (5 Feb 2028), 659 (22 Jul 2028) … · every 168 days
+
+- `p.your-call.1988-ceasefire.place` — Teherán
+- `p.your-call.1988-ceasefire.pov` — Durante ocho años tu país ha combatido contra Irak, a un costo enorme. Desde abril tus fuerzas pierden terreno. Una resolución de la ONU pide un alto el fuego. Eres el líder supremo de Irán.
+- `p.your-call.1988-ceasefire.choice1` — Aceptar el alto el fuego de la ONU
+- `p.your-call.1988-ceasefire.choice2` — Seguir combatiendo hasta que caiga el líder de Irak
+- `p.your-call.1988-ceasefire.choice3` — Resistir primero para lograr mejores condiciones
+- `p.your-call.1988-ceasefire.short` — Jomeini
+- `p.your-call.1988-ceasefire.did` — Irán aceptó la Resolución 598 de la ONU en julio de 1988. Jomeini dijo a la nación que tomar esa decisión era «más mortal que tomar veneno».
+- `p.your-call.1988-ceasefire.next` — El alto el fuego entró en vigor el 20 de agosto de 1988. Los observadores de la ONU de la misión UNIIMOG permanecieron en la frontera entre Irán e Irak hasta 1991.
+- `p.your-call.1988-ceasefire.stamp` — Irán acepta un alto el fuego
+
+#### 156/168 · `1965-udi` · day 156 (7 Mar 2027), 324 (22 Aug 2027), 492 (6 Feb 2028), 660 (23 Jul 2028) … · every 168 days
+
+- `p.your-call.1965-udi.place` — Salisbury
+- `p.your-call.1965-udi.pov` — Gran Bretaña no concederá la independencia a tu país sin un camino hacia el gobierno de la mayoría negra. Los blancos, alrededor del 5 % de la población, tienen el poder. Londres ofrece una Comisión Real. Eres el primer ministro de Rodesia.
+- `p.your-call.1965-udi.choice1` — Confiar en una Comisión Real británica
+- `p.your-call.1965-udi.choice2` — Declarar la independencia por tu cuenta
+- `p.your-call.1965-udi.choice3` — Aceptar un calendario para el gobierno de la mayoría
+- `p.your-call.1965-udi.short` — Smith
+- `p.your-call.1965-udi.did` — El 11 de noviembre de 1965 Smith y su gabinete declararon la independencia de Gran Bretaña. Gran Bretaña la calificó de ilegal y buscó sanciones en lugar de usar la fuerza; ningún país la reconoció.
+- `p.your-call.1965-udi.next` — Rodesia se declaró república en 1970, mientras crecía una guerra de guerrillas. La declaración fue revocada por el Acuerdo de Lancaster House de 1979, y Zimbabue se independizó en 1980.
+- `p.your-call.1965-udi.stamp` — Rodesia rompe con Gran Bretaña
+
+#### 157/168 · `1945-hiroshima` · day 157 (8 Mar 2027), 325 (23 Aug 2027), 493 (7 Feb 2028), 661 (24 Jul 2028) … · every 168 days
+
+- `p.your-call.1945-hiroshima.place` — Washington
+- `p.your-call.1945-hiroshima.pov` — Tus científicos acaban de probar un nuevo tipo de bomba. Japón sigue luchando y se planea una invasión del país. Eres el presidente de Estados Unidos.
+- `p.your-call.1945-hiroshima.choice1` — Usarla contra una ciudad sin aviso especial
+- `p.your-call.1945-hiroshima.choice2` — Demostrarla primero donde no viva nadie
+- `p.your-call.1945-hiroshima.choice3` — Reservarla e invadir según lo planeado
+- `p.your-call.1945-hiroshima.short` — Truman
+- `p.your-call.1945-hiroshima.did` — Truman dejó que siguiera adelante: su diario dice que el arma debía usarse contra Japón antes del 10 de agosto. El 6 de agosto de 1945 el Enola Gay la lanzó sobre Hiroshima.
+- `p.your-call.1945-hiroshima.next` — Mató de 90 000 a 166 000 personas en Hiroshima, cerca de la mitad el primer día. Después de que una segunda bomba cayera sobre Nagasaki el 9 de agosto, Japón anunció su rendición.
+- `p.your-call.1945-hiroshima.stamp` — Truman y la bomba atómica
+
+#### 158/168 · `1889-pedro-exile` · day 158 (9 Mar 2027), 326 (24 Aug 2027), 494 (8 Feb 2028), 662 (25 Jul 2028) … · every 168 days
+
+- `p.your-call.1889-pedro-exile.place` — Río de Janeiro
+- `p.your-call.1889-pedro-exile.pov` — Unos conspiradores han dado un golpe de Estado, han arrestado a tu primer ministro y han proclamado la república. Políticos y jefes militares te sugieren maneras de aplastar la rebelión. Eres el emperador de Brasil.
+- `p.your-call.1889-pedro-exile.choice1` — Ordenar a las tropas leales que aplasten la revuelta
+- `p.your-call.1889-pedro-exile.choice2` — Aceptar el exilio y marcharte sin luchar
+- `p.your-call.1889-pedro-exile.choice3` — Abdicar en favor de tu hija
+- `p.your-call.1889-pedro-exile.short` — Pedro II
+- `p.your-call.1889-pedro-exile.did` — Pedro II descartó todas las sugerencias para sofocar la rebelión. Sin querer provocar un conflicto civil, aceptó el exilio sin resistencia.
+- `p.your-call.1889-pedro-exile.next` — Al mediodía del 17 de noviembre de 1889 él y su familia partieron en barco rumbo al exilio en Europa. Murió en París el 5 de diciembre de 1891.
+- `p.your-call.1889-pedro-exile.stamp` — El emperador de Brasil se exilia
+
+#### 159/168 · `1984-snap-election` · day 159 (10 Mar 2027), 327 (25 Aug 2027), 495 (9 Feb 2028), 663 (26 Jul 2028) … · every 168 days
+
+- `p.your-call.1984-snap-election.place` — Wellington
+- `p.your-call.1984-snap-election.pov` — Es año electoral y tu mayoría es pequeña. Uno de tus diputados no te apoyará en el proyecto de ley antinuclear de la oposición. Eres el primer ministro de Nueva Zelanda.
+- `p.your-call.1984-snap-election.choice1` — Seguir gobernando aunque pierdas esa votación
+- `p.your-call.1984-snap-election.choice2` — Convocar elecciones anticipadas para el mes próximo
+- `p.your-call.1984-snap-election.choice3` — Hacer de la votación una cuestión de confianza
+- `p.your-call.1984-snap-election.short` — Muldoon
+- `p.your-call.1984-snap-election.did` — En la noche del 14 de junio de 1984 Muldoon anunció elecciones anticipadas por la televisión nacional. Se celebraron un mes después, el 14 de julio.
+- `p.your-call.1984-snap-election.next` — El Partido Laborista, liderado por David Lange, ganó 56 de los 95 escaños; el Partido Nacional solo obtuvo 37. Muldoon se negó al principio a devaluar el dólar, lo que provocó una crisis constitucional.
+- `p.your-call.1984-snap-election.stamp` — Las elecciones anticipadas de Muldoon
+
+#### 160/168 · `1923-ankara` · day 160 (11 Mar 2027), 328 (26 Aug 2027), 496 (10 Feb 2028), 664 (27 Jul 2028) … · every 168 days
+
+- `p.your-call.1923-ankara.place` — Ankara
+- `p.your-call.1923-ankara.pov` — La guerra de independencia se dirigió desde Ankara, una modesta ciudad de Anatolia. Algunos diputados sostienen que Estambul, la antigua ciudad imperial, debe seguir siendo la capital. Eres el líder del nuevo Estado turco.
+- `p.your-call.1923-ankara.choice1` — Hacer de Ankara la capital
+- `p.your-call.1923-ankara.choice2` — Mantener Estambul como capital
+- `p.your-call.1923-ankara.choice3` — Dejar Ankara solo por ahora
+- `p.your-call.1923-ankara.short` — Atatürk
+- `p.your-call.1923-ankara.did` — La dirigencia del país eligió Ankara. Una ley de un solo artículo, propuesta por İsmet Pasha, fue aprobada por gran mayoría en la Asamblea el 13 de octubre de 1923.
+- `p.your-call.1923-ankara.next` — La República se proclamó 16 días después, el 29 de octubre de 1923. La modesta ciudad de Anatolia se convirtió en una capital moderna.
+- `p.your-call.1923-ankara.stamp` — Ankara se convierte en capital
+
+#### 161/168 · `1989-martial-law-beijing` · day 161 (12 Mar 2027), 329 (27 Aug 2027), 497 (11 Feb 2028), 665 (28 Jul 2028) … · every 168 days
+
+- `p.your-call.1989-martial-law-beijing.place` — Pekín
+- `p.your-call.1989-martial-law-beijing.pov` — Estudiantes en huelga de hambre protestan en la plaza de Tiananmén. Los cinco miembros del Comité Permanente del partido no logran ponerse de acuerdo sobre cómo responder. Eres el dirigente que tiene la última palabra en China.
+- `p.your-call.1989-martial-law-beijing.choice1` — Buscar una salida conciliadora mediante el diálogo
+- `p.your-call.1989-martial-law-beijing.choice2` — Declarar la ley marcial en la capital
+- `p.your-call.1989-martial-law-beijing.choice3` — Esperar a que la protesta se apague
+- `p.your-call.1989-martial-law-beijing.short` — Deng
+- `p.your-call.1989-martial-law-beijing.did` — El 17 de mayo de 1989 Deng dijo a los cinco miembros del Comité Permanente que era hora de llamar al ejército para imponer la ley marcial. A primera hora del 20 de mayo, Li Peng la anunció.
+- `p.your-call.1989-martial-law-beijing.next` — Los manifestantes bloquearon a muchas unidades con barricadas en las calles. Deng ordenó que empezara el uso de la fuerza en la noche del 3 de junio; murieron cientos de personas, si no más.
+- `p.your-call.1989-martial-law-beijing.stamp` — Ley marcial en Pekín
+
+#### 162/168 · `1948-cominform` · day 162 (13 Mar 2027), 330 (28 Aug 2027), 498 (12 Feb 2028), 666 (29 Jul 2028) … · every 168 days
+
+- `p.your-call.1948-cominform.place` — Belgrado
+- `p.your-call.1948-cominform.pov` — Partidos comunistas de la Unión Soviética y sus aliados se reúnen en Bucarest para condenar la «política poco amistosa» de tu partido hacia la Unión Soviética. Tu partido está invitado. Eres el líder de Yugoslavia.
+- `p.your-call.1948-cominform.choice1` — No ir y rechazar las acusaciones
+- `p.your-call.1948-cominform.choice2` — Ir a Bucarest y responder a las acusaciones
+- `p.your-call.1948-cominform.choice3` — Aceptar la crítica y cambiar de rumbo
+- `p.your-call.1948-cominform.short` — Tito
+- `p.your-call.1948-cominform.did` — El partido de Tito se negó a asistir. Cuando la Oficina condenó a sus dirigentes el 28 de junio de 1948, el partido yugoslavo rechazó la crítica.
+- `p.your-call.1948-cominform.next` — La resolución dejó al partido yugoslavo fuera de las filas de la Oficina de Información. Pedía a los «elementos sanos» del partido que reemplazaran a sus dirigentes.
+- `p.your-call.1948-cominform.stamp` — Tito desafía al Cominform
+
+#### 163/168 · `1983-juntas-trial` · day 163 (14 Mar 2027), 331 (29 Aug 2027), 499 (13 Feb 2028), 667 (30 Jul 2028) … · every 168 days
+
+- `p.your-call.1983-juntas-trial.place` — Buenos Aires
+- `p.your-call.1983-juntas-trial.pov` — Acaba de terminar el régimen militar iniciado en 1976. La junta saliente había aprobado una ley que le concedía una amnistía a sí misma. Eres el nuevo presidente de Argentina.
+- `p.your-call.1983-juntas-trial.choice1` — Respetar la amnistía y mirar hacia adelante
+- `p.your-call.1983-juntas-trial.choice2` — Anularla y juzgar a los jefes de la junta
+- `p.your-call.1983-juntas-trial.choice3` — Juzgar a todos los oficiales acusados de delitos
+- `p.your-call.1983-juntas-trial.short` — Alfonsín
+- `p.your-call.1983-juntas-trial.did` — El 13 de diciembre de 1983 Alfonsín firmó el Decreto 158, que ordenaba procesar a los nueve oficiales de las tres primeras juntas. El 29 de diciembre el Congreso anuló la ley de autoamnistía.
+- `p.your-call.1983-juntas-trial.next` — Cuando un tribunal militar se negó a juzgarlos, lo hizo un tribunal civil, desde abril de 1985. Videla y Massera recibieron cadena perpetua; Carlos Menem indultó después a los condenados.
+- `p.your-call.1983-juntas-trial.stamp` — El juicio a las juntas
+
+#### 164/168 · `1871-prefectures` · day 164 (15 Mar 2027), 332 (30 Aug 2027), 500 (14 Feb 2028), 668 (31 Jul 2028) … · every 168 days
+
+- `p.your-call.1871-prefectures.place` — Tokio
+- `p.your-call.1871-prefectures.pov` — En 1869 los señores feudales de Japón entregaron sus tierras al emperador, pero sobreviven 261 dominios, aún dirigidos por sus antiguos señores como gobernadores. Eres un destacado reformador del nuevo gobierno de Japón.
+- `p.your-call.1871-prefectures.choice1` — Dejar a los señores como gobernadores
+- `p.your-call.1871-prefectures.choice2` — Abolir los dominios y crear prefecturas
+- `p.your-call.1871-prefectures.choice3` — Ir quitando los dominios durante muchos años
+- `p.your-call.1871-prefectures.short` — Ōkubo
+- `p.your-call.1871-prefectures.did` — En agosto de 1871 Ōkubo, con la ayuda de Saigō Takamori, impuso un edicto imperial que abolía los dominios. Los reemplazaron prefecturas bajo el gobierno de Tokio.
+- `p.your-call.1871-prefectures.next` — Los antiguos señores pasaron a ser una nobleza con pensión que vivía en Tokio, y el Estado asumió las deudas de los dominios. En 1874 sus estipendios se convirtieron en bonos del gobierno.
+- `p.your-call.1871-prefectures.stamp` — Los dominios pasan a prefecturas
+
+#### 165/168 · `1999-republic-referendum` · day 165 (16 Mar 2027), 333 (31 Aug 2027), 501 (15 Feb 2028), 669 (1 Aug 2028) … · every 168 days
+
+- `p.your-call.1999-republic-referendum.place` — Canberra
+- `p.your-call.1999-republic-referendum.pov` — Prometiste un referéndum si tu convención respaldaba con claridad un modelo republicano. Respaldó un presidente elegido por el Parlamento, por 73 votos contra 57 y con 22 abstenciones. Eres el primer ministro de Australia.
+- `p.your-call.1999-republic-referendum.choice1` — Someter ese modelo a referéndum
+- `p.your-call.1999-republic-referendum.choice2` — Abandonarlo: el apoyo no era claro
+- `p.your-call.1999-republic-referendum.choice3` — Buscar en su lugar un presidente elegido directamente
+- `p.your-call.1999-republic-referendum.short` — Howard
+- `p.your-call.1999-republic-referendum.did` — Howard sometió el modelo a referéndum el 6 de noviembre de 1999, con un presidente nombrado por dos tercios del Parlamento. Una segunda pregunta proponía un nuevo preámbulo.
+- `p.your-call.1999-republic-referendum.next` — Fracasó: el 54,87 % votó No, y ningún estado tuvo mayoría por el Sí. El gobierno de Howard ignoró los llamados a otro referéndum.
+- `p.your-call.1999-republic-referendum.stamp` — El referéndum republicano de Australia
+
+#### 166/168 · `1972-nixon-china` · day 166 (17 Mar 2027), 334 (1 Sep 2027), 502 (16 Feb 2028), 670 (2 Aug 2028) … · every 168 days
+
+- `p.your-call.1972-nixon-china.place` — Washington
+- `p.your-call.1972-nixon-china.pov` — Tu país no tiene relaciones oficiales con la China comunista, pero Mao dice que le agradaría hablar contigo. La guerra de Vietnam se intensifica. Eres el presidente de Estados Unidos.
+- `p.your-call.1972-nixon-china.choice1` — Hablar solo en secreto, mediante enviados
+- `p.your-call.1972-nixon-china.choice2` — Mantener aislada a China, como antes
+- `p.your-call.1972-nixon-china.choice3` — Viajar a China y reunirte tú mismo con Mao
+- `p.your-call.1972-nixon-china.short` — Nixon
+- `p.your-call.1972-nixon-china.did` — Nixon anunció por televisión en directo el 15 de julio de 1971 que iría. Del 21 al 28 de febrero de 1972 visitó China y se reunió con Mao, el primer presidente estadounidense en hacerlo en ejercicio del cargo.
+- `p.your-call.1972-nixon-china.next` — Nixon lo llamó «la semana que cambió el mundo». Estados Unidos dijo que retiraría de Taiwán sus tropas restantes, y las relaciones diplomáticas formales llegaron en 1979.
+- `p.your-call.1972-nixon-china.stamp` — Nixon viaja a China
+
+#### 167/168 · `1990-zambia-multiparty` · day 167 (18 Mar 2027), 335 (2 Sep 2027), 503 (17 Feb 2028), 671 (3 Aug 2028) … · every 168 days
+
+- `p.your-call.1990-zambia-multiparty.place` — Lusaka
+- `p.your-call.1990-zambia-multiparty.pov` — El tuyo es el único partido legal. Tras tres días de disturbios en Lusaka y un golpe fallido, la oposición exige el multipartidismo. Está previsto un referéndum al respecto. Eres el presidente de Zambia.
+- `p.your-call.1990-zambia-multiparty.choice1` — Celebrar el referéndum previsto
+- `p.your-call.1990-zambia-multiparty.choice2` — Cancelarlo y legalizar otros partidos
+- `p.your-call.1990-zambia-multiparty.choice3` — Negarte: mantener el Estado de partido único
+- `p.your-call.1990-zambia-multiparty.short` — Kaunda
+- `p.your-call.1990-zambia-multiparty.did` — En septiembre de 1990 Kaunda canceló el referéndum y apoyó enmiendas que ponían fin al monopolio de su partido. También adelantó a 1991 las elecciones de 1993.
+- `p.your-call.1990-zambia-multiparty.next` — El 31 de octubre de 1991 perdió por un amplio margen ante Frederick Chiluba, cuyo partido ganó 125 de los 150 escaños. Kaunda aceptó el resultado y se retiró.
+- `p.your-call.1990-zambia-multiparty.stamp` — Zambia adopta el multipartidismo
+
+#### 168/168 · `1989-hungary-border` · day 168 (19 Mar 2027), 336 (3 Sep 2027), 504 (18 Feb 2028), 672 (4 Aug 2028) … · every 168 days
+
+- `p.your-call.1989-hungary-border.place` — Budapest
+- `p.your-call.1989-hungary-border.pov` — Miles de alemanes orientales están en tu país con la esperanza de huir a Occidente por Austria. Dejarlos ir enfurecería a Alemania Oriental y a los duros de Moscú. Eres el primer ministro de Hungría.
+- `p.your-call.1989-hungary-border.choice1` — Devolverlos a Alemania Oriental
+- `p.your-call.1989-hungary-border.choice2` — Mantener cerrada la frontera por ahora
+- `p.your-call.1989-hungary-border.choice3` — Abrir la frontera y dejarlos marchar
+- `p.your-call.1989-hungary-border.short` — Németh
+- `p.your-call.1989-hungary-border.did` — Németh dijo en secreto al canciller de Alemania Occidental, Helmut Kohl, que Hungría abriría su frontera. Lo hizo en la noche del 10 al 11 de septiembre de 1989, sin pedir nada a cambio.
+- `p.your-call.1989-hungary-border.next` — Más de 10 000 alemanes orientales salieron por Austria en las primeras 24 horas. El 9 de noviembre se abrieron las puertas a Berlín Occidental.
+- `p.your-call.1989-hungary-border.stamp` — Hungría abre su frontera
+
 ## U. Doubts for Khayyam
 
 - p.your-call.1215-magna-carta.short — Juan sin Tierra . Second option: Juan (as in the did line). Spanish usually says «Juan sin Tierra» for the king of England in 1215.
@@ -1098,3 +2036,25 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - p.your-call.1946-nhs.pov — Eres el ministro de Salud. Second option: ministro de Sanidad. «Sanidad» is Spain's word; «Salud» is understood everywhere.
 - p.your-call.1971-gold.choice2 — Subir las tasas de interés para defender el dólar. Second option: tipos de interés. «Tasas» is Latin American; «tipos» is Spain's word.
 - p.your-call.1983-petrov.pov — la pantalla muestra «LANZAMIENTO». Second option: «LAUNCH» left in English, as on the original screen's report in English sources.
+
+### Added on 30 October 2026, with the new puzzles
+
+- p.your-call.1564-jizya.pov — "…cobran a los no musulmanes la yizia, un impuesto que se paga en lugar del servicio militar"; second option "la jizya", as in English. Spanish sources write yizia, yizya and jizya; I used "yizia" in every 1564-jizya line.
+- p.your-call.1982-falklands.pov — "…ocuparon Puerto Stanley, la capital de las islas Malvinas, un territorio británico…"; second option "islas Malvinas (Falkland)" and "Puerto Argentino". Spanish uses "Malvinas" for the islands, and the name is sensitive, so please check you are happy with it (also used in the next line).
+- p.your-call.1982-falklands.choice3 — "Enviar una fuerza naval a recuperarlas"; second option "Enviar una flota a recuperarlas". "Fuerza de tareas" is the literal "task force" but sounds technical for a 12-year-old.
+- p.your-call.2000-pyongyang.pov — "Tu Política del Sol busca el acercamiento con Corea del Norte"; second option "Política del Rayo de Sol". Both names are used in Spanish for the Sunshine Policy.
+- p.your-call.2000-pyongyang.choice3 — "Viajar a Pionyang y reunirte con Kim Jong-il"; second option "Kim Jong Il" (English spelling). I used the hyphen that Spanish press uses, like "Kim Dae-jung".
+- p.your-call.2003-congestion-charge.stamp — "El peaje urbano de Londres"; second option "La tasa de congestión de Londres". "Peaje" is simpler for a young player; the other is the official-sounding name.
+- p.your-call.1947-womens-vote.did — "…se convirtió en la Ley 13 010 el 23 de septiembre"; second option "Ley 13.010", the way Argentines write it. I followed the site's space separator.
+- p.your-call.1990-batmonkh.pov — "Unos huelguistas de hambre en la plaza de Sujbaatar…"; second option "plaza Sükhbaatar". No settled Spanish spelling for the square.
+- p.your-call.2003-rose-revolution.next — "Nino Burdjanadze"; second option "Nino Burdzhanadze" or "Burjanadze". Spanish press and Wikipedia differ.
+- p.your-call.2003-rose-revolution.place — "Tiflis"; second option "Tbilisi". Spanish dictionaries prefer Tiflis, but the press now often writes Tbilisi.
+- p.your-call.1983-rigueur.did — "…hizo el «tournant de la rigueur», el giro hacia la austeridad"; second option "el «giro de la austeridad»" with no French. I kept the French phrase as the English does and added a short gloss so a 12-year-old understands.
+- p.your-call.1983-rigueur.choice1 — "Salir del SME y mantener el gasto"; second option "Salir del Sistema Monetario Europeo y mantener el gasto". The abbreviation keeps the three choices equally long; the full name appears in the did line, as in English.
+- p.your-call.1923-ankara.did — "…propuesta por İsmet Pasha…"; second option "İsmet Paşa" or "Ismet Inönü". I kept the English spelling of the name.
+- p.your-call.1994-real-plan.did — "una unidad de cuenta que no era dinero de verdad, la URV"; second option "una moneda no monetaria". I explained "non-monetary currency" in plain words.
+- p.your-call.1991-yeltsin-tank.did — "Yeltsin fue a la Casa Blanca rusa…"; second option "la «Casa Blanca» (el edificio del Parlamento ruso)". English gives no gloss; "rusa" stops readers thinking of Washington.
+- p.your-call.1948-cominform.did — "Cuando la Oficina condenó a sus dirigentes…" (next line: "Oficina de Información"); second option "el Buró de Información (Cominform)". Both names exist in Spanish.
+- p.your-call.1983-franklin-dam.did — "Ley de Conservación de Bienes del Patrimonio Mundial de 1983… ante el Tribunal Superior"; second option "Alta Corte" or "Tribunal Supremo". The law has no settled Spanish name, and the High Court of Australia is called Tribunal Superior or Alta Corte.
+- p.your-call.1840-waitangi.pov — "Eres el nuevo teniente gobernador británico"; second option "vicegobernador". Both are used for lieutenant-governor.
+- p.your-call.1953-prisoner-release.short — "Rhee"; second option "Syngman Rhee". Spanish usually gives the full name, but the short form matches the other puzzles.

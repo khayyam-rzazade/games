@@ -2,7 +2,7 @@
 
 The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by day) were moved here on 29 October 2026 by claude/logicers-data/scripts/migrate_overlays.py, word for word, under the id of the puzzle each day played; nothing else changed. New puzzles go under their own heading, as in the English doc, with their id in the key. The doubts of the first batch stay in section U of claude/logicers-strings-tr.md.
 
-## The puzzles of Every Beat (57 of 57 translated)
+## The puzzles of Every Beat (111 of 111 translated)
 
 #### 1/57 · `blue-whale-dive` · day 1 (9 Oct 2026), 58 (5 Dec 2026), 115 (31 Jan 2027), 172 (29 Mar 2027) … · every 57 days
 
@@ -403,6 +403,384 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.every-beat.foal-rest.sentence` — Yeni doğmuş bir tayın kalbi dakikada 80 ila 120 kez atar; yetişkin bir atın 28 ila 40 atışından çok daha hızlı.
 - `p.every-beat.foal-rest.note` — Yeni doğmuş tayların değerleri. Texas A&M Üniversitesi kılavuzuna göre daha büyük taylarda 60 ila 80'e, bir yaşındakilerde 40 ila 60'a yavaşlar.
 
+#### 58/111 · `chipmunk-hibernating` · day 58 (5 Dec 2026), 169 (26 Mar 2027), 280 (15 Jul 2027), 391 (3 Nov 2027) … · every 111 days
+
+- `p.every-beat.chipmunk-hibernating.face` — Çizgili sincap
+- `p.every-beat.chipmunk-hibernating.label` — kış uykusundayken
+- `p.every-beat.chipmunk-hibernating.sentence` — Kış uykusundaki bir çizgili sincabın kalbi dakikada yaklaşık 350 atıştan 10'un altına yavaşlar, bazen yaklaşık dört atışa kadar.
+- `p.every-beat.chipmunk-hibernating.note` — Kışın çizgili sincaplar, Ontario Parks blogundan ve Northern Woodlands dergisinden: popüler sayfalar; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+
+#### 59/111 · `teen-rest` · day 59 (6 Dec 2026), 170 (27 Mar 2027), 281 (16 Jul 2027), 392 (4 Nov 2027) … · every 111 days
+
+- `p.every-beat.teen-rest.face` — Ergen
+- `p.every-beat.teen-rest.label` — dinlenirken
+- `p.every-beat.teen-rest.sentence` — Ergenliğin başında dinlenen bir kalp dakikada 60 ila 100 kez atar; bu, bir yetişkininkiyle aynı aralıktır.
+- `p.every-beat.teen-rest.note` — Cleveland Clinic, uyanık ve egzersiz yapmayan 13 ila 17 yaşlar için 60 ila 100 veriyor; PALS tabloları 12 ila 15 yaş için aynısını veriyor.
+
+#### 60/111 · `calf-rest` · day 60 (7 Dec 2026), 171 (28 Mar 2027), 282 (17 Jul 2027), 393 (5 Nov 2027) … · every 111 days
+
+- `p.every-beat.calf-rest.face` — Buzağı
+- `p.every-beat.calf-rest.label` — dinlenirken
+- `p.every-beat.calf-rest.sentence` — Bir buzağının kalbi dakikada 100 ila 140 kez atar; yetişkin bir ineğinkinin yaklaşık iki katı.
+- `p.every-beat.calf-rest.note` — Yaşı belirtilmemiş buzağılar için normal aralık, Kaliforniya Üniversitesi, Davis'in veteriner acil ekibinden; aynı aralık, sığır veterinerlerine yönelik bir meslek dergisi olan Bovine Veterinarian'da da yer alıyor.
+
+#### 61/111 · `weddell-seal-dive` · day 61 (8 Dec 2026), 172 (29 Mar 2027), 283 (18 Jul 2027), 394 (6 Nov 2027) … · every 111 days
+
+- `p.every-beat.weddell-seal-dive.face` — Weddell foku
+- `p.every-beat.weddell-seal-dive.label` — dalarken
+- `p.every-beat.weddell-seal-dive.sentence` — Antarktika buzunun altında avlanırken bir Weddell fokunun kalbi dakikada yalnızca 10 ila 20 kez atar; kovalamacada biraz daha hızlı.
+- `p.every-beat.weddell-seal-dive.note` — McMurdo Boğazı'nda kalp izleyicisi takılan üç yabani erkek (Williams ve ark., 2015): aşağı süzülürken yaklaşık 15, balık kovalarken 20, 268 m'lik bir dalışta en düşük 10,8. Resimde aynı aileden bir gri fok görünüyor.
+
+#### 62/111 · `tufted-duck-dive` · day 62 (9 Dec 2026), 173 (30 Mar 2027), 284 (19 Jul 2027), 395 (7 Nov 2027) … · every 111 days
+
+- `p.every-beat.tufted-duck-dive.face` — Tepeli patka
+- `p.every-beat.tufted-duck-dive.label` — dalarken
+- `p.every-beat.tufted-duck-dive.sentence` — Kısa bir beslenme dalışında tepeli patkanın kalbi dakikada yaklaşık 180 atışta sabitlenir; dinlendiği zamankinden daha hızlı.
+- `p.every-beat.tufted-duck-dive.note` — Yem için dalmak üzere eğitilmiş, isteyerek dalan ördekler: yaklaşık 185 (1986); dinlenirkenki 112'nin %60 üzerinde (1992), ki bu yaklaşık 179 eder. Resimde, aynı aileden, Kayıp Kuzen'deki ördek (bir yeşilbaş) görünüyor.
+
+#### 63/111 · `echidna-rest` · day 63 (10 Dec 2026), 174 (31 Mar 2027), 285 (20 Jul 2027), 396 (8 Nov 2027) … · every 111 days
+
+- `p.every-beat.echidna-rest.face` — Ekidna
+- `p.every-beat.echidna-rest.label` — dinlenirken
+- `p.every-beat.echidna-rest.sentence` — Dinlenen bir ekidnanın kalbi dakikada 50 ila 68 kez atar; kış uykusunda yalnızca dörde düşebilir.
+- `p.every-beat.echidna-rest.note` — Dinlenen kısa gagalı ekidnalar; iki kaynağın da dayandığı tek bir eserden (Augee, Gooden ve Musser, 2006). Hareketliyken hayvanat bahçesinin bilgi sayfası 135 ila 145 veriyor.
+
+#### 64/111 · `king-penguin-dive` · day 64 (11 Dec 2026), 175 (1 Apr 2027), 286 (21 Jul 2027), 397 (9 Nov 2027) … · every 111 days
+
+- `p.every-beat.king-penguin-dive.face` — Kral penguen
+- `p.every-beat.king-penguin-dive.label` — dalarken
+- `p.every-beat.king-penguin-dive.sentence` — Dalarken bir kral penguenin kalbi dakikada yaklaşık 87 kez atar; suda dinlendiği zamankinden daha yavaş.
+- `p.every-beat.king-penguin-dive.note` — Kalp hızı kaydedicileri takılı, serbest dolaşan kral penguenler (Froget ve ark., 2004): karadakiyle yaklaşık aynı. Resimde aynı cinsten bir imparator penguen görünüyor.
+
+#### 65/111 · `marmot-hibernating` · day 65 (12 Dec 2026), 176 (2 Apr 2027), 287 (22 Jul 2027), 398 (10 Nov 2027) … · every 111 days
+
+- `p.every-beat.marmot-hibernating.face` — Alp marmotu
+- `p.every-beat.marmot-hibernating.label` — kış uykusundayken
+- `p.every-beat.marmot-hibernating.sentence` — Kış uykusundaki bir Alp marmotunun kalbi, yer altında diğerleriyle birbirine sokulmuşken dakikada yalnızca üç ila beş kez atar.
+- `p.every-beat.marmot-hibernating.note` — Yalnızca popüler sayfalar (Vikipedi ve İtalya'daki Dolomitler'de yaşayan marmotlar üzerine Awake!); rakamı veren bir çalışma bulunamadı. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+
+#### 66/111 · `toddler-awake` · day 66 (13 Dec 2026), 177 (3 Apr 2027), 288 (23 Jul 2027), 399 (11 Nov 2027) … · every 111 days
+
+- `p.every-beat.toddler-awake.face` — Yeni yürüyen çocuk
+- `p.every-beat.toddler-awake.label` — uyanıkken
+- `p.every-beat.toddler-awake.sentence` — Uyanıkken yeni yürüyen bir çocuğun kalbi dakikada 98 ila 140 kez atar; dinlenen bir yetişkininkinden çok daha hızlı.
+- `p.every-beat.toddler-awake.note` — 1 ila 3 yaş (Cleveland Clinic) ya da 1 ila 2 yaş (PALS tabloları) çocuklar için normal aralık, uyanık ve egzersiz yapmıyorken. Uykuda tablolar 80 ila 120 veriyor.
+
+#### 67/111 · `buffalo-awake` · day 67 (14 Dec 2026), 178 (4 Apr 2027), 289 (24 Jul 2027), 400 (12 Nov 2027) … · every 111 days
+
+- `p.every-beat.buffalo-awake.face` — Manda
+- `p.every-beat.buffalo-awake.label` — uyanıkken
+- `p.every-beat.buffalo-awake.sentence` — Yetişkin bir mandanın kalbi dakikada yaklaşık 47 ila 57 kez atar ve manda yaşlandıkça yavaşlar.
+- `p.every-beat.buffalo-awake.note` — Veterinerlerin saymaları: Kolombiya'da yetişkinlerde 54 ila 57 (2012, bir tutma kafesinde tutulurken), Brezilya'da dört yetişkinde 47 ila 52 ortalamalar (2025). Resimde aynı aileden (Bovidae) bir inek görünüyor.
+
+#### 68/111 · `harbour-seal-dive` · day 68 (15 Dec 2026), 179 (5 Apr 2027), 290 (25 Jul 2027), 401 (13 Nov 2027) … · every 111 days
+
+- `p.every-beat.harbour-seal-dive.face` — Adi fok
+- `p.every-beat.harbour-seal-dive.label` — dalarken
+- `p.every-beat.harbour-seal-dive.sentence` — Dalan bir adi fokun kalbi dakikada 35 ila 40 atışa yavaşlar; denizde serbest dalışlarda 40, yüzeydeki hızının üçte biri.
+- `p.every-beat.harbour-seal-dive.note` — Denizdeki serbest dalışlarda 40, radyo ve akustik telemetriyle (Fedak ve ark., 1988); bir laboratuvarda tutulup suya batırılan eğitilmiş foklarda 35 (Jobsis ve ark., 2001). Resimde aynı aileden bir gri fok görünüyor.
+
+#### 69/111 · `lion-awake` · day 69 (16 Dec 2026), 180 (6 Apr 2027), 291 (26 Jul 2027), 402 (14 Nov 2027) … · every 111 days
+
+- `p.every-beat.lion-awake.face` — Aslan
+- `p.every-beat.lion-awake.label` — uyanıkken
+- `p.every-beat.lion-awake.sentence` — Doğadaki bir aslanın kalbi dakikada yaklaşık 70 kez atar; dinlenen bir insanınkine çok benzer, geceleri ise daha hızlı.
+- `p.every-beat.lion-awake.note` — Afrika'da bilinci açık, serbest dolaşan yabani aslanlardan alınan EKG'lerin ortalaması (tek bir çalışma: Scharling ve ark., 2024). Resimde aynı aileden (Felidae) bir ev kedisi görünüyor.
+
+#### 70/111 · `chinese-goose-awake` · day 70 (17 Dec 2026), 181 (7 Apr 2027), 292 (27 Jul 2027), 403 (15 Nov 2027) … · every 111 days
+
+- `p.every-beat.chinese-goose-awake.face` — Çin kazı
+- `p.every-beat.chinese-goose-awake.label` — uyanıkken
+- `p.every-beat.chinese-goose-awake.sentence` — Sakin bir Çin kazının kalbi dakikada yaklaşık 140 kez atar; bu, göç eden yabani bir kazın kalp hızının yarısından azdır.
+- `p.every-beat.chinese-goose-awake.note` — Hafif bir bezle sarılı, sessiz ve rahat, uyanık 24 yetişkin kaz (Kaya ve Çenesiz, 2018): 103 ila 203, ortalama 142. Resimde aynı aileden bir yeşilbaş ördek görünüyor.
+
+#### 71/111 · `axolotl-rest` · day 71 (18 Dec 2026), 182 (8 Apr 2027), 293 (28 Jul 2027), 404 (16 Nov 2027) … · every 111 days
+
+- `p.every-beat.axolotl-rest.face` — Aksolot
+- `p.every-beat.axolotl-rest.label` — dinlenirken
+- `p.every-beat.axolotl-rest.sentence` — 20 °C'lik suda dinlenen bir aksolotun kalbi dakikada yalnızca yaklaşık 25 kez atar; 10 °C'de yaklaşık 13.
+- `p.every-beat.axolotl-rest.note` — Bir hamakta sakinleşmiş, uyuşturulmamış aksolotlar (Dittrich ve ark., Metabolites, 2026): 20 °C'de 24,9, 10 °C'de 13,1. Ortak yazarlı 2022 tarihli bir çalışma: 22, sıcaklık belirtilmemiş.
+
+#### 72/111 · `groundhog-hibernating` · day 72 (19 Dec 2026), 183 (9 Apr 2027), 294 (29 Jul 2027), 405 (17 Nov 2027) … · every 111 days
+
+- `p.every-beat.groundhog-hibernating.face` — Marmot
+- `p.every-beat.groundhog-hibernating.label` — kış uykusundayken
+- `p.every-beat.groundhog-hibernating.sentence` — Kış uykusundaki bir marmotun kalbi dakikada yalnızca dört ya da beş atışa yavaşlar ve dakikada yalnızca bir ya da iki kez nefes alabilir.
+- `p.every-beat.groundhog-hibernating.note` — Kışın doğadaki marmotlar (woodchuck), Missouri eyaletinin yaban hayatı dergisinden ve PBS Nature'dan; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+
+#### 73/111 · `pregnant-rest` · day 73 (20 Dec 2026), 184 (10 Apr 2027), 295 (30 Jul 2027), 406 (18 Nov 2027) … · every 111 days
+
+- `p.every-beat.pregnant-rest.face` — Anne adayı
+- `p.every-beat.pregnant-rest.label` — dinlenirken
+- `p.every-beat.pregnant-rest.sentence` — Gebeliğin sonlarında bir anne adayının kalbi dakikada yaklaşık 76 ila 91 kez atar; gebe kalmadan öncekinden daha hızlı.
+- `p.every-beat.pregnant-rest.note` — Medyanlar: Birleşik Krallık'taki üç merkezde kontrollerde 34. haftada 91 (Oxford, 2020; dinlenirken olduğu belirtilmemiş); Apple Watch ile son üç ayda dinlenirken 75,5, gebelikten önce 65.
+
+#### 74/111 · `sheep-rest` · day 74 (21 Dec 2026), 185 (11 Apr 2027), 296 (31 Jul 2027), 407 (19 Nov 2027) … · every 111 days
+
+- `p.every-beat.sheep-rest.face` — Koyun
+- `p.every-beat.sheep-rest.label` — dinlenirken
+- `p.every-beat.sheep-rest.sentence` — Dinlenen bir koyunun kalbi dakikada yaklaşık 60 ila 90 kez atar; dinlenen bir insanınkine çok benzer.
+- `p.every-beat.sheep-rest.note` — Normal dinlenme hızları: MSD Veteriner El Kitabı'nda 70 ila 80, Virginia Tech'in kılavuzunda koyun ve keçiler için 60 ila 90. Resimde aynı aileden (Bovidae) bir inek görünüyor.
+
+#### 75/111 · `tent-bat-flight` · day 75 (22 Dec 2026), 186 (12 Apr 2027), 297 (1 Aug 2027), 408 (20 Nov 2027) … · every 111 days
+
+- `p.every-beat.tent-bat-flight.face` — Çadır yapan yarasa
+- `p.every-beat.tent-bat-flight.label` — uçarken
+- `p.every-beat.tent-bat-flight.sentence` — Uçarken çadır yapan bir yarasanın kalbi ortalama dakikada yaklaşık 770 kez atar ve 900'ü geçebilir; gündüz dinlenirken yaklaşık 200'e düşer.
+- `p.every-beat.tent-bat-flight.note` — Panama'nın Gamboa kasabasında, minik kalp hızı vericileri takılan dört yabani yarasa (eLife, 2017); en yüksek hız 1.066. İki sayfa da aynı ekibe ait. Resimdeki vampir yarasa aynı aileden.
+
+#### 76/111 · `manatee-dive` · day 76 (23 Dec 2026), 187 (13 Apr 2027), 298 (2 Aug 2027), 409 (21 Nov 2027) … · every 111 days
+
+- `p.every-beat.manatee-dive.face` — Manati
+- `p.every-beat.manatee-dive.label` — dalarken
+- `p.every-beat.manatee-dive.sentence` — Uzun bir dalışta bir manatinin kalbi dakikada yaklaşık 30 atışa yavaşlar; dalmıyorken 50 ila 60.
+- `p.every-beat.manatee-dive.note` — Florida'nın yaban hayatı kurumunun bilgi sayfasından ve popüler bir fotoğraf sitesinden; ikisi de bir çalışma belirtmiyor. Resimde aynı cinsten bir Batı Afrika manatisi görünüyor.
+
+#### 77/111 · `hummingbird-awake` · day 77 (24 Dec 2026), 188 (14 Apr 2027), 299 (3 Aug 2027), 410 (22 Nov 2027) … · every 111 days
+
+- `p.every-beat.hummingbird-awake.face` — Sinek kuşu
+- `p.every-beat.hummingbird-awake.label` — uyanıkken
+- `p.every-beat.hummingbird-awake.sentence` — Sıcak havada uyanık bir sinek kuşunun kalbi, en sakinken bile dakikada yaklaşık 420 ila 510 kez atar; soğuk havada 1.000'i aşar.
+- `p.every-beat.hummingbird-awake.note` — Torpor halinde olmayan, karanlık bir odada kısıtlayıcı bir yelekle tutulan sinek kuşlarının en düşük hızları (Lasiewski, 1964 ve 1967). 1964 tarihli makale, bir hobi sitesindeki kopyasından okundu.
+
+#### 78/111 · `fin-whale-dive` · day 78 (25 Dec 2026), 189 (15 Apr 2027), 300 (4 Aug 2027), 411 (23 Nov 2027) … · every 111 days
+
+- `p.every-beat.fin-whale-dive.face` — Fin balinası
+- `p.every-beat.fin-whale-dive.label` — dalarken
+- `p.every-beat.fin-whale-dive.sentence` — Fransa açıklarında dalan yabani bir fin balinasının kalbi dakikada yaklaşık 5 atışa yavaşladı; nefes almaya çıktığında yaklaşık 25'ti.
+- `p.every-beat.fin-whale-dive.note` — Ağustos 2025'te Fransa açıklarında bir CNRS ekibi tarafından işaretlenen tek bir fin balinası: ilk analizler, henüz yayımlanmadı. Resimde aynı aileden bir mavi balina görünüyor.
+
+#### 79/111 · `greyhound-fastest` · day 79 (26 Dec 2026), 190 (16 Apr 2027), 301 (5 Aug 2027), 412 (24 Nov 2027) … · every 111 days
+
+- `p.every-beat.greyhound-fastest.face` — Greyhound
+- `p.every-beat.greyhound-fastest.label` — en hızlıyken
+- `p.every-beat.greyhound-fastest.sentence` — Tam hızla koşan bir yarış greyhound'unun kalbi dakikada yaklaşık 318 atışa çıkar. Uyurken en düşük ortalaması yalnızca 42'ydi.
+- `p.every-beat.greyhound-fastest.note` — 30 saniyelik koşulardaki yarış greyhound'ları: 318, artı eksi 18 (Murdoch Üniversitesi tezi, 1984). Uykudaki 42 yalnızca bu tezde var. 2019 tarihli bir ders 318'i tekrarlıyor.
+
+#### 80/111 · `preschooler-awake` · day 80 (27 Dec 2026), 191 (17 Apr 2027), 302 (6 Aug 2027), 413 (25 Nov 2027) … · every 111 days
+
+- `p.every-beat.preschooler-awake.face` — Okul öncesi çocuk
+- `p.every-beat.preschooler-awake.label` — uyanıkken
+- `p.every-beat.preschooler-awake.sentence` — Uyanıkken 3 ila 5 yaşındaki bir çocuğun kalbi dakikada 80 ila 120 kez atar; yeni yürüyen bir çocuğunkinden zaten daha yavaş.
+- `p.every-beat.preschooler-awake.note` — 3 ila 5 yaş çocukları için normal aralık, uyanık ve egzersiz yapmıyorken (Cleveland Clinic; PALS tabloları). Uykuda tablolar 65 ila 100 veriyor.
+
+#### 81/111 · `chimp-awake` · day 81 (28 Dec 2026), 192 (18 Apr 2027), 303 (7 Aug 2027), 414 (26 Nov 2027) … · every 111 days
+
+- `p.every-beat.chimp-awake.face` — Şempanze
+- `p.every-beat.chimp-awake.label` — uyanıkken
+- `p.every-beat.chimp-awake.sentence` — Uyanıkken erkek bir şempanzenin kalbi ortalama dakikada 86,5 kez atar; dişininki ise 106,4, yani insanlardaki gibi daha hızlı.
+- `p.every-beat.chimp-awake.note` — Anestezisiz, göğüslerine elektrot takılmasını kabul edecek şekilde eğitilmiş 35 esir şempanzenin EKG'leri (Kyoto Üniversitesi, Primates 2024). Bakıcının varlığı hızı yükseltmiş olabilir.
+
+#### 82/111 · `green-turtle-rest` · day 82 (29 Dec 2026), 193 (19 Apr 2027), 304 (8 Aug 2027), 415 (27 Nov 2027) … · every 111 days
+
+- `p.every-beat.green-turtle-rest.face` — Yeşil deniz kaplumbağası
+- `p.every-beat.green-turtle-rest.label` — dinlenirken
+- `p.every-beat.green-turtle-rest.sentence` — Dinlenen bir yeşil deniz kaplumbağasının kalbi dakikada yalnızca yaklaşık 9 ila 12 kez atar; bu, Japonya'da doğadan yakalanan kaplumbağalarda ölçüldü.
+- `p.every-beat.green-turtle-rest.note` — Japonya'daki yeşil deniz kaplumbağaları: yaklaşık 23 °C'de 8,6 (Saito ve ark., 2025) ve büyük bir tankta 28 ila 30 °C'de 10,9 ila 11,9 (bir ön baskı).
+
+#### 83/111 · `orangutan-awake` · day 83 (30 Dec 2026), 194 (20 Apr 2027), 305 (9 Aug 2027), 416 (28 Nov 2027) … · every 111 days
+
+- `p.every-beat.orangutan-awake.face` — Orangutan
+- `p.every-beat.orangutan-awake.label` — uyanıkken
+- `p.every-beat.orangutan-awake.sentence` — Yetişkin bir orangutanın kalbi dakikada yaklaşık 93 kez atar; dördü, kalp taraması için göğüslerini uzatmak üzere eğitildi.
+- `p.every-beat.orangutan-awake.note` — Paris'teki bir hayvanat bahçesinde, anestezisiz ultrasonla taranan dört yetişkin Borneo orangutanı (PLOS ONE, 2022): ortalama 93, aralık 76 ila 118.
+
+#### 84/111 · `mussel-rest` · day 84 (31 Dec 2026), 195 (21 Apr 2027), 306 (10 Aug 2027), 417 (29 Nov 2027) … · every 111 days
+
+- `p.every-beat.mussel-rest.face` — Mavi midye
+- `p.every-beat.mussel-rest.label` — dinlenirken
+- `p.every-beat.mussel-rest.sentence` — Midyenin de kalbi vardır: 10 °C'lik deniz suyunda dakikada yalnızca 14 ila 18 kez atar; seninkinden çok daha yavaş.
+- `p.every-beat.mussel-rest.note` — 10 °C'lik tanklardaki mavi midyeler, kalbin üzerine yapıştırılmış bir kızılötesi sensörle okundu (Bakhmet ve ark., 2021 ve 2013). Tuzluluktaki ani bir değişiklik, kalp etkinliğini 12 saat içinde beşte birine düşürdü.
+
+#### 85/111 · `brown-bear-hibernating` · day 85 (1 Jan 2027), 196 (22 Apr 2027), 307 (11 Aug 2027), 418 (30 Nov 2027) … · every 111 days
+
+- `p.every-beat.brown-bear-hibernating.face` — Boz ayı
+- `p.every-beat.brown-bear-hibernating.label` — kış uykusundayken
+- `p.every-beat.brown-bear-hibernating.sentence` — Kış uykusundayken ve kalp taraması için uyuşturulmuşken bir boz ayının kalbi dakikada yaklaşık 26 kez attı; bu, yaz hızının üçte biri.
+- `p.every-beat.brown-bear-hibernating.note` — İsveç'teki yabani boz ayılar, kış uykusunda anestezi altında tek bir araştırma grubu tarafından ölçüldü (2014, 2020). Resimde Kayıp Kuzen'deki ayı, bir grizzly görünüyor; aynı tür.
+
+#### 86/111 · `donkey-rest` · day 86 (2 Jan 2027), 197 (23 Apr 2027), 308 (12 Aug 2027), 419 (1 Dec 2027) … · every 111 days
+
+- `p.every-beat.donkey-rest.face` — Eşek
+- `p.every-beat.donkey-rest.label` — dinlenirken
+- `p.every-beat.donkey-rest.sentence` — Dinlenen bir eşeğin kalbi dakikada 36 ila 52 kez atar; bir atınkinden biraz daha hızlı. 52'nin üzerindeki hız stres ya da ağrıya işaret eder.
+- `p.every-beat.donkey-rest.note` — Yetişkin eşekler: Donkey Sanctuary'nin veterinerleri (ortalama 44) ve Donkey Sanctuary'ye bağlantı veren Penn State Extension. Resimde aynı aileden bir at görünüyor.
+
+#### 87/111 · `adult-fastest` · day 87 (3 Jan 2027), 198 (24 Apr 2027), 309 (13 Aug 2027), 420 (2 Dec 2027) … · every 111 days
+
+- `p.every-beat.adult-fastest.face` — Yetişkin
+- `p.every-beat.adult-fastest.label` — en hızlıyken
+- `p.every-beat.adult-fastest.sentence` — Tüm gücüyle koşan 50 yaşındaki birinin kalbi dakikada yaklaşık 170 atışa ulaşabilir; 20 yaşındakinin yaklaşık 200.
+- `p.every-beat.adult-fastest.note` — Ölçüm değil, formülle (220 eksi yaş) yapılmış bir tahmin; Amerikan Kalp Derneği rakamlarına ortalamalar diyor ve genel bir rehber olarak kullanılmasını söylüyor.
+
+#### 88/111 · `echidna-hibernating` · day 88 (4 Jan 2027), 199 (25 Apr 2027), 310 (14 Aug 2027), 421 (3 Dec 2027) … · every 111 days
+
+- `p.every-beat.echidna-hibernating.face` — Ekidna
+- `p.every-beat.echidna-hibernating.label` — kış uykusundayken
+- `p.every-beat.echidna-hibernating.sentence` — Kış uykusundaki bir ekidnanın kalbi dakikada yalnızca dört ila yedi kez atar; dinlenirken bu, 50 ila 68'dir.
+- `p.every-beat.echidna-hibernating.note` — Kısa gagalı ekidnalar. İki sayfa da tek bir kitaba dayanıyor (Augee ve ark., 2006). Vücudu yaklaşık 4 °C'ye kadar soğuyabilir.
+
+#### 89/111 · `adelie-rest` · day 89 (5 Jan 2027), 200 (26 Apr 2027), 311 (15 Aug 2027), 422 (4 Dec 2027) … · every 111 days
+
+- `p.every-beat.adelie-rest.face` — Adélie pengueni
+- `p.every-beat.adelie-rest.label` — dinlenirken
+- `p.every-beat.adelie-rest.sentence` — Dinlenen bir Adélie pengueninin kalbi dakikada yaklaşık 70 ila 92 kez atar: oturan kuşun altındaki sahte bir yumurta bunu kaydetti.
+- `p.every-beat.adelie-rest.note` — Yumurtalarının üzerinde rahat yatan Adélie penguenleri, yapay bir yumurtayla kaydedildi (J. Field Ornithol., 1999); bir Japon çalışmasında dinlenirken 74,9. Resimde aynı aileden bir imparator penguen görünüyor.
+
+#### 90/111 · `kitten-awake` · day 90 (6 Jan 2027), 201 (27 Apr 2027), 312 (16 Aug 2027), 423 (5 Dec 2027) … · every 111 days
+
+- `p.every-beat.kitten-awake.face` — Yenidoğan yavru kedi
+- `p.every-beat.kitten-awake.label` — uyanıkken
+- `p.every-beat.kitten-awake.sentence` — Yenidoğan bir yavru kedinin kalbi dakikada yaklaşık 190 ila 260 kez atar ve bu hızı ilk ay boyunca korur.
+- `p.every-beat.kitten-awake.note` — İlk 30 gün boyunca, sakinleştirici verilmemiş, yan yatırılıp bantla yerinde tutulan 30 yenidoğan yavru kedinin kalp kayıtları (Can. Vet. J., 2003); bir kedi uzmanının notları yenidoğanlar için 220 ila 260 veriyor.
+
+#### 91/111 · `beluga-dive` · day 91 (7 Jan 2027), 202 (28 Apr 2027), 313 (17 Aug 2027), 424 (6 Dec 2027) … · every 111 days
+
+- `p.every-beat.beluga-dive.face` — Beluga
+- `p.every-beat.beluga-dive.label` — dalarken
+- `p.every-beat.beluga-dive.sentence` — Dalışta bir beluga balinasının kalbi, oksijen tasarrufu için dakikada yaklaşık 100 atıştan yalnızca 12 ila 20 atışa yavaşlar.
+- `p.every-beat.beluga-dive.note` — Genel olarak belugalar. SeaWorld bir çalışma belirtmiyor; Vikipedi aynı rakamlar için Ridgway'in bir eserine atıf yapıyor, yani ikisi de tek bir kaynağa dayanıyor olabilir.
+
+#### 92/111 · `asian-elephant-awake` · day 92 (8 Jan 2027), 203 (29 Apr 2027), 314 (18 Aug 2027), 425 (7 Dec 2027) … · every 111 days
+
+- `p.every-beat.asian-elephant-awake.face` — Asya fili
+- `p.every-beat.asian-elephant-awake.label` — uyanıkken
+- `p.every-beat.asian-elephant-awake.sentence` — Kalp taraması için hareketsiz durmaları öğretilen genç Asya fillerinin kalpleri dakikada yaklaşık 40 kez attı.
+- `p.every-beat.asian-elephant-awake.note` — Anestezisiz ve bağlanmadan ultrasonla taranan, yetişkinliğe yaklaşmış üç fil (7, 9 ve 13 yaşında) (PLOS ONE, 2026): ortalama 40, aralık 32 ila 47. Yetişkinlerin kalbi biraz daha yavaş atabilir.
+
+#### 93/111 · `harbour-seal-surface` · day 93 (9 Jan 2027), 204 (30 Apr 2027), 315 (19 Aug 2027), 426 (8 Dec 2027) … · every 111 days
+
+- `p.every-beat.harbour-seal-surface.face` — Adi fok
+- `p.every-beat.harbour-seal-surface.label` — yüzeyde
+- `p.every-beat.harbour-seal-surface.sentence` — Dalışlar arasında bir adi fokun kalbi dakikada 75 ila 120 kez atar; denizde 120'de kaldı, dalış hızının üç katı.
+- `p.every-beat.harbour-seal-surface.note` — SeaWorld dalıştan önce 75 ila 120 veriyor; denizde izlenen foklar, dalışın uzunluğu ne olursa olsun yüzeyde sabit 120'yi korudu (Fedak ve ark., 1988). Resimde aynı aileden bir gri fok görünüyor.
+
+#### 94/111 · `baby-asleep` · day 94 (10 Jan 2027), 205 (1 May 2027), 316 (20 Aug 2027), 427 (9 Dec 2027) … · every 111 days
+
+- `p.every-beat.baby-asleep.face` — Bebek
+- `p.every-beat.baby-asleep.label` — uyurken
+- `p.every-beat.baby-asleep.sentence` — Uyurken bile bir bebeğin kalbi dakikada 90 ila 160 kez atar; dinlenen bir yetişkininkinden daha hızlı.
+- `p.every-beat.baby-asleep.note` — Uyuyan 1 aylıktan 1 yaşına kadar bebekler için normal aralık, PALS tablolarından (2015).
+
+#### 95/111 · `chipmunk-awake` · day 95 (11 Jan 2027), 206 (2 May 2027), 317 (21 Aug 2027), 428 (10 Dec 2027) … · every 111 days
+
+- `p.every-beat.chipmunk-awake.face` — Çizgili sincap
+- `p.every-beat.chipmunk-awake.label` — uyanıkken
+- `p.every-beat.chipmunk-awake.sentence` — Uyanık bir çizgili sincabın kalbi dakikada yaklaşık 350 kez atar; kış uykusunda 15'e, hatta yaklaşık dörde düşer.
+- `p.every-beat.chipmunk-awake.note` — Popüler sayfalar: Georgia eyaletinin yaban hayatı köşesi ve bir Ontario Parks blogu; ikisi de bir çalışma belirtmiyor ya da nasıl ölçüldüğünü söylemiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+
+#### 96/111 · `hawk-rest` · day 96 (12 Jan 2027), 207 (3 May 2027), 318 (22 Aug 2027), 429 (11 Dec 2027) … · every 111 days
+
+- `p.every-beat.hawk-rest.face` — Kızıl kuyruklu şahin
+- `p.every-beat.hawk-rest.label` — dinlenirken
+- `p.every-beat.hawk-rest.sentence` — Dinlenen bir kızıl kuyruklu şahinin kalbi dakikada yaklaşık 120 ila 134 kez atar. İnsanlar onu rahatsız edince 400'ün üzerine fırlar.
+- `p.every-beat.hawk-rest.note` — Radyo telemetrili tek bir esir şahin: geceleri ortalama 134, gündüz 202 (Raptor Research, 1984). Rehabilitasyondaki yabani şahinler, dinlenirken: medyan 120 (Minnesota Üniversitesi, 2022). Resimde aynı aileden bir kel kartal görünüyor.
+
+#### 97/111 · `yellowfin-awake` · day 97 (13 Jan 2027), 208 (4 May 2027), 319 (23 Aug 2027), 430 (12 Dec 2027) … · every 111 days
+
+- `p.every-beat.yellowfin-awake.face` — Sarı yüzgeçli ton balığı
+- `p.every-beat.yellowfin-awake.label` — uyanıkken
+- `p.every-beat.yellowfin-awake.sentence` — 25 °C'lik suda sakin yüzen bir sarı yüzgeçli ton balığının kalbi dakikada yaklaşık 68 kez atar; soğuk su onu yavaşlatır.
+- `p.every-beat.yellowfin-awake.note` — 25 °C'de, 5.300 litrelik bir tankta, ameliyattan bir saat sonra EKG telleri takılı altı sarı yüzgeçli (Bushnell ve Brill, 1991): 67,9. Daha sonraki bir makale 67 ila 100 veriyor, sıcaklık belirtilmemiş. Resimde aynı cinsten bir mavi yüzgeçli orkinos görünüyor.
+
+#### 98/111 · `emu-rest` · day 98 (14 Jan 2027), 209 (5 May 2027), 320 (24 Aug 2027), 431 (13 Dec 2027) … · every 111 days
+
+- `p.every-beat.emu-rest.face` — Emu
+- `p.every-beat.emu-rest.label` — dinlenirken
+- `p.every-beat.emu-rest.sentence` — Dinlenen bir emunun kalbi dakikada yalnızca yaklaşık 46 ila 50 kez atar. Koşu bandında var gücüyle koşarken 180'e çıktı.
+- `p.every-beat.emu-rest.note` — Bir kutuda dinlenen, çoğu zaman uzanıp uyuyan iki yetişkin emu: 45,8 (J. Exp. Biol., 1983). Başka bir çalışmadaki iki emu ortalama 50 buldu (durum belirtilmemiş), 2007 tarihli bir veteriner dergisinde anıldığı gibi.
+
+#### 99/111 · `lamprey-rest` · day 99 (15 Jan 2027), 210 (6 May 2027), 321 (25 Aug 2027), 432 (14 Dec 2027) … · every 111 days
+
+- `p.every-beat.lamprey-rest.face` — Nehir taşemeni
+- `p.every-beat.lamprey-rest.label` — dinlenirken
+- `p.every-beat.lamprey-rest.sentence` — 5 °C'lik suda dinlenen bir nehir taşemeninin kalbi dakikada yaklaşık 28 kez atar; böyle soğuk bir su için oldukça hızlı.
+- `p.every-beat.lamprey-rest.note` — Finlandiya'daki Kemijoki Nehri'nden yedi nehir taşemeni, anestezi altında EKG telleri takıldı ve günler sonra dinlenirken kaydedildi (Haverinen ve ark., 2014). Resimde aynı aileden bir deniz taşemeni görünüyor.
+
+#### 100/111 · `maned-wolf-rest` · day 100 (16 Jan 2027), 211 (7 May 2027), 322 (26 Aug 2027), 433 (15 Dec 2027) … · every 111 days
+
+- `p.every-beat.maned-wolf-rest.face` — Yeleli kurt
+- `p.every-beat.maned-wolf-rest.label` — dinlenirken
+- `p.every-beat.maned-wolf-rest.sentence` — Dinlenen bir yeleli kurdun kalbi dakikada yaklaşık 63 ila 93 kez atar; en hareketli anında 296'ya ulaştı.
+- `p.every-beat.maned-wolf-rest.note` — Kalp izleyicisi yerleştirilmiş altı yetişkin yeleli kurt, hareketsizken 2 dakikalık ortalamalar (Conservation Physiology, 2021). Resimde aynı aileden bir bozkurt görünüyor.
+
+#### 101/111 · `child-asleep` · day 101 (17 Jan 2027), 212 (8 May 2027), 323 (27 Aug 2027), 434 (16 Dec 2027) … · every 111 days
+
+- `p.every-beat.child-asleep.face` — Çocuk
+- `p.every-beat.child-asleep.label` — uyurken
+- `p.every-beat.child-asleep.sentence` — Uyurken bir okul çocuğunun kalbi dakikada 58 ila 90 atışa yavaşlar; uyanıkken 75 ila 118'dir.
+- `p.every-beat.child-asleep.note` — 6 ila 11 yaş çocukları için normal aralıklar, Amerikan Kalp Derneği'nin çocuk yaşam desteği (PALS) tablolarından.
+
+#### 102/111 · `humpback-rest` · day 102 (18 Jan 2027), 213 (9 May 2027), 324 (28 Aug 2027), 435 (17 Dec 2027) … · every 111 days
+
+- `p.every-beat.humpback-rest.face` — Kambur balina
+- `p.every-beat.humpback-rest.label` — dinlenirken
+- `p.every-beat.humpback-rest.sentence` — Yüzeyde dinlenen bir kambur balinanın kalbi dakikada yaklaşık 18,5 kez atar; her nefesten hemen sonra daha hızlı, nefesler arasında daha yavaş.
+- `p.every-beat.humpback-rest.note` — Yüzeyde hareketsiz yatan (“logging”) tek bir yabani kambur balina, kalp ve dalış kaydedicileriyle (Blawas ve ark., PNAS, 2026); baş yazarı bunu, serbest bir balinanın dinlenme hâline şimdiye dek büyük olasılıkla en yakın ölçüm olarak niteliyor.
+
+#### 103/111 · `goat-rest` · day 103 (19 Jan 2027), 214 (10 May 2027), 325 (29 Aug 2027), 436 (18 Dec 2027) … · every 111 days
+
+- `p.every-beat.goat-rest.face` — Keçi
+- `p.every-beat.goat-rest.label` — dinlenirken
+- `p.every-beat.goat-rest.sentence` — Yetişkin bir keçinin kalbi dakikada yaklaşık 70 ila 110 kez atar; oğlağın kalbi daha da hızlı atar: 120 ila 160.
+- `p.every-beat.goat-rest.note` — Yetişkin keçiler: MSD Veteriner El Kitabı'nda dinlenirken 70 ila 80, Kaliforniya Üniversitesi, Davis'in acil durum yaşam belirtileri çizelgesinde (Haziran 2024) 70 ila 110. Resimde aynı aileden (Bovidae) bir inek görünüyor.
+
+#### 104/111 · `pigeon-flight` · day 104 (20 Jan 2027), 215 (11 May 2027), 326 (30 Aug 2027), 437 (19 Dec 2027) … · every 111 days
+
+- `p.every-beat.pigeon-flight.face` — Güvercin
+- `p.every-beat.pigeon-flight.label` — uçarken
+- `p.every-beat.pigeon-flight.sentence` — Uçan bir güvercinin kalbi dakikada yaklaşık 600 ila 660 kez atar; rüzgâr tünelinde dinlendiği zamankinden altı kat daha hızlı attı.
+- `p.every-beat.pigeon-flight.note` — Rüzgâr tünelinde saniyede 18,4 metre hızla düzenli uçan posta güvercinleri (Journal of Experimental Biology, 2005). 600 rakamı, bir çalışma belirtmeyen popüler bir radyo sayfası olan BirdNote'tan.
+
+#### 105/111 · `platypus-surface` · day 105 (21 Jan 2027), 216 (12 May 2027), 327 (31 Aug 2027), 438 (20 Dec 2027) … · every 111 days
+
+- `p.every-beat.platypus-surface.face` — Ornitorenk
+- `p.every-beat.platypus-surface.label` — yüzeyde
+- `p.every-beat.platypus-surface.sentence` — Dalıştan önce yüzeyde bir ornitorenkin kalbi dakikada 140 ila 230 kez atar; su altında 10'a düşebilir.
+- `p.every-beat.platypus-surface.note` — Esarete alınıp bir laboratuvarda dalan yabani ornitorenkler (Evans ve ark., 1994); iki kaynak da bu tek çalışmayı aktarıyor.
+
+#### 106/111 · `ferret-rest` · day 106 (22 Jan 2027), 217 (13 May 2027), 328 (1 Sep 2027), 439 (21 Dec 2027) … · every 111 days
+
+- `p.every-beat.ferret-rest.face` — Evcil gelincik
+- `p.every-beat.ferret-rest.label` — dinlenirken
+- `p.every-beat.ferret-rest.sentence` — Evcil bir gelinciğin kalbi dakikada 180 ila 250 kez atar; bir kedinin kalbinden çok daha hızlı.
+- `p.every-beat.ferret-rest.note` — İki veteriner kaynağındaki normal aralık; ikisi de nasıl alındığını söylemiyor. Resimde aynı aileden (Mustelidae) bir kakım görünüyor.
+
+#### 107/111 · `tufted-duck-awake` · day 107 (23 Jan 2027), 218 (14 May 2027), 329 (2 Sep 2027), 440 (22 Dec 2027) … · every 111 days
+
+- `p.every-beat.tufted-duck-awake.face` — Tepeli patka
+- `p.every-beat.tufted-duck-awake.label` — uyanıkken
+- `p.every-beat.tufted-duck-awake.sentence` — Suda sakinken tepeli patkanın kalbi dakikada 120 ila 150 kez atar: ördeğin içindeki bir radyo her atışı iletti.
+- `p.every-beat.tufted-duck-awake.note` — Bir su kanalında yüz maskesi takılı (hafif kısıtlama) on ördek: 149; bir dalış çalışmasında altı ördeğin en düşük dinlenme hızları: 121 (ikisi de 1986, aynı araştırma grubu). Resimde aynı aileden bir yeşilbaş ördek görünüyor.
+
+#### 108/111 · `cold-face-dive` · day 108 (24 Jan 2027), 219 (15 May 2027), 330 (3 Sep 2027), 441 (23 Dec 2027) … · every 111 days
+
+- `p.every-beat.cold-face-dive.face` — Nefes tutan kişi
+- `p.every-beat.cold-face-dive.label` — dalarken
+- `p.every-beat.cold-face-dive.sentence` — Nefesi tutup yüzü soğuk suya sokmak bile kalbi dakikada yaklaşık 79 atıştan yaklaşık 53 atışa yavaşlatır.
+- `p.every-beat.cold-face-dive.note` — Gdansk'ta 65 öğrenci, yüzleri 8 ila 10 °C'lik suda, elinden geldiğince nefeslerini tuttu (Malinowski ve ark., 2023). En düşük hız erkeklerde ortalama 49, kadınlarda 55 oldu.
+
+#### 109/111 · `green-iguana-awake` · day 109 (25 Jan 2027), 220 (16 May 2027), 331 (4 Sep 2027), 442 (24 Dec 2027) … · every 111 days
+
+- `p.every-beat.green-iguana-awake.face` — Yeşil iguana
+- `p.every-beat.green-iguana-awake.label` — uyanıkken
+- `p.every-beat.green-iguana-awake.sentence` — Uyanık bir yeşil iguananın kalbi dakikada yalnızca yaklaşık 42 ila 52 kez atar; dinlenen bir insanınkinden daha yavaş.
+- `p.every-beat.green-iguana-awake.note` — Dinlenen on beş genç iguana, ortalama 52 (American Journal of Veterinary Research, 2011); 23 ila 28 °C'lik bir odada elle tutulan on iki yetişkin, ortalamalar 42 ila 51 (Veterinární Medicína, 2021).
+
+#### 110/111 · `pheasant-awake` · day 110 (26 Jan 2027), 221 (17 May 2027), 332 (5 Sep 2027), 443 (25 Dec 2027) … · every 111 days
+
+- `p.every-beat.pheasant-awake.face` — Sülün
+- `p.every-beat.pheasant-awake.label` — uyanıkken
+- `p.every-beat.pheasant-awake.sentence` — Uyanık bir sülünün kalbi dakikada yaklaşık 190 ila 240 kez atar; dinlenen bir yetişkininkinin iki ila üç katı.
+- `p.every-beat.pheasant-awake.note` — Uyanık, sırtüstü tutulan ve başları örtülen 12 erkek (194) ve 12 dişi sülünün (236) EKG ile ortalamaları (Kaya ve Soylu, 2013). Tek makale. Resimde aynı aileden bir tavuk görünüyor.
+
+#### 111/111 · `salmon-rest` · day 111 (27 Jan 2027), 222 (18 May 2027), 333 (6 Sep 2027), 444 (26 Dec 2027) … · every 111 days
+
+- `p.every-beat.salmon-rest.face` — Atlantik somonu
+- `p.every-beat.salmon-rest.label` — dinlenirken
+- `p.every-beat.salmon-rest.sentence` — 9 °C'lik suda dinlenen bir Atlantik somonunun kalbi dakikada yalnızca yaklaşık 25 kez atar; gece, taşıdığı bir etiketle kaydedildi.
+- `p.every-beat.salmon-rest.note` — Tanklarda yaklaşık 1,2 kg ağırlığında on iki çiftlik somonu, geceleri kaydedildi (Hvas, Folkedal ve Oppedal, 2020). Makalenin özeti ekliyor: 30 dakika boyunca sıkıştırılmaları kalp hızını yaklaşık 56'ya çıkardı.
+
 ## The line shown under every answer
 
 - `p.every-beat.lifetime.line` — Küçük kalpler hızlı, büyük kalpler yavaş atar. Çoğu memeli bir ömürde yaklaşık aynı sayıda atış alır: birkaç yüz milyon. İnsanlar çok daha fazlasını alır: yaklaşık üç milyar.
@@ -415,3 +793,26 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - p.every-beat.shrew-peak.face — Etrüsk cüce faresi · second option: Etrüsk sivri faresi · the first is how a Turkish news page names the animal; the second is closer to the scientific name.
 - p.every-beat.tuna-awake.face — Orkinos · second option: Mavi yüzgeçli ton balığı · "orkinos" is the everyday Turkish word for bluefin tuna; the two sources are about Pacific bluefin, written "Pasifik orkinosu" in the note.
 - p.every-beat.freediver-dive.face — Serbest dalıcı · second option: Serbest dalış sporcusu · shorter, and the label already says "dalarken".
+
+### Added on 30 October 2026, with the new puzzles
+
+- p.every-beat.chipmunk-hibernating.face — "Çizgili sincap"; second option "Yer sincabı". Chipmunk has no everyday Turkish word; "yer sincabı" is already used for the Arctic ground squirrel, so I kept them apart.
+- p.every-beat.groundhog-hibernating.face — "Marmot"; second option "Amerikan marmotu". Turkish news says "Marmot Günü" for Groundhog Day, so "marmot" is the plain word, but it is close to "Alp marmotu" (marmot-hibernating).
+- p.every-beat.marmot-hibernating.face — "Alp marmotu"; second option "Alp dağ sıçanı". I found no everyday Turkish name; "marmot" is the word used in the press.
+- p.every-beat.toddler-awake.face — "Yeni yürüyen çocuk"; second option "Yürümeye başlayan çocuk". Toddler (1 to 3 years) has no short Turkish word; the longer one is more exact. Also used in preschooler-awake.sentence.
+- p.every-beat.teen-rest.face — "Ergen"; second option "Genç". Ergen (adolescent) is exact for 13 to 17; "genç" is warmer but also covers people in their twenties.
+- p.every-beat.preschooler-awake.face — "Okul öncesi çocuk"; second option "Anaokulu çocuğu". English "Preschooler" for ages 3 to 5.
+- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Tazı". Turkish "tazı" is a different native breed, so I kept the English breed name.
+- p.every-beat.tent-bat-flight.face — "Çadır yapan yarasa"; second option "Çadırcı yarasa". Literal translation of the common name; no Turkish source found.
+- p.every-beat.ferret-rest.face — "Evcil gelincik" (changed when merging, to match the name the site already uses for the ferret in Altitude's questions and The Club); second option "Ferret", which pet owners say; the stoat in the note is "kakım" (second option "ermin").
+- p.every-beat.fin-whale-dive.face — "Fin balinası"; second option "Yüzgeçli balina". Fin balinası is the usual encyclopedic name.
+- p.every-beat.yellowfin-awake.face — "Sarı yüzgeçli ton balığı"; second option "Sarı yüzgeçli orkinos". The site's tuna puzzle uses "Orkinos" for the bluefin; the picture line says "mavi yüzgeçli orkinos".
+- p.every-beat.hawk-rest.face — "Kızıl kuyruklu şahin"; second option "Kırmızı kuyruklu şahin". Şahin is the hawk (doğan is the falcon in Long Lost Cousin).
+- p.every-beat.harbour-seal-dive.face — "Adi fok"; second option "Liman foku". "Adi fok" is the Turkish name of Phoca vitulina; "liman foku" would be a literal copy of the English.
+- p.every-beat.tufted-duck-dive.face — "Tepeli patka"; second option "Tepeli ördek". Tepeli patka is the name in Turkish bird lists; the mallard in the picture line is "yeşilbaş ördek".
+- p.every-beat.chinese-goose-awake.face — "Çin kazı"; second option "Kuğu gagalı kaz". Çin kazı is the usual name of the domestic swan goose.
+- p.every-beat.cold-face-dive.face — "Nefes tutan kişi"; second option "Nefes tutucu". English "Breath-holder"; the longer form reads more naturally.
+- p.every-beat.adelie-rest.face — "Adélie pengueni"; second option "Adelie pengueni". I kept the accent of the English; Turkish pages often drop it.
+- p.every-beat.chipmunk-hibernating.note — "Kayıp Kuzen'deki bozkır köpeği"; second option "Kayıp Kuzen oyunundaki bozkır köpeği". "Kayıp Kuzen" is the Turkish title of Long Lost Cousin on the site. Same line in marmot-hibernating, groundhog-hibernating, chipmunk-awake and tufted-duck-dive (duck).
+- p.every-beat.hummingbird-awake.note — "Torpor halinde olmayan"; second option "Derin dinlenmede olmayan". English "not torpid"; the older puzzles use "derin dinlenmede" as the label for torpor.
+- p.every-beat.buffalo-awake.note — "bir tutma kafesinde tutulurken"; second option "bir sıkıştırma kafesinde". English "held in a chute" (a narrow cattle-handling pen); no everyday Turkish word.

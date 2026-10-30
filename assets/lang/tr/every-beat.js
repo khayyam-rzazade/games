@@ -345,6 +345,330 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "label": "dinlenirken",
   "sentence": "Yeni doğmuş bir tayın kalbi dakikada 80 ila 120 kez atar; yetişkin bir atın 28 ila 40 atışından çok daha hızlı.",
   "note": "Yeni doğmuş tayların değerleri. Texas A&M Üniversitesi kılavuzuna göre daha büyük taylarda 60 ila 80'e, bir yaşındakilerde 40 ila 60'a yavaşlar."
+ },
+ "chipmunk-hibernating": {
+  "face": "Çizgili sincap",
+  "label": "kış uykusundayken",
+  "sentence": "Kış uykusundaki bir çizgili sincabın kalbi dakikada yaklaşık 350 atıştan 10'un altına yavaşlar, bazen yaklaşık dört atışa kadar.",
+  "note": "Kışın çizgili sincaplar, Ontario Parks blogundan ve Northern Woodlands dergisinden: popüler sayfalar; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+ },
+ "teen-rest": {
+  "face": "Ergen",
+  "label": "dinlenirken",
+  "sentence": "Ergenliğin başında dinlenen bir kalp dakikada 60 ila 100 kez atar; bu, bir yetişkininkiyle aynı aralıktır.",
+  "note": "Cleveland Clinic, uyanık ve egzersiz yapmayan 13 ila 17 yaşlar için 60 ila 100 veriyor; PALS tabloları 12 ila 15 yaş için aynısını veriyor."
+ },
+ "calf-rest": {
+  "face": "Buzağı",
+  "label": "dinlenirken",
+  "sentence": "Bir buzağının kalbi dakikada 100 ila 140 kez atar; yetişkin bir ineğinkinin yaklaşık iki katı.",
+  "note": "Yaşı belirtilmemiş buzağılar için normal aralık, Kaliforniya Üniversitesi, Davis'in veteriner acil ekibinden; aynı aralık, sığır veterinerlerine yönelik bir meslek dergisi olan Bovine Veterinarian'da da yer alıyor."
+ },
+ "weddell-seal-dive": {
+  "face": "Weddell foku",
+  "label": "dalarken",
+  "sentence": "Antarktika buzunun altında avlanırken bir Weddell fokunun kalbi dakikada yalnızca 10 ila 20 kez atar; kovalamacada biraz daha hızlı.",
+  "note": "McMurdo Boğazı'nda kalp izleyicisi takılan üç yabani erkek (Williams ve ark., 2015): aşağı süzülürken yaklaşık 15, balık kovalarken 20, 268 m'lik bir dalışta en düşük 10,8. Resimde aynı aileden bir gri fok görünüyor."
+ },
+ "tufted-duck-dive": {
+  "face": "Tepeli patka",
+  "label": "dalarken",
+  "sentence": "Kısa bir beslenme dalışında tepeli patkanın kalbi dakikada yaklaşık 180 atışta sabitlenir; dinlendiği zamankinden daha hızlı.",
+  "note": "Yem için dalmak üzere eğitilmiş, isteyerek dalan ördekler: yaklaşık 185 (1986); dinlenirkenki 112'nin %60 üzerinde (1992), ki bu yaklaşık 179 eder. Resimde, aynı aileden, Kayıp Kuzen'deki ördek (bir yeşilbaş) görünüyor."
+ },
+ "echidna-rest": {
+  "face": "Ekidna",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir ekidnanın kalbi dakikada 50 ila 68 kez atar; kış uykusunda yalnızca dörde düşebilir.",
+  "note": "Dinlenen kısa gagalı ekidnalar; iki kaynağın da dayandığı tek bir eserden (Augee, Gooden ve Musser, 2006). Hareketliyken hayvanat bahçesinin bilgi sayfası 135 ila 145 veriyor."
+ },
+ "king-penguin-dive": {
+  "face": "Kral penguen",
+  "label": "dalarken",
+  "sentence": "Dalarken bir kral penguenin kalbi dakikada yaklaşık 87 kez atar; suda dinlendiği zamankinden daha yavaş.",
+  "note": "Kalp hızı kaydedicileri takılı, serbest dolaşan kral penguenler (Froget ve ark., 2004): karadakiyle yaklaşık aynı. Resimde aynı cinsten bir imparator penguen görünüyor."
+ },
+ "marmot-hibernating": {
+  "face": "Alp marmotu",
+  "label": "kış uykusundayken",
+  "sentence": "Kış uykusundaki bir Alp marmotunun kalbi, yer altında diğerleriyle birbirine sokulmuşken dakikada yalnızca üç ila beş kez atar.",
+  "note": "Yalnızca popüler sayfalar (Vikipedi ve İtalya'daki Dolomitler'de yaşayan marmotlar üzerine Awake!); rakamı veren bir çalışma bulunamadı. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+ },
+ "toddler-awake": {
+  "face": "Yeni yürüyen çocuk",
+  "label": "uyanıkken",
+  "sentence": "Uyanıkken yeni yürüyen bir çocuğun kalbi dakikada 98 ila 140 kez atar; dinlenen bir yetişkininkinden çok daha hızlı.",
+  "note": "1 ila 3 yaş (Cleveland Clinic) ya da 1 ila 2 yaş (PALS tabloları) çocuklar için normal aralık, uyanık ve egzersiz yapmıyorken. Uykuda tablolar 80 ila 120 veriyor."
+ },
+ "buffalo-awake": {
+  "face": "Manda",
+  "label": "uyanıkken",
+  "sentence": "Yetişkin bir mandanın kalbi dakikada yaklaşık 47 ila 57 kez atar ve manda yaşlandıkça yavaşlar.",
+  "note": "Veterinerlerin saymaları: Kolombiya'da yetişkinlerde 54 ila 57 (2012, bir tutma kafesinde tutulurken), Brezilya'da dört yetişkinde 47 ila 52 ortalamalar (2025). Resimde aynı aileden (Bovidae) bir inek görünüyor."
+ },
+ "harbour-seal-dive": {
+  "face": "Adi fok",
+  "label": "dalarken",
+  "sentence": "Dalan bir adi fokun kalbi dakikada 35 ila 40 atışa yavaşlar; denizde serbest dalışlarda 40, yüzeydeki hızının üçte biri.",
+  "note": "Denizdeki serbest dalışlarda 40, radyo ve akustik telemetriyle (Fedak ve ark., 1988); bir laboratuvarda tutulup suya batırılan eğitilmiş foklarda 35 (Jobsis ve ark., 2001). Resimde aynı aileden bir gri fok görünüyor."
+ },
+ "lion-awake": {
+  "face": "Aslan",
+  "label": "uyanıkken",
+  "sentence": "Doğadaki bir aslanın kalbi dakikada yaklaşık 70 kez atar; dinlenen bir insanınkine çok benzer, geceleri ise daha hızlı.",
+  "note": "Afrika'da bilinci açık, serbest dolaşan yabani aslanlardan alınan EKG'lerin ortalaması (tek bir çalışma: Scharling ve ark., 2024). Resimde aynı aileden (Felidae) bir ev kedisi görünüyor."
+ },
+ "chinese-goose-awake": {
+  "face": "Çin kazı",
+  "label": "uyanıkken",
+  "sentence": "Sakin bir Çin kazının kalbi dakikada yaklaşık 140 kez atar; bu, göç eden yabani bir kazın kalp hızının yarısından azdır.",
+  "note": "Hafif bir bezle sarılı, sessiz ve rahat, uyanık 24 yetişkin kaz (Kaya ve Çenesiz, 2018): 103 ila 203, ortalama 142. Resimde aynı aileden bir yeşilbaş ördek görünüyor."
+ },
+ "axolotl-rest": {
+  "face": "Aksolot",
+  "label": "dinlenirken",
+  "sentence": "20 °C'lik suda dinlenen bir aksolotun kalbi dakikada yalnızca yaklaşık 25 kez atar; 10 °C'de yaklaşık 13.",
+  "note": "Bir hamakta sakinleşmiş, uyuşturulmamış aksolotlar (Dittrich ve ark., Metabolites, 2026): 20 °C'de 24,9, 10 °C'de 13,1. Ortak yazarlı 2022 tarihli bir çalışma: 22, sıcaklık belirtilmemiş."
+ },
+ "groundhog-hibernating": {
+  "face": "Marmot",
+  "label": "kış uykusundayken",
+  "sentence": "Kış uykusundaki bir marmotun kalbi dakikada yalnızca dört ya da beş atışa yavaşlar ve dakikada yalnızca bir ya da iki kez nefes alabilir.",
+  "note": "Kışın doğadaki marmotlar (woodchuck), Missouri eyaletinin yaban hayatı dergisinden ve PBS Nature'dan; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+ },
+ "pregnant-rest": {
+  "face": "Anne adayı",
+  "label": "dinlenirken",
+  "sentence": "Gebeliğin sonlarında bir anne adayının kalbi dakikada yaklaşık 76 ila 91 kez atar; gebe kalmadan öncekinden daha hızlı.",
+  "note": "Medyanlar: Birleşik Krallık'taki üç merkezde kontrollerde 34. haftada 91 (Oxford, 2020; dinlenirken olduğu belirtilmemiş); Apple Watch ile son üç ayda dinlenirken 75,5, gebelikten önce 65."
+ },
+ "sheep-rest": {
+  "face": "Koyun",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir koyunun kalbi dakikada yaklaşık 60 ila 90 kez atar; dinlenen bir insanınkine çok benzer.",
+  "note": "Normal dinlenme hızları: MSD Veteriner El Kitabı'nda 70 ila 80, Virginia Tech'in kılavuzunda koyun ve keçiler için 60 ila 90. Resimde aynı aileden (Bovidae) bir inek görünüyor."
+ },
+ "tent-bat-flight": {
+  "face": "Çadır yapan yarasa",
+  "label": "uçarken",
+  "sentence": "Uçarken çadır yapan bir yarasanın kalbi ortalama dakikada yaklaşık 770 kez atar ve 900'ü geçebilir; gündüz dinlenirken yaklaşık 200'e düşer.",
+  "note": "Panama'nın Gamboa kasabasında, minik kalp hızı vericileri takılan dört yabani yarasa (eLife, 2017); en yüksek hız 1.066. İki sayfa da aynı ekibe ait. Resimdeki vampir yarasa aynı aileden."
+ },
+ "manatee-dive": {
+  "face": "Manati",
+  "label": "dalarken",
+  "sentence": "Uzun bir dalışta bir manatinin kalbi dakikada yaklaşık 30 atışa yavaşlar; dalmıyorken 50 ila 60.",
+  "note": "Florida'nın yaban hayatı kurumunun bilgi sayfasından ve popüler bir fotoğraf sitesinden; ikisi de bir çalışma belirtmiyor. Resimde aynı cinsten bir Batı Afrika manatisi görünüyor."
+ },
+ "hummingbird-awake": {
+  "face": "Sinek kuşu",
+  "label": "uyanıkken",
+  "sentence": "Sıcak havada uyanık bir sinek kuşunun kalbi, en sakinken bile dakikada yaklaşık 420 ila 510 kez atar; soğuk havada 1.000'i aşar.",
+  "note": "Torpor halinde olmayan, karanlık bir odada kısıtlayıcı bir yelekle tutulan sinek kuşlarının en düşük hızları (Lasiewski, 1964 ve 1967). 1964 tarihli makale, bir hobi sitesindeki kopyasından okundu."
+ },
+ "fin-whale-dive": {
+  "face": "Fin balinası",
+  "label": "dalarken",
+  "sentence": "Fransa açıklarında dalan yabani bir fin balinasının kalbi dakikada yaklaşık 5 atışa yavaşladı; nefes almaya çıktığında yaklaşık 25'ti.",
+  "note": "Ağustos 2025'te Fransa açıklarında bir CNRS ekibi tarafından işaretlenen tek bir fin balinası: ilk analizler, henüz yayımlanmadı. Resimde aynı aileden bir mavi balina görünüyor."
+ },
+ "greyhound-fastest": {
+  "face": "Greyhound",
+  "label": "en hızlıyken",
+  "sentence": "Tam hızla koşan bir yarış greyhound'unun kalbi dakikada yaklaşık 318 atışa çıkar. Uyurken en düşük ortalaması yalnızca 42'ydi.",
+  "note": "30 saniyelik koşulardaki yarış greyhound'ları: 318, artı eksi 18 (Murdoch Üniversitesi tezi, 1984). Uykudaki 42 yalnızca bu tezde var. 2019 tarihli bir ders 318'i tekrarlıyor."
+ },
+ "preschooler-awake": {
+  "face": "Okul öncesi çocuk",
+  "label": "uyanıkken",
+  "sentence": "Uyanıkken 3 ila 5 yaşındaki bir çocuğun kalbi dakikada 80 ila 120 kez atar; yeni yürüyen bir çocuğunkinden zaten daha yavaş.",
+  "note": "3 ila 5 yaş çocukları için normal aralık, uyanık ve egzersiz yapmıyorken (Cleveland Clinic; PALS tabloları). Uykuda tablolar 65 ila 100 veriyor."
+ },
+ "chimp-awake": {
+  "face": "Şempanze",
+  "label": "uyanıkken",
+  "sentence": "Uyanıkken erkek bir şempanzenin kalbi ortalama dakikada 86,5 kez atar; dişininki ise 106,4, yani insanlardaki gibi daha hızlı.",
+  "note": "Anestezisiz, göğüslerine elektrot takılmasını kabul edecek şekilde eğitilmiş 35 esir şempanzenin EKG'leri (Kyoto Üniversitesi, Primates 2024). Bakıcının varlığı hızı yükseltmiş olabilir."
+ },
+ "green-turtle-rest": {
+  "face": "Yeşil deniz kaplumbağası",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir yeşil deniz kaplumbağasının kalbi dakikada yalnızca yaklaşık 9 ila 12 kez atar; bu, Japonya'da doğadan yakalanan kaplumbağalarda ölçüldü.",
+  "note": "Japonya'daki yeşil deniz kaplumbağaları: yaklaşık 23 °C'de 8,6 (Saito ve ark., 2025) ve büyük bir tankta 28 ila 30 °C'de 10,9 ila 11,9 (bir ön baskı)."
+ },
+ "orangutan-awake": {
+  "face": "Orangutan",
+  "label": "uyanıkken",
+  "sentence": "Yetişkin bir orangutanın kalbi dakikada yaklaşık 93 kez atar; dördü, kalp taraması için göğüslerini uzatmak üzere eğitildi.",
+  "note": "Paris'teki bir hayvanat bahçesinde, anestezisiz ultrasonla taranan dört yetişkin Borneo orangutanı (PLOS ONE, 2022): ortalama 93, aralık 76 ila 118."
+ },
+ "mussel-rest": {
+  "face": "Mavi midye",
+  "label": "dinlenirken",
+  "sentence": "Midyenin de kalbi vardır: 10 °C'lik deniz suyunda dakikada yalnızca 14 ila 18 kez atar; seninkinden çok daha yavaş.",
+  "note": "10 °C'lik tanklardaki mavi midyeler, kalbin üzerine yapıştırılmış bir kızılötesi sensörle okundu (Bakhmet ve ark., 2021 ve 2013). Tuzluluktaki ani bir değişiklik, kalp etkinliğini 12 saat içinde beşte birine düşürdü."
+ },
+ "brown-bear-hibernating": {
+  "face": "Boz ayı",
+  "label": "kış uykusundayken",
+  "sentence": "Kış uykusundayken ve kalp taraması için uyuşturulmuşken bir boz ayının kalbi dakikada yaklaşık 26 kez attı; bu, yaz hızının üçte biri.",
+  "note": "İsveç'teki yabani boz ayılar, kış uykusunda anestezi altında tek bir araştırma grubu tarafından ölçüldü (2014, 2020). Resimde Kayıp Kuzen'deki ayı, bir grizzly görünüyor; aynı tür."
+ },
+ "donkey-rest": {
+  "face": "Eşek",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir eşeğin kalbi dakikada 36 ila 52 kez atar; bir atınkinden biraz daha hızlı. 52'nin üzerindeki hız stres ya da ağrıya işaret eder.",
+  "note": "Yetişkin eşekler: Donkey Sanctuary'nin veterinerleri (ortalama 44) ve Donkey Sanctuary'ye bağlantı veren Penn State Extension. Resimde aynı aileden bir at görünüyor."
+ },
+ "adult-fastest": {
+  "face": "Yetişkin",
+  "label": "en hızlıyken",
+  "sentence": "Tüm gücüyle koşan 50 yaşındaki birinin kalbi dakikada yaklaşık 170 atışa ulaşabilir; 20 yaşındakinin yaklaşık 200.",
+  "note": "Ölçüm değil, formülle (220 eksi yaş) yapılmış bir tahmin; Amerikan Kalp Derneği rakamlarına ortalamalar diyor ve genel bir rehber olarak kullanılmasını söylüyor."
+ },
+ "echidna-hibernating": {
+  "face": "Ekidna",
+  "label": "kış uykusundayken",
+  "sentence": "Kış uykusundaki bir ekidnanın kalbi dakikada yalnızca dört ila yedi kez atar; dinlenirken bu, 50 ila 68'dir.",
+  "note": "Kısa gagalı ekidnalar. İki sayfa da tek bir kitaba dayanıyor (Augee ve ark., 2006). Vücudu yaklaşık 4 °C'ye kadar soğuyabilir."
+ },
+ "adelie-rest": {
+  "face": "Adélie pengueni",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir Adélie pengueninin kalbi dakikada yaklaşık 70 ila 92 kez atar: oturan kuşun altındaki sahte bir yumurta bunu kaydetti.",
+  "note": "Yumurtalarının üzerinde rahat yatan Adélie penguenleri, yapay bir yumurtayla kaydedildi (J. Field Ornithol., 1999); bir Japon çalışmasında dinlenirken 74,9. Resimde aynı aileden bir imparator penguen görünüyor."
+ },
+ "kitten-awake": {
+  "face": "Yenidoğan yavru kedi",
+  "label": "uyanıkken",
+  "sentence": "Yenidoğan bir yavru kedinin kalbi dakikada yaklaşık 190 ila 260 kez atar ve bu hızı ilk ay boyunca korur.",
+  "note": "İlk 30 gün boyunca, sakinleştirici verilmemiş, yan yatırılıp bantla yerinde tutulan 30 yenidoğan yavru kedinin kalp kayıtları (Can. Vet. J., 2003); bir kedi uzmanının notları yenidoğanlar için 220 ila 260 veriyor."
+ },
+ "beluga-dive": {
+  "face": "Beluga",
+  "label": "dalarken",
+  "sentence": "Dalışta bir beluga balinasının kalbi, oksijen tasarrufu için dakikada yaklaşık 100 atıştan yalnızca 12 ila 20 atışa yavaşlar.",
+  "note": "Genel olarak belugalar. SeaWorld bir çalışma belirtmiyor; Vikipedi aynı rakamlar için Ridgway'in bir eserine atıf yapıyor, yani ikisi de tek bir kaynağa dayanıyor olabilir."
+ },
+ "asian-elephant-awake": {
+  "face": "Asya fili",
+  "label": "uyanıkken",
+  "sentence": "Kalp taraması için hareketsiz durmaları öğretilen genç Asya fillerinin kalpleri dakikada yaklaşık 40 kez attı.",
+  "note": "Anestezisiz ve bağlanmadan ultrasonla taranan, yetişkinliğe yaklaşmış üç fil (7, 9 ve 13 yaşında) (PLOS ONE, 2026): ortalama 40, aralık 32 ila 47. Yetişkinlerin kalbi biraz daha yavaş atabilir."
+ },
+ "harbour-seal-surface": {
+  "face": "Adi fok",
+  "label": "yüzeyde",
+  "sentence": "Dalışlar arasında bir adi fokun kalbi dakikada 75 ila 120 kez atar; denizde 120'de kaldı, dalış hızının üç katı.",
+  "note": "SeaWorld dalıştan önce 75 ila 120 veriyor; denizde izlenen foklar, dalışın uzunluğu ne olursa olsun yüzeyde sabit 120'yi korudu (Fedak ve ark., 1988). Resimde aynı aileden bir gri fok görünüyor."
+ },
+ "baby-asleep": {
+  "face": "Bebek",
+  "label": "uyurken",
+  "sentence": "Uyurken bile bir bebeğin kalbi dakikada 90 ila 160 kez atar; dinlenen bir yetişkininkinden daha hızlı.",
+  "note": "Uyuyan 1 aylıktan 1 yaşına kadar bebekler için normal aralık, PALS tablolarından (2015)."
+ },
+ "chipmunk-awake": {
+  "face": "Çizgili sincap",
+  "label": "uyanıkken",
+  "sentence": "Uyanık bir çizgili sincabın kalbi dakikada yaklaşık 350 kez atar; kış uykusunda 15'e, hatta yaklaşık dörde düşer.",
+  "note": "Popüler sayfalar: Georgia eyaletinin yaban hayatı köşesi ve bir Ontario Parks blogu; ikisi de bir çalışma belirtmiyor ya da nasıl ölçüldüğünü söylemiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+ },
+ "hawk-rest": {
+  "face": "Kızıl kuyruklu şahin",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir kızıl kuyruklu şahinin kalbi dakikada yaklaşık 120 ila 134 kez atar. İnsanlar onu rahatsız edince 400'ün üzerine fırlar.",
+  "note": "Radyo telemetrili tek bir esir şahin: geceleri ortalama 134, gündüz 202 (Raptor Research, 1984). Rehabilitasyondaki yabani şahinler, dinlenirken: medyan 120 (Minnesota Üniversitesi, 2022). Resimde aynı aileden bir kel kartal görünüyor."
+ },
+ "yellowfin-awake": {
+  "face": "Sarı yüzgeçli ton balığı",
+  "label": "uyanıkken",
+  "sentence": "25 °C'lik suda sakin yüzen bir sarı yüzgeçli ton balığının kalbi dakikada yaklaşık 68 kez atar; soğuk su onu yavaşlatır.",
+  "note": "25 °C'de, 5.300 litrelik bir tankta, ameliyattan bir saat sonra EKG telleri takılı altı sarı yüzgeçli (Bushnell ve Brill, 1991): 67,9. Daha sonraki bir makale 67 ila 100 veriyor, sıcaklık belirtilmemiş. Resimde aynı cinsten bir mavi yüzgeçli orkinos görünüyor."
+ },
+ "emu-rest": {
+  "face": "Emu",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir emunun kalbi dakikada yalnızca yaklaşık 46 ila 50 kez atar. Koşu bandında var gücüyle koşarken 180'e çıktı.",
+  "note": "Bir kutuda dinlenen, çoğu zaman uzanıp uyuyan iki yetişkin emu: 45,8 (J. Exp. Biol., 1983). Başka bir çalışmadaki iki emu ortalama 50 buldu (durum belirtilmemiş), 2007 tarihli bir veteriner dergisinde anıldığı gibi."
+ },
+ "lamprey-rest": {
+  "face": "Nehir taşemeni",
+  "label": "dinlenirken",
+  "sentence": "5 °C'lik suda dinlenen bir nehir taşemeninin kalbi dakikada yaklaşık 28 kez atar; böyle soğuk bir su için oldukça hızlı.",
+  "note": "Finlandiya'daki Kemijoki Nehri'nden yedi nehir taşemeni, anestezi altında EKG telleri takıldı ve günler sonra dinlenirken kaydedildi (Haverinen ve ark., 2014). Resimde aynı aileden bir deniz taşemeni görünüyor."
+ },
+ "maned-wolf-rest": {
+  "face": "Yeleli kurt",
+  "label": "dinlenirken",
+  "sentence": "Dinlenen bir yeleli kurdun kalbi dakikada yaklaşık 63 ila 93 kez atar; en hareketli anında 296'ya ulaştı.",
+  "note": "Kalp izleyicisi yerleştirilmiş altı yetişkin yeleli kurt, hareketsizken 2 dakikalık ortalamalar (Conservation Physiology, 2021). Resimde aynı aileden bir bozkurt görünüyor."
+ },
+ "child-asleep": {
+  "face": "Çocuk",
+  "label": "uyurken",
+  "sentence": "Uyurken bir okul çocuğunun kalbi dakikada 58 ila 90 atışa yavaşlar; uyanıkken 75 ila 118'dir.",
+  "note": "6 ila 11 yaş çocukları için normal aralıklar, Amerikan Kalp Derneği'nin çocuk yaşam desteği (PALS) tablolarından."
+ },
+ "humpback-rest": {
+  "face": "Kambur balina",
+  "label": "dinlenirken",
+  "sentence": "Yüzeyde dinlenen bir kambur balinanın kalbi dakikada yaklaşık 18,5 kez atar; her nefesten hemen sonra daha hızlı, nefesler arasında daha yavaş.",
+  "note": "Yüzeyde hareketsiz yatan (“logging”) tek bir yabani kambur balina, kalp ve dalış kaydedicileriyle (Blawas ve ark., PNAS, 2026); baş yazarı bunu, serbest bir balinanın dinlenme hâline şimdiye dek büyük olasılıkla en yakın ölçüm olarak niteliyor."
+ },
+ "goat-rest": {
+  "face": "Keçi",
+  "label": "dinlenirken",
+  "sentence": "Yetişkin bir keçinin kalbi dakikada yaklaşık 70 ila 110 kez atar; oğlağın kalbi daha da hızlı atar: 120 ila 160.",
+  "note": "Yetişkin keçiler: MSD Veteriner El Kitabı'nda dinlenirken 70 ila 80, Kaliforniya Üniversitesi, Davis'in acil durum yaşam belirtileri çizelgesinde (Haziran 2024) 70 ila 110. Resimde aynı aileden (Bovidae) bir inek görünüyor."
+ },
+ "pigeon-flight": {
+  "face": "Güvercin",
+  "label": "uçarken",
+  "sentence": "Uçan bir güvercinin kalbi dakikada yaklaşık 600 ila 660 kez atar; rüzgâr tünelinde dinlendiği zamankinden altı kat daha hızlı attı.",
+  "note": "Rüzgâr tünelinde saniyede 18,4 metre hızla düzenli uçan posta güvercinleri (Journal of Experimental Biology, 2005). 600 rakamı, bir çalışma belirtmeyen popüler bir radyo sayfası olan BirdNote'tan."
+ },
+ "platypus-surface": {
+  "face": "Ornitorenk",
+  "label": "yüzeyde",
+  "sentence": "Dalıştan önce yüzeyde bir ornitorenkin kalbi dakikada 140 ila 230 kez atar; su altında 10'a düşebilir.",
+  "note": "Esarete alınıp bir laboratuvarda dalan yabani ornitorenkler (Evans ve ark., 1994); iki kaynak da bu tek çalışmayı aktarıyor."
+ },
+ "ferret-rest": {
+  "face": "Evcil gelincik",
+  "label": "dinlenirken",
+  "sentence": "Evcil bir gelinciğin kalbi dakikada 180 ila 250 kez atar; bir kedinin kalbinden çok daha hızlı.",
+  "note": "İki veteriner kaynağındaki normal aralık; ikisi de nasıl alındığını söylemiyor. Resimde aynı aileden (Mustelidae) bir kakım görünüyor."
+ },
+ "tufted-duck-awake": {
+  "face": "Tepeli patka",
+  "label": "uyanıkken",
+  "sentence": "Suda sakinken tepeli patkanın kalbi dakikada 120 ila 150 kez atar: ördeğin içindeki bir radyo her atışı iletti.",
+  "note": "Bir su kanalında yüz maskesi takılı (hafif kısıtlama) on ördek: 149; bir dalış çalışmasında altı ördeğin en düşük dinlenme hızları: 121 (ikisi de 1986, aynı araştırma grubu). Resimde aynı aileden bir yeşilbaş ördek görünüyor."
+ },
+ "cold-face-dive": {
+  "face": "Nefes tutan kişi",
+  "label": "dalarken",
+  "sentence": "Nefesi tutup yüzü soğuk suya sokmak bile kalbi dakikada yaklaşık 79 atıştan yaklaşık 53 atışa yavaşlatır.",
+  "note": "Gdansk'ta 65 öğrenci, yüzleri 8 ila 10 °C'lik suda, elinden geldiğince nefeslerini tuttu (Malinowski ve ark., 2023). En düşük hız erkeklerde ortalama 49, kadınlarda 55 oldu."
+ },
+ "green-iguana-awake": {
+  "face": "Yeşil iguana",
+  "label": "uyanıkken",
+  "sentence": "Uyanık bir yeşil iguananın kalbi dakikada yalnızca yaklaşık 42 ila 52 kez atar; dinlenen bir insanınkinden daha yavaş.",
+  "note": "Dinlenen on beş genç iguana, ortalama 52 (American Journal of Veterinary Research, 2011); 23 ila 28 °C'lik bir odada elle tutulan on iki yetişkin, ortalamalar 42 ila 51 (Veterinární Medicína, 2021)."
+ },
+ "pheasant-awake": {
+  "face": "Sülün",
+  "label": "uyanıkken",
+  "sentence": "Uyanık bir sülünün kalbi dakikada yaklaşık 190 ila 240 kez atar; dinlenen bir yetişkininkinin iki ila üç katı.",
+  "note": "Uyanık, sırtüstü tutulan ve başları örtülen 12 erkek (194) ve 12 dişi sülünün (236) EKG ile ortalamaları (Kaya ve Soylu, 2013). Tek makale. Resimde aynı aileden bir tavuk görünüyor."
+ },
+ "salmon-rest": {
+  "face": "Atlantik somonu",
+  "label": "dinlenirken",
+  "sentence": "9 °C'lik suda dinlenen bir Atlantik somonunun kalbi dakikada yalnızca yaklaşık 25 kez atar; gece, taşıdığı bir etiketle kaydedildi.",
+  "note": "Tanklarda yaklaşık 1,2 kg ağırlığında on iki çiftlik somonu, geceleri kaydedildi (Hvas, Folkedal ve Oppedal, 2020). Makalenin özeti ekliyor: 30 dakika boyunca sıkıştırılmaları kalp hızını yaklaşık 56'ya çıkardı."
  }
 };
   var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["every-beat"], list = D && (D.puzzles || D.questions), days = {};

@@ -6,7 +6,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.every-beat.lifetime.line` — Les petits cœurs battent vite, les gros cœurs lentement. La plupart des mammifères reçoivent à peu près le même nombre de battements dans leur vie : plusieurs centaines de millions. Les humains en reçoivent bien plus : environ trois milliards.
 
-## The puzzles of Every Beat (57 of 57 translated)
+## The puzzles of Every Beat (111 of 111 translated)
 
 #### 1/57 · `blue-whale-dive` · day 1 (9 Oct 2026), 58 (5 Dec 2026), 115 (31 Jan 2027), 172 (29 Mar 2027) … · every 57 days
 
@@ -407,6 +407,384 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.every-beat.foal-rest.sentence` — Le cœur d’un poulain nouveau-né bat de 80 à 120 fois par minute, bien plus vite que les 28 à 40 d’un cheval adulte.
 - `p.every-beat.foal-rest.note` — Poulains nouveau-nés. Les poulains plus âgés ralentissent à 60-80 et ceux d’un an à 40-60, selon le guide de Texas A&M.
 
+#### 58/111 · `chipmunk-hibernating` · day 58 (5 Dec 2026), 169 (26 Mar 2027), 280 (15 Jul 2027), 391 (3 Nov 2027) … · every 111 days
+
+- `p.every-beat.chipmunk-hibernating.face` — Tamia
+- `p.every-beat.chipmunk-hibernating.label` — en hibernation
+- `p.every-beat.chipmunk-hibernating.sentence` — En hibernation, le cœur d’un tamia passe d’environ 350 battements par minute à moins de 10, parfois à environ quatre.
+- `p.every-beat.chipmunk-hibernating.note` — Les tamias en hiver, d’après un blog d’Ontario Parks et le magazine Northern Woodlands : des pages grand public ; aucune ne cite d’étude. L’image est le chien de prairie du Cousin perdu de vue, de la même famille.
+
+#### 59/111 · `teen-rest` · day 59 (6 Dec 2026), 170 (27 Mar 2027), 281 (16 Jul 2027), 392 (4 Nov 2027) … · every 111 days
+
+- `p.every-beat.teen-rest.face` — Adolescent
+- `p.every-beat.teen-rest.label` — au repos
+- `p.every-beat.teen-rest.sentence` — Au début de l’adolescence, un cœur au repos bat de 60 à 100 fois par minute, la même fourchette que chez un adulte.
+- `p.every-beat.teen-rest.note` — La Cleveland Clinic donne de 60 à 100 pour les 13 à 17 ans, éveillés et sans faire d’effort ; les tableaux PALS donnent la même chose pour les 12 à 15 ans.
+
+#### 60/111 · `calf-rest` · day 60 (7 Dec 2026), 171 (28 Mar 2027), 282 (17 Jul 2027), 393 (5 Nov 2027) … · every 111 days
+
+- `p.every-beat.calf-rest.face` — Veau
+- `p.every-beat.calf-rest.label` — au repos
+- `p.every-beat.calf-rest.sentence` — Le cœur d’un veau bat de 100 à 140 fois par minute, environ le double de celui d’une vache adulte.
+- `p.every-beat.calf-rest.note` — La fourchette normale pour des veaux dont l’âge n’est pas précisé, donnée par l’équipe des urgences vétérinaires de l’université de Californie à Davis ; la même fourchette figure dans Bovine Veterinarian, un magazine professionnel pour les vétérinaires de bovins.
+
+#### 61/111 · `weddell-seal-dive` · day 61 (8 Dec 2026), 172 (29 Mar 2027), 283 (18 Jul 2027), 394 (6 Nov 2027) … · every 111 days
+
+- `p.every-beat.weddell-seal-dive.face` — Phoque de Weddell
+- `p.every-beat.weddell-seal-dive.label` — en plongée
+- `p.every-beat.weddell-seal-dive.sentence` — Lorsqu’un phoque de Weddell chasse sous la glace de l’Antarctique, son cœur ne bat que de 10 à 20 fois par minute, un peu plus vite pendant la poursuite.
+- `p.every-beat.weddell-seal-dive.note` — Trois mâles sauvages équipés de capteurs cardiaques dans le détroit de McMurdo (Williams et d’autres, 2015) : environ 15 en descendant en glissant, 20 en poursuivant des poissons, et au plus bas 10,8 lors d’une plongée de 268 mètres. L’image montre un phoque gris, de la même famille.
+
+#### 62/111 · `tufted-duck-dive` · day 62 (9 Dec 2026), 173 (30 Mar 2027), 284 (19 Jul 2027), 395 (7 Nov 2027) … · every 111 days
+
+- `p.every-beat.tufted-duck-dive.face` — Fuligule morillon
+- `p.every-beat.tufted-duck-dive.label` — en plongée
+- `p.every-beat.tufted-duck-dive.sentence` — Pendant une courte plongée pour se nourrir, le cœur d’un fuligule morillon se stabilise autour de 180 battements par minute, plus vite qu’au repos.
+- `p.every-beat.tufted-duck-dive.note` — Des canards dressés à plonger pour trouver leur nourriture, qui plongeaient de leur plein gré : environ 185 (1986) ; 60 % de plus qu’un rythme au repos de 112 (1992), ce qui fait environ 179. L’image est le canard du Cousin perdu de vue (un colvert), de la même famille.
+
+#### 63/111 · `echidna-rest` · day 63 (10 Dec 2026), 174 (31 Mar 2027), 285 (20 Jul 2027), 396 (8 Nov 2027) … · every 111 days
+
+- `p.every-beat.echidna-rest.face` — Échidné
+- `p.every-beat.echidna-rest.label` — au repos
+- `p.every-beat.echidna-rest.sentence` — Au repos, le cœur d’un échidné bat de 50 à 68 fois par minute ; en hibernation, il peut tomber à seulement quatre.
+- `p.every-beat.echidna-rest.note` — Échidnés à nez court au repos, d’après un même ouvrage que citent les deux sources (Augee, Gooden et Musser, 2006). En activité, la fiche du zoo donne de 135 à 145.
+
+#### 64/111 · `king-penguin-dive` · day 64 (11 Dec 2026), 175 (1 Apr 2027), 286 (21 Jul 2027), 397 (9 Nov 2027) … · every 111 days
+
+- `p.every-beat.king-penguin-dive.face` — Manchot royal
+- `p.every-beat.king-penguin-dive.label` — en plongée
+- `p.every-beat.king-penguin-dive.sentence` — En plongée, le cœur d’un manchot royal bat environ 87 fois par minute, plus lentement que lorsqu’il se repose sur l’eau.
+- `p.every-beat.king-penguin-dive.note` — Manchots royaux en liberté équipés d’enregistreurs de rythme cardiaque (Froget et d’autres, 2004) : à peu près le même rythme qu’à terre. L’image montre un manchot empereur, du même genre.
+
+#### 65/111 · `marmot-hibernating` · day 65 (12 Dec 2026), 176 (2 Apr 2027), 287 (22 Jul 2027), 398 (10 Nov 2027) … · every 111 days
+
+- `p.every-beat.marmot-hibernating.face` — Marmotte des Alpes
+- `p.every-beat.marmot-hibernating.label` — en hibernation
+- `p.every-beat.marmot-hibernating.sentence` — En hibernation, le cœur d’une marmotte des Alpes ne bat que de trois à cinq fois par minute, blottie avec d’autres sous la terre.
+- `p.every-beat.marmot-hibernating.note` — Seulement des pages grand public (Wikipédia, et Réveillez-vous ! sur les marmottes des Dolomites, en Italie) ; aucune étude contenant ce chiffre n’a été trouvée. L’image est le chien de prairie du Cousin perdu de vue, de la même famille.
+
+#### 66/111 · `toddler-awake` · day 66 (13 Dec 2026), 177 (3 Apr 2027), 288 (23 Jul 2027), 399 (11 Nov 2027) … · every 111 days
+
+- `p.every-beat.toddler-awake.face` — Tout-petit
+- `p.every-beat.toddler-awake.label` — éveillé
+- `p.every-beat.toddler-awake.sentence` — Quand il est éveillé, le cœur d’un tout-petit bat de 98 à 140 fois par minute, bien plus vite que celui d’un adulte au repos.
+- `p.every-beat.toddler-awake.note` — La fourchette normale pour les enfants de 1 à 3 ans (Cleveland Clinic) ou de 1 à 2 ans (tableaux PALS), éveillés et sans faire d’effort. Endormis, les tableaux donnent de 80 à 120.
+
+#### 67/111 · `buffalo-awake` · day 67 (14 Dec 2026), 178 (4 Apr 2027), 289 (24 Jul 2027), 400 (12 Nov 2027) … · every 111 days
+
+- `p.every-beat.buffalo-awake.face` — Buffle d’eau
+- `p.every-beat.buffalo-awake.label` — éveillé
+- `p.every-beat.buffalo-awake.sentence` — Le cœur d’un buffle d’eau adulte bat d’environ 47 à 57 fois par minute, et il ralentit avec l’âge.
+- `p.every-beat.buffalo-awake.note` — Relevés de vétérinaires : de 54 à 57 chez des adultes en Colombie (2012, maintenus dans une cage de contention), des moyennes de 47 à 52 chez quatre adultes au Brésil (2025). L’image montre une vache, de la même famille (les bovidés).
+
+#### 68/111 · `harbour-seal-dive` · day 68 (15 Dec 2026), 179 (5 Apr 2027), 290 (25 Jul 2027), 401 (13 Nov 2027) … · every 111 days
+
+- `p.every-beat.harbour-seal-dive.face` — Phoque commun
+- `p.every-beat.harbour-seal-dive.label` — en plongée
+- `p.every-beat.harbour-seal-dive.sentence` — En plongée, le cœur d’un phoque commun ralentit et bat de 35 à 40 fois par minute ; lors de plongées libres en mer, 40 fois, soit un tiers de son rythme à la surface.
+- `p.every-beat.harbour-seal-dive.note` — 40 lors de plongées libres en mer, mesurés par télémétrie radio et acoustique (Fedak et d’autres, 1988) ; 35 chez des phoques dressés, immobilisés et immergés en laboratoire (Jobsis et d’autres, 2001). L’image montre un phoque gris, de la même famille.
+
+#### 69/111 · `lion-awake` · day 69 (16 Dec 2026), 180 (6 Apr 2027), 291 (26 Jul 2027), 402 (14 Nov 2027) … · every 111 days
+
+- `p.every-beat.lion-awake.face` — Lion
+- `p.every-beat.lion-awake.label` — éveillé
+- `p.every-beat.lion-awake.sentence` — Le cœur d’un lion sauvage bat environ 70 fois par minute, à peu près comme celui d’une personne au repos, et plus vite la nuit.
+- `p.every-beat.lion-awake.note` — Moyenne d’électrocardiogrammes de lions sauvages conscients et en liberté en Afrique (une seule étude : Scharling et d’autres, 2024). L’image montre un chat domestique, de la même famille (les félidés).
+
+#### 70/111 · `chinese-goose-awake` · day 70 (17 Dec 2026), 181 (7 Apr 2027), 292 (27 Jul 2027), 403 (15 Nov 2027) … · every 111 days
+
+- `p.every-beat.chinese-goose-awake.face` — Oie de Chine
+- `p.every-beat.chinese-goose-awake.label` — éveillée
+- `p.every-beat.chinese-goose-awake.sentence` — Le cœur d’une oie de Chine calme bat environ 140 fois par minute, moins de la moitié de celui d’une oie sauvage en migration.
+- `p.every-beat.chinese-goose-awake.note` — 24 oies adultes, éveillées, enveloppées dans un tissu léger, calmes et détendues (Kaya et Çenesiz, 2018) : de 103 à 203, moyenne 142. L’image montre un colvert, de la même famille.
+
+#### 71/111 · `axolotl-rest` · day 71 (18 Dec 2026), 182 (8 Apr 2027), 293 (28 Jul 2027), 404 (16 Nov 2027) … · every 111 days
+
+- `p.every-beat.axolotl-rest.face` — Axolotl
+- `p.every-beat.axolotl-rest.label` — au repos
+- `p.every-beat.axolotl-rest.sentence` — Dans une eau à 20 °C, le cœur d’un axolotl au repos ne bat qu’environ 25 fois par minute ; à 10 °C, environ 13.
+- `p.every-beat.axolotl-rest.note` — Axolotls non anesthésiés, installés dans un hamac (Dittrich et d’autres, Metabolites, 2026) : 24,9 à 20 °C, 13,1 à 10 °C. Une étude de 2022 avec des auteurs en commun : 22, sans température indiquée.
+
+#### 72/111 · `groundhog-hibernating` · day 72 (19 Dec 2026), 183 (9 Apr 2027), 294 (29 Jul 2027), 405 (17 Nov 2027) … · every 111 days
+
+- `p.every-beat.groundhog-hibernating.face` — Marmotte commune
+- `p.every-beat.groundhog-hibernating.label` — en hibernation
+- `p.every-beat.groundhog-hibernating.sentence` — En hibernation, le cœur d’une marmotte commune ralentit jusqu’à seulement quatre ou cinq battements par minute, et elle peut ne respirer qu’une ou deux fois par minute.
+- `p.every-beat.groundhog-hibernating.note` — Marmottes communes sauvages en hiver, d’après un magazine de la faune de l’État du Missouri et PBS Nature ; aucun ne cite d’étude. L’image est le chien de prairie du Cousin perdu de vue, de la même famille.
+
+#### 73/111 · `pregnant-rest` · day 73 (20 Dec 2026), 184 (10 Apr 2027), 295 (30 Jul 2027), 406 (18 Nov 2027) … · every 111 days
+
+- `p.every-beat.pregnant-rest.face` — Future maman
+- `p.every-beat.pregnant-rest.label` — au repos
+- `p.every-beat.pregnant-rest.sentence` — En fin de grossesse, le cœur d’une future maman bat d’environ 76 à 91 fois par minute, plus vite qu’avant sa grossesse.
+- `p.every-beat.pregnant-rest.note` — Médianes : 91 à 34 semaines lors de consultations dans trois centres du Royaume-Uni (Oxford, 2020 ; il n’est pas précisé qu’elles étaient au repos) ; 75,5 au repos, mesurés avec une Apple Watch, au cours des trois derniers mois, contre 65 avant la grossesse.
+
+#### 74/111 · `sheep-rest` · day 74 (21 Dec 2026), 185 (11 Apr 2027), 296 (31 Jul 2027), 407 (19 Nov 2027) … · every 111 days
+
+- `p.every-beat.sheep-rest.face` — Mouton
+- `p.every-beat.sheep-rest.label` — au repos
+- `p.every-beat.sheep-rest.sentence` — Au repos, le cœur d’un mouton bat d’environ 60 à 90 fois par minute, à peu près comme celui d’une personne au repos.
+- `p.every-beat.sheep-rest.note` — Rythmes normaux au repos : de 70 à 80 dans le Manuel vétérinaire MSD, de 60 à 90 pour les moutons et les chèvres dans le guide de Virginia Tech. L’image montre une vache, de la même famille (les bovidés).
+
+#### 75/111 · `tent-bat-flight` · day 75 (22 Dec 2026), 186 (12 Apr 2027), 297 (1 Aug 2027), 408 (20 Nov 2027) … · every 111 days
+
+- `p.every-beat.tent-bat-flight.face` — Chauve-souris à tentes
+- `p.every-beat.tent-bat-flight.label` — en vol
+- `p.every-beat.tent-bat-flight.sentence` — En vol, le cœur d’une chauve-souris à tentes bat en moyenne environ 770 fois par minute et peut dépasser 900 ; au repos pendant la journée, il tombe à environ 200.
+- `p.every-beat.tent-bat-flight.note` — Quatre chauves-souris sauvages à Gamboa, au Panama, équipées de minuscules émetteurs de rythme cardiaque (eLife, 2017) ; rythme maximal 1 066. Les deux pages viennent d’une même équipe. La chauve-souris vampire de l’image est de la même famille.
+
+#### 76/111 · `manatee-dive` · day 76 (23 Dec 2026), 187 (13 Apr 2027), 298 (2 Aug 2027), 409 (21 Nov 2027) … · every 111 days
+
+- `p.every-beat.manatee-dive.face` — Lamantin
+- `p.every-beat.manatee-dive.label` — en plongée
+- `p.every-beat.manatee-dive.sentence` — Lors d’une longue plongée, le cœur d’un lamantin ralentit jusqu’à environ 30 battements par minute, contre 50 à 60 quand il ne plonge pas.
+- `p.every-beat.manatee-dive.note` — D’après la fiche de l’agence de la faune de Floride et un site de photos grand public ; aucun ne cite d’étude. L’image montre un lamantin d’Afrique de l’Ouest, du même genre.
+
+#### 77/111 · `hummingbird-awake` · day 77 (24 Dec 2026), 188 (14 Apr 2027), 299 (3 Aug 2027), 410 (22 Nov 2027) … · every 111 days
+
+- `p.every-beat.hummingbird-awake.face` — Colibri
+- `p.every-beat.hummingbird-awake.label` — éveillé
+- `p.every-beat.hummingbird-awake.sentence` — Chez un colibri éveillé dans un air chaud, le cœur bat d’environ 420 à 510 fois par minute, même quand l’oiseau est au plus calme ; dans l’air froid, il dépasse 1 000.
+- `p.every-beat.hummingbird-awake.note` — Les rythmes les plus bas de colibris dans un gilet de contention, dans une chambre sombre, pas en torpeur (Lasiewski, 1964 et 1967). L’article de 1964 a été lu d’après une copie sur un site d’amateurs.
+
+#### 78/111 · `fin-whale-dive` · day 78 (25 Dec 2026), 189 (15 Apr 2027), 300 (4 Aug 2027), 411 (23 Nov 2027) … · every 111 days
+
+- `p.every-beat.fin-whale-dive.face` — Rorqual commun
+- `p.every-beat.fin-whale-dive.label` — en plongée
+- `p.every-beat.fin-whale-dive.sentence` — En plongée au large de la France, le cœur d’un rorqual commun sauvage est tombé à environ 5 battements par minute, contre environ 25 quand il remontait respirer.
+- `p.every-beat.fin-whale-dive.note` — Un rorqual commun équipé d’une balise au large de la France en août 2025 par une équipe du CNRS : premières analyses, pas encore publiées. L’image montre une baleine bleue, de la même famille.
+
+#### 79/111 · `greyhound-fastest` · day 79 (26 Dec 2026), 190 (16 Apr 2027), 301 (5 Aug 2027), 412 (24 Nov 2027) … · every 111 days
+
+- `p.every-beat.greyhound-fastest.face` — Greyhound
+- `p.every-beat.greyhound-fastest.label` — à fond
+- `p.every-beat.greyhound-fastest.sentence` — Au sprint, le cœur d’un greyhound de course atteint environ 318 battements par minute. Pendant son sommeil, son rythme le plus bas atteignait en moyenne seulement 42.
+- `p.every-beat.greyhound-fastest.note` — Greyhounds de course lors de courses de 30 secondes : 318, à 18 près (thèse de l’université Murdoch, 1984). Les 42 endormis ne viennent que de cette thèse. Une conférence de 2019 reprend les 318.
+
+#### 80/111 · `preschooler-awake` · day 80 (27 Dec 2026), 191 (17 Apr 2027), 302 (6 Aug 2027), 413 (25 Nov 2027) … · every 111 days
+
+- `p.every-beat.preschooler-awake.face` — Enfant d’âge préscolaire
+- `p.every-beat.preschooler-awake.label` — éveillé
+- `p.every-beat.preschooler-awake.sentence` — Éveillé, un enfant de 3 à 5 ans a un cœur qui bat de 80 à 120 fois par minute, déjà plus lentement que celui d’un tout-petit.
+- `p.every-beat.preschooler-awake.note` — La fourchette normale pour les enfants de 3 à 5 ans, éveillés et sans faire d’effort (Cleveland Clinic ; tableaux PALS). Endormis, les tableaux donnent de 65 à 100.
+
+#### 81/111 · `chimp-awake` · day 81 (28 Dec 2026), 192 (18 Apr 2027), 303 (7 Aug 2027), 414 (26 Nov 2027) … · every 111 days
+
+- `p.every-beat.chimp-awake.face` — Chimpanzé
+- `p.every-beat.chimp-awake.label` — éveillé
+- `p.every-beat.chimp-awake.sentence` — Chez un chimpanzé mâle éveillé, le cœur bat en moyenne 86,5 fois par minute ; chez une femelle, 106,4, plus vite, comme chez les humains.
+- `p.every-beat.chimp-awake.note` — Électrocardiogrammes de 35 chimpanzés en captivité dressés à accepter des électrodes sur la poitrine, sans anesthésie (université de Kyoto, Primates, 2024). La présence du soigneur a pu faire monter le rythme.
+
+#### 82/111 · `green-turtle-rest` · day 82 (29 Dec 2026), 193 (19 Apr 2027), 304 (8 Aug 2027), 415 (27 Nov 2027) … · every 111 days
+
+- `p.every-beat.green-turtle-rest.face` — Tortue verte
+- `p.every-beat.green-turtle-rest.label` — au repos
+- `p.every-beat.green-turtle-rest.sentence` — Au repos, le cœur d’une tortue verte ne bat qu’environ 9 à 12 fois par minute, mesuré sur des tortues sauvages capturées au Japon.
+- `p.every-beat.green-turtle-rest.note` — Tortues vertes au Japon : 8,6 à environ 23 °C (Saito et d’autres, 2025), et de 10,9 à 11,9 entre 28 et 30 °C dans un grand bassin (une prépublication).
+
+#### 83/111 · `orangutan-awake` · day 83 (30 Dec 2026), 194 (20 Apr 2027), 305 (9 Aug 2027), 416 (28 Nov 2027) … · every 111 days
+
+- `p.every-beat.orangutan-awake.face` — Orang-outan
+- `p.every-beat.orangutan-awake.label` — éveillé
+- `p.every-beat.orangutan-awake.sentence` — Le cœur d’un orang-outan adulte bat environ 93 fois par minute ; quatre d’entre eux avaient appris à présenter leur poitrine pour une échographie du cœur.
+- `p.every-beat.orangutan-awake.note` — Quatre orangs-outans de Bornéo adultes dans un zoo de Paris, examinés par échographie sans anesthésie (PLOS ONE, 2022) : moyenne 93, de 76 à 118.
+
+#### 84/111 · `mussel-rest` · day 84 (31 Dec 2026), 195 (21 Apr 2027), 306 (10 Aug 2027), 417 (29 Nov 2027) … · every 111 days
+
+- `p.every-beat.mussel-rest.face` — Moule bleue
+- `p.every-beat.mussel-rest.label` — au repos
+- `p.every-beat.mussel-rest.sentence` — Une moule a aussi un cœur : dans l’eau de mer à 10 °C, il ne bat que de 14 à 18 fois par minute, bien plus lentement que le tien.
+- `p.every-beat.mussel-rest.note` — Moules bleues en bassins à 10 °C, mesurées par un capteur infrarouge collé au-dessus du cœur (Bakhmet et d’autres, 2021 et 2013). Un changement brusque de salinité a ramené l’activité du cœur à un cinquième en 12 heures.
+
+#### 85/111 · `brown-bear-hibernating` · day 85 (1 Jan 2027), 196 (22 Apr 2027), 307 (11 Aug 2027), 418 (30 Nov 2027) … · every 111 days
+
+- `p.every-beat.brown-bear-hibernating.face` — Ours brun
+- `p.every-beat.brown-bear-hibernating.label` — en hibernation
+- `p.every-beat.brown-bear-hibernating.sentence` — En hibernation et anesthésié pour une échographie du cœur, un ours brun avait un cœur qui battait environ 26 fois par minute, un tiers de son rythme d’été.
+- `p.every-beat.brown-bear-hibernating.note` — Ours bruns sauvages en Suède, mesurés pendant l’hibernation sous anesthésie par un même groupe de recherche (2014, 2020). L’image est l’ours du Cousin perdu de vue, un grizzli, de la même espèce.
+
+#### 86/111 · `donkey-rest` · day 86 (2 Jan 2027), 197 (23 Apr 2027), 308 (12 Aug 2027), 419 (1 Dec 2027) … · every 111 days
+
+- `p.every-beat.donkey-rest.face` — Âne
+- `p.every-beat.donkey-rest.label` — au repos
+- `p.every-beat.donkey-rest.sentence` — Au repos, le cœur d’un âne bat de 36 à 52 fois par minute, un peu plus vite que celui d’un cheval ; au-delà de 52, c’est un signe de stress ou de douleur.
+- `p.every-beat.donkey-rest.note` — Ânes adultes : les vétérinaires du Donkey Sanctuary (moyenne 44) et Penn State Extension, qui renvoie vers le Sanctuary. L’image montre un cheval, de la même famille.
+
+#### 87/111 · `adult-fastest` · day 87 (3 Jan 2027), 198 (24 Apr 2027), 309 (13 Aug 2027), 420 (2 Dec 2027) … · every 111 days
+
+- `p.every-beat.adult-fastest.face` — Adulte
+- `p.every-beat.adult-fastest.label` — à fond
+- `p.every-beat.adult-fastest.sentence` — À fond, le cœur d’une personne de 50 ans peut atteindre environ 170 battements par minute ; celui d’une personne de 20 ans, environ 200.
+- `p.every-beat.adult-fastest.note` — Une estimation par formule (220 moins l’âge), pas une mesure ; l’American Heart Association parle de moyennes, à utiliser comme repère général.
+
+#### 88/111 · `echidna-hibernating` · day 88 (4 Jan 2027), 199 (25 Apr 2027), 310 (14 Aug 2027), 421 (3 Dec 2027) … · every 111 days
+
+- `p.every-beat.echidna-hibernating.face` — Échidné
+- `p.every-beat.echidna-hibernating.label` — en hibernation
+- `p.every-beat.echidna-hibernating.sentence` — En hibernation, le cœur d’un échidné ne bat que de quatre à sept fois par minute, contre 50 à 68 au repos.
+- `p.every-beat.echidna-hibernating.note` — Échidnés à nez court. Les deux pages s’appuient sur un même livre (Augee et d’autres, 2006). Son corps peut refroidir jusqu’à environ 4 °C.
+
+#### 89/111 · `adelie-rest` · day 89 (5 Jan 2027), 200 (26 Apr 2027), 311 (15 Aug 2027), 422 (4 Dec 2027) … · every 111 days
+
+- `p.every-beat.adelie-rest.face` — Manchot Adélie
+- `p.every-beat.adelie-rest.label` — au repos
+- `p.every-beat.adelie-rest.sentence` — Au repos, le cœur d’un manchot Adélie bat d’environ 70 à 92 fois par minute : un faux œuf placé sous l’oiseau qui couvait l’a enregistré.
+- `p.every-beat.adelie-rest.note` — Manchots Adélie couchés calmement sur leurs œufs, enregistrés avec un œuf artificiel (J. Field Ornithol., 1999) ; 74,9 au repos dans une étude japonaise. L’image montre un manchot empereur, de la même famille.
+
+#### 90/111 · `kitten-awake` · day 90 (6 Jan 2027), 201 (27 Apr 2027), 312 (16 Aug 2027), 423 (5 Dec 2027) … · every 111 days
+
+- `p.every-beat.kitten-awake.face` — Chaton nouveau-né
+- `p.every-beat.kitten-awake.label` — éveillé
+- `p.every-beat.kitten-awake.sentence` — Le cœur d’un chaton nouveau-né bat d’environ 190 à 260 fois par minute, et il garde ce rythme pendant tout son premier mois.
+- `p.every-beat.kitten-awake.note` — Tracés cardiaques de 30 chatons nouveau-nés, sans sédation, couchés sur le côté et maintenus avec du ruban adhésif, pendant leurs 30 premiers jours (Can. Vet. J., 2003) ; les notes d’un spécialiste des chats donnent de 220 à 260 pour les nouveau-nés.
+
+#### 91/111 · `beluga-dive` · day 91 (7 Jan 2027), 202 (28 Apr 2027), 313 (17 Aug 2027), 424 (6 Dec 2027) … · every 111 days
+
+- `p.every-beat.beluga-dive.face` — Béluga
+- `p.every-beat.beluga-dive.label` — en plongée
+- `p.every-beat.beluga-dive.sentence` — En plongée, le cœur d’un béluga ralentit d’environ 100 battements par minute à seulement 12 à 20, pour économiser l’oxygène.
+- `p.every-beat.beluga-dive.note` — Les bélugas en général. SeaWorld ne cite aucune étude ; Wikipédia cite un travail de Ridgway pour les mêmes chiffres, donc les deux reposent peut-être sur une même origine.
+
+#### 92/111 · `asian-elephant-awake` · day 92 (8 Jan 2027), 203 (29 Apr 2027), 314 (18 Aug 2027), 425 (7 Dec 2027) … · every 111 days
+
+- `p.every-beat.asian-elephant-awake.face` — Éléphant d’Asie
+- `p.every-beat.asian-elephant-awake.label` — éveillé
+- `p.every-beat.asian-elephant-awake.sentence` — Dressés à rester immobiles pour une échographie du cœur, de jeunes éléphants d’Asie avaient un cœur qui battait environ 40 fois par minute.
+- `p.every-beat.asian-elephant-awake.note` — Trois éléphants subadultes (de 7, 9 et 13 ans), examinés par échographie sans anesthésie ni contention (PLOS ONE, 2026) : moyenne 40, de 32 à 47. Chez les adultes, le cœur bat peut-être un peu plus lentement.
+
+#### 93/111 · `harbour-seal-surface` · day 93 (9 Jan 2027), 204 (30 Apr 2027), 315 (19 Aug 2027), 426 (8 Dec 2027) … · every 111 days
+
+- `p.every-beat.harbour-seal-surface.face` — Phoque commun
+- `p.every-beat.harbour-seal-surface.label` — à la surface
+- `p.every-beat.harbour-seal-surface.sentence` — Entre deux plongées, le cœur d’un phoque commun bat de 75 à 120 fois par minute ; en mer, il est resté à 120, trois fois son rythme en plongée.
+- `p.every-beat.harbour-seal-surface.note` — SeaWorld donne de 75 à 120 avant une plongée ; des phoques suivis en mer ont gardé un rythme stable de 120 à la surface, quelle que soit la durée de la plongée (Fedak et d’autres, 1988). L’image montre un phoque gris, de la même famille.
+
+#### 94/111 · `baby-asleep` · day 94 (10 Jan 2027), 205 (1 May 2027), 316 (20 Aug 2027), 427 (9 Dec 2027) … · every 111 days
+
+- `p.every-beat.baby-asleep.face` — Bébé
+- `p.every-beat.baby-asleep.label` — qui dort
+- `p.every-beat.baby-asleep.sentence` — Même quand le bébé dort, son cœur bat de 90 à 160 fois par minute, plus vite que celui d’un adulte au repos.
+- `p.every-beat.baby-asleep.note` — La fourchette normale pour les bébés de 1 mois à 1 an endormis, d’après les tableaux PALS (2015).
+
+#### 95/111 · `chipmunk-awake` · day 95 (11 Jan 2027), 206 (2 May 2027), 317 (21 Aug 2027), 428 (10 Dec 2027) … · every 111 days
+
+- `p.every-beat.chipmunk-awake.face` — Tamia
+- `p.every-beat.chipmunk-awake.label` — éveillé
+- `p.every-beat.chipmunk-awake.sentence` — Le cœur d’un tamia éveillé bat environ 350 fois par minute ; pendant son sommeil d’hiver, il tombe à 15, voire à environ quatre.
+- `p.every-beat.chipmunk-awake.note` — Des pages grand public : une chronique de la faune de l’État américain de Géorgie et un blog d’Ontario Parks ; aucune ne cite d’étude ni ne dit comment la mesure a été faite. L’image est le chien de prairie du Cousin perdu de vue, de la même famille.
+
+#### 96/111 · `hawk-rest` · day 96 (12 Jan 2027), 207 (3 May 2027), 318 (22 Aug 2027), 429 (11 Dec 2027) … · every 111 days
+
+- `p.every-beat.hawk-rest.face` — Buse à queue rousse
+- `p.every-beat.hawk-rest.label` — au repos
+- `p.every-beat.hawk-rest.sentence` — Au repos, le cœur d’une buse à queue rousse bat d’environ 120 à 134 fois par minute. Si des humains la dérangent, son cœur s’emballe et dépasse 400.
+- `p.every-beat.hawk-rest.note` — Une seule buse en captivité, suivie par radiotélémétrie : 134 en moyenne la nuit, 202 le jour (Raptor Research, 1984). Des buses sauvages en centre de soins, au repos : médiane 120 (université du Minnesota, 2022). L’image montre un pygargue à tête blanche, de la même famille.
+
+#### 97/111 · `yellowfin-awake` · day 97 (13 Jan 2027), 208 (4 May 2027), 319 (23 Aug 2027), 430 (12 Dec 2027) … · every 111 days
+
+- `p.every-beat.yellowfin-awake.face` — Thon jaune
+- `p.every-beat.yellowfin-awake.label` — éveillé
+- `p.every-beat.yellowfin-awake.sentence` — Dans une eau à 25 °C, le cœur d’un thon jaune qui nage tranquillement bat environ 68 fois par minute ; une eau plus froide le ralentit.
+- `p.every-beat.yellowfin-awake.note` — Six thons jaunes avec des fils d’électrocardiogramme dans un bassin de 5 300 litres à 25 °C, une heure après l’opération (Bushnell et Brill, 1991) : 67,9. Un article plus récent donne de 67 à 100, sans température. L’image montre un thon rouge, du même genre.
+
+#### 98/111 · `emu-rest` · day 98 (14 Jan 2027), 209 (5 May 2027), 320 (24 Aug 2027), 431 (13 Dec 2027) … · every 111 days
+
+- `p.every-beat.emu-rest.face` — Émeu
+- `p.every-beat.emu-rest.label` — au repos
+- `p.every-beat.emu-rest.sentence` — Au repos, le cœur d’un émeu ne bat qu’environ 46 à 50 fois par minute. En courant à fond sur un tapis roulant, il est monté à 180.
+- `p.every-beat.emu-rest.note` — Deux émeus adultes au repos dans une caisse, souvent couchés et endormis : 45,8 (J. Exp. Biol., 1983). Deux émeus d’une autre étude avaient une moyenne de 50 (état non précisé), tel que cité dans une revue vétérinaire de 2007.
+
+#### 99/111 · `lamprey-rest` · day 99 (15 Jan 2027), 210 (6 May 2027), 321 (25 Aug 2027), 432 (14 Dec 2027) … · every 111 days
+
+- `p.every-beat.lamprey-rest.face` — Lamproie de rivière
+- `p.every-beat.lamprey-rest.label` — au repos
+- `p.every-beat.lamprey-rest.sentence` — Dans une eau à 5 °C, le cœur d’une lamproie de rivière au repos bat environ 28 fois par minute, assez vite pour une eau si froide.
+- `p.every-beat.lamprey-rest.note` — Sept lamproies de rivière du Kemijoki, en Finlande, avec des fils d’électrocardiogramme posés sous anesthésie, enregistrées au repos quelques jours plus tard (Haverinen et d’autres, 2014). L’image montre une lamproie marine, de la même famille.
+
+#### 100/111 · `maned-wolf-rest` · day 100 (16 Jan 2027), 211 (7 May 2027), 322 (26 Aug 2027), 433 (15 Dec 2027) … · every 111 days
+
+- `p.every-beat.maned-wolf-rest.face` — Loup à crinière
+- `p.every-beat.maned-wolf-rest.label` — au repos
+- `p.every-beat.maned-wolf-rest.sentence` — Au repos, le cœur d’un loup à crinière bat d’environ 63 à 93 fois par minute ; à son maximum, il a atteint 296.
+- `p.every-beat.maned-wolf-rest.note` — Six loups à crinière adultes avec des capteurs cardiaques implantés, moyennes sur 2 minutes quand ils étaient immobiles (Conservation Physiology, 2021). L’image montre un loup gris, de la même famille.
+
+#### 101/111 · `child-asleep` · day 101 (17 Jan 2027), 212 (8 May 2027), 323 (27 Aug 2027), 434 (16 Dec 2027) … · every 111 days
+
+- `p.every-beat.child-asleep.face` — Enfant
+- `p.every-beat.child-asleep.label` — qui dort
+- `p.every-beat.child-asleep.sentence` — Pendant le sommeil, le cœur d’un enfant d’âge scolaire bat de 58 à 90 fois par minute, contre 75 à 118 quand il est éveillé.
+- `p.every-beat.child-asleep.note` — Les fourchettes normales pour les enfants de 6 à 11 ans, tirées des tableaux de réanimation pédiatrique (PALS) de l’American Heart Association.
+
+#### 102/111 · `humpback-rest` · day 102 (18 Jan 2027), 213 (9 May 2027), 324 (28 Aug 2027), 435 (17 Dec 2027) … · every 111 days
+
+- `p.every-beat.humpback-rest.face` — Baleine à bosse
+- `p.every-beat.humpback-rest.label` — au repos
+- `p.every-beat.humpback-rest.sentence` — Au repos à la surface, le cœur d’une baleine à bosse bat environ 18,5 fois par minute, plus vite juste après chaque respiration, plus lentement entre deux.
+- `p.every-beat.humpback-rest.note` — Une baleine à bosse sauvage en « logging » (immobile à la surface), avec des enregistreurs de cœur et de plongée (Blawas et d’autres, PNAS, 2026) ; son auteur principal estime que c’est probablement ce qui se rapproche le plus, à ce jour, d’une baleine libre au repos.
+
+#### 103/111 · `goat-rest` · day 103 (19 Jan 2027), 214 (10 May 2027), 325 (29 Aug 2027), 436 (18 Dec 2027) … · every 111 days
+
+- `p.every-beat.goat-rest.face` — Chèvre
+- `p.every-beat.goat-rest.label` — au repos
+- `p.every-beat.goat-rest.sentence` — Le cœur d’une chèvre adulte bat d’environ 70 à 110 fois par minute ; celui d’un chevreau bat encore plus vite, de 120 à 160.
+- `p.every-beat.goat-rest.note` — Chèvres adultes : de 70 à 80 au repos dans le Manuel vétérinaire MSD, de 70 à 110 dans le tableau des constantes vitales d’urgence de l’université de Californie à Davis (juin 2024). L’image montre une vache, de la même famille (les bovidés).
+
+#### 104/111 · `pigeon-flight` · day 104 (20 Jan 2027), 215 (11 May 2027), 326 (30 Aug 2027), 437 (19 Dec 2027) … · every 111 days
+
+- `p.every-beat.pigeon-flight.face` — Pigeon
+- `p.every-beat.pigeon-flight.label` — en vol
+- `p.every-beat.pigeon-flight.sentence` — En vol, le cœur d’un pigeon bat d’environ 600 à 660 fois par minute ; dans une soufflerie, il battait six fois plus vite qu’au repos.
+- `p.every-beat.pigeon-flight.note` — Pigeons voyageurs volant à vitesse constante, 18,4 mètres par seconde, dans une soufflerie (Journal of Experimental Biology, 2005). Les 600 viennent de BirdNote, une page de radio grand public qui ne cite aucune étude.
+
+#### 105/111 · `platypus-surface` · day 105 (21 Jan 2027), 216 (12 May 2027), 327 (31 Aug 2027), 438 (20 Dec 2027) … · every 111 days
+
+- `p.every-beat.platypus-surface.face` — Ornithorynque
+- `p.every-beat.platypus-surface.label` — à la surface
+- `p.every-beat.platypus-surface.sentence` — À la surface avant une plongée, le cœur d’un ornithorynque bat de 140 à 230 fois par minute ; sous l’eau, il peut tomber à 10.
+- `p.every-beat.platypus-surface.note` — Des ornithorynques sauvages amenés en captivité, plongeant dans un laboratoire (Evans et d’autres, 1994) ; les deux sources rapportent cette seule étude.
+
+#### 106/111 · `ferret-rest` · day 106 (22 Jan 2027), 217 (13 May 2027), 328 (1 Sep 2027), 439 (21 Dec 2027) … · every 111 days
+
+- `p.every-beat.ferret-rest.face` — Furet
+- `p.every-beat.ferret-rest.label` — au repos
+- `p.every-beat.ferret-rest.sentence` — Le cœur d’un furet de compagnie bat de 180 à 250 fois par minute, bien plus vite que celui d’un chat.
+- `p.every-beat.ferret-rest.note` — La fourchette normale donnée par deux ouvrages vétérinaires ; aucun ne dit comment elle a été mesurée. L’image montre une hermine, de la même famille (les mustélidés).
+
+#### 107/111 · `tufted-duck-awake` · day 107 (23 Jan 2027), 218 (14 May 2027), 329 (2 Sep 2027), 440 (22 Dec 2027) … · every 111 days
+
+- `p.every-beat.tufted-duck-awake.face` — Fuligule morillon
+- `p.every-beat.tufted-duck-awake.label` — éveillé
+- `p.every-beat.tufted-duck-awake.sentence` — Calme sur l’eau, le cœur d’un fuligule morillon bat de 120 à 150 fois par minute : un émetteur radio placé dans le canard envoyait chaque battement.
+- `p.every-beat.tufted-duck-awake.note` — Dix canards avec un masque facial (contention légère) sur un canal d’eau : 149 ; les rythmes de repos les plus bas de six canards dans une étude de plongée : 121 (les deux en 1986, un même groupe de recherche). L’image montre un colvert, de la même famille.
+
+#### 108/111 · `cold-face-dive` · day 108 (24 Jan 2027), 219 (15 May 2027), 330 (3 Sep 2027), 441 (23 Dec 2027) … · every 111 days
+
+- `p.every-beat.cold-face-dive.face` — Personne en apnée
+- `p.every-beat.cold-face-dive.label` — en plongée
+- `p.every-beat.cold-face-dive.sentence` — Il suffit de plonger le visage dans l’eau froide en retenant son souffle pour que le cœur passe d’environ 79 à environ 53 battements par minute.
+- `p.every-beat.cold-face-dive.note` — 65 étudiants de Gdańsk ont retenu leur souffle, le visage dans une eau entre 8 et 10 °C, aussi longtemps qu’ils le pouvaient (Malinowski et d’autres, 2023). Le rythme le plus bas était en moyenne de 49 chez les hommes et de 55 chez les femmes.
+
+#### 109/111 · `green-iguana-awake` · day 109 (25 Jan 2027), 220 (16 May 2027), 331 (4 Sep 2027), 442 (24 Dec 2027) … · every 111 days
+
+- `p.every-beat.green-iguana-awake.face` — Iguane vert
+- `p.every-beat.green-iguana-awake.label` — éveillé
+- `p.every-beat.green-iguana-awake.sentence` — Le cœur d’un iguane vert éveillé ne bat qu’environ 42 à 52 fois par minute, plus lentement que celui d’une personne au repos.
+- `p.every-beat.green-iguana-awake.note` — Quinze jeunes iguanes au repos, moyenne 52 (American Journal of Veterinary Research, 2011) ; douze adultes tenus à la main dans une pièce entre 23 et 28 °C, moyennes de 42 à 51 (Veterinární Medicína, 2021).
+
+#### 110/111 · `pheasant-awake` · day 110 (26 Jan 2027), 221 (17 May 2027), 332 (5 Sep 2027), 443 (25 Dec 2027) … · every 111 days
+
+- `p.every-beat.pheasant-awake.face` — Faisan
+- `p.every-beat.pheasant-awake.label` — éveillé
+- `p.every-beat.pheasant-awake.sentence` — Le cœur d’un faisan éveillé bat d’environ 190 à 240 fois par minute, soit deux à trois fois celui d’un adulte au repos.
+- `p.every-beat.pheasant-awake.note` — Moyennes de 12 mâles (194) et de 12 femelles (236), éveillés, tenus sur le dos la tête couverte, mesurées par électrocardiogramme (Kaya et Soylu, 2013). Un seul article. L’image montre une poule, de la même famille.
+
+#### 111/111 · `salmon-rest` · day 111 (27 Jan 2027), 222 (18 May 2027), 333 (6 Sep 2027), 444 (26 Dec 2027) … · every 111 days
+
+- `p.every-beat.salmon-rest.face` — Saumon atlantique
+- `p.every-beat.salmon-rest.label` — au repos
+- `p.every-beat.salmon-rest.sentence` — Dans une eau à 9 °C, le cœur d’un saumon atlantique au repos ne bat qu’environ 25 fois par minute, mesuré la nuit par une balise que le poisson portait.
+- `p.every-beat.salmon-rest.note` — Douze saumons d’élevage d’environ 1,2 kg dans des bassins, enregistrés la nuit (Hvas, Folkedal et Oppedal, 2020). Le résumé de l’article ajoute : 30 minutes de surpeuplement ont fait monter ce rythme à environ 56.
+
 ## U. Doubts for Khayyam
 
 - p.every-beat.shrew-peak.face — Musaraigne étrusque — second option: Pachyure étrusque (the name French Wikipedia heads its page with); I took the one a 12-year-old knows.
@@ -415,3 +793,22 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - p.every-beat.squirrel-hibernating.face — Écureuil terrestre — second option: Spermophile (the zoologists' word for ground squirrel, which most French readers do not know).
 - p.every-beat.octopus-awake.face — Poulpe géant — second option: Pieuvre géante; poulpe is the usual word for the animal, pieuvre the everyday one.
 - p.every-beat.horse-gallop.note — Oklahoma State University and Texas A&M kept in English as institution names; a French source would write the same.
+
+### Added on 30 October 2026, with the new puzzles
+
+- p.every-beat.tent-bat-flight.face — "Chauve-souris à tentes"; second option "Chauve-souris bâtisseuse de tentes". I found no French source for this species (Uroderma bilobatum), so I made the name from the English; the longer one is clearer but may be too wide for the face.
+- p.every-beat.groundhog-hibernating.face — "Marmotte commune"; second option "Marmotte d’Amérique". "Marmotte commune" is the name Quebec’s government and language office use for the groundhog; it is kept apart from "Marmotte des Alpes" (marmot-hibernating.face).
+- p.every-beat.yellowfin-awake.face — "Thon jaune"; second option "Thon albacore". Both are the standard French names; "thon jaune" is the one shops and fishers use.
+- p.every-beat.tufted-duck-dive.face — "Fuligule morillon"; second option "Canard morillon". "Fuligule morillon" is the official name; a 12-year-old may not know it, but "canard" alone would be wrong (and is used for the mallard picture). Same for tufted-duck-awake.
+- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Lévrier". "Greyhound" is the breed’s name in French too; "lévrier" is the everyday word for the whole group of dogs.
+- p.every-beat.preschooler-awake.face — "Enfant d’âge préscolaire"; second option "Enfant de maternelle". "Maternelle" does not cover the same ages in France, Belgium, Switzerland and Quebec; "d’âge préscolaire" is a little formal, but the sentence gives the ages (3 to 5).
+- p.every-beat.cold-face-dive.face — "Personne en apnée"; second option "Apnéiste". "Apnéiste" is already the face of the freediver (freediver-dive), and this one is only dipping the face in cold water.
+- p.every-beat.toddler-awake.face — "Tout-petit"; second option "Bambin". "Tout-petit" is plainer and fits the 1-to-3 range.
+- p.every-beat.pregnant-rest.face — "Future maman"; second option "Femme enceinte". "Future maman" is warmer and matches "mother-to-be".
+- p.every-beat.buffalo-awake.face — "Buffle d’eau"; second option "Buffle d’Asie". Both names are used; "buffle d’eau" says what the animal does.
+- p.every-beat.chinese-goose-awake.label — "éveillée"; the label agrees with the feminine face "Oie de Chine". The first batch always used the masculine "éveillé" because its faces were masculine; the other "awake" labels here are masculine too.
+- p.every-beat.marmot-hibernating.note — "Réveillez-vous !"; second option "Awake!". The English "Awake!" is a magazine; its French edition is called "Réveillez-vous !". The note says "Wikipédia" for Wikipedia, as a French reader would.
+- p.every-beat.hawk-rest.note — "pygargue à tête blanche" for the bald eagle in the picture; second option "aigle à tête blanche", the everyday name.
+- p.every-beat.humpback-rest.note — "logging" kept in English between quotes, because it is the researchers’ own word for a whale lying still at the surface; second option "flottant".
+- p.every-beat.sheep-rest.face — "Mouton"; second option "Brebis". "Mouton" is the general word for the animal, as "Sheep" is in English.
+- p.every-beat.calf-rest.note — "l’université de Californie à Davis" for UC Davis (as the first batch wrote "l’université de Californie à Santa Cruz"); second option "UC Davis" as people write it.

@@ -2,7 +2,7 @@
 
 The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by day) were moved here on 29 October 2026 by claude/logicers-data/scripts/migrate_overlays.py, word for word, under the id of the puzzle each day played; nothing else changed. New puzzles go under their own heading, as in the English doc, with their id in the key. The doubts of the first batch stay in section U of claude/logicers-strings-es.md.
 
-## The puzzles of Who Gets What (45 of 45 translated)
+## The puzzles of Who Gets What (90 of 90 translated)
 
 #### 1/45 · `dark-choc` · day 1 (8 Oct 2026), 46 (22 Nov 2026), 91 (6 Jan 2027), 136 (20 Feb 2027) … · every 45 days · second batch
 
@@ -486,6 +486,481 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.who-gets-what.uk-diesel.fact` — El diésel británico paga exactamente el mismo impuesto especial que la gasolina, 52,95 peniques por litro. En octubre de 2026 seguía costando casi 25 peniques más, porque el propio combustible costaba más.
 - `p.who-gets-what.uk-diesel.note` — El precio medio en surtidor del Reino Unido que da el Gobierno para la semana del 5 de octubre de 2026 (199,52 peniques), con el impuesto especial (52,95 peniques) y el IVA del 20 % que publica a su lado. «Diésel» es todo lo que va antes de impuestos: el petróleo crudo, el refinado, el transporte y la gasolinera.
 
+#### 46/90 · `cigs-se` · day 46 (22 Nov 2026), 136 (20 Feb 2027), 226 (21 May 2027), 316 (19 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-se.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-se.where` — Suecia
+- `p.who-gets-what.cigs-se.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-se.slice2` — IVA
+- `p.who-gets-what.cigs-se.slice3` — Resto
+- `p.who-gets-what.cigs-se.fact` — El impuesto especial de Suecia era casi todo una cantidad fija por cigarrillo, 1620 coronas por cada 1000. El impuesto que se cobraba sobre el precio era de solo el 1 %.
+- `p.who-gets-what.cigs-se.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 3099 coronas por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 47/90 · `pk-petrol` · day 47 (23 Nov 2026), 137 (21 Feb 2027), 227 (22 May 2027), 317 (20 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.pk-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.pk-petrol.where` — Pakistán
+- `p.who-gets-what.pk-petrol.slice1` — Combustible
+- `p.who-gets-what.pk-petrol.slice2` — Reparto
+- `p.who-gets-what.pk-petrol.slice3` — Impuestos
+- `p.who-gets-what.pk-petrol.fact` — A principios de mayo de 2026, un litro de gasolina en Pakistán costaba 399,86 rupias, y casi un tercio eran impuestos. Solo la tasa sobre el petróleo era de 103,50 rupias.
+- `p.who-gets-what.pk-petrol.note` — El precio de la gasolina fijado por el Gobierno, publicado el 2 de mayo de 2026, partida por partida tal como lo imprimieron dos periódicos a partir de cifras oficiales. «Combustible» es el precio a la salida de la refinería (246,31 rupias); «Reparto» es el margen del transporte interior (7,32 rupias), el margen de las empresas comercializadoras de petróleo (7,87 rupias) y la comisión de los dueños de las gasolineras (8,64 rupias); «Impuestos» son la tasa sobre el petróleo (103,50 rupias), los derechos de aduana (23,72 rupias) y una tasa de apoyo climático (2,50 rupias).
+
+#### 48/90 · `cigs-de21` · day 48 (24 Nov 2026), 138 (22 Feb 2027), 228 (23 May 2027), 318 (21 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-de21.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-de21.where` — Alemania
+- `p.who-gets-what.cigs-de21.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-de21.slice2` — IVA
+- `p.who-gets-what.cigs-de21.slice3` — Resto
+- `p.who-gets-what.cigs-de21.fact` — Casi un tercio de un paquete alemán, 1,89 € de 6,18 €, quedó para el fabricante y las tiendas una vez pagados los dos impuestos especiales y el IVA.
+- `p.who-gets-what.cigs-de21.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 308,996 euros por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 49/90 · `br-power` · day 49 (25 Nov 2026), 139 (23 Feb 2027), 229 (24 May 2027), 319 (22 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.br-power.what` — 100 reales de una factura de electricidad
+- `p.who-gets-what.br-power.where` — Brasil
+- `p.who-gets-what.br-power.slice1` — Energía
+- `p.who-gets-what.br-power.slice2` — Red
+- `p.who-gets-what.br-power.slice3` — Cargos
+- `p.who-gets-what.br-power.slice4` — Impuestos
+- `p.who-gets-what.br-power.fact` — Menos de un tercio de una factura de electricidad en Brasil paga la energía en sí. Las redes que la llevan se quedan con más de un tercio.
+- `p.who-gets-what.br-power.note` — El reparto de la factura que hace la asociación de distribuidoras de electricidad Abradee, a partir de datos del regulador Aneel, publicado en mayo de 2025; los informes no dicen a qué año corresponde. «Red» es la distribución (26,12 %) y la transmisión (10,1 %); «Cargos» son los cargos del sector y los subsidios que se pagan con la factura; «Impuestos» es sobre todo el impuesto estatal ICMS (cerca del 81 % de esa parte).
+
+#### 50/90 · `us-pump-22` · day 50 (26 Nov 2026), 140 (24 Feb 2027), 230 (25 May 2027), 320 (23 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.us-pump-22.what` — Un galón de gasolina
+- `p.who-gets-what.us-pump-22.where` — Estados Unidos
+- `p.who-gets-what.us-pump-22.slice1` — Crudo
+- `p.who-gets-what.us-pump-22.slice2` — Refinado
+- `p.who-gets-what.us-pump-22.slice3` — Reparto
+- `p.who-gets-what.us-pump-22.slice4` — Impuestos
+- `p.who-gets-what.us-pump-22.fact` — En febrero de 2022, el petróleo crudo era el 60,5 % de un galón de gasolina estadounidense. En junio el galón costaba 4,93 dólares y la parte del refinado casi se había duplicado, hasta el 27,3 %.
+- `p.who-gets-what.us-pump-22.note` — El reparto mensual que hace la agencia de energía de Estados Unidos del precio medio de venta al público de la gasolina regular, febrero de 2022 (3,517 dólares el galón). «Crudo» es lo que pagaron las refinerías por el petróleo crudo; «Refinado» es el precio al contado de la gasolina por encima de ese; «Reparto» es la distribución y la comercialización, todo lo que va desde ahí hasta el surtidor, incluido el margen de la propia gasolinera; «Impuestos» son los impuestos federales y estatales.
+
+#### 51/90 · `cigs-au` · day 51 (27 Nov 2026), 141 (25 Feb 2027), 231 (26 May 2027), 321 (24 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-au.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-au.where` — Australia
+- `p.who-gets-what.cigs-au.slice1` — Resto
+- `p.who-gets-what.cigs-au.slice2` — Impuesto especial
+- `p.who-gets-what.cigs-au.slice3` — GST
+- `p.who-gets-what.cigs-au.fact` — El impuesto especial es casi tres cuartas partes del precio de un paquete barato en Australia. El fabricante se queda con solo el 8,9 %; en un paquete premium de 54,99 dólares se queda con el 31,8 %.
+- `p.who-gets-what.cigs-au.note` — El tabaco en Australia (Cancer Council Victoria; página actualizada en agosto de 2026) desglosa el precio anunciado de 37,95 dólares de una marca económica típica: impuesto especial 73,9 %, GST 9,1 %, total de impuestos 83,0 % (31,51 dólares). «Resto» es el 8,9 % del fabricante y el margen de los vendedores. El impuesto especial es el de marzo de 2025, 28,06 dólares por 20 cigarrillos; la página no nombra marca, tamaño de paquete ni fecha; se deducen del impuesto especial.
+
+#### 52/90 · `br-diesel` · day 52 (28 Nov 2026), 142 (26 Feb 2027), 232 (27 May 2027), 322 (25 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.br-diesel.what` — Un litro de diésel
+- `p.who-gets-what.br-diesel.where` — Brasil
+- `p.who-gets-what.br-diesel.slice1` — Diésel
+- `p.who-gets-what.br-diesel.slice2` — Biodiésel
+- `p.who-gets-what.br-diesel.slice3` — Vendedores
+- `p.who-gets-what.br-diesel.slice4` — Impuesto
+- `p.who-gets-what.br-diesel.fact` — En julio de 2026, un litro de diésel en Brasil no llevaba ningún impuesto federal. El impuesto estatal era de 1,17 reales, casi el doble de lo que se quedaban los distribuidores y las gasolineras.
+- `p.who-gets-what.br-diesel.note` — El promedio nacional del regulador del petróleo ANP para el diésel S10 en la semana que terminó el 11 de julio de 2026, 6,97 reales el litro, según informó Agrolink. «Diésel» es el diésel fósil; «Biodiésel» es el biodiésel mezclado con él; «Vendedores» es el margen estimado de distribución y reventa; «Impuesto» es el impuesto estatal ICMS, fijo en 1,17 reales el litro en 2026. En ese periodo no se cobró ningún impuesto federal.
+
+#### 53/90 · `cigs-it` · day 53 (29 Nov 2026), 143 (27 Feb 2027), 233 (28 May 2027), 323 (26 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-it.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-it.where` — Italia
+- `p.who-gets-what.cigs-it.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-it.slice2` — IVA
+- `p.who-gets-what.cigs-it.slice3` — Resto
+- `p.who-gets-what.cigs-it.fact` — Un paquete italiano costaba 5,16 € de media, y casi cuatro quintas partes eran impuestos. El fabricante, el mayorista y la tienda se repartían unos 22 céntimos de cada euro.
+- `p.who-gets-what.cigs-it.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 258 euros por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 54/90 · `za-petrol` · day 54 (30 Nov 2026), 144 (28 Feb 2027), 234 (29 May 2027), 324 (27 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.za-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.za-petrol.where` — Sudáfrica
+- `p.who-gets-what.za-petrol.slice1` — Combustible
+- `p.who-gets-what.za-petrol.slice2` — Reparto
+- `p.who-gets-what.za-petrol.slice3` — Gasolinera
+- `p.who-gets-what.za-petrol.slice4` — Tasas
+- `p.who-gets-what.za-petrol.fact` — En julio de 2026, una gasolinera de Gauteng se quedó con 3,15 rands de un litro de gasolina de 26,10 rands. Almacenarla, llevarla y venderla al por mayor costaba 2,16 rands en total.
+- `p.who-gets-what.za-petrol.note` — La estructura oficial de precios del departamento de energía para la gasolina sin plomo de 95 octanos en Gauteng desde el 1 de julio de 2026 (2610 céntimos de rand el litro). «Combustible» es su precio básico del combustible; «Reparto» es el margen mayorista, el almacenamiento, la distribución y el diferencial de la zona de Gauteng; «Gasolinera» es el margen minorista; «Tasas» son el impuesto sobre el combustible (4,29 rands), la tasa del Fondo de Accidentes de Carretera (2,25 rands), una tasa slate (1,14 rands) y tres impuestos pequeños.
+
+#### 55/90 · `cigs-dk` · day 55 (1 Dec 2026), 145 (1 Mar 2027), 235 (30 May 2027), 325 (28 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-dk.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-dk.where` — Dinamarca
+- `p.who-gets-what.cigs-dk.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-dk.slice2` — IVA
+- `p.who-gets-what.cigs-dk.slice3` — Resto
+- `p.who-gets-what.cigs-dk.fact` — En Dinamarca, el fabricante, los mayoristas y las tiendas se quedaron con solo el 11,5 % del precio de un paquete. El impuesto fijo por cigarrillo se llevó por sí solo el 67,5 %.
+- `p.who-gets-what.cigs-dk.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 2576,28 coronas por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 56/90 · `it-gas` · day 56 (2 Dec 2026), 146 (2 Mar 2027), 236 (31 May 2027), 326 (29 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.it-gas.what` — Un metro cúbico de gas
+- `p.who-gets-what.it-gas.where` — Italia
+- `p.who-gets-what.it-gas.unit` — por metro cúbico
+- `p.who-gets-what.it-gas.slice1` — Gas
+- `p.who-gets-what.it-gas.slice2` — Tuberías
+- `p.who-gets-what.it-gas.slice3` — Políticas
+- `p.who-gets-what.it-gas.slice4` — Impuestos
+- `p.who-gets-what.it-gas.fact` — Casi 30 céntimos de cada euro que un hogar italiano pagaba por el gas se iban en impuestos. Mover el gas y medirlo se llevaba más de una quinta parte.
+- `p.who-gets-what.it-gas.note` — El precio de referencia del regulador para mayo de 2025 para el hogar típico del servicio de gas para clientes vulnerables, con un consumo de 1100 metros cúbicos al año. «Gas» es comprarlo (43,68 céntimos) y vendértelo (6,02); «Tuberías» es la distribución, la medición y el transporte (23,20); «Políticas» son los cargos del sistema (3,31); «Impuestos» son 31,79 céntimos.
+
+#### 57/90 · `au-diesel` · day 57 (3 Dec 2026), 147 (3 Mar 2027), 237 (1 Jun 2027), 327 (30 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.au-diesel.what` — Un litro de diésel
+- `p.who-gets-what.au-diesel.where` — Australia
+- `p.who-gets-what.au-diesel.slice1` — Crudo
+- `p.who-gets-what.au-diesel.slice2` — Refinado
+- `p.who-gets-what.au-diesel.slice3` — Reparto
+- `p.who-gets-what.au-diesel.slice4` — Impuestos
+- `p.who-gets-what.au-diesel.fact` — A mediados de marzo de 2026, el diésel en Singapur costaba casi el doble que el petróleo crudo con el que se fabrica. Los impuestos se llevaban menos de un tercio del precio en el surtidor australiano.
+- `p.who-gets-what.au-diesel.note` — Los promedios nacionales del Instituto Australiano del Petróleo para la semana que terminó el 15 de marzo de 2026 (precios mundiales: la semana hasta el 13 de marzo), en centavos el litro: crudo Brent 87,9, diésel de Singapur 160,6, venta al público 245,6. «Refinado» es lo que cuesta el diésel por encima del crudo. «Impuestos» son el impuesto especial (52,6) más el GST (22,33). «Reparto» es el resto: el transporte marítimo, el almacenamiento y los márgenes de mayoristas y gasolineras en una semana en que los precios subieron rápido.
+
+#### 58/90 · `cigs-kr` · day 58 (4 Dec 2026), 148 (4 Mar 2027), 238 (2 Jun 2027), 328 (31 Aug 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-kr.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-kr.where` — Corea del Sur
+- `p.who-gets-what.cigs-kr.slice1` — Resto
+- `p.who-gets-what.cigs-kr.slice2` — Impuesto especial
+- `p.who-gets-what.cigs-kr.slice3` — IVA
+- `p.who-gets-what.cigs-kr.fact` — Los impuestos y cargos se llevan 3318 de los 4500 won que cuesta un paquete en Corea del Sur. Una tasa para el fondo de salud es por sí sola de 841 won, el doble del IVA.
+- `p.who-gets-what.cigs-kr.note` — Una tabla del KIHASA (el Instituto de Corea para la Salud y los Asuntos Sociales, mayo de 2022), tomada de la guía del ministerio de salud, para un paquete de 4500 won. «Impuesto especial» son el impuesto al consumo de tabaco, el impuesto local de educación y el impuesto al consumo individual (2044 won), más la tasa de promoción de la salud y el cargo por residuos (865 won). «Resto» son los 1182 won que quedan para el fabricante y los vendedores.
+
+#### 59/90 · `it-diesel` · day 59 (5 Dec 2026), 149 (5 Mar 2027), 239 (3 Jun 2027), 329 (1 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.it-diesel.what` — Un litro de diésel
+- `p.who-gets-what.it-diesel.where` — Italia
+- `p.who-gets-what.it-diesel.slice1` — Diésel
+- `p.who-gets-what.it-diesel.slice2` — Impuesto especial
+- `p.who-gets-what.it-diesel.slice3` — IVA
+- `p.who-gets-what.it-diesel.fact` — El diésel italiano alcanzó su precio más alto de la historia a finales de septiembre de 2026: 2,351 € el litro, incluso con una rebaja del impuesto especial. Más de la mitad era el propio combustible, antes de cualquier impuesto.
+- `p.who-gets-what.it-diesel.note` — El promedio semanal del ministerio de medio ambiente y energía para el sondeo del 28 de septiembre de 2026 (2,351 €), desglosado con el impuesto especial vigente del 26 de septiembre al 5 de octubre, 622,90 euros por cada 1000 litros (rebajado en 5 céntimos, 6,1 con IVA), y el IVA del 22 %: 1,304 antes de impuestos + 0,623 de impuesto especial + 0,424 de IVA. Il Post da 62 y 42 céntimos. «Diésel» es el precio antes de cualquier impuesto.
+
+#### 60/90 · `cigs-lt` · day 60 (6 Dec 2026), 150 (6 Mar 2027), 240 (4 Jun 2027), 330 (2 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-lt.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-lt.where` — Lituania
+- `p.who-gets-what.cigs-lt.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-lt.slice2` — IVA
+- `p.who-gets-what.cigs-lt.slice3` — Resto
+- `p.who-gets-what.cigs-lt.fact` — Un paquete lituano costaba 3,76 € de media, y los dos impuestos especiales y el IVA se llevaban 2,98 €. Quedaban 78 céntimos para el fabricante, los mayoristas y la tienda.
+- `p.who-gets-what.cigs-lt.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 188 euros por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 61/90 · `nz-petrol` · day 61 (7 Dec 2026), 151 (7 Mar 2027), 241 (5 Jun 2027), 331 (3 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.nz-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.nz-petrol.where` — Nueva Zelanda
+- `p.who-gets-what.nz-petrol.slice1` — Combustible
+- `p.who-gets-what.nz-petrol.slice2` — Vendedores
+- `p.who-gets-what.nz-petrol.slice3` — Carbono
+- `p.who-gets-what.nz-petrol.slice4` — Impuestos
+- `p.who-gets-what.nz-petrol.fact` — A principios de septiembre de 2026, los impuestos, las tasas y el GST se llevaban 1,16 dólares de un litro de gasolina de Nueva Zelanda de 2,97 dólares. El margen que quedaba para el transporte y las gasolineras era de menos de 19 centavos.
+- `p.who-gets-what.nz-petrol.note` — El promedio nacional semanal del ministerio para la gasolina regular, semana 36 de 2026 (la primera semana de septiembre), calculado como la suma de sus partes. «Combustible» es el costo del importador: comprar el combustible en Singapur y traerlo en barco. «Vendedores» es el margen del importador, para el transporte, la distribución y las gasolineras. «Carbono» es el costo del comercio de emisiones. «Impuestos» son 77,254 centavos de impuestos y tasas, y luego el 15 % de GST.
+
+#### 62/90 · `cigs-nl` · day 62 (8 Dec 2026), 152 (8 Mar 2027), 242 (6 Jun 2027), 332 (4 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-nl.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-nl.where` — Países Bajos
+- `p.who-gets-what.cigs-nl.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-nl.slice2` — IVA
+- `p.who-gets-what.cigs-nl.slice3` — Resto
+- `p.who-gets-what.cigs-nl.fact` — De un paquete neerlandés de 7,16 €, solo quedaron 1,08 € para el fabricante, los mayoristas y las tiendas. El otro 84,9 % se fue en impuestos especiales e IVA.
+- `p.who-gets-what.cigs-nl.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021: su precio medio ponderado de 2020, 357,92 euros por cada 1000 cigarrillos (cincuenta paquetes de veinte), con los impuestos de julio de 2021. «Impuesto especial» es el impuesto especial fijo por cigarrillo más el que se cobra sobre el precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas. El impuesto mínimo neerlandés era un poco más alto que este impuesto, en 0,4 puntos del precio.
+
+#### 63/90 · `de-power-26` · day 63 (9 Dec 2026), 153 (9 Mar 2027), 243 (7 Jun 2027), 333 (5 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.de-power-26.what` — Una unidad de electricidad
+- `p.who-gets-what.de-power-26.where` — Alemania
+- `p.who-gets-what.de-power-26.unit` — por kWh
+- `p.who-gets-what.de-power-26.slice1` — Energía
+- `p.who-gets-what.de-power-26.slice2` — Red
+- `p.who-gets-what.de-power-26.slice3` — Tasas
+- `p.who-gets-what.de-power-26.slice4` — IVA
+- `p.who-gets-what.de-power-26.fact` — En 2026, una subvención federal para la red de alta tensión rebajó en 1,7 céntimos el cargo por la red de cada unidad alemana. Los impuestos y las tasas seguían llevándose un tercio.
+- `p.who-gets-what.de-power-26.note` — El promedio de la asociación del sector BDEW para los contratos nuevos de hogares con un consumo de 3500 unidades al año, agosto de 2026: 15,17 céntimos por comprar y vender la electricidad, 9,24 de cargos de red, 5,91 de IVA. «Tasas» son el impuesto sobre la electricidad (2,05), la tasa de concesión que se paga a los municipios (1,666) y tres recargos de la factura (1,559, 0,941 y 0,446).
+
+#### 64/90 · `br-petrol` · day 64 (10 Dec 2026), 154 (10 Mar 2027), 244 (8 Jun 2027), 334 (6 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.br-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.br-petrol.where` — Brasil
+- `p.who-gets-what.br-petrol.slice1` — Petrobras
+- `p.who-gets-what.br-petrol.slice2` — Etanol
+- `p.who-gets-what.br-petrol.slice3` — Vendedores
+- `p.who-gets-what.br-petrol.slice4` — Impuestos
+- `p.who-gets-what.br-petrol.fact` — En febrero de 2025, Petrobras y los impuestos se llevaban cada uno cerca de un tercio de un litro de gasolina en Brasil. El impuesto del estado, por sí solo, era más del doble que los impuestos federales.
+- `p.who-gets-what.br-petrol.note` — El reparto que hace Petrobras del precio medio nacional de la gasolina en surtidor (ya mezclada con un 27 % de etanol), 6,37 reales el litro, según se informó el 18 de febrero de 2025. «Petrobras» es lo que se le pagó a la empresa por su gasolina; «Etanol» es el etanol mezclado; «Vendedores» son los costos y los márgenes de los distribuidores y las gasolineras; «Impuestos» son el impuesto estatal ICMS (1,47 reales) y los impuestos federales (0,69 reales).
+
+#### 65/90 · `cigs-jp` · day 65 (11 Dec 2026), 155 (11 Mar 2027), 245 (9 Jun 2027), 335 (7 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-jp.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-jp.where` — Japón
+- `p.who-gets-what.cigs-jp.slice1` — Resto
+- `p.who-gets-what.cigs-jp.slice2` — Impuesto especial
+- `p.who-gets-what.cigs-jp.slice3` — Impuesto
+- `p.who-gets-what.cigs-jp.fact` — Los impuestos del tabaco de un paquete japonés se reparten exactamente por la mitad: 152,44 yenes para el gobierno nacional y 152,44 yenes para el gobierno local.
+- `p.who-gets-what.cigs-jp.note` — Un ejemplo práctico para un paquete de 20 de 580 yenes con los impuestos vigentes desde el 1 de octubre de 2021, del distrito de Nakano de Tokio (edición de 2025) y de la prefectura de Chiba. «Impuesto especial» son los cuatro impuestos al tabaco: nacional, especial, prefectural y municipal (304,88 yenes). «Impuesto» es el impuesto al consumo del 10 % (52,73 yenes). «Resto» es lo que se quedan el fabricante y los vendedores, que Chiba llama materias primas, ganancias y demás (222,40 yenes).
+
+#### 66/90 · `it-petrol` · day 66 (12 Dec 2026), 156 (12 Mar 2027), 246 (10 Jun 2027), 336 (8 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.it-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.it-petrol.where` — Italia
+- `p.who-gets-what.it-petrol.slice1` — Gasolina
+- `p.who-gets-what.it-petrol.slice2` — Impuesto especial
+- `p.who-gets-what.it-petrol.slice3` — IVA
+- `p.who-gets-what.it-petrol.fact` — A finales de septiembre de 2026, la gasolina italiana costaba 2,156 € el litro, su segundo precio más alto de la historia. Casi la mitad eran impuestos: 67 céntimos de impuesto especial y 39 de IVA.
+- `p.who-gets-what.it-petrol.note` — El precio medio semanal en surtidor del ministerio de medio ambiente y energía (MASE) para el sondeo del 28 de septiembre de 2026, con el impuesto especial y el IVA que el ministerio indica a su lado, tal como los reproduce Rivaluta.it: 2,156 = 1,094 antes de impuestos + 0,673 de impuesto especial + 0,389 de IVA. El IVA (22 %) se cobra sobre el combustible y el impuesto especial juntos. «Gasolina» es el precio antes de cualquier impuesto.
+
+#### 67/90 · `cigs-at` · day 67 (13 Dec 2026), 157 (13 Mar 2027), 247 (11 Jun 2027), 337 (9 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-at.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-at.where` — Austria
+- `p.who-gets-what.cigs-at.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-at.slice2` — IVA
+- `p.who-gets-what.cigs-at.slice3` — Resto
+- `p.who-gets-what.cigs-at.fact` — La mayor parte del impuesto especial de Austria se cobraba como parte del precio, el 34,5 %, y menos como cantidad fija por cigarrillo, el 26,4 %. Con el IVA, los impuestos se llevaban el 77,6 % de un paquete.
+- `p.who-gets-what.cigs-at.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 257,30 euros por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 68/90 · `za-diesel` · day 68 (14 Dec 2026), 158 (14 Mar 2027), 248 (12 Jun 2027), 338 (10 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.za-diesel.what` — Un litro de diésel, al por mayor
+- `p.who-gets-what.za-diesel.where` — Sudáfrica
+- `p.who-gets-what.za-diesel.slice1` — Combustible
+- `p.who-gets-what.za-diesel.slice2` — Reparto
+- `p.who-gets-what.za-diesel.slice3` — Tasas
+- `p.who-gets-what.za-diesel.fact` — Las tasas se llevaban 7,60 rands de un litro de diésel vendido al por mayor en Gauteng en julio de 2026, casi un tercio de su precio de 24,79 rands. El impuesto sobre el combustible por sí solo era de 4,16 rands.
+- `p.who-gets-what.za-diesel.note` — La estructura oficial del departamento de energía para el diésel con 0,05 % de azufre en Gauteng desde el 1 de julio de 2026. Su tabla no da ningún precio en surtidor para el diésel, solo este precio mayorista (2478,77 céntimos de rand el litro). «Combustible» es el precio básico del combustible; «Reparto» es el margen mayorista, el almacenamiento, la distribución y el diferencial de la zona de Gauteng; «Tasas» son el impuesto sobre el combustible (4,16 rands), la tasa del Fondo de Accidentes de Carretera (2,25 rands), una tasa slate (1,14 rands) y tres más pequeñas.
+
+#### 69/90 · `cigs-es` · day 69 (15 Dec 2026), 159 (15 Mar 2027), 249 (13 Jun 2027), 339 (11 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-es.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-es.where` — España
+- `p.who-gets-what.cigs-es.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-es.slice2` — IVA
+- `p.who-gets-what.cigs-es.slice3` — Resto
+- `p.who-gets-what.cigs-es.fact` — España gravaba los cigarrillos sobre todo por su precio: el 51 % de lo que pagaba quien fumaba era un impuesto que se cobraba como parte del precio, y solo el 10,9 %, un impuesto fijo por cigarrillo.
+- `p.who-gets-what.cigs-es.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 226,56 euros por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 70/90 · `no-power` · day 70 (16 Dec 2026), 160 (16 Mar 2027), 250 (14 Jun 2027), 340 (12 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.no-power.what` — Una unidad de electricidad
+- `p.who-gets-what.no-power.where` — Noruega
+- `p.who-gets-what.no-power.unit` — por kWh
+- `p.who-gets-what.no-power.slice1` — Energía
+- `p.who-gets-what.no-power.slice2` — Red
+- `p.who-gets-what.no-power.slice3` — Impuestos
+- `p.who-gets-what.no-power.fact` — A principios de 2026, una unidad de electricidad costaba a los hogares noruegos 1,95 coronas. El Estado devolvió 0,73 coronas, así que los hogares pagaron en realidad unas 1,22.
+- `p.who-gets-what.no-power.note` — El promedio de la oficina de estadística de Noruega para los hogares en el primer trimestre (de enero a marzo) de 2026, antes del apoyo del Estado: 119,8 øre el kWh por la electricidad en sí, 32,6 øre por la tarifa de la red y 42,7 øre por los impuestos (el impuesto sobre la electricidad, el IVA y una tasa para Enova), en total 195,1 øre. El apoyo del Estado fue de 73,1 øre de media, así que los hogares pagaron 122 øre.
+
+#### 71/90 · `br-lpg` · day 71 (17 Dec 2026), 161 (17 Mar 2027), 251 (15 Jun 2027), 341 (13 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.br-lpg.what` — Una bombona de gas de cocina de 13 kg
+- `p.who-gets-what.br-lpg.where` — Brasil
+- `p.who-gets-what.br-lpg.slice1` — Productor
+- `p.who-gets-what.br-lpg.slice2` — Mayorista
+- `p.who-gets-what.br-lpg.slice3` — Vendedor
+- `p.who-gets-what.br-lpg.slice4` — Impuesto
+- `p.who-gets-what.br-lpg.fact` — En agosto de 2026, más de la mitad del precio de una bombona de gas en Brasil fue a parar a las empresas que lo distribuyen y lo venden. El gas en sí era menos de un tercio.
+- `p.who-gets-what.br-lpg.note` — El promedio nacional del regulador del petróleo ANP para una bombona de 13 kg en agosto de 2026, 113,90 reales. «Productor» es el precio que se paga a los productores y a los importadores; «Mayorista» es el margen bruto de los distribuidores; «Vendedor» es el margen bruto de los revendedores; «Impuesto» es el impuesto estatal ICMS, fijo en 1,47 reales el kilo desde enero de 2026 (19,11 reales la bombona). Los impuestos federales fueron cero.
+
+#### 72/90 · `ie-wine` · day 72 (18 Dec 2026), 162 (18 Mar 2027), 252 (16 Jun 2027), 342 (14 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.ie-wine.what` — Una botella de vino estándar
+- `p.who-gets-what.ie-wine.where` — Irlanda
+- `p.who-gets-what.ie-wine.slice1` — Resto
+- `p.who-gets-what.ie-wine.slice2` — Impuesto especial
+- `p.who-gets-what.ie-wine.slice3` — IVA
+- `p.who-gets-what.ie-wine.fact` — Casi la mitad de una botella de vino de 11 € en Irlanda va al gobierno: 3,19 € de impuesto especial y 2,06 € de IVA.
+- `p.who-gets-what.ie-wine.note` — Una investigación del economista Anthony Foley para el grupo de la industria de bebidas de Irlanda (Drinks Industry Group of Ireland), publicada en agosto de 2026: de los 11 € que cuesta una botella estándar comprada en una tienda de bebidas, 3,19 € son impuesto especial y 2,06 € IVA, el 48 % en total. «Resto» son los 5,75 € que no son impuestos, calculados aquí; los informes no los desglosan.
+
+#### 73/90 · `be-petrol` · day 73 (19 Dec 2026), 163 (19 Mar 2027), 253 (17 Jun 2027), 343 (15 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.be-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.be-petrol.where` — Bélgica
+- `p.who-gets-what.be-petrol.slice1` — Gasolina
+- `p.who-gets-what.be-petrol.slice2` — Impuesto especial
+- `p.who-gets-what.be-petrol.slice3` — IVA
+- `p.who-gets-what.be-petrol.fact` — En octubre de 2026, casi la mitad del precio de un litro de gasolina en Bélgica eran impuestos: unos 60 céntimos de impuesto especial y 34 de IVA.
+- `p.who-gets-what.be-petrol.note` — Del boletín petrolero semanal de la Comisión Europea del 12 de octubre de 2026, el precio medio belga en surtidor. «Gasolina» es el precio antes de impuestos: el combustible en sí, el reparto y el margen de la gasolinera. «Impuesto especial» es el impuesto especial y la contribución de energía, 600,16 euros por cada 1000 litros. «IVA» es el 21 %. El diésel costó 2,335 € esa semana y pagó el mismo impuesto especial.
+
+#### 74/90 · `cigs-pl` · day 74 (20 Dec 2026), 164 (20 Mar 2027), 254 (18 Jun 2027), 344 (16 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-pl.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-pl.where` — Polonia
+- `p.who-gets-what.cigs-pl.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-pl.slice2` — IVA
+- `p.who-gets-what.cigs-pl.slice3` — Resto
+- `p.who-gets-what.cigs-pl.fact` — En Polonia, el IVA y la parte que quedaba para el fabricante y las tiendas eran del mismo tamaño, el 18,7 % del precio cada uno. Los dos impuestos especiales se llevaban el otro 62,6 %.
+- `p.who-gets-what.cigs-pl.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 746,56 eslotis por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 75/90 · `th-petrol` · day 75 (21 Dec 2026), 165 (21 Mar 2027), 255 (19 Jun 2027), 345 (17 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.th-petrol.what` — Un litro de gasolina benzine 95
+- `p.who-gets-what.th-petrol.where` — Tailandia
+- `p.who-gets-what.th-petrol.slice1` — Gasolina
+- `p.who-gets-what.th-petrol.slice2` — Margen
+- `p.who-gets-what.th-petrol.slice3` — Tasas
+- `p.who-gets-what.th-petrol.slice4` — IVA
+- `p.who-gets-what.th-petrol.fact` — En septiembre de 2026, cada litro de benzine 95 en Tailandia pagaba 2,44 bats al fondo estatal del petróleo, mientras que a cada litro de gasohol 95 se le pagaban 4,20 bats desde ese fondo.
+- `p.who-gets-what.th-petrol.note` — La estructura de precios de la oficina de política energética de Tailandia (EPPO) del 25 de septiembre de 2026, tal como la publicó Thansettakij, y el precio en surtidor en Bangkok en PTT y Bangchak ese día, antes del impuesto local. «Gasolina» es el precio a la salida de la refinería; «Margen» es el margen de comercialización de las petroleras y las gasolineras; «Tasas» son el impuesto especial (7,50 bats), el impuesto municipal, los 2,44 bats del fondo del petróleo y 0,05 bats más; «IVA» es el 7 %; ambos se calculan por diferencia.
+
+#### 76/90 · `cigs-gr` · day 76 (22 Dec 2026), 166 (22 Mar 2027), 256 (20 Jun 2027), 346 (18 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-gr.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-gr.where` — Grecia
+- `p.who-gets-what.cigs-gr.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-gr.slice2` — IVA
+- `p.who-gets-what.cigs-gr.slice3` — Resto
+- `p.who-gets-what.cigs-gr.fact` — Un paquete griego costaba 4,19 € de media. Los impuestos especiales y el IVA se llevaban 3,55 €, y quedaban 64 céntimos para el fabricante, los mayoristas y la tienda.
+- `p.who-gets-what.cigs-gr.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 209,74 euros por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 77/90 · `ipod` · day 77 (23 Dec 2026), 167 (23 Mar 2027), 257 (21 Jun 2027), 347 (19 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.ipod.what` — Un iPod video de 30 GB
+- `p.who-gets-what.ipod.where` — Estados Unidos
+- `p.who-gets-what.ipod.slice1` — Disco duro
+- `p.who-gets-what.ipod.slice2` — Piezas
+- `p.who-gets-what.ipod.slice3` — Apple
+- `p.who-gets-what.ipod.slice4` — Tiendas
+- `p.who-gets-what.ipod.fact` — Una sola pieza, el disco duro fabricado por Toshiba, costaba 73 dólares de un iPod de 299 dólares. Es casi tanto como lo que Apple se quedaba para sí: 80 dólares.
+- `p.who-gets-what.ipod.note` — Estimación de investigadores de la Universidad de California para el iPod video de 30 GB, con los precios de fábrica de 2005. «Disco duro» es el disco duro de Toshiba (73,39 dólares); «Piezas» son todos los demás componentes (71,01 dólares), entre ellos la pantalla, los chips, la batería y el montaje en China (3,70 dólares); «Apple» es la ganancia bruta de Apple; «Tiendas» es la distribución y la venta al por menor. Las partes suman 299,40 dólares porque los 80 de Apple están redondeados.
+
+#### 78/90 · `qc-petrol` · day 78 (24 Dec 2026), 168 (24 Mar 2027), 258 (22 Jun 2027), 348 (20 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.qc-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.qc-petrol.where` — Montreal, Canadá
+- `p.who-gets-what.qc-petrol.slice1` — Gasolina
+- `p.who-gets-what.qc-petrol.slice2` — Gasolinera
+- `p.who-gets-what.qc-petrol.slice3` — Impuesto
+- `p.who-gets-what.qc-petrol.slice4` — GST+QST
+- `p.who-gets-what.qc-petrol.fact` — Canadá suspendió en 2026 su impuesto federal de 10 centavos sobre el combustible, y aun así cerca de una cuarta parte de un litro en Montreal eran impuestos. El margen de la gasolinera era de menos del 5 %.
+- `p.who-gets-what.qc-petrol.note` — La estimación del regulador de energía de Quebec para la gasolina regular en el este de Montreal el 21 de octubre de 2026 (188,6 centavos el litro). «Gasolina» es el precio mayorista más bajo en la terminal de carga más 0,3 centavos de transporte; «Gasolinera» es el margen minorista estimado; «Impuesto» es el impuesto de Quebec sobre el combustible, 19,2 centavos más 3 centavos para el transporte público; «GST+QST» son los dos impuestos sobre las ventas.
+
+#### 79/90 · `ie-beer` · day 79 (25 Dec 2026), 169 (25 Mar 2027), 259 (23 Jun 2027), 349 (21 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.ie-beer.what` — Una pinta de cerveza
+- `p.who-gets-what.ie-beer.where` — Irlanda
+- `p.who-gets-what.ie-beer.slice1` — Resto
+- `p.who-gets-what.ie-beer.slice2` — Impuesto especial
+- `p.who-gets-what.ie-beer.slice3` — IVA
+- `p.who-gets-what.ie-beer.fact` — En una pinta de 7 € en Irlanda, el impuesto especial de la cerveza es de 58 céntimos. El IVA de la misma pinta es más del doble: 1,31 €.
+- `p.who-gets-what.ie-beer.note` — La respuesta del ministro de Finanzas a una pregunta parlamentaria en el Dáil del 18 de noviembre de 2025, para una pinta de 4,5 % de alcohol a un precio de 7 €: Impuesto sobre los Productos Alcohólicos 0,58 € e IVA 1,31 €. El impuesto especial depende solo de la graduación y del volumen; el IVA al tipo general se cobra sobre el precio de venta. «Resto» son los 5,11 € que no son impuestos, calculados aquí; la respuesta no los desglosa.
+
+#### 80/90 · `nz-diesel` · day 80 (26 Dec 2026), 170 (26 Mar 2027), 260 (24 Jun 2027), 350 (22 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.nz-diesel.what` — Un litro de diésel
+- `p.who-gets-what.nz-diesel.where` — Nueva Zelanda
+- `p.who-gets-what.nz-diesel.slice1` — Diésel
+- `p.who-gets-what.nz-diesel.slice2` — Carbono
+- `p.who-gets-what.nz-diesel.slice3` — Impuestos
+- `p.who-gets-what.nz-diesel.fact` — El diésel de Nueva Zelanda no paga impuesto especial sobre el combustible en el surtidor, solo 0,9 centavos el litro en tasas y luego el GST. Los cargos por uso de las carreteras se pagan aparte y no están en el precio del surtidor.
+- `p.who-gets-what.nz-diesel.note` — El promedio nacional semanal del ministerio para el diésel, la semana del 9 de octubre de 2026, calculado como la suma de sus partes. «Diésel» es el precio antes de impuestos y carbono: el combustible comprado en Singapur y traído en barco, y el margen de los vendedores. «Carbono» es el costo del comercio de emisiones. «Impuestos» son el GST (41,86 centavos) y dos tasas pequeñas (0,90 centavos). Los cargos por uso de las carreteras no están incluidos en este precio.
+
+#### 81/90 · `cigs-hu` · day 81 (27 Dec 2026), 171 (27 Mar 2027), 261 (25 Jun 2027), 351 (23 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.cigs-hu.what` — Un paquete de 20 cigarrillos
+- `p.who-gets-what.cigs-hu.where` — Hungría
+- `p.who-gets-what.cigs-hu.slice1` — Impuesto especial
+- `p.who-gets-what.cigs-hu.slice2` — IVA
+- `p.who-gets-what.cigs-hu.slice3` — Resto
+- `p.who-gets-what.cigs-hu.fact` — En Hungría, el IVA por sí solo se llevaba una parte mayor del precio de un paquete (21,3 %) que la que les quedaba al fabricante, los mayoristas y las tiendas juntos (19,0 %).
+- `p.who-gets-what.cigs-hu.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021. El precio es su precio medio ponderado de 2020, 70 793 forintos por cada 1000 cigarrillos, que son cincuenta paquetes de veinte, con los impuestos de julio de 2021. «Impuesto especial» reúne los dos impuestos especiales, el fijo por cigarrillo y el que se cobra como parte del precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas.
+
+#### 82/90 · `us-diesel` · day 82 (28 Dec 2026), 172 (28 Mar 2027), 262 (26 Jun 2027), 352 (24 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.us-diesel.what` — Un galón de diésel
+- `p.who-gets-what.us-diesel.where` — Estados Unidos
+- `p.who-gets-what.us-diesel.slice1` — Crudo
+- `p.who-gets-what.us-diesel.slice2` — Refinado
+- `p.who-gets-what.us-diesel.slice3` — Reparto
+- `p.who-gets-what.us-diesel.slice4` — Impuestos
+- `p.who-gets-what.us-diesel.fact` — En abril de 2021, los impuestos se llevaban una parte mayor de un galón de diésel estadounidense que las refinerías: el 18,0 % frente al 12,7 %. En octubre de 2022 el refinado había subido hasta el 37,5 %.
+- `p.who-gets-what.us-diesel.note` — El reparto mensual que hace la agencia de energía de Estados Unidos del precio medio de venta al público del diésel para carretera, abril de 2021 (3,130 dólares el galón). «Crudo» es lo que pagaron las refinerías por el petróleo crudo; «Refinado» es el precio al contado del diésel por encima de ese; «Reparto» es la distribución y la comercialización, todo lo que va desde ahí hasta el surtidor, incluido el margen de la propia gasolinera; «Impuestos» son los impuestos federales y estatales.
+
+#### 83/90 · `nokia-n95` · day 83 (29 Dec 2026), 173 (29 Mar 2027), 263 (27 Jun 2027), 353 (25 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.nokia-n95.what` — Un teléfono Nokia N95, antes de impuestos
+- `p.who-gets-what.nokia-n95.where` — el mundo
+- `p.who-gets-what.nokia-n95.slice1` — Piezas
+- `p.who-gets-what.nokia-n95.slice2` — Nokia
+- `p.who-gets-what.nokia-n95.slice3` — Reparto
+- `p.who-gets-what.nokia-n95.slice4` — Tiendas
+- `p.who-gets-what.nokia-n95.fact` — La mitad del precio de un Nokia N95 se quedó en Nokia: su diseño, su marketing, su gestión y su ganancia. Montar el teléfono costó solo 11 € de 546 €.
+- `p.who-gets-what.nokia-n95.note` — Estimación de investigadores finlandeses (ETLA) del precio oficial de venta del N95 antes de impuestos, sin subsidio, hacia 2007. «Piezas» son los componentes físicos (178 €) y el software y las licencias (21 €); «Nokia» son las funciones de apoyo propias de Nokia (169 €), la ganancia operativa (89 €) y el montaje final (11 €); «Reparto» son los distribuidores (19 €) y «Tiendas» los minoristas (60 €). Los euros redondeados suman 547 €.
+
+#### 84/90 · `it-power-26` · day 84 (30 Dec 2026), 174 (30 Mar 2027), 264 (28 Jun 2027), 354 (26 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.it-power-26.what` — Una unidad de electricidad
+- `p.who-gets-what.it-power-26.where` — Italia
+- `p.who-gets-what.it-power-26.unit` — por kWh
+- `p.who-gets-what.it-power-26.slice1` — Energía
+- `p.who-gets-what.it-power-26.slice2` — Red
+- `p.who-gets-what.it-power-26.slice3` — Políticas
+- `p.who-gets-what.it-power-26.slice4` — Impuestos
+- `p.who-gets-what.it-power-26.fact` — Desde octubre de 2026, el costo de comprar electricidad para los hogares protegidos de Italia subió un 63 % en tres meses. Comprar y vender la electricidad es ahora más de dos tercios del precio.
+- `p.who-gets-what.it-power-26.note` — El precio de referencia del regulador desde el 1 de octubre de 2026 para el hogar vulnerable típico de la tarifa protegida (2000 unidades al año, 3 kW). «Energía» es comprar la electricidad (27,64 céntimos) y vendértela (2,11); «Red» es la distribución, la medición y el transporte (6,18); «Políticas» son los cargos del sistema (3,32); «Impuestos» son el IVA y el impuesto especial (4,18).
+
+#### 85/90 · `ph-petrol` · day 85 (31 Dec 2026), 175 (31 Mar 2027), 265 (29 Jun 2027), 355 (27 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.ph-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.ph-petrol.where` — Filipinas
+- `p.who-gets-what.ph-petrol.slice1` — Importación
+- `p.who-gets-what.ph-petrol.slice2` — Industria
+- `p.who-gets-what.ph-petrol.slice3` — Impuesto especial
+- `p.who-gets-what.ph-petrol.slice4` — IVA
+- `p.who-gets-what.ph-petrol.fact` — En Manila, a finales de marzo de 2018, la parte de la industria petrolera en un litro de gasolina era mayor que el impuesto especial y el IVA juntos.
+- `p.who-gets-what.ph-petrol.note` — El análisis del Departamento de Energía del precio en surtidor en Manila a finales de marzo de 2018. «Importación» es la gasolina importada con el flete (el precio de Singapur, 74,25 dólares estadounidenses el barril, más 2 dólares estadounidenses de flete, a 52,08 pesos por dólar). «Industria» es la «parte de la industria» del departamento, lo que queda para las petroleras y las gasolineras. El impuesto especial era de 7 pesos el litro con la reforma fiscal de 2018.
+
+#### 86/90 · `se-wine` · day 86 (1 Jan 2027), 176 (1 Apr 2027), 266 (30 Jun 2027), 356 (28 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.se-wine.what` — Una botella de vino de 75 cl
+- `p.who-gets-what.se-wine.where` — Suecia
+- `p.who-gets-what.se-wine.slice1` — Fabricante
+- `p.who-gets-what.se-wine.slice2` — Tienda
+- `p.who-gets-what.se-wine.slice3` — Impuesto especial
+- `p.who-gets-what.se-wine.slice4` — IVA
+- `p.who-gets-what.se-wine.fact` — La tienda estatal de Suecia añade unas 15 coronas a una botella de vino de 119 coronas. Casi la mitad del precio es lo que cobra el proveedor por el vino.
+- `p.who-gets-what.se-wine.note` — El ejemplo práctico del propio Systembolaget para una botella de 13 % de alcohol, como figuraba en su sitio en octubre de 2026: 58,50 coronas para el proveedor, un recargo del 15 % (8,78) más 6,15 coronas por el vino, 22,19 de impuesto sobre el alcohol y 23,80 de IVA. Sus partes suman 119,42, 42 öre más que su precio: calcula el IVA sobre 95,20, no sobre su propio subtotal de 95,62. «Fabricante» es el precio del proveedor a la tienda.
+
+#### 87/90 · `us-groc-08` · day 87 (2 Jan 2027), 177 (2 Apr 2027), 267 (1 Jul 2027), 357 (29 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.us-groc-08.what` — Un dólar gastado en comida del supermercado
+- `p.who-gets-what.us-groc-08.where` — Estados Unidos
+- `p.who-gets-what.us-groc-08.slice1` — Granjas
+- `p.who-gets-what.us-groc-08.slice2` — Fábricas
+- `p.who-gets-what.us-groc-08.slice3` — Tiendas
+- `p.who-gets-what.us-groc-08.slice4` — Otros
+- `p.who-gets-what.us-groc-08.fact` — En 2008, las fábricas de alimentos recibieron 30 centavos de cada dólar que los estadounidenses gastaron en comida del supermercado, más que cualquier otra industria. Las granjas y sus proveedores recibieron 18.
+- `p.who-gets-what.us-groc-08.note` — El reparto que hace el organismo de un dólar gastado en comida para comer en casa, según las industrias que le añaden valor. «Granjas» incluye a los proveedores de las granjas; «Fábricas» es el procesamiento de alimentos (30,1) y el envasado (4,9); «Tiendas» es el comercio minorista (24,2), el transporte (5,1) y un poco de servicio de comidas (0,9); «Otros» son la energía (8,2), las finanzas y los seguros (4,7), la publicidad (1,9) y los servicios jurídicos y contables (1,7). Tal como se publicó en 2011.
+
+#### 88/90 · `ch-petrol` · day 88 (3 Jan 2027), 178 (3 Apr 2027), 268 (2 Jul 2027), 358 (30 Sep 2027) … · every 90 days
+
+- `p.who-gets-what.ch-petrol.what` — Un litro de gasolina
+- `p.who-gets-what.ch-petrol.where` — Suiza
+- `p.who-gets-what.ch-petrol.slice1` — Gasolina
+- `p.who-gets-what.ch-petrol.slice2` — Impuesto especial
+- `p.who-gets-what.ch-petrol.slice3` — IVA
+- `p.who-gets-what.ch-petrol.fact` — El IVA suizo es de solo el 8,1 %, así que en septiembre de 2026 se llevó apenas 15 rappen (céntimos suizos) de un litro de gasolina de 2,02 francos. Los impuestos fijos se llevaron unos 77.
+- `p.who-gets-what.ch-petrol.note` — La tabla de impuestos sobre los combustibles de la oficina de aduanas, septiembre de 2026, para la gasolina sin plomo de 95 octanos al precio medio en surtidor del índice de precios al consumo (202,00 rappen). «Impuesto especial» es el impuesto sobre los aceites minerales (45,30), su recargo (31,52) y las tasas de reservas y de fondos (0,085); «IVA» es el 8,1 % (15,136). «Gasolina» es todo lo anterior a los impuestos: comprar y traer el combustible, el reparto y el margen de los vendedores.
+
+#### 89/90 · `de-gas` · day 89 (4 Jan 2027), 179 (4 Apr 2027), 269 (3 Jul 2027), 359 (1 Oct 2027) … · every 90 days
+
+- `p.who-gets-what.de-gas.what` — Una unidad de gas doméstico
+- `p.who-gets-what.de-gas.where` — Alemania
+- `p.who-gets-what.de-gas.unit` — por kWh
+- `p.who-gets-what.de-gas.slice1` — Gas
+- `p.who-gets-what.de-gas.slice2` — Red
+- `p.who-gets-what.de-gas.slice3` — Impuestos
+- `p.who-gets-what.de-gas.fact` — En 2026, comprar y vender el gas supuso menos de la mitad del precio del gas de un hogar alemán. Los impuestos, las tasas y el precio del carbono se llevaban unos 30 céntimos de cada euro.
+- `p.who-gets-what.de-gas.note` — El promedio de la asociación del sector energético BDEW para una casa unifamiliar con un consumo de 20 000 kWh al año, 2026 hasta agosto: 11,93 céntimos de euro el kWh, con el cargo fijo repartido entre las unidades. «Gas» es comprar el gas y venderlo; «Red» son los cargos regulados de la red con la medición; «Impuestos» son todos los impuestos y tasas, incluido el precio del CO2.
+
+#### 90/90 · `au-clothes` · day 90 (5 Jan 2027), 180 (5 Apr 2027), 270 (4 Jul 2027), 360 (2 Oct 2027) … · every 90 days
+
+- `p.who-gets-what.au-clothes.what` — Diez dólares gastados en ropa
+- `p.who-gets-what.au-clothes.where` — Australia
+- `p.who-gets-what.au-clothes.slice1` — Fábrica
+- `p.who-gets-what.au-clothes.slice2` — Salarios
+- `p.who-gets-what.au-clothes.slice3` — Vendedores
+- `p.who-gets-what.au-clothes.slice4` — GST
+- `p.who-gets-what.au-clothes.fact` — De cada 10 dólares gastados en ropa en Australia, unos 40 centavos pagan a las personas de la fábrica que la hicieron. Pagarles un salario digno añadiría solo un 1 % al precio.
+- `p.who-gets-what.au-clothes.note` — La estimación de 2017 de Deloitte Access Economics, para Oxfam Australia, de la estructura de costos media de la ropa vendida en Australia, con el GST incluido. «Fábrica» son los materiales (23), los gastos generales y la ganancia de la fábrica (6) y el flete y los aranceles de importación (3); «Vendedores» son los márgenes brutos mayorista (10) y minorista (45): sus costos y su ganancia (5 entre ambos). El GST es el 10 % añadido encima, el 9 % del precio.
+
 ## U. Doubts for Khayyam
 
 - p.who-gets-what.dark-choc.what — Un kilo de chocolate negro. Second option: Un kilo de chocolate amargo. "Negro" is the usual word in Spain and widely understood; "amargo" is more common in the Southern Cone and "oscuro" in Mexico.
@@ -494,3 +969,20 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - p.who-gets-what.us-petrol.slice3 — Reparto. Second option: Distribución. "Reparto" fits the narrow slice; "Distribución" is the exact word of the source but longer.
 - p.who-gets-what.jeans.what — Un par de jeans de supermercado. Second option: Unos vaqueros de supermercado. "Jeans" is understood everywhere; "vaqueros" is mainly Spain.
 - p.who-gets-what.dark-choc.slice1 — Cultivo. Second option: Finca. "Cultivo" says what the farmers do and avoids "granja", which suggests animals.
+
+### Added on 30 October 2026, with the new puzzles
+
+- p.who-gets-what.br-lpg.what — "Una bombona de gas de cocina de 13 kg"; second option "Un cilindro de gas de cocina de 13 kg". "Bombona" is the word in Spain and several Latin American countries; "cilindro" is understood everywhere but is more technical.
+- p.who-gets-what.th-petrol.fact — "…pagaba 2,44 bats…"; second option "…2,44 bahts…". The Royal Academy writes the plural "bats", the press often keeps "baht" or "bahts".
+- p.who-gets-what.th-petrol.what — "Un litro de gasolina benzine 95"; second option "Un litro de gasolina 95 sin etanol". "Benzine 95" is the Thai product name, kept so it matches "gasohol 95" in the fact.
+- p.who-gets-what.za-petrol.slice4 — "Tasas"; second option "Gravámenes". "Tasas" is short and simple for a narrow slice; "gravámenes" is the exact word for levies but heavier. Same choice in za-diesel, de-power-26 and th-petrol.
+- p.who-gets-what.za-petrol.note — "una tasa slate (1,14 rands)"; second option "una tasa de compensación (1,14 rands)". The South African "slate levy" has no Spanish name, so the English term is kept.
+- p.who-gets-what.cigs-jp.slice3 — "Impuesto"; second option "Consumo". The slice is Japan's 10% consumption tax; "Impuesto" next to "Impuesto especial" may look close, "Consumo" is clearer but less direct.
+- p.who-gets-what.qc-petrol.slice4 — "GST+QST"; second option "IVA federal+provincial". The English acronyms are kept because the two taxes have no common Spanish names.
+- p.who-gets-what.ph-petrol.slice1 — "Importación"; second option "Importaciones". The singular is shorter for a narrow slice.
+- p.who-gets-what.ch-petrol.fact — "15 rappen (céntimos suizos)"; second option "15 céntimos suizos". Spanish writers use "rappen" or "céntimos"; both given so the unit is clear.
+- p.who-gets-what.us-groc-08.what — "Un dólar gastado en comida del supermercado"; second option "Un dólar gastado en la compra de comida". "Groceries" has no single natural word; this keeps it apart from the older "Un dólar gastado en comida".
+- p.who-gets-what.cigs-nl.fact — "paquete neerlandés"; second option "paquete holandés". "Neerlandés" is the standard word, "holandés" is more common in speech.
+- p.who-gets-what.ie-wine.note — "el grupo de la industria de bebidas de Irlanda (Drinks Industry Group of Ireland)"; second option the English name alone. The group has no usual Spanish name, so both are given.
+- p.who-gets-what.br-power.what — "100 reales de una factura de electricidad"; second option "100 R$ de una factura de electricidad". Spanish writers say "reales" for Brazil's currency (also in br-diesel, br-petrol, br-lpg).
+- p.who-gets-what.pk-petrol.note — "la comisión de los dueños de las gasolineras"; second option "la comisión de los distribuidores de las gasolineras". "Pump dealers" has no direct Spanish term.

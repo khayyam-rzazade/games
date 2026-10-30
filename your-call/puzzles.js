@@ -1802,6 +1802,1566 @@ window.TURNSOUT_DATA["your-call"] = {
       ],
       "checked": "2026-10-15",
       "check": "Options 1 and 2 are plausible only. The absolute power of the decree of 1953 is Al Jazeera's description; Wikipedia notes that he had already given an elected Council of Ministers full executive powers."
+    },
+    {
+      "id": "1968-dissolution",
+      "year": 1968,
+      "place": "Paris",
+      "colour": "magenta",
+      "pov": "A student revolt and spreading strikes have shaken France. Your call for a referendum has not calmed things, and the unions have rejected an offer. You are the president of France.",
+      "choices": ["Hold the referendum as planned", "Dissolve the Assembly, call elections", "Keep the Assembly and stand firm"],
+      "real": 1,
+      "who": "Charles de Gaulle",
+      "short": "De Gaulle",
+      "did": "On 30 May 1968 de Gaulle put off the referendum, dissolved the National Assembly and called elections. 'France is threatened with dictatorship,' he said.",
+      "next": "The strikes turned into wage settlements. In the elections of 23 and 30 June 1968 the Gaullists won an absolute majority, a first in the history of the French Republic.",
+      "stamp": "De Gaulle dissolves parliament",
+      "sources": [
+        { "name": "Virginia Tech", "url": "https://dhr.history.vt.edu/modules/eu/mod05_1968/evidence_detail_08.html" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1968_French_legislative_election" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: de Gaulle had called a referendum on 24 May and in this speech postponed it (Virginia Tech). Option 3 is close to the record: his draft first read 'Je ne dissoudrai pas, en ce moment, l'Assemblée nationale' until Prime Minister Pompidou changed his mind (Public Sénat, a third page, not linked). Wikipedia calls the speech a radio address, Virginia Tech a televised one, so the moment names neither. The election result rests on Wikipedia, whose seat figures differ between sections, so the moment gives no seat number."
+    },
+    {
+      "id": "1564-jizya",
+      "year": 1564,
+      "place": "Agra",
+      "colour": "violet",
+      "pov": "Since the 11th century, Muslim rulers in India have taxed non-Muslims with the jizya, paid instead of military service. In 1562 you married a raja's daughter. You are the Mughal emperor.",
+      "choices": ["Keep collecting the jizya", "Abolish the jizya for everyone", "Lower the jizya but keep it"],
+      "real": 1,
+      "who": "Akbar",
+      "short": "Akbar",
+      "did": "In 1564 Akbar abolished the jizya. He also ended the tax on pilgrims and the forced conversion of prisoners of war to Islam.",
+      "next": "In 1679 a later emperor, Aurangzeb, reimposed the jizya, a move sharply criticised by many Hindu rulers and Mughal court officials.",
+      "stamp": "Akbar ends the jizya",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Jizya" },
+        { "name": "Britannica", "url": "https://www.britannica.com/topic/Mughal-dynasty/Akbar" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are plausible only. Britannica confirms the annulling of the jizya, the end of the pilgrim tax and of forced conversion of prisoners, the 1562 marriage and Aurangzeb's reimposition, but gives no year for the abolition or the reimposition (1564 and 1679 rest on Wikipedia's Jizya page; the Akbar page on Wikipedia gives no year). Neither page says the capital in 1564 was Agra (Wikipedia: Fatehpur Sikri was founded west of Agra in 1569)."
+    },
+    {
+      "id": "1992-czech-split",
+      "year": 1992,
+      "place": "Brno",
+      "colour": "blue",
+      "pov": "In the June 1992 elections Slovaks backed a populist who wants a confederation, with Slovakia's own army, national bank and foreign policy. Most people want a common state. You are the Czech prime minister.",
+      "choices": ["Accept a looser confederation", "Put the question to a referendum", "Agree to split the country in two"],
+      "real": 2,
+      "who": "Václav Klaus",
+      "short": "Klaus",
+      "did": "Klaus and Mečiar agreed to dissolve the common state without a referendum. They signed the agreement at the Villa Tugendhat in Brno on 26 August 1992.",
+      "next": "President Václav Havel, who had fought against the split, resigned. Czechoslovakia ended on 1 January 1993, when an independent Czech Republic was born.",
+      "stamp": "The split of Czechoslovakia",
+      "sources": [
+        { "name": "Radio Prague International", "url": "https://english.radio.cz/node/8174546" },
+        { "name": "eurotopics", "url": "https://eurotopics.net/en/185085/czechoslovakia-ceased-to-exist-25-years-ago" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: Mečiar's ambition was a confederation (Radio Prague). Option 2 is in the record as the question asked afterwards; Klaus said the worst thing would have been for one part to vote for divorce (Radio Prague). Eurotopics quotes Sme: the majority favoured a joint state, and Klaus and Mečiar had no mandate to divide the country. Negotiators first agreed in Bratislava six days after 17 July (Radio Prague)."
+    },
+    {
+      "id": "1953-prisoner-release",
+      "year": 1953,
+      "place": "Seoul",
+      "colour": "red",
+      "pov": "The UN Command is negotiating an armistice with the communists, which you oppose. Thousands of anti-communist prisoners of war are held in camps across your country. You are the president of South Korea.",
+      "choices": ["Leave them to the armistice's procedure", "Order your military police to free them", "Reject the armistice and fight on alone"],
+      "real": 1,
+      "who": "Syngman Rhee",
+      "short": "Rhee",
+      "did": "On 18 June 1953 Rhee, on his own responsibility, ordered the military police to release the anti-communist prisoners.",
+      "next": "The release shocked the United States, the UN and the communist side. Rhee refused to sign the armistice, which led to a mutual defence treaty with the United States.",
+      "stamp": "Rhee frees the prisoners",
+      "sources": [
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/historicaldocuments/frus1952-54v15p2/d607" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Syngman_Rhee" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is close to the record: he refused to sign the armistice, wishing to have the peninsula reunited by force (Wikipedia). Option 1 is plausible only. The Office of the Historian prints Rhee's letter to General Clark and press release of 18 June 1953 (the order, 'on my own responsibility', 'without full consultation with the United Nations Command'); it gives no number. Wikipedia's Rhee article says over 27,000, its POW article 25,000, so the moment gives a band."
+    },
+    {
+      "id": "1981-martial-law",
+      "year": 1981,
+      "place": "Warsaw",
+      "colour": "violet",
+      "pov": "The trade union Solidarity leads the political opposition to communist rule. The dissatisfied Kremlin is threatening armed intervention. You are the soldier who heads Poland's government.",
+      "choices": ["Seek a compromise with Solidarity", "Declare martial law", "Let Soviet troops restore order"],
+      "real": 1,
+      "who": "Wojciech Jaruzelski",
+      "short": "Jaruzelski",
+      "did": "On 13 December 1981 Jaruzelski announced martial law in a televised speech. Solidarity was made illegal and most of its leaders were interned.",
+      "next": "Miners were killed at the Wujek coal mine, and martial law lasted until July 1983. Jaruzelski believed that without it a military intervention was inevitable.",
+      "stamp": "Martial law in Poland",
+      "sources": [
+        { "name": "European Network Remembrance and Solidarity", "url": "https://enrs.eu/article/the-introduction-of-martial-law-in-poland" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Martial_law_in_Poland" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: earlier in 1981 Lech Wałęsa met Mieczysław Rakowski and a compromise was achieved, and the Pope called for talks (Wikipedia). Option 3 is the threat both sources name, not a choice he took. The sources differ on when martial law was suspended (18 December 1982 at ENRS, 31 December 1982 on Wikipedia), so the moment gives only the end in July 1983 (both). ENRS says several dozen were killed at first, Wikipedia 91 in total (debated), so the moment gives only the six Wujek miners (ENRS)."
+    },
+    {
+      "id": "1946-parity",
+      "year": 1946,
+      "place": "Manila",
+      "colour": "green",
+      "pov": "Your country has just won independence. The United States will pay $620 million in war damages only if Americans get equal rights to its natural resources. You are the president of the Philippines.",
+      "choices": ["Accept and amend the constitution", "Refuse, and go without the money", "Hold out for better terms"],
+      "real": 0,
+      "who": "Manuel Roxas",
+      "short": "Roxas",
+      "did": "Roxas accepted. With six members of the leftist Democratic Alliance denied their seats in the House, he won Congress's approval of the amendment on 18 September.",
+      "next": "In 1947 a plebiscite approved it, though only 40 percent of the electorate took part. Critics saw the parity clause as an inexcusable surrender of national sovereignty.",
+      "stamp": "Roxas accepts parity",
+      "sources": [
+        { "name": "Library of Congress Country Studies", "url": "https://countrystudies.us/philippines/23.htm" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Democratic_Alliance_(Philippines)" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 2 and 3 are plausible only. Independence itself was not his choice, so the moment is the parity clause. Wikipedia confirms that keeping the Democratic Alliance members out helped Roxas pass the parity amendment, not the war damages. The plebiscite month differs (March 1947 in the Country Study, 11 May 1947 on Wikipedia), so the moment gives only the year."
+    },
+    {
+      "id": "1981-juan-carlos",
+      "year": 1981,
+      "place": "Madrid",
+      "colour": "violet",
+      "pov": "200 armed Civil Guards have stormed parliament during a vote and hold the deputies hostage. A general has sent tanks into the streets of Valencia. You are the king of Spain.",
+      "choices": ["Wait until the outcome is clear", "Go on television against the coup", "Talk to the plotters to find a way out"],
+      "real": 1,
+      "who": "Juan Carlos I",
+      "short": "Juan Carlos",
+      "did": "Wearing the uniform of Captain General of the Army, Juan Carlos denounced the coup on television. The speech went out at 01:14 on 24 February 1981.",
+      "next": "Tejero held out until midday and was arrested outside the Congress. Tejero, Milans del Bosch and Armada were later sentenced to 30 years in prison.",
+      "stamp": "The king against the coup",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1981_Spanish_coup_attempt" },
+        { "name": "Euronews", "url": "https://www.euronews.com/2026/02/25/spain-releases-secret-1981-coup-documents-after-45-years" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are plausible only. Euronews (25 February 2026) confirms the televised address against the coup 'shortly after 1 am on 24 February', the 200 Civil Guards, the 18-hour hostage taking, the tanks in Valencia and the 30-year sentences, not the uniform or the minute (01:14 rests on Wikipedia). Armada is named in both sources' sentencing lines but not introduced; the moment does not explain his role."
+    },
+    {
+      "id": "2000-pyongyang",
+      "year": 2000,
+      "place": "Pyongyang",
+      "colour": "blue",
+      "pov": "Your Sunshine Policy seeks engagement with North Korea. Talks with the North open the way to the first meeting of the two leaders since Korea's division. You are the president of South Korea.",
+      "choices": ["Insist the North's leader come to Seoul", "Demand nuclear talks before any summit", "Go to Pyongyang to meet Kim Jong Il"],
+      "real": 2,
+      "who": "Kim Dae-jung",
+      "short": "Kim Dae-jung",
+      "did": "Kim Dae-jung went to Pyongyang for the summit of 13 to 15 June 2000 and was greeted by Kim Jong Il. They agreed to work on reunification, family reunions and economic cooperation.",
+      "next": "Kim Dae-jung won the Nobel Peace Prize on 13 October 2000. Three years later it emerged that South Korea had secretly paid the North to attend the summit.",
+      "stamp": "The first inter-Korean summit",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/2000_inter-Korean_summit" },
+        { "name": "Gulf News (Reuters)", "url": "https://gulfnews.com/world/asia/history-of-inter-korean-summits-1.2171488" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is plausible only. Option 2 is close to the record: the Grand National Party criticized Kim for not raising the nuclear issue in the talks (Wikipedia). Wikipedia gives two amounts for the secret payment ($500 million and $200 million), so the moment gives none. Gulf News (a Reuters fact box, 5 November 2018) confirms the visit to Pyongyang on 13 to 15 June 2000, the joint declaration on unification and humanitarian and economic cooperation, the family reunions and the Nobel Prize for the Sunshine policy; it does not mention the airport greeting or the payment."
+    },
+    {
+      "id": "1982-falklands",
+      "year": 1982,
+      "place": "London",
+      "colour": "red",
+      "pov": "On 2 April 1982 Argentine forces occupied Port Stanley, the capital of the Falkland Islands, a British territory 8,000 miles away in the South Atlantic. You are the British prime minister.",
+      "choices": ["Rely on the UN and diplomacy", "Accept a US-brokered compromise", "Send a task force to retake them"],
+      "real": 2,
+      "who": "Margaret Thatcher",
+      "short": "Thatcher",
+      "did": "After an emergency cabinet meeting, Thatcher sent a naval task force to retake the islands; by 5 April it was on its way. It grew to 44 warships.",
+      "next": "Argentina surrendered on 14 June 1982, after 74 days. The war killed 649 Argentine and 255 British military personnel and 3 Falkland Islanders.",
+      "stamp": "The Falklands task force",
+      "sources": [
+        { "name": "Imperial War Museums", "url": "https://www.iwm.org.uk/history/cold-war/falklands-conflict/falklands-conflict-at-sea" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Falklands_War" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: UN Security Council Resolution 502 demanded Argentine withdrawal and called for a diplomatic solution (Wikipedia). Option 2 is in the record: US Secretary of State Alexander Haig's shuttle diplomacy (Wikipedia); Thatcher refused 'American overtures to concede ground' (University of Cambridge, a third page, not linked). IWM confirms the decision, 5 April, the 44 warships and the 8,000 miles, but not the date of the final surrender or the overall death toll; those rest on Wikipedia."
+    },
+    {
+      "id": "1639-sakoku",
+      "year": 1639,
+      "place": "Edo",
+      "colour": "blue",
+      "pov": "In 1637 Christian peasants rose in revolt at Shimabara, and thousands were killed. Since 1636 Portuguese trade has been confined to Dejima, at Nagasaki. You are the shogun of Japan.",
+      "choices": ["Keep trading, under close watch", "Ban Portuguese ships from Japan", "Close Japan to every European"],
+      "real": 1,
+      "who": "Tokugawa Iemitsu",
+      "short": "Iemitsu",
+      "did": "In 1639 Iemitsu's government expelled the Portuguese and banned their ships. Only a small number of Dutch traders could stay, on the tiny island of Dejima.",
+      "next": "In 1640 Macao sent envoys to reopen trade; four ambassadors and 57 of their attendants and crew were executed.",
+      "stamp": "Japan bans the Portuguese",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Japan%E2%80%93Portugal_relations" },
+        { "name": "World History Encyclopedia", "url": "https://www.worldhistory.org/Portuguese_Nagasaki/" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is close to the record: Iemitsu 'ordered the expulsion of nearly every European' (Wikipedia, Tokugawa Iemitsu), but the Dutch stayed on Dejima. Option 1 is plausible only (in the 1630s Portuguese ships were already detained at Nagasaki, World History Encyclopedia). World History Encyclopedia confirms the expulsion, the end of the trade, the Dutch on Dejima and the 1640 executions, not the year 1639 or Iemitsu by name (it says the Tokugawa shogunate); 1639 rests on Wikipedia."
+    },
+    {
+      "id": "2003-iraq-vote",
+      "year": 2003,
+      "place": "London",
+      "colour": "red",
+      "pov": "You have failed to win a second UN resolution on Iraq. Many in your own party oppose war, and a minister has said she will resign over it. You are the British prime minister.",
+      "choices": ["Wait for UN backing before any war", "Send troops and let MPs vote on it", "Offer support but no combat troops"],
+      "real": 1,
+      "who": "Tony Blair",
+      "short": "Blair",
+      "did": "Blair put the war to a Commons vote on 18 March 2003, saying that a vote to withdraw the troops would also remove him. The motion passed by 412 votes to 149.",
+      "next": "Robin Cook resigned from the government in protest. The British campaign in Iraq, Operation Telic, began one day after the vote.",
+      "stamp": "Blair takes Britain to war",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/British_parliamentary_approval_for_the_invasion_of_Iraq" },
+        { "name": "RTÉ News", "url": "https://www.rte.ie/news/2003/0318/36308-iraq01" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: Robin Cook could not support sending troops to war without broader international support, and Ms Short said she would resign if Britain went to war without a UN mandate (RTÉ). Option 3 is plausible only. RTÉ confirms the motion and 412 to 149; the date of 18 March and Operation Telic rest on Wikipedia."
+    },
+    {
+      "id": "261bc-kalinga",
+      "year": "261 BC",
+      "place": "Pataliputra",
+      "colour": "magenta",
+      "pov": "Your army has conquered Kalinga. By your own count, 100,000 people were killed there, 150,000 were deported and many more died. You are the Mauryan emperor.",
+      "choices": ["Press on to new conquests", "Give Kalinga back its freedom", "Keep Kalinga, but never conquer again"],
+      "real": 2,
+      "who": "Ashoka",
+      "short": "Ashoka",
+      "did": "Ashoka kept Kalinga but felt deep remorse, and pledged never again to wage a war of conquest. His edicts called moral conquest the most important conquest.",
+      "next": "He ended the military expansion of his empire, seeking conquest by dharma instead. He died in 232 BC, having ruled most of the Indian subcontinent.",
+      "stamp": "Ashoka renounces conquest",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Kalinga_War" },
+        { "name": "Oregon State University (open textbook)", "url": "https://open.oregonstate.education/ancientcivilizations/chapter/edicts-of-ashoka/" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 2 are plausible only. Both sources give the year only as approximate (Wikipedia 'c. 261 BCE', Oregon State 'approximately 261 BCE'); World History Encyclopedia, also read, says 'around 260 BCE' and Wikipedia's Major Rock Edicts page '262 - 261 BC'. Oregon State confirms the war, the figures and the renouncing of new conquests (in the words of Rock Edict 13), not the end of expansion. The death year 232 is the end of his life dates there (304-232 BCE)."
+    },
+    {
+      "id": "1985-anti-alcohol",
+      "year": 1985,
+      "place": "Moscow",
+      "colour": "teal",
+      "pov": "Heavy drinking is linked to absenteeism, accidents at work and rising death rates among men. Yet in 1979 alcohol sales brought the state some 25.4 billion rubles in taxes. You are the new Soviet leader.",
+      "choices": ["Curb drinking with a national campaign", "Leave it: the state needs the revenue", "Fund treatment but leave sales alone"],
+      "real": 0,
+      "who": "Mikhail Gorbachev",
+      "short": "Gorbachev",
+      "did": "In May 1985 Gorbachev launched a campaign against drinking. Vodka prices rose by 20 to 30 percent, sales hours were cut and vineyards destroyed.",
+      "next": "Life expectancy rose from 67.7 years in 1984 to 69.8 in 1987. But moonshine boomed, state revenue fell, and the campaign was abandoned after 1987.",
+      "stamp": "Gorbachev's war on drink",
+      "sources": [
+        { "name": "Seventeen Moments in Soviet History (MSU)", "url": "https://soviethistory.msu.edu/1985/anti-alcohol-campaign/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Prohibition_in_the_Russian_Empire_and_the_Soviet_Union" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 2 and 3 are plausible only; the lost revenue is in the record as a reason the campaign ended (both sources). Seventeen Moments says Gorbachev launched it in May 1985; Wikipedia dates the Council of Ministers resolution to 7 May 1985 and places it in 'Mikhail Gorbachev's years'. The end differs (Seventeen Moments: abandoned after 1987; Wikipedia: effectively discontinued in October 1988, laws in force until 1990), so the moment says only 'after 1987'. He was nicknamed the 'mineral secretary' (Seventeen Moments)."
+    },
+    {
+      "id": "1945-surrender",
+      "year": 1945,
+      "place": "Tokyo",
+      "colour": "red",
+      "pov": "Atomic bombs have hit Hiroshima and Nagasaki, and the Soviet Union has declared war. Your war council is deadlocked over an unconditional surrender. You are the emperor of Japan.",
+      "choices": ["Accept the Allied terms and end the war", "Fight on and refuse the Allied terms", "Stay silent and let the government decide"],
+      "real": 0,
+      "who": "Hirohito",
+      "short": "Hirohito",
+      "did": "Early on 10 August 1945 Hirohito told the war council: 'I swallow my own tears and give my sanction to the proposal to accept the Allied proclamation'.",
+      "next": "His speech was broadcast at noon on 15 August 1945, the first time an emperor had addressed the nation by radio. It never used the word 'surrender'.",
+      "stamp": "Japan accepts defeat",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Hirohito_surrender_broadcast" },
+        { "name": "National Museum of Nuclear Science & History", "url": "https://ahf.nuclearmuseum.org/ahf/key-documents/jewel-voice-broadcast/" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is close to the record: on 11 August newspapers carried a statement in the name of General Korechika Anami, which the page reader summarised as telling the army to keep fighting, and as many as 1,000 officers and soldiers raided the palace on 14 August (Wikipedia). Option 3 is plausible only: Prime Minister Suzuki asked the emperor for an imperial command to break the deadlock (Wikipedia). Japan's offer of 10 August came with the understanding that it did not prejudice 'the prerogatives of His Majesty as a Sovereign Ruler' (Wikipedia), so the moment does not say the terms were accepted without condition. The museum page confirms the broadcast of 15 August 1945, that Japan 'accepts the provisions of their Joint Declaration', the first radio address and the missing word 'surrender'; it does not mention the 10 August meeting."
+    },
+    {
+      "id": "2003-congestion-charge",
+      "year": 2003,
+      "place": "London",
+      "colour": "teal",
+      "pov": "Traffic in London crawls at an average of 12 miles an hour, and its transport is chronically short of money. You are the mayor of London.",
+      "choices": ["Spend more on buses and trains", "Charge drivers £5 to drive in the centre", "Leave the roads as they are for now"],
+      "real": 1,
+      "who": "Ken Livingstone",
+      "short": "Livingstone",
+      "did": "Livingstone made drivers pay £5 to drive in central London, from 7am to 6.30pm on weekdays. The charge began on 17 February 2003.",
+      "next": "Traffic was down 25 per cent in the first week, and buses ran ahead of schedule. Paris's mayor arranged to visit London to study the scheme.",
+      "stamp": "London's congestion charge",
+      "sources": [
+        { "name": "Fleet News", "url": "https://fleetnews.co.uk/news/2002/2/26/livingstone-confirms-london-congestion-charging-from-2003/10758" },
+        { "name": "IPS", "url": "https://www.ipsnews.net/?p=3841" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are plausible only. Fleet News (February 2002, the plan) says '£5' 'for each journey'; IPS (26 February 2003) says 'eight dollars a day', so the moment says neither 'a day' nor 'a journey'. Livingstone's aims: 'to get London moving, and to raise money to improve our transport services' (IPS)."
+    },
+    {
+      "id": "1631-taj-mahal",
+      "year": 1631,
+      "place": "Agra",
+      "colour": "magenta",
+      "pov": "Your favourite wife came with you on campaign in the Deccan, though pregnant. In June 1631 she died giving birth to your 14th child. She is buried temporarily. You are the Mughal emperor.",
+      "choices": ["Give her a modest tomb and go on", "Honour her with a mosque and charity", "Build her the most beautiful tomb ever"],
+      "real": 2,
+      "who": "Shah Jahan",
+      "short": "Shah Jahan",
+      "did": "Shah Jahan commissioned a mausoleum in her memory in 1631. Construction began in 1632 under his court architect, Ustad Ahmad Lahori.",
+      "next": "More than 20,000 workers and artisans built the Taj Mahal. Deposed by Aurangzeb in 1658, Shah Jahan was buried there next to his wife in 1666.",
+      "stamp": "Building the Taj Mahal",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Taj_Mahal" },
+        { "name": "EBSCO Research Starters", "url": "https://www.ebsco.com/research-starters/architecture/shah-jahan-builds-taj-mahal" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 2 are plausible only. EBSCO calls the love story behind the building 'one popular legend' but states that 'the grief-stricken Shah Jahan proceeded to build' the mausoleum; it gives the start in 1632 and more than twenty thousand laborers, not the commission in 1631 (Wikipedia) or the deposition in 1658 (EBSCO: deposed and confined to Agra Fort, no date). The completion dates differ (Wikipedia: 1643 ceremony, 1648, 1653; EBSCO: 1644, 1648 inscription, 1654-55), so the moment gives none. Year 1631 is the commission; building began in 1632."
+    },
+    {
+      "id": "1968-prague",
+      "year": 1968,
+      "place": "Moscow",
+      "colour": "red",
+      "pov": "Czechoslovakia's communist government has ended censorship and is pressing reforms. Talks have failed to stop them, and you fear other satellite states may follow. You are the Soviet leader.",
+      "choices": ["Send in Warsaw Pact troops", "Keep up talks and political pressure", "Accept the reforms and wait"],
+      "real": 0,
+      "who": "Leonid Brezhnev",
+      "short": "Brezhnev",
+      "did": "Brezhnev went ahead. On the night of 20 August 1968, 250,000 Warsaw Pact troops and 2,000 tanks entered Czechoslovakia, and Dubček was taken to Moscow.",
+      "next": "The invasion killed 137 Czechs and Slovaks. In April 1969 Dubček was forced from power, and Moscow claimed the right to intervene wherever communist rule was threatened.",
+      "stamp": "Soviets invade Czechoslovakia",
+      "sources": [
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/milestones/1961-1968/soviet-invasion-czechoslavkia" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Warsaw_Pact_invasion_of_Czechoslovakia" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is in the record: Moscow first tried to stop or limit Dubček's initiatives through a series of negotiations, then turned to a military alternative (Wikipedia). Option 3 is plausible only. The Office of the Historian confirms the decision to intervene 'after much debate', the date, the April 1969 removal and the doctrine, but gives no troop numbers or deaths; those rest on Wikipedia. The sources differ on which countries sent troops (the Office of the Historian names East Germany, Wikipedia does not), so the moment names none."
+    },
+    {
+      "id": "1994-real-plan",
+      "year": 1994,
+      "place": "Brasília",
+      "colour": "green",
+      "pov": "Inflation has defeated a string of plans to control it; earlier ones relied on freezing prices and wages. You are the finance minister of Brazil.",
+      "choices": ["Freeze prices and wages once more", "Bring in a new currency in stages", "Make the US dollar Brazil's currency"],
+      "real": 1,
+      "who": "Fernando Henrique Cardoso",
+      "short": "Cardoso",
+      "did": "Cardoso's team created a non-monetary currency, the URV, worth about 1 US dollar. Prices set in URVs were then converted into a new currency, the real, on 1 July 1994.",
+      "next": "Unlike the earlier plans, it used no general price and wage freeze. By late 1996 inflation by some measures was approaching less than 20 percent a year.",
+      "stamp": "The Real Plan",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Real_Plan" },
+        { "name": "Library of Congress country study", "url": "https://countrystudies.us/brazil/79.htm" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: the country study says earlier plans depended on a general price and wage freeze. Option 3 is plausible only. The country study (Library of Congress text, about 1997, on a mirror site) confirms the URVs linked to the dollar, the conversion into reais, the launch on 1 July 1994 and the inflation figure, but does not name Cardoso as minister; Wikipedia names him as the plan's leading architect under Itamar Franco. No pre-plan inflation rate was found on either page."
+    },
+    {
+      "id": "1593-saint-denis",
+      "year": 1593,
+      "place": "Saint-Denis",
+      "colour": "magenta",
+      "pov": "You became king on your predecessor's murder, but you are a Protestant. Spanish soldiers and a fervently Catholic people defend Paris, and you cannot break its walls. You are the king of France.",
+      "choices": ["Keep besieging Paris until it gives in", "Stay Protestant and seek a truce", "Renounce your Protestant faith"],
+      "real": 2,
+      "who": "Henry IV of France",
+      "short": "Henry",
+      "did": "On 25 July 1593, at Saint-Denis, Henry formally renounced his Protestant faith. Within weeks, support for the Catholic League melted away.",
+      "next": "He was crowned at Chartres on 17 February 1594, and Paris gave in on 22 March. In 1598 his Edict of Nantes gave Protestants limited toleration.",
+      "stamp": "Henry IV turns Catholic",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Paris_in_the_17th_century" },
+        { "name": "EBSCO Research Starters", "url": "https://ebsco.com/research-starters/history/henry-iv-france" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: his soldiers bombarded Paris but could not break through its walls (Wikipedia). Option 2 is plausible only. EBSCO confirms the abjuration on 25 July 1593 at Saint-Denis (it says 'cathedral', Wikipedia 'Abbey'), the crowning and the surrender of Paris, and says Henry never said 'Paris is worth a mass'. On 22 March 1594 Henry 'triumphantly entered' Paris (Wikipedia); Paris 'capitulated' (EBSCO)."
+    },
+    {
+      "id": "1952-bolivia-tin",
+      "year": 1952,
+      "place": "La Paz",
+      "colour": "green",
+      "pov": "Your party has come to power in a popular revolution. The biggest tin mines belong to three mining barons. You are the president of Bolivia.",
+      "choices": ["Leave the mines with their owners", "Nationalise them, with compensation", "Seize them without paying the owners"],
+      "real": 1,
+      "who": "Víctor Paz Estenssoro",
+      "short": "Paz Estenssoro",
+      "did": "On 31 October 1952 Paz Estenssoro signed a decree nationalising the mines of Patiño, Hochschild and Aramayo. It recognised the principle of compensation.",
+      "next": "The new state mining company, COMIBOL, took over 163 mines with 29,000 workers. For decades it was Bolivia's main source of foreign currency and its biggest employer.",
+      "stamp": "Bolivia nationalises its tin",
+      "sources": [
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/historicaldocuments/frus1952-54v04/d145" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Corporaci%C3%B3n_Minera_de_Bolivia" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are plausible only: the pages read record the revolution's slogan 'Nationalization of mines' but no demand to seize the mines without compensation. The Office of the Historian confirms the decree of 31 October 1952, the three companies and the principle of compensation (with a tentative amount, excluding the subsoil); it says nothing of COMIBOL, which rests on Wikipedia."
+    },
+    {
+      "id": "1991-yeltsin-tank",
+      "year": 1991,
+      "place": "Moscow",
+      "colour": "violet",
+      "pov": "Communist hard-liners are trying to seize control and hold the Soviet president at his dacha. Troops are rolling into Moscow, and you are on the KGB's arrest list. You are the president of Russia.",
+      "choices": ["Lie low at your dacha outside Moscow", "Climb a tank and denounce the coup", "Negotiate with the coup leaders"],
+      "real": 1,
+      "who": "Boris Yeltsin",
+      "short": "Yeltsin",
+      "did": "Yeltsin went to the White House, climbed onto a tank and read an appeal to the people. It called the events a coup attempt and urged a national strike.",
+      "next": "Crowds built barricades around the White House, and three men were killed. The coup collapsed in two days; on 25 December Gorbachev resigned.",
+      "stamp": "Yeltsin on the tank",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1991_Soviet_coup_attempt" },
+        { "name": "The Moscow Times", "url": "https://www.themoscowtimes.com/2016/08/19/the-forgotten-coup-a55030" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: the plotters considered capturing him at his dacha near Moscow (Wikipedia), and he set off from Arkhangelskoye (Moscow Times). Option 3 is plausible only, though the coup leader Kryuchkov called him late that night (Moscow Times). Wikipedia says 'general strike', the Moscow Times 'national strike'."
+    },
+    {
+      "id": "1810-cry-of-dolores",
+      "year": 1810,
+      "place": "Dolores",
+      "colour": "red",
+      "pov": "The plot for independence you have joined has been betrayed to the Spanish, and several members have been arrested. You are warned to flee. You are the parish priest of Dolores.",
+      "choices": ["Flee while there is still time", "Lie low and wait for a better moment", "Call your parishioners to revolt now"],
+      "real": 2,
+      "who": "Miguel Hidalgo y Costilla",
+      "short": "Hidalgo",
+      "did": "Hidalgo decided to act at once. Around 2:30 a.m. on 16 September 1810 he had the church bells rung and urged his congregation to revolt.",
+      "next": "Joined by thousands of Indians and mestizos, he took Guanajuato; defeated in January 1811, he was caught and shot. 16 September is now Mexico's Independence Day.",
+      "stamp": "The Cry of Dolores",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Grito_de_Dolores" },
+        { "name": "Encyclopaedia Britannica", "url": "https://www.britannica.com/print/article/264910" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: Hidalgo was warned to flee and decided instead to act promptly (Britannica). Option 2 is plausible only. Both sources say he rang the church bell on 16 September 1810 and called the people to revolt; Wikipedia adds the time (around 2:30 am), that the plot was discovered in early September 1810 and that some plotters chose to go ahead. Britannica gives the defeat of 17 January 1811 and the firing squad; Wikipedia says nothing of his end. Scholars disagree on his exact words (Wikipedia), so the moment quotes none."
+    },
+    {
+      "id": "1955-austria-neutral",
+      "year": 1955,
+      "place": "Vienna",
+      "colour": "blue",
+      "pov": "Four powers have occupied your country since the war. In Moscow, the Soviets offer to withdraw their troops if your country declares itself permanently neutral. You are the chancellor of Austria.",
+      "choices": ["Refuse and wait for a better offer", "Accept neutrality to end the occupation", "Seek a place in the Western alliance"],
+      "real": 1,
+      "who": "Julius Raab",
+      "short": "Raab",
+      "did": "Raab accepted. On 15 April 1955 he read a statement that Austria would declare neutrality 'like that practiced by the Swiss Confederation'.",
+      "next": "The State Treaty was signed at the Belvedere Palace in Vienna on 15 May 1955. On 26 October the Austrian parliament affirmed the country's permanent neutrality.",
+      "stamp": "Austria chooses neutrality",
+      "sources": [
+        { "name": "EBSCO Research Starters", "url": "https://ebsco.com/research-starters/history/austria-regains-its-independence" },
+        { "name": "Austrian Federal Chancellery", "url": "https://www.bundeskanzleramt.gv.at/bundeskanzleramt/besuchen-sie-uns/gang-der-geschichte/1955.html" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are plausible only: neither page mentions them; EBSCO says the Soviets had long stalled, hoping for 'hefty payments'. The Chancellery (in German) confirms the Moscow talks of 11 to 15 April 1955 with Raab, the commitment to permanent neutrality of the Swiss kind, the full Soviet withdrawal and the treaty of 15 May, not the statement or 26 October. EBSCO says Allied troops were to leave by the end of September 1955. No Wikipedia page was used."
+    },
+    {
+      "id": "1971-7-march",
+      "year": 1971,
+      "place": "Dhaka",
+      "colour": "red",
+      "pov": "Your party won 167 of East Pakistan's 169 seats, but Pakistan's president has postponed your government's swearing-in. Many openly call on you to declare independence. You are the leader of the Awami League.",
+      "choices": ["Declare independence from Pakistan now", "Rally for the struggle, but don't declare", "Call off protests and wait for talks"],
+      "real": 1,
+      "who": "Sheikh Mujibur Rahman",
+      "short": "Mujib",
+      "did": "On 7 March 1971, before over a million people in Dhaka, Mujib said the struggle this time was for independence. But he made no direct declaration, and set terms such as ending martial law.",
+      "next": "On 25 March 1971 Pakistan's military launched Operation Searchlight and arrested Mujib; the Liberation War followed.",
+      "stamp": "Mujib's 7 March speech",
+      "sources": [
+        { "name": "The Daily Star", "url": "https://www.thedailystar.net/node/1544533" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/7_March_Speech_of_Sheikh_Mujibur_Rahman" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: there were open calls for him to declare independence, and he held back mindful of the failure of Rhodesia's unilateral declaration (Wikipedia). Option 3 is plausible only. The Daily Star confirms the date, the Race Course, the line 'The struggle this time is for independence' and his four conditions, not the calls to declare. Wikipedia's translation of the line differs ('a struggle for our liberty'), so the moment does not quote it."
+    },
+    {
+      "id": "1860-teano",
+      "year": 1860,
+      "place": "Teano",
+      "colour": "blue",
+      "pov": "Your volunteers have conquered Sicily, where you are dictator, and Naples. Now you are to meet the king of Sardinia at Teano. You are the conquering general.",
+      "choices": ["Push on to Rome with your volunteers", "Keep ruling the south as dictator", "Hand your conquests over to the king"],
+      "real": 2,
+      "who": "Giuseppe Garibaldi",
+      "short": "Garibaldi",
+      "did": "At Teano on 26 October 1860 Garibaldi greeted Victor Emmanuel II as King of Italy and shook his hand. He turned his conquests in southern Italy over to the king.",
+      "next": "On 9 November he left Naples for the rocky island of Caprera, refusing any reward. A unified Kingdom of Italy was created on 17 March 1861.",
+      "stamp": "Garibaldi at Teano",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Giuseppe_Garibaldi" },
+        { "name": "House Divided, Dickinson College", "url": "https://hd.housedivided.dickinson.edu/node/34257" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: Garibaldi wanted to continue towards Rome to complete unification (Wikipedia, Expedition of the Thousand). Option 2 is plausible only. House Divided (one dated entry by John Osborne, citing G.M. Trevelyan, 1916) confirms that he turned his conquests in southern Italy over to Victor Emmanuel II and left Naples for Caprera on 9 November 1860, refusing honours; it does not mention Teano. Wikipedia adds that he rode into Naples at the king's side on 7 November."
+    },
+    {
+      "id": "1997-baht-float",
+      "year": 1997,
+      "place": "Bangkok",
+      "colour": "green",
+      "pov": "Thailand owes about $105 billion abroad but holds only $25.5 billion in reserves. Speculators keep attacking the baht's peg to the dollar. You are the new finance minister of Thailand.",
+      "choices": ["Keep defending the peg to the dollar", "Float the baht and let the market decide", "Devalue the baht to a new fixed rate"],
+      "real": 1,
+      "who": "Thanong Bidaya",
+      "short": "Thanong",
+      "did": "On 2 July 1997 Thanong and the Bank of Thailand ended the decades-long peg to the US dollar. The baht became a managed float, its value set by market forces.",
+      "next": "The baht plunged from 25 to 56 to the dollar before levelling off at about 40. Thanong accepted an IMF bailout in August and resigned in October.",
+      "stamp": "Thailand floats the baht",
+      "sources": [
+        { "name": "Bangkok Post", "url": "https://www.bangkokpost.com/thailand/general/1279123/thanong-id-do-the-same-again" },
+        { "name": "International Monetary Fund", "url": "https://www.imf.org/external/np/sec/nb/1997/nb9712.htm" }
+      ],
+      "checked": "2026-10-21",
+      "check": "The target was 'Chavalit's government', but both pages credit the decision to the finance minister with the Bank of Thailand; Chavalit's role is NOT FOUND, so the moment is Thanong's. Option 1 is plausible only (Thanong: 'There was no other alternative'). Option 3 is close to the record: in May 1997 the IMF had suggested the baht should depreciate (Bangkok Post). The Bangkok Post piece is an interview in which Thanong defends his own decision (no date or author shown on the page read). The IMF news brief of 2 July 1997 confirms the managed float effective that day and the market-set value; it gives none of the debt, reserve or exchange-rate figures."
+    },
+    {
+      "id": "1940-war-cabinet",
+      "year": 1940,
+      "place": "London",
+      "colour": "red",
+      "pov": "France is close to collapse and your army is retreating to Dunkirk. Your foreign secretary wants to explore a negotiated peace with Hitler through Mussolini. You are the British prime minister.",
+      "choices": ["Ask Mussolini to sound out peace terms", "Refuse any talks and fight on", "Ask the United States to mediate"],
+      "real": 1,
+      "who": "Winston Churchill",
+      "short": "Churchill",
+      "did": "At the war cabinet of 28 May 1940 Churchill rejected seeking mediation through Mussolini. His 25-member outer cabinet then unanimously backed fighting on.",
+      "next": "Halifax accepted the rejection of his proposal. An estimated 338,226 servicemen were evacuated, but almost all their equipment was lost.",
+      "stamp": "Churchill fights on",
+      "sources": [
+        { "name": "The National Archives", "url": "https://blog.nationalarchives.gov.uk/light-in-the-darkest-hour/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1940_British_war_cabinet_crisis" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: it was Halifax's proposal, pursued since 25 May through the Italian ambassador, and on 26 May Churchill did not object to 'some approach being made to Signor Mussolini' (The National Archives). Option 3 is plausible only. The National Archives blog confirms the rejection at the war cabinet of 28 May and the outer cabinet meeting, not the unanimity, the 25 members or the evacuation figure (those rest on Wikipedia). The blog post shows no author or date."
+    },
+    {
+      "id": "1947-womens-vote",
+      "year": 1947,
+      "place": "Buenos Aires",
+      "colour": "violet",
+      "pov": "Your husband is president, and women in your country still cannot vote; he promised to change that in his campaign. You are the first lady of Argentina.",
+      "choices": ["Campaign publicly for the vote yourself", "Leave it to your husband and Congress", "Keep to charity, away from politics"],
+      "real": 0,
+      "who": "Eva Duarte de Perón",
+      "short": "Eva Perón",
+      "did": "Eva Perón launched an active campaign for women's suffrage. The government's bill, pushed by her, passed Congress on 9 September 1947 and became Law 13,010 on 23 September.",
+      "next": "In 1951 women voted for the first time in a national election, and more than 90% of the women on the register took part.",
+      "stamp": "Argentine women win the vote",
+      "sources": [
+        { "name": "Encyclopedia.com (Encyclopedia of World Biography)", "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/peron-eva" },
+        { "name": "Palabras del Derecho", "url": "https://www.palabrasdelderecho.com.ar/articulo/3920/Aniversario-de-la-promulgacion-de-la-Ley-de-Derechos-Politicos-de-las-Mujeres" }
+      ],
+      "checked": "2026-10-21",
+      "check": "The 'you' is Eva Perón, not Juan Perón: both sources credit the push to her (Encyclopedia.com: 'Due largely to her efforts'; Palabras del Derecho: the Executive presented the bill 'mediante el impulso de Eva Perón'). Option 2 is plausible only, though suffrage was one of Juan Perón's campaign promises. Option 3 is plausible only; her social welfare program is in the record and her suffrage campaign met considerable opposition (Encyclopedia.com). The law's number and dates and the 90% rest on Palabras del Derecho (an Argentine legal news site, article by Emilia Barandiarán, 23 September 2025); the Senate had passed the bill on 21 August 1946. No Wikipedia page was read for this moment."
+    },
+    {
+      "id": "1912-qing-abdication",
+      "year": 1912,
+      "place": "Beijing",
+      "colour": "blue",
+      "pov": "Revolution erupted in October 1911, and 13 of 18 provinces have broken away. Your own prime minister now backs a republic. You are the empress dowager, acting for a six-year-old emperor.",
+      "choices": ["Fight on, as some loyalists urge", "Abdicate for him on generous terms", "Hold out for a constitutional monarchy"],
+      "real": 1,
+      "who": "Empress Dowager Longyu",
+      "short": "Longyu",
+      "did": "On 12 February 1912 Longyu accepted the terms and issued the abdication edict for the six-year-old Puyi. He was allowed to keep his imperial title.",
+      "next": "It ended the Qing dynasty and over 2,000 years of monarchy. The Republic promised Puyi four million taels of silver a year, and he lived in the Forbidden City until 1924.",
+      "stamp": "The last emperor abdicates",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Imperial_Edict_of_the_Abdication_of_the_Qing_Emperor" },
+        { "name": "Academy of Chinese Studies", "url": "https://chiculture.org.hk/en/photo-story/2169" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: Liangbi 'insisted on maintaining the Qing rule' (Academy of Chinese Studies), which also says that for the household's safety 'voluntary abdication was the only way out'. Option 3 is plausible only. Both sources say Longyu issued the edict; the Academy of Chinese Studies does not give the 13 of 18 provinces or call Yuan Shikai prime minister (Wikipedia does). Wikipedia gives 268 years only as one of several ways of counting the Qing (276 or 296 from earlier starts)."
+    },
+    {
+      "id": "1492-columbus",
+      "year": 1492,
+      "place": "Santa Fe",
+      "colour": "green",
+      "pov": "Granada has fallen. A sailor asks you to back a voyage west to the Indies. Your experts call it implausible; he wants titles and a tenth of the riches. You are the queen of Castile.",
+      "choices": ["Turn him down, as your experts advise", "Back the voyage and grant his terms", "Back it, but refuse his demands"],
+      "real": 1,
+      "who": "Isabella I of Castile",
+      "short": "Isabella",
+      "did": "Persuaded by the king's clerk Luis de Santángel, Isabella sent a royal guard to fetch Columbus back. On 17 April 1492 the monarchs signed the Capitulations of Santa Fe.",
+      "next": "Columbus sailed from Palos de la Frontera on 3 August 1492 with three ships. He reached the Americas on 12 October.",
+      "stamp": "Isabella backs Columbus",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Christopher_Columbus" },
+        { "name": "UNESCO Memory of the World", "url": "https://www.unesco.org/en/memory-world/santa-fe-capitulations" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: a committee advised the monarchs to pass on the venture in 1486, and Talavera's council found it implausible in 1492; Columbus had left for France when Ferdinand intervened (Wikipedia). Option 3 is plausible only. UNESCO confirms that Ferdinand and Isabella signed the Capitulations with Columbus at Santa Fe on 17 April 1492, setting the conditions of his first voyage; it does not mention Santángel, the recall or the terms."
+    },
+    {
+      "id": "1977-canal-treaties",
+      "year": 1977,
+      "place": "Panama City",
+      "colour": "blue",
+      "pov": "After years of talks, the United States offers to hand the canal to your country on 31 December 1999, keeping a permanent right to defend it. You are the leader of Panama.",
+      "choices": ["Sign the treaties on these terms", "Hold out for an earlier handover", "Refuse any US right to defend it"],
+      "real": 0,
+      "who": "Omar Torrijos",
+      "short": "Torrijos",
+      "did": "On 7 September 1977 Torrijos and Carter signed the two treaties in Washington, D.C. Panamanian voters approved them on 23 October 1977 with 67.4% of the vote.",
+      "next": "The US Senate ratified both treaties by 68 votes to 32 in 1978. On 31 December 1999 Panama took full control of the canal.",
+      "stamp": "The Panama Canal treaties",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Torrijos%E2%80%93Carter_Treaties" },
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/milestones/1977-1980/panama-canal" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 2 and 3 are plausible only; the neutrality treaty (the US right to defend the canal) was of major concern among Panamanian voters, particularly on the political left (Wikipedia). The Office of the Historian confirms the signing on 7 September 1977, the handover on 31 December 1999, the US right to defend the canal, the 68 to 32 votes (16 March and 18 April 1978) and that Torrijos wished to reach an agreement; it does not name the signers or mention the plebiscite (which rests on Wikipedia)."
+    },
+    {
+      "id": "221bc-standards",
+      "year": "221 BC",
+      "place": "Xianyang",
+      "colour": "teal",
+      "pov": "In 221 BC your armies completed the conquest of the six other major Chinese states. Now you must hold the new empire together. You are the ruler of Qin.",
+      "choices": ["Let each old state keep its own ways", "Impose one script, one currency, one measure", "Unify the laws, leave local customs alone"],
+      "real": 1,
+      "who": "Qin Shi Huang",
+      "short": "Qin Shi Huang",
+      "did": "With his minister Li Si, Qin Shi Huang made Qin's seal script the official standard and replaced the states' coins with the Ban Liang. Weights and measures were standardised.",
+      "next": "Even wagon axles got a standard length, to fit the ruts in the roads. He ruled until his death in 210 BC; his dynasty was then overthrown and replaced by the Han.",
+      "stamp": "One script, one coin",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Qin_Shi_Huang" },
+        { "name": "National Geographic", "url": "https://www.nationalgeographic.com/culture/article/qin-shi-huangdi" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are plausible only. Neither source dates the reforms to the day: both place them after the unification of 221 BC. National Geographic confirms uniform writing, a new currency, standard weights and measures and axles, and the capital Xianyang; it does not name Li Si, the seal script or the Ban Liang, and does not mention the fall of the dynasty (those rest on Wikipedia)."
+    },
+    {
+      "id": "1979-shah-leaves",
+      "year": 1979,
+      "place": "Tehran",
+      "colour": "magenta",
+      "pov": "You have led Iran since 1941. After months of violent demonstrations and an army mutiny, the exiled Ayatollah Khomeini has declared a council to replace the government. You are the shah of Iran.",
+      "choices": ["Leave Iran, officially on vacation", "Order the army to crush the revolt", "Stay and back your new prime minister"],
+      "real": 0,
+      "who": "Mohammad Reza Pahlavi",
+      "short": "Mohammad Reza",
+      "did": "On 16 January 1979 he and Empress Farah flew to Aswan in Egypt. Officially it was a vacation; in fact his new prime minister had asked him to leave.",
+      "next": "His departure was greeted with mass celebrations. On 1 April Khomeini declared an Islamic Republic; the shah died in exile in Egypt in July 1980.",
+      "stamp": "The shah leaves Iran",
+      "sources": [
+        { "name": "History.com", "url": "https://www.history.com/this-day-in-history/january-16/shah-flees-iran" },
+        { "name": "Macau Daily Times (BBC News)", "url": "https://macaudailytimes.com.mo/this-day-in-history-1979-shah-of-iran-flees-into-exile.html" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is plausible only, though on 8 September 1978 his security force had fired on demonstrators, killing hundreds (History.com). Option 3 is plausible only: he had appointed the prime minister earlier that month (BBC text). History.com says he was 'forced to flee' and gives the date, not the vacation or the prime minister. The Macau Daily Times page is a BBC News story ('Courtesy BBC News'). The sources differ on Khomeini's return (BBC: 1 February, after 14 years' exile; History.com: fourteen days later, after 15 years), so the moment gives neither."
+    },
+    {
+      "id": "1905-october-manifesto",
+      "year": 1905,
+      "place": "St Petersburg",
+      "colour": "violet",
+      "pov": "A general strike has crippled your empire's transport and public services amid revolution. You must choose: a military dictatorship or a constitution. You are the tsar of Russia.",
+      "choices": ["Appoint a military dictator", "Grant civil rights and a parliament", "Wait for the strikes to burn out"],
+      "real": 1,
+      "who": "Nicholas II",
+      "short": "Nicholas",
+      "did": "Nicholas gave in and issued the October Manifesto on 30 October 1905. It promised civil liberties and an elected Duma, without whose approval no law could be passed.",
+      "next": "The manifesto divided the opposition. The Duma had only limited control over the budget, and by 1906–07 much of Russia was under martial law.",
+      "stamp": "The October Manifesto",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/October_Manifesto" },
+        { "name": "Britannica", "url": "https://britannica.com/print/article/424878" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: Nicholas's first choice to head a military dictatorship, Grand Duke Nicholas, threatened to shoot himself if the tsar did not accept Witte's suggestion (Wikipedia); Britannica says he faced the choice of a military dictatorship or a constitution, and both he and Witte had reservations about the latter. Option 3 is plausible only. The date is 17 October in the Old Style calendar (both sources)."
+    },
+    {
+      "id": "1980-reconciliation",
+      "year": 1980,
+      "place": "Salisbury",
+      "colour": "magenta",
+      "pov": "Your election victory has shocked the white establishment. You have been portrayed as a radical who would nationalise everything. You are about to form a government. You are the prime minister-elect of Zimbabwe.",
+      "choices": ["Form a cabinet of your own party only", "Reassure whites and include them in cabinet", "Nationalise white-owned farms and firms"],
+      "real": 1,
+      "who": "Robert Mugabe",
+      "short": "Mugabe",
+      "did": "Mugabe called for unity: 'Let us turn swords into ploughshares.' He made two whites ministers, David Smith and Denis Norman, in the cabinet sworn in on 19 April 1980.",
+      "next": "He also appointed Peter Walls, former head of the Rhodesian army, though Walls was out before the year ended. Years later, Mugabe seized white farms without compensation.",
+      "stamp": "Mugabe's reconciliation",
+      "sources": [
+        { "name": "Business Day", "url": "https://www.businessday.co.za/rdm/world/2017-11-20-barney-mthombothi-how-mugabe-turned-from-reconcilation-to-hatred/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/David_Smith_(Rhodesian_politician)" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is plausible only. Option 3 is what many whites feared: he had been portrayed as a radical 'who would nationalise everything' (Business Day, a column by Barney Mthombothi, 20 November 2017). Business Day dates his reassuring press appearance 'February 1980', so the moment gives no date for it. It gives Smith 'the economics portfolio'; Wikipedia says Commerce and Industry, so the moment names no portfolio. Wikipedia adds that Ian Smith played a role in David Smith's selection, and that David Smith resigned in early March 1981, citing ill health."
+    },
+    {
+      "id": "1867-maximilian",
+      "year": 1867,
+      "place": "San Luis Potosí",
+      "colour": "red",
+      "pov": "A court has sentenced the captured emperor Maximilian to death. Victor Hugo, Giuseppe Garibaldi and many of Europe's crowned heads ask you to save his life. You are the president of Mexico.",
+      "choices": ["Let the sentence be carried out", "Spare him and send him into exile", "Commute it to prison for life"],
+      "real": 0,
+      "who": "Benito Juárez",
+      "short": "Juárez",
+      "did": "Juárez refused clemency. On 19 June 1867 Maximilian and his generals Miramón and Mejía were shot by firing squad on the Hill of the Bells at Querétaro.",
+      "next": "Juárez re-entered the capital on 15 July, to public acclaim and the ringing of bells.",
+      "stamp": "No mercy for Maximilian",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Restored_Republic" },
+        { "name": "Encyclopaedia Britannica", "url": "https://www.britannica.com/print/article/370459" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 2 and 3 are plausible only. Both sources say Juárez refused clemency; Britannica gives his reason as the thousands of Mexican lives lost in the struggle (read only as a summary, not quoted), and Wikipedia says he also rejected official appeals from European governments. Wikipedia gives the trial (from 13 June, Juárez then in San Luis Potosí), the generals and the Hill of the Bells; Britannica says only 'a hill outside Querétaro'. Juárez's return on 15 July rests on Wikipedia."
+    },
+    {
+      "id": "1947-partition",
+      "year": 1947,
+      "place": "New Delhi",
+      "colour": "blue",
+      "pov": "You must hand power to Indians by 30 June 1948 and avoid partition. Communal riots rage in Delhi and Bombay, and the Muslim League demands Pakistan. You are the viceroy of India.",
+      "choices": ["Hold to June 1948 and a united India", "Divide India and hand over power early", "Keep British rule until order returns"],
+      "real": 1,
+      "who": "Louis Mountbatten",
+      "short": "Mountbatten",
+      "did": "Mountbatten concluded that a united India was no longer achievable. On 3 June 1947 he announced that power would go to two governments, India and Pakistan, a year earlier than planned.",
+      "next": "Partition took effect on 15 August 1947, and the borders were announced two days later. Over 15 million people are thought to have migrated across them.",
+      "stamp": "Partition brought forward",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Lord_Mountbatten" },
+        { "name": "The National Archives (UK)", "url": "https://cdn.nationalarchives.gov.uk/documents/education/partition-of-british-india.pdf" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: Mountbatten's instructions were to avoid partition and preserve a united India, with independence no later than 30 June 1948 (Wikipedia). Option 3 is plausible only. Wikipedia says he 'brought forward the date of partition from June 1948 to 15 August 1947' because waiting risked civil war, and that all party leaders except Gandhi acquiesced in Jinnah's plan. The National Archives (a classroom resource) confirms the 3 June 1947 announcement of two governments 'a year earlier than previously planned', the borders on 17 August and the 15 million migrants; it does not name the June 1948 deadline or Attlee, and says Mountbatten was sent in February 1947 (Wikipedia: arrived 22 March), so the moment gives no month for his arrival. The 3 June announcement itself is quoted only from the National Archives."
+    },
+    {
+      "id": "1862-emancipation",
+      "year": 1862,
+      "place": "Washington",
+      "colour": "violet",
+      "pov": "July 1862. You have drafted a proclamation freeing the slaves in states in rebellion. Union armies have just had setbacks in Virginia. You are the president of the United States.",
+      "choices": ["Issue the proclamation right away", "Wait for a Union victory, then issue it", "Shelve it to keep the border states loyal"],
+      "real": 1,
+      "who": "Abraham Lincoln",
+      "short": "Lincoln",
+      "did": "Seward suggested waiting for a Union victory, and Lincoln held it back. After Antietam, he issued a preliminary proclamation on 22 September 1862.",
+      "next": "The final proclamation, on 1 January 1863, applied only to areas in rebellion, not to border states such as Maryland. Slavery ended legally with the 13th Amendment in December 1865.",
+      "stamp": "The Emancipation Proclamation",
+      "sources": [
+        { "name": "National Park Service", "url": "https://www.nps.gov/articles/the-emancipation-proclamation.htm" },
+        { "name": "American Battlefield Trust", "url": "https://www.battlefields.org/learn/articles/10-facts-emancipation-proclamation" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record as the plan Lincoln brought to the cabinet on 22 July 1862 (NPS). Option 3 is plausible only; the border states were excluded from the final text (NPS). The Battlefield Trust confirms the July cabinet meeting, the advice to wait for a victory, Antietam, 22 September 1862 and 1 January 1863, not the 13th Amendment. Black soldiers: NPS nearly 180,000, the Trust over 200,000 (army and navy), so the moment gives no figure."
+    },
+    {
+      "id": "1963-oau",
+      "year": 1963,
+      "place": "Addis Ababa",
+      "colour": "blue",
+      "pov": "Africa's independent states have split into rival blocs. One, led by Ghana, wants a federation of all Africa; the other wants unity to come gradually. You are the emperor of Ethiopia.",
+      "choices": ["Bring both blocs together in your capital", "Join the bloc that wants a federation now", "Stay out of the quarrel between the blocs"],
+      "real": 0,
+      "who": "Haile Selassie I",
+      "short": "Haile Selassie",
+      "did": "Haile Selassie invited the two groups to Addis Ababa. There, on 25 May 1963, the charter of the Organisation of African Unity was signed, and the city became its headquarters.",
+      "next": "The OAU worked to end colonialism and white minority rule, but its policy of non-interference limited it. It was later replaced by the African Union.",
+      "stamp": "Africa unites in Addis Ababa",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Organisation_of_African_Unity" },
+        { "name": "Pambazuka News", "url": "https://pambazuka.org/birth-oau" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is what the Casablanca bloc under Nkrumah wanted (Wikipedia). Option 3 is plausible only. Pambazuka (Cameron Duodu, undated) says Guinea's Sekou Toure 'linked up with Emperor Haile Selassie' to organise a conference of the foreign ministers of the two groups, so the initiative was shared; it confirms Addis Ababa, May 1963 and the charter signed on 25 May 1963, and says Haile Selassie and Tubman thought Nkrumah easier to control inside one organisation. Wikipedia gives both 32 and 33 signatory states, so the moment gives no number."
+    },
+    {
+      "id": "1990-batmonkh",
+      "year": 1990,
+      "place": "Ulaanbaatar",
+      "colour": "violet",
+      "pov": "Hunger strikers in Sukhbaatar Square demand that your government resign. You are asked to sign a decree for a crackdown on the demonstrators. You are the leader of communist Mongolia.",
+      "choices": ["Sign the decree and clear the square", "Negotiate with the strikers and stay on", "Refuse force; resign with the Politburo"],
+      "real": 2,
+      "who": "Jambyn Batmönkh",
+      "short": "Batmönkh",
+      "did": "Batmönkh refused: 'We few Mongols have not yet come to the point that we will make each other's noses bleed.' On 9 March 1990 the Politburo he led resigned.",
+      "next": "On 10 May 1990 parliament declared that free, multi-party elections would be held in July. The former ruling party won nearly three-quarters of the seats.",
+      "stamp": "Mongolia's leaders step down",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Jambyn_Batm%C3%B6nkh" },
+        { "name": "Global Nonviolent Action Database (Swarthmore College)", "url": "https://nvdatabase.swarthmore.edu/content/mongolians-win-multi-party-democracy-1989-1990" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: he was asked to sign a decree authorising a crackdown (Wikipedia, from his widow's account, which is also the source of the quote). Option 2 is in the record: the Politburo attempted to negotiate an end to the hunger strike (Swarthmore). Swarthmore confirms that the Politburo refused 'the use of forceful repression' and resigned on 9 March, but does not name Batmönkh as the one who decided. Wikipedia's infobox gives a later end to his party post (14 March 1990), so the moment dates only the Politburo's resignation."
+    },
+    {
+      "id": "1967-nasser-resigns",
+      "year": 1967,
+      "place": "Cairo",
+      "colour": "magenta",
+      "pov": "A war with Israel that began four days ago has ended in defeat for your armed forces. Tonight you will speak to the nation. You are the president of Egypt.",
+      "choices": ["Take the blame and resign", "Stay on and replace your generals", "Stay on and promise to fight back"],
+      "real": 0,
+      "who": "Gamal Abdel Nasser",
+      "short": "Nasser",
+      "did": "On 9 June 1967 Nasser took full responsibility for the defeat and resigned as president. Crowds poured into the streets to back him.",
+      "next": "The cabinet and the National Assembly refused to accept the resignation, and Nasser withdrew it. On 19 June he also became prime minister.",
+      "stamp": "Nasser resigns, then stays",
+      "sources": [
+        { "name": "Library of Congress Country Studies", "url": "https://countrystudies.us/egypt/37.htm" },
+        { "name": "Gulf News", "url": "https://gulfnews.com/amp/story/world%2Fmena%2Fegyptians-recall-rallies-held-to-support-nasser-1.757060" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is close to the record in another form: soon after the ceasefire Field Marshal Amir and Defence Minister Badran were forced to resign (Library of Congress). Option 3 is plausible only. Gulf News confirms the resignation speech of 9 June 1967, the crowds and that Nasser 'bowed to the will of people'; it does not give the votes of the cabinet and the Assembly or the 19 June date (they rest on the Library of Congress study, read on countrystudies.us, a mirror of the Library of Congress text). Gulf News is a 2018 article with eyewitness memories."
+    },
+    {
+      "id": "1983-rigueur",
+      "year": 1983,
+      "place": "Paris",
+      "colour": "green",
+      "pov": "Your stimulus policy has quickly worsened the budget and trade deficits. The franc has been devalued twice, and the left has just lost local elections. You are the president of France.",
+      "choices": ["Leave the EMS and keep spending", "Shield industry with import controls", "Stay in the EMS, turn to austerity"],
+      "real": 2,
+      "who": "François Mitterrand",
+      "short": "Mitterrand",
+      "did": "In March 1983 Mitterrand kept the franc in the European Monetary System and made the 'tournant de la rigueur'. Taxes rose, and wages were no longer tied to prices.",
+      "next": "Prime Minister Mauroy and Finance Minister Jacques Delors carried out a drastic austerity plan. The left never owned the turn politically, preferring to call it a 'parenthesis'.",
+      "stamp": "Mitterrand's austerity turn",
+      "sources": [
+        { "name": "Citéco (Banque de France)", "url": "https://citeco.fr/10000-years-history-economics/contemporary-world/frances-left-wing-economic-policy-and-the-subsequent-austerity-turn" },
+        { "name": "Herodote.net", "url": "https://www.herodote.net/La_Ve_Republique_et_le_tournant_de_1983-synthese-1728.php" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: Mitterrand hesitated over an 'autre politique' of leaving the EMS (Herodote), which the Socialists' left wing under Chevènement urged (Christian Science Monitor, 24 March 1983, a third page, not linked). Option 2 is close to the record: the Monitor says that course risked protectionism. Citéco does not name Mauroy or Delors; they rest on Herodote. Devaluation figures differ (Herodote 4.25% in March 1983; the Monitor 2.5% for the franc and 5.5% for the mark), so the moment gives none. 'Parenthesis' translates Herodote's 'parenthèse'."
+    },
+    {
+      "id": "1822-san-martin",
+      "year": 1822,
+      "place": "Lima",
+      "colour": "blue",
+      "pov": "A large, well-armed royalist army still holds Cuzco. At Guayaquil you asked Bolívar to send an army to Peru; he offered fewer than 2,000 men. You are the Protector of Peru.",
+      "choices": ["Fight on with the forces you have", "Step down and leave Peru to others", "Serve under Bolívar's command"],
+      "real": 1,
+      "who": "José de San Martín",
+      "short": "San Martín",
+      "did": "On 20 September 1822, as Peru's first Constituent Congress met, San Martín resigned and laid down his Protector's sash. Early on 21 September he sailed for Valparaíso.",
+      "next": "He later left South America entirely and retired in France. Bolívar carried on the war of liberation.",
+      "stamp": "San Martín steps aside",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Guayaquil_Conference" },
+        { "name": "El Comercio (Peru)", "url": "https://elcomercio.pe/luces/el-primer-congreso-constituyente-y-el-adios-de-san-martin-noticia/" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is in the record: at Guayaquil (26-27 July 1822) San Martín offered to serve under Bolívar, and they could not agree (Wikipedia). Option 1 is plausible only. Both sources state the decision: he abdicated his powers in Peru (Wikipedia); his resignation was read to the Congress installed on 20 September 1822 (El Comercio). El Comercio, not Wikipedia, gives the request for an army, the fewer than 2,000 men, the royalist army in Cuzco, the sash and Valparaíso; Wikipedia says he 'returned to Argentina' (he sailed to Valparaíso first, so the moment says only that). A 1924 biography of Sucre (Sherwell) read too agrees: he convoked the Congress, resigned and left."
+    },
+    {
+      "id": "1990-one-for-one",
+      "year": 1990,
+      "place": "Bonn",
+      "colour": "green",
+      "pov": "East Germany is to adopt the D-Mark. On the black market five to ten East marks have bought one, yet East Germans demand one for one. You are the chancellor of West Germany.",
+      "choices": ["Change at two East marks for one", "Change wages and savings one for one", "Put off the currency union for now"],
+      "real": 1,
+      "who": "Helmut Kohl",
+      "short": "Kohl",
+      "did": "Against leading economists' advice, Kohl's government changed wages, salaries, pensions and rents one for one. Savings went one for one up to 2,000 to 6,000 marks, by age.",
+      "next": "The D-Mark came to East Germany on 1 July 1990. Many East German firms could no longer compete, and closures and mass redundancies followed.",
+      "stamp": "One D-Mark for one East mark",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/East_German_mark" },
+        { "name": "DDR Museum", "url": "https://www.ddr-museum.de/en/blog/2025/western-money-at-last-the-monetary-union-of-1-july-1990" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: the Bundesbank proposed a 1-to-2 rate, which would halve wages and pensions (Christian Science Monitor, 4 April 1990, read but not linked). Option 3 is close to the record: the Bundesbank's president, Karl Otto Pöhl, said on 6 February 1990 it was still too early for monetary union (Bundesbank, read but not linked). Wikipedia gives no year for the black-market rate. Larger savings went at 2:1 (both sources)."
+    },
+    {
+      "id": "1977-hunting-ban",
+      "year": 1977,
+      "place": "Nairobi",
+      "colour": "teal",
+      "pov": "Your country's once countless wildlife is dwindling, and poachers kill elephants and rhinos in great numbers. Licensed professional hunters still take paying clients on safari. You are the president of Kenya.",
+      "choices": ["Ban all sport hunting at once", "Keep licensed hunting, fight the poachers", "Ban the sale of trophies and game products"],
+      "real": 0,
+      "who": "Jomo Kenyatta",
+      "short": "Kenyatta",
+      "did": "In May 1977 Kenyatta's government banned all sport hunting, with no time to finish safaris. Many of Kenya's 106 licensed hunters heard of it from game scouts in the field.",
+      "next": "That December Kenyatta also banned the sale of trophies and game products by curio shops. Poachers went on a rampage, and Kenya's elephant population fell steeply between 1973 and 2013.",
+      "stamp": "Kenya bans hunting",
+      "sources": [
+        { "name": "Sports Illustrated Vault", "url": "https://vault.si.com/vault/1978/05/22/the-game-goes-on" },
+        { "name": "Hoover Institution", "url": "https://www.hoover.org/research/how-hunting-saves-animals" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is what Kenya's 'hunter-conservationists' argued for (Hoover). Option 3 is in the record as well: Kenyatta did it that December, after the hunting ban (Sports Illustrated). Neither source says Kenyatta personally ordered the May ban: Sports Illustrated says 'the government announced' it, and Hoover (an opinion piece by Terry Anderson, who thinks the ban a mistake) credits 'anti-hunters'. Sports Illustrated is undated in the text (the address gives 22 May 1978), so its 'last May' and 'last December' are 1977; Hoover gives 'May of 1977'. The elephant decline is Hoover's 'between 1973 and 2013'."
+    },
+    {
+      "id": "1840-waitangi",
+      "year": 1840,
+      "place": "Waitangi",
+      "colour": "blue",
+      "pov": "More and more British settlers are arriving in New Zealand, some of them unruly, and France seems interested in annexing it. You must secure British sovereignty. You are the new British lieutenant-governor.",
+      "choices": ["Make a treaty with the Māori chiefs", "Simply proclaim British sovereignty", "Claim only small pockets of land"],
+      "real": 0,
+      "who": "William Hobson",
+      "short": "Hobson",
+      "did": "Hobson had a treaty written in a few days. On 6 February 1840 at Waitangi about 40 chiefs signed it; to each he said 'He iwi tahi tātou', 'We are one people'.",
+      "next": "About 540 chiefs signed in all, and British sovereignty was proclaimed on 21 May 1840. The Māori text had translated 'sovereignty' as 'kawanatanga' (governance).",
+      "stamp": "The Treaty of Waitangi",
+      "sources": [
+        { "name": "NZHistory (Ministry for Culture and Heritage)", "url": "https://nzhistory.govt.nz/politics/treaty/the-treaty-in-brief" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Treaty_of_Waitangi" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is in the record: Hobson himself had earlier recommended British sovereignty 'in small pockets' (Wikipedia). Option 2 is close to the record: on 21 May 1840 the South Island was claimed 'by discovery', not by treaty (Wikipedia). His instructions were to gain 'freely given Māori recognition of British sovereignty' (Wikipedia). The number who signed on 6 February differs a little (NZHistory 'About 40', Wikipedia 'Over 40'), so the moment says about 40. NZHistory confirms the few days, the signing, the 540 and 21 May, not Hobson's words to the chiefs (Wikipedia)."
+    },
+    {
+      "id": "1991-gulf-ceasefire",
+      "year": 1991,
+      "place": "Washington",
+      "colour": "red",
+      "pov": "Coalition forces have entered Kuwait City and Iraqi troops are fleeing. One US division is less than 250 km from Baghdad. You are the president of the United States.",
+      "choices": ["Push on to Baghdad and topple Saddam", "Declare a ceasefire now Kuwait is free", "Fight on until Iraq's army is destroyed"],
+      "real": 1,
+      "who": "George H. W. Bush",
+      "short": "Bush",
+      "did": "On 28 February 1991 Bush announced a ceasefire, declaring Kuwait free and the Iraqi army defeated. He had never intended to overthrow Saddam Hussein.",
+      "next": "The land war had lasted about 100 hours. The choice stayed controversial: Saddam was removed only in 2003, when Bush's son was president.",
+      "stamp": "Bush halts the Gulf War",
+      "sources": [
+        { "name": "Miller Center", "url": "https://millercenter.org/statecraftmovie/gulf-war" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Timeline_of_the_Gulf_War_(1990%E2%80%931991)" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are the road not taken that critics later named: 'an opportunity to topple Hussein and destroy his army' (Miller Center). The Miller Center gives Bush's reasons: going further 'would have overstepped the U.N. resolution and could have turned Arab countries against the United States.' It confirms the ceasefire of 28 February, the 100 hours and 2003, not Kuwait City or the 250 km (Wikipedia timeline). Wikipedia's 27 February entry on Bush is garbled, so the moment uses only its 28 February entry."
+    },
+    {
+      "id": "1987-june-29",
+      "year": 1987,
+      "place": "Seoul",
+      "colour": "violet",
+      "pov": "Pro-democracy protests are spreading across South Korea. On 10 June your party named you to succeed the president, and the 1988 Seoul Olympics are approaching. You are the ruling party's candidate.",
+      "choices": ["Keep the indirect presidential election", "Accept direct presidential elections", "Back a crackdown to end the protests"],
+      "real": 1,
+      "who": "Roh Tae-woo",
+      "short": "Roh",
+      "did": "On 29 June 1987 Roh accepted the demand for direct presidential elections. He also promised to release political prisoners, including the opposition leader Kim Dae-jung.",
+      "next": "A new constitution was approved by 94.4% of voters in October. With the opposition vote split, Roh was then elected president with 36.6% of the vote.",
+      "stamp": "The June 29 declaration",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/June_Democratic_Struggle" },
+        { "name": "The Korea Times", "url": "https://www.koreatimes.co.kr/lifestyle/people-events/20211026/former-president-roh-tae-woo-dies" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is what President Chun had done: on 13 April 1987 he suspended the constitutional debate until after the Olympics (Wikipedia). Option 3 is close to the record: Chun issued orders to mobilize the army but rescinded them within hours, fearing a repeat of Gwangju (Wikipedia). Chun approved the declaration two days later (Wikipedia). The Korea Times (obituary, 26 October 2021) confirms that Roh accepted direct presidential elections through the June 29 Declaration, his naming at the 10 June party 'primary' and the divided opposition; it does not give the other promises, the referendum or the vote shares."
+    },
+    {
+      "id": "2001-argentina-default",
+      "year": 2001,
+      "place": "Buenos Aires",
+      "colour": "green",
+      "pov": "Riots have forced the president to resign. Congress has made you interim president until elections. The IMF has refused $1.3 billion in aid; the debt is $132 billion. You are the president of Argentina.",
+      "choices": ["Stop paying the foreign debt", "Keep paying and seek a new IMF deal", "End the peso's one-to-one dollar peg"],
+      "real": 0,
+      "who": "Adolfo Rodríguez Saá",
+      "short": "Rodríguez Saá",
+      "did": "On being sworn in on 23 December 2001, Rodríguez Saá announced that the state would suspend its payments of the foreign debt. He said he would keep the peso pegged one to one to the dollar.",
+      "next": "The moratorium on $132 billion was called the largest default ever made by a sovereign country. Without the support of his Peronist party, he resigned after one week.",
+      "stamp": "Argentina stops paying",
+      "sources": [
+        { "name": "UPI", "url": "https://www.upi.com/Archives/2001/12/23/Argentina-stops-debt-payments/4331009083600/" },
+        { "name": "PBS NewsHour", "url": "https://pbs.org/newshour/politics/latin_america-july-dec01-argentina_12-31" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is in the record as what he did not do: he kept the convertibility law (UPI) and ruled out a devaluation (Washington Times, 24 December 2001, read but not linked). Option 2 is plausible only. PBS (31 December 2001) confirms the moratorium on the $132 billion debt and the resignation after one week, not the date of the speech. The Washington Times adds that Congress gave him a rousing ovation and that he promised 1 million jobs."
+    },
+    {
+      "id": "1962-slavery",
+      "year": 1962,
+      "place": "Riyadh",
+      "colour": "violet",
+      "pov": "In June the king banned the buying and selling of people, but owning slaves is still legal. The United States presses for reforms. You are the prime minister of Saudi Arabia.",
+      "choices": ["Ban the owning of slaves outright", "Keep the ban on sales only", "Free slaves gradually over years"],
+      "real": 0,
+      "who": "Faisal bin Abdulaziz Al Saud",
+      "short": "Faisal",
+      "did": "In November 1962 Faisal prohibited the owning of slaves in Saudi Arabia, as part of his ten-point reform programme.",
+      "next": "Traditionalists objected, and enforcement was slow: some reports say the slave trade went on for at least twenty years. Some freed slaves kept working for their former owners.",
+      "stamp": "Saudi Arabia ends slavery",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Slavery_in_Saudi_Arabia" },
+        { "name": "EBSCO Research Starters", "url": "https://www.ebsco.com/research-starters/history/faisal" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is in the record: the king's decree of June 1962 prohibited the sale and purchase of humans but did not abolish slavery itself (Wikipedia). Option 3 is plausible only. EBSCO confirms the emancipation of 1962, the ten-point reform program of November 1962 and the objections of traditionalists; it does not give the June decree. EBSCO says Faisal became prime minister in 1962 (and also 'crown prince and premier in 1953'), so the pov says only 'prime minister'. Neither page gives a number of slaves freed or any compensation, so the moment gives neither."
+    },
+    {
+      "id": "1898-philippines",
+      "year": 1898,
+      "place": "Washington",
+      "colour": "blue",
+      "pov": "After the war with Spain, peace talks open in Paris. Filipino rebels want independence; Germany looks ready to step in if you leave. You are the president of the United States.",
+      "choices": ["Keep only Manila as a naval base", "Take all of the islands from Spain", "Grant the Philippines independence"],
+      "real": 1,
+      "who": "William McKinley",
+      "short": "McKinley",
+      "did": "McKinley cabled that duty left him no choice but to demand the whole archipelago. By the Treaty of Paris of 10 December 1898, Spain ceded it for $20 million.",
+      "next": "The Senate approved the treaty 57 to 27 on 6 February 1899, two days after fighting broke out with Filipino forces in Manila. The US won that war in 1902.",
+      "stamp": "Keeping the Philippines",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Treaty_of_Paris_(1898)" },
+        { "name": "Gale, via presidentprofiles.com", "url": "https://www.presidentprofiles.com/Grant-Eisenhower/William-McKinley-The-treaty-of-paris.html" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: the commission's chairman, Day, had recommended only the naval base in Manila (Wikipedia). Option 3 is in the record as rejected: independence without defence would mean handing the islands to Germany or another power (Gale text). The Gale text confirms that McKinley concluded the only course was to take the Philippines, the $20 million, 10 December 1898 and the 57 to 27 vote, not the war. 'Two days' is computed from 4 and 6 February (Wikipedia)."
+    },
+    {
+      "id": "1967-referendum",
+      "year": 1967,
+      "place": "Canberra",
+      "colour": "violet",
+      "pov": "Your Constitution says Aboriginal people shall not be counted in the population and keeps your Parliament from making laws for them. Campaigners want it changed. You are the prime minister of Australia.",
+      "choices": ["End only the bar on counting them", "Leave the Constitution as it is", "Put both changes to a referendum"],
+      "real": 2,
+      "who": "Harold Holt",
+      "short": "Holt",
+      "did": "On 22 February 1967 Holt's Cabinet decided to hold a referendum on both changes. Parliament passed the bill unanimously, so there was no official 'No' case.",
+      "next": "On 27 May 1967, 90.77% of voters said yes, with majorities in every state. Parliament could now make laws for Aboriginal people, and they could be counted in the population.",
+      "stamp": "The 1967 referendum",
+      "sources": [
+        { "name": "National Archives of Australia", "url": "https://www.naa.gov.au/students-and-teachers/student-research-portal/learning-resource-themes/first-australians/rights-and-freedoms/decision-government-hold-1967-referendum-cabinet-minute" },
+        { "name": "Museum of Australian Democracy", "url": "https://www.moadoph.gov.au/explore/democracy/1967-indigenous-affairs" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: an earlier Cabinet had decided to seek the repeal of section 127 only, and the Attorney-General's August 1965 proposal to change section 51 as well was rebuffed (English Wikipedia, read but not linked). Option 2 is plausible only. The Museum of Australian Democracy confirms that 'the Holt government called a referendum in early 1967', the unanimous vote, the missing 'no' case, 27 May 1967 and 90.77%, not the Cabinet date of 22 February (National Archives). Campaigners of FCAATSI met Holt in February 1967 (National Archives)."
+    },
+    {
+      "id": "1893-mekong",
+      "year": 1893,
+      "place": "Bangkok",
+      "colour": "blue",
+      "pov": "French gunboats have forced their way up the river to Bangkok. France demands all territory east of the Mekong and three million francs. Britain will not help. You are the king of Siam.",
+      "choices": ["Fight on and defend Bangkok", "Accept France's terms in full", "Accept only part of the demands"],
+      "real": 1,
+      "who": "Chulalongkorn",
+      "short": "Chulalongkorn",
+      "did": "Siam submitted fully to the French conditions. Chulalongkorn ceded to France all Lao territories east of the Mekong, and a treaty was signed on 3 October 1893.",
+      "next": "France occupied Chanthaburi until 1907. Chulalongkorn went on making territorial concessions to the West, in the hope that Siam could retain its overall independence.",
+      "stamp": "Siam gives up Laos",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1893_Franco-Siamese_crisis" },
+        { "name": "Britannica", "url": "https://www.britannica.com/place/Thailand/Chulalongkorn-and-the-foundations-of-modern-Thailand" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is close to the record: Siam did not at first comply unconditionally, and France blockaded the coast (Wikipedia). Option 1 is plausible only (the fort at Paknam had fired on the French ships). Britannica confirms the gunboats and the forced cession in 1893 and the motive, not the indemnity, the treaty date or Chanthaburi (those rest on Wikipedia). 'Britain will not help' rests on Wikipedia: 'after finding no support from the British'."
+    },
+    {
+      "id": "2000-zedillo-concedes",
+      "year": 2000,
+      "place": "Mexico City",
+      "colour": "violet",
+      "pov": "Your party has held the presidency for about 70 years. On election night, preliminary results show the opposition candidate winning. Your party's candidate has not yet conceded. You are the president of Mexico.",
+      "choices": ["Wait for the official count to finish", "Go on TV at once and recognise the winner", "Let your party's candidate concede first"],
+      "real": 1,
+      "who": "Ernesto Zedillo",
+      "short": "Zedillo",
+      "did": "That night Zedillo spoke on national TV, citing the electoral institute's preliminary results. He acknowledged Vicente Fox's victory, said he had just phoned him, and congratulated him.",
+      "next": "The PRI lost the presidency for the first time in some 70 years. That the concession came from him, not the PRI candidate Francisco Labastida, later caused tensions between the two.",
+      "stamp": "Election night in Mexico",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/2000_Mexican_general_election" },
+        { "name": "Excélsior", "url": "https://www.excelsior.com.mx/nacional/2015/07/02/1032493" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is close to the record: Labastida was about to give his concession speech minutes later, and the concession coming from the president first caused tensions (Wikipedia). Option 1 is plausible only. The sources disagree on the length of PRI rule: Wikipedia '71 years', Excélsior (in Spanish, 2 July 2015) '70 años', so the moment says 'about 70'. Excélsior quotes Zedillo's message (IFE preliminary data; his phone call to Fox)."
+    },
+    {
+      "id": "1666-great-fire",
+      "year": 1666,
+      "place": "London",
+      "colour": "teal",
+      "pov": "Fire has destroyed about 13,000 houses in your capital, and St Paul's Cathedral. Christopher Wren and others propose a new city of wide streets on a grid. You are the king of England.",
+      "choices": ["Rebuild the old streets in brick and stone", "Build Wren's new city of wide streets", "Let owners rebuild as they wish"],
+      "real": 0,
+      "who": "Charles II",
+      "short": "Charles",
+      "did": "Charles had encouraged radical schemes, but paying owners for a full remodelling proved unrealistic. Much of the old street plan was recreated, with wider streets.",
+      "next": "New buildings had to be of brick or stone, not wood. Most private rebuilding was complete by 1671, and Wren designed 51 new churches.",
+      "stamp": "London after the Great Fire",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Great_Fire_of_London" },
+        { "name": "Library of Congress", "url": "https://blogs.loc.gov/maps/2025/12/phoenix-rising-urban-planning-after-the-great-fire-of-london/" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is in the record: Wren's grid plan, and those of Evelyn, Hooke, Knight and Newcourt, were proposed and dropped (both sources). Option 3 is plausible only. It was a joint decision: the Crown and the City tried to negotiate compensation (Wikipedia), Parliament passed the Rebuilding Act, and the Library of Congress says the King organised the reconstruction and Wren's plan was rejected because owners could not keep their land. Houses: about 13,000 (Library of Congress), 13,200 to 13,500 (Wikipedia). The Act's year differs (1666 on Wikipedia, February 1667 at the Library of Congress), so the moment gives none."
+    },
+    {
+      "id": "1970-black-september",
+      "year": 1970,
+      "place": "Amman",
+      "colour": "red",
+      "pov": "Armed Palestinian groups have seized the city of Irbid and openly call for your overthrow. Hijacked airliners have been blown up on your soil. You are the king of Jordan.",
+      "choices": ["Order the army to attack them", "Seek a new deal with their leaders", "Ask Arab leaders to mediate"],
+      "real": 0,
+      "who": "Hussein bin Talal",
+      "short": "Hussein",
+      "did": "Hussein formed a martial law government and in September 1970 ordered the army to attack. It struck the fedayeen headquarters in Amman.",
+      "next": "Syrian tanks entered Jordan on 18 September; by 22 September the tide had turned. A ceasefire was signed in Cairo on 27 September, and in July 1971 the king expelled the last fighters.",
+      "stamp": "Black September in Jordan",
+      "sources": [
+        { "name": "CIA Studies in Intelligence", "url": "https://www.cia.gov/resources/csi/static/Black-September-Jordan.pdf" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Battle_of_Amman_(1970)" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is close to the record later: Nasser summoned Hussein and Arafat to Cairo on 26 September and witnessed the ceasefire on the 27th (CIA). Option 2 is plausible only. The sources differ on the first day: Wikipedia says the royal army attacked strongholds on the morning of 16 September and launched a big attack on 17 September; the CIA article says the king postponed action on the 16th and ordered the attack on 17 September, so the moment gives only the month, September 1970. Casualty figures differ (Red Cross: 5,000 to 10,000 casualties by 22 September, on Wikipedia; 3,000 to 4,000 fedayeen dead and 537 Jordanian soldiers killed, CIA), so the moment gives none. Wikipedia does not mention the Syrian tanks or the expulsion of July 1971 (they rest on the CIA article, written by Bruce Riedel, a former CIA officer, in 2020). Also read and agreeing: Center for Israel Education (israeled.org)."
+    },
+    {
+      "id": "1967-arusha",
+      "year": 1967,
+      "place": "Arusha",
+      "colour": "green",
+      "pov": "Your country's plans for development lean heavily on foreign aid and outside help. Your ruling party must now set its course for the years ahead. You are the president of Tanzania.",
+      "choices": ["Seek more foreign aid and investment", "Build socialism on self-reliance", "Open the economy to private business"],
+      "real": 1,
+      "who": "Julius Nyerere",
+      "short": "Nyerere",
+      "did": "On 5 February 1967 Nyerere issued the Arusha Declaration: socialism and self-reliance. Strict rules limited how far leaders could acquire wealth.",
+      "next": "Banks, natural resources and major industries were nationalised at once. From 1973 people were moved, often by force, into Ujamaa villages: by Nyerere's count, over seven million by June 1975.",
+      "stamp": "The Arusha Declaration",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Ujamaa" },
+        { "name": "GlobalSecurity.org", "url": "https://www.globalsecurity.org/military/world/tanzania/history-independence-14.htm" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 was the earlier course: the declaration 'did not exclude foreign aid, but it reversed the previous emphasis' (GlobalSecurity). Option 3 is plausible only. GlobalSecurity (author not given) confirms the declaration of 1967 presented by Nyerere, the call for self-reliance, the leadership rules and the nationalisations; not the day, nor villagisation. The seven million moved is Nyerere's own figure, as quoted on Wikipedia. Nyerere's stepping down in 1985 is already in the game; this moment is the 1967 declaration."
+    },
+    {
+      "id": "1983-franklin-dam",
+      "year": 1983,
+      "place": "Canberra",
+      "colour": "teal",
+      "pov": "Tasmania's government is pushing ahead with a dam on the Franklin River, in a World Heritage area. Protesters have blockaded the site since December. You are the new prime minister of Australia.",
+      "choices": ["Leave it to Tasmania, a state matter", "Stop the dam with a federal law", "Offer Tasmania money to drop the dam"],
+      "real": 1,
+      "who": "Bob Hawke",
+      "short": "Hawke",
+      "did": "Hawke's government passed the World Heritage Properties Conservation Act 1983 to stop work on the dam, and took Tasmania to the High Court.",
+      "next": "The High Court ruled 4 to 3 in the federal government's favour, and Tasmania had to abandon the dam. The plans have never been revived.",
+      "stamp": "Hawke stops the Franklin Dam",
+      "sources": [
+        { "name": "National Museum of Australia", "url": "https://www.nma.gov.au/defining-moments/resources/franklin-dam-greens" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Franklin_Dam_controversy" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: the federal government (before Hawke) 'initially declined to intervene' (Wikipedia). Option 3 is plausible only (Wikipedia mentions compensation funds for Tasmania only in a sentence marked 'citation needed'). Hawke had promised during the campaign to stop the dam if elected (both sources). The number arrested at the blockade differs (National Museum about 1,400, Wikipedia 1,217), so the moment gives none. The National Museum confirms the Act, the High Court case and the abandoned dam, not the 4 to 3 vote (Wikipedia)."
+    },
+    {
+      "id": "1948-eo-9981",
+      "year": 1948,
+      "place": "Washington",
+      "colour": "violet",
+      "pov": "Over a million Black Americans served in World War II, in segregated forces. Southern senators threaten to filibuster your civil rights proposals. You are the president of the United States.",
+      "choices": ["Keep pressing Congress to pass a law", "Leave it to the military to decide", "Ban segregation by executive order"],
+      "real": 2,
+      "who": "Harry S. Truman",
+      "short": "Truman",
+      "did": "On 26 July 1948 Truman signed Executive Order 9981. It declared 'equality of treatment and opportunity for all persons in the armed services'.",
+      "next": "The military resisted at first, but by the end of the Korean War almost all of it was integrated. The last all-black unit was abolished in September 1954.",
+      "stamp": "Desegregating the armed forces",
+      "sources": [
+        { "name": "National Archives", "url": "https://www.archives.gov/milestone-documents/executive-Order-9981" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Executive_Order_9981" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: in February 1948 Truman called on Congress to enact his civil rights commission's recommendations, and turned to his executive powers when Southern senators threatened a filibuster (National Archives). Option 2 is close to the record: there was considerable resistance from the military (National Archives), and Wikipedia quotes 'The Army is not out to make any social reforms.' The National Archives does not give the 1954 date (Wikipedia does)."
+    },
+    {
+      "id": "1993-oslo",
+      "year": 1993,
+      "place": "Jerusalem",
+      "colour": "blue",
+      "pov": "Norway has set up a secret channel in Oslo where two Israeli scholars and the PLO have drafted an agreement. It needs your backing. You are the prime minister of Israel.",
+      "choices": ["Back the deal and recognise the PLO", "Disown the secret talks", "Keep talking, but not with the PLO"],
+      "real": 0,
+      "who": "Yitzhak Rabin",
+      "short": "Rabin",
+      "did": "Rabin backed the agreement. In September 1993 he signed Israel's letter recognising the PLO as the representative of the Palestinian people.",
+      "next": "On 13 September 1993 the Declaration of Principles was signed at the White House, with a historic handshake between Rabin and Arafat. Rabin was assassinated in November 1995.",
+      "stamp": "The Oslo Accords",
+      "sources": [
+        { "name": "Encyclopedia.com", "url": "https://encyclopedia.com/history/united-states-and-canada/us-history/oslo-accords" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Israel%E2%80%93Palestine_Liberation_Organization_letters_of_recognition" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 2 and 3 are plausible only. Encyclopedia.com (entries from the Encyclopedia of the Modern Middle East and North Africa and the Dictionary of the Israeli-Palestinian Conflict) gives the secret channel, that Rabin was convinced to support the agreement, his letter of 9 September 1993, the signing at the White House on 13 September 1993, the handshake and the assassination in November 1995. Wikipedia confirms the letters of 9 September 1993 and the wording of Israel's letter, not the place of signing or the handshake."
+    },
+    {
+      "id": "1978-reform-opening",
+      "year": 1978,
+      "place": "Beijing",
+      "colour": "green",
+      "pov": "After years of mass class struggle, the Communist Party must choose its main task. Its Central Committee meets in Beijing in December 1978. You are the party's rising leader.",
+      "choices": ["Keep class struggle as the main task", "Make modernizing the economy the main task", "Push growth through bigger state plans"],
+      "real": 1,
+      "who": "Deng Xiaoping",
+      "short": "Deng",
+      "did": "The plenum of 18 to 22 December 1978 said mass class struggle had in the main come to an end, and made socialist modernization the party's focus.",
+      "next": "It marked the beginning of the reform and opening up policy. It is widely seen as the moment Deng became China's paramount leader, replacing Hua Guofeng.",
+      "stamp": "Reform and opening up",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Third_plenary_session_of_the_11th_Central_Committee_of_the_Chinese_Communist_Party" },
+        { "name": "Asia Society (China: Wealth and Power)", "url": "https://sites.asiasociety.org/chinawealthpower/?p=527" }
+      ],
+      "checked": "2026-10-21",
+      "check": "It was a decision of the party's Central Committee plenum, which Deng led; neither page gives his own speech in words that can be quoted. Option 1 is plausible only (the 'two whatevers' of Hua Guofeng are NOT FOUND on the pages read). Option 3 is plausible only. Asia Society confirms that Deng introduced 'reforms and opening' at the plenum in December 1978 and wrested control from Hua Guofeng; it calls the meeting the '3rd Plenum of 11th Party Congress' (it was the 11th Central Committee) and does not give the days or the class-struggle wording."
+    },
+    {
+      "id": "1956-personal-status",
+      "year": 1956,
+      "place": "Tunis",
+      "colour": "violet",
+      "pov": "Your newly independent country's family law lets a man take up to four wives and divorce his wife simply by saying so three times. You are the prime minister of Tunisia.",
+      "choices": ["Leave family law as it stands", "Restrict polygamy but do not ban it", "Ban polygamy and divorce by repudiation"],
+      "real": 2,
+      "who": "Habib Bourguiba",
+      "short": "Bourguiba",
+      "did": "Under Bourguiba, the Code of Personal Status was promulgated on 13 August 1956. It abolished polygamy and repudiation: divorce could now take place only before a court.",
+      "next": "Imams who preached against the Code were arrested, and the judges who signed a fatwa against it were almost all dismissed or retired. It took effect on 1 January 1957.",
+      "stamp": "Tunisia bans polygamy",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Code_of_Personal_Status_in_Tunisia" },
+        { "name": "iKNOW Politics", "url": "https://iknowpolitics.org/en/news/world-news/tunisia-activists-braced-fight-womens-rights" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 2 are plausible only. After the Code, the scholar Muhammad Abdu'l Aziz Jait wrote to the justice minister asking for 'revision of certain articles', and thirteen members of the higher court issued a fatwa (Wikipedia). The Code was issued by beylical decree of Lamine Bey; Wikipedia calls it one of Bourguiba's most significant deeds and says he 'promulgated the Code'. iKNOW Politics (a reprint of The Nation, Pakistan, 13 August 2012) confirms that the 1956 code abolished polygamy and repudiation and instituted judicial divorce under Bourguiba; it calls him 'Tunisia's first president', but in August 1956 he was prime minister (Wikipedia)."
+    },
+    {
+      "id": "1971-copper",
+      "year": 1971,
+      "place": "Santiago",
+      "colour": "green",
+      "pov": "Congress has unanimously voted to nationalise the big US-owned copper mines. It is up to you to set what the companies are paid. You are the president of Chile.",
+      "choices": ["Negotiate a price with the companies", "Pay the mines' full book value", "Deduct 'excess profits' from the payment"],
+      "real": 2,
+      "who": "Salvador Allende",
+      "short": "Allende",
+      "did": "On 28 September Allende announced that $774 million in excess profits would be deducted from what Anaconda and Kennecott were paid.",
+      "next": "The companies got no compensation for the Chuquicamata, El Salvador and El Teniente mines. The US State Department called it a serious infraction of international practice.",
+      "stamp": "Chile nationalises copper",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Chilean_nationalization_of_copper" },
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/historicaldocuments/frus1969-76ve16/d86" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: in 1969 Frei's 'negotiated nationalization' bought 51% of Kennecott's shares and 25% of Anaconda's and Cerro's (Wikipedia). Option 2 is plausible only. Both sources give the $774 million in excess profits; the CIA memorandum of October 1971 (Office of the Historian) says Allende in effect had the responsibility for setting the compensation and dates his announcement 28 September; Wikipedia credits 'the Allende administration' and a 12% worldwide profit rate. Congress passed the amendment unanimously on 11 July 1971 (Wikipedia; 'passed unanimously' also in the memorandum). The no-compensation result and the State Department's words rest on Wikipedia."
+    },
+    {
+      "id": "2003-rose-revolution",
+      "year": 2003,
+      "place": "Tbilisi",
+      "colour": "violet",
+      "pov": "Protesters who call the parliamentary election rigged have burst into parliament with roses. You declared a state of emergency, but elite army units refuse to back you. You are the president of Georgia.",
+      "choices": ["Order loyal police to clear the streets", "Resign and hand over power", "Promise a new election, but stay on"],
+      "real": 1,
+      "who": "Eduard Shevardnadze",
+      "short": "Shevardnadze",
+      "did": "On the evening of 23 November 2003, after meeting the opposition leaders Saakashvili and Zhvania, Shevardnadze announced his resignation.",
+      "next": "The parliament's speaker, Nino Burjanadze, became acting president. On 4 January 2004 Saakashvili, unopposed, was elected president with 96.2 percent of the vote.",
+      "stamp": "The Rose Revolution",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Rose_Revolution" },
+        { "name": "Eurasianet", "url": "https://eurasianet.org/tbilisi-revels-after-shevardnadzes-resignation" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: he began to mobilise troops and police near his residence, but elite units refused (Wikipedia); troops refused to crack down (Eurasianet). Option 3 is plausible only. Eurasianet (24 November 2003) confirms the resignation on the evening of 23 November, the rigged election of 2 November, the entry into parliament and the failed state of emergency, not the meeting with Saakashvili and Zhvania or the 2004 vote."
+    },
+    {
+      "id": "1988-ceasefire",
+      "year": 1988,
+      "place": "Tehran",
+      "colour": "red",
+      "pov": "For eight years your country has fought Iraq, at enormous cost. Since April your forces have been losing ground. A UN resolution calls for a ceasefire. You are the supreme leader of Iran.",
+      "choices": ["Accept the UN ceasefire", "Fight on until Iraq's leader falls", "Hold out for better terms first"],
+      "real": 0,
+      "who": "Ruhollah Khomeini",
+      "short": "Khomeini",
+      "did": "Iran accepted UN Resolution 598 in July 1988. Khomeini told the nation that taking this decision was 'more deadly than taking poison'.",
+      "next": "The ceasefire took effect on 20 August 1988. UN observers of the UNIIMOG mission stayed on the Iran-Iraq border until 1991.",
+      "stamp": "Iran accepts a ceasefire",
+      "sources": [
+        { "name": "The Christian Science Monitor", "url": "https://www.csmonitor.com/1988/0722/onico.html" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/United_Nations_Security_Council_Resolution_598" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is in the record: Khomeini had insisted on the downfall of Iraq's President Saddam Hussein and had promised to fight 'to the last drop of my blood' (Christian Science Monitor, 22 July 1988). Option 3 is plausible only. He agreed on the insistence of the country's political and military leaders (Monitor). The sources differ on the day of acceptance (Wikipedia: a 17 July letter to the Secretary-General; the Monitor: conveyed to the UN on 18 July), so the moment says July 1988. Wikipedia words the remark 'more deadly than drinking from a poisoned chalice' and notes that translations vary; the moment uses the Monitor's wording and date of the address. The ceasefire date and UNIIMOG rest on Wikipedia."
+    },
+    {
+      "id": "1965-udi",
+      "year": 1965,
+      "place": "Salisbury",
+      "colour": "blue",
+      "pov": "Britain will not grant your country independence without a path to black majority rule. Whites, about 5% of the people, hold power. London offers a Royal Commission. You are the prime minister of Rhodesia.",
+      "choices": ["Trust in a British Royal Commission", "Declare independence unilaterally", "Agree to a timetable for majority rule"],
+      "real": 1,
+      "who": "Ian Smith",
+      "short": "Smith",
+      "did": "On 11 November 1965 Smith and his cabinet declared independence from Britain. Britain called it illegal and sought sanctions instead of using force; no country recognised it.",
+      "next": "Rhodesia declared itself a republic in 1970 as a guerrilla war grew. The declaration was revoked under the Lancaster House Agreement of 1979, and Zimbabwe became independent in 1980.",
+      "stamp": "Rhodesia breaks with Britain",
+      "sources": [
+        { "name": "The National Archives (UK)", "url": "https://blog.nationalarchives.gov.uk/southern-rhodesias-unilateral-declaration-independence-udi/" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Rhodesia%27s_Unilateral_Declaration_of_Independence" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: since Wilson had ruled out the status quo, the government's 'only remaining options were to trust in the Royal Commission or declare independence' (Wikipedia). Option 3 is what Britain required: any settlement 'must include provision towards majority rule' (National Archives); NIBMAR (Wikipedia). The National Archives gives the white minority as 224,000 (1965 census), Wikipedia as about 5%; it confirms the date, Smith, 'illegal', sanctions, the republic of 1970 and the 1979 settlement, not the 1980 independence."
+    },
+    {
+      "id": "1945-hiroshima",
+      "year": 1945,
+      "place": "Washington",
+      "colour": "red",
+      "pov": "Your scientists have just tested a new kind of bomb. Japan fights on, and an invasion of Japan is being planned. You are the president of the United States.",
+      "choices": ["Use it on a city without special warning", "Demonstrate it first where no one lives", "Keep it back and invade as planned"],
+      "real": 0,
+      "who": "Harry S. Truman",
+      "short": "Truman",
+      "did": "Truman let it go ahead: his diary says the weapon was to be used against Japan before 10 August. On 6 August 1945 the Enola Gay dropped it on Hiroshima.",
+      "next": "It killed 90,000 to 166,000 people in Hiroshima, about half on the first day. After a second bomb hit Nagasaki on 9 August, Japan announced its surrender.",
+      "stamp": "Truman and the atomic bomb",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki" },
+        { "name": "Harry S. Truman Library", "url": "https://www.trumanlibrary.gov/education/lesson-plans/was-trumans-decision-drop-bomb-end-war-pacific-justified-or-not" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is in the record: a non-combat demonstration was proposed and rejected by the scientists advising the Interim Committee (Wikipedia; Truman's memoirs on the Truman Library page: no demonstration 'such as over a deserted island' would be likely to end the war). Option 3 is close to the record: the invasion, Operation Downfall, was being planned (Wikipedia). The sources differ on Truman's part: the Truman Library says the final decision 'rested solely' with him; Wikipedia says the orders of 25 July were issued by General Thomas Handy and quotes Truman's diary (and Wikipedia's 'Surrender of Japan' says Truman 'played a very small role in these discussions'), so the moment says only that he let it go ahead. The time of the drop differs (Truman Library 9:04, Wikipedia about 8:15 local time), so none is given. The Truman Library confirms 6 August, the Enola Gay, Nagasaki on 9 August and the surrender, not the death toll."
+    },
+    {
+      "id": "1889-pedro-exile",
+      "year": 1889,
+      "place": "Rio de Janeiro",
+      "colour": "blue",
+      "pov": "Plotters have staged a coup, arrested your prime minister and proclaimed a republic. Politicians and military leaders suggest ways to put down the rebellion. You are the emperor of Brazil.",
+      "choices": ["Order loyal troops to crush the revolt", "Accept exile and leave without a fight", "Abdicate in favour of your daughter"],
+      "real": 1,
+      "who": "Pedro II of Brazil",
+      "short": "Pedro II",
+      "did": "Pedro II dismissed every suggestion for quelling the rebellion. Unwilling to provoke civil conflict, he accepted exile without resistance.",
+      "next": "At noon on 17 November 1889 he and his family sailed into exile in Europe. He died in Paris on 5 December 1891.",
+      "stamp": "Brazil's emperor goes",
+      "sources": [
+        { "name": "São Paulo State Assembly", "url": "https://www.al.sp.gov.br/noticia/?id=346367" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Pedro_II_of_Brazil" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: politicians and military leaders put forward suggestions for quelling the rebellion (Wikipedia). Option 3 is plausible only. The São Paulo Assembly page confirms that he accepted leaving ('O Brasil não me quer, vou-me embora!') and sailed into exile on 17 November 1889; it does not mention the offers to resist, and says he was at first indignant at being made to leave."
+    },
+    {
+      "id": "1984-snap-election",
+      "year": 1984,
+      "place": "Wellington",
+      "colour": "magenta",
+      "pov": "It is election year, and your majority is small. One of your MPs will not support you on the opposition's anti-nuclear bill. You are the prime minister of New Zealand.",
+      "choices": ["Govern on, even if you lose that vote", "Call a snap election for next month", "Make the vote a matter of confidence"],
+      "real": 1,
+      "who": "Robert Muldoon",
+      "short": "Muldoon",
+      "did": "On the night of 14 June 1984 Muldoon announced a snap election on national television. It was held a month later, on 14 July.",
+      "next": "Labour, led by David Lange, won 56 of the 95 seats; National won only 37. Muldoon at first refused to devalue the dollar, causing a constitutional crisis.",
+      "stamp": "Muldoon's snap election",
+      "sources": [
+        { "name": "NZHistory", "url": "https://nzhistory.govt.nz/node/2212" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1984_New_Zealand_general_election" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: Waring had not threatened confidence and supply, so the government could have continued even if it lost the anti-nuclear vote (Wikipedia). Option 3 is plausible only. NZHistory confirms Waring's withdrawal of support on 14 June, the early poll on 14 July and Labour sweeping to power, not the seats or the crisis."
+    },
+    {
+      "id": "1923-ankara",
+      "year": 1923,
+      "place": "Ankara",
+      "colour": "blue",
+      "pov": "The war of independence was run from Ankara, a modest town in Anatolia. Some deputies argue that Istanbul, the old imperial city, should stay the capital. You are the leader of the new Turkish state.",
+      "choices": ["Make Ankara the capital", "Keep Istanbul as the capital", "Keep Ankara only for now"],
+      "real": 0,
+      "who": "Mustafa Kemal Atatürk",
+      "short": "Atatürk",
+      "did": "The country's leadership chose Ankara. A one-article law proposed by İsmet Pasha passed the Assembly by a great majority on 13 October 1923.",
+      "next": "The Republic was declared 16 days later, on 29 October 1923. The modest Anatolian town grew into a modern capital.",
+      "stamp": "Ankara becomes the capital",
+      "sources": [
+        { "name": "Strategic Research Center (STRASAM)", "url": "https://strasam.org/en/history/history-of-turkish-republic/the-capital-city-of-turkey-is-from-now-on-ankara-88" },
+        { "name": "Hürriyet Daily News", "url": "https://www.hurriyetdailynews.com/ankara-marks-102-years-as-turkiyes-capital-with-official-ceremonies-214639" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is in the record: some new deputies of Istanbul, especially Refet Pasha, argued that Istanbul should remain the capital (STRASAM). Option 3 is plausible only. Hürriyet Daily News confirms the decision of 13 October 1923 to make Ankara the capital, replacing Istanbul, and the proclamation of the Republic on 29 October; it credits 'the country's leadership' and does not name Atatürk or İsmet Pasha. Atatürk's choice of Ankara is also stated by ayk.gov.tr (read too, a third site). STRASAM is a Turkish research centre (article by Hüseyin Fazla, 2021)."
+    },
+    {
+      "id": "1989-martial-law-beijing",
+      "year": 1989,
+      "place": "Beijing",
+      "colour": "red",
+      "pov": "Students on hunger strike are protesting in Tiananmen Square. The five members of the party's Standing Committee cannot agree on how to respond. You are the leader with the final say in China.",
+      "choices": ["Seek a conciliatory way, through talks", "Declare martial law in the capital", "Wait for the protest to fade"],
+      "real": 1,
+      "who": "Deng Xiaoping",
+      "short": "Deng",
+      "did": "On 17 May 1989 Deng told the five Standing Committee members it was time to call in the military to impose martial law. Li Peng announced it early on 20 May.",
+      "next": "Protesters blocked many units with roadblocks. Deng ordered the use of force to begin on the night of 3 June; hundreds were killed, if not more.",
+      "stamp": "Martial law in Beijing",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/People%27s_Liberation_Army_at_the_1989_Tiananmen_Square_protests_and_massacre" },
+        { "name": "History News Network", "url": "https://historynewsnetwork.org/article/172142" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: party leader Zhao Ziyang advocated a conciliatory approach and refused to accept the decision to use force (History News Network), and the Standing Committee had agreed to have Zhao negotiate with the hunger strikers (Wikipedia). Option 3 is plausible only. History News Network (Andrew J. Nathan, 'The New Tiananmen Papers', 30 May 2019) confirms that Deng decided on martial law from 20 May and ordered force on 3 June, not the meeting of 17 May or the roadblocks. The government's confirmed toll on Wikipedia is 241; the precise toll is unknown (History News Network), so the moment says 'hundreds, if not more'."
+    },
+    {
+      "id": "1948-cominform",
+      "year": 1948,
+      "place": "Belgrade",
+      "colour": "blue",
+      "pov": "Communist parties from the Soviet Union and its allies meet in Bucharest to condemn your party's 'unfriendly policy' toward the Soviet Union. Your party is invited. You are the leader of Yugoslavia.",
+      "choices": ["Stay away and reject the charges", "Go to Bucharest and answer the charges", "Accept the criticism and change course"],
+      "real": 0,
+      "who": "Josip Broz Tito",
+      "short": "Tito",
+      "did": "Tito's party refused to attend. When the Bureau condemned its leaders on 28 June 1948, the Yugoslav party rejected the criticism.",
+      "next": "The resolution put the Yugoslav party outside the ranks of the Information Bureau. It called on 'healthy elements' in the party to replace its leaders.",
+      "stamp": "Tito defies the Cominform",
+      "sources": [
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/historicaldocuments/frus1948v04/d697" },
+        { "name": "Fordham University, Modern History Sourcebook", "url": "https://fordham.edu/Halsall/mod/1948cominform-yugo1.asp" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 3 is what the resolution asked of the party's 'healthy elements'. Option 2 is plausible only: the Yugoslav party rejected the invitation (Office of the Historian; Fordham, the resolution's own text). The Office of the Historian also confirms the Bucharest meeting, the condemnation of 28 June and the Yugoslav statement of 29 June rejecting it. Wikipedia (Tito–Stalin split, read, not linked) confirms Tito as leader, Stalin's letters denouncing him and the refusal to send delegates."
+    },
+    {
+      "id": "1983-juntas-trial",
+      "year": 1983,
+      "place": "Buenos Aires",
+      "colour": "violet",
+      "pov": "Military rule since 1976 has just ended. The outgoing junta had passed a law granting itself amnesty. You are the new president of Argentina.",
+      "choices": ["Honour the amnesty and look ahead", "Annul it and prosecute the junta leaders", "Prosecute every officer accused of crimes"],
+      "real": 1,
+      "who": "Raúl Alfonsín",
+      "short": "Alfonsín",
+      "did": "On 13 December 1983 Alfonsín signed Decree 158, ordering proceedings against the nine officers of the first three juntas. On 29 December Congress annulled the self-amnesty law.",
+      "next": "When a military court refused to try them, a civilian court did, from April 1985. Videla and Massera got life imprisonment; Carlos Menem later pardoned those sentenced.",
+      "stamp": "The trial of the juntas",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Trial_of_the_Juntas" },
+        { "name": "Memoria Abierta", "url": "https://hacerjusticia.memoriaabierta.org.ar/ar/hito/repeal-of-the-self-amnesty-act-and-executive-orders-urging-prosecution" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 3 are plausible only (not found on the pages read). Memoria Abierta confirms the decree of 13 December 1983 (Executive Order No. 158, prosecution of the first three juntas, 1976 to 1983) and the annulment by Congress on 29 December, not the military court, the sentences or the pardons. Wikipedia gives no year for the sentencing of 9 December, so the moment gives none. The decision is of 1983; the trial itself was in 1985."
+    },
+    {
+      "id": "1871-prefectures",
+      "year": 1871,
+      "place": "Tokyo",
+      "colour": "blue",
+      "pov": "In 1869 Japan's feudal lords handed their lands to the emperor, but 261 domains survive, still run by their old lords as governors. You are a leading reformer in Japan's new government.",
+      "choices": ["Leave the lords in place as governors", "Abolish the domains, create prefectures", "Phase the domains out over many years"],
+      "real": 1,
+      "who": "Ōkubo Toshimichi",
+      "short": "Ōkubo",
+      "did": "In August 1871 Ōkubo, assisted by Saigō Takamori, forced through an imperial edict abolishing the domains. Prefectures under the government in Tokyo replaced them.",
+      "next": "The former lords became a pensioned nobility living in Tokyo, and the state took on the domains' debts. In 1874 their stipends were turned into government bonds.",
+      "stamp": "Domains become prefectures",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Abolition_of_the_han_system" },
+        { "name": "Britannica", "url": "https://www.britannica.com/topic/daimyo" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is the system of 1869 to 1871, which the edict ended (Britannica). Option 3 is plausible only. The count of new prefectures differs (Wikipedia: 302 in 1871, cut to 72 the next year; Britannica: nearly 300 fiefs replaced with 72 prefectures in 1871), so the moment gives none. Britannica confirms the 1869 return of lands, the 1871 abolition and the pensioned nobility in Tokyo, not Ōkubo or Saigō (Wikipedia writes 'Okubo' in that sentence)."
+    },
+    {
+      "id": "1999-republic-referendum",
+      "year": 1999,
+      "place": "Canberra",
+      "colour": "violet",
+      "pov": "You promised a referendum if your convention clearly backed a republican model. It backed a president chosen by Parliament, 73 votes to 57, with 22 abstaining. You are the prime minister of Australia.",
+      "choices": ["Put that model to a referendum", "Drop it: the support was not clear", "Seek a directly elected president instead"],
+      "real": 0,
+      "who": "John Howard",
+      "short": "Howard",
+      "did": "Howard put the model to a referendum on 6 November 1999, with a president appointed by two-thirds of Parliament. A second question proposed a new preamble.",
+      "next": "It failed: 54.87% voted No, and no state had a Yes majority. Calls for another referendum were ignored by the Howard government.",
+      "stamp": "Australia's republic vote",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1999_Australian_republic_referendum" },
+        { "name": "Parliament of Australia", "url": "https://aph.gov.au/Parliamentary_Business/Committees/Senate/Finance_and_Public_Administration/Completed_inquiries/2008-10/republic_bill/report/c02" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 2 is close to the record: the model did not win an absolute majority of delegates, yet 'the prime minister decided to put that model to the referendum' (Wikipedia). Option 3 is in the record as the demand of direct-election republicans, who opposed the model (Wikipedia). The Parliament of Australia page confirms the convention under Howard in February 1998, his promise, the vote of 6 November 1999 and about 45 per cent Yes; it does not give the delegate votes. Neither page read calls Howard a monarchist, so the moment does not."
+    },
+    {
+      "id": "1972-nixon-china",
+      "year": 1972,
+      "place": "Washington",
+      "colour": "blue",
+      "pov": "Your country has no official relations with Communist China, but Mao says he would be happy to talk with you. The war in Vietnam is escalating. You are the president of the United States.",
+      "choices": ["Talk only in secret, through envoys", "Keep China isolated, as before", "Go to China and meet Mao yourself"],
+      "real": 2,
+      "who": "Richard Nixon",
+      "short": "Nixon",
+      "did": "Nixon announced on live television on 15 July 1971 that he would go. From 21 to 28 February 1972 he visited China and met Mao, the first US president to do so in office.",
+      "next": "Nixon called it 'the week that changed the world'. The US said it would withdraw its remaining troops from Taiwan, and formal diplomatic relations followed in 1979.",
+      "stamp": "Nixon goes to China",
+      "sources": [
+        { "name": "US Office of the Historian", "url": "https://history.state.gov/milestones/1969-1976/rapprochement-china" },
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1972_visit_by_Richard_Nixon_to_China" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is close to the record: Henry Kissinger went to Beijing twice in 1971, the first time 'in great secrecy', and Pakistan's president served as a secret intermediary (Office of the Historian). Option 2 is plausible only: for decades the US had had no official relations with Communist China and recognised the Republic of China (Office of the Historian); Taiwan saw the visit as 'a bitter betrayal' (Wikipedia). The Office of the Historian confirms the visit, its dates, the meeting with Mao, 'first U.S. President', the troop withdrawal and 1979, not the television announcement of 15 July 1971 (Wikipedia)."
+    },
+    {
+      "id": "1990-zambia-multiparty",
+      "year": 1990,
+      "place": "Lusaka",
+      "colour": "violet",
+      "pov": "Yours is the only legal party. After three days of riots in Lusaka and a failed coup, the opposition demands multi-party politics. A referendum on it is planned. You are the president of Zambia.",
+      "choices": ["Hold the referendum as planned", "Cancel it and legalise other parties", "Refuse: keep the one-party state"],
+      "real": 1,
+      "who": "Kenneth Kaunda",
+      "short": "Kaunda",
+      "did": "In September 1990 Kaunda cancelled the referendum and backed amendments ending his party's monopoly. He also brought the 1993 elections forward to 1991.",
+      "next": "On 31 October 1991 he lost in a landslide to Frederick Chiluba, whose party won 125 of 150 seats. Kaunda accepted the result and retired.",
+      "stamp": "Zambia goes multi-party",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/1991_Zambian_general_election" },
+        { "name": "Chatham House", "url": "https://www.chathamhouse.org/2021/07/kenneth-kaunda-man-behind-statesman" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Option 1 is in the record: a referendum on the single-party system was announced for October 1990, then delayed to August 1991 (Wikipedia). Option 3 is close to the record: Kaunda 'had vehemently opposed a multiparty system' (Wikipedia). Chatham House confirms that after a coup attempt and food riots he 'reluctantly acceded' to multi-party elections in 1991 and accepted his defeat; it gives no month or seat figures. The sources differ on when the one-party state began (1972 Chatham House, 1973 Wikipedia), so the moment gives neither. The decision fell in 1990; the defeat in 1991."
+    },
+    {
+      "id": "1989-hungary-border",
+      "year": 1989,
+      "place": "Budapest",
+      "colour": "blue",
+      "pov": "Thousands of East Germans are in your country, hoping to escape to the West through Austria. Letting them go would anger East Germany and Moscow's hard-liners. You are the prime minister of Hungary.",
+      "choices": ["Send them back to East Germany", "Keep the border closed for now", "Open the border and let them go"],
+      "real": 2,
+      "who": "Miklós Németh",
+      "short": "Németh",
+      "did": "Németh secretly told West Germany's chancellor, Helmut Kohl, that Hungary would open its border. It did so in the night of 10 to 11 September 1989, asking nothing in return.",
+      "next": "Over 10,000 East Germans left via Austria in the first 24 hours. On 9 November the gates to West Berlin were opened.",
+      "stamp": "Hungary opens its border",
+      "sources": [
+        { "name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Pan-European_Picnic" },
+        { "name": "German Federal Government", "url": "https://www.bundesregierung.de/breg-de/themen/deutsche-einheit/ungarn-oeffnet-seine-grenze-337804" }
+      ],
+      "checked": "2026-10-21",
+      "check": "Options 1 and 2 are in the record as what Németh ruled out: 'We could not keep them here, and we could not send them back' (Wikipedia). The Federal Government page (in German) confirms the secret meeting, the opening in the night of 10 to 11 September and the 10,000 in 24 hours. It dates the meeting with Kohl 25 August, Wikipedia 22 August, so the moment gives no date for it."
     }
   ]
 };

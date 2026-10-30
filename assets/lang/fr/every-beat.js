@@ -345,6 +345,330 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "label": "au repos",
   "sentence": "Le cœur d’un poulain nouveau-né bat de 80 à 120 fois par minute, bien plus vite que les 28 à 40 d’un cheval adulte.",
   "note": "Poulains nouveau-nés. Les poulains plus âgés ralentissent à 60-80 et ceux d’un an à 40-60, selon le guide de Texas A&M."
+ },
+ "chipmunk-hibernating": {
+  "face": "Tamia",
+  "label": "en hibernation",
+  "sentence": "En hibernation, le cœur d’un tamia passe d’environ 350 battements par minute à moins de 10, parfois à environ quatre.",
+  "note": "Les tamias en hiver, d’après un blog d’Ontario Parks et le magazine Northern Woodlands : des pages grand public ; aucune ne cite d’étude. L’image est le chien de prairie du Cousin perdu de vue, de la même famille."
+ },
+ "teen-rest": {
+  "face": "Adolescent",
+  "label": "au repos",
+  "sentence": "Au début de l’adolescence, un cœur au repos bat de 60 à 100 fois par minute, la même fourchette que chez un adulte.",
+  "note": "La Cleveland Clinic donne de 60 à 100 pour les 13 à 17 ans, éveillés et sans faire d’effort ; les tableaux PALS donnent la même chose pour les 12 à 15 ans."
+ },
+ "calf-rest": {
+  "face": "Veau",
+  "label": "au repos",
+  "sentence": "Le cœur d’un veau bat de 100 à 140 fois par minute, environ le double de celui d’une vache adulte.",
+  "note": "La fourchette normale pour des veaux dont l’âge n’est pas précisé, donnée par l’équipe des urgences vétérinaires de l’université de Californie à Davis ; la même fourchette figure dans Bovine Veterinarian, un magazine professionnel pour les vétérinaires de bovins."
+ },
+ "weddell-seal-dive": {
+  "face": "Phoque de Weddell",
+  "label": "en plongée",
+  "sentence": "Lorsqu’un phoque de Weddell chasse sous la glace de l’Antarctique, son cœur ne bat que de 10 à 20 fois par minute, un peu plus vite pendant la poursuite.",
+  "note": "Trois mâles sauvages équipés de capteurs cardiaques dans le détroit de McMurdo (Williams et d’autres, 2015) : environ 15 en descendant en glissant, 20 en poursuivant des poissons, et au plus bas 10,8 lors d’une plongée de 268 mètres. L’image montre un phoque gris, de la même famille."
+ },
+ "tufted-duck-dive": {
+  "face": "Fuligule morillon",
+  "label": "en plongée",
+  "sentence": "Pendant une courte plongée pour se nourrir, le cœur d’un fuligule morillon se stabilise autour de 180 battements par minute, plus vite qu’au repos.",
+  "note": "Des canards dressés à plonger pour trouver leur nourriture, qui plongeaient de leur plein gré : environ 185 (1986) ; 60 % de plus qu’un rythme au repos de 112 (1992), ce qui fait environ 179. L’image est le canard du Cousin perdu de vue (un colvert), de la même famille."
+ },
+ "echidna-rest": {
+  "face": "Échidné",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’un échidné bat de 50 à 68 fois par minute ; en hibernation, il peut tomber à seulement quatre.",
+  "note": "Échidnés à nez court au repos, d’après un même ouvrage que citent les deux sources (Augee, Gooden et Musser, 2006). En activité, la fiche du zoo donne de 135 à 145."
+ },
+ "king-penguin-dive": {
+  "face": "Manchot royal",
+  "label": "en plongée",
+  "sentence": "En plongée, le cœur d’un manchot royal bat environ 87 fois par minute, plus lentement que lorsqu’il se repose sur l’eau.",
+  "note": "Manchots royaux en liberté équipés d’enregistreurs de rythme cardiaque (Froget et d’autres, 2004) : à peu près le même rythme qu’à terre. L’image montre un manchot empereur, du même genre."
+ },
+ "marmot-hibernating": {
+  "face": "Marmotte des Alpes",
+  "label": "en hibernation",
+  "sentence": "En hibernation, le cœur d’une marmotte des Alpes ne bat que de trois à cinq fois par minute, blottie avec d’autres sous la terre.",
+  "note": "Seulement des pages grand public (Wikipédia, et Réveillez-vous ! sur les marmottes des Dolomites, en Italie) ; aucune étude contenant ce chiffre n’a été trouvée. L’image est le chien de prairie du Cousin perdu de vue, de la même famille."
+ },
+ "toddler-awake": {
+  "face": "Tout-petit",
+  "label": "éveillé",
+  "sentence": "Quand il est éveillé, le cœur d’un tout-petit bat de 98 à 140 fois par minute, bien plus vite que celui d’un adulte au repos.",
+  "note": "La fourchette normale pour les enfants de 1 à 3 ans (Cleveland Clinic) ou de 1 à 2 ans (tableaux PALS), éveillés et sans faire d’effort. Endormis, les tableaux donnent de 80 à 120."
+ },
+ "buffalo-awake": {
+  "face": "Buffle d’eau",
+  "label": "éveillé",
+  "sentence": "Le cœur d’un buffle d’eau adulte bat d’environ 47 à 57 fois par minute, et il ralentit avec l’âge.",
+  "note": "Relevés de vétérinaires : de 54 à 57 chez des adultes en Colombie (2012, maintenus dans une cage de contention), des moyennes de 47 à 52 chez quatre adultes au Brésil (2025). L’image montre une vache, de la même famille (les bovidés)."
+ },
+ "harbour-seal-dive": {
+  "face": "Phoque commun",
+  "label": "en plongée",
+  "sentence": "En plongée, le cœur d’un phoque commun ralentit et bat de 35 à 40 fois par minute ; lors de plongées libres en mer, 40 fois, soit un tiers de son rythme à la surface.",
+  "note": "40 lors de plongées libres en mer, mesurés par télémétrie radio et acoustique (Fedak et d’autres, 1988) ; 35 chez des phoques dressés, immobilisés et immergés en laboratoire (Jobsis et d’autres, 2001). L’image montre un phoque gris, de la même famille."
+ },
+ "lion-awake": {
+  "face": "Lion",
+  "label": "éveillé",
+  "sentence": "Le cœur d’un lion sauvage bat environ 70 fois par minute, à peu près comme celui d’une personne au repos, et plus vite la nuit.",
+  "note": "Moyenne d’électrocardiogrammes de lions sauvages conscients et en liberté en Afrique (une seule étude : Scharling et d’autres, 2024). L’image montre un chat domestique, de la même famille (les félidés)."
+ },
+ "chinese-goose-awake": {
+  "face": "Oie de Chine",
+  "label": "éveillée",
+  "sentence": "Le cœur d’une oie de Chine calme bat environ 140 fois par minute, moins de la moitié de celui d’une oie sauvage en migration.",
+  "note": "24 oies adultes, éveillées, enveloppées dans un tissu léger, calmes et détendues (Kaya et Çenesiz, 2018) : de 103 à 203, moyenne 142. L’image montre un colvert, de la même famille."
+ },
+ "axolotl-rest": {
+  "face": "Axolotl",
+  "label": "au repos",
+  "sentence": "Dans une eau à 20 °C, le cœur d’un axolotl au repos ne bat qu’environ 25 fois par minute ; à 10 °C, environ 13.",
+  "note": "Axolotls non anesthésiés, installés dans un hamac (Dittrich et d’autres, Metabolites, 2026) : 24,9 à 20 °C, 13,1 à 10 °C. Une étude de 2022 avec des auteurs en commun : 22, sans température indiquée."
+ },
+ "groundhog-hibernating": {
+  "face": "Marmotte commune",
+  "label": "en hibernation",
+  "sentence": "En hibernation, le cœur d’une marmotte commune ralentit jusqu’à seulement quatre ou cinq battements par minute, et elle peut ne respirer qu’une ou deux fois par minute.",
+  "note": "Marmottes communes sauvages en hiver, d’après un magazine de la faune de l’État du Missouri et PBS Nature ; aucun ne cite d’étude. L’image est le chien de prairie du Cousin perdu de vue, de la même famille."
+ },
+ "pregnant-rest": {
+  "face": "Future maman",
+  "label": "au repos",
+  "sentence": "En fin de grossesse, le cœur d’une future maman bat d’environ 76 à 91 fois par minute, plus vite qu’avant sa grossesse.",
+  "note": "Médianes : 91 à 34 semaines lors de consultations dans trois centres du Royaume-Uni (Oxford, 2020 ; il n’est pas précisé qu’elles étaient au repos) ; 75,5 au repos, mesurés avec une Apple Watch, au cours des trois derniers mois, contre 65 avant la grossesse."
+ },
+ "sheep-rest": {
+  "face": "Mouton",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’un mouton bat d’environ 60 à 90 fois par minute, à peu près comme celui d’une personne au repos.",
+  "note": "Rythmes normaux au repos : de 70 à 80 dans le Manuel vétérinaire MSD, de 60 à 90 pour les moutons et les chèvres dans le guide de Virginia Tech. L’image montre une vache, de la même famille (les bovidés)."
+ },
+ "tent-bat-flight": {
+  "face": "Chauve-souris à tentes",
+  "label": "en vol",
+  "sentence": "En vol, le cœur d’une chauve-souris à tentes bat en moyenne environ 770 fois par minute et peut dépasser 900 ; au repos pendant la journée, il tombe à environ 200.",
+  "note": "Quatre chauves-souris sauvages à Gamboa, au Panama, équipées de minuscules émetteurs de rythme cardiaque (eLife, 2017) ; rythme maximal 1 066. Les deux pages viennent d’une même équipe. La chauve-souris vampire de l’image est de la même famille."
+ },
+ "manatee-dive": {
+  "face": "Lamantin",
+  "label": "en plongée",
+  "sentence": "Lors d’une longue plongée, le cœur d’un lamantin ralentit jusqu’à environ 30 battements par minute, contre 50 à 60 quand il ne plonge pas.",
+  "note": "D’après la fiche de l’agence de la faune de Floride et un site de photos grand public ; aucun ne cite d’étude. L’image montre un lamantin d’Afrique de l’Ouest, du même genre."
+ },
+ "hummingbird-awake": {
+  "face": "Colibri",
+  "label": "éveillé",
+  "sentence": "Chez un colibri éveillé dans un air chaud, le cœur bat d’environ 420 à 510 fois par minute, même quand l’oiseau est au plus calme ; dans l’air froid, il dépasse 1 000.",
+  "note": "Les rythmes les plus bas de colibris dans un gilet de contention, dans une chambre sombre, pas en torpeur (Lasiewski, 1964 et 1967). L’article de 1964 a été lu d’après une copie sur un site d’amateurs."
+ },
+ "fin-whale-dive": {
+  "face": "Rorqual commun",
+  "label": "en plongée",
+  "sentence": "En plongée au large de la France, le cœur d’un rorqual commun sauvage est tombé à environ 5 battements par minute, contre environ 25 quand il remontait respirer.",
+  "note": "Un rorqual commun équipé d’une balise au large de la France en août 2025 par une équipe du CNRS : premières analyses, pas encore publiées. L’image montre une baleine bleue, de la même famille."
+ },
+ "greyhound-fastest": {
+  "face": "Greyhound",
+  "label": "à fond",
+  "sentence": "Au sprint, le cœur d’un greyhound de course atteint environ 318 battements par minute. Pendant son sommeil, son rythme le plus bas atteignait en moyenne seulement 42.",
+  "note": "Greyhounds de course lors de courses de 30 secondes : 318, à 18 près (thèse de l’université Murdoch, 1984). Les 42 endormis ne viennent que de cette thèse. Une conférence de 2019 reprend les 318."
+ },
+ "preschooler-awake": {
+  "face": "Enfant d’âge préscolaire",
+  "label": "éveillé",
+  "sentence": "Éveillé, un enfant de 3 à 5 ans a un cœur qui bat de 80 à 120 fois par minute, déjà plus lentement que celui d’un tout-petit.",
+  "note": "La fourchette normale pour les enfants de 3 à 5 ans, éveillés et sans faire d’effort (Cleveland Clinic ; tableaux PALS). Endormis, les tableaux donnent de 65 à 100."
+ },
+ "chimp-awake": {
+  "face": "Chimpanzé",
+  "label": "éveillé",
+  "sentence": "Chez un chimpanzé mâle éveillé, le cœur bat en moyenne 86,5 fois par minute ; chez une femelle, 106,4, plus vite, comme chez les humains.",
+  "note": "Électrocardiogrammes de 35 chimpanzés en captivité dressés à accepter des électrodes sur la poitrine, sans anesthésie (université de Kyoto, Primates, 2024). La présence du soigneur a pu faire monter le rythme."
+ },
+ "green-turtle-rest": {
+  "face": "Tortue verte",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’une tortue verte ne bat qu’environ 9 à 12 fois par minute, mesuré sur des tortues sauvages capturées au Japon.",
+  "note": "Tortues vertes au Japon : 8,6 à environ 23 °C (Saito et d’autres, 2025), et de 10,9 à 11,9 entre 28 et 30 °C dans un grand bassin (une prépublication)."
+ },
+ "orangutan-awake": {
+  "face": "Orang-outan",
+  "label": "éveillé",
+  "sentence": "Le cœur d’un orang-outan adulte bat environ 93 fois par minute ; quatre d’entre eux avaient appris à présenter leur poitrine pour une échographie du cœur.",
+  "note": "Quatre orangs-outans de Bornéo adultes dans un zoo de Paris, examinés par échographie sans anesthésie (PLOS ONE, 2022) : moyenne 93, de 76 à 118."
+ },
+ "mussel-rest": {
+  "face": "Moule bleue",
+  "label": "au repos",
+  "sentence": "Une moule a aussi un cœur : dans l’eau de mer à 10 °C, il ne bat que de 14 à 18 fois par minute, bien plus lentement que le tien.",
+  "note": "Moules bleues en bassins à 10 °C, mesurées par un capteur infrarouge collé au-dessus du cœur (Bakhmet et d’autres, 2021 et 2013). Un changement brusque de salinité a ramené l’activité du cœur à un cinquième en 12 heures."
+ },
+ "brown-bear-hibernating": {
+  "face": "Ours brun",
+  "label": "en hibernation",
+  "sentence": "En hibernation et anesthésié pour une échographie du cœur, un ours brun avait un cœur qui battait environ 26 fois par minute, un tiers de son rythme d’été.",
+  "note": "Ours bruns sauvages en Suède, mesurés pendant l’hibernation sous anesthésie par un même groupe de recherche (2014, 2020). L’image est l’ours du Cousin perdu de vue, un grizzli, de la même espèce."
+ },
+ "donkey-rest": {
+  "face": "Âne",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’un âne bat de 36 à 52 fois par minute, un peu plus vite que celui d’un cheval ; au-delà de 52, c’est un signe de stress ou de douleur.",
+  "note": "Ânes adultes : les vétérinaires du Donkey Sanctuary (moyenne 44) et Penn State Extension, qui renvoie vers le Sanctuary. L’image montre un cheval, de la même famille."
+ },
+ "adult-fastest": {
+  "face": "Adulte",
+  "label": "à fond",
+  "sentence": "À fond, le cœur d’une personne de 50 ans peut atteindre environ 170 battements par minute ; celui d’une personne de 20 ans, environ 200.",
+  "note": "Une estimation par formule (220 moins l’âge), pas une mesure ; l’American Heart Association parle de moyennes, à utiliser comme repère général."
+ },
+ "echidna-hibernating": {
+  "face": "Échidné",
+  "label": "en hibernation",
+  "sentence": "En hibernation, le cœur d’un échidné ne bat que de quatre à sept fois par minute, contre 50 à 68 au repos.",
+  "note": "Échidnés à nez court. Les deux pages s’appuient sur un même livre (Augee et d’autres, 2006). Son corps peut refroidir jusqu’à environ 4 °C."
+ },
+ "adelie-rest": {
+  "face": "Manchot Adélie",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’un manchot Adélie bat d’environ 70 à 92 fois par minute : un faux œuf placé sous l’oiseau qui couvait l’a enregistré.",
+  "note": "Manchots Adélie couchés calmement sur leurs œufs, enregistrés avec un œuf artificiel (J. Field Ornithol., 1999) ; 74,9 au repos dans une étude japonaise. L’image montre un manchot empereur, de la même famille."
+ },
+ "kitten-awake": {
+  "face": "Chaton nouveau-né",
+  "label": "éveillé",
+  "sentence": "Le cœur d’un chaton nouveau-né bat d’environ 190 à 260 fois par minute, et il garde ce rythme pendant tout son premier mois.",
+  "note": "Tracés cardiaques de 30 chatons nouveau-nés, sans sédation, couchés sur le côté et maintenus avec du ruban adhésif, pendant leurs 30 premiers jours (Can. Vet. J., 2003) ; les notes d’un spécialiste des chats donnent de 220 à 260 pour les nouveau-nés."
+ },
+ "beluga-dive": {
+  "face": "Béluga",
+  "label": "en plongée",
+  "sentence": "En plongée, le cœur d’un béluga ralentit d’environ 100 battements par minute à seulement 12 à 20, pour économiser l’oxygène.",
+  "note": "Les bélugas en général. SeaWorld ne cite aucune étude ; Wikipédia cite un travail de Ridgway pour les mêmes chiffres, donc les deux reposent peut-être sur une même origine."
+ },
+ "asian-elephant-awake": {
+  "face": "Éléphant d’Asie",
+  "label": "éveillé",
+  "sentence": "Dressés à rester immobiles pour une échographie du cœur, de jeunes éléphants d’Asie avaient un cœur qui battait environ 40 fois par minute.",
+  "note": "Trois éléphants subadultes (de 7, 9 et 13 ans), examinés par échographie sans anesthésie ni contention (PLOS ONE, 2026) : moyenne 40, de 32 à 47. Chez les adultes, le cœur bat peut-être un peu plus lentement."
+ },
+ "harbour-seal-surface": {
+  "face": "Phoque commun",
+  "label": "à la surface",
+  "sentence": "Entre deux plongées, le cœur d’un phoque commun bat de 75 à 120 fois par minute ; en mer, il est resté à 120, trois fois son rythme en plongée.",
+  "note": "SeaWorld donne de 75 à 120 avant une plongée ; des phoques suivis en mer ont gardé un rythme stable de 120 à la surface, quelle que soit la durée de la plongée (Fedak et d’autres, 1988). L’image montre un phoque gris, de la même famille."
+ },
+ "baby-asleep": {
+  "face": "Bébé",
+  "label": "qui dort",
+  "sentence": "Même quand le bébé dort, son cœur bat de 90 à 160 fois par minute, plus vite que celui d’un adulte au repos.",
+  "note": "La fourchette normale pour les bébés de 1 mois à 1 an endormis, d’après les tableaux PALS (2015)."
+ },
+ "chipmunk-awake": {
+  "face": "Tamia",
+  "label": "éveillé",
+  "sentence": "Le cœur d’un tamia éveillé bat environ 350 fois par minute ; pendant son sommeil d’hiver, il tombe à 15, voire à environ quatre.",
+  "note": "Des pages grand public : une chronique de la faune de l’État américain de Géorgie et un blog d’Ontario Parks ; aucune ne cite d’étude ni ne dit comment la mesure a été faite. L’image est le chien de prairie du Cousin perdu de vue, de la même famille."
+ },
+ "hawk-rest": {
+  "face": "Buse à queue rousse",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’une buse à queue rousse bat d’environ 120 à 134 fois par minute. Si des humains la dérangent, son cœur s’emballe et dépasse 400.",
+  "note": "Une seule buse en captivité, suivie par radiotélémétrie : 134 en moyenne la nuit, 202 le jour (Raptor Research, 1984). Des buses sauvages en centre de soins, au repos : médiane 120 (université du Minnesota, 2022). L’image montre un pygargue à tête blanche, de la même famille."
+ },
+ "yellowfin-awake": {
+  "face": "Thon jaune",
+  "label": "éveillé",
+  "sentence": "Dans une eau à 25 °C, le cœur d’un thon jaune qui nage tranquillement bat environ 68 fois par minute ; une eau plus froide le ralentit.",
+  "note": "Six thons jaunes avec des fils d’électrocardiogramme dans un bassin de 5 300 litres à 25 °C, une heure après l’opération (Bushnell et Brill, 1991) : 67,9. Un article plus récent donne de 67 à 100, sans température. L’image montre un thon rouge, du même genre."
+ },
+ "emu-rest": {
+  "face": "Émeu",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’un émeu ne bat qu’environ 46 à 50 fois par minute. En courant à fond sur un tapis roulant, il est monté à 180.",
+  "note": "Deux émeus adultes au repos dans une caisse, souvent couchés et endormis : 45,8 (J. Exp. Biol., 1983). Deux émeus d’une autre étude avaient une moyenne de 50 (état non précisé), tel que cité dans une revue vétérinaire de 2007."
+ },
+ "lamprey-rest": {
+  "face": "Lamproie de rivière",
+  "label": "au repos",
+  "sentence": "Dans une eau à 5 °C, le cœur d’une lamproie de rivière au repos bat environ 28 fois par minute, assez vite pour une eau si froide.",
+  "note": "Sept lamproies de rivière du Kemijoki, en Finlande, avec des fils d’électrocardiogramme posés sous anesthésie, enregistrées au repos quelques jours plus tard (Haverinen et d’autres, 2014). L’image montre une lamproie marine, de la même famille."
+ },
+ "maned-wolf-rest": {
+  "face": "Loup à crinière",
+  "label": "au repos",
+  "sentence": "Au repos, le cœur d’un loup à crinière bat d’environ 63 à 93 fois par minute ; à son maximum, il a atteint 296.",
+  "note": "Six loups à crinière adultes avec des capteurs cardiaques implantés, moyennes sur 2 minutes quand ils étaient immobiles (Conservation Physiology, 2021). L’image montre un loup gris, de la même famille."
+ },
+ "child-asleep": {
+  "face": "Enfant",
+  "label": "qui dort",
+  "sentence": "Pendant le sommeil, le cœur d’un enfant d’âge scolaire bat de 58 à 90 fois par minute, contre 75 à 118 quand il est éveillé.",
+  "note": "Les fourchettes normales pour les enfants de 6 à 11 ans, tirées des tableaux de réanimation pédiatrique (PALS) de l’American Heart Association."
+ },
+ "humpback-rest": {
+  "face": "Baleine à bosse",
+  "label": "au repos",
+  "sentence": "Au repos à la surface, le cœur d’une baleine à bosse bat environ 18,5 fois par minute, plus vite juste après chaque respiration, plus lentement entre deux.",
+  "note": "Une baleine à bosse sauvage en « logging » (immobile à la surface), avec des enregistreurs de cœur et de plongée (Blawas et d’autres, PNAS, 2026) ; son auteur principal estime que c’est probablement ce qui se rapproche le plus, à ce jour, d’une baleine libre au repos."
+ },
+ "goat-rest": {
+  "face": "Chèvre",
+  "label": "au repos",
+  "sentence": "Le cœur d’une chèvre adulte bat d’environ 70 à 110 fois par minute ; celui d’un chevreau bat encore plus vite, de 120 à 160.",
+  "note": "Chèvres adultes : de 70 à 80 au repos dans le Manuel vétérinaire MSD, de 70 à 110 dans le tableau des constantes vitales d’urgence de l’université de Californie à Davis (juin 2024). L’image montre une vache, de la même famille (les bovidés)."
+ },
+ "pigeon-flight": {
+  "face": "Pigeon",
+  "label": "en vol",
+  "sentence": "En vol, le cœur d’un pigeon bat d’environ 600 à 660 fois par minute ; dans une soufflerie, il battait six fois plus vite qu’au repos.",
+  "note": "Pigeons voyageurs volant à vitesse constante, 18,4 mètres par seconde, dans une soufflerie (Journal of Experimental Biology, 2005). Les 600 viennent de BirdNote, une page de radio grand public qui ne cite aucune étude."
+ },
+ "platypus-surface": {
+  "face": "Ornithorynque",
+  "label": "à la surface",
+  "sentence": "À la surface avant une plongée, le cœur d’un ornithorynque bat de 140 à 230 fois par minute ; sous l’eau, il peut tomber à 10.",
+  "note": "Des ornithorynques sauvages amenés en captivité, plongeant dans un laboratoire (Evans et d’autres, 1994) ; les deux sources rapportent cette seule étude."
+ },
+ "ferret-rest": {
+  "face": "Furet",
+  "label": "au repos",
+  "sentence": "Le cœur d’un furet de compagnie bat de 180 à 250 fois par minute, bien plus vite que celui d’un chat.",
+  "note": "La fourchette normale donnée par deux ouvrages vétérinaires ; aucun ne dit comment elle a été mesurée. L’image montre une hermine, de la même famille (les mustélidés)."
+ },
+ "tufted-duck-awake": {
+  "face": "Fuligule morillon",
+  "label": "éveillé",
+  "sentence": "Calme sur l’eau, le cœur d’un fuligule morillon bat de 120 à 150 fois par minute : un émetteur radio placé dans le canard envoyait chaque battement.",
+  "note": "Dix canards avec un masque facial (contention légère) sur un canal d’eau : 149 ; les rythmes de repos les plus bas de six canards dans une étude de plongée : 121 (les deux en 1986, un même groupe de recherche). L’image montre un colvert, de la même famille."
+ },
+ "cold-face-dive": {
+  "face": "Personne en apnée",
+  "label": "en plongée",
+  "sentence": "Il suffit de plonger le visage dans l’eau froide en retenant son souffle pour que le cœur passe d’environ 79 à environ 53 battements par minute.",
+  "note": "65 étudiants de Gdańsk ont retenu leur souffle, le visage dans une eau entre 8 et 10 °C, aussi longtemps qu’ils le pouvaient (Malinowski et d’autres, 2023). Le rythme le plus bas était en moyenne de 49 chez les hommes et de 55 chez les femmes."
+ },
+ "green-iguana-awake": {
+  "face": "Iguane vert",
+  "label": "éveillé",
+  "sentence": "Le cœur d’un iguane vert éveillé ne bat qu’environ 42 à 52 fois par minute, plus lentement que celui d’une personne au repos.",
+  "note": "Quinze jeunes iguanes au repos, moyenne 52 (American Journal of Veterinary Research, 2011) ; douze adultes tenus à la main dans une pièce entre 23 et 28 °C, moyennes de 42 à 51 (Veterinární Medicína, 2021)."
+ },
+ "pheasant-awake": {
+  "face": "Faisan",
+  "label": "éveillé",
+  "sentence": "Le cœur d’un faisan éveillé bat d’environ 190 à 240 fois par minute, soit deux à trois fois celui d’un adulte au repos.",
+  "note": "Moyennes de 12 mâles (194) et de 12 femelles (236), éveillés, tenus sur le dos la tête couverte, mesurées par électrocardiogramme (Kaya et Soylu, 2013). Un seul article. L’image montre une poule, de la même famille."
+ },
+ "salmon-rest": {
+  "face": "Saumon atlantique",
+  "label": "au repos",
+  "sentence": "Dans une eau à 9 °C, le cœur d’un saumon atlantique au repos ne bat qu’environ 25 fois par minute, mesuré la nuit par une balise que le poisson portait.",
+  "note": "Douze saumons d’élevage d’environ 1,2 kg dans des bassins, enregistrés la nuit (Hvas, Folkedal et Oppedal, 2020). Le résumé de l’article ajoute : 30 minutes de surpeuplement ont fait monter ce rythme à environ 56."
  }
 };
   var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["every-beat"], list = D && (D.puzzles || D.questions), days = {};

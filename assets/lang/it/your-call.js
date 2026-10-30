@@ -1175,6 +1175,1022 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    "Introdurre la democrazia ma regnare a vita",
    "Introdurre la democrazia e passare il trono a tuo figlio"
   ]
+ },
+ "1968-dissolution": {
+  "place": "Parigi",
+  "pov": "Una rivolta studentesca e una serie di scioperi hanno scosso la Francia. La tua proposta di un referendum non ha calmato la situazione, e i sindacati hanno respinto un'offerta. Sei il presidente della Francia.",
+  "short": "De Gaulle",
+  "did": "Il 30 maggio 1968 de Gaulle rimandò il referendum, sciolse l'Assemblea nazionale e indisse nuove elezioni. «La Francia è minacciata dalla dittatura», disse.",
+  "next": "Gli scioperi si trasformarono in accordi sui salari. Alle elezioni del 23 e 30 giugno 1968 i gollisti ottennero la maggioranza assoluta, la prima nella storia della Repubblica francese.",
+  "stamp": "De Gaulle scioglie il parlamento",
+  "choices": [
+   "Tenere il referendum come previsto",
+   "Sciogliere l'Assemblea e indire elezioni",
+   "Mantenere l'Assemblea e tenere duro"
+  ]
+ },
+ "1564-jizya": {
+  "place": "Agra",
+  "pov": "Dall'XI secolo i governanti musulmani dell'India fanno pagare ai non musulmani la jizya, una tassa dovuta al posto del servizio militare. Nel 1562 hai sposato la figlia di un raja. Sei l'imperatore moghul.",
+  "short": "Akbar",
+  "did": "Nel 1564 Akbar abolì la jizya. Pose fine anche alla tassa sui pellegrini e alla conversione forzata all'Islam dei prigionieri di guerra.",
+  "next": "Nel 1679 un imperatore successivo, Aurangzeb, reintrodusse la jizya, una mossa criticata duramente da molti sovrani indù e da molti funzionari della corte moghul.",
+  "stamp": "Akbar abolisce la jizya",
+  "choices": [
+   "Continuare a riscuotere la jizya",
+   "Abolire la jizya per tutti",
+   "Abbassare la jizya, ma mantenerla"
+  ]
+ },
+ "1992-czech-split": {
+  "place": "Brno",
+  "pov": "Alle elezioni del giugno 1992 gli slovacchi hanno votato per un populista che vuole una confederazione, con un esercito, una banca nazionale e una politica estera propri per la Slovacchia. La maggior parte della gente vuole uno Stato comune. Sei il primo ministro ceco.",
+  "short": "Klaus",
+  "did": "Klaus e Mečiar si accordarono per sciogliere lo Stato comune senza un referendum. Firmarono l'accordo a Villa Tugendhat, a Brno, il 26 agosto 1992.",
+  "next": "Il presidente Václav Havel, che si era battuto contro la divisione, si dimise. La Cecoslovacchia finì il 1º gennaio 1993, quando nacque una Repubblica Ceca indipendente.",
+  "stamp": "La Cecoslovacchia si divide",
+  "choices": [
+   "Accettare una confederazione più libera",
+   "Sottoporre la questione a un referendum",
+   "Accettare di dividere il Paese in due"
+  ]
+ },
+ "1953-prisoner-release": {
+  "place": "Seul",
+  "pov": "Il Comando delle Nazioni Unite sta trattando un armistizio con i comunisti, al quale ti opponi. Migliaia di prigionieri di guerra anticomunisti sono tenuti in campi sparsi per il tuo Paese. Sei il presidente della Corea del Sud.",
+  "short": "Rhee",
+  "did": "Il 18 giugno 1953 Rhee, di sua iniziativa, ordinò alla polizia militare di liberare i prigionieri anticomunisti.",
+  "next": "La liberazione scosse gli Stati Uniti, l'ONU e il fronte comunista. Rhee si rifiutò di firmare l'armistizio, e questo portò a un trattato di difesa reciproca con gli Stati Uniti.",
+  "stamp": "Rhee libera i prigionieri",
+  "choices": [
+   "Lasciarli alla procedura dell'armistizio",
+   "Ordinare alla polizia militare di liberarli",
+   "Respingere l'armistizio e combattere da solo"
+  ]
+ },
+ "1981-martial-law": {
+  "place": "Varsavia",
+  "pov": "Il sindacato Solidarność guida l'opposizione politica al dominio comunista. Il Cremlino, scontento, minaccia un intervento armato. Sei il militare che guida il governo della Polonia.",
+  "short": "Jaruzelski",
+  "did": "Il 13 dicembre 1981 Jaruzelski annunciò la legge marziale in un discorso televisivo. Solidarność fu dichiarata illegale e la maggior parte dei suoi leader fu internata.",
+  "next": "Alla miniera di carbone di Wujek furono uccisi dei minatori, e la legge marziale durò fino al luglio 1983. Jaruzelski era convinto che, senza di essa, un intervento militare fosse inevitabile.",
+  "stamp": "La legge marziale in Polonia",
+  "choices": [
+   "Cercare un compromesso con Solidarność",
+   "Dichiarare la legge marziale",
+   "Far ristabilire l'ordine ai sovietici"
+  ]
+ },
+ "1946-parity": {
+  "place": "Manila",
+  "pov": "Il tuo Paese ha appena ottenuto l'indipendenza. Gli Stati Uniti pagheranno 620 milioni di dollari di danni di guerra solo se gli americani avranno gli stessi diritti sulle sue risorse naturali. Sei il presidente delle Filippine.",
+  "short": "Roxas",
+  "did": "Roxas accettò. Dato che a sei membri dell'Alleanza Democratica, di sinistra, era stato negato il seggio alla Camera, il 18 settembre ottenne dal Congresso l'approvazione dell'emendamento.",
+  "next": "Nel 1947 un plebiscito lo approvò, anche se vi partecipò solo il 40 per cento degli elettori. I critici videro nella clausola di parità una resa imperdonabile della sovranità nazionale.",
+  "stamp": "Roxas accetta la parità",
+  "choices": [
+   "Accettare e modificare la costituzione",
+   "Rifiutare e fare a meno dei soldi",
+   "Resistere per ottenere condizioni migliori"
+  ]
+ },
+ "1981-juan-carlos": {
+  "place": "Madrid",
+  "pov": "200 guardie civili armate hanno fatto irruzione in parlamento durante una votazione e tengono in ostaggio i deputati. Un generale ha mandato i carri armati nelle strade di Valencia. Sei il re di Spagna.",
+  "short": "Juan Carlos",
+  "did": "In uniforme di capitano generale dell'esercito, Juan Carlos denunciò in televisione il colpo di Stato. Il discorso andò in onda all'1:14 del 24 febbraio 1981.",
+  "next": "Tejero resistette fino a mezzogiorno e fu arrestato fuori dal Congresso. Tejero, Milans del Bosch e Armada furono poi condannati a 30 anni di carcere.",
+  "stamp": "Il re contro il golpe",
+  "choices": [
+   "Aspettare che l'esito sia chiaro",
+   "Andare in tv contro il colpo di Stato",
+   "Parlare con i golpisti per uscirne"
+  ]
+ },
+ "2000-pyongyang": {
+  "place": "Pyongyang",
+  "pov": "La tua Politica del raggio di sole cerca il dialogo con la Corea del Nord. I colloqui con il Nord aprono la strada al primo incontro tra i due leader dalla divisione della Corea. Sei il presidente della Corea del Sud.",
+  "short": "Kim Dae-jung",
+  "did": "Kim Dae-jung andò a Pyongyang per il vertice dal 13 al 15 giugno 2000 e fu accolto da Kim Jong Il. Concordarono di lavorare per la riunificazione, i ricongiungimenti delle famiglie e la cooperazione economica.",
+  "next": "Kim Dae-jung vinse il premio Nobel per la pace il 13 ottobre 2000. Tre anni dopo si seppe che la Corea del Sud aveva pagato in segreto il Nord perché partecipasse al vertice.",
+  "stamp": "Il primo vertice intercoreano",
+  "choices": [
+   "Chiedere che il leader del Nord venga a Seul",
+   "Esigere colloqui sul nucleare prima di ogni vertice",
+   "Andare a Pyongyang a incontrare Kim Jong Il"
+  ]
+ },
+ "1982-falklands": {
+  "place": "Londra",
+  "pov": "Il 2 aprile 1982 forze argentine hanno occupato Port Stanley, capitale delle isole Falkland, un territorio britannico a 8.000 miglia di distanza, nell'Atlantico meridionale. Sei il primo ministro britannico.",
+  "short": "Thatcher",
+  "did": "Dopo una riunione d'emergenza del governo, Thatcher mandò una task force navale a riprendere le isole; il 5 aprile era già in viaggio. Arrivò a contare 44 navi da guerra.",
+  "next": "L'Argentina si arrese il 14 giugno 1982, dopo 74 giorni. La guerra uccise 649 militari argentini, 255 britannici e 3 abitanti delle Falkland.",
+  "stamp": "La task force per le Falkland",
+  "choices": [
+   "Affidarsi all'ONU e alla diplomazia",
+   "Accettare un compromesso mediato dagli USA",
+   "Mandare una task force a riprenderle"
+  ]
+ },
+ "1639-sakoku": {
+  "place": "Edo",
+  "pov": "Nel 1637 dei contadini cristiani si sono ribellati a Shimabara, e migliaia sono stati uccisi. Dal 1636 il commercio con i portoghesi è limitato a Dejima, a Nagasaki. Sei lo shogun del Giappone.",
+  "short": "Iemitsu",
+  "did": "Nel 1639 il governo di Iemitsu espulse i portoghesi e vietò le loro navi. Solo un piccolo numero di mercanti olandesi poté restare, sulla minuscola isola di Dejima.",
+  "next": "Nel 1640 Macao mandò degli inviati per riaprire il commercio; quattro ambasciatori e 57 tra i loro accompagnatori e membri dell'equipaggio furono giustiziati.",
+  "stamp": "Il Giappone esclude i portoghesi",
+  "choices": [
+   "Commerciare sotto stretta sorveglianza",
+   "Vietare l'accesso alle navi portoghesi",
+   "Chiudere il Giappone a ogni europeo"
+  ]
+ },
+ "2003-iraq-vote": {
+  "place": "Londra",
+  "pov": "Non sei riuscito a ottenere una seconda risoluzione dell'ONU sull'Iraq. Molti nel tuo stesso partito sono contrari alla guerra, e una ministra ha detto che si dimetterà per questo. Sei il primo ministro britannico.",
+  "short": "Blair",
+  "did": "Blair sottopose la guerra al voto dei Comuni il 18 marzo 2003, dicendo che un voto per ritirare le truppe avrebbe fatto cadere anche lui. La mozione passò con 412 voti a 149.",
+  "next": "Robin Cook si dimise dal governo in segno di protesta. La campagna britannica in Iraq, l'operazione Telic, cominciò il giorno dopo il voto.",
+  "stamp": "Blair porta Londra in guerra",
+  "choices": [
+   "Aspettare l'appoggio dell'ONU prima di una guerra",
+   "Mandare le truppe e lasciar votare i deputati",
+   "Offrire appoggio, ma senza truppe da combattimento"
+  ]
+ },
+ "261bc-kalinga": {
+  "place": "Pataliputra",
+  "year": "261 a.C.",
+  "pov": "Il tuo esercito ha conquistato Kalinga. Secondo il tuo stesso conteggio, lì sono state uccise 100.000 persone, 150.000 sono state deportate e molte di più sono morte. Sei l'imperatore maurya.",
+  "short": "Ashoka",
+  "did": "Ashoka tenne Kalinga ma provò un profondo rimorso, e promise di non fare mai più una guerra di conquista. I suoi editti definivano la conquista morale la più importante di tutte.",
+  "next": "Pose fine all'espansione militare del suo impero e cercò invece la conquista attraverso il dharma. Morì nel 232 a.C., dopo aver governato la maggior parte del subcontinente indiano.",
+  "stamp": "Ashoka rinuncia alla conquista",
+  "choices": [
+   "Proseguire con nuove conquiste",
+   "Restituire la libertà a Kalinga",
+   "Tenere Kalinga, ma non conquistare più"
+  ]
+ },
+ "1985-anti-alcohol": {
+  "place": "Mosca",
+  "pov": "Il bere eccessivo è legato all'assenteismo, agli incidenti sul lavoro e all'aumento della mortalità tra gli uomini. Eppure nel 1979 le vendite di alcolici hanno fruttato allo Stato circa 25,4 miliardi di rubli di tasse. Sei il nuovo leader sovietico.",
+  "short": "Gorbaciov",
+  "did": "Nel maggio 1985 Gorbaciov lanciò una campagna contro il bere. I prezzi della vodka salirono dal 20 al 30 per cento, gli orari di vendita furono ridotti e i vigneti distrutti.",
+  "next": "L'aspettativa di vita passò da 67,7 anni nel 1984 a 69,8 nel 1987. Ma esplose la produzione clandestina di alcol, le entrate dello Stato calarono e la campagna fu abbandonata dopo il 1987.",
+  "stamp": "La guerra di Gorbaciov all'alcol",
+  "choices": [
+   "Frenare il bere con una campagna nazionale",
+   "Lasciar stare: allo Stato servono le entrate",
+   "Finanziare le cure ma non toccare le vendite"
+  ]
+ },
+ "1945-surrender": {
+  "place": "Tokyo",
+  "pov": "Le bombe atomiche hanno colpito Hiroshima e Nagasaki, e l'Unione Sovietica ha dichiarato guerra. Il tuo consiglio di guerra è in stallo sulla resa incondizionata. Sei l'imperatore del Giappone.",
+  "short": "Hirohito",
+  "did": "Nelle prime ore del 10 agosto 1945 Hirohito disse al consiglio di guerra: «Ingoio le mie stesse lacrime e do la mia approvazione alla proposta di accettare la proclamazione degli Alleati».",
+  "next": "Il suo discorso fu trasmesso a mezzogiorno del 15 agosto 1945, la prima volta che un imperatore parlava alla nazione per radio. Non usò mai la parola «resa».",
+  "stamp": "Il Giappone accetta la sconfitta",
+  "choices": [
+   "Accettare i termini alleati e finire la guerra",
+   "Combattere ancora, rifiutando i termini alleati",
+   "Restare in silenzio e lasciare decidere al governo"
+  ]
+ },
+ "2003-congestion-charge": {
+  "place": "Londra",
+  "pov": "Il traffico a Londra avanza a una media di 12 miglia all'ora, e i suoi trasporti hanno cronicamente pochi soldi. Sei il sindaco di Londra.",
+  "short": "Livingstone",
+  "did": "Livingstone fece pagare 5 sterline a chi guidava nel centro di Londra, dalle 7 alle 18:30 nei giorni feriali. Il pedaggio cominciò il 17 febbraio 2003.",
+  "next": "Nella prima settimana il traffico calò del 25 per cento e gli autobus viaggiarono in anticipo sull'orario. Il sindaco di Parigi organizzò una visita a Londra per studiare il sistema.",
+  "stamp": "Il pedaggio urbano di Londra",
+  "choices": [
+   "Spendere di più per autobus e treni",
+   "Far pagare 5 sterline a chi guida in centro",
+   "Lasciare le strade così come sono per ora"
+  ]
+ },
+ "1631-taj-mahal": {
+  "place": "Agra",
+  "pov": "La tua moglie preferita ti ha seguito in campagna nel Deccan, anche se era incinta. Nel giugno 1631 è morta dando alla luce il tuo 14º figlio. È sepolta in via provvisoria. Sei l'imperatore moghul.",
+  "short": "Shah Jahan",
+  "did": "Nel 1631 Shah Jahan commissionò un mausoleo in sua memoria. I lavori cominciarono nel 1632 sotto la guida dell'architetto di corte, Ustad Ahmad Lahori.",
+  "next": "Più di 20.000 operai e artigiani costruirono il Taj Mahal. Deposto da Aurangzeb nel 1658, Shah Jahan fu sepolto lì accanto alla moglie nel 1666.",
+  "stamp": "La costruzione del Taj Mahal",
+  "choices": [
+   "Darle una tomba modesta e andare avanti",
+   "Onorarla con una moschea e opere di carità",
+   "Costruirle la tomba più bella di sempre"
+  ]
+ },
+ "1968-prague": {
+  "place": "Mosca",
+  "pov": "Il governo comunista della Cecoslovacchia ha abolito la censura e porta avanti le riforme. I colloqui non sono riusciti a fermarlo, e temi che altri Stati satellite lo seguano. Sei il leader sovietico.",
+  "short": "Breznev",
+  "did": "Breznev andò avanti. Nella notte del 20 agosto 1968, 250.000 soldati del Patto di Varsavia e 2.000 carri armati entrarono in Cecoslovacchia, e Dubček fu portato a Mosca.",
+  "next": "L'invasione uccise 137 cechi e slovacchi. Nell'aprile 1969 Dubček fu costretto a lasciare il potere, e Mosca rivendicò il diritto di intervenire ovunque il dominio comunista fosse minacciato.",
+  "stamp": "I sovietici invadono la Cecoslovacchia",
+  "choices": [
+   "Mandare le truppe del Patto di Varsavia",
+   "Continuare i colloqui e la pressione politica",
+   "Accettare le riforme e aspettare"
+  ]
+ },
+ "1994-real-plan": {
+  "place": "Brasília",
+  "pov": "L'inflazione ha sconfitto una serie di piani per controllarla; quelli precedenti si basavano sul blocco di prezzi e salari. Sei il ministro delle Finanze del Brasile.",
+  "short": "Cardoso",
+  "did": "La squadra di Cardoso creò una valuta non monetaria, l'URV, del valore di circa 1 dollaro statunitense. I prezzi fissati in URV furono poi convertiti in una nuova moneta, il real, il 1º luglio 1994.",
+  "next": "A differenza dei piani precedenti, non usò alcun blocco generale di prezzi e salari. Alla fine del 1996 l'inflazione, secondo alcune misure, si stava avvicinando a un livello inferiore al 20 per cento annuo.",
+  "stamp": "Il Piano Real",
+  "choices": [
+   "Bloccare ancora una volta prezzi e salari",
+   "Introdurre una nuova moneta a tappe",
+   "Fare del dollaro la moneta del Brasile"
+  ]
+ },
+ "1593-saint-denis": {
+  "place": "Saint-Denis",
+  "pov": "Sei diventato re dopo l'assassinio del tuo predecessore, ma sei protestante. Soldati spagnoli e un popolo fervidamente cattolico difendono Parigi, e tu non riesci ad abbattere le sue mura. Sei il re di Francia.",
+  "short": "Enrico",
+  "did": "Il 25 luglio 1593, a Saint-Denis, Enrico rinunciò ufficialmente alla fede protestante. Nel giro di poche settimane il sostegno alla Lega cattolica si sciolse.",
+  "next": "Fu incoronato a Chartres il 17 febbraio 1594, e Parigi si arrese il 22 marzo. Nel 1598 il suo Editto di Nantes concesse ai protestanti una tolleranza limitata.",
+  "stamp": "Enrico IV si fa cattolico",
+  "choices": [
+   "Continuare l'assedio di Parigi finché non cede",
+   "Restare protestante e cercare una tregua",
+   "Rinunciare alla tua fede protestante"
+  ]
+ },
+ "1952-bolivia-tin": {
+  "place": "La Paz",
+  "pov": "Il tuo partito è salito al potere con una rivoluzione popolare. Le più grandi miniere di stagno appartengono a tre baroni delle miniere. Sei il presidente della Bolivia.",
+  "short": "Paz Estenssoro",
+  "did": "Il 31 ottobre 1952 Paz Estenssoro firmò un decreto che nazionalizzava le miniere di Patiño, Hochschild e Aramayo. Il decreto riconosceva il principio del risarcimento.",
+  "next": "La nuova compagnia mineraria statale, la COMIBOL, rilevò 163 miniere con 29.000 lavoratori. Per decenni fu la principale fonte di valuta estera della Bolivia e il suo maggiore datore di lavoro.",
+  "stamp": "La Bolivia nazionalizza lo stagno",
+  "choices": [
+   "Lasciare le miniere ai loro proprietari",
+   "Nazionalizzarle, con un risarcimento",
+   "Prenderle senza pagare i proprietari"
+  ]
+ },
+ "1991-yeltsin-tank": {
+  "place": "Mosca",
+  "pov": "Dei comunisti intransigenti stanno cercando di prendere il potere e tengono il presidente sovietico nella sua dacia. Le truppe entrano a Mosca e tu sei nella lista d'arresto del KGB. Sei il presidente della Russia.",
+  "short": "Eltsin",
+  "did": "Eltsin andò alla «Casa Bianca» di Mosca, salì su un carro armato e lesse un appello al popolo. L'appello definiva i fatti un tentativo di colpo di Stato e invitava a uno sciopero generale.",
+  "next": "La folla costruì barricate intorno alla Casa Bianca e tre uomini furono uccisi. Il golpe crollò in due giorni; il 25 dicembre Gorbaciov si dimise.",
+  "stamp": "Eltsin sul carro armato",
+  "choices": [
+   "Restare nascosto nella dacia fuori Mosca",
+   "Salire su un carro armato e denunciare il golpe",
+   "Negoziare con i capi del colpo di Stato"
+  ]
+ },
+ "1810-cry-of-dolores": {
+  "place": "Dolores",
+  "pov": "La congiura per l'indipendenza a cui hai aderito è stata denunciata agli spagnoli, e diversi membri sono stati arrestati. Ti avvertono di fuggire. Sei il parroco di Dolores.",
+  "short": "Hidalgo",
+  "did": "Hidalgo decise di agire subito. Verso le 2:30 del mattino del 16 settembre 1810 fece suonare le campane della chiesa e invitò i fedeli alla rivolta.",
+  "next": "Con migliaia di indios e meticci al suo fianco, prese Guanajuato; sconfitto nel gennaio 1811, fu catturato e fucilato. Il 16 settembre è oggi il giorno dell'Indipendenza del Messico.",
+  "stamp": "Il Grido di Dolores",
+  "choices": [
+   "Fuggire finché sei ancora in tempo",
+   "Nasconderti e aspettare un momento migliore",
+   "Chiamare subito i parrocchiani alla rivolta"
+  ]
+ },
+ "1955-austria-neutral": {
+  "place": "Vienna",
+  "pov": "Quattro potenze occupano il tuo Paese dalla fine della guerra. A Mosca i sovietici offrono di ritirare le loro truppe se il tuo Paese si dichiara neutrale per sempre. Sei il cancelliere dell'Austria.",
+  "short": "Raab",
+  "did": "Raab accettò. Il 15 aprile 1955 lesse una dichiarazione secondo cui l'Austria avrebbe dichiarato la neutralità «come quella praticata dalla Confederazione Svizzera».",
+  "next": "Il Trattato di Stato fu firmato al Palazzo del Belvedere, a Vienna, il 15 maggio 1955. Il 26 ottobre il parlamento austriaco confermò la neutralità permanente del Paese.",
+  "stamp": "L'Austria sceglie la neutralità",
+  "choices": [
+   "Rifiutare e aspettare un'offerta migliore",
+   "Accettare la neutralità e chiudere l'occupazione",
+   "Cercare un posto nell'alleanza occidentale"
+  ]
+ },
+ "1971-7-march": {
+  "place": "Dacca",
+  "pov": "Il tuo partito ha vinto 167 dei 169 seggi del Pakistan Orientale, ma il presidente del Pakistan ha rimandato il giuramento del tuo governo. Molti ti chiedono apertamente di dichiarare l'indipendenza. Sei il leader della Lega Awami.",
+  "short": "Mujib",
+  "did": "Il 7 marzo 1971, davanti a più di un milione di persone a Dacca, Mujib disse che questa volta la lotta era per l'indipendenza. Ma non fece nessuna dichiarazione diretta, e pose condizioni come la fine della legge marziale.",
+  "next": "Il 25 marzo 1971 l'esercito pakistano lanciò l'operazione Searchlight e arrestò Mujib; seguì la guerra di liberazione.",
+  "stamp": "Mujib: il discorso del 7 marzo",
+  "choices": [
+   "Dichiarare subito l'indipendenza dal Pakistan",
+   "Chiamare alla lotta, ma senza dichiarare",
+   "Annullare le proteste e aspettare i negoziati"
+  ]
+ },
+ "1860-teano": {
+  "place": "Teano",
+  "pov": "I tuoi volontari hanno conquistato la Sicilia, dove sei dittatore, e Napoli. Ora devi incontrare il re di Sardegna a Teano. Sei il generale conquistatore.",
+  "short": "Garibaldi",
+  "did": "A Teano, il 26 ottobre 1860, Garibaldi salutò Vittorio Emanuele II come re d'Italia e gli strinse la mano. Consegnò al re le sue conquiste nell'Italia meridionale.",
+  "next": "Il 9 novembre lasciò Napoli per l'isola rocciosa di Caprera, rifiutando ogni ricompensa. Il 17 marzo 1861 fu creato il Regno d'Italia unito.",
+  "stamp": "Garibaldi a Teano",
+  "choices": [
+   "Proseguire su Roma con i tuoi volontari",
+   "Continuare a governare il Sud da dittatore",
+   "Consegnare le tue conquiste al re"
+  ]
+ },
+ "1997-baht-float": {
+  "place": "Bangkok",
+  "pov": "La Thailandia ha circa 105 miliardi di dollari di debiti con l'estero ma solo 25,5 miliardi di riserve. Gli speculatori continuano ad attaccare l'aggancio del baht al dollaro. Sei il nuovo ministro delle Finanze della Thailandia.",
+  "short": "Thanong",
+  "did": "Il 2 luglio 1997 Thanong e la Banca di Thailandia misero fine all'aggancio al dollaro statunitense, che durava da decenni. Il baht passò a un cambio fluttuante controllato, con il valore deciso dalle forze del mercato.",
+  "next": "Il baht crollò da 25 a 56 per dollaro, prima di stabilizzarsi intorno a 40. Thanong accettò un salvataggio del FMI in agosto e si dimise in ottobre.",
+  "stamp": "La Thailandia lascia fluttuare il baht",
+  "choices": [
+   "Difendere ancora l'aggancio al dollaro",
+   "Lasciare fluttuare il baht: decide il mercato",
+   "Svalutare il baht a un nuovo cambio fisso"
+  ]
+ },
+ "1940-war-cabinet": {
+  "place": "Londra",
+  "pov": "La Francia è sul punto di crollare e il tuo esercito si ritira verso Dunkerque. Il tuo ministro degli Esteri vuole esplorare una pace negoziata con Hitler tramite Mussolini. Sei il primo ministro britannico.",
+  "short": "Churchill",
+  "did": "Alla riunione del gabinetto di guerra del 28 maggio 1940 Churchill respinse l'idea di cercare una mediazione tramite Mussolini. Il gabinetto allargato, di 25 membri, sostenne poi all'unanimità la scelta di continuare a combattere.",
+  "next": "Halifax accettò il rifiuto della sua proposta. Si calcola che furono evacuati 338.226 militari, ma quasi tutto il loro equipaggiamento andò perduto.",
+  "stamp": "Churchill continua la lotta",
+  "choices": [
+   "Chiedere a Mussolini di sondare la pace",
+   "Rifiutare ogni colloquio e combattere",
+   "Chiedere agli Stati Uniti di mediare"
+  ]
+ },
+ "1947-womens-vote": {
+  "place": "Buenos Aires",
+  "pov": "Tuo marito è presidente, e nel tuo Paese le donne non possono ancora votare; in campagna elettorale ha promesso di cambiare le cose. Sei la first lady dell'Argentina.",
+  "short": "Eva Perón",
+  "did": "Eva Perón avviò una campagna attiva per il suffragio femminile. La legge del governo, da lei sostenuta con forza, passò al Congresso il 9 settembre 1947 e divenne la Legge 13.010 il 23 settembre.",
+  "next": "Nel 1951 le donne votarono per la prima volta a un'elezione nazionale, e più del 90 per cento delle donne iscritte alle liste elettorali partecipò.",
+  "stamp": "Le argentine conquistano il voto",
+  "choices": [
+   "Fare tu stessa campagna per il voto",
+   "Lasciare fare a tuo marito e al Congresso",
+   "Fare beneficenza, lontano dalla politica"
+  ]
+ },
+ "1912-qing-abdication": {
+  "place": "Pechino",
+  "pov": "La rivoluzione è scoppiata nell'ottobre 1911, e 13 province su 18 si sono staccate. Perfino il tuo primo ministro ora sostiene la repubblica. Sei l'imperatrice vedova, che governa al posto di un imperatore di sei anni.",
+  "short": "Longyu",
+  "did": "Il 12 febbraio 1912 Longyu accettò le condizioni ed emanò l'editto di abdicazione per Puyi, di sei anni. A lui fu permesso di conservare il titolo imperiale.",
+  "next": "Pose fine alla dinastia Qing e a più di 2.000 anni di monarchia. La Repubblica promise a Puyi quattro milioni di tael d'argento all'anno, e lui visse nella Città Proibita fino al 1924.",
+  "stamp": "L'ultimo imperatore abdica",
+  "choices": [
+   "Combattere ancora, come chiedono alcuni lealisti",
+   "Abdicare per lui a condizioni generose",
+   "Insistere per una monarchia costituzionale"
+  ]
+ },
+ "1492-columbus": {
+  "place": "Santa Fe",
+  "pov": "Granada è caduta. Un marinaio ti chiede di sostenere un viaggio verso ovest, fino alle Indie. I tuoi esperti lo giudicano inverosimile; lui vuole dei titoli e un decimo delle ricchezze. Sei la regina di Castiglia.",
+  "short": "Isabella",
+  "did": "Convinta dal funzionario del re Luis de Santángel, Isabella mandò una guardia reale a richiamare Colombo. Il 17 aprile 1492 i sovrani firmarono le Capitolazioni di Santa Fe.",
+  "next": "Colombo salpò da Palos de la Frontera il 3 agosto 1492 con tre navi. Raggiunse le Americhe il 12 ottobre.",
+  "stamp": "Isabella sostiene Colombo",
+  "choices": [
+   "Rifiutarlo, come consigliano gli esperti",
+   "Sostenere il viaggio alle sue condizioni",
+   "Sostenerlo, ma respingere le sue pretese"
+  ]
+ },
+ "1977-canal-treaties": {
+  "place": "Città di Panama",
+  "pov": "Dopo anni di trattative, gli Stati Uniti offrono di consegnare il canale al tuo Paese il 31 dicembre 1999, mantenendo il diritto permanente di difenderlo. Sei il leader di Panama.",
+  "short": "Torrijos",
+  "did": "Il 7 settembre 1977 Torrijos e Carter firmarono a Washington, D.C., i due trattati. Gli elettori panamensi li approvarono il 23 ottobre 1977 con il 67,4 per cento dei voti.",
+  "next": "Il Senato degli Stati Uniti ratificò entrambi i trattati con 68 voti contro 32 nel 1978. Il 31 dicembre 1999 Panama assunse il pieno controllo del canale.",
+  "stamp": "I trattati sul Canale di Panama",
+  "choices": [
+   "Firmare i trattati a queste condizioni",
+   "Insistere per una consegna anticipata",
+   "Rifiutare ogni diritto USA di difenderlo"
+  ]
+ },
+ "221bc-standards": {
+  "place": "Xianyang",
+  "year": "221 a.C.",
+  "pov": "Nel 221 a.C. i tuoi eserciti hanno completato la conquista degli altri sei grandi Stati cinesi. Ora devi tenere unito il nuovo impero. Sei il sovrano di Qin.",
+  "short": "Qin Shi Huang",
+  "did": "Con il suo ministro Li Si, Qin Shi Huang fece della scrittura a sigillo di Qin lo standard ufficiale e sostituì le monete dei vari Stati con il Ban Liang. Pesi e misure furono uniformati.",
+  "next": "Perfino gli assi dei carri ebbero una lunghezza uniforme, per adattarsi ai solchi delle strade. Regnò fino alla morte, nel 210 a.C.; la sua dinastia fu poi rovesciata e sostituita dagli Han.",
+  "stamp": "Una scrittura, una moneta",
+  "choices": [
+   "Lasciare a ogni Stato le sue usanze",
+   "Imporre una scrittura, una moneta, una misura",
+   "Unificare le leggi, lasciando le usanze locali"
+  ]
+ },
+ "1979-shah-leaves": {
+  "place": "Teheran",
+  "pov": "Guidi l'Iran dal 1941. Dopo mesi di violente manifestazioni e un ammutinamento dell'esercito, l'ayatollah Khomeini, in esilio, ha dichiarato un consiglio per sostituire il governo. Sei lo scià dell'Iran.",
+  "short": "Mohammad Reza",
+  "did": "Il 16 gennaio 1979 lui e l'imperatrice Farah volarono ad Assuan, in Egitto. Ufficialmente era una vacanza; in realtà il suo nuovo primo ministro gli aveva chiesto di partire.",
+  "next": "La sua partenza fu accolta da festeggiamenti di massa. Il 1º aprile Khomeini proclamò la Repubblica islamica; lo scià morì in esilio in Egitto nel luglio 1980.",
+  "stamp": "Lo scià lascia l'Iran",
+  "choices": [
+   "Lasciare l'Iran, ufficialmente in vacanza",
+   "Far reprimere la rivolta dall'esercito",
+   "Restare e appoggiare il nuovo primo ministro"
+  ]
+ },
+ "1905-october-manifesto": {
+  "place": "San Pietroburgo",
+  "pov": "Uno sciopero generale ha paralizzato i trasporti e i servizi pubblici del tuo impero in mezzo alla rivoluzione. Devi scegliere: una dittatura militare o una costituzione. Sei lo zar di Russia.",
+  "short": "Nicola",
+  "did": "Nicola cedette ed emanò il Manifesto d'ottobre il 30 ottobre 1905. Prometteva libertà civili e una Duma eletta, senza la cui approvazione non si poteva varare alcuna legge.",
+  "next": "Il manifesto divise l'opposizione. La Duma aveva solo un controllo limitato sul bilancio, e nel 1906-07 gran parte della Russia era sotto la legge marziale.",
+  "stamp": "Il Manifesto d'ottobre",
+  "choices": [
+   "Nominare un dittatore militare",
+   "Concedere diritti civili e un parlamento",
+   "Aspettare che gli scioperi si esauriscano"
+  ]
+ },
+ "1980-reconciliation": {
+  "place": "Salisbury",
+  "pov": "La tua vittoria elettorale ha sconvolto l'establishment bianco. Sei stato descritto come un radicale che nazionalizzerebbe tutto. Stai per formare un governo. Sei il primo ministro eletto dello Zimbabwe.",
+  "short": "Mugabe",
+  "did": "Mugabe invocò l'unità: «Trasformiamo le spade in vomeri». Nel governo che giurò il 19 aprile 1980 nominò ministri due bianchi, David Smith e Denis Norman.",
+  "next": "Nominò anche Peter Walls, ex capo dell'esercito rhodesiano, anche se Walls se ne andò prima della fine dell'anno. Anni dopo Mugabe sequestrò le fattorie dei bianchi senza risarcimento.",
+  "stamp": "La riconciliazione di Mugabe",
+  "choices": [
+   "Formare un governo solo con il tuo partito",
+   "Rassicurare i bianchi e includerli nel governo",
+   "Nazionalizzare terre e aziende dei bianchi"
+  ]
+ },
+ "1867-maximilian": {
+  "place": "San Luis Potosí",
+  "pov": "Un tribunale ha condannato a morte l'imperatore Massimiliano, catturato. Victor Hugo, Giuseppe Garibaldi e molte teste coronate d'Europa ti chiedono di salvargli la vita. Sei il presidente del Messico.",
+  "short": "Juárez",
+  "did": "Juárez rifiutò la clemenza. Il 19 giugno 1867 Massimiliano e i suoi generali Miramón e Mejía furono fucilati sulla Collina delle Campane, a Querétaro.",
+  "next": "Il 15 luglio Juárez rientrò nella capitale, acclamato dalla folla e tra il suono delle campane.",
+  "stamp": "Nessuna grazia per Massimiliano",
+  "choices": [
+   "Lasciare eseguire la condanna",
+   "Risparmiarlo e mandarlo in esilio",
+   "Commutarla in carcere a vita"
+  ]
+ },
+ "1947-partition": {
+  "place": "Nuova Delhi",
+  "pov": "Devi passare il potere agli indiani entro il 30 giugno 1948 ed evitare la spartizione. Scontri tra le comunità infuriano a Delhi e a Bombay, e la Lega musulmana chiede il Pakistan. Sei il viceré dell'India.",
+  "short": "Mountbatten",
+  "did": "Mountbatten concluse che un'India unita non era più realizzabile. Il 3 giugno 1947 annunciò che il potere sarebbe passato a due governi, India e Pakistan, un anno prima del previsto.",
+  "next": "La spartizione entrò in vigore il 15 agosto 1947, e i confini furono annunciati due giorni dopo. Si ritiene che più di 15 milioni di persone li abbiano attraversati per spostarsi.",
+  "stamp": "La spartizione anticipata",
+  "choices": [
+   "Rispettare il giugno 1948 e un'India unita",
+   "Dividere l'India e passare i poteri prima",
+   "Tenere il dominio britannico finché torna l'ordine"
+  ]
+ },
+ "1862-emancipation": {
+  "place": "Washington",
+  "pov": "Luglio 1862. Hai preparato una proclamazione che libera gli schiavi negli Stati in ribellione. Gli eserciti dell'Unione hanno appena subito dei rovesci in Virginia. Sei il presidente degli Stati Uniti.",
+  "short": "Lincoln",
+  "did": "Seward suggerì di aspettare una vittoria dell'Unione, e Lincoln la tenne da parte. Dopo Antietam, il 22 settembre 1862 emanò una proclamazione preliminare.",
+  "next": "La proclamazione definitiva, il 1º gennaio 1863, valeva solo per le zone in ribellione, non per Stati di confine come il Maryland. La schiavitù finì legalmente con il 13º emendamento, nel dicembre 1865.",
+  "stamp": "La proclamazione di emancipazione",
+  "choices": [
+   "Emanare la proclamazione immediatamente",
+   "Aspettare una vittoria dell'Unione, poi emanarla",
+   "Accantonarla per tenere fedeli gli Stati di confine"
+  ]
+ },
+ "1963-oau": {
+  "place": "Addis Abeba",
+  "pov": "Gli Stati indipendenti dell'Africa si sono divisi in blocchi rivali. Uno, guidato dal Ghana, vuole una federazione di tutta l'Africa; l'altro vuole che l'unità arrivi gradualmente. Sei l'imperatore dell'Etiopia.",
+  "short": "Hailé Selassié",
+  "did": "Hailé Selassié invitò i due gruppi ad Addis Abeba. Qui, il 25 maggio 1963, fu firmata la carta dell'Organizzazione dell'Unità Africana, e la città ne divenne la sede.",
+  "next": "L'OUA si impegnò per porre fine al colonialismo e al dominio della minoranza bianca, ma la sua politica di non ingerenza la limitò. Fu poi sostituita dall'Unione Africana.",
+  "stamp": "L'Africa si unisce ad Addis Abeba",
+  "choices": [
+   "Riunire i due blocchi nella tua capitale",
+   "Schierarti con chi vuole una federazione subito",
+   "Restare fuori dalla lite tra i blocchi"
+  ]
+ },
+ "1990-batmonkh": {
+  "place": "Ulan Bator",
+  "pov": "Alcuni scioperanti della fame in piazza Sukhbaatar chiedono le dimissioni del tuo governo. Ti chiedono di firmare un decreto per reprimere i manifestanti. Sei il leader della Mongolia comunista.",
+  "short": "Batmönkh",
+  "did": "Batmönkh rifiutò: «Noi pochi mongoli non siamo ancora arrivati al punto di farci sanguinare il naso a vicenda». Il 9 marzo 1990 il Politburo da lui guidato si dimise.",
+  "next": "Il 10 maggio 1990 il parlamento dichiarò che a luglio si sarebbero tenute elezioni libere e multipartitiche. L'ex partito di governo ottenne quasi tre quarti dei seggi.",
+  "stamp": "I leader della Mongolia si dimettono",
+  "choices": [
+   "Firmare il decreto e sgomberare la piazza",
+   "Trattare con gli scioperanti e restare al potere",
+   "Rifiutare la forza e dimettersi con il Politburo"
+  ]
+ },
+ "1967-nasser-resigns": {
+  "place": "Il Cairo",
+  "pov": "Una guerra con Israele iniziata quattro giorni fa è finita con la sconfitta delle tue forze armate. Stasera parlerai alla nazione. Sei il presidente dell'Egitto.",
+  "short": "Nasser",
+  "did": "Il 9 giugno 1967 Nasser si assunse la piena responsabilità della sconfitta e si dimise da presidente. La folla si riversò nelle strade per sostenerlo.",
+  "next": "Il governo e l'Assemblea nazionale rifiutarono di accettare le dimissioni, e Nasser le ritirò. Il 19 giugno divenne anche primo ministro.",
+  "stamp": "Nasser si dimette, poi resta",
+  "choices": [
+   "Assumerti la colpa e dimetterti",
+   "Restare e sostituire i tuoi generali",
+   "Restare e promettere di contrattaccare"
+  ]
+ },
+ "1983-rigueur": {
+  "place": "Parigi",
+  "pov": "La tua politica di stimolo ha peggiorato in fretta il disavanzo del bilancio e quello commerciale. Il franco è stato svalutato due volte, e la sinistra ha appena perso le elezioni locali. Sei il presidente della Francia.",
+  "short": "Mitterrand",
+  "did": "Nel marzo 1983 Mitterrand tenne il franco nel Sistema monetario europeo e fece la «svolta del rigore» («tournant de la rigueur»). Le tasse salirono e i salari non furono più legati ai prezzi.",
+  "next": "Il primo ministro Mauroy e il ministro delle Finanze Jacques Delors attuarono un drastico piano di austerità. La sinistra non fece mai davvero sua quella svolta, e preferì chiamarla una «parentesi».",
+  "stamp": "La svolta di rigore di Mitterrand",
+  "choices": [
+   "Uscire dallo SME e continuare a spendere",
+   "Proteggere l'industria con limiti all'import",
+   "Restare nello SME e passare all'austerità"
+  ]
+ },
+ "1822-san-martin": {
+  "place": "Lima",
+  "pov": "Un grande esercito realista, ben armato, tiene ancora Cuzco. A Guayaquil hai chiesto a Bolívar di mandare un esercito in Perù; ti ha offerto meno di 2.000 uomini. Sei il Protettore del Perù.",
+  "short": "San Martín",
+  "did": "Il 20 settembre 1822, mentre si riuniva il primo Congresso costituente del Perù, San Martín si dimise e depose la sua fascia di Protettore. Nelle prime ore del 21 settembre salpò per Valparaíso.",
+  "next": "In seguito lasciò del tutto l'America del Sud e si ritirò in Francia. Bolívar proseguì la guerra di liberazione.",
+  "stamp": "San Martín si fa da parte",
+  "choices": [
+   "Continuare a combattere con le forze che hai",
+   "Farti da parte e lasciare il Perù ad altri",
+   "Servire sotto il comando di Bolívar"
+  ]
+ },
+ "1990-one-for-one": {
+  "place": "Bonn",
+  "pov": "La Germania Est sta per adottare il marco tedesco occidentale (D-Mark). Al mercato nero un D-Mark costava da cinque a dieci marchi orientali, ma i tedeschi dell'Est pretendono il cambio uno a uno. Sei il cancelliere della Germania Ovest.",
+  "short": "Kohl",
+  "did": "Contro il parere dei principali economisti, il governo di Kohl cambiò salari, stipendi, pensioni e affitti uno a uno. I risparmi furono cambiati uno a uno fino a una soglia da 2.000 a 6.000 marchi, a seconda dell'età.",
+  "next": "Il marco tedesco arrivò nella Germania Est il 1º luglio 1990. Molte aziende della Germania Est non riuscirono più a competere, e seguirono chiusure e licenziamenti di massa.",
+  "stamp": "Un D-Mark per un marco orientale",
+  "choices": [
+   "Cambiare due marchi orientali per uno",
+   "Cambiare salari e risparmi uno a uno",
+   "Rimandare per ora l'unione monetaria"
+  ]
+ },
+ "1977-hunting-ban": {
+  "place": "Nairobi",
+  "pov": "La fauna del tuo Paese, un tempo innumerevole, sta diminuendo, e i bracconieri uccidono elefanti e rinoceronti in gran numero. Cacciatori professionisti con licenza portano ancora clienti paganti in safari. Sei il presidente del Kenya.",
+  "short": "Kenyatta",
+  "did": "Nel maggio 1977 il governo di Kenyatta vietò ogni caccia sportiva, senza lasciare il tempo di concludere i safari. Molti dei 106 cacciatori con licenza del Kenya lo seppero dai guardiacaccia sul campo.",
+  "next": "Quel dicembre Kenyatta vietò anche la vendita di trofei e prodotti di caccia nei negozi di souvenir. I bracconieri si scatenarono, e la popolazione di elefanti del Kenya calò drasticamente tra il 1973 e il 2013.",
+  "stamp": "Il Kenya vieta la caccia",
+  "choices": [
+   "Vietare subito ogni tipo di caccia sportiva",
+   "Tenere la caccia con licenza e fermare i bracconieri",
+   "Vietare la vendita di trofei e prodotti di caccia"
+  ]
+ },
+ "1840-waitangi": {
+  "place": "Waitangi",
+  "pov": "Sempre più coloni britannici arrivano in Nuova Zelanda, alcuni dei quali indisciplinati, e la Francia sembra interessata ad annetterla. Devi assicurare la sovranità britannica. Sei il nuovo luogotenente governatore britannico.",
+  "short": "Hobson",
+  "did": "Hobson fece scrivere un trattato in pochi giorni. Il 6 febbraio 1840, a Waitangi, circa 40 capi lo firmarono; a ciascuno disse «He iwi tahi tātou», «Siamo un solo popolo».",
+  "next": "In tutto circa 540 capi firmarono, e la sovranità britannica fu proclamata il 21 maggio 1840. Nel testo in maori la parola «sovranità» era stata tradotta con «kawanatanga» (governo).",
+  "stamp": "Il Trattato di Waitangi",
+  "choices": [
+   "Fare un trattato con i capi maori",
+   "Proclamare e basta la sovranità britannica",
+   "Rivendicare solo piccoli lembi di terra"
+  ]
+ },
+ "1991-gulf-ceasefire": {
+  "place": "Washington",
+  "pov": "Le forze della coalizione sono entrate a Kuwait City e le truppe irachene fuggono. Una divisione americana è a meno di 250 km da Baghdad. Sei il presidente degli Stati Uniti.",
+  "short": "Bush",
+  "did": "Il 28 febbraio 1991 Bush annunciò il cessate il fuoco, dichiarando il Kuwait libero e l'esercito iracheno sconfitto. Non aveva mai avuto l'intenzione di rovesciare Saddam Hussein.",
+  "next": "La guerra di terra era durata circa 100 ore. La scelta rimase controversa: Saddam fu rimosso solo nel 2003, quando il presidente era il figlio di Bush.",
+  "stamp": "Bush ferma la guerra del Golfo",
+  "choices": [
+   "Marciare su Baghdad e rovesciare Saddam",
+   "Dichiarare il cessate il fuoco: il Kuwait è libero",
+   "Combattere finché l'esercito iracheno è distrutto"
+  ]
+ },
+ "1987-june-29": {
+  "place": "Seul",
+  "pov": "Le proteste per la democrazia si diffondono in tutta la Corea del Sud. Il 10 giugno il tuo partito ti ha scelto come successore del presidente, e le Olimpiadi di Seul del 1988 si avvicinano. Sei il candidato del partito al governo.",
+  "short": "Roh",
+  "did": "Il 29 giugno 1987 Roh accettò la richiesta di elezioni presidenziali dirette. Promise anche di liberare i prigionieri politici, tra cui il leader dell'opposizione Kim Dae-jung.",
+  "next": "A ottobre una nuova costituzione fu approvata dal 94,4 per cento degli elettori. Con il voto dell'opposizione diviso, Roh fu poi eletto presidente con il 36,6 per cento dei voti.",
+  "stamp": "La dichiarazione del 29 giugno",
+  "choices": [
+   "Tenere l'elezione indiretta del presidente",
+   "Accettare l'elezione diretta del presidente",
+   "Appoggiare la repressione per fermare le proteste"
+  ]
+ },
+ "2001-argentina-default": {
+  "place": "Buenos Aires",
+  "pov": "Le rivolte hanno costretto il presidente a dimettersi. Il Congresso ti ha nominato presidente ad interim fino alle elezioni. Il FMI ha rifiutato 1,3 miliardi di dollari di aiuti; il debito è di 132 miliardi di dollari. Sei il presidente dell'Argentina.",
+  "short": "Rodríguez Saá",
+  "did": "Nel giorno del giuramento, il 23 dicembre 2001, Rodríguez Saá annunciò che lo Stato avrebbe sospeso i pagamenti del debito estero. Disse che avrebbe mantenuto il peso agganciato al dollaro uno a uno.",
+  "next": "La moratoria su 132 miliardi di dollari fu definita il più grande default mai dichiarato da un Paese sovrano. Senza l'appoggio del suo partito peronista, si dimise dopo una settimana.",
+  "stamp": "L'Argentina smette di pagare",
+  "choices": [
+   "Smettere di pagare il debito estero",
+   "Continuare a pagare e trattare con il FMI",
+   "Abbandonare il cambio uno a uno col dollaro"
+  ]
+ },
+ "1962-slavery": {
+  "place": "Riyad",
+  "pov": "A giugno il re ha vietato la compravendita di persone, ma possedere schiavi è ancora legale. Gli Stati Uniti chiedono con insistenza delle riforme. Sei il primo ministro dell'Arabia Saudita.",
+  "short": "Faisal",
+  "did": "Nel novembre 1962 Faisal proibì il possesso di schiavi in Arabia Saudita, nell'ambito del suo programma di riforme in dieci punti.",
+  "next": "I tradizionalisti si opposero e l'applicazione fu lenta: alcune fonti dicono che il commercio di schiavi continuò per almeno vent'anni. Alcuni schiavi liberati continuarono a lavorare per i loro ex padroni.",
+  "stamp": "L'Arabia Saudita abolisce la schiavitù",
+  "choices": [
+   "Vietare del tutto il possesso di schiavi",
+   "Mantenere il divieto solo per le vendite",
+   "Liberare gli schiavi gradualmente negli anni"
+  ]
+ },
+ "1898-philippines": {
+  "place": "Washington",
+  "pov": "Dopo la guerra con la Spagna si aprono a Parigi i negoziati di pace. I ribelli filippini vogliono l'indipendenza; la Germania sembra pronta a intervenire se te ne vai. Sei il presidente degli Stati Uniti.",
+  "short": "McKinley",
+  "did": "McKinley telegrafò che il dovere non gli lasciava altra scelta che pretendere l'intero arcipelago. Con il Trattato di Parigi del 10 dicembre 1898 la Spagna lo cedette per 20 milioni di dollari.",
+  "next": "Il Senato approvò il trattato con 57 voti contro 27 il 6 febbraio 1899, due giorni dopo l'inizio degli scontri con le forze filippine a Manila. Gli Stati Uniti vinsero quella guerra nel 1902.",
+  "stamp": "Gli Stati Uniti tengono le Filippine",
+  "choices": [
+   "Tenere solo Manila come base navale",
+   "Prendere tutte le isole dalla Spagna",
+   "Concedere l'indipendenza alle Filippine"
+  ]
+ },
+ "1967-referendum": {
+  "place": "Canberra",
+  "pov": "La tua Costituzione dice che gli aborigeni non devono essere contati nella popolazione e impedisce al Parlamento di fare leggi per loro. Gli attivisti vogliono cambiarla. Sei il primo ministro dell'Australia.",
+  "short": "Holt",
+  "did": "Il 22 febbraio 1967 il governo di Holt decise di tenere un referendum su entrambe le modifiche. Il Parlamento approvò la legge all'unanimità, quindi non ci fu nessuna campagna ufficiale per il «No».",
+  "next": "Il 27 maggio 1967 il 90,77 per cento degli elettori votò sì, con maggioranze in tutti gli Stati. Il Parlamento poté ora fare leggi per gli aborigeni, che potevano essere contati nella popolazione.",
+  "stamp": "Il referendum del 1967",
+  "choices": [
+   "Togliere solo il divieto di contarli",
+   "Lasciare la Costituzione com'è",
+   "Mettere ai voti entrambe le modifiche"
+  ]
+ },
+ "1893-mekong": {
+  "place": "Bangkok",
+  "pov": "Cannoniere francesi hanno risalito con la forza il fiume fino a Bangkok. La Francia chiede tutto il territorio a est del Mekong e tre milioni di franchi. La Gran Bretagna non ti aiuterà. Sei il re del Siam.",
+  "short": "Chulalongkorn",
+  "did": "Il Siam si piegò del tutto alle condizioni francesi. Chulalongkorn cedette alla Francia tutti i territori laotiani a est del Mekong, e il 3 ottobre 1893 fu firmato un trattato.",
+  "next": "La Francia occupò Chanthaburi fino al 1907. Chulalongkorn continuò a fare concessioni territoriali all'Occidente, nella speranza che il Siam potesse mantenere la sua indipendenza nel complesso.",
+  "stamp": "Il Siam rinuncia al Laos",
+  "choices": [
+   "Combattere e difendere Bangkok",
+   "Accettare per intero le condizioni francesi",
+   "Accettare solo una parte delle richieste"
+  ]
+ },
+ "2000-zedillo-concedes": {
+  "place": "Città del Messico",
+  "pov": "Il tuo partito detiene la presidenza da circa 70 anni. La sera delle elezioni, i risultati preliminari danno in vantaggio il candidato dell'opposizione. Il candidato del tuo partito non ha ancora ammesso la sconfitta. Sei il presidente del Messico.",
+  "short": "Zedillo",
+  "did": "Quella notte Zedillo parlò alla televisione nazionale, citando i risultati preliminari dell'istituto elettorale. Riconobbe la vittoria di Vicente Fox, disse di averlo appena chiamato al telefono e si congratulò con lui.",
+  "next": "Il PRI perse la presidenza per la prima volta in circa 70 anni. Il fatto che il riconoscimento fosse arrivato da lui e non dal candidato del PRI, Francisco Labastida, causò in seguito tensioni tra i due.",
+  "stamp": "La notte elettorale in Messico",
+  "choices": [
+   "Aspettare la fine dello scrutinio ufficiale",
+   "Andare subito in TV e riconoscere il vincitore",
+   "Lasciare che il tuo candidato ammetta per primo"
+  ]
+ },
+ "1666-great-fire": {
+  "place": "Londra",
+  "pov": "Un incendio ha distrutto circa 13.000 case nella tua capitale, e la cattedrale di St Paul. Christopher Wren e altri propongono una città nuova con strade larghe disposte a griglia. Sei il re d'Inghilterra.",
+  "short": "Carlo",
+  "did": "Carlo aveva incoraggiato progetti radicali, ma pagare i proprietari per una ricostruzione completa si rivelò irrealistico. Gran parte della vecchia pianta stradale fu ricreata, con strade più larghe.",
+  "next": "I nuovi edifici dovevano essere di mattoni o di pietra, non di legno. La maggior parte della ricostruzione privata fu completata entro il 1671, e Wren progettò 51 nuove chiese.",
+  "stamp": "Londra dopo il Grande Incendio",
+  "choices": [
+   "Ricostruire le vecchie strade in mattoni e pietra",
+   "Costruire la città nuova di Wren, a strade larghe",
+   "Lasciare che ognuno ricostruisca come vuole"
+  ]
+ },
+ "1970-black-september": {
+  "place": "Amman",
+  "pov": "Gruppi armati palestinesi hanno preso la città di Irbid e chiedono apertamente il tuo rovesciamento. Aerei di linea dirottati sono stati fatti saltare in aria sul tuo territorio. Sei il re della Giordania.",
+  "short": "Hussein",
+  "did": "Hussein formò un governo di legge marziale e nel settembre 1970 ordinò all'esercito di attaccare. Fu colpito il quartier generale dei fedayyin ad Amman.",
+  "next": "I carri armati siriani entrarono in Giordania il 18 settembre; entro il 22 settembre le sorti si erano ribaltate. Il 27 settembre fu firmato un cessate il fuoco al Cairo, e nel luglio 1971 il re espulse gli ultimi combattenti.",
+  "stamp": "Settembre nero in Giordania",
+  "choices": [
+   "Ordinare all'esercito di attaccarli",
+   "Cercare un nuovo accordo con i loro capi",
+   "Chiedere ai leader arabi di mediare"
+  ]
+ },
+ "1967-arusha": {
+  "place": "Arusha",
+  "pov": "I piani di sviluppo del tuo Paese dipendono molto dagli aiuti stranieri e da appoggi esterni. Il tuo partito al governo deve ora fissare la rotta per i prossimi anni. Sei il presidente della Tanzania.",
+  "short": "Nyerere",
+  "did": "Il 5 febbraio 1967 Nyerere emanò la Dichiarazione di Arusha: socialismo e autosufficienza. Regole rigide limitavano fino a che punto i dirigenti potevano arricchirsi.",
+  "next": "Banche, risorse naturali e grandi industrie furono nazionalizzate subito. Dal 1973 la gente fu trasferita, spesso con la forza, nei villaggi Ujamaa: secondo il conto di Nyerere, più di sette milioni entro il giugno 1975.",
+  "stamp": "La Dichiarazione di Arusha",
+  "choices": [
+   "Cercare più aiuti e investimenti stranieri",
+   "Costruire il socialismo sull'autosufficienza",
+   "Aprire l'economia alle imprese private"
+  ]
+ },
+ "1983-franklin-dam": {
+  "place": "Canberra",
+  "pov": "Il governo della Tasmania sta andando avanti con una diga sul fiume Franklin, in un'area Patrimonio dell'umanità. I manifestanti bloccano il cantiere da dicembre. Sei il nuovo primo ministro dell'Australia.",
+  "short": "Hawke",
+  "did": "Il governo di Hawke approvò il World Heritage Properties Conservation Act 1983 per fermare i lavori alla diga e portò la Tasmania davanti all'Alta Corte.",
+  "next": "L'Alta Corte si pronunciò con 4 voti contro 3 a favore del governo federale, e la Tasmania dovette abbandonare la diga. I progetti non sono mai stati ripresi.",
+  "stamp": "Hawke ferma la diga sul Franklin",
+  "choices": [
+   "Lasciare la questione allo Stato della Tasmania",
+   "Fermare i lavori della diga con una legge federale",
+   "Dare soldi alla Tasmania perché rinunci alla diga"
+  ]
+ },
+ "1948-eo-9981": {
+  "place": "Washington",
+  "pov": "Più di un milione di americani neri hanno servito nella seconda guerra mondiale, in forze armate segregate. I senatori del Sud minacciano l'ostruzionismo contro le tue proposte sui diritti civili. Sei il presidente degli Stati Uniti.",
+  "short": "Truman",
+  "did": "Il 26 luglio 1948 Truman firmò l'Ordine esecutivo 9981. Dichiarava «parità di trattamento e di opportunità per tutte le persone nelle forze armate».",
+  "next": "I militari all'inizio resistettero, ma alla fine della guerra di Corea quasi tutte le forze armate erano integrate. L'ultima unità composta solo da neri fu abolita nel settembre 1954.",
+  "stamp": "Forze armate senza segregazione",
+  "choices": [
+   "Insistere con il Congresso per una legge",
+   "Lasciare la decisione ai militari",
+   "Vietare la segregazione per ordine esecutivo"
+  ]
+ },
+ "1993-oslo": {
+  "place": "Gerusalemme",
+  "pov": "La Norvegia ha creato a Oslo un canale segreto in cui due studiosi israeliani e l'OLP hanno redatto un accordo. Serve il tuo appoggio. Sei il primo ministro di Israele.",
+  "short": "Rabin",
+  "did": "Rabin appoggiò l'accordo. Nel settembre 1993 firmò la lettera con cui Israele riconosceva l'OLP come rappresentante del popolo palestinese.",
+  "next": "Il 13 settembre 1993 la Dichiarazione di principi fu firmata alla Casa Bianca, con una storica stretta di mano tra Rabin e Arafat. Rabin fu assassinato nel novembre 1995.",
+  "stamp": "Gli accordi di Oslo",
+  "choices": [
+   "Appoggiare l'accordo e riconoscere l'OLP",
+   "Disconoscere i colloqui segreti",
+   "Continuare a trattare, ma non con l'OLP"
+  ]
+ },
+ "1978-reform-opening": {
+  "place": "Pechino",
+  "pov": "Dopo anni di lotta di classe di massa, il Partito comunista deve scegliere il suo compito principale. Il suo Comitato centrale si riunisce a Pechino nel dicembre 1978. Sei il leader emergente del partito.",
+  "short": "Deng",
+  "did": "Il plenum dal 18 al 22 dicembre 1978 affermò che la lotta di classe di massa era in sostanza finita e fece della modernizzazione socialista il centro dell'azione del partito.",
+  "next": "Segnò l'inizio della politica di riforma e apertura. È considerato da molti il momento in cui Deng divenne il leader supremo della Cina, al posto di Hua Guofeng.",
+  "stamp": "Riforma e apertura",
+  "choices": [
+   "Tenere la lotta di classe come compito principale",
+   "Dare priorità alla modernizzazione dell'economia",
+   "Far crescere l'economia con piani statali più grandi"
+  ]
+ },
+ "1956-personal-status": {
+  "place": "Tunisi",
+  "pov": "Il diritto di famiglia del tuo Paese, appena diventato indipendente, permette a un uomo di avere fino a quattro mogli e di divorziare dalla moglie semplicemente dicendolo tre volte. Sei il primo ministro della Tunisia.",
+  "short": "Bourguiba",
+  "did": "Sotto Bourguiba, il Codice dello statuto personale fu promulgato il 13 agosto 1956. Abolì la poligamia e il ripudio: il divorzio poteva ora avvenire solo davanti a un tribunale.",
+  "next": "Gli imam che predicarono contro il Codice furono arrestati, e i giudici che firmarono una fatwa contro di esso furono quasi tutti destituiti o mandati in pensione. Entrò in vigore il 1º gennaio 1957.",
+  "stamp": "La Tunisia vieta la poligamia",
+  "choices": [
+   "Lasciare il diritto di famiglia com'è",
+   "Limitare la poligamia ma non vietarla",
+   "Vietare la poligamia e il divorzio per ripudio"
+  ]
+ },
+ "1971-copper": {
+  "place": "Santiago",
+  "pov": "Il Congresso ha votato all'unanimità la nazionalizzazione delle grandi miniere di rame di proprietà statunitense. Sta a te stabilire quanto devono essere pagate le compagnie. Sei il presidente del Cile.",
+  "short": "Allende",
+  "did": "Il 28 settembre Allende annunciò che dai pagamenti ad Anaconda e Kennecott sarebbero stati detratti 774 milioni di dollari di extraprofitti.",
+  "next": "Le compagnie non ricevettero alcun risarcimento per le miniere di Chuquicamata, El Salvador ed El Teniente. Il Dipartimento di Stato americano lo definì una grave infrazione della prassi internazionale.",
+  "stamp": "Il Cile nazionalizza il rame",
+  "choices": [
+   "Negoziare un prezzo con le compagnie",
+   "Pagare il valore contabile delle miniere",
+   "Detrarre dal pagamento gli «extraprofitti»"
+  ]
+ },
+ "2003-rose-revolution": {
+  "place": "Tbilisi",
+  "pov": "Dei manifestanti che dicono che le elezioni parlamentari sono state truccate sono entrati in parlamento con delle rose. Hai dichiarato lo stato di emergenza, ma reparti scelti dell'esercito rifiutano di appoggiarti. Sei il presidente della Georgia.",
+  "short": "Shevardnadze",
+  "did": "La sera del 23 novembre 2003, dopo aver incontrato i leader dell'opposizione Saakashvili e Zhvania, Shevardnadze annunciò le sue dimissioni.",
+  "next": "La presidente del parlamento, Nino Burjanadze, divenne presidente ad interim. Il 4 gennaio 2004 Saakashvili, senza avversari, fu eletto presidente con il 96,2 per cento dei voti.",
+  "stamp": "La Rivoluzione delle rose",
+  "choices": [
+   "Mandare la polizia fedele a sgomberare",
+   "Dimetterti e consegnare il potere",
+   "Promettere nuove elezioni, ma restare"
+  ]
+ },
+ "1988-ceasefire": {
+  "place": "Teheran",
+  "pov": "Da otto anni il tuo Paese combatte contro l'Iraq, a un costo enorme. Da aprile le tue forze perdono terreno. Una risoluzione dell'ONU chiede un cessate il fuoco. Sei la guida suprema dell'Iran.",
+  "short": "Khomeini",
+  "did": "L'Iran accettò la Risoluzione 598 dell'ONU nel luglio 1988. Khomeini disse alla nazione che prendere quella decisione era «più mortale che bere veleno».",
+  "next": "Il cessate il fuoco entrò in vigore il 20 agosto 1988. Gli osservatori dell'ONU della missione UNIIMOG rimasero al confine tra Iran e Iraq fino al 1991.",
+  "stamp": "L'Iran accetta il cessate il fuoco",
+  "choices": [
+   "Accettare il cessate il fuoco dell'ONU",
+   "Combattere finché cade il leader iracheno",
+   "Tenere duro per avere condizioni migliori"
+  ]
+ },
+ "1965-udi": {
+  "place": "Salisbury",
+  "pov": "La Gran Bretagna non darà l'indipendenza al tuo Paese senza un percorso verso il governo della maggioranza nera. I bianchi, circa il 5 per cento della popolazione, detengono il potere. Londra propone una Commissione reale. Sei il primo ministro della Rhodesia.",
+  "short": "Smith",
+  "did": "L'11 novembre 1965 Smith e il suo governo dichiararono l'indipendenza dalla Gran Bretagna. La Gran Bretagna la definì illegale e cercò sanzioni invece di usare la forza; nessun Paese la riconobbe.",
+  "next": "La Rhodesia si proclamò repubblica nel 1970, mentre cresceva una guerriglia. La dichiarazione fu revocata con l'accordo di Lancaster House del 1979, e lo Zimbabwe divenne indipendente nel 1980.",
+  "stamp": "La Rhodesia rompe con Londra",
+  "choices": [
+   "Affidarsi a una Commissione reale britannica",
+   "Dichiarare unilateralmente l'indipendenza",
+   "Concordare tempi per il governo della maggioranza"
+  ]
+ },
+ "1945-hiroshima": {
+  "place": "Washington",
+  "pov": "I tuoi scienziati hanno appena provato un nuovo tipo di bomba. Il Giappone continua a combattere, e si progetta di invaderlo. Sei il presidente degli Stati Uniti.",
+  "short": "Truman",
+  "did": "Truman lasciò che andasse avanti: come dice il suo diario, l'arma doveva essere usata contro il Giappone prima del 10 agosto. Il 6 agosto 1945 l'Enola Gay la sganciò su Hiroshima.",
+  "next": "Uccise da 90.000 a 166.000 persone a Hiroshima, circa la metà il primo giorno. Dopo che una seconda bomba colpì Nagasaki il 9 agosto, il Giappone annunciò la resa.",
+  "stamp": "Truman e la bomba atomica",
+  "choices": [
+   "Usarla su una città senza preavviso speciale",
+   "Dimostrarla prima dove non vive nessuno",
+   "Tenerla da parte e invadere come previsto"
+  ]
+ },
+ "1889-pedro-exile": {
+  "place": "Rio de Janeiro",
+  "pov": "Dei congiurati hanno fatto un colpo di Stato, hanno arrestato il tuo primo ministro e proclamato la repubblica. Politici e capi militari ti suggeriscono come reprimere la ribellione. Sei l'imperatore del Brasile.",
+  "short": "Pedro II",
+  "did": "Pedro II respinse tutti i suggerimenti per sedare la ribellione. Non volendo provocare uno scontro civile, accettò l'esilio senza opporre resistenza.",
+  "next": "A mezzogiorno del 17 novembre 1889 lui e la sua famiglia salparono per l'esilio in Europa. Morì a Parigi il 5 dicembre 1891.",
+  "stamp": "L'imperatore del Brasile se ne va",
+  "choices": [
+   "Far schiacciare la rivolta dalle truppe fedeli",
+   "Accettare l'esilio e partire senza combattere",
+   "Abdicare e lasciare il trono a tua figlia"
+  ]
+ },
+ "1984-snap-election": {
+  "place": "Wellington",
+  "pov": "È anno elettorale e la tua maggioranza è esigua. Uno dei tuoi deputati non ti sosterrà sulla proposta di legge antinucleare dell'opposizione. Sei il primo ministro della Nuova Zelanda.",
+  "short": "Muldoon",
+  "did": "La sera del 14 giugno 1984 Muldoon annunciò elezioni anticipate in televisione, sulla rete nazionale. Si tennero un mese dopo, il 14 luglio.",
+  "next": "I laburisti, guidati da David Lange, vinsero 56 dei 95 seggi; il Partito nazionale solo 37. Muldoon all'inizio si rifiutò di svalutare il dollaro, provocando una crisi costituzionale.",
+  "stamp": "Le elezioni anticipate di Muldoon",
+  "choices": [
+   "Governare comunque, anche se perdi quel voto",
+   "Indire elezioni anticipate il mese prossimo",
+   "Trasformare il voto in una questione di fiducia"
+  ]
+ },
+ "1923-ankara": {
+  "place": "Ankara",
+  "pov": "La guerra d'indipendenza è stata guidata da Ankara, una modesta città dell'Anatolia. Alcuni deputati sostengono che Istanbul, la vecchia città imperiale, debba restare la capitale. Sei il leader del nuovo Stato turco.",
+  "short": "Atatürk",
+  "did": "La dirigenza del Paese scelse Ankara. Una legge di un solo articolo, proposta da İsmet Pascià, fu approvata dall'Assemblea con una grande maggioranza il 13 ottobre 1923.",
+  "next": "La Repubblica fu proclamata 16 giorni dopo, il 29 ottobre 1923. La modesta città anatolica divenne una moderna capitale.",
+  "stamp": "Ankara diventa la capitale",
+  "choices": [
+   "Fare di Ankara la capitale",
+   "Tenere Istanbul come capitale",
+   "Tenere Ankara solo per ora"
+  ]
+ },
+ "1989-martial-law-beijing": {
+  "place": "Pechino",
+  "pov": "Degli studenti in sciopero della fame protestano in piazza Tiananmen. I cinque membri del Comitato permanente del partito non riescono a mettersi d'accordo su come rispondere. Sei il leader che ha l'ultima parola in Cina.",
+  "short": "Deng",
+  "did": "Il 17 maggio 1989 Deng disse ai cinque membri del Comitato permanente che era ora di chiamare l'esercito a imporre la legge marziale. Li Peng la annunciò nelle prime ore del 20 maggio.",
+  "next": "I manifestanti bloccarono molte unità con barricate sulle strade. Deng ordinò di cominciare a usare la forza nella notte del 3 giugno; furono uccise centinaia di persone, se non di più.",
+  "stamp": "La legge marziale a Pechino",
+  "choices": [
+   "Cercare una via conciliante con il dialogo",
+   "Dichiarare la legge marziale nella capitale",
+   "Aspettare che la protesta si spenga"
+  ]
+ },
+ "1948-cominform": {
+  "place": "Belgrado",
+  "pov": "I partiti comunisti dell'Unione Sovietica e dei suoi alleati si riuniscono a Bucarest per condannare la «politica poco amichevole» del tuo partito verso l'Unione Sovietica. Il tuo partito è invitato. Sei il leader della Jugoslavia.",
+  "short": "Tito",
+  "did": "Il partito di Tito rifiutò di partecipare. Quando l'Ufficio d'informazione condannò i suoi dirigenti, il 28 giugno 1948, il partito jugoslavo respinse le critiche.",
+  "next": "La risoluzione mise il partito jugoslavo fuori dai ranghi dell'Ufficio d'informazione. Invitava gli «elementi sani» del partito a sostituire i suoi dirigenti.",
+  "stamp": "Tito sfida il Cominform",
+  "choices": [
+   "Restare lontano e respingere le accuse",
+   "Andare a Bucarest e rispondere alle accuse",
+   "Accettare le critiche e cambiare rotta"
+  ]
+ },
+ "1983-juntas-trial": {
+  "place": "Buenos Aires",
+  "pov": "Il governo militare iniziato nel 1976 è appena finito. La giunta uscente ha approvato una legge che concede l'amnistia a se stessa. Sei il nuovo presidente dell'Argentina.",
+  "short": "Alfonsín",
+  "did": "Il 13 dicembre 1983 Alfonsín firmò il Decreto 158, che ordinava un procedimento contro i nove ufficiali delle prime tre giunte. Il 29 dicembre il Congresso annullò la legge di autoamnistia.",
+  "next": "Quando un tribunale militare si rifiutò di processarli, lo fece un tribunale civile, a partire dall'aprile 1985. Videla e Massera ebbero l'ergastolo; Carlos Menem graziò poi i condannati.",
+  "stamp": "Il processo alle giunte",
+  "choices": [
+   "Rispettare l'amnistia e guardare avanti",
+   "Annullarla e processare i capi della giunta",
+   "Processare ogni ufficiale accusato di crimini"
+  ]
+ },
+ "1871-prefectures": {
+  "place": "Tokyo",
+  "pov": "Nel 1869 i signori feudali del Giappone hanno consegnato le loro terre all'imperatore, ma sopravvivono 261 domini, ancora gestiti dai vecchi signori come governatori. Sei un importante riformatore del nuovo governo giapponese.",
+  "short": "Ōkubo",
+  "did": "Nell'agosto 1871 Ōkubo, aiutato da Saigō Takamori, fece approvare a forza un editto imperiale che aboliva i domini. Al loro posto subentrarono prefetture dipendenti dal governo di Tokyo.",
+  "next": "Gli ex signori divennero una nobiltà a pensione che viveva a Tokyo, e lo Stato si accollò i debiti dei domini. Nel 1874 i loro stipendi furono trasformati in titoli di Stato.",
+  "stamp": "I domini diventano prefetture",
+  "choices": [
+   "Lasciare i signori come governatori",
+   "Abolire i domini, creare le prefetture",
+   "Eliminare gradualmente i domini in molti anni"
+  ]
+ },
+ "1999-republic-referendum": {
+  "place": "Canberra",
+  "pov": "Hai promesso un referendum se la tua convenzione avesse sostenuto con chiarezza un modello repubblicano. Ha sostenuto un presidente scelto dal Parlamento, con 73 voti contro 57 e 22 astenuti. Sei il primo ministro dell'Australia.",
+  "short": "Howard",
+  "did": "Howard sottopose il modello a un referendum il 6 novembre 1999, con un presidente nominato dai due terzi del Parlamento. Una seconda domanda proponeva un nuovo preambolo.",
+  "next": "Fu respinto: votò No il 54,87 per cento, e in nessuno Stato il Sì ebbe la maggioranza. Le richieste di un altro referendum furono ignorate dal governo Howard.",
+  "stamp": "Il voto australiano sulla repubblica",
+  "choices": [
+   "Sottoporre quel modello a un referendum",
+   "Lasciar perdere: il sostegno non era chiaro",
+   "Cercare invece un presidente eletto direttamente"
+  ]
+ },
+ "1972-nixon-china": {
+  "place": "Washington",
+  "pov": "Il tuo Paese non ha relazioni ufficiali con la Cina comunista, ma Mao dice che sarebbe lieto di parlare con te. La guerra in Vietnam si sta intensificando. Sei il presidente degli Stati Uniti.",
+  "short": "Nixon",
+  "did": "Il 15 luglio 1971 Nixon annunciò in diretta televisiva che sarebbe andato. Dal 21 al 28 febbraio 1972 visitò la Cina e incontrò Mao, il primo presidente degli Stati Uniti a farlo mentre era in carica.",
+  "next": "Nixon la chiamò «la settimana che cambiò il mondo». Gli Stati Uniti dissero che avrebbero ritirato le truppe rimaste a Taiwan, e le relazioni diplomatiche ufficiali seguirono nel 1979.",
+  "stamp": "Nixon va in Cina",
+  "choices": [
+   "Parlare solo in segreto, tramite inviati",
+   "Tenere la Cina isolata, come prima",
+   "Andare in Cina e incontrare Mao di persona"
+  ]
+ },
+ "1990-zambia-multiparty": {
+  "place": "Lusaka",
+  "pov": "Il tuo è l'unico partito legale. Dopo tre giorni di rivolte a Lusaka e un colpo di Stato fallito, l'opposizione chiede il multipartitismo. È previsto un referendum in merito. Sei il presidente dello Zambia.",
+  "short": "Kaunda",
+  "did": "Nel settembre 1990 Kaunda annullò il referendum e appoggiò le modifiche che ponevano fine al monopolio del suo partito. Portò anche le elezioni dal 1993 al 1991.",
+  "next": "Il 31 ottobre 1991 perse in modo schiacciante contro Frederick Chiluba, il cui partito vinse 125 seggi su 150. Kaunda accettò il risultato e si ritirò.",
+  "stamp": "Lo Zambia diventa multipartitico",
+  "choices": [
+   "Tenere il referendum come previsto",
+   "Annullarlo e legalizzare gli altri partiti",
+   "Rifiutare: mantenere lo Stato a partito unico"
+  ]
+ },
+ "1989-hungary-border": {
+  "place": "Budapest",
+  "pov": "Migliaia di tedeschi dell'Est sono nel tuo Paese e sperano di fuggire a Ovest attraverso l'Austria. Lasciarli andare farebbe arrabbiare la Germania Est e gli intransigenti di Mosca. Sei il primo ministro dell'Ungheria.",
+  "short": "Németh",
+  "did": "Németh disse in segreto al cancelliere della Germania Ovest, Helmut Kohl, che l'Ungheria avrebbe aperto il confine. Lo fece nella notte tra il 10 e l'11 settembre 1989, senza chiedere nulla in cambio.",
+  "next": "Più di 10.000 tedeschi dell'Est partirono attraverso l'Austria nelle prime 24 ore. Il 9 novembre furono aperti i valichi verso Berlino Ovest.",
+  "stamp": "L'Ungheria apre il confine",
+  "choices": [
+   "Rimandarli nella Germania Est",
+   "Tenere il confine chiuso per ora",
+   "Aprire il confine e lasciarli andare"
+  ]
  }
 };
   var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA["your-call"], list = D && (D.puzzles || D.questions), days = {};

@@ -64,6 +64,10 @@
 .w-panel.revealed .w-keys .ic { color: #fff; }
 .w-keys .n { font-weight: 700; }
 .w-keys .v { font-variant-numeric: tabular-nums; font-weight: 700; display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+/* 30 Oct 2026: a long slice name with long amounts (Pakistan's rupees, "141,15 Rs") ran off a 360 px phone in four languages:
+   the amounts may now go onto a second line, right-aligned; each amount itself never breaks. */
+.w-keys .v { flex-wrap: wrap; justify-content: flex-end; row-gap: 3px; }
+.w-keys .v > * { white-space: nowrap; }
 .w-keys .yours { opacity: .72; font-weight: 600; }
 .w-keys .real { font-weight: 800; }
 .w-keys .off { background: var(--miss); color: #15172B; border-radius: 7px; padding: 1px .36em 2px; font-weight: 800; font-size: 0.86rem; font-variant-numeric: tabular-nums; }
