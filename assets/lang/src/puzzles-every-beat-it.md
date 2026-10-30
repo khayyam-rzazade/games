@@ -552,10 +552,10 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 #### 79/111 · `greyhound-fastest` · day 79 (26 Dec 2026), 190 (16 Apr 2027), 301 (5 Aug 2027), 412 (24 Nov 2027) … · every 111 days
 
-- `p.every-beat.greyhound-fastest.face` — Greyhound
+- `p.every-beat.greyhound-fastest.face` — Levriero inglese
 - `p.every-beat.greyhound-fastest.label` — al massimo
-- `p.every-beat.greyhound-fastest.sentence` — Durante lo scatto, il cuore di un greyhound da corsa arriva a circa 318 battiti al minuto. Nel sonno, il suo valore più basso era in media di soli 42.
-- `p.every-beat.greyhound-fastest.note` — Greyhound da corsa in corse di 30 secondi: 318, più o meno 18 (tesi della Murdoch University, 1984). I 42 nel sonno sono solo di quella tesi. Una lezione del 2019 ripete i 318.
+- `p.every-beat.greyhound-fastest.sentence` — Durante lo scatto, il cuore di un levriero da corsa arriva a circa 318 battiti al minuto. Nel sonno, il suo valore più basso era in media di soli 42.
+- `p.every-beat.greyhound-fastest.note` — Levrieri inglesi da corsa in corse di 30 secondi: 318, più o meno 18 (tesi della Murdoch University, 1984). I 42 nel sonno sono solo di quella tesi. Una lezione del 2019 ripete i 318.
 
 #### 80/111 · `preschooler-awake` · day 80 (27 Dec 2026), 191 (17 Apr 2027), 302 (6 Aug 2027), 413 (25 Nov 2027) … · every 111 days
 
@@ -787,26 +787,28 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.every-beat.unborn-baby.face — "Bambino non ancora nato"; second option "Feto" (shorter for the card, but clinical); the card is narrow, so tell me if it wraps badly.
-- p.every-beat.shrew-peak.face — "Mustiolo"; second option "Mustiolo etrusco" (closer to the English, longer). "Mustiolo" is the name Italians actually use.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.every-beat.unborn-baby.face — "Bambino non ancora nato"; second option "Feto" (shorter for the card, but clinical); the card is narrow, so tell me if it wraps badly. **Settled 30 Oct 2026: kept.**
+- p.every-beat.shrew-peak.face — "Mustiolo"; second option "Mustiolo etrusco" (closer to the English, longer). "Mustiolo" is the name Italians actually use. **Settled 30 Oct 2026: kept.**
 - p.every-beat.bat-hibernating.sentence — "piccolo pipistrello bruno"; second option "vespertilio bruno minore". The little brown bat has no settled everyday name in Italian, so I described it.
-- p.every-beat.polar-bear-den.label — "nel sonno"; second option "addormentato". I kept "nel sonno" to match the adult asleep card.
+- p.every-beat.polar-bear-den.label — "nel sonno"; second option "addormentato". I kept "nel sonno" to match the adult asleep card. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.every-beat.chipmunk-hibernating.face — "Tamia" (and "un tamia" in the sentences, masculine as the Italian invasive-species pages write it); second option "Scoiattolo striato". "Tamia" is the zoological name, "scoiattolo striato" is what children may know; same on chipmunk-awake.
-- p.every-beat.groundhog-hibernating.face — "Marmotta americana"; second option "Marmotta monax" or "Marmotta del Canada". I could not confirm the everyday Italian name for Marmota monax with the searches.
+- p.every-beat.chipmunk-hibernating.face — "Tamia" (and "un tamia" in the sentences, masculine as the Italian invasive-species pages write it); second option "Scoiattolo striato". "Tamia" is the zoological name, "scoiattolo striato" is what children may know; same on chipmunk-awake. **Settled 30 Oct 2026: kept.**
+- p.every-beat.groundhog-hibernating.face — "Marmotta americana"; second option "Marmotta monax" or "Marmotta del Canada". I could not confirm the everyday Italian name for Marmota monax with the searches. **Settled 30 Oct 2026: kept.**
 - p.every-beat.tent-bat-flight.face — "Pipistrello costruttore di tende"; second option "Pipistrello delle tende" (shorter for the card). This bat has no settled Italian name, so it is a calque of the English.
-- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Levriero inglese" (or "Levriero"). Italians usually keep the English breed name for the racing dog.
-- p.every-beat.toddler-awake.face — "Bambino piccolo"; second option "Bimbo". There is no short Italian word for toddler; same for preschooler-awake ("Bambino in età prescolare", second option "Bimbo di 3–5 anni"), which is long for the card.
-- p.every-beat.baby-asleep.face — "Bebè"; second option "Lattante". "Neonato" was already used for the newborn card, so I chose a different word for 1 month to 1 year.
-- p.every-beat.cold-face-dive.face — "Persona in apnea"; second option "Chi trattiene il fiato". "Apneista" is already the freediver card and these are students, not trained divers.
-- p.every-beat.mussel-rest.face — "Cozza" (as on the Long Lost Cousin card); second option "Mitilo". In the note I wrote "Cozze blu (mitili)" for the blue mussel.
-- p.every-beat.marmot-hibernating.note — "Awake!" kept in English as the title of the page cited; second option "Svegliatevi!", the Italian title of the same magazine.
-- p.every-beat.chinese-goose-awake.face — "Oca cinese"; second option "Oca cigno" (the wild ancestor's name). The label is feminine ("sveglia"), as for the tufted duck and the iguana.
-- p.every-beat.pregnant-rest.face — "Futura mamma"; second option "Donna incinta".
-- p.every-beat.hawk-rest.face — "Poiana codarossa"; the picture in the note is "un'aquila di mare testabianca" (second option "aquila di mare dalla testa bianca").
-- p.every-beat.yellowfin-awake.face — "Tonno pinna gialla"; second option "Albacora" (the other Italian name).
-- p.every-beat.beluga-dive.sentence — "un beluga" (masculine, the usual form); second option "una beluga".
-- p.every-beat.humpback-rest.note — "la prima firma dello studio la definisce": the English says "its lead author" without a gender, so I used a neutral wording. “logging” is kept in English because it is the term of the study.
-- p.every-beat.maned-wolf-rest.face — "Lupo dalla criniera"; second option "Aguará" (its name in the wild).
+- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Levriero inglese" (or "Levriero"). Italians usually keep the English breed name for the racing dog. **Settled 30 Oct 2026: changed, 3 lines (greyhound-fastest.face, greyhound-fastest.sentence, greyhound-fastest.note).**
+- p.every-beat.toddler-awake.face — "Bambino piccolo"; second option "Bimbo". There is no short Italian word for toddler; same for preschooler-awake ("Bambino in età prescolare", second option "Bimbo di 3–5 anni"), which is long for the card. **Settled 30 Oct 2026: kept.**
+- p.every-beat.baby-asleep.face — "Bebè"; second option "Lattante". "Neonato" was already used for the newborn card, so I chose a different word for 1 month to 1 year. **Settled 30 Oct 2026: kept.**
+- p.every-beat.cold-face-dive.face — "Persona in apnea"; second option "Chi trattiene il fiato". "Apneista" is already the freediver card and these are students, not trained divers. **Settled 30 Oct 2026: kept.**
+- p.every-beat.mussel-rest.face — "Cozza" (as on the Long Lost Cousin card); second option "Mitilo". In the note I wrote "Cozze blu (mitili)" for the blue mussel. **Settled 30 Oct 2026: kept.**
+- p.every-beat.marmot-hibernating.note — "Awake!" kept in English as the title of the page cited; second option "Svegliatevi!", the Italian title of the same magazine. **Settled 30 Oct 2026: kept.**
+- p.every-beat.chinese-goose-awake.face — "Oca cinese"; second option "Oca cigno" (the wild ancestor's name). The label is feminine ("sveglia"), as for the tufted duck and the iguana. **Settled 30 Oct 2026: kept.**
+- p.every-beat.pregnant-rest.face — "Futura mamma"; second option "Donna incinta". **Settled 30 Oct 2026: kept.**
+- p.every-beat.hawk-rest.face — "Poiana codarossa"; the picture in the note is "un'aquila di mare testabianca" (second option "aquila di mare dalla testa bianca"). **Settled 30 Oct 2026: kept.**
+- p.every-beat.yellowfin-awake.face — "Tonno pinna gialla"; second option "Albacora" (the other Italian name). **Settled 30 Oct 2026: kept.**
+- p.every-beat.beluga-dive.sentence — "un beluga" (masculine, the usual form); second option "una beluga". **Settled 30 Oct 2026: kept.**
+- p.every-beat.humpback-rest.note — "la prima firma dello studio la definisce": the English says "its lead author" without a gender, so I used a neutral wording. “logging” is kept in English because it is the term of the study. **Settled 30 Oct 2026: kept.**
+- p.every-beat.maned-wolf-rest.face — "Lupo dalla criniera"; second option "Aguará" (its name in the wild). **Settled 30 Oct 2026: kept.**

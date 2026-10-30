@@ -293,7 +293,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "nightshades": {
-  "sign": "Patlıcangiller ailesindendirler",
+  "sign": "Patlıcangillerdendirler",
   "stamp": "Patlıcangiller",
   "fact": "Hepsi aynı bitki ailesindendir: patlıcangiller. Patates ile tütün kuzendir; tatlı patates değildir.",
   "in": [
@@ -415,11 +415,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Taykun",
+    "Tycoon",
     1
    ],
    [
-    "Kimçi",
+    "Kimchi",
     0
    ],
    [
@@ -427,7 +427,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Ketçap",
+    "Ketchup",
     0
    ],
    [
@@ -2025,17 +2025,17 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Arapçadan",
   "fact": "Her biri İngilizceye, başka diller üzerinden Arapçadan ulaştı. “Algebra” (cebir), yaklaşık 1.200 yıl önce yazılmış bir kitabın adındaki al-jabr sözcüğünden gelir.",
   "in": [
-   "Cebir",
-   "Kahve",
-   "Şeker"
+   "Algebra",
+   "Coffee",
+   "Sugar"
   ],
   "out": [
-   "Çay",
-   "Çikolata"
+   "Tea",
+   "Chocolate"
   ],
   "door": [
    [
-    "Pamuk",
+    "Cotton",
     1
    ],
    [
@@ -2043,15 +2043,15 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Kanepe",
+    "Sofa",
     1
    ],
    [
-    "Şampuan",
+    "Shampoo",
     0
    ],
    [
-    "Sıfır",
+    "Zero",
     1
    ]
   ]
@@ -2971,7 +2971,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Luge",
+    "Kızak",
     1
    ],
    [
@@ -4867,14 +4867,14 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "snakes": {
   "sign": "Yılandırlar",
   "stamp": "Yılanlar",
-  "fact": "Hepsi yılandır. Kör kertenkele bacaksız bir kertenkeledir, caecilian ise bir iki yaşamlıdır.",
+  "fact": "Hepsi yılandır. Yılan kertenkele bacaksız bir kertenkeledir, caecilian ise bir iki yaşamlıdır.",
   "in": [
    "Kobra",
    "Piton",
    "Çıngıraklı yılan"
   ],
   "out": [
-   "Kör kertenkele",
+   "Yılan kertenkele",
    "Yılan balığı"
   ],
   "door": [

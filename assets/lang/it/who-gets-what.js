@@ -1559,7 +1559,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Un litro di benzina",
   "where": "Nuova Zelanda",
   "fact": "All'inizio di settembre 2026 accise, prelievi e GST prendevano 1,16 dollari su un litro di benzina neozelandese da 2,97 dollari. Il margine rimasto per il trasporto e le stazioni di servizio era meno di 19 centesimi.",
-  "note": "La media nazionale settimanale del ministero per la benzina normale, settimana 36 del 2026 (la prima settimana di settembre), calcolata come somma delle sue parti. “Carburante” è il costo per l'importatore: l'acquisto del carburante a Singapore e il trasporto via nave. “Venditori” è il margine dell'importatore, per il trasporto, la distribuzione e le stazioni di servizio. “Carbonio” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono 77,254 centesimi di accise e prelievi, poi la GST (l'imposta sui beni e servizi) al 15%.",
+  "note": "La media nazionale settimanale del ministero per la benzina normale, settimana 36 del 2026 (la prima settimana di settembre), calcolata come somma delle sue parti. “Carburante” è il costo per l'importatore: l'acquisto del carburante a Singapore e il trasporto via nave. “Venditori” è il margine dell'importatore, per il trasporto, la distribuzione e le stazioni di servizio. “CO₂” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono 77,254 centesimi di accise e prelievi, poi la GST (l'imposta sui beni e servizi) al 15%.",
   "slices": [
    {
     "k": "barrel",
@@ -1573,7 +1573,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    },
    {
     "k": "leaf",
-    "n": "Carbonio",
+    "n": "CO₂",
     "p": 4.1
    },
    {
@@ -2033,7 +2033,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Un litro di gasolio",
   "where": "Nuova Zelanda",
   "fact": "Il gasolio neozelandese non paga nessuna accisa alla pompa, solo 0,9 centesimi al litro di prelievi e poi la GST. Le tariffe per l'uso della strada si pagano a parte e non sono nel prezzo alla pompa.",
-  "note": "La media nazionale settimanale del ministero per il gasolio, la settimana datata 9 ottobre 2026, calcolata come somma delle sue parti. “Gasolio” è il prezzo prima di tasse e carbonio: il carburante comprato a Singapore e portato via nave, e il margine dei venditori. “Carbonio” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono la GST, l'imposta sui beni e servizi (41,86 centesimi), e due piccoli prelievi (0,90 centesimi). Le tariffe per l'uso della strada non sono comprese in questo prezzo.",
+  "note": "La media nazionale settimanale del ministero per il gasolio, la settimana datata 9 ottobre 2026, calcolata come somma delle sue parti. “Gasolio” è il prezzo prima delle tasse e della CO₂: il carburante comprato a Singapore e portato via nave, e il margine dei venditori. “CO₂” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono la GST, l'imposta sui beni e servizi (41,86 centesimi), e due piccoli prelievi (0,90 centesimi). Le tariffe per l'uso della strada non sono comprese in questo prezzo.",
   "slices": [
    {
     "k": "barrel",
@@ -2042,7 +2042,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    },
    {
     "k": "leaf",
-    "n": "Carbonio",
+    "n": "CO₂",
     "p": 4.2
    },
    {

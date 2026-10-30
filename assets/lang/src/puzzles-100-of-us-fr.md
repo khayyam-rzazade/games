@@ -912,12 +912,14 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.100-of-us.home-internet.q — Sur 100 personnes dans le monde, combien utilisent Internet ? — second option: "internet" with a lower-case i, which French now accepts too; I kept the capital the Académie française long used.
-- p.100-of-us.home-city.q — Sur 100 personnes dans le monde, combien vivent en ville ? — second option: "dans une ville ou une petite ville"; "en ville" covers both the town and the city of the English and keeps the question short.
-- p.100-of-us.people-parliament.q — Sur 100 parlementaires dans le monde, combien sont des femmes ? — second option: "membres du parlement", closer to the English but heavier; the stamp reuses "parlementaires".
-- p.100-of-us.people-parliament-fra.sentence — Donc les hommes occupent environ 64 sièges sur 100 dans sa chambre basse ou unique. — second option: "dans sa chambre basse (ou son assemblée unique)"; same for every country with this sentence.
-- p.100-of-us.money-account.q — Sur 100 adultes dans le monde, combien ont un compte en banque ou un compte d’argent mobile ? — second option: "compte de mobile money", the English loan word many French sources use.
-- p.100-of-us.home-water.q — Sur 100 personnes dans le monde, combien ont de l’eau potable sûre à la maison ? — second option: "eau potable gérée en toute sécurité", the World Bank's own French, too long for a question.
-- p.100-of-us.work-women.q — Sur 100 personnes actives dans le monde, combien sont des femmes ? — second option: "personnes de la population active"; "actives" alone could also be read as "busy".
-- p.100-of-us.home-internet-mmr.q — Sur 100 personnes en Birmanie, combien utilisent Internet ? — second option: "au Myanmar", the name the country uses itself; French newspapers still mostly write Birmanie. Same for every Myanmar line.
-- p.100-of-us.home-internet-bra.stamp — au Brésil utilisent Internet — second option: "utilisent Internet au Brésil"; I kept the English order, so the stamp reads "43 / 100 au Brésil utilisent Internet". Same for all country stamps that start with the country.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.100-of-us.home-internet.q — Sur 100 personnes dans le monde, combien utilisent Internet ? — second option: "internet" with a lower-case i, which French now accepts too; I kept the capital the Académie française long used. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-city.q — Sur 100 personnes dans le monde, combien vivent en ville ? — second option: "dans une ville ou une petite ville"; "en ville" covers both the town and the city of the English and keeps the question short. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-parliament.q — Sur 100 parlementaires dans le monde, combien sont des femmes ? — second option: "membres du parlement", closer to the English but heavier; the stamp reuses "parlementaires". **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-parliament-fra.sentence — Donc les hommes occupent environ 64 sièges sur 100 dans sa chambre basse ou unique. — second option: "dans sa chambre basse (ou son assemblée unique)"; same for every country with this sentence. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.money-account.q — Sur 100 adultes dans le monde, combien ont un compte en banque ou un compte d’argent mobile ? — second option: "compte de mobile money", the English loan word many French sources use. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-water.q — Sur 100 personnes dans le monde, combien ont de l’eau potable sûre à la maison ? — second option: "eau potable gérée en toute sécurité", the World Bank's own French, too long for a question. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.work-women.q — Sur 100 personnes actives dans le monde, combien sont des femmes ? — second option: "personnes de la population active"; "actives" alone could also be read as "busy". **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-internet-mmr.q — Sur 100 personnes en Birmanie, combien utilisent Internet ? — second option: "au Myanmar", the name the country uses itself; French newspapers still mostly write Birmanie. Same for every Myanmar line. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-internet-bra.stamp — au Brésil utilisent Internet — second option: "utilisent Internet au Brésil"; I kept the English order, so the stamp reads "43 / 100 au Brésil utilisent Internet". Same for all country stamps that start with the country. **Settled 30 Oct 2026: kept.**

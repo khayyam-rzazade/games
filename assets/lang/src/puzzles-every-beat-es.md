@@ -457,7 +457,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.every-beat.marmot-hibernating.face` — Marmota alpina
 - `p.every-beat.marmot-hibernating.label` — hibernando
 - `p.every-beat.marmot-hibernating.sentence` — El corazón de una marmota alpina en hibernación late solo de tres a cinco veces por minuto, mientras se acurruca con otras bajo tierra.
-- `p.every-beat.marmot-hibernating.note` — Solo páginas populares (Wikipedia y Awake! sobre las marmotas de los Dolomitas, en Italia); no apareció ningún estudio con la cifra. En la imagen se ve el perro de las praderas de El primo perdido, de la misma familia.
+- `p.every-beat.marmot-hibernating.note` — Solo páginas populares (Wikipedia y la revista ¡Despertad! sobre las marmotas de los Dolomitas, en Italia); no apareció ningún estudio con la cifra. En la imagen se ve el perro de las praderas de El primo perdido, de la misma familia.
 
 #### 66/111 · `toddler-awake` · day 66 (13 Dec 2026), 177 (3 Apr 2027), 288 (23 Jul 2027), 399 (11 Nov 2027) … · every 111 days
 
@@ -787,27 +787,29 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.every-beat.freediver-dive.face — Apneísta. Second option: Buceador a pulmón. "Apneísta" is the usual word in Spanish news and sport; a 12-year-old may not know it, but the line under the answer explains it.
-- p.every-beat.athlete-rest.face — Atleta. Second option: Deportista. "Atleta" is the more widely understood word across Spanish-speaking countries.
-- p.every-beat.guinea-pig-rest.face — Cobaya. Second option: Conejillo de Indias. "Cobaya" is what the first batch already uses; "conejillo de Indias" is more common in Latin America.
-- p.every-beat.chicken-rest.face — Gallina. Second option: Pollo. "Gallina" for the grown bird and "Pollito" for the chick, so the two cards read as adult and young.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.every-beat.freediver-dive.face — Apneísta. Second option: Buceador a pulmón. "Apneísta" is the usual word in Spanish news and sport; a 12-year-old may not know it, but the line under the answer explains it. **Settled 30 Oct 2026: kept.**
+- p.every-beat.athlete-rest.face — Atleta. Second option: Deportista. "Atleta" is the more widely understood word across Spanish-speaking countries. **Settled 30 Oct 2026: kept.**
+- p.every-beat.guinea-pig-rest.face — Cobaya. Second option: Conejillo de Indias. "Cobaya" is what the first batch already uses; "conejillo de Indias" is more common in Latin America. **Settled 30 Oct 2026: kept.**
+- p.every-beat.chicken-rest.face — Gallina. Second option: Pollo. "Gallina" for the grown bird and "Pollito" for the chick, so the two cards read as adult and young. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.every-beat.chipmunk-hibernating.face — "Ardilla listada"; second option "Tamia" or "Ardilla rayada". "Ardilla listada" is the name most used in Latin America; "chipmunk" has no single Spanish word (same in chipmunk-awake).
-- p.every-beat.tent-bat-flight.face — "Murciélago constructor de tiendas"; second option "Murciélago orejiamarillo". The first mirrors the English and says what the bat does; the second is the name Spanish Wikipedia gives (with "murciélago de campamento"). It is long for a card.
-- p.every-beat.hawk-rest.face — "Gavilán colirrojo"; second option "Busardo colirrojo". "Gavilán colirrojo" is used in Latin America; "busardo" is Spain's name. "Halcón" is avoided because it means falcon in El primo perdido.
-- p.every-beat.groundhog-hibernating.face — "Marmota canadiense"; second option "Marmota de América del Norte". Spanish Wikipedia uses "marmota canadiense"; the word "canadiense" keeps it apart from the Alpine marmot.
-- p.every-beat.toddler-awake.face — "Niño pequeño"; second option "Niño de 1 a 3 años". Spanish has no common single word for a toddler; "niño pequeño" is natural and short.
-- p.every-beat.preschooler-awake.face — "Niño preescolar"; second option "Niño de 3 a 5 años". Same reason as the toddler.
-- p.every-beat.pregnant-rest.face — "Futura madre"; second option "Embarazada". "Futura madre" is gentler and follows "Mother-to-be"; "embarazada" is the plain word.
-- p.every-beat.cold-face-dive.face — "Persona que contiene la respiración"; second option "Apneísta". "Apneísta" is already used for the elite freediver, and these were students holding their breath, so I did not reuse it.
-- p.every-beat.cold-face-dive.label — "buceando"; second option "con la cara en el agua". Kept "buceando" to match the "diving" label of the English, even though they only dip the face.
-- p.every-beat.tufted-duck-dive.note — "un ánade azulón"; second option "un pato real". "Ánade azulón" is the standard name of the mallard; "pato real" can also mean other ducks in some countries. Same in chinese-goose-awake and tufted-duck-awake.
-- p.every-beat.tufted-duck-dive.face — "Porrón moñudo"; second option "Pato copetón". "Porrón moñudo" is the usual Spanish name of Aythya fuligula.
-- p.every-beat.buffalo-awake.note — "sujetos en un brete"; second option "sujetos en una manga de manejo". "Chute" for cattle has different names by country (brete, manga, cepo).
-- p.every-beat.marmot-hibernating.note — "Awake!"; second option "¡Despertad!". I kept the English title of the magazine because the note does not say which language edition was used.
-- p.every-beat.humpback-rest.note — "«logging» (quieta en la superficie)"; second option "«troncando»". There is no Spanish word for this whale behaviour, so the English term is kept with a short explanation.
-- p.every-beat.fin-whale-dive.face — "Rorcual común"; second option "Ballena de aleta". "Rorcual común" is the standard Spanish name.
-- p.every-beat.adelie-rest.face — "Pingüino de Adelia"; second option "Pingüino adelia". Both are used; the first follows the Spanish Wikipedia form.
-- p.every-beat.brown-bear-hibernating.note — "un grizzly"; second option "un oso pardo de Norteamérica". "Grizzly" is the word everyone knows; the face is "Oso pardo", the same species.
+- p.every-beat.chipmunk-hibernating.face — "Ardilla listada"; second option "Tamia" or "Ardilla rayada". "Ardilla listada" is the name most used in Latin America; "chipmunk" has no single Spanish word (same in chipmunk-awake). **Settled 30 Oct 2026: kept.**
+- p.every-beat.tent-bat-flight.face — "Murciélago constructor de tiendas"; second option "Murciélago orejiamarillo". The first mirrors the English and says what the bat does; the second is the name Spanish Wikipedia gives (with "murciélago de campamento"). It is long for a card. **Settled 30 Oct 2026: kept.**
+- p.every-beat.hawk-rest.face — "Gavilán colirrojo"; second option "Busardo colirrojo". "Gavilán colirrojo" is used in Latin America; "busardo" is Spain's name. "Halcón" is avoided because it means falcon in El primo perdido. **Settled 30 Oct 2026: kept.**
+- p.every-beat.groundhog-hibernating.face — "Marmota canadiense"; second option "Marmota de América del Norte". Spanish Wikipedia uses "marmota canadiense"; the word "canadiense" keeps it apart from the Alpine marmot. **Settled 30 Oct 2026: kept.**
+- p.every-beat.toddler-awake.face — "Niño pequeño"; second option "Niño de 1 a 3 años". Spanish has no common single word for a toddler; "niño pequeño" is natural and short. **Settled 30 Oct 2026: kept.**
+- p.every-beat.preschooler-awake.face — "Niño preescolar"; second option "Niño de 3 a 5 años". Same reason as the toddler. **Settled 30 Oct 2026: kept.**
+- p.every-beat.pregnant-rest.face — "Futura madre"; second option "Embarazada". "Futura madre" is gentler and follows "Mother-to-be"; "embarazada" is the plain word. **Settled 30 Oct 2026: kept.**
+- p.every-beat.cold-face-dive.face — "Persona que contiene la respiración"; second option "Apneísta". "Apneísta" is already used for the elite freediver, and these were students holding their breath, so I did not reuse it. **Settled 30 Oct 2026: kept.**
+- p.every-beat.cold-face-dive.label — "buceando"; second option "con la cara en el agua". Kept "buceando" to match the "diving" label of the English, even though they only dip the face. **Settled 30 Oct 2026: kept.**
+- p.every-beat.tufted-duck-dive.note — "un ánade azulón"; second option "un pato real". "Ánade azulón" is the standard name of the mallard; "pato real" can also mean other ducks in some countries. Same in chinese-goose-awake and tufted-duck-awake. **Settled 30 Oct 2026: kept.**
+- p.every-beat.tufted-duck-dive.face — "Porrón moñudo"; second option "Pato copetón". "Porrón moñudo" is the usual Spanish name of Aythya fuligula. **Settled 30 Oct 2026: kept.**
+- p.every-beat.buffalo-awake.note — "sujetos en un brete"; second option "sujetos en una manga de manejo". "Chute" for cattle has different names by country (brete, manga, cepo). **Settled 30 Oct 2026: kept.**
+- p.every-beat.marmot-hibernating.note — "Awake!"; second option "¡Despertad!". I kept the English title of the magazine because the note does not say which language edition was used. **Settled 30 Oct 2026: changed to “Solo páginas populares (Wikipedia y la revista ¡Despertad! sobre las marmotas de los Dolomitas, en Italia); no apareció ningún estudio con la cifra. En la imagen se ve el perro de las praderas de El primo perdido, de la misma familia.”.**
+- p.every-beat.humpback-rest.note — "«logging» (quieta en la superficie)"; second option "«troncando»". There is no Spanish word for this whale behaviour, so the English term is kept with a short explanation. **Settled 30 Oct 2026: kept.**
+- p.every-beat.fin-whale-dive.face — "Rorcual común"; second option "Ballena de aleta". "Rorcual común" is the standard Spanish name. **Settled 30 Oct 2026: kept.**
+- p.every-beat.adelie-rest.face — "Pingüino de Adelia"; second option "Pingüino adelia". Both are used; the first follows the Spanish Wikipedia form. **Settled 30 Oct 2026: kept.**
+- p.every-beat.brown-bear-hibernating.note — "un grizzly"; second option "un oso pardo de Norteamérica". "Grizzly" is the word everyone knows; the face is "Oso pardo", the same species. **Settled 30 Oct 2026: kept.**

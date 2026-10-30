@@ -48,10 +48,10 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 7/57 · `shrew-peak` · day 7 (15 Oct 2026), 64 (11 Dec 2026), 121 (6 Feb 2027), 178 (4 Apr 2027) … · every 57 days
 
-- `p.every-beat.shrew-peak.face` — Etrüsk cüce faresi
+- `p.every-beat.shrew-peak.face` — Etrüsk sivrifaresi
 - `p.every-beat.shrew-peak.label` — en hızlıyken
-- `p.every-beat.shrew-peak.sentence` — Bir memelide ölçülen en hızlı kalp: dakikada 1.511 atışla bir Etrüsk cüce faresininki, yani saniyede 25 atış.
-- `p.every-beat.shrew-peak.note` — Yaklaşık 2 gram ağırlığındaki bir cüce faresi. 1.511 en yüksek tek ölçümüydü; aynı çalışma dinlenirken yaklaşık 835 buldu (Jürgens ve ark., 1996).
+- `p.every-beat.shrew-peak.sentence` — Bir memelide ölçülen en hızlı kalp: dakikada 1.511 atışla bir Etrüsk sivrifaresininki, yani saniyede 25 atış.
+- `p.every-beat.shrew-peak.note` — Yaklaşık 2 gram ağırlığındaki bir sivrifare. 1.511 en yüksek tek ölçümüydü; aynı çalışma dinlenirken yaklaşık 835 buldu (Jürgens ve ark., 1996).
 
 #### 8/57 · `dog-rest` · day 8 (16 Oct 2026), 65 (12 Dec 2026), 122 (7 Feb 2027), 179 (5 Apr 2027) … · every 57 days
 
@@ -247,7 +247,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.every-beat.squirrel-hibernating.face` — Yer sincabı
 - `p.every-beat.squirrel-hibernating.label` — kış uykusundayken
 - `p.every-beat.squirrel-hibernating.sentence` — Kış uykusundaki bir Arktik yer sincabının kalbi dakikada yalnızca bir ila beş kez atar.
-- `p.every-beat.squirrel-hibernating.note` — Alaska'daki Arktik yer sincapları. Kaynaklar dakikada bir ila beş atış arasında değişen değerler veriyor. Resimde başka bir yer sincabı türü olan bir bozkır köpeği görünüyor.
+- `p.every-beat.squirrel-hibernating.note` — Alaska'daki Arktik yer sincapları. Kaynaklar dakikada bir ila beş atış arasında değişen değerler veriyor. Resimde başka bir yer sincabı türü olan bir çayır köpeği görünüyor.
 
 #### 36/57 · `narwhal-dive` · day 36 (13 Nov 2026), 93 (9 Jan 2027), 150 (7 Mar 2027), 207 (3 May 2027) … · every 57 days
 
@@ -307,10 +307,10 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 44/57 · `freediver-dive` · day 44 (21 Nov 2026), 101 (17 Jan 2027), 158 (15 Mar 2027), 215 (11 May 2027) … · every 57 days
 
-- `p.every-beat.freediver-dive.face` — Serbest dalıcı
+- `p.every-beat.freediver-dive.face` — Serbest dalışçı
 - `p.every-beat.freediver-dive.label` — dalarken
-- `p.every-beat.freediver-dive.sentence` — Derin bir nefes tutma dalışında seçkin bir serbest dalıcının kalbi dakikada yalnızca 11 atışa kadar yavaşlayabilir.
-- `p.every-beat.freediver-dive.note` — 107 metreye varan dalışlardaki seçkin serbest dalıcılar (McKnight ve ark., 2021). Kalpleri foklarınki ve balinalarınki kadar düştü.
+- `p.every-beat.freediver-dive.sentence` — Derin bir nefes tutma dalışında seçkin bir serbest dalışçının kalbi dakikada yalnızca 11 atışa kadar yavaşlayabilir.
+- `p.every-beat.freediver-dive.note` — 107 metreye varan dalışlardaki seçkin serbest dalışçılar (McKnight ve ark., 2021). Kalpleri foklarınki ve balinalarınki kadar düştü.
 
 #### 45/57 · `goose-flight` · day 45 (22 Nov 2026), 102 (18 Jan 2027), 159 (16 Mar 2027), 216 (12 May 2027) … · every 57 days
 
@@ -408,7 +408,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.every-beat.chipmunk-hibernating.face` — Çizgili sincap
 - `p.every-beat.chipmunk-hibernating.label` — kış uykusundayken
 - `p.every-beat.chipmunk-hibernating.sentence` — Kış uykusundaki bir çizgili sincabın kalbi dakikada yaklaşık 350 atıştan 10'un altına yavaşlar, bazen yaklaşık dört atışa kadar.
-- `p.every-beat.chipmunk-hibernating.note` — Kışın çizgili sincaplar, Ontario Parks blogundan ve Northern Woodlands dergisinden: popüler sayfalar; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+- `p.every-beat.chipmunk-hibernating.note` — Kışın çizgili sincaplar, Ontario Parks blogundan ve Northern Woodlands dergisinden: popüler sayfalar; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor.
 
 #### 59/111 · `teen-rest` · day 59 (6 Dec 2026), 170 (27 Mar 2027), 281 (16 Jul 2027), 392 (4 Nov 2027) … · every 111 days
 
@@ -457,7 +457,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.every-beat.marmot-hibernating.face` — Alp marmotu
 - `p.every-beat.marmot-hibernating.label` — kış uykusundayken
 - `p.every-beat.marmot-hibernating.sentence` — Kış uykusundaki bir Alp marmotunun kalbi, yer altında diğerleriyle birbirine sokulmuşken dakikada yalnızca üç ila beş kez atar.
-- `p.every-beat.marmot-hibernating.note` — Yalnızca popüler sayfalar (Vikipedi ve İtalya'daki Dolomitler'de yaşayan marmotlar üzerine Awake!); rakamı veren bir çalışma bulunamadı. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+- `p.every-beat.marmot-hibernating.note` — Yalnızca popüler sayfalar (Vikipedi ve İtalya'daki Dolomitler'de yaşayan marmotlar üzerine Awake!); rakamı veren bir çalışma bulunamadı. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor.
 
 #### 66/111 · `toddler-awake` · day 66 (13 Dec 2026), 177 (3 Apr 2027), 288 (23 Jul 2027), 399 (11 Nov 2027) … · every 111 days
 
@@ -471,7 +471,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.every-beat.buffalo-awake.face` — Manda
 - `p.every-beat.buffalo-awake.label` — uyanıkken
 - `p.every-beat.buffalo-awake.sentence` — Yetişkin bir mandanın kalbi dakikada yaklaşık 47 ila 57 kez atar ve manda yaşlandıkça yavaşlar.
-- `p.every-beat.buffalo-awake.note` — Veterinerlerin saymaları: Kolombiya'da yetişkinlerde 54 ila 57 (2012, bir tutma kafesinde tutulurken), Brezilya'da dört yetişkinde 47 ila 52 ortalamalar (2025). Resimde aynı aileden (Bovidae) bir inek görünüyor.
+- `p.every-beat.buffalo-awake.note` — Veterinerlerin saymaları: Kolombiya'da yetişkinlerde 54 ila 57 (2012, dar bir kafeste tutulurken), Brezilya'da dört yetişkinde 47 ila 52 ortalamalar (2025). Resimde aynı aileden (Bovidae) bir inek görünüyor.
 
 #### 68/111 · `harbour-seal-dive` · day 68 (15 Dec 2026), 179 (5 Apr 2027), 290 (25 Jul 2027), 401 (13 Nov 2027) … · every 111 days
 
@@ -506,7 +506,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.every-beat.groundhog-hibernating.face` — Marmot
 - `p.every-beat.groundhog-hibernating.label` — kış uykusundayken
 - `p.every-beat.groundhog-hibernating.sentence` — Kış uykusundaki bir marmotun kalbi dakikada yalnızca dört ya da beş atışa yavaşlar ve dakikada yalnızca bir ya da iki kez nefes alabilir.
-- `p.every-beat.groundhog-hibernating.note` — Kışın doğadaki marmotlar (woodchuck), Missouri eyaletinin yaban hayatı dergisinden ve PBS Nature'dan; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+- `p.every-beat.groundhog-hibernating.note` — Kışın doğadaki marmotlar (woodchuck), Missouri eyaletinin yaban hayatı dergisinden ve PBS Nature'dan; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor.
 
 #### 73/111 · `pregnant-rest` · day 73 (20 Dec 2026), 184 (10 Apr 2027), 295 (30 Jul 2027), 406 (18 Nov 2027) … · every 111 days
 
@@ -667,7 +667,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.every-beat.chipmunk-awake.face` — Çizgili sincap
 - `p.every-beat.chipmunk-awake.label` — uyanıkken
 - `p.every-beat.chipmunk-awake.sentence` — Uyanık bir çizgili sincabın kalbi dakikada yaklaşık 350 kez atar; kış uykusunda 15'e, hatta yaklaşık dörde düşer.
-- `p.every-beat.chipmunk-awake.note` — Popüler sayfalar: Georgia eyaletinin yaban hayatı köşesi ve bir Ontario Parks blogu; ikisi de bir çalışma belirtmiyor ya da nasıl ölçüldüğünü söylemiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor.
+- `p.every-beat.chipmunk-awake.note` — Popüler sayfalar: Georgia eyaletinin yaban hayatı köşesi ve bir Ontario Parks blogu; ikisi de bir çalışma belirtmiyor ya da nasıl ölçüldüğünü söylemiyor. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor.
 
 #### 96/111 · `hawk-rest` · day 96 (12 Jan 2027), 207 (3 May 2027), 318 (22 Aug 2027), 429 (11 Dec 2027) … · every 111 days
 
@@ -736,7 +736,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.every-beat.platypus-surface.face` — Ornitorenk
 - `p.every-beat.platypus-surface.label` — yüzeyde
-- `p.every-beat.platypus-surface.sentence` — Dalıştan önce yüzeyde bir ornitorenkin kalbi dakikada 140 ila 230 kez atar; su altında 10'a düşebilir.
+- `p.every-beat.platypus-surface.sentence` — Dalıştan önce yüzeyde bir ornitorengin kalbi dakikada 140 ila 230 kez atar; su altında 10'a düşebilir.
 - `p.every-beat.platypus-surface.note` — Esarete alınıp bir laboratuvarda dalan yabani ornitorenkler (Evans ve ark., 1994); iki kaynak da bu tek çalışmayı aktarıyor.
 
 #### 106/111 · `ferret-rest` · day 106 (22 Jan 2027), 217 (13 May 2027), 328 (1 Sep 2027), 439 (21 Dec 2027) … · every 111 days
@@ -787,32 +787,34 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.every-beat.hummingbird-torpor.sentence — "…bir tür kısa kış uykusu olan torpora girer…" · second option: "…bir tür derin uykuya, yani uyuşukluğa girer…" · I found no Turkish source that explains torpor to children; "torpor" is kept because the label on the earlier bat puzzle uses "derin dinlenmede" for it.
-- p.every-beat.goose-flight.face — Hint kazı · second option: Çizgili kaz · I could not confirm the common Turkish name of the bar-headed goose from a native source; Hint kazı follows the species name (Anser indicus).
-- p.every-beat.orca-dive.face — Orka · second option: Katil balina · "katil" means killer, so I chose Orka (also used in Turkish) to keep it free of anything negative.
-- p.every-beat.shrew-peak.face — Etrüsk cüce faresi · second option: Etrüsk sivri faresi · the first is how a Turkish news page names the animal; the second is closer to the scientific name.
-- p.every-beat.tuna-awake.face — Orkinos · second option: Mavi yüzgeçli ton balığı · "orkinos" is the everyday Turkish word for bluefin tuna; the two sources are about Pacific bluefin, written "Pasifik orkinosu" in the note.
-- p.every-beat.freediver-dive.face — Serbest dalıcı · second option: Serbest dalış sporcusu · shorter, and the label already says "dalarken".
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.every-beat.hummingbird-torpor.sentence — "…bir tür kısa kış uykusu olan torpora girer…" · second option: "…bir tür derin uykuya, yani uyuşukluğa girer…" · I found no Turkish source that explains torpor to children; "torpor" is kept because the label on the earlier bat puzzle uses "derin dinlenmede" for it. **Settled 30 Oct 2026: kept.**
+- p.every-beat.goose-flight.face — Hint kazı · second option: Çizgili kaz · I could not confirm the common Turkish name of the bar-headed goose from a native source; Hint kazı follows the species name (Anser indicus). **Settled 30 Oct 2026: kept.**
+- p.every-beat.orca-dive.face — Orka · second option: Katil balina · "katil" means killer, so I chose Orka (also used in Turkish) to keep it free of anything negative. **Settled 30 Oct 2026: kept.**
+- p.every-beat.shrew-peak.face — Etrüsk cüce faresi · second option: Etrüsk sivri faresi · the first is how a Turkish news page names the animal; the second is closer to the scientific name. **Settled 30 Oct 2026: changed, 4 lines (shrew-peak.face, shrew-peak.sentence, shrew-peak.note, etruscan-shrew).**
+- p.every-beat.tuna-awake.face — Orkinos · second option: Mavi yüzgeçli ton balığı · "orkinos" is the everyday Turkish word for bluefin tuna; the two sources are about Pacific bluefin, written "Pasifik orkinosu" in the note. **Settled 30 Oct 2026: kept.**
+- p.every-beat.freediver-dive.face — Serbest dalıcı · second option: Serbest dalış sporcusu · shorter, and the label already says "dalarken". **Settled 30 Oct 2026: changed, 3 lines (freediver-dive.face, freediver-dive.sentence, freediver-dive.note).**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.every-beat.chipmunk-hibernating.face — "Çizgili sincap"; second option "Yer sincabı". Chipmunk has no everyday Turkish word; "yer sincabı" is already used for the Arctic ground squirrel, so I kept them apart.
-- p.every-beat.groundhog-hibernating.face — "Marmot"; second option "Amerikan marmotu". Turkish news says "Marmot Günü" for Groundhog Day, so "marmot" is the plain word, but it is close to "Alp marmotu" (marmot-hibernating).
-- p.every-beat.marmot-hibernating.face — "Alp marmotu"; second option "Alp dağ sıçanı". I found no everyday Turkish name; "marmot" is the word used in the press.
-- p.every-beat.toddler-awake.face — "Yeni yürüyen çocuk"; second option "Yürümeye başlayan çocuk". Toddler (1 to 3 years) has no short Turkish word; the longer one is more exact. Also used in preschooler-awake.sentence.
-- p.every-beat.teen-rest.face — "Ergen"; second option "Genç". Ergen (adolescent) is exact for 13 to 17; "genç" is warmer but also covers people in their twenties.
-- p.every-beat.preschooler-awake.face — "Okul öncesi çocuk"; second option "Anaokulu çocuğu". English "Preschooler" for ages 3 to 5.
-- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Tazı". Turkish "tazı" is a different native breed, so I kept the English breed name.
-- p.every-beat.tent-bat-flight.face — "Çadır yapan yarasa"; second option "Çadırcı yarasa". Literal translation of the common name; no Turkish source found.
-- p.every-beat.ferret-rest.face — "Evcil gelincik" (changed when merging, to match the name the site already uses for the ferret in Altitude's questions and The Club); second option "Ferret", which pet owners say; the stoat in the note is "kakım" (second option "ermin").
-- p.every-beat.fin-whale-dive.face — "Fin balinası"; second option "Yüzgeçli balina". Fin balinası is the usual encyclopedic name.
-- p.every-beat.yellowfin-awake.face — "Sarı yüzgeçli ton balığı"; second option "Sarı yüzgeçli orkinos". The site's tuna puzzle uses "Orkinos" for the bluefin; the picture line says "mavi yüzgeçli orkinos".
-- p.every-beat.hawk-rest.face — "Kızıl kuyruklu şahin"; second option "Kırmızı kuyruklu şahin". Şahin is the hawk (doğan is the falcon in Long Lost Cousin).
-- p.every-beat.harbour-seal-dive.face — "Adi fok"; second option "Liman foku". "Adi fok" is the Turkish name of Phoca vitulina; "liman foku" would be a literal copy of the English.
-- p.every-beat.tufted-duck-dive.face — "Tepeli patka"; second option "Tepeli ördek". Tepeli patka is the name in Turkish bird lists; the mallard in the picture line is "yeşilbaş ördek".
-- p.every-beat.chinese-goose-awake.face — "Çin kazı"; second option "Kuğu gagalı kaz". Çin kazı is the usual name of the domestic swan goose.
-- p.every-beat.cold-face-dive.face — "Nefes tutan kişi"; second option "Nefes tutucu". English "Breath-holder"; the longer form reads more naturally.
-- p.every-beat.adelie-rest.face — "Adélie pengueni"; second option "Adelie pengueni". I kept the accent of the English; Turkish pages often drop it.
-- p.every-beat.chipmunk-hibernating.note — "Kayıp Kuzen'deki bozkır köpeği"; second option "Kayıp Kuzen oyunundaki bozkır köpeği". "Kayıp Kuzen" is the Turkish title of Long Lost Cousin on the site. Same line in marmot-hibernating, groundhog-hibernating, chipmunk-awake and tufted-duck-dive (duck).
-- p.every-beat.hummingbird-awake.note — "Torpor halinde olmayan"; second option "Derin dinlenmede olmayan". English "not torpid"; the older puzzles use "derin dinlenmede" as the label for torpor.
-- p.every-beat.buffalo-awake.note — "bir tutma kafesinde tutulurken"; second option "bir sıkıştırma kafesinde". English "held in a chute" (a narrow cattle-handling pen); no everyday Turkish word.
+- p.every-beat.chipmunk-hibernating.face — "Çizgili sincap"; second option "Yer sincabı". Chipmunk has no everyday Turkish word; "yer sincabı" is already used for the Arctic ground squirrel, so I kept them apart. **Settled 30 Oct 2026: kept.**
+- p.every-beat.groundhog-hibernating.face — "Marmot"; second option "Amerikan marmotu". Turkish news says "Marmot Günü" for Groundhog Day, so "marmot" is the plain word, but it is close to "Alp marmotu" (marmot-hibernating). **Settled 30 Oct 2026: kept.**
+- p.every-beat.marmot-hibernating.face — "Alp marmotu"; second option "Alp dağ sıçanı". I found no everyday Turkish name; "marmot" is the word used in the press. **Settled 30 Oct 2026: kept.**
+- p.every-beat.toddler-awake.face — "Yeni yürüyen çocuk"; second option "Yürümeye başlayan çocuk". Toddler (1 to 3 years) has no short Turkish word; the longer one is more exact. Also used in preschooler-awake.sentence. **Settled 30 Oct 2026: kept.**
+- p.every-beat.teen-rest.face — "Ergen"; second option "Genç". Ergen (adolescent) is exact for 13 to 17; "genç" is warmer but also covers people in their twenties. **Settled 30 Oct 2026: kept.**
+- p.every-beat.preschooler-awake.face — "Okul öncesi çocuk"; second option "Anaokulu çocuğu". English "Preschooler" for ages 3 to 5. **Settled 30 Oct 2026: kept.**
+- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Tazı". Turkish "tazı" is a different native breed, so I kept the English breed name. **Settled 30 Oct 2026: kept.**
+- p.every-beat.tent-bat-flight.face — "Çadır yapan yarasa"; second option "Çadırcı yarasa". Literal translation of the common name; no Turkish source found. **Settled 30 Oct 2026: kept.**
+- p.every-beat.ferret-rest.face — "Evcil gelincik" (changed when merging, to match the name the site already uses for the ferret in Altitude's questions and The Club); second option "Ferret", which pet owners say; the stoat in the note is "kakım" (second option "ermin"). **Settled 30 Oct 2026: kept.**
+- p.every-beat.fin-whale-dive.face — "Fin balinası"; second option "Yüzgeçli balina". Fin balinası is the usual encyclopedic name. **Settled 30 Oct 2026: kept.**
+- p.every-beat.yellowfin-awake.face — "Sarı yüzgeçli ton balığı"; second option "Sarı yüzgeçli orkinos". The site's tuna puzzle uses "Orkinos" for the bluefin; the picture line says "mavi yüzgeçli orkinos". **Settled 30 Oct 2026: kept.**
+- p.every-beat.hawk-rest.face — "Kızıl kuyruklu şahin"; second option "Kırmızı kuyruklu şahin". Şahin is the hawk (doğan is the falcon in Long Lost Cousin). **Settled 30 Oct 2026: kept.**
+- p.every-beat.harbour-seal-dive.face — "Adi fok"; second option "Liman foku". "Adi fok" is the Turkish name of Phoca vitulina; "liman foku" would be a literal copy of the English. **Settled 30 Oct 2026: kept.**
+- p.every-beat.tufted-duck-dive.face — "Tepeli patka"; second option "Tepeli ördek". Tepeli patka is the name in Turkish bird lists; the mallard in the picture line is "yeşilbaş ördek". **Settled 30 Oct 2026: kept.**
+- p.every-beat.chinese-goose-awake.face — "Çin kazı"; second option "Kuğu gagalı kaz". Çin kazı is the usual name of the domestic swan goose. **Settled 30 Oct 2026: kept.**
+- p.every-beat.cold-face-dive.face — "Nefes tutan kişi"; second option "Nefes tutucu". English "Breath-holder"; the longer form reads more naturally. **Settled 30 Oct 2026: kept.**
+- p.every-beat.adelie-rest.face — "Adélie pengueni"; second option "Adelie pengueni". I kept the accent of the English; Turkish pages often drop it. **Settled 30 Oct 2026: kept.**
+- p.every-beat.chipmunk-hibernating.note — "Kayıp Kuzen'deki bozkır köpeği"; second option "Kayıp Kuzen oyunundaki bozkır köpeği". "Kayıp Kuzen" is the Turkish title of Long Lost Cousin on the site. Same line in marmot-hibernating, groundhog-hibernating, chipmunk-awake and tufted-duck-dive (duck). **Settled 30 Oct 2026: changed, 5 lines (chipmunk-hibernating.note, marmot-hibernating.note, groundhog-hibernating.note, chipmunk-awake.note, squirrel-hibernating.note).**
+- p.every-beat.hummingbird-awake.note — "Torpor halinde olmayan"; second option "Derin dinlenmede olmayan". English "not torpid"; the older puzzles use "derin dinlenmede" as the label for torpor. **Settled 30 Oct 2026: kept.**
+- p.every-beat.buffalo-awake.note — "bir tutma kafesinde tutulurken"; second option "bir sıkıştırma kafesinde". English "held in a chute" (a narrow cattle-handling pen); no everyday Turkish word. **Settled 30 Oct 2026: changed to “Veterinerlerin saymaları: Kolombiya'da yetişkinlerde 54 ila 57 (2012, dar bir kafeste tutulurken), Brezilya'da dört yetişkinde 47 ila 52 ortalamalar (2025). Resimde aynı aileden (Bovidae) bir inek görünüyor.”.**

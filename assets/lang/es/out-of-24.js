@@ -475,7 +475,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    },
    {
     "i": "people",
-    "t": "padres de niños menores de 6 años"
+    "t": "hombres con hijos menores de 6 años"
    }
   ]
  },

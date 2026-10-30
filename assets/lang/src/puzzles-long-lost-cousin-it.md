@@ -1102,16 +1102,18 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.long-lost-cousin.thing.chicken.name — "Pollo" (il pollo, del pollo) — second option: "Gallina" — Italians say "il pollo" for the bird in popular science ("il pollo è il parente del T. rex"), "gallina" is the hen only.
-- p.long-lost-cousin.thing.horseshoe_crab.name — "Granchio a ferro di cavallo" — second option: "Limulo" — the first keeps the English trap (a name with "crab" in it); the fact says "I limuli, chiamati anche granchi a ferro di cavallo, non sono granchi".
-- p.long-lost-cousin.thing.lobster.name — "Aragosta" — second option: "Astice" — "astice" is the true lobster, but "aragosta" is the word a 12-year-old knows.
-- p.long-lost-cousin.thing.snail.name — "Chiocciola" (and slug = "Limaccia") — second option: "Lumaca" for the snail — in everyday Italian "lumaca" covers both; I split them so that the name of the slug does not hint at the snail.
-- p.long-lost-cousin.thing.beetle.name — "Coleottero" — second option: "Scarabeo" — "scarabeo" is more child-friendly but means the scarab.
-- p.long-lost-cousin.thing.barnacle.name — "Balano" — second option: "Anatifa" — "balano" is the acorn barnacle on rocks, "anatifa" the goose barnacle; the fact speaks of animals on rocks.
-- p.long-lost-cousin.thing.shrimp.name — "Gambero" — second option: "Gamberetto" — "gambero" is the everyday word, though a "gamberetto" is the small one.
-- p.long-lost-cousin.thing.apple.name — "Mela" — second option: "Melo" — the English card says "Apple" and the facts mix the fruit ("Apples are flowering plants") and the tree ("the apple tree"); I wrote "melo" where the English says "apple tree".
-- p.long-lost-cousin.thing.human.name — "Essere umano" — second option: "Uomo" — "uomo" can also mean "man", so I used the longer form.
-- p.long-lost-cousin.thing.hyrax.name — "Procavia" — second option: "Irace" — both are used for the animal in Italian.
-- p.long-lost-cousin.housefly.fact — "La libellula non è una mosca (in inglese si chiama «dragonfly», «mosca drago») e non ha lo stadio di pupa." — second option: "La libellula non è parente stretta della mosca e non ha lo stadio di pupa." — the English says "Despite its name, the dragonfly is not a fly", but in Italian "libellula" has no "fly" in it, so I explained the English name.
-- p.long-lost-cousin.aardvark.fact — "… elefanti, sirenii e procavie …" (and in elephant.fact, manatee.fact, hyrax.fact) — second option: "mucche marine" for "sea cows" — "sirenii" is the correct group name, "mucche marine" is friendlier but not an Italian term.
-- p.long-lost-cousin.duck.fact — "gli anseriformi (come le anatre) e i galliformi (come i polli)" — second option: "uccelli acquatici e uccelli terricoli" — English "waterfowl / landfowl" has no good Italian pair, and "uccelli acquatici" is already used for "waterbirds" in other facts.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.long-lost-cousin.thing.chicken.name — "Pollo" (il pollo, del pollo) — second option: "Gallina" — Italians say "il pollo" for the bird in popular science ("il pollo è il parente del T. rex"), "gallina" is the hen only. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.horseshoe_crab.name — "Granchio a ferro di cavallo" — second option: "Limulo" — the first keeps the English trap (a name with "crab" in it); the fact says "I limuli, chiamati anche granchi a ferro di cavallo, non sono granchi". **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.lobster.name — "Aragosta" — second option: "Astice" — "astice" is the true lobster, but "aragosta" is the word a 12-year-old knows. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.snail.name — "Chiocciola" (and slug = "Limaccia") — second option: "Lumaca" for the snail — in everyday Italian "lumaca" covers both; I split them so that the name of the slug does not hint at the snail. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.beetle.name — "Coleottero" — second option: "Scarabeo" — "scarabeo" is more child-friendly but means the scarab. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.barnacle.name — "Balano" — second option: "Anatifa" — "balano" is the acorn barnacle on rocks, "anatifa" the goose barnacle; the fact speaks of animals on rocks. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.shrimp.name — "Gambero" — second option: "Gamberetto" — "gambero" is the everyday word, though a "gamberetto" is the small one. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.apple.name — "Mela" — second option: "Melo" — the English card says "Apple" and the facts mix the fruit ("Apples are flowering plants") and the tree ("the apple tree"); I wrote "melo" where the English says "apple tree". **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.human.name — "Essere umano" — second option: "Uomo" — "uomo" can also mean "man", so I used the longer form. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.hyrax.name — "Procavia" — second option: "Irace" — both are used for the animal in Italian. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.housefly.fact — "La libellula non è una mosca (in inglese si chiama «dragonfly», «mosca drago») e non ha lo stadio di pupa." — second option: "La libellula non è parente stretta della mosca e non ha lo stadio di pupa." — the English says "Despite its name, the dragonfly is not a fly", but in Italian "libellula" has no "fly" in it, so I explained the English name. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.aardvark.fact — "… elefanti, sirenii e procavie …" (and in elephant.fact, manatee.fact, hyrax.fact) — second option: "mucche marine" for "sea cows" — "sirenii" is the correct group name, "mucche marine" is friendlier but not an Italian term. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.duck.fact — "gli anseriformi (come le anatre) e i galliformi (come i polli)" — second option: "uccelli acquatici e uccelli terricoli" — English "waterfowl / landfowl" has no good Italian pair, and "uccelli acquatici" is already used for "waterbirds" in other facts. **Settled 30 Oct 2026: kept.**

@@ -31,7 +31,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 #### 3/90 · `1963-sweden` · day 3 (5 Oct 2026), 93 (3 Jan 2027), 183 (3 Apr 2027), 273 (2 Jul 2027) … · every 90 days
 
 - `p.your-call.1963-sweden.place` — Stockholm
-- `p.your-call.1963-sweden.pov` — Ülken trafikte soldan gidiyor ama bütün komşuların sağdan gidiyor. Bir halk oylamasında yüzde 83, soldan gitmeye devam etmekten yana oy kullandı. Sen İsveç'in başbakanısın.
+- `p.your-call.1963-sweden.pov` — Ülken trafikte soldan gidiyor ama bütün komşuların sağdan gidiyor. Bir halk oylamasında oyların yüzde 83'ü soldan gitmeye devam etmekten yana çıktı. Sen İsveç'in başbakanısın.
 - `p.your-call.1963-sweden.choice1` — Oylamaya saygı göster ve soldan devam et
 - `p.your-call.1963-sweden.choice2` — Yine de sağa geç
 - `p.your-call.1963-sweden.choice3` — İkinci bir halk oylaması yap
@@ -691,7 +691,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 58/90 · `1991-semipalatinsk` · day 58 (29 Nov 2026), 148 (27 Feb 2027), 238 (28 May 2027), 328 (26 Aug 2027) … · every 90 days
 
-- `p.your-call.1991-semipalatinsk.place` — Almatı
+- `p.your-call.1991-semipalatinsk.place` — Alma-Ata
 - `p.your-call.1991-semipalatinsk.pov` — 1949'dan 1989'a kadar Sovyetler Birliği senin cumhuriyetinde 450'den fazla nükleer patlama yaptı ve serpinti 1,5 milyon kişiyi etkiledi. Test alanı hâlâ açık. Sen Kazakistan'ın cumhurbaşkanısın.
 - `p.your-call.1991-semipalatinsk.choice1` — Test alanını sonsuza dek kapat
 - `p.your-call.1991-semipalatinsk.choice2` — Kararı Moskova'ya bırak
@@ -1265,7 +1265,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.your-call.2003-congestion-charge.short` — Livingstone
 - `p.your-call.2003-congestion-charge.did` — Livingstone, Londra'nın merkezine araçla girenleri hafta içi 07.00 ile 18.30 arasında 5 sterlin ödemeye zorladı. Ücret 17 Şubat 2003'te başladı.
 - `p.your-call.2003-congestion-charge.next` — İlk haftada trafik yüzde 25 azaldı ve otobüsler tarifenin önünde gitti. Paris'in belediye başkanı, uygulamayı incelemek için Londra'yı ziyaret etmeyi ayarladı.
-- `p.your-call.2003-congestion-charge.stamp` — Londra'nın tıkanıklık ücreti
+- `p.your-call.2003-congestion-charge.stamp` — Londra'nın trafik sıkışıklığı ücreti
 
 #### 106/168 · `1631-taj-mahal` · day 106 (16 Jan 2027), 274 (3 Jul 2027), 442 (18 Dec 2027), 610 (3 Jun 2028) … · every 168 days
 
@@ -1370,10 +1370,10 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.your-call.1971-7-march.choice1` — Pakistan'dan bağımsızlığı hemen ilan et
 - `p.your-call.1971-7-march.choice2` — Mücadele için toplan ama bağımsızlık ilan etme
 - `p.your-call.1971-7-march.choice3` — Protestoları durdur ve görüşmeleri bekle
-- `p.your-call.1971-7-march.short` — Mücibür Rahman
-- `p.your-call.1971-7-march.did` — 7 Mart 1971'de Dakka'da bir milyondan fazla insanın önünde Mücibür Rahman, bu seferki mücadelenin bağımsızlık için olduğunu söyledi. Ama doğrudan bir bağımsızlık ilanında bulunmadı ve sıkıyönetimin sona ermesi gibi şartlar öne sürdü.
-- `p.your-call.1971-7-march.next` — 25 Mart 1971'de Pakistan ordusu Searchlight Harekâtı'nı başlattı ve Mücibür Rahman'ı tutukladı; Kurtuluş Savaşı bunu izledi.
-- `p.your-call.1971-7-march.stamp` — Mücibür Rahman'ın 7 Mart konuşması
+- `p.your-call.1971-7-march.short` — Mucibur Rahman
+- `p.your-call.1971-7-march.did` — 7 Mart 1971'de Dakka'da bir milyondan fazla insanın önünde Mucibur Rahman, bu seferki mücadelenin bağımsızlık için olduğunu söyledi. Ama doğrudan bir bağımsızlık ilanında bulunmadı ve sıkıyönetimin sona ermesi gibi şartlar öne sürdü.
+- `p.your-call.1971-7-march.next` — 25 Mart 1971'de Pakistan ordusu Searchlight Harekâtı'nı başlattı ve Mucibur Rahman'ı tutukladı; Kurtuluş Savaşı bunu izledi.
+- `p.your-call.1971-7-march.stamp` — Mucibur Rahman'ın 7 Mart konuşması
 
 #### 115/168 · `1860-teano` · day 115 (25 Jan 2027), 283 (12 Jul 2027), 451 (27 Dec 2027), 619 (12 Jun 2028) … · every 168 days
 
@@ -2026,39 +2026,41 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.your-call.1443-hangul.next — "…bugün Hangıl denen bu alfabeyi…" · second option: "…bugün Hangul denen bu alfabeyi…" · Ankara University's course page writes Hangıl; many Turkish learner sites write Hangul.
-- p.your-call.1940-visas.next — "Sugihara'yı “Uluslar Arasında Adil” ilan etti" · second option: "Sugihara'yı “Dünya Milletleri Arasında Âdil” olarak onurlandırdı" · Turkish has no single fixed form of "Righteous Among the Nations"; I chose the shorter, plainer one.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.your-call.1443-hangul.next — "…bugün Hangıl denen bu alfabeyi…" · second option: "…bugün Hangul denen bu alfabeyi…" · Ankara University's course page writes Hangıl; many Turkish learner sites write Hangul. **Settled 30 Oct 2026: kept.**
+- p.your-call.1940-visas.next — "Sugihara'yı “Uluslar Arasında Adil” ilan etti" · second option: "Sugihara'yı “Dünya Milletleri Arasında Âdil” olarak onurlandırdı" · Turkish has no single fixed form of "Righteous Among the Nations"; I chose the shorter, plainer one. **Settled 30 Oct 2026: kept.**
 - p.your-call.1974-pardon.next — "2001'de bu af nedeniyle Profile in Courage Ödülü'nü aldı." · second option: "…Cesaret Portresi Ödülü'nü aldı." · the award's English name is usually kept; no settled Turkish name.
-- p.your-call.1077-canossa.short — Heinrich · second option: Henry · the king is German, so Turkish history books use the German name (IV. Heinrich); the English doc has "Henry".
-- p.your-call.1534-supremacy.short — Henry · second option: VIII. Henry · I kept the bare name as in the English short; the stamp carries "VIII. Henry".
-- p.your-call.1854-japan.did — "Kanagava Antlaşması… Şimoda ve Hakodate" · second option: "Kanagawa Antlaşması… Shimoda ve Hakodate" · I used the Turkish spellings of Japanese names (Kanagava, Şimoda) as Turkish encyclopedias do.
-- p.your-call.1938-oil.place — Meksiko · second option: Mexico City · Meksiko is the Turkish name of the city, but "Mexico City" is also written as it is.
-- p.your-call.1991-semipalatinsk.place — Almatı · second option: Alma-Ata · Almatı is today's Turkish name; in 1991 it was still Alma-Ata.
-- p.your-call.1956-suez.choice2 — Kanal şirketini millîleştir · second option: Kanal şirketini devletleştir · both are used for "nationalise"; millîleştir is the word Turkish pages use for the Suez Canal.
-- p.your-call.1893-nz-vote.pov — "On sekiz üst meclis üyesi" · second option: "On sekiz Yasama Konseyi üyesi" · the English says "councillors" of the upper house; I used the plain description.
-- p.your-call.1938-munich.pov — Südetler · second option: Sudetenland · Südetler is the Turkish name of the region; some pages keep the German name.
-- p.your-call.1963-sweden.pov — "Bir halk oylamasında yüzde 83, soldan gitmeye devam etmekten yana oy kullandı." · second option: "Bir halk oylamasında oyların yüzde 83'ü soldan gitmekten yana çıktı." · the English has "83 percent voted"; I kept the shorter form.
+- p.your-call.1077-canossa.short — Heinrich · second option: Henry · the king is German, so Turkish history books use the German name (IV. Heinrich); the English doc has "Henry". **Settled 30 Oct 2026: kept.**
+- p.your-call.1534-supremacy.short — Henry · second option: VIII. Henry · I kept the bare name as in the English short; the stamp carries "VIII. Henry". **Settled 30 Oct 2026: kept.**
+- p.your-call.1854-japan.did — "Kanagava Antlaşması… Şimoda ve Hakodate" · second option: "Kanagawa Antlaşması… Shimoda ve Hakodate" · I used the Turkish spellings of Japanese names (Kanagava, Şimoda) as Turkish encyclopedias do. **Settled 30 Oct 2026: kept.**
+- p.your-call.1938-oil.place — Meksiko · second option: Mexico City · Meksiko is the Turkish name of the city, but "Mexico City" is also written as it is. **Settled 30 Oct 2026: kept.**
+- p.your-call.1991-semipalatinsk.place — Almatı · second option: Alma-Ata · Almatı is today's Turkish name; in 1991 it was still Alma-Ata. **Settled 30 Oct 2026: changed to “Alma-Ata”.**
+- p.your-call.1956-suez.choice2 — Kanal şirketini millîleştir · second option: Kanal şirketini devletleştir · both are used for "nationalise"; millîleştir is the word Turkish pages use for the Suez Canal. **Settled 30 Oct 2026: kept.**
+- p.your-call.1893-nz-vote.pov — "On sekiz üst meclis üyesi" · second option: "On sekiz Yasama Konseyi üyesi" · the English says "councillors" of the upper house; I used the plain description. **Settled 30 Oct 2026: kept.**
+- p.your-call.1938-munich.pov — Südetler · second option: Sudetenland · Südetler is the Turkish name of the region; some pages keep the German name. **Settled 30 Oct 2026: kept.**
+- p.your-call.1963-sweden.pov — "Bir halk oylamasında yüzde 83, soldan gitmeye devam etmekten yana oy kullandı." · second option: "Bir halk oylamasında oyların yüzde 83'ü soldan gitmekten yana çıktı." · the English has "83 percent voted"; I kept the shorter form. **Settled 30 Oct 2026: changed to “Ülken trafikte soldan gidiyor ama bütün komşuların sağdan gidiyor. Bir halk oylamasında oyların yüzde 83'ü soldan gitmeye devam etmekten yana çıktı. Sen İsveç'in başbakanısın.”.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.your-call.1564-jizya.pov — "…bir racanın kızıyla evlendin."; second option "…bir Hint prensinin kızıyla evlendin." "Raca" is the Turkish dictionary form but rarely seen; "prens" is not exactly a raja. Ekber, Babür, Evrengzib, Şah Cihan, Aşoka, Tac Mahal follow The Club's file.
-- p.your-call.1971-7-march.short — "Mücibür Rahman"; second option "Mujib". Turkish sources write the full name; the English short is the nickname.
+- p.your-call.1564-jizya.pov — "…bir racanın kızıyla evlendin."; second option "…bir Hint prensinin kızıyla evlendin." "Raca" is the Turkish dictionary form but rarely seen; "prens" is not exactly a raja. Ekber, Babür, Evrengzib, Şah Cihan, Aşoka, Tac Mahal follow The Club's file. **Settled 30 Oct 2026: kept.**
+- p.your-call.1971-7-march.short — "Mücibür Rahman"; second option "Mujib". Turkish sources write the full name; the English short is the nickname. **Settled 30 Oct 2026: changed, 4 lines (1971-7-march.short, 1971-7-march.did, 1971-7-march.next, 1971-7-march.stamp).**
 - p.your-call.1971-7-march.pov — "Sen Awami Ligi'nin liderisin."; second option "Sen Avami Birliği'nin liderisin." No settled Turkish form for the party's name.
-- p.your-call.1593-saint-denis.short — "Henri" (stamp "IV. Henri Katolik oluyor"); second option "Henry". He is the French king, so Turkish history books write Henri; the English short is "Henry".
-- p.your-call.1810-cry-of-dolores.stamp — "Dolores Çağrısı"; second option "Dolores Feryadı" (or "Grito de Dolores"). The event has no single fixed Turkish name.
-- p.your-call.1492-columbus.did — "Santa Fe Anlaşması'nı imzaladı"; second option "Santa Fe Kapitülasyonları'nı imzaladı". Capitulaciones is the Spanish term; I chose the plainer word for a 12-year-old.
-- p.your-call.1862-emancipation.stamp — "Özgürlük Bildirgesi"; second option "Kölelerin Özgürlüğü Bildirgesi". Turkish uses several names for the Emancipation Proclamation; "bildiri/bildirge" is also mixed in the other lines.
-- p.your-call.1639-sakoku.pov — "Şimabara'da… Nagasaki'deki Dejima"; second option "Shimabara'da… Deşima". I spelled Japanese names the Turkish way as the file does (Şimoda, Kanagava), but Dejima is mostly written Dejima; İemitsu has a dotted İ.
-- p.your-call.1871-prefectures.choice2 — "Derebeyliklerini kaldır, prefektörlükler kur"; second option "…illeri kur". "Derebeyi" for daimyo and "prefektörlük" for prefecture are the usual Turkish words; macrons dropped in Okubo and Saigo Takamori.
-- p.your-call.1990-batmonkh.short — "Batmönkh"; second option "Batmönh". Place "Ulan Batur" and "Sühbatar Meydanı" are my Turkish spellings; the Mongolian names have no fixed Turkish form.
-- p.your-call.1981-juan-carlos.pov — "Silahlı 200 Guardia Civil görevlisi"; second option "Silahlı 200 Sivil Muhafız". The Spanish name is the one the press uses; "Ordu Kaptan Generali" in did is a literal rank name, kept short.
-- p.your-call.2000-zedillo-concedes.place — Meksiko; second option "Mexico City". Same choice as the older 1938-oil line; Meksiko is the Turkish name of the city.
-- p.your-call.1977-canal-treaties.place — Panama; second option "Panama Şehri". The English says "Panama City"; in Turkish the bare name is normal and matches the country.
-- p.your-call.1983-rigueur.choice1 — "Avrupa Para Sistemi'nden çık ve harcamaya devam et"; second option "EMS'den çık ve harcamaya devam et". The English shortens it to "EMS"; I wrote the full name because the abbreviation means nothing in Turkish.
-- p.your-call.2001-argentina-default.next — "…şimdiye kadar yaptığı en büyük borç ödememe olarak anıldı."; second option "…en büyük temerrüt olarak anıldı." "Temerrüt" is the exact word but too hard for a 12-year-old.
-- p.your-call.1970-black-september.stamp — "Ürdün'de Kara Eylül"; second option "Ürdün'de Siyah Eylül". Kara Eylül is the usual Turkish name; King Hussein is written Hüseyin, as Faysal and Nasır are in the file.
-- p.your-call.1979-shah-leaves.short — "Muhammed Rıza"; second option "Muhammed Rıza Pehlevi". The English short is "Mohammad Reza"; Humeyni and Ferah are my Turkish spellings.
-- p.your-call.1905-october-manifesto.short — "II. Nikolay"; second option "II. Nikola". Turkish encyclopedias use Nikolay; place kept "Saint Petersburg" as in the older lines.
-- p.your-call.1840-waitangi.choice1 — "Maori şefleriyle bir antlaşma yap"; second option "Māori şefleriyle…". I dropped the macron as Turkish texts usually do; the Maori phrase and "kawanatanga" are kept as in the English.
-- p.your-call.2003-congestion-charge.stamp — "Londra'nın tıkanıklık ücreti"; second option "Londra'nın trafik ücreti". There is no single Turkish term for the congestion charge.
-- p.your-call.1947-womens-vote.pov — "Sen Arjantin'in birinci hanımısın."; second option "Sen Arjantin cumhurbaşkanının eşisin." "Birinci hanım" is common in Turkish press for a first lady.
+- p.your-call.1593-saint-denis.short — "Henri" (stamp "IV. Henri Katolik oluyor"); second option "Henry". He is the French king, so Turkish history books write Henri; the English short is "Henry". **Settled 30 Oct 2026: kept.**
+- p.your-call.1810-cry-of-dolores.stamp — "Dolores Çağrısı"; second option "Dolores Feryadı" (or "Grito de Dolores"). The event has no single fixed Turkish name. **Settled 30 Oct 2026: kept.**
+- p.your-call.1492-columbus.did — "Santa Fe Anlaşması'nı imzaladı"; second option "Santa Fe Kapitülasyonları'nı imzaladı". Capitulaciones is the Spanish term; I chose the plainer word for a 12-year-old. **Settled 30 Oct 2026: kept.**
+- p.your-call.1862-emancipation.stamp — "Özgürlük Bildirgesi"; second option "Kölelerin Özgürlüğü Bildirgesi". Turkish uses several names for the Emancipation Proclamation; "bildiri/bildirge" is also mixed in the other lines. **Settled 30 Oct 2026: kept.**
+- p.your-call.1639-sakoku.pov — "Şimabara'da… Nagasaki'deki Dejima"; second option "Shimabara'da… Deşima". I spelled Japanese names the Turkish way as the file does (Şimoda, Kanagava), but Dejima is mostly written Dejima; İemitsu has a dotted İ. **Settled 30 Oct 2026: kept.**
+- p.your-call.1871-prefectures.choice2 — "Derebeyliklerini kaldır, prefektörlükler kur"; second option "…illeri kur". "Derebeyi" for daimyo and "prefektörlük" for prefecture are the usual Turkish words; macrons dropped in Okubo and Saigo Takamori. **Settled 30 Oct 2026: kept.**
+- p.your-call.1990-batmonkh.short — "Batmönkh"; second option "Batmönh". Place "Ulan Batur" and "Sühbatar Meydanı" are my Turkish spellings; the Mongolian names have no fixed Turkish form. **Settled 30 Oct 2026: kept.**
+- p.your-call.1981-juan-carlos.pov — "Silahlı 200 Guardia Civil görevlisi"; second option "Silahlı 200 Sivil Muhafız". The Spanish name is the one the press uses; "Ordu Kaptan Generali" in did is a literal rank name, kept short. **Settled 30 Oct 2026: kept.**
+- p.your-call.2000-zedillo-concedes.place — Meksiko; second option "Mexico City". Same choice as the older 1938-oil line; Meksiko is the Turkish name of the city. **Settled 30 Oct 2026: kept.**
+- p.your-call.1977-canal-treaties.place — Panama; second option "Panama Şehri". The English says "Panama City"; in Turkish the bare name is normal and matches the country. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-rigueur.choice1 — "Avrupa Para Sistemi'nden çık ve harcamaya devam et"; second option "EMS'den çık ve harcamaya devam et". The English shortens it to "EMS"; I wrote the full name because the abbreviation means nothing in Turkish. **Settled 30 Oct 2026: kept.**
+- p.your-call.2001-argentina-default.next — "…şimdiye kadar yaptığı en büyük borç ödememe olarak anıldı."; second option "…en büyük temerrüt olarak anıldı." "Temerrüt" is the exact word but too hard for a 12-year-old. **Settled 30 Oct 2026: kept.**
+- p.your-call.1970-black-september.stamp — "Ürdün'de Kara Eylül"; second option "Ürdün'de Siyah Eylül". Kara Eylül is the usual Turkish name; King Hussein is written Hüseyin, as Faysal and Nasır are in the file. **Settled 30 Oct 2026: kept.**
+- p.your-call.1979-shah-leaves.short — "Muhammed Rıza"; second option "Muhammed Rıza Pehlevi". The English short is "Mohammad Reza"; Humeyni and Ferah are my Turkish spellings. **Settled 30 Oct 2026: kept.**
+- p.your-call.1905-october-manifesto.short — "II. Nikolay"; second option "II. Nikola". Turkish encyclopedias use Nikolay; place kept "Saint Petersburg" as in the older lines. **Settled 30 Oct 2026: kept.**
+- p.your-call.1840-waitangi.choice1 — "Maori şefleriyle bir antlaşma yap"; second option "Māori şefleriyle…". I dropped the macron as Turkish texts usually do; the Maori phrase and "kawanatanga" are kept as in the English. **Settled 30 Oct 2026: kept.**
+- p.your-call.2003-congestion-charge.stamp — "Londra'nın tıkanıklık ücreti"; second option "Londra'nın trafik ücreti". There is no single Turkish term for the congestion charge. **Settled 30 Oct 2026: changed to “Londra'nın trafik sıkışıklığı ücreti”.**
+- p.your-call.1947-womens-vote.pov — "Sen Arjantin'in birinci hanımısın."; second option "Sen Arjantin cumhurbaşkanının eşisin." "Birinci hanım" is common in Turkish press for a first lady. **Settled 30 Oct 2026: kept.**

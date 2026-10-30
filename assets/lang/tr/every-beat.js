@@ -41,10 +41,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "note": "Bir imparator penguenin Antarktika'daki en uzun dalışı. Kalbi beş dakikadan fazla süre dakikada 6 atışta kaldı."
  },
  "shrew-peak": {
-  "face": "Etrüsk cüce faresi",
+  "face": "Etrüsk sivrifaresi",
   "label": "en hızlıyken",
-  "sentence": "Bir memelide ölçülen en hızlı kalp: dakikada 1.511 atışla bir Etrüsk cüce faresininki, yani saniyede 25 atış.",
-  "note": "Yaklaşık 2 gram ağırlığındaki bir cüce faresi. 1.511 en yüksek tek ölçümüydü; aynı çalışma dinlenirken yaklaşık 835 buldu (Jürgens ve ark., 1996)."
+  "sentence": "Bir memelide ölçülen en hızlı kalp: dakikada 1.511 atışla bir Etrüsk sivrifaresininki, yani saniyede 25 atış.",
+  "note": "Yaklaşık 2 gram ağırlığındaki bir sivrifare. 1.511 en yüksek tek ölçümüydü; aynı çalışma dinlenirken yaklaşık 835 buldu (Jürgens ve ark., 1996)."
  },
  "dog-rest": {
   "face": "Köpek",
@@ -212,7 +212,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Yer sincabı",
   "label": "kış uykusundayken",
   "sentence": "Kış uykusundaki bir Arktik yer sincabının kalbi dakikada yalnızca bir ila beş kez atar.",
-  "note": "Alaska'daki Arktik yer sincapları. Kaynaklar dakikada bir ila beş atış arasında değişen değerler veriyor. Resimde başka bir yer sincabı türü olan bir bozkır köpeği görünüyor."
+  "note": "Alaska'daki Arktik yer sincapları. Kaynaklar dakikada bir ila beş atış arasında değişen değerler veriyor. Resimde başka bir yer sincabı türü olan bir çayır köpeği görünüyor."
  },
  "narwhal-dive": {
   "face": "Narval",
@@ -263,10 +263,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "note": "Laboratuvardaki aç Amerikan boğa kurbağaları (Claësson, Abe ve Wang, 2015). Vücut ağırlıklarının yirmide biri kadar bir öğünden sonra kalpleri bir gün sonra dakikada 52,5 kez, 33 saat sonra 57,5 kez attı."
  },
  "freediver-dive": {
-  "face": "Serbest dalıcı",
+  "face": "Serbest dalışçı",
   "label": "dalarken",
-  "sentence": "Derin bir nefes tutma dalışında seçkin bir serbest dalıcının kalbi dakikada yalnızca 11 atışa kadar yavaşlayabilir.",
-  "note": "107 metreye varan dalışlardaki seçkin serbest dalıcılar (McKnight ve ark., 2021). Kalpleri foklarınki ve balinalarınki kadar düştü."
+  "sentence": "Derin bir nefes tutma dalışında seçkin bir serbest dalışçının kalbi dakikada yalnızca 11 atışa kadar yavaşlayabilir.",
+  "note": "107 metreye varan dalışlardaki seçkin serbest dalışçılar (McKnight ve ark., 2021). Kalpleri foklarınki ve balinalarınki kadar düştü."
  },
  "goose-flight": {
   "face": "Hint kazı",
@@ -350,7 +350,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Çizgili sincap",
   "label": "kış uykusundayken",
   "sentence": "Kış uykusundaki bir çizgili sincabın kalbi dakikada yaklaşık 350 atıştan 10'un altına yavaşlar, bazen yaklaşık dört atışa kadar.",
-  "note": "Kışın çizgili sincaplar, Ontario Parks blogundan ve Northern Woodlands dergisinden: popüler sayfalar; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+  "note": "Kışın çizgili sincaplar, Ontario Parks blogundan ve Northern Woodlands dergisinden: popüler sayfalar; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor."
  },
  "teen-rest": {
   "face": "Ergen",
@@ -392,7 +392,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Alp marmotu",
   "label": "kış uykusundayken",
   "sentence": "Kış uykusundaki bir Alp marmotunun kalbi, yer altında diğerleriyle birbirine sokulmuşken dakikada yalnızca üç ila beş kez atar.",
-  "note": "Yalnızca popüler sayfalar (Vikipedi ve İtalya'daki Dolomitler'de yaşayan marmotlar üzerine Awake!); rakamı veren bir çalışma bulunamadı. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+  "note": "Yalnızca popüler sayfalar (Vikipedi ve İtalya'daki Dolomitler'de yaşayan marmotlar üzerine Awake!); rakamı veren bir çalışma bulunamadı. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor."
  },
  "toddler-awake": {
   "face": "Yeni yürüyen çocuk",
@@ -404,7 +404,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Manda",
   "label": "uyanıkken",
   "sentence": "Yetişkin bir mandanın kalbi dakikada yaklaşık 47 ila 57 kez atar ve manda yaşlandıkça yavaşlar.",
-  "note": "Veterinerlerin saymaları: Kolombiya'da yetişkinlerde 54 ila 57 (2012, bir tutma kafesinde tutulurken), Brezilya'da dört yetişkinde 47 ila 52 ortalamalar (2025). Resimde aynı aileden (Bovidae) bir inek görünüyor."
+  "note": "Veterinerlerin saymaları: Kolombiya'da yetişkinlerde 54 ila 57 (2012, dar bir kafeste tutulurken), Brezilya'da dört yetişkinde 47 ila 52 ortalamalar (2025). Resimde aynı aileden (Bovidae) bir inek görünüyor."
  },
  "harbour-seal-dive": {
   "face": "Adi fok",
@@ -434,7 +434,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Marmot",
   "label": "kış uykusundayken",
   "sentence": "Kış uykusundaki bir marmotun kalbi dakikada yalnızca dört ya da beş atışa yavaşlar ve dakikada yalnızca bir ya da iki kez nefes alabilir.",
-  "note": "Kışın doğadaki marmotlar (woodchuck), Missouri eyaletinin yaban hayatı dergisinden ve PBS Nature'dan; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+  "note": "Kışın doğadaki marmotlar (woodchuck), Missouri eyaletinin yaban hayatı dergisinden ve PBS Nature'dan; ikisi de bir çalışma belirtmiyor. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor."
  },
  "pregnant-rest": {
   "face": "Anne adayı",
@@ -572,7 +572,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Çizgili sincap",
   "label": "uyanıkken",
   "sentence": "Uyanık bir çizgili sincabın kalbi dakikada yaklaşık 350 kez atar; kış uykusunda 15'e, hatta yaklaşık dörde düşer.",
-  "note": "Popüler sayfalar: Georgia eyaletinin yaban hayatı köşesi ve bir Ontario Parks blogu; ikisi de bir çalışma belirtmiyor ya da nasıl ölçüldüğünü söylemiyor. Resimde, aynı aileden, Kayıp Kuzen'deki bozkır köpeği görünüyor."
+  "note": "Popüler sayfalar: Georgia eyaletinin yaban hayatı köşesi ve bir Ontario Parks blogu; ikisi de bir çalışma belirtmiyor ya da nasıl ölçüldüğünü söylemiyor. Resimde, aynı aileden, Kayıp Kuzen'deki çayır köpeği görünüyor."
  },
  "hawk-rest": {
   "face": "Kızıl kuyruklu şahin",
@@ -631,7 +631,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "platypus-surface": {
   "face": "Ornitorenk",
   "label": "yüzeyde",
-  "sentence": "Dalıştan önce yüzeyde bir ornitorenkin kalbi dakikada 140 ila 230 kez atar; su altında 10'a düşebilir.",
+  "sentence": "Dalıştan önce yüzeyde bir ornitorengin kalbi dakikada 140 ila 230 kez atar; su altında 10'a düşebilir.",
   "note": "Esarete alınıp bir laboratuvarda dalan yabani ornitorenkler (Evans ve ark., 1994); iki kaynak da bu tek çalışmayı aktarıyor."
  },
  "ferret-rest": {

@@ -484,7 +484,7 @@ window.LG_PUZZLES["years-apart.events"] = {
   "stamp": "Indipendenza dichiarata"
  },
  "penny-black": {
-  "t": "Va in vendita il primo francobollo del mondo da incollare",
+  "t": "Va in vendita il primo francobollo adesivo del mondo",
   "y": "1840",
   "stamp": "Il Penny Black"
  },

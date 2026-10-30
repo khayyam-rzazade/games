@@ -13,7 +13,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 #### 2/151 · `live-high-income` · day 2 (4 Oct 2026), 153 (4 Mar 2027), 304 (2 Aug 2027), 455 (31 Dec 2027) … · every 151 days
 
 - `p.100-of-us.live-high-income.q` — Su 100 persone nel mondo, quante vivono in un Paese ad alto reddito?
-- `p.100-of-us.live-high-income.sentence` — Alto reddito è il gruppo dei Paesi più ricchi della World Bank.
+- `p.100-of-us.live-high-income.sentence` — Alto reddito è il gruppo dei Paesi più ricchi della Banca mondiale.
 - `p.100-of-us.live-high-income.stamp` — vivono in un Paese ad alto reddito
 
 #### 3/151 · `live-africa` · day 3 (5 Oct 2026), 154 (5 Mar 2027), 305 (3 Aug 2027), 456 (1 Jan 2028) … · every 151 days
@@ -49,7 +49,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 #### 8/151 · `live-low-income` · day 8 (10 Oct 2026), 159 (10 Mar 2027), 310 (8 Aug 2027), 461 (6 Jan 2028) … · every 151 days
 
 - `p.100-of-us.live-low-income.q` — Su 100 persone nel mondo, quante vivono in un Paese a basso reddito?
-- `p.100-of-us.live-low-income.sentence` — Basso reddito è il gruppo dei Paesi più poveri della World Bank.
+- `p.100-of-us.live-low-income.sentence` — Basso reddito è il gruppo dei Paesi più poveri della Banca mondiale.
 - `p.100-of-us.live-low-income.stamp` — vivono in un Paese a basso reddito
 
 #### 9/151 · `live-europe` · day 9 (11 Oct 2026), 160 (11 Mar 2027), 311 (9 Aug 2027), 462 (7 Jan 2028) … · every 151 days
@@ -912,9 +912,11 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.100-of-us.live-high-income.sentence — "Alto reddito è il gruppo dei Paesi più ricchi della World Bank."; second option "…della Banca mondiale". The rules say "World Bank" stays, so I kept the English name; the Italian name reads more naturally. Same in live-low-income.
-- p.100-of-us.people-children.q — "Su 100 persone nel mondo, quante hanno meno di 15 anni?"; second option "…quante sono bambini sotto i 15 anni?". A 14-year-old is not a "bambino" in Italian, so I used the age, which also matches the 65-or-older cards. Same for every people-children card.
-- p.100-of-us.home-city.stamp — "vivono in città o cittadine"; second option "vivono in aree urbane" (the World Bank's own word, but harder for a 12-year-old). Same for every home-city card.
-- p.100-of-us.people-parliament.q — "Su 100 parlamentari nel mondo, quanti sono donne?"; second option "deputati". "Parlamentari" covers both houses, as the English "members of parliament" does.
-- p.100-of-us.work-farming.stamp — "lavorano nell'agricoltura"; the English "work in farming" also covers forestry and fishing, which the sentence under the answer says.
-- p.100-of-us.home-electricity.q — "quante hanno la corrente elettrica in casa?"; second option "l'elettricità in casa". "La corrente" is what people say.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.100-of-us.live-high-income.sentence — "Alto reddito è il gruppo dei Paesi più ricchi della World Bank."; second option "…della Banca mondiale". The rules say "World Bank" stays, so I kept the English name; the Italian name reads more naturally. Same in live-low-income. **Settled 30 Oct 2026: changed, 2 lines (live-high-income.sentence, live-low-income.sentence).**
+- p.100-of-us.people-children.q — "Su 100 persone nel mondo, quante hanno meno di 15 anni?"; second option "…quante sono bambini sotto i 15 anni?". A 14-year-old is not a "bambino" in Italian, so I used the age, which also matches the 65-or-older cards. Same for every people-children card. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-city.stamp — "vivono in città o cittadine"; second option "vivono in aree urbane" (the World Bank's own word, but harder for a 12-year-old). Same for every home-city card. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-parliament.q — "Su 100 parlamentari nel mondo, quanti sono donne?"; second option "deputati". "Parlamentari" covers both houses, as the English "members of parliament" does. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.work-farming.stamp — "lavorano nell'agricoltura"; the English "work in farming" also covers forestry and fishing, which the sentence under the answer says. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-electricity.q — "quante hanno la corrente elettrica in casa?"; second option "l'elettricità in casa". "La corrente" is what people say. **Settled 30 Oct 2026: kept.**

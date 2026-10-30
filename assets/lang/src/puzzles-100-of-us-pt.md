@@ -156,9 +156,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 26/151 · `money-account` · day 26 (28 Oct 2026), 177 (28 Mar 2027), 328 (26 Aug 2027), 479 (24 Jan 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account.q` — De cada 100 adultos no mundo, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account.stamp` — adultos têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account.q` — De cada 100 adultos no mundo, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account.stamp` — adultos têm conta bancária ou carteira digital
 
 #### 27/151 · `health-hunger` · day 27 (29 Oct 2026), 178 (29 Mar 2027), 329 (27 Aug 2027), 480 (25 Jan 2028) … · every 151 days · from day 27 of the first batch
 
@@ -240,9 +240,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 40/151 · `money-account-tur` · day 40 (11 Nov 2026), 191 (11 Apr 2027), 342 (9 Sep 2027), 493 (7 Feb 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-tur.q` — De cada 100 adultos na Turquia, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-tur.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-tur.stamp` — adultos na Turquia têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-tur.q` — De cada 100 adultos na Turquia, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-tur.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-tur.stamp` — adultos na Turquia têm conta bancária ou carteira digital
 
 #### 41/151 · `people-children-ken` · day 41 (12 Nov 2026), 192 (12 Apr 2027), 343 (10 Sep 2027), 494 (8 Feb 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -306,9 +306,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 51/151 · `money-account-ken` · day 51 (22 Nov 2026), 202 (22 Apr 2027), 353 (20 Sep 2027), 504 (18 Feb 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-ken.q` — De cada 100 adultos no Quênia, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-ken.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-ken.stamp` — adultos no Quênia têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-ken.q` — De cada 100 adultos no Quênia, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-ken.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-ken.stamp` — adultos no Quênia têm conta bancária ou carteira digital
 
 #### 52/151 · `home-internet-egy` · day 52 (23 Nov 2026), 203 (23 Apr 2027), 354 (21 Sep 2027), 505 (19 Feb 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -378,9 +378,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 63/151 · `money-account-ind` · day 63 (4 Dec 2026), 214 (4 May 2027), 365 (2 Oct 2027), 516 (1 Mar 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-ind.q` — De cada 100 adultos na Índia, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-ind.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-ind.stamp` — adultos na Índia têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-ind.q` — De cada 100 adultos na Índia, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-ind.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-ind.stamp` — adultos na Índia têm conta bancária ou carteira digital
 
 #### 64/151 · `home-city-bgd` · day 64 (5 Dec 2026), 215 (5 May 2027), 366 (3 Oct 2027), 517 (2 Mar 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -444,9 +444,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 74/151 · `money-account-bra` · day 74 (15 Dec 2026), 225 (15 May 2027), 376 (13 Oct 2027), 527 (12 Mar 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-bra.q` — De cada 100 adultos no Brasil, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-bra.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-bra.stamp` — adultos no Brasil têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-bra.q` — De cada 100 adultos no Brasil, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-bra.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-bra.stamp` — adultos no Brasil têm conta bancária ou carteira digital
 
 #### 75/151 · `home-city-ken` · day 75 (16 Dec 2026), 226 (16 May 2027), 377 (14 Oct 2027), 528 (13 Mar 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -546,9 +546,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 91/151 · `money-account-pak` · day 91 (1 Jan 2027), 242 (1 Jun 2027), 393 (30 Oct 2027), 544 (29 Mar 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-pak.q` — De cada 100 adultos no Paquistão, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-pak.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-pak.stamp` — adultos no Paquistão têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-pak.q` — De cada 100 adultos no Paquistão, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-pak.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-pak.stamp` — adultos no Paquistão têm conta bancária ou carteira digital
 
 #### 92/151 · `home-internet-ind` · day 92 (2 Jan 2027), 243 (2 Jun 2027), 394 (31 Oct 2027), 545 (30 Mar 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -618,9 +618,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 103/151 · `money-account-nga` · day 103 (13 Jan 2027), 254 (13 Jun 2027), 405 (11 Nov 2027), 556 (10 Apr 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-nga.q` — De cada 100 adultos na Nigéria, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-nga.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-nga.stamp` — adultos na Nigéria têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-nga.q` — De cada 100 adultos na Nigéria, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-nga.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-nga.stamp` — adultos na Nigéria têm conta bancária ou carteira digital
 
 #### 104/151 · `home-water-mex` · day 104 (14 Jan 2027), 255 (14 Jun 2027), 406 (12 Nov 2027), 557 (11 Apr 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -678,9 +678,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 113/151 · `money-account-mex` · day 113 (23 Jan 2027), 264 (23 Jun 2027), 415 (21 Nov 2027), 566 (20 Apr 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-mex.q` — De cada 100 adultos no México, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-mex.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-mex.stamp` — adultos no México têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-mex.q` — De cada 100 adultos no México, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-mex.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-mex.stamp` — adultos no México têm conta bancária ou carteira digital
 
 #### 114/151 · `home-internet-nga` · day 114 (24 Jan 2027), 265 (24 Jun 2027), 416 (22 Nov 2027), 567 (21 Apr 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -744,9 +744,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 124/151 · `money-account-vnm` · day 124 (3 Feb 2027), 275 (4 Jul 2027), 426 (2 Dec 2027), 577 (1 May 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-vnm.q` — De cada 100 adultos no Vietnã, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-vnm.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-vnm.stamp` — adultos no Vietnã têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-vnm.q` — De cada 100 adultos no Vietnã, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-vnm.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-vnm.stamp` — adultos no Vietnã têm conta bancária ou carteira digital
 
 #### 125/151 · `home-internet-pak` · day 125 (4 Feb 2027), 276 (5 Jul 2027), 427 (3 Dec 2027), 578 (2 May 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -804,9 +804,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 134/151 · `money-account-bgd` · day 134 (13 Feb 2027), 285 (14 Jul 2027), 436 (12 Dec 2027), 587 (11 May 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-bgd.q` — De cada 100 adultos em Bangladesh, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-bgd.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-bgd.stamp` — adultos em Bangladesh têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-bgd.q` — De cada 100 adultos em Bangladesh, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-bgd.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-bgd.stamp` — adultos em Bangladesh têm conta bancária ou carteira digital
 
 #### 135/151 · `home-electricity-tza` · day 135 (14 Feb 2027), 286 (15 Jul 2027), 437 (13 Dec 2027), 588 (12 May 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -858,9 +858,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 143/151 · `money-account-idn` · day 143 (22 Feb 2027), 294 (23 Jul 2027), 445 (21 Dec 2027), 596 (20 May 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
-- `p.100-of-us.money-account-idn.q` — De cada 100 adultos na Indonésia, quantos têm conta bancária ou de dinheiro móvel?
-- `p.100-of-us.money-account-idn.sentence` — Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.
-- `p.100-of-us.money-account-idn.stamp` — adultos na Indonésia têm conta bancária ou de dinheiro móvel
+- `p.100-of-us.money-account-idn.q` — De cada 100 adultos na Indonésia, quantos têm conta bancária ou carteira digital?
+- `p.100-of-us.money-account-idn.sentence` — Uma carteira digital fica no celular, sem precisar de agência bancária.
+- `p.100-of-us.money-account-idn.stamp` — adultos na Indonésia têm conta bancária ou carteira digital
 
 #### 144/151 · `home-cooking-eth` · day 144 (23 Feb 2027), 295 (24 Jul 2027), 446 (22 Dec 2027), 597 (21 May 2028) … · every 151 days · pt batch 2 (29 Oct 2026)
 
@@ -912,14 +912,16 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.100-of-us.money-account.q — De cada 100 adultos no mundo, quantos têm conta bancária ou de dinheiro móvel? — "conta em banco ou em carteira digital" — "dinheiro móvel" é o termo exato (mobile money), mas "carteira digital" é mais comum no Brasil; vale para todos os money-account-*
-- p.100-of-us.home-city.q — De cada 100 pessoas no mundo, quantas vivem em uma cidade, grande ou pequena? — "…vivem em área urbana?" — "town or city" não tem par exato; o stamp ficou só "vivem em cidades"; vale para todos os home-city-*
-- p.100-of-us.work-farming.sentence — Aqui, a agricultura inclui também a produção florestal e a pesca. — "…inclui também a silvicultura e a pesca" — "produção florestal" é mais simples para quem tem 12 anos; vale para todos os work-farming-*
-- p.100-of-us.people-children.stamp — têm menos de 15 anos — "são crianças com menos de 15 anos" — o stamp curto perde a palavra "crianças", que já está na pergunta; vale para todos os people-children-*
-- p.100-of-us.home-electricity.q — De cada 100 pessoas no mundo, quantas têm eletricidade em casa? — "…têm energia elétrica em casa?" — "eletricidade" combina com "gás ou eletricidade" do cozinhar já traduzido; vale para todos os home-electricity-*
-- p.100-of-us.people-parliament.q — De cada 100 parlamentares no mundo, quantos são mulheres? — "De cada 100 membros do parlamento…" — "parlamentares" soa mais natural no Brasil; vale para todos os people-parliament-*
-- p.100-of-us.people-parliament-fra.sentence — Então os homens ocupam cerca de 64 de cada 100 cadeiras na câmara baixa ou única do país. — "…na câmara baixa (ou na única, quando só existe uma) do país" — "câmara baixa" pode ser pouco conhecida; mesma frase em todos os países, menos o Brasil
-- p.100-of-us.people-parliament-bra.sentence — Então os homens ocupam cerca de 82 de cada 100 cadeiras na Câmara dos Deputados. — "…na câmara baixa ou única do país" — no Brasil a câmara baixa é a Câmara dos Deputados, então usei o nome que o leitor conhece
-- p.100-of-us.work-women.q — De cada 100 pessoas na força de trabalho mundial, quantas são mulheres? — "…no mercado de trabalho do mundo…" — "força de trabalho" é o termo do Banco Mundial/IBGE; vale para todos os work-women-*
-- p.100-of-us.live-ten-biggest.q — De cada 100 pessoas no mundo, quantas vivem nos dez países mais populosos? — "…nos dez países com mais habitantes?" — "maiores" poderia ser entendido como tamanho em área
-- p.100-of-us.home-toilet.q — De cada 100 pessoas no mundo, quantas têm banheiro seguro em casa? — "…têm saneamento seguro em casa?" — "banheiro" por ser a palavra de todo dia (como no texto já traduzido); vale para todos os home-toilet-*
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.100-of-us.money-account.q — De cada 100 adultos no mundo, quantos têm conta bancária ou de dinheiro móvel? — "conta em banco ou em carteira digital" — "dinheiro móvel" é o termo exato (mobile money), mas "carteira digital" é mais comum no Brasil; vale para todos os money-account-* **Settled 30 Oct 2026: changed, 33 lines (money-account-bgd.q, money-account-bgd.sentence, money-account-bgd.stamp, money-account-bra.q, money-account-bra.sentence, money-account-bra.stamp, …).**
+- p.100-of-us.home-city.q — De cada 100 pessoas no mundo, quantas vivem em uma cidade, grande ou pequena? — "…vivem em área urbana?" — "town or city" não tem par exato; o stamp ficou só "vivem em cidades"; vale para todos os home-city-* **Settled 30 Oct 2026: kept.**
+- p.100-of-us.work-farming.sentence — Aqui, a agricultura inclui também a produção florestal e a pesca. — "…inclui também a silvicultura e a pesca" — "produção florestal" é mais simples para quem tem 12 anos; vale para todos os work-farming-* **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-children.stamp — têm menos de 15 anos — "são crianças com menos de 15 anos" — o stamp curto perde a palavra "crianças", que já está na pergunta; vale para todos os people-children-* **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-electricity.q — De cada 100 pessoas no mundo, quantas têm eletricidade em casa? — "…têm energia elétrica em casa?" — "eletricidade" combina com "gás ou eletricidade" do cozinhar já traduzido; vale para todos os home-electricity-* **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-parliament.q — De cada 100 parlamentares no mundo, quantos são mulheres? — "De cada 100 membros do parlamento…" — "parlamentares" soa mais natural no Brasil; vale para todos os people-parliament-* **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-parliament-fra.sentence — Então os homens ocupam cerca de 64 de cada 100 cadeiras na câmara baixa ou única do país. — "…na câmara baixa (ou na única, quando só existe uma) do país" — "câmara baixa" pode ser pouco conhecida; mesma frase em todos os países, menos o Brasil **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-parliament-bra.sentence — Então os homens ocupam cerca de 82 de cada 100 cadeiras na Câmara dos Deputados. — "…na câmara baixa ou única do país" — no Brasil a câmara baixa é a Câmara dos Deputados, então usei o nome que o leitor conhece **Settled 30 Oct 2026: kept.**
+- p.100-of-us.work-women.q — De cada 100 pessoas na força de trabalho mundial, quantas são mulheres? — "…no mercado de trabalho do mundo…" — "força de trabalho" é o termo do Banco Mundial/IBGE; vale para todos os work-women-* **Settled 30 Oct 2026: kept.**
+- p.100-of-us.live-ten-biggest.q — De cada 100 pessoas no mundo, quantas vivem nos dez países mais populosos? — "…nos dez países com mais habitantes?" — "maiores" poderia ser entendido como tamanho em área **Settled 30 Oct 2026: kept.**
+- p.100-of-us.home-toilet.q — De cada 100 pessoas no mundo, quantas têm banheiro seguro em casa? — "…têm saneamento seguro em casa?" — "banheiro" por ser a palavra de todo dia (como no texto já traduzido); vale para todos os home-toilet-* **Settled 30 Oct 2026: kept.**

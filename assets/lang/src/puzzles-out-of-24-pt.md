@@ -296,9 +296,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.out-of-24.jp-fathers-housework.face` — Japão
 - `p.out-of-24.jp-fathers-housework.label` — tarefas domésticas e cuidados
 - `p.out-of-24.jp-fathers-housework.chip1` — tarefas domésticas e cuidados
-- `p.out-of-24.jp-fathers-housework.chip2` — pais, filho menor de 6 anos
+- `p.out-of-24.jp-fathers-housework.chip2` — homens com filho menor de 6 anos
 - `p.out-of-24.jp-fathers-housework.fig` — 1 h 54
-- `p.out-of-24.jp-fathers-housework.sentence` — No Japão, os pais de crianças menores de 6 anos passam 1 hora e 54 minutos por dia com tarefas domésticas, cuidados e compras.
+- `p.out-of-24.jp-fathers-housework.sentence` — No Japão, os homens com filhos menores de 6 anos passam 1 hora e 54 minutos por dia com tarefas domésticas, cuidados e compras.
 - `p.out-of-24.jp-fathers-housework.note` — Casais com um filho menor de 6 anos, média de toda a semana, 2021 (Departamento de Estatísticas do Japão). As esposas deles passam 7 horas e 28 minutos.
 
 #### 32/84 · `chimp-sleep` · day 32 (9 Nov 2026), 116 (1 Feb 2027), 200 (26 Apr 2027), 284 (19 Jul 2027) … · every 84 days · pt batch 2 (29 Oct 2026)
@@ -666,7 +666,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.out-of-24.manatee-eating.chip1` — comendo
 - `p.out-of-24.manatee-eating.fig` — 6 a 8 h
 - `p.out-of-24.manatee-eating.sentence` — Um peixe-boi passa de seis a oito horas por dia pastando capim-marinho e outras plantas aquáticas.
-- `p.out-of-24.manatee-eating.note` — Do Serviço Nacional de Parques dos EUA (peixes-bois-das-Antilhas na Flórida) e do SeaWorld; nenhuma das páginas cita um estudo. O desenho é do peixe-boi-africano.
+- `p.out-of-24.manatee-eating.note` — Do Serviço Nacional de Parques dos EUA (peixes-boi-das-Antilhas na Flórida) e do SeaWorld; nenhuma das páginas cita um estudo. O desenho é do peixe-boi-africano.
 
 #### 70/84 · `de-paid-work` · day 70 (17 Dec 2026), 154 (11 Mar 2027), 238 (3 Jun 2027), 322 (26 Aug 2027) … · every 84 days · pt batch 2 (29 Oct 2026)
 
@@ -814,15 +814,17 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.out-of-24.mouse-sleep.face — Camundongo — Rato — camundongo is the exact Brazilian word for the house mouse (also used in guinea-pig-sleep.sentence); "rato" is what most people say
-- p.out-of-24.donkey-sleep.face — Jumento — Burro — "jumento" is the usual species name in Brazilian sources; "burro" and "jegue" are everyday words ("burro" strictly can mean the mule)
-- p.out-of-24.frigatebird-flight.face — Fragata — Tesourão — "fragata" is the everyday Brazilian name; the sentences say "fragatas-grandes" for "great frigatebirds" (also in frigatebird-land)
-- p.out-of-24.tree-shrew-sleep.face — Tupaia — Musaranho-arborícola — Brazilian sources say "tupaia"; the note then says tupaias are not true musaranhos
-- p.out-of-24.owl-monkey-sleep.face — Macaco-da-noite — Macaco-coruja — both are used for Aotus; "macaco-da-noite" is the one on Brazilian science pages
-- p.out-of-24.dog-sleep.face — Cachorro — Cão — "cachorro" is what a Brazilian teenager says; "cão" is more formal
-- p.out-of-24.jp-fathers-housework.chip2 — pais, filho menor de 6 anos — homens com filho menor de 6 anos — "pais" alone can read as "parents"; the sentence and the note make it clear (same for mães in jp-mothers-housework.chip2)
-- p.out-of-24.jp-men-housework.note — Departamento de Estatísticas do Japão — Escritório de Estatística do Japão — no fixed Brazilian name; I used "Departamento", like the existing "Departamento de Estatísticas do Trabalho dos EUA" (same choice for China: "Departamento Nacional de Estatísticas da China", and Germany: "Departamento Federal de Estatísticas da Alemanha")
-- p.out-of-24.ant-worker-sleep.note — Formigas-de-fogo vermelhas, chamadas de lava-pés no Brasil — Formigas-de-fogo vermelhas (Solenopsis invicta) — the English only says "Red imported fire ants"; I added "lava-pés" as the existing line for the queen does, but left out the Latin name
-- p.out-of-24.manatee-eating.note — peixes-bois-das-Antilhas na Flórida — peixes-boi-da-Flórida — Brazilian sources name the West Indian manatee several ways; the plural of peixe-boi is written both ways
-- p.out-of-24.platypus-sleep.note — a Wikipédia diz que o sono "chega, segundo se diz, a 14 horas" — a Wikipédia diz que ele dorme "até 14 horas, segundo se diz" — the English quotes Wikipedia's own words, which here are a translation of them
-- p.out-of-24.us-75-tv.label — vendo TV — assistindo TV — "vendo TV" and "veem TV" are used in all the TV puzzles; "assistindo" is just as natural
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.out-of-24.mouse-sleep.face — Camundongo — Rato — camundongo is the exact Brazilian word for the house mouse (also used in guinea-pig-sleep.sentence); "rato" is what most people say **Settled 30 Oct 2026: kept.**
+- p.out-of-24.donkey-sleep.face — Jumento — Burro — "jumento" is the usual species name in Brazilian sources; "burro" and "jegue" are everyday words ("burro" strictly can mean the mule) **Settled 30 Oct 2026: kept.**
+- p.out-of-24.frigatebird-flight.face — Fragata — Tesourão — "fragata" is the everyday Brazilian name; the sentences say "fragatas-grandes" for "great frigatebirds" (also in frigatebird-land) **Settled 30 Oct 2026: kept.**
+- p.out-of-24.tree-shrew-sleep.face — Tupaia — Musaranho-arborícola — Brazilian sources say "tupaia"; the note then says tupaias are not true musaranhos **Settled 30 Oct 2026: kept.**
+- p.out-of-24.owl-monkey-sleep.face — Macaco-da-noite — Macaco-coruja — both are used for Aotus; "macaco-da-noite" is the one on Brazilian science pages **Settled 30 Oct 2026: kept.**
+- p.out-of-24.dog-sleep.face — Cachorro — Cão — "cachorro" is what a Brazilian teenager says; "cão" is more formal **Settled 30 Oct 2026: kept.**
+- p.out-of-24.jp-fathers-housework.chip2 — pais, filho menor de 6 anos — homens com filho menor de 6 anos — "pais" alone can read as "parents"; the sentence and the note make it clear (same for mães in jp-mothers-housework.chip2) **Settled 30 Oct 2026: changed, 2 lines (jp-fathers-housework.chip2, jp-fathers-housework.sentence).**
+- p.out-of-24.jp-men-housework.note — Departamento de Estatísticas do Japão — Escritório de Estatística do Japão — no fixed Brazilian name; I used "Departamento", like the existing "Departamento de Estatísticas do Trabalho dos EUA" (same choice for China: "Departamento Nacional de Estatísticas da China", and Germany: "Departamento Federal de Estatísticas da Alemanha") **Settled 30 Oct 2026: kept.**
+- p.out-of-24.ant-worker-sleep.note — Formigas-de-fogo vermelhas, chamadas de lava-pés no Brasil — Formigas-de-fogo vermelhas (Solenopsis invicta) — the English only says "Red imported fire ants"; I added "lava-pés" as the existing line for the queen does, but left out the Latin name **Settled 30 Oct 2026: kept.**
+- p.out-of-24.manatee-eating.note — peixes-bois-das-Antilhas na Flórida — peixes-boi-da-Flórida — Brazilian sources name the West Indian manatee several ways; the plural of peixe-boi is written both ways **Settled 30 Oct 2026: changed to “Do Serviço Nacional de Parques dos EUA (peixes-boi-das-Antilhas na Flórida) e do SeaWorld; nenhuma das páginas cita um estudo. O desenho é do peixe-boi-africano.”.**
+- p.out-of-24.platypus-sleep.note — a Wikipédia diz que o sono "chega, segundo se diz, a 14 horas" — a Wikipédia diz que ele dorme "até 14 horas, segundo se diz" — the English quotes Wikipedia's own words, which here are a translation of them **Settled 30 Oct 2026: kept.**
+- p.out-of-24.us-75-tv.label — vendo TV — assistindo TV — "vendo TV" and "veem TV" are used in all the TV puzzles; "assistindo" is just as natural **Settled 30 Oct 2026: kept.**

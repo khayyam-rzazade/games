@@ -32,7 +32,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "1963-sweden": {
   "place": "Stockholm",
-  "pov": "Ülken trafikte soldan gidiyor ama bütün komşuların sağdan gidiyor. Bir halk oylamasında yüzde 83, soldan gitmeye devam etmekten yana oy kullandı. Sen İsveç'in başbakanısın.",
+  "pov": "Ülken trafikte soldan gidiyor ama bütün komşuların sağdan gidiyor. Bir halk oylamasında oyların yüzde 83'ü soldan gitmeye devam etmekten yana çıktı. Sen İsveç'in başbakanısın.",
   "short": "Erlander",
   "did": "Erlander sağa geçişi önerdi ve parlamento kabul etti. 3 Eylül 1967'de sabah beşe on kala bütün arabalar durdu ve karşı şeride geçti.",
   "next": "Geçiş sorunsuz geçti ve kazalar bir süre azaldı. Sonradan çoğu İsveçli, değişikliğin iyi bir şey olduğunu söyledi.",
@@ -747,7 +747,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "1991-semipalatinsk": {
-  "place": "Almatı",
+  "place": "Alma-Ata",
   "pov": "1949'dan 1989'a kadar Sovyetler Birliği senin cumhuriyetinde 450'den fazla nükleer patlama yaptı ve serpinti 1,5 milyon kişiyi etkiledi. Test alanı hâlâ açık. Sen Kazakistan'ın cumhurbaşkanısın.",
   "short": "Nazarbayev",
   "did": "29 Ağustos 1991'de, Kazakistan bağımsız olmadan aylar önce, Nazarbayev'in hükümeti Semipalatinsk test alanını kapattı.",
@@ -1365,7 +1365,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "short": "Livingstone",
   "did": "Livingstone, Londra'nın merkezine araçla girenleri hafta içi 07.00 ile 18.30 arasında 5 sterlin ödemeye zorladı. Ücret 17 Şubat 2003'te başladı.",
   "next": "İlk haftada trafik yüzde 25 azaldı ve otobüsler tarifenin önünde gitti. Paris'in belediye başkanı, uygulamayı incelemek için Londra'yı ziyaret etmeyi ayarladı.",
-  "stamp": "Londra'nın tıkanıklık ücreti",
+  "stamp": "Londra'nın trafik sıkışıklığı ücreti",
   "choices": [
    "Otobüslere ve trenlere daha çok harca",
    "Merkeze araçla girenlerden 5 sterlin al",
@@ -1479,10 +1479,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "1971-7-march": {
   "place": "Dakka",
   "pov": "Partin Doğu Pakistan'ın 169 koltuğunun 167'sini kazandı, ama Pakistan cumhurbaşkanı hükümetinin yemin törenini erteledi. Birçok kişi açıkça bağımsızlık ilan etmeni istiyor. Sen Awami Ligi'nin liderisin.",
-  "short": "Mücibür Rahman",
-  "did": "7 Mart 1971'de Dakka'da bir milyondan fazla insanın önünde Mücibür Rahman, bu seferki mücadelenin bağımsızlık için olduğunu söyledi. Ama doğrudan bir bağımsızlık ilanında bulunmadı ve sıkıyönetimin sona ermesi gibi şartlar öne sürdü.",
-  "next": "25 Mart 1971'de Pakistan ordusu Searchlight Harekâtı'nı başlattı ve Mücibür Rahman'ı tutukladı; Kurtuluş Savaşı bunu izledi.",
-  "stamp": "Mücibür Rahman'ın 7 Mart konuşması",
+  "short": "Mucibur Rahman",
+  "did": "7 Mart 1971'de Dakka'da bir milyondan fazla insanın önünde Mucibur Rahman, bu seferki mücadelenin bağımsızlık için olduğunu söyledi. Ama doğrudan bir bağımsızlık ilanında bulunmadı ve sıkıyönetimin sona ermesi gibi şartlar öne sürdü.",
+  "next": "25 Mart 1971'de Pakistan ordusu Searchlight Harekâtı'nı başlattı ve Mucibur Rahman'ı tutukladı; Kurtuluş Savaşı bunu izledi.",
+  "stamp": "Mucibur Rahman'ın 7 Mart konuşması",
   "choices": [
    "Pakistan'dan bağımsızlığı hemen ilan et",
    "Mücadele için toplan ama bağımsızlık ilan etme",

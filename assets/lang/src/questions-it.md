@@ -81,6 +81,8 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 
 ## U. Doubts for Khayyam
 
-- q.opt.duty — "Accise" — second option: "Dazio" — every question that shows this button is about spirits, cigarettes, petrol or diesel, where the tax is the excise ("accise"). The three banana puzzles of Who Gets What (first batch, not touched) call their import duty "Dazio", but no question uses them.
-- q.stem.came_first — "Cosa è successo prima?" — second option: "Quale è venuto prima?" — the answer buttons are events written as sentences ("Muore Cleopatra"), so "cosa è successo" fits them better.
-- q.stem.biggest_share — "Chi prende la fetta più grande del prezzo di {x}?" — second option: "Chi incassa di più sul prezzo di {x}?" — the `what` lines start with a capital ("Un chilo di…"); the stem assumes the game puts it in lower case after "di", as it must in English too.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- q.opt.duty — "Accise" — second option: "Dazio" — every question that shows this button is about spirits, cigarettes, petrol or diesel, where the tax is the excise ("accise"). The three banana puzzles of Who Gets What (first batch, not touched) call their import duty "Dazio", but no question uses them. **Settled 30 Oct 2026: kept.**
+- q.stem.came_first — "Cosa è successo prima?" — second option: "Quale è venuto prima?" — the answer buttons are events written as sentences ("Muore Cleopatra"), so "cosa è successo" fits them better. **Settled 30 Oct 2026: kept.**
+- q.stem.biggest_share — "Chi prende la fetta più grande del prezzo di {x}?" — second option: "Chi incassa di più sul prezzo di {x}?" — the `what` lines start with a capital ("Un chilo di…"); the stem assumes the game puts it in lower case after "di", as it must in English too. **Settled 30 Oct 2026: kept.**

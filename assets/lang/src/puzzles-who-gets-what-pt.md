@@ -13,7 +13,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.who-gets-what.dark-choc.slice3` — Fabricante
 - `p.who-gets-what.dark-choc.slice4` — Loja
 - `p.who-gets-what.dark-choc.fact` — Quem cultiva o cacau fica com uns onze centavos de cada euro. A loja que vende a barra fica com trinta e sete.
-- `p.who-gets-what.dark-choc.note` — Um estudo de uma agência das Nações Unidas sobre a cadeia francesa do chocolate. “Fabricante” é a moagem das amêndoas (5,8), o leite, o açúcar e os outros ingredientes (1,7) e a fabricação da barra e a construção da marca (37,0).
+- `p.who-gets-what.dark-choc.note` — Um estudo de uma agência das Nações Unidas sobre a cadeia francesa do chocolate. “Fabricante” é a moagem dos grãos (5,8), o leite, o açúcar e os outros ingredientes (1,7) e a fabricação da barra e a construção da marca (37,0).
 
 #### 2/45 · `us-petrol` · day 2 (9 Oct 2026), 47 (23 Nov 2026), 92 (7 Jan 2027), 137 (21 Feb 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
@@ -143,7 +143,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.who-gets-what.milk-choc.slice3` — Fabricante
 - `p.who-gets-what.milk-choc.slice4` — Loja
 - `p.who-gets-what.milk-choc.fact` — Com leite e açúcar, a parte de quem cultiva o cacau quase cai pela metade: de onze centavos de cada euro para sete.
-- `p.who-gets-what.milk-choc.note` — O mesmo estudo, para o chocolate ao leite. “Fabricante” é o leite, o açúcar e os outros ingredientes (15,1), a moagem das amêndoas (6,5) e a fabricação da barra e a construção da marca (27,3).
+- `p.who-gets-what.milk-choc.note` — O mesmo estudo, para o chocolate ao leite. “Fabricante” é o leite, o açúcar e os outros ingredientes (15,1), a moagem dos grãos (6,5) e a fabricação da barra e a construção da marca (27,3).
 
 #### 14/45 · `au-petrol` · day 14 (21 Oct 2026), 59 (5 Dec 2026), 104 (19 Jan 2027), 149 (5 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
@@ -326,13 +326,13 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 31/45 · `cocoa-ci` · day 31 (7 Nov 2026), 76 (22 Dec 2026), 121 (5 Feb 2027), 166 (22 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
-- `p.who-gets-what.cocoa-ci.what` — Um quilo de amêndoas de cacau no porto
+- `p.who-gets-what.cocoa-ci.what` — Um quilo de grãos de cacau no porto
 - `p.who-gets-what.cocoa-ci.where` — na Costa do Marfim
 - `p.who-gets-what.cocoa-ci.slice1` — Produtores
 - `p.who-gets-what.cocoa-ci.slice2` — Comerciantes
 - `p.who-gets-what.cocoa-ci.slice3` — Impostos
-- `p.who-gets-what.cocoa-ci.fact` — Os produtores de cacau da Costa do Marfim receberam menos de dois terços do que as amêndoas valeram no porto. O Estado ficou com cerca de um sexto em impostos.
-- `p.who-gets-what.cocoa-ci.note` — O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de amêndoas quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento das amêndoas, mais a margem dos exportadores.
+- `p.who-gets-what.cocoa-ci.fact` — Os produtores de cacau da Costa do Marfim receberam menos de dois terços do que os grãos valeram no porto. O Estado ficou com cerca de um sexto em impostos.
+- `p.who-gets-what.cocoa-ci.note` — O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de grãos quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento dos grãos, mais a margem dos exportadores.
 
 #### 32/45 · `no-wine` · day 32 (8 Nov 2026), 77 (23 Dec 2026), 122 (6 Feb 2027), 167 (23 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
@@ -355,7 +355,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.who-gets-what.choc-premium.slice3` — Fabricante
 - `p.who-gets-what.choc-premium.slice4` — Loja
 - `p.who-gets-what.choc-premium.fact` — Uma barra de chocolate amargo premium, a € 16,41 o quilo, pagou € 1,26 a quem cultiva o cacau, pouco mais do que os € 1,05 de uma barra comum. A marca e a loja ficaram com quase toda a diferença.
-- `p.who-gets-what.choc-premium.note` — O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, sem nenhum selo. “Fabricante” é a moagem das amêndoas (3,7), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (41,4).
+- `p.who-gets-what.choc-premium.note` — O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, sem nenhum selo. “Fabricante” é a moagem dos grãos (3,7), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (41,4).
 
 #### 34/45 · `dk-power` · day 34 (10 Nov 2026), 79 (25 Dec 2026), 124 (8 Feb 2027), 169 (25 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
@@ -371,13 +371,13 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 #### 35/45 · `cocoa-ec` · day 35 (11 Nov 2026), 80 (26 Dec 2026), 125 (9 Feb 2027), 170 (26 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
-- `p.who-gets-what.cocoa-ec.what` — Um quilo de amêndoas de cacau no porto
+- `p.who-gets-what.cocoa-ec.what` — Um quilo de grãos de cacau no porto
 - `p.who-gets-what.cocoa-ec.where` — no Equador
 - `p.who-gets-what.cocoa-ec.slice1` — Produtores
 - `p.who-gets-what.cocoa-ec.slice2` — Comerciantes
 - `p.who-gets-what.cocoa-ec.slice3` — Impostos
-- `p.who-gets-what.cocoa-ec.fact` — O Equador tributa pouco o cacau, três centavos de cada euro, e os produtores ficaram com mais de três quartos do que as amêndoas valeram no porto.
-- `p.who-gets-what.cocoa-ec.note` — O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de amêndoas quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento das amêndoas, mais a margem dos exportadores. Este é o tipo de qualidade mais alta, o cacau classificado como “nacional”.
+- `p.who-gets-what.cocoa-ec.fact` — O Equador tributa pouco o cacau, três centavos de cada euro, e os produtores ficaram com mais de três quartos do que os grãos valeram no porto.
+- `p.who-gets-what.cocoa-ec.note` — O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de grãos quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento dos grãos, mais a margem dos exportadores. Este é o tipo de qualidade mais alta, o cacau classificado como “nacional”.
 
 #### 36/45 · `es-petrol` · day 36 (12 Nov 2026), 81 (27 Dec 2026), 126 (10 Feb 2027), 171 (27 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
@@ -409,17 +409,17 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.who-gets-what.in-diesel.slice2` — Imposto
 - `p.who-gets-what.in-diesel.slice3` — IVA
 - `p.who-gets-what.in-diesel.fact` — Em 2024, o diesel de Délhi pagou um pouco menos de um terço do preço em impostos: um imposto central de ₹ 15,80 por litro e, por cima, o IVA do estado.
-- `p.who-gets-what.in-diesel.note` — A composição de preço da própria companhia estatal de petróleo para Délhi, em 1º de abril de 2024. “Diesel” é o preço cobrado do revendedor antes dos impostos (₹ 56,38) mais a comissão média do revendedor (₹ 2,62); “IVA” (imposto sobre valor agregado) também inclui uma pequena taxa ambiental do ar, de 25 paise por litro.
+- `p.who-gets-what.in-diesel.note` — A composição de preço da própria companhia estatal de petróleo para Délhi, em 1º de abril de 2024. “Diesel” é o preço cobrado do revendedor antes dos impostos (₹ 56,38) mais a comissão média do revendedor (₹ 2,62); “IVA” (imposto sobre valor agregado) também inclui uma pequena taxa pela qualidade do ar, de 25 paise por litro.
 
 #### 39/45 · `cocoa-cm` · day 39 (15 Nov 2026), 84 (30 Dec 2026), 129 (13 Feb 2027), 174 (30 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
-- `p.who-gets-what.cocoa-cm.what` — Um quilo de amêndoas de cacau no porto
+- `p.who-gets-what.cocoa-cm.what` — Um quilo de grãos de cacau no porto
 - `p.who-gets-what.cocoa-cm.where` — em Camarões
 - `p.who-gets-what.cocoa-cm.slice1` — Produtores
 - `p.who-gets-what.cocoa-cm.slice2` — Comerciantes
 - `p.who-gets-what.cocoa-cm.slice3` — Impostos
-- `p.who-gets-what.cocoa-cm.fact` — Os produtores de cacau de Camarões ficaram com dois terços do que as amêndoas valeram no porto. Dois impostos levaram cerca de um sétimo.
-- `p.who-gets-what.cocoa-cm.note` — O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de amêndoas quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento das amêndoas, mais a margem dos exportadores. Camarões tem dois impostos no estudo, e os dois estão em “Impostos”.
+- `p.who-gets-what.cocoa-cm.fact` — Os produtores de cacau de Camarões ficaram com dois terços do que os grãos valeram no porto. Dois impostos levaram cerca de um sétimo.
+- `p.who-gets-what.cocoa-cm.note` — O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de grãos quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento dos grãos, mais a margem dos exportadores. Camarões tem dois impostos no estudo, e os dois estão em “Impostos”.
 
 #### 40/45 · `es-diesel` · day 40 (16 Nov 2026), 85 (31 Dec 2026), 130 (14 Feb 2027), 175 (31 Mar 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
@@ -474,7 +474,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.who-gets-what.choc-organic.slice3` — Fabricante
 - `p.who-gets-what.choc-organic.slice4` — Loja
 - `p.who-gets-what.choc-organic.fact` — O chocolate orgânico de comércio justo pagou € 2,70 por quilo a quem cultiva o cacau, mais do que o dobro dos € 1,05 de uma barra comum. Como parcela do preço, ainda ficou abaixo de doze centavos de cada euro.
-- `p.who-gets-what.choc-organic.note` — O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, com um selo orgânico e um selo de comércio justo. “Fabricante” é a moagem das amêndoas (3,8), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (38,1).
+- `p.who-gets-what.choc-organic.note` — O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, com um selo orgânico e um selo de comércio justo. “Fabricante” é a moagem dos grãos (3,8), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (38,1).
 
 #### 45/45 · `uk-diesel` · day 45 (21 Nov 2026), 90 (5 Jan 2027), 135 (19 Feb 2027), 180 (5 Apr 2027) … · every 45 days · pt batch 2 (29 Oct 2026)
 
@@ -963,40 +963,42 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.who-gets-what.us-petrol.slice3 — Entrega — Distribuição — the Brazilian fuel word is "distribuição", but it is 12 letters for a narrow slice (same choice in es-petrol and es-diesel)
-- p.who-gets-what.fr-petrol.slice2 — Imposto — Imposto especial — "Imposto" is what the done wine and whisky lines use for "Duty"; "Imposto especial" is too long for a slice (same in every Duty slice)
-- p.who-gets-what.it-power.slice3 — Programas — Encargos — "Programas" matches the done gb-energy-22; "Encargos" is the word on a Brazilian electricity bill (also gb-energy.slice3)
-- p.who-gets-what.it-power.what — Um quilowatt-hora (kWh) de eletricidade — Um quilowatt-hora de eletricidade — same as the done de-power, but the site lowercases `what` in the share text, so "kWh" turns into "kwh" (also dk-power.what)
-- p.who-gets-what.cocoa-ci.what — Um quilo de amêndoas de cacau no porto — Um quilo de grãos de cacau no porto — IBGE and Embrapa write "amêndoas", but "grãos" may be easier for a 12-year-old (same in all cocoa and chocolate lines)
-- p.who-gets-what.fr-petrol.note — (no gloss for IVA anywhere in the puzzle) — add "(imposto sobre valor agregado)" in the note — the done lines gloss IVA at its first mention in a note; this note, and those of fr-diesel, cigs-uk, cigs-de and cigs-fr, never mention VAT, so I added nothing; gb-energy.note has no gloss either, like the done gb-energy-22, to avoid a second pair of brackets
-- p.who-gets-what.in-petrol.note — Délhi — Nova Délhi / Deli — Brazilian press writes "Nova Délhi" for the capital, Wikipédia writes "Deli" (same in in-diesel)
-- p.who-gets-what.in-diesel.note — uma pequena taxa ambiental do ar, de 25 paise por litro — uma pequena taxa de proteção do ar — the English "air ambience charge" is an odd Delhi term, I rendered its meaning
-- p.who-gets-what.no-wine.slice1 — Produtor — Fornecedor — "Maker" is really the supplier's price delivered to the shop; "Fornecedor" is exact (and used in the done gb-energy-22), "Produtor" reads more like a wine word (same in no-beer and no-spirits)
-- p.who-gets-what.cocoa-ci.slice2 — Comerciantes — Intermediários / Exportadores — "Traders" are the collectors, storers and exporters; "Comerciantes" is short and neutral
-- p.who-gets-what.au-petrol.slice3 — Vendedores — Revendedores — "Sellers" are wholesalers and retailers; "Revendedores" is closer to the fuel trade but 12 letters
-- p.who-gets-what.choc-premium.fact — € 16,41 o quilo — 16,41 euros o quilo — the € symbol with a space follows the rule for symbols, but the done it-medicine line wrote "100 euros" for "€100" (same in choc-organic.fact)
-- p.who-gets-what.uk-petrol.fact — 52,95 pence — 52,95 centavos de libra — "pence" is how Brazilian sources write it, and there is no done line to follow (also uk-diesel and the uk-petrol/uk-diesel notes)
-- p.who-gets-what.cocoa-ci.note — o valor “livre a bordo”, conhecido como FOB — o valor “FOB” (free on board) — I added the usual Brazilian abbreviation "FOB" next to the quoted words; delete it if you want only what the English says (same in cocoa-ec and cocoa-cm)
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.who-gets-what.us-petrol.slice3 — Entrega — Distribuição — the Brazilian fuel word is "distribuição", but it is 12 letters for a narrow slice (same choice in es-petrol and es-diesel) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.fr-petrol.slice2 — Imposto — Imposto especial — "Imposto" is what the done wine and whisky lines use for "Duty"; "Imposto especial" is too long for a slice (same in every Duty slice) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.it-power.slice3 — Programas — Encargos — "Programas" matches the done gb-energy-22; "Encargos" is the word on a Brazilian electricity bill (also gb-energy.slice3) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.it-power.what — Um quilowatt-hora (kWh) de eletricidade — Um quilowatt-hora de eletricidade — same as the done de-power, but the site lowercases `what` in the share text, so "kWh" turns into "kwh" (also dk-power.what) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cocoa-ci.what — Um quilo de amêndoas de cacau no porto — Um quilo de grãos de cacau no porto — IBGE and Embrapa write "amêndoas", but "grãos" may be easier for a 12-year-old (same in all cocoa and chocolate lines) **Settled 30 Oct 2026: changed, 13 lines (dark-choc.note, milk-choc.note, cocoa-ci.what, cocoa-ci.fact, cocoa-ci.note, choc-premium.note, …).**
+- p.who-gets-what.fr-petrol.note — (no gloss for IVA anywhere in the puzzle) — add "(imposto sobre valor agregado)" in the note — the done lines gloss IVA at its first mention in a note; this note, and those of fr-diesel, cigs-uk, cigs-de and cigs-fr, never mention VAT, so I added nothing; gb-energy.note has no gloss either, like the done gb-energy-22, to avoid a second pair of brackets **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.in-petrol.note — Délhi — Nova Délhi / Deli — Brazilian press writes "Nova Délhi" for the capital, Wikipédia writes "Deli" (same in in-diesel) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.in-diesel.note — uma pequena taxa ambiental do ar, de 25 paise por litro — uma pequena taxa de proteção do ar — the English "air ambience charge" is an odd Delhi term, I rendered its meaning **Settled 30 Oct 2026: changed to “A composição de preço da própria companhia estatal de petróleo para Délhi, em 1º de abril de 2024. “Diesel” é o preço cobrado do revendedor antes dos impostos (₹ 56,38) mais a comissão média do revendedor (₹ 2,62); “IVA” (imposto sobre valor agregado) também inclui uma pequena taxa pela qualidade do ar, de 25 paise por litro.”.**
+- p.who-gets-what.no-wine.slice1 — Produtor — Fornecedor — "Maker" is really the supplier's price delivered to the shop; "Fornecedor" is exact (and used in the done gb-energy-22), "Produtor" reads more like a wine word (same in no-beer and no-spirits) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cocoa-ci.slice2 — Comerciantes — Intermediários / Exportadores — "Traders" are the collectors, storers and exporters; "Comerciantes" is short and neutral **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.au-petrol.slice3 — Vendedores — Revendedores — "Sellers" are wholesalers and retailers; "Revendedores" is closer to the fuel trade but 12 letters **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.choc-premium.fact — € 16,41 o quilo — 16,41 euros o quilo — the € symbol with a space follows the rule for symbols, but the done it-medicine line wrote "100 euros" for "€100" (same in choc-organic.fact) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.uk-petrol.fact — 52,95 pence — 52,95 centavos de libra — "pence" is how Brazilian sources write it, and there is no done line to follow (also uk-diesel and the uk-petrol/uk-diesel notes) **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cocoa-ci.note — o valor “livre a bordo”, conhecido como FOB — o valor “FOB” (free on board) — I added the usual Brazilian abbreviation "FOB" next to the quoted words; delete it if you want only what the English says (same in cocoa-ec and cocoa-cm) **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.who-gets-what.cigs-au.slice2 — "Imposto"; second option "Imposto especial". "Excise" sits next to "GST", but "Imposto especial" is too long for a narrow slice (same short "Imposto" as every Duty slice); the note says it is the excise.
-- p.who-gets-what.cigs-jp.slice3 — "Consumo"; second option "IVA". English "Tax" must differ from "Duty" ("Imposto"), and this is the 10% consumption tax, which the note explains; "IVA" would be shorter and familiar but names it more than the English does.
-- p.who-gets-what.cigs-jp.note — "província de Chiba"; second option "prefeitura de Chiba". Wikipédia writes "prefeitura" for the Japanese prefecture, but in Brazil "prefeitura" means city hall, so I used "província" (and "provincial" for the tax).
-- p.who-gets-what.it-gas.slice2 — "Tubulação"; second option "Rede". "Pipes" in the English; "Rede" is what the done it-power uses for "Wires", and I kept it for br-power and de-gas; for gas I chose the pipes word so the two do not look the same.
-- p.who-gets-what.br-power.slice3 — "Encargos"; second option "Programas". "Charges" here is the real Brazilian bill word (encargos setoriais); the Italian "Policies" slices (it-gas, it-power-26) stay "Programas" to match the done it-power.
-- p.who-gets-what.ipod.slice1 — "HD"; second option "Disco". "Drive" is the hard drive; "HD" is short and everyone in Brazil knows it, the fact and note say "disco rígido".
-- p.who-gets-what.th-petrol.what — "Um litro de gasolina benzine 95"; second option "Um litro de gasolina pura 95". "Benzine 95" and "gasohol 95" are the Thai fuel names, kept as they are; Brazilian sources would say "gasool" for gasohol.
-- p.who-gets-what.za-petrol.note — uma taxa “slate”; second option "uma taxa de ajuste (slate)". "Slate levy" has no Portuguese name and the English does not explain it, so I kept the word (same in za-diesel).
-- p.who-gets-what.cigs-pl.note — "746,56 zlotys"; second option "746,56 zlótis". Brazilian press writes "zlotys"; dictionaries give "zlóti".
-- p.who-gets-what.pk-petrol.fact — "399,86 rupias"; second option "Rs 399,86". "Rs" could be mistaken for "R$" in Brazil, so I wrote the word "rupias" everywhere (the done India lines use "₹").
-- p.who-gets-what.cigs-au.fact — "A$ 54,99"; second option "54,99 dólares australianos". Brazilian press writes "A$" and "NZ$"; for au-clothes I wrote "10 dólares australianos" because the amount is small and plain.
-- p.who-gets-what.cigs-kr.fact — "wons"; second option "won" (invariable). Brazilian dictionaries give "wons", "bahts" and "ienes", but the press often leaves "won" and "baht" without an s (also th-petrol.fact and cigs-jp.fact).
-- p.who-gets-what.de-gas.what — "Um quilowatt-hora (kWh) de gás residencial"; second option "Um quilowatt-hora (kWh) de gás de uso doméstico". The English says "unit" (= kWh); I followed the done de-power and it-power, which say quilowatt-hora. The share text lowercases `what`, so "kWh" turns into "kwh" (the same doubt as in the done lines).
-- p.who-gets-what.ie-beer.what — "Um pint de cerveja"; second option "Uma caneca (pint) de cerveja". "Pint" is how Brazilian pub sources write the Irish drink; the English gives no millilitres, so I added none.
-- p.who-gets-what.br-lpg.slice3 — "Revenda"; second option "Vendedor". "Revenda" is the Brazilian trade word for cooking-gas resellers; the other "Sellers" slices say "Vendedores" to match the done au-petrol.
-- p.who-gets-what.ch-petrol.fact — "15 rappen (centavos suíços)"; second option "15 centavos de franco". "Rappen" is the German-Swiss name for the cent; I kept it, with the English gloss.
-- p.who-gets-what.ie-beer.note — "Dáil (o parlamento irlandês)"; second option "Dáil Éireann, a câmara baixa". The English just says "Dáil"; I added three words so a 12-year-old knows what it is.
-- p.who-gets-what.qc-petrol.note — "plataforma de carregamento"; second option "rack de carregamento". The fuel trade says "rack" for the loading point where trucks fill up; I used the plain words.
-- p.who-gets-what.cigs-nl.where — "nos Países Baixos"; second option "na Holanda". The done the-club line says "Países Baixos"; the lines say "holandês" for the adjective.
-- p.who-gets-what.br-diesel.note — "diesel fóssil"; second option "diesel mineral". The English "fossil diesel" is the part that is not biodiesel; Brazilian sources say "diesel A" or "mineral".
+- p.who-gets-what.cigs-au.slice2 — "Imposto"; second option "Imposto especial". "Excise" sits next to "GST", but "Imposto especial" is too long for a narrow slice (same short "Imposto" as every Duty slice); the note says it is the excise. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-jp.slice3 — "Consumo"; second option "IVA". English "Tax" must differ from "Duty" ("Imposto"), and this is the 10% consumption tax, which the note explains; "IVA" would be shorter and familiar but names it more than the English does. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-jp.note — "província de Chiba"; second option "prefeitura de Chiba". Wikipédia writes "prefeitura" for the Japanese prefecture, but in Brazil "prefeitura" means city hall, so I used "província" (and "provincial" for the tax). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.it-gas.slice2 — "Tubulação"; second option "Rede". "Pipes" in the English; "Rede" is what the done it-power uses for "Wires", and I kept it for br-power and de-gas; for gas I chose the pipes word so the two do not look the same. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-power.slice3 — "Encargos"; second option "Programas". "Charges" here is the real Brazilian bill word (encargos setoriais); the Italian "Policies" slices (it-gas, it-power-26) stay "Programas" to match the done it-power. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ipod.slice1 — "HD"; second option "Disco". "Drive" is the hard drive; "HD" is short and everyone in Brazil knows it, the fact and note say "disco rígido". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.th-petrol.what — "Um litro de gasolina benzine 95"; second option "Um litro de gasolina pura 95". "Benzine 95" and "gasohol 95" are the Thai fuel names, kept as they are; Brazilian sources would say "gasool" for gasohol. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.note — uma taxa “slate”; second option "uma taxa de ajuste (slate)". "Slate levy" has no Portuguese name and the English does not explain it, so I kept the word (same in za-diesel). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-pl.note — "746,56 zlotys"; second option "746,56 zlótis". Brazilian press writes "zlotys"; dictionaries give "zlóti". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.pk-petrol.fact — "399,86 rupias"; second option "Rs 399,86". "Rs" could be mistaken for "R$" in Brazil, so I wrote the word "rupias" everywhere (the done India lines use "₹"). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-au.fact — "A$ 54,99"; second option "54,99 dólares australianos". Brazilian press writes "A$" and "NZ$"; for au-clothes I wrote "10 dólares australianos" because the amount is small and plain. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-kr.fact — "wons"; second option "won" (invariable). Brazilian dictionaries give "wons", "bahts" and "ienes", but the press often leaves "won" and "baht" without an s (also th-petrol.fact and cigs-jp.fact). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.de-gas.what — "Um quilowatt-hora (kWh) de gás residencial"; second option "Um quilowatt-hora (kWh) de gás de uso doméstico". The English says "unit" (= kWh); I followed the done de-power and it-power, which say quilowatt-hora. The share text lowercases `what`, so "kWh" turns into "kwh" (the same doubt as in the done lines). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ie-beer.what — "Um pint de cerveja"; second option "Uma caneca (pint) de cerveja". "Pint" is how Brazilian pub sources write the Irish drink; the English gives no millilitres, so I added none. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-lpg.slice3 — "Revenda"; second option "Vendedor". "Revenda" is the Brazilian trade word for cooking-gas resellers; the other "Sellers" slices say "Vendedores" to match the done au-petrol. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ch-petrol.fact — "15 rappen (centavos suíços)"; second option "15 centavos de franco". "Rappen" is the German-Swiss name for the cent; I kept it, with the English gloss. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ie-beer.note — "Dáil (o parlamento irlandês)"; second option "Dáil Éireann, a câmara baixa". The English just says "Dáil"; I added three words so a 12-year-old knows what it is. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.qc-petrol.note — "plataforma de carregamento"; second option "rack de carregamento". The fuel trade says "rack" for the loading point where trucks fill up; I used the plain words. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-nl.where — "nos Países Baixos"; second option "na Holanda". The done the-club line says "Países Baixos"; the lines say "holandês" for the adjective. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-diesel.note — "diesel fóssil"; second option "diesel mineral". The English "fossil diesel" is the part that is not biodiesel; Brazilian sources say "diesel A" or "mineral". **Settled 30 Oct 2026: kept.**

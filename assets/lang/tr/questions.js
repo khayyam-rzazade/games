@@ -27,7 +27,7 @@ window.LG_QUESTIONS = {
   "Hunter-gatherers": "Avcı-toplayıcılar",
   "Japan": "Japonya",
   "Little brown bat": "Küçük kahverengi yarasa",
-  "Owl monkey": "Baykuş maymunu",
+  "Owl monkey": "Gece maymunu",
   "Rhesus monkey": "Rhesus maymunu",
   "Tree shrew": "Ağaç sivrifaresi",
   "Athlete": "Sporcu",
@@ -36,7 +36,7 @@ window.LG_QUESTIONS = {
   "Bullfrog": "Boğa kurbağası",
   "Burmese python": "Birmanya pitonu",
   "Chick": "Civciv",
-  "Etruscan shrew": "Etrüsk cüce faresi",
+  "Etruscan shrew": "Etrüsk sivrifaresi",
   "Foal": "Tay",
   "Giant octopus": "Dev ahtapot",
   "Ground squirrel": "Yer sincabı",
@@ -202,7 +202,7 @@ window.LG_QUESTIONS = {
   "Starfish": "Denizyıldızı",
   "Spider": "Örümcek",
   "Prairie dog": "Çayır köpeği",
-  "Sugar glider": "Şeker sincabı",
+  "Sugar glider": "Şeker planörü",
   "Flying squirrel": "Uçan sincap",
   "A dollar spent on food": "Yemeğe harcanan bir dolar",
   "Centipede": "Çıyan",
@@ -507,8 +507,8 @@ window.LG_QUESTIONS = {
    "of": "çayır köpeğinin"
   },
   "Sugar glider": {
-   "the": "şeker sincabı",
-   "of": "şeker sincabının"
+   "the": "şeker planörü",
+   "of": "şeker planörünün"
   },
   "Flying squirrel": {
    "the": "uçan sincap",

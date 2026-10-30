@@ -81,8 +81,10 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 
 ## U. Doubts for Khayyam
 
-- q.stem.biggest_share — {x}: quem fica com a maior parte do preço? — Quem fica com a maior parte do preço de {x}? — {x} is a capitalised Who Gets What line ("Um quilo de chocolate amargo"), so it opens the question after a colon; the second option needs a lower-case {x}
-- q.stem.closest_relative — Qual é o parente mais próximo {x.of}? — Quem é o parente mais próximo {x.of}? — uses the `of` form from the Long Lost Cousin doc ("do suricato", "da maçã")
-- q.stem.beat_faster — O coração de qual deles bate mais rápido? — Qual deles tem o coração mais rápido? — the buttons are animals and people, so the stem names the heart first
-- q.opt.maker — Fabricante — Produtor — the same English button is a chocolate maker, a medicine maker and a spirits maker; one word has to serve all three (Who Gets What uses "Produtor" for the Norwegian drinks puzzles)
-- the 57 names in the three "New names" sections are the same words as in the puzzle docs (Out of 24 and Every Beat `face`, Who Gets What slices), copied by script so a button reads exactly as the puzzle does
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- q.stem.biggest_share — {x}: quem fica com a maior parte do preço? — Quem fica com a maior parte do preço de {x}? — {x} is a capitalised Who Gets What line ("Um quilo de chocolate amargo"), so it opens the question after a colon; the second option needs a lower-case {x} **Settled 30 Oct 2026: kept.**
+- q.stem.closest_relative — Qual é o parente mais próximo {x.of}? — Quem é o parente mais próximo {x.of}? — uses the `of` form from the Long Lost Cousin doc ("do suricato", "da maçã") **Settled 30 Oct 2026: kept.**
+- q.stem.beat_faster — O coração de qual deles bate mais rápido? — Qual deles tem o coração mais rápido? — the buttons are animals and people, so the stem names the heart first **Settled 30 Oct 2026: kept.**
+- q.opt.maker — Fabricante — Produtor — the same English button is a chocolate maker, a medicine maker and a spirits maker; one word has to serve all three (Who Gets What uses "Produtor" for the Norwegian drinks puzzles) **Settled 30 Oct 2026: kept.**
+- the 57 names in the three "New names" sections are the same words as in the puzzle docs (Out of 24 and Every Beat `face`, Who Gets What slices), copied by script so a button reads exactly as the puzzle does **Settled 30 Oct 2026: kept.**

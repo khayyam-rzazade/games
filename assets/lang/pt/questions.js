@@ -129,7 +129,7 @@ window.LG_QUESTIONS = {
   "Vikings cut wood in Newfoundland": "Os vikings cortam madeira na Terra Nova",
   "The first iPhone goes on sale": "O primeiro iPhone chega às lojas",
   "Alexander the Great dies": "Alexandre, o Grande, morre",
-  "A kilo of cocoa beans at the port": "Um quilo de amêndoas de cacau no porto",
+  "A kilo of cocoa beans at the port": "Um quilo de grãos de cacau no porto",
   "Cleopatra dies": "Cleópatra morre",
   "Wikipedia goes online": "A Wikipédia entra no ar",
   "Platypus": "Ornitorrinco",

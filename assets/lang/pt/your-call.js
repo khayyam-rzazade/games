@@ -357,7 +357,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "1973-carfree": {
   "place": "Haia",
-  "pov": "Os países produtores de petróleo estão boicotando o seu país porque ele apoiou Israel na Guerra do Yom Kippur. Você precisa reduzir rápido o uso de petróleo. Você é o primeiro-ministro da Holanda.",
+  "pov": "Os países produtores de petróleo estão boicotando o seu país porque ele apoiou Israel na Guerra do Yom Kippur. Você precisa reduzir rápido o uso de petróleo. Você é o primeiro-ministro dos Países Baixos.",
   "short": "Den Uyl",
   "did": "O governo de Den Uyl proibiu dirigir aos domingos e racionou o combustível. Só trabalhadores essenciais, médicos e serviços de emergência podiam dirigir.",
   "next": "Nas rodovias vazias, as pessoas andavam de bicicleta, passeavam a cavalo e até faziam piqueniques. Na televisão, Den Uyl disse que as coisas nunca voltariam a ser como antes.",
@@ -1035,11 +1035,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "1990-benin": {
   "place": "Cotonou",
-  "pov": "Depois de um ano de greves por salários atrasados, uma conferência nacional se declarou soberana e escolheu um novo primeiro-ministro. Alguns dos seus oficiais se opõem. Você é o presidente do Benim.",
+  "pov": "Depois de um ano de greves por salários atrasados, uma conferência nacional se declarou soberana e escolheu um novo primeiro-ministro. Alguns dos seus oficiais se opõem. Você é o presidente do Benin.",
   "short": "Kérékou",
   "did": "Kérékou chamou aquilo de “golpe civil”, mas não agiu contra a conferência. Continuou presidente, mas perdeu a maior parte do poder.",
   "next": "Ele perdeu a eleição multipartidária de março de 1991 para o seu primeiro-ministro, Nicéphore Soglo, e deixou o cargo. Em 1996, voltou à presidência em uma votação livre.",
-  "stamp": "A conferência nacional do Benim",
+  "stamp": "A conferência nacional do Benin",
   "choices": [
    "Mandar tropas dissolverem a conferência",
    "Aceitá-la e ficar com pouco poder",
@@ -1338,7 +1338,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "pov": "O consumo excessivo de álcool está ligado a faltas ao trabalho, a acidentes de trabalho e ao aumento da mortalidade entre os homens. Mesmo assim, em 1979 a venda de bebidas rendeu ao Estado cerca de 25,4 bilhões de rublos em impostos. Você é o novo líder soviético.",
   "short": "Gorbachev",
   "did": "Em maio de 1985, Gorbachev lançou uma campanha contra a bebida. O preço da vodca subiu de 20 a 30%, o horário de venda foi reduzido e vinhedos foram destruídos.",
-  "next": "A expectativa de vida subiu de 67,7 anos em 1984 para 69,8 em 1987. Mas a bebida destilada em casa explodiu, a receita do Estado caiu e a campanha foi abandonada depois de 1987.",
+  "next": "A expectativa de vida subiu de 67,7 anos em 1984 para 69,8 em 1987. Mas a produção clandestina de bebida disparou, a receita do Estado caiu e a campanha foi abandonada depois de 1987.",
   "stamp": "Gorbachev contra a bebida",
   "choices": [
    "Reduzir o consumo com uma campanha nacional",
@@ -1441,7 +1441,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "place": "Moscou",
   "pov": "Comunistas da linha dura tentam tomar o poder e mantêm o presidente soviético retido em sua datcha. Tropas estão entrando em Moscou, e você está na lista de prisões da KGB. Você é o presidente da Rússia.",
   "short": "Ieltsin",
-  "did": "Ieltsin foi à Casa Branca, subiu em um tanque e leu um apelo ao povo. O texto chamava os fatos de tentativa de golpe e pedia uma greve geral.",
+  "did": "Ieltsin foi à Casa Branca de Moscou, subiu em um tanque e leu um apelo ao povo. O texto chamava os fatos de tentativa de golpe e pedia uma greve geral.",
   "next": "Multidões ergueram barricadas em volta da Casa Branca, e três homens morreram. O golpe desmoronou em dois dias; em 25 de dezembro, Gorbachev renunciou.",
   "stamp": "Ieltsin em cima do tanque",
   "choices": [
@@ -1482,7 +1482,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "short": "Mujib",
   "did": "Em 7 de março de 1971, diante de mais de um milhão de pessoas em Daca, Mujib disse que a luta, desta vez, era pela independência. Mas não fez nenhuma declaração direta e impôs condições, como o fim da lei marcial.",
   "next": "Em 25 de março de 1971, o exército do Paquistão lançou a Operação Searchlight e prendeu Mujib; seguiu-se a Guerra de Libertação.",
-  "stamp": "O discurso de 7 de março",
+  "stamp": "Mujib discursa em 7 de março",
   "choices": [
    "Declarar já a independência do Paquistão",
    "Chamar o povo à luta, sem declarar",
@@ -1743,7 +1743,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "short": "Kohl",
   "did": "Contra o conselho dos principais economistas, o governo de Kohl trocou salários, ordenados, aposentadorias e aluguéis de um por um. As poupanças foram trocadas de um por um até um limite de 2.000 a 6.000 marcos, conforme a idade.",
   "next": "O marco alemão chegou à Alemanha Oriental em 1º de julho de 1990. Muitas empresas orientais deixaram de poder competir, e vieram fechamentos e demissões em massa.",
-  "stamp": "Um marco alemão por um oriental",
+  "stamp": "Um marco alemão por marco oriental",
   "choices": [
    "Trocar na razão de dois marcos orientais por um",
    "Trocar salários e poupanças de um por um",
@@ -2090,7 +2090,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "1989-martial-law-beijing": {
   "place": "Pequim",
-  "pov": "Estudantes em greve de fome protestam na Praça Tiananmen. Os cinco membros do Comitê Permanente do partido não chegam a um acordo sobre como responder. Você é o líder que tem a palavra final na China.",
+  "pov": "Estudantes em greve de fome protestam na Praça da Paz Celestial. Os cinco membros do Comitê Permanente do partido não chegam a um acordo sobre como responder. Você é o líder que tem a palavra final na China.",
   "short": "Deng",
   "did": "Em 17 de maio de 1989, Deng disse aos cinco membros do Comitê Permanente que era hora de chamar os militares para impor a lei marcial. Li Peng a anunciou na madrugada de 20 de maio.",
   "next": "Os manifestantes barraram muitas unidades com bloqueios nas ruas. Deng mandou começar a usar a força na noite de 3 de junho; centenas de pessoas morreram, se não mais.",
@@ -2131,12 +2131,12 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "place": "Tóquio",
   "pov": "Em 1869, os senhores feudais do Japão entregaram as suas terras ao imperador, mas 261 domínios continuam existindo, ainda administrados pelos antigos senhores, como governadores. Você é um dos principais reformistas do novo governo do Japão.",
   "short": "Ōkubo",
-  "did": "Em agosto de 1871, Ōkubo, ajudado por Saigō Takamori, fez passar um édito imperial que abolia os domínios. Prefeituras subordinadas ao governo de Tóquio os substituíram.",
+  "did": "Em agosto de 1871, Ōkubo, ajudado por Saigō Takamori, fez passar um édito imperial que abolia os domínios. Províncias subordinadas ao governo de Tóquio os substituíram.",
   "next": "Os antigos senhores se tornaram uma nobreza pensionada que vivia em Tóquio, e o Estado assumiu as dívidas dos domínios. Em 1874, as pensões deles foram convertidas em títulos do governo.",
-  "stamp": "Os domínios viram prefeituras",
+  "stamp": "Os domínios viram províncias",
   "choices": [
    "Deixar os senhores no cargo, como governadores",
-   "Abolir os domínios e criar prefeituras",
+   "Abolir os domínios e criar províncias",
    "Eliminar os domínios aos poucos, em muitos anos"
   ]
  },

@@ -187,7 +187,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "volcanoes": {
   "sign": "São vulcões",
   "stamp": "Vulcões",
-  "fact": "Todos são vulcões. O Quilimanjaro, a montanha mais alta da África, também é.",
+  "fact": "Todos são vulcões. O Kilimanjaro, a montanha mais alta da África, também é.",
   "in": [
    "Monte Fuji",
    "Etna",
@@ -199,7 +199,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Quilimanjaro",
+    "Kilimanjaro",
     1
    ],
    [
@@ -2023,7 +2023,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "arabic-words": {
   "sign": "Palavras vindas do árabe",
   "stamp": "Do árabe",
-  "fact": "Cada uma veio do árabe, passando por outras línguas. “Álgebra” vem de al-jabr, palavra do título de um livro escrito há cerca de 1.200 anos.",
+  "fact": "Cada uma vem do árabe e chegou ao inglês passando por outras línguas. “Álgebra” vem de al-jabr, palavra do título de um livro escrito há cerca de 1.200 anos.",
   "in": [
    "Álgebra",
    "Café",
@@ -2282,7 +2282,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    "Annapurna"
   ],
   "out": [
-   "Quilimanjaro",
+   "Kilimanjaro",
    "Monte Branco"
   ],
   "door": [
@@ -3103,7 +3103,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "mint-family": {
   "sign": "São da família da hortelã",
   "stamp": "Família da hortelã",
-  "fact": "Todos pertencem à família da hortelã. Salsinha, coentro, endro e funcho pertencem a outra família, a da cenoura e do salsão.",
+  "fact": "Todos pertencem à família da hortelã. Salsinha, coentro, endro e erva-doce pertencem a outra família, a da cenoura e do salsão.",
   "in": [
    "Manjericão",
    "Alecrim",
@@ -3127,7 +3127,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Funcho",
+    "Erva-doce",
     0
    ],
    [
@@ -3535,7 +3535,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "palms": {
   "sign": "Vêm de palmeiras",
   "stamp": "De palmeiras",
-  "fact": "Cocos, tâmaras, açaí, óleo de palma e nozes-de-areca vêm todos de palmeiras. A bananeira não é uma palmeira: é uma erva gigante.",
+  "fact": "Cocos, tâmaras, açaí, óleo de palma e nozes-de-bétel vêm todos de palmeiras. A bananeira não é uma palmeira: é uma erva gigante.",
   "in": [
    "Coco",
    "Tâmaras",
@@ -3555,7 +3555,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Noz-de-areca",
+    "Noz-de-bétel",
     1
    ],
    [
@@ -4615,7 +4615,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "carrot-family": {
   "sign": "São da família da cenoura",
   "stamp": "Família da cenoura",
-  "fact": "A cenoura, o salsão e a salsinha pertencem a uma mesma família, e o coentro, o cominho e o funcho também.",
+  "fact": "A cenoura, o salsão e a salsinha pertencem a uma mesma família, e o coentro, o cominho e a erva-doce também.",
   "in": [
    "Cenoura",
    "Salsão",
@@ -4643,7 +4643,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Funcho",
+    "Erva-doce",
     1
    ]
   ]

@@ -10,9 +10,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "viven en India"
  },
  "live-high-income": {
-  "q": "De 100 personas en el mundo, ¿cuántas viven en un país de ingreso alto?",
-  "sentence": "Para el Banco Mundial, los países de ingreso alto son el grupo más rico.",
-  "stamp": "viven en un país de ingreso alto"
+  "q": "De 100 personas en el mundo, ¿cuántas viven en un país de ingresos altos?",
+  "sentence": "Para el Banco Mundial, los países de ingresos altos son el grupo más rico.",
+  "stamp": "viven en un país de ingresos altos"
  },
  "live-africa": {
   "q": "De 100 personas en el mundo, ¿cuántas viven en África?",
@@ -40,9 +40,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "viven en el continente americano"
  },
  "live-low-income": {
-  "q": "De 100 personas en el mundo, ¿cuántas viven en un país de ingreso bajo?",
-  "sentence": "Para el Banco Mundial, los países de ingreso bajo son el grupo más pobre.",
-  "stamp": "viven en un país de ingreso bajo"
+  "q": "De 100 personas en el mundo, ¿cuántas viven en un país de ingresos bajos?",
+  "sentence": "Para el Banco Mundial, los países de ingresos bajos son el grupo más pobre.",
+  "stamp": "viven en un país de ingresos bajos"
  },
  "live-europe": {
   "q": "De 100 personas en el mundo, ¿cuántas viven en Europa?",
@@ -55,9 +55,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "viven en China"
  },
  "live-middle-income": {
-  "q": "De 100 personas en el mundo, ¿cuántas viven en un país de ingreso mediano?",
+  "q": "De 100 personas en el mundo, ¿cuántas viven en un país de ingresos medios?",
   "sentence": "La mayoría de las personas vive en países que no son ni ricos ni pobres.",
-  "stamp": "viven en un país de ingreso mediano"
+  "stamp": "viven en un país de ingresos medios"
  },
  "live-ten-biggest": {
   "q": "De 100 personas en el mundo, ¿cuántas viven en los diez países con más habitantes?",

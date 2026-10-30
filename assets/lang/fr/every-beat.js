@@ -479,7 +479,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "note": "Greyhounds de course lors de courses de 30 secondes : 318, à 18 près (thèse de l’université Murdoch, 1984). Les 42 endormis ne viennent que de cette thèse. Une conférence de 2019 reprend les 318."
  },
  "preschooler-awake": {
-  "face": "Enfant d’âge préscolaire",
+  "face": "Enfant de maternelle",
   "label": "éveillé",
   "sentence": "Éveillé, un enfant de 3 à 5 ans a un cœur qui bat de 80 à 120 fois par minute, déjà plus lentement que celui d’un tout-petit.",
   "note": "La fourchette normale pour les enfants de 3 à 5 ans, éveillés et sans faire d’effort (Cleveland Clinic ; tableaux PALS). Endormis, les tableaux donnent de 65 à 100."

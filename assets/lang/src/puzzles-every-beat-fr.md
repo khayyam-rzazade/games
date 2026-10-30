@@ -563,7 +563,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 #### 80/111 · `preschooler-awake` · day 80 (27 Dec 2026), 191 (17 Apr 2027), 302 (6 Aug 2027), 413 (25 Nov 2027) … · every 111 days
 
-- `p.every-beat.preschooler-awake.face` — Enfant d’âge préscolaire
+- `p.every-beat.preschooler-awake.face` — Enfant de maternelle
 - `p.every-beat.preschooler-awake.label` — éveillé
 - `p.every-beat.preschooler-awake.sentence` — Éveillé, un enfant de 3 à 5 ans a un cœur qui bat de 80 à 120 fois par minute, déjà plus lentement que celui d’un tout-petit.
 - `p.every-beat.preschooler-awake.note` — La fourchette normale pour les enfants de 3 à 5 ans, éveillés et sans faire d’effort (Cleveland Clinic ; tableaux PALS). Endormis, les tableaux donnent de 65 à 100.
@@ -787,28 +787,30 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.every-beat.shrew-peak.face — Musaraigne étrusque — second option: Pachyure étrusque (the name French Wikipedia heads its page with); I took the one a 12-year-old knows.
-- p.every-beat.shrew-peak.label — à fond — second option: à son maximum; "à fond" is how a French speaker says flat out, a little casual, used again for the galloping horse.
-- p.every-beat.frog-rest.face — Grenouille-taureau — second option: Ouaouaron (the Quebec name); grenouille-taureau is the common French name.
-- p.every-beat.squirrel-hibernating.face — Écureuil terrestre — second option: Spermophile (the zoologists' word for ground squirrel, which most French readers do not know).
-- p.every-beat.octopus-awake.face — Poulpe géant — second option: Pieuvre géante; poulpe is the usual word for the animal, pieuvre the everyday one.
-- p.every-beat.horse-gallop.note — Oklahoma State University and Texas A&M kept in English as institution names; a French source would write the same.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.every-beat.shrew-peak.face — Musaraigne étrusque — second option: Pachyure étrusque (the name French Wikipedia heads its page with); I took the one a 12-year-old knows. **Settled 30 Oct 2026: kept.**
+- p.every-beat.shrew-peak.label — à fond — second option: à son maximum; "à fond" is how a French speaker says flat out, a little casual, used again for the galloping horse. **Settled 30 Oct 2026: kept.**
+- p.every-beat.frog-rest.face — Grenouille-taureau — second option: Ouaouaron (the Quebec name); grenouille-taureau is the common French name. **Settled 30 Oct 2026: kept.**
+- p.every-beat.squirrel-hibernating.face — Écureuil terrestre — second option: Spermophile (the zoologists' word for ground squirrel, which most French readers do not know). **Settled 30 Oct 2026: kept.**
+- p.every-beat.octopus-awake.face — Poulpe géant — second option: Pieuvre géante; poulpe is the usual word for the animal, pieuvre the everyday one. **Settled 30 Oct 2026: kept.**
+- p.every-beat.horse-gallop.note — Oklahoma State University and Texas A&M kept in English as institution names; a French source would write the same. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.every-beat.tent-bat-flight.face — "Chauve-souris à tentes"; second option "Chauve-souris bâtisseuse de tentes". I found no French source for this species (Uroderma bilobatum), so I made the name from the English; the longer one is clearer but may be too wide for the face.
-- p.every-beat.groundhog-hibernating.face — "Marmotte commune"; second option "Marmotte d’Amérique". "Marmotte commune" is the name Quebec’s government and language office use for the groundhog; it is kept apart from "Marmotte des Alpes" (marmot-hibernating.face).
-- p.every-beat.yellowfin-awake.face — "Thon jaune"; second option "Thon albacore". Both are the standard French names; "thon jaune" is the one shops and fishers use.
-- p.every-beat.tufted-duck-dive.face — "Fuligule morillon"; second option "Canard morillon". "Fuligule morillon" is the official name; a 12-year-old may not know it, but "canard" alone would be wrong (and is used for the mallard picture). Same for tufted-duck-awake.
-- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Lévrier". "Greyhound" is the breed’s name in French too; "lévrier" is the everyday word for the whole group of dogs.
-- p.every-beat.preschooler-awake.face — "Enfant d’âge préscolaire"; second option "Enfant de maternelle". "Maternelle" does not cover the same ages in France, Belgium, Switzerland and Quebec; "d’âge préscolaire" is a little formal, but the sentence gives the ages (3 to 5).
-- p.every-beat.cold-face-dive.face — "Personne en apnée"; second option "Apnéiste". "Apnéiste" is already the face of the freediver (freediver-dive), and this one is only dipping the face in cold water.
-- p.every-beat.toddler-awake.face — "Tout-petit"; second option "Bambin". "Tout-petit" is plainer and fits the 1-to-3 range.
-- p.every-beat.pregnant-rest.face — "Future maman"; second option "Femme enceinte". "Future maman" is warmer and matches "mother-to-be".
-- p.every-beat.buffalo-awake.face — "Buffle d’eau"; second option "Buffle d’Asie". Both names are used; "buffle d’eau" says what the animal does.
-- p.every-beat.chinese-goose-awake.label — "éveillée"; the label agrees with the feminine face "Oie de Chine". The first batch always used the masculine "éveillé" because its faces were masculine; the other "awake" labels here are masculine too.
-- p.every-beat.marmot-hibernating.note — "Réveillez-vous !"; second option "Awake!". The English "Awake!" is a magazine; its French edition is called "Réveillez-vous !". The note says "Wikipédia" for Wikipedia, as a French reader would.
-- p.every-beat.hawk-rest.note — "pygargue à tête blanche" for the bald eagle in the picture; second option "aigle à tête blanche", the everyday name.
-- p.every-beat.humpback-rest.note — "logging" kept in English between quotes, because it is the researchers’ own word for a whale lying still at the surface; second option "flottant".
-- p.every-beat.sheep-rest.face — "Mouton"; second option "Brebis". "Mouton" is the general word for the animal, as "Sheep" is in English.
-- p.every-beat.calf-rest.note — "l’université de Californie à Davis" for UC Davis (as the first batch wrote "l’université de Californie à Santa Cruz"); second option "UC Davis" as people write it.
+- p.every-beat.tent-bat-flight.face — "Chauve-souris à tentes"; second option "Chauve-souris bâtisseuse de tentes". I found no French source for this species (Uroderma bilobatum), so I made the name from the English; the longer one is clearer but may be too wide for the face. **Settled 30 Oct 2026: kept.**
+- p.every-beat.groundhog-hibernating.face — "Marmotte commune"; second option "Marmotte d’Amérique". "Marmotte commune" is the name Quebec’s government and language office use for the groundhog; it is kept apart from "Marmotte des Alpes" (marmot-hibernating.face). **Settled 30 Oct 2026: kept.**
+- p.every-beat.yellowfin-awake.face — "Thon jaune"; second option "Thon albacore". Both are the standard French names; "thon jaune" is the one shops and fishers use. **Settled 30 Oct 2026: kept.**
+- p.every-beat.tufted-duck-dive.face — "Fuligule morillon"; second option "Canard morillon". "Fuligule morillon" is the official name; a 12-year-old may not know it, but "canard" alone would be wrong (and is used for the mallard picture). Same for tufted-duck-awake. **Settled 30 Oct 2026: kept.**
+- p.every-beat.greyhound-fastest.face — "Greyhound"; second option "Lévrier". "Greyhound" is the breed’s name in French too; "lévrier" is the everyday word for the whole group of dogs. **Settled 30 Oct 2026: kept.**
+- p.every-beat.preschooler-awake.face — "Enfant d’âge préscolaire"; second option "Enfant de maternelle". "Maternelle" does not cover the same ages in France, Belgium, Switzerland and Quebec; "d’âge préscolaire" is a little formal, but the sentence gives the ages (3 to 5). **Settled 30 Oct 2026: changed to “Enfant de maternelle”.**
+- p.every-beat.cold-face-dive.face — "Personne en apnée"; second option "Apnéiste". "Apnéiste" is already the face of the freediver (freediver-dive), and this one is only dipping the face in cold water. **Settled 30 Oct 2026: kept.**
+- p.every-beat.toddler-awake.face — "Tout-petit"; second option "Bambin". "Tout-petit" is plainer and fits the 1-to-3 range. **Settled 30 Oct 2026: kept.**
+- p.every-beat.pregnant-rest.face — "Future maman"; second option "Femme enceinte". "Future maman" is warmer and matches "mother-to-be". **Settled 30 Oct 2026: kept.**
+- p.every-beat.buffalo-awake.face — "Buffle d’eau"; second option "Buffle d’Asie". Both names are used; "buffle d’eau" says what the animal does. **Settled 30 Oct 2026: kept.**
+- p.every-beat.chinese-goose-awake.label — "éveillée"; the label agrees with the feminine face "Oie de Chine". The first batch always used the masculine "éveillé" because its faces were masculine; the other "awake" labels here are masculine too. **Settled 30 Oct 2026: kept.**
+- p.every-beat.marmot-hibernating.note — "Réveillez-vous !"; second option "Awake!". The English "Awake!" is a magazine; its French edition is called "Réveillez-vous !". The note says "Wikipédia" for Wikipedia, as a French reader would. **Settled 30 Oct 2026: kept.**
+- p.every-beat.hawk-rest.note — "pygargue à tête blanche" for the bald eagle in the picture; second option "aigle à tête blanche", the everyday name. **Settled 30 Oct 2026: kept.**
+- p.every-beat.humpback-rest.note — "logging" kept in English between quotes, because it is the researchers’ own word for a whale lying still at the surface; second option "flottant". **Settled 30 Oct 2026: kept.**
+- p.every-beat.sheep-rest.face — "Mouton"; second option "Brebis". "Mouton" is the general word for the animal, as "Sheep" is in English. **Settled 30 Oct 2026: kept.**
+- p.every-beat.calf-rest.note — "l’université de Californie à Davis" for UC Davis (as the first batch wrote "l’université de Californie à Santa Cruz"); second option "UC Davis" as people write it. **Settled 30 Oct 2026: kept.**

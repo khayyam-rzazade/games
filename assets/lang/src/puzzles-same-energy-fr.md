@@ -1182,11 +1182,13 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.same-energy.chocolate-bread.a_name — Une tablette de chocolat noir — second option: Une barre de chocolat noir; tablette is what French says for a bar of chocolate, barre is closer to the English but sounds like a cereal or energy bar.
-- p.same-energy.oats-cola.a_name — Un bol de flocons d’avoine — second option: Un bol de porridge; the English "oats" are the dry flakes, weighed dry (40 g), so I kept the flakes.
-- p.same-energy.oats-cola.src1_what — Flocons d’avoine — second option: Avoine; flocons d’avoine is what a French food table lists for the porridge flakes.
-- p.same-energy.orange-juice-grapes.src2_what — Raisin — second option: Raisins; the lines already done have "Raisin" (singular, as a food table writes it), so I kept it.
-- p.same-energy.cola-apples.sentence — Une canette de cola a la même énergie qu’une pomme et demie. — second option: qu’une pomme et demi (no agreement); I used "et demie" with a feminine noun, "et demi" with a masculine one (un verre et demi, 7 tranches et demie).
-- p.same-energy.milk-cola.note — contains "en contient": I followed the line already done (« une canette de cola en contient 330 ml »), and used "en" whenever both halves of the note use "contient".
-- p.same-energy.egg-cola.sentence — Un œuf dur a la même énergie qu’une demi-canette de cola. — second option: la moitié d’une canette de cola; demi-canette is shorter and what a French speaker says.
-- p.same-energy.oil-cola.a_portion — 1 cuillère à soupe — second option: 1 c. à soupe; written out, as in the lines already done.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.same-energy.chocolate-bread.a_name — Une tablette de chocolat noir — second option: Une barre de chocolat noir; tablette is what French says for a bar of chocolate, barre is closer to the English but sounds like a cereal or energy bar. **Settled 30 Oct 2026: kept.**
+- p.same-energy.oats-cola.a_name — Un bol de flocons d’avoine — second option: Un bol de porridge; the English "oats" are the dry flakes, weighed dry (40 g), so I kept the flakes. **Settled 30 Oct 2026: kept.**
+- p.same-energy.oats-cola.src1_what — Flocons d’avoine — second option: Avoine; flocons d’avoine is what a French food table lists for the porridge flakes. **Settled 30 Oct 2026: kept.**
+- p.same-energy.orange-juice-grapes.src2_what — Raisin — second option: Raisins; the lines already done have "Raisin" (singular, as a food table writes it), so I kept it. **Settled 30 Oct 2026: kept.**
+- p.same-energy.cola-apples.sentence — Une canette de cola a la même énergie qu’une pomme et demie. — second option: qu’une pomme et demi (no agreement); I used "et demie" with a feminine noun, "et demi" with a masculine one (un verre et demi, 7 tranches et demie). **Settled 30 Oct 2026: kept.**
+- p.same-energy.milk-cola.note — contains "en contient": I followed the line already done (« une canette de cola en contient 330 ml »), and used "en" whenever both halves of the note use "contient". **Settled 30 Oct 2026: kept.**
+- p.same-energy.egg-cola.sentence — Un œuf dur a la même énergie qu’une demi-canette de cola. — second option: la moitié d’une canette de cola; demi-canette is shorter and what a French speaker says. **Settled 30 Oct 2026: kept.**
+- p.same-energy.oil-cola.a_portion — 1 cuillère à soupe — second option: 1 c. à soupe; written out, as in the lines already done. **Settled 30 Oct 2026: kept.**

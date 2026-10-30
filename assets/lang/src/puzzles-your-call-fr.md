@@ -1185,7 +1185,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 #### 99/168 · `1982-falklands` · day 99 (9 Jan 2027), 267 (26 Jun 2027), 435 (11 Dec 2027), 603 (27 May 2028) … · every 168 days
 
 - `p.your-call.1982-falklands.place` — Londres
-- `p.your-call.1982-falklands.pov` — Le 2 avril 1982, des forces argentines ont occupé Port Stanley, capitale des îles Malouines, un territoire britannique situé à 8 000 miles de là, dans l’Atlantique Sud. Tu es le Premier ministre britannique.
+- `p.your-call.1982-falklands.pov` — Le 2 avril 1982, des forces argentines ont occupé Port Stanley, capitale des îles Malouines, un territoire britannique situé à 8 000 miles de là, dans l’Atlantique Sud. Tu es la Première ministre britannique.
 - `p.your-call.1982-falklands.choice1` — Compter sur l’ONU et la diplomatie
 - `p.your-call.1982-falklands.choice2` — Accepter un compromis américain
 - `p.your-call.1982-falklands.choice3` — Envoyer une flotte les reprendre
@@ -1853,7 +1853,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.your-call.2003-rose-revolution.choice3` — Promettre de nouvelles élections, mais rester
 - `p.your-call.2003-rose-revolution.short` — Chevardnadze
 - `p.your-call.2003-rose-revolution.did` — Le soir du 23 novembre 2003, après avoir rencontré les chefs de l’opposition Saakachvili et Jvania, Chevardnadze a annoncé sa démission.
-- `p.your-call.2003-rose-revolution.next` — La présidente du Parlement, Nino Bourdjanadzé, est devenue présidente par intérim. Le 4 janvier 2004, Saakachvili, sans adversaire, a été élu président avec 96,2 % des voix.
+- `p.your-call.2003-rose-revolution.next` — La présidente du Parlement, Nino Bourdjanadze, est devenue présidente par intérim. Le 4 janvier 2004, Saakachvili, sans adversaire, a été élu président avec 96,2 % des voix.
 - `p.your-call.2003-rose-revolution.stamp` — La révolution des Roses
 
 #### 155/168 · `1988-ceasefire` · day 155 (6 Mar 2027), 323 (21 Aug 2027), 491 (5 Feb 2028), 659 (22 Jul 2028) … · every 168 days
@@ -2026,46 +2026,48 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.your-call.1905-norway-king.short — Carl — second option: Le prince Carl; the page can put the name at the start of a sentence ("Carl a fait un autre choix."), so I kept it without an article.
-- p.your-call.1990-de-klerk.short — De Klerk — second option: de Klerk; French writes a lower-case "de" inside a sentence (I did so in the text), but the page can start a sentence with it, so the short name has the capital.
-- p.your-call.1893-nz-vote.short — Lord Glasgow — second option: lord Glasgow; same reason: capital L because the name may begin a sentence (the text says "lord Glasgow" in the middle of a sentence).
-- p.your-call.1215-magna-carta.short — Jean sans Terre — second option: Jean; French books use the nickname for King John, and it reads well after "Ce qu'a fait".
-- p.your-call.1975-emergency.pov — Tu es la Première ministre de l'Inde. — second option: Tu es le Premier ministre de l'Inde; the leader is a woman, so I made the title feminine.
-- p.your-call.1991-india-reforms.next — L'économie de l'Inde, 266 milliards de dollars en 1991, a depuis dépassé 4 000 milliards. — second option: 4 billions de dollars; in French "billion" is 1,000 milliards, correct but it confuses readers used to the English "trillion", so I wrote 4 000 milliards.
-- p.your-call.1443-hangul.next — on l'appelle aujourd'hui le hangeul — second option: le hangul; "hangeul" is how French reference books spell it.
-- p.your-call.1803-louisiana.next — 828 000 miles carrés — second option: 2 144 000 km² (converted); a figure is a fact, so I kept the English unit and number.
-- p.your-call.1948-berlin-airlift.next — plus de 2,3 millions de tonnes — second option: 2,3 millions de tonnes américaines; the English "tons" may be short tons, so the French "tonnes" is a little larger than the English figure, which I judged too small a gap to change.
-- p.your-call.1958-guinea.pov — dans toute l'Union française — second option: dans toute la Communauté française; in 1958 the new constitution created the Communauté française, but the English says "French Union", so I followed it.
-- p.your-call.1888-golden-law.short — Isabelle — second option: Isabel; French history books write "la princesse Isabelle".
-- p.your-call.1519-cortes-ships.next — Moctezuma II — second option: Montezuma II; "Moctezuma" is the spelling most French books use today.
-- p.your-call.1948-israel.short — Ben Gourion — second option: Ben-Gourion; both are in use, Le Monde writes it without a hyphen.
-- p.your-call.1948-israel.did — l'Administration du peuple — second option: le Conseil du peuple; the body voted on 12 May 1948 is called "Administration du peuple" (Minhelet HaAm) in French sources, "Conseil du peuple" is the larger body.
-- p.your-call.1946-nhs.did — Avec sa loi de 1946 sur le National Health Service — second option: sur le Service national de santé; the English name is what French readers know (the pov says "service national de santé"), so I used it in the text.
-- p.your-call.1985-nuclear-free.pov — Tu as été élu en promettant un pays sans armes nucléaires. — second option: Tu as été élu sur une politique antinucléaire; "nuclear-free" here means no nuclear weapons or warships, not no nuclear power, so I wrote it out.
-- p.your-call.1970-warsaw.did — « J'ai fait ce que font les êtres humains quand les mots leur manquent » — second option: « …ce que font les hommes… »; French papers quoted it with "les hommes", but "êtres humains" is closer to the English "humans".
-- p.your-call.1974-pardon.next — le prix Profile in Courage — second option: le prix du Courage politique; there is no fixed French name, so I kept the English one.
-- p.your-call.1424-treasure-fleets.pov — de grandes flottes du trésor — second option: flottes au trésor; both are used for Zheng He's fleets.
-- p.your-call.1952-andhra.stamp — Un État pour les Télougous — second option: Un État pour le télougou; the stamp must stay under six words.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.your-call.1905-norway-king.short — Carl — second option: Le prince Carl; the page can put the name at the start of a sentence ("Carl a fait un autre choix."), so I kept it without an article. **Settled 30 Oct 2026: kept.**
+- p.your-call.1990-de-klerk.short — De Klerk — second option: de Klerk; French writes a lower-case "de" inside a sentence (I did so in the text), but the page can start a sentence with it, so the short name has the capital. **Settled 30 Oct 2026: kept.**
+- p.your-call.1893-nz-vote.short — Lord Glasgow — second option: lord Glasgow; same reason: capital L because the name may begin a sentence (the text says "lord Glasgow" in the middle of a sentence). **Settled 30 Oct 2026: kept.**
+- p.your-call.1215-magna-carta.short — Jean sans Terre — second option: Jean; French books use the nickname for King John, and it reads well after "Ce qu'a fait". **Settled 30 Oct 2026: kept.**
+- p.your-call.1975-emergency.pov — Tu es la Première ministre de l'Inde. — second option: Tu es le Premier ministre de l'Inde; the leader is a woman, so I made the title feminine. **Settled 30 Oct 2026: kept.**
+- p.your-call.1991-india-reforms.next — L'économie de l'Inde, 266 milliards de dollars en 1991, a depuis dépassé 4 000 milliards. — second option: 4 billions de dollars; in French "billion" is 1,000 milliards, correct but it confuses readers used to the English "trillion", so I wrote 4 000 milliards. **Settled 30 Oct 2026: kept.**
+- p.your-call.1443-hangul.next — on l'appelle aujourd'hui le hangeul — second option: le hangul; "hangeul" is how French reference books spell it. **Settled 30 Oct 2026: kept.**
+- p.your-call.1803-louisiana.next — 828 000 miles carrés — second option: 2 144 000 km² (converted); a figure is a fact, so I kept the English unit and number. **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-berlin-airlift.next — plus de 2,3 millions de tonnes — second option: 2,3 millions de tonnes américaines; the English "tons" may be short tons, so the French "tonnes" is a little larger than the English figure, which I judged too small a gap to change. **Settled 30 Oct 2026: kept.**
+- p.your-call.1958-guinea.pov — dans toute l'Union française — second option: dans toute la Communauté française; in 1958 the new constitution created the Communauté française, but the English says "French Union", so I followed it. **Settled 30 Oct 2026: kept.**
+- p.your-call.1888-golden-law.short — Isabelle — second option: Isabel; French history books write "la princesse Isabelle". **Settled 30 Oct 2026: kept.**
+- p.your-call.1519-cortes-ships.next — Moctezuma II — second option: Montezuma II; "Moctezuma" is the spelling most French books use today. **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-israel.short — Ben Gourion — second option: Ben-Gourion; both are in use, Le Monde writes it without a hyphen. **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-israel.did — l'Administration du peuple — second option: le Conseil du peuple; the body voted on 12 May 1948 is called "Administration du peuple" (Minhelet HaAm) in French sources, "Conseil du peuple" is the larger body. **Settled 30 Oct 2026: kept.**
+- p.your-call.1946-nhs.did — Avec sa loi de 1946 sur le National Health Service — second option: sur le Service national de santé; the English name is what French readers know (the pov says "service national de santé"), so I used it in the text. **Settled 30 Oct 2026: kept.**
+- p.your-call.1985-nuclear-free.pov — Tu as été élu en promettant un pays sans armes nucléaires. — second option: Tu as été élu sur une politique antinucléaire; "nuclear-free" here means no nuclear weapons or warships, not no nuclear power, so I wrote it out. **Settled 30 Oct 2026: kept.**
+- p.your-call.1970-warsaw.did — « J'ai fait ce que font les êtres humains quand les mots leur manquent » — second option: « …ce que font les hommes… »; French papers quoted it with "les hommes", but "êtres humains" is closer to the English "humans". **Settled 30 Oct 2026: kept.**
+- p.your-call.1974-pardon.next — le prix Profile in Courage — second option: le prix du Courage politique; there is no fixed French name, so I kept the English one. **Settled 30 Oct 2026: kept.**
+- p.your-call.1424-treasure-fleets.pov — de grandes flottes du trésor — second option: flottes au trésor; both are used for Zheng He's fleets. **Settled 30 Oct 2026: kept.**
+- p.your-call.1952-andhra.stamp — Un État pour les Télougous — second option: Un État pour le télougou; the stamp must stay under six words. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.your-call.1982-falklands.pov — "situé à 8 000 miles de là" — second option: "à près de 13 000 km"; the figure is a fact and the earlier file keeps miles ("828 000 miles carrés"), so I kept the English unit.
-- p.your-call.2003-congestion-charge.pov — "à 12 miles à l'heure en moyenne" — second option: "à environ 19 km/h"; same reason: the unit is kept as in the English.
-- p.your-call.2003-congestion-charge.choice2 — "Faire payer 5 livres aux conducteurs du centre" — second option: "5 £"; "livres" is plainer for a 12-year-old, but "5 £" is how French papers write it.
-- p.your-call.1982-falklands.stamp — "La flotte envoyée aux Malouines" — second option: "La force opérationnelle des Malouines"; "task force" has no short plain French word, "flotte" keeps the stamp short.
-- p.your-call.2000-pyongyang.pov — "Ta politique du rayon de soleil" — second option: "Ta « politique du Soleil »"; French sources write "politique du rayon de soleil" for the Sunshine Policy.
-- p.your-call.1971-7-march.place — "Dacca" — second option: "Dhaka"; "Dacca" is the usual French spelling (Le Monde, Larousse), "Dhaka" is closer to the English.
-- p.your-call.1985-anti-alcohol.short — "Gorbatchev" — second option: "Gorbachev"; French spelling of the name, like "Khrouchtchev" in the older puzzles.
-- p.your-call.1991-yeltsin-tank.short — "Eltsine" — second option: "Boris Eltsine"; French spelling of Yeltsin, short form as the other leaders.
-- p.your-call.1889-pedro-exile.short — "Pedro II" — second option: "Pierre II"; I followed the earlier puzzle (1822-brazil uses "Pedro"), but French books also write "Pierre II du Brésil".
-- p.your-call.1492-columbus.short — "Isabelle" — second option: "Isabelle la Catholique"; I kept the short form, like "Isabelle" for the Brazilian princess in the older file.
-- p.your-call.1492-columbus.did — "Luis de Santángel, secrétaire du roi" — second option: "trésorier du roi"; the English says "king's clerk" (escribano de ración), French sources say "trésorier" or "receveur", but I kept the plain English sense.
-- p.your-call.1983-rigueur.choice1 — "Quitter le SME et continuer à dépenser" — second option: "Quitter le système monétaire européen…"; French players know "SME", and the long form would make this choice much longer than the others (the full name is in the "did" line).
-- p.your-call.1990-one-for-one.stamp — "Un mark pour un mark est-allemand" — second option: "Un Deutsche Mark pour un mark de l'Est"; the second is clearer but has 8 words, over the limit of 6.
-- p.your-call.1990-one-for-one.pov — "le Deutsche Mark" and "marks de l'Est" — second option: "le mark ouest-allemand" and "marks est-allemands"; "D-Mark" is usually spelled out in French.
-- p.your-call.1994-real-plan.did — "une unité de compte non monétaire, l'URV" — second option: "une monnaie virtuelle, l'URV"; the English "non-monetary currency" is odd in French, so I used the accounting term.
-- p.your-call.1994-real-plan.next — "l'inflation était en passe de descendre sous les 20 % par an" — second option: "l'inflation se rapprochait de 20 % par an"; the English ("approaching less than 20 percent") is unclear, I followed its sense.
-- p.your-call.1947-partition.pov — "Tu es le vice-roi des Indes." — second option: "le vice-roi de l'Inde"; "vice-roi des Indes" is the usual French title, the older puzzles say "l'Inde" for the country.
-- p.your-call.1983-franklin-dam.did — "la loi de 1983 sur la conservation des biens du patrimoine mondial" — second option: "le World Heritage Properties Conservation Act 1983"; there is no fixed French name for this Australian law (the older file kept "National Health Service" in English).
-- p.your-call.1990-batmonkh.did — "Nous, Mongols, qui sommes si peu nombreux, n'en sommes pas encore à nous faire saigner du nez les uns les autres." — second option: "…à nous faire saigner le nez les uns aux autres"; it is a quote from Mongolian, so I chose the most natural French wording of the image.
-- p.your-call.2003-rose-revolution.did — "Saakachvili, Jvania, Chevardnadze, Bourdjanadzé" — second option: "Saakashvili, Zhvania, Shevardnadze, Burjanadze"; I used the spellings of the French press (Le Monde); the English spellings are also seen in French.
+- p.your-call.1982-falklands.pov — "situé à 8 000 miles de là" — second option: "à près de 13 000 km"; the figure is a fact and the earlier file keeps miles ("828 000 miles carrés"), so I kept the English unit. **Settled 30 Oct 2026: changed to “Le 2 avril 1982, des forces argentines ont occupé Port Stanley, capitale des îles Malouines, un territoire britannique situé à 8 000 miles de là, dans l’Atlantique Sud. Tu es la Première ministre britannique.”.**
+- p.your-call.2003-congestion-charge.pov — "à 12 miles à l'heure en moyenne" — second option: "à environ 19 km/h"; same reason: the unit is kept as in the English. **Settled 30 Oct 2026: kept.**
+- p.your-call.2003-congestion-charge.choice2 — "Faire payer 5 livres aux conducteurs du centre" — second option: "5 £"; "livres" is plainer for a 12-year-old, but "5 £" is how French papers write it. **Settled 30 Oct 2026: kept.**
+- p.your-call.1982-falklands.stamp — "La flotte envoyée aux Malouines" — second option: "La force opérationnelle des Malouines"; "task force" has no short plain French word, "flotte" keeps the stamp short. **Settled 30 Oct 2026: kept.**
+- p.your-call.2000-pyongyang.pov — "Ta politique du rayon de soleil" — second option: "Ta « politique du Soleil »"; French sources write "politique du rayon de soleil" for the Sunshine Policy. **Settled 30 Oct 2026: kept.**
+- p.your-call.1971-7-march.place — "Dacca" — second option: "Dhaka"; "Dacca" is the usual French spelling (Le Monde, Larousse), "Dhaka" is closer to the English. **Settled 30 Oct 2026: kept.**
+- p.your-call.1985-anti-alcohol.short — "Gorbatchev" — second option: "Gorbachev"; French spelling of the name, like "Khrouchtchev" in the older puzzles. **Settled 30 Oct 2026: kept.**
+- p.your-call.1991-yeltsin-tank.short — "Eltsine" — second option: "Boris Eltsine"; French spelling of Yeltsin, short form as the other leaders. **Settled 30 Oct 2026: kept.**
+- p.your-call.1889-pedro-exile.short — "Pedro II" — second option: "Pierre II"; I followed the earlier puzzle (1822-brazil uses "Pedro"), but French books also write "Pierre II du Brésil". **Settled 30 Oct 2026: kept.**
+- p.your-call.1492-columbus.short — "Isabelle" — second option: "Isabelle la Catholique"; I kept the short form, like "Isabelle" for the Brazilian princess in the older file. **Settled 30 Oct 2026: kept.**
+- p.your-call.1492-columbus.did — "Luis de Santángel, secrétaire du roi" — second option: "trésorier du roi"; the English says "king's clerk" (escribano de ración), French sources say "trésorier" or "receveur", but I kept the plain English sense. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-rigueur.choice1 — "Quitter le SME et continuer à dépenser" — second option: "Quitter le système monétaire européen…"; French players know "SME", and the long form would make this choice much longer than the others (the full name is in the "did" line). **Settled 30 Oct 2026: kept.**
+- p.your-call.1990-one-for-one.stamp — "Un mark pour un mark est-allemand" — second option: "Un Deutsche Mark pour un mark de l'Est"; the second is clearer but has 8 words, over the limit of 6. **Settled 30 Oct 2026: kept.**
+- p.your-call.1990-one-for-one.pov — "le Deutsche Mark" and "marks de l'Est" — second option: "le mark ouest-allemand" and "marks est-allemands"; "D-Mark" is usually spelled out in French. **Settled 30 Oct 2026: kept.**
+- p.your-call.1994-real-plan.did — "une unité de compte non monétaire, l'URV" — second option: "une monnaie virtuelle, l'URV"; the English "non-monetary currency" is odd in French, so I used the accounting term. **Settled 30 Oct 2026: kept.**
+- p.your-call.1994-real-plan.next — "l'inflation était en passe de descendre sous les 20 % par an" — second option: "l'inflation se rapprochait de 20 % par an"; the English ("approaching less than 20 percent") is unclear, I followed its sense. **Settled 30 Oct 2026: kept.**
+- p.your-call.1947-partition.pov — "Tu es le vice-roi des Indes." — second option: "le vice-roi de l'Inde"; "vice-roi des Indes" is the usual French title, the older puzzles say "l'Inde" for the country. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-franklin-dam.did — "la loi de 1983 sur la conservation des biens du patrimoine mondial" — second option: "le World Heritage Properties Conservation Act 1983"; there is no fixed French name for this Australian law (the older file kept "National Health Service" in English). **Settled 30 Oct 2026: kept.**
+- p.your-call.1990-batmonkh.did — "Nous, Mongols, qui sommes si peu nombreux, n'en sommes pas encore à nous faire saigner du nez les uns les autres." — second option: "…à nous faire saigner le nez les uns aux autres"; it is a quote from Mongolian, so I chose the most natural French wording of the image. **Settled 30 Oct 2026: kept.**
+- p.your-call.2003-rose-revolution.did — "Saakachvili, Jvania, Chevardnadze, Bourdjanadzé" — second option: "Saakashvili, Zhvania, Shevardnadze, Burjanadze"; I used the spellings of the French press (Le Monde); the English spellings are also seen in French. **Settled 30 Oct 2026: changed to “La présidente du Parlement, Nino Bourdjanadze, est devenue présidente par intérim. Le 4 janvier 2004, Saakachvili, sans adversaire, a été élu président avec 96,2 % des voix.”.**

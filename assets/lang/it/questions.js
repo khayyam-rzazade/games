@@ -220,7 +220,7 @@ window.LG_QUESTIONS = {
   "A unit of electricity": "Un kilowattora di elettricità",
   "The Suez Canal opens": "Apre il canale di Suez",
   "The Wright brothers' first powered flight": "Il primo volo a motore dei fratelli Wright",
-  "The world's first adhesive stamp goes on sale": "Va in vendita il primo francobollo del mondo da incollare",
+  "The world's first adhesive stamp goes on sale": "Va in vendita il primo francobollo adesivo del mondo",
   "Giant panda": "Panda gigante",
   "Deer": "Cervo",
   "A pair of supermarket jeans": "Un paio di jeans da supermercato"

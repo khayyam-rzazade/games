@@ -130,9 +130,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "têm banheiro seguro em casa"
  },
  "money-account": {
-  "q": "De cada 100 adultos no mundo, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos no mundo, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos têm conta bancária ou carteira digital"
  },
  "health-hunger": {
   "q": "De cada 100 pessoas no mundo, quantas não têm comida suficiente?",
@@ -200,9 +200,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "no Japão vivem em cidades"
  },
  "money-account-tur": {
-  "q": "De cada 100 adultos na Turquia, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos na Turquia têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos na Turquia, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos na Turquia têm conta bancária ou carteira digital"
  },
  "people-children-ken": {
   "q": "De cada 100 pessoas no Quênia, quantas são crianças com menos de 15 anos?",
@@ -255,9 +255,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "na China têm banheiro seguro em casa"
  },
  "money-account-ken": {
-  "q": "De cada 100 adultos no Quênia, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos no Quênia têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos no Quênia, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos no Quênia têm conta bancária ou carteira digital"
  },
  "home-internet-egy": {
   "q": "De cada 100 pessoas no Egito, quantas usam a internet?",
@@ -315,9 +315,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "nos Estados Unidos têm 65 anos ou mais"
  },
  "money-account-ind": {
-  "q": "De cada 100 adultos na Índia, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos na Índia têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos na Índia, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos na Índia têm conta bancária ou carteira digital"
  },
  "home-city-bgd": {
   "q": "De cada 100 pessoas em Bangladesh, quantas vivem em uma cidade, grande ou pequena?",
@@ -370,9 +370,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "adultos na Índia sabem ler e escrever"
  },
  "money-account-bra": {
-  "q": "De cada 100 adultos no Brasil, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos no Brasil têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos no Brasil, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos no Brasil têm conta bancária ou carteira digital"
  },
  "home-city-ken": {
   "q": "De cada 100 pessoas no Quênia, quantas vivem em uma cidade, grande ou pequena?",
@@ -455,9 +455,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "no Brasil têm 65 anos ou mais"
  },
  "money-account-pak": {
-  "q": "De cada 100 adultos no Paquistão, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos no Paquistão têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos no Paquistão, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos no Paquistão têm conta bancária ou carteira digital"
  },
  "home-internet-ind": {
   "q": "De cada 100 pessoas na Índia, quantas usam a internet?",
@@ -515,9 +515,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "no Vietnã usam a internet"
  },
  "money-account-nga": {
-  "q": "De cada 100 adultos na Nigéria, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos na Nigéria têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos na Nigéria, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos na Nigéria têm conta bancária ou carteira digital"
  },
  "home-water-mex": {
   "q": "De cada 100 pessoas no México, quantas têm água potável segura em casa?",
@@ -565,9 +565,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "no Haiti têm eletricidade em casa"
  },
  "money-account-mex": {
-  "q": "De cada 100 adultos no México, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos no México têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos no México, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos no México têm conta bancária ou carteira digital"
  },
  "home-internet-nga": {
   "q": "De cada 100 pessoas na Nigéria, quantas usam a internet?",
@@ -620,9 +620,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "em Moçambique têm eletricidade em casa"
  },
  "money-account-vnm": {
-  "q": "De cada 100 adultos no Vietnã, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos no Vietnã têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos no Vietnã, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos no Vietnã têm conta bancária ou carteira digital"
  },
  "home-internet-pak": {
   "q": "De cada 100 pessoas no Paquistão, quantas usam a internet?",
@@ -670,9 +670,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "na Índia têm banheiro seguro em casa"
  },
  "money-account-bgd": {
-  "q": "De cada 100 adultos em Bangladesh, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos em Bangladesh têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos em Bangladesh, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos em Bangladesh têm conta bancária ou carteira digital"
  },
  "home-electricity-tza": {
   "q": "De cada 100 pessoas na Tanzânia, quantas têm eletricidade em casa?",
@@ -715,9 +715,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "no Brasil têm água potável segura em casa"
  },
  "money-account-idn": {
-  "q": "De cada 100 adultos na Indonésia, quantos têm conta bancária ou de dinheiro móvel?",
-  "sentence": "Uma conta de dinheiro móvel fica no celular, sem precisar de agência bancária.",
-  "stamp": "adultos na Indonésia têm conta bancária ou de dinheiro móvel"
+  "q": "De cada 100 adultos na Indonésia, quantos têm conta bancária ou carteira digital?",
+  "sentence": "Uma carteira digital fica no celular, sem precisar de agência bancária.",
+  "stamp": "adultos na Indonésia têm conta bancária ou carteira digital"
  },
  "home-cooking-eth": {
   "q": "De cada 100 pessoas na Etiópia, quantas cozinham com combustível limpo, como gás ou eletricidade?",

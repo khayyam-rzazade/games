@@ -709,12 +709,12 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 #### 74/84 · `tree-shrew-sleep` · day 74 (21 Dec 2026), 158 (15 Mar 2027), 242 (7 Jun 2027), 326 (30 Aug 2027) … · every 84 days
 
-- `p.out-of-24.tree-shrew-sleep.face` — Tupaïe
-- `p.out-of-24.tree-shrew-sleep.label` — endormie
-- `p.out-of-24.tree-shrew-sleep.chip1` — endormie
+- `p.out-of-24.tree-shrew-sleep.face` — Toupaye
+- `p.out-of-24.tree-shrew-sleep.label` — endormi
+- `p.out-of-24.tree-shrew-sleep.chip1` — endormi
 - `p.out-of-24.tree-shrew-sleep.fig` — 15 h 48
-- `p.out-of-24.tree-shrew-sleep.sentence` — Une tupaïe dort environ 15,8 heures par jour : à peu près les deux tiers de sa vie.
-- `p.out-of-24.tree-shrew-sleep.note` — Tiré de deux tableaux classiques sur le sommeil des animaux : celui de l’Université de Washington et celui d’Allison et Cicchetti (Science, 1976). Les tupaïes ne sont pas de vraies musaraignes ; le dessin représente une musaraigne commune.
+- `p.out-of-24.tree-shrew-sleep.sentence` — Un toupaye dort environ 15,8 heures par jour : à peu près les deux tiers de sa vie.
+- `p.out-of-24.tree-shrew-sleep.note` — Tiré de deux tableaux classiques sur le sommeil des animaux : celui de l’Université de Washington et celui d’Allison et Cicchetti (Science, 1976). Les toupayes ne sont pas de vraies musaraignes ; le dessin représente une musaraigne commune.
 
 #### 75/84 · `us-paid-work` · day 75 (22 Dec 2026), 159 (16 Mar 2027), 243 (8 Jun 2027), 327 (31 Aug 2027) … · every 84 days
 
@@ -814,15 +814,17 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.out-of-24.penguin-microsleep.face — Manchot — second option: Pingouin; in French a pingouin is a different (northern) bird, and the Antarctic penguins are manchots, so I used manchot, also in "manchots à jugulaire" for chinstrap.
-- p.out-of-24.frigatebird-flight.face — Frégate — second option: Grande frégate; the sentence says "frégates du Pacifique", the official French name of the great frigatebird, which a 12-year-old may take for a place rather than a bird.
-- p.out-of-24.owl-monkey-sleep.face — Douroucouli — second option: Singe-hibou; douroucouli is the name French Wikipedia heads the page with, singe-hibou is easier to picture.
-- p.out-of-24.tree-shrew-sleep.face — Tupaïe — second option: Musaraigne arboricole (a literal translation that would wrongly suggest a true shrew); the note says tupaïes are not true shrews.
-- p.out-of-24.pig-sleep.face — Cochon — second option: Porc; cochon is the animal, porc the meat, as with Cochon d’Inde in the other games.
-- p.out-of-24.seal-sea-sleep.face — Éléphant de mer — second option: Éléphant de mer du Nord; the note says "du Nord", and the sentences also call the animal "phoque" once, as the English does.
-- p.out-of-24.bat-sleep.face — Petite chauve-souris brune — second option: Myotis brun; petite chauve-souris brune is the usual French name of the little brown bat.
-- p.out-of-24.us-75-tv.label — devant la télé — second option: en train de regarder la télé; the first is shorter for the chip and sounds more natural.
-- p.out-of-24.us-women-housework.sentence — "les hommes environ une heure et demie" for "men about 1.5 hours" — second option: 1,5 heure; une heure et demie is how French says it.
-- p.out-of-24.at-men-housework.note — « Sorgearbeit in Haushalt und Familie » — second option: leave the German unquoted; I kept the Austrian office's own German words in French quotes as the English does.
-- p.out-of-24.cn-sleep.label — endormis ou au repos — second option: en train de dormir ou de se reposer; the first matches the other labels. For people the labels agree: endormis for everyone, endormies for women.
-- p.out-of-24.jp-eating.note — Tout le monde, à partir de 10 ans, en moyenne sur toute la semaine (Bureau des statistiques du Japon). — second option: keep the English names of the statistics offices (Statistics Bureau of Japan, Federal Statistical Office), as the lines already done keep "Bureau of Labor Statistics"; I translated the Japanese, Chinese and German offices and kept Pew, San Diego Zoo Wildlife Alliance, Statistik Austria and ISTAT as names.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.out-of-24.penguin-microsleep.face — Manchot — second option: Pingouin; in French a pingouin is a different (northern) bird, and the Antarctic penguins are manchots, so I used manchot, also in "manchots à jugulaire" for chinstrap. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.frigatebird-flight.face — Frégate — second option: Grande frégate; the sentence says "frégates du Pacifique", the official French name of the great frigatebird, which a 12-year-old may take for a place rather than a bird. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.owl-monkey-sleep.face — Douroucouli — second option: Singe-hibou; douroucouli is the name French Wikipedia heads the page with, singe-hibou is easier to picture. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.tree-shrew-sleep.face — Tupaïe — second option: Musaraigne arboricole (a literal translation that would wrongly suggest a true shrew); the note says tupaïes are not true shrews. **Settled 30 Oct 2026: changed, 6 lines (tree-shrew-sleep.face, tree-shrew-sleep.label, tree-shrew-sleep.chip1, tree-shrew-sleep.sentence, tree-shrew-sleep.note, tree-shrew).**
+- p.out-of-24.pig-sleep.face — Cochon — second option: Porc; cochon is the animal, porc the meat, as with Cochon d’Inde in the other games. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.seal-sea-sleep.face — Éléphant de mer — second option: Éléphant de mer du Nord; the note says "du Nord", and the sentences also call the animal "phoque" once, as the English does. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.bat-sleep.face — Petite chauve-souris brune — second option: Myotis brun; petite chauve-souris brune is the usual French name of the little brown bat. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.us-75-tv.label — devant la télé — second option: en train de regarder la télé; the first is shorter for the chip and sounds more natural. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.us-women-housework.sentence — "les hommes environ une heure et demie" for "men about 1.5 hours" — second option: 1,5 heure; une heure et demie is how French says it. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.at-men-housework.note — « Sorgearbeit in Haushalt und Familie » — second option: leave the German unquoted; I kept the Austrian office's own German words in French quotes as the English does. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.cn-sleep.label — endormis ou au repos — second option: en train de dormir ou de se reposer; the first matches the other labels. For people the labels agree: endormis for everyone, endormies for women. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.jp-eating.note — Tout le monde, à partir de 10 ans, en moyenne sur toute la semaine (Bureau des statistiques du Japon). — second option: keep the English names of the statistics offices (Statistics Bureau of Japan, Federal Statistical Office), as the lines already done keep "Bureau of Labor Statistics"; I translated the Japanese, Chinese and German offices and kept Pew, San Diego Zoo Wildlife Alliance, Statistik Austria and ISTAT as names. **Settled 30 Oct 2026: kept.**

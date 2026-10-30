@@ -2167,7 +2167,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "oats-cola": {
   "a": {
    "name": "Una ciotola di fiocchi d'avena",
-   "portion": "40 g, secchi",
+   "portion": "40 g, a secco",
    "pic": "oats"
   },
   "b": {
@@ -3367,7 +3367,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "oats-bananas": {
   "a": {
    "name": "Una ciotola di fiocchi d'avena",
-   "portion": "40 g, secchi",
+   "portion": "40 g, a secco",
    "pic": "oats"
   },
   "b": {
@@ -3703,7 +3703,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "oats-milk": {
   "a": {
    "name": "Una ciotola di fiocchi d'avena",
-   "portion": "40 g, secchi",
+   "portion": "40 g, a secco",
    "pic": "oats"
   },
   "b": {

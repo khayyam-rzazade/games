@@ -11,7 +11,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "live-high-income": {
   "q": "Su 100 persone nel mondo, quante vivono in un Paese ad alto reddito?",
-  "sentence": "Alto reddito è il gruppo dei Paesi più ricchi della World Bank.",
+  "sentence": "Alto reddito è il gruppo dei Paesi più ricchi della Banca mondiale.",
   "stamp": "vivono in un Paese ad alto reddito"
  },
  "live-africa": {
@@ -41,7 +41,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "live-low-income": {
   "q": "Su 100 persone nel mondo, quante vivono in un Paese a basso reddito?",
-  "sentence": "Basso reddito è il gruppo dei Paesi più poveri della World Bank.",
+  "sentence": "Basso reddito è il gruppo dei Paesi più poveri della Banca mondiale.",
   "stamp": "vivono in un Paese a basso reddito"
  },
  "live-europe": {

@@ -3,7 +3,7 @@
    A text missing here keeps its English. Do not edit by hand: change the doc, rebuild. */
 window.LG_QUESTIONS = {
  "stems": {
-  "beat_faster": "¿El corazón de quién late más rápido?",
+  "beat_faster": "¿A quién le late más rápido el corazón?",
   "came_first": "¿Qué ocurrió primero?",
   "closest_relative": "¿Cuál es el pariente más cercano {x.of}?",
   "biggest_share": "¿Quién se lleva la mayor parte del precio de «{x}»?",

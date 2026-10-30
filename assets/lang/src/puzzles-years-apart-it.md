@@ -430,7 +430,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.years-apart.event.declaration.t` — La Dichiarazione d'indipendenza degli Stati Uniti
 - `p.years-apart.event.declaration.y` — 1776
 - `p.years-apart.event.declaration.stamp` — Indipendenza dichiarata
-- `p.years-apart.event.penny-black.t` — Va in vendita il primo francobollo del mondo da incollare
+- `p.years-apart.event.penny-black.t` — Va in vendita il primo francobollo adesivo del mondo
 - `p.years-apart.event.penny-black.y` — 1840
 - `p.years-apart.event.penny-black.stamp` — Il Penny Black
 - `p.years-apart.event.fire-london.t` — Il grande incendio di Londra
@@ -556,7 +556,9 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.years-apart.event.penny-black.t — "Va in vendita il primo francobollo del mondo da incollare"; second option "il primo francobollo adesivo del mondo" (closer to the English, but in Italian "adesivo" now means self-sticking).
-- p.years-apart.event.east-india.t — "La Compagnia inglese delle Indie Orientali ottiene la sua carta reale"; second option without "inglese". I added it because Italian has several East India companies (Dutch, French); the facts are about the English one.
-- p.years-apart.event.star-wars.t — "Star Wars esce nei cinema americani"; second option "Guerre stellari" (the old Italian title; nobody says it any more).
-- p.years-apart.event.opera-house.t — "Viene inaugurata ufficialmente l'Opera House di Sydney"; second option "il Teatro dell'Opera di Sydney". Italians usually keep "Opera House".
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.years-apart.event.penny-black.t — "Va in vendita il primo francobollo del mondo da incollare"; second option "il primo francobollo adesivo del mondo" (closer to the English, but in Italian "adesivo" now means self-sticking). **Settled 30 Oct 2026: changed to “Va in vendita il primo francobollo adesivo del mondo”.**
+- p.years-apart.event.east-india.t — "La Compagnia inglese delle Indie Orientali ottiene la sua carta reale"; second option without "inglese". I added it because Italian has several East India companies (Dutch, French); the facts are about the English one. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.star-wars.t — "Star Wars esce nei cinema americani"; second option "Guerre stellari" (the old Italian title; nobody says it any more). **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.opera-house.t — "Viene inaugurata ufficialmente l'Opera House di Sydney"; second option "il Teatro dell'Opera di Sydney". Italians usually keep "Opera House". **Settled 30 Oct 2026: kept.**

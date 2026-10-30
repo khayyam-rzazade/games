@@ -556,9 +556,11 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.years-apart.event.terracotta.t — Çiftçiler Terracotta Ordusu'nu buluyor · second option: Çiftçiler Pişmiş Toprak Ordusu'nu buluyor · Turkish pages write Terracotta Ordusu as in English; the second is fully Turkish but less used.
-- p.years-apart.event.genghis.t — Temuçin, Cengiz Han oluyor · second option: Temüjin, Cengiz Han oluyor · Temuçin is the usual Turkish spelling of the name.
-- p.years-apart.event.charlemagne.t — Şarlman imparator olarak taçlandırılıyor · second option: Charlemagne imparator olarak taçlandırılıyor · Şarlman is the Turkish form of the name.
-- p.years-apart.event.east-india.t — Doğu Hindistan Şirketi kraliyet iznini alıyor · second option: Doğu Hindistan Şirketi kraliyet fermanını alıyor · "charter" has no short Turkish word; "izin" is the plainest for a 12-year-old, "ferman" is the older term.
-- p.years-apart.event.star-wars.t — Yıldız Savaşları Amerikan sinemalarında gösterime giriyor · second option: Star Wars Amerikan sinemalarında gösterime giriyor · Yıldız Savaşları is the name the films carry in Turkey.
-- p.years-apart.event.pompeii.t — Vezüv Pompei'yi gömüyor · second option: Vezüv Pompeii'yi gömüyor · Turkish news pages write Pompei; Pompeii is also seen.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.years-apart.event.terracotta.t — Çiftçiler Terracotta Ordusu'nu buluyor · second option: Çiftçiler Pişmiş Toprak Ordusu'nu buluyor · Turkish pages write Terracotta Ordusu as in English; the second is fully Turkish but less used. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.genghis.t — Temuçin, Cengiz Han oluyor · second option: Temüjin, Cengiz Han oluyor · Temuçin is the usual Turkish spelling of the name. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.charlemagne.t — Şarlman imparator olarak taçlandırılıyor · second option: Charlemagne imparator olarak taçlandırılıyor · Şarlman is the Turkish form of the name. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.east-india.t — Doğu Hindistan Şirketi kraliyet iznini alıyor · second option: Doğu Hindistan Şirketi kraliyet fermanını alıyor · "charter" has no short Turkish word; "izin" is the plainest for a 12-year-old, "ferman" is the older term. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.star-wars.t — Yıldız Savaşları Amerikan sinemalarında gösterime giriyor · second option: Star Wars Amerikan sinemalarında gösterime giriyor · Yıldız Savaşları is the name the films carry in Turkey. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.pompeii.t — Vezüv Pompei'yi gömüyor · second option: Vezüv Pompeii'yi gömüyor · Turkish news pages write Pompei; Pompeii is also seen. **Settled 30 Oct 2026: kept.**

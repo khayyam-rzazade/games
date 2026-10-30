@@ -978,7 +978,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Bir litre dizel",
   "where": "Hindistan",
   "fact": "Delhi'de dizelin fiyatının üçte birinden biraz azı 2024'te vergiydi: litre başına 15,80 rupilik bir merkezi vergi ve üzerine eyaletin KDV'si.",
-  "note": "Devlet petrol şirketinin Delhi için kendi fiyat dökümü, 1 Nisan 2024. “Dizel”, bayiye vergisiz uygulanan fiyat (56,38 rupi) ile bayinin ortalama komisyonudur (2,62 rupi); “KDV” ayrıca litre başına 25 paisalık küçük bir hava ortamı ücretini de içerir.",
+  "note": "Devlet petrol şirketinin Delhi için kendi fiyat dökümü, 1 Nisan 2024. “Dizel”, bayiye vergisiz uygulanan fiyat (56,38 rupi) ile bayinin ortalama komisyonudur (2,62 rupi); “KDV” ayrıca litre başına 25 paisalık küçük bir hava kalitesi ücretini de içerir.",
   "slices": [
    {
     "k": "barrel",
@@ -1249,7 +1249,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "br-power": {
-  "what": "Elektrik faturasının 100 reali",
+  "what": "100 reallik bir elektrik faturası",
   "where": "Brezilya",
   "fact": "Brezilya'daki bir elektrik faturasının üçte birinden azı elektriğin kendisine ödenir. Elektriği taşıyan hatlar ise üçte birinden fazlasını alır.",
   "note": "Elektrik dağıtıcıları birliği Abradee'nin, düzenleyici kurum Aneel'in verilerinden yaptığı ve Mayıs 2025'te yayımladığı fatura dökümü; haberler hangi yılı kapsadığını söylemiyor. “Şebeke”, dağıtım (%26,12) ile iletimdir (%10,1); “Harçlar”, fatura üzerinden ödenen sektör harçları ve sübvansiyonlardır; “Vergiler”, çoğunlukla eyalet vergisi ICMS'dir (yaklaşık %81'i).",
@@ -2220,7 +2220,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Market alışverişine harcanan bir dolar",
   "where": "Amerika Birleşik Devletleri",
   "fact": "2008'de Amerikalıların market alışverişine harcadığı her doların 30 sentini gıda fabrikaları aldı; bu, başka her sektörden fazlaydı. Çiftlikler ve onlara girdi sağlayanlar 18 sent aldı.",
-  "note": "Kurumun, evde yenecek yiyeceğe harcanan bir doların, ona değer katan sektörlere göre bölüşümü. “Çiftlikler”, çiftliklere girdi sağlayanları da kapsar; “Üreticiler”, gıda işleme (30,1) ile ambalajlamadır (4,9); “Mağazalar”, perakende (24,2), ulaşım (5,1) ve küçük bir yemek hizmeti payıdır (0,9); “Diğerleri”, enerji (8,2), finans ve sigorta (4,7), reklam (1,9) ile hukuk ve muhasebedir (1,7). 2011'de yayımlandığı gibi.",
+  "note": "Kurumun, evde yenecek yiyeceğe harcanan bir doların, ona değer katan sektörlere göre bölüşümü. “Çiftlikler”, çiftliklere girdi sağlayanları da kapsar; “Üreticiler”, gıda işleme (30,1) ile ambalajlamadır (4,9); “Marketler”, perakende (24,2), ulaşım (5,1) ve küçük bir yemek hizmeti payıdır (0,9); “Diğerleri”, enerji (8,2), finans ve sigorta (4,7), reklam (1,9) ile hukuk ve muhasebedir (1,7). 2011'de yayımlandığı gibi.",
   "slices": [
    {
     "k": "farm",
@@ -2234,7 +2234,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    },
    {
     "k": "shop",
-    "n": "Mağazalar",
+    "n": "Marketler",
     "p": 30.2
    },
    {
@@ -2295,7 +2295,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Giyime harcanan on dolar",
   "where": "Avustralya",
   "fact": "Avustralya'da giyime harcanan her 10 doların yaklaşık 40 senti, onları yapan fabrika işçilerine gider. Onlara geçinmeye yetecek bir ücret ödemek fiyata yalnızca yaklaşık %1 ekler.",
-  "note": "Deloitte Access Economics'in, Oxfam Australia için hazırladığı 2017 tahmini; Avustralya'da satılan giysilerin ortalama maliyet yapısı, KDV benzeri vergi GST dahil. “Fabrika”, malzemeler (23), fabrikanın genel giderleri ve kârı (6) ile nakliye ve ithalat vergisidir (3); “Satıcılar”, toptan (10) ve perakende (45) brüt paylarıdır: maliyetleri ve kârları (kâr birlikte 5). GST, üstüne eklenen %10'dur; fiyatın %9'u.",
+  "note": "Deloitte Access Economics'in, Oxfam Australia için hazırladığı 2017 tahmini; Avustralya'da satılan giysilerin ortalama maliyet yapısı, KDV benzeri vergi GST dahil. “Fabrika”, malzemeler (23), fabrikanın genel giderleri ve kârı (6) ile nakliye ve ithalat vergisidir (3); “Satıcılar”, toptan (10) ve perakende (45) brüt paylarıdır: maliyetleri ve kârları (kârları birlikte 5). GST, üstüne eklenen %10'dur; fiyatın %9'u.",
   "slices": [
    {
     "k": "factory",

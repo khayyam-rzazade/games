@@ -1173,7 +1173,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 #### 98/168 · `2000-pyongyang` · day 98 (8 Jan 2027), 266 (25 Jun 2027), 434 (10 Dec 2027), 602 (26 May 2028) … · every 168 days
 
 - `p.your-call.2000-pyongyang.place` — Pyongyang
-- `p.your-call.2000-pyongyang.pov` — La tua Politica del raggio di sole cerca il dialogo con la Corea del Nord. I colloqui con il Nord aprono la strada al primo incontro tra i due leader dalla divisione della Corea. Sei il presidente della Corea del Sud.
+- `p.your-call.2000-pyongyang.pov` — La tua «Sunshine Policy» cerca il dialogo con la Corea del Nord. I colloqui con il Nord aprono la strada al primo incontro tra i due leader dalla divisione della Corea. Sei il presidente della Corea del Sud.
 - `p.your-call.2000-pyongyang.choice1` — Chiedere che il leader del Nord venga a Seul
 - `p.your-call.2000-pyongyang.choice2` — Esigere colloqui sul nucleare prima di ogni vertice
 - `p.your-call.2000-pyongyang.choice3` — Andare a Pyongyang a incontrare Kim Jong Il
@@ -1299,7 +1299,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.your-call.1994-real-plan.choice2` — Introdurre una nuova moneta a tappe
 - `p.your-call.1994-real-plan.choice3` — Fare del dollaro la moneta del Brasile
 - `p.your-call.1994-real-plan.short` — Cardoso
-- `p.your-call.1994-real-plan.did` — La squadra di Cardoso creò una valuta non monetaria, l'URV, del valore di circa 1 dollaro statunitense. I prezzi fissati in URV furono poi convertiti in una nuova moneta, il real, il 1º luglio 1994.
+- `p.your-call.1994-real-plan.did` — La squadra di Cardoso creò una moneta solo di conto, l'URV, del valore di circa 1 dollaro statunitense. I prezzi fissati in URV furono poi convertiti in una nuova moneta, il real, il 1º luglio 1994.
 - `p.your-call.1994-real-plan.next` — A differenza dei piani precedenti, non usò alcun blocco generale di prezzi e salari. Alla fine del 1996 l'inflazione, secondo alcune misure, si stava avvicinando a un livello inferiore al 20 per cento annuo.
 - `p.your-call.1994-real-plan.stamp` — Il Piano Real
 
@@ -2026,34 +2026,36 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.your-call.1888-golden-law.pov — "… Sei la reggente del Brasile." — second option: "Sei il reggente del Brasile." — the other puzzles use the masculine for the office; here I used the feminine because the pov already says "your father, the emperor" and the regent was Princess Isabel.
-- p.your-call.1983-petrov.pov — "… lo schermo lampeggia «LANCIO» …" — second option: «LAUNCH» left in English — the screen text was Russian originally, so I translated it like a quote.
-- p.your-call.1803-louisiana.next — "… 828.000 miglia quadrate …" — second option: "2,1 milioni di km²" — the English says square miles and a fact is not changed, but an Italian reader thinks in km².
-- p.your-call.1991-india-reforms.next — "… più di 4.000 miliardi" — second option: "più di 4 trilioni" — English "trillion" is 10^12, but Italian "trilione" is 10^18, so I wrote it out in miliardi.
-- p.your-call.1936-abdication.short — "Edoardo" (also "Alessandro II", "Gregorio XIII", "Federico", "Enrico", "Alberto", "Giovanni", "Isabella", "Saladino", "Krusciov", "Mossadeq") — second option: "Edward" etc. as in English — rulers and popes get their usual Italian names, as "Pietro" did in the first batch; Carl and Pedro stay as in the first batch.
-- p.your-call.1971-gold.stamp — "Nixon slega il dollaro dall'oro" — second option: "Nixon stacca il dollaro dall'oro" — both are common.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.your-call.1888-golden-law.pov — "… Sei la reggente del Brasile." — second option: "Sei il reggente del Brasile." — the other puzzles use the masculine for the office; here I used the feminine because the pov already says "your father, the emperor" and the regent was Princess Isabel. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-petrov.pov — "… lo schermo lampeggia «LANCIO» …" — second option: «LAUNCH» left in English — the screen text was Russian originally, so I translated it like a quote. **Settled 30 Oct 2026: kept.**
+- p.your-call.1803-louisiana.next — "… 828.000 miglia quadrate …" — second option: "2,1 milioni di km²" — the English says square miles and a fact is not changed, but an Italian reader thinks in km². **Settled 30 Oct 2026: kept.**
+- p.your-call.1991-india-reforms.next — "… più di 4.000 miliardi" — second option: "più di 4 trilioni" — English "trillion" is 10^12, but Italian "trilione" is 10^18, so I wrote it out in miliardi. **Settled 30 Oct 2026: kept.**
+- p.your-call.1936-abdication.short — "Edoardo" (also "Alessandro II", "Gregorio XIII", "Federico", "Enrico", "Alberto", "Giovanni", "Isabella", "Saladino", "Krusciov", "Mossadeq") — second option: "Edward" etc. as in English — rulers and popes get their usual Italian names, as "Pietro" did in the first batch; Carl and Pedro stay as in the first batch. **Settled 30 Oct 2026: kept.**
+- p.your-call.1971-gold.stamp — "Nixon slega il dollaro dall'oro" — second option: "Nixon stacca il dollaro dall'oro" — both are common. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.your-call.1981-martial-law.pov — "Il sindacato Solidarność guida l'opposizione politica…"; second option "Solidarnosc" (no Polish letters) or "Solidarietà". Italian press keeps the Polish name; also used in choice1 and did.
-- p.your-call.2000-pyongyang.pov — "La tua Politica del raggio di sole cerca il dialogo…"; second option "La tua «Sunshine Policy» cerca il dialogo…". The Italian wiki uses "politica del raggio di sole", but many news pieces keep the English.
-- p.your-call.2003-congestion-charge.stamp — "Il pedaggio urbano di Londra"; second option "La congestion charge di Londra". "Congestion charge" is also used in Italian, but "pedaggio urbano" is clearer for a 12-year-old; £5 is written "5 sterline".
-- p.your-call.1994-real-plan.did — "…creò una valuta non monetaria, l'URV, del valore di circa 1 dollaro statunitense…"; second option "…una moneta solo di conto, l'URV…". I kept the English "non-monetary currency" as the fact; the second option explains it better.
-- p.your-call.1810-cry-of-dolores.stamp — "Il Grido di Dolores"; second option "Il Grito de Dolores". Both are common in Italian; the Italian form is easier to read.
-- p.your-call.1981-juan-carlos.choice3 — "Parlare con i golpisti per uscirne"; second option "Parlare con i congiurati per trovare una via d'uscita". "Golpisti" is the word the press used for 23 February 1981; "congiurati" is more neutral.
-- p.your-call.1947-womens-vote.pov — "Sei la first lady dell'Argentina."; second option "Sei la prima dama dell'Argentina." "First lady" is the usual form in Italian press.
-- p.your-call.1905-october-manifesto.short — "Nicola" (also "Carlo" for Charles II, "Enrico" for Henry IV of France, "Eltsin", "Gorbaciov", "Breznev", "Hailé Selassié", "Bourguiba"); second option "Nicola II", "Carlo II", "Yeltsin", "Gorbachev", "Brezhnev", "Haile Selassie", "Burghiba". Rulers and Soviet leaders get the usual Italian form, as "Krusciov" and "Enrico" in the first batch.
-- p.your-call.2003-rose-revolution.short — "Shevardnadze"; second option "Ševardnadze". The press mostly writes "Shevardnadze"; the encyclopedia uses the transliteration with š.
-- p.your-call.1983-rigueur.did — "…fece la «svolta del rigore» («tournant de la rigueur»)…"; second option "…fece il «tournant de la rigueur»…". The English keeps the French name, so I give both; "parentesi" in next is the Italian for 'parenthesis'.
-- p.your-call.1983-rigueur.choice1 — "Uscire dallo SME e continuare a spendere"; second option "Uscire dal Sistema monetario europeo e continuare a spendere". "SME" keeps the choice short; the full name is written out in did.
-- p.your-call.1971-copper.choice2 — "Pagare il valore contabile delle miniere"; second option "Pagare il valore di bilancio delle miniere". Both mean 'book value'; "contabile" is the usual accounting word.
-- p.your-call.1991-yeltsin-tank.did — "Eltsin andò alla «Casa Bianca» di Mosca…"; second option "…alla sede del parlamento russo, la «Casa Bianca»…". English only says 'the White House'; I added "di Mosca" so it is not confused with Washington.
-- p.your-call.1982-falklands.pov — "…capitale delle isole Falkland…"; second option "…delle isole Falkland (Malvine)…". Italian uses both names; Port Stanley stays in English as on Italian maps.
-- p.your-call.261bc-kalinga.pov — "Il tuo esercito ha conquistato Kalinga… Sei l'imperatore maurya."; second option "…ha conquistato il Kalinga… Sei l'imperatore dei Maurya." I use the region name without the article, as in the encyclopedia.
-- p.your-call.1977-canal-treaties.place — "Città di Panama"; second option "Panama". The country is also Panama in the same puzzle, so I kept the city distinct.
-- p.your-call.1948-eo-9981.choice3 — "Vietare la segregazione per ordine esecutivo"; second option "Vietare la segregazione con un decreto del presidente". "Ordine esecutivo" is the usual Italian rendering of 'executive order'.
-- p.your-call.1997-baht-float.pov — "…ministro delle Finanze della Thailandia"; second option "Tailandia". Treccani writes "Thailandia", but "Tailandia" is also common.
-- p.your-call.1971-7-march.pov — "Sei il leader della Lega Awami."; second option "Sei il leader dell'Awami League." Italian sources use both.
-- p.your-call.2003-iraq-vote.stamp — "Blair porta Londra in guerra"; second option "Blair porta la Gran Bretagna in guerra". The second is more natural but has 7 words, over the 3 to 6 limit.
-- p.your-call.1965-udi.stamp — "La Rhodesia rompe con Londra"; second option "La Rhodesia rompe con la Gran Bretagna". Same reason: the longer line has 7 words.
-- p.your-call.1971-7-march.stamp — "Mujib: il discorso del 7 marzo"; second option "Il discorso del 7 marzo". Short enough either way; the first keeps the name.
+- p.your-call.1981-martial-law.pov — "Il sindacato Solidarność guida l'opposizione politica…"; second option "Solidarnosc" (no Polish letters) or "Solidarietà". Italian press keeps the Polish name; also used in choice1 and did. **Settled 30 Oct 2026: kept.**
+- p.your-call.2000-pyongyang.pov — "La tua Politica del raggio di sole cerca il dialogo…"; second option "La tua «Sunshine Policy» cerca il dialogo…". The Italian wiki uses "politica del raggio di sole", but many news pieces keep the English. **Settled 30 Oct 2026: changed to “La tua «Sunshine Policy» cerca il dialogo con la Corea del Nord. I colloqui con il Nord aprono la strada al primo incontro tra i due leader dalla divisione della Corea. Sei il presidente della Corea del Sud.”.**
+- p.your-call.2003-congestion-charge.stamp — "Il pedaggio urbano di Londra"; second option "La congestion charge di Londra". "Congestion charge" is also used in Italian, but "pedaggio urbano" is clearer for a 12-year-old; £5 is written "5 sterline". **Settled 30 Oct 2026: kept.**
+- p.your-call.1994-real-plan.did — "…creò una valuta non monetaria, l'URV, del valore di circa 1 dollaro statunitense…"; second option "…una moneta solo di conto, l'URV…". I kept the English "non-monetary currency" as the fact; the second option explains it better. **Settled 30 Oct 2026: changed to “La squadra di Cardoso creò una moneta solo di conto, l'URV, del valore di circa 1 dollaro statunitense. I prezzi fissati in URV furono poi convertiti in una nuova moneta, il real, il 1º luglio 1994.”.**
+- p.your-call.1810-cry-of-dolores.stamp — "Il Grido di Dolores"; second option "Il Grito de Dolores". Both are common in Italian; the Italian form is easier to read. **Settled 30 Oct 2026: kept.**
+- p.your-call.1981-juan-carlos.choice3 — "Parlare con i golpisti per uscirne"; second option "Parlare con i congiurati per trovare una via d'uscita". "Golpisti" is the word the press used for 23 February 1981; "congiurati" is more neutral. **Settled 30 Oct 2026: kept.**
+- p.your-call.1947-womens-vote.pov — "Sei la first lady dell'Argentina."; second option "Sei la prima dama dell'Argentina." "First lady" is the usual form in Italian press. **Settled 30 Oct 2026: kept.**
+- p.your-call.1905-october-manifesto.short — "Nicola" (also "Carlo" for Charles II, "Enrico" for Henry IV of France, "Eltsin", "Gorbaciov", "Breznev", "Hailé Selassié", "Bourguiba"); second option "Nicola II", "Carlo II", "Yeltsin", "Gorbachev", "Brezhnev", "Haile Selassie", "Burghiba". Rulers and Soviet leaders get the usual Italian form, as "Krusciov" and "Enrico" in the first batch. **Settled 30 Oct 2026: kept.**
+- p.your-call.2003-rose-revolution.short — "Shevardnadze"; second option "Ševardnadze". The press mostly writes "Shevardnadze"; the encyclopedia uses the transliteration with š. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-rigueur.did — "…fece la «svolta del rigore» («tournant de la rigueur»)…"; second option "…fece il «tournant de la rigueur»…". The English keeps the French name, so I give both; "parentesi" in next is the Italian for 'parenthesis'. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-rigueur.choice1 — "Uscire dallo SME e continuare a spendere"; second option "Uscire dal Sistema monetario europeo e continuare a spendere". "SME" keeps the choice short; the full name is written out in did. **Settled 30 Oct 2026: kept.**
+- p.your-call.1971-copper.choice2 — "Pagare il valore contabile delle miniere"; second option "Pagare il valore di bilancio delle miniere". Both mean 'book value'; "contabile" is the usual accounting word. **Settled 30 Oct 2026: kept.**
+- p.your-call.1991-yeltsin-tank.did — "Eltsin andò alla «Casa Bianca» di Mosca…"; second option "…alla sede del parlamento russo, la «Casa Bianca»…". English only says 'the White House'; I added "di Mosca" so it is not confused with Washington. **Settled 30 Oct 2026: kept.**
+- p.your-call.1982-falklands.pov — "…capitale delle isole Falkland…"; second option "…delle isole Falkland (Malvine)…". Italian uses both names; Port Stanley stays in English as on Italian maps. **Settled 30 Oct 2026: kept.**
+- p.your-call.261bc-kalinga.pov — "Il tuo esercito ha conquistato Kalinga… Sei l'imperatore maurya."; second option "…ha conquistato il Kalinga… Sei l'imperatore dei Maurya." I use the region name without the article, as in the encyclopedia. **Settled 30 Oct 2026: kept.**
+- p.your-call.1977-canal-treaties.place — "Città di Panama"; second option "Panama". The country is also Panama in the same puzzle, so I kept the city distinct. **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-eo-9981.choice3 — "Vietare la segregazione per ordine esecutivo"; second option "Vietare la segregazione con un decreto del presidente". "Ordine esecutivo" is the usual Italian rendering of 'executive order'. **Settled 30 Oct 2026: kept.**
+- p.your-call.1997-baht-float.pov — "…ministro delle Finanze della Thailandia"; second option "Tailandia". Treccani writes "Thailandia", but "Tailandia" is also common. **Settled 30 Oct 2026: kept.**
+- p.your-call.1971-7-march.pov — "Sei il leader della Lega Awami."; second option "Sei il leader dell'Awami League." Italian sources use both. **Settled 30 Oct 2026: kept.**
+- p.your-call.2003-iraq-vote.stamp — "Blair porta Londra in guerra"; second option "Blair porta la Gran Bretagna in guerra". The second is more natural but has 7 words, over the 3 to 6 limit. **Settled 30 Oct 2026: kept.**
+- p.your-call.1965-udi.stamp — "La Rhodesia rompe con Londra"; second option "La Rhodesia rompe con la Gran Bretagna". Same reason: the longer line has 7 words. **Settled 30 Oct 2026: kept.**
+- p.your-call.1971-7-march.stamp — "Mujib: il discorso del 7 marzo"; second option "Il discorso del 7 marzo". Short enough either way; the first keeps the name. **Settled 30 Oct 2026: kept.**

@@ -296,7 +296,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.out-of-24.jp-fathers-housework.face` — Japón
 - `p.out-of-24.jp-fathers-housework.label` — tareas del hogar y cuidados
 - `p.out-of-24.jp-fathers-housework.chip1` — tareas del hogar y cuidados
-- `p.out-of-24.jp-fathers-housework.chip2` — padres de niños menores de 6 años
+- `p.out-of-24.jp-fathers-housework.chip2` — hombres con hijos menores de 6 años
 - `p.out-of-24.jp-fathers-housework.fig` — 1 h 54
 - `p.out-of-24.jp-fathers-housework.sentence` — En Japón, los hombres con hijos menores de 6 años dedican 1 hora y 54 minutos al día a las tareas del hogar, los cuidados y las compras.
 - `p.out-of-24.jp-fathers-housework.note` — Parejas con un hijo menor de 6 años, con el promedio de toda la semana, 2021 (Oficina de Estadística de Japón). Sus esposas dedican 7 horas y 28 minutos.
@@ -814,8 +814,10 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.out-of-24.bat-sleep.face — Murciélago marrón pequeño. Second option: Murciélago pardo pequeño. Both are used for Myotis lucifugus; the first is the one in most Spanish sources.
-- p.out-of-24.guinea-pig-sleep.face — Cobaya. Second option: Conejillo de Indias. Cobaya is short and known everywhere; conejillo de Indias is more usual in parts of Latin America.
-- p.out-of-24.owl-monkey-sleep.face — Mono nocturno. Second option: Mono búho. Mono nocturno is the usual name for Aotus; mono búho is also heard in Latin America.
-- p.out-of-24.tree-shrew-sleep.face — Musaraña arborícola. Second option: Tupaya. The first explains itself and fits the note about true shrews; tupaya is the zoological name.
-- p.out-of-24.jp-fathers-housework.chip2 — padres de niños menores de 6 años. Second option: hombres con hijos menores de 6 años. "Padres" can also be read as "parents" when plural.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.out-of-24.bat-sleep.face — Murciélago marrón pequeño. Second option: Murciélago pardo pequeño. Both are used for Myotis lucifugus; the first is the one in most Spanish sources. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.guinea-pig-sleep.face — Cobaya. Second option: Conejillo de Indias. Cobaya is short and known everywhere; conejillo de Indias is more usual in parts of Latin America. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.owl-monkey-sleep.face — Mono nocturno. Second option: Mono búho. Mono nocturno is the usual name for Aotus; mono búho is also heard in Latin America. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.tree-shrew-sleep.face — Musaraña arborícola. Second option: Tupaya. The first explains itself and fits the note about true shrews; tupaya is the zoological name. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.jp-fathers-housework.chip2 — padres de niños menores de 6 años. Second option: hombres con hijos menores de 6 años. "Padres" can also be read as "parents" when plural. **Settled 30 Oct 2026: changed to “hombres con hijos menores de 6 años”.**

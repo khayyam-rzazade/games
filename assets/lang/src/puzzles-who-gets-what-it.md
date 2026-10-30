@@ -649,10 +649,10 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.who-gets-what.nz-petrol.where` — Nuova Zelanda
 - `p.who-gets-what.nz-petrol.slice1` — Carburante
 - `p.who-gets-what.nz-petrol.slice2` — Venditori
-- `p.who-gets-what.nz-petrol.slice3` — Carbonio
+- `p.who-gets-what.nz-petrol.slice3` — CO₂
 - `p.who-gets-what.nz-petrol.slice4` — Tasse
 - `p.who-gets-what.nz-petrol.fact` — All'inizio di settembre 2026 accise, prelievi e GST prendevano 1,16 dollari su un litro di benzina neozelandese da 2,97 dollari. Il margine rimasto per il trasporto e le stazioni di servizio era meno di 19 centesimi.
-- `p.who-gets-what.nz-petrol.note` — La media nazionale settimanale del ministero per la benzina normale, settimana 36 del 2026 (la prima settimana di settembre), calcolata come somma delle sue parti. “Carburante” è il costo per l'importatore: l'acquisto del carburante a Singapore e il trasporto via nave. “Venditori” è il margine dell'importatore, per il trasporto, la distribuzione e le stazioni di servizio. “Carbonio” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono 77,254 centesimi di accise e prelievi, poi la GST (l'imposta sui beni e servizi) al 15%.
+- `p.who-gets-what.nz-petrol.note` — La media nazionale settimanale del ministero per la benzina normale, settimana 36 del 2026 (la prima settimana di settembre), calcolata come somma delle sue parti. “Carburante” è il costo per l'importatore: l'acquisto del carburante a Singapore e il trasporto via nave. “Venditori” è il margine dell'importatore, per il trasporto, la distribuzione e le stazioni di servizio. “CO₂” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono 77,254 centesimi di accise e prelievi, poi la GST (l'imposta sui beni e servizi) al 15%.
 
 #### 62/90 · `cigs-nl` · day 62 (8 Dec 2026), 152 (8 Mar 2027), 242 (6 Jun 2027), 332 (4 Sep 2027) … · every 90 days
 
@@ -847,10 +847,10 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.who-gets-what.nz-diesel.what` — Un litro di gasolio
 - `p.who-gets-what.nz-diesel.where` — Nuova Zelanda
 - `p.who-gets-what.nz-diesel.slice1` — Gasolio
-- `p.who-gets-what.nz-diesel.slice2` — Carbonio
+- `p.who-gets-what.nz-diesel.slice2` — CO₂
 - `p.who-gets-what.nz-diesel.slice3` — Tasse
 - `p.who-gets-what.nz-diesel.fact` — Il gasolio neozelandese non paga nessuna accisa alla pompa, solo 0,9 centesimi al litro di prelievi e poi la GST. Le tariffe per l'uso della strada si pagano a parte e non sono nel prezzo alla pompa.
-- `p.who-gets-what.nz-diesel.note` — La media nazionale settimanale del ministero per il gasolio, la settimana datata 9 ottobre 2026, calcolata come somma delle sue parti. “Gasolio” è il prezzo prima di tasse e carbonio: il carburante comprato a Singapore e portato via nave, e il margine dei venditori. “Carbonio” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono la GST, l'imposta sui beni e servizi (41,86 centesimi), e due piccoli prelievi (0,90 centesimi). Le tariffe per l'uso della strada non sono comprese in questo prezzo.
+- `p.who-gets-what.nz-diesel.note` — La media nazionale settimanale del ministero per il gasolio, la settimana datata 9 ottobre 2026, calcolata come somma delle sue parti. “Gasolio” è il prezzo prima delle tasse e della CO₂: il carburante comprato a Singapore e portato via nave, e il margine dei venditori. “CO₂” è il costo del sistema di scambio delle quote di emissioni. “Tasse” sono la GST, l'imposta sui beni e servizi (41,86 centesimi), e due piccoli prelievi (0,90 centesimi). Le tariffe per l'uso della strada non sono comprese in questo prezzo.
 
 #### 81/90 · `cigs-hu` · day 81 (27 Dec 2026), 171 (27 Mar 2027), 261 (25 Jun 2027), 351 (23 Sep 2027) … · every 90 days
 
@@ -963,31 +963,33 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.who-gets-what.it-power.what — "Un kilowattora di elettricità"; second option "Un'unità di elettricità". The English says "a unit" (British for one kilowatt-hour). I wrote the kilowatt-hour so it matches the German one already done; same in dk-power and the Italian/Danish facts.
-- p.who-gets-what.dark-choc.slice1 — "Campo"; second option "Coltivatori" (or "Piantagione", as in the banana cards). "Campo" is short enough for the slice and means the farm stage.
-- p.who-gets-what.in-diesel.note — "un piccolo contributo per la qualità dell'aria di 25 paise al litro"; the English says "air ambience charge", the name of a Delhi levy. I described what it is for, I did not keep the Hindi-English name.
-- p.who-gets-what.no-spirits.what — "Una bottiglia di distillato da 70 cl"; second option "di superalcolico". "Distillato" is the neutral word; "liquore" would mean sweet liqueurs in Italian.
-- p.who-gets-what.us-food-21.slice2 — "Proprietari" (owners); second option "Profitti". The note explains it is rent, profit, interest and wear, so "Proprietari" is the wider word.
-- p.who-gets-what.dark-choc.slice3 — "Produttore" for "Maker" on every chocolate card. It is long for a narrow slice; the short second option is "Fabbrica".
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.who-gets-what.it-power.what — "Un kilowattora di elettricità"; second option "Un'unità di elettricità". The English says "a unit" (British for one kilowatt-hour). I wrote the kilowatt-hour so it matches the German one already done; same in dk-power and the Italian/Danish facts. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.dark-choc.slice1 — "Campo"; second option "Coltivatori" (or "Piantagione", as in the banana cards). "Campo" is short enough for the slice and means the farm stage. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.in-diesel.note — "un piccolo contributo per la qualità dell'aria di 25 paise al litro"; the English says "air ambience charge", the name of a Delhi levy. I described what it is for, I did not keep the Hindi-English name. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.no-spirits.what — "Una bottiglia di distillato da 70 cl"; second option "di superalcolico". "Distillato" is the neutral word; "liquore" would mean sweet liqueurs in Italian. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-food-21.slice2 — "Proprietari" (owners); second option "Profitti". The note explains it is rent, profit, interest and wear, so "Proprietari" is the wider word. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.dark-choc.slice3 — "Produttore" for "Maker" on every chocolate card. It is long for a narrow slice; the short second option is "Fabbrica". **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.who-gets-what.br-power.what — "100 real di una bolletta della luce"; second option "100 reais". I kept "real" unchanged in the plural, as Italian press often does ("5 real"); "reais" is also used. Same in every Brazil card.
-- p.who-gets-what.cigs-jp.slice3 — "Imposta"; second option "IVA" or "Consumi". The English says "Tax" for Japan's 10% consumption tax, and "Tasse" would suggest all the taxes, so I used the singular "Imposta"; the note explains it.
-- p.who-gets-what.th-petrol.what — "Un litro di benzina “benzine 95”"; second option "Un litro di benzina 95 pura". "Benzine 95" is the Thai product name and "gasohol 95" is the blend with ethanol; I added "(benzina con etanolo)" after gasohol in the fact, which is only a gloss.
-- p.who-gets-what.th-petrol.note — "queste ultime due voci sono calcolate per differenza"; the English says only "both are worked out as differences", I took it to mean the last two (Levies and VAT).
-- p.who-gets-what.ch-petrol.fact — "15 centesimi" and "centesimi" in the note for Rappen; second option "15 Rappen (centesimi svizzeri)". Italian-speaking Switzerland says centesimi, "Rappen" would be unknown to most players.
-- p.who-gets-what.qc-petrol.slice4 — "GST+QST"; second option "TPS+TVQ" (the Canadian French names). Neither is known in Italian, so I kept the international letters and the note says they are the two sales taxes. "Montréal" and "Québec" with the accent, as on Italian Wikipedia; "Montreal" and "Quebec" are also common.
-- p.who-gets-what.za-petrol.note — "un prelievo detto “slate levy” (1,14 rand)"; second option "un prelievo di compensazione (“slate levy”)". I am not sure of an Italian name for this South African charge, so I kept the English term; same in za-diesel.
-- p.who-gets-what.za-petrol.slice3 — "Stazione"; second option "Pompa" (the word used for the India petrol card). "Stazione" matches "stazione di servizio" in the fact.
-- p.who-gets-what.cigs-hu.note — "forint"; second option "fiorini ungheresi". Italian press mostly writes "forint".
-- p.who-gets-what.cigs-pl.note — "zloty" without the ł; second option "złoty". Italian dictionaries write "zloty".
-- p.who-gets-what.de-power-26.slice3 — "Oneri" (electricity duty, concession fee and surcharges); second option "Prelievi". "Oneri" is also the word for "Policies" in the Italy cards, but the German list is a mix of taxes and surcharges.
-- p.who-gets-what.it-gas.slice2 — "Rete" for "Pipes"; second option "Tubi". "Rete" is what the Great Britain and Italy electricity cards already use for "Wires", and it covers the gas network too.
-- p.who-gets-what.us-groc-08.slice2 — "Fabbriche" for "Makers"; second option "Produttori". It matches "Fabbriche" in the older US food card and the fact says "food factories".
-- p.who-gets-what.nz-petrol.slice3 — "Carbonio" for the emissions trading cost; second option "CO₂" (as in the Germany petrol card). Same in nz-diesel.
-- p.who-gets-what.ph-petrol.slice2 — "Industria"; second option "Settore". The English "industry take" is the oil companies and stations.
-- p.who-gets-what.br-diesel.fact — "la tassa statale"; second option "la tassa dello Stato federato". In Brazil the ICMS belongs to each state, but "Stato" in Italian can also mean the country, so I set it against "federale". Same in br-petrol and br-lpg.
-- p.who-gets-what.it-diesel.note — "ministero dell'Ambiente e della sicurezza energetica"; the English says "environment and energy ministry", I used the real Italian name (MASE, as the English itself has in it-petrol).
-- p.who-gets-what.au-clothes.fact — "un salario dignitoso" for "living wage"; second option "un salario di sussistenza".
-- p.who-gets-what.pk-petrol.note — "il prelievo sul petrolio" for "petroleum levy"; second option "la tassa sul petrolio". Same in the fact.
+- p.who-gets-what.br-power.what — "100 real di una bolletta della luce"; second option "100 reais". I kept "real" unchanged in the plural, as Italian press often does ("5 real"); "reais" is also used. Same in every Brazil card. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-jp.slice3 — "Imposta"; second option "IVA" or "Consumi". The English says "Tax" for Japan's 10% consumption tax, and "Tasse" would suggest all the taxes, so I used the singular "Imposta"; the note explains it. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.th-petrol.what — "Un litro di benzina “benzine 95”"; second option "Un litro di benzina 95 pura". "Benzine 95" is the Thai product name and "gasohol 95" is the blend with ethanol; I added "(benzina con etanolo)" after gasohol in the fact, which is only a gloss. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.th-petrol.note — "queste ultime due voci sono calcolate per differenza"; the English says only "both are worked out as differences", I took it to mean the last two (Levies and VAT). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ch-petrol.fact — "15 centesimi" and "centesimi" in the note for Rappen; second option "15 Rappen (centesimi svizzeri)". Italian-speaking Switzerland says centesimi, "Rappen" would be unknown to most players. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.qc-petrol.slice4 — "GST+QST"; second option "TPS+TVQ" (the Canadian French names). Neither is known in Italian, so I kept the international letters and the note says they are the two sales taxes. "Montréal" and "Québec" with the accent, as on Italian Wikipedia; "Montreal" and "Quebec" are also common. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.note — "un prelievo detto “slate levy” (1,14 rand)"; second option "un prelievo di compensazione (“slate levy”)". I am not sure of an Italian name for this South African charge, so I kept the English term; same in za-diesel. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.slice3 — "Stazione"; second option "Pompa" (the word used for the India petrol card). "Stazione" matches "stazione di servizio" in the fact. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-hu.note — "forint"; second option "fiorini ungheresi". Italian press mostly writes "forint". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-pl.note — "zloty" without the ł; second option "złoty". Italian dictionaries write "zloty". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.de-power-26.slice3 — "Oneri" (electricity duty, concession fee and surcharges); second option "Prelievi". "Oneri" is also the word for "Policies" in the Italy cards, but the German list is a mix of taxes and surcharges. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.it-gas.slice2 — "Rete" for "Pipes"; second option "Tubi". "Rete" is what the Great Britain and Italy electricity cards already use for "Wires", and it covers the gas network too. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-groc-08.slice2 — "Fabbriche" for "Makers"; second option "Produttori". It matches "Fabbriche" in the older US food card and the fact says "food factories". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.nz-petrol.slice3 — "Carbonio" for the emissions trading cost; second option "CO₂" (as in the Germany petrol card). Same in nz-diesel. **Settled 30 Oct 2026: changed, 4 lines (nz-petrol.slice3, nz-diesel.slice2, nz-petrol.note, nz-diesel.note).**
+- p.who-gets-what.ph-petrol.slice2 — "Industria"; second option "Settore". The English "industry take" is the oil companies and stations. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-diesel.fact — "la tassa statale"; second option "la tassa dello Stato federato". In Brazil the ICMS belongs to each state, but "Stato" in Italian can also mean the country, so I set it against "federale". Same in br-petrol and br-lpg. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.it-diesel.note — "ministero dell'Ambiente e della sicurezza energetica"; the English says "environment and energy ministry", I used the real Italian name (MASE, as the English itself has in it-petrol). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.au-clothes.fact — "un salario dignitoso" for "living wage"; second option "un salario di sussistenza". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.pk-petrol.note — "il prelievo sul petrolio" for "petroleum levy"; second option "la tassa sul petrolio". Same in the fact. **Settled 30 Oct 2026: kept.**

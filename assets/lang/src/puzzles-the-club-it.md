@@ -911,7 +911,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.arabic-words.out2` — Cioccolato
 - `p.the-club.arabic-words.door1` — Cotone
 - `p.the-club.arabic-words.door2` — Robot
-- `p.the-club.arabic-words.door3` — Divano
+- `p.the-club.arabic-words.door3` — Sofà
 - `p.the-club.arabic-words.door4` — Shampoo
 - `p.the-club.arabic-words.door5` — Zero
 - `p.the-club.arabic-words.fact` — Ognuna è arrivata in italiano dall'arabo, passando per altre lingue. «Algebra» viene da al-jabr, nel titolo di un libro scritto circa 1.200 anni fa.
@@ -2374,17 +2374,19 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.the-club.hindi-words.door1 — "Bungalow" (English: Bangle) — second option: "Bracciale rigido" — an Italian "bracciale" is not a Hindi word, so the clue would not work. I also changed door5 "Loot" to "Veranda" (both are Hindi in origin; members and non-members stay in the same order). "Thug" is kept: Italians know it from music. The fact says "in italiano… spesso passando per l'inglese".
-- p.the-club.dutch-words.door3 — "Yacht" (English: Easel) — second option: "Cavalletto" — "cavalletto" has no Dutch link in Italian. Door5 "Landscape" became "Iceberg" for the same reason. Cookie, Boss, Waffle and Brandy are used in Italian as they are; Hamburger, Kindergarten, "Brezel" and Bagel stay as non-Dutch (German/Yiddish).
-- p.the-club.japanese-words.door5 — "Futon" (English: Honcho) — second option: keep "Honcho" — nobody in Italy knows "honcho", so a member Italians know replaces it. "Tycoon" is kept; the fact now says "L'italiano ha preso in prestito…".
-- p.the-club.arabic-words.door3 — "Divano" (English: Sofa) — second option: "Sofà" — "divano" comes from Arabic through Persian and Turkish; "sofà" reaches Italian through French and is less sure for a child.
-- p.the-club.fungi.in1 — "Champignon" — second option: "Fungo" — the rule is "Sono funghi", so the word "fungo" would give the answer away. Similar leaks already in the English that I kept: snakes.in3 "Serpente a sonagli" (second option: "Crotalo"), bears.in1/in2 "Orso…", cashew-family.in1 "Anacardo", onion-family.in1 "Cipolla".
-- p.the-club.reptiles.in2 — "Tartaruga di terra" — second option: "Testuggine" — "tartaruga" alone could mean a sea turtle, which is the next puzzle's wording (amphibians.door4 "Tartaruga").
-- p.the-club.egg-layers.in1 — "Gallina" — second option: "Pollo" — the hen is the one that lays eggs. Long Lost Cousin uses "Pollo" for the animal as a species.
-- p.the-club.igneous.door5 — "Creta" — second option: "Gesso" — the rock chalk is "creta" in geology, but children know "gesso" from the board. Both are sedimentary, so the answer does not change.
-- p.the-club.snakes.door2 — "Cecilia" — second option: "Apode" or "Gimnofione" — the animal is "cecilia" in Italian, but it looks like a girl's name. Same word in amphibians.door5 and its fact.
-- p.the-club.italian-cheeses.sign — "Formaggi italiani" — second option: swap the whole puzzle for another country's cheeses — Italian players get this one for free, as they do verdi (Verdi's operas), and alps with Etna and Cervino. I translated them as they are.
-- p.the-club.panthera.fact — "Il puma, che a volte viene chiamato pantera" — second option: "Il puma, che in inglese è chiamato a volte «panther»" — in Italian "pantera" usually means a black leopard, so the sentence follows the English closely.
-- p.the-club.soviet-leaders.in3 — "Krusciov" — second option: "Chruščëv" — I used the Italian spellings throughout: Trockij, Breznev, Eltsin, Gorbaciov, Jurij Gagarin, Valentina Tereškova.
-- p.the-club.mughals.sign — "Imperatori Moghul" — second option: "Imperatori Mogul" — both are used in Italian.
-- p.the-club.below-sea-level.stamp — "Sotto quota zero" — second option: "Sotto il livello del mare" — the stamp is meant to be one or two words; many of these stamps ("Dove vivono i pinguini", "Famiglia della margherita") run to three or four words, like the English ones, so please check how they fit on the stamp.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.the-club.hindi-words.door1 — "Bungalow" (English: Bangle) — second option: "Bracciale rigido" — an Italian "bracciale" is not a Hindi word, so the clue would not work. I also changed door5 "Loot" to "Veranda" (both are Hindi in origin; members and non-members stay in the same order). "Thug" is kept: Italians know it from music. The fact says "in italiano… spesso passando per l'inglese". **Settled 30 Oct 2026: kept.**
+- p.the-club.dutch-words.door3 — "Yacht" (English: Easel) — second option: "Cavalletto" — "cavalletto" has no Dutch link in Italian. Door5 "Landscape" became "Iceberg" for the same reason. Cookie, Boss, Waffle and Brandy are used in Italian as they are; Hamburger, Kindergarten, "Brezel" and Bagel stay as non-Dutch (German/Yiddish). **Settled 30 Oct 2026: kept.**
+- p.the-club.japanese-words.door5 — "Futon" (English: Honcho) — second option: keep "Honcho" — nobody in Italy knows "honcho", so a member Italians know replaces it. "Tycoon" is kept; the fact now says "L'italiano ha preso in prestito…". **Settled 30 Oct 2026: kept.**
+- p.the-club.arabic-words.door3 — "Divano" (English: Sofa) — second option: "Sofà" — "divano" comes from Arabic through Persian and Turkish; "sofà" reaches Italian through French and is less sure for a child. **Settled 30 Oct 2026: changed to “Sofà”.**
+- p.the-club.fungi.in1 — "Champignon" — second option: "Fungo" — the rule is "Sono funghi", so the word "fungo" would give the answer away. Similar leaks already in the English that I kept: snakes.in3 "Serpente a sonagli" (second option: "Crotalo"), bears.in1/in2 "Orso…", cashew-family.in1 "Anacardo", onion-family.in1 "Cipolla". **Settled 30 Oct 2026: kept.**
+- p.the-club.reptiles.in2 — "Tartaruga di terra" — second option: "Testuggine" — "tartaruga" alone could mean a sea turtle, which is the next puzzle's wording (amphibians.door4 "Tartaruga"). **Settled 30 Oct 2026: kept.**
+- p.the-club.egg-layers.in1 — "Gallina" — second option: "Pollo" — the hen is the one that lays eggs. Long Lost Cousin uses "Pollo" for the animal as a species. **Settled 30 Oct 2026: kept.**
+- p.the-club.igneous.door5 — "Creta" — second option: "Gesso" — the rock chalk is "creta" in geology, but children know "gesso" from the board. Both are sedimentary, so the answer does not change. **Settled 30 Oct 2026: kept.**
+- p.the-club.snakes.door2 — "Cecilia" — second option: "Apode" or "Gimnofione" — the animal is "cecilia" in Italian, but it looks like a girl's name. Same word in amphibians.door5 and its fact. **Settled 30 Oct 2026: kept.**
+- p.the-club.italian-cheeses.sign — "Formaggi italiani" — second option: swap the whole puzzle for another country's cheeses — Italian players get this one for free, as they do verdi (Verdi's operas), and alps with Etna and Cervino. I translated them as they are. **Settled 30 Oct 2026: kept.**
+- p.the-club.panthera.fact — "Il puma, che a volte viene chiamato pantera" — second option: "Il puma, che in inglese è chiamato a volte «panther»" — in Italian "pantera" usually means a black leopard, so the sentence follows the English closely. **Settled 30 Oct 2026: kept.**
+- p.the-club.soviet-leaders.in3 — "Krusciov" — second option: "Chruščëv" — I used the Italian spellings throughout: Trockij, Breznev, Eltsin, Gorbaciov, Jurij Gagarin, Valentina Tereškova. **Settled 30 Oct 2026: kept.**
+- p.the-club.mughals.sign — "Imperatori Moghul" — second option: "Imperatori Mogul" — both are used in Italian. **Settled 30 Oct 2026: kept.**
+- p.the-club.below-sea-level.stamp — "Sotto quota zero" — second option: "Sotto il livello del mare" — the stamp is meant to be one or two words; many of these stamps ("Dove vivono i pinguini", "Famiglia della margherita") run to three or four words, like the English ones, so please check how they fit on the stamp. **Settled 30 Oct 2026: kept.**

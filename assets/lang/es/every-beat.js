@@ -392,7 +392,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Marmota alpina",
   "label": "hibernando",
   "sentence": "El corazón de una marmota alpina en hibernación late solo de tres a cinco veces por minuto, mientras se acurruca con otras bajo tierra.",
-  "note": "Solo páginas populares (Wikipedia y Awake! sobre las marmotas de los Dolomitas, en Italia); no apareció ningún estudio con la cifra. En la imagen se ve el perro de las praderas de El primo perdido, de la misma familia."
+  "note": "Solo páginas populares (Wikipedia y la revista ¡Despertad! sobre las marmotas de los Dolomitas, en Italia); no apareció ningún estudio con la cifra. En la imagen se ve el perro de las praderas de El primo perdido, de la misma familia."
  },
  "toddler-awake": {
   "face": "Niño pequeño",

@@ -637,7 +637,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 #### 46/84 · `oats-cola` · day 46 (24 Nov 2026), 130 (16 Feb 2027), 214 (11 May 2027), 298 (3 Aug 2027) … · every 84 days
 
 - `p.same-energy.oats-cola.a_name` — Una ciotola di fiocchi d'avena
-- `p.same-energy.oats-cola.a_portion` — 40 g, secchi
+- `p.same-energy.oats-cola.a_portion` — 40 g, a secco
 - `p.same-energy.oats-cola.b_one` — lattina di cola
 - `p.same-energy.oats-cola.b_many` — lattine di cola
 - `p.same-energy.oats-cola.b_short1` — lattina
@@ -987,7 +987,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 #### 71/84 · `oats-bananas` · day 71 (19 Dec 2026), 155 (13 Mar 2027), 239 (5 Jun 2027), 323 (28 Aug 2027) … · every 84 days
 
 - `p.same-energy.oats-bananas.a_name` — Una ciotola di fiocchi d'avena
-- `p.same-energy.oats-bananas.a_portion` — 40 g, secchi
+- `p.same-energy.oats-bananas.a_portion` — 40 g, a secco
 - `p.same-energy.oats-bananas.b_one` — banana
 - `p.same-energy.oats-bananas.b_many` — banane
 - `p.same-energy.oats-bananas.b_short1` — banana
@@ -1085,7 +1085,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 #### 78/84 · `oats-milk` · day 78 (26 Dec 2026), 162 (20 Mar 2027), 246 (12 Jun 2027), 330 (4 Sep 2027) … · every 84 days
 
 - `p.same-energy.oats-milk.a_name` — Una ciotola di fiocchi d'avena
-- `p.same-energy.oats-milk.a_portion` — 40 g, secchi
+- `p.same-energy.oats-milk.a_portion` — 40 g, a secco
 - `p.same-energy.oats-milk.b_one` — bicchiere di latte
 - `p.same-energy.oats-milk.b_many` — bicchieri di latte
 - `p.same-energy.oats-milk.b_short1` — bicchiere
@@ -1182,6 +1182,8 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.same-energy.oats-cola.a_portion — "40 g, secchi" — second option: "40 g a secco" — "dry" means dry weight, before cooking; both are used on Italian packs.
-- p.same-energy.orange-bottle-cola.a_name — "Una bottiglietta di succo d'arancia" — second option: "Una bottiglia di succo d'arancia" — at 330 ml Italians say "bottiglietta"; the bigger bottles (500 ml and up) are "bottiglia".
-- p.same-energy.milk-bananas.b_portion — "una banana · 120 g, sbucciata" — second option: "una banana · 120 g senza buccia" — this is the first batch's wording, kept for the other bananas.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.same-energy.oats-cola.a_portion — "40 g, secchi" — second option: "40 g a secco" — "dry" means dry weight, before cooking; both are used on Italian packs. **Settled 30 Oct 2026: changed, 3 lines (oats-cola.a_portion, oats-bananas.a_portion, oats-milk.a_portion).**
+- p.same-energy.orange-bottle-cola.a_name — "Una bottiglietta di succo d'arancia" — second option: "Una bottiglia di succo d'arancia" — at 330 ml Italians say "bottiglietta"; the bigger bottles (500 ml and up) are "bottiglia". **Settled 30 Oct 2026: kept.**
+- p.same-energy.milk-bananas.b_portion — "una banana · 120 g, sbucciata" — second option: "una banana · 120 g senza buccia" — this is the first batch's wording, kept for the other bananas. **Settled 30 Oct 2026: kept.**

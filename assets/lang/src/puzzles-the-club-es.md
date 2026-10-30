@@ -47,10 +47,10 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.the-club.rose-family.out2` — Sandía
 - `p.the-club.rose-family.door1` — Almendra
 - `p.the-club.rose-family.door2` — Tomate
-- `p.the-club.rose-family.door3` — Melocotón
+- `p.the-club.rose-family.door3` — Durazno
 - `p.the-club.rose-family.door4` — Calabaza
 - `p.the-club.rose-family.door5` — Frambuesa
-- `p.the-club.rose-family.fact` — Todos pertenecen a la familia de las rosas. La almendra es la semilla de un fruto muy emparentado con el melocotón.
+- `p.the-club.rose-family.fact` — Todos pertenecen a la familia de las rosas. La almendra es la semilla de un fruto muy emparentado con el durazno.
 
 #### 4/148 · `keratin` · day 4 (7 Oct 2026), 152 (4 Mar 2027), 300 (30 Jul 2027), 448 (25 Dec 2027) … · every 148 days · second batch
 
@@ -182,7 +182,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 #### 12/148 · `japanese-words` · day 12 (15 Oct 2026), 160 (12 Mar 2027), 308 (7 Aug 2027), 456 (2 Jan 2028) … · every 148 days · second batch
 
-- `p.the-club.japanese-words.sign` — Palabras que vienen del japonés
+- `p.the-club.japanese-words.sign` — Palabras inglesas que vienen del japonés
 - `p.the-club.japanese-words.stamp` — Del japonés
 - `p.the-club.japanese-words.in1` — Tsunami
 - `p.the-club.japanese-words.in2` — Karaoke
@@ -192,9 +192,9 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.the-club.japanese-words.door1` — Tycoon
 - `p.the-club.japanese-words.door2` — Kimchi
 - `p.the-club.japanese-words.door3` — Origami
-- `p.the-club.japanese-words.door4` — Kétchup
+- `p.the-club.japanese-words.door4` — Ketchup
 - `p.the-club.japanese-words.door5` — Honcho
-- `p.the-club.japanese-words.fact` — Todas estas palabras vienen del japonés. «Tycoon» viene de taikun, un título que antiguamente se daba al shogun.
+- `p.the-club.japanese-words.fact` — Todas pasaron al inglés desde el japonés. «Tycoon» viene de taikun, un título que antiguamente se daba al shogun.
 
 #### 13/148 · `rodents` · day 13 (16 Oct 2026), 161 (13 Mar 2027), 309 (8 Aug 2027), 457 (3 Jan 2028) … · every 148 days · second batch
 
@@ -1288,7 +1288,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 - `p.the-club.drupes.sign` — Para un botánico, son drupas
 - `p.the-club.drupes.stamp` — Drupas
-- `p.the-club.drupes.in1` — Melocotón
+- `p.the-club.drupes.in1` — Durazno
 - `p.the-club.drupes.in2` — Cereza
 - `p.the-club.drupes.in3` — Ciruela
 - `p.the-club.drupes.out1` — Manzana
@@ -1728,7 +1728,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.the-club.decathlon.door1` — Salto con pértiga
 - `p.the-club.decathlon.door2` — Lanzamiento de martillo
 - `p.the-club.decathlon.door3` — Lanzamiento de jabalina
-- `p.the-club.decathlon.door4` — Steeplechase
+- `p.the-club.decathlon.door4` — Carrera de obstáculos
 - `p.the-club.decathlon.door5` — Salto de altura
 - `p.the-club.decathlon.fact` — El decatlón tiene diez pruebas repartidas en dos días, desde los 100 metros hasta los 1500 metros.
 
@@ -2374,28 +2374,30 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.the-club.apes.sign — Son simios, no monos . Second option: Son simios sin cola. In Spanish «simio» also means monkey, so I added «no monos» to keep the rule true (baboon, macaque, mandrill are monkeys); «sin cola» would be wrong for some macaques and mandrills.
-- p.the-club.seven-wonders.sign — Las Siete Maravillas del Mundo Antiguo . Second option: Las Siete Maravillas. In Spanish «las siete maravillas» also means the new list (Coliseo and Gran Muralla would then be in), so I added «del Mundo Antiguo» as the fact already says.
-- p.the-club.japanese-words.door1 — Tycoon (door5 Honcho also kept as the English word) . Second option: none without changing the members. The rule depends on English: in Spanish these two are English words of Japanese origin and «honcho» is hardly used; Tsunami, Karaoke, Emoji and Origami are real Spanish words from Japanese.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.the-club.apes.sign — Son simios, no monos . Second option: Son simios sin cola. In Spanish «simio» also means monkey, so I added «no monos» to keep the rule true (baboon, macaque, mandrill are monkeys); «sin cola» would be wrong for some macaques and mandrills. **Settled 30 Oct 2026: kept.**
+- p.the-club.seven-wonders.sign — Las Siete Maravillas del Mundo Antiguo . Second option: Las Siete Maravillas. In Spanish «las siete maravillas» also means the new list (Coliseo and Gran Muralla would then be in), so I added «del Mundo Antiguo» as the fact already says. **Settled 30 Oct 2026: kept.**
+- p.the-club.japanese-words.door1 — Tycoon (door5 Honcho also kept as the English word) . Second option: none without changing the members. The rule depends on English: in Spanish these two are English words of Japanese origin and «honcho» is hardly used; Tsunami, Karaoke, Emoji and Origami are real Spanish words from Japanese. **Settled 30 Oct 2026: changed, 3 lines (japanese-words.sign, japanese-words.door4, japanese-words.fact).**
 - p.the-club.hindi-words.door1 — Bangle . Settled 30 Oct 2026: the ten names are the English words and the sign says "Palabras inglesas", as in dutch-words. Champú, Pijama and Jungla were Spanish while Bangle, Thug and Loot stayed English, and those three are exactly the ones that get in, so the English words gave the answer away.
-- p.the-club.dutch-words.sign — Palabras inglesas que vienen del holandés . Second option: skip this puzzle in Spanish. It only works with English words (Cookie, Boss, Waffle... kept in English because galleta, jefe, gofre are not Dutch), and a Spanish 12-year-old may not know Easel or Landscape; «holandés» chosen over «neerlandés» for easier reading.
-- p.the-club.cabbage.door1 — Col rizada (also door3 Coles de Bruselas, door5 Colinabo, in3 Coliflor) . Second option: Kale, Repollitos de Bruselas, Kohlrabi. The word «col» in these names gives the rule away in Spanish; in English the names do not.
-- p.the-club.onion-family.door1 — Cebollino . Second option: Ciboulette. «Cebollino» contains «cebolla» and hints at the rule; «ciboulette» is less usual.
-- p.the-club.gourd-family.door5 — Calabaza butternut . Second option: Butternut. The repeated word «calabaza» (also in2) hints that it belongs to the family; «calabaza moscada» would do the same.
-- p.the-club.equator.in1 — Ecuador . Second option: none, it is the country's name. In Spanish the country has the same word as the rule («el ecuador»), so it gives the rule away more than in English.
-- p.the-club.arabic-words.in1 — Álgebra (with Azúcar and Algodón) . Second option: none, the facts are true. The Spanish words in al-/az- are the classic Arabic-origin words, so the pattern hints at the rule; I also wrote that they reached Spanish (not English), some through other languages.
-- p.the-club.citrus.in3 — Pomelo (door5 Pampelmusa) . Second option: Toronja for the grapefruit and Pomelo for the pomelo (as in Mexico and the Caribbean). Regional split; I followed Spanish Wikipedia (pomelo = grapefruit, pampelmusa = Citrus maxima). 30 Oct 2026: "pamplemusa" changed to "pampelmusa", the dictionary spelling (Wikipedia gives both).
-- p.the-club.van-gogh.door1 — Los comedores de patatas . Second option: Los comedores de papas. «Patatas» is the usual title of the painting, but the rest of the batch says «papa».
-- p.the-club.underground.fact — Todos crecen bajo tierra. El cacahuete también: después de florecer, un tallito llamado ginóforo crece hacia abajo y se hunde en la tierra. Second option: un tallito llamado «clavo». «Ginóforo» is the Spanish botanical word for the peg but is hard for a 12-year-old.
-- p.the-club.panthera.fact — ... El puma, al que a veces se llama pantera, no es una de ellas. Second option: El puma, que en inglés a veces se llama «panther», no es una de ellas. In Spanish «pantera» usually means a black leopard or jaguar; the puma is rarely called that.
-- p.the-club.former-capitals.door2 — Bombay . Second option: Mumbái. Both are used in Spanish; the English has Mumbai.
-- p.the-club.rose-family.door3 — Melocotón (also drupes.in1 and the fact) . Second option: Durazno. Spain says melocotón, much of Latin America durazno.
-- p.the-club.berries.in1 — Plátano (also climacteric.in1, drupes.out2, citrus.out2, palms.out1) . Second option: Banana. Regional split (plátano in Spain and Mexico, banana in the Southern Cone, banano in Colombia).
-- p.the-club.nightshades.door1 — Chile picante . Second option: Pimiento picante or Ají. Regional split; «chile» is the best known but is also a country name in this batch.
-- p.the-club.fungi.in1 — Champiñón . Second option: Seta. «Mushroom» has no neutral word: «seta» is Spain's, «hongo» would repeat the rule, «champiñón» is understood everywhere.
-- p.the-club.snakes.door2 — Cecilia . Second option: Cecílido. The Spanish name of the caecilian; it can read as a girl's name and a 12-year-old will not know it (same in English).
-- p.the-club.weasel-family.sign — La familia de la comadreja . Second option: La familia de los mustélidos. In Argentina and Uruguay «comadreja» also names an opossum; «mustélidos» is exact but harder (I use it once in the fact).
-- p.the-club.months.in1 — Enero . Second option: enero. Spanish month names are lower case; I capitalised them as card labels like the other items.
-- p.the-club.decathlon.door4 — Steeplechase . Second option: 3000 metros obstáculos. The Spanish name has a number that might hint at the answer (the decathlon's longest race is 1500 m); «carrera de obstáculos» would be mistaken for hurdles.
-- p.the-club.eponyms.stamp — Epónimos . Second option: Nombres de personas. «Epónimos» is a hard word for a 12-year-old, but the English keeps «Eponyms».
-- p.the-club.real-fish.door1 — Estrella de mar (door3 Medusa, door5 Sepia) . Second option: none. The English trap names all contain «fish» (starfish, jellyfish, cuttlefish); the Spanish names do not, so the puzzle is a little easier but the rule stays true.
+- p.the-club.dutch-words.sign — Palabras inglesas que vienen del holandés . Second option: skip this puzzle in Spanish. It only works with English words (Cookie, Boss, Waffle... kept in English because galleta, jefe, gofre are not Dutch), and a Spanish 12-year-old may not know Easel or Landscape; «holandés» chosen over «neerlandés» for easier reading. **Settled 30 Oct 2026: kept.**
+- p.the-club.cabbage.door1 — Col rizada (also door3 Coles de Bruselas, door5 Colinabo, in3 Coliflor) . Second option: Kale, Repollitos de Bruselas, Kohlrabi. The word «col» in these names gives the rule away in Spanish; in English the names do not. **Settled 30 Oct 2026: kept.**
+- p.the-club.onion-family.door1 — Cebollino . Second option: Ciboulette. «Cebollino» contains «cebolla» and hints at the rule; «ciboulette» is less usual. **Settled 30 Oct 2026: kept.**
+- p.the-club.gourd-family.door5 — Calabaza butternut . Second option: Butternut. The repeated word «calabaza» (also in2) hints that it belongs to the family; «calabaza moscada» would do the same. **Settled 30 Oct 2026: kept.**
+- p.the-club.equator.in1 — Ecuador . Second option: none, it is the country's name. In Spanish the country has the same word as the rule («el ecuador»), so it gives the rule away more than in English. **Settled 30 Oct 2026: kept.**
+- p.the-club.arabic-words.in1 — Álgebra (with Azúcar and Algodón) . Second option: none, the facts are true. The Spanish words in al-/az- are the classic Arabic-origin words, so the pattern hints at the rule; I also wrote that they reached Spanish (not English), some through other languages. **Settled 30 Oct 2026: kept.**
+- p.the-club.citrus.in3 — Pomelo (door5 Pampelmusa) . Second option: Toronja for the grapefruit and Pomelo for the pomelo (as in Mexico and the Caribbean). Regional split; I followed Spanish Wikipedia (pomelo = grapefruit, pampelmusa = Citrus maxima). 30 Oct 2026: "pamplemusa" changed to "pampelmusa", the dictionary spelling (Wikipedia gives both). **Settled 30 Oct 2026: kept.**
+- p.the-club.van-gogh.door1 — Los comedores de patatas . Second option: Los comedores de papas. «Patatas» is the usual title of the painting, but the rest of the batch says «papa». **Settled 30 Oct 2026: kept.**
+- p.the-club.underground.fact — Todos crecen bajo tierra. El cacahuete también: después de florecer, un tallito llamado ginóforo crece hacia abajo y se hunde en la tierra. Second option: un tallito llamado «clavo». «Ginóforo» is the Spanish botanical word for the peg but is hard for a 12-year-old. **Settled 30 Oct 2026: kept.**
+- p.the-club.panthera.fact — ... El puma, al que a veces se llama pantera, no es una de ellas. Second option: El puma, que en inglés a veces se llama «panther», no es una de ellas. In Spanish «pantera» usually means a black leopard or jaguar; the puma is rarely called that. **Settled 30 Oct 2026: kept.**
+- p.the-club.former-capitals.door2 — Bombay . Second option: Mumbái. Both are used in Spanish; the English has Mumbai. **Settled 30 Oct 2026: kept.**
+- p.the-club.rose-family.door3 — Melocotón (also drupes.in1 and the fact) . Second option: Durazno. Spain says melocotón, much of Latin America durazno. **Settled 30 Oct 2026: changed, 3 lines (rose-family.door3, rose-family.fact, drupes.in1).**
+- p.the-club.berries.in1 — Plátano (also climacteric.in1, drupes.out2, citrus.out2, palms.out1) . Second option: Banana. Regional split (plátano in Spain and Mexico, banana in the Southern Cone, banano in Colombia). **Settled 30 Oct 2026: kept.**
+- p.the-club.nightshades.door1 — Chile picante . Second option: Pimiento picante or Ají. Regional split; «chile» is the best known but is also a country name in this batch. **Settled 30 Oct 2026: kept.**
+- p.the-club.fungi.in1 — Champiñón . Second option: Seta. «Mushroom» has no neutral word: «seta» is Spain's, «hongo» would repeat the rule, «champiñón» is understood everywhere. **Settled 30 Oct 2026: kept.**
+- p.the-club.snakes.door2 — Cecilia . Second option: Cecílido. The Spanish name of the caecilian; it can read as a girl's name and a 12-year-old will not know it (same in English). **Settled 30 Oct 2026: kept.**
+- p.the-club.weasel-family.sign — La familia de la comadreja . Second option: La familia de los mustélidos. In Argentina and Uruguay «comadreja» also names an opossum; «mustélidos» is exact but harder (I use it once in the fact). **Settled 30 Oct 2026: kept.**
+- p.the-club.months.in1 — Enero . Second option: enero. Spanish month names are lower case; I capitalised them as card labels like the other items. **Settled 30 Oct 2026: kept.**
+- p.the-club.decathlon.door4 — Steeplechase . Second option: 3000 metros obstáculos. The Spanish name has a number that might hint at the answer (the decathlon's longest race is 1500 m); «carrera de obstáculos» would be mistaken for hurdles. **Settled 30 Oct 2026: changed to “Carrera de obstáculos”.**
+- p.the-club.eponyms.stamp — Epónimos . Second option: Nombres de personas. «Epónimos» is a hard word for a 12-year-old, but the English keeps «Eponyms». **Settled 30 Oct 2026: kept.**
+- p.the-club.real-fish.door1 — Estrella de mar (door3 Medusa, door5 Sepia) . Second option: none. The English trap names all contain «fish» (starfish, jellyfish, cuttlefish); the Spanish names do not, so the puzzle is a little easier but the rule stays true. **Settled 30 Oct 2026: kept.**

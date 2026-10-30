@@ -331,7 +331,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 #### 28/90 · `1973-carfree` · day 28 (30 Oct 2026), 118 (28 Jan 2027), 208 (28 Apr 2027), 298 (27 Jul 2027) … · every 90 days · from day 28 of the first batch
 
 - `p.your-call.1973-carfree.place` — Haia
-- `p.your-call.1973-carfree.pov` — Os países produtores de petróleo estão boicotando o seu país porque ele apoiou Israel na Guerra do Yom Kippur. Você precisa reduzir rápido o uso de petróleo. Você é o primeiro-ministro da Holanda.
+- `p.your-call.1973-carfree.pov` — Os países produtores de petróleo estão boicotando o seu país porque ele apoiou Israel na Guerra do Yom Kippur. Você precisa reduzir rápido o uso de petróleo. Você é o primeiro-ministro dos Países Baixos.
 - `p.your-call.1973-carfree.choice1` — Proibir dirigir aos domingos
 - `p.your-call.1973-carfree.choice2` — Aumentar muito o preço da gasolina
 - `p.your-call.1973-carfree.choice3` — Esperar o boicote acabar
@@ -957,14 +957,14 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 #### 80/90 · `1990-benin` · day 80 (21 Dec 2026), 170 (21 Mar 2027), 260 (19 Jun 2027), 350 (17 Sep 2027) … · every 90 days · pt batch 2 (29 Oct 2026)
 
 - `p.your-call.1990-benin.place` — Cotonou
-- `p.your-call.1990-benin.pov` — Depois de um ano de greves por salários atrasados, uma conferência nacional se declarou soberana e escolheu um novo primeiro-ministro. Alguns dos seus oficiais se opõem. Você é o presidente do Benim.
+- `p.your-call.1990-benin.pov` — Depois de um ano de greves por salários atrasados, uma conferência nacional se declarou soberana e escolheu um novo primeiro-ministro. Alguns dos seus oficiais se opõem. Você é o presidente do Benin.
 - `p.your-call.1990-benin.choice1` — Mandar tropas dissolverem a conferência
 - `p.your-call.1990-benin.choice2` — Aceitá-la e ficar com pouco poder
 - `p.your-call.1990-benin.choice3` — Renunciar e deixar o país
 - `p.your-call.1990-benin.short` — Kérékou
 - `p.your-call.1990-benin.did` — Kérékou chamou aquilo de “golpe civil”, mas não agiu contra a conferência. Continuou presidente, mas perdeu a maior parte do poder.
 - `p.your-call.1990-benin.next` — Ele perdeu a eleição multipartidária de março de 1991 para o seu primeiro-ministro, Nicéphore Soglo, e deixou o cargo. Em 1996, voltou à presidência em uma votação livre.
-- `p.your-call.1990-benin.stamp` — A conferência nacional do Benim
+- `p.your-call.1990-benin.stamp` — A conferência nacional do Benin
 
 #### 81/90 · `1424-treasure-fleets` · day 81 (22 Dec 2026), 171 (22 Mar 2027), 261 (20 Jun 2027), 351 (18 Sep 2027) … · every 90 days · pt batch 2 (29 Oct 2026)
 
@@ -1240,7 +1240,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.your-call.1985-anti-alcohol.choice3` — Financiar tratamentos, mas não mexer nas vendas
 - `p.your-call.1985-anti-alcohol.short` — Gorbachev
 - `p.your-call.1985-anti-alcohol.did` — Em maio de 1985, Gorbachev lançou uma campanha contra a bebida. O preço da vodca subiu de 20 a 30%, o horário de venda foi reduzido e vinhedos foram destruídos.
-- `p.your-call.1985-anti-alcohol.next` — A expectativa de vida subiu de 67,7 anos em 1984 para 69,8 em 1987. Mas a bebida destilada em casa explodiu, a receita do Estado caiu e a campanha foi abandonada depois de 1987.
+- `p.your-call.1985-anti-alcohol.next` — A expectativa de vida subiu de 67,7 anos em 1984 para 69,8 em 1987. Mas a produção clandestina de bebida disparou, a receita do Estado caiu e a campanha foi abandonada depois de 1987.
 - `p.your-call.1985-anti-alcohol.stamp` — Gorbachev contra a bebida
 
 #### 104/168 · `1945-surrender` · day 104 (14 Jan 2027), 272 (1 Jul 2027), 440 (16 Dec 2027), 608 (1 Jun 2028) … · every 168 days
@@ -1335,7 +1335,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.your-call.1991-yeltsin-tank.choice2` — Subir em um tanque e denunciar o golpe
 - `p.your-call.1991-yeltsin-tank.choice3` — Negociar com os líderes do golpe
 - `p.your-call.1991-yeltsin-tank.short` — Ieltsin
-- `p.your-call.1991-yeltsin-tank.did` — Ieltsin foi à Casa Branca, subiu em um tanque e leu um apelo ao povo. O texto chamava os fatos de tentativa de golpe e pedia uma greve geral.
+- `p.your-call.1991-yeltsin-tank.did` — Ieltsin foi à Casa Branca de Moscou, subiu em um tanque e leu um apelo ao povo. O texto chamava os fatos de tentativa de golpe e pedia uma greve geral.
 - `p.your-call.1991-yeltsin-tank.next` — Multidões ergueram barricadas em volta da Casa Branca, e três homens morreram. O golpe desmoronou em dois dias; em 25 de dezembro, Gorbachev renunciou.
 - `p.your-call.1991-yeltsin-tank.stamp` — Ieltsin em cima do tanque
 
@@ -1373,7 +1373,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.your-call.1971-7-march.short` — Mujib
 - `p.your-call.1971-7-march.did` — Em 7 de março de 1971, diante de mais de um milhão de pessoas em Daca, Mujib disse que a luta, desta vez, era pela independência. Mas não fez nenhuma declaração direta e impôs condições, como o fim da lei marcial.
 - `p.your-call.1971-7-march.next` — Em 25 de março de 1971, o exército do Paquistão lançou a Operação Searchlight e prendeu Mujib; seguiu-se a Guerra de Libertação.
-- `p.your-call.1971-7-march.stamp` — O discurso de 7 de março
+- `p.your-call.1971-7-march.stamp` — Mujib discursa em 7 de março
 
 #### 115/168 · `1860-teano` · day 115 (25 Jan 2027), 283 (12 Jul 2027), 451 (27 Dec 2027), 619 (12 Jun 2028) … · every 168 days
 
@@ -1614,7 +1614,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.your-call.1990-one-for-one.short` — Kohl
 - `p.your-call.1990-one-for-one.did` — Contra o conselho dos principais economistas, o governo de Kohl trocou salários, ordenados, aposentadorias e aluguéis de um por um. As poupanças foram trocadas de um por um até um limite de 2.000 a 6.000 marcos, conforme a idade.
 - `p.your-call.1990-one-for-one.next` — O marco alemão chegou à Alemanha Oriental em 1º de julho de 1990. Muitas empresas orientais deixaram de poder competir, e vieram fechamentos e demissões em massa.
-- `p.your-call.1990-one-for-one.stamp` — Um marco alemão por um oriental
+- `p.your-call.1990-one-for-one.stamp` — Um marco alemão por marco oriental
 
 #### 135/168 · `1977-hunting-ban` · day 135 (14 Feb 2027), 303 (1 Aug 2027), 471 (16 Jan 2028), 639 (2 Jul 2028) … · every 168 days
 
@@ -1931,7 +1931,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 #### 161/168 · `1989-martial-law-beijing` · day 161 (12 Mar 2027), 329 (27 Aug 2027), 497 (11 Feb 2028), 665 (28 Jul 2028) … · every 168 days
 
 - `p.your-call.1989-martial-law-beijing.place` — Pequim
-- `p.your-call.1989-martial-law-beijing.pov` — Estudantes em greve de fome protestam na Praça Tiananmen. Os cinco membros do Comitê Permanente do partido não chegam a um acordo sobre como responder. Você é o líder que tem a palavra final na China.
+- `p.your-call.1989-martial-law-beijing.pov` — Estudantes em greve de fome protestam na Praça da Paz Celestial. Os cinco membros do Comitê Permanente do partido não chegam a um acordo sobre como responder. Você é o líder que tem a palavra final na China.
 - `p.your-call.1989-martial-law-beijing.choice1` — Buscar uma saída conciliadora, pelo diálogo
 - `p.your-call.1989-martial-law-beijing.choice2` — Decretar a lei marcial na capital
 - `p.your-call.1989-martial-law-beijing.choice3` — Esperar o protesto perder força
@@ -1969,12 +1969,12 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.your-call.1871-prefectures.place` — Tóquio
 - `p.your-call.1871-prefectures.pov` — Em 1869, os senhores feudais do Japão entregaram as suas terras ao imperador, mas 261 domínios continuam existindo, ainda administrados pelos antigos senhores, como governadores. Você é um dos principais reformistas do novo governo do Japão.
 - `p.your-call.1871-prefectures.choice1` — Deixar os senhores no cargo, como governadores
-- `p.your-call.1871-prefectures.choice2` — Abolir os domínios e criar prefeituras
+- `p.your-call.1871-prefectures.choice2` — Abolir os domínios e criar províncias
 - `p.your-call.1871-prefectures.choice3` — Eliminar os domínios aos poucos, em muitos anos
 - `p.your-call.1871-prefectures.short` — Ōkubo
-- `p.your-call.1871-prefectures.did` — Em agosto de 1871, Ōkubo, ajudado por Saigō Takamori, fez passar um édito imperial que abolia os domínios. Prefeituras subordinadas ao governo de Tóquio os substituíram.
+- `p.your-call.1871-prefectures.did` — Em agosto de 1871, Ōkubo, ajudado por Saigō Takamori, fez passar um édito imperial que abolia os domínios. Províncias subordinadas ao governo de Tóquio os substituíram.
 - `p.your-call.1871-prefectures.next` — Os antigos senhores se tornaram uma nobreza pensionada que vivia em Tóquio, e o Estado assumiu as dívidas dos domínios. Em 1874, as pensões deles foram convertidas em títulos do governo.
-- `p.your-call.1871-prefectures.stamp` — Os domínios viram prefeituras
+- `p.your-call.1871-prefectures.stamp` — Os domínios viram províncias
 
 #### 165/168 · `1999-republic-referendum` · day 165 (16 Mar 2027), 333 (31 Aug 2027), 501 (15 Feb 2028), 669 (1 Aug 2028) … · every 168 days
 
@@ -2026,58 +2026,60 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.your-call.1975-emergency.pov — "Um tribunal decidiu que você violou as regras eleitorais … Você é o primeiro-ministro da Índia." — "a primeira-ministra" — masculine generic and no gendered adjective ("culpado/a") on purpose, so the Portuguese does not reveal Indira Gandhi before the answer; the English gives no gender either
-- p.your-call.1905-norway-king.short — Príncipe Carlos — Príncipe Carl — Brazilian sources write the Danish prince as "Carlos", but it may bring the British Charles to mind
-- p.your-call.1956-brasilia.short — Juscelino Kubitschek — Kubitschek (or JK) — Brazilians say "Juscelino"/"JK", not the bare surname; the did line uses "Juscelino"
-- p.your-call.1215-magna-carta.short — João Sem Terra — João — the usual Brazilian name of King John; "Sem Terra" may remind some readers of the MST
-- p.your-call.1951-iran-oil.short — Mossadegh — Mosaddegh — Brazilian press and Wikipédia use "Mossadegh"
-- p.your-call.1965-singapore.short — Tunku Abdul Rahman — Tunku — kept as the English has it, no Portuguese form exists
-- p.your-call.1893-nz-vote.short — Lorde Glasgow — Lord Glasgow — Brazilian sources translate the title "Lord" as "Lorde"
-- p.your-call.1803-louisiana.next — Os Estados Unidos ganharam 828.000 milhas quadradas — 2,1 milhões de km² — I kept the English unit so the number stays; Brazilian sources would use km²
-- p.your-call.1963-sweden.did — às 4 h 50 da manhã — às dez para as cinco da manhã — clock written like the h-times in the other games; the English says "ten to five"
-- p.your-call.1867-alaska.next — chamaram o negócio de Loucura de Seward — chamaram o negócio de “Loucura de Seward” — no quotes added because the English has none
-- p.your-call.480bc-salamis.pov — suas “muralhas de madeira” — ‘muralhas de madeira’ — the English has straight single quotes; I used Portuguese double curly quotes (same in the did line)
-- p.your-call.1996-gun-laws.choice2 — Proibir em todo o país as armas de tiro rápido — Proibir as armas de repetição rápida — "rapid-fire" must not reveal "automáticas e semiautomáticas" of the answer
-- p.your-call.1998-malaysia.choice2 — Fixar o câmbio e controlar o capital — Fixar a moeda e controlar a entrada e saída de dinheiro — the English is as terse; second option is clearer but longer than the other choices
-- p.your-call.1948-berlin-airlift.choice2 — Forçar a passagem de um comboio armado — Forçar a passagem de uma coluna armada por terra — "comboio" is also used in Brazil for a convoy of vehicles, but it may sound European
-- p.your-call.1990-de-klerk.did — o Congresso Nacional Africano (CNA) — o ANC — the English only says ANC; I spelled the name out for teenagers, using the Brazilian acronym CNA
-- p.your-call.1956-brasilia.next — declarada Patrimônio da Humanidade — Patrimônio Mundial — both are used in Brazil; the first is the common one
-- p.your-call.1983-petrov.pov — a tela pisca “LANÇAMENTO” — a tela pisca “LANÇAR” — the screen word was “LAUNCH”; “LANÇAMENTO” is how Brazilian sources name the alert
-- p.your-call.1077-canossa.pov — Você é o rei da Alemanha — Você é o rei da Germânia — English says Germany; Brazilian sources also write Germânia for 1077
-- p.your-call.1933-banks.next — primeira conversa ao pé da lareira — primeira “conversa à beira da lareira” — Brazilian sources vary on “fireside chat”
-- p.your-call.1956-speech.short — Khrushchov — Kruschev — Brazilian spellings vary; I followed Wikipédia em português
-- p.your-call.1956-speech.pov — Você é o líder do Partido Comunista soviético — Você é o líder do partido soviético — added “Comunista” because “partido soviético” sounds odd in Portuguese; no fact changed
-- p.your-call.1888-golden-law.short — Princesa Isabel — Isabel — Brazilians always say “Princesa Isabel”; the did line says just “Isabel”
-- p.your-call.1990-benin.pov — Benim — Benin — Brazilian official/press spelling is “Benim”
-- p.your-call.1952-andhra.pov — falar telugo — falar télugo — Brazilian sources use “telugo” (Wikipédia), also “télugo”
-- p.your-call.2005-bhutan.place — Timbu — Thimphu — Brazilian sources write “Timbu” (Butão’s capital)
-- p.your-call.1519-cortes-ships.next — Montezuma II — Moctezuma II — Brazilian sources usually write “Montezuma”
-- p.your-call.1948-israel.did — a Administração do Povo — o Conselho do Povo — “People’s Administration” (Minhelet HaAm) has no fixed Brazilian name
-- p.your-call.1974-pardon.next — o prêmio Profile in Courage — o Prêmio Coragem Política — Brazilian press usually keeps the English name
-- p.your-call.1888-golden-law.did — último país do Hemisfério Ocidental — último país das Américas — kept the English scope; Brazilian sources often say “das Américas”
-- p.your-call.1914-belgium.next — a Grã-Bretanha — o Reino Unido — “Britain” kept as Grã-Bretanha throughout, as in the who-gets-what lines
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.your-call.1975-emergency.pov — "Um tribunal decidiu que você violou as regras eleitorais … Você é o primeiro-ministro da Índia." — "a primeira-ministra" — masculine generic and no gendered adjective ("culpado/a") on purpose, so the Portuguese does not reveal Indira Gandhi before the answer; the English gives no gender either **Settled 30 Oct 2026: kept.**
+- p.your-call.1905-norway-king.short — Príncipe Carlos — Príncipe Carl — Brazilian sources write the Danish prince as "Carlos", but it may bring the British Charles to mind **Settled 30 Oct 2026: kept.**
+- p.your-call.1956-brasilia.short — Juscelino Kubitschek — Kubitschek (or JK) — Brazilians say "Juscelino"/"JK", not the bare surname; the did line uses "Juscelino" **Settled 30 Oct 2026: kept.**
+- p.your-call.1215-magna-carta.short — João Sem Terra — João — the usual Brazilian name of King John; "Sem Terra" may remind some readers of the MST **Settled 30 Oct 2026: kept.**
+- p.your-call.1951-iran-oil.short — Mossadegh — Mosaddegh — Brazilian press and Wikipédia use "Mossadegh" **Settled 30 Oct 2026: kept.**
+- p.your-call.1965-singapore.short — Tunku Abdul Rahman — Tunku — kept as the English has it, no Portuguese form exists **Settled 30 Oct 2026: kept.**
+- p.your-call.1893-nz-vote.short — Lorde Glasgow — Lord Glasgow — Brazilian sources translate the title "Lord" as "Lorde" **Settled 30 Oct 2026: kept.**
+- p.your-call.1803-louisiana.next — Os Estados Unidos ganharam 828.000 milhas quadradas — 2,1 milhões de km² — I kept the English unit so the number stays; Brazilian sources would use km² **Settled 30 Oct 2026: kept.**
+- p.your-call.1963-sweden.did — às 4 h 50 da manhã — às dez para as cinco da manhã — clock written like the h-times in the other games; the English says "ten to five" **Settled 30 Oct 2026: kept.**
+- p.your-call.1867-alaska.next — chamaram o negócio de Loucura de Seward — chamaram o negócio de “Loucura de Seward” — no quotes added because the English has none **Settled 30 Oct 2026: kept.**
+- p.your-call.480bc-salamis.pov — suas “muralhas de madeira” — ‘muralhas de madeira’ — the English has straight single quotes; I used Portuguese double curly quotes (same in the did line) **Settled 30 Oct 2026: kept.**
+- p.your-call.1996-gun-laws.choice2 — Proibir em todo o país as armas de tiro rápido — Proibir as armas de repetição rápida — "rapid-fire" must not reveal "automáticas e semiautomáticas" of the answer **Settled 30 Oct 2026: kept.**
+- p.your-call.1998-malaysia.choice2 — Fixar o câmbio e controlar o capital — Fixar a moeda e controlar a entrada e saída de dinheiro — the English is as terse; second option is clearer but longer than the other choices **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-berlin-airlift.choice2 — Forçar a passagem de um comboio armado — Forçar a passagem de uma coluna armada por terra — "comboio" is also used in Brazil for a convoy of vehicles, but it may sound European **Settled 30 Oct 2026: kept.**
+- p.your-call.1990-de-klerk.did — o Congresso Nacional Africano (CNA) — o ANC — the English only says ANC; I spelled the name out for teenagers, using the Brazilian acronym CNA **Settled 30 Oct 2026: kept.**
+- p.your-call.1956-brasilia.next — declarada Patrimônio da Humanidade — Patrimônio Mundial — both are used in Brazil; the first is the common one **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-petrov.pov — a tela pisca “LANÇAMENTO” — a tela pisca “LANÇAR” — the screen word was “LAUNCH”; “LANÇAMENTO” is how Brazilian sources name the alert **Settled 30 Oct 2026: kept.**
+- p.your-call.1077-canossa.pov — Você é o rei da Alemanha — Você é o rei da Germânia — English says Germany; Brazilian sources also write Germânia for 1077 **Settled 30 Oct 2026: kept.**
+- p.your-call.1933-banks.next — primeira conversa ao pé da lareira — primeira “conversa à beira da lareira” — Brazilian sources vary on “fireside chat” **Settled 30 Oct 2026: kept.**
+- p.your-call.1956-speech.short — Khrushchov — Kruschev — Brazilian spellings vary; I followed Wikipédia em português **Settled 30 Oct 2026: kept.**
+- p.your-call.1956-speech.pov — Você é o líder do Partido Comunista soviético — Você é o líder do partido soviético — added “Comunista” because “partido soviético” sounds odd in Portuguese; no fact changed **Settled 30 Oct 2026: kept.**
+- p.your-call.1888-golden-law.short — Princesa Isabel — Isabel — Brazilians always say “Princesa Isabel”; the did line says just “Isabel” **Settled 30 Oct 2026: kept.**
+- p.your-call.1990-benin.pov — Benim — Benin — Brazilian official/press spelling is “Benim” **Settled 30 Oct 2026: changed, 2 lines (1990-benin.pov, 1990-benin.stamp).**
+- p.your-call.1952-andhra.pov — falar telugo — falar télugo — Brazilian sources use “telugo” (Wikipédia), also “télugo” **Settled 30 Oct 2026: kept.**
+- p.your-call.2005-bhutan.place — Timbu — Thimphu — Brazilian sources write “Timbu” (Butão’s capital) **Settled 30 Oct 2026: kept.**
+- p.your-call.1519-cortes-ships.next — Montezuma II — Moctezuma II — Brazilian sources usually write “Montezuma” **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-israel.did — a Administração do Povo — o Conselho do Povo — “People’s Administration” (Minhelet HaAm) has no fixed Brazilian name **Settled 30 Oct 2026: kept.**
+- p.your-call.1974-pardon.next — o prêmio Profile in Courage — o Prêmio Coragem Política — Brazilian press usually keeps the English name **Settled 30 Oct 2026: kept.**
+- p.your-call.1888-golden-law.did — último país do Hemisfério Ocidental — último país das Américas — kept the English scope; Brazilian sources often say “das Américas” **Settled 30 Oct 2026: kept.**
+- p.your-call.1914-belgium.next — a Grã-Bretanha — o Reino Unido — “Britain” kept as Grã-Bretanha throughout, as in the who-gets-what lines **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.your-call.1982-falklands.pov — "a capital das ilhas Malvinas (Falkland)"; second option "a capital das ilhas Falkland". Brazilian press and Wikipédia say "Malvinas"; I kept "Falkland" in brackets because the English is the British view. The stamp says "Malvinas" (second option "A força-tarefa britânica nas ilhas Falkland").
-- p.your-call.1564-jizya.pov — "a jizia"; second option "o jizya". Brazilian sources vary (jizia, jizya); I used the feminine "a jizia" in all lines of this puzzle.
-- p.your-call.2000-pyongyang.place — "Pyongyang"; second option "Pionguiangue". Brazilian press writes "Pyongyang", Wikipédia writes "Pionguiangue".
-- p.your-call.1994-real-plan.did — "uma moeda virtual, a URV"; second option "uma moeda não monetária, a URV". The English says "non-monetary"; "moeda virtual" is how Brazilians usually describe the URV.
-- p.your-call.1871-prefectures.choice2 — "Abolir os domínios e criar prefeituras"; second option "Abolir os domínios e criar províncias". "Prefeituras" is the usual word for the Japanese ken in Brazilian books, but a child may think of a city hall.
-- p.your-call.1840-waitangi.pov — "o novo tenente-governador britânico"; second option "o novo vice-governador britânico". "Tenente-governador" is the exact title; "vice-governador" is simpler but means something else in Brazil.
-- p.your-call.1867-maximilian.did — "no Cerro de las Campanas"; second option "na Colina dos Sinos". Brazilian sources keep the Spanish name; the English translated it ("Hill of the Bells").
-- p.your-call.1923-ankara.did — "İsmet Paxá"; second option "İsmet Paşa". Brazilian sources usually write "Ismet Inönü"; "paxá" is the Portuguese form of "pasha".
-- p.your-call.1989-martial-law-beijing.pov — "na Praça Tiananmen"; second option "na Praça da Paz Celestial". Both are used in Brazil; Wikipédia prefers "Paz Celestial".
-- p.your-call.1593-saint-denis.short — "Henrique"; second option "Henrique IV". The English has no number, but "Henrique" is also the German king in Canossa on the same site; the stamp already says "Henrique IV".
-- p.your-call.1666-great-fire.short — "Carlos II"; second option "Carlos". The English has no number; I added it so it is clear which Carlos is meant.
-- p.your-call.1889-pedro-exile.short — "Dom Pedro II"; second option "Pedro II". The older 1822-brazil puzzle uses "Dom Pedro" for the first emperor.
-- p.your-call.1962-slavery.choice1 — "Proibir de vez a posse de escravizados"; second option "Proibir de vez a posse de escravos". I used "escravizados" in the whole puzzle, as the older 1888 puzzle does.
-- p.your-call.1983-rigueur.choice1 — "Sair do SME e seguir gastando"; second option "Sair do Sistema Monetário Europeu e seguir gastando". Short form keeps the three choices equally long; the full name comes in the did line.
-- p.your-call.1953-prisoner-release.choice2 — "Ordenar que a sua polícia militar os liberte"; second option "Ordenar que a polícia do Exército os liberte". In Brazil "polícia militar" means the state police, but it is the usual translation.
-- p.your-call.1948-cominform.pov — "política pouco amistosa"; second option "política hostil". Literal for "unfriendly"; "hostil" is shorter but stronger.
-- p.your-call.1977-hunting-ban.did — "guardas da vida selvagem"; second option "guardas florestais". "Game scouts" has no exact Brazilian word.
-- p.your-call.2001-argentina-default.next — "o maior calote já dado por um país soberano"; second option "o maior default já declarado por um país soberano". "Calote" is plain and clear for a child, but informal.
-- p.your-call.1985-anti-alcohol.next — "a bebida destilada em casa explodiu"; second option "a produção clandestina de bebida disparou". "Moonshine" has no short Brazilian word.
-- p.your-call.1990-one-for-one.stamp — "Um marco alemão por um oriental"; second option "Um marco alemão por um marco oriental". The second is 7 words, over the 3 to 6 limit.
-- p.your-call.1971-7-march.stamp — "O discurso de 7 de março"; second option "O discurso de 7 de março de Mujib". The second is 7 words, over the 3 to 6 limit.
-- p.your-call.1991-yeltsin-tank.did — "Ieltsin foi à Casa Branca"; second option "Ieltsin foi à Casa Branca de Moscou". Brazilians know the Moscow parliament building as "Casa Branca", but it can be confused with Washington (which also appears in the Oslo puzzle).
+- p.your-call.1982-falklands.pov — "a capital das ilhas Malvinas (Falkland)"; second option "a capital das ilhas Falkland". Brazilian press and Wikipédia say "Malvinas"; I kept "Falkland" in brackets because the English is the British view. The stamp says "Malvinas" (second option "A força-tarefa britânica nas ilhas Falkland"). **Settled 30 Oct 2026: kept.**
+- p.your-call.1564-jizya.pov — "a jizia"; second option "o jizya". Brazilian sources vary (jizia, jizya); I used the feminine "a jizia" in all lines of this puzzle. **Settled 30 Oct 2026: kept.**
+- p.your-call.2000-pyongyang.place — "Pyongyang"; second option "Pionguiangue". Brazilian press writes "Pyongyang", Wikipédia writes "Pionguiangue". **Settled 30 Oct 2026: kept.**
+- p.your-call.1994-real-plan.did — "uma moeda virtual, a URV"; second option "uma moeda não monetária, a URV". The English says "non-monetary"; "moeda virtual" is how Brazilians usually describe the URV. **Settled 30 Oct 2026: kept.**
+- p.your-call.1871-prefectures.choice2 — "Abolir os domínios e criar prefeituras"; second option "Abolir os domínios e criar províncias". "Prefeituras" is the usual word for the Japanese ken in Brazilian books, but a child may think of a city hall. **Settled 30 Oct 2026: changed, 3 lines (1871-prefectures.choice2, 1871-prefectures.did, 1871-prefectures.stamp).**
+- p.your-call.1840-waitangi.pov — "o novo tenente-governador britânico"; second option "o novo vice-governador britânico". "Tenente-governador" is the exact title; "vice-governador" is simpler but means something else in Brazil. **Settled 30 Oct 2026: kept.**
+- p.your-call.1867-maximilian.did — "no Cerro de las Campanas"; second option "na Colina dos Sinos". Brazilian sources keep the Spanish name; the English translated it ("Hill of the Bells"). **Settled 30 Oct 2026: kept.**
+- p.your-call.1923-ankara.did — "İsmet Paxá"; second option "İsmet Paşa". Brazilian sources usually write "Ismet Inönü"; "paxá" is the Portuguese form of "pasha". **Settled 30 Oct 2026: kept.**
+- p.your-call.1989-martial-law-beijing.pov — "na Praça Tiananmen"; second option "na Praça da Paz Celestial". Both are used in Brazil; Wikipédia prefers "Paz Celestial". **Settled 30 Oct 2026: changed to “Estudantes em greve de fome protestam na Praça da Paz Celestial. Os cinco membros do Comitê Permanente do partido não chegam a um acordo sobre como responder. Você é o líder que tem a palavra final na China.”.**
+- p.your-call.1593-saint-denis.short — "Henrique"; second option "Henrique IV". The English has no number, but "Henrique" is also the German king in Canossa on the same site; the stamp already says "Henrique IV". **Settled 30 Oct 2026: kept.**
+- p.your-call.1666-great-fire.short — "Carlos II"; second option "Carlos". The English has no number; I added it so it is clear which Carlos is meant. **Settled 30 Oct 2026: kept.**
+- p.your-call.1889-pedro-exile.short — "Dom Pedro II"; second option "Pedro II". The older 1822-brazil puzzle uses "Dom Pedro" for the first emperor. **Settled 30 Oct 2026: kept.**
+- p.your-call.1962-slavery.choice1 — "Proibir de vez a posse de escravizados"; second option "Proibir de vez a posse de escravos". I used "escravizados" in the whole puzzle, as the older 1888 puzzle does. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-rigueur.choice1 — "Sair do SME e seguir gastando"; second option "Sair do Sistema Monetário Europeu e seguir gastando". Short form keeps the three choices equally long; the full name comes in the did line. **Settled 30 Oct 2026: kept.**
+- p.your-call.1953-prisoner-release.choice2 — "Ordenar que a sua polícia militar os liberte"; second option "Ordenar que a polícia do Exército os liberte". In Brazil "polícia militar" means the state police, but it is the usual translation. **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-cominform.pov — "política pouco amistosa"; second option "política hostil". Literal for "unfriendly"; "hostil" is shorter but stronger. **Settled 30 Oct 2026: kept.**
+- p.your-call.1977-hunting-ban.did — "guardas da vida selvagem"; second option "guardas florestais". "Game scouts" has no exact Brazilian word. **Settled 30 Oct 2026: kept.**
+- p.your-call.2001-argentina-default.next — "o maior calote já dado por um país soberano"; second option "o maior default já declarado por um país soberano". "Calote" is plain and clear for a child, but informal. **Settled 30 Oct 2026: kept.**
+- p.your-call.1985-anti-alcohol.next — "a bebida destilada em casa explodiu"; second option "a produção clandestina de bebida disparou". "Moonshine" has no short Brazilian word. **Settled 30 Oct 2026: changed to “A expectativa de vida subiu de 67,7 anos em 1984 para 69,8 em 1987. Mas a produção clandestina de bebida disparou, a receita do Estado caiu e a campanha foi abandonada depois de 1987.”.**
+- p.your-call.1990-one-for-one.stamp — "Um marco alemão por um oriental"; second option "Um marco alemão por um marco oriental". The second is 7 words, over the 3 to 6 limit. **Settled 30 Oct 2026: changed to “Um marco alemão por marco oriental”.**
+- p.your-call.1971-7-march.stamp — "O discurso de 7 de março"; second option "O discurso de 7 de março de Mujib". The second is 7 words, over the 3 to 6 limit. **Settled 30 Oct 2026: changed to “Mujib discursa em 7 de março”.**
+- p.your-call.1991-yeltsin-tank.did — "Ieltsin foi à Casa Branca"; second option "Ieltsin foi à Casa Branca de Moscou". Brazilians know the Moscow parliament building as "Casa Branca", but it can be confused with Washington (which also appears in the Oslo puzzle). **Settled 30 Oct 2026: changed to “Ieltsin foi à Casa Branca de Moscou, subiu em um tanque e leu um apelo ao povo. O texto chamava os fatos de tentativa de golpe e pedia uma greve geral.”.**

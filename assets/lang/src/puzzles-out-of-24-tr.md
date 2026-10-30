@@ -680,11 +680,11 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 71/84 · `owl-monkey-sleep` · day 71 (18 Dec 2026), 155 (12 Mar 2027), 239 (4 Jun 2027), 323 (27 Aug 2027) … · every 84 days
 
-- `p.out-of-24.owl-monkey-sleep.face` — Baykuş maymunu
+- `p.out-of-24.owl-monkey-sleep.face` — Gece maymunu
 - `p.out-of-24.owl-monkey-sleep.label` — uyurken
 - `p.out-of-24.owl-monkey-sleep.chip1` — uyurken
 - `p.out-of-24.owl-monkey-sleep.fig` — 17 sa
-- `p.out-of-24.owl-monkey-sleep.sentence` — Bir baykuş maymunu günde yaklaşık 17 saat uyur: iki klasik tablodaki diğer bütün maymunlardan ve insansı maymunlardan daha fazla.
+- `p.out-of-24.owl-monkey-sleep.sentence` — Bir gece maymunu günde yaklaşık 17 saat uyur: iki klasik tablodaki diğer bütün maymunlardan ve insansı maymunlardan daha fazla.
 - `p.out-of-24.owl-monkey-sleep.note` — Hayvan uykusuyla ilgili iki klasik tablodan: Washington Üniversitesi'nin tablosu ile Allison ve Cicchetti'nin tablosu (Science, 1976). Çizimde başka bir maymun, bir rhesus maymunu var.
 
 #### 72/84 · `frigatebird-land` · day 72 (19 Dec 2026), 156 (13 Mar 2027), 240 (5 Jun 2027), 324 (28 Aug 2027) … · every 84 days
@@ -814,17 +814,19 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.out-of-24.bat-sleep.face — Küçük kahverengi yarasa · second option: Küçük kahverengi myotis · I found no Turkish source for Myotis lucifugus; the first is the plain translation of the English name.
-- p.out-of-24.penguin-microsleep.sentence — "Yuvadaki çember sakallı penguenler günde 10.000'den fazla şekerleme yapar…" · second option: "çene bantlı penguenler" · "Çember sakallı penguen" is the name on the Turkish KURE encyclopedia page.
-- p.out-of-24.sea-otter-eating.face — Deniz su samuru · second option: Deniz samuru · both are used in Turkish; I found no source that settles it.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.out-of-24.bat-sleep.face — Küçük kahverengi yarasa · second option: Küçük kahverengi myotis · I found no Turkish source for Myotis lucifugus; the first is the plain translation of the English name. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.penguin-microsleep.sentence — "Yuvadaki çember sakallı penguenler günde 10.000'den fazla şekerleme yapar…" · second option: "çene bantlı penguenler" · "Çember sakallı penguen" is the name on the Turkish KURE encyclopedia page. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.sea-otter-eating.face — Deniz su samuru · second option: Deniz samuru · both are used in Turkish; I found no source that settles it. **Settled 30 Oct 2026: kept.**
 - p.out-of-24.ferret-sleep.face — Evcil gelincik · settled 30 Oct 2026: the English word was left on the dial; a Turkish veterinary guide (vetsaglik.com) calls the pet ferret "evcil gelincik", and Altitude's question about it says the same.
-- p.out-of-24.ferret-sleep.note — "Çizimde yakın akrabası olan bir kakım var." · second option: "bir ermin" · "kakım" is the Turkish name of the stoat, but a 12-year-old may not know it.
-- p.out-of-24.tree-shrew-sleep.face — Ağaç sivrifaresi · second option: Ağaç sivri faresi · I could not confirm the spelling from a Turkish source.
-- p.out-of-24.armadillo-sleep.face — Dev armadillo · second option: Dev zırhlı hayvan · "armadillo" is the usual word in Turkish nature pages.
-- p.out-of-24.guinea-pig-sleep.face — Kobay · second option: Gine domuzu · "kobay" is the everyday Turkish word.
-- p.out-of-24.manatee-eating.face — Manati · second option: Deniz ineği · "manati" is the word in dictionaries; "deniz ineği" is also used for sea cows in general.
-- p.out-of-24.owl-monkey-sleep.face — Baykuş maymunu · second option: Gece maymunu · direct translation of "owl monkey"; no Turkish source found.
-- p.out-of-24.rhesus-sleep.face — Rhesus maymunu · second option: Rezüs maymunu · "Rhesus" is how Turkish pages write it; "makak" is the genus.
-- p.out-of-24.orangutan-sleep.chip2 — insan bakımında · second option: esaret altında · "in captivity" is kept soft for children, as in the first batch's sloth line.
-- p.out-of-24.polar-bear-rest.note — "(ABD Jeolojik Araştırmalar Kurumu, 2024)" · second option: "ABD Jeoloji Araştırma Kurumu" · both forms of USGS appear in Turkish news.
-- p.out-of-24.platypus-dreaming.label — rüya görürken · second option: REM uykusunda · the English label is "dreaming"; REM sleep is the sleep of dreams.
+- p.out-of-24.ferret-sleep.note — "Çizimde yakın akrabası olan bir kakım var." · second option: "bir ermin" · "kakım" is the Turkish name of the stoat, but a 12-year-old may not know it. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.tree-shrew-sleep.face — Ağaç sivrifaresi · second option: Ağaç sivri faresi · I could not confirm the spelling from a Turkish source. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.armadillo-sleep.face — Dev armadillo · second option: Dev zırhlı hayvan · "armadillo" is the usual word in Turkish nature pages. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.guinea-pig-sleep.face — Kobay · second option: Gine domuzu · "kobay" is the everyday Turkish word. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.manatee-eating.face — Manati · second option: Deniz ineği · "manati" is the word in dictionaries; "deniz ineği" is also used for sea cows in general. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.owl-monkey-sleep.face — Baykuş maymunu · second option: Gece maymunu · direct translation of "owl monkey"; no Turkish source found. **Settled 30 Oct 2026: changed, 3 lines (owl-monkey-sleep.face, owl-monkey-sleep.sentence, owl-monkey).**
+- p.out-of-24.rhesus-sleep.face — Rhesus maymunu · second option: Rezüs maymunu · "Rhesus" is how Turkish pages write it; "makak" is the genus. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.orangutan-sleep.chip2 — insan bakımında · second option: esaret altında · "in captivity" is kept soft for children, as in the first batch's sloth line. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.polar-bear-rest.note — "(ABD Jeolojik Araştırmalar Kurumu, 2024)" · second option: "ABD Jeoloji Araştırma Kurumu" · both forms of USGS appear in Turkish news. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.platypus-dreaming.label — rüya görürken · second option: REM uykusunda · the English label is "dreaming"; REM sleep is the sleep of dreams. **Settled 30 Oct 2026: kept.**

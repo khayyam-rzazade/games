@@ -58,7 +58,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 #### 14/148 · `anteater` · day 14 (17 Oct 2026), 162 (14 Mar 2027), 310 (9 Aug 2027), 458 (4 Jan 2028) … · every 148 days
 
-- `p.long-lost-cousin.anteater.fact` — Les fourmiliers et les paresseux sont de proches parents. Le pangolin est appelé fourmilier à écailles et l’échidné fourmilier épineux, mais aucun des deux n’est un proche parent.
+- `p.long-lost-cousin.anteater.fact` — Les fourmiliers et les paresseux sont de proches parents. Le pangolin est appelé fourmilier écailleux et l’échidné fourmilier épineux, mais aucun des deux n’est un proche parent.
 
 #### 15/148 · `centipede` · day 15 (18 Oct 2026), 163 (15 Mar 2027), 311 (10 Aug 2027), 459 (5 Jan 2028) … · every 148 days
 
@@ -1102,23 +1102,25 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.long-lost-cousin.thing.centipede.name — Scolopendre — second option: Mille-pattes carnivore; in everyday French both a centipede and a millipede are "mille-pattes", so I used scolopendre for the centipede and mille-pattes for the millipede, which the facts then say side by side.
-- p.long-lost-cousin.thing.millipede.name — Mille-pattes — second option: Iule; iule is the name of the common garden millipede but few French children know it.
-- p.long-lost-cousin.thing.beetle.name — Coléoptère — second option: Scarabée; coléoptère is the general word (fireflies and ladybirds are coléoptères), scarabée is only one kind.
-- p.long-lost-cousin.thing.lungfish.name — Dipneuste — second option: Poisson-poumon; dipneuste is the real French word, poisson-poumon is easier to picture.
-- p.long-lost-cousin.thing.octopus.name — Poulpe — second option: Pieuvre; poulpe as in the Every Beat lines, pieuvre is the everyday word.
-- p.long-lost-cousin.thing.chicken.name — Poule — second option: Poulet; poule is the animal, poulet the meat or the young bird.
-- p.long-lost-cousin.thing.thylacine.name — Tigre de Tasmanie — second option: Thylacine; I followed the English "Tasmanian tiger", which French also says.
-- p.long-lost-cousin.thing.sugar_glider.name — Phalanger volant — second option: Petaure sucrier; both are used for this pet, phalanger volant is the one French pet sites use.
-- p.long-lost-cousin.thing.apple.name — Pommier — second option: Pomme; the English card says "Apple" but the facts speak of the apple tree, and a tree is what is related to the oak and moss.
-- p.long-lost-cousin.thing.horseshoe_crab.name — Limule — second option: Crabe-fer-à-cheval; limule is the usual French name, children may not know it, but the fact says it is no crab.
-- p.long-lost-cousin.thing.barnacle.name — Balane — second option: Anatife; balane is the barnacle on rocks, anatife the one on a stalk.
-- p.long-lost-cousin.thing.hyrax.name — Daman — second option: Hyrax; daman is the French word, hyrax the Latin-style name some French pages use.
-- p.long-lost-cousin.thing.turkey.name — Dindon — second option: Dinde; dindon is the species, dinde the female or the dish.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.long-lost-cousin.thing.centipede.name — Scolopendre — second option: Mille-pattes carnivore; in everyday French both a centipede and a millipede are "mille-pattes", so I used scolopendre for the centipede and mille-pattes for the millipede, which the facts then say side by side. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.millipede.name — Mille-pattes — second option: Iule; iule is the name of the common garden millipede but few French children know it. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.beetle.name — Coléoptère — second option: Scarabée; coléoptère is the general word (fireflies and ladybirds are coléoptères), scarabée is only one kind. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.lungfish.name — Dipneuste — second option: Poisson-poumon; dipneuste is the real French word, poisson-poumon is easier to picture. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.octopus.name — Poulpe — second option: Pieuvre; poulpe as in the Every Beat lines, pieuvre is the everyday word. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.chicken.name — Poule — second option: Poulet; poule is the animal, poulet the meat or the young bird. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.thylacine.name — Tigre de Tasmanie — second option: Thylacine; I followed the English "Tasmanian tiger", which French also says. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.sugar_glider.name — Phalanger volant — second option: Petaure sucrier; both are used for this pet, phalanger volant is the one French pet sites use. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.apple.name — Pommier — second option: Pomme; the English card says "Apple" but the facts speak of the apple tree, and a tree is what is related to the oak and moss. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.horseshoe_crab.name — Limule — second option: Crabe-fer-à-cheval; limule is the usual French name, children may not know it, but the fact says it is no crab. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.barnacle.name — Balane — second option: Anatife; balane is the barnacle on rocks, anatife the one on a stalk. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.hyrax.name — Daman — second option: Hyrax; daman is the French word, hyrax the Latin-style name some French pages use. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.turkey.name — Dindon — second option: Dinde; dindon is the species, dinde the female or the dish. **Settled 30 Oct 2026: kept.**
 - p.long-lost-cousin.thing.moth.name — Phalène — settled 30 Oct 2026: "Papillon de nuit" sat next to "Papillon" on days 65 and 99, which gave the answer away. Académie française: phalène, nom féminin, "papillon crépusculaire ou nocturne".
-- p.long-lost-cousin.thing.aardvark.name — Oryctérope — second option: Cochon de terre; oryctérope is the French zoological name.
-- p.long-lost-cousin.thing.elephant_bird.name — Oiseau-éléphant — second option: Aepyornis; oiseau-éléphant is the French name.
-- p.long-lost-cousin.duck.fact — "les ansériformes (canards, oies) et les gallinacés (poules, dindons)" for "waterfowl and landfowl" — second option: "les oiseaux d’eau et les oiseaux de basse-cour"; I named the two groups and gave examples in brackets.
-- p.long-lost-cousin.horse.fact — "ongulés à nombre impair de doigts" for "odd-toed hoofed mammals" (same for even) — second option: périssodactyles / artiodactyles, the scientific words, too hard for a 12-year-old.
-- p.long-lost-cousin.sponge.fact — "Les champignons forment leur propre règne" for "Mushrooms are fungi" — second option: "Les champignons sont des fongi"; French has no second word for fungi that is not the same as mushrooms.
-- p.long-lost-cousin.anteater.fact — "fourmilier à écailles" for "scaly anteater" and "fourmilier épineux" for "spiny anteater" — second option: tamanoir for the real anteater; the nicknames follow the English.
+- p.long-lost-cousin.thing.aardvark.name — Oryctérope — second option: Cochon de terre; oryctérope is the French zoological name. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.elephant_bird.name — Oiseau-éléphant — second option: Aepyornis; oiseau-éléphant is the French name. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.duck.fact — "les ansériformes (canards, oies) et les gallinacés (poules, dindons)" for "waterfowl and landfowl" — second option: "les oiseaux d’eau et les oiseaux de basse-cour"; I named the two groups and gave examples in brackets. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.horse.fact — "ongulés à nombre impair de doigts" for "odd-toed hoofed mammals" (same for even) — second option: périssodactyles / artiodactyles, the scientific words, too hard for a 12-year-old. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.sponge.fact — "Les champignons forment leur propre règne" for "Mushrooms are fungi" — second option: "Les champignons sont des fongi"; French has no second word for fungi that is not the same as mushrooms. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.anteater.fact — "fourmilier à écailles" for "scaly anteater" and "fourmilier épineux" for "spiny anteater" — second option: tamanoir for the real anteater; the nicknames follow the English. **Settled 30 Oct 2026: changed to “Les fourmiliers et les paresseux sont de proches parents. Le pangolin est appelé fourmilier écailleux et l’échidné fourmilier épineux, mais aucun des deux n’est un proche parent.”.**

@@ -1182,9 +1182,11 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.same-energy.oil-cola.a_name — Uma colher de azeite — Uma colher de sopa de azeite — same wording in oil-bread, oil-orange-juice, oil-apples, oil-grapes; the done peanut-butter puzzles say "Uma colher de sopa de pasta de amendoim", so the two spoons are named differently (I followed the brief's example and avoided repeating a_portion "1 colher de sopa")
-- p.same-energy.chocolate-bread.a_name — Uma barra de chocolate amargo — Uma barra de chocolate meio amargo — Brazilians say "chocolate amargo" for the dark kind (also in chocolate-milk, chocolate-apples, small-chocolate-bread, chocolate-orange-juice, chocolate-cola)
-- p.same-energy.orange-bottle-cola.a_name — Uma garrafa de suco de laranja — Uma garrafinha de suco de laranja — a 330 ml bottle; "garrafinha" sounds natural but would hint at a small size next to the 500 ml bottles (same for orange-bottle-grapes, orange-bottle-milk, apple-bottle-milk)
-- p.same-energy.milk-bottle-apples.a_name — Uma garrafa de leite — Uma caixinha de leite — in Brazil milk usually comes in a box or bag, but "caixinha" would change the picture (also milk-bottle-cola)
-- p.same-energy.chocolate-apples.note — Uma barra de chocolate amargo pesa 100 g; 6 maçãs e meia pesam 1.170 g. — 1170 g — English has "1170 g" with no separator; I wrote the thousands period as in the other lines
-- p.same-energy.crisps-bananas.a_name — Um pacote grande de batata chips — Um pacote grande de batata frita — kept "batata chips" as in the done crisps-cola line
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.same-energy.oil-cola.a_name — Uma colher de azeite — Uma colher de sopa de azeite — same wording in oil-bread, oil-orange-juice, oil-apples, oil-grapes; the done peanut-butter puzzles say "Uma colher de sopa de pasta de amendoim", so the two spoons are named differently (I followed the brief's example and avoided repeating a_portion "1 colher de sopa") **Settled 30 Oct 2026: kept.**
+- p.same-energy.chocolate-bread.a_name — Uma barra de chocolate amargo — Uma barra de chocolate meio amargo — Brazilians say "chocolate amargo" for the dark kind (also in chocolate-milk, chocolate-apples, small-chocolate-bread, chocolate-orange-juice, chocolate-cola) **Settled 30 Oct 2026: kept.**
+- p.same-energy.orange-bottle-cola.a_name — Uma garrafa de suco de laranja — Uma garrafinha de suco de laranja — a 330 ml bottle; "garrafinha" sounds natural but would hint at a small size next to the 500 ml bottles (same for orange-bottle-grapes, orange-bottle-milk, apple-bottle-milk) **Settled 30 Oct 2026: kept.**
+- p.same-energy.milk-bottle-apples.a_name — Uma garrafa de leite — Uma caixinha de leite — in Brazil milk usually comes in a box or bag, but "caixinha" would change the picture (also milk-bottle-cola) **Settled 30 Oct 2026: kept.**
+- p.same-energy.chocolate-apples.note — Uma barra de chocolate amargo pesa 100 g; 6 maçãs e meia pesam 1.170 g. — 1170 g — English has "1170 g" with no separator; I wrote the thousands period as in the other lines **Settled 30 Oct 2026: kept.**
+- p.same-energy.crisps-bananas.a_name — Um pacote grande de batata chips — Um pacote grande de batata frita — kept "batata chips" as in the done crisps-cola line **Settled 30 Oct 2026: kept.**

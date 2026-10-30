@@ -1532,7 +1532,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "place": "Buenos Aires",
   "pov": "Tu marido es el presidente y las mujeres de tu país todavía no pueden votar; él prometió cambiar eso en su campaña. Eres la primera dama de Argentina.",
   "short": "Eva Perón",
-  "did": "Eva Perón lanzó una campaña activa a favor del sufragio femenino. El proyecto de ley del gobierno, impulsado por ella, fue aprobado por el Congreso el 9 de septiembre de 1947 y se convirtió en la Ley 13 010 el 23 de septiembre.",
+  "did": "Eva Perón lanzó una campaña activa a favor del sufragio femenino. El proyecto de ley del gobierno, impulsado por ella, fue aprobado por el Congreso el 9 de septiembre de 1947 y se convirtió en la Ley 13.010 el 23 de septiembre.",
   "next": "En 1951 las mujeres votaron por primera vez en unas elecciones nacionales, y más del 90 % de las mujeres inscritas en el padrón electoral participó.",
   "stamp": "Las argentinas ganan el voto",
   "choices": [
@@ -2002,7 +2002,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "pov": "Manifestantes que dicen que las elecciones parlamentarias fueron fraudulentas han irrumpido en el parlamento con rosas. Declaraste el estado de emergencia, pero unidades de élite del ejército se niegan a respaldarte. Eres el presidente de Georgia.",
   "short": "Shevardnadze",
   "did": "En la tarde del 23 de noviembre de 2003, tras reunirse con los líderes de la oposición Saakashvili y Zhvania, Shevardnadze anunció su dimisión.",
-  "next": "La presidenta del parlamento, Nino Burdjanadze, asumió como presidenta interina. El 4 de enero de 2004 Saakashvili, sin rivales, fue elegido presidente con el 96,2 % de los votos.",
+  "next": "La presidenta del parlamento, Nino Burjanadze, asumió como presidenta interina. El 4 de enero de 2004 Saakashvili, sin rivales, fue elegido presidente con el 96,2 % de los votos.",
   "stamp": "La Revolución de las Rosas",
   "choices": [
    "Ordenar a la policía leal que despeje las calles",
@@ -2079,7 +2079,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "place": "Ankara",
   "pov": "La guerra de independencia se dirigió desde Ankara, una modesta ciudad de Anatolia. Algunos diputados sostienen que Estambul, la antigua ciudad imperial, debe seguir siendo la capital. Eres el líder del nuevo Estado turco.",
   "short": "Atatürk",
-  "did": "La dirigencia del país eligió Ankara. Una ley de un solo artículo, propuesta por İsmet Pasha, fue aprobada por gran mayoría en la Asamblea el 13 de octubre de 1923.",
+  "did": "La dirigencia del país eligió Ankara. Una ley de un solo artículo, propuesta por İsmet Pachá, fue aprobada por gran mayoría en la Asamblea el 13 de octubre de 1923.",
   "next": "La República se proclamó 16 días después, el 29 de octubre de 1923. La modesta ciudad de Anatolia se convirtió en una capital moderna.",
   "stamp": "Ankara se convierte en capital",
   "choices": [

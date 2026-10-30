@@ -31,7 +31,7 @@ Written on 29 October 2026 from the skeleton. Nothing else in the questions come
 - `q.opt.hunter-gatherers` — Avcı-toplayıcılar
 - `q.opt.japan` — Japonya
 - `q.opt.little-brown-bat` — Küçük kahverengi yarasa
-- `q.opt.owl-monkey` — Baykuş maymunu
+- `q.opt.owl-monkey` — Gece maymunu
 - `q.opt.rhesus-monkey` — Rhesus maymunu
 - `q.opt.tree-shrew` — Ağaç sivrifaresi
 ## New names: the subjects of Every Beat (whose heart)
@@ -42,7 +42,7 @@ Written on 29 October 2026 from the skeleton. Nothing else in the questions come
 - `q.opt.bullfrog` — Boğa kurbağası
 - `q.opt.burmese-python` — Birmanya pitonu
 - `q.opt.chick` — Civciv
-- `q.opt.etruscan-shrew` — Etrüsk cüce faresi
+- `q.opt.etruscan-shrew` — Etrüsk sivrifaresi
 - `q.opt.foal` — Tay
 - `q.opt.giant-octopus` — Dev ahtapot
 - `q.opt.ground-squirrel` — Yer sincabı
@@ -81,8 +81,10 @@ Written on 29 October 2026 from the skeleton. Nothing else in the questions come
 
 ## U. Doubts for Khayyam
 
-- q.stem.biggest_share — {x}: fiyatın en büyük payı kime gidiyor? · second option: {x} için ödenen paranın en büyük payı kime gidiyor? · Turkish cannot add "fiyatı" to a phrase like "Yemeğe harcanan bir dolar" or "Bir kilo bitter çikolata", so I put the thing first with a colon; the second option reads well only for things you buy.
-- q.stem.closest_relative — Hangisi {x.of} en yakın akrabası? · second option: {x.of} en yakın akrabası hangisi? · The `of` form starts with a small letter ("mirketin"), so it cannot open the sentence; I put "Hangisi" first.
-- q.opt.duty — ÖTV · second option: Gümrük · In the Turkish puzzles "Duty" is ÖTV where it is an excise tax (petrol, diesel, spirits, cigarettes, the only ones Altitude asks about) and Gümrük only in three banana puzzles.
-- q.opt.shop — Mağaza · second option: Market · Mağaza is what the jeans puzzle uses (the only Altitude question with "Shop"); Market is used in the banana puzzles.
-- q.opt.wholesale — Toptan · second option: Toptancı · Copied from the medicine puzzle; "Toptan" alone is a bit short as a bare button, "Toptancı" says who is paid.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- q.stem.biggest_share — {x}: fiyatın en büyük payı kime gidiyor? · second option: {x} için ödenen paranın en büyük payı kime gidiyor? · Turkish cannot add "fiyatı" to a phrase like "Yemeğe harcanan bir dolar" or "Bir kilo bitter çikolata", so I put the thing first with a colon; the second option reads well only for things you buy. **Settled 30 Oct 2026: kept.**
+- q.stem.closest_relative — Hangisi {x.of} en yakın akrabası? · second option: {x.of} en yakın akrabası hangisi? · The `of` form starts with a small letter ("mirketin"), so it cannot open the sentence; I put "Hangisi" first. **Settled 30 Oct 2026: kept.**
+- q.opt.duty — ÖTV · second option: Gümrük · In the Turkish puzzles "Duty" is ÖTV where it is an excise tax (petrol, diesel, spirits, cigarettes, the only ones Altitude asks about) and Gümrük only in three banana puzzles. **Settled 30 Oct 2026: kept.**
+- q.opt.shop — Mağaza · second option: Market · Mağaza is what the jeans puzzle uses (the only Altitude question with "Shop"); Market is used in the banana puzzles. **Settled 30 Oct 2026: kept.**
+- q.opt.wholesale — Toptan · second option: Toptancı · Copied from the medicine puzzle; "Toptan" alone is a bit short as a bare button, "Toptancı" says who is paid. **Settled 30 Oct 2026: kept.**

@@ -1091,10 +1091,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "owl-monkey-sleep": {
-  "face": "Baykuş maymunu",
+  "face": "Gece maymunu",
   "label": "uyurken",
   "fig": "17 sa",
-  "sentence": "Bir baykuş maymunu günde yaklaşık 17 saat uyur: iki klasik tablodaki diğer bütün maymunlardan ve insansı maymunlardan daha fazla.",
+  "sentence": "Bir gece maymunu günde yaklaşık 17 saat uyur: iki klasik tablodaki diğer bütün maymunlardan ve insansı maymunlardan daha fazla.",
   "note": "Hayvan uykusuyla ilgili iki klasik tablodan: Washington Üniversitesi'nin tablosu ile Allison ve Cicchetti'nin tablosu (Science, 1976). Çizimde başka bir maymun, bir rhesus maymunu var.",
   "chips": [
    {

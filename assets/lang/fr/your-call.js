@@ -1282,7 +1282,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "1982-falklands": {
   "place": "Londres",
-  "pov": "Le 2 avril 1982, des forces argentines ont occupé Port Stanley, capitale des îles Malouines, un territoire britannique situé à 8 000 miles de là, dans l’Atlantique Sud. Tu es le Premier ministre britannique.",
+  "pov": "Le 2 avril 1982, des forces argentines ont occupé Port Stanley, capitale des îles Malouines, un territoire britannique situé à 8 000 miles de là, dans l’Atlantique Sud. Tu es la Première ministre britannique.",
   "short": "Thatcher",
   "did": "Après une réunion d’urgence du cabinet, Thatcher a envoyé une flotte de guerre reprendre les îles ; dès le 5 avril, elle était en route. Elle est montée jusqu’à 44 navires de guerre.",
   "next": "L’Argentine s’est rendue le 14 juin 1982, après 74 jours. La guerre a fait 649 morts militaires argentins, 255 militaires britanniques et 3 habitants des Malouines.",
@@ -2002,7 +2002,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "pov": "Des manifestants qui jugent les élections législatives truquées ont envahi le Parlement, des roses à la main. Tu as proclamé l’état d’urgence, mais des unités d’élite de l’armée refusent de te soutenir. Tu es le président de la Géorgie.",
   "short": "Chevardnadze",
   "did": "Le soir du 23 novembre 2003, après avoir rencontré les chefs de l’opposition Saakachvili et Jvania, Chevardnadze a annoncé sa démission.",
-  "next": "La présidente du Parlement, Nino Bourdjanadzé, est devenue présidente par intérim. Le 4 janvier 2004, Saakachvili, sans adversaire, a été élu président avec 96,2 % des voix.",
+  "next": "La présidente du Parlement, Nino Bourdjanadze, est devenue présidente par intérim. Le 4 janvier 2004, Saakachvili, sans adversaire, a été élu président avec 96,2 % des voix.",
   "stamp": "La révolution des Roses",
   "choices": [
    "Faire dégager les rues par la police loyale",

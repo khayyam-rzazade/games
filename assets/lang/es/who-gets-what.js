@@ -1586,8 +1586,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "cigs-nl": {
   "what": "Un paquete de 20 cigarrillos",
   "where": "Países Bajos",
-  "fact": "De un paquete neerlandés de 7,16 €, solo quedaron 1,08 € para el fabricante, los mayoristas y las tiendas. El otro 84,9 % se fue en impuestos especiales e IVA.",
-  "note": "La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021: su precio medio ponderado de 2020, 357,92 euros por cada 1000 cigarrillos (cincuenta paquetes de veinte), con los impuestos de julio de 2021. «Impuesto especial» es el impuesto especial fijo por cigarrillo más el que se cobra sobre el precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas. El impuesto mínimo neerlandés era un poco más alto que este impuesto, en 0,4 puntos del precio.",
+  "fact": "De un paquete holandés de 7,16 €, solo quedaron 1,08 € para el fabricante, los mayoristas y las tiendas. El otro 84,9 % se fue en impuestos especiales e IVA.",
+  "note": "La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021: su precio medio ponderado de 2020, 357,92 euros por cada 1000 cigarrillos (cincuenta paquetes de veinte), con los impuestos de julio de 2021. «Impuesto especial» es el impuesto especial fijo por cigarrillo más el que se cobra sobre el precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas. El impuesto mínimo holandés era un poco más alto que este impuesto, en 0,4 puntos del precio.",
   "slices": [
    {
     "k": "tax",
@@ -1803,10 +1803,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "br-lpg": {
-  "what": "Una bombona de gas de cocina de 13 kg",
+  "what": "Un cilindro de gas de cocina de 13 kg",
   "where": "Brasil",
-  "fact": "En agosto de 2026, más de la mitad del precio de una bombona de gas en Brasil fue a parar a las empresas que lo distribuyen y lo venden. El gas en sí era menos de un tercio.",
-  "note": "El promedio nacional del regulador del petróleo ANP para una bombona de 13 kg en agosto de 2026, 113,90 reales. «Productor» es el precio que se paga a los productores y a los importadores; «Mayorista» es el margen bruto de los distribuidores; «Vendedor» es el margen bruto de los revendedores; «Impuesto» es el impuesto estatal ICMS, fijo en 1,47 reales el kilo desde enero de 2026 (19,11 reales la bombona). Los impuestos federales fueron cero.",
+  "fact": "En agosto de 2026, más de la mitad del precio de un cilindro de gas en Brasil fue a parar a las empresas que lo distribuyen y lo venden. El gas en sí era menos de un tercio.",
+  "note": "El promedio nacional del regulador del petróleo ANP para un cilindro de 13 kg en agosto de 2026, 113,90 reales. «Productor» es el precio que se paga a los productores y a los importadores; «Mayorista» es el margen bruto de los distribuidores; «Vendedor» es el margen bruto de los revendedores; «Impuesto» es el impuesto estatal ICMS, fijo en 1,47 reales el kilo desde enero de 2026 (19,11 reales el cilindro). Los impuestos federales fueron cero.",
   "slices": [
    {
     "k": "barrel",
@@ -1902,8 +1902,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "th-petrol": {
   "what": "Un litro de gasolina benzine 95",
   "where": "Tailandia",
-  "fact": "En septiembre de 2026, cada litro de benzine 95 en Tailandia pagaba 2,44 bats al fondo estatal del petróleo, mientras que a cada litro de gasohol 95 se le pagaban 4,20 bats desde ese fondo.",
-  "note": "La estructura de precios de la oficina de política energética de Tailandia (EPPO) del 25 de septiembre de 2026, tal como la publicó Thansettakij, y el precio en surtidor en Bangkok en PTT y Bangchak ese día, antes del impuesto local. «Gasolina» es el precio a la salida de la refinería; «Margen» es el margen de comercialización de las petroleras y las gasolineras; «Tasas» son el impuesto especial (7,50 bats), el impuesto municipal, los 2,44 bats del fondo del petróleo y 0,05 bats más; «IVA» es el 7 %; ambos se calculan por diferencia.",
+  "fact": "En septiembre de 2026, cada litro de benzine 95 en Tailandia pagaba 2,44 bahts al fondo estatal del petróleo, mientras que a cada litro de gasohol 95 se le pagaban 4,20 bahts desde ese fondo.",
+  "note": "La estructura de precios de la oficina de política energética de Tailandia (EPPO) del 25 de septiembre de 2026, tal como la publicó Thansettakij, y el precio en surtidor en Bangkok en PTT y Bangchak ese día, antes del impuesto local. «Gasolina» es el precio a la salida de la refinería; «Margen» es el margen de comercialización de las petroleras y las gasolineras; «Tasas» son el impuesto especial (7,50 bahts), el impuesto municipal, los 2,44 bahts del fondo del petróleo y 0,05 bahts más; «IVA» es el 7 %; ambos se calculan por diferencia.",
   "slices": [
    {
     "k": "barrel",

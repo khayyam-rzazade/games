@@ -409,7 +409,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.who-gets-what.in-diesel.slice2` — ÖTV
 - `p.who-gets-what.in-diesel.slice3` — KDV
 - `p.who-gets-what.in-diesel.fact` — Delhi'de dizelin fiyatının üçte birinden biraz azı 2024'te vergiydi: litre başına 15,80 rupilik bir merkezi vergi ve üzerine eyaletin KDV'si.
-- `p.who-gets-what.in-diesel.note` — Devlet petrol şirketinin Delhi için kendi fiyat dökümü, 1 Nisan 2024. “Dizel”, bayiye vergisiz uygulanan fiyat (56,38 rupi) ile bayinin ortalama komisyonudur (2,62 rupi); “KDV” ayrıca litre başına 25 paisalık küçük bir hava ortamı ücretini de içerir.
+- `p.who-gets-what.in-diesel.note` — Devlet petrol şirketinin Delhi için kendi fiyat dökümü, 1 Nisan 2024. “Dizel”, bayiye vergisiz uygulanan fiyat (56,38 rupi) ile bayinin ortalama komisyonudur (2,62 rupi); “KDV” ayrıca litre başına 25 paisalık küçük bir hava kalitesi ücretini de içerir.
 
 #### 39/45 · `cocoa-cm` · day 39 (15 Nov 2026), 84 (30 Dec 2026), 129 (13 Feb 2027), 174 (30 Mar 2027) … · every 45 days
 
@@ -518,7 +518,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 49/90 · `br-power` · day 49 (25 Nov 2026), 139 (23 Feb 2027), 229 (24 May 2027), 319 (22 Aug 2027) … · every 90 days
 
-- `p.who-gets-what.br-power.what` — Elektrik faturasının 100 reali
+- `p.who-gets-what.br-power.what` — 100 reallik bir elektrik faturası
 - `p.who-gets-what.br-power.where` — Brezilya
 - `p.who-gets-what.br-power.slice1` — Enerji
 - `p.who-gets-what.br-power.slice2` — Şebeke
@@ -924,10 +924,10 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.who-gets-what.us-groc-08.where` — Amerika Birleşik Devletleri
 - `p.who-gets-what.us-groc-08.slice1` — Çiftlikler
 - `p.who-gets-what.us-groc-08.slice2` — Üreticiler
-- `p.who-gets-what.us-groc-08.slice3` — Mağazalar
+- `p.who-gets-what.us-groc-08.slice3` — Marketler
 - `p.who-gets-what.us-groc-08.slice4` — Diğerleri
 - `p.who-gets-what.us-groc-08.fact` — 2008'de Amerikalıların market alışverişine harcadığı her doların 30 sentini gıda fabrikaları aldı; bu, başka her sektörden fazlaydı. Çiftlikler ve onlara girdi sağlayanlar 18 sent aldı.
-- `p.who-gets-what.us-groc-08.note` — Kurumun, evde yenecek yiyeceğe harcanan bir doların, ona değer katan sektörlere göre bölüşümü. “Çiftlikler”, çiftliklere girdi sağlayanları da kapsar; “Üreticiler”, gıda işleme (30,1) ile ambalajlamadır (4,9); “Mağazalar”, perakende (24,2), ulaşım (5,1) ve küçük bir yemek hizmeti payıdır (0,9); “Diğerleri”, enerji (8,2), finans ve sigorta (4,7), reklam (1,9) ile hukuk ve muhasebedir (1,7). 2011'de yayımlandığı gibi.
+- `p.who-gets-what.us-groc-08.note` — Kurumun, evde yenecek yiyeceğe harcanan bir doların, ona değer katan sektörlere göre bölüşümü. “Çiftlikler”, çiftliklere girdi sağlayanları da kapsar; “Üreticiler”, gıda işleme (30,1) ile ambalajlamadır (4,9); “Marketler”, perakende (24,2), ulaşım (5,1) ve küçük bir yemek hizmeti payıdır (0,9); “Diğerleri”, enerji (8,2), finans ve sigorta (4,7), reklam (1,9) ile hukuk ve muhasebedir (1,7). 2011'de yayımlandığı gibi.
 
 #### 88/90 · `ch-petrol` · day 88 (3 Jan 2027), 178 (3 Apr 2027), 268 (2 Jul 2027), 358 (30 Sep 2027) … · every 90 days
 
@@ -959,32 +959,34 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.who-gets-what.au-clothes.slice3` — Satıcılar
 - `p.who-gets-what.au-clothes.slice4` — GST
 - `p.who-gets-what.au-clothes.fact` — Avustralya'da giyime harcanan her 10 doların yaklaşık 40 senti, onları yapan fabrika işçilerine gider. Onlara geçinmeye yetecek bir ücret ödemek fiyata yalnızca yaklaşık %1 ekler.
-- `p.who-gets-what.au-clothes.note` — Deloitte Access Economics'in, Oxfam Australia için hazırladığı 2017 tahmini; Avustralya'da satılan giysilerin ortalama maliyet yapısı, KDV benzeri vergi GST dahil. “Fabrika”, malzemeler (23), fabrikanın genel giderleri ve kârı (6) ile nakliye ve ithalat vergisidir (3); “Satıcılar”, toptan (10) ve perakende (45) brüt paylarıdır: maliyetleri ve kârları (kâr birlikte 5). GST, üstüne eklenen %10'dur; fiyatın %9'u.
+- `p.who-gets-what.au-clothes.note` — Deloitte Access Economics'in, Oxfam Australia için hazırladığı 2017 tahmini; Avustralya'da satılan giysilerin ortalama maliyet yapısı, KDV benzeri vergi GST dahil. “Fabrika”, malzemeler (23), fabrikanın genel giderleri ve kârı (6) ile nakliye ve ithalat vergisidir (3); “Satıcılar”, toptan (10) ve perakende (45) brüt paylarıdır: maliyetleri ve kârları (kârları birlikte 5). GST, üstüne eklenen %10'dur; fiyatın %9'u.
 
 ## U. Doubts for Khayyam
 
-- p.who-gets-what.in-petrol.slice4 — İstasyon · second option: Pompa · the English slice is "Pump" (the filling station's own cut); "İstasyon" reads more naturally in Turkish.
-- p.who-gets-what.us-petrol.slice1 — Ham petrol · second option: Ham yağ · two words but still short; "ham petrol" is the usual name for crude oil.
-- p.who-gets-what.us-food-21.slice2 — Sahipler · second option: Sermaye · "Owners" is property income (profit, rent, interest); "Sahipler" is the plainest word but may read as people rather than income.
-- p.who-gets-what.in-diesel.note — "…litre başına 25 paisalık küçük bir hava ortamı ücretini…" · second option: "hava kalitesi ücreti" · the English says "air ambience charge", Delhi's own name for a small levy; I kept the literal sense.
-- p.who-gets-what.cocoa-ci.where — Fildişi Sahili · second option: Côte d'Ivoire · Fildişi Sahili is the Turkish name of the country.
-- p.who-gets-what.dark-choc.slice4 — Mağaza · second option: Market · I used "Market" for the banana puzzles (the supermarket) as in the first batch, and "Mağaza" for chocolate, wine and jeans, where it is a shop of any kind.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.who-gets-what.in-petrol.slice4 — İstasyon · second option: Pompa · the English slice is "Pump" (the filling station's own cut); "İstasyon" reads more naturally in Turkish. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-petrol.slice1 — Ham petrol · second option: Ham yağ · two words but still short; "ham petrol" is the usual name for crude oil. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-food-21.slice2 — Sahipler · second option: Sermaye · "Owners" is property income (profit, rent, interest); "Sahipler" is the plainest word but may read as people rather than income. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.in-diesel.note — "…litre başına 25 paisalık küçük bir hava ortamı ücretini…" · second option: "hava kalitesi ücreti" · the English says "air ambience charge", Delhi's own name for a small levy; I kept the literal sense. **Settled 30 Oct 2026: changed to “Devlet petrol şirketinin Delhi için kendi fiyat dökümü, 1 Nisan 2024. “Dizel”, bayiye vergisiz uygulanan fiyat (56,38 rupi) ile bayinin ortalama komisyonudur (2,62 rupi); “KDV” ayrıca litre başına 25 paisalık küçük bir hava kalitesi ücretini de içerir.”.**
+- p.who-gets-what.cocoa-ci.where — Fildişi Sahili · second option: Côte d'Ivoire · Fildişi Sahili is the Turkish name of the country. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.dark-choc.slice4 — Mağaza · second option: Market · I used "Market" for the banana puzzles (the supermarket) as in the first batch, and "Mağaza" for chocolate, wine and jeans, where it is a shop of any kind. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.who-gets-what.cigs-au.slice3 — "GST"; second option "KDV". Australia's own name for its sales tax; the note says it is VAT-like, and the old au-petrol note also keeps GST.
-- p.who-gets-what.qc-petrol.slice4 — "GST+QST"; second option "KDV'ler". Canada's two sales taxes kept under their own initials; the note explains them.
-- p.who-gets-what.br-power.slice3 — "Harçlar"; second option "Ek ücretler". The English "Charges" are sector charges and subsidies on the bill; "harç" is also my word for "levy" and for "system charges".
-- p.who-gets-what.za-petrol.slice4 — "Harçlar"; second option "Vergi ve harçlar". English "Levies"; same word used in za-diesel.slice3, de-power-26.slice3 and th-petrol.slice3, though the Thai and German ones include an excise or electricity duty.
-- p.who-gets-what.za-diesel.note — "bir “slate” harcı"; second option "bir telafi harcı". "Slate levy" is a South African fuel-price term with no Turkish name, so I kept it in quotes.
-- p.who-gets-what.it-gas.slice2 — "Borular"; second option "Şebeke". "Pipes" kept as a plain picture word; "Şebeke" is used for the wires and the network in the other puzzles.
-- p.who-gets-what.th-petrol.what — "Bir litre benzin (Benzine 95)"; second option "Bir litre 95 oktan benzin". Benzine 95 and Gasohol 95 are Thai product names, so I kept them as names.
-- p.who-gets-what.th-petrol.slice2 — "Marj"; second option "Kâr payı". "Marj" is the word used in Turkish fuel news (bayi marjı).
-- p.who-gets-what.cigs-jp.note — "Chiba prefektörlüğü"; second option "Chiba eyaleti". Prefektörlük is the encyclopedic word; eyalet is easier for a child but less exact. Same for "prefektörlük vergisi".
-- p.who-gets-what.ph-petrol.slice2 — "Sektör"; second option "Petrol şirketleri". English "Industry" is the oil industry's take (companies and stations).
-- p.who-gets-what.ipod.slice1 — "Disk"; second option "Sabit disk". Short enough for a narrow slice, and the fact line says "sabit disk".
-- p.who-gets-what.br-power.what — "Elektrik faturasının 100 reali"; second option "100 reallik elektrik faturası". Real is written "real" (no symbol), as other currencies in this file.
-- p.who-gets-what.us-groc-08.slice3 — "Mağazalar"; second option "Marketler". "Shops" kept as in the iPad puzzle; "Marketler" sounds more natural for groceries.
-- p.who-gets-what.se-wine.note — "%15'lik ilave (8,78)"; second option "%15'lik kâr payı eklemesi". The English "mark-up" is Systembolaget's addition on top of the supplier's price.
-- p.who-gets-what.au-clothes.note — "maliyetleri ve kârları (kâr birlikte 5)"; second option "(birlikte 5)". The English "(5 together)" is ambiguous; I read it as the profit of wholesale and retail together, which fits the 100% sum.
-- p.who-gets-what.ch-petrol.fact — "15 Rappen'ini (İsviçre sentini)"; second option "15 santimini". Rappen is the German-Swiss name of the cent and the note uses it as well.
+- p.who-gets-what.cigs-au.slice3 — "GST"; second option "KDV". Australia's own name for its sales tax; the note says it is VAT-like, and the old au-petrol note also keeps GST. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.qc-petrol.slice4 — "GST+QST"; second option "KDV'ler". Canada's two sales taxes kept under their own initials; the note explains them. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-power.slice3 — "Harçlar"; second option "Ek ücretler". The English "Charges" are sector charges and subsidies on the bill; "harç" is also my word for "levy" and for "system charges". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.slice4 — "Harçlar"; second option "Vergi ve harçlar". English "Levies"; same word used in za-diesel.slice3, de-power-26.slice3 and th-petrol.slice3, though the Thai and German ones include an excise or electricity duty. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-diesel.note — "bir “slate” harcı"; second option "bir telafi harcı". "Slate levy" is a South African fuel-price term with no Turkish name, so I kept it in quotes. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.it-gas.slice2 — "Borular"; second option "Şebeke". "Pipes" kept as a plain picture word; "Şebeke" is used for the wires and the network in the other puzzles. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.th-petrol.what — "Bir litre benzin (Benzine 95)"; second option "Bir litre 95 oktan benzin". Benzine 95 and Gasohol 95 are Thai product names, so I kept them as names. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.th-petrol.slice2 — "Marj"; second option "Kâr payı". "Marj" is the word used in Turkish fuel news (bayi marjı). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-jp.note — "Chiba prefektörlüğü"; second option "Chiba eyaleti". Prefektörlük is the encyclopedic word; eyalet is easier for a child but less exact. Same for "prefektörlük vergisi". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ph-petrol.slice2 — "Sektör"; second option "Petrol şirketleri". English "Industry" is the oil industry's take (companies and stations). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ipod.slice1 — "Disk"; second option "Sabit disk". Short enough for a narrow slice, and the fact line says "sabit disk". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-power.what — "Elektrik faturasının 100 reali"; second option "100 reallik elektrik faturası". Real is written "real" (no symbol), as other currencies in this file. **Settled 30 Oct 2026: changed to “100 reallik bir elektrik faturası”.**
+- p.who-gets-what.us-groc-08.slice3 — "Mağazalar"; second option "Marketler". "Shops" kept as in the iPad puzzle; "Marketler" sounds more natural for groceries. **Settled 30 Oct 2026: changed, 2 lines (us-groc-08.slice3, us-groc-08.note).**
+- p.who-gets-what.se-wine.note — "%15'lik ilave (8,78)"; second option "%15'lik kâr payı eklemesi". The English "mark-up" is Systembolaget's addition on top of the supplier's price. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.au-clothes.note — "maliyetleri ve kârları (kâr birlikte 5)"; second option "(birlikte 5)". The English "(5 together)" is ambiguous; I read it as the profit of wholesale and retail together, which fits the 100% sum. **Settled 30 Oct 2026: changed to “Deloitte Access Economics'in, Oxfam Australia için hazırladığı 2017 tahmini; Avustralya'da satılan giysilerin ortalama maliyet yapısı, KDV benzeri vergi GST dahil. “Fabrika”, malzemeler (23), fabrikanın genel giderleri ve kârı (6) ile nakliye ve ithalat vergisidir (3); “Satıcılar”, toptan (10) ve perakende (45) brüt paylarıdır: maliyetleri ve kârları (kârları birlikte 5). GST, üstüne eklenen %10'dur; fiyatın %9'u.”.**
+- p.who-gets-what.ch-petrol.fact — "15 Rappen'ini (İsviçre sentini)"; second option "15 santimini". Rappen is the German-Swiss name of the cent and the note uses it as well. **Settled 30 Oct 2026: kept.**

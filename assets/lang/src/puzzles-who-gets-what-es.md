@@ -661,8 +661,8 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.who-gets-what.cigs-nl.slice1` — Impuesto especial
 - `p.who-gets-what.cigs-nl.slice2` — IVA
 - `p.who-gets-what.cigs-nl.slice3` — Resto
-- `p.who-gets-what.cigs-nl.fact` — De un paquete neerlandés de 7,16 €, solo quedaron 1,08 € para el fabricante, los mayoristas y las tiendas. El otro 84,9 % se fue en impuestos especiales e IVA.
-- `p.who-gets-what.cigs-nl.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021: su precio medio ponderado de 2020, 357,92 euros por cada 1000 cigarrillos (cincuenta paquetes de veinte), con los impuestos de julio de 2021. «Impuesto especial» es el impuesto especial fijo por cigarrillo más el que se cobra sobre el precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas. El impuesto mínimo neerlandés era un poco más alto que este impuesto, en 0,4 puntos del precio.
+- `p.who-gets-what.cigs-nl.fact` — De un paquete holandés de 7,16 €, solo quedaron 1,08 € para el fabricante, los mayoristas y las tiendas. El otro 84,9 % se fue en impuestos especiales e IVA.
+- `p.who-gets-what.cigs-nl.note` — La tabla de impuestos especiales de la Comisión Europea para el 1 de julio de 2021: su precio medio ponderado de 2020, 357,92 euros por cada 1000 cigarrillos (cincuenta paquetes de veinte), con los impuestos de julio de 2021. «Impuesto especial» es el impuesto especial fijo por cigarrillo más el que se cobra sobre el precio; «Resto» es lo que se reparten el fabricante, los mayoristas y las tiendas. El impuesto mínimo holandés era un poco más alto que este impuesto, en 0,4 puntos del precio.
 
 #### 63/90 · `de-power-26` · day 63 (9 Dec 2026), 153 (9 Mar 2027), 243 (7 Jun 2027), 333 (5 Sep 2027) … · every 90 days
 
@@ -750,14 +750,14 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 #### 71/90 · `br-lpg` · day 71 (17 Dec 2026), 161 (17 Mar 2027), 251 (15 Jun 2027), 341 (13 Sep 2027) … · every 90 days
 
-- `p.who-gets-what.br-lpg.what` — Una bombona de gas de cocina de 13 kg
+- `p.who-gets-what.br-lpg.what` — Un cilindro de gas de cocina de 13 kg
 - `p.who-gets-what.br-lpg.where` — Brasil
 - `p.who-gets-what.br-lpg.slice1` — Productor
 - `p.who-gets-what.br-lpg.slice2` — Mayorista
 - `p.who-gets-what.br-lpg.slice3` — Vendedor
 - `p.who-gets-what.br-lpg.slice4` — Impuesto
-- `p.who-gets-what.br-lpg.fact` — En agosto de 2026, más de la mitad del precio de una bombona de gas en Brasil fue a parar a las empresas que lo distribuyen y lo venden. El gas en sí era menos de un tercio.
-- `p.who-gets-what.br-lpg.note` — El promedio nacional del regulador del petróleo ANP para una bombona de 13 kg en agosto de 2026, 113,90 reales. «Productor» es el precio que se paga a los productores y a los importadores; «Mayorista» es el margen bruto de los distribuidores; «Vendedor» es el margen bruto de los revendedores; «Impuesto» es el impuesto estatal ICMS, fijo en 1,47 reales el kilo desde enero de 2026 (19,11 reales la bombona). Los impuestos federales fueron cero.
+- `p.who-gets-what.br-lpg.fact` — En agosto de 2026, más de la mitad del precio de un cilindro de gas en Brasil fue a parar a las empresas que lo distribuyen y lo venden. El gas en sí era menos de un tercio.
+- `p.who-gets-what.br-lpg.note` — El promedio nacional del regulador del petróleo ANP para un cilindro de 13 kg en agosto de 2026, 113,90 reales. «Productor» es el precio que se paga a los productores y a los importadores; «Mayorista» es el margen bruto de los distribuidores; «Vendedor» es el margen bruto de los revendedores; «Impuesto» es el impuesto estatal ICMS, fijo en 1,47 reales el kilo desde enero de 2026 (19,11 reales el cilindro). Los impuestos federales fueron cero.
 
 #### 72/90 · `ie-wine` · day 72 (18 Dec 2026), 162 (18 Mar 2027), 252 (16 Jun 2027), 342 (14 Sep 2027) … · every 90 days
 
@@ -797,8 +797,8 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.who-gets-what.th-petrol.slice2` — Margen
 - `p.who-gets-what.th-petrol.slice3` — Tasas
 - `p.who-gets-what.th-petrol.slice4` — IVA
-- `p.who-gets-what.th-petrol.fact` — En septiembre de 2026, cada litro de benzine 95 en Tailandia pagaba 2,44 bats al fondo estatal del petróleo, mientras que a cada litro de gasohol 95 se le pagaban 4,20 bats desde ese fondo.
-- `p.who-gets-what.th-petrol.note` — La estructura de precios de la oficina de política energética de Tailandia (EPPO) del 25 de septiembre de 2026, tal como la publicó Thansettakij, y el precio en surtidor en Bangkok en PTT y Bangchak ese día, antes del impuesto local. «Gasolina» es el precio a la salida de la refinería; «Margen» es el margen de comercialización de las petroleras y las gasolineras; «Tasas» son el impuesto especial (7,50 bats), el impuesto municipal, los 2,44 bats del fondo del petróleo y 0,05 bats más; «IVA» es el 7 %; ambos se calculan por diferencia.
+- `p.who-gets-what.th-petrol.fact` — En septiembre de 2026, cada litro de benzine 95 en Tailandia pagaba 2,44 bahts al fondo estatal del petróleo, mientras que a cada litro de gasohol 95 se le pagaban 4,20 bahts desde ese fondo.
+- `p.who-gets-what.th-petrol.note` — La estructura de precios de la oficina de política energética de Tailandia (EPPO) del 25 de septiembre de 2026, tal como la publicó Thansettakij, y el precio en surtidor en Bangkok en PTT y Bangchak ese día, antes del impuesto local. «Gasolina» es el precio a la salida de la refinería; «Margen» es el margen de comercialización de las petroleras y las gasolineras; «Tasas» son el impuesto especial (7,50 bahts), el impuesto municipal, los 2,44 bahts del fondo del petróleo y 0,05 bahts más; «IVA» es el 7 %; ambos se calculan por diferencia.
 
 #### 76/90 · `cigs-gr` · day 76 (22 Dec 2026), 166 (22 Mar 2027), 256 (20 Jun 2027), 346 (18 Sep 2027) … · every 90 days
 
@@ -963,26 +963,28 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.who-gets-what.dark-choc.what — Un kilo de chocolate negro. Second option: Un kilo de chocolate amargo. "Negro" is the usual word in Spain and widely understood; "amargo" is more common in the Southern Cone and "oscuro" in Mexico.
-- p.who-gets-what.dark-choc.slice2 — Exportación. Second option: Envío. "Exportación" is the exact word but is much longer than the English "Export", so it may be tight in a narrow slice.
-- p.who-gets-what.no-spirits.what — Una botella de 70 cl de licor. Second option: Una botella de 70 cl de destilado. "Licor" is what most people say for strong spirits; strictly it also means sweet liqueurs.
-- p.who-gets-what.us-petrol.slice3 — Reparto. Second option: Distribución. "Reparto" fits the narrow slice; "Distribución" is the exact word of the source but longer.
-- p.who-gets-what.jeans.what — Un par de jeans de supermercado. Second option: Unos vaqueros de supermercado. "Jeans" is understood everywhere; "vaqueros" is mainly Spain.
-- p.who-gets-what.dark-choc.slice1 — Cultivo. Second option: Finca. "Cultivo" says what the farmers do and avoids "granja", which suggests animals.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.who-gets-what.dark-choc.what — Un kilo de chocolate negro. Second option: Un kilo de chocolate amargo. "Negro" is the usual word in Spain and widely understood; "amargo" is more common in the Southern Cone and "oscuro" in Mexico. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.dark-choc.slice2 — Exportación. Second option: Envío. "Exportación" is the exact word but is much longer than the English "Export", so it may be tight in a narrow slice. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.no-spirits.what — Una botella de 70 cl de licor. Second option: Una botella de 70 cl de destilado. "Licor" is what most people say for strong spirits; strictly it also means sweet liqueurs. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-petrol.slice3 — Reparto. Second option: Distribución. "Reparto" fits the narrow slice; "Distribución" is the exact word of the source but longer. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.jeans.what — Un par de jeans de supermercado. Second option: Unos vaqueros de supermercado. "Jeans" is understood everywhere; "vaqueros" is mainly Spain. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.dark-choc.slice1 — Cultivo. Second option: Finca. "Cultivo" says what the farmers do and avoids "granja", which suggests animals. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.who-gets-what.br-lpg.what — "Una bombona de gas de cocina de 13 kg"; second option "Un cilindro de gas de cocina de 13 kg". "Bombona" is the word in Spain and several Latin American countries; "cilindro" is understood everywhere but is more technical.
-- p.who-gets-what.th-petrol.fact — "…pagaba 2,44 bats…"; second option "…2,44 bahts…". The Royal Academy writes the plural "bats", the press often keeps "baht" or "bahts".
-- p.who-gets-what.th-petrol.what — "Un litro de gasolina benzine 95"; second option "Un litro de gasolina 95 sin etanol". "Benzine 95" is the Thai product name, kept so it matches "gasohol 95" in the fact.
-- p.who-gets-what.za-petrol.slice4 — "Tasas"; second option "Gravámenes". "Tasas" is short and simple for a narrow slice; "gravámenes" is the exact word for levies but heavier. Same choice in za-diesel, de-power-26 and th-petrol.
-- p.who-gets-what.za-petrol.note — "una tasa slate (1,14 rands)"; second option "una tasa de compensación (1,14 rands)". The South African "slate levy" has no Spanish name, so the English term is kept.
-- p.who-gets-what.cigs-jp.slice3 — "Impuesto"; second option "Consumo". The slice is Japan's 10% consumption tax; "Impuesto" next to "Impuesto especial" may look close, "Consumo" is clearer but less direct.
-- p.who-gets-what.qc-petrol.slice4 — "GST+QST"; second option "IVA federal+provincial". The English acronyms are kept because the two taxes have no common Spanish names.
-- p.who-gets-what.ph-petrol.slice1 — "Importación"; second option "Importaciones". The singular is shorter for a narrow slice.
-- p.who-gets-what.ch-petrol.fact — "15 rappen (céntimos suizos)"; second option "15 céntimos suizos". Spanish writers use "rappen" or "céntimos"; both given so the unit is clear.
-- p.who-gets-what.us-groc-08.what — "Un dólar gastado en comida del supermercado"; second option "Un dólar gastado en la compra de comida". "Groceries" has no single natural word; this keeps it apart from the older "Un dólar gastado en comida".
-- p.who-gets-what.cigs-nl.fact — "paquete neerlandés"; second option "paquete holandés". "Neerlandés" is the standard word, "holandés" is more common in speech.
-- p.who-gets-what.ie-wine.note — "el grupo de la industria de bebidas de Irlanda (Drinks Industry Group of Ireland)"; second option the English name alone. The group has no usual Spanish name, so both are given.
-- p.who-gets-what.br-power.what — "100 reales de una factura de electricidad"; second option "100 R$ de una factura de electricidad". Spanish writers say "reales" for Brazil's currency (also in br-diesel, br-petrol, br-lpg).
-- p.who-gets-what.pk-petrol.note — "la comisión de los dueños de las gasolineras"; second option "la comisión de los distribuidores de las gasolineras". "Pump dealers" has no direct Spanish term.
+- p.who-gets-what.br-lpg.what — "Una bombona de gas de cocina de 13 kg"; second option "Un cilindro de gas de cocina de 13 kg". "Bombona" is the word in Spain and several Latin American countries; "cilindro" is understood everywhere but is more technical. **Settled 30 Oct 2026: changed, 3 lines (br-lpg.what, br-lpg.fact, br-lpg.note).**
+- p.who-gets-what.th-petrol.fact — "…pagaba 2,44 bats…"; second option "…2,44 bahts…". The Royal Academy writes the plural "bats", the press often keeps "baht" or "bahts". **Settled 30 Oct 2026: changed, 2 lines (th-petrol.fact, th-petrol.note).**
+- p.who-gets-what.th-petrol.what — "Un litro de gasolina benzine 95"; second option "Un litro de gasolina 95 sin etanol". "Benzine 95" is the Thai product name, kept so it matches "gasohol 95" in the fact. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.slice4 — "Tasas"; second option "Gravámenes". "Tasas" is short and simple for a narrow slice; "gravámenes" is the exact word for levies but heavier. Same choice in za-diesel, de-power-26 and th-petrol. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.note — "una tasa slate (1,14 rands)"; second option "una tasa de compensación (1,14 rands)". The South African "slate levy" has no Spanish name, so the English term is kept. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-jp.slice3 — "Impuesto"; second option "Consumo". The slice is Japan's 10% consumption tax; "Impuesto" next to "Impuesto especial" may look close, "Consumo" is clearer but less direct. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.qc-petrol.slice4 — "GST+QST"; second option "IVA federal+provincial". The English acronyms are kept because the two taxes have no common Spanish names. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ph-petrol.slice1 — "Importación"; second option "Importaciones". The singular is shorter for a narrow slice. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ch-petrol.fact — "15 rappen (céntimos suizos)"; second option "15 céntimos suizos". Spanish writers use "rappen" or "céntimos"; both given so the unit is clear. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-groc-08.what — "Un dólar gastado en comida del supermercado"; second option "Un dólar gastado en la compra de comida". "Groceries" has no single natural word; this keeps it apart from the older "Un dólar gastado en comida". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-nl.fact — "paquete neerlandés"; second option "paquete holandés". "Neerlandés" is the standard word, "holandés" is more common in speech. **Settled 30 Oct 2026: changed, 2 lines (cigs-nl.fact, cigs-nl.note).**
+- p.who-gets-what.ie-wine.note — "el grupo de la industria de bebidas de Irlanda (Drinks Industry Group of Ireland)"; second option the English name alone. The group has no usual Spanish name, so both are given. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-power.what — "100 reales de una factura de electricidad"; second option "100 R$ de una factura de electricidad". Spanish writers say "reales" for Brazil's currency (also in br-diesel, br-petrol, br-lpg). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.pk-petrol.note — "la comisión de los dueños de las gasolineras"; second option "la comisión de los distribuidores de las gasolineras". "Pump dealers" has no direct Spanish term. **Settled 30 Oct 2026: kept.**

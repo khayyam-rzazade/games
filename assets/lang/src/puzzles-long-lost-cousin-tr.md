@@ -194,7 +194,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 48/148 · `sugar_glider` · day 48 (20 Nov 2026), 196 (17 Apr 2027), 344 (12 Sep 2027), 492 (7 Feb 2028) … · every 148 days
 
-- `p.long-lost-cousin.sugar_glider.fact` — Şeker sincabı keseli bir hayvandır, koala ile aynı takımdandır. Uçan sincaplar süzülmelerini sağlayan deri zarını ayrı bir yoldan geliştirdi.
+- `p.long-lost-cousin.sugar_glider.fact` — Şeker planörü keseli bir hayvandır, koala ile aynı takımdandır. Uçan sincaplar süzülmelerini sağlayan deri zarını ayrı bir yoldan geliştirdi.
 
 #### 49/148 · `ichthyosaur` · day 49 (21 Nov 2026), 197 (18 Apr 2027), 345 (13 Sep 2027), 493 (8 Feb 2028) … · every 148 days
 
@@ -590,7 +590,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 147/148 · `flying_squirrel` · day 147 (27 Feb 2027), 295 (25 Jul 2027), 443 (20 Dec 2027), 591 (16 May 2028) … · every 148 days
 
-- `p.long-lost-cousin.flying_squirrel.fact` — Uçan sincaplar ve çayır köpekleri ikisi de sincap ailesindendir. Fareler de kemirgendir. Şeker sincabı yalnızca benzer görünür: keselidir.
+- `p.long-lost-cousin.flying_squirrel.fact` — Uçan sincaplar ve çayır köpekleri ikisi de sincap ailesindendir. Fareler de kemirgendir. Şeker planörü yalnızca benzer görünür: keselidir.
 
 #### 148/148 · `emu` · day 148 (28 Feb 2027), 296 (26 Jul 2027), 444 (21 Dec 2027), 592 (17 May 2028) … · every 148 days
 
@@ -970,9 +970,9 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.long-lost-cousin.thing.capybara.name` — Kapibara
 - `p.long-lost-cousin.thing.capybara.the` — kapibara
 - `p.long-lost-cousin.thing.capybara.of` — kapibaranın
-- `p.long-lost-cousin.thing.sugar_glider.name` — Şeker sincabı
-- `p.long-lost-cousin.thing.sugar_glider.the` — şeker sincabı
-- `p.long-lost-cousin.thing.sugar_glider.of` — şeker sincabının
+- `p.long-lost-cousin.thing.sugar_glider.name` — Şeker planörü
+- `p.long-lost-cousin.thing.sugar_glider.the` — şeker planörü
+- `p.long-lost-cousin.thing.sugar_glider.of` — şeker planörünün
 - `p.long-lost-cousin.thing.koala.name` — Koala
 - `p.long-lost-cousin.thing.koala.the` — koala
 - `p.long-lost-cousin.thing.koala.of` — koalanın
@@ -1102,15 +1102,17 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.long-lost-cousin.thing.barnacle.name — Sülükayaklı · second option: Deniz kabuklusu · "Sülükayaklılar" is the group name on Turkish Wikipedia (Cirripedia); I found no everyday Turkish word for barnacle that a 12-year-old would know.
-- p.long-lost-cousin.thing.aardvark.name — Yerdomuzu · second option: Aardvark · "yerdomuzu" is the Turkish name but it has "domuz" (pig) in it, while pig is a wrong answer in the same puzzle; the English "aardvark" has no such trap.
-- p.long-lost-cousin.thing.beetle.name — Kınkanatlı böcek · second option: Böcek · "kınkanatlı böcek" is the full name; plain "böcek" would also cover the cockroach and the firefly.
-- p.long-lost-cousin.thing.centipede.name — Çıyan · second option: Kırkayak · Turkish pages use çıyan for centipedes and kırkayak for millipedes, but in everyday talk kırkayak is used for both.
-- p.long-lost-cousin.thing.swift.name — Ebabil · second option: Sürmeli · "Ebabil" is the name for the common swift on the Turkish KURE encyclopedia page.
-- p.long-lost-cousin.thing.hyrax.name — Daman · second option: Hiraks · "Daman" is the title of the Turkish Wikipedia page; "hiraks" is the zoological word.
-- p.long-lost-cousin.thing.lamprey.name — Taşemen · second option: Lamprey · "Taşemengiller" is the Turkish family name; the single word taşemen is its short form.
-- p.long-lost-cousin.thing.sugar_glider.name — Şeker sincabı · second option: Şeker planörü · Turkish pet pages write "şeker sincabı"; it has "sincap" (squirrel) in it, and the flying squirrel is another animal in the same puzzle.
-- p.long-lost-cousin.thing.puffin.name — Deniz papağanı · second option: Puffin · "deniz papağanı" is the Turkish name of the puffin; no parrot is in the puffin puzzle.
-- p.long-lost-cousin.thing.moss.name — Karayosunu · second option: Yosun · "yosun" usually means algae, so I used karayosunu for moss.
-- p.long-lost-cousin.thing.falcon.name — Doğan · second option: Şahin · "doğan" is the falcon; "şahin" is the hawk, which is used in the fact line.
-- p.long-lost-cousin.thing.platypus.of — ornitorengin · second option: ornitorenkin · after "nk" the k softens to g, as in renk-rengin; I did the same in the fact lines.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.long-lost-cousin.thing.barnacle.name — Sülükayaklı · second option: Deniz kabuklusu · "Sülükayaklılar" is the group name on Turkish Wikipedia (Cirripedia); I found no everyday Turkish word for barnacle that a 12-year-old would know. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.aardvark.name — Yerdomuzu · second option: Aardvark · "yerdomuzu" is the Turkish name but it has "domuz" (pig) in it, while pig is a wrong answer in the same puzzle; the English "aardvark" has no such trap. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.beetle.name — Kınkanatlı böcek · second option: Böcek · "kınkanatlı böcek" is the full name; plain "böcek" would also cover the cockroach and the firefly. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.centipede.name — Çıyan · second option: Kırkayak · Turkish pages use çıyan for centipedes and kırkayak for millipedes, but in everyday talk kırkayak is used for both. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.swift.name — Ebabil · second option: Sürmeli · "Ebabil" is the name for the common swift on the Turkish KURE encyclopedia page. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.hyrax.name — Daman · second option: Hiraks · "Daman" is the title of the Turkish Wikipedia page; "hiraks" is the zoological word. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.lamprey.name — Taşemen · second option: Lamprey · "Taşemengiller" is the Turkish family name; the single word taşemen is its short form. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.sugar_glider.name — Şeker sincabı · second option: Şeker planörü · Turkish pet pages write "şeker sincabı"; it has "sincap" (squirrel) in it, and the flying squirrel is another animal in the same puzzle. **Settled 30 Oct 2026: changed, 5 lines (thing.sugar_glider.name, thing.sugar_glider.the, thing.sugar_glider.of, sugar_glider.fact, flying_squirrel.fact).**
+- p.long-lost-cousin.thing.puffin.name — Deniz papağanı · second option: Puffin · "deniz papağanı" is the Turkish name of the puffin; no parrot is in the puffin puzzle. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.moss.name — Karayosunu · second option: Yosun · "yosun" usually means algae, so I used karayosunu for moss. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.falcon.name — Doğan · second option: Şahin · "doğan" is the falcon; "şahin" is the hawk, which is used in the fact line. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.platypus.of — ornitorengin · second option: ornitorenkin · after "nk" the k softens to g, as in renk-rengin; I did the same in the fact lines. **Settled 30 Oct 2026: changed to “Dalıştan önce yüzeyde bir ornitorengin kalbi dakikada 140 ila 230 kez atar; su altında 10'a düşebilir.”.**

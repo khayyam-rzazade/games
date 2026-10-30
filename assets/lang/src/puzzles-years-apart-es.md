@@ -556,9 +556,11 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.years-apart.event.penny-black.t — Sale a la venta el primer sello adhesivo del mundo. Second option: ...la primera estampilla adhesiva del mundo. "Sello" is the usual word in Spain and widely understood; "estampilla" is common in Latin America, "timbre" in Mexico.
-- p.years-apart.event.nintendo.t — Se funda Nintendo para fabricar naipes. Second option: ...para fabricar cartas de juego. "Naipes" is understood everywhere; "cartas" is the everyday word in many countries but is ambiguous (letters).
-- p.years-apart.event.star-wars.t — Star Wars se estrena en los cines de Estados Unidos. Second option: La guerra de las galaxias se estrena... "Star Wars" is how most Spanish-language sources and speakers say it; "La guerra de las galaxias" is the title in Spain.
-- p.years-apart.event.first-fleet.t — La Primera Flota llega a Sydney Cove. Second option: ...a la bahía de Sídney. Kept "Sydney Cove" as the proper name of the exact inlet; the city alone is written "Sídney" (Ópera de Sídney).
-- p.years-apart.event.east-india.stamp — Indias Orientales. Second option: Compañía de Indias. Two words so it fits the album stamp; "Compañía de Indias" alone could be taken for the Spanish company.
-- p.years-apart.event.amundsen.stamp — Polo Sur. Second option: Polo sur. Capitalised as a place name on a stamp; the RAE writes "polo sur" in lower case in running text, which the fact lines use.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.years-apart.event.penny-black.t — Sale a la venta el primer sello adhesivo del mundo. Second option: ...la primera estampilla adhesiva del mundo. "Sello" is the usual word in Spain and widely understood; "estampilla" is common in Latin America, "timbre" in Mexico. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.nintendo.t — Se funda Nintendo para fabricar naipes. Second option: ...para fabricar cartas de juego. "Naipes" is understood everywhere; "cartas" is the everyday word in many countries but is ambiguous (letters). **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.star-wars.t — Star Wars se estrena en los cines de Estados Unidos. Second option: La guerra de las galaxias se estrena... "Star Wars" is how most Spanish-language sources and speakers say it; "La guerra de las galaxias" is the title in Spain. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.first-fleet.t — La Primera Flota llega a Sydney Cove. Second option: ...a la bahía de Sídney. Kept "Sydney Cove" as the proper name of the exact inlet; the city alone is written "Sídney" (Ópera de Sídney). **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.east-india.stamp — Indias Orientales. Second option: Compañía de Indias. Two words so it fits the album stamp; "Compañía de Indias" alone could be taken for the Spanish company. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.amundsen.stamp — Polo Sur. Second option: Polo sur. Capitalised as a place name on a stamp; the RAE writes "polo sur" in lower case in running text, which the fact lines use. **Settled 30 Oct 2026: kept.**

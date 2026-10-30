@@ -473,10 +473,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "note": "Una balenottera comune marcata al largo della Francia nell'agosto 2025 da una squadra del CNRS: prime analisi, non ancora pubblicate. L'immagine mostra una balenottera azzurra, della stessa famiglia."
  },
  "greyhound-fastest": {
-  "face": "Greyhound",
+  "face": "Levriero inglese",
   "label": "al massimo",
-  "sentence": "Durante lo scatto, il cuore di un greyhound da corsa arriva a circa 318 battiti al minuto. Nel sonno, il suo valore più basso era in media di soli 42.",
-  "note": "Greyhound da corsa in corse di 30 secondi: 318, più o meno 18 (tesi della Murdoch University, 1984). I 42 nel sonno sono solo di quella tesi. Una lezione del 2019 ripete i 318."
+  "sentence": "Durante lo scatto, il cuore di un levriero da corsa arriva a circa 318 battiti al minuto. Nel sonno, il suo valore più basso era in media di soli 42.",
+  "note": "Levrieri inglesi da corsa in corse di 30 secondi: 318, più o meno 18 (tesi della Murdoch University, 1984). I 42 nel sonno sono solo di quella tesi. Una lezione del 2019 ripete i 318."
  },
  "preschooler-awake": {
   "face": "Bambino in età prescolare",

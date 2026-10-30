@@ -79,7 +79,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "rose-family": {
   "sign": "La familia de las rosas",
   "stamp": "Familia de las rosas",
-  "fact": "Todos pertenecen a la familia de las rosas. La almendra es la semilla de un fruto muy emparentado con el melocotón.",
+  "fact": "Todos pertenecen a la familia de las rosas. La almendra es la semilla de un fruto muy emparentado con el durazno.",
   "in": [
    "Manzana",
    "Cereza",
@@ -99,7 +99,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Melocotón",
+    "Durazno",
     1
    ],
    [
@@ -401,9 +401,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "japanese-words": {
-  "sign": "Palabras que vienen del japonés",
+  "sign": "Palabras inglesas que vienen del japonés",
   "stamp": "Del japonés",
-  "fact": "Todas estas palabras vienen del japonés. «Tycoon» viene de taikun, un título que antiguamente se daba al shogun.",
+  "fact": "Todas pasaron al inglés desde el japonés. «Tycoon» viene de taikun, un título que antiguamente se daba al shogun.",
   "in": [
    "Tsunami",
    "Karaoke",
@@ -427,7 +427,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Kétchup",
+    "Ketchup",
     0
    ],
    [
@@ -2889,7 +2889,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Drupas",
   "fact": "Son drupas: la semilla está protegida por una cubierta dura, como de piedra. El coco también lo es, y su cáscara dura es esa cubierta.",
   "in": [
-   "Melocotón",
+   "Durazno",
    "Cereza",
    "Ciruela"
   ],
@@ -3883,7 +3883,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Steeplechase",
+    "Carrera de obstáculos",
     0
    ],
    [

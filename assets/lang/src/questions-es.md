@@ -4,7 +4,7 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 
 ## The 7 questions (stems)
 
-- `q.stem.beat_faster` — ¿El corazón de quién late más rápido?
+- `q.stem.beat_faster` — ¿A quién le late más rápido el corazón?
 - `q.stem.came_first` — ¿Qué ocurrió primero?
 - `q.stem.closest_relative` — ¿Cuál es el pariente más cercano {x.of}?
   ↳ {x} is an animal or plant of Long Lost Cousin; in English it takes the name form ("Emu"). If your language needs an article or a case there, write {x.the} or {x.of} instead of {x}: the game then puts in that thing's `the` or `of` form from your Long Lost Cousin doc.
@@ -81,8 +81,10 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 
 ## U. Doubts for Khayyam
 
-- q.stem.biggest_share — ¿Quién se lleva la mayor parte del precio de «{x}»? Second option: Precio de «{x}»: ¿quién se lleva la mayor parte? The `what` lines start with a capital ("Un kilo de…"), so the phrase goes inside « » to read right after "del precio de".
-- q.stem.beat_faster — ¿El corazón de quién late más rápido? Second option: ¿Cuál tiene el corazón más rápido? Keeps the English "whose"; the second is shorter if the button text is long.
-- q.stem.o24_longer_care — ¿Qué país dedica más tiempo a las tareas del hogar y a los cuidados? Second option: ¿Qué país dedica más tiempo a la casa y a cuidar de otros? "Which country" as the note suggests; "cuidados" means looking after children and relatives.
-- q.opt.little-brown-bat — Murciélago marrón pequeño. Second option: Murciélago pardo pequeño. Same name as the Out of 24 and Every Beat puzzles; Spanish sources use both, "marrón" is the one used in more of them.
-- q.opt.duty — Impuesto especial. Second option: Arancel. Chosen for the excise tax on fuel, tobacco and alcohol; in the banana puzzles the border duty is written "Arancel" there, so it never appears as this button.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- q.stem.biggest_share — ¿Quién se lleva la mayor parte del precio de «{x}»? Second option: Precio de «{x}»: ¿quién se lleva la mayor parte? The `what` lines start with a capital ("Un kilo de…"), so the phrase goes inside « » to read right after "del precio de". **Settled 30 Oct 2026: kept.**
+- q.stem.beat_faster — ¿El corazón de quién late más rápido? Second option: ¿Cuál tiene el corazón más rápido? Keeps the English "whose"; the second is shorter if the button text is long. **Settled 30 Oct 2026: changed to “¿A quién le late más rápido el corazón?”.**
+- q.stem.o24_longer_care — ¿Qué país dedica más tiempo a las tareas del hogar y a los cuidados? Second option: ¿Qué país dedica más tiempo a la casa y a cuidar de otros? "Which country" as the note suggests; "cuidados" means looking after children and relatives. **Settled 30 Oct 2026: kept.**
+- q.opt.little-brown-bat — Murciélago marrón pequeño. Second option: Murciélago pardo pequeño. Same name as the Out of 24 and Every Beat puzzles; Spanish sources use both, "marrón" is the one used in more of them. **Settled 30 Oct 2026: kept.**
+- q.opt.duty — Impuesto especial. Second option: Arancel. Chosen for the excise tax on fuel, tobacco and alcohol; in the banana puzzles the border duty is written "Arancel" there, so it never appears as this button. **Settled 30 Oct 2026: kept.**

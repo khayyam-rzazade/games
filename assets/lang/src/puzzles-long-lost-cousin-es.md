@@ -1102,18 +1102,20 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.long-lost-cousin.thing.chili.name — Chile. Second option: Ají. Mexico and Central America say «chile», South America says «ají», Spain says «guindilla»; «chile» is the one most people have met.
-- p.long-lost-cousin.thing.potato.name — Papa. Second option: Patata. «Papa» is used all over Latin America, «patata» only in Spain.
-- p.long-lost-cousin.thing.grebe.name — Zambullidor. Second option: Somormujo. «Zambullidor» is the Latin American name, «somormujo» and «zampullín» are Spain's, «macá» is Argentina's.
-- p.long-lost-cousin.thing.ladybird.name — Mariquita. Second option: Catarina. Differs by country: mariquita (Spain, Colombia), catarina (Mexico), vaquita de San Antonio (Argentina), chinita (Chile).
-- p.long-lost-cousin.thing.woodlouse.name — Cochinilla de la humedad. Second option: Bicho bolita. Many names: bicho bolita (Argentina, Uruguay), bicho bola (Spain), cochinilla de la humedad is the most widely written.
-- p.long-lost-cousin.thing.barnacle.name — Percebe. Second option: Balano. «Percebe» is the well-known word (Spain), «balano» or «bellota de mar» is the general zoology word in Latin America.
-- p.long-lost-cousin.thing.shrimp.name — Camarón. Second option: Gamba. «Camarón» is Latin America, «gamba» is Spain.
-- p.long-lost-cousin.thing.deer.name — Ciervo. Second option: Venado. «Ciervo» is the standard word everywhere; «venado» is what most of Latin America says.
-- p.long-lost-cousin.thing.aardvark.name — Cerdo hormiguero. Second option: Oricteropo. «Cerdo hormiguero» is the common name (it carries «cerdo», like the English fact about pigs); «oricteropo» is the scientific-sounding one.
-- p.long-lost-cousin.thing.thylacine.name — Tigre de Tasmania. Second option: Tilacino. «Tigre de Tasmania» is the best known; «tilacino» or «lobo de Tasmania» are the other real names.
-- p.long-lost-cousin.thing.apple.name — Manzana. Second option: Manzano. The English card says «Apple» but the facts say «apple tree»; I kept «manzana» on the card and «manzano» in the facts apple.fact, moss.fact and potato.fact.
-- p.long-lost-cousin.thing.mushroom.name — Hongo. Second option: Seta. «Hongo» is understood everywhere and also means fungi (needed in the facts); «seta» is the usual word in Spain and «champiñón» is one kind.
-- p.long-lost-cousin.thing.sugar_glider.name — Petauro del azúcar. Second option: Planeador del azúcar. Both are used for this pet marsupial; «ardilla planeadora» would clash with the flying squirrel.
-- p.long-lost-cousin.thing.human.name — Ser humano. Second option: Humano. «Ser humano» sounds more natural in a sentence («los seres humanos»); «humano» is shorter on a card.
-- p.long-lost-cousin.thing.hyrax.name — Damán. Second option: Hírax. Most people do not know either word; «damán» is the Spanish Wikipedia name.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.long-lost-cousin.thing.chili.name — Chile. Second option: Ají. Mexico and Central America say «chile», South America says «ají», Spain says «guindilla»; «chile» is the one most people have met. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.potato.name — Papa. Second option: Patata. «Papa» is used all over Latin America, «patata» only in Spain. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.grebe.name — Zambullidor. Second option: Somormujo. «Zambullidor» is the Latin American name, «somormujo» and «zampullín» are Spain's, «macá» is Argentina's. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.ladybird.name — Mariquita. Second option: Catarina. Differs by country: mariquita (Spain, Colombia), catarina (Mexico), vaquita de San Antonio (Argentina), chinita (Chile). **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.woodlouse.name — Cochinilla de la humedad. Second option: Bicho bolita. Many names: bicho bolita (Argentina, Uruguay), bicho bola (Spain), cochinilla de la humedad is the most widely written. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.barnacle.name — Percebe. Second option: Balano. «Percebe» is the well-known word (Spain), «balano» or «bellota de mar» is the general zoology word in Latin America. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.shrimp.name — Camarón. Second option: Gamba. «Camarón» is Latin America, «gamba» is Spain. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.deer.name — Ciervo. Second option: Venado. «Ciervo» is the standard word everywhere; «venado» is what most of Latin America says. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.aardvark.name — Cerdo hormiguero. Second option: Oricteropo. «Cerdo hormiguero» is the common name (it carries «cerdo», like the English fact about pigs); «oricteropo» is the scientific-sounding one. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.thylacine.name — Tigre de Tasmania. Second option: Tilacino. «Tigre de Tasmania» is the best known; «tilacino» or «lobo de Tasmania» are the other real names. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.apple.name — Manzana. Second option: Manzano. The English card says «Apple» but the facts say «apple tree»; I kept «manzana» on the card and «manzano» in the facts apple.fact, moss.fact and potato.fact. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.mushroom.name — Hongo. Second option: Seta. «Hongo» is understood everywhere and also means fungi (needed in the facts); «seta» is the usual word in Spain and «champiñón» is one kind. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.sugar_glider.name — Petauro del azúcar. Second option: Planeador del azúcar. Both are used for this pet marsupial; «ardilla planeadora» would clash with the flying squirrel. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.human.name — Ser humano. Second option: Humano. «Ser humano» sounds more natural in a sentence («los seres humanos»); «humano» is shorter on a card. **Settled 30 Oct 2026: kept.**
+- p.long-lost-cousin.thing.hyrax.name — Damán. Second option: Hírax. Most people do not know either word; «damán» is the Spanish Wikipedia name. **Settled 30 Oct 2026: kept.**

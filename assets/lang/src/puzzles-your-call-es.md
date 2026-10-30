@@ -1419,7 +1419,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.your-call.1947-womens-vote.choice2` — Dejarlo en manos de tu marido y del Congreso
 - `p.your-call.1947-womens-vote.choice3` — Limitarte a la beneficencia, lejos de la política
 - `p.your-call.1947-womens-vote.short` — Eva Perón
-- `p.your-call.1947-womens-vote.did` — Eva Perón lanzó una campaña activa a favor del sufragio femenino. El proyecto de ley del gobierno, impulsado por ella, fue aprobado por el Congreso el 9 de septiembre de 1947 y se convirtió en la Ley 13 010 el 23 de septiembre.
+- `p.your-call.1947-womens-vote.did` — Eva Perón lanzó una campaña activa a favor del sufragio femenino. El proyecto de ley del gobierno, impulsado por ella, fue aprobado por el Congreso el 9 de septiembre de 1947 y se convirtió en la Ley 13.010 el 23 de septiembre.
 - `p.your-call.1947-womens-vote.next` — En 1951 las mujeres votaron por primera vez en unas elecciones nacionales, y más del 90 % de las mujeres inscritas en el padrón electoral participó.
 - `p.your-call.1947-womens-vote.stamp` — Las argentinas ganan el voto
 
@@ -1853,7 +1853,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.your-call.2003-rose-revolution.choice3` — Prometer nuevas elecciones, pero seguir en el cargo
 - `p.your-call.2003-rose-revolution.short` — Shevardnadze
 - `p.your-call.2003-rose-revolution.did` — En la tarde del 23 de noviembre de 2003, tras reunirse con los líderes de la oposición Saakashvili y Zhvania, Shevardnadze anunció su dimisión.
-- `p.your-call.2003-rose-revolution.next` — La presidenta del parlamento, Nino Burdjanadze, asumió como presidenta interina. El 4 de enero de 2004 Saakashvili, sin rivales, fue elegido presidente con el 96,2 % de los votos.
+- `p.your-call.2003-rose-revolution.next` — La presidenta del parlamento, Nino Burjanadze, asumió como presidenta interina. El 4 de enero de 2004 Saakashvili, sin rivales, fue elegido presidente con el 96,2 % de los votos.
 - `p.your-call.2003-rose-revolution.stamp` — La Revolución de las Rosas
 
 #### 155/168 · `1988-ceasefire` · day 155 (6 Mar 2027), 323 (21 Aug 2027), 491 (5 Feb 2028), 659 (22 Jul 2028) … · every 168 days
@@ -1924,7 +1924,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.your-call.1923-ankara.choice2` — Mantener Estambul como capital
 - `p.your-call.1923-ankara.choice3` — Dejar Ankara solo por ahora
 - `p.your-call.1923-ankara.short` — Atatürk
-- `p.your-call.1923-ankara.did` — La dirigencia del país eligió Ankara. Una ley de un solo artículo, propuesta por İsmet Pasha, fue aprobada por gran mayoría en la Asamblea el 13 de octubre de 1923.
+- `p.your-call.1923-ankara.did` — La dirigencia del país eligió Ankara. Una ley de un solo artículo, propuesta por İsmet Pachá, fue aprobada por gran mayoría en la Asamblea el 13 de octubre de 1923.
 - `p.your-call.1923-ankara.next` — La República se proclamó 16 días después, el 29 de octubre de 1923. La modesta ciudad de Anatolia se convirtió en una capital moderna.
 - `p.your-call.1923-ankara.stamp` — Ankara se convierte en capital
 
@@ -2026,35 +2026,37 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.your-call.1215-magna-carta.short — Juan sin Tierra . Second option: Juan (as in the did line). Spanish usually says «Juan sin Tierra» for the king of England in 1215.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.your-call.1215-magna-carta.short — Juan sin Tierra . Second option: Juan (as in the did line). Spanish usually says «Juan sin Tierra» for the king of England in 1215. **Settled 30 Oct 2026: kept.**
 - p.your-call.1964-flag.pov — Canadá usa la Union Jack o la Red Ensign, que une la Union Jack con el escudo de Canadá. Second option: «el Pabellón Rojo (Red Ensign)». I found no settled Spanish name, so I kept the English name, which the pov explains.
-- p.your-call.1951-iran-oil.short — Mosaddeq . Second option: Mossadegh (also common in Spanish press). Both spellings are in use.
+- p.your-call.1951-iran-oil.short — Mosaddeq . Second option: Mossadegh (also common in Spanish press). Both spellings are in use. **Settled 30 Oct 2026: kept.**
 - p.your-call.1974-pardon.next — En 2001 recibió el Premio Perfiles del Coraje por el indulto. Second option: Premio «Profile in Courage» (English name kept). Not sure the Spanish name is settled.
-- p.your-call.1948-israel.did — la Administración del Pueblo votó a favor de la independencia. Second option: el Consejo del Pueblo. The body (Minhelet HaAm) has both names in Spanish.
-- p.your-call.1972-curitiba.pov — cerrar a los coches seis cuadras de la calle principal. Second option: seis manzanas. «Cuadras» is Latin American; in Spain «manzanas» is the usual word.
-- p.your-call.1940-visas.pov — se amontonan frente a tu consulado y suplican visas de tránsito. Second option: visados. «Visas» is Latin American; «visados» is Spain's word (used in all 1940-visas lines).
-- p.your-call.1946-nhs.pov — Eres el ministro de Salud. Second option: ministro de Sanidad. «Sanidad» is Spain's word; «Salud» is understood everywhere.
-- p.your-call.1971-gold.choice2 — Subir las tasas de interés para defender el dólar. Second option: tipos de interés. «Tasas» is Latin American; «tipos» is Spain's word.
-- p.your-call.1983-petrov.pov — la pantalla muestra «LANZAMIENTO». Second option: «LAUNCH» left in English, as on the original screen's report in English sources.
+- p.your-call.1948-israel.did — la Administración del Pueblo votó a favor de la independencia. Second option: el Consejo del Pueblo. The body (Minhelet HaAm) has both names in Spanish. **Settled 30 Oct 2026: kept.**
+- p.your-call.1972-curitiba.pov — cerrar a los coches seis cuadras de la calle principal. Second option: seis manzanas. «Cuadras» is Latin American; in Spain «manzanas» is the usual word. **Settled 30 Oct 2026: kept.**
+- p.your-call.1940-visas.pov — se amontonan frente a tu consulado y suplican visas de tránsito. Second option: visados. «Visas» is Latin American; «visados» is Spain's word (used in all 1940-visas lines). **Settled 30 Oct 2026: kept.**
+- p.your-call.1946-nhs.pov — Eres el ministro de Salud. Second option: ministro de Sanidad. «Sanidad» is Spain's word; «Salud» is understood everywhere. **Settled 30 Oct 2026: kept.**
+- p.your-call.1971-gold.choice2 — Subir las tasas de interés para defender el dólar. Second option: tipos de interés. «Tasas» is Latin American; «tipos» is Spain's word. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-petrov.pov — la pantalla muestra «LANZAMIENTO». Second option: «LAUNCH» left in English, as on the original screen's report in English sources. **Settled 30 Oct 2026: kept.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.your-call.1564-jizya.pov — "…cobran a los no musulmanes la yizia, un impuesto que se paga en lugar del servicio militar"; second option "la jizya", as in English. Spanish sources write yizia, yizya and jizya; I used "yizia" in every 1564-jizya line.
-- p.your-call.1982-falklands.pov — "…ocuparon Puerto Stanley, la capital de las islas Malvinas, un territorio británico…"; second option "islas Malvinas (Falkland)" and "Puerto Argentino". Spanish uses "Malvinas" for the islands, and the name is sensitive, so please check you are happy with it (also used in the next line).
-- p.your-call.1982-falklands.choice3 — "Enviar una fuerza naval a recuperarlas"; second option "Enviar una flota a recuperarlas". "Fuerza de tareas" is the literal "task force" but sounds technical for a 12-year-old.
-- p.your-call.2000-pyongyang.pov — "Tu Política del Sol busca el acercamiento con Corea del Norte"; second option "Política del Rayo de Sol". Both names are used in Spanish for the Sunshine Policy.
-- p.your-call.2000-pyongyang.choice3 — "Viajar a Pionyang y reunirte con Kim Jong-il"; second option "Kim Jong Il" (English spelling). I used the hyphen that Spanish press uses, like "Kim Dae-jung".
-- p.your-call.2003-congestion-charge.stamp — "El peaje urbano de Londres"; second option "La tasa de congestión de Londres". "Peaje" is simpler for a young player; the other is the official-sounding name.
-- p.your-call.1947-womens-vote.did — "…se convirtió en la Ley 13 010 el 23 de septiembre"; second option "Ley 13.010", the way Argentines write it. I followed the site's space separator.
+- p.your-call.1564-jizya.pov — "…cobran a los no musulmanes la yizia, un impuesto que se paga en lugar del servicio militar"; second option "la jizya", as in English. Spanish sources write yizia, yizya and jizya; I used "yizia" in every 1564-jizya line. **Settled 30 Oct 2026: kept.**
+- p.your-call.1982-falklands.pov — "…ocuparon Puerto Stanley, la capital de las islas Malvinas, un territorio británico…"; second option "islas Malvinas (Falkland)" and "Puerto Argentino". Spanish uses "Malvinas" for the islands, and the name is sensitive, so please check you are happy with it (also used in the next line). **Settled 30 Oct 2026: kept.**
+- p.your-call.1982-falklands.choice3 — "Enviar una fuerza naval a recuperarlas"; second option "Enviar una flota a recuperarlas". "Fuerza de tareas" is the literal "task force" but sounds technical for a 12-year-old. **Settled 30 Oct 2026: kept.**
+- p.your-call.2000-pyongyang.pov — "Tu Política del Sol busca el acercamiento con Corea del Norte"; second option "Política del Rayo de Sol". Both names are used in Spanish for the Sunshine Policy. **Settled 30 Oct 2026: kept.**
+- p.your-call.2000-pyongyang.choice3 — "Viajar a Pionyang y reunirte con Kim Jong-il"; second option "Kim Jong Il" (English spelling). I used the hyphen that Spanish press uses, like "Kim Dae-jung". **Settled 30 Oct 2026: kept.**
+- p.your-call.2003-congestion-charge.stamp — "El peaje urbano de Londres"; second option "La tasa de congestión de Londres". "Peaje" is simpler for a young player; the other is the official-sounding name. **Settled 30 Oct 2026: kept.**
+- p.your-call.1947-womens-vote.did — "…se convirtió en la Ley 13 010 el 23 de septiembre"; second option "Ley 13.010", the way Argentines write it. I followed the site's space separator. **Settled 30 Oct 2026: changed to “Eva Perón lanzó una campaña activa a favor del sufragio femenino. El proyecto de ley del gobierno, impulsado por ella, fue aprobado por el Congreso el 9 de septiembre de 1947 y se convirtió en la Ley 13.010 el 23 de septiembre.”.**
 - p.your-call.1990-batmonkh.pov — "Unos huelguistas de hambre en la plaza de Sujbaatar…"; second option "plaza Sükhbaatar". No settled Spanish spelling for the square.
-- p.your-call.2003-rose-revolution.next — "Nino Burdjanadze"; second option "Nino Burdzhanadze" or "Burjanadze". Spanish press and Wikipedia differ.
-- p.your-call.2003-rose-revolution.place — "Tiflis"; second option "Tbilisi". Spanish dictionaries prefer Tiflis, but the press now often writes Tbilisi.
-- p.your-call.1983-rigueur.did — "…hizo el «tournant de la rigueur», el giro hacia la austeridad"; second option "el «giro de la austeridad»" with no French. I kept the French phrase as the English does and added a short gloss so a 12-year-old understands.
-- p.your-call.1983-rigueur.choice1 — "Salir del SME y mantener el gasto"; second option "Salir del Sistema Monetario Europeo y mantener el gasto". The abbreviation keeps the three choices equally long; the full name appears in the did line, as in English.
-- p.your-call.1923-ankara.did — "…propuesta por İsmet Pasha…"; second option "İsmet Paşa" or "Ismet Inönü". I kept the English spelling of the name.
-- p.your-call.1994-real-plan.did — "una unidad de cuenta que no era dinero de verdad, la URV"; second option "una moneda no monetaria". I explained "non-monetary currency" in plain words.
-- p.your-call.1991-yeltsin-tank.did — "Yeltsin fue a la Casa Blanca rusa…"; second option "la «Casa Blanca» (el edificio del Parlamento ruso)". English gives no gloss; "rusa" stops readers thinking of Washington.
-- p.your-call.1948-cominform.did — "Cuando la Oficina condenó a sus dirigentes…" (next line: "Oficina de Información"); second option "el Buró de Información (Cominform)". Both names exist in Spanish.
+- p.your-call.2003-rose-revolution.next — "Nino Burdjanadze"; second option "Nino Burdzhanadze" or "Burjanadze". Spanish press and Wikipedia differ. **Settled 30 Oct 2026: changed to “La presidenta del parlamento, Nino Burjanadze, asumió como presidenta interina. El 4 de enero de 2004 Saakashvili, sin rivales, fue elegido presidente con el 96,2 % de los votos.”.**
+- p.your-call.2003-rose-revolution.place — "Tiflis"; second option "Tbilisi". Spanish dictionaries prefer Tiflis, but the press now often writes Tbilisi. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-rigueur.did — "…hizo el «tournant de la rigueur», el giro hacia la austeridad"; second option "el «giro de la austeridad»" with no French. I kept the French phrase as the English does and added a short gloss so a 12-year-old understands. **Settled 30 Oct 2026: kept.**
+- p.your-call.1983-rigueur.choice1 — "Salir del SME y mantener el gasto"; second option "Salir del Sistema Monetario Europeo y mantener el gasto". The abbreviation keeps the three choices equally long; the full name appears in the did line, as in English. **Settled 30 Oct 2026: kept.**
+- p.your-call.1923-ankara.did — "…propuesta por İsmet Pasha…"; second option "İsmet Paşa" or "Ismet Inönü". I kept the English spelling of the name. **Settled 30 Oct 2026: changed to “La dirigencia del país eligió Ankara. Una ley de un solo artículo, propuesta por İsmet Pachá, fue aprobada por gran mayoría en la Asamblea el 13 de octubre de 1923.”.**
+- p.your-call.1994-real-plan.did — "una unidad de cuenta que no era dinero de verdad, la URV"; second option "una moneda no monetaria". I explained "non-monetary currency" in plain words. **Settled 30 Oct 2026: kept.**
+- p.your-call.1991-yeltsin-tank.did — "Yeltsin fue a la Casa Blanca rusa…"; second option "la «Casa Blanca» (el edificio del Parlamento ruso)". English gives no gloss; "rusa" stops readers thinking of Washington. **Settled 30 Oct 2026: kept.**
+- p.your-call.1948-cominform.did — "Cuando la Oficina condenó a sus dirigentes…" (next line: "Oficina de Información"); second option "el Buró de Información (Cominform)". Both names exist in Spanish. **Settled 30 Oct 2026: kept.**
 - p.your-call.1983-franklin-dam.did — "Ley de Conservación de Bienes del Patrimonio Mundial de 1983… ante el Tribunal Superior"; second option "Alta Corte" or "Tribunal Supremo". The law has no settled Spanish name, and the High Court of Australia is called Tribunal Superior or Alta Corte.
-- p.your-call.1840-waitangi.pov — "Eres el nuevo teniente gobernador británico"; second option "vicegobernador". Both are used for lieutenant-governor.
-- p.your-call.1953-prisoner-release.short — "Rhee"; second option "Syngman Rhee". Spanish usually gives the full name, but the short form matches the other puzzles.
+- p.your-call.1840-waitangi.pov — "Eres el nuevo teniente gobernador británico"; second option "vicegobernador". Both are used for lieutenant-governor. **Settled 30 Oct 2026: kept.**
+- p.your-call.1953-prisoner-release.short — "Rhee"; second option "Syngman Rhee". Spanish usually gives the full name, but the short form matches the other puzzles. **Settled 30 Oct 2026: kept.**

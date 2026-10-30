@@ -29,7 +29,7 @@ window.LG_QUESTIONS = {
   "Little brown bat": "Petite chauve-souris brune",
   "Owl monkey": "Douroucouli",
   "Rhesus monkey": "Macaque rhésus",
-  "Tree shrew": "Tupaïe",
+  "Tree shrew": "Toupaye",
   "Athlete": "Athlète",
   "Black bear": "Ours noir",
   "Blue whale": "Baleine bleue",

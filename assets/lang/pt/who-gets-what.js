@@ -8,7 +8,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Um quilo de chocolate amargo",
   "where": "na França",
   "fact": "Quem cultiva o cacau fica com uns onze centavos de cada euro. A loja que vende a barra fica com trinta e sete.",
-  "note": "Um estudo de uma agência das Nações Unidas sobre a cadeia francesa do chocolate. “Fabricante” é a moagem das amêndoas (5,8), o leite, o açúcar e os outros ingredientes (1,7) e a fabricação da barra e a construção da marca (37,0).",
+  "note": "Um estudo de uma agência das Nações Unidas sobre a cadeia francesa do chocolate. “Fabricante” é a moagem dos grãos (5,8), o leite, o açúcar e os outros ingredientes (1,7) e a fabricação da barra e a construção da marca (37,0).",
   "slices": [
    {
     "k": "farm",
@@ -330,7 +330,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Um quilo de chocolate ao leite",
   "where": "na França",
   "fact": "Com leite e açúcar, a parte de quem cultiva o cacau quase cai pela metade: de onze centavos de cada euro para sete.",
-  "note": "O mesmo estudo, para o chocolate ao leite. “Fabricante” é o leite, o açúcar e os outros ingredientes (15,1), a moagem das amêndoas (6,5) e a fabricação da barra e a construção da marca (27,3).",
+  "note": "O mesmo estudo, para o chocolate ao leite. “Fabricante” é o leite, o açúcar e os outros ingredientes (15,1), a moagem dos grãos (6,5) e a fabricação da barra e a construção da marca (27,3).",
   "slices": [
    {
     "k": "farm",
@@ -787,10 +787,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "cocoa-ci": {
-  "what": "Um quilo de amêndoas de cacau no porto",
+  "what": "Um quilo de grãos de cacau no porto",
   "where": "na Costa do Marfim",
-  "fact": "Os produtores de cacau da Costa do Marfim receberam menos de dois terços do que as amêndoas valeram no porto. O Estado ficou com cerca de um sexto em impostos.",
-  "note": "O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de amêndoas quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento das amêndoas, mais a margem dos exportadores.",
+  "fact": "Os produtores de cacau da Costa do Marfim receberam menos de dois terços do que os grãos valeram no porto. O Estado ficou com cerca de um sexto em impostos.",
+  "note": "O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de grãos quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento dos grãos, mais a margem dos exportadores.",
   "slices": [
    {
     "k": "farm",
@@ -842,7 +842,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "where": "na França",
   "unit": "por quilo",
   "fact": "Uma barra de chocolate amargo premium, a € 16,41 o quilo, pagou € 1,26 a quem cultiva o cacau, pouco mais do que os € 1,05 de uma barra comum. A marca e a loja ficaram com quase toda a diferença.",
-  "note": "O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, sem nenhum selo. “Fabricante” é a moagem das amêndoas (3,7), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (41,4).",
+  "note": "O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, sem nenhum selo. “Fabricante” é a moagem dos grãos (3,7), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (41,4).",
   "slices": [
    {
     "k": "farm",
@@ -896,10 +896,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "cocoa-ec": {
-  "what": "Um quilo de amêndoas de cacau no porto",
+  "what": "Um quilo de grãos de cacau no porto",
   "where": "no Equador",
-  "fact": "O Equador tributa pouco o cacau, três centavos de cada euro, e os produtores ficaram com mais de três quartos do que as amêndoas valeram no porto.",
-  "note": "O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de amêndoas quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento das amêndoas, mais a margem dos exportadores. Este é o tipo de qualidade mais alta, o cacau classificado como “nacional”.",
+  "fact": "O Equador tributa pouco o cacau, três centavos de cada euro, e os produtores ficaram com mais de três quartos do que os grãos valeram no porto.",
+  "note": "O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de grãos quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento dos grãos, mais a margem dos exportadores. Este é o tipo de qualidade mais alta, o cacau classificado como “nacional”.",
   "slices": [
    {
     "k": "farm",
@@ -978,7 +978,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Um litro de diesel",
   "where": "na Índia",
   "fact": "Em 2024, o diesel de Délhi pagou um pouco menos de um terço do preço em impostos: um imposto central de ₹ 15,80 por litro e, por cima, o IVA do estado.",
-  "note": "A composição de preço da própria companhia estatal de petróleo para Délhi, em 1º de abril de 2024. “Diesel” é o preço cobrado do revendedor antes dos impostos (₹ 56,38) mais a comissão média do revendedor (₹ 2,62); “IVA” (imposto sobre valor agregado) também inclui uma pequena taxa ambiental do ar, de 25 paise por litro.",
+  "note": "A composição de preço da própria companhia estatal de petróleo para Délhi, em 1º de abril de 2024. “Diesel” é o preço cobrado do revendedor antes dos impostos (₹ 56,38) mais a comissão média do revendedor (₹ 2,62); “IVA” (imposto sobre valor agregado) também inclui uma pequena taxa pela qualidade do ar, de 25 paise por litro.",
   "slices": [
    {
     "k": "barrel",
@@ -998,10 +998,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "cocoa-cm": {
-  "what": "Um quilo de amêndoas de cacau no porto",
+  "what": "Um quilo de grãos de cacau no porto",
   "where": "em Camarões",
-  "fact": "Os produtores de cacau de Camarões ficaram com dois terços do que as amêndoas valeram no porto. Dois impostos levaram cerca de um sétimo.",
-  "note": "O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de amêndoas quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento das amêndoas, mais a margem dos exportadores. Camarões tem dois impostos no estudo, e os dois estão em “Impostos”.",
+  "fact": "Os produtores de cacau de Camarões ficaram com dois terços do que os grãos valeram no porto. Dois impostos levaram cerca de um sétimo.",
+  "note": "O estudo do chocolate da agência das Nações Unidas, que divide quanto valia um quilo de grãos quando era carregado para exportação (o valor “livre a bordo”, conhecido como FOB), safra 2017/18. “Produtores” é o preço na porteira da fazenda; “Comerciantes” é a coleta, o transporte e o armazenamento dos grãos, mais a margem dos exportadores. Camarões tem dois impostos no estudo, e os dois estão em “Impostos”.",
   "slices": [
    {
     "k": "farm",
@@ -1132,7 +1132,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "where": "na França",
   "unit": "por quilo",
   "fact": "O chocolate orgânico de comércio justo pagou € 2,70 por quilo a quem cultiva o cacau, mais do que o dobro dos € 1,05 de uma barra comum. Como parcela do preço, ainda ficou abaixo de doze centavos de cada euro.",
-  "note": "O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, com um selo orgânico e um selo de comércio justo. “Fabricante” é a moagem das amêndoas (3,8), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (38,1).",
+  "note": "O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, com um selo orgânico e um selo de comércio justo. “Fabricante” é a moagem dos grãos (3,8), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (38,1).",
   "slices": [
    {
     "k": "farm",

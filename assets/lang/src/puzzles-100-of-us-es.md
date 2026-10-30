@@ -12,9 +12,9 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 #### 2/151 · `live-high-income` · day 2 (4 Oct 2026), 153 (4 Mar 2027), 304 (2 Aug 2027), 455 (31 Dec 2027) … · every 151 days · second batch
 
-- `p.100-of-us.live-high-income.q` — De 100 personas en el mundo, ¿cuántas viven en un país de ingreso alto?
-- `p.100-of-us.live-high-income.sentence` — Para el Banco Mundial, los países de ingreso alto son el grupo más rico.
-- `p.100-of-us.live-high-income.stamp` — viven en un país de ingreso alto
+- `p.100-of-us.live-high-income.q` — De 100 personas en el mundo, ¿cuántas viven en un país de ingresos altos?
+- `p.100-of-us.live-high-income.sentence` — Para el Banco Mundial, los países de ingresos altos son el grupo más rico.
+- `p.100-of-us.live-high-income.stamp` — viven en un país de ingresos altos
 
 #### 3/151 · `live-africa` · day 3 (5 Oct 2026), 154 (5 Mar 2027), 305 (3 Aug 2027), 456 (1 Jan 2028) … · every 151 days · second batch
 
@@ -48,9 +48,9 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 #### 8/151 · `live-low-income` · day 8 (10 Oct 2026), 159 (10 Mar 2027), 310 (8 Aug 2027), 461 (6 Jan 2028) … · every 151 days · second batch
 
-- `p.100-of-us.live-low-income.q` — De 100 personas en el mundo, ¿cuántas viven en un país de ingreso bajo?
-- `p.100-of-us.live-low-income.sentence` — Para el Banco Mundial, los países de ingreso bajo son el grupo más pobre.
-- `p.100-of-us.live-low-income.stamp` — viven en un país de ingreso bajo
+- `p.100-of-us.live-low-income.q` — De 100 personas en el mundo, ¿cuántas viven en un país de ingresos bajos?
+- `p.100-of-us.live-low-income.sentence` — Para el Banco Mundial, los países de ingresos bajos son el grupo más pobre.
+- `p.100-of-us.live-low-income.stamp` — viven en un país de ingresos bajos
 
 #### 9/151 · `live-europe` · day 9 (11 Oct 2026), 160 (11 Mar 2027), 311 (9 Aug 2027), 462 (7 Jan 2028) … · every 151 days · second batch
 
@@ -66,9 +66,9 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 #### 11/151 · `live-middle-income` · day 11 (13 Oct 2026), 162 (13 Mar 2027), 313 (11 Aug 2027), 464 (9 Jan 2028) … · every 151 days · second batch
 
-- `p.100-of-us.live-middle-income.q` — De 100 personas en el mundo, ¿cuántas viven en un país de ingreso mediano?
+- `p.100-of-us.live-middle-income.q` — De 100 personas en el mundo, ¿cuántas viven en un país de ingresos medios?
 - `p.100-of-us.live-middle-income.sentence` — La mayoría de las personas vive en países que no son ni ricos ni pobres.
-- `p.100-of-us.live-middle-income.stamp` — viven en un país de ingreso mediano
+- `p.100-of-us.live-middle-income.stamp` — viven en un país de ingresos medios
 
 #### 12/151 · `live-ten-biggest` · day 12 (14 Oct 2026), 163 (14 Mar 2027), 314 (12 Aug 2027), 465 (10 Jan 2028) … · every 151 days · second batch
 
@@ -912,6 +912,8 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.100-of-us.live-high-income.q — De 100 personas en el mundo, ¿cuántas viven en un país de ingreso alto? Second option: ... en un país de ingresos altos. «Ingreso alto / mediano / bajo» es la forma del Banco Mundial en español; «ingresos altos / medios / bajos» suena más corriente en la calle.
-- p.100-of-us.home-internet-bra.stamp — personas en Brasil usan internet. Second option: en Brasil usan internet. Añadí «personas» a todas las estampas que empiezan por un país (en inglés «in Brazil use the internet») para que, tras el número, la frase se lea natural en español; si la estampa va pegada al número y prefieres la forma más corta, se quita «personas» en todas.
-- p.100-of-us.people-parliament.q — De 100 parlamentarios en el mundo, ¿cuántos son mujeres? Second option: De 100 personas con escaño en un parlamento del mundo, ¿cuántas son mujeres? «Parlamentarios» se entiende en todos los países, pero el masculino con «mujeres» suena un poco raro; la segunda opción es más larga.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.100-of-us.live-high-income.q — De 100 personas en el mundo, ¿cuántas viven en un país de ingreso alto? Second option: ... en un país de ingresos altos. «Ingreso alto / mediano / bajo» es la forma del Banco Mundial en español; «ingresos altos / medios / bajos» suena más corriente en la calle. **Settled 30 Oct 2026: changed, 8 lines (live-high-income.q, live-high-income.sentence, live-high-income.stamp, live-low-income.q, live-low-income.sentence, live-low-income.stamp, …).**
+- p.100-of-us.home-internet-bra.stamp — personas en Brasil usan internet. Second option: en Brasil usan internet. Añadí «personas» a todas las estampas que empiezan por un país (en inglés «in Brazil use the internet») para que, tras el número, la frase se lea natural en español; si la estampa va pegada al número y prefieres la forma más corta, se quita «personas» en todas. **Settled 30 Oct 2026: kept.**
+- p.100-of-us.people-parliament.q — De 100 parlamentarios en el mundo, ¿cuántos son mujeres? Second option: De 100 personas con escaño en un parlamento del mundo, ¿cuántas son mujeres? «Parlamentarios» se entiende en todos los países, pero el masculino con «mujeres» suena un poco raro; la segunda opción es más larga. **Settled 30 Oct 2026: kept.**

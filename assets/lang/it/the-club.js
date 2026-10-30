@@ -2043,7 +2043,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Divano",
+    "Sofà",
     1
    ],
    [

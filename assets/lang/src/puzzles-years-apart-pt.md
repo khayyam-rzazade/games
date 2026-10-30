@@ -556,11 +556,13 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.years-apart.event.genghis.t — Temüjin se torna Gengis Khan — Temüjin se torna Gengis Cã — "Gengis Khan" is the form most Brazilian school sites use; Wikipédia pt writes "Gengis Cã"
-- p.years-apart.event.tokugawa.t — Tokugawa Ieyasu se torna xogum — Tokugawa Ieyasu se torna shogun — "xogum" is the Portuguese spelling; many Brazilian sites still write "shogun"
-- p.years-apart.event.tutankhamun.t — Os degraus da tumba de Tutancâmon são encontrados — Tutankhamon — Brazilian sources vary (Tutancâmon, Tutankhamon, Tutancamon); chose the Wikipédia pt form
-- p.years-apart.event.principia.t — Os Principia, de Newton, são publicados — Os Princípios Matemáticos, de Newton, são publicados — "Principia" is what Brazilian science sites usually say; the Portuguese title is longer
-- p.years-apart.event.vikings.t — Os vikings cortam madeira na Terra Nova — Os vikings cortam madeira em Newfoundland, no Canadá — "Terra Nova" alone may confuse a 12-year-old; I kept the English's lack of country
-- p.years-apart.event.east-india.t — A Companhia das Índias Orientais recebe sua carta régia — A Companhia das Índias Orientais recebe seu alvará real — "charter" has no single Brazilian term; "carta régia" is the usual one in Brazilian history texts
-- p.years-apart.event.penny-black.t — O primeiro selo adesivo do mundo vai à venda — O primeiro selo postal adesivo do mundo é lançado — kept neutral (no name "Penny Black" in the title, as in the English)
-- p.years-apart.event.opera-house.t — A Ópera de Sydney é inaugurada oficialmente — A Sydney Opera House é inaugurada oficialmente — Brazilian sources use both "Ópera de Sydney" and "Opera House"
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.years-apart.event.genghis.t — Temüjin se torna Gengis Khan — Temüjin se torna Gengis Cã — "Gengis Khan" is the form most Brazilian school sites use; Wikipédia pt writes "Gengis Cã" **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.tokugawa.t — Tokugawa Ieyasu se torna xogum — Tokugawa Ieyasu se torna shogun — "xogum" is the Portuguese spelling; many Brazilian sites still write "shogun" **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.tutankhamun.t — Os degraus da tumba de Tutancâmon são encontrados — Tutankhamon — Brazilian sources vary (Tutancâmon, Tutankhamon, Tutancamon); chose the Wikipédia pt form **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.principia.t — Os Principia, de Newton, são publicados — Os Princípios Matemáticos, de Newton, são publicados — "Principia" is what Brazilian science sites usually say; the Portuguese title is longer **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.vikings.t — Os vikings cortam madeira na Terra Nova — Os vikings cortam madeira em Newfoundland, no Canadá — "Terra Nova" alone may confuse a 12-year-old; I kept the English's lack of country **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.east-india.t — A Companhia das Índias Orientais recebe sua carta régia — A Companhia das Índias Orientais recebe seu alvará real — "charter" has no single Brazilian term; "carta régia" is the usual one in Brazilian history texts **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.penny-black.t — O primeiro selo adesivo do mundo vai à venda — O primeiro selo postal adesivo do mundo é lançado — kept neutral (no name "Penny Black" in the title, as in the English) **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.opera-house.t — A Ópera de Sydney é inaugurada oficialmente — A Sydney Opera House é inaugurada oficialmente — Brazilian sources use both "Ópera de Sydney" and "Opera House" **Settled 30 Oct 2026: kept.**

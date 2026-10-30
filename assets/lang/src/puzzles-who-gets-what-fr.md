@@ -78,7 +78,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.who-gets-what.cocoa-chain.slice2` — Transport
 - `p.who-gets-what.cocoa-chain.slice3` — Fabricants
 - `p.who-gets-what.cocoa-chain.slice4` — Magasins
-- `p.who-gets-what.cocoa-chain.fact` — Suis une tonne de cacao de la ferme au rayon : les planteurs finissent avec environ sept dollars sur cent.
+- `p.who-gets-what.cocoa-chain.fact` — Suis une tonne de cacao de la ferme au rayon : les planteurs se retrouvent avec environ sept dollars sur cent.
 - `p.who-gets-what.cocoa-chain.note` — La valeur ajoutée à chaque étape de la filière, et non le partage du prix d’un seul produit en rayon. « Transport » regroupe les camions à l’intérieur du pays, les taxes de l’office de commercialisation, le fret maritime, le port et les négociants ; « Fabricants » regroupe le broyage (7,6) et la fabrication (35,2) ; « Magasins » regroupe le détaillant et les taxes en caisse.
 
 #### 8/45 · `in-petrol` · day 8 (15 Oct 2026), 53 (29 Nov 2026), 98 (13 Jan 2027), 143 (27 Feb 2027) … · every 45 days
@@ -449,7 +449,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.who-gets-what.us-food-21.where` — États-Unis
 - `p.who-gets-what.us-food-21.slice1` — Salaires
 - `p.who-gets-what.us-food-21.slice2` — Capital
-- `p.who-gets-what.us-food-21.slice3` — Imports
+- `p.who-gets-what.us-food-21.slice3` — Importations
 - `p.who-gets-what.us-food-21.slice4` — Taxes
 - `p.who-gets-what.us-food-21.fact` — La moitié de chaque dollar que les Américains ont dépensé en nourriture en 2021 a payé le salaire de quelqu’un. Les taxes et les ingrédients importés en ont pris environ cinq cents chacun.
 - `p.who-gets-what.us-food-21.note` — Le partage du dollar de l’alimentation par l’agence, selon qui est payé au bout du compte, dans toutes les industries, de la ferme au restaurant. « Capital » est le revenu de la propriété : bénéfices, loyers, intérêts et usure des bâtiments et des machines. Chiffres publiés en 2023 ; l’agence a révisé sa méthode en 2026 et fixe maintenant 2024 à 54,1 cents pour les salaires.
@@ -900,12 +900,12 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.who-gets-what.ph-petrol.what` — Un litre d’essence
 - `p.who-gets-what.ph-petrol.where` — les Philippines
-- `p.who-gets-what.ph-petrol.slice1` — Imports
+- `p.who-gets-what.ph-petrol.slice1` — Importations
 - `p.who-gets-what.ph-petrol.slice2` — Industrie
 - `p.who-gets-what.ph-petrol.slice3` — Accises
 - `p.who-gets-what.ph-petrol.slice4` — TVA
 - `p.who-gets-what.ph-petrol.fact` — À Manille, fin mars 2018, la part de l’industrie pétrolière sur un litre d’essence était plus grande que les accises et la TVA réunies.
-- `p.who-gets-what.ph-petrol.note` — L’analyse du ministère de l’Énergie sur le prix à la pompe à Manille fin mars 2018. « Imports » est l’essence importée avec son fret (le prix de Singapour, 74,25 dollars américains le baril, plus 2 dollars américains de fret, à 52,08 pesos pour un dollar). « Industrie » est la « part de l’industrie » selon le ministère, ce qui reste aux compagnies pétrolières et aux stations. Les accises étaient de 7 pesos le litre sous la réforme fiscale de 2018.
+- `p.who-gets-what.ph-petrol.note` — L’analyse du ministère de l’Énergie sur le prix à la pompe à Manille fin mars 2018. « Importations » est l’essence importée avec son fret (le prix de Singapour, 74,25 dollars américains le baril, plus 2 dollars américains de fret, à 52,08 pesos pour un dollar). « Industrie » est la « part de l’industrie » selon le ministère, ce qui reste aux compagnies pétrolières et aux stations. Les accises étaient de 7 pesos le litre sous la réforme fiscale de 2018.
 
 #### 86/90 · `se-wine` · day 86 (1 Jan 2027), 176 (1 Apr 2027), 266 (30 Jun 2027), 356 (28 Sep 2027) … · every 90 days
 
@@ -963,34 +963,36 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.who-gets-what.it-power.slice3 — Aides — second option: Charges; the English "Policies" are the system charges, and the first batch used "Aides" for the same slice in Great Britain, so I kept it.
-- p.who-gets-what.us-food-21.slice2 — Capital — second option: Propriétaires; the English "Owners" is property income, and "Propriétaires" is too wide for a narrow slice.
-- p.who-gets-what.us-food-21.slice3 — Imports — second option: Importations (too long for the slice).
-- p.who-gets-what.in-petrol.slice4 — Station — second option: Pompe, a literal "Pump"; "Station" says who the filling station is.
-- p.who-gets-what.dark-choc.slice3 — Fabricant — second option: Chocolatier; I kept Fabricant as the first batch did for the Italian medicine maker, and it also fits wine, beer and spirits.
-- p.who-gets-what.fr-petrol.slice1 — Essence / Gazole — "Petrol" and "Diesel" are kept as the fuel's name, as in English; "gazole" is the official French word, and "diesel" is the everyday one.
-- p.who-gets-what.in-diesel.note — "air ambience" kept in English between quotes because it is the charge's own name on the Delhi price build-up.
-- p.who-gets-what.cocoa-chain.fact — I wrote "Suis une tonne de cacao…" (tu), the site's voice, where the English is an imperative.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.who-gets-what.it-power.slice3 — Aides — second option: Charges; the English "Policies" are the system charges, and the first batch used "Aides" for the same slice in Great Britain, so I kept it. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-food-21.slice2 — Capital — second option: Propriétaires; the English "Owners" is property income, and "Propriétaires" is too wide for a narrow slice. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-food-21.slice3 — Imports — second option: Importations (too long for the slice). **Settled 30 Oct 2026: changed, 3 lines (us-food-21.slice3, ph-petrol.slice1, ph-petrol.note).**
+- p.who-gets-what.in-petrol.slice4 — Station — second option: Pompe, a literal "Pump"; "Station" says who the filling station is. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.dark-choc.slice3 — Fabricant — second option: Chocolatier; I kept Fabricant as the first batch did for the Italian medicine maker, and it also fits wine, beer and spirits. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.fr-petrol.slice1 — Essence / Gazole — "Petrol" and "Diesel" are kept as the fuel's name, as in English; "gazole" is the official French word, and "diesel" is the everyday one. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.in-diesel.note — "air ambience" kept in English between quotes because it is the charge's own name on the Delhi price build-up. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cocoa-chain.fact — I wrote "Suis une tonne de cacao…" (tu), the site's voice, where the English is an imperative. **Settled 30 Oct 2026: changed to “Suis une tonne de cacao de la ferme au rayon : les planteurs se retrouvent avec environ sept dollars sur cent.”.**
 
 ### Added on 30 October 2026, with the new puzzles
 
-- p.who-gets-what.it-gas.slice3 — "Aides"; second option "Charges". The English "Policies" is the system charges. The first batch used "Aides" for the same slice (it-power, Italy), so I kept it, also for it-power-26.slice3.
-- p.who-gets-what.br-power.slice2 — "Réseau"; second option "Fils". The English "Wires" is distribution and transmission; "Réseau" is the word the first batch uses for "Wires". The fact says "les fils".
-- p.who-gets-what.de-power-26.slice3 — "Taxes"; second option "Prélèvements". The English "Levies" is the electricity duty, the concession fee and the surcharges, with VAT as its own slice. "Taxes" is short and clear; "Prélèvements" is too long for a narrow slice.
-- p.who-gets-what.za-petrol.slice4 — "Taxes"; second option "Prélèvements". The English "Levies" are the fuel levy, the Road Accident Fund levy and others. Same choice as for the German electricity, and for the other "Levies" slices (za-diesel, th-petrol).
-- p.who-gets-what.cigs-jp.slice3 — "Taxe"; second option "Conso." The English "Tax" is the Japanese 10% consumption tax. "TVA" would be near but it is not the Japanese name; singular "Taxe" keeps it apart from "Accises".
-- p.who-gets-what.br-power.what — "100 R$ d’une facture d’électricité"; second option "100 reais d’une facture d’électricité". I kept the symbol "R$" (placed after the number, as € and $) everywhere for Brazil, because "real" and "reais" change with the number (1,17 real, 6,97 reais).
-- p.who-gets-what.cigs-kr.fact — "wons"; second option "won" (invariable). Both are used in French. Same question for "yens" (cigs-jp) and "bahts" (th-petrol).
-- p.who-gets-what.th-petrol.what — "Un litre d’essence benzine 95"; second option "Un litre d’essence pure 95". "benzine 95" and "gasohol 95" are the Thai names of two fuels (without and with ethanol), kept as names because the fact compares them.
-- p.who-gets-what.za-petrol.note — "un prélèvement « slate levy » (1,14)"; second option "une taxe de régularisation (1,14)". "Slate levy" is South African, no common French name, so I kept the English name between quotes. The same line is in za-diesel.note. "Road Accident Fund" is written "Fonds pour les accidents de la route", my own wording.
-- p.who-gets-what.ch-petrol.fact — "15 centimes"; second option "15 Rappen (centimes suisses)". In French-speaking Switzerland the cent is "centime"; "Rappen" is the German name, so I did not keep it. "Les droits fixes" could also be "Les accises fixes".
-- p.who-gets-what.ch-petrol.note — "l’Office fédéral de la douane et de la sécurité des frontières (OFDF)"; second option "l’office des douanes". The English only says "the customs office"; OFDF is the name French-language Swiss press uses, from memory, not checked.
-- p.who-gets-what.qc-petrol.note — "TPS+TVQ" with the two names written out; second option: only "TPS+TVQ" without the explanation. TPS and TVQ are the Quebec names for GST and QST.
-- p.who-gets-what.ipod.slice1 — "Disque dur"; second option "Disque". Two words, 10 characters: it may be wide for a narrow slice.
-- p.who-gets-what.nokia-n95.slice3 — "Livraison"; second option "Distribution". The English "Delivery" is the distributors; "Livraison" matches the fuel puzzles.
-- p.who-gets-what.ph-petrol.slice2 — "Industrie"; second option "Pétroliers". The English "Industry" is the department’s "industry take" (oil companies and stations). "Imports" (slice1) is kept in English-looking form as in the first batch (us-food-21.slice3).
-- p.who-gets-what.us-groc-08.what — "Un dollar dépensé en courses"; second option "Un dollar dépensé au supermarché". "Groceries" is food bought to eat at home; "courses" is the everyday word.
-- p.who-gets-what.au-clothes.fact — "un salaire qui permette de vivre décemment"; second option "un salaire vital". "Salaire vital" is the NGO term for a living wage, but a 12-year-old may not know it.
-- p.who-gets-what.ie-wine.note — "magasin de vins et d’alcools" for "off-licence"; second option "caviste". "Alcohol Products Tax" (ie-beer.note) is kept in English in brackets after "taxe sur les produits alcoolisés".
-- p.who-gets-what.be-petrol.note — "la cotisation sur l’énergie" for "the energy levy"; second option "la cotisation énergie". Belgian wording, from memory.
-- p.who-gets-what.nz-petrol.fact — "la GST"; second option "la TPS" (a French reader may know "TPS" from Canada). I kept "GST" as the English does and as the Australian puzzles do, with "(taxe sur les biens et services)" written out in the notes.
+- p.who-gets-what.it-gas.slice3 — "Aides"; second option "Charges". The English "Policies" is the system charges. The first batch used "Aides" for the same slice (it-power, Italy), so I kept it, also for it-power-26.slice3. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-power.slice2 — "Réseau"; second option "Fils". The English "Wires" is distribution and transmission; "Réseau" is the word the first batch uses for "Wires". The fact says "les fils". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.de-power-26.slice3 — "Taxes"; second option "Prélèvements". The English "Levies" is the electricity duty, the concession fee and the surcharges, with VAT as its own slice. "Taxes" is short and clear; "Prélèvements" is too long for a narrow slice. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.slice4 — "Taxes"; second option "Prélèvements". The English "Levies" are the fuel levy, the Road Accident Fund levy and others. Same choice as for the German electricity, and for the other "Levies" slices (za-diesel, th-petrol). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-jp.slice3 — "Taxe"; second option "Conso." The English "Tax" is the Japanese 10% consumption tax. "TVA" would be near but it is not the Japanese name; singular "Taxe" keeps it apart from "Accises". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.br-power.what — "100 R$ d’une facture d’électricité"; second option "100 reais d’une facture d’électricité". I kept the symbol "R$" (placed after the number, as € and $) everywhere for Brazil, because "real" and "reais" change with the number (1,17 real, 6,97 reais). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.cigs-kr.fact — "wons"; second option "won" (invariable). Both are used in French. Same question for "yens" (cigs-jp) and "bahts" (th-petrol). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.th-petrol.what — "Un litre d’essence benzine 95"; second option "Un litre d’essence pure 95". "benzine 95" and "gasohol 95" are the Thai names of two fuels (without and with ethanol), kept as names because the fact compares them. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.za-petrol.note — "un prélèvement « slate levy » (1,14)"; second option "une taxe de régularisation (1,14)". "Slate levy" is South African, no common French name, so I kept the English name between quotes. The same line is in za-diesel.note. "Road Accident Fund" is written "Fonds pour les accidents de la route", my own wording. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ch-petrol.fact — "15 centimes"; second option "15 Rappen (centimes suisses)". In French-speaking Switzerland the cent is "centime"; "Rappen" is the German name, so I did not keep it. "Les droits fixes" could also be "Les accises fixes". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ch-petrol.note — "l’Office fédéral de la douane et de la sécurité des frontières (OFDF)"; second option "l’office des douanes". The English only says "the customs office"; OFDF is the name French-language Swiss press uses, from memory, not checked. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.qc-petrol.note — "TPS+TVQ" with the two names written out; second option: only "TPS+TVQ" without the explanation. TPS and TVQ are the Quebec names for GST and QST. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ipod.slice1 — "Disque dur"; second option "Disque". Two words, 10 characters: it may be wide for a narrow slice. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.nokia-n95.slice3 — "Livraison"; second option "Distribution". The English "Delivery" is the distributors; "Livraison" matches the fuel puzzles. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ph-petrol.slice2 — "Industrie"; second option "Pétroliers". The English "Industry" is the department’s "industry take" (oil companies and stations). "Imports" (slice1) is kept in English-looking form as in the first batch (us-food-21.slice3). **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.us-groc-08.what — "Un dollar dépensé en courses"; second option "Un dollar dépensé au supermarché". "Groceries" is food bought to eat at home; "courses" is the everyday word. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.au-clothes.fact — "un salaire qui permette de vivre décemment"; second option "un salaire vital". "Salaire vital" is the NGO term for a living wage, but a 12-year-old may not know it. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.ie-wine.note — "magasin de vins et d’alcools" for "off-licence"; second option "caviste". "Alcohol Products Tax" (ie-beer.note) is kept in English in brackets after "taxe sur les produits alcoolisés". **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.be-petrol.note — "la cotisation sur l’énergie" for "the energy levy"; second option "la cotisation énergie". Belgian wording, from memory. **Settled 30 Oct 2026: kept.**
+- p.who-gets-what.nz-petrol.fact — "la GST"; second option "la TPS" (a French reader may know "TPS" from Canada). I kept "GST" as the English does and as the Australian puzzles do, with "(taxe sur les biens et services)" written out in the notes. **Settled 30 Oct 2026: kept.**

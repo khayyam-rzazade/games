@@ -556,8 +556,10 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.years-apart.event.east-india.t — La Compagnie anglaise des Indes orientales reçoit sa charte — second option: La Compagnie des Indes orientales (British); in French that name usually means the French company of 1664, so I added "anglaise". The stamp is just "Compagnie des Indes".
-- p.years-apart.event.star-wars.t — Star Wars sort dans les cinémas américains — second option: La Guerre des étoiles (the French release title of 1977); French readers today say Star Wars.
-- p.years-apart.event.gagarin.t — Gagarine est le premier humain dans l'espace — second option: le premier homme dans l'espace, the usual French wording, left aside because the English says "person".
-- p.years-apart.event.penny-black.t — Le premier timbre adhésif du monde est mis en vente — second option: Le premier timbre-poste du monde (the usual French phrase, but it would drop "adhesive").
-- p.years-apart.panama-darwin-moon.fact — halfway line written with the nouns repeated ("55 ans après le livre, 55 ans avant l'alunissage") because "l'un / l'autre" would mix a feminine and a masculine event.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.years-apart.event.east-india.t — La Compagnie anglaise des Indes orientales reçoit sa charte — second option: La Compagnie des Indes orientales (British); in French that name usually means the French company of 1664, so I added "anglaise". The stamp is just "Compagnie des Indes". **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.star-wars.t — Star Wars sort dans les cinémas américains — second option: La Guerre des étoiles (the French release title of 1977); French readers today say Star Wars. **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.gagarin.t — Gagarine est le premier humain dans l'espace — second option: le premier homme dans l'espace, the usual French wording, left aside because the English says "person". **Settled 30 Oct 2026: kept.**
+- p.years-apart.event.penny-black.t — Le premier timbre adhésif du monde est mis en vente — second option: Le premier timbre-poste du monde (the usual French phrase, but it would drop "adhesive"). **Settled 30 Oct 2026: kept.**
+- p.years-apart.panama-darwin-moon.fact — halfway line written with the nouns repeated ("55 ans après le livre, 55 ans avant l'alunissage") because "l'un / l'autre" would mix a feminine and a masculine event. **Settled 30 Oct 2026: kept.**

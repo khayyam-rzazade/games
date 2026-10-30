@@ -146,7 +146,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Arılar yaban arılarından evrildi."
  },
  "sugar_glider": {
-  "fact": "Şeker sincabı keseli bir hayvandır, koala ile aynı takımdandır. Uçan sincaplar süzülmelerini sağlayan deri zarını ayrı bir yoldan geliştirdi."
+  "fact": "Şeker planörü keseli bir hayvandır, koala ile aynı takımdandır. Uçan sincaplar süzülmelerini sağlayan deri zarını ayrı bir yoldan geliştirdi."
  },
  "ichthyosaur": {
   "fact": "İhtiyozorlar denizde yaşayan sürüngenlerdi. Yunusa benzeyen biçimleri ayrı bir yoldan gelişti: birbirine benzeyen hayvanların klasik bir örneği."
@@ -443,7 +443,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Karıncalar ve yaban arıları, arılarla birlikte böceklerin aynı takımındandır. Sinekler de pupa evresinden geçerek büyür. Çekirgeler geçmez."
  },
  "flying_squirrel": {
-  "fact": "Uçan sincaplar ve çayır köpekleri ikisi de sincap ailesindendir. Fareler de kemirgendir. Şeker sincabı yalnızca benzer görünür: keselidir."
+  "fact": "Uçan sincaplar ve çayır köpekleri ikisi de sincap ailesindendir. Fareler de kemirgendir. Şeker planörü yalnızca benzer görünür: keselidir."
  },
  "emu": {
   "fact": "Kivi, emuya devekuşundan daha yakındır: devekuşları önce ayrıldı. Hindiler tamamen farklı bir daldadır."
@@ -1200,10 +1200,10 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "bare": "kapibara"
  },
  "sugar_glider": {
-  "name": "Şeker sincabı",
-  "the": "şeker sincabı",
-  "of": "şeker sincabının",
-  "bare": "şeker sincabı"
+  "name": "Şeker planörü",
+  "the": "şeker planörü",
+  "of": "şeker planörünün",
+  "bare": "şeker planörü"
  },
  "koala": {
   "name": "Koala",

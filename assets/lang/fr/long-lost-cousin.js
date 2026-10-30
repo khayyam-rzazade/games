@@ -44,7 +44,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Les lucioles ne sont pas des mouches. Ce sont des coléoptères, comme les coccinelles."
  },
  "anteater": {
-  "fact": "Les fourmiliers et les paresseux sont de proches parents. Le pangolin est appelé fourmilier à écailles et l’échidné fourmilier épineux, mais aucun des deux n’est un proche parent."
+  "fact": "Les fourmiliers et les paresseux sont de proches parents. Le pangolin est appelé fourmilier écailleux et l’échidné fourmilier épineux, mais aucun des deux n’est un proche parent."
  },
  "centipede": {
   "fact": "Les scolopendres et les mille-pattes sont de proches parents. Tous deux ont beaucoup de pattes, et aucun n’est un insecte."

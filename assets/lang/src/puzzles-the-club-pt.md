@@ -93,12 +93,12 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.volcanoes.in3` — Vesúvio
 - `p.the-club.volcanoes.out1` — Everest
 - `p.the-club.volcanoes.out2` — Monte Branco
-- `p.the-club.volcanoes.door1` — Quilimanjaro
+- `p.the-club.volcanoes.door1` — Kilimanjaro
 - `p.the-club.volcanoes.door2` — Matterhorn
 - `p.the-club.volcanoes.door3` — Krakatoa
 - `p.the-club.volcanoes.door4` — K2
 - `p.the-club.volcanoes.door5` — Monte Santa Helena
-- `p.the-club.volcanoes.fact` — Todos são vulcões. O Quilimanjaro, a montanha mais alta da África, também é.
+- `p.the-club.volcanoes.fact` — Todos são vulcões. O Kilimanjaro, a montanha mais alta da África, também é.
 
 #### 7/148 · `apes` · day 7 (10 Oct 2026), 155 (7 Mar 2027), 303 (2 Aug 2027), 451 (28 Dec 2027) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -914,7 +914,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.arabic-words.door3` — Sofá
 - `p.the-club.arabic-words.door4` — Xampu
 - `p.the-club.arabic-words.door5` — Zero
-- `p.the-club.arabic-words.fact` — Cada uma veio do árabe, passando por outras línguas. “Álgebra” vem de al-jabr, palavra do título de um livro escrito há cerca de 1.200 anos.
+- `p.the-club.arabic-words.fact` — Cada uma vem do árabe e chegou ao inglês passando por outras línguas. “Álgebra” vem de al-jabr, palavra do título de um livro escrito há cerca de 1.200 anos.
 
 #### 58/148 · `capitals` · day 58 (30 Nov 2026), 206 (27 Apr 2027), 354 (22 Sep 2027), 502 (17 Feb 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -1019,7 +1019,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.eight-thousanders.in1` — Everest
 - `p.the-club.eight-thousanders.in2` — K2
 - `p.the-club.eight-thousanders.in3` — Annapurna
-- `p.the-club.eight-thousanders.out1` — Quilimanjaro
+- `p.the-club.eight-thousanders.out1` — Kilimanjaro
 - `p.the-club.eight-thousanders.out2` — Monte Branco
 - `p.the-club.eight-thousanders.door1` — Aconcágua
 - `p.the-club.eight-thousanders.door2` — Kangchenjunga
@@ -1392,9 +1392,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.mint-family.door1` — Orégano
 - `p.the-club.mint-family.door2` — Endro
 - `p.the-club.mint-family.door3` — Lavanda
-- `p.the-club.mint-family.door4` — Funcho
+- `p.the-club.mint-family.door4` — Erva-doce
 - `p.the-club.mint-family.door5` — Sálvia
-- `p.the-club.mint-family.fact` — Todos pertencem à família da hortelã. Salsinha, coentro, endro e funcho pertencem a outra família, a da cenoura e do salsão.
+- `p.the-club.mint-family.fact` — Todos pertencem à família da hortelã. Salsinha, coentro, endro e erva-doce pertencem a outra família, a da cenoura e do salsão.
 
 #### 88/148 · `caspian` · day 88 (30 Dec 2026), 236 (27 May 2027), 384 (22 Oct 2027), 532 (18 Mar 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -1583,10 +1583,10 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.palms.out2` — Abacaxi
 - `p.the-club.palms.door1` — Óleo de palma
 - `p.the-club.palms.door2` — Manga
-- `p.the-club.palms.door3` — Noz-de-areca
+- `p.the-club.palms.door3` — Noz-de-bétel
 - `p.the-club.palms.door4` — Azeitona
 - `p.the-club.palms.door5` — Mamão
-- `p.the-club.palms.fact` — Cocos, tâmaras, açaí, óleo de palma e nozes-de-areca vêm todos de palmeiras. A bananeira não é uma palmeira: é uma erva gigante.
+- `p.the-club.palms.fact` — Cocos, tâmaras, açaí, óleo de palma e nozes-de-bétel vêm todos de palmeiras. A bananeira não é uma palmeira: é uma erva gigante.
 
 #### 100/148 · `mughals` · day 100 (11 Jan 2027), 248 (8 Jun 2027), 396 (3 Nov 2027), 544 (30 Mar 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -2065,8 +2065,8 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.carrot-family.door2` — Espinafre
 - `p.the-club.carrot-family.door3` — Cominho
 - `p.the-club.carrot-family.door4` — Hortelã
-- `p.the-club.carrot-family.door5` — Funcho
-- `p.the-club.carrot-family.fact` — A cenoura, o salsão e a salsinha pertencem a uma mesma família, e o coentro, o cominho e o funcho também.
+- `p.the-club.carrot-family.door5` — Erva-doce
+- `p.the-club.carrot-family.fact` — A cenoura, o salsão e a salsinha pertencem a uma mesma família, e o coentro, o cominho e a erva-doce também.
 
 #### 130/148 · `chinese-dynasties` · day 130 (10 Feb 2027), 278 (8 Jul 2027), 426 (3 Dec 2027), 574 (29 Apr 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -2374,54 +2374,56 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.the-club.equator.in1 — Equador — (no other option; it is the usual name) — in Portuguese the country's name is the very word for the equator, so it gives the rule away more than "Ecuador" does in English; maybe swap this member (Khayyam's call)
-- p.the-club.japanese-words.door1 — Tycoon — Magnata — "Tycoon" and "Honcho" (door5) are English words, not used in Portuguese; kept as English so the fact ("o inglês pegou … emprestada") stays true; a Brazilian will hardly know them, so the puzzle is harder than in English
-- p.the-club.japanese-words.fact — O inglês pegou cada uma destas palavras emprestada do japonês. “Tycoon” vem de taikun, um título que já foi usado para o xogum. — Todas estas palavras vieram do japonês. … — the English says English borrowed them; kept to stay faithful
-- p.the-club.arabic-words.fact — Cada uma veio do árabe, passando por outras línguas. “Álgebra” vem de al-jabr, … — Cada uma chegou ao português vinda do árabe … — English says "reached English"; I left the target language out because açúcar and algodão came straight from Arabic into Portuguese
-- p.the-club.arabic-words.in1 — Álgebra — (none) — in Portuguese Álgebra, Açúcar and the door's Algodão all start with the Arabic al-/a- shape, a spelling hint English hides less; names unchanged because membership is fixed
-- p.the-club.apes.sign — São antropoides — São símios sem cauda — Brazilian "macaco" covers apes too, so there is no everyday word for "ape"; "antropoides" is exact (includes gibbons) but a bit formal; fact explains "sem cauda" via "macacos comuns"
-- p.the-club.apes.door2 — Macaco-rhesus — Macaco — "macaque" has no everyday Portuguese word; bare "Macaco" would clash with the sign; rhesus is one macaque species
-- p.the-club.seven-wonders.sign — As Sete Maravilhas do Mundo Antigo — As Sete Maravilhas — "do Mundo Antigo" added because in Brazil "Sete Maravilhas" suggests the 2007 list (Cristo Redentor, Muralha da China, which is an "out" here); the English fact already says Ancient World
-- p.the-club.cabbage.sign — Uma só espécie: a couve-selvagem — Uma só espécie: o repolho selvagem — Brazilian sources vary for Brassica oleracea; "couve" alone is kale in Brazil (door1 "Couve")
-- p.the-club.citrus.in1 — Limão-siciliano — Limão — in Brazil "limão" alone means the lime, so lemon needs "-siciliano" and the lime (door1) is "Limão-taiti"
-- p.the-club.sea-mammals.in3 — Peixe-boi — (none; usual name) — the name has "peixe" though it is a mammal: it makes the puzzle harder, not a giveaway
-- p.the-club.panthera.fact — … O puma, que às vezes é chamado de pantera, não é uma delas. — O puma, também chamado de onça-parda ou suçuarana, não é uma delas. — in Brazil "pantera" usually means a black jaguar/leopard; "pantera-da-Flórida" is the puma
-- p.the-club.named-countries.door3 — Maurício — Maurícia — in Brazil "Maurício" is also a first name, which nudges towards the rule more than "Mauritius" does (Portugal and Wikipédia use "Maurícia")
-- p.the-club.pharaohs.door5 — Hatshepsut — Hatexepsute — Wikipédia em português spells it Hatexepsute; Brazilian school sites write Hatshepsut (same for door3 Aquenáton / Akhenaton)
-- p.the-club.volcanoes.door1 — Quilimanjaro — Kilimanjaro — Wikipédia spells it Quilimanjaro, many Brazilian sites keep Kilimanjaro (same in eight-thousanders.out1 and the fact of volcanoes)
-- p.the-club.volcanoes.door5 — Monte Santa Helena — Monte St. Helens — Wikipédia form vs the form in the news
-- p.the-club.japan-martial.door5 — Jiu-jítsu — Jujutsu — a Brazilian may take "Jiu-jítsu" for the Brazilian art and put it out; "Jujutsu" is the Japanese spelling
-- p.the-club.months.in1 — Janeiro — janeiro — months are lower case in Portuguese; capital only because a name line starts with one (same for all months, and the fact has them lower case)
-- p.the-club.below-sea-level.stamp — Abaixo do nível do mar — Abaixo do mar — four words, longer than the one-or-two-word stamp; "Abaixo do mar" would read as under water
-- p.the-club.underground.fact — … uma haste chamada ginóforo cresce para baixo, até penetrar no solo. — … uma haste cresce para baixo, até penetrar no solo. — "peg" is "ginóforo" in Brazilian botany texts; a 12-year-old may not know the word, but the fact explains it
-- p.the-club.rodents.in1 — Camundongo — Rato — "Camundongo" is the exact word for mouse; kids say "rato"
-- p.the-club.hindi-words.sign — Palavras inglesas que vêm do hindi — swap the puzzle for one about Portuguese words — the puzzle is about English words that came from Hindi; Portuguese xampu, pijama, selva (Latin) do not fit the same story, so the name lines in1..door5 (Shampoo, Pyjamas, Jungle, Tsunami, Safari, Bangle, Ketchup, Thug, Igloo, Loot) stay in English and the sign says "inglesas"
-- p.the-club.dutch-words.sign — Palavras inglesas que vêm do holandês — swap the puzzle for one about Portuguese words — same problem: the rule is about English loanwords, so in1..door5 (Cookie, Boss, Waffle, Hamburger, Kindergarten, Brandy, Pretzel, Easel, Bagel, Landscape) stay in English
-- p.the-club.from-wheat.in1 — Cuscuz marroquino — Cuscuz — in Brazil plain "cuscuz" is usually the cornmeal one, so "marroquino" is needed to mean the wheat semolina one
-- p.the-club.soy.door4 — Cuscuz marroquino — Cuscuz — same reason as from-wheat.in1
-- p.the-club.onion-family.door1 — Cebolinha — Cebolinha-francesa — contains "cebola", the rule word, which English "Chives" does not (but "Cebola" is already in1, as "Onion" is in English)
-- p.the-club.onion-family.door2 — Salsão — Aipo — celery: "salsão" is the everyday Brazilian word, "aipo" the dictionary/Embrapa name (also mint-family.fact and carrot-family.in2)
-- p.the-club.mint-family.door4 — Funcho — Erva-doce — fennel; "erva-doce" is also what many Brazilians call it (and anise)
-- p.the-club.decathlon.door4 — Corrida com obstáculos — 3.000 m com obstáculos — "steeplechase"; the decathlon does have 110 m barreiras (hurdles), so "obstáculos" alone may confuse, the long name is exact but adds a figure
-- p.the-club.chess.door5 — Dama — Rainha — Brazilian chess sites (Chess.com, Lichess) say "dama", children often say "rainha" (the fact line also says "dama")
-- p.the-club.from-milk.out2 — Manteiga de amendoim — Pasta de amendoim — kept "manteiga" so the "butter" decoy works as in English; other games on the site write "Pasta de amendoim" (same in soy.out2)
-- p.the-club.snakes.door2 — Cecília — Cobra-cega — "cobra-cega" holds the word "cobra" and would push players toward "snake", "cecília" is neutral but looks like a first name (same in amphibians.door5 and the fact lines)
-- p.the-club.snakes.out1 — Licranço — Cobra-de-vidro — slow worm; Brazilians rarely know it, the fact explains it as a legless lizard
-- p.the-club.snakes.in1 — Naja — Cobra — in Brazil "cobra" means any snake, the species is "naja"
-- p.the-club.reptiles.in2 — Jabuti — Tartaruga — tortoise (land); "tartaruga" is used for "turtle" in egg-layers and amphibians
-- p.the-club.bears.in1 — Urso-grizzly — Urso-pardo — grizzly is a kind of brown bear
-- p.the-club.bears.door5 — Urso-beiçudo — Urso-preguiça — sloth bear; both used in Brazilian sources
-- p.the-club.palms.door3 — Noz-de-areca — Noz-de-bétele — betel nut is the areca nut; "bétele" is the name of the leaf it is chewed with
-- p.the-club.energy-units.door3 — Unidade térmica britânica — BTU — Brazilians know BTU from air conditioners (where it is a power rating)
-- p.the-club.austen.door4 — Mulherzinhas — Adoráveis Mulheres — Little Women; both titles are used in Brazil
-- p.the-club.own-right.in1 — Elizabeth I — Isabel I — Brazilian sources use both (same in henry-wives.out2)
-- p.the-club.own-right.door3 — Maria Tudor — Maria I da Inglaterra — plain "Maria I" would be read as Maria I of Portugal (same in henry-wives.out1 and henry-wives.fact)
-- p.the-club.henry-wives.in3 — Joana Seymour — Jane Seymour — Wikipédia writes Joana, many Brazilian history sites keep Jane
-- p.the-club.soviet-leaders.in3 — Khrushchov — Kruschev — transliteration; Ieltsin (door2) also appears as Iéltsin
-- p.the-club.real-fish.door5 — Sépia — Choco — cuttlefish; "sépia" is the usual Brazilian word
-- p.the-club.fungi.in2 — Levedura — Fermento — "fermento" is the baking product in Brazil; Morchela (door1) can also be Morilha
-- p.the-club.winter-olympics.door5 — Bobsled — Bobsleigh — both used in Brazil, Wikipédia writes Bobsleigh
-- p.the-club.cashew-family.in1 — Castanha-de-caju — Caju — the nut, since the other names are nuts; the sign says "família do caju"
-- p.the-club.weasel-family.door2 — Cangambá — Jaritataca — skunk; "gambá" would be wrong, in Brazil it is the opossum
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.the-club.equator.in1 — Equador — (no other option; it is the usual name) — in Portuguese the country's name is the very word for the equator, so it gives the rule away more than "Ecuador" does in English; maybe swap this member (Khayyam's call) **Settled 30 Oct 2026: kept.**
+- p.the-club.japanese-words.door1 — Tycoon — Magnata — "Tycoon" and "Honcho" (door5) are English words, not used in Portuguese; kept as English so the fact ("o inglês pegou … emprestada") stays true; a Brazilian will hardly know them, so the puzzle is harder than in English **Settled 30 Oct 2026: kept.**
+- p.the-club.japanese-words.fact — O inglês pegou cada uma destas palavras emprestada do japonês. “Tycoon” vem de taikun, um título que já foi usado para o xogum. — Todas estas palavras vieram do japonês. … — the English says English borrowed them; kept to stay faithful **Settled 30 Oct 2026: kept.**
+- p.the-club.arabic-words.fact — Cada uma veio do árabe, passando por outras línguas. “Álgebra” vem de al-jabr, … — Cada uma chegou ao português vinda do árabe … — English says "reached English"; I left the target language out because açúcar and algodão came straight from Arabic into Portuguese **Settled 30 Oct 2026: changed to “Cada uma vem do árabe e chegou ao inglês passando por outras línguas. “Álgebra” vem de al-jabr, palavra do título de um livro escrito há cerca de 1.200 anos.”.**
+- p.the-club.arabic-words.in1 — Álgebra — (none) — in Portuguese Álgebra, Açúcar and the door's Algodão all start with the Arabic al-/a- shape, a spelling hint English hides less; names unchanged because membership is fixed **Settled 30 Oct 2026: kept.**
+- p.the-club.apes.sign — São antropoides — São símios sem cauda — Brazilian "macaco" covers apes too, so there is no everyday word for "ape"; "antropoides" is exact (includes gibbons) but a bit formal; fact explains "sem cauda" via "macacos comuns" **Settled 30 Oct 2026: kept.**
+- p.the-club.apes.door2 — Macaco-rhesus — Macaco — "macaque" has no everyday Portuguese word; bare "Macaco" would clash with the sign; rhesus is one macaque species **Settled 30 Oct 2026: kept.**
+- p.the-club.seven-wonders.sign — As Sete Maravilhas do Mundo Antigo — As Sete Maravilhas — "do Mundo Antigo" added because in Brazil "Sete Maravilhas" suggests the 2007 list (Cristo Redentor, Muralha da China, which is an "out" here); the English fact already says Ancient World **Settled 30 Oct 2026: kept.**
+- p.the-club.cabbage.sign — Uma só espécie: a couve-selvagem — Uma só espécie: o repolho selvagem — Brazilian sources vary for Brassica oleracea; "couve" alone is kale in Brazil (door1 "Couve") **Settled 30 Oct 2026: kept.**
+- p.the-club.citrus.in1 — Limão-siciliano — Limão — in Brazil "limão" alone means the lime, so lemon needs "-siciliano" and the lime (door1) is "Limão-taiti" **Settled 30 Oct 2026: kept.**
+- p.the-club.sea-mammals.in3 — Peixe-boi — (none; usual name) — the name has "peixe" though it is a mammal: it makes the puzzle harder, not a giveaway **Settled 30 Oct 2026: kept.**
+- p.the-club.panthera.fact — … O puma, que às vezes é chamado de pantera, não é uma delas. — O puma, também chamado de onça-parda ou suçuarana, não é uma delas. — in Brazil "pantera" usually means a black jaguar/leopard; "pantera-da-Flórida" is the puma **Settled 30 Oct 2026: kept.**
+- p.the-club.named-countries.door3 — Maurício — Maurícia — in Brazil "Maurício" is also a first name, which nudges towards the rule more than "Mauritius" does (Portugal and Wikipédia use "Maurícia") **Settled 30 Oct 2026: kept.**
+- p.the-club.pharaohs.door5 — Hatshepsut — Hatexepsute — Wikipédia em português spells it Hatexepsute; Brazilian school sites write Hatshepsut (same for door3 Aquenáton / Akhenaton) **Settled 30 Oct 2026: kept.**
+- p.the-club.volcanoes.door1 — Quilimanjaro — Kilimanjaro — Wikipédia spells it Quilimanjaro, many Brazilian sites keep Kilimanjaro (same in eight-thousanders.out1 and the fact of volcanoes) **Settled 30 Oct 2026: changed, 3 lines (volcanoes.door1, volcanoes.fact, eight-thousanders.out1).**
+- p.the-club.volcanoes.door5 — Monte Santa Helena — Monte St. Helens — Wikipédia form vs the form in the news **Settled 30 Oct 2026: kept.**
+- p.the-club.japan-martial.door5 — Jiu-jítsu — Jujutsu — a Brazilian may take "Jiu-jítsu" for the Brazilian art and put it out; "Jujutsu" is the Japanese spelling **Settled 30 Oct 2026: kept.**
+- p.the-club.months.in1 — Janeiro — janeiro — months are lower case in Portuguese; capital only because a name line starts with one (same for all months, and the fact has them lower case) **Settled 30 Oct 2026: kept.**
+- p.the-club.below-sea-level.stamp — Abaixo do nível do mar — Abaixo do mar — four words, longer than the one-or-two-word stamp; "Abaixo do mar" would read as under water **Settled 30 Oct 2026: kept.**
+- p.the-club.underground.fact — … uma haste chamada ginóforo cresce para baixo, até penetrar no solo. — … uma haste cresce para baixo, até penetrar no solo. — "peg" is "ginóforo" in Brazilian botany texts; a 12-year-old may not know the word, but the fact explains it **Settled 30 Oct 2026: kept.**
+- p.the-club.rodents.in1 — Camundongo — Rato — "Camundongo" is the exact word for mouse; kids say "rato" **Settled 30 Oct 2026: kept.**
+- p.the-club.hindi-words.sign — Palavras inglesas que vêm do hindi — swap the puzzle for one about Portuguese words — the puzzle is about English words that came from Hindi; Portuguese xampu, pijama, selva (Latin) do not fit the same story, so the name lines in1..door5 (Shampoo, Pyjamas, Jungle, Tsunami, Safari, Bangle, Ketchup, Thug, Igloo, Loot) stay in English and the sign says "inglesas" **Settled 30 Oct 2026: kept.**
+- p.the-club.dutch-words.sign — Palavras inglesas que vêm do holandês — swap the puzzle for one about Portuguese words — same problem: the rule is about English loanwords, so in1..door5 (Cookie, Boss, Waffle, Hamburger, Kindergarten, Brandy, Pretzel, Easel, Bagel, Landscape) stay in English **Settled 30 Oct 2026: kept.**
+- p.the-club.from-wheat.in1 — Cuscuz marroquino — Cuscuz — in Brazil plain "cuscuz" is usually the cornmeal one, so "marroquino" is needed to mean the wheat semolina one **Settled 30 Oct 2026: kept.**
+- p.the-club.soy.door4 — Cuscuz marroquino — Cuscuz — same reason as from-wheat.in1 **Settled 30 Oct 2026: kept.**
+- p.the-club.onion-family.door1 — Cebolinha — Cebolinha-francesa — contains "cebola", the rule word, which English "Chives" does not (but "Cebola" is already in1, as "Onion" is in English) **Settled 30 Oct 2026: kept.**
+- p.the-club.onion-family.door2 — Salsão — Aipo — celery: "salsão" is the everyday Brazilian word, "aipo" the dictionary/Embrapa name (also mint-family.fact and carrot-family.in2) **Settled 30 Oct 2026: kept.**
+- p.the-club.mint-family.door4 — Funcho — Erva-doce — fennel; "erva-doce" is also what many Brazilians call it (and anise) **Settled 30 Oct 2026: changed, 4 lines (mint-family.door4, mint-family.fact, carrot-family.door5, carrot-family.fact).**
+- p.the-club.decathlon.door4 — Corrida com obstáculos — 3.000 m com obstáculos — "steeplechase"; the decathlon does have 110 m barreiras (hurdles), so "obstáculos" alone may confuse, the long name is exact but adds a figure **Settled 30 Oct 2026: kept.**
+- p.the-club.chess.door5 — Dama — Rainha — Brazilian chess sites (Chess.com, Lichess) say "dama", children often say "rainha" (the fact line also says "dama") **Settled 30 Oct 2026: kept.**
+- p.the-club.from-milk.out2 — Manteiga de amendoim — Pasta de amendoim — kept "manteiga" so the "butter" decoy works as in English; other games on the site write "Pasta de amendoim" (same in soy.out2) **Settled 30 Oct 2026: kept.**
+- p.the-club.snakes.door2 — Cecília — Cobra-cega — "cobra-cega" holds the word "cobra" and would push players toward "snake", "cecília" is neutral but looks like a first name (same in amphibians.door5 and the fact lines) **Settled 30 Oct 2026: kept.**
+- p.the-club.snakes.out1 — Licranço — Cobra-de-vidro — slow worm; Brazilians rarely know it, the fact explains it as a legless lizard **Settled 30 Oct 2026: kept.**
+- p.the-club.snakes.in1 — Naja — Cobra — in Brazil "cobra" means any snake, the species is "naja" **Settled 30 Oct 2026: kept.**
+- p.the-club.reptiles.in2 — Jabuti — Tartaruga — tortoise (land); "tartaruga" is used for "turtle" in egg-layers and amphibians **Settled 30 Oct 2026: kept.**
+- p.the-club.bears.in1 — Urso-grizzly — Urso-pardo — grizzly is a kind of brown bear **Settled 30 Oct 2026: kept.**
+- p.the-club.bears.door5 — Urso-beiçudo — Urso-preguiça — sloth bear; both used in Brazilian sources **Settled 30 Oct 2026: kept.**
+- p.the-club.palms.door3 — Noz-de-areca — Noz-de-bétele — betel nut is the areca nut; "bétele" is the name of the leaf it is chewed with **Settled 30 Oct 2026: changed, 2 lines (palms.door3, palms.fact).**
+- p.the-club.energy-units.door3 — Unidade térmica britânica — BTU — Brazilians know BTU from air conditioners (where it is a power rating) **Settled 30 Oct 2026: kept.**
+- p.the-club.austen.door4 — Mulherzinhas — Adoráveis Mulheres — Little Women; both titles are used in Brazil **Settled 30 Oct 2026: kept.**
+- p.the-club.own-right.in1 — Elizabeth I — Isabel I — Brazilian sources use both (same in henry-wives.out2) **Settled 30 Oct 2026: kept.**
+- p.the-club.own-right.door3 — Maria Tudor — Maria I da Inglaterra — plain "Maria I" would be read as Maria I of Portugal (same in henry-wives.out1 and henry-wives.fact) **Settled 30 Oct 2026: kept.**
+- p.the-club.henry-wives.in3 — Joana Seymour — Jane Seymour — Wikipédia writes Joana, many Brazilian history sites keep Jane **Settled 30 Oct 2026: kept.**
+- p.the-club.soviet-leaders.in3 — Khrushchov — Kruschev — transliteration; Ieltsin (door2) also appears as Iéltsin **Settled 30 Oct 2026: kept.**
+- p.the-club.real-fish.door5 — Sépia — Choco — cuttlefish; "sépia" is the usual Brazilian word **Settled 30 Oct 2026: kept.**
+- p.the-club.fungi.in2 — Levedura — Fermento — "fermento" is the baking product in Brazil; Morchela (door1) can also be Morilha **Settled 30 Oct 2026: kept.**
+- p.the-club.winter-olympics.door5 — Bobsled — Bobsleigh — both used in Brazil, Wikipédia writes Bobsleigh **Settled 30 Oct 2026: kept.**
+- p.the-club.cashew-family.in1 — Castanha-de-caju — Caju — the nut, since the other names are nuts; the sign says "família do caju" **Settled 30 Oct 2026: kept.**
+- p.the-club.weasel-family.door2 — Cangambá — Jaritataca — skunk; "gambá" would be wrong, in Brazil it is the opossum **Settled 30 Oct 2026: kept.**
 - p.the-club.rodents.out1 — Ouriço — Ouriço-cacheiro — changed by the merging chat: in Brazil "ouriço-cacheiro" names a tree porcupine (a rodent), which would make the "not a rodent" answer wrong; "Ouriço" matches the hedgehog in Long Lost Cousin
 - p.the-club.dinosaurs.door4 — Dimetrodon — Dimetrodonte — changed by the merging chat to match Long Lost Cousin's "Dimetrodon"; Wikipédia writes Dimetrodonte

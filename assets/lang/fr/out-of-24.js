@@ -1138,15 +1138,15 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "tree-shrew-sleep": {
-  "face": "Tupaïe",
-  "label": "endormie",
+  "face": "Toupaye",
+  "label": "endormi",
   "fig": "15 h 48",
-  "sentence": "Une tupaïe dort environ 15,8 heures par jour : à peu près les deux tiers de sa vie.",
-  "note": "Tiré de deux tableaux classiques sur le sommeil des animaux : celui de l’Université de Washington et celui d’Allison et Cicchetti (Science, 1976). Les tupaïes ne sont pas de vraies musaraignes ; le dessin représente une musaraigne commune.",
+  "sentence": "Un toupaye dort environ 15,8 heures par jour : à peu près les deux tiers de sa vie.",
+  "note": "Tiré de deux tableaux classiques sur le sommeil des animaux : celui de l’Université de Washington et celui d’Allison et Cicchetti (Science, 1976). Les toupayes ne sont pas de vraies musaraignes ; le dessin représente une musaraigne commune.",
   "chips": [
    {
     "i": "asleep",
-    "t": "endormie"
+    "t": "endormi"
    }
   ]
  },

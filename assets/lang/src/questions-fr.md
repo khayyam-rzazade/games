@@ -33,7 +33,7 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 - `q.opt.little-brown-bat` — Petite chauve-souris brune
 - `q.opt.owl-monkey` — Douroucouli
 - `q.opt.rhesus-monkey` — Macaque rhésus
-- `q.opt.tree-shrew` — Tupaïe
+- `q.opt.tree-shrew` — Toupaye
 ## New names: the subjects of Every Beat (whose heart)
 
 - `q.opt.athlete` — Athlète
@@ -81,11 +81,13 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 
 ## U. Doubts for Khayyam
 
-- q.stem.biggest_share — {x} : qui touche la plus grosse part du prix ? — second option: Qui touche la plus grosse part du prix de {x} ?; the `what` lines start with a capital ("Un kilo de chocolat noir"), which does not fit after "du prix de", so the phrase comes first.
-- q.stem.closest_relative — Quel est le plus proche parent {x.of} ? — second option: Quel est le cousin le plus proche {x.of} ?; "parent" is the usual word for a relative, and {x.of} gives "du chat", "de l'émeu".
-- q.stem.came_first — Qu'est-ce qui est arrivé en premier ? — second option: Qu'est-ce qui a eu lieu en premier ?; the options are events of Years Apart, so "lequel" would not agree.
-- q.stem.beat_faster — Qui a le cœur qui bat le plus vite ? — second option: Quel cœur bat le plus vite ?; the options are people and animals.
-- q.stem.o24_longer_eating — Qui passe le plus de temps à manger ? — second option: Quel pays ou quel animal passe le plus de temps à manger ?; the options mix countries and animals, so I kept "Qui".
-- q.opt.duty — Accises — second option: Droits; "Duty" in this doc is the excise tax (as in the petrol and cigarette puzzles), while the banana puzzles say "Douane" for the same English word.
-- q.opt.wires — Réseau — second option: Câbles; same word as the electricity puzzles, where "Wires" is the grid.
-- q.opt.rest — Autres — second option: Le reste; same word as the puzzles, as the other slices are plural nouns.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- q.stem.biggest_share — {x} : qui touche la plus grosse part du prix ? — second option: Qui touche la plus grosse part du prix de {x} ?; the `what` lines start with a capital ("Un kilo de chocolat noir"), which does not fit after "du prix de", so the phrase comes first. **Settled 30 Oct 2026: kept.**
+- q.stem.closest_relative — Quel est le plus proche parent {x.of} ? — second option: Quel est le cousin le plus proche {x.of} ?; "parent" is the usual word for a relative, and {x.of} gives "du chat", "de l'émeu". **Settled 30 Oct 2026: kept.**
+- q.stem.came_first — Qu'est-ce qui est arrivé en premier ? — second option: Qu'est-ce qui a eu lieu en premier ?; the options are events of Years Apart, so "lequel" would not agree. **Settled 30 Oct 2026: kept.**
+- q.stem.beat_faster — Qui a le cœur qui bat le plus vite ? — second option: Quel cœur bat le plus vite ?; the options are people and animals. **Settled 30 Oct 2026: kept.**
+- q.stem.o24_longer_eating — Qui passe le plus de temps à manger ? — second option: Quel pays ou quel animal passe le plus de temps à manger ?; the options mix countries and animals, so I kept "Qui". **Settled 30 Oct 2026: kept.**
+- q.opt.duty — Accises — second option: Droits; "Duty" in this doc is the excise tax (as in the petrol and cigarette puzzles), while the banana puzzles say "Douane" for the same English word. **Settled 30 Oct 2026: kept.**
+- q.opt.wires — Réseau — second option: Câbles; same word as the electricity puzzles, where "Wires" is the grid. **Settled 30 Oct 2026: kept.**
+- q.opt.rest — Autres — second option: Le reste; same word as the puzzles, as the other slices are plural nouns. **Settled 30 Oct 2026: kept.**

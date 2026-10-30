@@ -1269,7 +1269,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "2000-pyongyang": {
   "place": "Pyongyang",
-  "pov": "La tua Politica del raggio di sole cerca il dialogo con la Corea del Nord. I colloqui con il Nord aprono la strada al primo incontro tra i due leader dalla divisione della Corea. Sei il presidente della Corea del Sud.",
+  "pov": "La tua «Sunshine Policy» cerca il dialogo con la Corea del Nord. I colloqui con il Nord aprono la strada al primo incontro tra i due leader dalla divisione della Corea. Sei il presidente della Corea del Sud.",
   "short": "Kim Dae-jung",
   "did": "Kim Dae-jung andò a Pyongyang per il vertice dal 13 al 15 giugno 2000 e fu accolto da Kim Jong Il. Concordarono di lavorare per la riunificazione, i ricongiungimenti delle famiglie e la cooperazione economica.",
   "next": "Kim Dae-jung vinse il premio Nobel per la pace il 13 ottobre 2000. Tre anni dopo si seppe che la Corea del Sud aveva pagato in segreto il Nord perché partecipasse al vertice.",
@@ -1402,7 +1402,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "place": "Brasília",
   "pov": "L'inflazione ha sconfitto una serie di piani per controllarla; quelli precedenti si basavano sul blocco di prezzi e salari. Sei il ministro delle Finanze del Brasile.",
   "short": "Cardoso",
-  "did": "La squadra di Cardoso creò una valuta non monetaria, l'URV, del valore di circa 1 dollaro statunitense. I prezzi fissati in URV furono poi convertiti in una nuova moneta, il real, il 1º luglio 1994.",
+  "did": "La squadra di Cardoso creò una moneta solo di conto, l'URV, del valore di circa 1 dollaro statunitense. I prezzi fissati in URV furono poi convertiti in una nuova moneta, il real, il 1º luglio 1994.",
   "next": "A differenza dei piani precedenti, non usò alcun blocco generale di prezzi e salari. Alla fine del 1996 l'inflazione, secondo alcune misure, si stava avvicinando a un livello inferiore al 20 per cento annuo.",
   "stamp": "Il Piano Real",
   "choices": [

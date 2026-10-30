@@ -1182,5 +1182,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.same-energy.cheese-grapes.a_name — Una rebanada de queso . Second option: Una loncha de queso. «Rebanada» matches «rebanada de pan» and is understood everywhere; «loncha» is the usual word in Spain, «lonja» in parts of Latin America. The same word is used in cheese-grapes, cheese-eggs, cheese-milk and cheese-apples.
-- p.same-energy.chocolate-bread.a_name — Una barra de chocolate negro . Second option: Una tableta de chocolate negro. «Barra» fits the done «barrita pequeña»; «tableta» is the usual word in Spain and Mexico for a 100 g bar. Same in chocolate-apples.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.same-energy.cheese-grapes.a_name — Una rebanada de queso . Second option: Una loncha de queso. «Rebanada» matches «rebanada de pan» and is understood everywhere; «loncha» is the usual word in Spain, «lonja» in parts of Latin America. The same word is used in cheese-grapes, cheese-eggs, cheese-milk and cheese-apples. **Settled 30 Oct 2026: kept.**
+- p.same-energy.chocolate-bread.a_name — Una barra de chocolate negro . Second option: Una tableta de chocolate negro. «Barra» fits the done «barrita pequeña»; «tableta» is the usual word in Spain and Mexico for a 100 g bar. Same in chocolate-apples. **Settled 30 Oct 2026: kept.**

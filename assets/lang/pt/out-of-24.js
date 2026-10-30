@@ -466,7 +466,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "face": "Japão",
   "label": "tarefas domésticas e cuidados",
   "fig": "1 h 54",
-  "sentence": "No Japão, os pais de crianças menores de 6 anos passam 1 hora e 54 minutos por dia com tarefas domésticas, cuidados e compras.",
+  "sentence": "No Japão, os homens com filhos menores de 6 anos passam 1 hora e 54 minutos por dia com tarefas domésticas, cuidados e compras.",
   "note": "Casais com um filho menor de 6 anos, média de toda a semana, 2021 (Departamento de Estatísticas do Japão). As esposas deles passam 7 horas e 28 minutos.",
   "chips": [
    {
@@ -475,7 +475,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    },
    {
     "i": "people",
-    "t": "pais, filho menor de 6 anos"
+    "t": "homens com filho menor de 6 anos"
    }
   ]
  },
@@ -1065,7 +1065,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "label": "comendo",
   "fig": "6 a 8 h",
   "sentence": "Um peixe-boi passa de seis a oito horas por dia pastando capim-marinho e outras plantas aquáticas.",
-  "note": "Do Serviço Nacional de Parques dos EUA (peixes-bois-das-Antilhas na Flórida) e do SeaWorld; nenhuma das páginas cita um estudo. O desenho é do peixe-boi-africano.",
+  "note": "Do Serviço Nacional de Parques dos EUA (peixes-boi-das-Antilhas na Flórida) e do SeaWorld; nenhuma das páginas cita um estudo. O desenho é do peixe-boi-africano.",
   "chips": [
    {
     "i": "eating",

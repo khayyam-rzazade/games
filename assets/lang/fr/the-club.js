@@ -2167,7 +2167,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "panthera": {
   "sign": "Le genre Panthera",
   "stamp": "Genre Panthera",
-  "fact": "Le genre Panthera compte cinq espèces vivantes : le jaguar, le léopard, le lion, la panthère des neiges et le tigre. Le puma, lui, n’en fait pas partie.",
+  "fact": "Le genre Panthera compte cinq espèces vivantes : le jaguar, le léopard, le lion, la panthère des neiges et le tigre. Le puma, parfois appelé panthère, n’en fait pas partie.",
   "in": [
    "Tigre",
    "Jaguar",

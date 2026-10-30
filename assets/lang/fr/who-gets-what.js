@@ -171,7 +171,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "cocoa-chain": {
   "what": "Une tonne de cacao, de la ferme au magasin",
   "where": "le monde",
-  "fact": "Suis une tonne de cacao de la ferme au rayon : les planteurs finissent avec environ sept dollars sur cent.",
+  "fact": "Suis une tonne de cacao de la ferme au rayon : les planteurs se retrouvent avec environ sept dollars sur cent.",
   "note": "La valeur ajoutée à chaque étape de la filière, et non le partage du prix d’un seul produit en rayon. « Transport » regroupe les camions à l’intérieur du pays, les taxes de l’office de commercialisation, le fret maritime, le port et les négociants ; « Fabricants » regroupe le broyage (7,6) et la fabrication (35,2) ; « Magasins » regroupe le détaillant et les taxes en caisse.",
   "slices": [
    {
@@ -1094,7 +1094,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
    },
    {
     "k": "ship",
-    "n": "Imports",
+    "n": "Importations",
     "p": 5.1
    },
    {
@@ -2164,11 +2164,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "what": "Un litre d’essence",
   "where": "les Philippines",
   "fact": "À Manille, fin mars 2018, la part de l’industrie pétrolière sur un litre d’essence était plus grande que les accises et la TVA réunies.",
-  "note": "L’analyse du ministère de l’Énergie sur le prix à la pompe à Manille fin mars 2018. « Imports » est l’essence importée avec son fret (le prix de Singapour, 74,25 dollars américains le baril, plus 2 dollars américains de fret, à 52,08 pesos pour un dollar). « Industrie » est la « part de l’industrie » selon le ministère, ce qui reste aux compagnies pétrolières et aux stations. Les accises étaient de 7 pesos le litre sous la réforme fiscale de 2018.",
+  "note": "L’analyse du ministère de l’Énergie sur le prix à la pompe à Manille fin mars 2018. « Importations » est l’essence importée avec son fret (le prix de Singapour, 74,25 dollars américains le baril, plus 2 dollars américains de fret, à 52,08 pesos pour un dollar). « Industrie » est la « part de l’industrie » selon le ministère, ce qui reste aux compagnies pétrolières et aux stations. Les accises étaient de 7 pesos le litre sous la réforme fiscale de 2018.",
   "slices": [
    {
     "k": "ship",
-    "n": "Imports",
+    "n": "Importations",
     "p": 46.6
    },
    {

@@ -134,7 +134,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 9/148 · `nightshades` · day 9 (12 Oct 2026), 157 (9 Mar 2027), 305 (4 Aug 2027), 453 (30 Dec 2027) … · every 148 days
 
-- `p.the-club.nightshades.sign` — Patlıcangiller ailesindendirler
+- `p.the-club.nightshades.sign` — Patlıcangillerdendirler
 - `p.the-club.nightshades.stamp` — Patlıcangiller
 - `p.the-club.nightshades.in1` — Domates
 - `p.the-club.nightshades.in2` — Patates
@@ -189,10 +189,10 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.japanese-words.in3` — Emoji
 - `p.the-club.japanese-words.out1` — Kung fu
 - `p.the-club.japanese-words.out2` — Yoga
-- `p.the-club.japanese-words.door1` — Taykun
-- `p.the-club.japanese-words.door2` — Kimçi
+- `p.the-club.japanese-words.door1` — Tycoon
+- `p.the-club.japanese-words.door2` — Kimchi
 - `p.the-club.japanese-words.door3` — Origami
-- `p.the-club.japanese-words.door4` — Ketçap
+- `p.the-club.japanese-words.door4` — Ketchup
 - `p.the-club.japanese-words.door5` — Honcho
 - `p.the-club.japanese-words.fact` — İngilizce bu sözcüklerin her birini Japoncadan aldı. “Tycoon” (taykun), bir zamanlar şogun için kullanılan bir unvan olan taikun'dan gelir.
 
@@ -904,16 +904,16 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.the-club.arabic-words.sign` — İngilizceye Arapçadan geçen sözcüklerdir
 - `p.the-club.arabic-words.stamp` — Arapçadan
-- `p.the-club.arabic-words.in1` — Cebir
-- `p.the-club.arabic-words.in2` — Kahve
-- `p.the-club.arabic-words.in3` — Şeker
-- `p.the-club.arabic-words.out1` — Çay
-- `p.the-club.arabic-words.out2` — Çikolata
-- `p.the-club.arabic-words.door1` — Pamuk
+- `p.the-club.arabic-words.in1` — Algebra
+- `p.the-club.arabic-words.in2` — Coffee
+- `p.the-club.arabic-words.in3` — Sugar
+- `p.the-club.arabic-words.out1` — Tea
+- `p.the-club.arabic-words.out2` — Chocolate
+- `p.the-club.arabic-words.door1` — Cotton
 - `p.the-club.arabic-words.door2` — Robot
-- `p.the-club.arabic-words.door3` — Kanepe
-- `p.the-club.arabic-words.door4` — Şampuan
-- `p.the-club.arabic-words.door5` — Sıfır
+- `p.the-club.arabic-words.door3` — Sofa
+- `p.the-club.arabic-words.door4` — Shampoo
+- `p.the-club.arabic-words.door5` — Zero
 - `p.the-club.arabic-words.fact` — Her biri İngilizceye, başka diller üzerinden Arapçadan ulaştı. “Algebra” (cebir), yaklaşık 1.200 yıl önce yazılmış bir kitabın adındaki al-jabr sözcüğünden gelir.
 
 #### 58/148 · `capitals` · day 58 (30 Nov 2026), 206 (27 Apr 2027), 354 (22 Sep 2027), 502 (17 Feb 2028) … · every 148 days
@@ -1325,7 +1325,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.winter-olympics.in3` — Buz hokeyi
 - `p.the-club.winter-olympics.out1` — Golf
 - `p.the-club.winter-olympics.out2` — Ragbi
-- `p.the-club.winter-olympics.door1` — Luge
+- `p.the-club.winter-olympics.door1` — Kızak
 - `p.the-club.winter-olympics.door2` — Sörf
 - `p.the-club.winter-olympics.door3` — Kayakla atlama
 - `p.the-club.winter-olympics.door4` — Su topu
@@ -2171,14 +2171,14 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.snakes.in1` — Kobra
 - `p.the-club.snakes.in2` — Piton
 - `p.the-club.snakes.in3` — Çıngıraklı yılan
-- `p.the-club.snakes.out1` — Kör kertenkele
+- `p.the-club.snakes.out1` — Yılan kertenkele
 - `p.the-club.snakes.out2` — Yılan balığı
 - `p.the-club.snakes.door1` — Anakonda
 - `p.the-club.snakes.door2` — Caecilian
 - `p.the-club.snakes.door3` — Kara mamba
 - `p.the-club.snakes.door4` — Komodo ejderi
 - `p.the-club.snakes.door5` — Engerek
-- `p.the-club.snakes.fact` — Hepsi yılandır. Kör kertenkele bacaksız bir kertenkeledir, caecilian ise bir iki yaşamlıdır.
+- `p.the-club.snakes.fact` — Hepsi yılandır. Yılan kertenkele bacaksız bir kertenkeledir, caecilian ise bir iki yaşamlıdır.
 
 #### 137/148 · `grimm` · day 137 (17 Feb 2027), 285 (15 Jul 2027), 433 (10 Dec 2027), 581 (6 May 2028) … · every 148 days
 
@@ -2374,22 +2374,24 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.the-club.arabic-words.sign — İngilizceye Arapçadan geçen sözcüklerdir · second option: Leave the ten items in English (Algebra, Coffee, Sugar, Tea, Chocolate, Cotton, Robot, Sofa, Shampoo, Zero) · The rule is about the English word's history, not about the thing. I kept who is in and out exactly as in English and changed the sign to say "into English", but a few Turkish words (Pamuk, Kanepe, Robot) have a different origin of their own, so the puzzle may read oddly. Same for hindi-words, dutch-words and japanese-words.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.the-club.arabic-words.sign — İngilizceye Arapçadan geçen sözcüklerdir · second option: Leave the ten items in English (Algebra, Coffee, Sugar, Tea, Chocolate, Cotton, Robot, Sofa, Shampoo, Zero) · The rule is about the English word's history, not about the thing. I kept who is in and out exactly as in English and changed the sign to say "into English", but a few Turkish words (Pamuk, Kanepe, Robot) have a different origin of their own, so the puzzle may read oddly. Same for hindi-words, dutch-words and japanese-words. **Settled 30 Oct 2026: changed, 9 lines (arabic-words.in1, arabic-words.in2, arabic-words.in3, arabic-words.out1, arabic-words.out2, arabic-words.door1, …).**
 - p.the-club.hindi-words.sign — İngilizceye Hintçeden geçen sözcüklerdir · settled 30 Oct 2026: the ten names are the English words (Shampoo, Pyjamas, Jungle, Tsunami, Safari, Bangle, Ketchup, Thug, Igloo, Loot), as in the Portuguese, Spanish and French docs. The Turkish words (Bilezik, Haydut, Yağma, Cangıl) did not come from Hindi, so the puzzle no longer matched its rule.
 - p.the-club.dutch-words.sign — İngilizceye Hollandacadan geçen sözcüklerdir · settled 30 Oct 2026: the ten names are the English words (Cookie, Boss, Waffle, Hamburger, Kindergarten, Brandy, Pretzel, Easel, Bagel, Landscape), as in the Portuguese, Spanish and French docs; Kurabiye, Patron, Şövale and Manzara are not Dutch in Turkish.
-- p.the-club.japanese-words.sign — İngilizceye Japoncadan geçen sözcüklerdir · second option: Japoncadan gelen sözcüklerdir (without "İngilizceye") · Tsunami, Karaoke and Emoji came into Turkish from Japanese as well, but Taykun and Honcho are English borrowings first, so I kept "into English" like the other three word-origin puzzles.
-- p.the-club.snakes.out1 — Kör kertenkele · second option: Ayaksız kertenkele · English "Slow worm" (Anguis fragilis). I could not confirm a standard Turkish common name; Kör kertenkele is the closest I know, but I am not sure it is the usual name.
-- p.the-club.snakes.door2 — Caecilian · second option: Apoda (older name of the group) · English "Caecilian". I found no everyday Turkish word, so I kept the international name. It is just as obscure in English, so the puzzle should still be fair.
-- p.the-club.amphibians.door5 — Caecilian · second option: Apoda (older name of the group) · Same word as in snakes: kept the international name Caecilian.
-- p.the-club.snakes.out2 — Yılan balığı · second option: none, it is the standard word · "Yılan balığı" is the normal Turkish word for eel, but it has the word "snake" in it, so it looks like a snake. In English "Eel" does not. I kept the usual word; say if you want a less obvious fish.
-- p.the-club.arachnids.door5 — Otbiçen · second option: Otbiçen örümcek · English "Harvestman". Otbiçen is the name used in Turkish zoology papers (Bayram et al.); most players will not know it, as in English.
-- p.the-club.arachnids.door2 — Çıyan · second option: Swap with Kırkayak (door4) · Çıyan = centipede and Kırkayak = millipede is the split I used in every game. In daily speech Turkish people use kırkayak for both, so the two doors may be mixed up.
-- p.the-club.daisy-family.sign — Bileşikgillerdendirler · second option: Papatyagillerdendirler · English "The daisy family". Papatya is Turkish for chamomile (door1), so "Papatyagiller" would give the answer away. I used the botanical name Bileşikgiller, which is what Turkish school books call it.
-- p.the-club.gourd-family.door1 — Kabak · second option: Zucchini · English "Courgette". Turkish for courgette is Kabak, which shares its root with the sign Kabakgiller, so this door is easier than in English. Zucchini is also common in shops, but Kabak is the natural word.
-- p.the-club.nightshades.sign — Patlıcangiller ailesindendirler · second option: Solanaceae (Latin family name) · Patlıcangiller is the normal Turkish name of the family, but it contains Patlıcan, one of the items. The English sign "nightshade" does not.
-- p.the-club.grass-family.out2 — Karabuğday · second option: none · English "Buckwheat". Karabuğday keeps the same trap as in English: the name says wheat but it is not a grass, and the sign Buğdaygiller makes it look even more like a member. Intended.
-- p.the-club.greenhouse.door3 — Diazot monoksit · second option: Azot protoksit · English "Nitrous oxide". Both names are used in Turkish; Diazot monoksit is the systematic one, Azot protoksit the older one.
-- p.the-club.winter-olympics.door1 — Luge · second option: Kızak · English "Luge". Turkish sports pages usually write Luge; Kızak is the general word for a sled, so it would also cover bobsleigh and skeleton.
+- p.the-club.japanese-words.sign — İngilizceye Japoncadan geçen sözcüklerdir · second option: Japoncadan gelen sözcüklerdir (without "İngilizceye") · Tsunami, Karaoke and Emoji came into Turkish from Japanese as well, but Taykun and Honcho are English borrowings first, so I kept "into English" like the other three word-origin puzzles. **Settled 30 Oct 2026: changed, 3 lines (japanese-words.door1, japanese-words.door2, japanese-words.door4).**
+- p.the-club.snakes.out1 — Kör kertenkele · second option: Ayaksız kertenkele · English "Slow worm" (Anguis fragilis). I could not confirm a standard Turkish common name; Kör kertenkele is the closest I know, but I am not sure it is the usual name. **Settled 30 Oct 2026: changed, 2 lines (snakes.out1, snakes.fact).**
+- p.the-club.snakes.door2 — Caecilian · second option: Apoda (older name of the group) · English "Caecilian". I found no everyday Turkish word, so I kept the international name. It is just as obscure in English, so the puzzle should still be fair. **Settled 30 Oct 2026: kept.**
+- p.the-club.amphibians.door5 — Caecilian · second option: Apoda (older name of the group) · Same word as in snakes: kept the international name Caecilian. **Settled 30 Oct 2026: kept.**
+- p.the-club.snakes.out2 — Yılan balığı · second option: none, it is the standard word · "Yılan balığı" is the normal Turkish word for eel, but it has the word "snake" in it, so it looks like a snake. In English "Eel" does not. I kept the usual word; say if you want a less obvious fish. **Settled 30 Oct 2026: kept.**
+- p.the-club.arachnids.door5 — Otbiçen · second option: Otbiçen örümcek · English "Harvestman". Otbiçen is the name used in Turkish zoology papers (Bayram et al.); most players will not know it, as in English. **Settled 30 Oct 2026: kept.**
+- p.the-club.arachnids.door2 — Çıyan · second option: Swap with Kırkayak (door4) · Çıyan = centipede and Kırkayak = millipede is the split I used in every game. In daily speech Turkish people use kırkayak for both, so the two doors may be mixed up. **Settled 30 Oct 2026: kept.**
+- p.the-club.daisy-family.sign — Bileşikgillerdendirler · second option: Papatyagillerdendirler · English "The daisy family". Papatya is Turkish for chamomile (door1), so "Papatyagiller" would give the answer away. I used the botanical name Bileşikgiller, which is what Turkish school books call it. **Settled 30 Oct 2026: kept.**
+- p.the-club.gourd-family.door1 — Kabak · second option: Zucchini · English "Courgette". Turkish for courgette is Kabak, which shares its root with the sign Kabakgiller, so this door is easier than in English. Zucchini is also common in shops, but Kabak is the natural word. **Settled 30 Oct 2026: kept.**
+- p.the-club.nightshades.sign — Patlıcangiller ailesindendirler · second option: Solanaceae (Latin family name) · Patlıcangiller is the normal Turkish name of the family, but it contains Patlıcan, one of the items. The English sign "nightshade" does not. **Settled 30 Oct 2026: changed to “Patlıcangillerdendirler”.**
+- p.the-club.grass-family.out2 — Karabuğday · second option: none · English "Buckwheat". Karabuğday keeps the same trap as in English: the name says wheat but it is not a grass, and the sign Buğdaygiller makes it look even more like a member. Intended. **Settled 30 Oct 2026: kept.**
+- p.the-club.greenhouse.door3 — Diazot monoksit · second option: Azot protoksit · English "Nitrous oxide". Both names are used in Turkish; Diazot monoksit is the systematic one, Azot protoksit the older one. **Settled 30 Oct 2026: kept.**
+- p.the-club.winter-olympics.door1 — Luge · second option: Kızak · English "Luge". Turkish sports pages usually write Luge; Kızak is the general word for a sled, so it would also cover bobsleigh and skeleton. **Settled 30 Oct 2026: changed to “Kızak”.**
 - p.the-club.bears.door4 — Kutup porsuğu (also weasel-family.door1) · settled 30 Oct 2026: TÜBİTAK's Kutup Ansiklopedisi names Gulo gulo "Kutup porsuğu" (İng. wolverine), a member of the weasel family; the English word stood out among the Turkish names.
 - p.the-club.alloys.door1 — Lehim · settled 30 Oct 2026: "Pewter" was left in English (it plays on 31 Oct). Turkish has no short word for pewter, and "kalay-kurşun alaşımı" would say the rule, so the door gets another alloy: lehim (Küre Ansiklopedisi: "kalay ve kurşun alaşımlarının genel adı"), still In, as pewter was.
 - p.the-club.former-capitals.door1 — St. Petersburg · settled 30 Oct 2026: the way Turkish media write the city (Euronews Türkçe, Milliyet); the English "Saint Petersburg" was left.

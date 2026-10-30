@@ -814,11 +814,13 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.out-of-24.cow-lying.label — "stare sdraiata" (feminine, for the cow); second option "stare sdraiati". The chip repeats the label, so I matched the animal.
-- p.out-of-24.jp-fathers-housework.chip2 — "padri, figlio sotto i 6 anni"; second option "padri con figli sotto i 6 anni". The English is singular and short; the chip is narrow.
-- p.out-of-24.owl-monkey-sleep.face — "Scimmia notturna"; second option "Aoto" (the genus name, rarely used). "Scimmia notturna" is the common Italian name.
-- p.out-of-24.tree-shrew-sleep.face — "Tupaia"; second option "Toporagno arboricolo". "Tupaia" is the usual name in Italian; the note keeps the English point that it is not a true shrew.
-- p.out-of-24.rhesus-sleep.face — "Macaco rhesus"; second option "Macaco reso". Both are used; "rhesus" is the more recognised.
-- p.out-of-24.orangutan-sleep.face — "Orango"; second option "Orangutan". Italian dictionaries prefer "orango".
-- p.out-of-24.penguin-microsleep.sentence — "pinguini dal sottogola" for chinstrap penguins; second option "pinguini antartici" (also used, but easy to mistake for any penguin of Antarctica).
-- p.out-of-24.platypus-sleep.note — Wikipedia's quote is translated, not kept in English: "si dice arrivi “fino a 14 ore”". Tell me if you want the quotes handled differently.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.out-of-24.cow-lying.label — "stare sdraiata" (feminine, for the cow); second option "stare sdraiati". The chip repeats the label, so I matched the animal. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.jp-fathers-housework.chip2 — "padri, figlio sotto i 6 anni"; second option "padri con figli sotto i 6 anni". The English is singular and short; the chip is narrow. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.owl-monkey-sleep.face — "Scimmia notturna"; second option "Aoto" (the genus name, rarely used). "Scimmia notturna" is the common Italian name. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.tree-shrew-sleep.face — "Tupaia"; second option "Toporagno arboricolo". "Tupaia" is the usual name in Italian; the note keeps the English point that it is not a true shrew. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.rhesus-sleep.face — "Macaco rhesus"; second option "Macaco reso". Both are used; "rhesus" is the more recognised. **Settled 30 Oct 2026: kept.**
+- p.out-of-24.orangutan-sleep.face — "Orango"; second option "Orangutan". Italian dictionaries prefer "orango". **Settled 30 Oct 2026: kept.**
+- p.out-of-24.penguin-microsleep.sentence — "pinguini dal sottogola" for chinstrap penguins; second option "pinguini antartici" (also used, but easy to mistake for any penguin of Antarctica). **Settled 30 Oct 2026: kept.**
+- p.out-of-24.platypus-sleep.note — Wikipedia's quote is translated, not kept in English: "si dice arrivi “fino a 14 ore”". Tell me if you want the quotes handled differently. **Settled 30 Oct 2026: kept.**

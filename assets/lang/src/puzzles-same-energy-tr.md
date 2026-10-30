@@ -1182,6 +1182,8 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.same-energy.chocolate-bread.a_name — Bir tablet bitter çikolata · second option: Bir bitter çikolata · "tablet" is what a 100 g bar is called in Turkish shops; the first batch's small bar is just "Küçük bir bitter çikolata", so the plain form would match it more closely.
-- p.same-energy.orange-carton-milk.a_name — Bir paket portakal suyu · second option: Bir kutu portakal suyu · "paket" follows the first batch's "Bir paket elma suyu"; "kutu" is also used for cartons but is already the word for the cola can.
-- p.same-energy.egg-cola.a_name — Bir haşlanmış yumurta · second option: Bir yumurta · "haşlanmış" keeps the English "boiled" so the portion matches the unit's name; the short form reads lighter.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.same-energy.chocolate-bread.a_name — Bir tablet bitter çikolata · second option: Bir bitter çikolata · "tablet" is what a 100 g bar is called in Turkish shops; the first batch's small bar is just "Küçük bir bitter çikolata", so the plain form would match it more closely. **Settled 30 Oct 2026: kept.**
+- p.same-energy.orange-carton-milk.a_name — Bir paket portakal suyu · second option: Bir kutu portakal suyu · "paket" follows the first batch's "Bir paket elma suyu"; "kutu" is also used for cartons but is already the word for the cola can. **Settled 30 Oct 2026: kept.**
+- p.same-energy.egg-cola.a_name — Bir haşlanmış yumurta · second option: Bir yumurta · "haşlanmış" keeps the English "boiled" so the portion matches the unit's name; the short form reads lighter. **Settled 30 Oct 2026: kept.**

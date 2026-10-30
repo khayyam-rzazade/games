@@ -978,7 +978,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.panthera.door3` — Lion
 - `p.the-club.panthera.door4` — Panthère nébuleuse
 - `p.the-club.panthera.door5` — Ocelot
-- `p.the-club.panthera.fact` — Le genre Panthera compte cinq espèces vivantes : le jaguar, le léopard, le lion, la panthère des neiges et le tigre. Le puma, lui, n’en fait pas partie.
+- `p.the-club.panthera.fact` — Le genre Panthera compte cinq espèces vivantes : le jaguar, le léopard, le lion, la panthère des neiges et le tigre. Le puma, parfois appelé panthère, n’en fait pas partie.
 
 #### 62/148 · `nobel` · day 62 (4 Dec 2026), 210 (1 May 2027), 358 (26 Sep 2027), 506 (21 Feb 2028) … · every 148 days
 
@@ -2374,38 +2374,40 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 ## U. Doubts for Khayyam
 
-- p.the-club.apes.sign — Ce sont des singes sans queue — second option: Ce sont des grands singes; in French "grands singes" usually leaves out the gibbon, while "sans queue" fits all six members (a macaque or a mandrill may still show a short tail, as in the English).
-- p.the-club.cabbage.in3 — Chou-fleur — second option: none; "chou" is in Chou, Chou-fleur, Choux de Bruxelles and Chou-rave, which almost spells the rule (wild cabbage) in French, but who is in cannot change; I used Kale for kale to limit it.
-- p.the-club.equator.in1 — Équateur — second option: Ecuador (Spanish spelling); the French name of the country is also the word for the equator, so it gives the rule away, but the country has to stay.
-- p.the-club.moons.in2 — Europe — second option: Europa; Europe is the French name of Jupiter's moon, but it may be read as the continent.
-- p.the-club.japanese-words.door5 — Honcho — second option: Hanchō; Tycoon and Honcho are English words from Japanese, not French ones, but who is in cannot change, so I kept them.
-- p.the-club.eponyms.stamp — Éponymes — second option: Noms de personnes; éponyme is the exact word but a 12-year-old may not know it.
-- p.the-club.former-capitals.door2 — Bombay — second option: Mumbai; Bombay is still the common name in French.
-- p.the-club.citrus.in3 — Pamplemousse — second option: Pomélo for the grapefruit; in French shops pamplemousse is the common grapefruit and pomélo the big pomelo, so I used Pamplemousse for grapefruit and Pomélo for pomelo.
-- p.the-club.panthera.fact — Le genre Panthera compte cinq espèces vivantes … Le puma, lui, n'en fait pas partie. — second option: keep "sometimes called a panther"; in French panthère is the leopard, so that remark would be wrong and I left it out.
-- p.the-club.flightless.door2 — Dindon sauvage — second option: Dinde sauvage; dindon is the usual name of the wild bird.
-- p.the-club.underground.fact — le gynophore — second option: leave the word out ("une petite tige s'enfonce dans le sol"); the English gives the everyday name "peg", the French botanical word is a bit hard for 12.
-- p.the-club.below-sea-level.stamp — Sous le niveau de la mer — second option: Sous le niveau marin; the English stamp is the sign itself, so I kept a plain phrase.
-- p.the-club.roman-built.in2 — Panthéon de Rome — second option: Panthéon; plain "Panthéon" would be read as the one in Paris, so I added "de Rome" (it gives a small hint to the rule).
-- p.the-club.grass-family.sign — La famille des graminées — second option: La famille des poacées; graminées is the word schools use.
-- p.the-club.china.door2 — Biscuit chinois — second option: Biscuit de fortune; "chinois" in the name makes the trap stronger in French, which suits this decoy.
-- p.the-club.latin-alphabet.sign — Ils s'écrivent en lettres latines — second option: Langues écrites en lettres latines; the items are masculine language names, so I used the plain pronoun.
-- p.the-club.eight-thousanders.stamp — Les 8 000 — second option: Huit-mille; climbers say "les 8 000".
-- p.the-club.dickens.in2 — Les Grandes Espérances — second option: De grandes espérances; both titles are in print.
-- p.the-club.igneous.sign — Ce sont des roches magmatiques — second option: Ce sont des roches ignées; magmatiques is the word school books use.
-- p.the-club.energy-units.door3 — BTU — second option: Unité thermique britannique; French speakers say BTU, and the long form is a lot longer than the other items.
-- p.the-club.mughals.sign — Des empereurs moghols — second option: Des empereurs mogols; "moghol" is the common spelling.
+All doubts below were settled on 30 Oct 2026 by Claude, on Khayyam's behalf; each one says how. New doubts go at the end.
+
+- p.the-club.apes.sign — Ce sont des singes sans queue — second option: Ce sont des grands singes; in French "grands singes" usually leaves out the gibbon, while "sans queue" fits all six members (a macaque or a mandrill may still show a short tail, as in the English). **Settled 30 Oct 2026: kept.**
+- p.the-club.cabbage.in3 — Chou-fleur — second option: none; "chou" is in Chou, Chou-fleur, Choux de Bruxelles and Chou-rave, which almost spells the rule (wild cabbage) in French, but who is in cannot change; I used Kale for kale to limit it. **Settled 30 Oct 2026: kept.**
+- p.the-club.equator.in1 — Équateur — second option: Ecuador (Spanish spelling); the French name of the country is also the word for the equator, so it gives the rule away, but the country has to stay. **Settled 30 Oct 2026: kept.**
+- p.the-club.moons.in2 — Europe — second option: Europa; Europe is the French name of Jupiter's moon, but it may be read as the continent. **Settled 30 Oct 2026: kept.**
+- p.the-club.japanese-words.door5 — Honcho — second option: Hanchō; Tycoon and Honcho are English words from Japanese, not French ones, but who is in cannot change, so I kept them. **Settled 30 Oct 2026: kept.**
+- p.the-club.eponyms.stamp — Éponymes — second option: Noms de personnes; éponyme is the exact word but a 12-year-old may not know it. **Settled 30 Oct 2026: kept.**
+- p.the-club.former-capitals.door2 — Bombay — second option: Mumbai; Bombay is still the common name in French. **Settled 30 Oct 2026: kept.**
+- p.the-club.citrus.in3 — Pamplemousse — second option: Pomélo for the grapefruit; in French shops pamplemousse is the common grapefruit and pomélo the big pomelo, so I used Pamplemousse for grapefruit and Pomélo for pomelo. **Settled 30 Oct 2026: kept.**
+- p.the-club.panthera.fact — Le genre Panthera compte cinq espèces vivantes … Le puma, lui, n'en fait pas partie. — second option: keep "sometimes called a panther"; in French panthère is the leopard, so that remark would be wrong and I left it out. **Settled 30 Oct 2026: changed to “Le genre Panthera compte cinq espèces vivantes : le jaguar, le léopard, le lion, la panthère des neiges et le tigre. Le puma, parfois appelé panthère, n’en fait pas partie.”.**
+- p.the-club.flightless.door2 — Dindon sauvage — second option: Dinde sauvage; dindon is the usual name of the wild bird. **Settled 30 Oct 2026: kept.**
+- p.the-club.underground.fact — le gynophore — second option: leave the word out ("une petite tige s'enfonce dans le sol"); the English gives the everyday name "peg", the French botanical word is a bit hard for 12. **Settled 30 Oct 2026: kept.**
+- p.the-club.below-sea-level.stamp — Sous le niveau de la mer — second option: Sous le niveau marin; the English stamp is the sign itself, so I kept a plain phrase. **Settled 30 Oct 2026: kept.**
+- p.the-club.roman-built.in2 — Panthéon de Rome — second option: Panthéon; plain "Panthéon" would be read as the one in Paris, so I added "de Rome" (it gives a small hint to the rule). **Settled 30 Oct 2026: kept.**
+- p.the-club.grass-family.sign — La famille des graminées — second option: La famille des poacées; graminées is the word schools use. **Settled 30 Oct 2026: kept.**
+- p.the-club.china.door2 — Biscuit chinois — second option: Biscuit de fortune; "chinois" in the name makes the trap stronger in French, which suits this decoy. **Settled 30 Oct 2026: kept.**
+- p.the-club.latin-alphabet.sign — Ils s'écrivent en lettres latines — second option: Langues écrites en lettres latines; the items are masculine language names, so I used the plain pronoun. **Settled 30 Oct 2026: kept.**
+- p.the-club.eight-thousanders.stamp — Les 8 000 — second option: Huit-mille; climbers say "les 8 000". **Settled 30 Oct 2026: kept.**
+- p.the-club.dickens.in2 — Les Grandes Espérances — second option: De grandes espérances; both titles are in print. **Settled 30 Oct 2026: kept.**
+- p.the-club.igneous.sign — Ce sont des roches magmatiques — second option: Ce sont des roches ignées; magmatiques is the word school books use. **Settled 30 Oct 2026: kept.**
+- p.the-club.energy-units.door3 — BTU — second option: Unité thermique britannique; French speakers say BTU, and the long form is a lot longer than the other items. **Settled 30 Oct 2026: kept.**
+- p.the-club.mughals.sign — Des empereurs moghols — second option: Des empereurs mogols; "moghol" is the common spelling. **Settled 30 Oct 2026: kept.**
 - p.the-club.hindi-words.door5 — Loot — settled 30 Oct 2026: the ten names are the English words and the sign says "Des mots anglais", as in dutch-words. Shampoing and Pyjama were French while Bangle, Thug and Loot stayed English, and those three are exactly the ones that get in, so the English words gave the answer away.
-- p.the-club.arachnids.door2 — Scolopendre — second option: Mille-pattes; French has one word for both centipede and millipede, so the centipede is the scolopendre and the millipede the mille-pattes.
-- p.the-club.decathlon.door4 — Steeple — second option: Steeple-chase; French athletics says "le steeple".
-- p.the-club.gourd-family.sign — La famille de la courge — second option: La famille des cucurbitacées; the plain word is easier at 12.
-- p.the-club.new-wonders.fact — Elles ont été choisies par un vote mondial en 2007, avec le Colisée. — second option: the same line without "avec le Colisée"; the English means the seven winners include the Colosseum.
-- p.the-club.fungi.in1 — Cèpe — second option: Champignon; the plain French word for "mushroom" is the rule itself ("Ce sont des champignons"), so I picked a mushroom that does not give it away.
-- p.the-club.snakes.in3 — Crotale — second option: Serpent à sonnette; that name contains "serpent", which is the rule, so I used the other French name.
-- p.the-club.dutch-words.sign — Des mots anglais venus du néerlandais — second option: Des mots venus du néerlandais; the items are English words (cookie, boss, waffle, easel, landscape), so I said "anglais"; a French player may not know waffle, easel or landscape, but who is in cannot change.
-- p.the-club.grimm.door1 — Le Nain Tracassin — second option: Rumpelstilzchen; Le Nain Tracassin is the title French books use (checked in French library catalogues).
-- p.the-club.grimm.door3 — Le Roi Grenouille — second option: Le Prince grenouille; both are in French books, Le Roi Grenouille ou Henri de Fer is the full title.
-- p.the-club.cashew-family.sign — La famille de la noix de cajou — second option: La famille des anacardiacées; the plain version is easier at 12.
-- p.the-club.own-right.stamp — Reines régnantes — second option: De plein droit; "reine régnante" is exact, but Cléopâtre and Catherine la Grande are also queens regnant, so it fits.
-- p.the-club.climacteric.stamp — Mûrissent après cueillette — second option: Après cueillette; several French stamps (also Sous le niveau de la mer, Oiseaux non volants, Venus des Amériques) are longer than the English "one or two words", so shorten them if the stamp does not have room.
+- p.the-club.arachnids.door2 — Scolopendre — second option: Mille-pattes; French has one word for both centipede and millipede, so the centipede is the scolopendre and the millipede the mille-pattes. **Settled 30 Oct 2026: kept.**
+- p.the-club.decathlon.door4 — Steeple — second option: Steeple-chase; French athletics says "le steeple". **Settled 30 Oct 2026: kept.**
+- p.the-club.gourd-family.sign — La famille de la courge — second option: La famille des cucurbitacées; the plain word is easier at 12. **Settled 30 Oct 2026: kept.**
+- p.the-club.new-wonders.fact — Elles ont été choisies par un vote mondial en 2007, avec le Colisée. — second option: the same line without "avec le Colisée"; the English means the seven winners include the Colosseum. **Settled 30 Oct 2026: kept.**
+- p.the-club.fungi.in1 — Cèpe — second option: Champignon; the plain French word for "mushroom" is the rule itself ("Ce sont des champignons"), so I picked a mushroom that does not give it away. **Settled 30 Oct 2026: kept.**
+- p.the-club.snakes.in3 — Crotale — second option: Serpent à sonnette; that name contains "serpent", which is the rule, so I used the other French name. **Settled 30 Oct 2026: kept.**
+- p.the-club.dutch-words.sign — Des mots anglais venus du néerlandais — second option: Des mots venus du néerlandais; the items are English words (cookie, boss, waffle, easel, landscape), so I said "anglais"; a French player may not know waffle, easel or landscape, but who is in cannot change. **Settled 30 Oct 2026: kept.**
+- p.the-club.grimm.door1 — Le Nain Tracassin — second option: Rumpelstilzchen; Le Nain Tracassin is the title French books use (checked in French library catalogues). **Settled 30 Oct 2026: kept.**
+- p.the-club.grimm.door3 — Le Roi Grenouille — second option: Le Prince grenouille; both are in French books, Le Roi Grenouille ou Henri de Fer is the full title. **Settled 30 Oct 2026: kept.**
+- p.the-club.cashew-family.sign — La famille de la noix de cajou — second option: La famille des anacardiacées; the plain version is easier at 12. **Settled 30 Oct 2026: kept.**
+- p.the-club.own-right.stamp — Reines régnantes — second option: De plein droit; "reine régnante" is exact, but Cléopâtre and Catherine la Grande are also queens regnant, so it fits. **Settled 30 Oct 2026: kept.**
+- p.the-club.climacteric.stamp — Mûrissent après cueillette — second option: Après cueillette; several French stamps (also Sous le niveau de la mer, Oiseaux non volants, Venus des Amériques) are longer than the English "one or two words", so shorten them if the stamp does not have room. **Settled 30 Oct 2026: kept.**
 - p.the-club.alloys.door1 — Fonte — settled 30 Oct 2026: "Peltre" is Spanish. French says "étain" for pewter, but door 5 is the metal tin (Étain, not in), so the door gets another alloy: fonte (Larousse: "alliage de fer et de carbone"), still In, as pewter was, and a fair trap next to Fer.
