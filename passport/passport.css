@@ -127,9 +127,11 @@
 .pp-fin-stamp .pp-stamp { flex: none; width: 74px; }
 .pp-fin-stamp p { margin: 0; font-weight: 700; line-height: 1.25; }
 .pp-fin-stamp small { display: block; margin-top: 2px; color: var(--soft); font-weight: 600; font-size: 0.86rem; }
-.fin-sheet .pp-share { margin-top: 14px; display: flex; gap: 10px; }
-.fin-sheet .pp-share .btn { min-height: 54px; }
+.fin-sheet .pp-share { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+.fin-sheet .pp-share .btn { min-height: 54px; min-width: 0; padding: 0 18px; flex: 1 1 auto; }   /* 30 Oct 2026: Portuguese "Ver de novo" stuck out 24px at 320px; the two share the line, or take a line each */
 .pp-more { margin-top: 14px; }
+
+@media (max-width: 340px) { .fin-sheet .pp-share .btn { font-size: 1rem; padding: 0 14px; } }   /* so "Compartilhar" and "Ver de novo" share one line at 320px */
 
 /* a small screen: everything a little tighter so the map keeps its room */
 @media (max-height: 40rem) {

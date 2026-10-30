@@ -707,6 +707,14 @@
       if (s - 2 < floor) return { lines: lines, size: s, fits: false };
     }
   }
+  /* a line that has to fit the card's width: the largest size, down to a floor, at which it does (30 Oct 2026: the French and
+     Portuguese closing lines and titles ran past the edge at one fixed size). Leaves x.font set. */
+  function fitFont(x, text, weight, size, floor, maxW, family) {
+    var s = size;
+    x.font = weight + " " + s + "px " + family;
+    while (x.measureText(text).width > maxW && s > floor) { s -= 2; x.font = weight + " " + s + "px " + family; }
+    return s;
+  }
   function drawCard(y) {
     var W = 1080, H = 1350, MG = 76, INK = "#A55200";
     var c = document.createElement("canvas");
@@ -740,22 +748,27 @@
     x.fillStyle = "#fff"; x.font = "800 70px " + FD; x.fillText("?", rx + box - 26, top + 30);
     x.textBaseline = "alphabetic";
 
-    var q1 = wrap(x, q.a.name, "800", 74, FD, W - 2 * MG, 1, 50);
+    /* the food's name: one line if it fits at a good size, else two (30 Oct 2026: "Una cucharada de mantequilla de" was cut off) */
+    var q1 = wrap(x, q.a.name, "800", 74, FD, W - 2 * MG, 1, 54);
+    if (!q1.fits) q1 = wrap(x, q.a.name, "800", 64, FD, W - 2 * MG, 2, 44);
     fits = fits && q1.fits;
     x.font = "800 " + q1.size + "px " + FD; x.fillStyle = "#fff";
-    x.fillText(q1.lines[0], W / 2, top + box + 112);
+    q1.lines.forEach(function (l, i) { x.fillText(l, W / 2, top + box + 112 + i * q1.size * 1.12); });
+    var more = (q1.lines.length - 1) * q1.size * 1.12;
     var q2 = wrap(x, T("energy.eq_how_many", { many: B.many }), "700", 58, FD, W - 2 * MG, 1, 38);
+    if (!q2.fits) q2 = wrap(x, T("energy.eq_how_many", { many: B.many }), "700", 54, FD, W - 2 * MG, 2, 38);
     fits = fits && q2.fits;
     x.font = "700 " + q2.size + "px " + FD; x.fillStyle = "rgba(255, 255, 255, .9)";
-    x.fillText(q2.lines[0], W / 2, top + box + 112 + 84);
+    q2.lines.forEach(function (l, i) { x.fillText(l, W / 2, top + box + 112 + 84 + more + i * q2.size * 1.12); });
+    more += (q2.lines.length - 1) * q2.size * 1.12;
 
-    var vy = top + box + 112 + 84 + 190;
+    var vy = top + box + 112 + 84 + 190 + more;
     var head = scoreText(y), hs = 112;
     x.font = "800 " + hs + "px " + FD; x.fillStyle = "#fff";
     while (x.measureText(head).width > W - 2 * MG && hs > 60) { hs -= 2; x.font = "800 " + hs + "px " + FD; }
     x.fillText(head, W / 2, vy);
 
-    x.font = "800 70px " + FD;
+    fitFont(x, T("every.beat_that"), "800", 70, 44, W - 2 * MG, FD);
     x.fillText(T("every.beat_that"), W / 2, 1204);
     var where = TO.address();
     if (where) {

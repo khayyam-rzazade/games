@@ -411,6 +411,14 @@
       if (s - 2 < floor) return { lines: lines, size: s, fits: false };
     }
   }
+  /* a line that has to fit the card's width: the largest size, down to a floor, at which it does (30 Oct 2026: the French and
+     Portuguese closing lines and titles ran past the edge at one fixed size). Leaves x.font set. */
+  function fitFont(x, text, weight, size, floor, maxW, family) {
+    var s = size;
+    x.font = weight + " " + s + "px " + family;
+    while (x.measureText(text).width > maxW && s > floor) { s -= 2; x.font = weight + " " + s + "px " + family; }
+    return s;
+  }
   function drawCard(r) {
     var W2 = 1080, H2 = 1350, MG = 76, BROWN = "#7A5034";
     var c = document.createElement("canvas");
@@ -437,7 +445,7 @@
     x.fillText(T("apart.day_header", { n: day }), W2 - MG, 118);
 
     x.textAlign = "left";
-    x.font = "800 100px " + FD;
+    fitFont(x, T("apart.where_falls"), "800", 100, 64, W2 - 2 * MG, FD);
     x.fillText(T("apart.where_falls"), MG - 4, 262);
 
     // the two ends, above the ruler
@@ -496,7 +504,7 @@
     x.fillStyle = TO.MISS; roundRect(x, MG, barY, Math.max(22, barW * frac), 22, 11); x.fill();
 
     x.fillStyle = "#ffffff"; x.textAlign = "left";
-    x.font = "800 72px " + FD;
+    fitFont(x, T("apart.get_closer"), "800", 72, 44, W2 - 2 * MG, FD);
     x.fillText(T("apart.get_closer"), MG - 3, 1204);
     var where = TO.address();
     if (where) {

@@ -1936,8 +1936,8 @@
          With the finish card up, only the card's own big buttons count (the page's lie under the scrim; the small
          chips and the text boxes do not) and the card's own scroll moves them. If nowhere above is free, it stays in its corner, in plain view. It is away only
          while one of the site's windows is open. */
-      var avoid = "#share, .eod-strip, .onward-all, #after .actions";
-      var onCard = ".fin-sheet .fin-next, .fin-sheet .fin-more, .fin-sheet .fin-stats, .fin-sheet .said-send, .fin-sheet .eod-strip, .fin-sheet .keep";
+      var avoid = "#share, .eod-strip, .eod-pride, .onward-all, #after .actions";
+      var onCard = ".fin-sheet .fin-next, .fin-sheet .fin-more, .fin-sheet .fin-stats, .fin-sheet .said-send, .fin-sheet .eod-strip, .fin-sheet .eod-pride, .fin-sheet .keep";
       var raf = 0, beat = 0;
       function duck() {
         raf = 0;

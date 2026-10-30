@@ -494,6 +494,25 @@
     var m = $("midnight");
     m.hidden = !run.done;
     m.textContent = T("midnight");
+    fitRow();
+  }
+  /* The row under the board (30 Oct 2026): hint, "Show the word" and the counter on one line when they fit. When a language's words
+     are too long for the phone (Italian "Guadagna un aiuto" beside "Mostra la parola", a 320px screen), the row wraps and, once
+     it has, the counter keeps the hint's line and the quiet give-up link takes a line of its own below, centred. Nothing is hidden
+     and nothing is pushed off the screen; measured on the page, so it holds for any words and any width. */
+  var rowBound = false;
+  function fitRow() {
+    var row = $("srow"), hint = $("hint"), left = $("left"), give = $("giveup");
+    if (!row || !hint || !left || !give) return;
+    if (!rowBound) {
+      rowBound = true;
+      window.addEventListener("resize", fitRow);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitRow);
+    }
+    if (row.hidden) return;
+    row.classList.remove("tight");
+    var edge = hint.getBoundingClientRect().bottom - 2;
+    if (left.getBoundingClientRect().top >= edge || give.getBoundingClientRect().top >= edge) row.classList.add("tight");
   }
 
   /* ------------------------------------------------------------------ the keyboard */

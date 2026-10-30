@@ -229,8 +229,13 @@
     $("small").textContent = small || "";
     $("small").setAttribute("y", two ? "162" : (cap ? "150" : "146"));
   }
-  function figLines(f) {                    // a long band goes on two lines: "12 h 06–" and "14 h 30"
-    if (f.length > 9 && f.indexOf("–") > 0) { var k = f.indexOf("–"); return [f.slice(0, k + 1), f.slice(k + 1)]; }
+  function figLines(f) {                    // a long band goes on two lines: "12 h 06–" and "14 h 30" (Portuguese: "12 h 06 a" and "14 h 30")
+    if (f.length > 9) {
+      var k = f.indexOf("–");
+      if (k > 0) return [f.slice(0, k + 1), f.slice(k + 1)];
+      var m = / a /.exec(f);                // Portuguese writes a band "12 h 06 a 14 h 30": until 30 Oct 2026 it stayed on one line and ran off the dial
+      if (m && m.index > 0) return [f.slice(0, m.index + 2), f.slice(m.index + 3)];
+    }
     return [f];
   }
 
@@ -652,13 +657,18 @@
 
     var nameY = cy + rr + 105;
     x.textAlign = "center"; x.fillStyle = "#fff";
-    var nm = q.face + " · " + chipsText(q), ns = 58;
+    var nm = q.face + " · " + chipsText(q), ns = 58, nmLines = [nm];
     x.font = "700 " + ns + "px " + FD;
-    while (x.measureText(nm).width > W - 2 * MG && ns > 30) { ns -= 2; x.font = "700 " + ns + "px " + FD; }
-    x.fillText(nm, W / 2, nameY);
+    while (x.measureText(nm).width > W - 2 * MG && ns > 44) { ns -= 2; x.font = "700 " + ns + "px " + FD; }
+    if (x.measureText(nm).width > W - 2 * MG) {          // still too long (Spanish, Portuguese, French: "Japón · tareas del hogar y cuidados, padres de niños menores de 6 años"): two lines
+      var nw = wrap(x, nm, "700", 54, FD, W - 2 * MG, 2, 40);
+      nmLines = nw.lines; ns = nw.size; fits = fits && nw.fits;
+      x.font = "700 " + ns + "px " + FD;
+    }
+    nmLines.forEach(function (l, i) { x.fillText(l, W / 2, nameY + i * ns * 1.12); });
 
     // how far off you were
-    var vy = nameY + 125;
+    var vy = nameY + 125 + (nmLines.length - 1) * ns * 1.12;
     var head = scoreText(y), hs = 108;
     x.font = "800 " + hs + "px " + FD;
     while (x.measureText(head).width > W - 2 * MG && hs > 60) { hs -= 2; x.font = "800 " + hs + "px " + FD; }

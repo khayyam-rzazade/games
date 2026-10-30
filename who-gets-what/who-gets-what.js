@@ -488,6 +488,14 @@
       if (s - 2 < floor) return { lines: lines, size: s, fits: false };
     }
   }
+  /* a line that has to fit the card's width: the largest size, down to a floor, at which it does (30 Oct 2026: the French and
+     Portuguese closing lines and titles ran past the edge at one fixed size). Leaves x.font set. */
+  function fitFont(x, text, weight, size, floor, maxW, family) {
+    var s = size;
+    x.font = weight + " " + s + "px " + family;
+    while (x.measureText(text).width > maxW && s > floor) { s -= 2; x.font = weight + " " + s + "px " + family; }
+    return s;
+  }
   function drawCard(y) {
     var W = 1080, H = 1350, MG = 76, GREEN = "#005E16";
     var c = document.createElement("canvas");
@@ -509,7 +517,7 @@
     x.textAlign = "right"; x.font = "600 40px " + F;
     x.fillText(T("gets.day_header", { n: day }), W - MG, 118);
 
-    x.textAlign = "left"; x.font = "800 104px " + FD;
+    x.textAlign = "left"; fitFont(x, T("gets.who_gets_what_q"), "800", 104, 64, W - 2 * MG, FD);
     x.fillText(T("gets.who_gets_what_q"), MG - 4, 268);
 
     // the thing and its price
@@ -520,14 +528,18 @@
     tw.lines.forEach(function (l, i) { x.font = "700 " + tw.size + "px " + FD; x.fillText(l, MG, ty + i * tw.size * 1.14); });
     var sub = ty + (tw.lines.length - 1) * tw.size * 1.14;
     x.font = "600 36px " + F; x.fillStyle = "rgba(255,255,255,.78)";
-    x.fillText(q.where + " · " + q.when, MG, sub + 52);
-    x.textAlign = "right"; x.font = "800 96px " + FD; x.fillStyle = "#fff";
-    var pr = money(q.price) + (q.unit ? "" : ""), ps = 96;
-    while (x.measureText(pr).width > 470 && ps > 48) { ps -= 2; x.font = "800 " + ps + "px " + FD; }
-    x.fillText(pr, W - MG, sub + 40);
+    var whereWhen = q.where + " · " + q.when;
+    x.fillText(whereWhen, MG, sub + 52);
+    /* the price sits at the right of the "where · when" line, below the name's last line, never on it (30 Oct 2026: it was drawn over the name);
+       it shrinks if that line is long */
+    var pr = money(q.price), ps = 88, priceRoom = Math.min(470, W - MG - (MG + x.measureText(whereWhen).width + 36));
+    x.textAlign = "right"; x.fillStyle = "#fff";
+    ps = fitFont(x, pr, "800", ps, 44, Math.max(priceRoom, 200), FD);
+    if (x.measureText(pr).width > priceRoom + 1) fits = false;
+    x.fillText(pr, W - MG, sub + 86);
 
     // the bars
-    var barY = sub + 118, barW = W - 2 * MG, barH = SPOIL ? 128 : 192;
+    var barY = sub + 126, barW = W - 2 * MG, barH = SPOIL ? 128 : 192;
     function drawBar(label, shares, labelled) {
       x.textAlign = "left"; x.font = "800 30px " + F; x.fillStyle = "rgba(255,255,255,.8)";
       x.fillText(LG.upper(label), MG, barY - 16);
@@ -541,10 +553,12 @@
         x.fillRect(at, barY, w, barH);
         if (labelled && w > 120) {
           x.fillStyle = "#083D13";
-          x.textAlign = "center"; x.font = "800 34px " + F;
+          x.textAlign = "center";
+          fitFont(x, q.slices[i].n, "800", 34, 20, w - 16, F);       // the name fits its slice (30 Oct 2026: "Produtores" lost its first letters)
           x.fillText(q.slices[i].n, at + w / 2, barY + barH / 2 - 4);
-          x.font = "700 31px " + F;
-          x.fillText(money(ofPrice(shares[i])), at + w / 2, barY + barH / 2 + 34);
+          var mny = money(ofPrice(shares[i]));
+          fitFont(x, mny, "700", 31, 20, w - 16, F);
+          x.fillText(mny, at + w / 2, barY + barH / 2 + 34);
         }
         at += w;
       }
@@ -566,7 +580,7 @@
     x.fillStyle = "rgba(255,255,255,.22)"; roundRect(x, MG, mb, W - 2 * MG, 22, 11); x.fill();
     x.fillStyle = TO.MISS; roundRect(x, MG, mb, Math.max(22, (W - 2 * MG) * frac), 22, 11); x.fill();
 
-    x.fillStyle = "#fff"; x.font = "800 72px " + FD;
+    x.fillStyle = "#fff"; fitFont(x, T("gets.split_better"), "800", 72, 44, W - 2 * MG, FD);
     x.fillText(T("gets.split_better"), MG - 3, 1204);
     var where = TO.address();
     if (where) {

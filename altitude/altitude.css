@@ -163,7 +163,10 @@
 .budget i.new { animation: cl-seg .5s ease both; }
 .budget.warm i:not(.u) { background: var(--warm); }
 @keyframes cl-seg { 0% { transform: scaleY(0); } 60% { transform: scaleY(2); } 100% { transform: scaleY(1); } }
-.srow { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; }
+.srow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 10px; margin-top: 8px; }
+.srow.tight .hintbtn { order: 1; }                                      /* see fitRow() in altitude.js */
+.srow.tight .left { order: 2; margin-left: auto; }
+.srow.tight .giveup { order: 3; flex: 1 0 100%; text-align: center; padding: 3px 2px 0; }
 .hintbtn { height: 40px; padding: 0 14px 0 11px; gap: 6px; font-size: 0.92rem; }
 .hintbtn svg { width: 17px; height: 17px; fill: var(--flag); flex: none; }
 .hintbtn b { font-weight: 800; color: var(--soft); }
@@ -174,7 +177,6 @@
   font-weight: 600; color: var(--soft); text-decoration: underline; text-decoration-thickness: 1.5px;
   text-underline-offset: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent; white-space: nowrap; }
 .giveup:active { opacity: .6; }
-@media (max-width: 340px) { .giveup { display: none; } }   /* a very small phone keeps the hint and the counter */
 .sheet.give h2 { margin: 0; }
 .give-sub { margin: 8px 0 0; color: var(--soft); font-size: 0.97rem; line-height: 1.35; }
 .give-acts { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
@@ -320,5 +322,6 @@
 @media (prefers-reduced-motion: reduce) {
   .t.flip, .row.win .t, .row.shake, .ladder i.pulse, .t.f.pop, .ladder i .fl.plant, .left b.bump, .budget i.new { animation: none; }
   .cheer.show, .cheer.show .step-head, .cheer.show .step-word i, .cheer.show .step-try, .cheer.show .step-stat { animation: none; opacity: 1; transform: none; }
+  .cheer.show { transform: translateX(-50%); }          /* 30 Oct 2026: without it the window lost its centring and sat half off the right edge */
   .sky, .sky .cloud, .sky .range { transition: none; }
 }

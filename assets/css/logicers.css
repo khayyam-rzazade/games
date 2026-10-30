@@ -243,7 +243,10 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 @media (prefers-reduced-motion: no-preference) { .today.today-open .today-go { animation: fin-pulse 2.4s ease-in-out 1.2s infinite; } }
 .today-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .today-label { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
-.today-count { color: var(--soft); font-size: 0.94rem; font-weight: 500; }
+.today-count { color: var(--soft); font-size: 0.94rem; font-weight: 500; white-space: nowrap; }
+.today-top.stack { flex-wrap: wrap; row-gap: 2px; }                      /* 30 Oct 2026: French ("Jeux joués : 0 sur 12") wrapped onto four lines at 320px */
+.today-top.stack .today-count { order: 3; flex-basis: 100%; }
+.today-top.stack .today-go { margin-left: auto; }
 .today-count b { color: var(--ink); font-weight: 800; }
 .pips { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 7px; margin-top: 14px; }
 .pips i { height: 12px; border-radius: 99px; background: var(--tint); transition: background-color .3s ease; }
@@ -1112,9 +1115,10 @@ body[data-g="hundred"] .panel.revealed { background: var(--c); box-shadow: 0 12p
 .eod-pride-wrap { margin-top: 10px; }
 .eod-pride { appearance: none; width: 100%; display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 14px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .eod-pride:active { transform: scale(0.99); }
-.eod-pride-text { flex: 1; min-width: 0; font-weight: 600; font-size: 0.93rem; line-height: 1.3; }
+.eod-pride { flex-wrap: wrap; }                                                            /* 30 Oct 2026: a long label drops under the line instead of squeezing it into a 65px column */
+.eod-pride-text { flex: 1 1 9rem; min-width: 0; font-weight: 600; font-size: 0.93rem; line-height: 1.3; }
 .eod-pride-text b { font-weight: 800; }
-.eod-pride-go { flex: none; color: var(--c, #2D4FC4); font-weight: 800; font-size: 0.86rem; white-space: nowrap; }
+.eod-pride-go { flex: none; margin-left: auto; color: var(--c, #2D4FC4); font-weight: 800; font-size: 0.86rem; white-space: nowrap; }
 .eod-pride-wrap .wd-note { margin-top: 6px; }
 .eod-strip { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
 .eod-cell, .keep-cell { appearance: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 62px; padding: 6px 4px; border: 2px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.8rem; line-height: 1.15; text-align: center; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -1224,7 +1228,7 @@ dialog.khay:not([open]) { display: none; }
 .fin-next-words { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05; }
 .fin-next-words small { font-family: var(--text, inherit); font-weight: 600; font-size: 0.78rem; letter-spacing: 0; opacity: .85; margin-top: 3px; }
 /* reactions (19 Oct 2026): three taps, one slim row, the same height before and after a tap */
-.rx { margin-top: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.rx { margin-top: 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .rx-b { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px; padding: 6px 4px; border: 0; border-radius: 14px; background: var(--tint, #E8EBF7); color: var(--ink); font: inherit; cursor: pointer; box-shadow: inset 0 0 0 1.5px transparent; -webkit-tap-highlight-color: transparent; }
 .rx-b:active { transform: scale(0.97); }
 .rx-b::before { content: ""; position: absolute; left: 0; bottom: 0; height: 100%; width: var(--p, 0%); background: color-mix(in srgb, var(--c, #2D4FC4) 20%, transparent); transition: width .5s ease; z-index: 0; }
@@ -1238,6 +1242,14 @@ dialog.khay:not([open]) { display: none; }
 .rx-n { font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; }
 .rx-low { font-size: 0.74rem; font-weight: 700; color: var(--soft); line-height: 1.1; display: inline-flex; align-items: center; gap: 2px; }
 .rx-low .wd-flag { font-size: 0.85rem; margin-right: 0; }
+@media (max-width: 360px) {                       /* 30 Oct 2026: at 320px the emoji and the % were cut at the chip's edges */
+  .rx-b { padding: 6px 2px; }
+  .rx-top { gap: 3px; }
+  .rx-top .rx-e { font-size: 1rem; }
+  .rx-globe { font-size: 0.7rem; margin-right: 0; }
+  .rx-n { font-size: 0.95rem; letter-spacing: -0.04em; }
+  .rx-low { font-size: 0.7rem; }
+}
 .rx-me { box-shadow: inset 0 0 0 1.5px var(--c, #2D4FC4); }
 .rx[data-wait] { opacity: .75; }
 .rx[data-done] .rx-b { cursor: default; }
@@ -1398,7 +1410,7 @@ dialog.khay:not([open]) { display: none; }
 /* the players' half: a small label and the line, cut after two lines (no photo on the home page) */
 .saidbox { padding: 8px 12px; }
 .saidbox .said-head { gap: 9px; align-items: center; min-width: 0; flex: 1; }
-.saidbox .said-headwords .gameroom-h { font-size: 0.64rem; line-height: 1.2; font-family: inherit; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.saidbox .said-headwords .gameroom-h { font-size: 0.64rem; line-height: 1.2; font-family: inherit; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--soft); min-width: 0; overflow: hidden; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }   /* 30 Oct 2026: two lines, not one cut after four words ("I GIOCATORI HA…") */
 .saidbox .said-headwords .gameroom-sub { display: none; }
 .saidbox .said-lines { margin: 2px 0 0; gap: 0; }
 .saidbox .said-line { padding: 0; background: none; font-size: 0.82rem; line-height: 1.25; gap: 4px; }
@@ -1411,8 +1423,13 @@ dialog.khay:not([open]) { display: none; }
 /* ---------- the home page's "Players said" box opens a window with the latest twelve (20 Oct 2026) ---------- */
 .saidbox[role="button"] { cursor: pointer; }
 .saidbox[role="button"]:focus-visible { outline: 3px solid var(--c, #2D4FC4); outline-offset: 2px; }
-.said-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.said-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
 .said-plus { flex: none; padding: 1px 7px; border-radius: 99px; background: var(--bg); color: var(--soft); font-size: 0.66rem; font-weight: 800; line-height: 1.4; }
+/* 30 Oct 2026: on the home page's slim box the "+N" sits on the box's corner, so the label can use the whole width (two lines, "O QUE OS JOGADORES DISSERAM…" is long) */
+.saidbox { position: relative; }
+.saidbox .said-plus { position: absolute; top: -7px; right: -4px; background: var(--card); color: var(--ink); box-shadow: 0 0 0 1.5px var(--line), 0 2px 6px rgba(21, 23, 43, .15); }
+.saidbox .said-headwords .gameroom-h { letter-spacing: .02em; }
+@media (max-width: 340px) { .saidbox .said-headwords .gameroom-h { font-size: 0.6rem; letter-spacing: .01em; } }
 .said-win .sheet { max-width: 30rem; }
 .said-win .said-win-sub { margin: 6px 0 14px; }
 .said-win .said-lines { gap: 8px; }
