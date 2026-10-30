@@ -1025,12 +1025,22 @@
   /* One game id per language. The result is { k, e, g }: e = levels short of the summit (0 = summit, 8 = missed the
      first word), g = guesses used. That is the shape every other game sends, so the Worker needs only the six ids. */
   var refused = {};
+  /* The order of finish (30 Oct 2026, Khayyam: when everyone has the same height and the same guesses, the time
+     they spent decides): the height, then the guesses used (a climb that was given up comes after every other at its
+     height, so stopping early never ranks above trying), then the seconds the climb took (time away does not count). */
+  function meOf(l) {
+    var r = runDone(l);
+    if (!r || typeof r.h !== "number" || typeof r.used !== "number") return null;
+    return { h: r.h, u: r.gaveUp ? 27 : r.used, t: Math.max(0, Math.min(3599, Math.round((r.ms || 0) / 1000))), q: !!r.gaveUp };
+  }
   function sendRun(l, r) {
     var key = dateKey(), tag = key + ":" + l, id = "altitude-" + l;
     if (optedOut() || store.sent[tag] || refused[tag]) return Promise.resolve(null);
     store.sent[tag] = 1;
     save();
-    return post("/stats/send", { d: key, rs: [{ k: id, e: LAST - r.h, g: r.used }], k: id }).then(function (res) {
+    var x = { k: id, e: LAST - r.h, g: r.used }, me = meOf(l);
+    if (me) { x.t = me.t; if (me.q) x.q = 1; }              // the seconds it took, and "gave up": the order of finish (30 Oct 2026)
+    return post("/stats/send", { d: key, rs: [x], k: id }).then(function (res) {
       if (res.status === 200) return res;
       delete store.sent[tag];                       // not counted: it may be sent again (not in a loop: once per page)
       refused[tag] = true;
@@ -1049,7 +1059,9 @@
     }
   }
   function loadView(l) {
-    return post("/stats/view", { d: dateKey(), k: "altitude-" + l }).then(function (res) {
+    var body = { d: dateKey(), k: "altitude-" + l }, me = meOf(l);
+    if (me) body.me = [me.h, me.u, me.t];                   // where this climb stands in the order of finish
+    return post("/stats/view", body).then(function (res) {
       if (res.status === 200) {
         takeYou(res.data.you);
         if (res.data.view) srv.views[l] = res.data.view;
@@ -1216,10 +1228,11 @@
     if (run.h >= LAST) return T("reached_top");
     return run.h ? T("reached", { n: run.h }) : T("reached_base");
   }
-  function higherThan(dist, h) {                        // the share of today's players who ended lower than this
+  function higherThan(dist, h, place) {                 // the share of today's players who ended below this climb
     if (!dist || h < FIRST) return null;
     var p = 0;
-    for (var k in dist.stopped) if (+k < h) p += dist.stopped[k];
+    if (place && place.n >= NEED_WORLD) p = place.b / place.n;      // height, then guesses, then time (the server counted them)
+    else for (var k in dist.stopped) if (+k < h) p += dist.stopped[k];
     return p > 0.005 ? Math.min(1, p) : null;
   }
   function openCard() {
@@ -1322,6 +1335,9 @@
     tries.appendChild(tb);
     sheet.appendChild(tries);
 
+    var ws = TO && TO.wordStrip ? TO.wordStrip(lang, siteLang()) : null;       /* Tell Khayyam and the World table's word side (30 Oct 2026, Khayyam) */
+    if (ws) sheet.appendChild(ws);
+
     /* the next word game not played yet leads on (30 Oct 2026); with the three played, "More to play" is the way on */
     var nextWord = TO && TO.wordNext ? TO.wordNext("altitude", T("next_game")) : null;
     if (nextWord) sheet.appendChild(nextWord);
@@ -1380,7 +1396,7 @@
     function tag(h3) { if (old) h3.appendChild(el("small", "cl-when", T("yesterday"))); return h3; }
     function K(key) { return old ? key + "_y" : key; }      // the same line, said for the day it describes
 
-    var hiEl = $("cl-higher"), hp = higherThan(dist, run.h);
+    var hiEl = $("cl-higher"), hp = higherThan(dist, run.h, old ? null : today && today.place);
     if (hiEl) {
       if (hp !== null) { hiEl.hidden = false; hiEl.textContent = T(old ? "higher_y" : "higher", { p: pct(hp) }); }
       else if (today && today.w && today.w.n === 1) { hiEl.hidden = false; hiEl.textContent = T("first_today"); }

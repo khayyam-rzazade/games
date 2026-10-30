@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="../assets/css/logicers.css?v=8b7dda5894">
 <script src="../assets/lang/en.js?v=469f78f223"></script>
 <script src="../assets/js/lang.js?v=5a777eb8f8"></script>
-<link rel="stylesheet" href="live.css?v=76259bea3c">
+<link rel="stylesheet" href="live.css?v=d6a0802bda">
 <!-- People's own words show on these pages: only the site's own scripts (and the visit counter) may run, so even
      words written to break the page could never run a script here (15 Oct 2026). -->
 <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://gc.zgo.at https://static.cloudflareinsights.com">
@@ -80,51 +80,51 @@
 
   <!-- the host chooses the set and the settings -->
   <section class="live-view" id="v-setup" hidden>
-    <p class="meta"><b>Play live</b> Host a game</p>
+    <p class="meta"><b data-w="suPlayLive">Play live</b> <span data-w="hostAGame">Host a game</span></p>
     <div class="live-card">
-      <h1 class="live-h">Pick a set</h1>
-      <div class="hs-sets" id="sets" role="radiogroup" aria-label="Question sets"></div>
+      <h1 class="live-h" data-w="suPick">Pick a set</h1>
+      <div class="hs-sets" id="sets" role="radiogroup" aria-label="Question sets" data-wa="aria-label:suSets"></div>
       <div class="live-row live-toggle">
-        <label for="s-play">I'm playing too</label>
+        <label for="s-play" data-w="suPlaying">I'm playing too</label>
         <input class="live-sw" type="checkbox" id="s-play" role="switch">
       </div>
       <div class="live-row" id="s-namerow">
-        <label class="live-small" for="s-name">Your name</label>
-        <input class="live-field live-field-s" id="s-name" maxlength="14" autocomplete="nickname" placeholder="Name">
+        <label class="live-small" for="s-name" data-w="yourName">Your name</label>
+        <input class="live-field live-field-s" id="s-name" maxlength="14" autocomplete="nickname" placeholder="Name" data-wa="placeholder:namePh">
       </div>
       <div class="live-row">
-        <span id="l-timer">Timer</span>
+        <span id="l-timer" data-w="suTimer">Timer</span>
         <div class="live-seg" id="s-timer" role="radiogroup" aria-labelledby="l-timer">
-          <button type="button" data-v="0">Off</button><button type="button" data-v="30">30s</button><button type="button" data-v="60">60s</button><button type="button" data-v="90">90s</button>
+          <button type="button" data-v="0" data-w="suOff">Off</button><button type="button" data-v="30" data-wn="30">30s</button><button type="button" data-v="60" data-wn="60">60s</button><button type="button" data-v="90" data-wn="90">90s</button>
         </div>
       </div>
       <div class="live-row live-toggle" id="s-practicerow">
-        <label for="s-practice">Practice question first</label>
+        <label for="s-practice" data-w="suPractice">Practice question first</label>
         <input class="live-sw" type="checkbox" id="s-practice" role="switch">
       </div>
       <details class="live-more" id="s-more">
-        <summary>More settings</summary>
+        <summary data-w="suMore">More settings</summary>
         <div class="live-row">
-          <span id="l-n">Questions</span>
+          <span id="l-n" data-w="suQuestions">Questions</span>
           <div class="live-seg" id="s-n" role="radiogroup" aria-labelledby="l-n"><button type="button" data-v="5">5</button><button type="button" data-v="10">10</button></div>
         </div>
         <div class="live-row">
-          <span id="l-order">Order</span>
-          <div class="live-seg" id="s-order" role="radiogroup" aria-labelledby="l-order"><button type="button" data-v="0">As set</button><button type="button" data-v="1">Shuffled</button></div>
+          <span id="l-order" data-w="suOrder">Order</span>
+          <div class="live-seg" id="s-order" role="radiogroup" aria-labelledby="l-order"><button type="button" data-v="0" data-w="suAsSet">As set</button><button type="button" data-v="1" data-w="suShuffled">Shuffled</button></div>
         </div>
         <div class="live-row">
-          <span id="l-names">Names</span>
-          <div class="live-seg" id="s-names" role="radiogroup" aria-labelledby="l-names"><button type="button" data-v="0">Typed</button><button type="button" data-v="1">Picked</button></div>
+          <span id="l-names" data-w="suNames">Names</span>
+          <div class="live-seg" id="s-names" role="radiogroup" aria-labelledby="l-names"><button type="button" data-v="0" data-w="suTyped">Typed</button><button type="button" data-v="1" data-w="suPicked">Picked</button></div>
         </div>
         <div class="live-row">
-          <span id="l-teams">Who plays</span>
-          <div class="live-seg" id="s-teams" role="radiogroup" aria-labelledby="l-teams"><button type="button" data-v="0">Players</button><button type="button" data-v="1">Teams</button></div>
+          <span id="l-teams" data-w="suWho">Who plays</span>
+          <div class="live-seg" id="s-teams" role="radiogroup" aria-labelledby="l-teams"><button type="button" data-v="0" data-w="suPlayers">Players</button><button type="button" data-v="1" data-w="suTeams">Teams</button></div>
         </div>
-        <div class="live-row live-toggle"><label for="s-standings">Standings after each question</label><input class="live-sw" type="checkbox" id="s-standings" role="switch"></div>
-        <div class="live-row live-toggle"><label for="s-awards">Awards at the end</label><input class="live-sw" type="checkbox" id="s-awards" role="switch"></div>
-        <p class="live-small">“Picked”: Logicers gives everyone a name, so nobody types one. Good for a big room. “Teams”: one phone per team.</p>
+        <div class="live-row live-toggle"><label for="s-standings" data-w="suStandings">Standings after each question</label><input class="live-sw" type="checkbox" id="s-standings" role="switch"></div>
+        <div class="live-row live-toggle"><label for="s-awards" data-w="suAwards">Awards at the end</label><input class="live-sw" type="checkbox" id="s-awards" role="switch"></div>
+        <p class="live-small" data-w="suHint">“Picked”: Logicers gives everyone a name, so nobody types one. Good for a big room. “Teams”: one phone per team.</p>
       </details>
-      <button class="btn solid live-wide" type="button" id="open-game">Open the game</button>
+      <button class="btn solid live-wide" type="button" id="open-game" data-w="suOpen">Open the game</button>
       <p class="live-err" id="setup-err" role="alert" hidden></p>
     </div>
   </section>
@@ -247,11 +247,11 @@
 
 <noscript><p style="padding:18px">This game needs JavaScript to run.</p></noscript>
 
-<script src="../assets/js/turnsout.js?v=c031424656"></script>
+<script src="../assets/js/turnsout.js?v=01e92d4a95"></script>
 <script src="hs-rules.js?v=be5a07a112"></script>
 <script src="sets.js?v=8e5423dead"></script>
 <script src="qrcodegen.js?v=4702b2e275"></script>
-<script src="words.js?v=f00e03eb54"></script>
-<script src="live.js?v=8adbc4e2b9"></script>
+<script src="words.js?v=1a357e04f7"></script>
+<script src="live.js?v=79c326cdd4"></script>
 </body>
 </html>

@@ -99,6 +99,13 @@ const TABLE = `CREATE TABLE IF NOT EXISTS r (
       k0 INTEGER NOT NULL DEFAULT 0, k1 INTEGER NOT NULL DEFAULT 0, k2 INTEGER NOT NULL DEFAULT 0,
       PRIMARY KEY (g, c))`;
 
+/* Altitude's order of finish (30 Oct 2026): one row per (height, guesses, seconds) of a date and the number of climbs
+   that ended exactly so. Numbers only; nobody is named, and a climb whose page sent no time is not in it. */
+const ATABLE = `CREATE TABLE IF NOT EXISTS a (
+      g TEXT NOT NULL, h INTEGER NOT NULL, u INTEGER NOT NULL, s INTEGER NOT NULL,
+      n INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (g, h, u, s))`;
+
 const XTABLE = `CREATE TABLE IF NOT EXISTS x (
       g TEXT NOT NULL, c TEXT NOT NULL,
       r0 INTEGER NOT NULL DEFAULT 0, r1 INTEGER NOT NULL DEFAULT 0, r2 INTEGER NOT NULL DEFAULT 0,
@@ -110,6 +117,7 @@ export class Tally extends DurableObject {
     this.sql = ctx.storage.sql;
     this.made = null;               // whether the table exists (null: not looked yet)
     this.madeX = null;              // the same for the reactions' table x
+    this.madeA = null;              // ...and for Altitude's order of finish, table a
     this.seen = new Map();          // address hash -> { all, games: { k: n } }: memory only
     this.summed = {};               // kind -> { at, data }
     this.dated = false;
@@ -129,10 +137,12 @@ export class Tally extends DurableObject {
   async alarm() {
     this.sql.exec("DROP TABLE IF EXISTS r");
     this.sql.exec("DROP TABLE IF EXISTS x");
+    this.sql.exec("DROP TABLE IF EXISTS a");
     await this.ctx.storage.deleteAll();
     this.summed = {};
     this.made = false;
     this.madeX = false;
+    this.madeA = false;
     this.dated = false;
   }
 
@@ -189,7 +199,7 @@ export class Tally extends DurableObject {
        for one that reached it late (29 Oct 2026) */
     const start = dayStart(o.d);
     if (isFinite(start) && Date.now() >= start + 36 * 3600e3) return { took: 0, ks: [], view: typeof o.k === "string" ? this.view({ k: o.k, c, ct }) : null };
-    let took = 0;
+    let took = 0, me = null;
     const ks = [];
     const seenK = {};
     for (const x of Array.isArray(o.rs) ? o.rs.slice(0, 9) : []) {
@@ -209,11 +219,41 @@ export class Tally extends DurableObject {
       if (kcol) { cols.push(kcol); vals.push(1); sets.push(kcol + " = " + kcol + " + 1"); }
       this.sql.exec(`INSERT INTO r (${cols.join(", ")}) VALUES (${cols.map(() => "?").join(", ")})
         ON CONFLICT (g, c) DO UPDATE SET ${sets.join(", ")}`, ...vals);
+      const od = P.order(x);                            // Altitude: where this climb stands in the order of finish
+      if (od) {
+        this.makeA();
+        this.sql.exec(`INSERT INTO a (g, h, u, s, n) VALUES (?, ?, ?, ?, 1) ON CONFLICT (g, h, u, s) DO UPDATE SET n = n + 1`, x.k, od[0], od[1], od[2]);
+        if (o.k === x.k) me = od;                       // the view that comes back says where this very climb stands
+      }
       took++;
       ks.push(x.k);
     }
     if (took) this.summed = {};
-    return { took, ks, view: typeof o.k === "string" ? this.view({ k: o.k, c, ct }) : null };
+    return { took, ks, view: typeof o.k === "string" ? this.view({ k: o.k, c, ct, me }) : null };
+  }
+
+  hasA() {
+    if (this.madeA === null) this.madeA = this.sql.exec("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'a'").toArray().length > 0;
+    return this.madeA;
+  }
+  makeA() {
+    if (this.hasA()) return;
+    this.sql.exec(ATABLE);
+    this.madeA = true;
+  }
+  /* Where a climb [height, guesses, seconds] stands in game k's order of finish: n the climbs that came with a time,
+     b how many of them finished below it (lower, or the same height with more guesses, or the same with more seconds),
+     e how many ended exactly so (it, when it has been counted, and its equals). null when there is nothing to say. */
+  place(k, me) {
+    if (!/^altitude-/.test(k) || !this.hasA() || !Array.isArray(me) || me.length !== 3) return null;
+    const [h, u, s] = me;
+    const w = (v, max) => Number.isInteger(v) && v >= 0 && v <= max;
+    if (!w(h, 8) || !w(u, 27) || !w(s, 3599)) return null;
+    const r = this.sql.exec(`SELECT COALESCE(SUM(n), 0) AS n,
+        COALESCE(SUM(CASE WHEN h < ? OR (h = ? AND u > ?) OR (h = ? AND u = ? AND s > ?) THEN n ELSE 0 END), 0) AS b,
+        COALESCE(SUM(CASE WHEN h = ? AND u = ? AND s = ? THEN n ELSE 0 END), 0) AS e
+      FROM a WHERE g = ?`, h, h, u, h, u, s, h, u, s, k).toArray()[0];
+    return r && r.n > 0 ? { n: r.n, b: r.b, e: r.e } : null;
   }
 
   /* one game of this date, as a player from country c (continent ct) sees it at the reveal:
@@ -243,7 +283,10 @@ export class Tally extends DurableObject {
       rank = { at: at >= 0 ? at + 1 : 0, of: list.length, min: MIN_GAME };
       top = list.slice(0, 3).map((x) => [x.c, Math.round(x.s)]);
     }
-    return { k, w: tidyAgg(w), t: ct !== "??" ? tidyAgg(t) : null, h: h ? tidyAgg(h) : null, rank, top, countries };
+    const out = { k, w: tidyAgg(w), t: ct !== "??" ? tidyAgg(t) : null, h: h ? tidyAgg(h) : null, rank, top, countries };
+    const place = o.me ? this.place(k, o.me) : null;
+    if (place) out.place = place;                       // Altitude only: where the asker's own climb stands (30 Oct 2026)
+    return out;
   }
 
   /* ---------------- reactions ---------------- */

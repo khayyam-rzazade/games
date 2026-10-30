@@ -363,13 +363,29 @@
   }
 
   /* the way on to today's daily games: the site's own block, the same as at the end of every daily game */
+  var onwardTok = 0;
   function onwardInto(box) {
-    var after = $("after");
+    var after = $("after"), tok = ++onwardTok;
     after.innerHTML = "";
-    try { TO.onward({ game: "how-sure", wait: 1600 }); } catch (e) { /* the way on must never break a game */ }
-    var b = $("onward");
-    if (b && box !== after) box.appendChild(b);
-    if (app.role === "host") dropBar();
+    function build() {
+      if (tok !== onwardTok) return;                // a newer call has taken over
+      after.innerHTML = "";
+      try { TO.onward({ game: "how-sure", wait: 1600 }); } catch (e) { /* the way on must never break a game */ }
+      var b = $("onward");
+      if (b && box !== after) box.appendChild(b);
+      if (app.role === "host") dropBar();
+    }
+    /* Logicers' own sets stay English, but the way on to today's games speaks the player's own language, the same as
+       under a made game (setLook speaks the made game's); the quiet "English only" line stays, as the page is. */
+    var pick = null, sp = null;
+    try { pick = made ? null : (window.LG && window.LG.saved ? window.LG.saved() : null); } catch (e) { pick = null; }
+    if (pick && pick !== "en" && window.LG && window.LG.speak) {
+      var p = $("lg-only"), kept = p ? [p.textContent, p.hidden] : null;
+      try { sp = window.LG.speak(pick); } catch (e) { sp = null; }
+      if (p) { p.textContent = kept[0]; p.hidden = kept[1]; }
+    }
+    if (sp && sp.then) { sp.then(build, build); return; }
+    build();
   }
   function dropBar() {
     var bar = $("onbar");
@@ -417,7 +433,7 @@
     var n = +g.n || 0;
     return '<button class="hs-set hs-kitset" type="button" role="radio" aria-checked="' + on + '" data-kit="' + esc(g.code) + '" data-kc="' + esc(COLOURS.indexOf(g.colour) >= 0 ? g.colour : "teal") + '">' +
       '<span class="hs-kitdot" aria-hidden="true">' + ICON.mc + '</span><span class="hs-set-t"><b dir="auto">' + esc(g.title || g.code) + "</b><small>" +
-      (n ? n + (n === 1 ? " question" : " questions") + " · " : "") + esc(g.code) + "</small></span></button>";
+      (n ? esc(WN("nQuestions", n)) + " · " : "") + esc(g.code) + "</small></span></button>";
   }
   function drawSetup() {
     var sets = $("sets"), kits = keptGames(), hk = sessionGet("logicers-live:hostkit");
@@ -431,7 +447,7 @@
     sets.innerHTML = SETS.map(function (s) {
       return '<button class="hs-set" type="button" role="radio" aria-checked="' + (!setupKit && s.id === setup.set) + '" data-set="' + esc(s.id) + '">' +
         (ICON[s.id] || ICON.space) + '<span class="hs-set-t"><b>' + esc(s.title) + '</b><small>' + esc(s.line) + '</small></span></button>';
-    }).join("") + (kits.length ? '<p class="hs-yours">Your games</p>' + kits.map(function (g) { return kitButton(g, !!setupKit && setupKit.code === g.code); }).join("") : "");
+    }).join("") + (kits.length ? '<p class="hs-yours">' + esc(W("suYours")) + "</p>" + kits.map(function (g) { return kitButton(g, !!setupKit && setupKit.code === g.code); }).join("") : "");
     each(sets.querySelectorAll(".hs-set"), function (b) {
       b.addEventListener("click", function () {
         var kc = b.getAttribute("data-kit");
@@ -475,7 +491,7 @@
     if (kitOn) {
       var opts = [0].concat([5, 10, 20, 30, 50].filter(function (x) { return x < n; }));
       if (opts.indexOf(setupKn) < 0) setupKn = 0;
-      nbox.innerHTML = opts.map(function (x) { return '<button type="button" data-v="' + x + '">' + (x ? x : "All" + (n ? " " + n : "")) + "</button>"; }).join("");
+      nbox.innerHTML = opts.map(function (x) { return '<button type="button" data-v="' + x + '">' + (x ? x : W("suAll") + (n ? " " + n : "")) + "</button>"; }).join("");
       seg("s-n", setupKn, function (v) { setupKn = +v; });
     } else {
       nbox.innerHTML = '<button type="button" data-v="5">5</button><button type="button" data-v="10">10</button>';
@@ -494,7 +510,7 @@
   $("open-game").addEventListener("click", function () {
     if (opening) return;
     setup.name = $("s-name").value.replace(/\s+/g, " ").trim();
-    if (setup.play && !setup.name && !setup.picked) { setupErr("Type your name, or switch off “I'm playing too”."); $("s-name").focus(); return; }
+    if (setup.play && !setup.name && !setup.picked) { setupErr(W("suErrName")); $("s-name").focus(); return; }
     sset("setup", setup);
     opening = true;
     var btn = this;
@@ -520,21 +536,40 @@
           window.location.hash = r.b.code;
           return;
         }
-        if (r.b && r.b.e === "old") setupErr("Logicers has just been updated. Reload this page.");
-        else if (r.status === 429) setupErr("Too many games from here just now. Try again later.");
-        else if (kitOn && r.b && r.b.e === "stopped") setupErr("Logicers stopped this game: it can't be hosted.");
-        else if (kitOn && r.status === 403) setupErr("This game's edit link no longer opens it. Open the game in the editor again.");
-        else if (kitOn && r.status === 404) setupErr("This game no longer exists: saved games are deleted two months after their last use.");
-        else setupErr("The game server is not ready. Try again in a minute.");
+        if (r.b && r.b.e === "old") setupErr(W("suErrOld"));
+        else if (r.status === 429) setupErr(W("suErrMany"));
+        else if (kitOn && r.b && r.b.e === "stopped") setupErr(W("suErrStopped"));
+        else if (kitOn && r.status === 403) setupErr(W("suErrEdit"));
+        else if (kitOn && r.status === 404) setupErr(W("suErrGone"));
+        else setupErr(W("suErrServer"));
       }, function () {
         opening = false;
         btn.disabled = false;
-        setupErr("Can't reach the game server. Check the signal. Some Wi-Fi networks block live games: try mobile data.");
+        setupErr(W("suErrNet"));
       });
   });
+  /* The setup screen speaks the host's own language (the site's pick, 30 Oct 2026); the sets' titles and questions
+     are Logicers' own English content. Every other screen puts L back (setLook). */
+  function setupLang() {
+    var s = null;
+    try { s = window.LG && window.LG.saved ? window.LG.saved() : null; } catch (e) { s = null; }
+    return s && WORDS[s] ? s : "en";
+  }
+  function paintSetup() {
+    var box = $("v-setup");
+    each(box.querySelectorAll("[data-w]"), function (e) { e.textContent = W(e.getAttribute("data-w")); });
+    each(box.querySelectorAll("[data-wn]"), function (e) { e.textContent = W("suSec", +e.getAttribute("data-wn")); });
+    each(box.querySelectorAll("[data-wa]"), function (e) {
+      var p = e.getAttribute("data-wa").split(":");
+      e.setAttribute(p[0], W(p[1]));
+    });
+  }
   function showSetup() {
     setLook(null);
-    document.title = "Host How Sure? | Logicers";
+    L = setupLang();
+    document.documentElement.lang = L;
+    document.title = W("suTitle");
+    paintSetup();
     drawSetup();
     show("v-setup");
   }

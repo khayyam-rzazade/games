@@ -183,6 +183,34 @@ guess count untouched, and offers another question. After a right answer the pla
 hint now, or go back to the climb. The run carries `hp` (hints in hand), `he` (earned so far), `hi` (the places
 shown, per word) and `qs` (questions used); a climb saved under the old one-hint model is migrated on load.
 
+## Order of finish: height, then guesses, then time (30 Oct 2026, Khayyam)
+
+"If everybody answered with the same level of failures and so on, the exact same stats, we take the time they spent
+into consideration." So the place of a climb among the day's players is worked out in this order:
+
+1. **the height** reached (the more the better);
+2. **the guesses used** (the fewer the better). A climb that was **given up** comes after every other climb at its
+   height (it counts as 27 guesses), so stopping early never ranks above trying;
+3. **the seconds** the climb took (the fewer the better; `run.ms`, time away from the page does not count).
+
+* **What the page sends:** `rs: [{ k, e, g, t, q? }]`: `t` the whole seconds (0 to 3599), `q: 1` only when the climb was
+  given up. Both are optional, so an old page (no `t`) is still taken and simply is not in the order.
+  The view call carries `me: [height, guesses (27 if given up), seconds]` once the climb is done.
+* **What the server keeps** (`server/live/src/tally.js`): a second small table `a` per date, one row per
+  `(game, height, guesses, seconds)` with the number of climbs that ended exactly so. Numbers only, nobody named;
+  dropped with the date (`alarm()`). `points.js` (the server's copy and `assets/js/points.js`, byte for byte) holds
+  the limits and `order(x)`; `worker.js` carries `t` and `q` through.
+* **What comes back:** the answer to a send, and a view asked with `me`, carry `place: { n, b, e }` (n climbs that came
+  with a time, b of them below this climb, e exactly equal to it). Nothing else changes in the view.
+* **What the card does with it:** "Higher than X% of players today" is `b / n` when `place.n` is at least
+  `NEED_WORLD` (2); otherwise (and for yesterday's picture) it is the old height-only share. The averages, the
+  language race, the step window and the country's place are not touched.
+* **Checks:** `server/live/test/test_order.mjs` (117 checks: the limits, the order, a clean date's exact counts,
+  nonsense `me` ignored, other games unchanged) and the old suites (test_wordgames 139, test_tally 162,
+  test_words 42, test_count 12) all pass; the page was checked in six languages with a stand-in server.
+* **To deploy:** push as usual; the Worker (`logicers-live`) needs its build to run for `place` to appear. Until it
+  does, the card says what it said before.
+
 ## Still open (28 Oct 2026)
 
 Two places were left alone on purpose, because they are not this chat's to change and both are regenerated:

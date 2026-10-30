@@ -111,7 +111,20 @@ window.LIVE_WORDS = {
     helpMade: "This game was made by its host, not by Logicers, and Logicers has not checked it. If something in it is wrong or harmful, report it.",
     helpAccount: "No account for anyone: the host opens a game, and everyone joins with its code on their own phone.", helpPrivacy: "Your privacy",
     contact: "A question or an idea? Write to %s.", aboutGames: "No account", madeTitle: "Games people make",
-    million: { one: "%s million", other: "%s million" }, billion: { one: "%s billion", other: "%s billion" }, trillion: { one: "%s trillion", other: "%s trillion" }
+    million: { one: "%s million", other: "%s million" }, billion: { one: "%s billion", other: "%s billion" }, trillion: { one: "%s trillion", other: "%s trillion" },
+    /* the host's setup screen (30 Oct 2026): the host's own language, the site's pick; the questions of Logicers' own sets stay English */
+    suPlayLive: "Play live", suTitle: "Host How Sure? | Logicers", suPick: "Pick a set", suSets: "Question sets", suPlaying: "I'm playing too",
+    suTimer: "Timer", suOff: "Off", suSec: "%ds", suPractice: "Practice question first", suMore: "More settings", suQuestions: "Questions",
+    suOrder: "Order", suAsSet: "As set", suShuffled: "Shuffled", suNames: "Names", suTyped: "Typed", suPicked: "Picked", suWho: "Who plays",
+    suPlayers: "Players", suTeams: "Teams", suStandings: "Standings after each question", suAwards: "Awards at the end",
+    suHint: "“Picked”: Logicers gives everyone a name, so nobody types one. Good for a big room. “Teams”: one phone per team.",
+    suOpen: "Open the game", suYours: "Your games", suAll: "All", suErrName: "Type your name, or switch off “I'm playing too”.",
+    suErrOld: "Logicers has just been updated. Reload this page.", suErrMany: "Too many games from here just now. Try again later.",
+    suErrStopped: "Logicers stopped this game: it can't be hosted.",
+    suErrEdit: "This game's edit link no longer opens it. Open the game in the editor again.",
+    suErrGone: "This game no longer exists: saved games are deleted two months after their last use.",
+    suErrServer: "The game server is not ready. Try again in a minute.",
+    suErrNet: "Can't reach the game server. Check the signal. Some Wi-Fi networks block live games: try mobile data.",
   },
 
   it: {
@@ -201,7 +214,21 @@ window.LIVE_WORDS = {
     helpMade: "Questo gioco l'ha creato chi conduce, non Logicers, e Logicers non l'ha verificato. Se qualcosa è sbagliato o dannoso, segnalalo.",
     helpAccount: "Non serve un account a nessuno: chi conduce apre una partita e tutti entrano con il suo codice, ognuno dal proprio telefono.", helpPrivacy: "La tua privacy",
     contact: "Una domanda o un'idea? Scrivi a %s.", aboutGames: "Nessun account", madeTitle: "Giochi creati dagli utenti",
-    million: { one: "%s milione", other: "%s milioni" }, billion: { one: "%s miliardo", other: "%s miliardi" }, trillion: { one: "%s.000 miliardi", other: "%s mila miliardi" }
+    million: { one: "%s milione", other: "%s milioni" }, billion: { one: "%s miliardo", other: "%s miliardi" }, trillion: { one: "%s.000 miliardi", other: "%s mila miliardi" },
+    /* the host's setup screen (30 Oct 2026): the host's own language, the site's pick; the questions of Logicers' own sets stay English */
+    suPlayLive: "Gioca dal vivo", suTitle: "Conduci How Sure? | Logicers", suPick: "Scegli un set", suSets: "Set di domande",
+    suPlaying: "Gioco anch'io", suTimer: "Timer", suOff: "Off", suSec: "%d s", suPractice: "Prima una domanda di prova", suMore: "Altre impostazioni",
+    suQuestions: "Domande", suOrder: "Ordine", suAsSet: "Come nel set", suShuffled: "Mescolate", suNames: "Nomi", suTyped: "Scritti",
+    suPicked: "Scelti", suWho: "Chi gioca", suPlayers: "Giocatori", suTeams: "Squadre", suStandings: "Classifica dopo ogni domanda",
+    suAwards: "Premi alla fine",
+    suHint: "«Scelti»: Logicers dà un nome a ognuno, così nessuno deve scriverlo. Utile in una sala grande. «Squadre»: un telefono per squadra.",
+    suOpen: "Apri la partita", suYours: "I tuoi giochi", suAll: "Tutte", suErrName: "Scrivi il tuo nome, oppure disattiva «Gioco anch'io».",
+    suErrOld: "Logicers è stato appena aggiornato. Ricarica la pagina.", suErrMany: "Troppe partite da qui in questo momento. Riprova più tardi.",
+    suErrStopped: "Logicers ha fermato questo gioco: non si può condurre.",
+    suErrEdit: "Il link di modifica di questo gioco non lo apre più. Riapri il gioco nell'editor.",
+    suErrGone: "Questo gioco non esiste più: i giochi salvati vengono cancellati due mesi dopo l'ultimo uso.",
+    suErrServer: "Il server del gioco non è pronto. Riprova tra un minuto.",
+    suErrNet: "Il server del gioco non risponde. Controlla il segnale. Alcune reti Wi-Fi bloccano i giochi dal vivo: prova con i dati mobili.",
   },
 
   tr: {
@@ -291,7 +318,20 @@ window.LIVE_WORDS = {
     helpMade: "Bu oyunu Logicers değil, sunucusu hazırladı ve Logicers kontrol etmedi. İçinde yanlış ya da zararlı bir şey varsa bildir.",
     helpAccount: "Kimse hesap açmaz: sunucu bir oyun açar, herkes kendi telefonundan oyunun koduyla katılır.", helpPrivacy: "Gizliliğin",
     contact: "Aklına bir soru ya da fikir mi geldi? %s adresine yaz.", aboutGames: "Hesap yok", madeTitle: "Kullanıcıların hazırladığı oyunlar",
-    million: { one: "%s milyon", other: "%s milyon" }, billion: { one: "%s milyar", other: "%s milyar" }, trillion: { one: "%s trilyon", other: "%s trilyon" }
+    million: { one: "%s milyon", other: "%s milyon" }, billion: { one: "%s milyar", other: "%s milyar" }, trillion: { one: "%s trilyon", other: "%s trilyon" },
+    /* the host's setup screen (30 Oct 2026): the host's own language, the site's pick; the questions of Logicers' own sets stay English */
+    suPlayLive: "Canlı oyna", suTitle: "How Sure? başlat | Logicers", suPick: "Bir set seç", suSets: "Soru setleri", suPlaying: "Ben de oynuyorum",
+    suTimer: "Süre", suOff: "Kapalı", suSec: "%d sn", suPractice: "Önce bir deneme sorusu", suMore: "Diğer ayarlar", suQuestions: "Soru sayısı",
+    suOrder: "Sıra", suAsSet: "Sette olduğu gibi", suShuffled: "Karışık", suNames: "Adlar", suTyped: "Yazılır", suPicked: "Otomatik",
+    suWho: "Kim oynuyor", suPlayers: "Oyuncular", suTeams: "Takımlar", suStandings: "Her sorudan sonra sıralama", suAwards: "Sonunda ödüller",
+    suHint: "«Otomatik»: Logicers herkese bir ad verir, kimsenin ad yazması gerekmez. Kalabalık bir salon için iyidir. «Takımlar»: takım başına bir telefon.",
+    suOpen: "Oyunu aç", suYours: "Oyunların", suAll: "Hepsi", suErrName: "Adını yaz ya da «Ben de oynuyorum» seçeneğini kapat.",
+    suErrOld: "Logicers az önce güncellendi. Sayfayı yenile.", suErrMany: "Şu an buradan çok fazla oyun açıldı. Daha sonra tekrar dene.",
+    suErrStopped: "Logicers bu oyunu durdurdu: başlatılamaz.",
+    suErrEdit: "Bu oyunun düzenleme bağlantısı artık onu açmıyor. Oyunu düzenleyicide yeniden aç.",
+    suErrGone: "Bu oyun artık yok: kayıtlı oyunlar son kullanımdan iki ay sonra silinir.",
+    suErrServer: "Oyun sunucusu hazır değil. Bir dakika sonra tekrar dene.",
+    suErrNet: "Oyun sunucusuna ulaşılamıyor. Sinyali kontrol et. Bazı Wi-Fi ağları canlı oyunları engeller: mobil veriyi dene.",
   },
 
   es: {
@@ -381,7 +421,22 @@ window.LIVE_WORDS = {
     helpMade: "Este juego lo creó quien lo dirige, no Logicers, y Logicers no lo ha revisado. Si algo en él está mal o puede hacer daño, repórtalo.",
     helpAccount: "Nadie necesita cuenta: quien dirige abre un juego y todos se unen con su código, cada uno desde su teléfono.", helpPrivacy: "Tu privacidad",
     contact: "¿Una pregunta o una idea? Escribe a %s.", aboutGames: "Sin cuenta", madeTitle: "Juegos que crea la gente",
-    million: { one: "%s millón", other: "%s millones" }, billion: { one: "mil millones", other: "%s mil millones" }, trillion: { one: "un billón", other: "%s billones" }
+    million: { one: "%s millón", other: "%s millones" }, billion: { one: "mil millones", other: "%s mil millones" }, trillion: { one: "un billón", other: "%s billones" },
+    /* the host's setup screen (30 Oct 2026): the host's own language, the site's pick; the questions of Logicers' own sets stay English */
+    suPlayLive: "Juega en vivo", suTitle: "Dirigir How Sure? | Logicers", suPick: "Elige un set", suSets: "Sets de preguntas",
+    suPlaying: "Yo también juego", suTimer: "Temporizador", suOff: "No", suSec: "%d s", suPractice: "Primero una pregunta de práctica",
+    suMore: "Más ajustes", suQuestions: "Preguntas", suOrder: "Orden", suAsSet: "Como en el set", suShuffled: "Al azar", suNames: "Nombres",
+    suTyped: "Escritos", suPicked: "Asignados", suWho: "Quién juega", suPlayers: "Jugadores", suTeams: "Equipos",
+    suStandings: "Clasificación tras cada pregunta", suAwards: "Premios al final",
+    suHint: "«Asignados»: Logicers da un nombre a cada persona, así nadie tiene que escribirlo. Va bien en una sala grande. «Equipos»: un teléfono por equipo.",
+    suOpen: "Abrir el juego", suYours: "Tus juegos", suAll: "Todas", suErrName: "Escribe tu nombre, o desactiva «Yo también juego».",
+    suErrOld: "Logicers se acaba de actualizar. Recarga la página.",
+    suErrMany: "Se han abierto demasiados juegos desde aquí hace un momento. Inténtalo más tarde.",
+    suErrStopped: "Logicers detuvo este juego: no se puede dirigir.",
+    suErrEdit: "El enlace de edición de este juego ya no lo abre. Abre el juego otra vez en el editor.",
+    suErrGone: "Este juego ya no existe: los juegos guardados se borran dos meses después de su último uso.",
+    suErrServer: "El servidor del juego no está listo. Inténtalo de nuevo en un minuto.",
+    suErrNet: "No se puede contactar con el servidor del juego. Comprueba la señal. Algunas redes wifi bloquean los juegos en vivo: prueba con datos móviles.",
 },
 
   pt: {
@@ -482,7 +537,22 @@ window.LIVE_WORDS = {
     helpMade: "Este jogo foi criado por quem comanda, não pelo Logicers, e o Logicers não o conferiu. Se alguma coisa nele estiver errada ou puder fazer mal, denuncie.",
     helpAccount: "Ninguém precisa de conta: quem comanda abre um jogo, e todo mundo entra com o código dele, cada um no seu celular.", helpPrivacy: "Sua privacidade",
     contact: "Uma pergunta ou uma ideia? Escreva para %s.", aboutGames: "Sem conta", madeTitle: "Jogos que as pessoas criam",
-    million: { one: "%s milhão", other: "%s milhões" }, billion: { one: "%s bilhão", other: "%s bilhões" }, trillion: { one: "%s trilhão", other: "%s trilhões" }
+    million: { one: "%s milhão", other: "%s milhões" }, billion: { one: "%s bilhão", other: "%s bilhões" }, trillion: { one: "%s trilhão", other: "%s trilhões" },
+    /* the host's setup screen (30 Oct 2026): the host's own language, the site's pick; the questions of Logicers' own sets stay English */
+    suPlayLive: "Jogue ao vivo", suTitle: "Abrir How Sure? | Logicers", suPick: "Escolha um set", suSets: "Sets de perguntas",
+    suPlaying: "Eu também jogo", suTimer: "Cronômetro", suOff: "Não", suSec: "%d s", suPractice: "Primeiro uma pergunta de treino",
+    suMore: "Mais configurações", suQuestions: "Perguntas", suOrder: "Ordem", suAsSet: "Como no set", suShuffled: "Embaralhadas", suNames: "Nomes",
+    suTyped: "Digitados", suPicked: "Sorteados", suWho: "Quem joga", suPlayers: "Jogadores", suTeams: "Times",
+    suStandings: "Classificação após cada pergunta", suAwards: "Prêmios no final",
+    suHint: "“Sorteados”: o Logicers dá um nome a cada pessoa, então ninguém precisa digitar. Bom para uma sala grande. “Times”: um celular por time.",
+    suOpen: "Abrir o jogo", suYours: "Seus jogos", suAll: "Todas", suErrName: "Digite seu nome ou desligue “Eu também jogo”.",
+    suErrOld: "O Logicers acabou de ser atualizado. Recarregue a página.",
+    suErrMany: "Jogos demais abertos daqui agora há pouco. Tente de novo mais tarde.",
+    suErrStopped: "O Logicers tirou este jogo do ar: ele não pode ser aberto.",
+    suErrEdit: "O link de edição deste jogo não o abre mais. Abra o jogo no editor de novo.",
+    suErrGone: "Este jogo não existe mais: jogos salvos são apagados dois meses após o último uso.",
+    suErrServer: "O servidor do jogo não está pronto. Tente de novo em um minuto.",
+    suErrNet: "Não foi possível falar com o servidor do jogo. Verifique o sinal. Algumas redes Wi-Fi bloqueiam jogos ao vivo: tente os dados móveis.",
 },
 
   fr: {
@@ -583,6 +653,20 @@ window.LIVE_WORDS = {
     helpMade: "Ce jeu a été créé par la personne qui l’anime, pas par Logicers, et Logicers ne l’a pas vérifié. Si quelque chose dedans est faux ou nuisible, signale-le.",
     helpAccount: "Personne n’a besoin de compte : la personne qui anime ouvre une partie, et chacun la rejoint avec son code, sur son propre téléphone.", helpPrivacy: "Ta vie privée",
     contact: "Une question ou une idée ? Écris à %s.", aboutGames: "Pas de compte", madeTitle: "Les jeux créés par les utilisateurs",
-    million: { one: "%s million", other: "%s millions" }, billion: { one: "%s milliard", other: "%s milliards" }, trillion: { one: "%s mille milliards", other: "%s mille milliards" }
+    million: { one: "%s million", other: "%s millions" }, billion: { one: "%s milliard", other: "%s milliards" }, trillion: { one: "%s mille milliards", other: "%s mille milliards" },
+    /* the host's setup screen (30 Oct 2026): the host's own language, the site's pick; the questions of Logicers' own sets stay English */
+    suPlayLive: "Joue en direct", suTitle: "Animer How Sure? | Logicers", suPick: "Choisis un set", suSets: "Sets de questions",
+    suPlaying: "Je joue aussi", suTimer: "Minuteur", suOff: "Non", suSec: "%d s", suPractice: "D’abord une question d’entraînement",
+    suMore: "Plus de réglages", suQuestions: "Questions", suOrder: "Ordre", suAsSet: "Comme dans le set", suShuffled: "Mélangées", suNames: "Noms",
+    suTyped: "Saisis", suPicked: "Attribués", suWho: "Qui joue", suPlayers: "Joueurs", suTeams: "Équipes",
+    suStandings: "Classement après chaque question", suAwards: "Récompenses à la fin",
+    suHint: "« Attribués » : Logicers donne un nom à chacun, personne n’a donc à en saisir un. Pratique pour une grande salle. « Équipes » : un téléphone par équipe.",
+    suOpen: "Ouvrir la partie", suYours: "Tes jeux", suAll: "Toutes", suErrName: "Saisis ton nom, ou désactive « Je joue aussi ».",
+    suErrOld: "Logicers vient d’être mis à jour. Recharge la page.", suErrMany: "Trop de parties ouvertes d’ici à l’instant. Réessaie plus tard.",
+    suErrStopped: "Logicers a bloqué ce jeu : il ne peut pas être animé.",
+    suErrEdit: "Le lien de modification de ce jeu ne l’ouvre plus. Rouvre le jeu dans l’éditeur.",
+    suErrGone: "Ce jeu n’existe plus : les jeux enregistrés sont supprimés deux mois après leur dernière utilisation.",
+    suErrServer: "Le serveur du jeu n’est pas prêt. Réessaie dans une minute.",
+    suErrNet: "Impossible de joindre le serveur du jeu. Vérifie le signal. Certains réseaux Wi-Fi bloquent les jeux en direct : essaie les données mobiles.",
 }
 };

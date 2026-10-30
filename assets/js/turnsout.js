@@ -1752,6 +1752,10 @@
   }
 
   /* ---- Tell Khayyam ---- */
+  /* The words of Tell Khayyam and of his message: the site's language (T), or, from a word game (30 Oct 2026), the
+     game's own language (tellIn below). The word games' pages carry the English dictionary only; assets/lang/tell.js
+     (build_tell.py) holds these lines in all six languages, taken from the six dictionaries. */
+  var TX = T, TX_LANG = "";
   var FORM_URL = "https://api.web3forms.com/submit";
   var khayOpen = null;
   function khayReady() { return !!feedbackKey(); }
@@ -1778,7 +1782,7 @@
       grid: dayText(rows).split("\n").slice(1, 1 + Math.ceil(rows.length / 3)).join(" / "),
       page: window.location.pathname,
       language: window.navigator.language || "",
-      site_language: LG ? LG.lang : "en",
+      site_language: TX_LANG || (LG ? LG.lang : "en"),          // from a word game: the language it was played in
       screen: ((window.screen && window.screen.width) || 0) + "x" + ((window.screen && window.screen.height) || 0)
     };
   }
@@ -1806,24 +1810,24 @@
     dlg.setAttribute("aria-labelledby", "khay-h");
     var head = el("div", "khay-head");
     var who = el("div", "khay-who");
-    who.appendChild(el("b", "", T("tell.name")));
-    who.appendChild(el("span", "", T("tell.sub")));
+    who.appendChild(el("b", "", TX("tell.name")));
+    who.appendChild(el("span", "", TX("tell.sub")));
     var face = el("span", "khay-photo"); face.appendChild(khayFace(44));
-    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("aria-label", T("site.close"));
+    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("aria-label", TX("site.close"));
     x.id = "khay-x";
     head.appendChild(face); head.appendChild(who); head.appendChild(x);
     dlg.appendChild(head);
     var form = el("form", "khay-form"); form.id = "khay-form"; form.noValidate = true;
-    var intro = el("p", "khay-intro", T("tell.intro") + " ");
-    var more = el("a", "khay-more", T("site.more_about_me"));     // 19 Oct 2026: a way to reach him directly
+    var intro = el("p", "khay-intro", TX("tell.intro") + " ");
+    var more = el("a", "khay-more", TX("site.more_about_me"));     // 19 Oct 2026: a way to reach him directly
     more.href = "https://thekhayyam.com"; more.target = "_blank"; more.rel = "noopener noreferrer";
     more.addEventListener("click", function () { count_("eod/about-me"); });
     intro.appendChild(more);
     form.appendChild(intro);
-    var h = el("h2", "sr-only", T("tell.title")); h.id = "khay-h"; form.appendChild(h);
-    form.appendChild(el("p", "khay-q", T("tell.q_mood")));
-    var moods = el("div", "khay-moods"); moods.setAttribute("role", "group"); moods.setAttribute("aria-label", T("tell.q_mood"));
-    [["😍", T("tell.mood_love")], ["🙂", T("tell.mood_good")], ["😐", T("tell.mood_okay")], ["🙁", T("tell.mood_bad")]].forEach(function (m) {
+    var h = el("h2", "sr-only", TX("tell.title")); h.id = "khay-h"; form.appendChild(h);
+    form.appendChild(el("p", "khay-q", TX("tell.q_mood")));
+    var moods = el("div", "khay-moods"); moods.setAttribute("role", "group"); moods.setAttribute("aria-label", TX("tell.q_mood"));
+    [["😍", TX("tell.mood_love")], ["🙂", TX("tell.mood_good")], ["😐", TX("tell.mood_okay")], ["🙁", TX("tell.mood_bad")]].forEach(function (m) {
       var b = el("button", "khay-mood", m[0]); b.type = "button"; b.setAttribute("aria-pressed", "false"); b.setAttribute("aria-label", m[1]); b.setAttribute("data-m", m[0]);
       b.addEventListener("click", function () {
         var on = b.getAttribute("aria-pressed") !== "true";
@@ -1841,19 +1845,19 @@
       form.appendChild(t);
       return t;
     }
-    var liked = area("khay-liked", T("tell.q_like"), T("tell.ph_like"));
-    var next = area("khay-next", T("tell.q_next"), T("tell.ph_next"));
+    var liked = area("khay-liked", TX("tell.q_like"), TX("tell.ph_like"));
+    var next = area("khay-next", TX("tell.q_next"), TX("tell.ph_next"));
     var trap = el("input"); trap.type = "checkbox"; trap.name = "botcheck"; trap.tabIndex = -1; trap.setAttribute("aria-hidden", "true"); trap.className = "khay-trap"; trap.id = "khay-trap";
     form.appendChild(trap);
     /* 19 Oct 2026, Khayyam: his message comes last, "right before submitting the feedback", so nobody reads it and forgets to send */
-    try { form.appendChild(messageLine("khay-msg-line", T("msg.read"), "tell")); } catch (e) { /* the message is optional */ }
-    var send = el("button", "btn solid khay-send", T("tell.send")); send.type = "submit"; send.disabled = true; send.id = "khay-send";
+    try { form.appendChild(messageLine("khay-msg-line", TX("msg.read"), "tell")); } catch (e) { /* the message is optional */ }
+    var send = el("button", "btn solid khay-send", TX("tell.send")); send.type = "submit"; send.disabled = true; send.id = "khay-send";
     form.appendChild(send);
     var note = el("p", "khay-note"); note.id = "khay-note"; note.setAttribute("role", "status"); form.appendChild(note);
     var thanks = el("div", "khay-thanks"); thanks.id = "khay-thanks"; thanks.hidden = true;
-    thanks.appendChild(el("p", "khay-big", T("tell.thanks")));
-    thanks.appendChild(el("p", "", T("tell.thanks_sub")));
-    var done = el("button", "btn ghost", T("site.close")); done.type = "button"; done.id = "khay-done"; thanks.appendChild(done);
+    thanks.appendChild(el("p", "khay-big", TX("tell.thanks")));
+    thanks.appendChild(el("p", "", TX("tell.thanks_sub")));
+    var done = el("button", "btn ghost", TX("site.close")); done.type = "button"; done.id = "khay-done"; thanks.appendChild(done);
     function sendable() {
       var any = !!(liked.value.trim() || next.value.trim() || moods.querySelector('[aria-pressed="true"]'));
       send.disabled = !any;
@@ -1869,9 +1873,9 @@
       e.preventDefault();
       if (send.disabled || send.getAttribute("aria-busy") === "true") return;
       var m = moods.querySelector('[aria-pressed="true"]');
-      send.setAttribute("aria-busy", "true"); send.textContent = T("tell.sending"); note.textContent = "";
+      send.setAttribute("aria-busy", "true"); send.textContent = TX("tell.sending"); note.textContent = "";
       khaySend(khayPayload({ mood: m ? m.getAttribute("data-m") : "", liked: liked.value.trim(), next: next.value.trim(), botcheck: trap.checked })).then(function (ok) {
-        send.removeAttribute("aria-busy"); send.textContent = T("tell.send");
+        send.removeAttribute("aria-busy"); send.textContent = TX("tell.send");
         if (ok) {
           count_("eod/sent");
           eodUpdate(function (s) { s.sent = Date.now(); });
@@ -1879,7 +1883,7 @@
           var l = document.getElementById("khay-launch"); if (l && l.parentNode) l.parentNode.removeChild(l);
           try { done.focus(); } catch (er) { /* no focus */ }
         } else {
-          note.textContent = T("tell.failed");
+          note.textContent = TX("tell.failed");
         }
       });
     });
@@ -1897,6 +1901,49 @@
     if (typeof dlg.show === "function") { if (!dlg.open) dlg.show(); } else dlg.setAttribute("open", "");
     khayOpen = dlg;
     try { var t = dlg.querySelector(".khay-mood"); if (t) t.focus({ preventScroll: true }); } catch (e) { /* no focus */ }   // not a text box: a phone's keyboard must not open by itself
+  }
+  /* Tell Khayyam from a word game (30 Oct 2026): the same window, in the language the game is played in */
+  function tellWords(code) {
+    var D = window.LG_TELL;
+    if (!D || !D.en) return null;
+    var d = D[code] || D.en, e = D.en;
+    return function (k) { return d[k] != null ? d[k] : (e[k] != null ? e[k] : k); };
+  }
+  function tellIn(code, from) {
+    var f = tellWords(code);
+    if (!f || !khayReady()) return false;
+    var key = window.LG_TELL[code] ? code : "en";
+    if (TX_LANG !== key) {                         // the window was built in another language (or not yet): build it again
+      ["khay", "khay-msg"].forEach(function (id) {
+        var d = document.getElementById(id);
+        if (!d) return;
+        try { if (d.open) d.close(); } catch (e) { /* no close */ }
+        if (d.parentNode) d.parentNode.removeChild(d);
+      });
+      TX = f; TX_LANG = key;
+    }
+    khayOpenPanel(from || "word");
+    return true;
+  }
+  /* The two cells every word game's end card carries (30 Oct 2026, Khayyam: "Tell Khayyam" on the word games, and the
+     way to the World table's word side). Same cells and look as the daily games' end-of-day strip. */
+  function wordStrip(code, siteCode) {
+    var f = tellWords(code);
+    if (!f) return null;
+    var strip = el("div", "eod-strip word-strip"), n = 0;
+    if (khayReady()) {
+      var tell = el("button", "eod-cell"); tell.type = "button";
+      tell.appendChild(icon("\u2709\ufe0f")); tell.appendChild(el("span", "", f("tell.title")));
+      tell.addEventListener("click", function () { tellIn(code, "word"); });
+      strip.appendChild(tell); n++;
+    }
+    var w = el("a", "eod-cell");
+    w.href = here(siteRoot() + (siteCode && siteCode !== "en" ? siteCode + "/" : "") + "world/?t=words");
+    w.appendChild(icon("\ud83c\udf0d")); w.appendChild(el("span", "", f("world.table")));
+    w.addEventListener("click", function () { count_("eod/word-world"); });
+    strip.appendChild(w); n++;
+    strip.style.setProperty("--n", String(n));
+    return strip;
   }
   /* the little round photo and its hello, at the bottom corner, a moment after the day has ended */
   var launchTimer = 0;
@@ -1985,7 +2032,7 @@
      His own words to the players, one small window, the same wherever it is opened from: the line at the
      bottom of the box after every game, the line before Send in Tell Khayyam, and the home page's footer
      (any element marked data-msg opens it). Nothing here can break a game. */
-  var MESSAGE = [T("msg.p1"), T("msg.p2"), T("msg.p3"), T("msg.p4")];
+  function messageParas() { return ["msg.p1", "msg.p2", "msg.p3", "msg.p4"].map(function (k) { return TX(k); }); }
   function messageDialog() {
     var dlg = document.getElementById("khay-msg");
     if (dlg) return dlg;
@@ -1994,18 +2041,18 @@
     dlg.className = "khay-msg";
     dlg.setAttribute("aria-labelledby", "khay-msg-h");
     var sheet = el("div", "sheet");
-    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", T("site.close"));
+    var x = el("button", "chip round close", "×"); x.type = "button"; x.setAttribute("data-close", ""); x.setAttribute("aria-label", TX("site.close"));
     sheet.appendChild(x);
     var head = el("div", "khay-msg-head");
     var face = el("span", "khay-photo"); face.appendChild(khayFace(56));
     head.appendChild(face);
-    var h = el("h2", "", T("msg.title")); h.id = "khay-msg-h";
+    var h = el("h2", "", TX("msg.title")); h.id = "khay-msg-h";
     head.appendChild(h);
     sheet.appendChild(head);
-    MESSAGE.forEach(function (t) { sheet.appendChild(el("p", "khay-msg-p", t)); });
-    var sig = el("p", "khay-msg-sign", T("msg.sign"));
+    messageParas().forEach(function (t) { sheet.appendChild(el("p", "khay-msg-p", t)); });
+    var sig = el("p", "khay-msg-sign", TX("msg.sign"));
     sheet.appendChild(sig);
-    var more = el("a", "khay-more", T("site.more_about_me"));
+    var more = el("a", "khay-more", TX("site.more_about_me"));
     more.href = "https://thekhayyam.com"; more.target = "_blank"; more.rel = "noopener noreferrer";
     more.addEventListener("click", function () { count_("msg/about-me"); });
     var mp = el("p", "khay-msg-more"); mp.appendChild(more);
@@ -2222,6 +2269,8 @@
     WORDS: WORDS,
     wordDone: wordDone,
     wordNext: wordNext,
+    wordStrip: wordStrip,              // Tell Khayyam + the World table's word side, for a word game's end card (30 Oct 2026)
+    tellIn: tellIn,
     GROUP: GROUP,
     group: group,
     groupUpdate: groupUpdate,

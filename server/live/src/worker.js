@@ -686,7 +686,10 @@ async function statsSend(req, env, o) {
   const rs = [];
   for (const x of b.rs) {
     if (!x || typeof x !== "object" || !P.valid(x)) return answer(400, { e: "rs" }, o);
-    rs.push(x.c !== undefined ? { k: x.k, c: x.c } : x.g !== undefined ? { k: x.k, e: x.e, g: x.g } : { k: x.k, e: x.e });
+    const y = x.c !== undefined ? { k: x.k, c: x.c } : x.g !== undefined ? { k: x.k, e: x.e, g: x.g } : { k: x.k, e: x.e };
+    if (x.t !== undefined) y.t = x.t;                       // Altitude's seconds and "gave up" (30 Oct 2026); valid() has checked them
+    if (x.q !== undefined) y.q = x.q;
+    rs.push(y);
   }
   const k = typeof b.k === "string" && P.LIMITS.hasOwnProperty(b.k) ? b.k : null;
   const you = geo(req, env);
@@ -707,7 +710,9 @@ async function statsView(req, env, o) {
   const P = globalThis.LogicersPoints;
   if (typeof b.k !== "string" || !P.LIMITS.hasOwnProperty(b.k)) return answer(400, { e: "k" }, o);
   const you = geo(req, env);
-  return answer(200, { you, view: await tallyOf(env, b.d).view({ k: b.k, c: you.c, ct: you.ct }) }, o);
+  /* me: [height, guesses, seconds] of the asker's own Altitude climb, so the view can say where it stands in the
+     order of finish (tally.js place() checks it; anything else is ignored) */
+  return answer(200, { you, view: await tallyOf(env, b.d).view({ k: b.k, c: you.c, ct: you.ct, me: b.me }) }, o);
 }
 
 /* a date's two summaries, { daily, words }, in one call to the date (tally.js, pair); a date no clock is on any

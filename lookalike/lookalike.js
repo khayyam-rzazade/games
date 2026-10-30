@@ -680,6 +680,9 @@
     sh.addEventListener("click", function () { shareNow(); });
     sheet.appendChild(sh);
 
+    var ws = TO && TO.wordStrip ? TO.wordStrip(lang, siteLang()) : null;       /* Tell Khayyam and the World table's word side (30 Oct 2026, Khayyam) */
+    if (ws) sheet.appendChild(ws);
+
     /* the next word game not played yet leads on (30 Oct 2026); with the three played, "More to play" is the way on */
     var nextWord = TO && TO.wordNext ? TO.wordNext("lookalike", T("next_game")) : null;
     if (nextWord) sheet.appendChild(nextWord);

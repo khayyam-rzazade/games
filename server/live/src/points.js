@@ -72,13 +72,16 @@
     call:    { c: [0, 2] },
 
     /* Altitude: e the levels short of the summit (7 can never happen: there is no 1-letter word), g the guesses
-       used, at most BUDGET + BONUS * 6 = 26 (a hint counts 2; finding the 8-letter word ends the climb). */
-    "altitude-en": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
-    "altitude-it": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
-    "altitude-tr": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
-    "altitude-es": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
-    "altitude-pt": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
-    "altitude-fr": { e: [0, 8], skip: [7, 7], g: [0, 26], whole: true },
+       used, at most BUDGET + BONUS * 6 = 26 (a hint counts 2; finding the 8-letter word ends the climb).
+       And, since 30 Oct 2026 (Khayyam: when everything else is the same, the time decides), two optional numbers
+       for the order of finish: t the seconds the climb took (0 to 3599, whole) and q 1 when the player gave up.
+       A page without them (an old one) is taken as before. */
+    "altitude-en": { e: [0, 8], skip: [7, 7], g: [0, 26], t: [0, 3599], whole: true },
+    "altitude-it": { e: [0, 8], skip: [7, 7], g: [0, 26], t: [0, 3599], whole: true },
+    "altitude-tr": { e: [0, 8], skip: [7, 7], g: [0, 26], t: [0, 3599], whole: true },
+    "altitude-es": { e: [0, 8], skip: [7, 7], g: [0, 26], t: [0, 3599], whole: true },
+    "altitude-pt": { e: [0, 8], skip: [7, 7], g: [0, 26], t: [0, 3599], whole: true },
+    "altitude-fr": { e: [0, 8], skip: [7, 7], g: [0, 26], t: [0, 3599], whole: true },
 
     /* Lookalike: e the mask of the traps fallen for, 0 to 7, no guess. Passport: e 0 or 1, no guess. */
     "lookalike-en": { e: [0, 7] }, "lookalike-it": { e: [0, 7] }, "lookalike-tr": { e: [0, 7] },
@@ -146,7 +149,19 @@
       if (L.whole && !whole(x.g)) return false;
       if (Math.abs(Math.round(x.g * 10) - x.g * 10) > 1e-6) return false;   // a tenth at the finest
     } else if (x.g !== undefined) return false;
+    if (L.t) {                                                  // Altitude's order of finish: both optional
+      if (x.t !== undefined && !(whole(x.t) && inside(x.t, L.t))) return false;
+      if (x.q !== undefined && x.q !== 0 && x.q !== 1) return false;
+    } else if (x.t !== undefined || x.q !== undefined) return false;
     return x.c === undefined;
+  }
+
+  /* Altitude's order of finish (30 Oct 2026): the height reached (the more the better), then the guesses used (the
+     fewer the better; a climb that was given up ranks after every other at its height, as 27), then the seconds
+     taken (the fewer the better). [height, guesses, seconds], or null when the result carries no time. */
+  function order(x) {
+    if (!x || !LIMITS.hasOwnProperty(x.k) || !LIMITS[x.k].t || x.t === undefined) return null;
+    return [8 - x.e, x.q === 1 ? 27 : x.g, x.t];
   }
 
   /* which tenth of the scores a result falls in, as the server counts them and the pages read them: 0 for 0 to 9
@@ -158,7 +173,7 @@
 
   root.LogicersPoints = {
     CURVES: CURVES, LIMITS: LIMITS, GUESS: GUESS,
-    points: points, read: read, valid: valid, tenth: tenth,
+    points: points, read: read, valid: valid, tenth: tenth, order: order,
     SCORED: ["hundred", "apart", "gets", "every", "o24", "energy", "club", "cousin"]
   };
 })(typeof window !== "undefined" ? window : globalThis);
