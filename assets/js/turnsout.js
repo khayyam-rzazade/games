@@ -413,6 +413,8 @@
      ------------------------------------------------------------------ */
   function num(v) { return typeof v === "number" && isFinite(v); }
   function whole(v) { return num(v) && Math.round(v) === v; }
+  /* the words a stored result carries (t) are the language it was played in (l, from 30 Oct 2026): in another language they are left out rather than shown in the wrong one */
+  function words(r) { return !r.l || !LG || r.l === LG.lang ? r.t : ""; }
   var GAMES = [
     { id: "same-energy", key: "energy", name: T("game.energy.name"), href: "same-energy/", start: "2026-10-10",
       pitch: T("game.energy.pitch"),
@@ -420,7 +422,7 @@
       ok: function (v) { return whole(v) && Math.abs(v) <= 120; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 60 && num(r.y) && typeof r.t === "string"; },
       tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 2 ? 2 : a <= 4 ? 1 : 0; },
-      says: function (r) { return r.t; } },
+      says: function (r) { return words(r); } },
     { id: "100-of-us", key: "hundred", name: T("game.hundred.name"), href: "100-of-us/", start: "2026-10-03",
       pitch: T("game.hundred.pitch"),
       score: function (r) { return Math.abs(r.g - r.a); }, wins: "low",
@@ -465,21 +467,21 @@
       ok: function (v) { return whole(v) && v >= 0 && v <= 9999999; },
       done: function (r) { return !!r && Array.isArray(r.g) && r.g.length >= 3 && r.g.length <= 4 && num(r.y) && r.y >= 0 && typeof r.t === "string"; },
       tier: function (r) { return r.y <= 15 ? 3 : r.y <= 50 ? 2 : r.y <= 120 ? 1 : 0; },
-      says: function (r) { return r.t; } },
+      says: function (r) { return words(r); } },
     { id: "every-beat", key: "every", name: T("game.every.name"), href: "every-beat/", start: "2026-10-09",
       pitch: T("game.every.pitch"),
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) >= 11) && Math.abs(v) <= 20000; },
       done: function (r) { return !!r && num(r.g) && r.g >= 1 && r.g <= 2000 && num(r.y) && typeof r.t === "string"; },
       tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 13 ? 2 : a <= 20 ? 1 : 0; },
-      says: function (r) { return r.t; } },
+      says: function (r) { return words(r); } },
     { id: "out-of-24", key: "o24", name: T("game.o24.name"), href: "out-of-24/", start: "2026-10-09",
       pitch: T("game.o24.pitch"),
       score: function (r) { return r.y; }, wins: "low",
       ok: function (v) { return whole(v) && (v === 0 || Math.abs(v) > 15) && Math.abs(v) <= 1440; },
       done: function (r) { return !!r && num(r.g) && r.g >= 0 && r.g <= 1440 && num(r.y) && typeof r.t === "string"; },
       tier: function (r) { var a = Math.abs(r.y); return a === 0 ? 3 : a <= 45 ? 2 : a <= 120 ? 1 : 0; },
-      says: function (r) { return r.t; } }
+      says: function (r) { return words(r); } }
   ];
   function commas(n) { return LG ? LG.num(Math.round(n)) : String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   /* The games' names and lines in the language the page has just started to speak (29 Oct 2026): LG.speak, when

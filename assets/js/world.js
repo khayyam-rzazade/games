@@ -425,7 +425,7 @@
       bar.appendChild(fill);
       mid.appendChild(bar);
       li.appendChild(mid);
-      li.appendChild(el("b", "", share + "%"));
+      li.appendChild(el("b", "", LG ? LG.pct(share) : share + "%"));
       ul.appendChild(li);
     });
     box.appendChild(ul);
@@ -591,11 +591,11 @@
       var top = el("span", "rx-top");
       top.appendChild(el("span", "rx-e", FEEL[i].e));
       top.appendChild(el("span", "rx-globe", "\uD83C\uDF0D"));          // the big number is the world's (24 Oct 2026, Khayyam)
-      top.appendChild(el("b", "rx-n", pw === null ? String(w[i]) : pw + "%"));
+      top.appendChild(el("b", "rx-n", pw === null ? String(w[i]) : (LG ? LG.pct(pw) : pw + "%")));
       b.appendChild(top);
       var ph = th >= 5 && countryName(c) ? Math.round(100 * h[i] / th) : null;
       var low = el("span", "rx-low");
-      if (ph !== null) { low.appendChild(flagEl(c)); low.appendChild(document.createTextNode(" " + ph + "%")); } else low.textContent = FEEL[i].t;
+      if (ph !== null) { low.appendChild(flagEl(c)); low.appendChild(document.createTextNode(" " + (LG ? LG.pct(ph) : ph + "%"))); } else low.textContent = FEEL[i].t;
       b.appendChild(low);
       b.setAttribute("aria-label", FEEL[i].t + ": " + (pw === null ? T.n(w[i], "world.n_players") : T("world.pct_of_world", { pct: pw })) +
         (ph !== null ? ", " + T("world.pct_of_country", { pct: ph, country: countryName(c) }) : "") + (i === mine ? ". " + T("world.your_pick") : "."));

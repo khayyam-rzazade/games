@@ -80,7 +80,7 @@
   if (L.t.length > 34) $("end-l").classList.add("small-text");
   if (R.t.length > 34) $("end-r").classList.add("small-text");
   cursor.setAttribute("aria-label", T("apart.cursor_aria", { mid: lower(M.t), left: lower(L.t), right: lower(R.t) }));
-  function lower(t) { return t.charAt(0).toLowerCase() + t.slice(1); }
+  function lower(t) { return LG.lowerFirst(t); }
 
   /* the ruler is drawn to the width of the board: brass caps at both ends, a hundred ticks in between */
   var SVGNS = "http://www.w3.org/2000/svg";
@@ -302,7 +302,7 @@
       var li = document.createElement("li");
       var b = document.createElement("b"); b.textContent = e.t;
       li.appendChild(b);
-      li.appendChild(document.createTextNode(", " + e.y + ": "));
+      li.appendChild(document.createTextNode(", " + e.y + LG.colon()));
       (e.src || []).forEach(function (s, i) {
         if (i) li.appendChild(document.createTextNode(", "));
         var a = document.createElement("a");
@@ -339,7 +339,7 @@
       fillStamp(st, playedPuzzle(res[n], n));
       album.appendChild(st);
     });
-    $("st-avg").textContent = (days.length ? Math.round(off / days.length / 10) : 0) + "%";
+    $("st-avg").textContent = LG.pct(days.length ? Math.round(off / days.length / 10) : 0);
     $("album-empty").hidden = days.length > 0;
   }
   function fillStamp(el, p) {
@@ -394,6 +394,8 @@
     ctx.closePath();
   }
   /* splits a text into lines that fit, making the letters smaller (down to a floor) until it takes at most maxLines */
+  /* capitals in the player's language (Turkish i -> İ) */
+  function caps(s) { return LG.upper(s); }
   function wrap(x, text, weight, size, family, maxW, maxLines, floor) {
     for (var s = size; s >= floor; s -= 2) {
       x.font = weight + " " + s + "px " + family;
@@ -445,8 +447,8 @@
     var endLines = Math.max(lw.lines.length, rw.lines.length), lh = Math.max(lw.size, rw.size) * 1.16;
     var rulerY = 352 + 40 + endLines * lh + 24;
     x.font = "800 24px " + F; x.fillStyle = "#E3C58F";
-    x.textAlign = "left"; x.fillText("FROM", MG, 352);
-    x.textAlign = "right"; x.fillText("TO", W2 - MG, 352);
+    x.textAlign = "left"; x.fillText(caps(T("apart.from")), MG, 352);
+    x.textAlign = "right"; x.fillText(caps(T("apart.to")), W2 - MG, 352);
     x.fillStyle = gold;
     lw.lines.forEach(function (l, i) { x.textAlign = "left"; x.font = "700 " + lw.size + "px " + FD; x.fillText(l, MG, 352 + 46 + i * lh); });
     rw.lines.forEach(function (l, i) { x.textAlign = "right"; x.font = "700 " + rw.size + "px " + FD; x.fillText(l, W2 - MG, 352 + 46 + i * lh); });

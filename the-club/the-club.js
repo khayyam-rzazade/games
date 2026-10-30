@@ -211,7 +211,7 @@
     actions.classList.add("wait");
     truthEl.innerHTML = '<span class="sr-only"></span>' + (truth ? T("club.in_the_club") : T("club.not_in_the_club")) +
       ' <b class="tc-mark ' + (ok ? "ok" : "miss") + '">' + (ok ? T("club.right") : T("club.you_said", { what: v === 1 ? T("club.in") : T("club.out") })) + "</b>";
-    truthEl.firstChild.textContent = name + ": ";
+    truthEl.firstChild.textContent = name + LG.colon();
     paintPips();
     if (!ok && window.navigator.vibrate) { try { window.navigator.vibrate(12); } catch (e) { /* ignore */ } }
     window.setTimeout(function () {

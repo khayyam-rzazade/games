@@ -28,9 +28,31 @@
 <script>
 /* Find the front door: on github.io the site lives in a folder, on its own domain at the top. */
 (function () {
+  /* the page's four lines (title, heading, line, button) in the six languages; the page shows up at any address, so they live here */
+  var WORDS = {
+    en: ["Page not found", "This page does not exist.", "The link may be old or mistyped.", "Go to the games"],
+    it: ["Pagina non trovata", "Questa pagina non esiste.", "Il link potrebbe essere vecchio o scritto male.", "Vai ai giochi"],
+    tr: ["Sayfa bulunamadı", "Böyle bir sayfa yok.", "Bağlantı eski ya da yanlış yazılmış olabilir.", "Oyunlara git"],
+    es: ["Página no encontrada", "Esta página no existe.", "Puede que el enlace sea antiguo o tenga un error.", "Ir a los juegos"],
+    pt: ["Página não encontrada", "Esta página não existe.", "O link pode estar antigo ou ter sido digitado errado.", "Ir para os jogos"],
+    fr: ["Page introuvable", "Cette page n’existe pas.", "Le lien est peut-être ancien ou mal écrit.", "Aller aux jeux"]
+  };
   var parts = window.location.pathname.split("/");
   var root = /\.github\.io$/.test(window.location.hostname) && parts[1] ? "/" + parts[1] + "/" : "/";
   if (window.location.protocol === "file:") return;
+  var code = "en";
+  try { code = window.localStorage.getItem("lg.findout.lang") || ""; } catch (e) { code = ""; }                          // the pick the player made on the site
+  if (!WORDS[code]) { try { code = String(window.navigator.language || "").slice(0, 2).toLowerCase(); } catch (e) { code = ""; } }   // else the phone's language
+  if (!WORDS[code]) code = "en";
+  var w = WORDS[code];
+  if (code !== "en") {
+    document.documentElement.lang = code === "pt" ? "pt-BR" : code;
+    document.title = w[0] + " | Logicers";
+    document.querySelector("h1").textContent = w[1];
+    document.querySelector("p").textContent = w[2];
+    document.querySelector("a.go").textContent = w[3];
+  }
+  root += code === "en" ? "" : code + "/";
   Array.prototype.forEach.call(document.querySelectorAll("a.home"), function (a) { a.setAttribute("href", root); });
 })();
 </script>

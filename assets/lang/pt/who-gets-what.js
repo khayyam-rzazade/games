@@ -63,6 +63,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "it-power": {
   "what": "Um quilowatt-hora (kWh) de eletricidade",
   "where": "na Itália",
+  "unit": "por kWh",
   "fact": "Pouco menos de dois terços do preço de um quilowatt-hora na Itália eram a própria eletricidade. A rede por onde ela viaja custava mais do que os impostos que incidem sobre ela.",
   "note": "O número do próprio órgão regulador para a tarifa protegida das residências. “Energia” é a compra da eletricidade e a venda dela para você (15,79 centavos e 2,16 centavos dos 28,29); “Programas” são os encargos do sistema.",
   "slices": [
@@ -583,6 +584,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "de-power": {
   "what": "Um quilowatt-hora (kWh) de eletricidade",
   "where": "na Alemanha",
+  "unit": "por kWh",
   "fact": "A Alemanha divide o preço de um quilowatt-hora de eletricidade quase em três: a energia, a rede e o Estado.",
   "note": "A análise da própria associação do setor para uma casa que usa 3.500 kWh por ano. “Impostos” inclui o IVA (imposto sobre valor agregado), o imposto sobre a eletricidade, a taxa de concessão e as outras cobranças.",
   "slices": [
@@ -838,6 +840,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-premium": {
   "what": "Chocolate amargo premium",
   "where": "na França",
+  "unit": "por quilo",
   "fact": "Uma barra de chocolate amargo premium, a € 16,41 o quilo, pagou € 1,26 a quem cultiva o cacau, pouco mais do que os € 1,05 de uma barra comum. A marca e a loja ficaram com quase toda a diferença.",
   "note": "O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, sem nenhum selo. “Fabricante” é a moagem das amêndoas (3,7), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (41,4).",
   "slices": [
@@ -866,6 +869,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "dk-power": {
   "what": "Um quilowatt-hora (kWh) de eletricidade",
   "where": "na Dinamarca",
+  "unit": "por kWh",
   "fact": "Em 2025, o imposto dinamarquês sobre a eletricidade ficava com tanto do preço do quilowatt-hora de uma casa quanto a própria eletricidade. Em 1º de janeiro de 2026, ele foi reduzido a quase nada.",
   "note": "A média do escritório de estatísticas da União Europeia para uma casa que usa de 2.500 a 4.999 kWh por ano: 0,72 coroa dinamarquesa para a eletricidade e o fornecedor dela, 0,59 para as redes, 0,72 de imposto sobre a eletricidade e 0,52 de IVA (imposto sobre valor agregado). O imposto caiu para 0,8 øre por kWh em 2026.",
   "slices": [
@@ -1126,6 +1130,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-organic": {
   "what": "Chocolate amargo orgânico e de comércio justo",
   "where": "na França",
+  "unit": "por quilo",
   "fact": "O chocolate orgânico de comércio justo pagou € 2,70 por quilo a quem cultiva o cacau, mais do que o dobro dos € 1,05 de uma barra comum. Como parcela do preço, ainda ficou abaixo de doze centavos de cada euro.",
   "note": "O estudo da agência das Nações Unidas sobre a cadeia francesa do chocolate, para um tablete de chocolate amargo premium, de marca nacional, com um selo orgânico e um selo de comércio justo. “Fabricante” é a moagem das amêndoas (3,8), o açúcar e os outros ingredientes (0,5) e a fabricação da barra e a construção da marca (38,1).",
   "slices": [

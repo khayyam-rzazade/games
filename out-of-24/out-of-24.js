@@ -380,7 +380,7 @@
     var g = v, y = scoreOf(g), t = scoreText(y);
     TO.update(GAME, function (s) {
       var slot = practice ? s.practice : s.results;
-      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id };
+      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id, l: LG ? LG.lang : "en" };
     });
     TO.count(practice ? "out-of-24/practice-played" : "out-of-24/played/day-" + day);
     showResult(true);
@@ -410,7 +410,7 @@
       drawing = 0;
       arc(arcReal, 0, q.lo);
       arcBand.classList.remove("wait"); arcMiss.classList.remove("wait");
-      centre(figLines(q.fig), "REAL", you);
+      centre(figLines(q.fig), T("o24.real_caps"), you);
       panel.setAttribute("data-drawn", "1");
     }
     if (animate && !reduced && window.requestAnimationFrame) {
@@ -474,7 +474,7 @@
       if (q.credit && q.credit.lic) {
         var L = { by3: ["CC BY 3.0", "https://creativecommons.org/licenses/by/3.0/"],
                   by4: ["CC BY 4.0", "https://creativecommons.org/licenses/by/4.0/"] }[q.credit.lic];
-        cr.appendChild(document.createTextNode(": " + T("cous.credit", { thing: q.face, by: q.credit.by || T("cous.unnamed_artist") }) + " ("));
+        cr.appendChild(document.createTextNode(LG.colon() + T("cous.credit", { thing: q.face, by: q.credit.by || T("cous.unnamed_artist") }) + " ("));
         if (L) cr.appendChild(link({ name: L[0], url: L[1] })); else cr.appendChild(document.createTextNode(q.credit.lic));
         cr.appendChild(document.createTextNode(")."));
       } else {

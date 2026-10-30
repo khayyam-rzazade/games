@@ -1,6 +1,7 @@
 {
  "en": {
   "name": "Lookalike",
+  "page_title": "Lookalike: a daily word game | Logicers",
   "pitch": "Words that look alike in two languages but mean different things. Spot the trap.",
   "day": "Day {n}",
   "streak": "Streak {n}",
@@ -40,6 +41,7 @@
   "result": "Result",
   "fell": "{p} of {who} fell for it",
   "players": "{n} players",
+  "players_1": "{n} player",
   "score_aria": "{n} of {t} right",
   "more": "More to play →",
   "share": "Share",
@@ -63,6 +65,7 @@
  },
  "it": {
   "name": "Lookalike",
+  "page_title": "Lookalike: un gioco di parole quotidiano | Logicers",
   "pitch": "Parole che si somigliano in due lingue ma vogliono dire altro. Evita la trappola.",
   "day": "Giorno {n}",
   "streak": "Serie {n}",
@@ -102,6 +105,7 @@
   "result": "Risultato",
   "fell": "Il {p} di {who} ci è cascato",
   "players": "{n} giocatori",
+  "players_1": "{n} giocatore",
   "score_aria": "{n} su {t} giuste",
   "more": "Altro da giocare →",
   "share": "Condividi",
@@ -125,6 +129,7 @@
  },
  "es": {
   "name": "Lookalike",
+  "page_title": "Lookalike: un juego de palabras diario | Logicers",
   "pitch": "Palabras que se parecen en dos idiomas pero significan otra cosa. Evita la trampa.",
   "day": "Día {n}",
   "streak": "Racha {n}",
@@ -164,6 +169,7 @@
   "result": "Resultado",
   "fell": "El {p} de {who} cayó en la trampa",
   "players": "{n} jugadores",
+  "players_1": "{n} jugador",
   "score_aria": "{n} de {t} correctas",
   "more": "Más para jugar →",
   "share": "Compartir",
@@ -187,6 +193,7 @@
  },
  "pt": {
   "name": "Lookalike",
+  "page_title": "Lookalike: um jogo de palavras diário | Logicers",
   "pitch": "Palavras parecidas em dois idiomas, mas com sentidos diferentes. Fuja da pegadinha.",
   "day": "Dia {n}",
   "streak": "Sequência {n}",
@@ -226,6 +233,7 @@
   "result": "Resultado",
   "fell": "{p} de {who} caiu na pegadinha",
   "players": "{n} jogadores",
+  "players_1": "{n} jogador",
   "score_aria": "{n} de {t} certas",
   "more": "Mais para jogar →",
   "share": "Compartilhar",
@@ -249,6 +257,7 @@
  },
  "fr": {
   "name": "Lookalike",
+  "page_title": "Lookalike : un jeu de mots quotidien | Logicers",
   "pitch": "Des mots qui se ressemblent d’une langue à l’autre, mais pas par le sens. Évite le piège.",
   "day": "Jour {n}",
   "streak": "Série {n}",
@@ -288,6 +297,7 @@
   "result": "Résultat",
   "fell": "{p} de {who} se sont fait piéger",
   "players": "{n} joueurs",
+  "players_1": "{n} joueur",
   "score_aria": "{n} sur {t} justes",
   "more": "Encore plus de jeux →",
   "share": "Partager",
@@ -311,6 +321,7 @@
  },
  "tr": {
   "name": "Lookalike",
+  "page_title": "Lookalike: günlük bir kelime oyunu | Logicers",
   "pitch": "İki dilde birbirine benzeyen ama anlamı başka olan kelimeler. Tuzağa düşme.",
   "day": "{n}. gün",
   "streak": "Seri {n}",

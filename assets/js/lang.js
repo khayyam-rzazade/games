@@ -58,7 +58,10 @@
   /* ---- the words ---- */
   function fill(s, vars) {
     if (!vars) return s;
-    return String(s).replace(/\{([a-z0-9_]+)\}/gi, function (m, k) { return Object.prototype.hasOwnProperty.call(vars, k) ? String(vars[k]) : m; });
+    s = String(s).replace(/\{([a-z0-9_]+)\}/gi, function (m, k) { return Object.prototype.hasOwnProperty.call(vars, k) ? String(vars[k]) : m; });
+    /* Italian: the article drops its vowel before a number said with a vowel, 8, 11 and 80 to 89: "il 8%" -> "l'8%", "Il 11%" -> "L'11%" */
+    if (lang === "it") s = s.replace(/\b([Ii])l (<b>)?(8|11|8[0-9])(?![0-9.])/g, function (m, i, b, n) { return (i === "I" ? "L" : "l") + "'" + (b || "") + n; });
+    return s;
   }
   function T(key, vars) {
     var s = D[key];
@@ -73,12 +76,41 @@
     var v = {};
     if (vars) for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) v[k] = vars[k];
     if (v.n === undefined) v.n = num(n);
-    return T(n === 1 && typeof D[key + "_1"] === "string" ? key + "_1" : key + "_n", v);
+    return T(one(n) && typeof D[key + "_1"] === "string" ? key + "_1" : key + "_n", v);
   };
+  /* "one" after a number: exactly 1 everywhere; also 0 to 2 in French ("0 jour", "1,5 jour") and above 0 to 2 in Portuguese ("0,5 dia"), as the languages count */
+  function one(n) {
+    n = Math.abs(Number(n));
+    if (n === 1) return true;
+    if (lang === "fr") return n < 2;
+    if (lang === "pt") return n > 0 && n < 2;
+    return false;
+  }
   T.has = function (key) { return typeof D[key] === "string"; };
   function num(n) {
     try { return Number(n).toLocaleString(locale); } catch (e) { return String(n); }
   }
+  /* capitals in the language's own rules (Turkish İ/ı: "İki".toLowerCase() leaves a stray dot, "iki".toUpperCase() has no dot).
+     lowerFirst/upperFirst change the first letter only, and lowerFirst leaves a word that has a capital inside it (TVA, iPad, IVA) alone. */
+  function lower(s) { s = String(s == null ? "" : s); try { return s.toLocaleLowerCase(locale); } catch (e) { return s.toLowerCase(); } }
+  function upper(s) { s = String(s == null ? "" : s); try { return s.toLocaleUpperCase(locale); } catch (e) { return s.toUpperCase(); } }
+  function lowerFirst(s) {
+    s = String(s == null ? "" : s);
+    var w = s.split(/[\s\u00a0]/)[0];
+    if (!w || w.slice(1) !== lower(w.slice(1))) return s;
+    return lower(s.charAt(0)) + s.slice(1);
+  }
+  function upperFirst(s) { s = String(s == null ? "" : s); return upper(s.charAt(0)) + s.slice(1); }
+  /* a number written with the language's decimal sign: 2.3 -> "2,3" (all five languages count with a comma) */
+  function dec(n) { var s = String(n); return lang === "en" ? s : s.replace(".", ","); }
+  /* a percentage as the language writes it: 50% / %50 (Turkish) / 50 % (Spanish, no-break space) / 50 % (French, narrow no-break space) */
+  function pct(n) {
+    var s = dec(n);
+    if (lang === "tr") return "%" + s;
+    return s + (lang === "es" ? "\u00a0%" : lang === "fr" ? "\u202f%" : "%");
+  }
+  /* the colon after a label: French puts a no-break space before it ("Source : ..."), the others do not */
+  function colon() { return lang === "fr" ? "\u00a0: " : ": "; }
   function date(d, opts) {
     try { return (d || new Date()).toLocaleDateString(locale, opts || { day: "numeric", month: "long" }); } catch (e) { return ""; }
   }
@@ -232,7 +264,7 @@
   }
   /* the quiet line of an English-only page, in the phone's language */
   function note() {
-    var p = document.getElementById("lg-only"), pick = saved() || "en";
+    var p = document.getElementById("lg-only"), ph = phone(), pick = saved() || (ph ? ph[0] : "en");   // nothing picked yet: the phone's language
     if (!p) return;
     p.textContent = pick === "en" ? "" : (ONLY[pick] || "");
     p.hidden = !p.textContent;
@@ -279,7 +311,7 @@
   }
 
   window.LG = { lang: lang, locale: locale, base: lang === "en" ? "" : lang + "/", root: root, path: path, LANGS: LANGS,
-                t: T, num: num, date: date, nth: nth, country: country, href: href, hrefIn: hrefIn, saved: saved, remember: remember,
+                t: T, num: num, date: date, nth: nth, one: one, colon: colon, dec: dec, pct: pct, lower: lower, upper: upper, lowerFirst: lowerFirst, upperFirst: upperFirst, country: country, href: href, hrefIn: hrefIn, saved: saved, remember: remember,
                 sheet: sheet, puzzle: puzzle, puzzleAll: puzzleAll, puzzleHas: puzzleHas, puzzleNote: puzzleNote, findout: FINDOUT[lang] || "", KEY: KEY,
                 speak: speak };
   window.T = T;

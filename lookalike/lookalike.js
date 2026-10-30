@@ -52,7 +52,18 @@
   }
   function fill(s, v) {
     if (!v) return s;
-    return String(s).replace(/\{([a-z0-9_]+)\}/gi, function (m, k) { return Object.prototype.hasOwnProperty.call(v, k) ? String(v[k]) : m; });
+    s = String(s).replace(/\{([a-z0-9_]+)\}/gi, function (m, k) { return Object.prototype.hasOwnProperty.call(v, k) ? String(v[k]) : m; });
+    /* Italian: the article drops its vowel before a number said with a vowel, 8, 11 and 80 to 89: "il 8%" -> "l'8%" */
+    if (lang === "it") s = s.replace(/\b([Ii])l (8|11|8[0-9])(?![0-9.])/g, function (m, i, n) { return (i === "I" ? "L" : "l") + "'" + n; });
+    return s;
+  }
+  /* "one" after a count: exactly 1 everywhere; also 0 to 2 in French and above 0 to 2 in Portuguese (the same rule as LG.one) */
+  function isOne(n) {
+    n = Math.abs(Number(n));
+    if (n === 1) return true;
+    if (lang === "fr") return n < 2;
+    if (lang === "pt") return n > 0 && n < 2;
+    return false;
   }
   function isNum(v) { return typeof v === "number" && isFinite(v); }
   function noop() { /* nothing to do */ }
@@ -96,8 +107,11 @@
   var cardAuto = 0;
 
   function T(k, v) {
-    var s = null;
-    if (STR && STR[lang] && STR[lang][k] != null) s = STR[lang][k];
+    var s = null, k1 = k + "_1", c = v && v.cnt !== undefined ? v.cnt : v && v.n;       // cnt: the number itself, where n is already written out ("1.234")
+    var single = v && c !== undefined && isOne(c);
+    if (single && STR && STR[lang] && STR[lang][k1] != null) s = STR[lang][k1];            // a string of its own for exactly one: "1 player", "1 giocatore"
+    else if (STR && STR[lang] && STR[lang][k] != null) s = STR[lang][k];
+    else if (single && STR && STR.en && STR.en[k1] != null) s = STR.en[k1];
     else if (STR && STR.en && STR.en[k] != null) s = STR.en[k];
     if (s == null) {                // a word the strings file does not have: say nothing rather than show its name
       if (window.console) window.console.warn("Logicers: no words for " + k);
@@ -229,7 +243,7 @@
   /* ------------------------------------------------------------------ the page's fixed words */
   function paintStatic() {
     document.documentElement.lang = lang;
-    document.title = T("name") + " | Logicers";
+    document.title = T("page_title");
     [["meta[name=description]", T("pitch")], ["meta[property='og:description']", T("pitch")], ["meta[property='og:title']", T("name")]].forEach(function (p) {
       var m = document.querySelector(p[0]);
       if (m) m.setAttribute("content", p[1]);
@@ -653,7 +667,7 @@
     live.textContent = "";
     live.appendChild(rowsEl());
     var sh = trapShares(srv.views[lang]), sub = $("lk-players");
-    if (sub) { sub.hidden = !sh; if (sh) sub.textContent = T("players", { n: sh.n.toLocaleString ? sh.n.toLocaleString(lang) : sh.n }); }
+    if (sub) { sub.hidden = !sh; if (sh) sub.textContent = T("players", { n: sh.n.toLocaleString ? sh.n.toLocaleString(lang) : sh.n, cnt: sh.n }); }
   }
   function liveUpdate() {
     if (cardOpen) renderLive();

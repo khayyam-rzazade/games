@@ -17,17 +17,17 @@ One food or drink, and how many of another hold the same energy. **What is a fac
 
 ## Where each language stands
 
-- it (Italian): 14 of 84 puzzles done
-- tr (Turkish): 14 of 84 puzzles done
-- es (Spanish): 14 of 84 puzzles done
-- pt (Brazilian Portuguese): 9 of 84 puzzles done
-- fr (French): 9 of 84 puzzles done
+- it (Italian): 84 of 84 puzzles done
+- tr (Turkish): 84 of 84 puzzles done
+- es (Spanish): 84 of 84 puzzles done
+- pt (Brazilian Portuguese): 84 of 84 puzzles done
+- fr (French): 84 of 84 puzzles done
 
 ## The 84 puzzles of Same Energy, in play order
 
 Each heading: the puzzle's number in the stock, its id (the middle part of its keys), the first days that play it, and which languages have it.
 
-#### 1/84 · `cola-apples` · day 1 (10 Oct 2026), 85 (2 Jan 2027), 169 (27 Mar 2027), 253 (19 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 1/84 · `cola-apples` · day 1 (10 Oct 2026), 85 (2 Jan 2027), 169 (27 Mar 2027), 253 (19 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-apples.a_name` — A can of cola
 - `p.same-energy.cola-apples.a_portion` — 330 ml
@@ -41,7 +41,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-apples.src1_what` — Cola
 - `p.same-energy.cola-apples.src2_what` — Apples
 
-#### 2/84 · `dates-milk` · day 2 (11 Oct 2026), 86 (3 Jan 2027), 170 (28 Mar 2027), 254 (20 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 2/84 · `dates-milk` · day 2 (11 Oct 2026), 86 (3 Jan 2027), 170 (28 Mar 2027), 254 (20 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.dates-milk.a_name` — A handful of dates
 - `p.same-energy.dates-milk.a_portion` — 50 g
@@ -55,7 +55,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.dates-milk.src1_what` — Dates
 - `p.same-energy.dates-milk.src2_what` — Milk
 
-#### 3/84 · `chocolate-bread` · day 3 (12 Oct 2026), 87 (4 Jan 2027), 171 (29 Mar 2027), 255 (21 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 3/84 · `chocolate-bread` · day 3 (12 Oct 2026), 87 (4 Jan 2027), 171 (29 Mar 2027), 255 (21 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.chocolate-bread.a_name` — A bar of dark chocolate
 - `p.same-energy.chocolate-bread.a_portion` — 100 g
@@ -69,7 +69,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.chocolate-bread.src1_what` — Dark chocolate
 - `p.same-energy.chocolate-bread.src2_what` — Bread
 
-#### 4/84 · `beer-orange-juice` · day 4 (13 Oct 2026), 88 (5 Jan 2027), 172 (30 Mar 2027), 256 (22 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 4/84 · `beer-orange-juice` · day 4 (13 Oct 2026), 88 (5 Jan 2027), 172 (30 Mar 2027), 256 (22 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-orange-juice.a_name` — A large beer
 - `p.same-energy.beer-orange-juice.a_portion` — 500 ml
@@ -83,7 +83,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-orange-juice.src1_what` — Beer
 - `p.same-energy.beer-orange-juice.src2_what` — Orange juice
 
-#### 5/84 · `milk-bananas` · day 5 (14 Oct 2026), 89 (6 Jan 2027), 173 (31 Mar 2027), 257 (23 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 5/84 · `milk-bananas` · day 5 (14 Oct 2026), 89 (6 Jan 2027), 173 (31 Mar 2027), 257 (23 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.milk-bananas.a_name` — A glass of milk
 - `p.same-energy.milk-bananas.a_portion` — 250 ml
@@ -97,7 +97,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.milk-bananas.src1_what` — Milk
 - `p.same-energy.milk-bananas.src2_what` — Bananas
 
-#### 6/84 · `oil-cola` · day 6 (15 Oct 2026), 90 (7 Jan 2027), 174 (1 Apr 2027), 258 (24 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 6/84 · `oil-cola` · day 6 (15 Oct 2026), 90 (7 Jan 2027), 174 (1 Apr 2027), 258 (24 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oil-cola.a_name` — A spoon of olive oil
 - `p.same-energy.oil-cola.a_portion` — 1 tablespoon
@@ -111,7 +111,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oil-cola.src1_what` — Olive oil
 - `p.same-energy.oil-cola.src2_what` — Cola
 
-#### 7/84 · `cheese-grapes` · day 7 (16 Oct 2026), 91 (8 Jan 2027), 175 (2 Apr 2027), 259 (25 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 7/84 · `cheese-grapes` · day 7 (16 Oct 2026), 91 (8 Jan 2027), 175 (2 Apr 2027), 259 (25 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cheese-grapes.a_name` — A slice of cheese
 - `p.same-energy.cheese-grapes.a_portion` — 20 g
@@ -125,7 +125,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cheese-grapes.src1_what` — Cheese
 - `p.same-energy.cheese-grapes.src2_what` — Grapes
 
-#### 8/84 · `cola-bottle-milk` · day 8 (17 Oct 2026), 92 (9 Jan 2027), 176 (3 Apr 2027), 260 (26 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 8/84 · `cola-bottle-milk` · day 8 (17 Oct 2026), 92 (9 Jan 2027), 176 (3 Apr 2027), 260 (26 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-bottle-milk.a_name` — A bottle of cola
 - `p.same-energy.cola-bottle-milk.a_portion` — 500 ml
@@ -139,7 +139,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-bottle-milk.src1_what` — Cola
 - `p.same-energy.cola-bottle-milk.src2_what` — Milk
 
-#### 9/84 · `apple-juice-bread` · day 9 (18 Oct 2026), 93 (10 Jan 2027), 177 (4 Apr 2027), 261 (27 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 9/84 · `apple-juice-bread` · day 9 (18 Oct 2026), 93 (10 Jan 2027), 177 (4 Apr 2027), 261 (27 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-juice-bread.a_name` — A glass of apple juice
 - `p.same-energy.apple-juice-bread.a_portion` — 250 ml
@@ -153,7 +153,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.apple-juice-bread.src1_what` — Apple juice
 - `p.same-energy.apple-juice-bread.src2_what` — Bread
 
-#### 10/84 · `egg-cola` · day 10 (19 Oct 2026), 94 (11 Jan 2027), 178 (5 Apr 2027), 262 (28 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 10/84 · `egg-cola` · day 10 (19 Oct 2026), 94 (11 Jan 2027), 178 (5 Apr 2027), 262 (28 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.egg-cola.a_name` — A boiled egg
 - `p.same-energy.egg-cola.a_portion` — 50 g
@@ -167,7 +167,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.egg-cola.src1_what` — Eggs
 - `p.same-energy.egg-cola.src2_what` — Cola
 
-#### 11/84 · `crisps-bananas` · day 11 (20 Oct 2026), 95 (12 Jan 2027), 179 (6 Apr 2027), 263 (29 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 11/84 · `crisps-bananas` · day 11 (20 Oct 2026), 95 (12 Jan 2027), 179 (6 Apr 2027), 263 (29 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.crisps-bananas.a_name` — A big bag of crisps
 - `p.same-energy.crisps-bananas.a_portion` — 150 g
@@ -181,7 +181,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.crisps-bananas.src1_what` — Crisps
 - `p.same-energy.crisps-bananas.src2_what` — Bananas
 
-#### 12/84 · `orange-bottle-cola` · day 12 (21 Oct 2026), 96 (13 Jan 2027), 180 (7 Apr 2027), 264 (30 Jun 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 12/84 · `orange-bottle-cola` · day 12 (21 Oct 2026), 96 (13 Jan 2027), 180 (7 Apr 2027), 264 (30 Jun 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-bottle-cola.a_name` — A bottle of orange juice
 - `p.same-energy.orange-bottle-cola.a_portion` — 330 ml
@@ -195,7 +195,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-bottle-cola.src1_what` — Orange juice
 - `p.same-energy.orange-bottle-cola.src2_what` — Cola
 
-#### 13/84 · `milk-eggs` · day 13 (22 Oct 2026), 97 (14 Jan 2027), 181 (8 Apr 2027), 265 (1 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 13/84 · `milk-eggs` · day 13 (22 Oct 2026), 97 (14 Jan 2027), 181 (8 Apr 2027), 265 (1 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.milk-eggs.a_name` — A glass of milk
 - `p.same-energy.milk-eggs.a_portion` — 250 ml
@@ -209,7 +209,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.milk-eggs.src1_what` — Milk
 - `p.same-energy.milk-eggs.src2_what` — Eggs
 
-#### 14/84 · `almonds-orange-juice` · day 14 (23 Oct 2026), 98 (15 Jan 2027), 182 (9 Apr 2027), 266 (2 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 14/84 · `almonds-orange-juice` · day 14 (23 Oct 2026), 98 (15 Jan 2027), 182 (9 Apr 2027), 266 (2 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.almonds-orange-juice.a_name` — A handful of almonds
 - `p.same-energy.almonds-orange-juice.a_portion` — 30 g
@@ -223,7 +223,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.almonds-orange-juice.src1_what` — Almonds
 - `p.same-energy.almonds-orange-juice.src2_what` — Orange juice
 
-#### 15/84 · `oil-bread` · day 15 (24 Oct 2026), 99 (16 Jan 2027), 183 (10 Apr 2027), 267 (3 Jul 2027) … · every 84 days · done: it, tr, es · to do: pt, fr
+#### 15/84 · `oil-bread` · day 15 (24 Oct 2026), 99 (16 Jan 2027), 183 (10 Apr 2027), 267 (3 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oil-bread.a_name` — A spoon of olive oil
 - `p.same-energy.oil-bread.a_portion` — 1 tablespoon
@@ -237,7 +237,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oil-bread.src1_what` — Olive oil
 - `p.same-energy.oil-bread.src2_what` — Bread
 
-#### 16/84 · `beer-can-milk` · day 16 (25 Oct 2026), 100 (17 Jan 2027), 184 (11 Apr 2027), 268 (4 Jul 2027) … · every 84 days · done: it, tr, es · to do: pt, fr
+#### 16/84 · `beer-can-milk` · day 16 (25 Oct 2026), 100 (17 Jan 2027), 184 (11 Apr 2027), 268 (4 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-can-milk.a_name` — A can of beer
 - `p.same-energy.beer-can-milk.a_portion` — 330 ml
@@ -251,7 +251,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-can-milk.src1_what` — Beer
 - `p.same-energy.beer-can-milk.src2_what` — Milk
 
-#### 17/84 · `cola-grapes` · day 17 (26 Oct 2026), 101 (18 Jan 2027), 185 (12 Apr 2027), 269 (5 Jul 2027) … · every 84 days · done: it, tr, es · to do: pt, fr
+#### 17/84 · `cola-grapes` · day 17 (26 Oct 2026), 101 (18 Jan 2027), 185 (12 Apr 2027), 269 (5 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-grapes.a_name` — A can of cola
 - `p.same-energy.cola-grapes.a_portion` — 330 ml
@@ -265,7 +265,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-grapes.src1_what` — Cola
 - `p.same-energy.cola-grapes.src2_what` — Grapes
 
-#### 18/84 · `chocolate-milk` · day 18 (27 Oct 2026), 102 (19 Jan 2027), 186 (13 Apr 2027), 270 (6 Jul 2027) … · every 84 days · done: it, tr, es · to do: pt, fr
+#### 18/84 · `chocolate-milk` · day 18 (27 Oct 2026), 102 (19 Jan 2027), 186 (13 Apr 2027), 270 (6 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.chocolate-milk.a_name` — A small bar of dark chocolate
 - `p.same-energy.chocolate-milk.a_portion` — 40 g
@@ -279,7 +279,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.chocolate-milk.src1_what` — Dark chocolate
 - `p.same-energy.chocolate-milk.src2_what` — Milk
 
-#### 19/84 · `dates-bananas` · day 19 (28 Oct 2026), 103 (20 Jan 2027), 187 (14 Apr 2027), 271 (7 Jul 2027) … · every 84 days · done: it, tr, es · to do: pt, fr
+#### 19/84 · `dates-bananas` · day 19 (28 Oct 2026), 103 (20 Jan 2027), 187 (14 Apr 2027), 271 (7 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.dates-bananas.a_name` — A handful of dates
 - `p.same-energy.dates-bananas.a_portion` — 50 g
@@ -419,7 +419,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.big-cola-milk.src1_what` — Cola
 - `p.same-energy.big-cola-milk.src2_what` — Milk
 
-#### 29/84 · `orange-bottle-grapes` · day 29 (7 Nov 2026), 113 (30 Jan 2027), 197 (24 Apr 2027), 281 (17 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 29/84 · `orange-bottle-grapes` · day 29 (7 Nov 2026), 113 (30 Jan 2027), 197 (24 Apr 2027), 281 (17 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-bottle-grapes.a_name` — A bottle of orange juice
 - `p.same-energy.orange-bottle-grapes.a_portion` — 330 ml
@@ -433,7 +433,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-bottle-grapes.src1_what` — Orange juice
 - `p.same-energy.orange-bottle-grapes.src2_what` — Grapes
 
-#### 30/84 · `peanut-butter-milk` · day 30 (8 Nov 2026), 114 (31 Jan 2027), 198 (25 Apr 2027), 282 (18 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 30/84 · `peanut-butter-milk` · day 30 (8 Nov 2026), 114 (31 Jan 2027), 198 (25 Apr 2027), 282 (18 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.peanut-butter-milk.a_name` — A spoon of peanut butter
 - `p.same-energy.peanut-butter-milk.a_portion` — 1 tablespoon
@@ -447,7 +447,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.peanut-butter-milk.src1_what` — Peanut butter
 - `p.same-energy.peanut-butter-milk.src2_what` — Milk
 
-#### 31/84 · `almonds-apples` · day 31 (9 Nov 2026), 115 (1 Feb 2027), 199 (26 Apr 2027), 283 (19 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 31/84 · `almonds-apples` · day 31 (9 Nov 2026), 115 (1 Feb 2027), 199 (26 Apr 2027), 283 (19 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.almonds-apples.a_name` — A handful of almonds
 - `p.same-energy.almonds-apples.a_portion` — 30 g
@@ -461,7 +461,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.almonds-apples.src1_what` — Almonds
 - `p.same-energy.almonds-apples.src2_what` — Apples
 
-#### 32/84 · `milk-orange-juice` · day 32 (10 Nov 2026), 116 (2 Feb 2027), 200 (27 Apr 2027), 284 (20 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 32/84 · `milk-orange-juice` · day 32 (10 Nov 2026), 116 (2 Feb 2027), 200 (27 Apr 2027), 284 (20 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.milk-orange-juice.a_name` — A glass of milk
 - `p.same-energy.milk-orange-juice.a_portion` — 250 ml
@@ -475,7 +475,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.milk-orange-juice.src1_what` — Milk
 - `p.same-energy.milk-orange-juice.src2_what` — Orange juice
 
-#### 33/84 · `beer-bread` · day 33 (11 Nov 2026), 117 (3 Feb 2027), 201 (28 Apr 2027), 285 (21 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 33/84 · `beer-bread` · day 33 (11 Nov 2026), 117 (3 Feb 2027), 201 (28 Apr 2027), 285 (21 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-bread.a_name` — A large beer
 - `p.same-energy.beer-bread.a_portion` — 500 ml
@@ -489,7 +489,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-bread.src1_what` — Beer
 - `p.same-energy.beer-bread.src2_what` — Bread
 
-#### 34/84 · `banana-orange-juice` · day 34 (12 Nov 2026), 118 (4 Feb 2027), 202 (29 Apr 2027), 286 (22 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 34/84 · `banana-orange-juice` · day 34 (12 Nov 2026), 118 (4 Feb 2027), 202 (29 Apr 2027), 286 (22 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.banana-orange-juice.a_name` — A banana
 - `p.same-energy.banana-orange-juice.a_portion` — 120 g, peeled
@@ -503,7 +503,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.banana-orange-juice.src1_what` — Bananas
 - `p.same-energy.banana-orange-juice.src2_what` — Orange juice
 
-#### 35/84 · `croissant-bread` · day 35 (13 Nov 2026), 119 (5 Feb 2027), 203 (30 Apr 2027), 287 (23 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 35/84 · `croissant-bread` · day 35 (13 Nov 2026), 119 (5 Feb 2027), 203 (30 Apr 2027), 287 (23 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.croissant-bread.a_name` — A croissant
 - `p.same-energy.croissant-bread.a_portion` — 60 g
@@ -517,7 +517,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.croissant-bread.src1_what` — Croissant
 - `p.same-energy.croissant-bread.src2_what` — Bread
 
-#### 36/84 · `orange-carton-milk` · day 36 (14 Nov 2026), 120 (6 Feb 2027), 204 (1 May 2027), 288 (24 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 36/84 · `orange-carton-milk` · day 36 (14 Nov 2026), 120 (6 Feb 2027), 204 (1 May 2027), 288 (24 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-carton-milk.a_name` — A carton of orange juice
 - `p.same-energy.orange-carton-milk.a_portion` — 1 litre
@@ -531,7 +531,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-carton-milk.src1_what` — Orange juice
 - `p.same-energy.orange-carton-milk.src2_what` — Milk
 
-#### 37/84 · `cola-eggs` · day 37 (15 Nov 2026), 121 (7 Feb 2027), 205 (2 May 2027), 289 (25 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 37/84 · `cola-eggs` · day 37 (15 Nov 2026), 121 (7 Feb 2027), 205 (2 May 2027), 289 (25 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-eggs.a_name` — A can of cola
 - `p.same-energy.cola-eggs.a_portion` — 330 ml
@@ -545,7 +545,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-eggs.src1_what` — Cola
 - `p.same-energy.cola-eggs.src2_what` — Eggs
 
-#### 38/84 · `crisps-orange-juice` · day 38 (16 Nov 2026), 122 (8 Feb 2027), 206 (3 May 2027), 290 (26 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 38/84 · `crisps-orange-juice` · day 38 (16 Nov 2026), 122 (8 Feb 2027), 206 (3 May 2027), 290 (26 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.crisps-orange-juice.a_name` — A small bag of crisps
 - `p.same-energy.crisps-orange-juice.a_portion` — 30 g
@@ -559,7 +559,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.crisps-orange-juice.src1_what` — Crisps
 - `p.same-energy.crisps-orange-juice.src2_what` — Orange juice
 
-#### 39/84 · `small-chocolate-bread` · day 39 (17 Nov 2026), 123 (9 Feb 2027), 207 (4 May 2027), 291 (27 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 39/84 · `small-chocolate-bread` · day 39 (17 Nov 2026), 123 (9 Feb 2027), 207 (4 May 2027), 291 (27 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.small-chocolate-bread.a_name` — A small bar of dark chocolate
 - `p.same-energy.small-chocolate-bread.a_portion` — 40 g
@@ -573,7 +573,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.small-chocolate-bread.src1_what` — Dark chocolate
 - `p.same-energy.small-chocolate-bread.src2_what` — Bread
 
-#### 40/84 · `apple-juice-cola` · day 40 (18 Nov 2026), 124 (10 Feb 2027), 208 (5 May 2027), 292 (28 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 40/84 · `apple-juice-cola` · day 40 (18 Nov 2026), 124 (10 Feb 2027), 208 (5 May 2027), 292 (28 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-juice-cola.a_name` — A glass of apple juice
 - `p.same-energy.apple-juice-cola.a_portion` — 250 ml
@@ -587,7 +587,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.apple-juice-cola.src1_what` — Apple juice
 - `p.same-energy.apple-juice-cola.src2_what` — Cola
 
-#### 41/84 · `milk-bread` · day 41 (19 Nov 2026), 125 (11 Feb 2027), 209 (6 May 2027), 293 (29 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 41/84 · `milk-bread` · day 41 (19 Nov 2026), 125 (11 Feb 2027), 209 (6 May 2027), 293 (29 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.milk-bread.a_name` — A glass of milk
 - `p.same-energy.milk-bread.a_portion` — 250 ml
@@ -601,7 +601,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.milk-bread.src1_what` — Milk
 - `p.same-energy.milk-bread.src2_what` — Bread
 
-#### 42/84 · `oil-orange-juice` · day 42 (20 Nov 2026), 126 (12 Feb 2027), 210 (7 May 2027), 294 (30 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 42/84 · `oil-orange-juice` · day 42 (20 Nov 2026), 126 (12 Feb 2027), 210 (7 May 2027), 294 (30 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oil-orange-juice.a_name` — A spoon of olive oil
 - `p.same-energy.oil-orange-juice.a_portion` — 1 tablespoon
@@ -615,7 +615,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oil-orange-juice.src1_what` — Olive oil
 - `p.same-energy.oil-orange-juice.src2_what` — Orange juice
 
-#### 43/84 · `cheese-eggs` · day 43 (21 Nov 2026), 127 (13 Feb 2027), 211 (8 May 2027), 295 (31 Jul 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 43/84 · `cheese-eggs` · day 43 (21 Nov 2026), 127 (13 Feb 2027), 211 (8 May 2027), 295 (31 Jul 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cheese-eggs.a_name` — A slice of cheese
 - `p.same-energy.cheese-eggs.a_portion` — 20 g
@@ -629,7 +629,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cheese-eggs.src1_what` — Cheese
 - `p.same-energy.cheese-eggs.src2_what` — Eggs
 
-#### 44/84 · `beer-milk` · day 44 (22 Nov 2026), 128 (14 Feb 2027), 212 (9 May 2027), 296 (1 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 44/84 · `beer-milk` · day 44 (22 Nov 2026), 128 (14 Feb 2027), 212 (9 May 2027), 296 (1 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-milk.a_name` — A large beer
 - `p.same-energy.beer-milk.a_portion` — 500 ml
@@ -643,7 +643,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-milk.src1_what` — Beer
 - `p.same-energy.beer-milk.src2_what` — Milk
 
-#### 45/84 · `orange-juice-grapes` · day 45 (23 Nov 2026), 129 (15 Feb 2027), 213 (10 May 2027), 297 (2 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 45/84 · `orange-juice-grapes` · day 45 (23 Nov 2026), 129 (15 Feb 2027), 213 (10 May 2027), 297 (2 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-juice-grapes.a_name` — A glass of orange juice
 - `p.same-energy.orange-juice-grapes.a_portion` — 250 ml
@@ -657,7 +657,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-juice-grapes.src1_what` — Orange juice
 - `p.same-energy.orange-juice-grapes.src2_what` — Grapes
 
-#### 46/84 · `oats-cola` · day 46 (24 Nov 2026), 130 (16 Feb 2027), 214 (11 May 2027), 298 (3 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 46/84 · `oats-cola` · day 46 (24 Nov 2026), 130 (16 Feb 2027), 214 (11 May 2027), 298 (3 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oats-cola.a_name` — A bowl of oats
 - `p.same-energy.oats-cola.a_portion` — 40 g, dry
@@ -671,7 +671,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oats-cola.src1_what` — Oats
 - `p.same-energy.oats-cola.src2_what` — Cola
 
-#### 47/84 · `crisps-bread` · day 47 (25 Nov 2026), 131 (17 Feb 2027), 215 (12 May 2027), 299 (4 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 47/84 · `crisps-bread` · day 47 (25 Nov 2026), 131 (17 Feb 2027), 215 (12 May 2027), 299 (4 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.crisps-bread.a_name` — A small bag of crisps
 - `p.same-energy.crisps-bread.a_portion` — 30 g
@@ -685,7 +685,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.crisps-bread.src1_what` — Crisps
 - `p.same-energy.crisps-bread.src2_what` — Bread
 
-#### 48/84 · `cola-bottle-orange-juice` · day 48 (26 Nov 2026), 132 (18 Feb 2027), 216 (13 May 2027), 300 (5 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 48/84 · `cola-bottle-orange-juice` · day 48 (26 Nov 2026), 132 (18 Feb 2027), 216 (13 May 2027), 300 (5 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-bottle-orange-juice.a_name` — A bottle of cola
 - `p.same-energy.cola-bottle-orange-juice.a_portion` — 500 ml
@@ -699,7 +699,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-bottle-orange-juice.src1_what` — Cola
 - `p.same-energy.cola-bottle-orange-juice.src2_what` — Orange juice
 
-#### 49/84 · `milk-grapes` · day 49 (27 Nov 2026), 133 (19 Feb 2027), 217 (14 May 2027), 301 (6 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 49/84 · `milk-grapes` · day 49 (27 Nov 2026), 133 (19 Feb 2027), 217 (14 May 2027), 301 (6 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.milk-grapes.a_name` — A glass of milk
 - `p.same-energy.milk-grapes.a_portion` — 250 ml
@@ -713,7 +713,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.milk-grapes.src1_what` — Milk
 - `p.same-energy.milk-grapes.src2_what` — Grapes
 
-#### 50/84 · `peanut-butter-orange-juice` · day 50 (28 Nov 2026), 134 (20 Feb 2027), 218 (15 May 2027), 302 (7 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 50/84 · `peanut-butter-orange-juice` · day 50 (28 Nov 2026), 134 (20 Feb 2027), 218 (15 May 2027), 302 (7 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.peanut-butter-orange-juice.a_name` — A spoon of peanut butter
 - `p.same-energy.peanut-butter-orange-juice.a_portion` — 1 tablespoon
@@ -727,7 +727,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.peanut-butter-orange-juice.src1_what` — Peanut butter
 - `p.same-energy.peanut-butter-orange-juice.src2_what` — Orange juice
 
-#### 51/84 · `dates-eggs` · day 51 (29 Nov 2026), 135 (21 Feb 2027), 219 (16 May 2027), 303 (8 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 51/84 · `dates-eggs` · day 51 (29 Nov 2026), 135 (21 Feb 2027), 219 (16 May 2027), 303 (8 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.dates-eggs.a_name` — A handful of dates
 - `p.same-energy.dates-eggs.a_portion` — 50 g
@@ -741,7 +741,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.dates-eggs.src1_what` — Dates
 - `p.same-energy.dates-eggs.src2_what` — Eggs
 
-#### 52/84 · `orange-bottle-milk` · day 52 (30 Nov 2026), 136 (22 Feb 2027), 220 (17 May 2027), 304 (9 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 52/84 · `orange-bottle-milk` · day 52 (30 Nov 2026), 136 (22 Feb 2027), 220 (17 May 2027), 304 (9 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-bottle-milk.a_name` — A bottle of orange juice
 - `p.same-energy.orange-bottle-milk.a_portion` — 330 ml
@@ -755,7 +755,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-bottle-milk.src1_what` — Orange juice
 - `p.same-energy.orange-bottle-milk.src2_what` — Milk
 
-#### 53/84 · `beer-apples` · day 53 (1 Dec 2026), 137 (23 Feb 2027), 221 (18 May 2027), 305 (10 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 53/84 · `beer-apples` · day 53 (1 Dec 2026), 137 (23 Feb 2027), 221 (18 May 2027), 305 (10 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-apples.a_name` — A large beer
 - `p.same-energy.beer-apples.a_portion` — 500 ml
@@ -769,7 +769,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-apples.src1_what` — Beer
 - `p.same-energy.beer-apples.src2_what` — Apples
 
-#### 54/84 · `cheese-milk` · day 54 (2 Dec 2026), 138 (24 Feb 2027), 222 (19 May 2027), 306 (11 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 54/84 · `cheese-milk` · day 54 (2 Dec 2026), 138 (24 Feb 2027), 222 (19 May 2027), 306 (11 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cheese-milk.a_name` — A slice of cheese
 - `p.same-energy.cheese-milk.a_portion` — 20 g
@@ -783,7 +783,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cheese-milk.src1_what` — Cheese
 - `p.same-energy.cheese-milk.src2_what` — Milk
 
-#### 55/84 · `chocolate-apples` · day 55 (3 Dec 2026), 139 (25 Feb 2027), 223 (20 May 2027), 307 (12 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 55/84 · `chocolate-apples` · day 55 (3 Dec 2026), 139 (25 Feb 2027), 223 (20 May 2027), 307 (12 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.chocolate-apples.a_name` — A bar of dark chocolate
 - `p.same-energy.chocolate-apples.a_portion` — 100 g
@@ -797,7 +797,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.chocolate-apples.src1_what` — Dark chocolate
 - `p.same-energy.chocolate-apples.src2_what` — Apples
 
-#### 56/84 · `apple-carton-milk` · day 56 (4 Dec 2026), 140 (26 Feb 2027), 224 (21 May 2027), 308 (13 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 56/84 · `apple-carton-milk` · day 56 (4 Dec 2026), 140 (26 Feb 2027), 224 (21 May 2027), 308 (13 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-carton-milk.a_name` — A carton of apple juice
 - `p.same-energy.apple-carton-milk.a_portion` — 1 litre
@@ -811,7 +811,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.apple-carton-milk.src1_what` — Apple juice
 - `p.same-energy.apple-carton-milk.src2_what` — Milk
 
-#### 57/84 · `cola-bottle-bananas` · day 57 (5 Dec 2026), 141 (27 Feb 2027), 225 (22 May 2027), 309 (14 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 57/84 · `cola-bottle-bananas` · day 57 (5 Dec 2026), 141 (27 Feb 2027), 225 (22 May 2027), 309 (14 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-bottle-bananas.a_name` — A bottle of cola
 - `p.same-energy.cola-bottle-bananas.a_portion` — 500 ml
@@ -825,7 +825,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-bottle-bananas.src1_what` — Cola
 - `p.same-energy.cola-bottle-bananas.src2_what` — Bananas
 
-#### 58/84 · `almonds-milk` · day 58 (6 Dec 2026), 142 (28 Feb 2027), 226 (23 May 2027), 310 (15 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 58/84 · `almonds-milk` · day 58 (6 Dec 2026), 142 (28 Feb 2027), 226 (23 May 2027), 310 (15 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.almonds-milk.a_name` — A handful of almonds
 - `p.same-energy.almonds-milk.a_portion` — 30 g
@@ -839,7 +839,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.almonds-milk.src1_what` — Almonds
 - `p.same-energy.almonds-milk.src2_what` — Milk
 
-#### 59/84 · `apple-grapes` · day 59 (7 Dec 2026), 143 (1 Mar 2027), 227 (24 May 2027), 311 (16 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 59/84 · `apple-grapes` · day 59 (7 Dec 2026), 143 (1 Mar 2027), 227 (24 May 2027), 311 (16 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-grapes.a_name` — An apple
 - `p.same-energy.apple-grapes.a_portion` — 180 g
@@ -853,7 +853,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.apple-grapes.src1_what` — Apples
 - `p.same-energy.apple-grapes.src2_what` — Grapes
 
-#### 60/84 · `beer-can-cola` · day 60 (8 Dec 2026), 144 (2 Mar 2027), 228 (25 May 2027), 312 (17 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 60/84 · `beer-can-cola` · day 60 (8 Dec 2026), 144 (2 Mar 2027), 228 (25 May 2027), 312 (17 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-can-cola.a_name` — A can of beer
 - `p.same-energy.beer-can-cola.a_portion` — 330 ml
@@ -867,7 +867,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-can-cola.src1_what` — Beer
 - `p.same-energy.beer-can-cola.src2_what` — Cola
 
-#### 61/84 · `orange-carton-eggs` · day 61 (9 Dec 2026), 145 (3 Mar 2027), 229 (26 May 2027), 313 (18 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 61/84 · `orange-carton-eggs` · day 61 (9 Dec 2026), 145 (3 Mar 2027), 229 (26 May 2027), 313 (18 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-carton-eggs.a_name` — A carton of orange juice
 - `p.same-energy.orange-carton-eggs.a_portion` — 1 litre
@@ -881,7 +881,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-carton-eggs.src1_what` — Orange juice
 - `p.same-energy.orange-carton-eggs.src2_what` — Eggs
 
-#### 62/84 · `dates-cola` · day 62 (10 Dec 2026), 146 (4 Mar 2027), 230 (27 May 2027), 314 (19 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 62/84 · `dates-cola` · day 62 (10 Dec 2026), 146 (4 Mar 2027), 230 (27 May 2027), 314 (19 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.dates-cola.a_name` — A handful of dates
 - `p.same-energy.dates-cola.a_portion` — 50 g
@@ -895,7 +895,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.dates-cola.src1_what` — Dates
 - `p.same-energy.dates-cola.src2_what` — Cola
 
-#### 63/84 · `oil-apples` · day 63 (11 Dec 2026), 147 (5 Mar 2027), 231 (28 May 2027), 315 (20 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 63/84 · `oil-apples` · day 63 (11 Dec 2026), 147 (5 Mar 2027), 231 (28 May 2027), 315 (20 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oil-apples.a_name` — A spoon of olive oil
 - `p.same-energy.oil-apples.a_portion` — 1 tablespoon
@@ -909,7 +909,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oil-apples.src1_what` — Olive oil
 - `p.same-energy.oil-apples.src2_what` — Apples
 
-#### 64/84 · `apple-carton-orange-juice` · day 64 (12 Dec 2026), 148 (6 Mar 2027), 232 (29 May 2027), 316 (21 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 64/84 · `apple-carton-orange-juice` · day 64 (12 Dec 2026), 148 (6 Mar 2027), 232 (29 May 2027), 316 (21 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-carton-orange-juice.a_name` — A carton of apple juice
 - `p.same-energy.apple-carton-orange-juice.a_portion` — 1 litre
@@ -923,7 +923,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.apple-carton-orange-juice.src1_what` — Apple juice
 - `p.same-energy.apple-carton-orange-juice.src2_what` — Orange juice
 
-#### 65/84 · `cola-bananas` · day 65 (13 Dec 2026), 149 (7 Mar 2027), 233 (30 May 2027), 317 (22 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 65/84 · `cola-bananas` · day 65 (13 Dec 2026), 149 (7 Mar 2027), 233 (30 May 2027), 317 (22 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-bananas.a_name` — A can of cola
 - `p.same-energy.cola-bananas.a_portion` — 330 ml
@@ -937,7 +937,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-bananas.src1_what` — Cola
 - `p.same-energy.cola-bananas.src2_what` — Bananas
 
-#### 66/84 · `chocolate-orange-juice` · day 66 (14 Dec 2026), 150 (8 Mar 2027), 234 (31 May 2027), 318 (23 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 66/84 · `chocolate-orange-juice` · day 66 (14 Dec 2026), 150 (8 Mar 2027), 234 (31 May 2027), 318 (23 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.chocolate-orange-juice.a_name` — A small bar of dark chocolate
 - `p.same-energy.chocolate-orange-juice.a_portion` — 40 g
@@ -951,7 +951,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.chocolate-orange-juice.src1_what` — Dark chocolate
 - `p.same-energy.chocolate-orange-juice.src2_what` — Orange juice
 
-#### 67/84 · `croissant-bananas` · day 67 (15 Dec 2026), 151 (9 Mar 2027), 235 (1 Jun 2027), 319 (24 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 67/84 · `croissant-bananas` · day 67 (15 Dec 2026), 151 (9 Mar 2027), 235 (1 Jun 2027), 319 (24 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.croissant-bananas.a_name` — A croissant
 - `p.same-energy.croissant-bananas.a_portion` — 60 g
@@ -965,7 +965,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.croissant-bananas.src1_what` — Croissant
 - `p.same-energy.croissant-bananas.src2_what` — Bananas
 
-#### 68/84 · `orange-juice-cola` · day 68 (16 Dec 2026), 152 (10 Mar 2027), 236 (2 Jun 2027), 320 (25 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 68/84 · `orange-juice-cola` · day 68 (16 Dec 2026), 152 (10 Mar 2027), 236 (2 Jun 2027), 320 (25 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-juice-cola.a_name` — A glass of orange juice
 - `p.same-energy.orange-juice-cola.a_portion` — 250 ml
@@ -979,7 +979,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-juice-cola.src1_what` — Orange juice
 - `p.same-energy.orange-juice-cola.src2_what` — Cola
 
-#### 69/84 · `beer-can-bread` · day 69 (17 Dec 2026), 153 (11 Mar 2027), 237 (3 Jun 2027), 321 (26 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 69/84 · `beer-can-bread` · day 69 (17 Dec 2026), 153 (11 Mar 2027), 237 (3 Jun 2027), 321 (26 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-can-bread.a_name` — A can of beer
 - `p.same-energy.beer-can-bread.a_portion` — 330 ml
@@ -993,7 +993,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-can-bread.src1_what` — Beer
 - `p.same-energy.beer-can-bread.src2_what` — Bread
 
-#### 70/84 · `apple-cola` · day 70 (18 Dec 2026), 154 (12 Mar 2027), 238 (4 Jun 2027), 322 (27 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 70/84 · `apple-cola` · day 70 (18 Dec 2026), 154 (12 Mar 2027), 238 (4 Jun 2027), 322 (27 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-cola.a_name` — An apple
 - `p.same-energy.apple-cola.a_portion` — 180 g
@@ -1007,7 +1007,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.apple-cola.src1_what` — Apples
 - `p.same-energy.apple-cola.src2_what` — Cola
 
-#### 71/84 · `oats-bananas` · day 71 (19 Dec 2026), 155 (13 Mar 2027), 239 (5 Jun 2027), 323 (28 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 71/84 · `oats-bananas` · day 71 (19 Dec 2026), 155 (13 Mar 2027), 239 (5 Jun 2027), 323 (28 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oats-bananas.a_name` — A bowl of oats
 - `p.same-energy.oats-bananas.a_portion` — 40 g, dry
@@ -1021,7 +1021,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oats-bananas.src1_what` — Oats
 - `p.same-energy.oats-bananas.src2_what` — Bananas
 
-#### 72/84 · `apple-juice-orange-juice` · day 72 (20 Dec 2026), 156 (14 Mar 2027), 240 (6 Jun 2027), 324 (29 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 72/84 · `apple-juice-orange-juice` · day 72 (20 Dec 2026), 156 (14 Mar 2027), 240 (6 Jun 2027), 324 (29 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-juice-orange-juice.a_name` — A glass of apple juice
 - `p.same-energy.apple-juice-orange-juice.a_portion` — 250 ml
@@ -1035,7 +1035,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.apple-juice-orange-juice.src1_what` — Apple juice
 - `p.same-energy.apple-juice-orange-juice.src2_what` — Orange juice
 
-#### 73/84 · `milk-bottle-apples` · day 73 (21 Dec 2026), 157 (15 Mar 2027), 241 (7 Jun 2027), 325 (30 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 73/84 · `milk-bottle-apples` · day 73 (21 Dec 2026), 157 (15 Mar 2027), 241 (7 Jun 2027), 325 (30 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.milk-bottle-apples.a_name` — A bottle of milk
 - `p.same-energy.milk-bottle-apples.a_portion` — 500 ml
@@ -1049,7 +1049,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.milk-bottle-apples.src1_what` — Milk
 - `p.same-energy.milk-bottle-apples.src2_what` — Apples
 
-#### 74/84 · `chocolate-cola` · day 74 (22 Dec 2026), 158 (16 Mar 2027), 242 (8 Jun 2027), 326 (31 Aug 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 74/84 · `chocolate-cola` · day 74 (22 Dec 2026), 158 (16 Mar 2027), 242 (8 Jun 2027), 326 (31 Aug 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.chocolate-cola.a_name` — A small bar of dark chocolate
 - `p.same-energy.chocolate-cola.a_portion` — 40 g
@@ -1063,7 +1063,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.chocolate-cola.src1_what` — Dark chocolate
 - `p.same-energy.chocolate-cola.src2_what` — Cola
 
-#### 75/84 · `oil-grapes` · day 75 (23 Dec 2026), 159 (17 Mar 2027), 243 (9 Jun 2027), 327 (1 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 75/84 · `oil-grapes` · day 75 (23 Dec 2026), 159 (17 Mar 2027), 243 (9 Jun 2027), 327 (1 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oil-grapes.a_name` — A spoon of olive oil
 - `p.same-energy.oil-grapes.a_portion` — 1 tablespoon
@@ -1077,7 +1077,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oil-grapes.src1_what` — Olive oil
 - `p.same-energy.oil-grapes.src2_what` — Grapes
 
-#### 76/84 · `cola-glass-orange-juice` · day 76 (24 Dec 2026), 160 (18 Mar 2027), 244 (10 Jun 2027), 328 (2 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 76/84 · `cola-glass-orange-juice` · day 76 (24 Dec 2026), 160 (18 Mar 2027), 244 (10 Jun 2027), 328 (2 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cola-glass-orange-juice.a_name` — A glass of cola
 - `p.same-energy.cola-glass-orange-juice.a_portion` — 250 ml
@@ -1091,7 +1091,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cola-glass-orange-juice.src1_what` — Cola
 - `p.same-energy.cola-glass-orange-juice.src2_what` — Orange juice
 
-#### 77/84 · `beer-can-eggs` · day 77 (25 Dec 2026), 161 (19 Mar 2027), 245 (11 Jun 2027), 329 (3 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 77/84 · `beer-can-eggs` · day 77 (25 Dec 2026), 161 (19 Mar 2027), 245 (11 Jun 2027), 329 (3 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.beer-can-eggs.a_name` — A can of beer
 - `p.same-energy.beer-can-eggs.a_portion` — 330 ml
@@ -1105,7 +1105,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.beer-can-eggs.src1_what` — Beer
 - `p.same-energy.beer-can-eggs.src2_what` — Eggs
 
-#### 78/84 · `oats-milk` · day 78 (26 Dec 2026), 162 (20 Mar 2027), 246 (12 Jun 2027), 330 (4 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 78/84 · `oats-milk` · day 78 (26 Dec 2026), 162 (20 Mar 2027), 246 (12 Jun 2027), 330 (4 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.oats-milk.a_name` — A bowl of oats
 - `p.same-energy.oats-milk.a_portion` — 40 g, dry
@@ -1119,7 +1119,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.oats-milk.src1_what` — Oats
 - `p.same-energy.oats-milk.src2_what` — Milk
 
-#### 79/84 · `cheese-apples` · day 79 (27 Dec 2026), 163 (21 Mar 2027), 247 (13 Jun 2027), 331 (5 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 79/84 · `cheese-apples` · day 79 (27 Dec 2026), 163 (21 Mar 2027), 247 (13 Jun 2027), 331 (5 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.cheese-apples.a_name` — A slice of cheese
 - `p.same-energy.cheese-apples.a_portion` — 20 g
@@ -1133,7 +1133,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.cheese-apples.src1_what` — Cheese
 - `p.same-energy.cheese-apples.src2_what` — Apples
 
-#### 80/84 · `milk-bottle-cola` · day 80 (28 Dec 2026), 164 (22 Mar 2027), 248 (14 Jun 2027), 332 (6 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 80/84 · `milk-bottle-cola` · day 80 (28 Dec 2026), 164 (22 Mar 2027), 248 (14 Jun 2027), 332 (6 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.milk-bottle-cola.a_name` — A bottle of milk
 - `p.same-energy.milk-bottle-cola.a_portion` — 500 ml
@@ -1147,7 +1147,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.milk-bottle-cola.src1_what` — Milk
 - `p.same-energy.milk-bottle-cola.src2_what` — Cola
 
-#### 81/84 · `orange-carton-bananas` · day 81 (29 Dec 2026), 165 (23 Mar 2027), 249 (15 Jun 2027), 333 (7 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 81/84 · `orange-carton-bananas` · day 81 (29 Dec 2026), 165 (23 Mar 2027), 249 (15 Jun 2027), 333 (7 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.orange-carton-bananas.a_name` — A carton of orange juice
 - `p.same-energy.orange-carton-bananas.a_portion` — 1 litre
@@ -1161,7 +1161,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.orange-carton-bananas.src1_what` — Orange juice
 - `p.same-energy.orange-carton-bananas.src2_what` — Bananas
 
-#### 82/84 · `bread-cola` · day 82 (30 Dec 2026), 166 (24 Mar 2027), 250 (16 Jun 2027), 334 (8 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 82/84 · `bread-cola` · day 82 (30 Dec 2026), 166 (24 Mar 2027), 250 (16 Jun 2027), 334 (8 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.bread-cola.a_name` — A slice of bread
 - `p.same-energy.bread-cola.a_portion` — 30 g
@@ -1175,7 +1175,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.bread-cola.src1_what` — Bread
 - `p.same-energy.bread-cola.src2_what` — Cola
 
-#### 83/84 · `crisps-grapes` · day 83 (31 Dec 2026), 167 (25 Mar 2027), 251 (17 Jun 2027), 335 (9 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 83/84 · `crisps-grapes` · day 83 (31 Dec 2026), 167 (25 Mar 2027), 251 (17 Jun 2027), 335 (9 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.crisps-grapes.a_name` — A small bag of crisps
 - `p.same-energy.crisps-grapes.a_portion` — 30 g
@@ -1189,7 +1189,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.same-energy.crisps-grapes.src1_what` — Crisps
 - `p.same-energy.crisps-grapes.src2_what` — Grapes
 
-#### 84/84 · `apple-bottle-milk` · day 84 (1 Jan 2027), 168 (26 Mar 2027), 252 (18 Jun 2027), 336 (10 Sep 2027) … · every 84 days · done: none · to do: it, tr, es, pt, fr
+#### 84/84 · `apple-bottle-milk` · day 84 (1 Jan 2027), 168 (26 Mar 2027), 252 (18 Jun 2027), 336 (10 Sep 2027) … · every 84 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.same-energy.apple-bottle-milk.a_name` — A bottle of apple juice
 - `p.same-energy.apple-bottle-milk.a_portion` — 330 ml

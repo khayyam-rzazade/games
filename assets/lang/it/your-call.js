@@ -552,6 +552,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "480bc-salamis": {
   "place": "Atene",
+  "year": "480 a.C.",
   "pov": "Un enorme esercito persiano marcia sulla tua città. Un oracolo ha detto agli ateniesi di fidarsi delle loro «mura di legno», e la città ha una grande flotta nuova. Sei un generale ateniese.",
   "short": "Temistocle",
   "did": "Temistocle fece evacuare Atene: le «mura di legno» erano le sue navi. Nel 480 a.C. la flotta greca batté i Persiani nello stretto di Salamina.",
@@ -799,6 +800,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "49bc-rubicon": {
   "place": "Rubicone",
+  "year": "49 a.C.",
   "pov": "La tua guerra in Gallia è vinta. Il Senato ti ordina di sciogliere il tuo esercito e di tornare a Roma, perdendo l'immunità che ti dà la tua carica. Sei il governatore della Gallia.",
   "short": "Cesare",
   "did": "Nel gennaio del 49 a.C. Cesare guidò la 13ª Legione oltre il Rubicone, in Italia. Secondo la legge della Repubblica, quello era un atto di guerra.",

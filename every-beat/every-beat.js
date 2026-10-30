@@ -85,7 +85,7 @@
   /* ---------- numbers ---------- */
   function commas(n) { return LG ? LG.num(n) : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function fmt(v) {
-    if (v < 10) return String(Math.round(v * 10) / 10);
+    if (v < 10) return LG.dec(Math.round(v * 10) / 10);
     return commas(Math.round(v));
   }
   function band(p) { return p.lo === p.hi ? fmt(p.lo) : fmt(p.lo) + "–" + fmt(p.hi); }
@@ -96,7 +96,7 @@
   }
   function times(y) {
     var f = Math.abs(y) / 10;
-    return (f < 10 ? String(Math.round(f * 10) / 10) : commas(Math.round(f))) + "×";
+    return (f < 10 ? LG.dec(Math.round(f * 10) / 10) : commas(Math.round(f))) + "×";
   }
   function scoreText(y) { return y === 0 ? T("says.spot_on") : (y > 0 ? T("every.too_fast", { times: times(y) }) : T("every.too_slow", { times: times(y) })); }
   function round1(v) { return Math.round(v * 10) / 10; }
@@ -338,7 +338,7 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 0 ? T("every.friend_spot") : T("every.friend_was", { how: scoreText(friend).toLowerCase() })) +
+    notice.textContent = (friend === 0 ? T("every.friend_spot") : T("every.friend_was", { how: LG.lowerFirst(scoreText(friend)) })) +
       (practice ? " " + T("every.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
@@ -374,7 +374,7 @@
     var g = round1(bpm), y = scoreOf(g), t = scoreText(y);
     TO.update(GAME, function (s) {
       var slot = practice ? s.practice : s.results;
-      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id };
+      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id, l: LG ? LG.lang : "en" };
     });
     TO.count(practice ? "every-beat/practice-played" : "every-beat/played/day-" + day);
     showResult(true);
@@ -423,7 +423,7 @@
   function fillAfter(y) {
     var f = $("friend");
     if (friend !== null) {
-      var said = friend === 0 ? T("every.friend_was_spot") : T("every.friend_was_how", { how: scoreText(friend).toLowerCase() });
+      var said = friend === 0 ? T("every.friend_was_spot") : T("every.friend_was_how", { how: LG.lowerFirst(scoreText(friend)) });
       var a = Math.abs(y), c = Math.abs(friend);
       f.textContent = a < c ? T("every.friend_you_closer", { f: said }) : a === c ? T("every.friend_tie", { f: said }) : T("every.friend_closer", { f: said });
       f.hidden = false;
@@ -452,7 +452,7 @@
     if (q.credit && q.credit.lic) {
       var L = { by3: ["CC BY 3.0", "https://creativecommons.org/licenses/by/3.0/"],
                 by4: ["CC BY 4.0", "https://creativecommons.org/licenses/by/4.0/"] }[q.credit.lic];
-      cr.appendChild(document.createTextNode(": " + T("cous.credit", { thing: q.face, by: q.credit.by || T("cous.unnamed_artist") }) + " ("));
+      cr.appendChild(document.createTextNode(LG.colon() + T("cous.credit", { thing: q.face, by: q.credit.by || T("cous.unnamed_artist") }) + " ("));
       if (L) cr.appendChild(link({ name: L[0], url: L[1] })); else cr.appendChild(document.createTextNode(q.credit.lic));
       cr.appendChild(document.createTextNode(")."));
     } else {
@@ -495,7 +495,7 @@
     el.innerHTML = '<svg class="ebh" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="' + HEART + '"/></svg>';
     function add(cls, text) { var s = document.createElement("span"); s.className = cls; s.textContent = text; el.appendChild(s); }
     add("p", band(p));
-    var u = document.createElement("small"); u.textContent = "/min"; el.lastChild.appendChild(u);
+    var u = document.createElement("small"); u.textContent = T("every.per_min"); el.lastChild.appendChild(u);
     add("what", p.face);
     add("of", p.label);
   }
@@ -531,7 +531,7 @@
     return base + "?d=" + day + "&g=" + y;
   }
   function shareText(y) {
-    return T("every.share", { n: day, face: q.face, label: q.label, mine: y === 0 ? T("every.i_spot") : T("every.i_was", { how: scoreText(y).toLowerCase() }) }) + " " + shareUrl(y);
+    return T("every.share", { n: day, face: q.face, label: q.label, mine: y === 0 ? T("every.i_spot") : T("every.i_was", { how: LG.lowerFirst(scoreText(y)) }) }) + " " + shareUrl(y);
   }
   function roundRect(x, a, b, w, h, rad) {
     x.beginPath();

@@ -38,7 +38,7 @@
   function thing(key) { return THINGS[key] || { name: key, the: "the " + key }; }
   function ofThing(key) { var t = thing(key); return t.of || (t.the + "'s"); }     // "the hippo's" (a language file gives its own form)
   function bare(key) { var t = thing(key); return t.bare || t.the.replace(/^the /, ""); }          // "the hippo" -> "hippo"
-  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function cap(s) { return LG.upperFirst(s); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function closestOf(p) { return p.options[p.rank.indexOf(0)]; }
   function branches(rank) { return rank === 0 ? T("says.found_it") : rank === 1 ? T("says.one_branch") : T("says.two_branches"); }
@@ -117,7 +117,7 @@
 
   var notice = $("notice");
   if (friend !== null) {
-    notice.textContent = (friend === 0 ? T("cous.friend_found") : T("cous.friend_was", { how: branches(friend).toLowerCase() })) +
+    notice.textContent = (friend === 0 ? T("cous.friend_found") : T("cous.friend_was", { how: LG.lowerFirst(branches(friend)) })) +
       (practice ? " " + T("cous.earlier_no_streak") : "");
     notice.hidden = false;
   } else if (practice) {
@@ -178,7 +178,7 @@
       var mine = n > 0 && order[n - 1] === picked;
       var leaf = document.createElement("div");
       leaf.className = "lc-leaf " + (n <= 1 ? "pair" : "far") + (mine ? " you" + (q.rank[picked] === 0 ? "" : " miss") : "");
-      var tag = document.createElement("span"); tag.className = "lc-tag"; tag.textContent = "You";
+      var tag = document.createElement("span"); tag.className = "lc-tag"; tag.textContent = T("world.you");
       var pic = picBox();
       leaf.appendChild(tag); leaf.appendChild(pic); leaf.appendChild(nameBox(thing(key).name));
       drawInto(pic, key);
@@ -262,7 +262,7 @@
     if (friend !== null) {
       f.textContent = friend === 0
         ? (rank === 0 ? T("cous.friend_found_too") : T("cous.friend_found_dot"))
-        : (rank === friend ? T("cous.friend_was_too", { how: branches(friend).toLowerCase() }) : T("cous.friend_was_dot", { how: branches(friend).toLowerCase() }));
+        : (rank === friend ? T("cous.friend_was_too", { how: LG.lowerFirst(branches(friend)) }) : T("cous.friend_was_dot", { how: LG.lowerFirst(branches(friend)) }));
       f.hidden = false;
     }
     $("sentence").textContent = q.fact;
@@ -344,7 +344,7 @@
     var base = window.location.href.split("#")[0].split("?")[0];
     return base + "?d=" + day + "&g=" + rank;
   }
-  function mine(rank) { return rank === 0 ? T("cous.i_found") : T("cous.i_was", { how: branches(rank).toLowerCase() }); }
+  function mine(rank) { return rank === 0 ? T("cous.i_found") : T("cous.i_was", { how: LG.lowerFirst(branches(rank)) }); }
   function shareText(rank) {
     return T("cous.share", { n: day, of: ofThing(q.subject), mine: mine(rank) }) + " " + shareUrl(rank);
   }

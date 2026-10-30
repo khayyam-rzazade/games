@@ -30,6 +30,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.who-gets-what.it-power.what` — Bir birim elektrik
 - `p.who-gets-what.it-power.where` — İtalya
+- `p.who-gets-what.it-power.unit` — kWh başına
 - `p.who-gets-what.it-power.slice1` — Enerji
 - `p.who-gets-what.it-power.slice2` — Şebeke
 - `p.who-gets-what.it-power.slice3` — Politikalar
@@ -242,6 +243,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.who-gets-what.de-power.what` — Bir birim elektrik
 - `p.who-gets-what.de-power.where` — Almanya
+- `p.who-gets-what.de-power.unit` — kWh başına
 - `p.who-gets-what.de-power.slice1` — Enerji
 - `p.who-gets-what.de-power.slice2` — Şebeke
 - `p.who-gets-what.de-power.slice3` — Vergi
@@ -347,6 +349,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.who-gets-what.choc-premium.what` — Premium bitter çikolata
 - `p.who-gets-what.choc-premium.where` — Fransa
+- `p.who-gets-what.choc-premium.unit` — kilo başına
 - `p.who-gets-what.choc-premium.slice1` — Çiftlik
 - `p.who-gets-what.choc-premium.slice2` — İhracat
 - `p.who-gets-what.choc-premium.slice3` — Üretici
@@ -358,6 +361,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.who-gets-what.dk-power.what` — Bir birim elektrik
 - `p.who-gets-what.dk-power.where` — Danimarka
+- `p.who-gets-what.dk-power.unit` — kWh başına
 - `p.who-gets-what.dk-power.slice1` — Enerji
 - `p.who-gets-what.dk-power.slice2` — Şebeke
 - `p.who-gets-what.dk-power.slice3` — ÖTV
@@ -464,6 +468,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.who-gets-what.choc-organic.what` — Organik, adil ticaret bitter çikolata
 - `p.who-gets-what.choc-organic.where` — Fransa
+- `p.who-gets-what.choc-organic.unit` — kilo başına
 - `p.who-gets-what.choc-organic.slice1` — Çiftlik
 - `p.who-gets-what.choc-organic.slice2` — İhracat
 - `p.who-gets-what.choc-organic.slice3` — Üretici

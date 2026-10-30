@@ -30,6 +30,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.who-gets-what.it-power.what` — Un kilowattora di elettricità
 - `p.who-gets-what.it-power.where` — Italia
+- `p.who-gets-what.it-power.unit` — al kWh
 - `p.who-gets-what.it-power.slice1` — Energia
 - `p.who-gets-what.it-power.slice2` — Rete
 - `p.who-gets-what.it-power.slice3` — Oneri
@@ -242,6 +243,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.who-gets-what.de-power.what` — Un kilowattora di elettricità
 - `p.who-gets-what.de-power.where` — Germania
+- `p.who-gets-what.de-power.unit` — al kWh
 - `p.who-gets-what.de-power.slice1` — Energia
 - `p.who-gets-what.de-power.slice2` — Rete
 - `p.who-gets-what.de-power.slice3` — Tasse
@@ -347,6 +349,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.who-gets-what.choc-premium.what` — Cioccolato fondente premium
 - `p.who-gets-what.choc-premium.where` — Francia
+- `p.who-gets-what.choc-premium.unit` — al chilo
 - `p.who-gets-what.choc-premium.slice1` — Campo
 - `p.who-gets-what.choc-premium.slice2` — Export
 - `p.who-gets-what.choc-premium.slice3` — Produttore
@@ -358,6 +361,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.who-gets-what.dk-power.what` — Un kilowattora di elettricità
 - `p.who-gets-what.dk-power.where` — Danimarca
+- `p.who-gets-what.dk-power.unit` — al kWh
 - `p.who-gets-what.dk-power.slice1` — Energia
 - `p.who-gets-what.dk-power.slice2` — Rete
 - `p.who-gets-what.dk-power.slice3` — Accise
@@ -464,6 +468,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.who-gets-what.choc-organic.what` — Cioccolato fondente biologico equosolidale
 - `p.who-gets-what.choc-organic.where` — Francia
+- `p.who-gets-what.choc-organic.unit` — al chilo
 - `p.who-gets-what.choc-organic.slice1` — Campo
 - `p.who-gets-what.choc-organic.slice2` — Export
 - `p.who-gets-what.choc-organic.slice3` — Produttore

@@ -563,7 +563,7 @@
     x.fillStyle = INK;
     crown(x, M + 66, top + 64, 46);
     x.font = "800 30px " + F;
-    x.fillText(topLine(sp, busy).toUpperCase(), M + 104, top + 75);
+    x.fillText(LG.upper(topLine(sp, busy)), M + 104, top + 75);
     x.textAlign = "right";
     x.font = "800 30px " + F;
     x.fillText(T("wt.pic_first"), WD - M - 44, top + 75);
@@ -584,7 +584,7 @@
       var sum = 0;
       list.forEach(function (r) { sum += r.played; });
       var part = sum ? Math.round(100 * w1.played / sum) : 0;
-      facts = [[W.commas(w1.played), w1.played === 1 ? T("wt.game") : T("wt.games_word")], [(part < 1 && w1.played ? "<1" : String(part)) + "%", T("wt.of_all_games")]];
+      facts = [[W.commas(w1.played), w1.played === 1 ? T("wt.game") : T("wt.games_word")], [(part < 1 && w1.played ? (LG && LG.lang === "tr" ? "<%1" : "<" + LG.pct(1)) : LG.pct(part)), T("wt.of_all_games")]];
       if (list[1]) {
         var more = w1.played - list[1].played;
         facts.push(more >= 1 ? ["+" + W.commas(more), T("wt.ahead_of_2nd")] : ["0", T("wt.level_with_2nd")]);

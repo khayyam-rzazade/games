@@ -1,6 +1,7 @@
 {
  "en": {
   "name": "Passport",
+  "page_title": "Passport: a daily word game | Logicers",
   "day": "Day {n}",
   "streak": "Streak {n}",
   "help": "How to play",
@@ -44,6 +45,7 @@
  },
  "it": {
   "name": "Passport",
+  "page_title": "Passport: un gioco di parole quotidiano | Logicers",
   "day": "Giorno {n}",
   "streak": "Serie {n}",
   "help": "Come si gioca",
@@ -87,6 +89,7 @@
  },
  "tr": {
   "name": "Passport",
+  "page_title": "Passport: günlük bir kelime oyunu | Logicers",
   "day": "{n}. gün",
   "streak": "Seri {n}",
   "help": "Nasıl oynanır",
@@ -130,6 +133,7 @@
  },
  "es": {
   "name": "Passport",
+  "page_title": "Passport: un juego de palabras diario | Logicers",
   "day": "Día {n}",
   "streak": "Racha {n}",
   "help": "Cómo se juega",
@@ -173,6 +177,7 @@
  },
  "pt": {
   "name": "Passport",
+  "page_title": "Passport: um jogo de palavras diário | Logicers",
   "day": "Dia {n}",
   "streak": "Sequência {n}",
   "help": "Como jogar",
@@ -216,6 +221,7 @@
  },
  "fr": {
   "name": "Passport",
+  "page_title": "Passport : un jeu de mots quotidien | Logicers",
   "day": "Jour {n}",
   "streak": "Série {n}",
   "help": "Comment jouer",

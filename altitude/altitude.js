@@ -62,7 +62,18 @@
   }
   function fill(s, v) {
     if (!v) return s;
-    return String(s).replace(/\{([a-z0-9_]+)\}/gi, function (m, k) { return Object.prototype.hasOwnProperty.call(v, k) ? String(v[k]) : m; });
+    s = String(s).replace(/\{([a-z0-9_]+)\}/gi, function (m, k) { return Object.prototype.hasOwnProperty.call(v, k) ? String(v[k]) : m; });
+    /* Italian: the article drops its vowel before a number said with a vowel, 8, 11 and 80 to 89: "il 8%" -> "l'8%" */
+    if (lang === "it") s = s.replace(/\b([Ii])l (8|11|8[0-9])(?![0-9.])/g, function (m, i, n) { return (i === "I" ? "L" : "l") + "'" + n; });
+    return s;
+  }
+  /* "one" after a count: exactly 1 everywhere; also 0 to 2 in French and above 0 to 2 in Portuguese, as those languages count (the same rule as LG.one) */
+  function isOne(n) {
+    n = Math.abs(Number(n));
+    if (n === 1) return true;
+    if (lang === "fr") return n < 2;
+    if (lang === "pt") return n > 0 && n < 2;
+    return false;
   }
   function isNum(v) { return typeof v === "number" && isFinite(v); }
   function noop() { /* nothing to do */ }
@@ -118,8 +129,11 @@
   var cardAuto = 0;
 
   function T(k, v) {
-    var s = null;
-    if (STR && STR[lang] && STR[lang][k] != null) s = STR[lang][k];
+    var s = null, k1 = k + "_1", c = v && v.cnt !== undefined ? v.cnt : v && v.n;       // cnt: the number itself, where n is already written out ("1.234")
+    var single = v && c !== undefined && isOne(c);
+    if (single && STR && STR[lang] && STR[lang][k1] != null) s = STR[lang][k1];            // a string of its own for exactly one: "1 guess", "1 tentativo"
+    else if (STR && STR[lang] && STR[lang][k] != null) s = STR[lang][k];
+    else if (single && STR && STR.en && STR.en[k1] != null) s = STR.en[k1];
     else if (STR && STR.en && STR.en[k] != null) s = STR.en[k];
     if (s == null) {                // a word the strings file does not have: say nothing rather than show its name
       if (window.console) window.console.warn("Logicers: no words for " + k);
@@ -137,9 +151,10 @@
   function pct(x) {
     try { return new window.Intl.NumberFormat(lang, { style: "percent", maximumFractionDigits: 0 }).format(x); } catch (e) { return Math.round(x * 100) + "%"; }
   }
-  function nth(n) {
+  function nth(n, fem) {                    // fem: a feminine noun follows (Portuguese "3ª tentativa")
     n = Number(n);
     if (lang === "en") { var e = ["th", "st", "nd", "rd"], v = n % 100; return n + (e[(v - 20) % 10] || e[v] || e[0]); }
+    if (lang === "pt" && fem) return n + "ª";
     if (lang === "it" || lang === "pt") return n + "º";
     if (lang === "es") return n + ".º";
     if (lang === "fr") return n === 1 ? "1er" : n + "e";
@@ -292,6 +307,7 @@
   /* ------------------------------------------------------------------ the page's fixed words */
   function paintStatic() {
     document.documentElement.lang = lang;
+    document.title = T("page_title");
     $("m-name").textContent = T("name");
     $("day-label").textContent = T("day", { n: day });
     $("hint-t").textContent = T("hint");
@@ -664,7 +680,7 @@
     c.appendChild(row);
 
     var tries = (run.g[L] || []).length;
-    c.appendChild(el("span", "step-try", tries <= 1 ? T("step_first") : T("step_try", { nth: nth(tries) })));
+    c.appendChild(el("span", "step-try", tries <= 1 ? T("step_first") : T("step_try", { nth: nth(tries, true) })));
 
     var stat = stepStat(L);
     if (stat) c.appendChild(el("span", "step-stat", stat));
@@ -1341,7 +1357,7 @@
     /* What a climb costs everyone else, beside what it cost you: height says how far, guesses say how well. */
     var gEl = $("cl-gavg"), ga = guessAvg(v);
     if (gEl) {
-      if (ga !== null) { gEl.hidden = false; gEl.textContent = T(K("guess_avg"), { n: nf(ga, 0) }); }
+      if (ga !== null) { gEl.hidden = false; gEl.textContent = T(K("guess_avg"), { n: nf(ga, 0), cnt: Math.round(ga) }); }
       else gEl.hidden = true;
     }
 
@@ -1352,7 +1368,7 @@
       if (wall && W && W.answers && W.answers[wall.L]) {
         wEl.hidden = false;
         wEl.innerHTML = "";
-        var parts = T(K("wall"), { w: "\u0000", n: nInt(wall.n), p: pct(wall.p) }).split("\u0000");
+        var parts = T(K("wall"), { w: "\u0000", n: nInt(wall.n), cnt: wall.n, p: pct(wall.p) }).split("\u0000");
         wEl.appendChild(document.createTextNode(parts[0] || ""));
         wEl.appendChild(el("b", "", up(ans(wall.L))));
         wEl.appendChild(document.createTextNode(parts[1] || ""));
@@ -1372,7 +1388,7 @@
     if (dist) {
       var hd = el("div", "cl-sec");
       var h3 = el("h3", "", T("fell"));
-      h3.appendChild(el("small", "", T("players", { n: dist.n.toLocaleString ? dist.n.toLocaleString(lang) : dist.n })));
+      h3.appendChild(el("small", "", T("players", { n: dist.n.toLocaleString ? dist.n.toLocaleString(lang) : dist.n, cnt: dist.n })));
       hd.appendChild(tag(h3));
       a.appendChild(hd);
     }

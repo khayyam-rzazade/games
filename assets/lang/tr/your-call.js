@@ -552,6 +552,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "480bc-salamis": {
   "place": "Atina",
+  "year": "MÖ 480",
   "pov": "Çok büyük bir Pers ordusu şehrine doğru yürüyor. Bir kâhin Atina'ya “tahta duvarlarına” güvenmesini söyledi ve şehrin yeni, büyük bir donanması var. Sen bir Atinalı generalsin.",
   "short": "Themistokles",
   "did": "Themistokles, Atina'yı boşalttırdı: “tahta duvarlar” gemilerdi. MÖ 480'de Yunan donanması, Persler'i Salamis'in dar boğazında yendi.",
@@ -799,6 +800,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "49bc-rubicon": {
   "place": "Rubicon",
+  "year": "MÖ 49",
   "pov": "Galya'daki savaşını kazandın. Senato, ordunu dağıtmanı ve Roma'ya dönmeni emrediyor; bu da makamının sana verdiği dokunulmazlığı yitirmen demek. Sen Galya'nın valisisin.",
   "short": "Sezar",
   "did": "MÖ 49 Ocak'ında Sezar, 13. Lejyon'u Rubicon'dan geçirerek İtalya'ya soktu. Cumhuriyet yasalarına göre bu bir savaş eylemiydi.",

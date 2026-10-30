@@ -17,17 +17,17 @@ Some are in the club, some are not; one secret rule decides. **What is a fact:**
 
 ## Where each language stands
 
-- it (Italian): 14 of 148 puzzles done
-- tr (Turkish): 14 of 148 puzzles done
-- es (Spanish): 14 of 148 puzzles done
-- pt (Brazilian Portuguese): 9 of 148 puzzles done
-- fr (French): 9 of 148 puzzles done
+- it (Italian): 148 of 148 puzzles done
+- tr (Turkish): 148 of 148 puzzles done
+- es (Spanish): 148 of 148 puzzles done
+- pt (Brazilian Portuguese): 148 of 148 puzzles done
+- fr (French): 148 of 148 puzzles done
 
 ## The 148 puzzles of The Club, in play order
 
 Each heading: the puzzle's number in the stock, its id (the middle part of its keys), the first days that play it, and which languages have it.
 
-#### 1/148 · `marsupials` · day 1 (4 Oct 2026), 149 (1 Mar 2027), 297 (27 Jul 2027), 445 (22 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 1/148 · `marsupials` · day 1 (4 Oct 2026), 149 (1 Mar 2027), 297 (27 Jul 2027), 445 (22 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.marsupials.sign` — They are marsupials
 - `p.the-club.marsupials.stamp` — Marsupials
@@ -43,7 +43,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.marsupials.door5` — Wallaby
 - `p.the-club.marsupials.fact` — They are marsupials: their young are born tiny and most finish growing in a pouch. The platypus is not one; it lays eggs.
 
-#### 2/148 · `time-zones` · day 2 (5 Oct 2026), 150 (2 Mar 2027), 298 (28 Jul 2027), 446 (23 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 2/148 · `time-zones` · day 2 (5 Oct 2026), 150 (2 Mar 2027), 298 (28 Jul 2027), 446 (23 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.time-zones.sign` — More than one time zone
 - `p.the-club.time-zones.stamp` — Many time zones
@@ -59,7 +59,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.time-zones.door5` — Indonesia
 - `p.the-club.time-zones.fact` — Each uses more than one time zone. China spans five but keeps a single time for the whole country.
 
-#### 3/148 · `rose-family` · day 3 (6 Oct 2026), 151 (3 Mar 2027), 299 (29 Jul 2027), 447 (24 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 3/148 · `rose-family` · day 3 (6 Oct 2026), 151 (3 Mar 2027), 299 (29 Jul 2027), 447 (24 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.rose-family.sign` — The rose family
 - `p.the-club.rose-family.stamp` — The rose family
@@ -75,7 +75,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.rose-family.door5` — Raspberry
 - `p.the-club.rose-family.fact` — They all belong to the rose family. An almond is the seed of a fruit closely related to the peach.
 
-#### 4/148 · `keratin` · day 4 (7 Oct 2026), 152 (4 Mar 2027), 300 (30 Jul 2027), 448 (25 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 4/148 · `keratin` · day 4 (7 Oct 2026), 152 (4 Mar 2027), 300 (30 Jul 2027), 448 (25 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.keratin.sign` — Made of keratin
 - `p.the-club.keratin.stamp` — Keratin
@@ -91,7 +91,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.keratin.door5` — Wool
 - `p.the-club.keratin.fact` — All are made of keratin, the stuff of your hair and nails. A rhino's horn is too; an elephant's tusk is a tooth.
 
-#### 5/148 · `eponyms` · day 5 (8 Oct 2026), 153 (5 Mar 2027), 301 (31 Jul 2027), 449 (26 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 5/148 · `eponyms` · day 5 (8 Oct 2026), 153 (5 Mar 2027), 301 (31 Jul 2027), 449 (26 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.eponyms.sign` — Named after real people
 - `p.the-club.eponyms.stamp` — Eponyms
@@ -107,7 +107,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.eponyms.door5` — Ketchup
 - `p.the-club.eponyms.fact` — Each is named after a real person. Nachos carry the nickname of Ignacio 'Nacho' Anaya, the Mexican restaurant man said to have made them first.
 
-#### 6/148 · `volcanoes` · day 6 (9 Oct 2026), 154 (6 Mar 2027), 302 (1 Aug 2027), 450 (27 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 6/148 · `volcanoes` · day 6 (9 Oct 2026), 154 (6 Mar 2027), 302 (1 Aug 2027), 450 (27 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.volcanoes.sign` — They are volcanoes
 - `p.the-club.volcanoes.stamp` — Volcanoes
@@ -123,7 +123,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.volcanoes.door5` — Mount St Helens
 - `p.the-club.volcanoes.fact` — They are all volcanoes. So is Kilimanjaro, the highest mountain in Africa.
 
-#### 7/148 · `apes` · day 7 (10 Oct 2026), 155 (7 Mar 2027), 303 (2 Aug 2027), 451 (28 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 7/148 · `apes` · day 7 (10 Oct 2026), 155 (7 Mar 2027), 303 (2 Aug 2027), 451 (28 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.apes.sign` — They are apes
 - `p.the-club.apes.stamp` — Apes
@@ -139,7 +139,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.apes.door5` — Bonobo
 - `p.the-club.apes.fact` — They are apes, not monkeys: apes have no tail. Humans are apes too.
 
-#### 8/148 · `seven-wonders` · day 8 (11 Oct 2026), 156 (8 Mar 2027), 304 (3 Aug 2027), 452 (29 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 8/148 · `seven-wonders` · day 8 (11 Oct 2026), 156 (8 Mar 2027), 304 (3 Aug 2027), 452 (29 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.seven-wonders.sign` — The Seven Wonders
 - `p.the-club.seven-wonders.stamp` — Seven Wonders
@@ -155,7 +155,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.seven-wonders.door5` — Temple of Artemis
 - `p.the-club.seven-wonders.fact` — They are among the Seven Wonders of the Ancient World. Only the Great Pyramid still stands.
 
-#### 9/148 · `nightshades` · day 9 (12 Oct 2026), 157 (9 Mar 2027), 305 (4 Aug 2027), 453 (30 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 9/148 · `nightshades` · day 9 (12 Oct 2026), 157 (9 Mar 2027), 305 (4 Aug 2027), 453 (30 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.nightshades.sign` — The nightshade family
 - `p.the-club.nightshades.stamp` — Nightshades
@@ -171,7 +171,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.nightshades.door5` — Apple
 - `p.the-club.nightshades.fact` — All belong to one plant family, the nightshades. The potato and tobacco are cousins; the sweet potato is not.
 
-#### 10/148 · `moons` · day 10 (13 Oct 2026), 158 (10 Mar 2027), 306 (5 Aug 2027), 454 (31 Dec 2027) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 10/148 · `moons` · day 10 (13 Oct 2026), 158 (10 Mar 2027), 306 (5 Aug 2027), 454 (31 Dec 2027) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.moons.sign` — They are moons
 - `p.the-club.moons.stamp` — Moons
@@ -187,7 +187,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.moons.door5` — Triton
 - `p.the-club.moons.fact` — Each is a moon of another planet. Ganymede, a moon of Jupiter, is bigger than the planet Mercury.
 
-#### 11/148 · `mediterranean` · day 11 (14 Oct 2026), 159 (11 Mar 2027), 307 (6 Aug 2027), 455 (1 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 11/148 · `mediterranean` · day 11 (14 Oct 2026), 159 (11 Mar 2027), 307 (6 Aug 2027), 455 (1 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.mediterranean.sign` — On the Mediterranean Sea
 - `p.the-club.mediterranean.stamp` — Mediterranean coast
@@ -203,7 +203,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.mediterranean.door5` — Lebanon
 - `p.the-club.mediterranean.fact` — Each has a coast on the Mediterranean Sea. Portugal, right next to Spain, has none.
 
-#### 12/148 · `japanese-words` · day 12 (15 Oct 2026), 160 (12 Mar 2027), 308 (7 Aug 2027), 456 (2 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 12/148 · `japanese-words` · day 12 (15 Oct 2026), 160 (12 Mar 2027), 308 (7 Aug 2027), 456 (2 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.japanese-words.sign` — Words from Japanese
 - `p.the-club.japanese-words.stamp` — From Japanese
@@ -219,7 +219,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.japanese-words.door5` — Honcho
 - `p.the-club.japanese-words.fact` — English borrowed each of these words from Japanese. 'Tycoon' comes from taikun, a title once used for the shogun.
 
-#### 13/148 · `rodents` · day 13 (16 Oct 2026), 161 (13 Mar 2027), 309 (8 Aug 2027), 457 (3 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 13/148 · `rodents` · day 13 (16 Oct 2026), 161 (13 Mar 2027), 309 (8 Aug 2027), 457 (3 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.rodents.sign` — They are rodents
 - `p.the-club.rodents.stamp` — Rodents
@@ -235,7 +235,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.rodents.door5` — Guinea pig
 - `p.the-club.rodents.fact` — They are rodents, with front teeth that never stop growing. The capybara is the biggest; the rabbit is not a rodent at all.
 
-#### 14/148 · `americas` · day 14 (17 Oct 2026), 162 (14 Mar 2027), 310 (9 Aug 2027), 458 (4 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 14/148 · `americas` · day 14 (17 Oct 2026), 162 (14 Mar 2027), 310 (9 Aug 2027), 458 (4 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.americas.sign` — They came from the Americas
 - `p.the-club.americas.stamp` — From the Americas
@@ -251,7 +251,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.americas.door5` — Pineapple
 - `p.the-club.americas.fact` — All came from the Americas. Before Columbus, nobody in Europe, Asia or Africa had tasted a potato, a tomato or chocolate.
 
-#### 15/148 · `noble-gases` · day 15 (18 Oct 2026), 163 (15 Mar 2027), 311 (10 Aug 2027), 459 (5 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 15/148 · `noble-gases` · day 15 (18 Oct 2026), 163 (15 Mar 2027), 311 (10 Aug 2027), 459 (5 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.noble-gases.sign` — They are noble gases
 - `p.the-club.noble-gases.stamp` — Noble gases
@@ -267,7 +267,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.noble-gases.door5` — Radon
 - `p.the-club.noble-gases.fact` — They are the noble gases, which almost never react with anything. That is why balloons are filled with helium and not with hydrogen.
 
-#### 16/148 · `van-gogh` · day 16 (19 Oct 2026), 164 (16 Mar 2027), 312 (11 Aug 2027), 460 (6 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 16/148 · `van-gogh` · day 16 (19 Oct 2026), 164 (16 Mar 2027), 312 (11 Aug 2027), 460 (6 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.van-gogh.sign` — Van Gogh painted them
 - `p.the-club.van-gogh.stamp` — Van Gogh
@@ -283,7 +283,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.van-gogh.door5` — Café Terrace at Night
 - `p.the-club.van-gogh.fact` — Vincent van Gogh painted them all. He made The Potato Eaters in 1885 and died only five years later.
 
-#### 17/148 · `insects` · day 17 (20 Oct 2026), 165 (17 Mar 2027), 313 (12 Aug 2027), 461 (7 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 17/148 · `insects` · day 17 (20 Oct 2026), 165 (17 Mar 2027), 313 (12 Aug 2027), 461 (7 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.insects.sign` — They are insects
 - `p.the-club.insects.stamp` — Insects
@@ -299,7 +299,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.insects.door5` — Centipede
 - `p.the-club.insects.fact` — They are insects, with six legs each. Spiders, scorpions and ticks have eight and are arachnids.
 
-#### 18/148 · `cabbage` · day 18 (21 Oct 2026), 166 (18 Mar 2027), 314 (13 Aug 2027), 462 (8 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 18/148 · `cabbage` · day 18 (21 Oct 2026), 166 (18 Mar 2027), 314 (13 Aug 2027), 462 (8 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.cabbage.sign` — One species: wild cabbage
 - `p.the-club.cabbage.stamp` — Wild cabbage
@@ -315,7 +315,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.cabbage.door5` — Kohlrabi
 - `p.the-club.cabbage.fact` — They are all one species, wild cabbage, bred by farmers into many shapes.
 
-#### 19/148 · `arctic-circle` · day 19 (22 Oct 2026), 167 (19 Mar 2027), 315 (14 Aug 2027), 463 (9 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 19/148 · `arctic-circle` · day 19 (22 Oct 2026), 167 (19 Mar 2027), 315 (14 Aug 2027), 463 (9 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.arctic-circle.sign` — The Arctic Circle crosses them
 - `p.the-club.arctic-circle.stamp` — Arctic Circle
@@ -331,7 +331,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.arctic-circle.door5` — Japan
 - `p.the-club.arctic-circle.fact` — The Arctic Circle crosses each of them. North of that line the sun stays up all night at midsummer.
 
-#### 20/148 · `viruses` · day 20 (23 Oct 2026), 168 (20 Mar 2027), 316 (15 Aug 2027), 464 (10 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 20/148 · `viruses` · day 20 (23 Oct 2026), 168 (20 Mar 2027), 316 (15 Aug 2027), 464 (10 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.viruses.sign` — A virus causes them
 - `p.the-club.viruses.stamp` — Caused by a virus
@@ -347,7 +347,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.viruses.door5` — Polio
 - `p.the-club.viruses.fact` — A virus causes each of them. Malaria comes from a parasite that mosquitoes carry; cholera and plague come from bacteria.
 
-#### 21/148 · `woodwinds` · day 21 (24 Oct 2026), 169 (21 Mar 2027), 317 (16 Aug 2027), 465 (11 Jan 2028) … · every 148 days · done: it, tr, es · to do: pt, fr
+#### 21/148 · `woodwinds` · day 21 (24 Oct 2026), 169 (21 Mar 2027), 317 (16 Aug 2027), 465 (11 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.woodwinds.sign` — They are woodwinds
 - `p.the-club.woodwinds.stamp` — Woodwinds
@@ -363,7 +363,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.woodwinds.door5` — Piccolo
 - `p.the-club.woodwinds.fact` — They are woodwinds, whatever they are made of. The saxophone is made of brass but played with a reed, so it counts as one.
 
-#### 22/148 · `sea-mammals` · day 22 (25 Oct 2026), 170 (22 Mar 2027), 318 (17 Aug 2027), 466 (12 Jan 2028) … · every 148 days · done: it, tr, es · to do: pt, fr
+#### 22/148 · `sea-mammals` · day 22 (25 Oct 2026), 170 (22 Mar 2027), 318 (17 Aug 2027), 466 (12 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.sea-mammals.sign` — They are mammals
 - `p.the-club.sea-mammals.stamp` — Mammals of the sea
@@ -379,7 +379,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.sea-mammals.door5` — Narwhal
 - `p.the-club.sea-mammals.fact` — They are mammals, not fish. The whale shark is the other way round: a fish, and the biggest fish alive.
 
-#### 23/148 · `botanical-fruits` · day 23 (26 Oct 2026), 171 (23 Mar 2027), 319 (18 Aug 2027), 467 (13 Jan 2028) … · every 148 days · done: it, tr, es · to do: pt, fr
+#### 23/148 · `botanical-fruits` · day 23 (26 Oct 2026), 171 (23 Mar 2027), 319 (18 Aug 2027), 467 (13 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.botanical-fruits.sign` — To a botanist, fruits
 - `p.the-club.botanical-fruits.stamp` — Botanical fruits
@@ -395,7 +395,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.botanical-fruits.door5` — Sweet pepper
 - `p.the-club.botanical-fruits.fact` — To a botanist they are all fruits: each grows from a flower and holds the seeds. Rhubarb is a leaf stalk.
 
-#### 24/148 · `stars` · day 24 (27 Oct 2026), 172 (24 Mar 2027), 320 (19 Aug 2027), 468 (14 Jan 2028) … · every 148 days · done: it, tr, es · to do: pt, fr
+#### 24/148 · `stars` · day 24 (27 Oct 2026), 172 (24 Mar 2027), 320 (19 Aug 2027), 468 (14 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.stars.sign` — They are stars
 - `p.the-club.stars.stamp` — Stars
@@ -411,7 +411,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.stars.door5` — Proxima Centauri
 - `p.the-club.stars.fact` — They are stars. So is the Sun. After it, the nearest star is Proxima Centauri, about four light years away.
 
-#### 25/148 · `un-languages` · day 25 (28 Oct 2026), 173 (25 Mar 2027), 321 (20 Aug 2027), 469 (15 Jan 2028) … · every 148 days · done: it, tr, es · to do: pt, fr
+#### 25/148 · `un-languages` · day 25 (28 Oct 2026), 173 (25 Mar 2027), 321 (20 Aug 2027), 469 (15 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.un-languages.sign` — Official UN languages
 - `p.the-club.un-languages.stamp` — UN languages
@@ -571,7 +571,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.no-bones.door5` — Lobster
 - `p.the-club.no-bones.fact` — None of them has a single bone. A shark's skeleton is made of cartilage, the gristly stuff of your ears and nose.
 
-#### 35/148 · `monarchies` · day 35 (7 Nov 2026), 183 (4 Apr 2027), 331 (30 Aug 2027), 479 (25 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 35/148 · `monarchies` · day 35 (7 Nov 2026), 183 (4 Apr 2027), 331 (30 Aug 2027), 479 (25 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.monarchies.sign` — A monarch is head of state
 - `p.the-club.monarchies.stamp` — Monarchies
@@ -587,7 +587,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.monarchies.door5` — Netherlands
 - `p.the-club.monarchies.fact` — A king, queen or emperor is head of state in each. Japan's emperors form the oldest royal line still on a throne.
 
-#### 36/148 · `berries` · day 36 (8 Nov 2026), 184 (5 Apr 2027), 332 (31 Aug 2027), 480 (26 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 36/148 · `berries` · day 36 (8 Nov 2026), 184 (5 Apr 2027), 332 (31 Aug 2027), 480 (26 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.berries.sign` — To a botanist, berries
 - `p.the-club.berries.stamp` — True berries
@@ -603,7 +603,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.berries.door5` — Avocado
 - `p.the-club.berries.fact` — To a botanist a banana is a berry and a strawberry is not. A true berry grows from a single flower and keeps its seeds in the flesh.
 
-#### 37/148 · `africa` · day 37 (9 Nov 2026), 185 (6 Apr 2027), 333 (1 Sep 2027), 481 (27 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 37/148 · `africa` · day 37 (9 Nov 2026), 185 (6 Apr 2027), 333 (1 Sep 2027), 481 (27 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.africa.sign` — They live wild in Africa
 - `p.the-club.africa.stamp` — Wild in Africa
@@ -619,7 +619,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.africa.door5` — Jaguar
 - `p.the-club.africa.fact` — All of them live wild in Africa. Tigers do not: wild tigers live in Asia.
 
-#### 38/148 · `portuguese` · day 38 (10 Nov 2026), 186 (7 Apr 2027), 334 (2 Sep 2027), 482 (28 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 38/148 · `portuguese` · day 38 (10 Nov 2026), 186 (7 Apr 2027), 334 (2 Sep 2027), 482 (28 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.portuguese.sign` — Portuguese is official
 - `p.the-club.portuguese.stamp` — Portuguese spoken
@@ -635,7 +635,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.portuguese.door5` — Italy
 - `p.the-club.portuguese.fact` — Portuguese is the official language of each. Brazil alone has more Portuguese speakers than all the other countries together.
 
-#### 39/148 · `greenhouse` · day 39 (11 Nov 2026), 187 (8 Apr 2027), 335 (3 Sep 2027), 483 (29 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 39/148 · `greenhouse` · day 39 (11 Nov 2026), 187 (8 Apr 2027), 335 (3 Sep 2027), 483 (29 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.greenhouse.sign` — They are greenhouse gases
 - `p.the-club.greenhouse.stamp` — Greenhouse gases
@@ -651,7 +651,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.greenhouse.door5` — CFCs
 - `p.the-club.greenhouse.fact` — They trap heat in the air. Oxygen and nitrogen, which make up 99 per cent of dry air, do not.
 
-#### 40/148 · `named-countries` · day 40 (12 Nov 2026), 188 (9 Apr 2027), 336 (4 Sep 2027), 484 (30 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 40/148 · `named-countries` · day 40 (12 Nov 2026), 188 (9 Apr 2027), 336 (4 Sep 2027), 484 (30 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.named-countries.sign` — Named after a person
 - `p.the-club.named-countries.stamp` — Named after people
@@ -667,7 +667,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.named-countries.door5` — Iceland
 - `p.the-club.named-countries.fact` — Each is named after a person: Colombia after Columbus, Bolivia after Simón Bolívar, the Philippines after King Philip II of Spain.
 
-#### 41/148 · `penguins` · day 41 (13 Nov 2026), 189 (10 Apr 2027), 337 (5 Sep 2027), 485 (31 Jan 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 41/148 · `penguins` · day 41 (13 Nov 2026), 189 (10 Apr 2027), 337 (5 Sep 2027), 485 (31 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.penguins.sign` — Wild penguins live there
 - `p.the-club.penguins.stamp` — Where penguins live
@@ -683,7 +683,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.penguins.door5` — Chile
 - `p.the-club.penguins.fact` — Wild penguins live in all of them. None lives at the North Pole: the northernmost penguins live on the Galápagos, at the equator.
 
-#### 42/148 · `olympic-hosts` · day 42 (14 Nov 2026), 190 (11 Apr 2027), 338 (6 Sep 2027), 486 (1 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 42/148 · `olympic-hosts` · day 42 (14 Nov 2026), 190 (11 Apr 2027), 338 (6 Sep 2027), 486 (1 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.olympic-hosts.sign` — Hosted the Summer Olympics
 - `p.the-club.olympic-hosts.stamp` — Olympic hosts
@@ -699,7 +699,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.olympic-hosts.door5` — Barcelona
 - `p.the-club.olympic-hosts.fact` — Each has hosted the Summer Olympic Games. Paris and London have each done so three times.
 
-#### 43/148 · `hundred-million` · day 43 (15 Nov 2026), 191 (12 Apr 2027), 339 (7 Sep 2027), 487 (2 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 43/148 · `hundred-million` · day 43 (15 Nov 2026), 191 (12 Apr 2027), 339 (7 Sep 2027), 487 (2 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.hundred-million.sign` — Over 100 million people
 - `p.the-club.hundred-million.stamp` — 100 million people
@@ -715,7 +715,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.hundred-million.door5` — Philippines
 - `p.the-club.hundred-million.fact` — More than 100 million people live in each of them. Bangladesh has more people than Russia.
 
-#### 44/148 · `months` · day 44 (16 Nov 2026), 192 (13 Apr 2027), 340 (8 Sep 2027), 488 (3 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 44/148 · `months` · day 44 (16 Nov 2026), 192 (13 Apr 2027), 340 (8 Sep 2027), 488 (3 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.months.sign` — They have 31 days
 - `p.the-club.months.stamp` — 31 days
@@ -731,7 +731,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.months.door5` — December
 - `p.the-club.months.fact` — Each has 31 days. July and August both do: one is named after Julius Caesar, the next after Augustus.
 
-#### 45/148 · `former-capitals` · day 45 (17 Nov 2026), 193 (14 Apr 2027), 341 (9 Sep 2027), 489 (4 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 45/148 · `former-capitals` · day 45 (17 Nov 2026), 193 (14 Apr 2027), 341 (9 Sep 2027), 489 (4 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.former-capitals.sign` — They were once the capital
 - `p.the-club.former-capitals.stamp` — Former capitals
@@ -747,7 +747,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.former-capitals.door5` — Lagos
 - `p.the-club.former-capitals.fact` — Each used to be its country's capital. Rio de Janeiro was Brazil's until Brasília took over in 1960.
 
-#### 46/148 · `pharaohs` · day 46 (18 Nov 2026), 194 (15 Apr 2027), 342 (10 Sep 2027), 490 (5 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 46/148 · `pharaohs` · day 46 (18 Nov 2026), 194 (15 Apr 2027), 342 (10 Sep 2027), 490 (5 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.pharaohs.sign` — They were pharaohs
 - `p.the-club.pharaohs.stamp` — Pharaohs of Egypt
@@ -763,7 +763,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.pharaohs.door5` — Hatshepsut
 - `p.the-club.pharaohs.fact` — Each ruled ancient Egypt as pharaoh. Pharaonic rule ended when Rome conquered Egypt in 30 BC.
 
-#### 47/148 · `equator` · day 47 (19 Nov 2026), 195 (16 Apr 2027), 343 (11 Sep 2027), 491 (6 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 47/148 · `equator` · day 47 (19 Nov 2026), 195 (16 Apr 2027), 343 (11 Sep 2027), 491 (6 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.equator.sign` — The equator crosses them
 - `p.the-club.equator.stamp` — On the equator
@@ -779,7 +779,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.equator.door5` — Colombia
 - `p.the-club.equator.fact` — The equator runs through all of them. Ecuador is even named after it: ecuador is Spanish for equator.
 
-#### 48/148 · `climacteric` · day 48 (20 Nov 2026), 196 (17 Apr 2027), 344 (12 Sep 2027), 492 (7 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 48/148 · `climacteric` · day 48 (20 Nov 2026), 196 (17 Apr 2027), 344 (12 Sep 2027), 492 (7 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.climacteric.sign` — They ripen after picking
 - `p.the-club.climacteric.stamp` — Ripen after picking
@@ -795,7 +795,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.climacteric.door5` — Cherry
 - `p.the-club.climacteric.fact` — They keep ripening after they are picked. Grapes, oranges and pineapples do not.
 
-#### 49/148 · `below-sea-level` · day 49 (21 Nov 2026), 197 (18 Apr 2027), 345 (13 Sep 2027), 493 (8 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 49/148 · `below-sea-level` · day 49 (21 Nov 2026), 197 (18 Apr 2027), 345 (13 Sep 2027), 493 (8 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.below-sea-level.sign` — Below sea level
 - `p.the-club.below-sea-level.stamp` — Below sea level
@@ -811,7 +811,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.below-sea-level.door5` — Sea of Galilee
 - `p.the-club.below-sea-level.fact` — All lie below sea level. Baku, 28 metres under, is the lowest capital city in the world.
 
-#### 50/148 · `flightless` · day 50 (22 Nov 2026), 198 (19 Apr 2027), 346 (14 Sep 2027), 494 (9 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 50/148 · `flightless` · day 50 (22 Nov 2026), 198 (19 Apr 2027), 346 (14 Sep 2027), 494 (9 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.flightless.sign` — Birds that cannot fly
 - `p.the-club.flightless.stamp` — Flightless birds
@@ -827,7 +827,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.flightless.door5` — Kakapo
 - `p.the-club.flightless.fact` — None of them can fly. The kakapo of New Zealand is the only parrot that cannot.
 
-#### 51/148 · `left-traffic` · day 51 (23 Nov 2026), 199 (20 Apr 2027), 347 (15 Sep 2027), 495 (10 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 51/148 · `left-traffic` · day 51 (23 Nov 2026), 199 (20 Apr 2027), 347 (15 Sep 2027), 495 (10 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.left-traffic.sign` — They drive on the left
 - `p.the-club.left-traffic.stamp` — Left-hand traffic
@@ -843,7 +843,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.left-traffic.door5` — Indonesia
 - `p.the-club.left-traffic.fact` — In all of them traffic keeps to the left. About a third of the world's people live in countries that do.
 
-#### 52/148 · `shakespeare` · day 52 (24 Nov 2026), 200 (21 Apr 2027), 348 (16 Sep 2027), 496 (11 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 52/148 · `shakespeare` · day 52 (24 Nov 2026), 200 (21 Apr 2027), 348 (16 Sep 2027), 496 (11 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.shakespeare.sign` — Plays by Shakespeare
 - `p.the-club.shakespeare.stamp` — Shakespeare's plays
@@ -859,7 +859,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.shakespeare.door5` — Twelfth Night
 - `p.the-club.shakespeare.fact` — William Shakespeare wrote all of them. He wrote or co-wrote about 39 plays in all.
 
-#### 53/148 · `dinosaurs` · day 53 (25 Nov 2026), 201 (22 Apr 2027), 349 (17 Sep 2027), 497 (12 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 53/148 · `dinosaurs` · day 53 (25 Nov 2026), 201 (22 Apr 2027), 349 (17 Sep 2027), 497 (12 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.dinosaurs.sign` — They were dinosaurs
 - `p.the-club.dinosaurs.stamp` — Dinosaurs
@@ -875,7 +875,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.dinosaurs.door5` — Ankylosaurus
 - `p.the-club.dinosaurs.fact` — They were dinosaurs. Pterodactyls, plesiosaurs and mosasaurs were not: they were other reptiles of the same age.
 
-#### 54/148 · `dollar` · day 54 (26 Nov 2026), 202 (23 Apr 2027), 350 (18 Sep 2027), 498 (13 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 54/148 · `dollar` · day 54 (26 Nov 2026), 202 (23 Apr 2027), 350 (18 Sep 2027), 498 (13 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.dollar.sign` — Their money is the dollar
 - `p.the-club.dollar.stamp` — The dollar
@@ -891,7 +891,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.dollar.door5` — Namibia
 - `p.the-club.dollar.fact` — Each calls its money the dollar. The name goes back to the thaler, a silver coin first struck in Bohemia about 500 years ago.
 
-#### 55/148 · `underground` · day 55 (27 Nov 2026), 203 (24 Apr 2027), 351 (19 Sep 2027), 499 (14 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 55/148 · `underground` · day 55 (27 Nov 2026), 203 (24 Apr 2027), 351 (19 Sep 2027), 499 (14 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.underground.sign` — They grow underground
 - `p.the-club.underground.stamp` — Grown underground
@@ -907,7 +907,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.underground.door5` — Onion
 - `p.the-club.underground.fact` — All grow under the ground. So does the peanut: after flowering, a stalk called a peg grows down into the soil.
 
-#### 56/148 · `borders-brazil` · day 56 (28 Nov 2026), 204 (25 Apr 2027), 352 (20 Sep 2027), 500 (15 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 56/148 · `borders-brazil` · day 56 (28 Nov 2026), 204 (25 Apr 2027), 352 (20 Sep 2027), 500 (15 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.borders-brazil.sign` — They border Brazil
 - `p.the-club.borders-brazil.stamp` — Brazil's neighbours
@@ -923,7 +923,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.borders-brazil.door5` — Panama
 - `p.the-club.borders-brazil.fact` — Each shares a border with Brazil. So does France, through French Guiana in South America.
 
-#### 57/148 · `arabic-words` · day 57 (29 Nov 2026), 205 (26 Apr 2027), 353 (21 Sep 2027), 501 (16 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 57/148 · `arabic-words` · day 57 (29 Nov 2026), 205 (26 Apr 2027), 353 (21 Sep 2027), 501 (16 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.arabic-words.sign` — Words from Arabic
 - `p.the-club.arabic-words.stamp` — From Arabic
@@ -939,7 +939,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.arabic-words.door5` — Zero
 - `p.the-club.arabic-words.fact` — Each reached English from Arabic through other languages. 'Algebra' is from al-jabr, in the title of a book written about 1,200 years ago.
 
-#### 58/148 · `capitals` · day 58 (30 Nov 2026), 206 (27 Apr 2027), 354 (22 Sep 2027), 502 (17 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 58/148 · `capitals` · day 58 (30 Nov 2026), 206 (27 Apr 2027), 354 (22 Sep 2027), 502 (17 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.capitals.sign` — They are capital cities
 - `p.the-club.capitals.stamp` — Capital cities
@@ -955,7 +955,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.capitals.door5` — Abuja
 - `p.the-club.capitals.fact` — Each is a capital, though a bigger city gets the fame. Australia's capital is Canberra, not Sydney.
 
-#### 59/148 · `citrus` · day 59 (1 Dec 2026), 207 (28 Apr 2027), 355 (23 Sep 2027), 503 (18 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 59/148 · `citrus` · day 59 (1 Dec 2026), 207 (28 Apr 2027), 355 (23 Sep 2027), 503 (18 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.citrus.sign` — They are citrus fruits
 - `p.the-club.citrus.stamp` — Citrus fruits
@@ -971,7 +971,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.citrus.door5` — Pomelo
 - `p.the-club.citrus.fact` — They are all citrus fruits. The grapefruit is a cross between a pomelo and a sweet orange.
 
-#### 60/148 · `island-countries` · day 60 (2 Dec 2026), 208 (29 Apr 2027), 356 (24 Sep 2027), 504 (19 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 60/148 · `island-countries` · day 60 (2 Dec 2026), 208 (29 Apr 2027), 356 (24 Sep 2027), 504 (19 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.island-countries.sign` — They are island countries
 - `p.the-club.island-countries.stamp` — Island countries
@@ -987,7 +987,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.island-countries.door5` — Cuba
 - `p.the-club.island-countries.fact` — Each lies mainly on islands. Indonesia is the largest and most populous island country of all.
 
-#### 61/148 · `panthera` · day 61 (3 Dec 2026), 209 (30 Apr 2027), 357 (25 Sep 2027), 505 (20 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 61/148 · `panthera` · day 61 (3 Dec 2026), 209 (30 Apr 2027), 357 (25 Sep 2027), 505 (20 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.panthera.sign` — The genus Panthera
 - `p.the-club.panthera.stamp` — Genus Panthera
@@ -1003,7 +1003,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.panthera.door5` — Ocelot
 - `p.the-club.panthera.fact` — Panthera has five living species: jaguar, leopard, lion, snow leopard and tiger. The puma, sometimes called a panther, is not one.
 
-#### 62/148 · `nobel` · day 62 (4 Dec 2026), 210 (1 May 2027), 358 (26 Sep 2027), 506 (21 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 62/148 · `nobel` · day 62 (4 Dec 2026), 210 (1 May 2027), 358 (26 Sep 2027), 506 (21 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.nobel.sign` — They won a Nobel Prize
 - `p.the-club.nobel.stamp` — Nobel Prize
@@ -1019,7 +1019,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.nobel.door5` — Ernest Hemingway
 - `p.the-club.nobel.fact` — Each won a Nobel Prize. Gandhi never did, though he was nominated five times; Churchill's prize was for literature.
 
-#### 63/148 · `italian-cheeses` · day 63 (5 Dec 2026), 211 (2 May 2027), 359 (27 Sep 2027), 507 (22 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 63/148 · `italian-cheeses` · day 63 (5 Dec 2026), 211 (2 May 2027), 359 (27 Sep 2027), 507 (22 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.italian-cheeses.sign` — Cheeses from Italy
 - `p.the-club.italian-cheeses.stamp` — Italian cheeses
@@ -1035,7 +1035,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.italian-cheeses.door5` — Camembert
 - `p.the-club.italian-cheeses.fact` — All are cheeses from Italy. Parmigiano-Reggiano, the real Parmesan, may only be made in designated regions of Italy.
 
-#### 64/148 · `eight-thousanders` · day 64 (6 Dec 2026), 212 (3 May 2027), 360 (28 Sep 2027), 508 (23 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 64/148 · `eight-thousanders` · day 64 (6 Dec 2026), 212 (3 May 2027), 360 (28 Sep 2027), 508 (23 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.eight-thousanders.sign` — Over 8,000 metres high
 - `p.the-club.eight-thousanders.stamp` — Eight-thousanders
@@ -1051,7 +1051,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.eight-thousanders.door5` — Elbrus
 - `p.the-club.eight-thousanders.fact` — Each rises more than 8,000 metres. All 14 mountains that high are in Asia, in the Himalayas and the Karakoram.
 
-#### 65/148 · `michelangelo` · day 65 (7 Dec 2026), 213 (4 May 2027), 361 (29 Sep 2027), 509 (24 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 65/148 · `michelangelo` · day 65 (7 Dec 2026), 213 (4 May 2027), 361 (29 Sep 2027), 509 (24 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.michelangelo.sign` — Michelangelo made them
 - `p.the-club.michelangelo.stamp` — Michelangelo
@@ -1067,7 +1067,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.michelangelo.door5` — The Birth of Venus
 - `p.the-club.michelangelo.fact` — Michelangelo made them all. He painted both The Creation of Adam and The Last Judgment in the Sistine Chapel.
 
-#### 66/148 · `metals` · day 66 (8 Dec 2026), 214 (5 May 2027), 362 (30 Sep 2027), 510 (25 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 66/148 · `metals` · day 66 (8 Dec 2026), 214 (5 May 2027), 362 (30 Sep 2027), 510 (25 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.metals.sign` — They are metals
 - `p.the-club.metals.stamp` — Metals
@@ -1083,7 +1083,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.metals.door5` — Phosphorus
 - `p.the-club.metals.fact` — They are all metals. Mercury is one too, although at 20 °C it is a liquid.
 
-#### 67/148 · `crustaceans` · day 67 (9 Dec 2026), 215 (6 May 2027), 363 (1 Oct 2027), 511 (26 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 67/148 · `crustaceans` · day 67 (9 Dec 2026), 215 (6 May 2027), 363 (1 Oct 2027), 511 (26 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.crustaceans.sign` — They are crustaceans
 - `p.the-club.crustaceans.stamp` — Crustaceans
@@ -1099,7 +1099,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.crustaceans.door5` — Barnacle
 - `p.the-club.crustaceans.fact` — They are crustaceans. So is the woodlouse, which lives on land: it is an isopod, a relative of crabs and lobsters.
 
-#### 68/148 · `roman-built` · day 68 (10 Dec 2026), 216 (7 May 2027), 364 (2 Oct 2027), 512 (27 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 68/148 · `roman-built` · day 68 (10 Dec 2026), 216 (7 May 2027), 364 (2 Oct 2027), 512 (27 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.roman-built.sign` — Built by the ancient Romans
 - `p.the-club.roman-built.stamp` — Built by Romans
@@ -1115,7 +1115,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.roman-built.door5` — Leaning Tower of Pisa
 - `p.the-club.roman-built.fact` — The ancient Romans built them all. The Trevi Fountain in Rome is far younger: it was finished in 1762.
 
-#### 69/148 · `grass-family` · day 69 (11 Dec 2026), 217 (8 May 2027), 365 (3 Oct 2027), 513 (28 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 69/148 · `grass-family` · day 69 (11 Dec 2026), 217 (8 May 2027), 365 (3 Oct 2027), 513 (28 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.grass-family.sign` — The grass family
 - `p.the-club.grass-family.stamp` — The grass family
@@ -1131,7 +1131,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.grass-family.door5` — Barley
 - `p.the-club.grass-family.fact` — All are grasses, and so are bamboo and sugar cane. Quinoa and buckwheat, eaten like grains, belong to other families.
 
-#### 70/148 · `danube` · day 70 (12 Dec 2026), 218 (9 May 2027), 366 (4 Oct 2027), 514 (29 Feb 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 70/148 · `danube` · day 70 (12 Dec 2026), 218 (9 May 2027), 366 (4 Oct 2027), 514 (29 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.danube.sign` — The Danube flows through them
 - `p.the-club.danube.stamp` — On the Danube
@@ -1147,7 +1147,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.danube.door5` — Slovakia
 - `p.the-club.danube.fact` — The Danube passes through or along ten countries. Parts of the Czech Republic, Poland, Switzerland and Italy only drain into it.
 
-#### 71/148 · `japan-martial` · day 71 (13 Dec 2026), 219 (10 May 2027), 367 (5 Oct 2027), 515 (1 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 71/148 · `japan-martial` · day 71 (13 Dec 2026), 219 (10 May 2027), 367 (5 Oct 2027), 515 (1 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.japan-martial.sign` — They come from Japan
 - `p.the-club.japan-martial.stamp` — From Japan
@@ -1163,7 +1163,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.japan-martial.door5` — Jujutsu
 - `p.the-club.japan-martial.fact` — Each began in Japan. Taekwondo is Korean, kung fu is Chinese and capoeira is Brazilian.
 
-#### 72/148 · `mosquitoes` · day 72 (14 Dec 2026), 220 (11 May 2027), 368 (6 Oct 2027), 516 (2 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 72/148 · `mosquitoes` · day 72 (14 Dec 2026), 220 (11 May 2027), 368 (6 Oct 2027), 516 (2 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.mosquitoes.sign` — Mosquitoes spread them
 - `p.the-club.mosquitoes.stamp` — Spread by mosquitoes
@@ -1179,7 +1179,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.mosquitoes.door5` — Tuberculosis
 - `p.the-club.mosquitoes.fact` — Mosquitoes spread each of them. Ticks spread Lyme disease, and dog bites and scratches cause 99 per cent of human rabies cases.
 
-#### 73/148 · `dog-family` · day 73 (15 Dec 2026), 221 (12 May 2027), 369 (7 Oct 2027), 517 (3 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 73/148 · `dog-family` · day 73 (15 Dec 2026), 221 (12 May 2027), 369 (7 Oct 2027), 517 (3 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.dog-family.sign` — The dog family
 - `p.the-club.dog-family.stamp` — The dog family
@@ -1195,7 +1195,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.dog-family.door5` — Dingo
 - `p.the-club.dog-family.fact` — All belong to the dog family. Hyenas look like dogs but are closer to cats, and the raccoon dog's closest relatives are foxes.
 
-#### 74/148 · `china` · day 74 (16 Dec 2026), 222 (13 May 2027), 370 (8 Oct 2027), 518 (4 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 74/148 · `china` · day 74 (16 Dec 2026), 222 (13 May 2027), 370 (8 Oct 2027), 518 (4 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.china.sign` — Invented in China
 - `p.the-club.china.stamp` — Invented in China
@@ -1211,7 +1211,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.china.door5` — Paper money
 - `p.the-club.china.fact` — All were invented in China. The fortune cookie was not: it most likely began with Japanese immigrants to the United States.
 
-#### 75/148 · `caffeine` · day 75 (17 Dec 2026), 223 (14 May 2027), 371 (9 Oct 2027), 519 (5 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 75/148 · `caffeine` · day 75 (17 Dec 2026), 223 (14 May 2027), 371 (9 Oct 2027), 519 (5 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.caffeine.sign` — They contain caffeine
 - `p.the-club.caffeine.stamp` — Caffeine
@@ -1227,7 +1227,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.caffeine.door5` — Kola nut
 - `p.the-club.caffeine.fact` — Each naturally contains caffeine. Rooibos tea, from South Africa, has none: it is not made from tea leaves.
 
-#### 76/148 · `southern-capitals` · day 76 (18 Dec 2026), 224 (15 May 2027), 372 (10 Oct 2027), 520 (6 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 76/148 · `southern-capitals` · day 76 (18 Dec 2026), 224 (15 May 2027), 372 (10 Oct 2027), 520 (6 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.southern-capitals.sign` — South of the equator
 - `p.the-club.southern-capitals.stamp` — South of the equator
@@ -1243,7 +1243,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.southern-capitals.door5` — Nairobi
 - `p.the-club.southern-capitals.fact` — All lie south of the equator. Nairobi is 1°17′ south of it, while Kampala, the capital of Uganda, is 0°19′ north.
 
-#### 77/148 · `latin-alphabet` · day 77 (19 Dec 2026), 225 (16 May 2027), 373 (11 Oct 2027), 521 (7 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 77/148 · `latin-alphabet` · day 77 (19 Dec 2026), 225 (16 May 2027), 373 (11 Oct 2027), 521 (7 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.latin-alphabet.sign` — Written in Latin letters
 - `p.the-club.latin-alphabet.stamp` — Latin alphabet
@@ -1259,7 +1259,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.latin-alphabet.door5` — Hindi
 - `p.the-club.latin-alphabet.fact` — All are written with the Latin alphabet, the letters you are reading now. Turkish switched to it in 1928.
 
-#### 78/148 · `si-units` · day 78 (20 Dec 2026), 226 (17 May 2027), 374 (12 Oct 2027), 522 (8 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 78/148 · `si-units` · day 78 (20 Dec 2026), 226 (17 May 2027), 374 (12 Oct 2027), 522 (8 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.si-units.sign` — SI base units
 - `p.the-club.si-units.stamp` — SI base units
@@ -1275,7 +1275,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.si-units.door5` — Hour
 - `p.the-club.si-units.fact` — They are SI base units. There are seven, and the SI's derived units are defined from them. The kilogram is one; the gram is not.
 
-#### 79/148 · `real-fish` · day 79 (21 Dec 2026), 227 (18 May 2027), 375 (13 Oct 2027), 523 (9 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 79/148 · `real-fish` · day 79 (21 Dec 2026), 227 (18 May 2027), 375 (13 Oct 2027), 523 (9 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.real-fish.sign` — They are fish
 - `p.the-club.real-fish.stamp` — Real fish
@@ -1291,7 +1291,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.real-fish.door5` — Cuttlefish
 - `p.the-club.real-fish.fact` — They are fish. Starfish, jellyfish and cuttlefish are not: a starfish is an echinoderm, a cuttlefish a mollusc.
 
-#### 80/148 · `ancient-greeks` · day 80 (22 Dec 2026), 228 (19 May 2027), 376 (14 Oct 2027), 524 (10 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 80/148 · `ancient-greeks` · day 80 (22 Dec 2026), 228 (19 May 2027), 376 (14 Oct 2027), 524 (10 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.ancient-greeks.sign` — They were ancient Greeks
 - `p.the-club.ancient-greeks.stamp` — Ancient Greeks
@@ -1307,7 +1307,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.ancient-greeks.door5` — Euclid
 - `p.the-club.ancient-greeks.fact` — All were ancient Greeks. Cicero, Seneca and Julius Caesar were Romans, and Confucius was a Chinese philosopher.
 
-#### 81/148 · `drupes` · day 81 (23 Dec 2026), 229 (20 May 2027), 377 (15 Oct 2027), 525 (11 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 81/148 · `drupes` · day 81 (23 Dec 2026), 229 (20 May 2027), 377 (15 Oct 2027), 525 (11 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.drupes.sign` — To a botanist, drupes
 - `p.the-club.drupes.stamp` — Drupes
@@ -1323,7 +1323,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.drupes.door5` — Coconut
 - `p.the-club.drupes.fact` — They are drupes: the seed sits inside a hard, stony shell. The coconut is a drupe too, and its hard shell is that stone.
 
-#### 82/148 · `andes` · day 82 (24 Dec 2026), 230 (21 May 2027), 378 (16 Oct 2027), 526 (12 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 82/148 · `andes` · day 82 (24 Dec 2026), 230 (21 May 2027), 378 (16 Oct 2027), 526 (12 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.andes.sign` — The Andes run through them
 - `p.the-club.andes.stamp` — The Andes
@@ -1339,7 +1339,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.andes.door5` — Argentina
 - `p.the-club.andes.fact` — The Andes run through each of them. They are the longest mountain range on any continent and cross seven countries.
 
-#### 83/148 · `winter-olympics` · day 83 (25 Dec 2026), 231 (22 May 2027), 379 (17 Oct 2027), 527 (13 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 83/148 · `winter-olympics` · day 83 (25 Dec 2026), 231 (22 May 2027), 379 (17 Oct 2027), 527 (13 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.winter-olympics.sign` — Winter Olympic sports
 - `p.the-club.winter-olympics.stamp` — Winter Olympics
@@ -1355,7 +1355,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.winter-olympics.door5` — Bobsleigh
 - `p.the-club.winter-olympics.fact` — All are Winter Olympic sports. Ice hockey was first played at the Olympics in Antwerp, in 1920.
 
-#### 84/148 · `gases` · day 84 (26 Dec 2026), 232 (23 May 2027), 380 (18 Oct 2027), 528 (14 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 84/148 · `gases` · day 84 (26 Dec 2026), 232 (23 May 2027), 380 (18 Oct 2027), 528 (14 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.gases.sign` — Gases at 20 °C
 - `p.the-club.gases.stamp` — Gases at 20 °C
@@ -1371,7 +1371,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.gases.door5` — Copper
 - `p.the-club.gases.fact` — All are gases at 20 °C. Bromine and iodine, in the same group as chlorine, are not: one is a liquid, the other a solid.
 
-#### 85/148 · `reptiles` · day 85 (27 Dec 2026), 233 (24 May 2027), 381 (19 Oct 2027), 529 (15 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 85/148 · `reptiles` · day 85 (27 Dec 2026), 233 (24 May 2027), 381 (19 Oct 2027), 529 (15 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.reptiles.sign` — They are reptiles
 - `p.the-club.reptiles.stamp` — Reptiles
@@ -1387,7 +1387,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.reptiles.door5` — Gecko
 - `p.the-club.reptiles.fact` — They are reptiles, with scaly skin. Frogs, newts, salamanders and the axolotl are amphibians: their skin has no scales.
 
-#### 86/148 · `us-presidents` · day 86 (28 Dec 2026), 234 (25 May 2027), 382 (20 Oct 2027), 530 (16 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 86/148 · `us-presidents` · day 86 (28 Dec 2026), 234 (25 May 2027), 382 (20 Oct 2027), 530 (16 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.us-presidents.sign` — They were US presidents
 - `p.the-club.us-presidents.stamp` — US presidents
@@ -1403,7 +1403,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.us-presidents.door5` — Theodore Roosevelt
 - `p.the-club.us-presidents.fact` — Each was President of the United States: Washington the 1st, Jefferson the 3rd, Lincoln the 16th. Franklin and Hamilton never were.
 
-#### 87/148 · `mint-family` · day 87 (29 Dec 2026), 235 (26 May 2027), 383 (21 Oct 2027), 531 (17 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 87/148 · `mint-family` · day 87 (29 Dec 2026), 235 (26 May 2027), 383 (21 Oct 2027), 531 (17 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.mint-family.sign` — The mint family
 - `p.the-club.mint-family.stamp` — The mint family
@@ -1419,7 +1419,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.mint-family.door5` — Sage
 - `p.the-club.mint-family.fact` — All belong to the mint family. Parsley, coriander, dill and fennel belong to another family, with the carrot and celery.
 
-#### 88/148 · `caspian` · day 88 (30 Dec 2026), 236 (27 May 2027), 384 (22 Oct 2027), 532 (18 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 88/148 · `caspian` · day 88 (30 Dec 2026), 236 (27 May 2027), 384 (22 Oct 2027), 532 (18 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.caspian.sign` — On the Caspian Sea
 - `p.the-club.caspian.stamp` — Caspian shores
@@ -1435,7 +1435,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.caspian.door5` — Afghanistan
 - `p.the-club.caspian.fact` — Five countries share the shores of the Caspian Sea, the world's largest inland body of water.
 
-#### 89/148 · `dickens` · day 89 (31 Dec 2026), 237 (28 May 2027), 385 (23 Oct 2027), 533 (19 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 89/148 · `dickens` · day 89 (31 Dec 2026), 237 (28 May 2027), 385 (23 Oct 2027), 533 (19 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.dickens.sign` — Written by Charles Dickens
 - `p.the-club.dickens.stamp` — Dickens
@@ -1451,7 +1451,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.dickens.door5` — Moby-Dick
 - `p.the-club.dickens.fact` — Charles Dickens wrote them all, from Oliver Twist in 1838 to Great Expectations in 1861.
 
-#### 90/148 · `ancient-americas` · day 90 (1 Jan 2027), 238 (29 May 2027), 386 (24 Oct 2027), 534 (20 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 90/148 · `ancient-americas` · day 90 (1 Jan 2027), 238 (29 May 2027), 386 (24 Oct 2027), 534 (20 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.ancient-americas.sign` — Civilisations of the Americas
 - `p.the-club.ancient-americas.stamp` — Ancient Americas
@@ -1467,7 +1467,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.ancient-americas.door5` — Hittites
 - `p.the-club.ancient-americas.fact` — All flourished in the Americas before Columbus. The Olmecs were the first great civilisation of Mesoamerica.
 
-#### 91/148 · `digestive` · day 91 (2 Jan 2027), 239 (30 May 2027), 387 (25 Oct 2027), 535 (21 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 91/148 · `digestive` · day 91 (2 Jan 2027), 239 (30 May 2027), 387 (25 Oct 2027), 535 (21 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.digestive.sign` — Part of the digestive system
 - `p.the-club.digestive.stamp` — Digestive system
@@ -1483,7 +1483,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.digestive.door5` — Heart
 - `p.the-club.digestive.fact` — Each is part of the digestive system. The liver makes bile, the gallbladder stores it, and the pancreas adds enzymes.
 
-#### 92/148 · `chess` · day 92 (3 Jan 2027), 240 (31 May 2027), 388 (26 Oct 2027), 536 (22 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 92/148 · `chess` · day 92 (3 Jan 2027), 240 (31 May 2027), 388 (26 Oct 2027), 536 (22 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.chess.sign` — Chess pieces
 - `p.the-club.chess.stamp` — Chess pieces
@@ -1499,7 +1499,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.chess.door5` — Queen
 - `p.the-club.chess.fact` — A chess set has six kinds of piece: king, queen, rook, bishop, knight and pawn.
 
-#### 93/148 · `egg-layers` · day 93 (4 Jan 2027), 241 (1 Jun 2027), 389 (27 Oct 2027), 537 (23 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 93/148 · `egg-layers` · day 93 (4 Jan 2027), 241 (1 Jun 2027), 389 (27 Oct 2027), 537 (23 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.egg-layers.sign` — They lay eggs
 - `p.the-club.egg-layers.stamp` — Egg-layers
@@ -1515,7 +1515,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.egg-layers.door5` — Horse
 - `p.the-club.egg-layers.fact` — Pythons lay eggs, but boa constrictors give birth to live young. The platypus and the echidna are mammals that lay eggs.
 
-#### 94/148 · `born-germany` · day 94 (5 Jan 2027), 242 (2 Jun 2027), 390 (28 Oct 2027), 538 (24 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 94/148 · `born-germany` · day 94 (5 Jan 2027), 242 (2 Jun 2027), 390 (28 Oct 2027), 538 (24 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.born-germany.sign` — Born in today's Germany
 - `p.the-club.born-germany.stamp` — Born in Germany
@@ -1531,7 +1531,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.born-germany.door5` — Schumann
 - `p.the-club.born-germany.fact` — All were born in what is Germany today. Mozart and Haydn were born in today's Austria, and Chopin in Poland.
 
-#### 95/148 · `igneous` · day 95 (6 Jan 2027), 243 (3 Jun 2027), 391 (29 Oct 2027), 539 (25 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 95/148 · `igneous` · day 95 (6 Jan 2027), 243 (3 Jun 2027), 391 (29 Oct 2027), 539 (25 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.igneous.sign` — Igneous rocks
 - `p.the-club.igneous.stamp` — Igneous rocks
@@ -1547,7 +1547,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.igneous.door5` — Chalk
 - `p.the-club.igneous.fact` — Igneous rocks form when molten rock cools and hardens. Marble and slate are metamorphic; sandstone, limestone and chalk sedimentary.
 
-#### 96/148 · `med-islands` · day 96 (7 Jan 2027), 244 (4 Jun 2027), 392 (30 Oct 2027), 540 (26 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 96/148 · `med-islands` · day 96 (7 Jan 2027), 244 (4 Jun 2027), 392 (30 Oct 2027), 540 (26 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.med-islands.sign` — Islands in the Mediterranean
 - `p.the-club.med-islands.stamp` — Mediterranean islands
@@ -1563,7 +1563,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.med-islands.door5` — Corsica
 - `p.the-club.med-islands.fact` — All of them lie in the Mediterranean Sea. Madeira and Tenerife are out in the Atlantic Ocean.
 
-#### 97/148 · `from-wheat` · day 97 (8 Jan 2027), 245 (5 Jun 2027), 393 (31 Oct 2027), 541 (27 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 97/148 · `from-wheat` · day 97 (8 Jan 2027), 245 (5 Jun 2027), 393 (31 Oct 2027), 541 (27 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.from-wheat.sign` — Made from wheat
 - `p.the-club.from-wheat.stamp` — From wheat
@@ -1579,7 +1579,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.from-wheat.door5` — Rice noodles
 - `p.the-club.from-wheat.fact` — Couscous and semolina come from durum wheat, bulgur from wheat groats and seitan from wheat gluten. Polenta is cornmeal.
 
-#### 98/148 · `black-sea` · day 98 (9 Jan 2027), 246 (6 Jun 2027), 394 (1 Nov 2027), 542 (28 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 98/148 · `black-sea` · day 98 (9 Jan 2027), 246 (6 Jun 2027), 394 (1 Nov 2027), 542 (28 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.black-sea.sign` — On the Black Sea
 - `p.the-club.black-sea.stamp` — Black Sea
@@ -1595,7 +1595,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.black-sea.door5` — Russia
 - `p.the-club.black-sea.fact` — Six countries have a coast on the Black Sea: Bulgaria, Georgia, Romania, Russia, Turkey and Ukraine.
 
-#### 99/148 · `palms` · day 99 (10 Jan 2027), 247 (7 Jun 2027), 395 (2 Nov 2027), 543 (29 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 99/148 · `palms` · day 99 (10 Jan 2027), 247 (7 Jun 2027), 395 (2 Nov 2027), 543 (29 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.palms.sign` — From palm trees
 - `p.the-club.palms.stamp` — From palms
@@ -1611,7 +1611,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.palms.door5` — Papaya
 - `p.the-club.palms.fact` — Coconuts, dates, açaí, palm oil and betel nuts all come from palms. A banana plant is not a palm: it is a giant herb.
 
-#### 100/148 · `mughals` · day 100 (11 Jan 2027), 248 (8 Jun 2027), 396 (3 Nov 2027), 544 (30 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 100/148 · `mughals` · day 100 (11 Jan 2027), 248 (8 Jun 2027), 396 (3 Nov 2027), 544 (30 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.mughals.sign` — Mughal emperors
 - `p.the-club.mughals.stamp` — Mughal emperors
@@ -1627,7 +1627,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.mughals.door5` — Jahangir
 - `p.the-club.mughals.fact` — They were the first six Mughal emperors, from Babur, the founder, to Aurangzeb. Ashoka ruled the Maurya Empire long before.
 
-#### 101/148 · `energy-units` · day 101 (12 Jan 2027), 249 (9 Jun 2027), 397 (4 Nov 2027), 545 (31 Mar 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 101/148 · `energy-units` · day 101 (12 Jan 2027), 249 (9 Jun 2027), 397 (4 Nov 2027), 545 (31 Mar 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.energy-units.sign` — Units of energy
 - `p.the-club.energy-units.stamp` — Energy units
@@ -1643,7 +1643,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.energy-units.door5` — Ohm
 - `p.the-club.energy-units.fact` — Each measures energy. The watt measures power, and the kilowatt-hour on a power bill is a unit of energy.
 
-#### 102/148 · `bears` · day 102 (13 Jan 2027), 250 (10 Jun 2027), 398 (5 Nov 2027), 546 (1 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 102/148 · `bears` · day 102 (13 Jan 2027), 250 (10 Jun 2027), 398 (5 Nov 2027), 546 (1 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.bears.sign` — They are bears
 - `p.the-club.bears.stamp` — Bears
@@ -1659,7 +1659,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.bears.door5` — Sloth bear
 - `p.the-club.bears.fact` — They are all bears, and so is the giant panda. The koala is a marsupial, and the red panda is not a bear either.
 
-#### 103/148 · `brass` · day 103 (14 Jan 2027), 251 (11 Jun 2027), 399 (6 Nov 2027), 547 (2 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 103/148 · `brass` · day 103 (14 Jan 2027), 251 (11 Jun 2027), 399 (6 Nov 2027), 547 (2 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.brass.sign` — Brass instruments
 - `p.the-club.brass.stamp` — Brass
@@ -1675,7 +1675,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.brass.door5` — Cornet
 - `p.the-club.brass.fact` — They are brass instruments. The saxophone is made of brass, but it is played with a reed, so it counts as a woodwind.
 
-#### 104/148 · `french-official` · day 104 (15 Jan 2027), 252 (12 Jun 2027), 400 (7 Nov 2027), 548 (3 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 104/148 · `french-official` · day 104 (15 Jan 2027), 252 (12 Jun 2027), 400 (7 Nov 2027), 548 (3 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.french-official.sign` — French is official
 - `p.the-club.french-official.stamp` — French-speaking
@@ -1691,7 +1691,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.french-official.door5` — Switzerland
 - `p.the-club.french-official.fact` — French is an official language by law in each. Algeria and Tunisia use it widely, but not as a legal official language.
 
-#### 105/148 · `onion-family` · day 105 (16 Jan 2027), 253 (13 Jun 2027), 401 (8 Nov 2027), 549 (4 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 105/148 · `onion-family` · day 105 (16 Jan 2027), 253 (13 Jun 2027), 401 (8 Nov 2027), 549 (4 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.onion-family.sign` — The onion family
 - `p.the-club.onion-family.stamp` — Onion family
@@ -1707,7 +1707,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.onion-family.door5` — Asparagus
 - `p.the-club.onion-family.fact` — Onions, garlic, leeks, shallots and chives all belong to one genus, Allium. Ginger and radishes come from other families.
 
-#### 106/148 · `horse-family` · day 106 (17 Jan 2027), 254 (14 Jun 2027), 402 (9 Nov 2027), 550 (5 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 106/148 · `horse-family` · day 106 (17 Jan 2027), 254 (14 Jun 2027), 402 (9 Nov 2027), 550 (5 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.horse-family.sign` — The horse family
 - `p.the-club.horse-family.stamp` — Horse family
@@ -1723,7 +1723,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.horse-family.door5` — Antelope
 - `p.the-club.horse-family.fact` — Horses, donkeys and zebras make up one family. The quagga was a kind of zebra, and the onager is an Asian wild ass.
 
-#### 107/148 · `soviet-leaders` · day 107 (18 Jan 2027), 255 (15 Jun 2027), 403 (10 Nov 2027), 551 (6 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 107/148 · `soviet-leaders` · day 107 (18 Jan 2027), 255 (15 Jun 2027), 403 (10 Nov 2027), 551 (6 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.soviet-leaders.sign` — They led the Soviet Union
 - `p.the-club.soviet-leaders.stamp` — Soviet leaders
@@ -1739,7 +1739,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.soviet-leaders.door5` — Ceaușescu
 - `p.the-club.soviet-leaders.fact` — Each led the Soviet Union, from Lenin to Gorbachev. Yeltsin led Russia after it, and Trotsky never led it.
 
-#### 108/148 · `decathlon` · day 108 (19 Jan 2027), 256 (16 Jun 2027), 404 (11 Nov 2027), 552 (7 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 108/148 · `decathlon` · day 108 (19 Jan 2027), 256 (16 Jun 2027), 404 (11 Nov 2027), 552 (7 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.decathlon.sign` — In the decathlon
 - `p.the-club.decathlon.stamp` — Decathlon
@@ -1755,7 +1755,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.decathlon.door5` — High jump
 - `p.the-club.decathlon.fact` — The decathlon has ten events over two days, from the 100 metres to the 1500 metres.
 
-#### 109/148 · `alps` · day 109 (20 Jan 2027), 257 (17 Jun 2027), 405 (12 Nov 2027), 553 (8 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 109/148 · `alps` · day 109 (20 Jan 2027), 257 (17 Jun 2027), 405 (12 Nov 2027), 553 (8 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.alps.sign` — In the Alps
 - `p.the-club.alps.stamp` — The Alps
@@ -1771,7 +1771,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.alps.door5` — Zugspitze
 - `p.the-club.alps.fact` — All of them stand in the Alps, and Mont Blanc is the highest of them all. Etna is a volcano in Sicily.
 
-#### 110/148 · `weasel-family` · day 110 (21 Jan 2027), 258 (18 Jun 2027), 406 (13 Nov 2027), 554 (9 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 110/148 · `weasel-family` · day 110 (21 Jan 2027), 258 (18 Jun 2027), 406 (13 Nov 2027), 554 (9 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.weasel-family.sign` — The weasel family
 - `p.the-club.weasel-family.stamp` — Weasel family
@@ -1787,7 +1787,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.weasel-family.door5` — Honey badger
 - `p.the-club.weasel-family.fact` — All belong to the weasel family, with the wolverine and the honey badger. Skunks were moved to a family of their own.
 
-#### 111/148 · `from-milk` · day 111 (22 Jan 2027), 259 (19 Jun 2027), 407 (14 Nov 2027), 555 (10 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 111/148 · `from-milk` · day 111 (22 Jan 2027), 259 (19 Jun 2027), 407 (14 Nov 2027), 555 (10 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.from-milk.sign` — Made from milk
 - `p.the-club.from-milk.stamp` — From milk
@@ -1803,7 +1803,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.from-milk.door5` — Paneer
 - `p.the-club.from-milk.fact` — Each is made from milk: ghee is clarified butter and paneer a fresh cheese. Most margarine is made from vegetable oil.
 
-#### 112/148 · `insect-made` · day 112 (23 Jan 2027), 260 (20 Jun 2027), 408 (15 Nov 2027), 556 (11 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 112/148 · `insect-made` · day 112 (23 Jan 2027), 260 (20 Jun 2027), 408 (15 Nov 2027), 556 (11 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.insect-made.sign` — Made by insects
 - `p.the-club.insect-made.stamp` — Made by insects
@@ -1819,7 +1819,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.insect-made.door5` — Royal jelly
 - `p.the-club.insect-made.fact` — Insects make all of them: bees, silkworms and lac insects. Pearls come from molluscs, and wool from sheep.
 
-#### 113/148 · `new-wonders` · day 113 (24 Jan 2027), 261 (21 Jun 2027), 409 (16 Nov 2027), 557 (12 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 113/148 · `new-wonders` · day 113 (24 Jan 2027), 261 (21 Jun 2027), 409 (16 Nov 2027), 557 (12 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.new-wonders.sign` — The New Seven Wonders
 - `p.the-club.new-wonders.stamp` — New Seven Wonders
@@ -1835,7 +1835,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.new-wonders.door5` — Chichén Itzá
 - `p.the-club.new-wonders.fact` — They were chosen in a worldwide vote in 2007, with the Colosseum. Angkor Wat and the Acropolis did not make it.
 
-#### 114/148 · `renewables` · day 114 (25 Jan 2027), 262 (22 Jun 2027), 410 (17 Nov 2027), 558 (13 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 114/148 · `renewables` · day 114 (25 Jan 2027), 262 (22 Jun 2027), 410 (17 Nov 2027), 558 (13 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.renewables.sign` — Renewable energy
 - `p.the-club.renewables.stamp` — Renewables
@@ -1851,7 +1851,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.renewables.door5` — Wave power
 - `p.the-club.renewables.fact` — Each is a renewable source of energy. Coal, oil and natural gas are not, and neither is nuclear energy.
 
-#### 115/148 · `assassinated` · day 115 (26 Jan 2027), 263 (23 Jun 2027), 411 (18 Nov 2027), 559 (14 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 115/148 · `assassinated` · day 115 (26 Jan 2027), 263 (23 Jun 2027), 411 (18 Nov 2027), 559 (14 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.assassinated.sign` — They were assassinated
 - `p.the-club.assassinated.stamp` — Assassinated
@@ -1867,7 +1867,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.assassinated.door5` — Indira Gandhi
 - `p.the-club.assassinated.fact` — All were assassinated. Lenin survived being shot in 1918 but died after a series of strokes in 1924.
 
-#### 116/148 · `latin-dances` · day 116 (27 Jan 2027), 264 (24 Jun 2027), 412 (19 Nov 2027), 560 (15 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 116/148 · `latin-dances` · day 116 (27 Jan 2027), 264 (24 Jun 2027), 412 (19 Nov 2027), 560 (15 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.latin-dances.sign` — Dances from Latin America
 - `p.the-club.latin-dances.stamp` — Latin dances
@@ -1883,7 +1883,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.latin-dances.door5` — Rumba
 - `p.the-club.latin-dances.fact` — All began in Latin America: the tango by the Río de la Plata, the samba in Brazil, merengue in the Dominican Republic.
 
-#### 117/148 · `arachnids` · day 117 (28 Jan 2027), 265 (25 Jun 2027), 413 (20 Nov 2027), 561 (16 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 117/148 · `arachnids` · day 117 (28 Jan 2027), 265 (25 Jun 2027), 413 (20 Nov 2027), 561 (16 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.arachnids.sign` — They are arachnids
 - `p.the-club.arachnids.stamp` — Arachnids
@@ -1899,7 +1899,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.arachnids.door5` — Harvestman
 - `p.the-club.arachnids.fact` — They are all arachnids, like mites and harvestmen. Centipedes and millipedes are myriapods, ants are insects and crabs crustaceans.
 
-#### 118/148 · `red-white-flags` · day 118 (29 Jan 2027), 266 (26 Jun 2027), 414 (21 Nov 2027), 562 (17 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 118/148 · `red-white-flags` · day 118 (29 Jan 2027), 266 (26 Jun 2027), 414 (21 Nov 2027), 562 (17 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.red-white-flags.sign` — Flag only red and white
 - `p.the-club.red-white-flags.stamp` — Red and white flags
@@ -1915,7 +1915,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.red-white-flags.door5` — Indonesia
 - `p.the-club.red-white-flags.fact` — Each of their flags uses only red and white. Italy's adds green, and China's has yellow stars.
 
-#### 119/148 · `soy` · day 119 (30 Jan 2027), 267 (27 Jun 2027), 415 (22 Nov 2027), 563 (18 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 119/148 · `soy` · day 119 (30 Jan 2027), 267 (27 Jun 2027), 415 (22 Nov 2027), 563 (18 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.soy.sign` — Made from soybeans
 - `p.the-club.soy.stamp` — Soy foods
@@ -1931,7 +1931,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.soy.door5` — Natto
 - `p.the-club.soy.fact` — Tofu, tempeh, miso and natto all start as soybeans. Hummus is made from chickpeas, and polenta from cornmeal.
 
-#### 120/148 · `hindi-words` · day 120 (31 Jan 2027), 268 (28 Jun 2027), 416 (23 Nov 2027), 564 (19 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 120/148 · `hindi-words` · day 120 (31 Jan 2027), 268 (28 Jun 2027), 416 (23 Nov 2027), 564 (19 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.hindi-words.sign` — Words from Hindi
 - `p.the-club.hindi-words.stamp` — From Hindi
@@ -1947,7 +1947,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.hindi-words.door5` — Loot
 - `p.the-club.hindi-words.fact` — All came into English from Hindi. Shampoo comes from a Hindi word meaning to press or knead.
 
-#### 121/148 · `gourd-family` · day 121 (1 Feb 2027), 269 (29 Jun 2027), 417 (24 Nov 2027), 565 (20 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 121/148 · `gourd-family` · day 121 (1 Feb 2027), 269 (29 Jun 2027), 417 (24 Nov 2027), 565 (20 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.gourd-family.sign` — The gourd family
 - `p.the-club.gourd-family.stamp` — Gourd family
@@ -1963,7 +1963,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.gourd-family.door5` — Butternut squash
 - `p.the-club.gourd-family.fact` — They all belong to the gourd family, with melons, courgettes and squash. Tomatoes and aubergines are nightshades.
 
-#### 122/148 · `primates` · day 122 (2 Feb 2027), 270 (30 Jun 2027), 418 (25 Nov 2027), 566 (21 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 122/148 · `primates` · day 122 (2 Feb 2027), 270 (30 Jun 2027), 418 (25 Nov 2027), 566 (21 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.primates.sign` — They are primates
 - `p.the-club.primates.stamp` — Primates
@@ -1979,7 +1979,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.primates.door5` — Aye-aye
 - `p.the-club.primates.fact` — They are all primates, the order of lemurs, tarsiers, monkeys, apes and humans. The aye-aye is a lemur.
 
-#### 123/148 · `divided-islands` · day 123 (3 Feb 2027), 271 (1 Jul 2027), 419 (26 Nov 2027), 567 (22 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 123/148 · `divided-islands` · day 123 (3 Feb 2027), 271 (1 Jul 2027), 419 (26 Nov 2027), 567 (22 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.divided-islands.sign` — Islands split by a border
 - `p.the-club.divided-islands.stamp` — Divided islands
@@ -1995,7 +1995,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.divided-islands.door5` — Saint Martin
 - `p.the-club.divided-islands.fact` — Each island is shared by two or more countries. Borneo is split three ways, between Indonesia, Malaysia and Brunei.
 
-#### 124/148 · `verdi` · day 124 (4 Feb 2027), 272 (2 Jul 2027), 420 (27 Nov 2027), 568 (23 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 124/148 · `verdi` · day 124 (4 Feb 2027), 272 (2 Jul 2027), 420 (27 Nov 2027), 568 (23 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.verdi.sign` — Operas by Verdi
 - `p.the-club.verdi.stamp` — Verdi operas
@@ -2011,7 +2011,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.verdi.door5` — Falstaff
 - `p.the-club.verdi.fact` — Giuseppe Verdi wrote all of them. Tosca and La Bohème are by Puccini, and Carmen by Bizet.
 
-#### 125/148 · `bacteria` · day 125 (5 Feb 2027), 273 (3 Jul 2027), 421 (28 Nov 2027), 569 (24 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 125/148 · `bacteria` · day 125 (5 Feb 2027), 273 (3 Jul 2027), 421 (28 Nov 2027), 569 (24 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.bacteria.sign` — Bacteria cause them
 - `p.the-club.bacteria.stamp` — Bacterial diseases
@@ -2027,7 +2027,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.bacteria.door5` — Typhoid
 - `p.the-club.bacteria.fact` — Bacteria cause each of them. Flu and measles come from viruses, and malaria from a parasite.
 
-#### 126/148 · `camel-family` · day 126 (6 Feb 2027), 274 (4 Jul 2027), 422 (29 Nov 2027), 570 (25 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 126/148 · `camel-family` · day 126 (6 Feb 2027), 274 (4 Jul 2027), 422 (29 Nov 2027), 570 (25 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.camel-family.sign` — The camel family
 - `p.the-club.camel-family.stamp` — Camel family
@@ -2043,7 +2043,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.camel-family.door5` — Guanaco
 - `p.the-club.camel-family.fact` — Llamas, alpacas, vicuñas and guanacos are the camels of South America: all belong to the camel family.
 
-#### 127/148 · `soviet-space` · day 127 (7 Feb 2027), 275 (5 Jul 2027), 423 (30 Nov 2027), 571 (26 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 127/148 · `soviet-space` · day 127 (7 Feb 2027), 275 (5 Jul 2027), 423 (30 Nov 2027), 571 (26 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.soviet-space.sign` — Sent to space by the USSR
 - `p.the-club.soviet-space.stamp` — Soviet space
@@ -2059,7 +2059,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.soviet-space.door5` — John Glenn
 - `p.the-club.soviet-space.fact` — The Soviet Union sent them all to space: the first satellite, the first animal in orbit, and the first man and woman.
 
-#### 128/148 · `borders-china` · day 128 (8 Feb 2027), 276 (6 Jul 2027), 424 (1 Dec 2027), 572 (27 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 128/148 · `borders-china` · day 128 (8 Feb 2027), 276 (6 Jul 2027), 424 (1 Dec 2027), 572 (27 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.borders-china.sign` — They border China
 - `p.the-club.borders-china.stamp` — Borders China
@@ -2075,7 +2075,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.borders-china.door5` — Nepal
 - `p.the-club.borders-china.fact` — China shares a land border with each of them. Japan and South Korea are its neighbours only across the sea.
 
-#### 129/148 · `carrot-family` · day 129 (9 Feb 2027), 277 (7 Jul 2027), 425 (2 Dec 2027), 573 (28 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 129/148 · `carrot-family` · day 129 (9 Feb 2027), 277 (7 Jul 2027), 425 (2 Dec 2027), 573 (28 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.carrot-family.sign` — The carrot family
 - `p.the-club.carrot-family.stamp` — Carrot family
@@ -2091,7 +2091,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.carrot-family.door5` — Fennel
 - `p.the-club.carrot-family.fact` — Carrots, celery and parsley belong to one family, and so do coriander, cumin and fennel.
 
-#### 130/148 · `chinese-dynasties` · day 130 (10 Feb 2027), 278 (8 Jul 2027), 426 (3 Dec 2027), 574 (29 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 130/148 · `chinese-dynasties` · day 130 (10 Feb 2027), 278 (8 Jul 2027), 426 (3 Dec 2027), 574 (29 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.chinese-dynasties.sign` — Chinese dynasties
 - `p.the-club.chinese-dynasties.stamp` — Chinese dynasties
@@ -2107,7 +2107,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.chinese-dynasties.door5` — Yuan
 - `p.the-club.chinese-dynasties.fact` — Each is a Chinese dynasty: the Ming ruled from 1368 to 1644, then the Qing, China's last. Joseon ruled Korea.
 
-#### 131/148 · `austen` · day 131 (11 Feb 2027), 279 (9 Jul 2027), 427 (4 Dec 2027), 575 (30 Apr 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 131/148 · `austen` · day 131 (11 Feb 2027), 279 (9 Jul 2027), 427 (4 Dec 2027), 575 (30 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.austen.sign` — Novels by Jane Austen
 - `p.the-club.austen.stamp` — Jane Austen
@@ -2123,7 +2123,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.austen.door5` — Northanger Abbey
 - `p.the-club.austen.fact` — Jane Austen wrote six novels, and these are among them. Jane Eyre and Wuthering Heights are by the Brontë sisters.
 
-#### 132/148 · `simple-machines` · day 132 (12 Feb 2027), 280 (10 Jul 2027), 428 (5 Dec 2027), 576 (1 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 132/148 · `simple-machines` · day 132 (12 Feb 2027), 280 (10 Jul 2027), 428 (5 Dec 2027), 576 (1 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.simple-machines.sign` — Simple machines
 - `p.the-club.simple-machines.stamp` — Simple machines
@@ -2139,7 +2139,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.simple-machines.door5` — Wheel and axle
 - `p.the-club.simple-machines.fact` — These are the classic simple machines: the lever, wheel and axle, pulley, inclined plane, wedge and screw.
 
-#### 133/148 · `fungi` · day 133 (13 Feb 2027), 281 (11 Jul 2027), 429 (6 Dec 2027), 577 (2 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 133/148 · `fungi` · day 133 (13 Feb 2027), 281 (11 Jul 2027), 429 (6 Dec 2027), 577 (2 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.fungi.sign` — They are fungi
 - `p.the-club.fungi.stamp` — Fungi
@@ -2155,7 +2155,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.fungi.door5` — Penicillium
 - `p.the-club.fungi.fact` — They are all fungi, like moulds. Seaweed and nori are algae, and spirulina is made from cyanobacteria.
 
-#### 134/148 · `bones` · day 134 (14 Feb 2027), 282 (12 Jul 2027), 430 (7 Dec 2027), 578 (3 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 134/148 · `bones` · day 134 (14 Feb 2027), 282 (12 Jul 2027), 430 (7 Dec 2027), 578 (3 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.bones.sign` — They are bones
 - `p.the-club.bones.stamp` — Bones
@@ -2171,7 +2171,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.bones.door5` — Sternum
 - `p.the-club.bones.fact` — They are all bones, among the 206 of an adult skeleton. The stapes, deep inside the ear, is one of them.
 
-#### 135/148 · `deserts` · day 135 (15 Feb 2027), 283 (13 Jul 2027), 431 (8 Dec 2027), 579 (4 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 135/148 · `deserts` · day 135 (15 Feb 2027), 283 (13 Jul 2027), 431 (8 Dec 2027), 579 (4 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.deserts.sign` — They are deserts
 - `p.the-club.deserts.stamp` — Deserts
@@ -2187,7 +2187,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.deserts.door5` — Mojave
 - `p.the-club.deserts.fact` — A desert is a place with very little rain, not always a hot one. By that measure Antarctica is the largest desert of all.
 
-#### 136/148 · `snakes` · day 136 (16 Feb 2027), 284 (14 Jul 2027), 432 (9 Dec 2027), 580 (5 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 136/148 · `snakes` · day 136 (16 Feb 2027), 284 (14 Jul 2027), 432 (9 Dec 2027), 580 (5 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.snakes.sign` — They are snakes
 - `p.the-club.snakes.stamp` — Snakes
@@ -2203,7 +2203,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.snakes.door5` — Viper
 - `p.the-club.snakes.fact` — They are all snakes. The slow worm is a lizard without legs, and the caecilian an amphibian.
 
-#### 137/148 · `grimm` · day 137 (17 Feb 2027), 285 (15 Jul 2027), 433 (10 Dec 2027), 581 (6 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 137/148 · `grimm` · day 137 (17 Feb 2027), 285 (15 Jul 2027), 433 (10 Dec 2027), 581 (6 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.grimm.sign` — Collected by the Grimms
 - `p.the-club.grimm.stamp` — Brothers Grimm
@@ -2219,7 +2219,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.grimm.door5` — Peter Pan
 - `p.the-club.grimm.fact` — Jacob and Wilhelm Grimm collected all of them. The Little Mermaid and The Ugly Duckling are by Hans Christian Andersen.
 
-#### 138/148 · `own-right` · day 138 (18 Feb 2027), 286 (16 Jul 2027), 434 (11 Dec 2027), 582 (7 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 138/148 · `own-right` · day 138 (18 Feb 2027), 286 (16 Jul 2027), 434 (11 Dec 2027), 582 (7 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.own-right.sign` — Ruled in their own right
 - `p.the-club.own-right.stamp` — In their own right
@@ -2235,7 +2235,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.own-right.door5` — Cleopatra
 - `p.the-club.own-right.fact` — Each ruled in her own right. Marie Antoinette, Anne Boleyn and Joséphine were queens or empresses only as wives of rulers.
 
-#### 139/148 · `daisy-family` · day 139 (19 Feb 2027), 287 (17 Jul 2027), 435 (12 Dec 2027), 583 (8 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 139/148 · `daisy-family` · day 139 (19 Feb 2027), 287 (17 Jul 2027), 435 (12 Dec 2027), 583 (8 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.daisy-family.sign` — The daisy family
 - `p.the-club.daisy-family.stamp` — Daisy family
@@ -2251,7 +2251,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.daisy-family.door5` — Endive
 - `p.the-club.daisy-family.fact` — Lettuce, artichokes, endive, tarragon and chamomile all belong to the daisy family, like the sunflower.
 
-#### 140/148 · `great-lakes` · day 140 (20 Feb 2027), 288 (18 Jul 2027), 436 (13 Dec 2027), 584 (9 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 140/148 · `great-lakes` · day 140 (20 Feb 2027), 288 (18 Jul 2027), 436 (13 Dec 2027), 584 (9 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.great-lakes.sign` — North America's Great Lakes
 - `p.the-club.great-lakes.stamp` — Great Lakes
@@ -2267,7 +2267,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.great-lakes.door5` — Lake Winnipeg
 - `p.the-club.great-lakes.fact` — North America has five Great Lakes: Superior, Michigan, Huron, Erie and Ontario. Africa has Great Lakes too, such as Victoria.
 
-#### 141/148 · `only-australia` · day 141 (21 Feb 2027), 289 (19 Jul 2027), 437 (14 Dec 2027), 585 (10 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 141/148 · `only-australia` · day 141 (21 Feb 2027), 289 (19 Jul 2027), 437 (14 Dec 2027), 585 (10 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.only-australia.sign` — Wild only in Australia
 - `p.the-club.only-australia.stamp` — Only in Australia
@@ -2283,7 +2283,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.only-australia.door5` — Panda
 - `p.the-club.only-australia.fact` — In the wild, all of them live only in Australia. The kiwi lives only in New Zealand, and opossums in the Americas.
 
-#### 142/148 · `dutch-words` · day 142 (22 Feb 2027), 290 (20 Jul 2027), 438 (15 Dec 2027), 586 (11 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 142/148 · `dutch-words` · day 142 (22 Feb 2027), 290 (20 Jul 2027), 438 (15 Dec 2027), 586 (11 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.dutch-words.sign` — Words from Dutch
 - `p.the-club.dutch-words.stamp` — From Dutch
@@ -2299,7 +2299,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.dutch-words.door5` — Landscape
 - `p.the-club.dutch-words.fact` — All came into English from Dutch: cookie from koekje, little cake, and boss from baas, a master.
 
-#### 143/148 · `halogens` · day 143 (23 Feb 2027), 291 (21 Jul 2027), 439 (16 Dec 2027), 587 (12 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 143/148 · `halogens` · day 143 (23 Feb 2027), 291 (21 Jul 2027), 439 (16 Dec 2027), 587 (12 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.halogens.sign` — They are halogens
 - `p.the-club.halogens.stamp` — Halogens
@@ -2315,7 +2315,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.halogens.door5` — Carbon
 - `p.the-club.halogens.fact` — They are halogens, the elements of group 17 of the periodic table. Neon is a noble gas.
 
-#### 144/148 · `louvre` · day 144 (24 Feb 2027), 292 (22 Jul 2027), 440 (17 Dec 2027), 588 (13 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 144/148 · `louvre` · day 144 (24 Feb 2027), 292 (22 Jul 2027), 440 (17 Dec 2027), 588 (13 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.louvre.sign` — In the Louvre
 - `p.the-club.louvre.stamp` — The Louvre
@@ -2331,7 +2331,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.louvre.door5` — The Scream
 - `p.the-club.louvre.fact` — All of them are in the Louvre, in Paris. The Starry Night is in New York, and The Night Watch in Amsterdam.
 
-#### 145/148 · `henry-wives` · day 145 (25 Feb 2027), 293 (23 Jul 2027), 441 (18 Dec 2027), 589 (14 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 145/148 · `henry-wives` · day 145 (25 Feb 2027), 293 (23 Jul 2027), 441 (18 Dec 2027), 589 (14 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.henry-wives.sign` — Wives of Henry VIII
 - `p.the-club.henry-wives.stamp` — Henry VIII's wives
@@ -2347,7 +2347,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.henry-wives.door5` — Catherine Howard
 - `p.the-club.henry-wives.fact` — Henry VIII had six wives, from Catherine of Aragon in 1509 to Catherine Parr in 1543. Mary I and Elizabeth I were his daughters.
 
-#### 146/148 · `amphibians` · day 146 (26 Feb 2027), 294 (24 Jul 2027), 442 (19 Dec 2027), 590 (15 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 146/148 · `amphibians` · day 146 (26 Feb 2027), 294 (24 Jul 2027), 442 (19 Dec 2027), 590 (15 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.amphibians.sign` — They are amphibians
 - `p.the-club.amphibians.stamp` — Amphibians
@@ -2363,7 +2363,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.amphibians.door5` — Caecilian
 - `p.the-club.amphibians.fact` — They are all amphibians, and so are legless caecilians. Lizards, geckos and crocodiles are reptiles.
 
-#### 147/148 · `african-rivers` · day 147 (27 Feb 2027), 295 (25 Jul 2027), 443 (20 Dec 2027), 591 (16 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 147/148 · `african-rivers` · day 147 (27 Feb 2027), 295 (25 Jul 2027), 443 (20 Dec 2027), 591 (16 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.african-rivers.sign` — Rivers of Africa
 - `p.the-club.african-rivers.stamp` — African rivers
@@ -2379,7 +2379,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.african-rivers.door5` — Orange River
 - `p.the-club.african-rivers.fact` — All of them are rivers of Africa. The Nile is the longest in Africa; the Amazon is in South America and the Ganges in Asia.
 
-#### 148/148 · `cashew-family` · day 148 (28 Feb 2027), 296 (26 Jul 2027), 444 (21 Dec 2027), 592 (17 May 2028) … · every 148 days · done: none · to do: it, tr, es, pt, fr
+#### 148/148 · `cashew-family` · day 148 (28 Feb 2027), 296 (26 Jul 2027), 444 (21 Dec 2027), 592 (17 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
 - `p.the-club.cashew-family.sign` — The cashew family
 - `p.the-club.cashew-family.stamp` — Cashew family

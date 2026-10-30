@@ -30,6 +30,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 - `p.who-gets-what.it-power.what` — Una unidad de electricidad
 - `p.who-gets-what.it-power.where` — Italia
+- `p.who-gets-what.it-power.unit` — por kWh
 - `p.who-gets-what.it-power.slice1` — Energía
 - `p.who-gets-what.it-power.slice2` — Red
 - `p.who-gets-what.it-power.slice3` — Políticas
@@ -242,6 +243,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 - `p.who-gets-what.de-power.what` — Una unidad de electricidad
 - `p.who-gets-what.de-power.where` — Alemania
+- `p.who-gets-what.de-power.unit` — por kWh
 - `p.who-gets-what.de-power.slice1` — Energía
 - `p.who-gets-what.de-power.slice2` — Red
 - `p.who-gets-what.de-power.slice3` — Impuestos
@@ -347,6 +349,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 - `p.who-gets-what.choc-premium.what` — Chocolate negro premium
 - `p.who-gets-what.choc-premium.where` — Francia
+- `p.who-gets-what.choc-premium.unit` — por kilo
 - `p.who-gets-what.choc-premium.slice1` — Cultivo
 - `p.who-gets-what.choc-premium.slice2` — Exportación
 - `p.who-gets-what.choc-premium.slice3` — Fabricante
@@ -358,6 +361,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 - `p.who-gets-what.dk-power.what` — Una unidad de electricidad
 - `p.who-gets-what.dk-power.where` — Dinamarca
+- `p.who-gets-what.dk-power.unit` — por kWh
 - `p.who-gets-what.dk-power.slice1` — Energía
 - `p.who-gets-what.dk-power.slice2` — Red
 - `p.who-gets-what.dk-power.slice3` — Impuesto especial
@@ -464,6 +468,7 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 - `p.who-gets-what.choc-organic.what` — Chocolate negro ecológico de comercio justo
 - `p.who-gets-what.choc-organic.where` — Francia
+- `p.who-gets-what.choc-organic.unit` — por kilo
 - `p.who-gets-what.choc-organic.slice1` — Cultivo
 - `p.who-gets-what.choc-organic.slice2` — Exportación
 - `p.who-gets-what.choc-organic.slice3` — Fabricante

@@ -63,6 +63,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "it-power": {
   "what": "Un kilowattora di elettricità",
   "where": "Italia",
+  "unit": "al kWh",
   "fact": "Poco meno di due terzi di un kilowattora italiano erano l'elettricità vera e propria. I cavi lungo cui viaggia costavano più delle tasse.",
   "note": "La cifra dell'autorità di regolazione per la tariffa delle famiglie tutelate. “Energia” è l'acquisto dell'elettricità e la sua vendita a te (15,79 centesimi e 2,16 centesimi su 28,29); “Oneri” sono gli oneri di sistema.",
   "slices": [
@@ -583,6 +584,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "de-power": {
   "what": "Un kilowattora di elettricità",
   "where": "Germania",
+  "unit": "al kWh",
   "fact": "La Germania divide un kilowattora di elettricità quasi in tre parti: l'energia, la rete e lo Stato.",
   "note": "L'analisi dell'associazione di settore per una famiglia che usa 3.500 kilowattora l'anno. “Tasse” contiene l'IVA, l'imposta sull'elettricità, il canone di concessione e gli altri oneri.",
   "slices": [
@@ -838,6 +840,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-premium": {
   "what": "Cioccolato fondente premium",
   "where": "Francia",
+  "unit": "al chilo",
   "fact": "Una tavoletta di fondente premium a 16,41 euro al chilo pagava 1,26 euro a chi coltiva il cacao, appena più degli 1,05 euro di una tavoletta normale. Il marchio e il negozio si presero quasi tutta la differenza.",
   "note": "Lo studio dell'agenzia delle Nazioni Unite sulla filiera francese del cioccolato, per una tavoletta di fondente premium di marca nazionale senza marchi di certificazione. “Produttore” sono la macinazione dei chicchi (3,7), lo zucchero e gli altri ingredienti (0,5) e la produzione e il marchio della tavoletta (41,4).",
   "slices": [
@@ -866,6 +869,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "dk-power": {
   "what": "Un kilowattora di elettricità",
   "where": "Danimarca",
+  "unit": "al kWh",
   "fact": "Nel 2025 l'accisa danese sull'elettricità prendeva, su un kilowattora di una famiglia, tanto quanto l'elettricità stessa. Il 1º gennaio 2026 è stata ridotta a quasi niente.",
   "note": "La media dell'ufficio statistico dell'UE per una famiglia che usa da 2.500 a 4.999 kilowattora l'anno: 0,72 corone per l'elettricità e il suo fornitore, 0,59 per le reti, 0,72 di accisa sull'elettricità e 0,52 di IVA. L'accisa è scesa a 0,8 øre al kilowattora nel 2026.",
   "slices": [
@@ -1126,6 +1130,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-organic": {
   "what": "Cioccolato fondente biologico equosolidale",
   "where": "Francia",
+  "unit": "al chilo",
   "fact": "Il cioccolato biologico equosolidale pagava a chi coltiva il cacao 2,70 euro al chilo, più del doppio degli 1,05 euro di una tavoletta normale. In quota sul prezzo, era comunque meno di dodici centesimi ogni euro.",
   "note": "Lo studio dell'agenzia delle Nazioni Unite sulla filiera francese del cioccolato, per una tavoletta di fondente premium di marca nazionale con insieme un'etichetta biologica e una equosolidale. “Produttore” sono la macinazione dei chicchi (3,8), lo zucchero e gli altri ingredienti (0,5) e la produzione e il marchio della tavoletta (38,1).",
   "slices": [

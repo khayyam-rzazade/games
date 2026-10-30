@@ -265,9 +265,9 @@
     }
     $("sentence").textContent = q.sentence || "";
     var link = $("source-link");
-    link.textContent = (q.source || T("hund.world_bank")) + (q.year ? ", " + q.year : "");
+    link.textContent = (!q.source || q.source === "World Bank" ? T("hund.world_bank") : q.source) + (q.year ? ", " + q.year : "");
     link.href = q.link || "#";
-    $("source-exact").textContent = (typeof q.exact === "number") ? " (" + T("hund.exact_in_100", { n: q.exact }) + ")" : "";
+    $("source-exact").textContent = (typeof q.exact === "number") ? " (" + T("hund.exact_in_100", { n: LG.dec(q.exact) }) + ")" : "";
 
     var next = $("next");
     if (practice) {
@@ -302,7 +302,7 @@
     $("st-played").textContent = String(s.played);
     $("st-streak").textContent = String(s.current);
     $("st-best").textContent = String(s.best);
-    $("st-gap").textContent = days.length ? String(Math.round((total / days.length) * 10) / 10) : "0";
+    $("st-gap").textContent = days.length ? LG.dec(Math.round((total / days.length) * 10) / 10) : "0";
     var album = $("album");
     album.innerHTML = "";
     days.forEach(function (n) {

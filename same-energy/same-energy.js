@@ -261,9 +261,11 @@
     if (r < 0.25) return String(w);
     return (w ? String(w) : "") + "½";
   }
+  /* singular or plural after a number: up to 1 in English; below 2 in Portuguese and French ("1½ lata", "1,5 canette") */
+  function isOne(x) { return LG && (LG.lang === "pt" || LG.lang === "fr") ? x < 2 : x <= 1; }
   function many(x, p) {                     // "½ apple", "1 apple", "1½ apples", "2 glasses"
     var s = (p || q).b.short;
-    return half(x) + " " + (x <= 1 ? s[0] : s[1]);
+    return half(x) + " " + (isOne(x) ? s[0] : s[1]);
   }
   function scoreOf(g, p) {
     p = p || q;
@@ -278,8 +280,7 @@
     var w = Math.floor(x), h = x - w > 0.25;
     var half = T("energy.and_a_half"), glued = half === "½";          // Portuguese writes "1½", joined (28 Oct 2026)
     var words = (w ? String(w) : "") + (h ? (w ? (glued ? "" : " ") + half : T("energy.a_half")) : "");
-    var one = (window.LG && (LG.lang === "pt" || LG.lang === "fr")) ? x < 2 : x <= 1;   // Portuguese and French keep the singular below 2 ("1½ lata", "1,5 jour")
-    return words + " " + (one ? B.one : B.many);
+    return words + " " + (isOne(x) ? B.one : B.many);
   }
 
   /* ---------- the screen ---------- */
@@ -404,7 +405,7 @@
   function count(x, cap, you) {
     $("cap").textContent = cap || "";
     $("count").textContent = half(x);
-    $("unit").textContent = x <= 1 && x > 0 ? B.short[0] : B.short[1];
+    $("unit").textContent = x > 0 && isOne(x) ? B.short[0] : B.short[1];
     $("you").textContent = you || "";
   }
 
@@ -429,7 +430,7 @@
       [items, baseG].forEach(function (el) { el.classList.remove("nudge"); void el.getBoundingClientRect(); el.classList.add("nudge"); });
     }
     window.clearTimeout(nudgeTimer);
-    nudgeTimer = window.setTimeout(function () { nudgeTimer = 0; btnShow.textContent = "Show the real amount"; }, 1800);
+    nudgeTimer = window.setTimeout(function () { nudgeTimer = 0; btnShow.textContent = T("energy.show_real"); }, 1800);
   }
 
   /* Drag up anywhere on the stage to add, down to take away: one step for every few pixels, so that the whole
@@ -524,7 +525,7 @@
     var g = v, y = scoreOf(g), t = scoreText(y);
     TO.update(GAME, function (s) {
       var slot = practice ? s.practice : s.results;
-      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id };
+      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id, l: LG ? LG.lang : "en" };
     });
     TO.count(practice ? "same-energy/practice-played" : "same-energy/played/day-" + day);
     showResult(true);
@@ -602,7 +603,7 @@
     list.innerHTML = "";
     q.src.forEach(function (s) {
       var li = document.createElement("li");
-      li.appendChild(document.createTextNode(s.what + ": "));
+      li.appendChild(document.createTextNode(s.what + LG.colon()));
       li.appendChild(link(s.usda));
       li.appendChild(document.createTextNode(" · "));
       li.appendChild(link(s.norway));
@@ -680,7 +681,7 @@
     return base + "?d=" + day + "&g=" + y;
   }
   function shareText(y) {
-    return T("energy.share", { n: day, a: q.a.name.charAt(0).toLowerCase() + q.a.name.slice(1), many: B.many, mine: y === 0 ? T("every.i_spot") : T("energy.i_off", { many: many(Math.abs(y) / 2) }) }) + " " + shareUrl(y);
+    return T("energy.share", { n: day, a: LG.lowerFirst(q.a.name), many: B.many, mine: y === 0 ? T("every.i_spot") : T("energy.i_off", { many: many(Math.abs(y) / 2) }) }) + " " + shareUrl(y);
   }
   function roundRect(x, a, b, w, h, rad) {
     x.beginPath();

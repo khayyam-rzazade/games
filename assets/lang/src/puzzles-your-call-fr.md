@@ -511,6 +511,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 #### 43/90 · `480bc-salamis` · day 43 (14 Nov 2026), 133 (12 Feb 2027), 223 (13 May 2027), 313 (11 Aug 2027) … · every 90 days
 
 - `p.your-call.480bc-salamis.place` — Athènes
+- `p.your-call.480bc-salamis.year` — 480 av. J.-C.
 - `p.your-call.480bc-salamis.pov` — Une immense armée perse marche sur ta ville. Un oracle a dit à Athènes de se fier à ses « murailles de bois », et la ville dispose d’une grande flotte neuve. Tu es un général athénien.
 - `p.your-call.480bc-salamis.choice1` — Défendre la ville depuis ses remparts
 - `p.your-call.480bc-salamis.choice2` — Quitter la ville et combattre en mer
@@ -739,6 +740,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 #### 62/90 · `49bc-rubicon` · day 62 (3 Dec 2026), 152 (3 Mar 2027), 242 (1 Jun 2027), 332 (30 Aug 2027) … · every 90 days
 
 - `p.your-call.49bc-rubicon.place` — Rubicon
+- `p.your-call.49bc-rubicon.year` — 49 av. J.-C.
 - `p.your-call.49bc-rubicon.pov` — Ta guerre en Gaule est gagnée. Le Sénat t’ordonne de dissoudre ton armée et de revenir à Rome, où tu perdras l’immunité que te donne ta charge. Tu es le gouverneur de la Gaule.
 - `p.your-call.49bc-rubicon.choice1` — Dissoudre ton armée et aller à Rome
 - `p.your-call.49bc-rubicon.choice2` — Rester en Gaule et continuer à négocier

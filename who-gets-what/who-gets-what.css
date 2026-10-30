@@ -68,6 +68,8 @@
 .w-keys .real { font-weight: 800; }
 .w-keys .off { background: var(--miss); color: #15172B; border-radius: 7px; padding: 1px .36em 2px; font-weight: 800; font-size: 0.86rem; font-variant-numeric: tabular-nums; }
 .w-keys .spot { background: #fff; color: var(--c); border-radius: 7px; padding: 1px .36em 2px; font-weight: 800; font-size: 0.86rem; }
+/* the smallest phones: a price with its sign after it ("199,90 kr") is a little wider than with the sign before, so the row gives back a few pixels */
+@media (max-width: 340px) { .w-keys li { gap: 6px; } .w-keys .v { gap: 5px; } }
 
 /* ---- the verdict ---- */
 .w-verdict { margin-top: 12px; }

@@ -30,6 +30,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.who-gets-what.it-power.what` — Un kilowattheure d’électricité
 - `p.who-gets-what.it-power.where` — Italie
+- `p.who-gets-what.it-power.unit` — le kWh
 - `p.who-gets-what.it-power.slice1` — Énergie
 - `p.who-gets-what.it-power.slice2` — Réseau
 - `p.who-gets-what.it-power.slice3` — Aides
@@ -242,6 +243,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.who-gets-what.de-power.what` — Un kilowattheure d’électricité
 - `p.who-gets-what.de-power.where` — Allemagne
+- `p.who-gets-what.de-power.unit` — le kWh
 - `p.who-gets-what.de-power.slice1` — Énergie
 - `p.who-gets-what.de-power.slice2` — Réseau
 - `p.who-gets-what.de-power.slice3` — Taxes
@@ -347,6 +349,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.who-gets-what.choc-premium.what` — Du chocolat noir haut de gamme
 - `p.who-gets-what.choc-premium.where` — France
+- `p.who-gets-what.choc-premium.unit` — le kilo
 - `p.who-gets-what.choc-premium.slice1` — Ferme
 - `p.who-gets-what.choc-premium.slice2` — Export
 - `p.who-gets-what.choc-premium.slice3` — Fabricant
@@ -358,6 +361,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.who-gets-what.dk-power.what` — Un kilowattheure d’électricité
 - `p.who-gets-what.dk-power.where` — Danemark
+- `p.who-gets-what.dk-power.unit` — le kWh
 - `p.who-gets-what.dk-power.slice1` — Énergie
 - `p.who-gets-what.dk-power.slice2` — Réseau
 - `p.who-gets-what.dk-power.slice3` — Accises
@@ -464,6 +468,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.who-gets-what.choc-organic.what` — Du chocolat noir bio et équitable
 - `p.who-gets-what.choc-organic.where` — France
+- `p.who-gets-what.choc-organic.unit` — le kilo
 - `p.who-gets-what.choc-organic.slice1` — Ferme
 - `p.who-gets-what.choc-organic.slice2` — Export
 - `p.who-gets-what.choc-organic.slice3` — Fabricant

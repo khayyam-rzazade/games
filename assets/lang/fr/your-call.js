@@ -552,6 +552,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "480bc-salamis": {
   "place": "Athènes",
+  "year": "480 av. J.-C.",
   "pov": "Une immense armée perse marche sur ta ville. Un oracle a dit à Athènes de se fier à ses « murailles de bois », et la ville dispose d’une grande flotte neuve. Tu es un général athénien.",
   "short": "Thémistocle",
   "did": "Thémistocle a fait évacuer Athènes : les « murailles de bois », c’étaient ses navires. En 480 av. J.-C., la flotte grecque a battu les Perses dans l’étroit détroit de Salamine.",
@@ -799,6 +800,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "49bc-rubicon": {
   "place": "Rubicon",
+  "year": "49 av. J.-C.",
   "pov": "Ta guerre en Gaule est gagnée. Le Sénat t’ordonne de dissoudre ton armée et de revenir à Rome, où tu perdras l’immunité que te donne ta charge. Tu es le gouverneur de la Gaule.",
   "short": "César",
   "did": "En janvier 49 av. J.-C., César a conduit la 13e légion de l’autre côté du Rubicon, en Italie. Selon la loi de la République, c’était un acte de guerre.",

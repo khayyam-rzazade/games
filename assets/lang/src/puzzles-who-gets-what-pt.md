@@ -30,6 +30,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.who-gets-what.it-power.what` — Um quilowatt-hora (kWh) de eletricidade
 - `p.who-gets-what.it-power.where` — na Itália
+- `p.who-gets-what.it-power.unit` — por kWh
 - `p.who-gets-what.it-power.slice1` — Energia
 - `p.who-gets-what.it-power.slice2` — Rede
 - `p.who-gets-what.it-power.slice3` — Programas
@@ -242,6 +243,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.who-gets-what.de-power.what` — Um quilowatt-hora (kWh) de eletricidade
 - `p.who-gets-what.de-power.where` — na Alemanha
+- `p.who-gets-what.de-power.unit` — por kWh
 - `p.who-gets-what.de-power.slice1` — Energia
 - `p.who-gets-what.de-power.slice2` — Rede
 - `p.who-gets-what.de-power.slice3` — Impostos
@@ -347,6 +349,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.who-gets-what.choc-premium.what` — Chocolate amargo premium
 - `p.who-gets-what.choc-premium.where` — na França
+- `p.who-gets-what.choc-premium.unit` — por quilo
 - `p.who-gets-what.choc-premium.slice1` — Fazenda
 - `p.who-gets-what.choc-premium.slice2` — Exportação
 - `p.who-gets-what.choc-premium.slice3` — Fabricante
@@ -358,6 +361,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.who-gets-what.dk-power.what` — Um quilowatt-hora (kWh) de eletricidade
 - `p.who-gets-what.dk-power.where` — na Dinamarca
+- `p.who-gets-what.dk-power.unit` — por kWh
 - `p.who-gets-what.dk-power.slice1` — Energia
 - `p.who-gets-what.dk-power.slice2` — Rede
 - `p.who-gets-what.dk-power.slice3` — Imposto
@@ -464,6 +468,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.who-gets-what.choc-organic.what` — Chocolate amargo orgânico e de comércio justo
 - `p.who-gets-what.choc-organic.where` — na França
+- `p.who-gets-what.choc-organic.unit` — por quilo
 - `p.who-gets-what.choc-organic.slice1` — Fazenda
 - `p.who-gets-what.choc-organic.slice2` — Exportação
 - `p.who-gets-what.choc-organic.slice3` — Fabricante

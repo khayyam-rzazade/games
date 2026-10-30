@@ -108,10 +108,18 @@
     var s = Math.abs(v).toFixed(q.dec);
     var p = s.split(".");
     s = commas(p[0]) + (p[1] ? (LG && LG.lang !== "en" ? "," : ".") + p[1] : "");
-    return q.cur === "c" ? s + "c" : q.cur + s;
+    return withCur(s, q.cur);
+  }
+  /* the sign of the money where the language puts it: 28,29 € (Italian, French, Spanish: after, a no-break space between), € 28,29 (Portuguese: before, with a space), €28,29 (English, Turkish) */
+  function withCur(s, cur) {
+    var l = LG ? LG.lang : "en";
+    if (cur === "c") return s + "c";
+    if (l === "it" || l === "fr" || l === "es") return s + "\u00a0" + cur;
+    if (l === "pt") return cur + "\u00a0" + s;
+    return cur + s;
   }
   function ofPrice(tenths) { return q.price * tenths / 1000; }       // tenths of a point of the price, as money
-  function pct(tenths) { return (Math.round(tenths / 10 * 10) / 10).toFixed(1).replace(/\.0$/, "") + "%"; }
+  function pct(tenths) { return LG.pct((Math.round(tenths / 10 * 10) / 10).toFixed(1).replace(/\.0$/, "")); }
   function missOf(g) {
     var m = 0;
     for (var i = 0; i < N; i++) m += Math.abs(g[i] - REAL[i]);
@@ -316,7 +324,7 @@
     var g = guess.slice(), y = missOf(g), t = missText(y);
     TO.update(GAME, function (s) {
       var slot = practice ? s.practice : s.results;
-      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id };
+      if (!valid(slot[day])) slot[day] = { g: g, y: y, t: t, id: q.id, l: LG ? LG.lang : "en" };
     });
     TO.count(practice ? "who-gets-what/practice-played" : "who-gets-what/played/day-" + day);
     showResult(true);
@@ -408,7 +416,7 @@
       fillStamp(st, playedPuzzle(res[n], n));
       album.appendChild(st);
     });
-    $("st-avg").textContent = (days.length ? Math.round(off / days.length / 10) : 0) + "%";
+    $("st-avg").textContent = LG.pct(days.length ? Math.round(off / days.length / 10) : 0);
     $("album-empty").hidden = days.length > 0;
   }
   function fillStamp(el, p) {
@@ -417,8 +425,8 @@
     function add(cls, text) { var s = document.createElement("span"); s.className = cls; s.textContent = text; el.appendChild(s); }
     var cur = p.cur, dec = p.dec;
     var s = Math.abs(p.price).toFixed(dec), parts = s.split(".");
-    s = commas(parts[0]) + (parts[1] ? "." + parts[1] : "");
-    add("p", cur === "c" ? s + "c" : cur + s);
+    s = commas(parts[0]) + (parts[1] ? (LG && LG.lang !== "en" ? "," : ".") + parts[1] : "");
+    add("p", withCur(s, cur));
     add("what", p.what.replace(/^An? /, ""));
     add("of", p.where + " · " + p.when);
   }
@@ -454,7 +462,7 @@
     return base + "?d=" + day + "&g=" + y;
   }
   function shareText(y) {
-    return T("gets.share", { n: day, what: q.what.toLowerCase(), where: q.where, when: q.when, price: money(q.price), mine: y <= SPOT ? T("gets.i_spot") : T("gets.i_wrong", { money: money(ofPrice(y)) }) }) + " " + shareUrl(y);
+    return T("gets.share", { n: day, what: LG.lowerFirst(q.what), where: q.where, when: q.when, price: money(q.price), mine: y <= SPOT ? T("gets.i_spot") : T("gets.i_wrong", { money: money(ofPrice(y)) }) }) + " " + shareUrl(y);
   }
   function roundRect(x, a, b, w, h, rad) {
     x.beginPath();
@@ -522,7 +530,7 @@
     var barY = sub + 118, barW = W - 2 * MG, barH = SPOIL ? 128 : 192;
     function drawBar(label, shares, labelled) {
       x.textAlign = "left"; x.font = "800 30px " + F; x.fillStyle = "rgba(255,255,255,.8)";
-      x.fillText(label.toUpperCase(), MG, barY - 16);
+      x.fillText(LG.upper(label), MG, barY - 16);
       var at = MG;
       var shade = ["rgba(255,255,255,1)", "rgba(255,255,255,.76)", "rgba(255,255,255,.5)", "rgba(255,255,255,.3)"];
       x.save();

@@ -63,6 +63,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "it-power": {
   "what": "Una unidad de electricidad",
   "where": "Italia",
+  "unit": "por kWh",
   "fact": "Casi dos tercios de una unidad italiana eran la propia electricidad. La red por la que viaja cuesta más que los impuestos que lleva encima.",
   "note": "La cifra del propio regulador para la tarifa protegida de los hogares. «Energía» es comprar la electricidad y vendértela (15,79 céntimos y 2,16 céntimos de los 28,29); «Políticas» son los cargos del sistema.",
   "slices": [
@@ -583,6 +584,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "de-power": {
   "what": "Una unidad de electricidad",
   "where": "Alemania",
+  "unit": "por kWh",
   "fact": "Alemania reparte una unidad de electricidad casi en tres partes: la energía, la red y el Estado.",
   "note": "Análisis de la propia asociación del sector para un hogar que usa 3500 unidades al año. «Impuestos» incluye el IVA, el impuesto sobre la electricidad, la tasa de concesión y los demás gravámenes.",
   "slices": [
@@ -838,6 +840,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-premium": {
   "what": "Chocolate negro premium",
   "where": "Francia",
+  "unit": "por kilo",
   "fact": "Una barra premium de chocolate negro, a 16,41 € el kilo, pagó 1,26 € a quienes cultivan su cacao, apenas más que los 1,05 € de una barra común. La marca y la tienda se llevaron casi toda la diferencia.",
   "note": "El estudio del organismo de las Naciones Unidas sobre la cadena francesa del chocolate, para una barra negra premium de marca nacional y sin sello. «Fabricante» es moler los granos (3,7), el azúcar y otros ingredientes (0,5) y hacer y poner marca a la barra (41,4).",
   "slices": [
@@ -866,6 +869,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "dk-power": {
   "what": "Una unidad de electricidad",
   "where": "Dinamarca",
+  "unit": "por kWh",
   "fact": "En 2025, el impuesto especial de Dinamarca sobre la electricidad se llevaba tanto de la unidad de un hogar como la propia electricidad. El 1 de enero de 2026 se redujo a casi nada.",
   "note": "El promedio de la oficina de estadística de la UE para un hogar que usa de 2500 a 4999 unidades al año: 0,72 coronas por la electricidad y su proveedor, 0,59 por las redes, 0,72 de impuesto especial sobre la electricidad y 0,52 de IVA. El impuesto bajó a 0,8 øre la unidad en 2026.",
   "slices": [
@@ -1126,6 +1130,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-organic": {
   "what": "Chocolate negro ecológico de comercio justo",
   "where": "Francia",
+  "unit": "por kilo",
   "fact": "El chocolate ecológico de comercio justo pagó 2,70 € el kilo a quienes cultivan su cacao, más del doble de los 1,05 € de una barra común. Aun así, como parte del precio, fueron menos de doce céntimos de cada euro.",
   "note": "El estudio del organismo de las Naciones Unidas sobre la cadena francesa del chocolate, para una barra negra premium de marca nacional con sello ecológico y de comercio justo. «Fabricante» es moler los granos (3,8), el azúcar y otros ingredientes (0,5) y hacer y poner marca a la barra (38,1).",
   "slices": [

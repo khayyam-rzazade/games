@@ -63,6 +63,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "it-power": {
   "what": "Un kilowattheure d’électricité",
   "where": "Italie",
+  "unit": "le kWh",
   "fact": "Un peu moins des deux tiers d’un kilowattheure italien, c’était l’électricité elle-même. Le réseau qu’elle emprunte coûtait plus cher que les taxes qui la frappent.",
   "note": "Le chiffre de l’autorité de régulation elle-même pour le tarif des foyers protégés. « Énergie » regroupe l’achat de l’électricité et sa vente aux clients (15,79 centimes et 2,16 centimes sur les 28,29) ; « Aides » regroupe les charges du système.",
   "slices": [
@@ -583,6 +584,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "de-power": {
   "what": "Un kilowattheure d’électricité",
   "where": "Allemagne",
+  "unit": "le kWh",
   "fact": "En Allemagne, un kilowattheure d’électricité se partage presque en trois : l’énergie, le réseau et l’État.",
   "note": "L’analyse de l’association du secteur elle-même, pour un foyer qui consomme 3 500 kilowattheures par an. « Taxes » regroupe la TVA, la taxe sur l’électricité, la redevance de concession et les autres prélèvements.",
   "slices": [
@@ -838,6 +840,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-premium": {
   "what": "Du chocolat noir haut de gamme",
   "where": "France",
+  "unit": "le kilo",
   "fact": "Une tablette de chocolat noir haut de gamme à 16,41 € le kilo a payé ses producteurs de cacao 1,26 €, à peine plus que les 1,05 € d’une tablette ordinaire. La marque et le magasin ont pris presque toute la différence.",
   "note": "L’étude de l’agence des Nations unies sur la filière française du chocolat, pour une tablette noire haut de gamme d’une marque nationale, sans label. « Fabricant » regroupe le broyage des fèves (3,7), le sucre et les autres ingrédients (0,5), et la fabrication et la marque de la tablette (41,4).",
   "slices": [
@@ -866,6 +869,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "dk-power": {
   "what": "Un kilowattheure d’électricité",
   "where": "Danemark",
+  "unit": "le kWh",
   "fact": "En 2025, la taxe danoise sur l’électricité prenait autant du prix du kilowattheure d’un foyer que l’électricité elle-même. Le 1er janvier 2026, elle a été ramenée à presque rien.",
   "note": "La moyenne de l’office statistique de l’UE pour un foyer qui consomme de 2 500 à 4 999 unités par an : 0,72 couronne pour l’électricité et son fournisseur, 0,59 pour les réseaux, 0,72 de taxe sur l’électricité et 0,52 de TVA. La taxe est tombée à 0,8 øre l’unité en 2026.",
   "slices": [
@@ -1126,6 +1130,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-organic": {
   "what": "Du chocolat noir bio et équitable",
   "where": "France",
+  "unit": "le kilo",
   "fact": "Le chocolat bio et équitable a payé ses producteurs de cacao 2,70 € le kilo, plus de deux fois les 1,05 € d’une tablette ordinaire. En part du prix, cela faisait encore moins de douze centimes par euro.",
   "note": "L’étude de l’agence des Nations unies sur la filière française du chocolat, pour une tablette noire haut de gamme d’une marque nationale portant à la fois un label bio et un label commerce équitable. « Fabricant » regroupe le broyage des fèves (3,8), le sucre et les autres ingrédients (0,5), et la fabrication et la marque de la tablette (38,1).",
   "slices": [

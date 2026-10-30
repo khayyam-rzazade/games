@@ -552,6 +552,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "480bc-salamis": {
   "place": "Atenas",
+  "year": "480 a. C.",
   "pov": "Un enorme ejército persa marcha hacia tu ciudad. Un oráculo ha dicho a Atenas que confíe en sus «murallas de madera», y la ciudad tiene una gran flota nueva. Eres un general ateniense.",
   "short": "Temístocles",
   "did": "Temístocles hizo evacuar Atenas: las «murallas de madera» eran sus barcos. En el 480 a. C. la flota griega derrotó a los persas en el estrecho de Salamina.",
@@ -799,6 +800,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  },
  "49bc-rubicon": {
   "place": "Rubicón",
+  "year": "49 a. C.",
   "pov": "Tu guerra en la Galia está ganada. El Senado te ordena disolver tu ejército y volver a Roma, con lo que perderías la inmunidad que te da tu cargo. Eres el gobernador de la Galia.",
   "short": "César",
   "did": "En enero del 49 a. C. César cruzó el Rubicón con la 13.ª Legión y entró en Italia. Según la ley de la República, eso era un acto de guerra.",

@@ -511,6 +511,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 #### 43/90 · `480bc-salamis` · day 43 (14 Nov 2026), 133 (12 Feb 2027), 223 (13 May 2027), 313 (11 Aug 2027) … · every 90 days
 
 - `p.your-call.480bc-salamis.place` — Atina
+- `p.your-call.480bc-salamis.year` — MÖ 480
 - `p.your-call.480bc-salamis.pov` — Çok büyük bir Pers ordusu şehrine doğru yürüyor. Bir kâhin Atina'ya “tahta duvarlarına” güvenmesini söyledi ve şehrin yeni, büyük bir donanması var. Sen bir Atinalı generalsin.
 - `p.your-call.480bc-salamis.choice1` — Şehri surlarından savun
 - `p.your-call.480bc-salamis.choice2` — Şehri bırak ve denizde savaş
@@ -739,6 +740,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 #### 62/90 · `49bc-rubicon` · day 62 (3 Dec 2026), 152 (3 Mar 2027), 242 (1 Jun 2027), 332 (30 Aug 2027) … · every 90 days
 
 - `p.your-call.49bc-rubicon.place` — Rubicon
+- `p.your-call.49bc-rubicon.year` — MÖ 49
 - `p.your-call.49bc-rubicon.pov` — Galya'daki savaşını kazandın. Senato, ordunu dağıtmanı ve Roma'ya dönmeni emrediyor; bu da makamının sana verdiği dokunulmazlığı yitirmen demek. Sen Galya'nın valisisin.
 - `p.your-call.49bc-rubicon.choice1` — Ordunu dağıt ve Roma'ya git
 - `p.your-call.49bc-rubicon.choice2` — Galya'da kal ve görüşmeye devam et

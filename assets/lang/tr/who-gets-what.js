@@ -63,6 +63,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "it-power": {
   "what": "Bir birim elektrik",
   "where": "İtalya",
+  "unit": "kWh başına",
   "fact": "Bir İtalyan biriminin üçte ikisinden biraz azı elektriğin kendisiydi. Elektriğin içinden geçtiği hatlar, üzerindeki vergilerden daha pahalıya geldi.",
   "note": "Düzenleyici kurumun, korunan hane tarifesi için yayımladığı kendi rakamı. “Enerji”, elektriğin satın alınması ve size satılmasıdır (28,29 sentin 15,79'u ile 2,16'sı); “Politikalar”, sistem harçlarıdır.",
   "slices": [
@@ -583,6 +584,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "de-power": {
   "what": "Bir birim elektrik",
   "where": "Almanya",
+  "unit": "kWh başına",
   "fact": "Almanya bir birim elektriği neredeyse üçe böler: enerji, şebeke ve devlet.",
   "note": "Sektör birliğinin, yılda 3.500 birim kullanan bir hane için yaptığı kendi analizi. “Vergi”, KDV'yi, elektrik vergisini, imtiyaz ücretini ve geri kalan harçları içerir.",
   "slices": [
@@ -838,6 +840,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-premium": {
   "what": "Premium bitter çikolata",
   "where": "Fransa",
+  "unit": "kilo başına",
   "fact": "Kilosu 16,41 avro olan premium bir bitter çikolata, kakao çiftçilerine 1,26 avro ödedi; sıradan bir çikolatanın 1,05 avrosundan çok az fazla. Farkın hemen hepsini marka ve mağaza aldı.",
   "note": "Birleşmiş Milletler kuruluşunun Fransız çikolata zinciri çalışması; etiketsiz, ulusal markalı, premium bir bitter çikolata için. “Üretici”; çekirdeklerin öğütülmesi (3,7), şeker ve diğer malzemeler (0,5) ile çikolatanın yapılıp markalanmasıdır (41,4).",
   "slices": [
@@ -866,6 +869,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "dk-power": {
   "what": "Bir birim elektrik",
   "where": "Danimarka",
+  "unit": "kWh başına",
   "fact": "2025'te Danimarka'nın elektrik vergisi, bir hanenin birim başına ödediği paranın elektriğin kendisi kadarını aldı. 1 Ocak 2026'da neredeyse sıfıra indirildi.",
   "note": "Avrupa Birliği'nin istatistik ofisinin, yılda 2.500 ile 4.999 birim kullanan bir hane için ortalaması: elektrik ve tedarikçisi için 0,72 kron, şebeke için 0,59, elektrik vergisi için 0,72 ve KDV için 0,52. Vergi 2026'da birim başına 0,8 øre'ye düştü.",
   "slices": [
@@ -1126,6 +1130,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "choc-organic": {
   "what": "Organik, adil ticaret bitter çikolata",
   "where": "Fransa",
+  "unit": "kilo başına",
   "fact": "Organik, adil ticaret çikolata kakao çiftçilerine kilo başına 2,70 avro ödedi; sıradan çikolatanın 1,05 avrosunun iki katından fazla. Yine de fiyat içindeki payı, avroda on iki sentin altındaydı.",
   "note": "Birleşmiş Milletler kuruluşunun Fransız çikolata zinciri çalışması; hem organik hem adil ticaret etiketi taşıyan, ulusal markalı premium bir bitter çikolata için. “Üretici”; çekirdeklerin öğütülmesi (3,8), şeker ve diğer malzemeler (0,5) ile çikolatanın yapılıp markalanmasıdır (38,1).",
   "slices": [
