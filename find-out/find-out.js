@@ -1477,9 +1477,9 @@ export function start() {
   /* the language first: a remembered pick opens this page in that language; no pick yet, the sheet asks (and the page shows under it) */
   const want = savedLang();
   if (want && want !== LANG) { const to = samePageIn(want); if (to) { location.replace(to); return; } }
-  langChip();
-  if (!want) langSheet(true);
   const page = root.dataset.page; const n = Number(root.dataset.game);
+  langChip();
+  if (!want && page !== 'researchers') langSheet(true);      /* the researchers' sheet (30 Oct 2026) only gets the chip and the remembered language: nobody who comes from a paper is met by a window */
   if (page === 'home') homePage(); else if (page === 'room') roomPage(); else if (page === 'portrait') portraitPage(); else if (page === 'compare') comparePage(); else if (page === 'explore') explorePage(); else if (n >= 1 && n <= 9) gamePage(n);
 }
 export const _test = { load, save, wipe, batch, bandName, mainScore, portraitLines, ownLines, fill, parliamentName, STORE_KEY, LANG, poolSentence, forPool };

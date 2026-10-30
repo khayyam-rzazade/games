@@ -680,9 +680,13 @@
     sh.addEventListener("click", function () { shareNow(); });
     sheet.appendChild(sh);
 
+    /* the next word game not played yet leads on (30 Oct 2026); with the three played, "More to play" is the way on */
+    var nextWord = TO && TO.wordNext ? TO.wordNext("lookalike", T("next_game")) : null;
+    if (nextWord) sheet.appendChild(nextWord);
+
     var more = el("a", "fin-more lk-more");
     var siteL = siteLang();
-    var home = (siteL === "it" || siteL === "tr" || siteL === "es") ? "../" + siteL + "/" : "../";
+    var home = siteL && siteL !== "en" ? "../" + siteL + "/" : "../";       /* any of the six languages' own home (it, tr, es, pt, fr) */
     more.href = TO && TO.here ? TO.here(home + "#more-to-play") : home + "#more-to-play";
     more.appendChild(el("span", "", T("more")));
     sheet.appendChild(more);

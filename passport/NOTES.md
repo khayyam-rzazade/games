@@ -33,10 +33,14 @@ hold). For the player's language `l` (`pathFor` in `passport.js`):
   while it is known: when that reaches the route, the route runs up to there and the arrows join (robot in Spanish:
   Czech → English → Spanish); when it does not, the whole route is shown and **no arrow comes into the extra stop**
   (coffee in English: Arabic → Ottoman Turkish → Italian → French, and Dutch → English);
-* **`lastHop[l]` is null or missing** ("unknown", never "from the last stop"): **no arrow into the player's
-  language.** The route stops at its last known stop (the one before `l` when the route goes through `l`), and the
-  player's own form is shown beside that stop, as a label with no dot of its own (robot in Turkish: Czech → French,
-  and "robot · Türkçe" beside French).
+* **`lastHop[l]` is null or missing and `l` is not on the route** ("unknown", never "from the last stop"): **no
+  arrow into the player's language.** The route stops at its last known stop, and the player's own form is shown
+  beside that stop, as a label with no dot of its own (robot in Turkish: Czech → French, and "robot · Türkçe" beside
+  French);
+* **`lastHop[l]` is null but `l` is on the route** (30 Oct 2026, five days: catamaran, curry and yacht in English,
+  chocolate in Spanish, marmelada in Portuguese): the player's own dictionary is silent, but the route (built from the
+  other five dictionaries) goes through `l`, so the stop before `l` is the hop and the arrow is drawn (curry in
+  English: Tamil → English).
 
 The map's label for screen readers says the same in words ("Czech → French. Turkish: robot").
 
@@ -46,7 +50,7 @@ neighbours is drawn as a small hop over the top (`hopArc`), so every known step 
 rings round their dot with two pixels of air between them, so crowded corners (north-west Europe) do not overlap.
 
 In the 60 words × 6 languages: 8 start in the player's language, 305 have their last hop on the route, 19 off it
-(13 of them joined back through another of the six languages, 6 on their own), and 28 have it unknown.
+(13 of them joined back through another of the six languages, 6 on their own), and 28 have it unknown (5 of those 28, on the route, get their arrow from the route since 30 Oct 2026).
 
 ## Sharing (29 Oct 2026, Khayyam)
 

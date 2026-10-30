@@ -2156,6 +2156,43 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", appStart);
   else appStart();
 
+  /* Today's word games (30 Oct 2026): Altitude, Lookalike and Passport are not daily games of the list above (their own pages,
+     their own storage, one page for all six languages), but the home's Today card counts them and each one's end card
+     leads to the next one not played yet. The first day of each is the START of its script (altitude.js, lookalike.js,
+     passport.js); a game keeps the day it was finished in `main` (the first language played that day). */
+  var WORDS = [
+    { id: "altitude", key: "altitude", store: "altitude:v1", start: "2026-10-28", name: "Altitude", href: "altitude/" },
+    { id: "lookalike", key: "lookalike", store: "lookalike:v1", start: "2026-10-29", name: "Lookalike", href: "lookalike/" },
+    { id: "passport", key: "passport", store: "passport:v1", start: "2026-10-29", name: "Passport", href: "passport/" }
+  ];
+  function wordDone(w) {
+    try {
+      var s = JSON.parse(window.localStorage.getItem(w.store) || "null"), d = Math.max(1, dayNumber(w.start));
+      return !!(s && s.main && (s.main[d] || s.main[String(d)]));
+    } catch (e) { return false; }
+  }
+  /* the link for the end card of word game `from`: the next word game, in the order above and round, that today's player has not
+     finished; null when the other two are done. `label` is the words of the big line, "Next game", in the game's own language. */
+  function wordNext(from, label) {
+    var at = -1, next = null;
+    WORDS.forEach(function (w, i) { if (w.id === from) at = i; });
+    for (var k = 1; k < WORDS.length && !next; k++) {
+      var w = WORDS[(Math.max(at, 0) + k) % WORDS.length];
+      if (w.id !== from && dayNumber(w.start) >= 1 && !wordDone(w)) next = w;
+    }
+    if (!next) return null;
+    var a = el("a", "fin-next fin-wordnext");
+    a.href = here("../" + next.href);
+    a.setAttribute("data-g", next.key);
+    a.insertAdjacentHTML("beforeend", PLAY);
+    var t = el("span", "fin-next-words");
+    t.appendChild(el("span", "", label || "Next game"));
+    t.appendChild(el("small", "", next.name));
+    a.appendChild(t);
+    a.addEventListener("click", function () { count_("onward-sheet/word-" + next.id); });
+    return a;
+  }
+
   window.TurnsOut = {
     relabel: relabel,
     game: game,
@@ -2182,6 +2219,9 @@
     keepTip: keepTip,
     stampFor: stampFor,
     GAMES: GAMES,
+    WORDS: WORDS,
+    wordDone: wordDone,
+    wordNext: wordNext,
     GROUP: GROUP,
     group: group,
     groupUpdate: groupUpdate,

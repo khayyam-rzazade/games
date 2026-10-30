@@ -272,6 +272,7 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-doc th, .fo-doc td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--line); }
 .fo-doc th { font-weight: 800; color: var(--soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: .03em; }
 .fo-doc code { font-size: 0.9em; background: var(--tint); padding: 1px 5px; border-radius: 6px; }
+.fo-doc p, .fo-doc li, .fo-doc h1, .fo-doc h2, .fo-doc h3 { overflow-wrap: break-word; }     /* a long file name or address in a line never widens the page (30 Oct 2026; tables scroll on their own) */
 .fo-doc a { color: inherit; text-underline-offset: 3px; }
 
 /* ---- B3 (22 Oct 2026): the portrait as a picture ---- */

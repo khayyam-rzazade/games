@@ -13,13 +13,6 @@
 <link rel="alternate" hreflang="pt" href="https://logicers.com/pt/">
 <link rel="alternate" hreflang="fr" href="https://logicers.com/fr/">
 <link rel="alternate" hreflang="x-default" href="https://logicers.com/">
-<link rel="alternate" hreflang="en" href="https://logicers.com/">
-<link rel="alternate" hreflang="it" href="https://logicers.com/it/">
-<link rel="alternate" hreflang="tr" href="https://logicers.com/tr/">
-<link rel="alternate" hreflang="es" href="https://logicers.com/es/">
-<link rel="alternate" hreflang="pt" href="https://logicers.com/pt/">
-<link rel="alternate" hreflang="fr" href="https://logicers.com/fr/">
-<link rel="alternate" hreflang="x-default" href="https://logicers.com/">
 <meta name="description" content="Aprender brincando. Jogos feitos com fatos de verdade, para quem é curioso e gosta de pensar." data-s-content="home.page_desc">
 <meta name="alldle-verify" content="Fp4zw6-nHYlCe9Jt7A9yd2mGkMpeVucS">
 <meta name="alldle-verify" content="IQCUUNgiDf4cmuD-1J4hBQUnkcdTouKB">
@@ -44,7 +37,7 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=40b896370f">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=8b7dda5894">
 <script src="../assets/lang/pt.js?v=dfc19791aa"></script>
 <script src="../assets/js/lang.js?v=5a777eb8f8"></script>
 <style>
@@ -193,7 +186,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
        them"): two slim halves like those, a picture and a title each. The Game Room waits hidden until rooms are
        switched on (assets/js/rooms.js); the players' half until assets/js/said.js has a line Khayyam let through.
        A half alone takes the whole row; with neither, the row is not there. -->
-  <div class="pairbox" id="pairbox"><span id="more-to-play"></span>
+  <div class="pairbox" id="pairbox">
   <!-- Game rooms (23 Oct 2026, Khayyam): the hub of the three kinds of room. A tap opens the sheet below with the three
        choices; the box is always shown. "Join a game" opens the same sheet with a code field. -->
   <a class="gameroom" id="gameroom" href="../pt/room/" role="button" aria-haspopup="dialog" aria-controls="dlg-rooms">
@@ -358,6 +351,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         <p class="pitch"><span class="long" data-s="home.pitch_altitude_long">Uma palavra de 2 letras, depois 3, 4, até 8, com uma única reserva de tentativas. Até onde você chega?</span><span class="short" data-s="game.altitude.pitch">Uma palavra com uma letra a mais a cada vez. Até onde você chega?</span></p>
         <div class="foot">
           <span class="go"><span data-s="site.play">Jogar</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.two_min">2 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">Ver de novo</span>
         </div>
       </div>
     </a>
@@ -368,6 +362,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         <p class="pitch"><span class="long" data-s="home.pitch_lookalike_long">Três palavras por dia, parecidas em dois idiomas, mas com sentidos diferentes. Você consegue fugir da pegadinha?</span><span class="short" data-s="game.lookalike.pitch">Parecidas, mas com outro sentido. Fuja da pegadinha.</span></p>
         <div class="foot">
           <span class="go"><span data-s="site.play">Jogar</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">Ver de novo</span>
         </div>
       </div>
     </a>
@@ -378,6 +373,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         <p class="pitch"><span class="long" data-s="home.pitch_passport_long">Uma palavra por dia: de onde ela vem? Veja a viagem dela pelo mundo até o seu idioma.</span><span class="short" data-s="game.passport.pitch">De onde vem a palavra de hoje?</span></p>
         <div class="foot">
           <span class="go"><span data-s="site.play">Jogar</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="site.one_min">1 min</span>
+          <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b></b></span><span class="again" hidden data-s="site.see_again">Ver de novo</span>
         </div>
       </div>
     </a>
@@ -390,7 +386,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <!-- The find-out row and the "Play live with friends" row left the page on 23 Oct 2026 (Khayyam): the green box is the
      way into the find-outs, and the rooms live in the Game rooms hub above. -->
 
-<section class="games group-games" aria-labelledby="group-title">
+<section class="games group-games" id="more-to-play" aria-labelledby="group-title">
   <h2 class="sec" id="group-title" data-s="home.pass_h">Passe o celular</h2>
   <p class="sec-sub" data-s="home.pass_sub">Jogos para duas ou mais pessoas, em um só celular.</p>
   <div class="shelf" id="shelf2">
@@ -567,7 +563,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="../every-beat/puzzles.js"></script>
 <script src="../out-of-24/puzzles.js"></script>
 <script src="../same-energy/puzzles.js"></script>
-<script src="../assets/js/turnsout.js?v=70c93e7371"></script>
+<script src="../assets/js/turnsout.js?v=c031424656"></script>
 <script src="../assets/js/duel.js?v=c4e6a61b81"></script>
 <script src="../assets/js/rooms.js?v=496d2fe661"></script>
 <script src="../assets/js/points.js?v=0ff18e835f"></script>
@@ -636,25 +632,32 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 
   /* today's word games (29 Oct 2026): each keeps its own storage, and marks the day it was finished in "main" (the
      first language played that day). Their first days are the START of altitude.js, lookalike.js, passport.js. */
-  var WORDS = [{ id: "altitude", key: "altitude:v1", start: "2026-10-28" }, { id: "lookalike", key: "lookalike:v1", start: "2026-10-29" },
-               { id: "passport", key: "passport:v1", start: "2026-10-29" }];
+  var WORDS = TO.WORDS;       // the word games' list, kept in assets/js/turnsout.js (30 Oct 2026: the end cards lead from one to the next with it)
   var wordsLive = 0, wordsDone = 0, firstWord = null;
   WORDS.forEach(function (w) {
     var tile = document.getElementById("tile-" + w.id);
     if (!tile || TO.dayNumber(w.start) < 1) return;
     wordsLive++;
-    var done = false;
-    try { var s = JSON.parse(window.localStorage.getItem(w.key) || "null"), d = Math.max(1, TO.dayNumber(w.start)); done = !!(s && s.main && (s.main[d] || s.main[String(d)])); }
-    catch (e) { done = false; }
+    var done = TO.wordDone(w);
     var pip = document.getElementById("pip-" + w.id);
-    if (done) { wordsDone++; if (pip) pip.classList.add("on"); }
+    if (done) {
+      wordsDone++; if (pip) pip.classList.add("on");
+      /* the tile says it is played, as the daily games' tiles do (30 Oct 2026) */
+      tile.classList.add("done");
+      var res = tile.querySelector(".result"), again = tile.querySelector(".again"), go = tile.querySelector(".go"), mins = tile.querySelector(".mins");
+      if (res) { res.querySelector("b").textContent = T("fin.played"); res.hidden = false; }
+      if (again) again.hidden = false;
+      if (go) go.hidden = true;
+      if (mins) mins.hidden = true;
+    }
     else if (!firstWord) firstWord = { id: w.id, href: tile.getAttribute("href") };
   });
   document.getElementById("today-count").innerHTML = T("end.of_played", { n: doneToday + wordsDone, of: live + wordsLive });
   if (live + wordsLive > 0 && doneToday + wordsDone === live + wordsLive) document.getElementById("today-note").textContent = T("end.all_done");
   /* "More to play" (19 Oct 2026): the last game's card sends people here, to the games that never run out. The
      line that stood above them ("Done with today's games? …") was dropped on 22 Oct 2026 (Khayyam); the anchor
-     now sits on the find-out section itself, so the jump lands on the first row that never runs out. */
+     sits on the Pass the phone row, the first row that never runs out (30 Oct 2026: it had stayed in the Game rooms
+     box above the daily games when the find-out box moved up). */
   (function () {
     var here = document.getElementById("more-to-play");
     if (!here || window.location.hash !== "#more-to-play") return;

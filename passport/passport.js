@@ -430,9 +430,10 @@
        route runs up to there and the arrows join; when it does not, the whole route is shown and no arrow comes into
        the extra stop (nobody says how the word got there). The arrow from the extra stop into the player's language
        is the one the player's dictionary gives;
-     - lastHop is null, or missing ("unknown", never "from the last stop"): no arrow into the player's language. The
-       route stops at its last known stop (the one before the player's language, when the route goes through it) and
-       the player's own form is shown beside that stop, as a label with no dot of its own.
+     - lastHop is null, or missing ("unknown", never "from the last stop"), and the route does not go through the
+       player's language: no arrow into the player's language. The route stops at its last known stop and the player's
+       own form is shown beside that stop, as a label with no dot of its own. (30 Oct 2026: when the route itself goes
+       through the player's language, the stop before it is the hop and the arrow is drawn: five days.)
      A stop is { code, form, me, cut (no arrow into it), beside (the player's form, next to the stop before it) }. */
   function hopOf(code) {                                // what a language's own dictionary says it took the word from, or null
     var h = entry.lastHop && typeof entry.lastHop === "object" ? entry.lastHop[code] : null;
@@ -450,8 +451,11 @@
     var mine = formOf(e, l), pi = at(l), donor = hopOf(l);
     if (e.origin === l || pi === 0) {                   // the word started in the player's own language: one stop
       P = [{ code: l, form: mine, me: true }];
-    } else if (!donor) {                                // the last hop is not known: no arrow into the player's language
-      P = pi > 0 ? R.slice(0, pi) : R.slice();
+    } else if (!donor && pi > 0) {                      // the player's dictionary is silent, but the route itself goes through the player's language: the stop before it is the hop (30 Oct 2026: the five days catamaran, curry, yacht in English, chocolate in Spanish, marmelada in Portuguese showed no last arrow)
+      P = R.slice(0, pi);
+      P.push({ code: l, form: mine, me: true });
+    } else if (!donor) {                                // the last hop is not known and the route does not go through the player's language: no arrow into it
+      P = R.slice();
       if (P.length) P.push({ code: l, form: mine, me: true, beside: true });
       else P = [{ code: l, form: mine, me: true }];
     } else {
@@ -985,9 +989,13 @@
     }
     sheet.appendChild(acts);
 
+    /* the next word game not played yet leads on (30 Oct 2026); with the three played, "More to play" is the way on */
+    var nextWord = TO && TO.wordNext ? TO.wordNext("passport", T("next_game")) : null;
+    if (nextWord) sheet.appendChild(nextWord);
+
     var more = el("a", "fin-more pp-more");
     var siteL = siteLang();
-    var home = (siteL === "it" || siteL === "tr" || siteL === "es") ? "../" + siteL + "/" : "../";
+    var home = siteL && siteL !== "en" ? "../" + siteL + "/" : "../";       /* any of the six languages' own home (it, tr, es, pt, fr) */
     more.href = TO && TO.here ? TO.here(home + "#more-to-play") : home + "#more-to-play";
     more.appendChild(el("span", "", T("more")));
     sheet.appendChild(more);

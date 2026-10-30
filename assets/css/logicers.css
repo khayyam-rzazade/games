@@ -75,6 +75,9 @@
 [data-g="energy"]  { --c: #A55200; --tint: #FAE8D7; }
 [data-g="duel"]    { --c: #3A3F5C; --tint: #ECEEF6; }       /* Who Was Closer is not a game: the site's own slate, so no game colour is spent on it */       /* Same Energy, the tenth daily game: copper */
 [data-g="room"]    { --c: #3A3F5C; --tint: #ECEEF6; }       /* Rooms is not a game either: the same slate */
+[data-g="altitude"]  { --c: #4F6B80; --tint: #E3EBF1; }      /* the word games' colours (30 Oct 2026): the end card of one carries the next one's colour; each game's own file says the same */
+[data-g="lookalike"] { --c: #0087A8; --tint: #DAF1F7; }
+[data-g="passport"]  { --c: #9A3FC4; --tint: #F1E4F8; }
 [data-g="sure"]    { --c: #470BA8; --tint: #EAE8FF; }       /* How Sure?, the first live game: indigo (14 Oct 2026) */
 
 /* ---------- colours: night ---------- */
@@ -110,6 +113,9 @@
   [data-g="energy"]  { --c: #E08600; --tint: #1E1307; }
   [data-g="duel"]    { --c: #AEB6DA; --tint: #141728; }
   [data-g="room"]    { --c: #AEB6DA; --tint: #141728; }
+  [data-g="altitude"]  { --c: #A9C6DA; --tint: #0E1821; }
+  [data-g="lookalike"] { --c: #4FD0EE; --tint: #071C24; }
+  [data-g="passport"]  { --c: #D79AF0; --tint: #1B1024; }
   [data-g="sure"]    { --c: #D2D3FF; --tint: #17152A; }
 }
 
@@ -1348,6 +1354,7 @@ dialog.khay:not([open]) { display: none; }
 @media (prefers-reduced-motion: no-preference) { .fin-more { animation: go-pulse 2.4s ease-in-out infinite; } }
 .fin-full .fin-world { margin-top: 10px; }
 .fin-full .eod { margin-top: 14px; padding-top: 12px; border-top: 2px solid var(--line); }
+.group-games { scroll-margin-top: 14px; }       /* "More to play" lands on this row (30 Oct 2026) */
 .more-line { margin: 0 0 8px; font-weight: 700; font-size: 1.05rem; color: var(--ink); scroll-margin-top: 14px; }
 .more-line[hidden] { display: none; }
 
@@ -1399,7 +1406,7 @@ dialog.khay:not([open]) { display: none; }
    Two halves shaped like Build / Join: a picture and a title, 64px tall, 8px under that row. A half that is hidden
    leaves the row to the other (auto-fit); with neither, the row is not there, and the World table box moves up. */
 .pairbox { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
-#more-to-play { position: absolute; top: 0; left: 0; width: 0; height: 0; }   /* the anchor of "More to play" is not a box: it took the first cell and left a hole beside Game rooms (24 Oct 2026) */
+/* (24 Oct 2026: the anchor of "More to play" was an empty span made no-box here. 30 Oct 2026: it is the id of the Pass the phone row now, a real box, so that rule is gone.) */
 .hero > .pairbox { grid-column: -2 / -1; align-self: start; margin-top: -6px; }   /* 8px under Build / Join (the hero's gap is 14px) */
 .pairbox:not(:has(> :not([hidden]))) { display: none; }
 .pairbox > .gameroom { margin-top: 0; display: flex; align-items: center; gap: 9px; min-height: 64px; padding: 10px 12px; border-radius: 18px; min-width: 0; box-sizing: border-box; }
