@@ -18,7 +18,7 @@ window.LG_QUESTIONS = {
   "China": "Çin",
   "Donkey": "Eşek",
   "Elephant seal": "Fil foku",
-  "Ferret": "Ferret",
+  "Ferret": "Evcil gelincik",
   "Fire ant queen": "Ateş karıncası kraliçesi",
   "Fire ant worker": "Ateş karıncası işçisi",
   "Frigatebird": "Fregat kuşu",
@@ -45,6 +45,7 @@ window.LG_QUESTIONS = {
   "Red deer": "Kızıl geyik",
   "Sea turtle": "Deniz kaplumbağası",
   "Trout": "Alabalık",
+  "Apple": "Apple",
   "Cloth": "Kumaş",
   "Crude": "Ham petrol",
   "Delivery": "Dağıtım",
@@ -103,7 +104,6 @@ window.LG_QUESTIONS = {
   "Hedgehog": "Kirpi",
   "The East India Company gets its charter": "Doğu Hindistan Şirketi kraliyet iznini alıyor",
   "The Titanic sinks": "Titanik batıyor",
-  "Apple": "Elma",
   "A first iPad": "Bir ilk model iPad",
   "Elephant": "Fil",
   "Aardvark": "Yerdomuzu",
@@ -297,10 +297,6 @@ window.LG_QUESTIONS = {
   "Hedgehog": {
    "the": "kirpi",
    "of": "kirpinin"
-  },
-  "Apple": {
-   "the": "elma",
-   "of": "elmanın"
   },
   "Elephant": {
    "the": "fil",

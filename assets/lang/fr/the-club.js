@@ -991,7 +991,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Peltre",
+    "Fonte",
     1
    ],
    [
@@ -4289,12 +4289,12 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "hindi-words": {
-  "sign": "Des mots venus de l’hindi",
+  "sign": "Des mots anglais venus de l’hindi",
   "stamp": "Mots hindi",
-  "fact": "Tous sont arrivés en français depuis l’hindi, en passant par l’anglais. « Shampooing » vient d’un mot hindi qui veut dire presser ou masser.",
+  "fact": "Tous sont entrés dans la langue anglaise à partir de l’hindi : shampoo vient d’un mot hindi qui veut dire presser ou masser.",
   "in": [
-   "Shampoing",
-   "Pyjama",
+   "Shampoo",
+   "Pyjamas",
    "Jungle"
   ],
   "out": [

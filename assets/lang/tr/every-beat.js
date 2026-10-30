@@ -253,7 +253,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "polar-bear-den": {
   "face": "Kutup ayısı",
   "label": "uyurken",
-  "sentence": "Kış inde uyuyan bir kutup ayısının kalbi hafta hafta yavaşlayarak dakikada yalnızca 27 atışa iner.",
+  "sentence": "Kış ininde uyuyan bir kutup ayısının kalbi hafta hafta yavaşlayarak dakikada yalnızca 27 atışa iner.",
   "note": "Kış inlerindeki iki kutup ayısı üzerine bir çalışmadan (Folk ve ark., Arctic, 1970): uykudaki kalpleri yaklaşık 60 atışla başladı. Gerçek bir kış uykusu hayvanının aksine vücut sıcaklıkları normal kalır."
  },
  "frog-rest": {

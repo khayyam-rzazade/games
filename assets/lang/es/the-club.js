@@ -2095,7 +2095,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "citrus": {
   "sign": "Son cítricos",
   "stamp": "Cítricos",
-  "fact": "Todos son cítricos. El pomelo es un cruce entre una pamplemusa y una naranja dulce.",
+  "fact": "Todos son cítricos. El pomelo es un cruce entre una pampelmusa y una naranja dulce.",
   "in": [
    "Limón",
    "Naranja",
@@ -2123,7 +2123,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Pamplemusa",
+    "Pampelmusa",
     1
    ]
   ]
@@ -4289,13 +4289,13 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "hindi-words": {
-  "sign": "Palabras que vienen del hindi",
+  "sign": "Palabras inglesas que vienen del hindi",
   "stamp": "Del hindi",
-  "fact": "Todas vienen del hindi, algunas pasando por el inglés. «Champú» viene de una palabra hindi que significa presionar o amasar.",
+  "fact": "Todas pasaron al inglés desde el hindi: shampoo viene de una palabra hindi que significa «presionar» o «amasar».",
   "in": [
-   "Champú",
-   "Pijama",
-   "Jungla"
+   "Shampoo",
+   "Pyjamas",
+   "Jungle"
   ],
   "out": [
    "Tsunami",
@@ -4307,7 +4307,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Kétchup",
+    "Ketchup",
     0
    ],
    [
@@ -4315,7 +4315,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Iglú",
+    "Igloo",
     0
    ],
    [

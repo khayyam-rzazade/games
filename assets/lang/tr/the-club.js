@@ -6,7 +6,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   var byId = {
  "marsupials": {
   "sign": "Keseli hayvanlardır",
-  "stamp": "Keselilier",
+  "stamp": "Keseliler",
   "fact": "Hepsi keseli hayvandır: yavruları minicik doğar ve çoğu büyümesini bir kesenin içinde tamamlar. Ornitorenk keseli değildir; yumurtlar.",
   "in": [
    "Kanguru",
@@ -115,7 +115,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "keratin": {
   "sign": "Keratinden yapılmışlardır",
   "stamp": "Keratin",
-  "fact": "Hepsi, saçının ve tırnağının maddesi olan keratinden yapılmıştır. Gergedan boynuzu da öyle; fil dişi ise bir dişir.",
+  "fact": "Hepsi, saçının ve tırnağının maddesi olan keratinden yapılmıştır. Gergedan boynuzu da öyle; fil dişi ise bir diştir.",
   "in": [
    "Saç",
    "Tırnak",
@@ -991,7 +991,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Pewter",
+    "Lehim",
     1
    ],
    [
@@ -1603,7 +1603,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Saint Petersburg",
+    "St. Petersburg",
     1
    ],
    [
@@ -3667,7 +3667,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Wolverine",
+    "Kutup porsuğu",
     0
    ],
    [
@@ -3931,11 +3931,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "weasel-family": {
   "sign": "Sansargillerdendirler",
   "stamp": "Sansargiller",
-  "fact": "Hepsi sansargillerdendir; wolverine ve bal porsuğu da öyle. Kokarcalar kendi ailelerine ayrıldı.",
+  "fact": "Hepsi sansargillerdendir; kutup porsuğu ve bal porsuğu da öyle. Kokarcalar kendi ailelerine ayrıldı.",
   "in": [
    "Su samuru",
    "Ermin",
-   "Ferret"
+   "Gelincik"
   ],
   "out": [
    "Rakun",
@@ -3943,7 +3943,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Wolverine",
+    "Kutup porsuğu",
     1
    ],
    [
@@ -4255,7 +4255,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "soy": {
   "sign": "Soya fasulyesinden yapılırlar",
   "stamp": "Soya yiyecekleri",
-  "fact": "Tofu, tempeh, miso ve natto soya fasulyesinden başlar. Humus nohuttan, polenta ise mısır ununden yapılır.",
+  "fact": "Tofu, tempeh, miso ve natto soya fasulyesinden başlar. Humus nohuttan, polenta ise mısır unundan yapılır.",
   "in": [
    "Tofu",
    "Soya sosu",
@@ -4293,9 +4293,9 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Hintçeden",
   "fact": "Hepsi İngilizceye Hintçeden geçti. İngilizcedeki “shampoo”, bastırmak ya da yoğurmak anlamına gelen bir Hintçe sözcükten gelir.",
   "in": [
-   "Şampuan",
-   "Pijama",
-   "Cangıl"
+   "Shampoo",
+   "Pyjamas",
+   "Jungle"
   ],
   "out": [
    "Tsunami",
@@ -4303,23 +4303,23 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Bilezik",
+    "Bangle",
     1
    ],
    [
-    "Ketçap",
+    "Ketchup",
     0
    ],
    [
-    "Haydut",
+    "Thug",
     1
    ],
    [
-    "İglo",
+    "Igloo",
     0
    ],
    [
-    "Yağma",
+    "Loot",
     1
    ]
   ]
@@ -5085,17 +5085,17 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Hollandacadan",
   "fact": "Hepsi İngilizceye Hollandacadan geçti: “cookie”, küçük kek anlamındaki koekje'den, “boss” ise usta anlamındaki baas'tan gelir.",
   "in": [
-   "Kurabiye",
-   "Patron",
+   "Cookie",
+   "Boss",
    "Waffle"
   ],
   "out": [
    "Hamburger",
-   "Anaokulu"
+   "Kindergarten"
   ],
   "door": [
    [
-    "Brendi",
+    "Brandy",
     1
    ],
    [
@@ -5103,7 +5103,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Şövale",
+    "Easel",
     1
    ],
    [
@@ -5111,7 +5111,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Manzara",
+    "Landscape",
     1
    ]
   ]

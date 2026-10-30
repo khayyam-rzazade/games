@@ -445,7 +445,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.alloys.in3` — Laiton
 - `p.the-club.alloys.out1` — Fer
 - `p.the-club.alloys.out2` — Cuivre
-- `p.the-club.alloys.door1` — Peltre
+- `p.the-club.alloys.door1` — Fonte
 - `p.the-club.alloys.door2` — Aluminium
 - `p.the-club.alloys.door3` — Argent sterling
 - `p.the-club.alloys.door4` — Titane
@@ -1910,10 +1910,10 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 #### 120/148 · `hindi-words` · day 120 (31 Jan 2027), 268 (28 Jun 2027), 416 (23 Nov 2027), 564 (19 Apr 2028) … · every 148 days
 
-- `p.the-club.hindi-words.sign` — Des mots venus de l’hindi
+- `p.the-club.hindi-words.sign` — Des mots anglais venus de l’hindi
 - `p.the-club.hindi-words.stamp` — Mots hindi
-- `p.the-club.hindi-words.in1` — Shampoing
-- `p.the-club.hindi-words.in2` — Pyjama
+- `p.the-club.hindi-words.in1` — Shampoo
+- `p.the-club.hindi-words.in2` — Pyjamas
 - `p.the-club.hindi-words.in3` — Jungle
 - `p.the-club.hindi-words.out1` — Tsunami
 - `p.the-club.hindi-words.out2` — Safari
@@ -1922,7 +1922,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.hindi-words.door3` — Thug
 - `p.the-club.hindi-words.door4` — Igloo
 - `p.the-club.hindi-words.door5` — Loot
-- `p.the-club.hindi-words.fact` — Tous sont arrivés en français depuis l’hindi, en passant par l’anglais. « Shampooing » vient d’un mot hindi qui veut dire presser ou masser.
+- `p.the-club.hindi-words.fact` — Tous sont entrés dans la langue anglaise à partir de l’hindi : shampoo vient d’un mot hindi qui veut dire presser ou masser.
 
 #### 121/148 · `gourd-family` · day 121 (1 Feb 2027), 269 (29 Jun 2027), 417 (24 Nov 2027), 565 (20 Apr 2028) … · every 148 days
 
@@ -2395,7 +2395,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - p.the-club.igneous.sign — Ce sont des roches magmatiques — second option: Ce sont des roches ignées; magmatiques is the word school books use.
 - p.the-club.energy-units.door3 — BTU — second option: Unité thermique britannique; French speakers say BTU, and the long form is a lot longer than the other items.
 - p.the-club.mughals.sign — Des empereurs moghols — second option: Des empereurs mogols; "moghol" is the common spelling.
-- p.the-club.hindi-words.door5 — Loot — second option: none; Bangle, Thug and Loot are English words from Hindi that French speakers hardly know, but who is in cannot change, so I kept them; the fact says "en passant par l'anglais" for that reason.
+- p.the-club.hindi-words.door5 — Loot — settled 30 Oct 2026: the ten names are the English words and the sign says "Des mots anglais", as in dutch-words. Shampoing and Pyjama were French while Bangle, Thug and Loot stayed English, and those three are exactly the ones that get in, so the English words gave the answer away.
 - p.the-club.arachnids.door2 — Scolopendre — second option: Mille-pattes; French has one word for both centipede and millipede, so the centipede is the scolopendre and the millipede the mille-pattes.
 - p.the-club.decathlon.door4 — Steeple — second option: Steeple-chase; French athletics says "le steeple".
 - p.the-club.gourd-family.sign — La famille de la courge — second option: La famille des cucurbitacées; the plain word is easier at 12.
@@ -2408,3 +2408,4 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - p.the-club.cashew-family.sign — La famille de la noix de cajou — second option: La famille des anacardiacées; the plain version is easier at 12.
 - p.the-club.own-right.stamp — Reines régnantes — second option: De plein droit; "reine régnante" is exact, but Cléopâtre and Catherine la Grande are also queens regnant, so it fits.
 - p.the-club.climacteric.stamp — Mûrissent après cueillette — second option: Après cueillette; several French stamps (also Sous le niveau de la mer, Oiseaux non volants, Venus des Amériques) are longer than the English "one or two words", so shorten them if the stamp does not have room.
+- p.the-club.alloys.door1 — Fonte — settled 30 Oct 2026: "Peltre" is Spanish. French says "étain" for pewter, but door 5 is the metal tin (Étain, not in), so the door gets another alloy: fonte (Larousse: "alliage de fer et de carbone"), still In, as pewter was, and a fair trap next to Fer.

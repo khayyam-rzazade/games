@@ -197,7 +197,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Le koala n’est pas un ours. C’est un marsupial, et ses plus proches parents vivants sont les wombats."
  },
  "butterfly": {
-  "fact": "Les papillons de jour et les papillons de nuit forment un seul ordre d’insectes."
+  "fact": "Les papillons de jour et les papillons de nuit, comme la phalène, forment un seul ordre d’insectes."
  },
  "zebra": {
   "fact": "Les zèbres et les chevaux appartiennent au même genre, Equus. Leurs lignées se sont séparées il y a environ 4 millions d’années."
@@ -299,7 +299,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Les éponges sont des animaux, comme les coraux. Les champignons forment leur propre règne, plus proche des animaux que celui des plantes. La mousse est une plante."
  },
  "moth": {
-  "fact": "Les papillons de nuit et les papillons de jour font partie du même ordre d’insectes. Les mouches passent aussi par une nymphe. Les libellules sont une branche plus ancienne."
+  "fact": "La phalène est un papillon de nuit : les papillons de nuit et les papillons de jour font partie du même ordre d’insectes. Les mouches passent aussi par une nymphe. Les libellules sont une branche plus ancienne."
  },
  "orangutan": {
   "fact": "Les orangs-outans et les humains sont tous deux des grands singes, avec les gorilles et les chimpanzés. Les singes sont des primates, mais pas des grands singes. Les paresseux ne partagent avec eux que la vie dans les arbres."
@@ -1362,10 +1362,10 @@ window.LG_PUZZLES["long-lost-cousin.things"] = {
   "bare": "wombat"
  },
  "moth": {
-  "name": "Papillon de nuit",
-  "the": "le papillon de nuit",
-  "of": "du papillon de nuit",
-  "bare": "papillon de nuit"
+  "name": "Phalène",
+  "the": "la phalène",
+  "of": "de la phalène",
+  "bare": "phalène"
  },
  "zebra": {
   "name": "Zèbre",

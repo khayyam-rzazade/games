@@ -22,7 +22,7 @@ Written on 29 October 2026 from the skeleton. Nothing else in the questions come
 - `q.opt.china` — Çin
 - `q.opt.donkey` — Eşek
 - `q.opt.elephant-seal` — Fil foku
-- `q.opt.ferret` — Ferret
+- `q.opt.ferret` — Evcil gelincik
 - `q.opt.fire-ant-queen` — Ateş karıncası kraliçesi
 - `q.opt.fire-ant-worker` — Ateş karıncası işçisi
 - `q.opt.frigatebird` — Fregat kuşu
@@ -53,6 +53,7 @@ Written on 29 October 2026 from the skeleton. Nothing else in the questions come
 - `q.opt.trout` — Alabalık
 ## New names: the slices of Who Gets What (who is paid)
 
+- `q.opt.apple` — Apple
 - `q.opt.cloth` — Kumaş
 - `q.opt.crude` — Ham petrol
 - `q.opt.delivery` — Dağıtım

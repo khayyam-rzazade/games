@@ -797,13 +797,23 @@
     }).catch(function () { if (lang === l) QT = null; return null; });   // no file: the question is asked in English
   }
   function qText(en) { return (QT && QT.text && QT.text[en]) || en; }
+  /* {x} inside a sentence (after a space) starts small: "…the price of a first iPad?", "Which is the raccoon's…",
+     "…del prezzo di un iPhone 4?" (30 Oct 2026). A first word with a capital further in (iPhone, VAT) is a name
+     and stays as it is; {x} that opens the question, or sits after a quote mark, keeps its capital. */
+  function smallHead(s) {
+    var w = String(s).split(/\s/)[0];
+    if (w.length > 1 && w.slice(1) !== w.slice(1).toLowerCase()) return s;
+    try { return s.charAt(0).toLocaleLowerCase(lang === "tr" ? "tr-TR" : lang) + s.slice(1); }
+    catch (e) { return s.charAt(0).toLowerCase() + s.slice(1); }
+  }
   function qStem(q) {
     var t = (QT && QT.stems && QT.stems[q.stem]) || (BANK.stems && BANK.stems[q.stem]) || "";
     if (!q.x) return t;
-    var forms = (QT && QT.forms && QT.forms[q.x]) || null;
-    return t.replace(/\{x\.the\}/g, (forms && forms.the) || qText(q.x))
-            .replace(/\{x\.of\}/g, (forms && forms.of) || qText(q.x))
-            .replace(/\{x\}/g, qText(q.x));
+    var forms = (QT && QT.forms && QT.forms[q.x]) || null, x = qText(q.x);
+    return t.replace(/\{x\.the\}/g, (forms && forms.the) || x)
+            .replace(/\{x\.of\}/g, (forms && forms.of) || x)
+            .replace(/(\s)\{x\}/g, function (m, sp) { return sp + smallHead(x); })
+            .replace(/\{x\}/g, x);
   }
   /* the day picks where in the bank to start, so two players of the same day meet the same questions, and the
      options are shuffled every time: in the bank the right answer is nearly always written first. */

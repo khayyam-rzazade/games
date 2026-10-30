@@ -945,8 +945,8 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - `p.the-club.citrus.door2` — Piña
 - `p.the-club.citrus.door3` — Mandarina
 - `p.the-club.citrus.door4` — Kiwi
-- `p.the-club.citrus.door5` — Pamplemusa
-- `p.the-club.citrus.fact` — Todos son cítricos. El pomelo es un cruce entre una pamplemusa y una naranja dulce.
+- `p.the-club.citrus.door5` — Pampelmusa
+- `p.the-club.citrus.fact` — Todos son cítricos. El pomelo es un cruce entre una pampelmusa y una naranja dulce.
 
 #### 60/148 · `island-countries` · day 60 (2 Dec 2026), 208 (29 Apr 2027), 356 (24 Sep 2027), 504 (19 Feb 2028) … · every 148 days · second batch
 
@@ -1910,19 +1910,19 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 
 #### 120/148 · `hindi-words` · day 120 (31 Jan 2027), 268 (28 Jun 2027), 416 (23 Nov 2027), 564 (19 Apr 2028) … · every 148 days · second batch
 
-- `p.the-club.hindi-words.sign` — Palabras que vienen del hindi
+- `p.the-club.hindi-words.sign` — Palabras inglesas que vienen del hindi
 - `p.the-club.hindi-words.stamp` — Del hindi
-- `p.the-club.hindi-words.in1` — Champú
-- `p.the-club.hindi-words.in2` — Pijama
-- `p.the-club.hindi-words.in3` — Jungla
+- `p.the-club.hindi-words.in1` — Shampoo
+- `p.the-club.hindi-words.in2` — Pyjamas
+- `p.the-club.hindi-words.in3` — Jungle
 - `p.the-club.hindi-words.out1` — Tsunami
 - `p.the-club.hindi-words.out2` — Safari
 - `p.the-club.hindi-words.door1` — Bangle
-- `p.the-club.hindi-words.door2` — Kétchup
+- `p.the-club.hindi-words.door2` — Ketchup
 - `p.the-club.hindi-words.door3` — Thug
-- `p.the-club.hindi-words.door4` — Iglú
+- `p.the-club.hindi-words.door4` — Igloo
 - `p.the-club.hindi-words.door5` — Loot
-- `p.the-club.hindi-words.fact` — Todas vienen del hindi, algunas pasando por el inglés. «Champú» viene de una palabra hindi que significa presionar o amasar.
+- `p.the-club.hindi-words.fact` — Todas pasaron al inglés desde el hindi: shampoo viene de una palabra hindi que significa «presionar» o «amasar».
 
 #### 121/148 · `gourd-family` · day 121 (1 Feb 2027), 269 (29 Jun 2027), 417 (24 Nov 2027), 565 (20 Apr 2028) … · every 148 days · second batch
 
@@ -2377,14 +2377,14 @@ The lines of the first batch (claude/logicers-strings-es.md, section T, keyed by
 - p.the-club.apes.sign — Son simios, no monos . Second option: Son simios sin cola. In Spanish «simio» also means monkey, so I added «no monos» to keep the rule true (baboon, macaque, mandrill are monkeys); «sin cola» would be wrong for some macaques and mandrills.
 - p.the-club.seven-wonders.sign — Las Siete Maravillas del Mundo Antiguo . Second option: Las Siete Maravillas. In Spanish «las siete maravillas» also means the new list (Coliseo and Gran Muralla would then be in), so I added «del Mundo Antiguo» as the fact already says.
 - p.the-club.japanese-words.door1 — Tycoon (door5 Honcho also kept as the English word) . Second option: none without changing the members. The rule depends on English: in Spanish these two are English words of Japanese origin and «honcho» is hardly used; Tsunami, Karaoke, Emoji and Origami are real Spanish words from Japanese.
-- p.the-club.hindi-words.door1 — Bangle (door3 Thug and door5 Loot also kept in English) . Second option: none that stays true. The Spanish words (pulsera, bandido, botín) do not come from Hindi, so the English words stay; Champú, Pijama and Jungla are the Spanish words from Hindi.
+- p.the-club.hindi-words.door1 — Bangle . Settled 30 Oct 2026: the ten names are the English words and the sign says "Palabras inglesas", as in dutch-words. Champú, Pijama and Jungla were Spanish while Bangle, Thug and Loot stayed English, and those three are exactly the ones that get in, so the English words gave the answer away.
 - p.the-club.dutch-words.sign — Palabras inglesas que vienen del holandés . Second option: skip this puzzle in Spanish. It only works with English words (Cookie, Boss, Waffle... kept in English because galleta, jefe, gofre are not Dutch), and a Spanish 12-year-old may not know Easel or Landscape; «holandés» chosen over «neerlandés» for easier reading.
 - p.the-club.cabbage.door1 — Col rizada (also door3 Coles de Bruselas, door5 Colinabo, in3 Coliflor) . Second option: Kale, Repollitos de Bruselas, Kohlrabi. The word «col» in these names gives the rule away in Spanish; in English the names do not.
 - p.the-club.onion-family.door1 — Cebollino . Second option: Ciboulette. «Cebollino» contains «cebolla» and hints at the rule; «ciboulette» is less usual.
 - p.the-club.gourd-family.door5 — Calabaza butternut . Second option: Butternut. The repeated word «calabaza» (also in2) hints that it belongs to the family; «calabaza moscada» would do the same.
 - p.the-club.equator.in1 — Ecuador . Second option: none, it is the country's name. In Spanish the country has the same word as the rule («el ecuador»), so it gives the rule away more than in English.
 - p.the-club.arabic-words.in1 — Álgebra (with Azúcar and Algodón) . Second option: none, the facts are true. The Spanish words in al-/az- are the classic Arabic-origin words, so the pattern hints at the rule; I also wrote that they reached Spanish (not English), some through other languages.
-- p.the-club.citrus.in3 — Pomelo (door5 Pamplemusa) . Second option: Toronja for the grapefruit and Pomelo for the pomelo (as in Mexico and the Caribbean). Regional split; I followed Spanish Wikipedia (pomelo = grapefruit, pamplemusa = Citrus maxima).
+- p.the-club.citrus.in3 — Pomelo (door5 Pampelmusa) . Second option: Toronja for the grapefruit and Pomelo for the pomelo (as in Mexico and the Caribbean). Regional split; I followed Spanish Wikipedia (pomelo = grapefruit, pampelmusa = Citrus maxima). 30 Oct 2026: "pamplemusa" changed to "pampelmusa", the dictionary spelling (Wikipedia gives both).
 - p.the-club.van-gogh.door1 — Los comedores de patatas . Second option: Los comedores de papas. «Patatas» is the usual title of the painting, but the rest of the batch says «papa».
 - p.the-club.underground.fact — Todos crecen bajo tierra. El cacahuete también: después de florecer, un tallito llamado ginóforo crece hacia abajo y se hunde en la tierra. Second option: un tallito llamado «clavo». «Ginóforo» is the Spanish botanical word for the peg but is hard for a 12-year-old.
 - p.the-club.panthera.fact — ... El puma, al que a veces se llama pantera, no es una de ellas. Second option: El puma, que en inglés a veces se llama «panther», no es una de ellas. In Spanish «pantera» usually means a black leopard or jaguar; the puma is rarely called that.

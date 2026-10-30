@@ -219,7 +219,7 @@ window.LG_DICT = {
  "world.top_today": "Bugünün en iyileri",
  "world.table": "Dünya tablosu",
  "world.invite": "Arkadaşlarını çağır",
- "world.invite_from": "{country} ülkesinden arkadaşlarını çağır",
+ "world.invite_from": "{country} için arkadaşlarını çağır",
  "world.copied": "Kopyalandı. Bir sohbete yapıştır.",
  "world.copy_failed": "Burada kopyalama çalışmadı. Bağlantı: {url}",
  "world.invite_plain": "Gerçek dünyayla ilgili küçük günlük oyunlar, her biri bir dakika. Bitirdiğin her oyun ülken için sayılır.",

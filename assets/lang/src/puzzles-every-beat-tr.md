@@ -295,7 +295,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.every-beat.polar-bear-den.face` — Kutup ayısı
 - `p.every-beat.polar-bear-den.label` — uyurken
-- `p.every-beat.polar-bear-den.sentence` — Kış inde uyuyan bir kutup ayısının kalbi hafta hafta yavaşlayarak dakikada yalnızca 27 atışa iner.
+- `p.every-beat.polar-bear-den.sentence` — Kış ininde uyuyan bir kutup ayısının kalbi hafta hafta yavaşlayarak dakikada yalnızca 27 atışa iner.
 - `p.every-beat.polar-bear-den.note` — Kış inlerindeki iki kutup ayısı üzerine bir çalışmadan (Folk ve ark., Arctic, 1970): uykudaki kalpleri yaklaşık 60 atışla başladı. Gerçek bir kış uykusu hayvanının aksine vücut sıcaklıkları normal kalır.
 
 #### 43/57 · `frog-rest` · day 43 (20 Nov 2026), 100 (16 Jan 2027), 157 (14 Mar 2027), 214 (10 May 2027) … · every 57 days

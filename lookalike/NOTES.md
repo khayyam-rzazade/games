@@ -6,8 +6,17 @@
 Three words a day, the same for everyone, about 20 seconds. Each word has a lookalike in another language (the
 same spelling, or nearly: *journée* / *journey*) with a different meaning. The player is asked what it means in the
 pair's language that is **not** theirs (the language chip decides who the player is; a player of neither language is
-asked about the pair's first one), taps one of three meanings in their own language (the real one, the other
-language's meaning = the trap, a decoy), sees a split card with both meanings, and moves on. Score x/3.
+asked about the pair's first one, unless the answer would give itself away — see below), taps one of three meanings
+in their own language (the real one, the other language's meaning = the trap, a decoy), sees a split card with both
+meanings, and moves on. Score x/3.
+
+**A player of neither language (30 Oct 2026).** 13 times the right answer was the shown word itself for some
+players (Italian *data* is *data* in Portuguese too; French *fin* is *fin* in Spanish), and on about 70 more it looked
+almost the same (*dent* / *dente*, *pil* / *pila*). `pickTarget` in `lookalike.js` now measures how alike the shown word
+and its real meaning look (edit distance, without case or accents, 0 to 1). When they are at least 0.6 alike and the
+real meaning looks more like the word than the trap does, the player is asked about the pair's other word instead, if
+that is better: there the lookalike is the trap, as it is for everyone else. Days 1 and 2 are not touched; 85 of the
+720 neither-language questions of the 60 days change. The data file is unchanged.
 
 ## What the rename changed (29 Oct 2026)
 

@@ -222,13 +222,48 @@
     for (i = a.length - 1; i > 0; i--) { j = Math.floor(r() * (i + 1)); t = a[i]; a[i] = a[j]; a[j] = t; }
     return a;
   }
-  /* what the player is asked: the pair's language that is not theirs (a player of neither is asked about the first) */
+  /* how alike two words look, 0 to 1, leaving out case and accents (edit distance over the longer word) */
+  function plainWord(s) {
+    s = String(s || "").toLowerCase().replace(/’/g, "'").trim();
+    try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) { /* old browsers: accents stay */ }
+    return s;
+  }
+  function alike(x, y) {
+    x = plainWord(x); y = plainWord(y);
+    if (x === y) return 1;
+    var m = x.length, n = y.length, prev = [], cur, i, j;
+    if (!m || !n) return 0;
+    for (j = 0; j <= n; j++) prev[j] = j;
+    for (i = 1; i <= m; i++) {
+      cur = [i];
+      for (j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (x.charAt(i - 1) === y.charAt(j - 1) ? 0 : 1));
+      prev = cur;
+    }
+    return 1 - prev[n] / Math.max(m, n);
+  }
+  var GIVEAWAY = 0.6;   // from this likeness on, a right answer that looks like the word itself answers the question
+  /* what the player is asked: the pair's language that is not theirs. A player of neither is asked about the first,
+     unless that word's real meaning in their own language looks like the word itself (Italian "data" is "data" in
+     Portuguese, French "dent" is "dente" in Italian): then the right answer would give itself away, so they are asked
+     about the other one, where the lookalike is the trap, as it is for everyone else (30 Oct 2026). */
+  function pickTarget(w, l) {
+    var a = w.pair[0], b = w.pair[1];
+    if (l === a) return b;
+    if (l === b) return a;
+    function gap(t) {
+      var o = t === a ? b : a, shown = w.word[t];
+      return alike(shown, txt(w.meaning[t], l)) - alike(shown, txt(w.meaning[o], l));
+    }
+    var ga = gap(a);
+    if (alike(w.word[a], txt(w.meaning[a], l)) >= GIVEAWAY && ga > 0 && gap(b) < ga) return b;
+    return a;
+  }
   function prepare(entry, l) {
     var ls = 0;
     for (var k = 0; k < l.length; k++) ls += l.charCodeAt(k);
     return entry.words.slice(0, N).map(function (w, i) {
       var a = w.pair[0], b = w.pair[1];
-      var target = (l === a) ? b : (l === b ? a : a);
+      var target = pickTarget(w, l);
       var other = target === a ? b : a;
       var opts = shuffled([
         { k: "r", text: txt(w.meaning[target], l) },

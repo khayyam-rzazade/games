@@ -632,11 +632,11 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 #### 66/84 · `ferret-sleep` · day 66 (13 Dec 2026), 150 (7 Mar 2027), 234 (30 May 2027), 318 (22 Aug 2027) … · every 84 days
 
-- `p.out-of-24.ferret-sleep.face` — Ferret
+- `p.out-of-24.ferret-sleep.face` — Evcil gelincik
 - `p.out-of-24.ferret-sleep.label` — uyurken
 - `p.out-of-24.ferret-sleep.chip1` — uyurken
 - `p.out-of-24.ferret-sleep.fig` — 14–18 sa
-- `p.out-of-24.ferret-sleep.sentence` — Bir ferret günde yaklaşık 14 ila 18 saat uyur; en hareketli olduğu zamanlar şafak ve alacakaranlık civarıdır.
+- `p.out-of-24.ferret-sleep.sentence` — Bir evcil gelincik günde yaklaşık 14 ila 18 saat uyur; en hareketli olduğu zamanlar şafak ve alacakaranlık civarıdır.
 - `p.out-of-24.ferret-sleep.note` — Washington Üniversitesi'nin tablosu 14,5 saat, Vikipedi 14 ila 18 saat veriyor. Çizimde yakın akrabası olan bir kakım var.
 
 #### 67/84 · `at-women-paid-work` · day 67 (14 Dec 2026), 151 (8 Mar 2027), 235 (31 May 2027), 319 (23 Aug 2027) … · every 84 days
@@ -817,7 +817,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - p.out-of-24.bat-sleep.face — Küçük kahverengi yarasa · second option: Küçük kahverengi myotis · I found no Turkish source for Myotis lucifugus; the first is the plain translation of the English name.
 - p.out-of-24.penguin-microsleep.sentence — "Yuvadaki çember sakallı penguenler günde 10.000'den fazla şekerleme yapar…" · second option: "çene bantlı penguenler" · "Çember sakallı penguen" is the name on the Turkish KURE encyclopedia page.
 - p.out-of-24.sea-otter-eating.face — Deniz su samuru · second option: Deniz samuru · both are used in Turkish; I found no source that settles it.
-- p.out-of-24.ferret-sleep.face — Ferret · second option: Av gelinciği · I found no Turkish source that names the pet ferret; "ferret" is what pet owners write.
+- p.out-of-24.ferret-sleep.face — Evcil gelincik · settled 30 Oct 2026: the English word was left on the dial; a Turkish veterinary guide (vetsaglik.com) calls the pet ferret "evcil gelincik", and Altitude's question about it says the same.
 - p.out-of-24.ferret-sleep.note — "Çizimde yakın akrabası olan bir kakım var." · second option: "bir ermin" · "kakım" is the Turkish name of the stoat, but a 12-year-old may not know it.
 - p.out-of-24.tree-shrew-sleep.face — Ağaç sivrifaresi · second option: Ağaç sivri faresi · I could not confirm the spelling from a Turkish source.
 - p.out-of-24.armadillo-sleep.face — Dev armadillo · second option: Dev zırhlı hayvan · "armadillo" is the usual word in Turkish nature pages.

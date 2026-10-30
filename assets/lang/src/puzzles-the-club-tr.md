@@ -7,7 +7,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 #### 1/148 · `marsupials` · day 1 (4 Oct 2026), 149 (1 Mar 2027), 297 (27 Jul 2027), 445 (22 Dec 2027) … · every 148 days
 
 - `p.the-club.marsupials.sign` — Keseli hayvanlardır
-- `p.the-club.marsupials.stamp` — Keselilier
+- `p.the-club.marsupials.stamp` — Keseliler
 - `p.the-club.marsupials.in1` — Kanguru
 - `p.the-club.marsupials.in2` — Koala
 - `p.the-club.marsupials.in3` — Opossum
@@ -66,7 +66,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.keratin.door3` — Toynak
 - `p.the-club.keratin.door4` — Geyik boynuzu
 - `p.the-club.keratin.door5` — Yün
-- `p.the-club.keratin.fact` — Hepsi, saçının ve tırnağının maddesi olan keratinden yapılmıştır. Gergedan boynuzu da öyle; fil dişi ise bir dişir.
+- `p.the-club.keratin.fact` — Hepsi, saçının ve tırnağının maddesi olan keratinden yapılmıştır. Gergedan boynuzu da öyle; fil dişi ise bir diştir.
 
 #### 5/148 · `eponyms` · day 5 (8 Oct 2026), 153 (5 Mar 2027), 301 (31 Jul 2027), 449 (26 Dec 2027) … · every 148 days
 
@@ -445,7 +445,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.alloys.in3` — Pirinç
 - `p.the-club.alloys.out1` — Demir
 - `p.the-club.alloys.out2` — Bakır
-- `p.the-club.alloys.door1` — Pewter
+- `p.the-club.alloys.door1` — Lehim
 - `p.the-club.alloys.door2` — Alüminyum
 - `p.the-club.alloys.door3` — Ayar gümüşü
 - `p.the-club.alloys.door4` — Titanyum
@@ -717,7 +717,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.former-capitals.in3` — Kyoto
 - `p.the-club.former-capitals.out1` — Sidney
 - `p.the-club.former-capitals.out2` — Şanghay
-- `p.the-club.former-capitals.door1` — Saint Petersburg
+- `p.the-club.former-capitals.door1` — St. Petersburg
 - `p.the-club.former-capitals.door2` — Mumbai
 - `p.the-club.former-capitals.door3` — Karaçi
 - `p.the-club.former-capitals.door4` — Chicago
@@ -1632,7 +1632,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.bears.door1` — Güneş ayısı
 - `p.the-club.bears.door2` — Rakun
 - `p.the-club.bears.door3` — Gözlüklü ayı
-- `p.the-club.bears.door4` — Wolverine
+- `p.the-club.bears.door4` — Kutup porsuğu
 - `p.the-club.bears.door5` — Tembel ayı
 - `p.the-club.bears.fact` — Hepsi ayıdır; dev panda da öyle. Koala keseli bir hayvandır, kırmızı panda da ayı değildir.
 
@@ -1754,15 +1754,15 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.weasel-family.stamp` — Sansargiller
 - `p.the-club.weasel-family.in1` — Su samuru
 - `p.the-club.weasel-family.in2` — Ermin
-- `p.the-club.weasel-family.in3` — Ferret
+- `p.the-club.weasel-family.in3` — Gelincik
 - `p.the-club.weasel-family.out1` — Rakun
 - `p.the-club.weasel-family.out2` — Kunduz
-- `p.the-club.weasel-family.door1` — Wolverine
+- `p.the-club.weasel-family.door1` — Kutup porsuğu
 - `p.the-club.weasel-family.door2` — Kokarca
 - `p.the-club.weasel-family.door3` — Vizon
 - `p.the-club.weasel-family.door4` — Mirket
 - `p.the-club.weasel-family.door5` — Bal porsuğu
-- `p.the-club.weasel-family.fact` — Hepsi sansargillerdendir; wolverine ve bal porsuğu da öyle. Kokarcalar kendi ailelerine ayrıldı.
+- `p.the-club.weasel-family.fact` — Hepsi sansargillerdendir; kutup porsuğu ve bal porsuğu da öyle. Kokarcalar kendi ailelerine ayrıldı.
 
 #### 111/148 · `from-milk` · day 111 (22 Jan 2027), 259 (19 Jun 2027), 407 (14 Nov 2027), 555 (10 Apr 2028) … · every 148 days
 
@@ -1906,22 +1906,22 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.soy.door3` — Edamame
 - `p.the-club.soy.door4` — Kuskus
 - `p.the-club.soy.door5` — Natto
-- `p.the-club.soy.fact` — Tofu, tempeh, miso ve natto soya fasulyesinden başlar. Humus nohuttan, polenta ise mısır ununden yapılır.
+- `p.the-club.soy.fact` — Tofu, tempeh, miso ve natto soya fasulyesinden başlar. Humus nohuttan, polenta ise mısır unundan yapılır.
 
 #### 120/148 · `hindi-words` · day 120 (31 Jan 2027), 268 (28 Jun 2027), 416 (23 Nov 2027), 564 (19 Apr 2028) … · every 148 days
 
 - `p.the-club.hindi-words.sign` — İngilizceye Hintçeden geçen sözcüklerdir
 - `p.the-club.hindi-words.stamp` — Hintçeden
-- `p.the-club.hindi-words.in1` — Şampuan
-- `p.the-club.hindi-words.in2` — Pijama
-- `p.the-club.hindi-words.in3` — Cangıl
+- `p.the-club.hindi-words.in1` — Shampoo
+- `p.the-club.hindi-words.in2` — Pyjamas
+- `p.the-club.hindi-words.in3` — Jungle
 - `p.the-club.hindi-words.out1` — Tsunami
 - `p.the-club.hindi-words.out2` — Safari
-- `p.the-club.hindi-words.door1` — Bilezik
-- `p.the-club.hindi-words.door2` — Ketçap
-- `p.the-club.hindi-words.door3` — Haydut
-- `p.the-club.hindi-words.door4` — İglo
-- `p.the-club.hindi-words.door5` — Yağma
+- `p.the-club.hindi-words.door1` — Bangle
+- `p.the-club.hindi-words.door2` — Ketchup
+- `p.the-club.hindi-words.door3` — Thug
+- `p.the-club.hindi-words.door4` — Igloo
+- `p.the-club.hindi-words.door5` — Loot
 - `p.the-club.hindi-words.fact` — Hepsi İngilizceye Hintçeden geçti. İngilizcedeki “shampoo”, bastırmak ya da yoğurmak anlamına gelen bir Hintçe sözcükten gelir.
 
 #### 121/148 · `gourd-family` · day 121 (1 Feb 2027), 269 (29 Jun 2027), 417 (24 Nov 2027), 565 (20 Apr 2028) … · every 148 days
@@ -2264,16 +2264,16 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.the-club.dutch-words.sign` — İngilizceye Hollandacadan geçen sözcüklerdir
 - `p.the-club.dutch-words.stamp` — Hollandacadan
-- `p.the-club.dutch-words.in1` — Kurabiye
-- `p.the-club.dutch-words.in2` — Patron
+- `p.the-club.dutch-words.in1` — Cookie
+- `p.the-club.dutch-words.in2` — Boss
 - `p.the-club.dutch-words.in3` — Waffle
 - `p.the-club.dutch-words.out1` — Hamburger
-- `p.the-club.dutch-words.out2` — Anaokulu
-- `p.the-club.dutch-words.door1` — Brendi
+- `p.the-club.dutch-words.out2` — Kindergarten
+- `p.the-club.dutch-words.door1` — Brandy
 - `p.the-club.dutch-words.door2` — Pretzel
-- `p.the-club.dutch-words.door3` — Şövale
+- `p.the-club.dutch-words.door3` — Easel
 - `p.the-club.dutch-words.door4` — Bagel
-- `p.the-club.dutch-words.door5` — Manzara
+- `p.the-club.dutch-words.door5` — Landscape
 - `p.the-club.dutch-words.fact` — Hepsi İngilizceye Hollandacadan geçti: “cookie”, küçük kek anlamındaki koekje'den, “boss” ise usta anlamındaki baas'tan gelir.
 
 #### 143/148 · `halogens` · day 143 (23 Feb 2027), 291 (21 Jul 2027), 439 (16 Dec 2027), 587 (12 May 2028) … · every 148 days
@@ -2375,8 +2375,8 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 ## U. Doubts for Khayyam
 
 - p.the-club.arabic-words.sign — İngilizceye Arapçadan geçen sözcüklerdir · second option: Leave the ten items in English (Algebra, Coffee, Sugar, Tea, Chocolate, Cotton, Robot, Sofa, Shampoo, Zero) · The rule is about the English word's history, not about the thing. I kept who is in and out exactly as in English and changed the sign to say "into English", but a few Turkish words (Pamuk, Kanepe, Robot) have a different origin of their own, so the puzzle may read oddly. Same for hindi-words, dutch-words and japanese-words.
-- p.the-club.hindi-words.sign — İngilizceye Hintçeden geçen sözcüklerdir · second option: Keep the items in English (Shampoo, Pyjamas, Jungle, Bangle, Thug, Loot…) · Same problem as arabic-words: the puzzle is about English etymology. Cangıl is the word the English–Turkish dictionary gives for jungle; Haydut = thug, Yağma = loot.
-- p.the-club.dutch-words.sign — İngilizceye Hollandacadan geçen sözcüklerdir · second option: Keep the items in English (Cookie, Boss, Waffle, Easel, Landscape…) · Same problem as arabic-words. Kurabiye, Patron, Şövale and Manzara are not Dutch in Turkish; they only stand for the English word. Anaokulu is Kindergarten (a German word in English, so out).
+- p.the-club.hindi-words.sign — İngilizceye Hintçeden geçen sözcüklerdir · settled 30 Oct 2026: the ten names are the English words (Shampoo, Pyjamas, Jungle, Tsunami, Safari, Bangle, Ketchup, Thug, Igloo, Loot), as in the Portuguese, Spanish and French docs. The Turkish words (Bilezik, Haydut, Yağma, Cangıl) did not come from Hindi, so the puzzle no longer matched its rule.
+- p.the-club.dutch-words.sign — İngilizceye Hollandacadan geçen sözcüklerdir · settled 30 Oct 2026: the ten names are the English words (Cookie, Boss, Waffle, Hamburger, Kindergarten, Brandy, Pretzel, Easel, Bagel, Landscape), as in the Portuguese, Spanish and French docs; Kurabiye, Patron, Şövale and Manzara are not Dutch in Turkish.
 - p.the-club.japanese-words.sign — İngilizceye Japoncadan geçen sözcüklerdir · second option: Japoncadan gelen sözcüklerdir (without "İngilizceye") · Tsunami, Karaoke and Emoji came into Turkish from Japanese as well, but Taykun and Honcho are English borrowings first, so I kept "into English" like the other three word-origin puzzles.
 - p.the-club.snakes.out1 — Kör kertenkele · second option: Ayaksız kertenkele · English "Slow worm" (Anguis fragilis). I could not confirm a standard Turkish common name; Kör kertenkele is the closest I know, but I am not sure it is the usual name.
 - p.the-club.snakes.door2 — Caecilian · second option: Apoda (older name of the group) · English "Caecilian". I found no everyday Turkish word, so I kept the international name. It is just as obscure in English, so the puzzle should still be fair.
@@ -2390,4 +2390,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - p.the-club.grass-family.out2 — Karabuğday · second option: none · English "Buckwheat". Karabuğday keeps the same trap as in English: the name says wheat but it is not a grass, and the sign Buğdaygiller makes it look even more like a member. Intended.
 - p.the-club.greenhouse.door3 — Diazot monoksit · second option: Azot protoksit · English "Nitrous oxide". Both names are used in Turkish; Diazot monoksit is the systematic one, Azot protoksit the older one.
 - p.the-club.winter-olympics.door1 — Luge · second option: Kızak · English "Luge". Turkish sports pages usually write Luge; Kızak is the general word for a sled, so it would also cover bobsleigh and skeleton.
-- p.the-club.bears.door4 — Wolverine · second option: Obur (possible zoological name, not confirmed) · English "Wolverine". I kept the English name, which is also used for the mustelid in the weasel-family puzzle; I could not confirm a common Turkish name.
+- p.the-club.bears.door4 — Kutup porsuğu (also weasel-family.door1) · settled 30 Oct 2026: TÜBİTAK's Kutup Ansiklopedisi names Gulo gulo "Kutup porsuğu" (İng. wolverine), a member of the weasel family; the English word stood out among the Turkish names.
+- p.the-club.alloys.door1 — Lehim · settled 30 Oct 2026: "Pewter" was left in English (it plays on 31 Oct). Turkish has no short word for pewter, and "kalay-kurşun alaşımı" would say the rule, so the door gets another alloy: lehim (Küre Ansiklopedisi: "kalay ve kurşun alaşımlarının genel adı"), still In, as pewter was.
+- p.the-club.former-capitals.door1 — St. Petersburg · settled 30 Oct 2026: the way Turkish media write the city (Euronews Türkçe, Milliyet); the English "Saint Petersburg" was left.
+- p.the-club.weasel-family.in3 — Gelincik · settled 30 Oct 2026: "Ferret" was left in English; gelincik is the weasel-family animal every Turkish child knows, and a member's name only has to be in the club.

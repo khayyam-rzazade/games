@@ -53,6 +53,7 @@ Written as a skeleton by questions_doc.py on 29 October 2026: every line is a �
 - `q.opt.trout` — Trota
 ## New names: the slices of Who Gets What (who is paid)
 
+- `q.opt.apple` — Apple
 - `q.opt.cloth` — Tessuto
 - `q.opt.crude` — Greggio
 - `q.opt.delivery` — Consegna

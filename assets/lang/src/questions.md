@@ -1,6 +1,6 @@
 # Logicers: Altitude’s hint questions, in English (keyed on the question; written by claude/logicers-data/scripts/questions_doc.py from assets/lang/src/altitude-questions.json)
 
-Altitude gives a stuck player two free hints and two more for answering two questions. The bank has 180 questions built on 7 stems, each answered from a Logicers puzzle (the `src` in the bank). To translate them all a language needs the 7 stems and the 57 names below — the other 155 answer buttons are strings of the puzzle docs and come from there.
+Altitude gives a stuck player two free hints and two more for answering two questions. The bank has 180 questions built on 7 stems, each answered from a Logicers puzzle (the `src` in the bank). To translate them all a language needs the 7 stems and the 58 names below — the other 154 answer buttons are strings of the puzzle docs and come from there.
 
 ## How to read and translate this doc
 
@@ -13,11 +13,11 @@ Altitude gives a stuck player two free hints and two more for answering two ques
 
 ## Where each language stands
 
-- it (Italian): 0 of 64 lines of this doc done · 53 of 155 reused puzzle strings already translated in its puzzle docs
-- tr (Turkish): 0 of 64 lines of this doc done · 53 of 155 reused puzzle strings already translated in its puzzle docs
-- es (Spanish): 0 of 64 lines of this doc done · 53 of 155 reused puzzle strings already translated in its puzzle docs
-- pt (Brazilian Portuguese): 0 of 64 lines of this doc done · 33 of 155 reused puzzle strings already translated in its puzzle docs
-- fr (French): 0 of 64 lines of this doc done · 33 of 155 reused puzzle strings already translated in its puzzle docs
+- it (Italian): 64 of 65 lines of this doc done · 154 of 154 reused puzzle strings already translated in its puzzle docs
+- tr (Turkish): 64 of 65 lines of this doc done · 154 of 154 reused puzzle strings already translated in its puzzle docs
+- es (Spanish): 64 of 65 lines of this doc done · 154 of 154 reused puzzle strings already translated in its puzzle docs
+- pt (Brazilian Portuguese): 64 of 65 lines of this doc done · 154 of 154 reused puzzle strings already translated in its puzzle docs
+- fr (French): 64 of 65 lines of this doc done · 154 of 154 reused puzzle strings already translated in its puzzle docs
 
 ## The 7 questions (stems) (7)
 
@@ -72,10 +72,11 @@ Altitude gives a stuck player two free hints and two more for answering two ques
 - `q.opt.red-deer` — Red deer
 - `q.opt.sea-turtle` — Sea turtle
 - `q.opt.trout` — Trout
-## New names: the slices of Who Gets What (who is paid) (24)
+## New names: the slices of Who Gets What (who is paid) (25)
 
 ↳ Each is a slice name of a Who Gets What puzzle: who is paid out of the price. One or two words, as in English, and the same rule as the puzzles: the name must not hint at the size of the share ("Rest" is the remainder, "Duty" the excise tax, "Crude" the oil itself, "Wires" the grid).
 
+- `q.opt.apple` — Apple
 - `q.opt.cloth` — Cloth
 - `q.opt.crude` — Crude
 - `q.opt.delivery` — Delivery
@@ -101,16 +102,15 @@ Altitude gives a stuck player two free hints and two more for answering two ques
 - `q.opt.wholesale` — Wholesale
 - `q.opt.wires` — Wires
 
-## Answer buttons that are puzzle strings already (155: nothing to write here)
+## Answer buttons that are puzzle strings already (154: nothing to write here)
 
 ↳ Listed so you can see them; their translations live in the puzzle docs named in each key (long-lost-cousin, years-apart, who-gets-what) and the build takes them from there. If one of them reads badly as a bare answer button, say so in your doubts.
 
-#### from Long Lost Cousin (84)
+#### from Long Lost Cousin (83)
 
 - Aardvark → `p.long-lost-cousin.thing.aardvark.name`
 - African elephant → `p.long-lost-cousin.thing.african_elephant.name`
 - Ant → `p.long-lost-cousin.thing.ant.name`
-- Apple → `p.long-lost-cousin.thing.apple.name`
 - Asian elephant → `p.long-lost-cousin.thing.asian_elephant.name`
 - Axolotl → `p.long-lost-cousin.thing.axolotl.name`
 - Bear → `p.long-lost-cousin.thing.bear.name`

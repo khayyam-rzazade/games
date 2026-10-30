@@ -45,6 +45,7 @@ window.LG_QUESTIONS = {
   "Red deer": "Cervo-vermelho",
   "Sea turtle": "Tartaruga-marinha",
   "Trout": "Truta",
+  "Apple": "Apple",
   "Cloth": "Tecido",
   "Crude": "Petróleo",
   "Delivery": "Entrega",
@@ -103,7 +104,6 @@ window.LG_QUESTIONS = {
   "Hedgehog": "Ouriço",
   "The East India Company gets its charter": "A Companhia das Índias Orientais recebe sua carta régia",
   "The Titanic sinks": "O Titanic afunda",
-  "Apple": "Maçã",
   "A first iPad": "Um primeiro iPad",
   "Elephant": "Elefante",
   "Aardvark": "Porco-formigueiro",
@@ -297,10 +297,6 @@ window.LG_QUESTIONS = {
   "Hedgehog": {
    "the": "o ouriço",
    "of": "do ouriço"
-  },
-  "Apple": {
-   "the": "a maçã",
-   "of": "da maçã"
   },
   "Elephant": {
    "the": "o elefante",

@@ -262,7 +262,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 #### 65/148 · `butterfly` · day 65 (7 Dec 2026), 213 (4 May 2027), 361 (29 Sep 2027), 509 (24 Feb 2028) … · every 148 days
 
-- `p.long-lost-cousin.butterfly.fact` — Les papillons de jour et les papillons de nuit forment un seul ordre d’insectes.
+- `p.long-lost-cousin.butterfly.fact` — Les papillons de jour et les papillons de nuit, comme la phalène, forment un seul ordre d’insectes.
 
 #### 66/148 · `zebra` · day 66 (8 Dec 2026), 214 (5 May 2027), 362 (30 Sep 2027), 510 (25 Feb 2028) … · every 148 days
 
@@ -398,7 +398,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 #### 99/148 · `moth` · day 99 (10 Jan 2027), 247 (7 Jun 2027), 395 (2 Nov 2027), 543 (29 Mar 2028) … · every 148 days
 
-- `p.long-lost-cousin.moth.fact` — Les papillons de nuit et les papillons de jour font partie du même ordre d’insectes. Les mouches passent aussi par une nymphe. Les libellules sont une branche plus ancienne.
+- `p.long-lost-cousin.moth.fact` — La phalène est un papillon de nuit : les papillons de nuit et les papillons de jour font partie du même ordre d’insectes. Les mouches passent aussi par une nymphe. Les libellules sont une branche plus ancienne.
 
 #### 100/148 · `orangutan` · day 100 (11 Jan 2027), 248 (8 Jun 2027), 396 (3 Nov 2027), 544 (30 Mar 2028) … · every 148 days
 
@@ -1051,9 +1051,9 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.long-lost-cousin.thing.wombat.name` — Wombat
 - `p.long-lost-cousin.thing.wombat.the` — le wombat
 - `p.long-lost-cousin.thing.wombat.of` — du wombat
-- `p.long-lost-cousin.thing.moth.name` — Papillon de nuit
-- `p.long-lost-cousin.thing.moth.the` — le papillon de nuit
-- `p.long-lost-cousin.thing.moth.of` — du papillon de nuit
+- `p.long-lost-cousin.thing.moth.name` — Phalène
+- `p.long-lost-cousin.thing.moth.the` — la phalène
+- `p.long-lost-cousin.thing.moth.of` — de la phalène
 - `p.long-lost-cousin.thing.zebra.name` — Zèbre
 - `p.long-lost-cousin.thing.zebra.the` — le zèbre
 - `p.long-lost-cousin.thing.zebra.of` — du zèbre
@@ -1115,7 +1115,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - p.long-lost-cousin.thing.barnacle.name — Balane — second option: Anatife; balane is the barnacle on rocks, anatife the one on a stalk.
 - p.long-lost-cousin.thing.hyrax.name — Daman — second option: Hyrax; daman is the French word, hyrax the Latin-style name some French pages use.
 - p.long-lost-cousin.thing.turkey.name — Dindon — second option: Dinde; dindon is the species, dinde the female or the dish.
-- p.long-lost-cousin.thing.moth.name — Papillon de nuit — second option: Phalène; papillon de nuit pairs with Papillon for the butterfly.
+- p.long-lost-cousin.thing.moth.name — Phalène — settled 30 Oct 2026: "Papillon de nuit" sat next to "Papillon" on days 65 and 99, which gave the answer away. Académie française: phalène, nom féminin, "papillon crépusculaire ou nocturne".
 - p.long-lost-cousin.thing.aardvark.name — Oryctérope — second option: Cochon de terre; oryctérope is the French zoological name.
 - p.long-lost-cousin.thing.elephant_bird.name — Oiseau-éléphant — second option: Aepyornis; oiseau-éléphant is the French name.
 - p.long-lost-cousin.duck.fact — "les ansériformes (canards, oies) et les gallinacés (poules, dindons)" for "waterfowl and landfowl" — second option: "les oiseaux d’eau et les oiseaux de basse-cour"; I named the two groups and gave examples in brackets.

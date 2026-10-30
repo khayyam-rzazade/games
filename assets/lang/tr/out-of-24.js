@@ -1014,10 +1014,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ]
  },
  "ferret-sleep": {
-  "face": "Ferret",
+  "face": "Evcil gelincik",
   "label": "uyurken",
   "fig": "14–18 sa",
-  "sentence": "Bir ferret günde yaklaşık 14 ila 18 saat uyur; en hareketli olduğu zamanlar şafak ve alacakaranlık civarıdır.",
+  "sentence": "Bir evcil gelincik günde yaklaşık 14 ila 18 saat uyur; en hareketli olduğu zamanlar şafak ve alacakaranlık civarıdır.",
   "note": "Washington Üniversitesi'nin tablosu 14,5 saat, Vikipedi 14 ila 18 saat veriyor. Çizimde yakın akrabası olan bir kakım var.",
   "chips": [
    {
