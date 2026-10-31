@@ -63,7 +63,7 @@ The twin and the rarest pair ignore it. The room server itself is `server/findou
 `/twin` and `/rare` are braked at 60 calls an hour per address each (in memory, like the others). Both read the
 whole table of scores on each call: fine for tens of thousands of players; if it ever gets slow, cache the z-scores
 in the hourly refresh.
-- **The trial flag:** `FINDOUT_TRIAL` in `find-out/find-out.js` is `true` now. Set it to `false` the day the trial ends.
+- **The trial flag:** the trial ended on 31 Oct 2026. `FINDOUT_TRIAL` in `find-out/find-out.js` is now `false` unless a page sets it, so new players and funnel counts are saved with `trial = 0`. The old rows were unflagged on 31 Oct 2026, from `server/findout`, after a copy with the export command above: `npx wrangler d1 execute logicers-findout --remote --command "UPDATE players SET trial = 0 WHERE trial = 1"` and the same for `counters` (`UPDATE counters SET trial = 0 WHERE trial = 1`; it stops with a UNIQUE error, changing nothing, if a `trial = 0` row exists for the same event and day, and it can be left alone: the counters add both flags up anyway). Nothing ever left the trial rows out of the public counters or the analysis scripts.
 
 ## Tests
 

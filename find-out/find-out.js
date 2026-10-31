@@ -31,7 +31,8 @@ const TURNSTILE_SITE_KEY = window.FINDOUT_TURNSTILE ?? '0x4AAAAAAFj_-QKSbSfJrYJ1
 const ROOM_ADDR = window.FINDOUT_ROOM_API ? { use: window.FINDOUT_ROOM_API, alt: '', heard: true } : { use: 'https://findout-room.logicers.com', alt: 'https://logicers-findout-room.rza-khay.workers.dev', heard: false };
 const ROOM_BINS = { 1: [1, 5, 0.5], 2: [1, 5, 0.25], 3: [0, 24, 1], 4: [0, 4, 1], 5: [0, 10, 0.5], 6: [0, 4, 1], 7: [0, 10, 0.5], 8: [1, 5, 0.25] };
 const ROOM_MIN = 10;
-const TRIAL = window.FINDOUT_TRIAL !== undefined ? !!window.FINDOUT_TRIAL : true;
+/* The trial is over (31 Oct 2026, Khayyam: "use all data as data"): nothing is flagged as a trial any more. A test page can still set window.FINDOUT_TRIAL = true. The old answers were unflagged in the database on the same day (server/findout/README.md). */
+const TRIAL = window.FINDOUT_TRIAL !== undefined ? !!window.FINDOUT_TRIAL : false;
 const STORE_KEY = 'lg.findout.v1';
 const SLUG = { 1: 'type', 2: 'shots', 3: 'sunny', 4: 'kid', 5: 'story', 6: 'twice', 7: 'believe', 8: 'home', 9: 'quick' };
 const ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9];
