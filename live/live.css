@@ -80,6 +80,9 @@ body.live-strip .live-main { padding-bottom: 104px; }
 .live-seg button { appearance: none; border: 0; background: none; font: inherit; font-weight: 700; font-size: .9rem; color: var(--soft); padding: 7px 10px; border-radius: 9px; cursor: pointer; min-width: 44px; }
 .live-seg button[aria-checked="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(21, 23, 43, .14); }
 .live-more { margin-top: 4px; border-bottom: 1px solid var(--line); }
+/* the language of a game of Logicers' sets (3 Nov 2026): six names in two rows of three, under its label */
+.live-seg.hs-langs { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; margin-left: 0; }
+.live-seg.hs-langs button { min-width: 0; padding: 7px 4px; }
 .live-more summary { cursor: pointer; padding: 12px 0; font-weight: 700; color: var(--c); list-style: none; }
 .live-more summary::-webkit-details-marker { display: none; }
 .live-more summary::after { content: " ›"; }

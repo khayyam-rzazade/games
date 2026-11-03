@@ -3,8 +3,9 @@
 `days.json` and `languages.json` are written by `r/borrowed/build.py` from `r/borrowed/words.py`
 (the 60 words) and `r/borrowed/languages.py` (the workshop on the Mac kept its first name). Edit those and run
 `python3 build.py <games folder>`; do not edit the JSON by hand. The build refuses anything that breaks the
-rules below. Since the game became Passport (29 Oct 2026) its folder is `passport/`: the build still writes into
-`borrowed/data/` (its line 211) and must be pointed at `passport/data/` before it runs again.
+rules below. Since the game became Passport (29 Oct 2026) its folder is `passport/` and the build writes into
+`passport/data/` (fixed on 29 Oct 2026; checked again on 3 Nov 2026: run into a copy of the site, it gives
+`days.json` and `languages.json` byte for byte as they are live). The workshop folder `r/borrowed/` keeps its old name.
 
 ## days.json (60 entries, day 1 to 60)
 
@@ -18,7 +19,7 @@ rules below. Since the game became Passport (29 Oct 2026) its folder is `passpor
 - `lastHop`: what each language's own dictionary says it took the word from.
   - a route language, normally;
   - the language itself when it is the origin (yogurt in Turkish, sandwich in English);
-  - a language **not** on the route in 20 cases, where a dictionary names it (coffee reached
+  - a language **not** on the route in 23 cases, where a dictionary names it (coffee reached
     English through Dutch); `review.txt` lists them;
   - `null` when the dictionary is silent, could not be read, hedges between two, or contradicts
     the others. **null means "unknown", not "from the last stop".**

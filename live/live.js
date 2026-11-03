@@ -2,7 +2,9 @@
    everyone: the section's own page, the host's setup, joining, the game itself for the host and for every
    player, and a saved game's own page, where it is played alone.
 
-   Two kinds of game. How Sure? with Logicers' own sets: guess a number, pick a net. A game a host made with
+   Two kinds of game. How Sure? with Logicers' own sets: guess a number, pick a net; in English, Italian, Turkish,
+   Spanish, Portuguese or French, the language its host picks (3 Nov 2026: the sets' own translations, on the
+   server, and every screen in that language; outside a game the page speaks the site's). A game a host made with
    the editor (make/): its questions are numbers (the same slider and nets), choices of 2 to 4 answers, true
    or false, or typed answers, and every question asks how sure the player is (Sure 5 or 0, Fairly 4 or 1,
    Not sure 3 or 2) unless its maker switched that off. A made game wears its maker's colour and speaks its
@@ -67,7 +69,8 @@
     return window.btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   }
 
-  /* ---- words in the game's language (words.js): English outside a made game ---- */
+  /* ---- words in the page's language (words.js): a made game's, a game of Logicers' sets' own (its host's pick),
+     or outside a game the site's (3 Nov 2026; until then English outside a made game) ---- */
   var L = "en";
   var pluralRules = {};
   function raw(k) {
@@ -185,7 +188,28 @@
     if (a >= 1e6) return big("million", x / 1e6);
     return plain(x, q.log ? 2 : decimals(q.step));
   }
-  function withUnit(q, x) { return fmt(q, x) + (q.u ? " " + q.u : ""); }
+  /* a number with its unit, as the language writes it (3 Nov 2026). English is as it always was. Elsewhere a unit in
+     words after a million, a billion or a trillion takes "of" (Italian "1,3 milioni di Terre", French "2,5 millions de
+     rivets", "d'" before a vowel); Turkish writes a percent first (%20); French holds the unit to its number. */
+  var OF = { it: "di", es: "de", pt: "de", fr: "de" };
+  function unitAfter(q, x) {
+    var u = q.u || "";
+    if (!u || L === "en") return u;
+    var of = OF[L];
+    if (of && q.kind !== "year" && Math.abs(x) >= 1e6 && /^\p{L}/u.test(u) && u.toLowerCase().indexOf(of + " ") !== 0) {
+      u = L === "fr" && /^[aeiouyhâàéèêëîïôûüœæ]/i.test(u) ? "d’" + u : of + " " + u;
+    }
+    return u;
+  }
+  var PCT = { it: "", pt: "", es: "\u00a0", fr: "\u202f" };      // the space before a percent sign, as each writes it
+  function withUnit(q, x) {
+    if (!q.u) return fmt(q, x);
+    if (L === "en") return fmt(q, x) + " " + q.u;
+    if (q.u === "%") return L === "tr" ? "%" + fmt(q, x) : fmt(q, x) + (PCT[L] !== undefined ? PCT[L] : " ") + "%";
+    return fmt(q, x) + (L === "fr" ? "\u00a0" : " ") + unitAfter(q, x);
+  }
+  /* the unit in the small type under (or after) a big number on a player's screen */
+  function unitSmall(q, x) { return q.u ? "<small>" + esc(unitAfter(q, x)) + "</small>" : ""; }
   function ord(n) {
     if (L === "it" || L === "pt") return n + "º";
     if (L === "tr") return n + ".";
@@ -245,11 +269,11 @@
     var a = '<svg viewBox="0 0 120 70" aria-hidden="true"><rect class="lf-c" x="8" y="30" width="104" height="6" rx="3" opacity=".22"/><rect class="lf-c" x="66" y="12" width="3" height="42" rx="1.5"/><circle class="lf-c ls-card" cx="67.5" cy="57" r="8" stroke-width="2.5"/><text class="lf-c" x="67.5" y="9" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="11">1971</text></svg>';
     var b = '<svg viewBox="0 0 120 70" aria-hidden="true"><defs>' + mesh("A", "#470BA8") + '</defs><g class="ls-c" stroke-width="2"><rect x="57" y="6" width="9" height="15" rx="4" fill="url(#' + id + 'A)"/><rect x="45" y="26" width="33" height="15" rx="5" fill="url(#' + id + 'A)"/><rect x="22" y="46" width="78" height="15" rx="5" fill="url(#' + id + 'A)"/></g><rect class="lf-c" x="60.5" y="2" width="2" height="64" rx="1"/></svg>';
     var c = '<svg viewBox="0 0 120 70" aria-hidden="true"><defs>' + mesh("B", "#470BA8") + '</defs><rect class="lf-c" x="8" y="40" width="104" height="6" rx="3" opacity=".22"/><rect class="ls-c" x="40" y="22" width="40" height="30" rx="8" fill="url(#' + id + 'B)" stroke-width="2.4"/><rect class="lf-ink" x="58" y="12" width="4" height="48" rx="2"/><rect class="lf-c" x="86" y="4" width="28" height="18" rx="9"/><text class="lf-onc" x="100" y="17" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="12">+5</text></svg>';
-    return '<div class="live-rule">' + a + '<b><i>1</i>Guess</b></div><div class="live-rule">' + b + '<b><i>2</i>Pick a net</b></div><div class="live-rule">' + c + '<b><i>3</i>Catch it</b></div>';
+    return '<div class="live-rule">' + a + '<b><i>1</i>' + esc(W("ruleGuess")) + '</b></div><div class="live-rule">' + b + '<b><i>2</i>' + esc(W("rulePick")) + '</b></div><div class="live-rule">' + c + '<b><i>3</i>' + esc(W("ruleCatch")) + "</b></div>";
   }
   function pointsHtml() {
     return ["s", "m", "b"].map(function (n) {
-      return '<div class="live-pt">' + netIcon(n) + '<b>' + netWord(n) + '</b><span>' + R.POINTS[n][0] + " if it catches</span><span>" + R.POINTS[n][1] + " if not</span></div>";
+      return '<div class="live-pt">' + netIcon(n) + '<b>' + esc(netWord(n)) + '</b><span>' + esc(W("ifCatches", R.POINTS[n][0])) + "</span><span>" + esc(W("ifNot", R.POINTS[n][1])) + "</span></div>";
     }).join("");
   }
   /* a made game's lobby: how sure, as three pictures of dots and points */
@@ -269,17 +293,26 @@
   function keepStatic(id) { var e = $(id); if (e && STATIC[id] === undefined) STATIC[id] = e.innerHTML; }
   ["send-title", "send-quiet", "send-edit", "send-go", "reveal-wait", "share-title", "share-save", "share-copy"].forEach(keepStatic);
   var made = null;                  // the made game shown: { title, colour, lang, sure, mixed } or null
-  /* A made game's colour and language, or (null) Logicers' own look and English. */
-  function setLook(m) {
+  var shareAltEn = $("share-img") ? $("share-img").getAttribute("alt") : "";
+  /* the language layer (lang.js) shows its quiet "English only" line when the page has loaded, which is after this
+     script has drawn the first view: a page that already speaks another language takes it away again */
+  document.addEventListener("DOMContentLoaded", function () {
+    var p = $("lg-only");
+    if (p && (made || L !== "en")) { p.textContent = ""; p.hidden = true; }
+  });
+  /* A made game's colour and language, or (null) Logicers' own look in a language: the site's own outside a game, a game
+     of Logicers' sets in the language its host picked (3 Nov 2026; before, Logicers' own screens were all English). */
+  function setLook(m, lang) {
     made = m || null;
-    L = made && WORDS[made.lang] ? made.lang : "en";
+    L = made ? (WORDS[made.lang] ? made.lang : "en") : (lang && WORDS[lang] ? lang : "en");
     document.documentElement.lang = L;
     /* the site's own words on this page (the way on to today's games at the end, 29 Oct 2026): the player's own
-       language when they have picked one, otherwise the game's; and no "English only" line over a made game */
-    if (made && window.LG && window.LG.speak) { try { window.LG.speak(window.LG.saved() || L); } catch (e) { /* stays English */ } }
+       language when they have picked one, otherwise the game's; and no "English only" line when the page speaks
+       another language */
+    if ((made || L !== "en") && window.LG && window.LG.speak) { try { window.LG.speak(window.LG.saved() || L); } catch (e) { /* stays English */ } }
     if (made && COLOURS.indexOf(made.colour) >= 0) document.body.setAttribute("data-kc", made.colour);
     else document.body.removeAttribute("data-kc");
-    if (made) {
+    if (made || L !== "en") {
       $("send-title").textContent = W("sendTitle");
       $("send-quiet").textContent = W("sendFinal");
       $("send-edit").textContent = W("edit");
@@ -291,16 +324,21 @@
     } else {
       Object.keys(STATIC).forEach(function (id) { var e = $(id); if (e) e.innerHTML = STATIC[id]; });
     }
-    $("hs-more").setAttribute("aria-label", made ? W("moreHost") : "More for the host");
+    $("hs-more").setAttribute("aria-label", W("moreHost"));
+    var hb = document.querySelector('[data-open="dlg-help"]');
+    if (hb) hb.setAttribute("aria-label", W("helpTitle"));
+    if ($("share-img")) $("share-img").setAttribute("alt", !made && L !== "en" ? W("shareAlt") : shareAltEn);
     helpFor();
   }
-  /* "How to play": How Sure?'s own pictures, or a made game's words */
+  /* "How to play": How Sure?'s own pictures and the page's English, the same in another language, or a made game's words */
   function helpFor() {
     var hs = $("help-hs"), mk = $("help-kit");
     if (!hs || !mk) return;
-    hs.hidden = !!made;
-    mk.hidden = !made;
-    $("help-title").textContent = made ? W("helpTitle") : "How to play";
+    var own = !made && L !== "en";
+    hs.hidden = !!made || own;
+    mk.hidden = !made && !own;
+    $("help-title").textContent = W("helpTitle");
+    if (own) { mk.innerHTML = ownHelp(); return; }
     if (!made) return;
     var sure = made.sure !== false;
     mk.innerHTML = (sure ? '<p class="quiet">' + esc(W("helpAnswer")) + "</p>" + levelsHtml() + '<p class="quiet">' + esc(W("helpNets")) + "</p>" : '<p class="quiet">' + esc(W("helpPlain")) + "</p>") +
@@ -308,6 +346,17 @@
       "<h3>" + esc(W("madeTitle")) + '</h3><p class="quiet">' + esc(W("helpMade")) + ' <a href="' + esc(reportHref()) + '">' + esc(W("report")) + '</a> · <a href="' + esc(termsHref()) + '">' + esc(W("terms")) + "</a></p>" +
       "<h3>" + esc(W("aboutGames")) + '</h3><p class="quiet">' + esc(W("helpAccount")) + "</p>" +
       "<h3>" + esc(W("helpPrivacy")) + '</h3><p class="quiet">' + esc(privacyLine(app.alone ? "alone" : "live")) + "</p>" +
+      '<p class="quiet">' + WH("contact", CONTACT).replace(esc(CONTACT), '<a href="mailto:' + CONTACT + '">' + CONTACT + "</a>") + "</p>";
+  }
+  /* How Sure?'s own help, in a language other than English: the page's English help, said in fewer words, with the
+     terms (in every language) for the rest of the privacy words */
+  function ownHelp() {
+    return '<div class="live-rules live-rules-help">' + rulesHtml() + '</div><div class="live-pointsgrid">' + pointsHtml() + "</div>" +
+      '<p class="quiet">' + esc(W("hsHelpNets")) + " " + esc(W("helpNoSpeed")) + "</p>" +
+      "<h3>" + esc(W("aboutGames")) + '</h3><p class="quiet">' + esc(W("helpAccount")) + " " + esc(W("hsHelpScreen")) + "</p>" +
+      "<h3>" + esc(W("hsWhereH")) + '</h3><p class="quiet">' + esc(W("hsWhereP")) + "</p>" +
+      "<h3>" + esc(W("helpPrivacy")) + '</h3><p class="quiet">' + esc(privacyLine("live")) + ' <a href="' + esc(termsHref()) + '">' + esc(W("terms")) + "</a></p>" +
+      "<h3>" + esc(W("madeTitle")) + '</h3><p class="quiet">' + esc(W("hsMadeP")) + ' <a href="' + esc(TO.here("build/")) + '">' + esc(W("makeOwn")) + "</a></p>" +
       '<p class="quiet">' + WH("contact", CONTACT).replace(esc(CONTACT), '<a href="mailto:' + CONTACT + '">' + CONTACT + "</a>") + "</p>";
   }
   /* the privacy words of a made game's screens, in its language (TurnsOut's own words are English only) */
@@ -322,14 +371,34 @@
   function madeLine(short) {
     return '<p class="hs-made">' + esc(W(short ? "madeByShort" : "madeBy")) + ' · <a href="' + esc(reportHref()) + '">' + esc(W("report")) + "</a></p>";
   }
-  /* the join screen's privacy line: Logicers' English one, or the made game's own */
+  /* the join screen's privacy line: Logicers' English one, or the made game's own, or the live games' in the language */
   var joinPrivacy = document.querySelector("#v-join [data-privacy]");
   var joinPrivacyText = joinPrivacy ? joinPrivacy.textContent : "";
   function joinPrivacyFor() {
     if (!joinPrivacy) return;
-    joinPrivacy.textContent = made ? privacyLine("live") : (joinPrivacy.getAttribute("data-en") || joinPrivacyText);
+    joinPrivacy.textContent = made || L !== "en" ? privacyLine("live") : (joinPrivacy.getAttribute("data-en") || joinPrivacyText);
   }
   if (joinPrivacy) joinPrivacy.setAttribute("data-en", joinPrivacyText);
+  /* a view's own words, in the page's language (the host's setup since 30 Oct 2026, the section's own page since
+     3 Nov 2026): data-w a word, data-wn a timer's seconds, data-wa an attribute's word, data-wt the text after a
+     picture; English is what the page already says */
+  var homePrivacy = document.querySelector("#v-home [data-privacy]");
+  if (homePrivacy) homePrivacy.setAttribute("data-en", homePrivacy.textContent);
+  function paint(id) {
+    var box = $(id);
+    each(box.querySelectorAll("[data-w]"), function (e) { e.textContent = W(e.getAttribute("data-w")); });
+    each(box.querySelectorAll("[data-wn]"), function (e) { e.textContent = W("suSec", +e.getAttribute("data-wn")); });
+    each(box.querySelectorAll("[data-wa]"), function (e) {
+      var p = e.getAttribute("data-wa").split(":");
+      e.setAttribute(p[0], W(p[1]));
+    });
+    each(box.querySelectorAll("[data-wt]"), function (e) {
+      var t = e.lastChild;
+      if (t && t.nodeType === 3) t.nodeValue = W(e.getAttribute("data-wt"));
+    });
+    each(box.querySelectorAll("[data-rules]"), function (e) { e.innerHTML = rulesHtml(); });
+    if (id === "v-home" && homePrivacy) homePrivacy.textContent = L !== "en" ? privacyLine("live") : homePrivacy.getAttribute("data-en");
+  }
 
   /* ================================================================ views */
   var VIEWS = ["v-home", "v-setup", "v-join", "v-note", "v-game", "v-kit"];
@@ -402,13 +471,20 @@
   joinform.addEventListener("submit", function (e) {
     e.preventDefault();
     var v = joincode.value.toUpperCase().replace(/[^A-Z]/g, "");
-    if (v.length !== 5 && v.length !== 7) { $("joinhint").textContent = "A code has five letters, or seven for a saved game."; joincode.focus(); return; }
+    if (v.length !== 5 && v.length !== 7) { $("joinhint").textContent = W("hsCodeLen"); joincode.focus(); return; }
     window.location.hash = v;
   });
   function showHome() {
-    setLook(null);
-    document.title = "How Sure? Play live | Logicers";
+    setLook(null, setupLang());
+    paint("v-home");
+    document.title = "How Sure? " + W("suPlayLive") + " | Logicers";
     show("v-home");
+  }
+
+  /* a set of Logicers' own, its title and line in a language: { title, line } */
+  function setWords(x, lang) {
+    var t = x && x.langs && lang && Object.prototype.hasOwnProperty.call(x.langs, lang) ? x.langs[lang] : null;
+    return { title: (t && t.title) || (x && x.title) || "", line: (t && t.line) || (x && x.line) || "" };
   }
 
   /* ================================================================ the host's setup */
@@ -416,6 +492,9 @@
                               n: 10, shuffle: false, picked: false, teams: false, standings: true, awards: true }, sget("setup") || {});
   if (!SETS.some(function (s) { return s.id === setup.set; })) setup.set = (SETS[0] || {}).id;
   var setupKit = null;              // a game made with the editor, chosen to host: { code, edit, title, n, colour, lang, sure, st }
+  var setupKits = [];               // the made games shown on the setup, to draw the sets again
+  var setupLangPick = "";           // the language the host picked for a game of Logicers' sets; none: the site's
+  function gameLang() { return WORDS[setupLangPick] ? setupLangPick : setupLang(); }
   var setupKn = 0;                  // its questions to play: 0 = all
   function seg(id, value, onPick) {
     var box = $(id);
@@ -436,7 +515,7 @@
       (n ? esc(WN("nQuestions", n)) + " · " : "") + esc(g.code) + "</small></span></button>";
   }
   function drawSetup() {
-    var sets = $("sets"), kits = keptGames(), hk = sessionGet("logicers-live:hostkit");
+    var kits = keptGames(), hk = sessionGet("logicers-live:hostkit");
     if (hk && (!hk.t || now() - hk.t > 3600e3 || !/^[BCDFGHJKLMNPQRSTVWXZ]{7}$/.test(hk.code || ""))) { sessionDel("logicers-live:hostkit"); hk = null; }
     if (hk) {
       kits = kits.filter(function (g) { return g.code !== hk.code; });
@@ -444,9 +523,21 @@
       if (!setupKit || setupKit.code !== hk.code) { setupKit = hk; useKitSettings(hk); }
     }
     if (setupKit && !kits.some(function (g) { return g.code === setupKit.code; })) setupKit = null;
+    setupKits = kits;
+    drawSets(kits);
+    $("s-play").checked = !!setup.play;
+    $("s-namerow").hidden = !setup.play;
+    $("s-name").value = setup.name || "";
+    drawSetupRows();
+    $("setup-err").hidden = true;
+  }
+  /* the sets to pick, their titles in the game's language, then the host's own made games */
+  function drawSets(kits) {
+    var sets = $("sets"), gl = gameLang();
     sets.innerHTML = SETS.map(function (s) {
-      return '<button class="hs-set" type="button" role="radio" aria-checked="' + (!setupKit && s.id === setup.set) + '" data-set="' + esc(s.id) + '">' +
-        (ICON[s.id] || ICON.space) + '<span class="hs-set-t"><b>' + esc(s.title) + '</b><small>' + esc(s.line) + '</small></span></button>';
+      var w = setWords(s, gl);
+      return '<button class="hs-set" type="button" role="radio" aria-checked="' + (!setupKit && s.id === setup.set) + '" data-set="' + esc(s.id) + '"' + (gl !== L ? ' lang="' + gl + '"' : "") + ">" +
+        (ICON[s.id] || ICON.space) + '<span class="hs-set-t"><b>' + esc(w.title) + '</b><small>' + esc(w.line) + '</small></span></button>';
     }).join("") + (kits.length ? '<p class="hs-yours">' + esc(W("suYours")) + "</p>" + kits.map(function (g) { return kitButton(g, !!setupKit && setupKit.code === g.code); }).join("") : "");
     each(sets.querySelectorAll(".hs-set"), function (b) {
       b.addEventListener("click", function () {
@@ -461,11 +552,6 @@
         drawSetupRows();
       });
     });
-    $("s-play").checked = !!setup.play;
-    $("s-namerow").hidden = !setup.play;
-    $("s-name").value = setup.name || "";
-    drawSetupRows();
-    $("setup-err").hidden = true;
   }
   /* a made game's own settings, from the editor, as the starting choice */
   function useKitSettings(g) {
@@ -483,6 +569,8 @@
   function drawSetupRows() {
     var kitOn = !!setupKit, n = kitOn ? (+setupKit.n || 0) : 0;
     $("s-practicerow").hidden = kitOn;
+    $("s-langrow").hidden = kitOn;            // a made game speaks the language it was made in
+    seg("s-lang", gameLang(), function (v) { setupLangPick = v; drawSets(setupKits); });
     $("s-practice").checked = !!setup.practice;
     $("s-standings").checked = !!setup.standings;
     $("s-awards").checked = !!setup.awards;
@@ -522,7 +610,7 @@
                                                                        picked: setup.picked, standings: setup.standings, awards: setup.awards } };
     } else {
       body = { v: PROTO, settings: { set: setup.set, n: setup.n, shuffle: setup.shuffle, timer: setup.timer, teams: setup.teams, picked: setup.picked,
-                                     practice: setup.practice, standings: setup.standings, awards: setup.awards } };
+                                     practice: setup.practice, standings: setup.standings, awards: setup.awards, lang: gameLang() } };
     }
     reach("/new", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
       .then(function (res) { return res.json().then(function (b) { return { status: res.status, b: b }; }); })
@@ -533,6 +621,7 @@
           sset("host:" + r.b.code, { key: r.b.key, play: !!setup.play, name: setup.name, pkey: setup.play ? randomKey() : null, pass: r.b.pass || null, t: now() });
           if (kitOn) sessionDel("logicers-live:hostkit");
           TO.count(kitOn ? "live/hosted-made" : "live/hosted");
+          if (!kitOn && gameLang() !== "en") TO.count("live/hosted-" + gameLang());   // which languages Logicers' sets are played in
           window.location.hash = r.b.code;
           return;
         }
@@ -548,28 +637,18 @@
         setupErr(W("suErrNet"));
       });
   });
-  /* The setup screen speaks the host's own language (the site's pick, 30 Oct 2026); the sets' titles and questions
-     are Logicers' own English content. Every other screen puts L back (setLook). */
+  /* The page outside a game speaks the host's or player's own language, the site's pick (the setup since 30 Oct 2026,
+     the section's own page, joining and its notes since 3 Nov 2026). A game of Logicers' sets speaks the language
+     its host picked on the setup (the site's, unless changed under More settings); a made game, its own. */
   function setupLang() {
     var s = null;
     try { s = window.LG && window.LG.saved ? window.LG.saved() : null; } catch (e) { s = null; }
     return s && WORDS[s] ? s : "en";
   }
-  function paintSetup() {
-    var box = $("v-setup");
-    each(box.querySelectorAll("[data-w]"), function (e) { e.textContent = W(e.getAttribute("data-w")); });
-    each(box.querySelectorAll("[data-wn]"), function (e) { e.textContent = W("suSec", +e.getAttribute("data-wn")); });
-    each(box.querySelectorAll("[data-wa]"), function (e) {
-      var p = e.getAttribute("data-wa").split(":");
-      e.setAttribute(p[0], W(p[1]));
-    });
-  }
   function showSetup() {
-    setLook(null);
-    L = setupLang();
-    document.documentElement.lang = L;
+    setLook(null, setupLang());
     document.title = W("suTitle");
-    paintSetup();
+    paint("v-setup");
     drawSetup();
     show("v-setup");
   }
@@ -598,7 +677,7 @@
     stopGame();
     kit = { code: "" };
     app = Object.assign(app, { code: code, state: null, screen: "", tries: 0, stopped: false, everConnected: false, joining: false, q: null, info: null, alone: false, shown: {} });
-    setLook(null);
+    setLook(null, setupLang());
     var h = sget("host:" + code);
     if (h && h.key) {
       app.role = "host"; app.key = h.key; app.pkey = h.pkey || null; app.pass = h.pass || null; app.playing = !!h.play; app.name = h.name || "";
@@ -623,6 +702,8 @@
   function madeFrom(i) {
     return i && i.kit ? { title: i.title || "", colour: i.colour, lang: i.lang, sure: i.sure !== false, mixed: !!i.mixed } : null;
   }
+  /* a game of Logicers' own sets: the language it speaks (a server that says none speaks English) */
+  function ownLang(g) { return g && WORDS[g.lang] ? g.lang : "en"; }
   /* the state's own word on a made game, when it differs from the look on screen */
   function lookChanged(g) {
     return !made || made.lang !== g.lang || made.colour !== g.colour || made.mixed !== !!g.mixed || made.sure !== (g.sure !== false) || made.title !== g.title;
@@ -632,18 +713,18 @@
     reach("/game/" + code).then(function (res) {
       if (res.status === 404 && app.role === "host") {
         forget();
-        note("done", "This game is over", "", [{ text: "Host a game", solid: true, href: "#host" }], true);
+        note("done", W("over"), "", [{ text: W("hostAGame"), solid: true, href: "#host" }], true);
         return null;
       }
       if (res.status === 404) {
-        note("lost", "No game with this code", "Check the letters on the host's screen.", [
-          { text: "Type it again", solid: true, href: "./" }, { text: "Host a game", href: "#host" }]);
+        note("lost", W("noGame"), W("checkLetters"), [
+          { text: W("typeAgain"), solid: true, href: "./" }, { text: W("hostAGame"), href: "#host" }]);
         sdel("p:" + code);
         return null;
       }
       if (res.status === 429) {
         if (app.pass) { connect(); return null; }      // braked, but this browser is in the game: its pass gets it back in
-        note("lost", "Too many tries", "Wait a little, then try again.", [{ text: "Back", href: "./" }]);
+        note("lost", W("tooMany"), W("waitRetry"), [{ text: W("back"), href: "./" }]);
         return null;
       }
       return res.json();
@@ -651,6 +732,7 @@
       if (!info || app.code !== code) return;
       app.info = info;
       if (info.kit) { setLook(madeFrom(info)); joinPrivacyFor(); }
+      else { setLook(null, ownLang(info)); joinPrivacyFor(); }
       if (app.role === "player") joinInfo();
       connect();
     }, function () {
@@ -785,6 +867,7 @@
         if (m.v !== PROTO) { oldPage(m.v); return; }
         app.state = m;
         if (m.g && m.g.kit && lookChanged(m.g)) { setLook(madeFrom(m.g)); joinPrivacyFor(); }
+        else if (m.g && !m.g.kit && (made || L !== ownLang(m.g))) { setLook(null, ownLang(m.g)); joinPrivacyFor(); app.screen = ""; }
         if (m.pass && m.pass !== app.pass) keepPass(m.pass);
         if (app.role === "host" && app.playing && !m.you && !app.joining) {
           app.joining = true;
@@ -922,7 +1005,7 @@
     show("v-join");
   }
   function joinWords() {
-    $("j-play").textContent = made ? W("play") : "Play live";
+    $("j-play").textContent = made ? W("play") : W("suPlayLive");
     $("j-go").textContent = W("join");
     $("j-go-picked").textContent = W("join");
     $("j-pick").textContent = W("pickName");
@@ -1054,7 +1137,7 @@
       return '<div class="hs-bigrow"><div>' +
         '<h1 class="live-title" style="margin-top:12px" dir="auto">' + gameName(s) + "</h1>" +
         (made ? madeLine(false) + (made.sure !== false ? levelsHtml() : "")
-              : '<p class="live-tag">' + esc(s.g.title) + ' · Guess the number. Pick your net.</p><div class="live-rules">' + rulesHtml() + "</div>") +
+              : '<p class="live-tag">' + esc(s.g.title) + " · " + esc(W("hsTag")) + '</p><div class="live-rules">' + rulesHtml() + "</div>") +
         '<div class="live-card" style="margin-top:18px"><p class="hs-joinat">' + esc(W("joinOnPhone")) + '</p><p class="hs-bigurl">' + SITE + '</p><p class="hs-joinat" style="margin-top:8px">' + esc(W("withCode")) + '</p><p class="hs-bigcode">' + esc(app.code) + "</p></div>" +
         '</div><div><div class="live-card"><div class="hs-qr" data-join="' + esc(joinUrl()) + '">' + qrSvg(joinUrl()) + "<p>" + WH("orScanH") + "</p></div>" + sendLink + "</div>" + players + "</div></div>";
     }
@@ -1077,7 +1160,7 @@
       var url = joinUrl();
       var nav = window.navigator;
       if (nav.share) {
-        nav.share({ title: made ? made.title : "How Sure?", text: made ? W("shareText", app.code) : "Play How Sure? with us: code " + app.code, url: url }).then(function () {}, function () {});
+        nav.share({ title: made ? made.title : "How Sure?", text: made ? W("shareText", app.code) : W("hsShareText", app.code), url: url }).then(function () {}, function () {});
       } else {
         TO.copyText(url).then(function () { b.querySelector("span").textContent = W("linkCopied"); setTimeout(function () { b.querySelector("span").textContent = W("sendLink"); }, 2200); });
       }
@@ -1261,7 +1344,7 @@
     var q = a.q;
     if (a.type === "num") {
       var r = R.net(q, a.g, a.n);
-      return '<b class="hs-confirm-val">' + esc(fmt(q, a.g)) + (q.u ? "<small>" + esc(q.u) + "</small>" : "") + "</b>" +
+      return '<b class="hs-confirm-val">' + esc(fmt(q, a.g)) + unitSmall(q, a.g) + "</b>" +
         '<span class="hs-confirm-net">' + netIcon(a.n) + "<b>" + esc(netWord(a.n)) + "</b> " + esc(W("rangeTo", fmt(q, r[0]), withUnit(q, r[1]))) + "</span>";
     }
     var txt = a.type === "tx" ? a.x : a.type === "tf" ? tfWord(a.c) : q.o[a.c];
@@ -1315,7 +1398,7 @@
     var a = app.q, q = a.q;
     if (!$("q-val")) return;
     var r = R.net(q, a.g, a.n), p = R.pos(q, a.g) * 100;
-    $("q-val").innerHTML = esc(fmt(q, a.g)) + (q.u ? "<small>" + esc(q.u) + "</small>" : "");
+    $("q-val").innerHTML = esc(fmt(q, a.g)) + unitSmall(q, a.g);
     $("q-guess").classList.toggle("untouched", !a.touched);
     var scale = $("q-scale");
     scale.classList.toggle("untouched", !a.touched);
@@ -1402,7 +1485,7 @@
         return '<div class="hs-choice">' + (type === "mc" ? "<i>" + LETTERS[i] + "</i>" : "") + '<span dir="auto">' + esc(o) + "</span></div>";
       }).join("") + "</div>";
     } else if (type === "tx") body = '<p class="hs-typedhint">' + ICON.tx + "<span>" + esc(W("playersType")) + "</span></p>";
-    else body = '<div class="hs-bigscale"><div class="hs-track"></div></div><div class="hs-ends"><span>' + esc(fmt(q, q.lo)) + "</span><span>" + esc(q.u ? fmt(q, q.hi) + " " + q.u : fmt(q, q.hi)) + "</span></div>";
+    else body = '<div class="hs-bigscale"><div class="hs-track"></div></div><div class="hs-ends"><span>' + esc(fmt(q, q.lo)) + "</span><span>" + esc(withUnit(q, q.hi)) + "</span></div>";
     return topLine(s, qWhat(s)) +
       '<div class="live-card">' + (q.i === 0 ? '<span class="hs-practice">' + esc(W("practiceNoPts")) + "</span>" : "") +
       '<p class="hs-q" dir="auto">' + esc(q.t) + "</p>" + body + "</div>" +
@@ -1505,7 +1588,7 @@
         var url = String(x[1] || "");
         return /^https:\/\//.test(url) ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(x[0]) + "</a>" : esc(x[0]);
       }).join(" · ");
-      return '<div class="hs-fact">' + esc(rv.f) + '<p class="hs-src">Sources: ' + src + "</p></div>";
+      return '<div class="hs-fact">' + esc(rv.f) + '<p class="hs-src">' + esc(W("sources")) + src + "</p></div>";
     }
     var link = "";
     if (typeof rv.s === "string" && /^https:\/\//.test(rv.s)) {
@@ -1639,7 +1722,7 @@
     return topLine(s, esc(W("theEnd")) + (made ? "" : " · " + esc(s.g.title))) +
       '<div class="live-card">' + podium(e) + awardsHtml(e, y.award) + "</div>" + meter + youBar(s) +
       '<div class="hs-hooks"><div class="live-btns">' + (e.plain ? "" : '<button class="btn ghost live-iconbtn" type="button" id="e-share">' + ICON.share + esc(W("share")) + "</button>") +
-      (app.role === "host" ? "" : made ? '<a class="btn ghost" href="' + esc(TO.here("build/")) + '" id="e-make">' + esc(W("makeOwn")) + "</a>" : '<a class="btn ghost" href="#host" id="e-host">Host your own game</a>') + "</div></div>" +
+      (app.role === "host" ? "" : made ? '<a class="btn ghost" href="' + esc(TO.here("build/")) + '" id="e-make">' + esc(W("makeOwn")) + "</a>" : '<a class="btn ghost" href="#host" id="e-host">' + esc(W("hostOwn")) + "</a>") + "</div></div>" +
       (made ? madeLine(false) : "");
   }
   function roomLine(m) {
@@ -1685,9 +1768,9 @@
       x.fillText(title, 90, 230);
       x.globalAlpha = 0.8;
       x.font = "600 44px Figtree, sans-serif";
-      x.fillText(made ? W("shareLine") : s.g.title + " · a live game", 94, 306);
+      x.fillText(made ? W("shareLine") : s.g.title + " · " + W("shareLine"), 94, 306);
       x.globalAlpha = 1;
-      var rows = ["s", "m", "b"].map(function (n) { return [n, k ? W(SURE_KEY[n]) : (made ? netWord(n) : { s: "Small nets", m: "Medium nets", b: "Big nets" }[n])]; });
+      var rows = ["s", "m", "b"].map(function (n) { return [n, k ? W(SURE_KEY[n]) : (made ? netWord(n) : W({ s: "netsS", m: "netsM", b: "netsB" }[n]))]; });
       rows.forEach(function (r, i) {
         var top = 430 + i * 190, c = y.meter[r[0]][0], t = y.meter[r[0]][1];
         x.font = "700 46px Figtree, sans-serif";
@@ -1835,7 +1918,7 @@
       if (made) h = '<button type="button" data-again="kit">' + esc(W("playThisAgain")) + "</button>";
       else h = SETS.map(function (x) {
         var played = (s.g.played && s.g.played[x.id]) ? s.g.played[x.id].length : 0;
-        return '<button type="button" data-again="' + esc(x.id) + '">' + esc(x.title) + '<span class="live-small" style="display:block;margin-top:2px">' + (played >= x.n ? "All played: they start again" : (x.n - played) + " new questions") + "</span></button>";
+        return '<button type="button" data-again="' + esc(x.id) + '">' + esc(setWords(x, L).title) + '<span class="live-small" style="display:block;margin-top:2px">' + esc(played >= x.n ? W("allPlayed") : WN("againNew", x.n - played)) + "</span></button>";
       }).join("");
     } else {
       $("host-title").textContent = W("hostMenu");

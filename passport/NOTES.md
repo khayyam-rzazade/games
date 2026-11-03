@@ -49,8 +49,11 @@ until 29 Oct a hop shorter than 14 px simply had no arrow, which now would read 
 neighbours is drawn as a small hop over the top (`hopArc`), so every known step has its arrow. Labels are tried in six
 rings round their dot with two pixels of air between them, so crowded corners (north-west Europe) do not overlap.
 
-In the 60 words × 6 languages: 8 start in the player's language, 305 have their last hop on the route, 19 off it
-(13 of them joined back through another of the six languages, 6 on their own), and 28 have it unknown (5 of those 28, on the route, get their arrow from the route since 30 Oct 2026).
+In the 60 words × 6 languages (counted 3 Nov 2026, after 11 gaps were filled from native dictionaries): 8 start in the
+player's language, 312 have their last hop on the route, 23 off it, and 17 have it unknown (5 of those 17, on the
+route, get their arrow from the route since 30 Oct 2026; the other 12 stay silent on purpose: no dictionary says, the
+dictionaries disagree, a hedge between two languages, or the word was built in the language itself). Before 3 Nov it
+was 8 / 305 / 19 / 28. 340 of the 360 maps now end with an arrow into the player's language (329 before).
 
 ## Sharing (29 Oct 2026, Khayyam)
 
@@ -117,10 +120,10 @@ no percentages; nothing else changes.
   sheet holds until the site's chip changes.
 * **Map**: tap the map during the film to skip it; ↻ plays it again. Reduced motion shows the finished route at once.
 
-## Still open, not mine
+## The data workshop's output path — done (29 Oct 2026, checked 3 Nov 2026)
 
-`r/borrowed/build.py` (the data workshop, on the Mac only) still writes into `borrowed/data/` (its line 211). Point it
-at `passport/data/` before it runs again, or it will fill a folder nothing reads.
+`r/borrowed/build.py` (on the Mac only) writes into `passport/data/`, not `borrowed/data/`: this note used to say it
+did not. Run into a copy of the site it gives `days.json` and `languages.json` byte for byte as they are live.
 
 ## Fixed with the real data (29 Oct 2026)
 

@@ -42,6 +42,7 @@ import { loadSets } from "./sets-key.js";
 import { cleanName, nameOk, pickName, foldName, MAXNAME, rude } from "./names.js";
 import { mac, sha, keyOk } from "./keys.js";
 import { cleanAnswer } from "./kit.js";
+import { setIn, SET_LANGS } from "./setlang.js";
 
 export { sha, keyOk };
 
@@ -98,6 +99,7 @@ function shuffle(a) {
 function fresh(since) { return { since, hi: 0, h: 0, pid: null, kh: null, a: null }; }
 function typeOf(q) { return (q && q.type) || "num"; }
 
+
 /* A phone's pass: proof that it is in this game, so the brake on code-guessing (worker.js) never stops it
    coming back, even when someone's sweep has braked the whole campus behind one address. The first 22
    characters of an HMAC of the code, keyed with the sets' secret (keys.js): nobody makes one without having
@@ -113,6 +115,7 @@ export function cleanSettings(o, sets) {
   if (typeof o.set !== "string" || !sets || !Object.hasOwn(sets, o.set)) return null;
   return {
     set: o.set,
+    lang: SET_LANGS.includes(o.lang) ? o.lang : "en",
     st: {
       n: COUNTS.includes(o.n) ? o.n : 10,
       shuffle: o.shuffle === true,
@@ -249,7 +252,7 @@ export class Game extends DurableObject {
       const c = cleanSettings(o && o.settings, sets);
       if (!c) return { ok: false, why: "set" };
       this.sets = sets;
-      this.m = { v: PROTO, code: o.code, made: t, last: t, hostHash: o.hostHash, set: c.set, st: c.st, closed: false,
+      this.m = { v: PROTO, code: o.code, made: t, last: t, hostHash: o.hostHash, set: c.set, lang: c.lang, st: c.st, closed: false,
                  ph: "lobby", round: 1, order: [], pos: -1, qkey: "", deadline: 0, played: {}, skipped: [], ended: 0 };
     }
     try { this.pass = await passFor(this.env, o.code); } catch (e) { this.pass = ""; }
@@ -265,6 +268,7 @@ export class Game extends DurableObject {
     const S = this.set();
     const info = { title: S ? S.title : "", np: this.active(), ph: m.ph, closed: m.closed, teams: m.st.teams, picked: m.st.picked };
     if (m.kit) Object.assign(info, { kit: true, colour: m.kit.colour, lang: m.kit.lang, sure: m.kit.sure !== false, mixed: !!m.kit.mixed });
+    else if (this.lang() !== "en") info.lang = this.lang();     // Logicers' own set in another language (English says nothing)
     return info;
   }
 
@@ -896,8 +900,17 @@ export class Game extends DurableObject {
     const m = this.m;
     if (!m) return null;
     if (m.kit) return this.kset;
-    return this.sets && Object.hasOwn(this.sets, m.set) ? this.sets[m.set] : null;
+    if (!this.sets || !Object.hasOwn(this.sets, m.set)) return null;
+    const S = this.sets[m.set], lang = this.lang();
+    if (lang === "en") return S;
+    /* made once per set and language, and kept while these sets are (a deploy brings new ones) */
+    const k = m.set + ":" + lang;
+    if (!this.local || this.local.of !== this.sets) this.local = { of: this.sets, by: new Map() };
+    if (!this.local.by.has(k)) this.local.by.set(k, setIn(S, lang));
+    return this.local.by.get(k);
   }
+  /* the language of a game of Logicers' own sets: English for a game made before there was a choice */
+  lang() { return this.m && !this.m.kit && SET_LANGS.includes(this.m.lang) ? this.m.lang : "en"; }
   /* a made game whose maker switched "how sure" off: a right answer scores 1, a number uses the medium net */
   plain() { return !!(this.m && this.m.kit && this.m.kit.sure === false); }
   /* a question by its place in this round: the practice, or the id at that place, looked up in the sets;
@@ -982,6 +995,7 @@ export class Game extends DurableObject {
            teams: m.st.teams, picked: m.st.picked, timer: m.st.timer, practice: m.st.practice,
            standings: m.st.standings, awards: m.st.awards, played: m.played } };
     if (m.kit) Object.assign(c.g, { kit: true, colour: m.kit.colour, lang: m.kit.lang, sure: !this.plain(), mixed: !!m.kit.mixed });
+    else if (this.lang() !== "en") c.g.lang = this.lang();
     if (m.ph === "lobby") {
       const names = this.lobbyNames();
       c.lobby = { names: names.map((x) => x[1]), ids: names.map((x) => x[0]), hosts: names.map((x) => x[2]), more: Math.max(0, c.np - names.length) };

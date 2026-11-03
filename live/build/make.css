@@ -486,11 +486,16 @@ dialog.mk-dlg-wide { width: min(100% - 24px, 36rem); }
 
 /* ---------- flags (Khayyam, 15 Oct 2026: "for the language sections: small flags are important") ---------- */
 .mk-flag { display: inline-block; flex: none; width: 24px; height: 16px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgba(21, 23, 43, .14); vertical-align: -3px; }
-/* six languages (29 Oct 2026): two rows of three on a phone, one row of six from 640 px */
+/* six languages (29 Oct 2026): two rows of three, at every width (3 Nov 2026: from 640 px it was one row of six, but the
+   game's column on a laptop is only about 480 px wide, so the six names printed over one another) */
 .mk-seglang { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-@media (min-width: 640px) { .mk-seglang { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-.mk-seglang button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.mk-seglang button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; overflow: hidden; }
 .mk-seglang .mk-flag { width: 18px; height: 12px; border-radius: 2px; }
+/* in a narrow column (the game's column on a laptop is about 270 px: three cells of 85 px) the flag sits above the name */
+.mk-row.mk-langrow { container-type: inline-size; container-name: mklang; }
+@container mklang (max-width: 340px) {
+  .mk-seglang button { flex-direction: column; gap: 4px; padding: 7px 2px 8px; }
+}
 .mk-gitem .mk-gdot .mk-flag { width: 24px; height: 16px; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .92); }
 @media (max-width: 380px) { .mk-seglang .mk-flag { display: none; } }
 

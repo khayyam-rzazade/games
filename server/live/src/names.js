@@ -47,7 +47,15 @@ export function cleanName(s) {
      Akshit, Dikshit, Shittu, Shitov); its usual one-word compounds are in ANYWHERE. An entry of two words
      is refused when the two stand in a row ("Porco Dio"), and only then.
    NAMEPARTS: pieces of real names that hold a fragment of ANYWHERE. They are set aside before that check,
-     so Cazzola, Merdan, Niggli and Niggemann pass, while "Cazzone" and "Merdaccia" are refused.
+     so Cazzola, Merdan, Niggli and Niggemann pass, while "Cazzone" and "Merdaccia" are refused. Since 4 Nov 2026
+     "retardant" is here too (Fire Retardant is an ordinary chemistry word, not an insult), while "Retard",
+     "Retarded", "Retards" and "Retardation" stay refused: "retard" is on ANYWHERE.
+   Looked at on 4 Nov 2026 and kept refused on purpose: as a typed name each one is a joke or an insult far more
+     often than somebody's own name, and a real bearer is only asked for another name (or taps "Pick a name for
+     me"). "Figa" is the Italian vulgar word (and a rare Polish surname), "Nazi" is also a Persian and Georgian
+     given name, "Porn" is also a Thai nickname, "FCK" is also the club FC Kobenhavn but in a name it reads as the
+     censored f-word. "Flame Retardant" is 15 characters, so the name box refuses it for length whatever the
+     filter says.
    A run of single letters is also read as one word, so "f u c k" and "f.u.c.k" are refused, while "O.C."
    reads "oc", which is on no list, and passes.
    Left out on purpose, because they are names or ordinary words: isis, got (göt), cum, oc, amina and
@@ -76,7 +84,7 @@ const WHOLE = [
   "puta", "joder", "follar", "cabron", "viado", "fdp", "pute", "merde", "nique", "ntm", "batard", "couille",
   "salope"
 ];
-const NAMEPARTS = ["cazzol", "merdan", "niggl", "niggem"];
+const NAMEPARTS = ["cazzol", "merdan", "niggl", "niggem", "retardant"];
 
 /* AMBIG (24 Oct 2026): six words on WHOLE that are also real names or parts of them, each one a rude word
    only in one place: Dick, De Cock, Paolo Negro, Anne-Sophie Pic (Piç, with the cedilla, stays refused),

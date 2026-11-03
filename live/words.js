@@ -1,9 +1,10 @@
 /* Logicers Live: the words of a live game's screens, in English, Italian and Turkish (15 Oct 2026), and Spanish,
    Brazilian Portuguese and French (29 Oct 2026).
 
-   How Sure? with Logicers' own sets always speaks English, like the rest of the site. A game a host made
-   speaks its own language, chosen first in the editor ("very important for international reach", Khayyam,
-   15 Oct 2026): every word a player or the host reads on its screens comes from here.
+   A game a host made speaks its own language, chosen first in the editor ("very important for international reach",
+   Khayyam, 15 Oct 2026): every word a player or the host reads on its screens comes from here. How Sure? with
+   Logicers' own sets speaks the language its host picks (3 Nov 2026; English only until then), and the page outside
+   a game speaks the site's: the same words, with a few of How Sure?'s own at the end of each block.
 
    A word is a string; %s and %d are filled in order, or by number (%1$s, %2$d) when a language needs another
    order; %% is a percent sign. A word that counts something is { one, other }, chosen with
@@ -125,6 +126,22 @@ window.LIVE_WORDS = {
     suErrGone: "This game no longer exists: saved games are deleted two months after their last use.",
     suErrServer: "The game server is not ready. Try again in a minute.",
     suErrNet: "Can't reach the game server. Check the signal. Some Wi-Fi networks block live games: try mobile data.",
+    /* How Sure? with Logicers' own sets, in the game's language (3 Nov 2026) */
+    ruleGuess: "Guess", rulePick: "Pick a net", ruleCatch: "Catch it", ifCatches: "%d if it catches",
+    ifNot: "%d if not", hsTag: "Guess the number. Pick your net.", hsRoom: "A game for a room",
+    hsShareText: "Play How Sure? with us: code %s", netsS: "Small nets", netsM: "Medium nets", netsB: "Big nets",
+    hsJoinPlay: "Join or play a game", hsCodePh: "CODE", hsGo: "Go",
+    hsCodeFrom: "The code from the host, or of a saved game.",
+    hsCodeLen: "A code has five letters, or seven for a saved game.",
+    hsMakeP: "Your questions: numbers, choices, true or false, typed answers. In English, Italian, Turkish, Spanish, Portuguese or French. No account.",
+    hsBuild: "Build a game", hsHelpNets: "The bigger the net, the less it pays, and the less you lose.",
+    hsHelpScreen: "A TV, a projector or a laptop is optional: every phone shows the reveal.",
+    hsWhereH: "Where the numbers come from",
+    hsWhereP: "Every answer in Logicers' sets was checked on two websites, both linked under the answer.",
+    hsMadeP: "Anyone can build a game with no account. Logicers does not check games people make; every screen of one has a Report link.",
+    suLang: "Language",
+    shareAlt: "Your sure-meter as a picture. It shows how often your nets caught the answer, never an answer.",
+    hsTNum: "Number", hsTChoice: "Choice", hsTTf: "True / false", hsTTyped: "Typed",
   },
 
   it: {
@@ -229,6 +246,22 @@ window.LIVE_WORDS = {
     suErrGone: "Questo gioco non esiste più: i giochi salvati vengono cancellati due mesi dopo l'ultimo uso.",
     suErrServer: "Il server del gioco non è pronto. Riprova tra un minuto.",
     suErrNet: "Il server del gioco non risponde. Controlla il segnale. Alcune reti Wi-Fi bloccano i giochi dal vivo: prova con i dati mobili.",
+    /* How Sure? with Logicers' own sets, in the game's language (3 Nov 2026) */
+    ruleGuess: "Stima", rulePick: "Scegli la rete", ruleCatch: "Prendi la risposta", ifCatches: "%d se va a segno",
+    ifNot: "%d se va a vuoto", hsTag: "Stima il numero. Scegli la rete.", hsRoom: "Un gioco per tutta la sala",
+    hsShareText: "Gioca a How Sure? con noi: codice %s", netsS: "Reti piccole", netsM: "Reti medie",
+    netsB: "Reti grandi", hsJoinPlay: "Entra in una partita o gioca", hsCodePh: "CODICE", hsGo: "Vai",
+    hsCodeFrom: "Il codice di chi conduce, o quello di un gioco salvato.",
+    hsCodeLen: "Un codice ha cinque lettere, o sette per un gioco salvato.",
+    hsMakeP: "Le tue domande: numeri, scelta multipla, vero o falso, risposte scritte. In inglese, italiano, turco, spagnolo, portoghese o francese. Senza account.",
+    hsBuild: "Crea un gioco", hsHelpNets: "Più la rete è grande, meno punti ti dà, ma anche meno ne perdi.",
+    hsHelpScreen: "Non serve per forza una TV, un proiettore o un portatile: la soluzione compare su ogni telefono.",
+    hsWhereH: "Da dove vengono i numeri",
+    hsWhereP: "Ogni risposta dei set di Logicers è stata verificata su due siti: trovi i link a tutti e due sotto la risposta.",
+    hsMadeP: "Chiunque può creare un gioco senza account. Logicers non verifica i giochi creati dagli utenti; ogni loro schermata ha il link «Segnala».",
+    suLang: "Lingua",
+    shareAlt: "Il tuo sicurometro in un’immagine. Mostra quante volte le tue reti hanno preso la risposta, mai una risposta.",
+    hsTNum: "Numero", hsTChoice: "Scelta multipla", hsTTf: "Vero / falso", hsTTyped: "Risposta scritta",
   },
 
   tr: {
@@ -332,6 +365,22 @@ window.LIVE_WORDS = {
     suErrGone: "Bu oyun artık yok: kayıtlı oyunlar son kullanımdan iki ay sonra silinir.",
     suErrServer: "Oyun sunucusu hazır değil. Bir dakika sonra tekrar dene.",
     suErrNet: "Oyun sunucusuna ulaşılamıyor. Sinyali kontrol et. Bazı Wi-Fi ağları canlı oyunları engeller: mobil veriyi dene.",
+    /* How Sure? with Logicers' own sets, in the game's language (3 Nov 2026) */
+    ruleGuess: "Tahmin et", rulePick: "Bir ağ seç", ruleCatch: "Cevabı yakala", ifCatches: "Yakalarsa %d",
+    ifNot: "Yakalamazsa %d", hsTag: "Sayıyı tahmin et. Ağını seç.", hsRoom: "Bir oda dolusu insan için",
+    hsShareText: "Bizimle How Sure? oyna: kod %s", netsS: "Küçük ağlar", netsM: "Orta ağlar", netsB: "Büyük ağlar",
+    hsJoinPlay: "Bir oyuna katıl ya da oyna", hsCodePh: "KOD", hsGo: "Git",
+    hsCodeFrom: "Sunucunun verdiği kod ya da kayıtlı bir oyunun kodu.",
+    hsCodeLen: "Kod beş harflidir, kayıtlı bir oyunun kodu ise yedi harfli.",
+    hsMakeP: "Kendi soruların: sayı, çoktan seçmeli, doğru/yanlış ya da kısa cevap. İngilizce, İtalyanca, Türkçe, İspanyolca, Portekizce ya da Fransızca. Üyelik yok.",
+    hsBuild: "Oyun hazırla", hsHelpNets: "Ağ ne kadar büyükse o kadar az kazandırır, ama o kadar az da kaybettirir.",
+    hsHelpScreen: "Televizyon, projektör ya da dizüstü bilgisayar şart değil: cevap her telefonda açıklanır.",
+    hsWhereH: "Sayıların kaynağı",
+    hsWhereP: "Logicers'ın setlerindeki her cevap iki ayrı web sitesinden kontrol edildi. İkisinin bağlantısı da cevabın altında.",
+    hsMadeP: "Herkes üye olmadan oyun hazırlayabilir. Logicers, kullanıcıların hazırladığı oyunları kontrol etmez. Bu oyunların her ekranında bir «Bildir» bağlantısı vardır.",
+    suLang: "Dil",
+    shareAlt: "Eminlik ölçerin, resim olarak. Ağlarının cevabı ne sıklıkla yakaladığını gösterir, hiçbir cevabı göstermez.",
+    hsTNum: "Sayı", hsTChoice: "Çoktan seçmeli", hsTTf: "Doğru / yanlış", hsTTyped: "Kısa cevap",
   },
 
   es: {
@@ -437,6 +486,22 @@ window.LIVE_WORDS = {
     suErrGone: "Este juego ya no existe: los juegos guardados se borran dos meses después de su último uso.",
     suErrServer: "El servidor del juego no está listo. Inténtalo de nuevo en un minuto.",
     suErrNet: "No se puede contactar con el servidor del juego. Comprueba la señal. Algunas redes wifi bloquean los juegos en vivo: prueba con datos móviles.",
+    /* How Sure? with Logicers' own sets, in the game's language (3 Nov 2026) */
+    ruleGuess: "Adivina", rulePick: "Elige una red", ruleCatch: "Atrápala", ifCatches: "%d si la atrapa",
+    ifNot: "%d si no", hsTag: "Adivina el número. Elige tu red.", hsRoom: "Un juego para toda la sala",
+    hsShareText: "Juega a How Sure? con nosotros: código %s", netsS: "Redes pequeñas", netsM: "Redes medianas",
+    netsB: "Redes grandes", hsJoinPlay: "Únete a un juego o juega uno", hsCodePh: "CÓDIGO", hsGo: "Entrar",
+    hsCodeFrom: "El código que te da quien dirige, o el de un juego guardado.",
+    hsCodeLen: "Un código tiene cinco letras, o siete si es de un juego guardado.",
+    hsMakeP: "Tus preguntas: números, opción múltiple, verdadero o falso, respuestas escritas. En inglés, italiano, turco, español, portugués o francés. Sin cuenta.",
+    hsBuild: "Crea un juego", hsHelpNets: "Cuanto más grande es la red, menos puntos da, y menos pierdes.",
+    hsHelpScreen: "No hace falta televisor, proyector ni computadora portátil: la respuesta se revela en cada teléfono.",
+    hsWhereH: "De dónde salen las cifras",
+    hsWhereP: "Cada respuesta de los sets de Logicers se comprobó en dos sitios web, y los dos están enlazados debajo de la respuesta.",
+    hsMadeP: "Cualquiera puede crear un juego sin cuenta. Logicers no revisa los juegos que crea la gente; cada pantalla de esos juegos tiene un enlace «Reportar».",
+    suLang: "Idioma",
+    shareAlt: "Tu medidor de confianza en una imagen. Muestra cuántas veces tus redes atraparon la respuesta, nunca una respuesta.",
+    hsTNum: "Número", hsTChoice: "Opción múltiple", hsTTf: "Verdadero / falso", hsTTyped: "Respuesta escrita",
 },
 
   pt: {
@@ -553,6 +618,22 @@ window.LIVE_WORDS = {
     suErrGone: "Este jogo não existe mais: jogos salvos são apagados dois meses após o último uso.",
     suErrServer: "O servidor do jogo não está pronto. Tente de novo em um minuto.",
     suErrNet: "Não foi possível falar com o servidor do jogo. Verifique o sinal. Algumas redes Wi-Fi bloqueiam jogos ao vivo: tente os dados móveis.",
+    /* How Sure? with Logicers' own sets, in the game's language (3 Nov 2026) */
+    ruleGuess: "Dê seu palpite", rulePick: "Escolha uma rede", ruleCatch: "Pegue a resposta", ifCatches: "%d se pegar",
+    ifNot: "%d se escapar", hsTag: "Chute o número. Escolha sua rede.", hsRoom: "Um jogo para a turma",
+    hsShareText: "Jogue How Sure? com a gente: código %s", netsS: "Redes pequenas", netsM: "Redes médias",
+    netsB: "Redes grandes", hsJoinPlay: "Entrar em um jogo ou jogar um salvo", hsCodePh: "CÓDIGO", hsGo: "Ir",
+    hsCodeFrom: "O código de quem comanda, ou o de um jogo salvo.",
+    hsCodeLen: "Um código tem cinco letras, ou sete se for de um jogo salvo.",
+    hsMakeP: "Suas perguntas: números, múltipla escolha, verdadeiro ou falso, respostas escritas. Em inglês, italiano, turco, espanhol, português ou francês. Sem conta.",
+    hsBuild: "Criar um jogo", hsHelpNets: "Quanto maior a rede, menos ela vale, e menos você perde.",
+    hsHelpScreen: "Não precisa de TV, projetor nem notebook: cada celular mostra a revelação.",
+    hsWhereH: "De onde vêm os números",
+    hsWhereP: "Cada resposta dos sets do Logicers foi conferida em dois sites, e os links dos dois ficam embaixo da resposta.",
+    hsMadeP: "Qualquer pessoa pode criar um jogo sem conta. O Logicers não confere os jogos que as pessoas criam; cada tela deles tem um link “Denunciar”.",
+    suLang: "Idioma",
+    shareAlt: "Seu certezômetro em forma de imagem. Ele mostra quantas vezes as suas redes pegaram a resposta, nunca uma resposta.",
+    hsTNum: "Número", hsTChoice: "Múltipla escolha", hsTTf: "Verdadeiro / falso", hsTTyped: "Resposta escrita",
 },
 
   fr: {
@@ -668,5 +749,21 @@ window.LIVE_WORDS = {
     suErrGone: "Ce jeu n’existe plus : les jeux enregistrés sont supprimés deux mois après leur dernière utilisation.",
     suErrServer: "Le serveur du jeu n’est pas prêt. Réessaie dans une minute.",
     suErrNet: "Impossible de joindre le serveur du jeu. Vérifie le signal. Certains réseaux Wi-Fi bloquent les jeux en direct : essaie les données mobiles.",
+    /* How Sure? with Logicers' own sets, in the game's language (3 Nov 2026) */
+    ruleGuess: "Devine", rulePick: "Choisis un filet", ruleCatch: "Attrape la réponse",
+    ifCatches: "%d si c’est dans le filet", ifNot: "%d sinon", hsTag: "Devine le nombre. Choisis ton filet.",
+    hsRoom: "Un jeu pour toute la salle", hsShareText: "Joue à How Sure? avec nous : code %s", netsS: "Petits filets",
+    netsM: "Filets moyens", netsB: "Grands filets", hsJoinPlay: "Rejoindre une partie ou jouer à un jeu",
+    hsCodePh: "CODE", hsGo: "OK", hsCodeFrom: "Le code donné par la personne qui anime, ou celui d’un jeu enregistré.",
+    hsCodeLen: "Un code a cinq lettres, ou sept pour un jeu enregistré.",
+    hsMakeP: "Tes questions : nombres, choix multiple, vrai ou faux, réponses écrites. En anglais, italien, turc, espagnol, portugais ou français. Pas besoin de compte.",
+    hsBuild: "Créer un jeu", hsHelpNets: "Plus le filet est grand, moins il rapporte, et moins tu perds.",
+    hsHelpScreen: "Une télé, un vidéoprojecteur ou un ordinateur portable, c’est facultatif : chaque téléphone affiche la solution.",
+    hsWhereH: "D’où viennent les chiffres",
+    hsWhereP: "Chaque réponse des sets de Logicers a été vérifiée sur deux sites web, dont les liens figurent sous la réponse.",
+    hsMadeP: "Tout le monde peut créer un jeu sans compte. Logicers ne vérifie pas les jeux créés par les utilisateurs ; chaque écran de ces jeux a un lien « Signaler ».",
+    suLang: "Langue",
+    shareAlt: "Ta jauge de confiance en image. Elle montre combien de fois tes filets ont attrapé la réponse, jamais une réponse.",
+    hsTNum: "Nombre", hsTChoice: "Choix multiple", hsTTf: "Vrai / faux", hsTTyped: "Réponse écrite",
 }
 };

@@ -93,6 +93,22 @@ const part = (title) => { console.log((bad ? "FAIL " : "ok   ") + title); bad = 
   part("real names with a rude word in them pass, the insults stay refused (" + (REAL.length + 1 + INSULT.length + 1) + ": Paolo Negro, Dick, De Cock, Anne-Sophie Pic, Kim Jae-sik, Ibne Safi)");
 }
 
+/* ---------------------------------------------------------------- the five left over (4 Nov 2026) */
+{
+  // looked at and kept refused on purpose: a joke or an insult far more often than a person's own name
+  const KEPT = ["Figa", "FIGA", "Fica", "Anna Figa", "Nazi", "NAZI", "Nazi Gomiashvili", "Porn", "PORN", "Porn Chai", "FCK", "F.C.K.", "FCK NZS"];
+  for (const n of KEPT) check(rude(n), "kept refused as rude: " + n);
+  // "retardant" is a chemistry word; the insult and its forms stay refused
+  const FINE = ["Fire Retardant", "Retardant", "Retardants", "Flame Retardant"];
+  for (const n of FINE) check(!rude(n), "not rude: " + n);
+  check(nameOk("Fire Retardant") && nameOk("Retardants"), "Fire Retardant and Retardants pass the name box");
+  check(!nameOk("Flame Retardant"), "Flame Retardant is 15 characters, so the name box still refuses it, for length only");
+  const INSULT = ["Retard", "Retarded", "Retards", "Retard Ant", "Retardation", "R3tard", "Retardant Retard", "Retardantfuck", "Fire Retarded"];
+  for (const n of INSULT) check(rude(n), "still refused as rude: " + n);
+  check(!N.titleRude("Flame Retardant") && !N.titleRude("Fire Retardant"), "a game title with Flame Retardant in it passes");
+  part("Figa, Nazi, Porn and FCK stay refused; Fire Retardant passes, Retard and its forms stay refused");
+}
+
 /* ---------------------------------------------------------------- characters */
 {
   check(!nameOk("<b>"), "refused: <b>");
