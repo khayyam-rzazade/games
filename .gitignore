@@ -24,3 +24,7 @@ server/live/.dev.vars
 server/findout/node_modules/
 server/findout/.wrangler/
 server/findout/.dev.vars
+# The story server's tools, as for server/live: never pushed (npm makes about 1,700 files in node_modules).
+story/worker/node_modules/
+story/worker/.wrangler/
+story/worker/.dev.vars

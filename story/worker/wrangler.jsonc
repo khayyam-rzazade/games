@@ -8,20 +8,39 @@
    domain), like live.logicers.com for the other Workers; the pages try it first and the workers.dev address second.
    (To let wrangler do it instead, add: "routes": [{ "pattern": "story.logicers.com", "custom_domain": true }] ) */
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "logicers-story",
-  "main": "worker.js",
-  "compatibility_date": "2026-09-01",
-  "workers_dev": true,
-  "preview_urls": false,
-  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
-  "triggers": { "crons": ["0 0 * * *"] },
-  "vars": {
-    "ALLOW_ORIGINS": "https://logicers.com https://www.logicers.com localhost",
-    "LAUNCH": "2026-11-09",
-    "WEEKS": "4"
-  },
-  "d1_databases": [
-    { "binding": "DB", "database_name": "logicers-story", "database_id": "PASTE THE ID THAT `npx wrangler d1 create logicers-story` PRINTS" }
-  ]
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "logicers-story",
+	"main": "worker.js",
+	"compatibility_date": "2026-09-01",
+	"workers_dev": true,
+	"preview_urls": false,
+	"observability": {
+		"enabled": false,
+		"logs": {
+			"enabled": false,
+			"invocation_logs": false
+		}
+	},
+	"triggers": {
+		"crons": [
+			"0 0 * * *"
+		]
+	},
+	"vars": {
+		"ALLOW_ORIGINS": "https://logicers.com https://www.logicers.com localhost",
+		"LAUNCH": "2026-11-09",
+		"WEEKS": "4"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "logicers-story",
+			"database_id": "cdf902f6-98e7-4e8e-a94a-a62c45b89a12"
+		},
+		{
+			"binding": "logicers_story",
+			"database_name": "logicers-story",
+			"database_id": "cdf902f6-98e7-4e8e-a94a-a62c45b89a12"
+		}
+	]
 }
