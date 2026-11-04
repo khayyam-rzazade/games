@@ -19,6 +19,9 @@
             1), what was picked (0 or 1), its axis and side, the version read, the country and the time. Portrait data.
      reads  one row per device per day: that this device read the chapter to its end (the vote, or Sunday's ending),
             with the country and the time. A vote also counts as a read. These make "how many read" on the page.
+     ever   one row per device that has ever read a chapter (the device ID and when it first did), and
+     counters  one number: how many rows "ever" has. Together they make the home page's "1,204 read" (everyone who has
+            ever read the story, each device once) without counting the whole table on every visit.
      tally  counts per week, day and country: how many chose A and how many B. Numbers only. It goes up with every
             vote and is made exact from the votes when the day is fixed.
      days   one row per fixed day: the result, the world's counts, how many countries took part, how many read.
@@ -27,6 +30,8 @@
 
    Endpoints (JSON; the POST body is JSON):
      GET  /health              { ok, db, now, cur }
+     GET  /counter             { ok, readers }: how many devices have ever read a chapter (all weeks). For the home page;
+                               the same number for a minute (kept in memory, and the browser may keep it for a minute).
      GET  /state?week=N        what the page needs: the server's clock (now), where the story is (cur), the fixed
                                path so far for week N (path: ["A","B",...], one per closed day, in order), the closed
                                days with the world's counts and the asking country's counts, and today's counts
@@ -57,7 +62,9 @@ const DEV = /^[0-9a-f]{32}$/;
 const MAX_BODY = 2048;
 const VOTES_PER_ADDRESS_A_DAY = 400;           // a school, or a mobile network that puts many phones behind one address, stays inside this
 const READS_PER_ADDRESS_AN_HOUR = 600;
-const WRITES_PER_ADDRESS_A_DAY = 1500;         // reads and small choices together (a school: 400 phones x 3, with room)
+const WRITES_PER_ADDRESS_A_DAY = 1500;
+const COUNTER_PER_ADDRESS_AN_HOUR = 3000;      // every visit to the home page asks once; a school behind one address stays inside this
+const COUNTER_FOR_MS = 60000;         // reads and small choices together (a school: 400 phones x 3, with room)
 
 /* ---- schema: made on the first request, so deploying needs no command line ---- */
 const SCHEMA = [
@@ -75,6 +82,10 @@ const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS reads (
      week INTEGER NOT NULL, day INTEGER NOT NULL, dev TEXT NOT NULL, country TEXT NOT NULL, at INTEGER NOT NULL,
      PRIMARY KEY (week, day, dev)) WITHOUT ROWID`,
+  `CREATE TABLE IF NOT EXISTS ever (
+     dev TEXT NOT NULL PRIMARY KEY, at INTEGER NOT NULL) WITHOUT ROWID`,
+  `CREATE TABLE IF NOT EXISTS counters (
+     name TEXT NOT NULL PRIMARY KEY, n INTEGER NOT NULL) WITHOUT ROWID`,
   `CREATE TABLE IF NOT EXISTS smalls (
      week INTEGER NOT NULL, day INTEGER NOT NULL, dev TEXT NOT NULL, n INTEGER NOT NULL, pick INTEGER NOT NULL,
      axis TEXT, side TEXT, ver TEXT, country TEXT NOT NULL, at INTEGER NOT NULL,
@@ -84,7 +95,19 @@ const ensuredDbs = new WeakSet();
 async function ensure(env) {
   if (ensuredDbs.has(env.DB)) return;
   await env.DB.batch(SCHEMA.map((s) => env.DB.prepare(s)));
+  /* the readers' counter is born once; if the database already had reads (a Worker from before the counter), it starts
+     from them, so the number is right from the first day */
+  const born = await env.DB.prepare("INSERT OR IGNORE INTO counters (name, n) VALUES ('readers', 0)").run();
+  if (born.meta && born.meta.changes === 1) {
+    await env.DB.prepare("INSERT OR IGNORE INTO ever (dev, at) SELECT dev, MIN(at) FROM reads GROUP BY dev").run();
+    await env.DB.prepare("UPDATE counters SET n = (SELECT COUNT(*) FROM ever) WHERE name = 'readers'").run();
+  }
   ensuredDbs.add(env.DB);
+}
+/* a device read a chapter: if it is its first ever, the readers' counter goes up by one */
+async function newReader(env, dev, ms) {
+  const r = await env.DB.prepare("INSERT OR IGNORE INTO ever (dev, at) VALUES (?, ?)").bind(dev, ms).run();
+  if (r.meta && r.meta.changes === 1) await env.DB.prepare("UPDATE counters SET n = n + 1 WHERE name = 'readers'").run();
 }
 
 /* ---- small helpers ---- */
@@ -214,7 +237,8 @@ async function vote(env, req, b, ms) {
   const r = await env.DB.prepare("INSERT OR IGNORE INTO votes (week, day, dev, choice, country, axis, side, ver, at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
     .bind(b.week, b.day, b.dev, b.choice, country, axis, side, ver, ms).run();
   if (r.meta && r.meta.changes === 1) {
-    await env.DB.prepare("INSERT OR IGNORE INTO reads (week, day, dev, country, at) VALUES (?, ?, ?, ?, ?)").bind(b.week, b.day, b.dev, country, ms).run();
+    const rd = await env.DB.prepare("INSERT OR IGNORE INTO reads (week, day, dev, country, at) VALUES (?, ?, ?, ?, ?)").bind(b.week, b.day, b.dev, country, ms).run();
+    if (rd.meta && rd.meta.changes === 1) await newReader(env, b.dev, ms);
     await env.DB.prepare("INSERT INTO tally (week, day, country, a, b) VALUES (?, ?, ?, ?, ?) ON CONFLICT (week, day, country) DO UPDATE SET a = a + excluded.a, b = b + excluded.b")
       .bind(b.week, b.day, country, b.choice === "A" ? 1 : 0, b.choice === "B" ? 1 : 0).run();
     return json({ ok: true, again: false, choice: b.choice, closesAt: clock.end });
@@ -238,7 +262,20 @@ async function readDone(env, req, b, ms) {
   }
   if (!brake("w:" + ipOf(req) + ":" + clock.n, WRITES_PER_ADDRESS_A_DAY, DAY, ms)) return bad("too many", 429);
   const r = await env.DB.prepare("INSERT OR IGNORE INTO reads (week, day, dev, country, at) VALUES (?, ?, ?, ?, ?)").bind(b.week, b.day, b.dev, countryOf(req), ms).run();
-  return json({ ok: true, again: !(r.meta && r.meta.changes === 1) });
+  const first = !!(r.meta && r.meta.changes === 1);
+  if (first) await newReader(env, b.dev, ms);
+  return json({ ok: true, again: !first });
+}
+
+/* ---- GET /counter: everyone who has ever read the story, for the home page ---- */
+const counted = new WeakMap();                 // database -> { n, at }: the same answer for a minute
+async function counter(env, ms) {
+  const c = counted.get(env.DB);
+  if (c && ms - c.at < COUNTER_FOR_MS && ms >= c.at) return json({ ok: true, readers: c.n }, 200, { "Cache-Control": "public, max-age=60" });
+  const row = await env.DB.prepare("SELECT n FROM counters WHERE name = 'readers'").first();
+  const n = row ? row.n : 0;
+  counted.set(env.DB, { n, at: ms });
+  return json({ ok: true, readers: n }, 200, { "Cache-Control": "public, max-age=60" });
 }
 async function smallDone(env, req, b, ms) {
   const clock = clockAt(env, ms);
@@ -316,6 +353,10 @@ export async function handle(req, env, ms) {
       return withCors(json({ ok: true, db, now: ms, cur: curOf(clockAt(env, ms)) }));
     }
     await ensure(env);
+    if (path === "/counter" && req.method === "GET") {
+      if (!brake("c:" + ipOf(req), COUNTER_PER_ADDRESS_AN_HOUR, 36e5, ms)) return withCors(bad("too many", 429));
+      return withCors(await counter(env, ms));
+    }
     if (path === "/state" && req.method === "GET") {
       if (!brake("s:" + ipOf(req), READS_PER_ADDRESS_AN_HOUR, 36e5, ms)) return withCors(bad("too many", 429));
       return withCors(await state(env, req, url, ms));

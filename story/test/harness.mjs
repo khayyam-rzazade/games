@@ -118,7 +118,7 @@ export class Device {
       colorScheme: o.dark ? "dark" : "light",
       locale: "en-US",
       timezoneId: o.tz || "Asia/Baku",
-      reducedMotion: "reduce",
+      reducedMotion: o.motion ? "no-preference" : "reduce",
       serviceWorkers: "block"
     });
     this.page = await this.ctx.newPage();

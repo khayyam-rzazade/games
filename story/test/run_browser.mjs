@@ -3,7 +3,7 @@
      node story/test/run_browser.mjs weeks join    only the named ones
    Scenarios: weeks (four whole weeks, every version of every chapter, every ending), join (Wednesday, Sunday), midnight,
    counts (read and voted numbers, Sunday, small choices made offline, the launch date), clock (a wrong phone clock, before the launch), offline, device (one vote per device, resuming), lastweek, look (phone,
-   dark), safe (chapter text cannot run code), card (end card, ? chip, keyboard), home (the tile on the home page, every state),
+   dark), safe (chapter text cannot run code), card (end card, ? chip, keyboard), home (the thin story line under Today: every state, the readers' number, phone and computer),
    real (the real week files in story/weeks/, word for word, all endings).
    Needs: Node 22+ and Playwright with Chrome (CHROME=/path/to/chrome if it is not at /usr/bin/google-chrome).
    Run from anywhere: the site root is two folders up from here (the games folder) unless SITE=/path says otherwise.
@@ -715,7 +715,7 @@ async function worldAt(w, P, day) {
 }
 
 async function scenarioReal() {
-  const have = [2, 3, 4].filter((n) => fs.existsSync(realFile(n)));
+  const have = [1, 2, 3, 4].filter((n) => fs.existsSync(realFile(n)));
   if (!have.length) { console.log("no real week files found in " + REAL + ": skipped"); return; }
   for (const w of have) {
     const F = JSON.parse(fs.readFileSync(realFile(w), "utf8"));
@@ -782,138 +782,216 @@ async function scenarioReal() {
    home: the tile on the home page, in every state
    ====================================================================================================== */
 async function scenarioHome() {
-  C.at("the home page tile");
+  C.at("the home page: the story's thin line under Today");
   const homeFile = process.env.HOME_PAGE || path.join(SITE, "index.html");
-  const hasHome = fs.existsSync(homeFile) && fs.readFileSync(homeFile, "utf8").includes('id="tile-story"');
-  if (!hasHome) { C.ok("the home page has the story row", false, homeFile + " has no #tile-story"); return; }
-  async function homeAt(ms, store, o) {
+  const hasHome = fs.existsSync(homeFile) && fs.readFileSync(homeFile, "utf8").includes('id="story-line"');
+  if (!hasHome) { C.ok("the home page has the story line", false, homeFile + " has no #story-line"); return; }
+  /* a home page at ms; store: what this browser keeps for the story; prep(world): the server's state before the page opens */
+  async function homeAt(ms, store, o, prep) {
     const world = new World(ms);
+    if (prep) await prep(world);
     const dev = await new Device(world, env.browser, env.base, Object.assign({ name: "me", country: "DE" }, o || {})).init();
+    if (o && o.down) dev.down = Object.assign({}, o.down);         // addresses that do not answer, from the first load on
     await dev.page.goto(env.base + "/__blank");
-    await dev.page.evaluate((s) => { localStorage.setItem("lg.findout.lang", "en"); if (s) localStorage.setItem("story:v1", JSON.stringify(s)); else localStorage.removeItem("story:v1"); }, store || null).catch(() => {});
+    await dev.page.evaluate(([s, k]) => {
+      localStorage.setItem("lg.findout.lang", "en");
+      if (s) localStorage.setItem("story:v1", JSON.stringify(s)); else localStorage.removeItem("story:v1");
+      if (k !== null) localStorage.setItem("story:readers", JSON.stringify({ n: k, at: 0 })); else localStorage.removeItem("story:readers");
+    }, [store || null, o && o.kept !== undefined ? o.kept : null]).catch(() => {});
     await dev.page.goto(env.base + "/", { waitUntil: "load" });
-    await dev.page.waitForTimeout(200);
+    await dev.page.waitForTimeout(250);
     return { world, dev };
   }
-  const row = (dev) => dev.page.locator("#story-row");
+  const L = (dev) => dev.page.locator("#story-line");
   /* the home page reloads itself when the day changes on the player's own clock (Baku: 20:00 UTC); wait for that to finish */
   const calm = async (dev) => { await dev.page.waitForLoadState("load"); await dev.page.waitForTimeout(250); await dev.page.waitForLoadState("load"); };
-  const shown = async (dev) => !(await row(dev).evaluate((n) => n.hidden));
-  const line = (dev) => dev.page.locator("#tile-story .pitch").innerText();
+  const shown = async (dev) => !(await L(dev).evaluate((n) => n.hidden));
+  const name = (dev) => dev.page.locator("#story-line .sl-name").innerText();
+  const count = (dev) => dev.page.locator("#story-line .sl-count").evaluate((n) => (n.hidden ? "" : n.textContent));
+  const sign = (dev) => L(dev).getAttribute("data-sign");
+  const said = (dev) => L(dev).getAttribute("aria-label");
+  const waitCount = (dev, t) => dev.page.waitForFunction((x) => { const n = document.querySelector("#story-line .sl-count"); return n && !n.hidden && n.textContent === x; }, t, { timeout: 3000 }).catch(() => {});
+  const asks = (world) => world.log.filter((l) => l[1] === "/counter").length;
+  const readers = async (world, n) => { await world.request("GET", "/health"); await world.env.DB.prepare("UPDATE counters SET n = ? WHERE name = 'readers'").bind(n).run(); };
   const id = "ab".repeat(16);
   const store = (days, week) => ({ v: 1, id, intro: true, taps: [], weeks: { [week || 1]: { days, cache: { path: [], days: {} } } } });
 
+  /* before the launch */
   let h = await homeAt(at(-3, 12));
-  C.eq("before the launch the row is hidden", await shown(h.dev), false);
-  C.ok("and takes no room", (await row(h.dev).boundingBox()) === null);
+  C.eq("before the launch the line is hidden", await shown(h.dev), false);
+  C.ok("and takes no room", (await L(h.dev).boundingBox()) === null);
+  C.eq("and the story server is not asked", asks(h.world), 0);
+  C.eq("the old row under the word games is gone", [await h.dev.page.locator("#story-row").count(), await h.dev.page.locator("#tile-story").count()], [0, 0]);
   await h.dev.close();
 
+  /* launch day, nobody has read yet */
   h = await homeAt(at(0, 9));
-  C.eq("launch day: the row shows", await shown(h.dev), true);
-  C.eq("its title is the week's story", await h.dev.page.locator("#tile-story h3").innerText(), "The Ferry Comes Sunday");
-  C.eq("the line", await line(h.dev), "Chapter 1 of 7 · the world is deciding · 15 h left");
-  C.eq("the row's heading", await h.dev.page.locator("#story-title").innerText(), "This week's story");
-  C.ok("it opens story/", /\/story\/$/.test(await h.dev.page.locator("#tile-story").evaluate((a) => a.href)));
-  C.eq("a play button, not a check", [await h.dev.page.locator("#tile-story .go").isVisible(), await h.dev.page.locator("#tile-story .result").isVisible()], [true, false]);
-  C.ok("it sits under the word games and above Pass the phone", await h.dev.page.evaluate(() => {
-    const y = (id) => document.getElementById(id).getBoundingClientRect().top;
-    return y("words-title") < y("story-title") && y("story-title") < y("group-title");
+  C.eq("launch day: the line shows", await shown(h.dev), true);
+  C.eq("the name is the week's story", await name(h.dev), "The Ferry Comes Sunday");
+  C.eq("nobody has read yet: no number", await count(h.dev), "");
+  C.eq("the sign: an arrow (today's chapter is waiting)", await sign(h.dev), "go");
+  C.ok("the whole line opens story/", /\/story\/$/.test(await L(h.dev).evaluate((a) => a.href)));
+  C.eq("the story server was asked once for the number", asks(h.world), 1);
+  C.eq("a screen reader hears the name and the day", await said(h.dev), "The Ferry Comes Sunday. Chapter 1 of 7 · the world is deciding · 15 h left.");
+  C.ok("on a phone it sits right under the Today card, above the Logicer and Find out boxes", await h.dev.page.evaluate(() => {
+    const r = (id) => document.getElementById(id).getBoundingClientRect();
+    const t = r("today-card"), s = r("story-line"), f = r("findout-box");
+    return s.top - t.bottom >= 6 && s.top - t.bottom <= 10 && f.top > s.bottom && Math.abs(s.left - t.left) < 1 && Math.abs(s.width - t.width) < 1;
   }));
+  C.ok("it is one thin line (under 56px)", (await L(h.dev).boundingBox()).height < 56, await L(h.dev).boundingBox());
   C.eq("the story is in neither of the site's game lists (so not in the streak or the x-of-y count)", await h.dev.page.evaluate(() => [].concat(window.TurnsOut.GAMES, window.TurnsOut.WORDS).some((g) => /story/i.test(g.id + g.key + g.href))), false);
-  await h.dev.shot("home-tile-light");
-  /* live: the hour changes on the 30 s beat */
-  await h.world.setTime(at(0, 9, 59));
-  await calm(h.dev);
-  C.eq("14 h at 09:59", await line(h.dev), "Chapter 1 of 7 · the world is deciding · 14 h left");
+  C.has("the Today count is still the games' own", await h.dev.page.locator("#today-count").innerText(), "of 12 played");
+  /* the hours tick on the 30 s beat; midnight brings chapter 2 */
   await h.world.setTime(at(0, 10, 3));
   await calm(h.dev);
-  C.eq("13 h at 10:03, by itself", await line(h.dev), "Chapter 1 of 7 · the world is deciding · 13 h left");
-  await h.world.setTime(at(0, 23, 30));
-  await calm(h.dev);
-  C.eq("minutes in the last hour", await line(h.dev), "Chapter 1 of 7 · the world is deciding · 30 min left");
+  C.has("13 h at 10:03, by itself", await said(h.dev), "13 h left");
   await h.world.setTime(at(1, 0, 2));
   await calm(h.dev);
-  C.eq("after midnight it is chapter 2, by itself", await line(h.dev), "Chapter 2 of 7 · the world is deciding · 23 h left");
-  /* the tile is a link into the story */
-  await h.dev.click("#tile-story");
+  C.has("after midnight it is chapter 2, by itself", await said(h.dev), "Chapter 2 of 7");
+  await h.dev.click("#story-line");
   await h.dev.page.waitForURL(/\/story\/$/);
-  C.ok("a tap goes to the story page", true);
   await h.dev.settle();
-  C.eq("which opens on its first screen", await h.dev.view(), "intro");
+  C.eq("a tap goes to the story, on its first screen", await h.dev.view(), "intro");
   C.ok("no page errors", h.dev.errors.length === 0, h.dev.errors);
   await h.dev.close();
 
-  h = await homeAt(at(2, 22, 30), store({ 3: { vote: "A" } }));
-  C.eq("voted today: the line", await line(h.dev), "You voted · result in 1 h");
-  C.eq("a check instead of the play button", [await h.dev.page.locator("#tile-story .go").isVisible(), await h.dev.page.locator("#tile-story .result").isVisible(), await h.dev.page.locator("#tile-story .again").evaluate((n) => n.hidden)], [false, true, false]);   // (the site's CSS hides "again" on a small screen)
-  C.eq("the tile is marked done like the daily games", await h.dev.page.locator("#tile-story").evaluate((n) => n.classList.contains("done")), true);
-  await h.dev.shot("home-tile-voted");
+  /* the number: everyone who has ever read, each phone once */
+  h = await homeAt(at(1, 9), null, {}, async (w) => {
+    await w.setTime(at(0, 9));                                       // Monday: two read
+    for (const i of [1, 2]) await w.request("POST", "/read", { week: 1, day: 1, dev: String(i).repeat(32) }, { ip: "6.6.6." + i });
+    await w.setTime(at(1, 8));                                       // Tuesday: one of them again, a new one, and one who only voted
+    for (const i of [1, 3]) await w.request("POST", "/read", { week: 1, day: 2, dev: String(i).repeat(32) }, { ip: "6.6.6." + i });
+    await w.request("POST", "/vote", { week: 1, day: 2, choice: "A", dev: "4".repeat(32) }, { ip: "6.6.6.4" });
+    await w.setTime(at(1, 9));
+  });
+  await waitCount(h.dev, "4 read");
+  C.eq("4 people have read (one of them on two days, one only voted): 4 read", await count(h.dev), "4 read");
+  C.has("and a screen reader hears it", await said(h.dev), "4 people have read the story.");
+  await h.dev.close();
+  h = await homeAt(at(1, 9), null, {}, async (w) => { await w.request("POST", "/read", { week: 1, day: 2, dev: "1".repeat(32) }); });
+  await waitCount(h.dev, "1 read");
+  C.eq("from the first reader on: 1 read", await count(h.dev), "1 read");
+  C.has("one person", await said(h.dev), "1 person has read the story.");
+  await h.dev.close();
+  h = await homeAt(at(1, 9), null, {}, (w) => readers(w, 1204));
+  await waitCount(h.dev, "1,204 read");
+  C.eq("big numbers have commas: 1,204 read", await count(h.dev), "1,204 read");
+  await h.dev.shot("home-line-light");
+  /* the number is kept in this browser: next time it is there at once, even with no answer from the server */
+  const kept = await h.dev.page.evaluate(() => JSON.parse(localStorage.getItem("story:readers")).n);
+  C.eq("the number is kept in this browser", kept, 1204);
+  await h.dev.close();
+  h = await homeAt(at(1, 9), null, { kept: 1204, down: { "*": true } });
+  C.eq("no answer from the server: the kept number is shown", await count(h.dev), "1,204 read");
+  C.ok("no page errors", h.dev.errors.length === 0, h.dev.errors);
+  await h.dev.close();
+  h = await homeAt(at(1, 9), null, { down: { "*": true } });
+  C.eq("no answer and nothing kept: the line shows without a number", [await shown(h.dev), await count(h.dev)], [true, ""]);
+  C.ok("no page errors", h.dev.errors.length === 0, h.dev.errors);
+  await h.dev.close();
+  h = await homeAt(at(1, 9), null, { down: { "story.logicers.com": true } }, (w) => readers(w, 37));
+  await waitCount(h.dev, "37 read");
+  C.eq("story.logicers.com does not answer: the workers.dev address does", await count(h.dev), "37 read");
   await h.dev.close();
 
+  /* the sign at the end */
+  h = await homeAt(at(2, 22, 30), store({ 3: { vote: "A" } }), {}, (w) => readers(w, 52));
+  C.eq("voted today: the sign says Voted", [await sign(h.dev), await h.dev.page.locator("#story-line .sl-sign").innerText()], ["voted", "Voted"]);
+  C.eq("and the line is marked done", await L(h.dev).evaluate((n) => n.classList.contains("done")), true);
+  C.has("a screen reader hears when the result comes", await said(h.dev), "You voted · result in 1 h");
+  await waitCount(h.dev, "52 read");
+  await h.dev.shot("home-line-voted");
+  await h.dev.close();
   h = await homeAt(at(3, 9), store({ 3: { vote: "A" } }));
-  C.eq("the morning after a vote, the result is in", await line(h.dev), "Result is in · read chapter 4");
-  C.eq("and the play button is back", await h.dev.page.locator("#tile-story .go").isVisible(), true);
+  C.eq("the morning after a vote: Result", [await sign(h.dev), await h.dev.page.locator("#story-line .sl-sign").innerText()], ["result", "Result"]);
+  C.eq("not done", await L(h.dev).evaluate((n) => n.classList.contains("done")), false);
   await h.dev.close();
-
   h = await homeAt(at(3, 9), store({ 3: { vote: "A", seen: true } }));
-  C.eq("once the result has been seen, it is today's chapter again", await line(h.dev), "Chapter 4 of 7 · the world is deciding · 15 h left");
+  C.eq("once the result has been seen: the arrow again", await sign(h.dev), "go");
   await h.dev.close();
-
   h = await homeAt(at(3, 9), store({ 1: { vote: "B", seen: true }, 3: { vote: "A" } }));
-  C.eq("an older vote whose result was seen does not count; a newer one does", await line(h.dev), "Result is in · read chapter 4");
+  C.eq("an older vote whose result was seen does not count; a newer one does", await sign(h.dev), "result");
   await h.dev.close();
-
   h = await homeAt(at(6, 9), store({ 6: { vote: "A" } }));
-  C.eq("Sunday after a Saturday vote: the result first", await line(h.dev), "Result is in · read chapter 7");
+  C.eq("Sunday after a Saturday vote: Result first", await sign(h.dev), "result");
   await h.dev.close();
   h = await homeAt(at(6, 9), store({ 6: { vote: "A", seen: true } }));
-  C.eq("Sunday: the ending", await line(h.dev), "Chapter 7 of 7 · the ending · 15 h left");
+  C.eq("Sunday: the ending waits (arrow)", [await sign(h.dev), (await said(h.dev)).includes("Chapter 7 of 7 · the ending")], ["go", true]);
   await h.dev.close();
   h = await homeAt(at(6, 9), store({ 6: { vote: "A", seen: true }, 7: { read: true, card: true } }));
-  C.eq("Sunday, the week card seen: the week is done", await line(h.dev), "Your week is done · next story on Monday");
-  C.eq("with the check", await h.dev.page.locator("#tile-story .result").isVisible(), true);
+  C.eq("Sunday, the week card seen: a check", [await sign(h.dev), await h.dev.page.locator("#story-line .sl-sign").innerText()], ["done", ""]);
+  C.has("and the next story on Monday", await said(h.dev), "Your week is done · next story on Monday");
   await h.dev.close();
   h = await homeAt(at(27, 9), store({ 7: { read: true, card: true } }, 4));
-  C.eq("the last Sunday, week done", await line(h.dev), "Your week is done · more stories soon");
+  C.has("the last Sunday, week done", await said(h.dev), "Your week is done · more stories soon");
   await h.dev.close();
-
   h = await homeAt(at(7, 9), store({ 6: { vote: "A" } }, 1));
-  C.eq("week 2 Monday: last week's votes are not this week's", await line(h.dev), "Chapter 1 of 7 · the world is deciding · 15 h left");
-  C.eq("and the title is week 2's", await h.dev.page.locator("#tile-story h3").innerText(), "Rain Until Sunday");
+  C.eq("week 2 Monday: last week's votes are not this week's", await sign(h.dev), "go");
+  C.eq("and the name is week 2's", await name(h.dev), "Rain Until Sunday");
   await h.dev.close();
-
   h = await homeAt(at(28, 9));
-  C.eq("after the last week the row is hidden", await shown(h.dev), false);
+  C.eq("after the last week the line is hidden", await shown(h.dev), false);
   await h.dev.close();
 
-  /* a broken or foreign store does not break the home page */
+  /* the line appears by itself at the launch moment, with the page open */
+  h = await homeAt(at(-1, 23, 59));
+  C.eq("a minute before the launch: hidden", await shown(h.dev), false);
+  await h.world.setTime(at(0, 0, 1));
+  await calm(h.dev);
+  C.eq("at the launch it shows by itself", await shown(h.dev), true);
+  await h.dev.page.waitForTimeout(150);
+  C.eq("and asks for the number then", asks(h.world) >= 1, true);
+  await h.dev.close();
+
+  /* a broken store does not break the home page */
   h = await homeAt(at(1, 9));
-  await h.dev.page.evaluate(() => localStorage.setItem("story:v1", "{not json"));
+  await h.dev.page.evaluate(() => { localStorage.setItem("story:v1", "{not json"); localStorage.setItem("story:readers", "[nope"); });
   await h.dev.page.reload({ waitUntil: "load" });
-  C.eq("a store that cannot be read: still the plain line", await line(h.dev), "Chapter 2 of 7 · the world is deciding · 15 h left");
+  C.eq("a store that cannot be read: still the plain line", [await shown(h.dev), await sign(h.dev)], [true, "go"]);
   C.ok("no errors", h.dev.errors.length === 0, h.dev.errors);
   await h.dev.close();
 
-  /* English only: on a home in another language the row stays hidden */
+  /* English only: on a home in another language the line stays hidden */
   h = await homeAt(at(0, 9));
   const stays = await h.dev.page.evaluate(async () => {
-    const sec = document.getElementById("story-row"); sec.hidden = true;
+    const box = document.getElementById("story-line"); box.hidden = true;
     window.LG.lang = "fr";
     const src = await (await fetch("/story/tile.js")).text();
     new Function(src)();
-    return sec.hidden;
+    return box.hidden;
   });
-  C.eq("another language's home keeps the row hidden", stays, true);
+  C.eq("another language's home keeps the line hidden", stays, true);
   await h.dev.close();
 
-  /* looks: a phone, light and dark, and a wide window */
-  for (const [name, o] of [["phone-light", { viewport: { width: 390, height: 844 } }], ["phone-dark", { viewport: { width: 390, height: 844 }, dark: true }], ["narrow", { viewport: { width: 320, height: 700 } }], ["wide", { viewport: { width: 1200, height: 900 } }]]) {
-    h = await homeAt(at(2, 9), store({ 2: { vote: "B" } }), o);
-    await h.dev.page.locator("#story-row").scrollIntoViewIfNeeded();
-    C.eq("[" + name + "] no sideways scrolling", await h.dev.page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), true);
-    const box = await h.dev.page.locator("#tile-story").boundingBox();
-    C.ok("[" + name + "] the tile fits the screen", box && box.x >= 0 && box.x + box.width <= (o.viewport.width + 1), box);
-    await h.dev.page.locator("#story-row").screenshot({ path: path.join(HERE, "shots", "home-row-" + name + ".png") });
+  /* the hook moves only when there is something to read, and never with reduced motion */
+  h = await homeAt(at(1, 9), null, { motion: true });
+  C.eq("something to read: the name shines and the sign breathes", await h.dev.page.evaluate(() => [getComputedStyle(document.querySelector("#story-line .sl-name")).animationName, getComputedStyle(document.querySelector("#story-line .sl-sign")).animationName]), ["findout-shine", "sl-pulse"]);
+  await h.dev.close();
+  h = await homeAt(at(1, 22), store({ 2: { vote: "A" } }), { motion: true });
+  C.eq("voted: still", await h.dev.page.evaluate(() => [getComputedStyle(document.querySelector("#story-line .sl-name")).animationName, getComputedStyle(document.querySelector("#story-line .sl-sign")).animationName]), ["none", "none"]);
+  await h.dev.close();
+  h = await homeAt(at(1, 9));
+  C.eq("reduced motion: still", await h.dev.page.evaluate(() => getComputedStyle(document.querySelector("#story-line .sl-name")).animationName), "none");
+  await h.dev.close();
+
+  /* looks: phones light and dark, a small phone, a tablet and a computer */
+  for (const [nm, o] of [["phone-light", { viewport: { width: 390, height: 844 } }], ["phone-dark", { viewport: { width: 390, height: 844 }, dark: true }], ["android-360", { viewport: { width: 360, height: 780 } }], ["small-320", { viewport: { width: 320, height: 640 } }], ["tablet-820", { viewport: { width: 820, height: 1100 } }], ["wide-1280", { viewport: { width: 1280, height: 900 } }], ["wide-dark", { viewport: { width: 1280, height: 900 }, dark: true }]]) {
+    h = await homeAt(at(2, 9), null, Object.assign({ kept: 1204 }, o), (w) => readers(w, 1204));
+    await waitCount(h.dev, "1,204 read");
+    C.eq("[" + nm + "] no sideways scrolling", await h.dev.page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), true);
+    const g = await h.dev.page.evaluate(() => {
+      const r = (id) => document.getElementById(id).getBoundingClientRect();
+      const n = document.querySelector("#story-line .sl-name");
+      return { t: r("today-card"), s: r("story-line"), lb: r("livebox"), cut: n.scrollWidth > n.clientWidth + 1, vw: window.innerWidth };
+    });
+    C.ok("[" + nm + "] the line fits the screen", g.s.left >= 0 && g.s.right <= g.vw + 1, g.s);
+    C.ok("[" + nm + "] right under Today, as wide, 8px between", Math.abs(g.s.left - g.t.left) < 1 && Math.abs(g.s.width - g.t.width) < 1 && g.s.top - g.t.bottom > 5 && g.s.top - g.t.bottom < 11, [g.t, g.s]);
+    C.ok("[" + nm + "] still one thin line", g.s.height < 56, g.s.height);
+    if (nm !== "small-320") C.eq("[" + nm + "] the whole name shows, nothing cut", g.cut, false);
+    if (nm.startsWith("wide")) C.ok("[" + nm + "] Build / Join comes right after it in the right-hand column", Math.abs(g.lb.left - g.s.left) < 1 && g.lb.top > g.s.bottom && g.lb.top - g.s.bottom < 20, [g.s, g.lb]);
+    const clip = { x: 0, y: Math.max(0, g.t.top - 12), width: g.vw, height: Math.min(g.lb.bottom, g.s.bottom + 120) - Math.max(0, g.t.top - 12) + 12 };
+    await h.dev.page.screenshot({ path: path.join(HERE, "shots", "home-line-" + nm + ".png"), clip });
+    C.ok("[" + nm + "] no page errors", h.dev.errors.length === 0, h.dev.errors);
     await h.dev.close();
   }
 }
@@ -1083,7 +1161,7 @@ async function main() {
   }
   if (process.env.HOME_PAGE) extra["/"] = process.env.HOME_PAGE;           // the edited home page, when it is not yet in SITE
   const a = await startServer(SITE, FIXTURE, extra);
-  const b = await startServer(SITE, (n) => (n >= 2 && fs.existsSync(realFile(n)) ? realFile(n) : FIXTURE), extra);
+  const b = await startServer(SITE, (n) => (n >= 1 && fs.existsSync(realFile(n)) ? realFile(n) : FIXTURE), extra);
   const browser = await pw.chromium.launch({ executablePath: CHROME, args: ["--no-sandbox"] });
   env = { browser, base: "http://127.0.0.1:" + a.port, baseReal: "http://127.0.0.1:" + b.port, extra };
   const want = process.argv.slice(2);

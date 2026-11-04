@@ -274,6 +274,50 @@ async function main() {
   r = await hit(env, at(1, 1), "GET", "/state?week=1");
   ok("H29 a day with no readers is fixed with 0 readers and the result A", r.body.days[0].readers === 0 && r.body.days[0].result === "A");
 
+  /* ---- I. the home page's number: everyone who has ever read the story, each device once ---- */
+  env = envOf();
+  const cnt = async (ms, o) => (await hit(env, ms, "GET", "/counter", null, o));
+  r = await cnt(at(0, 8));
+  ok("I1 nobody yet: 0", r.status === 200 && r.body.ok === true && r.body.readers === 0);
+  ok("I2 the browser may keep it for a minute", r.headers.get("Cache-Control") === "public, max-age=60");
+  await hit(env, at(0, 9), "POST", "/read", { week: 1, day: 1, dev: dev(1) });
+  await hit(env, at(0, 9), "POST", "/read", { week: 1, day: 1, dev: dev(1) });          // the same device again
+  await vote(env, at(0, 9), 2, 1, 1, "A");                                              // a vote is a read
+  await hit(env, at(0, 9), "POST", "/read", { week: 1, day: 1, dev: dev(2) });          // and its read after the vote changes nothing
+  ok("I3 within the minute the answer stays the same", (await cnt(at(0, 8, 0) + 59000)).body.readers === 0);
+  ok("I4 after the minute: 2 readers", (await cnt(at(0, 9, 1))).body.readers === 2);
+  await hit(env, at(1, 9), "POST", "/read", { week: 1, day: 2, dev: dev(1) });          // the same device on another day
+  await hit(env, at(1, 9), "POST", "/read", { week: 1, day: 2, dev: dev(3) });          // a new one
+  await hit(env, at(8, 9), "POST", "/read", { week: 2, day: 2, dev: dev(4) });          // a new one, the next week
+  await vote(env, at(8, 9), 1, 2, 2, "B");                                              // an old reader votes in week 2
+  ok("I5 every device once, over days and weeks: 4", (await cnt(at(8, 10))).body.readers === 4);
+  ok("I6 the number is the rows of ever", (await env.DB.prepare("SELECT COUNT(*) AS c FROM ever").first()).c === 4 && (await env.DB.prepare("SELECT COUNT(DISTINCT dev) AS c FROM reads").first()).c === 4);
+  await hit(env, at(8, 11), "POST", "/small", { week: 2, day: 2, dev: dev(9), n: 0, pick: 1 });
+  ok("I7 a small choice alone is not a read", (await cnt(at(8, 12))).body.readers === 4);
+  r = await hit(env, at(8, 12), "POST", "/counter", {});
+  ok("I8 POST /counter is not found", r.status === 404);
+  r = await cnt(at(8, 12), { origin: "https://logicers.com" });
+  ok("I9 the home page may ask", r.headers.get("Access-Control-Allow-Origin") === "https://logicers.com");
+  r = await cnt(L - 5 * DAY);
+  ok("I10 it answers before the launch too", r.status === 200 && typeof r.body.readers === "number");
+
+  /* a database from before the counter (reads but no counter yet): the counter starts from the reads */
+  env = envOf();
+  await env.DB.batch(W._test.SCHEMA.map((q) => env.DB.prepare(q)));
+  for (const [w, d, i] of [[1, 1, 1], [1, 2, 1], [1, 1, 2], [1, 3, 3], [1, 3, 2]]) {
+    await env.DB.prepare("INSERT INTO reads (week, day, dev, country, at) VALUES (?, ?, ?, 'IT', ?)").bind(w, d, dev(i), at(d - 1, 9)).run();
+  }
+  ok("I11 an old database's readers are counted at once: 3", (await cnt(at(3, 9))).body.readers === 3);
+  await hit(env, at(3, 9), "POST", "/read", { week: 1, day: 4, dev: dev(2) });
+  await hit(env, at(3, 9), "POST", "/read", { week: 1, day: 4, dev: dev(5) });
+  ok("I12 and it goes on from there: 4", (await cnt(at(3, 10, 5))).body.readers === 4);
+
+  /* the brake */
+  env = envOf();
+  refused = 0;
+  for (let i = 0; i < 3005; i++) { const x = await hit(env, at(0, 10), "GET", "/counter", null, { ip: "8.8.4.4" }); if (x.status === 429) refused++; }
+  ok("I13 one address may ask 3000 times an hour", refused === 5);
+
   console.log(passed + " passed, " + failed + " failed");
   process.exit(failed ? 1 : 0);
 }

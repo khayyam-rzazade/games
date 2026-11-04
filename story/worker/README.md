@@ -8,6 +8,8 @@ The chapters themselves are the files in `story/weeks/`.
 - `POST /read` takes `{week, day, dev}`: this device read today's chapter to its end. Once per device per day. A vote counts as a read.
 - `POST /small` takes `{week, day, dev, n, pick, axis, side, ver}`: one of the two small choices of a chapter. Once per choice.
   Nothing is shown from these; they are the hidden portrait. A choice made offline may arrive after midnight and is still taken.
+- `GET /counter` gives `{readers}`: how many devices have ever read a chapter, all weeks, each once. The home page's thin
+  story line shows it ("1,204 read"). The same answer for a minute, so many visitors cost almost nothing.
 - `GET /state?week=N` gives the world's fixed results for the week so far, today's counts (read, voted, countries) and the
   asking country's split.
 - At 00:00 UTC a cron fixes the day that has just ended: the side with more votes wins; a tie or no votes gives "A".
@@ -15,7 +17,8 @@ The chapters themselves are the files in `story/weeks/`.
 - `GET /health` says the Worker and the database are up.
 
 What it keeps: the vote (week, day, A or B, the side and axis of the question, the version read), the small choices (the same
-fields), who read each chapter to its end, the country, the time, and a random ID of the browser. The page tells the player:
+fields), who read each chapter to its end, the country, the time, and a random ID of the browser; and one number, how many
+browsers have ever read (with each browser's ID once, so none is counted twice). The page tells the player:
 "Reads, votes and choices are counted by country. No names." No IP address is stored (the brakes against abuse live in memory only). Workers Logs are off.
 
 ## Deploy (first time)
