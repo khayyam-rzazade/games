@@ -583,30 +583,35 @@
     var tw = sum3(w), th = sum3(h), c = you && you.c;
     row.setAttribute("data-done", "1");
     Array.prototype.forEach.call(row.querySelectorAll(".rx-b"), function (b, i) {
-      var pw = tw >= 5 ? Math.round(100 * w[i] / tw) : null;
+      /* shares only, never counts, from the first tap: the counts are small and read as "nobody plays"
+         (4 Nov 2026, Khayyam: "reactions should be only in %, not in numbers"; replaces the counts below 5 taps
+         and the "N people reacted" line of 24 Oct) */
+      var pw = tw > 0 ? Math.round(100 * w[i] / tw) : null;
       b.classList.toggle("rx-me", i === mine);
       b.setAttribute("aria-pressed", i === mine ? "true" : "false");
       b.style.setProperty("--p", (pw === null ? 0 : pw) + "%");
       b.textContent = "";
+      if (pw === null) {                               // nothing known (the server did not answer): the chip as before the tap
+        b.appendChild(el("span", "rx-e", FEEL[i].e));
+        b.appendChild(el("span", "rx-t", FEEL[i].t));
+        b.setAttribute("aria-label", FEEL[i].t + (i === mine ? ". " + T("world.your_pick") : "."));
+        b.disabled = true;
+        return;
+      }
       var top = el("span", "rx-top");
       top.appendChild(el("span", "rx-e", FEEL[i].e));
       top.appendChild(el("span", "rx-globe", "\uD83C\uDF0D"));          // the big number is the world's (24 Oct 2026, Khayyam)
-      top.appendChild(el("b", "rx-n", pw === null ? String(w[i]) : (LG ? LG.pct(pw) : pw + "%")));
+      top.appendChild(el("b", "rx-n", LG ? LG.pct(pw) : pw + "%"));
       b.appendChild(top);
-      var ph = th >= 5 && countryName(c) ? Math.round(100 * h[i] / th) : null;
+      var ph = th > 0 && countryName(c) ? Math.round(100 * h[i] / th) : null;
       var low = el("span", "rx-low");
       if (ph !== null) { low.appendChild(flagEl(c)); low.appendChild(document.createTextNode(" " + (LG ? LG.pct(ph) : ph + "%"))); } else low.textContent = FEEL[i].t;
       b.appendChild(low);
-      b.setAttribute("aria-label", FEEL[i].t + ": " + (pw === null ? T.n(w[i], "world.n_players") : T("world.pct_of_world", { pct: pw })) +
+      b.setAttribute("aria-label", FEEL[i].t + ": " + T("world.pct_of_world", { pct: pw }) +
         (ph !== null ? ", " + T("world.pct_of_country", { pct: ph, country: countryName(c) }) : "") + (i === mine ? ". " + T("world.your_pick") : "."));
       b.disabled = true;
     });
-    /* how many people stand behind the numbers, so the scale is plain (24 Oct 2026, Khayyam) */
-    var old = row.querySelector(".rx-people");
-    if (old) row.removeChild(old);
-    if (tw > 0) row.appendChild(el("p", "rx-people", "\uD83C\uDF0D " + T.n(tw, "world.reacted", { n: fmtN(tw) })));
   }
-  function fmtN(n) { try { return Number(n).toLocaleString(LG ? LG.locale : "en-US"); } catch (e) { return String(n); } }
   function reactRow(o) {
     if (!on() || off() || !o || !o.game) return null;
     var G = gameBy("id", o.game);

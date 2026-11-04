@@ -55,8 +55,12 @@ shown below 30, and is only in the CSV export.
      logicers.com → Settings), so the pages can use the same site key; or make a new invisible widget and give its
      site key to the pages. While the secret is unset, uploads are taken without a token and /health says
      `"turnstile": false`.
+   - `ROOM_HASH_SECRET` — a second long password of your own (32 random characters or more; never the same as
+     `ADMIN_KEY`). It keys the room hash in the research rows. Set it before the first real room and never change
+     it: a new key would split one room's rows into two rooms. While it is unset, `ADMIN_KEY` stands in.
 4. **Check:** open https://logicers-checkin.rza-khay.workers.dev/health — it should say
-   `{"ok":true,"db":true,"turnstile":true,"admin":true,"item_version":60}`.
+   `{"ok":true,"db":true,"turnstile":true,"admin":true,"room_hash":"secret","purged_ago_s":…,"item_version":60}`
+   (`purged_ago_s` is null until the first sweep ran in that copy of the Worker; after a day it should be under 3600).
 5. Settings → Observability: leave Workers Logs and traces **off**.
 
 After that, every push that changes `server/checkin` deploys it by itself. If the section's folder gets another
@@ -79,7 +83,7 @@ The contract is `claude/checkin-plan.md` section 7; fields were only added, neve
 
 | Call | Body | Reply |
 |---|---|---|
-| `GET /health` | — | `{ ok, db, turnstile, admin, item_version }` |
+| `GET /health` | — | `{ ok, db, turnstile, admin, room_hash, purged_ago_s, item_version }` |
 | `GET /hello` | — | `{ ok, country }` from the request; nothing stored |
 | `POST /room/new` | `{ lang }` (or an empty body) | `{ ok, code, host_key, join, host, tag, state }`. The host key is sent this once. The code is 6 letters. |
 | `GET /room/:code` | — | `{ ok, state }`; 404 unknown or gone. Polled every 2–3 s; answered from memory. |
@@ -88,9 +92,9 @@ The contract is `claude/checkin-plan.md` section 7; fields were only added, neve
 | `POST /room/:code/host` | `{ host_key, action, sides? }` | `{ ok, state }`. `start` (a live round, 12 h), `open` (an open round, 7 days) — from the lobby, a reveal or a close; `reveal`; `split` with `sides: [a, b]` (or `null` to take it off); `next` (back to the lobby after a reveal); `close` (reveals a round in play, then no joins; `start`/`open` reopens); `delete` (everything, now). 403 wrong key, 409 `step` out of order. |
 | `GET /host/:host_key` | — | `{ ok, code, join, host, lang, country, step, round, mode, sides, made, until, floor, current, rounds, world }`. `rounds[]`: `{ n, date, mode, opened, revealed, joined, people, who_mean, st_mean, bars, bars_n, mind, ladder, who, bands, st, sleep, role, counts, split, tried }`; below 10 the means are null and the rest empty. `current`: the round open now, counts only. `country`: the room's country, as `/solo`'s. |
 | `POST /host/:host_key/tried` | `{ round, id }` | `{ ok }`; `id` one of the six why-items (`y_…`) or null; only a revealed round |
-| `POST /solo` | `{ a, lang, role?, first? }` | `{ ok, you: { who, band (1–4, as the codebook), st }, world: { n, n_today, countries, opens_at, days, who_mean, st_mean, bands }, country: { code, iso, n, opens_at, who_mean?, st_mean?, bands? } \| null }`. The result call of every check-in, alone or in a room: counted once in the day's tally; `first: true` on a phone's first check-in ever. Means over the last 30 days, from 30. |
-| `POST /upload` | `{ id, a, lang, role, room?, round?, item_version?, token? }` | `{ ok, code, country }`: pending. `room` is the room's tag or code; `country` is the header's, for the consent card. |
-| `POST /consent` | `{ id, code, yes, age?, country?, consent_version? }` | `{ ok }`. `yes: true` keeps it, `false` deletes it (a no after a yes the same day deletes the kept row). `age` one of the find-outs' bands (`Under 18`, `18–24` … `65+`), `country` an ISO code or `not said`, `consent_version` one of `CONSENT_VERSIONS` in `src/worker.js` (now `checkin-consent-1 (4 Nov 2026)`) or left out. 404 when gone. |
+| `POST /solo` | `{ a, lang, role? }` | `{ ok, you: { who, band (1–4, as the codebook), st }, world: { n, n_today, countries, opens_at, days, who_mean, st_mean, bands }, country: { code, iso, n, opens_at, who_mean?, st_mean?, bands? } \| null }`. The result call of every check-in, alone or in a room: it reads the world's numbers and writes nothing (the counting is `/upload`'s, behind Turnstile). A country's numbers come from completed days only, so today's arrivals cannot be read off a changing mean. Means over the last 30 days, from 30. |
+| `POST /upload` | `{ id, a, lang, role, room?, round?, item_version?, first?, token? }` | `{ ok, code, country }`: pending, and counted once in the day's tally and the counters (`first: true` on a phone's first check-in ever; a redo in a room, the same phone, room and round again, is not counted twice). `room` is the room's tag or code, kept as an HMAC with `ROOM_HASH_SECRET`; `country` is the header's, for the consent card. |
+| `POST /consent` | `{ id, code, yes, age?, country?, consent_version? }` | `{ ok }`. `yes: true` keeps it (the receipt row loses its time of day; a second yes with `age`/`country` fills them in on the kept row; in a room, the yes of a redo replaces the earlier kept row of that phone, room and round), `false` deletes it, receipt included (a no after a yes the same day deletes the kept row). `age` one of the find-outs' bands (`Under 18`, `18–24` … `65+`), `country` an ISO code or `not said`, `consent_version` one of `CONSENT_VERSIONS` in `src/worker.js` (now `checkin-consent-1 (4 Nov 2026)`) or left out. 404 when gone. |
 | `POST /delete` | `{ id }` | `{ ok }`: every row of that ID |
 | `POST /counter` | `{ event: "started" }` | `{ ok }`: the funnel's start, no ID |
 | `GET /stats` | — | `{ ok, today, total, countries, checked_in, yes, started }` |

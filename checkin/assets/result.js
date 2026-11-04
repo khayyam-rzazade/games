@@ -18,20 +18,22 @@ export function makeEntry(a, extra) {
 export function addEntry(entry) { const st = load(); st.history.push(entry); if (st.history.length > 30) st.history.splice(0, st.history.length - 30); save(); return entry; }
 export function previousOf(entry) { const hs = load().history; const i = hs.indexOf(entry); for (let k = (i < 0 ? hs.length : i) - 1; k >= 0; k--) if (typeof hs[k].who === 'number') return hs[k]; return null; }
 
-/* the comparison with the country and the world: once per finished check-in, no ID */
+/* the comparison with the country and the world: once per finished check-in, no ID; the server writes nothing for it */
 export function fetchComparison(entry) {
-  const body = { a: entry.a, lang: entry.lang, role: entry.role }; if (entry.first) body.first = true;
+  const body = { a: entry.a, lang: entry.lang, role: entry.role };
   return api('/solo', body).then((r) => {
     if (r && r.ok && r.world) { entry.cmp = { world: r.world, country: r.country || null }; save(); return entry.cmp; }
     return null;
   });
 }
-/* the pending upload with the anonymous ID; the consent card turns it into kept or deleted */
+/* the pending upload with the anonymous ID; the consent card turns it into kept or deleted. It is also what counts the check-in in
+   the world's numbers (behind Turnstile), with `first` on the phone's very first check-in */
 export function startUpload(entry) {
   if (entry.upload && entry.upload.code) return Promise.resolve(entry.upload);
   return (async () => {
     const token = await turnstile();
     const body = { id: browserId(), a: entry.a, lang: entry.lang, role: entry.role, item_version: ITEM_VERSION, token };
+    if (entry.first) body.first = true;
     /* a room check-in is tagged with the room's public tag (never the code, which is the way in); one the room did not take is not tagged */
     if (entry.room && !(entry.send && entry.send.error)) { body.room = entry.tag || entry.room; body.round = entry.round; }
     const r = await api('/upload', body, 15000);
@@ -208,8 +210,9 @@ export function consentCard(entry, uploadP, cmpP) {
     const body = { id, code: up.code, yes: yesIt, consent_version: CONSENT_VERSION };
     if (yesIt) { if (pick.age) body.age = AGE_WIRE[pick.age]; if (pick.country) body.country = pick.country; }          /* no country: the server files it as "not said" */
     let r = await api('/consent', body, 12000, keepalive);
-    if (r && !r.ok && (r.error === 'unknown' || r.error === 'deleted')) {          /* the pending upload is older than a day, or a no deleted it: send it again */
-      entry.upload = null; save(); up = await startUpload(entry);
+    if (r && !r.ok && (r.error === 'unknown' || r.error === 'deleted')) {
+      if (!yesIt) return { ok: true };                                             /* nothing of the person is there any more: that is what a no wants */
+      entry.upload = null; save(); up = await startUpload(entry);                   /* a yes on a receipt older than a day: send the check-in again */
       if (up) { body.code = up.code; r = await api('/consent', body, 12000, keepalive); }
     }
     return r;
@@ -217,7 +220,10 @@ export function consentCard(entry, uploadP, cmpP) {
   const leave = () => { if (document.visibilityState === 'hidden' && !sent) { sent = true; send(true, true).then((r) => { if (r && r.ok) { entry.consent = 'yes'; save(); } else sent = false; }, () => { sent = false; }); } };
   async function finishYes() {
     document.removeEventListener('visibilitychange', leave);
-    if (sent && entry.consent === 'yes') { w.replaceWith(consentDone(entry, 'yes')); return; }
+    if (sent && entry.consent === 'yes') {                                            /* the yes already went out while the page was hidden */
+      if (pick.age || pick.country) send(true).catch(() => null);                   /* the two taps follow it; the server fills them in on the kept row */
+      w.replaceWith(consentDone(entry, 'yes')); return;
+    }
     sent = true;
     const body = el('div', 'ck-consent-step'); body.appendChild(el('p', 'ck-status', T('consent.sending'))); step(body);
     const r = await send(true);

@@ -95,7 +95,7 @@
   }
 
   var BEST_MIN = 3;                        // a game must have this many of the team's results to be called one of its best
-  var FEEL_MIN = 5;                        // and the feelings show from this many taps
+  var FEEL_MIN = 1;                        // and the feelings show from the first tap, as shares only (4 Nov 2026, was 5)
 
   function games(n) { return W.commas(n) + (n === 1 ? " game" : " games"); }
   function dayLabel(key) {
@@ -230,7 +230,7 @@
       c.appendChild(el("small", "", tw >= FEEL_MIN ? "world " + Math.round(100 * w[i] / tw) + "%" : f.t));
       box.appendChild(c);
     });
-    $("tm-feel-note").textContent = W.countryName(S.c) + " found today's games mostly " + W.FEEL[top].w + ". From " + W.commas(ta) + " taps on the end card.";
+    $("tm-feel-note").textContent = W.countryName(S.c) + " found today's games mostly " + W.FEEL[top].w + ".";   // shares only, no tap count (4 Nov 2026, Khayyam)
     show("tm-feel-card", true);
   }
 

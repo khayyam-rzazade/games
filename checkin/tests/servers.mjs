@@ -97,9 +97,17 @@ export async function realApi(port, opts = {}) {
       return sendJson(res, 200, { ok: true, added: n, state: (await call('GET', '/room/' + body.code)).json.state });
     }
     if (p === '/__seed' && body) {
-      /* n check-ins from one country go into the world's numbers (the means show from 30) */
-      const r = rnd(body.seed || 3);
-      for (let i = 0; i < body.n; i++) await call('POST', '/solo', { a: fakeAnswers(r, { lean: body.lean ?? 0 }), lang: 'en' }, body.country || S.cfg.country);
+      /* n check-ins from one country go into the world's numbers (the means show from 30), written into yesterday's tally as
+         /upload would have (a country's numbers come from completed days only; /solo writes nothing) */
+      await call('GET', '/health');                                              /* the tables exist after any request */
+      const r = rnd(body.seed || 3), country = body.country || S.cfg.country || 'XX', day = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+      for (let i = 0; i < body.n; i++) {
+        const a = fakeAnswers(r, { lean: body.lean ?? 0 }), sum = a.w1 + a.w2 + a.w3 + a.w4 + a.w5, st = a.st;
+        for (const c of [country, '*']) {
+          await S.env.DB.prepare(`INSERT INTO tally (country, day, n, w${sum}, s${st}) VALUES (?, ?, 1, 1, 1) ON CONFLICT(country, day) DO UPDATE SET n = n + 1, w${sum} = w${sum} + 1, s${st} = s${st} + 1`).bind(c, day).run();
+        }
+      }
+      await S.env.DB.prepare('INSERT INTO counters (event, day, n) VALUES (?, ?, ?) ON CONFLICT(event, day) DO UPDATE SET n = n + excluded.n').bind('checkin', day, body.n).run();
       _test.memo.clear();                                                      /* the server keeps the world's means a minute: not in a test */
       return sendJson(res, 200, { ok: true });
     }

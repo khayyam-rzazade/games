@@ -26,10 +26,11 @@ Chat B owns `server/checkin` only. What must change or be decided elsewhere is h
    1–5 (1 = "Agree strongly"); left out 1–3; ladder 1–10. A skipped item is `null` or left out; items 0–6 are
    never skipped. **The pages (C) still send the plan's drafts** (stress 0–10 and the rest): they must move to these
    codes; the server refuses the old ones (400 with the item's id).
-6. **The order of calls on every result screen**, alone or in a room: `POST /solo` once (with `first: true` on
-   the phone's very first check-in, from browser storage) — it gives the "you against your country and the world"
-   numbers and is what counts the check-in; `/room/:code/done` does not count in the world's numbers. Then
-   `POST /upload` (pending) with `room` = the room's tag (from join) or code, and `round`; then the consent card;
+6. **The order of calls on every result screen**, alone or in a room: `POST /solo` once — it gives the "you
+   against your country and the world" numbers and writes nothing (changed 4 Nov, afternoon, after the Fable
+   review: the counting moved to `/upload`, behind Turnstile, so a script cannot inflate the tally);
+   `/room/:code/done` does not count in the world's numbers. Then `POST /upload` (pending, and the count, with
+   `first: true` on the phone's very first check-in) with `room` = the room's tag (from join) or code, and `round`; then the consent card;
    then `POST /consent` with `yes: true` or `yes: false`. Closing the card without a tap can send nothing: the
    server deletes it after 24 hours.
 7. **Rounds.** `done` carries `round: state.round`; a page left open across rounds gets 409 `round` and should
@@ -59,8 +60,13 @@ Chat B owns `server/checkin` only. What must change or be decided elsewhere is h
 - `GET /host` also returns `host`, `lang`, `country`, `step`, `round`, `mode`, `sides`, `made`, `until`, `floor`,
   `current`; each round also `opened`, `revealed`, `joined`, `who`, `bands`, `st`, `sleep`, `role`, `bars_n`,
   `counts`.
-- `/solo` also takes `role` and `first` (and ignores the pages' `room: true`), returns `you`; `world` also has `n`,
-  `opens_at`, `days`, `bands`; `country` has `code` and `iso`.
+- `/solo` also takes `role` (and ignores the pages' `room: true` and `first`), returns `you`; `world` also has `n`,
+  `opens_at`, `days`, `bands`; `country` has `code` and `iso`, and comes from completed days only.
+- After the Fable review (4 Nov, afternoon): the room hash is an HMAC keyed with `ROOM_HASH_SECRET` (or
+  `ADMIN_KEY`); a no deletes the pending row; a yes sets the receipt's `made` to the start of its day; a second
+  yes carries the two optional taps; a redo's yes replaces the earlier kept row of that phone, room and round;
+  the sweep also runs from a request once an hour; `/admin/export` brakes before it compares the key; `lang` is
+  one of the six; `ALLOW_ORIGINS` has no `localhost` in production.
 - `/consent` also takes `consent_version`; the row has a `consent_version` column (A2's proposal).
 - `POST /counter { event: "started" }`; `/stats` also returns `yes` and `started`.
 - `/upload` also takes `item_version` (default 60) and `token`, returns `country`.

@@ -87,9 +87,26 @@ Shared files, not touched here:
 - **Dates:** Italian "il 8" becomes "l'8" (and dall', all', dell', nell'); French day 1 is "1er".
 - The home boxes in five languages: small line "Anonimo / Anónimo / Anônimo / Anonyme / Anonim", big line "Check-in"
   (the chip's word everywhere), so the box reads like the English one. The end-of-day button has all six.
-- **Always informal** (Khayyam, 4 Nov): every question in tu / tú / você / tu / sen, the published items included; the
-  ladder is the Find outs' text in the informal form (`item.ladder` in the word list wins over the Find outs' file).
-  `claude/checkin-informal.md` lists every changed question.
+- **Form of address, as the Find outs** (Khayyam, 4 Nov, afternoon; it replaced the morning's "always informal"): our own
+  words use the informal you (tu / tú / você / tu / sen); a published question keeps the form it was published in (Lei,
+  usted, vous, siz where the published translation has it) and our own translation of a published question uses the
+  language's survey register, as the item sheet's D29 says. The ladder is the Find outs' text word for word (build.py
+  takes it from `find-out/data.<lang>.js`). `i18n/formal.py` lists the keys this touched; `claude/checkin-informal.md`
+  is superseded.
 - **Researcher pages in six languages:** `researchers/` (English) and `researchers/<code>/`, built by F's script from
   one keyed text file per language plus the strings file, so the item table always shows the words on screen. The
   footer link and "Why this? →" open the page in the player's language (`researchersUrl` in `core.js`).
+
+## The Fable round (4 Nov 2026, afternoon): what changed here
+
+Three fresh Fable reviewers read the code, the researcher pages and the words (`claude/checkin-f.md`, "The Fable check";
+`claude/checkin-words-review.md`). On the pages:
+- `/solo` is read-only now; the check-in is counted by `/upload` (behind Turnstile), so `first: true` travels with the
+  upload. In a room, `first` is judged before the redo's earlier entry is dropped (`room.js finish`).
+- A no on a receipt the server no longer has is simply a no (nothing to re-send); only a yes re-uploads.
+- The two optional taps picked after a keepalive yes went out are sent on as a second yes; the server fills them in.
+- "Delete my answers" draws a fresh code into this store (`wipe`), so the forgotten code is not reused even though the
+  Find outs' store may still hold it.
+- `how.kept` names the random code and, in a room, the room and round; the register change and the word review's
+  fixes are in the strings files. Tests: `edge.mjs` waits for the no to resolve instead of a fixed pause and checks
+  the fresh code; `servers.mjs` seeds yesterday's tally directly (a country's numbers come from completed days only).

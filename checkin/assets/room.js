@@ -214,9 +214,10 @@ function beginFlow() {
 async function finish(a, round) {
   inFlow = false;
   const sd = sidesOf(state), side = sd ? rs.sides[round] : undefined;
-  /* an earlier answer of this round (a redo) is replaced, on the phone as well as in the room */
-  const st = load(); st.history = st.history.filter((e) => !(e.room === code && e.round === round));
-  const entry = addEntry(makeEntry(a, { room: code, tag: state && state.tag || null, round, side: side === undefined ? null : side }));
+  /* an earlier answer of this round (a redo) is replaced, on the phone as well as in the room; `first` is judged before it goes */
+  const st = load(); const first = st.history.length === 0;
+  st.history = st.history.filter((e) => !(e.room === code && e.round === round));
+  const entry = addEntry(makeEntry(a, { room: code, tag: state && state.tag || null, round, side: side === undefined ? null : side, first }));
   fetchComparison(entry).then(() => { if (!inFlow) { shown = ''; render(); } });
   const waiting = el('section', 'ck-screen ck-wait'); waiting.appendChild(el('p', 'ck-lede', T('room.joining'))); mount(waiting);
   await sendDone(entry);                                   /* if the round ended meanwhile, the answers stay on the phone and the page says so */

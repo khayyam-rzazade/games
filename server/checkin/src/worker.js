@@ -13,11 +13,15 @@
        after 24 hours (the hourly job). POST /delete removes every row of an ID.
      the world's numbers (D1, no ID): per day and country, how many checked in and how their WHO-5 sums and
        stress answers were spread (counts only), and per day the counters (check-ins, first check-ins, rooms
-       made, rounds opened, uploads, yes, no, expired, deleted, and the pages' starts).
-   No name, no email, no address: no IP is ever written; the brakes are in memory only.
+       made, rounds opened, uploads, yes, no, expired, deleted, and the pages' starts). Both are written by
+       POST /upload (behind Turnstile), once per check-in; POST /solo only reads them.
+   No name, no email, no address: no IP is ever written; the brakes are in memory only. A pending row carries the
+   time it arrived until it is deleted; a yes leaves no time of day behind (made is set to the start of its day).
+   The room in a research row is an HMAC of the room's tag with ROOM_HASH_SECRET (or ADMIN_KEY), so nobody who had
+   the room's code or tag can pick its rows out of a published file.
 
    Endpoints (JSON; every reply { ok: true, ... } or { ok: false, error }; claude/checkin-plan.md section 7):
-     GET  /health                                       { ok, db, turnstile, admin, item_version }
+     GET  /health                                       { ok, db, turnstile, admin, room_hash, purged_ago_s, item_version }
      GET  /hello                                        { ok, country } from the request; nothing stored
      POST /room/new        { lang }                     { ok, code, host_key, join, host, tag, state }; the host key only here
      GET  /room/:code                                   { ok, state }; 404 unknown or gone. Polled every 2-3 s.
@@ -27,19 +31,20 @@
      POST /room/:code/host { host_key, action, sides? } start | open | reveal | split | next | close | delete
      GET  /host/:host_key                               { ok, code, join, host, rounds: [...], current, world, country, ... }
      POST /host/:host_key/tried { round, id }           { ok }
-     POST /solo            { a, lang, role?, first? }   { ok, you, world, country }; counted in the world's numbers
-     POST /upload          { id, a, lang, role, room?, round?, item_version?, token? }  { ok, code, country }: pending
+     POST /solo            { a, lang, role? }           { ok, you, world, country }; reads the world's numbers
+     POST /upload          { id, a, lang, role, room?, round?, item_version?, first?, token? }  { ok, code, country }: pending; counted
      POST /consent         { id, code, yes, age?, country?, consent_version? }   { ok }
      POST /delete          { id }                       { ok }
      POST /counter         { event: "started" }        { ok }: the funnel's start, no ID
      GET  /stats                                        { ok, today, total, countries, checked_in, yes, started }
      POST /admin/export    { key, table }               CSV of checkins | counters | tally
    state = { code, tag, lang, mode, round, step, joined, done, reveal_at, opened, sides, floor, charts, made, until }
-   Scheduled (hourly): pending check-ins older than 24 hours are deleted.
+   Scheduled (hourly): pending check-ins older than 24 hours are deleted; a request also runs the sweep when an hour
+   has passed since the last one in that copy of the Worker, so a missing cron trigger cannot keep rows alive.
 
    Settings (wrangler.jsonc): D1 binding DB, Durable Object binding ROOM; ALLOW_ORIGINS, JOIN_URL, HOST_URL plain
-   variables; secrets TURNSTILE_SECRET (while unset, uploads are taken without a token) and ADMIN_KEY (while
-   unset, /admin/export is off). */
+   variables; secrets TURNSTILE_SECRET (while unset, uploads are taken without a token), ADMIN_KEY (while
+   unset, /admin/export is off) and ROOM_HASH_SECRET (the key of the room hash; ADMIN_KEY stands in while unset). */
 "use strict";
 import { RoomLogic, makeCode, codeOk, HOST_RE, KEY_RE } from "./room.js";
 import { check, whoSum, band, AGES, ITEMS, IDS, ITEM_VERSION } from "./items.js";
@@ -90,6 +95,17 @@ async function ensure(env) {
 /* ---- small helpers, as in server/findout ---- */
 const te = new TextEncoder();
 async function shaHex(s) { const d = new Uint8Array(await crypto.subtle.digest("SHA-256", te.encode(String(s)))); return [...d].map((x) => x.toString(16).padStart(2, "0")).join(""); }
+async function hmacHex(key, s) {
+  const k = await crypto.subtle.importKey("raw", te.encode(String(key)), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const d = new Uint8Array(await crypto.subtle.sign("HMAC", k, te.encode(String(s))));
+  return [...d].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
+/* the room in a research row: keyed, so that the tag (which every phone in the room saw) does not give the hash away */
+function roomHashMode(env) { return env.ROOM_HASH_SECRET ? "secret" : env.ADMIN_KEY ? "admin" : "plain"; }
+async function roomHash(env, tag) {
+  const key = env.ROOM_HASH_SECRET || env.ADMIN_KEY;
+  return (key ? await hmacHex(key, "checkin-room:" + tag) : await shaHex("checkin-room:" + tag)).slice(0, 24);
+}
 function same(a, b) { if (a.length !== b.length) return false; let d = 0; for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i); return d === 0; }
 const idOk = (s) => typeof s === "string" && KEY_RE.test(s);
 const dayOf = (t) => new Date(t).toISOString().slice(0, 10);
@@ -112,7 +128,8 @@ async function readJson(req) {
   if (text.length > MAX_BODY) return null;
   try { const b = JSON.parse(text); return b && typeof b === "object" && !Array.isArray(b) ? b : null; } catch (e) { return null; }
 }
-function langOf(v) { return typeof v === "string" && /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})?$/.test(v) ? v : null; }
+const LANGS = ["en", "it", "es", "pt", "fr", "tr"];
+function langOf(v) { return typeof v === "string" && LANGS.includes(v) ? v : null; }
 function countryOf(req) {
   const c = (req.cf && typeof req.cf.country === "string" ? req.cf.country : req.headers.get("CF-IPCountry") || "").toUpperCase();
   return ISO.has(c) ? c : null;
@@ -189,9 +206,11 @@ async function remembered(key, ms, fn) {
   if (memo.size > 500) memo.clear();
   return v;
 }
-async function windowOf(env, country) {
+async function windowOf(env, country, completedDaysOnly) {
   const from = dayOf(clock() - (WINDOW_DAYS - 1) * 864e5);
-  const r = await env.DB.prepare("SELECT * FROM tally WHERE country = ? AND day >= ?").bind(country, from).all();
+  const r = completedDaysOnly
+    ? await env.DB.prepare("SELECT * FROM tally WHERE country = ? AND day >= ? AND day < ?").bind(country, from, dayOf(clock())).all()
+    : await env.DB.prepare("SELECT * FROM tally WHERE country = ? AND day >= ?").bind(country, from).all();
   return sumRows(r.results || []);
 }
 async function world(env) {
@@ -207,24 +226,22 @@ async function world(env) {
   const t = await env.DB.prepare("SELECT n FROM tally WHERE country = '*' AND day = ?").bind(today).first();   // today's count: always fresh
   return Object.assign({}, w, { n_today: t ? Number(t.n) : 0 });
 }
+/* a country's numbers come from completed days only: today's arrivals cannot be read off a changing mean in a small country */
 async function countryNumbers(env, code) {
   if (!code) return null;
   return remembered("c:" + code, 60e3, async () => {
-    const o = await windowOf(env, code);
+    const o = await windowOf(env, code, true);
     if (o.n < OPENS_AT) return { code, iso: code, n: o.n, opens_at: OPENS_AT };          // below the floor: the count only
     return Object.assign({ code, iso: code, n: o.n, opens_at: OPENS_AT }, means(o));
   });
 }
 
-/* ---- POST /solo: the result call of every check-in (alone or in a room): counted once, nothing kept of the person ---- */
+/* ---- POST /solo: the result call of every check-in (alone or in a room): the world's numbers; nothing written, nothing kept ---- */
 async function solo(env, req, b) {
   if (!brake("so:" + ipOf(req), LIMITS.solo)) return bad("too many", 429);
   const c = check(b.a, b.role);
   if (c.error) return bad(c.error);
   const sum = whoSum(c.answers), st = c.answers.st, country = countryOf(req);
-  const stmts = [tallyStmt(env, country || "XX", sum, st), tallyStmt(env, "*", sum, st), countStmt(env, "checkin")];
-  if (b.first === true) stmts.push(countStmt(env, "first"));
-  await env.DB.batch(stmts);
   return json({ ok: true, you: { who: sum * 4, band: band(sum * 4) + 1, st }, world: await world(env), country: await countryNumbers(env, country) });   // band 1-4, as the codebook
 }
 
@@ -252,7 +269,7 @@ async function upload(env, req, b) {
   if (!(await turnstileOk(env, b.token, req))) return bad("turnstile", 403);
   const rt = await roomTag(env, b.room);
   if (rt.error) return bad("room");
-  const room = rt.tag ? (await shaHex("checkin-room:" + rt.tag)).slice(0, 24) : null;
+  const room = rt.tag ? await roomHash(env, rt.tag) : null;
   const code = consentCode(), t = clock(), header = countryOf(req);
   const old = (await env.DB.prepare("SELECT code FROM pending WHERE id = ? AND status = 'pending' ORDER BY made DESC").bind(b.id).all()).results || [];
   const stmts = old.slice(PENDING_PER_ID - 1).map((o) => env.DB.prepare("DELETE FROM pending WHERE id = ? AND code = ?").bind(b.id, o.code));
@@ -260,6 +277,13 @@ async function upload(env, req, b) {
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NULL)`)
     .bind(b.id, await shaHex(code), t, dayOf(t), langOf(b.lang), v, room, room ? round : null, JSON.stringify(c.answers)));
   stmts.push(countStmt(env, "upload"));
+  /* the world's numbers and the check-in counters, once per check-in: a redo in a room (the same phone, room and round again) is not counted twice */
+  const redo = room && round !== null && await env.DB.prepare("SELECT 1 AS k FROM pending WHERE id = ? AND room = ? AND round = ? LIMIT 1").bind(b.id, room, round).first();
+  if (!redo) {
+    const sum = whoSum(c.answers), st = c.answers.st;
+    stmts.push(tallyStmt(env, header || "XX", sum, st), tallyStmt(env, "*", sum, st), countStmt(env, "checkin"));
+    if (b.first === true) stmts.push(countStmt(env, "first"));
+  }
   await env.DB.batch(stmts);
   return json({ ok: true, code, country: header });
 }
@@ -277,23 +301,33 @@ async function consent(env, req, b) {
   const cv = b.consent_version === undefined || b.consent_version === null ? null : b.consent_version;
   if (cv !== null && !CONSENT_VERSIONS.includes(cv)) return bad("consent_version");
   const h = await shaHex(b.code);
-  const row = await env.DB.prepare("SELECT status, kept FROM pending WHERE id = ? AND code = ?").bind(b.id, h).first();
-  if (!row) return bad("unknown", 404);                       // never sent, or gone after 24 hours
+  const row = await env.DB.prepare("SELECT status, kept, room, round, day FROM pending WHERE id = ? AND code = ?").bind(b.id, h).first();
+  if (!row) return bad("unknown", 404);                       // never sent, or gone: a no deletes the row, silence lets the sweep take it
   if (b.yes) {
-    if (row.status === "yes") return json({ ok: true });
-    if (row.status === "no") return bad("deleted", 409);          // a no deleted the answers at once: nothing left to keep
-    await env.DB.batch([
+    if (row.status === "yes") {                                   // the two optional taps sent after the yes went out (the page left and came back)
+      if (row.kept !== null && (age !== null || country !== "not said")) {
+        await env.DB.prepare("UPDATE checkins SET age = COALESCE(?, age), country = CASE WHEN ? = 'not said' THEN country ELSE ? END WHERE rid = ? AND id = ?").bind(age, country, country, row.kept, b.id).run();
+      }
+      return json({ ok: true });
+    }
+    const stmts = [];
+    if (row.room !== null && row.round !== null) {                // a redo in a room: the new answers replace the earlier kept row of that phone, room and round
+      stmts.push(env.DB.prepare("DELETE FROM checkins WHERE id = ? AND room = ? AND round = ?").bind(b.id, row.room, row.round));
+    }
+    stmts.push(
       env.DB.prepare(`INSERT INTO checkins (id, room, round, lang, item_version, age, country, ${KEEP_COLS}, day, consent_version)
          SELECT id, room, round, lang, item_version, ?, ?, ${FROM_JSON}, day, ? FROM pending WHERE id = ? AND code = ? AND status = 'pending'`).bind(age, country, cv, b.id, h),
-      env.DB.prepare("UPDATE pending SET status = 'yes', answers = NULL, kept = last_insert_rowid() WHERE id = ? AND code = ? AND status = 'pending'").bind(b.id, h),
+      /* the receipt stays until the sweep, for a change of mind; its time of day goes: made becomes the start of its day */
+      env.DB.prepare("UPDATE pending SET status = 'yes', answers = NULL, kept = last_insert_rowid(), made = ? WHERE id = ? AND code = ? AND status = 'pending'").bind(Date.parse(row.day + "T00:00:00Z"), b.id, h),
       countStmt(env, "yes"),
-    ]);
+    );
+    await env.DB.batch(stmts);
     return json({ ok: true });
   }
   const stmts = [];
   if (row.status === "yes" && row.kept !== null) stmts.push(env.DB.prepare("DELETE FROM checkins WHERE rid = ? AND id = ?").bind(row.kept, b.id));   // a change of mind within the day
-  stmts.push(env.DB.prepare("UPDATE pending SET status = 'no', answers = NULL, kept = NULL WHERE id = ? AND code = ?").bind(b.id, h));
-  if (row.status !== "no") stmts.push(countStmt(env, "no"));
+  stmts.push(env.DB.prepare("DELETE FROM pending WHERE id = ? AND code = ?").bind(b.id, h));   // a no leaves nothing, not even the receipt
+  stmts.push(countStmt(env, "no"));
   await env.DB.batch(stmts);
   return json({ ok: true });
 }
@@ -307,8 +341,18 @@ async function remove(env, req, b) {
   ]);
   return json({ ok: true });
 }
+let lastPurge = 0;                     // per copy of the Worker: when the sweep last ran here
+function sweepIfDue(env, ctx) {
+  if (!ctx || !ctx.waitUntil) return;
+  const now = clock();
+  if (now - lastPurge < 36e5) return;
+  lastPurge = now;
+  const p = purge(env).catch(() => { /* the next request tries again in an hour */ });
+  if (ctx && ctx.waitUntil) ctx.waitUntil(p);
+}
 async function purge(env) {
   await ensure(env);
+  lastPurge = clock();
   const before = clock() - PENDING_MS;
   const r = await env.DB.prepare("SELECT COUNT(*) AS k FROM pending WHERE made < ? AND status = 'pending'").bind(before).first();
   const stmts = [env.DB.prepare("DELETE FROM pending WHERE made < ?").bind(before)];
@@ -335,8 +379,8 @@ function csv(rows) {
   return cols.join(",") + "\n" + rows.map((r) => cols.map((c) => q(r[c])).join(",")).join("\n") + "\n";
 }
 async function adminExport(env, req, b) {
-  if (!env.ADMIN_KEY || typeof b.key !== "string" || !same(await shaHex(b.key), await shaHex(env.ADMIN_KEY))) return bad("no", 403);
   if (!brake("ad:" + ipOf(req), LIMITS.admin)) return bad("too many", 429);
+  if (!env.ADMIN_KEY || typeof b.key !== "string" || !same(await shaHex(b.key), await shaHex(env.ADMIN_KEY))) return bad("no", 403);
   const tables = { checkins: "SELECT * FROM checkins ORDER BY rid", counters: "SELECT * FROM counters ORDER BY day, event", tally: "SELECT * FROM tally ORDER BY day, country" };
   const sql = tables[b.table]; if (!sql) return bad("table");
   const r = await env.DB.prepare(sql).all();
@@ -392,7 +436,7 @@ async function hostPage(env, req, key) {
 }
 
 /* ---- the router ---- */
-async function handle(req, env) {
+async function handle(req, env, ctx) {
   const url = new URL(req.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
   const h = cors(env, req);
@@ -404,7 +448,8 @@ async function handle(req, env) {
     const ip = ipOf(req);
     if (path === "/health") {
       let db = false; try { await ensure(env); await env.DB.prepare("SELECT 1").first(); db = true; } catch (e) { db = false; }
-      return withCors(json({ ok: true, db, turnstile: !!env.TURNSTILE_SECRET, admin: !!env.ADMIN_KEY, item_version: ITEM_VERSION }));
+      return withCors(json({ ok: true, db, turnstile: !!env.TURNSTILE_SECRET, admin: !!env.ADMIN_KEY, room_hash: roomHashMode(env),
+        purged_ago_s: lastPurge ? Math.round((clock() - lastPurge) / 1000) : null, item_version: ITEM_VERSION }));
     }
     if (path === "/hello" && req.method === "GET") return withCors(json({ ok: true, country: countryOf(req) }));
     /* the rooms */
@@ -447,6 +492,7 @@ async function handle(req, env) {
       return withCors(await ask(env, k[1], "tried", { host_key: hm[1], round: b.round, id: b.id === undefined ? undefined : b.id }));
     }
     await ensure(env);
+    sweepIfDue(env, ctx);
     if (path === "/stats" && req.method === "GET") return withCors(json(await stats(env), 200, { "Cache-Control": "public, max-age=300" }));
     if (req.method !== "POST") return withCors(bad("not found", 404));
     const b = await readJson(req);
@@ -469,7 +515,7 @@ async function handle(req, env) {
 }
 
 export default {
-  fetch(req, env, ctx) { return handle(req, env); },
+  fetch(req, env, ctx) { return handle(req, env, ctx); },
   async scheduled(event, env, ctx) { ctx.waitUntil(purge(env)); },
 };
-export const _test = { setClock(fn) { clock = fn; }, brakes, lookups, memo, purge, SCHEMA, EVENTS, OPENS_AT, WINDOW_DAYS, PENDING_MS, ITEMS };
+export const _test = { setClock(fn) { clock = fn; }, brakes, lookups, memo, purge, SCHEMA, EVENTS, OPENS_AT, WINDOW_DAYS, PENDING_MS, ITEMS, roomHash, resetSweep() { lastPurge = 0; } };

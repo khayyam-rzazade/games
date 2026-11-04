@@ -214,7 +214,7 @@ export function load() {
   return S;
 }
 export function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* a full or blocked store: the page still works */ } }
-export function wipe() { S = emptyStore(); try { localStorage.removeItem(KEY); } catch (e) { /* nothing to remove */ } }
+export function wipe() { S = emptyStore(); try { localStorage.removeItem(KEY); } catch (e) { /* nothing to remove */ } S.id = hex(16); save(); }   /* a fresh code too: the forgotten one is not reused, even if the Find outs' store still has it */
 /* The one thing shared with the Find outs: the anonymous browser ID. If their store already has one, this section uses it
    (read only); otherwise a new one is made and kept here. Nothing else is read from or written to their store. */
 export function browserId() {

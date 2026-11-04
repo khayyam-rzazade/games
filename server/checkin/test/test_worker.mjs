@@ -32,7 +32,7 @@ const id = () => (++idN).toString(16).padStart(32, "c");
 test("health and hello: nothing stored", async () => {
   const e = env();
   let r = await call(e, "GET", "/health");
-  assert.deepEqual(r.json, { ok: true, db: true, turnstile: false, admin: false, item_version: ITEM_VERSION });
+  assert.deepEqual(r.json, { ok: true, db: true, turnstile: false, admin: false, room_hash: "plain", purged_ago_s: null, item_version: ITEM_VERSION });
   r = await call(e, "GET", "/hello", undefined, { country: "AZ" });
   assert.deepEqual(r.json, { ok: true, country: "AZ" });
   assert.deepEqual((await call(e, "GET", "/hello", undefined, { country: "ZZ" })).json, { ok: true, country: null });
@@ -41,44 +41,61 @@ test("health and hello: nothing stored", async () => {
   assert.equal((await call(e, "POST", "/solo", "[1]")).json.error, "body");
 });
 
-test("solo: the answers are checked, counted in the day's tally, and nothing of the person is kept", async () => {
+test("upload counts the check-in in the day's tally; solo reads the world's numbers and keeps nothing of the person", async () => {
   const e = env();
-  const r = await call(e, "POST", "/solo", { a: answers({ st: 4 }), lang: "en", first: true, room: true }, { country: "IT" });
+  let r = await call(e, "POST", "/upload", { id: id(), a: answers({ st: 4 }), lang: "en", first: true }, { country: "IT" });
+  assert.equal(r.status, 200, r.text);
+  r = await call(e, "POST", "/solo", { a: answers({ st: 4 }), lang: "en", first: true, room: true }, { country: "IT" });
   assert.equal(r.status, 200, r.text);
   assert.deepEqual(r.json.you, { who: 60, band: 3, st: 4 }, "the band 1-4, as the codebook");
   assert.deepEqual(Object.keys(r.json.world).sort(), ["bands", "countries", "days", "n", "n_today", "opens_at", "st_mean", "who_mean"]);
   assert.equal(r.json.world.n, 1); assert.equal(r.json.world.n_today, 1); assert.equal(r.json.world.countries, 1);
   assert.equal(r.json.world.who_mean, null, "below 30: no mean");
-  assert.deepEqual(r.json.country, { code: "IT", iso: "IT", n: 1, opens_at: 30 });
+  assert.deepEqual(r.json.country, { code: "IT", iso: "IT", n: 0, opens_at: 30 }, "a country's numbers come from completed days");
   const t = await rows(e, "SELECT * FROM tally ORDER BY country");
   assert.deepEqual(t.map((x) => [x.country, x.n, x.w15, x.s4]), [["*", 1, 1, 1], ["IT", 1, 1, 1]]);
   assert.deepEqual(Object.keys(t[0]).filter((k) => /^s\d/.test(k)), ["s1", "s2", "s3", "s4", "s5"], "five stress columns");
-  assert.equal((await one(e, "SELECT COUNT(*) AS k FROM pending")).k + (await one(e, "SELECT COUNT(*) AS k FROM checkins")).k, 0, "no row of the person");
+  assert.equal((await one(e, "SELECT COUNT(*) AS k FROM checkins")).k, 0, "nothing kept before a yes");
+  /* solo writes nothing */
+  await call(e, "POST", "/solo", { a: answers() }, { country: "IT" });
+  assert.equal((await one(e, "SELECT n FROM tally WHERE country = 'IT'")).n, 1, "solo counts nothing");
   /* refused answers count nothing */
-  assert.equal((await call(e, "POST", "/solo", { a: answers({ w1: null }) })).json.error, "w1");
+  assert.equal((await call(e, "POST", "/upload", { id: id(), a: answers({ w1: null }) })).json.error, "w1");
   assert.equal((await call(e, "POST", "/solo", { a: answers({ st: 6 }) })).json.error, "st");
   assert.equal((await one(e, "SELECT n FROM tally WHERE country = '*'")).n, 1);
   /* no country from the header: counted in the world, under XX, and the country is null */
+  await call(e, "POST", "/upload", { id: id(), a: answers() });
   const r2 = await call(e, "POST", "/solo", { a: answers() });
   assert.equal(r2.json.country, null); assert.equal(r2.json.world.countries, 1, "XX is not a country");
   assert.equal((await one(e, "SELECT n FROM tally WHERE country = 'XX'")).n, 1);
 });
 
-test("the world and the country open at 30; the means are the last 30 days", async () => {
+test("the world opens at 30; a country's numbers come from completed days only; the means are the last 30 days", async () => {
   const e = env();
+  const up = (a, o) => call(e, "POST", "/upload", { id: id(), a }, o);
+  const read = (a, o) => call(e, "POST", "/solo", { a }, o);
   let r;
-  for (let i = 0; i < 29; i++) { if (i === 28) _test.memo.clear(); r = await call(e, "POST", "/solo", { a: answers({ w1: 5, w2: 5, w3: 5, w4: 5, w5: 5, st: 2 }) }, { country: "TR" }); }
-  assert.equal(r.json.world.n, 29); assert.equal(r.json.world.who_mean, null, "29: not yet"); assert.deepEqual(r.json.country, { code: "TR", iso: "TR", n: 29, opens_at: 30 });
+  for (let i = 0; i < 29; i++) await up(answers({ w1: 5, w2: 5, w3: 5, w4: 5, w5: 5, st: 2 }), { country: "TR" });
+  _test.memo.clear();
+  r = await read(answers(), { country: "TR" });
+  assert.equal(r.json.world.n, 29); assert.equal(r.json.world.who_mean, null, "29: not yet");
+  assert.deepEqual(r.json.country, { code: "TR", iso: "TR", n: 0, opens_at: 30 }, "today's arrivals are not in the country's numbers");
   tick(1000);
-  r = await call(e, "POST", "/solo", { a: answers({ w1: 0, w2: 0, w3: 0, w4: 0, w5: 0, st: 2 }) }, { country: "TR" });
+  await up(answers({ w1: 0, w2: 0, w3: 0, w4: 0, w5: 0, st: 2 }), { country: "TR" });
+  r = await read(answers(), { country: "TR" });
   assert.equal(r.json.world.n, 30);
   assert.equal(r.json.world.who_mean, Math.round((29 * 100 + 0) / 30 * 10) / 10);
   assert.equal(r.json.world.st_mean, 2);
   assert.deepEqual(r.json.world.bands, [1, 0, 0, 29]);
+  assert.equal(r.json.country.n, 0, "still today");
+  /* the next day the country's numbers are there */
+  tick(864e5);
+  r = await read(answers(), { country: "TR" });
   assert.equal(r.json.country.n, 30); assert.equal(r.json.country.who_mean, r.json.world.who_mean);
-  /* 30 days later the window has moved past them; the counters keep everything */
-  tick(30 * 864e5);
-  r = await call(e, "POST", "/solo", { a: answers() }, { country: "TR" });
+  /* on the 30th day after them the window has moved past them; the counters keep everything */
+  tick(29 * 864e5);
+  await up(answers(), { country: "TR" });
+  r = await read(answers(), { country: "TR" });
   assert.equal(r.json.world.n, 1); assert.equal(r.json.world.who_mean, null); assert.equal(r.json.world.n_today, 1);
   const s = (await call(e, "GET", "/stats")).json;
   assert.deepEqual(s, { ok: true, today: 1, total: 31, countries: 1, checked_in: 0, yes: 0, started: 0 });
@@ -86,10 +103,10 @@ test("the world and the country open at 30; the means are the last 30 days", asy
 
 test("stats: today, total, countries, the phones that checked in once", async () => {
   const e = env();
-  await call(e, "POST", "/solo", { a: answers(), first: true }, { country: "AZ" });
-  await call(e, "POST", "/solo", { a: answers() }, { country: "AZ" });
-  await call(e, "POST", "/solo", { a: answers(), first: true }, { country: "FR" });
-  await call(e, "POST", "/solo", { a: answers(), first: "yes" }, { country: "FR" });
+  await call(e, "POST", "/upload", { id: id(), a: answers(), first: true }, { country: "AZ" });
+  await call(e, "POST", "/upload", { id: id(), a: answers() }, { country: "AZ" });
+  await call(e, "POST", "/upload", { id: id(), a: answers(), first: true }, { country: "FR" });
+  await call(e, "POST", "/upload", { id: id(), a: answers(), first: "yes" }, { country: "FR" });
   tick(1000);
   const r = await call(e, "GET", "/stats");
   assert.deepEqual(r.json, { ok: true, today: 4, total: 4, countries: 2, checked_in: 2, yes: 0, started: 0 });
@@ -129,27 +146,32 @@ test("upload is pending; a yes keeps exactly the planned row, a no deletes it at
   assert.equal(k[0].consent_version, "checkin-consent-1 (4 Nov 2026)");
   p = await one(e, "SELECT * FROM pending");
   assert.equal(p.status, "yes"); assert.equal(p.answers, null, "the pending copy of the answers is gone");
+  assert.equal(p.made, Date.parse(p.day + "T00:00:00Z"), "the receipt keeps no time of day after a yes");
   /* the same yes again changes nothing */
   assert.deepEqual((await call(e, "POST", "/consent", { id: me, code, yes: true })).json, { ok: true });
   assert.equal((await one(e, "SELECT COUNT(*) AS k FROM checkins")).k, 1);
   /* a change of mind the same day: the kept row goes */
   assert.deepEqual((await call(e, "POST", "/consent", { id: me, code, yes: false })).json, { ok: true });
   assert.equal((await one(e, "SELECT COUNT(*) AS k FROM checkins")).k, 0);
-  assert.equal((await call(e, "POST", "/consent", { id: me, code, yes: true })).json.error, "deleted", "after a no nothing is left to keep");
+  assert.equal((await call(e, "POST", "/consent", { id: me, code, yes: true })).status, 404, "after a no nothing is left, not even the receipt");
   /* a plain no */
   const you = id();
   r = await call(e, "POST", "/upload", { id: you, a: answers({ role: null }), role: "working" });
   await call(e, "POST", "/consent", { id: you, code: r.json.code, yes: false });
-  assert.equal((await one(e, "SELECT answers FROM pending WHERE id = ?", you)).answers, null);
+  assert.equal((await one(e, "SELECT COUNT(*) AS k FROM pending WHERE id = ?", you)).k, 0, "a no leaves no row");
   assert.equal((await one(e, "SELECT COUNT(*) AS k FROM checkins")).k, 0);
   /* the counters */
   const c = Object.fromEntries((await rows(e, "SELECT event, SUM(n) AS n FROM counters GROUP BY event")).map((x) => [x.event, x.n]));
-  assert.deepEqual(c, { upload: 2, yes: 1, no: 2 });
+  assert.deepEqual(c, { upload: 2, checkin: 2, yes: 1, no: 2 });
   /* a country not said */
   const her = id();
   r = await call(e, "POST", "/upload", { id: her, a: answers({ role: "neither" }) });
   await call(e, "POST", "/consent", { id: her, code: r.json.code, yes: true });
   assert.deepEqual(await one(e, "SELECT country, age, role, consent_version FROM checkins WHERE id = ?", her), { country: "not said", age: null, role: "neither", consent_version: null });
+  /* the two optional taps sent after the yes already went out (the page was left and came back) */
+  assert.deepEqual((await call(e, "POST", "/consent", { id: her, code: r.json.code, yes: true, age: "25–34", country: "BR" })).json, { ok: true });
+  assert.deepEqual(await one(e, "SELECT country, age FROM checkins WHERE id = ?", her), { country: "BR", age: "25–34" });
+  assert.equal((await one(e, "SELECT COUNT(*) AS k FROM checkins WHERE id = ?", her)).k, 1);
 });
 
 test("silence: a pending check-in is deleted after 24 hours by the hourly job", async () => {
@@ -169,6 +191,17 @@ test("silence: a pending check-in is deleted after 24 hours by the hourly job", 
   assert.equal((await one(e, "SELECT COUNT(*) AS k FROM pending")).k, 0);
   assert.equal((await call(e, "POST", "/consent", { id: b, code: rb.json.code, yes: true })).status, 404, "too late");
   assert.equal((await one(e, "SELECT SUM(n) AS n FROM counters WHERE event = 'expired'")).n, 1);
+});
+
+test("a request runs the sweep when an hour has passed since the last one in this copy of the Worker", async () => {
+  const e = env(); _test.resetSweep();
+  await call(e, "POST", "/upload", { id: id(), a: answers() });
+  tick(25 * 36e5);
+  const waits = [];
+  const res = await worker.fetch(new Request("https://checkin.test/stats", { headers: { Origin: "https://logicers.com", "CF-Connecting-IP": freshIp() } }), e, { waitUntil: (p) => waits.push(p) });
+  await res.text(); await Promise.all(waits);
+  assert.equal((await one(e, "SELECT COUNT(*) AS k FROM pending")).k, 0, "the sweep ran from the request");
+  assert.equal((await call(e, "GET", "/health")).json.purged_ago_s, 0);
 });
 
 test("upload: the room's tag is kept hashed, found from the code too; a bad room or round is refused", async () => {
@@ -195,6 +228,21 @@ test("upload: the room's tag is kept hashed, found from the code too; a bad room
   const v = await up({ item_version: 61 });
   assert.equal((await one(e, "SELECT item_version FROM checkins WHERE id = ?", v.me)).item_version, 61);
   assert.equal((await up({ item_version: "60" })).r.json.error, "item_version");
+  /* the hash is keyed with the secret when there is one, so the tag alone gives nothing away */
+  const e2 = env({ ADMIN_KEY: "k".repeat(40) });
+  const h1 = await _test.roomHash(e2, room.tag), h0 = await _test.roomHash(e, room.tag);
+  assert.notEqual(h1, h0, "keyed"); assert.equal(h1, await _test.roomHash(e2, room.tag)); assert.match(h1, /^[0-9a-f]{24}$/);
+  assert.equal((await call(e2, "GET", "/health")).json.room_hash, "admin");
+  assert.equal((await call(env({ ROOM_HASH_SECRET: "s".repeat(40) }), "GET", "/health")).json.room_hash, "secret");
+  /* a redo in the room: counted once in the tally, and its yes replaces the earlier kept row */
+  const me = id();
+  const n0 = (await one(e, "SELECT n FROM tally WHERE country = '*'")).n;
+  const u1 = await call(e, "POST", "/upload", { id: me, a: answers({ w1: 1 }), room: room.tag, round: 1 });
+  await call(e, "POST", "/consent", { id: me, code: u1.json.code, yes: true });
+  const u2 = await call(e, "POST", "/upload", { id: me, a: answers({ w1: 5 }), room: room.tag, round: 1 });
+  await call(e, "POST", "/consent", { id: me, code: u2.json.code, yes: true });
+  assert.equal((await one(e, "SELECT n FROM tally WHERE country = '*'")).n, n0 + 1, "a redo is not counted again");
+  assert.deepEqual((await rows(e, "SELECT w1 FROM checkins WHERE id = ?", me)).map((x) => x.w1), [5], "the redo's yes replaces the first kept row");
 });
 
 test("upload: answers, IDs and sizes are checked; five pending per ID at most; the brakes", async () => {
@@ -241,7 +289,7 @@ test("admin: the export behind the key; pending is never exported", async () => 
   const me = id();
   const r = await call(e, "POST", "/upload", { id: me, a: answers({ mind: "people" }) });
   await call(e, "POST", "/consent", { id: me, code: r.json.code, yes: true, age: "25–34" });
-  await call(e, "POST", "/solo", { a: answers() }, { country: "PT" });
+  await call(e, "POST", "/upload", { id: id(), a: answers() }, { country: "PT" });
   assert.equal((await call(e, "POST", "/admin/export", { key: "wrong", table: "checkins" })).status, 403);
   assert.equal((await call(e, "POST", "/admin/export", { key: "k".repeat(40), table: "pending" })).json.error, "table");
   const x = await call(e, "POST", "/admin/export", { key: "k".repeat(40), table: "checkins" });
