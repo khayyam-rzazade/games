@@ -1,0 +1,444 @@
+{
+ "week": 2,
+ "title": "Rain Until Sunday",
+ "genre": "leader",
+ "keyVotes": [5, 6],
+ "days": [
+  { "day": 1, "versions": {
+   "": {
+    "screens": [
+     "Sallow Bend has 412 people, one bridge, and an old stone wall along the river.<br><br>You are the mayor. You won in the spring by eleven votes. Half the town did not want you.",
+     "Monday, seven in the morning. It has rained for nine days.<br><br>The river is brown and fast. It carries branches, a red bucket, half a fence. It makes a sound you have not heard since you were a child.",
+     "Old Tomas is waiting on the wall. He kept the river lock for fifty years.<br><br>He points at the willows on the far bank. The water is up to their first branches. “It looked like this the year it came over,” he says.",
+     "You were nine that year. The water came over the wall in the night and filled the school. You still remember the smell of wet books.<br><br>Your mother carried you up the hill on her back. You remember her breathing.",
+     "At ten, a small white car crosses the bridge. A young woman gets out with a laptop and a long measuring pole.<br><br>Her name is Ines. She is from the water office in the city. She is 29. She has never been to Sallow Bend.",
+     "Ines measures the river at the low corner, where the wall is lowest.<br><br>“The water is 60 centimetres below the top,” she says. “By Sunday it will rise 30 more. Then it goes down. The wall will hold.”<br><br>Her numbers come from every station on the river, all the way up to the dam in the hills.",
+     "Behind the wall, on the low side, is River Street. Thirty-one houses. Eighty-eight people.<br><br>Mrs. Orla lives in the blue house at the very end. She is 94. She was born in that house.",
+     "Three years ago, the old mayor moved all of River Street up to the school. A big storm was coming, the radio said. The storm went the other way.<br><br>Mrs. Orla was sick for a month after that cold night. People still talk about it.",
+     "Night. You stand on the wall with a torch. The rain is heavier now.<br><br>The water looks closer than this morning. A hand closer. Or maybe it is only the dark.",
+     "At the inn, Ines is asleep. Her numbers say Sunday is safe. Something in you does not believe them.<br><br>The school on the hill has 90 camp beds and no heat. If you move River Street, it has to be tonight, before the road gets worse."
+    ],
+    "small": [
+     { "after": 2, "axis": "bold-careful", "options": [
+      { "text": "Go down the steps to the water.", "line": "The steps are slippery. The water pulls at your boots, cold and strong.", "side": "left" },
+      { "text": "Stay up on the wall.", "line": "From up here, the river looks almost calm. Tomas says nothing.", "side": "right" } ] },
+     { "after": 5, "axis": "lead-follow", "options": [
+      { "text": "“I will tell the town myself.”", "line": "At the café, people stop talking when you come in. They listen to every word.", "side": "left" },
+      { "text": "“You tell them. They will believe you.”", "line": "Ines tells them at the café. People nod. But some of them look at you, not at her.", "side": "right" } ] }
+    ],
+    "vote": { "question": "Tonight the town decides. What do you do?",
+     "A": { "label": "Trust the numbers.", "reason": "Ines measured the whole river. Moving 88 people into a cold school, for nothing, has a cost too.", "axis": "head-heart", "side": "left" },
+     "B": { "label": "Trust your feeling.", "reason": "Move River Street up the hill tonight. If you are wrong, they lose a night's sleep. If she is wrong, they lose their homes.", "axis": "head-heart", "side": "right" } },
+    "glimpse": {
+     "A": "Tuesday, six in the morning. River Street slept in its own beds. In the night the river rose two fingers. Not a hand. Two fingers. Ines was right.",
+     "B": "At midnight you knock on the blue door. Mrs. Orla opens it in her coat, a small bag in her hand. “Tomas said you would come,” she says." },
+    "science": "In studies of advice, people move less than halfway toward the advice they get. We trust our own reasons more, because we can see them."
+   } } },
+
+  { "day": 2, "versions": {
+   "A": {
+    "screens": [
+     "Tuesday, six in the morning. River Street slept in its own beds.<br><br>In the night the river rose two fingers. Not a hand. Two fingers. Ines was right.",
+     "At the café, Ruth pours your coffee and says it loud, so everyone hears: “The young woman knows her numbers.”<br><br>People laugh. It is the first laugh you have heard in nine days.",
+     "All morning, you fill sandbags at the low corner with twenty others. By ten, your back hurts.<br><br>Mrs. Orla brings tea down to the wall. She asks you, very quietly, “Is my house safe?”",
+     "At noon, Ines runs to you across the square. Nobody runs in Sallow Bend.<br><br>Her laptop is under her coat. Her face is white.",
+     "“More rain in the hills,” she says. “Much more. And the dam up there is almost full.”<br><br>She turns the screen to you. The green line is red now. By Sunday, the river will be ten centimetres over the top of the wall.",
+     "She has a plan. On the far bank there is an old iron gate with a big wheel. It was built for this. Nobody has opened it in thirty years.<br><br>Open it, and the river spills into the low fields. The water at the wall drops by thirty centimetres. The town is safe.",
+     "Six farms are in the low fields. One of them is your brother's.<br><br>Nico has forty cows and a barn full of winter hay. The barn is the lowest building on his land.",
+     "“The gate must be open by Wednesday morning,” Ines says. “Any later, and the fields can't take enough water before Sunday.”<br><br>The gate belongs to the town, not to her office. So the choice is yours.",
+     "Evening. The rain does not stop. At the café, everyone already knows. Some say, “Open it.” Some say, “Those are our neighbours' fields.”<br><br>The farmers sit together at one table and don't look at anyone.",
+     "You could decide tonight, alone. Or you could ring the hall bell and let the whole town vote at seven in the morning.<br><br>A meeting means hours of shouting. No meeting means the whole town will say it was you."
+    ],
+    "small": [
+     { "after": 2, "axis": "truth-kindness", "options": [
+      { "text": "“I don't know yet.”", "line": "She nods slowly. “Thank you for not lying to me,” she says.", "side": "left" },
+      { "text": "“Yes. Don't worry.”", "line": "She smiles and walks home. You watch her blue door close.", "side": "right" } ] },
+     { "after": 6, "axis": "now-later", "options": [
+      { "text": "Call Nico now.", "line": "He answers on the first ring. You tell him. He is quiet for a long time.", "side": "left" },
+      { "text": "Wait until you have decided.", "line": "You put the phone back in your pocket. Not yet.", "side": "right" } ] }
+    ],
+    "vote": { "question": "The gate must be open by morning. How do you decide?",
+     "A": { "label": "Decide it yourself.", "reason": "Open the gate before dawn. There is no time for a meeting, and they chose you to make hard calls.", "axis": "lead-follow", "side": "left" },
+     "B": { "label": "Ask the town.", "reason": "Ring the bell for seven. It is their town and their neighbours' fields. Let them choose.", "axis": "lead-follow", "side": "right" } },
+    "glimpse": {
+     "A": "At two in the morning, you and Tomas turn the big wheel. It is stiff with rust. It takes both of you, and all your weight. Then the river pours through, loud, into the dark fields.",
+     "B": "At seven, the hall is full. People stand along the walls in wet coats. Nico stands up first. “My father built that barn,” he says." },
+    "science": "People judge a decision as fairer when they get to give their view, even when it is too late to change the result."
+   },
+   "B": {
+    "screens": [
+     "Tuesday, six in the morning. You wake on a camp bed in the school gym, under a basketball hoop.<br><br>Eighty-eight people sleep around you. Someone snores. A baby cries and stops.",
+     "Last night Mrs. Orla was ready when you knocked. Coat on, small bag in her hand. “Tomas said you would come,” she said.<br><br>Now she coughs in the corner, under three blankets.",
+     "At seven, Tomas walks up the hill with the news. In the night, the river rose two fingers. Not a hand. Two fingers.<br><br>Mrs. Orla looks up at you from her blankets. “So,” she says. “Did we come up here for nothing?”",
+     "By nine, the families carry their bags back down the hill. Nobody says thank you. A few people say, “For nothing,” just loud enough.<br><br>Ruth carries her mother's bag. She does not look at you.",
+     "At noon, Ines finds you in the school yard. Her laptop is under her coat. Her face is white.<br><br>“More rain in the hills,” she says. “Much more. And the dam up there is almost full.”",
+     "The green line on her screen is red now. By Sunday, the river will be ten centimetres over the top of the wall.<br><br>“You were right to be afraid,” she says. “Just not about last night.”",
+     "She has a plan. On the far bank there is an old iron gate with a big wheel. Nobody has opened it in thirty years.<br><br>Open it, and the river spills into the low fields. The water at the wall drops by thirty centimetres. The town is safe.",
+     "Six farms are in the low fields. One of them is your brother's.<br><br>Nico has forty cows and a barn full of winter hay. Last night he drove the old people up the hill in his truck, two at a time.",
+     "“The gate must be open by Wednesday morning,” Ines says. “Any later, and the fields can't take enough water before Sunday.”<br><br>The gate belongs to the town. So the choice is yours. And today the town is tired of your choices.",
+     "You could decide tonight, alone. Or you could ring the hall bell and let the whole town vote at seven in the morning.<br><br>A meeting means hours of shouting. No meeting means the whole town will say it was you."
+    ],
+    "small": [
+     { "after": 2, "axis": "truth-kindness", "options": [
+      { "text": "“Yes. Last night, it was for nothing.”", "line": "She laughs, then coughs. “At least you say it,” she says.", "side": "left" },
+      { "text": "“No. It is better to be safe.”", "line": "She pats your hand, the way you pat a child's.", "side": "right" } ] },
+     { "after": 7, "axis": "now-later", "options": [
+      { "text": "Call Nico now.", "line": "He answers on the first ring. You tell him. He is quiet for a long time.", "side": "left" },
+      { "text": "Wait until you have decided.", "line": "You put the phone back in your pocket. Not yet.", "side": "right" } ] }
+    ],
+    "vote": { "question": "The gate must be open by morning. How do you decide?",
+     "A": { "label": "Decide it yourself.", "reason": "Open the gate before dawn. There is no time for a meeting, and they chose you to make hard calls.", "axis": "lead-follow", "side": "left" },
+     "B": { "label": "Ask the town.", "reason": "Ring the bell for seven. It is their town and their neighbours' fields. Let them choose.", "axis": "lead-follow", "side": "right" } },
+    "glimpse": {
+     "A": "At two in the morning, you and Tomas turn the big wheel. It is stiff with rust. It takes both of you, and all your weight. Then the river pours through, loud, into the dark fields.",
+     "B": "At seven, the hall is full. People stand along the walls in wet coats. Nico stands up first. “My father built that barn,” he says." },
+    "science": "People judge a decision as fairer when they get to give their view, even when it is too late to change the result."
+   } } },
+
+  { "day": 3, "versions": {
+   "A": {
+    "screens": [
+     "Wednesday, two in the morning. You and Tomas stand at the iron gate on the far bank. Nobody else knows you are here.<br><br>The big wheel is stiff with rust. It takes both of you, and all your weight.",
+     "Then the river pours through, loud, into the dark fields.<br><br>By morning, the low fields are a brown lake. Fence posts stick out of it. At the town wall, the water is already lower.",
+     "At six, Nico calls. He is out of breath. He moved forty cows up to the road in the dark, alone, with a torch.<br><br>“You didn't even ask me,” he says. Then he hangs up.",
+     "At nine, the farmers come to the hall together. Six families, in muddy boots.<br><br>“Who made you king?” one of them says. Nobody laughs.",
+     "Later, people from the town come in, one by one. They say thank you quietly, at the door, so the farmers can't hear.",
+     "You paint a sign and nail it to the gate yourself:<br><br>ANYONE WHO TOUCHES THIS GATE WILL BE REPORTED TO THE POLICE.<br><br>The main road to the city is under water now. But the police will come when it opens.",
+     "At eleven, the hall door bangs open. It is Kasper, from the old mill on the far bank.<br><br>He came from the city last year to turn the mill into a guest house. He put a fence across the old river path. He never comes to the café.",
+     "“My mill is full of water!” he shouts. “You opened that gate in the night and told no one. I will take this town to court.”<br><br>He points at you. “You people,” he says, and leaves.",
+     "At five, Tomas comes to you, wet to the knees. Someone turned the gate wheel back. Half closed. The water at the town wall is rising again.<br><br>He has opened it again. “But somebody was there,” he says. “Not long ago.”",
+     "Old Pim walks his dog on the far bank every day at four. He says he saw a grey van on the gate road. Kasper has a grey van.<br><br>By eight, a crowd stands outside the hall. Ruth is at the front. “Say it,” she says. “Everyone knows.”"
+    ],
+    "small": [
+     { "after": 2, "axis": "bold-careful", "options": [
+      { "text": "Row across to his farm now.", "line": "Tomas rows you over. Nico sees you coming and turns his back.", "side": "left" },
+      { "text": "Leave him alone this morning.", "line": "You stay. From the hall window, you watch the brown water where his fields were.", "side": "right" } ] },
+     { "after": 7, "axis": "trust-suspicion", "options": [
+      { "text": "Let him go. He has a right to be angry.", "line": "From the window, you watch his grey van cross the bridge.", "side": "left" },
+      { "text": "Ask Tomas to watch the mill.", "line": "Tomas nods. He doesn't ask why.", "side": "right" } ] }
+    ],
+    "vote": { "question": "The town wants a name tonight. What do you say?",
+     "A": { "label": "Name him.", "reason": "He was seen there, and he had a reason. People are scared. If you say nothing, it looks like you are hiding him.", "axis": "trust-suspicion", "side": "right" },
+     "B": { "label": "Name no one.", "reason": "A van on a road is not proof. Once you say his name, you can never take it back.", "axis": "trust-suspicion", "side": "left" } },
+    "glimpse": {
+     "A": "In the morning, Kasper comes into your office and puts a piece of paper on your desk. “Your town decided it was me before I came in,” he says. “You just said it out loud.”",
+     "B": "In the morning, Ruth's café goes quiet when you walk in. Someone at the back says, “Here comes the city man's friend.”" },
+    "science": "When the cause of a bad event is unknown, people are quicker to blame one person or group. Blaming someone makes the danger feel easier to control."
+   },
+   "B": {
+    "screens": [
+     "Wednesday, seven in the morning. The hall is full. People stand along the walls in wet coats. Children sit on the edge of the stage.",
+     "Ines pins her red line to the wall. Then Nico stands up.<br><br>“My father built that barn,” he says. “Forty cows. All our winter hay. You are voting on my life.”",
+     "People shout. People cry. An old farmer says, “Then vote, and be done.”<br><br>Hands go up. You count twice. Two hundred and eleven to open the gate. Sixty-four against.",
+     "It takes until ten to get everyone across the bridge. Tomas and two young men turn the big wheel. It is stiff with rust.<br><br>Then the river pours through, loud, into the low fields.",
+     "By noon, the fields are a brown lake. Fence posts stick out of it. At the town wall, the water is already lower.<br><br>It was the town's choice. You keep saying that to yourself.",
+     "You paint a sign and nail it to the gate:<br><br>ANYONE WHO TOUCHES THIS GATE WILL BE REPORTED TO THE POLICE.<br><br>The main road to the city is under water now. But the police will come when it opens.",
+     "At one, the hall door bangs open. It is Kasper, from the old mill on the far bank.<br><br>He came from the city last year to turn the mill into a guest house. He put a fence across the old river path. He never comes to the café.",
+     "“My mill is full of water!” he shouts. “You had a meeting and voted to drown it. Nobody told me there was a meeting.”<br><br>It is true. Nobody told him. Nobody thought of him at all.",
+     "At five, Tomas comes to you, wet to the knees. Someone turned the gate wheel back. Half closed. The water at the town wall is rising again.<br><br>He has opened it again. “But somebody was there,” he says. “Not long ago.”",
+     "Old Pim walks his dog on the far bank every day at four. He says he saw a grey van on the gate road. Kasper has a grey van.<br><br>By eight, a crowd stands outside the hall. Ruth is at the front. “We voted,” she says. “Somebody broke our vote. Say his name.”"
+    ],
+    "small": [
+     { "after": 2, "axis": "bold-careful", "options": [
+      { "text": "Walk across the hall and stand next to Nico.", "line": "Everyone watches you cross. You stand by him. He does not move away.", "side": "left" },
+      { "text": "Stay at the front, with the vote.", "line": "You stay where you are. Nico walks out without his coat.", "side": "right" } ] },
+     { "after": 7, "axis": "trust-suspicion", "options": [
+      { "text": "Let him go. He has a right to be angry.", "line": "From the window, you watch his grey van cross the bridge.", "side": "left" },
+      { "text": "Ask Tomas to watch the mill.", "line": "Tomas nods. He doesn't ask why.", "side": "right" } ] }
+    ],
+    "vote": { "question": "The town wants a name tonight. What do you say?",
+     "A": { "label": "Name him.", "reason": "He was seen there, and he had a reason. People are scared. If you say nothing, it looks like you are hiding him.", "axis": "trust-suspicion", "side": "right" },
+     "B": { "label": "Name no one.", "reason": "A van on a road is not proof. Once you say his name, you can never take it back.", "axis": "trust-suspicion", "side": "left" } },
+    "glimpse": {
+     "A": "In the morning, Kasper comes into your office and puts a piece of paper on your desk. “Your town decided it was me before I came in,” he says. “You just said it out loud.”",
+     "B": "In the morning, Ruth's café goes quiet when you walk in. Someone at the back says, “Here comes the city man's friend.”" },
+    "science": "When the cause of a bad event is unknown, people are quicker to blame one person or group. Blaming someone makes the danger feel easier to control."
+   } } },
+
+  { "day": 4, "versions": {
+   "A": {
+    "screens": [
+     "Thursday. Last night you said his name to the crowd. Kasper. You watched people pass it to each other, all the way to the back.",
+     "In the morning, two words are painted on his mill gate in white: GO HOME.<br><br>Ruth won't sell him bread. Someone has let the air out of his van's tyres.",
+     "At ten, Kasper comes into your office. He is very calm. He puts a piece of paper on your desk.<br><br>It is from the animal doctor in the next town up the hill. His dog cut its paw on Wednesday. They were there from half past three until a quarter to five.",
+     "“Your town decided it was me before I came in,” he says. “You just said it out loud.”<br><br>He leaves the paper on your desk and goes.",
+     "At noon you find Old Pim. He is not so sure now.<br><br>“A grey van,” he says. “Or a dark truck. It was raining. It was far away.”",
+     "At dusk, you go to the gate with Tomas. Your sign is still there. The wheel is wet.<br><br>Tomas bends down and picks something out of the mud. A green work glove.",
+     "You know that glove. Last winter you bought two pairs, one for you, one for your brother.<br><br>Tomas looks at the glove. Then he looks at you. He puts it in your hand and walks back to his boat.",
+     "Night. A knock at your kitchen door. Nico, with rain on his face.<br><br>He sits down. He looks at the glove on your table for a long time.",
+     "“The water was coming into the cow barn,” he says. “The calves were in there. I turned the wheel back. Halfway. Just for two hours, until I got them out.”<br><br>“Then you said Kasper's name,” he says. “And I said nothing.”",
+     "Your rule is nailed to the gate, in your own paint.<br><br>And all over town, people say Kasper did it. Because you told them."
+    ],
+    "small": [
+     { "after": 2, "axis": "head-heart", "options": [
+      { "text": "Read the paper twice. Check the times.", "line": "The times are printed by a machine. They are real.", "side": "left" },
+      { "text": "Look at his face, not the paper.", "line": "His hands shake a little. His voice does not.", "side": "right" } ] },
+     { "after": 6, "axis": "now-later", "options": [
+      { "text": "Drive to Nico's farm now.", "line": "His lights are off. You sit in his yard for ten minutes. Then you drive home.", "side": "left" },
+      { "text": "Wait. Let him come to you.", "line": "You go home and leave the kitchen light on.", "side": "right" } ] }
+    ],
+    "vote": { "question": "Your brother broke your rule. What do you do?",
+     "A": { "label": "One rule for all.", "reason": "Tell the town it was Nico. He answers for it like anyone would. A rule that bends for your brother is not a rule.", "axis": "head-heart", "side": "left" },
+     "B": { "label": "Protect your brother.", "reason": "Keep it quiet. He was saving his calves, not hurting anyone. He has lost enough this week.", "axis": "head-heart", "side": "right" } },
+    "glimpse": {
+     "A": "At eight in the morning you stand in the hall with Nico beside you. “It was my brother,” you say. “Not Kasper. Nico.” For a moment, nobody makes a sound.",
+     "B": "In the morning, you tell no one. Nico tells no one. In town, people still say Kasper's name. Every time you hear it, you say nothing again." },
+    "science": "Whether people report a wrong depends on what they value more, fairness or loyalty. In studies, a small push toward either one changed what people did."
+   },
+   "B": {
+    "screens": [
+     "Thursday. Last night you told the crowd, “I won't say a name until I know.” Ruth turned and walked away. Then the others did.",
+     "In the morning, Ruth's café goes quiet when you walk in. Someone at the back says, “Here comes the city man's friend.”<br><br>Ruth puts your coffee down without a word.",
+     "Someone has painted two words on Kasper's mill gate anyway, in white: GO HOME.<br><br>You did not say his name. The town said it for you.",
+     "At the mill, Kasper is shovelling mud out of his front room. His big grey dog lies by the door with a white bandage on one paw.",
+     "The paper is from the animal doctor in the next town up the hill. The dog cut its paw on Wednesday. They were there from half past three until a quarter to five.<br><br>“I heard what you said last night,” Kasper says. “Nobody here ever stood up for me before. So. Thank you.”",
+     "On the way back, you stop at Nico's farm. The cows stand on the road, wet and loud. Nico is not in the house.",
+     "His truck is by the barn. It is dark grey, almost the colour of Kasper's van. The tyres are thick with yellow mud.<br><br>Only one road in Sallow Bend has mud that colour. The gate road.",
+     "Night. A knock at your kitchen door. Nico, with rain on his face.<br><br>He sits down. He does not take off his coat.",
+     "“The water was coming into the cow barn,” he says. “The calves were in there. I turned the wheel back. Halfway. Just for two hours, until I got them out.”<br><br>“Then the town said it was Kasper,” he says. “And I said nothing.”",
+     "Your rule is nailed to the gate, in your own paint.<br><br>Last night you would not blame a stranger without proof. Now the proof is sitting at your table."
+    ],
+    "small": [
+     { "after": 3, "axis": "head-heart", "options": [
+      { "text": "Ask him where he was at four.", "line": "He stops shovelling. He goes inside and comes back with a paper.", "side": "left" },
+      { "text": "Pick up a shovel and help.", "line": "You work next to him for an hour. Then he goes inside and comes back with a paper.", "side": "right" } ] },
+     { "after": 6, "axis": "now-later", "options": [
+      { "text": "Call his name across the yard.", "line": "Nothing. Only the cows answer.", "side": "left" },
+      { "text": "Go home. Let him come to you.", "line": "You drive home and leave the kitchen light on.", "side": "right" } ] }
+    ],
+    "vote": { "question": "Your brother broke your rule. What do you do?",
+     "A": { "label": "One rule for all.", "reason": "Tell the town it was Nico. He answers for it like anyone would. A rule that bends for your brother is not a rule.", "axis": "head-heart", "side": "left" },
+     "B": { "label": "Protect your brother.", "reason": "Keep it quiet. He was saving his calves, not hurting anyone. He has lost enough this week.", "axis": "head-heart", "side": "right" } },
+    "glimpse": {
+     "A": "At eight in the morning you stand in the hall with Nico beside you. “It was my brother,” you say. “Not Kasper. Nico.” For a moment, nobody makes a sound.",
+     "B": "In the morning, you tell no one. Nico tells no one. In town, people still say Kasper's name. Every time you hear it, you say nothing again." },
+    "science": "Whether people report a wrong depends on what they value more, fairness or loyalty. In studies, a small push toward either one changed what people did."
+   } } },
+
+  { "day": 5, "versions": {
+   "A": {
+    "screens": [
+     "Friday, eight in the morning. You stand in the hall with Nico beside you.<br><br>“It was my brother,” you say. “Not Kasper. Nico.” For a moment, nobody makes a sound.",
+     "Then everyone talks at once. Nico stands there and listens to all of it. He does not look at the floor.<br><br>Outside, he asks you only one thing. “Would Dad have done this?”",
+     "On the hall steps, a farmer stops you. “Your own brother,” he says. “What kind of person does that?”<br><br>Nico's wife, Sara, walks past you without a word. The police will come when the main road opens.",
+     "At the café, Ruth puts a coffee in front of you and won't let you pay.<br><br>“That was hard to do,” she says. That is all she says.",
+     "Some people say sorry to Kasper. Most do not. They just stop saying his name.",
+     "At noon, Ines calls you to the low corner. The rain has stopped, for the first time in two weeks. But her face is grey.<br><br>“The dam in the hills is full,” she says. “Tomorrow night they have to let water out. A lot of it.”",
+     "She shows you her screen. On Sunday at noon, the river will reach the top of the wall at the low corner.<br><br>“Maybe five centimetres under,” she says. “Maybe five over. I can't tell you which. It is a coin toss.”",
+     "Tonight at eight, you will speak at the hall. Half the town will be there. The rest will hear you on the town radio, in their kitchens.",
+     "If you say “coin toss,” some families will drive out on the hill road tonight, in the dark, on a road that is half mud.<br><br>If you say “it will hold” and it does not, they will be asleep in their beds when the water comes.",
+     "This morning you told the town a hard truth about your own brother. They listened.<br><br>Tonight they will listen to every word again."
+    ],
+    "small": [
+     { "after": 1, "axis": "truth-kindness", "options": [
+      { "text": "“No. He would have protected you.”", "line": "Nico laughs, a short, sad laugh. “I know,” he says.", "side": "left" },
+      { "text": "“Yes. He always said a rule is a rule.”", "line": "Nico nods. He wants to believe it. So do you.", "side": "right" } ] },
+     { "after": 3, "axis": "bold-careful", "options": [
+      { "text": "Go to the mill and say sorry for this town.", "line": "Kasper listens. He nods once. He does not shake your hand. Not yet.", "side": "left" },
+      { "text": "Leave him alone today. Write to him later.", "line": "You write three lines on a card. You don't know if he will read them.", "side": "right" } ] }
+    ],
+    "vote": { "question": "Tonight you speak to the town. What do you tell them?",
+     "A": { "label": "The truth.", "reason": "Tell them it is a coin toss. These are their homes. They have a right to know, and to choose for themselves.", "axis": "truth-kindness", "side": "left" },
+     "B": { "label": "That it will hold.", "reason": "Keep them calm. Scared people drive dark roads at night. Calm people stay, sleep, and work in the morning.", "axis": "truth-kindness", "side": "right" } },
+    "glimpse": {
+     "A": "In the night, nineteen families pack their cars and drive out on the hill road. At two in the morning, one car slides into the ditch. Nico pulls it out with his tractor.",
+     "B": "Saturday morning, the café is full. Children play in the square. “The mayor says it will hold,” people tell each other, and go back to their coffee." },
+    "science": "Disaster research finds that mass panic is rare. In real danger, most people stay calm and help each other."
+   },
+   "B": {
+    "screens": [
+     "Friday morning. You tell no one. Nico tells no one. What he said last night stays in your kitchen.",
+     "In town, people still say Kasper's name. In the shop. At the wall. Every time you hear it, you say nothing again.",
+     "In the night, someone threw a stone through the front window of the mill. Nobody was hurt. The dog barked until morning.",
+     "At ten, Kasper comes to your office. He closes the door behind him.<br><br>“You know it wasn't me,” he says. “I can see it in your face.”",
+     "Nico works on the wall all day. He fills more sandbags than anyone. He does not talk. He does not eat.",
+     "At noon, Ines calls you to the low corner. The rain has stopped, for the first time in two weeks. But her face is grey.<br><br>“The dam in the hills is full,” she says. “Tomorrow night they have to let water out. A lot of it.”",
+     "She shows you her screen. On Sunday at noon, the river will reach the top of the wall at the low corner.<br><br>“Maybe five centimetres under,” she says. “Maybe five over. I can't tell you which. It is a coin toss.”",
+     "Tonight at eight, you will speak at the hall. Half the town will be there. The rest will hear you on the town radio, in their kitchens.",
+     "If you say “coin toss,” some families will drive out on the hill road tonight, in the dark, on a road that is half mud.<br><br>If you say “it will hold” and it does not, they will be asleep in their beds when the water comes.",
+     "You are already keeping one thing from them this week.<br><br>Tonight they will listen to every word."
+    ],
+    "small": [
+     { "after": 2, "axis": "bold-careful", "options": [
+      { "text": "Go and help him board up the window.", "line": "He lets you hold the board while he nails it. He watches your face the whole time.", "side": "left" },
+      { "text": "Stay away from the mill today.", "line": "You take the long way round, so you don't pass his gate.", "side": "right" } ] },
+     { "after": 3, "axis": "truth-kindness", "options": [
+      { "text": "“I know it wasn't you.”", "line": "He waits for more. There is no more. “That's all?” he says, and goes.", "side": "left" },
+      { "text": "“I can't talk about it. Not yet.”", "line": "He looks at you for a long time. Then he goes, and leaves the door open.", "side": "right" } ] }
+    ],
+    "vote": { "question": "Tonight you speak to the town. What do you tell them?",
+     "A": { "label": "The truth.", "reason": "Tell them it is a coin toss. These are their homes. They have a right to know, and to choose for themselves.", "axis": "truth-kindness", "side": "left" },
+     "B": { "label": "That it will hold.", "reason": "Keep them calm. Scared people drive dark roads at night. Calm people stay, sleep, and work in the morning.", "axis": "truth-kindness", "side": "right" } },
+    "glimpse": {
+     "A": "In the night, nineteen families pack their cars and drive out on the hill road. At two in the morning, one car slides into the ditch. Nico pulls it out with his tractor.",
+     "B": "Saturday morning, the café is full. Children play in the square. “The mayor says it will hold,” people tell each other, and go back to their coffee." },
+    "science": "Disaster research finds that mass panic is rare. In real danger, most people stay calm and help each other."
+   } } },
+
+  { "day": 6, "versions": {
+   "A": {
+    "screens": [
+     "Saturday. Last night you said it on the town radio: “It is a coin toss. I won't tell you anything else.”<br><br>The hall was so quiet you could hear the river.",
+     "In the night, nineteen families packed their cars and drove out on the hill road. At two in the morning, one car slid into the ditch. Nico pulled it out with his tractor. Nobody was hurt.",
+     "In the morning, you go to the low corner, ready to fill bags with twenty people.<br><br>There are a hundred and fifty. Old men. Teenagers. Ruth, with soup in a big pot. Nobody called them. They came.",
+     "Ines works next to you, in a borrowed coat. “In the city, people would be gone by now,” she says. She sounds surprised.",
+     "Mrs. Orla will not leave her blue house. “I was born in it,” she says. “I will see what the river does to it.”<br><br>Ruth sits with her for an hour. Mrs. Orla does not move.",
+     "At three, a red truck comes down the hill road. On the back is a huge orange roll, folded flat.<br><br>A woman gets out. Grey hair, yellow coat. “Who is in charge here?” she asks.",
+     "Her name is Hanna. She says she drives from flood to flood. The orange roll is a tube. Filled with water, it becomes a wall, one metre high and two hundred metres long.",
+     "“Your low corner is lost,” she says. “Stop fighting for it. Let me lay my tube across River Street, behind the last three houses. Give me your digger, your fire hose, and thirty people all night. You lose three houses. You keep the rest.”",
+     "One of the last three houses is the blue one. Mrs. Orla's.<br><br>Hanna has no papers. The phone lines went down in the night. There is nobody you can call to ask who she is.",
+     "Ines looks at the tube for a long time. “I have seen these work,” she says. “I have also seen one roll away.”<br><br>The light is going. The dam opens at midnight."
+    ],
+    "small": [
+     { "after": 2, "axis": "bold-careful", "options": [
+      { "text": "Climb up on the wall, where the water is.", "line": "The water is one hand from your boots. You stack bags until your arms shake.", "side": "left" },
+      { "text": "Stay on the street side and pass bags up.", "line": "You pass bag after bag. Hands take them from you without a word.", "side": "right" } ] },
+     { "after": 7, "axis": "now-later", "options": [
+      { "text": "Start clearing River Street now, just in case.", "line": "Ten men start moving cars off the street. Hanna watches, and nods.", "side": "left" },
+      { "text": "Touch nothing until you decide.", "line": "The digger stays where it is. Hanna sits in her truck and waits.", "side": "right" } ] }
+    ],
+    "vote": { "question": "A stranger asks for your trust. What do you do?",
+     "A": { "label": "Trust her.", "reason": "Give her the digger and the people. Lose three houses for sure, and save the rest.", "axis": "trust-suspicion", "side": "left" },
+     "B": { "label": "Send her away.", "reason": "You don't know who she is. Keep your own wall, all of it, and keep working.", "axis": "trust-suspicion", "side": "right" } },
+    "glimpse": {
+     "A": "That night, Hanna's tube fills with water from the fire hose. Slowly it grows into a wall, long and orange, right across River Street. Behind it, the last three houses stand alone.",
+     "B": "Hanna's red lights go up the hill road and are gone. You pick up a sandbag. Then another. The river is one hand from the top." },
+    "science": "In a famous study, 30 of 32 people sent money to a stranger they would never meet. Some strangers paid back more than they got. Some paid back almost nothing."
+   },
+   "B": {
+    "screens": [
+     "Saturday. Last night you said it on the town radio: “The wall will hold. Get some sleep.”<br><br>In the hall, people clapped. Ines stood at the back with her arms crossed.",
+     "This morning the café is full. Children play in the square. “The mayor says it will hold,” people tell each other, and go back to their coffee.",
+     "At the low corner, forty people fill bags. You hoped for a hundred.<br><br>“Why work so hard?” a young man asks. “You said it will hold.”",
+     "Ines finds you at the wall. Her voice is low and hard.<br><br>“You said my numbers say it will hold. My numbers say coin toss. You used my name to say something I never said.”",
+     "“Then tell them yourself,” you say.<br><br>She looks at the children in the square for a long time. She does not go. Not yet.",
+     "At three, a red truck comes down the hill road. On the back is a huge orange roll, folded flat.<br><br>A woman gets out. Grey hair, yellow coat. “Who is in charge here?” she asks.",
+     "Her name is Hanna. She says she drives from flood to flood. The orange roll is a tube. Filled with water, it becomes a wall, one metre high and two hundred metres long.",
+     "“Your low corner is lost,” she says. “Stop fighting for it. Let me lay my tube across River Street, behind the last three houses. Give me your digger, your fire hose, and thirty people all night. You lose three houses. You keep the rest.”",
+     "One of the last three houses is the blue one. Mrs. Orla is inside right now, baking a cake for the people at the wall. She believes you. Everyone does.",
+     "Hanna has no papers. The phone lines went down in the night. There is nobody you can call to ask who she is.<br><br>“I have seen these tubes work,” Ines says. “I have also seen one roll away.” The light is going. The dam opens at midnight."
+    ],
+    "small": [
+     { "after": 2, "axis": "bold-careful", "options": [
+      { "text": "Climb up on the wall, where the water is.", "line": "The water is one hand from your boots. You stack bags until your arms shake.", "side": "left" },
+      { "text": "Stay on the street side and pass bags up.", "line": "You pass bag after bag. There are not many hands to take them.", "side": "right" } ] },
+     { "after": 7, "axis": "now-later", "options": [
+      { "text": "Start clearing River Street now, just in case.", "line": "Five men start moving cars off the street. People stop and stare. Hanna nods.", "side": "left" },
+      { "text": "Touch nothing until you decide.", "line": "The digger stays where it is. Hanna sits in her truck and waits.", "side": "right" } ] }
+    ],
+    "vote": { "question": "A stranger asks for your trust. What do you do?",
+     "A": { "label": "Trust her.", "reason": "Give her the digger and the people. Lose three houses for sure, and save the rest.", "axis": "trust-suspicion", "side": "left" },
+     "B": { "label": "Send her away.", "reason": "You don't know who she is. Keep your own wall, all of it, and keep working.", "axis": "trust-suspicion", "side": "right" } },
+    "glimpse": {
+     "A": "That night, Hanna's tube fills with water from the fire hose. Slowly it grows into a wall, long and orange, right across River Street. Behind it, the last three houses stand alone.",
+     "B": "Hanna's red lights go up the hill road and are gone. You pick up a sandbag. Then another. The river is one hand from the top." },
+    "science": "In a famous study, 30 of 32 people sent money to a stranger they would never meet. Some strangers paid back more than they got. Some paid back almost nothing."
+   } } },
+
+  { "day": 7, "versions": {
+   "AA": {
+    "screens": [
+     "Sunday, one in the morning. Hanna's tube lies across River Street, behind the last three houses. The fire hose fills it with river water.<br><br>Slowly it grows into a wall, long and orange.",
+     "There are more hands than she asked for. A hundred people work in the light of the digger. Nobody went to bed. They knew why.",
+     "Before that, at midnight, Mrs. Orla came out of the blue house with a shoebox of photos under her arm.<br><br>“So it is my house or the street,” she said. “Take the house.” Ruth walked her up the hill.",
+     "At dawn, the water from the dam arrives. You can see it come. The river gets wider, and faster, and louder.",
+     "At eleven, it comes over the low corner. It does not crash. It just spills over, quietly, and keeps coming.<br><br>It fills the three gardens. It goes in under the blue door.",
+     "Then it reaches the orange tube, and stops.<br><br>The tube shakes a little. It holds. Behind it, the rest of River Street is dry.",
+     "At noon, the river stops climbing. By two, it is going down. Somebody starts to cheer, and then everyone does.<br><br>Hanna sits on her tube with a bowl of Ruth's soup.",
+     "“I was nine when my town went under,” she tells you. “Our mayor told us it would hold.”<br><br>She does not say any more. She eats her soup.",
+     "In the evening, a reporter from the city drives in on the hill road. He holds out his phone to you.<br><br>“Who saved Sallow Bend?” he asks.",
+     "Mrs. Orla stands at her blue door, in mud to her knees. “It is only a house,” she says. “Everyone is here.”<br><br>At dusk, Hanna's red truck goes up the hill road. Somewhere down the river, another town is waiting for her."
+    ],
+    "small": [
+     { "after": 2, "axis": "now-later", "options": [
+      { "text": "Put a row of sandbags in front of the tube now.", "line": "You build a low row in front of the orange wall. Hanna shrugs. “It can't hurt.”", "side": "left" },
+      { "text": "Keep the bags behind the tube, for later.", "line": "You stack them ready, behind the tube. Hanna nods. “Good. Tubes can leak.”", "side": "right" } ] },
+     { "after": 8, "axis": "lead-follow", "options": [
+      { "text": "“The people did. All of them.”", "line": "You name them one by one. Ruth's soup. Nico's tractor. A hundred pairs of hands. A woman whose last name you never learned.", "side": "right" },
+      { "text": "“I made the calls. That was me.”", "line": "“Someone had to decide,” you say. It is true. The reporter writes it down.", "side": "left" } ] }
+    ],
+    "science": "Across 266 studies, people gave themselves more credit for good events than for bad ones. This pull is found almost everywhere, but it is smaller in some cultures."
+   },
+   "AB": {
+    "screens": [
+     "Sunday, one in the morning. Hanna's red lights went up the hill road hours ago.<br><br>A hundred and fifty people are still at the low corner. Nobody went to bed. They knew why.",
+     "You raise the sandbag wall one more row. Then another. Teenagers run with bags. Old men tie them. Ruth's soup goes cold in its pot.",
+     "Mrs. Orla sits at her upstairs window in the blue house, with a lamp on. She waves to you every hour. You wave back.",
+     "At dawn, the water from the dam arrives. You can see it come. The river gets wider, and faster, and louder.",
+     "At eleven, it reaches the top row of bags. Thin streams of water start to come through, between them.<br><br>People push their coats into the gaps. They lean on the bags with all their weight.",
+     "At noon, it stops. One finger below the top.<br><br>For a long minute, nobody moves. Then the river starts to go down.",
+     "The whole town is dry. Every house. Even the blue one. People hug people they hardly know. Ruth cries into her empty pot.",
+     "In the afternoon, Tomas comes back in his boat from the village down the river.<br><br>“A woman with an orange tube was there last night,” he says. “Their wall was lower than ours. She saved their whole street.”",
+     "Ines stands next to you on the wall. “It was a coin toss,” she says. “You won it. Don't forget it was a coin.”<br><br>In the evening, a reporter from the city holds out his phone to you. “Who saved Sallow Bend?” he asks.",
+     "Night. The river is still brown, but it is going down.<br><br>You think about a red truck on the hill road, and a woman whose last name you never asked. You don't know where to send the letter."
+    ],
+    "small": [
+     { "after": 2, "axis": "now-later", "options": [
+      { "text": "Add one more row now, while people can still lift.", "line": "Arms shake. The row goes up anyway. Nobody can feel their hands.", "side": "left" },
+      { "text": "Let them rest now. Save their strength for the morning.", "line": "People sit on the wet street and close their eyes. At five, they get up again.", "side": "right" } ] },
+     { "after": 8, "axis": "lead-follow", "options": [
+      { "text": "“The people did. All of them.”", "line": "You tell him about a hundred and fifty pairs of hands, and coats pushed into a wall.", "side": "right" },
+      { "text": "“I made the calls. That was me.”", "line": "“Someone had to decide,” you say. It is true. The reporter writes it down.", "side": "left" } ] }
+    ],
+    "science": "Across 266 studies, people gave themselves more credit for good events than for bad ones. This pull is found almost everywhere, but it is smaller in some cultures."
+   },
+   "BA": {
+    "screens": [
+     "Saturday night, ten o'clock. Hanna needs thirty people. You have eleven.<br><br>The rest of the town is asleep. You told them it would hold.",
+     "So you walk door to door in the dark. You knock, and you say what you did not say last night: “It might not hold. I need you.”",
+     "Some doors stay shut. Some people shout at you. But Ruth comes, in her slippers. Kasper comes with his van. Nico brings his tractor. By two, there are forty.",
+     "At three, you knock at the blue door. Mrs. Orla opens it in her nightdress.<br><br>“You said it would hold,” she says. “I am staying in my house.” She shuts the door.",
+     "At five, the tube is full. It lies across River Street, behind the last three houses, long and orange.<br><br>Dawn comes. So does the water from the dam.",
+     "At six, the river comes over the low corner, faster than anyone thought. Brown water fills the three gardens.<br><br>Mrs. Orla is at her upstairs window.",
+     "Kasper and Tomas take the boat to her blue door. Kasper climbs in through the window. He carries her out, wrapped in a blanket. She is cold, and angry, and fine.",
+     "By eight, the water reaches the tube. Near the bridge, a thin stream comes under it. Six men lie on sandbags to stop it.<br><br>It holds. At noon the river stops climbing. Behind the tube, the rest of River Street is dry.",
+     "Ines stands beside you. “They will thank you for keeping them calm,” she says. “They should thank the forty who were awake.”<br><br>In the evening, a reporter holds out his phone to you. “Who saved Sallow Bend?” he asks.",
+     "At dusk, Hanna rolls up her tube. “I was nine when my town went under,” she says. “Our mayor said it would hold.”<br><br>She looks at you. “Next time, tell them,” she says. Then her red truck is gone."
+    ],
+    "small": [
+     { "after": 2, "axis": "now-later", "options": [
+      { "text": "Wake the rest of River Street now.", "line": "Lights come on, one window at a time. Nobody is happy. They come anyway.", "side": "left" },
+      { "text": "Let them sleep. Wake them at dawn.", "line": "The windows stay dark. You count them as you walk past.", "side": "right" } ] },
+     { "after": 8, "axis": "lead-follow", "options": [
+      { "text": "“The people did. All of them.”", "line": "You tell him about forty people in the dark, a boat at a window, and a woman with an orange tube.", "side": "right" },
+      { "text": "“I made the calls. That was me.”", "line": "“Someone had to decide,” you say. It is true. The reporter writes it down.", "side": "left" } ] }
+    ],
+    "science": "Across 266 studies, people gave themselves more credit for good events than for bad ones. This pull is found almost everywhere, but it is smaller in some cultures."
+   },
+   "BB": {
+    "screens": [
+     "Saturday night. The town sleeps. You told them it would hold.<br><br>Hanna's red lights go up the hill road and are gone.",
+     "Forty people work at the low corner all night. You raise the sandbags one more row. Then the bags run out.",
+     "At five, the water from the dam arrives. The river climbs faster than Ines said. Faster than anyone said.<br><br>At six, you send Tomas for his boat. Just in case.",
+     "At twenty to seven, the low corner goes. The river comes over the sandbags and into River Street.<br><br>Not fast. Steady. Into the kitchens. Up the stairs. Most people are still asleep.",
+     "Tomas takes his boat down River Street. Nico drives his tractor through water up to the windows. People climb out of upstairs windows and into the boat.",
+     "At the blue house, Mrs. Orla is still asleep. Kasper puts a ladder to her window. He carries her down, wrapped in a blanket. She is cold, and confused, and safe.",
+     "By noon, River Street is a brown lake. Thirty-one houses.<br><br>In the school on the hill, you count names twice. Eighty-eight. Everyone is out. Nobody is lost.",
+     "Ruth stands in front of you in a wet coat. “You said it would hold,” she says. Everyone in the gym hears her.<br><br>Ines says only one thing: “It was a coin toss. You told them it was not.”",
+     "In the evening, a reporter from the city holds out his phone to you.<br><br>“How did everyone get out alive?” he asks.",
+     "That night, on Ines's radio, a voice from the village down the river says thank you to a woman with an orange tube. She saved their whole street.<br><br>You turn the radio off. Tomorrow, the mud."
+    ],
+    "small": [
+     { "after": 1, "axis": "now-later", "options": [
+      { "text": "Ring the hall bell now and ask for help.", "line": "A few lights come on. Most stay dark. They heard you on the radio last night.", "side": "left" },
+      { "text": "Wait. Wake them at dawn if it gets bad.", "line": "You let them sleep. It is what you promised them.", "side": "right" } ] },
+     { "after": 8, "axis": "lead-follow", "options": [
+      { "text": "“The people did. The boats, the ladders, the neighbours.”", "line": "You tell him about Tomas, and Nico, and the man from the mill with a ladder.", "side": "right" },
+      { "text": "“I sent the boat out at six. That was my call.”", "line": "It is true. You did. The reporter writes it down.", "side": "left" } ] }
+    ],
+    "science": "Across 266 studies, people gave themselves more credit for good events than for bad ones. This pull is found almost everywhere, but it is smaller in some cultures."
+   } } }
+ ],
+ "_sources": [
+  { "day": 1, "title": "Yaniv & Kleinberger (2000), Advice taking in decision making: Egocentric discounting and reputation formation. Organizational Behavior and Human Decision Processes 83(2), 260-281", "link": "https://doi.org/10.1006/obhd.2000.2909" },
+  { "day": 1, "title": "Bailey et al. (2023), meta-analysis of the weight of advice (average weight 0.39), Current Psychology", "link": "https://doi.org/10.1007/s12144-022-03573-2" },
+  { "day": 2, "title": "Lind, Kanfer & Earley (1990), Voice, control, and procedural justice: Instrumental and noninstrumental concerns in fairness judgments. Journal of Personality and Social Psychology 59(5), 952-959", "link": "https://doi.org/10.1037/0022-3514.59.5.952" },
+  { "day": 3, "title": "Rothschild, Landau, Sullivan & Keefer (2012), A dual-motive model of scapegoating: Displacing blame to reduce guilt or increase control. Journal of Personality and Social Psychology 102(6), 1148-1163", "link": "https://doi.org/10.1037/a0027413" },
+  { "day": 4, "title": "Waytz, Dungan & Young (2013), The whistleblower's dilemma and the fairness-loyalty tradeoff. Journal of Experimental Social Psychology 49(6), 1027-1033", "link": "https://doi.org/10.1016/j.jesp.2013.07.002" },
+  { "day": 5, "title": "Drury, Cocking & Reicher (2009), Everyone for themselves? A comparative study of crowd solidarity among emergency survivors. British Journal of Social Psychology 48, 487-506", "link": "https://doi.org/10.1348/014466608X357893" },
+  { "day": 5, "title": "Drury, Cocking & Reicher (2009), The nature of collective resilience: Survivor reactions to the 2005 London bombings. International Journal of Mass Emergencies and Disasters 27(1), 66-95 (summary: no mass panic among 90+ survivors)", "link": "https://www.sussex.ac.uk/broadcast/read/588" },
+  { "day": 6, "title": "Berg, Dickhaut & McCabe (1995), Trust, reciprocity, and social history. Games and Economic Behavior 10(1), 122-142 (30 of 32 sent money; 12 of 28 returned more than sent, 12 of 28 returned $0 or $1)", "link": "https://doi.org/10.1006/game.1995.1027" },
+  { "day": 6, "title": "EconPort summary of Berg, Dickhaut & McCabe (1995)", "link": "https://econport.gsu.edu/content/handbook/trustreciprocity/experiments/TRSHistory.html" },
+  { "day": 7, "title": "Mezulis, Abramson, Hyde & Hankin (2004), Is there a universal positivity bias in attributions? A meta-analytic review of individual, developmental, and cultural differences in the self-serving attributional bias. Psychological Bulletin 130(5), 711-747 (266 studies; bias smaller in Asian samples)", "link": "https://doi.org/10.1037/0033-2909.130.5.711" }
+ ]
+}

@@ -232,13 +232,13 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.the-club.noble-gases.sign` — Ce sont des gaz nobles
 - `p.the-club.noble-gases.stamp` — Gaz nobles
-- `p.the-club.noble-gases.in1` — Hélium
+- `p.the-club.noble-gases.in1` — Krypton
 - `p.the-club.noble-gases.in2` — Néon
 - `p.the-club.noble-gases.in3` — Argon
 - `p.the-club.noble-gases.out1` — Oxygène
 - `p.the-club.noble-gases.out2` — Hydrogène
-- `p.the-club.noble-gases.door1` — Krypton
-- `p.the-club.noble-gases.door2` — Azote
+- `p.the-club.noble-gases.door1` — Hélium
+- `p.the-club.noble-gases.door2` — Carbone
 - `p.the-club.noble-gases.door3` — Xénon
 - `p.the-club.noble-gases.door4` — Chlore
 - `p.the-club.noble-gases.door5` — Radon
@@ -281,16 +281,16 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.cabbage.sign` — Une seule espèce : le chou sauvage
 - `p.the-club.cabbage.stamp` — Chou sauvage
 - `p.the-club.cabbage.in1` — Chou
-- `p.the-club.cabbage.in2` — Brocoli
+- `p.the-club.cabbage.in2` — Choux de Bruxelles
 - `p.the-club.cabbage.in3` — Chou-fleur
 - `p.the-club.cabbage.out1` — Laitue
 - `p.the-club.cabbage.out2` — Carotte
 - `p.the-club.cabbage.door1` — Kale
 - `p.the-club.cabbage.door2` — Épinard
-- `p.the-club.cabbage.door3` — Choux de Bruxelles
-- `p.the-club.cabbage.door4` — Oignon
+- `p.the-club.cabbage.door3` — Brocoli
+- `p.the-club.cabbage.door4` — Chou chinois
 - `p.the-club.cabbage.door5` — Chou-rave
-- `p.the-club.cabbage.fact` — Ce sont tous une seule espèce, le chou sauvage, que les agriculteurs ont transformée, par sélection, en de nombreuses formes.
+- `p.the-club.cabbage.fact` — Tous sont une seule et même espèce, le chou sauvage, que les agriculteurs ont façonnée en de nombreuses formes. Pas le chou chinois : il est de la même espèce que le navet.
 
 #### 19/148 · `arctic-circle` · day 19 (22 Oct 2026), 167 (19 Mar 2027), 315 (14 Aug 2027), 463 (9 Jan 2028) … · every 148 days
 
@@ -329,15 +329,15 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.woodwinds.sign` — Ce sont des instruments de la famille des bois
 - `p.the-club.woodwinds.stamp` — Les bois
 - `p.the-club.woodwinds.in1` — Clarinette
-- `p.the-club.woodwinds.in2` — Hautbois
-- `p.the-club.woodwinds.in3` — Flûte
+- `p.the-club.woodwinds.in2` — Flûte
+- `p.the-club.woodwinds.in3` — Piccolo
 - `p.the-club.woodwinds.out1` — Trompette
 - `p.the-club.woodwinds.out2` — Trombone
 - `p.the-club.woodwinds.door1` — Saxophone
 - `p.the-club.woodwinds.door2` — Tuba
 - `p.the-club.woodwinds.door3` — Basson
-- `p.the-club.woodwinds.door4` — Cor
-- `p.the-club.woodwinds.door5` — Piccolo
+- `p.the-club.woodwinds.door4` — Euphonium
+- `p.the-club.woodwinds.door5` — Hautbois
 - `p.the-club.woodwinds.fact` — Ce sont des instruments de la famille des bois, quelle que soit leur matière. Le saxophone est en laiton mais se joue avec une anche, donc il en fait partie.
 
 #### 22/148 · `sea-mammals` · day 22 (25 Oct 2026), 170 (22 Mar 2027), 318 (17 Aug 2027), 466 (12 Jan 2028) … · every 148 days
@@ -937,11 +937,11 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.citrus.sign` — Ce sont des agrumes
 - `p.the-club.citrus.stamp` — Agrumes
 - `p.the-club.citrus.in1` — Citron
-- `p.the-club.citrus.in2` — Orange
+- `p.the-club.citrus.in2` — Citron vert
 - `p.the-club.citrus.in3` — Pamplemousse
 - `p.the-club.citrus.out1` — Pomme
 - `p.the-club.citrus.out2` — Banane
-- `p.the-club.citrus.door1` — Citron vert
+- `p.the-club.citrus.door1` — Orange
 - `p.the-club.citrus.door2` — Ananas
 - `p.the-club.citrus.door3` — Mandarine
 - `p.the-club.citrus.door4` — Kiwi
@@ -1057,7 +1057,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.metals.door2` — Iode
 - `p.the-club.metals.door3` — Magnésium
 - `p.the-club.metals.door4` — Mercure
-- `p.the-club.metals.door5` — Phosphore
+- `p.the-club.metals.door5` — Hélium
 - `p.the-club.metals.fact` — Ce sont tous des métaux. Le mercure en est un aussi, même si à 20 °C c’est un liquide.
 
 #### 67/148 · `crustaceans` · day 67 (9 Dec 2026), 215 (6 May 2027), 363 (1 Oct 2027), 511 (26 Feb 2028) … · every 148 days
@@ -1176,15 +1176,15 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.the-club.china.sign` — Inventés en Chine
 - `p.the-club.china.stamp` — Inventé en Chine
-- `p.the-club.china.in1` — Papier
+- `p.the-club.china.in1` — Porcelaine
 - `p.the-club.china.in2` — Poudre à canon
 - `p.the-club.china.in3` — Boussole
-- `p.the-club.china.out1` — Verre
+- `p.the-club.china.out1` — Microscope
 - `p.the-club.china.out2` — Télescope
-- `p.the-club.china.door1` — Porcelaine
+- `p.the-club.china.door1` — Papier
 - `p.the-club.china.door2` — Biscuit chinois
 - `p.the-club.china.door3` — Soie
-- `p.the-club.china.door4` — Microscope
+- `p.the-club.china.door4` — Verre
 - `p.the-club.china.door5` — Papier-monnaie
 - `p.the-club.china.fact` — Tous ont été inventés en Chine. Le biscuit chinois, non : il est sans doute né chez des immigrants japonais aux États-Unis.
 
@@ -1432,15 +1432,15 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.the-club.ancient-americas.sign` — Des civilisations des Amériques
 - `p.the-club.ancient-americas.stamp` — Amériques anciennes
-- `p.the-club.ancient-americas.in1` — Mayas
-- `p.the-club.ancient-americas.in2` — Aztèques
-- `p.the-club.ancient-americas.in3` — Incas
+- `p.the-club.ancient-americas.in1` — Aztèques
+- `p.the-club.ancient-americas.in2` — Olmèques
+- `p.the-club.ancient-americas.in3` — Toltèques
 - `p.the-club.ancient-americas.out1` — Babyloniens
-- `p.the-club.ancient-americas.out2` — Étrusques
-- `p.the-club.ancient-americas.door1` — Olmèques
-- `p.the-club.ancient-americas.door2` — Phéniciens
-- `p.the-club.ancient-americas.door3` — Toltèques
-- `p.the-club.ancient-americas.door4` — Sumériens
+- `p.the-club.ancient-americas.out2` — Phéniciens
+- `p.the-club.ancient-americas.door1` — Mayas
+- `p.the-club.ancient-americas.door2` — Étrusques
+- `p.the-club.ancient-americas.door3` — Incas
+- `p.the-club.ancient-americas.door4` — Grecs
 - `p.the-club.ancient-americas.door5` — Hittites
 - `p.the-club.ancient-americas.fact` — Toutes ont prospéré dans les Amériques avant Christophe Colomb. Les Olmèques ont été la première grande civilisation de Mésoamérique.
 
@@ -1512,13 +1512,13 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 
 - `p.the-club.igneous.sign` — Ce sont des roches magmatiques
 - `p.the-club.igneous.stamp` — Roches magmatiques
-- `p.the-club.igneous.in1` — Granit
+- `p.the-club.igneous.in1` — Pierre ponce
 - `p.the-club.igneous.in2` — Basalte
 - `p.the-club.igneous.in3` — Obsidienne
-- `p.the-club.igneous.out1` — Marbre
-- `p.the-club.igneous.out2` — Grès
-- `p.the-club.igneous.door1` — Pierre ponce
-- `p.the-club.igneous.door2` — Calcaire
+- `p.the-club.igneous.out1` — Grès
+- `p.the-club.igneous.out2` — Calcaire
+- `p.the-club.igneous.door1` — Granit
+- `p.the-club.igneous.door2` — Marbre
 - `p.the-club.igneous.door3` — Andésite
 - `p.the-club.igneous.door4` — Ardoise
 - `p.the-club.igneous.door5` — Craie
@@ -1626,15 +1626,15 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.bears.stamp` — Ours
 - `p.the-club.bears.in1` — Grizzli
 - `p.the-club.bears.in2` — Ours polaire
-- `p.the-club.bears.in3` — Panda géant
+- `p.the-club.bears.in3` — Ours malais
 - `p.the-club.bears.out1` — Koala
 - `p.the-club.bears.out2` — Panda roux
-- `p.the-club.bears.door1` — Ours malais
-- `p.the-club.bears.door2` — Raton laveur
+- `p.the-club.bears.door1` — Panda géant
+- `p.the-club.bears.door2` — Ourson d’eau
 - `p.the-club.bears.door3` — Ours à lunettes
 - `p.the-club.bears.door4` — Glouton
 - `p.the-club.bears.door5` — Ours lippu
-- `p.the-club.bears.fact` — Ce sont tous des ours, et le panda géant aussi. Le koala est un marsupial, et le panda roux n’est pas un ours non plus.
+- `p.the-club.bears.fact` — Ce sont tous des ours, et le panda géant aussi. Le koala est un marsupial, et ni le panda roux ni le minuscule ourson d’eau ne sont des ours.
 
 #### 103/148 · `brass` · day 103 (14 Jan 2027), 251 (11 Jun 2027), 399 (6 Nov 2027), 547 (2 Apr 2028) … · every 148 days
 
@@ -1642,10 +1642,10 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.brass.stamp` — Les cuivres
 - `p.the-club.brass.in1` — Trompette
 - `p.the-club.brass.in2` — Trombone
-- `p.the-club.brass.in3` — Tuba
+- `p.the-club.brass.in3` — Cor
 - `p.the-club.brass.out1` — Saxophone
 - `p.the-club.brass.out2` — Flûte
-- `p.the-club.brass.door1` — Cor
+- `p.the-club.brass.door1` — Tuba
 - `p.the-club.brass.door2` — Clarinette
 - `p.the-club.brass.door3` — Euphonium
 - `p.the-club.brass.door4` — Hautbois
@@ -1673,13 +1673,13 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.onion-family.sign` — La famille de l’oignon
 - `p.the-club.onion-family.stamp` — Famille de l’oignon
 - `p.the-club.onion-family.in1` — Oignon
-- `p.the-club.onion-family.in2` — Ail
-- `p.the-club.onion-family.in3` — Poireau
+- `p.the-club.onion-family.in2` — Ciboulette
+- `p.the-club.onion-family.in3` — Échalote
 - `p.the-club.onion-family.out1` — Gingembre
 - `p.the-club.onion-family.out2` — Radis
-- `p.the-club.onion-family.door1` — Ciboulette
+- `p.the-club.onion-family.door1` — Ail
 - `p.the-club.onion-family.door2` — Céleri
-- `p.the-club.onion-family.door3` — Échalote
+- `p.the-club.onion-family.door3` — Poireau
 - `p.the-club.onion-family.door4` — Navet
 - `p.the-club.onion-family.door5` — Asperge
 - `p.the-club.onion-family.fact` — L’oignon, l’ail, le poireau, l’échalote et la ciboulette appartiennent tous au même genre, Allium. Le gingembre et les radis viennent d’autres familles.
@@ -1929,16 +1929,16 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.gourd-family.sign` — La famille de la courge
 - `p.the-club.gourd-family.stamp` — Famille de la courge
 - `p.the-club.gourd-family.in1` — Concombre
-- `p.the-club.gourd-family.in2` — Citrouille
+- `p.the-club.gourd-family.in2` — Melon
 - `p.the-club.gourd-family.in3` — Pastèque
 - `p.the-club.gourd-family.out1` — Tomate
 - `p.the-club.gourd-family.out2` — Aubergine
 - `p.the-club.gourd-family.door1` — Courgette
 - `p.the-club.gourd-family.door2` — Pomme de terre
-- `p.the-club.gourd-family.door3` — Melon
+- `p.the-club.gourd-family.door3` — Citrouille
 - `p.the-club.gourd-family.door4` — Poivron
 - `p.the-club.gourd-family.door5` — Butternut
-- `p.the-club.gourd-family.fact` — Tous appartiennent à la famille de la courge, avec les melons, les courgettes et les courges. Les tomates et les aubergines sont des solanacées.
+- `p.the-club.gourd-family.fact` — Tous appartiennent à la famille de la courge, avec les courgettes, les citrouilles et les autres courges. Les tomates et les aubergines sont des solanacées.
 
 #### 122/148 · `primates` · day 122 (2 Feb 2027), 270 (30 Jun 2027), 418 (25 Nov 2027), 566 (21 Apr 2028) … · every 148 days
 
@@ -2145,7 +2145,7 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.bones.door2` — Ligament
 - `p.the-club.bones.door3` — Étrier
 - `p.the-club.bones.door4` — Cornée
-- `p.the-club.bones.door5` — Sternum
+- `p.the-club.bones.door5` — Vertèbre
 - `p.the-club.bones.fact` — Ce sont tous des os, parmi les 206 d’un squelette d’adulte. L’étrier, tout au fond de l’oreille, en est un.
 
 #### 135/148 · `deserts` · day 135 (15 Feb 2027), 283 (13 Jul 2027), 431 (8 Dec 2027), 579 (4 May 2028) … · every 148 days
@@ -2318,9 +2318,9 @@ The lines of the first batch (claude/logicers-strings-fr.md, section T, keyed by
 - `p.the-club.henry-wives.out1` — Marie Ire
 - `p.the-club.henry-wives.out2` — Élisabeth Ire
 - `p.the-club.henry-wives.door1` — Anne de Clèves
-- `p.the-club.henry-wives.door2` — Reine Victoria
+- `p.the-club.henry-wives.door2` — Catherine II de Russie
 - `p.the-club.henry-wives.door3` — Catherine Parr
-- `p.the-club.henry-wives.door4` — Marie-Antoinette
+- `p.the-club.henry-wives.door4` — Jeanne Grey
 - `p.the-club.henry-wives.door5` — Catherine Howard
 - `p.the-club.henry-wives.fact` — Henri VIII a eu six épouses, de Catherine d’Aragon en 1509 à Catherine Parr en 1543. Marie Ire et Élisabeth Ire étaient ses filles.
 

@@ -1,0 +1,15 @@
+{
+  "name": "logicers-checkin",
+  "private": true,
+  "type": "module",
+  "description": "The Check-in: a Cloudflare Worker with its own D1 database and one Durable Object per room.",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node --test test/test_items.mjs test/test_room.mjs test/test_worker.mjs",
+    "faults": "node test/faults.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

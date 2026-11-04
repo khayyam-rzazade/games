@@ -232,13 +232,13 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.the-club.noble-gases.sign` — São gases nobres
 - `p.the-club.noble-gases.stamp` — Gases nobres
-- `p.the-club.noble-gases.in1` — Hélio
+- `p.the-club.noble-gases.in1` — Criptônio
 - `p.the-club.noble-gases.in2` — Neônio
 - `p.the-club.noble-gases.in3` — Argônio
 - `p.the-club.noble-gases.out1` — Oxigênio
 - `p.the-club.noble-gases.out2` — Hidrogênio
-- `p.the-club.noble-gases.door1` — Criptônio
-- `p.the-club.noble-gases.door2` — Nitrogênio
+- `p.the-club.noble-gases.door1` — Hélio
+- `p.the-club.noble-gases.door2` — Carbono
 - `p.the-club.noble-gases.door3` — Xenônio
 - `p.the-club.noble-gases.door4` — Cloro
 - `p.the-club.noble-gases.door5` — Radônio
@@ -281,16 +281,16 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.cabbage.sign` — Uma só espécie: a couve-selvagem
 - `p.the-club.cabbage.stamp` — Couve-selvagem
 - `p.the-club.cabbage.in1` — Repolho
-- `p.the-club.cabbage.in2` — Brócolis
+- `p.the-club.cabbage.in2` — Couve-de-bruxelas
 - `p.the-club.cabbage.in3` — Couve-flor
 - `p.the-club.cabbage.out1` — Alface
 - `p.the-club.cabbage.out2` — Cenoura
 - `p.the-club.cabbage.door1` — Couve
 - `p.the-club.cabbage.door2` — Espinafre
-- `p.the-club.cabbage.door3` — Couve-de-bruxelas
-- `p.the-club.cabbage.door4` — Cebola
+- `p.the-club.cabbage.door3` — Brócolis
+- `p.the-club.cabbage.door4` — Couve-chinesa
 - `p.the-club.cabbage.door5` — Couve-rábano
-- `p.the-club.cabbage.fact` — Todos são de uma única espécie, a couve-selvagem, que os agricultores foram selecionando até criar formas bem diferentes.
+- `p.the-club.cabbage.fact` — Todos são de uma única espécie, a couve-selvagem, que os agricultores foram selecionando até criar formas bem diferentes. A couve-chinesa não: é da mesma espécie que o nabo.
 
 #### 19/148 · `arctic-circle` · day 19 (22 Oct 2026), 167 (19 Mar 2027), 315 (14 Aug 2027), 463 (9 Jan 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -329,15 +329,15 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.woodwinds.sign` — São instrumentos de sopro de madeira
 - `p.the-club.woodwinds.stamp` — Sopros de madeira
 - `p.the-club.woodwinds.in1` — Clarinete
-- `p.the-club.woodwinds.in2` — Oboé
-- `p.the-club.woodwinds.in3` — Flauta
+- `p.the-club.woodwinds.in2` — Flauta
+- `p.the-club.woodwinds.in3` — Flautim
 - `p.the-club.woodwinds.out1` — Trompete
 - `p.the-club.woodwinds.out2` — Trombone
 - `p.the-club.woodwinds.door1` — Saxofone
 - `p.the-club.woodwinds.door2` — Tuba
 - `p.the-club.woodwinds.door3` — Fagote
-- `p.the-club.woodwinds.door4` — Trompa
-- `p.the-club.woodwinds.door5` — Flautim
+- `p.the-club.woodwinds.door4` — Bombardino
+- `p.the-club.woodwinds.door5` — Oboé
 - `p.the-club.woodwinds.fact` — São instrumentos de sopro de madeira, seja qual for o material de que são feitos. O saxofone é feito de latão, mas é tocado com uma palheta, por isso conta como um deles.
 
 #### 22/148 · `sea-mammals` · day 22 (25 Oct 2026), 170 (22 Mar 2027), 318 (17 Aug 2027), 466 (12 Jan 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
@@ -937,11 +937,11 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.citrus.sign` — São frutas cítricas
 - `p.the-club.citrus.stamp` — Cítricos
 - `p.the-club.citrus.in1` — Limão-siciliano
-- `p.the-club.citrus.in2` — Laranja
+- `p.the-club.citrus.in2` — Limão-taiti
 - `p.the-club.citrus.in3` — Toranja
 - `p.the-club.citrus.out1` — Maçã
 - `p.the-club.citrus.out2` — Banana
-- `p.the-club.citrus.door1` — Limão-taiti
+- `p.the-club.citrus.door1` — Laranja
 - `p.the-club.citrus.door2` — Abacaxi
 - `p.the-club.citrus.door3` — Tangerina
 - `p.the-club.citrus.door4` — Kiwi
@@ -1057,7 +1057,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.metals.door2` — Iodo
 - `p.the-club.metals.door3` — Magnésio
 - `p.the-club.metals.door4` — Mercúrio
-- `p.the-club.metals.door5` — Fósforo
+- `p.the-club.metals.door5` — Hélio
 - `p.the-club.metals.fact` — São todos metais. O mercúrio também é, embora a 20 °C seja líquido.
 
 #### 67/148 · `crustaceans` · day 67 (9 Dec 2026), 215 (6 May 2027), 363 (1 Oct 2027), 511 (26 Feb 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
@@ -1176,15 +1176,15 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.the-club.china.sign` — Foram inventados na China
 - `p.the-club.china.stamp` — Inventos da China
-- `p.the-club.china.in1` — Papel
+- `p.the-club.china.in1` — Porcelana
 - `p.the-club.china.in2` — Pólvora
 - `p.the-club.china.in3` — Bússola
-- `p.the-club.china.out1` — Vidro
+- `p.the-club.china.out1` — Microscópio
 - `p.the-club.china.out2` — Telescópio
-- `p.the-club.china.door1` — Porcelana
+- `p.the-club.china.door1` — Papel
 - `p.the-club.china.door2` — Biscoito da sorte
 - `p.the-club.china.door3` — Seda
-- `p.the-club.china.door4` — Microscópio
+- `p.the-club.china.door4` — Vidro
 - `p.the-club.china.door5` — Papel-moeda
 - `p.the-club.china.fact` — Todos foram inventados na China. O biscoito da sorte não: provavelmente ele surgiu com imigrantes japoneses nos Estados Unidos.
 
@@ -1432,15 +1432,15 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.the-club.ancient-americas.sign` — Civilizações das Américas
 - `p.the-club.ancient-americas.stamp` — América antiga
-- `p.the-club.ancient-americas.in1` — Maias
-- `p.the-club.ancient-americas.in2` — Astecas
-- `p.the-club.ancient-americas.in3` — Incas
+- `p.the-club.ancient-americas.in1` — Astecas
+- `p.the-club.ancient-americas.in2` — Olmecas
+- `p.the-club.ancient-americas.in3` — Toltecas
 - `p.the-club.ancient-americas.out1` — Babilônios
-- `p.the-club.ancient-americas.out2` — Etruscos
-- `p.the-club.ancient-americas.door1` — Olmecas
-- `p.the-club.ancient-americas.door2` — Fenícios
-- `p.the-club.ancient-americas.door3` — Toltecas
-- `p.the-club.ancient-americas.door4` — Sumérios
+- `p.the-club.ancient-americas.out2` — Fenícios
+- `p.the-club.ancient-americas.door1` — Maias
+- `p.the-club.ancient-americas.door2` — Etruscos
+- `p.the-club.ancient-americas.door3` — Incas
+- `p.the-club.ancient-americas.door4` — Gregos
 - `p.the-club.ancient-americas.door5` — Hititas
 - `p.the-club.ancient-americas.fact` — Todas floresceram nas Américas antes de Colombo. Os olmecas foram a primeira grande civilização da Mesoamérica.
 
@@ -1512,13 +1512,13 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 
 - `p.the-club.igneous.sign` — São rochas ígneas
 - `p.the-club.igneous.stamp` — Rochas ígneas
-- `p.the-club.igneous.in1` — Granito
+- `p.the-club.igneous.in1` — Pedra-pomes
 - `p.the-club.igneous.in2` — Basalto
 - `p.the-club.igneous.in3` — Obsidiana
-- `p.the-club.igneous.out1` — Mármore
-- `p.the-club.igneous.out2` — Arenito
-- `p.the-club.igneous.door1` — Pedra-pomes
-- `p.the-club.igneous.door2` — Calcário
+- `p.the-club.igneous.out1` — Arenito
+- `p.the-club.igneous.out2` — Calcário
+- `p.the-club.igneous.door1` — Granito
+- `p.the-club.igneous.door2` — Mármore
 - `p.the-club.igneous.door3` — Andesito
 - `p.the-club.igneous.door4` — Ardósia
 - `p.the-club.igneous.door5` — Giz
@@ -1626,15 +1626,15 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.bears.stamp` — Ursos
 - `p.the-club.bears.in1` — Urso-grizzly
 - `p.the-club.bears.in2` — Urso-polar
-- `p.the-club.bears.in3` — Panda-gigante
+- `p.the-club.bears.in3` — Urso-malaio
 - `p.the-club.bears.out1` — Coala
 - `p.the-club.bears.out2` — Panda-vermelho
-- `p.the-club.bears.door1` — Urso-malaio
-- `p.the-club.bears.door2` — Guaxinim
+- `p.the-club.bears.door1` — Panda-gigante
+- `p.the-club.bears.door2` — Urso-d'água
 - `p.the-club.bears.door3` — Urso-de-óculos
 - `p.the-club.bears.door4` — Carcaju
 - `p.the-club.bears.door5` — Urso-beiçudo
-- `p.the-club.bears.fact` — São todos ursos, e o panda-gigante também. O coala é um marsupial, e o panda-vermelho também não é um urso.
+- `p.the-club.bears.fact` — São todos ursos, e o panda-gigante também. O coala é um marsupial, e nem o panda-vermelho nem o minúsculo urso-d'água são ursos.
 
 #### 103/148 · `brass` · day 103 (14 Jan 2027), 251 (11 Jun 2027), 399 (6 Nov 2027), 547 (2 Apr 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -1642,10 +1642,10 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.brass.stamp` — Metais
 - `p.the-club.brass.in1` — Trompete
 - `p.the-club.brass.in2` — Trombone
-- `p.the-club.brass.in3` — Tuba
+- `p.the-club.brass.in3` — Trompa
 - `p.the-club.brass.out1` — Saxofone
 - `p.the-club.brass.out2` — Flauta
-- `p.the-club.brass.door1` — Trompa
+- `p.the-club.brass.door1` — Tuba
 - `p.the-club.brass.door2` — Clarinete
 - `p.the-club.brass.door3` — Bombardino
 - `p.the-club.brass.door4` — Oboé
@@ -1673,13 +1673,13 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.onion-family.sign` — São da família da cebola
 - `p.the-club.onion-family.stamp` — Família da cebola
 - `p.the-club.onion-family.in1` — Cebola
-- `p.the-club.onion-family.in2` — Alho
-- `p.the-club.onion-family.in3` — Alho-poró
+- `p.the-club.onion-family.in2` — Cebolinha
+- `p.the-club.onion-family.in3` — Echalota
 - `p.the-club.onion-family.out1` — Gengibre
 - `p.the-club.onion-family.out2` — Rabanete
-- `p.the-club.onion-family.door1` — Cebolinha
+- `p.the-club.onion-family.door1` — Alho
 - `p.the-club.onion-family.door2` — Salsão
-- `p.the-club.onion-family.door3` — Echalota
+- `p.the-club.onion-family.door3` — Alho-poró
 - `p.the-club.onion-family.door4` — Nabo
 - `p.the-club.onion-family.door5` — Aspargo
 - `p.the-club.onion-family.fact` — A cebola, o alho, o alho-poró, a echalota e a cebolinha pertencem todos ao mesmo gênero, o Allium. O gengibre e o rabanete vêm de outras famílias.
@@ -1821,7 +1821,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.renewables.in3` — Energia hidrelétrica
 - `p.the-club.renewables.out1` — Carvão
 - `p.the-club.renewables.out2` — Gás natural
-- `p.the-club.renewables.door1` — Energia geotérmica
+- `p.the-club.renewables.door1` — Geotermia
 - `p.the-club.renewables.door2` — Petróleo
 - `p.the-club.renewables.door3` — Energia das marés
 - `p.the-club.renewables.door4` — Energia nuclear
@@ -1929,16 +1929,16 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.gourd-family.sign` — São da família da abóbora
 - `p.the-club.gourd-family.stamp` — Família da abóbora
 - `p.the-club.gourd-family.in1` — Pepino
-- `p.the-club.gourd-family.in2` — Abóbora
+- `p.the-club.gourd-family.in2` — Melão
 - `p.the-club.gourd-family.in3` — Melancia
 - `p.the-club.gourd-family.out1` — Tomate
 - `p.the-club.gourd-family.out2` — Berinjela
 - `p.the-club.gourd-family.door1` — Abobrinha
 - `p.the-club.gourd-family.door2` — Batata
-- `p.the-club.gourd-family.door3` — Melão
+- `p.the-club.gourd-family.door3` — Abóbora
 - `p.the-club.gourd-family.door4` — Pimentão
 - `p.the-club.gourd-family.door5` — Abóbora butternut
-- `p.the-club.gourd-family.fact` — Todos pertencem à família da abóbora, junto com os melões, as abobrinhas e as abóboras. Tomates e berinjelas são solanáceas.
+- `p.the-club.gourd-family.fact` — Todos pertencem à família da abóbora, junto com as abobrinhas e as abóboras de todo tipo. Tomates e berinjelas são solanáceas.
 
 #### 122/148 · `primates` · day 122 (2 Feb 2027), 270 (30 Jun 2027), 418 (25 Nov 2027), 566 (21 Apr 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
 
@@ -2145,7 +2145,7 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.bones.door2` — Ligamento
 - `p.the-club.bones.door3` — Estribo
 - `p.the-club.bones.door4` — Córnea
-- `p.the-club.bones.door5` — Esterno
+- `p.the-club.bones.door5` — Vértebra
 - `p.the-club.bones.fact` — São todos ossos, entre os 206 de um esqueleto adulto. O estribo, bem no fundo do ouvido, é um deles.
 
 #### 135/148 · `deserts` · day 135 (15 Feb 2027), 283 (13 Jul 2027), 431 (8 Dec 2027), 579 (4 May 2028) … · every 148 days · pt batch 2 (29 Oct 2026)
@@ -2318,9 +2318,9 @@ The lines of the first batch (claude/logicers-strings-pt.md, section T, keyed by
 - `p.the-club.henry-wives.out1` — Maria Tudor
 - `p.the-club.henry-wives.out2` — Elizabeth I
 - `p.the-club.henry-wives.door1` — Ana de Cleves
-- `p.the-club.henry-wives.door2` — Rainha Vitória
+- `p.the-club.henry-wives.door2` — Catarina, a Grande
 - `p.the-club.henry-wives.door3` — Catarina Parr
-- `p.the-club.henry-wives.door4` — Maria Antonieta
+- `p.the-club.henry-wives.door4` — Joana Grey
 - `p.the-club.henry-wives.door5` — Catarina Howard
 - `p.the-club.henry-wives.fact` — Henrique VIII teve seis esposas, de Catarina de Aragão em 1509 a Catarina Parr em 1543. Maria Tudor e Elizabeth I eram filhas dele.
 

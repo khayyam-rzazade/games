@@ -232,13 +232,13 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.the-club.noble-gases.sign` — Asal gazlardır
 - `p.the-club.noble-gases.stamp` — Asal gazlar
-- `p.the-club.noble-gases.in1` — Helyum
+- `p.the-club.noble-gases.in1` — Kripton
 - `p.the-club.noble-gases.in2` — Neon
 - `p.the-club.noble-gases.in3` — Argon
 - `p.the-club.noble-gases.out1` — Oksijen
 - `p.the-club.noble-gases.out2` — Hidrojen
-- `p.the-club.noble-gases.door1` — Kripton
-- `p.the-club.noble-gases.door2` — Azot
+- `p.the-club.noble-gases.door1` — Helyum
+- `p.the-club.noble-gases.door2` — Karbon
 - `p.the-club.noble-gases.door3` — Ksenon
 - `p.the-club.noble-gases.door4` — Klor
 - `p.the-club.noble-gases.door5` — Radon
@@ -281,16 +281,16 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.cabbage.sign` — Tek bir türdürler: yabani lahana
 - `p.the-club.cabbage.stamp` — Yabani lahana
 - `p.the-club.cabbage.in1` — Lahana
-- `p.the-club.cabbage.in2` — Brokoli
+- `p.the-club.cabbage.in2` — Brüksel lahanası
 - `p.the-club.cabbage.in3` — Karnabahar
 - `p.the-club.cabbage.out1` — Marul
 - `p.the-club.cabbage.out2` — Havuç
 - `p.the-club.cabbage.door1` — Kara lahana
 - `p.the-club.cabbage.door2` — Ispanak
-- `p.the-club.cabbage.door3` — Brüksel lahanası
-- `p.the-club.cabbage.door4` — Soğan
+- `p.the-club.cabbage.door3` — Brokoli
+- `p.the-club.cabbage.door4` — Çin lahanası
 - `p.the-club.cabbage.door5` — Alabaş
-- `p.the-club.cabbage.fact` — Hepsi tek bir türdür: yabani lahana. Çiftçiler onu yetiştirerek pek çok biçime dönüştürdü.
+- `p.the-club.cabbage.fact` — Hepsi tek bir türdür: yabani lahana. Çiftçiler onu yetiştirerek pek çok biçime dönüştürdü. Çin lahanası ise şalgamla aynı türdendir.
 
 #### 19/148 · `arctic-circle` · day 19 (22 Oct 2026), 167 (19 Mar 2027), 315 (14 Aug 2027), 463 (9 Jan 2028) … · every 148 days
 
@@ -329,15 +329,15 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.woodwinds.sign` — Tahta nefesli çalgılardır
 - `p.the-club.woodwinds.stamp` — Tahta nefesliler
 - `p.the-club.woodwinds.in1` — Klarnet
-- `p.the-club.woodwinds.in2` — Obua
-- `p.the-club.woodwinds.in3` — Flüt
+- `p.the-club.woodwinds.in2` — Flüt
+- `p.the-club.woodwinds.in3` — Pikolo
 - `p.the-club.woodwinds.out1` — Trompet
 - `p.the-club.woodwinds.out2` — Trombon
 - `p.the-club.woodwinds.door1` — Saksofon
 - `p.the-club.woodwinds.door2` — Tuba
 - `p.the-club.woodwinds.door3` — Fagot
-- `p.the-club.woodwinds.door4` — Korno
-- `p.the-club.woodwinds.door5` — Pikolo
+- `p.the-club.woodwinds.door4` — Eufonyum
+- `p.the-club.woodwinds.door5` — Obua
 - `p.the-club.woodwinds.fact` — Hangi malzemeden yapılmış olurlarsa olsunlar, hepsi tahta nefesli çalgıdır. Saksofon pirinçten yapılır ama kamışla çalınır; bu yüzden o da sayılır.
 
 #### 22/148 · `sea-mammals` · day 22 (25 Oct 2026), 170 (22 Mar 2027), 318 (17 Aug 2027), 466 (12 Jan 2028) … · every 148 days · from day 22 of the first batch
@@ -937,11 +937,11 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.citrus.sign` — Turunçgillerdir
 - `p.the-club.citrus.stamp` — Turunçgiller
 - `p.the-club.citrus.in1` — Limon
-- `p.the-club.citrus.in2` — Portakal
+- `p.the-club.citrus.in2` — Misket limonu
 - `p.the-club.citrus.in3` — Greyfurt
 - `p.the-club.citrus.out1` — Elma
 - `p.the-club.citrus.out2` — Muz
-- `p.the-club.citrus.door1` — Misket limonu
+- `p.the-club.citrus.door1` — Portakal
 - `p.the-club.citrus.door2` — Ananas
 - `p.the-club.citrus.door3` — Mandalina
 - `p.the-club.citrus.door4` — Kivi
@@ -1057,7 +1057,7 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.metals.door2` — İyot
 - `p.the-club.metals.door3` — Magnezyum
 - `p.the-club.metals.door4` — Cıva
-- `p.the-club.metals.door5` — Fosfor
+- `p.the-club.metals.door5` — Helyum
 - `p.the-club.metals.fact` — Hepsi metaldir. Cıva da öyle, ama 20 °C'de sıvıdır.
 
 #### 67/148 · `crustaceans` · day 67 (9 Dec 2026), 215 (6 May 2027), 363 (1 Oct 2027), 511 (26 Feb 2028) … · every 148 days
@@ -1176,15 +1176,15 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.the-club.china.sign` — Çin'de icat edildiler
 - `p.the-club.china.stamp` — Çin icadı
-- `p.the-club.china.in1` — Kâğıt
+- `p.the-club.china.in1` — Porselen
 - `p.the-club.china.in2` — Barut
 - `p.the-club.china.in3` — Pusula
-- `p.the-club.china.out1` — Cam
+- `p.the-club.china.out1` — Mikroskop
 - `p.the-club.china.out2` — Teleskop
-- `p.the-club.china.door1` — Porselen
+- `p.the-club.china.door1` — Kâğıt
 - `p.the-club.china.door2` — Şans kurabiyesi
 - `p.the-club.china.door3` — İpek
-- `p.the-club.china.door4` — Mikroskop
+- `p.the-club.china.door4` — Cam
 - `p.the-club.china.door5` — Kâğıt para
 - `p.the-club.china.fact` — Hepsi Çin'de icat edildi. Şans kurabiyesi öyle değil: büyük olasılıkla Birleşik Devletler'e giden Japon göçmenlerle ortaya çıktı.
 
@@ -1432,15 +1432,15 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.the-club.ancient-americas.sign` — Amerika kıtalarının uygarlıklarıdır
 - `p.the-club.ancient-americas.stamp` — Eski Amerika
-- `p.the-club.ancient-americas.in1` — Mayalar
-- `p.the-club.ancient-americas.in2` — Aztekler
-- `p.the-club.ancient-americas.in3` — İnkalar
+- `p.the-club.ancient-americas.in1` — Aztekler
+- `p.the-club.ancient-americas.in2` — Olmekler
+- `p.the-club.ancient-americas.in3` — Toltekler
 - `p.the-club.ancient-americas.out1` — Babilliler
-- `p.the-club.ancient-americas.out2` — Etrüskler
-- `p.the-club.ancient-americas.door1` — Olmekler
-- `p.the-club.ancient-americas.door2` — Fenikeliler
-- `p.the-club.ancient-americas.door3` — Toltekler
-- `p.the-club.ancient-americas.door4` — Sümerler
+- `p.the-club.ancient-americas.out2` — Fenikeliler
+- `p.the-club.ancient-americas.door1` — Mayalar
+- `p.the-club.ancient-americas.door2` — Etrüskler
+- `p.the-club.ancient-americas.door3` — İnkalar
+- `p.the-club.ancient-americas.door4` — Yunanlılar
 - `p.the-club.ancient-americas.door5` — Hititler
 - `p.the-club.ancient-americas.fact` — Hepsi Kolomb'dan önce Amerika'da gelişti. Olmekler, Mezoamerika'nın ilk büyük uygarlığıydı.
 
@@ -1512,13 +1512,13 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 
 - `p.the-club.igneous.sign` — Magmatik kayaçlardır
 - `p.the-club.igneous.stamp` — Magmatik kayaçlar
-- `p.the-club.igneous.in1` — Granit
+- `p.the-club.igneous.in1` — Pomza
 - `p.the-club.igneous.in2` — Bazalt
 - `p.the-club.igneous.in3` — Obsidyen
-- `p.the-club.igneous.out1` — Mermer
-- `p.the-club.igneous.out2` — Kumtaşı
-- `p.the-club.igneous.door1` — Pomza
-- `p.the-club.igneous.door2` — Kireçtaşı
+- `p.the-club.igneous.out1` — Kumtaşı
+- `p.the-club.igneous.out2` — Kireçtaşı
+- `p.the-club.igneous.door1` — Granit
+- `p.the-club.igneous.door2` — Mermer
 - `p.the-club.igneous.door3` — Andezit
 - `p.the-club.igneous.door4` — Arduvaz
 - `p.the-club.igneous.door5` — Tebeşir
@@ -1626,15 +1626,15 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.bears.stamp` — Ayılar
 - `p.the-club.bears.in1` — Boz ayı
 - `p.the-club.bears.in2` — Kutup ayısı
-- `p.the-club.bears.in3` — Dev panda
+- `p.the-club.bears.in3` — Güneş ayısı
 - `p.the-club.bears.out1` — Koala
 - `p.the-club.bears.out2` — Kırmızı panda
-- `p.the-club.bears.door1` — Güneş ayısı
-- `p.the-club.bears.door2` — Rakun
+- `p.the-club.bears.door1` — Dev panda
+- `p.the-club.bears.door2` — Su ayısı
 - `p.the-club.bears.door3` — Gözlüklü ayı
 - `p.the-club.bears.door4` — Kutup porsuğu
 - `p.the-club.bears.door5` — Tembel ayı
-- `p.the-club.bears.fact` — Hepsi ayıdır; dev panda da öyle. Koala keseli bir hayvandır, kırmızı panda da ayı değildir.
+- `p.the-club.bears.fact` — Hepsi ayıdır; dev panda da öyle. Koala keseli bir hayvandır; kırmızı panda ve minicik su ayısı da ayı değildir.
 
 #### 103/148 · `brass` · day 103 (14 Jan 2027), 251 (11 Jun 2027), 399 (6 Nov 2027), 547 (2 Apr 2028) … · every 148 days
 
@@ -1642,10 +1642,10 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.brass.stamp` — Bakır nefesliler
 - `p.the-club.brass.in1` — Trompet
 - `p.the-club.brass.in2` — Trombon
-- `p.the-club.brass.in3` — Tuba
+- `p.the-club.brass.in3` — Korno
 - `p.the-club.brass.out1` — Saksofon
 - `p.the-club.brass.out2` — Flüt
-- `p.the-club.brass.door1` — Korno
+- `p.the-club.brass.door1` — Tuba
 - `p.the-club.brass.door2` — Klarnet
 - `p.the-club.brass.door3` — Eufonyum
 - `p.the-club.brass.door4` — Obua
@@ -1673,13 +1673,13 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.onion-family.sign` — Soğan ailesindendirler
 - `p.the-club.onion-family.stamp` — Soğan ailesi
 - `p.the-club.onion-family.in1` — Soğan
-- `p.the-club.onion-family.in2` — Sarımsak
-- `p.the-club.onion-family.in3` — Pırasa
+- `p.the-club.onion-family.in2` — Frenk soğanı
+- `p.the-club.onion-family.in3` — Arpacık soğanı
 - `p.the-club.onion-family.out1` — Zencefil
 - `p.the-club.onion-family.out2` — Turp
-- `p.the-club.onion-family.door1` — Frenk soğanı
+- `p.the-club.onion-family.door1` — Sarımsak
 - `p.the-club.onion-family.door2` — Kereviz
-- `p.the-club.onion-family.door3` — Arpacık soğanı
+- `p.the-club.onion-family.door3` — Pırasa
 - `p.the-club.onion-family.door4` — Şalgam
 - `p.the-club.onion-family.door5` — Kuşkonmaz
 - `p.the-club.onion-family.fact` — Soğan, sarımsak, pırasa, arpacık soğanı ve frenk soğanı aynı cinse, Allium'a aittir. Zencefil ve turp başka ailelerdendir.
@@ -1929,16 +1929,16 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.gourd-family.sign` — Kabakgillerdendirler
 - `p.the-club.gourd-family.stamp` — Kabakgiller
 - `p.the-club.gourd-family.in1` — Salatalık
-- `p.the-club.gourd-family.in2` — Balkabağı
+- `p.the-club.gourd-family.in2` — Kavun
 - `p.the-club.gourd-family.in3` — Karpuz
 - `p.the-club.gourd-family.out1` — Domates
 - `p.the-club.gourd-family.out2` — Patlıcan
 - `p.the-club.gourd-family.door1` — Kabak
 - `p.the-club.gourd-family.door2` — Patates
-- `p.the-club.gourd-family.door3` — Kavun
+- `p.the-club.gourd-family.door3` — Balkabağı
 - `p.the-club.gourd-family.door4` — Dolmalık biber
 - `p.the-club.gourd-family.door5` — Butternut kabağı
-- `p.the-club.gourd-family.fact` — Hepsi kabakgillerdendir; kavun, kabak ve öteki kabaklar da öyle. Domates ve patlıcan patlıcangillerdendir.
+- `p.the-club.gourd-family.fact` — Hepsi kabakgillerdendir; kabak, balkabağı ve öteki kabaklar da öyle. Domates ve patlıcan patlıcangillerdendir.
 
 #### 122/148 · `primates` · day 122 (2 Feb 2027), 270 (30 Jun 2027), 418 (25 Nov 2027), 566 (21 Apr 2028) … · every 148 days
 
@@ -2143,9 +2143,9 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.bones.out2` — Kıkırdak
 - `p.the-club.bones.door1` — Diz kapağı
 - `p.the-club.bones.door2` — Bağ
-- `p.the-club.bones.door3` — Üzengi kemiği
+- `p.the-club.bones.door3` — Üzengi
 - `p.the-club.bones.door4` — Kornea
-- `p.the-club.bones.door5` — Göğüs kemiği
+- `p.the-club.bones.door5` — Omur
 - `p.the-club.bones.fact` — Hepsi kemiktir; yetişkin bir iskeletteki 206 kemiğin arasındadır. Kulağın derinlerindeki üzengi kemiği bunlardan biridir.
 
 #### 135/148 · `deserts` · day 135 (15 Feb 2027), 283 (13 Jul 2027), 431 (8 Dec 2027), 579 (4 May 2028) … · every 148 days
@@ -2318,9 +2318,9 @@ The lines of the first batch (claude/logicers-strings-tr.md, section T, keyed by
 - `p.the-club.henry-wives.out1` — I. Mary
 - `p.the-club.henry-wives.out2` — I. Elizabeth
 - `p.the-club.henry-wives.door1` — Cleveli Anne
-- `p.the-club.henry-wives.door2` — Kraliçe Victoria
+- `p.the-club.henry-wives.door2` — Büyük Katerina
 - `p.the-club.henry-wives.door3` — Catherine Parr
-- `p.the-club.henry-wives.door4` — Marie Antoinette
+- `p.the-club.henry-wives.door4` — Jane Grey
 - `p.the-club.henry-wives.door5` — Catherine Howard
 - `p.the-club.henry-wives.fact` — VIII. Henry'nin altı eşi vardı: 1509'daki Aragonlu Catherine'den 1543'teki Catherine Parr'a kadar. I. Mary ve I. Elizabeth onun kızlarıydı.
 

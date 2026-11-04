@@ -98,6 +98,11 @@
 @media (max-width: 339px) { .lg-line { font-size: .8rem; } }
 html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="it"], html[lang="tr"] .lg-line a[hreflang="tr"], html[lang="es"] .lg-line a[hreflang="es"], html[lang|="pt"] .lg-line a[hreflang="pt"], html[lang="fr"] .lg-line a[hreflang="fr"] { color: var(--ink); font-weight: 800; }
 .logicer.findout .logicer-small:empty { display: none; }
+/* the Anonymous Check-in box (4 Nov 2026): the Find out box's shape in the check-in's sunshine yellow, the name only */
+.logicer.checkin { background: linear-gradient(135deg, #E59A0B 0%, #F2B01E 55%, #FFD25E 100%); color: #15172B; box-shadow: 0 8px 20px rgba(242, 176, 30, .32), inset 0 0 0 1px rgba(255, 255, 255, .25); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.logicer.checkin:active { transform: scale(.99); }
+.logicer.checkin .logicer-label { color: rgba(21, 23, 43, .72); }
+.logicer.checkin .logicer-big { color: #15172B; }
 /* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
 .rooms-sheet { max-width: 440px; }
 .rooms-list { display: grid; gap: 10px; margin-top: 16px; }
@@ -135,7 +140,6 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   <div class="hero-text">
     <p class="eyebrow" id="eyebrow"></p>
     <h1 data-s="home.h1">Es-tu un <em>Logicer</em> ?</h1>
-    <p class="lede" data-s="home.lede"><b>Apprendre comme on joue.</b> Des jeux fondés sur des faits réels, pour toutes les têtes curieuses.</p>
     <!-- the language line (Khayyam, 26 Oct 2026; six names since 28 Oct): names in their own language, never translated, the same on all six homes. Each is a plain link to the home in that language (works without JavaScript); assets/js/lang.js adds the remembered pick and the count. The six hrefs are root links: build_lang.py leaves them alone. -->
     <nav class="lg-line" id="lg-line" aria-label="Changer de langue" data-s-aria-label="lang.change">
       <a href="/" lang="en" hreflang="en"><span class="lg-flag" aria-hidden="true">🇬🇧</span><span class="lg-name">English</span></a>
@@ -154,6 +158,12 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
       <span class="logicer-label" data-s="home.findout_label">Découvre</span>
       <span class="logicer-big findout-big" data-s="home.findout_big">qui tu es</span>
       <span class="logicer-small" id="findout-count"></span>
+    </a>
+    <!-- Anonymous Check-in (4 Nov 2026, Khayyam): right under the Find out box, in its style, and the name only ("it has to be
+         just 'anonymous check-in', that is all": the rule of minimum words). The whole box is the link. -->
+    <a class="logicer checkin" id="checkin-box" href="../checkin/">
+      <span class="logicer-label" data-s="home.checkin_label">Anonyme</span>
+      <span class="logicer-big checkin-big" data-s="home.checkin_big">Check-in</span>
     </a>
     </div>
   </div>
@@ -482,6 +492,10 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="20" r="11" fill="#3F7A2A"/><circle cx="17.5" cy="18" r="2" fill="#fff"/><circle cx="26.5" cy="18" r="2" fill="#fff"/><path d="M16 25q6 5 12 0" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="8" cy="36" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="38" r="3.5" fill="#D5492F"/><circle cx="36" cy="36" r="3.5" fill="#0D7D73"/></svg></span>
         <span class="rooms-text"><b data-s="home.room_findout">Découvre qui tu es entre amis</b><span data-s="home.room_findout_sub">Les neuf jeux « Découvre », avec la courbe de la salle sur un seul écran, jamais celle d’une seule personne.</span></span>
       </a>
+      <a class="rooms-item" data-kind="checkin" href="../checkin/host/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><path d="M7 30a15 15 0 0 1 30 0" stroke="#F2B01E" stroke-width="5" stroke-linecap="round"/><path d="M22 30l7-9" stroke="#15172B" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="30" r="3.5" fill="#15172B"/><circle cx="8" cy="38" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="40" r="3.5" fill="#D5492F"/><circle cx="36" cy="38" r="3.5" fill="#0D7D73"/></svg></span>
+        <span class="rooms-text"><b data-s="home.room_checkin">Check-in en groupe</b><span data-s="home.room_checkin_sub">Tu vois le groupe, jamais une personne.</span><span class="rooms-ask" data-s="home.code_checkin" hidden>Le code du check-in (six lettres)</span></span>
+      </a>
     </div>
     <form class="rooms-code" id="rooms-code" autocomplete="off" hidden aria-label="Le code" data-s-aria-label="home.code_aria">
       <p class="quiet" id="rooms-code-h"></p>
@@ -563,13 +577,13 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="../every-beat/puzzles.js"></script>
 <script src="../out-of-24/puzzles.js"></script>
 <script src="../same-energy/puzzles.js"></script>
-<script src="../assets/js/turnsout.js?v=01e92d4a95"></script>
+<script src="../assets/js/turnsout.js?v=140338bc68"></script>
 <script src="../assets/js/duel.js?v=c4e6a61b81"></script>
 <script src="../assets/js/rooms.js?v=496d2fe661"></script>
 <script src="../assets/js/points.js?v=aa9c049981"></script>
 <script src="../assets/js/world.js?v=54e98d60ad"></script>
 <script src="../assets/js/said.js?v=5d6cde48e4"></script>
-<script src="../assets/js/logicer.js?v=f998ff3c11"></script>
+<script src="../assets/js/logicer.js?v=4e6a85de6b"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */
@@ -852,7 +866,9 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     var KINDS = {
       daily: { ask: T("home.code_daily"), ok: /^[23456789abcdefghjkmnpqrstvwxyz]{10}$/, go: function (v) { return (LG ? LG.href("room/") : "room/") + "#r=" + v; }, lower: true },
       live: { ask: T("home.code_live"), ok: /^[A-Z]{5}$|^[A-Z]{7}$/, go: function (v) { return (LG ? LG.href("live/") : "live/") + "#" + v; } },
-      findout: { ask: T("home.code_findout"), ok: /^[A-Z]{5}$/, go: function (v) { return (LG ? LG.href("find-out/room/") : "find-out/room/") + "#" + v; } }
+      findout: { ask: T("home.code_findout"), ok: /^[A-Z]{5}$/, go: function (v) { return (LG ? LG.href("find-out/room/") : "find-out/room/") + "#" + v; } },
+      /* the Anonymous Check-in's rooms (4 Nov 2026): six consonants; the words over the field are the room's own line in the sheet */
+      checkin: { ask: null, ok: /^[BCDFGHJKMNPQRSTVWXZ]{6}$/, go: function (v) { return (LG ? LG.href("checkin/room/") : "checkin/room/") + "#" + v; } }
     };
     var mode = "go", kind = null;
     function open(m) {
@@ -873,7 +889,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
       e.preventDefault();
       kind = this.getAttribute("data-kind");
       for (var k = 0; k < items.length; k++) items[k].classList.toggle("on", items[k] === this);
-      head.textContent = KINDS[kind].ask; form.hidden = false; form.classList.remove("bad"); inp.value = "";
+      head.textContent = KINDS[kind].ask || (this.querySelector(".rooms-ask") || {}).textContent || ""; form.hidden = false; form.classList.remove("bad"); inp.value = "";
       try { inp.focus(); } catch (err) { /* the field is there all the same */ }
     });
     inp.addEventListener("input", function () { form.classList.remove("bad"); });

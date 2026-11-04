@@ -513,7 +513,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Gas nobili",
   "fact": "Sono i gas nobili, che quasi non reagiscono con nulla. Per questo i palloncini si riempiono di elio e non di idrogeno.",
   "in": [
-   "Elio",
+   "Kripton",
    "Neon",
    "Argon"
   ],
@@ -523,11 +523,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Kripton",
+    "Elio",
     1
    ],
    [
-    "Azoto",
+    "Carbonio",
     0
    ],
    [
@@ -619,10 +619,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "cabbage": {
   "sign": "Un'unica specie: il cavolo selvatico",
   "stamp": "Cavolo selvatico",
-  "fact": "Sono tutti un'unica specie, il cavolo selvatico, che gli agricoltori hanno trasformato in tante forme diverse.",
+  "fact": "Sono tutti un'unica specie, il cavolo selvatico, che gli agricoltori hanno trasformato in tante forme diverse. Il cavolo cinese no: è della stessa specie della rapa.",
   "in": [
    "Cavolo",
-   "Broccolo",
+   "Cavoletti di Bruxelles",
    "Cavolfiore"
   ],
   "out": [
@@ -639,11 +639,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Cavoletti di Bruxelles",
+    "Broccolo",
     1
    ],
    [
-    "Cipolla",
+    "Cavolo cinese",
     0
    ],
    [
@@ -730,8 +730,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Sono strumenti a fiato di legno, di qualunque materiale siano fatti. Il sassofono è di ottone ma si suona con un'ancia, quindi ne fa parte.",
   "in": [
    "Clarinetto",
-   "Oboe",
-   "Flauto"
+   "Flauto",
+   "Ottavino"
   ],
   "out": [
    "Tromba",
@@ -751,11 +751,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Corno francese",
+    "Eufonio",
     0
    ],
    [
-    "Ottavino",
+    "Oboe",
     1
    ]
   ]
@@ -2098,7 +2098,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Sono tutti agrumi. Il pompelmo è un incrocio tra un pomelo e un'arancia dolce.",
   "in": [
    "Limone",
-   "Arancia",
+   "Lime",
    "Pompelmo"
   ],
   "out": [
@@ -2107,7 +2107,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Lime",
+    "Arancia",
     1
    ],
    [
@@ -2375,7 +2375,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Fosforo",
+    "Elio",
     0
    ]
   ]
@@ -2637,17 +2637,17 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Inventati in Cina",
   "fact": "Sono stati tutti inventati in Cina. Il biscotto della fortuna no: con ogni probabilità nacque con gli immigrati giapponesi negli Stati Uniti.",
   "in": [
-   "Carta",
+   "Porcellana",
    "Polvere da sparo",
    "Bussola"
   ],
   "out": [
-   "Vetro",
+   "Microscopio",
    "Telescopio"
   ],
   "door": [
    [
-    "Porcellana",
+    "Carta",
     1
    ],
    [
@@ -2659,7 +2659,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Microscopio",
+    "Vetro",
     0
    ],
    [
@@ -3213,29 +3213,29 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Antiche Americhe",
   "fact": "Tutte fiorirono nelle Americhe prima di Colombo. Gli Olmechi furono la prima grande civiltà della Mesoamerica.",
   "in": [
-   "Maya",
    "Aztechi",
-   "Inca"
+   "Olmechi",
+   "Toltechi"
   ],
   "out": [
    "Babilonesi",
-   "Etruschi"
+   "Fenici"
   ],
   "door": [
    [
-    "Olmechi",
+    "Maya",
     1
    ],
    [
-    "Fenici",
+    "Etruschi",
     0
    ],
    [
-    "Toltechi",
+    "Inca",
     1
    ],
    [
-    "Sumeri",
+    "Greci",
     0
    ],
    [
@@ -3393,21 +3393,21 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Rocce ignee",
   "fact": "Le rocce ignee si formano quando la roccia fusa si raffredda e si indurisce. Marmo e ardesia sono metamorfiche; arenaria, calcare e creta sedimentarie.",
   "in": [
-   "Granito",
+   "Pomice",
    "Basalto",
    "Ossidiana"
   ],
   "out": [
-   "Marmo",
-   "Arenaria"
+   "Arenaria",
+   "Calcare"
   ],
   "door": [
    [
-    "Pomice",
+    "Granito",
     1
    ],
    [
-    "Calcare",
+    "Marmo",
     0
    ],
    [
@@ -3643,11 +3643,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "bears": {
   "sign": "Sono orsi",
   "stamp": "Orsi",
-  "fact": "Sono tutti orsi, e lo è anche il panda gigante. Il koala è un marsupiale, e nemmeno il panda rosso è un orso.",
+  "fact": "Sono tutti orsi, e lo è anche il panda gigante. Il koala è un marsupiale, e nemmeno il panda rosso e il minuscolo orso d'acqua sono orsi.",
   "in": [
    "Orso grizzly",
    "Orso polare",
-   "Panda gigante"
+   "Orso malese"
   ],
   "out": [
    "Koala",
@@ -3655,11 +3655,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Orso malese",
+    "Panda gigante",
     1
    ],
    [
-    "Procione",
+    "Orso d'acqua",
     0
    ],
    [
@@ -3683,7 +3683,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "in": [
    "Tromba",
    "Trombone",
-   "Tuba"
+   "Corno francese"
   ],
   "out": [
    "Sassofono",
@@ -3691,7 +3691,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Corno francese",
+    "Tuba",
     1
    ],
    [
@@ -3754,8 +3754,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Cipolle, aglio, porri, scalogni ed erba cipollina appartengono tutti a uno stesso genere, Allium. Zenzero e ravanelli vengono da altre famiglie.",
   "in": [
    "Cipolla",
-   "Aglio",
-   "Porro"
+   "Erba cipollina",
+   "Scalogno"
   ],
   "out": [
    "Zenzero",
@@ -3763,7 +3763,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Erba cipollina",
+    "Aglio",
     1
    ],
    [
@@ -3771,7 +3771,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Scalogno",
+    "Porro",
     1
    ],
    [
@@ -4087,7 +4087,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Energia geotermica",
+    "Geotermia",
     1
    ],
    [
@@ -4327,10 +4327,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "gourd-family": {
   "sign": "La famiglia della zucca",
   "stamp": "Famiglia della zucca",
-  "fact": "Appartengono tutti alla famiglia della zucca, come meloni, zucchine e altre zucche. Pomodori e melanzane sono solanacee.",
+  "fact": "Appartengono tutti alla famiglia della zucca, come le zucchine e ogni tipo di zucca. Pomodori e melanzane sono solanacee.",
   "in": [
    "Cetriolo",
-   "Zucca",
+   "Melone",
    "Anguria"
   ],
   "out": [
@@ -4347,7 +4347,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Melone",
+    "Zucca",
     1
    ],
    [
@@ -4823,7 +4823,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Sterno",
+    "Vertebra",
     1
    ]
   ]
@@ -5207,7 +5207,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Regina Vittoria",
+    "Caterina la Grande",
     0
    ],
    [
@@ -5215,7 +5215,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Maria Antonietta",
+    "Jane Grey",
     0
    ],
    [

@@ -232,13 +232,13 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.the-club.noble-gases.sign` — Sono gas nobili
 - `p.the-club.noble-gases.stamp` — Gas nobili
-- `p.the-club.noble-gases.in1` — Elio
+- `p.the-club.noble-gases.in1` — Kripton
 - `p.the-club.noble-gases.in2` — Neon
 - `p.the-club.noble-gases.in3` — Argon
 - `p.the-club.noble-gases.out1` — Ossigeno
 - `p.the-club.noble-gases.out2` — Idrogeno
-- `p.the-club.noble-gases.door1` — Kripton
-- `p.the-club.noble-gases.door2` — Azoto
+- `p.the-club.noble-gases.door1` — Elio
+- `p.the-club.noble-gases.door2` — Carbonio
 - `p.the-club.noble-gases.door3` — Xeno
 - `p.the-club.noble-gases.door4` — Cloro
 - `p.the-club.noble-gases.door5` — Radon
@@ -281,16 +281,16 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.cabbage.sign` — Un'unica specie: il cavolo selvatico
 - `p.the-club.cabbage.stamp` — Cavolo selvatico
 - `p.the-club.cabbage.in1` — Cavolo
-- `p.the-club.cabbage.in2` — Broccolo
+- `p.the-club.cabbage.in2` — Cavoletti di Bruxelles
 - `p.the-club.cabbage.in3` — Cavolfiore
 - `p.the-club.cabbage.out1` — Lattuga
 - `p.the-club.cabbage.out2` — Carota
 - `p.the-club.cabbage.door1` — Cavolo riccio
 - `p.the-club.cabbage.door2` — Spinaci
-- `p.the-club.cabbage.door3` — Cavoletti di Bruxelles
-- `p.the-club.cabbage.door4` — Cipolla
+- `p.the-club.cabbage.door3` — Broccolo
+- `p.the-club.cabbage.door4` — Cavolo cinese
 - `p.the-club.cabbage.door5` — Cavolo rapa
-- `p.the-club.cabbage.fact` — Sono tutti un'unica specie, il cavolo selvatico, che gli agricoltori hanno trasformato in tante forme diverse.
+- `p.the-club.cabbage.fact` — Sono tutti un'unica specie, il cavolo selvatico, che gli agricoltori hanno trasformato in tante forme diverse. Il cavolo cinese no: è della stessa specie della rapa.
 
 #### 19/148 · `arctic-circle` · day 19 (22 Oct 2026), 167 (19 Mar 2027), 315 (14 Aug 2027), 463 (9 Jan 2028) … · every 148 days
 
@@ -329,15 +329,15 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.woodwinds.sign` — Sono strumenti a fiato di legno
 - `p.the-club.woodwinds.stamp` — Fiati di legno
 - `p.the-club.woodwinds.in1` — Clarinetto
-- `p.the-club.woodwinds.in2` — Oboe
-- `p.the-club.woodwinds.in3` — Flauto
+- `p.the-club.woodwinds.in2` — Flauto
+- `p.the-club.woodwinds.in3` — Ottavino
 - `p.the-club.woodwinds.out1` — Tromba
 - `p.the-club.woodwinds.out2` — Trombone
 - `p.the-club.woodwinds.door1` — Sassofono
 - `p.the-club.woodwinds.door2` — Tuba
 - `p.the-club.woodwinds.door3` — Fagotto
-- `p.the-club.woodwinds.door4` — Corno francese
-- `p.the-club.woodwinds.door5` — Ottavino
+- `p.the-club.woodwinds.door4` — Eufonio
+- `p.the-club.woodwinds.door5` — Oboe
 - `p.the-club.woodwinds.fact` — Sono strumenti a fiato di legno, di qualunque materiale siano fatti. Il sassofono è di ottone ma si suona con un'ancia, quindi ne fa parte.
 
 #### 22/148 · `sea-mammals` · day 22 (25 Oct 2026), 170 (22 Mar 2027), 318 (17 Aug 2027), 466 (12 Jan 2028) … · every 148 days · from day 22 of the first batch
@@ -937,11 +937,11 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.citrus.sign` — Sono agrumi
 - `p.the-club.citrus.stamp` — Agrumi
 - `p.the-club.citrus.in1` — Limone
-- `p.the-club.citrus.in2` — Arancia
+- `p.the-club.citrus.in2` — Lime
 - `p.the-club.citrus.in3` — Pompelmo
 - `p.the-club.citrus.out1` — Mela
 - `p.the-club.citrus.out2` — Banana
-- `p.the-club.citrus.door1` — Lime
+- `p.the-club.citrus.door1` — Arancia
 - `p.the-club.citrus.door2` — Ananas
 - `p.the-club.citrus.door3` — Mandarino
 - `p.the-club.citrus.door4` — Kiwi
@@ -1057,7 +1057,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.metals.door2` — Iodio
 - `p.the-club.metals.door3` — Magnesio
 - `p.the-club.metals.door4` — Mercurio
-- `p.the-club.metals.door5` — Fosforo
+- `p.the-club.metals.door5` — Elio
 - `p.the-club.metals.fact` — Sono tutti metalli. Lo è anche il mercurio, benché a 20 °C sia liquido.
 
 #### 67/148 · `crustaceans` · day 67 (9 Dec 2026), 215 (6 May 2027), 363 (1 Oct 2027), 511 (26 Feb 2028) … · every 148 days
@@ -1176,15 +1176,15 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.the-club.china.sign` — Inventati in Cina
 - `p.the-club.china.stamp` — Inventati in Cina
-- `p.the-club.china.in1` — Carta
+- `p.the-club.china.in1` — Porcellana
 - `p.the-club.china.in2` — Polvere da sparo
 - `p.the-club.china.in3` — Bussola
-- `p.the-club.china.out1` — Vetro
+- `p.the-club.china.out1` — Microscopio
 - `p.the-club.china.out2` — Telescopio
-- `p.the-club.china.door1` — Porcellana
+- `p.the-club.china.door1` — Carta
 - `p.the-club.china.door2` — Biscotto della fortuna
 - `p.the-club.china.door3` — Seta
-- `p.the-club.china.door4` — Microscopio
+- `p.the-club.china.door4` — Vetro
 - `p.the-club.china.door5` — Carta moneta
 - `p.the-club.china.fact` — Sono stati tutti inventati in Cina. Il biscotto della fortuna no: con ogni probabilità nacque con gli immigrati giapponesi negli Stati Uniti.
 
@@ -1432,15 +1432,15 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.the-club.ancient-americas.sign` — Civiltà delle Americhe
 - `p.the-club.ancient-americas.stamp` — Antiche Americhe
-- `p.the-club.ancient-americas.in1` — Maya
-- `p.the-club.ancient-americas.in2` — Aztechi
-- `p.the-club.ancient-americas.in3` — Inca
+- `p.the-club.ancient-americas.in1` — Aztechi
+- `p.the-club.ancient-americas.in2` — Olmechi
+- `p.the-club.ancient-americas.in3` — Toltechi
 - `p.the-club.ancient-americas.out1` — Babilonesi
-- `p.the-club.ancient-americas.out2` — Etruschi
-- `p.the-club.ancient-americas.door1` — Olmechi
-- `p.the-club.ancient-americas.door2` — Fenici
-- `p.the-club.ancient-americas.door3` — Toltechi
-- `p.the-club.ancient-americas.door4` — Sumeri
+- `p.the-club.ancient-americas.out2` — Fenici
+- `p.the-club.ancient-americas.door1` — Maya
+- `p.the-club.ancient-americas.door2` — Etruschi
+- `p.the-club.ancient-americas.door3` — Inca
+- `p.the-club.ancient-americas.door4` — Greci
 - `p.the-club.ancient-americas.door5` — Ittiti
 - `p.the-club.ancient-americas.fact` — Tutte fiorirono nelle Americhe prima di Colombo. Gli Olmechi furono la prima grande civiltà della Mesoamerica.
 
@@ -1512,13 +1512,13 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 
 - `p.the-club.igneous.sign` — Rocce ignee
 - `p.the-club.igneous.stamp` — Rocce ignee
-- `p.the-club.igneous.in1` — Granito
+- `p.the-club.igneous.in1` — Pomice
 - `p.the-club.igneous.in2` — Basalto
 - `p.the-club.igneous.in3` — Ossidiana
-- `p.the-club.igneous.out1` — Marmo
-- `p.the-club.igneous.out2` — Arenaria
-- `p.the-club.igneous.door1` — Pomice
-- `p.the-club.igneous.door2` — Calcare
+- `p.the-club.igneous.out1` — Arenaria
+- `p.the-club.igneous.out2` — Calcare
+- `p.the-club.igneous.door1` — Granito
+- `p.the-club.igneous.door2` — Marmo
 - `p.the-club.igneous.door3` — Andesite
 - `p.the-club.igneous.door4` — Ardesia
 - `p.the-club.igneous.door5` — Creta
@@ -1626,15 +1626,15 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.bears.stamp` — Orsi
 - `p.the-club.bears.in1` — Orso grizzly
 - `p.the-club.bears.in2` — Orso polare
-- `p.the-club.bears.in3` — Panda gigante
+- `p.the-club.bears.in3` — Orso malese
 - `p.the-club.bears.out1` — Koala
 - `p.the-club.bears.out2` — Panda rosso
-- `p.the-club.bears.door1` — Orso malese
-- `p.the-club.bears.door2` — Procione
+- `p.the-club.bears.door1` — Panda gigante
+- `p.the-club.bears.door2` — Orso d'acqua
 - `p.the-club.bears.door3` — Orso dagli occhiali
 - `p.the-club.bears.door4` — Ghiottone
 - `p.the-club.bears.door5` — Orso labiato
-- `p.the-club.bears.fact` — Sono tutti orsi, e lo è anche il panda gigante. Il koala è un marsupiale, e nemmeno il panda rosso è un orso.
+- `p.the-club.bears.fact` — Sono tutti orsi, e lo è anche il panda gigante. Il koala è un marsupiale, e nemmeno il panda rosso e il minuscolo orso d'acqua sono orsi.
 
 #### 103/148 · `brass` · day 103 (14 Jan 2027), 251 (11 Jun 2027), 399 (6 Nov 2027), 547 (2 Apr 2028) … · every 148 days
 
@@ -1642,10 +1642,10 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.brass.stamp` — Fiati di ottone
 - `p.the-club.brass.in1` — Tromba
 - `p.the-club.brass.in2` — Trombone
-- `p.the-club.brass.in3` — Tuba
+- `p.the-club.brass.in3` — Corno francese
 - `p.the-club.brass.out1` — Sassofono
 - `p.the-club.brass.out2` — Flauto
-- `p.the-club.brass.door1` — Corno francese
+- `p.the-club.brass.door1` — Tuba
 - `p.the-club.brass.door2` — Clarinetto
 - `p.the-club.brass.door3` — Eufonio
 - `p.the-club.brass.door4` — Oboe
@@ -1673,13 +1673,13 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.onion-family.sign` — La famiglia della cipolla
 - `p.the-club.onion-family.stamp` — Famiglia della cipolla
 - `p.the-club.onion-family.in1` — Cipolla
-- `p.the-club.onion-family.in2` — Aglio
-- `p.the-club.onion-family.in3` — Porro
+- `p.the-club.onion-family.in2` — Erba cipollina
+- `p.the-club.onion-family.in3` — Scalogno
 - `p.the-club.onion-family.out1` — Zenzero
 - `p.the-club.onion-family.out2` — Ravanello
-- `p.the-club.onion-family.door1` — Erba cipollina
+- `p.the-club.onion-family.door1` — Aglio
 - `p.the-club.onion-family.door2` — Sedano
-- `p.the-club.onion-family.door3` — Scalogno
+- `p.the-club.onion-family.door3` — Porro
 - `p.the-club.onion-family.door4` — Rapa
 - `p.the-club.onion-family.door5` — Asparago
 - `p.the-club.onion-family.fact` — Cipolle, aglio, porri, scalogni ed erba cipollina appartengono tutti a uno stesso genere, Allium. Zenzero e ravanelli vengono da altre famiglie.
@@ -1821,7 +1821,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.renewables.in3` — Energia idroelettrica
 - `p.the-club.renewables.out1` — Carbone
 - `p.the-club.renewables.out2` — Gas naturale
-- `p.the-club.renewables.door1` — Energia geotermica
+- `p.the-club.renewables.door1` — Geotermia
 - `p.the-club.renewables.door2` — Petrolio
 - `p.the-club.renewables.door3` — Energia mareomotrice
 - `p.the-club.renewables.door4` — Energia nucleare
@@ -1929,16 +1929,16 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.gourd-family.sign` — La famiglia della zucca
 - `p.the-club.gourd-family.stamp` — Famiglia della zucca
 - `p.the-club.gourd-family.in1` — Cetriolo
-- `p.the-club.gourd-family.in2` — Zucca
+- `p.the-club.gourd-family.in2` — Melone
 - `p.the-club.gourd-family.in3` — Anguria
 - `p.the-club.gourd-family.out1` — Pomodoro
 - `p.the-club.gourd-family.out2` — Melanzana
 - `p.the-club.gourd-family.door1` — Zucchina
 - `p.the-club.gourd-family.door2` — Patata
-- `p.the-club.gourd-family.door3` — Melone
+- `p.the-club.gourd-family.door3` — Zucca
 - `p.the-club.gourd-family.door4` — Peperone
 - `p.the-club.gourd-family.door5` — Zucca violina
-- `p.the-club.gourd-family.fact` — Appartengono tutti alla famiglia della zucca, come meloni, zucchine e altre zucche. Pomodori e melanzane sono solanacee.
+- `p.the-club.gourd-family.fact` — Appartengono tutti alla famiglia della zucca, come le zucchine e ogni tipo di zucca. Pomodori e melanzane sono solanacee.
 
 #### 122/148 · `primates` · day 122 (2 Feb 2027), 270 (30 Jun 2027), 418 (25 Nov 2027), 566 (21 Apr 2028) … · every 148 days
 
@@ -2145,7 +2145,7 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.bones.door2` — Legamento
 - `p.the-club.bones.door3` — Staffa
 - `p.the-club.bones.door4` — Cornea
-- `p.the-club.bones.door5` — Sterno
+- `p.the-club.bones.door5` — Vertebra
 - `p.the-club.bones.fact` — Sono tutte ossa, tra le 206 dello scheletro di un adulto. La staffa, nel profondo dell'orecchio, è una di esse.
 
 #### 135/148 · `deserts` · day 135 (15 Feb 2027), 283 (13 Jul 2027), 431 (8 Dec 2027), 579 (4 May 2028) … · every 148 days
@@ -2318,9 +2318,9 @@ The lines of the first batch (claude/logicers-strings-it.md, section T, keyed by
 - `p.the-club.henry-wives.out1` — Maria I
 - `p.the-club.henry-wives.out2` — Elisabetta I
 - `p.the-club.henry-wives.door1` — Anna di Clèves
-- `p.the-club.henry-wives.door2` — Regina Vittoria
+- `p.the-club.henry-wives.door2` — Caterina la Grande
 - `p.the-club.henry-wives.door3` — Caterina Parr
-- `p.the-club.henry-wives.door4` — Maria Antonietta
+- `p.the-club.henry-wives.door4` — Jane Grey
 - `p.the-club.henry-wives.door5` — Caterina Howard
 - `p.the-club.henry-wives.fact` — Enrico VIII ebbe sei mogli, da Caterina d'Aragona nel 1509 a Caterina Parr nel 1543. Maria I ed Elisabetta I erano le sue figlie.
 

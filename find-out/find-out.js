@@ -45,7 +45,9 @@ const C = COPY;
 
 /* ------------------------------------------------------------------ storage ------ */
 function hex(n) { const a = new Uint8Array(n); crypto.getRandomValues(a); return [...a].map((x) => x.toString(16).padStart(2, '0')).join(''); }
-function fresh() { return { v: 1, id: hex(16), created: new Date().toISOString(), header_country: null, country: null, country_asked: false, games: {}, consent: { status: null, version: null, at: null }, uploaded: {}, code: null, demographics: null, funnel: {}, done_order: [] }; }
+/* the Anonymous Check-in (checkin/, 4 Nov 2026) may have drawn this phone's random code first: keep that one, so the two studies join for people who say yes in both */
+function sharedId() { try { const c = JSON.parse(localStorage.getItem('lg.checkin.v1')); if (c && typeof c.id === 'string' && /^[0-9a-f]{32}$/.test(c.id)) return c.id; } catch (e) { /* none */ } return hex(16); }
+function fresh(id) { return { v: 1, id: id || sharedId(), created: new Date().toISOString(), header_country: null, country: null, country_asked: false, games: {}, consent: { status: null, version: null, at: null }, uploaded: {}, code: null, demographics: null, funnel: {}, done_order: [] }; }
 let S = null;
 function load() {
   if (S) return S;
@@ -54,7 +56,7 @@ function load() {
   return S;
 }
 function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (e) { /* a full or blocked store: the game still plays */ } }
-function wipe() { S = fresh(); try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+function wipe() { S = fresh(hex(16)); try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
 
 /* ------------------------------------------------------------------ helpers ------ */
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined && text !== null) e.textContent = String(text); return e; }

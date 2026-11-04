@@ -1,0 +1,41 @@
+/* The Check-in: the Worker's settings (chat B, 4 Nov 2026). Its own Worker, its own D1 database and its own
+   Durable Object class, so a deploy here never touches the find-outs (logicers-findout, logicers-findout-room)
+   or the live games (logicers-live). Khayyam connects it once, the same way as logicers-findout (README.md):
+   in Cloudflare's dashboard a Worker named logicers-checkin connected to the GitHub repository with the root
+   directory server/checkin and the watch path server/checkin/*; Workers Builds reads this file and runs
+   "npx wrangler deploy" on every push that changes the folder.
+   Before the first deploy, one thing is made by hand: the D1 database (Storage & Databases, D1, Create: name
+   logicers-checkin), and its id is pasted below. The tables make themselves on the first request; the Durable
+   Object class Room is made by the migration below on the first deploy.
+   Secrets, set once in the dashboard (Settings, Variables and Secrets), never here:
+     ADMIN_KEY         a long password of your own (32 random characters or more): the CSV export
+     TURNSTILE_SECRET  the Turnstile widget's secret key; while it is unset, uploads are taken without a token
+                       and /health says "turnstile": false
+   Plain variables: ALLOW_ORIGINS, the sites that may call ("localhost" lets a page on your own computer call it);
+   JOIN_URL and HOST_URL, the links the server hands out ({code} and {key} are filled in): change them here if
+   the section's folder gets another name.
+   Workers Logs and traces stay OFF: nothing else is kept. */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-checkin",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "triggers": { "crons": ["23 * * * *"] },
+  "vars": {
+    "ALLOW_ORIGINS": "https://logicers.com localhost",
+    "JOIN_URL": "https://logicers.com/checkin/room/#{code}",
+    "HOST_URL": "https://logicers.com/checkin/host/#{key}"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "logicers-checkin", "database_id": "PASTE THE ID FROM THE DASHBOARD HERE" }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "ROOM", "class_name": "Room" }]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Room"] }
+  ]
+}

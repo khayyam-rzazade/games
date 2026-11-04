@@ -1049,6 +1049,23 @@
     pt: ["Jogue com as palavras →", "Altitude · até onde você chega?"],
     fr: ["Joue avec les mots →", "Altitude · jusqu’où iras-tu ?"]
   };
+  /* the check-in's button words: the dictionary's once they are in the strings docs, else these (the five other
+     languages come with the check-in's translations) */
+  var CHECKIN_BTN = { en: ["Anonymous Check-in →", "20 taps · about a minute"], it: ["Check-in anonimo →", "20 tocchi · circa un minuto"],
+                      es: ["Check-in anónimo →", "20 toques · un minuto más o menos"], pt: ["Check-in anônimo →", "20 toques · cerca de um minuto"],
+                      fr: ["Check-in anonyme →", "20 questions · environ une minute"], tr: ["Anonim Check-in →", "20 soru · yaklaşık bir dakika"] };
+  function checkinLine(key) {
+    try { if (T.has && T.has(key)) return T(key); } catch (e) { /* the words below */ }
+    var w = CHECKIN_BTN[(LG && LG.lang) || "en"] || CHECKIN_BTN.en;
+    return key === "fin.checkin" ? w[0] : w[1];
+  }
+  function checkinDue() {
+    try {
+      var st = JSON.parse(window.localStorage.getItem("lg.checkin.v1")), h = st && st.history, last = 0;
+      if (Array.isArray(h)) for (var i = 0; i < h.length; i++) if (h[i] && typeof h[i].at === "number" && h[i].at > last) last = h[i].at;
+      return Date.now() - last >= 14 * 864e5;
+    } catch (e) { return true; }
+  }
   function wordsLine(key) {
     try { if (T.has && T.has(key)) return T(key); } catch (e) { /* the words below */ }
     var w = WORDS_BTN[(LG && LG.lang) || "en"] || WORDS_BTN.en;
@@ -1185,6 +1202,18 @@
         fo.appendChild(fw);
         fo.addEventListener("click", function () { count_("onward-sheet/find-out"); });
         sheet.appendChild(fo);
+      }
+      /* The Anonymous Check-in (4 Nov 2026, Khayyam): in the same place and style, while this phone has not checked in
+         for two weeks (the check-in asks about the last two weeks). Its store is read here and never written. */
+      if (checkinDue()) {
+        var ci = el("a", "fin-more fin-checkin");
+        ci.href = here(LG ? LG.href("checkin/") : "../checkin/");
+        var cw = el("span", "fin-next-words");
+        cw.appendChild(el("span", "", checkinLine("fin.checkin")));
+        cw.appendChild(el("small", "", checkinLine("fin.checkin_sub")));
+        ci.appendChild(cw);
+        ci.addEventListener("click", function () { count_("onward-sheet/checkin"); });
+        sheet.appendChild(ci);
       }
       /* "Play word games" (29 Oct 2026, Khayyam), where "More to play" was: straight to Altitude, in the same
          yellow, pulsing style. Altitude is one page for all six languages at /altitude/ and takes the site's

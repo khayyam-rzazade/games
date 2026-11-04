@@ -513,7 +513,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Gases nobles",
   "fact": "Son los gases nobles, que casi nunca reaccionan con nada. Por eso los globos se llenan de helio y no de hidrógeno.",
   "in": [
-   "Helio",
+   "Criptón",
    "Neón",
    "Argón"
   ],
@@ -523,11 +523,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Criptón",
+    "Helio",
     1
    ],
    [
-    "Nitrógeno",
+    "Carbono",
     0
    ],
    [
@@ -619,10 +619,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "cabbage": {
   "sign": "Una sola especie: la col silvestre",
   "stamp": "Col silvestre",
-  "fact": "Todos son de una sola especie, la col silvestre, a la que los agricultores han ido dando formas muy distintas.",
+  "fact": "Todos son de una sola especie, la col silvestre, a la que los agricultores han ido dando formas muy distintas. La col china no: es de la misma especie que el nabo.",
   "in": [
    "Repollo",
-   "Brócoli",
+   "Coles de Bruselas",
    "Coliflor"
   ],
   "out": [
@@ -639,11 +639,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Coles de Bruselas",
+    "Brócoli",
     1
    ],
    [
-    "Cebolla",
+    "Col china",
     0
    ],
    [
@@ -730,8 +730,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Son instrumentos de viento madera, sea cual sea el material con que se hacen. El saxofón es de metal, pero se toca con una lengüeta, así que cuenta como uno.",
   "in": [
    "Clarinete",
-   "Oboe",
-   "Flauta"
+   "Flauta",
+   "Flautín"
   ],
   "out": [
    "Trompeta",
@@ -751,11 +751,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Trompa",
+    "Bombardino",
     0
    ],
    [
-    "Flautín",
+    "Oboe",
     1
    ]
   ]
@@ -2098,7 +2098,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Todos son cítricos. El pomelo es un cruce entre una pampelmusa y una naranja dulce.",
   "in": [
    "Limón",
-   "Naranja",
+   "Lima",
    "Pomelo"
   ],
   "out": [
@@ -2107,7 +2107,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Lima",
+    "Naranja",
     1
    ],
    [
@@ -2375,7 +2375,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Fósforo",
+    "Helio",
     0
    ]
   ]
@@ -2637,17 +2637,17 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Inventos de China",
   "fact": "Todos se inventaron en China. La galleta de la fortuna no: lo más probable es que naciera con los inmigrantes japoneses en Estados Unidos.",
   "in": [
-   "Papel",
+   "Porcelana",
    "Pólvora",
    "Brújula"
   ],
   "out": [
-   "Vidrio",
+   "Microscopio",
    "Telescopio"
   ],
   "door": [
    [
-    "Porcelana",
+    "Papel",
     1
    ],
    [
@@ -2659,7 +2659,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Microscopio",
+    "Vidrio",
     0
    ],
    [
@@ -3213,29 +3213,29 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "América antigua",
   "fact": "Todas florecieron en América antes de Colón. Los olmecas fueron la primera gran civilización de Mesoamérica.",
   "in": [
-   "Mayas",
    "Aztecas",
-   "Incas"
+   "Olmecas",
+   "Toltecas"
   ],
   "out": [
    "Babilonios",
-   "Etruscos"
+   "Fenicios"
   ],
   "door": [
    [
-    "Olmecas",
+    "Mayas",
     1
    ],
    [
-    "Fenicios",
+    "Etruscos",
     0
    ],
    [
-    "Toltecas",
+    "Incas",
     1
    ],
    [
-    "Sumerios",
+    "Griegos",
     0
    ],
    [
@@ -3393,21 +3393,21 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Rocas ígneas",
   "fact": "Las rocas ígneas se forman cuando la roca fundida se enfría y se endurece. El mármol y la pizarra son metamórficas; la arenisca, la caliza y la tiza, sedimentarias.",
   "in": [
-   "Granito",
+   "Piedra pómez",
    "Basalto",
    "Obsidiana"
   ],
   "out": [
-   "Mármol",
-   "Arenisca"
+   "Arenisca",
+   "Caliza"
   ],
   "door": [
    [
-    "Piedra pómez",
+    "Granito",
     1
    ],
    [
-    "Caliza",
+    "Mármol",
     0
    ],
    [
@@ -3643,11 +3643,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "bears": {
   "sign": "Son osos",
   "stamp": "Osos",
-  "fact": "Todos son osos, y el panda gigante también. El koala es un marsupial, y el panda rojo tampoco es un oso.",
+  "fact": "Todos son osos, y el panda gigante también. El koala es un marsupial, y ni el panda rojo ni el diminuto oso de agua son osos.",
   "in": [
    "Oso grizzly",
    "Oso polar",
-   "Panda gigante"
+   "Oso malayo"
   ],
   "out": [
    "Koala",
@@ -3655,11 +3655,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Oso malayo",
+    "Panda gigante",
     1
    ],
    [
-    "Mapache",
+    "Oso de agua",
     0
    ],
    [
@@ -3683,7 +3683,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "in": [
    "Trompeta",
    "Trombón",
-   "Tuba"
+   "Trompa"
   ],
   "out": [
    "Saxofón",
@@ -3691,7 +3691,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Trompa",
+    "Tuba",
     1
    ],
    [
@@ -3754,8 +3754,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Las cebollas, los ajos, los puerros, los chalotes y los cebollinos pertenecen todos a un mismo género, Allium. El jengibre y los rábanos son de otras familias.",
   "in": [
    "Cebolla",
-   "Ajo",
-   "Puerro"
+   "Cebollino",
+   "Chalote"
   ],
   "out": [
    "Jengibre",
@@ -3763,7 +3763,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Cebollino",
+    "Ajo",
     1
    ],
    [
@@ -3771,7 +3771,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Chalote",
+    "Puerro",
     1
    ],
    [
@@ -4087,7 +4087,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Energía geotérmica",
+    "Geotermia",
     1
    ],
    [
@@ -4327,10 +4327,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "gourd-family": {
   "sign": "La familia de la calabaza",
   "stamp": "Familia de la calabaza",
-  "fact": "Todos pertenecen a la familia de la calabaza, igual que los melones, los calabacines y otras calabazas. Los tomates y las berenjenas son solanáceas.",
+  "fact": "Todos pertenecen a la familia de la calabaza, igual que los calabacines y las demás calabazas. Los tomates y las berenjenas son solanáceas.",
   "in": [
    "Pepino",
-   "Calabaza",
+   "Melón",
    "Sandía"
   ],
   "out": [
@@ -4347,7 +4347,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Melón",
+    "Calabaza",
     1
    ],
    [
@@ -4823,7 +4823,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Esternón",
+    "Vértebra",
     1
    ]
   ]
@@ -5207,7 +5207,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Reina Victoria",
+    "Catalina la Grande",
     0
    ],
    [
@@ -5215,7 +5215,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "María Antonieta",
+    "Juana Grey",
     0
    ],
    [

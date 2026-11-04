@@ -38,8 +38,11 @@ function versioned(url) { return /[?&]v=[0-9a-f]{6,}/.test(url.search); }
    (the hint questions' words, assets/lang/<code>/questions.js; a language's site words, assets/lang/<code>.js, when
    Logicers Live plays a made game in it). They used to be served from the copy first, so the first visit after a
    push paired a new script with old words. */
+/* 4 Nov 2026: everything of the Anonymous Check-in (/checkin/) too. Its scripts are modules that import each other without
+   a ?v= stamp, so a copy of one beside a new copy of another could break the page after a push; from the network first,
+   with the copy as the fallback, the check-in alone still opens with no signal. */
 function fresh(url, req) {
-  return req.mode === "navigate" || /\.html$|\/$/.test(url.pathname) ||
+  return req.mode === "navigate" || /\.html$|\/$/.test(url.pathname) || /^\/checkin\//.test(url.pathname) ||
          /(^|\/)puzzles\.js$/.test(url.pathname) || /^\/?data\//.test(url.pathname.replace(/^\//, "")) ||
          /\.webmanifest$|\.json$/.test(url.pathname) || (/^\/assets\/lang\//.test(url.pathname) && !versioned(url));
 }

@@ -513,7 +513,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Asal gazlar",
   "fact": "Bunlar asal gazlardır; neredeyse hiçbir şeyle tepkimeye girmezler. Balonların hidrojenle değil helyumla doldurulmasının nedeni budur.",
   "in": [
-   "Helyum",
+   "Kripton",
    "Neon",
    "Argon"
   ],
@@ -523,11 +523,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Kripton",
+    "Helyum",
     1
    ],
    [
-    "Azot",
+    "Karbon",
     0
    ],
    [
@@ -619,10 +619,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "cabbage": {
   "sign": "Tek bir türdürler: yabani lahana",
   "stamp": "Yabani lahana",
-  "fact": "Hepsi tek bir türdür: yabani lahana. Çiftçiler onu yetiştirerek pek çok biçime dönüştürdü.",
+  "fact": "Hepsi tek bir türdür: yabani lahana. Çiftçiler onu yetiştirerek pek çok biçime dönüştürdü. Çin lahanası ise şalgamla aynı türdendir.",
   "in": [
    "Lahana",
-   "Brokoli",
+   "Brüksel lahanası",
    "Karnabahar"
   ],
   "out": [
@@ -639,11 +639,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Brüksel lahanası",
+    "Brokoli",
     1
    ],
    [
-    "Soğan",
+    "Çin lahanası",
     0
    ],
    [
@@ -730,8 +730,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Hangi malzemeden yapılmış olurlarsa olsunlar, hepsi tahta nefesli çalgıdır. Saksofon pirinçten yapılır ama kamışla çalınır; bu yüzden o da sayılır.",
   "in": [
    "Klarnet",
-   "Obua",
-   "Flüt"
+   "Flüt",
+   "Pikolo"
   ],
   "out": [
    "Trompet",
@@ -751,11 +751,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Korno",
+    "Eufonyum",
     0
    ],
    [
-    "Pikolo",
+    "Obua",
     1
    ]
   ]
@@ -2098,7 +2098,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Hepsi turunçgildir. Greyfurt, pomelo ile tatlı portakalın melezidir.",
   "in": [
    "Limon",
-   "Portakal",
+   "Misket limonu",
    "Greyfurt"
   ],
   "out": [
@@ -2107,7 +2107,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Misket limonu",
+    "Portakal",
     1
    ],
    [
@@ -2375,7 +2375,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Fosfor",
+    "Helyum",
     0
    ]
   ]
@@ -2637,17 +2637,17 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Çin icadı",
   "fact": "Hepsi Çin'de icat edildi. Şans kurabiyesi öyle değil: büyük olasılıkla Birleşik Devletler'e giden Japon göçmenlerle ortaya çıktı.",
   "in": [
-   "Kâğıt",
+   "Porselen",
    "Barut",
    "Pusula"
   ],
   "out": [
-   "Cam",
+   "Mikroskop",
    "Teleskop"
   ],
   "door": [
    [
-    "Porselen",
+    "Kâğıt",
     1
    ],
    [
@@ -2659,7 +2659,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Mikroskop",
+    "Cam",
     0
    ],
    [
@@ -3213,29 +3213,29 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Eski Amerika",
   "fact": "Hepsi Kolomb'dan önce Amerika'da gelişti. Olmekler, Mezoamerika'nın ilk büyük uygarlığıydı.",
   "in": [
-   "Mayalar",
    "Aztekler",
-   "İnkalar"
+   "Olmekler",
+   "Toltekler"
   ],
   "out": [
    "Babilliler",
-   "Etrüskler"
+   "Fenikeliler"
   ],
   "door": [
    [
-    "Olmekler",
+    "Mayalar",
     1
    ],
    [
-    "Fenikeliler",
+    "Etrüskler",
     0
    ],
    [
-    "Toltekler",
+    "İnkalar",
     1
    ],
    [
-    "Sümerler",
+    "Yunanlılar",
     0
    ],
    [
@@ -3393,21 +3393,21 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Magmatik kayaçlar",
   "fact": "Magmatik kayaçlar, erimiş kayanın soğuyup katılaşmasıyla oluşur. Mermer ve arduvaz metamorfik; kumtaşı, kireçtaşı ve tebeşir ise tortul kayaçlardır.",
   "in": [
-   "Granit",
+   "Pomza",
    "Bazalt",
    "Obsidyen"
   ],
   "out": [
-   "Mermer",
-   "Kumtaşı"
+   "Kumtaşı",
+   "Kireçtaşı"
   ],
   "door": [
    [
-    "Pomza",
+    "Granit",
     1
    ],
    [
-    "Kireçtaşı",
+    "Mermer",
     0
    ],
    [
@@ -3643,11 +3643,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "bears": {
   "sign": "Ayıdırlar",
   "stamp": "Ayılar",
-  "fact": "Hepsi ayıdır; dev panda da öyle. Koala keseli bir hayvandır, kırmızı panda da ayı değildir.",
+  "fact": "Hepsi ayıdır; dev panda da öyle. Koala keseli bir hayvandır; kırmızı panda ve minicik su ayısı da ayı değildir.",
   "in": [
    "Boz ayı",
    "Kutup ayısı",
-   "Dev panda"
+   "Güneş ayısı"
   ],
   "out": [
    "Koala",
@@ -3655,11 +3655,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Güneş ayısı",
+    "Dev panda",
     1
    ],
    [
-    "Rakun",
+    "Su ayısı",
     0
    ],
    [
@@ -3683,7 +3683,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "in": [
    "Trompet",
    "Trombon",
-   "Tuba"
+   "Korno"
   ],
   "out": [
    "Saksofon",
@@ -3691,7 +3691,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Korno",
+    "Tuba",
     1
    ],
    [
@@ -3754,8 +3754,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Soğan, sarımsak, pırasa, arpacık soğanı ve frenk soğanı aynı cinse, Allium'a aittir. Zencefil ve turp başka ailelerdendir.",
   "in": [
    "Soğan",
-   "Sarımsak",
-   "Pırasa"
+   "Frenk soğanı",
+   "Arpacık soğanı"
   ],
   "out": [
    "Zencefil",
@@ -3763,7 +3763,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Frenk soğanı",
+    "Sarımsak",
     1
    ],
    [
@@ -3771,7 +3771,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Arpacık soğanı",
+    "Pırasa",
     1
    ],
    [
@@ -4327,10 +4327,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "gourd-family": {
   "sign": "Kabakgillerdendirler",
   "stamp": "Kabakgiller",
-  "fact": "Hepsi kabakgillerdendir; kavun, kabak ve öteki kabaklar da öyle. Domates ve patlıcan patlıcangillerdendir.",
+  "fact": "Hepsi kabakgillerdendir; kabak, balkabağı ve öteki kabaklar da öyle. Domates ve patlıcan patlıcangillerdendir.",
   "in": [
    "Salatalık",
-   "Balkabağı",
+   "Kavun",
    "Karpuz"
   ],
   "out": [
@@ -4347,7 +4347,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Kavun",
+    "Balkabağı",
     1
    ],
    [
@@ -4815,7 +4815,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Üzengi kemiği",
+    "Üzengi",
     1
    ],
    [
@@ -4823,7 +4823,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Göğüs kemiği",
+    "Omur",
     1
    ]
   ]
@@ -5207,7 +5207,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Kraliçe Victoria",
+    "Büyük Katerina",
     0
    ],
    [
@@ -5215,7 +5215,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Marie Antoinette",
+    "Jane Grey",
     0
    ],
    [

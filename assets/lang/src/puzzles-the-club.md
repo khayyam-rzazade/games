@@ -255,13 +255,13 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 
 - `p.the-club.noble-gases.sign` — They are noble gases
 - `p.the-club.noble-gases.stamp` — Noble gases
-- `p.the-club.noble-gases.in1` — Helium
+- `p.the-club.noble-gases.in1` — Krypton
 - `p.the-club.noble-gases.in2` — Neon
 - `p.the-club.noble-gases.in3` — Argon
 - `p.the-club.noble-gases.out1` — Oxygen
 - `p.the-club.noble-gases.out2` — Hydrogen
-- `p.the-club.noble-gases.door1` — Krypton
-- `p.the-club.noble-gases.door2` — Nitrogen
+- `p.the-club.noble-gases.door1` — Helium
+- `p.the-club.noble-gases.door2` — Carbon
 - `p.the-club.noble-gases.door3` — Xenon
 - `p.the-club.noble-gases.door4` — Chlorine
 - `p.the-club.noble-gases.door5` — Radon
@@ -304,16 +304,16 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.cabbage.sign` — One species: wild cabbage
 - `p.the-club.cabbage.stamp` — Wild cabbage
 - `p.the-club.cabbage.in1` — Cabbage
-- `p.the-club.cabbage.in2` — Broccoli
+- `p.the-club.cabbage.in2` — Brussels sprouts
 - `p.the-club.cabbage.in3` — Cauliflower
 - `p.the-club.cabbage.out1` — Lettuce
 - `p.the-club.cabbage.out2` — Carrot
 - `p.the-club.cabbage.door1` — Kale
 - `p.the-club.cabbage.door2` — Spinach
-- `p.the-club.cabbage.door3` — Brussels sprouts
-- `p.the-club.cabbage.door4` — Onion
+- `p.the-club.cabbage.door3` — Broccoli
+- `p.the-club.cabbage.door4` — Chinese cabbage
 - `p.the-club.cabbage.door5` — Kohlrabi
-- `p.the-club.cabbage.fact` — They are all one species, wild cabbage, bred by farmers into many shapes.
+- `p.the-club.cabbage.fact` — They are all one species, wild cabbage, bred by farmers into many shapes. Chinese cabbage is not one of them; it is the same species as the turnip.
 
 #### 19/148 · `arctic-circle` · day 19 (22 Oct 2026), 167 (19 Mar 2027), 315 (14 Aug 2027), 463 (9 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
@@ -352,15 +352,15 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.woodwinds.sign` — They are woodwinds
 - `p.the-club.woodwinds.stamp` — Woodwinds
 - `p.the-club.woodwinds.in1` — Clarinet
-- `p.the-club.woodwinds.in2` — Oboe
-- `p.the-club.woodwinds.in3` — Flute
+- `p.the-club.woodwinds.in2` — Flute
+- `p.the-club.woodwinds.in3` — Piccolo
 - `p.the-club.woodwinds.out1` — Trumpet
 - `p.the-club.woodwinds.out2` — Trombone
 - `p.the-club.woodwinds.door1` — Saxophone
 - `p.the-club.woodwinds.door2` — Tuba
 - `p.the-club.woodwinds.door3` — Bassoon
-- `p.the-club.woodwinds.door4` — French horn
-- `p.the-club.woodwinds.door5` — Piccolo
+- `p.the-club.woodwinds.door4` — Euphonium
+- `p.the-club.woodwinds.door5` — Oboe
 - `p.the-club.woodwinds.fact` — They are woodwinds, whatever they are made of. The saxophone is made of brass but played with a reed, so it counts as one.
 
 #### 22/148 · `sea-mammals` · day 22 (25 Oct 2026), 170 (22 Mar 2027), 318 (17 Aug 2027), 466 (12 Jan 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
@@ -960,11 +960,11 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.citrus.sign` — They are citrus fruits
 - `p.the-club.citrus.stamp` — Citrus fruits
 - `p.the-club.citrus.in1` — Lemon
-- `p.the-club.citrus.in2` — Orange
+- `p.the-club.citrus.in2` — Lime
 - `p.the-club.citrus.in3` — Grapefruit
 - `p.the-club.citrus.out1` — Apple
 - `p.the-club.citrus.out2` — Banana
-- `p.the-club.citrus.door1` — Lime
+- `p.the-club.citrus.door1` — Orange
 - `p.the-club.citrus.door2` — Pineapple
 - `p.the-club.citrus.door3` — Mandarin
 - `p.the-club.citrus.door4` — Kiwi
@@ -1080,7 +1080,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.metals.door2` — Iodine
 - `p.the-club.metals.door3` — Magnesium
 - `p.the-club.metals.door4` — Mercury
-- `p.the-club.metals.door5` — Phosphorus
+- `p.the-club.metals.door5` — Helium
 - `p.the-club.metals.fact` — They are all metals. Mercury is one too, although at 20 °C it is a liquid.
 
 #### 67/148 · `crustaceans` · day 67 (9 Dec 2026), 215 (6 May 2027), 363 (1 Oct 2027), 511 (26 Feb 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
@@ -1199,15 +1199,15 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 
 - `p.the-club.china.sign` — Invented in China
 - `p.the-club.china.stamp` — Invented in China
-- `p.the-club.china.in1` — Paper
+- `p.the-club.china.in1` — Porcelain
 - `p.the-club.china.in2` — Gunpowder
 - `p.the-club.china.in3` — Compass
-- `p.the-club.china.out1` — Glass
+- `p.the-club.china.out1` — Microscope
 - `p.the-club.china.out2` — Telescope
-- `p.the-club.china.door1` — Porcelain
+- `p.the-club.china.door1` — Paper
 - `p.the-club.china.door2` — Fortune cookie
 - `p.the-club.china.door3` — Silk
-- `p.the-club.china.door4` — Microscope
+- `p.the-club.china.door4` — Glass
 - `p.the-club.china.door5` — Paper money
 - `p.the-club.china.fact` — All were invented in China. The fortune cookie was not: it most likely began with Japanese immigrants to the United States.
 
@@ -1455,15 +1455,15 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 
 - `p.the-club.ancient-americas.sign` — Civilisations of the Americas
 - `p.the-club.ancient-americas.stamp` — Ancient Americas
-- `p.the-club.ancient-americas.in1` — Maya
-- `p.the-club.ancient-americas.in2` — Aztecs
-- `p.the-club.ancient-americas.in3` — Incas
+- `p.the-club.ancient-americas.in1` — Aztecs
+- `p.the-club.ancient-americas.in2` — Olmecs
+- `p.the-club.ancient-americas.in3` — Toltecs
 - `p.the-club.ancient-americas.out1` — Babylonians
-- `p.the-club.ancient-americas.out2` — Etruscans
-- `p.the-club.ancient-americas.door1` — Olmecs
-- `p.the-club.ancient-americas.door2` — Phoenicians
-- `p.the-club.ancient-americas.door3` — Toltecs
-- `p.the-club.ancient-americas.door4` — Sumerians
+- `p.the-club.ancient-americas.out2` — Phoenicians
+- `p.the-club.ancient-americas.door1` — Maya
+- `p.the-club.ancient-americas.door2` — Etruscans
+- `p.the-club.ancient-americas.door3` — Incas
+- `p.the-club.ancient-americas.door4` — Greeks
 - `p.the-club.ancient-americas.door5` — Hittites
 - `p.the-club.ancient-americas.fact` — All flourished in the Americas before Columbus. The Olmecs were the first great civilisation of Mesoamerica.
 
@@ -1535,13 +1535,13 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 
 - `p.the-club.igneous.sign` — Igneous rocks
 - `p.the-club.igneous.stamp` — Igneous rocks
-- `p.the-club.igneous.in1` — Granite
+- `p.the-club.igneous.in1` — Pumice
 - `p.the-club.igneous.in2` — Basalt
 - `p.the-club.igneous.in3` — Obsidian
-- `p.the-club.igneous.out1` — Marble
-- `p.the-club.igneous.out2` — Sandstone
-- `p.the-club.igneous.door1` — Pumice
-- `p.the-club.igneous.door2` — Limestone
+- `p.the-club.igneous.out1` — Sandstone
+- `p.the-club.igneous.out2` — Limestone
+- `p.the-club.igneous.door1` — Granite
+- `p.the-club.igneous.door2` — Marble
 - `p.the-club.igneous.door3` — Andesite
 - `p.the-club.igneous.door4` — Slate
 - `p.the-club.igneous.door5` — Chalk
@@ -1649,15 +1649,15 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.bears.stamp` — Bears
 - `p.the-club.bears.in1` — Grizzly bear
 - `p.the-club.bears.in2` — Polar bear
-- `p.the-club.bears.in3` — Giant panda
+- `p.the-club.bears.in3` — Sun bear
 - `p.the-club.bears.out1` — Koala
 - `p.the-club.bears.out2` — Red panda
-- `p.the-club.bears.door1` — Sun bear
-- `p.the-club.bears.door2` — Raccoon
+- `p.the-club.bears.door1` — Giant panda
+- `p.the-club.bears.door2` — Water bear
 - `p.the-club.bears.door3` — Spectacled bear
 - `p.the-club.bears.door4` — Wolverine
 - `p.the-club.bears.door5` — Sloth bear
-- `p.the-club.bears.fact` — They are all bears, and so is the giant panda. The koala is a marsupial, and the red panda is not a bear either.
+- `p.the-club.bears.fact` — They are all bears, and so is the giant panda. The koala is a marsupial; the red panda and the tiny water bear are not bears either.
 
 #### 103/148 · `brass` · day 103 (14 Jan 2027), 251 (11 Jun 2027), 399 (6 Nov 2027), 547 (2 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
@@ -1665,10 +1665,10 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.brass.stamp` — Brass
 - `p.the-club.brass.in1` — Trumpet
 - `p.the-club.brass.in2` — Trombone
-- `p.the-club.brass.in3` — Tuba
+- `p.the-club.brass.in3` — French horn
 - `p.the-club.brass.out1` — Saxophone
 - `p.the-club.brass.out2` — Flute
-- `p.the-club.brass.door1` — French horn
+- `p.the-club.brass.door1` — Tuba
 - `p.the-club.brass.door2` — Clarinet
 - `p.the-club.brass.door3` — Euphonium
 - `p.the-club.brass.door4` — Oboe
@@ -1696,13 +1696,13 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.onion-family.sign` — The onion family
 - `p.the-club.onion-family.stamp` — Onion family
 - `p.the-club.onion-family.in1` — Onion
-- `p.the-club.onion-family.in2` — Garlic
-- `p.the-club.onion-family.in3` — Leek
+- `p.the-club.onion-family.in2` — Chives
+- `p.the-club.onion-family.in3` — Shallot
 - `p.the-club.onion-family.out1` — Ginger
 - `p.the-club.onion-family.out2` — Radish
-- `p.the-club.onion-family.door1` — Chives
+- `p.the-club.onion-family.door1` — Garlic
 - `p.the-club.onion-family.door2` — Celery
-- `p.the-club.onion-family.door3` — Shallot
+- `p.the-club.onion-family.door3` — Leek
 - `p.the-club.onion-family.door4` — Turnip
 - `p.the-club.onion-family.door5` — Asparagus
 - `p.the-club.onion-family.fact` — Onions, garlic, leeks, shallots and chives all belong to one genus, Allium. Ginger and radishes come from other families.
@@ -1952,16 +1952,16 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.gourd-family.sign` — The gourd family
 - `p.the-club.gourd-family.stamp` — Gourd family
 - `p.the-club.gourd-family.in1` — Cucumber
-- `p.the-club.gourd-family.in2` — Pumpkin
+- `p.the-club.gourd-family.in2` — Melon
 - `p.the-club.gourd-family.in3` — Watermelon
 - `p.the-club.gourd-family.out1` — Tomato
 - `p.the-club.gourd-family.out2` — Aubergine
 - `p.the-club.gourd-family.door1` — Courgette
 - `p.the-club.gourd-family.door2` — Potato
-- `p.the-club.gourd-family.door3` — Melon
+- `p.the-club.gourd-family.door3` — Pumpkin
 - `p.the-club.gourd-family.door4` — Sweet pepper
 - `p.the-club.gourd-family.door5` — Butternut squash
-- `p.the-club.gourd-family.fact` — They all belong to the gourd family, with melons, courgettes and squash. Tomatoes and aubergines are nightshades.
+- `p.the-club.gourd-family.fact` — They all belong to the gourd family, with courgettes, pumpkins and other squash. Tomatoes and aubergines are nightshades.
 
 #### 122/148 · `primates` · day 122 (2 Feb 2027), 270 (30 Jun 2027), 418 (25 Nov 2027), 566 (21 Apr 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
 
@@ -2168,7 +2168,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.bones.door2` — Ligament
 - `p.the-club.bones.door3` — Stapes
 - `p.the-club.bones.door4` — Cornea
-- `p.the-club.bones.door5` — Sternum
+- `p.the-club.bones.door5` — Vertebra
 - `p.the-club.bones.fact` — They are all bones, among the 206 of an adult skeleton. The stapes, deep inside the ear, is one of them.
 
 #### 135/148 · `deserts` · day 135 (15 Feb 2027), 283 (13 Jul 2027), 431 (8 Dec 2027), 579 (4 May 2028) … · every 148 days · done: it, tr, es, pt, fr · to do: nothing
@@ -2341,9 +2341,9 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 - `p.the-club.henry-wives.out1` — Mary I
 - `p.the-club.henry-wives.out2` — Elizabeth I
 - `p.the-club.henry-wives.door1` — Anne of Cleves
-- `p.the-club.henry-wives.door2` — Queen Victoria
+- `p.the-club.henry-wives.door2` — Catherine the Great
 - `p.the-club.henry-wives.door3` — Catherine Parr
-- `p.the-club.henry-wives.door4` — Marie Antoinette
+- `p.the-club.henry-wives.door4` — Lady Jane Grey
 - `p.the-club.henry-wives.door5` — Catherine Howard
 - `p.the-club.henry-wives.fact` — Henry VIII had six wives, from Catherine of Aragon in 1509 to Catherine Parr in 1543. Mary I and Elizabeth I were his daughters.
 
@@ -2383,7 +2383,7 @@ Each heading: the puzzle's number in the stock, its id (the middle part of its k
 
 - `p.the-club.cashew-family.sign` — The cashew family
 - `p.the-club.cashew-family.stamp` — Cashew family
-- `p.the-club.cashew-family.in1` — Cashew
+- `p.the-club.cashew-family.in1` — Cashew nut
 - `p.the-club.cashew-family.in2` — Mango
 - `p.the-club.cashew-family.in3` — Pistachio
 - `p.the-club.cashew-family.out1` — Almond

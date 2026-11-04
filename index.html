@@ -51,6 +51,20 @@
 [data-g="lookalike"] { --c: #0087A8; --tint: #DAF1F7; }
 [data-g="passport"] { --c: #9A3FC4; --tint: #F1E4F8; }
 @media (prefers-color-scheme: dark) { [data-g="lookalike"] { --c: #4FD0EE; --tint: #071C24; } [data-g="passport"] { --c: #D79AF0; --tint: #1B1024; } }
+/* The weekly Story (4 Nov 2026): its colour, midnight ink, and its own row, one wide tile, under the word games. The row
+   is hidden until story/tile.js shows it (from the launch day, English only). */
+[data-g="story"] { --c: #27335A; --tint: #E6E9F4; }
+@media (prefers-color-scheme: dark) { [data-g="story"] { --c: #B9C3EE; --tint: #101428; } }
+.story-games { margin-top: 34px; }
+.story-games[hidden] { display: none; }
+@media (max-width: 700px) { .story-games { margin-top: 24px; } }
+.story-games .tile { flex-direction: row; align-items: stretch; gap: 12px; max-width: 460px; padding: 8px; }
+.story-games .art { flex: 0 0 34%; aspect-ratio: auto; min-height: 128px; border-radius: 14px; }
+.story-games .body { padding: 6px 6px 4px 0; justify-content: center; }
+.story-games .tile h3 { font-size: 1.15rem; }
+.story-games .pitch { font-size: 0.88rem; line-height: 1.3; flex: none; }
+.story-games .foot { margin-top: 8px; min-height: 38px; flex-wrap: wrap; row-gap: 1px; }
+.story-games .again { flex-basis: 100%; margin-left: 30px; font-size: 0.86rem; }
 .word-games { margin-top: 34px; }   /* the same air above it as "Pass the phone" has (28 Oct 2026, Khayyam) */
 @media (max-width: 700px) { .word-games { margin-top: 24px; } }   /* ...on a phone too, where that row drops to 24 */
 /* The Today card (29 Oct 2026, Khayyam): a second, slim row of dashes for today's word games under the daily
@@ -97,6 +111,11 @@
 @media (max-width: 339px) { .lg-line { font-size: .8rem; } }
 html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="it"], html[lang="tr"] .lg-line a[hreflang="tr"], html[lang="es"] .lg-line a[hreflang="es"] { color: var(--ink); font-weight: 800; }
 .logicer.findout .logicer-small:empty { display: none; }
+/* the Anonymous Check-in box (4 Nov 2026): the Find out box's shape in the check-in's sunshine yellow, the name only */
+.logicer.checkin { background: linear-gradient(135deg, #E59A0B 0%, #F2B01E 55%, #FFD25E 100%); color: #15172B; box-shadow: 0 8px 20px rgba(242, 176, 30, .32), inset 0 0 0 1px rgba(255, 255, 255, .25); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.logicer.checkin:active { transform: scale(.99); }
+.logicer.checkin .logicer-label { color: rgba(21, 23, 43, .72); }
+.logicer.checkin .logicer-big { color: #15172B; }
 /* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
 .rooms-sheet { max-width: 440px; }
 .rooms-list { display: grid; gap: 10px; margin-top: 16px; }
@@ -134,7 +153,6 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   <div class="hero-text">
     <p class="eyebrow" id="eyebrow"></p>
     <h1 data-s="home.h1">Are you a <em>Logicer</em>?</h1>
-    <p class="lede" data-s="home.lede"><b>Learning that feels like play.</b> Games built on real facts, for every curious and intellectual mind.</p>
     <!-- the language line (Khayyam, 26 Oct 2026; six names since 28 Oct): names in their own language, never translated, the same on all six homes. Each is a plain link to the home in that language (works without JavaScript); assets/js/lang.js adds the remembered pick and the count. The six hrefs are root links: build_lang.py leaves them alone. -->
     <nav class="lg-line" id="lg-line" aria-label="Change the language" data-s-aria-label="lang.change">
       <a href="/" lang="en" hreflang="en"><span class="lg-flag" aria-hidden="true">🇬🇧</span><span class="lg-name">English</span></a>
@@ -153,6 +171,12 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
       <span class="logicer-label" data-s="home.findout_label">Find out</span>
       <span class="logicer-big findout-big" data-s="home.findout_big">who you are</span>
       <span class="logicer-small" id="findout-count"></span>
+    </a>
+    <!-- Anonymous Check-in (4 Nov 2026, Khayyam): right under the Find out box, in its style, and the name only ("it has to be
+         just 'anonymous check-in', that is all": the rule of minimum words). The whole box is the link. -->
+    <a class="logicer checkin" id="checkin-box" href="checkin/">
+      <span class="logicer-label" data-s="home.checkin_label">Anonymous</span>
+      <span class="logicer-big checkin-big" data-s="home.checkin_big">Check-in</span>
     </a>
     </div>
   </div>
@@ -381,6 +405,26 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   </div>
 </section>
 
+<!-- This week's story (4 Nov 2026, Khayyam): one story a week, one chapter a day, the whole world votes (story/). Its own row
+     under the word games, one tile. Not one of the nine games and not a word game: it is in neither list in turnsout.js, so
+     it is outside the chain, the streak and the "x of y played" count. English only for now: story/tile.js shows the row
+     from the launch day (story/config.js) and only when the page is English, and writes the tile's title and line itself,
+     so the six homes built from this page keep it hidden and nothing here needs a translation key. -->
+<section class="games story-games" id="story-row" aria-labelledby="story-title" hidden>
+  <h2 class="sec" id="story-title">This week's story</h2>
+  <a class="tile" id="tile-story" data-g="story" href="story/">
+    <div class="art"><svg viewBox="0 0 160 180" aria-hidden="true" focusable="false"><path class="ln" d="M80 142V108M80 108C80 84 42 84 42 56M80 108C80 84 118 84 118 56" fill="none" stroke-width="7" stroke-linecap="round"/><circle class="fg" cx="42" cy="44" r="14"/><circle class="mute" cx="118" cy="44" r="14"/><circle class="fg" cx="80" cy="150" r="7"/><circle class="mute" cx="26" cy="168" r="4.5"/><circle class="mute" cx="44" cy="168" r="4.5"/><circle class="mute" cx="62" cy="168" r="4.5"/><circle class="mute" cx="80" cy="168" r="4.5"/><circle class="mute" cx="98" cy="168" r="4.5"/><circle class="mute" cx="116" cy="168" r="4.5"/><circle class="mute" cx="134" cy="168" r="4.5"/></svg></div>
+    <div class="body">
+      <h3>This week's story</h3>
+      <p class="pitch">One chapter a day. The whole world votes.</p>
+      <div class="foot">
+        <span class="go"><span>Read</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins">2 min</span>
+        <span class="result" hidden><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.6 10.4l3 3 5.8-6.4" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Voted</b></span><span class="again" hidden>Read again</span>
+      </div>
+    </div>
+  </a>
+</section>
+
 
 <!-- The find-out row and the "Play live with friends" row left the page on 23 Oct 2026 (Khayyam): the green box is the
      way into the find-outs, and the rooms live in the Game rooms hub above. -->
@@ -481,6 +525,10 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="20" r="11" fill="#3F7A2A"/><circle cx="17.5" cy="18" r="2" fill="#fff"/><circle cx="26.5" cy="18" r="2" fill="#fff"/><path d="M16 25q6 5 12 0" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="8" cy="36" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="38" r="3.5" fill="#D5492F"/><circle cx="36" cy="36" r="3.5" fill="#0D7D73"/></svg></span>
         <span class="rooms-text"><b data-s="home.room_findout">Find out who you are with friends</b><span data-s="home.room_findout_sub">The nine find-out games, the room's curve on one screen, never one person.</span></span>
       </a>
+      <a class="rooms-item" data-kind="checkin" href="checkin/host/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><path d="M7 30a15 15 0 0 1 30 0" stroke="#F2B01E" stroke-width="5" stroke-linecap="round"/><path d="M22 30l7-9" stroke="#15172B" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="30" r="3.5" fill="#15172B"/><circle cx="8" cy="38" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="40" r="3.5" fill="#D5492F"/><circle cx="36" cy="38" r="3.5" fill="#0D7D73"/></svg></span>
+        <span class="rooms-text"><b data-s="home.room_checkin">Check in, as a group</b><span data-s="home.room_checkin_sub">You see the group, never one person.</span><span class="rooms-ask" data-s="home.code_checkin" hidden>The check-in's code (six letters)</span></span>
+      </a>
     </div>
     <form class="rooms-code" id="rooms-code" autocomplete="off" hidden aria-label="The code" data-s-aria-label="home.code_aria">
       <p class="quiet" id="rooms-code-h"></p>
@@ -562,13 +610,15 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="every-beat/puzzles.js"></script>
 <script src="out-of-24/puzzles.js"></script>
 <script src="same-energy/puzzles.js"></script>
-<script src="assets/js/turnsout.js?v=01e92d4a95"></script>
+<script src="assets/js/turnsout.js?v=140338bc68"></script>
 <script src="assets/js/duel.js?v=c4e6a61b81"></script>
 <script src="assets/js/rooms.js?v=496d2fe661"></script>
 <script src="assets/js/points.js?v=aa9c049981"></script>
 <script src="assets/js/world.js?v=54e98d60ad"></script>
 <script src="assets/js/said.js?v=5d6cde48e4"></script>
-<script src="assets/js/logicer.js?v=f998ff3c11"></script>
+<script src="assets/js/logicer.js?v=4e6a85de6b"></script>
+<script src="story/config.js?v=1"></script>
+<script src="story/tile.js?v=1"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */
@@ -851,7 +901,9 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     var KINDS = {
       daily: { ask: T("home.code_daily"), ok: /^[23456789abcdefghjkmnpqrstvwxyz]{10}$/, go: function (v) { return (LG ? LG.href("room/") : "room/") + "#r=" + v; }, lower: true },
       live: { ask: T("home.code_live"), ok: /^[A-Z]{5}$|^[A-Z]{7}$/, go: function (v) { return (LG ? LG.href("live/") : "live/") + "#" + v; } },
-      findout: { ask: T("home.code_findout"), ok: /^[A-Z]{5}$/, go: function (v) { return (LG ? LG.href("find-out/room/") : "find-out/room/") + "#" + v; } }
+      findout: { ask: T("home.code_findout"), ok: /^[A-Z]{5}$/, go: function (v) { return (LG ? LG.href("find-out/room/") : "find-out/room/") + "#" + v; } },
+      /* the Anonymous Check-in's rooms (4 Nov 2026): six consonants; the words over the field are the room's own line in the sheet */
+      checkin: { ask: null, ok: /^[BCDFGHJKMNPQRSTVWXZ]{6}$/, go: function (v) { return (LG ? LG.href("checkin/room/") : "checkin/room/") + "#" + v; } }
     };
     var mode = "go", kind = null;
     function open(m) {
@@ -872,7 +924,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
       e.preventDefault();
       kind = this.getAttribute("data-kind");
       for (var k = 0; k < items.length; k++) items[k].classList.toggle("on", items[k] === this);
-      head.textContent = KINDS[kind].ask; form.hidden = false; form.classList.remove("bad"); inp.value = "";
+      head.textContent = KINDS[kind].ask || (this.querySelector(".rooms-ask") || {}).textContent || ""; form.hidden = false; form.classList.remove("bad"); inp.value = "";
       try { inp.focus(); } catch (err) { /* the field is there all the same */ }
     });
     inp.addEventListener("input", function () { form.classList.remove("bad"); });

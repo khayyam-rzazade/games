@@ -1,0 +1,894 @@
+{
+ "week": 1,
+ "title": "The Ferry Comes Sunday",
+ "genre": "mystery",
+ "keyVotes": [
+  1,
+  6
+ ],
+ "days": [
+  {
+   "day": 1,
+   "versions": {
+    "": {
+     "screens": [
+      "The island has 212 people and one ferry. The ferry comes on Sundays.<br><br>You run the shop. The shop is also the post office. So you know things about everyone. Things you have never said out loud.",
+      "Monday, 6:40 in the morning. You are opening the door.<br><br>Marta's boy comes running down the hill. Nobody runs here.<br><br>\"The teacher didn't come,\" he says. \"The school is locked.\"",
+      "Aurel's house is at the end of the harbour.<br><br>The door is open. The kettle is still warm. His boat is tied up where it always is. His coat is on the hook.",
+      "On the kitchen table, three things, laid out neatly:<br><br>His house key.<br>A photo of a woman on a city street. You don't know her.<br>An envelope.",
+      "The envelope has a stamp. Your stamp. He bought it on Friday.<br><br>It is addressed to the police on the mainland.<br><br>Under the address, in his small neat writing: *Post this if I am not here to stop you.*",
+      "What you know about Aurel:<br><br>He came two years ago. He never said from where.<br>People like him.<br>In two years he has never received one letter. You would know.",
+      "One more thing.<br><br>Only one radio on the island reaches the mainland. It belongs to the harbour master.<br><br>Last winter, Aurel asked you about the harbour master. Carefully. The way people ask about the weather.",
+      "By nine, the whole island knows. By noon, twelve people have told you what they saw last night. Two of the stories cannot both be true.<br><br>Old Sef says he saw a light on the north cliffs at two in the morning.<br>Marta says Aurel came to the shop yesterday, looking for you. On a Sunday. When the shop was closed.",
+      "Night. You are at your own table. The envelope is in front of you.<br><br>In 31 years you have never opened a letter that was not yours.<br><br>The ferry comes in six days."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "\"Go home. Say nothing yet.\"",
+         "line": "He goes, but he looks back twice.",
+         "side": "left"
+        },
+        {
+         "text": "\"Go and tell the harbour master.\"",
+         "line": "He runs again. By seven, everyone will know.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "You go in.",
+         "line": "The floor creaks. Nobody answers.",
+         "side": "left"
+        },
+        {
+         "text": "You call his name from the door first.",
+         "line": "Nothing. Then you go in.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. What do you do?",
+      "A": {
+       "label": "Open it.",
+       "reason": "He is gone. Whatever he knew, you need to know it first.",
+       "axis": "truth-kindness",
+       "side": "left"
+      },
+      "B": {
+       "label": "Don't open it.",
+       "reason": "It is not yours. Keep it safe, say nothing, and watch who comes asking.",
+       "axis": "truth-kindness",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You slide a knife under the flap. One page. The first line is your own name.",
+      "B": "You put the envelope in your coat and lock the shop. At two in the morning, someone tries the back door. You stay very still. In the morning there are wet footprints on the step. They are not going away from the shop. They are going in."
+     },
+     "science": "Curiosity is a strong pull. In one study, people clicked more pens that might give a small electric shock than pens they knew would shock. They just wanted to find out."
+    }
+   }
+  },
+  {
+   "day": 2,
+   "versions": {
+    "A": {
+     "screens": [
+      "You slide a knife under the flap. One page. The first line is your own name.",
+      "After your name come these words: \"knows nothing about this. Please leave the postmaster out of it.\"<br><br>You read the line twice. It is kind. It is also not true.",
+      "The rest is short.<br><br>\"The woman in the photo is my sister. Twelve years ago she came to this island on the Sunday ferry. She never came home.<br><br>\"Every spring a card comes for the harbour master. A small lighthouse in black ink. My sister drew lighthouses from the time she was six.<br><br>\"Ask him where she is. If I am gone, ask him where I am.\"",
+      "You turn the photo over.<br><br>On the back, in black ink, is a small lighthouse.<br><br>You know this lighthouse. Every spring, one card comes for the harbour master with this drawing on it. No name. No words. Eleven springs, eleven cards. You have never told anyone.",
+      "By eight the shop is full. Nobody wants to buy anything. Everyone wants to talk.<br><br>\"He was too quiet.\" \"He was so kind to my girl.\" \"Who walks out and leaves a warm kettle?\"",
+      "At ten the harbour master comes in. He is the biggest man on the island. He shakes the rain off his hat.<br><br>\"Did the teacher leave anything?\" he asks. \"Papers? A letter?\"<br><br>His eyes go to the post box behind you. The letter is in your coat. You say no.",
+      "\"Old Sef talks about a light,\" he says. \"Sef is old. I was up all night by my radio. The cliffs were dark.\"<br><br>Sef saw a light. The harbour master saw dark. One of them is wrong. Or one of them is lying.",
+      "In the afternoon Old Sef comes in for his bread. You show him the photo. His face changes.<br><br>\"I carried her bag,\" Sef says. \"Twelve years ago, in spring. She asked for the harbour master.\"<br><br>\"Did she leave?\"<br><br>\"Not on any ferry. You hurt your leg that spring. Marta met the boats for you. She took this woman up the hill. To her father's house.\"",
+      "Marta is the harbour master's daughter. You have always known that. Today it sounds different.<br><br>At dusk her boy, Tobi, stands at the shop door. His eyes are red. \"Is the teacher dead?\" he asks.",
+      "Night. A knock. The harbour master again, at your door.<br><br>\"I can call the mainland police tonight,\" he says. \"On my radio. They will listen to me.\" He waits. \"Or we wait for the ferry. People listen to you. You choose.\""
+     ],
+     "small": [
+      {
+       "after": 4,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Tell them to go home.",
+         "line": "They go, slowly. A few of them look at your coat.",
+         "side": "left"
+        },
+        {
+         "text": "Let them talk.",
+         "line": "They talk for an hour. You learn only one thing: everyone is afraid.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 8,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "\"I don't know, Tobi.\"",
+         "line": "He nods. He was hoping you would say something else.",
+         "side": "left"
+        },
+        {
+         "text": "\"No. He will come back.\"",
+         "line": "He smiles for the first time today. You hope you are right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. What do you tell the harbour master?",
+      "A": {
+       "label": "Call them now.",
+       "reason": "A man is missing. Help should start tonight, not on Sunday.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      },
+      "B": {
+       "label": "Wait for the ferry.",
+       "reason": "Aurel did not trust him. Keep his radio out of it and search the island yourselves.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "The radio room is small and hot. The harbour master turns a knob. The radio hisses.<br><br>\"Island to mainland,\" he says. \"A man is missing.\"",
+      "B": "The harbour master takes his hand off the radio. \"As you like,\" he says. He shuts the radio room door. You hear the lock turn."
+     },
+     "science": "People decide if a stranger's face looks trustworthy in about a tenth of a second. Given more time, they mostly become more sure, not different."
+    },
+    "B": {
+     "screens": [
+      "You put the envelope in your coat and lock the shop. At two in the morning, someone tries the back door. You stay very still. In the morning there are wet footprints on the step. They are not going away from the shop. They are going in.",
+      "The back door is still locked. You open it with your own key.<br><br>Inside, nothing is broken. But a box of candles is open. Two candles are gone. So is one roll of bandage from the shelf.",
+      "Only two keys open that door.<br><br>One is yours. The other you gave to Aurel last winter, when you had the flu and he ran the shop for a week.<br><br>So it was Aurel. Or it was someone who has his keys.",
+      "At ten the harbour master comes in. He is the biggest man on the island. He shakes the rain off his hat.<br><br>\"Did the teacher leave anything?\" he asks. \"Papers? A letter?\"<br><br>Watch who comes asking. Here he is.",
+      "You feel the envelope in your coat. \"No,\" you say. \"Nothing.\"<br><br>He looks at you for a long time. \"Sef talks about a light,\" he says. \"Sef is old. I was up all night by my radio. The cliffs were dark.\"",
+      "In the afternoon Old Sef comes in for his bread. He sees the photo by the till.<br><br>\"He showed me that photo last year,\" Sef says. \"He said: this is my sister.\"",
+      "Sef holds it close to his eyes.<br><br>\"I carried her bag,\" Sef says. \"Twelve years ago, in spring. She asked for the harbour master.\"<br><br>\"Did she leave?\"<br><br>\"Not on any ferry. You hurt your leg that spring. Marta met the boats for you. She took this woman up the hill. To her father's house.\"",
+      "Sef turns the photo over. On the back, in black ink, is a small lighthouse.<br><br>You know this lighthouse. Every spring, one card comes for the harbour master with this drawing on it. No name. No words. Eleven springs, eleven cards. You have never told anyone.",
+      "At dusk Marta comes in. She is the harbour master's daughter. She does not meet your eyes.<br><br>\"My boy won't eat,\" she says. \"Tobi keeps asking about the teacher. What do I tell him?\"",
+      "Night. A knock. The harbour master again, at your door.<br><br>\"I can call the mainland police tonight,\" he says. \"On my radio. They will listen to me.\" He waits. \"Or we wait for the ferry. People listen to you. You choose.\""
+     ],
+     "small": [
+      {
+       "after": 2,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Ring the harbour bell. Tell everyone.",
+         "line": "People come running. You tell them. Now everyone is watching everyone.",
+         "side": "left"
+        },
+        {
+         "text": "Say nothing for now.",
+         "line": "You sweep the step. By noon the footprints are gone.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 8,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "\"Tell him the truth. Nobody knows.\"",
+         "line": "She nods slowly. \"That is what I was afraid of.\"",
+         "side": "left"
+        },
+        {
+         "text": "\"Tell him the teacher went to the mainland for a while.\"",
+         "line": "\"Yes,\" she says, too fast. \"Yes. That is good.\"",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. What do you tell the harbour master?",
+      "A": {
+       "label": "Call them now.",
+       "reason": "A man is missing. Help should start tonight, not on Sunday.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      },
+      "B": {
+       "label": "Wait for the ferry.",
+       "reason": "Aurel did not trust him. Keep his radio out of it and search the island yourselves.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "The radio room is small and hot. The harbour master turns a knob. The radio hisses.<br><br>\"Island to mainland,\" he says. \"A man is missing.\"",
+      "B": "The harbour master takes his hand off the radio. \"As you like,\" he says. He shuts the radio room door. You hear the lock turn."
+     },
+     "science": "People decide if a stranger's face looks trustworthy in about a tenth of a second. Given more time, they mostly become more sure, not different."
+    }
+   }
+  },
+  {
+   "day": 3,
+   "versions": {
+    "A": {
+     "screens": [
+      "The radio room is small and hot. The harbour master turns a knob. The radio hisses.<br><br>\"Island to mainland,\" he says. \"A man is missing.\"",
+      "A voice answers from far away. A woman. She asks questions. How old is he? How tall? Where is he from?<br><br>The harbour master looks at you. You know every name on this island. You know every address. You do not know where Aurel is from.",
+      "\"A storm is coming,\" the voice says. \"No boat can come before Sunday. Search the island. We will check our lists.\"<br><br>The radio hisses again, and she is gone.",
+      "Wednesday morning. The radio calls back, and you are there to hear it.<br><br>\"There is no teacher with that name on any list,\" the voice says. \"Not in any school. Not anywhere.\"",
+      "The harbour master says nothing for a long time.<br><br>The island pays its own teacher. Nobody on the mainland sent Aurel. He just came, two years ago, on a Sunday, and asked for the job. Nobody asked for papers. He was so good with the children.",
+      "By noon the whole island knows. The radio room has thin walls, and Tobi was sitting outside it.<br><br>At one, people meet in the school. It is the only room big enough. Aurel's chalk is still on the board: the word SEA, in big letters.<br><br>On the walls are the children's pictures. Twenty pictures of the sea, all of them blue.",
+      "People shout over each other.<br><br>\"He lied to us.\" \"He taught my son to read.\" \"Then who was he?\"<br><br>Marta stands at the back by the door. She does not look at her father.",
+      "Someone asks what everyone is thinking. On the north cliffs stands the old lighthouse, dark for twenty years. On Monday the harbour master put a new lock on its door. Why?<br><br>\"The stairs are rotten,\" he says. \"I don't want a child to fall.\" He has the only key.",
+      "Then a fisherman stands up. \"Search every house,\" he says. \"Today. He could be in any cellar. Every hour counts.\"<br><br>A woman stands too. \"Nobody comes into my house but the police,\" she says. \"Wait for them. It is only four days.\"",
+      "Everyone turns to look at you. You know every house. You know every door.<br><br>Outside, the wind is getting stronger."
+     ],
+     "small": [
+      {
+       "after": 4,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Think it through. A false name is not a crime.",
+         "line": "That is true. It does not help much.",
+         "side": "left"
+        },
+        {
+         "text": "Let yourself be angry. He lied to all of you.",
+         "line": "The anger feels better than the fear. For a minute.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "Ask him for the key, right now.",
+         "line": "\"After Sunday,\" he says. He does not even look at you.",
+         "side": "left"
+        },
+        {
+         "text": "Let it go for today.",
+         "line": "He gives you a small nod, as if you did him a favour.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. Do you search every house?",
+      "A": {
+       "label": "Search every house now.",
+       "reason": "He could be in any cellar. Waiting four more days could be too late.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Wait for the police.",
+       "reason": "Homes are private. Neighbours who search each other's homes stop being neighbours.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "They search in pairs, two people for every house. Nobody knocks. They just go in.<br><br>Your house is first. You stand in your own kitchen while your neighbours open your cupboards.",
+      "B": "Nobody searches. But that night, for the first time anyone can remember, people lock their doors. In the morning you hear keys turning all along the harbour."
+     },
+     "science": "In penalty kicks, goalkeepers jump left or right about 94 times in 100. But keepers who stay in the middle stop more kicks. Doing something often feels better than waiting."
+    },
+    "B": {
+     "screens": [
+      "The harbour master takes his hand off the radio. \"As you like,\" he says. He shuts the radio room door. You hear the lock turn.",
+      "Wednesday, first light. Twenty people meet at the harbour to search. Nobody asked them to come. They just came. Old men with sticks. Women with dogs. Two boys who should be in school.<br><br>You walk north along the cliff path. The wind pulls at your coat.",
+      "At the end of the north cliffs stands the old lighthouse. It has been dark for twenty years.<br><br>On its door is a new lock. Bright and shiny. Nobody has seen it before.",
+      "In the grass near the door, Old Sef finds a torch. The glass is cracked. On the side, in white paint, are the letters SCHOOL.<br><br>It is Aurel's. Every child on the island knows that torch. Sef turns it over and over in his old hands.",
+      "The harbour master comes up the path, out of breath.<br><br>\"I put that lock on,\" he says. \"On Monday. The stairs are rotten. I don't want a child to fall.\"<br><br>\"Open it,\" someone says. He does not move.",
+      "\"There is nobody in there,\" he says. \"I looked. Go home.\" He puts the key back in his pocket.<br><br>Nobody pushes him. He is the harbour master. He has always been the harbour master.",
+      "At one, the island meets in the school. It is the only room big enough. Aurel's chalk is still on the board: the word SEA, in big letters.<br><br>On the walls are the children's pictures. Twenty pictures of the sea, all of them blue.",
+      "People shout over each other.<br><br>\"Why a new lock?\" \"He was good to my boy.\" \"Then where is he?\"<br><br>Marta stands at the back by the door. She does not look at her father.",
+      "Then a fisherman stands up. \"Search every house,\" he says. \"Today. He could be in any cellar. Every hour counts.\"<br><br>A woman stands too. \"Nobody comes into my house but the police,\" she says. \"Wait for them. It is only four days.\"",
+      "Everyone turns to look at you. You know every house. You know every door.<br><br>Outside, the wind is getting stronger."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Think. What cracks the glass of a torch?",
+         "line": "A fall. A throw. A drop on stone. It could be any of them.",
+         "side": "left"
+        },
+        {
+         "text": "Just hold it for a moment. It was his.",
+         "line": "It is cold and wet. Your hand does not want to let go.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 5,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "Push him for the key, right now.",
+         "line": "\"After Sunday,\" he says. He does not even look at you.",
+         "side": "left"
+        },
+        {
+         "text": "Let it go for today.",
+         "line": "He gives you a small nod, as if you did him a favour.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. Do you search every house?",
+      "A": {
+       "label": "Search every house now.",
+       "reason": "He could be in any cellar. Waiting four more days could be too late.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Wait for the police.",
+       "reason": "Homes are private. Neighbours who search each other's homes stop being neighbours.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "They search in pairs, two people for every house. Nobody knocks. They just go in.<br><br>Your house is first. You stand in your own kitchen while your neighbours open your cupboards.",
+      "B": "Nobody searches. But that night, for the first time anyone can remember, people lock their doors. In the morning you hear keys turning all along the harbour."
+     },
+     "science": "In penalty kicks, goalkeepers jump left or right about 94 times in 100. But keepers who stay in the middle stop more kicks. Doing something often feels better than waiting."
+    }
+   }
+  },
+  {
+   "day": 4,
+   "versions": {
+    "A": {
+     "screens": [
+      "They search in pairs, two people for every house. Nobody knocks. They just go in.<br><br>Your house is first. You stand in your own kitchen while your neighbours open your cupboards.",
+      "By evening they have opened every cellar, every shed and every loft on the island. They find old nets, a lot of dust, forty jars of jam that nobody remembers making, and a cat that went missing in May.<br><br>They do not find Aurel.",
+      "In the harbour master's house, someone opens a drawer and finds a tin box.<br><br>Inside are eleven cards. On each one is a small lighthouse in black ink. No names. No words.<br><br>\"From a friend,\" he says. \"It is nobody's business.\" His face is red.",
+      "Everyone looks at the cards. Then at him. Then north, at the old lighthouse on the cliffs.<br><br>\"A lighthouse is not a house,\" he says. Nobody argues. The sky is too black for the cliffs today.",
+      "Marta's house is the last one on the hill. Before the searchers get there, Tobi runs to you.<br><br>He pushes something into your coat. \"Don't let them find it,\" he whispers. Then he is gone.",
+      "At home you take it out. A school notebook in Aurel's small neat writing.<br><br>Most pages are spelling lists. But near the back is a list of dates. One date every spring. Eleven dates.<br><br>You know these dates. They are the days the lighthouse cards came. You wrote each one in your post book.",
+      "Under the dates is one line:<br><br>\"Sunday night. Lighthouse. He will tell me tonight. I will not leave until he does.\"",
+      "Close to midnight there is a small knock at the back door. It is Tobi. He has run all the way.<br><br>\"I went to his house on Monday,\" he says. \"Before I came to you. I took the notebook from his bag. He always said: if I am ever gone, keep it safe.\"",
+      "\"Mum saw it,\" Tobi says. \"She told me to burn it. She was crying.\" He looks up at you. \"Please don't tell her I gave it to you.\"",
+      "Tobi is ten. He has never asked you for anything before.<br><br>The notebook is on your table now, next to the envelope. Outside, the wind is shaking every gate on the island."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Tell the searchers to go to the lighthouse anyway.",
+         "line": "Two men say yes. Then they look at the sky and say tomorrow.",
+         "side": "left"
+        },
+        {
+         "text": "Go home with the others.",
+         "line": "You walk home in a long, quiet line.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 6,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "You hear steps outside. Open the door and look.",
+         "line": "Nobody there. Only the wind, and a gate banging somewhere.",
+         "side": "left"
+        },
+        {
+         "text": "You hear steps outside. Stay in and put out the lamp.",
+         "line": "You wait in the dark. After a while, the steps go away.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. Do you tell Marta?",
+      "A": {
+       "label": "Tell Marta.",
+       "reason": "She is his mother. Whatever she is hiding, she would never hurt her own boy.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      },
+      "B": {
+       "label": "Keep it from her.",
+       "reason": "She told him to burn it. Until you know why, she is the last person to tell.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You walk up the hill in the dark. Marta opens the door before you knock. She sees the notebook in your hand, and her face goes white.",
+      "B": "You hide the notebook in the flour sack. In the morning the storm comes in from the west, black and low, and it does not stop all day."
+     },
+     "science": "The average person keeps about 13 secrets, and has never told anyone about 5 of them. What hurts most is not hiding a secret. It is thinking about it alone."
+    },
+    "B": {
+     "screens": [
+      "Nobody searches. But that night, for the first time anyone can remember, people lock their doors. In the morning you hear keys turning all along the harbour.",
+      "Thursday. People come into the shop, buy one thing, look at each other, and leave. Yesterday everyone talked too much. Today nobody talks at all.<br><br>All day there is a light on in the radio room. Nobody knows who the harbour master is talking to.",
+      "At noon you go to see him. He sits at his desk. He has not slept.<br><br>\"The cards,\" you say. \"The lighthouse cards. Who sends them?\"",
+      "He looks at you for a long time.<br><br>\"A friend,\" he says. \"Some things are not yours to know. You are the postmaster. You should understand that.\"<br><br>He turns back to his radio.",
+      "Walking home, you look north. The old lighthouse is a grey shape against a grey sky. Dark for twenty years. You used to think it was beautiful.<br><br>Old Sef is waiting at the shop. \"If nobody will search,\" he says, \"I will search on my own.\" He walks off north with his stick.",
+      "Close to midnight there is a small knock at the back door. It is Tobi. He has run all the way. He pushes a school notebook into your hands. Aurel's.<br><br>\"I went to his house on Monday,\" he says. \"Before I came to you. I took this from his bag. He always said: if I am ever gone, keep it safe.\"",
+      "Most pages are spelling lists. But near the back is a list of dates. One date every spring. Eleven dates.<br><br>You know these dates. They are the days the lighthouse cards came. You wrote each one in your post book.",
+      "Under the dates is one line:<br><br>\"Sunday night. Lighthouse. He will tell me tonight. I will not leave until he does.\"",
+      "\"Mum saw it,\" Tobi says. \"She told me to burn it. She was crying.\" He looks up at you. \"Please don't tell her I gave it to you.\"",
+      "Tobi is ten. He has never asked you for anything before.<br><br>The notebook is on your table now, next to the envelope. Outside, the wind is shaking every gate on the island."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Tell him you will find out anyway.",
+         "line": "\"Then I am sorry for you,\" he says quietly. It does not sound like a threat. It sounds sad.",
+         "side": "left"
+        },
+        {
+         "text": "Leave him alone.",
+         "line": "You close the door softly. He does not look up.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 8,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Let him run home alone in the dark.",
+         "line": "He is gone before you can change your mind.",
+         "side": "left"
+        },
+        {
+         "text": "Walk him home.",
+         "line": "At his gate he lets go of your hand. Upstairs, a curtain moves.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. Do you tell Marta?",
+      "A": {
+       "label": "Tell Marta.",
+       "reason": "She is his mother. Whatever she is hiding, she would never hurt her own boy.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      },
+      "B": {
+       "label": "Keep it from her.",
+       "reason": "She told him to burn it. Until you know why, she is the last person to tell.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You walk up the hill in the dark. Marta opens the door before you knock. She sees the notebook in your hand, and her face goes white.",
+      "B": "You hide the notebook in the flour sack. In the morning the storm comes in from the west, black and low, and it does not stop all day."
+     },
+     "science": "The average person keeps about 13 secrets, and has never told anyone about 5 of them. What hurts most is not hiding a secret. It is thinking about it alone."
+    }
+   }
+  },
+  {
+   "day": 5,
+   "versions": {
+    "A": {
+     "screens": [
+      "You walk up the hill in the dark. Marta opens the door before you knock. She sees the notebook in your hand, and her face goes white.",
+      "She reads the last page standing up. Her hands shake.<br><br>Then she opens the stove and puts the notebook into the fire. The pages curl. The spelling lists go first. Then the dates.",
+      "\"Leave it,\" she says. \"Please. You don't know what you are doing.\"<br><br>\"Then tell me.\"<br><br>She shakes her head. \"It is not mine to tell.\"",
+      "On the stairs, Tobi is watching. He saw it all. He looks at you as if you were a stranger. Then he goes up to his room and shuts the door.",
+      "Walking home, you pass the harbour master's house. A lamp is on in the kitchen.<br><br>Through the window you see him at the table, alone. His head is in his hands.",
+      "Friday. The storm comes in from the west. The ferry would not sail in this, even if it were Sunday.<br><br>Waves jump over the harbour wall. Boats knock against each other. Nobody goes out.",
+      "Tobi does not come for bread. For the first time in years, nobody sends him.<br><br>Instead the harbour master comes himself. Two loaves. Candles. Matches. He pays and says nothing.",
+      "At three the power goes out across the island. You light a lamp in the shop.<br><br>In its yellow light you look at the envelope. You have carried it for five days. The corners are soft now.<br><br>You think of Monday. The warm kettle. The coat on the hook. Three things on a table, laid out like a message.",
+      "Just after midnight, someone bangs on your door. It is Old Sef, wet all over.<br><br>\"The lighthouse,\" he shouts over the wind. \"There is a light in it. Right now.\"",
+      "You look north. Through the rain, high on the cliffs, there is a small yellow light. It goes on. Off. On.<br><br>The path is narrow. The cliffs are high. In this wind, one wrong step and you are gone."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Explain through his door why you told.",
+         "line": "\"You promised,\" he says. That is all.",
+         "side": "left"
+        },
+        {
+         "text": "Just say sorry.",
+         "line": "Nothing. Then, very quietly: \"OK.\"",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "Write down everything you know, tonight.",
+         "line": "It fills one page. Half of it is questions.",
+         "side": "left"
+        },
+        {
+         "text": "Wait. It will be clearer after the storm.",
+         "line": "You blow out the lamp early. The storm does not stop.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. Do you go up?",
+      "A": {
+       "label": "Go now.",
+       "reason": "Whoever is up there will be gone by morning. This is the only chance.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Wait for first light.",
+       "reason": "The cliff path in this storm could kill you. Nobody is helped if you fall.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You take the storm lamp and go. Sef goes with you. The rain is so hard it hurts your face. Twice the wind knocks Sef to his knees. Twice you pull him up.",
+      "B": "You wait. All night the light on the cliffs goes on and off, on and off. At four it goes out and stays out. You do not sleep at all."
+     },
+     "science": "Fear makes people see more danger and make safer choices. Anger does the opposite: angry people see less danger and take more risks."
+    },
+    "B": {
+     "screens": [
+      "You hide the notebook in the flour sack. In the morning the storm comes in from the west, black and low, and it does not stop all day.",
+      "Friday. Waves jump over the harbour wall. Boats knock against each other. The ferry would not sail in this, even if it were Sunday.<br><br>At ten the power goes out across the island. You light a lamp in the shop.",
+      "At eleven Marta comes in, wet through. Her hands are red from the cold. She buys two loaves. Candles. Matches.<br><br>For ten years she has bought one loaf a day. You know. You sell it to her.",
+      "\"For my father,\" she says, before you can ask. \"He doesn't sleep. He sits up all night with his radio.\"<br><br>She looks at the flour sack behind you. Just for a second. Then she goes.",
+      "In the afternoon you take out the notebook again. You turn it slowly in the lamplight.<br><br>Inside the back cover, very small, Aurel has drawn the island. There is a tiny X on the north cliffs. Next to it he wrote: Sunday, 2 o'clock. The lines are careful, like everything he did.",
+      "Two in the morning. The same time Old Sef saw the light.<br><br>Aurel planned to be up there. And someone knew he would be.",
+      "Tobi does not come for bread today. In this storm, nobody sends children out. The shop is too quiet without him.",
+      "At dusk the harbour master walks past your window in the rain. He has a storm lamp and a heavy bag.<br><br>He does not go home. He walks north.",
+      "Just after midnight, someone bangs on your door. It is Old Sef, wet all over.<br><br>\"The lighthouse,\" he shouts over the wind. \"There is a light in it. Right now.\"",
+      "You look north. Through the rain, high on the cliffs, there is a small yellow light. It goes on. Off. On.<br><br>The path is narrow. The cliffs are high. In this wind, one wrong step and you are gone."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Think. Two loaves is a lot for one man.",
+         "line": "Too much for one man. Just right for two.",
+         "side": "left"
+        },
+        {
+         "text": "Let it go. She looks so tired.",
+         "line": "You put an extra candle in her bag. She does not see.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 5,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "Go and tell Sef what you found. Now.",
+         "line": "His door is locked. For the first time ever, he does not answer.",
+         "side": "left"
+        },
+        {
+         "text": "Keep it to yourself until the storm is over.",
+         "line": "The notebook goes back in the flour. The X stays in your head.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. Do you go up?",
+      "A": {
+       "label": "Go now.",
+       "reason": "Whoever is up there will be gone by morning. This is the only chance.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Wait for first light.",
+       "reason": "The cliff path in this storm could kill you. Nobody is helped if you fall.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You take the storm lamp and go. Sef goes with you. The rain is so hard it hurts your face. Twice the wind knocks Sef to his knees. Twice you pull him up.",
+      "B": "You wait. All night the light on the cliffs goes on and off, on and off. At four it goes out and stays out. You do not sleep at all."
+     },
+     "science": "Fear makes people see more danger and make safer choices. Anger does the opposite: angry people see less danger and take more risks."
+    }
+   }
+  },
+  {
+   "day": 6,
+   "versions": {
+    "A": {
+     "screens": [
+      "You take the storm lamp and go. Sef goes with you. The rain is so hard it hurts your face. Twice the wind knocks Sef to his knees. Twice you pull him up.",
+      "The lighthouse door is locked. High above you, the light is still on.<br><br>You bang on the door with both fists. You shout Aurel's name. The wind is so loud you cannot hear your own voice.",
+      "Then the light goes out.<br><br>You wait. Nobody comes down. Nobody opens the door. There is only the wind, and the sea far below, hitting the rocks.",
+      "On the step at your feet is a tin mug. You know it. You sell them. You sold this one.<br><br>You pick it up. It is still a little warm.",
+      "At last Sef pulls your arm. \"We go back now,\" he says, \"or we do not go back at all.\" You go back.<br><br>Near the bottom of the path, a man's shape crosses in front of you in the dark. He walks fast toward the harbour master's house. Then the rain hides him.",
+      "Saturday. The storm is over. The sea is flat and grey, as if nothing happened. Broken branches lie in the street.<br><br>At nine the harbour master comes into the shop. He looks like he has not slept for a week. Maybe he hasn't.",
+      "\"You were up at the lighthouse last night,\" he says. It is not a question. \"Don't go up there again. Not in a storm. Not ever.\"<br><br>At the door he stops. \"The stairs are rotten,\" he says again, more quietly. Then he goes.",
+      "At noon Marta comes. She shuts the door behind her and turns the sign to CLOSED.<br><br>\"I know you have his letter,\" she says. \"Please. Don't post it. Aurel would not want it. I know he would not.\"",
+      "\"How do you know?\"<br><br>\"I can't tell you.\" Her eyes fill. \"If the police come, they will open every drawer on this island. Every one. And then it is over.\"<br><br>\"What is over?\"",
+      "Tomorrow the ferry comes. Tomorrow the mail bag goes out.<br><br>The envelope lies on your table. On the front, in his small neat writing: *Post this if I am not here to stop you.*<br><br>He is not here."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Shout: \"We are friends! We only want to help!\"",
+         "line": "Nobody answers. The door stays shut.",
+         "side": "left"
+        },
+        {
+         "text": "Hide behind the wall and watch the door.",
+         "line": "You wait an hour in the rain. Nobody comes out. Nobody you can see.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 8,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Tell her the truth: you might still post it.",
+         "line": "She closes her eyes. \"Then I can't stop you,\" she says, and goes.",
+         "side": "left"
+        },
+        {
+         "text": "Tell her not to worry.",
+         "line": "She tries to smile. It does not work. She goes.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. The ferry comes in the morning. Do you post Aurel's letter?",
+      "A": {
+       "label": "Post it.",
+       "reason": "He wrote it down. He is not here. A man is missing, and the police must know.",
+       "axis": "head-heart",
+       "side": "left"
+      },
+      "B": {
+       "label": "Don't post it.",
+       "reason": "Marta is begging you. She knows something you don't. Trust her.",
+       "axis": "head-heart",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>You drop the envelope into the mail bag. It lands on top. The bag is tied and carried on board.",
+      "B": "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>The mail bag goes on board without the envelope. It is still in your coat. You can feel it when you breathe."
+     },
+     "science": "Reporting a wrong pulls two good values against each other: fairness and loyalty. People who put fairness first are more ready to report. People who put loyalty first hold back."
+    },
+    "B": {
+     "screens": [
+      "You wait. All night the light on the cliffs goes on and off, on and off. At four it goes out and stays out. You do not sleep at all.",
+      "Saturday, first light. The storm is over. The sea is flat and grey, as if nothing happened.<br><br>Gulls are back on the harbour wall. You and Sef walk north. The path is all mud. Twice Sef slips. Twice you hold him.",
+      "The lighthouse door is locked. The new lock is wet and bright.<br><br>On the step are the ends of three candles, melted into the stone. And a tin mug. You know it. You sell them. You sold this one.",
+      "In the mud there are boot prints. Big ones. They come from the lighthouse door and go down the hill. Not toward the village. Toward the harbour master's house.",
+      "Halfway down, you meet the harbour master coming up. His boots are muddy. His eyes are red.<br><br>\"Checking the lamp,\" he says. \"After a storm, someone has to.\" He walks past you without another word.",
+      "Back at the shop, Sef sits on the bench outside for a long time.<br><br>\"Twelve years,\" he says, to nobody. \"Twelve years I have looked at that lighthouse from my window.\"",
+      "At noon Marta comes. She shuts the door behind her and turns the sign to CLOSED.<br><br>\"I know you have his letter,\" she says. \"Please. Don't post it. Aurel would not want it. I know he would not.\"",
+      "\"How do you know?\"<br><br>\"I can't tell you.\" Her eyes fill. \"If the police come, they will open every drawer on this island. Every one. And then it is over.\"<br><br>\"What is over?\"",
+      "In the evening Tobi comes for bread, the first time in days. At the door he stops.<br><br>\"Mum says the teacher is not coming back to school,\" he says. \"Is that true?\" He runs before you can answer.",
+      "Tomorrow the ferry comes. Tomorrow the mail bag goes out.<br><br>The envelope lies on your table. On the front, in his small neat writing: *Post this if I am not here to stop you.*<br><br>He is not here."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Leave them. Boot prints can mean anything.",
+         "line": "Sef looks at you. Then at the prints. He says nothing.",
+         "side": "left"
+        },
+        {
+         "text": "Follow the prints.",
+         "line": "They end at his back door. The door is shut.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Tell her the truth: you might still post it.",
+         "line": "She closes her eyes. \"Then I can't stop you,\" she says, and goes.",
+         "side": "left"
+        },
+        {
+         "text": "Tell her not to worry.",
+         "line": "She tries to smile. It does not work. She goes.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. The ferry comes in the morning. Do you post Aurel's letter?",
+      "A": {
+       "label": "Post it.",
+       "reason": "He wrote it down. He is not here. A man is missing, and the police must know.",
+       "axis": "head-heart",
+       "side": "left"
+      },
+      "B": {
+       "label": "Don't post it.",
+       "reason": "Marta is begging you. She knows something you don't. Trust her.",
+       "axis": "head-heart",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>You drop the envelope into the mail bag. It lands on top. The bag is tied and carried on board.",
+      "B": "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>The mail bag goes on board without the envelope. It is still in your coat. You can feel it when you breathe."
+     },
+     "science": "Reporting a wrong pulls two good values against each other: fairness and loyalty. People who put fairness first are more ready to report. People who put loyalty first hold back."
+    }
+   }
+  },
+  {
+   "day": 7,
+   "versions": {
+    "AA": {
+     "screens": [
+      "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>You drop the envelope into the mail bag. It lands on top. The bag is tied and carried on board.",
+      "The harbour master watches the bag go up the ramp. His face goes grey.<br><br>He walks across the harbour to you, slowly, like a much older man.",
+      "He puts a key in your hand. It is new and bright. The lighthouse key.<br><br>\"He is in the lamp room,\" he says. \"He is cold. But he is all right. I brought him food every night.\"",
+      "\"Why?\" you ask.<br><br>For a long time he does not answer. Then: \"Twelve years ago she came here to see me. I had met her on the mainland. One night I took her out in my boat to see the cliffs. The weather turned. The boat hit the rocks.\"",
+      "\"I got to the shore. She did not.\" He looks at the water. \"I told nobody. I was afraid. I told Marta she left on a fishing boat. Marta believed me. Until this week.\"",
+      "\"The cards,\" you say.<br><br>\"I drew them myself, the way she drew them. One every spring. The ferry captain posts them for me on the mainland.\" His voice breaks. \"I wanted her to be somewhere. Even if it was only on a card.\"",
+      "\"On Sunday night your teacher came up to the lighthouse with her photo. He knew. I could not let him go. I could not hurt him. So I locked the door. Every night I sat outside it, and I did not know what to do.\"",
+      "Then he walks up the ramp onto the ferry. He is going to the mainland police himself, before they read the letter.<br><br>Marta stands on the harbour wall. Yesterday she lied to you, for him. She knows that you know. She does not look away.",
+      "You run north with Tobi and Sef. The key turns. The stairs are not rotten at all.<br><br>At the top, in the round glass room, Aurel sits on a blanket. He is thin and grey. When he sees Tobi, he starts to cry.",
+      "\"Did you post it?\" he asks.<br><br>\"Yes. I read it first.\"<br><br>He nods. Tobi takes his hand. \"Will you come back to school?\"<br><br>Aurel looks out at the ferry, small now on the grey water. He opens his mouth to answer."
+     ],
+     "small": [],
+     "science": "After people make a choice, they tend to remember their own choice as better than it was, and the other option as worse."
+    },
+    "AB": {
+     "screens": [
+      "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>The mail bag goes on board without the envelope. It is still in your coat. You can feel it when you breathe.",
+      "When the ferry has gone, the harbour master comes to you. He holds out his hand.<br><br>\"The letter,\" he says. \"I think you have read it. Now let me tell you the part he did not know when he wrote it.\"",
+      "\"Twelve years ago a young woman got off the ferry, shaking. She was running from her husband. She was afraid of what he would do if he found her. She had heard that on this island, the harbour master does not write down every name.\"",
+      "\"Marta brought her to my house. Three weeks later, on a dark night, I took her down the north cliffs to a fishing boat. It took her far away, to a new name and a new life.\"<br><br>\"And the cards?\"<br><br>\"Hers. One every spring. They mean: I am still safe.\"",
+      "\"Your teacher told the truth. She is his sister. But men have come before, saying they were family. For two years I did not believe him.\"",
+      "\"On Sunday night he came up to the lighthouse with her photo. He knew things only a brother could know. So I told him everything. Then I told him what his letter would do.\"",
+      "\"Police write reports. Many people read them. If her husband ever reads that one, he will know where to start looking.\"<br><br>\"So where is Aurel?\"",
+      "\"At two in the morning I called the fishing boat with the lamp. Sef saw it. Aurel went down the cliffs in the dark. He dropped his torch. He did not go back for his coat. He is with her now.\"<br><br>All week he sat up in the lighthouse at night, waiting for the boat to signal that Aurel had reached her. On Friday, in the storm, it did, and he flashed his lamp back. That was the light you saw.",
+      "\"He asked Marta to burn his letter before anyone found it. At seven she went to his house. You were already there.\"<br><br>So Marta told you the truth. Even that much cost her a lot.",
+      "You open the stove and give the letter to the fire. You read it once. You will never read it again.<br><br>The harbour master watches it burn. \"One more thing,\" he says. \"She asked about you. The postmaster who never said a word. She wants to meet you.\""
+     ],
+     "small": [],
+     "science": "After people make a choice, they tend to remember their own choice as better than it was, and the other option as worse."
+    },
+    "BA": {
+     "screens": [
+      "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>You drop the envelope into the mail bag. It lands on top. The bag is tied and carried on board.",
+      "Then a man comes down the hill road in a clean white shirt. People stop talking. Someone drops a box of fish.<br><br>It is Aurel.",
+      "He walks through the crowd as if nothing has happened. One hand is wrapped in bandage. Your bandage.<br><br>At the ramp he turns and finds you. \"Thank you,\" he says. \"I knew you would post it.\"",
+      "The harbour master pushes through to you. His face is white.<br><br>\"You didn't read it,\" he says. \"Did you?\"<br><br>You shake your head. You never opened it. You were proud of that.",
+      "Marta takes your arm. Her voice is very low. \"Yesterday I lied to you. He never asked me anything. I only wanted to stop that letter.\"<br><br>\"He is not her brother. He is her husband. Twelve years ago she ran from him. I met her at this harbour. She was shaking so hard she could not hold her bag.\"",
+      "\"My father hid her. Then one night he took her off the island, from the north cliffs. The cards are from her. They mean: I am still safe.<br><br>\"That man looked for her for ten years. Then he came here as a teacher, and he waited. He is very good at being liked.\"",
+      "Now you understand the letter you never read. It tells the police that a woman came here and was never seen again. It tells them the harbour master knows. It tells them to look at his cards.<br><br>The cards have postmarks. The postmarks name the town where she lives.",
+      "On Sunday night, up at the lighthouse, the harbour master told him to leave on the next ferry. So he made himself disappear instead. He hid all week in the sea caves under the north cliffs, with your candles, so the island would be afraid for him. A missing man makes the police listen.<br><br>Every night the harbour master sat up in the lighthouse with a lamp, looking for him.",
+      "The ramp goes up. Aurel stands at the back of the ferry, one hand raised, smiling at the island that loved him.<br><br>Tobi waves back. He does not understand yet.",
+      "The harbour master is already running to the radio room. You run after him.<br><br>He turns the knob. The radio hisses. Then he says a name you have never heard before. Her real name. And he waits for someone far away to answer."
+     ],
+     "small": [],
+     "science": "After people make a choice, they tend to remember their own choice as better than it was, and the other option as worse."
+    },
+    "BB": {
+     "screens": [
+      "Sunday. The ferry horn sounds across the water. The whole island is at the harbour.<br><br>The mail bag goes on board without the envelope. It is still in your coat. You can feel it when you breathe.",
+      "Then Old Sef comes down the north road, pulling a fish cart. Marta walks beside it with one hand on the side.<br><br>In the cart, wrapped in blankets, is Aurel. His leg is tied to a piece of wood. He is pale. He is alive.",
+      "The whole harbour goes quiet.<br><br>\"He fell on the cliff path on Sunday night,\" Sef says. \"I found him in the rocks at dawn. I hid him in the cave under my hut, where I keep my nets. You can only get in when the tide is low. I took candles and bandage from your shop with his key. I am sorry I frightened you.\"",
+      "\"Why hide him?\" you ask.<br><br>Sef looks at the harbour master. \"Twelve years ago I carried a woman's bag up that hill. Then she was gone. When I found her brother at the bottom of the cliffs, I thought I knew who put him there.\"",
+      "The harbour master's face goes red, then white. \"I never touched him,\" he says. \"I told him the truth that night. Then he walked off into the dark. Every night this week I went up to the lighthouse with a lamp to look for him.\"",
+      "Aurel lifts one hand. \"It's true,\" he says. \"He told me she is alive. She ran from a bad man, and he helped her hide. My letter could lead that man to her. I asked Sef to stop you posting it. Sef sent Marta.\"<br><br>\"She is the one person in that house I trust,\" Sef says. So Marta told you the truth.",
+      "Then the ferry ramp comes down. The first person off is a woman in a grey coat.<br><br>She is older than in the photo. Her hair is short now. But Sef knows her right away. So do you.",
+      "\"I called her on the radio on Tuesday night,\" the harbour master says quietly. \"After I talked to him, I believed him. I thought she should come. Even if he was never found.\"",
+      "She walks down the ramp slowly, then fast. She kneels by the fish cart. For a long time neither of them says a word.<br><br>Tobi holds his mother's hand very tight.",
+      "You take the envelope out of your coat. You never opened it. You never posted it. You hold it out to Aurel.<br><br>He shakes his head and points at his sister. She takes it and turns it over in her hands. Then she looks up at you. \"You're the postmaster,\" she says. \"I have a letter too. Twelve years old. I never knew where to send it.\""
+     ],
+     "small": [],
+     "science": "After people make a choice, they tend to remember their own choice as better than it was, and the other option as worse."
+    }
+   }
+  }
+ ],
+ "_sources": [
+  {
+   "day": 1,
+   "title": "Hsee & Ruan (2016), The Pandora Effect: The Power and Peril of Curiosity. Psychological Science 27(5), 659-666",
+   "link": "https://doi.org/10.1177/0956797616631733"
+  },
+  {
+   "day": 2,
+   "title": "Willis & Todorov (2006), First impressions: Making up your mind after a 100-ms exposure to a face. Psychological Science 17(7), 592-598",
+   "link": "https://pubmed.ncbi.nlm.nih.gov/16866745/"
+  },
+  {
+   "day": 3,
+   "title": "Bar-Eli, Azar, Ritov, Keidar-Levin & Schein (2007), Action bias among elite soccer goalkeepers: The case of penalty kicks. Journal of Economic Psychology 28(5), 606-621 (286 kicks; keepers jumped 93.7% of the time; staying in the centre stopped 33.3%)",
+   "link": "https://doi.org/10.1016/j.joep.2006.12.001"
+  },
+  {
+   "day": 4,
+   "title": "Slepian, Chun & Mason (2017), The experience of secrecy. Journal of Personality and Social Psychology (13 secrets on average, 5 never told; mind-wandering to secrets, not hiding them, goes with lower well-being) - Columbia University summary",
+   "link": "https://news.columbia.edu/node/138"
+  },
+  {
+   "day": 5,
+   "title": "Lerner & Keltner (2001), Fear, anger, and risk. Journal of Personality and Social Psychology 81(1), 146-159",
+   "link": "https://pubmed.ncbi.nlm.nih.gov/11474720/"
+  },
+  {
+   "day": 6,
+   "title": "Waytz, Dungan & Young (2013), The whistleblower's dilemma and the fairness-loyalty tradeoff. Journal of Experimental Social Psychology 49(6), 1027-1033",
+   "link": "https://doi.org/10.1016/j.jesp.2013.07.002"
+  },
+  {
+   "day": 7,
+   "title": "Mather, Shafir & Johnson (2000), Misremembrance of options past: Source monitoring and choice. Psychological Science 11(2), 132-138",
+   "link": "https://doi.org/10.1111/1467-9280.00228"
+  }
+ ]
+}

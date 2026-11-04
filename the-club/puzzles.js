@@ -697,7 +697,7 @@ window.TURNSOUT_DATA["the-club"] = {
    "sign": "They are noble gases",
    "stamp": "Noble gases",
    "in": [
-    "Helium",
+    "Krypton",
     "Neon",
     "Argon"
    ],
@@ -707,11 +707,11 @@ window.TURNSOUT_DATA["the-club"] = {
    ],
    "door": [
     [
-     "Krypton",
+     "Helium",
      1
     ],
     [
-     "Nitrogen",
+     "Carbon",
      0
     ],
     [
@@ -845,7 +845,7 @@ window.TURNSOUT_DATA["the-club"] = {
    "stamp": "Wild cabbage",
    "in": [
     "Cabbage",
-    "Broccoli",
+    "Brussels sprouts",
     "Cauliflower"
    ],
    "out": [
@@ -862,11 +862,11 @@ window.TURNSOUT_DATA["the-club"] = {
      0
     ],
     [
-     "Brussels sprouts",
+     "Broccoli",
      1
     ],
     [
-     "Onion",
+     "Chinese cabbage",
      0
     ],
     [
@@ -874,7 +874,7 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ]
    ],
-   "fact": "They are all one species, wild cabbage, bred by farmers into many shapes.",
+   "fact": "They are all one species, wild cabbage, bred by farmers into many shapes. Chinese cabbage is not one of them; it is the same species as the turnip.",
    "sources": [
     {
      "name": "Wikipedia",
@@ -882,7 +882,7 @@ window.TURNSOUT_DATA["the-club"] = {
     },
     {
      "name": "Britannica",
-     "url": "https://www.britannica.com/plant/cabbage"
+     "url": "https://www.britannica.com/plant/list-of-plants-in-the-family-Brassicaceae-2004620"
     }
    ]
   },
@@ -992,8 +992,8 @@ window.TURNSOUT_DATA["the-club"] = {
    "stamp": "Woodwinds",
    "in": [
     "Clarinet",
-    "Oboe",
-    "Flute"
+    "Flute",
+    "Piccolo"
    ],
    "out": [
     "Trumpet",
@@ -1013,11 +1013,11 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ],
     [
-     "French horn",
+     "Euphonium",
      0
     ],
     [
-     "Piccolo",
+     "Oboe",
      1
     ]
    ],
@@ -2854,7 +2854,7 @@ window.TURNSOUT_DATA["the-club"] = {
    "stamp": "Citrus fruits",
    "in": [
     "Lemon",
-    "Orange",
+    "Lime",
     "Grapefruit"
    ],
    "out": [
@@ -2863,7 +2863,7 @@ window.TURNSOUT_DATA["the-club"] = {
    ],
    "door": [
     [
-     "Lime",
+     "Orange",
      1
     ],
     [
@@ -3222,7 +3222,7 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ],
     [
-     "Phosphorus",
+     "Helium",
      0
     ]
    ],
@@ -3588,17 +3588,17 @@ window.TURNSOUT_DATA["the-club"] = {
    "sign": "Invented in China",
    "stamp": "Invented in China",
    "in": [
-    "Paper",
+    "Porcelain",
     "Gunpowder",
     "Compass"
    ],
    "out": [
-    "Glass",
+    "Microscope",
     "Telescope"
    ],
    "door": [
     [
-     "Porcelain",
+     "Paper",
      1
     ],
     [
@@ -3610,7 +3610,7 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ],
     [
-     "Microscope",
+     "Glass",
      0
     ],
     [
@@ -4372,29 +4372,29 @@ window.TURNSOUT_DATA["the-club"] = {
    "sign": "Civilisations of the Americas",
    "stamp": "Ancient Americas",
    "in": [
-    "Maya",
     "Aztecs",
-    "Incas"
+    "Olmecs",
+    "Toltecs"
    ],
    "out": [
     "Babylonians",
-    "Etruscans"
+    "Phoenicians"
    ],
    "door": [
     [
-     "Olmecs",
+     "Maya",
      1
     ],
     [
-     "Phoenicians",
+     "Etruscans",
      0
     ],
     [
-     "Toltecs",
+     "Incas",
      1
     ],
     [
-     "Sumerians",
+     "Greeks",
      0
     ],
     [
@@ -4617,21 +4617,21 @@ window.TURNSOUT_DATA["the-club"] = {
    "sign": "Igneous rocks",
    "stamp": "Igneous rocks",
    "in": [
-    "Granite",
+    "Pumice",
     "Basalt",
     "Obsidian"
    ],
    "out": [
-    "Marble",
-    "Sandstone"
+    "Sandstone",
+    "Limestone"
    ],
    "door": [
     [
-     "Pumice",
+     "Granite",
      1
     ],
     [
-     "Limestone",
+     "Marble",
      0
     ],
     [
@@ -4962,7 +4962,7 @@ window.TURNSOUT_DATA["the-club"] = {
    "in": [
     "Grizzly bear",
     "Polar bear",
-    "Giant panda"
+    "Sun bear"
    ],
    "out": [
     "Koala",
@@ -4970,11 +4970,11 @@ window.TURNSOUT_DATA["the-club"] = {
    ],
    "door": [
     [
-     "Sun bear",
+     "Giant panda",
      1
     ],
     [
-     "Raccoon",
+     "Water bear",
      0
     ],
     [
@@ -4990,7 +4990,7 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ]
    ],
-   "fact": "They are all bears, and so is the giant panda. The koala is a marsupial, and the red panda is not a bear either.",
+   "fact": "They are all bears, and so is the giant panda. The koala is a marsupial; the red panda and the tiny water bear are not bears either.",
    "sources": [
     {
      "name": "Wikipedia",
@@ -5011,7 +5011,7 @@ window.TURNSOUT_DATA["the-club"] = {
    "in": [
     "Trumpet",
     "Trombone",
-    "Tuba"
+    "French horn"
    ],
    "out": [
     "Saxophone",
@@ -5019,7 +5019,7 @@ window.TURNSOUT_DATA["the-club"] = {
    ],
    "door": [
     [
-     "French horn",
+     "Tuba",
      1
     ],
     [
@@ -5108,8 +5108,8 @@ window.TURNSOUT_DATA["the-club"] = {
    "stamp": "Onion family",
    "in": [
     "Onion",
-    "Garlic",
-    "Leek"
+    "Chives",
+    "Shallot"
    ],
    "out": [
     "Ginger",
@@ -5117,7 +5117,7 @@ window.TURNSOUT_DATA["the-club"] = {
    ],
    "door": [
     [
-     "Chives",
+     "Garlic",
      1
     ],
     [
@@ -5125,7 +5125,7 @@ window.TURNSOUT_DATA["the-club"] = {
      0
     ],
     [
-     "Shallot",
+     "Leek",
      1
     ],
     [
@@ -5892,7 +5892,7 @@ window.TURNSOUT_DATA["the-club"] = {
    "stamp": "Gourd family",
    "in": [
     "Cucumber",
-    "Pumpkin",
+    "Melon",
     "Watermelon"
    ],
    "out": [
@@ -5909,7 +5909,7 @@ window.TURNSOUT_DATA["the-club"] = {
      0
     ],
     [
-     "Melon",
+     "Pumpkin",
      1
     ],
     [
@@ -5921,7 +5921,7 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ]
    ],
-   "fact": "They all belong to the gourd family, with melons, courgettes and squash. Tomatoes and aubergines are nightshades.",
+   "fact": "They all belong to the gourd family, with courgettes, pumpkins and other squash. Tomatoes and aubergines are nightshades.",
    "sources": [
     {
      "name": "Wikipedia",
@@ -6554,7 +6554,7 @@ window.TURNSOUT_DATA["the-club"] = {
      0
     ],
     [
-     "Sternum",
+     "Vertebra",
      1
     ]
    ],
@@ -7081,7 +7081,7 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ],
     [
-     "Queen Victoria",
+     "Catherine the Great",
      0
     ],
     [
@@ -7089,7 +7089,7 @@ window.TURNSOUT_DATA["the-club"] = {
      1
     ],
     [
-     "Marie Antoinette",
+     "Lady Jane Grey",
      0
     ],
     [
@@ -7214,7 +7214,7 @@ window.TURNSOUT_DATA["the-club"] = {
    "sign": "The cashew family",
    "stamp": "Cashew family",
    "in": [
-    "Cashew",
+    "Cashew nut",
     "Mango",
     "Pistachio"
    ],

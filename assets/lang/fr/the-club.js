@@ -513,7 +513,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Gaz nobles",
   "fact": "Ce sont les gaz nobles, qui ne réagissent presque jamais avec quoi que ce soit. C’est pour cela qu’on gonfle les ballons à l’hélium et pas à l’hydrogène.",
   "in": [
-   "Hélium",
+   "Krypton",
    "Néon",
    "Argon"
   ],
@@ -523,11 +523,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Krypton",
+    "Hélium",
     1
    ],
    [
-    "Azote",
+    "Carbone",
     0
    ],
    [
@@ -619,10 +619,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "cabbage": {
   "sign": "Une seule espèce : le chou sauvage",
   "stamp": "Chou sauvage",
-  "fact": "Ce sont tous une seule espèce, le chou sauvage, que les agriculteurs ont transformée, par sélection, en de nombreuses formes.",
+  "fact": "Tous sont une seule et même espèce, le chou sauvage, que les agriculteurs ont façonnée en de nombreuses formes. Pas le chou chinois : il est de la même espèce que le navet.",
   "in": [
    "Chou",
-   "Brocoli",
+   "Choux de Bruxelles",
    "Chou-fleur"
   ],
   "out": [
@@ -639,11 +639,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Choux de Bruxelles",
+    "Brocoli",
     1
    ],
    [
-    "Oignon",
+    "Chou chinois",
     0
    ],
    [
@@ -730,8 +730,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Ce sont des instruments de la famille des bois, quelle que soit leur matière. Le saxophone est en laiton mais se joue avec une anche, donc il en fait partie.",
   "in": [
    "Clarinette",
-   "Hautbois",
-   "Flûte"
+   "Flûte",
+   "Piccolo"
   ],
   "out": [
    "Trompette",
@@ -751,11 +751,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Cor",
+    "Euphonium",
     0
    ],
    [
-    "Piccolo",
+    "Hautbois",
     1
    ]
   ]
@@ -2098,7 +2098,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "Ce sont tous des agrumes. Le pamplemousse est un croisement entre un pomélo et une orange douce.",
   "in": [
    "Citron",
-   "Orange",
+   "Citron vert",
    "Pamplemousse"
   ],
   "out": [
@@ -2107,7 +2107,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Citron vert",
+    "Orange",
     1
    ],
    [
@@ -2375,7 +2375,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Phosphore",
+    "Hélium",
     0
    ]
   ]
@@ -2637,17 +2637,17 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Inventé en Chine",
   "fact": "Tous ont été inventés en Chine. Le biscuit chinois, non : il est sans doute né chez des immigrants japonais aux États-Unis.",
   "in": [
-   "Papier",
+   "Porcelaine",
    "Poudre à canon",
    "Boussole"
   ],
   "out": [
-   "Verre",
+   "Microscope",
    "Télescope"
   ],
   "door": [
    [
-    "Porcelaine",
+    "Papier",
     1
    ],
    [
@@ -2659,7 +2659,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Microscope",
+    "Verre",
     0
    ],
    [
@@ -3213,29 +3213,29 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Amériques anciennes",
   "fact": "Toutes ont prospéré dans les Amériques avant Christophe Colomb. Les Olmèques ont été la première grande civilisation de Mésoamérique.",
   "in": [
-   "Mayas",
    "Aztèques",
-   "Incas"
+   "Olmèques",
+   "Toltèques"
   ],
   "out": [
    "Babyloniens",
-   "Étrusques"
+   "Phéniciens"
   ],
   "door": [
    [
-    "Olmèques",
+    "Mayas",
     1
    ],
    [
-    "Phéniciens",
+    "Étrusques",
     0
    ],
    [
-    "Toltèques",
+    "Incas",
     1
    ],
    [
-    "Sumériens",
+    "Grecs",
     0
    ],
    [
@@ -3393,21 +3393,21 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Roches magmatiques",
   "fact": "Les roches magmatiques se forment quand de la roche en fusion refroidit et durcit. Le marbre et l’ardoise sont métamorphiques ; le grès, le calcaire et la craie sont sédimentaires.",
   "in": [
-   "Granit",
+   "Pierre ponce",
    "Basalte",
    "Obsidienne"
   ],
   "out": [
-   "Marbre",
-   "Grès"
+   "Grès",
+   "Calcaire"
   ],
   "door": [
    [
-    "Pierre ponce",
+    "Granit",
     1
    ],
    [
-    "Calcaire",
+    "Marbre",
     0
    ],
    [
@@ -3643,11 +3643,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "bears": {
   "sign": "Ce sont des ours",
   "stamp": "Ours",
-  "fact": "Ce sont tous des ours, et le panda géant aussi. Le koala est un marsupial, et le panda roux n’est pas un ours non plus.",
+  "fact": "Ce sont tous des ours, et le panda géant aussi. Le koala est un marsupial, et ni le panda roux ni le minuscule ourson d’eau ne sont des ours.",
   "in": [
    "Grizzli",
    "Ours polaire",
-   "Panda géant"
+   "Ours malais"
   ],
   "out": [
    "Koala",
@@ -3655,11 +3655,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Ours malais",
+    "Panda géant",
     1
    ],
    [
-    "Raton laveur",
+    "Ourson d’eau",
     0
    ],
    [
@@ -3683,7 +3683,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "in": [
    "Trompette",
    "Trombone",
-   "Tuba"
+   "Cor"
   ],
   "out": [
    "Saxophone",
@@ -3691,7 +3691,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Cor",
+    "Tuba",
     1
    ],
    [
@@ -3754,8 +3754,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "L’oignon, l’ail, le poireau, l’échalote et la ciboulette appartiennent tous au même genre, Allium. Le gingembre et les radis viennent d’autres familles.",
   "in": [
    "Oignon",
-   "Ail",
-   "Poireau"
+   "Ciboulette",
+   "Échalote"
   ],
   "out": [
    "Gingembre",
@@ -3763,7 +3763,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Ciboulette",
+    "Ail",
     1
    ],
    [
@@ -3771,7 +3771,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Échalote",
+    "Poireau",
     1
    ],
    [
@@ -4327,10 +4327,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "gourd-family": {
   "sign": "La famille de la courge",
   "stamp": "Famille de la courge",
-  "fact": "Tous appartiennent à la famille de la courge, avec les melons, les courgettes et les courges. Les tomates et les aubergines sont des solanacées.",
+  "fact": "Tous appartiennent à la famille de la courge, avec les courgettes, les citrouilles et les autres courges. Les tomates et les aubergines sont des solanacées.",
   "in": [
    "Concombre",
-   "Citrouille",
+   "Melon",
    "Pastèque"
   ],
   "out": [
@@ -4347,7 +4347,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Melon",
+    "Citrouille",
     1
    ],
    [
@@ -4823,7 +4823,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Sternum",
+    "Vertèbre",
     1
    ]
   ]
@@ -5207,7 +5207,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Reine Victoria",
+    "Catherine II de Russie",
     0
    ],
    [
@@ -5215,7 +5215,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Marie-Antoinette",
+    "Jeanne Grey",
     0
    ],
    [

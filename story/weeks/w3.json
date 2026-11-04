@@ -1,0 +1,889 @@
+{
+ "week": 3,
+ "title": "The Wedding Bread",
+ "genre": "village drama",
+ "keyVotes": [
+  5,
+  6
+ ],
+ "days": [
+  {
+   "day": 1,
+   "versions": {
+    "": {
+     "screens": [
+      "Lindmill has 300 people, one bridge and one bakery. The bakery is yours.<br><br>On Sunday, your little sister Lina gets married. The whole village is coming. You are making the bread.",
+      "Monday, four in the morning. The oven is hot. The village is still asleep.<br><br>You open your father's red book. He wrote every recipe in it by hand. He died three years ago. You turn to the page that says Wedding Bread.",
+      "A paper falls out. It was folded very small and pressed flat between the pages.<br><br>It is not a recipe.",
+      "It says: \"I, Elias, owe Anton the miller this money. I will pay it back. If I cannot, my bakery is his.\"<br><br>Two names are signed under it: your father's and Anton's. And a third: Old Teo, who watched them sign. The date is 22 years ago.",
+      "The number on the paper is more than the bakery earns in three years.<br><br>On the back, in newer ink, in your father's hand: \"I never paid. Pay this before any of you marries. Then tell your mother everything.\"",
+      "He put it here, on this page. He knew you would open it before a wedding.<br><br>Lina's wedding is in six days.",
+      "What you know about Anton:<br><br>He owns the mill by the river. You buy all your flour from him. In 22 years, he has never said one word about money.<br><br>His son, Milo, is the man Lina marries on Sunday.",
+      "At seven, Lina comes in with two cups of coffee. She is singing.<br><br>She holds up two ribbons for her hair. \"Blue or white?\"",
+      "At noon, Anton's cart brings the flour, like every Monday. He carries the sacks in himself.<br><br>He nods at you, the way he always does. Nothing in his face.",
+      "Night. Lina sits on the end of your bed, like when she was small.<br><br>\"Six days,\" she says. \"Are you happy for me?\"<br><br>The paper is in your pocket. \"Before any of you marries.\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Start the work.",
+         "line": "Flour, salt, water. You can be sad later.",
+         "side": "left"
+        },
+        {
+         "text": "Read his notes slowly.",
+         "line": "His writing is small and neat. For a moment, he is here.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Leave the paper on the table.",
+         "line": "She looks at it. \"A bill?\" \"Something like that,\" you say.",
+         "side": "left"
+        },
+        {
+         "text": "Slide it under the flour sack.",
+         "line": "She does not see it. She picks the white one.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Do you tell Lina tonight?",
+      "A": {
+       "label": "Tell her tonight.",
+       "reason": "It is her wedding, and his family. She should know before she says yes.",
+       "axis": "truth-kindness",
+       "side": "left"
+      },
+      "B": {
+       "label": "Wait until after the wedding.",
+       "reason": "The debt is 22 years old. It can wait six more days. Let her have her week.",
+       "axis": "truth-kindness",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You tell her. She does not cry. She reads the paper twice, folds it, and gives it back.<br><br>\"Does Milo know?\" she asks. Then she goes to her room and shuts the door. In the morning, her bed is empty.",
+      "B": "You say nothing. At breakfast, Lina talks about the music and the long tables in the square. You nod and smile.<br><br>At noon, you take bread to Old Teo. His name is on the paper too."
+     },
+     "science": "Most of us expect honest talks to go worse than they do. In one study, people who were fully honest with everyone for three days found it more pleasant than they had feared."
+    }
+   }
+  },
+  {
+   "day": 2,
+   "versions": {
+    "A": {
+     "screens": [
+      "You told her last night. She did not cry. She read the paper twice, folded it, and gave it back.<br><br>\"Does Milo know?\" she asked. Then she went to her room and shut the door.",
+      "Tuesday, six in the morning. Her bed is empty. Her coat is gone.<br><br>From the bakery door, you can see the road to the mill. Someone small is walking fast. Lina.",
+      "The mill is loud. White dust hangs in the air. Milo comes out, smiling, with flour on his hands.<br><br>Lina gives him the paper. He reads it. The smile goes away.",
+      "\"I didn't know,\" he says. He looks at Lina, then at you. \"I swear I didn't know.\"<br><br>He walks into the office where his father sits. He shuts the door. Through the glass, you see Anton stand up.",
+      "Ten minutes. Then Anton comes out alone. He gives the paper back to you, not to Lina.<br><br>\"Come to my house tonight,\" he says. \"Just you.\"",
+      "All day, the bread does not rise right. Lina works next to you and says nothing.<br><br>Once, she puts her hand on your arm. Then she takes it away.",
+      "Night. Anton's kitchen is big and cold. He does not offer you tea.<br><br>\"Yes, it is real,\" he says. \"I have the other copy. Your father never paid. I never asked. My reasons are my own.\"",
+      "\"Now I am asking. The big flour company in town sells cheaper than me. The mill is losing money. I need it.\"<br><br>He looks out of the window, at the river. \"But I will not ruin my son's wedding. So I have an offer.\"",
+      "\"Give half of the bakery to Milo and Lina. Call it a wedding gift. Then I burn both papers, and nobody ever speaks of it.\"<br><br>\"Or pay me all of it, before the wedding. If not, the paper says the bakery is mine.\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Run after her.",
+         "line": "You catch up at the bridge. She does not slow down.",
+         "side": "left"
+        },
+        {
+         "text": "Let her go first. It is her wedding.",
+         "line": "You wait a minute. Then you follow, far behind.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 5,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Ask her if she is angry with you.",
+         "line": "\"Not with you,\" she says. \"With all of it.\"",
+         "side": "left"
+        },
+        {
+         "text": "Make her a coffee and say nothing.",
+         "line": "She drinks it slowly. That is something.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Half the bakery as a gift, or all the money by Sunday. What do you tell Anton?",
+      "A": {
+       "label": "Say yes.",
+       "reason": "Half goes to your own sister. The bakery stays in the family, and the old debt is gone.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      },
+      "B": {
+       "label": "Say no.",
+       "reason": "Half today, and what tomorrow? Find the money. Keep your father's bakery whole.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You say yes. Anton shakes your hand once, hard. \"Good,\" he says. \"It stays in the family.\"<br><br>In the morning, you tell Lina and Milo. You think they will be glad. Lina puts her cup down very slowly.",
+      "B": "You say no. Anton does not argue. \"Sunday, then,\" he says. \"All of it. Or the bakery.\"<br><br>He does not shake your hand. He just turns away."
+     },
+     "science": "We value a thing more once it is ours. In a famous study, people who were given a mug wanted about twice as much to sell it as others would pay to buy it."
+    },
+    "B": {
+     "screens": [
+      "You say nothing. At breakfast, Lina talks about the music and the long tables in the square. You nod and smile.<br><br>The paper is in your apron. You feel it there all morning.",
+      "At noon, you take bread to Old Teo. He is past ninety. He sits on the bench by the well every day, and he sees everything.<br><br>His name is on the paper too.",
+      "You show him. He holds it close to his eyes for a long time.<br><br>\"So Elias kept it,\" he says. \"I watched them sign. Anton gave the money that same day. He did not even ask what it was for.\"",
+      "\"What was it for?\" you ask.<br><br>Teo shakes his head. \"Not my story to tell. And there is more to it than money. Ask Anton. If he wants to tell you, he will.\"",
+      "In the afternoon, Lina tries on her dress in the kitchen. Your mother cries a little and pins the dress. Lina turns and turns.<br><br>\"Say something,\" she says to you. \"You look like someone died.\"",
+      "At six, Milo comes into the shop. He does not buy anything. He is pale.<br><br>\"Teo came to see my father,\" he says. \"My father told me about a paper.\" He looks past you, at Lina.",
+      "Lina comes out from the back, still in her apron.<br><br>\"What paper?\"",
+      "You show her. She reads it twice.<br><br>\"When did you find this?\"<br><br>\"Yesterday.\"<br><br>She does not say anything else. That is worse.",
+      "At closing time, Anton comes in. He waits until the shop is empty.<br><br>\"Yes, it is real. I have the other copy. I never asked. My reasons are my own. Now I am asking. The flour company in town sells cheaper than me. The mill is losing money.\"",
+      "\"I will not ruin my son's wedding. So: give half of the bakery to Milo and Lina. Call it a wedding gift. Then I burn both papers.\"<br><br>\"Or pay me all of it, before the wedding. If not, the paper says the bakery is mine.\""
+     ],
+     "small": [
+      {
+       "after": 2,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Show him the back too.",
+         "line": "He reads your father's words and closes his eyes.",
+         "side": "left"
+        },
+        {
+         "text": "Keep the back hidden.",
+         "line": "Some words are only for family.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 4,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Say you have a lot on your mind.",
+         "line": "\"Bread,\" she says. \"Always bread.\" She does not ask more.",
+         "side": "left"
+        },
+        {
+         "text": "Tell her she is beautiful.",
+         "line": "She is. You mean it. It still feels like hiding.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Half the bakery as a gift, or all the money by Sunday. What do you tell Anton?",
+      "A": {
+       "label": "Say yes.",
+       "reason": "Half goes to your own sister. The bakery stays in the family, and the old debt is gone.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      },
+      "B": {
+       "label": "Say no.",
+       "reason": "Half today, and what tomorrow? Find the money. Keep your father's bakery whole.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You say yes. Anton shakes your hand once, hard. \"Good,\" he says. \"It stays in the family.\"<br><br>In the morning, you tell Lina and Milo. You think they will be glad. Lina puts her cup down very slowly.",
+      "B": "You say no. Anton does not argue. \"Sunday, then,\" he says. \"All of it. Or the bakery.\"<br><br>He does not shake your hand. He just turns away."
+     },
+     "science": "We value a thing more once it is ours. In a famous study, people who were given a mug wanted about twice as much to sell it as others would pay to buy it."
+    }
+   }
+  },
+  {
+   "day": 3,
+   "versions": {
+    "A": {
+     "screens": [
+      "You said yes. Anton shook your hand once, hard. \"Good,\" he said. \"It stays in the family.\"<br><br>Wednesday morning, you tell Lina and Milo. You think they will be glad. Lina puts her cup down very slowly.",
+      "\"Half of your bakery?\" she says. \"As a gift to me?\"<br><br>\"It is still ours,\" you say. \"With Milo too.\"<br><br>\"No. A gift is something you want to give. This is a payment with my name on it.\"",
+      "Milo stands up. You have never seen him angry. He is angry now.<br><br>\"I am not marrying a bakery,\" he says. He takes his coat and walks out, toward the mill.",
+      "By noon, the story is all over the mill. Milo shouted at his father in the yard, in front of the workers. In 26 years, he never once shouted at Anton.<br><br>Anton listened. Then he said one word: \"Fine.\"",
+      "That evening, Anton comes to the bakery. He does not look at you.<br><br>\"My son says no. So, no gift. Sunday, then. All the money. Or the bakery.\" He leaves the door open behind him.",
+      "\"Then tell your mother everything.\" You cannot wait any more.<br><br>You sit with your mother at the kitchen table. You give her the paper.",
+      "She reads the front, then the back. She sits very still.<br><br>Then she brings down an old tea tin from the top shelf. \"Twelve years of coins,\" she says. \"For Lina's wedding feast. It is about half.\"",
+      "She puts her hand flat on the paper. \"I know where this money went,\" she says. \"I just never knew it came from Anton.\"",
+      "\"Twenty-two years ago, the bank was going to take your uncle Beno's house. Beno, his wife, three small children. Then one morning it was all fine. Your father said a friend had helped.\"<br><br>\"It was this. It was for Beno.\"",
+      "Through the window, you hear music from the café. Beno's accordion. Somebody is laughing. It is Beno.<br><br>On Sunday, he gives the family toast, in your father's place."
+     ],
+     "small": [
+      {
+       "after": 2,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "Go after him now.",
+         "line": "You walk behind him all the way. He does not stop.",
+         "side": "left"
+        },
+        {
+         "text": "Let him go. Talk later.",
+         "line": "You stay with Lina. Her hands are cold. You hold them until they are not.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 6,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Count the coins.",
+         "line": "You count twice. A little less than half.",
+         "side": "left"
+        },
+        {
+         "text": "Close the tin.",
+         "line": "You do not want to know the number tonight.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Beno does not know you know. What do you do?",
+      "A": {
+       "label": "Ask Beno to pay.",
+       "reason": "It was his debt. He has a field by the river. It is only fair.",
+       "axis": "lead-follow",
+       "side": "left"
+      },
+      "B": {
+       "label": "Leave Beno out of it.",
+       "reason": "Your father chose to carry it for his brother. Do as he did.",
+       "axis": "lead-follow",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You walk up the hill to Beno's house. His grandson is feeding the chickens.<br><br>Beno opens the door, laughing about something. Then he sees the paper in your hand, and he stops laughing.",
+      "B": "You say nothing to Beno. Instead, you sell the old van to a man from the next village.<br><br>He pays very little. He knows you need it."
+     },
+     "science": "Fairness can matter more to us than money. In a famous money game, people often turn down a share of less than one fifth, even though saying no leaves them with nothing."
+    },
+    "B": {
+     "screens": [
+      "You said no. Anton did not argue. \"Sunday, then,\" he said. \"All of it. Or the bakery.\" He did not shake your hand.<br><br>Now it is Wednesday. Five days.",
+      "In the morning, Milo comes to the back door. His eyes are red.<br><br>\"He won't talk to me,\" he says. \"He says it is between the families. But I am both families now.\"",
+      "Lina is quiet all morning. She makes the dough with you, hard, with her fists.<br><br>\"Pay him,\" she says. \"Whatever it takes. I won't start my marriage with my family owing his.\"",
+      "But pay with what? You do the numbers on the back of a flour bag. The bakery has almost nothing saved. The oven is old. The van is older.<br><br>\"Then tell your mother everything.\" You cannot wait any more.",
+      "You sit with your mother at the kitchen table. You give her the paper.<br><br>She reads the front, then the back. She does not speak for a long time.",
+      "Then she brings down an old tea tin from the top shelf.<br><br>\"Twelve years of coins,\" she says. \"For Lina's wedding feast. It is about half.\"",
+      "She puts her hand flat on the paper. \"I know where this money went,\" she says. \"I just never knew it came from Anton.\"",
+      "\"Twenty-two years ago, the bank was going to take your uncle Beno's house. Beno, his wife, three small children. Then one morning it was all fine. Your father said a friend had helped.\"<br><br>\"It was this. It was for Beno.\"",
+      "Through the window, you hear music from the café. Beno's accordion. Somebody is laughing. It is Beno.<br><br>On Sunday, he gives the family toast, in your father's place."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Tell him you don't know what will happen.",
+         "line": "He nods. \"Thank you for not lying.\"",
+         "side": "left"
+        },
+        {
+         "text": "Tell him it will be all right.",
+         "line": "He wants to believe you. He almost does.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 5,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Take the tin.",
+         "line": "It is heavy. Twelve years are heavy.",
+         "side": "left"
+        },
+        {
+         "text": "Push it back to her.",
+         "line": "She pushes it back to you. She is stronger than she looks.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Beno does not know you know. What do you do?",
+      "A": {
+       "label": "Ask Beno to pay.",
+       "reason": "It was his debt. He has a field by the river. It is only fair.",
+       "axis": "lead-follow",
+       "side": "left"
+      },
+      "B": {
+       "label": "Leave Beno out of it.",
+       "reason": "Your father chose to carry it for his brother. Do as he did.",
+       "axis": "lead-follow",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You walk up the hill to Beno's house. His grandson is feeding the chickens.<br><br>Beno opens the door, laughing about something. Then he sees the paper in your hand, and he stops laughing.",
+      "B": "You say nothing to Beno. Instead, you sell the old van to a man from the next village.<br><br>He pays very little. He knows you need it."
+     },
+     "science": "Fairness can matter more to us than money. In a famous money game, people often turn down a share of less than one fifth, even though saying no leaves them with nothing."
+    }
+   }
+  },
+  {
+   "day": 4,
+   "versions": {
+    "A": {
+     "screens": [
+      "Thursday. You walk up the hill to Beno's house. His grandson is feeding the chickens.<br><br>Beno opens the door, laughing about something. Then he sees the paper in your hand, and he stops laughing.",
+      "He reads it at the kitchen table. His wife reads it over his shoulder.<br><br>\"I never knew,\" Beno says. \"I thought the bank just gave up. Elias never said a word. Not one word.\"",
+      "\"I'll sell the field,\" he says. \"The one by the river. It is all I have. It is yours.\"<br><br>His wife stands in the door with her arms crossed. \"That field is for our children,\" she says. Beno does not look at her.",
+      "Beno calls a man in town who buys land. They talk for a long time.<br><br>When he puts the phone down, his face is grey. \"He will buy it. But the papers take a month. Nothing before Sunday.\"",
+      "So the field will come too late. You walk back down the hill alone. The tin is still half. The rest is still missing.",
+      "Back at the bakery, you work until dark. Your mother counts the tin again and again, as if the coins could grow.<br><br>Lina writes the names of the guests on little cards. Three hundred cards.",
+      "At ten, there is a soft knock at the back door. It is Milo. He looks over his shoulder before he comes in.",
+      "He puts an envelope on the table. It is thick.<br><br>\"My savings,\" he says. \"Since I was a boy. It is about half. With your mother's tin, it is all of it.\"",
+      "\"Pay my father with this. Tell him you found the money. He will never know it is mine.\"<br><br>\"And Lina?\" you ask.<br><br>\"She doesn't need to know. Nobody does. On Sunday we are one family anyway.\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Believe him.",
+         "line": "His eyes are wet. You believe him.",
+         "side": "left"
+        },
+        {
+         "text": "Watch his hands.",
+         "line": "They do not shake. That is strange.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 5,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Tell your mother the field is too late.",
+         "line": "She nods and counts the tin one more time.",
+         "side": "left"
+        },
+        {
+         "text": "Tell her Beno is helping. Leave it there.",
+         "line": "She smiles for the first time in two days.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Milo's money would pay it all. What do you do?",
+      "A": {
+       "label": "Take it.",
+       "reason": "He is family on Sunday. The debt is gone and the wedding is safe. Today.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Say no.",
+       "reason": "A secret started this debt. Don't start their marriage with a new one.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You take it. On Friday morning, you walk to the mill with the tin under one arm and Milo's envelope in your coat.<br><br>You feel like a thief. You tell yourself you are not.",
+      "B": "You push the envelope back across the table. Milo looks at it for a long time. Then he takes it.<br><br>\"I am going to be your family,\" he says at the door. \"And you won't take my help.\""
+     },
+     "science": "Secrets are common, and they stay on our minds. In one large study, people kept about 13 secrets each, and they thought about them about twice as often as they had to hide them."
+    },
+    "B": {
+     "screens": [
+      "Thursday. You say nothing to Beno. Instead, you sell the old van to a man from the next village.<br><br>He pays very little. He knows you need it.",
+      "Then you take the bus to town, to the bank. You wear your father's good jacket. It is too big.<br><br>The man at the bank is polite. He reads your numbers. He smiles. He says no.",
+      "On the bus home, you count. The tin is about half. The van is a little. The rest is still missing.<br><br>Out of the window, you see the mill. The big wheel is not turning today.",
+      "When you get home, Beno is sitting in your kitchen. Your mother is standing.<br><br>\"Someone saw you sell the van,\" Beno says. \"What is going on?\"",
+      "Your mother looks at you. You nod. She tells him all of it.<br><br>Beno sits back slowly. \"I never knew,\" he says. \"I thought the bank just gave up. Elias never said a word. Not one word.\"",
+      "\"Let me sell the field,\" he says. \"The one by the river. It is mine to pay.\"<br><br>\"No,\" you say. \"Father carried it for you. We will too.\"",
+      "Beno looks at you for a long time. Then he takes his cap and goes out without a word. The door shuts very softly.",
+      "At ten, there is a soft knock at the back door. It is Milo. He looks over his shoulder before he comes in.<br><br>He puts an envelope on the table. It is thick.",
+      "\"My savings,\" he says. \"Since I was a boy. With your mother's tin, it is enough.\"<br><br>\"Pay my father with this. Tell him you sold something. He will never know it is mine. Lina doesn't need to know either. On Sunday we are one family anyway.\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Ask him again.",
+         "line": "He says no again, more slowly.",
+         "side": "left"
+        },
+        {
+         "text": "Thank him and go.",
+         "line": "You keep your back straight all the way to the door.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 4,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Believe him.",
+         "line": "His eyes are wet. You believe him.",
+         "side": "left"
+        },
+        {
+         "text": "Watch his hands.",
+         "line": "They do not shake. That is strange.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Milo's money would pay it all. What do you do?",
+      "A": {
+       "label": "Take it.",
+       "reason": "He is family on Sunday. The debt is gone and the wedding is safe. Today.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Say no.",
+       "reason": "A secret started this debt. Don't start their marriage with a new one.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You take it. On Friday morning, you walk to the mill with the tin under one arm and Milo's envelope in your coat.<br><br>You feel like a thief. You tell yourself you are not.",
+      "B": "You push the envelope back across the table. Milo looks at it for a long time. Then he takes it.<br><br>\"I am going to be your family,\" he says at the door. \"And you won't take my help.\""
+     },
+     "science": "Secrets are common, and they stay on our minds. In one large study, people kept about 13 secrets each, and they thought about them about twice as often as they had to hide them."
+    }
+   }
+  },
+  {
+   "day": 5,
+   "versions": {
+    "A": {
+     "screens": [
+      "You took it. On Friday morning, you walk to the mill with the tin under one arm and Milo's envelope in your coat.<br><br>You feel like a thief. You tell yourself you are not.",
+      "On the way, people look at you. The woman from the café. The postman. Two old men on the bridge. They stop talking when you pass.<br><br>Someone talked last night. Now the whole village knows.",
+      "Anton is in his office. You put the tin and the envelope on his desk. \"All of it,\" you say.<br><br>He opens the tin first. Coins. He nods. Then he opens the envelope.",
+      "He stops. The envelope is old. On it, in Anton's own writing: \"For Milo. For his wedding day.\" He gave it to his son when Milo was ten.<br><br>He looks at you. He does not shout. That is worse.",
+      "\"You took my son's money to pay me for my son's wedding.\"<br><br>He pushes the envelope back to you. Then the tin, more slowly. \"Not like this. Not today.\"",
+      "Milo comes in. He sees the envelope. Anton stands up.<br><br>Father and son shout at each other across the desk. The workers stop the machines to listen. Milo says, \"I am marrying her on Sunday. With you or without you.\"",
+      "Evening. The two families eat together, like every Friday before a wedding. Long table, good plates, and nobody is hungry.<br><br>Milo sits far from his father. Beno is not there. His chair stays empty all night.",
+      "At the end, Anton stands up and puts on his coat.<br><br>\"Sunday,\" he says, to the whole table. \"Before the first dance. Or I say it all in front of the whole village.\"",
+      "At home, your mother puts the tea tin on the kitchen table. The feast money. About half.<br><br>\"This is for her wedding,\" she says. \"Or it is for him. Not both.\""
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Tell him it was Milo's idea.",
+         "line": "\"Of course it was,\" he says quietly.",
+         "side": "left"
+        },
+        {
+         "text": "Say it was your idea.",
+         "line": "\"No,\" he says. \"I know my son.\"",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 6,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Raise a glass to Lina and Milo.",
+         "line": "Your glass is up alone for a moment. Then Lina's. Then Milo's.",
+         "side": "left"
+        },
+        {
+         "text": "Wait for the older ones to speak.",
+         "line": "Nobody speaks. The soup gets cold.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Your mother's tin: the wedding feast, or half the debt. What do you do?",
+      "A": {
+       "label": "Keep the wedding as planned.",
+       "reason": "Lina marries once. The whole village is coming. The debt waited 22 years. It can wait a little more.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Make it small. Pay Anton half.",
+       "reason": "Start her marriage clean. Family and bread are enough for a wedding.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You keep the wedding. On Saturday morning, the long tables come out into the square. Neighbours hang lights in the walnut tree.<br><br>Some of them smile at you. Some of them don't.",
+      "B": "You make it small. On Saturday morning, you put a note on the bakery door: \"No feast. Family only. Thank you all.\"<br><br>By nine, a crowd is standing in front of it."
+     },
+     "science": "Money worries take up room in the mind. In one study, farmers did better on thinking tests after the harvest, when they had money, than before it, when they did not."
+    },
+    "B": {
+     "screens": [
+      "You pushed the envelope back. Milo looked at it for a long time. Then he took it.<br><br>\"I am going to be your family,\" he said at the door. \"And you won't take my help.\"",
+      "Friday. You open the shop at six. The first customer is the woman from the café. She buys one loaf, not her usual two. She does not look at you.<br><br>Someone talked last night. Now the whole village knows.",
+      "All morning it is the same. People look at the shelves, not at you. Two families do not come at all.<br><br>Then the old woman from the top of the hill buys six loaves and pays double. \"For the wedding,\" she says, and goes before you can say no.",
+      "In the afternoon, Lina finds you behind the oven. \"Milo told me about the envelope,\" she says.<br><br>You wait. Then she hugs you, hard. \"Thank you for saying no. I would have hated it.\"",
+      "Evening. The two families eat together, like every Friday before a wedding. Long table, good plates, and nobody is hungry.<br><br>Beno is not there. His chair stays empty all night.",
+      "Anton's wife talks about the weather. Your mother talks about the weather. Milo holds Lina's hand under the table.<br><br>Anton does not eat. He watches you.",
+      "At the end, Anton stands up and puts on his coat.<br><br>\"Sunday,\" he says, to the whole table. \"Before the first dance. Or I say it all in front of the whole village.\"",
+      "\"They already know,\" your mother says quietly.<br><br>\"They know a story,\" Anton says. \"They don't know the end.\" He goes out.",
+      "At home, your mother puts the tea tin on the kitchen table. The feast money. About half.<br><br>\"This is for her wedding,\" she says. \"Or it is for him. Not both.\""
+     ],
+     "small": [
+      {
+       "after": 2,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Run after her with the change.",
+         "line": "She waves you away without turning round.",
+         "side": "left"
+        },
+        {
+         "text": "Let her be kind.",
+         "line": "You put the coins in the tin. Every coin counts now.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 5,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Raise a glass to Lina and Milo.",
+         "line": "Your glass is up alone for a moment. Then Lina's. Then Milo's.",
+         "side": "left"
+        },
+        {
+         "text": "Wait for the older ones to speak.",
+         "line": "Nobody speaks. The soup gets cold.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Your mother's tin: the wedding feast, or half the debt. What do you do?",
+      "A": {
+       "label": "Keep the wedding as planned.",
+       "reason": "Lina marries once. The whole village is coming. The debt waited 22 years. It can wait a little more.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Make it small. Pay Anton half.",
+       "reason": "Start her marriage clean. Family and bread are enough for a wedding.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You keep the wedding. On Saturday morning, the long tables come out into the square. Neighbours hang lights in the walnut tree.<br><br>Some of them smile at you. Some of them don't.",
+      "B": "You make it small. On Saturday morning, you put a note on the bakery door: \"No feast. Family only. Thank you all.\"<br><br>By nine, a crowd is standing in front of it."
+     },
+     "science": "Money worries take up room in the mind. In one study, farmers did better on thinking tests after the harvest, when they had money, than before it, when they did not."
+    }
+   }
+  },
+  {
+   "day": 6,
+   "versions": {
+    "A": {
+     "screens": [
+      "You kept the wedding. On Saturday morning, the long tables come out into the square. Neighbours hang lights in the walnut tree.<br><br>Some of them smile at you. Some of them don't.",
+      "At ten, Anton's cart comes with flour for the wedding bread. Twelve sacks. You only ordered ten.<br><br>The driver shrugs. \"He said twelve.\"",
+      "Lina tries on the dress one last time. Your mother puts in one more pin. Lina turns slowly in the kitchen.<br><br>\"Will he do it?\" she asks you. \"In front of everyone?\" You don't know. You tell her you don't know.",
+      "In the afternoon, you make the dough. Enough for 300 people. It takes all your arms and all your back.<br><br>The dough must rest all night. You will bake at four in the morning, the way your father did.",
+      "At sunset, you walk past the mill. Anton is standing on the bridge alone, looking down at the water.<br><br>He does not see you. Or he acts like he does not.",
+      "Night. The house is asleep. You sit in the bakery. The dough rests under white cloths.<br><br>Someone knocks at the back door. Softly.",
+      "It is Beno. No accordion. No laugh. He has not been drinking. You can tell.<br><br>\"Can I sit?\" he says. He sits before you answer.",
+      "\"I lied to you on Thursday,\" he says. \"I always knew. Elias told me the day he paid. He made me promise never to pay him back. Just be a good father, he said.\"<br><br>\"So I was. And I let him carry it. Twenty-two years.\"",
+      "\"And it was me. At the café, on Thursday night. I drank, and I told them all. I wanted them to know Elias was a good man.\"<br><br>\"I made it worse. I know.\"",
+      "He looks at his hands. \"Tomorrow I am meant to give the toast, in his place.\"<br><br>\"Do you still want me to?\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Take all twelve.",
+         "line": "You stack them by the oven. Twelve.",
+         "side": "left"
+        },
+        {
+         "text": "Send two back.",
+         "line": "The driver shrugs again and takes them.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 4,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Say good evening.",
+         "line": "He nods once. He does not turn round.",
+         "side": "left"
+        },
+        {
+         "text": "Walk on quietly.",
+         "line": "The water is loud under the bridge.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "glimpse": {
+      "A": "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>Beno stayed all night. Now he is asleep on the flour sacks, snoring. You let him sleep.",
+      "B": "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>You bake alone. Beno left last night without a word. You heard his steps go up the hill."
+     },
+     "vote": {
+      "question": "Beno lied, and he talked. Tomorrow is the toast. What do you say?",
+      "A": {
+       "label": "Forgive him. Let him give the toast.",
+       "reason": "He is your father's brother. Your father forgave him every day for 22 years.",
+       "axis": "head-heart",
+       "side": "right"
+      },
+      "B": {
+       "label": "Not yet. You give the toast.",
+       "reason": "He lied to your face two days ago. Forgiving takes more than one night.",
+       "axis": "head-heart",
+       "side": "left"
+      }
+     },
+     "science": "Forgiving can help the one who forgives. In one study, people thought of someone who hurt them. When they pictured forgiving, their heart rate and blood pressure stayed lower than when they went over the hurt."
+    },
+    "B": {
+     "screens": [
+      "You made it small. On Saturday morning, you put a note on the bakery door: \"No feast. Family only. Thank you all.\"<br><br>By nine, a crowd is standing in front of it.",
+      "Nobody says much. A few people nod at you. The man with the chairs asks if he should still bring the chairs. You say no.<br><br>Lina reads the note too. She cries once, in the back, quickly. Then she wipes her face and laughs.",
+      "\"Small is fine,\" she says. \"Small is ours.\"<br><br>You think she means it. Almost.",
+      "At noon, you walk to the mill. You tell Anton: \"Tomorrow, before the wedding. Half. The rest when we can.\"<br><br>He looks at you for a long time. Then he nods once. He does not say yes. He does not say no.",
+      "In the afternoon, you make the dough. Not for 300 people now. For twenty. It looks so small in the big bowl.<br><br>You make it anyway, the way your father did. It must rest all night. You will bake at four in the morning.",
+      "At sunset, you walk back past the bridge. Anton is standing there alone, looking down at the water.<br><br>He does not see you. Or he acts like he does not.",
+      "Night. You sit in the bakery. The dough rests under white cloths. The square outside is empty. No tables. No lights.<br><br>Someone knocks at the back door. Softly.",
+      "It is Beno. No accordion. No laugh. He has not been drinking. You can tell.<br><br>\"I lied to you on Thursday,\" he says. \"I always knew. Elias told me the day he paid. He made me promise never to pay him back. Just be a good father, he said. So I was. And I let him carry it.\"",
+      "\"And it was me. At the café, on Thursday night. I drank, and I told them all. I wanted them to know Elias was a good man.\"<br><br>\"It was my debt. Now Lina has no feast. I know.\"",
+      "He looks at his hands. \"Tomorrow I am meant to give the toast, in his place. Even at a small wedding.\"<br><br>\"Do you still want me to?\""
+     ],
+     "small": [
+      {
+       "after": 2,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Tell her you are sorry.",
+         "line": "\"Don't be,\" she says. But her voice is small.",
+         "side": "left"
+        },
+        {
+         "text": "Tell her it will still be beautiful.",
+         "line": "\"It will,\" she says. \"You are making the bread.\"",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 5,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Say good evening.",
+         "line": "He nods once. He does not turn round.",
+         "side": "left"
+        },
+        {
+         "text": "Walk on quietly.",
+         "line": "The water is loud under the bridge.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "glimpse": {
+      "A": "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>Beno stayed all night. He shapes every loaf with you. Small bread, for a small wedding.",
+      "B": "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>You bake alone. Small bread, for a small wedding. Beno left last night without a word."
+     },
+     "vote": {
+      "question": "Beno lied, and he talked. Tomorrow is the toast. What do you say?",
+      "A": {
+       "label": "Forgive him. Let him give the toast.",
+       "reason": "He is your father's brother. Your father forgave him every day for 22 years.",
+       "axis": "head-heart",
+       "side": "right"
+      },
+      "B": {
+       "label": "Not yet. You give the toast.",
+       "reason": "He lied to your face two days ago. Forgiving takes more than one night.",
+       "axis": "head-heart",
+       "side": "left"
+      }
+     },
+     "science": "Forgiving can help the one who forgives. In one study, people thought of someone who hurt them. When they pictured forgiving, their heart rate and blood pressure stayed lower than when they went over the hurt."
+    }
+   }
+  },
+  {
+   "day": 7,
+   "versions": {
+    "AA": {
+     "screens": [
+      "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>Beno stayed all night. Now he is asleep on the flour sacks, snoring. You let him sleep.",
+      "By noon, the square is full. Three hundred people at the long tables. Lights in the walnut tree. Your bread is on every table, still warm.<br><br>Lina walks out in white. The whole village stands up.",
+      "Anton sits at the head table with his wife. He has not looked at you once.<br><br>The first dance is in an hour.",
+      "Beno stands up for the toast. He has his accordion, but he puts it down.<br><br>\"My brother Elias paid my debt,\" he says to everyone. \"Twenty-two years ago. I let him carry it. I never paid back one coin. Today I start.\"",
+      "He walks to Anton and puts a paper in front of him. The papers for his field by the river.<br><br>\"It is not all of it,\" Beno says. \"It is what I have.\"",
+      "The square is very quiet. Anton looks at the paper for a long time. Then he stands up.<br><br>\"I never asked Elias for this money,\" he says. \"Not once in twenty years. You all want to know why. Here is why.\"",
+      "\"The summer after we signed, my boy fell into the river by the mill wheel. He was four. I could not reach him. Elias was bringing the bread. He jumped in.\"<br><br>Anton looks at Milo. \"How do you ask for money from the man who gave you back your son?\"",
+      "Milo did not know. Only Anton and Old Teo knew. At the end of a table, Teo nods slowly.<br><br>Anton takes out his own copy of the paper and tears it in two. Then he gives Beno back his field.",
+      "\"This week I asked because I was afraid for my mill,\" Anton says. \"That is my shame, not yours.\"<br><br>He sits down. Beno picks up the accordion. Lina and Milo start the first dance.",
+      "Late that night, you put your father's copy in the oven. Only the front. You keep the back, with his words.<br><br>\"Pay this before any of you marries.\" In the end, you all did. Together."
+     ],
+     "small": [],
+     "science": "How a thing ends shapes how we remember all of it. In one famous study, most people chose to repeat a longer bad test, because its last part was a little less bad."
+    },
+    "AB": {
+     "screens": [
+      "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>You bake alone. Beno left last night without a word. You heard his steps go up the hill.",
+      "By noon, the square is full. Three hundred people at the long tables. Lights in the walnut tree. Your bread is on every table, still warm.<br><br>Lina walks out in white. The whole village stands up.",
+      "Beno sits at the far end of the last table, with his children. He does not look at the head table. His accordion stays in its case.",
+      "You give the toast. Your hands shake. You talk about your father, his red book, and the bread. You say nothing about the paper.<br><br>When you sit down, Anton is standing.",
+      "The square goes quiet. \"Before the first dance,\" Anton says. Everyone waits.<br><br>He takes a paper out of his pocket. His copy. He holds it up. Then he walks over and puts it in your hand.",
+      "\"You decide,\" he says, so only you can hear. Then, loud, to everyone: \"The baker's family owes me nothing. Dance.\"<br><br>The music starts. People talk again. Nobody knows what just happened. You don't either.",
+      "Late at night, you find Anton on the bridge by the mill, alone.<br><br>\"Why?\" you ask. \"Twenty-two years. Why did you never ask?\"",
+      "He looks down at the water. \"The summer after your father signed, my boy fell into the river by the mill wheel. He was four. I could not reach him. Your father was bringing the bread. He jumped in.\"<br><br>\"How do you ask for money from the man who gave you back your son?\"",
+      "\"This week I asked because I was afraid for my mill. That is my shame, not yours.\"<br><br>He walks home. You stand on the bridge with both papers in your hand.",
+      "Back in the square, someone is folding the chairs in the dark, one by one. It is Beno.<br><br>You put both papers in your pocket. You start walking toward him."
+     ],
+     "small": [],
+     "science": "How a thing ends shapes how we remember all of it. In one famous study, most people chose to repeat a longer bad test, because its last part was a little less bad."
+    },
+    "BA": {
+     "screens": [
+      "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>Beno stayed all night. He shapes every loaf with you. Small bread, for a small wedding.",
+      "At ten, you walk to the mill with your mother's tin. Half. You put it on Anton's desk.<br><br>He looks at it. He does not open it. He puts it under his arm and walks back with you.",
+      "At noon, the family stands in the bakery yard. Twenty people. Lina in white. Milo in his father's old suit. Anton and his wife stand by the gate, the tin still under his arm.",
+      "Then the gate opens. The woman from the café comes in with a pot of soup. Behind her, the postman with a cake. Behind him, half the village. Then the other half.<br><br>Nobody was invited. Everybody came. Each one carries a plate.",
+      "By one o'clock, the yard is full, and the street, and the square. Three hundred people eat from their own pots. Your little loaves are torn and shared, one between ten.<br><br>Beno climbs onto a chair with his accordion.",
+      "But before he plays, he says it, to everyone. \"My brother paid my debt, 22 years ago. I let him carry it. I am sorry.\"<br><br>Nobody claps. Nobody looks away either.",
+      "Then Old Teo gets up from his chair, slowly. He points his stick at Anton. \"Tell them,\" he says. \"Or I will.\"<br><br>Anton's face goes red. He does not speak. So Teo does.",
+      "\"The summer after they signed, Anton's boy fell into the river by the mill wheel. Four years old. Anton could not reach him. Elias was bringing the bread. He jumped in.\"<br><br>\"That is why Anton never asked. How do you ask for money from the man who gave you back your son?\"",
+      "Milo turns to his father. Anton nods. Just once.<br><br>Then he walks to Lina and puts your mother's tin in her hands. \"A wedding gift,\" he says. \"A real one.\"",
+      "Beno plays. Lina and Milo dance in the bakery yard, between the soup pots.<br><br>That night, you open the red book. Under Wedding Bread, in your own hand, you write: Feeds 300, if everyone brings something."
+     ],
+     "small": [],
+     "science": "How a thing ends shapes how we remember all of it. In one famous study, most people chose to repeat a longer bad test, because its last part was a little less bad."
+    },
+    "BB": {
+     "screens": [
+      "Sunday. Four in the morning. The oven is hot. The red book is open at Wedding Bread.<br><br>You bake alone. Small bread, for a small wedding. Beno left last night without a word.",
+      "At ten, you walk to the mill with your mother's tin. Half. You put it on Anton's desk.<br><br>He opens it. He does not count. He just looks at the coins for a long time.",
+      "\"Your father tried to pay me,\" he says. \"Every year. Every year I said no.\"<br><br>\"Why?\"<br><br>He closes the tin. \"Today I tell my son. Then he can tell you.\"",
+      "At noon, the family stands in the bakery yard. Twenty people. Lina in white. Milo in his father's old suit. Anton and his wife by the gate.<br><br>Beno is not there. His children are.",
+      "You give the toast. It is short. You say what your father always said: \"Bread first. Then everything else.\"<br><br>Lina laughs and cries at the same time.",
+      "Before the first dance, Anton takes Milo out into the street. They are gone for ten minutes. When Milo comes back, his face is wet. He comes straight to you.",
+      "\"When I was four, I fell into the river by the mill wheel,\" he says. \"I never knew. Your father jumped in. He pulled me out.\"<br><br>\"That is why my father never asked. He says: how do you ask for money from the man who gave you back your son?\"",
+      "At the gate, Anton holds up the tin. \"Half in coins,\" he says to you. \"The other half your father paid in the river, long ago. We are even.\"<br><br>Then Lina and Milo dance, in a yard with twenty people. It is enough.",
+      "Late at night, you walk up the hill with one loaf of bread. Beno's light is on.<br><br>You stand at his door for a long time. You put the bread on the step. You do not knock. Not yet.",
+      "Halfway down the hill, you hear his door open behind you.<br><br>You do not turn round. But you walk a little slower."
+     ],
+     "small": [],
+     "science": "How a thing ends shapes how we remember all of it. In one famous study, most people chose to repeat a longer bad test, because its last part was a little less bad."
+    }
+   }
+  }
+ ],
+ "sources": [
+  {
+   "day": 1,
+   "title": "Levine & Cohen (2018). You can handle the truth: Mispredicting the consequences of honest communication. Journal of Experimental Psychology: General 147(9).",
+   "link": "https://doi.org/10.1037/xge0000488"
+  },
+  {
+   "day": 2,
+   "title": "Kahneman, Knetsch & Thaler (1990). Experimental tests of the endowment effect and the Coase theorem. Journal of Political Economy 98(6).",
+   "link": "https://doi.org/10.1086/261737"
+  },
+  {
+   "day": 3,
+   "title": "Camerer & Thaler (1995). Anomalies: Ultimatums, dictators and manners. Journal of Economic Perspectives 9(2).",
+   "link": "https://doi.org/10.1257/jep.9.2.209"
+  },
+  {
+   "day": 4,
+   "title": "Slepian, Chun & Mason (2017). The experience of secrecy. Journal of Personality and Social Psychology 113(1).",
+   "link": "https://doi.org/10.1037/pspa0000085"
+  },
+  {
+   "day": 5,
+   "title": "Mani, Mullainathan, Shafir & Zhao (2013). Poverty impedes cognitive function. Science 341.",
+   "link": "https://doi.org/10.1126/science.1238041"
+  },
+  {
+   "day": 6,
+   "title": "Witvliet, Ludwig & Vander Laan (2001). Granting forgiveness or harboring grudges: Implications for emotion, physiology, and health. Psychological Science 12(2).",
+   "link": "https://doi.org/10.1111/1467-9280.00320"
+  },
+  {
+   "day": 7,
+   "title": "Kahneman, Fredrickson, Schreiber & Redelmeier (1993). When more pain is preferred to less: Adding a better end. Psychological Science 4(6).",
+   "link": "https://www.jstor.org/stable/40062570"
+  }
+ ]
+}

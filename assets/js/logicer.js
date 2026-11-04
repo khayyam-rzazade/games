@@ -38,7 +38,18 @@
   /* has this browser finished at least one daily game, ever (practice does not count: the games' own rule),
      or at least one find-out (B3, 22 Oct 2026, Khayyam: "anyone doing anything on the website is a Logicer") */
   function played() {
-    return playedDaily() || playedFindOut();
+    return playedDaily() || playedFindOut() || playedCheckin();
+  }
+  /* the Anonymous Check-in (4 Nov 2026, Khayyam: every check-in counts for the Logicer number): checkin/ keeps its
+     check-ins under "lg.checkin.v1", one entry per finished check-in in "history". Read only, never written. */
+  function playedCheckin() {
+    try {
+      var st = JSON.parse(window.localStorage.getItem("lg.checkin.v1"));
+      var h = st && st.history;
+      if (!Array.isArray(h)) return false;
+      for (var i = 0; i < h.length; i++) if (h[i] && typeof h[i].who === "number") return true;
+      return false;
+    } catch (e) { return false; }
   }
   function playedDaily() {
     try {

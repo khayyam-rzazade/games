@@ -1,0 +1,763 @@
+{
+ "week": 1,
+ "title": "The Ferry Comes Sunday",
+ "genre": "mystery",
+ "keyVotes": [
+  1,
+  4
+ ],
+ "days": [
+  {
+   "day": 1,
+   "versions": {
+    "": {
+     "screens": [
+      "The island has 212 people and one ferry. The ferry comes on Sundays.<br><br>You run the shop. The shop is also the post office. So you know things about everyone. Things you have never said out loud.",
+      "Monday, 6:40 in the morning. You are opening the door.<br><br>Marta's boy comes running down the hill. Nobody runs here.<br><br>\"The teacher didn't come,\" he says. \"The school is locked.\"",
+      "Aurel's house is at the end of the harbour.<br><br>The door is open. The kettle is still warm. His boat is tied up where it always is. His coat is on the hook.",
+      "On the kitchen table, three things, laid out neatly:<br><br>His house key.<br>A photo of a woman on a city street. You don't know her.<br>An envelope.",
+      "The envelope has a stamp. Your stamp. He bought it on Friday.<br><br>It is addressed to the police on the mainland.<br><br>Under the address, in his small neat writing: *Post this if I am not here to stop you.*",
+      "What you know about Aurel:<br><br>He came two years ago. He never said from where.<br>People like him.<br>In two years he has never received one letter. You would know.",
+      "One more thing.<br><br>Only one radio on the island reaches the mainland. It belongs to the harbour master.<br><br>Last winter, Aurel asked you about the harbour master. Carefully. The way people ask about the weather.",
+      "By nine, the whole island knows. By noon, twelve people have told you what they saw last night. Two of the stories cannot both be true.<br><br>Old Sef says he saw a light on the north cliffs at two in the morning.<br>Marta says Aurel came to the shop yesterday, looking for you. On a Sunday. When the shop was closed.",
+      "Night. You are at your own table. The envelope is in front of you.<br><br>In 31 years you have never opened a letter that was not yours.<br><br>The ferry comes in six days."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Go home. Say nothing yet.",
+         "line": "He goes, but he looks back twice.",
+         "side": "left"
+        },
+        {
+         "text": "Go and tell the harbour master.",
+         "line": "He runs again. By seven, everyone will know.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "You go in.",
+         "line": "The floor creaks. Nobody answers.",
+         "side": "left"
+        },
+        {
+         "text": "You call his name from the door first.",
+         "line": "Nothing. Then you go in.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight the island decides. What do you do?",
+      "A": {
+       "label": "Open it.",
+       "reason": "He is gone. Whatever he knew, you need to know it first.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      },
+      "B": {
+       "label": "Don't open it.",
+       "reason": "It is not yours. Keep it safe, say nothing, and watch who comes asking.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You slide a knife under the flap. One page. The first line is your own name.",
+      "B": "You put the envelope in your coat and lock the shop. At two in the morning, someone tries the back door. You stay very still. In the morning there are wet footprints on the step. They are not going away from the shop. They are going in."
+     },
+     "science": "Most people open it. Curiosity is one of the strongest pulls we have. In studies, people will even take small pain to find out a secret."
+    }
+   }
+  },
+  {
+   "day": 2,
+   "versions": {
+    "A": {
+     "screens": [
+      "[D2A] Screen 1 of this placeholder chapter. Tuesday.",
+      "[D2A] Screen 2 of this placeholder chapter. Tuesday.",
+      "[D2A] Screen 3 of this placeholder chapter. Tuesday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "D2A small 1 left",
+         "line": "D2A line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D2A small 1 right",
+         "line": "D2A line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "D2A small 2 left",
+         "line": "D2A line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D2A small 2 right",
+         "line": "D2A line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D2A] The vote of day 2. What do you do?",
+      "A": {
+       "label": "Vote2 A",
+       "reason": "Reason 2 A.",
+       "axis": "head-heart",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote2 B",
+       "reason": "Reason 2 B.",
+       "axis": "head-heart",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D2-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D2-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D2: one plain sentence."
+    },
+    "B": {
+     "screens": [
+      "[D2B] Screen 1 of this placeholder chapter. Tuesday.",
+      "[D2B] Screen 2 of this placeholder chapter. Tuesday.",
+      "[D2B] Screen 3 of this placeholder chapter. Tuesday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "D2B small 1 left",
+         "line": "D2B line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D2B small 1 right",
+         "line": "D2B line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "D2B small 2 left",
+         "line": "D2B line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D2B small 2 right",
+         "line": "D2B line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D2B] The vote of day 2. What do you do?",
+      "A": {
+       "label": "Vote2 A",
+       "reason": "Reason 2 A.",
+       "axis": "head-heart",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote2 B",
+       "reason": "Reason 2 B.",
+       "axis": "head-heart",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D2-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D2-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D2: one plain sentence."
+    }
+   }
+  },
+  {
+   "day": 3,
+   "versions": {
+    "A": {
+     "screens": [
+      "[D3A] Screen 1 of this placeholder chapter. Wednesday.",
+      "[D3A] Screen 2 of this placeholder chapter. Wednesday.",
+      "[D3A] Screen 3 of this placeholder chapter. Wednesday.",
+      "[D3A] Screen 4 of this placeholder chapter. Wednesday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "D3A small 1 left",
+         "line": "D3A line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D3A small 1 right",
+         "line": "D3A line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "D3A small 2 left",
+         "line": "D3A line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D3A small 2 right",
+         "line": "D3A line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D3A] The vote of day 3. What do you do?",
+      "A": {
+       "label": "Vote3 A",
+       "reason": "Reason 3 A.",
+       "axis": "lead-follow",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote3 B",
+       "reason": "Reason 3 B.",
+       "axis": "lead-follow",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D3-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D3-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D3: one plain sentence."
+    },
+    "B": {
+     "screens": [
+      "[D3B] Screen 1 of this placeholder chapter. Wednesday.",
+      "[D3B] Screen 2 of this placeholder chapter. Wednesday.",
+      "[D3B] Screen 3 of this placeholder chapter. Wednesday.",
+      "[D3B] Screen 4 of this placeholder chapter. Wednesday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "D3B small 1 left",
+         "line": "D3B line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D3B small 1 right",
+         "line": "D3B line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "D3B small 2 left",
+         "line": "D3B line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D3B small 2 right",
+         "line": "D3B line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D3B] The vote of day 3. What do you do?",
+      "A": {
+       "label": "Vote3 A",
+       "reason": "Reason 3 A.",
+       "axis": "lead-follow",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote3 B",
+       "reason": "Reason 3 B.",
+       "axis": "lead-follow",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D3-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D3-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D3: one plain sentence."
+    }
+   }
+  },
+  {
+   "day": 4,
+   "versions": {
+    "A": {
+     "screens": [
+      "[D4A] Screen 1 of this placeholder chapter. Thursday.",
+      "[D4A] Screen 2 of this placeholder chapter. Thursday.",
+      "[D4A] Screen 3 of this placeholder chapter. Thursday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "D4A small 1 left",
+         "line": "D4A line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D4A small 1 right",
+         "line": "D4A line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "D4A small 2 left",
+         "line": "D4A line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D4A small 2 right",
+         "line": "D4A line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D4A] The vote of day 4. What do you do?",
+      "A": {
+       "label": "Vote4 A",
+       "reason": "Reason 4 A.",
+       "axis": "truth-kindness",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote4 B",
+       "reason": "Reason 4 B.",
+       "axis": "truth-kindness",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D4-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D4-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D4: one plain sentence."
+    },
+    "B": {
+     "screens": [
+      "[D4B] Screen 1 of this placeholder chapter. Thursday.",
+      "[D4B] Screen 2 of this placeholder chapter. Thursday.",
+      "[D4B] Screen 3 of this placeholder chapter. Thursday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "D4B small 1 left",
+         "line": "D4B line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D4B small 1 right",
+         "line": "D4B line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "D4B small 2 left",
+         "line": "D4B line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D4B small 2 right",
+         "line": "D4B line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D4B] The vote of day 4. What do you do?",
+      "A": {
+       "label": "Vote4 A",
+       "reason": "Reason 4 A.",
+       "axis": "truth-kindness",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote4 B",
+       "reason": "Reason 4 B.",
+       "axis": "truth-kindness",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D4-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D4-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D4: one plain sentence."
+    }
+   }
+  },
+  {
+   "day": 5,
+   "versions": {
+    "A": {
+     "screens": [
+      "[D5A] Screen 1 of this placeholder chapter. Friday.",
+      "[D5A] Screen 2 of this placeholder chapter. Friday.",
+      "[D5A] Screen 3 of this placeholder chapter. Friday.",
+      "[D5A] Screen 4 of this placeholder chapter. Friday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "D5A small 1 left",
+         "line": "D5A line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D5A small 1 right",
+         "line": "D5A line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "D5A small 2 left",
+         "line": "D5A line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D5A small 2 right",
+         "line": "D5A line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D5A] The vote of day 5. What do you do?",
+      "A": {
+       "label": "Vote5 A",
+       "reason": "Reason 5 A.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote5 B",
+       "reason": "Reason 5 B.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D5-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D5-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D5: one plain sentence."
+    },
+    "B": {
+     "screens": [
+      "[D5B] Screen 1 of this placeholder chapter. Friday.",
+      "[D5B] Screen 2 of this placeholder chapter. Friday.",
+      "[D5B] Screen 3 of this placeholder chapter. Friday.",
+      "[D5B] Screen 4 of this placeholder chapter. Friday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "D5B small 1 left",
+         "line": "D5B line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D5B small 1 right",
+         "line": "D5B line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "D5B small 2 left",
+         "line": "D5B line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D5B small 2 right",
+         "line": "D5B line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D5B] The vote of day 5. What do you do?",
+      "A": {
+       "label": "Vote5 A",
+       "reason": "Reason 5 A.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote5 B",
+       "reason": "Reason 5 B.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D5-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D5-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D5: one plain sentence."
+    }
+   }
+  },
+  {
+   "day": 6,
+   "versions": {
+    "A": {
+     "screens": [
+      "[D6A] Screen 1 of this placeholder chapter. Saturday.",
+      "[D6A] Screen 2 of this placeholder chapter. Saturday.",
+      "[D6A] Screen 3 of this placeholder chapter. Saturday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "D6A small 1 left",
+         "line": "D6A line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D6A small 1 right",
+         "line": "D6A line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "D6A small 2 left",
+         "line": "D6A line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D6A small 2 right",
+         "line": "D6A line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D6A] The vote of day 6. What do you do?",
+      "A": {
+       "label": "Vote6 A",
+       "reason": "Reason 6 A.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote6 B",
+       "reason": "Reason 6 B.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D6-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D6-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D6: one plain sentence."
+    },
+    "B": {
+     "screens": [
+      "[D6B] Screen 1 of this placeholder chapter. Saturday.",
+      "[D6B] Screen 2 of this placeholder chapter. Saturday.",
+      "[D6B] Screen 3 of this placeholder chapter. Saturday."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "D6B small 1 left",
+         "line": "D6B line 1 left.",
+         "side": "left"
+        },
+        {
+         "text": "D6B small 1 right",
+         "line": "D6B line 1 right.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 2,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "D6B small 2 left",
+         "line": "D6B line 2 left.",
+         "side": "left"
+        },
+        {
+         "text": "D6B small 2 right",
+         "line": "D6B line 2 right.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "[D6B] The vote of day 6. What do you do?",
+      "A": {
+       "label": "Vote6 A",
+       "reason": "Reason 6 A.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Vote6 B",
+       "reason": "Reason 6 B.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "GLIMPSE-D6-A shown to A voters when the world chose B.",
+      "B": "GLIMPSE-D6-B shown to B voters when the world chose A."
+     },
+     "science": "SCIENCE-D6: one plain sentence."
+    }
+   }
+  },
+  {
+   "day": 7,
+   "versions": {
+    "AA": {
+     "screens": [
+      "[END-AA] Screen 1 of this placeholder chapter. Sunday.",
+      "[END-AA] Screen 2 of this placeholder chapter. Sunday.",
+      "[END-AA] Screen 3 of this placeholder chapter. Sunday."
+     ],
+     "small": [],
+     "science": "SCIENCE-D7: one plain sentence."
+    },
+    "AB": {
+     "screens": [
+      "[END-AB] Screen 1 of this placeholder chapter. Sunday.",
+      "[END-AB] Screen 2 of this placeholder chapter. Sunday.",
+      "[END-AB] Screen 3 of this placeholder chapter. Sunday."
+     ],
+     "small": [],
+     "science": "SCIENCE-D7: one plain sentence."
+    },
+    "BA": {
+     "screens": [
+      "[END-BA] Screen 1 of this placeholder chapter. Sunday.",
+      "[END-BA] Screen 2 of this placeholder chapter. Sunday.",
+      "[END-BA] Screen 3 of this placeholder chapter. Sunday."
+     ],
+     "small": [],
+     "science": "SCIENCE-D7: one plain sentence."
+    },
+    "BB": {
+     "screens": [
+      "[END-BB] Screen 1 of this placeholder chapter. Sunday.",
+      "[END-BB] Screen 2 of this placeholder chapter. Sunday.",
+      "[END-BB] Screen 3 of this placeholder chapter. Sunday."
+     ],
+     "small": [],
+     "science": "SCIENCE-D7: one plain sentence."
+    }
+   }
+  }
+ ]
+}

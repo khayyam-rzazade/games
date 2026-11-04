@@ -1,0 +1,893 @@
+{
+ "week": 4,
+ "title": "The Last Train Up",
+ "genre": "survival",
+ "keyVotes": [
+  2,
+  6
+ ],
+ "days": [
+  {
+   "day": 1,
+   "versions": {
+    "": {
+     "screens": [
+      "The last train of the year goes up the mountain. It has two cars and seven people.<br><br>You are one of them. You are a cook. You are going up to cook all winter at the hotel at the top.",
+      "The snow starts at noon. By two, you cannot see the trees. At three, the train stops.<br><br>The driver gets out. His name is Bruno. He has driven this line for thirty years. He walks ahead into the snow.",
+      "He comes back slowly. \"Snow on the line,\" he says. \"A wall of it. We can't go up.\"<br><br>Then you hear a sound behind the train. Like thunder that does not stop. When it ends, there is a wall of snow behind you too.",
+      "Near the train there is an old station. Nobody has used it for twenty years. Stone walls. One big room. An iron stove. A small back room with shelves.<br><br>On the icy steps, Bruno falls. He cannot stand on his left leg. You and a young man carry him in.",
+      "Now you all sit around the stove. Strangers.<br><br>Tomas, the young man. Red hat, big laugh. He says he teaches skiing in winter and takes people up mountains in summer.<br>Vera. White hair, a big brown case. She was a nurse for thirty years.<br>Sami, a quiet man, and his girl, Rosa. She is six.",
+      "And Mr. Lind. Long black coat, gold watch. He has just bought the hotel at the top.<br><br>\"So you are my new cook,\" he says. He does not smile.",
+      "Bruno has a radio. He holds it to his ear for a long time.<br><br>\"The storm will stay for days,\" he says. \"Nobody can reach us. Maybe on Sunday.\"<br><br>Rosa pulls your sleeve. \"Is Sunday soon?\"",
+      "You are the cook, so you count the food. You put it all on the table.<br><br>Bread. One big cheese. A box of tins. Rice. Tea. A bag of chocolate from the train's little shop.<br><br>Seven people. Enough for three days. Four, if everyone eats very little.",
+      "Mr. Lind keeps his leather bag on his knees. It looks heavy. He does not open it.<br><br>Tomas looks at the dark window. \"I know a path over the ridge,\" he says. \"Six hours to the village at the top.\"<br><br>\"Not in this,\" says Bruno. \"Nobody goes out.\"",
+      "At the window, Rosa says she saw a red dog by the trees. Nobody looks. They are all looking at you.<br><br>\"You are the cook,\" says Vera. \"You keep the food. You decide how we share it.\""
+     ],
+     "small": [
+      {
+       "after": 2,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Go out and see it for yourself.",
+         "line": "The snow is up to your chest. You come back fast.",
+         "side": "left"
+        },
+        {
+         "text": "Stay in the warm car.",
+         "line": "From the window, you see only white.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 6,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "\"No. Six more nights.\"",
+         "line": "She counts on her fingers. Then she is very quiet.",
+         "side": "left"
+        },
+        {
+         "text": "\"Very soon.\"",
+         "line": "She smiles. Sami looks at you and says nothing.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Seven people, food for four days. How do you share it?",
+      "A": {
+       "label": "The same for everyone.",
+       "reason": "Nobody can argue with the same. Once you choose who needs more, everyone will say they need more.",
+       "axis": "head-heart",
+       "side": "left"
+      },
+      "B": {
+       "label": "More for those who need it.",
+       "reason": "A small girl and a hurt man need more than you do. The same is not always fair.",
+       "axis": "head-heart",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "Morning. You cut the bread into seven slices, all the same. Bruno eats his in two bites. Sami cuts his slice in half and pushes one half to Rosa. Nobody can say you cheated. But nobody is full.",
+      "B": "Morning. Rosa gets a bigger slice. So does Bruno. Mr. Lind looks at the plates for a long time. \"So who decides who needs it?\" he asks. \"The cook?\""
+     },
+     "science": "Scientists who study fairness say people share equally when they want everyone to get along, and share by need when they want to look after someone. Both feel fair."
+    }
+   }
+  },
+  {
+   "day": 2,
+   "versions": {
+    "A": {
+     "screens": [
+      "Tuesday. You cut the bread into seven slices, all the same. Half a tin each. One cup of tea.<br><br>Bruno eats his slice in two bites. Then he looks at the empty plate for a long time.",
+      "Sami cuts his slice in half. He pushes one half to Rosa. He does it fast, so nobody sees. You see. Rosa eats both halves. She does not ask where the second one came from.<br><br>\"The same for all,\" says Vera. \"Good. Nobody can say you cheated.\"",
+      "Mr. Lind eats his slice. Then he opens his leather bag in the corner. Smoked meat. Biscuits. He eats with his back to the room.<br><br>Later he turns and gives Rosa one biscuit. Only one. Then he closes the bag.",
+      "At noon the snow stops for one hour. The train has blankets and a box of coal. But its door is under the snow.<br><br>Everyone goes out to dig. Everyone but Bruno. He sleeps by the stove.",
+      "You dig for an hour. You see people come and go.<br><br>Mr. Lind goes back in once, for his gloves. Sami takes Rosa in when she gets cold, then comes back out. Tomas walks up the hill alone, to a big dead tree, to look at the ridge. He comes down before the others. Later, you see him up by the tree again.",
+      "By the back wall of the station, you see small tracks in the snow. Rosa saw them first, this morning. \"The red dog,\" she said. \"See?\"<br><br>Nobody had time to look. Now the wind is coming back. You dig faster.",
+      "You carry the blankets in. Vera looks at Bruno's leg. It is fat and dark.<br><br>\"Tell me the truth,\" says Bruno. \"Is it broken?\"<br>\"Maybe,\" says Vera. She opens her brown case. Bandages. Little bottles. And a bundle of old letters, tied with string. She closes it fast.",
+      "Evening. You go to the back room to make dinner. You stop at the door.<br><br>A loaf of bread is gone. Half the cheese is gone. All the chocolate is gone.",
+      "You tell them. The room goes quiet.<br><br>Mr. Lind speaks first. \"Then we search,\" he says. \"Every bag. Now.\"<br><br>Vera holds her case to her chest. \"Nobody goes through my things.\"",
+      "Tomas laughs, but not like before. Sami pulls Rosa close. Bruno opens his eyes.<br><br>\"You keep the food, cook,\" he says. \"You decide.\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Keep to the rule.",
+         "line": "A rule is a rule. Sami's hands shake a little.",
+         "side": "left"
+        },
+        {
+         "text": "Give Sami a little more, quietly.",
+         "line": "He looks at you. He eats it very slowly.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Tell them now.",
+         "line": "You turn around before you can change your mind.",
+         "side": "left"
+        },
+        {
+         "text": "Count it all again first.",
+         "line": "You count it twice. It is still gone.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Someone took the food. What do you do?",
+      "A": {
+       "label": "Search every bag.",
+       "reason": "Someone here is eating your food. Find out tonight, before it happens again.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      },
+      "B": {
+       "label": "Don't search.",
+       "reason": "Search, and you lose the group. Guard what is left, and watch.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      }
+     },
+     "glimpse": {
+      "A": "You start with your own bag, so nobody can say you didn't. Then Sami's. Then Tomas's. In his bag, under a rope, you find two bars of chocolate.",
+      "B": "\"I won't go through your bags,\" you say. \"But from now on, I sleep by the food.\" That night, on the cold floor, you hear something at the back wall. Scratch, scratch. Then quiet."
+     },
+     "science": "In a famous experiment, people who were checked and controlled did less for the person who checked them. Most said it felt like a sign of distrust."
+    },
+    "B": {
+     "screens": [
+      "Tuesday. Rosa gets a bigger slice of bread. So does Bruno. Everyone else gets a small one.<br><br>Mr. Lind looks at the plates for a long time. \"So who decides who needs it?\" he asks. \"The cook?\"",
+      "\"I need more,\" says Tomas. \"If anyone walks out of here, it's me. I need to be strong.\"<br><br>\"I'm old,\" says Vera. \"Old people need more too.\" She laughs, but she means it.<br><br>By the end of breakfast, everyone has a reason.",
+      "Tomas eats his small slice and looks at Rosa's big one. Sami says nothing. Later, when the others are not looking, he touches your arm. \"Thank you,\" he says. Just that.<br><br>Mr. Lind opens his leather bag in the corner. Smoked meat. Biscuits. \"If the cook decides who needs food,\" he says, \"I decide for myself.\" He eats with his back to the room.",
+      "At noon the snow stops for one hour. The train has blankets and a box of coal. But its door is under the snow.<br><br>Everyone goes out to dig. Everyone but Bruno. He sleeps by the stove.",
+      "You dig for an hour. You see people come and go.<br><br>Mr. Lind goes back in once, for his gloves. Sami takes Rosa in when she gets cold, then comes back out. Tomas walks up the hill alone, to a big dead tree, to look at the ridge. He comes down before the others. Later, you see him up by the tree again.",
+      "By the back wall of the station, you see small tracks in the snow. Rosa saw them first, this morning. \"The red dog,\" she said. \"See?\"<br><br>Nobody had time to look. Now the wind is coming back. You dig faster.",
+      "You carry the blankets in. Vera looks at Bruno's leg. It is fat and dark.<br><br>\"Tell me the truth,\" says Bruno. \"Is it broken?\"<br>\"Maybe,\" says Vera. She opens her brown case. Bandages. Little bottles. And a bundle of old letters, tied with string. She closes it fast.",
+      "Evening. You go to the back room to make dinner. You stop at the door.<br><br>A loaf of bread is gone. Half the cheese is gone. All the chocolate is gone.",
+      "You tell them. The room goes quiet.<br><br>Mr. Lind speaks first. \"Then we search,\" he says. \"Every bag. Now.\"<br><br>Vera holds her case to her chest. \"Nobody goes through my things.\"",
+      "Tomas laughs, but not like before. Sami pulls Rosa close. Bruno opens his eyes.<br><br>\"You keep the food, cook,\" he says. \"You decide.\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Say: \"My kitchen, my rules.\"",
+         "line": "The talking stops. Nobody likes it, but it stops.",
+         "side": "left"
+        },
+        {
+         "text": "Let them talk.",
+         "line": "They talk for an hour. Nothing changes.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Tell them now.",
+         "line": "You turn around before you can change your mind.",
+         "side": "left"
+        },
+        {
+         "text": "Count it all again first.",
+         "line": "You count it twice. It is still gone.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Someone took the food. What do you do?",
+      "A": {
+       "label": "Search every bag.",
+       "reason": "Someone here is eating your food. Find out tonight, before it happens again.",
+       "axis": "trust-suspicion",
+       "side": "right"
+      },
+      "B": {
+       "label": "Don't search.",
+       "reason": "Search, and you lose the group. Guard what is left, and watch.",
+       "axis": "trust-suspicion",
+       "side": "left"
+      }
+     },
+     "glimpse": {
+      "A": "You start with your own bag, so nobody can say you didn't. Then Sami's. Then Tomas's. In his bag, under a rope, you find two bars of chocolate.",
+      "B": "\"I won't go through your bags,\" you say. \"But from now on, I sleep by the food.\" That night, on the cold floor, you hear something at the back wall. Scratch, scratch. Then quiet."
+     },
+     "science": "In a famous experiment, people who were checked and controlled did less for the person who checked them. Most said it felt like a sign of distrust."
+    }
+   }
+  },
+  {
+   "day": 3,
+   "versions": {
+    "A": {
+     "screens": [
+      "Tuesday night. You search every bag. You start with your own, so nobody can say you didn't.<br><br>Then Sami's. A shirt. A toy horse. A photo of a woman. No food.",
+      "Tomas's bag is packed for a long walk. A rope. A map. A torch. And two bars of chocolate.<br><br>\"Mine,\" he says. \"I bought them in the valley.\" They look like the ones from the train. But all chocolate looks like that.",
+      "Mr. Lind opens his bag himself, slowly, like a show. Smoked meat. Biscuits. A bottle of wine. \"All mine,\" he says. \"I paid for every bit of it.\"<br><br>No bread. No cheese.",
+      "Rosa's coat has crumbs in the pocket. \"She keeps her bread there,\" says Sami. \"She eats it slowly, to make it last.\"<br><br>Rosa looks at the floor.",
+      "Last is Vera's case. She opens it with shaking hands. Bandages. Medicine. The bundle of old letters.<br><br>\"Thirty years a nurse,\" she says. \"Nobody ever went through my things.\" She does not look at you again all night.",
+      "No thief. Only six people who now know what is in each other's bags. And who look at you in a new way.<br><br>Tomas packs his bag again, very slowly. Mr. Lind pours himself a glass of wine. He does not offer it to anyone.",
+      "Wednesday. At noon, Vera looks at Bruno's leg again. She is quiet for a long time. His face is hot. His eyes are too bright.<br><br>\"Fever,\" she says to you, very low. \"The leg is bad.\"",
+      "Bruno tries the radio. A voice comes, far away and broken. \"...storm... Sunday... maybe...\"<br><br>Then nothing. The little light on the radio goes out. The battery is dead. Nobody in the valley can hear you now.",
+      "Then Mr. Lind stands up. \"Listen to me,\" he says. \"Some rice and seven tins. A thief. A sick man. No radio. No plan. We need one person in charge.\"<br><br>He puts a hand on his chest. \"I run a company with two hundred people. I can do this.\"",
+      "Tomas laughs. Vera says nothing. Sami looks at you.<br><br>\"Not him,\" says Sami. \"You keep the food. You should decide.\"<br><br>\"Or nobody decides,\" says Tomas. \"We all vote. On everything.\""
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Believe him.",
+         "line": "He puts the chocolate back in his bag. He does not thank you.",
+         "side": "left"
+        },
+        {
+         "text": "Put his chocolate with the food.",
+         "line": "\"Fine,\" he says. His face is red.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "Put more wood on the fire. Bruno is cold now.",
+         "line": "He stops shaking. The wood pile gets smaller.",
+         "side": "left"
+        },
+        {
+         "text": "Save the wood for the night.",
+         "line": "Bruno shakes under two blankets. The wood pile stays the same.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Who decides here from now on?",
+      "A": {
+       "label": "You take charge.",
+       "reason": "A group in trouble needs fast choices. You know the food and the people. Better you than him.",
+       "axis": "lead-follow",
+       "side": "left"
+      },
+      "B": {
+       "label": "Everyone votes.",
+       "reason": "Seven strangers. Nobody here has the right to rule the others. Not him, and not you.",
+       "axis": "lead-follow",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "Thursday. You stand by the stove. \"From now on, I decide,\" you say. \"Just until Sunday.\" Mr. Lind's face goes red. Sami nods. Vera says, \"Then decide well.\"",
+      "B": "Thursday. \"Hands up,\" you say. Five hands go up. Not Mr. Lind's. \"Wonderful,\" he says. \"Now we vote on every spoon of rice.\""
+     },
+     "science": "A study of more than 140,000 people in 69 countries found that when life feels unsafe, people want strong, tough leaders more."
+    },
+    "B": {
+     "screens": [
+      "Tuesday night. You don't search. You say it to all of them. \"I won't go through your bags. But from now on, I sleep by the food.\"<br><br>Mr. Lind shakes his head. \"Then the thief eats again tonight,\" he says.",
+      "You move your blanket to the door of the back room. You lie on the cold floor and listen.<br><br>Wind. The stove. Someone snoring. Bruno saying words in his sleep.",
+      "Late in the night, you hear something at the back wall. A small sound. Scratch, scratch. Then quiet.<br><br>You sit up. \"Who is there?\" Nobody answers. Six people breathing in the dark. You can't tell if any of them is awake.",
+      "In the morning, nothing more is gone. But everyone watches everyone.<br><br>Tomas packs his walking bag in the middle of the room, so all can see. Mr. Lind keeps his bag closer than ever. Rosa says the red dog came to the window in the night. Nobody believes her.",
+      "At breakfast, Mr. Lind watches you give out the rice. He counts every spoon out loud. When you get to Tomas, he says, \"And one for the thief.\"<br><br>Tomas stands up fast. Sami pulls him back down.",
+      "Vera brings you a cup of tea. \"You did a kind thing,\" she says. \"Or a stupid one. We'll see which.\"",
+      "Wednesday. At noon, Vera looks at Bruno's leg again. She is quiet for a long time. His face is hot. His eyes are too bright.<br><br>\"Fever,\" she says to you, very low. \"The leg is bad.\"",
+      "Bruno tries the radio. A voice comes, far away and broken. \"...storm... Sunday... maybe...\"<br><br>Then nothing. The little light on the radio goes out. The battery is dead. Nobody in the valley can hear you now.",
+      "Then Mr. Lind stands up. \"Listen to me,\" he says. \"Some rice and seven tins. A thief. A sick man. No radio. No plan. We need one person in charge.\"<br><br>He puts a hand on his chest. \"I run a company with two hundred people. I can do this.\"",
+      "Tomas laughs. Vera says nothing. Sami looks at you.<br><br>\"Not him,\" says Sami. \"You keep the food. You should decide.\"<br><br>\"Or nobody decides,\" says Tomas. \"We all vote. On everything.\""
+     ],
+     "small": [
+      {
+       "after": 2,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Get up and look.",
+         "line": "You walk around the room with a candle. Every face looks asleep.",
+         "side": "left"
+        },
+        {
+         "text": "Stay still and listen.",
+         "line": "The sound does not come back.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "now-later",
+       "options": [
+        {
+         "text": "Put more wood on the fire. Bruno is cold now.",
+         "line": "He stops shaking. The wood pile gets smaller.",
+         "side": "left"
+        },
+        {
+         "text": "Save the wood for the night.",
+         "line": "Bruno shakes under two blankets. The wood pile stays the same.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Who decides here from now on?",
+      "A": {
+       "label": "You take charge.",
+       "reason": "A group in trouble needs fast choices. You know the food and the people. Better you than him.",
+       "axis": "lead-follow",
+       "side": "left"
+      },
+      "B": {
+       "label": "Everyone votes.",
+       "reason": "Seven strangers. Nobody here has the right to rule the others. Not him, and not you.",
+       "axis": "lead-follow",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "Thursday. You stand by the stove. \"From now on, I decide,\" you say. \"Just until Sunday.\" Mr. Lind's face goes red. Sami nods. Vera says, \"Then decide well.\"",
+      "B": "Thursday. \"Hands up,\" you say. Five hands go up. Not Mr. Lind's. \"Wonderful,\" he says. \"Now we vote on every spoon of rice.\""
+     },
+     "science": "A study of more than 140,000 people in 69 countries found that when life feels unsafe, people want strong, tough leaders more."
+    }
+   }
+  },
+  {
+   "day": 4,
+   "versions": {
+    "A": {
+     "screens": [
+      "Thursday. You stand by the stove. \"From now on, I decide,\" you say. \"Just until Sunday.\"<br><br>Mr. Lind's face goes red. Sami nods. Tomas shrugs. Vera says, \"Then decide well.\"",
+      "You make rules. One small fire. Rice in the morning, one tin at night. Two people watch the food every night, never the same two. Nobody goes outside alone.",
+      "Tomas asks if he can walk out today. You look at the sky. You say no.<br><br>He does not argue. That is the strange part. When one person decides, people stop arguing. They start watching you instead.",
+      "Mr. Lind does not like rules from his cook. He takes his bag and goes to sit alone in the cold train.",
+      "That night, you see a torch moving out by the train. In the morning, nobody says it was theirs.<br><br>Being in charge is hard. Everyone brings you a problem. Rosa is cold. Tomas wants to walk out. Sami can't sleep. You don't sleep much either.",
+      "In the afternoon, Vera calls you outside. Only you. The snow falls softly.<br><br>\"Bruno's leg is very bad,\" she says. \"The fever is going up. I have pills for two more days. After that, nothing.\"",
+      "\"And if help doesn't come on Sunday?\" you ask.<br><br>She looks at the white mountain. \"Then he may not make it,\" she says. \"I have seen this before.\"<br><br>She turns to go in. \"I won't tell him,\" she says. \"You keep the food. Now you keep this too.\"",
+      "You stand in the snow for a long time after she goes in.<br><br>Through the window, you can see the others by the stove. Sami is fixing Rosa's boot. Tomas is reading his map again. None of them knows.",
+      "Inside, Bruno is telling Rosa about his train. How it climbs. How it never stops trying. She laughs. He laughs too. Then he coughs for a long time.",
+      "Then he looks up at you. \"What did the nurse say?\" he asks. Loud enough for everyone.<br><br>The room goes quiet. Everyone looks at you. Vera too."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Order him back inside.",
+         "line": "He comes back, slowly. He does not look at you.",
+         "side": "left"
+        },
+        {
+         "text": "Let him do what he wants.",
+         "line": "He stays out there until dark.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 8,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Make him rest. No more stories.",
+         "line": "He stops talking. His eyes follow you around the room.",
+         "side": "left"
+        },
+        {
+         "text": "Sit down and listen with Rosa.",
+         "line": "He tells it to the end. In his story, the train reaches the top.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Bruno asks. Everyone is listening. What do you tell him?",
+      "A": {
+       "label": "The truth.",
+       "reason": "It is his life. He has the right to know, and so do the others.",
+       "axis": "truth-kindness",
+       "side": "left"
+      },
+      "B": {
+       "label": "That he will be fine.",
+       "reason": "Hope keeps people going. The truth now only takes it away.",
+       "axis": "truth-kindness",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "\"The leg is bad,\" you say. \"There is a fever. If help doesn't come by Sunday, it may be too late.\" Nobody moves. Then Bruno nods slowly. \"Thank you,\" he says. \"I thought so.\"",
+      "B": "\"You'll be fine,\" you say. \"Rest, and you'll be driving trains again by Christmas.\" Bruno laughs. Everyone laughs a little. Across the room, Vera does not."
+     },
+     "science": "In a study of more than 2,000 people with a serious illness, 87% wanted to know everything about it, the good news and the bad."
+    },
+    "B": {
+     "screens": [
+      "Thursday. \"Hands up,\" you say. Five hands go up. Not Mr. Lind's.<br><br>\"Wonderful,\" he says. \"Now we vote on every spoon of rice.\"",
+      "Sami puts his hand up very straight, like at school. You vote on the fire: small. You vote on the food: rice in the morning, one tin at night. You vote on the night watch: two people, never the same two. It takes all morning.<br><br>\"It's slow,\" says Vera. \"But nobody can say you took the power.\"",
+      "Mr. Lind loses every vote, four to one. After the fourth, he stops putting his hand up. He sits in the corner with his bag and says nothing.<br><br>Rosa asks to vote too. She votes for more chocolate. There is no chocolate. Everyone laughs anyway.",
+      "That night, Sami and Mr. Lind watch the food. In the morning, Sami tells you Mr. Lind talked all night. About his father, who had a very small shop. Then he stopped and said, \"Forget it.\"",
+      "Then Tomas asks for a vote. \"I walk over the ridge. Today, while it's quiet.\"<br><br>Tomas and Mr. Lind put their hands up. Vera and Sami do not. Bruno is asleep. Everyone looks at you. Your hand decides.",
+      "In the afternoon, Vera calls you outside. Only you. The snow falls softly.<br><br>\"Bruno's leg is very bad,\" she says. \"The fever is going up. I have pills for two more days. After that, nothing.\"",
+      "\"And if help doesn't come on Sunday?\" you ask.<br><br>She looks at the white mountain. \"Then he may not make it,\" she says. \"I have seen this before.\"<br><br>She turns to go in. \"I won't tell him,\" she says. \"You keep the food. Now you keep this too.\"",
+      "You stand in the snow for a long time after she goes in.<br><br>Through the window, you can see the others by the stove. Sami is fixing Rosa's boot. Tomas is reading his map again. None of them knows.",
+      "Inside, Bruno is telling Rosa about his train. How it climbs. How it never stops trying. She laughs. He laughs too. Then he coughs for a long time.",
+      "Then he looks up at you. \"What did the nurse say?\" he asks. Loud enough for everyone.<br><br>The room goes quiet. Everyone looks at you. Vera too."
+     ],
+     "small": [
+      {
+       "after": 4,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Vote yes.",
+         "line": "Three to two. Tomas opens the door. The wind pushes him back in. Not today.",
+         "side": "left"
+        },
+        {
+         "text": "Vote no.",
+         "line": "Two to three. Tomas kicks the wall. But he stays.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 8,
+       "axis": "head-heart",
+       "options": [
+        {
+         "text": "Make him rest. No more stories.",
+         "line": "He stops talking. His eyes follow you around the room.",
+         "side": "left"
+        },
+        {
+         "text": "Sit down and listen with Rosa.",
+         "line": "He tells it to the end. In his story, the train reaches the top.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Bruno asks. Everyone is listening. What do you tell him?",
+      "A": {
+       "label": "The truth.",
+       "reason": "It is his life. He has the right to know, and so do the others.",
+       "axis": "truth-kindness",
+       "side": "left"
+      },
+      "B": {
+       "label": "That he will be fine.",
+       "reason": "Hope keeps people going. The truth now only takes it away.",
+       "axis": "truth-kindness",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "\"The leg is bad,\" you say. \"There is a fever. If help doesn't come by Sunday, it may be too late.\" Nobody moves. Then Bruno nods slowly. \"Thank you,\" he says. \"I thought so.\"",
+      "B": "\"You'll be fine,\" you say. \"Rest, and you'll be driving trains again by Christmas.\" Bruno laughs. Everyone laughs a little. Across the room, Vera does not."
+     },
+     "science": "In a study of more than 2,000 people with a serious illness, 87% wanted to know everything about it, the good news and the bad."
+    }
+   }
+  },
+  {
+   "day": 5,
+   "versions": {
+    "A": {
+     "screens": [
+      "\"The leg is bad,\" you say. \"There is a fever. Vera has pills for two more days. If help doesn't come by Sunday, it may be too late.\"<br><br>Nobody moves. The stove clicks.",
+      "Then Bruno nods slowly. \"Thank you,\" he says. \"I thought so. Better to know.\"<br><br>He asks for paper and a pen. He writes to his wife all evening, slowly, in big letters. Then he holds out the letter. \"If I don't make it,\" he says, \"give her this.\"",
+      "Rosa does not understand. But she sees the faces. Sami takes her outside to make a snowman, so she won't see more.<br><br>Tomas walks up and down. \"Now you see?\" he says. \"We can't just sit and wait.\" For once, Mr. Lind agrees with him.<br><br>\"Not for me,\" says Bruno. \"Nobody gets lost on that ridge for me.\"",
+      "Nobody sleeps much that night. But nobody pretends, either. Vera sits by Bruno until morning. Once, you hear him laugh at something she says.",
+      "That morning, you look outside. Snow fell all night. The train is gone under it. Only a long white hill shows where it was.<br><br>Then, at ten, the sky opens. Blue, for the first time in four days.",
+      "And then you hear it. A plane. Far away, low, flying along the valley.<br><br>It must be looking for you. But from up there, the train is just one more white hill. The station hides under the trees.",
+      "Everyone who can walk runs out into the snow. Rosa waves her red scarf. Sami lifts her up high. Mr. Lind shouts at the sky, as if a plane could hear him.<br><br>The plane goes on down the valley. It does not turn toward you.",
+      "\"A fire!\" shouts Tomas. \"A big one, with smoke! They'll see it!\"<br><br>But a big fire means all the wood. Every stick. You count. There is enough for two more cold nights, if you are careful. And the coldest nights are still coming.",
+      "The radio is dead. Nobody in the valley knows if you are alive.<br><br>At the end of the valley, the plane turns. It is coming back. One more time. Maybe the last."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Promise him.",
+         "line": "He puts the letter in your coat pocket. \"Good,\" he says.",
+         "side": "left"
+        },
+        {
+         "text": "Say: \"Give it to her yourself.\"",
+         "line": "He smiles and keeps the letter. \"We'll see,\" he says.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 7,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Tell everyone to stop and think.",
+         "line": "For a moment, they all go quiet and look at you.",
+         "side": "left"
+        },
+        {
+         "text": "Ask Vera what she thinks.",
+         "line": "\"Bruno needs the fire,\" she says. \"He also needs to be found.\"",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "The plane is coming back. What do you do with the wood?",
+      "A": {
+       "label": "Burn it all now.",
+       "reason": "Nobody knows you are alive. This may be the only time anyone looks.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Keep it.",
+       "reason": "They may not see the smoke. Then you have no fire for the coldest nights, and a sick man by the stove.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You burn everything. The wood. Two old chairs. Tomas throws on green branches for the smoke. A tall grey cloud climbs into the blue. The plane comes down the valley, low.",
+      "B": "You keep the wood. The plane flies down the valley, over the white hill where the train is. It does not slow down. Then it is gone. That night, the stove burns, and Bruno sleeps warm."
+     },
+     "science": "In a famous study, 8 in 10 people took a sure 3,000 over an 80% chance of 4,000. Most of us love a sure thing, even when the gamble pays more on average."
+    },
+    "B": {
+     "screens": [
+      "\"You'll be fine,\" you say. \"Vera has good pills. Rest, and you'll be driving trains again by Christmas.\"<br><br>Bruno laughs. Everyone laughs a little. The room feels warmer.",
+      "All evening, the room is lighter. Tomas sings a song from the valley, very badly. Rosa laughs so much she gets hiccups. Even Mr. Lind smiles once, and then looks surprised at himself.",
+      "Vera looks at you across the room. She says nothing. Later, by the door, she says very low, \"Now there are two of us who know.\"",
+      "That night Bruno can't sleep. You sit with him in the dark.<br><br>\"Cook,\" he says quietly. \"Thirty years I drove trains. I know when a train is in trouble. I know when I am.\" He pats your hand. \"Don't tell the girl.\"",
+      "In the morning, Rosa brings Bruno a snowball \"for his leg, to make it cold.\" He holds it in his big hand until it melts.",
+      "That morning, you look outside. Snow fell all night. The train is gone under it. Only a long white hill shows where it was.<br><br>Then, at ten, the sky opens. Blue, for the first time in four days.",
+      "And then you hear it. A plane. Far away, low, flying along the valley.<br><br>It must be looking for you. But from up there, the train is just one more white hill. The station hides under the trees.",
+      "Everyone who can walk runs out into the snow. Rosa waves her red scarf. Sami lifts her up high. Mr. Lind shouts at the sky, as if a plane could hear him.<br><br>The plane goes on down the valley. It does not turn toward you.",
+      "\"A fire!\" shouts Tomas. \"A big one, with smoke! They'll see it!\"<br><br>But a big fire means all the wood. Every stick. You count. There is enough for two more cold nights, if you are careful. And the coldest nights are still coming.",
+      "The radio is dead. Nobody in the valley knows if you are alive.<br><br>At the end of the valley, the plane turns. It is coming back. One more time. Maybe the last."
+     ],
+     "small": [
+      {
+       "after": 3,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "Tell him what Vera said.",
+         "line": "He listens. He nods. \"Thank you,\" he says, very low.",
+         "side": "left"
+        },
+        {
+         "text": "Say: \"You are fine.\"",
+         "line": "He laughs very softly. \"Liar,\" he says. \"A good one.\"",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 8,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Tell everyone to stop and think.",
+         "line": "For a moment, they all go quiet and look at you.",
+         "side": "left"
+        },
+        {
+         "text": "Ask Vera what she thinks.",
+         "line": "\"Bruno needs the fire,\" she says. \"He also needs to be found.\"",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "The plane is coming back. What do you do with the wood?",
+      "A": {
+       "label": "Burn it all now.",
+       "reason": "Nobody knows you are alive. This may be the only time anyone looks.",
+       "axis": "now-later",
+       "side": "left"
+      },
+      "B": {
+       "label": "Keep it.",
+       "reason": "They may not see the smoke. Then you have no fire for the coldest nights, and a sick man by the stove.",
+       "axis": "now-later",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "You burn everything. The wood. Two old chairs. Tomas throws on green branches for the smoke. A tall grey cloud climbs into the blue. The plane comes down the valley, low.",
+      "B": "You keep the wood. The plane flies down the valley, over the white hill where the train is. It does not slow down. Then it is gone. That night, the stove burns, and Bruno sleeps warm."
+     },
+     "science": "In a famous study, 8 in 10 people took a sure 3,000 over an 80% chance of 4,000. Most of us love a sure thing, even when the gamble pays more on average."
+    }
+   }
+  },
+  {
+   "day": 6,
+   "versions": {
+    "A": {
+     "screens": [
+      "You burn everything. The wood. Two old chairs. Tomas throws on green branches for the smoke. A tall grey cloud climbs into the blue.<br><br>From his blanket by the door, Bruno watches the smoke. He smiles for the first time in days.",
+      "The plane comes down the valley, low. It flies right over you.<br><br>Did it move its wings? Vera says yes. Mr. Lind says no. Rosa is still waving. \"Did they see us?\" she asks you.",
+      "Then the clouds close again. The snow comes back. And the night comes, with no wood.<br><br>You burn the old newspapers from the train. Ten minutes of heat. Then nothing.",
+      "It is the coldest night of your life. Everyone lies close around Bruno. Sami. Rosa. Vera. Tomas. Even Mr. Lind, at the edge. He puts his long black coat over Rosa.",
+      "Saturday. Bruno does not wake up properly. He says words that make no sense. Vera gives him the last pill.<br><br>\"Tomorrow,\" she says. \"If help comes tomorrow, he has a chance. Not later.\"",
+      "Nobody knows if help will come. The storm may stop on Sunday. It may not.<br><br>There is almost no food left. Sami gives Rosa half of his again. Rosa watches him eat nothing. Her face is serious, like a grown-up's.",
+      "Your stomach hurts all the time now. When you stand up fast, you have to hold on to the wall.<br><br>Mr. Lind's bag is empty too. He shows you, holding it open. Nobody asked him to.",
+      "After dark, Tomas sits next to you. \"I'm going tonight,\" he says. \"Over the ridge. Six hours to the village. They have a doctor. I need one person with me. You.\"",
+      "Then he says something new. Very quietly.<br><br>\"I have to tell you the truth. I walked that path one time. In summer, behind a real guide. I am not a guide. I teach little children to ski.\"",
+      "Outside, the wind is loud. The ridge is black.<br><br>If you go, maybe a doctor is here by morning. Maybe you are both lost in the snow. If you stay, maybe the storm ends and help comes. Maybe it doesn't."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "truth-kindness",
+       "options": [
+        {
+         "text": "\"We don't know.\"",
+         "line": "Rosa stops waving. Her arms drop.",
+         "side": "left"
+        },
+        {
+         "text": "\"Yes. They saw us.\"",
+         "line": "Rosa waves at the empty sky for a long time.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 3,
+       "axis": "trust-suspicion",
+       "options": [
+        {
+         "text": "Lie down with them.",
+         "line": "You lie between Sami and Tomas. For the first time in days, you are warm.",
+         "side": "left"
+        },
+        {
+         "text": "Stay by the food, awake.",
+         "line": "You sit with your back to the wall. You see your breath all night.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight. Do you go over the ridge with Tomas?",
+      "A": {
+       "label": "Go.",
+       "reason": "Bruno has one day. Waiting is a risk too, and it is his life.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Stay.",
+       "reason": "Two more people lost in the snow helps nobody. Wait for the storm to end.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "Midnight. You tie a rope between you and Tomas. The others stand at the door. Nobody says goodbye. Twenty steps, and you cannot see the station anymore.",
+      "B": "You stay. Tomas sits by the door all night with his boots on. Neither of you sleeps. At five in the morning, the wind stops. It is so quiet that everyone wakes up."
+     },
+     "science": "Goalkeepers jump left or right on almost every penalty, but staying in the middle would stop more goals. Doing something often feels better than waiting."
+    },
+    "B": {
+     "screens": [
+      "You keep the wood. The plane flies down the valley, over the white hill where the train is. It does not slow down. Then it is gone.<br><br>Tomas stands in the snow and watches the empty sky. His hands are fists.",
+      "Tomas does not speak to you all afternoon. Mr. Lind says, \"Good choice.\" He does not look like he means it.",
+      "But that night, the stove burns. Bruno sleeps warm. Rosa sleeps against her father. For one night, the old station feels almost like a home.<br><br>Still, you lie awake. The plane is gone. Nobody on it knows you are here.",
+      "You are on watch. In the dark, you hear the scratching at the back wall again. When you look, there is nothing. Only small tracks in the snow under the window.",
+      "Saturday. Bruno does not wake up properly. He says words that make no sense. Vera gives him the last pill.<br><br>\"Tomorrow,\" she says. \"If help comes tomorrow, he has a chance. Not later.\"",
+      "Nobody knows if help will come. The storm may stop on Sunday. It may not.<br><br>There is almost no food left. Sami gives Rosa half of his again. Rosa watches him eat nothing. Her face is serious, like a grown-up's.",
+      "Your stomach hurts all the time now. When you stand up fast, you have to hold on to the wall.<br><br>Mr. Lind's bag is empty too. He shows you, holding it open. Nobody asked him to.",
+      "After dark, Tomas sits next to you. \"I'm going tonight,\" he says. \"Over the ridge. Six hours to the village. They have a doctor. I need one person with me. You.\"",
+      "Then he says something new. Very quietly.<br><br>\"I have to tell you the truth. I walked that path one time. In summer, behind a real guide. I am not a guide. I teach little children to ski.\"",
+      "Outside, the wind is loud. The ridge is black.<br><br>If you go, maybe a doctor is here by morning. Maybe you are both lost in the snow. If you stay, maybe the storm ends and help comes. Maybe it doesn't."
+     ],
+     "small": [
+      {
+       "after": 1,
+       "axis": "lead-follow",
+       "options": [
+        {
+         "text": "Tell Tomas why, out loud, to everyone.",
+         "line": "He listens. He doesn't agree. But he listens.",
+         "side": "left"
+        },
+        {
+         "text": "Let him be angry.",
+         "line": "He sits by the door all afternoon with his boots on.",
+         "side": "right"
+        }
+       ]
+      },
+      {
+       "after": 3,
+       "axis": "bold-careful",
+       "options": [
+        {
+         "text": "Go out and follow the tracks.",
+         "line": "They go along the wall, then into the trees. You come back with cold feet.",
+         "side": "left"
+        },
+        {
+         "text": "Stay in. Keep the door shut.",
+         "line": "You listen until it stops.",
+         "side": "right"
+        }
+       ]
+      }
+     ],
+     "vote": {
+      "question": "Tonight. Do you go over the ridge with Tomas?",
+      "A": {
+       "label": "Go.",
+       "reason": "Bruno has one day. Waiting is a risk too, and it is his life.",
+       "axis": "bold-careful",
+       "side": "left"
+      },
+      "B": {
+       "label": "Stay.",
+       "reason": "Two more people lost in the snow helps nobody. Wait for the storm to end.",
+       "axis": "bold-careful",
+       "side": "right"
+      }
+     },
+     "glimpse": {
+      "A": "Midnight. You tie a rope between you and Tomas. The others stand at the door. Nobody says goodbye. Twenty steps, and you cannot see the station anymore.",
+      "B": "You stay. Tomas sits by the door all night with his boots on. Neither of you sleeps. At five in the morning, the wind stops. It is so quiet that everyone wakes up."
+     },
+     "science": "Goalkeepers jump left or right on almost every penalty, but staying in the middle would stop more goals. Doing something often feels better than waiting."
+    }
+   }
+  },
+  {
+   "day": 7,
+   "versions": {
+    "AA": {
+     "screens": [
+      "Midnight. You tie a rope between you and Tomas. The others stand at the door. Nobody says goodbye. Twenty steps, and you cannot see the station anymore.",
+      "Above the station there is a big dead tree. Tomas stops there. He kneels and digs in the snow with his hands.<br><br>He pulls out a bag. Inside: a loaf of bread, hard as wood. Half a cheese. Chocolate.",
+      "\"I took it on Tuesday,\" he says. \"When I came down from the hill. I went back up with it under my coat. Nobody was watching.\"<br><br>\"I knew someone would have to walk. And I knew you would never give food to a walker.\"<br><br>You think of Tuesday night. His bag on the floor. His chocolate in your hand. \"Mine,\" he said. And you went on to the next bag.",
+      "You want to shout at him. But you are so hungry. You both eat in the dark, fast. Then you walk.<br><br>For hours there is only the wind, the rope, and the light of his torch. Twice you fall. Twice the rope pulls you up.",
+      "Near the top, Tomas falls. His knee makes a bad sound. He cannot stand.<br><br>You dig a hole in the snow, out of the wind. You put him in it with the rest of the food and the torch. You tie his red hat to a stick above the hole.",
+      "\"Go,\" he says. \"Follow the ridge down. Don't stop.\"<br><br>You go on alone, in the dark and the snow. You count your steps so you don't have to think.",
+      "At first light, you see roofs below. Smoke from a chimney. You fall down the last hill again and again. You knock on the first door you see.<br><br>A woman opens it. She looks at your face and asks nothing. She pulls you inside.",
+      "By nine, men from the village are going down to the station with a doctor and a sled. On the way, they see a red hat on a stick.",
+      "Sunday evening. You are in a warm bed in the village. Bruno is in the next room with the doctor. \"He keeps the leg,\" the doctor says. \"A few more hours, and he would not have.\"<br><br>Tomas is in the bed by the window. His knee is wrapped in white.",
+      "\"I stole the food,\" he says. \"And the food got you here.\"<br><br>You look at him for a long time. You still don't know what to call what he did. Outside, the snow has stopped."
+     ],
+     "small": [],
+     "science": "In a group of travellers trapped by snow in 1846, people with no family with them were about twice as likely to die as people with family."
+    },
+    "AB": {
+     "screens": [
+      "You stay. Tomas sits by the door all night with his boots on. Neither of you sleeps.<br><br>At five in the morning, the wind stops. It is so quiet that everyone wakes up.",
+      "Outside, the sky is clear. The mountain is pink in the first light. Somewhere far away, you hear a motor.<br><br>\"They're coming,\" says Vera. She holds Bruno's hand. He is breathing slowly.",
+      "Rosa goes to the back room for the last tin. Then she screams. Not a scared scream. A happy one.<br><br>\"The red dog! I told you!\"",
+      "A fox runs out from under the bottom shelf. A small red fox, thin from the winter. It pushes through a gap in the stone wall and is gone.",
+      "You pull the shelf away. Behind it is a hole in the wall, as big as your two hands. Inside, in the dark: bread crusts. A bit of cheese. Chocolate papers, licked clean.",
+      "Nobody stole the food. Nobody in this room.<br><br>You think of Tuesday night. Sami's toy horse. Tomas's chocolate. Rosa's crumbs. Vera's letters. You turn around. They are all looking at you.",
+      "You say sorry to each of them, one by one. Tomas only nods. Mr. Lind laughs, but not in a kind way.<br><br>Vera is last. \"Those letters are from my husband,\" she says. \"Forty years of them.\" Then, after a long time: \"You did what you thought was right. So did the fox.\"",
+      "Then you all wait outside in the sun. Nobody stands near you. Tomas looks at the ridge. Sami lifts Rosa onto his shoulders to look for the helicopter. Mr. Lind cleans his gold watch with his sleeve, again and again.",
+      "At ten, the helicopter lands in the snow. They take Bruno first. Vera goes with him.<br><br>In the valley, the doctors save Bruno. They cannot save his leg. When you visit him, he laughs. \"A train driver sits down anyway,\" he says.",
+      "You go last. From the air, you look down at the old station, small and grey in all that white.<br><br>On the roof, something red is sitting in the sun. It watches you go."
+     ],
+     "small": [],
+     "science": "In a group of travellers trapped by snow in 1846, people with no family with them were about twice as likely to die as people with family."
+    },
+    "BA": {
+     "screens": [
+      "Midnight. You and Tomas are tying the rope when Mr. Lind stands up.<br><br>\"Wait,\" he says. He takes a torch and goes out into the snow, to the white hill where the train is.",
+      "He is gone a long time. When he comes back, he has a bag. He puts it in your hands.<br><br>Inside: a loaf of bread, hard as wood. Half a cheese. All the chocolate.",
+      "\"I took it,\" he says. \"On Tuesday, when I went in for my gloves. I hid it under my coat. That night, I put it in the train.\"<br><br>His voice is not loud now. \"I have never been hungry in my life. Not one day. I was afraid.\"",
+      "\"You didn't search,\" he says. \"You let me keep my bag. I have felt sick about it every night since.\"<br><br>He looks at Rosa, asleep. \"Take it. You two need it more than anyone now.\"",
+      "Twenty steps, and you cannot see the station anymore. For hours there is only the wind, the rope, and the light of Tomas's torch.<br><br>Every hour, you stop and eat a little bread. It tastes like nothing. It keeps you walking.",
+      "Twice Tomas loses the path. Twice, slowly, he finds it again.<br><br>Near the top, your hands stop hurting. Then you can't feel them at all.<br><br>Tomas makes you put them inside your coat. He talks all the time now, so you won't fall asleep. About skiing. About little children who are afraid of snow.",
+      "At first light, you see roofs below. Smoke from a chimney. You fall down the last hill and knock on the first door with your elbow.<br><br>A man opens it. He looks at your hands, then at your face. He pulls you both inside.",
+      "By nine, men from the village are going down to the station with a doctor and a sled. Tomas goes with them, to show the way.",
+      "Sunday evening. Bruno is in a warm bed in the village. \"He keeps the leg,\" the doctor says. \"A few more hours, and he would not have.\"<br><br>Your hands are wrapped in white. You will keep your fingers. But you will not cook this winter.",
+      "Mr. Lind comes to see you. He sits by the bed with his hat in his hands.<br><br>\"The job is still yours,\" he says. \"Next winter. If you still want to work for a thief.\"<br><br>Outside, the snow has stopped."
+     ],
+     "small": [],
+     "science": "In a group of travellers trapped by snow in 1846, people with no family with them were about twice as likely to die as people with family."
+    },
+    "BB": {
+     "screens": [
+      "You stay. Tomas sits by the door all night with his boots on. Neither of you sleeps.<br><br>At five in the morning, the wind stops. It is so quiet that everyone wakes up.",
+      "Outside, the sky is clear. The mountain is pink in the first light. Somewhere far away, you hear a motor.<br><br>\"They're coming,\" says Vera. She holds Bruno's hand. He is breathing slowly.",
+      "Rosa comes to you with her red scarf tied in a bundle. She puts it on your knees and opens it.<br><br>A loaf of bread, hard as wood. Half a cheese. All the chocolate. Not one bar eaten.",
+      "\"For Papa,\" she says. \"He gives me his food. Every day. I took this so I could give it back to him.\"<br><br>She looks at the floor. \"But he kept giving me his. So I kept it. Under the bench, where the board is loose.\"",
+      "Sami sits down on the floor. He puts his face in his hands. Rosa pats his head, as if he is the child.<br><br>Mr. Lind looks at the bread for a long time. \"She is six,\" he says quietly. \"And she did better than all of us.\"",
+      "You think of Tuesday night, when Mr. Lind said, \"Every bag. Now.\" You said no.<br><br>There was no thief in this room. Only a girl who wanted to feed her father.",
+      "You break the chocolate into seven pieces. Vera puts one on Bruno's lips. He opens his eyes and smiles.<br><br>For a minute, nobody talks. Everyone eats, slowly. It is the best thing you have ever eaten. Outside, the motor is getting louder.",
+      "At ten, the helicopter lands in the snow. They take Bruno first. Vera goes with him.<br><br>In the valley, the doctors save Bruno. They cannot save his leg. When you visit him, he laughs. \"A train driver sits down anyway,\" he says.",
+      "You go last, with Sami and Rosa. From the air, the old station is small and grey in all that white.<br><br>Rosa has her face on the window. \"Look,\" she says. \"The red dog.\""
+     ],
+     "small": [],
+     "science": "In a group of travellers trapped by snow in 1846, people with no family with them were about twice as likely to die as people with family."
+    }
+   }
+  }
+ ],
+ "_sources": [
+  {
+   "day": 1,
+   "title": "Deutsch, M. (1975). Equity, equality, and need: What determines which value will be used as the basis of distributive justice? Journal of Social Issues 31(3), 137-149.",
+   "link": "https://doi.org/10.1111/j.1540-4560.1975.tb01000.x"
+  },
+  {
+   "day": 2,
+   "title": "Falk, A. & Kosfeld, M. (2006). The Hidden Costs of Control. American Economic Review 96(5), 1611-1630.",
+   "link": "https://econpapers.repec.org/RePEc:aea:aecrev:v:96:y:2006:i:5:p:1611-1630"
+  },
+  {
+   "day": 3,
+   "title": "Kakkar, H. & Sivanathan, N. (2017). When the appeal of a dominant leader is greater than a prestige leader. PNAS 114(26), 6734-6739.",
+   "link": "https://www.london.edu/faculty-and-research/academic-research/w/when-the-appeal-of-a-dominant-leader-is-greater-than-a-prestige-lea"
+  },
+  {
+   "day": 4,
+   "title": "Jenkins, V., Fallowfield, L. & Saul, J. (2001). Information needs of patients with cancer: results from a large study in UK cancer centres. British Journal of Cancer 84(1), 48-51.",
+   "link": "https://researchonline.lshtm.ac.uk/id/eprint/4399"
+  },
+  {
+   "day": 5,
+   "title": "Kahneman, D. & Tversky, A. (1979). Prospect Theory: An Analysis of Decision under Risk. Econometrica 47(2), 263-292 (the certainty effect).",
+   "link": "https://www.econometricsociety.org/publications/econometrica/1979/03/01/prospect-theory-analysis-decision-under-risk"
+  },
+  {
+   "day": 6,
+   "title": "Bar-Eli, M., Azar, O. H., Ritov, I., Keidar-Levin, Y. & Schein, G. (2007). Action bias among elite soccer goalkeepers: The case of penalty kicks. Journal of Economic Psychology 28(5), 606-621.",
+   "link": "https://econpapers.repec.org/RePEc:pra:mprapa:4477"
+  },
+  {
+   "day": 7,
+   "title": "McCurdy, S. A. (1994). Epidemiology of disaster. The Donner Party (1846-1847). Western Journal of Medicine 160(4), 338-342 (no family: relative risk of dying 2.0).",
+   "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1022425/"
+  }
+ ]
+}

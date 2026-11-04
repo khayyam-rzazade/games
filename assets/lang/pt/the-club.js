@@ -513,7 +513,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Gases nobres",
   "fact": "São os gases nobres, que quase nunca reagem com nada. É por isso que os balões são cheios de hélio e não de hidrogênio.",
   "in": [
-   "Hélio",
+   "Criptônio",
    "Neônio",
    "Argônio"
   ],
@@ -523,11 +523,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Criptônio",
+    "Hélio",
     1
    ],
    [
-    "Nitrogênio",
+    "Carbono",
     0
    ],
    [
@@ -619,10 +619,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "cabbage": {
   "sign": "Uma só espécie: a couve-selvagem",
   "stamp": "Couve-selvagem",
-  "fact": "Todos são de uma única espécie, a couve-selvagem, que os agricultores foram selecionando até criar formas bem diferentes.",
+  "fact": "Todos são de uma única espécie, a couve-selvagem, que os agricultores foram selecionando até criar formas bem diferentes. A couve-chinesa não: é da mesma espécie que o nabo.",
   "in": [
    "Repolho",
-   "Brócolis",
+   "Couve-de-bruxelas",
    "Couve-flor"
   ],
   "out": [
@@ -639,11 +639,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Couve-de-bruxelas",
+    "Brócolis",
     1
    ],
    [
-    "Cebola",
+    "Couve-chinesa",
     0
    ],
    [
@@ -730,8 +730,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "São instrumentos de sopro de madeira, seja qual for o material de que são feitos. O saxofone é feito de latão, mas é tocado com uma palheta, por isso conta como um deles.",
   "in": [
    "Clarinete",
-   "Oboé",
-   "Flauta"
+   "Flauta",
+   "Flautim"
   ],
   "out": [
    "Trompete",
@@ -751,11 +751,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Trompa",
+    "Bombardino",
     0
    ],
    [
-    "Flautim",
+    "Oboé",
     1
    ]
   ]
@@ -2098,7 +2098,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "São todas frutas cítricas. A toranja é um cruzamento entre o pomelo e a laranja-doce.",
   "in": [
    "Limão-siciliano",
-   "Laranja",
+   "Limão-taiti",
    "Toranja"
   ],
   "out": [
@@ -2107,7 +2107,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Limão-taiti",
+    "Laranja",
     1
    ],
    [
@@ -2375,7 +2375,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Fósforo",
+    "Hélio",
     0
    ]
   ]
@@ -2637,17 +2637,17 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Inventos da China",
   "fact": "Todos foram inventados na China. O biscoito da sorte não: provavelmente ele surgiu com imigrantes japoneses nos Estados Unidos.",
   "in": [
-   "Papel",
+   "Porcelana",
    "Pólvora",
    "Bússola"
   ],
   "out": [
-   "Vidro",
+   "Microscópio",
    "Telescópio"
   ],
   "door": [
    [
-    "Porcelana",
+    "Papel",
     1
    ],
    [
@@ -2659,7 +2659,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Microscópio",
+    "Vidro",
     0
    ],
    [
@@ -3213,29 +3213,29 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "América antiga",
   "fact": "Todas floresceram nas Américas antes de Colombo. Os olmecas foram a primeira grande civilização da Mesoamérica.",
   "in": [
-   "Maias",
    "Astecas",
-   "Incas"
+   "Olmecas",
+   "Toltecas"
   ],
   "out": [
    "Babilônios",
-   "Etruscos"
+   "Fenícios"
   ],
   "door": [
    [
-    "Olmecas",
+    "Maias",
     1
    ],
    [
-    "Fenícios",
+    "Etruscos",
     0
    ],
    [
-    "Toltecas",
+    "Incas",
     1
    ],
    [
-    "Sumérios",
+    "Gregos",
     0
    ],
    [
@@ -3393,21 +3393,21 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "stamp": "Rochas ígneas",
   "fact": "As rochas ígneas se formam quando a rocha derretida esfria e endurece. Mármore e ardósia são metamórficas; arenito, calcário e giz, sedimentares.",
   "in": [
-   "Granito",
+   "Pedra-pomes",
    "Basalto",
    "Obsidiana"
   ],
   "out": [
-   "Mármore",
-   "Arenito"
+   "Arenito",
+   "Calcário"
   ],
   "door": [
    [
-    "Pedra-pomes",
+    "Granito",
     1
    ],
    [
-    "Calcário",
+    "Mármore",
     0
    ],
    [
@@ -3643,11 +3643,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "bears": {
   "sign": "São ursos",
   "stamp": "Ursos",
-  "fact": "São todos ursos, e o panda-gigante também. O coala é um marsupial, e o panda-vermelho também não é um urso.",
+  "fact": "São todos ursos, e o panda-gigante também. O coala é um marsupial, e nem o panda-vermelho nem o minúsculo urso-d'água são ursos.",
   "in": [
    "Urso-grizzly",
    "Urso-polar",
-   "Panda-gigante"
+   "Urso-malaio"
   ],
   "out": [
    "Coala",
@@ -3655,11 +3655,11 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Urso-malaio",
+    "Panda-gigante",
     1
    ],
    [
-    "Guaxinim",
+    "Urso-d'água",
     0
    ],
    [
@@ -3683,7 +3683,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "in": [
    "Trompete",
    "Trombone",
-   "Tuba"
+   "Trompa"
   ],
   "out": [
    "Saxofone",
@@ -3691,7 +3691,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Trompa",
+    "Tuba",
     1
    ],
    [
@@ -3754,8 +3754,8 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   "fact": "A cebola, o alho, o alho-poró, a echalota e a cebolinha pertencem todos ao mesmo gênero, o Allium. O gengibre e o rabanete vêm de outras famílias.",
   "in": [
    "Cebola",
-   "Alho",
-   "Alho-poró"
+   "Cebolinha",
+   "Echalota"
   ],
   "out": [
    "Gengibre",
@@ -3763,7 +3763,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Cebolinha",
+    "Alho",
     1
    ],
    [
@@ -3771,7 +3771,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Echalota",
+    "Alho-poró",
     1
    ],
    [
@@ -4087,7 +4087,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
   ],
   "door": [
    [
-    "Energia geotérmica",
+    "Geotermia",
     1
    ],
    [
@@ -4327,10 +4327,10 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
  "gourd-family": {
   "sign": "São da família da abóbora",
   "stamp": "Família da abóbora",
-  "fact": "Todos pertencem à família da abóbora, junto com os melões, as abobrinhas e as abóboras. Tomates e berinjelas são solanáceas.",
+  "fact": "Todos pertencem à família da abóbora, junto com as abobrinhas e as abóboras de todo tipo. Tomates e berinjelas são solanáceas.",
   "in": [
    "Pepino",
-   "Abóbora",
+   "Melão",
    "Melancia"
   ],
   "out": [
@@ -4347,7 +4347,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Melão",
+    "Abóbora",
     1
    ],
    [
@@ -4823,7 +4823,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     0
    ],
    [
-    "Esterno",
+    "Vértebra",
     1
    ]
   ]
@@ -5207,7 +5207,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Rainha Vitória",
+    "Catarina, a Grande",
     0
    ],
    [
@@ -5215,7 +5215,7 @@ window.LG_PUZZLES = window.LG_PUZZLES || {};
     1
    ],
    [
-    "Maria Antonieta",
+    "Joana Grey",
     0
    ],
    [

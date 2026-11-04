@@ -1,0 +1,27 @@
+/* Logicers Story: the Worker's settings (4 Nov 2026). Deploy from this folder with: npx wrangler deploy
+   (the steps, with the one-time ones, are in README.md beside this file).
+   LAUNCH must be a Monday (UTC) and must be the same text as `launch` in story/config.js; WEEKS is how many weeks of
+   story there are (the same as `weeks` there). The tables make themselves on the first request.
+   The cron fixes the day that has just ended at 00:00 UTC. Workers Logs and traces stay OFF: the site promises that
+   nothing else is kept.
+   The address story.logicers.com is added once in the dashboard (Worker, Settings, Domains & Routes, Add, Custom
+   domain), like live.logicers.com for the other Workers; the pages try it first and the workers.dev address second.
+   (To let wrangler do it instead, add: "routes": [{ "pattern": "story.logicers.com", "custom_domain": true }] ) */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-story",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "triggers": { "crons": ["0 0 * * *"] },
+  "vars": {
+    "ALLOW_ORIGINS": "https://logicers.com https://www.logicers.com localhost",
+    "LAUNCH": "2026-11-09",
+    "WEEKS": "4"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "logicers-story", "database_id": "PASTE THE ID THAT `npx wrangler d1 create logicers-story` PRINTS" }
+  ]
+}
