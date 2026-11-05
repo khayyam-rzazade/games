@@ -103,6 +103,9 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 .logicer.checkin:active { transform: scale(.99); }
 .logicer.checkin .logicer-label { color: rgba(21, 23, 43, .72); }
 .logicer.checkin .logicer-big { color: #15172B; }
+/* its light (5 Nov 2026, Khayyam: "like in the Find out box"): the same sweep, white through the dark word, 0.6 s after the green one, so the light runs down the two boxes */
+.logicer.checkin .logicer-big { background: linear-gradient(90deg, #15172B 0%, #15172B 40%, #fff 50%, #15172B 60%, #15172B 100%); background-size: 240% 100%; background-position: 120% 0; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out .6s infinite both; }
+@media (prefers-reduced-motion: reduce) { .logicer.checkin .logicer-big { animation: none; -webkit-text-fill-color: #15172B; background: none; } }
 .logicer.checkin .logicer-small { color: rgba(21, 23, 43, .8); }   /* its count, as the Find out box (5 Nov 2026) */
 .logicer.checkin .logicer-small:empty { display: none; }
 /* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */

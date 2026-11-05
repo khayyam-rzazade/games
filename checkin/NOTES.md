@@ -113,19 +113,20 @@ Three fresh Fable reviewers read the code, the researcher pages and the words (`
 
 ## The motion (5 Nov 2026, claude/motion-spec.md; the report is claude/motion-checkin.md)
 
-- **Tokens** at the top of `assets/checkin.css` (`--m-fast/base/slow`, `--e-out/in/spring`), then "the motion": the keyframes
+- **Tokens** at the top of `assets/checkin.css` (`--m-fast/base/slow/step`, `--e-out/in/spring`; slowed on 5 Nov to 180 / 340 /
+  600 ms with a 100 ms step and a softer `--e-out`, Khayyam: "a bit too fast"), then "the motion": the keyframes
   and classes of the spec's vocabulary (`ck-enter`, `ck-far`, `ck-leave`, `ck-pop`, `ck-fade`, slides, grow, wipe, rise, pulse),
   press and select for every tappable thing, the sheets, the view-transition rules. The reduced-motion block lists every one.
 - **`assets/motion.js`** is the only place motion runs from JavaScript, and it reads the tokens from the CSS: `count` (numbers
   and the needle on one clock), `show`/`hide`/`leave`/`pulse`/`grow`, `sequence` (a timeline: each step waits for the one before;
   a step below the screen waits to be scrolled to; once the person scrolls, taps or types the gaps shrink to 50 ms), `slide`
-  (View Transitions, else `byHand`), `closeSheet` (the dialog closes at once, a still picture of it sinks, taps go through).
+  (View Transitions, else `byHand`), and a timeline's next step starts when the one before is 70% done (`FLOW`), `closeSheet` (the dialog closes at once, a still picture of it sinks, taps go through).
 - **The 20 taps** (`flow.js`): the frame (top line, progress bar) stays; only `.ck-qbody` slides inside `.ck-qstage`. During a
   view transition only the question and the kicker are pictured (`html[data-ck-slide]`), the rest of the page stays live.
   A tap on the moving question reaches only the stage (the question is a picture until it lands), so `motion.js` holds that
   tap and gives it to the button under the finger when the slide ends (5 Nov, the review). Without View Transitions, and
-  always under reduced motion, the leaving body stays in the page, inert, after the new one (220 ms; 120 ms as a crossfade
-  under reduced motion): a script that looks for `.ck-seg` or `.ck-ladder` should look in `.ck-qbody:not(.ck-going)`.
+  always under reduced motion, the leaving body stays in the page, inert, after the new one (--m-base; --m-fast as a
+  crossfade under reduced motion): a script that looks for `.ck-seg` or `.ck-ladder` should look in `.ck-qbody:not(.ck-going)`.
   The bar is three rows of the same 20 pills, clipped (`--k`), so it glides without squashing.
 - **The result** is one timeline, `resultTimeline()` in `result.js`; the group's reveal is `groupTimeline()` in `group.js`.
   Each plays once per check-in (or round) on a page; a redraw of the same screen stays still and keeps its scroll

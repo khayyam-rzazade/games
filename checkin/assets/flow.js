@@ -3,12 +3,12 @@
    runFlow() is used by the solo page and by the room page; it knows nothing about either.
    Motion (5 Nov 2026, claude/motion-spec.md 4): the frame (the top line and the progress bar) stays; only the question's body
    slides, forward from the right, Back from the left; the bar glides. A tap presses, the chosen option selects (its fill sweeps
-   in over --m-fast), the screen waits 150 ms so the choice is seen to land, then slides. Every tap counts at every moment: another
+   in over --m-fast), the screen waits 220 ms so the choice is seen to land, then slides. Every tap counts at every moment: another
    option during that wait takes its place, Back or Skip go at once, and the next question takes taps while it slides in. */
 import { el, ITEMS, T, has, itemText, helpText, optionsOf, reducedMotion, knownCountry, inCountry, kicker, sheet, wireDialogs, esc, countStart } from './core.js';
 import { ladderPicker } from './charts.js';
 import { ms, slide, screenIn } from './motion.js';
-const LAND = 150;                                          /* the pause after a choice, before the slide (motion spec 3, select) */
+const LAND = 220;                                          /* the pause after a choice, before the slide (motion spec 3, select; 150 until 5 Nov, a touch quick) */
 
 /* ctx: { a, i, onChange(a, i), onDone(a), onLeave() }  ->  { show(i) } */
 export function runFlow(root, ctx) {

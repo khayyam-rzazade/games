@@ -4,7 +4,7 @@ import { el, h, T, fmt, load, save, cleanCode, CODE_LEN, initStrings, langChip, 
 import { runFlow } from './flow.js';
 import { dialArt, countTo } from './charts.js';
 import { makeEntry, addEntry, fetchComparison, startUpload, resultNode, pageUrl } from './result.js';
-import { screenIn, show } from './motion.js';
+import { screenIn, show, ms } from './motion.js';
 let counted = false;                                        /* the front's counter counts up the first time it shows on this page */
 
 const root = document.getElementById('ck');
@@ -35,7 +35,7 @@ function front() {
   const start = el('button', 'btn solid ck-start', draft ? T('front.carry_on') : T('front.start')); start.type = 'button';
   start.addEventListener('click', () => startFlow(false));
   low.appendChild(start);
-  if (draft) { const again = el('button', 'ck-link', T('front.start_over')); again.type = 'button'; again.addEventListener('click', () => startFlow(true)); low.appendChild(again); show(start, 'enter', 60); show(again, 'enter', 60); }   /* "Carry on" enters just after the card */
+  if (draft) { const again = el('button', 'ck-link', T('front.start_over')); again.type = 'button'; again.addEventListener('click', () => startFlow(true)); low.appendChild(again); show(start, 'enter', ms('step')); show(again, 'enter', ms('step')); }   /* "Carry on" enters just after the card */
   if (last) {
     const l = el('button', 'ck-last'); l.type = 'button';
     l.appendChild(el('span', '', T('front.last', { score: Math.round(last.who), date: dayMonth(last.at) })));

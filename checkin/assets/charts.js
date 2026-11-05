@@ -173,8 +173,8 @@ export function pinScale(r) {
   head.appendChild(vals); w.appendChild(head);
   const track = el('div', 'ck-pins-track' + (r.zones ? ' zones' : ''));
   const pos = (v) => (100 * clamp((v - r.lo) / (r.hi - r.lo), 0, 1)) + '%';
-  /* the pins pop in order, you, country, world, 80 ms apart (motion spec 4, the result, step 6) */
-  for (const [k, , v] of parts.slice().reverse()) { const p = el('i', 'ck-pin p-' + k); p.style.left = pos(v); p.style.setProperty('--d', (80 * ['you', 'country', 'world'].indexOf(k)) + 'ms'); track.appendChild(p); }
+  /* the pins pop in order, you, country, world, one --m-step apart (motion spec 4, the result, step 6) */
+  for (const [k, , v] of parts.slice().reverse()) { const p = el('i', 'ck-pin p-' + k); p.style.left = pos(v); p.style.setProperty('--d', (ms('step') * ['you', 'country', 'world'].indexOf(k)) + 'ms'); track.appendChild(p); }
   w.appendChild(track);
   const ax = el('div', 'ck-pins-ax'); ax.appendChild(el('span', '', r.lo)); ax.appendChild(el('span', '', r.hi)); w.appendChild(ax);
   return w;

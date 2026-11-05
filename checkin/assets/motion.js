@@ -8,7 +8,8 @@
    and the sheets' way out. No imports: core.js uses this file, not the other way round. */
 
 const doc = document.documentElement;
-const STAGGER = 50;                                         /* the one stagger used when nothing says otherwise (40-60 ms) */
+const HURRY = 50;                                           /* once the person scrolls or taps, the timeline's gaps shrink to this */
+const FLOW = 0.7;                                           /* a timeline's next step starts when the one before is 70% done, so they flow */
 
 /* ------------------------------------------------------------------ the tokens ------ */
 let TK = null;
@@ -35,14 +36,14 @@ function tokens() {
   const cs = getComputedStyle(doc);
   const num = (n, d) => { const v = parseFloat(cs.getPropertyValue(n)); return isFinite(v) && v >= 0 ? v : d; };
   TK = {
-    fast: num('--m-fast', 120), base: num('--m-base', 220), slow: num('--m-slow', 400),
-    out: curveOf(cs.getPropertyValue('--e-out'), [0.2, 0.8, 0.2, 1]),
+    fast: num('--m-fast', 180), base: num('--m-base', 340), slow: num('--m-slow', 600), step: num('--m-step', 100),
+    out: curveOf(cs.getPropertyValue('--e-out'), [0.3, 0.55, 0.35, 1]),
     in: curveOf(cs.getPropertyValue('--e-in'), [0.4, 0, 1, 1]),
     spring: curveOf(cs.getPropertyValue('--e-spring'), [0.2, 1.1, 0.3, 1])
   };
   return TK;
 }
-/* 'fast' | 'base' | 'slow' -> ms */
+/* 'fast' | 'base' | 'slow' | 'step' -> ms */
 export function ms(name) { return tokens()[name]; }
 export function still() { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
 export const wait = (t) => new Promise((r) => setTimeout(r, Math.max(0, t || 0)));
@@ -108,18 +109,19 @@ export function leave(node, then) {
 }
 /* something waiting on others: a soft 1 -> 1.04 -> 1 every 1.6 s until the wait ends */
 export function pulse(node, on) { if (node) node.classList.toggle('ck-pulse', !!on && !still()); }
-/* a list of bars grows, item after item (their --i, 50 ms apart): the class starts it */
+/* a list of bars grows, item after item (their --i, one --m-step apart): the class starts it */
 export function grow(node) {
   if (!node || still()) return 0;
   node.classList.remove('ck-growing'); void node.offsetWidth; node.classList.add('ck-growing');
   const n = node.querySelectorAll('[style*="--i"]').length;
-  return Math.max(0, n - 1) * STAGGER + ms('slow');
+  return Math.max(0, n - 1) * ms('step') + ms('slow');
 }
 
 /* ------------------------------------------------------------------ the timeline ------
-   One list of steps, each waiting for the one before: { at: the element it shows (or null), run(): ms until the next step may
-   start }. A step whose element is still below the screen waits until the person scrolls to it, so a phone sees the bars grow
-   where it is looking. Once the person scrolls, taps or types, the gaps shrink to one stagger: nothing waits on the timeline.
+   One list of steps, each waiting for the one before: { at: the element it shows (or null), run(): how long its motion takes }.
+   The next step starts when that motion is 70% done (FLOW, at least one --m-step), so each thing comes while the one before is
+   still settling. A step whose element is still below the screen waits until the person scrolls to it, so a phone sees the bars grow
+   where it is looking. Once the person scrolls, taps or types, the gaps shrink to 50 ms: nothing waits on the timeline.
    With reduced motion every step runs at once and lands still. `owner`: when it leaves the page, the timeline stops. */
 export function sequence(steps, owner) {
   let hurry = false, stopped = false;
@@ -131,9 +133,9 @@ export function sequence(steps, owner) {
   const gone = () => stopped || (owner && !owner.isConnected);
   const pause = (t) => new Promise((res) => {
     if (!t) return res();
-    let timer = setTimeout(fin, hurry ? Math.min(t, STAGGER) : t);
+    let timer = setTimeout(fin, hurry ? Math.min(t, HURRY) : t);
     function fin() { wakers.delete(wake); res(); }
-    function wake() { clearTimeout(timer); timer = setTimeout(fin, STAGGER); }
+    function wake() { clearTimeout(timer); timer = setTimeout(fin, HURRY); }
     wakers.add(wake);
   });
   /* near: in view or above it (a fast fling past it counts) */
@@ -162,7 +164,7 @@ export function sequence(steps, owner) {
         if (gone()) break;
         let gap = 0;
         try { gap = s.run() || 0; } catch (e) { if (window.console) console.warn('Check-in motion:', e); }
-        await pause(gap);
+        await pause(gap > 0 ? Math.max(ms('step'), Math.round(gap * FLOW)) : 0);
       }
     } finally {
       for (const [ev, f] of EVS) window.removeEventListener(ev, f, { capture: true });

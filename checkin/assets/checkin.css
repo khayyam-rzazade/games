@@ -1,9 +1,13 @@
-/* Logicers motion tokens (claude/motion-spec.md, 5 Nov 2026): the only durations and curves used here */
+/* Logicers motion tokens (claude/motion-spec.md, 5 Nov 2026): the only durations and curves used here.
+   5 Nov, later (Khayyam: "a bit too fast… it feels accelerated"): every duration about half as long again, a softer arriving
+   curve (half the way at a quarter of the time, where the first one was three quarters of the way), and one step between
+   things that come one after another. */
 :root {
-  --m-fast: 120ms;   /* press, colour, small reveals */
-  --m-base: 220ms;   /* screens, sheets, the progress bar */
-  --m-slow: 400ms;   /* results: grow, count, draw */
-  --e-out: cubic-bezier(.2, .8, .2, 1);        /* arriving: fast start, soft landing */
+  --m-fast: 180ms;   /* press, colour, small reveals */
+  --m-base: 340ms;   /* screens, sheets, the progress bar */
+  --m-slow: 600ms;   /* results: grow, count, draw */
+  --m-step: 100ms;   /* one thing after another: cards, bars, dots */
+  --e-out: cubic-bezier(.3, .55, .35, 1);      /* arriving: a soft start, a long soft landing */
   --e-in: cubic-bezier(.4, 0, 1, 1);           /* leaving: eases away */
   --e-spring: cubic-bezier(.2, 1.1, .3, 1);    /* taps and pops: a small overshoot */
 }
@@ -60,7 +64,7 @@
    not pictured, which also keeps the first frame cheap), the kicker keeps its place and crossfades. The transition's layer lets
    taps through to the new question, which is live under it. */
 ::view-transition { pointer-events: none; }
-html[data-ck-slide] .ck-qbody { view-transition-name: ck-q; }
+html[data-ck-slide] .ck-qbody:not(.ck-going) { view-transition-name: ck-q; }
 html[data-ck-slide] .ck-kicker { view-transition-name: ck-kick; }
 html[data-ck-slide] { view-transition-name: none; }      /* the page around the question is not even pictured: it stays live */
 html[data-ck-slide]::view-transition-group(ck-q), html[data-ck-slide]::view-transition-group(ck-kick) { animation-duration: var(--m-base); animation-timing-function: var(--e-out); }
@@ -269,8 +273,8 @@ body.ck-wide { --col: 68rem; }
 .ck-dfill.r { left: 50%; background: var(--lift); border-radius: 0 99px 99px 0; transform-origin: left center; }
 .ck-dfill.l { right: 50%; background: var(--weigh); border-radius: 99px 0 0 99px; transform-origin: right center; }
 /* grow: the bars fill from the middle one after another (50 ms), the "lifts you / weighs on you" words come with their bar */
-.ck-growing .ck-dfill { animation: ck-grow var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 50ms); }
-.ck-growing .ck-dtop small { animation: ck-fade var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 50ms); }
+.ck-growing .ck-dfill { animation: ck-grow var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * var(--m-step)); }
+.ck-growing .ck-dtop small { animation: ck-fade var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * var(--m-step)); }
 .ck-drow.mark { margin: 0 -8px; padding: 8px; background: color-mix(in srgb, var(--weigh) 11%, transparent); }
 .ck-dbars.big { gap: 16px; }
 .ck-dbars.big .ck-dtop b { font-size: 1.1rem; } .ck-dbars.big .ck-dtrack { height: 18px; }
@@ -378,7 +382,7 @@ body.ck-wide { --col: 68rem; }
 /* draw: the curve draws itself from the left over twice --m-slow (a clip: the stroke does not scale, so its dashes cannot be
    counted on); the markers pop as the line reaches them */
 .ck-drawing .ck-stage svg { animation: ck-wipe calc(var(--m-slow) * 2) var(--e-out) both; }
-.ck-drawing .ck-mk { animation: ck-pop var(--m-base) var(--e-spring) both; animation-delay: calc(var(--m-slow) + var(--i, 0) * 50ms); }
+.ck-drawing .ck-mk { animation: ck-pop var(--m-base) var(--e-spring) both; animation-delay: calc(var(--m-slow) + var(--i, 0) * var(--m-step)); }
 .ck-mk { position: absolute; top: calc(var(--row, 0) * 24px); bottom: 0; width: 0; border-left: 2.5px solid var(--ink); z-index: 2; }
 .ck-mk.m-world, .ck-mk.m-country { border-left-style: dashed; border-left-color: var(--soft); }
 .ck-mk.m-you { border-left-color: var(--ct); border-left-width: 3px; }
@@ -403,7 +407,7 @@ body.ck-wide { --col: 68rem; }
 .ck-lrow .n { color: var(--soft); text-align: right; } .ck-lrow .c { color: var(--soft); font-size: .8rem; }
 .ck-lrow .rail { height: 12px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 7%, var(--card)); overflow: hidden; }
 .ck-lrow .rail i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: var(--c); transform-origin: left center; }
-.ck-growing .ck-lrow .rail i, .ck-growing .ck-mrow .rail i { animation: ck-grow var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 50ms); }
+.ck-growing .ck-lrow .rail i, .ck-growing .ck-mrow .rail i { animation: ck-grow var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * var(--m-step)); }
 @media (prefers-color-scheme: light) { .ck-lrow .rail i { background: #D79A00; } }
 .ck-lrow.mine .n { color: var(--ink); } .ck-lrow.mine .rail { box-shadow: 0 0 0 2px var(--ink); }
 .ck-mbars { display: grid; gap: 9px; margin-top: 10px; }
@@ -450,7 +454,7 @@ body.ck-wide { --col: 68rem; }
 .ck-trend { display: flex; gap: 8px; align-items: stretch; margin-top: 14px; }
 .ck-tcol { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; font-weight: 800; font-size: 0.85rem; }
 .ck-tcol .slot { width: 100%; max-width: 54px; height: 100px; display: flex; align-items: flex-end; }
-.ck-tcol i { display: block; width: 100%; height: var(--hgt, 0); min-height: 3px; border-radius: 10px 10px 4px 4px; background: var(--c); animation: ck-rise-col var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 70ms); transform-origin: bottom; }   /* the rounds' columns rise, 70 ms apart as before */
+.ck-tcol i { display: block; width: 100%; height: var(--hgt, 0); min-height: 3px; border-radius: 10px 10px 4px 4px; background: var(--c); animation: ck-rise-col var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * var(--m-step)); transform-origin: bottom; }   /* the rounds' columns rise, 70 ms apart as before */
 @media (prefers-color-scheme: light) { .ck-tcol i { background: #D79A00; } }
 .ck-tcol.none i { background: color-mix(in srgb, var(--ink) 12%, transparent); min-height: 3px; }
 .ck-tcol span { color: var(--soft); font-size: 0.78rem; }

@@ -383,16 +383,16 @@ function resultTimeline(w, p) {
   /* 5. the advice card */
   steps.push({ at: p.adv, run: () => show(p.adv) });
   /* 6. the compare card (from its skeleton if the numbers are not in yet); its pins pop, you, country, world */
-  steps.push({ at: p.cc, run: () => { if (!p.cc.isConnected) return 0; p.cc.revealed = true; show(p.cc); p.cc.pop(base); return base + 160; } });
+  steps.push({ at: p.cc, run: () => { if (!p.cc.isConnected) return 0; p.cc.revealed = true; show(p.cc); p.cc.pop(base); return base + 2 * ms('step'); } });
   /* 7. since last time; its arrow draws once the card is in */
   steps.push({ at: p.since, run: () => {
     show(p.since);
     if (p.since.arrow) { p.since.arrow.style.animationDelay = base + 'ms'; p.since.arrow.classList.add('ck-draw'); }
-    if (p.cta) show(p.cta, 'enter', 60);
+    if (p.cta) show(p.cta, 'enter', ms('step'));
     return base + fast;
   } });
   /* 8. the consent card rises last (a longer travel, 16 px), and the end card after it */
-  if (p.consent) steps.push({ at: p.consent, run: () => { show(p.consent, 'far'); show(p.end, 'enter', 60); return base; } });
+  if (p.consent) steps.push({ at: p.consent, run: () => { show(p.consent, 'far'); show(p.end, 'enter', ms('step')); return base; } });
   else steps.push({ at: p.end, run: () => show(p.end) });
   sequence(steps, w);
 }

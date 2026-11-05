@@ -1,11 +1,11 @@
 /* Check-in: the host history page (chat C, 4 Nov 2026).
    Every round of one room, newest first: the group score by round, and for each round the same pictures as the reveal
    (only from 10 people), the sides, and the lever the host chose. Group totals only; the server keeps nothing per person.
-   Motion (5 Nov 2026): the page enters, the rounds' columns rise, the rounds enter one after another, 40 ms apart. */
+   Motion (5 Nov 2026): the page enters, the rounds' columns rise, the rounds enter one after another, one --m-step apart. */
 import { el, T, fmt, api, gone, wrongKey, hostKeyOf, initStrings, langChip, howSheet, smallPrint, wireDialogs, ROOT, locale } from './core.js';
 import { trend } from './charts.js';
 import { groupNode } from './group.js';
-import { screenIn, show } from './motion.js';
+import { screenIn, show, ms } from './motion.js';
 
 const root = document.getElementById('ck');
 const keyFromHash = () => hostKeyOf(location.hash.slice(1));
@@ -36,7 +36,7 @@ async function load(k) {
   let nth = 0;
   for (const rd of list.slice().reverse()) {
     const d = el('details', 'ck-card ck-hround'); if (rd.n === newest) d.open = true;
-    show(d, 'enter', 40 * ++nth);
+    show(d, 'enter', ms('step') * ++nth);
     const s = el('summary'); s.appendChild(el('b', '', T('history.round', { n: rd.n })));
     s.appendChild(el('span', '', [dateText(rd.date), rd.mode === 'live' ? T('history.live') : rd.mode === 'open' ? T('history.open') : '', T('history.people', { n: fmt(rd.people || 0) })].filter(Boolean).join(' · ')));
     d.appendChild(s);

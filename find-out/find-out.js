@@ -75,7 +75,7 @@ function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--
    press, select, glide, grow, count, draw, rise, pop, pulse, crossfade. A result's order is one list given to sequence(). Nothing
    blocks a tap: a tap, a key or a scroll during a timeline lands the rest at once, and with reduced motion everything stands at
    its final value from the start. */
-const M = { fast: 120, base: 220, slow: 400 };
+const M = { fast: 180, base: 340, slow: 600, step: 100 };   /* the CSS tokens' values (--m-fast, --m-base, --m-slow, --m-step) */
 function readTokens() {
   try {
     const cs = getComputedStyle(document.documentElement);
@@ -84,14 +84,14 @@ function readTokens() {
     if (p.length === 4 && p.every(isFinite)) easeOut = bezier(...p);
   } catch (e) { /* the spec's numbers below stand */ }
 }
-const SELECT_WAIT = 150;                     /* after a choice lands, before the next screen comes, so the choice is seen to land */
-const STAGGER = 50;                          /* items one after another */
+const SELECT_WAIT = 220;                     /* after a choice lands, before the next screen comes, so the choice is seen to land (150 until 5 Nov, a touch quick) */
+const FLOW = 0.7;                            /* a timeline's next step starts when the one before is 70% done, so they flow */
 function bezier(x1, y1, x2, y2) {
   const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx, cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
   const X = (s) => ((ax * s + bx) * s + cx) * s, Y = (s) => ((ay * s + by) * s + cy) * s, dX = (s) => (3 * ax * s + 2 * bx) * s + cx;
   return (t) => { if (t <= 0) return 0; if (t >= 1) return 1; let s = t; for (let i = 0; i < 8; i++) { const e = X(s) - t, d = dX(s); if (Math.abs(e) < 1e-5 || !d) break; s = Math.min(1, Math.max(0, s - e / d)); } return Y(s); };
 }
-let easeOut = bezier(0.2, 0.8, 0.2, 1);      /* --e-out, for the numbers counted here (readTokens takes it from the CSS) */
+let easeOut = bezier(0.3, 0.55, 0.35, 1);    /* --e-out, for the numbers counted here (readTokens takes it from the CSS) */
 const QR_POP = 100;                          /* the QR pops this long after the code card (motion spec 4, as the check-in) */
 /* count: from `from` to `to` over --m-slow on --e-out; paint(v, k) draws each frame (the digits, and a needle or arc with them) */
 function count(from, to, paint, ctl) {
@@ -109,7 +109,7 @@ function countIn(node, template, key, value, from, ctl) {
   return count(from, value, (v) => { num.textContent = fmt(Math.round(v)); }, ctl);
 }
 /* the timeline of a result: steps run one after another; a step is a pause in ms, or a function (ctl) that starts its motion and
-   returns how long it takes (or a promise to wait for). ctl.done = land everything now. alive() false stops it (the screen left). */
+   returns how long it takes (the next step starts when it is 70% done) or a promise to wait for. ctl.done = land everything now. alive() false stops it (the screen left). */
 function sequence(steps, alive, opts) {
   const ctl = { done: reduced() || !!(opts && opts.now) };
   let wake = null;
@@ -125,6 +125,7 @@ function sequence(steps, alive, opts) {
       if (alive && !alive()) break;
       let wait = 0;
       try { wait = typeof s === 'number' ? (ctl.done ? 0 : s) : s(ctl); } catch (e) { wait = 0; }
+      if (typeof s === 'function' && typeof wait === 'number' && wait > 0) wait = Math.max(M.step, Math.round(wait * FLOW));   /* the next comes while this one settles */
       if (ctl.done || !wait) continue;
       await nap(typeof wait === 'number' ? sleep(wait) : wait);
     }
@@ -138,16 +139,16 @@ function held(e, cls) { if (e) e.classList.add('fo-hold'); if (e && cls) e.class
 function landed(e) { if (e) e.classList.remove('fo-hold'); return e; }
 function stepIn(els, o) {   /* enter: opacity and 8 px up (far: 16 px), one after another */
   return (ctl) => {
-    const list = [].concat(els).filter(Boolean); const gap = o && o.gap !== undefined ? o.gap : STAGGER;
+    const list = [].concat(els).filter(Boolean); const gap = o && o.gap !== undefined ? o.gap : M.step;
     list.forEach((e, i) => { landed(e); if (ctl.done) return; e.style.setProperty('--d', (i * gap) + 'ms'); e.classList.add(o && o.pop ? 'fo-popped' : o && o.fade ? 'fo-faded' : 'fo-in'); if (o && o.far) e.classList.add('far'); });
     return list.length ? M.base + (list.length - 1) * gap : 0;
   };
 }
-function stepPop(els, gap) { return stepIn(els, { pop: true, gap: gap === undefined ? STAGGER : gap }); }
+function stepPop(els, gap) { return stepIn(els, { pop: true, gap: gap === undefined ? M.step : gap }); }
 /* grow: bar fills to --w, one after another; each bar's row and words fade in with it */
 function stepGrow(rows, gap) {
   return (ctl) => {
-    const list = rows.filter(Boolean); const g = gap === undefined ? STAGGER : gap;
+    const list = rows.filter(Boolean); const g = gap === undefined ? M.step : gap;
     list.forEach((row, i) => {
       landed(row); const f = row.querySelector('.fill');
       if (ctl.done) { if (f) { f.style.transition = 'none'; f.style.setProperty('--w', f.dataset.w); requestAnimationFrame(() => { f.style.transition = ''; }); } return; }
@@ -194,10 +195,13 @@ function swapScreen(root, node, how, after) {
   const de = document.documentElement;
   /* a screen with the guess strip slides by hand: its drag starts on the pointer going down, which a View Transition would keep from it */
   if (document.startViewTransition && !SLIDE_BY_HAND && !node.querySelector('.fo-strip')) {
+    /* a screen still leaving from a slide by hand goes now: two screens with one transition name would stop the slide (5 Nov) */
+    root.querySelectorAll(':scope > .fo-leaving').forEach((c) => c.remove()); root.classList.remove('fo-sliding');
     de.dataset.foSlide = how; if (keep) de.dataset.foKeep = ''; else delete de.dataset.foKeep;
     node.classList.add('fo-still');                                 /* pictured by the transition: it does not also enter */
     try {
       const t = document.startViewTransition(put); slideNow = t;
+      for (const p of [t.ready, t.updateCallbackDone]) if (p && p.catch) p.catch(() => {});   /* a slide the browser skips is no error: the screen is in place */
       t.finished.finally(() => { if (slideNow === t) slideNow = null; if (seq === screenSeq) { delete de.dataset.foSlide; delete de.dataset.foKeep; } });
       return seq;
     } catch (e) { delete de.dataset.foSlide; delete de.dataset.foKeep; node.classList.remove('fo-still'); put(); return seq; }
@@ -1051,7 +1055,7 @@ function homePage() {
   root.textContent = ''; root.appendChild(w); wireDialogs(w);
   /* a game finished since the last visit: its marks pop, once; the consent card comes up last */
   const fresh = ORDER.filter((k) => isDone(k) && !seenBefore.includes(k));
-  if (fresh.length && !reduced()) fresh.forEach((k, i) => { const d = (M.base + i * STAGGER) + 'ms'; const c = w.querySelector(`.fo-circles > :nth-child(${ORDER.indexOf(k) + 1})`), m = ul.children[ORDER.indexOf(k)] && ul.children[ORDER.indexOf(k)].querySelector('.n'); for (const x of [c, m]) if (x) { x.style.setProperty('--d', d); x.classList.add('fresh'); } });
+  if (fresh.length && !reduced()) fresh.forEach((k, i) => { const d = (M.base + i * M.step) + 'ms'; const c = w.querySelector(`.fo-circles > :nth-child(${ORDER.indexOf(k) + 1})`), m = ul.children[ORDER.indexOf(k)] && ul.children[ORDER.indexOf(k)].querySelector('.n'); for (const x of [c, m]) if (x) { x.style.setProperty('--d', d); x.classList.add('fresh'); } });
   seenMarks(ORDER.filter((k) => isDone(k)));
   sequence([M.base, stepIn(consent, { far: true })], () => w.isConnected, { keepOnScroll: true });
 }
@@ -1366,7 +1370,7 @@ function portraitPage() {
      plays its own short timeline when it comes into view */
   const parts = [];
   const part = (sec, steps) => { parts.push({ sec, steps, state: 'wait' }); };
-  part(s1, [(ctl) => { if (ctl.done) { fig.classList.remove('draw'); return 0; } fig.classList.replace('draw', 'drawn'); return 2 * M.base + 4 * STAGGER; }, stepIn(legend)]);
+  part(s1, [(ctl) => { if (ctl.done) { fig.classList.remove('draw'); return 0; } fig.classList.replace('draw', 'drawn'); return 2 * M.base + 4 * M.step; }, stepIn(legend)]);
 
   /* 2. the bars */
   const s2 = story(); const h2a = s2.appendChild(held(el('h2', '', P.sections.personality)));
@@ -1381,7 +1385,7 @@ function portraitPage() {
   for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = held(el('div', 'fo-dot-row')); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm); const sp = strip({ p: 0, bands: true, still: false }); sp.dot.style.background = bandColour(n, v); sp.dot.dataset.p = String(toP(n, v)); row.appendChild(sp); dv.appendChild(row); dotRows.push(row); }
   s3.appendChild(dv);
   /* the five dots glide from the left end to where each answer put you, one after another */
-  part(s3, [stepIn(h2b), (ctl) => { dotRows.forEach((row, i) => { landed(row); const d = row.querySelector('.fo-strip-dot'); if (ctl.done) { d.classList.add('still'); setP(d, +d.dataset.p); return; } row.style.setProperty('--d', (i * STAGGER) + 'ms'); row.classList.add('fo-faded'); d.classList.add('glide'); d.style.transitionDelay = (i * STAGGER) + 'ms'; setP(d, +d.dataset.p); }); return M.slow + (dotRows.length - 1) * STAGGER; }]);
+  part(s3, [stepIn(h2b), (ctl) => { dotRows.forEach((row, i) => { landed(row); const d = row.querySelector('.fo-strip-dot'); if (ctl.done) { d.classList.add('still'); setP(d, +d.dataset.p); return; } row.style.setProperty('--d', (i * M.step) + 'ms'); row.classList.add('fo-faded'); d.classList.add('glide'); d.style.transitionDelay = (i * M.step) + 'ms'; setP(d, +d.dataset.p); }); return M.slow + (dotRows.length - 1) * M.step; }]);
 
   /* 4. people like you: the cards, and One more */
   const picks = portraitLines();
@@ -1395,7 +1399,7 @@ function portraitPage() {
     s4.appendChild(grid);
     const cards = [...grid.children]; cards.forEach((c) => held(c)); const secret = cards.pop();
     /* the cards come in one after another, and the One more card pops last */
-    part(s4, [stepIn([h2c, intro]), stepIn(cards, { gap: 40 }), stepPop(secret)]);
+    part(s4, [stepIn([h2c, intro]), stepIn(cards), stepPop(secret)]);
   }
 
   /* 5. the dial and the own-answer lines */
@@ -1991,7 +1995,7 @@ function roomHostPage(keys) {
       for (const n of [2, 5, 7, 4, 8]) { const ch = s.charts && s.charts[String(n)]; const row = el('div', 'fo-roombar'); row.appendChild(el('b', '', C.games[n].name)); if (ch && ch.bins) { const b = row.appendChild(roomBandBar(n, ch)); if (fresh) { b.classList.add('fo-unclip'); grown.push(b); } } else row.appendChild(el('span', 'fo-quiet', R.opens_at.replace('{n}', fmt(ch ? ch.n : 0)))); bars.appendChild(row); }
       w.appendChild(bars);
       /* the room's five bars grow one after another */
-      if (grown.length) sequence([M.base, (ctl) => { grown.forEach((b, i) => { if (ctl.done) { b.classList.remove('fo-unclip'); return; } b.style.transitionDelay = (i * STAGGER) + 'ms'; b.classList.add('go'); }); return M.slow + (grown.length - 1) * STAGGER; }], () => w.isConnected, { keepOnScroll: true });
+      if (grown.length) sequence([M.base, (ctl) => { grown.forEach((b, i) => { if (ctl.done) { b.classList.remove('fo-unclip'); return; } b.style.transitionDelay = (i * M.step) + 'ms'; b.classList.add('go'); }); return M.slow + (grown.length - 1) * M.step; }], () => w.isConnected, { keepOnScroll: true });
       const acts = el('div', 'fo-actions'); const again = el('a', 'btn solid', R.another); again.href = './'; again.addEventListener('click', () => forget()); acts.appendChild(again); w.appendChild(acts);
       if (stop) { stop(); stop = null; }
       return;
