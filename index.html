@@ -146,6 +146,8 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 .logicer.checkin:active { transform: scale(.99); }
 .logicer.checkin .logicer-label { color: rgba(21, 23, 43, .72); }
 .logicer.checkin .logicer-big { color: #15172B; }
+.logicer.checkin .logicer-small { color: rgba(21, 23, 43, .8); }   /* its count, as the Find out box (5 Nov 2026) */
+.logicer.checkin .logicer-small:empty { display: none; }
 /* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
 .rooms-sheet { max-width: 440px; }
 .rooms-list { display: grid; gap: 10px; margin-top: 16px; }
@@ -203,10 +205,12 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
       <span class="logicer-small" id="findout-count"></span>
     </a>
     <!-- Anonymous Check-in (4 Nov 2026, Khayyam): right under the Find out box, in its style, and the name only ("it has to be
-         just 'anonymous check-in', that is all": the rule of minimum words). The whole box is the link. -->
+         just 'anonymous check-in', that is all": the rule of minimum words). The whole box is the link.
+         5 Nov 2026: with its count under the name, as the Find out box (Khayyam). -->
     <a class="logicer checkin" id="checkin-box" href="checkin/">
       <span class="logicer-label" data-s="home.checkin_label">Anonymous</span>
       <span class="logicer-big checkin-big" data-s="home.checkin_big">Check-in</span>
+      <span class="logicer-small" id="checkin-count" data-t="{n} already checked in"></span>
     </a>
     </div>
   </div>
@@ -906,6 +910,17 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     function ask(url, next) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }, function (e) { if (next) return ask(next); throw e; }); }
     ask("https://findout.logicers.com/counter", "https://logicers-findout.rza-khay.workers.dev/counter").then(function (j) {
       if (j && j.played >= 1) small.textContent = T("home.findout_count", { n: LG ? LG.num(j.played) : Number(j.played).toLocaleString("en-US") });
+    }).catch(function () { /* the box reads the same without the number */ });
+  })();
+  /* the Anonymous Check-in's count (5 Nov 2026, Khayyam: "the homepage box shows it just like the homepage box of find out"):
+     the phones that checked in at least once, from the check-in's own server (the number its front page counts up to);
+     shown from the first one on, as the Find out box; the words are the check-in's own, in the box's data-t */
+  (function () {
+    var small = document.getElementById("checkin-count");
+    if (!small || !window.fetch) return;
+    fetch("https://logicers-checkin.rza-khay.workers.dev/stats").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (j && typeof j.checked_in === "number" && j.checked_in >= 1)
+        small.textContent = (small.getAttribute("data-t") || "{n}").replace("{n}", LG ? LG.num(j.checked_in) : Number(j.checked_in).toLocaleString("en-US"));
     }).catch(function () { /* the box reads the same without the number */ });
   })();
 
