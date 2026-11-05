@@ -177,20 +177,36 @@ export function sequence(steps, owner) {
    Transitions API the old screen is a picture and the new one is live underneath it from the first frame, so a tap during the
    slide lands on the new question (checkin.css lets taps through the transition's layer). Without it, the two bodies overlap
    in one grid cell for --m-base: the new one first in the page (it is the one that counts), the old one inert and on its way. */
-let slideNo = 0;
+let slideNo = 0, slideNow = null;
 const noVT = () => !document.startViewTransition || window.CHECKIN_NO_VT;
+/* A tap during a View Transition slide: the moving question is only a picture, so the browser gives the tap to what lies around
+   it (the stage), never to a button. The slide keeps running; when it lands, the tap goes on to the control under the finger.
+   No tap is lost and nothing snaps (motion spec, rule 4; the same in the Find outs). */
+const PASS_TO = 'button, a, input, select, textarea, label, [tabindex]:not([tabindex="-1"])';
+document.addEventListener('click', (e) => {
+  const t = slideNow;
+  if (!t || !e.isTrusted || (e.target.closest && e.target.closest(PASS_TO))) return;
+  const x = e.clientX, y = e.clientY;
+  e.stopPropagation(); e.preventDefault();
+  t.finished.finally(() => requestAnimationFrame(() => {
+    const at = document.elementFromPoint(x, y), c = at && at.closest(PASS_TO);
+    if (c && !c.disabled) { if (c.matches('input, select, textarea')) c.focus(); else c.click(); }
+  }));
+}, true);
 export function slide(stage, next, dir, after) {
   const swap = () => { stage.replaceChildren(next); if (after) after(); };
   if (!stage.firstElementChild || !dir) { swap(); return; }
-  if (still()) { swap(); next.classList.add('ck-fadefast'); settle(next, 'ck-fadefast'); return; }
+  if (still()) { byHand(stage, next, dir); if (after) after(); return; }      /* reduced motion: a crossfade, the old one stays while the new one comes */
   if (!noVT()) {
     const no = ++slideNo;
     doc.dataset.ckSlide = dir > 0 ? 'fwd' : 'back';
     let vt = null;
     try { vt = document.startViewTransition(swap); } catch (e) { vt = null; }
     if (!vt) { delete doc.dataset.ckSlide; if (next.parentNode !== stage) swap(); return; }
+    slideNow = vt;
     for (const p of [vt.ready, vt.updateCallbackDone, vt.finished]) if (p && p.catch) p.catch(() => {});
-    vt.finished.then(() => { if (no === slideNo) delete doc.dataset.ckSlide; }, () => { if (no === slideNo) delete doc.dataset.ckSlide; });
+    const end = () => { if (no === slideNo) delete doc.dataset.ckSlide; if (slideNow === vt) slideNow = null; };
+    vt.finished.then(end, end);
     return;
   }
   byHand(stage, next, dir);
@@ -198,19 +214,17 @@ export function slide(stage, next, dir, after) {
 }
 /* the same motion by hand; also the consent card's two optional taps, which slide forward inside the card */
 export function byHand(stage, next, dir) {
-  if (still() || !stage.firstElementChild) {
-    stage.replaceChildren(next);
-    if (still()) { next.classList.add('ck-fadefast'); settle(next, 'ck-fadefast'); }
-    return;
-  }
+  if (!stage.firstElementChild) { stage.replaceChildren(next); return; }
   const olds = [...stage.children];
   for (const o of olds) if (o.classList.contains('ck-going')) o.remove();              /* one still on its way: it is gone now */
   const cur = [...stage.children];
   stage.insertBefore(next, stage.firstChild);
-  const inCls = dir < 0 ? 'ck-in-l' : 'ck-in-r', outCls = dir < 0 ? 'ck-out-r' : 'ck-out-l';
+  /* reduced motion: the two overlap and crossfade in --m-fast, with no travel, so no frame is ever empty */
+  const quiet = still();
+  const inCls = quiet ? 'ck-fadefast' : dir < 0 ? 'ck-in-l' : 'ck-in-r', outCls = quiet ? 'ck-fadeoutfast' : dir < 0 ? 'ck-out-r' : 'ck-out-l';
   next.classList.add(inCls); settle(next, inCls);
   for (const o of cur) { o.classList.add('ck-going', outCls); o.inert = true; o.setAttribute('aria-hidden', 'true'); }
-  setTimeout(() => { for (const o of cur) o.remove(); }, ms('base'));
+  setTimeout(() => { for (const o of cur) o.remove(); }, ms(quiet ? 'fast' : 'base'));
 }
 
 /* ------------------------------------------------------------------ the sheets' way out ------
@@ -219,7 +233,7 @@ export function byHand(stage, next, dir) {
 export function closeSheet(d) {
   if (!d || !d.open) return;
   if (still() || !d.isConnected) { d.close(); return; }
-  const r = d.getBoundingClientRect();
+  const r = d.getBoundingClientRect(), top = d.scrollTop;
   const ghost = document.createElement('div');
   ghost.className = 'ck-ghost ' + d.className; ghost.setAttribute('aria-hidden', 'true'); ghost.inert = true;
   ghost.innerHTML = d.innerHTML;
@@ -227,7 +241,7 @@ export function closeSheet(d) {
   Object.assign(ghost.style, { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' });
   const scrim = document.createElement('div'); scrim.className = 'ck-ghost-scrim'; scrim.setAttribute('aria-hidden', 'true');
   d.close();
-  document.body.appendChild(scrim); document.body.appendChild(ghost);
+  document.body.appendChild(scrim); document.body.appendChild(ghost); ghost.scrollTop = top;   /* the picture shows what was on screen, scrolled or not */
   setTimeout(() => { ghost.remove(); scrim.remove(); }, ms('base') + 40);
 }
 /* Escape and the back gesture close a sheet the same way */
@@ -235,4 +249,10 @@ export function wireSheet(d) {
   if (!d || d.dataset.ckSheet) return;
   d.dataset.ckSheet = '1';
   d.addEventListener('cancel', (e) => { if (still()) return; e.preventDefault(); closeSheet(d); });
+  /* a tap on the dim area around it closes it too, as on the rest of the site (not a sheet marked data-stay) */
+  d.addEventListener('click', (e) => {
+    if (e.target !== d || d.hasAttribute('data-stay')) return;
+    const r = d.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeSheet(d);
+  });
 }

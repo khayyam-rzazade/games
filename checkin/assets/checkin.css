@@ -44,6 +44,7 @@
 .ck-pop { animation: ck-pop var(--m-base) var(--e-spring) both; }
 .ck-fade { animation: ck-fade var(--m-base) var(--e-out) both; }
 .ck-fadefast { animation: ck-fade var(--m-fast) linear both; }
+.ck-fadeoutfast { animation: ck-fade-out var(--m-fast) linear both; pointer-events: none; }   /* the old screen of a crossfade, under reduced motion */
 .ck-fadeout { animation: ck-fade-out var(--m-base) var(--e-out) both; }
 .ck-pulse { animation: ck-pulse 1.6s ease-in-out infinite; }
 .ck-badge.ck-pulse { transform-origin: center; }
@@ -322,6 +323,7 @@ body.ck-wide { --col: 68rem; }
 @media (prefers-color-scheme: dark) { .ck-consent { box-shadow: inset 0 0 0 1px var(--line); } }
 .ck-notmed { text-align: center; margin-top: 16px; }
 .ck-onward { margin-top: 18px; }
+.ck-onward .onward-next svg { animation: none; }                  /* the shared end card's arrow nudges for ever: nothing loops here (motion spec, rule 5), as in the Find outs */
 .ck-next-findout { --c: #3F7A2A; --on-c: #fff; }
 @media (prefers-color-scheme: dark) { .ck-next-findout { --c: #9EDB6A; --on-c: #0A0C1A; } }
 

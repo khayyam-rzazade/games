@@ -121,10 +121,12 @@ Three fresh Fable reviewers read the code, the researcher pages and the words (`
   a step below the screen waits to be scrolled to; once the person scrolls, taps or types the gaps shrink to 50 ms), `slide`
   (View Transitions, else `byHand`), `closeSheet` (the dialog closes at once, a still picture of it sinks, taps go through).
 - **The 20 taps** (`flow.js`): the frame (top line, progress bar) stays; only `.ck-qbody` slides inside `.ck-qstage`. During a
-  view transition only the question and the kicker are pictured (`html[data-ck-slide]`), the rest of the page stays live, and
-  `::view-transition` lets taps through to the new question. Without View Transitions the leaving body stays in the page,
-  inert, for 220 ms, after the new one: a script that looks for `.ck-seg` or `.ck-ladder` should look in
-  `.ck-qbody:not(.ck-going)`. The bar is three rows of the same 20 pills, clipped (`--k`), so it glides without squashing.
+  view transition only the question and the kicker are pictured (`html[data-ck-slide]`), the rest of the page stays live.
+  A tap on the moving question reaches only the stage (the question is a picture until it lands), so `motion.js` holds that
+  tap and gives it to the button under the finger when the slide ends (5 Nov, the review). Without View Transitions, and
+  always under reduced motion, the leaving body stays in the page, inert, after the new one (220 ms; 120 ms as a crossfade
+  under reduced motion): a script that looks for `.ck-seg` or `.ck-ladder` should look in `.ck-qbody:not(.ck-going)`.
+  The bar is three rows of the same 20 pills, clipped (`--k`), so it glides without squashing.
 - **The result** is one timeline, `resultTimeline()` in `result.js`; the group's reveal is `groupTimeline()` in `group.js`.
   Each plays once per check-in (or round) on a page; a redraw of the same screen stays still and keeps its scroll
   (`mount(node, screen)` in `room.js` and `host.js`). The room no longer redraws when the comparison arrives during the wait:
@@ -132,5 +134,5 @@ Three fresh Fable reviewers read the code, the researcher pages and the words (`
 - Cards that wait for their turn have `ck-pre` (opacity 0, in place, so nothing moves the page). A full-page screenshot
   taken without scrolling shows them empty: `tests/lib.mjs` `shot(…, { full: true })` reads down the page first.
 - `tests/motion.mjs` records the flows, counts long frames per screen and checks the motion's promises (a tap during a slide or
-  a timeline is taken, Back during the wait after a choice, the sheet lets taps through, reduced motion lands still).
+  a timeline is taken (Playwright's `click` waits for the slide to end; only a raw `touchscreen.tap` tests a tap mid-slide), Back during the wait after a choice, the sheet lets taps through, reduced motion lands still).
   `CK_NO_VT=1` runs it on the hand-made slide, `CK_VIDEO=0` without recording (recording costs frames on a small runner).

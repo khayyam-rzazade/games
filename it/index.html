@@ -167,7 +167,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     <a class="logicer checkin" id="checkin-box" href="../checkin/">
       <span class="logicer-label" data-s="home.checkin_label">Anonimo</span>
       <span class="logicer-big checkin-big" data-s="home.checkin_big">Check-in</span>
-      <span class="logicer-small" id="checkin-count" data-t="{n} check-in finora"></span>
+      <span class="logicer-small" id="checkin-count" data-t="{n} l&#x27;hanno già fatto"></span>
     </a>
     </div>
   </div>
@@ -859,7 +859,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   })();
   /* the Anonymous Check-in's count (5 Nov 2026, Khayyam: "the homepage box shows it just like the homepage box of find out"):
      the phones that checked in at least once, from the check-in's own server (the number its front page counts up to);
-     shown from the first one on, as the Find out box; the words are the check-in's own, in the box's data-t */
+     shown from the first one on, as the Find out box; the words in the box's data-t are short like the Find out box's ("8 already did", Khayyam, 5 Nov) */
   (function () {
     var small = document.getElementById("checkin-count");
     if (!small || !window.fetch) return;

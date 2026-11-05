@@ -10,6 +10,7 @@ async function tap(page, n) {                                  /* answers n scre
   let last = '';
   for (let k = 0; k < n; k++) {
     await page.waitForFunction((l) => { const m = document.querySelector('.ck-itemtop .meta'); return !m || m.textContent !== l; }, last, { timeout: 8000 });
+    await page.waitForFunction(() => !document.querySelector('.ck-going'), null, { timeout: 8000 });   /* reduced motion crossfades: the leaving screen stays 120 ms */
     const meta = await page.$('.ck-itemtop .meta'); if (!meta) return false;
     last = await meta.textContent(); await sleep(50);
     if (await page.$('.ck-thermo.live')) { const box = await page.locator('.ck-thermo-body').boundingBox(); await page.mouse.click(box.x + box.width * 0.3, box.y + box.height / 2); await page.click('.ck-actions .btn.solid'); }

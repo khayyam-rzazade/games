@@ -29,7 +29,7 @@ export function runFlow(root, ctx) {
   frame.appendChild(top); frame.appendChild(bar); frame.appendChild(stage);
 
   function landed(body) { window.scrollTo({ top: 0, behavior: 'instant' }); const h1 = body.querySelector('.ck-q'); if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); } }
-  const delay = () => (reducedMotion() ? 80 : ms('fast') + LAND);
+  const delay = () => (reducedMotion() ? LAND : ms('fast') + LAND);       /* reduced motion: no sweep, the same pause (as the Find outs) */
   function cancelPending() { if (pending) { clearTimeout(pending); pending = null; } }
 
   function go(next, dir) {

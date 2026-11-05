@@ -76,7 +76,14 @@ function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--
    blocks a tap: a tap, a key or a scroll during a timeline lands the rest at once, and with reduced motion everything stands at
    its final value from the start. */
 const M = { fast: 120, base: 220, slow: 400 };
-function readTokens() { try { const cs = getComputedStyle(document.documentElement); for (const k of Object.keys(M)) { const v = parseFloat(cs.getPropertyValue('--m-' + k)); if (v > 0) M[k] = v; } } catch (e) { /* the spec's numbers above stand */ } }
+function readTokens() {
+  try {
+    const cs = getComputedStyle(document.documentElement);
+    for (const k of Object.keys(M)) { const v = parseFloat(cs.getPropertyValue('--m-' + k)); if (v > 0) M[k] = v; }
+    const m = String(cs.getPropertyValue('--e-out')).match(/cubic-bezier\(([^)]+)\)/); const p = m ? m[1].split(',').map(Number) : [];
+    if (p.length === 4 && p.every(isFinite)) easeOut = bezier(...p);
+  } catch (e) { /* the spec's numbers below stand */ }
+}
 const SELECT_WAIT = 150;                     /* after a choice lands, before the next screen comes, so the choice is seen to land */
 const STAGGER = 50;                          /* items one after another */
 function bezier(x1, y1, x2, y2) {
@@ -84,7 +91,8 @@ function bezier(x1, y1, x2, y2) {
   const X = (s) => ((ax * s + bx) * s + cx) * s, Y = (s) => ((ay * s + by) * s + cy) * s, dX = (s) => (3 * ax * s + 2 * bx) * s + cx;
   return (t) => { if (t <= 0) return 0; if (t >= 1) return 1; let s = t; for (let i = 0; i < 8; i++) { const e = X(s) - t, d = dX(s); if (Math.abs(e) < 1e-5 || !d) break; s = Math.min(1, Math.max(0, s - e / d)); } return Y(s); };
 }
-const easeOut = bezier(0.2, 0.8, 0.2, 1);    /* --e-out, for the numbers counted here */
+let easeOut = bezier(0.2, 0.8, 0.2, 1);      /* --e-out, for the numbers counted here (readTokens takes it from the CSS) */
+const QR_POP = 100;                          /* the QR pops this long after the code card (motion spec 4, as the check-in) */
 /* count: from `from` to `to` over --m-slow on --e-out; paint(v, k) draws each frame (the digits, and a needle or arc with them) */
 function count(from, to, paint, ctl) {
   if (reduced() || (ctl && ctl.done) || from === to) { paint(to, 1); return 0; }
@@ -160,19 +168,21 @@ function popOnce(e) { if (!e || reduced()) return; e.classList.remove('fo-popped
    with the View Transitions API the pseudo-elements let taps through to the new screen; by hand, the old screen lies over the
    new one, inert, and goes. The game's name, the count and the progress stay still between two questions. Focus moves to the
    new screen's heading. */
-let screenSeq = 0, slideNow = null, tapCaught = 0;
+let screenSeq = 0, slideNow = null;
 const SLIDE_BY_HAND = /[?&]slide=hand\b/.test(location.search);   /* ?slide=hand: the hand-made slide even where the browser has View Transitions, to compare the two on a phone */
-/* While a View Transition runs, the browser sends every tap to the page itself. A tap then ends the slide at once and is passed
-   on to what is under the finger, so no tap is ever lost (motion spec, rule 4) */
-document.addEventListener('pointerdown', () => { if (slideNow) { try { slideNow.skipTransition(); } catch (e) { /* already over */ } tapCaught = performance.now(); } }, true);
+/* A tap during a View Transition slide: the moving part is only a picture of the screen, so the browser gives the tap to what
+   lies around it (the stage), never to a button. The slide keeps running; when it lands, the tap goes on to the control under
+   the finger. No tap is lost and nothing snaps (motion spec, rule 4; the same in the Anonymous Check-in). */
+const PASS_TO = 'button, a, input, select, textarea, label, [tabindex]:not([tabindex="-1"])';
 document.addEventListener('click', (e) => {
-  if (!tapCaught || performance.now() - tapCaught > 1500) return;
-  tapCaught = 0;
-  const CTRL = 'button, a, input, select, label, [tabindex]';
-  if (e.target.closest && e.target.closest(CTRL)) return;     /* it reached a control by itself */
-  const x = e.clientX, y = e.clientY; e.stopPropagation(); e.preventDefault();
-  const pass = (tries) => { const t = document.elementFromPoint(x, y); const c = t && t.closest(CTRL); if (c) { if (c.matches('input, select, textarea')) c.focus(); else c.click(); } else if (tries) requestAnimationFrame(() => pass(tries - 1)); };
-  pass(3);
+  const t = slideNow;
+  if (!t || !e.isTrusted || (e.target.closest && e.target.closest(PASS_TO))) return;
+  const x = e.clientX, y = e.clientY;
+  e.stopPropagation(); e.preventDefault();
+  t.finished.finally(() => requestAnimationFrame(() => {
+    const at = document.elementFromPoint(x, y), c = at && at.closest(PASS_TO);
+    if (c && !c.disabled) { if (c.matches('input, select, textarea')) c.focus(); else c.click(); }
+  }));
 }, true);
 function swapScreen(root, node, how, after) {
   const old = root.firstElementChild && !root.firstElementChild.classList.contains('fo-leaving') ? root.firstElementChild : null;
@@ -181,16 +191,16 @@ function swapScreen(root, node, how, after) {
   const focusHead = () => { const hd = node.querySelector('h1'); if (hd) { hd.tabIndex = -1; try { hd.focus({ preventScroll: true }); } catch (e) { /* not focusable */ } } };
   const put = () => { root.textContent = ''; root.classList.remove('fo-sliding'); root.appendChild(node); if (after) after(); focusHead(); };
   if (!old || (how !== 'fwd' && how !== 'back')) { put(); return seq; }
-  node.classList.add('fo-still');
   const de = document.documentElement;
   /* a screen with the guess strip slides by hand: its drag starts on the pointer going down, which a View Transition would keep from it */
   if (document.startViewTransition && !SLIDE_BY_HAND && !node.querySelector('.fo-strip')) {
     de.dataset.foSlide = how; if (keep) de.dataset.foKeep = ''; else delete de.dataset.foKeep;
+    node.classList.add('fo-still');                                 /* pictured by the transition: it does not also enter */
     try {
       const t = document.startViewTransition(put); slideNow = t;
       t.finished.finally(() => { if (slideNow === t) slideNow = null; if (seq === screenSeq) { delete de.dataset.foSlide; delete de.dataset.foKeep; } });
       return seq;
-    } catch (e) { delete de.dataset.foSlide; delete de.dataset.foKeep; put(); return seq; }
+    } catch (e) { delete de.dataset.foSlide; delete de.dataset.foKeep; node.classList.remove('fo-still'); put(); return seq; }
   }
   /* by hand: the same two screens overlapping for --m-base */
   const rr = root.getBoundingClientRect(), r = old.getBoundingClientRect();
@@ -205,15 +215,36 @@ function swapScreen(root, node, how, after) {
   setTimeout(() => { old.remove(); if (!root.querySelector('.fo-leaving')) root.classList.remove('fo-sliding'); }, M.base + 40);
   return seq;
 }
-/* rise: a sheet comes up and goes back down (closing waits for its --m-base, then closes) */
-function openSheet(d) { if (!d || !d.showModal) return; d.classList.remove('fo-closing'); if (!d.open) d.showModal(); }
+/* rise: a sheet comes up. On the way out the dialog closes at once, so the page under it takes taps straight away, and a still
+   picture of it sinks while the dim fades; both let every tap through (the same as the Anonymous Check-in) */
+function openSheet(d) { if (!d || !d.showModal) return; if (!d.open) d.showModal(); }
 function closeSheet(d) {
-  if (!d || !d.open || d.classList.contains('fo-closing')) return;
-  d.classList.add('fo-closing');
-  let shut = false; const end = () => { if (shut) return; shut = true; d.classList.remove('fo-closing'); if (d.open) d.close(); };
-  d.addEventListener('animationend', end, { once: true }); setTimeout(end, M.base + 60);
+  if (!d || !d.open) return;
+  if (reduced() || !d.isConnected) { d.close(); return; }
+  const r = d.getBoundingClientRect(), cs = getComputedStyle(d), top = d.scrollTop;
+  const ghost = document.createElement('div');
+  ghost.className = 'fo-ghost'; ghost.setAttribute('aria-hidden', 'true'); ghost.inert = true;
+  ghost.innerHTML = d.innerHTML;
+  ghost.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+  Object.assign(ghost.style, { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px',
+    borderRadius: cs.borderRadius, background: cs.backgroundColor, color: cs.color, boxShadow: cs.boxShadow, padding: cs.padding, fontSize: cs.fontSize });
+  const scrim = document.createElement('div'); scrim.className = 'fo-ghost-scrim'; scrim.setAttribute('aria-hidden', 'true');
+  d.close();
+  document.body.appendChild(scrim); document.body.appendChild(ghost); ghost.scrollTop = top;   /* the picture shows what was on screen, scrolled or not */
+  setTimeout(() => { ghost.remove(); scrim.remove(); }, M.base + 40);
 }
 document.addEventListener('cancel', (e) => { const d = e.target; if (d && d.tagName === 'DIALOG' && d.open && document.body.dataset.g === 'findout') { e.preventDefault(); closeSheet(d); } }, true);
+/* a tap on the dim area around a sheet closes it, as on the rest of the site; the "?" in the header opens its sheet */
+document.addEventListener('click', (e) => {
+  const d = e.target;
+  if (d && d.tagName === 'DIALOG' && d.open && document.body.dataset.g === 'findout' && !d.hasAttribute('data-stay')) {
+    const r = d.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeSheet(d);
+    return;
+  }
+  const b = e.target && e.target.closest ? e.target.closest('header [data-open]') : null;
+  if (b && document.body.dataset.g === 'findout') { const s = document.getElementById(b.dataset.open); if (s) openSheet(s); }
+});
 
 /* one call to a server with two addresses (see API_ADDR): the first address's failure to answer at all, before it has ever
    answered, moves the page to the second; any answer, even an error, settles it */
@@ -1947,7 +1978,7 @@ function roomHostPage(keys) {
       const two = el('div', 'fo-host-two'); const qr = qrSvg(link, R.join_line.replace('{code}', keys.code)); if (qr) two.appendChild(hold(qr));
       const side = el('div'); const cnt = side.appendChild(el('p', 'fo-host-count fo-waiting', ''));
       if (s.joined) countIn(cnt, R.here, 'n', s.joined, joinedFrom); else cnt.textContent = R.nobody;   /* counts on each change, pulses while people join */
-      if (fresh) sequence([M.fast, stepPop(qr)], () => w.isConnected, { keepOnScroll: true });   /* the code card is in; the QR pops just after */
+      if (fresh) sequence([QR_POP, stepPop(qr)], () => w.isConnected, { keepOnScroll: true });   /* the code card is in; the QR pops 100 ms after */
       side.appendChild(el('p', 'fo-quiet', R.play_too));
       const acts = el('div', 'fo-actions'); const start = el('button', 'btn solid', R.start); start.type = 'button'; start.disabled = !s.joined; start.addEventListener('click', () => host('start')); acts.appendChild(start); side.appendChild(acts);
       two.appendChild(side); w.appendChild(two);

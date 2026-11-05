@@ -458,7 +458,6 @@ body.game { --fo-ink-on-c: var(--on-c); }
 /* enter / leave / pop / crossfade */
 @keyframes fo-enter { from { opacity: 0; transform: translateY(8px); } }
 @keyframes fo-rise-in { from { opacity: 0; transform: translateY(16px); } }
-@keyframes fo-leave { to { opacity: 0; transform: translateY(-6px); } }
 @keyframes fo-pop { from { opacity: 0; transform: scale(.85); } }
 @keyframes fo-fade { from { opacity: 0; } }
 .fo-hold { opacity: 0; }                                          /* waiting for its step in a timeline: in its place, nothing moves under it */
@@ -466,7 +465,7 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-in.far { animation-name: fo-rise-in; }                         /* the consent card comes up from further */
 .fo-popped { animation: fo-pop var(--m-base) var(--e-spring) both; animation-delay: var(--d, 0ms); }
 .fo-faded { animation: fo-fade var(--m-base) var(--e-out) both; animation-delay: var(--d, 0ms); }
-.fo-screen.fo-still { animation: none; }                          /* a screen brought in by a slide does not also enter */
+.fo-screen.fo-still { animation: none; }                          /* a screen pictured by a View Transition does not also enter (find-out.js adds it on that path only: the hand-made slide has its own classes) */
 .fo-bandname { transform-origin: left center; }
 .fo-onward .onward-next svg { animation: none; }                   /* the shared card's nudge loops; the find-outs keep still */
 .fo-circles .done.fresh, .fo-onward .pips i.fresh, .fo-list .n.fresh { animation: fo-pop var(--m-base) var(--e-spring) var(--d, 0ms) both; }
@@ -485,7 +484,7 @@ body.game { --fo-ink-on-c: var(--on-c); }
 
 /* press: anything under the finger; release springs back */
 [data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn) {
-  transition: transform var(--m-base) var(--e-spring), color var(--m-fast) var(--e-out);
+  transition: transform var(--m-fast) var(--e-spring), color var(--m-fast) var(--e-out);
 }
 [data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn):active:not([disabled]) {
   transform: scale(.97); transition-duration: var(--m-fast); transition-timing-function: var(--e-out);
@@ -504,11 +503,14 @@ body.game { --fo-ink-on-c: var(--on-c); }
 
 /* rise: the sheets come up from below and go back down; the dim behind them fades */
 @keyframes fo-rise { from { transform: translateY(100%); } }
-@keyframes fo-sink { to { transform: translateY(100%); opacity: 0; } }
+@keyframes fo-sink { to { transform: translateY(100%); } }
+@keyframes fo-fade-out { to { opacity: 0; } }
 [data-g="findout"] dialog[open] { animation: fo-rise var(--m-base) var(--e-spring) both; }
 [data-g="findout"] dialog[open]::backdrop { animation: fo-fade var(--m-base) var(--e-out) both; }
-[data-g="findout"] dialog.fo-closing { animation: fo-sink var(--m-base) var(--e-in) both; }
-[data-g="findout"] dialog.fo-closing::backdrop { animation: fo-fade var(--m-base) var(--e-in) reverse both; }
+/* on the way out the dialog closes at once, so the page under it takes taps straight away, and a still picture of it sinks
+   while the dim fades: both let every tap through (the same as the Anonymous Check-in) */
+.fo-ghost { position: fixed; z-index: 60; margin: 0; overflow: hidden; pointer-events: none; animation: fo-sink var(--m-base) var(--e-in) both; }
+.fo-ghost-scrim { position: fixed; inset: 0; z-index: 59; background: rgba(8, 10, 21, .55); pointer-events: none; animation: fo-fade-out var(--m-base) var(--e-in) both; }
 
 /* slide forward / back between the questions. With the View Transitions API the two screens overlap for --m-base; the game's
    name, the count and the progress stay where they are (their own names) and the progress glides. Taps go straight through to
@@ -519,9 +521,9 @@ html[data-fo-slide] .fo-main > .fo-screen { view-transition-name: fo-stage; }
 html[data-fo-slide][data-fo-keep] .fo-itemtop { view-transition-name: fo-top; }
 html[data-fo-slide][data-fo-keep] .fo-progress { view-transition-name: fo-progress; }
 ::view-transition-group(fo-stage), ::view-transition-group(fo-top), ::view-transition-group(fo-progress) { animation-duration: var(--m-base); animation-timing-function: var(--e-out); }
-html[data-fo-slide="fwd"]::view-transition-old(fo-stage) { animation: fo-out-l var(--m-base) var(--e-in) both; }
+html[data-fo-slide="fwd"]::view-transition-old(fo-stage) { animation: fo-out-l var(--m-base) var(--e-out) both; }
 html[data-fo-slide="fwd"]::view-transition-new(fo-stage) { animation: fo-in-r var(--m-base) var(--e-out) both; }
-html[data-fo-slide="back"]::view-transition-old(fo-stage) { animation: fo-out-r var(--m-base) var(--e-in) both; }
+html[data-fo-slide="back"]::view-transition-old(fo-stage) { animation: fo-out-r var(--m-base) var(--e-out) both; }
 html[data-fo-slide="back"]::view-transition-new(fo-stage) { animation: fo-in-l var(--m-base) var(--e-out) both; }
 ::view-transition-old(fo-top), ::view-transition-new(fo-top) { animation-duration: var(--m-fast); }
 ::view-transition-old(fo-progress) { animation: none; opacity: 0; }
@@ -535,14 +537,14 @@ html[data-fo-slide="back"]::view-transition-new(fo-stage) { animation: fo-in-l v
 .fo-leaving { position: absolute; pointer-events: none; }
 .fo-slide-in-r { animation: fo-in-r var(--m-base) var(--e-out) both; }
 .fo-slide-in-l { animation: fo-in-l var(--m-base) var(--e-out) both; }
-.fo-leaving.fo-slide-out-l { animation: fo-out-l var(--m-base) var(--e-in) both; }
-.fo-leaving.fo-slide-out-r { animation: fo-out-r var(--m-base) var(--e-in) both; }
+.fo-leaving.fo-slide-out-l { animation: fo-out-l var(--m-base) var(--e-out) both; }
+.fo-leaving.fo-slide-out-r { animation: fo-out-r var(--m-base) var(--e-out) both; }
 .fo-keepframe.fo-slide-in-r, .fo-keepframe.fo-slide-in-l, .fo-leaving.fo-keepframe { animation: none; }
 .fo-keepframe.fo-slide-in-r > :not(.fo-itemtop):not(.fo-progress) { animation: fo-in-r var(--m-base) var(--e-out) both; }
 .fo-keepframe.fo-slide-in-l > :not(.fo-itemtop):not(.fo-progress) { animation: fo-in-l var(--m-base) var(--e-out) both; }
 .fo-leaving.fo-keepframe > .fo-itemtop, .fo-leaving.fo-keepframe > .fo-progress { visibility: hidden; }
-.fo-leaving.fo-keepframe.fo-slide-out-l > :not(.fo-itemtop):not(.fo-progress) { animation: fo-out-l var(--m-base) var(--e-in) both; }
-.fo-leaving.fo-keepframe.fo-slide-out-r > :not(.fo-itemtop):not(.fo-progress) { animation: fo-out-r var(--m-base) var(--e-in) both; }
+.fo-leaving.fo-keepframe.fo-slide-out-l > :not(.fo-itemtop):not(.fo-progress) { animation: fo-out-l var(--m-base) var(--e-out) both; }
+.fo-leaving.fo-keepframe.fo-slide-out-r > :not(.fo-itemtop):not(.fo-progress) { animation: fo-out-r var(--m-base) var(--e-out) both; }
 .fo-main h1[tabindex="-1"]:focus { outline: none; }               /* focus lands on the new screen's heading; it is not a control */
 
 /* reduced motion: screens crossfade in --m-fast, taps still change colour at once, bars and numbers stand at their final value */
@@ -560,7 +562,7 @@ html[data-fo-slide="back"]::view-transition-new(fo-stage) { animation: fo-in-l v
   [data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn) { transition: color var(--m-fast) linear; }
   [data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn):active:not([disabled]) { transform: none; }
   [data-g="findout"] dialog[open], [data-g="findout"] dialog[open]::backdrop { animation: fo-fade var(--m-fast) linear both; }
-  [data-g="findout"] dialog.fo-closing, [data-g="findout"] dialog.fo-closing::backdrop { animation: fo-fade var(--m-fast) linear reverse both; }
+  .fo-ghost, .fo-ghost-scrim { animation: none; display: none; }
   html[data-fo-slide]::view-transition-old(fo-stage) { animation: fo-fade var(--m-fast) linear reverse both; }
   html[data-fo-slide]::view-transition-new(fo-stage) { animation: fo-fade var(--m-fast) linear both; }
   .fo-slide-in-r, .fo-slide-in-l, .fo-keepframe.fo-slide-in-r > *, .fo-keepframe.fo-slide-in-l > * { animation: fo-fade var(--m-fast) linear both; }
