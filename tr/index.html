@@ -37,7 +37,7 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=8b7dda5894">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=ccee12886a">
 <script src="../assets/lang/tr.js?v=a618325e4d"></script>
 <script src="../assets/js/lang.js?v=5a777eb8f8"></script>
 <style>
@@ -81,7 +81,7 @@
 #shelf3 .go { height: 38px; padding: 0 14px 0 15px; font-size: 0.92rem; }
 .logicer.findout { background: linear-gradient(135deg, #2E6B22 0%, #3F7A2A 55%, #6BA84A 100%); box-shadow: 0 8px 20px rgba(63, 122, 42, .28), inset 0 0 0 1px rgba(255, 255, 255, .16); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .logicer.findout:active { transform: scale(.99); }
-.logicer.findout .logicer-big { color: #fff; background: linear-gradient(90deg, #fff 0%, #fff 40%, #FFD45E 50%, #fff 60%, #fff 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out infinite; }
+.logicer.findout .logicer-big { color: #fff; background: linear-gradient(90deg, #fff 0%, #fff 40%, #FFD45E 50%, #fff 60%, #fff 100%); background-size: 240% 100%; background-repeat: no-repeat; background-color: #fff; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out infinite; }
 @keyframes findout-shine { 0%, 55% { background-position: 120% 0; } 85%, 100% { background-position: -120% 0; } }
 @media (prefers-reduced-motion: reduce) { .logicer.findout .logicer-big { animation: none; -webkit-text-fill-color: #fff; background: none; } }
 .findout-games .mins { white-space: nowrap; }
@@ -104,7 +104,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 .logicer.checkin .logicer-label { color: rgba(21, 23, 43, .72); }
 .logicer.checkin .logicer-big { color: #15172B; }
 /* its light (5 Nov 2026, Khayyam: "like in the Find out box"): the same sweep, white through the dark word, 0.6 s after the green one, so the light runs down the two boxes */
-.logicer.checkin .logicer-big { background: linear-gradient(90deg, #15172B 0%, #15172B 40%, #fff 50%, #15172B 60%, #15172B 100%); background-size: 240% 100%; background-position: 120% 0; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out .6s infinite both; }
+.logicer.checkin .logicer-big { background: linear-gradient(90deg, #15172B 0%, #15172B 40%, #fff 50%, #15172B 60%, #15172B 100%); background-size: 240% 100%; background-repeat: no-repeat; background-color: #15172B; background-position: 120% 0; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out .6s infinite both; }
 @media (prefers-reduced-motion: reduce) { .logicer.checkin .logicer-big { animation: none; -webkit-text-fill-color: #15172B; background: none; } }
 .logicer.checkin .logicer-small { color: rgba(21, 23, 43, .8); }   /* its count, as the Find out box (5 Nov 2026) */
 .logicer.checkin .logicer-small:empty { display: none; }

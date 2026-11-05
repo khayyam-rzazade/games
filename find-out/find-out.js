@@ -210,7 +210,7 @@ function swapScreen(root, node, how, after) {
   const rr = root.getBoundingClientRect(), r = old.getBoundingClientRect();
   [...root.children].forEach((c) => { if (c !== old) c.remove(); });
   root.classList.add('fo-sliding');
-  old.style.left = (r.left - rr.left) + 'px'; old.style.top = (r.top - rr.top) + 'px'; old.style.width = r.width + 'px';
+  old.style.left = (r.left - rr.left) + 'px'; old.style.top = (r.top - rr.top) + 'px'; old.style.width = r.width + 'px'; old.style.height = r.height + 'px';   /* its height too (5 Nov 2026): a screen no longer has a height of its own, and the leaving one must keep its shape */
   old.classList.add('fo-leaving', how === 'fwd' ? 'fo-slide-out-l' : 'fo-slide-out-r'); if (keep) old.classList.add('fo-keepframe');
   old.inert = true; old.setAttribute('aria-hidden', 'true');
   node.classList.add(how === 'fwd' ? 'fo-slide-in-r' : 'fo-slide-in-l'); if (keep) node.classList.add('fo-keepframe');

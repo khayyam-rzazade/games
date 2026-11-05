@@ -115,9 +115,16 @@ body.game[data-g="checkin"] .meta b { color: var(--ct); }
 body.ck-wide { --col: 68rem; }
 .bar a.chip { text-decoration: none; }
 
-/* ---- the frame of every screen ---- */
-.ck-main { min-height: calc(100svh - 62px); display: flex; flex-direction: column; }
-.ck-screen { display: flex; flex-direction: column; flex: 1 1 auto; min-height: calc(100svh - 70px); }
+/* ---- the frame of every screen ----
+   5 Nov 2026 (Khayyam: on a computer the Back chip sat below the window's edge, so every question scrolled): the page is one
+   column, the bar and then the screen, which fills what is left of the window and no more. The frame used to be sized by hand
+   (the window minus 62px, the screen minus 70px) while the bar is 56px on a phone and 68px on a computer, which left 4px to
+   scroll on a phone and about 30px on a computer. Now there is no number: whatever the bar's height, and whatever a phone's
+   safe-area padding on the body, the screen ends where the window ends. A screen taller than the window still scrolls. */
+body[data-g="checkin"] { display: flex; flex-direction: column; }
+body[data-g="checkin"] > :is(.bar, .ck-main, .ck-foot, noscript) { width: 100%; }   /* as wide as before: in a flex column their auto margins would otherwise shrink them to their words */
+.ck-main { flex: 1 1 auto; display: flex; flex-direction: column; }
+.ck-screen { display: flex; flex-direction: column; flex: 1 1 auto; }
 .ck-title { margin-top: 6px; font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 7.4vw, 2.2rem); line-height: 1.06; letter-spacing: -0.035em; text-wrap: balance; }
 .ck-title-s { font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--ink); }
 .ck-lede { margin-top: 8px; font-size: 1.08rem; line-height: 1.4; font-weight: 500; }

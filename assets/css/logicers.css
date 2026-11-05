@@ -230,7 +230,11 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
 .rows .st b { color: var(--ink); font-weight: 700; }
 
 /* ---------- home: the welcome ---------- */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px 40px; align-items: end; padding: 44px 0 40px; }
+/* The right column (5 Nov 2026, Khayyam: "the boxes on the right side can be widened to the left, so the texts within
+   those boxes become one line"): up to 400px wide (was a fixed 340), but the headline keeps its room — the left column
+   is never narrower than the headline on one line, and the 64px column gap is the least air between the two. So on
+   the Turkish home, whose headline is the longest, the boxes take what is left; on the others they take the full 400. */
+.hero { display: grid; grid-template-columns: minmax(max-content, 1fr) minmax(340px, 400px); gap: 14px 64px; align-items: end; padding: 44px 0 40px; }
 .hero > .gameroom, .hero > .pairbox { grid-column: -2 / -1; align-self: start; margin-top: 0; }
 .hero .livebox { align-self: start; }
 .hero-text { grid-row: 1 / span 4; align-self: center; }   /* Today, Build or join, the Game Room, the World table (16 Oct 2026) */
@@ -402,7 +406,7 @@ dialog::backdrop { background: rgba(8, 10, 21, .55); }
    top of the page. ---------- */
 .livebox { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .hero .livebox { grid-column: -2 / -1; }
-.lb { position: relative; display: flex; align-items: center; gap: 9px; min-width: 0; min-height: 64px; margin: 0; padding: 10px 10px 10px 10px; border-radius: 18px; color: #15172B; text-decoration: none; -webkit-tap-highlight-color: transparent; transition: transform .15s, box-shadow .15s; }
+.lb { position: relative; display: flex; align-items: center; gap: 9px; min-width: 0; min-height: 56px; margin: 0; padding: 10px 10px 10px 10px; border-radius: 18px; color: #15172B; text-decoration: none; -webkit-tap-highlight-color: transparent; transition: transform .15s, box-shadow .15s; }
 .lb-build { background: linear-gradient(155deg, #F1EBFF 0%, #E6DCFF 52%, #FFE3EE 100%); box-shadow: 0 8px 20px rgba(91, 63, 196, .16), inset 0 0 0 1px rgba(91, 63, 196, .08); }
 .lb-join { background: linear-gradient(155deg, #E6F8EE 0%, #D6F2E3 100%); box-shadow: 0 8px 20px rgba(30, 122, 76, .13), inset 0 0 0 1px rgba(30, 122, 76, .08); }
 .lb-art { display: block; width: 36px; height: 36px; flex: none; }
@@ -1409,7 +1413,7 @@ dialog.khay:not([open]) { display: none; }
 /* (24 Oct 2026: the anchor of "More to play" was an empty span made no-box here. 30 Oct 2026: it is the id of the Pass the phone row now, a real box, so that rule is gone.) */
 .hero > .pairbox { grid-column: -2 / -1; align-self: start; margin-top: -6px; }   /* 8px under Build / Join (the hero's gap is 14px) */
 .pairbox:not(:has(> :not([hidden]))) { display: none; }
-.pairbox > .gameroom { margin-top: 0; display: flex; align-items: center; gap: 9px; min-height: 64px; padding: 10px 12px; border-radius: 18px; min-width: 0; box-sizing: border-box; }
+.pairbox > .gameroom { margin-top: 0; display: flex; align-items: center; gap: 9px; min-height: 56px; padding: 10px 12px; border-radius: 18px; min-width: 0; box-sizing: border-box; }
 .pairbox > .gameroom .gameroom-art { width: 36px; height: 36px; }
 .pairbox > .gameroom .gameroom-h { font-size: 0.98rem; line-height: 1.1; }
 .pairbox > .gameroom .gameroom-sub { display: none; }                               /* a slim box: the title alone */

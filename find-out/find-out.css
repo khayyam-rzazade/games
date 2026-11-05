@@ -23,8 +23,14 @@
 }
 body.game { --fo-ink-on-c: var(--on-c); }
 
-/* ---- the frame of every screen ---- */
-.fo-main { min-height: calc(100svh - 70px); display: flex; flex-direction: column; }
+/* ---- the frame of every screen ----
+   5 Nov 2026 (as in the check-in, Khayyam: on a computer the Back chip sat below the window's edge): the page is one column,
+   the bar and then the screen, which fills what is left of the window and no more; no hand-made height any more (the window
+   minus 62px and minus 70px, while the bar is 56px on a phone and 68px on a computer, left 4px to scroll on a phone and about
+   30px on a computer). A screen taller than the window still scrolls. */
+body[data-g="findout"] { display: flex; flex-direction: column; }
+body[data-g="findout"] > :is(.bar, .fo-main, noscript) { width: 100%; }   /* as wide as before: in a flex column their auto margins would otherwise shrink them to their words */
+.fo-main { flex: 1 1 auto; display: flex; flex-direction: column; }
 .fo-screen { animation: fo-enter var(--m-base) var(--e-out) both; }      /* enter: every screen arrives the same way */
 .fo-title { margin-top: 6px; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 7vw, 2.1rem); line-height: 1.08; letter-spacing: -0.035em; text-wrap: balance; }
 .fo-lede { margin-top: 8px; font-size: 1.08rem; line-height: 1.4; font-weight: 500; }
@@ -201,8 +207,7 @@ body.game { --fo-ink-on-c: var(--on-c); }
 
 /* ---- 22 Oct 2026, after Khayyam's first play: everything that is tapped sits low, near the thumb;
    Skip stays up and away from it; the name of the game is on every screen; small movements. ---- */
-.fo-main { min-height: calc(100svh - 62px); }
-.fo-screen { display: flex; flex-direction: column; flex: 1 1 auto; min-height: calc(100svh - 70px); }
+.fo-screen { display: flex; flex-direction: column; flex: 1 1 auto; }   /* its height comes from the frame above (5 Nov 2026) */
 .fo-bottom { margin-top: auto; padding-top: 18px; padding-bottom: 12px; }
 .fo-controls { padding-bottom: 6px; }
 .fo-promise { margin-top: 10px; color: var(--c); font-weight: 700; font-size: 0.95rem; }
