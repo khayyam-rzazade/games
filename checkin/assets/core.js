@@ -2,7 +2,8 @@
    What is here: the item list (ids, order, scales), the phone's own store, the words (strings.<lang>.json), the one API
    call helper (the contract is section 7 of claude/checkin-plan.md), the scoring that stays on the phone, the language
    chip, the sheets, Turnstile. No page logic. Nothing here touches the Find outs' store except one read of its anonymous
-   ID (see browserId). */
+   ID (see browserId). The sheets rise and sink with assets/motion.js (closeSheet). */
+import { closeSheet, wireSheet } from './motion.js';
 
 /* ------------------------------------------------------------------ settings ------ */
 export const ITEM_VERSION = 60;                 /* section 6: English item version */
@@ -341,12 +342,15 @@ export function inCountry(code) {
 
 /* ------------------------------------------------------------------ sheets (dialogs) ------ */
 export function wireDialogs(root) {
-  root.querySelectorAll('[data-open]').forEach((b) => { if (b.dataset.wired) return; b.dataset.wired = '1'; b.addEventListener('click', () => { const d = document.getElementById(b.dataset.open); if (d && d.showModal) d.showModal(); }); });
-  root.querySelectorAll('[data-close]').forEach((b) => { if (b.dataset.wired) return; b.dataset.wired = '1'; b.addEventListener('click', () => b.closest('dialog').close()); });
+  root.querySelectorAll('[data-open]').forEach((b) => { if (b.dataset.wired) return; b.dataset.wired = '1'; b.addEventListener('click', () => { const d = document.getElementById(b.dataset.open); if (d && d.showModal) { wireSheet(d); d.showModal(); } }); });
+  root.querySelectorAll('[data-close]').forEach((b) => { if (b.dataset.wired) return; b.dataset.wired = '1'; b.addEventListener('click', () => closeSheet(b.closest('dialog'))); });
+  if (root.tagName === 'DIALOG') wireSheet(root);
 }
+export { closeSheet };
 export function sheet(id, title, bodyHtml) {
   let d = document.getElementById(id);
   if (!d) { d = h(`<dialog id="${id}" aria-labelledby="${id}-t"><div class="sheet"><button class="chip round close" type="button" data-close aria-label="${esc(T('site.close'))}">×</button><h2 id="${id}-t"></h2><div class="sheet-body"></div></div></dialog>`); document.body.appendChild(d); wireDialogs(d); }
+  wireSheet(d);
   d.querySelector('h2').textContent = title;
   d.querySelector('.sheet-body').innerHTML = bodyHtml;
   return d;
@@ -365,7 +369,7 @@ export function howSheet() {
     b.addEventListener('click', () => {
       const f = sheet('dlg-forget', T('how.forget'), `<p>${esc(T('how.forget_sure'))}</p><div class="actions"><button class="btn solid" id="forget-yes" type="button">${esc(T('how.forget_yes'))}</button><button class="btn ghost" type="button" data-close>${esc(T('how.forget_no'))}</button></div>`);
       wireDialogs(f);
-      f.querySelector('#forget-yes').addEventListener('click', () => { const id = load().id; if (id) api('/delete', { id }, 8000); wipe(); f.close(); d.close(); const root = document.getElementById('ck'); if (root) { root.textContent = ''; root.appendChild(el('p', 'ck-lede', T('how.forgotten'))); } });
+      f.querySelector('#forget-yes').addEventListener('click', () => { const id = load().id; if (id) api('/delete', { id }, 8000); wipe(); closeSheet(f); closeSheet(d); const root = document.getElementById('ck'); if (root) { root.textContent = ''; root.appendChild(el('p', 'ck-lede', T('how.forgotten'))); } });
       f.showModal();
     });
     body.appendChild(p);
@@ -406,7 +410,7 @@ function langSheet(open) {
       const b = el('button', 'ck-langpick' + (code === LANG ? ' on' : '')); b.type = 'button'; b.lang = code;
       b.appendChild(el('span', 'flag', fl)); b.appendChild(el('b', '', name));
       b.addEventListener('click', () => {
-        if (code === LANG) { d.close(); return; }
+        if (code === LANG) { closeSheet(d); return; }
         if (!AVAILABLE.includes(code)) { note.textContent = T('lang.english_only'); note.hidden = false; return; }
         rememberLang(code); location.reload();
       });
@@ -414,6 +418,7 @@ function langSheet(open) {
     }
     document.body.appendChild(d); wireDialogs(d);
   }
+  wireSheet(d);
   if (open && d.showModal && !d.open) d.showModal();
   return d;
 }

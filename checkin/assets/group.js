@@ -1,8 +1,10 @@
 /* Check-in: the group's pictures (chat C, 4 Nov 2026), shared by the host screen, the host history and the players' reveal.
    Input is the server's charts object (section 7: n, who bins, st bins, bars, mind, ladder, split?). Nothing here reads a person:
-   below 10 phones only the count is shown, and a split side below 10 shows only its count. The client enforces this a second time. */
+   below 10 phones only the count is shown, and a split side below 10 shows only its count. The client enforces this a second time.
+   Motion (5 Nov 2026): groupNode() draws everything at its final value; groupTimeline() brings a reveal in, card after card. */
 import { el, T, fmt, MIN_GROUP, MIN_COUNTRY, MINDS, BAR_IDS, ST, meanFromBins, lowestBar, countryName } from './core.js';
-import { curve, thermo, divBars, groupBarRows, mindBars, ladderBars } from './charts.js';
+import { curve, thermo, divBars, groupBarRows, mindBars, ladderBars, countTo } from './charts.js';
+import { ms, hide, show, grow, sequence } from './motion.js';
 
 const isNum = (v) => typeof v === 'number' && isFinite(v);
 const r1 = (v) => Math.round(v * 10) / 10;
@@ -47,12 +49,12 @@ function card(title, sub) {
   if (sub) c.appendChild(el('p', 'ck-quiet', sub));
   return c;
 }
-function meanBox(v, label, main) { const b = el('div', 'ck-mean' + (main ? ' main' : '')); b.appendChild(el('b', '', fmt(Math.round(v)))); b.appendChild(el('span', '', label)); return b; }
+function meanBox(v, label, main) { const b = el('div', 'ck-mean' + (main ? ' main' : '')); const n = el('b', '', fmt(Math.round(v))); n.dataset.v = String(v); b.appendChild(n); b.appendChild(el('span', '', label)); return b; }
 
 /* the card for a group that is not big enough yet */
 export function fewCard(n, player) {
   const c = card(player ? T('host.curve_h') : '');
-  const b = el('div', 'ck-fewbox'); b.appendChild(el('b', '', fmt(n || 0))); b.appendChild(el('p', 'ck-quiet', T(player ? 'room.group_few' : 'host.few', { n: fmt(n || 0) }))); c.appendChild(b);
+  const b = el('div', 'ck-fewbox'); const num = el('b', '', fmt(n || 0)); num.dataset.v = String(n || 0); b.appendChild(num); b.appendChild(el('p', 'ck-quiet', T(player ? 'room.group_few' : 'host.few', { n: fmt(n || 0) }))); c.appendChild(b);
   return c;
 }
 
@@ -135,4 +137,32 @@ function splitCard(sp, o) {
   }
   c.appendChild(means);
   return c;
+}
+
+/* ------------------------------------------------------------------ the reveal, card after card ------
+   The group's timeline (motion spec 4, the room and the host): each card enters when the one before has; in it the curve draws
+   itself from the left while the means count, the stress thermometer fills, the bars grow one after another. `after`: cards
+   outside the group that enter last (the host's lever card and the "moved" line). Scrolling or tapping never waits for it. */
+export function groupTimeline(g, after) {
+  const base = ms('base'), slow = ms('slow');
+  const cards = [...g.children].concat(after || []);
+  cards.forEach(hide);
+  cards.forEach((c) => c.querySelectorAll('.ck-thermo').forEach((t) => t.ready && t.ready()));
+  const steps = cards.map((c, k) => ({ at: c, run: () => {
+    show(c);
+    let gap = base;
+    const nums = c.querySelectorAll('.ck-mean b[data-v], .ck-fewbox b[data-v]');
+    nums.forEach((b) => countTo(b, Number(b.dataset.v)));
+    if (nums.length) gap = Math.max(gap, slow);
+    const cv = c.querySelector('.ck-curve');
+    if (cv) { cv.classList.add('ck-drawing'); gap = Math.max(gap, slow); }
+    c.querySelectorAll('.ck-thermo').forEach((t) => t.play && t.play());
+    const bars = c.querySelector('.ck-dbars, .ck-mbars, .ck-lbars');
+    if (bars) gap = Math.max(gap, grow(bars) - slow + base);
+    return k === 0 ? Math.max(gap, base) : gap;
+  } }));
+  steps.unshift({ at: null, run: () => ms('fast') });         /* the screen is settling in */
+  /* numbers that will count start at 0 while their card waits */
+  cards.forEach((c) => c.querySelectorAll('.ck-mean b[data-v], .ck-fewbox b[data-v]').forEach((b) => { b.textContent = fmt(0); }));
+  sequence(steps, g);
 }

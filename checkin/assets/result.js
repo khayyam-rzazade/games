@@ -1,9 +1,14 @@
 /* Check-in: the result (section 3 of the plan), the research consent card (section 6) and the end card.
    The player's result is built on the phone from the player's own answers; the server is asked only for the comparison
-   (POST /solo, no ID) and, once, for a pending upload with the anonymous ID that the consent card then keeps or deletes. */
+   (POST /solo, no ID) and, once, for a pending upload with the anonymous ID that the consent card then keeps or deletes.
+   Motion (5 Nov 2026, claude/motion-spec.md 4): the result is one timeline, held in resultTimeline() below: the number counts
+   while the needle swings, the band word pops, the band line enters, the stress row enters and fills, the bars grow one after
+   another, the advice enters, the compare card crossfades from its skeleton and its pins pop, since last time enters with its
+   arrow, the consent card rises last. It plays once per check-in on a page; a redraw of the same result shows it still. */
 import { el, h, esc, T, fmt, load, save, browserId, api, turnstile, lang, hex, ITEMS, BAR_IDS, AGE_BANDS, AGE_WIRE, ST, MIN_COUNTRY, ITEM_VERSION, ROOT, CONSENT_VERSION, HELP_URL,
-         whoScore, whoBand, signed, weighsMost, countryList, countryName, inCountry, knownCountry, flag, relTime, dayMonth, howSheet, trQ, locale, researchersUrl } from './core.js';
+         whoScore, whoBand, signed, weighsMost, countryList, countryName, inCountry, knownCountry, flag, relTime, dayMonth, howSheet, trQ, locale, researchersUrl, reducedMotion } from './core.js';
 import { gauge, thermo, divBars, pinScale } from './charts.js';
+import { ms, hide, show, grow, leave, sequence, byHand } from './motion.js';
 const lowerFirst = (w) => (w ? w.charAt(0).toLocaleLowerCase(locale()) + w.slice(1) : w);
 
 export function pageUrl(path) { return new URL(path, ROOT).href; }
@@ -53,19 +58,20 @@ function countryOfEntry(entry) {
 function heroCard(entry) {
   const band = whoBand(entry.who);
   const w = el('section', 'ck-card ck-hero');
+  w.parts = {};
   w.appendChild(el('h1', 'ck-title-s', T('res.title')));
   if (band !== null) {
-    w.appendChild(gauge(entry.who, band));
+    w.appendChild(w.parts.gauge = gauge(entry.who, band));
     w.appendChild(el('p', 'ck-scale', T('res.scale')));
-    w.appendChild(el('p', 'ck-band b' + band, T('res.band.' + band)));
-    if (band > 0) w.appendChild(el('p', 'ck-bandline', T('res.bandline.' + band)));
-    else w.appendChild(helpBlock(entry));
+    w.appendChild(w.parts.band = el('p', 'ck-band b' + band, T('res.band.' + band)));
+    if (band > 0) w.appendChild(w.parts.line = el('p', 'ck-bandline', T('res.bandline.' + band)));
+    else w.appendChild(w.parts.line = helpBlock(entry));
   }
   if (typeof entry.st === 'number') {
     const row = el('div', 'ck-stressrow');
     const head = el('div', 'ck-stressrow-h'); head.appendChild(el('b', '', T('res.stress'))); head.appendChild(el('span', '', T('res.stress_of', { n: entry.st, max: ST.max }))); row.appendChild(head);
-    row.appendChild(thermo({ value: entry.st, compact: true, ends: false }));
-    w.appendChild(row);
+    row.appendChild(w.parts.thermo = thermo({ value: entry.st, compact: true, ends: false }));
+    w.appendChild(w.parts.stress = row);
   }
   return w;
 }
@@ -96,7 +102,7 @@ function behindCard(entry) {
   if (!rows.length && !notes.length) return null;
   const w = el('section', 'ck-card ck-behind');
   w.appendChild(el('h2', '', T('res.behind')));
-  if (rows.length) w.appendChild(divBars(rows, { mark: weighsMost(entry.a) }));
+  if (rows.length) w.appendChild(w.bars = divBars(rows, { mark: weighsMost(entry.a) }));
   if (notes.length) w.appendChild(el('p', 'ck-small ck-reads', notes.join(' · ')));
   return w;
 }
@@ -117,9 +123,18 @@ function adviceCard(entry) {
 function compareCard(entry) {
   const w = el('section', 'ck-card ck-compare ck-skel');
   const title = el('h2', '', T('res.compare_h_world')); w.appendChild(title);
-  const body = el('div', 'ck-compare-body'); w.appendChild(body);
+  const skel = el('div', 'ck-skel-layer'); skel.setAttribute('aria-hidden', 'true'); skel.appendChild(el('i')); skel.appendChild(el('i')); w.appendChild(skel);
+  let body = el('div', 'ck-compare-body'); w.appendChild(body);
+  /* the timeline sets `revealed` when the card enters; `pop()` lets its pins pop (now, or as soon as the numbers are in) */
+  w.revealed = false; w.filled = false;
+  w.pop = (wait) => { if (w.filled && !reducedMotion()) { body.style.setProperty('--wait', (wait || 0) + 'ms'); body.classList.add('ck-popping'); } };
+  /* revealed: false until the timeline shows the card; true once it has; 'still' for a result shown without its timeline */
   w.fill = (cmp) => {
-    if (!cmp || !cmp.world || !isNum(cmp.world.n)) { w.remove(); return; }
+    if (!cmp || !cmp.world || !isNum(cmp.world.n)) { if (w.revealed) leave(w, () => w.remove()); else w.remove(); return; }
+    /* numbers that come after the card is on screen: the card keeps the skeleton's height while the two crossfade */
+    const late = w.revealed && w.isConnected && !reducedMotion();
+    const old = body;
+    if (late) { w.style.minHeight = w.offsetHeight + 'px'; body = el('div', 'ck-compare-body'); old.replaceWith(body); }
     w.classList.remove('ck-skel'); body.textContent = '';
     const cc = cmp.country && (cmp.country.code || cmp.country.iso) ? cmp.country : null;
     const iso = cc ? (cc.code || cc.iso) : null;
@@ -135,6 +150,11 @@ function compareCard(entry) {
     if (cc && !open && isNum(cc.n)) body.appendChild(el('p', 'ck-small', T('res.not_open', { name: cname, n: fmt(cc.n), at: fmt(cc.opens_at || MIN_COUNTRY) })));
     if (!worldOpen) body.appendChild(el('p', 'ck-small', T('res.not_open', { name: T('res.world'), n: fmt(cmp.world.n), at: fmt(cmp.world.opens_at || MIN_COUNTRY) })));
     if (isNum(cmp.world.n_today) && isNum(cmp.world.countries) && cmp.world.n_today > 0) body.appendChild(el('p', 'ck-small ck-worldline', T('res.world_line', { n: fmt(cmp.world.n_today), c: fmt(cmp.world.countries) })));
+    w.filled = true;
+    if (late) {
+      skel.classList.add('ck-fadeout'); show(body, 'fade'); w.pop(ms('base'));
+      setTimeout(() => { skel.remove(); w.style.minHeight = ''; }, ms('base'));
+    } else { skel.remove(); if (w.revealed === true) w.pop(0); }
   };
   return w;
 }
@@ -144,7 +164,7 @@ function sinceCard(entry, prev) {
   if (prev) {
     const d = Math.round(entry.who) - Math.round(prev.who);
     const p = el('p', 'ck-delta ' + (d > 0 ? 'up' : d < 0 ? 'down' : 'same'));
-    p.appendChild(el('span', 'arrow', d > 0 ? '▲' : d < 0 ? '▼' : '＝'));
+    p.appendChild(w.arrow = el('span', 'arrow', d > 0 ? '▲' : d < 0 ? '▼' : '＝'));
     p.appendChild(document.createTextNode(T('res.since', { from: Math.round(prev.who), to: Math.round(entry.who), date: dayMonth(prev.at) })));
     w.appendChild(p);
     return w;
@@ -192,8 +212,10 @@ export function consentCard(entry, uploadP, cmpP) {
   const acts = el('div', 'ck-actions ck-consent-acts');
   const yes = el('button', 'btn solid', T('consent.yes')); yes.type = 'button';
   const no = el('button', 'btn ghost', T('consent.no')); no.type = 'button';
-  acts.appendChild(no); acts.appendChild(yes); w.appendChild(acts);          /* yes on the right, under the thumb (K, 22 Oct) */
-  const status = el('p', 'ck-status', ''); status.setAttribute('aria-live', 'polite'); w.appendChild(status);
+  acts.appendChild(no); acts.appendChild(yes);          /* yes on the right, under the thumb (K, 22 Oct) */
+  const status = el('p', 'ck-status', ''); status.setAttribute('aria-live', 'polite');
+  /* the card's lower part: Yes / No, then the two optional taps, each sliding in from the right (motion.js byHand) */
+  const stage = el('div', 'ck-consent-stage'); const first = el('div', 'ck-consent-step0'); first.appendChild(acts); first.appendChild(status); stage.appendChild(first); w.appendChild(stage);
 
   let seen = (entry.upload && entry.upload.country) || null;               /* the country the server saw: a suggestion only */
   const suggest = (iso) => { if (!seen && iso && /^[A-Z]{2}$/.test(iso)) seen = iso; };
@@ -222,19 +244,19 @@ export function consentCard(entry, uploadP, cmpP) {
     document.removeEventListener('visibilitychange', leave);
     if (sent && entry.consent === 'yes') {                                            /* the yes already went out while the page was hidden */
       if (pick.age || pick.country) send(true).catch(() => null);                   /* the two taps follow it; the server fills them in on the kept row */
-      w.replaceWith(consentDone(entry, 'yes')); return;
+      w.replaceWith(consentDone(entry, 'yes', true)); return;
     }
     sent = true;
     const body = el('div', 'ck-consent-step'); body.appendChild(el('p', 'ck-status', T('consent.sending'))); step(body);
     const r = await send(true);
-    if (r && r.ok) { entry.consent = 'yes'; save(); w.replaceWith(consentDone(entry, 'yes')); return; }
+    if (r && r.ok) { entry.consent = 'yes'; save(); w.replaceWith(consentDone(entry, 'yes', true)); return; }
     sent = false;
     const again = el('div', 'ck-consent-step');
     again.appendChild(el('p', 'ck-status', T('consent.failed')));
     const a2 = el('div', 'ck-actions ck-consent-acts'); const t = el('button', 'btn solid', T('site.try_again')); t.type = 'button'; t.addEventListener('click', finishYes); a2.appendChild(t); again.appendChild(a2);
     step(again);
   }
-  function step(node) { w.querySelectorAll('.ck-consent-step, .ck-consent-acts, .ck-status').forEach((x) => { if (!node.contains(x)) x.remove(); }); w.appendChild(node); }
+  function step(node) { byHand(stage, node, 1); }
   function skipBtn(onSkip) { const b = el('button', 'ck-link ck-skiplink', T('consent.skip')); b.type = 'button'; b.addEventListener('click', onSkip); return b; }
   function askAge() {
     const s = el('div', 'ck-consent-step');
@@ -276,16 +298,19 @@ export function consentCard(entry, uploadP, cmpP) {
   no.addEventListener('click', async () => {
     yes.disabled = no.disabled = true;
     await send(false).catch(() => null);                               /* best effort: the server also deletes it after a day */
-    entry.consent = 'no'; save(); w.replaceWith(consentDone(entry, 'no'));
+    entry.consent = 'no'; save(); w.replaceWith(consentDone(entry, 'no', true));
   });
   return w;
 }
-function consentDone(entry, kind) {
+/* `now`: the answer was just given here: "Thank you" pops, once; "Changed your mind?" enters */
+function consentDone(entry, kind, now) {
   const w = el('section', 'ck-consent done');
   const p = el('p', 'ck-status ok', kind === 'yes' ? T('consent.thanks') : T('consent.declined')); p.setAttribute('role', 'status');
   w.appendChild(p);
+  if (now && kind === 'yes') show(p, 'pop');
   if (kind === 'no' && Date.now() - entry.at < 24 * 3600e3) {          /* for 24 hours: a change of mind */
     const again = el('p', 'ck-small'); again.appendChild(document.createTextNode(T('consent.changed') + ' '));
+    if (now) show(again, 'enter', ms('fast'));
     const b = el('button', 'ck-link', T('consent.yes')); b.type = 'button';
     b.addEventListener('click', () => { entry.consent = null; save(); const card = consentCard(entry, null, null); w.replaceWith(card); const y = card.querySelector('.ck-consent-acts .btn.solid'); if (y) y.click(); });
     again.appendChild(b); w.appendChild(again);
@@ -311,23 +336,64 @@ export function endCard() {
 
 /* ------------------------------------------------------------------ the whole result ------ */
 /* o: { cmp: Promise|null, upload: Promise|null, cta: bool, top: [nodes] before the hero }  ->  a node */
+const played = new Set();                                       /* check-ins whose timeline has played on this page */
 export function resultNode(entry, o) {
   const opts = o || {};
   const w = el('div', 'ck-result');
   for (const n of opts.top || []) if (n) w.appendChild(n);
-  w.appendChild(heroCard(entry));
+  const hero = heroCard(entry); w.appendChild(hero);
   const bh = behindCard(entry); if (bh) w.appendChild(bh);
-  w.appendChild(adviceCard(entry));
+  const adv = adviceCard(entry); w.appendChild(adv);
   const cc = compareCard(entry); w.appendChild(cc);
   const cmpP = entry.cmp ? Promise.resolve(entry.cmp) : (opts.cmp || null);
   if (cmpP) cmpP.then((c) => cc.fill(c), () => cc.fill(null)); else cc.fill(null);
-  w.appendChild(sinceCard(entry, previousOf(entry)));
-  if (opts.cta) w.appendChild(roomCta());
+  const since = sinceCard(entry, previousOf(entry)); w.appendChild(since);
+  const cta = opts.cta ? roomCta() : null; if (cta) w.appendChild(cta);
   const fresh = Date.now() - entry.at < 24 * 3600e3;
-  if (!entry.consent && fresh) w.appendChild(consentCard(entry, opts.upload || startUpload(entry), cmpP));
-  else if (entry.consent) w.appendChild(consentDone(entry, entry.consent));
-  w.appendChild(endCard());
+  let consent = null;
+  if (!entry.consent && fresh) consent = consentCard(entry, opts.upload || startUpload(entry), cmpP);
+  else if (entry.consent) consent = consentDone(entry, entry.consent);
+  if (consent) w.appendChild(consent);
+  const end = endCard(); w.appendChild(end);
   howSheet();                                                    /* the "?" now has answers to delete */
+  if (!played.has(entry.at) && !reducedMotion()) resultTimeline(w, { hero, bh, adv, cc, since, cta, consent, end });
+  else cc.revealed = 'still';
+  played.add(entry.at);
   return w;
+}
+
+/* The result's timeline (motion spec 4, the result, steps 1-8), each step waiting for the one before; scrolling or tapping
+   never waits for it (motion.js sequence). Everything it brings in is hidden here, in place, so nothing shoves the page. */
+function resultTimeline(w, p) {
+  const hp = p.hero.parts, fast = ms('fast'), base = ms('base'), slow = ms('slow');
+  const later = [hp.band, hp.line, hp.stress, p.bh, p.adv, p.cc, p.since, p.cta, p.consent, p.end];
+  later.forEach(hide);
+  if (hp.gauge) hp.gauge.ready();
+  if (hp.thermo) hp.thermo.ready();
+  const steps = [{ at: null, run: () => fast }];                 /* the screen is settling in */
+  /* 1. the number counts 0 -> score while the needle swings to it; the band word pops when the count ends */
+  if (hp.gauge) steps.push({ at: hp.gauge, run: () => { hp.gauge.play(); return slow; } });
+  if (hp.band) steps.push({ at: null, run: () => show(hp.band, 'pop') });
+  /* 2. the band line (or, in the low band, the kind block) enters */
+  if (hp.line) steps.push({ at: hp.line, run: () => show(hp.line) });
+  /* 3. the stress row enters and its small thermometer fills */
+  if (hp.stress) steps.push({ at: hp.stress, run: () => { show(hp.stress); hp.thermo.play(); return base; } });
+  /* 4. what is behind it: the card enters, the bars grow one after another, each with its word */
+  if (p.bh) steps.push({ at: p.bh, run: () => { show(p.bh); const g = p.bh.bars ? grow(p.bh.bars) : 0; return Math.max(base, g - slow + base); } });
+  /* 5. the advice card */
+  steps.push({ at: p.adv, run: () => show(p.adv) });
+  /* 6. the compare card (from its skeleton if the numbers are not in yet); its pins pop, you, country, world */
+  steps.push({ at: p.cc, run: () => { if (!p.cc.isConnected) return 0; p.cc.revealed = true; show(p.cc); p.cc.pop(base); return base + 160; } });
+  /* 7. since last time; its arrow draws once the card is in */
+  steps.push({ at: p.since, run: () => {
+    show(p.since);
+    if (p.since.arrow) { p.since.arrow.style.animationDelay = base + 'ms'; p.since.arrow.classList.add('ck-draw'); }
+    if (p.cta) show(p.cta, 'enter', 60);
+    return base + fast;
+  } });
+  /* 8. the consent card rises last (a longer travel, 16 px), and the end card after it */
+  if (p.consent) steps.push({ at: p.consent, run: () => { show(p.consent, 'far'); show(p.end, 'enter', 60); return base; } });
+  else steps.push({ at: p.end, run: () => show(p.end) });
+  sequence(steps, w);
 }
 export { relTime };

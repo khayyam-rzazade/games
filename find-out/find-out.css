@@ -1,6 +1,17 @@
+/* Logicers motion tokens (claude/motion-spec.md, 5 Nov 2026): the only durations and curves used here */
+:root {
+  --m-fast: 120ms;   /* press, colour, small reveals */
+  --m-base: 220ms;   /* screens, sheets, the progress bar */
+  --m-slow: 400ms;   /* results: grow, count, draw */
+  --e-out: cubic-bezier(.2, .8, .2, 1);        /* arriving: fast start, soft landing */
+  --e-in: cubic-bezier(.4, 0, 1, 1);           /* leaving: eases away */
+  --e-spring: cubic-bezier(.2, 1.1, .3, 1);    /* taps and pops: a small overshoot */
+}
+
 /* Find out about yourself: the section's own styles (B1, 21 Oct 2026). Everything shared with the site
    comes from assets/css/logicers.css (the bar, the chips, .btn, dialogs, the colours by day and night);
-   this file adds the section's colour and the screens only it has. */
+   this file adds the section's colour and the screens only it has. Every motion here is one of the spec's
+   vocabulary, on the tokens above; the whole vocabulary sits in "motion" at the end of the file (5 Nov 2026). */
 
 [data-g="findout"] { --c: #3F7A2A; --tint: #E3F2DA; }      /* Find out about yourself: moss green */
 @media (prefers-color-scheme: dark) {
@@ -10,9 +21,7 @@ body.game { --fo-ink-on-c: var(--on-c); }
 
 /* ---- the frame of every screen ---- */
 .fo-main { min-height: calc(100svh - 70px); display: flex; flex-direction: column; }
-.fo-screen { animation: fo-in .28s ease-out both; }
-@keyframes fo-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .fo-screen { animation: none; } }
+.fo-screen { animation: fo-enter var(--m-base) var(--e-out) both; }      /* enter: every screen arrives the same way */
 .fo-title { margin-top: 6px; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 7vw, 2.1rem); line-height: 1.08; letter-spacing: -0.035em; text-wrap: balance; }
 .fo-lede { margin-top: 8px; font-size: 1.08rem; line-height: 1.4; font-weight: 500; }
 .fo-quiet { color: var(--soft); font-weight: 500; font-size: 0.95rem; line-height: 1.4; }
@@ -45,11 +54,14 @@ body.game { --fo-ink-on-c: var(--on-c); }
 @media (prefers-color-scheme: dark) { .fo-list a { box-shadow: inset 0 0 0 1px var(--line); } .fo-list .n { background: color-mix(in srgb, var(--c) 18%, transparent); } }
 
 /* ---- the guess: a strip with two ends and a dot to drag ---- */
-.fo-strip { position: relative; margin: 26px 2px 0; height: 56px; touch-action: none; -webkit-user-select: none; user-select: none; }
+.fo-strip { position: relative; margin: 26px 2px 0; height: 56px; touch-action: none; -webkit-user-select: none; user-select: none; container-type: inline-size; }
 .fo-strip-rail { position: absolute; left: 0; right: 0; top: 50%; height: 10px; margin-top: -5px; border-radius: 10px; background: color-mix(in srgb, var(--c) 22%, var(--card)); }
 .fo-strip-rail.bands { background: linear-gradient(90deg, color-mix(in srgb, var(--c) 18%, var(--card)) 0 33.3%, color-mix(in srgb, var(--c) 32%, var(--card)) 33.3% 66.6%, color-mix(in srgb, var(--c) 50%, var(--card)) 66.6%); }
-.fo-strip-dot { position: absolute; top: 50%; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 99px; background: var(--c); box-shadow: 0 6px 16px rgba(21, 23, 43, .25); border: 3px solid var(--card); transition: left .6s cubic-bezier(.2, .9, .3, 1.1); cursor: grab; }
-.fo-strip-dot.drag { transition: none; transform: scale(1.1); cursor: grabbing; }
+/* the dot's place is --p (0..1); it moves by transform across the strip (100cqi = the strip's width), never by left (5 Nov 2026) */
+.fo-strip-dot { position: absolute; top: 50%; left: calc(var(--p, 0) * 100%); width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 99px; background: var(--c); box-shadow: 0 6px 16px rgba(21, 23, 43, .25); border: 3px solid var(--card); --dot-s: 1; transition: transform var(--m-base) var(--e-spring), background-color var(--m-slow) var(--e-out); cursor: grab; }
+@supports (width: 1cqi) { .fo-strip-dot { left: 0; transform: translateX(calc(var(--p, 0) * 100cqi)) scale(var(--dot-s)); } }
+.fo-strip-dot.drag { transition: none; --dot-s: 1.1; cursor: grabbing; }
+.fo-strip-dot.glide { transition: transform var(--m-slow) var(--e-out), background-color var(--m-slow) var(--e-out); }   /* a result arriving: the count's curve */
 .fo-strip-dot.ring { background: transparent; border: 3px solid var(--c); box-shadow: none; width: 30px; height: 30px; margin: -15px 0 0 -15px; }
 .fo-strip-dot.still { transition: none; }
 .fo-ends { display: flex; justify-content: space-between; gap: 12px; margin-top: 4px; font-family: var(--display); font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; line-height: 1.15; }
@@ -67,10 +79,9 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-item.long { font-size: clamp(1.05rem, 4.4vw, 1.2rem); font-family: var(--text); font-weight: 600; line-height: 1.35; }
 .fo-dots { display: flex; justify-content: space-between; gap: 4px; margin-top: 18px; }
 .fo-dots button { appearance: none; border: 0; flex: 1 1 0; min-width: 0; padding: 0; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; -webkit-tap-highlight-color: transparent; color: var(--ink); }
-.fo-dots i { display: block; width: 34px; height: 34px; border-radius: 99px; background: var(--card); box-shadow: inset 0 0 0 2.5px color-mix(in srgb, var(--c) 55%, transparent); transition: transform .12s ease, background-color .12s ease; }
+.fo-dots i { position: relative; display: block; width: 34px; height: 34px; border-radius: 99px; background: var(--card); box-shadow: inset 0 0 0 2.5px color-mix(in srgb, var(--c) 55%, transparent); transition: transform var(--m-base) var(--e-spring); }
 .fo-dots.many i { width: 24px; height: 24px; }
-.fo-dots button.on i { background: var(--c); box-shadow: none; transform: scale(1.12); }
-.fo-dots button:active i { transform: scale(0.9); }
+.fo-dots button.on i { transform: scale(1.12); }     /* select: the fill sweeps in (motion, below); the point grows a little and stays where it is */
 .fo-dots small { font-size: 0.68rem; line-height: 1.15; font-weight: 600; color: var(--soft); text-align: center; text-wrap: balance; hyphens: auto; }
 .fo-dots.many small { display: none; }
 .fo-dots button:focus-visible i { outline: 3px solid var(--c); outline-offset: 2px; }
@@ -81,20 +92,22 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-choices { display: grid; gap: 10px; margin-top: 18px; }
 .fo-choices .btn { min-height: 60px; font-size: 1.12rem; text-align: center; white-space: normal; line-height: 1.2; padding: 10px 18px; }
 .fo-choices .btn.ghost { flex: 1 1 auto; }
-.fo-choices .btn.on { background: var(--c); color: var(--on-c); }
+.fo-choices .btn.on { color: var(--on-c); }        /* the colour behind comes from the select sweep (motion, below) */
 .fo-choices.two { grid-template-columns: 1fr 1fr; }
 .fo-choices.two .btn { min-height: 84px; }
 .fo-or { text-align: center; color: var(--soft); font-weight: 700; margin-top: 10px; }
 .fo-ladder { display: grid; gap: 6px; margin-top: 14px; }
 .fo-ladder button { appearance: none; border: 0; min-height: 40px; border-radius: 12px; background: var(--card); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 35%, transparent); color: var(--ink); font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 0 14px; -webkit-tap-highlight-color: transparent; }
 .fo-ladder button span { color: var(--soft); font-weight: 600; font-size: 0.86rem; }
-.fo-ladder button.on { background: var(--c); color: var(--on-c); box-shadow: none; }
+.fo-ladder button.on { color: var(--on-c); box-shadow: none; }
 .fo-ladder button.on span { color: inherit; }
 .fo-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
 .fo-nav .chip { height: 44px; padding: 0 18px; font-size: 0.95rem; }
-.fo-progress { display: flex; gap: 4px; margin-top: 10px; }
+/* the progress: pale pips with the same pips in the game's colour over them, uncovered up to --p by a clip that glides (5 Nov 2026) */
+.fo-progress { position: relative; display: flex; gap: 4px; margin-top: 10px; }
 .fo-progress i { flex: 1; height: 5px; border-radius: 5px; background: color-mix(in srgb, var(--c) 22%, transparent); }
-.fo-progress i.on { background: var(--c); }
+.fo-progress .fill { position: absolute; inset: 0; display: flex; gap: 4px; clip-path: inset(0 calc((1 - var(--p, 0)) * 100%) 0 0); transition: clip-path var(--m-base) var(--e-out); }
+.fo-progress .fill b { flex: 1; height: 5px; border-radius: 5px; background: var(--c); }
 .fo-help-btn { appearance: none; border: 0; background: none; color: var(--soft); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 0; font-size: 0.92rem; }
 
 /* ---- the country tap ---- */
@@ -136,7 +149,8 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-bar { display: grid; grid-template-columns: 6.2em 1fr; gap: 10px; align-items: center; }
 .fo-bar b { font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; }
 .fo-bar .rail { position: relative; height: 14px; border-radius: 14px; background: color-mix(in srgb, var(--c) 18%, var(--card)); overflow: hidden; }
-.fo-bar .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 14px; background: var(--c); transition: width .8s cubic-bezier(.2, .9, .3, 1); }
+/* grow: the fill's length is --w (0..100%), shown by a clip that keeps the round end; it never animates width (5 Nov 2026) */
+.fo-bar .fill { position: absolute; inset: 0; border-radius: 14px; background: var(--c); clip-path: inset(0 calc(100% - var(--w, 0%)) 0 0 round 14px); transition: clip-path var(--m-slow) var(--e-out); }
 .fo-bar .ring { position: absolute; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 99px; border: 2px solid var(--ink); background: var(--card); }
 .fo-bar small { grid-column: 2; color: var(--soft); font-weight: 600; font-size: 0.86rem; margin-top: -4px; line-height: 1.3; }
 .fo-bar.skip .rail { opacity: .4; }
@@ -204,17 +218,9 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-countries { max-height: 46svh; }
 .fo-reveal, .fo-portrait { min-height: 0; }
 
-@keyframes fo-pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.06); opacity: 1; } 100% { transform: none; } }
-.fo-bandname.pop { animation: fo-pop .55s cubic-bezier(.2, 1.2, .4, 1) .35s both; }
-@keyframes fo-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-.fo-strip-dot.bob { animation: fo-bob 1.1s ease-in-out infinite; }
-@keyframes fo-draw { from { stroke-dashoffset: 1200; } to { stroke-dashoffset: 0; } }
-.fo-curve path.draw { stroke-dasharray: 1200; animation: fo-draw 1.4s ease-out both; }
-@keyframes fo-fillpulse { 0% { transform: scale(1); } 50% { transform: scale(1.18); } 100% { transform: scale(1); } }
-.fo-circles .done.fresh { animation: fo-fillpulse .6s ease-out .2s both; }
-@media (prefers-reduced-motion: reduce) {
-  .fo-bandname.pop, .fo-strip-dot.bob, .fo-curve path.draw, .fo-circles .done.fresh { animation: none; }
-}
+/* 5 Nov 2026: fo-pop, fo-bob, fo-draw and fo-fillpulse lived here. The band name's pop and the fresh circle's pulse are now the
+   vocabulary's pop, the curve's line its draw (all in "motion", at the end, played in order by the reveal's timeline); the guess
+   dot's bob loop is gone (nothing loops but the two idle motions). */
 
 .fo-mid { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; padding: 12px 0; }
 .fo-mid .fo-stem { margin-top: 10px; }
@@ -279,22 +285,26 @@ body.game { --fo-ink-on-c: var(--on-c); }
 :root { --band0: #3E7CB1; --band1: #3F7A2A; --band2: #C2781A; }
 @media (prefers-color-scheme: dark) { :root { --band0: #8FCCFA; --band1: #9EDB6A; --band2: #FFCB57; } }
 .fo-stories { display: block; }
-.fo-story { padding: 18px 0 10px; position: relative; animation: fo-in .3s ease-out both; }
+.fo-story { padding: 18px 0 10px; position: relative; }
 .fo-story + .fo-story { border-top: 1px solid var(--line); margin-top: 6px; }
 .fo-story h2 { margin-top: 0; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; }
 .fo-figure { width: min(78vw, 320px); height: auto; margin: 6px auto 0; display: block; }
 .fo-figure .rays line { transform-origin: 150px 150px; }
-.fo-figure.draw .rays { animation: fo-rays 1.2s ease-out both; transform-origin: 150px 150px; }
-.fo-figure.draw .dots circle { animation: fo-pop .5s cubic-bezier(.2, 1.2, .4, 1) both; transform-origin: center; transform-box: fill-box; }
-.fo-figure.draw .dots circle:nth-child(2) { animation-delay: .15s; } .fo-figure.draw .dots circle:nth-child(3) { animation-delay: .3s; } .fo-figure.draw .dots circle:nth-child(4) { animation-delay: .45s; } .fo-figure.draw .dots circle:nth-child(5) { animation-delay: .6s; }
-@keyframes fo-rays { from { transform: scale(.2) rotate(-40deg); opacity: 0; } to { transform: none; opacity: 1; } }
+/* the figure draws itself in the portrait's timeline: the rays grow out from the face, then the five band dots pop one by one
+   (5 Nov 2026: on the tokens; fo-rays and the 150 ms dot delays are gone) */
+.fo-figure .rays { transform-origin: 150px 150px; }
+.fo-figure .dots circle { transform-origin: center; transform-box: fill-box; }
+.fo-figure.draw .rays, .fo-figure.draw .dots circle { opacity: 0; }
+.fo-figure.drawn .rays { animation: fo-grow-out var(--m-slow) var(--e-out) both; }
+.fo-figure.drawn .dots circle { animation: fo-pop var(--m-base) var(--e-spring) both; animation-delay: calc(var(--m-base) + var(--k, 0) * 50ms); }
+@keyframes fo-grow-out { from { transform: scale(.6); opacity: 0; } }
 .fo-figlegend { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; margin-top: 10px; font-weight: 700; font-size: 0.86rem; }
 .fo-figlegend i { display: inline-block; width: 12px; height: 12px; border-radius: 99px; margin-right: 6px; vertical-align: -1px; }
 .fo-rewrite { margin: 14px auto 0; text-align: center; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); max-width: 20em; min-height: 2.4em; }
-.fo-rewrite.in { animation: fo-in .5s ease-out both; }
+.fo-rewrite.in { animation: fo-fade var(--m-base) var(--e-out) both; }   /* crossfade: the line gives way to the next one */
 .fo-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
 .fo-flip { appearance: none; border: 0; background: none; padding: 0; perspective: 900px; min-height: 130px; cursor: pointer; text-align: left; font: inherit; color: var(--ink); -webkit-tap-highlight-color: transparent; }
-.fo-flip-inner { position: relative; width: 100%; height: 100%; min-height: 130px; transition: transform .55s cubic-bezier(.2, .9, .3, 1); transform-style: preserve-3d; }
+.fo-flip-inner { position: relative; width: 100%; height: 100%; min-height: 130px; transition: transform var(--m-slow) var(--e-out); transform-style: preserve-3d; }
 .fo-flip.on .fo-flip-inner { transform: rotateY(180deg); }
 .fo-flip-front, .fo-flip-back { position: absolute; inset: 0; border-radius: 18px; padding: 12px 14px; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: var(--shadow); overflow: hidden; }
 .fo-flip-front { background: var(--c); color: var(--on-c); display: flex; }
@@ -303,25 +313,21 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-card-face { display: flex; flex-direction: column; justify-content: space-between; width: 100%; }
 .fo-card-hint { display: inline-flex; align-items: center; gap: 5px; margin-top: 6px; font-weight: 800; font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; opacity: .85; }
 .fo-card-hint svg { width: 14px; height: 14px; }
-.fo-flip-front .fo-card-hint svg { animation: fo-turn 2.2s ease-in-out infinite; }
-@keyframes fo-turn { 0%, 60%, 100% { transform: rotate(0); } 75% { transform: rotate(180deg); } }
 .fo-flip-back .fo-card-hint { color: var(--soft); }
 .fo-flip.peek .fo-flip-inner { transform: rotateY(180deg); }
 .fo-card-face b { font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.1; }
 .fo-card-icon { width: 30px; height: 30px; opacity: .9; }
 .fo-flip:nth-child(2n) .fo-flip-front { background: color-mix(in srgb, var(--c) 78%, #000); }
 .fo-flip:nth-child(3n) .fo-flip-front { background: color-mix(in srgb, var(--c) 70%, var(--band0)); }
-.fo-flip.secret .fo-flip-front { background: linear-gradient(135deg, #15172B, #3A3F5C); color: #FFD45E; box-shadow: 0 0 0 3px #FFD45E, 0 10px 30px rgba(255, 212, 94, .35); animation: fo-glow 1.6s ease-in-out infinite; }
+.fo-flip.secret .fo-flip-front { background: linear-gradient(135deg, #15172B, #3A3F5C); color: #FFD45E; box-shadow: 0 0 0 4px #FFD45E, 0 12px 36px rgba(255, 212, 94, .45); }   /* a steady glow: the card pops once in the timeline instead of glowing in a loop */
 .fo-card-secret { align-items: center; justify-content: center; text-align: center; gap: 6px; }
 .fo-card-secret b { font-size: 1.5rem; }
-.fo-tap { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 6px 14px; border-radius: 99px; background: #FFD45E; color: #15172B; font-weight: 800; font-size: 0.85rem; letter-spacing: .04em; animation: fo-bob 1.1s ease-in-out infinite; }
-@keyframes fo-glow { 0%, 100% { box-shadow: 0 0 0 3px #FFD45E, 0 10px 30px rgba(255, 212, 94, .35); } 50% { box-shadow: 0 0 0 5px #FFD45E, 0 14px 44px rgba(255, 212, 94, .6); } }
+.fo-tap { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 6px 14px; border-radius: 99px; background: #FFD45E; color: #15172B; font-weight: 800; font-size: 0.85rem; letter-spacing: .04em; }
 .fo-dial { margin: 12px auto 0; width: min(70vw, 280px); text-align: center; }
 .fo-dial svg { width: 100%; height: auto; overflow: visible; }
-.fo-dial-arc { animation: fo-dial 1.2s ease-out both; }
-@keyframes fo-dial { from { stroke-dasharray: 0 100; } }
-.fo-dial-needle { transform-origin: 100px 100px; animation: fo-needle 1.2s cubic-bezier(.2, 1.1, .4, 1) both; }
-@keyframes fo-needle { from { transform: rotate(-180deg); } }
+/* the dial counts: the number ticks up while the arc draws (stroke-dashoffset) and the needle swings with it, one curve, --m-slow (5 Nov 2026) */
+.fo-dial-arc { stroke-dashoffset: var(--off, 0); }
+.fo-dial-needle { transform-origin: 100px 100px; transform: rotate(var(--turn, 0deg)); }
 .fo-doors .fo-door { margin-top: 10px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); overflow: hidden; }
 .fo-door-front { appearance: none; border: 0; background: none; width: 100%; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; align-items: center; gap: 2px 12px; padding: 14px 16px; text-align: left; font: inherit; color: var(--ink); cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .fo-door-front b { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
@@ -329,7 +335,7 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-door-open { grid-row: 1 / span 2; grid-column: 2; display: grid; place-items: center; min-width: 54px; height: 40px; border-radius: 999px; background: var(--c); color: var(--on-c); font-weight: 800; font-size: 0.9rem; padding: 0 12px; }
 .fo-door.done .fo-door-open { background: var(--tint); color: var(--c); }
 .fo-door-inside { display: none; padding: 0 16px 14px; }
-.fo-door.open .fo-door-inside { display: block; animation: fo-in .25s ease-out both; }
+.fo-door.open .fo-door-inside { display: block; animation: fo-enter var(--m-base) var(--e-out) both; }
 .fo-door.open .fo-door-front { background: var(--tint); }
 .fo-unlocked { margin-top: 12px; font-weight: 800; color: var(--c); }
 .fo-twin-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; text-align: center; }
@@ -359,14 +365,14 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-twin-two .fo-figure { width: 100%; }
 .fo-twin-two small { display: block; font-weight: 700; color: var(--soft); }
 .fo-special { display: grid; gap: 12px; margin-top: 12px; }
-.fo-curtain { position: fixed; inset: 0; z-index: 50; background: var(--tint); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; transition: opacity .5s ease; }
+.fo-curtain { position: fixed; inset: 0; z-index: 50; background: var(--tint); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; transition: opacity var(--m-base) var(--e-in); }
 .fo-curtain.out { opacity: 0; pointer-events: none; }
 .fo-curtain-text { font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; color: var(--ink); }
 .fo-curtain-ring { position: relative; width: 220px; height: 220px; }
-.fo-curtain-ring i { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 99px; background: var(--c); transform: rotate(calc(var(--i) * 40deg)) translateY(-90px); transition: transform 1.6s cubic-bezier(.4, 0, .2, 1), opacity .6s ease 1.2s; }
+/* the nine circles gather into the middle: one --m-slow × 2 move (the longest the spec allows for a line), then they fade (5 Nov 2026: was 1.6 s) */
+.fo-curtain-ring i { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 99px; background: var(--c); transform: rotate(calc(var(--i) * 40deg)) translateY(-90px); transition: transform calc(var(--m-slow) * 2) var(--e-out), opacity var(--m-base) var(--e-in) calc(var(--m-slow) * 2 - var(--m-base)); }
 .fo-curtain.gather i { transform: rotate(calc(var(--i) * 40deg)) translateY(0) scale(1.8); opacity: 0; }
 @media (prefers-color-scheme: dark) { .fo-curtain { background: var(--bg); } .fo-flip-front, .fo-flip-back, .fo-doors .fo-door { box-shadow: inset 0 0 0 1px var(--line); } }
-@media (prefers-reduced-motion: reduce) { .fo-tap, .fo-flip.secret .fo-flip-front, .fo-dial-arc, .fo-dial-needle, .fo-figure.draw .rays, .fo-figure.draw .dots circle { animation: none; } .fo-flip-inner { transition: none; } }
 
 /* ---- 23 Oct 2026 (Khayyam): the once-in-three-months line, a finished game's result at once, two columns on computers ---- */
 .fo-once { margin-top: 10px; padding: 10px 14px; border-radius: 14px; background: var(--tint); color: var(--ink); font-weight: 600; font-size: 0.92rem; line-height: 1.35; }
@@ -413,9 +419,8 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-roompic { margin-top: 14px; }
 .fo-roompic .fo-curve { margin-top: 0; }
 .fo-roomcurve { width: 100%; height: 160px; display: block; }
-.fo-roomcurve .draw { animation: fo-draw .9s ease-out both; }
 .fo-bandbar { display: flex; height: 34px; border-radius: 99px; overflow: hidden; margin-top: 12px; background: var(--tint); }
-.fo-bandbar span { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 0.9rem; transition: width .8s ease; min-width: 0; overflow: hidden; }
+.fo-bandbar span { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 0.9rem; min-width: 0; overflow: hidden; }
 .fo-roombars { display: grid; gap: 12px; margin-top: 12px; }
 .fo-roombar b { display: block; font-weight: 700; margin-bottom: 2px; }
 @media (min-width: 960px) {
@@ -444,3 +449,120 @@ body.game { --fo-ink-on-c: var(--on-c); }
 .fo-langpick b { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
 .fo-langpick.on { border-color: var(--c); background: var(--tint); }
 .fo-langpick:hover { border-color: var(--c); }
+
+/* ======================================================================== motion (5 Nov 2026) ====
+   The Logicers motion spec (claude/motion-spec.md), the same vocabulary as the Anonymous Check-in. Only transform and opacity
+   move, plus clip-path for fills and stroke-dashoffset for lines. Nothing loops. No animation blocks a tap: a screen that is
+   leaving is inert, a screen that is arriving takes taps at once. The order of a reveal is one list in find-out.js (sequence). */
+
+/* enter / leave / pop / crossfade */
+@keyframes fo-enter { from { opacity: 0; transform: translateY(8px); } }
+@keyframes fo-rise-in { from { opacity: 0; transform: translateY(16px); } }
+@keyframes fo-leave { to { opacity: 0; transform: translateY(-6px); } }
+@keyframes fo-pop { from { opacity: 0; transform: scale(.85); } }
+@keyframes fo-fade { from { opacity: 0; } }
+.fo-hold { opacity: 0; }                                          /* waiting for its step in a timeline: in its place, nothing moves under it */
+.fo-in { animation: fo-enter var(--m-base) var(--e-out) both; animation-delay: var(--d, 0ms); }
+.fo-in.far { animation-name: fo-rise-in; }                         /* the consent card comes up from further */
+.fo-popped { animation: fo-pop var(--m-base) var(--e-spring) both; animation-delay: var(--d, 0ms); }
+.fo-faded { animation: fo-fade var(--m-base) var(--e-out) both; animation-delay: var(--d, 0ms); }
+.fo-screen.fo-still { animation: none; }                          /* a screen brought in by a slide does not also enter */
+.fo-bandname { transform-origin: left center; }
+.fo-onward .onward-next svg { animation: none; }                   /* the shared card's nudge loops; the find-outs keep still */
+.fo-circles .done.fresh, .fo-onward .pips i.fresh, .fo-list .n.fresh { animation: fo-pop var(--m-base) var(--e-spring) var(--d, 0ms) both; }
+
+/* draw: a line draws itself (the path carries pathLength="100") */
+.fo-drawing { stroke-dasharray: 100 100; stroke-dashoffset: 100; }
+.fo-drawing.go { stroke-dashoffset: 0; transition: stroke-dashoffset var(--dur, var(--m-slow)) var(--e-out); }
+/* grow: a whole bar of colours uncovers from the left (the room's band bar) */
+.fo-unclip { clip-path: inset(0 100% 0 0 round 99px); }
+.fo-unclip.go { clip-path: inset(0 0 0 0 round 99px); transition: clip-path var(--m-slow) var(--e-out); }
+/* pulse: a count waiting on other people, and only while it waits */
+@keyframes fo-pulse { 50% { transform: scale(1.04); } }
+.fo-waiting { animation: fo-pulse 1.6s ease-in-out infinite; }
+.fo-host-count, .fo-roombox > b { transform-origin: center; }
+.fo-roombox > b { display: inline-block; transform-origin: left center; }
+
+/* press: anything under the finger; release springs back */
+[data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn) {
+  transition: transform var(--m-base) var(--e-spring), color var(--m-fast) var(--e-out);
+}
+[data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn):active:not([disabled]) {
+  transform: scale(.97); transition-duration: var(--m-fast); transition-timing-function: var(--e-out);
+}
+
+/* select: the chosen answer's colour sweeps in from the left, then the screen waits 150 ms before it moves on (find-out.js) */
+.fo-dots i::after, .fo-choices .btn::before, .fo-ladder button::before, .fo-chips .chip::before, .fo-countries button::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--c); pointer-events: none;
+  clip-path: inset(0 100% 0 0); transition: clip-path var(--m-fast) var(--e-out);
+}
+.fo-choices .btn, .fo-ladder button, .fo-chips .chip, .fo-countries button { position: relative; isolation: isolate; }
+.fo-choices .btn::before, .fo-ladder button::before, .fo-chips .chip::before, .fo-countries button::before { z-index: -1; }
+.fo-dots button.on i::after, .fo-choices .btn.on::before, .fo-ladder button.on::before, .fo-chips .chip.on::before, .fo-countries button.on::before { clip-path: inset(0 0 0 0); }
+.fo-countries button.on { color: var(--on-c); }
+.fo-chips .chip.on { background: var(--card); }
+
+/* rise: the sheets come up from below and go back down; the dim behind them fades */
+@keyframes fo-rise { from { transform: translateY(100%); } }
+@keyframes fo-sink { to { transform: translateY(100%); opacity: 0; } }
+[data-g="findout"] dialog[open] { animation: fo-rise var(--m-base) var(--e-spring) both; }
+[data-g="findout"] dialog[open]::backdrop { animation: fo-fade var(--m-base) var(--e-out) both; }
+[data-g="findout"] dialog.fo-closing { animation: fo-sink var(--m-base) var(--e-in) both; }
+[data-g="findout"] dialog.fo-closing::backdrop { animation: fo-fade var(--m-base) var(--e-in) reverse both; }
+
+/* slide forward / back between the questions. With the View Transitions API the two screens overlap for --m-base; the game's
+   name, the count and the progress stay where they are (their own names) and the progress glides. Taps go straight through to
+   the new screen underneath while it slides in. */
+::view-transition { pointer-events: none; }
+html[data-fo-slide] { view-transition-name: none; }              /* the page itself is not captured: only the moving parts are, so each slide costs little */
+html[data-fo-slide] .fo-main > .fo-screen { view-transition-name: fo-stage; }
+html[data-fo-slide][data-fo-keep] .fo-itemtop { view-transition-name: fo-top; }
+html[data-fo-slide][data-fo-keep] .fo-progress { view-transition-name: fo-progress; }
+::view-transition-group(fo-stage), ::view-transition-group(fo-top), ::view-transition-group(fo-progress) { animation-duration: var(--m-base); animation-timing-function: var(--e-out); }
+html[data-fo-slide="fwd"]::view-transition-old(fo-stage) { animation: fo-out-l var(--m-base) var(--e-in) both; }
+html[data-fo-slide="fwd"]::view-transition-new(fo-stage) { animation: fo-in-r var(--m-base) var(--e-out) both; }
+html[data-fo-slide="back"]::view-transition-old(fo-stage) { animation: fo-out-r var(--m-base) var(--e-in) both; }
+html[data-fo-slide="back"]::view-transition-new(fo-stage) { animation: fo-in-l var(--m-base) var(--e-out) both; }
+::view-transition-old(fo-top), ::view-transition-new(fo-top) { animation-duration: var(--m-fast); }
+::view-transition-old(fo-progress) { animation: none; opacity: 0; }
+::view-transition-new(fo-progress) { animation: none; }
+@keyframes fo-in-r { from { opacity: 0; transform: translateX(24px); } }
+@keyframes fo-in-l { from { opacity: 0; transform: translateX(-24px); } }
+@keyframes fo-out-l { to { opacity: 0; transform: translateX(-24px); } }
+@keyframes fo-out-r { to { opacity: 0; transform: translateX(24px); } }
+/* the same slide by hand, where the browser has no View Transitions: the old screen lies over the new one and goes */
+.fo-main.fo-sliding { position: relative; }
+.fo-leaving { position: absolute; pointer-events: none; }
+.fo-slide-in-r { animation: fo-in-r var(--m-base) var(--e-out) both; }
+.fo-slide-in-l { animation: fo-in-l var(--m-base) var(--e-out) both; }
+.fo-leaving.fo-slide-out-l { animation: fo-out-l var(--m-base) var(--e-in) both; }
+.fo-leaving.fo-slide-out-r { animation: fo-out-r var(--m-base) var(--e-in) both; }
+.fo-keepframe.fo-slide-in-r, .fo-keepframe.fo-slide-in-l, .fo-leaving.fo-keepframe { animation: none; }
+.fo-keepframe.fo-slide-in-r > :not(.fo-itemtop):not(.fo-progress) { animation: fo-in-r var(--m-base) var(--e-out) both; }
+.fo-keepframe.fo-slide-in-l > :not(.fo-itemtop):not(.fo-progress) { animation: fo-in-l var(--m-base) var(--e-out) both; }
+.fo-leaving.fo-keepframe > .fo-itemtop, .fo-leaving.fo-keepframe > .fo-progress { visibility: hidden; }
+.fo-leaving.fo-keepframe.fo-slide-out-l > :not(.fo-itemtop):not(.fo-progress) { animation: fo-out-l var(--m-base) var(--e-in) both; }
+.fo-leaving.fo-keepframe.fo-slide-out-r > :not(.fo-itemtop):not(.fo-progress) { animation: fo-out-r var(--m-base) var(--e-in) both; }
+.fo-main h1[tabindex="-1"]:focus { outline: none; }               /* focus lands on the new screen's heading; it is not a control */
+
+/* reduced motion: screens crossfade in --m-fast, taps still change colour at once, bars and numbers stand at their final value */
+@media (prefers-reduced-motion: reduce) {
+  .fo-screen, .fo-in, .fo-in.far, .fo-popped, .fo-faded, .fo-door.open .fo-door-inside, .fo-rewrite.in { animation: fo-fade var(--m-fast) linear both; animation-delay: 0ms; }
+  .fo-hold { opacity: 1; }
+  .fo-circles .done.fresh, .fo-onward .pips i.fresh, .fo-list .n.fresh, .fo-waiting { animation: none; }
+  .fo-figure.draw .rays, .fo-figure.draw .dots circle { opacity: 1; }
+  .fo-figure.drawn .rays, .fo-figure.drawn .dots circle { animation: none; }
+  .fo-drawing, .fo-drawing.go { stroke-dashoffset: 0; transition: none; }
+  .fo-unclip, .fo-unclip.go { clip-path: none; transition: none; }
+  .fo-strip-dot, .fo-strip-dot.glide, .fo-bar .fill, .fo-progress .fill, .fo-flip-inner, .fo-curtain, .fo-curtain-ring i { transition: none; }
+  .fo-dots i::after, .fo-choices .btn::before, .fo-ladder button::before, .fo-chips .chip::before, .fo-countries button::before { transition: none; }
+  .fo-dots i { transition: none; }
+  [data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn) { transition: color var(--m-fast) linear; }
+  [data-g="findout"] :is(.btn, .chip, .fo-dots button, .fo-ladder button, .fo-countries button, .fo-list a, .onward-next, .onward-all, .fo-door-front, .fo-flip, .fo-explore-box, .fo-roomcard, .fo-langpick, .fo-help-btn):active:not([disabled]) { transform: none; }
+  [data-g="findout"] dialog[open], [data-g="findout"] dialog[open]::backdrop { animation: fo-fade var(--m-fast) linear both; }
+  [data-g="findout"] dialog.fo-closing, [data-g="findout"] dialog.fo-closing::backdrop { animation: fo-fade var(--m-fast) linear reverse both; }
+  html[data-fo-slide]::view-transition-old(fo-stage) { animation: fo-fade var(--m-fast) linear reverse both; }
+  html[data-fo-slide]::view-transition-new(fo-stage) { animation: fo-fade var(--m-fast) linear both; }
+  .fo-slide-in-r, .fo-slide-in-l, .fo-keepframe.fo-slide-in-r > *, .fo-keepframe.fo-slide-in-l > * { animation: fo-fade var(--m-fast) linear both; }
+  .fo-leaving.fo-slide-out-l, .fo-leaving.fo-slide-out-r, .fo-leaving.fo-keepframe > * { animation: fo-fade var(--m-fast) linear reverse both; }
+}

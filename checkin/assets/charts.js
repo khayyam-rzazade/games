@@ -1,15 +1,17 @@
 /* Check-in: every picture on the three pages, as small functions that return a DOM node (chat C, 4 Nov 2026).
-   No library. Colours come from checkin.css (--b0…--b3 bands, --lift, --weigh, --sideA, --sideB); motion is CSS and stops
-   under prefers-reduced-motion. Every picture has a text twin for screen readers (aria-label or visible numbers). */
+   No library. Colours come from checkin.css (--b0…--b3 bands, --lift, --weigh, --sideA, --sideB). Every picture has a text twin
+   for screen readers (aria-label or visible numbers). Each picture is drawn at its final value; the result's and the group's
+   timelines (result.js, group.js, with assets/motion.js) bring it in: the dial counts, bars grow, the curve draws, pins pop. */
 import { el, h, esc, T, fmt, clamp, reducedMotion, BY_ID, ST, BAR_IDS, signed, barSigned, verdict, MIN_GROUP } from './core.js';
+import { count, ms } from './motion.js';
 
-/* ------------------------------------------------------------------ a number that counts up ------ */
-export function countUp(node, to, ms, decimals) {
-  const d = decimals || 0;
-  if (reducedMotion() || !isFinite(to)) { node.textContent = to.toFixed(d); return; }
-  const t0 = performance.now(), dur = ms || 900;
-  const tick = (t) => { const k = Math.min(1, (t - t0) / dur); const e = 1 - Math.pow(1 - k, 3); node.textContent = (to * e).toFixed(d); if (k < 1 && node.isConnected) requestAnimationFrame(tick); else node.textContent = to.toFixed(d); };
-  node.textContent = (0).toFixed(d); requestAnimationFrame(tick);
+/* ------------------------------------------------------------------ a number that counts ------
+   count: from `from` (0 by default) to the value over --m-slow with --e-out; `say(v)` writes the words around the number */
+export function countTo(node, to, o) {
+  const opt = o || {};
+  const say = opt.say || ((v) => fmt(Math.round(v)));
+  const id = (node.ckCount = (node.ckCount || 0) + 1);            /* a newer count on the same number takes over */
+  return count({ from: opt.from || 0, to, node, paint: (v) => { if (node.ckCount === id) node.textContent = say(v); } });
 }
 
 /* ------------------------------------------------------------------ the dial (wellbeing 0-100) ------ */
@@ -22,8 +24,13 @@ export function gauge(score, band) {
   const rot = 180 * clamp(score, 0, 100) / 100;
   const w = h(`<div class="ck-gauge" role="img" aria-label="${esc(T('res.score_aria', { n: score }))}">
     <svg viewBox="0 0 240 146" aria-hidden="true">${segs}<g class="ck-gneedle" style="--rot:${rot}deg"><circle cx="${cx - r}" cy="${cy}" r="14" class="ck-gdot b${band}"/></g></svg>
-    <div class="ck-gnum"><b>0</b></div></div>`);
-  countUp(w.querySelector('.ck-gnum b'), score, 1100);
+    <div class="ck-gnum"><b>${Math.round(score)}</b></div></div>`);
+  /* the timeline's first step: the number counts 0 -> score while the needle swings with it (one clock, one curve), and the
+     band's part of the arc lights when the count lands */
+  const needle = w.querySelector('.ck-gneedle'), num = w.querySelector('.ck-gnum b'), seg = w.querySelector('.ck-gseg.on');
+  w.ready = () => { if (reducedMotion()) return; num.textContent = '0'; needle.style.transform = 'rotate(0deg)'; if (seg) seg.classList.remove('on'); };
+  w.play = () => count({ to: score, node: w, paint: (v, k) => { num.textContent = String(Math.round(v)); needle.style.transform = `rotate(${(rot * k).toFixed(2)}deg)`; } })
+    .then(() => { needle.style.transform = ''; if (seg) seg.classList.add('on'); });
   return w;
 }
 
@@ -54,11 +61,15 @@ export function thermo(opts) {
     w.classList.toggle('set', set);
     num.textContent = set ? String(v) : '–';
     mercury.style.setProperty('--fill', set ? (100 - 100 * fracOf(v)) + '%' : '100%');
+    w.dataset.fill = set ? (100 - 100 * fracOf(v)) + '%' : '100%';
     w.style.setProperty('--hue', hueOf(set ? v : ST.min));
     w.setAttribute('aria-valuenow', set ? String(v) : '');
     w.setAttribute('aria-valuetext', set ? say(v) : T('flow.pick_first'));
   };
   w.paint = paint; paint(o.value === undefined ? null : o.value);
+  /* the result's small thermometer fills when its row enters: empty first, then the mercury rises over --m-slow */
+  w.ready = () => { if (!reducedMotion()) mercury.style.setProperty('--fill', '100%'); };
+  w.play = () => { w.classList.add('ck-filling'); void mercury.offsetWidth; mercury.style.setProperty('--fill', w.dataset.fill); setTimeout(() => w.classList.remove('ck-filling'), ms('slow')); };
   if (o.interactive) {
     w.tabIndex = 0; w.setAttribute('role', 'slider'); w.setAttribute('aria-valuemin', String(ST.min)); w.setAttribute('aria-valuemax', String(ST.max)); w.setAttribute('aria-label', o.label || '');
     let cur = o.value === undefined ? null : o.value, active = false;
@@ -82,13 +93,26 @@ export function ladderPicker(value, onPick) {
   const w = el('div', 'ck-ladder'); w.setAttribute('role', 'group');
   const side = el('div', 'ck-ladder-side'); side.appendChild(el('span', '', '▲ ' + T('ladder.top'))); side.appendChild(el('span', '', '▼ ' + T('ladder.bottom'))); w.appendChild(side);
   const rails = el('div', 'ck-ladder-rails'); w.appendChild(rails);
+  /* one dot on the drawn ladder: it moves to the chosen step with --m-base and a small spring (the step's fill sweeps in) */
+  const dot = el('i', 'ck-ldot'); dot.setAttribute('aria-hidden', 'true'); dot.hidden = true;
+  const place = (b, moving) => {
+    const y = b.offsetTop + b.offsetHeight / 2;
+    if (!moving || dot.hidden) { dot.style.transition = 'none'; dot.style.setProperty('--y', y + 'px'); dot.hidden = false; void dot.offsetWidth; dot.style.transition = ''; }
+    else dot.style.setProperty('--y', y + 'px');
+  };
   for (let v = 10; v >= 1; v--) {
     const b = el('button', 'ck-rung' + (value === v ? ' on' : '')); b.type = 'button'; b.dataset.value = String(v);
     b.setAttribute('aria-label', T('ladder.step', { n: v }));
     b.appendChild(el('span', 'n', v));
-    b.addEventListener('click', () => { w.querySelectorAll('.ck-rung').forEach((x) => x.classList.remove('on')); b.classList.add('on'); onPick(v); });
+    b.addEventListener('click', () => { w.querySelectorAll('.ck-rung').forEach((x) => x.classList.remove('on')); b.classList.add('on'); place(b, true); onPick(v); });
     rails.appendChild(b);
   }
+  rails.appendChild(dot);
+  /* where the dot sits is read from the drawn rungs: once the ladder is on the page, and again when the screen changes size */
+  const on = () => rails.querySelector('.ck-rung.on');
+  const settle = () => { const b = on(); if (b && b.offsetHeight) place(b, false); };
+  requestAnimationFrame(() => requestAnimationFrame(settle));
+  if ('ResizeObserver' in window) new ResizeObserver(() => { if (on()) settle(); }).observe(rails);
   return w;
 }
 /* the group's ladder: ten bars, best off at the top */
@@ -116,13 +140,14 @@ export function divBars(rows, opts) {
   rows.forEach((r, i) => {
     const v = verdict(r.s);
     const row = el('div', 'ck-drow ' + v); row.dataset.id = r.id; if (o.mark && o.mark === r.id) row.classList.add('mark');
+    row.style.setProperty('--i', String(i));
     const top = el('div', 'ck-dtop'); top.appendChild(el('b', '', r.label));
     top.appendChild(el('small', '', v === 'lift' ? T('res.lifts') : v === 'weigh' ? T('res.weighs') : v === 'mid' ? T('res.middle') : T('flow.skipped')));
     row.appendChild(top);
     const track = el('div', 'ck-dtrack'); track.appendChild(el('i', 'ck-dmid'));
     if (r.s !== null && r.s !== undefined) {
       const fill = el('i', 'ck-dfill ' + (r.s >= 0 ? 'r' : 'l'));
-      fill.style.setProperty('--w', Math.max(2, Math.abs(r.s) * 50) + '%'); fill.style.setProperty('--i', String(i));
+      fill.style.setProperty('--w', Math.max(2, Math.abs(r.s) * 50) + '%');
       track.appendChild(fill);
     }
     row.appendChild(track);
@@ -148,7 +173,8 @@ export function pinScale(r) {
   head.appendChild(vals); w.appendChild(head);
   const track = el('div', 'ck-pins-track' + (r.zones ? ' zones' : ''));
   const pos = (v) => (100 * clamp((v - r.lo) / (r.hi - r.lo), 0, 1)) + '%';
-  for (const [k, , v] of parts.slice().reverse()) { const p = el('i', 'ck-pin p-' + k); p.style.left = pos(v); p.style.setProperty('--d', k === 'you' ? '0ms' : '220ms'); track.appendChild(p); }
+  /* the pins pop in order, you, country, world, 80 ms apart (motion spec 4, the result, step 6) */
+  for (const [k, , v] of parts.slice().reverse()) { const p = el('i', 'ck-pin p-' + k); p.style.left = pos(v); p.style.setProperty('--d', (80 * ['you', 'country', 'world'].indexOf(k)) + 'ms'); track.appendChild(p); }
   w.appendChild(track);
   const ax = el('div', 'ck-pins-ax'); ax.appendChild(el('span', '', r.lo)); ax.appendChild(el('span', '', r.hi)); w.appendChild(ax);
   return w;
@@ -181,7 +207,7 @@ export function curve(series, o) {
     if (typeof m.v !== 'number') return;
     const frac = clamp((m.v - o.lo) / (o.hi - o.lo), 0, 1);
     const p = el('div', 'ck-mk ' + (m.cls ? 'm-' + m.cls : '') + (frac < 0.16 ? ' lft' : frac > 0.84 ? ' rgt' : ''));
-    p.style.left = (100 * frac) + '%'; p.style.setProperty('--row', String(row++));
+    p.style.left = (100 * frac) + '%'; p.style.setProperty('--i', String(row)); p.style.setProperty('--row', String(row++));
     p.appendChild(el('span', 'ck-mk-l', m.label));
     stage.appendChild(p);
   });
@@ -214,8 +240,12 @@ export function countRing(done, joined) {
   const w = el('div', 'ck-ring');
   w.innerHTML = `<svg viewBox="0 0 128 128" aria-hidden="true"><circle class="t" cx="64" cy="64" r="${R}"/><circle class="f" cx="64" cy="64" r="${R}" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" transform="rotate(-90 64 64)"/></svg><div class="ck-ring-n"><b></b><span></span></div>`;
   const f = w.querySelector('.f'), b = w.querySelector('b'), s = w.querySelector('span');
+  let shown = null;
   w.update = (d, j) => {
-    b.textContent = fmt(d); s.textContent = j ? '/ ' + fmt(j) : '';
+    /* the number counts from the last one to the new one while the ring turns to it (ease-in-out, --m-slow, checkin.css) */
+    if (shown === null || shown === d) b.textContent = fmt(d); else countTo(b, d, { from: shown });
+    shown = d;
+    s.textContent = j ? '/ ' + fmt(j) : '';
     const k = j > 0 ? clamp(d / j, 0, 1) : 0; f.style.strokeDashoffset = (C * (1 - k)).toFixed(1);
     w.setAttribute('role', 'img'); w.setAttribute('aria-label', T('host.done_of', { done: fmt(d), joined: fmt(j) }));
   };

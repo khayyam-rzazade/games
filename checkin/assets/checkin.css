@@ -1,7 +1,95 @@
+/* Logicers motion tokens (claude/motion-spec.md, 5 Nov 2026): the only durations and curves used here */
+:root {
+  --m-fast: 120ms;   /* press, colour, small reveals */
+  --m-base: 220ms;   /* screens, sheets, the progress bar */
+  --m-slow: 400ms;   /* results: grow, count, draw */
+  --e-out: cubic-bezier(.2, .8, .2, 1);        /* arriving: fast start, soft landing */
+  --e-in: cubic-bezier(.4, 0, 1, 1);           /* leaving: eases away */
+  --e-spring: cubic-bezier(.2, 1.1, .3, 1);    /* taps and pops: a small overshoot */
+}
+
 /* Check-in: the section's own styles (chat C, 4 Nov 2026).
    Everything shared with the site comes from assets/css/logicers.css (the bar, the chips, .btn, dialogs, the day and night
    colours, .onward); this file adds the section's colour and the screens only it has. It copies the look of the Find outs
-   (frame, cards, thumb-low layout, motion) under its own ck- names so the two sections never depend on each other's files. */
+   (frame, cards, thumb-low layout) under its own ck- names so the two sections never depend on each other's files.
+   Motion (5 Nov 2026): the vocabulary of claude/motion-spec.md section 3, in "the motion" below; what runs from JavaScript is
+   in assets/motion.js. Only transform and opacity move (plus clip-path for fills and wipes). */
+
+/* ================================================================ the motion ================================================================ */
+@keyframes ck-enter { from { opacity: 0; transform: translateY(8px); } }
+@keyframes ck-far { from { opacity: 0; transform: translateY(16px); } }
+@keyframes ck-leave { to { opacity: 0; transform: translateY(-6px); } }
+@keyframes ck-pop { from { opacity: 0; transform: scale(.85); } }
+@keyframes ck-fade { from { opacity: 0; } }
+@keyframes ck-fade-out { to { opacity: 0; } }
+@keyframes ck-in-r { from { opacity: 0; transform: translateX(24px); } }
+@keyframes ck-in-l { from { opacity: 0; transform: translateX(-24px); } }
+@keyframes ck-out-l { to { opacity: 0; transform: translateX(-24px); } }
+@keyframes ck-out-r { to { opacity: 0; transform: translateX(24px); } }
+@keyframes ck-grow { from { transform: scaleX(0); } }
+@keyframes ck-rise-col { from { transform: scaleY(0); } }
+@keyframes ck-wipe { from { clip-path: inset(0 100% 0 0); } }
+@keyframes ck-wipe-up { from { clip-path: inset(100% 0 0 0); } }
+@keyframes ck-wipe-down { from { clip-path: inset(0 0 100% 0); } }
+@keyframes ck-sheet-up { from { transform: translateY(100%); } }
+@keyframes ck-sheet-down { to { transform: translateY(100%); } }
+@keyframes ck-pulse { 50% { transform: scale(1.04); } }
+@keyframes ck-sway { from { transform: rotate(calc(var(--rot) - 14deg)); } to { transform: rotate(calc(var(--rot) + 14deg)); } }
+
+/* enter, leave, pop, fade: one class each, added by motion.js when the moment comes */
+.ck-pre { opacity: 0; }
+.ck-enter { animation: ck-enter var(--m-base) var(--e-out) both; }
+.ck-far { animation: ck-far var(--m-base) var(--e-out) both; }
+.ck-leave { animation: ck-leave var(--m-fast) var(--e-in) both; pointer-events: none; }
+.ck-pop { animation: ck-pop var(--m-base) var(--e-spring) both; }
+.ck-fade { animation: ck-fade var(--m-base) var(--e-out) both; }
+.ck-fadefast { animation: ck-fade var(--m-fast) linear both; }
+.ck-fadeout { animation: ck-fade-out var(--m-base) var(--e-out) both; }
+.ck-pulse { animation: ck-pulse 1.6s ease-in-out infinite; }
+.ck-badge.ck-pulse { transform-origin: center; }
+
+/* slide forward / back by hand (motion.js byHand): the two overlap in one grid cell for --m-base */
+.ck-in-r { animation: ck-in-r var(--m-base) var(--e-out) both; }
+.ck-in-l { animation: ck-in-l var(--m-base) var(--e-out) both; }
+.ck-out-l { animation: ck-out-l var(--m-base) var(--e-out) both; }
+.ck-out-r { animation: ck-out-r var(--m-base) var(--e-out) both; }
+.ck-going { pointer-events: none; }
+
+/* slide forward / back with the View Transitions API: only the question moves; the page around it stays live and still (it is
+   not pictured, which also keeps the first frame cheap), the kicker keeps its place and crossfades. The transition's layer lets
+   taps through to the new question, which is live under it. */
+::view-transition { pointer-events: none; }
+html[data-ck-slide] .ck-qbody { view-transition-name: ck-q; }
+html[data-ck-slide] .ck-kicker { view-transition-name: ck-kick; }
+html[data-ck-slide] { view-transition-name: none; }      /* the page around the question is not even pictured: it stays live */
+html[data-ck-slide]::view-transition-group(ck-q), html[data-ck-slide]::view-transition-group(ck-kick) { animation-duration: var(--m-base); animation-timing-function: var(--e-out); }
+html[data-ck-slide]::view-transition-old(ck-kick), html[data-ck-slide]::view-transition-new(ck-kick) { animation-duration: var(--m-base); }
+html[data-ck-slide]::view-transition-old(ck-q), html[data-ck-slide]::view-transition-new(ck-q) { mix-blend-mode: normal; }
+html[data-ck-slide="fwd"]::view-transition-old(ck-q) { animation: ck-out-l var(--m-base) var(--e-out) both; }
+html[data-ck-slide="fwd"]::view-transition-new(ck-q) { animation: ck-in-r var(--m-base) var(--e-out) both; }
+html[data-ck-slide="back"]::view-transition-old(ck-q) { animation: ck-out-r var(--m-base) var(--e-out) both; }
+html[data-ck-slide="back"]::view-transition-new(ck-q) { animation: ck-in-l var(--m-base) var(--e-out) both; }
+
+/* press: any button under the finger; the release springs back */
+:is(.btn, .chip, .ck-seg button, .ck-rung, .ck-mode, .ck-last, .ck-langpick, button.ck-link) { transition: transform var(--m-fast) var(--e-spring); }
+:is(.btn, .chip, .ck-seg button, .ck-rung, .ck-mode, .ck-last, .ck-langpick, button.ck-link):active:not([disabled]) { transform: scale(.97); transition-timing-function: var(--e-out); }
+button.ck-link { display: inline-block; }
+
+/* select: the chosen option's fill sweeps in from the left over --m-fast (motion.js then waits 150 ms before the slide) */
+:is(.ck-choices .btn, .ck-seg button, .ck-rung, .ck-sides .btn, .ck-consent .ck-chips .chip) { position: relative; isolation: isolate; }
+:is(.ck-choices .btn, .ck-seg button, .ck-rung, .ck-sides .btn, .ck-consent .ck-chips .chip)::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--c); clip-path: inset(0 100% 0 0); transition: clip-path var(--m-fast) var(--e-out); }
+:is(.ck-choices .btn, .ck-seg button, .ck-rung, .ck-sides .btn, .ck-consent .ck-chips .chip).on::before { clip-path: inset(0 0 0 0); }
+:is(.ck-choices .btn, .ck-seg button, .ck-rung, .ck-sides .btn, .ck-consent .ck-chips .chip).on { color: var(--on-c); transition: transform var(--m-fast) var(--e-spring), color var(--m-fast) var(--e-out); }
+
+/* the sheets rise; closing, motion.js leaves a still picture that sinks while its backdrop fades (taps go through both) */
+body[data-g="checkin"] dialog[open] { animation: ck-sheet-up var(--m-base) var(--e-spring) both; }
+body[data-g="checkin"] dialog[open]::backdrop { animation: ck-fade var(--m-base) var(--e-out) both; }
+.ck-ghost { position: fixed; z-index: 60; margin: 0; border-radius: 26px; background: var(--card); color: var(--ink); box-shadow: 0 30px 80px rgba(8, 10, 21, .35); overflow: hidden; pointer-events: none; animation: ck-sheet-down var(--m-base) var(--e-in) both; }
+.ck-ghost-scrim { position: fixed; inset: 0; z-index: 59; background: rgba(8, 10, 21, .55); pointer-events: none; animation: ck-fade-out var(--m-base) var(--e-in) both; }
+@media (prefers-color-scheme: dark) { .ck-ghost { box-shadow: inset 0 0 0 1px var(--line), 0 30px 80px rgba(0, 0, 0, .6); } }
+
+/* the researcher pages: they enter, nothing else */
+.ck-doc { animation: ck-enter var(--m-base) var(--e-out) both; }
 
 /* ---- the colour of the game: sunshine. By night the same, glowing. ---- */
 [data-g="checkin"] {
@@ -24,8 +112,7 @@ body.ck-wide { --col: 68rem; }
 
 /* ---- the frame of every screen ---- */
 .ck-main { min-height: calc(100svh - 62px); display: flex; flex-direction: column; }
-.ck-screen { display: flex; flex-direction: column; flex: 1 1 auto; min-height: calc(100svh - 70px); animation: ck-in .28s ease-out both; }
-@keyframes ck-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.ck-screen { display: flex; flex-direction: column; flex: 1 1 auto; min-height: calc(100svh - 70px); }
 .ck-title { margin-top: 6px; font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 7.4vw, 2.2rem); line-height: 1.06; letter-spacing: -0.035em; text-wrap: balance; }
 .ck-title-s { font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--ink); }
 .ck-lede { margin-top: 8px; font-size: 1.08rem; line-height: 1.4; font-weight: 500; }
@@ -55,6 +142,7 @@ body.ck-wide { --col: 68rem; }
 
 /* ---- the front ---- */
 .ck-front .ck-gauge.ck-dial { margin-top: 18px; max-width: 250px; }
+.ck-front .ck-worldline { min-height: 1.4em; }
 .ck-start { width: 100%; min-height: 62px; font-size: 1.25rem; }
 .ck-last { appearance: none; width: 100%; margin-top: 10px; min-height: 48px; padding: 0 16px; border: 2px solid color-mix(in srgb, var(--ct) 30%, transparent); border-radius: 16px; background: transparent; color: var(--ink); font-weight: 700; font-size: 0.98rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
 .ck-last b { color: var(--ct); }
@@ -66,10 +154,18 @@ body.ck-wide { --col: 68rem; }
 .ck-itemtop-r { display: flex; align-items: center; gap: 8px; }
 .ck-help { width: 36px; height: 36px; padding: 0; font-weight: 800; color: var(--soft); flex: none; }
 .ck-skip { height: 36px; padding: 0 14px; font-size: 0.88rem; color: var(--soft); }
-.ck-progress { display: flex; gap: 3px; margin-top: 10px; }
-.ck-progress i { flex: 1; height: 5px; border-radius: 5px; background: color-mix(in srgb, var(--ct) 20%, transparent); transition: background-color .2s; }
-.ck-progress i.on { background: var(--c); }
-.ck-progress i.now { background: color-mix(in srgb, var(--c) 55%, transparent); }
+.ck-progress { display: grid; margin-top: 10px; --k: 0; --n: 20; }
+.ck-progress > div { grid-area: 1 / 1; display: flex; gap: 3px; }
+.ck-progress i { flex: 1; height: 5px; border-radius: 5px; background: color-mix(in srgb, var(--ct) 20%, transparent); }
+/* glide: the filled part of the bar moves, never jumps; a clip (not a scale) so the twenty pills keep their shape */
+.ck-progress > div { transition: clip-path var(--m-base) var(--e-out); }
+.ck-progress .rest { clip-path: inset(0 0 0 calc((100% + 3px) * (var(--k) + 1) / var(--n))); }
+.ck-progress .now { clip-path: inset(0 calc(100% - (100% + 3px) * (var(--k) + 1) / var(--n)) 0 calc((100% + 3px) * var(--k) / var(--n))); }
+.ck-progress .on { clip-path: inset(0 calc(100% - (100% + 3px) * var(--k) / var(--n)) 0 0); }
+.ck-progress .now i { background: color-mix(in srgb, var(--c) 55%, transparent); }
+.ck-progress .on i { background: var(--c); }
+.ck-qstage { flex: 1 1 auto; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
+.ck-qstage > .ck-qbody { grid-area: 1 / 1; display: flex; flex-direction: column; min-width: 0; }
 .ck-mid { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; padding: 10px 0; }
 .ck-stem { color: var(--soft); font-weight: 600; font-size: 1rem; min-height: 1.4em; }
 .ck-q { margin-top: 4px; font-family: var(--display); font-weight: 700; font-size: clamp(1.3rem, 5.6vw, 1.6rem); line-height: 1.18; letter-spacing: -0.025em; text-wrap: balance; }
@@ -91,12 +187,9 @@ body.ck-wide { --col: 68rem; }
 .ck-choices.two .btn { min-height: 56px; font-size: 1rem; padding: 6px 10px; }
 .ck-choices.two .btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .ck-choices .btn.ghost { flex: 1 1 auto; }
-.ck-choices .btn.on { background: var(--c); color: var(--on-c); box-shadow: 0 8px 20px rgba(21, 23, 43, .16); animation: ck-pop .3s cubic-bezier(.2, 1.2, .4, 1) both; }
-@keyframes ck-pop { 0% { transform: scale(.94); } 70% { transform: scale(1.03); } 100% { transform: none; } }
+.ck-choices .btn.on { box-shadow: 0 8px 20px rgba(21, 23, 43, .16); }
 .ck-seg { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .ck-seg button { appearance: none; border: 0; min-height: 64px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.15rem; cursor: pointer; -webkit-tap-highlight-color: transparent; padding: 0 2px; }
-.ck-seg button:active { transform: scale(.96); }
-.ck-seg button.on { background: var(--c); color: var(--on-c); animation: ck-pop .3s cubic-bezier(.2, 1.2, .4, 1) both; }
 .ck-seg-unit { text-align: center; margin-top: 8px; color: var(--soft); font-weight: 700; font-size: 0.9rem; }
 @media (prefers-color-scheme: dark) { .ck-seg button { box-shadow: inset 0 0 0 1px var(--line); } .ck-seg button.on { box-shadow: none; } }
 
@@ -106,10 +199,11 @@ body.ck-wide { --col: 68rem; }
 .ck-thermo-read { text-align: center; font-family: var(--display); font-weight: 800; font-size: 3.6rem; line-height: 1; letter-spacing: -0.04em; color: var(--ink); min-height: 1em; }
 .ck-thermo:not(.set) .ck-thermo-read { color: var(--soft); opacity: .6; }
 .ck-thermo-body { display: flex; align-items: center; height: 60px; margin-top: 6px; position: relative; touch-action: none; -webkit-user-select: none; user-select: none; cursor: pointer; }
-.ck-bulb { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--tc); z-index: 2; box-shadow: 0 0 0 5px var(--card), 0 6px 14px rgba(21, 23, 43, .16); transition: background-color .18s; }
+.ck-bulb { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--tc); z-index: 2; box-shadow: 0 0 0 5px var(--card), 0 6px 14px rgba(21, 23, 43, .16); }
 .ck-thermo:not(.set) .ck-bulb { background: color-mix(in srgb, var(--ink) 22%, var(--card)); }
 .ck-tube { flex: 1; height: 24px; margin-left: -24px; border-radius: 0 99px 99px 0; background: color-mix(in srgb, var(--ink) 10%, var(--card)); position: relative; overflow: hidden; box-shadow: 0 0 0 4px var(--card); }
-.ck-mercury { position: absolute; inset: 0; background: var(--tc); clip-path: inset(0 var(--fill, 100%) 0 0 round 0 99px 99px 0); transition: clip-path .16s ease, background-color .18s; }
+.ck-mercury { position: absolute; inset: 0; background: var(--tc); clip-path: inset(0 var(--fill, 100%) 0 0 round 0 99px 99px 0); transition: clip-path var(--m-fast) var(--e-out); }
+.ck-thermo.ck-filling .ck-mercury { transition-duration: var(--m-slow); }
 .ck-thermo.drag .ck-mercury { transition: none; }
 .ck-thermo.live:focus-visible { outline: 3px solid var(--ct); outline-offset: 6px; border-radius: 14px; }
 .ck-thermo-ticks { position: relative; height: 1.4em; margin: 6px 0 0 24px; color: var(--soft); font-weight: 700; font-size: 0.8rem; }
@@ -129,33 +223,32 @@ body.ck-wide { --col: 68rem; }
 .ck-ladder-rails::before { left: 0; } .ck-ladder-rails::after { right: 0; }
 .ck-rung { appearance: none; border: 0; position: relative; z-index: 1; height: 31px; border-radius: 9px; background: var(--card); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ct) 40%, transparent); color: var(--ink); font-weight: 800; font-size: 0.95rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 @media (max-height: 820px) { .ck-rung { height: 27px; } .ck-ladder-rails { gap: 3px; } }
-.ck-rung:active { transform: scale(.97); }
-.ck-rung.on { background: var(--c); color: var(--on-c); box-shadow: none; }
-.ck-rung.on::after { content: "●"; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: .7rem; }
+.ck-rung.on { box-shadow: none; }
+.ck-ldot { position: absolute; z-index: 2; top: 0; right: 24px; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--on-c); pointer-events: none; transform: translateY(var(--y, 0px)); transition: transform var(--m-base) var(--e-spring); }
+.ck-ldot[hidden] { display: none; }
 
 /* ---- the result ---- */
 .ck-result { display: block; }
 .ck-hero { text-align: center; }
 .ck-gauge { position: relative; width: min(100%, 300px); margin: 6px auto 0; }
 .ck-gauge svg { display: block; width: 100%; height: auto; overflow: visible; }
-.ck-gseg { stroke: var(--bx, var(--soft)); opacity: .3; transition: opacity .3s; }
+.ck-gseg { stroke: var(--bx, var(--soft)); opacity: .3; transition: opacity var(--m-base) var(--e-out); }
 .ck-gseg.b0 { --bx: var(--b0); } .ck-gseg.b1 { --bx: var(--b1); } .ck-gseg.b2 { --bx: var(--b2); } .ck-gseg.b3 { --bx: var(--b3); }
 .ck-gseg.on { opacity: 1; }
 .ck-gdot { fill: var(--card); stroke: var(--bx, var(--ink)); stroke-width: 7; }
 .ck-gdot.b0 { --bx: var(--b0); } .ck-gdot.b1 { --bx: var(--b1); } .ck-gdot.b2 { --bx: var(--b2); } .ck-gdot.b3 { --bx: var(--b3); }
-.ck-gneedle { transform-origin: 120px 122px; animation: ck-swing 1.3s cubic-bezier(.2, .9, .3, 1) .15s both; }
-@keyframes ck-swing { from { transform: rotate(0deg); } to { transform: rotate(var(--rot)); } }
-.ck-gneedle.idle { animation: ck-idle 3.2s ease-in-out infinite alternate; }
-@keyframes ck-idle { from { transform: rotate(calc(var(--rot) - 14deg)); } to { transform: rotate(calc(var(--rot) + 14deg)); } }
+.ck-gneedle { transform-origin: 120px 122px; transform: rotate(var(--rot)); }
+.ck-gneedle.idle { animation: ck-sway 3.2s ease-in-out infinite alternate; }     /* the needle's rest sway: one of the two idle motions */
 .ck-gnum { position: absolute; left: 0; right: 0; bottom: 2px; text-align: center; line-height: 1; }
 .ck-gnum b { display: block; font-family: var(--display); font-weight: 800; font-size: 3.6rem; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
 .ck-gnum span { display: block; margin-top: 2px; color: var(--soft); font-weight: 600; font-size: 0.82rem; }
-.ck-band { margin-top: 10px; font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 8.5vw, 2.5rem); line-height: 1.02; letter-spacing: -0.04em; animation: ck-bandpop .55s cubic-bezier(.2, 1.2, .4, 1) .5s both; }
-@keyframes ck-bandpop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.06); opacity: 1; } 100% { transform: none; opacity: 1; } }
+.ck-band { margin-top: 10px; font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 8.5vw, 2.5rem); line-height: 1.02; letter-spacing: -0.04em; }
 .ck-band.b0 { color: var(--b0); } .ck-band.b1 { color: var(--b1); } .ck-band.b2 { color: var(--b2); } .ck-band.b3 { color: var(--b3); }
 @media (prefers-color-scheme: light) { .ck-band.b1 { color: #B97800; } .ck-band.b2 { color: #4E8A24; } .ck-band.b3 { color: #13804D; } }
 .ck-delta { margin-top: 10px; display: inline-flex; gap: 8px; align-items: center; padding: 6px 14px; border-radius: 99px; background: var(--tint); font-weight: 700; font-size: 0.95rem; }
-.ck-delta .arrow { font-size: .8rem; }
+.ck-delta .arrow { font-size: .8rem; display: inline-block; }
+.ck-delta.up .arrow.ck-draw { animation: ck-wipe-up var(--m-fast) var(--e-out) both; }
+.ck-delta:not(.up) .arrow.ck-draw { animation: ck-wipe-down var(--m-fast) var(--e-out) both; }
 .ck-delta.up .arrow { color: var(--lift); } .ck-delta.down .arrow { color: var(--weigh); }
 .ck-stressrow { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); text-align: left; }
 .ck-stressrow-h { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; }
@@ -171,10 +264,12 @@ body.ck-wide { --col: 68rem; }
 .ck-dtop small { font-weight: 800; font-size: 0.8rem; color: var(--soft); text-align: right; flex: none; }
 .ck-dtrack { position: relative; height: 14px; margin-top: 5px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 8%, var(--card)); overflow: hidden; }
 .ck-dmid { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--ink); opacity: .3; z-index: 1; }
-.ck-dfill { position: absolute; top: 0; bottom: 0; width: var(--w); animation: ck-grow .85s cubic-bezier(.2, .9, .3, 1) both; animation-delay: calc(var(--i, 0) * 60ms + .15s); }
-.ck-dfill.r { left: 50%; background: var(--lift); border-radius: 0 99px 99px 0; }
-.ck-dfill.l { right: 50%; background: var(--weigh); border-radius: 99px 0 0 99px; }
-@keyframes ck-grow { from { width: 0; } to { width: var(--w); } }
+.ck-dfill { position: absolute; top: 0; bottom: 0; width: var(--w); }
+.ck-dfill.r { left: 50%; background: var(--lift); border-radius: 0 99px 99px 0; transform-origin: left center; }
+.ck-dfill.l { right: 50%; background: var(--weigh); border-radius: 99px 0 0 99px; transform-origin: right center; }
+/* grow: the bars fill from the middle one after another (50 ms), the "lifts you / weighs on you" words come with their bar */
+.ck-growing .ck-dfill { animation: ck-grow var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 50ms); }
+.ck-growing .ck-dtop small { animation: ck-fade var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 50ms); }
 .ck-drow.mark { margin: 0 -8px; padding: 8px; background: color-mix(in srgb, var(--weigh) 11%, transparent); }
 .ck-dbars.big { gap: 16px; }
 .ck-dbars.big .ck-dtop b { font-size: 1.1rem; } .ck-dbars.big .ck-dtrack { height: 18px; }
@@ -184,8 +279,9 @@ body.ck-wide { --col: 68rem; }
 .ck-tag { display: inline-block; margin: 6px 0 2px; padding: 3px 12px; border-radius: 99px; background: var(--tint); color: var(--ct); font-weight: 800; font-size: 0.82rem; }
 .ck-advice-line { margin-top: 6px; font-size: 1.12rem; line-height: 1.4; font-weight: 600; }
 .ck-card p + .ck-small { margin-top: 10px; }
-.ck-help { border-left: 5px solid var(--b0); } .ck-talk { border-left: 5px solid var(--b1); }
-.ck-help p, .ck-talk p { margin-top: 6px; font-size: 1.08rem; line-height: 1.4; font-weight: 500; }
+/* help and talk cards (5 Nov 2026: scoped to cards; unscoped, the stripe also fell on the "?" button of every question as a red crescent) */
+.ck-card.ck-help { border-left: 5px solid var(--b0); } .ck-card.ck-talk { border-left: 5px solid var(--b1); }
+.ck-card.ck-help p, .ck-card.ck-talk p { margin-top: 6px; font-size: 1.08rem; line-height: 1.4; font-weight: 500; }
 .ck-helplink { margin-top: 12px; width: 100%; }
 
 .ck-pins { margin-top: 16px; }
@@ -196,16 +292,18 @@ body.ck-wide { --col: 68rem; }
 .v.p-you i { background: var(--ink); } .v.p-country i { border: 2px solid var(--ink); } .v.p-world i { border: 2px dashed var(--soft); }
 .ck-pins-track { position: relative; height: 12px; margin: 18px 12px 0; border-radius: 99px; background: color-mix(in srgb, var(--ink) 9%, var(--card)); }
 .ck-pins-track.zones { background: linear-gradient(90deg, color-mix(in srgb, var(--b0) 38%, transparent) 0 28.5%, color-mix(in srgb, var(--b1) 38%, transparent) 28.5% 50.5%, color-mix(in srgb, var(--b2) 38%, transparent) 50.5% 72.5%, color-mix(in srgb, var(--b3) 38%, transparent) 72.5%); }
-.ck-pin { position: absolute; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; animation: ck-pinin .6s cubic-bezier(.2, 1.2, .4, 1) var(--d, 0ms) both; }
+.ck-pin { position: absolute; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; }
+.ck-popping .ck-pin { animation: ck-pop var(--m-base) var(--e-spring) both; animation-delay: calc(var(--d, 0ms) + var(--wait, 0ms)); }
 .ck-pin.p-you { width: 26px; height: 26px; margin: -13px 0 0 -13px; background: var(--ink); border: 4px solid var(--card); box-shadow: 0 3px 10px rgba(21, 23, 43, .3); z-index: 3; }
 .ck-pin.p-country { background: var(--card); border: 3px solid var(--ink); z-index: 2; }
 .ck-pin.p-world { background: var(--card); border: 3px dashed var(--soft); z-index: 1; }
-@keyframes ck-pinin { from { transform: scale(0); } to { transform: none; } }
 .ck-pins-ax { display: flex; justify-content: space-between; margin: 6px 6px 0; color: var(--soft); font-weight: 700; font-size: 0.75rem; }
 .ck-worldline { text-align: center; margin-top: 16px; }
-.ck-skel { min-height: 150px; position: relative; overflow: hidden; }
-.ck-skel::after { content: ""; position: absolute; inset: 52px 18px 18px; border-radius: 14px; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--ink) 8%, transparent), transparent) 0 0 / 200% 100%; animation: ck-shimmer 1.4s linear infinite; }
-@keyframes ck-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.ck-compare { position: relative; }
+.ck-skel { min-height: 180px; }
+.ck-skel-layer { position: absolute; inset: 52px 18px 18px; pointer-events: none; }
+.ck-skel-layer i { display: block; height: 12px; margin-top: 30px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 7%, var(--card)); }
+.ck-skel-layer i:first-child { margin-top: 18px; }
 
 .ck-cta { background: var(--c); color: var(--on-c); box-shadow: 0 12px 30px rgba(21, 23, 43, .16); }
 .ck-cta .ck-quiet { color: inherit; opacity: .85; }
@@ -246,20 +344,19 @@ body.ck-wide { --col: 68rem; }
 .ck-qr { display: block; width: min(60vw, 280px); margin: 0 auto; border-radius: 16px; box-shadow: var(--shadow); }
 .ck-roomhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .ck-roomhead .meta { margin-top: 4px; }
-.ck-banner { margin-top: 12px; padding: 12px 16px; border-radius: 16px; background: var(--c); color: var(--on-c); font-weight: 800; animation: ck-pop .4s both; }
+.ck-banner { margin-top: 12px; padding: 12px 16px; border-radius: 16px; background: var(--c); color: var(--on-c); font-weight: 800; }
 .ck-wait { text-align: center; }
 .ck-ring { position: relative; width: 150px; height: 150px; margin: 6px auto 0; }
 .ck-ring svg { display: block; width: 100%; height: 100%; }
 .ck-ring circle { fill: none; stroke-width: 12; }
 .ck-ring .t { stroke: color-mix(in srgb, var(--ct) 18%, transparent); }
-.ck-ring .f { stroke: var(--c); stroke-linecap: round; transition: stroke-dashoffset .9s cubic-bezier(.2, .9, .3, 1); }
+.ck-ring .f { stroke: var(--c); stroke-linecap: round; transition: stroke-dashoffset var(--m-slow) ease-in-out; }     /* the ring keeps turning as the count moves */
 @media (prefers-color-scheme: light) { .ck-ring .f { stroke: var(--ct); } }
 .ck-ring-n { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; line-height: 1; }
 .ck-ring-n b { font-family: var(--display); font-weight: 800; font-size: 2.6rem; letter-spacing: -0.04em; }
 .ck-ring-n span { margin-top: 4px; color: var(--soft); font-weight: 700; font-size: 0.95rem; }
 .ck-sides { display: grid; gap: 10px; margin-top: 14px; }
 .ck-sides .btn { min-height: 64px; font-size: 1.15rem; white-space: normal; }
-.ck-sides .btn.on { background: var(--c); color: var(--on-c); }
 .ck-sidepill { display: inline-flex; gap: 8px; align-items: center; margin-top: 10px; padding: 6px 14px; border-radius: 99px; background: var(--tint); font-weight: 800; font-size: 0.92rem; }
 .ck-sidepill .ck-link { padding: 0; font-size: 0.85rem; }
 
@@ -272,11 +369,14 @@ body.ck-wide { --col: 68rem; }
 .ck-curve.big .ck-zones { height: 150px; }
 .ck-zones i.b0 { background: color-mix(in srgb, var(--b0) 16%, transparent); } .ck-zones i.b1 { background: color-mix(in srgb, var(--b1) 16%, transparent); }
 .ck-zones i.b2 { background: color-mix(in srgb, var(--b2) 16%, transparent); } .ck-zones i.b3 { background: color-mix(in srgb, var(--b3) 16%, transparent); }
-.ck-cv { vector-effect: non-scaling-stroke; stroke-width: 2.5; stroke-linejoin: round; stroke-dasharray: 1600; animation: ck-draw 1.2s ease-out both; }
+.ck-cv { vector-effect: non-scaling-stroke; stroke-width: 2.5; stroke-linejoin: round; }
 .ck-cv.g { fill: color-mix(in srgb, var(--c) 40%, transparent); stroke: var(--ct); }
 .ck-cv.a { fill: color-mix(in srgb, var(--sideA) 26%, transparent); stroke: var(--sideA); }
-.ck-cv.b { fill: color-mix(in srgb, var(--sideB) 20%, transparent); stroke: var(--sideB); stroke-dasharray: 7 5; animation: none; }
-@keyframes ck-draw { from { stroke-dashoffset: 1600; } to { stroke-dashoffset: 0; } }
+.ck-cv.b { fill: color-mix(in srgb, var(--sideB) 20%, transparent); stroke: var(--sideB); stroke-dasharray: 7 5; }
+/* draw: the curve draws itself from the left over twice --m-slow (a clip: the stroke does not scale, so its dashes cannot be
+   counted on); the markers pop as the line reaches them */
+.ck-drawing .ck-stage svg { animation: ck-wipe calc(var(--m-slow) * 2) var(--e-out) both; }
+.ck-drawing .ck-mk { animation: ck-pop var(--m-base) var(--e-spring) both; animation-delay: calc(var(--m-slow) + var(--i, 0) * 50ms); }
 .ck-mk { position: absolute; top: calc(var(--row, 0) * 24px); bottom: 0; width: 0; border-left: 2.5px solid var(--ink); z-index: 2; }
 .ck-mk.m-world, .ck-mk.m-country { border-left-style: dashed; border-left-color: var(--soft); }
 .ck-mk.m-you { border-left-color: var(--ct); border-left-width: 3px; }
@@ -300,14 +400,15 @@ body.ck-wide { --col: 68rem; }
 .ck-lrow { display: grid; grid-template-columns: 1.6em 1fr 2.6em; gap: 8px; align-items: center; font-weight: 700; font-size: 0.85rem; }
 .ck-lrow .n { color: var(--soft); text-align: right; } .ck-lrow .c { color: var(--soft); font-size: .8rem; }
 .ck-lrow .rail { height: 12px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 7%, var(--card)); overflow: hidden; }
-.ck-lrow .rail i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: var(--c); animation: ck-grow .8s cubic-bezier(.2, .9, .3, 1) both; animation-delay: calc(var(--i, 0) * 50ms + .1s); }
+.ck-lrow .rail i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: var(--c); transform-origin: left center; }
+.ck-growing .ck-lrow .rail i, .ck-growing .ck-mrow .rail i { animation: ck-grow var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 50ms); }
 @media (prefers-color-scheme: light) { .ck-lrow .rail i { background: #D79A00; } }
 .ck-lrow.mine .n { color: var(--ink); } .ck-lrow.mine .rail { box-shadow: 0 0 0 2px var(--ink); }
 .ck-mbars { display: grid; gap: 9px; margin-top: 10px; }
 .ck-mrow { display: grid; grid-template-columns: minmax(6.4em, 36%) 1fr 2.8em; gap: 8px; align-items: center; }
 .ck-mrow b { font-weight: 700; font-size: 0.9rem; line-height: 1.15; }
 .ck-mrow .rail { height: 14px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 7%, var(--card)); overflow: hidden; }
-.ck-mrow .rail i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: color-mix(in srgb, var(--ct) 45%, var(--card)); animation: ck-grow .8s cubic-bezier(.2, .9, .3, 1) both; animation-delay: calc(var(--i, 0) * 60ms + .1s); }
+.ck-mrow .rail i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: color-mix(in srgb, var(--ct) 45%, var(--card)); transform-origin: left center; }
 .ck-mrow.top .rail i { background: var(--c); } .ck-mrow.top b { font-weight: 800; }
 @media (prefers-color-scheme: light) { .ck-mrow.top .rail i { background: #D79A00; } }
 .ck-mrow .c { color: var(--soft); font-weight: 700; font-size: 0.85rem; text-align: right; }
@@ -323,7 +424,6 @@ body.ck-wide { --col: 68rem; }
 .ck-linkrow .chip { flex: none; height: 40px; }
 .ck-modes { display: grid; gap: 10px; margin-top: 14px; }
 .ck-mode { appearance: none; border: 0; text-align: left; padding: 16px 18px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); cursor: pointer; display: block; width: 100%; -webkit-tap-highlight-color: transparent; }
-.ck-mode:active { transform: scale(.985); }
 .ck-mode b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
 .ck-mode span { display: block; margin-top: 3px; color: var(--soft); font-weight: 600; font-size: 0.92rem; line-height: 1.3; }
 .ck-mode.primary { background: var(--c); color: var(--on-c); box-shadow: 0 10px 26px rgba(21, 23, 43, .16); }
@@ -348,11 +448,10 @@ body.ck-wide { --col: 68rem; }
 .ck-trend { display: flex; gap: 8px; align-items: stretch; margin-top: 14px; }
 .ck-tcol { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; font-weight: 800; font-size: 0.85rem; }
 .ck-tcol .slot { width: 100%; max-width: 54px; height: 100px; display: flex; align-items: flex-end; }
-.ck-tcol i { display: block; width: 100%; height: var(--hgt, 0); min-height: 3px; border-radius: 10px 10px 4px 4px; background: var(--c); animation: ck-rise .8s cubic-bezier(.2, .9, .3, 1) both; animation-delay: calc(var(--i, 0) * 70ms); transform-origin: bottom; }
+.ck-tcol i { display: block; width: 100%; height: var(--hgt, 0); min-height: 3px; border-radius: 10px 10px 4px 4px; background: var(--c); animation: ck-rise-col var(--m-slow) var(--e-out) both; animation-delay: calc(var(--i, 0) * 70ms); transform-origin: bottom; }   /* the rounds' columns rise, 70 ms apart as before */
 @media (prefers-color-scheme: light) { .ck-tcol i { background: #D79A00; } }
 .ck-tcol.none i { background: color-mix(in srgb, var(--ink) 12%, transparent); min-height: 3px; }
 .ck-tcol span { color: var(--soft); font-size: 0.78rem; }
-@keyframes ck-rise { from { transform: scaleY(0); } to { transform: none; } }
 .ck-round { margin-top: 14px; }
 .ck-round-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .ck-round-h b { font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.03em; }
@@ -376,12 +475,19 @@ body.ck-wide { --col: 68rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ck-screen, .ck-band, .ck-gneedle, .ck-gneedle.idle, .ck-dfill, .ck-pin, .ck-cv, .ck-lrow .rail i, .ck-mrow .rail i, .ck-tcol i, .ck-banner,
-  .ck-choices .btn.on, .ck-seg button.on { animation: none; }
-  .ck-gneedle { transform: rotate(var(--rot)); }
-  .ck-gneedle.idle { transform: rotate(var(--rot)); }
-  .ck-ring .f, .ck-mercury, .ck-progress i { transition: none; }
-  .ck-skel::after { animation: none; }
+  /* screens and sheets crossfade in --m-fast; taps still change colour; bars, numbers and needles are at their final value */
+  .ck-enter, .ck-far, .ck-pop, .ck-fade, .ck-fadeout, .ck-in-r, .ck-in-l, .ck-out-l, .ck-out-r, .ck-leave, .ck-pulse, .ck-doc,
+  .ck-growing .ck-dfill, .ck-growing .ck-dtop small, .ck-popping .ck-pin, .ck-drawing .ck-stage svg, .ck-drawing .ck-mk,
+  .ck-growing .ck-lrow .rail i, .ck-growing .ck-mrow .rail i, .ck-tcol i, .ck-gneedle, .ck-gneedle.idle, .ck-delta .arrow.ck-draw, .ck-ghost, .ck-ghost-scrim { animation: none; }
+  .ck-pre { opacity: 1; }
+  .ck-gneedle, .ck-gneedle.idle { transform: rotate(var(--rot)); }
+  .ck-fadefast { animation: ck-fade var(--m-fast) linear both; }
+  body[data-g="checkin"] dialog[open], body[data-g="checkin"] dialog[open]::backdrop { animation: ck-fade var(--m-fast) linear both; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  .ck-ring .f, .ck-mercury, .ck-progress > div, .ck-ldot, .ck-gseg, .ck-hround summary::after { transition: none; }
+  :is(.btn, .chip, .ck-seg button, .ck-rung, .ck-mode, .ck-last, .ck-langpick, button.ck-link) { transition: none; }
+  :is(.btn, .chip, .ck-seg button, .ck-rung, .ck-mode, .ck-last, .ck-langpick, button.ck-link):active:not([disabled]) { transform: none; }
+  :is(.ck-choices .btn, .ck-seg button, .ck-rung, .ck-sides .btn, .ck-consent .ck-chips .chip)::before { transition: none; }
 }
 
 /* ---- the host history ---- */
@@ -390,7 +496,7 @@ body.ck-wide { --col: 68rem; }
 .ck-hround summary::-webkit-details-marker { display: none; }
 .ck-hround summary b { font-family: var(--display); font-size: 1.15rem; letter-spacing: -0.03em; }
 .ck-hround summary span { color: var(--soft); font-weight: 700; font-size: 0.88rem; text-align: right; }
-.ck-hround summary::after { content: "▾"; color: var(--soft); margin-left: 4px; transition: transform .2s; }
+.ck-hround summary::after { content: "▾"; color: var(--soft); margin-left: 4px; transition: transform var(--m-base) var(--e-out); }
 .ck-hround[open] summary::after { transform: rotate(180deg); }
 .ck-hround-body { padding: 0 18px 18px; }
 .ck-hround-body .ck-card { box-shadow: none; padding: 14px 0 0; background: transparent; }
@@ -430,6 +536,8 @@ body.ck-wide { --col: 68rem; }
 .ck-since .ck-delta { margin-top: 0; }
 .ck-since .ck-advice-line { margin-top: 0; }
 .ck-since .ck-link { display: inline-block; margin-top: 4px; }
+.ck-consent-stage { display: grid; grid-template-columns: minmax(0, 1fr); }
+.ck-consent-stage > * { grid-area: 1 / 1; min-width: 0; }
 .ck-consent-step { margin-top: 12px; }
 .ck-consent p.ck-ask { margin-top: 10px; font-size: 1.04rem; }
 .ck-consent p.ck-opt-h { margin-top: 0; }

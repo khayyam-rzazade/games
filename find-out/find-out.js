@@ -69,6 +69,152 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const reduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
 
+/* ------------------------------------------------------------------ motion ------
+   The Logicers motion spec (claude/motion-spec.md, 5 Nov 2026), the same as the Anonymous Check-in's: three durations and three
+   curves (the tokens at the top of find-out.css, read from there so the two never drift) and one vocabulary: enter, slide,
+   press, select, glide, grow, count, draw, rise, pop, pulse, crossfade. A result's order is one list given to sequence(). Nothing
+   blocks a tap: a tap, a key or a scroll during a timeline lands the rest at once, and with reduced motion everything stands at
+   its final value from the start. */
+const M = { fast: 120, base: 220, slow: 400 };
+function readTokens() { try { const cs = getComputedStyle(document.documentElement); for (const k of Object.keys(M)) { const v = parseFloat(cs.getPropertyValue('--m-' + k)); if (v > 0) M[k] = v; } } catch (e) { /* the spec's numbers above stand */ } }
+const SELECT_WAIT = 150;                     /* after a choice lands, before the next screen comes, so the choice is seen to land */
+const STAGGER = 50;                          /* items one after another */
+function bezier(x1, y1, x2, y2) {
+  const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx, cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+  const X = (s) => ((ax * s + bx) * s + cx) * s, Y = (s) => ((ay * s + by) * s + cy) * s, dX = (s) => (3 * ax * s + 2 * bx) * s + cx;
+  return (t) => { if (t <= 0) return 0; if (t >= 1) return 1; let s = t; for (let i = 0; i < 8; i++) { const e = X(s) - t, d = dX(s); if (Math.abs(e) < 1e-5 || !d) break; s = Math.min(1, Math.max(0, s - e / d)); } return Y(s); };
+}
+const easeOut = bezier(0.2, 0.8, 0.2, 1);    /* --e-out, for the numbers counted here */
+/* count: from `from` to `to` over --m-slow on --e-out; paint(v, k) draws each frame (the digits, and a needle or arc with them) */
+function count(from, to, paint, ctl) {
+  if (reduced() || (ctl && ctl.done) || from === to) { paint(to, 1); return 0; }
+  const t0 = performance.now();
+  const frame = (now) => { const k = ctl && ctl.done ? 1 : easeOut(Math.min(1, (now - t0) / M.slow)); paint(from + (to - from) * k, k); if (k < 1) requestAnimationFrame(frame); };
+  paint(from, 0); requestAnimationFrame(frame);
+  return M.slow;
+}
+/* a number inside a sentence of the copy ("{n} already did"): the words stay as they are, only the number ticks */
+function countIn(node, template, key, value, from, ctl) {
+  const [a, b] = template.split('{' + key + '}');
+  if (b === undefined) { node.textContent = template; return 0; }
+  node.textContent = ''; node.appendChild(document.createTextNode(a)); const num = el('span', 'fo-num'); node.appendChild(num); node.appendChild(document.createTextNode(b));
+  return count(from, value, (v) => { num.textContent = fmt(Math.round(v)); }, ctl);
+}
+/* the timeline of a result: steps run one after another; a step is a pause in ms, or a function (ctl) that starts its motion and
+   returns how long it takes (or a promise to wait for). ctl.done = land everything now. alive() false stops it (the screen left). */
+function sequence(steps, alive, opts) {
+  const ctl = { done: reduced() || !!(opts && opts.now) };
+  let wake = null;
+  ctl.finish = () => { if (ctl.done) return; ctl.done = true; if (wake) wake(); };
+  const evs = ['pointerdown', 'keydown', 'wheel', 'touchmove'];
+  const stop = () => ctl.finish();
+  const listen = !ctl.done && !(opts && opts.keepOnScroll);
+  if (listen) evs.forEach((e) => addEventListener(e, stop, { capture: true, passive: true }));
+  const nap = (p) => new Promise((r) => { wake = r; Promise.resolve(p).then(r, r); });
+  ctl.run = (async () => {
+    for (const s of steps) {
+      if (!s) continue;
+      if (alive && !alive()) break;
+      let wait = 0;
+      try { wait = typeof s === 'number' ? (ctl.done ? 0 : s) : s(ctl); } catch (e) { wait = 0; }
+      if (ctl.done || !wait) continue;
+      await nap(typeof wait === 'number' ? sleep(wait) : wait);
+    }
+    ctl.done = true;
+    if (listen) evs.forEach((e) => removeEventListener(e, stop, { capture: true }));
+  })();
+  return ctl;
+}
+/* the steps every timeline is built from */
+function held(e, cls) { if (e) e.classList.add('fo-hold'); if (e && cls) e.classList.add(cls); return e; }
+function landed(e) { if (e) e.classList.remove('fo-hold'); return e; }
+function stepIn(els, o) {   /* enter: opacity and 8 px up (far: 16 px), one after another */
+  return (ctl) => {
+    const list = [].concat(els).filter(Boolean); const gap = o && o.gap !== undefined ? o.gap : STAGGER;
+    list.forEach((e, i) => { landed(e); if (ctl.done) return; e.style.setProperty('--d', (i * gap) + 'ms'); e.classList.add(o && o.pop ? 'fo-popped' : o && o.fade ? 'fo-faded' : 'fo-in'); if (o && o.far) e.classList.add('far'); });
+    return list.length ? M.base + (list.length - 1) * gap : 0;
+  };
+}
+function stepPop(els, gap) { return stepIn(els, { pop: true, gap: gap === undefined ? STAGGER : gap }); }
+/* grow: bar fills to --w, one after another; each bar's row and words fade in with it */
+function stepGrow(rows, gap) {
+  return (ctl) => {
+    const list = rows.filter(Boolean); const g = gap === undefined ? STAGGER : gap;
+    list.forEach((row, i) => {
+      landed(row); const f = row.querySelector('.fill');
+      if (ctl.done) { if (f) { f.style.transition = 'none'; f.style.setProperty('--w', f.dataset.w); requestAnimationFrame(() => { f.style.transition = ''; }); } return; }
+      row.style.setProperty('--d', (i * g) + 'ms'); row.classList.add('fo-faded');
+      if (f) { f.style.transitionDelay = (i * g) + 'ms'; f.style.setProperty('--w', f.dataset.w); }
+    });
+    return list.length ? M.slow + (list.length - 1) * g : 0;
+  };
+}
+/* draw: lines that carry .fo-drawing draw themselves */
+function stepDraw(root, dur) { return (ctl) => { const ps = root ? [...root.querySelectorAll('.fo-drawing')] : []; ps.forEach((p) => { if (dur) p.style.setProperty('--dur', dur + 'ms'); if (ctl.done) p.style.transition = 'none'; p.classList.add('go'); }); return ps.length ? (dur || M.slow) : 0; }; }
+/* a dot on a strip goes to p (0..1); its colour with it */
+function setP(dot, p) { dot.p = p; dot.style.setProperty('--p', String(p)); }
+/* pop, once, on something that just changed (the room opening the next game) */
+function popOnce(e) { if (!e || reduced()) return; e.classList.remove('fo-popped'); void e.offsetWidth; e.style.setProperty('--d', '0ms'); e.classList.add('fo-popped'); }
+
+/* slide forward / back between the steps of a game; any other change of screen: the new one enters. Taps work all through:
+   with the View Transitions API the pseudo-elements let taps through to the new screen; by hand, the old screen lies over the
+   new one, inert, and goes. The game's name, the count and the progress stay still between two questions. Focus moves to the
+   new screen's heading. */
+let screenSeq = 0, slideNow = null, tapCaught = 0;
+const SLIDE_BY_HAND = /[?&]slide=hand\b/.test(location.search);   /* ?slide=hand: the hand-made slide even where the browser has View Transitions, to compare the two on a phone */
+/* While a View Transition runs, the browser sends every tap to the page itself. A tap then ends the slide at once and is passed
+   on to what is under the finger, so no tap is ever lost (motion spec, rule 4) */
+document.addEventListener('pointerdown', () => { if (slideNow) { try { slideNow.skipTransition(); } catch (e) { /* already over */ } tapCaught = performance.now(); } }, true);
+document.addEventListener('click', (e) => {
+  if (!tapCaught || performance.now() - tapCaught > 1500) return;
+  tapCaught = 0;
+  const CTRL = 'button, a, input, select, label, [tabindex]';
+  if (e.target.closest && e.target.closest(CTRL)) return;     /* it reached a control by itself */
+  const x = e.clientX, y = e.clientY; e.stopPropagation(); e.preventDefault();
+  const pass = (tries) => { const t = document.elementFromPoint(x, y); const c = t && t.closest(CTRL); if (c) { if (c.matches('input, select, textarea')) c.focus(); else c.click(); } else if (tries) requestAnimationFrame(() => pass(tries - 1)); };
+  pass(3);
+}, true);
+function swapScreen(root, node, how, after) {
+  const old = root.firstElementChild && !root.firstElementChild.classList.contains('fo-leaving') ? root.firstElementChild : null;
+  const seq = ++screenSeq;
+  const keep = !!(old && old.classList.contains('fo-itemscreen') && node.classList.contains('fo-itemscreen'));
+  const focusHead = () => { const hd = node.querySelector('h1'); if (hd) { hd.tabIndex = -1; try { hd.focus({ preventScroll: true }); } catch (e) { /* not focusable */ } } };
+  const put = () => { root.textContent = ''; root.classList.remove('fo-sliding'); root.appendChild(node); if (after) after(); focusHead(); };
+  if (!old || (how !== 'fwd' && how !== 'back')) { put(); return seq; }
+  node.classList.add('fo-still');
+  const de = document.documentElement;
+  /* a screen with the guess strip slides by hand: its drag starts on the pointer going down, which a View Transition would keep from it */
+  if (document.startViewTransition && !SLIDE_BY_HAND && !node.querySelector('.fo-strip')) {
+    de.dataset.foSlide = how; if (keep) de.dataset.foKeep = ''; else delete de.dataset.foKeep;
+    try {
+      const t = document.startViewTransition(put); slideNow = t;
+      t.finished.finally(() => { if (slideNow === t) slideNow = null; if (seq === screenSeq) { delete de.dataset.foSlide; delete de.dataset.foKeep; } });
+      return seq;
+    } catch (e) { delete de.dataset.foSlide; delete de.dataset.foKeep; put(); return seq; }
+  }
+  /* by hand: the same two screens overlapping for --m-base */
+  const rr = root.getBoundingClientRect(), r = old.getBoundingClientRect();
+  [...root.children].forEach((c) => { if (c !== old) c.remove(); });
+  root.classList.add('fo-sliding');
+  old.style.left = (r.left - rr.left) + 'px'; old.style.top = (r.top - rr.top) + 'px'; old.style.width = r.width + 'px';
+  old.classList.add('fo-leaving', how === 'fwd' ? 'fo-slide-out-l' : 'fo-slide-out-r'); if (keep) old.classList.add('fo-keepframe');
+  old.inert = true; old.setAttribute('aria-hidden', 'true');
+  node.classList.add(how === 'fwd' ? 'fo-slide-in-r' : 'fo-slide-in-l'); if (keep) node.classList.add('fo-keepframe');
+  root.insertBefore(node, old);
+  if (after) after(); focusHead();
+  setTimeout(() => { old.remove(); if (!root.querySelector('.fo-leaving')) root.classList.remove('fo-sliding'); }, M.base + 40);
+  return seq;
+}
+/* rise: a sheet comes up and goes back down (closing waits for its --m-base, then closes) */
+function openSheet(d) { if (!d || !d.showModal) return; d.classList.remove('fo-closing'); if (!d.open) d.showModal(); }
+function closeSheet(d) {
+  if (!d || !d.open || d.classList.contains('fo-closing')) return;
+  d.classList.add('fo-closing');
+  let shut = false; const end = () => { if (shut) return; shut = true; d.classList.remove('fo-closing'); if (d.open) d.close(); };
+  d.addEventListener('animationend', end, { once: true }); setTimeout(end, M.base + 60);
+}
+document.addEventListener('cancel', (e) => { const d = e.target; if (d && d.tagName === 'DIALOG' && d.open && document.body.dataset.g === 'findout') { e.preventDefault(); closeSheet(d); } }, true);
+
 /* one call to a server with two addresses (see API_ADDR): the first address's failure to answer at all, before it has ever
    answered, moves the page to the second; any answer, even an error, settles it */
 async function reach(a, path, o, ms) {
@@ -153,8 +299,8 @@ async function hello() {
 
 /* ------------------------------------------------------------------ dialogs ------ */
 function wireDialogs(root) {
-  root.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => { const d = document.getElementById(b.dataset.open); if (d && d.showModal) d.showModal(); }));
-  root.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => b.closest('dialog').close()));
+  root.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => openSheet(document.getElementById(b.dataset.open))));
+  root.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => closeSheet(b.closest('dialog'))));
 }
 function sheet(id, title, bodyHtml) {
   let d = document.getElementById(id);
@@ -180,10 +326,10 @@ function deleteLink() {
     d.querySelector('#del-yes').addEventListener('click', async () => {
       const st = load(); const id = st.id, sent = !!st.uploaded.at;
       try { if (sent) await api('/delete', { id }); } catch (e) { /* the server did not answer: the local copy still goes */ }
-      wipe(); d.close(); const how = document.getElementById('dlg-how'); if (how && how.open) how.close();
+      wipe(); closeSheet(d); closeSheet(document.getElementById('dlg-how'));
       const root = document.getElementById('fo'); root.textContent = ''; root.appendChild(el('p', 'fo-lede', P.deleted));
     });
-    d.showModal();
+    openSheet(d);
   });
   return b;
 }
@@ -215,26 +361,28 @@ function strip(opts) {
   const w = el('div', 'fo-strip');
   const rail = el('div', 'fo-strip-rail' + (opts.bands ? ' bands' : ''));
   const dot = el('div', 'fo-strip-dot' + (opts.ring ? ' ring' : '') + (opts.still ? ' still' : ''));
-  dot.style.left = (opts.p * 100) + '%';
+  setP(dot, opts.p);
   w.appendChild(rail);
-  if (opts.guess !== undefined && opts.guess !== null) { const ring = el('div', 'fo-strip-dot ring still'); ring.style.left = (opts.guess * 100) + '%'; ring.setAttribute('aria-hidden', 'true'); w.appendChild(ring); }
+  if (opts.guess !== undefined && opts.guess !== null) { const ring = el('div', 'fo-strip-dot ring still'); setP(ring, opts.guess); ring.setAttribute('aria-hidden', 'true'); w.appendChild(ring); }
   w.appendChild(dot);
   if (opts.drag) {
     let active = false;
     const set = (clientX, done) => {
       const r = w.getBoundingClientRect(); let p = (clientX - r.left) / r.width; p = Math.min(1, Math.max(0, p));
       if (opts.snap) p = Math.round(p * opts.snap) / opts.snap;
-      dot.style.left = (p * 100) + '%'; opts.drag(p, done);
+      setP(dot, p); opts.drag(p, done);
     };
-    w.addEventListener('pointerdown', (e) => { active = true; dot.classList.add('drag'); w.setPointerCapture(e.pointerId); set(e.clientX, false); });
-    w.addEventListener('pointermove', (e) => { if (active) set(e.clientX, false); });
+    /* a tap sends the marker gliding there (--m-base, --e-spring); once the finger moves, the marker follows it directly */
+    let x0 = 0;
+    w.addEventListener('pointerdown', (e) => { active = true; x0 = e.clientX; w.setPointerCapture(e.pointerId); set(e.clientX, false); });
+    w.addEventListener('pointermove', (e) => { if (!active) return; if (!dot.classList.contains('drag') && Math.abs(e.clientX - x0) > 3) dot.classList.add('drag'); if (dot.classList.contains('drag')) set(e.clientX, false); });
     const up = (e) => { if (!active) return; active = false; dot.classList.remove('drag'); set(e.clientX, true); };
     w.addEventListener('pointerup', up); w.addEventListener('pointercancel', up);
     dot.tabIndex = 0; dot.setAttribute('role', 'slider'); dot.setAttribute('aria-valuemin', '0'); dot.setAttribute('aria-valuemax', '100');
     dot.addEventListener('keydown', (e) => {
-      let p = parseFloat(dot.style.left) / 100; const step = opts.snap ? 1 / opts.snap : 0.05;
+      let p = dot.p; const step = opts.snap ? 1 / opts.snap : 0.05;
       if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') p -= step; else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') p += step; else return;
-      e.preventDefault(); p = Math.min(1, Math.max(0, p)); dot.style.left = (p * 100) + '%'; opts.drag(p, true);
+      e.preventDefault(); p = Math.min(1, Math.max(0, p)); setP(dot, p); opts.drag(p, true);   /* the marker moves on --m-base --e-spring */
     });
   }
   w.dot = dot;
@@ -275,8 +423,21 @@ function gamePage(n) {
   counter('start');
   let play = st.games[n] && !st.games[n].result ? st.games[n] : null;   /* a game left half-way resumes */
 
-  function show(node) { root.textContent = ''; root.appendChild(node); wireDialogs(node); root.classList.toggle('fo-wide', node.classList.contains('fo-reveal')); window.scrollTo({ top: 0, behavior: 'instant' }); }
-  function nav(count, i) { const p = el('div', 'fo-progress'); for (let k = 0; k < count; k++) p.appendChild(el('i', k < i ? 'on' : '')); return p; }
+  /* how: 'fwd' / 'back' between the steps of the game (slide); nothing: the screen enters (the card, a result) */
+  function show(node, how) { return swapScreen(root, node, how, () => { wireDialogs(node); root.classList.toggle('fo-wide', node.classList.contains('fo-reveal')); window.scrollTo({ top: 0, behavior: 'instant' }); }); }
+  /* the progress glides from where the last question left it (5 Nov 2026) */
+  let lastP = null;
+  function nav(count, i) {
+    const p = el('div', 'fo-progress'); for (let k = 0; k < count; k++) p.appendChild(el('i', k < i ? 'on' : ''));
+    const fill = el('span', 'fill'); fill.setAttribute('aria-hidden', 'true'); for (let k = 0; k < count; k++) fill.appendChild(el('b')); p.appendChild(fill);
+    const to = i / count, from = lastP === null ? to : lastP; lastP = to;
+    p.style.setProperty('--p', String(from));
+    if (from !== to) requestAnimationFrame(() => requestAnimationFrame(() => p.style.setProperty('--p', String(to))));
+    return p;
+  }
+  /* select: the answer's colour sweeps in (CSS), then a short wait, then the next screen; a second tap meanwhile replaces the first,
+     and Back meanwhile wins */
+  function after(choice, go) { const mine = screenSeq; clearTimeout(after.t); after.t = setTimeout(() => { if (mine === screenSeq) go(); }, choice ? (reduced() ? SELECT_WAIT : M.fast + SELECT_WAIT) : 0); }
 
   /* ---- 1. the game card ---- */
   function card() {
@@ -290,7 +451,7 @@ function gamePage(n) {
     if (!done) w.appendChild(el('p', 'fo-once', C.shared.once_line));
     const acts = el('div', 'fo-actions fo-bottom');
     const b = el('button', 'btn solid', done ? U.see_result : (play ? U.carry_on : U.start)); b.type = 'button';
-    b.addEventListener('click', () => done ? reveal(st.games[n], true) : begin());
+    b.addEventListener('click', () => done ? reveal(st.games[n], true) : begin('fwd'));
     acts.appendChild(b); w.appendChild(acts);
     helpSheet();
     return w;
@@ -304,7 +465,7 @@ function gamePage(n) {
     w.appendChild(el('p', 'fo-quiet', R.play_again_note));
     const acts = el('div', 'fo-actions fo-bottom');
     const b = el('button', 'btn solid', R.play_again); b.type = 'button';
-    b.addEventListener('click', () => { archivePlay(n); play = null; begin(); });
+    b.addEventListener('click', () => { archivePlay(n); play = null; begin('fwd'); });
     const see = el('button', 'fo-help-btn', U.see_result); see.type = 'button'; see.addEventListener('click', () => reveal(st.games[n], true));
     acts.appendChild(b); acts.appendChild(see); w.appendChild(acts);
     helpSheet();
@@ -318,11 +479,11 @@ function gamePage(n) {
     sheet('dlg-help', cg.name, lines.map((l) => `<p>${l}</p>`).join(''));
   }
 
-  function begin() {
-    if (NEEDS_COUNTRY[n] && !st.country_asked) return countryTap();
+  function begin(how) {
+    if (NEEDS_COUNTRY[n] && !st.country_asked) return countryTap(how);
     if (!play) { play = { started: Date.now(), answers: {}, times: {}, positions: {}, order: shuffledKeys(), guess: null, lang: LANG, v: ITEM_VERSION }; st.games[n] = play; save(); }
-    if (cg.guess && play.guess === null) return guess();
-    items(0);
+    if (cg.guess && play.guess === null) return guess(how);
+    items(0, how);
   }
   function keyOf(it) { if (n === 7 && it.filler) return 'grandmother'; return String(it.id !== undefined ? it.id : (it.position !== undefined ? it.position : it.n)); }
   function shuffledKeys() {
@@ -333,25 +494,26 @@ function gamePage(n) {
   }
 
   /* ---- the country tap, before the first game that needs a country ---- */
-  function countryTap() {
+  function countryTap(how) {
     const ct = C.games[2].country_tap;
     const hc = countryOf(st.header_country);
     const w = el('section', 'fo-screen');
-    const finish = (iso) => { st.country = iso; st.country_asked = true; save(); begin(); };
+    const finish = (iso) => { st.country = iso; st.country_asked = true; save(); begin('fwd'); };
+    const pick = (b, go) => { b.parentNode.querySelectorAll('.on').forEach((x) => x.classList.remove('on')); b.classList.add('on'); after(true, go); };
     if (hc) {
       w.appendChild(el('h1', 'fo-title', U.are_you_form === 'are_you' ? hc.are_you : tpl(U.are_you, { x: U.are_you_form === 'from' ? hc.from : hc.nationality })));
       const acts = el('div', 'fo-choices two');
-      const yes = el('button', 'btn ghost', ct.yes); yes.type = 'button'; yes.addEventListener('click', () => finish(hc.iso));
-      const no = el('button', 'btn ghost', ct.no); no.type = 'button'; no.addEventListener('click', () => show(whereFrom()));
+      const yes = el('button', 'btn ghost', ct.yes); yes.type = 'button'; yes.addEventListener('click', () => pick(yes, () => finish(hc.iso)));
+      const no = el('button', 'btn ghost', ct.no); no.type = 'button'; no.addEventListener('click', () => pick(no, () => show(whereFrom(), 'fwd')));
       acts.appendChild(yes); acts.appendChild(no); w.appendChild(acts);
-      show(w);
-    } else show(whereFrom());
+      show(w, how);
+    } else show(whereFrom(), how);
     function whereFrom() {
       const v = el('section', 'fo-screen');
       v.appendChild(el('h1', 'fo-title', ct.where));
       v.appendChild(el('p', 'fo-quiet', ct.optional));
       const skip = el('button', 'chip', ct.skip); skip.type = 'button'; skip.style.marginTop = '10px';
-      skip.addEventListener('click', () => finish('not said'));
+      skip.addEventListener('click', () => after(false, () => finish('not said')));
       v.appendChild(skip);
       const box = el('input', 'fo-search'); box.type = 'search'; box.placeholder = U.type_first_letters; box.setAttribute('aria-label', U.find_country); box.autocomplete = 'off';
       v.appendChild(box);
@@ -362,7 +524,7 @@ function gamePage(n) {
       for (const c of top.concat(sorted.filter((c) => !hc || c.iso !== hc.iso))) {
         const li = el('li'); li.dataset.name = lower(c.name + ' ' + c.nationals + ' ' + c.nationality + ' ' + (c.search || '')); const b = el('button', top.includes(c) ? 'top' : ''); b.type = 'button';
         b.appendChild(el('span', 'flag', c.flag)); b.appendChild(el('span', '', c.name));
-        b.addEventListener('click', () => finish(c.iso)); li.appendChild(b); list.appendChild(li);
+        b.addEventListener('click', () => { list.querySelectorAll('button.on').forEach((x) => x.classList.remove('on')); b.classList.add('on'); after(true, () => finish(c.iso)); }); li.appendChild(b); list.appendChild(li);
       }
       v.appendChild(list);
       return v;
@@ -370,7 +532,7 @@ function gamePage(n) {
   }
 
   /* ---- 2. the guess ---- */
-  function guess() {
+  function guess(how) {
     const w = el('section', 'fo-screen');
     const q = cg.guess.question || C.shared.guess_q;
     w.appendChild(el('p', 'meta', cg.name));
@@ -381,15 +543,14 @@ function gamePage(n) {
     let p = 0.5; let moved = false;
     const read = el('p', 'fo-guess-read', '');
     const names = cg.bands && n !== 6 ? cg.bands.map((b) => b.name) : cg.guess.ends;
-    const s = strip({ p, bands: !!(cg.bands && n !== 6), snap: n === 6 ? 4 : 0, drag: (np, done) => { p = np; moved = true; s.dot.classList.remove('bob'); read.textContent = guessWord(np); go.disabled = false; } });
-    s.dot.classList.add('bob');
+    const s = strip({ p, bands: !!(cg.bands && n !== 6), snap: n === 6 ? 4 : 0, drag: (np, done) => { p = np; moved = true; read.textContent = guessWord(np); go.disabled = false; } });
     low.appendChild(s); low.appendChild(ends(names)); low.appendChild(read);
     w.appendChild(low);
     const acts = el('div', 'fo-actions');
     const go = el('button', 'btn solid', U.my_guess); go.type = 'button'; go.disabled = true;
-    go.addEventListener('click', () => { play.guess = { p, value: n === 6 ? Math.round(p * 4) : toScale(n, p) }; save(); items(0); });
+    go.addEventListener('click', () => { play.guess = { p, value: n === 6 ? Math.round(p * 4) : toScale(n, p) }; save(); items(0, 'fwd'); });
     acts.appendChild(go); low.appendChild(acts);
-    show(w);
+    show(w, how);
     function guessWord(p) {
       if (n === 6) { const k = Math.round(p * 4); return k === 0 ? cg.guess.ends[0] : k === 4 ? cg.guess.ends[1] : ofN(k, 4); }
       if (n === 1) return ofN(Math.round(toScale(1, p)), 5);
@@ -399,7 +560,7 @@ function gamePage(n) {
 
   /* ---- 3. one item per screen ---- */
   function itemByKey(k) { return ig.items.find((it) => keyOf(it) === k); }
-  function items(i) {
+  function items(i, how) {
     const keys = play.order;
     if (i >= keys.length) return afterItems();
     const k = keys[i]; const it = itemByKey(k);
@@ -419,15 +580,15 @@ function gamePage(n) {
     w.appendChild(mid);
     const shown = Date.now();
     play.positions[k] = i;
-    const answer = (value) => { play.answers[k] = value; play.times[k] = Date.now() - shown; save(); setTimeout(() => items(i + 1), value === null ? 0 : (reduced() ? 120 : 420)); };
+    const answer = (value) => { play.answers[k] = value; play.times[k] = Date.now() - shown; save(); after(value !== null, () => items(i + 1, 'fwd')); };
     skip.addEventListener('click', () => answer(null));
     const low = el('div', 'fo-bottom fo-controls');
     low.appendChild(control(it, k, answer));
     const bar = el('div', 'fo-nav');
-    const back = el('button', 'chip', '‹ ' + C.shared.back); back.type = 'button'; back.disabled = i === 0; back.addEventListener('click', () => items(i - 1));
+    const back = el('button', 'chip', '‹ ' + C.shared.back); back.type = 'button'; back.disabled = i === 0; back.addEventListener('click', () => { clearTimeout(after.t); items(i - 1, 'back'); });
     bar.appendChild(back); low.appendChild(bar);
     w.appendChild(low);
-    show(w);
+    show(w, how);
   }
   function itemText(it) { return fill(it.text || ''); }
   function control(it, k, answer) {
@@ -501,9 +662,9 @@ function gamePage(n) {
       const w = el('section', 'fo-screen');
       w.appendChild(el('h1', 'fo-title', cg.seen_before.question));
       const row = el('div', 'fo-choices two');
-      cg.seen_before.options.forEach((o, i) => { const b = el('button', 'btn ghost', o); b.type = 'button'; b.addEventListener('click', () => { play.seen_before = i === 0; save(); afterItems(); }); row.appendChild(b); });
-      const skip = el('button', 'chip', C.shared.skip); skip.type = 'button'; skip.style.marginTop = '12px'; skip.addEventListener('click', () => { play.seen_before = null; save(); afterItems(); });
-      w.appendChild(row); w.appendChild(skip); show(w); return;
+      cg.seen_before.options.forEach((o, i) => { const b = el('button', 'btn ghost', o); b.type = 'button'; b.addEventListener('click', () => { row.querySelectorAll('.on').forEach((x) => x.classList.remove('on')); b.classList.add('on'); play.seen_before = i === 0; save(); after(true, () => afterItems()); }); row.appendChild(b); });
+      const skip = el('button', 'chip', C.shared.skip); skip.type = 'button'; skip.style.marginTop = '12px'; skip.addEventListener('click', () => { play.seen_before = null; save(); after(false, () => afterItems()); });
+      w.appendChild(row); w.appendChild(skip); show(w, 'fwd'); return;
     }
     finish();
   }
@@ -525,11 +686,13 @@ function gamePage(n) {
     reveal(play);
   }
 
-  /* ---- 4. the reveal ---- */
+  /* ---- 4. the reveal: one timeline (5 Nov 2026). The screen enters; the picture plays (the dot travels from the guess to the
+     score and the band name pops; or the bars grow one after another); the lines and the comparison enter; "Did you know"
+     and the rest after the picture; the onward card last. Every element is in its place from the start, so nothing jumps. ---- */
   function reveal(g, again) {
     const res = g.result;
     const w = el('section', 'fo-screen fo-reveal');
-    const circ = circles(n); const mine = circ.querySelectorAll('a')[n - 1]; if (mine && mine.classList.contains('done')) mine.classList.add('fresh');
+    const circ = circles(n); const mine = circ.querySelectorAll('a')[n - 1]; if (mine && mine.classList.contains('done') && !again) mine.classList.add('fresh');   /* pops once, when the game is finished */
     w.appendChild(circ);
     w.appendChild(el('p', 'meta', cg.name));
     if (again && g.finished) { const d = new Date(g.finished), d2 = new Date(g.finished); d2.setMonth(d2.getMonth() + 3); w.appendChild(el('p', 'fo-played-on', C.shared.played_on.replace('{date}', shortDate(d)).replace('{date2}', shortDate(d2)))); }
@@ -538,74 +701,83 @@ function gamePage(n) {
       w.appendChild(el('h1', 'fo-title', C.shared.not_scored));
       const acts = el('div', 'fo-actions');
       const again = el('button', 'btn solid', U.play_again); again.type = 'button';
-      again.addEventListener('click', () => { delete st.games[n]; play = null; save(); begin(); });
+      again.addEventListener('click', () => { delete st.games[n]; play = null; save(); begin('fwd'); });
       acts.appendChild(again); w.appendChild(acts);
       w.appendChild(onward()); show(w); return;
     }
     const score = mainScore(n, res);
-    if (n === 9) {
-      main.appendChild(el('h1', 'fo-title', U.nine_answers));
-      const list = el('div', 'fo-bars');
-      for (const it of G[9].items) {
-        const k = String(it.n); const v = res.items[k];
-        const row = el('div', 'fo-bar' + (v === null ? ' skip' : ''));
-        row.appendChild(el('b', '', dialName(k)));
-        const rail = el('div', 'rail'); const fillEl = el('div', 'fill'); rail.appendChild(fillEl); row.appendChild(rail);
-        const [lo, hi] = k === '3' ? [1, 10] : k === '5' ? [1, 4] : k === '9' ? [1, 2] : [0, 10];
-        const p = v === null ? 0 : (k === '5' ? (4 - v) / 3 : k === '9' ? (v === 1 ? 1 : 0) : (v - lo) / (hi - lo));
-        requestAnimationFrame(() => setTimeout(() => { fillEl.style.width = (p * 100) + '%'; }, 60));
-        row.appendChild(el('small', '', v === null ? C.shared.skipped : dialWord(k, v)));
-        list.appendChild(row);
-        if (v !== null) curveLine(main, `g9.${k}`, v, cg.comparison[k], row, k !== '1');
+    const steps = [M.base];            /* the screen lands first */
+    const curves = [];                 /* the world's curves: the picture waits for their numbers (at most --m-slow × 2) so nothing moves under it */
+    const settle = () => (curves.length ? Promise.race([Promise.all(curves.map((b) => b.ready)), sleep(2 * M.slow)]) : 0);
+    if (n === 9 || n === 1) {
+      main.appendChild(el('h1', 'fo-title', n === 9 ? U.nine_answers : U.five_bars));
+      const list = el('div', 'fo-bars'); const rows = [];
+      const bar = (name, v, p, small, curve) => {
+        const row = held(el('div', 'fo-bar' + (v === null ? ' skip' : '')));
+        row.appendChild(el('b', '', name));
+        const rail = el('div', 'rail'); const fillEl = el('div', 'fill'); fillEl.dataset.w = (p * 100) + '%'; rail.appendChild(fillEl); row.appendChild(rail);
+        row.appendChild(el('small', '', small));
+        list.appendChild(row); rows.push(row);
+        if (curve) curves.push(held(curveLine(main, curve[0], v, curve[1], row, curve[2])));
+        return rail;
+      };
+      if (n === 9) {
+        for (const it of G[9].items) {
+          const k = String(it.n); const v = res.items[k];
+          const [lo, hi] = k === '3' ? [1, 10] : k === '5' ? [1, 4] : k === '9' ? [1, 2] : [0, 10];
+          const p = v === null ? 0 : (k === '5' ? (4 - v) / 3 : k === '9' ? (v === 1 ? 1 : 0) : (v - lo) / (hi - lo));
+          bar(dialName(k), v, p, v === null ? C.shared.skipped : dialWord(k, v), v !== null ? [`g9.${k}`, cg.comparison[k], k !== '1'] : null);
+        }
+      } else {
+        cg.bars.forEach((b, bi) => {
+          const key = TRAITS[bi]; const v = key === 'calm' ? res.calm : res.traits[key];
+          const rail = bar(b.name, v, v === null ? 0 : toP(1, v), v === null ? C.shared.skipped : (v >= 3 ? b.high : b.low), v !== null ? [`g1.${key}`, cg.comparison[bi], bi !== 0] : null);
+          if (bi === 0 && g.guess) { const ring = el('div', 'ring'); ring.style.left = (toP(1, g.guess.value) * 100) + '%'; rail.appendChild(ring); }
+        });
       }
       main.appendChild(list);
-    } else if (n === 1) {
-      main.appendChild(el('h1', 'fo-title', U.five_bars));
-      const bars = el('div', 'fo-bars');
-      cg.bars.forEach((bar, bi) => {
-        const key = TRAITS[bi]; const v = key === 'calm' ? res.calm : res.traits[key];
-        const row = el('div', 'fo-bar' + (v === null ? ' skip' : ''));
-        row.appendChild(el('b', '', bar.name));
-        const rail = el('div', 'rail'); const fillEl = el('div', 'fill'); rail.appendChild(fillEl);
-        if (bi === 0 && g.guess) { const ring = el('div', 'ring'); ring.style.left = (toP(1, g.guess.value) * 100) + '%'; rail.appendChild(ring); }
-        row.appendChild(rail);
-        row.appendChild(el('small', '', v === null ? C.shared.skipped : (v >= 3 ? bar.high : bar.low)));
-        bars.appendChild(row);
-        requestAnimationFrame(() => setTimeout(() => { fillEl.style.width = (v === null ? 0 : toP(1, v) * 100) + '%'; }, 60));
-        if (v !== null) curveLine(main, `g1.${key}`, v, cg.comparison[bi], row, bi !== 0);
-      });
-      main.appendChild(bars);
-      if (g.guess && res.traits.E !== null) main.appendChild(h(`<p class="fo-guessline">${esc(U.g1_prefix || C.shared.you_guessed)} <b>${esc(ofN(Math.round(g.guess.value), 5))}</b> · ${esc(C.shared.you_landed)} <b>${esc(ofN(Math.round(res.traits.E), 5))}</b></p>`));
+      let gl = null;
+      if (n === 1 && g.guess && res.traits.E !== null) gl = main.appendChild(held(h(`<p class="fo-guessline">${esc(U.g1_prefix || C.shared.you_guessed)} <b>${esc(ofN(Math.round(g.guess.value), 5))}</b> · ${esc(C.shared.you_landed)} <b>${esc(ofN(Math.round(res.traits.E), 5))}</b></p>`)));
+      steps.push(settle, stepGrow(rows), stepIn(curves), stepIn(gl));
     } else {
       const bi = bandIndex(n, score); const band = cg.bands[bi];
       const names = cg.bands.map((b) => b.name);
       const gp = g.guess ? (n === 6 ? 1 - g.guess.value / 4 : g.guess.p) : null;
       const s = strip({ p: gp === null ? toP(n, score) : gp, bands: true, guess: gp });
       main.appendChild(s); main.appendChild(ends(names));
-      requestAnimationFrame(() => setTimeout(() => { s.dot.style.left = (toP(n, score) * 100) + '%'; s.dot.style.background = bandColour(n, score); }, 80));
-      const bn = el('h1', 'fo-bandname pop', band.name); bn.style.color = bandColour(n, score); main.appendChild(bn);
-      const lines = el('div', 'fo-lines'); band.lines.forEach((l) => lines.appendChild(el('p', '', l))); main.appendChild(lines);
+      const bn = held(el('h1', 'fo-bandname', band.name)); bn.style.color = bandColour(n, score); main.appendChild(bn);
+      const lines = held(el('div', 'fo-lines')); band.lines.forEach((l) => lines.appendChild(el('p', '', l))); main.appendChild(lines);
+      let gl = null;
       if (g.guess) {
-        if (n === 6) main.appendChild(h(`<p class="fo-guessline">${esc(U.g6_prefix || C.shared.you_guessed)} <b>${esc(tpl(U.g6_guess, { g: g.guess.value }))}</b> · <b>${esc(tpl(U.g6_did, { d: 4 - res.score }))}</b></p>`));
-        else main.appendChild(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${esc(bandName(n, g.guess.value))}</b> · ${esc(C.shared.you_landed)} <b>${esc(band.name)}</b></p>`));
+        if (n === 6) gl = main.appendChild(held(h(`<p class="fo-guessline">${esc(U.g6_prefix || C.shared.you_guessed)} <b>${esc(tpl(U.g6_guess, { g: g.guess.value }))}</b> · <b>${esc(tpl(U.g6_did, { d: 4 - res.score }))}</b></p>`)));
+        else gl = main.appendChild(held(h(`<p class="fo-guessline">${esc(C.shared.you_guessed)} <b>${esc(bandName(n, g.guess.value))}</b> · ${esc(C.shared.you_landed)} <b>${esc(band.name)}</b></p>`)));
       }
+      let expl = [];
       if (n === 6) {
         const ul = el('ul', 'fo-expl');
-        G[6].items.forEach((it, i) => { const li = el('li'); const code = res.codes[String(it.n)]; li.appendChild(el('span', 'mark' + (code === 'correct' ? ' ok' : ''), code === 'correct' ? '✓' : code === 'skipped' ? '–' : '✗')); li.appendChild(el('span', '', cg.explanations[i])); ul.appendChild(li); });
+        G[6].items.forEach((it, i) => { const li = held(el('li')); const code = res.codes[String(it.n)]; li.appendChild(el('span', 'mark' + (code === 'correct' ? ' ok' : ''), code === 'correct' ? '✓' : code === 'skipped' ? '–' : '✗')); li.appendChild(el('span', '', cg.explanations[i])); ul.appendChild(li); expl.push(li); });
         main.appendChild(ul);
       }
       const metric = n === 6 ? 'g6' : `g${n}`;
-      curveLine(main, metric, n === 6 ? res.score : score, cg.comparison);
+      const box = held(curveLine(main, metric, n === 6 ? res.score : score, cg.comparison)); curves.push(box);
+      /* the signature: the dot travels from your guess to where you are, in the band's colour, on the count's curve; then the name pops */
+      steps.push((ctl) => { if (!ctl.done) s.dot.classList.add('glide'); else s.dot.classList.add('still'); setP(s.dot, toP(n, score)); s.dot.style.background = bandColour(n, score); return gp === null ? M.base : M.slow; },
+        stepPop(bn), stepIn([lines, gl]), stepIn(expl), settle, stepIn(box), stepDraw(box));
     }
-    if (st.consent.status !== 'yes') main.appendChild(el('p', 'fo-locked', C.shared.locked));
+    let locked = null;
+    if (st.consent.status !== 'yes') locked = main.appendChild(held(el('p', 'fo-locked', C.shared.locked)));
     facts.appendChild(h(`<div class="fo-fact quiet"><b>${esc(C.shared.looked_at)}</b>${esc(cg.looked_at)}</div>`));
     facts.appendChild(h(`<div class="fo-fact"><b>${esc(C.shared.teaching)}</b>${esc(cg.dyk)}</div>`));
     facts.appendChild(h(`<div class="fo-fact"><b>${esc(C.shared.myth)}</b>${esc(cg.myth)}</div>`));
     facts.appendChild(h(`<p class="fo-fact quiet"><a href="../researchers/#game-${n}">${esc(C.shared.read_study)}</a></p>`));   /* the language's own researcher page, one folder up */
+    [...facts.children].forEach((f) => held(f));
     w.appendChild(main); w.appendChild(facts);
-    const on = onward(); w.appendChild(on);
+    const on = held(onward(!!again)); w.appendChild(on);
+    const roomBox = roomOf() ? held(roomReveal(main, on, g)) : null;
+    if (n === 1 || n === 9) steps.push(stepDraw(main));
+    steps.push(stepIn([locked, roomBox, ...facts.children]), (ctl) => { const t = stepIn(on)(ctl); return Math.max(t, on.play ? on.play(ctl) : 0); });
     show(w);
-    if (roomOf()) roomReveal(main, on, g);
+    sequence(steps, () => w.isConnected);
   }
   /* in a room (stage 2): one bin to the room when the game scores, the room's line under the result once the host
      has revealed, and the next game only when the host opens it */
@@ -616,7 +788,7 @@ function gamePage(n) {
     const orig = next ? { href: next.getAttribute('href'), kicker: kicker.textContent, name: name.textContent, pitch: pitch.textContent } : null;
     const restore = () => { if (!next) return; next.classList.remove('held'); if (orig.href) next.href = orig.href; kicker.textContent = orig.kicker; name.textContent = orig.name; pitch.textContent = orig.pitch; };
     const hold = (text) => { if (!next) return; next.classList.add('held'); next.removeAttribute('href'); kicker.textContent = R.game_of.replace('{n}', String(n)); name.textContent = text; pitch.textContent = ''; };
-    const release = (m) => { if (!next) return; next.classList.remove('held'); next.href = `../${SLUG[m]}/`; kicker.textContent = R.game_of.replace('{n}', String(m)); name.textContent = R.next_in_room.replace('{n}', String(m)).replace(' ▶', ''); pitch.textContent = C.games[m].start_line; };
+    const release = (m) => { if (!next) return; if (next.classList.contains('held')) popOnce(next); next.classList.remove('held'); next.href = `../${SLUG[m]}/`; kicker.textContent = R.game_of.replace('{n}', String(m)); name.textContent = R.next_in_room.replace('{n}', String(m)).replace(' ▶', ''); pitch.textContent = C.games[m].start_line; };
     hold(R.waiting_host);   /* held from the first moment, before the room has even answered: nobody goes on without the host */
     const stop = roomWatch(rm.code, async (s) => {
       if (!s || s.step === 'ended') { line.textContent = R.player_ended; roomLeave(); restore(); stop(); return; }
@@ -626,6 +798,7 @@ function gamePage(n) {
       else if (s.game && s.game !== n) release(s.game);   /* played already or not: the room's game is the next thing to open */
       else if (s.game === n && s.step === 'reveal') hold(R.waiting_next);
     });
+    return box;
   }
   function dialName(k) { return U.dials[k]; }
   function dialWord(k, v) {
@@ -634,7 +807,7 @@ function gamePage(n) {
     if (k === '2' || k === '3') return tpl(U.step, { v });
     return ofN(v, 10);
   }
-  function onward() {
+  function onward(again) {
     const done = doneGames().length; const nx = nextGame(n);
     const card = el('section', 'onward fo-onward');
     const top = el('div', 'onward-top'); top.appendChild(el('h2', '', nx ? tpl(U.n_done, { done }) : U.all_done));
@@ -649,19 +822,33 @@ function gamePage(n) {
     all.appendChild(el('span', 'onward-all-name', U.all_games));
     all.appendChild(h('<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'));
     card.appendChild(all);
+    /* a game just finished: its pip pops and the "left" number counts down by one as the card arrives */
+    card.play = (ctl) => {
+      if (again === undefined || again || !isDone(n)) return 0;
+      const pip = pips.children[ORDER.indexOf(n)]; if (pip && !ctl.done) { pip.style.setProperty('--d', M.fast + 'ms'); pip.classList.add('fresh'); }
+      const num = top.querySelector('.onward-count b');
+      return count(9 - done + 1, 9 - done, (v) => { num.textContent = String(Math.round(v)); }, ctl);
+    };
     return card;
   }
 
   /* the world's curve under a result: public, no ID; the country's after the yes */
-  async function curveLine(w, metric, value, template, anchor, quietWait) {
+  /* returns the box at once (the reveal's timeline holds it in place); box.ready settles when the world's numbers are in. A curve
+     that arrives after its turn in the timeline draws on arrival; the pool lines that come later enter as they come */
+  function curveLine(w, metric, value, template, anchor, quietWait) {
     const box = el('div', 'fo-curve' + (anchor ? ' inline' : ''));
     const svgWrap = el('div'); box.appendChild(svgWrap);
     const line = el('p', 'fo-curve-line', ''); box.appendChild(line);
     if (anchor) anchor.after(box); else w.appendChild(box);
+    let ready; box.ready = new Promise((r) => { ready = r; });
+    const late = () => !box.classList.contains('fo-hold');
+    const extra = (e) => { if (late()) e.classList.add('fo-in'); box.appendChild(e); };
+    (async () => {
     try {
       const r = await api('/curve?m=' + encodeURIComponent(metric));
       if (!r || !r.n || r.n < r.opens_at) { line.className = 'fo-curve-line fo-curve-wait'; line.textContent = quietWait ? '' : soFar(r ? r.n : 0, r ? r.opens_at : 30); }
-      else { svgWrap.appendChild(curveSvg(r, value)); line.textContent = pctWord(template, pctOf(metric, r, value)); }
+      else { svgWrap.appendChild(curveSvg(r, value)); line.textContent = pctWord(template, pctOf(metric, r, value)); if (late()) requestAnimationFrame(() => box.querySelectorAll('.fo-drawing').forEach((p) => p.classList.add('go'))); }
+      ready();
       if (pendingUpload) await pendingUpload;
       if (st.consent.status === 'yes' && st.uploaded.at) {
         const pools = [];
@@ -670,12 +857,14 @@ function gamePage(n) {
         for (const pl of pools) {
           try {
             const c = await api('/pool', { id: st.id, m: metric, pool: pl.pool });
-            if (c && c.n >= c.opens_at) box.appendChild(el('p', 'fo-curve-line', forPool(pctWord(template, pctOf(metric, c, value)), pl.kind)));
-            else if (c) box.appendChild(el('p', 'fo-curve-wait', `${poolName(pl.kind)}${COLON}${soFar(c.n, c.opens_at)}`));
+            if (c && c.n >= c.opens_at) extra(el('p', 'fo-curve-line', forPool(pctWord(template, pctOf(metric, c, value)), pl.kind)));
+            else if (c) extra(el('p', 'fo-curve-wait', `${poolName(pl.kind)}${COLON}${soFar(c.n, c.opens_at)}`));
           } catch (e) { /* the pools are extra; the world's line already stands */ }
         }
       }
-    } catch (e) { line.className = 'fo-curve-line fo-curve-wait'; line.textContent = C.shared.curve_waiting; }
+    } catch (e) { line.className = 'fo-curve-line fo-curve-wait'; line.textContent = C.shared.curve_waiting; ready(); }
+    })();
+    return box;
   }
   function pctOf(metric, r, v) {
     if (metric === 'g9.7' || metric === 'g9.8' || metric === 'g9.5') return percentAbove(r, v);   /* a higher number, or a less interested code */
@@ -694,7 +883,7 @@ function gamePage(n) {
     for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i]; const cx = ((x0 + x1) / 2).toFixed(1); d += `C${cx},${y0.toFixed(1)} ${cx},${y1.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)} `; }
     d += `L${pts[pts.length - 1][0]},${H - 6} Z`;
     const x = pad + ((v - r.lo) / ((r.bins.length - 1) * r.step)) * (W - 2 * pad);
-    return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(tpl(U.where_you_stand, { n: fmt(r.n) }))}"><path class="draw" d="${d}" fill="var(--tint)" stroke="var(--c)" stroke-width="2" stroke-linejoin="round"/><line x1="${x.toFixed(1)}" y1="4" x2="${x.toFixed(1)}" y2="${H - 4}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="${x.toFixed(1)}" cy="8" r="5" fill="var(--c)"/></svg>`);
+    return h(`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(tpl(U.where_you_stand, { n: fmt(r.n) }))}"><path class="fo-drawing" pathLength="100" d="${d}" fill="var(--tint)" stroke="var(--c)" stroke-width="2" stroke-linejoin="round"/><line x1="${x.toFixed(1)}" y1="4" x2="${x.toFixed(1)}" y2="${H - 4}" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="${x.toFixed(1)}" cy="8" r="5" fill="var(--c)"/></svg>`);
   }
 
   /* a finished game opens on its result (Khayyam, 23 Oct: no empty screen with a small button); a game not started, or left half-way, on its card.
@@ -795,15 +984,18 @@ function homePage() {
   w.appendChild(el('p', 'fo-lede', C.home.start_lede));
   if (done === 0) w.appendChild(el('p', 'fo-once', C.shared.once_line));
   w.appendChild(circles(null, ''));
-  if (done > 0 && done < 9) w.appendChild(el('p', 'fo-count', progressLine(done)));
+  const seenBefore = seenMarks();
+  if (done > 0 && done < 9) { const pl = w.appendChild(el('p', 'fo-count', progressLine(done))); const was = seenBefore.filter((k) => isDone(k)).length; if (was < done) { const m = minutesLeft(); countIn(pl, (m === 1 ? U.progress_line_1 : U.progress_line).replace('{m}', String(m)), 'done', done, was); } }   /* "3 of 9" ticks up from the last visit's number */
   const found = el('p', 'fo-count fo-found', ''); w.appendChild(found);
-  api('/counter').then((r) => { if (r && r.played >= 1) found.textContent = C.home.found_out.replace('{n}', fmt(r.played)); }).catch(() => {});
+  /* the counter counts up from 0 the first time it shows (its line keeps its height before the number arrives) */
+  api('/counter').then((r) => { if (r && r.played >= 1) { found.classList.add('fo-faded'); countIn(found, C.home.found_out, 'n', r.played, 0); } }).catch(() => {});
   const acts = el('div', 'fo-actions');
   const nx = nextGame(null);
   const start = el('a', 'btn solid', done === 0 ? C.home['Start button'] : nx ? C.home['Returning player, nothing done yet'] : C.shared.see_portrait);
   start.href = nx ? `${SLUG[nx]}/` : 'portrait/';
   acts.appendChild(start); w.appendChild(acts);
-  if (done >= 2 && st.consent.status === null) w.appendChild(consentCard(() => { homePage(); }, { imgBase: UP + '../' }));
+  let consent = null;
+  if (done >= 2 && st.consent.status === null) consent = w.appendChild(held(consentCard(() => { homePage(); }, { imgBase: UP + '../' })));
   w.appendChild(el('h2', 'fo-card-h', C.home['Pick-any-game list heading'])).style.cssText = 'margin-top:22px;font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-0.02em';
   const ul = el('ul', 'fo-list');
   for (const n of ORDER) {
@@ -826,6 +1018,16 @@ function homePage() {
   w.appendChild(foot);
   howSheet();
   root.textContent = ''; root.appendChild(w); wireDialogs(w);
+  /* a game finished since the last visit: its marks pop, once; the consent card comes up last */
+  const fresh = ORDER.filter((k) => isDone(k) && !seenBefore.includes(k));
+  if (fresh.length && !reduced()) fresh.forEach((k, i) => { const d = (M.base + i * STAGGER) + 'ms'; const c = w.querySelector(`.fo-circles > :nth-child(${ORDER.indexOf(k) + 1})`), m = ul.children[ORDER.indexOf(k)] && ul.children[ORDER.indexOf(k)].querySelector('.n'); for (const x of [c, m]) if (x) { x.style.setProperty('--d', d); x.classList.add('fresh'); } });
+  seenMarks(ORDER.filter((k) => isDone(k)));
+  sequence([M.base, stepIn(consent, { far: true })], () => w.isConnected, { keepOnScroll: true });
+}
+/* which finished games the home has already shown (so a mark pops only once); not part of the research store */
+function seenMarks(list) {
+  const KEY = 'lg.findout.marks';
+  try { if (list) { localStorage.setItem(KEY, JSON.stringify(list)); return list; } const v = JSON.parse(localStorage.getItem(KEY)); return Array.isArray(v) ? v : []; } catch (e) { return list || ORDER; }
 }
 
 /* ------------------------------------------------------------------ consent ------ */
@@ -986,7 +1188,7 @@ function figureSvg(r1, bandsOf, opts) {
   const eyeY = cy - 14, eyeDx = 22 + E * 8;
   let dots = '';
   const order = [2, 5, 7, 4, 8];
-  order.forEach((n, i) => { const b = bandsOf(n); if (b === null) return; const a = -Math.PI / 2 + (i / order.length) * Math.PI * 2; const R = 135; const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R; dots += `<circle class="fo-fig-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11" fill="${BAND_COLOURS[b]}" stroke="var(--card)" stroke-width="3"><title>${esc(C.games[n].name)}${COLON}${esc(C.games[n].bands[b].name)}</title></circle>`; });
+  order.forEach((n, i) => { const b = bandsOf(n); if (b === null) return; const a = -Math.PI / 2 + (i / order.length) * Math.PI * 2; const R = 135; const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R; dots += `<circle class="fo-fig-dot" style="--k:${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11" fill="${BAND_COLOURS[b]}" stroke="var(--card)" stroke-width="3"><title>${esc(C.games[n].name)}${COLON}${esc(C.games[n].bands[b].name)}</title></circle>`; });
   return h(`<svg class="fo-figure${opts && opts.animate ? ' draw' : ''}" viewBox="0 0 300 300" role="img" aria-label="${esc(U.figure_aria)}">
     <g class="rays">${rayPaths}</g>
     <g transform="rotate(${tilt.toFixed(1)} ${cx} ${cy})">
@@ -1073,7 +1275,34 @@ function guessDial() {
   const w = el('div', 'fo-dial');
   w.appendChild(h(`<svg viewBox="0 0 200 110" role="img" aria-label="${esc(C.portrait.dial)}${COLON}${esc(ofN(right, total))}"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--tint)" stroke-width="16" stroke-linecap="round"/><path class="fo-dial-arc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--c)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="${(p * 100).toFixed(1)} 100"/><line class="fo-dial-needle" x1="100" y1="100" x2="${x}" y2="${y}" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="var(--ink)"/><text x="100" y="92" text-anchor="middle" font-size="26" font-weight="800" fill="var(--ink)" font-family="Bricolage Grotesque, system-ui">${esc(ofN(right, total))}</text></svg>`));
   w.appendChild(el('p', 'fo-quiet', C.portrait.dial));
+  /* count: the number ticks from 0 while the arc draws and the needle swings to it, one curve (5 Nov 2026) */
+  const svg = w.querySelector('svg'), arc = svg.querySelector('.fo-dial-arc'), needle = svg.querySelector('.fo-dial-needle'), txt = svg.querySelector('text');
+  const paint = (k) => { arc.style.setProperty('--off', String(p * 100 * (1 - k))); needle.style.setProperty('--turn', (-180 * p * (1 - k)) + 'deg'); txt.textContent = ofN(Math.round(right * k), total); };
+  w.play = (ctl) => count(0, 1, (k) => paint(k), ctl);   /* until it plays it stands at its final value (and out of sight) */
   return w;
+}
+
+/* a long page that draws itself part by part: each part's timeline starts when the part comes into view, one after another; a
+   part that was scrolled past before its turn lands at once, and a part still playing out of sight finishes when a new one comes
+   into view, so scrolling never waits */
+function playParts(parts, alive) {
+  let running = null; const seen = new Set();
+  const pump = () => {
+    if (running || (alive && !alive())) return;
+    const next = parts.find((x) => x.state === 'wait' && seen.has(x.sec));
+    if (!next) return;
+    for (const x of parts) { if (x === next) break; if (x.state === 'wait') { x.state = 'done'; sequence(x.steps, null, { now: true }); } }
+    next.state = 'run'; running = sequence(next.steps, alive, { keepOnScroll: true }); running.part = next;
+    running.run.then(() => { next.state = 'done'; running = null; pump(); });
+  };
+  if (reduced() || !('IntersectionObserver' in window)) { parts.forEach((x) => { x.state = 'done'; sequence(x.steps, null, { now: reduced() }); }); return; }
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); }
+    if (running && !seen.has(running.part.sec) && parts.some((x) => x.state === 'wait' && seen.has(x.sec))) running.finish();
+    pump();
+    if (parts.every((x) => x.state !== 'wait')) io.disconnect();
+  }, { rootMargin: '0px 0px -10% 0px' });
+  parts.forEach((x) => io.observe(x.sec));
 }
 
 /* ------------------------------------------------------------------ the portrait ------ */
@@ -1097,43 +1326,56 @@ function portraitPage() {
   /* 1. the figure */
   const s1 = story('fo-story-figure');
   s1.appendChild(el('h1', 'fo-title', P.title));
-  s1.appendChild(figureSvg(r1, bandsOf, { animate: true }));
-  const legend = el('div', 'fo-figlegend');
+  const fig = s1.appendChild(figureSvg(r1, bandsOf, { animate: true }));
+  const legend = held(el('div', 'fo-figlegend'));
   [2, 5, 7, 4, 8].forEach((n) => { const b = bandsOf(n); if (b === null) return; const sp = el('span', ''); sp.appendChild(h(`<i style="background:${BAND_COLOURS[b]}"></i>`)); sp.appendChild(document.createTextNode(C.games[n].bands[b].name)); legend.appendChild(sp); });
   s1.appendChild(legend);
   rewritingLine(s1);
+  /* the portrait draws itself part by part (5 Nov 2026): the figure's rays grow out and its five dots pop, then each part below
+     plays its own short timeline when it comes into view */
+  const parts = [];
+  const part = (sec, steps) => { parts.push({ sec, steps, state: 'wait' }); };
+  part(s1, [(ctl) => { if (ctl.done) { fig.classList.remove('draw'); return 0; } fig.classList.replace('draw', 'drawn'); return 2 * M.base + 4 * STAGGER; }, stepIn(legend)]);
 
   /* 2. the bars */
-  const s2 = story(); s2.appendChild(el('h2', '', P.sections.personality));
-  const bars = el('div', 'fo-bars');
-  C.games[1].bars.forEach((bar, bi) => { const key = TRAITS[bi]; const v = key === 'calm' ? r1.calm : r1.traits[key]; const row = el('div', 'fo-bar' + (v === null ? ' skip' : '')); row.appendChild(el('b', '', bar.name)); const rail = el('div', 'rail'); const f = el('div', 'fill'); f.dataset.w = (v === null ? 0 : toP(1, v) * 100) + '%'; f.style.width = '0%'; rail.appendChild(f); row.appendChild(rail); row.appendChild(el('small', '', v === null ? '' : (v >= 3 ? bar.high : bar.low))); bars.appendChild(row); });
+  const s2 = story(); const h2a = s2.appendChild(held(el('h2', '', P.sections.personality)));
+  const bars = el('div', 'fo-bars'); const barRows = [];
+  C.games[1].bars.forEach((bar, bi) => { const key = TRAITS[bi]; const v = key === 'calm' ? r1.calm : r1.traits[key]; const row = held(el('div', 'fo-bar' + (v === null ? ' skip' : ''))); row.appendChild(el('b', '', bar.name)); const rail = el('div', 'rail'); const f = el('div', 'fill'); f.dataset.w = (v === null ? 0 : toP(1, v) * 100) + '%'; rail.appendChild(f); row.appendChild(rail); row.appendChild(el('small', '', v === null ? '' : (v >= 3 ? bar.high : bar.low))); bars.appendChild(row); barRows.push(row); });
   s2.appendChild(bars);
+  part(s2, [stepIn(h2a), stepGrow(barRows)]);
 
   /* 3. the five dots, in their colours */
-  const s3 = story(); s3.appendChild(el('h2', '', P.sections.world));
-  const dv = el('div', 'fo-dots-view');
-  for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = el('div', 'fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm); const sp = strip({ p: 0, bands: true, still: false }); sp.dot.style.background = bandColour(n, v); sp.dot.dataset.p = String(toP(n, v) * 100); row.appendChild(sp); dv.appendChild(row); }
+  const s3 = story(); const h2b = s3.appendChild(held(el('h2', '', P.sections.world)));
+  const dv = el('div', 'fo-dots-view'); const dotRows = [];
+  for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = held(el('div', 'fo-dot-row')); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm); const sp = strip({ p: 0, bands: true, still: false }); sp.dot.style.background = bandColour(n, v); sp.dot.dataset.p = String(toP(n, v)); row.appendChild(sp); dv.appendChild(row); dotRows.push(row); }
   s3.appendChild(dv);
+  /* the five dots glide from the left end to where each answer put you, one after another */
+  part(s3, [stepIn(h2b), (ctl) => { dotRows.forEach((row, i) => { landed(row); const d = row.querySelector('.fo-strip-dot'); if (ctl.done) { d.classList.add('still'); setP(d, +d.dataset.p); return; } row.style.setProperty('--d', (i * STAGGER) + 'ms'); row.classList.add('fo-faded'); d.classList.add('glide'); d.style.transitionDelay = (i * STAGGER) + 'ms'; setP(d, +d.dataset.p); }); return M.slow + (dotRows.length - 1) * STAGGER; }]);
 
   /* 4. people like you: the cards, and One more */
   const picks = portraitLines();
   if (picks.length) {
-    const s4 = story(); s4.appendChild(el('h2', '', P.sections.people)); s4.appendChild(el('p', 'fo-quiet', P.sections.people_intro));
+    const s4 = story(); const h2c = s4.appendChild(held(el('h2', '', P.sections.people))); const intro = s4.appendChild(held(el('p', 'fo-quiet', P.sections.people_intro)));
     const grid = el('div', 'fo-cards');
     const main = picks.slice(0, -1), last = picks[picks.length - 1];
     for (const r of main) { const front = el('div', 'fo-card-face'); const top = el('div'); top.appendChild(iconSvg(CARD_ICON[r.id])); front.appendChild(top); const word = el('div'); word.appendChild(el('b', '', CARD_WORD[r.id] || '')); front.appendChild(word); grid.appendChild(flipCard(front, r.line, r.sources.join('; '))); }
     const front = el('div', 'fo-card-face fo-card-secret'); front.appendChild(el('b', '', P.one_more)); const tapMe = el('span', 'fo-tap'); tapMe.appendChild(h(TURN_ICON)); tapMe.appendChild(document.createTextNode(P.tap_me)); front.appendChild(tapMe);
     grid.appendChild(flipCard(front, last.line, last.sources.join('; '), 'secret'));
     s4.appendChild(grid);
+    const cards = [...grid.children]; cards.forEach((c) => held(c)); const secret = cards.pop();
+    /* the cards come in one after another, and the One more card pops last */
+    part(s4, [stepIn([h2c, intro]), stepIn(cards, { gap: 40 }), stepPop(secret)]);
   }
 
   /* 5. the dial and the own-answer lines */
-  const s5 = story(); s5.appendChild(el('h2', '', P.sections.own));
-  const dial = guessDial(); if (dial) s5.appendChild(dial);
-  const own = ownLines().filter((l) => !/guess/.test(l));
-  if (own.length) { const d = el('div', 'fo-own'); own.forEach((l) => d.appendChild(el('p', '', l))); s5.appendChild(d); }
+  const s5 = story(); const h2d = s5.appendChild(held(el('h2', '', P.sections.own)));
+  const dial = guessDial(); if (dial) s5.appendChild(held(dial));
+  const own = ownLines().filter((l) => !/guess/.test(l)); let ownBox = null;
+  if (own.length) { const d = held(el('div', 'fo-own')); own.forEach((l) => d.appendChild(el('p', '', l))); s5.appendChild(d); ownBox = d; }
   const worldBox = el('div'); s5.appendChild(worldBox);
-  api('/guessed').then((r) => { if (!r || !r.lines || !r.lines.length) return; worldBox.appendChild(el('h2', '', P.sections.guessed)); const d = el('div', 'fo-own'); r.lines.forEach((l) => d.appendChild(el('p', '', l))); worldBox.appendChild(d); }).catch(() => {});
+  api('/guessed').then((r) => { if (!r || !r.lines || !r.lines.length) return; worldBox.classList.add('fo-in'); worldBox.appendChild(el('h2', '', P.sections.guessed)); const d = el('div', 'fo-own'); r.lines.forEach((l) => d.appendChild(el('p', '', l))); worldBox.appendChild(d); }).catch(() => {});
+  /* the dial counts how many guesses landed while its needle swings; the lines after it */
+  part(s5, [stepIn(h2d), dial ? (ctl) => { stepIn(dial)(ctl); return dial.play(ctl); } : 0, stepIn(ownBox)]);
 
   /* 6. the twin and the rarest thing, once the world has a hundred players; the doors; the consent; the rest */
   const s6 = story('fo-story-tail');
@@ -1145,7 +1387,7 @@ function portraitPage() {
     const scored = [2, 3, 4, 5, 6, 7, 8].filter((n) => bandsOf(n) !== null).length;   /* the twin needs all seven, the rarest pair any two */
     if (scored === 7) api('/twin', { id: st.id }).then((r) => {
       if (!r || !r.twin) return;
-      const box = el('div', 'fo-card fo-twin'); box.appendChild(el('b', '', P.twin_label)); box.appendChild(el('p', 'fo-lede', P.twin));
+      const box = el('div', 'fo-card fo-twin fo-in'); box.appendChild(el('b', '', P.twin_label)); box.appendChild(el('p', 'fo-lede', P.twin));
       const two = el('div', 'fo-twin-two');
       const mine = el('div'); mine.appendChild(figureSvg(r1, bandsOf, {})); mine.appendChild(el('small', '', P.compare_you)); two.appendChild(mine);
       const tw = r.twin; const twR1 = tw.bars ? { traits: { E: tw.bars.E, A: tw.bars.A, C: tw.bars.C, N: tw.bars.N, O: tw.bars.O }, calm: tw.bars.N === null ? null : 6 - tw.bars.N } : null;
@@ -1155,7 +1397,7 @@ function portraitPage() {
     if (scored >= 2) api('/rare', { id: st.id }).then((r) => {
       if (!r || !r.pair) return;
       const [a, b] = r.pair.games; const [i, j] = r.pair.bands;
-      special.appendChild(h(`<div class="fo-card fo-rare"><p class="fo-lede">${esc(P.rare.replace('{n}', String(r.pair.share)).replace('{a}', C.games[a].bands[i].name).replace('{b}', C.games[b].bands[j].name))}</p></div>`));
+      special.appendChild(h(`<div class="fo-card fo-rare fo-in"><p class="fo-lede">${esc(P.rare.replace('{n}', String(r.pair.share)).replace('{a}', C.games[a].bands[i].name).replace('{b}', C.games[b].bands[j].name))}</p></div>`));
     }).catch(() => {});
   }
   function extras() {
@@ -1206,22 +1448,19 @@ function portraitPage() {
     /* "Delete my answers" is not on the portrait any more (Khayyam, 22 Oct): it lives under the consent card's "?" and on the code page */
   }
   tailFor(); specials();
+  /* the consent card (or what stands in its place) comes up last, from further down */
+  const tailFirst = [...tail.children]; tailFirst.forEach((c) => held(c));
+  part(s6, [stepIn(tailFirst, { far: true })]);
 
-  /* the curtain, once: the nine circles gather into the figure */
+  /* the curtain, once: the nine circles gather into the middle (5 Nov 2026: about a second in all, on the tokens) */
   root.textContent = ''; root.appendChild(w); wireDialogs(w); root.classList.add('fo-wide');
-  const animateIn = () => {
-    requestAnimationFrame(() => setTimeout(() => {
-      s2.querySelectorAll('.fill').forEach((f, i) => setTimeout(() => { f.style.width = f.dataset.w; }, 120 * i));
-      s3.querySelectorAll('.fo-strip-dot').forEach((d, i) => setTimeout(() => { d.style.left = d.dataset.p + '%'; }, 160 * i));
-      peekCard(w.querySelector('.fo-cards .fo-flip'));
-    }, 60));
-  };
+  const animateIn = () => { playParts(parts, () => w.isConnected); peekCard(w.querySelector('.fo-cards .fo-flip')); };
   if (!st.portrait_seen && !reduced()) {
     const cur = el('div', 'fo-curtain'); cur.appendChild(el('p', 'fo-curtain-text', P.curtain));
     const ring = el('div', 'fo-curtain-ring'); ORDER.forEach((n, i) => { const c = el('i'); c.style.setProperty('--i', String(i)); const b = n === 1 || n === 9 ? null : bandsOf(n); c.style.background = b === null ? 'var(--c)' : BAND_COLOURS[b]; ring.appendChild(c); }); cur.appendChild(ring);
     document.body.appendChild(cur);
-    setTimeout(() => { cur.classList.add('gather'); }, 300);
-    setTimeout(() => { cur.classList.add('out'); st.portrait_seen = true; save(); animateIn(); setTimeout(() => cur.remove(), 600); }, 2600);
+    setTimeout(() => { cur.classList.add('gather'); }, M.fast);
+    setTimeout(() => { cur.classList.add('out'); st.portrait_seen = true; save(); animateIn(); setTimeout(() => cur.remove(), 2000); }, M.fast + 2 * M.slow);   /* gone from the page later: it is clear and lets taps through as soon as it fades */
   } else { st.portrait_seen = true; save(); animateIn(); }
 
   function compared(where) {
@@ -1247,19 +1486,25 @@ function portraitPage() {
       const g = groupMeans[kind]; if (![2, 5, 7, 4, 8].some((n) => g['g' + n] !== undefined && g['g' + n] !== null)) return;
       const traits = {}; for (const t of ['E', 'A', 'C', 'N', 'O']) traits[t] = g['g1.' + t] === undefined ? null : g['g1.' + t];
       const r = { traits, calm: traits.N === null ? null : 6 - traits.N };
-      const d = el('div'); d.appendChild(figureSvg(r, (n) => (g['g' + n] === undefined || g['g' + n] === null ? null : bandIndex(n, g['g' + n])), {})); d.appendChild(el('small', '', label));
+      const d = el('div', 'fo-in'); d.appendChild(figureSvg(r, (n) => (g['g' + n] === undefined || g['g' + n] === null ? null : bandIndex(n, g['g' + n])), {})); d.appendChild(el('small', '', label));
       if (kind === 'country') figs.insertBefore(d, figs.children[1] || null); else figs.appendChild(d);
     };
+    /* the strips first, all seven in place at once (5 Nov 2026: nothing below them jumps as they fill); the group dots pop on and
+       the lines enter as the answers come */
+    const strips = [];
+    for (const n of [2, 3, 4, 5, 6, 7, 8]) {
+      const res = st.games[n].result; if (!res || !res.scored) continue; const v = n === 6 ? res.score : mainScore(n, res);
+      const row = el('div', 'fo-cmp-row fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm);
+      const sp = strip({ p: toP(n, v), bands: true, still: true }); sp.dot.classList.add('grp-you'); sp.dot.style.background = bandColour(n, v); row.appendChild(sp);
+      const lines = el('div'); row.appendChild(lines); rows.appendChild(row);
+      strips.push({ n, v, sp, lines });
+    }
+    const line = (where, cls, text) => where.appendChild(el('p', cls + ' fo-in', text));
     (async () => {
-      /* the strips first: one row per game, the dots arriving as the answers come */
-      for (const n of [2, 3, 4, 5, 6, 7, 8]) {
-        const res = st.games[n].result; if (!res || !res.scored) continue; const v = n === 6 ? res.score : mainScore(n, res);
-        const row = el('div', 'fo-cmp-row fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm);
-        const sp = strip({ p: toP(n, v), bands: true, still: true }); sp.dot.classList.add('grp-you'); sp.dot.style.background = bandColour(n, v); row.appendChild(sp);
-        const lines = el('div'); row.appendChild(lines); rows.appendChild(row);
-        const addDot = (cls, p, title) => { const d = el('div', 'fo-strip-dot still ' + cls); d.style.left = (p * 100) + '%'; d.title = title; d.setAttribute('aria-hidden', 'true'); sp.insertBefore(d, sp.dot); };
-        try { const w = await fetchGroup('world', 'g' + n); if (open(w)) { const m = meanOf(w); groupMeans.world['g' + n] = m; addDot('grp-world', toP(n, m), P.everyone); lines.appendChild(el('p', 'fo-quiet', pctWord(C.games[n].comparison, pctOf(w, v)))); } } catch (e) {}
-        if (cn) { try { const c = await fetchGroup('country', 'g' + n); if (open(c)) { const m = meanOf(c); groupMeans.country['g' + n] = m; addDot('grp-country', toP(n, m), countryName); lines.appendChild(el('p', 'fo-quiet', forPool(pctWord(C.games[n].comparison, pctOf(c, v)), 'country'))); } else if (c) lines.appendChild(el('p', 'fo-quiet', `${countryName}${COLON}${soFar(c.n, c.opens_at)}`)); } catch (e) {} }
+      for (const { n, v, sp, lines } of strips) {
+        const addDot = (cls, p, title) => { const d = el('div', 'fo-strip-dot still ' + cls); setP(d, p); d.title = title; d.setAttribute('aria-hidden', 'true'); sp.insertBefore(d, sp.dot); popOnce(d); };
+        try { const w = await fetchGroup('world', 'g' + n); if (open(w)) { const m = meanOf(w); groupMeans.world['g' + n] = m; addDot('grp-world', toP(n, m), P.everyone); line(lines, 'fo-quiet', pctWord(C.games[n].comparison, pctOf(w, v))); } } catch (e) {}
+        if (cn) { try { const c = await fetchGroup('country', 'g' + n); if (open(c)) { const m = meanOf(c); groupMeans.country['g' + n] = m; addDot('grp-country', toP(n, m), countryName); line(lines, 'fo-quiet', forPool(pctWord(C.games[n].comparison, pctOf(c, v)), 'country')); } else if (c) line(lines, 'fo-quiet', `${countryName}${COLON}${soFar(c.n, c.opens_at)}`); } catch (e) {} }
       }
       /* then the two group figures: their faces from the five bars' averages, their dots from the five games' averages */
       for (const kind of cn ? ['world', 'country'] : ['world']) {
@@ -1311,7 +1556,7 @@ function sharePicture() {
   const d = sheet('dlg-share', P.share, `<p class="quiet"></p><img class="shot" alt="${esc(U.share_alt)}"><div class="actions"><a class="btn solid" id="share-save" download="my-portrait.png">${esc(P.save_picture)}</a><button class="btn ghost" id="share-copy" type="button">${esc(P.copy_link)}</button></div><p class="copied" id="share-copied" role="status"></p>`);
   const url = cv.toDataURL('image/png'); d.querySelector('img').src = url; d.querySelector('#share-save').href = url;
   d.querySelector('#share-copy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(SITE); d.querySelector('#share-copied').textContent = P.link_copied; } catch (e) {} });
-  d.showModal();
+  openSheet(d);
 }
 function roundRect(x, X, Y, W, H, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + W, Y, X + W, Y + H, r); x.arcTo(X + W, Y + H, X, Y + H, r); x.arcTo(X, Y + H, X, Y, r); x.arcTo(X, Y, X + W, Y, r); x.closePath(); }
 
@@ -1341,7 +1586,7 @@ function comparePage() {
   C.games[1].bars.forEach((bar, bi) => {
     const t = TRAITS[bi] === 'calm' ? 'N' : TRAITS[bi]; const fv = bi === 3 ? (f.bars.N === null ? null : 6 - f.bars.N) : f.bars[t]; const mv = r1 ? (bi === 3 ? r1.calm : r1.traits[t]) : null;
     const row = el('div', 'fo-bar'); row.appendChild(el('b', '', bar.name));
-    const rail = el('div', 'rail'); const f1 = el('div', 'fill'); f1.style.width = (mv === null ? 0 : toP(1, mv) * 100) + '%'; rail.appendChild(f1);
+    const rail = el('div', 'rail'); const f1 = el('div', 'fill'); f1.style.setProperty('--w', (mv === null ? 0 : toP(1, mv) * 100) + '%'); rail.appendChild(f1);
     if (fv !== null) { const ring = el('div', 'ring'); ring.style.left = (toP(1, fv) * 100) + '%'; ring.title = P.compare_friend; rail.appendChild(ring); }
     row.appendChild(rail); row.appendChild(el('small', '', `${P.compare_you}${COLON}${U.bar} · ${P.compare_friend}${COLON}${U.ring}`)); bars.appendChild(row);
   });
@@ -1425,12 +1670,12 @@ function langSheet(open) {
       const a = el('a', 'fo-langpick' + (code === LANG ? ' on' : '')); a.lang = code; a.hreflang = code;
       a.appendChild(el('span', 'flag', flag)); a.appendChild(el('b', '', name));
       const to = samePageIn(code); a.href = to || '#';
-      a.addEventListener('click', (e) => { rememberLang(code); if (code === LANG) { e.preventDefault(); d.close(); } });
+      a.addEventListener('click', (e) => { rememberLang(code); if (code === LANG) { e.preventDefault(); closeSheet(d); } });
       list.appendChild(a);
     }
     document.body.appendChild(d); wireDialogs(d);
   }
-  if (open && d.showModal && !d.open) d.showModal();
+  if (open) openSheet(d);
   return d;
 }
 function langChip() {
@@ -1477,6 +1722,7 @@ function adopt(r) {
 /* ------------------------------------------------------------------ start ------ */
 export function start() {
   const root = document.getElementById('fo'); if (!root) return;
+  readTokens();
   /* the language first: a remembered pick opens this page in that language; no pick yet, the sheet asks (and the page shows under it) */
   const want = savedLang();
   if (want && want !== LANG) { const to = samePageIn(want); if (to) { location.replace(to); return; } }
@@ -1566,10 +1812,13 @@ function roomJoinCard(onState) {
   const line = el('p', 'fo-quiet', R.keep_open); box.appendChild(line);
   const act = el('div', 'fo-actions'); box.appendChild(act);
   const leave = el('button', 'fo-help-btn', R.leave); leave.type = 'button'; leave.addEventListener('click', () => { roomLeave(); location.href = location.pathname; }); box.appendChild(leave);
+  let shown = 0, lastGame = null;
   box.update = (s) => {
     act.textContent = '';
-    if (!s || s.step === 'ended') { head.textContent = ''; line.textContent = R.player_ended; roomLeave(); return; }
-    head.textContent = `${R.joined} · ${R.here.replace('{n}', fmt(s.joined))}`;
+    if (!s || s.step === 'ended') { head.classList.remove('fo-waiting'); head.textContent = ''; line.textContent = R.player_ended; roomLeave(); return; }
+    /* the count of phones counts up on each change and pulses while the room waits for its host */
+    countIn(head, `${R.joined} · ${R.here}`, 'n', s.joined, shown); shown = s.joined;
+    head.classList.toggle('fo-waiting', s.step === 'lobby');
     if (s.step === 'lobby') { line.textContent = R.keep_open; return; }
     if (s.game) {
       /* a phone that played this game before the room reached it still counts: its bin goes up by itself, and the
@@ -1579,6 +1828,8 @@ function roomJoinCard(onState) {
       line.textContent = s.step === 'reveal' ? (roomPlayerLine(s.game, s) || R.waiting_next) : '';
       const again = s.step === 'play' && isDone(s.game) && !roomPlayed(s.game);
       const a = el('a', 'btn solid fo-pop', (again ? R.open_again : R.open_game).replace('{n}', String(s.game))); a.href = (document.getElementById('fo').dataset.page === 'home' ? '' : '../') + SLUG[s.game] + '/' + (again ? '#again' : ''); act.appendChild(a);
+      if (s.game !== lastGame) popOnce(a);   /* the host has opened a game: its button pops once */
+      lastGame = s.game;
     } else line.textContent = R.keep_open;
     if (onState) onState(s);
   };
@@ -1599,7 +1850,7 @@ function roomCurveSvg(room, world, n) {
   /* the room's curve, filled, over the world's thin line; both smoothed as in Explore */
   const W = 300, H = 90, pad = 8;
   const path = (r, closed) => { if (!r || !r.bins) return ''; const k = r.bins.length > 9 ? [1, 2, 3, 2, 1] : [1, 2, 1]; const half = (k.length - 1) / 2; const ks = k.reduce((x, y) => x + y, 0); const sm = r.bins.map((_, i, arr) => k.reduce((acc, wgt, j) => acc + wgt * (arr[i + j - half] || 0), 0) / ks / r.n); const top = Math.max(1e-9, ...sm); const pts = sm.map((c, i) => [pad + (i / (sm.length - 1)) * (W - 2 * pad), H - 6 - (c / top) * (H - 18)]); let d = `M${pts[0][0]},${H - 6} L${pts[0][0]},${pts[0][1].toFixed(1)}`; for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i]; const cx = ((x0 + x1) / 2).toFixed(1); d += `C${cx},${y0.toFixed(1)} ${cx},${y1.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`; } return closed ? d + `L${pts[pts.length - 1][0]},${H - 6} Z` : d; };
-  return h(`<svg class="fo-roomcurve" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(C.room.the_room)} · ${esc(C.games[n].name)}">${world ? `<path d="${path(world, false)}" fill="none" stroke="var(--ink)" stroke-opacity=".45" stroke-width="1.5" stroke-dasharray="4 3"/>` : ''}${room ? `<path class="draw" d="${path(room, true)}" fill="var(--c)" fill-opacity=".3" stroke="var(--c)" stroke-width="2.5"/>` : ''}</svg>`);
+  return h(`<svg class="fo-roomcurve" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(C.room.the_room)} · ${esc(C.games[n].name)}">${world ? `<path d="${path(world, false)}" fill="none" stroke="var(--ink)" stroke-opacity=".45" stroke-width="1.5" stroke-dasharray="4 3"/>` : ''}${room ? `<path class="fo-drawing" pathLength="100" d="${path(room, true)}" fill="var(--c)" fill-opacity=".3" stroke="var(--c)" stroke-width="2.5"/>` : ''}</svg>`);
 }
 function roomBandBar(n, chart) {
   const c = roomBandCounts(n, chart); const total = c[0] + c[1] + c[2]; const bar = el('div', 'fo-bandbar');
@@ -1673,6 +1924,7 @@ function roomHostPage(keys) {
   root.textContent = ''; root.appendChild(w); wireDialogs(w);
   const link = `${SITE}room/#${keys.code}`;
   let state = null, stop = null, worldCache = {};
+  let lastKey = null, lastJoined = 0, lastDone = 0;   /* a new step plays its timeline once; a count changing in it only counts */
   const host = async (action) => { const r = await roomApi('/room/' + encodeURIComponent(keys.code) + '/host', { host_key: keys.host_key, action }); if (r && r.ok && r.state) { state = r.state; draw(); } return r; };
   const world = async (n) => { if (worldCache[n] !== undefined) return worldCache[n]; try { const c = await api('/curve?m=' + (n === 1 ? 'g1.E' : 'g' + n)); worldCache[n] = c && c.n >= c.opens_at ? c : null; } catch (e) { worldCache[n] = null; } return worldCache[n]; };
   const forget = () => { try { localStorage.removeItem('lg.findout.room.host'); } catch (e) {} };
@@ -1687,10 +1939,15 @@ function roomHostPage(keys) {
     w.textContent = '';
     if (!state) { w.appendChild(header()); w.appendChild(el('p', 'fo-quiet', '…')); return; }
     const s = state;
+    const key = s.step + ':' + (s.game || 0); const fresh = key !== lastKey; lastKey = key;
+    const hold = (e) => (fresh ? held(e) : e);
+    const joinedFrom = lastJoined, doneFrom = fresh ? 0 : lastDone; lastJoined = s.joined || 0; lastDone = s.done || 0;
     if (s.step === 'lobby') {
       w.appendChild(header());
-      const two = el('div', 'fo-host-two'); const qr = qrSvg(link, R.join_line.replace('{code}', keys.code)); if (qr) two.appendChild(qr);
-      const side = el('div'); side.appendChild(el('p', 'fo-host-count', s.joined ? R.here.replace('{n}', fmt(s.joined)) : R.nobody));
+      const two = el('div', 'fo-host-two'); const qr = qrSvg(link, R.join_line.replace('{code}', keys.code)); if (qr) two.appendChild(hold(qr));
+      const side = el('div'); const cnt = side.appendChild(el('p', 'fo-host-count fo-waiting', ''));
+      if (s.joined) countIn(cnt, R.here, 'n', s.joined, joinedFrom); else cnt.textContent = R.nobody;   /* counts on each change, pulses while people join */
+      if (fresh) sequence([M.fast, stepPop(qr)], () => w.isConnected, { keepOnScroll: true });   /* the code card is in; the QR pops just after */
       side.appendChild(el('p', 'fo-quiet', R.play_too));
       const acts = el('div', 'fo-actions'); const start = el('button', 'btn solid', R.start); start.type = 'button'; start.disabled = !s.joined; start.addEventListener('click', () => host('start')); acts.appendChild(start); side.appendChild(acts);
       two.appendChild(side); w.appendChild(two);
@@ -1699,9 +1956,11 @@ function roomHostPage(keys) {
     if (s.step === 'ended') {
       w.appendChild(el('h1', 'fo-title', R.your_room));
       w.appendChild(el('p', 'fo-lede', R.ended));
-      const bars = el('div', 'fo-roombars');
-      for (const n of [2, 5, 7, 4, 8]) { const ch = s.charts && s.charts[String(n)]; const row = el('div', 'fo-roombar'); row.appendChild(el('b', '', C.games[n].name)); if (ch && ch.bins) row.appendChild(roomBandBar(n, ch)); else row.appendChild(el('span', 'fo-quiet', R.opens_at.replace('{n}', fmt(ch ? ch.n : 0)))); bars.appendChild(row); }
+      const bars = el('div', 'fo-roombars'); const grown = [];
+      for (const n of [2, 5, 7, 4, 8]) { const ch = s.charts && s.charts[String(n)]; const row = el('div', 'fo-roombar'); row.appendChild(el('b', '', C.games[n].name)); if (ch && ch.bins) { const b = row.appendChild(roomBandBar(n, ch)); if (fresh) { b.classList.add('fo-unclip'); grown.push(b); } } else row.appendChild(el('span', 'fo-quiet', R.opens_at.replace('{n}', fmt(ch ? ch.n : 0)))); bars.appendChild(row); }
       w.appendChild(bars);
+      /* the room's five bars grow one after another */
+      if (grown.length) sequence([M.base, (ctl) => { grown.forEach((b, i) => { if (ctl.done) { b.classList.remove('fo-unclip'); return; } b.style.transitionDelay = (i * STAGGER) + 'ms'; b.classList.add('go'); }); return M.slow + (grown.length - 1) * STAGGER; }], () => w.isConnected, { keepOnScroll: true });
       const acts = el('div', 'fo-actions'); const again = el('a', 'btn solid', R.another); again.href = './'; again.addEventListener('click', () => forget()); acts.appendChild(again); w.appendChild(acts);
       if (stop) { stop(); stop = null; }
       return;
@@ -1711,7 +1970,9 @@ function roomHostPage(keys) {
     w.appendChild(el('p', 'meta', `${R.title} · ${R.game_of.replace('{n}', String(n))}`));
     w.appendChild(el('h1', 'fo-title', C.games[n].name));
     w.appendChild(circles(n, '../'));
-    const count = el('p', 'fo-host-count', R.done_of.replace('{done}', fmt(s.done)).replace('{joined}', fmt(s.joined))); w.appendChild(count);
+    const count = el('p', 'fo-host-count', ''); w.appendChild(count);
+    countIn(count, R.done_of.replace('{joined}', fmt(s.joined)), 'done', s.done, doneFrom);
+    count.classList.toggle('fo-waiting', s.step === 'play' && !(s.joined > 0 && s.done >= s.joined));
     if (s.step === 'play') {
       const acts = el('div', 'fo-actions');
       const rev = el('button', 'btn solid', n === 9 ? R.next : R.reveal); rev.type = 'button'; acts.appendChild(rev); w.appendChild(acts);
@@ -1722,20 +1983,26 @@ function roomHostPage(keys) {
     } else {
       const ch = s.charts && s.charts[String(n)];
       const pic = el('div', 'fo-card fo-roompic'); w.appendChild(pic);
+      /* the reveal: the room's curve draws, the names and the legend enter, the band bar grows, the line under it enters, then the buttons */
+      const steps = [M.base]; let acts = null;
       if (n === 9) pic.appendChild(el('p', 'fo-lede', R.done_of.replace('{done}', fmt(s.done)).replace('{joined}', fmt(s.joined))));
       else if (!ch || !ch.bins) pic.appendChild(el('p', 'fo-lede', R.opens_at.replace('{n}', fmt(ch ? ch.n : 0))));
       else {
         const holder = el('div', 'fo-curve'); pic.appendChild(holder);
-        world(n).then((wc) => { holder.appendChild(roomCurveSvg({ bins: ch.bins, n: ch.n }, wc, n)); });
-        const names = el('div', 'fo-ends three'); if (n !== 1) C.games[n].bands.forEach((b) => names.appendChild(el('span', '', b.name))); else { names.className = 'fo-ends'; C.games[1].guess.ends.forEach((e) => names.appendChild(el('span', '', e))); } pic.appendChild(names);
-        const leg = el('div', 'fo-legend'); leg.appendChild(el('span', 'fo-leg a', `${R.the_room} · ${R.in_picture.replace('{n}', fmt(ch.n))}`)); leg.appendChild(el('span', 'fo-leg b', R.the_world)); pic.appendChild(leg);
-        if (n !== 1) { pic.appendChild(roomBandBar(n, ch)); const t = roomTop(n, ch); if (t) pic.appendChild(el('p', 'fo-roomline', R.most.replace('{band}', C.games[n].bands[t.band].name).replace('{pct}', String(t.pct)))); }
+        const curve = world(n).then((wc) => { holder.appendChild(roomCurveSvg({ bins: ch.bins, n: ch.n }, wc, n)); if (!fresh || holder.dataset.late) stepDraw(holder)({ done: true }); });
+        const names = hold(el('div', 'fo-ends three')); if (n !== 1) C.games[n].bands.forEach((b) => names.appendChild(el('span', '', b.name))); else { names.className = 'fo-ends' + (fresh ? ' fo-hold' : ''); C.games[1].guess.ends.forEach((e) => names.appendChild(el('span', '', e))); } pic.appendChild(names);
+        const leg = hold(el('div', 'fo-legend')); leg.appendChild(el('span', 'fo-leg a', `${R.the_room} · ${R.in_picture.replace('{n}', fmt(ch.n))}`)); leg.appendChild(el('span', 'fo-leg b', R.the_world)); pic.appendChild(leg);
+        let bar = null, top = null;
+        if (n !== 1) { bar = pic.appendChild(roomBandBar(n, ch)); if (fresh) bar.classList.add('fo-unclip'); const t = roomTop(n, ch); if (t) top = pic.appendChild(hold(el('p', 'fo-roomline', R.most.replace('{band}', C.games[n].bands[t.band].name).replace('{pct}', String(t.pct))))); }
+        steps.push(() => Promise.race([curve, sleep(2 * M.slow)]), (ctl) => { if (!holder.querySelector('svg')) { holder.dataset.late = '1'; return 0; } return stepDraw(holder, 2 * M.slow)(ctl); },
+          stepIn([names, leg]), bar ? (ctl) => { if (ctl.done) bar.classList.remove('fo-unclip'); else bar.classList.add('go'); return M.slow; } : 0, stepIn(top));
       }
-      const acts = el('div', 'fo-actions');
+      acts = hold(el('div', 'fo-actions'));
       if (n < 9) { const nx = el('button', 'btn solid', R.next_game); nx.type = 'button'; nx.addEventListener('click', () => host('next')); acts.appendChild(nx); }
       const end = el('button', n < 9 ? 'btn ghost' : 'btn solid', R.end); end.type = 'button';
-      end.addEventListener('click', () => { if (n === 9) { host('end'); return; } const d = sheet('dlg-end', R.end, `<p>${esc(R.end_sure)}</p><div class="actions"><button class="btn solid" id="end-yes" type="button">${esc(R.end_yes)}</button><button class="btn ghost" type="button" data-close>${esc(R.end_no)}</button></div>`); wireDialogs(d); d.querySelector('#end-yes').addEventListener('click', () => { d.close(); host('end'); }); d.showModal(); });
+      end.addEventListener('click', () => { if (n === 9) { host('end'); return; } const d = sheet('dlg-end', R.end, `<p>${esc(R.end_sure)}</p><div class="actions"><button class="btn solid" id="end-yes" type="button">${esc(R.end_yes)}</button><button class="btn ghost" type="button" data-close>${esc(R.end_no)}</button></div>`); wireDialogs(d); d.querySelector('#end-yes').addEventListener('click', () => { closeSheet(d); host('end'); }); openSheet(d); });
       acts.appendChild(end); w.appendChild(acts);
+      if (fresh) sequence(steps.concat([stepIn(acts)]), () => w.isConnected, { keepOnScroll: true });
     }
   }
   draw();

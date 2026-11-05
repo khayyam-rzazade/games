@@ -1,16 +1,22 @@
 /* Check-in: the player in a room (chat C, 4 Nov 2026).
    One page for every state of a round: lobby, answering, waiting, reveal, new round, closed. The page asks the room every 2.5 s
    (GET /room/:code) and only redraws when the round, the step or the person's own situation changed; counts update in place.
-   The player's room key is its own random string per room, never the research ID. */
+   The player's room key is its own random string per room, never the research ID.
+   Motion (5 Nov 2026, claude/motion-spec.md 4): a new screen enters; a redraw of the same screen stays still and keeps its
+   place; "{n} here" counts to each new number and pulses softly while the room waits for the host; "Your host has started"
+   and "Round 3 is open" pop once; the waiting ring turns with its count; the reveal enters card after card (group.js). */
 import { el, T, fmt, load, save, hex, api, gone, cleanCode, CODE_LEN, initStrings, langChip, howSheet, smallPrint, wireDialogs, copyText, dayMonth } from './core.js';
 import { runFlow } from './flow.js';
 import { makeEntry, addEntry, fetchComparison, startUpload, resultNode, pageUrl } from './result.js';
-import { groupNode, fewCard } from './group.js';
-import { countRing } from './charts.js';
+import { groupNode, fewCard, groupTimeline } from './group.js';
+import { countRing, countTo } from './charts.js';
+import { screenIn, show, pulse } from './motion.js';
 
 const root = document.getElementById('ck');
 const POLL = 2500;
 let code = null, rs = null, state = null, timer = null, inFlow = false, shown = '', parts = {}, failures = 0, polling = false, rejoining = false;
+let lastScreen = '';                                         /* the screen last drawn: a redraw of the same one does not enter again */
+const once = new Set();                                      /* what has popped or played once on this page: banners, "started", reveals */
 
 const sidesOf = (s) => (s && Array.isArray(s.sides) && s.sides.length === 2 && s.sides.every((x) => typeof x === 'string' && x) ? s.sides : null);
 function entryFor(round) { const hs = load().history; for (let i = hs.length - 1; i >= 0; i--) if (hs[i].room === code && hs[i].round === round) return hs[i]; return null; }
@@ -32,9 +38,15 @@ function codeScreen(msg) {
   const go = el('button', 'btn solid', T('room.join')); go.type = 'submit';
   form.appendChild(inp); form.appendChild(go); w.appendChild(form);
   form.addEventListener('submit', (e) => { e.preventDefault(); const c = cleanCode(inp.value); if (!c) return; if (location.hash === '#' + c) enter(c); else location.hash = c; });
-  mount(w); setTimeout(() => inp.focus({ preventScroll: true }), 50);
+  mount(w, 'code'); setTimeout(() => inp.focus({ preventScroll: true }), 50);
 }
-function mount(node) { root.textContent = ''; root.appendChild(node); wireDialogs(node); window.scrollTo({ top: 0, behavior: 'instant' }); }
+/* screen: what this screen is; the same screen drawn again (fresher numbers, a late comparison) keeps the scroll and stays still */
+function mount(node, screen) {
+  const same = !!screen && screen === lastScreen, y = window.scrollY;
+  lastScreen = screen || '';
+  root.textContent = ''; root.appendChild(node); wireDialogs(node);
+  if (same) window.scrollTo({ top: y, behavior: 'instant' }); else { window.scrollTo({ top: 0, behavior: 'instant' }); screenIn(node); }
+}
 
 /* ------------------------------------------------------------------ joining and polling ------ */
 async function enter(c) {
@@ -42,7 +54,7 @@ async function enter(c) {
   const st = load(); st.rooms = st.rooms || {};
   rs = st.rooms[code] || (st.rooms[code] = { key: hex(16), sides: {} }); rs.sides = rs.sides || {}; rs.seen = Date.now(); save();
   state = null; shown = ''; inFlow = false; failures = 0;
-  const w = el('section', 'ck-screen ck-wait'); w.appendChild(el('p', 'ck-lede', T('room.joining'))); mount(w);
+  const w = el('section', 'ck-screen ck-wait'); w.appendChild(el('p', 'ck-lede', T('room.joining'))); mount(w, 'joining');
   await joinLoop();
 }
 async function joinLoop() {
@@ -55,7 +67,7 @@ async function joinLoop() {
     state = g.ok ? g.state : { code, step: 'closed', round: 1 }; state.step = 'closed'; render(); return;
   }
   if (r.error === 'key') { rs.key = hex(16); save(); }
-  const w = el('section', 'ck-screen ck-wait'); const p = el('p', 'ck-lede', T('room.err')); p.setAttribute('role', 'status'); w.appendChild(p); mount(w);
+  const w = el('section', 'ck-screen ck-wait'); const p = el('p', 'ck-lede', T('room.err')); p.setAttribute('role', 'status'); w.appendChild(p); mount(w, 'err');
   setTimeout(joinLoop, 3000);
 }
 function stopPoll() { clearTimeout(timer); timer = null; }
@@ -116,14 +128,21 @@ function keyOf(ph) {
 }
 function patchCounts() {
   if (parts.ring) parts.ring.update(state.done || 0, state.joined || 0);
-  if (parts.here) parts.here.textContent = T('room.here', { n: fmt(state.joined || 0) });
+  if (parts.here) hereTo(parts.here, state.joined || 0);
+}
+/* "{n} here" counts from the number it shows to the new one */
+function hereTo(node, n) {
+  const say = (v) => T('room.here', { n: fmt(Math.round(v)) });
+  if (node.ckN === undefined || node.ckN === n) node.textContent = say(n); else countTo(node, n, { from: node.ckN, say });
+  node.ckN = n;
 }
 
 function head(ph) {
   const top = el('div', 'ck-roomhead');
   const meta = el('p', 'meta'); meta.appendChild(el('b', '', T('app.chip'))); meta.appendChild(document.createTextNode(T('room.round', { n: rno() })));
   top.appendChild(meta);
-  const here = el('span', 'ck-badge', T('room.here', { n: fmt(state.joined || 0) })); parts.here = here; top.appendChild(here);
+  const here = el('span', 'ck-badge', ''); hereTo(here, state.joined || 0); parts.here = here; top.appendChild(here);
+  pulse(here, ph === 'lobby');                               /* waiting for the host: a soft pulse until the round starts */
   return top;
 }
 
@@ -136,9 +155,11 @@ function draw(ph, sd) {
 
   if (ph === 'lobby' || ph === 'intro') {
     const first = (load().history || []).some((e) => e.room === code);
-    if (first && ((ph === 'lobby' && state.round >= 1) || (ph === 'intro' && state.round >= 2 && !answered))) { const b = el('p', 'ck-banner', T('room.new_round', { n: rno() })); b.setAttribute('role', 'status'); body.appendChild(b); }
+    if (first && ((ph === 'lobby' && state.round >= 1) || (ph === 'intro' && state.round >= 2 && !answered))) { const b = el('p', 'ck-banner', T('room.new_round', { n: rno() })); b.setAttribute('role', 'status'); body.appendChild(b); popOnce(b, 'banner' + rno()); }
     const c = el('section', 'ck-card ck-wait');
-    c.appendChild(el('h1', 'ck-title-s', ph === 'lobby' ? T('room.in') : (state.mode === 'live' ? T('room.round_live') : T('room.round_open'))));
+    const h1 = el('h1', 'ck-title-s', ph === 'lobby' ? T('room.in') : (state.mode === 'live' ? T('room.round_live') : T('room.round_open')));
+    c.appendChild(h1);
+    if (ph === 'intro' && state.mode === 'live') popOnce(h1, 'started' + state.round);
     if (ph === 'lobby') { c.appendChild(el('p', 'ck-quiet', T('room.waiting_start'))); c.appendChild(el('p', 'ck-small', T('room.privacy'))); }
     if (ph === 'intro' && state.mode === 'open' && typeof state.reveal_at === 'number') c.appendChild(el('p', 'ck-quiet', T('room.open_till', { date: dayMonth(state.reveal_at, true) })));
     if (sd) c.appendChild(sidePicker(sd));
@@ -165,15 +186,18 @@ function draw(ph, sd) {
     if (ph === 'reveal-late') { const c = el('section', 'ck-card'); c.appendChild(el('h1', 'ck-title-s', T('room.round_over'))); body.appendChild(c); }
     if (state.charts) {
       const mineE = answered || null;
-      body.appendChild(groupNode(state.charts, { player: true, cmp: mineE && mineE.cmp, mine: mineE ? { who: mineE.who, a: mineE.a, ladder: mineE.a && mineE.a.ladder } : null }));
+      const g = groupNode(state.charts, { player: true, cmp: mineE && mineE.cmp, mine: mineE ? { who: mineE.who, a: mineE.a, ladder: mineE.a && mineE.a.ladder } : null });
+      body.appendChild(g);
+      if (!once.has('reveal' + state.round)) { once.add('reveal' + state.round); groupTimeline(g); }      /* the reveal enters, then the group's number counts */
       if (!state.charts.n || state.charts.n < 10) { /* groupNode already says "not enough yet" */ }
     }
     if (answered) { const h2 = el('h2', 'ck-subh', T('room.your_result')); body.appendChild(h2); body.appendChild(ownResult(answered)); }
     else if (state.step !== 'closed') { /* late: nothing more to do this round */ }
   }
   const leave = el('a', 'ck-link ck-leave', T('room.leave')); leave.href = pageUrl(''); w.appendChild(leave);
-  mount(w);
+  mount(w, ph + '~' + state.round);
 }
+function popOnce(node, key) { if (once.has(key)) return; once.add(key); show(node, 'pop'); }
 
 function sidePicker(sd) {
   const box = el('div', 'ck-sidebox');
@@ -190,8 +214,9 @@ function sidePicker(sd) {
 
 const uploads = new Map();                                  /* one pending upload per check-in, even if the page is drawn twice */
 const uploadFor = (e) => { if (!uploads.has(e.at)) uploads.set(e.at, startUpload(e)); return uploads.get(e.at); };
+const comparisons = new Map();                              /* the comparison on its way, so the result's card fills in place */
 function ownResult(entry) {
-  const cmp = entry.cmp ? Promise.resolve(entry.cmp) : null;
+  const cmp = entry.cmp ? Promise.resolve(entry.cmp) : (comparisons.get(entry.at) || null);
   const node = resultNode(entry, { cmp, upload: (!entry.consent && Date.now() - entry.at < 24 * 3600e3) ? uploadFor(entry) : null, cta: false });
   if (entry.send && entry.send.failed) node.insertBefore(sendCard(entry), node.firstChild);
   else if (entry.send && entry.send.error) { const c = el('section', 'ck-card'); c.appendChild(el('p', 'ck-quiet', T('room.late'))); node.insertBefore(c, node.firstChild); }
@@ -208,6 +233,7 @@ function sendCard(entry) {
 function beginFlow() {
   const round = state.round;
   inFlow = true; stopPoll(); schedule();                   /* keep listening so the counts are fresh at the end, but never redraw */
+  lastScreen = 'flow';
   const a = {};
   runFlow(root, { a, i: 0, onChange() {}, onDone(final) { finish(final, round); } });
 }
@@ -218,8 +244,10 @@ async function finish(a, round) {
   const st = load(); const first = st.history.length === 0;
   st.history = st.history.filter((e) => !(e.room === code && e.round === round));
   const entry = addEntry(makeEntry(a, { room: code, tag: state && state.tag || null, round, side: side === undefined ? null : side, first }));
-  fetchComparison(entry).then(() => { if (!inFlow) { shown = ''; render(); } });
-  const waiting = el('section', 'ck-screen ck-wait'); waiting.appendChild(el('p', 'ck-lede', T('room.joining'))); mount(waiting);
+  /* the comparison fills the result's card where it stands; only a reveal (whose curve shows it too) is drawn again for it */
+  const cmpP = fetchComparison(entry); comparisons.set(entry.at, cmpP);
+  cmpP.then(() => { if (!inFlow && state && state.step !== 'play') { shown = ''; render(); } });
+  const waiting = el('section', 'ck-screen ck-wait'); waiting.appendChild(el('p', 'ck-lede', T('room.joining'))); mount(waiting, 'sending');
   await sendDone(entry);                                   /* if the round ended meanwhile, the answers stay on the phone and the page says so */
   uploadFor(entry);
   shown = ''; render();

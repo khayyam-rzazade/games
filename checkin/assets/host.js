@@ -2,23 +2,42 @@
    Make a room, show the code and QR, start a live or an open round, split the group in two (optional), watch the count, reveal,
    read the lever, tap "We'll try this", start the next round. The host sees the group only: pictures from 10 phones, a split side
    from 10 each. The page is built to be put on a projector (wide layout from 960 px) and used on a phone.
-   The private host link is the key in the address after #; it is kept on this device so the room can be found again. */
-import { el, T, raw, fmt, load, save, api, gone, wrongKey, hostKeyOf, initStrings, langChip, howSheet, smallPrint, wireDialogs, sheet, copyText, qrSvg, lang, barSigned, BAR_IDS, relTime, dayMonth, researchersUrl } from './core.js';
-import { countRing } from './charts.js';
-import { groupNode, lowestOf, byIds, norm } from './group.js';
+   The private host link is the key in the address after #; it is kept on this device so the room can be found again.
+   Motion (5 Nov 2026, claude/motion-spec.md 4): a new screen enters, a redraw of the same one stays still and keeps its place;
+   the room-ready card enters and its QR pops 100 ms later; "{n} here" counts and pulses while people join; the reveal draws
+   the curve, counts the mean, grows the bars, and the lever card enters last (group.js groupTimeline); "Marked." pops. */
+import { el, T, raw, fmt, load, save, api, gone, wrongKey, hostKeyOf, initStrings, langChip, howSheet, smallPrint, wireDialogs, sheet, copyText, qrSvg, lang, barSigned, BAR_IDS, relTime, dayMonth, researchersUrl, closeSheet } from './core.js';
+import { countRing, countTo } from './charts.js';
+import { groupNode, lowestOf, byIds, norm, groupTimeline } from './group.js';
 import { pageUrl } from './result.js';
+import { screenIn, show, pulse } from './motion.js';
 
 const root = document.getElementById('ck');
 document.body.classList.add('ck-wide');
 const POLL = 2500;
 let key = null, code = null, join = null, state = null, data = null, timer = null, shown = '', parts = {}, failures = 0, polling = false, working = false, splitOpen = false;
 const triedNow = {};                                        /* round -> id, as soon as the host taps it (the server copy arrives with the next GET /host) */
+const once = new Set();                                     /* what has popped or played once on this page */
+let lastScreen = '';
 const isNum = (v) => typeof v === 'number' && isFinite(v);
 const keyFromHash = () => hostKeyOf(location.hash.slice(1));
 const sidesOf = (s) => (s && Array.isArray(s.sides) && s.sides.length === 2 && s.sides.every((x) => typeof x === 'string' && x) ? s.sides : null);
 const hostLink = () => pageUrl('host/') + '#' + key;
 const historyLink = () => pageUrl('host/history/') + '#' + key;
-function mount(node) { root.textContent = ''; root.appendChild(node); wireDialogs(node); window.scrollTo({ top: 0, behavior: 'instant' }); }
+/* screen: what this screen is; the same screen drawn again keeps the scroll and stays still, a new one enters */
+function mount(node, screen) {
+  const same = !!screen && screen === lastScreen, y = window.scrollY;
+  lastScreen = screen || '';
+  root.textContent = ''; root.appendChild(node); wireDialogs(node);
+  if (same) window.scrollTo({ top: y, behavior: 'instant' }); else { window.scrollTo({ top: 0, behavior: 'instant' }); screenIn(node); }
+}
+function popOnce(node, k) { if (once.has(k)) return; once.add(k); show(node, 'pop'); }
+/* "{n} here" counts from the number it shows to the new one */
+function hereTo(node, n) {
+  const say = (v) => T('host.here', { n: fmt(Math.round(v)) });
+  if (node.ckN === undefined || node.ckN === n) node.textContent = say(n); else countTo(node, n, { from: node.ckN, say });
+  node.ckN = n;
+}
 function stop() { clearTimeout(timer); timer = null; }
 
 /* ------------------------------------------------------------------ the front: make a room ------ */
@@ -53,7 +72,7 @@ function front(msg) {
     c.appendChild(list); low.appendChild(c);
   }
   w.appendChild(low);
-  mount(w);
+  mount(w, 'front');
 }
 function remember(k, c) {
   const st = load(); st.hosts = st.hosts || [];
@@ -66,11 +85,11 @@ function remember(k, c) {
 /* ------------------------------------------------------------------ opening a room, polling ------ */
 async function openRoom(k, made) {
   key = k; state = null; data = null; shown = ''; failures = 0; stop();
-  const w = el('section', 'ck-screen ck-wait'); w.appendChild(el('p', 'ck-lede', T('host.making'))); mount(w);
+  const w = el('section', 'ck-screen ck-wait'); w.appendChild(el('p', 'ck-lede', T('host.making'))); mount(w, 'opening');
   const r = await api('/host/' + key);
   if (!r.ok) {
     if (gone(r) || wrongKey(r)) return front(T('host.not_found'));
-    const w2 = el('section', 'ck-screen ck-wait'); const p = el('p', 'ck-lede', T('host.error')); p.setAttribute('role', 'status'); w2.appendChild(p); mount(w2);
+    const w2 = el('section', 'ck-screen ck-wait'); const p = el('p', 'ck-lede', T('host.error')); p.setAttribute('role', 'status'); w2.appendChild(p); mount(w2, 'err');
     return void setTimeout(() => openRoom(k, made), 3000);
   }
   data = r; code = r.code; join = r.join || (made && made.join) || pageUrl('room/') + '#' + code;     /* the server hands out the join link; this is only the fallback */
@@ -133,9 +152,13 @@ function render() {
 }
 function patch() {
   if (parts.ring) parts.ring.update(state.done || 0, state.joined || 0);
-  if (parts.here) parts.here.textContent = T('host.here', { n: fmt(state.joined || 0) });
+  if (parts.here) hereTo(parts.here, state.joined || 0);
   if (parts.reveal) { const d = state.done || 0, few = d < 10; parts.revealNote.hidden = !few; parts.revealNote.textContent = T('host.reveal_few', { n: fmt(d) }); }
-  if (parts.all) parts.all.hidden = !((state.joined || 0) > 0 && (state.done || 0) >= (state.joined || 0));
+  if (parts.all) {
+    const all = (state.joined || 0) > 0 && (state.done || 0) >= (state.joined || 0);
+    if (all && parts.all.hidden) show(parts.all, 'pop');                      /* "Everyone is done" pops when it comes */
+    parts.all.hidden = !all;
+  }
 }
 
 function bar() {
@@ -143,7 +166,8 @@ function bar() {
   const meta = el('p', 'meta'); meta.appendChild(el('b', '', T('app.chip'))); meta.appendChild(document.createTextNode(T('host.round', { n: state.step === 'lobby' ? state.round + 1 : state.round })));       /* in the lobby: the round about to start */ top.appendChild(meta);
   const right = el('div', 'ck-hostbar-r'); right.style.cssText = 'display:flex;gap:8px;align-items:center';
   if (state.mode) right.appendChild(el('span', 'ck-badge', state.mode === 'live' ? T('host.mode_live') : T('host.mode_open')));
-  const here = el('span', 'ck-badge', T('host.here', { n: fmt(state.joined || 0) })); parts.here = here; right.appendChild(here);
+  const here = el('span', 'ck-badge', ''); hereTo(here, state.joined || 0); parts.here = here; right.appendChild(here);
+  pulse(here, state.step === 'lobby');                       /* people are joining: a soft pulse until the round starts */
   top.appendChild(right);
   return top;
 }
@@ -161,7 +185,7 @@ function joinCard(full) {
   const line = () => el('p', 'ck-quiet', T('host.code_line', { site: siteLine() }));
   if (full) {
     const two = el('div', 'ck-host-two');
-    const left = el('div'); const qr = qrSvg(join, T('host.qr_label', { code })); if (qr) left.appendChild(qr);
+    const left = el('div'); const qr = qrSvg(join, T('host.qr_label', { code })); if (qr) { left.appendChild(qr); c.qr = qr; }
     const right = el('div'); right.appendChild(line()); right.appendChild(codeShow(code)); right.appendChild(linkRow(join, 'host.copy_join'));
     two.appendChild(left); two.appendChild(right); c.appendChild(two);
   } else {
@@ -181,14 +205,16 @@ function draw() {
   if (state.step === 'lobby') drawLobby(body);
   else if (state.step === 'play') drawPlay(body);
   else drawAfter(body);
-  mount(w);
+  mount(w, state.step + '~' + state.round);
 }
 
 /* --- lobby: the code, the two ways to start, the split --- */
 function drawLobby(body) {
   const grid = el('div', 'ck-grid');
   const left = el('div'), right = el('div');
-  left.appendChild(joinCard(true));
+  const jc = joinCard(true); left.appendChild(jc);
+  /* the room is ready: the card enters with the screen, and the QR pops 100 ms after it */
+  if (jc.qr && !once.has('qr' + code)) { once.add('qr' + code); show(jc.qr, 'pop', 100); }
   const t = triedOf(state.round);
   if (state.round >= 1 && t) { const c = el('section', 'ck-card ck-lever'); c.appendChild(el('p', 'ck-advice-line', T('host.tried_wait', { lever: T('lever.short.' + t) }))); left.appendChild(c); }
   right.appendChild(el('h1', 'ck-title-s', T('host.lobby_h')));
@@ -266,9 +292,12 @@ function drawAfter(body) {
   if (rec) body.appendChild(el('p', 'ck-quiet', T('host.people_rounds', { n: fmt(rec.people || state.done || 0), r: fmt(rounds().length) })));
   if (state.charts) {
     const lowest = lowestOf(state.charts);
-    body.appendChild(groupNode(state.charts, { cmp: data && data.world ? { world: data.world, country: data.country || null } : null, big: true, mark: lowest }));
+    const g = groupNode(state.charts, { cmp: data && data.world ? { world: data.world, country: data.country || null } : null, big: true, mark: lowest });
+    body.appendChild(g);
     const lv = leverCard(lowest, n); if (lv) body.appendChild(lv);
     const mv = movedCard(n); if (mv) body.appendChild(mv);
+    /* the reveal, once per round: the curve draws, the mean counts, the bars grow …, the lever card enters last */
+    if (!once.has('reveal' + n)) { once.add('reveal' + n); groupTimeline(g, [lv, mv].filter(Boolean)); }
   }
   const acts = el('div', 'ck-hostacts');
   if (!closed) {
@@ -276,7 +305,7 @@ function drawAfter(body) {
     next.addEventListener('click', () => {
       const d = sheet('dlg-next', T('host.new_round'), `<p></p><div class="actions"><button class="btn solid" id="next-yes" type="button"></button><button class="btn ghost" type="button" data-close></button></div>`);
       d.querySelector('p').textContent = T('host.next_sure'); d.querySelector('#next-yes').textContent = T('host.next_yes', { n: state.round + 1 }); d.querySelector('[data-close]').textContent = T('host.next_no');
-      d.querySelector('#next-yes').addEventListener('click', async () => { d.close(); next.disabled = true; const ok = await act('next'); if (!ok) next.disabled = false; }, { once: true });
+      d.querySelector('#next-yes').addEventListener('click', async () => { closeSheet(d); next.disabled = true; const ok = await act('next'); if (!ok) next.disabled = false; }, { once: true });
       wireDialogs(d); d.showModal();
     });
     acts.appendChild(next);
@@ -293,7 +322,7 @@ function closeButton(label) {
   cl.addEventListener('click', () => {
     const d = sheet('dlg-close', T('host.close'), `<p></p><div class="actions"><button class="btn solid" id="close-yes" type="button"></button><button class="btn ghost" type="button" data-close></button></div>`);
     d.querySelector('p').textContent = T('host.close_sure'); d.querySelector('#close-yes').textContent = T('host.close_yes'); d.querySelector('[data-close]').textContent = T('host.close_no');
-    d.querySelector('#close-yes').addEventListener('click', async () => { d.close(); await act('close'); }, { once: true });
+    d.querySelector('#close-yes').addEventListener('click', async () => { closeSheet(d); await act('close'); }, { once: true });
     wireDialogs(d); d.showModal();
   });
   return cl;
@@ -308,7 +337,7 @@ function leverCard(lowest, n) {
   c.appendChild(el('p', 'ck-advice-line', T('host.lever.' + lowest)));
   c.appendChild(el('p', 'ck-small', T('host.ask_first')));
   const t = triedOf(n);
-  if (t === lowest) { const p = el('p', 'ck-status ok', T('host.tried', { bar: T('bar.' + lowest) })); p.setAttribute('role', 'status'); c.appendChild(p); }
+  if (t === lowest) { const p = el('p', 'ck-status ok', T('host.tried', { bar: T('bar.' + lowest) })); p.setAttribute('role', 'status'); c.appendChild(p); if (triedNow[n]) popOnce(p, 'tried' + n); }   /* "Marked." pops once, when it was just tapped */
   else if (state.step !== 'closed') {
     const b = el('button', 'btn solid', T('host.try')); b.type = 'button'; b.id = 'ck-try';
     b.addEventListener('click', async () => {

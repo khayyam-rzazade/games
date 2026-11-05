@@ -58,7 +58,18 @@ export async function open(browser, view, scheme, opts = {}) {
   return { ctx, page, errors };
 }
 
-export const shot = async (page, name, o = {}) => { await new Promise((r) => setTimeout(r, o.wait ?? 420)); const f = path.join(OUT, name + '.png'); await page.screenshot({ path: f, fullPage: !!o.full }); return f; };
+/* a full-page shot first reads down the page like a person: the cards below the screen enter as they are reached (5 Nov 2026,
+   the motion), so the picture shows the whole page; then it goes back to where it was */
+export const shot = async (page, name, o = {}) => {
+  await new Promise((r) => setTimeout(r, o.wait ?? 420));
+  if (o.full) {
+    const y = await page.evaluate(() => window.scrollY);
+    for (let k = 0; k < 40; k++) { const end = await page.evaluate(() => { window.scrollBy(0, Math.round(innerHeight * 0.6)); return innerHeight + scrollY >= document.documentElement.scrollHeight - 2; }); await new Promise((r) => setTimeout(r, 90)); if (end) break; }
+    await new Promise((r) => setTimeout(r, 700));
+    await page.evaluate((v) => window.scrollTo(0, v), y); await new Promise((r) => setTimeout(r, 120));
+  }
+  const f = path.join(OUT, name + '.png'); await page.screenshot({ path: f, fullPage: !!o.full }); return f;
+};
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export const post = async (p, body) => (await fetch(API + p, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body || {}) })).json();
 export const get = async (p) => (await fetch(API + p)).json();

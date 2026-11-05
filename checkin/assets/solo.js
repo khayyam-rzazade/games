@@ -2,8 +2,10 @@
    Front -> 20 taps -> result (+ the one-tap room, the research consent card, the end card). Everything personal stays on the phone. */
 import { el, h, T, fmt, load, save, cleanCode, CODE_LEN, initStrings, langChip, howSheet, smallPrint, wireDialogs, stats, dayMonth } from './core.js';
 import { runFlow } from './flow.js';
-import { dialArt } from './charts.js';
+import { dialArt, countTo } from './charts.js';
 import { makeEntry, addEntry, fetchComparison, startUpload, resultNode, pageUrl } from './result.js';
+import { screenIn, show } from './motion.js';
+let counted = false;                                        /* the front's counter counts up the first time it shows on this page */
 
 const root = document.getElementById('ck');
 
@@ -17,9 +19,14 @@ function front() {
   w.appendChild(dialArt());
   const counter = el('p', 'ck-count', ''); w.appendChild(counter);
   const world = el('p', 'ck-small ck-worldline', ''); w.appendChild(world);
+  /* both lines keep their place while the numbers are on their way, then fade in: the counter counts from 0 (once) */
   stats().then((s) => {
-    if (s && typeof s.checked_in === 'number' && s.checked_in >= 1) counter.textContent = T('front.counter', { n: fmt(s.checked_in) });
-    if (s && typeof s.today === 'number' && s.today >= 1 && typeof s.countries === 'number') world.textContent = T('front.world', { n: fmt(s.today), c: fmt(s.countries) });
+    if (s && typeof s.checked_in === 'number' && s.checked_in >= 1) {
+      const say = (v) => T('front.counter', { n: fmt(Math.round(v)) });
+      if (counted) counter.textContent = say(s.checked_in);
+      else { counted = true; show(counter, 'fade'); countTo(counter, s.checked_in, { say }); }
+    }
+    if (s && typeof s.today === 'number' && s.today >= 1 && typeof s.countries === 'number') { world.textContent = T('front.world', { n: fmt(s.today), c: fmt(s.countries) }); show(world, 'fade'); }
   });
 
   const low = el('div', 'ck-bottom');
@@ -28,7 +35,7 @@ function front() {
   const start = el('button', 'btn solid ck-start', draft ? T('front.carry_on') : T('front.start')); start.type = 'button';
   start.addEventListener('click', () => startFlow(false));
   low.appendChild(start);
-  if (draft) { const again = el('button', 'ck-link', T('front.start_over')); again.type = 'button'; again.addEventListener('click', () => startFlow(true)); low.appendChild(again); }
+  if (draft) { const again = el('button', 'ck-link', T('front.start_over')); again.type = 'button'; again.addEventListener('click', () => startFlow(true)); low.appendChild(again); show(start, 'enter', 60); show(again, 'enter', 60); }   /* "Carry on" enters just after the card */
   if (last) {
     const l = el('button', 'ck-last'); l.type = 'button';
     l.appendChild(el('span', '', T('front.last', { score: Math.round(last.who), date: dayMonth(last.at) })));
@@ -51,7 +58,7 @@ function front() {
   join.addEventListener('submit', (e) => { e.preventDefault(); const c = cleanCode(inp.value); if (c) location.href = pageUrl('room/') + '#' + c; });
   low.appendChild(join);
   w.appendChild(low);
-  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+  root.textContent = ''; root.appendChild(w); wireDialogs(w); screenIn(w);
   if (location.hash === '#result') history.replaceState(null, '', location.pathname + location.search);
 }
 
@@ -78,7 +85,7 @@ function finish(a) {
 function showResult(entry, fresh, p) {
   const w = el('section', 'ck-screen ck-resultpage');
   w.appendChild(resultNode(entry, { cmp: p && p.cmp, upload: p && p.upload, cta: true }));
-  root.textContent = ''; root.appendChild(w); wireDialogs(w);
+  root.textContent = ''; root.appendChild(w); wireDialogs(w); screenIn(w);
   window.scrollTo({ top: 0, behavior: 'instant' });
   try { history.replaceState(null, '', location.pathname + location.search + '#result'); } catch (e) { /* no history API */ }
   const back = el('button', 'ck-link ck-toplink', '‹ ' + T('app.chip')); back.type = 'button'; back.addEventListener('click', front);

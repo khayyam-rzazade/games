@@ -110,3 +110,27 @@ Three fresh Fable reviewers read the code, the researcher pages and the words (`
 - `how.kept` names the random code and, in a room, the room and round; the register change and the word review's
   fixes are in the strings files. Tests: `edge.mjs` waits for the no to resolve instead of a fixed pause and checks
   the fresh code; `servers.mjs` seeds yesterday's tally directly (a country's numbers come from completed days only).
+
+## The motion (5 Nov 2026, claude/motion-spec.md; the report is claude/motion-checkin.md)
+
+- **Tokens** at the top of `assets/checkin.css` (`--m-fast/base/slow`, `--e-out/in/spring`), then "the motion": the keyframes
+  and classes of the spec's vocabulary (`ck-enter`, `ck-far`, `ck-leave`, `ck-pop`, `ck-fade`, slides, grow, wipe, rise, pulse),
+  press and select for every tappable thing, the sheets, the view-transition rules. The reduced-motion block lists every one.
+- **`assets/motion.js`** is the only place motion runs from JavaScript, and it reads the tokens from the CSS: `count` (numbers
+  and the needle on one clock), `show`/`hide`/`leave`/`pulse`/`grow`, `sequence` (a timeline: each step waits for the one before;
+  a step below the screen waits to be scrolled to; once the person scrolls, taps or types the gaps shrink to 50 ms), `slide`
+  (View Transitions, else `byHand`), `closeSheet` (the dialog closes at once, a still picture of it sinks, taps go through).
+- **The 20 taps** (`flow.js`): the frame (top line, progress bar) stays; only `.ck-qbody` slides inside `.ck-qstage`. During a
+  view transition only the question and the kicker are pictured (`html[data-ck-slide]`), the rest of the page stays live, and
+  `::view-transition` lets taps through to the new question. Without View Transitions the leaving body stays in the page,
+  inert, for 220 ms, after the new one: a script that looks for `.ck-seg` or `.ck-ladder` should look in
+  `.ck-qbody:not(.ck-going)`. The bar is three rows of the same 20 pills, clipped (`--k`), so it glides without squashing.
+- **The result** is one timeline, `resultTimeline()` in `result.js`; the group's reveal is `groupTimeline()` in `group.js`.
+  Each plays once per check-in (or round) on a page; a redraw of the same screen stays still and keeps its scroll
+  (`mount(node, screen)` in `room.js` and `host.js`). The room no longer redraws when the comparison arrives during the wait:
+  the result's card fills where it stands.
+- Cards that wait for their turn have `ck-pre` (opacity 0, in place, so nothing moves the page). A full-page screenshot
+  taken without scrolling shows them empty: `tests/lib.mjs` `shot(…, { full: true })` reads down the page first.
+- `tests/motion.mjs` records the flows, counts long frames per screen and checks the motion's promises (a tap during a slide or
+  a timeline is taken, Back during the wait after a choice, the sheet lets taps through, reduced motion lands still).
+  `CK_NO_VT=1` runs it on the hand-made slide, `CK_VIDEO=0` without recording (recording costs frames on a small runner).
