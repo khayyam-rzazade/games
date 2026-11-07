@@ -154,6 +154,9 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 @media (prefers-reduced-motion: reduce) { .logicer.checkin .logicer-big { animation: none; -webkit-text-fill-color: #15172B; background: none; } }
 .logicer.checkin .logicer-small { color: rgba(21, 23, 43, .8); }   /* its count, as the Find out box (5 Nov 2026) */
 .logicer.checkin .logicer-small:empty { display: none; }
+/* the Logicer number opens My Logicers (7 Nov 2026) */
+#logicer[href] { text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+#logicer[href]:active { transform: scale(.99); }
 /* the rooms sheet (23 Oct 2026): three rooms, one row each; the code field under the chosen one */
 .rooms-sheet { max-width: 440px; }
 .rooms-list { display: grid; gap: 10px; margin-top: 16px; }
@@ -203,7 +206,12 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
     <!-- the two boxes stop where the longer text stops, both the same width (Khayyam, 22 Oct 2026); on the phone they fill the line as before -->
     <div class="hero-boxes">
-    <div class="logicer" id="logicer" hidden></div>
+    <a class="logicer" id="logicer" hidden></a>
+    <script>/* the number opens My Logicers (7 Nov 2026): the box is a link only while it shows the player's own number */
+    (function () { var b = document.getElementById("logicer"); if (!b) return;
+      function own() { try { var l = JSON.parse(window.localStorage.getItem("turnsout:v1")).world.logicer; return !!(l && l.n > 0); } catch (e) { return false; } }
+      function set() { if (!b.hidden && own()) b.setAttribute("href", "me/"); else b.removeAttribute("href"); }
+      if (window.MutationObserver) new MutationObserver(set).observe(b, { childList: true, attributes: true, attributeFilter: ["hidden"] }); set(); })();</script>
     <!-- Find out about yourself (B2, 22 Oct 2026): the same style as the counter, right under it (Khayyam, 20 Oct) -->
     <a class="logicer findout" id="findout-box" href="find-out/">
       <span class="logicer-label" data-s="home.findout_label">Find out</span>

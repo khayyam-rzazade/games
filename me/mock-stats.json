@@ -1,0 +1,203 @@
+{
+ "logicer": 2418,
+ "since": "2026-10-03",
+ "langs": [
+  "en",
+  "it"
+ ],
+ "days": 52,
+ "games": 401,
+ "spotOn": 95,
+ "pct": 29,
+ "current": 12,
+ "longest": 19,
+ "per": [
+  {
+   "id": "energy",
+   "name": "Same Energy",
+   "played": 36,
+   "current": 12,
+   "longest": 12,
+   "spotOn": 10,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "hundred",
+   "name": "100 of Us",
+   "played": 52,
+   "current": 12,
+   "longest": 19,
+   "spotOn": 14,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "call",
+   "name": "Your Call",
+   "played": 47,
+   "current": 12,
+   "longest": 17,
+   "spotOn": 21,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "cousin",
+   "name": "Long Lost Cousin",
+   "played": 40,
+   "current": 5,
+   "longest": 11,
+   "spotOn": 9,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "club",
+   "name": "The Club",
+   "played": 33,
+   "current": 3,
+   "longest": 8,
+   "spotOn": 12,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "apart",
+   "name": "Years Apart",
+   "played": 38,
+   "current": 12,
+   "longest": 14,
+   "spotOn": 7,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "gets",
+   "name": "Who Gets What",
+   "played": 29,
+   "current": 0,
+   "longest": 9,
+   "spotOn": 6,
+   "best": 0,
+   "last": "2026-11-28"
+  },
+  {
+   "id": "every",
+   "name": "Every Beat",
+   "played": 31,
+   "current": 4,
+   "longest": 10,
+   "spotOn": 11,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "o24",
+   "name": "Out of 24",
+   "played": 26,
+   "current": 0,
+   "longest": 6,
+   "spotOn": 5,
+   "best": 0,
+   "last": "2026-11-30"
+  },
+  {
+   "id": "altitude",
+   "name": "Altitude",
+   "played": 28,
+   "current": 12,
+   "longest": 12,
+   "spotOn": 6,
+   "best": 8,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "lookalike",
+   "name": "Lookalike",
+   "played": 22,
+   "current": 5,
+   "longest": 9,
+   "spotOn": 15,
+   "best": 0,
+   "last": "2026-12-01"
+  },
+  {
+   "id": "passport",
+   "name": "Passport",
+   "played": 19,
+   "current": 3,
+   "longest": 8,
+   "spotOn": 11,
+   "best": 0,
+   "last": "2026-12-01"
+  }
+ ],
+ "words": {
+  "climbs": 28,
+  "highest": 8,
+  "perfect": 6
+ },
+ "story": {
+  "chapters": 21,
+  "votes": 18,
+  "withWorld": 11
+ },
+ "findouts": {
+  "done": 9,
+  "portrait": true
+ },
+ "checkin": {
+  "times": 3,
+  "last": {
+   "date": "2026-11-27",
+   "score": 71,
+   "st": null
+  },
+  "prev": {
+   "date": "2026-11-12",
+   "score": 64,
+   "st": null
+  },
+  "history": [
+   {
+    "date": "2026-11-05",
+    "score": 48
+   },
+   {
+    "date": "2026-11-12",
+    "score": 64
+   },
+   {
+    "date": "2026-11-27",
+    "score": 71
+   }
+  ]
+ },
+ "mine": [
+  {
+   "kind": "made",
+   "title": "Exam 3",
+   "code": "ABCD12",
+   "made": "2026-10-14",
+   "link": "https://logicers.com/live/make/?edit=ABCD12&k=mock-edit-key"
+  },
+  {
+   "kind": "made",
+   "title": "Friday quiz",
+   "code": "WXYZ34",
+   "made": "2026-11-06",
+   "link": "https://logicers.com/live/make/?edit=WXYZ34&k=mock-edit-key-2"
+  }
+ ],
+ "doors": {
+  "passkey": false,
+  "pw": false,
+  "rq": false
+ },
+ "calendar": {
+  "from": "2026-10-03",
+  "to": "2026-12-01",
+  "d": "010111011111101111111111111111111011110110111110111111111111"
+ }
+}

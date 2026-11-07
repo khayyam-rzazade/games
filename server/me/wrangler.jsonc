@@ -1,0 +1,27 @@
+/* My Logicers: the Worker's settings (Chat A, 7 Nov 2026). Its own Worker and its own D1 database, so a deploy here never
+   touches the find-outs, the check-in, the story or the live games, and none of their data is here.
+   Khayyam deploys it once from Terminal (README.md): the D1 database is made with "npx wrangler d1 create logicers-me" and
+   its id is pasted below; the tables make themselves on the first request.
+   Secrets, set once with "npx wrangler secret put <NAME>", never here:
+     ME_HASH_KEY  the key of the code hash (32 random characters or more). Set it before the first code is kept and never
+                  change it: every code is found by it. While it is unset, /health says "hash": "plain".
+     ME_KEY       the passkeys' key (Chat A2, server/me/passkey.js): it locks the passkeys' copy of the code.
+   Plain variables: ALLOW_ORIGINS, the sites that may call (add "localhost" only while testing on your own computer).
+   The address: me.logicers.com (a custom domain, set once in the dashboard, README.md); workers.dev stays as the fallback.
+   Workers Logs and traces stay OFF: nothing else is kept. */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-me",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "triggers": { "crons": ["17 * * * *"] },
+  "vars": {
+    "ALLOW_ORIGINS": "https://logicers.com"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "logicers-me", "database_id": "ce26069b-1e20-486b-b112-6ae3e43310f4" }
+  ]
+}

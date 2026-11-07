@@ -1,0 +1,63 @@
+/* Logicers, the cards: the page's own styles (me/year/year.css, 7 Nov 2026).
+   Everything shared (the bar, chips, .btn, dialogs, day and night colours) comes from assets/css/logicers.css.
+   The cards themselves are canvases drawn by draw.js in one fixed night look; this file only holds them: a row to swipe,
+   one card to a stop, the next one peeking in. Motion (claude/motion-spec.md): the tokens below; only transform and
+   opacity move. */
+:root {
+  --m-fast: 180ms;   /* press, colour, small reveals */
+  --m-base: 340ms;   /* screens, sheets, the dots' glide */
+  --m-slow: 600ms;   /* results: grow, count, draw (the cards run these in draw.js) */
+  --m-step: 100ms;   /* one thing after another */
+  --e-out: cubic-bezier(.3, .55, .35, 1);
+  --e-in: cubic-bezier(.4, 0, 1, 1);
+  --e-spring: cubic-bezier(.2, 1.1, .3, 1);
+}
+[data-g="year"] { --c: #2D4FC4; --tint: #E3E9FD; }
+@media (prefers-color-scheme: dark) { [data-g="year"] { --c: #7FA5FF; --tint: #131A33; } }
+
+.yc { max-width: none; padding: 6px 0 22px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: calc(100svh - 96px); }
+.yc-deck {
+  --cw: min(88vw, 440px, calc((100vh - 232px) * .8));
+  --cw: min(88vw, 440px, calc((100svh - 232px) * .8));          /* a card is 4 : 5; the bar, the dots and Share keep their room */
+  display: flex; gap: 12px; width: 100%;
+  overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+  padding: 6px calc((100% - var(--cw)) / 2) 12px; scroll-padding: 0 calc((100% - var(--cw)) / 2);
+  scrollbar-width: none; -webkit-overflow-scrolling: touch; outline-offset: -2px;
+}
+.yc-deck::-webkit-scrollbar { display: none; }
+.yc-slide {
+  flex: 0 0 var(--cw); width: var(--cw); aspect-ratio: 4 / 5; scroll-snap-align: center; scroll-snap-stop: always;
+  position: relative; overflow: hidden; border-radius: 28px; background: #080A15; box-shadow: var(--shadow-up);
+}
+.yc-canvas { display: block; width: 100%; height: 100%; }
+.yc-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* the last screen, for a phone with no code: not a picture to share */
+.yc-code { display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 9%; background: linear-gradient(180deg, #131A33, #080A15 60%); color: #F3F4FF; }
+.yc-trio { display: flex; gap: 12px; }
+.yc-trio i { width: 40px; height: 40px; border-radius: 50%; display: block; }
+.yc-code-h { font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 8vw, 2.6rem); line-height: 1.05; letter-spacing: -0.03em; }
+.yc-code .btn { align-self: flex-start; flex: 0 0 auto; --c: #7FA5FF; --on-c: #0A0C1A; }
+
+.yc-nav { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 40px; }
+.yc-dots { position: relative; display: flex; height: 40px; }
+.yc-dot { appearance: none; border: 0; background: none; padding: 0; width: 26px; height: 40px; position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.yc-dot::before { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--soft); opacity: .45; }
+.yc-thumb { position: absolute; left: 9px; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: var(--c); pointer-events: none;
+  transform: translateX(calc(var(--i, 0) * 26px)) scale(1.5); transition: transform var(--m-base) var(--e-out); }
+.yc-arrow { display: none; }
+.yc-arrow[disabled] { opacity: .35; cursor: default; }
+@media (hover: hover) and (pointer: fine) { .yc-arrow { display: inline-flex; } }
+
+.yc-actions { width: min(88vw, 440px); margin-top: 0; }
+.yc-actions .btn { width: 100%; }
+.yc-note { margin: 0; min-height: 1.4em; text-align: center; color: var(--soft); }
+.yc-empty { width: min(88vw, 440px); display: flex; flex-direction: column; gap: 16px; align-items: flex-start; padding-top: 24px; }
+.yc-empty[hidden], .yc-deck[hidden], .yc-nav[hidden] { display: none; }
+.yc-empty-p { font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.03em; line-height: 1.1; }
+dialog.to-save::backdrop { background: rgba(8, 10, 21, .72); }
+
+@media (prefers-reduced-motion: reduce) {
+  .yc-deck { scroll-behavior: auto; }
+  .yc-thumb { transition: none; }
+}

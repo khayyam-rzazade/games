@@ -28,3 +28,11 @@ server/findout/.dev.vars
 story/worker/node_modules/
 story/worker/.wrangler/
 story/worker/.dev.vars
+# The check-in server's and the My Logicers server's tools, as for server/live: never pushed
+# (server/me has its own .gitignore too; these lines hold either way).
+server/checkin/node_modules/
+server/checkin/.wrangler/
+server/checkin/.dev.vars
+server/me/node_modules/
+server/me/.wrangler/
+server/me/.dev.vars

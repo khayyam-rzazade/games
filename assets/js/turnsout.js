@@ -2170,6 +2170,54 @@
 
   /* ---- the card itself ---- */
   function icon(emoji) { var i = el("span", "ico", emoji); i.setAttribute("aria-hidden", "true"); return i; }
+  /* My Logicers (7 Nov 2026): from the second day played, while this phone keeps no code, one thin line under the card's buttons
+     opens me/. The words are the dictionary's once "eod.me_keep" is in the strings docs, else these six. */
+  var ME_KEEP = { en: "Keep your streaks on any phone \u2192", it: "Porta le tue serie su ogni telefono \u2192", es: "Lleva tus rachas a cualquier tel\u00E9fono \u2192",
+                  pt: "Leve suas sequ\u00EAncias para qualquer celular \u2192", fr: "Garde tes s\u00E9ries sur n\u2019importe quel t\u00E9l\u00E9phone \u2192", tr: "Serilerin her telefonda yan\u0131nda \u2192" };
+  function meKeepLine() {
+    try { var c = JSON.parse(window.localStorage.getItem("lg.me.v1")); if (c && typeof c.code === "string" && c.code) return null; } catch (e) { /* no code kept here */ }
+    if (Object.keys(siteDays()).length < 2) return null;
+    var words = "";
+    try { if (T.has && T.has("eod.me_keep")) words = T("eod.me_keep"); } catch (e) { /* the words below */ }
+    words = words || ME_KEEP[(LG && LG.lang) || "en"] || ME_KEEP.en;
+    var a = el("a", "eod-me", words);
+    a.href = here(siteRoot() + "me/");
+    a.style.cssText = "display:flex;align-items:center;min-height:40px;margin-top:6px;font-weight:800;font-size:.9rem;line-height:1.3;color:var(--c,#2D4FC4);text-decoration:none;-webkit-tap-highlight-color:transparent";
+    a.addEventListener("click", function () { count_("eod/me"); });
+    if (!meKeepLine.seen) { meKeepLine.seen = 1; count_("eod/me-seen"); }
+    return a;
+  }
+  /* The cards (joint check, 7 Nov 2026): while a card is open (the year card from 1 December through January; a month card
+     in the first week of the month, from January 2027), one thin line opens it, until this phone has opened that card once.
+     The rules of when a card is open live in me/year/open.js, loaded only then; the line is offered to every phone, with or
+     without a code (the card itself says "nothing here yet" when there is nothing). */
+  function meCardLine(into) {
+    var now = new Date(), m = now.getMonth(), d = now.getDate();
+    if (!(m === 11 || m === 0 || (now.getFullYear() >= 2027 && d <= 7))) return;
+    var seen = {};
+    try { seen = JSON.parse(window.localStorage.getItem("lg.me.cards")) || {}; } catch (e) { seen = {}; }
+    function place() {
+      try {
+        var Y = window.LogicersYear; if (!Y || !into.isConnected) return;
+        var cards = Y.cardsOpen(now, null).filter(function (c) { return !seen[c.id] && (c.kind === "year" || d <= 7); });
+        if (!cards.length) return;
+        var c = cards[0];
+        var a = el("a", "eod-me eod-card", Y.label(c, (LG && LG.lang) || "en"));
+        a.href = here(siteRoot() + "me/year/" + c.query);
+        a.style.cssText = "display:flex;align-items:center;min-height:40px;margin-top:2px;font-weight:800;font-size:.9rem;line-height:1.3;color:var(--c,#2D4FC4);text-decoration:none;-webkit-tap-highlight-color:transparent";
+        a.addEventListener("click", function () {
+          seen[c.id] = 1;
+          try { window.localStorage.setItem("lg.me.cards", JSON.stringify(seen)); } catch (e) { /* then the line shows again */ }
+          count_("eod/card");
+        });
+        into.appendChild(a);
+      } catch (e) { /* the card is optional */ }
+    }
+    if (window.LogicersYear) { place(); return; }
+    var sc = document.createElement("script");
+    sc.src = siteRoot() + "me/year/open.js"; sc.async = true; sc.onload = place;
+    document.head.appendChild(sc);
+  }
   function endOfDay(full) {
     var wrap = el("div", "eod");
     if (full) wrap.id = "eod";
@@ -2212,6 +2260,8 @@
     strip.appendChild(mine);
     strip.style.setProperty("--n", String(cells));
     wrap.appendChild(strip);
+    try { var meLine = meKeepLine(); if (meLine) wrap.appendChild(meLine); } catch (e) { /* the offer is optional */ }
+    try { meCardLine(wrap); } catch (e) { /* the card is optional too */ }
 
     if (full && typeof window.TurnsOut.prideHook === "function") {
       try { window.TurnsOut.prideHook(pride); } catch (e) { /* the country's place must never break the end of the day */ }
@@ -2383,4 +2433,12 @@
 
   privacyNotes();
   startCounter();
+
+  /* My Logicers (joint check, 7 Nov 2026): a phone that keeps a code loads the two scripts that send its record to the
+     server after every finish (assets/js/me.js wraps TurnsOut.count, so no game changes). Any other phone loads nothing. */
+  try {
+    if (window.localStorage.getItem("lg.me.v1")) ["me-stats", "me"].forEach(function (f) {
+      var s = document.createElement("script"); s.src = siteRoot() + "assets/js/" + f + ".js"; s.async = false; document.head.appendChild(s);
+    });
+  } catch (e) { /* My Logicers is optional */ }
 })();

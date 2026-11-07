@@ -1,0 +1,207 @@
+/* My Logicers (Chat B, 7 Nov 2026). Phone first. The site's look (assets/css/logicers.css), this page's own colour (the purple of the
+   Logicer number box on the home page), and the motion spec (claude/motion-spec.md): the tokens, then the vocabulary.
+   Only transform and opacity move (plus clip-path for the select sweep). Every animation has its line in the reduced-motion block. */
+
+/* Logicers motion tokens (claude/motion-spec.md, 5 Nov 2026): the only durations and curves used here */
+:root {
+  --m-fast: 180ms;   /* press, colour, small reveals */
+  --m-base: 340ms;   /* screens, sheets */
+  --m-slow: 600ms;   /* grow, count */
+  --m-step: 100ms;   /* one thing after another */
+  --e-out: cubic-bezier(.3, .55, .35, 1);
+  --e-in: cubic-bezier(.4, 0, 1, 1);
+  --e-spring: cubic-bezier(.2, 1.1, .3, 1);
+  --bad: #B3261E;
+}
+@media (prefers-color-scheme: dark) { :root { --bad: #FF8F86; } }
+[data-g="me"] { --c: #5B3FC4; --tint: #EEEAFF; }
+@media (prefers-color-scheme: dark) { [data-g="me"] { --c: #B7A4FF; --tint: #16122E; } }
+
+.me-main { position: relative; padding-top: 4px; padding-bottom: 12px; }
+.me-main :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.me-main h1:focus { outline: none; }
+
+/* ---------- screens: enter, slide forward and back (a still copy of the old screen leaves while the new one arrives) ---------- */
+.me-screen { animation: me-enter var(--m-base) var(--e-out) both; }
+.me-screen.fwd { animation-name: me-in-fwd; }
+.me-screen.back { animation-name: me-in-back; }
+.me-ghost { position: absolute; top: 0; left: var(--pad); right: var(--pad); pointer-events: none; animation: me-out-fwd var(--m-base) var(--e-out) both; }
+.me-ghost.back { animation-name: me-out-back; }
+.me-rise { animation: me-enter var(--m-base) var(--e-out) both; animation-delay: calc(var(--i, 0) * var(--m-step)); }
+@keyframes me-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes me-in-fwd { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes me-in-back { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+@keyframes me-out-fwd { to { opacity: 0; transform: translateX(-24px); } }
+@keyframes me-out-back { to { opacity: 0; transform: translateX(24px); } }
+@keyframes me-pop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+@keyframes me-grow { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes me-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- the head ---------- */
+.me-head { padding: 12px 2px 4px; }
+.me-kicker { color: var(--soft); font-weight: 600; font-size: .94rem; min-height: 1.3em; }
+.me-number { font-family: var(--display); font-weight: 800; font-size: clamp(2.3rem, 12vw, 3rem); line-height: 1.02; letter-spacing: -0.04em; color: var(--c); font-variant-numeric: tabular-nums; margin-top: 6px; overflow-wrap: anywhere; }
+.me-title { font-family: var(--display); font-weight: 800; font-size: clamp(1.75rem, 8.4vw, 2.2rem); line-height: 1.05; letter-spacing: -0.035em; margin-top: 6px; text-wrap: balance; }
+.me-lede { margin-top: 10px; color: var(--soft); font-size: 1.05rem; line-height: 1.4; }
+.me-flash { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 16px; border-radius: 999px; background: var(--c); color: var(--on-c); font-weight: 700; font-size: .96rem; line-height: 1.2; animation: me-pop var(--m-base) var(--e-spring) both; }
+
+/* ---------- sections ---------- */
+.me-sec { margin-top: 24px; }
+.me-h { font-family: var(--display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; line-height: 1.2; margin: 0 2px 10px; }
+.me-note { margin: 10px 4px 0; color: var(--soft); font-size: .92rem; line-height: 1.35; }
+.me-card { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 16px 18px 16px; }
+@media (prefers-color-scheme: dark) { .me-card { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); } }
+
+/* the strip of tiles: one per game; a swipe sideways, the whole strip reachable by keyboard */
+.me-strip { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding: 0 var(--pad); margin: 0 calc(-1 * var(--pad)); padding: 2px var(--pad) 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.me-strip::-webkit-scrollbar { display: none; }
+.me-tile { flex: 0 0 7.7rem; scroll-snap-align: start; display: flex; flex-direction: column; min-height: 8.6rem; padding: 13px 13px 12px; border-radius: 20px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; transition: transform var(--m-fast) var(--e-out); }
+.me-tile:active { transform: scale(.97); }
+.me-tile::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: var(--c); }
+.me-tile .nm { font-weight: 700; font-size: .9rem; line-height: 1.15; letter-spacing: -0.005em; min-height: 2.3em; padding-top: 4px; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.me-tile .big { margin-top: auto; font-family: var(--display); font-weight: 800; font-size: 2.1rem; line-height: 1; letter-spacing: -0.04em; color: var(--c); font-variant-numeric: tabular-nums; }
+.me-tile .lab { color: var(--soft); font-size: .78rem; font-weight: 600; line-height: 1.2; margin-top: 3px; }
+.me-tile .sub { margin-top: 6px; font-size: .82rem; font-weight: 600; line-height: 1.2; color: var(--ink); }
+.me-tile .sub b { font-weight: 800; font-variant-numeric: tabular-nums; }
+.me-tile.idle { box-shadow: none; background: transparent; box-shadow: inset 0 0 0 1.5px var(--line); }
+.me-tile.idle .big { color: var(--soft); font-size: 1.5rem; }
+.me-tile.idle::before { opacity: .35; }
+.me-flame { display: inline-block; width: .6em; height: .6em; margin-right: .2em; background: #F28A1B; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10.4 1.6c.5 3-1.2 4.3-2.6 5.9C6.3 9.2 5 10.8 5 13a5 5 0 0 0 10 0c0-1.7-.7-3.2-1.5-4.3-.3 1-.9 1.7-1.7 2.1.5-3.4-.2-6.8-1.4-9.2z'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10.4 1.6c.5 3-1.2 4.3-2.6 5.9C6.3 9.2 5 10.8 5 13a5 5 0 0 0 10 0c0-1.7-.7-3.2-1.5-4.3-.3 1-.9 1.7-1.7 2.1.5-3.4-.2-6.8-1.4-9.2z'/%3E%3C/svg%3E") center / contain no-repeat; vertical-align: .04em; }
+
+@media (prefers-color-scheme: dark) { .me-flame { background: #FFB23F; } }
+
+/* number rows (the story) and the nine circles (the find-outs) */
+.me-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.me-num { display: flex; flex-direction: column; min-width: 0; }
+.me-num b { font-family: var(--display); font-weight: 800; font-size: 1.9rem; line-height: 1; letter-spacing: -0.035em; color: var(--c); font-variant-numeric: tabular-nums; }
+.me-num span { margin-top: 4px; color: var(--soft); font-size: .8rem; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere; }
+.me-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.me-top b { font-family: var(--display); font-weight: 800; font-size: 1.9rem; line-height: 1; letter-spacing: -0.035em; color: var(--c); font-variant-numeric: tabular-nums; }
+.me-top span { font-weight: 700; font-size: 1rem; line-height: 1.2; }
+.me-dots { display: grid; grid-template-columns: repeat(9, 1fr); gap: 6px; margin-top: 14px; }
+.me-dots i { aspect-ratio: 1; border-radius: 50%; background: var(--tint); }
+.me-dots i.on { background: var(--c); animation: me-pop var(--m-base) var(--e-spring) both; animation-delay: calc(var(--k, 0) * var(--m-step)); }
+@media (prefers-color-scheme: dark) { .me-dots i { background: rgba(255, 255, 255, .11); } .me-dots i.on { box-shadow: 0 0 12px color-mix(in srgb, var(--c) 60%, transparent); } }
+.me-cardlink { display: block; color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; transition: transform var(--m-fast) var(--e-out); }
+.me-cardlink:active { transform: scale(.985); }
+.me-go { display: inline-flex; align-items: center; margin-top: 12px; min-height: 44px; font-weight: 800; font-size: .98rem; color: var(--c); }
+.me-go::after { content: "\2192"; margin-left: .4em; }
+.me-band { display: inline-block; font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.025em; line-height: 1.1; animation: me-pop var(--m-base) var(--e-spring) both; animation-delay: var(--m-slow); }
+.me-delta { margin-top: 6px; font-weight: 600; color: var(--soft); font-size: .95rem; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.me-delta b { color: var(--ink); font-weight: 800; }
+
+/* ---------- Your games ---------- */
+.me-rows { list-style: none; margin: 0; padding: 0; }
+.me-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.me-row:first-child { border-top: 0; padding-top: 2px; }
+.me-row:last-child { padding-bottom: 2px; }
+.me-row .what { flex: 1 1 auto; min-width: 0; }
+.me-row .ti { font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.me-row .meta { margin-top: 4px; }
+.me-row .kind { display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 999px; background: var(--tint); color: var(--c); font-weight: 800; font-size: .74rem; line-height: 1.3; letter-spacing: .02em; }
+@media (prefers-color-scheme: dark) { .me-row .kind { background: rgba(255, 255, 255, .09); } }
+.me-row .cd { font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+
+/* ---------- the code ---------- */
+.me-code { font-family: var(--display); font-weight: 800; font-size: clamp(1.5rem, 7.6vw, 1.95rem); line-height: 1.15; letter-spacing: -0.03em; color: var(--c); overflow-wrap: break-word; user-select: all; -webkit-user-select: all; }
+.me-code.big { font-size: clamp(1.9rem, 10vw, 2.6rem); line-height: 1.1; }
+.me-code.fresh { animation: me-pop var(--m-base) var(--e-spring) both; }
+.me-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.me-btns .btn { min-height: 48px; padding: 0 20px; font-size: 1rem; }
+.me-btns .btn.solid { flex: 1 1 auto; }
+.me-qr { margin-top: 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; animation: me-pop var(--m-base) var(--e-spring) both; }
+.me-qr svg { width: min(100%, 13rem); height: auto; border-radius: 14px; box-shadow: var(--shadow); }
+.me-qr p { color: var(--soft); font-size: .92rem; text-align: center; }
+.me-door { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; min-height: 56px; border-top: 1px solid var(--line); }
+.me-door:first-of-type { border-top: 0; }
+.me-door .st { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.me-door .st::before { content: "\2713"; color: var(--ok); margin-right: 8px; font-weight: 800; }
+.me-door .acts { display: flex; gap: 8px; flex: none; }
+.me-door.kept .st { animation: me-pop var(--m-base) var(--e-spring) both; }
+
+/* ---------- buttons and links of this page ---------- */
+.me-main .btn { transition: transform var(--m-fast) var(--e-out); }
+.me-main .btn:active { transform: scale(.97); }
+.btn.tint { background: var(--tint); color: var(--c); box-shadow: none; }
+@media (prefers-color-scheme: dark) { .btn.tint { background: rgba(255, 255, 255, .09); } }
+.btn.small { min-height: 44px; padding: 0 18px; font-size: .98rem; }
+.btn.block { width: 100%; }
+.me-link { appearance: none; border: 0; background: none; padding: 0 4px; min-height: 44px; display: inline-flex; align-items: center; color: var(--soft); font-weight: 600; font-size: .96rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.me-link.danger { font-size: .86rem; font-weight: 500; }
+.me-link.strong { color: var(--ink); }
+.me-low { margin-top: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+
+/* ---------- the screens below My Logicers: the thing to tap sits at the bottom, in the thumb's reach, and stays there while a long list scrolls ---------- */
+.me-sub { display: flex; flex-direction: column; min-height: calc(100svh - 9rem); }
+.me-sub > .me-grow { flex: 1 1 auto; display: flex; flex-direction: column; }
+.me-act { --fade: var(--tint); margin-top: auto; position: sticky; bottom: 0; z-index: 2; display: flex; flex-direction: column; gap: 10px; padding: 18px 0 max(14px, env(safe-area-inset-bottom, 0px)); background: linear-gradient(to bottom, transparent, var(--fade) 26%); }
+@media (prefers-color-scheme: dark) { .me-act { --fade: var(--bg); } }
+.me-act .me-btns { margin-top: 0; }
+.me-act .me-msg { min-height: 0; }
+.me-act .me-msg:empty { display: none; }
+
+/* ---------- forms ---------- */
+.me-form { margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
+.me-field { display: flex; flex-direction: column; gap: 6px; }
+.me-field > label, .me-field > .lb { font-weight: 700; font-size: .92rem; color: var(--soft); padding: 0 4px; }
+.me-input { width: 100%; min-height: 56px; padding: 0 18px; border: 2px solid transparent; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); font: inherit; font-size: 1.1rem; font-weight: 600; -webkit-appearance: none; appearance: none; transition: border-color var(--m-fast) var(--e-out); }
+.me-input::placeholder { color: var(--soft); opacity: .6; font-weight: 500; }
+.me-input:focus { outline: none; border-color: var(--c); }
+.me-input.mono { letter-spacing: .02em; }
+@media (prefers-color-scheme: dark) { .me-input { background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px var(--line); } .me-input:focus { box-shadow: none; } }
+.me-pw { position: relative; }
+.me-pw .me-input { padding-right: 5.2rem; }
+.me-pw .me-link { position: absolute; right: 8px; top: 6px; min-height: 44px; padding: 0 10px; }
+.me-msg { min-height: 1.3em; padding: 0 4px; font-weight: 600; font-size: .96rem; line-height: 1.3; color: var(--soft); }
+.me-msg.bad { color: var(--bad); }
+.me-msg.ok { color: var(--ok); }
+.me-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.me-seg button { appearance: none; border: 0; min-height: 48px; padding: 0 12px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); font-weight: 700; font-size: .96rem; cursor: pointer; transition: background-color var(--m-fast) var(--e-out), color var(--m-fast) var(--e-out); }
+.me-seg button[aria-pressed="true"] { background: var(--c); color: var(--on-c); }
+@media (prefers-color-scheme: dark) { .me-seg button { background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px var(--line); } .me-seg button[aria-pressed="true"] { box-shadow: none; } }
+
+/* the eight questions: a tap picks (the fill sweeps in from the left), a tap again lets go */
+.me-qs { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.me-qi { display: flex; flex-direction: column; gap: 8px; }
+.me-q { position: relative; appearance: none; border: 0; text-align: left; min-height: 52px; padding: 10px 18px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); font-weight: 600; font-size: 1.02rem; line-height: 1.25; cursor: pointer; overflow: hidden; -webkit-tap-highlight-color: transparent; transition: transform var(--m-fast) var(--e-out), color var(--m-fast) var(--e-out); }
+.me-q::before { content: ""; position: absolute; inset: 0; background: var(--c); clip-path: inset(0 100% 0 0); transition: clip-path var(--m-fast) var(--e-out); }
+.me-q > span { position: relative; }
+.me-q[aria-pressed="true"] { color: var(--on-c); }
+.me-q[aria-pressed="true"]::before { clip-path: inset(0 0 0 0); }
+.me-q:active { transform: scale(.98); }
+@media (prefers-color-scheme: dark) { .me-q { background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px var(--line); } }
+.me-answer { animation: me-enter var(--m-fast) var(--e-out) both; }
+
+/* ---------- sheets (rise) and the language chip ---------- */
+dialog.me-sheet { margin: auto auto max(12px, env(safe-area-inset-bottom, 0px)); width: min(100% - 24px, 30rem); }
+dialog.me-sheet[open] { animation: me-rise var(--m-base) var(--e-spring) both; }
+dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-base) var(--e-out) both; }
+@keyframes me-rise { from { transform: translateY(100%); } to { transform: none; } }
+.me-sheetghost { position: fixed; z-index: 9999; pointer-events: none; background: var(--card); border-radius: 26px; box-shadow: 0 30px 80px rgba(8, 10, 21, .35); animation: me-sink var(--m-base) var(--e-in) both; }
+.me-sheetdim { position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: rgba(8, 10, 21, .55); animation: me-undim var(--m-base) var(--e-in) both; }
+@keyframes me-sink { to { transform: translateY(115%); } }
+@keyframes me-undim { to { opacity: 0; } }
+.me-sheet .sheet p { margin-top: 10px; }
+.me-sheet .me-btns { margin-top: 18px; }
+.me-sheet .me-btns .btn { flex: 1 1 8rem; }
+.btn.danger { background: var(--bad); color: #fff; }
+@media (prefers-color-scheme: dark) { .btn.danger { color: #1B0907; } }
+.me-langs { list-style: none; margin: 14px 0 0; padding: 0; }
+.me-langs li + li { border-top: 1px solid var(--line); }
+.me-langs button { appearance: none; border: 0; background: none; width: 100%; min-height: 54px; display: flex; align-items: center; gap: 12px; padding: 0 2px; font-weight: 700; font-size: 1.05rem; text-align: left; cursor: pointer; }
+.me-langs button[aria-current="true"]::after { content: "\2713"; margin-left: auto; color: var(--c); font-weight: 800; }
+.me-langs .fl { font-size: 1.4rem; line-height: 1; }
+.me-langchip { text-transform: uppercase; letter-spacing: .04em; }
+
+.me-foot { max-width: var(--col); margin: 0 auto; padding: 4px var(--pad) 30px; text-align: center; color: var(--soft); font-size: .86rem; font-weight: 500; }
+
+/* ---------- reduced motion: screens crossfade in --m-fast, taps still change colour, numbers and dots appear at their end value ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .me-screen, .me-screen.fwd, .me-screen.back, .me-rise, .me-answer { animation: me-fade var(--m-fast) linear both; animation-delay: 0s; }
+  .me-ghost, .me-ghost.back { animation: none; opacity: 0; }
+  .me-flash, .me-band, .me-dots i.on, .me-code.fresh, .me-qr, .me-door.kept .st { animation: none; }
+  .me-tile, .me-cardlink, .me-main .btn, .me-q { transition: none; }
+  .me-tile:active, .me-cardlink:active, .me-main .btn:active, .me-q:active { transform: none; }
+  dialog.me-sheet[open], dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-fast) linear both; }
+  .me-sheetghost, .me-sheetdim { animation: me-undim var(--m-fast) linear both; }
+}

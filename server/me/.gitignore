@@ -1,0 +1,4 @@
+# The My Logicers server's tools, made on a computer by npm and wrangler: never pushed.
+node_modules/
+.wrangler/
+.dev.vars

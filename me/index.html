@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>My Logicers | Logicers</title>
+<link rel="canonical" href="https://logicers.com/me/">
+<meta name="description" content="Your streaks, your results and your games, kept in one place. No name, no login.">
+<meta name="theme-color" content="#EEEAFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../assets/css/logicers.css">
+<link rel="stylesheet" href="me.css">
+</head>
+<body class="game" data-g="me">
+
+<header class="bar">
+  <a class="wordmark" href="../">Logicers</a>
+  <div class="bar-tools">
+    <a class="chip" href="./" id="me-namechip">My Logicers</a>
+    <button class="chip me-langchip" type="button" id="me-langchip" hidden>EN</button>
+  </div>
+</header>
+
+<main class="wrap me-main" id="me">
+  <p class="meta">Loading…</p>
+</main>
+<footer class="me-foot" id="me-foot"></footer>
+<p class="sr-only" id="me-live" aria-live="polite"></p>
+
+<noscript><p style="padding:18px">This part of Logicers needs JavaScript to run.</p></noscript>
+
+<script src="../live/qrcodegen.js"></script>
+<script src="../assets/js/me-stats.js"></script>
+<script src="../assets/js/me.js"></script>
+<script src="../assets/js/me-passkey.js"></script>
+<script src="../assets/js/me-doors.js"></script>
+<script src="year/open.js"></script>
+<script type="module" src="me.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Logicers</title>
+<meta name="theme-color" content="#E6E9F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../favicon.ico" sizes="32x32">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Logicers">
+<link rel="stylesheet" href="../../assets/css/logicers.css">
+<link rel="stylesheet" href="year.css">
+</head>
+<body class="game" data-g="year">
+
+<header class="bar">
+  <a class="wordmark" id="yc-home" href="../../">Logicers</a>
+  <div class="bar-tools">
+    <a class="chip round" id="yc-back" href="../" aria-label="My Logicers">&#8249;</a>
+  </div>
+</header>
+
+<main class="wrap play yc" id="yc">
+  <div class="yc-deck" id="yc-deck" tabindex="0" role="group" aria-roledescription="carousel"></div>
+  <div class="yc-nav" id="yc-nav">
+    <button class="chip round yc-arrow" id="yc-prev" type="button">&#8249;</button>
+    <div class="yc-dots" id="yc-dots" role="group"></div>
+    <button class="chip round yc-arrow" id="yc-next" type="button">&#8250;</button>
+  </div>
+  <div class="actions yc-actions"><button class="btn solid" id="yc-share" type="button"></button></div>
+  <p class="copied yc-note" id="yc-note" role="status"></p>
+  <div class="yc-empty" id="yc-empty" hidden></div>
+</main>
+
+<noscript><p style="padding:18px">This page needs JavaScript to run.</p></noscript>
+
+<script src="open.js"></script>
+<script type="module" src="year.js"></script>
+</body>
+</html>

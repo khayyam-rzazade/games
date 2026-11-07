@@ -1,0 +1,16 @@
+{
+  "name": "logicers-me",
+  "private": true,
+  "type": "module",
+  "description": "My Logicers: the code, the record, the locked box. A Cloudflare Worker with its own D1 database.",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node --test test/test_worker.mjs",
+    "mutate": "node test/mutate.mjs",
+    "browser": "node test/browser.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

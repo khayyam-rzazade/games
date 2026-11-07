@@ -1,0 +1,2 @@
+/* TEST STUB for Chat C's hook (me/year/open.js: window.LogicersYear.cardOpen(stats) -> a card { kind, y, ym, query }). localStorage["lg.test.card"] = "year" | "month" | "". Never shipped. */
+window.LogicersYear = { cardOpen: function () { var k = localStorage.getItem('lg.test.card'); return k === 'year' ? { kind: 'year', id: 'y2026', y: 2026, ym: null, query: '?y=2026' } : k === 'month' ? { kind: 'month', id: 'm2026-12', y: 2026, ym: '2026-12', query: '?m=2026-12' } : null; } };
