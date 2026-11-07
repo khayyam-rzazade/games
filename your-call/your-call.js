@@ -51,7 +51,6 @@
   $("place").textContent = q.place;
   $("pov").textContent = T("call.pov", { pov: q.pov });
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("call.title_day", { n: day });
 
   var buttons = q.choices.map(function (text, i) {
     var b = document.createElement("button");

@@ -91,7 +91,6 @@
 
   panel.style.setProperty("--hue", hue);
   $("day-label").textContent = "Day " + day + (practice ? ", practice" : "");
-  document.title = "Same Street, day " + day + " | Logicers";
   $("end-low").textContent = money(LOW);
   $("end-high").textContent = money(HIGH);
   $("help-low").textContent = money(LOW);

@@ -1357,6 +1357,16 @@ dialog.khay:not([open]) { display: none; }
 .fin-more .fin-next-words small { opacity: .8; }
 @media (prefers-reduced-motion: no-preference) { .fin-more { animation: go-pulse 2.4s ease-in-out infinite; } }
 .fin-full .fin-world { margin-top: 10px; }
+/* the countdown on the last card (7 Nov 2026): a second row of the card's sticky top, so it never scrolls away;
+   the end-of-day box's small clock steps aside inside the card (it stays on the page under the game) */
+.fin-full .onward-top { flex-wrap: wrap; row-gap: 8px; }
+.fin-clock { flex: 1 0 100%; order: 9; display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 2px 8px; margin: 0; padding: 7px 12px; border-radius: 14px; background: var(--bg); color: var(--soft); font-weight: 700; font-size: 0.95rem; line-height: 1.2; text-align: center; }
+.fin-clock b { color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.fin-full .eod-row { display: none; }
+.fin-clock-now { padding: 0; background: none; }
+.fin-clock-go { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; border-radius: 16px; background: var(--c, #2D4FC4); color: var(--on-c, #fff); text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; box-shadow: 0 8px 22px rgba(21, 23, 43, .18); -webkit-tap-highlight-color: transparent; animation: fin-fade .3s ease-out; }
+.fin-clock-go svg { width: 22px; height: 22px; flex: none; }
+.fin-clock-go:active { transform: scale(0.985); }
 .fin-full .eod { margin-top: 14px; padding-top: 12px; border-top: 2px solid var(--line); }
 .group-games { scroll-margin-top: 14px; }       /* "More to play" lands on this row (30 Oct 2026) */
 .more-line { margin: 0 0 8px; font-weight: 700; font-size: 1.05rem; color: var(--ink); scroll-margin-top: 14px; }

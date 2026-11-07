@@ -105,7 +105,6 @@
 
   /* ---------- the screen ---------- */
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("every.title_day", { n: day });
   $("face").textContent = q.face;
   $("state").innerHTML = icon(q.state);
   $("state").appendChild(document.createTextNode(q.label));

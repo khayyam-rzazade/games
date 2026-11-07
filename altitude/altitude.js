@@ -1341,6 +1341,8 @@
     /* the next word game not played yet leads on (30 Oct 2026); with the three played, "More to play" is the way on */
     var nextWord = TO && TO.wordNext ? TO.wordNext("altitude", T("next_game")) : null;
     if (nextWord) sheet.appendChild(nextWord);
+    /* all three played: the time to the new games, in the card's top (7 Nov 2026, Khayyam) */
+    else if (TO && TO.wordClock) { try { TO.wordClock(top, lang, T("next_game")); } catch (e) { /* the card can live without it */ } }
 
     var more = el("a", "fin-more cl-more");
     var siteL = siteLang();

@@ -73,7 +73,6 @@
 
   /* ---------- build the screen ---------- */
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("apart.title_day", { n: day });
   $("left-t").textContent = L.t;
   $("right-t").textContent = R.t;
   $("tag-t").textContent = M.t;

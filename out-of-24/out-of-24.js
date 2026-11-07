@@ -163,7 +163,6 @@
 
   /* ---------- the screen ---------- */
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("o24.title_day", { n: day });
   $("face").textContent = q.face;
   var chips = $("chips");
   q.chips.forEach(function (c, i) {

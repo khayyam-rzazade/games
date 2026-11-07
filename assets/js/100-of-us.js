@@ -75,7 +75,6 @@
   window.addEventListener("resize", fitQuestion);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitQuestion);
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("hund.title_day", { n: day });
 
   var notice = $("notice");
   if (friendGap !== null) {

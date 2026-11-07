@@ -116,7 +116,6 @@
   /* ---------- build the screen ---------- */
   panel.style.setProperty("--hue", TO.colour(q.colour));
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("club.title_day", { n: day });
 
   function chip(name, kind, mine, ok, fresh) {
     var li = document.createElement("li");

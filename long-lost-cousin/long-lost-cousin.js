@@ -97,7 +97,6 @@
   // "T. rex" must not break between its two halves
   $("question").textContent = T("cous.question", { of: ofThing(q.subject).replace(/\b([A-Z])\. /g, "$1.\u00a0") });
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("cous.title_day", { n: day });
   $("subject-name").textContent = thing(q.subject).name;
   drawInto($("subject-pic"), q.subject);
 

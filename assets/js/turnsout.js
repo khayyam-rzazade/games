@@ -1018,7 +1018,9 @@
       try {
         var sr = sheet.getBoundingClientRect(), mr = more.getBoundingClientRect();
         if (mr.bottom <= sr.bottom - 8) return;                       // already in view: nothing to show
-        var to = Math.min(sheet.scrollTop + mr.top - sr.top - 70, sheet.scrollHeight - sheet.clientHeight);
+        /* the button lands just under the card's top, which stays in view (it grew with the countdown, 7 Nov 2026) */
+        var hd = sheet.querySelector(".onward-top"), gap = Math.max(70, (hd ? hd.offsetHeight : 0) + 16);
+        var to = Math.min(sheet.scrollTop + mr.top - sr.top - gap, sheet.scrollHeight - sheet.clientHeight);
         if (to > sheet.scrollTop) slide(to);
       } catch (e) { /* the card just stays where it is */ }
     }
@@ -1139,6 +1141,10 @@
     x.type = "button";
     x.setAttribute("aria-label", T("site.close"));
     top.appendChild(x);
+    /* the last card: the time to the new games, in the top that stays in view (7 Nov 2026); at midnight the first game */
+    if (!next) {
+      try { newIn(top, { href: function () { return here("../" + GAMES[0].href); } }); } catch (e) { /* the card can live without it */ }
+    }
     sheet.appendChild(top);
     /* 24 Oct 2026, Khayyam: the card came too fast and said nothing of the result. Its first line is now the result,
        as the stamp and the home tile say it ("Now you know · Off by 39 years"), so nobody has to look under the card. */
@@ -1185,7 +1191,7 @@
       /* The last game of the day (19 Oct 2026, Khayyam: "it feels like end of Logicers, but it is not"). The
          card goes up almost the whole screen: the world's scores of the day first, in plain view (they come
          along once the server has them), then one big way on to the games that never run out, then the end
-         of the day (the clock, the country, the cells). */
+         of the day (the country, the cells; its small clock gives way to the big one in the card's top, 7 Nov 2026). */
       var seat = el("div", "fin-world");
       sheet.appendChild(seat);
       watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
@@ -1331,6 +1337,58 @@
     var n = now || new Date(), m = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, 0, 0, 0, 0);
     var mins = Math.max(1, Math.ceil((m.getTime() - n.getTime()) / 60000)), h = Math.floor(mins / 60), r = mins % 60;
     return h ? T("eod.h", { h: h }) + (r ? " " + T("eod.min", { m: r }) : "") : T("eod.min", { m: r });
+  }
+
+  /* ---- The countdown on the last card (7 Nov 2026, Khayyam: "telling people how much time left until the next
+     round"). It sits in the card's sticky top, under the title, so it stays in view while the card scrolls or slides
+     down by itself; the ways on (find-outs, check-in, word games) stay where they are, under it. It counts every second
+     to the player's own midnight, the moment their games change, and at midnight it becomes the way into the new day.
+     The words are the end-of-day clock's, already in the six dictionaries; the word games' pages carry the English
+     dictionary only, so for them the same six lines are copied here, by the language the game is played in. ---- */
+  var NEW_IN = {
+    en: "New games in <b>{t}</b>", it: "Nuovi giochi tra <b>{t}</b>", tr: "Yeni oyunlara kalan süre: <b>{t}</b>",
+    es: "Juegos nuevos en <b>{t}</b>", pt: "Jogos novos em <b>{t}</b>", fr: "Nouveaux jeux dans <b>{t}</b>"
+  };
+  function two(n) { return (n < 10 ? "0" : "") + n; }
+  function clockLeft(now) {                // "05:12:43" to the player's next midnight
+    var n = now || new Date(), m = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, 0, 0, 0, 0);
+    var s = Math.max(0, Math.ceil((m.getTime() - n.getTime()) / 1000));
+    return two(Math.floor(s / 3600)) + ":" + two(Math.floor(s % 3600 / 60)) + ":" + two(s % 60);
+  }
+  /* top: the card's top row. o.lang: the word game's language (none for the daily games: the page's dictionary
+     speaks). o.go: the words of the button at midnight. o.href: where it leads, worked out at that moment. */
+  function newIn(top, o) {
+    o = o || {};
+    if (!top) return null;
+    var tmpl = o.lang ? (NEW_IN[o.lang] || NEW_IN.en) : null;
+    var line = el("p", "fin-clock");
+    line.setAttribute("role", "timer");
+    var day = calendarDay(new Date()), seen = false, born = Date.now();
+    function paint() {
+      var on = document.documentElement.contains(line);
+      if (on) seen = true;
+      /* the card was put away, or another card took its place before it rose: the clock stops */
+      if (!on && (seen || document.querySelector(".fin-clock") || Date.now() - born > 600000)) return;
+      var now = new Date();
+      if (calendarDay(now) !== day) {                                      // midnight: the new day is open
+        var a = el("a", "fin-clock-go");
+        try { a.href = typeof o.href === "function" ? o.href() : (o.href || here(siteRoot())); } catch (e) { a.href = here(siteRoot()); }
+        a.insertAdjacentHTML("beforeend", PLAY);
+        a.appendChild(el("span", "", o.go || T("end.next_game")));
+        a.addEventListener("click", function () { count_("onward-sheet/new-day"); });
+        line.textContent = "";
+        line.className = "fin-clock fin-clock-now";
+        line.removeAttribute("role");
+        line.appendChild(a);
+        return;
+      }
+      var t = clockLeft(now);
+      line.innerHTML = tmpl ? tmpl.replace("{t}", t) : T("eod.new_games_in", { t: t });
+      window.setTimeout(paint, 1015 - now.getMilliseconds());             // on the turn of each second
+    }
+    paint();
+    top.appendChild(line);
+    return line;
   }
 
   /* ---- the result grid: one square per game, in the order of the shelf ---- */
@@ -2013,7 +2071,8 @@
          chips and the text boxes do not) and the card's own scroll moves them. If nowhere above is free, it stays in its corner, in plain view. It is away only
          while one of the site's windows is open. */
       var avoid = "#share, .eod-strip, .eod-pride, .onward-all, #after .actions";
-      var onCard = ".fin-sheet .fin-next, .fin-sheet .fin-more, .fin-sheet .fin-stats, .fin-sheet .said-send, .fin-sheet .eod-strip, .fin-sheet .eod-pride, .fin-sheet .keep";
+      var onCard = ".fin-sheet .fin-next, .fin-sheet .fin-more, .fin-sheet .fin-stats, .fin-sheet .said-send, .fin-sheet .eod-strip, .fin-sheet .eod-pride, .fin-sheet .keep" +
+        ", .fin-sheet .fin-clock";       // the countdown in the card's top (7 Nov 2026): the face never sits on it
       var raf = 0, beat = 0;
       function duck() {
         raf = 0;
@@ -2268,6 +2327,11 @@
     a.addEventListener("click", function () { count_("onward-sheet/word-" + next.id); });
     return a;
   }
+  /* the countdown for a word game's end card once all three are played (7 Nov 2026): in the card's top, in the
+     game's own language; at midnight it leads to the first word game, which takes the phone's language by itself */
+  function wordClock(top, lang, go) {
+    return newIn(top, { lang: lang || "en", go: go, href: function () { return here("../" + WORDS[0].href); } });
+  }
 
   window.TurnsOut = {
     relabel: relabel,
@@ -2299,6 +2363,7 @@
     wordDone: wordDone,
     wordNext: wordNext,
     wordStrip: wordStrip,              // Tell Khayyam + the World table's word side, for a word game's end card (30 Oct 2026)
+    wordClock: wordClock,              // the time to the new games, on the card once all three word games are played (7 Nov 2026)
     tellIn: tellIn,
     GROUP: GROUP,
     group: group,

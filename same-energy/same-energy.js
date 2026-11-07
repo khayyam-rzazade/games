@@ -285,7 +285,6 @@
 
   /* ---------- the screen ---------- */
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("energy.title_day", { n: day });
   $("question").textContent = T("energy.question", { many: B.many });
   $("face").textContent = q.a.name;
   $("portion").textContent = q.a.portion;

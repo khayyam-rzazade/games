@@ -129,7 +129,6 @@
 
   /* ---------- the screen ---------- */
   $("day-label").textContent = T("site.day_n", { n: day }) + (practice ? T("site.practice_suffix") : "");
-  document.title = T("gets.title_day", { n: day });
   $("what").textContent = q.what;
   $("where").textContent = q.where;
   $("when").textContent = q.when;
