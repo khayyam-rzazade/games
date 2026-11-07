@@ -46,6 +46,15 @@ export function stats(period) {
   return s.stats(m.collect(), period || {}, { name: (id) => (has('game.' + id + '.name') ? T('game.' + id + '.name') : '') });
 }
 
+/* pull what the other phones did: A's sync writes the merged record into this phone's own copy, so stats() reads it afterwards.
+   { ok: true } or { ok: false, reason }; never throws */
+export async function sync() {
+  const m = Me(); if (!m || typeof m.sync !== 'function') return { ok: false, reason: 'fail' };
+  try { if (!m.code()) return { ok: false, reason: 'none' }; } catch (e) { return { ok: false, reason: 'none' }; }
+  const r = await safe(() => m.sync(), null);
+  return r && r.ok ? { ok: true } : { ok: false, reason: 'net' };
+}
+
 /* the year / month card: the line is shown only when C's hook is on the page and says a card is open now */
 export function cardOpen(st) {
   const y = window.MeYear || window.LogicersYear;

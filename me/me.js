@@ -21,7 +21,7 @@ const WORDS = ['altitude', 'lookalike', 'passport'];
 const QIDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const CODE_RE = /^[a-z]+-[a-z]+-[a-z]+-\d{2}$/;
 
-const S = { stats: null, code: null, kind: null, openKind: null, flash: '', counted: false, doorsNow: null };
+const S = { stats: null, code: null, kind: null, openKind: null, flash: '', counted: false, doorsNow: null, quiet: false };
 
 /* ---------- small tools ---------- */
 function safeHref(h) {
@@ -267,7 +267,7 @@ function failScreen() {
 function homeScreen() {
   const s = S.stats; if (!s) return failScreen();
   const root = screen(); let n = 0;
-  const add = (node) => { node.classList.add('me-rise'); node.style.setProperty('--i', Math.min(n++, 7)); root.appendChild(node); return node; };
+  const add = (node) => { if (!S.quiet) node.classList.add('me-rise'); node.style.setProperty('--i', Math.min(n++, 7)); root.appendChild(node); return node; };
   const head = el('div', 'me-head');
   if (s.logicer) {
     const h1 = el('h1', 'me-number'); h1.tabIndex = -1; const full = T('home.number', { n: fmtN(s.logicer) }); h1.setAttribute('aria-label', full);
@@ -558,9 +558,11 @@ function show(node, name, same) {
   if (dir) node.classList.add(dir);
   main.replaceChildren(node); if (ghost) { main.appendChild(ghost); setTimeout(() => ghost.remove(), 450); }
   current = name;
-  const target = node.focusAfter || node.querySelector('h1');
-  if (target) { if (target.tagName === 'H1') target.tabIndex = -1; try { target.focus({ preventScroll: true }); } catch (e) { /* no focus */ } }
-  window.scrollTo(0, 0);
+  if (!S.quiet) {        // a quiet draw (new numbers arrived while the page is open) leaves the focus and the scroll where they are
+    const target = node.focusAfter || node.querySelector('h1');
+    if (target) { if (target.tagName === 'H1') target.tabIndex = -1; try { target.focus({ preventScroll: true }); } catch (e) { /* no focus */ } }
+    window.scrollTo(0, 0);
+  }
   document.title = name === 'pw' ? T('pw.h') + ' | ' + T('app.name') : name === 'rq' ? T('rq.h') + ' | ' + T('app.name') : name === 'have' ? T('have.h') + ' | ' + T('app.name')
     : name === 'number' ? T('num.h') + ' | ' + T('app.name') : name === 'get' ? T('code.get') + ' | ' + T('app.name') : T('app.title');
 }
@@ -585,6 +587,22 @@ async function refresh() {
   if (S.stats && S.doorsNow) S.stats.doors = Object.assign({}, S.stats.doors, S.doorsNow);
 }
 
+/* The page shows this browser's own copy of the record. Games played on another phone arrive only with a pull, so the page pulls
+   when it opens and when the person comes back to the tab, and draws the home screen again (quietly) only if the numbers changed. */
+let pulling = null, pulledAt = 0;
+function pull(force) {
+  if (!S.code || pulling) return pulling;
+  if (!force && Date.now() - pulledAt < 20000) return null;
+  pulling = api.sync().then(async (r) => {
+    pulledAt = Date.now();
+    if (!r || !r.ok) return;
+    const before = JSON.stringify(S.stats);
+    await refresh();
+    if (current === '' && JSON.stringify(S.stats) !== before) { S.quiet = true; try { render(false, true); } finally { S.quiet = false; } }
+  }).catch(() => { /* the next pull does it */ }).then(() => { pulling = null; });
+  return pulling;
+}
+
 async function boot() {
   await initWords(); chrome();
   S.kind = await api.passkeyKind(); S.openKind = api.passkeyOpenKind();
@@ -592,5 +610,8 @@ async function boot() {
   window.addEventListener('hashchange', () => render(false, false));
   render(true, false);
   document.documentElement.dataset.ready = '1';
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') pull(false); });
+  window.addEventListener('pageshow', (e) => { if (e.persisted) pull(true); });
+  pull(true);
 }
 boot().catch((e) => { try { const m = $('#me'); if (m) m.replaceChildren(failScreen()); } catch (x) { /* nothing more to do */ } if (window.console) console.warn('My Logicers:', e); document.documentElement.dataset.ready = 'err'; });

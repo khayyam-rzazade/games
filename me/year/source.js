@@ -65,6 +65,8 @@ export async function load(period, wantDist, opts) {
   }
   const { S, Me } = await modules();
   if (!S || !Me) return { ok: false, stats: null, dist: null, hasCode: false };
+  /* a card is a thing to share, so the numbers should be the whole record: pull what the other phones did first (not for long) */
+  try { if (Me.code() && typeof Me.sync === 'function') await Promise.race([Me.sync(), new Promise((r) => setTimeout(r, 2500))]); } catch (e) { /* the phone's own copy is still good */ }
   let stats = null;
   try { stats = S.stats(await Me.collect(), period, opts); } catch (e) { stats = null; }
   let code = false; try { code = !!Me.code(); } catch (e) { code = false; }
