@@ -49,6 +49,9 @@
 
   var MAX_DAYS = 4000;                            // a day string longer than this is refused (about eleven years)
   var MAX_MINE = 120;
+  var MAX_GONE = 300;                             /* "kind:code" of games and rooms taken off My Logicers (7 Nov 2026): kept, so that a
+                                                     phone that still holds one never brings it back */
+  var GONE_RE = /^(made|checkin|howsure|findout):[A-Za-z0-9]{3,16}$/;
   var LIMIT = 64 * 1024;                          // the whole record, as JSON, in bytes (raised from 24 KB at the joint check:
                                                    // a player of everything reaches 24 KB in about two years; 64 KB is a decade)
 
@@ -165,10 +168,14 @@
     }
     var ci = mergeDays(a.ci, b.ci, false);
     if (ci) out.ci = ci;
+    var gone = goneOf(a, b), off = {};
+    gone.forEach(function (k) { off[k] = 1; });
+    if (gone.length) out.gone = gone;
     var mine = {}, order = [];
     (a.mine || []).concat(b.mine || []).forEach(function (x) {
       if (!x || typeof x.code !== "string") return;
       var k = x.kind + ":" + x.code;
+      if (off[k]) return;
       if (!mine[k]) { mine[k] = copy(x); order.push(k); return; }
       var m = mine[k];
       if (!m.title && x.title) m.title = x.title;
@@ -186,6 +193,12 @@
     return out;
   }
   function copy(x) { return x === undefined ? undefined : JSON.parse(JSON.stringify(x)); }
+  /* the union of two lists of removed games, the newest last, at most MAX_GONE */
+  function goneOf(a, b) {
+    var seen = {}, out = [];
+    ((a && a.gone) || []).concat((b && b.gone) || []).forEach(function (k) { if (typeof k === "string" && GONE_RE.test(k) && !seen[k]) { seen[k] = 1; out.push(k); } });
+    return out.length > MAX_GONE ? out.slice(out.length - MAX_GONE) : out;
+  }
 
   /* ---------------- clean: what a record may hold, nothing more ---------------- */
   var CODE_ID = /^[A-Za-z0-9]{3,16}$/;
@@ -238,9 +251,13 @@
     }
     var cd = days(r.ci, false);
     if (cd) out.ci = cd;
+    var gone = Array.isArray(r.gone) ? goneOf(r, null) : [], off = {};
+    gone.forEach(function (k) { off[k] = 1; });
+    if (gone.length) out.gone = gone;
     out.mine = [];
     if (Array.isArray(r.mine)) r.mine.forEach(function (x) {
       if (out.mine.length >= MAX_MINE || !x || KINDS.indexOf(x.kind) < 0 || typeof x.code !== "string" || !CODE_ID.test(x.code)) return;
+      if (off[x.kind + ":" + x.code]) return;
       out.mine.push({ kind: x.kind, title: typeof x.title === "string" ? x.title.replace(/[\u0000-\u001f]/g, " ").slice(0, 80) : "",
                       code: x.code, made: okDate(x.made) ? x.made : null });
     });
@@ -372,10 +389,12 @@
       ci.times = within(spread(r.ci.f, r.ci.d), b).length;
     }
 
-    var links = (open && open.mine) || {};
-    var mine = (r.mine || []).map(function (x) {
+    var links = (open && open.mine) || {}, off = {};
+    (r.gone || []).forEach(function (k) { off[k] = 1; });
+    var mine = (r.mine || []).filter(function (x) { return x && !off[x.kind + ":" + x.code]; }).map(function (x) {
       var s = links[x.kind + ":" + x.code];
-      return { kind: x.kind, title: x.title || "", code: x.code, made: x.made || null, link: s && typeof s.link === "string" ? s.link : null };
+      return { kind: x.kind, title: x.title || "", code: x.code, made: x.made || null, link: s && typeof s.link === "string" ? s.link : null,
+               key: s && typeof s.key === "string" ? s.key : null, at: s && typeof s.at === "number" ? s.at : null };
     });
 
     var from = isFinite(b[0]) ? b[0] : okDate(r.first) ? dayIndex(r.first) : site ? dayIndex(site.f) : b[1];
@@ -407,7 +426,7 @@
   }
 
   var api = {
-    VERSION: 2, DAILY: DAILY, WORDS: WORDS, IDS: IDS, TOP: TOP, KINDS: KINDS, LANGS: LANGS, LIMIT: LIMIT, STORY_LAUNCH: STORY_LAUNCH,
+    VERSION: 2, DAILY: DAILY, WORDS: WORDS, IDS: IDS, TOP: TOP, KINDS: KINDS, LANGS: LANGS, LIMIT: LIMIT, STORY_LAUNCH: STORY_LAUNCH, GONE_RE: GONE_RE,
     dayIndex: dayIndex, dateOf: dateOf, localDate: localDate, spread: spread, build: build,
     mergeDays: mergeDays, merge: merge, clean: clean, size: size, streak: streak, stats: stats,
     storyDate: storyDate, storyChapter: storyChapter

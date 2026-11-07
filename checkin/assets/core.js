@@ -18,6 +18,15 @@ export const LOCALES = { en: 'en-GB', it: 'it-IT', tr: 'tr-TR', es: 'es-ES', pt:
 export const LANGS = [['en', 'English', '\u{1F1EC}\u{1F1E7}'], ['it', 'Italiano', '\u{1F1EE}\u{1F1F9}'], ['tr', 'Türkçe', '\u{1F1F9}\u{1F1F7}'],
                       ['es', 'Español', '\u{1F1EA}\u{1F1F8}'], ['pt', 'Português', '\u{1F1E7}\u{1F1F7}'], ['fr', 'Français', '\u{1F1EB}\u{1F1F7}']];
 
+/* My Logicers (7 Nov 2026, Khayyam: "whenever an action is taken it has to sync immediately"): a phone that keeps a code loads the
+   two scripts that send its record here too, as the game pages do (assets/js/turnsout.js), so a check-in or a new group reaches
+   the other phones at once. Any other phone loads nothing. */
+try {
+  if (localStorage.getItem('lg.me.v1') && !window.LogicersMe) ['me-stats', 'me'].forEach((f) => {
+    const s = document.createElement('script'); s.src = new URL('../../assets/js/' + f + '.js', import.meta.url).href; s.async = false; document.head.appendChild(s);
+  });
+} catch (e) { /* My Logicers is optional */ }
+
 /* the Worker (server/checkin, chat B): its own address is the one in server/checkin/README.md. If it ever gets a name of its own on
    logicers.com, put that in `use` and keep this one as `alt`. A test page sets window.CHECKIN_API; nothing is probed on load. */
 const API_ADDR = window.CHECKIN_API

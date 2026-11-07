@@ -64,7 +64,29 @@ function tile(p) {
   a.appendChild(sub);
   return a;
 }
-function strip(list) { const s = el('div', 'me-strip'); s.setAttribute('role', 'list'); list.forEach((p) => { const t = tile(p); t.setAttribute('role', 'listitem'); s.appendChild(t); }); return s; }
+/* the strip: a swipe sideways on a phone; arrows on its sides show there is more and move it a screen at a time (7 Nov 2026,
+   Khayyam: "no arrow showing that it can be swiped"). On a wide screen every tile shows and the arrows are not needed. */
+function strip(list) {
+  const box = el('div', 'me-stripbox'); const s = el('div', 'me-strip'); s.setAttribute('role', 'list');
+  list.forEach((p) => { const t = tile(p); t.setAttribute('role', 'listitem'); s.appendChild(t); });
+  const arrow = (dir) => {
+    const b = el('button', 'me-arrow ' + dir); b.type = 'button'; b.tabIndex = -1; b.setAttribute('aria-hidden', 'true'); b.hidden = true;
+    b.innerHTML = dir === 'prev' ? '<svg viewBox="0 0 20 20"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg>' : '<svg viewBox="0 0 20 20"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg>';
+    b.addEventListener('click', () => s.scrollBy({ left: (dir === 'prev' ? -1 : 1) * Math.max(120, s.clientWidth * 0.8), behavior: reduced() ? 'auto' : 'smooth' }));
+    return b;
+  };
+  const prev = arrow('prev'), next = arrow('next');
+  const look = () => {
+    const max = s.scrollWidth - s.clientWidth;
+    prev.hidden = !(max > 4 && s.scrollLeft > 4); next.hidden = !(max > 4 && s.scrollLeft < max - 4);
+    box.classList.toggle('more-r', !next.hidden); box.classList.toggle('more-l', !prev.hidden);
+  };
+  s.addEventListener('scroll', look, { passive: true });
+  if (window.ResizeObserver) new ResizeObserver(look).observe(s); else window.addEventListener('resize', look);
+  requestAnimationFrame(look); setTimeout(look, 400);
+  box.append(s, prev, next);
+  return box;
+}
 function section(title) { const s = el('section', 'me-sec'); if (title) s.appendChild(el('h2', 'me-h', title)); return s; }
 
 function storyCard(st) {
@@ -103,31 +125,212 @@ function delta(sentence) {
   parts.forEach((p) => { const m = /^<b>([^<]*)<\/b>$/.exec(p); if (m) d.appendChild(el('b', null, m[1])); else if (p) d.appendChild(document.createTextNode(p)); });
   return d;
 }
-function mineCard(list) {
-  const s = section(T('mine.h')), c = el('div', 'me-card'), ul = el('ul', 'me-rows'); let missing = false;
-  list.forEach((g) => {
-    const li = el('li', 'me-row'), w = el('div', 'what');
-    w.appendChild(el('div', 'ti', g.title || ''));
-    const m = el('div', 'meta'); m.appendChild(el('span', 'kind', T('mine.kind.' + g.kind))); const cd = el('span', 'cd', g.code || ''); m.appendChild(cd);
-    if (g.made) m.appendChild(document.createTextNode(' · ' + fmtDay(g.made)));
-    w.appendChild(m); li.appendChild(w);
-    const href = safeHref(g.link);
-    if (href) { const a = el('a', 'btn tint small', T(g.kind === 'made' ? 'mine.edit' : 'mine.host')); a.href = href; li.appendChild(a); } else missing = true;
-    ul.appendChild(li);
-  });
-  c.appendChild(ul); s.appendChild(c);
-  if (missing) s.appendChild(el('p', 'me-note', T('mine.note')));
+/* ---------- Your games (7 Nov 2026: Khayyam's "edit/delete kind of control over the rooms", and for teachers and teams how many
+   played): each made game and room is a small card with its numbers, asked of its own server, and what can be done with it:
+   Edit / Results / Share for a made game, Open / Share for a check-in group, Open while a How Sure game or a find-outs room is
+   on. "…" holds Remove (off My Logicers, on every phone) and, where its server allows, Delete for good. The friends' rooms
+   are listed after them; their own page is where a room is left or deleted. ---------- */
+const INFO = new Map();           // kind:code -> { at, v } : the numbers, asked at most once a minute
+let INFO_RUN = 0;
+const plural = (n, one, other) => T(n === 1 ? one : other, { n: fmtN(n) });
+function infoLine(it, v) {
+  if (!v) return '';
+  if (v.gone) return T('mine.gone');
+  if (v.stopped) return T('mine.stopped');
+  if (!v.ok) return '';
+  const bits = [];
+  if (it.kind === 'made') { bits.push(plural(v.plays, 'mine.plays1', 'mine.plays')); if (v.until) bits.push(T('mine.until', { date: fmtDay(String(v.until).slice(0, 10)) })); }
+  if (it.kind === 'checkin') {
+    if (v.live) bits.push(T('mine.live'));
+    bits.push(plural(v.rounds, 'mine.rounds1', 'mine.rounds'));
+    if (v.total) bits.push(plural(v.total, 'mine.people1', 'mine.people'));
+    if (v.until) bits.push(T('mine.until', { date: fmtDay(String(v.until).slice(0, 10)) }));
+  }
+  if (it.kind === 'howsure' || it.kind === 'findout') bits.push(v.live ? T('mine.live') + ' · ' + plural(v.players, 'mine.players1', 'mine.players') : T('mine.ended'));
+  return bits.join(' · ');
+}
+function mineKey(it) { return it.kind + ':' + it.code; }
+function mineItem(it) {
+  const k = mineKey(it), card = el('li', 'me-card me-item'); card.dataset.k = k;
+  const top = el('div', 'me-itop');
+  top.appendChild(el('span', 'kind', T('mine.kind.' + it.kind)));
+  const more = el('button', 'chip round me-more'); more.type = 'button'; more.setAttribute('aria-label', T('mine.more'));
+  more.innerHTML = '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="4.5" cy="10" r="1.7"/><circle cx="10" cy="10" r="1.7"/><circle cx="15.5" cy="10" r="1.7"/></svg>';
+  more.addEventListener('click', () => openMore(it));
+  top.appendChild(more); card.appendChild(top);
+  const cached = INFO.get(k);
+  const ti = el('div', 'ti', it.title || (cached && cached.v && cached.v.title) || (it.kind === 'made' ? '' : T('mine.kind.' + it.kind) + ' ' + it.code));
+  ti.dir = 'auto'; card.appendChild(ti);
+  const meta = el('div', 'meta'); meta.appendChild(el('span', 'cd', it.code)); if (it.made) meta.appendChild(document.createTextNode(' · ' + fmtDay(it.made)));
+  card.appendChild(meta);
+  const nums = el('p', 'me-inum'); nums.setAttribute('aria-live', 'polite'); nums.textContent = cached ? infoLine(it, cached.v) : ''; nums.hidden = !nums.textContent; card.appendChild(nums);
+  const acts = el('div', 'me-iacts'); card.appendChild(acts);
+  drawActs(it, acts, cached && cached.v);
+  return card;
+}
+function drawActs(it, acts, v) {
+  acts.replaceChildren();
+  const href = safeHref(it.link);
+  const go = (label, h) => { const a = el('a', 'btn tint small', label); a.href = h; acts.appendChild(a); };
+  const tap = (label, f) => acts.appendChild(button('tint small', label, f));
+  if (v && v.gone) { tap(T('mine.remove_s'), () => removeItem(it)); return; }
+  if (!href && !it.key) { acts.appendChild(el('span', 'me-inote', T('mine.note'))); return; }
+  if (it.kind === 'made') {
+    if (href) go(T('mine.edit'), href);
+    if (it.key) tap(T('mine.results'), () => openResults(it));
+    if (it.key && (!v || v.alone)) tap(T('mine.share'), () => openShare(it, liveLink(it.code)));
+  } else if (it.kind === 'checkin') {
+    if (href) go(T('mine.open'), href);
+    tap(T('mine.share'), () => openShare(it, (v && safeHref(v.join)) || new URL('../checkin/room/#' + it.code, location.href).href));
+  } else if (href && (!v || v.live)) go(T('mine.open'), href);
+}
+function liveLink(code) { return new URL('../live/#' + code, location.href).href; }
+async function loadInfo(list) {
+  const run = ++INFO_RUN, todo = list.filter((it) => { const c = INFO.get(mineKey(it)); return !c || Date.now() - c.at > 60000; });
+  const worker = async () => {
+    while (todo.length && run === INFO_RUN) {
+      const it = todo.shift();
+      const v = await api.mineInfo(it);
+      INFO.set(mineKey(it), { at: Date.now(), v });
+      paintInfo(it, v);
+    }
+  };
+  await Promise.all([worker(), worker(), worker(), worker()]);
+  if (run === INFO_RUN) paintTotals(list);
+}
+function paintInfo(it, v) {
+  const card = document.querySelector('.me-item[data-k="' + CSS.escape(mineKey(it)) + '"]'); if (!card) return;
+  const n = card.querySelector('.me-inum'); if (n) { n.textContent = infoLine(it, v); n.hidden = !n.textContent; }
+  if (v && v.ok && it.kind === 'made' && v.title && !it.title) { const ti = card.querySelector('.ti'); if (ti) ti.textContent = v.title; }
+  card.classList.toggle('off', !!(v && (v.gone || v.stopped)));
+  const acts = card.querySelector('.me-iacts'); if (acts) drawActs(it, acts, v);
+}
+/* the three numbers on top: how many made games and groups, how many plays they had, how many check-ins they took */
+function totals(list) {
+  let plays = 0, people = 0, known = false;
+  list.forEach((it) => { const c = INFO.get(mineKey(it)); const v = c && c.v; if (!v || !v.ok) return; known = true; if (it.kind === 'made') plays += v.plays || 0; if (it.kind === 'checkin') people += v.total || 0; });
+  return { plays, people, known };
+}
+function paintTotals(list) {
+  const box = document.querySelector('.me-mine .me-nums'); if (!box) return;
+  const t = totals(list); if (!t.known) return;
+  box.hidden = false;
+  const set = (i, v) => { const b = box.children[i] && box.children[i].querySelector('b'); if (b) b.textContent = fmtN(v); };
+  set(1, t.plays); set(2, t.people);
+}
+function mineCard(list, rooms) {
+  const s = section(T('mine.h')); s.classList.add('me-mine', 'full');
+  const made = list.filter((x) => x.kind === 'made').length, groups = list.filter((x) => x.kind === 'checkin').length;
+  if (made || groups) {
+    const t = totals(list), n = el('div', 'me-nums me-card me-tot'); n.hidden = !t.known;
+    [[made + groups, 'mine.n_games'], [t.plays, 'mine.n_plays'], [t.people, 'mine.n_people']].forEach(([v, k]) => { const d = el('div', 'me-num'); d.appendChild(el('b', null, fmtN(v || 0))); d.appendChild(el('span', null, T(k))); n.appendChild(d); });
+    s.appendChild(n);
+  }
+  if (list.length) { const ul = el('ul', 'me-items'); list.forEach((it) => ul.appendChild(mineItem(it))); s.appendChild(ul); }
+  if (rooms.length) {
+    const h = el('h3', 'me-h3', T('mine.rooms')); s.appendChild(h);
+    const c = el('div', 'me-card'), ul = el('ul', 'me-rows');
+    rooms.forEach((r) => {
+      const li = el('li', 'me-row'), w = el('div', 'what');
+      const ti = el('div', 'ti', r.label || T('mine.kind.room')); ti.dir = 'auto'; w.appendChild(ti);
+      const m = el('div', 'meta'); m.appendChild(el('span', 'kind', T('mine.kind.room'))); w.appendChild(m); li.appendChild(w);
+      const a = el('a', 'btn tint small', T('mine.open')); a.href = '../room/#r=' + r.code; li.appendChild(a);
+      ul.appendChild(li);
+    });
+    c.appendChild(ul); s.appendChild(c);
+  }
+  if (list.length) setTimeout(() => loadInfo(list), 0);
   return s;
+}
+function removeItem(it, close) {
+  api.forget(it.kind, it.code); INFO.delete(mineKey(it));
+  if (close) close();
+  S.flash = T('mine.removed'); refresh().then(() => { S.quiet = true; try { render(false, true); } finally { S.quiet = false; } });
+}
+function openMore(it) {
+  sheet(it.title || T('mine.kind.' + it.kind) + ' ' + it.code, (box, close) => {
+    const msg = msgLine(); const col = el('div', 'me-col');
+    col.appendChild(button('tint block', T('mine.remove'), () => removeItem(it, close)));
+    if ((it.kind === 'made' || it.kind === 'checkin') && it.key) {
+      const del = button('ghost block me-dangertext', T('mine.delete'), () => {
+        col.replaceChildren();
+        box.querySelector('h2').textContent = T('mine.delete');
+        const p = el('p', null, T(it.kind === 'made' ? 'mine.del_game' : 'mine.del_group')); col.appendChild(p);
+        const row = el('div', 'me-btns');
+        const yes = button('danger', T('del.yes'), async () => {
+          yes.disabled = true; setMsg(msg, '');
+          const r = await api.destroy(it);
+          if (!r.ok) { yes.disabled = false; setMsg(msg, failText(r), 'bad'); return; }
+          INFO.delete(mineKey(it)); close(); S.flash = T('mine.deleted');
+          await refresh(); S.quiet = true; try { render(false, true); } finally { S.quiet = false; }
+        });
+        row.append(button('ghost', T('del.no'), close), yes); col.appendChild(row);
+      });
+      col.appendChild(del);
+    }
+    col.appendChild(el('p', 'me-note', T('mine.remove_note')));
+    box.append(col, msg);
+  });
+}
+function openShare(it, url) {
+  sheet(T('mine.share'), (box) => {
+    const l = el('p', 'me-linkline', url.replace(/^https?:\/\//, '')); box.appendChild(l);
+    const row = el('div', 'me-btns');
+    const copy = button('solid', T('act.copy'), async () => { if (await copyText(url)) { copy.textContent = T('act.copied'); announce(T('act.copied')); setTimeout(() => { copy.textContent = T('act.copy'); }, 1600); } });
+    row.appendChild(copy);
+    if (navigator.share) row.appendChild(button('tint', T('mine.send'), () => { navigator.share({ url }).catch(() => {}); }));
+    box.appendChild(row);
+    const svg = qrNode(url, T('mine.qr_aria')); if (svg) { const d = el('div', 'me-qr'); d.appendChild(svg); box.appendChild(d); }
+  });
+}
+function csvOf(plays) {
+  const q = (v) => { const t = String(v === undefined || v === null ? '' : v); return /[",\n;]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
+  const head = [T('mine.c_name'), T('mine.c_pts'), T('mine.c_right'), T('mine.c_of'), T('mine.c_when')];
+  const rows = plays.map((p) => [p[0], Number(p[1]) || 0, Number(p[3]) || 0, Number(p[4]) || 0, p[2] ? new Date(Number(p[2])).toISOString().replace('T', ' ').slice(0, 16) : '']);
+  return '﻿' + [head].concat(rows).map((r) => r.map(q).join(',')).join('\r\n') + '\r\n';
+}
+function openResults(it) {
+  sheet(it.title || T('mine.results'), (box) => {
+    const body = el('div', 'me-res'); body.appendChild(el('p', 'me-note', T('load'))); box.appendChild(body);
+    api.madeResults(it).then((r) => {
+      body.replaceChildren();
+      if (!r.ok) { body.appendChild(el('p', 'me-msg bad', r.gone ? T('mine.gone') : T('err.generic'))); return; }
+      const plays = r.plays.slice().sort((a, b) => (Number(b[1]) || 0) - (Number(a[1]) || 0));
+      body.appendChild(el('p', 'me-res-n', plural(plays.length, 'mine.plays1', 'mine.plays')));
+      if (!plays.length) { body.appendChild(el('p', 'me-note', T('mine.no_plays'))); }
+      else {
+        const wrap = el('div', 'me-tablewrap'), t = el('table', 'me-table'), hd = el('tr');
+        [['#', ''], [T('mine.c_name'), ''], [T('mine.c_pts'), 'r'], [T('mine.c_right'), 'r']].forEach(([h, c]) => { const th = el('th', c, h); th.scope = 'col'; hd.appendChild(th); });
+        const thead = el('thead'); thead.appendChild(hd); t.appendChild(thead);
+        const tb = el('tbody'); let place = 0;
+        plays.slice(0, 30).forEach((p, i) => {
+          if (i === 0 || (Number(p[1]) || 0) < (Number(plays[i - 1][1]) || 0)) place = i + 1;
+          const tr = el('tr'); tr.appendChild(el('td', 'pl', place)); const nm = el('td', 'nm', p[0]); nm.dir = 'auto'; tr.appendChild(nm);
+          tr.appendChild(el('td', 'r', fmtN(Number(p[1]) || 0))); tr.appendChild(el('td', 'r', (Number(p[3]) || 0) + '/' + (Number(p[4]) || 0)));
+          tb.appendChild(tr);
+        });
+        t.appendChild(tb); wrap.appendChild(t); body.appendChild(wrap);
+        if (plays.length > 30) body.appendChild(el('p', 'me-note', T('mine.more_in_edit', { n: fmtN(plays.length - 30) })));
+      }
+      const row = el('div', 'me-btns');
+      if (plays.length) row.appendChild(button('solid', T('mine.csv'), () => {
+        const blob = new Blob([csvOf(plays)], { type: 'text/csv;charset=utf-8' }); const a = el('a'); a.href = URL.createObjectURL(blob);
+        a.download = 'logicers-' + it.code + '.csv'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      }));
+      const href = safeHref(it.link); if (href) { const a = el('a', 'btn tint', T('mine.edit')); a.href = href; row.appendChild(a); }
+      body.appendChild(row);
+    });
+  });
 }
 
 /* ---------- the code: show it, copy it, QR ---------- */
-function qrNode(text) {
+function qrNode(text, label) {
   const Q = window.qrcodegen; if (!Q) return null;
   try {
     const q = Q.QrCode.encodeText(text, Q.QrCode.Ecc.MEDIUM); let d = ''; const n = q.size;
     for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (q.getModule(x, y)) d += 'M' + (x + 2) + ' ' + (y + 2) + 'h1v1h-1z';
     const NS = 'http://www.w3.org/2000/svg'; const svg = document.createElementNS(NS, 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + (n + 4) + ' ' + (n + 4)); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', T('code.qr_aria'));
+    svg.setAttribute('viewBox', '0 0 ' + (n + 4) + ' ' + (n + 4)); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', label || T('code.qr_aria'));
     const r = document.createElementNS(NS, 'rect'); r.setAttribute('width', '100%'); r.setAttribute('height', '100%'); r.setAttribute('fill', '#fff'); svg.appendChild(r);
     const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('fill', '#15172B'); svg.appendChild(p);
     return svg;
@@ -158,7 +361,7 @@ function codeTools(code) {
     });
     qr.setAttribute('aria-expanded', 'false'); row.appendChild(qr);
   }
-  w.appendChild(row); w.appendChild(qrBox); w.appendChild(el('p', 'me-note', T('code.notes')));
+  w.appendChild(row); w.appendChild(qrBox); w.appendChild(el('p', 'me-note', T('code.notes') + ' ' + T('code.keep')));
   return w;
 }
 function codeCard(code) {
@@ -257,6 +460,23 @@ function openDelete() {
   });
 }
 
+/* Exit (7 Nov 2026): what this phone holds goes up first, then the code and the games leave this phone; "Use another code"
+   is the same, and then the box to type one */
+function openExit(another) {
+  sheet(T(another ? 'out.other' : 'out.link'), (box, close) => {
+    box.appendChild(el('p', null, T('out.sure')));
+    const msg = msgLine(); const row = el('div', 'me-btns');
+    const yes = button('solid', T('out.yes'), async () => {
+      yes.disabled = true; setMsg(msg, '');
+      const r = await api.leave();
+      if (!r.ok) { yes.disabled = false; setMsg(msg, failText(r), 'bad'); return; }
+      close(); S.doorsNow = null; INFO.clear(); S.counted = true; await refresh();
+      if (another) nav('have'); else { S.flash = T('out.done'); nav(''); }
+    });
+    row.append(button('ghost', T('out.no'), close), yes); box.appendChild(row); box.appendChild(msg);
+  });
+}
+
 /* ---------- the screens ---------- */
 function screen(sub) { return el('section', 'me-screen' + (sub ? ' me-sub' : '')); }
 function act(...kids) { const d = el('div', 'me-act'); kids.forEach((k) => k && d.appendChild(k)); return d; }
@@ -266,7 +486,7 @@ function failScreen() {
 }
 function homeScreen() {
   const s = S.stats; if (!s) return failScreen();
-  const root = screen(); let n = 0;
+  const root = screen(); root.classList.add('me-home'); let n = 0;
   const add = (node) => { if (!S.quiet) node.classList.add('me-rise'); node.style.setProperty('--i', Math.min(n++, 7)); root.appendChild(node); return node; };
   const head = el('div', 'me-head');
   if (s.logicer) {
@@ -281,7 +501,7 @@ function homeScreen() {
     const row = el('div', 'me-btns'); const a = el('a', 'btn solid', T('act.play')); a.href = '../'; row.appendChild(a); head.appendChild(row);
   }
   if (S.flash) { const f = el('p', 'me-flash', S.flash); f.setAttribute('role', 'status'); head.appendChild(f); announce(S.flash); S.flash = ''; }
-  add(head);
+  head.classList.add('full'); add(head);
 
   const card = api.cardOpen(s);
   if (card) {
@@ -290,28 +510,35 @@ function homeScreen() {
     const query = typeof card.query === 'string' && /^\?(y=\d{4}|m=\d{4}-\d{2})$/.test(card.query) ? card.query : (month ? '?m=' + month : '?y=' + y);
     const label = typeof card.label === 'string' && card.label ? card.label : month ? T('year.m', { month: monthName(month) }) : T('year.y', { y });
     const href = safeHref(card.href) || ('year/' + query);
-    const a = el('a', 'btn solid block', label); a.href = href; a.id = 'me-year'; const w = el('div', 'me-sec'); w.appendChild(a); add(w);
+    const a = el('a', 'btn solid block', label); a.href = href; a.id = 'me-year'; const w = el('div', 'me-sec full me-yearbox'); w.appendChild(a); add(w);
   }
 
   const per = Array.isArray(s.per) ? s.per : [];
   const daily = per.filter((p) => !WORDS.includes(p.id)), words = per.filter((p) => WORDS.includes(p.id));
-  if (daily.length) { const sec = section(T('home.daily')); sec.appendChild(strip(daily)); add(sec); }
-  if (words.length) { const sec = section(T('home.words')); sec.appendChild(strip(words)); add(sec); }
+  if (daily.length) { const sec = section(T('home.daily')); sec.classList.add('full'); sec.appendChild(strip(daily)); add(sec); }
+  if (words.length) { const sec = section(T('home.words')); sec.classList.add('full'); sec.appendChild(strip(words)); add(sec); }
   if (s.story && (s.story.chapters > 0 || s.story.votes > 0)) add(storyCard(s.story));
   if (s.findouts && s.findouts.done > 0) add(findoutCard(s.findouts));
   if (s.checkin && (s.checkin.times > 0 || s.checkin.last)) add(checkinCard(s.checkin));
-  if (Array.isArray(s.mine) && s.mine.length) add(mineCard(s.mine));
+  const rooms = api.friendRooms();
+  if ((Array.isArray(s.mine) && s.mine.length) || rooms.length) add(mineCard(Array.isArray(s.mine) ? s.mine : [], rooms));
 
   if (S.code) { add(codeCard(S.code)); add(loseCard()); }
   else if (s.logicer) add(getCard());
   if (!S.code) {
-    const low = el('div', 'me-sec');
+    const low = el('div', 'me-sec me-nocode');
     const row = el('div', 'me-btns'); row.style.marginTop = '0'; row.appendChild(button('tint block', T('have.h'), () => nav('have')));
     low.appendChild(row);
     const u = el('div'); u.appendChild(link(T('have.number'), () => nav('number'))); low.appendChild(u);
     add(low);
   }
-  if (S.code) { const low = el('div', 'me-low'); low.appendChild(link(T('del.link'), openDelete, 'danger')); add(low); }
+  if (S.code) {
+    const low = el('div', 'me-low full');
+    low.appendChild(link(T('out.link'), () => openExit(false), 'strong'));
+    low.appendChild(link(T('out.other'), () => openExit(true)));
+    low.appendChild(link(T('del.link'), openDelete, 'danger'));
+    add(low);
+  }
   return root;
 }
 
@@ -544,6 +771,7 @@ function nav(name) { if (parse().name === name && (name !== 'have' || !parse().a
 function guard(name) {
   if (!(name in DEPTH)) return '';
   if (name === 'get' && (S.code || !(S.stats && S.stats.logicer))) return '';
+  if ((name === 'have' || name === 'number') && S.code) return '';     // another code only after Exit: two people's games never mix
   if ((name === 'pw' || name === 'rq') && !S.code) return '';
   return name;
 }
@@ -558,6 +786,7 @@ function show(node, name, same) {
   if (dir) node.classList.add(dir);
   main.replaceChildren(node); if (ghost) { main.appendChild(ghost); setTimeout(() => ghost.remove(), 450); }
   current = name;
+  document.body.classList.toggle('me-wide', name === '');
   if (!S.quiet) {        // a quiet draw (new numbers arrived while the page is open) leaves the focus and the scroll where they are
     const target = node.focusAfter || node.querySelector('h1');
     if (target) { if (target.tagName === 'H1') target.tabIndex = -1; try { target.focus({ preventScroll: true }); } catch (e) { /* no focus */ } }
@@ -589,7 +818,7 @@ async function refresh() {
 
 /* The page shows this browser's own copy of the record. Games played on another phone arrive only with a pull, so the page pulls
    when it opens and when the person comes back to the tab, and draws the home screen again (quietly) only if the numbers changed. */
-let pulling = null, pulledAt = 0;
+let pulling = null, pulledAt = 0, storageT = null;
 function pull(force) {
   if (!S.code || pulling) return pulling;
   if (!force && Date.now() - pulledAt < 20000) return null;
@@ -612,6 +841,12 @@ async function boot() {
   document.documentElement.dataset.ready = '1';
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') pull(false); });
   window.addEventListener('pageshow', (e) => { if (e.persisted) pull(true); });
+  setInterval(() => { if (document.visibilityState === 'visible' && current === '') pull(false); }, 30000);   // the page stays open: the other phones keep coming in
+  /* a game played in another tab of this browser: its own page syncs it; this one only draws again */
+  window.addEventListener('storage', (e) => {
+    if (!e.key || !/^(turnsout:v1|altitude:v1|lookalike:v1|passport:v1|story:v1|lg\.|logicers-)/.test(e.key) || current !== '') return;
+    clearTimeout(storageT); storageT = setTimeout(async () => { const before = JSON.stringify(S.stats); await refresh(); if (JSON.stringify(S.stats) !== before) { S.quiet = true; try { render(false, true); } finally { S.quiet = false; } } }, 400);
+  });
   pull(true);
 }
 boot().catch((e) => { try { const m = $('#me'); if (m) m.replaceChildren(failScreen()); } catch (x) { /* nothing more to do */ } if (window.console) console.warn('My Logicers:', e); document.documentElement.dataset.ready = 'err'; });

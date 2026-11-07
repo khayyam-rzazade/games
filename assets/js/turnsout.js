@@ -2434,6 +2434,54 @@
   privacyNotes();
   startCounter();
 
+  /* My Logicers in the header (7 Nov 2026, Khayyam: "a window Me or My Logicers on top next to Streak, but not too big"): one
+     round chip, the size of the "?", right after the streak chip, on every page that has one. A person's outline; filled in
+     the page's purple once this phone keeps a code. Its name is said by the label (the page's own name in six languages). */
+  var ME_NAME = { en: "My Logicers", it: "Il mio Logicers", es: "Mi Logicers", pt: "Meu Logicers", fr: "Mon Logicers", tr: "Logicers\u2019\u0131m" };
+  function meChip() {
+    try {
+      if (document.getElementById("me-chip")) return;
+      var streak = document.querySelector(".tools .chip.streak, .bar-tools #streak-chip, .bar-tools .chip.streak");
+      if (!streak || !streak.parentNode) return;
+      var kept = false;
+      try { var c = JSON.parse(window.localStorage.getItem("lg.me.v1")); kept = !!(c && typeof c.code === "string" && c.code); } catch (e) { /* no code kept here */ }
+      if (!document.getElementById("me-chip-style")) {
+        var st = document.createElement("style"); st.id = "me-chip-style";
+        st.textContent = ".chip.me-chip{--mc:#5B3FC4;color:var(--mc);text-decoration:none}" +
+          ".chip.me-chip svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}" +
+          ".chip.me-chip.on{background:var(--mc);color:#fff;box-shadow:none}.chip.me-chip.on svg{fill:currentColor;stroke:none}" +
+          "@media (prefers-color-scheme:dark){.chip.me-chip{--mc:#B7A4FF}.chip.me-chip.on{color:#15102E}}" +
+          "@media (max-width:460px){.chip.me-chip svg{width:18px;height:18px}}" +
+          ".site-bar.me-tight .logo .word{display:none}.bar.me-tight a.wordmark{gap:0;font-size:0}";
+        document.head.appendChild(st);
+      }
+      var a = document.createElement("a");
+      a.id = "me-chip"; a.className = "chip round me-chip" + (kept ? " on" : "");
+      a.href = here(siteRoot() + "me/");
+      var name = ME_NAME[(LG && LG.lang) || "en"] || ME_NAME.en;
+      a.setAttribute("aria-label", name); a.title = name;
+      a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20.2c.6-3.9 3.6-6.2 7.2-6.2s6.6 2.3 7.2 6.2"/></svg>';
+      a.addEventListener("click", function () { count_("me/chip" + (kept ? "-on" : "")); });
+      streak.parentNode.insertBefore(a, streak.nextSibling);
+      /* the wordmark gives way first, as on the narrowest phones: the word shows whole or not at all (only the three dots),
+         never cut in half. Measured again when the bar changes width (a longer streak, a turned phone, a new language). */
+      var bar = streak.closest(".site-bar, .bar");
+      if (bar) {
+        var fit = function () {
+          var logo = bar.querySelector(".logo") || bar.querySelector("a.wordmark");
+          if (!logo) return;
+          bar.classList.remove("me-tight");
+          if (logo.scrollWidth > logo.clientWidth + 1) bar.classList.add("me-tight");
+        };
+        fit();
+        if (window.ResizeObserver) new ResizeObserver(function () { window.requestAnimationFrame(fit); }).observe(bar);
+        else window.addEventListener("resize", fit);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+      }
+    } catch (e) { /* the chip is optional */ }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", meChip); else meChip();
+
   /* My Logicers (joint check, 7 Nov 2026): a phone that keeps a code loads the two scripts that send its record to the
      server after every finish (assets/js/me.js wraps TurnsOut.count, so no game changes). Any other phone loads nothing. */
   try {

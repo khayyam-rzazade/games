@@ -14,7 +14,11 @@
                                claim = true (restore, adopt) also asks the find-outs' server for the portrait with the code in the box
      draw(lang)                a new code: three words of me/words/<lang>.json and a number 10-99 -> Promise<"river-blue-cat-42">
      keep(code, lang)          POST /new; a taken code is drawn again silently -> Promise<{ ok, code } | { ok: false, exists } | { ok: false, error }>
-     sync()                    pull, merge, push; debounced 5 s when called from a game's finish -> Promise<{ ok, record } | null>
+     sync()                    pull, merge, push -> Promise<{ ok, record } | null>. Since 7 Nov 2026 (Khayyam: "whenever an action is taken it
+                               has to sync immediately") it runs about a second after any game, room or result is written to this
+                               phone's storage, on every page load (at most every 8 s) and when a tab comes back
+     leave()                   sync, then take the code and everything of the games off this phone -> Promise<{ ok } | { ok: false, error }>
+     forget(kind, code)        take one made game or room off My Logicers, on every phone (the record keeps "gone")
      restore(code)             POST /restore, apply, keep the code on this phone -> Promise<{ ok, record } | { ok: false, error }>
      remove(opts)              POST /delete and forget the code; { local: true } also empties every key of the inventory here
      openBox(box, code)        -> Promise<object | null> (null: wrong code or no box)
@@ -39,18 +43,31 @@
   var WAIT = 12000;
   var SELF = (document.currentScript && document.currentScript.src) || "";
   var ROOT = /assets\/js\/me\.js/.test(SELF) ? SELF.replace(/assets\/js\/me\.js.*$/, "") : "/";
-  var DEBOUNCE = 5000, STALE = 6 * 36e5;
+  var SOON = 900, PULL_GAP = 8000, BACK_GAP = 30000;
+  var GONE_KEY = "lg.me.gone";             // "kind:code" of games and rooms taken off My Logicers on this phone (forget)
   var CODE_RE = /^[a-z]{4,7}-[a-z]{4,7}-[a-z]{4,7}-[1-9][0-9]$/;
 
   /* ---------------- this phone's storage ---------------- */
   function get(k) { try { var v = window.localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
-  function put(k, v) { try { window.localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+  /* this file's own writes (apply, forget, leave) are not "an action": selfWrite keeps the watcher below from syncing on them */
+  var selfWrite = false;
+  function put(k, v) { var was = selfWrite; selfWrite = true; try { window.localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } finally { selfWrite = was; } }
+  function drop(k) { var was = selfWrite; selfWrite = true; try { window.localStorage.removeItem(k); } catch (e) { /* a blocked store */ } finally { selfWrite = was; } }
   function obj(v) { return v && typeof v === "object" && !Array.isArray(v) ? v : null; }
   function num(v) { return typeof v === "number" && isFinite(v); }
   function whole(v) { return num(v) && Math.round(v) === v; }
   function state() { var s = obj(get(KEY)); return s && s.v === 1 ? s : { v: 1 }; }
   function setState(change) { var s = state(); change(s); put(KEY, s); return s; }
   function code() { var c = state().code; return typeof c === "string" && CODE_RE.test(c) ? c : null; }
+  /* the games and rooms taken off My Logicers: this phone's own list and the record's */
+  function goneList() {
+    var out = [], seen = {}, s = state();
+    var mine = get(GONE_KEY);
+    (Array.isArray(mine) ? mine : []).concat(s.rec && Array.isArray(s.rec.gone) ? s.rec.gone : []).forEach(function (k) {
+      if (typeof k === "string" && M.GONE_RE.test(k) && !seen[k]) { seen[k] = 1; out.push(k); }
+    });
+    return out;
+  }
   function normalize(s) {
     return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
       .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -101,6 +118,9 @@
   function local() {
     var rec = { v: 2, logicer: null, first: null, langs: [], g: {}, mine: [] };
     var open = { ci: [], mine: {}, recent: {}, st: {} };
+    var gone = goneList();
+    if (gone.length) rec.gone = gone;
+    Object.defineProperty(open, "off", { value: gone.reduce(function (o, k) { o[k] = 1; return o; }, {}), enumerable: false });
     var firsts = [], langs = [];
     var T = M.localDate(), ti = D(T);
     function lang(l) { if (M.LANGS.indexOf(l) >= 0 && langs.indexOf(l) < 0) langs.push(l); }
@@ -265,7 +285,7 @@
   function mineAdd(rec, open, kind, code, title, at, secret) {
     if (!/^[A-Za-z0-9]{3,16}$/.test(code)) return;
     var k = kind + ":" + code;
-    if (open.mine[k]) return;
+    if (open.mine[k] || (open.off && open.off[k])) return;
     var made = num(at) ? M.localDate(new Date(at)) : null;
     rec.mine.push({ kind: kind, title: String(title || "").slice(0, 80), code: code, made: made });
     open.mine[k] = secret;
@@ -279,7 +299,11 @@
         : kind === "checkin" && s.key ? ROOT + "checkin/host/#" + s.key
         : kind === "howsure" ? ROOT + "live/#" + c
         : kind === "findout" ? ROOT + "find-out/room/" : null;
-      out[k] = { link: link };
+      /* the key the page needs to ask that game's own server for its numbers (made: the edit key; a check-in room: the host
+         key; How Sure: the host key; a find-outs room: the host key). It stays on this phone, as the link does. */
+      var key = kind === "made" ? s.edit : kind === "checkin" ? s.key : kind === "howsure" ? (obj(s.rec) && s.rec.key) : kind === "findout" ? (obj(s.rec) && s.rec.host_key) : null;
+      var at = kind === "howsure" ? (obj(s.rec) && s.rec.t) : kind === "findout" ? (obj(s.rec) && s.rec.made) : kind === "checkin" ? s.at : s.t;
+      out[k] = { link: link, key: typeof key === "string" ? key : null, at: num(at) ? at : null };
     });
     return out;
   }
@@ -502,9 +526,10 @@
   function writeMine(mine) {
     if (!obj(mine)) return;
     var made = get("logicers-make:games"); made = Array.isArray(made) ? made : [];
-    var ck = null, changed = false;
+    var ck = null, changed = false, off = {};
+    goneList().forEach(function (k) { off[k] = 1; });
     Object.keys(mine).forEach(function (k) {
-      var s = obj(mine[k]); if (!s) return;
+      var s = obj(mine[k]); if (!s || off[k]) return;
       var i = k.indexOf(":"), kind = k.slice(0, i), c = k.slice(i + 1);
       if (kind === "made" && typeof s.edit === "string" && !made.some(function (g) { return g && g.code === c; })) {
         made.push({ code: c, edit: s.edit, title: "", n: s.n, lang: s.lang, colour: s.colour, t: s.t });
@@ -610,6 +635,7 @@
     var L = local(), rec = L.record;
     var data = { ci: L.open.ci, mine: L.open.mine, rooms: L.open.rooms || null, st: L.open.st, recent: L.open.recent, fo: L.open.fo || null };
     if (extra) data = mergeOpen(extra, data);
+    goneList().forEach(function (k) { if (data.mine) delete data.mine[k]; });
     rec.upd = new Date().toISOString();
     function fit(d) {
       return sealBox(d, c, salt).then(function (box) {
@@ -653,11 +679,13 @@
 
   /* sync: (1) the open record goes up and the merged one comes back, with the box the server keeps; (2) that box is opened
      and written here; (3) if this phone holds something the server's box does not, a box of both goes up. */
-  var busy = null;
+  var busy = null, again = false, lastSnap = null;
+  /* what this phone would send now, as text: an action that changes nothing here sends nothing */
+  function snap() { try { var L = local(); return JSON.stringify([L.record, L.open]); } catch (e) { return null; } }
   function sync() {
     var c = code();
     if (!c || !apiBase()) return Promise.resolve(null);
-    if (busy) return busy;
+    if (busy) { again = true; return busy; }
     busy = (function () {
       var L = local(), up = L.record;
       up.upd = new Date(0).toISOString();                           // the open part only: the stored box stays
@@ -678,12 +706,15 @@
           });
         }).then(function (rec) {
           setState(function (st) { st.rec = rec; st.last = Date.now(); });
+          lastSnap = snap();
           return { ok: true, record: rec };
         });
       });
-    })().then(function (x) { busy = null; return x; }, function (e) { busy = null; return { ok: false, error: "network" }; });
+    })().then(function (x) { busy = null; after(); return x; }, function (e) { busy = null; after(); return { ok: false, error: "network" }; });
     return busy;
   }
+  /* something was written while a sync was on its way: it goes up right after */
+  function after() { if (again) { again = false; soon(); } }
   /* the server no longer knows the code (deleted from another phone): forget it here as remove() does, so the game pages
      stop loading these scripts for nothing (joint check) */
   function forgetIfGone(c) {
@@ -694,8 +725,16 @@
   function soon() {
     if (!code()) return;
     if (timer) window.clearTimeout(timer);
-    timer = window.setTimeout(function () { timer = null; sync(); }, DEBOUNCE);
+    timer = window.setTimeout(function () {
+      timer = null;
+      if (busy) { again = true; return; }
+      var s = snap();
+      if (s !== null && s === lastSnap) return;                    // written, but nothing of the record changed
+      sync();
+    }, SOON);
   }
+  /* now, if one is waiting (the tab is being left) */
+  function flush() { if (!timer) return; window.clearTimeout(timer); timer = null; sync(); }
 
   /* draw: three different words and a number, from the phone's own random numbers */
   var lists = {};
@@ -775,17 +814,55 @@
     var p = c && apiBase() ? call("/delete", { code: c }).then(function (r) { return r.status === 200; }, function () { return false; }) : Promise.resolve(true);
     return p.then(function (ok) {
       if (!ok) return { ok: false, error: "network" };
-      try { window.localStorage.removeItem(KEY); } catch (e) { /* nothing */ }
-      if (opts && opts.local) {
-        try {
-          LOCAL_KEYS.forEach(function (k) { window.localStorage.removeItem(k); });
-          var drop = [];
-          for (var i = 0; i < window.localStorage.length; i++) { var k = window.localStorage.key(i); if (/^logicers-live:/.test(k || "")) drop.push(k); }
-          drop.forEach(function (k) { window.localStorage.removeItem(k); });
-        } catch (e) { /* nothing */ }
-      }
+      drop(KEY);
+      if (opts && opts.local) clearHere();
       return { ok: true };
     });
+  }
+  /* every key of the inventory, off this phone */
+  function clearHere() {
+    LOCAL_KEYS.concat([KEY, GONE_KEY]).forEach(drop);
+    try {
+      var live = [];
+      for (var i = 0; i < window.localStorage.length; i++) { var k = window.localStorage.key(i); if (/^logicers-live:/.test(k || "")) live.push(k); }
+      live.forEach(drop);
+    } catch (e) { /* nothing */ }
+  }
+  /* leave (7 Nov 2026, Khayyam: "exit from my logicers" and "enter with a different number"): what this phone holds goes up
+     first; only when the server has it does everything of the games leave this phone, with the code. A shared phone or a
+     class computer is then clean for the next person, and the code brings it all back anywhere. */
+  function leave() {
+    var c = code();
+    if (!c) return Promise.resolve({ ok: true });
+    if (timer) { window.clearTimeout(timer); timer = null; }
+    return sync().then(function (r) {
+      if (!r || !r.ok) return { ok: false, error: (r && r.error) || "network" };
+      if (timer || again) { window.clearTimeout(timer); timer = null; again = false; return sync().then(function () { return leave(); }); }   // written meanwhile: up first
+      clearHere();
+      lastSnap = null;
+      return { ok: true };
+    }, function () { return { ok: false, error: "network" }; });
+  }
+  /* forget: one made game or room off My Logicers. It goes from this phone's lists (the editor's, the check-in's, the hosts')
+     and into the record's "gone", so no other phone brings it back. The game itself is not deleted here. */
+  function forget(kind, c) {
+    var k = kind + ":" + c;
+    if (!M.GONE_RE.test(k)) return false;
+    var list = get(GONE_KEY); list = Array.isArray(list) ? list : [];
+    if (list.indexOf(k) < 0) list.push(k);
+    put(GONE_KEY, list.slice(-300));
+    if (kind === "made") {
+      var made = get("logicers-make:games");
+      if (Array.isArray(made)) put("logicers-make:games", made.filter(function (g) { return !(g && g.code === c); }));
+    }
+    if (kind === "checkin") {
+      var ck = obj(get("lg.checkin.v1"));
+      if (ck && Array.isArray(ck.hosts)) { ck.hosts = ck.hosts.filter(function (h) { return !(h && h.code === c); }); put("lg.checkin.v1", ck); }
+    }
+    if (kind === "howsure") drop("logicers-live:host:" + c);
+    if (kind === "findout") { var fr = obj(get("lg.findout.room.host")); if (fr && fr.code === c) drop("lg.findout.room.host"); }
+    soon();
+    return true;
   }
 
   /* ---------------- the hook: a game's finish, as the games already report it ----------------
@@ -805,16 +882,36 @@
     wrapped.__me = true;
     TO.count = wrapped;
   }
+  /* the watcher: any write of a game's, a room's or a result's own key on this page is an action, and it syncs about a second
+     later (several writes in a row make one sync). Storage.setItem is wrapped once; the write itself happens first, untouched. */
+  var WATCH = /^(turnsout:v1|altitude:v1|lookalike:v1|passport:v1|story:v1|lg\.findout\.v1|lg\.findout\.room\.host|lg\.checkin\.v1|logicers-make:games|logicers-live:host:)/;
+  function watch() {
+    try {
+      var P = window.Storage && window.Storage.prototype;
+      if (!P || P.setItem.__me) return;
+      var set = P.setItem, rem = P.removeItem;
+      var mine = function (store, k) { try { return !selfWrite && store === window.localStorage && WATCH.test(String(k)); } catch (e) { return false; } };
+      P.setItem = function (k) { var out = set.apply(this, arguments); if (mine(this, k)) soon(); return out; };
+      P.removeItem = function (k) { var out = rem.apply(this, arguments); if (mine(this, k)) soon(); return out; };
+      P.setItem.__me = true;
+    } catch (e) { /* no watcher: the hook and the page loads still sync */ }
+  }
+  function pull(gap) { var s = state(); if (code() && (!s.last || Date.now() - s.last > gap)) sync(); }
   function start() {
     hook();
-    var s = state();
-    if (code() && (!s.last || Date.now() - s.last > STALE)) window.setTimeout(sync, 3000);   // pull what the other phones did
+    watch();
+    if (code()) { lastSnap = null; window.setTimeout(function () { pull(PULL_GAP); }, 1200); }   // every page: what the other phones did
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") pull(BACK_GAP); else flush();
+    });
+    window.addEventListener("pagehide", flush);
+    window.addEventListener("pageshow", function (e) { if (e.persisted) pull(PULL_GAP); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 
   window.LogicersMe = {
     KEY: KEY, collect: collect, apply: apply, draw: draw, keep: keep, sync: sync, soon: soon, restore: restore, adopt: adopt,
-    remove: remove, openBox: openBox, sealBox: sealBox, code: code, normalize: normalize, isCode: function (c) { return CODE_RE.test(normalize(c)); },
+    remove: remove, leave: leave, forget: forget, openBox: openBox, sealBox: sealBox, code: code, normalize: normalize, isCode: function (c) { return CODE_RE.test(normalize(c)); },
     _test: { local: local, mergeOpen: mergeOpen, RULES: RULES, hook: hook }
   };
 })();

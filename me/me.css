@@ -102,6 +102,50 @@
 @media (prefers-color-scheme: dark) { .me-row .kind { background: rgba(255, 255, 255, .09); } }
 .me-row .cd { font-variant-numeric: tabular-nums; letter-spacing: .04em; }
 
+/* ---------- Your games, the manager (7 Nov 2026): one card per made game or group, its numbers, its buttons ---------- */
+.me-tot { margin-bottom: 12px; }
+.me-tot[hidden], .me-inum[hidden] { display: none; }
+.me-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.me-item { display: flex; flex-direction: column; min-width: 0; padding: 14px 16px 14px; transition: opacity var(--m-fast) var(--e-out); }
+.me-item.off { opacity: .62; }
+.me-itop { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.me-item .kind { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--tint); color: var(--c); font-weight: 800; font-size: .74rem; line-height: 1.3; letter-spacing: .02em; }
+@media (prefers-color-scheme: dark) { .me-item .kind { background: rgba(255, 255, 255, .09); } }
+.me-more.chip.round { width: 36px; height: 36px; margin: -6px -6px -6px 0; box-shadow: none; background: transparent; color: var(--soft); }
+.me-more svg { width: 20px; height: 20px; fill: currentColor; }
+.me-item .ti { margin-top: 8px; font-weight: 700; font-size: 1.05rem; line-height: 1.2; overflow-wrap: anywhere; min-height: 1.2em; }
+.me-item .meta { margin-top: 3px; color: var(--soft); font-size: .86rem; }
+.me-item .cd { font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.me-inum { margin-top: 8px; font-weight: 700; font-size: .92rem; line-height: 1.3; color: var(--ink); font-variant-numeric: tabular-nums; }
+.me-iacts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.me-iacts .btn.small { min-height: 40px; padding: 0 16px; font-size: .94rem; }
+.me-inote { color: var(--soft); font-size: .88rem; line-height: 1.3; }
+.me-h3 { font-weight: 700; font-size: .98rem; color: var(--soft); margin: 18px 4px 8px; }
+.me-col { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.me-col .btn { min-height: 50px; }
+.btn.me-dangertext { color: var(--bad); }
+.me-linkline { margin-top: 10px; font-weight: 700; color: var(--c); overflow-wrap: anywhere; user-select: all; -webkit-user-select: all; }
+.me-res-n { margin-top: 6px; font-weight: 800; font-size: 1.05rem; }
+.me-tablewrap { margin-top: 10px; max-height: 46vh; overflow: auto; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); }
+.me-table { width: 100%; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+.me-table th { position: sticky; top: 0; background: var(--card); text-align: left; font-weight: 700; color: var(--soft); font-size: .8rem; padding: 8px 10px; }
+.me-table td { padding: 8px 10px; border-top: 1px solid var(--line); }
+.me-table .r { text-align: right; }
+.me-table .pl { color: var(--soft); width: 2.2em; }
+.me-table .nm { font-weight: 600; overflow-wrap: anywhere; }
+
+/* the strip's arrows: only where the strip has more on that side */
+.me-stripbox { position: relative; }
+.me-arrow { position: absolute; top: calc(50% - 24px); width: 40px; height: 40px; border: 0; border-radius: 50%; display: grid; place-items: center; background: var(--card); color: var(--ink); box-shadow: 0 2px 10px rgba(21, 23, 43, .18); cursor: pointer; z-index: 2; -webkit-tap-highlight-color: transparent; animation: me-fade var(--m-fast) var(--e-out) both; }
+.me-arrow[hidden] { display: none; }
+.me-arrow.prev { left: -6px; }
+.me-arrow.next { right: -6px; }
+.me-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-color-scheme: dark) { .me-arrow { background: #23263B; box-shadow: 0 2px 10px rgba(0, 0, 0, .5), inset 0 0 0 1px var(--line); } }
+.me-stripbox.more-r .me-strip { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); }
+.me-stripbox.more-l .me-strip { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); }
+.me-stripbox.more-l.more-r .me-strip { -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
+
 /* ---------- the code ---------- */
 .me-code { font-family: var(--display); font-weight: 800; font-size: clamp(1.5rem, 7.6vw, 1.95rem); line-height: 1.15; letter-spacing: -0.03em; color: var(--c); overflow-wrap: break-word; user-select: all; -webkit-user-select: all; }
 .me-code.big { font-size: clamp(1.9rem, 10vw, 2.6rem); line-height: 1.1; }
@@ -129,7 +173,7 @@
 .me-link { appearance: none; border: 0; background: none; padding: 0 4px; min-height: 44px; display: inline-flex; align-items: center; color: var(--soft); font-weight: 600; font-size: .96rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .me-link.danger { font-size: .86rem; font-weight: 500; }
 .me-link.strong { color: var(--ink); }
-.me-low { margin-top: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+.me-low { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; column-gap: 18px; row-gap: 0; }
 
 /* ---------- the screens below My Logicers: the thing to tap sits at the bottom, in the thumb's reach, and stays there while a long list scrolls ---------- */
 .me-sub { display: flex; flex-direction: column; min-height: calc(100svh - 9rem); }
@@ -195,12 +239,35 @@ dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-base) var(--e-out) 
 
 .me-foot { max-width: var(--col); margin: 0 auto; padding: 4px var(--pad) 30px; text-align: center; color: var(--soft); font-size: .86rem; font-weight: 500; }
 
+/* ---------- a wide screen (7 Nov 2026, Khayyam: "the page should fill, no empty spaces on the sides"): My Logicers spreads into
+   columns. Every tile of a strip shows at once (no swipe, no arrows), the cards sit side by side, Your games is a grid. The
+   screens below it (get, have, the doors) stay one narrow column: a form is easier to fill that way. ---------- */
+@media (min-width: 900px) {
+  body.me-wide .bar, body.me-wide .wrap.me-main, body.me-wide .me-foot { max-width: 1240px; }
+  .me-home { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 22px; align-items: start; }
+  .me-home > * { min-width: 0; }
+  .me-home > .full { grid-column: 1 / -1; }
+  .me-home > .me-yearbox { grid-column: 1 / span 1; }
+  .me-home .me-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); overflow: visible; margin: 0; padding: 2px 0 10px; }
+  .me-home .me-tile { min-height: 9rem; }
+  .me-home .me-arrow { display: none; }
+  .me-home .me-stripbox .me-strip { -webkit-mask-image: none; mask-image: none; }
+  .me-home .me-items { grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 14px; }
+  .me-home .me-mine .me-card.me-tot { max-width: 34rem; }
+  .me-home .me-nocode { grid-column: 1 / -1; max-width: 30rem; }
+  .me-home .me-number { font-size: 3.4rem; }
+}
+@media (min-width: 1300px) {
+  .me-home { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
 /* ---------- reduced motion: screens crossfade in --m-fast, taps still change colour, numbers and dots appear at their end value ---------- */
 @media (prefers-reduced-motion: reduce) {
   .me-screen, .me-screen.fwd, .me-screen.back, .me-rise, .me-answer { animation: me-fade var(--m-fast) linear both; animation-delay: 0s; }
   .me-ghost, .me-ghost.back { animation: none; opacity: 0; }
   .me-flash, .me-band, .me-dots i.on, .me-code.fresh, .me-qr, .me-door.kept .st { animation: none; }
-  .me-tile, .me-cardlink, .me-main .btn, .me-q { transition: none; }
+  .me-tile, .me-cardlink, .me-main .btn, .me-q, .me-item { transition: none; }
+  .me-arrow { animation: none; }
   .me-tile:active, .me-cardlink:active, .me-main .btn:active, .me-q:active { transform: none; }
   dialog.me-sheet[open], dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-fast) linear both; }
   .me-sheetghost, .me-sheetdim { animation: me-undim var(--m-fast) linear both; }

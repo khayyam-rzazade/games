@@ -8,7 +8,7 @@
    server cannot open it and never tries), the doors (Chat A3), the passkeys (Chat A2), and when the row was made, changed
    and last seen, with six small numbers for /dist (days played and spot-ons this year and this month). Never a country,
    an IP, a user agent or an answer: the brakes are in memory only and Workers Logs stay off.
-   A row untouched for 24 months is deleted (the hourly job); /delete deletes a row, its passkeys and its doors at once.
+   A row untouched for 3 years is deleted (the hourly job; 24 months until 7 Nov 2026, Khayyam: "prolong to the max"); /delete deletes a row, its passkeys and its doors at once.
 
    Endpoints (JSON; POST bodies are JSON):
      GET  /health                        { ok, db, hash: "secret" | "plain", passkey: true | false }
@@ -23,7 +23,7 @@
      /passkey/*                          passkey.js (Chat A2)        /door/*        doors.js (Chat A3)
    An unknown code costs one of an address's 20 code checks an hour on /restore, /delete and /sync (so /sync cannot be used
    to guess); /new, /door/set and the passkey routes have brakes of their own of the same size.
-   Scheduled (hourly): /dist again; once a day, the 24-month sweep.
+   Scheduled (hourly): /dist again; once a day, the 3-year sweep.
 
    Settings (wrangler.jsonc): the D1 binding DB; ALLOW_ORIGINS. Secrets: ME_HASH_KEY (the key of the code hash: set it
    before the first code is kept and never change it), ME_KEY (Chat A2: the passkeys' copy of the code). */
@@ -35,7 +35,7 @@ import { handleDoors } from "./doors.js";
 const MAX_BODY = 80 * 1024;                         // a record is at most 64 KB (me-stats.js LIMIT), plus the box and the frame
 const LIMITS = { new: 20, sync: 120, check: 20, del: 20, dist: 600 };
 const OPENS_AT = 30;
-const SWEEP_MS = 730 * 864e5;                    // 24 months
+const SWEEP_MS = 1096 * 864e5;                   // 3 years after the last visit (a sync, a restore, a door)
 const PCTS = [10, 25, 50, 75, 90, 95, 99];
 
 /* ---- schema: made on the first request (as the other Workers), so deploying needs no SQL ---- */

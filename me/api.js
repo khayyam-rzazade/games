@@ -55,6 +55,115 @@ export async function sync() {
   return r && r.ok ? { ok: true } : { ok: false, reason: 'net' };
 }
 
+/* Exit (7 Nov 2026): A's leave() sends what this phone holds, then takes the code and the games off this phone */
+export async function leave() {
+  const m = Me(); if (!m || typeof m.leave !== 'function') return { ok: false, reason: 'fail' };
+  const r = await safe(() => m.leave());
+  return r && r.ok ? { ok: true } : bad(r);
+}
+/* one made game or room off My Logicers, on every phone (the game itself stays where it is) */
+export function forget(kind, code) { const m = Me(); try { return !!(m && typeof m.forget === 'function' && m.forget(kind, code)); } catch (e) { return false; } }
+
+/* ---------- Your games: the numbers, from each game's own server (7 Nov 2026, for teachers and teams) ----------
+   Each made game and room lives on its own Worker; the page asks it with the key this phone holds for it (the edit key, the
+   host key), exactly as the editor and the host pages do. Opening a made game or a check-in group this way counts as using it,
+   so whatever is on My Logicers is kept while its maker keeps coming back. On localhost only, the checks may point each one
+   at a stand-in. Every call here resolves: { ok, ... } or { ok: false, gone } (the server no longer knows it) or { ok: false }. */
+const LOCALHOST = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+function bases(name, real) { const v = window[name]; return LOCALHOST ? (typeof v === 'string' && v ? [v] : []) : real; }
+const SERVERS = {
+  live: () => bases('LIVE_SERVER', ['https://live.logicers.com', 'https://logicers-live.rza-khay.workers.dev']),
+  checkin: () => bases('CHECKIN_API', ['https://logicers-checkin.rza-khay.workers.dev']),
+  foroom: () => bases('FINDOUT_ROOM_API', ['https://findout-room.logicers.com', 'https://logicers-findout-room.rza-khay.workers.dev'])
+};
+async function ask(server, path, body) {
+  const list = SERVERS[server]();
+  for (const b of list) {
+    let res;
+    try {
+      const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 8000);
+      try {
+        res = await fetch(b + path, body === undefined ? { signal: ctl.signal, credentials: 'omit', cache: 'no-store' }
+          : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal, credentials: 'omit', cache: 'no-store' });
+      } finally { clearTimeout(t); }
+    } catch (e) { continue; }                                   // no answer at all: the other address
+    let j = null; try { j = await res.json(); } catch (e) { j = null; }
+    return { status: res.status, b: j || {} };
+  }
+  return { status: 0, b: {} };
+}
+const goneOf = (r) => r.status === 404;
+/* a made game: its plays, the day it would be deleted, how it is played (alone or only live), its title as now saved */
+async function madeInfo(it) {
+  const r = await ask('live', '/kit/' + it.code + '/open', { edit: it.key });
+  if (goneOf(r)) return { ok: false, gone: true };
+  if (r.status !== 200) return { ok: false, stopped: r.b && r.b.e === 'stopped' };
+  if (r.b.stopped) return { ok: false, stopped: true };
+  const kit = r.b.kit || {};
+  return { ok: true, plays: Number(r.b.plays) || 0, until: r.b.until || null, alone: kit.mode === 'alone', title: typeof kit.title === 'string' ? kit.title : '',
+    qs: Array.isArray(kit.qs) ? kit.qs.length : null };
+}
+/* a check-in group: its rounds, the people of the last one, everyone who ever answered, its join link, the day it would go */
+async function checkinInfo(it) {
+  const r = await ask('checkin', '/host/' + it.key);
+  if (goneOf(r)) return { ok: false, gone: true };
+  if (r.status !== 200 || !r.b.ok) return { ok: false };
+  const rounds = Array.isArray(r.b.rounds) ? r.b.rounds : [];
+  const last = rounds.length ? rounds[rounds.length - 1] : null;
+  const cur = r.b.current && typeof r.b.current === 'object' ? r.b.current : null;
+  const total = rounds.reduce((a, x) => a + (Number(x.people) || 0), 0) + (cur ? Number(cur.people) || 0 : 0);
+  return { ok: true, rounds: rounds.length + (cur ? 1 : 0), last: cur ? Number(cur.people) || 0 : last ? Number(last.people) || 0 : 0, total,
+    live: !!cur, join: typeof r.b.join === 'string' ? r.b.join : null, until: r.b.until || null };
+}
+/* a How Sure game or a find-outs room lives for hours: older than that, it has ended, and nobody is asked */
+async function howsureInfo(it) {
+  if (!(it.at > Date.now() - 13 * 36e5)) return { ok: true, live: false };
+  const r = await ask('live', '/game/' + it.code);
+  if (r.status === 404) return { ok: true, live: false };
+  if (r.status !== 200) return { ok: false };
+  return { ok: true, live: true, players: Number(r.b.np) || 0 };            // an ended game answers 404
+}
+async function foroomInfo(it) {
+  if (!(it.at > Date.now() - 36 * 36e5)) return { ok: true, live: false };
+  const r = await ask('foroom', '/room/' + it.code);
+  if (r.status === 404) return { ok: true, live: false };
+  if (r.status !== 200 || !r.b.ok) return { ok: false };
+  const st = r.b.state || {};
+  return { ok: true, live: st.step !== 'ended', players: Number(st.joined) || 0 };
+}
+export async function mineInfo(it) {
+  if (!it || !it.code) return { ok: false };
+  if ((it.kind === 'made' || it.kind === 'checkin') && !it.key) return { ok: false, nokey: true };
+  return safe(() => (it.kind === 'made' ? madeInfo(it) : it.kind === 'checkin' ? checkinInfo(it) : it.kind === 'howsure' ? howsureInfo(it) : foroomInfo(it)), { ok: false });
+}
+/* a made game's plays alone, for the results sheet and the CSV: [name, points, time, right, of] */
+export async function madeResults(it) {
+  if (!it || it.kind !== 'made' || !it.key) return { ok: false };
+  const r = await safe(() => ask('live', '/kit/' + it.code + '/results', { edit: it.key }), { status: 0, b: {} });
+  if (r.status === 404) return { ok: false, gone: true };
+  if (r.status !== 200) return { ok: false };
+  return { ok: true, plays: Array.isArray(r.b.plays) ? r.b.plays : [] };
+}
+/* delete for good, on the game's own server: a made game (its edit key) or a check-in group (its host key); then off My Logicers */
+export async function destroy(it) {
+  if (!it || !it.key) return { ok: false, reason: 'fail' };
+  let r;
+  if (it.kind === 'made') r = await safe(() => ask('live', '/kit/' + it.code + '/delete', { edit: it.key }), { status: 0, b: {} });
+  else if (it.kind === 'checkin') r = await safe(() => ask('checkin', '/room/' + it.code + '/host', { host_key: it.key, action: 'delete' }), { status: 0, b: {} });
+  else return { ok: false, reason: 'fail' };
+  if (r.status === 200 || r.status === 404) { forget(it.kind, it.code); return { ok: true }; }
+  return { ok: false, reason: r.status === 0 ? 'net' : r.status === 429 ? 'brake' : 'fail' };
+}
+/* the friends' rooms this phone is in (assets/js/rooms.js keeps them in turnsout:v1): the room page leaves or deletes them */
+export function friendRooms() {
+  try {
+    const all = JSON.parse(localStorage.getItem('turnsout:v1') || '{}') || {};
+    const list = all.rooms && Array.isArray(all.rooms.list) ? all.rooms.list : [];
+    return list.filter((x) => x && typeof x.code === 'string' && /^[23456789abcdefghjkmnpqrstvwxyz]{10,20}$/.test(x.code))
+      .map((x) => ({ code: x.code, label: typeof x.label === 'string' ? x.label.slice(0, 40) : '' }));
+  } catch (e) { return []; }
+}
+
 /* the year / month card: the line is shown only when C's hook is on the page and says a card is open now */
 export function cardOpen(st) {
   const y = window.MeYear || window.LogicersYear;

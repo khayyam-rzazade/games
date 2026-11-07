@@ -76,7 +76,7 @@ if (group('screens')) {
     check(`[${l}] home: html lang`, (await p.page.evaluate(() => document.documentElement.lang)) === l);
     check(`[${l}] home: the number heading`, (await text(p.page, 'h1')) === w('home.number', { n: Number(2418).toLocaleString({ en: 'en-GB', it: 'it-IT', es: 'es-ES', pt: 'pt-BR', fr: 'fr-FR', tr: 'tr-TR' }[l]) }), await text(p.page, 'h1'));
     const body = await p.page.locator('#me').innerText();
-    for (const k of ['home.daily', 'home.words', 'home.story', 'home.findout', 'home.checkin', 'mine.h', 'code.h', 'lose.h', 'lose.kept', 'lose.pw_on', 'rq.h', 'del.link', 'mine.edit', 'mine.host', 'mine.kind.made', 'mine.kind.checkin', 'mine.kind.howsure', 'mine.kind.findout'])
+    for (const k of ['home.daily', 'home.words', 'home.story', 'home.findout', 'home.checkin', 'mine.h', 'code.h', 'lose.h', 'lose.kept', 'lose.pw_on', 'rq.h', 'del.link', 'out.link', 'out.other', 'mine.edit', 'mine.open', 'mine.kind.made', 'mine.kind.checkin', 'mine.kind.howsure', 'mine.kind.findout'])
       check(`[${l}] home shows ${k}`, body.includes(w(k)), w(k));
     check(`[${l}] home: ${l === 'en' ? 'English' : 'localized'} game name on a tile`, (await p.page.locator('.me-tile .nm').first().innerText()) === w('game.energy.name'));
     check(`[${l}] home: foot line`, (await text(p.page, '#me-foot')) === w('foot.line'));
@@ -198,7 +198,7 @@ if (group('states')) {
   await p.page.getByRole('button', { name: 'QR' }).click(); await p.page.waitForTimeout(150);
   check('QR: a second tap hides it', (await p.page.locator('.me-qr').count()) === 0);
   check('tiles: link to the games and use their colours', (await p.page.locator('.me-tile').first().getAttribute('href')) === '../same-energy/' && (await p.page.locator('.me-tile').first().getAttribute('data-g')) === 'energy');
-  check('Your games: Edit and Host open their links', (await p.page.locator('.me-row a').nth(0).getAttribute('href')).includes('edit=ABCD12') && (await p.page.locator('.me-row a').nth(1).innerText()) === 'Edit');
+  check('Your games: each made game opens its editor', (await p.page.locator('.me-item a').nth(0).getAttribute('href')).includes('edit=ABCD12') && (await p.page.locator('.me-item a').nth(0).innerText()) === 'Edit' && (await p.page.locator('.me-item a').nth(1).getAttribute('href')).includes('edit=WXYZ34'));
   check('Your games: no note when every link is there', !body.includes(W('en', 'mine.note')));
   check('check-in card: score, band, since last time', body.includes('71') && body.includes(W('en', 'ci.band.2')) && body.includes('64 → 71 since 12 Nov'), body.split('Check-in')[1]);
   check('find-out card: 9 of 9, portrait link', body.includes('9 of 9') && (await p.page.locator('.me-cardlink').first().getAttribute('href')) === '../find-out/portrait/' && (await p.page.locator('.me-dots i.on').count()) === 9);
@@ -215,12 +215,12 @@ if (group('states')) {
   const noLink = clone(MOCK); noLink.mine = noLink.mine.map((m) => ({ kind: m.kind, title: m.title, code: m.code, made: m.made }));
   p = await phone({ stats: noLink, code: 'river-blue-cat-42' });
   await open(p); body = await p.page.locator('#me').innerText();
-  check('Your games without links: no buttons, the one note', (await p.page.locator('.me-row a').count()) === 0 && body.includes(W('en', 'mine.note')));
+  check('Your games without links: no buttons, the one note', (await p.page.locator('.me-item a').count()) === 0 && (await p.page.locator('.me-iacts button').count()) === 0 && body.includes(W('en', 'mine.note')));
   await p.close();
   /* a link that is not a web link is never given to the page */
   const evil = clone(MOCK); evil.mine[0].link = 'javascript:alert(1)';
   p = await phone({ stats: evil, code: 'river-blue-cat-42' });
-  await open(p); check('a javascript: link is dropped', (await p.page.locator('.me-row a').count()) === 1);
+  await open(p); check('a javascript: link is dropped', (await p.page.locator('.me-item a').count()) === 1);
   await p.close();
 
   /* a check-in with only the number of times (box closed) */

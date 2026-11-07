@@ -303,7 +303,26 @@ test("/dist: nothing below 30 records, percentiles from 30, this year and this m
   assert.ok(r.json.prev.days && r.json.prev.days[99] >= 40);
 });
 
-test("the 24-month sweep deletes untouched records and their passkeys, once a day", async () => {
+test("a game taken off My Logicers stays off: another phone that still holds it never brings it back", async () => {
+  const e = env();
+  const c = code();
+  const two = [{ kind: "made", code: "BBBBBBB", title: "B" }, { kind: "checkin", code: "BCDFGH", title: "" }];
+  await call(e, "POST", "/new", { code: c, record: rec({ logicer: 21, mine: two }) });
+  /* phone A takes the made game off */
+  const a = await call(e, "POST", "/sync", { code: c, record: Object.assign(rec({ mine: [two[1]] }), { gone: ["made:BBBBBBB"] }) });
+  assert.deepEqual(a.json.record.mine.map((x) => x.code), ["BCDFGH"]);
+  assert.deepEqual(a.json.record.gone, ["made:BBBBBBB"]);
+  /* phone B still has it in its own lists and sends it: it stays off */
+  const b = await call(e, "POST", "/sync", { code: c, record: rec({ mine: two }) });
+  assert.deepEqual(b.json.record.mine.map((x) => x.code), ["BCDFGH"]);
+  assert.deepEqual(b.json.record.gone, ["made:BBBBBBB"]);
+  /* a list that is not a list, and entries that are not "kind:code", are dropped */
+  const bad = await call(e, "POST", "/sync", { code: c, record: Object.assign(rec({}), { gone: ["made:B", "nope:BBBBBBB", 7, "checkin:BCDFGH"] }) });
+  assert.deepEqual(bad.json.record.gone, ["made:BBBBBBB", "checkin:BCDFGH"]);
+  assert.deepEqual(bad.json.record.mine, []);
+});
+
+test("the 3-year sweep deletes untouched records and their passkeys, once a day", async () => {
   const e = env();
   const a = code(), b = code();
   await call(e, "POST", "/new", { code: a, record: rec({ logicer: 1 }) });
@@ -311,7 +330,10 @@ test("the 24-month sweep deletes untouched records and their passkeys, once a da
   await call(e, "POST", "/new", { code: b, record: rec({ logicer: 2 }) });
   const idA = (await one(e, "SELECT id FROM records WHERE logicer = 1")).id;
   await e.DB.prepare("INSERT INTO passkeys (cred_id, record_id, code_enc, public_key, counter, created) VALUES ('k', ?, 'x', 'y', 0, '2026-11-07')").bind(idA).run();
-  NOW += 331 * 864e5;                              // a: 731 days untouched; b: 331
+  NOW += 331 * 864e5;                              // a: 731 days untouched (two years: still kept since 7 Nov 2026); b: 331
+  await _test.hourly(e);
+  assert.equal((await rows(e, "SELECT logicer FROM records")).length, 2, "two years untouched is no longer enough");
+  NOW += 366 * 864e5;                              // a: 1097 days; b: 697
   await _test.hourly(e);
   assert.deepEqual((await rows(e, "SELECT logicer FROM records")).map((x) => x.logicer), [2]);
   assert.equal((await one(e, "SELECT COUNT(*) AS k FROM passkeys")).k, 0);
@@ -383,7 +405,7 @@ test("stats: site-wide and per game, periods, the open box, the doors", () => {
   assert.deepEqual(s.words, { climbs: 2, highest: 8, perfect: 1 });
   assert.deepEqual(s.findouts, { done: 9, portrait: true });
   assert.deepEqual(s.checkin, { times: 1, last: null, prev: null, history: [] }, "the box closed: dates only");
-  assert.deepEqual(s.mine, [{ kind: "made", title: "Exam 3", code: "BCDFGHJ", made: "2026-10-14", link: null }]);
+  assert.deepEqual(s.mine, [{ kind: "made", title: "Exam 3", code: "BCDFGHJ", made: "2026-10-14", link: null, key: null, at: null }]);
   assert.deepEqual(s.doors, { passkey: true, pw: true, rq: false });
   assert.equal(s.calendar.from, "2026-10-03"); assert.equal(s.calendar.to, "2026-11-03"); assert.equal(s.calendar.d.length, 32);
   /* a month */

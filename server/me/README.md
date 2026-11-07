@@ -5,7 +5,7 @@ record (days played per game, counts, the best climb, the Logicer number, the la
 counts, find-outs done and the portrait code, check-in dates, the titles and codes of their own games and rooms) and a
 locked box sealed on the phone with a key made from the code. The server cannot open the box and never tries. It never
 keeps the code itself (only a keyed hash of it), a country, an IP, a user agent or an answer; the brakes are in memory
-only and Workers Logs stay off. A row untouched for 24 months is deleted by the hourly job.
+only and Workers Logs stay off. A row untouched for 3 years is deleted by the hourly job.
 
 The plan is `claude/me-plan.md`; what was built and why is `claude/me-a.md`. The record's rules are in `me-stats.js`,
 the same file as the pages' `assets/js/me-stats.js` (the tests check they are identical). The passkeys (`passkey.js`,
