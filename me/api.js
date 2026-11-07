@@ -74,7 +74,8 @@ function bases(name, real) { const v = window[name]; return LOCALHOST ? (typeof 
 const SERVERS = {
   live: () => bases('LIVE_SERVER', ['https://live.logicers.com', 'https://logicers-live.rza-khay.workers.dev']),
   checkin: () => bases('CHECKIN_API', ['https://logicers-checkin.rza-khay.workers.dev']),
-  foroom: () => bases('FINDOUT_ROOM_API', ['https://findout-room.logicers.com', 'https://logicers-findout-room.rza-khay.workers.dev'])
+  foroom: () => bases('FINDOUT_ROOM_API', ['https://findout-room.logicers.com', 'https://logicers-findout-room.rza-khay.workers.dev']),
+  findout: () => bases('FINDOUT_API', ['https://findout.logicers.com', 'https://logicers-findout.rza-khay.workers.dev'])
 };
 async function ask(server, path, body) {
   const list = SERVERS[server]();
@@ -154,6 +155,42 @@ export async function destroy(it) {
   if (r.status === 200 || r.status === 404) { forget(it.kind, it.code); return { ok: true }; }
   return { ok: false, reason: r.status === 0 ? 'net' : r.status === 429 ? 'brake' : 'fail' };
 }
+/* ---------- for a newcomer (7 Nov 2026, Khayyam: the empty page must be "very tempting for the new comers, informative and full
+   of hooks"): the counts the home page shows, from the same servers. { next, findouts, checkins }, each a number or null:
+   the Logicer number this phone would get (the running total + 1: server/live totals.js, nothing kept about anyone), how many
+   phones finished a find-out, how many checked in. Asked once per visit. */
+let COUNTS = null;
+export function counts() {
+  if (COUNTS) return COUNTS;
+  const num = (v) => (Number.isInteger(v) && v >= 0 ? v : null);
+  COUNTS = Promise.all([
+    safe(() => ask('live', '/count/view', { v: 1 }), { status: 0, b: {} }),             // the version of the stats calls (server/live STATS)
+    safe(() => ask('findout', '/counter'), { status: 0, b: {} }),
+    safe(() => ask('checkin', '/stats'), { status: 0, b: {} })
+  ]).then(([a, b, c]) => ({
+    next: a.status === 200 && num(a.b.n) !== null ? a.b.n + 1 : null,
+    findouts: b.status === 200 ? num(b.b.played) : null,
+    checkins: c.status === 200 ? num(c.b.checked_in) : null
+  }));
+  return COUNTS;
+}
+/* the games' own pictures, as the home page draws them: taken from the home page itself (one file the browser has most
+   likely kept already), so a new picture there is a new picture here too. Map id -> <svg>, empty when it cannot be read. */
+let ART = null;
+export function art() {
+  if (ART) return ART;
+  ART = fetch(new URL('../', location.href), { credentials: 'omit' }).then((r) => (r.ok ? r.text() : '')).then((html) => {
+    const out = new Map(); if (!html) return out;
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    doc.querySelectorAll('.tile[data-g] .art > svg').forEach((svg) => {
+      const g = svg.closest('.tile').getAttribute('data-g');
+      if (g && !out.has(g)) { svg.querySelectorAll('script, foreignObject').forEach((x) => x.remove()); out.set(g, svg); }
+    });
+    return out;
+  }).catch(() => new Map());
+  return ART;
+}
+
 /* the friends' rooms this phone is in (assets/js/rooms.js keeps them in turnsout:v1): the room page leaves or deletes them */
 export function friendRooms() {
   try {

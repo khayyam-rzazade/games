@@ -2172,8 +2172,8 @@
   function icon(emoji) { var i = el("span", "ico", emoji); i.setAttribute("aria-hidden", "true"); return i; }
   /* My Logicers (7 Nov 2026): from the second day played, while this phone keeps no code, one thin line under the card's buttons
      opens me/. The words are the dictionary's once "eod.me_keep" is in the strings docs, else these six. */
-  var ME_KEEP = { en: "Keep your streaks on any phone \u2192", it: "Porta le tue serie su ogni telefono \u2192", es: "Lleva tus rachas a cualquier tel\u00E9fono \u2192",
-                  pt: "Leve suas sequ\u00EAncias para qualquer celular \u2192", fr: "Garde tes s\u00E9ries sur n\u2019importe quel t\u00E9l\u00E9phone \u2192", tr: "Serilerin her telefonda yan\u0131nda \u2192" };
+  var ME_KEEP = { en: "Keep your streaks on any phone or computer \u2192", it: "Porta le tue serie su ogni telefono o computer \u2192", es: "Lleva tus rachas a cualquier tel\u00E9fono o computadora \u2192",
+                  pt: "Leve suas sequ\u00EAncias para qualquer celular ou computador \u2192", fr: "Garde tes s\u00E9ries sur n\u2019importe quel t\u00E9l\u00E9phone ou ordinateur \u2192", tr: "Serilerin her telefonda ve bilgisayarda yan\u0131nda \u2192" };
   function meKeepLine() {
     try { var c = JSON.parse(window.localStorage.getItem("lg.me.v1")); if (c && typeof c.code === "string" && c.code) return null; } catch (e) { /* no code kept here */ }
     if (Object.keys(siteDays()).length < 2) return null;

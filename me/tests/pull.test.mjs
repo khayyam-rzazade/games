@@ -38,7 +38,7 @@ async function phone(seed) {
   return { ctx, page, errors };
 }
 async function open(p, hash = '') { await p.page.goto(srv.url + '/me/' + (hash ? '#' + hash : '')); await p.page.waitForFunction(() => document.documentElement.dataset.ready); await p.page.waitForTimeout(500); }
-const tile = (p, g) => p.page.locator('.me-tile[data-g="' + g + '"] .big').first().innerText();
+const tile = (p, g) => p.page.locator('.me-tile[data-g="' + g + '"]').first().evaluate((t) => (t.classList.contains('fresh') ? '–' : t.querySelector('.big').textContent));      // a game not played yet: its picture, no number
 const waitTile = async (p, g, not, ms = 6000) => { const t0 = Date.now(); let v = await tile(p, g); while (v === not && Date.now() - t0 < ms) { await p.page.waitForTimeout(200); v = await tile(p, g); } return v; };
 /* what a game writes when it is finished: results for today and yesterday, then the phone syncs */
 const play = (p, page, start, shape) => p.page.evaluate(async ({ page, start, shape }) => {

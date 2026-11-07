@@ -102,6 +102,87 @@
 @media (prefers-color-scheme: dark) { .me-row .kind { background: rgba(255, 255, 255, .09); } }
 .me-row .cd { font-variant-numeric: tabular-nums; letter-spacing: .04em; }
 
+/* ---------- a newcomer (7 Nov 2026): the number waiting, the steps that fill the page, an example of a full page, and the
+   games with their own pictures. Everything moves a little; nothing moves with reduced motion. ---------- */
+.me-hero { position: relative; display: grid; gap: 6px; margin-top: 6px; padding: 22px 22px 20px; border-radius: 26px; color: #fff; text-decoration: none; overflow: hidden;
+  background: linear-gradient(115deg, #2F48D2 0%, #5B3FC4 48%, #9A3FBF 100%); background-size: 220% 220%; animation: me-hero-bg 9s ease-in-out infinite alternate, me-enter var(--m-base) var(--e-out) both;
+  box-shadow: 0 16px 36px rgba(76, 52, 196, .30); -webkit-tap-highlight-color: transparent; transition: transform var(--m-fast) var(--e-out); }
+.me-hero:active { transform: scale(.985); }
+@keyframes me-hero-bg { from { background-position: 0% 40%; } to { background-position: 100% 60%; } }
+.me-hero-l { position: relative; font-weight: 800; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; opacity: .88; }
+.me-hero-n { position: relative; font-family: var(--display); font-weight: 800; font-size: clamp(2.3rem, 10vw, 3.8rem); line-height: 1.02; letter-spacing: -0.045em; color: #FFD45C;
+  font-variant-numeric: tabular-nums; text-shadow: 0 2px 22px rgba(255, 212, 92, .38); overflow-wrap: anywhere; }
+.me-hero-s { position: relative; font-weight: 600; font-size: 1.02rem; opacity: .94; }
+.me-hero-go { position: relative; justify-self: start; margin-top: 10px; display: inline-flex; align-items: center; gap: 9px; min-height: 50px; padding: 0 24px; border-radius: 999px;
+  background: #fff; color: #3B2DB0; font-weight: 800; font-size: 1.02rem; box-shadow: 0 8px 18px rgba(20, 10, 80, .26); animation: me-pulse 2.4s ease-in-out infinite; }
+.me-hero-go svg { width: 15px; height: 15px; fill: currentColor; }
+@keyframes me-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+.me-hero .spark { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: 0; top: calc(10% + var(--k) * 14%); right: calc(5% + var(--k) * 6.5%);
+  box-shadow: 0 0 12px rgba(255, 255, 255, .8); animation: me-spark 3.8s ease-in-out infinite; animation-delay: calc(var(--k) * .6s); }
+@keyframes me-spark { 0%, 100% { opacity: 0; transform: scale(.3); } 35% { opacity: .95; transform: scale(1); } 70% { opacity: 0; transform: scale(.5) translateY(-12px); } }
+
+.me-steps .me-card { padding: 16px 16px 6px; }
+.me-steps-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.me-steps-top .me-h { margin: 0 2px; }
+.me-ring { position: relative; width: 50px; height: 50px; flex: none; }
+.me-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.me-ring circle { fill: none; stroke-width: 5; }
+.me-ring .bg { stroke: var(--line); }
+.me-ring .fg { stroke: var(--c); stroke-linecap: round; stroke-dasharray: var(--p) 100; animation: me-ring 1.2s var(--e-out) both .2s; }
+@keyframes me-ring { from { stroke-dasharray: 0 100; } }
+.me-ring.zero .fg { display: none; }
+.me-ring b { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 800; font-size: .84rem; font-variant-numeric: tabular-nums; }
+.me-steplist { list-style: none; margin: 8px 0 0; padding: 0; }
+.me-steplist li + li { border-top: 1px solid var(--line); }
+.me-step { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 60px; padding: 10px 2px; text-decoration: none; color: var(--ink); background: none; border: 0;
+  font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; border-radius: 12px; }
+.me-step.done, .me-step.off { cursor: default; }
+.me-stepdot { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: .92rem; background: var(--tint); color: var(--c); }
+.me-step:not(.done):not(.off) .me-stepdot { box-shadow: inset 0 0 0 2px var(--c); }
+.me-step.done .me-stepdot { background: #1F9D61; color: #fff; }
+.me-step.done .me-stepdot::after { content: "✓"; font-size: 1rem; }
+.me-stepw { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.me-stepw .ti { font-weight: 700; font-size: 1rem; line-height: 1.25; }
+.me-stepw .sub { color: var(--soft); font-size: .86rem; line-height: 1.3; margin-top: 2px; }
+.me-step.done .ti { color: var(--soft); }
+.me-step.off { opacity: .6; }
+.me-chev { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--tint); }
+.me-chev svg { width: 16px; height: 16px; fill: none; stroke: var(--c); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+@media (hover: hover) { .me-step:not(.done):not(.off):hover .me-chev { transform: translateX(2px); transition: transform var(--m-fast) var(--e-out); } }
+
+.me-preview { padding: 16px; position: relative; overflow: hidden; }
+.pv-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.pv-h { font-weight: 700; color: var(--soft); font-size: .9rem; line-height: 1.25; }
+.pv-tag { flex: none; font-size: .68rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--tint); color: var(--c); }
+.pv-num { margin-top: 8px; font-family: var(--display); font-weight: 800; font-size: 1.75rem; line-height: 1.1; letter-spacing: -0.035em; color: var(--c); font-variant-numeric: tabular-nums; }
+.pv-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.pv-tile { position: relative; display: flex; flex-direction: column; padding: 11px 10px 8px; border-radius: 14px; background: var(--tint); overflow: hidden; }
+.pv-tile::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--c); }
+.pv-tile b { font-family: var(--display); font-weight: 800; font-size: 1.5rem; line-height: 1.1; color: var(--c); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pv-tile > span { font-size: .72rem; font-weight: 600; color: var(--soft); }
+.pv-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; }
+.pv-l { font-weight: 700; font-size: .9rem; }
+.pv-dots { display: flex; gap: 4px; }
+.pv-dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--line); }
+.me-preview.live .pv-dots i { animation: me-dot 7s ease-in-out infinite; animation-delay: calc(var(--k) * .28s); }
+@keyframes me-dot { 0%, 4% { background: var(--line); transform: scale(1); } 9% { background: var(--c); transform: scale(1.3); } 13%, 82% { background: var(--c); transform: scale(1); } 92%, 100% { background: var(--line); transform: scale(1); } }
+.pv-ci { font-weight: 600; color: var(--soft); font-variant-numeric: tabular-nums; }
+.pv-ci b { color: var(--c); font-size: 1.15rem; font-weight: 800; }
+.me-preview.live .me-flame { animation: me-flick 1.5s ease-in-out infinite; transform-origin: 50% 90%; }
+@keyframes me-flick { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.16) rotate(-5deg); } }
+
+/* a game not played yet: its picture, its name, "▶ 1 min" */
+.me-tile.idle.fresh { min-height: 0; padding: 7px 7px 10px; background: var(--card); box-shadow: var(--shadow); }
+.me-tile.fresh::before { display: none; }
+.me-tile .me-art { display: block; aspect-ratio: 16 / 10; border-radius: 14px; margin-bottom: 8px; flex: none; }
+.me-tile .me-art > svg { display: block; width: 100%; height: 100%; }
+.me-tile .me-art:empty { animation: me-wait 1.1s ease-in-out infinite alternate; }
+@keyframes me-wait { from { opacity: .55; } to { opacity: 1; } }
+.me-art.in > svg { animation: me-fade var(--m-base) var(--e-out) both; }
+.me-tile.fresh .nm { padding: 0 5px; }
+.me-tile.fresh .me-tgo { margin-top: auto; padding: 6px 5px 0; display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: .86rem; color: var(--c); }
+.me-tile.fresh .me-tgo svg { width: 11px; height: 11px; fill: currentColor; }
+
 /* ---------- Your games, the manager (7 Nov 2026): one card per made game or group, its numbers, its buttons ---------- */
 .me-tot { margin-bottom: 12px; }
 .me-tot[hidden], .me-inum[hidden] { display: none; }
@@ -248,9 +329,13 @@ dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-base) var(--e-out) 
   .me-home > * { min-width: 0; }
   .me-home > .full { grid-column: 1 / -1; }
   .me-home > .me-yearbox { grid-column: 1 / span 1; }
+  .me-home > .me-steps { grid-column: span 2; }
+  .me-home > .me-hero { padding: 30px 34px 28px; }
+  .me-home > .me-hero .me-hero-n { font-size: 4.4rem; }
   .me-home .me-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); overflow: visible; margin: 0; padding: 2px 0 10px; }
   .me-home .me-tile { min-height: 9rem; }
   .me-home .me-arrow { display: none; }
+  .me-home .me-tile.fresh { min-height: 0; }
   .me-home .me-stripbox .me-strip { -webkit-mask-image: none; mask-image: none; }
   .me-home .me-items { grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 14px; }
   .me-home .me-mine .me-card.me-tot { max-width: 34rem; }
@@ -259,6 +344,7 @@ dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-base) var(--e-out) 
 }
 @media (min-width: 1300px) {
   .me-home { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .me-home > .me-prevsec { grid-column: span 2; }
 }
 
 /* ---------- reduced motion: screens crossfade in --m-fast, taps still change colour, numbers and dots appear at their end value ---------- */
@@ -268,6 +354,9 @@ dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-base) var(--e-out) 
   .me-flash, .me-band, .me-dots i.on, .me-code.fresh, .me-qr, .me-door.kept .st { animation: none; }
   .me-tile, .me-cardlink, .me-main .btn, .me-q, .me-item { transition: none; }
   .me-arrow { animation: none; }
+  .me-hero, .me-hero-go, .me-ring .fg, .me-preview.live .me-flame, .me-tile .me-art:empty, .me-art.in > svg { animation: none; }
+  .me-hero .spark { display: none; }
+  .pv-dots i, .me-preview.live .pv-dots i { animation: none; background: var(--c); }
   .me-tile:active, .me-cardlink:active, .me-main .btn:active, .me-q:active { transform: none; }
   dialog.me-sheet[open], dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-fast) linear both; }
   .me-sheetghost, .me-sheetdim { animation: me-undim var(--m-fast) linear both; }

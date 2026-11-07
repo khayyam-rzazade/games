@@ -42,6 +42,9 @@ const stand = http.createServer((req, res) => {
     if (p === '/room/BCDFGH/host') return send(200, { ok: true });
     if (p === '/game/HSURE1') return send(200, { np: 18, ph: 'q' });
     if (p === '/room/FOUT99') return send(200, { ok: true, state: { step: 'lobby', joined: 9 } });
+    if (p === '/count/view') return b.v === 1 ? send(200, { n: 3412 }) : send(409, { e: 'old', v: 1 });
+    if (p === '/counter') return send(200, { played: 422, portraits: 100 });
+    if (p === '/stats') return send(200, { checked_in: 26 });
     send(404, { ok: false });
   });
 });
@@ -56,7 +59,7 @@ async function phone(seed, viewport = { width: 390, height: 780 }) {
   const ctx = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: viewport.width < 600, locale: 'en-GB', acceptDownloads: true });
   await ctx.addInitScript((c) => {
     window.LOGICERS_ME_API = '/__me'; window.ME_API = '/__me';
-    window.LIVE_SERVER = c.stand; window.CHECKIN_API = c.stand; window.FINDOUT_ROOM_API = c.stand;
+    window.LIVE_SERVER = c.stand; window.CHECKIN_API = c.stand; window.FINDOUT_ROOM_API = c.stand; window.FINDOUT_API = c.stand;
     if (localStorage.getItem('lg.test.seeded')) return; localStorage.setItem('lg.test.seeded', '1');
     if (!c.seed) return;
     const day = (iso) => Math.round(Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) / 864e5);
@@ -85,6 +88,22 @@ const line = (p, k) => item(p, k).locator('.me-inum').innerText();
 const recOf = (c) => srv.worker.db.get(c) && srv.worker.db.get(c).record;
 const shot = (p, n) => p.page.screenshot({ path: path.join(SHOTS, 'manage-' + n + '.png'), fullPage: true });
 
+/* ---------------------------------------------------------------- a newcomer: nothing played, nothing kept */
+console.log('a newcomer sees a full page, not an empty one');
+const N = await phone(false); await open(N); await N.page.waitForTimeout(1500);
+const hero = N.page.locator('.me-hero');
+check('the hero: the number this phone would get, counted up', (await hero.locator('.me-hero-n').innerText()) === 'Logicer №3,413', await hero.locator('.me-hero-n').innerText());
+check('the hero leads to the first daily game', (await hero.getAttribute('href')) === '../same-energy/' && (await hero.innerText()).includes('Play your first game'));
+check('the steps: 0 of 5, five steps, the code locked until a first game', (await N.page.locator('.me-ring b').innerText()) === '0/5' && (await N.page.locator('.me-step').count()) === 5 && (await N.page.locator('.me-step.off[data-k="code"]').count()) === 1);
+check('the find-out and check-in steps show how many already did', (await N.page.locator('.me-step[data-k="findout"] .sub').innerText()) === '422 already did' && (await N.page.locator('.me-step[data-k="checkin"] .sub').innerText()) === '26 already did');
+check('an example of a full page, marked as one', (await N.page.locator('.me-preview .pv-tag').innerText()).toLowerCase() === 'example' && (await N.page.locator('.me-preview .pv-tile').count()) === 3);
+check('every game tile has its own picture from the home page and "1 min"', (await N.page.locator('.me-tile.fresh .me-art.in > svg').count()) === 12 && (await N.page.locator('.me-tile.fresh .me-tgo').first().innerText()).includes('1 min'));
+check('no "–" skeleton left', !(await N.page.locator('#me').innerText()).includes('–'));
+check('no sideways scroll on the phone', await N.page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+await shot(N, 'newcomer');
+check('newcomer: no script errors', N.errors.length === 0, N.errors);
+await N.ctx.close();
+
 /* ---------------------------------------------------------------- phone A keeps a code */
 console.log('phone A: games made, a check-in group, a How Sure game, a find-outs room, a friends\' room; keeps a code');
 const A = await phone(true); await open(A);
@@ -108,6 +127,10 @@ check('totals on top: 4 games and groups, 12 plays, 12 check-ins', /4\s*Games an
 check('the friends\' room is listed with Open', (await A.page.locator('.me-mine a[href$="room/#r=abcdefghjk"]').count()) === 1 && (await A.page.locator('.me-mine').innerText()).includes('Family'));
 check('asking a made game counts as using it (open, with its edit key)', calls.some((c) => c.p === '/kit/BCDFGHJ/open' && c.b.edit === 'ek1'));
 await shot(A, 'phone');
+
+console.log('the steps on a page that is filling up');
+check('A: steps card with what is done (daily, code) and what is not (check-in)', (await A.page.locator('.me-step.done[data-k="daily"]').count()) === 1 && (await A.page.locator('.me-step.done[data-k="code"]').count()) === 1 && (await A.page.locator('.me-step:not(.done)[data-k="checkin"]').count()) === 1);
+check('A: no hero, no example (the page has its own numbers)', (await A.page.locator('.me-hero').count()) === 0 && (await A.page.locator('.me-preview').count()) === 0);
 
 console.log('Results and the CSV');
 await item(A, 'made:BCDFGHJ').getByRole('button', { name: 'Results' }).click(); await A.page.waitForTimeout(800);
@@ -221,6 +244,16 @@ check('the page spreads: a grid of columns over most of the width', g.grid === '
 check('every tile shows, no arrows', g.stripFits && g.arrows === 0, g);
 check('Your games side by side', g.items >= 3, g);
 await W.page.screenshot({ path: path.join(SHOTS, 'manage-wide.png'), fullPage: true });
+await W.page.getByRole('button', { name: 'Exit', exact: true }).click(); await W.page.waitForTimeout(400);
+check('on a computer the Exit sheet says "this computer"', (await W.page.locator('dialog.me-sheet').last().innerText()).includes('Everything here leaves this computer.'));
+await W.page.keyboard.press('Escape'); await W.page.waitForTimeout(300);
+await W.page.getByRole('button', { name: 'Delete everything' }).click(); await W.page.waitForTimeout(400);
+check('and Delete says "this computer" too', (await W.page.locator('dialog.me-sheet').last().innerText()).includes("What's on this computer stays."));
+await W.page.keyboard.press('Escape'); await W.page.waitForTimeout(300);
+await W.page.goto(srv.url + '/me/?device=tablet'); await W.page.waitForFunction(() => document.documentElement.dataset.ready); await W.page.waitForTimeout(600);
+await W.page.getByRole('button', { name: 'Exit', exact: true }).click(); await W.page.waitForTimeout(400);
+check('a tablet gets "this tablet"', (await W.page.locator('dialog.me-sheet').last().innerText()).includes('Everything here leaves this tablet.'));
+await W.page.keyboard.press('Escape'); await W.page.waitForTimeout(300);
 await open(W, 'pw'); const narrow = await W.page.evaluate(() => document.querySelector('.me-main').getBoundingClientRect().width);
 check('a form screen stays one narrow column', narrow < 700, narrow);
 

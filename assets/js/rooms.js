@@ -389,6 +389,9 @@
       if (r.status === 404 || r.status === 403) { forget(room.code); return; }
       if (r.status !== 200 || !r.data.today) return;
       var d = r.data;
+      /* a room with only you in it is not a room yet: "1 of 1 played today" read like a leftover (7 Nov 2026). The box keeps
+         its plain words until a friend joins. */
+      if (!(d.count >= 2)) return;
       var played = d.today.points.filter(function (p) { return p.sent > 0; }).length;
       var h = document.getElementById("gameroom-h");
       var sub = document.getElementById("gameroom-sub");

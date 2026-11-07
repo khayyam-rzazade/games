@@ -55,6 +55,25 @@ export function T(key, vars) {
 }
 export function has(key) { return typeof OWN[key] === 'string' || typeof FALLBACK[key] === 'string'; }
 
+/* the device the page is on, for the words that say "this phone" (7 Nov 2026, Khayyam on a Mac: "it has to decide based on the
+   device"): 'phone', 'tablet' or 'computer'. An iPad says it is a Mac, so a Mac that takes touches is a tablet; an Android
+   without "Mobile" is a tablet; a coarse pointer on a small screen is a phone; everything else is a computer.
+   ?device=computer (or phone, tablet) forces it, for the checks. */
+export const DEVICE = (() => {
+  try {
+    const q = new URLSearchParams(location.search).get('device'); if (q === 'phone' || q === 'tablet' || q === 'computer') return q;
+    const ua = navigator.userAgent || '';
+    if (/iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return 'tablet';
+    if (/Android/.test(ua) && !/Mobile/.test(ua)) return 'tablet';
+    if (/iPhone|iPod|Android.*Mobile|Windows Phone|Mobi/.test(ua)) return 'phone';
+    const coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    if (coarse) return Math.min(screen.width, screen.height) < 600 ? 'phone' : 'tablet';
+    return 'computer';
+  } catch (e) { return 'phone'; }
+})();
+/* a key with its own words for a tablet or a computer ("out.sure.computer"); the plain key is the phone's */
+export function TD(key, vars) { return DEVICE !== 'phone' && has(key + '.' + DEVICE) ? T(key + '.' + DEVICE, vars) : T(key, vars); }
+
 /* numbers, days and months in the language's own form */
 export function fmtN(n) { try { return Number(n).toLocaleString(LOCALE); } catch (e) { return String(n); } }
 function parseDay(iso) {

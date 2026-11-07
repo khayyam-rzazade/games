@@ -4,7 +4,7 @@
    A screen change slides (a still copy of the old screen leaves while the new one arrives; taps always reach the new one). Nothing
    here writes to a game's keys: restoring is A's apply(); the page only asks. The page never shows a score of the check-in anywhere
    but here, on the phone that holds it. */
-import { T, initWords, setLang, LANGS, LANG, fmtN, fmtDay, monthName } from './words.js';
+import { T, TD, initWords, setLang, LANGS, LANG, fmtN, fmtDay, monthName } from './words.js';
 import * as api from './api.js';
 
 const $ = (s, r) => (r || document).querySelector(s);
@@ -54,7 +54,14 @@ function tile(p) {
   const a = el('a', 'me-tile' + (p.played ? '' : ' idle')); a.href = '../' + (PAGE[p.id] || p.id) + '/'; a.dataset.g = p.id;
   a.appendChild(el('span', 'nm', p.name));
   const big = el('span', 'big');
-  if (!p.played) { big.textContent = '–'; a.appendChild(big); a.appendChild(el('span', 'lab', T('act.play'))); return a; }
+  if (!p.played) {
+    /* not played yet: the game's own picture from the home page, its name and "▶ 1 min" (7 Nov 2026: no empty skeleton) */
+    a.classList.add('fresh');
+    const art = el('span', 'art me-art'); art.setAttribute('aria-hidden', 'true'); a.insertBefore(art, a.firstChild);
+    const go = el('span', 'me-tgo'); go.innerHTML = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.2v11.6L16 10z"/></svg>';
+    go.appendChild(document.createTextNode(T('tile.min'))); a.appendChild(go);
+    return a;
+  }
   if (p.current > 0) big.appendChild(el('i', 'me-flame'));
   big.appendChild(document.createTextNode(fmtN(p.current || 0)));
   a.appendChild(big); a.appendChild(el('span', 'lab', T('tile.streak')));
@@ -449,7 +456,7 @@ async function switchLang(c) {
 }
 function openDelete() {
   sheet(T('del.link'), (box, close) => {
-    box.appendChild(el('p', null, T('del.sure')));
+    box.appendChild(el('p', null, TD('del.sure')));
     const msg = msgLine(); const row = el('div', 'me-btns');
     const yes = button('danger', T('del.yes'), async () => {
       yes.disabled = true; const r = await api.remove();
@@ -464,7 +471,7 @@ function openDelete() {
    is the same, and then the box to type one */
 function openExit(another) {
   sheet(T(another ? 'out.other' : 'out.link'), (box, close) => {
-    box.appendChild(el('p', null, T('out.sure')));
+    box.appendChild(el('p', null, TD('out.sure')));
     const msg = msgLine(); const row = el('div', 'me-btns');
     const yes = button('solid', T('out.yes'), async () => {
       yes.disabled = true; setMsg(msg, '');
@@ -484,6 +491,103 @@ function failScreen() {
   const r = screen(); r.appendChild(el('h1', 'me-title', T('app.name'))); const m = el('p', 'me-msg bad', T('err.generic')); m.style.marginTop = '12px'; r.appendChild(m);
   const row = el('div', 'me-btns'); const a = el('a', 'btn solid', T('nav.back')); a.href = '../'; row.appendChild(a); r.appendChild(row); return r;
 }
+/* ---------- a page that is still empty, and the steps that fill it (7 Nov 2026, Khayyam: "it is not ok to have the skeleton
+   empty ... very tempting for the new comers, informative and full of hooks, animated and visually beautiful") ---------- */
+function paintArt() {
+  if (!document.querySelector('.me-art:empty')) return;
+  api.art().then((map) => {
+    document.querySelectorAll('.me-art:empty').forEach((n) => {
+      const t = n.closest('[data-g]'); const svg = t && map.get(t.dataset.g);
+      if (svg) { n.appendChild(document.importNode(svg, true)); n.classList.add('in'); }
+    });
+  });
+}
+function firstGame(s) {
+  const per = Array.isArray(s.per) ? s.per : [];
+  const p = per.find((x) => !x.played && !WORDS.includes(x.id)) || per.find((x) => !WORDS.includes(x.id));
+  return '../' + (p ? (PAGE[p.id] || p.id) + '/' : '');
+}
+/* the number this phone would get, counting up; a mystery "?" while the server is away */
+function heroCard(s) {
+  const a = el('a', 'me-hero full'); a.href = firstGame(s);
+  for (let i = 0; i < 6; i++) { const d = el('i', 'spark'); d.style.setProperty('--k', i); a.appendChild(d); }
+  a.appendChild(el('span', 'me-hero-l', T('nc.wait')));
+  const big = el('span', 'me-hero-n', T('home.number', { n: '?' })); a.appendChild(big);
+  a.appendChild(el('span', 'me-hero-s', T('nc.get')));
+  const go = el('span', 'me-hero-go'); go.innerHTML = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.2v11.6L16 10z"/></svg>';
+  go.appendChild(document.createTextNode(T('nc.first'))); a.appendChild(go);
+  api.counts().then((c) => {
+    if (!c || !c.next || !big.isConnected) return;
+    a.setAttribute('aria-label', T('nc.wait') + ': ' + T('home.number', { n: fmtN(c.next) }) + '. ' + T('nc.get') + ' ' + T('nc.first'));
+    countTo(big, c.next, (v) => { big.textContent = T('home.number', { n: fmtN(v) }); });
+  });
+  return a;
+}
+function stepsOf(s) {
+  const per = Array.isArray(s.per) ? s.per : [], fo = s.findouts || {}, ci = s.checkin || {};
+  const cur = per.reduce((m, p) => Math.max(m, p.current || 0), 0), longest = per.reduce((m, p) => Math.max(m, p.longest || 0), 0);
+  return [
+    { k: 'daily', done: per.some((p) => p.played > 0), href: firstGame(s), sub: T('step.daily_sub') },
+    { k: 'findout', done: (fo.done || 0) >= 9, href: '../find-out/', sub: fo.done > 0 ? T('step.findout_prog', { n: fo.done }) : T('step.findout_sub'), count: fo.done > 0 ? null : 'findouts' },
+    { k: 'checkin', done: (ci.times || 0) > 0, href: '../checkin/', sub: T('step.checkin_sub'), count: 'checkins' },
+    { k: 'streak', done: longest >= 3, href: '../', sub: cur > 0 ? T('step.streak_prog', { n: Math.min(cur, 3) }) : T('step.streak_sub') },
+    { k: 'code', done: !!S.code, tap: s.logicer ? () => nav('get') : null, sub: s.logicer ? T('step.code_sub') : T('step.code_after') }
+  ];
+}
+function stepsCard(s) {
+  const steps = stepsOf(s), n = steps.filter((x) => x.done).length;
+  if (n === steps.length) return null;
+  const sec = el('section', 'me-sec me-steps'); const card = el('div', 'me-card');
+  const top = el('div', 'me-steps-top');
+  const h = el('h2', 'me-h', T('steps.h')); top.appendChild(h);
+  const ring = el('span', 'me-ring'); ring.setAttribute('role', 'img'); ring.setAttribute('aria-label', T('steps.n', { n, of: steps.length }));
+  ring.innerHTML = '<svg viewBox="0 0 44 44" aria-hidden="true"><circle class="bg" cx="22" cy="22" r="18"/><circle class="fg" cx="22" cy="22" r="18" pathLength="100"/></svg>';
+  ring.appendChild(el('b', null, n + '/' + steps.length)); ring.style.setProperty('--p', Math.round((n / steps.length) * 100)); if (!n) ring.classList.add('zero');
+  top.appendChild(ring); card.appendChild(top);
+  const ul = el('ol', 'me-steplist');
+  steps.forEach((x, i) => {
+    const li = el('li');
+    const it = x.done ? el('div', 'me-step done') : x.href ? el('a', 'me-step') : x.tap ? el('button', 'me-step') : el('div', 'me-step off');
+    if (it.tagName === 'A') it.href = x.href;
+    if (it.tagName === 'BUTTON') { it.type = 'button'; it.addEventListener('click', x.tap); }
+    it.dataset.k = x.k;
+    const dot = el('span', 'me-stepdot', x.done ? '' : String(i + 1)); dot.setAttribute('aria-hidden', 'true'); it.appendChild(dot);
+    const w = el('span', 'me-stepw'); w.appendChild(el('span', 'ti', T('step.' + x.k))); const sub = el('span', 'sub', x.sub); w.appendChild(sub); it.appendChild(w);
+    if (!x.done && (x.href || x.tap)) { const ch = el('span', 'me-chev'); ch.setAttribute('aria-hidden', 'true'); ch.innerHTML = '<svg viewBox="0 0 20 20"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg>'; it.appendChild(ch); }
+    if (x.done) it.setAttribute('aria-label', T('step.' + x.k) + ' ✓');
+    if (x.count && !x.done) api.counts().then((c) => { const v = c && c[x.count]; if (v > 0 && sub.isConnected) sub.textContent = T('count.did', { n: fmtN(v) }); });
+    li.appendChild(it); ul.appendChild(li);
+  });
+  card.appendChild(ul); sec.appendChild(card);
+  return sec;
+}
+/* what a full page looks like: a small example that comes alive once it is on the screen (and stays still for reduced motion) */
+function previewCard() {
+  const sec = el('section', 'me-sec me-prevsec'); const c = el('div', 'me-card me-preview');
+  c.setAttribute('role', 'img'); c.setAttribute('aria-label', T('nc.preview') + ' (' + T('nc.example') + ')');
+  const top = el('div', 'pv-top'); top.appendChild(el('span', 'pv-h', T('nc.preview'))); top.appendChild(el('span', 'pv-tag', T('nc.example'))); c.appendChild(top);
+  const num = el('div', 'pv-num', T('home.number', { n: fmtN(2418) })); c.appendChild(num);
+  const row = el('div', 'pv-tiles'); const targets = [];
+  [['energy', 12], ['hundred', 5], ['altitude', 8]].forEach(([g, v]) => {
+    const t = el('div', 'pv-tile'); t.dataset.g = g; const b = el('b'); b.appendChild(el('i', 'me-flame')); const n = el('span', null, fmtN(v)); b.appendChild(n); t.appendChild(b);
+    t.appendChild(el('span', null, T('tile.streak'))); row.appendChild(t); targets.push([n, v]);
+  });
+  c.appendChild(row);
+  const fo = el('div', 'pv-row'); fo.appendChild(el('span', 'pv-l', T('home.findout'))); const dots = el('span', 'pv-dots');
+  for (let i = 0; i < 9; i++) { const d = el('i'); d.style.setProperty('--k', i); dots.appendChild(d); }
+  fo.appendChild(dots); c.appendChild(fo);
+  const ci = el('div', 'pv-row'); ci.appendChild(el('span', 'pv-l', T('home.checkin'))); const sc = el('span', 'pv-ci'); sc.append('64 → ', el('b', null, '71')); ci.appendChild(sc); c.appendChild(ci);
+  sec.appendChild(c);
+  const go = () => { c.classList.add('live'); countTo(num, 2418, (v) => { num.textContent = T('home.number', { n: fmtN(v) }); }); targets.forEach(([n, v]) => countTo(n, v, (x) => { n.textContent = fmtN(x); })); };
+  if (window.IntersectionObserver && !reduced()) { const io = new IntersectionObserver((e) => { if (e.some((x) => x.isIntersecting)) { io.disconnect(); go(); } }, { threshold: 0.3 }); io.observe(c); }
+  else c.classList.add('live');
+  return sec;
+}
+function isFresh(s) {
+  const per = Array.isArray(s.per) ? s.per : [];
+  return !s.logicer && !S.code && !per.some((p) => p.played > 0) && !((s.findouts || {}).done > 0) && !((s.checkin || {}).times > 0) && !(Array.isArray(s.mine) && s.mine.length);
+}
+
 function homeScreen() {
   const s = S.stats; if (!s) return failScreen();
   const root = screen(); root.classList.add('me-home'); let n = 0;
@@ -495,6 +599,8 @@ function homeScreen() {
     if (first) { h1.textContent = T('home.number', { n: fmtN(0) }); countTo(h1, s.logicer, (v) => { h1.textContent = T('home.number', { n: fmtN(v) }); }); } else h1.textContent = full;
     head.appendChild(h1);
     if (s.since) head.appendChild(el('p', 'meta', T('home.since', { date: fmtDay(s.since) })));
+  } else if (isFresh(s)) {
+    const h1 = el('h1', 'me-title', T('app.name')); h1.tabIndex = -1; head.appendChild(h1);
   } else {
     const h1 = el('h1', 'me-title', T('app.name')); h1.tabIndex = -1; head.appendChild(h1);
     head.appendChild(el('p', 'me-lede', T('home.none')));
@@ -502,6 +608,8 @@ function homeScreen() {
   }
   if (S.flash) { const f = el('p', 'me-flash', S.flash); f.setAttribute('role', 'status'); head.appendChild(f); announce(S.flash); S.flash = ''; }
   head.classList.add('full'); add(head);
+  const fresh = isFresh(s);
+  if (fresh) add(heroCard(s));
 
   const card = api.cardOpen(s);
   if (card) {
@@ -513,6 +621,9 @@ function homeScreen() {
     const a = el('a', 'btn solid block', label); a.href = href; a.id = 'me-year'; const w = el('div', 'me-sec full me-yearbox'); w.appendChild(a); add(w);
   }
 
+  const steps = stepsCard(s);
+  if (steps) add(steps);
+  if (fresh) add(previewCard());
   const per = Array.isArray(s.per) ? s.per : [];
   const daily = per.filter((p) => !WORDS.includes(p.id)), words = per.filter((p) => WORDS.includes(p.id));
   if (daily.length) { const sec = section(T('home.daily')); sec.classList.add('full'); sec.appendChild(strip(daily)); add(sec); }
@@ -532,6 +643,7 @@ function homeScreen() {
     const u = el('div'); u.appendChild(link(T('have.number'), () => nav('number'))); low.appendChild(u);
     add(low);
   }
+  setTimeout(paintArt, 0);
   if (S.code) {
     const low = el('div', 'me-low full');
     low.appendChild(link(T('out.link'), () => openExit(false), 'strong'));

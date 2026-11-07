@@ -64,11 +64,11 @@ check('the page does not break without A3 (MeDoors is a stub here)', names.doors
 
 console.log('real storage -> real stats -> the page');
 check('home: the Logicer number comes from the games\' own storage', (await text(a.page, 'h1')) === 'Logicer №2,418', await text(a.page, 'h1'));
-const tiles = await a.page.locator('.me-tile').evaluateAll((n) => n.map((x) => ({ href: x.getAttribute('href'), g: x.dataset.g, nm: x.querySelector('.nm').textContent, big: x.querySelector('.big').textContent, sub: x.querySelector('.sub') ? x.querySelector('.sub').textContent : '' })));
+const tiles = await a.page.locator('.me-tile').evaluateAll((n) => n.map((x) => ({ href: x.getAttribute('href'), g: x.dataset.g, nm: x.querySelector('.nm').textContent, big: x.classList.contains('fresh') ? '–' : x.querySelector('.big').textContent, sub: x.querySelector('.sub') ? x.querySelector('.sub').textContent : '' })));
 check('home: twelve tiles in the real order, linked and coloured by the real ids', tiles.length === 12 && tiles[0].g === 'energy' && tiles[0].href === '../same-energy/' && tiles[1].g === 'hundred' && tiles[1].href === '../100-of-us/' && tiles[11].g === 'passport', tiles.map((t) => t.g + ' ' + t.href));
 check('home: 100 of Us shows a streak of 5 and 4 spot on', /5/.test(tiles[1].big) && /4/.test(tiles[1].sub), tiles[1]);
 check('home: Same Energy shows a streak of 3', /3/.test(tiles[0].big), tiles[0]);
-check('home: a game never played is idle ("–")', tiles[2].big === '–', tiles[2].big);
+check('home: a game never played shows its picture and "1 min", not a number', tiles[2].big === '–' && (await a.page.locator('.me-tile.fresh').first().locator('.me-tgo').innerText()).includes('1 min'), tiles[2].big);
 check('no code yet: Get your code is offered', (await a.page.locator('#me').innerText()).includes('Get your code'));
 a.errors.length && check('no errors on the page', false, a.errors);
 
@@ -90,7 +90,7 @@ const b = await phone({});
 await open(b, 'have');
 await b.page.fill('input', kept); await b.page.keyboard.press('Enter'); await b.page.waitForTimeout(2200);
 check('restore: Welcome back, the number is there', (await text(b.page, '.me-flash')) === WORDS.en['have.ok'] && (await text(b.page, 'h1')) === 'Logicer №2,418', [await text(b.page, '.me-flash').catch(() => null), await text(b.page, 'h1').catch(() => null)]);
-const ts = await b.page.locator('.me-tile').evaluateAll((n) => n.map((x) => ({ g: x.dataset.g, big: x.querySelector('.big').textContent, sub: x.querySelector('.sub') ? x.querySelector('.sub').textContent : '' })));
+const ts = await b.page.locator('.me-tile').evaluateAll((n) => n.map((x) => ({ g: x.dataset.g, big: x.classList.contains('fresh') ? '–' : x.querySelector('.big').textContent, sub: x.querySelector('.sub') ? x.querySelector('.sub').textContent : '' })));
 check('restore: the streaks are the same on the new phone (100 of Us 5, Same Energy 3)', ts.length === 12 && /5/.test(ts[1].big) && /3/.test(ts[0].big) && /4/.test(ts[1].sub), ts.slice(0, 2));
 const stored = await b.page.evaluate(() => { const t = JSON.parse(localStorage.getItem('turnsout:v1') || '{}'); return { h: Object.keys(((t.games || {})['100-of-us'] || {}).results || {}).length, e: Object.keys(((t.games || {})['same-energy'] || {}).results || {}).length, n: t.world && t.world.logicer && t.world.logicer.n }; });
 check('restore: A\'s apply() wrote the games\' own keys (turnsout:v1) on the new phone', stored.h === 5 && stored.e === 3 && stored.n === 2418, stored);

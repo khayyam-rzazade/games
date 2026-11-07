@@ -95,7 +95,7 @@ if (group('screens')) {
     check(`[${l}] no code: Get your code card`, (await q.page.locator('#me').innerText()).includes(w('code.get')));
     check(`[${l}] no code: Have a code?`, (await q.page.locator('#me').innerText()).includes(w('have.h')) && (await q.page.locator('#me').innerText()).includes(w('have.number')));
     check(`[${l}] no code: no Delete, no If you lose`, !(await q.page.locator('#me').innerText()).includes(w('del.link')) && !(await q.page.locator('#me').innerText()).includes(w('lose.h')));
-    check(`[${l}] no code: unplayed tiles say Play`, (await q.page.locator('.me-tile.idle .lab').first().innerText()) === w('act.play'));
+    check(`[${l}] no code: unplayed tiles show the game's time`, (await q.page.locator('.me-tile.fresh .me-tgo').first().innerText()).trim() === w('tile.min'));
     check(`[${l}] no code: story / find-out / check-in / Your games left out`, !(await q.page.locator('#me').innerText()).includes(w('home.story')) && !(await q.page.locator('#me').innerText()).includes(w('mine.h')));
     await shot(q, `${l}-2-home-nocode`);
 
@@ -179,7 +179,7 @@ if (group('states')) {
   let p = await phone({});                                   // a phone that never played: no stats, no number
   await open(p);
   let body = await p.page.locator('#me').innerText();
-  check('nothing played: "Finish a game" + Play, Have a code?, no Get your code', body.includes(W('en', 'home.none')) && body.includes(W('en', 'act.play')) && body.includes(W('en', 'have.h')) && !body.includes(W('en', 'code.get')), body);
+  check('nothing played: the newcomer page (the number waiting, the steps, an example), Have a code?, no Get your code', body.includes(W('en', 'nc.wait').toUpperCase()) && body.includes(W('en', 'nc.first')) && body.includes(W('en', 'steps.h')) && body.includes(W('en', 'nc.preview')) && body.includes(W('en', 'have.h')) && !body.includes(W('en', 'code.get')), body);
   check('nothing played: the heading is the page name', (await text(p.page, 'h1')) === 'My Logicers');
   check('nothing played: #get goes home (no number, no code)', await (async () => { await route(p, 'get'); return (await text(p.page, 'h1')) === 'My Logicers'; })());
   await p.close();
@@ -207,8 +207,9 @@ if (group('states')) {
 
   /* no check-in, no find-out, no story, no made games */
   p = await phone({ stats: bare(), code: 'river-blue-cat-42' });
-  await open(p); body = await p.page.locator('#me').innerText();
-  check('a player with only a few days: no story, find-out, check-in or Your games', !body.includes('Story') && !body.includes(W('en', 'home.findout')) && !body.includes(W('en', 'home.checkin')) && !body.includes(W('en', 'mine.h')));
+  await open(p); body = await p.page.locator('#me').evaluate((n) => { const c = n.cloneNode(true); c.querySelectorAll('.me-steps').forEach((x) => x.remove()); document.body.appendChild(c); const t = c.innerText; c.remove(); return t; });
+  check('a player with only a few days: no story, find-out, check-in or Your games (the steps card aside)', !body.includes('Story') && !body.includes(W('en', 'home.findout')) && !body.includes(W('en', 'home.checkin')) && !body.includes(W('en', 'mine.h')), body.slice(0, 300));
+  check('a player with only a few days: the steps card, the daily game done', (await p.page.locator('.me-step.done[data-k="daily"]').count()) === 1 && (await p.page.locator('.me-ring b').innerText()) === '2/5');          // the daily game and the code
   await p.close();
 
   /* links only show on a phone that has the box open: rows without a link say so */
@@ -504,15 +505,20 @@ if (group('motion')) {
   check('count: the number rises to its value (not already there at the first frame)', mid !== 'Logicer №2,418' && (await text(p.page, 'h1')) === 'Logicer №2,418', mid);
   const prop = await p.page.evaluate(() => { const bad = []; for (const sh of document.styleSheets) { if (!/me\.css/.test(sh.href || '')) continue; for (const r of sh.cssRules) { if (r.style && r.style.transition) { const t = r.style.transition; if (/\b(width|height|top|left|margin|font-size|box-shadow)\b/.test(t)) bad.push(r.selectorText + ': ' + t); } } } return bad; });
   check('motion rule: nothing transitions width, height, top, left, margin, font-size or box-shadow', prop.length === 0, prop);
+  /* the newcomer page's own ambient motion (7 Nov 2026, Khayyam: "animated and visually beautiful"): the hero's slow colour drift
+     (9s), the play button's beat (2.4s), the sparks (3.8s, .6s apart), the steps ring (1.2s after .2s), the example's dots
+     (7s, .28s apart) and flames (1.5s), the picture's wait (1.1s). Read as written: ".6s" shows as "6s" and so on. */
+  const NEWCOMER_LOOPS = ['9s', '2.4s', '3.8s', '6s', '1.2s', '2s', '7s', '28s', '1.5s', '1.1s'];
   const durs = await p.page.evaluate(() => { const set = new Set(); for (const sh of document.styleSheets) { if (!/me\.css/.test(sh.href || '')) continue; for (const r of sh.cssRules) { const s = r.cssText; const m = s.match(/\d+(\.\d+)?m?s\b/g); if (m) m.forEach((x) => set.add(x)); } } return [...set]; });
-  check('motion rule: only token durations in me.css apart from the pulse-free 1.6s (none) and the delay of the band pop', durs.every((d) => ['180ms', '340ms', '600ms', '100ms', '0s'].includes(d)), durs);
+  check('motion rule: only token durations in me.css apart from the pulse-free 1.6s (none) and the delay of the band pop', durs.every((d) => ['180ms', '340ms', '600ms', '100ms', '0s'].concat(NEWCOMER_LOOPS).includes(d)), durs);
   /* a tap during the slide still works: tap Get your code the moment the page is there, then a button on the new screen at once */
   await p.close();
   p = await phone({ stats: bare() }); await open(p);
   await p.page.getByRole('button', { name: 'Get your code' }).click(); await p.page.waitForSelector('.me-code');
   await p.page.getByRole('button', { name: 'Another' }).click({ timeout: 2000 });
   check('a tap while the screen is still sliding in is taken', (await p.page.locator('.me-code').count()) === 1);
-  const ghosts = await p.page.locator('.me-ghost').count(); check('the leaving copy lets taps through (pointer-events none)', ghosts === 0 || (await p.page.locator('.me-ghost').first().evaluate((n) => getComputedStyle(n).pointerEvents)) === 'none');
+  const ghostPe = await p.page.evaluate(() => [...document.querySelectorAll('.me-ghost')].map((n) => getComputedStyle(n).pointerEvents));
+  check('the leaving copy lets taps through (pointer-events none)', ghostPe.every((x) => x === 'none'), ghostPe);
   await p.close();
 
   for (const scheme of ['dark']) {
