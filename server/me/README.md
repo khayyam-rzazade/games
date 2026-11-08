@@ -89,3 +89,6 @@ npm run browser     # two phones in Chrome, one code: every game and host page c
 Every unknown code costs one of the address's 20 code checks an hour, on every route, so `/sync` cannot be used to
 guess codes. `/dist` gives percentiles (10, 25, 50, 75, 90, 95, 99) of days played and spot-ons this year and this month,
 over the records with at least one day in the period, and only from 30 records (below that, `null`).
+
+## Later changes
+After a change to `worker.js` or `me-stats.js` here, run `npx wrangler deploy` in this folder again. The secrets stay as they are.
