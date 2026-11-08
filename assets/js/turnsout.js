@@ -46,6 +46,7 @@
 
   var KEY = "turnsout:v1";
   var LG = window.LG, T = LG ? LG.t : function (k) { return k; };   // the language layer (assets/js/lang.js): every word a player reads
+  var EMBED = !!(LG && LG.embed);        // ?embed=1: the slim layout inside someone else's page (lang.js sets html.embed)
   var memory = null; // used when the browser will not let us store anything (private mode)
 
   function obj(v) { return (v && typeof v === "object" && !Array.isArray(v)) ? v : null; }
@@ -724,6 +725,7 @@
     function fit() {
       row.style.marginTop = "";
       row.classList.remove("tight");
+      if (EMBED) return;                       // no bar to the next game in a frame, and the frame's height is not the screen's
       var room = window.innerHeight - 76;                     // the bar to the next game and its shadow: the last 76 pixels (as t_energy.py measures)
       var over = lowest() - room;
       if (over <= 0) return;
@@ -784,11 +786,124 @@
     if (text !== undefined) e.textContent = text;
     return e;
   }
+  /* ------------------------------------------------------------------
+     Embeds (8 Nov 2026). A daily game's page opened with ?embed=1 (assets/js/lang.js sets html.embed and the slim layout
+     is CSS) lives in a frame on someone else's page. Here: the "powered by Logicers" footer that leads to the full page,
+     the frame's height posted to the host, the world box under the game, and the "Embed" button of the finish card that
+     copies the <iframe> to paste. The host hears  { source: "logicers-embed", type: "height", height: N, game: id }  on
+     load and after every change of the page, and may set the frame to N pixels. No way on to other games, no home-screen
+     offers, no reminders: those are for a phone's own browser.
+     ------------------------------------------------------------------ */
+  /* the embed words, with the English as a fallback while a language file has not been rebuilt with them */
+  function embedWords(key) {
+    var en = { "embed.button": "Embed", "embed.copied": "Copied. In Moodle: add a Page, switch to code view, paste.", "embed.powered": "powered by Logicers" };
+    return T.has && T.has(key) ? T(key) : en[key];
+  }
+  function fullPage() { return String(window.location.href).split(/[?#]/)[0].replace(/index\.html$/, ""); }
+  function embedGame() {
+    var key = document.body && document.body.getAttribute("data-g"), id = "";
+    GAMES.forEach(function (G) { if (G.key === key) id = G.id; });
+    return id;
+  }
+  function embedSnippet(o) {
+    var G = null;
+    GAMES.forEach(function (x) { if (o && x.id === o.game) G = x; });
+    var title = (G ? G.name + " · " : "") + "Logicers";
+    return '<iframe src="' + fullPage() + '?embed=1" width="100%" height="600" loading="lazy" allow="clipboard-write" style="border:0;border-radius:24px" title="' + esc(title) + '"></iframe>';
+  }
+  function embedButton(o) {
+    var box = el("div", "fin-embed-box");
+    var b = el("button", "fin-embed");
+    b.type = "button";
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 3.5 12l5 5"/><path d="M15.5 7l5 5-5 5"/></svg>';   // F: a chip with its icon, not underlined text
+    b.appendChild(document.createTextNode(embedWords("embed.button")));
+    var hint = el("p", "fin-embed-hint");
+    hint.hidden = true;
+    hint.setAttribute("role", "status");
+    b.addEventListener("click", function () {
+      count_("embed/copy" + (o && o.game ? "/" + o.game : ""));
+      copyText(embedSnippet(o)).then(function (done) {
+        hint.textContent = done ? embedWords("embed.copied") : T("share.copy_failed");
+        hint.hidden = false;
+      });
+    });
+    box.appendChild(b);
+    box.appendChild(hint);
+    return box;
+  }
+  var embedSent = -1, embedLog = [], embedTimer = 0;
+  function embedHeight() {
+    if (!EMBED || window.parent === window || !document.body) return;
+    var cs = window.getComputedStyle(document.body);
+    var foot = document.querySelector(".embed-foot");
+    var h = Math.ceil(Math.max(document.body.scrollHeight, foot ? foot.getBoundingClientRect().bottom + window.pageYOffset + (parseFloat(cs.paddingBottom) || 0) : 0));
+    if (!(h > 0) || Math.abs(h - embedSent) < 2) return;
+    var now = Date.now();
+    embedLog = embedLog.filter(function (t) { return now - t < 2000; });
+    if (embedLog.length >= 20) { embedSoon(400); return; }       // a page and its host chasing each other: slow down, never loop
+    embedLog.push(now);
+    embedSent = h;
+    try { window.parent.postMessage({ source: "logicers-embed", type: "height", height: h, game: embedGame() }, "*"); } catch (e) { /* no host to tell */ }
+  }
+  function embedSoon(ms) {
+    window.clearTimeout(embedTimer);
+    embedTimer = window.setTimeout(embedHeight, ms === undefined ? 40 : ms);
+  }
+  function embedStart() {
+    if (!EMBED || document.getElementById("embed-foot")) return;
+    var foot = el("footer", "embed-foot");
+    foot.id = "embed-foot";
+    var a = el("a");
+    a.href = fullPage();
+    a.target = "_blank";
+    a.rel = "noopener";
+    var words = embedWords("embed.powered"), at = words.indexOf("Logicers");
+    if (at < 0) a.textContent = words;
+    else {
+      a.appendChild(document.createTextNode(words.slice(0, at)));
+      a.appendChild(el("b", "", "Logicers"));
+      a.appendChild(document.createTextNode(words.slice(at + 8)));
+    }
+    a.addEventListener("click", function () { count_("embed/full-page/" + embedGame()); });
+    foot.appendChild(a);
+    document.body.appendChild(foot);
+    if (window.ResizeObserver) {
+      var ro = new window.ResizeObserver(function () { embedSoon(); });
+      ro.observe(document.documentElement);
+      ro.observe(document.body);
+    }
+    if (window.MutationObserver) {
+      new window.MutationObserver(function () { embedSoon(); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden", "class", "data-phase"] });
+    }
+    window.addEventListener("load", function () { embedSoon(0); });
+    window.addEventListener("resize", function () { embedSoon(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { embedSoon(0); }, function () {});
+    [150, 600, 1500, 3500].forEach(function (ms) { embedSoon(ms); });
+    embedSoon(0);
+  }
+  /* what follows a game's answer in a frame: the world box under the game (it also sends the result to the world's table,
+     like any play), and the new height; nothing that leads away */
+  function embedOnward(o, after) {
+    var old = document.getElementById("below");
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    var below = el("div", "below");
+    below.id = "below";
+    if (typeof window.TurnsOut.worldHook === "function") {
+      try { window.TurnsOut.worldHook(below, o, GAMES.map(playedToday)); } catch (e) { /* the world's counts must never break a game */ }
+    }
+    after.appendChild(below);
+    embedSoon(0);
+    return below;
+  }
+
   function onward(o) {
     o = o || {};
     var after = document.getElementById("after");
     if (!after) return null;
     try { stamp(o); } catch (e) { /* a stamp must never break a game */ }
+    if (EMBED) {                          // in a frame: the world box and the height, no way on, no reminders
+      try { return embedOnward(o, after); } catch (e) { return null; }
+    }
     try { afterPlay(); } catch (e) { /* a reminder must never break a game */ }
     var old = document.getElementById("onward"), oldBar = document.getElementById("onbar");
     if (old && old.parentNode) old.parentNode.removeChild(old);
@@ -1245,6 +1360,7 @@
     stats.type = "button";
     stats.appendChild(document.createTextNode(next ? T("fin.stats") : T("fin.explanation")));
     sheet.appendChild(stats);
+    try { sheet.appendChild(embedButton(o)); } catch (e) { /* the Embed button is optional */ }
     wrap.appendChild(sheet);
 
     var fns = [], done = false;
@@ -2338,7 +2454,8 @@
       });
     }
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", appStart);
+  if (EMBED) { /* no home-screen app, no service worker inside someone else's page */ }
+  else if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", appStart);
   else appStart();
 
   /* Today's word games (30 Oct 2026): Altitude, Lookalike and Passport are not daily games of the list above (their own pages,
@@ -2433,6 +2550,7 @@
 
   privacyNotes();
   startCounter();
+  if (EMBED) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", embedStart); else embedStart(); }
 
   /* My Logicers in the header (7 Nov 2026, Khayyam: "a window Me or My Logicers on top next to Streak, but not too big"): one
      round chip, the size of the "?", right after the streak chip, on every page that has one. A person's outline; filled in
@@ -2480,7 +2598,8 @@
       }
     } catch (e) { /* the chip is optional */ }
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", meChip); else meChip();
+  if (EMBED) { /* the header is not shown in a frame */ }
+  else if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", meChip); else meChip();
 
   /* My Logicers (joint check, 7 Nov 2026): a phone that keeps a code loads the two scripts that send its record to the
      server after every finish (assets/js/me.js wraps TurnsOut.count, so no game changes). Any other phone loads nothing. */

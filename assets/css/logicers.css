@@ -1534,3 +1534,36 @@ dialog.khay:not([open]) { display: none; }
   .bar a.wordmark { gap: 0; font-size: 0; }
   .site-bar .logo .word { display: none; }
 }
+
+/* ?embed=1 (8 Nov 2026): a game inside someone else's page. No header, no menu, no language line, no way on to other games:
+   the game, its reveal and the world box, and a quiet "powered by Logicers" that leads to the full page. lang.js sets
+   html.embed; assets/js/turnsout.js adds the footer and tells the host page how high the frame needs to be. */
+html.embed header.bar, html.embed .site-bar, html.embed #lg-line, html.embed #lg-only, html.embed #lg-chip,
+html.embed .onbar, html.embed .fin, html.embed #onward,
+html.embed [data-open="dlg-practice"], html.embed #practice-back { display: none !important; }
+html.embed body, html.embed body.game { min-height: 0; padding-top: 10px; }
+html.embed .wrap, html.embed .wrap.play { padding-bottom: 6px; }
+.embed-foot { max-width: var(--col); margin: 0 auto; padding: 8px var(--pad) 14px; text-align: center; font-size: 0.82rem; font-weight: 600; line-height: 1.2; color: var(--soft); }
+.embed-foot { border-top: 1px solid var(--line); padding-top: 4px; }
+.embed-foot a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 8px; color: inherit; text-decoration: none; border-radius: 8px; }
+.embed-foot a::before { content: ""; width: 16px; height: 16px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6.2' r='4.1' fill='%232D4FC4'/%3E%3Ccircle cx='5.3' cy='17.8' r='4.1' fill='%23D5492F'/%3E%3Ccircle cx='18.7' cy='17.8' r='4.1' fill='%230D7D73'/%3E%3C/svg%3E") center / contain no-repeat; }
+.embed-foot a b { color: var(--ink); font-weight: 800; }
+.embed-foot a:hover b, .embed-foot a:focus-visible b { text-decoration: underline; }
+
+/* the "Embed" button on the finish card: a quiet line under the stats button, and its one-line hint */
+.fin-embed { appearance: none; display: flex; align-items: center; gap: 8px; margin: 10px auto 0; min-height: 44px; padding: 0 18px 0 14px; border: 0; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.94rem; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.fin-embed svg { width: 20px; height: 20px; fill: none; stroke: var(--c, #2D4FC4); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-color-scheme: dark) { .fin-embed { background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px var(--line); } }
+/* a phone is not where a page is embedded: the button waits for a computer (F, 8 Nov 2026) */
+@media (pointer: coarse) and (max-width: 600px) { .fin-embed-box { display: none; } }
+.fin-embed:focus-visible { outline: 3px solid var(--c, #2D4FC4); outline-offset: 2px; border-radius: 10px; }
+.fin-embed-hint { margin: 0 auto; padding: 0 14px 4px; max-width: 24rem; text-align: center; font-size: 0.86rem; line-height: 1.3; color: var(--soft); }
+
+/* In a frame the games must not follow the frame's own height (the host sets it from what the page says it needs, so a
+   layout that fills the frame would chase itself). The two sizes that fill the screen are laid out here as for a screen
+   544 pixels high (the 600 pixels of the snippet less the footer), and 600 on a wide frame, plus the 56 pixels of the
+   header that is not there. */
+html.embed { --embed-h: 600px; }
+@media (min-width: 40rem) { html.embed { --embed-h: 656px; } }
+html.embed .crowd { width: min(100%, calc((var(--embed-h) - var(--reserve) - var(--stamp-room, 0px) - 27px) / 1.1)); }
+html.embed .lc-subject .lc-pic { height: clamp(5.5rem, calc(var(--embed-h) - var(--lc-reserve, 30.3rem) - var(--stamp-room, 0px)), 13rem); }

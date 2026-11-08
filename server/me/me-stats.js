@@ -16,7 +16,12 @@
                Altitude (8 = the summit), the words right 0-3 for Lookalike, 1 or 0 for Passport (the right origin)
      g[id].k   Passport only: the stamps collected, { "<origin>": day number }
      pk        how many passkeys the record has; worked out by the server on every answer, never stored
-   A date is "YYYY-MM-DD"; a day string starts at its f and has one character per calendar day. */
+   A date is "YYYY-MM-DD"; a day string starts at its f and has one character per calendar day.
+
+   Logicer Studio (8 Nov 2026, chat D of claude/studio-plan.md), two additions:
+     mine[]   a new kind "studio": a game this player made on by.logicers.com; its code is "<maker>/<game>~<made>" (STUDIO_ID), its edit key lives in the box
+     sp       { "<maker>/<game>": { f, d, ti, by } } the days this player finished a game of others, as a day string, with the game's title and the maker's name
+   and stats() gives the page `maker` ({ slug, name, key } from the box, or null) and `others` (the games of others with their streaks). */
 (function (root) {
   "use strict";
 
@@ -44,14 +49,20 @@
   DAILY.forEach(function (x) { TOP[x.id] = 3; });
   WORDS.forEach(function (x) { TOP[x.id] = x.top; });
   var STORY_LAUNCH = "2026-11-09";                // story/config.js; week w, chapter d is this + 7(w-1) + (d-1), UTC
-  var KINDS = ["made", "checkin", "howsure", "findout"];
+  var KINDS = ["made", "checkin", "howsure", "findout", "studio"];
   var LANGS = ["en", "it", "es", "pt", "fr", "tr"];
 
   var MAX_DAYS = 4000;                            // a day string longer than this is refused (about eleven years)
   var MAX_MINE = 120;
+  var MAX_SP = 30;                                // the Studio games of others that keep a streak here (8 Nov 2026)
   var MAX_GONE = 300;                             /* "kind:code" of games and rooms taken off My Logicers (7 Nov 2026): kept, so that a
                                                      phone that still holds one never brings it back */
-  var GONE_RE = /^(made|checkin|howsure|findout):[A-Za-z0-9]{3,16}$/;
+  /* A Studio game (8 Nov 2026, Logicer Studio, claude/studio-plan.md): its id is "<maker>/<game>", the two parts of its address on
+     by.logicers.com, and "~<made>" (the day it was made, base 36) behind them for a game this phone made, so that a game deleted
+     and made again under the same address is not the one that was taken off My Logicers. A part has no "/", ":", "?", "#", "%",
+     "\", "~", no space and no control character. */
+  var STUDIO_ID = /^[^\/\s:?#%\\~\u0000-\u001f]{1,64}\/[^\/\s:?#%\\~\u0000-\u001f]{1,64}(~[a-z0-9]{1,12})?$/;
+  var GONE_RE = /^(?:(?:made|checkin|howsure|findout):[A-Za-z0-9]{3,16}|studio:[^\/\s:?#%\\~\u0000-\u001f]{1,64}\/[^\/\s:?#%\\~\u0000-\u001f]{1,64}(?:~[a-z0-9]{1,12})?)$/;
   var LIMIT = 64 * 1024;                          // the whole record, as JSON, in bytes (raised from 24 KB at the joint check:
                                                    // a player of everything reaches 24 KB in about two years; 64 KB is a decade)
 
@@ -182,6 +193,16 @@
       m.made = earlier(m.made, x.made) || m.made;
     });
     out.mine = order.map(function (k) { return mine[k]; });
+    /* Studio streaks: a day is played if either side says so; the newer words (b) win, the older stay when b has none */
+    var spk = Object.keys((a.sp && typeof a.sp === "object" ? a.sp : {})).concat(Object.keys(b.sp && typeof b.sp === "object" ? b.sp : {}));
+    var sp = {}, nsp = 0;
+    spk.forEach(function (id) {
+      if (sp[id] || nsp >= MAX_SP) return;
+      var x = a.sp && a.sp[id], y = b.sp && b.sp[id], dd = mergeDays(x, y, false);
+      if (!dd) return;
+      sp[id] = { f: dd.f, d: dd.d, ti: clip((y && y.ti) || (x && x.ti), 80), by: clip((y && y.by) || (x && x.by), 40) }; nsp++;
+    });
+    if (nsp) out.sp = sp;
     /* the box: the stored one unless the arriving one is newer (only a phone can open both and merge inside) */
     var ua = String(a.upd || ""), ub = String(b.upd || "");
     var boxA = a.box || null, boxB = b.box || null;
@@ -202,6 +223,9 @@
 
   /* ---------------- clean: what a record may hold, nothing more ---------------- */
   var CODE_ID = /^[A-Za-z0-9]{3,16}$/;
+  /* a game's code as its kind writes it: a short code for the kits and rooms, "<maker>/<game>" for a Studio game */
+  function codeOk(kind, code) { return typeof code === "string" && (kind === "studio" ? STUDIO_ID.test(code) : CODE_ID.test(code)); }
+  function clip(s, n) { return typeof s === "string" ? s.replace(/[\u0000-\u001f]/g, " ").slice(0, n) : ""; }
   var B64 = /^[A-Za-z0-9+/=_-]*$/;
   function int(v, lo, hi) { return typeof v === "number" && isFinite(v) && Math.round(v) === v && v >= lo && v <= hi; }
   function days(x, grades) {
@@ -256,11 +280,22 @@
     if (gone.length) out.gone = gone;
     out.mine = [];
     if (Array.isArray(r.mine)) r.mine.forEach(function (x) {
-      if (out.mine.length >= MAX_MINE || !x || KINDS.indexOf(x.kind) < 0 || typeof x.code !== "string" || !CODE_ID.test(x.code)) return;
+      if (out.mine.length >= MAX_MINE || !x || KINDS.indexOf(x.kind) < 0 || !codeOk(x.kind, x.code)) return;
       if (off[x.kind + ":" + x.code]) return;
       out.mine.push({ kind: x.kind, title: typeof x.title === "string" ? x.title.replace(/[\u0000-\u001f]/g, " ").slice(0, 80) : "",
                       code: x.code, made: okDate(x.made) ? x.made : null });
     });
+    /* the Studio games of others this player keeps a streak in (8 Nov 2026): { "<maker>/<game>": { f, d, ti, by } }, the days as the
+       daily games keep theirs; the title and the maker's name are the words the page shows */
+    if (r.sp && typeof r.sp === "object" && !Array.isArray(r.sp)) {
+      var sp = {}, nsp = 0;
+      Object.keys(r.sp).forEach(function (id) {
+        var x = r.sp[id], dd = STUDIO_ID.test(id) && id.indexOf("~") < 0 && x && typeof x === "object" ? days(x, false) : null;
+        if (!dd || nsp >= MAX_SP) return;
+        sp[id] = { f: dd.f, d: dd.d, ti: clip(x.ti, 80), by: clip(x.by, 40) }; nsp++;
+      });
+      if (nsp) out.sp = sp;
+    }
     if (r.box && typeof r.box === "object" && typeof r.box.salt === "string" && typeof r.box.data === "string" &&
         B64.test(r.box.salt) && B64.test(r.box.data) && r.box.salt.length <= 64) out.box = { salt: r.box.salt, data: r.box.data };
     out.doors = r.doors && typeof r.doors === "object" ? r.doors : null;      // only the server writes them (A3); kept as they came
@@ -396,6 +431,14 @@
       return { kind: x.kind, title: x.title || "", code: x.code, made: x.made || null, link: s && typeof s.link === "string" ? s.link : null,
                key: s && typeof s.key === "string" ? s.key : null, at: s && typeof s.at === "number" ? s.at : null };
     });
+    /* Logicer Studio (8 Nov 2026): the maker this phone holds a key for (the key stays on the phone, as the games' keys do), and the
+       games of others with a streak in each, the one alive at the end of the period, the newest first */
+    var mk = open && open.maker && typeof open.maker === "object" && typeof open.maker.key === "string" && open.maker.key ? open.maker : null;
+    var others = Object.keys(r.sp || {}).map(function (id) {
+      var x = r.sp[id], list = spread(x.f, x.d), s = streak(list, end);
+      return { id: id, title: x.ti || "", by: x.by || "", played: list.length, current: s.current, longest: s.longest,
+               last: list.length ? dateOf(list[list.length - 1]) : null };
+    }).sort(function (p, q) { return (q.last || "") < (p.last || "") ? -1 : (q.last || "") > (p.last || "") ? 1 : 0; });
 
     var from = isFinite(b[0]) ? b[0] : okDate(r.first) ? dayIndex(r.first) : site ? dayIndex(site.f) : b[1];
     var cal = "";
@@ -413,6 +456,7 @@
       per: per, words: words, story: story,
       findouts: { done: (r.fo && r.fo.done) || 0, portrait: !!(r.fo && r.fo.has) },
       checkin: ci, mine: mine,
+      maker: mk ? { slug: clip(mk.slug, 64), name: clip(mk.name, 40), key: mk.key } : null, others: others,
       doors: { passkey: (r.pk || 0) > 0, pw: !!doors.pw, rq: !!doors.rq },
       calendar: { from: from <= b[1] ? dateOf(from) : null, to: dateOf(b[1]), d: cal }
     };
@@ -427,6 +471,7 @@
 
   var api = {
     VERSION: 2, DAILY: DAILY, WORDS: WORDS, IDS: IDS, TOP: TOP, KINDS: KINDS, LANGS: LANGS, LIMIT: LIMIT, STORY_LAUNCH: STORY_LAUNCH, GONE_RE: GONE_RE,
+    STUDIO_ID: STUDIO_ID, codeOk: codeOk,
     dayIndex: dayIndex, dateOf: dateOf, localDate: localDate, spread: spread, build: build,
     mergeDays: mergeDays, merge: merge, clean: clean, size: size, streak: streak, stats: stats,
     storyDate: storyDate, storyChapter: storyChapter

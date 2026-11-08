@@ -825,7 +825,7 @@
   /* ---------- a new day while the page is open ---------- */
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState !== "visible") return;
-    if (!practice && day === today && Math.max(1, TO.dayNumber(DATA.start)) !== today && !window.location.search) {
+    if (!practice && day === today && Math.max(1, TO.dayNumber(DATA.start)) !== today && (!window.location.search || window.location.search === "?embed=1")) {
       window.location.reload();
     }
   });

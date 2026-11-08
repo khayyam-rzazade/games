@@ -24,11 +24,16 @@
      openBox(box, code)        -> Promise<object | null> (null: wrong code or no box)
      sealBox(data, code, salt) -> Promise<{ salt, data }>
      code()                    the code kept on this phone, or null; normalize(s) a typed code as the server knows it
+   Logicer Studio (8 Nov 2026): the three keys "logicers-studio:maker", ":games" and ":played" (see STUDIO_MAKER below) ride in the record like the kits' keys:
+   the maker key and every game's edit key in the box, the games' titles and addresses in mine[] (kind "studio"), the streak days of others in sp.
    The code is kept under one key, lg.me.v1: { v: 1, code, lang, at, last, rec } (rec = the last record the server sent).
    Never sent anywhere but the My Logicers server (logicers-me): the code, the record, the sealed box. */
 (function () {
   "use strict";
   var M = window.LogicersMeStats;
+  /* F, 8 Nov 2026: for the minutes after a push a browser may hold an older me-stats.js (no ?v= on these two files): its
+     missing pieces fall back here instead of stopping the sync */
+  var STUDIO_ID_RE = M && M.STUDIO_ID || /^[^\/\s:?#%\\~\u0000-\u001f]{1,64}\/[^\/\s:?#%\\~\u0000-\u001f]{1,64}(~[a-z0-9]{1,12})?$/;
   if (!M) return;
 
   var KEY = "lg.me.v1";
@@ -46,6 +51,14 @@
   var SOON = 900, PULL_GAP = 8000, BACK_GAP = 30000;
   var GONE_KEY = "lg.me.gone";             // "kind:code" of games and rooms taken off My Logicers on this phone (forget)
   var CODE_RE = /^[a-z]{4,7}-[a-z]{4,7}-[a-z]{4,7}-[1-9][0-9]$/;
+  /* Logicer Studio (8 Nov 2026, claude/studio-plan.md): the Studio pages on by.logicers.com write these three keys on the phone, and this
+     file carries them in the record like the kits' keys. maker: { slug, name, key, t } (the maker key, made once); games: [{ maker, slug, title,
+     edit, t }] (every game this phone made, with its edit key); played: { "<maker>/<game>": { title, by, days: ["YYYY-MM-DD"] } } (the games of
+     others this phone plays: the local days it finished one). The keys are sealed in the box; the open record holds only the games' titles and
+     addresses and the streak days. */
+  var STUDIO_MAKER = "logicers-studio:maker", STUDIO_GAMES = "logicers-studio:games", STUDIO_PLAYED = "logicers-studio:played";
+  var STUDIO_SITE = "https://by.logicers.com/";
+  var KEEP_PLAYED = 400;                   // the last days kept for each game of others
 
   /* ---------------- this phone's storage ---------------- */
   function get(k) { try { var v = window.localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
@@ -266,10 +279,49 @@
     var fr = obj(get("lg.findout.room.host"));
     if (fr && typeof fr.code === "string" && typeof fr.host_key === "string") mineAdd(rec, open, "findout", fr.code, "", fr.made, { rec: fr });
 
+    /* Logicer Studio: the maker key, the games this phone made, the streaks in the games of others */
+    var mk = obj(get(STUDIO_MAKER));
+    if (mk && typeof mk.key === "string" && mk.key && typeof mk.slug === "string" && mk.slug) {
+      open.maker = { slug: mk.slug, name: typeof mk.name === "string" ? mk.name.slice(0, 40) : "", key: mk.key, t: num(mk.t) ? mk.t : null };
+    }
+    var sg = get(STUDIO_GAMES);
+    (Array.isArray(sg) ? sg : []).forEach(function (g) {
+      if (!obj(g) || typeof g.edit !== "string" || !g.edit) return;
+      var id = studioId(g.maker, g.slug, g.t); if (!id) return;
+      mineAdd(rec, open, "studio", id, typeof g.title === "string" ? g.title : "", g.t, { edit: g.edit, maker: g.maker, slug: g.slug, t: g.t });
+    });
+    var sp = studioPlays(); if (sp) rec.sp = sp;
+
     rec.langs = langs;
     var f = Math.min.apply(null, firsts.filter(isFinite).concat([Infinity]));
     rec.first = isFinite(f) ? DATE(f) : null;
     return { record: rec, open: open };
+  }
+  /* a Studio game's id in the record: "<maker>/<game>", and "~<made, base 36>" behind it for a game this phone made (so that a game deleted and
+     made again at the same address is a new game here); null when it cannot be one */
+  function studioId(maker, slug, t) {
+    if (typeof maker !== "string" || typeof slug !== "string") return null;
+    var id = maker + "/" + slug + (num(t) && t > 0 ? "~" + Math.floor(t).toString(36) : "");
+    return STUDIO_ID_RE.test(id) ? id : null;
+  }
+  /* the days this phone finished a game of others, as the daily games keep theirs: { "<maker>/<game>": { f, d, ti, by } }, the most recent first
+     and at most thirty games, each with its last 400 days */
+  function studioPlays() {
+    var pl = obj(get(STUDIO_PLAYED)); if (!pl) return null;
+    var rows = [];
+    Object.keys(pl).forEach(function (id) {
+      var x = obj(pl[id]); if (!x || !STUDIO_ID_RE.test(id) || id.indexOf("~") >= 0 || !Array.isArray(x.days)) return;
+      var seen = {}, list = [];
+      x.days.forEach(function (s) { var i = D(s); if (isFinite(i) && !seen[i]) { seen[i] = 1; list.push(i); } });
+      list.sort(function (a, b) { return a - b; });
+      list = list.slice(-KEEP_PLAYED);
+      var b = M.build(list); if (!b) return;
+      rows.push({ id: id, last: list[list.length - 1], v: { f: b.f, d: b.d, ti: typeof x.title === "string" ? x.title.slice(0, 80) : "", by: typeof x.by === "string" ? x.by.slice(0, 40) : "" } });
+    });
+    rows.sort(function (a, b) { return b.last - a.last; });
+    if (!rows.length) return null;
+    var out = {}; rows.slice(0, 30).forEach(function (r) { out[r.id] = r.v; });
+    return out;
   }
   function put1(rec, id, days, grade, best, firsts) {
     var b = M.build(days);
@@ -283,7 +335,7 @@
     return e;
   }
   function mineAdd(rec, open, kind, code, title, at, secret) {
-    if (!/^[A-Za-z0-9]{3,16}$/.test(code)) return;
+    if (M.codeOk && !M.codeOk(kind, code)) return;
     var k = kind + ":" + code;
     if (open.mine[k] || (open.off && open.off[k])) return;
     var made = num(at) ? M.localDate(new Date(at)) : null;
@@ -298,10 +350,11 @@
       var link = kind === "made" && s.edit ? ROOT + "live/build/#edit=" + c + "." + s.edit
         : kind === "checkin" && s.key ? ROOT + "checkin/host/#" + s.key
         : kind === "howsure" ? ROOT + "live/#" + c
-        : kind === "findout" ? ROOT + "find-out/room/" : null;
+        : kind === "findout" ? ROOT + "find-out/room/"
+        : kind === "studio" && s.edit && s.maker && s.slug ? STUDIO_SITE + encodeURIComponent(s.maker) + "/" + encodeURIComponent(s.slug) + "/edit/#" + s.edit : null;
       /* the key the page needs to ask that game's own server for its numbers (made: the edit key; a check-in room: the host
          key; How Sure: the host key; a find-outs room: the host key). It stays on this phone, as the link does. */
-      var key = kind === "made" ? s.edit : kind === "checkin" ? s.key : kind === "howsure" ? (obj(s.rec) && s.rec.key) : kind === "findout" ? (obj(s.rec) && s.rec.host_key) : null;
+      var key = kind === "made" || kind === "studio" ? s.edit : kind === "checkin" ? s.key : kind === "howsure" ? (obj(s.rec) && s.rec.key) : kind === "findout" ? (obj(s.rec) && s.rec.host_key) : null;
       var at = kind === "howsure" ? (obj(s.rec) && s.rec.t) : kind === "findout" ? (obj(s.rec) && s.rec.made) : kind === "checkin" ? s.at : s.t;
       out[k] = { link: link, key: typeof key === "string" ? key : null, at: num(at) ? at : null };
     });
@@ -315,7 +368,7 @@
     rec = M.clean(rec) || L.record;
     if (s.rec && s.rec.doors) rec.doors = s.rec.doors;
     if (s.rec && num(s.rec.pk)) rec.pk = s.rec.pk;
-    Object.defineProperty(rec, "_open", { value: { ci: L.open.ci, mine: linksOf(L.open), rooms: L.open.rooms || null }, enumerable: false });
+    Object.defineProperty(rec, "_open", { value: { ci: L.open.ci, mine: linksOf(L.open), rooms: L.open.rooms || null, maker: L.open.maker || null }, enumerable: false });
     return rec;
   }
   function stripSecret(r) { var x = JSON.parse(JSON.stringify(r)); delete x.box; delete x.pk; return x; }
@@ -374,10 +427,13 @@
       try { writeGames(record, open); } catch (e) { /* one part failing never stops the others */ }
       try { writeWords(record, open); } catch (e) { /* idem */ }
       try { writeStory(record, open); } catch (e) { /* idem */ }
+      try { writeStudioPlays(record); } catch (e) { /* idem */ }
+      try { writeStudioGone(record); } catch (e) { /* idem */ }
       if (open) {
         try { writeCheckin(open.ci); } catch (e) { /* idem */ }
         try { writeMine(open.mine); } catch (e) { /* idem */ }
         try { writeRooms(open.rooms); } catch (e) { /* idem */ }
+        try { writeMaker(open.maker); } catch (e) { /* idem */ }
       }
       /* the portrait is asked for only when a code is typed or a door opened (restore, adopt): never on an ordinary sync */
       var q = claim && open && open.fo ? claimFindouts(open.fo) : Promise.resolve();
@@ -526,7 +582,8 @@
   function writeMine(mine) {
     if (!obj(mine)) return;
     var made = get("logicers-make:games"); made = Array.isArray(made) ? made : [];
-    var ck = null, changed = false, off = {};
+    var studio = get(STUDIO_GAMES); studio = Array.isArray(studio) ? studio : [];
+    var ck = null, changed = false, studioChanged = false, off = {};
     goneList().forEach(function (k) { off[k] = 1; });
     Object.keys(mine).forEach(function (k) {
       var s = obj(mine[k]); if (!s || off[k]) return;
@@ -534,6 +591,10 @@
       if (kind === "made" && typeof s.edit === "string" && !made.some(function (g) { return g && g.code === c; })) {
         made.push({ code: c, edit: s.edit, title: "", n: s.n, lang: s.lang, colour: s.colour, t: s.t });
         changed = true;
+      }
+      if (kind === "studio" && typeof s.edit === "string" && studioId(s.maker, s.slug, s.t) === c && !studio.some(function (g) { return g && studioId(g.maker, g.slug, g.t) === c; })) {
+        studio.push({ maker: s.maker, slug: s.slug, title: "", edit: s.edit, t: num(s.t) ? s.t : undefined });
+        studioChanged = true;
       }
       if (kind === "checkin" && typeof s.key === "string") {
         ck = ck || obj(get("lg.checkin.v1")) || { v: 1, id: null, draft: null, history: [], consent: {}, hosts: [], rooms: {}, counted: false };
@@ -547,17 +608,59 @@
       made.sort(function (a, b) { return (b.t || 0) - (a.t || 0); });
       put("logicers-make:games", made.slice(0, 50));
     }
+    if (studioChanged) {
+      studio.sort(function (a, b) { return (b.t || 0) - (a.t || 0); });
+      put(STUDIO_GAMES, studio.slice(0, 60));
+    }
     if (ck) { ck.hosts.sort(function (a, b) { return (a.at || 0) - (b.at || 0); }); if (ck.hosts.length > 12) ck.hosts.splice(0, ck.hosts.length - 12); put("lg.checkin.v1", ck); }
   }
   /* the titles of made games are in the open record; put them back on the editor's own list */
   function titles(record) {
     var made = get("logicers-make:games");
-    if (!Array.isArray(made)) return;
-    var by = {};
-    (record.mine || []).forEach(function (x) { if (x.kind === "made" && x.title) by[x.code] = x.title; });
-    var ch = false;
-    made.forEach(function (g) { if (g && !g.title && by[g.code]) { g.title = by[g.code]; ch = true; } });
-    if (ch) put("logicers-make:games", made);
+    if (Array.isArray(made)) {
+      var by = {};
+      (record.mine || []).forEach(function (x) { if (x.kind === "made" && x.title) by[x.code] = x.title; });
+      var ch = false;
+      made.forEach(function (g) { if (g && !g.title && by[g.code]) { g.title = by[g.code]; ch = true; } });
+      if (ch) put("logicers-make:games", made);
+    }
+    /* and the Studio pages' own list */
+    var studio = get(STUDIO_GAMES);
+    if (!Array.isArray(studio)) return;
+    var sby = {}; (record.mine || []).forEach(function (x) { if (x.kind === "studio" && x.title) sby[x.code] = x.title; });
+    var sch = false;
+    studio.forEach(function (g) { var id = g && studioId(g.maker, g.slug, g.t); if (id && !g.title && sby[id]) { g.title = sby[id]; sch = true; } });
+    if (sch) put(STUDIO_GAMES, studio);
+  }
+  /* a Studio game deleted on another phone: its key goes from this phone's list too, so the Studio pages do not list a game that is not there
+     (a kit left in its editor's list is that editor's own business; here the address can be used again by a new game) */
+  function writeStudioGone(record) {
+    var gone = (record && Array.isArray(record.gone) ? record.gone : []).filter(function (k) { return typeof k === "string" && k.indexOf("studio:") === 0; }).map(function (k) { return k.slice(7); });
+    var sg = get(STUDIO_GAMES);
+    if (!gone.length || !Array.isArray(sg)) return;
+    var keep = sg.filter(function (g) { return !(g && gone.indexOf(studioId(g.maker, g.slug, g.t)) >= 0); });
+    if (keep.length !== sg.length) put(STUDIO_GAMES, keep);
+  }
+  /* the maker key of another phone, when this one has none (a phone never loses its own: a second maker made elsewhere keeps its games' keys) */
+  function writeMaker(m) {
+    if (!obj(m) || typeof m.key !== "string" || !m.key || typeof m.slug !== "string" || !m.slug || obj(get(STUDIO_MAKER))) return;
+    put(STUDIO_MAKER, { slug: m.slug, name: typeof m.name === "string" ? m.name.slice(0, 40) : "", key: m.key, t: num(m.t) ? m.t : undefined });
+  }
+  /* the days of the games of others: the days of both, never fewer */
+  function writeStudioPlays(record) {
+    if (!record || !obj(record.sp)) return;
+    var pl = obj(get(STUDIO_PLAYED)) || {}, ch = false;
+    Object.keys(record.sp).forEach(function (id) {
+      var r = obj(record.sp[id]); if (!r || !STUDIO_ID_RE.test(id)) return;
+      var x = obj(pl[id]) || { days: [] }; x.days = Array.isArray(x.days) ? x.days : [];
+      var have = {}; x.days.forEach(function (d) { have[d] = 1; });
+      M.spread(r.f, r.d).forEach(function (i) { var d = DATE(i); if (!have[d]) { have[d] = 1; x.days.push(d); ch = true; } });
+      if (ch) x.days = x.days.sort().slice(-KEEP_PLAYED);
+      if (!x.title && r.ti) { x.title = r.ti; ch = true; }
+      if (!x.by && r.by) { x.by = r.by; ch = true; }
+      pl[id] = x;
+    });
+    if (ch) put(STUDIO_PLAYED, pl);
   }
   function writeRooms(rooms) {
     if (!obj(rooms) || typeof rooms.tok !== "string" || !Array.isArray(rooms.list) || !rooms.list.length) return;
@@ -633,7 +736,7 @@
      the oldest check-ins' answers), sealed */
   function sealed(c, salt, extra) {
     var L = local(), rec = L.record;
-    var data = { ci: L.open.ci, mine: L.open.mine, rooms: L.open.rooms || null, st: L.open.st, recent: L.open.recent, fo: L.open.fo || null };
+    var data = { ci: L.open.ci, mine: L.open.mine, rooms: L.open.rooms || null, st: L.open.st, recent: L.open.recent, fo: L.open.fo || null, maker: L.open.maker || null };
     if (extra) data = mergeOpen(extra, data);
     goneList().forEach(function (k) { if (data.mine) delete data.mine[k]; });
     rec.upd = new Date().toISOString();
@@ -654,7 +757,7 @@
   /* two boxes' contents as one: check-ins by their time, games by kind and code, votes by chapter, recent by game and day */
   function mergeOpen(a, b) {
     a = a || {}; b = b || {};
-    var ci = {}, out = { ci: [], mine: {}, rooms: b.rooms || a.rooms || null, st: {}, recent: {}, fo: b.fo || a.fo || null };
+    var ci = {}, out = { ci: [], mine: {}, rooms: b.rooms || a.rooms || null, st: {}, recent: {}, fo: b.fo || a.fo || null, maker: b.maker || a.maker || null };
     (a.ci || []).concat(b.ci || []).forEach(function (e) {
       if (!obj(e) || !num(e.at)) return;
       if (!ci[e.at] || (!ci[e.at].a && e.a)) ci[e.at] = e;
@@ -808,7 +911,7 @@
   /* remove: the record goes from the server; with { local: true } every key of the inventory goes from this phone too */
   var LOCAL_KEYS = ["turnsout:v1", "altitude:v1", "lookalike:v1", "passport:v1", "altitude.lang", "lookalike.lang", "passport.lang",
                     "story:v1", "story:readers", "lg.findout.v1", "lg.findout.marks", "lg.findout.room.host", "lg.checkin.v1",
-                    "logicers-make:games", "logicers-room:tab"];
+                    "logicers-make:games", "logicers-room:tab", "logicers-studio:maker", "logicers-studio:games", "logicers-studio:played"];
   function remove(opts) {
     var c = code();
     var p = c && apiBase() ? call("/delete", { code: c }).then(function (r) { return r.status === 200; }, function () { return false; }) : Promise.resolve(true);
@@ -859,6 +962,10 @@
       var ck = obj(get("lg.checkin.v1"));
       if (ck && Array.isArray(ck.hosts)) { ck.hosts = ck.hosts.filter(function (h) { return !(h && h.code === c); }); put("lg.checkin.v1", ck); }
     }
+    if (kind === "studio") {
+      var sg = get(STUDIO_GAMES);
+      if (Array.isArray(sg)) put(STUDIO_GAMES, sg.filter(function (g) { return !(g && studioId(g.maker, g.slug, g.t) === c); }));
+    }
     if (kind === "howsure") drop("logicers-live:host:" + c);
     if (kind === "findout") { var fr = obj(get("lg.findout.room.host")); if (fr && fr.code === c) drop("lg.findout.room.host"); }
     soon();
@@ -884,7 +991,7 @@
   }
   /* the watcher: any write of a game's, a room's or a result's own key on this page is an action, and it syncs about a second
      later (several writes in a row make one sync). Storage.setItem is wrapped once; the write itself happens first, untouched. */
-  var WATCH = /^(turnsout:v1|altitude:v1|lookalike:v1|passport:v1|story:v1|lg\.findout\.v1|lg\.findout\.room\.host|lg\.checkin\.v1|logicers-make:games|logicers-live:host:)/;
+  var WATCH = /^(turnsout:v1|altitude:v1|lookalike:v1|passport:v1|story:v1|lg\.findout\.v1|lg\.findout\.room\.host|lg\.checkin\.v1|logicers-make:games|logicers-live:host:|logicers-studio:)/;
   function watch() {
     try {
       var P = window.Storage && window.Storage.prototype;

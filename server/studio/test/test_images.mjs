@@ -1,0 +1,132 @@
+// Logicers Studio: images: the bytes, the sides, the metadata cut out, the AI check, the limits, R2. Run: node --test test/
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { env, call, one, rows, maker, game, save, form, FIX, setNow, resetBrakes } from "./lib.mjs";
+import { cleanJpeg, cleanWebp, sniff } from "../src/images.js";
+
+const T0 = Date.UTC(2026, 10, 8, 9, 0, 0);
+const has = (bytes, s) => Buffer.from(bytes).includes(Buffer.from(s));
+
+test("metadata cut out: a phone photo's EXIF (where it was taken) and comments never reach R2", () => {
+  const j = FIX("photo.jpg");
+  assert.ok(has(j, "SECRETPHONE") && has(j, "my house"), "the fixture carries them");
+  const c = cleanJpeg(j);
+  assert.deepEqual([c.w, c.h], [640, 480]);
+  assert.ok(!has(c.bytes, "SECRETPHONE") && !has(c.bytes, "Exif") && !has(c.bytes, "my house"));
+  assert.ok(has(c.bytes, "JFIF"), "the JFIF header stays");
+  assert.deepEqual([...c.bytes.subarray(c.bytes.length - 2)], [0xff, 0xd9]);
+  const w = FIX("photo.webp");
+  assert.ok(has(w, "SECRETPHONE"));
+  const cw = cleanWebp(w);
+  assert.deepEqual([cw.w, cw.h], [640, 480]);
+  assert.ok(!has(cw.bytes, "SECRETPHONE") && !has(cw.bytes, "EXIF"));
+  const riff = cw.bytes[4] | (cw.bytes[5] << 8) | (cw.bytes[6] << 16) | (cw.bytes[7] << 24);
+  assert.equal(riff, cw.bytes.length - 8, "the RIFF size is right after the cut");
+  assert.equal(cw.bytes[20] & 0x0c, 0, "the EXIF and XMP flags are off");
+  assert.equal(sniff(FIX("photo.png")), null);
+  assert.equal(cleanJpeg(FIX("photo.jpg").subarray(0, 300)), null, "a cut-off file is not read");
+});
+
+test("upload: stored, served from img.logicers.com, queued with its label", async () => {
+  setNow(T0);
+  resetBrakes();
+  const e = env();
+  const a = await maker(e);
+  const g = await game(e, a, { template: "picture" });
+  let r = await call(e, "POST", "/img/put", form({ edit_key: g.edit_key }, FIX("photo.jpg")));
+  assert.equal(r.status, 200, r.text);
+  assert.match(r.json.id, /^[a-z2-7]{12}\.jpg$/);
+  assert.equal(r.json.url, "https://by.logicers.com/i/anna-rossi/history-a-day/" + r.json.id);
+  const obj = e.IMG.objects.get("anna-rossi/history-a-day/" + r.json.id);
+  assert.ok(obj, "in R2");
+  assert.equal(obj.opts.httpMetadata.contentType, "image/jpeg");
+  assert.ok(!has(obj.bytes, "SECRETPHONE"), "stored without its EXIF");
+  assert.equal(e.AI.calls.length, 1);
+  assert.match(JSON.stringify(e.AI.calls[0].input), /data:image\/jpeg;base64,/);
+  const q = await rows(e, "SELECT * FROM queue WHERE kind = 'image'");
+  assert.equal(q.length, 1);
+  assert.equal(q[0].image, r.json.url, "Khayyam sees the thumbnail");
+  assert.equal(q[0].text, "check: safe");
+  const id = r.json.id;
+  r = await save(e, g, { items: [{ image: id, q: "Where is this?", choices: ["Baku", "Rome"], answer: 0 }], cover: id });
+  assert.equal(r.status, 200, r.text);
+  assert.equal(r.json.items[0].image_url, "https://by.logicers.com/i/anna-rossi/history-a-day/" + id);
+  assert.equal(r.json.items[0].form, "pick");
+  r = await save(e, g, { items: [{ image: id, form: "number", q: "How old?", choices: [], max: 500, answer: 120, min_label: "new", max_label: "ancient" }], cover: id });
+  assert.equal(r.status, 200, r.text);
+  assert.equal(r.json.items[0].form, "number", "the page's form decides; an empty choices list does not make it a Pick");
+  assert.equal(r.json.items[0].min_label, "new");
+  r = await save(e, g, { items: [{ image: id, q: "Where is this?", choices: ["Baku", "Rome"], answer: 0 }], cover: id });
+  r = await call(e, "GET", "/g/" + g.id + "/?day=2026-11-08");
+  assert.equal(r.json.item.image_url, "https://by.logicers.com/i/anna-rossi/history-a-day/" + id);
+  assert.equal(r.json.game.cover_url, "https://by.logicers.com/i/anna-rossi/history-a-day/" + id);
+  r = await call(e, "POST", "/img/del", { edit_key: g.edit_key, id });
+  assert.equal(r.json.e, "image_used", "an image an item uses is not deleted");
+  /* the maker key with the game in place of the edit key; WebP */
+  r = await call(e, "POST", "/img/put", form({ maker_key: a.key, game: "history-a-day" }, FIX("photo.webp"), "p.webp", "image/webp"));
+  assert.equal(r.status, 200, r.text);
+  assert.match(r.json.id, /\.webp$/);
+  r = await call(e, "POST", "/img/del", { maker_key: a.key, game: "history-a-day", id: r.json.id });
+  assert.equal(r.json.ok, true);
+  assert.equal(e.IMG.objects.size, 1);
+});
+
+test("planted faults: wrong type, too big, too wide, refused by the check, limits, a wrong key", async () => {
+  setNow(T0);
+  resetBrakes();
+  const e = env();
+  const a = await maker(e);
+  const g = await game(e, a);
+  const put = (bytes, f) => call(e, "POST", "/img/put", form(Object.assign({ edit_key: g.edit_key }, f || {}), bytes));
+  let r = await put(FIX("photo.png"));
+  assert.deepEqual([r.status, r.json.e], [415, "image_type"], "a PNG, whatever its name says");
+  r = await put(new TextEncoder().encode("<svg onload=alert(1)>"));
+  assert.equal(r.json.e, "image_type");
+  const big = new Uint8Array(500 * 1024 + 1); big.set(FIX("photo.jpg"));
+  r = await put(big);
+  assert.deepEqual([r.status, r.json.e], [413, "image_big"], "over 500 KB");
+  r = await put(FIX("wide.jpg"));
+  assert.deepEqual([r.status, r.json.e], [413, "image_size"], "1700 px wide: over 1600");
+  r = await call(e, "POST", "/img/put", form({ edit_key: "x".repeat(24) }, FIX("photo.jpg")));
+  assert.equal(r.json.e, "key");
+  r = await call(e, "POST", "/img/put", new ReadableStream({ start(c) { c.enqueue(new Uint8Array(10)); c.close(); } }), { headers: { "Content-Type": "multipart/form-data; boundary=x" } });
+  assert.equal(r.status, 411, "no declared length: refused before anything is read");
+  e.AI.next = "SEXUAL";
+  r = await put(FIX("photo.jpg"));
+  assert.deepEqual([r.status, r.json.e], [422, "image_refused"], "a clear fail is refused (the page says it in words)");
+  assert.equal(e.IMG.objects.size, 0, "nothing stored");
+  assert.equal((await one(e, "SELECT COUNT(*) AS n FROM images")).n, 0);
+  e.AI.next = "FLAG";
+  r = await put(FIX("photo.jpg"));
+  assert.equal(r.status, 200, "FLAG: stored and shown");
+  e.AI.next = new Error("daily allowance spent");
+  r = await put(FIX("photo.jpg"));
+  assert.equal(r.status, 200, "the check could not run: stored too");
+  e.AI.next = "I think this is SEXUAL content";
+  r = await put(FIX("photo.jpg"));
+  assert.equal(r.status, 200, "only a clear one-word SEXUAL refuses");
+  assert.deepEqual(e.AI.calls.slice(-2).map((c) => c.model), ["@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/mistralai/mistral-small-3.1-24b-instruct"],
+    "no clear word from the first model: the second is asked");
+  const labels = (await rows(e, "SELECT text FROM queue WHERE kind = 'image' ORDER BY id")).map((x) => x.text);
+  assert.deepEqual(labels, ["check: flag", "check: not checked", "check: not checked"]);
+  e.AI.next = "SAFE";
+  for (let i = 3; i < 30; i++) assert.equal((await put(FIX("photo.webp"))).status, 200);
+  r = await put(FIX("photo.webp"));
+  assert.deepEqual([r.status, r.json.e, r.json.per], [409, "image_full", "game"], "30 images per game");
+  e.IMG.fail = true;
+  const g2 = await game(e, a, { title: "Second" });
+  r = await call(e, "POST", "/img/put", form({ edit_key: g2.edit_key }, FIX("photo.jpg")));
+  assert.equal(r.status, 503);
+  assert.equal((await one(e, "SELECT COUNT(*) AS n FROM images WHERE game = ?", g2.id)).n, 0, "R2 failed: no row left behind");
+});
+
+test("200 images per maker", async () => {
+  setNow(T0);
+  resetBrakes();
+  const e = env();
+  const a = await maker(e);
+  const g = await game(e, a);
+  await e.DB.prepare("INSERT INTO images (id, maker, game, key, bytes, made) SELECT 'x' || value || '.jpg', 'anna-rossi', 'anna-rossi/other', 'k', 1, 0 FROM (WITH RECURSIVE c(value) AS (SELECT 1 UNION ALL SELECT value + 1 FROM c WHERE value < 200) SELECT value FROM c)").run();
+  const r = await call(e, "POST", "/img/put", form({ edit_key: g.edit_key }, FIX("photo.jpg")));
+  assert.deepEqual([r.json.e, r.json.per], ["image_full", "maker"]);
+});

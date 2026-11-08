@@ -114,7 +114,7 @@ const inPeriod = (iso, card) => { if (typeof iso !== 'string') return true; cons
    Rarity here is the base chat's estimate of how few players each fact fits; when /dist can count them the order is one array to change. */
 export const CLOSERS = [
   { id: 'streak', test: (s) => (s.longest >= 40 ? { n: whole(s.longest) } : null) },
-  { id: 'made', test: (s, c) => { const n = (s.mine || []).filter((m) => m && m.kind === 'made' && inPeriod(m.made, c.card)).length; return n >= 3 ? { n } : null; } },
+  { id: 'made', test: (s, c) => { const n = (s.mine || []).filter((m) => m && (m.kind === 'made' || m.kind === 'studio') && inPeriod(m.made, c.card)).length; return n >= 3 ? { n } : null; } },
   { id: 'findouts', test: (s) => (s.findouts && s.findouts.done >= 9 ? { n: 9, of: 9 } : null) },
   { id: 'perfect', test: (s) => { const g = (s.per || []).find((p) => p && p.played >= 5 && p.spotOn >= p.played); return g ? { game: g.name } : null; } },
   { id: 'langs', test: (s) => (Array.isArray(s.langs) && s.langs.length >= 3 ? { n: s.langs.length } : null) },

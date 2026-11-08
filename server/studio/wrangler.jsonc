@@ -1,0 +1,49 @@
+/* Logicers Studio: the Worker's settings (Chat A, 8 Nov 2026). Its own Worker, its own D1 database and its own R2 bucket,
+   so a deploy here never touches the live games, the rooms, My Logicers or the find-outs, and none of their data is here.
+   Khayyam deploys it from Terminal (README.md, ten minutes, once):
+     the D1 database:  npx wrangler d1 create logicers-studio   (paste the id it prints below; the tables make themselves)
+     the R2 bucket:    npx wrangler r2 bucket create logicers-studio-img   (no domain of its own: this Worker serves the pictures)
+   Secrets, set once with "npx wrangler secret put <NAME>", never here:
+     STUDIO_KEY   the key of every maker key's and edit key's hash (32 random characters or more). Set it before the first
+                  maker and never change it: every key is found by it. While it is unset, /health says "key": "missing"
+                  and no key is given out.
+     ADMIN_KEY    Khayyam's own password for by.logicers.com/admin/ (32 random characters or more).
+   Plain variables (below): SITE and IMG_BASE, the two addresses; ALLOW_ORIGINS, more sites that may call from a browser
+   (add "localhost" only while testing on your own computer); IMAGE_CHECK_MODEL, the Workers AI vision models of the
+   image check, the second asked only when the first gives no clear answer (images.js says how they are asked).
+   The pages are the folder studio/ at the top of the repository (chat B), served by this Worker as static files: the
+   Worker runs first for every path except files with an extension (.js, .css, pictures), so it can write each game's
+   title into the page. The address by.logicers.com is set by the deploy itself (routes, custom_domain).
+   Workers Logs and traces stay OFF: the privacy line on the site promises that nothing else is kept. */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-studio",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "triggers": { "crons": ["23 3 * * *"] },
+  "routes": [{ "pattern": "by.logicers.com", "custom_domain": true }],
+  "assets": {
+    "directory": "../../studio",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": ["/*", "!/*.js", "!/*.mjs", "!/*.css", "!/*.svg", "!/*.png", "!/*.jpg", "!/*.webp", "!/*.ico",
+                         "!/*.json", "!/*.webmanifest", "!/*.woff2", "!/*.txt", "!/*.map"]
+  },
+  "vars": {
+    "SITE": "https://by.logicers.com",
+    "IMG_BASE": "https://by.logicers.com/i",
+    "ALLOW_ORIGINS": "",
+    "IMAGE_CHECK_MODEL": "@cf/meta/llama-4-scout-17b-16e-instruct @cf/mistralai/mistral-small-3.1-24b-instruct"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "logicers-studio", "database_id": "PASTE THE ID FROM npx wrangler d1 create logicers-studio HERE" }
+  ],
+  "r2_buckets": [
+    { "binding": "IMG", "bucket_name": "logicers-studio-img" }
+  ],
+  "ai": { "binding": "AI" }
+}

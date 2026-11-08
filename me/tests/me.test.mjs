@@ -147,7 +147,7 @@ if (group('screens')) {
 
     const s = await phone({ lang: l, stats: clone(MOCK), code: 'river-blue-cat-42' });
     await open(s);
-    await s.page.locator('.me-link.danger').click(); await s.page.waitForTimeout(500);
+    await s.page.locator('.me-leave-del').click(); await s.page.waitForTimeout(500);
     check(`[${l}] delete sheet: words`, (await s.page.locator('dialog.me-sheet').innerText()).includes(w('del.sure')) && (await s.page.locator('dialog.me-sheet').innerText()).includes(w('del.yes')) && (await s.page.locator('dialog.me-sheet').innerText()).includes(w('del.no')));
     await shot(s, `${l}-8-delete`);
     await s.page.locator('dialog.me-sheet .btn.ghost').click(); await s.page.waitForTimeout(600);
@@ -433,9 +433,9 @@ if (group('flows')) {
 
   /* ---- Esc and the dim area close a sheet ---- */
   p = await phone({ stats: clone(MOCK), code: 'river-blue-cat-42' }); await open(p);
-  await p.page.locator('.me-link.danger').click(); await p.page.waitForTimeout(450); await p.page.keyboard.press('Escape'); await p.page.waitForTimeout(600);
+  await p.page.locator('.me-leave-del').click(); await p.page.waitForTimeout(450); await p.page.keyboard.press('Escape'); await p.page.waitForTimeout(600);
   check('Esc closes the sheet', (await p.page.locator('dialog').count()) === 0);
-  await p.page.locator('.me-link.danger').click(); await p.page.waitForTimeout(450); await p.page.mouse.click(190, 30); await p.page.waitForTimeout(600);
+  await p.page.locator('.me-leave-del').click(); await p.page.waitForTimeout(450); await p.page.mouse.click(190, 30); await p.page.waitForTimeout(600);
   check('a tap on the dim area closes the sheet', (await p.page.locator('dialog').count()) === 0);
   await p.close();
 

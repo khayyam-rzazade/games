@@ -1,0 +1,15 @@
+{
+  "name": "logicers-studio",
+  "private": true,
+  "type": "module",
+  "description": "Logicers Studio: makers' daily games and the pages of by.logicers.com. A Cloudflare Worker with D1, R2 and Workers AI.",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node --test 'test/test_*.mjs'",
+    "ourgames": "node scripts/ourgames.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

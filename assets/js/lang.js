@@ -37,6 +37,22 @@
   var only = html.hasAttribute("data-lg-only");                // English only: no redirect, no sheet, one quiet line
   var D = window.LG_DICT || {};
   var ONLY = window.LG_ONLY || {};                             // the quiet line in every language, for the English-only pages
+  /* ?embed=1 (8 Nov 2026): the page lives in a frame on someone else's site (a Moodle page, a blog). It shows the slim
+     layout (assets/css/logicers.css, html.embed), never redirects to a remembered language and never raises the
+     language sheet: the page's own language is the one the embedder chose, and a frame on another site has its own,
+     separate storage anyway. */
+  var embed = /(?:^|[?&])embed=1(?:&|$)/.test(window.location.search);
+  if (embed) {
+    html.classList.add("embed");
+    /* Inside a frame, scrollIntoView and focus() would scroll the host page too. The frame scrolls itself only. */
+    try {
+      window.Element.prototype.scrollIntoView = function () {
+        try { var r = this.getBoundingClientRect(); window.scrollTo(0, Math.max(0, r.top + (window.pageYOffset || 0) - 8)); } catch (e) { /* stays where it is */ }
+      };
+      var focusOn = window.HTMLElement.prototype.focus;
+      window.HTMLElement.prototype.focus = function () { return focusOn.call(this, { preventScroll: true }); };
+    } catch (e) { /* an old browser: the page still works */ }
+  }
 
   function saved() { try { var v = window.localStorage.getItem(KEY); return known(v) ? v : null; } catch (e) { return null; } }
   function remember(c) { try { window.localStorage.setItem(KEY, c); } catch (e) { /* no storage: the page still works */ } }
@@ -271,6 +287,7 @@
   }
 
   function start() {
+    if (embed) return;                       // no chip, no language line, no sheet in a frame
     if (only) { note(); return; }
     chip();
     line();
@@ -313,11 +330,11 @@
   window.LG = { lang: lang, locale: locale, base: lang === "en" ? "" : lang + "/", root: root, path: path, LANGS: LANGS,
                 t: T, num: num, date: date, nth: nth, one: one, colon: colon, dec: dec, pct: pct, lower: lower, upper: upper, lowerFirst: lowerFirst, upperFirst: upperFirst, country: country, href: href, hrefIn: hrefIn, saved: saved, remember: remember,
                 sheet: sheet, puzzle: puzzle, puzzleAll: puzzleAll, puzzleHas: puzzleHas, puzzleNote: puzzleNote, findout: FINDOUT[lang] || "", KEY: KEY,
-                speak: speak };
+                speak: speak, embed: embed };
   window.T = T;
 
   /* the remembered pick, before anything is drawn */
   var want = saved();
-  if (!only && want && want !== lang) { window.location.replace(hrefIn(want)); return; }
+  if (!only && !embed && want && want !== lang) { window.location.replace(hrefIn(want)); return; }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

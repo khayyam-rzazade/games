@@ -7,6 +7,9 @@
 import { T, TD, initWords, setLang, LANGS, LANG, fmtN, fmtDay, monthName } from './words.js';
 import * as api from './api.js';
 
+/* F, 8 Nov 2026: My Logicers is never shown inside another site's frame (its Delete for good and rename could be clicked
+   through a trick page): a framed copy sends the whole tab to the real page, or stays blank if it cannot */
+if (window.top !== window.self) { try { window.top.location.href = window.location.href; } catch (e) { document.documentElement.style.display = 'none'; } }
 const $ = (s, r) => (r || document).querySelector(s);
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined && text !== null) e.textContent = String(text); return e; }
 const reduced = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
@@ -39,6 +42,16 @@ function countTo(node, to, render) {
 }
 function bandOf(score) { return score <= 28 ? 0 : score <= 50 ? 1 : score <= 72 ? 2 : 3; }   // the same cut points as checkin/assets/core.js whoBand()
 function button(cls, text, onClick) { const b = el('button', 'btn ' + cls, text); b.type = 'button'; if (onClick) b.addEventListener('click', onClick); return b; }
+const LEAVE_ICON = {
+  exit: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h3.5A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5H14"/><path d="M10 8l-4 4 4 4"/><path d="M6 12h10"/></svg>',
+  swap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4l4 4-4 4"/><path d="M20 8H8"/><path d="M8 20l-4-4 4-4"/><path d="M4 16h12"/></svg>',
+  trash: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 7h15"/><path d="M9.5 7V5.2c0-.7.5-1.2 1.2-1.2h2.6c.7 0 1.2.5 1.2 1.2V7"/><path d="M6.5 7l.9 11.3c.1 1 .9 1.7 1.9 1.7h5.4c1 0 1.8-.7 1.9-1.7L17.5 7"/></svg>',
+};
+function leaveTile(icon, text, onClick) {
+  const b = el('button', 'me-leave-tile'); b.type = 'button';
+  const i = el('span', 'ic'); i.innerHTML = icon; b.appendChild(i); b.appendChild(el('span', 'tx', text));
+  b.addEventListener('click', onClick); return b;
+}
 function link(text, onClick, cls) { const b = el('button', 'me-link' + (cls ? ' ' + cls : ''), text); b.type = 'button'; b.addEventListener('click', onClick); return b; }
 function msgLine() { const m = el('p', 'me-msg'); m.setAttribute('role', 'status'); return m; }
 function setMsg(m, text, kind) { m.textContent = text || ''; m.className = 'me-msg' + (kind ? ' ' + kind : ''); }
@@ -73,9 +86,9 @@ function tile(p) {
 }
 /* the strip: a swipe sideways on a phone; arrows on its sides show there is more and move it a screen at a time (7 Nov 2026,
    Khayyam: "no arrow showing that it can be swiped"). On a wide screen every tile shows and the arrows are not needed. */
-function strip(list) {
+function strip(list, make) {
   const box = el('div', 'me-stripbox'); const s = el('div', 'me-strip'); s.setAttribute('role', 'list');
-  list.forEach((p) => { const t = tile(p); t.setAttribute('role', 'listitem'); s.appendChild(t); });
+  list.forEach((p) => { const t = (make || tile)(p); t.setAttribute('role', 'listitem'); s.appendChild(t); });
   const arrow = (dir) => {
     const b = el('button', 'me-arrow ' + dir); b.type = 'button'; b.tabIndex = -1; b.setAttribute('aria-hidden', 'true'); b.hidden = true;
     b.innerHTML = dir === 'prev' ? '<svg viewBox="0 0 20 20"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg>' : '<svg viewBox="0 0 20 20"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg>';
@@ -279,10 +292,11 @@ function openMore(it) {
     box.append(col, msg);
   });
 }
-function openShare(it, url) {
+function openShare(it, url, withOpen) {
   sheet(T('mine.share'), (box) => {
     const l = el('p', 'me-linkline', url.replace(/^https?:\/\//, '')); box.appendChild(l);
     const row = el('div', 'me-btns');
+    if (withOpen) { const o = el('a', 'btn tint', T('mine.open')); o.href = url; row.appendChild(o); }
     const copy = button('solid', T('act.copy'), async () => { if (await copyText(url)) { copy.textContent = T('act.copied'); announce(T('act.copied')); setTimeout(() => { copy.textContent = T('act.copy'); }, 1600); } });
     row.appendChild(copy);
     if (navigator.share) row.appendChild(button('tint', T('mine.send'), () => { navigator.share({ url }).catch(() => {}); }));
@@ -327,6 +341,204 @@ function openResults(it) {
       const href = safeHref(it.link); if (href) { const a = el('a', 'btn tint', T('mine.edit')); a.href = href; row.appendChild(a); }
       body.appendChild(row);
     });
+  });
+}
+
+/* ---------- Logicer Studio (8 Nov 2026, claude/studio-plan.md): "Games you made" and "Games by others" ----------
+   The games this player made on by.logicers.com ride in the record as kind "studio" (id "<maker>/<game>", the edit key in the box); the maker's
+   name and key come with the stats as `maker`. Each game is a card like the kits': its numbers from the Studio's Worker, Edit, Results (when the
+   maker keeps the answers), Share, and "…" for Remove and Delete for good. The status is "Listed" or "Not listed yet", and "Hidden by Logicers"
+   when the site hid it: the words approved and checked are never used. The games of others are small tiles with the player's streak in each. ---------- */
+const SINFO = new Map();          // kind:code -> { at, v }, asked at most once a minute
+let SRUN = 0;
+const studioOf = (s) => (Array.isArray(s.mine) ? s.mine : []).filter((x) => x.kind === 'studio');
+function studioBadge(v) { return v && v.gone ? 'mine.gone_s' : !v || !v.ok ? 'mine.kind.made' : v.hidden ? 'studio.hidden' : v.listed ? 'studio.listed' : 'studio.unlisted'; }
+function studioLine(v) {
+  if (!v) return '';
+  if (v.gone) return T('mine.gone');
+  if (!v.ok) return '';
+  const bits = [plural(v.plays, 'mine.plays1', 'mine.plays')];
+  if (v.items) bits.push(plural(v.items, 'studio.items1', 'studio.items'));
+  return bits.join(' · ');
+}
+function studioTotals(list) {
+  let plays = 0, known = false;
+  list.forEach((it) => { const c = SINFO.get(mineKey(it)); const v = c && c.v; if (v && v.ok) { known = true; plays += v.plays || 0; } });
+  return { plays, known };
+}
+function paintStudioTotals(list) {
+  const pl = document.querySelector('.me-studio .me-maker .pl'); if (!pl) return;
+  const t = studioTotals(list); if (!t.known) return;
+  pl.hidden = false;
+  const b = pl.querySelector('b'); if (b) b.textContent = fmtN(t.plays);
+}
+function makerRow(m, list) {
+  /* F, 8 Nov 2026: one header row across the grid: the maker, the totals as quiet text, Edit (no stack of cards first) */
+  const row = el('div', 'me-maker');
+  const w = el('div', 'mkw');
+  const a = el('a', 'mk', m ? (m.name || m.slug) : ''); if (m) { a.href = api.studioMakerLink(m.slug); a.dir = 'auto'; w.appendChild(a); }
+  if (list && list.length) {
+    const t = studioTotals(list), line = el('p', 'tot');
+    line.appendChild(el('span', null, fmtN(list.length) + ' ' + T('studio.n_games').toLowerCase()));
+    const pl = el('span', 'pl'); pl.hidden = !t.known; pl.appendChild(el('b', null, fmtN(t.plays))); pl.appendChild(document.createTextNode(' ' + T('studio.n_plays').toLowerCase()));
+    line.appendChild(pl); w.appendChild(line);
+  }
+  row.appendChild(w);
+  if (m) row.appendChild(button('tint small', T('mine.edit'), () => openRename(m)));
+  return row;
+}
+function studioItem(it) {
+  const k = mineKey(it), card = el('li', 'me-card me-item'); card.dataset.k = k;
+  const cached = SINFO.get(k), v = cached && cached.v;
+  const top = el('div', 'me-itop');
+  const badge = el('span', 'kind st'); badge.dataset.st = v && v.ok ? (v.hidden ? 'hidden' : v.listed ? 'listed' : 'unlisted') : ''; badge.textContent = T(studioBadge(v)); top.appendChild(badge);
+  const more = el('button', 'chip round me-more'); more.type = 'button'; more.setAttribute('aria-label', T('mine.more'));
+  more.innerHTML = '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="4.5" cy="10" r="1.7"/><circle cx="10" cy="10" r="1.7"/><circle cx="15.5" cy="10" r="1.7"/></svg>';
+  more.addEventListener('click', () => openStudioMore(it));
+  top.appendChild(more); card.appendChild(top);
+  const p = api.studioParts(it.code) || { maker: '', slug: '' };
+  const ti = el('div', 'ti', it.title || (v && v.title) || p.slug); ti.dir = 'auto'; card.appendChild(ti);
+  if (it.made) { const meta = el('div', 'meta', fmtDay(it.made)); card.appendChild(meta); }   // F: the date only (the address was developer text)
+  const nums = el('p', 'me-inum'); nums.setAttribute('aria-live', 'polite'); nums.textContent = studioLine(v); nums.hidden = !nums.textContent; card.appendChild(nums);
+  const acts = el('div', 'me-iacts'); card.appendChild(acts);
+  drawStudioActs(it, acts, v);
+  card.classList.toggle('off', !!(v && v.gone));
+  return card;
+}
+function drawStudioActs(it, acts, v) {
+  acts.replaceChildren();
+  const href = safeHref(it.link);
+  const tap = (label, f) => acts.appendChild(button('tint small', label, f));
+  if (v && v.gone) { tap(T('mine.remove_s'), () => removeItem(it)); return; }
+  if (href) { const a = el('a', 'btn tint small', T('mine.edit')); a.href = href; acts.appendChild(a); }
+  if (it.key && v && v.ok && v.keep) tap(T('mine.results'), () => openStudioResults(it));
+  if (!(v && v.hidden)) tap(T('mine.share'), () => openShare(it, api.studioLink(it.code), true));
+}
+function paintStudio(it, v) {
+  const card = document.querySelector('.me-item[data-k="' + CSS.escape(mineKey(it)) + '"]'); if (!card) return;
+  const b = card.querySelector('.kind'); if (b) { b.textContent = T(studioBadge(v)); b.dataset.st = v && v.ok ? (v.hidden ? 'hidden' : v.listed ? 'listed' : 'unlisted') : ''; }
+  const n = card.querySelector('.me-inum'); if (n) { n.textContent = studioLine(v); n.hidden = !n.textContent; }
+  if (v && v.ok && v.title && !it.title) { const ti = card.querySelector('.ti'); if (ti) ti.textContent = v.title; }
+  card.classList.toggle('off', !!(v && v.gone));
+  const acts = card.querySelector('.me-iacts'); if (acts) drawStudioActs(it, acts, v);
+}
+async function loadStudio(list, maker) {
+  const run = ++SRUN, todo = list.filter((it) => { const c = SINFO.get(mineKey(it)); return !c || Date.now() - c.at > 60000; });
+  if (todo.length) {
+    const got = await api.studioInfo(todo, maker);
+    todo.forEach((it) => { const v = got.get(it.code) || { ok: false }; SINFO.set(mineKey(it), { at: Date.now(), v }); if (run === SRUN) paintStudio(it, v); });
+  }
+  if (run === SRUN) paintStudioTotals(list);
+}
+function studioMadeCard(maker, list) {
+  const s = section(T('studio.made_h')); s.classList.add('me-studio', 'full');
+  if (maker || list.length) s.appendChild(makerRow(maker, list));
+  if (list.length) {
+    const t = studioTotals(list), n = el('div', 'me-nums two me-card me-tot'); n.hidden = true;   // F: the totals live in the header row now
+    [[list.length, 'studio.n_games'], [t.plays, 'studio.n_plays']].forEach(([v, k]) => { const d = el('div', 'me-num'); d.appendChild(el('b', null, fmtN(v || 0))); d.appendChild(el('span', null, T(k))); n.appendChild(d); });
+    s.appendChild(n);
+    const ul = el('ul', 'me-items'); list.forEach((it) => ul.appendChild(studioItem(it))); s.appendChild(ul);
+    setTimeout(() => loadStudio(list, maker), 0);
+  }
+  return s;
+}
+function playTile(p) {
+  const a = el('a', 'me-tile'); a.href = api.studioLink(p.id); a.dataset.g = 'me';
+  const parts = api.studioParts(p.id) || { slug: '' };
+  const nm = el('span', 'nm', p.title || parts.slug); nm.dir = 'auto'; a.appendChild(nm);
+  const big = el('span', 'big'); if (p.current > 0) big.appendChild(el('i', 'me-flame')); big.appendChild(document.createTextNode(fmtN(p.current || 0))); a.appendChild(big);
+  a.appendChild(el('span', 'lab', T('tile.streak')));
+  if (p.by) { const sub = el('span', 'sub', T('studio.by', { name: p.by })); sub.dir = 'auto'; a.appendChild(sub); }
+  return a;
+}
+function studioOthersCard(list) {
+  const sec = section(T('studio.others_h')); sec.classList.add('full'); sec.appendChild(strip(list.slice(0, 24), playTile)); return sec;
+}
+function openStudioMore(it) {
+  sheet(it.title || (api.studioParts(it.code) || {}).slug || T('mine.kind.made'), (box, close) => {
+    const msg = msgLine(); const col = el('div', 'me-col');
+    col.appendChild(button('tint block', T('mine.remove'), () => removeItem(it, close)));
+    if (it.key) {
+      const del = button('ghost block me-dangertext', T('mine.delete'), () => {
+        col.replaceChildren();
+        box.querySelector('h2').textContent = T('mine.delete');
+        col.appendChild(el('p', null, T('studio.del')));
+        const row = el('div', 'me-btns');
+        const yes = button('danger', T('del.yes'), async () => {
+          yes.disabled = true; setMsg(msg, '');
+          const r = await api.studioDestroy(it);
+          if (!r.ok) { yes.disabled = false; setMsg(msg, failText(r), 'bad'); return; }
+          SINFO.delete(mineKey(it)); close(); S.flash = T('mine.deleted');
+          await refresh(); S.quiet = true; try { render(false, true); } finally { S.quiet = false; }
+        });
+        row.append(button('ghost', T('del.no'), close), yes); col.appendChild(row);
+      });
+      col.appendChild(del);
+    }
+    col.appendChild(el('p', 'me-note', T('mine.remove_note')));
+    box.append(col, msg);
+  });
+}
+function whenOf(t) {
+  if (typeof t === 'number' && isFinite(t)) { const d = new Date(t); return isNaN(d.getTime()) ? '' : d.toISOString().replace('T', ' ').slice(0, 16); }
+  return typeof t === 'string' ? t.replace('T', ' ').slice(0, 16) : '';
+}
+function openStudioResults(it) {
+  sheet(it.title || T('mine.results'), (box) => {
+    const body = el('div', 'me-res'); body.appendChild(el('p', 'me-note', T('load'))); box.appendChild(body);
+    api.studioResults(it).then((r) => {
+      body.replaceChildren();
+      if (!r.ok) { body.appendChild(el('p', 'me-msg bad', r.gone ? T('mine.gone') : T('err.generic'))); return; }
+      const rows = r.rows.slice().sort((a, b) => (Number(b.time) || 0) - (Number(a.time) || 0));
+      body.appendChild(el('p', 'me-res-n', plural(rows.length, 'studio.answers1', 'studio.answers')));
+      if (!rows.length) body.appendChild(el('p', 'me-note', T('studio.no_answers')));
+      else {
+        const wrap = el('div', 'me-tablewrap'), t = el('table', 'me-table'), hd = el('tr');
+        [T('studio.c_item'), T('mine.c_name'), T('studio.c_answer')].forEach((h) => { const th = el('th', null, h); th.scope = 'col'; hd.appendChild(th); });
+        const thead = el('thead'); thead.appendChild(hd); t.appendChild(thead);
+        const tb = el('tbody');
+        rows.slice(0, 30).forEach((x) => {
+          const tr = el('tr'); tr.appendChild(el('td', 'pl', x.item === undefined || x.item === null ? '' : x.item));
+          const nm = el('td', 'nm', x.name || ''); nm.dir = 'auto'; tr.appendChild(nm);
+          const an = el('td', null, x.answer === undefined || x.answer === null ? '' : x.answer); an.dir = 'auto'; tr.appendChild(an);
+          tb.appendChild(tr);
+        });
+        t.appendChild(tb); wrap.appendChild(t); body.appendChild(wrap);
+        if (rows.length > 30) body.appendChild(el('p', 'me-note', T('mine.more_in_edit', { n: fmtN(rows.length - 30) })));
+      }
+      const row = el('div', 'me-btns');
+      if (rows.length) row.appendChild(button('solid', T('mine.csv'), () => {
+        /* a cell a spreadsheet would run as a formula (=, +, -, @, tab, CR at the start; a plain number aside) gets a ' first (F, 8 Nov 2026) */
+        const q = (v) => { let x = String(v === undefined || v === null ? '' : v); if (/^[=+\-@\t\r]/.test(x) && !/^-?\d+(\.\d+)?$/.test(x)) x = "'" + x; return /[",\n;]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; };
+        const head = [T('studio.c_item'), T('mine.c_name'), T('studio.c_answer'), T('mine.c_when')];
+        const text = '﻿' + [head].concat(rows.map((x) => [x.item, x.name, x.answer, whenOf(x.time)])).map((c) => c.map(q).join(',')).join('\r\n') + '\r\n';
+        const blob = new Blob([text], { type: 'text/csv;charset=utf-8' }); const a = el('a'); a.href = URL.createObjectURL(blob);
+        a.download = 'logicers-' + String(it.code).replace(/[^A-Za-z0-9_-]+/g, '-') + '.csv'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      }));
+      const href = safeHref(it.link); if (href) { const a = el('a', 'btn tint', T('mine.edit')); a.href = href; row.appendChild(a); }
+      body.appendChild(row);
+    });
+  });
+}
+/* the maker's name, shown on every game and every share card: changed here, on the Worker first, then on this phone (and so on the others) */
+function openRename(m) {
+  sheet(T('studio.name_h'), (box, close) => {
+    box.appendChild(el('p', null, T('studio.name_line')));
+    const f = el('div', 'me-field'); const inp = el('input', 'me-input'); inp.type = 'text'; inp.id = 'me-mk-in'; inp.maxLength = 40; inp.value = m.name || '';
+    inp.autocomplete = 'off'; inp.enterKeyHint = 'go'; inp.setAttribute('aria-label', T('studio.name_h')); inp.placeholder = T('studio.name_ph'); f.appendChild(inp); box.appendChild(f);
+    const msg = msgLine(); const row = el('div', 'me-btns');
+    const yes = button('solid', T('act.keep'), async () => {
+      const name = inp.value.trim().replace(/\s+/g, ' ');
+      if (name.length < 2) { setMsg(msg, T('studio.name_short'), 'bad'); return; }
+      if (name === m.name) { close(); return; }
+      yes.disabled = true; setMsg(msg, '');
+      const r = await api.studioRename(m, name);
+      if (!r.ok) { yes.disabled = false; setMsg(msg, failText(r), 'bad'); return; }
+      close(); S.flash = T('act.kept'); await refresh(); S.quiet = true; try { render(false, true); } finally { S.quiet = false; }
+    });
+    row.append(button('ghost', T('nav.close'), close), yes); box.appendChild(row); box.appendChild(msg);
+    inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); yes.click(); } });
+    setTimeout(() => inp.focus(), 60);
   });
 }
 
@@ -403,8 +615,8 @@ function loseCard() {
     if (d[k]) {
       row.appendChild(el('span', 'st', T(on)));
       const acts = el('div', 'acts');
-      acts.appendChild(link(T('act.change'), () => nav(route), 'strong'));
-      acts.appendChild(link(T('act.remove'), async () => {
+      acts.appendChild(button('tint me-pill', T('act.change'), () => nav(route)));       // pills, not underlined text (8 Nov 2026)
+      acts.appendChild(button('quiet me-pill', T('act.remove'), async () => {
         const r = await api.removeDoor(S.code, k);
         if (!r.ok) { setMsg(msg, failText(r), 'bad'); return; }
         doorsAre(r); redo();
@@ -632,7 +844,10 @@ function homeScreen() {
   if (s.findouts && s.findouts.done > 0) add(findoutCard(s.findouts));
   if (s.checkin && (s.checkin.times > 0 || s.checkin.last)) add(checkinCard(s.checkin));
   const rooms = api.friendRooms();
-  if ((Array.isArray(s.mine) && s.mine.length) || rooms.length) add(mineCard(Array.isArray(s.mine) ? s.mine : [], rooms));
+  const plain = (Array.isArray(s.mine) ? s.mine : []).filter((x) => x.kind !== 'studio'), studio = studioOf(s);
+  if (plain.length || rooms.length) add(mineCard(plain, rooms));
+  if (s.maker || studio.length) add(studioMadeCard(s.maker, studio));
+  if (Array.isArray(s.others) && s.others.length) add(studioOthersCard(s.others));
 
   if (S.code) { add(codeCard(S.code)); add(loseCard()); }
   else if (s.logicer) add(getCard());
@@ -645,10 +860,16 @@ function homeScreen() {
   }
   setTimeout(paintArt, 0);
   if (S.code) {
-    const low = el('div', 'me-low full');
-    low.appendChild(link(T('out.link'), () => openExit(false), 'strong'));
-    low.appendChild(link(T('out.other'), () => openExit(true)));
-    low.appendChild(link(T('del.link'), openDelete, 'danger'));
+    /* 8 Nov 2026 (Khayyam: "these are important buttons ... they look cheap and unimportant"): Exit and Use another code are two
+       tiles with an icon, as weighty as the cards above them; Delete everything is a quiet outlined pill of its own, set apart */
+    const low = el('div', 'me-leave full');
+    const pair = el('div', 'me-leave-pair');
+    pair.appendChild(leaveTile(LEAVE_ICON.exit, T('out.link'), () => openExit(false)));
+    pair.appendChild(leaveTile(LEAVE_ICON.swap, T('out.other'), () => openExit(true)));
+    low.appendChild(pair);
+    const del = el('button', 'me-leave-del'); del.type = 'button';
+    del.innerHTML = LEAVE_ICON.trash; del.appendChild(el('span', null, T('del.link'))); del.addEventListener('click', openDelete);
+    low.appendChild(del);
     add(low);
   }
   return root;

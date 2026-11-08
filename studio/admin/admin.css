@@ -1,0 +1,110 @@
+/* Khayyam's queue (8 Nov 2026). Meant to sit on top of ../studio.css: every colour, radius and font takes the Studio's own
+   variable when there is one (--bg, --card, --ink, --soft, --line, --c, --r, --text, --display) and a fallback of the
+   same look when there is not, so the page reads right with or without it. */
+:root {
+  color-scheme: light dark;
+  --f-bg: #F3F4F9; --f-card: #ffffff; --f-ink: #15172B; --f-soft: #5D6279; --f-line: #E4E6EF; --f-c: #2D4FC4;
+  --f-ok: #0D7D73; --f-warn: #8A5A0B; --f-bad: #B3261E; --f-wash: #EEF0F8;
+  --f-shadow: 0 1px 2px rgba(21, 23, 43, .05), 0 10px 28px rgba(21, 23, 43, .07);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --f-bg: #080A15; --f-card: #12152A; --f-ink: #EEF0FF; --f-soft: #A3A9CB; --f-line: rgba(255, 255, 255, .14); --f-c: #7FA5FF;
+    --f-ok: #5FD3C4; --f-warn: #FFC76A; --f-bad: #FF8A80; --f-wash: #1A1E38; --f-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+  }
+}
+.qa-page {
+  --q-bg: var(--bg, var(--f-bg)); --q-card: var(--card, var(--f-card)); --q-ink: var(--ink, var(--f-ink)); --q-soft: var(--soft, var(--f-soft));
+  --q-line: var(--line, var(--f-line)); --q-c: var(--c, var(--f-c)); --q-r: min(var(--r, 22px), 22px);
+  --q-font: var(--text, "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif);
+  --q-display: var(--display, "Bricolage Grotesque", "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif);
+  margin: 0; min-height: 100vh; background: var(--q-bg); color: var(--q-ink);
+  font: 1rem/1.4 var(--q-font); -webkit-font-smoothing: antialiased;
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+}
+.qa-page *, .qa-page *::before, .qa-page *::after { box-sizing: border-box; }
+.qa-page [hidden] { display: none !important; }
+
+.qa-bar { max-width: 46rem; margin: 0 auto; padding: 14px 16px 4px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.qa-mark { font-family: var(--q-display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.035em; line-height: 1; text-decoration: none; color: inherit; border-radius: 10px; }
+.qa-main { max-width: 46rem; margin: 0 auto; padding: 8px 16px 48px; }
+.qa-h1 { margin: 6px 0 4px; font-family: var(--q-display); font-weight: 800; font-size: 1.75rem; letter-spacing: -0.03em; line-height: 1.1; }
+.qa-p { margin: 4px 0 14px; color: var(--q-soft); }
+.qa-card { margin: 12px 0; padding: 16px; border-radius: var(--q-r); background: var(--q-card); box-shadow: var(--f-shadow); }
+.qa-lock { margin-top: 18px; }
+.qa-label { display: block; margin: 8px 0 4px; font-weight: 700; font-size: 0.92rem; }
+.qa-keyrow { display: flex; gap: 8px; }
+.qa-field { flex: 1; min-width: 0; height: 48px; padding: 0 14px; border: 2px solid var(--q-line); border-radius: 14px; background: var(--q-bg); color: inherit; font: inherit; }
+.qa-field:focus-visible { outline: 3px solid var(--q-c); outline-offset: 1px; }
+
+.qa-btn, .qa-mini, .qa-act, .qa-seg button {
+  appearance: none; font: inherit; font-weight: 700; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  border: 2px solid var(--q-line); background: var(--q-card); border-radius: 999px;
+}
+.qa-btn { height: 48px; padding: 0 20px; }
+.qa-mini { min-height: 40px; padding: 0 14px; font-size: 0.92rem; }
+.qa-solid { background: var(--q-c); border-color: var(--q-c); color: #fff; }
+@media (prefers-color-scheme: dark) { .qa-solid { color: #0B0E1F; } }
+.qa-btn:focus-visible, .qa-mini:focus-visible, .qa-act:focus-visible, .qa-seg button:focus-visible, .qa-link:focus-visible, .qa-mark:focus-visible { outline: 3px solid var(--q-c); outline-offset: 2px; }
+button:disabled { opacity: .5; cursor: default; }
+
+.qa-top { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 12px; margin-top: 8px; }
+.qa-top .qa-h1 { margin: 0 auto 0 0; }
+.qa-seg { display: inline-flex; gap: 6px; }
+.qa-seg button { min-height: 40px; padding: 0 14px; font-size: 0.92rem; }
+.qa-seg button[aria-pressed="true"] { background: var(--q-ink); border-color: var(--q-ink); color: var(--q-bg); }
+.qa-filter { display: flex; align-items: center; gap: 12px; margin: 12px 0 2px; }
+.qa-count { color: var(--q-soft); font-size: 0.92rem; }
+.qa-status { margin: 10px 0 0; padding: 10px 14px; border-radius: 14px; background: var(--f-wash); font-weight: 600; }
+.qa-status.bad, .qa-err { color: var(--f-bad); }
+.qa-err { margin: 8px 0 0; font-weight: 600; }
+.qa-empty { margin: 28px 4px; color: var(--q-soft); text-align: center; }
+.qa-more { display: block; margin: 8px auto 0; }
+
+.qa-row.done { opacity: .62; }
+.qa-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.qa-kind { font-family: var(--q-display); font-weight: 800; font-size: 0.95rem; letter-spacing: -0.01em; color: var(--q-c); }
+.qa-when { color: var(--q-soft); font-size: 0.88rem; }
+.qa-who { margin: 8px 0 0; line-height: 1.3; overflow-wrap: anywhere; }
+.qa-maker { font-weight: 800; }
+.qa-game { font-weight: 600; }
+.qa-code { margin-left: 8px; padding: 1px 7px; border-radius: 7px; background: var(--f-wash); font: 700 0.8rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; }
+.qa-sep, .qa-item { color: var(--q-soft); }
+.qa-link { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--q-line); }
+.qa-link:hover { text-decoration-color: currentColor; }
+.qa-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.qa-chips:empty { display: none; }
+.qa-chip { padding: 2px 10px; border-radius: 999px; background: var(--f-wash); font-size: 0.82rem; font-weight: 700; line-height: 1.5; }
+.qa-chip.ok { color: var(--f-ok); } .qa-chip.warn { color: var(--f-warn); } .qa-chip.bad { color: var(--f-bad); }
+.qa-text { margin: 10px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.qa-thumb { display: inline-block; margin-top: 10px; max-width: 100%; border-radius: 14px; overflow: hidden; background: var(--f-wash); line-height: 0; }
+.qa-thumb img { display: block; max-width: min(100%, 22rem); max-height: 14rem; width: auto; height: auto; }
+.qa-links, .qa-notes { margin: 10px 0 0; padding-left: 1.2rem; overflow-wrap: anywhere; font-size: 0.94rem; }
+.qa-notes li { margin: 4px 0; color: var(--q-soft); font-style: italic; }
+.qa-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.qa-act { min-height: 44px; padding: 0 16px; font-size: 0.92rem; }
+.qa-act.qa-danger { color: var(--f-bad); border-color: currentColor; background: transparent; }
+.qa-act.qa-danger.sure { background: var(--f-bad); border-color: var(--f-bad); color: #fff; }
+@media (prefers-color-scheme: dark) { .qa-act.qa-danger.sure { color: #1B0A09; } }
+@media (max-width: 420px) {
+  .qa-keyrow { flex-direction: column; }
+  .qa-btn { width: 100%; }
+  .qa-act { flex: 1 1 calc(50% - 8px); padding: 0 10px; }
+}
+@media (prefers-reduced-motion: no-preference) { .qa-card { animation: qa-in .18s ease-out; } }
+@keyframes qa-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* F, 8 Nov 2026: the mark with its dots; the main action first and solid, List as a tint, the hard-to-undo two behind "More";
+   the picture a plain box (it is fetched with the key, so held pictures show too) */
+.qa-mark { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.qa-mark svg { width: 22px; height: 22px; flex: none; }
+.qa-mini, .qa-seg button { min-height: 44px; }
+.qa-tint { background: color-mix(in srgb, var(--q-c) 12%, transparent); border-color: transparent; color: var(--q-c); }
+.qa-actwrap .qa-acts { margin-top: 14px; }
+.qa-danger-zone { margin-top: 14px; border-top: 1px solid var(--q-line); padding-top: 4px; }
+.qa-danger-zone > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--q-soft); font-weight: 600; font-size: .92rem; }
+.qa-danger-zone > summary::-webkit-details-marker { display: none; }
+.qa-danger-zone > summary::after { content: ""; width: 7px; height: 7px; border: solid currentColor; border-width: 0 2px 2px 0; transform: rotate(45deg) translateY(-2px); transition: transform .15s ease; }
+.qa-danger-zone[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
+.qa-danger-zone .qa-acts { margin-top: 6px; }
+.qa-thumb { cursor: zoom-in; min-height: 60px; min-width: 80px; }

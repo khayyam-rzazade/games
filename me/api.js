@@ -75,7 +75,8 @@ const SERVERS = {
   live: () => bases('LIVE_SERVER', ['https://live.logicers.com', 'https://logicers-live.rza-khay.workers.dev']),
   checkin: () => bases('CHECKIN_API', ['https://logicers-checkin.rza-khay.workers.dev']),
   foroom: () => bases('FINDOUT_ROOM_API', ['https://findout-room.logicers.com', 'https://logicers-findout-room.rza-khay.workers.dev']),
-  findout: () => bases('FINDOUT_API', ['https://findout.logicers.com', 'https://logicers-findout.rza-khay.workers.dev'])
+  findout: () => bases('FINDOUT_API', ['https://findout.logicers.com', 'https://logicers-findout.rza-khay.workers.dev']),
+  studio: () => bases('STUDIO_API', ['https://by.logicers.com', 'https://logicers-studio.rza-khay.workers.dev'])
 };
 async function ask(server, path, body) {
   const list = SERVERS[server]();
@@ -155,6 +156,108 @@ export async function destroy(it) {
   if (r.status === 200 || r.status === 404) { forget(it.kind, it.code); return { ok: true }; }
   return { ok: false, reason: r.status === 0 ? 'net' : r.status === 429 ? 'brake' : 'fail' };
 }
+/* ---------- Logicer Studio (8 Nov 2026, claude/studio-plan.md): the games this player made on by.logicers.com ----------
+   Each game has its edit key and its maker a maker key (they ride in the record like the kits' keys: assets/js/me.js, kind "studio"). The page asks
+   the Studio's Worker with them, exactly as the editor does (POST with a JSON body, no key in a URL). What the page expects back (one place to change
+   if the Worker says it differently):
+     /maker/get  { key }       -> { ok, maker: { slug, name }, games: [{ slug, title, plays, items, status: listed|waiting|private|hidden, keep_answers }] }
+                                  (chat A's Worker says "status"; the older listed / listed_by_khayyam / hidden fields are read too)
+     /game/mine  { edit_key }  -> { ok, game: { title, plays, items, listed, listed_by_khayyam, hidden, keep_answers } }  (404: the game is gone; also without the "game" wrapper)
+     /game/answers { edit_key, after } -> { ok, rows: [[item, name, answer, time] | { item, name, answer, time }], next? }   (the Worker's own: chat A, 8 Nov)
+     /game/delete { edit_key } -> { ok } (404 is as good: it is gone)    /maker/edit { key, name } -> { ok }
+   A game is "listed" only when its maker asked for it and the site let it through; hidden wins over both. */
+export const STUDIO_SITE = 'https://by.logicers.com/';
+/* a game's id in the record ("<maker>/<game>", and "~<made>" behind it for a game made on this phone) -> its two address parts */
+export function studioParts(code) { const m = /^([^/]+)\/([^/~]+)/.exec(String(code || '')); return m ? { maker: m[1], slug: m[2] } : null; }
+export function studioLink(code) { const p = studioParts(code); return p ? STUDIO_SITE + encodeURIComponent(p.maker) + '/' + encodeURIComponent(p.slug) + '/' : ''; }
+export function studioMakerLink(slug) { return slug ? STUDIO_SITE + encodeURIComponent(slug) + '/' : ''; }
+const n0 = (v) => { const n = Number(v); return Number.isFinite(n) && n >= 0 ? Math.round(n) : 0; };
+function gameView(g) {
+  g = g && typeof g === 'object' ? g : {};
+  let plays = g.plays !== undefined ? g.plays : g.n_plays !== undefined ? g.n_plays : g.total;
+  if (plays === undefined && Array.isArray(g.items)) plays = g.items.reduce((a, x) => a + n0(x && (x.plays !== undefined ? x.plays : x.n)), 0);
+  const items = Array.isArray(g.items) ? g.items.length : g.items_n !== undefined ? g.items_n : g.n_items !== undefined ? g.n_items : g.items;
+  const status = typeof g.status === 'string' ? g.status : '';
+  const hidden = !!g.hidden || status === 'hidden';
+  const listed = !hidden && (status ? status === 'listed' : !!g.listed && (g.listed_by_khayyam === undefined ? true : !!g.listed_by_khayyam));
+  return { title: typeof g.title === 'string' ? g.title : '', plays: n0(plays), items: Array.isArray(items) ? 0 : n0(items), listed, hidden, keep: !!(g.keep_answers !== undefined ? g.keep_answers : g.keep) };
+}
+/* the numbers of the games this player made: one /maker/get for the games of the maker whose key this phone holds, /game/mine for each of the others
+   (and for one /maker/get does not list: that is how a deleted game is found out). Map code -> { ok, title, plays, items, listed, hidden, keep } | { ok: false, gone } | { ok: false } */
+export async function studioInfo(list, maker) {
+  const out = new Map(), games = (list || []).filter((it) => it && it.code && it.key);
+  const m = maker && maker.key && maker.slug ? maker : null;
+  let bySlug = null;
+  if (m && games.some((it) => { const p = studioParts(it.code); return p && p.maker === m.slug; })) {
+    const r = await safe(() => ask('studio', '/maker/get', { key: m.key }), { status: 0, b: {} });
+    if (r.status === 200 && r.b && r.b.ok !== false && Array.isArray(r.b.games)) { bySlug = new Map(); r.b.games.forEach((g) => { if (g && typeof g.slug === 'string') bySlug.set(g.slug, g); }); }
+  }
+  await Promise.all(games.map(async (it) => {
+    const p = studioParts(it.code), g = bySlug && m && p && p.maker === m.slug ? bySlug.get(p.slug) : null;
+    if (g) { out.set(it.code, Object.assign({ ok: true }, gameView(g))); return; }
+    const r = await safe(() => ask('studio', '/game/mine', { edit_key: it.key }), { status: 0, b: {} });
+    if (r.status === 404 || keyGone(r)) out.set(it.code, { ok: false, gone: true });
+    else if (r.status === 200 && r.b && r.b.ok !== false) out.set(it.code, Object.assign({ ok: true }, gameView(r.b.game || r.b)));
+    else out.set(it.code, { ok: false });
+  }));
+  return out;
+}
+/* the answers kept for the maker ("keep answers" on): [{ item, name, answer, time }], for the results sheet and the CSV.
+   The Worker's route is /game/answers { edit_key, after } (rows; a "next" to ask again with when there are more); a Worker that does not know the route
+   is asked /game/mine, which may carry the answers itself. A row is [item, name, answer, time] or an object with those names; a time in seconds is made ms. */
+const MAX_ASK = 20;
+/* the Studio answers an edit key it no longer knows (the game was deleted: by its maker, by Logicers, or after a year unopened)
+   with 403 "key": for My Logicers that game is gone (F, 8 Nov 2026) */
+const keyGone = (r) => !!(r && r.status === 403 && r.b && r.b.e === 'key');
+const rowOf = (a) => {
+  const x = Array.isArray(a) ? { item: a[0], name: a[1], answer: a[2], time: a[3] } : a && typeof a === 'object' ? a : null;
+  if (!x) return null;
+  const t = Number(x.time);
+  return { item: x.n != null ? x.n : x.item, name: x.name, answer: x.answer, time: Number.isFinite(t) && t > 0 && t < 1e11 ? t * 1000 : x.time };
+};
+export async function studioResults(it) {
+  if (!it || !it.key) return { ok: false };
+  let after = 0, rows = [];
+  for (let i = 0; i < MAX_ASK; i++) {
+    const r = await safe(() => ask('studio', '/game/answers', { edit_key: it.key, after }), { status: 0, b: {} });
+    const b = r.b && typeof r.b === 'object' ? r.b : {};
+    if (r.status === 404 && b.e === undefined && i === 0) return studioResultsOld(it);
+    if (r.status === 404 || keyGone(r)) return { ok: false, gone: true };
+    if (r.status !== 200 || b.ok === false) return { ok: false };
+    const got = Array.isArray(b.rows) ? b.rows : Array.isArray(b.answers) ? b.answers : [];
+    rows = rows.concat(got.map(rowOf).filter(Boolean));
+    if (b.next === undefined || b.next === null || b.next === false || b.next === after || !got.length) break;
+    after = b.next;
+  }
+  return { ok: true, rows };
+}
+async function studioResultsOld(it) {
+  const r = await safe(() => ask('studio', '/game/mine', { edit_key: it.key }), { status: 0, b: {} });
+  if (r.status === 404) return { ok: false, gone: true };
+  if (r.status !== 200 || (r.b && r.b.ok === false)) return { ok: false };
+  const g = (r.b && r.b.game) || r.b || {};
+  const raw = Array.isArray(r.b.answers) ? r.b.answers : Array.isArray(g.answers) ? g.answers : [];
+  return { ok: true, rows: raw.map(rowOf).filter(Boolean) };
+}
+/* delete for good on the Studio's Worker (the game's pictures and answers go with it), then off My Logicers */
+export async function studioDestroy(it) {
+  if (!it || !it.key) return { ok: false, reason: 'fail' };
+  const r = await safe(() => ask('studio', '/game/delete', { edit_key: it.key }), { status: 0, b: {} });
+  if (r.status === 200 || r.status === 404 || keyGone(r)) { forget('studio', it.code); return { ok: true }; }
+  return { ok: false, reason: r.status === 0 ? 'net' : r.status === 429 ? 'brake' : 'fail' };
+}
+/* the maker's name, on the Worker, then on this phone (the Studio pages read it from here too); the address does not change */
+export async function studioRename(maker, name) {
+  if (!maker || !maker.key) return { ok: false, reason: 'fail' };
+  const r = await safe(() => ask('studio', '/maker/edit', { key: maker.key, name }), { status: 0, b: {} });
+  if (r.status !== 200 || (r.b && r.b.ok === false)) return { ok: false, reason: r.status === 0 ? 'net' : r.status === 429 ? 'brake' : 'fail' };
+  try {
+    const m = JSON.parse(localStorage.getItem('logicers-studio:maker') || 'null');
+    if (m && typeof m === 'object') { m.name = name; localStorage.setItem('logicers-studio:maker', JSON.stringify(m)); }
+  } catch (e) { /* the Worker has it; the next restore brings it here */ }
+  return { ok: true };
+}
+
 /* ---------- for a newcomer (7 Nov 2026, Khayyam: the empty page must be "very tempting for the new comers, informative and full
    of hooks"): the counts the home page shows, from the same servers. { next, findouts, checkins }, each a number or null:
    the Logicer number this phone would get (the running total + 1: server/live totals.js, nothing kept about anyone), how many

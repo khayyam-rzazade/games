@@ -322,6 +322,36 @@ test("a game taken off My Logicers stays off: another phone that still holds it 
   assert.deepEqual(bad.json.record.mine, []);
 });
 
+test("Logicer Studio (8 Nov 2026): a Studio game and the streaks in games of others are kept; a game of the same address made again is not the one taken off", async () => {
+  const e = env();
+  const c = code();
+  const day = (n) => "2026-11-0" + n;
+  const old = { kind: "studio", code: "anna-rossi/quiz~mw1q2aej", title: "Quiz", made: day(4) };
+  const sp = { "bo-lee/daily": { f: day(5), d: "111", ti: "Daily", by: "Bo Lee" } };
+  const n = await call(e, "POST", "/new", { code: c, record: Object.assign(rec({ logicer: 31, mine: [old, { kind: "studio", code: "bad id/x", title: "no" }, { kind: "made", code: "anna/quiz" }] }), { sp }) });
+  assert.equal(n.json.ok, true);
+  assert.deepEqual(n.json.record.mine.map((x) => x.code), [old.code], "one good Studio game; a bad id and a Studio id in a kit's place are dropped");
+  assert.deepEqual(n.json.record.sp, sp);
+  /* another phone: a new day, a new game of others, the same game under the same address */
+  const s2 = await call(e, "POST", "/sync", { code: c, record: Object.assign(rec({ mine: [old] }), { sp: { "bo-lee/daily": { f: day(9), d: "1", ti: "Daily 2", by: "Bo Lee" }, "dee/new": { f: day(9), d: "1", ti: "New", by: "Dee" } } }) });
+  assert.equal(s2.json.record.sp["bo-lee/daily"].f, day(5));
+  assert.equal(s2.json.record.sp["bo-lee/daily"].d, "11101", "the days of both phones, with the gap");
+  assert.equal(s2.json.record.sp["bo-lee/daily"].ti, "Daily 2");
+  assert.ok(s2.json.record.sp["dee/new"]);
+  /* the game is deleted on one phone; a game made again at the same address has another id and stays */
+  const del = await call(e, "POST", "/sync", { code: c, record: Object.assign(rec({}), { gone: ["studio:anna-rossi/quiz~mw1q2aej"] }) });
+  assert.deepEqual(del.json.record.mine, []);
+  assert.deepEqual(del.json.record.gone, ["studio:anna-rossi/quiz~mw1q2aej"]);
+  const again = await call(e, "POST", "/sync", { code: c, record: rec({ mine: [old, { kind: "studio", code: "anna-rossi/quiz~mw7fu63r", title: "Quiz again", made: day(8) }] }) });
+  assert.deepEqual(again.json.record.mine.map((x) => x.code), ["anna-rossi/quiz~mw7fu63r"]);
+  /* a streak whose id has a "~", or more than thirty of them, is cut; the Studio words never reach any column */
+  const many = {}; for (let i = 0; i < 40; i++) many["m" + i + "/g"] = { f: day(5), d: "1", ti: "t", by: "b" };
+  many["m1/g~x"] = { f: day(5), d: "1" };
+  const cut = await call(e, "POST", "/sync", { code: c, record: Object.assign(rec({}), { sp: many }) });
+  assert.ok(Object.keys(cut.json.record.sp).length <= 30 && !Object.keys(cut.json.record.sp).some((k) => k.includes("~")));
+  assert.equal((await rows(e, "SELECT record FROM records")).length, 1);
+});
+
 test("the 3-year sweep deletes untouched records and their passkeys, once a day", async () => {
   const e = env();
   const a = code(), b = code();
