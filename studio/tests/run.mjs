@@ -350,8 +350,23 @@ const FILL = {
     await p.click("text=+ Add a question");
     await p.click(".ed-dock .btn");
     await wait(200);
-    check(/Fix the marked questions/.test(await p.textContent(".ed")) && await p.locator(".ed-item.bad").count() === 1, tpl + ": an empty question is marked");
+    check(/Question 2: /.test(await p.textContent(".ed")) && await p.locator(".ed-item.bad").count() === 1, tpl + ": an empty question is marked, and the message says which");
     await p.click(".ed-item:nth-child(2) >> text=Delete");
+    if (tpl === "rank") {
+      /* 9 Nov 2026: two the same, the question closed: Save opens it, says what, marks the box and shows it */
+      await p.click(".ed-item:first-child .ed-isum");
+      const i = p.locator(".ed-item:first-child .ed-opt input[type=text]");
+      await i.nth(2).fill("sicily");
+      await p.click(".ed-item:first-child .ed-isum");
+      await p.click(".ed-dock .btn");
+      await wait(700);
+      check(/Question 1: “sicily” is there twice\./.test(await p.textContent(".ed")), "rank: two the same, said plainly");
+      check(await i.nth(2).getAttribute("aria-invalid") === "true" && await i.nth(0).getAttribute("aria-invalid") === null, "rank: the second one is marked");
+      check(await i.nth(2).evaluate((el) => { const r = el.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; }), "rank: and on the screen");
+      await p.screenshot({ path: path.join(SHOTS, "editor-rank-same.png") });
+      await i.nth(2).fill("Elba");
+      check(await i.nth(2).getAttribute("aria-invalid") === null, "rank: the mark goes as soon as it is fixed");
+    }
     if (tpl === "pick") {
       /* two more, then order them by dragging the grip */
       for (const q of ["Second?", "Third?"]) {
@@ -590,7 +605,8 @@ console.log("6. the queue, one card per game");
     check(/Flagged/.test(await p.textContent(H + " .qa-fig")) && /Q1/.test(await p.textContent(H + " .qa-fig")), "queue card: the picture, what the check said, where it is used");
     check(/For my \*\*class\*\*/.test(await p.textContent(H + " .qa-text")) && await p.locator(H + " .qa-links li").count() === 2, "queue card: the About text and every link");
     check(/Question 2 is wrong/.test(text) && /Questions 1, 2 new or changed/.test(text), "queue card: the report and what is new");
-    check(await p.locator(H + " .qa-act:text-is('List')").count() === 1 && await p.locator(H + " .qa-act:text-is('Hide')").count() === 1 && await p.locator(H + " .qa-act:text-is('Done')").count() === 1, "queue card: one set of buttons");
+    check(await p.locator(H + " .qa-act:text-is('Put on the list')").count() === 1 && await p.locator(H + " .qa-act:text-is('Hide')").count() === 1 && await p.locator(H + " .qa-act:text-is('Seen')").count() === 1, "queue card: one set of buttons");
+    check(/Seen.*players notice nothing.*Put on the list/.test(await p.textContent(".qa-legend")), "queue: one line says what Seen and the list are");
     /* Remove a picture: two taps */
     await p.click(H + " .qa-fig .qa-act");
     check(/Sure\? Remove/.test(await p.textContent(H + " .qa-fig .qa-act")), "queue: Remove asks for a second tap");
@@ -600,24 +616,25 @@ console.log("6. the queue, one card per game");
     check((await fetch(R.base + "/i/" + g.id + "/" + pic.id)).status === 404, "queue: and from players");
     const mine = (await R.call("/game/mine", { edit_key: g.edit_key })).json;
     check(mine.items[0].image_removed === true, "queue: the maker's editor is told");
-    /* List */
-    await p.click(H + " .qa-act:text-is('List')");
-    await p.waitForFunction((h) => /Listed/.test(document.querySelector(h + " .qa-ghead").textContent), H, { timeout: 5000 }).catch(() => {});
-    check(/Listed/.test(await p.textContent(H + " .qa-ghead")) && await p.locator(H + " .qa-act:text-is('Unlist')").count() === 1, "queue: List, then Unlist is offered");
+    /* Put on the list */
+    await p.click(H + " .qa-act:text-is('Put on the list')");
+    await p.waitForFunction((h) => /On the list/.test(document.querySelector(h + " .qa-ghead").textContent), H, { timeout: 5000 }).catch(() => {});
+    check(/On the list/.test(await p.textContent(H + " .qa-ghead")) && await p.locator(H + " .qa-act:text-is('Take off the list')").count() === 1, "queue: Put on the list, then Take off the list is offered");
+    check((await (await fetch(R.base + "/list")).json()).games.some((x) => x.id === g.id), "queue: and players find it in the list");
     /* a maker's other games: one tap */
     await p.click(H + " .qa-others summary");
     await p.click(H + " .qa-other");
     await p.waitForTimeout(400);
     check(await p.locator('[data-card="g:anna-rossi/how-many-a-day"]').count() === 1, "queue: the maker's other game is one tap away");
-    /* Done: off the list; a new edit opens it again with only what is new */
-    await p.click(H + " .qa-act:text-is('Done')");
+    /* Seen: off To do; a new edit opens it again with only what is new */
+    await p.click(H + " .qa-act:text-is('Seen')");
     await p.waitForFunction((h) => !document.querySelector(h), H, { timeout: 5000 }).catch(() => {});
-    check(await p.locator(H).count() === 0, "queue: Done takes the card off To do");
+    check(await p.locator(H).count() === 0, "queue: Seen takes the card off To do");
     await R.call("/game/save", { edit_key: g.edit_key, items: [mine.items[0], Object.assign({}, mine.items[1], { q: "Which came first, really?" })].map((it) => { const o = Object.assign({}, it); delete o.image_removed; delete o.image_url; return o; }) });
     await p.click("#refresh");
     await p.waitForSelector(H);
     const back = await p.textContent(H + " .qa-fresh");
-    check(/Questions 1, 2 new or changed/.test(back) && /off the list until you List it again/.test(back) && !/Report|About/.test(back), "queue: a new edit opens the card again, with only what is new (" + back + ")");
+    check(/Questions 1, 2 new or changed/.test(back) && /off the list until you put it there again/.test(back) && !/Report|About/.test(back), "queue: a new edit opens the card again, with only what is new (" + back + ")");
     await shot(p, "queue-after");
     /* More: Delete game (two taps), Block maker */
     const G2 = '[data-card="g:anna-rossi/how-many-a-day"]';

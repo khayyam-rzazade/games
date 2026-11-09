@@ -173,3 +173,45 @@ test("D: the cards page, fifteen at a time", async () => {
   assert.equal(r.json.cards.length, 4);
   assert.equal(r.json.cards_next, null);
 });
+
+test("A: a picture's address reaches the Worker: no \"!\" pattern of run_worker_first matches it (live on 9 Nov 2026)", async () => {
+  const fs = await import("node:fs");
+  const conf = JSON.parse(fs.readFileSync(new URL("../wrangler.jsonc", import.meta.url), "utf8").replace(/\/\*[\s\S]*?\*\//g, ""));
+  const glob = (g) => new RegExp("^" + g.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*") + "$");
+  const neg = conf.assets.run_worker_first.filter((x) => x.startsWith("!")).map((x) => glob(x.slice(1)));
+  for (const p of ["/i/anna-rossi/history-a-day/abcdefghijkl.jpg", "/i/anna-rossi/history-a-day/abcdefghijkl.webp", "/anna-rossi/history-a-day/", "/anna-rossi/"])
+    assert.ok(!neg.some((r) => r.test(p)), p + " would never reach the Worker");
+  assert.ok(neg.some((r) => r.test("/studio.js")), "the scripts still skip it");
+  assert.equal(conf.d1_databases[0].database_id, "c7a71666-1fdd-4570-b274-8d5f303a2742");
+  assert.equal(conf.workers_dev, false);
+  /* and the address the Worker gives is one its own route answers */
+  setNow(T0); resetBrakes();
+  const e = env(); const a = await maker(e); const g = await game(e, a, { mode: "open" });
+  const pic = await upload(e, g, "SAFE");
+  await save(e, g, { items: [Object.assign(pick(), { image: pic.id })] });
+  const shown = await call(e, "GET", "/g/" + g.id);
+  const u = new URL(shown.json.items[0].image_url);
+  assert.ok(/\.(jpg|webp)$/.test(u.pathname), u.pathname);
+  assert.equal((await call(e, "GET", u.pathname)).status, 200);
+});
+
+test("B: a listed game with no question yet is not on the list or the maker's page", async () => {
+  setNow(T0); resetBrakes();
+  const e = env(); const a = await maker(e);
+  const full = await game(e, a, { title: "Has questions", want_listed: true });
+  await save(e, full, { items: [pick()] });
+  resetBrakes();
+  const empty = await game(e, a, { title: "No questions yet", want_listed: true });
+  for (const x of [full, empty]) assert.equal((await admin(e, "/admin/act", { game: x.id, action: "list" })).status, 200);
+  const list = (await call(e, "GET", "/list")).json.games.map((x) => x.id);
+  assert.deepEqual(list, [full.id]);
+  const page = (await call(e, "GET", "/m/" + a.slug)).json;
+  assert.ok(page && page.games, JSON.stringify(page));
+  assert.deepEqual(page.games.map((x) => x.slug), [full.id.split("/")[1]]);
+  resetBrakes();
+  const r = await save(e, empty, { items: [pick()] });
+  assert.equal(r.status, 200, r.text);
+  assert.equal((await call(e, "GET", "/list")).json.games.length, 1, "its first questions are new: off the list until Khayyam has seen them");
+  assert.equal((await admin(e, "/admin/act", { game: empty.id, action: "list" })).status, 200);
+  assert.equal((await call(e, "GET", "/list")).json.games.length, 2, "then it shows");
+});

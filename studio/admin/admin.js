@@ -162,7 +162,7 @@
   var TEMPLATE = { number: "Number", line: "Line", pick: "Pick", rank: "Rank", picture: "Picture", read: "Read" };
   function statusChip(g) {
     if (g.hidden) return chip(g.hidden === "reports" ? "Hidden by reports" : "Hidden", "bad");
-    if (g.listed && g.want_listed) return chip("Listed", "ok");
+    if (g.listed && g.want_listed) return chip("On the list", "ok");
     if (g.want_listed) return chip("Wants listing", "warn");
     return chip("Private");
   }
@@ -345,12 +345,14 @@
     /* one set of buttons */
     var acts = h("div", "qa-acts");
     var hasNew = (g.fresh && g.fresh.length) || g.reports;
-    if (hasNew) acts.appendChild(actBtn("Done", "qa-solid", false, function () { act(card, c, { action: "done", game: g.id }, "Done."); }));
-    if (g.listed && g.want_listed) acts.appendChild(actBtn("Unlist", "", false, function () { act(card, c, { action: "unlist", game: g.id }, "Unlisted."); }));
-    else if (g.want_listed && !g.hidden) acts.appendChild(actBtn("List", "qa-tint", false, function () { act(card, c, { action: "list", game: g.id }, "Listed."); }));
-    if (g.hidden) acts.appendChild(actBtn("Unhide", "", false, function () { act(card, c, { action: "unhide", game: g.id }, "Unhidden."); }));
+    /* 9 Nov 2026: plain names. Seen = off To do, nothing changes for players; the list = by.logicers.com's list of games */
+    if (hasNew) acts.appendChild(actBtn("Seen", "qa-solid", false, function () { act(card, c, { action: "done", game: g.id }, "Seen: off To do."); }));
+    if (g.listed && g.want_listed) acts.appendChild(actBtn("Take off the list", "", false, function () { act(card, c, { action: "unlist", game: g.id }, "Off the list."); }));
+    else if (g.want_listed && !g.hidden) acts.appendChild(actBtn("Put on the list", "qa-tint", false, function () { act(card, c, { action: "list", game: g.id }, "On the list."); }));
+    if (g.hidden) acts.appendChild(actBtn("Show again", "", false, function () { act(card, c, { action: "unhide", game: g.id }, "Shown again."); }));
     else acts.appendChild(actBtn("Hide", "", false, function () { act(card, c, { action: "hide", game: g.id }, "Hidden: its link stops working."); }));
     card.appendChild(acts);
+    if (g.want_listed && !items.length) card.appendChild(h("p", "qa-soft qa-note", "No questions yet: it shows on the list once it has some and you put it there."));
     card.appendChild(moreZone(card, c, g, m));
     return card;
   }
@@ -405,7 +407,7 @@
       card.appendChild(ks);
     }
     var acts = h("div", "qa-acts");
-    if (m.fresh && m.fresh.length) acts.appendChild(actBtn("Done", "qa-solid", false, function () { act(card, c, { action: "done", maker: m.slug }, "Done."); }));
+    if (m.fresh && m.fresh.length) acts.appendChild(actBtn("Seen", "qa-solid", false, function () { act(card, c, { action: "done", maker: m.slug }, "Seen: off To do."); }));
     card.appendChild(acts);
     card.appendChild(moreZone(card, c, null, m));
     return card;

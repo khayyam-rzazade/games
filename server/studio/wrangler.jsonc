@@ -12,8 +12,11 @@
    (add "localhost" only while testing on your own computer); IMAGE_CHECK_MODEL, the Workers AI vision models of the
    image check, the second asked only when the first gives no clear answer (images.js says how they are asked).
    The pages are the folder studio/ at the top of the repository (chat B), served by this Worker as static files: the
-   Worker runs first for every path except files with an extension (.js, .css, pictures), so it can write each game's
-   title into the page. The address by.logicers.com is set by the deploy itself (routes, custom_domain).
+   Worker runs first for every path except files with an extension (.js, .css, icons), so it can write each game's
+   title into the page. 9 Nov 2026: .jpg and .webp are NOT in that list: a path a "!" pattern matches never reaches the
+   Worker (Cloudflare answers it from the static files alone, an empty 404 when there is none), and the makers' pictures
+   are /i/<maker>/<game>/<id>.jpg or .webp, served by this Worker. The folder studio/ holds no .jpg or .webp of its own.
+   The address by.logicers.com is set by the deploy itself (routes, custom_domain).
    Workers Logs and traces stay OFF: the privacy line on the site promises that nothing else is kept. */
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
@@ -30,7 +33,7 @@
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none",
-    "run_worker_first": ["/*", "!/*.js", "!/*.mjs", "!/*.css", "!/*.svg", "!/*.png", "!/*.jpg", "!/*.webp", "!/*.ico",
+    "run_worker_first": ["/*", "!/*.js", "!/*.mjs", "!/*.css", "!/*.svg", "!/*.png", "!/*.ico",
                          "!/*.json", "!/*.webmanifest", "!/*.woff2", "!/*.txt", "!/*.map"]
   },
   "vars": {

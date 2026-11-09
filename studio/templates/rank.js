@@ -160,8 +160,10 @@
     check: function (it, t) {
       var e = {}, c = list(it).map(function (x) { return x.trim().toLowerCase(); });
       if (!String(it.q || "").trim()) e.q = t("err.q");
-      var dup = c.some(function (x, i) { return c.indexOf(x) !== i; });
-      if (c.length < 3 || c.length > 5 || c.some(function (x) { return !x; }) || dup) e.things = t("err.things");
+      var dup = null;
+      c.forEach(function (x, i) { if (x && dup === null && c.indexOf(x) !== i) dup = list(it)[i].trim(); });
+      if (c.length < 3 || c.length > 5 || c.some(function (x) { return !x; })) e.things = t("err.things");
+      else if (dup !== null) e.things = t("err.same", { x: dup });     // which one, said plainly (9 Nov 2026)
       return e;
     },
     summary: function (it) { return list(it).filter(Boolean).join(" → "); },

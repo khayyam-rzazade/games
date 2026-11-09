@@ -1080,7 +1080,7 @@
     useLang(uiLang);
     document.body.dataset.t = "studio";
     mount([bar({ studio: true, langs: !which }), waitView()]);
-    loadScript("/editor.js?v=703d95b4ad").then(function () {
+    loadScript("/editor.js?v=4a22bd0cfc").then(function () {
       if (window.StudioEditor) window.StudioEditor(which);
     }, function () { mount([bar({ studio: true }), errorView("site.err_net", function () { editor(which); })]); });
   }

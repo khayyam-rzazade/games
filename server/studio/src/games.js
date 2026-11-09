@@ -194,7 +194,7 @@ export async function gameSave(env, req, b) {
   /* F, 8 Nov 2026: a game Khayyam listed whose words, pictures or links change leaves the list until he lists it again
      (no "list a harmless quiz, then swap it"); the maker sees "Not listed yet" */
   const contentChanged = set.title !== undefined || set.about !== undefined || set.cover !== undefined || queue.some((r) => r.kind === "item" || r.kind === "link");
-  if (g.listed_by_khayyam && contentChanged) { set.listed_by_khayyam = 0; q("game", { text: "changed after it was listed: off the list until you List it again" }); }
+  if (g.listed_by_khayyam && contentChanged) { set.listed_by_khayyam = 0; q("game", { text: "changed after it was on the list: off the list until you put it there again" }); }
 
   set.saved = now;
   const cols = Object.keys(set);
@@ -274,7 +274,8 @@ export async function listPublic(env, req, url) {
   const lang = url.searchParams.get("lang");
   const from = Math.max(0, Math.min(100000, parseInt(url.searchParams.get("from") || "0", 10) || 0));
   const n = Math.max(1, Math.min(100, parseInt(url.searchParams.get("n") || "60", 10) || 60));
-  const where = "g.listed = 1 AND g.listed_by_khayyam = 1 AND g.hidden = 0 AND m.blocked = 0" + (LANGS.includes(lang) ? " AND g.lang = ?" : "");
+  const where = "g.listed = 1 AND g.listed_by_khayyam = 1 AND g.hidden = 0 AND m.blocked = 0 AND g.n_items > 0" +   // a game with no question yet is not shown (9 Nov 2026)
+    (LANGS.includes(lang) ? " AND g.lang = ?" : "");
   const args = LANGS.includes(lang) ? [lang] : [];
   const rows = await all(env, `SELECT g.*, m.name AS maker_name FROM games g JOIN makers m ON m.slug = g.maker WHERE ${where}
      ORDER BY g.plays DESC, g.made DESC LIMIT ? OFFSET ?`, ...args, n + 1, from);

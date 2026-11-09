@@ -294,7 +294,10 @@
     "ed.later": "You can change the rest later.",
     "ed.img_removed": "Logicers removed this picture.",
     "ed.img_removed_top": "Logicers removed a picture. Add another one.",
-    "kp.here_kept": "Kept on this browser."
+    "kp.here_kept": "Kept on this browser.",
+    /* 9 Nov 2026: the fix round */
+    "err.at": "Question {n}: {why}",
+    "err.same": "“{x}” is there twice."
   };
 
   /* ---- chat E (8 Nov 2026): Italian, Turkish, Spanish, Brazilian Portuguese, French. ---- */
@@ -585,7 +588,10 @@
     "ed.later": "Il resto puoi cambiarlo dopo.",
     "ed.img_removed": "Logicers ha tolto questa immagine.",
     "ed.img_removed_top": "Logicers ha tolto un’immagine. Aggiungine un’altra.",
-    "kp.here_kept": "Salvato in questo browser."
+    "kp.here_kept": "Salvato in questo browser.",
+    /* 9 Nov 2026: the fix round */
+    "err.at": "Domanda {n}: {why}",
+    "err.same": "«{x}» c'è due volte."
   };
 
   /* Turkish */
@@ -874,7 +880,10 @@
     "ed.later": "Gerisini sonra değiştirebilirsin.",
     "ed.img_removed": "Logicers bu resmi kaldırdı.",
     "ed.img_removed_top": "Logicers bir resmi kaldırdı. Başka bir resim ekle.",
-    "kp.here_kept": "Bu tarayıcıda saklandı."
+    "kp.here_kept": "Bu tarayıcıda saklandı.",
+    /* 9 Nov 2026: the fix round */
+    "err.at": "Soru {n}: {why}",
+    "err.same": "“{x}” iki kez yazılmış."
   };
 
   /* Spanish */
@@ -1163,7 +1172,10 @@
     "ed.later": "Lo demás puedes cambiarlo después.",
     "ed.img_removed": "Logicers quitó esta imagen.",
     "ed.img_removed_top": "Logicers quitó una imagen. Añade otra.",
-    "kp.here_kept": "Guardado en este navegador."
+    "kp.here_kept": "Guardado en este navegador.",
+    /* 9 Nov 2026: the fix round */
+    "err.at": "Pregunta {n}: {why}",
+    "err.same": "«{x}» está dos veces."
   };
 
   /* Brazilian Portuguese */
@@ -1452,7 +1464,10 @@
     "ed.later": "O resto você muda depois.",
     "ed.img_removed": "O Logicers removeu esta imagem.",
     "ed.img_removed_top": "O Logicers removeu uma imagem. Adicione outra.",
-    "kp.here_kept": "Guardado neste navegador."
+    "kp.here_kept": "Guardado neste navegador.",
+    /* 9 Nov 2026: the fix round */
+    "err.at": "Pergunta {n}: {why}",
+    "err.same": "“{x}” aparece duas vezes."
   };
 
   /* French */
@@ -1741,6 +1756,9 @@
     "ed.later": "Tu pourras changer le reste plus tard.",
     "ed.img_removed": "Logicers a retiré cette image.",
     "ed.img_removed_top": "Logicers a retiré une image. Ajoute-en une autre.",
-    "kp.here_kept": "Gardé dans ce navigateur."
+    "kp.here_kept": "Gardé dans ce navigateur.",
+    /* 9 Nov 2026: the fix round */
+    "err.at": "Question {n} : {why}",
+    "err.same": "« {x} » est là deux fois."
   };
 })();

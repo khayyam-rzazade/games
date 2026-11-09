@@ -129,7 +129,7 @@ export async function makerPublic(env, req, slug) {
   const m = await makerBySlug(env, slug);
   if (!m) { if (!brake("miss", req, 200, 6e5)) return bad("later", 429); return bad("nomaker", 404); }
   if (m.blocked) return bad("gone", 410);
-  const games = (await all(env, "SELECT * FROM games WHERE maker = ? AND listed = 1 AND listed_by_khayyam = 1 AND hidden = 0 ORDER BY plays DESC, made, rowid", m.slug))
+  const games = (await all(env, "SELECT * FROM games WHERE maker = ? AND listed = 1 AND listed_by_khayyam = 1 AND hidden = 0 AND n_items > 0 ORDER BY plays DESC, made, rowid", m.slug))
     .filter((g) => isListed(g, m))
     .map((g) => ({ slug: g.slug, title: g.title, template: g.template, lang: g.lang, mode: g.mode, start_day: g.start_day, plays: g.plays, items: g.n_items, code: g.code, cover_url: imgUrl(env, g.id, g.cover) }));
   return json({ ok: true, maker: { slug: m.slug, name: m.name, lang: m.lang }, games, kits: JSON.parse(m.kits || "[]") }, 200,

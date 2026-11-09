@@ -127,7 +127,7 @@ export async function servePage(env, req, url) {
   const lang = m.lang;
   if (segs.length === 1) {
     if (m.blocked) return page(writeHead(await shellHtml(env, url), { title: "Logicers", noindex: true }), 410, { noindex: true });
-    const listed = await one(env, "SELECT COUNT(*) AS n FROM games WHERE maker = ? AND listed = 1 AND listed_by_khayyam = 1 AND hidden = 0", m.slug);
+    const listed = await one(env, "SELECT COUNT(*) AS n FROM games WHERE maker = ? AND listed = 1 AND listed_by_khayyam = 1 AND hidden = 0 AND n_items > 0", m.slug);
     const w = W(lang);
     return page(writeHead(await shellHtml(env, url), { title: w.maker(m.name), desc: w.maker(m.name), url: site + "/" + m.slug + "/", noindex: !(listed && listed.n) }), 200, {});
   }

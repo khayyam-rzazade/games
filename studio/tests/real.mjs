@@ -1,7 +1,9 @@
 /* Logicers Studio: the real Worker (server/studio/src) on this computer, for the checks of the pages that need it whole
    (9 Nov 2026: Khayyam's queue). D1 is Node's own SQLite (server/studio/test/d1shim.mjs), R2 and Workers AI are small
-   stand-ins, the static files are this folder, served the way Cloudflare's asset layer does: a path with an extension is a
-   file; every other path goes through the Worker (which writes the page's head, or answers the API). */
+   stand-ins, the static files are this folder, served the way Cloudflare does, by the run_worker_first patterns of
+   server/studio/wrangler.jsonc: a path a "!" pattern matches is answered by the static files ALONE (an empty 404 when there
+   is none: the Worker never sees it, as seen live on 9 Nov 2026, when every picture's .jpg address died that way); every
+   other path goes through the Worker first. */
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
@@ -33,6 +35,13 @@ class Assets {
   }
 }
 
+/* run_worker_first, read from the settings file itself, so a pattern that would hide a route from the Worker shows here */
+const CONF = JSON.parse(fs.readFileSync(path.resolve(HERE, "../../server/studio/wrangler.jsonc"), "utf8").replace(/\/\*[\s\S]*?\*\//g, ""));
+const glob = (g) => new RegExp("^" + g.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*") + "$");
+const NEG = CONF.assets.run_worker_first.filter((x) => x.startsWith("!")).map((x) => glob(x.slice(1)));
+const POS = CONF.assets.run_worker_first.filter((x) => !x.startsWith("!")).map(glob);
+export const assetsOnly = (p) => NEG.some((r) => r.test(p));
+
 export const ADMIN_KEY = "khayyam-admin-key-for-the-tests-0123456789";
 export async function startReal() {
   const env = { STUDIO_KEY: "a-long-secret-key-of-the-studio-0123456789", ADMIN_KEY, ALLOW_ORIGINS: "localhost", SITE: "", IMG_BASE: "",
@@ -41,8 +50,9 @@ export async function startReal() {
     const chunks = []; for await (const c of req) chunks.push(c);
     const url = "http://127.0.0.1:" + server.address().port + req.url;
     const p = new URL(url).pathname;
-    if (/\.[a-z0-9]+$/i.test(p) && !p.startsWith("/i/")) {                  // the asset layer first, as on Cloudflare
+    if (assetsOnly(p) || !POS.some((r) => r.test(p))) {                       // the static files alone, as on Cloudflare
       const r = await env.ASSETS.fetch(new Request(url));
+      if (r.status === 404 && assetsOnly(p)) { res.writeHead(404); return res.end(); }
       if (r.status !== 404) { res.writeHead(200, { "Content-Type": r.headers.get("Content-Type") }); return res.end(Buffer.from(await r.arrayBuffer())); }
     }
     const headers = Object.assign({}, req.headers, { "cf-connecting-ip": "127.0.0.1" });

@@ -610,11 +610,11 @@
     var id = "l-" + lk(it)._k + "-" + key;
     box.appendChild(attr(el("p", "st-lab", t(labelKey)), { id: id }));
     if (rightKey) box.appendChild(el("p", "ed-hint", t("ed.right_hint")));
-    var list = attr(el("div", "ed-opts"), { role: rightKey ? "radiogroup" : "group", "aria-labelledby": id });
+    var list = attr(el("div", "ed-opts"), { role: rightKey ? "radiogroup" : "group", "aria-labelledby": id, "data-list": key });
     box.appendChild(list);
+    box.appendChild(errSlot(key));                       // right under the boxes it is about, not below the button (9 Nov 2026)
     var addB = btn("chip st-gap", "+ " + t(addKey), function () { it[key].push(""); draw(); touch(); var ins = list.querySelectorAll("input[type=text]"); if (ins.length) ins[ins.length - 1].focus(); });
     box.appendChild(addB);
-    box.appendChild(errSlot(key));
     function draw() {
       list.textContent = "";
       it[key].forEach(function (v, i) {
@@ -629,7 +629,7 @@
         }
         var inp = attr(el("input", "st-in"), { type: "text", maxlength: "80", dir: "auto", "aria-label": t(labelKey) + " " + (i + 1) });
         inp.value = v || "";
-        inp.addEventListener("input", function () { it[key][i] = clean(inp.value, 80); touch(); });
+        inp.addEventListener("input", function () { it[key][i] = clean(inp.value, 80); inp.removeAttribute("aria-invalid"); touch(); });
         row.appendChild(inp);
         if (it[key].length > min) {
           row.appendChild(attr(btn("ed-x", "×", function () {
@@ -813,6 +813,22 @@
   function showErrs(E, li, it) {
     var e = li.__errs || {};
     Array.prototype.forEach.call(li.querySelectorAll("[data-err]"), function (p) { p.textContent = e[p.getAttribute("data-err")] || ""; });
+    /* the boxes of a list that are wrong: empty, or the same as one above (9 Nov 2026: "au" twice showed nothing) */
+    Array.prototype.forEach.call(li.querySelectorAll("[data-list]"), function (box) {
+      var ins = box.querySelectorAll("input[type=text]"), seen = {};
+      Array.prototype.forEach.call(ins, function (inp) {
+        var v = inp.value.trim().toLowerCase(), wrong = !!e[box.getAttribute("data-list")] && (!v || seen[v]);
+        seen[v] = 1;
+        if (wrong) inp.setAttribute("aria-invalid", "true"); else inp.removeAttribute("aria-invalid");
+      });
+    });
+  }
+  /* what is wrong with a question, in one line: the first message shown in it */
+  function firstErr(li) {
+    var p = li.querySelector(".ed-err:not(:empty)");
+    if (p) return p.textContent;
+    var e = li.__errs || {}, k = Object.keys(e)[0];
+    return k ? e[k] : "";
   }
   function save(E) {
     if (E.busy) return;
@@ -831,11 +847,14 @@
     if (!title) { tErr.scrollIntoView({ block: "center" }); return; }
     if (S.links(E.meta.about) > 20) { E.msg.textContent = t("err.links"); E.msg.hidden = false; return; }
     if (bad >= 0) {
-      E.msg.textContent = t("err.fix"); E.msg.hidden = false;
       var li = E.list.children[bad];
       if (li.querySelector(".ed-ibody").hidden) openItem(E, bad);
       showErrs(E, li, li.__it);
-      li.scrollIntoView({ block: "center", behavior: S.reduced() ? "auto" : "smooth" });
+      /* the banner says which question and what is wrong, and the page goes to the very box (9 Nov 2026) */
+      var why = firstErr(li);
+      E.msg.textContent = why ? t("err.at", { n: bad + 1, why: why }) : t("err.fix"); E.msg.hidden = false;
+      var spot = li.querySelector('[aria-invalid="true"]') || li.querySelector(".ed-err:not(:empty)") || li;
+      window.setTimeout(function () { spot.scrollIntoView({ block: "center", behavior: S.reduced() ? "auto" : "smooth" }); }, 80);   // after openItem's own
       return;
     }
     if (!E.items.length) { E.qErr.textContent = t("err.none"); }
