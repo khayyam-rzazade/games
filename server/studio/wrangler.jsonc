@@ -20,7 +20,7 @@
   "name": "logicers-studio",
   "main": "src/worker.js",
   "compatibility_date": "2026-09-01",
-  "workers_dev": true,
+  "workers_dev": false,
   "preview_urls": false,
   "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
   "triggers": { "crons": ["23 3 * * *"] },
@@ -40,7 +40,7 @@
     "IMAGE_CHECK_MODEL": "@cf/meta/llama-4-scout-17b-16e-instruct @cf/mistralai/mistral-small-3.1-24b-instruct"
   },
   "d1_databases": [
-    { "binding": "DB", "database_name": "logicers-studio", "database_id": "PASTE THE ID FROM npx wrangler d1 create logicers-studio HERE" }
+    { "binding": "DB", "database_name": "logicers-studio", "database_id": "c7a71666-1fdd-4570-b274-8d5f303a2742" }
   ],
   "r2_buckets": [
     { "binding": "IMG", "bucket_name": "logicers-studio-img" }

@@ -2,3 +2,4 @@ tests
 bridge.html
 bridge.js
 .assetsignore
+.DS_Store
