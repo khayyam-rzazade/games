@@ -4,6 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { servers, browser, context, page, check, report, noOverflow, wait, SHOTS, todayIn, need } from "./lib.mjs";
+import { startReal, ADMIN_KEY } from "./real.mjs";
 const sharp = need("sharp");
 
 const S = await servers();
@@ -122,10 +123,15 @@ for (const opt of [{ viewport: { width: 390, height: 844 }, mobile: true }, { vi
       await p.click(".st-after >> text=Embed");
       const code = await p.inputValue(".st-snippet");
       check(/<iframe src="http:\/\/127\.0\.0\.1:\d+\/anna-rossi\/history-a-day\/embed\/"/.test(code) && /height="720"/.test(code) && /loading="lazy"/.test(code) && /allow="clipboard-write"/.test(code), `${tag}: the embed code`);
-      check(/Moodle: add a Page, switch to code view, paste\./.test(await p.textContent("dialog")), `${tag}: the Moodle hint`);
-      await p.click("text=Copy the code");
+      const es = await p.textContent("dialog");
+      check(/Put this game on your own page, like a video\./.test(es) && await p.locator("dialog .st-steps > li").count() === 3, `${tag}: the embed sheet says what it is, then three steps`);
+      check(/In Moodle or any site, switch to code view and paste\./.test(es) && /In WordPress, just paste the game’s link\./.test(es), `${tag}: Moodle and WordPress, in plain words`);
+      await p.click("dialog .st-copycode");
       await wait(200);
       check((await p.evaluate(() => navigator.clipboard.readText())).startsWith("<iframe"), `${tag}: the code is copied`);
+      await p.click("dialog >> text=Copy the link");
+      await wait(200);
+      check(/\/anna-rossi\/history-a-day\/$/.test(await p.evaluate(() => navigator.clipboard.readText())), `${tag}: the link is copied, for WordPress`);
       await shot(p, `${tag}-embed-sheet`);
       await p.keyboard.press("Escape");
       /* the report: needs a reason and the tick */
@@ -226,6 +232,43 @@ console.log("3. the plain states");
   check(p.__errors.length === 0, "plain pages: no errors " + p.__errors.join(" | "));
   await ctx.close();
 }
+/* the "?" of a game says what will happen, in short lines, then the maker's About (9 Nov 2026) */
+{
+  const ctx = await context(B, S);
+  const p = await page(ctx);
+  await p.goto(G("history-a-day")); await p.waitForSelector(".st-play");
+  await p.click(".st-bar .st-help");
+  await p.waitForSelector("dialog .st-how");
+  const how = await p.textContent("dialog");
+  check(/How it works/.test(how) && /Tap the answer you think is right\./.test(how) && /Then see how everyone else answered\./.test(how) && /A new question every day\./.test(how), "?: what will happen " + how);
+  check(await p.locator("dialog .st-how-about").count() === 0, "?: no About when the maker wrote none");
+  await p.keyboard.press("Escape");
+  await p.goto(G("class-quiz")); await p.waitForSelector(".st-items");
+  await p.click(".st-bar .st-help");
+  check(/All the questions, in any order\./.test(await p.textContent("dialog")), "?: all at once");
+  await p.keyboard.press("Escape");
+  await p.goto(G("how-many-a-day")); await p.waitForSelector(".st-play");
+  await p.click(".st-bar .st-help");
+  await p.waitForSelector("dialog .st-how-about");
+  check(/A daily guess about/.test(await p.textContent("dialog .st-how-about")) && await p.locator("dialog .st-how-about b").count() === 1, "?: the maker's About, with its bold");
+  await shot(p, "how-sheet");
+  await p.keyboard.press("Escape");
+  await playIt(p, "number"); await p.waitForSelector(".st-after:not([hidden])");
+  check(await p.locator(".st-links >> text=About").count() === 1, "About: the chip when there is one");
+  await p.goto(G("history-a-day")); await p.waitForSelector(".st-play");
+  await playIt(p, "pick"); await p.waitForSelector(".st-after:not([hidden])");
+  check(await p.locator(".st-links >> text=About").count() === 0, "About: no chip to an empty page");
+  /* a picture Logicers removed: players get the question without it; the maker is told in words */
+  await p.goto(G("lost-picture")); await p.waitForSelector(".st-play");
+  check(await p.locator(".st-play img").count() === 0, "a removed picture: not shown to players");
+  await p.goto(G("lost-picture") + "edit/#" + db.games["anna-rossi/lost-picture"].edit_key);
+  await p.waitForSelector(".ed-gone");
+  check(/Logicers removed a picture\. Add another one\./.test(await p.textContent(".ed-gone")), "a removed picture: the editor says so");
+  check(/Logicers removed this picture\./.test(await p.textContent(".ed-item .ed-ibody")), "a removed picture: on its own question, open");
+  await shot(p, "editor-removed-picture");
+  check(p.__errors.length === 0, "? and removed picture: no errors " + p.__errors.join(" | "));
+  await ctx.close();
+}
 /* a clock east of UTC: the local day goes to the Worker */
 {
   const ctx = await context(B, S, { tz: "Pacific/Kiritimati" });
@@ -263,7 +306,8 @@ const FILL = {
     if (first) {
       await p.click("text=Make it");
       const errs = await p.$$eval(".ed-err", (e) => e.map((x) => x.textContent).filter(Boolean));
-      check(errs.includes("2 to 40 characters.") && errs.includes("Give it a name.") && errs.includes("Tick the box first."), "new: asks for the name, the template, the title, the tick " + JSON.stringify(errs));
+      check(errs.includes("2 to 40 characters.") && errs.includes("Give it a name.") && errs.includes("Tick the box first.") && errs.includes("Choose a template"), "new: asks for the template, the title, the name, the tick " + JSON.stringify(errs));
+      check(await p.locator(".ed-seg, .ed-switch, #f-start").count() === 0, "new: no language, mode, day or switches: they wait in the editor");
       await p.fill("#f-name", "Prof. Bianchi");
       check((await p.textContent(".ed-addr")).endsWith("/prof-bianchi/"), "new: shows the address");
       await shot(p, "editor-new");
@@ -272,22 +316,23 @@ const FILL = {
     }
     await p.click(`.ed-tpl[data-v=${tpl}]`);
     await p.fill("#f-title", "Bianchi " + tpl);
-    if (tpl === "number") await p.click("text=All at once");
-    if (tpl === "read") await p.click("text=Keep answers");
     await p.check("#f-terms");
     await p.click("text=Make it");
     await p.waitForSelector(".kp");
     await p.waitForSelector(".kp-tile.done", { timeout: 5000 }).catch(() => {});
     check(await p.locator(".kp-tile.done:has-text('My Logicers')").count() === 1, tpl + ": the edit link is kept in My Logicers");
     if (first) await shot(p, "editor-keep-sheet");
+    check(/Kept on this browser\./.test(await p.textContent(".kp")), tpl + ": kept on this browser, said in the sheet");
     await p.click(".kp >> text=Done");
     await p.waitForSelector(".ed-dock");
+    if (tpl === "number") await p.click(".ed-seg >> text=All at once");
+    if (tpl === "read") await p.click(".ed-switch >> text=Keep answers");
     const url = p.url();
     check(/\/prof-bianchi\/bianchi-[a-z]+\/edit\/#[A-Z2-7]{24}$/.test(url), tpl + ": the edit link " + url);
     const g = db.games["prof-bianchi/bianchi-" + tpl];
     check(!!g && g.terms_version === "2026-11-08" && db.makers["prof-bianchi"].terms_version === "2026-11-08", tpl + ": made, with the terms' version");
-    /* a first question */
-    await p.click("text=+ Add a question");
+    /* the first question is there, open (9 Nov 2026) */
+    check(await p.locator(".ed-item").count() === 1 && await p.locator(".ed-ibody:not([hidden])").count() === 1, tpl + ": a new game opens on its first question");
     await FILL[tpl](p);
     if (tpl === "picture" || tpl === "pick") {
       await p.setInputFiles(".ed-ibody .ed-file", "/tmp/studio-big.png");
@@ -411,33 +456,71 @@ const FILL = {
   check(p.__errors.length === 0, "editor: no errors " + p.__errors.join(" | "));
   await ctx.close();
 }
-/* without a My Logicers code: the edit link is the only way back, unless "This browser" is chosen */
+/* without a My Logicers code: this browser keeps every game it made, and /new/ lists them (9 Nov 2026: Khayyam closed the
+   sheet and could not get back in); a game whose edit link this browser never had opens with the maker key */
 {
   const ctx = await context(B, S, { viewport: { width: 360, height: 740 }, mobile: true, dark: true });
   const p = await page(ctx);
   await p.goto(S.base + "/new/");
   await p.waitForSelector(".ed-tpls");
-  await p.fill("#f-name", "Zeynep");
   await p.click(".ed-tpl[data-v=rank]");
   await p.fill("#f-title", "Sıraya koy");
-  await p.click(".ed-seg button[lang=tr]");
+  await p.fill("#f-name", "Zeynep");
   await p.check("#f-terms");
   await p.click("text=Make it");
   await p.waitForSelector(".kp");
   check(await p.locator(".kp-tile:has-text('My Logicers')").count() === 0, "no code: no My Logicers tile");
-  await p.click(".kp >> text=Done");
-  check(/Keep it somewhere first/.test(await p.textContent(".kp")), "keep sheet: Done waits until the link is kept");
-  await p.keyboard.press("Escape");
-  check(await p.locator(".kp").count() === 1, "keep sheet: Escape does not close it");
+  check(await p.locator(".kp-tile:has-text('This browser')").count() === 0 && /Kept on this browser\./.test(await p.textContent(".kp")), "keep sheet: this browser keeps it without a tap");
   await p.click(".kp >> text=Copy it");
   await wait(300);
   check((await p.evaluate(() => navigator.clipboard.readText())).includes("/zeynep/siraya-koy/edit/#"), "keep sheet: Copy it copies the edit link");
-  await p.click(".kp >> text=This browser");
   await shot(p, "editor-keep-dark");
-  await p.click(".kp >> text=Done");
-  const mine = await p.evaluate(() => JSON.parse(localStorage.getItem("lg.studio.mine")));
-  check(mine.maker.slug === "zeynep" && mine.games.length === 1 && mine.games[0].slug === "siraya-koy", "no code: kept in this browser " + JSON.stringify(mine.games));
-  check(db.games["zeynep/siraya-koy"].lang === "tr", "the game's language");
+  await p.keyboard.press("Escape");
+  await p.waitForSelector(".kp", { state: "detached", timeout: 3000 }).catch(() => {});
+  check(await p.locator(".kp").count() === 0, "keep sheet: it closes like any sheet");
+  let mine = await p.evaluate(() => JSON.parse(localStorage.getItem("lg.studio.mine")));
+  check(mine.maker.slug === "zeynep" && mine.games.length === 1 && mine.games[0].slug === "siraya-koy" && /^[A-Z2-7]{24}$/.test(mine.games[0].edit), "no code: kept in this browser at once " + JSON.stringify(mine.games));
+  /* the language is set in the editor now */
+  await p.click(".ed-seg button[lang=tr]");
+  await p.fill(".ed-ibody [id$='-q']", "Büyükten küçüğe");
+  const ins = p.locator(".ed-ibody .ed-opt input[type=text]");
+  await ins.nth(0).fill("Ankara"); await ins.nth(1).fill("Bursa"); await ins.nth(2).fill("Rize");
+  await p.click(".ed-dock .btn");
+  await p.waitForFunction(() => /Saved/.test(document.querySelector(".ed-state").textContent), null, { timeout: 5000 }).catch(() => {});
+  check(db.games["zeynep/siraya-koy"].lang === "tr", "the game's language, set in the editor");
+  /* /new/ lists it; Edit opens it */
+  await p.goto(S.base + "/new/");
+  await p.waitForSelector(".ed-mine-row");
+  check(/Sıraya koy/.test(await p.textContent(".ed-mine")) && /Your games/.test(await p.textContent(".ed")), "/new/: your games first");
+  await shot(p, "new-your-games-dark");
+  await p.click(".ed-mine-row:has-text('Sıraya koy')");
+  await p.waitForSelector(".ed-dock");
+  check(await p.locator(".ed-item").count() === 1, "Your games: Edit opens it");
+  /* a game this browser has no edit link for (made before this round, or the list was cleared): the maker key opens it */
+  await p.evaluate(() => { const m = JSON.parse(localStorage.getItem("lg.studio.mine")); m.games = []; localStorage.setItem("lg.studio.mine", JSON.stringify(m)); });
+  await p.goto(S.base + "/new/");
+  await p.waitForSelector(".ed-mine-row");
+  check(/Sıraya koy/.test(await p.textContent(".ed-mine")), "/new/: the Worker's list, from the maker key, when this browser's list is empty");
+  const href = await p.getAttribute(".ed-mine-row", "href");
+  check(href === "/zeynep/siraya-koy/edit/", "/new/: no edit link here, so the row opens the editor without one (" + href + ")");
+  db.auth = [];
+  await p.click(".ed-mine-row");
+  await p.waitForSelector(".ed-dock");
+  check(db.auth.includes("/game/mine maker"), "the editor opens with the maker key " + JSON.stringify(db.auth));
+  await p.click(".ed-item .ed-isum");
+  await p.fill(".ed-ibody [id$='-q']", "En büyükten en küçüğe");
+  await p.click(".ed-dock .btn");
+  await p.waitForFunction(() => /Saved/.test(document.querySelector(".ed-state").textContent), null, { timeout: 5000 }).catch(() => {});
+  check(db.auth.includes("/game/save maker") && db.games["zeynep/siraya-koy"].items[0].q === "En büyükten en küçüğe", "and saves with it");
+  mine = await p.evaluate(() => JSON.parse(localStorage.getItem("lg.studio.mine")));
+  check(mine.games.length === 1 && mine.games[0].slug === "siraya-koy", "found again: this browser keeps it again " + JSON.stringify(mine.games));
+  /* another maker's game: no way in without its link */
+  await p.goto(S.base + "/anna-rossi/history-a-day/edit/");
+  await p.waitForSelector(".st-card-box");
+  check(/Open it on the browser you made it on, or with its edit link\./.test(await p.textContent(".st-card-box")), "someone else's game: says how to get in");
+  /* the directory's chip says where your games are */
+  await p.goto(S.base + "/"); await p.waitForSelector(".st-make");
+  check((await p.textContent(".st-make")) === "Your games", "the directory: Your games, for a maker");
   check(p.__errors.length === 0, "no code: no errors " + p.__errors.join(" | "));
   await ctx.close();
 }
@@ -469,6 +552,98 @@ for (const size of [SIZES[1], SIZES[4]]) {
   await shot(p, size.name + "-embed-host");
   check(p.__errors.length === 0, size.name + " embed: no errors " + p.__errors.join(" | "));
   await ctx.close();
+}
+
+/* ---------- 6. Khayyam's queue, one card per game, against the real Worker (9 Nov 2026) ---------- */
+console.log("6. the queue, one card per game");
+{
+  const R = await startReal();
+  const day = todayIn("UTC");
+  const anna = (await R.call("/maker/new", { name: "Anna Rossi", lang: "en", terms_version: "2026-11-08" })).json;
+  const g = (await R.call("/game/new", { maker_key: anna.key, template: "pick", title: "History a day", lang: "en", mode: "daily", start_day: day, want_listed: true })).json;
+  const fd = new FormData(); fd.append("edit_key", g.edit_key); fd.append("file", new Blob([fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), "seed.jpg"))], { type: "image/jpeg" }), "p.jpg");
+  R.env.AI.next = "FLAG";
+  const pic = (await R.call("/img/put", null, fd)).json;
+  check(pic && pic.id && pic.held === false, "queue: a flagged picture is stored and shown at once " + JSON.stringify(pic));
+  await R.call("/game/save", { edit_key: g.edit_key, about: "For my **class**. More at https://school.example/history", items: [
+    { q: "Who painted the Sistine Chapel ceiling?", choices: ["Raphael", "Michelangelo", "Leonardo"], answer: 1, image: pic.id, explain: "From 1508 to 1512. https://en.wikipedia.org/wiki/Sistine_Chapel_ceiling" },
+    { q: "Which came first?", choices: ["The wheel", "Writing"], answer: 1 }] });
+  check((await fetch(R.base + "/i/" + g.id + "/" + pic.id)).status === 200, "queue: players see it before Khayyam looks");
+  await R.call("/report", { game: g.id, reason: "wrong", text: "Question 2 is wrong", browser: "browserAAAA1" });
+  const g2 = (await R.call("/game/new", { maker_key: anna.key, template: "number", title: "How many a day", lang: "it", mode: "open", start_day: day, want_listed: false })).json;
+  await R.call("/maker/new", { name: "Bob Bianchi", lang: "en", terms_version: "2026-11-08" });
+  for (const v of [{ w: 390, dark: false }, { w: 390, dark: true }, { w: 1280, dark: false }, { w: 1280, dark: true }]) {
+    const ctx = await context(B, S, { viewport: { width: v.w, height: 900 }, mobile: v.w < 600, dark: v.dark, bridge: false, dpr: v.w < 600 ? 2 : 1 });
+    const p = await page(ctx);
+    await p.goto(R.base + "/admin/");
+    await p.fill("#key", ADMIN_KEY); await p.click("#open");
+    await p.waitForSelector(".qa-gcard"); await wait(500);
+    check(await noOverflow(p), `queue ${v.w}${v.dark ? " dark" : ""}: no sideways scroll`);
+    await shot(p, `queue-${v.w}${v.dark ? "-dark" : ""}`);
+    if (v.w !== 390 || v.dark) { check(p.__errors.length === 0, "queue: no errors " + p.__errors.join(" | ")); await ctx.close(); continue; }
+    const cards = await p.$$eval(".qa-gcard", (cs) => cs.map((c) => c.getAttribute("data-card")));
+    check(cards.join() === "m:bob-bianchi,g:anna-rossi/how-many-a-day,g:anna-rossi/history-a-day,m:anna-rossi", "queue: one card per game or new maker, newest first " + cards.join());
+    const H = '[data-card="g:anna-rossi/history-a-day"]';
+    const text = await p.textContent(H);
+    check(/History a day/.test(text) && /by Anna Rossi/.test(text) && new RegExp(g.code).test(text) && /Wants listing/.test(text), "queue card: title, maker, code, state");
+    check(await p.locator(H + " .qa-qlist > li").count() === 2 && (await p.textContent(H + " .qa-qlist > li:first-child .qa-right")) === "Michelangelo", "queue card: the questions with the right answer");
+    check(/Flagged/.test(await p.textContent(H + " .qa-fig")) && /Q1/.test(await p.textContent(H + " .qa-fig")), "queue card: the picture, what the check said, where it is used");
+    check(/For my \*\*class\*\*/.test(await p.textContent(H + " .qa-text")) && await p.locator(H + " .qa-links li").count() === 2, "queue card: the About text and every link");
+    check(/Question 2 is wrong/.test(text) && /Questions 1, 2 new or changed/.test(text), "queue card: the report and what is new");
+    check(await p.locator(H + " .qa-act:text-is('List')").count() === 1 && await p.locator(H + " .qa-act:text-is('Hide')").count() === 1 && await p.locator(H + " .qa-act:text-is('Done')").count() === 1, "queue card: one set of buttons");
+    /* Remove a picture: two taps */
+    await p.click(H + " .qa-fig .qa-act");
+    check(/Sure\? Remove/.test(await p.textContent(H + " .qa-fig .qa-act")), "queue: Remove asks for a second tap");
+    await p.click(H + " .qa-fig .qa-act");
+    await p.waitForFunction((h) => !document.querySelector(h + " .qa-fig") && /Picture removed\./.test(document.querySelector(h + " .qa-qlist").textContent), H, { timeout: 5000 }).catch(() => {});
+    check(await p.locator(H + " .qa-fig").count() === 0 && /Picture removed\./.test(await p.textContent(H + " .qa-qlist")), "queue: the picture is gone from the card");
+    check((await fetch(R.base + "/i/" + g.id + "/" + pic.id)).status === 404, "queue: and from players");
+    const mine = (await R.call("/game/mine", { edit_key: g.edit_key })).json;
+    check(mine.items[0].image_removed === true, "queue: the maker's editor is told");
+    /* List */
+    await p.click(H + " .qa-act:text-is('List')");
+    await p.waitForFunction((h) => /Listed/.test(document.querySelector(h + " .qa-ghead").textContent), H, { timeout: 5000 }).catch(() => {});
+    check(/Listed/.test(await p.textContent(H + " .qa-ghead")) && await p.locator(H + " .qa-act:text-is('Unlist')").count() === 1, "queue: List, then Unlist is offered");
+    /* a maker's other games: one tap */
+    await p.click(H + " .qa-others summary");
+    await p.click(H + " .qa-other");
+    await p.waitForTimeout(400);
+    check(await p.locator('[data-card="g:anna-rossi/how-many-a-day"]').count() === 1, "queue: the maker's other game is one tap away");
+    /* Done: off the list; a new edit opens it again with only what is new */
+    await p.click(H + " .qa-act:text-is('Done')");
+    await p.waitForFunction((h) => !document.querySelector(h), H, { timeout: 5000 }).catch(() => {});
+    check(await p.locator(H).count() === 0, "queue: Done takes the card off To do");
+    await R.call("/game/save", { edit_key: g.edit_key, items: [mine.items[0], Object.assign({}, mine.items[1], { q: "Which came first, really?" })].map((it) => { const o = Object.assign({}, it); delete o.image_removed; delete o.image_url; return o; }) });
+    await p.click("#refresh");
+    await p.waitForSelector(H);
+    const back = await p.textContent(H + " .qa-fresh");
+    check(/Questions 1, 2 new or changed/.test(back) && /off the list until you List it again/.test(back) && !/Report|About/.test(back), "queue: a new edit opens the card again, with only what is new (" + back + ")");
+    await shot(p, "queue-after");
+    /* More: Delete game (two taps), Block maker */
+    const G2 = '[data-card="g:anna-rossi/how-many-a-day"]';
+    await p.click(G2 + " .qa-more-zone summary");
+    await p.click(G2 + " .qa-act:text-is('Delete game')");
+    await p.click(G2 + " .qa-act:text-is('Sure? Delete game')");
+    await p.waitForFunction((h) => !document.querySelector(h), G2, { timeout: 5000 }).catch(() => {});
+    check(await p.locator(G2).count() === 0 && (await R.call("/game/mine", { edit_key: g2.edit_key })).status === 403, "queue: Delete game, two taps");
+    /* the picture check, tried from the page */
+    R.env.AI.next = "SAFE";
+    await p.click("#aitest");
+    await p.waitForFunction(() => /picture check works/.test(document.querySelector("#status").textContent), null, { timeout: 5000 }).catch(() => {});
+    check(/The picture check works\. llama-4-scout-17b-16e-instruct: said SAFE/.test(await p.textContent("#status")), "queue: Picture check says it works " + await p.textContent("#status"));
+    R.env.AI.next = new Error("5016: input not accepted");
+    await p.click("#aitest");
+    await p.waitForFunction(() => /not answering/.test(document.querySelector("#status").textContent), null, { timeout: 5000 }).catch(() => {});
+    check(/not answering.*5016/.test(await p.textContent("#status")), "queue: and says so when it does not, with the error");
+    R.env.AI.next = "SAFE";
+    await p.click("#forget");
+    await p.fill("#key", "wrong"); await p.click("#open");
+    await p.waitForSelector("#lock-err:not([hidden])");
+    check(/That key did not work/.test(await p.textContent("#lock-err")), "queue: a wrong key");
+    check(p.__errors.length === 0, "queue: no errors " + p.__errors.join(" | "));
+    await ctx.close();
+  }
+  R.close();
 }
 
 await B.close();

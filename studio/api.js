@@ -12,7 +12,7 @@
      POST /game/new   {maker_key, template, title, lang, mode, start_day, keep_answers, want_listed, terms_version} -> { slug, edit_key, code }
      POST /game/save  {edit_key, title, about, mode, start_day, keep_answers, want_listed, items: [item]}
                       a bad item: { e: "item", i, field }
-     POST /game/mine  {edit_key}     -> { game: meta, items: [item] }
+     POST /game/mine  {edit_key} or {maker_key, game}   -> { game: meta, items: [item] }   (every /game/* and /img/* call takes either)
      POST /game/delete {edit_key}
      POST /img/put    multipart {edit_key, game, file}             -> { id, url }   (after the Worker's picture check)
      POST /img/del    {edit_key, id}
@@ -102,12 +102,13 @@
     if (it.id != null) it.id = str(it.id);
     var img = r.image != null ? r.image : it.image;
     var url = str(r.image_url || "");
-    var held = !!r.image_held;
-    if (obj(img)) it.image = { id: str(img.id), url: str(img.url || url), held: !!img.held || held };
-    else if (typeof img === "string" && img && !/[:\/]/.test(img)) it.image = { id: img, url: url, held: held };
+    if (obj(img)) it.image = { id: str(img.id), url: str(img.url || url) };
+    else if (typeof img === "string" && img && !/[:\/]/.test(img)) it.image = { id: img, url: url };
     else it.image = null;
     if (it.image && !it.image.url) it.image = null;
-    delete it.image_url; delete it.img_url; delete it.img_id; delete it.image_held;
+    /* 9 Nov 2026: a picture Logicers removed: the editor says so on its question */
+    if (r.image_removed) it.image_gone = true;
+    delete it.image_url; delete it.img_url; delete it.img_id; delete it.image_held; delete it.image_removed;
     if (it.right != null && it.answer == null && Array.isArray(it.choices)) it.answer = it.right;   /* an older spelling */
     delete it.right;
     return it;
@@ -136,7 +137,7 @@
     /* the Worker's other keys (F, 8 Nov 2026) */
     later: "err.busy", not_ready: "err.busy", games_full: "err.games_cap", items_full: "err.items_cap", image_big: "err.img_big",
     image_size: "err.img_big", image_type: "err.img_type", image_full: "err.images_cap", about: "err.long", extra: "err.fix",
-    stale: "err.stale", answers_full: "site.err"
+    stale: "err.stale", answers_full: "site.err", lang: "site.err"
   };
   function errKey(r) {
     var b = (r && r.b) || {};
@@ -148,6 +149,8 @@
     return "site.err";
   }
 
+  function auth(k) { return typeof k === "string" ? { edit_key: k } : obj(k) ? (k.edit_key ? { edit_key: k.edit_key } : { maker_key: k.maker_key, game: k.game }) : {}; }
+
   window.StudioAPI = {
     meta: meta, item: item, counts: counts, errKey: errKey,
     list: function (day) { return get("/list?day=" + seg(day)); },
@@ -158,17 +161,20 @@
     makerGet: function (key) { return post("/maker/get", { key: key }); },
     gameNew: function (o) { return post("/game/new", o); },
     gameSave: function (o) { return post("/game/save", o); },
-    gameMine: function (key) { return post("/game/mine", { edit_key: key }); },
-    gameDelete: function (key) { return post("/game/delete", { edit_key: key }); },
-    gameAnswers: function (key, after) { return post("/game/answers", { edit_key: key, after: after || 0 }); },
-    imgPut: function (key, game, blob, name) {
-      var fd = new FormData();
-      fd.append("edit_key", key);
-      fd.append("game", game);
+    /* the editor's key: the game's edit key (a string), or { maker_key, game } when only the maker key is kept in this
+       browser (9 Nov 2026: a game is never lost on the browser that made it). The Worker takes either on every call. */
+    gameMine: function (k) { return post("/game/mine", auth(k)); },
+    gameDelete: function (k) { return post("/game/delete", auth(k)); },
+    gameAnswers: function (k, after) { return post("/game/answers", Object.assign(auth(k), { after: after || 0 })); },
+    imgPut: function (k, game, blob, name) {
+      var fd = new FormData(), a = auth(k);
+      if (a.edit_key) fd.append("edit_key", a.edit_key); else { fd.append("maker_key", a.maker_key); fd.append("game", a.game); }
+      if (a.edit_key) fd.append("game", game);
       fd.append("file", blob, name || "picture");
       return send("/img/put", { method: "POST", body: fd });
     },
-    imgDel: function (key, id) { return post("/img/del", { edit_key: key, id: id }); },
+    imgDel: function (k, id) { return post("/img/del", Object.assign(auth(k), { id: id })); },
+    auth: auth,
     play: function (game, item, answer, first) { return post("/play", { game: game, item: item, answer: answer, first: first !== false }); },
     keep: function (game, item, pid, name, answer) { return post("/play/keep", { game: game, item: item, pid: pid, name: name, answer: answer }); },
     report: function (game, reason, text, browser) { return post("/report", { game: game, reason: reason, text: text || "", browser: browser }); }

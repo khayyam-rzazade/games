@@ -3,7 +3,7 @@
 import { json, bad, clock, newKey, keyHash, hashReady, cleanText, linksIn, slugify, slugOk, LANGS, dayOk, utcDay, dayNum,
   playerDay, newCode, codeOk, brake, imgUrl, randomB32 } from "./util.js";
 import { one, all, run, st, makerByKey, makerBySlug, gameById, gameByCode, gameForEditor, publicState, status, isListed,
-  queueRow, capOk, deleteGame, heldImages, shownCover } from "./db.js";
+  queueRow, capOk, deleteGame, removedImages, shownCover } from "./db.js";
 import { TEMPLATES, cleanItem, itemText, itemLinks } from "./items.js";
 import { wrongKey, termsOk, makerOut, gameNumbers } from "./makers.js";
 
@@ -69,25 +69,26 @@ export async function gameNew(env, req, b) {
   return bad("busy", 503);
 }
 
-/* the editor's whole game: everything of it, with each item's counts and the game's images */
+/* the editor's whole game: everything of it, with each item's counts and the game's images. A picture Khayyam removed comes
+   without its address and with image_removed: true, so the editor can say so on its question (9 Nov 2026). */
 async function editorView(env, g, m) {
   const items = await all(env, "SELECT id, n, json FROM items WHERE game = ? ORDER BY n", g.id);
   const counts = await all(env, "SELECT item, bucket, n FROM counts WHERE game = ?", g.id);
   const images = await all(env, "SELECT id, bytes, made, verdict FROM images WHERE game = ? ORDER BY made", g.id);
-  const held = await heldImages(env, g.id);   // F: the editor shows the maker which pictures players do not see yet
+  const removed = await removedImages(env, g.id);
   const ans = await one(env, "SELECT COUNT(DISTINCT pid) AS n FROM answers WHERE game = ?", g.id);
   return {
     ok: true,
     maker: makerOut(m),
     game: Object.assign(gameNumbers(env, g, m, ans ? ans.n : 0), { about: g.about, url: gameUrl(env, g), embed_url: gameUrl(env, g) + "embed/", terms_version: g.terms_version, terms_day: g.terms_day }),
-    items: items.map((r) => { const it = withUrl(env, g, JSON.parse(r.json)); if (it.image && held.has(it.image)) it.image_held = true; return it; }),
+    items: items.map((r) => { const it = JSON.parse(r.json); const gone = it.image && removed.has(it.image); withUrl(env, g, it, removed); if (gone) it.image_removed = true; return it; }),
     counts: countsOut(counts),
-    images: images.map((x) => ({ id: x.id, url: imgUrl(env, g.id, x.id), bytes: x.bytes, made: x.made, held: held.has(x.id) })),
+    images: images.filter((x) => !removed.has(x.id)).map((x) => ({ id: x.id, url: imgUrl(env, g.id, x.id), bytes: x.bytes, made: x.made })),
   };
 }
-function withUrl(env, g, it, held) {
+function withUrl(env, g, it, removed) {
   if (!it.image) return it;
-  if (held && held.has(it.image)) { delete it.image; return it; }       // F: a picture waiting for Khayyam is not shown to players yet
+  if (removed && removed.has(it.image)) { delete it.image; return it; }      // a picture Khayyam removed is never sent
   return Object.assign(it, { image_url: imgUrl(env, g.id, it.image) });
 }
 /* counts as { itemId: { n: all plays, b: { bucket: plays } } } */
@@ -131,6 +132,7 @@ export async function gameSave(env, req, b) {
     if (about.text !== g.about) { set.about = about.text; if (about.text) q("about", { text: about.text }); }
   }
   if (b.mode !== undefined) { if (!MODES.includes(b.mode)) return bad("mode"); if (b.mode !== g.mode) set.mode = b.mode; }
+  if (b.lang !== undefined) { if (!LANGS.includes(b.lang)) return bad("lang"); if (b.lang !== g.lang) set.lang = b.lang; }   // 9 Nov 2026: the language moved to the editor
   if (b.start_day !== undefined) { if (!dayOk(b.start_day)) return bad("start_day"); if (b.start_day !== g.start_day) set.start_day = b.start_day; }
   if (b.keep_answers !== undefined) {
     if (typeof b.keep_answers !== "boolean") return bad("keep_answers");
@@ -140,7 +142,7 @@ export async function gameSave(env, req, b) {
     if (typeof b.want_listed !== "boolean") return bad("want_listed");
     if ((b.want_listed ? 1 : 0) !== g.listed) { set.listed = b.want_listed ? 1 : 0; q("game", { text: b.want_listed ? "wants to be listed" : "no longer wants to be listed" }); }
   }
-  const imgRows = await all(env, "SELECT id FROM images WHERE game = ?", g.id);
+  const imgRows = await all(env, "SELECT id FROM images WHERE game = ? AND verdict NOT IN ('removed', 'sexual')", g.id);
   const imgSet = new Set(imgRows.map((r) => r.id));
   if (b.cover !== undefined) {
     const c = b.cover === null || b.cover === "" ? null : b.cover;
@@ -247,16 +249,16 @@ export async function gamePublic(env, req, url, makerSlug, gameSlug) {
   if (now - g.last_open > 6 * 36e5) await run(env, "UPDATE games SET last_open = ? WHERE id = ?", now, g.id);
   const day = playerDay(req, url);
   const rows = await all(env, "SELECT id, json FROM items WHERE game = ? ORDER BY n", g.id);
-  const held = await heldImages(env, g.id);
+  const removed = await removedImages(env, g.id);
   const out = { ok: true, game: Object.assign(publicGame(env, g, m), { cover_url: await shownCover(env, g) }), day };
   if (g.mode === "open") {
     out.state = "open";
-    out.items = rows.map((r) => withUrl(env, g, JSON.parse(r.json), held));
+    out.items = rows.map((r) => withUrl(env, g, JSON.parse(r.json), removed));
   } else {
     const i = dayNum(day) - dayNum(g.start_day);
     if (i < 0) out.state = "soon";
     else if (i >= rows.length) out.state = "out";
-    else { out.state = "today"; out.number = i + 1; out.left = rows.length - i - 1; out.item = withUrl(env, g, JSON.parse(rows[i].json), held); }
+    else { out.state = "today"; out.number = i + 1; out.left = rows.length - i - 1; out.item = withUrl(env, g, JSON.parse(rows[i].json), removed); }
   }
   const want = url.searchParams.get("counts");
   if (want && rows.some((r) => r.id === want)) {

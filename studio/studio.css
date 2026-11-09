@@ -518,3 +518,51 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--c); }
 :is(.st-main, dialog) input[type="checkbox"]:not([role="switch"]):checked::after { opacity: 1; transform: none; }
 :is(.st-main, dialog) input[type="checkbox"]:not([role="switch"]):focus-visible, .ed-switch input:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
 @media (prefers-color-scheme: dark) { :is(.st-main, dialog) input[type="checkbox"]:not([role="switch"]) { background: rgba(255, 255, 255, .06); } }
+
+/* ---------- 9 Nov 2026: the fix round ---------- */
+/* /new/: the maker's own games first, each a full-width row; then a short form */
+.ed-h1s { margin-top: 0; font-size: clamp(1.6rem, 6vw, 2.1rem); }
+.ed-h2new { margin-top: 26px; font-size: clamp(1.35rem, 5vw, 1.7rem); }
+.ed-mine { gap: 8px; margin-top: 14px; }
+.ed-mine li { display: block; min-height: 0; padding: 0; background: none; }
+.ed-mine-row { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 10px 10px 10px 16px; border-radius: 16px; background: var(--bg); color: inherit; text-decoration: none;
+  transition: transform var(--m-fast) var(--e-spring), background-color var(--m-fast) var(--e-out); -webkit-tap-highlight-color: transparent; }
+.ed-mine-row:hover { background: color-mix(in srgb, var(--c) 7%, var(--bg)); }
+.ed-mine-row:active { transform: scale(.985); }
+.ed-mine-row:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.ed-mine-t { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.ed-mine-t b { font-weight: 800; font-size: 1.02rem; line-height: 1.25; overflow-wrap: anywhere; }
+.ed-mine-row .chip { flex: none; min-height: 40px; background: var(--card); box-shadow: var(--shadow); font-weight: 800; }
+@media (prefers-color-scheme: dark) { .ed-mine-row { background: rgba(255, 255, 255, .05); } .ed-mine-row .chip { box-shadow: inset 0 0 0 1px var(--line); } }
+.ed-go { width: 100%; min-height: 54px; font-size: 1.05rem; }
+.ed-later { margin-top: 10px; text-align: center; }
+.ed-terms-l { margin-top: 6px; padding-left: 34px; }
+.ed-gone { margin-top: 8px; padding: 10px 14px; border-radius: 14px; background: color-mix(in srgb, var(--miss) 22%, var(--card)); font-weight: 700; font-size: 0.95rem; }
+.ed-img-note { color: var(--bad, #B3261E); font-weight: 700; }
+@media (prefers-color-scheme: dark) { .ed-img-note { color: var(--bad, #FF8F86); } }
+
+/* keep your edit link: this browser already keeps it, the sheet is for other devices */
+.kp-here { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 7px 14px 7px 10px; border-radius: 999px;
+  background: color-mix(in srgb, var(--ok) 16%, var(--card)); color: var(--ink); font-weight: 800; font-size: 0.95rem; }
+.kp-here svg { width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: var(--ok); color: var(--on-ok, #fff); }
+.kp .quiet { margin-top: 10px; }
+
+/* embed: one line, three numbered steps */
+.st-what { margin-top: 2px; font-size: 1.05rem; line-height: 1.4; color: var(--soft); }
+.st-steps { list-style: none; counter-reset: st-step; margin: 16px 0 0; padding: 0; display: grid; gap: 14px; }
+.st-steps > li { counter-increment: st-step; position: relative; padding-left: 44px; min-height: 30px; }
+.st-steps > li::before { content: counter(st-step); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--tint); color: var(--c); font-family: var(--display); font-weight: 800; font-size: 0.98rem; }
+.st-steps > li > p { font-weight: 700; line-height: 1.35; padding-top: 3px; }
+.st-steps .st-snippet { margin-top: 10px; }
+.st-copycode { width: 100%; margin-top: 10px; }
+.st-copylink { margin-top: 10px; min-height: 44px; font-weight: 800; }
+
+/* the "?" of a game */
+.st-help { font-weight: 800; }
+.st-how { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
+.st-how li { position: relative; padding-left: 26px; font-size: 1.04rem; line-height: 1.4; font-weight: 600; }
+.st-how li::before { content: ""; position: absolute; left: 4px; top: 0.5em; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.st-how-about { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.st-how-about .st-lab { margin-top: 0; color: var(--soft); }
+.st-how-about .st-about { margin-top: 6px; padding: 0; background: none; box-shadow: none; font-size: 1rem; }

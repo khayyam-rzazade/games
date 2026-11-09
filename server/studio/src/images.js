@@ -5,10 +5,10 @@
    JPEG APP1/APP3-13/APP15 and comments, WebP EXIF and XMP chunks). Then the AI check: a vision model of Workers AI
    labels it SAFE, FLAG (fine for a lesson but worth a look: art nudity, violence, a hate symbol in a history picture)
    or SEXUAL. Only SEXUAL is refused; everything else is stored, shown at once, and put in Khayyam's queue with its
-   label. When the model cannot answer (the day's free allowance spent, an error), the picture is stored too and the
-   queue says "not checked". Cloudflare's CSAM Scanning Tool, turned on for the zone (README), scans what is served.
+   label. When the model cannot answer (the day's free allowance spent, an error), the picture is stored and shown too and
+   the queue says "not checked". Khayyam's Remove in the queue takes a picture away (db.js removeImage). Cloudflare's CSAM Scanning Tool, turned on for the zone (README), scans what is served.
    Stored in R2 under "<maker>/<game>/<id>", served by this Worker at /i/<maker>/<game>/<id> (imgGet). */
-import { json, bad, clock, randomB32, brake, imgUrl, IMAGE_ID, SHOWN } from "./util.js";
+import { json, bad, clock, randomB32, brake, imgUrl, IMAGE_ID, shown } from "./util.js";
 import { one, all, run, st, gameForEditor, queueRow, capOk } from "./db.js";
 import { wrongKey } from "./makers.js";
 
@@ -110,27 +110,68 @@ function b64(bytes) {
   for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
   return btoa(s);
 }
+/* what a model said, as one of the three words: the reply's text wherever the model put it (response as text or as an
+   object, OpenAI-style choices); then its first word, or the one word of the three in a reply of at most three words, so
+   "**SAFE**", "Safe." or "Label: SAFE" count, and "I think this is SEXUAL content" does not: only a clear word refuses a
+   picture (9 Nov 2026: before, only a reply that began with the word counted). -> "safe" | "flag" | "sexual" | null */
+export function replyText(r) {
+  if (r == null) return "";
+  if (typeof r === "string") return r;
+  const c = r.choices && r.choices[0];
+  const v = r.response !== undefined ? r.response : c && c.message ? c.message.content : c && c.text !== undefined ? c.text : r.result ? replyText(r.result) : r.output_text;
+  if (typeof v === "string") return v;
+  if (Array.isArray(v)) return v.map((x) => (typeof x === "string" ? x : x && (x.text || x.content) || "")).join(" ");
+  return v == null ? "" : JSON.stringify(v);
+}
+export function verdictOf(text) {
+  const words = String(text || "").slice(0, 200).match(/[A-Za-z]+/g) || [];
+  const isOne = (w) => /^(sexual|flag|safe)$/i.test(w);
+  if (words.length && isOne(words[0])) return words[0].toLowerCase();
+  const hits = words.filter(isOne).map((w) => w.toLowerCase());
+  return words.length <= 3 && hits.length === 1 ? hits[0] : null;
+}
+function modelsOf(env) { return String(env.IMAGE_CHECK_MODEL || DEFAULT_MODEL).split(/[\s,]+/).filter(Boolean).slice(0, 2); }
+/* one model asked about one picture. The instructions ride in the user's text next to the picture (some vision models of
+   Workers AI do not take a system message together with an image); Llama 3.2 Vision takes the picture as `image`. */
+async function askModel(env, model, uri) {
+  const ask = PROMPT + " Label this picture.";
+  const input = /llama-3\.2-11b-vision/.test(model)
+    ? { messages: [{ role: "user", content: ask }], image: uri, max_tokens: 10, temperature: 0 }
+    : { messages: [{ role: "user", content: [{ type: "text", text: ask }, { type: "image_url", image_url: { url: uri } }] }], max_tokens: 10, temperature: 0 };
+  return env.AI.run(model, input);
+}
 /* -> "safe" | "flag" | "sexual" | "none" (not checked). IMAGE_CHECK_MODEL may name two models, the second asked only when
    the first gives no clear word (a model that cannot read the picture, or is busy). */
 export async function aiCheck(env, bytes, type) {
   if (!env.AI) return "none";
-  const models = String(env.IMAGE_CHECK_MODEL || DEFAULT_MODEL).split(/[\s,]+/).filter(Boolean).slice(0, 2);
   const uri = "data:" + (type === "webp" ? "image/webp" : "image/jpeg") + ";base64," + b64(bytes);
-  for (const model of models) {
+  for (const model of modelsOf(env)) {
     let r;
-    try {
-      const input = /llama-3\.2-11b-vision/.test(model)
-        ? { messages: [{ role: "system", content: PROMPT }, { role: "user", content: "Label this picture." }], image: uri, max_tokens: 4, temperature: 0 }
-        : { messages: [{ role: "system", content: PROMPT }, { role: "user", content: [{ type: "text", text: "Label this picture." }, { type: "image_url", image_url: { url: uri } }] }], max_tokens: 4, temperature: 0 };
-      r = await env.AI.run(model, input);
-    } catch (x) { continue; }
-    const text = String((r && (r.response || (r.choices && r.choices[0] && r.choices[0].message && r.choices[0].message.content) || (r.result && r.result.response))) || "");
-    const w = (/[A-Za-z]+/.exec(text) || [""])[0].toUpperCase();
-    if (w === "SEXUAL") return "sexual";
-    if (w === "FLAG") return "flag";
-    if (w === "SAFE") return "safe";
+    try { r = await askModel(env, model, uri); } catch (x) { continue; }
+    const v = verdictOf(replyText(r));
+    if (v) return v;
   }
   return "none";
+}
+/* Khayyam's test of the check on Cloudflare (POST /admin/ai, 9 Nov 2026): each model asked about a small plain picture,
+   with what it said or the error, and how long it took. Nothing is stored. */
+export const PROBE_JPEG = "/9j/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABgAGADASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAMFBgT/xAAoEAABBAADBwUBAAAAAAAAAAAAAQIDBBESQQUGIVFhcYETIjEy8dH/xAAaAQEAAwEBAQAAAAAAAAAAAAAAAQUGAgQH/8QAIhEAAgIBAwQDAAAAAAAAAAAAAAECEQMEBSESFDGhUcHR/9oADAMBAAIRAxEAPwDXAAuCnAAAABDatQ067rFh+SNmGZ2CrhiuGnchtJWyUm3SJgQ1bUNyu2xXfnjfjldgqY4Lhr2JgmmrQaadMAAkgAAAAAAAENqwypWfPJ9WJj36ENpK2dRi5SUY+WLFqCpH6k8iMb11M5tzbsN3Z01WCGRc+X3Lw+HIvx4K25cmvWFmmdiq/CaNTkhAUGo3Cc7jDhGy0mw4oRUsruXpfpc7D27DS2dDVnhkTJm9ycflyr8eTR17UFuP1IJEe3pp3MGT07k1Gwk0LsObdHJyUafcJwqM+UNXsOKcXLE6l6f4bsENWwy3WZPH9Xpj26Exfppq0Y2UXGTjLygACTkAAAFFvRKra0EKLwe5VXx+l6UW9ESurQTInBjlRfP4eTW328qLPaenvcfV8/Tr2ZoAGXPogAABpd15VdWmiVeDHIqefwvSi3XiVtaaZU4PciJ4/S9NRor7eNnzvdunvcnT8/Sv2AAesrAAAAQ2q7LdZ8En1emHbqTAhpNUzqMnGSlHyjC3Kc1GwsMzeztHJzQ5zeWKsFuP0540e3roVEu68DnYxWHsTk5ub+FDm23InePlGy0m/YZRSz8P0Zo6KdOa9YSGFvd2jU5qXsW68DXYzWHvTk1Mv9LevVgqR+nBGjG9Ne4w7bkbvJwhq9+wxi1g5foVa7KlZkEf1YmHfqTAF8kkqRjZScpOUvLAAJOTGAAyJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/9k=";   // 96x96: an apple on grass under a sky
+export async function aiProbe(env) {
+  const models = modelsOf(env);
+  if (!env.AI) return { ai: false, models: models.map((model) => ({ model, ok: false, error: "no AI binding" })) };
+  const uri = "data:image/jpeg;base64," + PROBE_JPEG, out = [];
+  for (const model of models) {
+    const t0 = Date.now();
+    try {
+      const r = await askModel(env, model, uri);
+      const text = replyText(r).replace(/\s+/g, " ").trim().slice(0, 120);
+      const v = verdictOf(text);
+      out.push({ model, ok: !!v, word: v, said: text, ms: Date.now() - t0 });
+    } catch (x) {
+      out.push({ model, ok: false, error: String(x && x.message || x).slice(0, 200), ms: Date.now() - t0 });
+    }
+  }
+  return { ai: true, works: out.some((x) => x.ok), models: out };
 }
 
 /* ---- the routes ---- */
@@ -175,11 +216,11 @@ export async function imgPut(env, req) {
     await run(env, "DELETE FROM images WHERE id = ?", id);
     return bad("busy", 503);
   }
-  return json({ ok: true, id, url, w: c.w, h: c.h, bytes: c.bytes.length, held: !SHOWN.includes(verdict) });
+  return json({ ok: true, id, url, w: c.w, h: c.h, bytes: c.bytes.length, held: false });   // held: old editors read it; never true now
 }
 
-/* GET /i/<maker>/<game>/<id> (F, 8 Nov 2026): a picture, only while its game is public and its check let it through.
-   A hidden, blocked or deleted game's pictures answer 410 at once; a held one 404. An hour in a browser's cache, no longer. */
+/* GET /i/<maker>/<game>/<id> (F, 8 Nov 2026): a picture, only while its game is public. A hidden, blocked or deleted game's
+   pictures answer 410 at once; a removed one 404. An hour in a browser's cache, no longer. */
 export async function imgGet(env, req, gameId, id) {
   if (!brake("img_get", req, 6000, 6e5)) return bad("later", 429);
   if (!IMAGE_ID.test(id)) return bad("not_found", 404);
@@ -187,7 +228,7 @@ export async function imgGet(env, req, gameId, id) {
   const m = g ? await one(env, "SELECT * FROM makers WHERE slug = ?", g.maker) : null;
   if (!g || g.hidden || !m || m.blocked) return bad("gone", 410);
   const im = await one(env, "SELECT key, verdict FROM images WHERE id = ? AND game = ?", id, g.id);
-  if (!im || !SHOWN.includes(im.verdict) || !env.IMG) return bad("not_found", 404);
+  if (!im || !shown(im.verdict) || !env.IMG) return bad("not_found", 404);
   const obj = await env.IMG.get(im.key);
   if (!obj) return bad("not_found", 404);
   const h = new Headers({ "Content-Type": id.endsWith(".webp") ? "image/webp" : "image/jpeg", "Cache-Control": "public, max-age=3600",

@@ -2,7 +2,7 @@
    The tables make themselves on the first request, as in the other Workers, so deploying needs no SQL; schema.sql
    is the same text, written out for reading. A game's id is "<maker slug>/<game slug>": both slugs are fixed for
    life (a maker may change the name shown, a game its title; the addresses never change). */
-import { keyHash, keyOk, codeOk, clock, imgUrl, SHOWN } from "./util.js";
+import { keyHash, keyOk, codeOk, clock, imgUrl, shown } from "./util.js";
 
 export const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS makers (
@@ -143,14 +143,30 @@ export async function r2Delete(env, keys) {
   }
 }
 
-/* a game's cover for the public (F, 8 Nov 2026): its URL only when the check let it through or Khayyam showed it */
+/* a game's cover for the public (F, 8 Nov 2026): its URL unless the picture was removed */
 export async function shownCover(env, g) {
   if (!g || !g.cover) return null;
   const im = await one(env, "SELECT verdict FROM images WHERE id = ? AND game = ?", g.cover, g.id);
-  return im && SHOWN.includes(im.verdict) ? imgUrl(env, g.id, g.cover) : null;
+  return im && shown(im.verdict) ? imgUrl(env, g.id, g.cover) : null;
 }
-/* the pictures of a game players may not see yet: a Set of ids */
-export async function heldImages(env, gameId) {
-  const rows = await all(env, "SELECT id FROM images WHERE game = ? AND verdict NOT IN ('safe', 'passed')", gameId);
+/* the pictures of a game players never see (9 Nov 2026: only the ones Khayyam removed, or a later check found sexual): a Set of ids */
+export async function removedImages(env, gameId) {
+  const rows = await all(env, "SELECT id FROM images WHERE game = ? AND verdict IN ('removed', 'sexual')", gameId);
   return new Set(rows.map((r) => r.id));
+}
+/* a picture taken away (Khayyam's Remove in the queue, or the nightly check found it sexual): its bytes go from R2 at once,
+   the row stays as "removed" so the maker's editor says "Logicers removed this picture" on the question that held it; when
+   no question uses it any more, the nightly sweep deletes the row. A cover that was this picture is cleared. -> the row or null */
+export async function removeImage(env, id, why) {
+  const im = await one(env, "SELECT * FROM images WHERE id = ?", id);
+  if (!im) return null;
+  const now = clock();
+  await env.DB.batch([
+    st(env, "UPDATE images SET verdict = 'removed', bytes = 0 WHERE id = ?", id),
+    st(env, "UPDATE games SET cover = NULL WHERE id = ? AND cover = ?", im.game, id),
+    st(env, "INSERT INTO queue (kind, maker, game, text, image, made, done, done_at) VALUES ('act', ?, ?, ?, ?, ?, 1, ?)",
+      im.maker, im.game, "remove_image" + (why ? ": " + why : ""), id, now, now),
+  ]);
+  await r2Delete(env, [im.key]);
+  return im;
 }

@@ -29,7 +29,8 @@
      POST /play         { game, item, answer }                              -> { bucket, counts: { n, b } }
      POST /play/keep    { game, item, pid, name, answer }                   -> { kept }
      POST /report       { game, reason, text?, browser? }                   -> {}
-     POST /admin/queue  { key, before?, all? }    POST /admin/act { key, game, action, id?, maker? }     (ADMIN_KEY)
+     POST /admin/queue  { key, before?, all? }    POST /admin/act { key, game, action, id?, maker?, image? }     (ADMIN_KEY)
+     POST /admin/game   { key, game | maker }     POST /admin/ai  { key }   POST /admin/img { key, image }
      GET  /g/<maker>/<game>?day=YYYY-MM-DD&counts=<item>   a game: meta; today's item (daily) or all items (open)
      GET  /m/<maker>    a maker's page        GET /list?lang=&from=&n=   the directory        GET /code/<CODE>
      GET  /oembed?url=&format=json            GET /health
@@ -42,7 +43,7 @@ import { makerNew, makerEdit, makerGet, makerDelete, makerPublic } from "./maker
 import { gameNew, gameSave, gameMine, gameDelete, gameAnswers, gamePublic, listPublic, codePublic } from "./games.js";
 import { imgPut, imgDel, imgGet, DEFAULT_MODEL } from "./images.js";
 import { play, playKeep, report } from "./play.js";
-import { adminQueue, adminAct, adminImg } from "./admin.js";
+import { adminQueue, adminAct, adminImg, adminGame, adminAi } from "./admin.js";
 import { oembed } from "./oembed.js";
 import { servePage } from "./shell.js";
 import { nightly } from "./cron.js";
@@ -53,7 +54,7 @@ const POSTS = {
   "/maker/new": makerNew, "/maker/edit": makerEdit, "/maker/get": makerGet, "/maker/delete": makerDelete,
   "/game/new": gameNew, "/game/save": gameSave, "/game/mine": gameMine, "/game/delete": gameDelete, "/game/answers": gameAnswers,
   "/img/del": imgDel, "/play": play, "/play/keep": playKeep, "/report": report,
-  "/admin/queue": adminQueue, "/admin/act": adminAct, "/admin/img": adminImg,
+  "/admin/queue": adminQueue, "/admin/act": adminAct, "/admin/img": adminImg, "/admin/game": adminGame, "/admin/ai": adminAi,
 };
 
 /* which browser pages may call: logicers.com (My Logicers, our games), by.logicers.com (the Studio); ALLOW_ORIGINS adds
@@ -110,7 +111,7 @@ async function handle(req, env, ctx) {
   if ((m = /^\/m\/([a-z0-9-]{1,40})\/?$/.exec(path))) { await ensure(env); return withCors(await makerPublic(env, req, m[1]), null, true); }
   if ((m = /^\/i\/([a-z0-9-]{1,40}\/[a-z0-9-]{1,40})\/([a-z0-9.]{1,20})$/.exec(path))) { await ensure(env); return await imgGet(env, req, m[1], m[2]); }   // a picture (F)
   if ((m = /^\/code\/([A-Za-z]{6})\/?$/.exec(path))) { await ensure(env); return withCors(await codePublic(env, req, m[1]), null, true); }
-  if (/^\/(g|m|i|code|maker|game|img|play|report|admin\/(queue|act|img))(\/|$)/.test(path) && !/^\/admin\/?$/.test(path)) return bad("not_found", 404);
+  if (/^\/(g|m|i|code|maker|game|img|play|report|admin\/(queue|act|img|game|ai))(\/|$)/.test(path) && !/^\/admin\/?$/.test(path)) return bad("not_found", 404);
   await ensure(env);
   return servePage(env, req, url);
 }

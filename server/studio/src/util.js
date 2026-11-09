@@ -212,10 +212,13 @@ export function playerDay(req, url) {
 }
 
 /* ---- images: R2 key "<maker>/<game>/<id>", served by this Worker at by.logicers.com/i/<maker>/<game>/<id> (F, 8 Nov 2026:
-   not from the bucket's own domain, so a hidden or blocked game's pictures stop at once, and a picture the check was not sure
-   of waits for Khayyam). SHOWN: the verdicts players see; "flag" and "none" (not checked) wait for Khayyam's "Show it". ---- */
+   not from the bucket's own domain, so a hidden or blocked game's pictures stop at once).
+   9 Nov 2026 (Khayyam): a picture is shown at once whatever the check said ("safe", "flag", "none" = not checked; "passed" from
+   before); only "sexual" is refused at upload, and "removed" is a picture Khayyam took away in the queue (its bytes are gone,
+   the row stays so the maker's editor can say so). UNSHOWN: the two verdicts players never see. ---- */
 export const IMAGE_ID = /^[a-z0-9]{12}\.(jpg|webp)$/;
-export const SHOWN = ["safe", "passed"];
+export const UNSHOWN = ["sexual", "removed"];
+export const shown = (verdict) => !UNSHOWN.includes(verdict);
 export function imgUrl(env, gameId, imageId) {
   return imageId ? String(env.IMG_BASE || "https://by.logicers.com/i").replace(/\/+$/, "") + "/" + gameId + "/" + imageId : null;
 }

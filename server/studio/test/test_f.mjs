@@ -13,38 +13,31 @@ async function upload(e, g, verdict) {
   assert.equal(r.status, 200, r.text); return r.json;
 }
 
-test("pictures: served by the Worker only while shown; held until Khayyam shows them; gone with a hidden game", async () => {
+test("pictures: served by the Worker and shown at once whatever the check said; gone with a hidden game (9 Nov 2026)", async () => {
   setNow(T0); resetBrakes();
   const e = env(); const a = await maker(e); const g = await game(e, a, { template: "picture", mode: "open" });
   const safe = await upload(e, g, "SAFE"), flag = await upload(e, g, "FLAG"), none = await upload(e, g, new Error("allowance spent"));
   assert.equal(safe.url, "https://by.logicers.com/i/anna-rossi/history-a-day/" + safe.id);
-  assert.deepEqual([safe.held, flag.held, none.held], [false, true, true]);
+  assert.deepEqual([safe.held, flag.held, none.held], [false, false, false]);
   let r = await call(e, "GET", "/i/anna-rossi/history-a-day/" + safe.id);
   assert.equal(r.status, 200); assert.equal(r.headers.get("content-type"), "image/jpeg"); assert.equal(r.headers.get("cache-control"), "public, max-age=3600");
-  assert.equal((await call(e, "GET", "/i/anna-rossi/history-a-day/" + flag.id)).status, 404, "a flagged picture waits");
-  assert.equal((await call(e, "GET", "/i/anna-rossi/history-a-day/" + none.id)).status, 404, "a picture not checked waits");
+  assert.equal((await call(e, "GET", "/i/anna-rossi/history-a-day/" + flag.id)).status, 200, "a flagged picture shows");
+  assert.equal((await call(e, "GET", "/i/anna-rossi/history-a-day/" + none.id)).status, 200, "a picture not checked shows");
   assert.equal((await call(e, "GET", "/i/anna-rossi/history-a-day/../x")).status, 404);
-  // the public game leaves a held picture out; the editor keeps it
   r = await save(e, g, { items: [{ form: "pick", image: safe.id, q: "What is it?", choices: ["A", "B"], answer: 0 }, { form: "pick", image: flag.id, q: "And this?", choices: ["A", "B"], answer: 1 }], cover: flag.id });
   assert.equal(r.status, 200, r.text);
   r = await call(e, "GET", "/g/anna-rossi/history-a-day?day=2026-11-08");
-  assert.ok(r.json.items[0].image_url && !r.json.items[1].image_url && !r.json.items[1].image, "held picture left out");
-  assert.equal(r.json.game.cover_url, null, "a held cover is not shown");
-  r = await call(e, "GET", "/anna-rossi/history-a-day/");
-  assert.ok(!r.text.includes(flag.id), "nor in the preview");
-  // Khayyam sees held pictures in his queue and shows one
+  assert.ok(r.json.items[0].image_url && r.json.items[1].image_url, "both pictures go to players");
+  assert.ok(r.json.game.cover_url, "the cover too");
   r = await call(e, "POST", "/admin/img", { key: ADMIN, image: "https://by.logicers.com/i/anna-rossi/history-a-day/" + flag.id });
   assert.equal(r.status, 200); assert.equal(r.headers.get("x-verdict"), "flag");
   assert.equal((await call(e, "POST", "/admin/img", { key: "wrong", image: flag.id })).status, 404);
-  r = await call(e, "POST", "/admin/act", { key: ADMIN, action: "show_image", image: flag.id });
-  assert.equal(r.status, 200, r.text);
-  assert.equal((await call(e, "GET", "/i/anna-rossi/history-a-day/" + flag.id)).status, 200, "shown now");
-  // hidden: every picture of the game stops at once
+  assert.equal((await call(e, "POST", "/admin/act", { key: ADMIN, action: "show_image", image: flag.id })).json.e, "action", "no Show it any more");
   await call(e, "POST", "/admin/act", { key: ADMIN, game: "anna-rossi/history-a-day", action: "hide" });
   assert.equal((await call(e, "GET", "/i/anna-rossi/history-a-day/" + safe.id)).status, 410);
 });
 
-test("the nightly job asks again about pictures not checked", async () => {
+test("the nightly job asks again about pictures not checked; a sexual one is removed, and the maker is told", async () => {
   setNow(T0); resetBrakes();
   const e = env(); const a = await maker(e); const g = await game(e, a, { template: "picture" });
   const none = await upload(e, g, new Error("busy")), none2 = await upload(e, g, new Error("busy"));
@@ -55,9 +48,14 @@ test("the nightly job asks again about pictures not checked", async () => {
   assert.equal((await one(e, "SELECT verdict FROM images WHERE id = ?", none.id)).verdict, "safe");
   const g2 = await game(e, a, { template: "picture", title: "Second" });
   const bad = await upload(e, g2, new Error("busy"));
+  await save(e, g2, { items: [{ form: "pick", image: bad.id, q: "What?", choices: ["A", "B"], answer: 0 }] });
   setNow(T0 + 4 * 36e5); e.AI.next = "SEXUAL";
   res = await _test.nightly(e);
-  assert.equal(await one(e, "SELECT id FROM images WHERE id = ?", bad.id), null, "a sexual one is deleted");
+  assert.equal((await one(e, "SELECT verdict FROM images WHERE id = ?", bad.id)).verdict, "removed", "a sexual one is removed");
+  assert.equal([...e.IMG.objects.keys()].some((k) => k.endsWith(bad.id)), false, "its bytes are gone");
+  assert.equal((await call(e, "GET", "/i/anna-rossi/second/" + bad.id)).status, 404);
+  const mine = await call(e, "POST", "/game/mine", { edit_key: g2.edit_key });
+  assert.equal(mine.json.items[0].image_removed, true, "the editor says so");
   assert.ok(none2);
 });
 

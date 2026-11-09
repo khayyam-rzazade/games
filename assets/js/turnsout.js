@@ -796,7 +796,7 @@
      ------------------------------------------------------------------ */
   /* the embed words, with the English as a fallback while a language file has not been rebuilt with them */
   function embedWords(key) {
-    var en = { "embed.button": "Embed", "embed.copied": "Copied. In Moodle: add a Page, switch to code view, paste.", "embed.powered": "powered by Logicers" };
+    var en = { "embed.button": "Embed", "embed.powered": "powered by Logicers" };
     return T.has && T.has(key) ? T(key) : en[key];
   }
   function fullPage() { return String(window.location.href).split(/[?#]/)[0].replace(/index\.html$/, ""); }
@@ -811,24 +811,62 @@
     var title = (G ? G.name + " · " : "") + "Logicers";
     return '<iframe src="' + fullPage() + '?embed=1" width="100%" height="600" loading="lazy" allow="clipboard-write" style="border:0;border-radius:24px" title="' + esc(title) + '"></iframe>';
   }
+  /* 9 Nov 2026 (Khayyam could not tell what Embed is): the button opens a small panel: what it is, in one line, then how, in
+     three short steps, with the code and the link to copy. Its words are here in the six languages until they are moved
+     into the strings doc (a built language file that has them wins: T.has). */
+  var EMBED_WORDS = {
+    en: { what: "Put this game on your own page, like a video.", s1: "Copy the code.", s2: "In Moodle or any site, switch to code view and paste.", s3: "In WordPress, just paste the game’s link.", code: "Copy the code", link: "Copy the link", done: "Copied" },
+    it: { what: "Metti questo gioco nella tua pagina, come un video.", s1: "Copia il codice.", s2: "Su Moodle o su qualsiasi sito, apri il codice sorgente e incolla.", s3: "Su WordPress, incolla solo il link del gioco.", code: "Copia il codice", link: "Copia il link", done: "Copiato" },
+    tr: { what: "Bu oyunu kendi sayfana koy, bir video gibi.", s1: "Kodu kopyala.", s2: "Moodle’da ya da başka bir sitede kaynak kodu aç ve yapıştır.", s3: "WordPress’te oyunun bağlantısını yapıştırman yeter.", code: "Kodu kopyala", link: "Bağlantıyı kopyala", done: "Kopyalandı" },
+    es: { what: "Pon este juego en tu propia página, como un vídeo.", s1: "Copia el código.", s2: "En Moodle o en cualquier sitio, abre el código fuente y pega.", s3: "En WordPress, solo pega el enlace del juego.", code: "Copiar el código", link: "Copiar el enlace", done: "Copiado" },
+    pt: { what: "Coloque este jogo na sua página, como um vídeo.", s1: "Copie o código.", s2: "No Moodle ou em qualquer site, abra o código-fonte e cole.", s3: "No WordPress, é só colar o link do jogo.", code: "Copiar o código", link: "Copiar o link", done: "Copiado" },
+    fr: { what: "Mets ce jeu sur ta propre page, comme une vidéo.", s1: "Copie le code.", s2: "Dans Moodle ou sur n’importe quel site, ouvre le code source et colle.", s3: "Dans WordPress, colle simplement le lien du jeu.", code: "Copier le code", link: "Copier le lien", done: "Copié" }
+  };
+  function embedSay(k) {
+    var key = "embed." + k;
+    try { if (T.has && T.has(key)) return T(key); } catch (e) { /* the words below */ }
+    var l = String(document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+    return (EMBED_WORDS[l] || EMBED_WORDS.en)[k] || EMBED_WORDS.en[k];
+  }
   function embedButton(o) {
     var box = el("div", "fin-embed-box");
     var b = el("button", "fin-embed");
     b.type = "button";
     b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 3.5 12l5 5"/><path d="M15.5 7l5 5-5 5"/></svg>';   // F: a chip with its icon, not underlined text
     b.appendChild(document.createTextNode(embedWords("embed.button")));
-    var hint = el("p", "fin-embed-hint");
-    hint.hidden = true;
-    hint.setAttribute("role", "status");
-    b.addEventListener("click", function () {
-      count_("embed/copy" + (o && o.game ? "/" + o.game : ""));
-      copyText(embedSnippet(o)).then(function (done) {
-        hint.textContent = done ? embedWords("embed.copied") : T("share.copy_failed");
-        hint.hidden = false;
+    b.setAttribute("aria-expanded", "false");
+    var panel = el("div", "fin-embed-panel");
+    panel.hidden = true;
+    panel.id = "fin-embed-panel";
+    b.setAttribute("aria-controls", panel.id);
+    panel.appendChild(el("p", "fin-embed-what", embedSay("what")));
+    var steps = el("ol", "fin-embed-steps");
+    var status = el("p", "fin-embed-hint");
+    status.setAttribute("role", "status");
+    function copyBtn(label, cls, text, what) {
+      var c = el("button", cls, label);
+      c.type = "button";
+      c.addEventListener("click", function () {
+        count_("embed/" + what + (o && o.game ? "/" + o.game : ""));
+        copyText(text()).then(function (done) { status.textContent = done ? embedSay("done") : T("share.copy_failed"); });
       });
+      return c;
+    }
+    var s1 = el("li"); s1.appendChild(el("span", "", embedSay("s1"))); s1.appendChild(copyBtn(embedSay("code"), "fin-embed-copy", function () { return embedSnippet(o); }, "copy"));
+    var s2 = el("li"); s2.appendChild(el("span", "", embedSay("s2")));
+    var s3 = el("li"); s3.appendChild(el("span", "", embedSay("s3"))); s3.appendChild(copyBtn(embedSay("link"), "fin-embed-link", fullPage, "link"));
+    steps.appendChild(s1); steps.appendChild(s2); steps.appendChild(s3);
+    panel.appendChild(steps);
+    panel.appendChild(status);
+    b.addEventListener("click", function () {
+      var open = panel.hidden;
+      panel.hidden = !open;
+      b.setAttribute("aria-expanded", String(open));
+      status.textContent = "";
+      if (open) count_("embed/open" + (o && o.game ? "/" + o.game : ""));
     });
     box.appendChild(b);
-    box.appendChild(hint);
+    box.appendChild(panel);
     return box;
   }
   var embedSent = -1, embedLog = [], embedTimer = 0;

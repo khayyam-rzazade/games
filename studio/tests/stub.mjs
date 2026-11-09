@@ -47,12 +47,17 @@ export function makeDB(today) {
   game(anna, { title: "Not yet", template: "pick", start_day: dayFrom(t0 + 3), items: three({ q: "x", choices: ["a", "b"], answer: 0 }) });
   game(anna, { title: "Ran out", template: "pick", start_day: dayFrom(t0 - 10), items: three({ q: "x", choices: ["a", "b"], answer: 0 }) });
   game(anna, { title: "In Italiano", template: "pick", lang: "it", items: three({ q: "Chi?", choices: ["a", "b"], answer: 0 }) });
+  /* 9 Nov 2026: a picture Logicers removed in the queue (the Worker sends the question without it, and image_removed) */
+  game(anna, { title: "Lost picture", template: "picture", listed: false, items: three({ form: "pick", q: "Which bridge is this?", choices: ["Rialto", "Ponte Vecchio"], answer: 0, image: "gone-picture" }) });
   db.seedImg = img;
   return db;
 }
 
 function status(g) { return g.hidden ? "hidden" : !g.want_listed ? "private" : g.listed ? "listed" : "waiting"; }
-function imgOut(it) { return it.image ? { ...it, image_url: "/i/" + (it.image === "seedimg" ? "anna-rossi/seed/one" : it.image) } : { ...it }; }   // F: pictures come from the Worker's /i/
+function imgOut(it) {   // F: pictures come from the Worker's /i/; 9 Nov 2026: one Logicers removed comes without its address
+  if (it.image && it.image === "gone-picture") { const o = { ...it, image_removed: true }; delete o.image; return o; }
+  return it.image ? { ...it, image_url: "/i/" + (it.image === "seedimg" ? "anna-rossi/seed/one" : it.image) } : { ...it };
+}
 function metaOf(db, g, withAbout) {
   const mk = db.makers[g.maker];
   const out = { id: g.maker + "/" + g.slug, maker: { slug: g.maker, name: mk.name }, slug: g.slug, title: g.title, template: g.template, lang: g.lang, mode: g.mode, start_day: g.start_day,
@@ -110,7 +115,8 @@ export function startStudio({ root, port = 0, today }) {
           const raw = await body(req);
           const fd = await new Request("http://x/", { method: "POST", headers: { "content-type": req.headers["content-type"] }, body: raw }).formData();
           const key = fd.get("edit_key"), slug = fd.get("game"), file = fd.get("file");
-          const g = Object.values(db.games).find((x) => x.edit_key === key && x.slug === slug);
+          const mk = fd.get("maker_key") ? Object.values(db.makers).find((x) => x.key === fd.get("maker_key")) : null;
+          const g = key ? Object.values(db.games).find((x) => x.edit_key === key && x.slug === slug) : mk ? db.games[mk.slug + "/" + slug] : null;   // 9 Nov 2026: the maker key works too
           if (!g) return send(res, 403, { e: "bad_key" });
           if (!file || !/^image\/(jpeg|webp|png)$/.test(file.type)) return send(res, 400, { e: "bad_type" });
           const buf = Buffer.from(await file.arrayBuffer());
@@ -130,7 +136,7 @@ export function startStudio({ root, port = 0, today }) {
         }
         if (p === "/maker/get") {
           const mk = Object.values(db.makers).find((x) => x.key === b.key); if (!mk) return send(res, 403, { e: "bad_key" });
-          return send(res, 200, { ok: true, maker: { slug: mk.slug, name: mk.name }, games: mk.games.map((s) => metaOf(db, db.games[mk.slug + "/" + s])) });
+          return send(res, 200, { ok: true, maker: { slug: mk.slug, name: mk.name }, games: mk.games.map((s) => db.games[mk.slug + "/" + s]).filter(Boolean).map((g) => metaOf(db, g)) });
         }
         if (p === "/game/new") {
           const mk = Object.values(db.makers).find((x) => x.key === b.maker_key); if (!mk) return send(res, 403, { e: "bad_key" });
@@ -142,12 +148,15 @@ export function startStudio({ root, port = 0, today }) {
           db.games[mk.slug + "/" + slug] = g; mk.games.push(slug);
           return send(res, 200, { ok: true, slug, edit_key: g.edit_key, code: g.code, id: mk.slug + "/" + slug });
         }
-        const g = b.edit_key ? Object.values(db.games).find((x) => x.edit_key === b.edit_key) : null;
+        /* the edit key, or (9 Nov 2026) the maker key with the game's slug, as the Worker takes them */
+        const byMaker = !b.edit_key && b.maker_key ? Object.values(db.makers).find((x) => x.key === b.maker_key) : null;
+        const g = b.edit_key ? Object.values(db.games).find((x) => x.edit_key === b.edit_key) : byMaker && typeof b.game === "string" ? db.games[byMaker.slug + "/" + b.game.split("/").pop()] : null;
+        if (g || byMaker) db.auth = (db.auth || []).concat([p + (b.edit_key ? " edit" : " maker")]);
         if (p === "/game/mine") { if (!g) return send(res, 403, { ok: false, e: "bad_key" }); return send(res, 200, { ok: true, game: metaOf(db, g, true), items: g.items.map(imgOut) }); }
         if (p === "/game/save") {
           if (!g) return send(res, 403, { e: "bad_key" });
           if (!Array.isArray(b.items) || b.items.length > 500) return send(res, 400, { e: "items_cap" });
-          Object.assign(g, { title: b.title, about: b.about, mode: b.mode, start_day: b.start_day, keep_answers: b.keep_answers, want_listed: b.want_listed });
+          Object.assign(g, { title: b.title, about: b.about, mode: b.mode, start_day: b.start_day, keep_answers: b.keep_answers, want_listed: b.want_listed, lang: b.lang || g.lang });
           for (let i = 0; i < b.items.length; i++) {
             const it = b.items[i];
             if (!it || typeof it !== "object" || "json" in it || "right" in it || "img_url" in it) return send(res, 400, { ok: false, e: "item", i, field: "shape" });
@@ -158,7 +167,7 @@ export function startStudio({ root, port = 0, today }) {
           db.saves = (db.saves || 0) + 1;
           return send(res, 200, { ok: true, game: metaOf(db, g) });
         }
-        if (p === "/game/delete") { if (!g) return send(res, 404, { e: "not_found" }); delete db.games[g.maker + "/" + g.slug]; return send(res, 200, { ok: true }); }
+        if (p === "/game/delete") { if (!g) return send(res, 404, { e: "not_found" }); delete db.games[g.maker + "/" + g.slug]; const mk = db.makers[g.maker]; if (mk) mk.games = mk.games.filter((x) => x !== g.slug); return send(res, 200, { ok: true }); }
         if (p === "/img/del") { if (!g) return send(res, 403, { e: "bad_key" }); delete db.images[b.id]; db.log.push("deleted image " + b.id); return send(res, 200, { ok: true }); }
         if (p === "/play") {
           const [mk, gs] = String(b.game).split("/"); const gg = db.games[mk + "/" + gs]; if (!gg) return send(res, 404, { e: "not_found" });

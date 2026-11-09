@@ -293,9 +293,9 @@
     h.appendChild(w);
     var tools = el("div", "bar-tools");
     if (o.streak != null && o.streak > 0) tools.appendChild(el("span", "chip st-streakchip", t("play.streak", { n: o.streak })));
-    if (o.make) tools.appendChild(attr(el("a", "chip st-make", t("dir.make")), { href: "/new/" }));
+    if (o.make) tools.appendChild(attr(el("a", "chip st-make", t(mine().maker ? "dir.mine" : "dir.make")), { href: "/new/" }));   // 9 Nov 2026: a maker finds their games here
     if (o.langs) tools.appendChild(langPicker());
-    if (o.about) tools.appendChild(attr(el("a", "chip round", "?"), { href: o.about, "aria-label": t("play.about") }));
+    if (o.help) tools.appendChild(attr(btn("chip round st-help", "?", function () { howSheet(o.help); }), { "aria-label": t("how.h"), "aria-haspopup": "dialog" }));
     h.appendChild(tools);
     return h;
   }
@@ -563,7 +563,7 @@
     var meta = data.meta;
     var streak = meta.mode === "daily" ? streakOf(meta.key) : 0;
     var m = page();
-    var parts = embed ? [m] : [bar({ studio: true, streak: streak, about: gameURL(meta, "about/") }), m];
+    var parts = embed ? [m] : [bar({ studio: true, streak: streak, help: meta }), m];
     mount(parts);
     if (meta.keep_answers && !store().pid[meta.key]) return keepFirst(m, data, embed);
     if (meta.mode === "open") return openList(m, data, embed, null);
@@ -750,9 +750,11 @@
       var ln = el("div", "st-links");
       if (o.list) ln.appendChild(iconChip("list", t("play.list"), o.list));
       if (!o.embed && !document.body.classList.contains("st-embed")) ln.appendChild(iconChip("code", t("play.embed"), function () { embedSheet(meta); }));
-      var ab = iconChip("info", t("play.about"), null, gameURL(meta, "about/"));
-      if (o.embed || document.body.classList.contains("st-embed")) ab.target = "_blank";
-      ln.appendChild(ab);
+      if (meta.about) {                                       // 9 Nov 2026: only when the maker wrote one (it was an empty page)
+        var ab = iconChip("info", t("play.about"), null, gameURL(meta, "about/"));
+        if (o.embed || document.body.classList.contains("st-embed")) ab.target = "_blank";
+        ln.appendChild(ab);
+      }
       after.appendChild(ln);
       if (o.daily) after.appendChild(el("p", "st-tomorrow", t("play.tomorrow")));
       if (fresh) enter(after, reduced() ? 0 : 220);
@@ -866,21 +868,45 @@
     }, copyOnly);
   }
 
-  /* ---------------- embed: the code to paste, and the Moodle hint ---------------- */
+  /* ---------------- embed: what it is in one line, then how, in three short steps (9 Nov 2026) ---------------- */
   function embedCode(url, title) {
     var safe = String(title).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
     return '<iframe src="' + url + '" title="' + safe + '" width="100%" height="720" style="border:0;border-radius:24px;max-width:640px" loading="lazy" allow="clipboard-write"></iframe>';
   }
   function embedSheet(meta) {
     sheet(t("embed.h"), function (s) {
-      s.appendChild(el("p", "quiet", t("embed.lead")));
+      s.classList.add("st-embedsheet");
+      s.appendChild(el("p", "st-what", t("embed.what")));
+      var ol = el("ol", "st-steps");
+      var li1 = el("li");
+      li1.appendChild(el("p", null, t("embed.s1")));
       var ta = attr(el("textarea", "st-snippet"), { readonly: "", rows: "1", wrap: "off", "aria-label": t("embed.h"), spellcheck: "false" });
       ta.value = embedCode(gameURL(meta, "embed/"), t("play.title_by", { title: meta.title, maker: meta.maker_name || meta.maker }));
-      s.appendChild(ta);
-      s.appendChild(el("p", "quiet st-gap", t("embed.moodle")));
-      var acts = el("div", "actions");
-      acts.appendChild(btn("btn solid", t("embed.copy"), function () { ta.select(); copyText(ta.value).then(function () { toast(t("site.copied")); }); }));
-      s.appendChild(acts);
+      li1.appendChild(ta);
+      li1.appendChild(btn("btn solid st-copycode", t("embed.copy"), function () { ta.select(); copyText(ta.value).then(function () { toast(t("site.copied")); }); }));
+      ol.appendChild(li1);
+      var li2 = el("li"); li2.appendChild(el("p", null, t("embed.s2"))); ol.appendChild(li2);
+      var li3 = el("li");
+      li3.appendChild(el("p", null, t("embed.s3")));
+      li3.appendChild(btn("chip st-copylink", t("embed.copy_link"), function () { copyText(gameURL(meta)).then(function () { toast(t("site.copied")); }); }));
+      ol.appendChild(li3);
+      s.appendChild(ol);
+    });
+  }
+  /* the "?" of a game: what will happen, in one short line, then the maker's own About (9 Nov 2026) */
+  function howSheet(meta) {
+    sheet(t("how.h"), function (s) {
+      var ul = el("ul", "st-how");
+      var lines = [t("how." + (TPL[meta.template] ? meta.template : "pick")), t("how.after"), t(meta.mode === "open" ? "how.open" : "how.daily")];
+      if (meta.keep_answers) lines.push(t("keep.h", { maker: meta.maker_name || meta.maker }));
+      lines.forEach(function (x) { ul.appendChild(el("li", null, x)); });
+      s.appendChild(ul);
+      if (meta.about) {
+        var ab = el("div", "st-how-about");
+        ab.appendChild(el("p", "st-lab", t("play.by", { maker: meta.maker_name || meta.maker })));
+        ab.appendChild(rich(meta.about, "st-about"));
+        s.appendChild(ab);
+      }
     });
   }
   /* the link, the code and the QR code of a game: the editor's Share */
@@ -901,7 +927,7 @@
       }
       var qr = attr(el("div", "st-qr"), { role: "img", "aria-label": t("link.qr") });
       s.appendChild(qr);
-      loadScript("/qr.js?v=1").then(function () { qr.innerHTML = qrSvg(url); });
+      loadScript("/qr.js?v=4b9e678330").then(function () { qr.innerHTML = qrSvg(url); });
       var acts = el("div", "actions");
       acts.appendChild(btn("btn ghost", t("play.embed"), function () { embedSheet(meta); }));
       s.appendChild(acts);
@@ -1054,7 +1080,7 @@
     useLang(uiLang);
     document.body.dataset.t = "studio";
     mount([bar({ studio: true, langs: !which }), waitView()]);
-    loadScript("/editor.js?v=1").then(function () {
+    loadScript("/editor.js?v=703d95b4ad").then(function () {
       if (window.StudioEditor) window.StudioEditor(which);
     }, function () { mount([bar({ studio: true }), errorView("site.err_net", function () { editor(which); })]); });
   }

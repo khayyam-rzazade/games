@@ -57,8 +57,8 @@ on the first request. Check it: open `https://by.logicers.com/health`. It should
 Then, once, in the Cloudflare dashboard:
 
 1. **No address for the bucket.** The bucket stays private (no Custom Domain, no public r2.dev address): the Worker serves
-   each picture itself, only while its game is up and only once the check (or you, with "Show it" in the queue) let it
-   through. A hidden or deleted game's pictures stop at once.
+   each picture itself, only while its game is up. A hidden or deleted game's pictures stop at once, and a picture you
+   Remove in the queue is gone for good.
 2. **CSAM scanning.** Search the dashboard for "CSAM Scanning Tool", turn it on for `logicers.com` (it asks for an email
    for its notices: use `logicers.world@gmail.com`). Said plainly: the tool scans what Cloudflare caches, and the Studio's
    pictures come from the Worker, so it may not see them; the AI check and your queue are the real line.
@@ -69,10 +69,13 @@ Then, once, in the Cloudflare dashboard:
    connected. Without this, every change to `studio/` (the pages) or here needs `npx wrangler deploy` from this folder:
    a push alone changes GitHub Pages, not `by.logicers.com`.
 
-**The image check.** After the deploy, make a test game, add a picture, and open `by.logicers.com/admin/`: its queue row
-says `check: safe` when the check works. `check: not checked` on every picture means Workers AI did not answer: the free
-allowance is 10,000 "neurons" a day (a few hundred pictures); past it, pictures are stored and wait for your look. If it
-never answers, put another vision model first in `IMAGE_CHECK_MODEL` in `wrangler.jsonc` and deploy again.
+**The image check.** Since 9 Nov 2026 every picture shows to players at once; the check only refuses a clear SEXUAL, and
+labels the rest for your queue: "Looks safe", "Flagged" or "Not checked". To see that it answers on Cloudflare, open
+`by.logicers.com/admin/` and tap **Picture check**: it asks each model about a small test picture and says what each
+answered, or the error. "Not checked" on every picture means Workers AI did not answer: the free allowance is 10,000
+"neurons" a day (a few hundred pictures); past it, pictures are still shown and wait for your look. If a model keeps
+failing, put another vision model first in `IMAGE_CHECK_MODEL` in `wrangler.jsonc` and deploy again. A picture you do not
+want: **Remove** under it in the game's card (two taps). The maker's editor then says "Logicers removed this picture".
 
 Before the directory opens to the public: a lawyer reads the maker terms once (`studio/terms/`). Private links can go
 live before that.
@@ -111,8 +114,8 @@ POST bodies are JSON (an image is a form); a key is never in a URL. Answers are 
 | `POST /maker/get` | `{ key }` | `{ maker, games }`, each game with `status` (`listed`, `waiting`, `private`, `hidden`), `plays`, `items`, `answers` (players kept), `code` |
 | `POST /maker/delete` | `{ key }` | everything of the maker, at once |
 | `POST /game/new` | `{ maker_key, template, title, lang, mode, start_day, keep_answers, want_listed, terms_version? }` | `{ id, slug, code, edit_key, url, status }` |
-| `POST /game/save` | `{ edit_key, title?, about?, mode?, start_day?, keep_answers?, want_listed?, cover?, items? }` | the editor's whole game (as `/game/mine`) |
-| `POST /game/mine` | `{ edit_key }` | `{ maker, game, items, counts, images }` |
+| `POST /game/save` | `{ edit_key, title?, about?, mode?, start_day?, lang?, keep_answers?, want_listed?, cover?, items?, base? }` | the editor's whole game (as `/game/mine`) |
+| `POST /game/mine` | `{ edit_key }` | `{ maker, game, items, counts, images }`; an item whose picture you removed has `image_removed: true` and no `image_url` |
 | `POST /game/delete` | `{ edit_key }` | the game and everything of it |
 | `POST /game/answers` | `{ edit_key, after? }` | `{ rows: [{ item, n, pid, name, answer, time }], next }`, 2000 a page, for the CSV |
 | `POST /img/put` | form: `edit_key` (or `maker_key` + `game`), `file` | `{ id, url, w, h, bytes }` |
@@ -120,8 +123,10 @@ POST bodies are JSON (an image is a form); a key is never in a URL. Answers are 
 | `POST /play` | `{ game, item, answer }` | `{ bucket, counts: { n, b: { bucket: n } } }` |
 | `POST /play/keep` | `{ game, item, pid, name, answer }` | `{ kept }` (the first answer of a `pid` stays) |
 | `POST /report` | `{ game, reason, text?, browser? }` | `{}` |
-| `POST /admin/queue` | `{ key, before?, all? }` | `{ queue, next, open, reports }` |
-| `POST /admin/act` | `{ key, game, action, id?, maker? }` | `list`, `unlist`, `hide`, `unhide`, `delete`, `block_maker`, `unblock_maker`, `done` |
+| `POST /admin/queue` | `{ key, before?, all? }` | `{ cards, cards_next, open_cards }`: one card per game (or new maker) with something new, newest first, 15 a page (`before`: `cards_next`); also the older `{ queue, next, open, reports }` |
+| `POST /admin/game` | `{ key, game }` or `{ key, maker }` | `{ card }`: the whole game (every question with its answer, the pictures and what the check said, the About, every link, the reports, what is new since your last look, the maker and their other games) |
+| `POST /admin/act` | `{ key, game, action, id?, maker?, image? }` | `list`, `unlist`, `hide`, `unhide`, `delete`, `block_maker`, `unblock_maker`, `done` (a game's rows and reports, or a maker's own rows), `remove_image` |
+| `POST /admin/img` · `POST /admin/ai` | `{ key, image }` · `{ key }` | a picture's bytes; the picture check asked about a test picture |
 | `GET /g/<maker>/<game>?day=YYYY-MM-DD&counts=<item>` | | `{ game, day, state, item, number, left }` (daily) or `{ game, state: "open", items }` |
 | `GET /m/<maker>` · `GET /list?lang=&from=&n=&day=` · `GET /code/<CODE>` | | a maker's page; the directory; where a code leads |
 | `GET /oembed?url=&format=json` · `GET /health` | | |

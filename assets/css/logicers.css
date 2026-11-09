@@ -1558,6 +1558,21 @@ html.embed .wrap, html.embed .wrap.play { padding-bottom: 6px; }
 @media (pointer: coarse) and (max-width: 600px) { .fin-embed-box { display: none; } }
 .fin-embed:focus-visible { outline: 3px solid var(--c, #2D4FC4); outline-offset: 2px; border-radius: 10px; }
 .fin-embed-hint { margin: 0 auto; padding: 0 14px 4px; max-width: 24rem; text-align: center; font-size: 0.86rem; line-height: 1.3; color: var(--soft); }
+/* 9 Nov 2026: Embed opens a small panel: what it is in one line, then three numbered steps with the code and the link to copy */
+.fin-embed[aria-expanded="true"] { box-shadow: inset 0 0 0 2px var(--c, #2D4FC4); }
+.fin-embed-panel { max-width: 26rem; margin: 10px auto 0; padding: 14px 16px 10px; border-radius: 20px; background: var(--card); box-shadow: var(--shadow); text-align: left; }
+.fin-embed-panel[hidden] { display: none; }
+@media (prefers-color-scheme: dark) { .fin-embed-panel { background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px var(--line); } }
+.fin-embed-what { margin: 0; font-weight: 700; font-size: 0.98rem; line-height: 1.35; color: var(--ink); }
+.fin-embed-steps { list-style: none; counter-reset: fe; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
+.fin-embed-steps li { counter-increment: fe; position: relative; padding-left: 36px; font-size: 0.92rem; line-height: 1.35; color: var(--ink); }
+.fin-embed-steps li::before { content: counter(fe); position: absolute; left: 0; top: -1px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--c, #2D4FC4) 14%, transparent); color: var(--c, #2D4FC4); font-weight: 800; font-size: 0.8rem; }
+.fin-embed-steps li > span { display: block; }
+.fin-embed-copy, .fin-embed-link { appearance: none; display: inline-flex; align-items: center; min-height: 40px; margin-top: 8px; padding: 0 16px; border: 0; border-radius: 999px; font: inherit; font-weight: 800; font-size: 0.9rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.fin-embed-copy { background: var(--c, #2D4FC4); color: var(--on-c, #fff); }
+.fin-embed-link { background: var(--bg); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+.fin-embed-copy:focus-visible, .fin-embed-link:focus-visible { outline: 3px solid var(--c, #2D4FC4); outline-offset: 2px; }
+.fin-embed-panel .fin-embed-hint { margin-top: 8px; padding: 0; text-align: left; min-height: 1.2em; }
 
 /* In a frame the games must not follow the frame's own height (the host sets it from what the page says it needs, so a
    layout that fills the frame would chase itself). The two sizes that fill the screen are laid out here as for a screen

@@ -100,13 +100,18 @@ for (const L of LANGS) {
         continue;
       }
       await step(L, width, `game ${tpl}: question`, async () => { await p.goto(S.base + "/anna-rossi/" + slug + "/?lang=" + L); await p.waitForSelector(".st-play, .st-keep", { timeout: 8000 }); });
+      if (slug === "history-a-day" || slug === "how-many-a-day") {   // 9 Nov 2026: the "?" sheet, without and with the maker's About
+        await step(L, width, `"?" sheet ${tpl}`, async () => { await p.click(".st-bar .st-help"); await p.waitForSelector("dialog .st-how"); });
+        await p.keyboard.press("Escape").catch(() => {});
+        await wait(150);
+      }
       if (tpl === "read") {
         await step(L, width, "game read: keep-answers screen", async () => { await p.waitForSelector(".st-keep", { timeout: 4000 }); });
         await step(L, width, "game read: question after skip", async () => { await btnText(p, W[L]["keep.skip"]).click(); await p.waitForSelector(".st-play"); });
       }
       await step(L, width, `game ${tpl}: after the answer`, async () => { await playIt(p, tpl, L); });
       if (slug === "history-a-day") {
-        await step(L, width, "embed sheet", async () => { await p.locator(".st-after button.st-ichip", { hasText: W[L]["play.embed"] }).first().click(); await p.waitForSelector("dialog"); await p.click("text=" + W[L]["embed.copy"]); await wait(200); });
+        await step(L, width, "embed sheet", async () => { await p.locator(".st-after button.st-ichip", { hasText: W[L]["play.embed"] }).first().click(); await p.waitForSelector("dialog"); await p.click("dialog .st-copycode"); await wait(200); });
         await p.keyboard.press("Escape").catch(() => {});
         await step(L, width, "report sheet: asks for a reason", async () => { await p.locator(".st-notice button").first().click(); /* F: Report lives in the notice line */ await p.click("dialog button.btn.solid"); });
         await step(L, width, "report sheet: asks for the tick", async () => { await p.click(`dialog >> text=${W[L]["rep.why_wrong"]}`); await p.click("dialog button.btn.solid"); });
@@ -143,17 +148,20 @@ for (const L of LANGS) {
           if (seeded) await q.waitForSelector(".kp-tile.done", { timeout: 6000 });
         });
         if (!seeded) {
-          await step(L, width, "keep sheet: Done pressed too early", async () => { await btnText(q, W[L]["kp.done"], ".kp").click(); });
           await step(L, width, "keep sheet: after copying", async () => { await q.locator(".kp-tile").first().click(); await wait(400); });
         }
         await step(L, width, `editor ${tpl}: editor page`, async () => { await btnText(q, W[L]["kp.done"], ".kp").click(); await q.waitForSelector(".ed-dock"); });
-        await step(L, width, `editor ${tpl}: new question form`, async () => { await q.click(".ed-add"); await q.waitForSelector(".ed-ibody"); });
+        await step(L, width, `editor ${tpl}: new question form`, async () => { await q.click(".ed-add"); await q.waitForSelector(".ed-item:last-child .ed-ibody:not([hidden])"); });
         await step(L, width, `editor ${tpl}: question errors`, async () => { await q.click(".ed-dock .btn"); });
         await step(L, width, `editor ${tpl}: settings, status and delete`, async () => { await q.locator(".ed-del").scrollIntoViewIfNeeded(); });
         if (tpl === "pick") await step(L, width, "editor: delete sheet", async () => { await q.click(".ed-del"); await q.waitForSelector("dialog"); });
         await q.keyboard.press("Escape").catch(() => {});
       }
+      /* 9 Nov 2026: /new/ with the maker's games first; a question whose picture Logicers removed */
+      page_measure.p = p2;
+      await step(L, width, "new: your games first", async () => { await p2.goto(ui("/new/")); await p2.waitForSelector(".ed-mine-row"); });
       page_measure.p = p;
+      await step(L, width, "editor: a picture Logicers removed", async () => { await p.goto(S.base + "/anna-rossi/lost-picture/edit/?lang=" + L + "#" + db.games["anna-rossi/lost-picture"].edit_key); await p.waitForSelector(".ed-gone"); });
       await ctx2.close();
     }
     await ctx.close();

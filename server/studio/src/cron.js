@@ -3,7 +3,8 @@
      an orphan image (no item and no cover uses it, a day after it was sent; or its game is gone): deleted, R2 too
      queue rows done more than 90 days ago, reports closed more than a year ago, cap rows older than a week: deleted */
 import { clock } from "./util.js";
-import { all, run, deleteGame, r2Delete, queueRow } from "./db.js";
+import { all, run, deleteGame, r2Delete, queueRow, removeImage } from "./db.js";
+import { imgUrl } from "./util.js";
 import { aiCheck } from "./images.js";
 
 export const KEEP_UNOPENED = 365 * 864e5;
@@ -21,8 +22,9 @@ export async function nightly(env) {
     }
     await r2Delete(env, orphans.map((x) => x.key));
   }
-  /* a picture the check could not answer for ("none": the model was busy or down) is asked again, 40 a night (F, 8 Nov 2026);
-     it stays held until the answer is "safe" or Khayyam shows it. "sexual": deleted now. */
+  /* a picture the check could not answer for ("none": the model was busy or down) is asked again, 40 a night (F, 8 Nov 2026).
+     It is shown meanwhile (9 Nov 2026). "sexual" now: removed (the maker's editor says so) and Khayyam is told; "flag": a row
+     in his queue with the picture; "safe": noted. */
   let rechecked = 0;
   if (env.IMG && env.AI) {
     const wait = await all(env, "SELECT id, key, maker, game FROM images WHERE verdict = 'none' AND made < ? ORDER BY made LIMIT 40", now - 36e5);
@@ -32,12 +34,11 @@ export async function nightly(env) {
       if (v === "none") continue;
       rechecked++;
       if (v === "sexual") {
-        await run(env, "UPDATE items SET image = NULL WHERE game = ? AND image = ?", im.game, im.id);
-        await run(env, "DELETE FROM images WHERE id = ?", im.id); await r2Delete(env, [im.key]);
-        await env.DB.batch([queueRow(env, "image", { maker: im.maker, game: im.game, text: "check (again): sexual: deleted" })]);
+        await removeImage(env, im.id, "the check, again: sexual");
+        await env.DB.batch([queueRow(env, "image", { maker: im.maker, game: im.game, text: "check (again): sexual: removed" })]);
       } else {
         await run(env, "UPDATE images SET verdict = ? WHERE id = ?", v, im.id);
-        if (v === "flag") await env.DB.batch([queueRow(env, "image", { maker: im.maker, game: im.game, image: im.id, text: "check (again): flag" })]);
+        if (v === "flag") await env.DB.batch([queueRow(env, "image", { maker: im.maker, game: im.game, image: imgUrl(env, im.game, im.id), text: "check (again): flag" })]);
       }
     }
   }

@@ -1,16 +1,17 @@
 /* Logicers Studio: the editor (by.logicers.com/new/ and /<maker>/<game>/edit/#<edit key>), loaded by studio.js only there.
 
-   /new/: the maker's name once (then kept in this browser and, on a phone with a My Logicers code, in My Logicers),
-   the template, the name of the game, its language, one a day or all at once, the first day, "keep answers",
-   "List it on Logicers", and the terms tick box (its text's version goes to the Worker with the game).
-   Then the big "Keep your edit link" sheet: Done opens only once the link is kept somewhere.
+   /new/: the maker's games first, when this browser knows the maker (9 Nov 2026: from the Worker, with the maker key, so a
+   game whose edit link was lost is still here); then a new game in as few choices as possible: the template, its name,
+   the maker's name once, the terms tick box (its text's version goes to the Worker with the game). Language, one a day or
+   all at once, the first day, "keep answers" and "List it on Logicers" start at sensible values and live in the editor.
+   Then the "Keep your edit link" sheet, for other devices: this browser always keeps every game it made (9 Nov 2026).
    The editor: the questions in order (drag the grip, or Move up / Move down), each with its picture (made smaller in the
    browser: 1600 px on the longest side and under 500 KB, before it is sent) and its explanation (one link at most);
    the settings; Listed / Not listed yet / Hidden by Logicers; Share (link, code, QR, embed); Delete.
 
    Keys kept: lg.studio.mine { v, maker: {slug, name, key, t}, games: [{maker, slug, title, edit, t}] } in this browser
-   (the maker always; a game's edit link only when "This browser" is chosen) and, through bridge.html, on logicers.com
-   when the phone keeps a My Logicers code (chat D reads it there). */
+   (the maker and every game it made, always: 9 Nov 2026) and, through bridge.html, on logicers.com when the phone keeps a
+   My Logicers code (chat D reads it there). A game this browser cannot find an edit link for opens with the maker key. */
 (function () {
   "use strict";
   var S = window.Studio, API = window.StudioAPI, TPL = window.StudioT;
@@ -50,12 +51,11 @@
     if (hello && hello.code) S.bridge("put", { maker: m.maker });
   }
   function keepGameHere(g) {
-    var m = S.mine();
-    m.games = m.games.filter(function (x) { return !(x.maker === g.maker && x.slug === g.slug); });
-    m.games.unshift({ maker: g.maker, slug: g.slug, title: g.title, edit: g.edit, t: Date.now() });
+    var m = S.mine(), old = null;
+    m.games = m.games.filter(function (x) { if (x.maker === g.maker && x.slug === g.slug) { old = x; return false; } return true; });
+    m.games.unshift({ maker: g.maker, slug: g.slug, title: g.title, edit: g.edit || (old && old.edit) || "", t: old && old.t ? old.t : Date.now() });
     S.mineSet(m);
   }
-  function hereHas(g) { return S.mine().games.some(function (x) { return x.maker === g.maker && x.slug === g.slug; }); }
   function keepGameMe(g) {
     if (!hello || !hello.code) return Promise.resolve(false);
     return S.bridge("put", { games: [{ maker: g.maker, slug: g.slug, title: g.title, edit: g.edit, t: Date.now() }] }).then(function (r) { return !!(r && r.kept); });
@@ -118,37 +118,67 @@
     var m = S.page("ed");
     S.mount([S.bar({ studio: true, langs: true }), m]);
     /* a maker this browser already knows is drawn at once; otherwise My Logicers is asked first (it may know the maker) */
-    if (S.mine().maker) { drawNew(m); var had = known().games.length; askBridge().then(function () { var ti = m.querySelector("#f-title"); if (known().games.length > had && ti && !ti.value) drawNew(m); }); return; }
+    if (S.mine().maker) { drawNew(m); askBridge(); return; }
     m.appendChild(S.waitView());
     askBridge().then(function () { drawNew(m); });
+  }
+  var STATUS = { listed: ["on", "ed.st_listed"], waiting: ["", "ed.st_notyet"], hidden: ["off", "ed.st_hidden"] };
+  /* the maker's games: this browser's list at once, then the Worker's (it knows every game of the maker key) */
+  function mineList(sec, k) {
+    var ul = el("ul", "ed-mine");
+    sec.appendChild(ul);
+    function draw(list) {
+      ul.textContent = "";
+      list.forEach(function (g) {
+        var li = el("li");
+        var a = attr(el("a", "ed-mine-row"), { href: "/" + g.maker + "/" + g.slug + "/edit/" + (g.edit ? "#" + g.edit : "") });
+        var w = el("span", "ed-mine-t");
+        w.appendChild(el("b", null, g.title || g.slug));
+        var st = STATUS[g.status];
+        if (st) w.appendChild(el("small", "ed-status " + st[0], t(st[1])));
+        a.appendChild(w);
+        a.appendChild(el("span", "chip", t("ed.edit")));
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+      sec.hidden = !list.length;
+    }
+    draw(k.games.filter(function (g) { return !k.maker || g.maker === k.maker.slug; }));
+    if (!k.maker || !k.maker.key) return;
+    API.makerGet(k.maker.key).then(function (r) {
+      if (!r.ok || !Array.isArray(r.b.games)) return;
+      var local = {};
+      k.games.forEach(function (g) { local[g.maker + "/" + g.slug] = g; });
+      var list = r.b.games.slice().reverse().map(function (raw) {
+        var x = API.meta(raw, k.maker.slug), here = local[x.maker + "/" + x.slug];
+        return { maker: x.maker, slug: x.slug, title: x.title, status: String(raw.status || ""), edit: here ? here.edit : "" };
+      });
+      /* what the Worker no longer has (deleted on another device) leaves this browser's list too */
+      var mm = S.mine();
+      if (mm.maker && mm.maker.key === k.maker.key) {
+        var have = {}; list.forEach(function (g) { have[g.maker + "/" + g.slug] = 1; });
+        mm.games = mm.games.filter(function (g) { return g.maker !== mm.maker.slug || have[g.maker + "/" + g.slug]; });
+        S.mineSet(mm);
+      }
+      draw(list);
+    });
   }
   function drawNew(m) {
     m.textContent = "";
     var k = known();
-    var f = { name: "", template: "", title: "", lang: S.uiLang(), mode: "daily", start: S.today(), keep: false, list: true, terms: false };
-    m.appendChild(el("h1", "st-h1", t("ed.h1")));
-    m.appendChild(el("p", "st-sub", t("ed.sub")));
-    var sec = el("section", "ed-sec st-enter");
-    var nameIn = null, addr = null, keepHint = null;
+    var f = { name: "", template: "", title: "", terms: false };
+    var nameIn = null, addr = null;
     if (k.maker && k.maker.key) {
-      sec.appendChild(el("p", "st-by", t("ed.maker_as", { maker: k.maker.name })));
+      var s0 = el("section", "ed-sec st-enter");
+      s0.appendChild(el("h1", "st-h1 ed-h1s", t("ed.your_games")));
+      s0.appendChild(el("p", "st-small", t("ed.maker_as", { maker: k.maker.name })));
+      mineList(s0, k);
+      m.appendChild(s0);
+      m.appendChild(el("h2", "st-h1 ed-h2new", t("ed.new_h")));
     } else {
-      sec.appendChild(label(t("ed.maker"), "f-name"));
-      nameIn = attr(el("input", "st-in"), { id: "f-name", type: "text", maxlength: String(MAX.name), autocomplete: "nickname", dir: "auto" });
-      sec.appendChild(nameIn);
-      sec.appendChild(el("p", "ed-hint", t("ed.maker_hint")));
-      addr = el("p", "ed-addr");
-      sec.appendChild(addr);
-      sec.appendChild(errSlot("name"));
-      nameIn.addEventListener("input", function () {
-        f.name = nameIn.value;
-        bad("name", "");
-        if (keepHint) keepHint.textContent = t("ed.keep_d", { maker: nameIn.value.trim() || "…" });
-        var s = slugify(nameIn.value);
-        addr.textContent = s ? S.SITE.replace(/^https?:\/\//, "") + "/" + s + "/" : "";
-      });
+      m.appendChild(el("h1", "st-h1", t("ed.h1")));
+      m.appendChild(el("p", "st-sub", t("ed.sub")));
     }
-    m.appendChild(sec);
 
     var s2 = el("section", "ed-sec st-enter");
     s2.appendChild(attr(el("p", "st-h2", t("ed.template")), { id: "tpl-l" }));
@@ -172,48 +202,36 @@
     titleIn.addEventListener("input", function () { f.title = titleIn.value; bad("title", ""); });
     s2.appendChild(titleIn);
     s2.appendChild(errSlot("title"));
-    seg(s2, "ed.lang", S.LANGS.map(function (l) { return [l, S.LANG_NAMES[l], true, l]; }), f.lang, function (v) { f.lang = v; });
-    seg(s2, "ed.mode", [["daily", "ed.daily"], ["open", "ed.open"]], f.mode, function (v) { f.mode = v; modeHint.textContent = t(v === "open" ? "ed.open_d" : "ed.daily_d"); startRow.hidden = v === "open"; });
-    var modeHint = el("p", "ed-hint", t("ed.daily_d"));
-    s2.appendChild(modeHint);
-    var startRow = el("div");
-    startRow.appendChild(label(t("ed.start"), "f-start"));
-    var startIn = attr(el("input", "st-in"), { id: "f-start", type: "date", value: f.start });
-    startIn.addEventListener("change", function () { if (S.dayIndex(startIn.value) != null) f.start = startIn.value; });
-    startRow.appendChild(startIn);
-    s2.appendChild(startRow);
-    toggle(s2, "ed.keep", t("ed.keep_d", { maker: (k.maker && k.maker.name) || "…" }), f.keep, function (v) { f.keep = v; });
-    keepHint = s2.querySelector(".ed-switch:last-of-type small");
-    toggle(s2, "ed.list", t("ed.list_d"), f.list, function (v) { f.list = v; });
+    if (!(k.maker && k.maker.key)) {
+      s2.appendChild(label(t("ed.maker"), "f-name"));
+      nameIn = attr(el("input", "st-in"), { id: "f-name", type: "text", maxlength: String(MAX.name), autocomplete: "nickname", dir: "auto" });
+      s2.appendChild(nameIn);
+      s2.appendChild(el("p", "ed-hint", t("ed.maker_hint")));
+      addr = el("p", "ed-addr");
+      s2.appendChild(addr);
+      s2.appendChild(errSlot("name"));
+      nameIn.addEventListener("input", function () {
+        f.name = nameIn.value;
+        bad("name", "");
+        var sl = slugify(nameIn.value);
+        addr.textContent = sl ? S.SITE.replace(/^https?:\/\//, "") + "/" + sl + "/" : "";
+      });
+    }
     var tick = el("label", "st-tick");
     var tb = attr(el("input"), { type: "checkbox", id: "f-terms" });
     tb.addEventListener("change", function () { f.terms = tb.checked; if (tb.checked) bad("terms", ""); });
     tick.appendChild(tb); tick.appendChild(el("span", null, t("ed.terms_tick")));
     s2.appendChild(tick);
-    var tl = el("p", "st-small st-gap");
+    var tl = el("p", "st-small ed-terms-l");
     tl.appendChild(attr(el("a", "st-link", t("ed.terms")), { href: "/terms/", target: "_blank" }));
     s2.appendChild(tl);
     s2.appendChild(errSlot("terms"));
-    var go = btn("btn solid st-gap", t("ed.make"), make);
-    go.style.width = "100%";
+    var go = btn("btn solid st-gap ed-go", t("ed.make"), make);
     s2.appendChild(go);
+    s2.appendChild(el("p", "ed-hint ed-later", t("ed.later")));
     var msg = attr(el("p", "st-err"), { role: "alert" }); msg.hidden = true;
     s2.appendChild(msg);
     m.appendChild(s2);
-
-    if (k.games.length) {
-      var s3 = el("section", "ed-sec st-enter");
-      s3.appendChild(el("p", "st-h2", t("ed.your_games")));
-      var ul = el("ul", "ed-mine");
-      k.games.forEach(function (g) {
-        var li = el("li");
-        li.appendChild(el("b", null, g.title || g.slug));
-        li.appendChild(attr(el("a", "chip", t("ed.edit")), { href: "/" + g.maker + "/" + g.slug + "/edit/#" + g.edit }));
-        ul.appendChild(li);
-      });
-      s3.appendChild(ul);
-      m.appendChild(s3);
-    }
 
     function bad(key, text) { var e = m.querySelector('[data-err="' + key + '"]'); if (e) e.textContent = text; return !!text; }
     var busy = false;
@@ -222,28 +240,29 @@
       msg.hidden = true;
       var wrong = false;
       var name = nameIn ? clean(nameIn.value, MAX.name).trim() : "";
-      if (nameIn) wrong = bad("name", name.length < 2 || name.length > MAX.name || !slugify(name) ? t("err.name_len") : "") || wrong;
       wrong = bad("template", f.template ? "" : t("ed.template")) || wrong;
       var title = clean(titleIn.value, MAX.title).trim();
       wrong = bad("title", title ? "" : t("err.title")) || wrong;
+      if (nameIn) wrong = bad("name", name.length < 2 || name.length > MAX.name || !slugify(name) ? t("err.name_len") : "") || wrong;
       wrong = bad("terms", f.terms ? "" : t("err.terms")) || wrong;
       if (wrong) { var first = m.querySelector(".ed-err:not(:empty)"); if (first) first.scrollIntoView({ block: "center", behavior: S.reduced() ? "auto" : "smooth" }); return; }
       busy = true; go.disabled = true; go.textContent = t("ed.saving");
       var mk = k.maker && k.maker.key ? Promise.resolve(k.maker) : API.makerNew({ name: name, lang: S.uiLang(), terms_version: S.TERMS_VERSION }).then(function (r) {
         if (!r.ok || !r.b.key || !r.b.slug) throw r;
-        var made = { slug: String(r.b.slug), name: String(r.b.name || name), key: String(r.b.key) };
-        keepMaker(made);
-        return made;
+        return { slug: String(r.b.slug), name: String(r.b.name || name), key: String(r.b.key) };
       });
       mk.then(function (maker) {
+        if (!S.mine().maker || S.mine().maker.key !== maker.key) keepMaker(maker);    // this browser keeps the maker, always
+        var lang = S.uiLang(), start = S.today();
         return API.gameNew({
-          maker_key: maker.key, template: f.template, title: title, lang: f.lang, mode: f.mode,
-          start_day: f.mode === "daily" ? f.start : S.today(), keep_answers: f.keep, want_listed: f.list, terms_version: S.TERMS_VERSION
+          maker_key: maker.key, template: f.template, title: title, lang: lang, mode: "daily",
+          start_day: start, keep_answers: false, want_listed: true, terms_version: S.TERMS_VERSION
         }).then(function (r) {
           if (!r.ok || !r.b.edit_key || !r.b.slug) throw r;
-          var meta = API.meta({ maker: maker.slug, maker_name: maker.name, slug: r.b.slug, title: title, template: f.template, lang: f.lang, mode: f.mode,
-            start_day: f.mode === "daily" ? f.start : S.today(), keep_answers: f.keep, want_listed: f.list, code: r.b.code });
+          var meta = API.meta({ maker: maker.slug, maker_name: maker.name, slug: r.b.slug, title: title, template: f.template, lang: lang, mode: "daily",
+            start_day: start, keep_answers: false, want_listed: true, code: r.b.code });
           var key = String(r.b.edit_key);
+          keepGameHere({ maker: maker.slug, slug: meta.slug, title: title, edit: key });     // this browser keeps every game it made
           window.history.replaceState(null, "", "/" + maker.slug + "/" + meta.slug + "/edit/#" + key);
           var ed = open({ key: key, meta: meta, maker: maker, items: [], fresh: true });
           keepSheet(ed);
@@ -262,12 +281,19 @@
     S.mount([S.bar({ studio: true }), m]);
     m.appendChild(S.waitView());
     askBridge().then(function () {
+      var k = known();
       if (!key) {
-        var g = known().games.filter(function (x) { return x.maker === which.maker && x.slug === which.slug; })[0];
+        var g = k.games.filter(function (x) { return x.maker === which.maker && x.slug === which.slug; })[0];
         if (g && g.edit) { key = g.edit; window.history.replaceState(null, "", window.location.pathname + "#" + key); }
       }
-      if (!key) { m.textContent = ""; m.appendChild(S.errorView("ed.no_key")); return; }
-      API.gameMine(key).then(function (r) {
+      /* no edit link here, or one that no longer works: the maker key this browser keeps opens the maker's own games (9 Nov 2026) */
+      var byMaker = k.maker && k.maker.key && k.maker.slug === which.maker ? { maker_key: k.maker.key, game: which.slug } : null;
+      var auth = key || byMaker;
+      if (!auth) { m.textContent = ""; m.appendChild(S.errorView("ed.no_key")); return; }
+      API.gameMine(auth).then(function (r) {
+        if (!r.ok && auth === key && byMaker && r.status === 403) { auth = byMaker; key = ""; return API.gameMine(auth); }
+        return r;
+      }).then(function (r) {
         if (!r.ok) { m.textContent = ""; m.appendChild(S.errorView(API.errKey(r), r.status === 0 ? function () { editPage(which); } : null)); return; }
         var mk = obj(r.b.maker) || {};
         var meta = API.meta(r.b.game || r.b, which.maker);
@@ -275,13 +301,14 @@
         if (!meta.maker_name) meta.maker_name = String(mk.name || "");
         var items = (Array.isArray(r.b.items) ? r.b.items : []).map(API.item);
         items.forEach(lk);
-        open({ key: key, meta: meta, maker: { slug: meta.maker, name: meta.maker_name }, items: items, fresh: false });
+        keepGameHere({ maker: meta.maker, slug: meta.slug, title: meta.title, edit: key });     // found again: this browser keeps it
+        open({ key: key, auth: auth, meta: meta, maker: { slug: meta.maker, name: meta.maker_name }, items: items, fresh: false });
       });
     });
   }
 
   function snapshot(E) {
-    return JSON.stringify({ g: [E.meta.title, E.meta.about, E.meta.mode, E.meta.start_day, E.meta.keep_answers, E.meta.want_listed], i: E.items.map(wireItem) });
+    return JSON.stringify({ g: [E.meta.title, E.meta.about, E.meta.mode, E.meta.start_day, E.meta.keep_answers, E.meta.want_listed, E.meta.lang], i: E.items.map(wireItem) });
   }
   /* an item as it is saved: its template's own fields, trimmed, with its id, explanation and picture */
   var FIELDS = {
@@ -308,6 +335,7 @@
 
   var current = null;
   function open(E) {
+    E.auth = E.auth || E.key;
     E.tpl = TPL[E.meta.template] ? E.meta.template : "pick";
     E.openIx = E.items.length ? -1 : null;
     E.newImgs = [];
@@ -316,11 +344,17 @@
     current = E;
     document.body.dataset.t = E.tpl;
     S.setTitle(t("ed.edit") + ": " + E.meta.title);
+    /* a new game opens on its first question, ready to write (9 Nov 2026: one tap less, and nothing to look for) */
+    if (E.fresh && !E.items.length) { var it0 = lk(TPL[E.tpl].blank()); it0.explain = ""; it0.image = null; E.items.push(it0); }
     E.saved = snapshot(E);
     E.didSave = !E.fresh;
+    window.scrollTo(0, 0);
     draw(E);
+    if (E.fresh && E.items.length === 1) openItem(E, 0);
+    var gone = -1; E.items.forEach(function (it, i) { if (gone < 0 && it.image_gone && !it.image) gone = i; });
+    if (gone >= 0) openItem(E, gone);
     window.addEventListener("beforeunload", function (e) {
-      if (current === E && (dirty(E) || E.unkept)) { e.preventDefault(); e.returnValue = ""; }
+      if (current === E && dirty(E)) { e.preventDefault(); e.returnValue = ""; }
     });
     return E;
   }
@@ -364,6 +398,10 @@
     E.countEl = el("p", "st-h2 st-grow");
     qh.appendChild(E.countEl);
     qs.appendChild(qh);
+    if (E.items.some(function (it) { return it.image_gone; })) {      // 9 Nov 2026: Logicers removed a picture
+      E.goneNote = el("p", "ed-gone st-enter", t("ed.img_removed_top"));
+      qs.appendChild(E.goneNote);
+    }
     E.list = el("ol", "ed-list");
     qs.appendChild(E.list);
     E.items.forEach(function (it, i) { E.list.appendChild(itemRow(E, it, i)); });
@@ -384,7 +422,7 @@
     m.appendChild(qs);
     counts(E);
 
-    /* the settings */
+    /* the settings: what /new/ no longer asks (9 Nov 2026), with the values a new game starts with */
     var st = el("section", "ed-sec");
     st.appendChild(el("p", "st-h2", t("ed.settings")));
     st.appendChild(label(t("ed.title"), "e-title"));
@@ -393,15 +431,9 @@
     ti.addEventListener("input", function () { meta.title = clean(ti.value, MAX.title); E.titleEl.textContent = meta.title; changed(E); });
     st.appendChild(ti);
     st.appendChild(errSlot("title"));
-    var al = label(t("ed.about"), "e-about");
-    st.appendChild(al);
-    var ab = attr(el("textarea", "st-in"), { id: "e-about", maxlength: String(MAX.about), rows: "5", dir: "auto" });
-    ab.value = meta.about || "";
-    ab.addEventListener("input", function () { meta.about = clean(ab.value, MAX.about); changed(E); });
-    al.appendChild(counter(ab, MAX.about));
-    st.appendChild(ab);
-    st.appendChild(el("p", "ed-hint", t("ed.about_hint")));
-    seg(st, "ed.mode", [["daily", "ed.daily"], ["open", "ed.open"]], meta.mode, function (v) { meta.mode = v; startRow.hidden = v === "open"; counts(E); refreshDays(E); changed(E); });
+    seg(st, "ed.mode", [["daily", "ed.daily"], ["open", "ed.open"]], meta.mode, function (v) { meta.mode = v; startRow.hidden = v === "open"; modeHint.textContent = t(v === "open" ? "ed.open_d" : "ed.daily_d"); counts(E); refreshDays(E); changed(E); });
+    var modeHint = el("p", "ed-hint", t(meta.mode === "open" ? "ed.open_d" : "ed.daily_d"));
+    st.appendChild(modeHint);
     var startRow = el("div");
     startRow.appendChild(label(t("ed.start"), "e-start"));
     var si = attr(el("input", "st-in"), { id: "e-start", type: "date", value: meta.start_day || S.today() });
@@ -409,8 +441,17 @@
     startRow.appendChild(si);
     startRow.hidden = meta.mode === "open";
     st.appendChild(startRow);
-    toggle(st, "ed.keep", t("ed.keep_d", { maker: meta.maker_name || meta.maker }), meta.keep_answers, function (v) { meta.keep_answers = v; changed(E); });
+    seg(st, "ed.lang", S.LANGS.map(function (l) { return [l, S.LANG_NAMES[l], true, l]; }), S.LANGS.indexOf(meta.lang) >= 0 ? meta.lang : "en", function (v) { meta.lang = v; changed(E); });
     toggle(st, "ed.list", t("ed.list_d"), meta.want_listed, function (v) { meta.want_listed = v; status(E); changed(E); });
+    toggle(st, "ed.keep", t("ed.keep_d", { maker: meta.maker_name || meta.maker }), meta.keep_answers, function (v) { meta.keep_answers = v; changed(E); });
+    var al = label(t("ed.about"), "e-about");
+    st.appendChild(al);
+    var ab = attr(el("textarea", "st-in"), { id: "e-about", maxlength: String(MAX.about), rows: "4", dir: "auto" });
+    ab.value = meta.about || "";
+    ab.addEventListener("input", function () { meta.about = clean(ab.value, MAX.about); changed(E); });
+    al.appendChild(counter(ab, MAX.about));
+    st.appendChild(ab);
+    st.appendChild(el("p", "ed-hint", t("ed.about_hint")));
     m.appendChild(st);
 
     m.appendChild(btn("ed-del st-danger-ghost", t("ed.del_game"), function () { delGame(E); }));
@@ -623,7 +664,7 @@
       } else {
         row.appendChild(btn("chip", "+ " + t("ed.img_add"), function () { file.click(); }));
       }
-      if (it.image && it.image.held) row.appendChild(el("span", "st-small ed-img-note", t("ed.img_held")));
+      if (!it.image && it.image_gone) row.appendChild(el("span", "st-small ed-img-note", t("ed.img_removed")));   // 9 Nov 2026
       row.appendChild(state);
       row.appendChild(file);
     }
@@ -637,17 +678,15 @@
       var have = {}; E.items.forEach(function (x) { if (x !== it && x.image && x.image.id) have[x.image.id] = 1; });
       if (Object.keys(have).length >= LIMIT_IMAGES) { err.textContent = t("err.images_cap"); return; }
       state.textContent = t("ed.img_busy");
-      var sent = null;
       shrink(f).then(function (blob) {
         if (!blob) throw { b: { e: "bad_type" } };
         if (blob.size > IMG_BYTES) throw { b: { e: "too_big" } };
-        sent = blob;
-        return API.imgPut(E.key, E.meta.slug, blob, blob.type === "image/webp" ? "picture.webp" : "picture.jpg");
+        return API.imgPut(E.auth, E.meta.slug, blob, blob.type === "image/webp" ? "picture.webp" : "picture.jpg");
       }).then(function (r) {
         if (!r.ok || !r.b.url) throw r;
         dropImage(E, it.image);
-        it.image = { id: String(r.b.id || ""), url: String(r.b.url), held: !!r.b.held };
-        if (it.image.held && sent) { try { it.image.preview = URL.createObjectURL(sent); } catch (e) { /* the quiet box instead */ } }
+        it.image = { id: String(r.b.id || ""), url: String(r.b.url) };
+        delete it.image_gone;
         E.newImgs.push(it.image.id);
         state.textContent = "";
         drawRow(); summary(E, li, it, E.items.indexOf(it)); changed(E);
@@ -665,7 +704,7 @@
   function dropImage(E, img) {
     if (!img || !img.id) return;
     var i = E.newImgs.indexOf(img.id);
-    if (i >= 0) { E.newImgs.splice(i, 1); API.imgDel(E.key, img.id); }
+    if (i >= 0) { E.newImgs.splice(i, 1); API.imgDel(E.auth, img.id); }
   }
   function shrink(file) {
     return decode(file).then(function (src) {
@@ -805,11 +844,11 @@
     E.saveBtn.disabled = true;
     E.stateEl.textContent = t("ed.saving");
     var meta = E.meta;
-    var body = {
-      edit_key: E.key, title: title, about: (meta.about || "").trim(), mode: meta.mode, start_day: meta.start_day || S.today(),
+    var body = Object.assign(API.auth(E.auth), {
+      title: title, about: (meta.about || "").trim(), mode: meta.mode, start_day: meta.start_day || S.today(), lang: meta.lang,
       keep_answers: !!meta.keep_answers, want_listed: !!meta.want_listed,
       items: E.items.map(wireItem)
-    };
+    });
     if (meta.saved !== "" && meta.saved != null && isFinite(Number(meta.saved))) body.base = Number(meta.saved);
     var snap = snapshot(E);
     API.gameSave(body).then(function (r) {
@@ -828,7 +867,9 @@
       }
       /* pictures the saved game no longer uses: away now (orphans also go each night) */
       var now = {}; E.items.forEach(function (it) { if (it.image && it.image.id) now[it.image.id] = 1; });
-      Object.keys(E.savedImgs).forEach(function (id) { if (!now[id]) API.imgDel(E.key, id); });
+      Object.keys(E.savedImgs).forEach(function (id) { if (!now[id]) API.imgDel(E.auth, id); });
+      E.items.forEach(function (it) { if (it.image_gone) { delete it.image_gone; } });
+      if (E.goneNote) E.goneNote.hidden = true;
       E.savedImgs = now; E.newImgs = [];
       var g = obj(r.b.game);
       if (g && g.saved != null) meta.saved = String(g.saved);
@@ -841,8 +882,8 @@
       adoptIds(E, r.b, snap);
       /* no toast: the dock already says "Saved" (F) */
       var entry = { maker: meta.maker, slug: meta.slug, title: title, edit: E.key };
-      if (hereHas(entry)) keepGameHere(entry);
-      keepGameMe(entry);
+      keepGameHere(entry);
+      if (E.key) keepGameMe(entry);
     });
   }
 
@@ -850,7 +891,7 @@
   function adoptIds(E, b, snap) {
     var missing = E.items.some(function (it) { return it.id == null || it.id === ""; });
     if (!missing) return;
-    var list = Array.isArray(b.items) ? Promise.resolve(b.items) : API.gameMine(E.key).then(function (r) { return r.ok && Array.isArray(r.b.items) ? r.b.items : null; });
+    var list = Array.isArray(b.items) ? Promise.resolve(b.items) : API.gameMine(E.auth).then(function (r) { return r.ok && Array.isArray(r.b.items) ? r.b.items : null; });
     list.then(function (items) {
       if (!items || items.length !== E.items.length || current !== E) return;
       var clean = snapshot(E) === snap;
@@ -864,7 +905,7 @@
     if (button) button.disabled = true;
     var rows = [], i = 0;
     function more(after) {
-      return API.gameAnswers(E.key, after).then(function (r) {
+      return API.gameAnswers(E.auth, after).then(function (r) {
         if (!r.ok) throw r;
         var got = Array.isArray(r.b.rows) ? r.b.rows : [];
         rows = rows.concat(got);
@@ -904,11 +945,11 @@
       var acts = el("div", "actions");
       var yes = btn("btn solid", t("ed.del_yes"), function () {
         yes.disabled = true;
-        API.gameDelete(E.key).then(function (r) {
+        API.gameDelete(E.auth).then(function (r) {
           var gone = r.status === 404 || (r.status === 403 && r.b && r.b.e === "key");
           if (!r.ok && !gone) { yes.disabled = false; S.toast(t(API.errKey(r))); return; }
           forget({ maker: E.meta.maker, slug: E.meta.slug });
-          E.saved = snapshot(E); E.unkept = false;
+          E.saved = snapshot(E);
           close();
           S.toast(t("ed.deleted"));
           current = null;
@@ -930,34 +971,33 @@
     copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>',
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>',
     here: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>',
-    me: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6.2" r="4.1" fill="#2D4FC4"/><circle cx="5.3" cy="17.8" r="4.1" fill="#D5492F"/><circle cx="18.7" cy="17.8" r="4.1" fill="#0D7D73"/></svg>'
+    me: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="6.2" r="4.1" fill="#2D4FC4"/><circle cx="5.3" cy="17.8" r="4.1" fill="#D5492F"/><circle cx="18.7" cy="17.8" r="4.1" fill="#0D7D73"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
   };
   function svg(name) { var s = el("span"); s.innerHTML = ICON[name]; return s.firstChild; }
+  /* 9 Nov 2026: this browser already keeps the game (it was lost when the sheet was closed), so the sheet is for other
+     devices: copy or email the link, or (with a My Logicers code) it is kept there too. It closes like any sheet. */
   function keepSheet(E) {
     var link = S.SITE + "/" + E.meta.maker + "/" + E.meta.slug + "/edit/#" + E.key;
     var entry = { maker: E.meta.maker, slug: E.meta.slug, title: E.meta.title, edit: E.key };
-    E.unkept = true;
-    var kept = false;
     S.sheet(null, function (s, close) {
       s.classList.add("kp");
       var k = el("div", "kp-key"); k.appendChild(svg("key")); s.appendChild(k);
       s.appendChild(attr(el("h2", null, t("kp.h")), { tabindex: "-1", id: "kp-h" }));
+      var here = el("p", "kp-here");
+      here.appendChild(svg("check"));
+      here.appendChild(el("span", null, t("kp.here_kept")));
+      s.appendChild(here);
       s.appendChild(el("p", "quiet", t("kp.lead")));
       var tiles = el("div", "kp-tiles");
-      function done(tile) { tile.classList.add("done"); kept = true; E.unkept = false; msg.textContent = ""; }
-      var c = btn("kp-tile", null, function () { copyIt(); done(c); });
+      function done(tile) { tile.classList.add("done"); }
+      var c = btn("kp-tile", null, function () { inp.select(); S.copyText(link).then(function () { S.toast(t("site.copied")); }); done(c); });
       c.appendChild(svg("copy")); c.appendChild(el("span", null, t("kp.copy")));
       tiles.appendChild(c);
       var mail = attr(el("a", "kp-tile"), { href: "mailto:?subject=" + encodeURIComponent(t("kp.mail_subject", { title: E.meta.title })) + "&body=" + encodeURIComponent(t("kp.mail_body") + "\n" + link) });
       mail.addEventListener("click", function () { done(mail); });
       mail.appendChild(svg("mail")); mail.appendChild(el("span", null, t("kp.mail")));
       tiles.appendChild(mail);
-      var here = attr(btn("kp-tile", null, function () {
-        if (here.classList.contains("done")) { forgetHere(); here.classList.remove("done"); here.setAttribute("aria-pressed", "false"); return; }
-        keepGameHere(entry); here.setAttribute("aria-pressed", "true"); done(here);
-      }), { "aria-pressed": "false" });
-      here.appendChild(svg("here")); here.appendChild(el("span", null, t("kp.here"))); here.appendChild(el("small", null, t("kp.here_sub")));
-      tiles.appendChild(here);
       if (hello && hello.code) {
         var me = el("div", "kp-tile");
         me.appendChild(svg("me")); me.appendChild(el("span", null, t("kp.me"))); me.appendChild(el("small", null, t("kp.me_sub")));
@@ -969,15 +1009,8 @@
       var inp = attr(el("input"), { readonly: "", value: link, "aria-label": t("kp.link_l") });
       row.appendChild(inp);
       s.appendChild(row);
-      var msg = attr(el("p", "ed-err"), { role: "alert" });
-      s.appendChild(msg);
-      s.appendChild(btn("btn solid kp-done", t("kp.done"), function () {
-        if (!kept) { msg.textContent = t("kp.first"); return; }
-        close();
-      }));
-      function copyIt() { inp.select(); S.copyText(link).then(function () { S.toast(t("site.copied")); }); }
-      function forgetHere() { var m = S.mine(); m.games = m.games.filter(function (x) { return !(x.maker === entry.maker && x.slug === entry.slug); }); S.mineSet(m); }
-    }, { stay: true });
+      s.appendChild(btn("btn solid kp-done", t("kp.done"), close));
+    });
   }
 
   window.StudioEditor = function (which) {
