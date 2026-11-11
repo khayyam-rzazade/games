@@ -16,8 +16,10 @@
      POST /game/delete {edit_key}
      POST /img/put    multipart {edit_key, game, file}             -> { id, url }   (after the Worker's picture check)
      POST /img/del    {edit_key, id}
-     POST /play       {game, item, answer}                         -> { bucket, counts: { n, b: {bucket: n} } }
-     POST /play/keep  {game, item, pid, name, answer}
+     POST /play       {game, item, answer, first, pid?, name?, again?} -> { bucket, counts: { n, b: {bucket: n} }, reveal, kept? }
+                      11 Nov 2026: a question reaches the page without its answer; /play gives it back ("reveal": answer, or
+                      order for a Rank, explain, values). With "keep answers" on, pid and name keep the answer in the same call.
+     POST /play/keep  {game, item, pid, name, answer}               (older pages; the page keeps through /play now)
      POST /report     {game, reason, text, browser}
    game = "<maker>/<game>"; item = the item's id, given by the Worker (n when an item has none yet).
    An item, flat (A's src/items.js): number {q, max, answer} · line {q, min, max, answer} · pick {q, choices, answer: index}
@@ -123,6 +125,16 @@
     return out;
   }
 
+  /* what /play gave back about the answer: { answer } (a Rank: { order }), with explain and values; {} when nothing */
+  function reveal(b) {
+    var r = obj(b && b.reveal) || {}, out = {};
+    if (r.answer !== undefined) out.answer = r.answer;
+    if (Array.isArray(r.order) && r.order.every(function (x) { return typeof x === "number"; })) out.order = r.order.slice();
+    if (typeof r.explain === "string" && r.explain) out.explain = r.explain;
+    if (Array.isArray(r.values)) out.values = r.values.slice();
+    return out;
+  }
+
   /* the Worker's error keys, as words of words.js */
   var ERR = {
     net: "site.err_net", brake: "err.busy", busy: "err.busy", slow: "err.busy", rate: "err.busy", too_many: "err.busy",
@@ -152,7 +164,7 @@
   function auth(k) { return typeof k === "string" ? { edit_key: k } : obj(k) ? (k.edit_key ? { edit_key: k.edit_key } : { maker_key: k.maker_key, game: k.game }) : {}; }
 
   window.StudioAPI = {
-    meta: meta, item: item, counts: counts, errKey: errKey,
+    meta: meta, item: item, counts: counts, reveal: reveal, errKey: errKey,
     list: function (day) { return get("/list?day=" + seg(day)); },
     maker: function (slug, day) { return get("/m/" + seg(slug) + "?day=" + seg(day)); },
     game: function (maker, game, day) { return get("/g/" + seg(maker) + "/" + seg(game) + "?day=" + seg(day)); },
@@ -175,7 +187,13 @@
     },
     imgDel: function (k, id) { return post("/img/del", Object.assign(auth(k), { id: id })); },
     auth: auth,
-    play: function (game, item, answer, first) { return post("/play", { game: game, item: item, answer: answer, first: first !== false }); },
+    /* keep: { pid, name } when the maker keeps the answers; again: an answer this browser gave before, shown again (nothing counted) */
+    play: function (game, item, answer, first, keep, again) {
+      var b = { game: game, item: item, answer: answer, first: first !== false };
+      if (keep && keep.pid) { b.pid = keep.pid; b.name = keep.name || ""; }
+      if (again) b.again = true;
+      return post("/play", b);
+    },
     keep: function (game, item, pid, name, answer) { return post("/play/keep", { game: game, item: item, pid: pid, name: name, answer: answer }); },
     report: function (game, reason, text, browser) { return post("/report", { game: game, reason: reason, text: text || "", browser: browser }); }
   };

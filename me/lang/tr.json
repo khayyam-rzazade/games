@@ -129,6 +129,8 @@
  "studio.c_item": "Soru",
  "studio.c_answer": "Cevap",
  "studio.del": "Oyunu, resimlerini ve cevaplarını herkes için siler. Geri alınamaz.",
+ "studio.del_all_b": "Adımı ve bütün oyunlarımı sil",
+ "studio.del_all": "Adını, hazırladığın her oyunu, resimlerini ve cevaplarını herkes için siler. Geri alınamaz.",
  "studio.name_h": "Oyunlarında görünen adın",
  "studio.name_line": "Herkes görür.",
  "studio.name_short": "En az 2 karakter.",

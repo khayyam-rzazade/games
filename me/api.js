@@ -246,6 +246,17 @@ export async function studioDestroy(it) {
   if (r.status === 200 || r.status === 404 || keyGone(r)) { forget('studio', it.code); return { ok: true }; }
   return { ok: false, reason: r.status === 0 ? 'net' : r.status === 429 ? 'brake' : 'fail' };
 }
+/* 11 Nov 2026 (Khayyam): the maker's name and every game of theirs, deleted for good on the Studio's Worker (a key it no longer
+   knows: already gone, fine), then off this phone: each game goes on My Logicers' gone list (so the other phones drop it too)
+   and the maker key leaves this phone. games: the record's Studio items of this maker. */
+export async function studioDeleteMaker(maker, games) {
+  if (!maker || !maker.key) return { ok: false, reason: 'fail' };
+  const r = await safe(() => ask('studio', '/maker/delete', { key: maker.key }), { status: 0, b: {} });
+  if (!(r.status === 200 || keyGone(r))) return { ok: false, reason: r.status === 0 ? 'net' : r.status === 429 ? 'brake' : r.status === 403 ? 'blocked' : 'fail' };
+  (games || []).forEach((it) => { if (it && it.code) forget('studio', it.code); });
+  try { localStorage.removeItem('logicers-studio:maker'); } catch (e) { /* the record keeps it until the next sync */ }
+  return { ok: true };
+}
 /* the maker's name, on the Worker, then on this phone (the Studio pages read it from here too); the address does not change */
 export async function studioRename(maker, name) {
   if (!maker || !maker.key) return { ok: false, reason: 'fail' };

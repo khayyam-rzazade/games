@@ -59,7 +59,7 @@ test("the nightly job asks again about pictures not checked; a sexual one is rem
   assert.ok(none2);
 });
 
-test("reports: a listed game is never hidden by them; bare calls count as one browser", async () => {
+test("reports: never hide a game (11 Nov 2026), listed or not; bare calls count as one browser", async () => {
   setNow(T0); resetBrakes();
   const e = env(); const a = await maker(e);
   const g = await game(e, a); await save(e, g, { items: [pick()] });
@@ -68,10 +68,10 @@ test("reports: a listed game is never hidden by them; bare calls count as one br
   await call(e, "POST", "/admin/act", { key: ADMIN, game: "anna-rossi/history-a-day", action: "list" });
   for (const b of ["browserAAAA1", "browserBBBB2", "browserCCCC3"]) await call(e, "POST", "/report", { game: "anna-rossi/history-a-day", reason: "spam", browser: b });
   assert.equal((await one(e, "SELECT hidden FROM games WHERE id = 'anna-rossi/history-a-day'")).hidden, 0, "listed: stays up");
-  assert.ok((await rows(e, "SELECT text FROM queue WHERE text LIKE '%reports on a listed game%'")).length === 1, "Khayyam is told");
+  assert.ok((await rows(e, "SELECT text FROM queue WHERE text LIKE '%3 reports from 3 browsers%'")).length === 1, "Khayyam is told");
   const g2 = await game(e, a, { title: "Private one", want_listed: false }); await save(e, g2, { items: [pick()] });
   for (const b of ["browserAAAA1", "browserBBBB2", "browserCCCC3"]) await call(e, "POST", "/report", { game: "anna-rossi/private-one", reason: "spam", browser: b });
-  assert.equal((await one(e, "SELECT hidden FROM games WHERE id = 'anna-rossi/private-one'")).hidden, 2, "not listed: three browsers hide it");
+  assert.equal((await one(e, "SELECT hidden FROM games WHERE id = 'anna-rossi/private-one'")).hidden, 0, "not listed: up too, Khayyam is told");
 });
 
 test("a listed game that changes leaves the list; a stale save is refused", async () => {

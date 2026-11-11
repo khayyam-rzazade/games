@@ -12,7 +12,7 @@
      /<maker>/<game>/edit/           that game's editor (never framed, never indexed; the key stays in the #fragment)
    An unknown maker or game: the shell with 404; a hidden one: the shell with 410 (the page says "not available"). */
 import { gameById, gameByCode, makerBySlug, publicState, isListed, one, shownCover } from "./db.js";
-import { slugOk, codeOk, imgUrl, brake } from "./util.js";
+import { slugOk, codeOk, imgUrl, brake, BRAKE } from "./util.js";
 import { RESERVED } from "./makers.js";
 
 /* the words of the head, by the game's (or the maker's) language: shown only in link previews. Chat E: please check them. */
@@ -108,7 +108,7 @@ export async function servePage(env, req, url) {
     const g = await gameByCode(env, segs[1].toUpperCase());
     const m = g ? await makerBySlug(env, g.maker) : null;
     if (g && publicState(g, m) === "ok") return Response.redirect(site + "/" + g.id + "/", 302);
-    if (!brake("miss", req, 200, 6e5)) return new Response("later", { status: 429 });
+    if (!brake("miss", req, BRAKE.miss, 6e5)) return new Response("later", { status: 429 });
     return page(writeHead(await shellHtml(env, url), { title: "Logicers", noindex: true }), 404, { noindex: true });
   }
   if (!path.endsWith("/") && !/\.[a-z0-9]{1,8}$/i.test(path)) return Response.redirect(url.origin + path + "/" + url.search, 301);
@@ -123,7 +123,7 @@ export async function servePage(env, req, url) {
   const notFound = async () => page(writeHead(await shellHtml(env, url), { title: "Logicers", noindex: true }), 404, { noindex: true });
   if (!slugOk(head) || RESERVED.has(head) || segs.length > 3) return notFound();
   const m = await makerBySlug(env, head);
-  if (!m) { if (!brake("miss", req, 200, 6e5)) return new Response("later", { status: 429 }); return notFound(); }
+  if (!m) { if (!brake("miss", req, BRAKE.miss, 6e5)) return new Response("later", { status: 429 }); return notFound(); }
   const lang = m.lang;
   if (segs.length === 1) {
     if (m.blocked) return page(writeHead(await shellHtml(env, url), { title: "Logicers", noindex: true }), 410, { noindex: true });
@@ -134,7 +134,7 @@ export async function servePage(env, req, url) {
   const sub = segs[2] ? segs[2].toLowerCase() : "";
   if (sub && sub !== "about" && sub !== "embed" && sub !== "edit") return notFound();
   const g = await gameById(env, m.slug + "/" + segs[1].toLowerCase());
-  if (!g) { if (!brake("miss", req, 200, 6e5)) return new Response("later", { status: 429 }); return notFound(); }
+  if (!g) { if (!brake("miss", req, BRAKE.miss, 6e5)) return new Response("later", { status: 429 }); return notFound(); }
   /* the editor of one game (its key in the #fragment, never sent here): the shell as it is, even for a hidden game */
   if (sub === "edit") return page(await shellHtml(env, url), 200, { frame: "'none'", noindex: true, cache: "no-store" });
   const embed = sub === "embed";

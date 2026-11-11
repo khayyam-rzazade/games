@@ -62,7 +62,7 @@ test("the queue: every new thing with the maker's name, newest first; done; acti
   assert.ok(r.json.queue.some((x) => x.kind === "act" && x.text === "delete"), "Khayyam's own acts are on record");
 });
 
-test("planted fault: three reports from three browsers hide the game until Khayyam looks", async () => {
+test("planted fault: reports reach Khayyam, never hide the game (11 Nov 2026, Khayyam: a class could hide its teacher's game)", async () => {
   setNow(T0);
   resetBrakes();
   const e = env();
@@ -79,15 +79,15 @@ test("planted fault: three reports from three browsers hide the game until Khayy
   assert.equal((await call(e, "GET", "/g/" + g.id + "/")).status, 200, "two reports: still up");
   await rep("browser-0003", "10.3.0.4");
   let r = await call(e, "GET", "/g/" + g.id + "/");
-  assert.equal(r.status, 410, "three: hidden");
+  assert.equal(r.status, 200, "three: still up");
   r = await call(e, "POST", "/game/mine", { edit_key: g.edit_key });
-  assert.equal(r.json.game.status, "hidden");
-  assert.equal(r.json.game.hidden_by, "reports");
+  assert.equal(r.json.game.status, "waiting", "the maker sees no change");
   r = await call(e, "POST", "/admin/queue", { key: e.ADMIN_KEY });
   assert.equal(r.json.reports.length, 1);
   assert.equal(r.json.reports[0].n, 3);
-  assert.equal(r.json.reports[0].game.hidden, "reports");
-  assert.ok(r.json.queue.some((x) => x.kind === "report" && /hidden by 3 reports/.test(x.text)));
+  assert.equal(r.json.reports[0].game.hidden, null);
+  assert.ok(r.json.queue.some((x) => x.kind === "report" && /3 reports from 3 browsers: look/.test(x.text)), "Khayyam gets one more row at the third");
+  await call(e, "POST", "/admin/act", { key: e.ADMIN_KEY, game: g.id, action: "hide" });
   const stored = await rows(e, "SELECT * FROM reports");
   assert.ok(stored.every((x) => !x.browser_hash.includes("browser-")), "only a keyed hash of the browser's id");
   await call(e, "POST", "/admin/act", { key: e.ADMIN_KEY, game: g.id, action: "unhide" });

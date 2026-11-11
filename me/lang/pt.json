@@ -129,6 +129,8 @@
  "studio.c_item": "Pergunta",
  "studio.c_answer": "Resposta",
  "studio.del": "Isso apaga o jogo, as imagens e as respostas dele para todo mundo. Não dá para desfazer.",
+ "studio.del_all_b": "Apagar meu nome e todos os meus jogos",
+ "studio.del_all": "Isso apaga o seu nome, cada jogo que você criou, as imagens e as respostas deles, para todo mundo. Não dá para desfazer.",
  "studio.name_h": "Seu nome nos seus jogos",
  "studio.name_line": "Todos veem.",
  "studio.name_short": "Pelo menos 2 caracteres.",

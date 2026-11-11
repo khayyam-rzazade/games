@@ -99,7 +99,7 @@ npm test
 
 D1 is Node's own SQLite (`test/d1shim.mjs`, as in `server/me`); R2, Workers AI and the static files are small stand-ins
 (`test/lib.mjs`). The planted faults include a wrong key and its brake, a blocked maker, an image too big, too wide, of the
-wrong type or refused by the check, a hidden game, the three-report hide, oEmbed for both hosts, the daily item by the
+wrong type or refused by the check, a hidden game, reports that reach the queue and never hide a game, oEmbed for both hosts, the daily item by the
 player's local day east and west of UTC, a title that tries to break out of the page head, and the nightly job.
 
 ## What it answers
@@ -120,21 +120,24 @@ POST bodies are JSON (an image is a form); a key is never in a URL. Answers are 
 | `POST /game/answers` | `{ edit_key, after? }` | `{ rows: [{ item, n, pid, name, answer, time }], next }`, 2000 a page, for the CSV |
 | `POST /img/put` | form: `edit_key` (or `maker_key` + `game`), `file` | `{ id, url, w, h, bytes }` |
 | `POST /img/del` | `{ edit_key, id }` | an image no item and no cover uses |
-| `POST /play` | `{ game, item, answer }` | `{ bucket, counts: { n, b: { bucket: n } } }` |
-| `POST /play/keep` | `{ game, item, pid, name, answer }` | `{ kept }` (the first answer of a `pid` stays) |
+| `POST /play` | `{ game, item, answer, first?, pid?, name?, again? }` | `{ bucket, counts: { n, b: { bucket: n } }, reveal, kept? }`: `reveal` is the answer (`answer`, or `order` for a Rank, with `explain` and `values`); with "keep answers" on, `pid` and `name` keep the answer in the same call; `again: true` gives the reveal and the counts without counting (11 Nov 2026) |
+| `POST /play/keep` | `{ game, item, pid, name, answer }` | `{ kept }` (the first answer of a `pid` stays; the pages keep through `/play` since 11 Nov 2026) |
 | `POST /report` | `{ game, reason, text?, browser? }` | `{}` |
 | `POST /admin/queue` | `{ key, before?, all? }` | `{ cards, cards_next, open_cards }`: one card per game (or new maker) with something new, newest first, 15 a page (`before`: `cards_next`); also the older `{ queue, next, open, reports }` |
 | `POST /admin/game` | `{ key, game }` or `{ key, maker }` | `{ card }`: the whole game (every question with its answer, the pictures and what the check said, the About, every link, the reports, what is new since your last look, the maker and their other games) |
-| `POST /admin/act` | `{ key, game, action, id?, maker?, image? }` | `list`, `unlist`, `hide`, `unhide`, `delete`, `block_maker`, `unblock_maker`, `done` (a game's rows and reports, or a maker's own rows), `remove_image` |
+| `POST /admin/act` | `{ key, game, action, id?, maker?, image? }` | `list`, `unlist`, `hide`, `unhide`, `delete`, `block_maker`, `unblock_maker`, `delete_maker` (the maker and everything of theirs, the name too), `done` (a game's rows and reports, or a maker's own rows), `remove_image` |
 | `POST /admin/img` · `POST /admin/ai` | `{ key, image }` · `{ key }` | a picture's bytes; the picture check asked about a test picture |
-| `GET /g/<maker>/<game>?day=YYYY-MM-DD&counts=<item>` | | `{ game, day, state, item, number, left }` (daily) or `{ game, state: "open", items }` |
+| `GET /g/<maker>/<game>?day=YYYY-MM-DD&counts=<item>` | | `{ game, day, state, item, number, left }` (daily) or `{ game, state: "open", items }`; each question without its answer, explanation or values, a Rank's things mixed (the same mix every time; `/play` gives the answer back) |
 | `GET /m/<maker>` · `GET /list?lang=&from=&n=&day=` · `GET /code/<CODE>` | | a maker's page; the directory; where a code leads |
 | `GET /oembed?url=&format=json` · `GET /health` | | |
 
 Every `/game/*` call and `/img/del` also takes `{ maker_key, game }` in place of `edit_key`. `game` in `/play`,
 `/play/keep`, `/report` and `/admin/act` is `"<maker>/<game>"`, or `{ maker, game }`, or the six-letter code.
 A daily game's `state` is `today`, `soon` (before the start day) or `out` (no item left: "come back when the maker adds
-more"). The day is the player's: the page sends `?day=` with its own date (taken while some clock on earth shows it).
+more"). Reports never hide a game (11 Nov 2026): every report is a row in the queue, and the third browser's one more.
+A maker's new name takes their listed games off the list until Khayyam puts them back. The brakes per address are wide (a
+school is often one address: `BRAKE` in `src/util.js`); the caps of a day over everyone hold: 5,000 makers, 5,000 games,
+20,000 pictures, 10,000 reports. The day is the player's: the page sends `?day=` with its own date (taken while some clock on earth shows it).
 
 The item shapes of the six templates, and how each answer is counted, are at the top of `src/items.js`. The pages and
 their headers (the directory, `/new/`, `/<maker>/<game>/edit/`, `/terms/`, `/admin/`, a maker, a game, its About and

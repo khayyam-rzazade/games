@@ -384,7 +384,7 @@ function makerRow(m, list) {
     line.appendChild(pl); w.appendChild(line);
   }
   row.appendChild(w);
-  if (m) row.appendChild(button('tint small', T('mine.edit'), () => openRename(m)));
+  if (m) row.appendChild(button('tint small', T('mine.edit'), () => openRename(m, list)));
   return row;
 }
 function studioItem(it) {
@@ -521,7 +521,7 @@ function openStudioResults(it) {
   });
 }
 /* the maker's name, shown on every game and every share card: changed here, on the Worker first, then on this phone (and so on the others) */
-function openRename(m) {
+function openRename(m, list) {
   sheet(T('studio.name_h'), (box, close) => {
     box.appendChild(el('p', null, T('studio.name_line')));
     const f = el('div', 'me-field'); const inp = el('input', 'me-input'); inp.type = 'text'; inp.id = 'me-mk-in'; inp.maxLength = 40; inp.value = m.name || '';
@@ -538,6 +538,23 @@ function openRename(m) {
     });
     row.append(button('ghost', T('nav.close'), close), yes); box.appendChild(row); box.appendChild(msg);
     inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); yes.click(); } });
+    /* 11 Nov 2026 (Khayyam): the name and every game made under it, for good */
+    const all = button('ghost block me-dangertext', T('studio.del_all_b'), () => {
+      box.replaceChildren();
+      box.appendChild(el('h2', null, T('studio.del_all_b')));
+      box.appendChild(el('p', null, T('studio.del_all')));
+      const r2 = el('div', 'me-btns');
+      const sure = button('danger', T('del.yes'), async () => {
+        sure.disabled = true; setMsg(msg, '');
+        const mine = (list || []).filter((it) => it && (api.studioParts(it.code) || {}).maker === m.slug);
+        const r = await api.studioDeleteMaker(m, mine);
+        if (!r.ok) { sure.disabled = false; setMsg(msg, failText(r), 'bad'); return; }
+        mine.forEach((it) => SINFO.delete(mineKey(it)));
+        close(); S.flash = T('mine.deleted'); await refresh(); S.quiet = true; try { render(false, true); } finally { S.quiet = false; }
+      });
+      r2.append(button('ghost', T('del.no'), close), sure); box.append(r2, msg);
+    });
+    box.appendChild(all);
     setTimeout(() => inp.focus(), 60);
   });
 }

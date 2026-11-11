@@ -62,7 +62,7 @@ const GAMES = {
   'secret': { edit: 'EDITKEYSECRET00000000000', title: 'Secret', plays: 3, items: 2, listed: false, listed_by_khayyam: false, hidden: true, keep_answers: false }
 };   // "old-one" is not here: the Worker does not know it
 const ANSWERS = [[1, 'Ana', 'Rome', Date.UTC(2026, 10, 7, 9, 30)], [2, 'Bo, "the" best', '1789', Date.UTC(2026, 10, 7, 10)], [1, '', 'Paris', Date.UTC(2026, 10, 7, 11)]];
-let OLD_WORKER = false;
+let OLD_WORKER = false, MAKER_GONE = false;
 const byEdit = (k) => Object.entries(GAMES).find(([, g]) => g.edit === k);
 const stand = http.createServer((req, res) => {
   let body = '';
@@ -91,6 +91,7 @@ const stand = http.createServer((req, res) => {
       return send(200, { ok: true, rows: page.map((a, i) => i ? a : { item: a[0], name: a[1], answer: a[2], time: Math.round(a[3] / 1000) }), next: from + 2 < ANSWERS.length ? from + 2 : null });
     }
     if (p === '/game/delete') { const e = byEdit(b.edit_key); if (!e) return send(404, { ok: false }); delete GAMES[e[0]]; return send(200, { ok: true }); }
+    if (p === '/maker/delete') { if (b.key !== MAKER_KEY) return send(403, { ok: false, e: 'key' }); MAKER_GONE = true; return send(200, { ok: true }); }   // 11 Nov 2026
     send(404, { ok: false });
   });
 });
@@ -307,6 +308,20 @@ console.log('a phone with a language of its own');
 const I = await phone({ seed: true }); await I.page.goto(srv.url + '/me/?lang=it'); await I.page.waitForFunction(() => document.documentElement.dataset.ready); await I.page.waitForTimeout(1200);
 check('Italian: the section is there (English words until chat E), nothing is missing', (await I.page.locator('.me-studio .me-item').count()) === 4 && I.warns.length === 0 && I.errors.length === 0, [I.warns, I.errors]);
 await I.ctx.close();
+
+/* ---------------------------------------------------------------- 11 Nov 2026: the maker's name and every game, deleted from here */
+console.log('delete my name and all my games');
+const D = await phone({ seed: true }); await open(D); await D.page.waitForTimeout(800);
+await D.page.locator('.me-studio .me-maker').getByRole('button', { name: 'Edit' }).click(); await D.page.waitForTimeout(500);
+let dd = D.page.locator('dialog.me-sheet').last();
+await dd.getByRole('button', { name: 'Delete my name and all my games' }).click(); await D.page.waitForTimeout(300);
+check('it says what goes, for everyone, before anything is sent', /This deletes your name, every game you made, their pictures and their answers, for everyone\. It can.t be undone\./.test(await dd.innerText()) && !calls.some((c) => c.p === '/maker/delete'));
+await dd.getByRole('button', { name: 'Delete', exact: true }).click(); await D.page.waitForTimeout(1500);
+check('the Worker got the maker key', calls.some((c) => c.p === '/maker/delete' && c.b.key === MAKER_KEY) && MAKER_GONE);
+check('the maker key and the games leave the phone', await D.page.evaluate(() => !localStorage.getItem('logicers-studio:maker') && !(JSON.parse(localStorage.getItem('logicers-studio:games') || '[]')).some((g) => g && g.maker === 'anna-rossi')));
+check('the section of games made is gone', (await D.page.locator('.me-studio').count()) === 0, await D.page.locator('.me-studio').count());
+check('D: no script errors, no missing words', D.errors.length === 0 && D.warns.length === 0, [D.errors, D.warns]);
+await D.ctx.close();
 
 check('A: no script errors, no missing words', A.errors.length === 0 && A.warns.length === 0, [A.errors, A.warns]);
 await browser.close(); await srv.close(); stand.close();

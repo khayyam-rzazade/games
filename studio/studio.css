@@ -506,7 +506,6 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--c); }
   -webkit-mask-image: linear-gradient(90deg, #000 72%, transparent); mask-image: linear-gradient(90deg, #000 72%, transparent); }
 .st-why button { min-height: 44px; }
 @media (min-width: 360px) { .st-why { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .st-why button { width: 100%; } }
-.st-danger-line { margin-top: 14px; color: var(--soft); }
 .st-linkrow input { -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent); mask-image: linear-gradient(90deg, #000 80%, transparent); }
 .st-codeboxes, .st-qr { margin-left: auto; margin-right: auto; justify-content: center; }
 /* F: a drawn tick box instead of the browser's own */
@@ -547,14 +546,15 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--c); }
 .kp-here svg { width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: var(--ok); color: var(--on-ok, #fff); }
 .kp .quiet { margin-top: 10px; }
 
-/* embed: one line, three numbered steps */
+/* embed: one line, three numbered steps (review, 11 Nov 2026: .st-howto, not .st-steps, the slider's − and + row, which
+   this list's grid had stacked in a corner of every Number and Line question since 9 Nov) */
 .st-what { margin-top: 2px; font-size: 1.05rem; line-height: 1.4; color: var(--soft); }
-.st-steps { list-style: none; counter-reset: st-step; margin: 16px 0 0; padding: 0; display: grid; gap: 14px; }
-.st-steps > li { counter-increment: st-step; position: relative; padding-left: 44px; min-height: 30px; }
-.st-steps > li::before { content: counter(st-step); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+.st-howto { list-style: none; counter-reset: st-howto; margin: 16px 0 0; padding: 0; display: grid; gap: 14px; }
+.st-howto > li { counter-increment: st-howto; position: relative; padding-left: 44px; min-height: 30px; }
+.st-howto > li::before { content: counter(st-howto); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
   background: var(--tint); color: var(--c); font-family: var(--display); font-weight: 800; font-size: 0.98rem; }
-.st-steps > li > p { font-weight: 700; line-height: 1.35; padding-top: 3px; }
-.st-steps .st-snippet { margin-top: 10px; }
+.st-howto > li > p { font-weight: 700; line-height: 1.35; padding-top: 3px; }
+.st-howto .st-snippet { margin-top: 10px; }
 .st-copycode { width: 100%; margin-top: 10px; }
 .st-copylink { margin-top: 10px; min-height: 44px; font-weight: 800; }
 
@@ -566,3 +566,13 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--c); }
 .st-how-about { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
 .st-how-about .st-lab { margin-top: 0; color: var(--soft); }
 .st-how-about .st-about { margin-top: 6px; padding: 0; background: none; box-shadow: none; font-size: 1rem; }
+
+/* 11 Nov 2026: a draft kept on the phone, offered back; new questions on days gone; Lock in without a connection */
+.ed-draft { margin: 0 0 14px; padding: 14px 16px; border-radius: 18px; background: color-mix(in srgb, var(--c, #2D4FC4) 12%, var(--card)); box-shadow: inset 0 0 0 1px var(--line); }
+.ed-draft > p { font-weight: 800; line-height: 1.35; }
+.ed-draft .actions { margin-top: 10px; }
+.ed-past { margin-top: 12px; padding: 12px 14px; border-radius: 14px; background: color-mix(in srgb, var(--miss) 22%, var(--card)); }
+.ed-past > p { font-weight: 700; font-size: 0.95rem; line-height: 1.35; }
+.ed-past .chip { margin-top: 8px; min-height: 40px; font-weight: 800; }
+.st-play-err { text-align: center; }
+

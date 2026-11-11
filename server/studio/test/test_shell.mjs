@@ -158,7 +158,7 @@ test("the nightly job: 12 months unopened, orphan images, old queue rows", async
   const up = async (g) => (await call(e, "POST", "/img/put", form({ edit_key: g.edit_key }, FIX("photo.jpg")))).json.id;
   const oldImg = await up(old), used = await up(keep), orphan = await up(keep), fresh = await up(keep);
   await save(e, keep, { items: [{ q: "q", choices: ["a", "b"], answer: 0, image: used }] });
-  await e.DB.prepare("UPDATE images SET made = ? WHERE id <> ?").bind(T0 - 2 * 864e5, fresh).run();
+  await e.DB.prepare("UPDATE images SET made = ? WHERE id <> ?").bind(T0 - 8 * 864e5, fresh).run();   // a week's grace (11 Nov 2026)
   await e.DB.prepare("UPDATE games SET last_open = ? WHERE id = ?").bind(T0 - 366 * 864e5, old.id).run();
   await call(e, "POST", "/admin/act", { key: e.ADMIN_KEY, game: keep.id, action: "done" });
   await e.DB.prepare("UPDATE queue SET done_at = ? WHERE done = 1").bind(T0 - 91 * 864e5).run();

@@ -3,7 +3,7 @@
      https://by.logicers.com/<maker>/<game>/          (also .../about/ and .../embed/) -> the maker's game, slim
      https://logicers.com/[<lang>/]<daily game>/       -> our daily game, ?embed=1 (the slim layout chat C adds)
    The game pages point here with <link rel="alternate" type="application/json+oembed">. */
-import { json, bad, brake } from "./util.js";
+import { json, bad, brake, BRAKE } from "./util.js";
 import { gameById, makerBySlug, publicState, shownCover } from "./db.js";
 import { OUR_GAMES } from "./ourgames.js";
 import { titleBy } from "./shell.js";
@@ -21,7 +21,7 @@ function answer(o, maxw, maxh) {
 }
 
 export async function oembed(env, req, url) {
-  if (!brake("read", req, 3000, 6e5)) return bad("later", 429);
+  if (!brake("read", req, BRAKE.read, 6e5)) return bad("later", 429);
   const fmt = url.searchParams.get("format") || "json";
   if (fmt !== "json") return new Response("json only", { status: 501, headers: { "Access-Control-Allow-Origin": "*" } });
   const maxw = parseInt(url.searchParams.get("maxwidth") || "0", 10) || 0, maxh = parseInt(url.searchParams.get("maxheight") || "0", 10) || 0;

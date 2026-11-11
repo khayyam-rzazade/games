@@ -58,8 +58,13 @@ for (const size of SIZES) {
       await wait(250);
       check(await noOverflow(p), `${size.name}${dark ? " dark" : ""} ${name}: no sideways scroll`);
       if (["pick", "number", "line", "rank", "picture", "read", "open", "about"].includes(name)) {
-        check(await p.locator(".st-notice").count() === 1 && /Made by Anna Rossi\. Logicers hosts this game and did not check its content\./.test(await p.textContent(".st-notice")), `${size.name} ${name}: the notice line`);
+        check(await p.locator(".st-notice").count() === 1 && /Made by Anna Rossi\. Logicers hosts this game\. Its maker is responsible for it\./.test(await p.textContent(".st-notice")), `${size.name} ${name}: the notice line`);
         check(/by Anna Rossi/.test(await p.textContent("#app")), `${size.name} ${name}: the maker's name`);
+      }
+      if (name === "number" || name === "line") {           /* review, 11 Nov 2026: − and + on one row, at the two ends */
+        const st = await p.locator(".st-step").evaluateAll((bs) => bs.map((b) => { const r = b.getBoundingClientRect(); return [r.left, r.top, r.right]; }));
+        const box = await p.locator(".st-steps").evaluate((x) => { const r = x.getBoundingClientRect(); return [r.left, r.right]; });
+        check(st.length === 2 && Math.abs(st[0][1] - st[1][1]) < 2 && st[0][2] < st[1][0] && st[0][0] - box[0] < 2 && box[1] - st[1][2] < 2, `${size.name}${dark ? " dark" : ""} ${name}: − and + side by side at the two ends (${JSON.stringify(st)})`);
       }
       if (size.name === "phone-360" || size.name === "desktop" || (size.name === "phone-320" && !dark)) await shot(p, `${size.name}${dark ? "-dark" : ""}-${name}`);
     }
@@ -68,7 +73,7 @@ for (const size of SIZES) {
   }
 }
 const dirText = await (async () => { const ctx = await context(B, S); const p = await page(ctx); await p.goto(S.base + "/"); await p.waitForSelector(".st-card"); const t = await p.textContent("#app"); await ctx.close(); return t; })();
-check(/These games are made by Logicers players\. Logicers did not check them\./.test(dirText), "directory: the notice at the top");
+check(/These games are made by Logicers players, who are responsible for them\./.test(dirText), "directory: the notice at the top");
 check(!/approved|checked it/i.test(dirText), "directory: never 'approved'");
 check(!/img-src-x/.test(dirText) && !/Gone one/.test(dirText), "directory: unlisted and hidden games are not on it");
 
@@ -84,8 +89,9 @@ for (const opt of [{ viewport: { width: 390, height: 844 }, mobile: true }, { vi
   const p = await page(ctx);
   for (const [slug, tpl] of [["history-a-day", "pick"], ["how-many-a-day", "number"], ["when-was-it", "line"], ["oldest-first", "rank"], ["what-is-this", "pick"], ["picture-number", "picnum"]]) {
     const before = db.plays.length;
-    const requests = [];
+    const requests = [], bodies = [];
     p.on("request", (r) => { if (/\/g\//.test(r.url())) requests.push(r.url()); });
+    p.on("response", async (r) => { if (/\/g\//.test(r.url())) { try { bodies.push(await r.text()); } catch (e) { /* gone */ } } });
     await p.goto(G(slug));
     await p.waitForSelector(".st-play");
     if (tpl !== "rank") check(await p.locator("text=Lock in").isDisabled(), `${tag} ${slug}: Lock in waits for an answer`);
@@ -107,7 +113,13 @@ for (const opt of [{ viewport: { width: 390, height: 844 }, mobile: true }, { vi
     check(!!head && head.length > 2, `${tag} ${slug}: a verdict (${head})`);
     check(await p.locator(".st-dist:not([hidden]), .st-pct").count() >= 1, `${tag} ${slug}: how everyone answered`);
     check(await p.locator(".st-fin .st-dots i").count() === 3, `${tag} ${slug}: the dots`);
+    /* 11 Nov 2026 (Khayyam): the page gets the question without its answer; /play gives it back */
+    check(bodies.length > 0 && bodies.every((t) => !/"(answer|explain|values)"\s*:/.test(t)), `${tag} ${slug}: no answer reached the page before the guess`);
+    if (tpl === "pick" && slug === "history-a-day") check(/Right!/.test(head) && /Michelangelo/.test(await p.textContent(".st-choice.is-right")), `${tag}: the right choice, from /play`);
+    if (tpl === "rank") check(JSON.stringify(await p.locator(".st-thing .st-txt").allTextContents()) === JSON.stringify(["Pyramids of Giza", "Colosseum", "Leaning Tower of Pisa", "Eiffel Tower"]), `${tag}: the right order, from /play (${await p.locator(".st-thing .st-txt").allTextContents()})`);
+    if (tpl === "number") check(/71/.test(await p.textContent(".st-play")), `${tag}: the right number, from /play`);
     if (slug === "history-a-day") {
+      check(await p.locator("#app[aria-live]").count() === 0 && /Right!/.test(await p.locator("[aria-live]").last().textContent()), `${tag}: a screen reader hears the result only`);
       check(/Michelangelo, from 1508/.test(await p.textContent(".st-after .sentence")), `${tag}: the explanation`);
       check(/Streak 1/.test(await p.textContent(".st-fin")), `${tag}: the streak`);
       check(new RegExp("Plays: " + (plays0 + 1).toLocaleString("en")).test(await p.textContent(".st-fin")), `${tag}: the counter counts this play (${await p.textContent(".st-fin")})`);
@@ -124,7 +136,7 @@ for (const opt of [{ viewport: { width: 390, height: 844 }, mobile: true }, { vi
       const code = await p.inputValue(".st-snippet");
       check(/<iframe src="http:\/\/127\.0\.0\.1:\d+\/anna-rossi\/history-a-day\/embed\/"/.test(code) && /height="720"/.test(code) && /loading="lazy"/.test(code) && /allow="clipboard-write"/.test(code), `${tag}: the embed code`);
       const es = await p.textContent("dialog");
-      check(/Put this game on your own page, like a video\./.test(es) && await p.locator("dialog .st-steps > li").count() === 3, `${tag}: the embed sheet says what it is, then three steps`);
+      check(/Put this game on your own page, like a video\./.test(es) && await p.locator("dialog .st-howto > li").count() === 3, `${tag}: the embed sheet says what it is, then three steps`);
       check(/In Moodle or any site, switch to code view and paste\./.test(es) && /In WordPress, just paste the game’s link\./.test(es), `${tag}: Moodle and WordPress, in plain words`);
       await p.click("dialog .st-copycode");
       await wait(200);
@@ -141,6 +153,7 @@ for (const opt of [{ viewport: { width: 390, height: 844 }, mobile: true }, { vi
       await p.click("dialog >> text=A wrong fact");
       await p.click("dialog button.btn.solid");
       check(/Tick the box/.test(await p.textContent("dialog")), `${tag}: the report asks for the tick`);
+      check(!/112/.test(await p.textContent("dialog")), `${tag}: no emergency number`);
       await p.fill("#rep-text", "Question 3 is wrong");
       await p.check("dialog input[type=checkbox]");
       await p.click("dialog button.btn.solid");
@@ -191,7 +204,18 @@ for (const opt of [{ viewport: { width: 390, height: 844 }, mobile: true }, { vi
   check(await p.locator(".st-items button.done").count() === 2, `${tag} open: two done`);
   check(/2 of 3 done/.test(await p.textContent(".st-head")), `${tag} open: the count`);
   await shot(p, `${tag}-open-list`);
-  check(p.__errors.length === 0, `${tag}: no errors (${p.__errors.join(" | ")})`);
+  /* no connection when Lock in is tapped: the page says so and Lock in comes back; nothing is shown before /play answers */
+  await p.click(".st-items button >> nth=2");
+  await p.waitForSelector(".st-play");
+  await p.route("**/play", (rt) => rt.abort());
+  await playIt(p, "pick");
+  await p.waitForSelector(".st-play-err:not([hidden])");
+  check(/No connection/.test(await p.textContent(".st-play-err")) && !(await p.locator("text=Lock in").isDisabled()) && await p.locator(".st-after:not([hidden])").count() === 0, `${tag}: offline, it says so and Lock in comes back`);
+  await p.unroute("**/play");
+  await p.click("text=Lock in");
+  await p.waitForSelector(".st-after:not([hidden])");
+  check(await p.locator(".st-play-err:not([hidden])").count() === 0, `${tag}: then it plays`);
+  check(p.__errors.length === 0 || p.__errors.every((x) => /net::ERR_FAILED|Failed to fetch|ERR_FAILED/.test(x)), `${tag}: no errors (${p.__errors.join(" | ")})`);
   await ctx.close();
 }
 
@@ -330,7 +354,7 @@ const FILL = {
     const url = p.url();
     check(/\/prof-bianchi\/bianchi-[a-z]+\/edit\/#[A-Z2-7]{24}$/.test(url), tpl + ": the edit link " + url);
     const g = db.games["prof-bianchi/bianchi-" + tpl];
-    check(!!g && g.terms_version === "2026-11-08" && db.makers["prof-bianchi"].terms_version === "2026-11-08", tpl + ": made, with the terms' version");
+    check(!!g && g.terms_version === "2026-11-11" && db.makers["prof-bianchi"].terms_version === "2026-11-11", tpl + ": made, with the terms' version");
     /* the first question is there, open (9 Nov 2026) */
     check(await p.locator(".ed-item").count() === 1 && await p.locator(".ed-ibody:not([hidden])").count() === 1, tpl + ": a new game opens on its first question");
     await FILL[tpl](p);
@@ -540,6 +564,56 @@ const FILL = {
   await ctx.close();
 }
 
+/* 11 Nov 2026 (Khayyam): unsaved changes come back after the tab closes; new questions on days gone are named, with a fix;
+   a picture the Worker refuses is named as a picture */
+{
+  const ctx = await context(B, S, { viewport: { width: 390, height: 844 }, mobile: true });
+  const p = await page(ctx);
+  p.on("dialog", (d) => d.accept());
+  const ro = db.games["anna-rossi/ran-out"];
+  const startWas = ro.start_day;
+  await p.goto(G("ran-out") + "edit/#" + ro.edit_key);
+  await p.waitForSelector(".ed-list");
+  check(await p.locator(".ed-past:not([hidden])").count() === 0, "days gone: nothing to say before a new question");
+  await p.click("text=+ Add a question");
+  await FILL.pick(p);
+  await p.waitForSelector(".ed-past:not([hidden])");
+  check(/Players won.t see them/.test(await p.textContent(".ed-past")), "days gone: a new question on a day already gone is named");
+  await shot(p, "editor-days-gone");
+  await p.click(".ed-past >> text=Start them today");
+  const moved = await p.inputValue("#e-start");
+  check(await p.locator(".ed-past:not([hidden])").count() === 0 && moved !== startWas && /Today|·/.test(await p.textContent(".ed-item:nth-child(4) .ed-isum small")), "days gone: Start them today moves the first day (" + startWas + " → " + moved + ")");
+  /* the tab closes before Save: the changes come back */
+  await p.reload();
+  await p.waitForSelector(".ed-draft");
+  check(/You have changes you didn.t save\./.test(await p.textContent(".ed-draft")) && await p.locator(".ed-item").count() === 3, "draft: offered back after the tab closed");
+  await shot(p, "editor-draft");
+  await p.click(".ed-draft >> text=Bring them back");
+  await p.waitForSelector(".ed-item:nth-child(4)");
+  check((await p.inputValue("#e-start")) === moved && /Not saved/.test(await p.textContent(".ed-state")), "draft: the question and the new first day are back, not saved yet");
+  /* a picture the Worker refuses is named as a picture */
+  await p.route("**/game/save", (rt) => rt.fulfill({ status: 400, contentType: "application/json", body: JSON.stringify({ ok: false, e: "item", i: 0, field: "image" }) }));
+  await p.click(".ed-dock button.btn.solid");
+  await p.waitForFunction(() => /Add the picture\./.test((document.querySelector(".ed-item.bad") || {}).textContent || ""), null, { timeout: 4000 }).catch(() => {});
+  check(/Add the picture\./.test(await p.textContent(".ed-item.bad")) && !/Too long/.test(await p.textContent(".ed-item.bad")), "a refused picture: 'Add the picture.', not 'Too long.'");
+  await p.unroute("**/game/save");
+  await p.click(".ed-dock button.btn.solid");
+  await p.waitForFunction(() => /Saved/.test(document.querySelector(".ed-state").textContent), null, { timeout: 5000 }).catch(() => {});
+  const kept = await p.evaluate(() => JSON.parse(localStorage.getItem("lg.studio.drafts") || "{}"));
+  check(/Saved/.test(await p.textContent(".ed-state")) && !kept["anna-rossi/ran-out"] && ro.items.length === 4 && ro.start_day === moved, "draft: saved, then gone from the phone");
+  await p.reload(); await p.waitForSelector(".ed-list");
+  check(await p.locator(".ed-draft").count() === 0, "draft: nothing offered once saved");
+  /* the other way: Throw them away */
+  await p.fill("#e-title", "Ran out, renamed");
+  await p.reload(); await p.waitForSelector(".ed-draft");
+  await p.click(".ed-draft >> text=Throw them away");
+  check(await p.locator(".ed-draft").count() === 0 && (await p.inputValue("#e-title")) === "Ran out", "draft: thrown away");
+  await p.reload(); await p.waitForSelector(".ed-list");
+  check(await p.locator(".ed-draft").count() === 0, "draft: and not offered again");
+  check(p.__errors.length === 0 || p.__errors.every((x) => /status of 400/.test(x)), "draft and days gone: no errors " + p.__errors.join(" | "));
+  await ctx.close();
+}
+
 /* ---------- 5. the embed, in someone else's page ---------- */
 console.log("5. the embed in an iframe");
 for (const size of [SIZES[1], SIZES[4]]) {
@@ -643,6 +717,14 @@ console.log("6. the queue, one card per game");
     await p.click(G2 + " .qa-act:text-is('Sure? Delete game')");
     await p.waitForFunction((h) => !document.querySelector(h), G2, { timeout: 5000 }).catch(() => {});
     check(await p.locator(G2).count() === 0 && (await R.call("/game/mine", { edit_key: g2.edit_key })).status === 403, "queue: Delete game, two taps");
+    /* 11 Nov 2026: Delete maker (two taps): the name and every game of theirs, and every card of theirs leaves */
+    const bob = '[data-card="m:bob-bianchi"]';
+    await p.click(bob + " .qa-more-zone summary");
+    await p.click(bob + " .qa-act:text-is('Delete maker and all their games')");
+    check(await p.locator(bob + " .qa-act:text-is('Sure? Delete maker and all their games')").count() === 1, "queue: Delete maker asks for a second tap");
+    await p.click(bob + " .qa-act:text-is('Sure? Delete maker and all their games')");
+    await p.waitForFunction((h) => !document.querySelector(h), bob, { timeout: 5000 }).catch(() => {});
+    check(await p.locator(bob).count() === 0 && (await fetch(R.base + "/m/bob-bianchi")).status === 404, "queue: Delete maker, the name is gone");
     /* the picture check, tried from the page */
     R.env.AI.next = "SAFE";
     await p.click("#aitest");

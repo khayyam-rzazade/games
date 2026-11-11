@@ -129,6 +129,8 @@
  "studio.c_item": "Question",
  "studio.c_answer": "Answer",
  "studio.del": "This deletes the game, its pictures and its answers for everyone. It can't be undone.",
+ "studio.del_all_b": "Delete my name and all my games",
+ "studio.del_all": "This deletes your name, every game you made, their pictures and their answers, for everyone. It can't be undone.",
  "studio.name_h": "Your name on your games",
  "studio.name_line": "Everyone sees it.",
  "studio.name_short": "At least 2 characters.",

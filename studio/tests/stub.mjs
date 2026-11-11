@@ -7,6 +7,8 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+/* 11 Nov 2026: the questions reach the page without their answers, and /play gives them back, exactly as the Worker does */
+import { publicItem, revealOf, fromPlayer } from "../../server/studio/src/items.js";
 
 const MIME = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8",
   ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".woff2": "font/woff2", ".ico": "image/x-icon", ".webp": "image/webp", ".jpg": "image/jpeg", ".txt": "text/plain" };
@@ -93,11 +95,12 @@ export function startStudio({ root, port = 0, today }) {
         if (g.hidden) return send(res, 410, { ok: false, e: "hidden" });
         const day = url.searchParams.get("day") || today;
         const out = { ok: true, game: metaOf(db, g, true) };
-        if (g.mode === "open") { out.items = g.items.map(imgOut); out.state = "open"; }
+        const pub = (it) => publicItem(g.template, imgOut(it));
+        if (g.mode === "open") { out.items = g.items.map(pub); out.state = "open"; }
         else {
           const n = dayIndex(day) - dayIndex(g.start_day) + 1;
           out.number = n;
-          if (n < 1) out.state = "soon"; else if (n > g.items.length) { out.state = "out"; out.item = null; } else { out.state = "today"; out.item = imgOut(g.items[n - 1]); out.left = g.items.length - n; }
+          if (n < 1) out.state = "soon"; else if (n > g.items.length) { out.state = "out"; out.item = null; } else { out.state = "today"; out.item = pub(g.items[n - 1]); out.left = g.items.length - n; }
         }
         return send(res, 200, out);
       }
@@ -174,7 +177,11 @@ export function startStudio({ root, port = 0, today }) {
           const it = gg.items.find((x) => x.id === b.item);
           if (!it) return send(res, 400, { ok: false, e: "item" });
           const lo = gg.template === "line" ? it.min : 0, hi = gg.template === "line" ? it.max : it.max;
-          const bucket = Array.isArray(b.answer) ? b.answer.join("") : typeof b.answer === "number" && hi != null && !Array.isArray(it.choices) ? (hi - lo <= 100 ? String(b.answer) : "p" + Math.round((b.answer - lo) / (hi - lo) * 100)) : String(b.answer);
+          const answer = fromPlayer(gg.template, it, b.answer);
+          const reveal = revealOf(gg.template, it);
+          if (b.again === true) { const c0 = gg.counts[b.item] || {}; return send(res, 200, { ok: true, counts: { n: Object.values(c0).reduce((x, y) => x + y, 0), b: c0 }, reveal }); }
+          if (gg.keep_answers && b.pid) db.keeps.push({ game: b.game, item: b.item, pid: b.pid, name: b.name, answer });
+          const bucket = Array.isArray(answer) ? answer.join("") : typeof b.answer === "number" && hi != null && !Array.isArray(it.choices) ? (hi - lo <= 100 ? String(b.answer) : "p" + Math.round((b.answer - lo) / (hi - lo) * 100)) : String(b.answer);
           gg.counts[b.item] = gg.counts[b.item] || {};
           if (!Object.keys(gg.counts[b.item]).length) {   /* a few other players before this one */
             if (gg.template === "pick" || gg.template === "read" || (gg.template === "picture" && it.form !== "number")) { gg.counts[b.item] = { 0: 3, 1: 9 }; }
@@ -186,7 +193,7 @@ export function startStudio({ root, port = 0, today }) {
           gg.plays++;
           db.plays.push(b);
           const n = Object.values(gg.counts[b.item]).reduce((x, y) => x + y, 0);
-          return send(res, 200, { ok: true, bucket, counts: { n, b: gg.counts[b.item] } });
+          return send(res, 200, { ok: true, bucket, counts: { n, b: gg.counts[b.item] }, reveal, kept: gg.keep_answers && b.pid ? true : undefined });
         }
         if (p === "/play/keep") { db.keeps.push(b); return send(res, 200, { ok: true }); }
         if (p === "/report") { if (!/^[a-z2-9]{16}$/.test(String(b.browser))) return send(res, 400, { ok: false, e: "browser" }); db.reports.push(b); return send(res, 200, { ok: true }); }

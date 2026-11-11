@@ -8,11 +8,11 @@
    label. When the model cannot answer (the day's free allowance spent, an error), the picture is stored and shown too and
    the queue says "not checked". Khayyam's Remove in the queue takes a picture away (db.js removeImage). Cloudflare's CSAM Scanning Tool, turned on for the zone (README), scans what is served.
    Stored in R2 under "<maker>/<game>/<id>", served by this Worker at /i/<maker>/<game>/<id> (imgGet). */
-import { json, bad, clock, randomB32, brake, imgUrl, IMAGE_ID, shown } from "./util.js";
+import { BRAKE, json, bad, clock, randomB32, brake, imgUrl, IMAGE_ID, shown } from "./util.js";
 import { one, all, run, st, gameForEditor, queueRow, capOk } from "./db.js";
 import { wrongKey } from "./makers.js";
 
-export const IMG = { maxBytes: 500 * 1024, maxSide: 1600, perGame: 30, perMaker: 200, aDay: 1000 };
+export const IMG = { maxBytes: 500 * 1024, maxSide: 1600, perGame: 30, perMaker: 200, aDay: 20000 };
 export const DEFAULT_MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct @cf/mistralai/mistral-small-3.1-24b-instruct";
 
 /* ---- what the bytes are ---- */
@@ -201,7 +201,7 @@ export async function imgPut(env, req) {
   if (ng && ng.n >= IMG.perGame) return bad("image_full", 409, { per: "game" });
   const nm = await one(env, "SELECT COUNT(*) AS n FROM images WHERE maker = ?", m.slug);
   if (nm && nm.n >= IMG.perMaker) return bad("image_full", 409, { per: "maker" });
-  if (!brake("img_put", req, 60)) return bad("later", 429);
+  if (!brake("img_put", req, BRAKE.imgPut)) return bad("later", 429);
   if (!(await capOk(env, "i", IMG.aDay))) return bad("later", 429);
   const verdict = await aiCheck(env, c.bytes, type);
   if (verdict === "sexual") return bad("image_refused", 422);
@@ -222,7 +222,7 @@ export async function imgPut(env, req) {
 /* GET /i/<maker>/<game>/<id> (F, 8 Nov 2026): a picture, only while its game is public. A hidden, blocked or deleted game's
    pictures answer 410 at once; a removed one 404. An hour in a browser's cache, no longer. */
 export async function imgGet(env, req, gameId, id) {
-  if (!brake("img_get", req, 6000, 6e5)) return bad("later", 429);
+  if (!brake("img_get", req, BRAKE.imgGet, 6e5)) return bad("later", 429);
   if (!IMAGE_ID.test(id)) return bad("not_found", 404);
   const g = await one(env, "SELECT * FROM games WHERE id = ?", gameId);
   const m = g ? await one(env, "SELECT * FROM makers WHERE slug = ?", g.maker) : null;

@@ -129,6 +129,8 @@
  "studio.c_item": "Question",
  "studio.c_answer": "Réponse",
  "studio.del": "Ça supprime le jeu, ses images et ses réponses pour tout le monde. Impossible de revenir en arrière.",
+ "studio.del_all_b": "Supprimer mon nom et tous mes jeux",
+ "studio.del_all": "Ça supprime ton nom, chaque jeu que tu as créé, ses images et ses réponses, pour tout le monde. Impossible de revenir en arrière.",
  "studio.name_h": "Ton nom sur tes jeux",
  "studio.name_line": "Tout le monde le voit.",
  "studio.name_short": "Au moins 2 caractères.",

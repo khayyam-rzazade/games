@@ -1,13 +1,13 @@
 /* Logicers Studio — games: make, save, delete, the editor's view, the answers for the CSV, and the public reads
    (one game, the directory, a code) (Chat A, 8 Nov 2026). */
-import { json, bad, clock, newKey, keyHash, hashReady, cleanText, linksIn, slugify, slugOk, LANGS, dayOk, utcDay, dayNum,
+import { BRAKE, json, bad, clock, newKey, keyHash, hashReady, cleanText, linksIn, slugify, slugOk, LANGS, dayOk, utcDay, dayNum,
   playerDay, newCode, codeOk, brake, imgUrl, randomB32 } from "./util.js";
 import { one, all, run, st, makerByKey, makerBySlug, gameById, gameByCode, gameForEditor, publicState, status, isListed,
   queueRow, capOk, deleteGame, removedImages, shownCover } from "./db.js";
-import { TEMPLATES, cleanItem, itemText, itemLinks } from "./items.js";
+import { TEMPLATES, cleanItem, itemText, itemLinks, publicItem } from "./items.js";
 import { wrongKey, termsOk, makerOut, gameNumbers } from "./makers.js";
 
-export const LIMITS = { gamesPerMaker: 20, itemsPerGame: 500, gamesADay: 300, aboutMax: 2000, aboutLinks: 20, queuePerSave: 60 };
+export const LIMITS = { gamesPerMaker: 20, itemsPerGame: 500, gamesADay: 5000, aboutMax: 2000, aboutLinks: 20, queuePerSave: 60 };
 export const MODES = ["daily", "open"];
 const site = (env) => String(env.SITE || "https://by.logicers.com").replace(/\/+$/, "");
 export const gameUrl = (env, g) => site(env) + "/" + g.maker + "/" + g.slug + "/";
@@ -46,7 +46,7 @@ export async function gameNew(env, req, b) {
   if (!dayOk(start)) return bad("start_day");
   const terms = b.terms_version === undefined ? m.terms_version : b.terms_version;
   if (!termsOk(terms)) return bad("terms");
-  if (!brake("game_new", req, 20)) return bad("later", 429);
+  if (!brake("game_new", req, BRAKE.gameNew)) return bad("later", 429);
   const n = await one(env, "SELECT COUNT(*) AS n FROM games WHERE maker = ?", m.slug);
   if (n && n.n >= LIMITS.gamesPerMaker) return bad("games_full", 409);
   if (!(await capOk(env, "g", LIMITS.gamesADay))) return bad("later", 429);
@@ -73,7 +73,7 @@ export async function gameNew(env, req, b) {
    without its address and with image_removed: true, so the editor can say so on its question (9 Nov 2026). */
 async function editorView(env, g, m) {
   const items = await all(env, "SELECT id, n, json FROM items WHERE game = ? ORDER BY n", g.id);
-  const counts = await all(env, "SELECT item, bucket, n FROM counts WHERE game = ?", g.id);
+  const counts = await all(env, "SELECT item, bucket, n FROM counts WHERE game = ? AND item <> '~kept'", g.id);   // ~kept: play.js
   const images = await all(env, "SELECT id, bytes, made, verdict FROM images WHERE game = ? ORDER BY made", g.id);
   const removed = await removedImages(env, g.id);
   const ans = await one(env, "SELECT COUNT(DISTINCT pid) AS n FROM answers WHERE game = ?", g.id);
@@ -112,7 +112,7 @@ export async function gameSave(env, req, b) {
   if (!x) return wrongKey(req);
   const g = x.game, m = x.maker;
   if (!m || m.blocked) return bad("blocked", 403);
-  if (!brake("game_save", req, 240)) return bad("later", 429);
+  if (!brake("game_save", req, BRAKE.gameSave)) return bad("later", 429);
   /* F, 8 Nov 2026: the editor sends the "saved" stamp it opened (base); a save from an older tab would delete the newer
      questions and their answers, so it is refused and the editor says to reload */
   if (b.base !== undefined && b.base !== null && b.base !== "" && Number(b.base) !== Number(g.saved)) return bad("stale", 409);
@@ -183,6 +183,7 @@ export async function gameSave(env, req, b) {
       if (seen.has(r.id)) continue;
       stmts.push(st(env, "DELETE FROM items WHERE game = ? AND id = ?", g.id, r.id));
       stmts.push(st(env, "DELETE FROM counts WHERE game = ? AND item = ?", g.id, r.id));
+      if (g.keep_answers) stmts.push(st(env, "UPDATE counts SET n = MAX(0, n - (SELECT COUNT(*) FROM answers WHERE game = ? AND item = ?)) WHERE game = ? AND item = '~kept'", g.id, r.id, g.id));
       stmts.push(st(env, "DELETE FROM answers WHERE game = ? AND item = ?", g.id, r.id));
     }
     set.n_items = clean.length;
@@ -190,13 +191,17 @@ export async function gameSave(env, req, b) {
     for (const l of oldLinks) newLinks.add(l);
   }
   for (const l of newLinks) if (!oldLinks.has(l)) q("link", { text: l });
-  if (set.keep_answers === 0) stmts.push(st(env, "DELETE FROM answers WHERE game = ?", g.id));   // off: no row per person is left
+  if (set.keep_answers === 0) {                                         // off: no row per person is left
+    stmts.push(st(env, "DELETE FROM answers WHERE game = ?", g.id));
+    stmts.push(st(env, "DELETE FROM counts WHERE game = ? AND item = '~kept'", g.id));
+  }
   /* F, 8 Nov 2026: a game Khayyam listed whose words, pictures or links change leaves the list until he lists it again
      (no "list a harmless quiz, then swap it"); the maker sees "Not listed yet" */
   const contentChanged = set.title !== undefined || set.about !== undefined || set.cover !== undefined || queue.some((r) => r.kind === "item" || r.kind === "link");
   if (g.listed_by_khayyam && contentChanged) { set.listed_by_khayyam = 0; q("game", { text: "changed after it was on the list: off the list until you put it there again" }); }
 
   set.saved = now;
+  set.last_open = now;      // review, 11 Nov 2026: the maker at work on it is someone opening it (the 12-month sweep, cron.js)
   const cols = Object.keys(set);
   stmts.unshift(st(env, "UPDATE games SET " + cols.map((c) => c + " = ?").join(", ") + " WHERE id = ?", ...cols.map((c) => set[c]), g.id));
   const rows = queue.length > LIMITS.queuePerSave
@@ -236,11 +241,11 @@ export function publicGame(env, g, m) {
     code: g.code, cover_url: imgUrl(env, g.id, g.cover), url: gameUrl(env, g), embed_url: gameUrl(env, g) + "embed/", listed: isListed(g, m),
   };
 }
-function miss(req) { return brake("miss", req, 200, 6e5) ? bad("nogame", 404) : bad("later", 429); }
+function miss(req) { return brake("miss", req, BRAKE.miss, 6e5) ? bad("nogame", 404) : bad("later", 429); }
 
 /* GET /g/<maker>/<game>?day=YYYY-MM-DD[&counts=<item id>] */
 export async function gamePublic(env, req, url, makerSlug, gameSlug) {
-  if (!brake("read", req, 3000, 6e5)) return bad("later", 429);
+  if (!brake("read", req, BRAKE.read, 6e5)) return bad("later", 429);
   const g = await gameById(env, makerSlug + "/" + gameSlug);
   if (!g) return miss(req);
   const m = await makerBySlug(env, g.maker);
@@ -248,20 +253,36 @@ export async function gamePublic(env, req, url, makerSlug, gameSlug) {
   const now = clock();
   if (now - g.last_open > 6 * 36e5) await run(env, "UPDATE games SET last_open = ? WHERE id = ?", now, g.id);
   const day = playerDay(req, url);
-  const rows = await all(env, "SELECT id, json FROM items WHERE game = ? ORDER BY n", g.id);
-  const removed = await removedImages(env, g.id);
   const out = { ok: true, game: Object.assign(publicGame(env, g, m), { cover_url: await shownCover(env, g) }), day };
+  /* the pictures Khayyam removed, asked only when a question here has a picture */
+  const removedOf = async (its) => (its.some((it) => it.image) ? removedImages(env, g.id) : new Set());
+  let rows = [];
   if (g.mode === "open") {
+    rows = await all(env, "SELECT id, json FROM items WHERE game = ? ORDER BY n", g.id);
+    const its = rows.map((r) => JSON.parse(r.json)), removed = await removedOf(its);
     out.state = "open";
-    out.items = rows.map((r) => withUrl(env, g, JSON.parse(r.json), removed));
+    out.items = its.map((it) => withUrl(env, g, publicItem(g.template, it), removed));     // without its answer (items.js)
   } else {
+    /* review, 11 Nov 2026: today's question only (every question was read on every visit: a 365-question game read 365 rows a
+       player, and D1 is paid by the rows it reads). A save numbers the questions 0, 1, 2 ... in order (n), and n_items
+       counts them; the OFFSET read is only a fallback. */
     const i = dayNum(day) - dayNum(g.start_day);
+    let row = null;
+    if (i >= 0 && i < g.n_items) {
+      row = await one(env, "SELECT id, json FROM items WHERE game = ? AND n = ?", g.id, i)
+        || await one(env, "SELECT id, json FROM items WHERE game = ? ORDER BY n LIMIT 1 OFFSET ?", g.id, i);
+    }
     if (i < 0) out.state = "soon";
-    else if (i >= rows.length) out.state = "out";
-    else { out.state = "today"; out.number = i + 1; out.left = rows.length - i - 1; out.item = withUrl(env, g, JSON.parse(rows[i].json), removed); }
+    else if (!row) out.state = "out";
+    else {
+      const it = JSON.parse(row.json);
+      out.state = "today"; out.number = i + 1; out.left = Math.max(0, g.n_items - i - 1); out.item = withUrl(env, g, publicItem(g.template, it), await removedOf([it]));
+      rows = [row];
+    }
   }
   const want = url.searchParams.get("counts");
-  if (want && rows.some((r) => r.id === want)) {
+  if (want && typeof want === "string" && want.length <= 12 && (rows.some((r) => r.id === want)
+      || (g.mode !== "open" && await one(env, "SELECT 1 AS k FROM items WHERE game = ? AND id = ?", g.id, want)))) {
     const c = countsOut(await all(env, "SELECT item, bucket, n FROM counts WHERE game = ? AND item = ?", g.id, want));
     out.counts = c[want] || { n: 0, b: {} };
   }
@@ -270,7 +291,7 @@ export async function gamePublic(env, req, url, makerSlug, gameSlug) {
 
 /* GET /list?lang=xx&from=0&n=60&day=YYYY-MM-DD: the directory: the games their makers want listed and Logicers listed */
 export async function listPublic(env, req, url) {
-  if (!brake("read", req, 3000, 6e5)) return bad("later", 429);
+  if (!brake("read", req, BRAKE.read, 6e5)) return bad("later", 429);
   const lang = url.searchParams.get("lang");
   const from = Math.max(0, Math.min(100000, parseInt(url.searchParams.get("from") || "0", 10) || 0));
   const n = Math.max(1, Math.min(100, parseInt(url.searchParams.get("n") || "60", 10) || 60));

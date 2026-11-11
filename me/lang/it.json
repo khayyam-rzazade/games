@@ -129,6 +129,8 @@
  "studio.c_item": "Domanda",
  "studio.c_answer": "Risposta",
  "studio.del": "Elimina il gioco, le immagini e le risposte per tutti. Non si può annullare.",
+ "studio.del_all_b": "Elimina il mio nome e tutti i miei giochi",
+ "studio.del_all": "Elimina il tuo nome, ogni gioco che hai creato, le sue immagini e le sue risposte, per tutti. Non si può annullare.",
  "studio.name_h": "Il tuo nome sui tuoi giochi",
  "studio.name_line": "Lo vedono tutti.",
  "studio.name_short": "Almeno 2 caratteri.",

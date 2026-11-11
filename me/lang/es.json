@@ -129,6 +129,8 @@
  "studio.c_item": "Pregunta",
  "studio.c_answer": "Respuesta",
  "studio.del": "Esto borra el juego, sus imágenes y sus respuestas para todos. No se puede deshacer.",
+ "studio.del_all_b": "Borrar mi nombre y todos mis juegos",
+ "studio.del_all": "Esto borra tu nombre, cada juego que creaste, sus imágenes y sus respuestas, para todos. No se puede deshacer.",
  "studio.name_h": "Tu nombre en tus juegos",
  "studio.name_line": "Todos lo ven.",
  "studio.name_short": "Al menos 2 caracteres.",

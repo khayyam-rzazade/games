@@ -179,3 +179,48 @@ export function itemLinks(item) {
   for (const [k, v] of Object.entries(item)) if (k !== "id" && k !== "image") walk(v);
   return [...out];
 }
+
+/* ---- what a player's page gets before the answer, and what /play gives back (11 Nov 2026, Khayyam: "solve now") ----
+   GET /g sends each question without its answer: no answer, no explanation (it often says the answer), no values; a Rank's
+   things come in a mixed order (stored, they are the right order). /play takes the player's answer, counts it and gives the
+   answer back: { answer } (number, line, pick, read, picture), { order } for Rank (the right order, as the places of the
+   things the page got), with explain and values. The mix is the same on every load (it follows the item's id), so a Rank
+   answer is the places of the things as the page got them; /play turns them back into the right order's places. */
+const HIDDEN = ["answer", "explain", "values"];
+function formOf(template, item) {
+  if (template === "picture") return item.form || (Array.isArray(item.choices) ? "pick" : num(item.min) ? "line" : "number");
+  return template === "read" ? "pick" : template;
+}
+function fnv(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+/* the mix of a Rank: sent[k] = things[perm[k]]; never the right order itself */
+export function permOf(item) {
+  const n = Array.isArray(item.things) ? item.things.length : 0, idx = [];
+  for (let i = 0; i < n; i++) idx.push(i);
+  let seed = fnv("mix:" + String(item.id || "") + ":" + n);
+  for (let j = n - 1; j > 0; j--) { seed = (Math.imul(seed, 1103515245) + 12345) >>> 0; const k = seed % (j + 1); [idx[j], idx[k]] = [idx[k], idx[j]]; }
+  if (n > 1 && idx.every((v, p) => v === p)) idx.push(idx.shift());
+  return idx;
+}
+export function publicItem(template, item) {
+  const out = Object.assign({}, item);
+  for (const k of HIDDEN) delete out[k];
+  if (formOf(template, item) === "rank" && Array.isArray(item.things)) { const p = permOf(item); out.things = p.map((i) => item.things[i]); }
+  return out;
+}
+export function revealOf(template, item) {
+  const r = {};
+  if (formOf(template, item) === "rank") {
+    const p = permOf(item);
+    r.order = (item.things || []).map((x, j) => p.indexOf(j));
+    if (Array.isArray(item.values)) r.values = p.map((i) => item.values[i]);
+  } else if (item.answer !== undefined) r.answer = item.answer;
+  if (item.explain) r.explain = item.explain;
+  return r;
+}
+/* a player's answer as the stored item counts it (a Rank's places turned back into the right order's) */
+export function fromPlayer(template, item, answer) {
+  if (formOf(template, item) !== "rank" || !Array.isArray(answer)) return answer;
+  const p = permOf(item);
+  return answer.map((s) => (Number.isInteger(s) && s >= 0 && s < p.length ? p[s] : -1));
+}
+

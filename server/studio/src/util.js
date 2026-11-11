@@ -58,6 +58,10 @@ function trim() {
   let n = FORGET;
   for (const k of brakes.keys()) { brakes.delete(k); if (--n <= 0) break; }
 }
+/* 11 Nov 2026 (Khayyam: "much larger"): a whole school is often one address, so the brakes per address are wide; the
+   site-wide caps of a day (db.js capOk) are the line against a flood. Per hour unless a window is named. */
+export const BRAKE = { makerNew: 1000, gameNew: 2000, gameSave: 10000, imgPut: 5000, read: 30000 /* 10 min */,
+  imgGet: 60000 /* 10 min */, miss: 2000 /* 10 min */ };
 /* one more of `kind` from this address in the window: true while within `limit` */
 export function brake(kind, req, limit, windowMs) {
   const key = kind + "|" + where(req), now = clock();

@@ -162,6 +162,14 @@ for (const L of LANGS) {
       await step(L, width, "new: your games first", async () => { await p2.goto(ui("/new/")); await p2.waitForSelector(".ed-mine-row"); });
       page_measure.p = p;
       await step(L, width, "editor: a picture Logicers removed", async () => { await p.goto(S.base + "/anna-rossi/lost-picture/edit/?lang=" + L + "#" + db.games["anna-rossi/lost-picture"].edit_key); await p.waitForSelector(".ed-gone"); });
+      /* 11 Nov 2026: new questions on days gone, then the unsaved changes offered back */
+      await step(L, width, "editor: new questions on days gone", async () => {
+        p.removeAllListeners("dialog"); p.on("dialog", (d) => d.accept().catch(() => {}));
+        await p.goto(S.base + "/anna-rossi/ran-out/edit/?lang=" + L + "#" + db.games["anna-rossi/ran-out"].edit_key); await p.waitForSelector(".ed-list");
+        await p.click(".ed-add"); await p.fill(".ed-item:last-child [id$='-q']", "x"); await p.waitForSelector(".ed-past:not([hidden])");
+      });
+      await step(L, width, "editor: unsaved changes offered back", async () => { await p.reload(); await p.waitForSelector(".ed-draft"); });
+      await p.evaluate(() => localStorage.removeItem("lg.studio.drafts")).catch(() => {});
       await ctx2.close();
     }
     await ctx.close();

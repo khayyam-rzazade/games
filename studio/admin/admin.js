@@ -7,7 +7,7 @@
    Calls (server/studio/src/admin.js; every answer is {ok:true,…} or {ok:false, e:<key>}; the key goes in the body):
      POST /admin/queue {key, all?, before?}   -> { cards: [{type:"game", game, maker} | {type:"maker", maker}], cards_next, open_cards }
      POST /admin/game  {key, game | maker}    -> { card }
-     POST /admin/act   {key, action, game | maker | image}   list unlist hide unhide delete block_maker unblock_maker done remove_image
+     POST /admin/act   {key, action, game | maker | image}   list unlist hide unhide delete block_maker unblock_maker delete_maker done remove_image
      POST /admin/img   {key, image}           -> the picture's bytes (a hidden game's too)
      POST /admin/ai    {key}                  -> { works, models: [{model, ok, word, said | error, ms}] }
    Nothing here writes HTML from text: every word a stranger wrote goes in with textContent, links are made by hand with a
@@ -365,6 +365,8 @@
     if (m && m.slug) {
       if (m.blocked) inner.appendChild(actBtn("Unblock maker", "", true, function () { act(card, c, { action: "unblock_maker", maker: m.slug }, "Maker unblocked."); }));
       else inner.appendChild(actBtn("Block maker", "qa-danger", true, function () { act(card, c, { action: "block_maker", maker: m.slug }, "Maker blocked: their games are hidden."); }));
+      /* 11 Nov 2026: the maker's name and everything of theirs, for good (a maker can ask; a blocked one too) */
+      inner.appendChild(actBtn("Delete maker and all their games", "qa-danger", true, function () { act(card, c, { action: "delete_maker", maker: m.slug }, "Maker deleted, with every game."); }));
     }
     zone.appendChild(inner);
     var wrap = h("div", "qa-foot");
@@ -464,6 +466,7 @@
       }
       say(done);
       if (body.action === "delete") { dropCard(card, c); return; }
+      if (body.action === "delete_maker") { busy(card, false); load(); return; }     // every card of theirs goes
       if (body.action === "done" && state.filter === "todo") {
         if (state.openCards) state.openCards = Math.max(0, state.openCards - 1);
         dropCard(card, c);

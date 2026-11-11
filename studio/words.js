@@ -27,13 +27,13 @@
 
     /* the line under every maker game, on its About page and in its embed */
     "notice.made": "Made by {maker}.",
-    "notice.host": "Logicers hosts this game and did not check its content.",
+    "notice.host": "Logicers hosts this game. Its maker is responsible for it.",
     "notice.report": "Something wrong? Report it.",
     "notice.powered": "powered by Logicers",
 
     /* the directory */
     "dir.h1": "Daily games by players",
-    "dir.notice": "These games are made by Logicers players. Logicers did not check them.",
+    "dir.notice": "These games are made by Logicers players, who are responsible for them.",
     "dir.make": "Make a game",
     "dir.empty": "No games here yet.",
     "dir.code_ph": "Have a code?",
@@ -115,7 +115,6 @@
 
     /* the report */
     "rep.h": "Report this game",
-    "rep.danger": "If someone's life or safety is in danger, call 112 first.",
     "rep.why": "What is wrong?",
     "rep.why_illegal": "Illegal content",
     "rep.why_hate": "Hate, harassment or threats",
@@ -249,25 +248,23 @@
 
     /* the terms page (studio/terms/): the English governs */
     "terms.title": "Terms for games people make",
-    "terms.date": "8 November 2026",
-    "terms.lead": "Anyone can make a daily game on Logicers, under their own name. These are the rules, in plain words.",
+    "terms.date": "11 November 2026",
+    "terms.lead": "Anyone can make a daily game on Logicers, under their own name. These are the rules, in plain words. If a translation says something different, the English text counts.",
     "terms.h1": "Who runs Logicers",
     "terms.p1": "Logicers is a small site of free daily games, run from Italy by Khayyam RZAZADE. Write to logicers.world@gmail.com. A person reads every message.",
     "terms.h2": "Your game is yours",
-    "terms.p2": "What you put in your game stays yours, and you are responsible for it. By making it, you let Logicers store it and show it to anyone with its link, its code or its QR code, and on the list if Logicers lists it.",
+    "terms.p2": "What you put in your game stays yours, and you are responsible for it. By making it, you let Logicers store it and show it: to anyone with its link, its code or its QR code, on other sites that embed it, in share pictures, and on the list if Logicers lists it.",
     "terms.h3": "What is not allowed",
     "terms.p3": "No illegal content. No hate, harassment or threats. No sexual content. No content that praises violence or is meant to shock. No private information about anyone, such as a phone number or an address. No pictures or text of others without the right to use them. No spam or scams.",
-    "terms.h4": "Logicers did not check it",
-    "terms.p4": "Logicers hosts these games but did not check them. Every game says who made it. Being on the list does not mean Logicers agrees with it.",
+    "terms.h4": "Who is responsible",
+    "terms.p4": "Every game says who made it, and its maker is responsible for it. Logicers hosts the games and looks at what is new, but is not responsible for what a game says. A computer checks every picture when it is uploaded and refuses clearly sexual ones. Being on the list does not mean Logicers agrees with a game.",
     "terms.h5": "Reports",
-    "terms.p5": "Anyone can report a game with the Report button. Logicers looks at reports within a few days. A game that breaks these rules or the law is hidden or removed. A game three people report is hidden until Logicers looks at it. Disagree with a decision? Write to logicers.world@gmail.com.",
-    "terms.h6": "Danger to life or safety",
-    "terms.p6": "If someone's life or safety is in danger, call 112 first.",
-    "terms.h7": "Deleting",
-    "terms.p7": "You can delete your game at any time, from its edit link or from My Logicers. Logicers deletes a game, with its pictures, when nobody has opened it for 12 months. You can also ask Logicers to delete it.",
-    "terms.h8": "What is kept about players",
-    "terms.p8": "For each question, only counts: how many answered, and what. If the maker turned on “Keep answers”, the game says so first, and the maker gets each answer with the name the player typed, if any. No email, no address, no IP address.",
-    "notice.host_all": "Logicers hosts these games and did not check them.",
+    "terms.p5": "Anyone can report a game with the Report button. Logicers looks at reports within a few days. A game that breaks these rules or the law is hidden or removed, and its maker sees this in the editor. Reports are kept for up to a year after Logicers has looked at them. Disagree with a decision? Write to logicers.world@gmail.com.",
+    "terms.h6": "Deleting",
+    "terms.p6": "You can delete your game at any time, from its edit link or from My Logicers. In My Logicers you can also delete your maker name with all your games. Logicers deletes a game, with its pictures, when nobody has opened or changed it for 12 months. You can also ask Logicers to delete it.",
+    "terms.h7": "What is kept about players",
+    "terms.p7": "For each question, only counts: how many answered, and what. If the maker turned on “Keep answers”, the game says so first, and the maker gets each answer with the name the player typed, if any. The maker is responsible for these answers. They are kept until the maker turns “Keep answers” off or the game is deleted. No email, no address, no IP address.",
+    "notice.host_all": "Logicers hosts these games. Their makers are responsible for them.",
     "play.pos": "{k} of {n}",
     "ed.answers": "Download the answers",
     "ed.no_answers": "No answers yet.",
@@ -297,7 +294,12 @@
     "kp.here_kept": "Kept on this browser.",
     /* 9 Nov 2026: the fix round */
     "err.at": "Question {n}: {why}",
-    "err.same": "“{x}” is there twice."
+    "err.same": "“{x}” is there twice.",
+    "ed.draft": "You have changes you didn't save.",
+    "ed.draft_back": "Bring them back",
+    "ed.draft_drop": "Throw them away",
+    "ed.past": "New questions here fall on days that have passed. Players won't see them.",
+    "ed.past_fix": "Start them today"
   };
 
   /* ---- chat E (8 Nov 2026): Italian, Turkish, Spanish, Brazilian Portuguese, French. ---- */
@@ -321,13 +323,13 @@
 
     /* the line under every maker game, on its About page and in its embed */
     "notice.made": "Creato da {maker}.",
-    "notice.host": "Logicers ospita questo gioco, ma non ne ha verificato il contenuto.",
+    "notice.host": "Logicers ospita questo gioco. Ne è responsabile chi l’ha creato.",
     "notice.report": "Qualcosa non va? Segnalalo.",
     "notice.powered": "con tecnologia Logicers",
 
     /* the directory */
     "dir.h1": "Giochi quotidiani creati da chi gioca",
-    "dir.notice": "Questi giochi sono creati da chi gioca su Logicers. Logicers non li ha verificati.",
+    "dir.notice": "Questi giochi sono creati da chi gioca su Logicers, che ne è responsabile.",
     "dir.make": "Crea un gioco",
     "dir.empty": "Qui non ci sono ancora giochi.",
     "dir.code_ph": "Hai un codice?",
@@ -409,7 +411,6 @@
 
     /* the report */
     "rep.h": "Segnala questo gioco",
-    "rep.danger": "Se la vita o la sicurezza di qualcuno è in pericolo, chiama subito il 112.",
     "rep.why": "Qual è il problema?",
     "rep.why_illegal": "Contenuto illegale",
     "rep.why_hate": "Odio, molestie o minacce",
@@ -543,25 +544,23 @@
 
     /* the terms page (studio/terms/): the English governs */
     "terms.title": "Le regole per i giochi creati dagli utenti",
-    "terms.date": "8 novembre 2026",
-    "terms.lead": "Su Logicers chiunque può creare un gioco quotidiano, con il proprio nome. Ecco le regole, in parole semplici.",
+    "terms.date": "11 novembre 2026",
+    "terms.lead": "Su Logicers chiunque può creare un gioco quotidiano, con il proprio nome. Ecco le regole, in parole semplici. Se una traduzione dice qualcosa di diverso, vale il testo inglese.",
     "terms.h1": "Chi gestisce Logicers",
     "terms.p1": "Logicers è un piccolo sito di giochi quotidiani gratuiti, gestito in Italia da Khayyam RZAZADE. Scrivi a logicers.world@gmail.com: ogni messaggio viene letto da una persona.",
     "terms.h2": "Il tuo gioco resta tuo",
-    "terms.p2": "Ciò che metti nel tuo gioco resta tuo, e ne sei responsabile tu. Creandolo, permetti a Logicers di conservarlo e di mostrarlo a chiunque abbia il suo link, il suo codice o il suo codice QR, e nell'elenco, se Logicers lo inserisce.",
+    "terms.p2": "Ciò che metti nel tuo gioco resta tuo, e ne sei responsabile tu. Creandolo, permetti a Logicers di conservarlo e di mostrarlo: a chiunque abbia il suo link, il suo codice o il suo codice QR, sui siti che lo incorporano, nelle immagini da condividere e nell’elenco, se Logicers lo inserisce.",
     "terms.h3": "Cosa non è permesso",
     "terms.p3": "Niente di illegale. Niente odio, molestie o minacce. Niente contenuti sessuali. Niente contenuti che esaltano la violenza o mirano a scioccare. Niente informazioni private su nessuno, come un numero di telefono o un indirizzo. Niente immagini o testi di altri senza il diritto di usarli. Niente spam o truffe.",
-    "terms.h4": "Logicers non lo ha verificato",
-    "terms.p4": "Logicers ospita questi giochi ma non li ha verificati. Ogni gioco dice chi lo ha creato. Che un gioco sia in elenco non vuol dire che Logicers sia d'accordo con quello che c'è dentro.",
+    "terms.h4": "Chi ne è responsabile",
+    "terms.p4": "Ogni gioco dice chi lo ha creato, e chi lo ha creato ne è responsabile. Logicers ospita i giochi e guarda le novità, ma non è responsabile di ciò che un gioco dice. Un computer controlla ogni immagine quando viene caricata e rifiuta quelle chiaramente sessuali. Che un gioco sia in elenco non vuol dire che Logicers sia d’accordo con quello che c’è dentro.",
     "terms.h5": "Le segnalazioni",
-    "terms.p5": "Chiunque può segnalare un gioco con il pulsante «Segnala». Logicers guarda le segnalazioni entro pochi giorni. Un gioco che viola queste regole o la legge viene nascosto o rimosso. Un gioco segnalato da tre persone viene nascosto finché Logicers non lo guarda. Non sei d'accordo con una decisione? Scrivi a logicers.world@gmail.com.",
-    "terms.h6": "Pericolo per la vita o la sicurezza",
-    "terms.p6": "Se la vita o la sicurezza di qualcuno è in pericolo, chiama subito il 112.",
-    "terms.h7": "Eliminare un gioco",
-    "terms.p7": "Puoi eliminare il tuo gioco in qualsiasi momento, dal suo link di modifica o da «Il mio Logicers». Logicers elimina un gioco, con le sue immagini, quando nessuno lo apre da 12 mesi. Puoi anche chiedere a Logicers di eliminarlo.",
-    "terms.h8": "Cosa si conserva su chi gioca",
-    "terms.p8": "Per ogni domanda si conserva solo quante persone hanno risposto e cosa, in numeri. Se chi ha creato il gioco attiva «Conserva le risposte», il gioco lo dice subito all'inizio, e chi l'ha creato riceve ogni risposta con il nome scritto da chi gioca, se c'è. Niente email, niente indirizzo, niente indirizzo IP.",
-    "notice.host_all": "Logicers ospita questi giochi, ma non li ha verificati.",
+    "terms.p5": "Chiunque può segnalare un gioco con il pulsante «Segnala». Logicers guarda le segnalazioni entro pochi giorni. Un gioco che viola queste regole o la legge viene nascosto o rimosso, e chi l’ha creato lo vede quando lo modifica. Le segnalazioni restano conservate fino a un anno dopo che Logicers le ha guardate. Non sei d’accordo con una decisione? Scrivi a logicers.world@gmail.com.",
+    "terms.h6": "Eliminare un gioco",
+    "terms.p6": "Puoi eliminare il tuo gioco in qualsiasi momento, dal suo link di modifica o da «Il mio Logicers». Da «Il mio Logicers» puoi anche eliminare il tuo nome con tutti i tuoi giochi. Logicers elimina un gioco, con le sue immagini, quando nessuno lo apre o lo modifica da 12 mesi. Puoi anche chiedere a Logicers di eliminarlo.",
+    "terms.h7": "Cosa si conserva su chi gioca",
+    "terms.p7": "Per ogni domanda si conserva solo quante persone hanno risposto e cosa, in numeri. Se chi ha creato il gioco attiva «Conserva le risposte», il gioco lo dice subito all’inizio, e chi l’ha creato riceve ogni risposta con il nome scritto da chi gioca, se c’è. Di queste risposte è responsabile chi ha creato il gioco. Restano conservate finché non disattiva «Conserva le risposte» o il gioco non viene eliminato. Niente email, niente indirizzo, niente indirizzo IP.",
+    "notice.host_all": "Logicers ospita questi giochi. Ne è responsabile chi li ha creati.",
     "play.pos": "{k} su {n}",
     "ed.answers": "Scarica le risposte",
     "ed.no_answers": "Ancora nessuna risposta.",
@@ -591,7 +590,12 @@
     "kp.here_kept": "Salvato in questo browser.",
     /* 9 Nov 2026: the fix round */
     "err.at": "Domanda {n}: {why}",
-    "err.same": "«{x}» c'è due volte."
+    "err.same": "«{x}» c'è due volte.",
+    "ed.draft": "Hai delle modifiche non salvate.",
+    "ed.draft_back": "Recuperale",
+    "ed.draft_drop": "Scartale",
+    "ed.past": "Ci sono domande nuove su giorni già passati: chi gioca non le vedrà.",
+    "ed.past_fix": "Falle partire da oggi"
   };
 
   /* Turkish */
@@ -613,13 +617,13 @@
 
     /* the line under every maker game, on its About page and in its embed */
     "notice.made": "{maker} tarafından hazırlandı.",
-    "notice.host": "Logicers bu oyunu barındırır ama içeriğini kontrol etmedi.",
+    "notice.host": "Logicers bu oyunu barındırır. Sorumluluğu oyunu hazırlayana aittir.",
     "notice.report": "Bir sorun mu var? Bildir.",
     "notice.powered": "Logicers tarafından desteklenir",
 
     /* the directory */
     "dir.h1": "Oyuncuların hazırladığı günlük oyunlar",
-    "dir.notice": "Bu oyunları Logicers oyuncuları hazırladı. Logicers bunları kontrol etmedi.",
+    "dir.notice": "Bu oyunları Logicers oyuncuları hazırladı; sorumluluk onlara aittir.",
     "dir.make": "Oyun hazırla",
     "dir.empty": "Burada henüz oyun yok.",
     "dir.code_ph": "Kodun var mı?",
@@ -701,7 +705,6 @@
 
     /* the report */
     "rep.h": "Bu oyunu bildir",
-    "rep.danger": "Birinin hayatı ya da güvenliği tehlikedeyse önce 112’yi ara.",
     "rep.why": "Sorun ne?",
     "rep.why_illegal": "Yasa dışı içerik",
     "rep.why_hate": "Nefret, taciz ya da tehdit",
@@ -835,25 +838,23 @@
 
     /* the terms page (studio/terms/): the English governs */
     "terms.title": "Kullanıcıların hazırladığı oyunlar için kurallar",
-    "terms.date": "8 Kasım 2026",
-    "terms.lead": "Logicers’ta herkes kendi adıyla günlük bir oyun hazırlayabilir. Kuralları aşağıda sade bir dille bulabilirsin.",
+    "terms.date": "11 Kasım 2026",
+    "terms.lead": "Logicers’ta herkes kendi adıyla günlük bir oyun hazırlayabilir. Kuralları aşağıda sade bir dille bulabilirsin. Bir çeviri farklı bir şey söylüyorsa İngilizce metin geçerlidir.",
     "terms.h1": "Logicers’ı kim yönetiyor",
     "terms.p1": "Logicers, ücretsiz günlük oyunlardan oluşan küçük bir sitedir. Siteyi İtalya’dan Khayyam RZAZADE yönetiyor. logicers.world@gmail.com adresine yaz: her mesajı bir insan okur.",
     "terms.h2": "Oyunun senin kalır",
-    "terms.p2": "Oyununa koyduğun her şey senin kalır ve sorumluluğu sana aittir. Oyunu hazırlayarak Logicers’ın onu saklamasına ve bağlantısına, koduna ya da QR koduna sahip herkese göstermesine izin verirsin; Logicers listeye eklerse listede de gösterilir.",
+    "terms.p2": "Oyununa koyduğun her şey senin kalır ve sorumluluğu sana aittir. Oyunu hazırlayarak Logicers’ın onu saklamasına ve göstermesine izin verirsin: bağlantısına, koduna ya da QR koduna sahip herkese, onu yerleştiren başka sitelerde, paylaşım resimlerinde ve Logicers listeye eklerse listede.",
     "terms.h3": "Neler yasak",
     "terms.p3": "Yasa dışı içerik yasaktır. Nefret, taciz ya da tehdit yasaktır. Cinsel içerik yasaktır. Şiddeti öven ya da şok etmeyi amaçlayan içerik yasaktır. Kimse hakkında özel bilgi (örneğin telefon numarası ya da adres) paylaşmak yasaktır. Kullanma hakkın olmayan başkalarının resimleri ya da yazıları yasaktır. Spam ya da dolandırıcılık yasaktır.",
-    "terms.h4": "Logicers kontrol etmedi",
-    "terms.p4": "Logicers bu oyunları barındırıyor ama kontrol etmedi. Her oyun kimin hazırladığını söyler. Bir oyunun listede olması, Logicers’ın içindekilere katıldığı anlamına gelmez.",
+    "terms.h4": "Sorumlu kim",
+    "terms.p4": "Her oyun kimin hazırladığını söyler ve oyunun sorumluluğu onu hazırlayana aittir. Logicers oyunları barındırır ve yenilere bakar, ama bir oyunun söylediklerinden sorumlu değildir. Bir bilgisayar her resmi yüklenirken kontrol eder ve açıkça cinsel olanları reddeder. Bir oyunun listede olması, Logicers’ın içindekilere katıldığı anlamına gelmez.",
     "terms.h5": "Bir oyunu bildirmek",
-    "terms.p5": "Herkes «Bildir» düğmesiyle bir oyunu bildirebilir. Logicers gelen bildirimlere birkaç gün içinde bakar. Bu kuralları ya da yasayı çiğneyen bir oyun gizlenir veya kaldırılır. Üç kişinin bildirdiği bir oyun, Logicers bakana kadar gizlenir. Bir karara katılmıyor musun? logicers.world@gmail.com adresine yaz.",
-    "terms.h6": "Can güvenliği",
-    "terms.p6": "Birinin hayatı ya da güvenliği tehlikedeyse önce 112’yi ara.",
-    "terms.h7": "Bir oyunu silmek",
-    "terms.p7": "Oyununu istediğin zaman, düzenleme bağlantısından ya da Logicers’ım sayfasından silebilirsin. 12 ay boyunca kimse açmazsa Logicers oyunu resimleriyle birlikte siler. Logicers’tan oyunu silmesini de isteyebilirsin.",
-    "terms.h8": "Oyuncular hakkında neler saklanır",
-    "terms.p8": "Her soru için yalnızca kaç kişinin cevapladığı ve nasıl cevapladığı, sayı olarak saklanır. Oyunu hazırlayan kişi “Cevapları sakla” seçeneğini açtıysa oyun bunu en başta söyler ve oyunu hazırlayan kişi her cevabı, oyuncunun yazdığı adla birlikte (yazdıysa) alır. E-posta, adres ve IP adresi saklanmaz.",
-    "notice.host_all": "Logicers bu oyunları barındırıyor ama kontrol etmedi.",
+    "terms.p5": "Herkes «Bildir» düğmesiyle bir oyunu bildirebilir. Logicers gelen bildirimlere birkaç gün içinde bakar. Bu kuralları ya da yasayı çiğneyen bir oyun gizlenir veya kaldırılır; oyunu hazırlayan kişi bunu düzenleme sayfasında görür. Bildirimler, Logicers baktıktan sonra en fazla bir yıl saklanır. Bir karara katılmıyor musun? logicers.world@gmail.com adresine yaz.",
+    "terms.h6": "Bir oyunu silmek",
+    "terms.p6": "Oyununu istediğin zaman, düzenleme bağlantısından ya da Logicers’ım sayfasından silebilirsin. Logicers’ım sayfasında adını ve bütün oyunlarını da silebilirsin. 12 ay boyunca kimse açmaz ya da değiştirmezse Logicers oyunu resimleriyle birlikte siler. Logicers’tan oyunu silmesini de isteyebilirsin.",
+    "terms.h7": "Oyuncular hakkında neler saklanır",
+    "terms.p7": "Her soru için yalnızca kaç kişinin cevapladığı ve nasıl cevapladığı, sayı olarak saklanır. Oyunu hazırlayan kişi “Cevapları sakla” seçeneğini açtıysa oyun bunu en başta söyler ve oyunu hazırlayan kişi her cevabı, oyuncunun yazdığı adla birlikte (yazdıysa) alır. Bu cevaplardan oyunu hazırlayan kişi sorumludur. Cevaplar, “Cevapları sakla” kapatılana ya da oyun silinene kadar saklanır. E-posta, adres ve IP adresi saklanmaz.",
+    "notice.host_all": "Logicers bu oyunları barındırır. Sorumluluk onları hazırlayanlara aittir.",
     "play.pos": "{k}/{n}",
     "ed.answers": "Cevapları indir",
     "ed.no_answers": "Henüz cevap yok.",
@@ -883,7 +884,12 @@
     "kp.here_kept": "Bu tarayıcıda saklandı.",
     /* 9 Nov 2026: the fix round */
     "err.at": "Soru {n}: {why}",
-    "err.same": "“{x}” iki kez yazılmış."
+    "err.same": "“{x}” iki kez yazılmış.",
+    "ed.draft": "Kaydetmediğin değişiklikler var.",
+    "ed.draft_back": "Geri getir",
+    "ed.draft_drop": "Sil",
+    "ed.past": "Bazı yeni sorular geçmiş günlere denk geliyor: oyuncular onları görmeyecek.",
+    "ed.past_fix": "Bugünden başlat"
   };
 
   /* Spanish */
@@ -905,13 +911,13 @@
 
     /* the line under every maker game, on its About page and in its embed */
     "notice.made": "Creado por {maker}.",
-    "notice.host": "Logicers aloja este juego, pero no ha revisado su contenido.",
+    "notice.host": "Logicers aloja este juego. Quien lo creó es responsable de él.",
     "notice.report": "¿Algo está mal? Repórtalo.",
     "notice.powered": "con tecnología de Logicers",
 
     /* the directory */
     "dir.h1": "Juegos diarios que crea la gente",
-    "dir.notice": "Estos juegos los crean jugadores de Logicers. Logicers no los ha revisado.",
+    "dir.notice": "Estos juegos los crean jugadores de Logicers, que son responsables de ellos.",
     "dir.make": "Crea un juego",
     "dir.empty": "Aún no hay juegos aquí.",
     "dir.code_ph": "¿Tienes un código?",
@@ -993,7 +999,6 @@
 
     /* the report */
     "rep.h": "Reportar este juego",
-    "rep.danger": "Si la vida o la seguridad de alguien está en peligro, llama primero al 112.",
     "rep.why": "¿Qué está mal?",
     "rep.why_illegal": "Contenido ilegal",
     "rep.why_hate": "Odio, acoso o amenazas",
@@ -1127,25 +1132,23 @@
 
     /* the terms page (studio/terms/): the English governs */
     "terms.title": "Normas para los juegos que crea la gente",
-    "terms.date": "8 de noviembre de 2026",
-    "terms.lead": "Cualquiera puede crear un juego diario en Logicers, con su propio nombre. Estas son las normas, en palabras sencillas.",
+    "terms.date": "11 de noviembre de 2026",
+    "terms.lead": "Cualquiera puede crear un juego diario en Logicers, con su propio nombre. Estas son las normas, en palabras sencillas. Si una traducción dice algo distinto, vale el texto en inglés.",
     "terms.h1": "Quién gestiona Logicers",
     "terms.p1": "Logicers es un pequeño sitio de juegos diarios gratuitos, gestionado desde Italia por Khayyam RZAZADE. Escribe a logicers.world@gmail.com. Una persona lee cada mensaje.",
     "terms.h2": "Tu juego sigue siendo tuyo",
-    "terms.p2": "Lo que pones en tu juego sigue siendo tuyo, y eres responsable de ello. Al crearlo, permites que Logicers lo guarde y lo muestre a cualquiera que tenga su enlace, su código o su código QR, y en la lista, si Logicers lo incluye.",
+    "terms.p2": "Lo que pones en tu juego sigue siendo tuyo, y eres responsable de ello. Al crearlo, permites que Logicers lo guarde y lo muestre: a cualquiera que tenga su enlace, su código o su código QR, en otros sitios que lo inserten, en las imágenes para compartir y en la lista, si Logicers lo incluye.",
     "terms.h3": "Lo que no está permitido",
     "terms.p3": "Ningún contenido ilegal. Ni odio, acoso ni amenazas. Ningún contenido sexual. Ningún contenido que elogie la violencia o busque impactar. Ningún dato privado de nadie, como un número de teléfono o una dirección. Ninguna imagen ni texto de otras personas sin derecho a usarlos. Ni spam ni estafas.",
-    "terms.h4": "Logicers no lo ha revisado",
-    "terms.p4": "Logicers aloja estos juegos, pero no los ha revisado. Cada juego dice quién lo creó. Que un juego esté en la lista no significa que Logicers esté de acuerdo con él.",
+    "terms.h4": "Quién es responsable",
+    "terms.p4": "Cada juego dice quién lo creó, y quien lo creó es responsable de él. Logicers aloja los juegos y mira lo nuevo, pero no es responsable de lo que dice un juego. Un ordenador revisa cada imagen al subirla y rechaza las claramente sexuales. Que un juego esté en la lista no significa que Logicers esté de acuerdo con él.",
     "terms.h5": "Los reportes",
-    "terms.p5": "Cualquiera puede reportar un juego con el botón «Reportar». Logicers revisa los reportes en unos pocos días. Un juego que incumple estas normas o la ley se oculta o se elimina. Un juego que reportan tres personas se oculta hasta que Logicers lo revise. ¿No estás de acuerdo con una decisión? Escribe a logicers.world@gmail.com.",
-    "terms.h6": "Peligro para la vida o la seguridad",
-    "terms.p6": "Si la vida o la seguridad de alguien está en peligro, llama primero al 112.",
-    "terms.h7": "Borrar un juego",
-    "terms.p7": "Puedes borrar tu juego en cualquier momento, desde su enlace de edición o desde Mi Logicers. Logicers borra un juego, con sus imágenes, cuando nadie lo ha abierto en 12 meses. También puedes pedirle a Logicers que lo borre.",
-    "terms.h8": "Qué se guarda de quienes juegan",
-    "terms.p8": "De cada pregunta solo se guarda cuántas personas respondieron y qué, en números. Si quien creó el juego activa «Guardar respuestas», el juego lo dice primero, y quien lo creó recibe cada respuesta con el nombre que escribió quien jugó, si lo hay. Ni correo, ni dirección, ni dirección IP.",
-    "notice.host_all": "Logicers aloja estos juegos, pero no los ha revisado.",
+    "terms.p5": "Cualquiera puede reportar un juego con el botón «Reportar». Logicers revisa los reportes en unos pocos días. Un juego que incumple estas normas o la ley se oculta o se elimina, y quien lo creó lo ve en su editor. Los reportes se guardan hasta un año después de que Logicers los revise. ¿No estás de acuerdo con una decisión? Escribe a logicers.world@gmail.com.",
+    "terms.h6": "Borrar un juego",
+    "terms.p6": "Puedes borrar tu juego en cualquier momento, desde su enlace de edición o desde Mi Logicers. En Mi Logicers también puedes borrar tu nombre con todos tus juegos. Logicers borra un juego, con sus imágenes, cuando nadie lo ha abierto ni cambiado en 12 meses. También puedes pedirle a Logicers que lo borre.",
+    "terms.h7": "Qué se guarda de quienes juegan",
+    "terms.p7": "De cada pregunta solo se guarda cuántas personas respondieron y qué, en números. Si quien creó el juego activa «Guardar respuestas», el juego lo dice primero, y quien lo creó recibe cada respuesta con el nombre que escribió quien jugó, si lo hay. Quien creó el juego es responsable de esas respuestas. Se guardan hasta que desactive «Guardar respuestas» o se borre el juego. Ni correo, ni dirección, ni dirección IP.",
+    "notice.host_all": "Logicers aloja estos juegos. Quienes los crearon son responsables de ellos.",
     "play.pos": "{k} de {n}",
     "ed.answers": "Descargar las respuestas",
     "ed.no_answers": "Todavía no hay respuestas.",
@@ -1175,7 +1178,12 @@
     "kp.here_kept": "Guardado en este navegador.",
     /* 9 Nov 2026: the fix round */
     "err.at": "Pregunta {n}: {why}",
-    "err.same": "«{x}» está dos veces."
+    "err.same": "«{x}» está dos veces.",
+    "ed.draft": "Tienes cambios sin guardar.",
+    "ed.draft_back": "Recuperarlos",
+    "ed.draft_drop": "Descartarlos",
+    "ed.past": "Hay preguntas nuevas en días que ya pasaron: nadie las verá.",
+    "ed.past_fix": "Empezarlas hoy"
   };
 
   /* Brazilian Portuguese */
@@ -1197,13 +1205,13 @@
 
     /* the line under every maker game, on its About page and in its embed */
     "notice.made": "Criado por {maker}.",
-    "notice.host": "O Logicers hospeda este jogo, mas não conferiu o conteúdo dele.",
+    "notice.host": "O Logicers hospeda este jogo. Quem o criou é responsável por ele.",
     "notice.report": "Algo errado? Denuncie.",
     "notice.powered": "com tecnologia Logicers",
 
     /* the directory */
     "dir.h1": "Jogos diários que as pessoas criam",
-    "dir.notice": "Estes jogos são criados por jogadores do Logicers. O Logicers não os conferiu.",
+    "dir.notice": "Estes jogos são criados por jogadores do Logicers, que são responsáveis por eles.",
     "dir.make": "Crie um jogo",
     "dir.empty": "Ainda não tem jogos aqui.",
     "dir.code_ph": "Tem um código?",
@@ -1285,7 +1293,6 @@
 
     /* the report */
     "rep.h": "Denunciar este jogo",
-    "rep.danger": "Se a vida ou a segurança de alguém estiver em perigo, ligue primeiro para o 112.",
     "rep.why": "Qual é o problema?",
     "rep.why_illegal": "Conteúdo ilegal",
     "rep.why_hate": "Ódio, assédio ou ameaças",
@@ -1419,25 +1426,23 @@
 
     /* the terms page (studio/terms/): the English governs */
     "terms.title": "Termos dos jogos que as pessoas criam",
-    "terms.date": "8 de novembro de 2026",
-    "terms.lead": "Qualquer pessoa pode criar um jogo diário no Logicers, com o próprio nome. Estas são as regras, em palavras simples.",
+    "terms.date": "11 de novembro de 2026",
+    "terms.lead": "Qualquer pessoa pode criar um jogo diário no Logicers, com o próprio nome. Estas são as regras, em palavras simples. Se uma tradução disser algo diferente, vale o texto em inglês.",
     "terms.h1": "Quem administra o Logicers",
     "terms.p1": "O Logicers é um pequeno site de jogos diários gratuitos, administrado a partir da Itália por Khayyam RZAZADE. Escreva para logicers.world@gmail.com. Uma pessoa lê cada mensagem.",
     "terms.h2": "Seu jogo continua sendo seu",
-    "terms.p2": "O que você coloca no seu jogo continua sendo seu, e você é responsável por isso. Ao criá-lo, você permite que o Logicers o guarde e o mostre a qualquer pessoa que tenha o link, o código ou o QR Code dele, e na lista, se o Logicers o incluir.",
+    "terms.p2": "O que você coloca no seu jogo continua sendo seu, e você é responsável por isso. Ao criá-lo, você permite que o Logicers o guarde e o mostre: a qualquer pessoa que tenha o link, o código ou o QR Code dele, em outros sites que o incorporem, nas imagens para compartilhar e na lista, se o Logicers o incluir.",
     "terms.h3": "O que não é permitido",
     "terms.p3": "Nada de conteúdo ilegal. Nada de ódio, assédio ou ameaças. Nada de conteúdo sexual. Nada de conteúdo que exalte a violência ou queira chocar. Nada de informações privadas de ninguém, como número de telefone ou endereço. Nada de imagens ou textos de outras pessoas sem o direito de usá-los. Nada de spam ou golpes.",
-    "terms.h4": "O Logicers não conferiu",
-    "terms.p4": "O Logicers hospeda estes jogos, mas não os conferiu. Cada jogo diz quem o criou. Estar na lista não significa que o Logicers concorda com o que há no jogo.",
+    "terms.h4": "Quem é responsável",
+    "terms.p4": "Cada jogo diz quem o criou, e quem o criou é responsável por ele. O Logicers hospeda os jogos e olha o que é novo, mas não é responsável pelo que um jogo diz. Um computador verifica cada imagem quando ela é enviada e recusa as claramente sexuais. Estar na lista não significa que o Logicers concorda com o jogo.",
     "terms.h5": "Denúncias",
-    "terms.p5": "Qualquer pessoa pode denunciar um jogo com o botão “Denunciar”. O Logicers analisa as denúncias em poucos dias. Um jogo que desrespeitar estas regras ou a lei é ocultado ou removido. Um jogo denunciado por três pessoas fica oculto até o Logicers analisá-lo. Não concorda com uma decisão? Escreva para logicers.world@gmail.com.",
-    "terms.h6": "Perigo para a vida ou a segurança",
-    "terms.p6": "Se a vida ou a segurança de alguém estiver em perigo, ligue primeiro para o 112.",
-    "terms.h7": "Apagar um jogo",
-    "terms.p7": "Você pode apagar seu jogo a qualquer momento, pelo link de edição ou pelo Meu Logicers. O Logicers apaga um jogo, com as imagens dele, quando ninguém o abre há 12 meses. Você também pode pedir ao Logicers que o apague.",
-    "terms.h8": "O que fica guardado sobre quem joga",
-    "terms.p8": "De cada pergunta, só quantas pessoas responderam e o quê, em números. Se quem criou o jogo ativar “Guardar respostas”, o jogo avisa isso logo no início, e quem o criou recebe cada resposta com o nome que o jogador digitou, se houver. Sem e-mail, sem endereço, sem endereço IP.",
-    "notice.host_all": "O Logicers hospeda estes jogos, mas não os conferiu.",
+    "terms.p5": "Qualquer pessoa pode denunciar um jogo com o botão “Denunciar”. O Logicers analisa as denúncias em poucos dias. Um jogo que desrespeitar estas regras ou a lei é ocultado ou removido, e quem o criou vê isso no editor. As denúncias ficam guardadas por até um ano depois que o Logicers as analisa. Não concorda com uma decisão? Escreva para logicers.world@gmail.com.",
+    "terms.h6": "Apagar um jogo",
+    "terms.p6": "Você pode apagar seu jogo a qualquer momento, pelo link de edição ou pelo Meu Logicers. No Meu Logicers você também pode apagar o seu nome com todos os seus jogos. O Logicers apaga um jogo, com as imagens dele, quando ninguém o abre nem o muda há 12 meses. Você também pode pedir ao Logicers que o apague.",
+    "terms.h7": "O que fica guardado sobre quem joga",
+    "terms.p7": "De cada pergunta, só quantas pessoas responderam e o quê, em números. Se quem criou o jogo ativar “Guardar respostas”, o jogo avisa isso logo no início, e quem o criou recebe cada resposta com o nome que o jogador digitou, se houver. Quem criou o jogo é responsável por essas respostas. Elas ficam guardadas até “Guardar respostas” ser desativado ou o jogo ser apagado. Sem e-mail, sem endereço, sem endereço IP.",
+    "notice.host_all": "O Logicers hospeda estes jogos. Quem os criou é responsável por eles.",
     "play.pos": "{k} de {n}",
     "ed.answers": "Baixar as respostas",
     "ed.no_answers": "Ainda não tem respostas.",
@@ -1467,7 +1472,12 @@
     "kp.here_kept": "Guardado neste navegador.",
     /* 9 Nov 2026: the fix round */
     "err.at": "Pergunta {n}: {why}",
-    "err.same": "“{x}” aparece duas vezes."
+    "err.same": "“{x}” aparece duas vezes.",
+    "ed.draft": "Você tem mudanças não salvas.",
+    "ed.draft_back": "Recuperar",
+    "ed.draft_drop": "Descartar",
+    "ed.past": "Há perguntas novas em dias que já passaram: ninguém vai vê-las.",
+    "ed.past_fix": "Começar hoje"
   };
 
   /* French */
@@ -1489,13 +1499,13 @@
 
     /* the line under every maker game, on its About page and in its embed */
     "notice.made": "Créé par {maker}.",
-    "notice.host": "Logicers héberge ce jeu, mais n’a pas vérifié son contenu.",
+    "notice.host": "Logicers héberge ce jeu. La personne qui l’a créé en est responsable.",
     "notice.report": "Un problème ? Signale-le.",
     "notice.powered": "propulsé par Logicers",
 
     /* the directory */
     "dir.h1": "Jeux quotidiens créés par des joueurs",
-    "dir.notice": "Ces jeux sont créés par des joueurs de Logicers. Logicers ne les a pas vérifiés.",
+    "dir.notice": "Ces jeux sont créés par des joueurs de Logicers, qui en sont responsables.",
     "dir.make": "Crée un jeu",
     "dir.empty": "Pas encore de jeux ici.",
     "dir.code_ph": "Tu as un code ?",
@@ -1577,7 +1587,6 @@
 
     /* the report */
     "rep.h": "Signaler ce jeu",
-    "rep.danger": "Si la vie ou la sécurité de quelqu’un est en danger, appelle d’abord le 112.",
     "rep.why": "Quel est le problème ?",
     "rep.why_illegal": "Contenu illégal",
     "rep.why_hate": "Haine, harcèlement ou menaces",
@@ -1711,25 +1720,23 @@
 
     /* the terms page (studio/terms/): the English governs */
     "terms.title": "Les règles pour les jeux créés par les utilisateurs",
-    "terms.date": "8 novembre 2026",
-    "terms.lead": "Sur Logicers, tout le monde peut créer un jeu quotidien, sous son propre nom. Voici les règles, expliquées simplement.",
+    "terms.date": "11 novembre 2026",
+    "terms.lead": "Sur Logicers, tout le monde peut créer un jeu quotidien, sous son propre nom. Voici les règles, expliquées simplement. Si une traduction dit autre chose, c’est le texte anglais qui compte.",
     "terms.h1": "Qui gère Logicers",
     "terms.p1": "Logicers est un petit site de jeux quotidiens gratuits, géré depuis l’Italie par Khayyam RZAZADE. Écris à logicers.world@gmail.com. Une personne lit chaque message.",
     "terms.h2": "Ton jeu reste à toi",
-    "terms.p2": "Ce que tu mets dans ton jeu reste à toi, et tu en es responsable. En le créant, tu autorises Logicers à le conserver et à le montrer à toute personne qui a son lien, son code ou son code QR, et dans la liste si Logicers l’y met.",
+    "terms.p2": "Ce que tu mets dans ton jeu reste à toi, et tu en es responsable. En le créant, tu autorises Logicers à le conserver et à le montrer : à toute personne qui a son lien, son code ou son code QR, sur les sites qui l’intègrent, dans les images à partager, et dans la liste si Logicers l’y met.",
     "terms.h3": "Ce qui est interdit",
     "terms.p3": "Aucun contenu illégal. Ni haine, ni harcèlement, ni menaces. Aucun contenu sexuel. Aucun contenu qui fait l’éloge de la violence ou qui cherche à choquer. Aucune information privée sur qui que ce soit, comme un numéro de téléphone ou une adresse. Aucune image ni aucun texte d’autres personnes sans le droit de les utiliser. Ni spam, ni arnaques.",
-    "terms.h4": "Logicers ne l’a pas vérifié",
-    "terms.p4": "Logicers héberge ces jeux, mais ne les a pas vérifiés. Chaque jeu dit qui l’a créé. Qu’un jeu soit dans la liste ne veut pas dire que Logicers est d’accord avec son contenu.",
+    "terms.h4": "Qui est responsable",
+    "terms.p4": "Chaque jeu dit qui l’a créé, et la personne qui l’a créé en est responsable. Logicers héberge les jeux et regarde les nouveautés, mais n’est pas responsable de ce que dit un jeu. Un ordinateur vérifie chaque image à son envoi et refuse celles qui sont clairement sexuelles. Qu’un jeu soit dans la liste ne veut pas dire que Logicers est d’accord avec son contenu.",
     "terms.h5": "Les signalements",
-    "terms.p5": "Tout le monde peut signaler un jeu avec le bouton « Signaler ». Logicers regarde les signalements en quelques jours. Un jeu qui enfreint ces règles ou la loi est masqué ou supprimé. Un jeu signalé par trois personnes est masqué jusqu’à ce que Logicers l’examine. Pas d’accord avec une décision ? Écris à logicers.world@gmail.com.",
-    "terms.h6": "Danger pour la vie ou la sécurité",
-    "terms.p6": "Si la vie ou la sécurité de quelqu’un est en danger, appelle d’abord le 112.",
-    "terms.h7": "Supprimer un jeu",
-    "terms.p7": "Tu peux supprimer ton jeu à tout moment, depuis son lien de modification ou depuis Mon Logicers. Logicers supprime un jeu, avec ses images, quand personne ne l’a ouvert depuis 12 mois. Tu peux aussi demander à Logicers de le supprimer.",
-    "terms.h8": "Ce qui est gardé sur les joueurs",
-    "terms.p8": "Pour chaque question, seulement combien de personnes ont répondu et comment, sous forme de totaux. Si la personne qui a créé le jeu active « Garder les réponses », le jeu le dit d’abord, et elle reçoit chaque réponse avec le nom que le joueur a saisi, s’il y en a un. Pas d’e-mail, pas d’adresse, pas d’adresse IP.",
-    "notice.host_all": "Logicers héberge ces jeux, mais ne les a pas vérifiés.",
+    "terms.p5": "Tout le monde peut signaler un jeu avec le bouton « Signaler ». Logicers regarde les signalements en quelques jours. Un jeu qui enfreint ces règles ou la loi est masqué ou supprimé, et la personne qui l’a créé le voit dans son éditeur. Les signalements sont gardés jusqu’à un an après que Logicers les a examinés. Pas d’accord avec une décision ? Écris à logicers.world@gmail.com.",
+    "terms.h6": "Supprimer un jeu",
+    "terms.p6": "Tu peux supprimer ton jeu à tout moment, depuis son lien de modification ou depuis Mon Logicers. Dans Mon Logicers, tu peux aussi supprimer ton nom avec tous tes jeux. Logicers supprime un jeu, avec ses images, quand personne ne l’a ouvert ni modifié depuis 12 mois. Tu peux aussi demander à Logicers de le supprimer.",
+    "terms.h7": "Ce qui est gardé sur les joueurs",
+    "terms.p7": "Pour chaque question, seulement combien de personnes ont répondu et comment, sous forme de totaux. Si la personne qui a créé le jeu active « Garder les réponses », le jeu le dit d’abord, et elle reçoit chaque réponse avec le nom que le joueur a saisi, s’il y en a un. Elle est responsable de ces réponses. Elles sont gardées jusqu’à ce qu’elle désactive « Garder les réponses » ou que le jeu soit supprimé. Pas d’e-mail, pas d’adresse, pas d’adresse IP.",
+    "notice.host_all": "Logicers héberge ces jeux. Les personnes qui les ont créés en sont responsables.",
     "play.pos": "{k} sur {n}",
     "ed.answers": "Télécharger les réponses",
     "ed.no_answers": "Pas encore de réponses.",
@@ -1759,6 +1766,11 @@
     "kp.here_kept": "Gardé dans ce navigateur.",
     /* 9 Nov 2026: the fix round */
     "err.at": "Question {n} : {why}",
-    "err.same": "« {x} » est là deux fois."
+    "err.same": "« {x} » est là deux fois.",
+    "ed.draft": "Tu as des modifications non enregistrées.",
+    "ed.draft_back": "Les récupérer",
+    "ed.draft_drop": "Les effacer",
+    "ed.past": "De nouvelles questions tombent sur des jours déjà passés : personne ne les verra.",
+    "ed.past_fix": "Les commencer aujourd’hui"
   };
 })();

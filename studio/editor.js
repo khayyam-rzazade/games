@@ -37,14 +37,21 @@
   }
   function known() {
     var m = S.mine(), out = { maker: m.maker, games: m.games.slice() };
+    var dead = Array.isArray(m.dead) ? m.dead : [];
     var b = hello && obj(hello.mine);
     if (b) {
-      if (!out.maker && obj(b.maker) && b.maker.key) out.maker = b.maker;
+      if (!out.maker && obj(b.maker) && b.maker.key && dead.indexOf(b.maker.key) < 0) out.maker = b.maker;
       (Array.isArray(b.games) ? b.games : []).forEach(function (g) {
         if (obj(g) && g.edit && !out.games.some(function (x) { return x.maker === g.maker && x.slug === g.slug; })) out.games.push(g);
       });
     }
     return out;
+  }
+  function forgetMaker(key) {
+    var m = S.mine();
+    m.dead = (Array.isArray(m.dead) ? m.dead : []).concat([key]).slice(-10);
+    if (m.maker && m.maker.key === key) { var slug = m.maker.slug; m.maker = null; m.games = m.games.filter(function (g) { return g.maker !== slug; }); }
+    S.mineSet(m);
   }
   function keepMaker(mk) {
     var m = S.mine(); m.maker = { slug: mk.slug, name: mk.name, key: mk.key, t: Date.now() }; S.mineSet(m);
@@ -146,6 +153,9 @@
     draw(k.games.filter(function (g) { return !k.maker || g.maker === k.maker.slug; }));
     if (!k.maker || !k.maker.key) return;
     API.makerGet(k.maker.key).then(function (r) {
+      /* 11 Nov 2026: a maker key the Worker no longer knows (the maker was deleted, from My Logicers or by Logicers): this
+         browser forgets it, and the page asks for a name again (a new maker), instead of failing on every new game */
+      if (!r.ok && r.status === 403 && r.b && (r.b.e === "key" || r.b.e === "bad_key")) { forgetMaker(k.maker.key); if (current === null) newPage(); return; }
       if (!r.ok || !Array.isArray(r.b.games)) return;
       var local = {};
       k.games.forEach(function (g) { local[g.maker + "/" + g.slug] = g; });
@@ -349,16 +359,56 @@
     E.saved = snapshot(E);
     E.didSave = !E.fresh;
     window.scrollTo(0, 0);
+    E.draftHold = !E.fresh && !!drafts()[draftKey(E)];
     draw(E);
     if (E.fresh && E.items.length === 1) openItem(E, 0);
     var gone = -1; E.items.forEach(function (it, i) { if (gone < 0 && it.image_gone && !it.image) gone = i; });
     if (gone >= 0) openItem(E, gone);
+    if (!E.fresh) draftOffer(E);
     window.addEventListener("beforeunload", function (e) {
       if (current === E && dirty(E)) { e.preventDefault(); e.returnValue = ""; }
     });
     return E;
   }
   function dirty(E) { return snapshot(E) !== E.saved; }
+
+  /* ---------------- unsaved changes kept on this phone (11 Nov 2026, Khayyam) ----------------
+     A phone may close the tab (iOS does when memory is short): every change is kept here at once, under the game's address,
+     and the editor offers it back the next time ("Bring them back" / "Throw them away"). Gone when saved or thrown away. */
+  var DRAFTS = "lg.studio.drafts";
+  function drafts() { try { var d = JSON.parse(window.localStorage.getItem(DRAFTS) || "{}"); return obj(d) || {}; } catch (e) { return {}; } }
+  function draftKey(E) { return E.meta.maker + "/" + E.meta.slug; }
+  function draftSet(E, v) {
+    var d = drafts(), k = draftKey(E);
+    if (v) d[k] = v; else delete d[k];
+    try { window.localStorage.setItem(DRAFTS, JSON.stringify(d)); } catch (e) { /* full: the tab still holds it */ }
+  }
+  function draftKeep(E) {
+    if (E.draftHold) return;                      // a draft is offered and not answered yet: it stays as it is
+    if (!dirty(E)) { if (drafts()[draftKey(E)]) draftSet(E, null); return; }
+    var m = E.meta;
+    draftSet(E, { at: Date.now(), snap: snapshot(E), meta: { title: m.title, about: m.about, mode: m.mode, start_day: m.start_day, keep_answers: m.keep_answers, want_listed: m.want_listed, lang: m.lang },
+      items: E.items.map(function (it) { var o = JSON.parse(JSON.stringify(it)); if (it.image) o.image = { id: it.image.id, url: it.image.url }; return o; }) });
+  }
+  /* on opening: a kept draft that differs from the game as saved is offered back */
+  function draftOffer(E) {
+    var d = drafts()[draftKey(E)];
+    if (!obj(d) || !Array.isArray(d.items) || !obj(d.meta)) { E.draftHold = false; if (d) draftSet(E, null); return; }
+    if (d.snap === E.saved) { E.draftHold = false; draftSet(E, null); return; }
+    var box = E.draftBox = attr(el("div", "ed-draft st-enter"), { role: "region", "aria-label": t("ed.draft") });
+    box.appendChild(el("p", null, t("ed.draft")));
+    var row = el("div", "actions");
+    row.appendChild(btn("btn solid", t("ed.draft_back"), function () {
+      E.draftHold = false;
+      Object.keys(d.meta).forEach(function (k) { E.meta[k] = d.meta[k]; });
+      E.items = d.items.map(function (it) { return lk(Object.assign({}, it)); });
+      draw(E);
+      changed(E);
+    }));
+    row.appendChild(btn("btn ghost", t("ed.draft_drop"), function () { E.draftHold = false; draftSet(E, null); box.remove(); }));
+    box.appendChild(row);
+    E.root.insertBefore(box, E.root.firstChild);
+  }
 
   function draw(E) {
     var m = S.page("ed");
@@ -417,6 +467,8 @@
       changed(E);
     });
     qs.appendChild(add);
+    E.pastEl = el("div", "ed-past"); E.pastEl.hidden = true;
+    qs.appendChild(E.pastEl);
     E.qErr = attr(el("p", "ed-err"), { role: "alert" });
     qs.appendChild(E.qErr);
     m.appendChild(qs);
@@ -479,6 +531,9 @@
   function counts(E) { E.countEl.textContent = t("ed.questions") + " · " + S.fmt(E.items.length); }
   function changed(E, quiet) {
     var d = dirty(E);
+    if (!quiet && E.draftHold) { E.draftHold = false; if (E.draftBox) E.draftBox.remove(); }   // editing on: the old draft gives way
+    draftKeep(E);
+    pastNote(E);
     E.stateEl.textContent = d ? t("ed.unsaved") : E.didSave ? t("ed.saved") : "";
     E.saveBtn.textContent = t("ed.save");
     E.saveBtn.classList.toggle("is-clean", !d);                // F: nothing to save: the button steps back
@@ -488,6 +543,22 @@
   function dayText(E, i) {
     if (E.meta.mode !== "daily" || !E.meta.start_day) return "";
     return S.dayLong(S.dayFrom(S.dayIndex(E.meta.start_day) + i), true);
+  }
+  /* 11 Nov 2026 (Khayyam): new questions of a daily game that fall on days already gone would never be seen (after the
+     stock ran out, say): the editor says so, and one tap starts them today (the first day moves) */
+  function pastNote(E) {
+    var box = E.pastEl; if (!box) return;
+    var m = E.meta, today = S.dayIndex(S.today()), start = S.dayIndex(m.start_day), first = -1;
+    if (m.mode === "daily" && start != null) E.items.forEach(function (it, i) { if (first < 0 && (it.id == null || it.id === "") && start + i < today) first = i; });
+    box.textContent = "";
+    box.hidden = first < 0;
+    if (first < 0) return;
+    box.appendChild(el("p", null, t("ed.past")));
+    box.appendChild(btn("chip", t("ed.past_fix"), function () {
+      m.start_day = S.dayFrom(today - first);
+      var si = E.root.querySelector("#e-start"); if (si) si.value = m.start_day;
+      refreshDays(E); changed(E);
+    }));
   }
   function refreshDays(E) {
     Array.prototype.forEach.call(E.list.children, function (li, i) { var it = E.items[i]; summary(E, li, it, i); });
@@ -877,7 +948,8 @@
         /* the Worker names the question it refused: { e: "item", i, field } */
         var li = typeof r.b.i === "number" ? E.list.children[r.b.i] : null;
         if (li) {
-          li.__errs = {}; li.__errs[String(r.b.field || "q")] = t("err.long");
+          var fld = String(r.b.field || "q");
+          li.__errs = {}; li.__errs[fld] = t(fld === "image" ? "err.image" : /^(q|text|explain|unit|choices|things|extra|size)$/.test(fld) ? "err.long" : "err.fix");   // 11 Nov 2026: a refused picture said "Too long."
           li.classList.add("bad");
           if (li.querySelector(".ed-ibody").hidden) openItem(E, r.b.i); else showErrs(E, li, li.__it);
           li.scrollIntoView({ block: "center" });
@@ -969,6 +1041,7 @@
           if (!r.ok && !gone) { yes.disabled = false; S.toast(t(API.errKey(r))); return; }
           forget({ maker: E.meta.maker, slug: E.meta.slug });
           E.saved = snapshot(E);
+          draftSet(E, null);
           close();
           S.toast(t("ed.deleted"));
           current = null;

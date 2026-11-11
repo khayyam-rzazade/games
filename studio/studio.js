@@ -5,7 +5,7 @@
    /new/  a new game · /terms/  the terms. The editor is editor.js, loaded only there.
 
    Every maker game carries its maker's name under its own name on every screen, the notice line under it ("Made by…
-   Logicers hosts this game and did not check its content"), and a Report button. The words "approved" and "checked
+   Logicers hosts this game. Its maker is responsible for it." since 11 Nov 2026), and a Report button. The words "approved" and "checked
    it" never appear for a game: it is listed, or not listed yet.
 
    Kept in this browser (by.logicers.com):
@@ -30,7 +30,7 @@
   var SITE = LOCAL ? window.location.origin : "https://by.logicers.com";
   var MAIN = "https://logicers.com";
   var BRIDGE = LOCAL ? (typeof window.STUDIO_BRIDGE === "string" ? window.STUDIO_BRIDGE : "") : MAIN + "/studio/bridge.html";
-  var TERMS_VERSION = "2026-11-08";
+  var TERMS_VERSION = "2026-11-11";        // 11 Nov 2026: the terms made exact (who is responsible, reports, pictures, English counts)
   var LANGS = ["en", "it", "tr", "es", "pt", "fr"];
   var LANG_NAMES = { en: "English", it: "Italiano", tr: "Türkçe", es: "Español", pt: "Português", fr: "Français" };
 
@@ -241,6 +241,14 @@
     if (delay && !reduced()) node.style.animationDelay = delay + "ms";
     node.classList.add("st-enter");
     return node;
+  }
+
+  /* ---------------- what a screen reader is told (11 Nov 2026): only the result of an answer, not every page change ---------------- */
+  var sayBox = null;
+  function say(text) {
+    if (!sayBox) { sayBox = attr(el("p", "sr-only"), { "aria-live": "polite", role: "status" }); document.body.appendChild(sayBox); }
+    sayBox.textContent = "";
+    window.setTimeout(function () { sayBox.textContent = text; }, 60);
   }
 
   /* ---------------- the toast and the sheets ---------------- */
@@ -667,39 +675,61 @@
     ctx.ready = function (yes) { lock.disabled = !yes; };
     var handle = T.play(stageBox, it, ctx);
     wrap.appendChild(acts);
+    var sendErr = attr(el("p", "st-err st-play-err"), { role: "alert" }); sendErr.hidden = true;
+    wrap.appendChild(sendErr);
     var after = el("section", "st-after"); after.hidden = true;
     wrap.appendChild(after);
+    var game = meta.key, iid = it.id != null ? it.id : it.n;
     lock.addEventListener("click", function () {
       var a = handle.value();
       if (a == null) return;
       lock.disabled = true;
       answer(a);
     });
-    if (past) { acts.hidden = true; reveal(past.a, past.c || null, false); }
-
-    function answer(a) {
-      var k = T.tier(it, a);
-      var res = { a: a, k: k, n: it.n, id: it.id, c: null, t: Date.now() };
-      saveResult(meta.key, o.slot, res);
-      playNote(meta, o.slot, k, data.items.length || null);
+    if (past) {
       acts.hidden = true;
-      reveal(a, null, true);
-      var game = meta.key, iid = it.id != null ? it.id : it.n;
-      var first = !SITTING[game]; SITTING[game] = 1;           // one sitting = one play on the counter (F, 8 Nov 2026)
-      API.play(game, iid, T.wire ? T.wire(it, a) : a, first).then(function (r) {
-        if (!r.ok) return;
-        var c = API.counts(r.b);
-        res.c = c; saveResult(meta.key, o.slot, res);
+      if (obj(past.x)) { Object.assign(it, past.x); reveal(past.a, past.c || null, false); }
+      else {
+        /* answered on a page from before 11 Nov 2026, which kept no answer here: asked again, nothing counted */
+        API.play(game, iid, T.wire ? T.wire(it, past.a) : past.a, false, keepOf(), true).then(function (r) {
+          if (!r.ok) { acts.hidden = false; lock.disabled = false; return; }
+          past.x = API.reveal(r.b); past.c = API.counts(r.b); saveResult(meta.key, o.slot, past);
+          Object.assign(it, past.x); reveal(past.a, past.c, false);
+        });
+      }
+    }
+
+    /* with "keep answers" on: the page's random id and the name given (or none) */
+    function keepOf() {
+      if (!meta.keep_answers) return null;
+      var s = store(); return s.pid[meta.key] ? { pid: s.pid[meta.key], name: s.name[meta.key] || "" } : null;
+    }
+    /* 11 Nov 2026 (Khayyam): the page has no answer before the guess is sent: /play counts it and gives the answer back,
+       and keeps it in the same call when the maker keeps answers. Without a connection: say so, and Lock in comes back. */
+    function answer(a) {
+      sendErr.hidden = true;
+      var first = !SITTING[game];                              // one sitting = one play on the counter (F, 8 Nov 2026)
+      API.play(game, iid, T.wire ? T.wire(it, a) : a, first, keepOf()).then(function (r) {
+        if (!r.ok) {
+          lock.disabled = false;
+          sendErr.textContent = t(r.status === 0 ? "site.err_net" : API.errKey(r)); sendErr.hidden = false;
+          return;
+        }
+        SITTING[game] = 1;
+        var x = API.reveal(r.b), c = API.counts(r.b);
+        Object.assign(it, x);
+        var k = T.tier(it, a);
+        var res = { a: a, k: k, n: it.n, id: it.id, c: c, x: x, t: Date.now() };
+        saveResult(meta.key, o.slot, res);
+        playNote(meta, o.slot, k, data.items.length || null);
+        acts.hidden = true;
+        reveal(a, null, true);
         showCounts(c, a);
         if (!first) return;
         var was = meta.plays;
         meta.plays = num(r.b.plays) ? r.b.plays : was + 1;
         if (playedNode) countUp(playedNode.querySelector("b"), meta.plays, was);
       });
-      if (meta.keep_answers) {
-        var s = store();
-        if (s.pid[meta.key]) API.keep(game, iid, s.pid[meta.key], s.name[meta.key] || "", T.wire ? T.wire(it, a) : a);
-      }
     }
     var distBox = null, playedNode = null;
     function showCounts(c, a) {
@@ -719,7 +749,7 @@
       ver.appendChild(h1);
       if (v.line) ver.appendChild(el("p", "offby", v.line));
       (handle.verdictHost || stageBox).appendChild(ver);
-      if (fresh) { h1.classList.add("st-pop"); }
+      if (fresh) { h1.classList.add("st-pop"); say(v.head + (v.line ? " " + v.line : "")); }
       after.textContent = "";
       after.hidden = false;
       if (it.explain) after.appendChild(rich(it.explain, "sentence"));
@@ -877,7 +907,7 @@
     sheet(t("embed.h"), function (s) {
       s.classList.add("st-embedsheet");
       s.appendChild(el("p", "st-what", t("embed.what")));
-      var ol = el("ol", "st-steps");
+      var ol = el("ol", "st-howto");
       var li1 = el("li");
       li1.appendChild(el("p", null, t("embed.s1")));
       var ta = attr(el("textarea", "st-snippet"), { readonly: "", rows: "1", wrap: "off", "aria-label": t("embed.h"), spellcheck: "false" });
@@ -994,7 +1024,6 @@
       });
       acts.appendChild(send);
       s.appendChild(acts);
-      s.appendChild(el("p", "st-small st-danger-line", t("rep.danger")));   // F: the emergency line, last and small
     });
   }
 
@@ -1031,7 +1060,7 @@
     m.appendChild(el("h1", "st-h1", t("terms.title")));
     m.appendChild(el("p", "st-small st-gap", t("terms.date")));
     m.appendChild(el("p", "st-sub", t("terms.lead")));
-    for (var i = 1; i <= 8; i++) {
+    for (var i = 1; WORDS.en["terms.h" + i]; i++) {               // 11 Nov 2026: seven sections (the emergency one is gone)
       var s = el("section");
       s.appendChild(el("h2", null, t("terms.h" + i)));
       s.appendChild(rich(t("terms.p" + i)));
@@ -1080,7 +1109,7 @@
     useLang(uiLang);
     document.body.dataset.t = "studio";
     mount([bar({ studio: true, langs: !which }), waitView()]);
-    loadScript("/editor.js?v=4a22bd0cfc").then(function () {
+    loadScript("/editor.js?v=eaec21e2f5").then(function () {
       if (window.StudioEditor) window.StudioEditor(which);
     }, function () { mount([bar({ studio: true }), errorView("site.err_net", function () { editor(which); })]); });
   }

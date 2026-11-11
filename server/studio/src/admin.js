@@ -8,6 +8,7 @@
         hide | unhide          hide: the link stops working, the maker sees "hidden"; unhide also closes its reports
         delete                 the game and everything of it
         block_maker | unblock_maker   every game of the maker hidden, nothing new from them (game or maker)
+        delete_maker           the maker and everything of theirs, the name too (game or maker; 11 Nov 2026)
         done                   a queue row (id), or every open row of the game (and its reports), or a maker's own rows (maker)
         remove_image           a picture taken away (image: its id or URL): players never see it again, the maker's editor
                                says "Logicers removed this picture" (9 Nov 2026; "show_image" is gone: pictures show at once)
@@ -20,8 +21,9 @@ import { json, bad, clock, sha, same, brake, spent, imgUrl, IMAGE_ID, linksIn } 
 import { one, all, run, st, findGame, makerBySlug, deleteGame, status, removeImage } from "./db.js";
 import { itemLinks } from "./items.js";
 import { aiProbe } from "./images.js";
+import { deleteMaker } from "./makers.js";
 
-export const ACTIONS = ["list", "unlist", "hide", "unhide", "delete", "block_maker", "unblock_maker", "done", "remove_image"];
+export const ACTIONS = ["list", "unlist", "hide", "unhide", "delete", "block_maker", "unblock_maker", "delete_maker", "done", "remove_image"];
 export const CARDS_A_PAGE = 15;
 /* an image named by its id or by its URL (the queue rows carry the URL) */
 const imageIdOf = (x) => { const id = typeof x === "string" ? x.split("/").pop() : ""; return IMAGE_ID.test(id) ? id : null; };
@@ -65,11 +67,19 @@ export async function adminQueue(env, req, b) {
   /* the cards: every game (or maker without a game) with a row, open ones only unless all; newest activity first */
   const groups = await all(env, `SELECT game, maker, MAX(id) AS last FROM queue WHERE kind <> 'act' ${b.all === true ? "" : "AND done = 0"}
      GROUP BY COALESCE(game, 'm:' || maker) HAVING MAX(id) < ? ORDER BY last DESC LIMIT ?`, before, CARDS_A_PAGE + 1);
+  /* review, 11 Nov 2026: every card's reads in one batch (one database call); a card at a time took 7 calls, 110 for a page
+     of 15, and the free plan stops a request at 50 */
+  const page = groups.slice(0, CARDS_A_PAGE);
+  const plans = page.map((gr) => (gr.game ? gameCardStmts(env, gr.game) : makerCardStmts(env, gr.maker)));
+  const res = plans.length ? await env.DB.batch(plans.flat()) : [];
   const cards = [];
-  for (const gr of groups.slice(0, CARDS_A_PAGE)) {
-    const c = gr.game ? await gameCard(env, gr.game) : await makerCard(env, gr.maker);
+  let at = 0;
+  page.forEach((gr, i) => {
+    const part = res.slice(at, at + plans[i].length).map((r) => (r && r.results) || []);
+    at += plans[i].length;
+    const c = gr.game ? gameCardOf(env, part) : makerCardOf(env, part);
     if (c) { c.last = gr.last; cards.push(c); }
-  }
+  });
   const og = await one(env, "SELECT COUNT(DISTINCT COALESCE(game, 'm:' || maker)) AS n FROM queue WHERE done = 0 AND kind <> 'act'");
   return json({ ok: true, queue, next: rows.length === 100 ? rows[rows.length - 1].id : null, open: open ? open.n : 0, reports: [...byGame.values()],
     cards, cards_next: groups.length > CARDS_A_PAGE ? groups[CARDS_A_PAGE - 1].last : null, open_cards: og ? og.n : 0 });
@@ -83,13 +93,27 @@ const CHECK = { safe: "safe", passed: "safe", flag: "flag", none: "not checked" 
 export async function gameCard(env, id) {
   const g = await findGame(env, { game: id });
   if (!g) return null;
+  const stmts = gameCardStmts(env, g.id);
+  return gameCardOf(env, (await env.DB.batch(stmts)).map((r) => (r && r.results) || []));
+}
+/* the reads of one game's card, as statements for one batch (its id is all they need) */
+function gameCardStmts(env, id) {
+  const makerOfGame = "(SELECT maker FROM games WHERE id = ?)";
+  return [
+    st(env, "SELECT * FROM games WHERE id = ?", id),
+    st(env, "SELECT * FROM makers WHERE slug = " + makerOfGame, id),
+    st(env, "SELECT id, n, json FROM items WHERE game = ? ORDER BY n", id),
+    st(env, "SELECT id, verdict, made FROM images WHERE game = ? AND verdict NOT IN ('removed', 'sexual') ORDER BY made", id),
+    st(env, "SELECT id, kind, item, text, image, made FROM queue WHERE game = ? AND done = 0 AND kind <> 'act' ORDER BY id", id),
+    st(env, "SELECT reason, text, day FROM reports WHERE game = ? AND done = 0 ORDER BY id DESC LIMIT 200", id),
+    st(env, "SELECT id, title, listed, listed_by_khayyam, hidden FROM games WHERE maker = " + makerOfGame + " AND id <> ? ORDER BY made DESC LIMIT 30", id, id),
+  ];
+}
+function gameCardOf(env, [gs, ms, items, imgs, fresh, reps, others]) {
+  const g = gs[0];
+  if (!g) return null;
   const site = siteOf(env);
-  const m = await makerBySlug(env, g.maker);
-  const items = await all(env, "SELECT id, n, json FROM items WHERE game = ? ORDER BY n", g.id);
-  const imgs = await all(env, "SELECT id, verdict, made FROM images WHERE game = ? AND verdict NOT IN ('removed', 'sexual') ORDER BY made", g.id);
-  const fresh = await all(env, "SELECT id, kind, item, text, image, made FROM queue WHERE game = ? AND done = 0 AND kind <> 'act' ORDER BY id", g.id);
-  const reps = await all(env, "SELECT reason, text, day FROM reports WHERE game = ? AND done = 0 ORDER BY id DESC LIMIT 200", g.id);
-  const others = await all(env, "SELECT id, title, listed, listed_by_khayyam, hidden FROM games WHERE maker = ? AND id <> ? ORDER BY made DESC LIMIT 30", g.maker, g.id);
+  const m = ms[0] || null;
   const newItems = new Set(fresh.filter((r) => r.kind === "item" && r.item).map((r) => r.item));
   const newImages = new Set(fresh.filter((r) => r.kind === "image" && r.image).map((r) => String(r.image).split("/").pop()));
   const newLinks = new Set(fresh.filter((r) => r.kind === "link").map((r) => r.text));
@@ -134,10 +158,19 @@ function makerOut(env, m, games) {
 }
 /* a maker without a game in the queue (a new maker, a new name, quizzes on the maker page) */
 export async function makerCard(env, slug) {
-  const m = await makerBySlug(env, slug);
+  if (typeof slug !== "string" || !slug || slug.length > 40) return null;
+  return makerCardOf(env, (await env.DB.batch(makerCardStmts(env, slug))).map((r) => (r && r.results) || []));
+}
+function makerCardStmts(env, slug) {
+  return [
+    st(env, "SELECT * FROM makers WHERE slug = ?", slug),
+    st(env, "SELECT id, title, listed, listed_by_khayyam, hidden FROM games WHERE maker = ? ORDER BY made DESC LIMIT 30", slug),
+    st(env, "SELECT id, kind, text, made FROM queue WHERE maker = ? AND game IS NULL AND done = 0 AND kind <> 'act' ORDER BY id", slug),
+  ];
+}
+function makerCardOf(env, [ms, games, fresh]) {
+  const m = ms[0];
   if (!m) return null;
-  const games = await all(env, "SELECT id, title, listed, listed_by_khayyam, hidden FROM games WHERE maker = ? ORDER BY made DESC LIMIT 30", m.slug);
-  const fresh = await all(env, "SELECT id, kind, text, made FROM queue WHERE maker = ? AND game IS NULL AND done = 0 AND kind <> 'act' ORDER BY id", m.slug);
   return { type: "maker", maker: Object.assign(makerOut(env, m, games), { fresh, kits: JSON.parse(m.kits || "[]") }) };
 }
 
@@ -179,6 +212,15 @@ export async function adminAct(env, req, b) {
     return json({ ok: true });
   }
   let g = b.game !== undefined ? await findGame(env, b) : null;
+  /* 11 Nov 2026 (Khayyam): a maker and everything of theirs, the name too (a blocked one also); logged as one done row */
+  if (b.action === "delete_maker") {
+    const slug = g ? g.maker : typeof b.maker === "string" ? b.maker.trim().toLowerCase() : "";
+    const m = await makerBySlug(env, slug);
+    if (!m) return bad("nomaker", 404);
+    await deleteMaker(env, m.slug);
+    await run(env, "INSERT INTO queue (kind, text, made, done, done_at) VALUES ('act', ?, ?, 1, ?)", "delete_maker: " + m.slug + " (" + m.name + ")", now, now);
+    return json({ ok: true, deleted_maker: m.slug });
+  }
   if (b.action === "block_maker" || b.action === "unblock_maker") {
     const slug = g ? g.maker : typeof b.maker === "string" ? b.maker.trim().toLowerCase() : "";
     const m = await makerBySlug(env, slug);

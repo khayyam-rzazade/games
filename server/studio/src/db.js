@@ -94,7 +94,7 @@ export async function gameForEditor(env, b) {
   return g ? { game: g, maker: m } : null;
 }
 
-/* a game as the public sees it, or why not: "gone" when Logicers hid it, three reports hid it, or its maker is blocked */
+/* a game as the public sees it, or why not: "gone" when Logicers hid it (or, before 11 Nov 2026, three reports did), or its maker is blocked */
 export function publicState(g, m) {
   if (!g) return "nogame";
   if (g.hidden || !m || m.blocked) return "gone";
@@ -122,18 +122,25 @@ export async function capOk(env, kind, max) {
   return true;
 }
 
-/* a game and everything of it: items, counts, answers, reports, its images (R2 too); its queue rows are marked done */
-export async function deleteGame(env, g) {
-  const imgs = await all(env, "SELECT key FROM images WHERE game = ?", g.id);
-  await env.DB.batch([
-    st(env, "DELETE FROM items WHERE game = ?", g.id),
-    st(env, "DELETE FROM counts WHERE game = ?", g.id),
-    st(env, "DELETE FROM answers WHERE game = ?", g.id),
-    st(env, "DELETE FROM reports WHERE game = ?", g.id),
-    st(env, "DELETE FROM images WHERE game = ?", g.id),
-    st(env, "DELETE FROM queue WHERE game = ?", g.id),          // F: deleted at once means its texts too, not 90 days later
-    st(env, "DELETE FROM games WHERE id = ?", g.id),
-  ]);
+/* a game and everything of it: items, counts, answers, reports, its images (R2 too) and its queue rows */
+export async function deleteGame(env, g) { await deleteGames(env, [g]); }
+/* many games at once, in two database calls whatever their number (review, 11 Nov 2026: one game took two calls, so the
+   nightly job or a maker with 20 games went past the free plan's 50 calls a request). `games`: rows or objects with an id. */
+const TABLES_OF_A_GAME = ["items", "counts", "answers", "reports", "images", "queue"];   // F: deleted at once means its texts too
+export async function deleteGames(env, games) {
+  const ids = [...new Set(games.map((g) => g.id))];
+  if (!ids.length) return;
+  const parts = [];
+  for (let i = 0; i < ids.length; i += 50) parts.push(ids.slice(i, i + 50));          // D1: at most 100 values bound to one statement
+  const inList = (p) => "(" + p.map(() => "?").join(",") + ")";
+  const sel = parts.map((p) => "SELECT key FROM images WHERE game IN " + inList(p)).join(" UNION ALL ");
+  const imgs = await all(env, sel, ...parts.flat());
+  const stmts = [];
+  for (const p of parts) {
+    for (const t of TABLES_OF_A_GAME) stmts.push(st(env, "DELETE FROM " + t + " WHERE game IN " + inList(p), ...p));
+    stmts.push(st(env, "DELETE FROM games WHERE id IN " + inList(p), ...p));
+  }
+  await env.DB.batch(stmts);
   await r2Delete(env, imgs.map((x) => x.key));
 }
 export async function r2Delete(env, keys) {

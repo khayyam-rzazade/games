@@ -132,12 +132,12 @@ test("games: new, limits, slugs, codes, the editor's view, maker key in place of
   assert.equal((await call(e, "GET", "/code/BBBBBB")).status, 404);
 });
 
-test("game/new: 300 new games a day over everyone", async () => {
+test("game/new: a cap of new games a day over everyone (5,000 since 11 Nov 2026)", async () => {
   setNow(T0);
   resetBrakes();
   const e = env();
   await e.DB.prepare("CREATE TABLE IF NOT EXISTS caps (day TEXT PRIMARY KEY, n INTEGER NOT NULL)").run();
-  await e.DB.prepare("INSERT INTO caps (day, n) VALUES ('g2026-11-08', 300)").run();
+  await e.DB.prepare("INSERT INTO caps (day, n) VALUES ('g2026-11-08', 5000)").run();
   const a = await maker(e);
   const r = await call(e, "POST", "/game/new", { maker_key: a.key, template: "pick", title: "One more" });
   assert.equal(r.status, 429);
@@ -291,7 +291,11 @@ test("plays: counts per bucket, every template's answers, nothing per person", a
   assert.equal((await play(wide, 20000)).json.bucket, "p50", "a wide range counts by place along the line");
   assert.equal((await play(line, 1969.4)).json.bucket, "1969");
   assert.equal((await play(line, 1899)).json.e, "answer");
-  assert.equal((await play(rank, [3, 1, 0, 2])).json.bucket, "3102");
+  /* 11 Nov 2026: a Rank's things reach the page mixed; the answer is their places there, and /play counts it in the right order's */
+  const mixed = (await call(e, "GET", "/g/" + rank.g.id + "/")).json.items[0].things;
+  assert.notDeepEqual(mixed, ["a", "b", "c", "d"], "never the right order on the page");
+  const at = (...w) => w.map((x) => mixed.indexOf(x));
+  assert.equal((await play(rank, at("d", "b", "a", "c"))).json.bucket, "3102");
   assert.equal((await play(rank, [3, 1, 1, 2])).json.e, "answer");
   assert.equal((await play(rank, [3, 1, 0])).json.e, "answer");
   assert.equal((await play(pk, 2)).json.bucket, "2");

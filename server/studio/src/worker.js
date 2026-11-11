@@ -26,7 +26,7 @@
           (every /game/* and /img/del call also takes { maker_key, game } in place of edit_key)
      POST /img/put      multipart: edit_key (or maker_key, game), file      -> { id, url, w, h, bytes }
      POST /img/del      { edit_key, id }                                    -> {}
-     POST /play         { game, item, answer }                              -> { bucket, counts: { n, b } }
+     POST /play         { game, item, answer, first?, pid?, name?, again? } -> { bucket, counts: { n, b }, reveal, kept? }
      POST /play/keep    { game, item, pid, name, answer }                   -> { kept }
      POST /report       { game, reason, text?, browser? }                   -> {}
      POST /admin/queue  { key, before?, all? }    POST /admin/act { key, game, action, id?, maker?, image? }     (ADMIN_KEY)

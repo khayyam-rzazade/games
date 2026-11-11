@@ -1,20 +1,24 @@
 /* Logicers Studio — makers (Chat A, 8 Nov 2026).
    A maker is a name chosen once (shown as typed, 2-40 characters), a slug made from it for the addresses, and a maker
    key drawn here. The name may change later (/maker/edit); the slug never does, so no address breaks. */
-import { json, bad, clock, newKey, keyHash, hashReady, cleanText, slugify, slugOk, LANGS, brake, imgUrl } from "./util.js";
-import { one, all, run, st, makerByKey, makerBySlug, queueRow, capOk, deleteGame, status, isListed } from "./db.js";
+import { BRAKE, json, bad, clock, newKey, keyHash, hashReady, cleanText, slugify, slugOk, LANGS, brake, imgUrl } from "./util.js";
+import { one, all, run, st, makerByKey, makerBySlug, queueRow, capOk, r2Delete, status, isListed } from "./db.js";
 
 export const RESERVED = new Set(["new", "edit", "terms", "admin", "api", "c", "g", "m", "list", "oembed", "img", "static",
   "assets", "about", "embed", "by", "studio", "maker", "game", "play", "report", "help", "www", "index", "favicon",
   "robots", "templates", "health", "logicers", "official", "support", "me", "live", "sitemap", "words", "login", "settings", "code", "tests", "bridge", "embed.js"]);
-export const MAKERS_A_DAY = 300;
+export const MAKERS_A_DAY = 5000;
 const KIT_CODE = /^[BCDFGHJKLMNPQRSTVWXZ]{7}$/;          // the saved quizzes' codes (server/live/src/names.js)
 
-/* a maker's name: 2-40 characters as typed, one line; never one that claims to be Logicers */
+/* a maker's name: 2-40 characters as typed, one line; never one that claims to be Logicers, with look-alike letters too
+   (11 Nov 2026: Cyrillic and Greek letters that look Latin, and digits for letters: "Lоgicers", "L0gicers") */
+const LOOK = { "а": "a", "е": "e", "о": "o", "с": "c", "і": "i", "ѕ": "s", "г": "r", "ӏ": "l", "к": "k", "р": "p", "х": "x",
+  "ο": "o", "ι": "i", "κ": "k", "ε": "e", "ρ": "p", "ѵ": "v", "ɡ": "g", "ɢ": "g", "ǵ": "g", "0": "o", "1": "l", "3": "e", "5": "s", "|": "l" };
 export function cleanName(x) {
   const s = cleanText(x, 2, 40);
   if (s === null || !/[\p{L}\p{N}]/u.test(s)) return null;
-  if (/logicers/i.test(s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z]/gi, ""))) return null;
+  const plain = s.normalize("NFKC").toLowerCase().replace(/./gu, (c) => LOOK[c] || c).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z]/g, "");
+  if (/loglcers/.test(plain.replace(/i/g, "l"))) return null;          // i, l, 1, | and their look-alikes read as one letter
   return s;
 }
 export function termsOk(v) { return typeof v === "string" && /^[0-9a-z][0-9a-z.\-]{0,19}$/i.test(v); }
@@ -38,7 +42,7 @@ export async function makerNew(env, req, b) {
   const lang = LANGS.includes(b.lang) ? b.lang : null;
   if (!lang) return bad("lang");
   if (!termsOk(b.terms_version)) return bad("terms");
-  if (!brake("maker_new", req, 5)) return bad("later", 429);
+  if (!brake("maker_new", req, BRAKE.makerNew)) return bad("later", 429);
   if (!(await capOk(env, "m", MAKERS_A_DAY))) return bad("later", 429);
   const key = newKey(), now = clock();
   for (let tries = 0; tries < 3; tries++) {
@@ -64,7 +68,16 @@ export async function makerEdit(env, req, b) {
   if (b.name !== undefined) {
     const name = cleanName(b.name);
     if (!name) return bad("name");
-    if (name !== m.name) { sets.push("name = ?"); args.push(name); q.push(queueRow(env, "maker", { maker: m.slug, text: "name: " + m.name + " -> " + name })); }
+    if (name !== m.name) {
+      sets.push("name = ?"); args.push(name); q.push(queueRow(env, "maker", { maker: m.slug, text: "name: " + m.name + " -> " + name }));
+      /* 11 Nov 2026 (Khayyam): the name is on every card of the list, so a new name takes the maker's games off the list until
+         Khayyam puts them back, as any change to a listed game does (games.js) */
+      const listed = await all(env, "SELECT id FROM games WHERE maker = ? AND listed_by_khayyam = 1", m.slug);
+      if (listed.length) {
+        q.push(st(env, "UPDATE games SET listed_by_khayyam = 0 WHERE maker = ? AND listed_by_khayyam = 1", m.slug));
+        for (const g of listed) q.push(queueRow(env, "game", { maker: m.slug, game: g.id, text: "the maker's new name (" + name + "): off the list until you put it there again" }));
+      }
+    }
   }
   if (b.lang !== undefined) {
     if (!LANGS.includes(b.lang)) return bad("lang");
@@ -112,22 +125,30 @@ export async function makerDelete(env, req, b) {
   const m = await makerByKey(env, b.key);
   if (!m) return wrongKey(req);
   if (m.blocked) return bad("blocked", 403);   // F: a blocked maker keeps the address taken (Khayyam deletes from the queue)
-  const games = await all(env, "SELECT * FROM games WHERE maker = ?", m.slug);
-  for (const g of games) await deleteGame(env, g);
-  const imgs = await all(env, "SELECT key FROM images WHERE maker = ?", m.slug);
-  await env.DB.batch([
-    st(env, "DELETE FROM images WHERE maker = ?", m.slug),
-    st(env, "DELETE FROM queue WHERE maker = ?", m.slug),
-    st(env, "DELETE FROM makers WHERE slug = ?", m.slug),
-  ]);
-  if (env.IMG && imgs.length) { try { await env.IMG.delete(imgs.map((x) => x.key)); } catch (x) { /* nightly */ } }
+  await deleteMaker(env, m.slug);
   return json({ ok: true });
+}
+
+/* a maker and everything of theirs: their games, each game's questions, counts, answers, reports, pictures (R2 too) and queue
+   rows, and the maker's own row (the name is free again). Review, 11 Nov 2026: three calls whatever the number of games (it
+   took two a game); used by /maker/delete and by Khayyam's "Delete maker" in the queue. */
+export async function deleteMaker(env, slug) {
+  const imgs = await all(env, "SELECT key FROM images WHERE maker = ?", slug);
+  const ofMaker = "(SELECT id FROM games WHERE maker = ?)";
+  await env.DB.batch([
+    ...["items", "counts", "answers", "reports"].map((t) => st(env, "DELETE FROM " + t + " WHERE game IN " + ofMaker, slug)),
+    st(env, "DELETE FROM images WHERE maker = ? OR game IN " + ofMaker, slug, slug),
+    st(env, "DELETE FROM queue WHERE maker = ? OR game IN " + ofMaker, slug, slug),
+    st(env, "DELETE FROM games WHERE maker = ?", slug),
+    st(env, "DELETE FROM makers WHERE slug = ?", slug),
+  ]);
+  await r2Delete(env, imgs.map((x) => x.key));
 }
 
 /* GET /m/<slug>: the public maker page: the name, the games that are listed, the quizzes the maker put there */
 export async function makerPublic(env, req, slug) {
   const m = await makerBySlug(env, slug);
-  if (!m) { if (!brake("miss", req, 200, 6e5)) return bad("later", 429); return bad("nomaker", 404); }
+  if (!m) { if (!brake("miss", req, BRAKE.miss, 6e5)) return bad("later", 429); return bad("nomaker", 404); }
   if (m.blocked) return bad("gone", 410);
   const games = (await all(env, "SELECT * FROM games WHERE maker = ? AND listed = 1 AND listed_by_khayyam = 1 AND hidden = 0 AND n_items > 0 ORDER BY plays DESC, made, rowid", m.slug))
     .filter((g) => isListed(g, m))

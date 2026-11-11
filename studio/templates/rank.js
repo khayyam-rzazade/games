@@ -1,28 +1,26 @@
 /* Logicers Studio, template 4: Rank (the Who Gets What feel). Put 3 to 5 things in order.
-   item: { id, q, things: [text, in the right order, first on top], image, explain }
-   The player sees them mixed (the same mix for everyone: it comes from the words themselves, never the right order).
-   answer: the order the player made, as the indexes of the right order, e.g. [2, 0, 1], sent to /play as that list
-   (the Worker's bucket is the same order as digits, "201").
+   item: { id, q, things: [text], image, explain }
+   11 Nov 2026: the page gets the things already mixed by the Worker (the same mix on every load, never the right order),
+   without the right order; /play gives it back as `order` (the right order, as the places of the things the page got).
+   answer: the order the player made, as the places of the things the page got, e.g. [2, 0, 1], sent to /play as that
+   list (the Worker counts it in the right order's places). In the editor, `things` are in the right order (no `order`).
    Drag a row by its grip or its words, or use its two arrows. */
 (function () {
   "use strict";
   var TPL = window.StudioT = window.StudioT || {};
   function list(it) { return (Array.isArray(it.things) ? it.things : []).map(function (c) { return String(c == null ? "" : c); }); }
-  function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
-  function mixed(it) {
-    var n = list(it).length, idx = [];
-    for (var i = 0; i < n; i++) idx.push(i);
-    var seed = hash(list(it).join("|") + (it.id || ""));
-    for (var j = n - 1; j > 0; j--) { seed = (Math.imul(seed, 1103515245) + 12345) >>> 0; var k = seed % (j + 1); var x = idx[j]; idx[j] = idx[k]; idx[k] = x; }
-    if (idx.every(function (v, p) { return v === p; })) idx.push(idx.shift());
-    return idx;
+  /* the right order: what /play gave back, else the things as they are (the editor's, already in the right order) */
+  function orderOf(it) {
+    var n = list(it).length, o = it.order;
+    if (Array.isArray(o) && o.length === n && o.every(function (x) { return typeof x === "number" && x >= 0 && x < n; })) return o;
+    var idx = []; for (var i = 0; i < n; i++) idx.push(i); return idx;
   }
-  function rightCount(a) { var k = 0; (a || []).forEach(function (v, p) { if (v === p) k++; }); return k; }
+  function rightCount(it, a) { var o = orderOf(it), k = 0; (a || []).forEach(function (v, p) { if (v === o[p]) k++; }); return k; }
 
   TPL.rank = {
     blank: function () { return { q: "", things: ["", "", ""] }; },
     play: function (box, it, ctx) {
-      var el = ctx.el, things = list(it), order = mixed(it), locked = false;
+      var el = ctx.el, things = list(it), order = things.map(function (x, i) { return i; }), locked = false;   /* as the Worker mixed them */
       box.appendChild(el("h1", "question st-q", it.q));
       var ol = ctx.attr(el("ol", "st-rank"), { "aria-label": it.q });
       var rows = {};
@@ -127,7 +125,8 @@
           }
           var was = current();
           /* then into the right order, each row with its right place; the ones the player had right in green */
-          var settle = function () { for (var p = 0; p < things.length; p++) ol.appendChild(rows[p]); };
+          var right = orderOf(it);
+          var settle = function () { for (var p = 0; p < things.length; p++) ol.appendChild(rows[right[p]]); };
           if (fresh) glide(settle); else settle();
           Array.prototype.forEach.call(ol.children, function (li, p) {
             var ix = +li.dataset.ix, at = was.indexOf(ix);
@@ -139,11 +138,11 @@
       };
     },
     tier: function (it, a) {
-      var n = list(it).length, k = rightCount(a);
+      var n = list(it).length, k = rightCount(it, a);
       return k === n ? 3 : Math.min(2, Math.round(3 * k / n));
     },
     verdict: function (it, a, ctx) {
-      var n = list(it).length, k = rightCount(a);
+      var n = list(it).length, k = rightCount(it, a);
       return { head: k === n ? ctx.t("play.spot") : ctx.t("play.rank_res", { k: k, n: n }), line: "" };
     },
     dist: function (it, c, a, ctx) {
