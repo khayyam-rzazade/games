@@ -1109,7 +1109,7 @@
     useLang(uiLang);
     document.body.dataset.t = "studio";
     mount([bar({ studio: true, langs: !which }), waitView()]);
-    loadScript("/editor.js?v=eaec21e2f5").then(function () {
+    Promise.all([loadScript("/datepicker.js?v=b34738fb70"), loadScript("/editor.js?v=9790227a06")]).then(function () {
       if (window.StudioEditor) window.StudioEditor(which);
     }, function () { mount([bar({ studio: true }), errorView("site.err_net", function () { editor(which); })]); });
   }

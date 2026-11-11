@@ -531,6 +531,47 @@ if (group('motion')) {
   }
 }
 
+/* ====================================================================== "If you lose the code": the warning is the card's own footer (11 Nov 2026) */
+if (group('warn')) {
+  console.log('warn: "Lose all of these and it\'s gone." as the card\'s footer, six languages, 320 to 1280, light and dark');
+  /* a pixel of a screenshot, read in a blank page (no image library needed) */
+  const util = await browser.newPage();
+  const pixel = (buf, x, y) => util.evaluate(async ([b64, x, y]) => {
+    const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
+    const c = document.createElement('canvas'); c.width = img.width; c.height = img.height; const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+    return Array.from(g.getImageData(Math.round(x), Math.round(y), 1, 1).data).slice(0, 3);
+  }, [buf.toString('base64'), x, y]);
+  const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
+  const ratio = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+  const runs = [];
+  for (const l of Object.keys(WORDS)) { for (const w of [320, 390, 768, 1280]) runs.push([l, w, 'light', true]); for (const w of [320, 1280]) runs.push([l, w, 'dark', true]); runs.push([l, 320, 'light', false]); }
+  for (const [l, w, scheme, doors] of runs) {
+    const tag = `[${l} ${w} ${scheme}${doors ? '' : ' no doors'}]`;
+    const p = await phone({ w, lang: l, scheme, stats: clone(MOCK), code: 'abcdefgx-hijklmn-opqrstu-98', kv: { 'lg.test.long': '1' }, doors: doors ? { passkey: true, pw: true, rq: true } : undefined });
+    await open(p);
+    const warn = p.page.locator('.me-me .me-warn, .me-warn');
+    check(`${tag} the warning is there once, inside the card of "${WORDS[l]['lose.h']}"`, (await warn.count()) === 1 && (await p.page.locator('.me-card .me-warn').count()) === 1);
+    check(`${tag} its words are the language's own, unchanged`, (await warn.innerText()).trim() === WORDS[l]['lose.warn'], await warn.innerText());
+    check(`${tag} the old small grey note is gone`, (await p.page.locator('.me-note', { hasText: WORDS[l]['lose.warn'] }).count()) === 0);
+    check(`${tag} the page fits`, await fits(p.page));
+    const g = await p.page.evaluate(() => {
+      const w = document.querySelector('.me-warn'), c = w.closest('.me-card'), tx = w.querySelector('.tx'), ic = w.querySelector('.ic'), r = (n) => n.getBoundingClientRect();
+      const cs = getComputedStyle(tx), soft = getComputedStyle(document.body).getPropertyValue('--soft').trim();
+      return { w: r(w).toJSON(), c: r(c).toJSON(), tx: r(tx).toJSON(), ic: r(ic).toJSON(), size: parseFloat(cs.fontSize), weight: +cs.fontWeight, role: w.getAttribute('role'), clipped: tx.scrollWidth > tx.clientWidth + 1, soft };
+    });
+    check(`${tag} the band runs edge to edge along the card's foot, inside it`, Math.abs(g.w.left - g.c.left) < 1.5 && Math.abs(g.w.right - g.c.right) < 1.5 && Math.abs(g.w.bottom - g.c.bottom) < 1.5, [g.w, g.c]);
+    check(`${tag} words at 15 px or more, weight 700, a role of note, not clipped; the icon box and the words do not touch the edges`, g.size >= 15 && g.weight >= 700 && g.role === 'note' && !g.clipped && g.tx.right <= g.w.right - 12 && g.ic.left >= g.w.left + 12, g);
+    const shotBuf = await warn.screenshot();
+    const bg = await pixel(shotBuf, shotBuf.length ? g.w.width - 6 : 0, g.w.height / 2);
+    const ink = await p.page.evaluate(() => { const c = getComputedStyle(document.querySelector('.me-warn .tx')).color.match(/[\d.]+/g).map(Number); return c.slice(0, 3); });
+    check(`${tag} the words read well on the band (contrast at least 7:1)`, ratio(ink, bg) >= 7, { ink, bg, ratio: ratio(ink, bg) });
+    check(`${tag} the band is calm, not red (red no stronger than blue)`, bg[0] <= bg[2] + 2, bg);
+    if (w === 320 || w === 1280 || (l === 'en' && w === 390)) await p.page.locator('section.me-sec', { has: p.page.locator('.me-warn') }).screenshot({ path: path.join(SHOTS, `warn-${l}-${w}-${scheme}${doors ? '' : '-bare'}.png`) });
+    await p.close();
+  }
+  await util.close();
+}
+
 await browser.close(); await srv.close();
 console.log(`\n${pass} checks passed, ${fails.length} failed`);
 if (fails.length) { console.log(fails.map((f) => ' - ' + f).join('\n')); process.exit(1); }

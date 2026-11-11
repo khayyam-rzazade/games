@@ -22,6 +22,9 @@ function check(name, ok, detail) { if (ok) { pass++; console.log('  ok  ', name)
 const calls = [];
 const KITS = { BCDFGHJ: { edit: 'ek1', title: 'Exam 3', mode: 'alone', plays: 12, until: '2027-01-06' }, KLMNPQR: { edit: 'ek2', title: 'Live only', mode: 'live', plays: 0, until: '2027-01-02' } };
 const PLAYS = [['Ana', 900, Date.UTC(2026, 10, 7, 9, 30), 3, 3], ['Bo, "the" best', 700, Date.UTC(2026, 10, 7, 10), 2, 3], ['Cem', 900, Date.UTC(2026, 10, 7, 11), 3, 3]];
+/* 11 Nov 2026, the "When" column: the live Worker writes a play's time as Date.now() (milliseconds); the page also reads seconds, ISO text, and no time at all */
+const SHAPES = { on: false };
+const PLAYS_SHAPES = [['Sec', 800, Date.UTC(2026, 10, 7, 9, 30) / 1000, 3, 3], ['Iso', 700, '2026-11-07T10:00:00Z', 2, 3], ['Digits', 600, String(Date.UTC(2026, 10, 7, 11)), 2, 3], ['Nothing', 500, null, 1, 3], ['Zero', 400, 0, 1, 3], ['Junk', 300, 'last week', 1, 3]];
 const stand = http.createServer((req, res) => {
   let body = '';
   req.on('data', (c) => { body += c; });
@@ -35,7 +38,7 @@ const stand = http.createServer((req, res) => {
       const k = KITS[m[1]]; if (!k) return send(404, { ok: false, e: 'gone' });
       if (b.edit !== k.edit) return send(403, { ok: false, e: 'key' });
       if (m[2] === 'open') return send(200, { ok: true, kit: { title: k.title, mode: k.mode, qs: [1, 2, 3] }, plays: k.plays, until: k.until, saved: 1, made: 1 });
-      if (m[2] === 'results') return send(200, { ok: true, plays: PLAYS, typed: [] });
+      if (m[2] === 'results') return send(200, { ok: true, plays: SHAPES.on ? PLAYS_SHAPES : PLAYS, typed: [] });
       delete KITS[m[1]]; return send(200, { ok: true });
     }
     if ((m = /^\/host\/(BCDFGH[0-9a-f]{32})$/.exec(p))) return send(200, { ok: true, code: 'BCDFGH', rounds: [{ people: 5 }, { people: 7 }], current: null, join: 'https://logicers.com/checkin/room/#BCDFGH', until: '2027-01-09' });
@@ -55,12 +58,13 @@ const srv = await start(4195, { real: true });
 const browser = await chromium.launch({ executablePath: process.env.ME_CHROME || '/usr/bin/google-chrome' });
 const HOSTKEY = 'BCDFGH' + '0123456789abcdef0123456789abcdef';
 
-async function phone(seed, viewport = { width: 390, height: 780 }) {
-  const ctx = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: viewport.width < 600, locale: 'en-GB', acceptDownloads: true });
+async function phone(seed, viewport = { width: 390, height: 780 }, lang, dark) {
+  const ctx = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: viewport.width < 600, locale: 'en-GB', timezoneId: 'Asia/Baku', acceptDownloads: true, colorScheme: dark ? 'dark' : 'light' });
   await ctx.addInitScript((c) => {
     window.LOGICERS_ME_API = '/__me'; window.ME_API = '/__me';
     window.LIVE_SERVER = c.stand; window.CHECKIN_API = c.stand; window.FINDOUT_ROOM_API = c.stand; window.FINDOUT_API = c.stand;
     if (localStorage.getItem('lg.test.seeded')) return; localStorage.setItem('lg.test.seeded', '1');
+    if (c.lang && c.lang !== 'en') localStorage.setItem('lg.findout.lang', c.lang);
     if (!c.seed) return;
     const day = (iso) => Math.round(Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) / 864e5);
     const t = new Date(); const today = Math.round(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) / 864e5);
@@ -76,7 +80,7 @@ async function phone(seed, viewport = { width: 390, height: 780 }) {
     localStorage.setItem('lg.checkin.v1', JSON.stringify({ entries: [], hosts: [{ key: c.hostkey, code: 'BCDFGH', at: now - 5 * 864e5 }] }));
     localStorage.setItem('logicers-live:host:HSURE1', JSON.stringify({ key: 'hk', t: now - 36e5 }));
     localStorage.setItem('lg.findout.room.host', JSON.stringify({ code: 'FOUT99', host_key: 'fk', made: now - 36e5 }));
-  }, { seed: !!seed, stand: STAND, hostkey: HOSTKEY });
+  }, { seed: !!seed, stand: STAND, hostkey: HOSTKEY, lang });
   const page = await ctx.newPage(); const errors = [];
   page.on('pageerror', (e) => errors.push('pageerror ' + e.message));
   page.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) errors.push('console ' + m.text()); });
@@ -138,9 +142,51 @@ const rows = await A.page.locator('.me-table tbody tr').allInnerTexts();
 check('the table: best first, ties share a place', rows.length === 3 && /^1\s+Ana/.test(rows[0]) && /^1\s+Cem/.test(rows[1]) && /^3\s+Bo/.test(rows[2]), rows);
 const [dl] = await Promise.all([A.page.waitForEvent('download'), A.page.getByRole('button', { name: 'Download CSV' }).click()]);
 const csv = fs.readFileSync(await dl.path(), 'utf8');
-check('the CSV: its name, a header, every play, quotes kept', dl.suggestedFilename() === 'logicers-BCDFGHJ.csv' && csv.startsWith('﻿Name,Points,Right,Questions,When') && csv.includes('"Bo, ""the"" best",700,2,3,2026-11-07 10:00') && csv.trim().split('\r\n').length === 4, csv);
+check('the CSV: its name, a header, every play, quotes kept', dl.suggestedFilename() === 'logicers-BCDFGHJ.csv' && csv.startsWith('﻿Name,Points,Right,Questions,When') && csv.includes('"Bo, ""the"" best",700,2,3,2026-11-07T10:00:00Z') && csv.trim().split('\r\n').length === 4, csv);
+check('the CSV: the time is ISO 8601 in UTC to the second, on every row', csv.trim().split('\r\n').slice(1).every((l) => /,\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(l)), csv);
+const heads = await A.page.locator('.me-table thead th').allInnerTexts();
+check('Results: a "When" column after Right', heads.join('|') === '#|Name|Points|Right|When', heads);
+const whens = await A.page.locator('.me-table tbody td.wh').allInnerTexts();
+check('Results: each play shows a short date and time (Baku, UTC+4, in English: 7 Nov 13:30)', whens.map((x) => x.replace(/\s+/g, ' ')).join('|') === '7 Nov 13:30|7 Nov 15:00|7 Nov 14:00', whens);
+check('Results: the exact moment sits in <time datetime> and the full date on hover', (await A.page.locator('.me-table tbody td.wh time').first().getAttribute('datetime')) === '2026-11-07T09:30:00Z' && /Saturday, 7 November 2026/.test(await A.page.locator('.me-table tbody td.wh time').first().getAttribute('title')));
 await shot(A, 'results');
 await A.page.keyboard.press('Escape'); await A.page.waitForTimeout(400);
+
+console.log('Results: the other shapes a time can come in');
+SHAPES.on = true;
+await item(A, 'made:BCDFGHJ').getByRole('button', { name: 'Results' }).click(); await A.page.waitForTimeout(800);
+const w2 = await A.page.locator('.me-table tbody tr').evaluateAll((trs) => trs.map((tr) => (tr.querySelector('td.nm').textContent + '=' + tr.querySelector('td.wh').textContent.replace(/\s+/g, ' ')).trim()));
+check('seconds, ISO text and digits are read; no time, zero and junk leave the cell empty (never "Invalid Date")', w2.join('|') === 'Sec=7 Nov 13:30|Iso=7 Nov 14:00|Digits=7 Nov 15:00|Nothing=|Zero=|Junk=', w2);
+const [dl2] = await Promise.all([A.page.waitForEvent('download'), A.page.getByRole('button', { name: 'Download CSV' }).click()]);
+const csv2 = fs.readFileSync(await dl2.path(), 'utf8').trim().split('\r\n').slice(1).map((l) => l.split(',').pop());
+check('the CSV for those: ISO for the three, empty for the rest', csv2.join('|') === '2026-11-07T09:30:00Z|2026-11-07T10:00:00Z|2026-11-07T11:00:00Z|||', csv2);
+await A.page.keyboard.press('Escape'); await A.page.waitForTimeout(400);
+SHAPES.on = false;
+
+console.log('Results: dark, the When column readable at 320 and 1280 px');
+for (const w of [320, 1280]) {
+  const P = await phone(true, { width: w, height: 800 }, 'en', true); await open(P);
+  await item(P, 'made:BCDFGHJ').getByRole('button', { name: 'Results' }).click(); await P.page.waitForTimeout(800);
+  const m = await P.page.evaluate(() => { const w = document.querySelector('.me-tablewrap'), c = (s) => getComputedStyle(document.querySelector(s)).color;
+    return { over: w.scrollWidth - w.clientWidth, date: c('.me-table td.wh .d'), time: c('.me-table td.wh .t'), name: c('.me-table td.nm'), oneLine: Math.abs(document.querySelector('.me-table td.wh .d').getBoundingClientRect().top - document.querySelector('.me-table td.wh .t').getBoundingClientRect().top) < 2 }; });
+  check(`[dark ${w}] the table fits; the date is as light as the names, the time softer`, m.over <= 1 && m.date === m.name && m.time !== m.date, m);
+  if (w === 1280) check('[dark 1280] the date and time sit on one line when the room is there', m.oneLine, m);
+  await P.page.screenshot({ path: path.join(SHOTS, 'when-made-dark-' + w + '.png') });
+  await P.ctx.close();
+}
+
+console.log('Results: the When column at 320 px in six languages');
+for (const l of ['en', 'it', 'tr', 'es', 'pt', 'fr']) {
+  const W = JSON.parse(fs.readFileSync(path.join(HERE, '../lang/' + l + '.json'), 'utf8'));
+  const P = await phone(true, { width: 320, height: 760 }, l); await open(P);
+  await item(P, 'made:BCDFGHJ').getByRole('button', { name: W['mine.results'] }).click(); await P.page.waitForTimeout(800);
+  const m = await P.page.evaluate(() => { const w = document.querySelector('.me-tablewrap'), th = [...document.querySelectorAll('.me-table thead th')].map((x) => x.textContent), t = document.querySelector('.me-table td.wh time');
+    return { over: w.scrollWidth - w.clientWidth, cw: w.clientWidth, scrolls: w.scrollWidth > w.clientWidth + 1, pageFits: document.documentElement.scrollWidth <= innerWidth + 0.5, last: th[th.length - 1], time: t && t.textContent.replace(/\s+/g, ' ').trim(), iso: t && t.getAttribute('datetime') }; });
+  check(`[${l}] 320: the table fits its box without a sideways scroll, the page fits`, !m.scrolls && m.pageFits, m);
+  check(`[${l}] 320: the column is called "${W['mine.c_when']}" and the first play reads 13:30 on 7 November (Baku)`, m.last === W['mine.c_when'] && /\b13:30$/.test(m.time) && /\b7\b/.test(m.time) && m.iso === '2026-11-07T09:30:00Z', m);
+  await P.page.screenshot({ path: path.join(SHOTS, 'when-made-' + l + '-320.png') });
+  await P.ctx.close();
+}
 
 console.log('Share');
 await item(A, 'checkin:BCDFGH').getByRole('button', { name: 'Share' }).click(); await A.page.waitForTimeout(500);

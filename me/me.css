@@ -214,6 +214,19 @@
 .me-table .r { text-align: right; }
 .me-table .pl { color: var(--soft); width: 2.2em; }
 .me-table .nm { font-weight: 600; overflow-wrap: anywhere; }
+/* the When column (11 Nov 2026): the date over the time when the sheet is narrow, side by side when it is not */
+.me-table .wh { text-align: left; }
+.me-table td.wh { font-size: .86rem; line-height: 1.25; color: var(--soft); }
+.me-table .wh .d, .me-table .wh .t { white-space: nowrap; }
+.me-table td.wh .d { color: var(--ink); font-weight: 600; }
+/* a phone: the results sheet gives the table the room of its own side padding, and the table keeps its five columns in view in every language (checked at 320 px) */
+@media (max-width: 420px) {
+  .sheet.me-res-sheet { padding-left: 16px; padding-right: 16px; }
+  .me-table th { font-size: .76rem; }
+  .me-table th, .me-table td { padding-left: 6px; padding-right: 6px; }
+  .me-table .pl { width: 1.4em; }
+}
+@media (max-width: 360px) { .me-table th, .me-table td { padding-left: 5px; padding-right: 5px; } }
 
 /* the strip's arrows: only where the strip has more on that side */
 .me-stripbox { position: relative; }
@@ -282,6 +295,15 @@
   @media (hover: hover) { .me-leave-tile:hover { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); } }
 }
 @media (prefers-reduced-motion: reduce) { .me-leave-tile, .me-leave-del { transition: none; } .me-leave-tile:hover { transform: none; } }
+
+/* "If you lose the code": the warning is the card's own footer (11 Nov 2026). Set like the Exit tiles above: a soft box with an icon, the words at
+   full ink and weight; the page's accent tint, so it is calm, never red. */
+.me-warn { display: flex; align-items: center; gap: 12px; margin: 8px -18px -16px; padding: 14px 18px 15px; border-radius: 0 0 22px 22px;
+  background: color-mix(in srgb, var(--c) 8%, transparent); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--c) 16%, transparent); }
+@media (prefers-color-scheme: dark) { .me-warn { background: color-mix(in srgb, var(--c) 11%, transparent); } }
+.me-warn .ic { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; background: color-mix(in srgb, var(--c) 15%, transparent); color: var(--c); }
+.me-warn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.me-warn .tx { min-width: 0; font-weight: 700; font-size: .98rem; line-height: 1.3; color: var(--ink); overflow-wrap: anywhere; text-wrap: pretty; }
 
 /* ---------- the screens below My Logicers: the thing to tap sits at the bottom, in the thumb's reach, and stays there while a long list scrolls ---------- */
 .me-sub { display: flex; flex-direction: column; min-height: calc(100svh - 9rem); }

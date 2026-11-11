@@ -4,7 +4,7 @@
    A screen change slides (a still copy of the old screen leaves while the new one arrives; taps always reach the new one). Nothing
    here writes to a game's keys: restoring is A's apply(); the page only asks. The page never shows a score of the check-in anywhere
    but here, on the phone that holds it. */
-import { T, TD, initWords, setLang, LANGS, LANG, fmtN, fmtDay, monthName } from './words.js';
+import { T, TD, initWords, setLang, LANGS, LANG, fmtN, fmtDay, monthName, whenDate, whenIso, fmtWhen } from './words.js';
 import * as api from './api.js';
 
 /* F, 8 Nov 2026: My Logicers is never shown inside another site's frame (its Delete for good and rename could be clicked
@@ -47,6 +47,7 @@ const LEAVE_ICON = {
   swap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 4l4 4-4 4"/><path d="M20 8H8"/><path d="M8 20l-4-4 4-4"/><path d="M4 16h12"/></svg>',
   trash: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 7h15"/><path d="M9.5 7V5.2c0-.7.5-1.2 1.2-1.2h2.6c.7 0 1.2.5 1.2 1.2V7"/><path d="M6.5 7l.9 11.3c.1 1 .9 1.7 1.9 1.7h5.4c1 0 1.8-.7 1.9-1.7L17.5 7"/></svg>',
 };
+const WARN_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.6v5.2"/><path d="M12 16.4h.01"/></svg>';
 function leaveTile(icon, text, onClick) {
   const b = el('button', 'me-leave-tile'); b.type = 'button';
   const i = el('span', 'ic'); i.innerHTML = icon; b.appendChild(i); b.appendChild(el('span', 'tx', text));
@@ -304,14 +305,22 @@ function openShare(it, url, withOpen) {
     const svg = qrNode(url, T('mine.qr_aria')); if (svg) { const d = el('div', 'me-qr'); d.appendChild(svg); box.appendChild(d); }
   });
 }
+/* the "When" cell of the Results sheet: a short date and time in the page's language, in this phone's time zone; the full moment on hover and for
+   screen readers' <time>; nothing at all (an empty cell) when the Worker sent no usable time */
+function whenCell(t) {
+  const td = el('td', 'wh'), d = whenDate(t), f = d && fmtWhen(d); if (!f) return td;
+  const tm = el('time'); tm.dateTime = whenIso(t); tm.title = f.full;
+  tm.append(el('span', 'd', f.d), ' ', el('span', 't', f.t)); td.appendChild(tm); return td;
+}
 function csvOf(plays) {
   const q = (v) => { const t = String(v === undefined || v === null ? '' : v); return /[",\n;]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
   const head = [T('mine.c_name'), T('mine.c_pts'), T('mine.c_right'), T('mine.c_of'), T('mine.c_when')];
-  const rows = plays.map((p) => [p[0], Number(p[1]) || 0, Number(p[3]) || 0, Number(p[4]) || 0, p[2] ? new Date(Number(p[2])).toISOString().replace('T', ' ').slice(0, 16) : '']);
+  const rows = plays.map((p) => [p[0], Number(p[1]) || 0, Number(p[3]) || 0, Number(p[4]) || 0, whenIso(p[2])]);     // the time as ISO 8601 UTC, 11 Nov 2026
   return '﻿' + [head].concat(rows).map((r) => r.map(q).join(',')).join('\r\n') + '\r\n';
 }
 function openResults(it) {
   sheet(it.title || T('mine.results'), (box) => {
+    box.classList.add('me-res-sheet');
     const body = el('div', 'me-res'); body.appendChild(el('p', 'me-note', T('load'))); box.appendChild(body);
     api.madeResults(it).then((r) => {
       body.replaceChildren();
@@ -321,13 +330,14 @@ function openResults(it) {
       if (!plays.length) { body.appendChild(el('p', 'me-note', T('mine.no_plays'))); }
       else {
         const wrap = el('div', 'me-tablewrap'), t = el('table', 'me-table'), hd = el('tr');
-        [['#', ''], [T('mine.c_name'), ''], [T('mine.c_pts'), 'r'], [T('mine.c_right'), 'r']].forEach(([h, c]) => { const th = el('th', c, h); th.scope = 'col'; hd.appendChild(th); });
+        [['#', ''], [T('mine.c_name'), ''], [T('mine.c_pts'), 'r'], [T('mine.c_right'), 'r'], [T('mine.c_when'), 'wh']].forEach(([h, c]) => { const th = el('th', c, h); th.scope = 'col'; hd.appendChild(th); });
         const thead = el('thead'); thead.appendChild(hd); t.appendChild(thead);
         const tb = el('tbody'); let place = 0;
         plays.slice(0, 30).forEach((p, i) => {
           if (i === 0 || (Number(p[1]) || 0) < (Number(plays[i - 1][1]) || 0)) place = i + 1;
           const tr = el('tr'); tr.appendChild(el('td', 'pl', place)); const nm = el('td', 'nm', p[0]); nm.dir = 'auto'; tr.appendChild(nm);
           tr.appendChild(el('td', 'r', fmtN(Number(p[1]) || 0))); tr.appendChild(el('td', 'r', (Number(p[3]) || 0) + '/' + (Number(p[4]) || 0)));
+          tr.appendChild(whenCell(p[2]));
           tb.appendChild(tr);
         });
         t.appendChild(tb); wrap.appendChild(t); body.appendChild(wrap);
@@ -479,28 +489,27 @@ function openStudioMore(it) {
     box.append(col, msg);
   });
 }
-function whenOf(t) {
-  if (typeof t === 'number' && isFinite(t)) { const d = new Date(t); return isNaN(d.getTime()) ? '' : d.toISOString().replace('T', ' ').slice(0, 16); }
-  return typeof t === 'string' ? t.replace('T', ' ').slice(0, 16) : '';
-}
 function openStudioResults(it) {
   sheet(it.title || T('mine.results'), (box) => {
+    box.classList.add('me-res-sheet');
     const body = el('div', 'me-res'); body.appendChild(el('p', 'me-note', T('load'))); box.appendChild(body);
     api.studioResults(it).then((r) => {
       body.replaceChildren();
       if (!r.ok) { body.appendChild(el('p', 'me-msg bad', r.gone ? T('mine.gone') : T('err.generic'))); return; }
-      const rows = r.rows.slice().sort((a, b) => (Number(b.time) || 0) - (Number(a.time) || 0));
+      const at = (x) => { const d = whenDate(x.time); return d ? d.getTime() : 0; };
+      const rows = r.rows.slice().sort((a, b) => at(b) - at(a));                       // newest first, whatever shape the time came in
       body.appendChild(el('p', 'me-res-n', plural(rows.length, 'studio.answers1', 'studio.answers')));
       if (!rows.length) body.appendChild(el('p', 'me-note', T('studio.no_answers')));
       else {
         const wrap = el('div', 'me-tablewrap'), t = el('table', 'me-table'), hd = el('tr');
-        [T('studio.c_item'), T('mine.c_name'), T('studio.c_answer')].forEach((h) => { const th = el('th', null, h); th.scope = 'col'; hd.appendChild(th); });
+        [[T('studio.c_item'), null], [T('mine.c_name'), null], [T('studio.c_answer'), null], [T('mine.c_when'), 'wh']].forEach(([h, c]) => { const th = el('th', c, h); th.scope = 'col'; hd.appendChild(th); });
         const thead = el('thead'); thead.appendChild(hd); t.appendChild(thead);
         const tb = el('tbody');
         rows.slice(0, 30).forEach((x) => {
           const tr = el('tr'); tr.appendChild(el('td', 'pl', x.item === undefined || x.item === null ? '' : x.item));
           const nm = el('td', 'nm', x.name || ''); nm.dir = 'auto'; tr.appendChild(nm);
           const an = el('td', null, x.answer === undefined || x.answer === null ? '' : x.answer); an.dir = 'auto'; tr.appendChild(an);
+          tr.appendChild(whenCell(x.time));
           tb.appendChild(tr);
         });
         t.appendChild(tb); wrap.appendChild(t); body.appendChild(wrap);
@@ -511,7 +520,7 @@ function openStudioResults(it) {
         /* a cell a spreadsheet would run as a formula (=, +, -, @, tab, CR at the start; a plain number aside) gets a ' first (F, 8 Nov 2026) */
         const q = (v) => { let x = String(v === undefined || v === null ? '' : v); if (/^[=+\-@\t\r]/.test(x) && !/^-?\d+(\.\d+)?$/.test(x)) x = "'" + x; return /[",\n;]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; };
         const head = [T('studio.c_item'), T('mine.c_name'), T('studio.c_answer'), T('mine.c_when')];
-        const text = '﻿' + [head].concat(rows.map((x) => [x.item, x.name, x.answer, whenOf(x.time)])).map((c) => c.map(q).join(',')).join('\r\n') + '\r\n';
+        const text = '﻿' + [head].concat(rows.map((x) => [x.item, x.name, x.answer, whenIso(x.time)])).map((c) => c.map(q).join(',')).join('\r\n') + '\r\n';
         const blob = new Blob([text], { type: 'text/csv;charset=utf-8' }); const a = el('a'); a.href = URL.createObjectURL(blob);
         a.download = 'logicers-' + String(it.code).replace(/[^A-Za-z0-9_-]+/g, '-') + '.csv'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
       }));
@@ -642,7 +651,11 @@ function loseCard() {
     } else row.appendChild(button('tint small block', T(set), () => nav(route)));
     c.appendChild(row);
   });
-  c.appendChild(msg); s.appendChild(c); s.appendChild(el('p', 'me-note', T('lose.warn')));
+  /* "Lose all of these and it's gone." (11 Nov 2026): not small grey text under the card any more but the card's own footer, set like the Exit tiles
+     (a soft box with an icon, the words at full weight), calm, no red */
+  const warn = el('p', 'me-warn'); warn.setAttribute('role', 'note');
+  const ic = el('span', 'ic'); ic.innerHTML = WARN_ICON; warn.append(ic, el('span', 'tx', T('lose.warn')));
+  c.append(msg, warn); s.appendChild(c);
   return s;
 }
 

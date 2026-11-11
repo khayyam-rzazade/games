@@ -103,11 +103,12 @@ const browser = await chromium.launch({ executablePath: process.env.ME_CHROME ||
 
 async function phone(o = {}) {
   const viewport = o.viewport || { width: 390, height: 780 };
-  const ctx = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: viewport.width < 600, locale: 'en-GB', acceptDownloads: true, colorScheme: o.dark ? 'dark' : 'light' });
+  const ctx = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: viewport.width < 600, locale: 'en-GB', timezoneId: 'Asia/Baku', acceptDownloads: true, colorScheme: o.dark ? 'dark' : 'light' });
   await ctx.addInitScript((c) => {
     window.LOGICERS_ME_API = '/__me'; window.ME_API = '/__me'; window.STUDIO_API = c.studio;
     window.LIVE_SERVER = c.studio; window.CHECKIN_API = c.studio; window.FINDOUT_ROOM_API = c.studio; window.FINDOUT_API = c.studio;
     if (localStorage.getItem('lg.test.seeded')) return; localStorage.setItem('lg.test.seeded', '1');
+    if (c.lang && c.lang !== 'en') localStorage.setItem('lg.findout.lang', c.lang);
     if (!c.seed) return;
     const day = (iso) => Math.round(Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) / 864e5);
     const t = new Date(); const today = Math.round(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) / 864e5);
@@ -125,7 +126,7 @@ async function phone(o = {}) {
     localStorage.setItem('logicers-studio:played', JSON.stringify({
       'bo-lee/daily-number': { title: 'Daily number', by: 'Bo Lee', days: [ymd(2), ymd(1), ymd(0)] },
       'cem/old-quiz': { title: 'Old quiz', by: 'Cem', days: [ymd(20), ymd(19)] } }));
-  }, { seed: !!o.seed, studio: o.studio || STAND, makerKey: MAKER_KEY, edits: { history: GAMES['history-a-day'].edit, quiz: GAMES['quiz-two'].edit, secret: GAMES.secret.edit } });
+  }, { seed: !!o.seed, lang: o.lang, studio: o.studio || STAND, makerKey: MAKER_KEY, edits: { history: GAMES['history-a-day'].edit, quiz: GAMES['quiz-two'].edit, secret: GAMES.secret.edit } });
   const page = await ctx.newPage(); const errors = [], warns = [];
   page.on('pageerror', (e) => errors.push('pageerror ' + e.message));
   page.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) errors.push('console ' + m.text()); if (m.type() === 'warning' && /no words for/.test(m.text())) warns.push(m.text()); });
@@ -166,10 +167,28 @@ check('the table: newest answer first, three answers', rows.length === 3 && rows
 check('the sheet says how many answers', (await A.page.locator('.me-res-n').innerText()) === '3 answers');
 const [dl] = await Promise.all([A.page.waitForEvent('download'), A.page.getByRole('button', { name: 'Download CSV' }).click()]);
 const csv = fs.readFileSync(await dl.path(), 'utf8');
-check('the CSV: header, a comma and quotes in a name kept, a missing name empty, the day and hour', csv.startsWith('﻿Question,Name,Answer,When\r\n') && csv.includes('2,"Bo, ""the"" best",1789,2026-11-07 10:00') && csv.includes('1,,Paris,2026-11-07 11:00') && csv.split('\r\n').length === 5, csv);
+check('the CSV: header, a comma and quotes in a name kept, a missing name empty, the day and hour', csv.startsWith('﻿Question,Name,Answer,When\r\n') && csv.includes('2,"Bo, ""the"" best",1789,2026-11-07T10:00:00Z') && csv.includes('1,,Paris,2026-11-07T11:00:00Z') && csv.split('\r\n').length === 5, csv);
+check('the CSV: the time is ISO 8601 in UTC to the second on every row (the Worker sends milliseconds; the page also takes seconds)', csv.trim().split('\r\n').slice(1).every((l) => /,\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(l)) && csv.includes(',Rome,2026-11-07T09:30:00Z'), csv);
+const heads = await A.page.locator('.me-table thead th').allInnerTexts();
+check('Results: a "When" column after Answer', heads.join('|') === 'Question|Name|Answer|When', heads);
+const whens = await A.page.locator('.me-table tbody tr').evaluateAll((trs) => trs.map((tr) => tr.querySelector('td.wh').textContent.replace(/\s+/g, ' ').trim() + ' ' + tr.querySelector('td.wh time').getAttribute('datetime')));
+check('Results: the newest first, each with a short date and time (Baku, UTC+4) and the exact moment in <time>', whens.join('|') === '7 Nov 15:00 2026-11-07T11:00:00Z|7 Nov 14:00 2026-11-07T10:00:00Z|7 Nov 13:30 2026-11-07T09:30:00Z', whens);
 check('the file is named after the game', /^logicers-anna-rossi-history-a-day-/.test(dl.suggestedFilename()) && dl.suggestedFilename().endsWith('.csv'), dl.suggestedFilename());
 check('the answers came from /game/answers in two asks (a row as an array, a row as an object with the time in seconds)', calls.filter((c) => c.p === '/game/answers').map((c) => c.b.after).join() === '0,2', calls.filter((c) => c.p === '/game/answers').map((c) => c.b.after));
 await A.page.keyboard.press('Escape'); await A.page.waitForTimeout(400);
+
+console.log('Results: the When column at 320 px in six languages');
+for (const l of ['en', 'it', 'tr', 'es', 'pt', 'fr']) {
+  const LW = JSON.parse(fs.readFileSync(path.join(HERE, '../lang/' + l + '.json'), 'utf8'));
+  const P = await phone({ seed: true, viewport: { width: 320, height: 760 }, lang: l }); await open(P);
+  await itemBy(P, 'history-a-day').getByRole('button', { name: LW['mine.results'] }).click(); await P.page.waitForTimeout(900);
+  const m = await P.page.evaluate(() => { const w = document.querySelector('.me-tablewrap'), th = [...document.querySelectorAll('.me-table thead th')].map((x) => x.textContent), t = document.querySelector('.me-table td.wh time');
+    return { over: w.scrollWidth - w.clientWidth, pageFits: document.documentElement.scrollWidth <= innerWidth + 0.5, last: th[th.length - 1], time: t && t.textContent.replace(/\s+/g, ' ').trim(), iso: t && t.getAttribute('datetime') }; });
+  check(`[${l}] 320: the answers table fits its box without a sideways scroll, the page fits`, m.over <= 1 && m.pageFits, m);
+  check(`[${l}] 320: the column is called "${LW['mine.c_when']}" and the newest answer reads 15:00 on 7 November (Baku)`, m.last === LW['mine.c_when'] && /\b15:00$/.test(m.time) && /\b7\b/.test(m.time) && m.iso === '2026-11-07T11:00:00Z', m);
+  await P.page.screenshot({ path: path.join(SHOTS, 'when-studio-' + l + '-320.png') });
+  await P.ctx.close();
+}
 OLD_WORKER = true;
 await itemBy(A, 'history-a-day').getByRole('button', { name: 'Results' }).click(); await A.page.waitForTimeout(800);
 check('a Worker without /game/answers: the answers are read from /game/mine instead', (await A.page.locator('.me-table tbody tr').count()) === 3 && (await A.page.locator('.me-res-n').innerText()) === '3 answers');

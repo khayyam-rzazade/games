@@ -84,6 +84,42 @@ export function fmtDay(iso, opts) {
   const d = parseDay(iso); if (!d) return '';
   try { return new Intl.DateTimeFormat(LOCALE, opts || { day: 'numeric', month: 'short' }).format(d); } catch (e) { return String(iso); }
 }
+/* a moment a Worker wrote down (a game's play, a kept answer), whatever way it wrote it: milliseconds (the live Worker's play time and the
+   Studio's answer time are both Date.now()), seconds (an older shape), digits in a string, or ISO text (a zone-less one is UTC, as the Workers are).
+   -> a Date, or null when there is no usable time: the cell is then empty, never "Invalid Date" (My Logicers, Results, 11 Nov 2026) */
+export function whenDate(t) {
+  let n = null;
+  if (typeof t === 'number') n = t;
+  else if (typeof t === 'string' && t.trim()) {
+    let s = t.trim();
+    if (/^\d+(\.\d+)?$/.test(s)) n = Number(s);
+    else {
+      s = s.replace(/^(\d{4}-\d\d-\d\d) (?=\d)/, '$1T');                          // Safari reads only the "T" form
+      if (/^\d{4}-\d\d-\d\dT\d\d:\d\d(:\d\d(\.\d+)?)?$/.test(s)) s += 'Z';
+      n = Date.parse(s);
+    }
+  }
+  if (n === null || !isFinite(n) || n <= 0) return null;
+  if (n < 1e11) n *= 1000;                                                     // seconds: 1e11 milliseconds is March 1973
+  const d = new Date(n);
+  return isNaN(d.getTime()) ? null : d;
+}
+/* for the CSV: ISO 8601 in UTC to the second ("2026-11-07T10:00:00Z"), or "" */
+export function whenIso(t) { const d = whenDate(t); return d ? d.toISOString().replace(/\.\d{3}Z$/, 'Z') : ''; }
+/* for the sheet: a short date and a short time in the language's own form, in the viewer's time zone, kept in two parts so a narrow cell can
+   stack them; the year only when it is not this year. { d: "11 Nov", t: "22:37", full: "Wednesday 11 November 2026 at 22:37" } or null */
+export function fmtWhen(date, locale) {
+  if (!(date instanceof Date) || isNaN(date.getTime())) return null;
+  const loc = locale || LOCALE;
+  try {
+    const thisYear = date.getFullYear() === new Date().getFullYear();
+    return {
+      d: new Intl.DateTimeFormat(loc, thisYear ? { day: 'numeric', month: 'short' } : { day: 'numeric', month: 'short', year: 'numeric' }).format(date),
+      t: new Intl.DateTimeFormat(loc, { hour: '2-digit', minute: '2-digit' }).format(date),
+      full: new Intl.DateTimeFormat(loc, { dateStyle: 'full', timeStyle: 'short' }).format(date)
+    };
+  } catch (e) { const iso = date.toISOString(); return { d: iso.slice(0, 10), t: iso.slice(11, 16), full: iso }; }
+}
 export function monthName(ym) {
   const m = /^(\d{4})-(\d{2})$/.exec(String(ym || '')); if (!m) return '';
   try { return new Intl.DateTimeFormat(LOCALE, { month: 'long' }).format(new Date(+m[1], +m[2] - 1, 1)); } catch (e) { return ym; }

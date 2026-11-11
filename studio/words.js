@@ -299,7 +299,8 @@
     "ed.draft_back": "Bring them back",
     "ed.draft_drop": "Throw them away",
     "ed.past": "New questions here fall on days that have passed. Players won't see them.",
-    "ed.past_fix": "Start them today"
+    "ed.past_fix": "Start them today",
+    "ed.today": "Today"
   };
 
   /* ---- chat E (8 Nov 2026): Italian, Turkish, Spanish, Brazilian Portuguese, French. ---- */
@@ -595,7 +596,8 @@
     "ed.draft_back": "Recuperale",
     "ed.draft_drop": "Scartale",
     "ed.past": "Ci sono domande nuove su giorni già passati: chi gioca non le vedrà.",
-    "ed.past_fix": "Falle partire da oggi"
+    "ed.past_fix": "Falle partire da oggi",
+    "ed.today": "Oggi"
   };
 
   /* Turkish */
@@ -889,7 +891,8 @@
     "ed.draft_back": "Geri getir",
     "ed.draft_drop": "Sil",
     "ed.past": "Bazı yeni sorular geçmiş günlere denk geliyor: oyuncular onları görmeyecek.",
-    "ed.past_fix": "Bugünden başlat"
+    "ed.past_fix": "Bugünden başlat",
+    "ed.today": "Bugün"
   };
 
   /* Spanish */
@@ -1183,7 +1186,8 @@
     "ed.draft_back": "Recuperarlos",
     "ed.draft_drop": "Descartarlos",
     "ed.past": "Hay preguntas nuevas en días que ya pasaron: nadie las verá.",
-    "ed.past_fix": "Empezarlas hoy"
+    "ed.past_fix": "Empezarlas hoy",
+    "ed.today": "Hoy"
   };
 
   /* Brazilian Portuguese */
@@ -1477,7 +1481,8 @@
     "ed.draft_back": "Recuperar",
     "ed.draft_drop": "Descartar",
     "ed.past": "Há perguntas novas em dias que já passaram: ninguém vai vê-las.",
-    "ed.past_fix": "Começar hoje"
+    "ed.past_fix": "Começar hoje",
+    "ed.today": "Hoje"
   };
 
   /* French */
@@ -1771,6 +1776,7 @@
     "ed.draft_back": "Les récupérer",
     "ed.draft_drop": "Les effacer",
     "ed.past": "De nouvelles questions tombent sur des jours déjà passés : personne ne les verra.",
-    "ed.past_fix": "Les commencer aujourd’hui"
+    "ed.past_fix": "Les commencer aujourd’hui",
+    "ed.today": "Aujourd’hui"
   };
 })();

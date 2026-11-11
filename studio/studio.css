@@ -576,3 +576,123 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--c); }
 .ed-past .chip { margin-top: 8px; min-height: 40px; font-weight: 800; }
 .st-play-err { text-align: center; }
 
+
+/* ================= 11 Nov 2026: the editor on a wide screen, and our own date picker ================= */
+
+/* ---- the questions' wrapper: on a phone it is not there at all (the page is the one column it always was) ---- */
+.ed-rail { display: contents; }
+.ed-panel[hidden] { display: none; }
+.ed-phead { display: flex; align-items: center; gap: 10px; min-width: 0; margin-bottom: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.ed-phead[hidden] { display: none; }
+.ed-pt { min-width: 0; color: var(--soft); font-weight: 700; font-size: 0.92rem; line-height: 1.25; overflow-wrap: anywhere; }
+.ed-slot .ed-ibody { padding: 8px 0 2px; }
+.ed-panel:not([hidden]) .st-err { margin-top: 0; margin-bottom: 8px; }
+
+/* ---- the first day: a button that opens our own calendar ---- */
+.dp-btn { appearance: none; -webkit-appearance: none; display: flex; align-items: center; gap: 12px; width: 100%; min-height: 60px; margin-top: 8px; padding: 8px 12px 8px 8px;
+  border: 1.5px solid var(--line); border-radius: 16px; background: var(--bg); color: var(--ink); font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: border-color var(--m-fast) var(--e-out), background-color var(--m-fast) var(--e-out); }
+.dp-btn:hover { border-color: color-mix(in srgb, var(--c) 45%, var(--line)); }
+.dp-btn:focus-visible { border-radius: 16px; }
+.dp-btn[aria-expanded="true"] { border-color: var(--c); background: var(--card); }
+.dp-ic { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--tint); color: var(--c); }
+.dp-ic .dp-svg { width: 22px; height: 22px; }
+.dp-t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.dp-t b { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; line-height: 1.2; overflow-wrap: anywhere; }
+.dp-t small { color: var(--soft); font-weight: 600; font-size: 0.86rem; line-height: 1.25; }
+.dp-chev { flex: none; display: grid; place-items: center; color: var(--soft); }
+.dp-chev .dp-svg { width: 20px; height: 20px; transition: transform var(--m-fast) var(--e-out); }
+.dp-btn[aria-expanded="true"] .dp-chev .dp-svg { transform: rotate(180deg); }
+.dp-svg { display: inline-grid; place-items: center; }
+.dp-svg svg { width: 100%; height: 100%; display: block; }
+@media (prefers-color-scheme: dark) { .dp-btn { background: rgba(255, 255, 255, .06); } .dp-btn[aria-expanded="true"] { background: rgba(255, 255, 255, .09); } }
+
+/* ---- the calendar: a sheet from the bottom on a phone, a card under the field from 700 px ---- */
+dialog.dp-dlg { width: min(100% - 16px, 352px); max-width: calc(100% - 16px); overflow-x: hidden; }       /* the browser's own max-width for a dialog (100% - 38px) would shave a 320 px phone's card to 282 */
+.dp-pop { padding: 10px 10px 14px; }
+.dp-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; padding-left: 8px; }
+.dp-top h2 { min-width: 0; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; line-height: 1.15; overflow-wrap: anywhere; }
+.dp-top .close { position: static; flex: none; width: 40px; height: 40px; }
+.dp-nav { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 4px; margin-top: 4px; }
+.dp-month { text-align: center; font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 5vw, 1.25rem); letter-spacing: -0.02em; line-height: 1.15; text-wrap: balance; }
+.dp-step { appearance: none; -webkit-appearance: none; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: var(--bg); color: var(--ink); cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: transform var(--m-fast) var(--e-spring), background-color var(--m-fast) var(--e-out); }
+.dp-step .dp-svg { width: 20px; height: 20px; }
+.dp-step:hover:not(:disabled) { background: var(--tint); color: var(--c); }
+.dp-step:active:not(:disabled) { transform: scale(.94); }
+.dp-step:disabled { opacity: .3; cursor: default; }
+.dp-step:focus-visible { border-radius: 50%; }
+.dp-box { margin-top: 8px; }
+.dp-grid { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+.dp-grid th { height: 30px; padding: 0; color: var(--soft); font-weight: 700; font-size: 0.78rem; letter-spacing: .02em; text-align: center; white-space: nowrap; }
+.dp-grid td { padding: 1px 0; text-align: center; }
+.dp-day { appearance: none; -webkit-appearance: none; position: relative; display: grid; place-items: center; width: min(100%, 44px); aspect-ratio: 1; margin: 0 auto; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink);
+  font: inherit; font-weight: 700; font-size: 1rem; font-variant-numeric: tabular-nums; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--m-fast) var(--e-out), color var(--m-fast) var(--e-out), transform var(--m-fast) var(--e-spring); }
+.dp-day:hover { background: var(--tint); }
+.dp-day:active { transform: scale(.92); }
+.dp-day:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; border-radius: 50%; }
+.dp-day.is-out { color: var(--soft); font-weight: 600; opacity: .6; }
+.dp-day.is-today { color: var(--c); font-weight: 800; }
+.dp-day.is-today::after { content: ""; position: absolute; left: 50%; bottom: 17%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }
+.dp-day.is-sel, .dp-day.is-sel:hover { background: var(--c); color: var(--on-c); opacity: 1; font-weight: 800; }
+.dp-day:disabled { opacity: .25; cursor: default; }
+.dp-foot { display: flex; justify-content: center; margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.dp-today { height: 44px; padding: 0 22px; background: var(--tint); color: var(--c); box-shadow: none; font-weight: 800; }
+.dp-today:focus-visible { border-radius: 999px; }
+@media (prefers-color-scheme: dark) { .dp-today { box-shadow: inset 0 0 0 1px var(--line); } }
+@keyframes dp-next { from { opacity: .3; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+@keyframes dp-prev { from { opacity: .3; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+@keyframes dp-in { from { opacity: 0; transform: translateY(-6px) scale(.97); } to { opacity: 1; transform: none; } }
+.dp-box.go-next { animation: dp-next var(--m-base) var(--e-out) both; }
+.dp-box.go-prev { animation: dp-prev var(--m-base) var(--e-out) both; }
+@media (min-width: 700px) {
+  dialog.dp-dlg { width: 344px; margin: 0; inset: auto; border-radius: 22px; max-height: calc(100dvh - 16px); }
+  dialog.dp-dlg[open] { animation: dp-in var(--m-base) var(--e-out) both; transform-origin: top left; }
+  dialog.dp-dlg::backdrop { background: rgba(8, 10, 21, .16); }
+  .dp-pop { padding: 10px 12px 14px; }
+}
+@media (forced-colors: active) { .dp-day.is-sel { forced-color-adjust: none; background: Highlight; color: HighlightText; } }
+@media (prefers-reduced-motion: reduce) {
+  .dp-box.go-next, .dp-box.go-prev { animation: none; }
+  dialog.dp-dlg[open] { animation: st-fade var(--m-fast) linear both; }
+  .dp-btn, .dp-day, .dp-step, .dp-chev .dp-svg { transition: none; }
+}
+
+/* ---- the editor on a wide screen (from 1000 px): the questions on the left, the open question in the middle, the settings
+   under it (1000-1247 px) or in a column of their own (from 1248 px). A phone, a tablet in portrait: one column as ever ---- */
+@media (min-width: 62.5rem) {
+  body[data-w="edit"] .st-bar, .st-main.ed { max-width: 1080px; }
+  body[data-w="edit"] .st-bar { padding-left: var(--pad); padding-right: var(--pad); }
+  .st-main.ed { display: grid; grid-template-columns: 20.5rem minmax(0, 1fr); column-gap: 24px; align-items: start; padding-bottom: 104px;
+    grid-template-areas: "draft draft" "rail panel" "rail settings" "rail del"; grid-template-rows: auto auto auto 1fr; }
+  .ed > .ed-draft { grid-area: draft; margin-top: 14px; }
+  .ed-rail { display: flex; flex-direction: column; grid-area: rail; position: sticky; top: 0; min-height: 0; max-height: calc(100vh - 150px); max-height: calc(100dvh - 150px); }
+  .ed-rail > .ed-head { flex: none; }
+  .ed-rail > .ed-qs { flex: 0 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  .ed-qs > * { flex: none; }
+  .ed-qs > .ed-list { flex: 0 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    margin: 10px -8px 0; padding: 3px 8px 6px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--t, 0px), #000 calc(100% - var(--b, 0px)), transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0, #000 var(--t, 0px), #000 calc(100% - var(--b, 0px)), transparent 100%); }
+  .ed-qfoot { padding-top: 6px; }
+  .ed-qfoot .ed-add { margin-top: 8px; }
+  .ed-panel { grid-area: panel; }
+  .ed-settings { grid-area: settings; }
+  .ed > .ed-del { grid-area: del; justify-self: start; }
+  .ed-item { cursor: default; }
+  .ed-item.is-open { background: color-mix(in srgb, var(--c) 11%, var(--card)); box-shadow: inset 0 0 0 2px var(--c); }
+  .ed-item.is-open.bad { box-shadow: inset 0 0 0 2px var(--miss); }
+  .ed-isum { border-radius: 10px; }
+  .ed-ihead { min-height: 60px; }
+  .ed-ibody { padding: 8px 0 2px; }
+}
+@media (min-width: 78rem) {
+  body[data-w="edit"] .st-bar, .st-main.ed { max-width: 1280px; }
+  .st-main.ed { grid-template-columns: 20.5rem minmax(0, 1fr) 20rem;
+    grid-template-areas: "draft draft draft" "rail panel settings" "rail panel del"; grid-template-rows: auto auto 1fr; }
+}
+@media (min-width: 62.5rem) and (prefers-color-scheme: dark) {
+  .ed-item.is-open { background: color-mix(in srgb, var(--c) 16%, var(--card)); }
+}
+@media (prefers-color-scheme: dark) { .chip.st-danger-chip { color: var(--bad, #FF9C8F); } }            /* "Delete" in the dark was a dim red on dark */

@@ -347,7 +347,6 @@
   function open(E) {
     E.auth = E.auth || E.key;
     E.tpl = TPL[E.meta.template] ? E.meta.template : "pick";
-    E.openIx = E.items.length ? -1 : null;
     E.newImgs = [];
     E.savedImgs = {};
     E.items.forEach(function (it) { if (it.image && it.image.id) E.savedImgs[it.image.id] = 1; });
@@ -358,6 +357,18 @@
     if (E.fresh && !E.items.length) { var it0 = lk(TPL[E.tpl].blank()); it0.explain = ""; it0.image = null; E.items.push(it0); }
     E.saved = snapshot(E);
     E.didSave = !E.fresh;
+    /* from 1000 px the editor is laid out in columns: it is laid out again when the window crosses that line */
+    try {
+      E.mq = window.matchMedia(WIDE);
+      var cross = function () { if (current === E) layout(E); };
+      if (E.mq.addEventListener) E.mq.addEventListener("change", cross); else if (E.mq.addListener) E.mq.addListener(cross);
+    } catch (e) { /* a phone, then */ }
+    var soon = 0, view = function () {                            // the left column's height follows the window and the page's scroll
+      if (soon) return;
+      soon = window.requestAnimationFrame(function () { soon = 0; if (current === E) fit(E); });
+    };
+    window.addEventListener("scroll", view, { passive: true });
+    window.addEventListener("resize", view);
     window.scrollTo(0, 0);
     E.draftHold = !E.fresh && !!drafts()[draftKey(E)];
     draw(E);
@@ -412,12 +423,19 @@
 
   function draw(E) {
     var m = S.page("ed");
+    document.body.dataset.w = "edit";               // the bar lines up with the columns of a wide screen
     S.mount([S.bar({ studio: true }), m]);
     E.root = m;
+    E.sel = null;
     var meta = E.meta;
 
+    /* The left (the whole page on a phone): the game, then its questions. 11 Nov 2026: from 1000 px this is a column of its own
+       that stays in view, with the list scrolling inside it; the open question is the middle column, the settings the right
+       one (from 1250 px) or under the question (from 1000 px). On a phone the order is the same as ever. */
+    var rail = E.rail = el("div", "ed-rail");
+
     /* the top: the name, by, its state, Play it, Share */
-    var top = el("section", "ed-sec");
+    var top = el("section", "ed-sec ed-head");
     var row = el("div", "ed-top");
     var g = el("div", "st-grow");
     E.titleEl = el("p", "ed-gtitle", meta.title);
@@ -440,10 +458,10 @@
       hn.appendChild(document.createTextNode(t("ed.hidden_note")));
       top.appendChild(hn);
     }
-    m.appendChild(top);
+    rail.appendChild(top);
 
     /* the questions */
-    var qs = el("section", "ed-sec");
+    var qs = E.qs = el("section", "ed-sec ed-qs");
     var qh = el("div", "st-row");
     E.countEl = el("p", "st-h2 st-grow");
     qh.appendChild(E.countEl);
@@ -453,8 +471,10 @@
       qs.appendChild(E.goneNote);
     }
     E.list = el("ol", "ed-list");
+    E.list.addEventListener("scroll", function () { edge(E); }, { passive: true });
     qs.appendChild(E.list);
     E.items.forEach(function (it, i) { E.list.appendChild(itemRow(E, it, i)); });
+    var qfoot = el("div", "ed-qfoot");
     var add = btn("btn ghost ed-add", "+ " + t("ed.add"), function () {
       if (E.items.length >= LIMIT_ITEMS) { E.qErr.textContent = t("err.items_cap"); return; }
       var it = lk(TPL[E.tpl].blank()); it.explain = ""; it.image = null;
@@ -466,16 +486,35 @@
       counts(E);
       changed(E);
     });
-    qs.appendChild(add);
+    qfoot.appendChild(add);
     E.pastEl = el("div", "ed-past"); E.pastEl.hidden = true;
-    qs.appendChild(E.pastEl);
+    qfoot.appendChild(E.pastEl);
     E.qErr = attr(el("p", "ed-err"), { role: "alert" });
-    qs.appendChild(E.qErr);
-    m.appendChild(qs);
+    qfoot.appendChild(E.qErr);
+    qs.appendChild(qfoot);
+    rail.appendChild(qs);
+    m.appendChild(rail);
     counts(E);
 
+    /* the middle (a wide screen only): the question being edited, with its number and its day; its fields come here from
+       under its row (place) */
+    var panel = E.panel = attr(el("section", "ed-sec ed-panel"), { role: "region" });
+    panel.hidden = true;
+    E.phead = el("div", "ed-phead");
+    E.phead.appendChild(el("span", "ed-n"));
+    E.phead.appendChild(el("span", "ed-pt"));
+    panel.appendChild(E.phead);
+    E.slot = el("div", "ed-slot");
+    panel.appendChild(E.slot);
+    panel.addEventListener("keydown", function (e) {            // Escape in the question: back to its row in the list
+      if (e.key !== "Escape" || !wide() || e.defaultPrevented) return;
+      var li = E.sel ? rowOf(E, E.sel) : null;
+      if (li) { e.preventDefault(); li.__sum.focus(); }
+    });
+    m.appendChild(panel);
+
     /* the settings: what /new/ no longer asks (9 Nov 2026), with the values a new game starts with */
-    var st = el("section", "ed-sec");
+    var st = el("section", "ed-sec ed-settings");
     st.appendChild(el("p", "st-h2", t("ed.settings")));
     st.appendChild(label(t("ed.title"), "e-title"));
     var ti = attr(el("input", "st-in"), { id: "e-title", type: "text", maxlength: String(MAX.title), dir: "auto" });
@@ -486,11 +525,17 @@
     seg(st, "ed.mode", [["daily", "ed.daily"], ["open", "ed.open"]], meta.mode, function (v) { meta.mode = v; startRow.hidden = v === "open"; modeHint.textContent = t(v === "open" ? "ed.open_d" : "ed.daily_d"); counts(E); refreshDays(E); changed(E); });
     var modeHint = el("p", "ed-hint", t(meta.mode === "open" ? "ed.open_d" : "ed.daily_d"));
     st.appendChild(modeHint);
+    /* 11 Nov 2026: the first day is picked on our own calendar (datepicker.js), not the browser's: the date written out in the
+       page's language, the week as that language's countries start it, today marked, past days open as the Worker allows */
     var startRow = el("div");
-    startRow.appendChild(label(t("ed.start"), "e-start"));
-    var si = attr(el("input", "st-in"), { id: "e-start", type: "date", value: meta.start_day || S.today() });
-    si.addEventListener("change", function () { if (S.dayIndex(si.value) != null) { meta.start_day = si.value; refreshDays(E); changed(E); } });
-    startRow.appendChild(si);
+    var startLab = label(t("ed.start"), "e-start");
+    startLab.id = "e-start-l";
+    startRow.appendChild(startLab);
+    E.dp = window.StudioDate.field({
+      id: "e-start", labelId: "e-start-l", label: t("ed.start"), value: meta.start_day || S.today(),
+      onChange: function (v) { meta.start_day = v; refreshDays(E); changed(E); }
+    });
+    startRow.appendChild(E.dp.el);
     startRow.hidden = meta.mode === "open";
     st.appendChild(startRow);
     seg(st, "ed.lang", S.LANGS.map(function (l) { return [l, S.LANG_NAMES[l], true, l]; }), S.LANGS.indexOf(meta.lang) >= 0 ? meta.lang : "en", function (v) { meta.lang = v; changed(E); });
@@ -518,8 +563,73 @@
     document.body.classList.add("has-dock");
     E.msg = attr(el("p", "st-err"), { role: "alert" }); E.msg.hidden = true;
     qs.insertBefore(E.msg, qs.firstChild.nextSibling);
+    layout(E);
     changed(E, true);
   }
+
+  /* ---------------- the open question: under its row on a phone, in its own column from 1000 px ---------------- */
+  var WIDE = "(min-width: 62.5rem)";
+  function wide() { try { return window.matchMedia(WIDE).matches; } catch (e) { return false; } }
+  function rowOf(E, it) {
+    var found = null;
+    if (E.list) Array.prototype.forEach.call(E.list.children, function (li) { if (li.__it === it) found = li; });
+    return found;
+  }
+  /* one question is always open on a wide screen (the first, when none was chosen); on a phone none is */
+  function layout(E) {
+    if (!E.list) return;
+    if (wide() && !(E.sel && rowOf(E, E.sel)) && E.items.length) openItem(E, 0, true);
+    else place(E);
+  }
+  /* every part to its place: the open question's fields in the middle column (wide) or under its row (phone), the message
+     with them, the rows marked as the open one (aria-current on a wide screen, aria-expanded on a phone) */
+  function place(E) {
+    if (!E.list || !E.panel) return;
+    var w = wide(), li = E.sel ? rowOf(E, E.sel) : null;
+    if (!li) E.sel = null;
+    Array.prototype.forEach.call(E.list.children, function (x) {
+      var on = x === li, sum = x.__sum;
+      x.classList.toggle("is-open", on);
+      if (w) { sum.removeAttribute("aria-expanded"); if (on) sum.setAttribute("aria-current", "true"); else sum.removeAttribute("aria-current"); }
+      else { sum.removeAttribute("aria-current"); sum.setAttribute("aria-expanded", String(on)); }
+    });
+    if (li) {
+      var body = li.__body;
+      if (w) { if (body.parentNode !== E.slot) { E.slot.textContent = ""; E.slot.appendChild(body); } }
+      else if (body.parentNode !== li) li.appendChild(body);
+    }
+    if (!w || !li) E.slot.textContent = "";
+    if (w) { if (E.msg && E.msg.parentNode !== E.panel) E.panel.insertBefore(E.msg, E.panel.firstChild); }
+    else if (E.msg && E.msg.parentNode !== E.qs) E.qs.insertBefore(E.msg, E.qs.firstChild.nextSibling);
+    E.panel.hidden = !(w && li) && !(w && E.msg && !E.msg.hidden);
+    E.phead.hidden = !li;
+    if (li) { E.panel.setAttribute("aria-labelledby", li.__sum.firstChild.id); head(E); }
+    else E.panel.removeAttribute("aria-labelledby");
+    fit(E);
+  }
+  /* the left column keeps to what is left of the window: under the bar (or the top, once the page is scrolled) and above the
+     Save bar; the list scrolls inside it, the buttons under the list stay in view, and the list fades where it goes on */
+  function fit(E) {
+    if (!E.rail || !E.list || !E.root) return;
+    if (!wide()) { E.rail.style.maxHeight = ""; E.list.style.removeProperty("--t"); E.list.style.removeProperty("--b"); return; }
+    var top = Math.max(0, E.root.getBoundingClientRect().top);
+    var dock = E.saveBtn && E.saveBtn.parentNode ? E.saveBtn.parentNode.offsetHeight : 72;
+    E.rail.style.maxHeight = Math.max(260, Math.floor(window.innerHeight - top - dock - 10)) + "px";
+    edge(E);
+  }
+  function edge(E) {
+    var l = E.list, more = l.scrollHeight > l.clientHeight + 1;
+    l.style.setProperty("--t", more && l.scrollTop > 2 ? "16px" : "0px");
+    l.style.setProperty("--b", more && l.scrollTop + l.clientHeight < l.scrollHeight - 2 ? "16px" : "0px");
+  }
+  /* the middle column's heading: the question's number, and its day and kind */
+  function head(E) {
+    var li = E.sel ? rowOf(E, E.sel) : null;
+    if (!li || !E.phead) return;
+    E.phead.querySelector(".ed-n").textContent = li.querySelector(".ed-n").textContent;
+    E.phead.querySelector(".ed-pt").textContent = li.querySelector(".ed-isum small").textContent;
+  }
+
   function status(E) {
     var meta = E.meta, s = E.statusEl;
     s.className = ""; s.textContent = "";
@@ -538,7 +648,13 @@
     E.saveBtn.textContent = t("ed.save");
     E.saveBtn.classList.toggle("is-clean", !d);                // F: nothing to save: the button steps back
     if (d) { var dot = el("i", "ed-dot"); dot.setAttribute("aria-hidden", "true"); E.saveBtn.appendChild(dot); }
-    if (!quiet) E.msg.hidden = true;
+    if (!quiet && !E.msg.hidden) { E.msg.hidden = true; if (wide()) place(E); }
+  }
+  /* a message about the save as a whole: on a wide screen it is at the top of the middle column, so the page goes to it if it
+     has been scrolled past */
+  function showMsg(E, text) {
+    E.msg.textContent = text; E.msg.hidden = false;
+    if (wide()) { place(E); E.msg.scrollIntoView({ block: "nearest", behavior: S.reduced() ? "auto" : "smooth" }); }
   }
   function dayText(E, i) {
     if (E.meta.mode !== "daily" || !E.meta.start_day) return "";
@@ -556,7 +672,7 @@
     box.appendChild(el("p", null, t("ed.past")));
     box.appendChild(btn("chip", t("ed.past_fix"), function () {
       m.start_day = S.dayFrom(today - first);
-      var si = E.root.querySelector("#e-start"); if (si) si.value = m.start_day;
+      if (E.dp) E.dp.set(m.start_day);
       refreshDays(E); changed(E);
     }));
   }
@@ -572,13 +688,23 @@
     var grip = attr(el("span", "st-grip"), { "aria-hidden": "true", title: t("ed.drag") });
     h.appendChild(grip);
     h.appendChild(el("span", "ed-n"));
-    var sum = attr(btn("ed-isum", null, function () { openItem(E, E.items.indexOf(it)); }), { "aria-expanded": "false" });
-    sum.appendChild(el("b")); sum.appendChild(el("small"));
+    var sum = attr(btn("ed-isum", null, function (e) { openItem(E, E.items.indexOf(it), false, !!e && e.detail === 0); }), { "aria-expanded": "false" });   // detail 0: the keyboard
+    sum.appendChild(attr(el("b"), { id: "isum-" + lk(it)._k })); sum.appendChild(el("small"));
+    sum.addEventListener("keydown", function (e) {            // up and down move along the list (the open question stays)
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      var to = e.key === "ArrowDown" ? li.nextElementSibling : e.key === "ArrowUp" ? li.previousElementSibling
+        : e.key === "Home" ? li.parentNode.firstElementChild : e.key === "End" ? li.parentNode.lastElementChild : undefined;
+      if (to === undefined) return;
+      e.preventDefault();
+      if (to && to.__sum) to.__sum.focus();
+    });
+    li.__sum = sum;
     h.appendChild(sum);
     var th = attr(el("img", "ed-thumb"), { alt: "" }); th.hidden = true;
     h.appendChild(th);
     li.appendChild(h);
     var body = el("div", "ed-ibody"); body.hidden = true;
+    li.__body = body;
     li.appendChild(body);
     summary(E, li, it, i);
     dragRow(E, li, grip);
@@ -594,23 +720,52 @@
     li.querySelector(".ed-isum small").textContent = bits.join(" · ");
     var th = li.querySelector(".ed-thumb");
     if (it.image && it.image.url) { th.src = it.image.url; th.hidden = false; } else { th.hidden = true; th.removeAttribute("src"); }
+    if (E.sel === it) head(E);
   }
-  function openItem(E, i) {
-    Array.prototype.forEach.call(E.list.children, function (li, j) {
-      var body = li.querySelector(".ed-ibody"), sum = li.querySelector(".ed-isum");
-      var on = j === i && body.hidden;
-      if (!on) { body.hidden = true; body.textContent = ""; sum.setAttribute("aria-expanded", "false"); return; }
-      body.hidden = false; sum.setAttribute("aria-expanded", "true");
-      fill(E, li, li.__it);
-      S.enter(body);
-      var first = body.querySelector("input, textarea");
-      if (first && !first.value) first.focus({ preventScroll: true });
-      window.setTimeout(function () { li.scrollIntoView({ block: "nearest", behavior: S.reduced() ? "auto" : "smooth" }); }, 50);
-    });
+  /* Open one question. A phone: it opens under its row, one at a time, and tapping it again closes it. A wide screen: it
+     opens in the middle column, one is always open, and tapping the open one changes nothing. quiet: no focus, no scrolling.
+     keys: opened from the keyboard: on a wide screen the cursor goes into the question (its fields are not next to its row). */
+  function openItem(E, i, quiet, keys) {
+    var it = E.items[i], li = it ? rowOf(E, it) : null;
+    if (!li) return;
+    var w = wide();
+    if (E.sel === it) {
+      if (w) { if (!quiet) focusField(li, keys); return; }
+      E.sel = null; shut(li); place(E); return;
+    }
+    Array.prototype.forEach.call(E.list.children, function (x) { if (x !== li) shut(x); });
+    E.sel = it;
+    li.__body.hidden = false;
+    fill(E, li, it);
+    place(E);
+    if (quiet) return;
+    S.enter(li.__body);
+    focusField(li, keys && w);
+    window.setTimeout(function () { reveal(E, li); }, 50);
+  }
+  function shut(li) {
+    var body = li.__body;
+    body.hidden = true; body.textContent = "";
+    if (body.parentNode !== li) li.appendChild(body);
+  }
+  function focusField(li, any) {
+    var first = li.__body.querySelector("input, textarea");
+    if (first && (any || !first.value)) first.focus({ preventScroll: true });
+  }
+  /* bring what was just opened into view: its row in the list's own scroll, and the middle column's top when the page is
+     scrolled past it */
+  function reveal(E, li) {
+    var smooth = S.reduced() ? "auto" : "smooth";
+    if (!wide()) { li.scrollIntoView({ block: "nearest", behavior: smooth }); return; }
+    var a = E.list.getBoundingClientRect(), r = li.getBoundingClientRect();
+    if (r.top < a.top) E.list.scrollBy({ top: r.top - a.top - 4, behavior: smooth });
+    else if (r.bottom > a.bottom) E.list.scrollBy({ top: r.bottom - a.bottom + 4, behavior: smooth });
+    var p = E.panel.getBoundingClientRect();
+    if (p.top < 0 || p.top > window.innerHeight - 160) window.scrollTo({ top: Math.max(0, window.pageYOffset + p.top - 14), behavior: smooth });
   }
   /* the fields of one question: its template's, then the picture and the explanation (every template has both) */
   function fill(E, li, it) {
-    var body = li.querySelector(".ed-ibody");
+    var body = li.__body;
     body.textContent = "";
     var tp = TPL[E.tpl];
     var ed = helpers(E, li, it);
@@ -634,14 +789,20 @@
       if (i < 0) return;
       dropImage(E, it.image);
       E.items.splice(i, 1);
+      var was = E.sel === it;
       li.remove();
+      if (was) {
+        E.sel = null;
+        if (wide() && E.items.length) { openItem(E, Math.min(i, E.items.length - 1), true); var next = rowOf(E, E.sel); if (next) next.__sum.focus(); }   // the next one opens, the keys stay in the list
+        else place(E);
+      }
       refreshDays(E); counts(E); changed(E);
     }));
     body.appendChild(foot);
     showErrs(E, li, it);
   }
   function helpers(E, li, it) {
-    var body = li.querySelector(".ed-ibody");
+    var body = li.__body;
     function touch() { summary(E, li, it, E.items.indexOf(it)); changed(E); }
     return {
       el: el, t: t,
@@ -830,8 +991,12 @@
     if (!sib) return;
     glide(E.list, function () { if (dir < 0) E.list.insertBefore(sib, li.nextSibling); else E.list.insertBefore(sib, li); });   /* the row itself never leaves the list: it keeps its focus */
     reorder(E);
-    var b = li.querySelectorAll(".ed-ifoot .chip")[dir < 0 ? 0 : 1];
-    if (b) b.focus();
+    var b = li.__body.querySelectorAll(".ed-ifoot .chip")[dir < 0 ? 0 : 1];
+    if (b) b.focus({ preventScroll: true });
+    if (wide()) {                                                    // the list keeps the moved row in sight
+      var a = E.list.getBoundingClientRect(), r = li.getBoundingClientRect();
+      if (r.top < a.top) E.list.scrollTop += r.top - a.top - 4; else if (r.bottom > a.bottom) E.list.scrollTop += r.bottom - a.bottom + 4;
+    }
   }
   function reorder(E) {
     E.items = Array.prototype.map.call(E.list.children, function (li) { return li.__it; });
@@ -865,8 +1030,9 @@
       if (next && dy > next.offsetHeight / 2 + gap / 2) { var h = next.offsetHeight + gap; glide(E.list, function () { E.list.insertBefore(next, li); }); y0 += h; dy -= h; }
       else if (prev && dy < -(prev.offsetHeight / 2 + gap / 2)) { var h2 = prev.offsetHeight + gap; glide(E.list, function () { E.list.insertBefore(prev, li.nextSibling); }); y0 -= h2; dy += h2; }   /* the neighbour moves, never the row: it keeps the pointer */
       li.style.transform = "translateY(" + dy + "px)";
-      var r = li.getBoundingClientRect();
-      if (r.bottom > window.innerHeight - 90) window.scrollBy(0, 8); else if (r.top < 60) window.scrollBy(0, -8);
+      var r = li.getBoundingClientRect(), box = E.list.getBoundingClientRect();
+      if (wide() && E.list.scrollHeight > E.list.clientHeight + 1) { if (r.bottom > box.bottom - 24) E.list.scrollTop += 8; else if (r.top < box.top + 24) E.list.scrollTop -= 8; }
+      else if (r.bottom > window.innerHeight - 90) window.scrollBy(0, 8); else if (r.top < 60) window.scrollBy(0, -8);
     });
     function end() { if (!on) return; on = false; li.classList.remove("lift"); li.style.transform = ""; reorder(E); }
     grip.addEventListener("pointerup", end);
@@ -882,10 +1048,10 @@
     return e;
   }
   function showErrs(E, li, it) {
-    var e = li.__errs || {};
-    Array.prototype.forEach.call(li.querySelectorAll("[data-err]"), function (p) { p.textContent = e[p.getAttribute("data-err")] || ""; });
+    var e = li.__errs || {}, body = li.__body;
+    Array.prototype.forEach.call(body.querySelectorAll("[data-err]"), function (p) { p.textContent = e[p.getAttribute("data-err")] || ""; });
     /* the boxes of a list that are wrong: empty, or the same as one above (9 Nov 2026: "au" twice showed nothing) */
-    Array.prototype.forEach.call(li.querySelectorAll("[data-list]"), function (box) {
+    Array.prototype.forEach.call(body.querySelectorAll("[data-list]"), function (box) {
       var ins = box.querySelectorAll("input[type=text]"), seen = {};
       Array.prototype.forEach.call(ins, function (inp) {
         var v = inp.value.trim().toLowerCase(), wrong = !!e[box.getAttribute("data-list")] && (!v || seen[v]);
@@ -896,7 +1062,7 @@
   }
   /* what is wrong with a question, in one line: the first message shown in it */
   function firstErr(li) {
-    var p = li.querySelector(".ed-err:not(:empty)");
+    var p = li.__body.querySelector(".ed-err:not(:empty)");
     if (p) return p.textContent;
     var e = li.__errs || {}, k = Object.keys(e)[0];
     return k ? e[k] : "";
@@ -910,21 +1076,21 @@
       var has = Object.keys(e).length > 0;
       li.classList.toggle("bad", has);
       if (has && bad < 0) bad = i;
-      if (!li.querySelector(".ed-ibody").hidden) showErrs(E, li, li.__it);
+      if (!li.__body.hidden) showErrs(E, li, li.__it);
     });
     var tErr = E.root.querySelector('[data-err="title"]');
     var title = (E.meta.title || "").trim();
     if (tErr) tErr.textContent = title ? "" : t("err.title");
     if (!title) { tErr.scrollIntoView({ block: "center" }); return; }
-    if (S.links(E.meta.about) > 20) { E.msg.textContent = t("err.links"); E.msg.hidden = false; return; }
+    if (S.links(E.meta.about) > 20) { showMsg(E, t("err.links")); return; }
     if (bad >= 0) {
       var li = E.list.children[bad];
-      if (li.querySelector(".ed-ibody").hidden) openItem(E, bad);
+      if (li.__body.hidden) openItem(E, bad);
       showErrs(E, li, li.__it);
       /* the banner says which question and what is wrong, and the page goes to the very box (9 Nov 2026) */
       var why = firstErr(li);
-      E.msg.textContent = why ? t("err.at", { n: bad + 1, why: why }) : t("err.fix"); E.msg.hidden = false;
-      var spot = li.querySelector('[aria-invalid="true"]') || li.querySelector(".ed-err:not(:empty)") || li;
+      showMsg(E, why ? t("err.at", { n: bad + 1, why: why }) : t("err.fix"));
+      var spot = li.__body.querySelector('[aria-invalid="true"]') || li.__body.querySelector(".ed-err:not(:empty)") || li;
       window.setTimeout(function () { spot.scrollIntoView({ block: "center", behavior: S.reduced() ? "auto" : "smooth" }); }, 80);   // after openItem's own
       return;
     }
@@ -944,15 +1110,15 @@
     API.gameSave(body).then(function (r) {
       E.busy = false; E.saveBtn.disabled = false;
       if (!r.ok) {
-        E.stateEl.textContent = t("ed.unsaved"); E.msg.textContent = t(API.errKey(r)); E.msg.hidden = false;
+        E.stateEl.textContent = t("ed.unsaved"); showMsg(E, t(API.errKey(r)));
         /* the Worker names the question it refused: { e: "item", i, field } */
         var li = typeof r.b.i === "number" ? E.list.children[r.b.i] : null;
         if (li) {
           var fld = String(r.b.field || "q");
           li.__errs = {}; li.__errs[fld] = t(fld === "image" ? "err.image" : /^(q|text|explain|unit|choices|things|extra|size)$/.test(fld) ? "err.long" : "err.fix");   // 11 Nov 2026: a refused picture said "Too long."
           li.classList.add("bad");
-          if (li.querySelector(".ed-ibody").hidden) openItem(E, r.b.i); else showErrs(E, li, li.__it);
-          li.scrollIntoView({ block: "center" });
+          if (li.__body.hidden) openItem(E, r.b.i); else showErrs(E, li, li.__it);
+          (wide() ? E.panel : li).scrollIntoView({ block: "center" });
         }
         return;
       }

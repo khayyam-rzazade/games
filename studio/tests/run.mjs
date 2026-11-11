@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { servers, browser, context, page, check, report, noOverflow, wait, SHOTS, todayIn, need } from "./lib.mjs";
 import { startReal, ADMIN_KEY } from "./real.mjs";
+import { run as editorWide } from "./editor-wide.mjs";
 const sharp = need("sharp");
 
 const S = await servers();
@@ -581,7 +582,7 @@ const FILL = {
   check(/Players won.t see them/.test(await p.textContent(".ed-past")), "days gone: a new question on a day already gone is named");
   await shot(p, "editor-days-gone");
   await p.click(".ed-past >> text=Start them today");
-  const moved = await p.inputValue("#e-start");
+  const moved = await p.locator("#e-start").getAttribute("data-value");      // 11 Nov 2026: our own date picker, a button that holds the day
   check(await p.locator(".ed-past:not([hidden])").count() === 0 && moved !== startWas && /Today|·/.test(await p.textContent(".ed-item:nth-child(4) .ed-isum small")), "days gone: Start them today moves the first day (" + startWas + " → " + moved + ")");
   /* the tab closes before Save: the changes come back */
   await p.reload();
@@ -590,7 +591,7 @@ const FILL = {
   await shot(p, "editor-draft");
   await p.click(".ed-draft >> text=Bring them back");
   await p.waitForSelector(".ed-item:nth-child(4)");
-  check((await p.inputValue("#e-start")) === moved && /Not saved/.test(await p.textContent(".ed-state")), "draft: the question and the new first day are back, not saved yet");
+  check((await p.locator("#e-start").getAttribute("data-value")) === moved && /Not saved/.test(await p.textContent(".ed-state")), "draft: the question and the new first day are back, not saved yet");
   /* a picture the Worker refuses is named as a picture */
   await p.route("**/game/save", (rt) => rt.fulfill({ status: 400, contentType: "application/json", body: JSON.stringify({ ok: false, e: "item", i: 0, field: "image" }) }));
   await p.click(".ed-dock button.btn.solid");
@@ -613,6 +614,9 @@ const FILL = {
   check(p.__errors.length === 0 || p.__errors.every((x) => /status of 400/.test(x)), "draft and days gone: no errors " + p.__errors.join(" | "));
   await ctx.close();
 }
+
+/* ---------- 4b and 4c (11 Nov 2026): the editor in columns, and our own date picker: editor-wide.mjs ---------- */
+await editorWide(S, B);
 
 /* ---------- 5. the embed, in someone else's page ---------- */
 console.log("5. the embed in an iframe");

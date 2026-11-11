@@ -24,7 +24,7 @@ const SLUGS = [["history-a-day", "pick"], ["how-many-a-day", "number"], ["when-w
 async function measure() {
   return page_measure.p.evaluate(() => {
     const out = [], vw = window.innerWidth;
-    const sel = (e) => { let s = e.tagName.toLowerCase(); if (e.id) s += "#" + e.id; if (typeof e.className === "string" && e.className.trim()) s += "." + e.className.trim().split(/\s+/).slice(0, 2).join("."); return s; };
+    const sel = (e) => { let s = e.tagName.toLowerCase(); if (e.id) s += "#" + e.id.replace(/^(isum)-.*/, "$1"); if (typeof e.className === "string" && e.className.trim()) s += "." + e.className.trim().split(/\s+/).slice(0, 2).join("."); return s; };
     if (document.documentElement.scrollWidth > vw + 1) out.push({ kind: "page-scrolls-sideways", el: "html", text: document.documentElement.scrollWidth + " > " + vw });
     for (const e of document.querySelectorAll("body *")) {
       const cs = getComputedStyle(e);
@@ -172,6 +172,22 @@ for (const L of LANGS) {
       await p.evaluate(() => localStorage.removeItem("lg.studio.drafts")).catch(() => {});
       await ctx2.close();
     }
+    /* 11 Nov 2026: the first-day calendar (the date written out by Intl, the month's name, the weekdays) */
+    page_measure.p = p;
+    await step(L, width, "editor: first day field", async () => { await p.goto(S.base + "/anna-rossi/history-a-day/edit/?lang=" + L + "#" + db.games["anna-rossi/history-a-day"].edit_key); await p.waitForSelector("#e-start"); await p.locator("#e-start").scrollIntoViewIfNeeded(); });
+    await step(L, width, "editor: calendar open", async () => { await p.click("#e-start"); await p.waitForSelector("dialog.dp-dlg"); });
+    await step(L, width, "editor: calendar, a long month name", async () => { await p.keyboard.press("PageUp"); await p.keyboard.press("PageUp"); });
+    await step(L, width, "editor: first day is today", async () => { await p.click(".dp-today"); await p.waitForFunction(() => !document.querySelector("dialog.dp-dlg")); });
+    await ctx.close();
+  }
+  /* 11 Nov 2026: the editor in columns (1000 and 1280 px), with a question's mistakes and the calendar open */
+  for (const [w, h] of [[1000, 760], [1280, 800]]) {
+    const ctx = await context(B, S, { viewport: { width: w, height: h }, mobile: false, dpr: 1, locale: L === "en" ? "en-GB" : L });
+    const p = await page(ctx); page_measure.p = p; p.setDefaultTimeout(4000);
+    const g = db.games["anna-rossi/history-a-day"];
+    await step(L, w, "editor wide: columns", async () => { await p.goto(S.base + "/anna-rossi/history-a-day/edit/?lang=" + L + "#" + g.edit_key); await p.waitForSelector(".ed-slot .ed-ibody"); });
+    await step(L, w, "editor wide: a question's mistakes", async () => { await p.fill("[id$='-q']", ""); await p.click(".ed-dock .btn"); await p.waitForSelector(".ed-panel .ed-err:not(:empty)"); });
+    await step(L, w, "editor wide: calendar open", async () => { await p.click("#e-start"); await p.waitForSelector("dialog.dp-dlg"); });
     await ctx.close();
   }
 }
