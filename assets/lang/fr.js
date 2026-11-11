@@ -1118,12 +1118,25 @@ window.LG_DICT = {
  "rm.yes": "Oui",
  "rm.keep": "Laisser les choses comme elles sont",
  "embed.button": "Intégrer",
- "embed.copied": "Copié. Dans Moodle : ajoute une Page, ouvre le code source, colle.",
+ "embed.copied": "Copié. Dans Moodle : ajoute une Page, ouvre le code source, colle.",
  "embed.powered": "propulsé par Logicers",
+ "site.previous_word_games": "Jeux de mots précédents",
+ "site.more_word_games": "Plus de jeux de mots",
+ "home.checkin_label": "Anonyme",
+ "home.checkin_big": "Check-in",
  "home.word_games_h": "Les jeux de mots du jour",
  "game.altitude.name": "Altitude",
  "home.pitch_altitude_long": "Un mot de 2 lettres, puis 3, 4, jusqu’à 8, avec une seule réserve d’essais. Jusqu’où peux-tu monter ?",
  "game.altitude.pitch": "Un mot d’une lettre de plus à chaque fois. Jusqu’où peux-tu monter ?",
- "site.two_min": "2 min"
+ "site.two_min": "2 min",
+ "game.lookalike.name": "Lookalike",
+ "home.pitch_lookalike_long": "Trois mots par jour qui se ressemblent d’une langue à l’autre, mais pas par le sens. Sauras-tu éviter le piège ?",
+ "game.lookalike.pitch": "Même allure, autre sens. Évite le piège.",
+ "game.passport.name": "Passport",
+ "home.pitch_passport_long": "Un mot par jour : d’où vient-il ? Regarde-le voyager à travers le monde jusqu’à ta langue.",
+ "game.passport.pitch": "D’où vient le mot du jour ?",
+ "home.room_checkin": "Check-in en groupe",
+ "home.room_checkin_sub": "Tu vois le groupe, jamais une personne.",
+ "home.code_checkin": "Le code du check-in (six lettres)"
 };
 window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora.", "pt": "Esta página está só em inglês por enquanto.", "fr": "Cette page n’existe qu’en anglais pour le moment."};

@@ -1120,10 +1120,23 @@ window.LG_DICT = {
  "embed.button": "Insertar",
  "embed.copied": "Copiado. En Moodle: añade una Página, abre el código fuente y pega.",
  "embed.powered": "con tecnología de Logicers",
+ "site.previous_word_games": "Juegos de palabras anteriores",
+ "site.more_word_games": "Más juegos de palabras",
+ "home.checkin_label": "Anónimo",
+ "home.checkin_big": "Check-in",
  "home.word_games_h": "Los juegos de palabras de hoy",
  "game.altitude.name": "Altitude",
  "home.pitch_altitude_long": "Una palabra de 2 letras, luego 3, 4, hasta 8, con una única reserva de intentos. ¿Hasta dónde llegas?",
  "game.altitude.pitch": "Una palabra con una letra más cada vez. ¿Hasta dónde llegas?",
- "site.two_min": "2 min"
+ "site.two_min": "2 min",
+ "game.lookalike.name": "Lookalike",
+ "home.pitch_lookalike_long": "Tres palabras al día que se parecen en dos idiomas pero significan otra cosa. ¿Sabrás evitar la trampa?",
+ "game.lookalike.pitch": "Se parecen, pero significan otra cosa. Evita la trampa.",
+ "game.passport.name": "Passport",
+ "home.pitch_passport_long": "Una palabra al día: ¿de dónde viene? Mira cómo viaja por el mundo hasta tu idioma.",
+ "game.passport.pitch": "¿De dónde viene la palabra de hoy?",
+ "home.room_checkin": "Check-in en grupo",
+ "home.room_checkin_sub": "Tú ves al grupo, nunca a una persona.",
+ "home.code_checkin": "El código del check-in (seis letras)"
 };
 window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora.", "pt": "Esta página está só em inglês por enquanto.", "fr": "Cette page n’existe qu’en anglais pour le moment."};

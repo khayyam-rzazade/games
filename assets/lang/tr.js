@@ -1120,10 +1120,23 @@ window.LG_DICT = {
  "embed.button": "Yerleştir",
  "embed.copied": "Kopyalandı. Moodle’da: Sayfa ekle, kaynak kodu aç, yapıştır.",
  "embed.powered": "Logicers tarafından desteklenir",
+ "site.previous_word_games": "Önceki kelime oyunları",
+ "site.more_word_games": "Daha fazla kelime oyunu",
+ "home.checkin_label": "Anonim",
+ "home.checkin_big": "Check-in",
  "home.word_games_h": "Bugünün kelime oyunları",
  "game.altitude.name": "Altitude",
  "home.pitch_altitude_long": "2 harfli bir kelime, sonra 3, 4, 8'e kadar; hepsi tek bir tahmin hakkından. Ne kadar yükselebilirsin?",
  "game.altitude.pitch": "Her seferinde bir harf daha uzun bir kelime. Ne kadar yükselebilirsin?",
- "site.two_min": "2 dk"
+ "site.two_min": "2 dk",
+ "game.lookalike.name": "Lookalike",
+ "home.pitch_lookalike_long": "Günde üç kelime: iki dilde birbirine benziyor ama anlamı başka. Tuzağı fark edebilecek misin?",
+ "game.lookalike.pitch": "Birbirine benziyor ama anlamı başka. Tuzağa düşme.",
+ "game.passport.name": "Passport",
+ "home.pitch_passport_long": "Günde bir kelime: nereden gelmiş? Dünyayı dolaşıp senin diline nasıl geldiğini izle.",
+ "game.passport.pitch": "Bugünün kelimesi nereden gelmiş?",
+ "home.room_checkin": "Grup check-in'i",
+ "home.room_checkin_sub": "Sen grubu görürsün, tek bir kişiyi asla.",
+ "home.code_checkin": "Check-in kodu (altı harf)"
 };
 window.LG_ONLY = {"it": "Per ora questa pagina c'è solo in inglese.", "tr": "Bu sayfa şimdilik yalnızca İngilizce.", "es": "Esta página está solo en inglés por ahora.", "pt": "Esta página está só em inglês por enquanto.", "fr": "Cette page n’existe qu’en anglais pour le moment."};

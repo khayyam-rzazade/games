@@ -38,7 +38,7 @@
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="../assets/css/logicers.css?v=6c9520ef4a">
-<script src="../assets/lang/pt.js?v=dba90b297f"></script>
+<script src="../assets/lang/pt.js?v=7f60d2fbb0"></script>
 <script src="../assets/js/lang.js?v=36fd427f52"></script>
 <style>
 /* Find out about yourself (B2, 22 Oct 2026): the box and the row. Kept here, not in logicers.css, so no shared file needs re-stamping. */
@@ -52,6 +52,50 @@
 [data-g="lookalike"] { --c: #0087A8; --tint: #DAF1F7; }
 [data-g="passport"] { --c: #9A3FC4; --tint: #F1E4F8; }
 @media (prefers-color-scheme: dark) { [data-g="lookalike"] { --c: #4FD0EE; --tint: #071C24; } [data-g="passport"] { --c: #D79AF0; --tint: #1B1024; } }
+/* The weekly Story (4 Nov 2026, Khayyam): one thin line right under the Today card ("a horizontal one line box, very
+   thin"), replacing the row under the word games: midnight ink, the week's story name with a slow shine (the hook, like
+   Find out's), how many have ever read it, and one yellow sign at the end. Hidden until story/tile.js shows it (from the
+   launch day, English only). It is its own link, beside the Today card, which is a link already. */
+[data-g="story"] { --c: #27335A; --tint: #E6E9F4; }
+@media (prefers-color-scheme: dark) { [data-g="story"] { --c: #B9C3EE; --tint: #101428; } }
+.story-line { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 6px 7px 6px 14px; border-radius: 16px; color: #fff; text-decoration: none;
+  background: linear-gradient(100deg, #1A2142 0%, #27335A 58%, #364A86 100%);
+  box-shadow: 0 6px 16px rgba(27, 34, 66, .22), inset 0 0 0 1px rgba(255, 255, 255, .08);
+  -webkit-tap-highlight-color: transparent; transition: transform .15s; }
+.story-line[hidden] { display: none; }
+.story-line:active { transform: scale(.99); }
+.story-line:focus-visible { outline: 3px solid #F5C24B; outline-offset: 2px; }
+.sl-name { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--display); font-weight: 800; font-size: 1rem; letter-spacing: -0.015em; line-height: 1.2; }
+.sl-count { flex: none; white-space: nowrap; color: rgba(255, 255, 255, .74); font-size: .8rem; font-weight: 600; }
+.sl-count::before { content: "·"; margin-right: 7px; color: rgba(255, 255, 255, .45); }
+.sl-count[hidden] { display: none; }
+.sl-sign { flex: none; margin-left: auto; display: inline-flex; align-items: center; justify-content: center; gap: 3px; height: 32px; min-width: 32px; padding: 0 8px;
+  border-radius: 999px; background: #F5C24B; color: #1A2142; font-weight: 800; font-size: .82rem; line-height: 1; }
+.sl-sign svg { width: 15px; height: 15px; flex: none; }
+.sl-sign span { padding-left: 4px; }
+.story-line.done .sl-sign { background: rgba(255, 255, 255, .14); color: #fff; }
+/* the hook: while there is something to read, the name shines now and then and the sign breathes; never with reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .story-line:not(.done) .sl-name { background: linear-gradient(90deg, #fff 0%, #fff 40%, #FFD45E 50%, #fff 60%, #fff 100%); background-size: 240% 100%; background-repeat: no-repeat; background-color: #fff;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 5s ease-in-out 1s infinite; }
+  .story-line:not(.done) .sl-sign { animation: sl-pulse 2.4s ease-in-out 1.2s infinite; }
+}
+@keyframes sl-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@media (prefers-color-scheme: dark) {
+  .story-line { background: linear-gradient(100deg, #161C3A 0%, #222D57 58%, #2F407A 100%); box-shadow: inset 0 0 0 1px rgba(185, 195, 238, .22); }
+}
+/* where it stands: on a computer in the right-hand column, 8px under Today; on a phone right under Today, above the
+   Logicer and Find out boxes (the Today card's own place since 29 Oct 2026) */
+.hero > .story-line { grid-column: -2 / -1; align-self: start; margin-top: -6px; }
+.hero:has(> .story-line:not([hidden])) > .hero-text { grid-row: 1 / span 5; }
+@media (max-width: 1000px) {
+  .hero > .story-line { grid-column: auto; order: 1; margin-top: 8px; }
+  .hero:has(> .story-line:not([hidden])) > .hero-text { grid-row: auto; }
+}
+/* room for the whole name: the right-hand column on a computer is 340px, and many phones are 360px wide */
+@media (min-width: 1001px) { .sl-name { font-size: .96rem; } }
+@media (max-width: 380px) { .story-line { padding-left: 12px; } .sl-name { font-size: .94rem; } }
 .word-games { margin-top: 34px; }   /* the same air above it as "Pass the phone" has (28 Oct 2026, Khayyam) */
 @media (max-width: 700px) { .word-games { margin-top: 24px; } }   /* ...on a phone too, where that row drops to 24 */
 /* The Today card (29 Oct 2026, Khayyam): a second, slim row of dashes for today's word games under the daily
@@ -81,6 +125,9 @@
 #shelf3 .go { height: 38px; padding: 0 14px 0 15px; font-size: 0.92rem; }
 .logicer.findout { background: linear-gradient(135deg, #2E6B22 0%, #3F7A2A 55%, #6BA84A 100%); box-shadow: 0 8px 20px rgba(63, 122, 42, .28), inset 0 0 0 1px rgba(255, 255, 255, .16); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .logicer.findout:active { transform: scale(.99); }
+/* One light per pass (5 Nov 2026, Khayyam: on the computer the light ran a second time and stopped in the middle of "Check-in"): the
+   gradient is 2.4 words wide and used to repeat, so the next copy's light followed the first one in and parked at 48% of the word
+   when the sweep ended; no-repeat leaves one light, and the plain colour under it fills the word where the gradient has moved away. */
 .logicer.findout .logicer-big { color: #fff; background: linear-gradient(90deg, #fff 0%, #fff 40%, #FFD45E 50%, #fff 60%, #fff 100%); background-size: 240% 100%; background-repeat: no-repeat; background-color: #fff; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: findout-shine 4.5s ease-in-out infinite; }
 @keyframes findout-shine { 0%, 55% { background-position: 120% 0; } 85%, 100% { background-position: -120% 0; } }
 @media (prefers-reduced-motion: reduce) { .logicer.findout .logicer-big { animation: none; -webkit-text-fill-color: #fff; background: none; } }
@@ -190,6 +237,16 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
     <div class="pips pips-words" aria-hidden="true"><i id="pip-altitude" data-g="altitude"></i><i id="pip-lookalike" data-g="lookalike"></i><i id="pip-passport" data-g="passport"></i></div>
     <p class="today-note" id="today-note" data-s="home.new_at_midnight">Jogos novos à meia-noite.</p>
+  </a>
+  <!-- This week's story (4 Nov 2026, Khayyam): one thin line under the Today card, the whole line a link into story/. Not one
+       of the daily or word games: it is in neither list in turnsout.js, so it is outside the chain, the streak and the
+       "x of 12 played" count. English only for now: story/tile.js shows it from the launch day and only when the page is
+       English, and writes its name, the number of readers and the sign itself, so the six homes built from this page
+       keep it hidden and nothing here needs a translation key. -->
+  <a class="story-line" id="story-line" data-g="story" href="../story/" hidden>
+    <b class="sl-name">This week's story</b>
+    <span class="sl-count" hidden></span>
+    <span class="sl-sign"></span>
   </a>
   <!-- Build a game · Join a game (16 Oct 2026): one slim box in two halves, right under Today and the same width, so the
        games come into view sooner (Khayyam: "those boxes are too tall vertically and take too much space"). Join is a
@@ -380,7 +437,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         </div>
       </div>
     </a>
-    <a class="tile" id="tile-lookalike" data-g="lookalike" href="../lookalike/">
+<a class="tile" id="tile-lookalike" data-g="lookalike" href="../lookalike/">
       <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="mute" d="M62 88h68a22 22 0 0 1 22 22v20a22 22 0 0 1-22 22H92l-26 20v-20h-4a22 22 0 0 1-22-22v-20a22 22 0 0 1 22-22z"/><path class="fg" d="M258 36h-68a22 22 0 0 0-22 22v20a22 22 0 0 0 22 22h38l26 20v-20h4a22 22 0 0 0 22-22V58a22 22 0 0 0-22-22z"/><path class="ln" d="M62 112h44M62 128h28" fill="none" stroke-width="7" stroke-linecap="round" style="stroke-opacity:1"/><path d="M192 60h44M192 76h28" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--tint)"/></svg><span class="badge" data-s="site.new">Novo</span></div>
       <div class="body">
         <h3 data-s="game.lookalike.name">Lookalike</h3>
@@ -599,6 +656,8 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 <script src="../assets/js/world.js?v=f6da76fc5d"></script>
 <script src="../assets/js/said.js?v=5d6cde48e4"></script>
 <script src="../assets/js/logicer.js?v=4e6a85de6b"></script>
+<script src="../story/config.js?v=f04873b31d"></script>
+<script src="../story/tile.js?v=f5f949a30f"></script>
 <script>
 /* The home page: what is done today, the streak, and today's animal on the Long Lost Cousin tile.
    It never shows an answer before you have played. */
