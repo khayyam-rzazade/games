@@ -27,11 +27,13 @@ try {
   });
 } catch (e) { /* My Logicers is optional */ }
 
-/* the Worker (server/checkin, chat B): its own address is the one in server/checkin/README.md. If it ever gets a name of its own on
-   logicers.com, put that in `use` and keep this one as `alt`. A test page sets window.CHECKIN_API; nothing is probed on load. */
+/* the Worker (server/checkin, chat B). 11 Nov 2026: it has a name of its own on logicers.com (a custom domain set in Cloudflare's
+   dashboard, not in wrangler.jsonc), because some networks block workers.dev; that is `use`, and the workers.dev address is `alt`,
+   tried only when the first gives no answer at all and has never answered on this page (reach). A test page sets window.CHECKIN_API;
+   nothing is probed on load. */
 const API_ADDR = window.CHECKIN_API
   ? { use: window.CHECKIN_API, alt: '', heard: true }
-  : { use: 'https://logicers-checkin.rza-khay.workers.dev', alt: '', heard: false };
+  : { use: 'https://checkin.logicers.com', alt: 'https://logicers-checkin.rza-khay.workers.dev', heard: false };
 const TURNSTILE_SITE_KEY = window.CHECKIN_TURNSTILE ?? '0x4AAAAAAFj_-QKSbSfJrYJ1';   /* the Find outs' widget until the Worker has its own */
 
 /* ------------------------------------------------------------------ the items ------

@@ -928,11 +928,14 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
   })();
   /* the Anonymous Check-in's count (5 Nov 2026, Khayyam: "the homepage box shows it just like the homepage box of find out"):
      the phones that checked in at least once, from the check-in's own server (the number its front page counts up to);
-     shown from the first one on, as the Find out box; the words in the box's data-t are short like the Find out box's ("8 already did", Khayyam, 5 Nov) */
+     shown from the first one on, as the Find out box; the words in the box's data-t are short like the Find out box's ("8 already did", Khayyam, 5 Nov).
+     11 Nov 2026: checkin.logicers.com first, as the Find out box (some networks block workers.dev, and the count stayed empty there);
+     the workers.dev address only when nothing comes back from it */
   (function () {
     var small = document.getElementById("checkin-count");
     if (!small || !window.fetch) return;
-    fetch("https://logicers-checkin.rza-khay.workers.dev/stats").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    function ask(url, next) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }, function (e) { if (next) return ask(next); throw e; }); }
+    ask("https://checkin.logicers.com/stats", "https://logicers-checkin.rza-khay.workers.dev/stats").then(function (j) {
       if (j && typeof j.checked_in === "number" && j.checked_in >= 1)
         small.textContent = (small.getAttribute("data-t") || "{n}").replace("{n}", LG ? LG.num(j.checked_in) : Number(j.checked_in).toLocaleString("en-US"));
     }).catch(function () { /* the box reads the same without the number */ });

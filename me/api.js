@@ -73,7 +73,7 @@ const LOCALHOST = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 function bases(name, real) { const v = window[name]; return LOCALHOST ? (typeof v === 'string' && v ? [v] : []) : real; }
 const SERVERS = {
   live: () => bases('LIVE_SERVER', ['https://live.logicers.com', 'https://logicers-live.rza-khay.workers.dev']),
-  checkin: () => bases('CHECKIN_API', ['https://logicers-checkin.rza-khay.workers.dev']),
+  checkin: () => bases('CHECKIN_API', ['https://checkin.logicers.com', 'https://logicers-checkin.rza-khay.workers.dev']),   // checkin.logicers.com since 11 Nov 2026
   foroom: () => bases('FINDOUT_ROOM_API', ['https://findout-room.logicers.com', 'https://logicers-findout-room.rza-khay.workers.dev']),
   findout: () => bases('FINDOUT_API', ['https://findout.logicers.com', 'https://logicers-findout.rza-khay.workers.dev']),
   studio: () => bases('STUDIO_API', ['https://by.logicers.com', 'https://logicers-studio.rza-khay.workers.dev'])
