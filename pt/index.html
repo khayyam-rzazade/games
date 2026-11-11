@@ -38,7 +38,7 @@
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
 <link rel="stylesheet" href="../assets/css/logicers.css?v=6c9520ef4a">
-<script src="../assets/lang/pt.js?v=7f60d2fbb0"></script>
+<script src="../assets/lang/pt.js?v=c9940e21ec"></script>
 <script src="../assets/js/lang.js?v=36fd427f52"></script>
 <style>
 /* Find out about yourself (B2, 22 Oct 2026): the box and the row. Kept here, not in logicers.css, so no shared file needs re-stamping. */
@@ -176,7 +176,25 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
 @keyframes rooms-shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 .rooms-code .livejoin-go { appearance: none; flex: none; border: 0; height: 46px; padding: 0 20px; border-radius: 999px; background: #2D4FC4; color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
 .gameroom { cursor: pointer; }
+/* Build your own (11 Nov 2026): the left half of the slim box opens a sheet like the rooms sheet, one row per thing to build
+   (#bo-list: a picture, a name, one short line). A new row is one more <li> there; the script counts each row by its data-row.
+   The quiet "English only" line shows on the language homes only. Without a script (or a browser without <dialog>) the sheet
+   is simply shown at the foot of the page and the half links to it. */
+.bo-list { list-style: none; margin: 16px 0 0; padding: 0; }
+.bo-list li { margin: 0; }
+.bo-list .rooms-item { min-height: 64px; transition: transform .15s, border-color .15s, box-shadow .15s; }
+.bo-list .rooms-item:focus-visible { outline: 3px solid #2D4FC4; outline-offset: 2px; }
+.bo-list .rooms-item:active { transform: scale(.99); }
+.bo-list .rooms-text { flex: 1; }
+.bo-list .rooms-text span.bo-en { margin-top: 5px; font-size: 0.8rem; font-weight: 500; }
+html[lang="en"] .bo-list .bo-en { display: none; }
+#dlg-build .close { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
+@media (prefers-color-scheme: dark) { .bo-list .rooms-item:focus-visible { outline-color: #9DB2FF; } }
+@media (prefers-reduced-motion: reduce) { .bo-list .rooms-item, .bo-list .rooms-item:active { transition: none; transform: none; } }
+html.bo-flat #dlg-build { display: block; position: static; width: auto; max-width: 440px; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); }
+html.bo-flat #dlg-build .close { display: none; }
 </style>
+<noscript><style>#dlg-build { display: block; position: static; width: auto; max-width: 440px; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); } #dlg-build .close { display: none; }</style></noscript>
 </head>
 <body class="home">
 
@@ -248,20 +266,20 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     <span class="sl-count" hidden></span>
     <span class="sl-sign"></span>
   </a>
-  <!-- Build a game · Join a game (16 Oct 2026): one slim box in two halves, right under Today and the same width, so the
+  <!-- Build your own · Join with a code (16 Oct 2026; the words and the left half's sheet 11 Nov 2026): one slim box in two halves, right under Today and the same width, so the
        games come into view sooner (Khayyam: "those boxes are too tall vertically and take too much space"). Join is a
        link to the live page, which has its own code box; with the script a tap opens the code field here instead,
-       across the whole box. The form has no named field, so even without a script nothing of the code reaches any
+       across the whole box. The left half opens the "Build your own" sheet (#dlg-build, below). The form has no named field, so even without a script nothing of the code reaches any
        server: home.js sends the browser to live/#CODE. -->
   <div class="livebox" id="livebox">
-    <a class="lb lb-build" id="lb-build" href="../live/build/">
+    <a class="lb lb-build" id="lb-build" href="#dlg-build" aria-haspopup="dialog" aria-controls="dlg-build">
       <span class="lb-badge" data-s="site.new">Novo</span>
       <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
-      <b class="lb-h" data-s="home.build_game">Criar um jogo</b>
+      <b class="lb-h" data-s="home.build_own">Criar o seu</b>
     </a>
     <a class="lb lb-join" id="lb-join" href="../live/" aria-haspopup="dialog" aria-controls="dlg-rooms">
       <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
-      <b class="lb-h" data-s="home.join_game">Entrar em um jogo</b>
+      <b class="lb-h" data-s="home.join_code">Entrar com um código</b>
     </a>
   </div>
   <!-- Game Room and "players said" (20 Oct 2026, Khayyam: "as tall as Build a game or Join a game, right under
@@ -576,6 +594,27 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
         <button class="livejoin-go" type="submit" data-s="home.join">Entrar</button>
       </div>
     </form>
+  </div>
+</dialog>
+
+<!-- The "Build your own" sheet (11 Nov 2026): one row per thing to build, in #bo-list. A row is a picture, a name and one short
+     line; a third one is one more <li> with its own data-row (counted as home/build/<data-row>). The Studio's address carries the
+     page's language, so it is a string of each language's doc. The live quiz exists in English only for now: the language homes
+     show the site's own quiet "English only" line under it. -->
+<dialog id="dlg-build" aria-labelledby="dlg-build-t">
+  <div class="sheet rooms-sheet">
+    <button class="chip round close" type="button" id="dlg-build-x" aria-label="Fechar" data-s-aria-label="site.close">&times;</button>
+    <h2 id="dlg-build-t" data-s="home.build_own">Criar o seu</h2>
+    <ul class="rooms-list bo-list" id="bo-list">
+      <li><a class="rooms-item" data-row="daily" href="https://by.logicers.com/new/?lang=pt" data-s-href="home.build_daily_href">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="6" y="9" width="32" height="30" rx="6" fill="#F3F4F9"/><path d="M6 15a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v3H6z" fill="#7C5CF0"/><rect x="13" y="5" width="3.6" height="8" rx="1.8" fill="#4B33A8"/><rect x="27.4" y="5" width="3.6" height="8" rx="1.8" fill="#4B33A8"/><path d="M18.2 25.6a3.9 3.9 0 1 1 6.2 3.1c-1.3.9-2.2 1.6-2.2 3" stroke="#FF8A57" stroke-width="3" stroke-linecap="round"/><circle cx="22.2" cy="35.2" r="1.8" fill="#FF8A57"/></svg></span>
+        <span class="rooms-text"><b data-s="home.build_daily">Perguntas diárias</b><span data-s="home.build_daily_sub">Uma por dia, para a sua turma ou equipe</span></span>
+      </a></li>
+      <li><a class="rooms-item" data-row="live" href="../live/build/">
+        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="5" width="16.5" height="16.5" rx="4.5" fill="#7C5CF0"/><rect x="22.5" y="5" width="16.5" height="16.5" rx="4.5" fill="#FF8A57"/><rect x="5" y="22.5" width="16.5" height="16.5" rx="4.5" fill="#2D4FC4"/><rect x="22.5" y="22.5" width="16.5" height="16.5" rx="4.5" fill="#2FA36B"/><path d="M26.8 31l3.2 3.2 5.2-5.6" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="rooms-text"><b data-s="home.build_live">Quiz ao vivo</b><span data-s="home.build_live_sub">Todo mundo responde junto</span><span class="bo-en" data-s="lang.english_only">Esta página está só em inglês por enquanto.</span></span>
+      </a></li>
+    </ul>
   </div>
 </dialog>
 </main>
@@ -961,7 +1000,7 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
     var mode = "go", kind = null;
     function open(m) {
       mode = m; kind = null;
-      title.textContent = m === "join" ? T("home.join_game") : T("home.game_rooms");
+      title.textContent = m === "join" ? T("home.join_code") : T("home.game_rooms");
       sub.textContent = m === "join" ? T("home.which_room") : T("home.own_phone");
       form.hidden = true; inp.value = ""; form.classList.remove("bad");
       for (var i = 0; i < items.length; i++) items[i].classList.remove("on");
@@ -989,6 +1028,27 @@ html[lang="en"] .lg-line a[hreflang="en"], html[lang="it"] .lg-line a[hreflang="
       if (!K.ok.test(v)) { form.classList.add("bad"); inp.focus(); return; }
       var base = window.location.protocol === "file:" ? "" : "";
       window.location.href = base + K.go(v);
+    });
+  })();
+
+  /* Build your own (11 Nov 2026): the left half of the slim box opens a sheet with one row per thing to build. A row is an
+     entry in #bo-list (<li><a data-row="name" href=...>): a new row is one more entry there and nothing else. Opening the
+     sheet counts home/build-open, a tap on a row home/build/<its data-row>. Without a script, or in a browser without
+     <dialog>, the half is a link to the sheet, shown at the foot of the page (see the styles). */
+  (function () {
+    var dlg = document.getElementById("dlg-build"), opener = document.getElementById("lb-build"), list = document.getElementById("bo-list");
+    if (!dlg || !opener) return;
+    if (!dlg.showModal) { document.documentElement.classList.add("bo-flat"); return; }
+    opener.addEventListener("click", function (e) {
+      e.preventDefault();
+      dlg.showModal();
+      if (window.TurnsOut) window.TurnsOut.count("home/build-open");
+    });
+    document.getElementById("dlg-build-x").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    if (list) list.addEventListener("click", function (e) {
+      var row = e.target && e.target.closest ? e.target.closest("[data-row]") : null;
+      if (row && window.TurnsOut) window.TurnsOut.count("home/build/" + row.getAttribute("data-row"));
     });
   })();
 })();
