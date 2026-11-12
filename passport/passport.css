@@ -151,3 +151,9 @@
   .pp-after, .pp-stamp.new { animation: none; }
   .pp-opt { transition: none; }
 }
+
+/* In someone else's page (?embed=1, 11 Nov 2026): the game keeps a height of its own (the window is the frame, and the host
+   page sizes the frame to the game, so a layout of svh would chase itself). 600 px less 73, as in Altitude. */
+html.embed { --kh: 54px; }
+html.embed .pp { height: calc(600px - 73px); min-height: 30rem; }
+html.embed .endstrip { display: none; }

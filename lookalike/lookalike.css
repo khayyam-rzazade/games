@@ -150,3 +150,8 @@
   .lk-word, .lk-opt, .lk-verdict, .lk-half.a, .lk-half.b, .lk-next { animation: none; }
   .lk-pips i { transition: none; }
 }
+
+/* In someone else's page (?embed=1, 11 Nov 2026): the game keeps a height of its own: 600 px less 73, as in Altitude (the window is
+   the frame, and the host page sizes the frame to the game). */
+html.embed .lk { min-height: calc(600px - 73px); }
+html.embed .endstrip { display: none; }

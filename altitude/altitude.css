@@ -325,3 +325,11 @@
   .cheer.show { transform: translateX(-50%); }          /* 30 Oct 2026: without it the window lost its centring and sat half off the right edge */
   .sky, .sky .cloud, .sky .range { transition: none; }
 }
+
+/* In someone else's page (?embed=1, 11 Nov 2026): the game keeps a height of its own. Everything above sizes the game by the
+   window (svh), and in a frame the window is the frame, which the host page sizes to the game: they would chase each other.
+   600 px is the snippet's frame less 73 (the page's 10 above, the footer's 63 below), so a frame that nobody resizes (a plain
+   oEmbed frame, or a site that drops the embed.js line) still shows the whole game. */
+html.embed { --kh: 46px; }
+html.embed .cl { height: calc(600px - 73px); min-height: 30rem; }
+html.embed .endstrip { display: none; }

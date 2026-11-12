@@ -166,3 +166,9 @@ dialog.ss-zoom { width: min(100% - 16px, 42rem); max-height: min(100% - 16px, 52
 @media (prefers-reduced-motion: reduce) {
   .ss-house.on, .panel.revealed .ss-house.real, .panel.revealed .ss-house.mine { transition: none; }
 }
+
+/* In someone else's page (?embed=1, 11 Nov 2026): the photos follow the frame's planned height, not the frame itself (the frame
+   follows the game, so a size taken from the window would chase it). No header here; the reserve is what is left around the photos. */
+html.embed { --ss-reserve: 26.4rem; }
+@media (min-width: 56rem) { html.embed { --ss-reserve: 28.6rem; } }
+html.embed .ss-photos { width: min(100%, calc((var(--embed-h) - var(--ss-reserve)) * 1.5)); }

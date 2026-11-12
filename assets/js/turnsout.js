@@ -794,40 +794,56 @@
      load and after every change of the page, and may set the frame to N pixels. No way on to other games, no home-screen
      offers, no reminders: those are for a phone's own browser.
      ------------------------------------------------------------------ */
-  /* the embed words, with the English as a fallback while a language file has not been rebuilt with them */
+  /* The embed words (strings docs, section V: claude/logicers-strings-embed*.md). They come from the page's dictionary. A word game's
+     page carries the English dictionary only (its words are its own, in the language it is played in), so for it they come from
+     assets/lang/tell.js in that language (11 Nov 2026). The English below is only the safe fallback, for a dictionary that has
+     not been built with them yet; it is never the place to change a word. */
+  var EMBED_EN = {
+    "embed.button": "Embed", "embed.powered": "powered by Logicers",
+    "embed.what": "Put this game on your own page, like a video.", "embed.s1": "Copy the code.",
+    "embed.s2": "In Moodle or any site, switch to code view and paste.", "embed.s3": "In WordPress, just paste the game’s link.",
+    "embed.code": "Copy the code", "embed.link": "Copy the link", "embed.done": "Copied", "share.copy_failed": "Copying did not work here."
+  };
+  function embedLang() { return String(document.documentElement.lang || "en").slice(0, 2).toLowerCase(); }
   function embedWords(key) {
-    var en = { "embed.button": "Embed", "embed.powered": "powered by Logicers" };
-    return T.has && T.has(key) ? T(key) : en[key];
+    var l = embedLang(), D = window.LG_TELL;
+    try {
+      if (T.has && T.has(key) && (!LG || LG.lang === l)) return T(key);                          // the page's own dictionary, in the page's own language
+      if (D && D[l] && typeof D[l][key] === "string") return D[l][key];                           // a word game, played in another language than its page's dictionary
+      if (T.has && T.has(key)) return T(key);
+    } catch (e) { /* the English below */ }
+    return EMBED_EN[key] || "";
   }
   function fullPage() { return String(window.location.href).split(/[?#]/)[0].replace(/index\.html$/, ""); }
+  var EMBED_IDS = { street: "same-street" };       // a page's data-g where it is not the game's id
   function embedGame() {
-    var key = document.body && document.body.getAttribute("data-g"), id = "";
-    GAMES.forEach(function (G) { if (G.key === key) id = G.id; });
+    var key = document.body && document.body.getAttribute("data-g"), id = EMBED_IDS[key] || "";
+    GAMES.concat(WORDS).forEach(function (G) { if (G.key === key) id = G.id; });
     return id;
   }
+  function embedName(id) {
+    var name = id === "same-street" ? "Same Street" : "";
+    GAMES.concat(WORDS).forEach(function (x) { if (x.id === id) name = x.name; });
+    return name;
+  }
+  /* the address a frame loads: the page itself, slim. A word game's language is a choice of the player's (one page for all six),
+     so the frame is told it; a daily game's language is its folder. */
+  function embedSrc() {
+    var l = embedLang(), src = fullPage() + "?embed=1";
+    WORDS.forEach(function (w) { if (document.body && document.body.getAttribute("data-g") === w.key && l !== "en") src += "&lang=" + l; });
+    return src;
+  }
+  /* the iframe, and the one line that lets it fit its game (by.logicers.com/embed.js listens to the height the page posts;
+     without the line, or where a site removes scripts, the frame simply stays 600 px tall) */
   function embedSnippet(o) {
-    var G = null;
-    GAMES.forEach(function (x) { if (o && x.id === o.game) G = x; });
-    var title = (G ? G.name + " · " : "") + "Logicers";
-    return '<iframe src="' + fullPage() + '?embed=1" width="100%" height="600" loading="lazy" allow="clipboard-write" style="border:0;border-radius:24px" title="' + esc(title) + '"></iframe>';
+    var name = embedName(o && o.game);
+    var title = (name ? name + " · " : "") + "Logicers";
+    return '<iframe src="' + embedSrc() + '" width="100%" height="600" loading="lazy" allow="clipboard-write" style="border:0;border-radius:24px" title="' + esc(title) + '"></iframe>\n' +
+           '<script src="https://by.logicers.com/embed.js" async></script>';
   }
   /* 9 Nov 2026 (Khayyam could not tell what Embed is): the button opens a small panel: what it is, in one line, then how, in
-     three short steps, with the code and the link to copy. Its words are here in the six languages until they are moved
-     into the strings doc (a built language file that has them wins: T.has). */
-  var EMBED_WORDS = {
-    en: { what: "Put this game on your own page, like a video.", s1: "Copy the code.", s2: "In Moodle or any site, switch to code view and paste.", s3: "In WordPress, just paste the game’s link.", code: "Copy the code", link: "Copy the link", done: "Copied" },
-    it: { what: "Metti questo gioco nella tua pagina, come un video.", s1: "Copia il codice.", s2: "Su Moodle o su qualsiasi sito, apri il codice sorgente e incolla.", s3: "Su WordPress, incolla solo il link del gioco.", code: "Copia il codice", link: "Copia il link", done: "Copiato" },
-    tr: { what: "Bu oyunu kendi sayfana koy, bir video gibi.", s1: "Kodu kopyala.", s2: "Moodle’da ya da başka bir sitede kaynak kodu aç ve yapıştır.", s3: "WordPress’te oyunun bağlantısını yapıştırman yeter.", code: "Kodu kopyala", link: "Bağlantıyı kopyala", done: "Kopyalandı" },
-    es: { what: "Pon este juego en tu propia página, como un vídeo.", s1: "Copia el código.", s2: "En Moodle o en cualquier sitio, abre el código fuente y pega.", s3: "En WordPress, solo pega el enlace del juego.", code: "Copiar el código", link: "Copiar el enlace", done: "Copiado" },
-    pt: { what: "Coloque este jogo na sua página, como um vídeo.", s1: "Copie o código.", s2: "No Moodle ou em qualquer site, abra o código-fonte e cole.", s3: "No WordPress, é só colar o link do jogo.", code: "Copiar o código", link: "Copiar o link", done: "Copiado" },
-    fr: { what: "Mets ce jeu sur ta propre page, comme une vidéo.", s1: "Copie le code.", s2: "Dans Moodle ou sur n’importe quel site, ouvre le code source et colle.", s3: "Dans WordPress, colle simplement le lien du jeu.", code: "Copier le code", link: "Copier le lien", done: "Copié" }
-  };
-  function embedSay(k) {
-    var key = "embed." + k;
-    try { if (T.has && T.has(key)) return T(key); } catch (e) { /* the words below */ }
-    var l = String(document.documentElement.lang || "en").slice(0, 2).toLowerCase();
-    return (EMBED_WORDS[l] || EMBED_WORDS.en)[k] || EMBED_WORDS.en[k];
-  }
+     three short steps, with the code and the link to copy. Its words are in the strings docs (11 Nov 2026). */
+  function embedSay(k) { return embedWords("embed." + k); }
   function embedButton(o) {
     var box = el("div", "fin-embed-box");
     var b = el("button", "fin-embed");
@@ -848,7 +864,7 @@
       c.type = "button";
       c.addEventListener("click", function () {
         count_("embed/" + what + (o && o.game ? "/" + o.game : ""));
-        copyText(text()).then(function (done) { status.textContent = done ? embedSay("done") : T("share.copy_failed"); });
+        copyText(text()).then(function (done) { status.textContent = done ? embedSay("done") : embedWords("share.copy_failed"); });
       });
       return c;
     }
@@ -895,13 +911,18 @@
     a.href = fullPage();
     a.target = "_blank";
     a.rel = "noopener";
-    var words = embedWords("embed.powered"), at = words.indexOf("Logicers");
-    if (at < 0) a.textContent = words;
-    else {
-      a.appendChild(document.createTextNode(words.slice(0, at)));
-      a.appendChild(el("b", "", "Logicers"));
-      a.appendChild(document.createTextNode(words.slice(at + 8)));
+    function words() {                                  // again when a word game sets its language (after the page has loaded)
+      var w = embedWords("embed.powered"), at = w.indexOf("Logicers");
+      a.textContent = "";
+      if (at < 0) a.textContent = w;
+      else {
+        a.appendChild(document.createTextNode(w.slice(0, at)));
+        a.appendChild(el("b", "", "Logicers"));
+        a.appendChild(document.createTextNode(w.slice(at + 8)));
+      }
     }
+    words();
+    if (window.MutationObserver) new window.MutationObserver(function () { words(); embedSoon(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
     a.addEventListener("click", function () { count_("embed/full-page/" + embedGame()); });
     foot.appendChild(a);
     document.body.appendChild(foot);
@@ -2569,6 +2590,7 @@
     wordNext: wordNext,
     wordStrip: wordStrip,              // Tell Khayyam + the World table's word side, for a word game's end card (30 Oct 2026)
     wordClock: wordClock,              // the time to the new games, on the card once all three word games are played (7 Nov 2026)
+    embedButton: embedButton,          // the Embed button and its sheet, for a word game's end card (11 Nov 2026)
     tellIn: tellIn,
     GROUP: GROUP,
     group: group,

@@ -181,6 +181,11 @@
   }
   /* the word's language follows the site's language chip; a pick made here holds only until the site's chip is changed */
   function pickLang() {
+    if (LG && LG.embed) {                                   /* in someone else's page the page says the language: ?embed=1&lang=it (11 Nov 2026) */
+      var q = "";
+      try { q = String(new window.URLSearchParams(window.location.search).get("lang") || "").toLowerCase(); } catch (e) { q = ""; }
+      if (CODES.indexOf(q) >= 0) return q;
+    }
     var site = siteLang(), own = null;
     try { own = JSON.parse(window.localStorage.getItem(LANG_KEY) || "null"); } catch (e) { own = null; }
     if (own && CODES.indexOf(own.l) >= 0 && (own.s || null) === (site || null)) return own.l;
@@ -940,6 +945,7 @@
   }
   function onCardKey(e) { if (e.key === "Escape") closeCard(false); }
   function openCard() {
+    if (LG && LG.embed) return;                              /* in a frame the finished game stays as it is: no sheet, nothing that leads away (11 Nov 2026) */
     if (!run || !entry) return;
     closeCard(true);
     var wrap = el("div", "fin");
@@ -1005,6 +1011,8 @@
     more.appendChild(el("span", "", T("more")));
     sheet.appendChild(more);
 
+    /* the Embed button last, as on the nine games' end cards (11 Nov 2026): this game on someone else's page */
+    if (TO && TO.embedButton) { try { sheet.appendChild(TO.embedButton({ game: "passport" })); } catch (e) { /* the Embed button is optional */ } }
     wrap.appendChild(sheet);
     document.body.appendChild(wrap);
     cardOpen = true;

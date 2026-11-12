@@ -1580,5 +1580,10 @@ html.embed .wrap, html.embed .wrap.play { padding-bottom: 6px; }
    header that is not there. */
 html.embed { --embed-h: 600px; }
 @media (min-width: 40rem) { html.embed { --embed-h: 656px; } }
+/* 11 Nov 2026: 100 of Us's own reserve is read from the screen's height (three rules above), and in a frame the screen is the frame,
+   which follows the game: at 600 the short-screen reserve made the game 606 high, the frame grew to 606, the long reserve made
+   it 599, and so on without end. In a frame the long-screen values hold always. */
+html.embed { --reserve: 22.5rem; }
+@media (min-width: 56rem) { html.embed { --reserve: 26.2rem; } }
 html.embed .crowd { width: min(100%, calc((var(--embed-h) - var(--reserve) - var(--stamp-room, 0px) - 27px) / 1.1)); }
 html.embed .lc-subject .lc-pic { height: clamp(5.5rem, calc(var(--embed-h) - var(--lc-reserve, 30.3rem) - var(--stamp-room, 0px)), 13rem); }
