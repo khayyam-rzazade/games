@@ -291,7 +291,12 @@
     if (only) { note(); return; }
     chip();
     line();
-    if (!saved()) sheet(true);
+    /* 12 Nov 2026: a first visit on an English page from a browser that is itself English gets no sheet (nothing
+       to ask: English is what they would pick, and it stood between a visitor from a directory and the game).
+       The chip stays for a change. Every other first visit asks as before: a browser in one of the other five
+       languages, a browser in a language the site does not have, and an English browser on a page in another language. */
+    var ph = phone();
+    if (!saved() && !(lang === "en" && ph && ph[0] === "en")) sheet(true);
   }
 
   /* ---- a page that speaks its content's language ----

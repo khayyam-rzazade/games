@@ -1419,7 +1419,11 @@
     stats.type = "button";
     stats.appendChild(document.createTextNode(next ? T("fin.stats") : T("fin.explanation")));
     sheet.appendChild(stats);
-    try { sheet.appendChild(embedButton(o)); } catch (e) { /* the Embed button is optional */ }
+    /* 12 Nov 2026: the Embed button is for people who run a site or a class, so it waits for the last card of the day
+       (and, as before, never shows on a phone: CSS). Under "Next game" it was a third action on the card that matters most. */
+    if (!next) {
+      try { sheet.appendChild(embedButton(o)); } catch (e) { /* the Embed button is optional */ }
+    }
     wrap.appendChild(sheet);
 
     var fns = [], done = false;
@@ -1469,7 +1473,13 @@
       document.body.appendChild(wrap);
       document.addEventListener("keydown", onKey);
       count_(next ? "onward-sheet/seen" : "onward-sheet/day-done");
-      try { sheet.focus({ preventScroll: true }); } catch (e) { /* no focus */ }
+      /* 12 Nov 2026: on a card that has "Next game", the focus lands on that link, so Enter goes on to the next game
+         (it landed on the card itself, and Enter did nothing until the player pressed Tab). The last card keeps it
+         on the card, which has no single way on. */
+      try {
+        var goOn = next ? sheet.querySelector(".fin-next") : null;
+        (goOn || sheet).focus({ preventScroll: true });
+      } catch (e) { /* no focus */ }
       if (!next) autoDown(sheet, wrap);
     }
     finTimer = window.setTimeout(rise, wait);
