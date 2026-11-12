@@ -21,7 +21,7 @@
    at once, and so does Logicers' desk on their request. A game is told the address is on only if it was
    ticked there, so setting an email as a way back never tells whether someone else put it on the list.
    Otherwise it stays while one of the games it was ticked from lives, and goes with the last of them: a game
-   deleted by its maker or two months after its last use, or one whose email is changed or removed (kit.js
+   deleted by its maker or a year after its last use, or one whose email is changed or removed (kit.js
    tells this object each time). Once a month the alarm asks each of those games whether it still carries the
    email (kit.js, wayIs), so a call that went missing is put right.
    Anyone can type any address, so a tick is a request, not a proof: the Worker takes 20 new ones a day from

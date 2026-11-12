@@ -35,7 +35,8 @@ const FAULTS = [
   ["a redo adds", "src/room.js", [["const rec = { a: c.compact, s };\n    this.phones.set(h, rec);", "const rec = { a: c.compact, s };\n    this.phones.set(h + this.phones.size, rec);"]]],
   ["a live round lasts 24 hours", "src/room.js", [["export const LIVE_MS = 12 * HOUR;", "export const LIVE_MS = 24 * HOUR;"]]],
   ["an open round lasts 8 days", "src/room.js", [["export const OPEN_MS = 7 * DAY;", "export const OPEN_MS = 8 * DAY;"]]],
-  ["kept 61 days", "src/room.js", [["export const KEEP_MS = 60 * DAY;", "export const KEEP_MS = 61 * DAY;"]]],
+  ["kept 366 days", "src/room.js", [["export const KEEP_MS = 365 * DAY;", "export const KEEP_MS = 366 * DAY;"]]],
+  ["kept 60 days (the old rule)", "src/room.js", [["export const KEEP_MS = 365 * DAY;", "export const KEEP_MS = 60 * DAY;"]]],
   ["a poll is a use", "src/room.js", [["if (!r) return no(404, \"unknown\");\n    return out(200, '{\"ok\":true,\"state\":'", "if (!r) return no(404, \"unknown\");\n    if (this.touch(r)) await this.save();\n    return out(200, '{\"ok\":true,\"state\":'"]]],
   ["the host page is not a use", "src/room.js", [["if (!(await this.hostOk(r, b.host_key))) return no(403, \"host\");\n    if (this.touch(r)) await this.save();", "if (!(await this.hostOk(r, b.host_key))) return no(403, \"host\");"]]],
   ["any host key", "src/room.js", [["if (!(await this.hostOk(r, b.host_key))) return no(403, \"host\");\n    const t = this.now();", "const t = this.now();"]]],
@@ -73,7 +74,7 @@ const FAULTS = [
   ["five pending become all", "src/worker.js", [["const PENDING_PER_ID = 5;", "const PENDING_PER_ID = 500;"]]],
   /* controls: they change nothing and must pass */
   ["control: a comment", "src/items.js", [["export const FLOOR = 10;", "export const FLOOR = 10;   // a control"]], true],
-  ["control: the same rule written another way", "src/room.js", [["export const KEEP_MS = 60 * DAY;", "export const KEEP_MS = DAY * 60;"]], true],
+  ["control: the same rule written another way", "src/room.js", [["export const KEEP_MS = 365 * DAY;", "export const KEEP_MS = DAY * 365;"]], true],
 ];
 
 function plant(dir, file, pairs) {

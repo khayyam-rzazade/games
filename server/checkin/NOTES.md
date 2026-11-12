@@ -6,7 +6,7 @@ Chat B owns `server/checkin` only. What must change or be decided elsewhere is h
 ## 1. What the pages must do to match the server
 
 1. **Codes are 6 letters**, not 5 as in the find-out room (consonants only, no L, no Y: `BCDFGHJKMNPQRSTVWXZ`).
-   A code is the permission for two months, so a guess must be hard. The page's code box and its check take 6.
+   A code is the permission for a year (two months until 12 Nov 2026), so a guess must be hard. The page's code box and its check take 6.
 2. **The links** the server hands out: join `https://logicers.com/checkin/room/#CODE`, host
    `https://logicers.com/checkin/host/#<host_key>`. If C uses another form, or the section's folder gets the
    chosen name, change `JOIN_URL` / `HOST_URL` in `server/checkin/wrangler.jsonc` (`{code}`, `{key}` are filled).

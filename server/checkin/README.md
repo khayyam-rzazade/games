@@ -12,8 +12,10 @@ The plan is `claude/checkin-plan.md` (sections 4–8); what it does and keeps is
   made in, and per revealed round only group totals — counts per answer option, from 10 phones; a split's sides
   from 10 each — with the round's dates, mode, phone counts and the "we'll try this" tag. While a round is open,
   each phone's answers sit under a salted hash of the phone's key; at the reveal they are counted and deleted.
-  A room is deleted 2 months after its last use (a join, a done, a host tap, the host page opened; polls do not
-  count), or at once when the host taps delete.
+  A room is deleted a year after its last use (a join, a done, a host tap, the host page opened; polls do not
+  count), or at once when the host taps delete. (Until 12 Nov 2026 it was 2 months; a room made under that rule
+  follows the new one: its delete date is always worked out from its last use, and its old alarm, when it rings,
+  only sets the new date.) The host store keeps the last 120 rounds of a room, however long the room lives.
 - **Research** (D1, only with a yes): `/upload` puts a check-in in `pending` with the browser's anonymous ID; the
   consent card's yes moves it to `checkins` — the ID, the room's tag hashed (nothing for a check-in alone), the
   round, the language, the items' version (60), the role, the age band and country tapped on the card, the twenty

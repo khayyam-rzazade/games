@@ -15,8 +15,8 @@
      "tx:<q>" a typed question's different answers, once each with how many gave them, for the maker
      "gr:<q>" the typed answers to that question the maker ticked as right
      "fam"    on the first game of a family only: the codes of its copies, for Logicers' stop. It outlives
-            the game: when a first game that has copies is deleted (by its maker, or two months after its
-            last use), only this record stays (codes, nothing else), and it goes two months after the last
+            the game: when a first game that has copies is deleted (by its maker, or a year after its
+            last use), only this record stays (codes, nothing else), and it goes a year after the last
             use of any copy, so a family can always be stopped whole
    Every value stays far below Cloudflare's 2 MB for one value: a typed question's answers are counted one
    row per question, at most 300 different ones each, and the maker can tick only answers that were given.
@@ -42,8 +42,13 @@
    the maker's list count as wrong until the maker ticks them on the results page; then every score is
    worked out again.
 
-   It is deleted, with everything of it, two months after its last use: a save, opening it with the edit link,
+   It is deleted, with everything of it, a year after its last use: a save, opening it with the edit link,
    hosting it, starting a copy of it, a play alone. The alarm does it; nobody has to remember.
+   (Until 12 Nov 2026 it was two months. The delete date is worked out from the last use, never trusted from the
+   date stored with the game: a game saved under the two-month rule is read as "last use + a year" when the object
+   wakes, and its old alarm, when it rings, sets the new one instead of deleting. The family's record keeps its
+   own last use ("last") for the same reason; one written before has only "until", from which its last use is
+   taken back.)
 
    Whoever holds the edit key can change, host, see and delete it. The copy token (keys.js) only lets someone
    start a copy of their own. The code alone shows what a player may see (info), and nothing of the answers.
@@ -63,7 +68,8 @@ export const LANGS = ["en", "it", "tr", "es", "pt", "fr"];   // 29 Oct 2026: Spa
 export const TYPES = ["num", "mc", "tf", "tx"];
 export const MAX_QS = 100;
 const TIMERS = [0, 30, 60, 90];
-const KEEP = 60 * 86400e3;          // two months after the last use
+const KEEP = 365 * 86400e3;         // a year after the last use (12 Nov 2026; until then 60 days)
+const OLD_KEEP = 60 * 86400e3;      // the rule before, to read the date of a family's record written under it
 const TOUCH_EVERY = 3600e3;         // a busy game writes its last use at most once an hour
 const MAX_COPIES = 20000;           // copies a family's first game remembers (for stopping them all); more are counted
 const DAY = 86400e3;
@@ -316,12 +322,21 @@ export class Kit extends DurableObject {
     /* the checks run the server with TEST_TIMES=fast to see a saved game vanish in seconds; never on Cloudflare */
     const fast = env && env.TEST_TIMES === "fast";
     this.keep = fast ? 6000 : KEEP;
+    this.oldKeep = fast ? 6000 : OLD_KEEP;
     this.touchEvery = fast ? 0 : TOUCH_EVERY;
     this.famEvery = fast ? 0 : DAY;   // a copy in use tells its family's first game at most once a day (famTouch)
     ctx.blockConcurrencyWhile(async () => {
       this.meta = (await ctx.storage.get("meta")) || null;
       this.kit = this.meta ? (await ctx.storage.get("kit")) || null : null;
+      if (this.meta) this.meta.until = this.dueOf(this.meta);   // a game saved under an older rule follows today's
     });
+  }
+
+  /* when a game is deleted: its last use plus the keeping time, whatever "until" was stored with it (the rule
+     may have changed since). A game with no time of use at all keeps the stored date. */
+  dueOf(m) {
+    const last = m.used || m.saved || m.made;
+    return last ? last + this.keep : m.until;
   }
 
   /* ---- for the Worker ---- */
@@ -642,7 +657,16 @@ export class Kit extends DurableObject {
   }
 
   /* the family's record ("fam", see the top): null on a game with no copies */
-  async famRec() { return (await this.ctx.storage.get("fam")) || null; }
+  async famRec() {
+    const f = (await this.ctx.storage.get("fam")) || null;
+    if (f && f.until) {                              // the record alone: it lives a year after the last use of any copy
+      if (!f.last) f.last = f.until - this.oldKeep;  // written under the two-month rule, which kept only "until"
+      f.until = f.last + this.keep;
+    }
+    return f;
+  }
+  /* the record's own last use, and the date it goes */
+  famStamp(f) { f.last = Date.now(); f.until = f.last + this.keep; }
 
   /* on the first game of a family, or on the record it left: one more copy (past MAX_COPIES only counted) */
   addCopy(code) { return this.serial(() => this.addCopyNow(code)); }
@@ -656,19 +680,19 @@ export class Kit extends DurableObject {
     if (f.copies.includes(code)) return true;
     if (f.copies.length >= MAX_COPIES) f.over = (f.over || 0) + 1;
     else f.copies.push(code);
-    if (!this.meta) f.until = Date.now() + this.keep;   // the record alone: it lives on with its family
+    if (!this.meta) this.famStamp(f);   // the record alone: it lives on with its family
     await this.ctx.storage.put("fam", f);
     if (!this.meta) await this.ctx.storage.setAlarm(f.until);
     return true;
   }
 
-  /* a copy in use, at most once a day: the record its family's first game left lives on two more months */
+  /* a copy in use, at most once a day: the record its family's first game left lives on a year more */
   familyTouch() { return this.serial(() => this.familyTouchNow()); }
   async familyTouchNow() {
     if (this.meta) return true;                      // the first game is here: the record lives with it
     const f = await this.famRec();
     if (!f) return false;
-    f.until = Date.now() + this.keep;
+    this.famStamp(f);
     await this.ctx.storage.put("fam", f);
     await this.ctx.storage.setAlarm(f.until);
     return true;
@@ -848,7 +872,7 @@ export class Kit extends DurableObject {
     }
   }
 
-  /* a use: the two months start again (written at most once an hour for a busy game) */
+  /* a use: the year starts again (written at most once an hour for a busy game) */
   async touch() {
     const m = this.meta, t = Date.now();
     if (!m) return;
@@ -878,7 +902,7 @@ export class Kit extends DurableObject {
     this.grades = null;
     this.tx = null;
     if (f && (f.copies.length || f.over)) {
-      f.until = Date.now() + this.keep;
+      this.famStamp(f);
       await this.ctx.storage.put("fam", f);
       await this.ctx.storage.setAlarm(f.until);
     }

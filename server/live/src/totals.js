@@ -10,15 +10,25 @@
    One exception, since 15 Oct 2026: the bytes of saved games (kit.js). Disk is the one thing a stranger
    could fill on purpose, and a full disk would stop every game, live ones included. So new saved games, and
    saved games that grow, are counted here in bytes per day, and above the day's budget saving waits until
-   midnight (UTC) while everything else goes on. The budget keeps two months of saved games (they are
-   deleted two months after their last use) well inside the free plan's 5 GB. */
+   midnight (UTC) while everything else goes on. Saved games are deleted a year after their last use (until
+   12 Nov 2026, two months), so the budget below bounds the disk at a year of the budget spent in full, every day:
+   about 25.5 GB, which on Workers Paid costs about $4 a month at its worst (see the note at the budgets). */
 import { DurableObject } from "cloudflare:workers";
 
 function day(t) { return new Date(t || Date.now()).toISOString().slice(0, 10).replace(/-/g, ""); }
 function blank() { return { made: 0, started: 0, rounds: 0, players: 0, kits: 0, kbytes: 0, pbytes: 0 }; }
-/* Bytes a day (kbytes: saved games, pbytes: plays alone kept with them). Saved games are deleted two months
-   after their last use, so the two together keep well under the free plan's 5 GB (60 × 70 MB = 4.2 GB at
-   most). With the paid plan, storage has no cap, and both can be raised. */
+/* Bytes a day (kbytes: saved games, pbytes: plays alone kept with them), counted as the content's own bytes
+   (the disk is a little more).
+   12 Nov 2026, a year instead of two months, and the account is on Workers Paid (no 5 GB wall, but storage is
+   billed: the first 5 GB-month are included, then $0.20 per GB-month, Cloudflare's price list for SQLite-backed
+   Durable Objects): the two budgets together are 70 MB a day, so a year of them spent in full, every single day,
+   with nothing deleted, is 365 × 70 MB = 25.55 GB. Billed as it grows (the first months fall inside the 5 GB),
+   that is about $20 over the first year and about $4.10 a month at its end. That is the worst case: nobody
+   spends the budget every day, most games are a few kilobytes, and any game nobody uses for a year goes. The
+   one way past it is a game used again before its year is up, which keeps it for another year (and a stranger
+   can do that to his own games); then the disk grows by 25.55 GB a year while he keeps doing it, about $5 a
+   month more for each year, which the day's budget keeps slow. The budgets therefore stay as they were. To change
+   the bill, change them here: 1 MB a day less is 0.36 GB less after a year (about 7 cents a month). */
 const KIT_DAY_BYTES = 40e6;
 const PLAY_DAY_BYTES = 30e6;
 

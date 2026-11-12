@@ -12,6 +12,26 @@ import { scoreGame, RULES_VERSION } from './scoring.js?v=fe71806751';
    written by build_pages. */
 const LANG = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
 const DATA_V = { en: 'c650fe836a', it: 'aaaefa3b46', tr: '15c84b7654', es: '614dddce9c', pt: '7e3bd3d29d', fr: 'de1c3cdb45' };
+/* My Logicers (12 Nov 2026, Khayyam: "whenever an action is taken it has to sync immediately"): a phone that keeps a code loads the two
+   scripts that send its record to the server, as the game pages (assets/js/turnsout.js) and the check-in (checkin/assets/core.js) do, so
+   a finished find-out reaches the other phones at once. Any other phone loads nothing. start() calls loadMe() once the page is sure to
+   stay (after the language redirect). assets/js/me.js watches this page's own writes of lg.findout.v1 (a storage event never fires in the
+   page that wrote); meSoon() also tells it when a find-out is finished, as a daily game's count() does. */
+let meReady = null;
+function loadMe() {
+  try {
+    const kept = JSON.parse(localStorage.getItem('lg.me.v1'));
+    if (meReady || !kept || typeof kept.code !== 'string' || !kept.code) return;
+    meReady = window.LogicersMe ? Promise.resolve() : new Promise((done) => {
+      ['me-stats', 'me'].forEach((f, i, all) => {
+        const s = document.createElement('script'); s.src = new URL('../assets/js/' + f + '.js', import.meta.url).href; s.async = false;
+        if (i === all.length - 1) s.onload = s.onerror = () => done();
+        document.head.appendChild(s);
+      });
+    });
+  } catch (e) { /* My Logicers is optional */ }
+}
+function meSoon() { if (meReady) meReady.then(() => { try { if (window.LogicersMe) window.LogicersMe.soon(); } catch (e) { /* optional */ } }); }
 const DATA = await import(`./data${LANG === 'en' ? '' : '.' + LANG}.js?v=${DATA_V[LANG] || ''}`);
 const { ITEMS, COPY, COUNTRIES, PORTRAIT, UI } = DATA;
 const L = DATA.LANG || { code: 'en', item_version: 1, locale: 'en-GB', num_locale: 'en-US', base: '' };
@@ -712,6 +732,7 @@ function gamePage(n) {
     play.finished = Date.now(); play.duration_ms = play.finished - play.started; play.result = result; play.rules_version = RULES_VERSION;
     if (result.scored !== false && !st.done_order.includes(n)) st.done_order.push(n);
     save();
+    meSoon();   /* a phone that keeps a code sends the finished find-out now (about a second), not on the next page */
     if (result.scored !== false) {
       counter('game_' + n);
       counter('first_game');   /* the find-outs' own count on the home page; counter() sends each event once per phone */
@@ -1761,6 +1782,7 @@ export function start() {
   /* the language first: a remembered pick opens this page in that language; no pick yet, the sheet asks (and the page shows under it) */
   const want = savedLang();
   if (want && want !== LANG) { const to = samePageIn(want); if (to) { location.replace(to); return; } }
+  loadMe();   /* My Logicers: only on a page that stays, and only for a phone that keeps a code */
   const page = root.dataset.page; const n = Number(root.dataset.game);
   langChip();
   if (!want && page !== 'researchers') langSheet(true);      /* the researchers' sheet (30 Oct 2026) only gets the chip and the remembered language: nobody who comes from a paper is met by a window */

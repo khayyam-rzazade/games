@@ -18,23 +18,25 @@
                 deleted, every one.
    No name, no address, no time finer than the round's own.
 
-   Life: the host link and the join link live 2 months after the last use (a join, a done, a host tap, the
+   Life: the host link and the join link live a year after the last use (a join, a done, a host tap, the
    host page opened; the polls do not count), the same rule as the made games. Then everything of the room
    is deleted (an alarm, and a check on every request in case the alarm is late). The host can delete it
-   sooner (action "delete"). */
+   sooner (action "delete"). Until 12 Nov 2026 it was 2 months. The delete date is never stored: until(r) is
+   always the room's last use plus KEEP_MS, so a room made under the old rule is read under the new one the
+   moment it wakes, and its old alarm, when it rings, finds the room alive and sets the new date (alarm()). */
 "use strict";
 import { check, release, chartsOf, splitOf, fromCompact, TRIED_IDS, FLOOR } from "./items.js";
 
 export const HOUR = 36e5, DAY = 24 * HOUR;
-export const KEEP_MS = 60 * DAY;          // 2 months after the last use
+export const KEEP_MS = 365 * DAY;         // a year after the last use (12 Nov 2026; until then 60 days)
 export const LIVE_MS = 12 * HOUR;         // a live round reveals by itself this long after it opened
 export const OPEN_MS = 7 * DAY;           // an open round takes answers this long at most
 export const TOUCH_MS = HOUR;             // the last use is written at most once an hour
 export const MAX_ROUND = 1000;            // phones in one round
-export const MAX_ROUNDS_KEPT = 120;       // revealed rounds in the host store (two months of daily rounds, and more)
+export const MAX_ROUNDS_KEPT = 120;       // revealed rounds in the host store: the last 120, however long the room lives (the store is one stored value, which must stay far below 2 MB)
 export const SIDE_MAX = 32;               // letters in a side's name
 export const CODE_ALPHABET = "BCDFGHJKMNPQRSTVWXZ";   // consonants only (no word can be spelled), no L, no Y, as the find-out room
-export const CODE_LENGTH = 6;             // six: the code is the permission for two months, so a guess must be hard
+export const CODE_LENGTH = 6;             // six: the code is the permission for a year, so a guess must be hard
 const TAG_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 export const KEY_RE = /^[0-9a-f]{32}$/;
 export const HOST_RE = new RegExp(`^([${CODE_ALPHABET}]{${CODE_LENGTH}})([0-9a-f]{32})$`);
@@ -100,7 +102,7 @@ export class RoomLogic {
     await this.storage.deleteAll();
     try { await this.storage.deleteAlarm(); } catch (e) { /* no alarm set */ }
   }
-  /* the room as it stands now: a round past its end is revealed, a room 2 months unused is gone */
+  /* the room as it stands now: a round past its end is revealed, a room a year unused is gone */
   async live() {
     const r = await this.load();
     if (!r) return null;
@@ -109,7 +111,7 @@ export class RoomLogic {
     if (r.step === "play" && t >= r.ends) await this.reveal(r, r.ends);
     return r;
   }
-  /* a use: the two months start again (written at most once an hour; the caller saves) */
+  /* a use: the year starts again (written at most once an hour; the caller saves) */
   touch(r) { const t = this.now(); if (t - r.last >= TOUCH_MS) { r.last = t; return true; } return false; }
 
   /* ---- reveal: the open round's phones are counted into the host store and deleted ---- */
@@ -295,7 +297,8 @@ export class RoomLogic {
     await this.save(true);
     return out(200, { ok: true });
   }
-  /* the alarm reveals a round at its end and deletes a room 2 months after its last use; an early alarm is set again */
+  /* the alarm reveals a round at its end and deletes a room a year after its last use; an early alarm (one set
+     under the old two-month rule, say) is set again at the room's own date */
   async alarm() {
     const r = await this.live();
     if (r) await this.save();

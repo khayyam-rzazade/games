@@ -1,4 +1,4 @@
-// The rooms: rounds, the reveal, the floor, the split, the host store and the two months. Run: node --test test/test_room.mjs
+// The rooms: rounds, the reveal, the floor, the split, the host store and the year. Run: node --test test/test_room.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import worker, { Room, LIMITS, _test } from "../src/worker.js";
@@ -51,7 +51,7 @@ test("a room is made, read and joined; codes, keys, links", async () => {
   assert.deepEqual(Object.keys(s).sort(), ["charts", "code", "done", "floor", "joined", "lang", "made", "mode", "opened", "reveal_at", "round", "sides", "step", "tag", "until"]);
   assert.deepEqual([s.code, s.mode, s.round, s.step, s.joined, s.done, s.reveal_at, s.lang, s.floor], [room.code, "live", 0, "lobby", 0, 0, null, "en", 10]);
   assert.deepEqual(s.charts, { n: 0 });
-  assert.equal(s.until, "2027-01-03T09:00:00Z", "two months from now");
+  assert.equal(s.until, "2027-11-04T09:00:00Z", "a year from now (365 days)");
   let r = await call(e, "GET", `/room/${room.code}`);
   assert.equal(r.status, 200); assert.equal(r.headers.get("Access-Control-Allow-Origin"), ORIGIN); assert.equal(r.headers.get("Cache-Control"), "no-store");
   assert.equal((await call(e, "GET", `/room/${room.code.toLowerCase()}`)).json.state.code, room.code, "a typed code in small letters");
@@ -276,7 +276,7 @@ test("the host page: links, rounds, the world and the country", async () => {
   assert.equal(r.headers.get("Cache-Control"), "no-store");
 });
 
-test("two months after the last use the room is gone; the polls do not count, a use starts the two months again", async () => {
+test("a year after the last use the room is gone; the polls do not count, a use starts the year again", async () => {
   const e = env();
   const room = await newRoom(e);
   await host(e, room, "start");
@@ -382,4 +382,66 @@ test("nothing secret leaks: no reply carries a phone's key, and only /room/new t
   assert.ok(seen.some((s) => s.path.startsWith("/host/")), "the host page was asked (its reply goes to the key's holder)");
   const dump = storageOf(e, room).dump();
   assert.ok(!dump.includes(room.host_key.slice(6)), "the host key is stored only as a hash");
+});
+
+/* 12 Nov 2026: a year, not two months. The days are counted here in plain numbers, not with KEEP_MS, so the rule
+   itself is checked. */
+test("a room last used 11 months ago is still there, one last used 13 months ago is gone (335 and 395 days; the edges at 364 and 366)", async () => {
+  const e = env();
+  const a = await newRoom(e), edge = await newRoom(e);
+  await host(e, a, "start");
+  tick(335 * DAY);                                   // 11 months: polls are not uses, so the last use is still day 0
+  assert.equal((await call(e, "GET", `/room/${a.code}`)).status, 200, "11 months unused: there");
+  assert.equal((await hostPage(e, a)).status, 200, "its host page opens, and that is a use: its year starts at day 335");
+  const old = await newRoom(e);                      // made at day 335; nobody uses it again
+  tick(29 * DAY);                                    // day 364: the first room is 364 days unused ... it was used at 335, so 29
+  assert.equal((await call(e, "GET", `/room/${edge.code}`)).status, 200, "364 days after its last use: there");
+  tick(2 * DAY);                                     // day 366: the first-made room has not been used for 366 days
+  assert.equal((await call(e, "GET", `/room/${edge.code}`)).status, 404, "366 days after its last use: gone");
+  assert.equal(storageOf(e, edge).keys().length, 0, "and nothing of it is left");
+  assert.equal((await call(e, "GET", `/room/${a.code}`)).status, 200, "the room used at day 335 is only 31 days unused");
+  tick(30 * DAY);                                    // day 396: `old` was last used at day 335: 61 days
+  assert.equal((await call(e, "GET", `/room/${old.code}`)).status, 200, "61 days unused: there");
+  tick(335 * DAY);                                   // day 731: `old` is 396 days unused
+  assert.equal((await call(e, "GET", `/room/${old.code}`)).status, 404, "13 months (396 days) unused: gone");
+  assert.equal(storageOf(e, old).keys().length, 0);
+});
+
+test("a room made under the two-month rule is not deleted at its old date: its old alarm moves out to a year after its last use", async () => {
+  const e = env();
+  const room = await newRoom(e);
+  const t0 = NOW;
+  await host(e, room, "start");
+  /* what the old code left behind: the same room, and an alarm 60 days after the last use */
+  storageOf(e, room).alarm = t0 + 60 * DAY;
+  e.ROOM.forget(room.code);                          // asleep, as an idle object is
+  tick(60 * DAY + HOUR);                             // past the old date
+  await e.ROOM.runAlarms(NOW);                       // the old alarm rings
+  assert.ok(storageOf(e, room).keys().includes("room"), "the room is still there after its old date");
+  assert.equal(storageOf(e, room).alarm, t0 + 365 * DAY, "the alarm is now a year after the last use");
+  assert.equal((await call(e, "GET", `/room/${room.code}`)).status, 200, "and it answers");
+  assert.equal((await state(e, room)).until, new Date(t0 + 365 * DAY).toISOString().replace(/\.\d{3}Z$/, "Z"), "the page is told the new date");
+  /* nothing happens early, and at the new date the alarm deletes it */
+  e.ROOM.forget(room.code);
+  tick(300 * DAY);                                   // day 360
+  await e.ROOM.runAlarms(NOW);
+  assert.ok(storageOf(e, room).keys().includes("room"), "day 360: still there");
+  tick(10 * DAY);                                    // day 370: the alarm (day 365) is due
+  await e.ROOM.runAlarms(NOW);
+  assert.equal(storageOf(e, room).keys().length, 0, "the alarm at the new date wiped it");
+});
+
+test("a room in the middle of a round, made under the old rule, still reveals at its end and then moves its alarm out", async () => {
+  const e = env();
+  const room = await newRoom(e);
+  const t0 = NOW;
+  await host(e, room, "start");
+  await phones(e, room, 10, 1);
+  storageOf(e, room).alarm = Math.min(t0 + 12 * HOUR, t0 + 60 * DAY);   // the old rule's alarm for a live round: its end
+  e.ROOM.forget(room.code);
+  tick(13 * HOUR);
+  await e.ROOM.runAlarms(NOW);
+  const s = await state(e, room);
+  assert.equal(s.step, "reveal", "the round revealed by itself at its end");
+  assert.equal(storageOf(e, room).alarm, t0 + 365 * DAY, "the alarm is a year after the last use");
 });

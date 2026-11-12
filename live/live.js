@@ -155,7 +155,7 @@
         var k = window.localStorage.key(i);
         if (k && k.indexOf(KEYP) === 0 && k !== KEYP + "setup") {
           var v = JSON.parse(window.localStorage.getItem(k) || "null");
-          /* a saved game played alone keeps its key for the game's two months (and a little more): it is what
+          /* a saved game played alone keeps its key for the game's year (and a little more): it is what
              says the scoreboard holds this browser's first play */
           var keep = k.indexOf(KEYP + "kp:") === 0 ? 70 * 86400e3 : 3 * 86400e3;
           if (!v || !v.t || now() - v.t > keep) old.push(k);
@@ -1973,7 +1973,7 @@
      The code shows the game, its scoreboard and Play it now. The questions come without their answers; the
      answers stay in this browser (kp:CODE) until the end, then go in one call; the server sends back the
      score, every right answer for the review, and the scoreboard. The browser's random key (kept with the
-     record for the game's two months) is what makes its first play the one on the scoreboard. */
+     record for the game's year) is what makes its first play the one on the scoreboard. */
   function kitRec() {
     var r = sget("kp:" + kit.code);
     if (!r || typeof r.key !== "string") r = { key: randomKey(), t: now() };

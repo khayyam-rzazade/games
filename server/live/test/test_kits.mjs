@@ -629,7 +629,7 @@ if (FAST) {
   eq(rep.status, 200, "a report on the fast server");
   const repsNow = await post("/admin", { key: ADMIN, do: "reports" }, someIp(), FAST);
   ok(repsNow.reports && repsNow.reports.some((r) => r.code === f.code), "the report is on the desk");
-  // a play keeps it; then a use (open) pushes the two months back
+  // a play keeps it; then a use (open) pushes the keeping time back
   await post("/kit/" + f.code + "/play", { v: 1, key: key(), name: "One", ans: [] }, ip, FAST);
   await sleep(4000);
   eq((await get("/kit/" + f.code, ip, FAST)).status, 200, "4 s later it is still there");
@@ -679,7 +679,7 @@ if (FAST) {
 }
 
 /* ================================================================ 9c. a family's record outlives its first game, then goes
-   with its last copy (fast server: two months are 6 s) */
+   with its last copy (fast server: a year is 6 s) */
 if (FAST) {
   const F0 = await post("/kit", { v: 1, kit: baseKit() }, someIp(), FAST);
   const G0 = await post("/kit", { v: 1, kit: baseKit() }, someIp(), FAST);       // not of the family: a control

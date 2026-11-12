@@ -156,7 +156,7 @@
   function trouble(r) {
     if (r.status === 0) return "Can't reach the server. Check the connection and try again.";
     if (r.status === 429) return "Too many wrong keys from this address: the server waits ten minutes.";
-    if (r.status === 404) return "No game with this code. It may have been deleted (two months after its last use, or by its maker).";
+    if (r.status === 404) return "No game with this code. It may have been deleted (a year after its last use, or by its maker).";
     if (r.status === 400) return "The server refused this (" + str(r.b.e || "bad") + "). Reload the page and try again.";
     return "The server had a problem (" + r.status + "). Try again in a minute.";
   }
@@ -514,7 +514,7 @@
     var code = str(m.code), copies = Array.isArray(m.copies) ? m.copies.map(str) : [];
     var card = el("article", "dk-gamecard");
     card.appendChild(panelHead(code, [{ text: "Deleted" }]));
-    card.appendChild(el("p", "dk-p", "This game is deleted (by its maker, or two months after its last use). Only the codes of its copies are kept, until " +
+    card.appendChild(el("p", "dk-p", "This game is deleted (by its maker, or a year after its last use). Only the codes of its copies are kept, until " +
       day(m.until) + ", so that they can still be stopped together: open any copy and use its family button."));
     var fam = el("div", "dk-fam");
     add(fam, "Its copies (" + n(copies.length) + (m.over ? ", and " + n(m.over) + " more not listed" : "") + ") ", codeButtons(copies, rep));

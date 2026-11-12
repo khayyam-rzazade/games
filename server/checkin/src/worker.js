@@ -5,7 +5,7 @@
    What it keeps, and nothing else:
      the rooms (src/room.js, one Durable Object per room): the code, a hash of the host's key, the rounds' group
        totals only (from 10 phones; split sides from 10 each), and, only while a round is open, each phone's
-       answers under a salted hash of its key, deleted at the reveal. 2 months after the last use, all gone.
+       answers under a salted hash of its key, deleted at the reveal. A year after the last use, all gone.
      research (D1, only with a yes): POST /upload puts one check-in in "pending" with the browser's random ID;
        the consent card's yes (POST /consent) moves it to "checkins": the anonymous ID, the room's tag hashed (or
        nothing for a check-in alone), the round, the language, the items' version, the role, the age band and
