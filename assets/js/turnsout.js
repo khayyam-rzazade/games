@@ -1247,6 +1247,110 @@
     var w = WORDS_BTN[(LG && LG.lang) || "en"] || WORDS_BTN.en;
     return key === "fin.words" ? w[0] : w[1];
   }
+  /* ------------------------------------------------------------------
+     The way back (13 Nov 2026, Khayyam: "bring players back"; the stats showed most players never return). The two
+     finish cards now carry ONE ask each, in the player's language: on the first game's card a reminder beside
+     "Stay and read"; on the last card of the day a "Tomorrow" strip with tomorrow's real 100 of Us question as the
+     hook and the reminder next to it. The reminder is the one that fits this phone right now (keepWant): the push
+     reminder where the browser can, the calendar one where it can't (an iPhone's Safari), a quiet "on" once it is set.
+     The words are the dictionary's once fin.tomorrow, fin.remind, fin.remind_tomorrow, fin.remind_set and fin.stay are in
+     the strings docs, else these six (the same way as the buttons above).
+     ------------------------------------------------------------------ */
+  var COMEBACK = {
+    en: { tomorrow: "Tomorrow", remind: "Remind me", remind_tomorrow: "Remind me tomorrow", remind_set: "Reminder on", stay: "Stay and read ↓" },
+    it: { tomorrow: "Domani", remind: "Ricordamelo", remind_tomorrow: "Ricordamelo domani", remind_set: "Promemoria attivo", stay: "Resta a leggere ↓" },
+    es: { tomorrow: "Mañana", remind: "Recuérdame", remind_tomorrow: "Recuérdame mañana", remind_set: "Recordatorio activado", stay: "Quédate a leer ↓" },
+    pt: { tomorrow: "Amanhã", remind: "Lembre-me", remind_tomorrow: "Lembre-me amanhã", remind_set: "Lembrete ativado", stay: "Fique e leia ↓" },
+    fr: { tomorrow: "Demain", remind: "Rappelle-moi", remind_tomorrow: "Rappelle-moi demain", remind_set: "Rappel activé", stay: "Lis la suite ↓" },
+    tr: { tomorrow: "Yarın", remind: "Hatırlat", remind_tomorrow: "Yarın hatırlat", remind_set: "Hatırlatma açık", stay: "Kal ve oku ↓" }
+  };
+  function comeback(key) {
+    try { if (T.has && T.has("fin." + key)) return T("fin." + key); } catch (e) { /* the words below */ }
+    var w = COMEBACK[(LG && LG.lang) || "en"] || COMEBACK.en;
+    return w[key] || COMEBACK.en[key] || "";
+  }
+  /* the words of a slim half: the arrow of the big button is dropped, and "Check-in" never breaks at its hyphen */
+  function halfWords(text) {
+    var sp = el("span", "");
+    String(text).replace(/\s*\u2192\s*$/, "").split(/(Check-in)/).forEach(function (part) {
+      if (part === "Check-in") sp.appendChild(el("span", "nb", part));
+      else if (part) sp.appendChild(document.createTextNode(part));
+    });
+    return sp;
+  }
+  /* what this phone can be offered for tomorrow right now: "remind" (push), "ics" (the calendar), "set" (the reminder is
+     on already) or "" (nothing: the calendar one was taken and the phone cannot push) */
+  function comebackAsk() {
+    try {
+      var w = keepWant();
+      if (w.remind) return "remind";
+      if (pushSupported() && permission() === "granted" && eodStore().remind === 1) return "set";
+      if (w.ics) return "ics";
+    } catch (e) { /* nothing is offered */ }
+    return "";
+  }
+  /* tomorrow's 100 of Us question in the player's language, for the hook: the game's own data and its words for the
+     language are read when the page has them (the 100 of Us page itself) and fetched when it has not. Never in English
+     on a page of another language: a day without words in that language gives no line at all. */
+  function tomorrowQuestion(done) {
+    var HUND = "100-of-us", fired = false;
+    function say(s) { if (fired) return; fired = true; try { done(typeof s === "string" ? s : ""); } catch (e) { /* the hook is optional */ } }
+    try {
+      var day = Math.max(1, dayNumber("2026-10-03")) + 1, lang = (LG && LG.lang) || "en";
+      var pick = function () {
+        var D = window.TURNSOUT_DATA && window.TURNSOUT_DATA[HUND], list = D && (D.questions || D.puzzles);
+        if (!list || !list.length) return "";
+        var mine = window.LG_PUZZLES && window.LG_PUZZLES[HUND] && window.LG_PUZZLES[HUND][day];
+        if (mine && typeof mine.q === "string" && mine.q) return mine.q;
+        var q = list[(day - 1) % list.length];
+        return lang === "en" && q && typeof q.q === "string" ? q.q : "";
+      };
+      var load = function (src, then) {
+        var s = document.createElement("script");
+        s.src = siteRoot() + src; s.async = true;
+        s.onload = then; s.onerror = function () { say(""); };
+        document.head.appendChild(s);
+      };
+      var have = window.TURNSOUT_DATA && window.TURNSOUT_DATA[HUND];
+      if (have && (lang === "en" || (window.LG_PUZZLES && window.LG_PUZZLES[HUND]))) { say(pick()); return; }
+      var words = function () {
+        if (lang === "en" || (window.LG_PUZZLES && window.LG_PUZZLES[HUND])) { say(pick()); return; }
+        load("assets/lang/" + lang + "/100-of-us.js", function () { say(pick()); });
+      };
+      if (have) words(); else load("data/100-of-us.js", words);
+      window.setTimeout(function () { say(""); }, 6000);        // a slow network: the card goes without the line
+    } catch (e) { say(""); }
+  }
+  /* the reminder button in the player's current state; kept up to date by keepUi() after every tap or change */
+  function comebackButton(host, cls, long) {
+    var ask = comebackAsk();
+    host.textContent = "";
+    if (ask === "remind" || ask === "ics") {
+      var b = el("button", cls), t = el("span", cls + "-t");
+      b.type = "button";
+      t.appendChild(icon(ask === "remind" ? "🔔" : "🗓️"));
+      t.appendChild(document.createTextNode(ask === "remind" ? comeback(long ? "remind_tomorrow" : "remind") : T("keep.ics")));
+      b.appendChild(t);
+      if (!long) b.appendChild(el("small", cls + "-s", ask === "remind" ? T("keep.remind_sub") : T("keep.ics_sub")));
+      b.addEventListener("click", function () {
+        count_(long ? "remind/first" : "remind/card");
+        if (ask === "remind") remindOn(); else takeCalendar();
+      });
+      host.appendChild(b);
+    } else if (ask === "set") {
+      var on = el("span", cls + "-set");
+      on.appendChild(document.createTextNode("✓ " + comeback("remind_set")));
+      host.appendChild(on);
+    }
+    host.setAttribute("data-ask", ask);
+    return ask;
+  }
+  function comebackUi() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-comeback]"), function (h) {
+      try { if (typeof h.__render === "function") h.__render(); } catch (e) { /* the offer is optional */ }
+    });
+  }
+
   var touchedAt = 0, ourScroll = 0;        // the player's last touch, scroll or key; scrolls we started are not theirs
   function lastTouch() { return touchedAt; }
   function noteTouch() { if (Date.now() > ourScroll) touchedAt = Date.now(); }
@@ -1299,6 +1403,7 @@
 
     var wrap = el("div", "fin");
     wrap.id = "fin";
+    var comebackSeen = "";                  // what the way back offered when the card was built ("remind", "ics", "set" or "")
     var scrim = el("div", "fin-scrim");
     wrap.appendChild(scrim);
     var sheet = el("section", "fin-sheet" + (next ? "" : " fin-full"));
@@ -1370,34 +1475,11 @@
       sheet.appendChild(seat);
       watching = watchBelow(box, "#world", function (w) { seat.appendChild(w); });
       sheet.appendChild(feelRow(o));
-      /* "Find out who you are" (B3, 22 Oct 2026, Khayyam): the find-outs, in the same place and style as
-         "More to play", right above it, only while this phone has not finished all nine. Their own store is
-         read here and never written. */
-      if (!findOutsDone()) {
-        var fo = el("a", "fin-more fin-findout");
-        fo.href = here(LG ? LG.href("find-out/") : "../find-out/");
-        var fw = el("span", "fin-next-words");
-        fw.appendChild(el("span", "", T("fin.findout")));
-        fw.appendChild(el("small", "", T("fin.findout_sub")));
-        fo.appendChild(fw);
-        fo.addEventListener("click", function () { count_("onward-sheet/find-out"); });
-        sheet.appendChild(fo);
-      }
-      /* The Anonymous Check-in (4 Nov 2026, Khayyam): in the same place and style, while this phone has not checked in
-         for two weeks (the check-in asks about the last two weeks). Its store is read here and never written. */
-      if (checkinDue()) {
-        var ci = el("a", "fin-more fin-checkin");
-        ci.href = here(LG ? LG.href("checkin/") : "../checkin/");
-        var cw = el("span", "fin-next-words");
-        cw.appendChild(el("span", "", checkinLine("fin.checkin")));
-        cw.appendChild(el("small", "", checkinLine("fin.checkin_sub")));
-        ci.appendChild(cw);
-        ci.addEventListener("click", function () { count_("onward-sheet/checkin"); });
-        sheet.appendChild(ci);
-      }
       /* "Play word games" (29 Oct 2026, Khayyam), where "More to play" was: straight to Altitude, in the same
          yellow, pulsing style. Altitude is one page for all six languages at /altitude/ and takes the site's
-         language from the phone's pick, so every language page links to the same place, as the home pages do. */
+         language from the phone's pick, so every language page links to the same place, as the home pages do.
+         13 Nov 2026: it is first now, the one big yellow way on; the way back (the Tomorrow strip) comes right under it, and
+         the find-out and the check-in are two slim halves under that (they were two more big yellow buttons). */
       var more = el("a", "fin-more fin-words");
       more.href = here(LG ? LG.href("altitude/") : "../altitude/");
       var mw = el("span", "fin-next-words");
@@ -1406,6 +1488,51 @@
       more.appendChild(mw);
       more.addEventListener("click", function () { count_("onward-sheet/words"); });
       sheet.appendChild(more);
+      /* The Tomorrow strip (13 Nov 2026): tomorrow's real question as the hook, the reminder beside it. Its question
+         arrives a moment later (the card waits about five seconds); a phone that can be offered nothing and has no
+         question gets no strip at all. */
+      try {
+        var tmw = el("div", "fin-tmw"), tmt = el("div", "fin-tmw-t"), tmq = el("div", "fin-tmw-q"), tms = el("div", "fin-tmw-side");
+        tmw.setAttribute("data-comeback", "");
+        tmt.appendChild(el("div", "fin-tmw-k", comeback("tomorrow")));
+        tmq.hidden = true;
+        tmt.appendChild(tmq);
+        tmw.appendChild(tmt);
+        tmw.appendChild(tms);
+        tmw.__render = function () {
+          var ask = comebackButton(tms, "fin-tmw-b", false);
+          tmw.hidden = !ask && tmq.hidden;
+          tmt.classList.toggle("has-q", !tmq.hidden);
+        };
+        tmw.__render();
+        tomorrowQuestion(function (text) {
+          if (!text) return;
+          tmq.textContent = text; tmq.hidden = false;
+          tmw.__render();
+        });
+        sheet.appendChild(tmw);
+        comebackSeen = comebackAsk();
+      } catch (e) { /* the way back is optional */ }
+      /* "Find out who you are" (B3, 22 Oct 2026, Khayyam): the find-outs, only while this phone has not finished all nine.
+         Their own store is read here and never written. */
+      var halves = el("div", "fin-pair"), nHalf = 0;
+      if (!findOutsDone()) {
+        var fo = el("a", "fin-more fin-half fin-findout");
+        fo.href = here(LG ? LG.href("find-out/") : "../find-out/");
+        fo.appendChild(halfWords(T("fin.findout")));
+        fo.addEventListener("click", function () { count_("onward-sheet/find-out"); });
+        halves.appendChild(fo); nHalf++;
+      }
+      /* The Anonymous Check-in (4 Nov 2026, Khayyam): in the same place and style, while this phone has not checked in
+         for two weeks (the check-in asks about the last two weeks). Its store is read here and never written. */
+      if (checkinDue()) {
+        var ci = el("a", "fin-more fin-half fin-checkin");
+        ci.href = here(LG ? LG.href("checkin/") : "../checkin/");
+        ci.appendChild(halfWords(checkinLine("fin.checkin")));
+        ci.addEventListener("click", function () { count_("onward-sheet/checkin"); });
+        halves.appendChild(ci); nHalf++;
+      }
+      if (nHalf) { halves.style.setProperty("--n", String(nHalf)); sheet.appendChild(halves); }
       /* one line from the player, read by Khayyam before it shows (assets/js/said.js, 19 Oct 2026): right under
          the way on, so the card's own scroll ends with the question in view */
       if (typeof window.TurnsOut.saidHook === "function") {
@@ -1418,7 +1545,26 @@
     var stats = el("button", "fin-stats");
     stats.type = "button";
     stats.appendChild(document.createTextNode(next ? T("fin.stats") : T("fin.explanation")));
-    sheet.appendChild(stats);
+    /* 13 Nov 2026: on a card that has "Next game", the one bar splits in two halves, "Stay and read" and the reminder for
+       tomorrow, when this phone can be offered one; with nothing to offer it stays the one full bar, as before. */
+    var stay = stats;
+    try {
+      if (next && comebackAsk() !== "" && comebackAsk() !== "set") {
+        var duo = el("div", "fin-pair fin-duo"), rem = el("div", "fin-remind-host");
+        duo.style.setProperty("--n", "2");
+        rem.setAttribute("data-comeback", "");
+        stats.textContent = comeback("stay");
+        stats.className = "fin-stats fin-stats-half";
+        rem.__render = function () { comebackButton(rem, "fin-remind-half", true); };
+        rem.__render();
+        duo.appendChild(stats);
+        duo.appendChild(rem);
+        sheet.appendChild(duo);
+        comebackSeen = comebackAsk();
+        stay = null;
+      }
+    } catch (e) { /* the one full bar below */ }
+    if (stay) sheet.appendChild(stay);
     /* 12 Nov 2026: the Embed button is for people who run a site or a class, so it waits for the last card of the day
        (and, as before, never shows on a phone: CSS). Under "Next game" it was a third action on the card that matters most. */
     if (!next) {
@@ -1473,6 +1619,8 @@
       document.body.appendChild(wrap);
       document.addEventListener("keydown", onKey);
       count_(next ? "onward-sheet/seen" : "onward-sheet/day-done");
+      /* how often the way back is on the card the player sees, to set against the taps ("remind/first", "remind/card") */
+      if (comebackSeen === "remind" || comebackSeen === "ics") count_(next ? "remind/first-seen" : "remind/card-seen");
       /* 12 Nov 2026: on a card that has "Next game", the focus lands on that link, so Enter goes on to the next game
          (it landed on the card itself, and Enter did nothing until the player pressed Tab). The last card keeps it
          on the card, which has no single way on. */
@@ -1916,6 +2064,7 @@
   }
   var keepSeen = {};
   function keepUi() {
+    try { comebackUi(); } catch (e) { /* the way back is optional */ }
     var want = keepWant();
     Array.prototype.forEach.call(document.querySelectorAll(".keep"), function (strip) {
       var n = 0;
@@ -2256,7 +2405,7 @@
          chips and the text boxes do not) and the card's own scroll moves them. If nowhere above is free, it stays in its corner, in plain view. It is away only
          while one of the site's windows is open. */
       var avoid = "#share, .eod-strip, .eod-pride, .onward-all, #after .actions";
-      var onCard = ".fin-sheet .fin-next, .fin-sheet .fin-more, .fin-sheet .fin-stats, .fin-sheet .said-send, .fin-sheet .eod-strip, .fin-sheet .eod-pride, .fin-sheet .keep" +
+      var onCard = ".fin-sheet .fin-next, .fin-sheet .fin-more, .fin-sheet .fin-stats, .fin-sheet .fin-tmw, .fin-sheet .fin-remind-half, .fin-sheet .said-send, .fin-sheet .eod-strip, .fin-sheet .eod-pride, .fin-sheet .keep" +
         ", .fin-sheet .fin-clock";       // the countdown in the card's top (7 Nov 2026): the face never sits on it
       var raf = 0, beat = 0;
       function duck() {
