@@ -1213,8 +1213,8 @@
       return true;
     } catch (e) { return false; }
   }
-  var FIN_WAIT = 5000;                     // the reveal's moment before the finish card (24 Oct 2026)
-  var FIN_HOLD = 2000;                     // the most a reading finger can add to it: the card is up by about 7 s (29 Oct 2026)
+  var FIN_WAIT = 3000;                     // the reveal's moment before the finish card (24 Oct 2026: 5 s; 13 Nov 2026, Khayyam: "too long to pop up", now 3 s)
+  var FIN_HOLD = 1000;                     // the most a reading finger can add to it: the card is up by about 4 s (29 Oct 2026: 2 s, so 7 s in all)
   /* the words of the last card's "Play word games" button. They are not in the string docs yet: once fin.words and
      fin.words_sub are added there and the dictionaries rebuilt, the dictionary's words are used and these are not. */
   var WORDS_BTN = {
@@ -1489,7 +1489,7 @@
       more.addEventListener("click", function () { count_("onward-sheet/words"); });
       sheet.appendChild(more);
       /* The Tomorrow strip (13 Nov 2026): tomorrow's real question as the hook, the reminder beside it. Its question
-         arrives a moment later (the card waits about five seconds); a phone that can be offered nothing and has no
+         arrives a moment later (the card waits a few seconds); a phone that can be offered nothing and has no
          question gets no strip at all. */
       try {
         var tmw = el("div", "fin-tmw"), tmt = el("div", "fin-tmw-t"), tmq = el("div", "fin-tmw-q"), tms = el("div", "fin-tmw-side");
