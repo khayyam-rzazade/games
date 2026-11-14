@@ -170,7 +170,7 @@ body[data-g="findout"] > :is(.bar, .fo-main, noscript) { width: 100%; }   /* as 
 .fo-dots-view { display: grid; gap: 14px; margin-top: 12px; }
 .fo-dot-row { display: grid; grid-template-columns: 1fr; gap: 4px; }
 .fo-dot-row .nm { font-weight: 700; font-size: 0.92rem; color: var(--soft); display: flex; justify-content: space-between; gap: 10px; }
-.fo-dot-row .nm b { color: var(--c); font-family: var(--display); font-weight: 800; font-size: 1.02rem; letter-spacing: -0.02em; text-align: right; }
+.fo-dot-row .fo-dot-band { display: block; width: max-content; max-width: 100%; margin-left: calc(var(--p, 0) * 100%); transform: translateX(calc(var(--p, 0) * -100%)); color: var(--c); font-family: var(--display); font-weight: 800; font-size: 1.02rem; letter-spacing: -0.02em; line-height: 1.2; }   /* under its own dot: at the left end it starts there, at the right end it ends there */
 .fo-dot-row .fo-strip { height: 22px; margin: 4px 2px 0; }
 .fo-dot-row .fo-strip-rail { height: 8px; margin-top: -4px; }
 .fo-dot-row .fo-strip-dot { width: 20px; height: 20px; margin: -10px 0 0 -10px; border-width: 2px; }
@@ -357,7 +357,6 @@ body[data-g="findout"] > :is(.bar, .fo-main, noscript) { width: 100%; }   /* as 
 .fo-cmp-legend i.grp-country { background: var(--card); box-shadow: inset 0 0 0 3px var(--ink); }
 .fo-cmp-row { margin-top: 12px; }
 .fo-cmp-row .nm { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-weight: 700; font-size: 0.9rem; }
-.fo-cmp-row .nm b { color: var(--c); }
 .fo-cmp-row .fo-strip { margin-top: 2px; }
 .fo-cmp-row .fo-strip-dot.grp-world, .fo-cmp-row .fo-strip-dot.grp-country { width: 16px; height: 16px; margin: -8px 0 0 -8px; border-width: 0; z-index: 1; }
 .fo-cmp-row .fo-strip-dot.grp-world { background: none; box-shadow: inset 0 0 0 3px var(--soft); }

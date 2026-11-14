@@ -1228,6 +1228,9 @@ function ownLines() {
 /* ---- band colours: three hues of equal weight, left to right; games 1 and 9 use the section's green ---- */
 const BAND_COLOURS = ['var(--band0)', 'var(--band1)', 'var(--band2)'];
 function bandColour(n, v) { const i = bandIndex(n, v); return i === null ? 'var(--c)' : BAND_COLOURS[i]; }
+/* a band name under its own dot, its edge kept inside the row (15 Nov 2026: printed at the row's right edge, a dot at the far
+   left read as the opposite of its own name) */
+function dotBand(n, v) { const b = el('b', 'fo-dot-band', bandName(n, v)); b.style.color = bandColour(n, v); b.style.setProperty('--p', String(toP(n, v))); return b; }
 
 /* ---- the figure: one abstract face built from the five bars, the five band dots around it ---- */
 function figureSvg(r1, bandsOf, opts) {
@@ -1402,11 +1405,11 @@ function portraitPage() {
 
   /* 3. the five dots, in their colours */
   const s3 = story(); const h2b = s3.appendChild(held(el('h2', '', P.sections.world)));
-  const dv = el('div', 'fo-dots-view'); const dotRows = [];
-  for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = held(el('div', 'fo-dot-row')); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm); const sp = strip({ p: 0, bands: true, still: false }); sp.dot.style.background = bandColour(n, v); sp.dot.dataset.p = String(toP(n, v)); row.appendChild(sp); dv.appendChild(row); dotRows.push(row); }
+  const dv = el('div', 'fo-dots-view'); const dotRows = [], dotBands = [];
+  for (const n of [2, 5, 7, 4, 8]) { const res = st.games[n].result; const v = mainScore(n, res); const row = held(el('div', 'fo-dot-row')); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); row.appendChild(nm); const sp = strip({ p: 0, bands: true, still: false }); sp.dot.style.background = bandColour(n, v); sp.dot.dataset.p = String(toP(n, v)); row.appendChild(sp); dotBands.push(row.appendChild(held(dotBand(n, v)))); dv.appendChild(row); dotRows.push(row); }
   s3.appendChild(dv);
-  /* the five dots glide from the left end to where each answer put you, one after another */
-  part(s3, [stepIn(h2b), (ctl) => { dotRows.forEach((row, i) => { landed(row); const d = row.querySelector('.fo-strip-dot'); if (ctl.done) { d.classList.add('still'); setP(d, +d.dataset.p); return; } row.style.setProperty('--d', (i * M.step) + 'ms'); row.classList.add('fo-faded'); d.classList.add('glide'); d.style.transitionDelay = (i * M.step) + 'ms'; setP(d, +d.dataset.p); }); return M.slow + (dotRows.length - 1) * M.step; }]);
+  /* the five dots glide from the left end to where each answer put you, one after another; then each band name comes in under its dot */
+  part(s3, [stepIn(h2b), (ctl) => { dotRows.forEach((row, i) => { landed(row); const d = row.querySelector('.fo-strip-dot'); if (ctl.done) { d.classList.add('still'); setP(d, +d.dataset.p); return; } row.style.setProperty('--d', (i * M.step) + 'ms'); row.classList.add('fo-faded'); d.classList.add('glide'); d.style.transitionDelay = (i * M.step) + 'ms'; setP(d, +d.dataset.p); }); return M.slow + (dotRows.length - 1) * M.step; }, stepIn(dotBands, { fade: true })]);
 
   /* 4. people like you: the cards, and One more */
   const picks = portraitLines();
@@ -1550,8 +1553,8 @@ function portraitPage() {
     const strips = [];
     for (const n of [2, 3, 4, 5, 6, 7, 8]) {
       const res = st.games[n].result; if (!res || !res.scored) continue; const v = n === 6 ? res.score : mainScore(n, res);
-      const row = el('div', 'fo-cmp-row fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); const bn = el('b', '', bandName(n, v)); bn.style.color = bandColour(n, v); nm.appendChild(bn); row.appendChild(nm);
-      const sp = strip({ p: toP(n, v), bands: true, still: true }); sp.dot.classList.add('grp-you'); sp.dot.style.background = bandColour(n, v); row.appendChild(sp);
+      const row = el('div', 'fo-cmp-row fo-dot-row'); const nm = el('div', 'nm'); nm.appendChild(el('span', '', C.games[n].name)); row.appendChild(nm);
+      const sp = strip({ p: toP(n, v), bands: true, still: true }); sp.dot.classList.add('grp-you'); sp.dot.style.background = bandColour(n, v); row.appendChild(sp); row.appendChild(dotBand(n, v));
       const lines = el('div'); row.appendChild(lines); rows.appendChild(row);
       strips.push({ n, v, sp, lines });
     }
