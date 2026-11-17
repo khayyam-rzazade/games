@@ -1637,3 +1637,36 @@ html.embed .lc-subject .lc-pic { height: clamp(5.5rem, calc(var(--embed-h) - var
 .fin-full .fin-tmw { padding-top: 8px; padding-bottom: 8px; }
 .fin-full .eod { margin-top: 12px; padding-top: 10px; }
 .fin-half .nb { white-space: nowrap; }
+
+/* ------------------------------------------------------------------
+   The clean-up of 17 Nov 2026 (Khayyam: "it is too messy, a lot is going on in the screens").
+   1. The day's chips: the row of dashes carries one small sign per game (assets/js/turnsout.js, GLYPH); a played
+      game shows a tick on its own colour. On the home page, under a game and on the finish card.
+   2. The finish card that has "Next game": the result is its headline, the count stands beside the chips, the
+      country's line is plain words, and there is one bar under the button.
+   3. The block under a game that is not the day's last: the name and "Send my day" stand last.
+   ------------------------------------------------------------------ */
+.pips.chips { gap: 5px; }
+.pips.chips i, .onward .pips.chips i, .fin-sheet .pips.chips i { height: 28px; border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--c); }
+.pips.chips i svg { width: 14px; height: 14px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.pips.chips i .pip-k { display: none; stroke-width: 2.2; }
+.pips.chips i.on { color: var(--on-c); }
+.pips.chips i.on .pip-g { display: none; }
+.pips.chips i.on .pip-k { display: block; }
+@media (max-width: 350px) {
+  .pips.chips { gap: 3px; }
+  .pips.chips i, .onward .pips.chips i, .fin-sheet .pips.chips i { height: 24px; border-radius: 7px; }
+  .pips.chips i svg { width: 12px; height: 12px; }
+}
+.fin-sheet .onward-top.fin-lead { align-items: center; }
+.fin-lead .fin-result { flex: 1; min-width: 0; margin: 0; padding: 0; background: none; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; align-items: center; line-height: 1.2; }
+.fin-lead .fin-result-icon { grid-row: 1 / span 2; width: 34px; height: 34px; }
+.fin-lead .fin-result-icon svg { width: 34px; height: 34px; }
+.fin-lead .fin-result b { grid-column: 2; font-size: 1.3rem; line-height: 1.15; }
+.fin-lead .fin-result span { grid-column: 2; color: var(--soft); font-size: 0.92rem; font-weight: 600; overflow-wrap: anywhere; }
+.fin-lead .fin-result span:only-child { grid-column: 1 / -1; color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+.fin-day { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.fin-sheet .fin-day .pips { flex: 1; min-width: 0; margin-top: 0; }
+.fin-day .onward-count { flex: none; font-variant-numeric: tabular-nums; }
+.fin-sheet[data-g] .fin-rank { margin-top: 10px; padding: 0; border-radius: 0; background: none; color: var(--soft); font-size: 0.9rem; }
+.onward .who-wrap.who-last { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); }

@@ -37,7 +37,7 @@
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=8975c19930">
 <link rel="manifest" href="../manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../assets/css/logicers.css?v=19a9582020">
+<link rel="stylesheet" href="../assets/css/logicers.css?v=2e91ec699c">
 <script src="../assets/lang/es.js?v=b055e25e31"></script>
 <script src="../assets/js/lang.js?v=4e906bded0"></script>
 <style>
@@ -193,8 +193,110 @@ html[lang="en"] .bo-list .bo-en { display: none; }
 @media (prefers-reduced-motion: reduce) { .bo-list .rooms-item, .bo-list .rooms-item:active { transition: none; transform: none; } }
 html.bo-flat #dlg-build { display: block; position: static; width: auto; max-width: 440px; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); }
 html.bo-flat #dlg-build .close { display: none; }
+/* ------------------------------------------------------------------
+   The clean-up of 17 Nov 2026 (Khayyam: "it is too messy, a lot is going on in the screens"). The home is six
+   things on one screen: today's daily games in ONE box (its chips, one Play button that opens the first game not
+   yet played, and a button that opens the list of all of them), today's word games in one slim box, the story's
+   line, Find out and the Check-in, two half tiles (the Logicer number, which opens My Logicers, and "Play
+   together": the rooms, a code, Build your own and the Pass the phone games, in one sheet), and the World table's
+   line. The three shelves live in the two sheets (#dlg-games, #dlg-together) with every id they had. "Players
+   said" stands on the World table page. The language line gives way to the header's chip. Kept here, not in
+   logicers.css, like the rest of the home's own styles.
+   ------------------------------------------------------------------ */
+.hero.hb > .hero-text { grid-row: auto; }
+.hero.hb .lg-line { display: none; }
+.hb-col { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; align-self: center; }
+.hb-col > * { margin: 0; }
+.hb-h { flex: 1; min-width: 0; margin: 0; font-family: var(--display); font-weight: 700; font-size: 1.18rem; letter-spacing: -0.02em; line-height: 1.15; }
+.hb-day .pips, .hb-words .pips { cursor: pointer; }
+.hb-go { display: flex; align-items: stretch; gap: 8px; margin-top: 12px; }
+.hb-play { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 54px; padding: 0 16px; border-radius: 18px; background: var(--c, #2D4FC4); color: var(--on-c, #fff); text-decoration: none; box-shadow: 0 8px 18px rgba(21, 23, 43, .16); -webkit-tap-highlight-color: transparent; transition: transform .15s; }
+.hb-play[hidden] { display: none; }
+.hb-play svg { width: 16px; height: 16px; flex: none; }
+.hb-play b { font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1; white-space: nowrap; }
+.hb-next { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; font-size: .9rem; line-height: 1.2; opacity: .9; }
+.hb-next:empty { display: none; }
+.hb-play:active { transform: scale(.985); }
+.hb-play:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.hb-done { flex: 1; min-width: 0; align-self: center; margin: 0; color: var(--soft); font-size: .92rem; font-weight: 600; line-height: 1.3; }
+.hb-done[hidden] { display: none; }
+.hb-all { appearance: none; flex: none; width: 54px; min-height: 54px; margin: 0; padding: 0; border: 0; border-radius: 18px; background: var(--bg); color: var(--ink); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: inset 0 0 0 1.5px var(--line); -webkit-tap-highlight-color: transparent; transition: transform .15s; }
+.hb-all svg { width: 20px; height: 20px; }
+.hb-all:active { transform: scale(.96); }
+.hb-all:focus-visible { outline: 3px solid #2D4FC4; outline-offset: 2px; }
+.today.hb-words { display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 20px; }
+.hb-words-l { flex: 1; min-width: 0; }
+.hb-words-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.today.hb-words .pips { margin-top: 0; grid-auto-columns: 34px; justify-content: start; }
+.hb-words .hb-play { flex: none; min-height: 52px; padding: 0 20px; }
+@media (prefers-reduced-motion: no-preference) { .hb-day .hb-play svg { animation: fin-pulse 2.4s ease-in-out 1.2s infinite; } }
+.hb-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.hb-tiles > [hidden] ~ .hb-tile { grid-column: 1 / -1; }
+.hb-tile { appearance: none; display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 68px; margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); color: var(--ink); font: inherit; text-align: left; text-decoration: none; cursor: pointer; box-shadow: 0 8px 20px rgba(21, 23, 43, .08); -webkit-tap-highlight-color: transparent; transition: transform .15s; }
+.hb-tile:active { transform: scale(.985); }
+.hb-tile:focus-visible { outline: 3px solid #1E7A4C; outline-offset: 2px; }
+.hb-ico { flex: none; width: 36px; height: 36px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #D6F2E3; color: #1E7A4C; }
+.hb-ico svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.hb-tile b { min-width: 0; font-family: var(--display); font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; line-height: 1.15; overflow-wrap: anywhere; }
+/* the Logicer number as the left tile: the same words logicer.js writes, on a plain card; a link to My Logicers only while it shows the player's own number, as before */
+.hb-tiles .logicer.hb-me { display: grid; grid-template-columns: 32px minmax(0, 1fr); align-content: center; align-items: center; gap: 1px 9px; min-width: 0; min-height: 68px; margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); color: var(--ink); box-shadow: 0 8px 20px rgba(21, 23, 43, .08); }
+.hb-tiles .logicer.hb-me[hidden] { display: none; }
+.hb-tiles .hb-me::before { content: ""; grid-row: 1 / span 2; width: 32px; height: 32px; border-radius: 11px; background: #ECE6FD url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B3FC4' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='3.6'/%3E%3Cpath d='M4.8 20.2c.6-3.9 3.6-6.2 7.2-6.2s6.6 2.3 7.2 6.2'/%3E%3C/svg%3E") center / 19px 19px no-repeat; }
+.hb-tiles .hb-me .logicer-label { grid-column: 2; align-self: end; font-size: .6rem; letter-spacing: .08em; line-height: 1.25; color: var(--soft); }
+.hb-tiles .hb-me .logicer-label:empty { display: none; }
+.hb-tiles .hb-me .logicer-big { grid-column: 2; align-self: start; min-width: 0; font-size: .95rem; line-height: 1.15; letter-spacing: -0.025em; white-space: normal; overflow-wrap: anywhere; color: var(--ink); }
+.hb-tiles .hb-me .logicer-small { display: none; }
+.hb-col > .worldbox { margin-top: 0; padding: 9px 14px; gap: 12px; border-radius: 18px; }
+.hb-col > .worldbox .gameroom-art { width: 34px; height: 34px; }
+.hb-col > .worldbox .gameroom-h { font-size: 1rem; }
+.hb-col > .worldbox .gameroom-sub { margin-top: 1px; font-size: .8rem; line-height: 1.25; }
+@media (max-width: 1000px) {
+  .hb-col { display: contents; }
+  .hb-col > * { order: 1; margin-top: 10px; }
+  .hb-col > .hb-day { margin-top: 16px; }
+  .hb-col > .hb-tiles, .hb-col > .worldbox { order: 3; }
+  .hb-col > .worldbox { margin-top: 10px; }
+  .hero.hb .hero-boxes .logicer { margin-top: 10px; }
+}
+@media (max-width: 700px) {
+  .today.hb-words { padding: 11px 11px 11px 16px; }
+  .hb-day .today-top { align-items: baseline; }
+}
+@media (max-width: 359px) {
+  .hb-h { font-size: 1.06rem; }
+  .hb-play { padding: 0 12px; gap: 7px; }
+  .hb-play b { font-size: 1.12rem; }
+  .hb-all { width: 48px; }
+  .hb-words .hb-play { padding: 0 14px; }
+  .today.hb-words .pips { grid-auto-columns: 28px; }
+  .hb-tile, .hb-tiles .logicer.hb-me { padding: 9px 9px; gap: 1px 8px; }
+  .hb-tile { gap: 8px; }
+  .hb-ico, .hb-tiles .hb-me::before { width: 30px; height: 30px; border-radius: 10px; }
+  .hb-tiles .logicer.hb-me { grid-template-columns: 30px minmax(0, 1fr); }
+  .hb-tile b, .hb-tiles .hb-me .logicer-big { font-size: .92rem; }
+}
+@media (prefers-reduced-motion: reduce) { .hb-play, .hb-all, .hb-tile { transition: none; } .hb-play:active, .hb-all:active, .hb-tile:active { transform: none; } }
+@media (prefers-color-scheme: dark) {
+  .hb-play { box-shadow: 0 0 26px color-mix(in srgb, var(--c, #7FA5FF) 34%, transparent); }
+  .hb-all { background: rgba(255, 255, 255, .06); }
+  .hb-tile, .hb-tiles .logicer.hb-me { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); border-color: transparent; }
+  .hb-ico { background: rgba(143, 227, 181, .16); color: #8FE3B5; }
+  .hb-tiles .hb-me::before { background-color: rgba(199, 184, 255, .18); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C7B8FF' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='3.6'/%3E%3Cpath d='M4.8 20.2c.6-3.9 3.6-6.2 7.2-6.2s6.6 2.3 7.2 6.2'/%3E%3C/svg%3E"); }
+  .hb-all:focus-visible { outline-color: #9DB2FF; }
+  .hb-tile:focus-visible { outline-color: #8FE3B5; }
+}
+/* the two sheets: the shelves as they were, inside */
+#dlg-games, #dlg-together { width: min(100% - 24px, 46rem); }
+.hb-sheet .close { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
+.hb-sheet .shelf { margin-top: 16px; }
+.hb-sheet .hb-h2 { margin-top: 28px; padding-right: 0; }
+.hb-sheet .sec-sub { margin: 4px 0 0; }
+.hb-sheet .livebox { margin-top: 16px; }
+.hb-sheet .gameroom { margin-top: 10px; }
+.hb-sheet .group-games { margin-top: 28px; }
+.hb-sheet .group-games h2 { padding-right: 0; }
 </style>
-<noscript><style>#dlg-build { display: block; position: static; width: auto; max-width: 440px; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); } #dlg-build .close { display: none; }</style></noscript>
+<noscript><style>.hero.hb .lg-line { display: flex; } #dlg-games, #dlg-together { display: block; position: static; width: auto; max-width: 46rem; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); } #dlg-games .close, #dlg-together .close { display: none; } #dlg-build { display: block; position: static; width: auto; max-width: 440px; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); } #dlg-build .close { display: none; }</style></noscript>
 </head>
 <body class="home">
 
@@ -209,7 +311,7 @@ html.bo-flat #dlg-build .close { display: none; }
 </header>
 
 <main>
-<section class="hero">
+<section class="hero hb">
   <div class="hero-text">
     <p class="eyebrow" id="eyebrow"></p>
     <h1 data-s="home.h1">¿Eres <em>Logicer</em>?</h1>
@@ -225,12 +327,6 @@ html.bo-flat #dlg-build .close { display: none; }
     <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
     <!-- the two boxes stop where the longer text stops, both the same width (Khayyam, 22 Oct 2026); on the phone they fill the line as before -->
     <div class="hero-boxes">
-    <a class="logicer" id="logicer" hidden></a>
-    <script>/* the number opens My Logicers (7 Nov 2026): the box is a link only while it shows the player's own number */
-    (function () { var b = document.getElementById("logicer"); if (!b) return;
-      function own() { try { var l = JSON.parse(window.localStorage.getItem("turnsout:v1")).world.logicer; return !!(l && l.n > 0); } catch (e) { return false; } }
-      function set() { if (!b.hidden && own()) b.setAttribute("href", "../me/"); else b.removeAttribute("href"); }
-      if (window.MutationObserver) new MutationObserver(set).observe(b, { childList: true, attributes: true, attributeFilter: ["hidden"] }); set(); })();</script>
     <!-- Find out about yourself (B2, 22 Oct 2026): the same style as the counter, right under it (Khayyam, 20 Oct) -->
     <a class="logicer findout" id="findout-box" href="../find-out/es/">
       <span class="logicer-label" data-s="home.findout_label">Descubre</span>
@@ -247,67 +343,47 @@ html.bo-flat #dlg-build .close { display: none; }
     </a>
     </div>
   </div>
-  <!-- The Today card (19 Oct 2026): the first thing on the page now opens the first game not yet played
-       today, and each finished game hands the player to the next, so one tap starts the whole day.
-       home.js below gives it its address and shows the Play chip; a day with everything played is no link. -->
-  <a class="today" id="today-card">
-    <div class="today-top"><span class="today-label" data-s="end.today">Hoy</span><span class="today-count" id="today-count" data-s="home.today_count"><b>0</b> de 9 jugados</span><span class="today-go" id="today-go" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg><span data-s="site.play">Jugar</span></span></div>
-    <div class="pips" aria-hidden="true"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
-    <div class="pips pips-words" aria-hidden="true"><i id="pip-altitude" data-g="altitude"></i><i id="pip-lookalike" data-g="lookalike"></i><i id="pip-passport" data-g="passport"></i></div>
-    <p class="today-note" id="today-note" data-s="home.new_at_midnight">Juegos nuevos a medianoche.</p>
-  </a>
-  <!-- This week's story (4 Nov 2026, Khayyam): one thin line under the Today card, the whole line a link into story/. Not one
-       of the daily or word games: it is in neither list in turnsout.js, so it is outside the chain, the streak and the
-       "x of 12 played" count. English only for now: story/tile.js shows it from the launch day and only when the page is
-       English, and writes its name, the number of readers and the sign itself, so the six homes built from this page
-       keep it hidden and nothing here needs a translation key. -->
+  <!-- The clean-up of 17 Nov 2026 (Khayyam: "it is too messy"): the right-hand column (on a phone, the boxes in the order
+       they are written, with Find out and the Check-in between the story and the two tiles). The daily games are ONE box:
+       the count, nine chips (one small sign per game, a tick once played), one Play button for the first game not yet
+       played, and a button that opens the sheet with all of them (#dlg-games). The word games are one slim box. The script
+       below gives each Play button its address; a row with everything played has none. -->
+  <div class="hb-col">
+  <div class="today hb-day" id="today-card">
+    <div class="today-top"><h2 class="hb-h" data-s="home.daily_games_h">Los juegos diarios de hoy</h2><span class="today-count" id="today-count" data-s="home.today_count"><b>0</b> de 9 jugados</span></div>
+    <div class="pips chips" aria-hidden="true" data-open="dlg-games"><i id="pip-energy" data-g="energy"></i><i id="pip-hundred" data-g="hundred"></i><i id="pip-call" data-g="call"></i><i id="pip-cousin" data-g="cousin"></i><i id="pip-club" data-g="club"></i><i id="pip-apart" data-g="apart"></i><i id="pip-gets" data-g="gets"></i><i id="pip-every" data-g="every"></i><i id="pip-o24" data-g="o24"></i></div>
+    <div class="hb-go">
+      <a class="hb-play" id="today-go" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg><b data-s="site.play">Jugar</b><span class="hb-next" id="today-next"></span></a>
+      <p class="hb-done" id="today-note" data-s="home.new_at_midnight" hidden>Juegos nuevos a medianoche.</p>
+      <button class="hb-all" type="button" id="today-all" data-open="dlg-games" aria-label="Todos los juegos" data-s-aria-label="end.all_games"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="6.5" height="6.5" rx="2" fill="currentColor"/><rect x="11" y="2.5" width="6.5" height="6.5" rx="2" fill="currentColor"/><rect x="2.5" y="11" width="6.5" height="6.5" rx="2" fill="currentColor"/><rect x="11" y="11" width="6.5" height="6.5" rx="2" fill="currentColor"/></svg></button>
+    </div>
+  </div>
+  <div class="today hb-words" id="words-card">
+    <div class="hb-words-l">
+      <h2 class="hb-h" data-s="home.word_games_h">Los juegos de palabras de hoy</h2>
+      <div class="hb-words-row"><div class="pips chips pips-words" aria-hidden="true" data-open="dlg-games"><i id="pip-altitude" data-g="altitude"></i><i id="pip-lookalike" data-g="lookalike"></i><i id="pip-passport" data-g="passport"></i></div><span class="today-count" id="words-count"></span></div>
+    </div>
+    <a class="hb-play" id="words-go" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.6v12.8c0 .9 1 1.5 1.8 1L19 13c.8-.5.8-1.6 0-2.1L9.8 4.6c-.8-.5-1.8.1-1.8 1z" fill="currentColor"/></svg><b data-s="site.play">Jugar</b></a>
+  </div>
+  <!-- This week's story (4 Nov 2026): one thin line, the whole line a link into story/; story/tile.js shows it (English only for now) -->
   <a class="story-line" id="story-line" data-g="story" href="../story/" hidden>
     <b class="sl-name">This week's story</b>
     <span class="sl-count" hidden></span>
     <span class="sl-sign"></span>
   </a>
-  <!-- Build your own · Join with a code (16 Oct 2026; the words and the left half's sheet 11 Nov 2026): one slim box in two halves, right under Today and the same width, so the
-       games come into view sooner (Khayyam: "those boxes are too tall vertically and take too much space"). Join is a
-       link to the live page, which has its own code box; with the script a tap opens the code field here instead,
-       across the whole box. The left half opens the "Build your own" sheet (#dlg-build, below). The form has no named field, so even without a script nothing of the code reaches any
-       server: home.js sends the browser to live/#CODE. -->
-  <div class="livebox" id="livebox">
-    <a class="lb lb-build" id="lb-build" href="#dlg-build" aria-haspopup="dialog" aria-controls="dlg-build">
-      <span class="lb-badge" data-s="site.new">Nuevo</span>
-      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
-      <b class="lb-h" data-s="home.build_own">Crea el tuyo</b>
-    </a>
-    <a class="lb lb-join" id="lb-join" href="../live/" aria-haspopup="dialog" aria-controls="dlg-rooms">
-      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
-      <b class="lb-h" data-s="home.join_code">Únete con un código</b>
-    </a>
+  <!-- Two half tiles. Left: the Logicer number ("You are Logicer №2,354", 20 Oct 2026; assets/js/logicer.js gives it its words and
+       it stays hidden until it has them); a link to My Logicers only while it shows the player's own number (7 Nov 2026).
+       Right: "Play together" opens the sheet with the rooms, a code, Build your own and the Pass the phone games (#dlg-together). -->
+  <div class="hb-tiles">
+    <a class="logicer hb-me" id="logicer" hidden></a>
+    <script>/* the number opens My Logicers (7 Nov 2026): the box is a link only while it shows the player's own number */
+    (function () { var b = document.getElementById("logicer"); if (!b) return;
+      function own() { try { var l = JSON.parse(window.localStorage.getItem("turnsout:v1")).world.logicer; return !!(l && l.n > 0); } catch (e) { return false; } }
+      function set() { if (!b.hidden && own()) b.setAttribute("href", "../me/"); else b.removeAttribute("href"); }
+      if (window.MutationObserver) new MutationObserver(set).observe(b, { childList: true, attributes: true, attributeFilter: ["hidden"] }); set(); })();</script>
+    <button class="hb-tile" type="button" id="together" data-open="dlg-together" aria-haspopup="dialog" aria-controls="dlg-together"><span class="hb-ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8.2" r="3.2"/><circle cx="17" cy="9.2" r="2.5"/><path d="M3 19c.6-3.3 3-5 6-5s5.4 1.7 6 5M16.4 14.2c2.3.1 4 1.4 4.6 4.2"/></svg></span><b data-s="home.together">Juega en grupo</b></button>
   </div>
-  <!-- Game Room and "players said" (20 Oct 2026, Khayyam: "as tall as Build a game or Join a game, right under
-       them"): two slim halves like those, a picture and a title each. The Game Room waits hidden until rooms are
-       switched on (assets/js/rooms.js); the players' half until assets/js/said.js has a line Khayyam let through.
-       A half alone takes the whole row; with neither, the row is not there. -->
-  <div class="pairbox" id="pairbox">
-  <!-- Game rooms (23 Oct 2026, Khayyam): the hub of the three kinds of room. A tap opens the sheet below with the three
-       choices; the box is always shown. "Join a game" opens the same sheet with a code field. -->
-  <a class="gameroom" id="gameroom" href="../es/room/" role="button" aria-haspopup="dialog" aria-controls="dlg-rooms">
-    <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
-      <rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/>
-      <rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/>
-      <circle cx="19.5" cy="22" r="1.6" fill="#3A3F5C"/>
-      <circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/>
-      <circle cx="36" cy="27" r="6.5" fill="#CF4327"/>
-      <circle cx="28" cy="33" r="5.5" fill="#0D7D73"/>
-    </svg></span>
-    <span class="gameroom-text">
-      <b class="gameroom-h" id="gameroom-h" data-s="home.game_rooms">Salas de juego</b>
-      <span class="gameroom-sub" id="gameroom-sub" data-s="home.game_rooms_sub">Juegos diarios, How Sure o Descubre quién eres, con amigos.</span>
-      <span class="gameroom-faces" id="gameroom-faces" hidden></span>
-    </span>
-  </a>
-  <section class="gameroom saidbox" id="saidbox" aria-label="Lo que dijeron los jugadores" data-s-aria-label="home.players_said_aria" hidden></section>
-  </div>
-  <!-- The World table box (16 Oct 2026), last and the full width. It waits hidden until the world's counts are
-       switched on (assets/js/world.js unhides it and fills it with your country's place). -->
+  <!-- The World table box (16 Oct 2026), last. It waits hidden until the world's counts are switched on (assets/js/world.js). -->
   <a class="gameroom worldbox" id="worldbox" href="../es/world/" hidden>
     <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
       <circle cx="22" cy="22" r="17" fill="#2D4FC4"/>
@@ -320,10 +396,17 @@ html.bo-flat #dlg-build .close { display: none; }
       <span class="gameroom-sub" id="worldbox-sub" data-s="world.counts_for_country">Cada juego que terminas cuenta para tu país.</span>
     </span>
   </a>
+  </div>
 </section>
 
-<section class="games" aria-labelledby="games-title">
-  <h2 class="sec" id="games-title" data-s="home.daily_games_h">Los juegos diarios de hoy</h2>
+<!-- The two sheets of the clean-up (17 Nov 2026). "All games": today's daily games and today's word games, the shelves exactly as
+     they stood on the page (every tile, id and state kept, so the script below fills them as before). "Play together": Build your
+     own and Join with a code, the Game rooms hub, and the Pass the phone row. Without a script the two sheets are simply shown at
+     the foot of the page (see the styles). -->
+<dialog id="dlg-games" aria-labelledby="games-title">
+  <div class="sheet hb-sheet">
+    <button class="chip round close" type="button" data-close aria-label="Cerrar" data-s-aria-label="site.close">×</button>
+    <h2 id="games-title" data-s="home.daily_games_h">Los juegos diarios de hoy</h2>
   <div class="shelf" id="shelf">
     <button class="shelf-btn prev off" type="button" id="shelf-prev" aria-controls="shelf-row" aria-label="Juegos anteriores" data-s-aria-label="site.previous_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="shelf-row" id="shelf-row" data-n="9">
@@ -429,18 +512,7 @@ html.bo-flat #dlg-build .close { display: none; }
     </div>
     <button class="shelf-btn next" type="button" id="shelf-next" aria-controls="shelf-row" aria-label="Más juegos" data-s-aria-label="site.more_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
-</section>
-
-
-<!-- Word games (28 Oct 2026, Khayyam): their own row right under the daily games. Altitude is not one of the
-     nine: it is not in GAMES (turnsout.js), so it is outside the chain, the streak and the "x/9 played" count, and
-     its tile carries no result stamp. Lookalike and Passport joined it on 29 Oct 2026, outside the nine in the same
-     way, with the round shelf buttons (wired below, shelf("shelf3-row", ...)).
-     ORDER: Altitude stays the first tile of this row (Khayyam, 28 Oct 2026); then Lookalike, then Passport
-     (Khayyam, 29 Oct 2026). A new word game is added AFTER them, inside the same shelf-row — unlike the daily
-     row above, where the newest game goes first. -->
-<section class="games word-games" aria-labelledby="words-title">
-  <h2 class="sec" id="words-title" data-s="home.word_games_h">Los juegos de palabras de hoy</h2>
+    <h2 class="hb-h2" id="words-title" data-s="home.word_games_h">Los juegos de palabras de hoy</h2>
   <div class="shelf" id="shelf3">
     <button class="shelf-btn prev off" type="button" id="shelf3-prev" aria-controls="shelf3-row" aria-label="Juegos de palabras anteriores" data-s-aria-label="site.previous_word_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="shelf-row" id="shelf3-row" data-n="3">
@@ -480,15 +552,41 @@ html.bo-flat #dlg-build .close { display: none; }
     </div>
     <button class="shelf-btn next off" type="button" id="shelf3-next" aria-controls="shelf3-row" aria-label="Más juegos de palabras" data-s-aria-label="site.more_word_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
-</section>
-
-
-<!-- The find-out row and the "Play live with friends" row left the page on 23 Oct 2026 (Khayyam): the green box is the
-     way into the find-outs, and the rooms live in the Game rooms hub above. -->
-
-<section class="games group-games" id="more-to-play" aria-labelledby="group-title">
-  <h2 class="sec" id="group-title" data-s="home.pass_h">Pasa el teléfono</h2>
-  <p class="sec-sub" data-s="home.pass_sub">Juegos para dos o más, con un solo teléfono.</p>
+  </div>
+</dialog>
+<dialog id="dlg-together" aria-labelledby="together-title">
+  <div class="sheet hb-sheet">
+    <button class="chip round close" type="button" data-close aria-label="Cerrar" data-s-aria-label="site.close">×</button>
+    <h2 id="together-title" data-s="home.together">Juega en grupo</h2>
+  <div class="livebox" id="livebox">
+    <a class="lb lb-build" id="lb-build" href="#dlg-build" aria-haspopup="dialog" aria-controls="dlg-build">
+      <span class="lb-badge" data-s="site.new">Nuevo</span>
+      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
+      <b class="lb-h" data-s="home.build_own">Crea el tuyo</b>
+    </a>
+    <a class="lb lb-join" id="lb-join" href="../live/" aria-haspopup="dialog" aria-controls="dlg-rooms">
+      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
+      <b class="lb-h" data-s="home.join_code">Únete con un código</b>
+    </a>
+  </div>
+  <a class="gameroom" id="gameroom" href="../es/room/" role="button" aria-haspopup="dialog" aria-controls="dlg-rooms">
+    <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
+      <rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/>
+      <rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/>
+      <circle cx="19.5" cy="22" r="1.6" fill="#3A3F5C"/>
+      <circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/>
+      <circle cx="36" cy="27" r="6.5" fill="#CF4327"/>
+      <circle cx="28" cy="33" r="5.5" fill="#0D7D73"/>
+    </svg></span>
+    <span class="gameroom-text">
+      <b class="gameroom-h" id="gameroom-h" data-s="home.game_rooms">Salas de juego</b>
+      <span class="gameroom-sub" id="gameroom-sub" data-s="home.game_rooms_sub">Juegos diarios, How Sure o Descubre quién eres, con amigos.</span>
+      <span class="gameroom-faces" id="gameroom-faces" hidden></span>
+    </span>
+  </a>
+    <div class="group-games" id="more-to-play">
+    <h2 id="group-title" data-s="home.pass_h">Pasa el teléfono</h2>
+    <p class="sec-sub" data-s="home.pass_sub">Juegos para dos o más, con un solo teléfono.</p>
   <div class="shelf" id="shelf2">
     <button class="shelf-btn prev off" type="button" id="shelf2-prev" aria-controls="shelf2-row" aria-label="Juegos en grupo anteriores" data-s-aria-label="site.previous_group_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="shelf-row" id="shelf2-row" data-n="5">
@@ -552,14 +650,9 @@ html.bo-flat #dlg-build .close { display: none; }
     </div>
     <button class="shelf-btn next off" type="button" id="shelf2-next" aria-controls="shelf2-row" aria-label="Más juegos en grupo" data-s-aria-label="site.more_group_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
-</section>
-
-<section class="soons" aria-label="Próximamente" data-s-aria-label="home.coming_aria">
-  <div class="soon">
-    <div><h2 data-s="home.soon_h">Más juegos están en camino</h2><p data-s="home.soon_sub">Los nuevos se suman a la estantería cuando están listos.</p></div>
-    <div class="soon-arts" aria-hidden="true"><div class="art" data-g="half"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="fg" d="M160 38a62 62 0 0 0 0 124z"/><path class="mute" d="M160 38a62 62 0 0 1 0 124z"/><path class="ln" d="M160 22V178" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10"/></svg></div><div class="art" data-g="piece"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="95" y="34" width="38" height="38" rx="9"/><rect class="mute" x="141" y="34" width="38" height="38" rx="9"/><rect class="fg" x="187" y="34" width="38" height="38" rx="9"/><rect class="mute" x="95" y="80" width="38" height="38" rx="9"/><rect class="fg" x="141" y="80" width="38" height="38" rx="9"/><rect class="gap" x="189" y="82" width="34" height="34" rx="8" fill="none" stroke-width="3.5" stroke-dasharray="6 6"/><rect class="fg" x="95" y="126" width="38" height="38" rx="9"/><rect class="mute" x="141" y="126" width="38" height="38" rx="9"/><rect class="fg" x="187" y="126" width="38" height="38" rx="9"/></svg></div></div>
+    </div>
   </div>
-</section>
+</dialog>
 
 <!-- The rooms sheet (23 Oct 2026): three kinds of room, one tap each; from "Join a game" the same three with a code
      field. Codes never reach a server from here: the page sends the browser to the room's own page with the code
@@ -688,7 +781,7 @@ html.bo-flat #dlg-build .close { display: none; }
 <script src="../every-beat/puzzles.js"></script>
 <script src="../out-of-24/puzzles.js"></script>
 <script src="../same-energy/puzzles.js"></script>
-<script src="../assets/js/turnsout.js?v=09165bdcd8"></script>
+<script src="../assets/js/turnsout.js?v=2d1fafdad8"></script>
 <script src="../assets/js/duel.js?v=c4e6a61b81"></script>
 <script src="../assets/js/rooms.js?v=ff958273b2"></script>
 <script src="../assets/js/points.js?v=aa9c049981"></script>
@@ -777,32 +870,55 @@ html.bo-flat #dlg-build .close { display: none; }
       if (go) go.hidden = true;
       if (mins) mins.hidden = true;
     }
-    else if (!firstWord) firstWord = { id: w.id, href: tile.getAttribute("href") };
+    else if (!firstWord) firstWord = { id: w.id, key: w.key, href: tile.getAttribute("href") };
   });
-  document.getElementById("today-count").innerHTML = T("end.of_played", { n: doneToday + wordsDone, of: live + wordsLive });
-  if (live + wordsLive > 0 && doneToday + wordsDone === live + wordsLive) document.getElementById("today-note").textContent = T("end.all_done");
+  /* 17 Nov 2026 (Khayyam: "we can fit the daily games into just 1 box"): two boxes, the daily games and the word games.
+     Each has its own count (written "2/9", the same in every language), its chips (one small sign per game, a tick
+     once played: TurnsOut.pipFill) and one Play button that opens the first game of its row not yet played today;
+     from there every finished game hands the player to the next, as before. A row with everything played has no
+     button; the daily box then says the day is done. The counts of the taps keep their names ("today-card/<game>"). */
+  (function () {
+    function box(countId, goId, n, of, next, name) {
+      var c = document.getElementById(countId), go = document.getElementById(goId);
+      if (c && of > 0) c.innerHTML = "<b>" + n + "</b>/" + of;
+      if (!go || !next) return;
+      go.href = next.href;
+      if (next.key) go.setAttribute("data-g", next.key);
+      var nm = document.getElementById(goId.replace("-go", "-next"));
+      if (nm && name) nm.textContent = name;
+      go.hidden = false;
+      go.addEventListener("click", function () { TO.count("today-card/" + next.id); });
+    }
+    box("today-count", "today-go", doneToday, live, firstOpen, firstOpen && firstOpen.name);
+    box("words-count", "words-go", wordsDone, wordsLive, firstWord, "");
+    var note = document.getElementById("today-note");
+    if (note && live > 0 && doneToday === live) { note.textContent = T("end.all_done"); note.hidden = false; }
+    var chips = document.querySelectorAll("#today-card .pips i, #words-card .pips i");
+    if (typeof TO.pipFill === "function") for (var i = 0; i < chips.length; i++) TO.pipFill(chips[i], chips[i].getAttribute("data-g"));
+    /* the two sheets: a shelf measures itself when the window changes size, and it could not while its sheet was shut */
+    document.addEventListener("click", function (e) {
+      var o = e.target && e.target.closest ? e.target.closest('[data-open="dlg-games"], [data-open="dlg-together"]') : null;
+      if (!o) return;
+      TO.count(o.getAttribute("data-open") === "dlg-games" ? "home/games-open" : "home/together-open");
+      window.setTimeout(function () { try { window.dispatchEvent(new Event("resize")); } catch (err) { /* the row still scrolls */ } }, 0);
+    });
+  })();
   /* "More to play" (19 Oct 2026): the last game's card sends people here, to the games that never run out. The
      line that stood above them ("Done with today's games? …") was dropped on 22 Oct 2026 (Khayyam); the anchor
      sits on the Pass the phone row, the first row that never runs out (30 Oct 2026: it had stayed in the Game rooms
      box above the daily games when the find-out box moved up). */
-  (function () {
-    var here = document.getElementById("more-to-play");
-    if (!here || window.location.hash !== "#more-to-play") return;
+  (function () {       /* 17 Nov 2026: the Pass the phone row lives in the "Play together" sheet, so an old link to it opens that sheet */
+    var sheet = document.getElementById("dlg-together");
+    if (!sheet || window.location.hash !== "#more-to-play") return;
     TO.count("home/more-to-play");
-    window.setTimeout(function () { try { here.scrollIntoView({ behavior: "auto", block: "start" }); } catch (e) { /* the browser's own jump will do */ } }, 0);
+    window.setTimeout(function () {
+      try { if (sheet.showModal) { if (!sheet.open) sheet.showModal(); } else sheet.setAttribute("open", ""); window.dispatchEvent(new Event("resize")); } catch (e) { /* the page is there all the same */ }
+    }, 0);
   })();
 
   /* The Today card opens the first game not yet played today (19 Oct 2026); from there every finished
      game hands the player to the next. A day with everything played leaves the card a plain card. */
-  (function () {
-    var card = document.getElementById("today-card"), go = document.getElementById("today-go");
-    var next = firstOpen || firstWord;                  // the daily games first, then the word games (29 Oct 2026)
-    if (!card || !next) return;
-    card.href = next.href;
-    card.classList.add("today-open");
-    if (go) go.hidden = false;
-    card.addEventListener("click", function () { TO.count("today-card/" + next.id); });
-  })();
+  /* (the Today card as one link, 19 Oct 2026, gave way to the two boxes above on 17 Nov 2026) */
 
   /* The Today line (30 Oct 2026): title, count and Play on one line; when they do not fit (French: "Jeux joués : 0 sur 12"
      at 320px made four lines), the count goes under the title and Play stays on the right. Measured, not guessed. */

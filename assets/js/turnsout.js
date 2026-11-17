@@ -955,6 +955,45 @@
     return below;
   }
 
+  /* ------------------------------------------------------------------
+     The day's chips (17 Nov 2026, Khayyam: "it is too messy"). The row of dashes that shows how far through the day
+     a player is ("pips") now carries one small sign per game, so the row itself says there are nine different
+     games; a played game shows a tick on its own colour. The same chips stand on the home page (which fills its
+     own with TurnsOut.pipFill), in the block under a game and on the finish card. Two switches for the same
+     clean-up, each one word to turn back:
+       ONWARD_SLIM   after a game that is not the day's last, the block under it holds only the day, the way on
+                     and "All games" (and, last, the name and "Send my day"); the reminder offers, today's thread,
+                     Tell Khayyam, Share my day and the message wait for the end of the day.
+       FIN_REMIND    the reminder half beside "Stay and read" on a finish card that has "Next game" (13 Nov 2026):
+                     off, so that card has one way on and one way to stay.
+     ------------------------------------------------------------------ */
+  var ONWARD_SLIM = true, FIN_REMIND = false;
+  var GLYPH = {
+    energy: '<path d="M4 5.2h6M4 8.8h6"/>',
+    hundred: '<circle cx="7" cy="4.6" r="2"/><path d="M3.2 11.4c.4-2.2 1.9-3.3 3.8-3.3s3.4 1.1 3.8 3.3"/>',
+    call: '<path d="M3 4h8M3 7h8M3 10h8"/>',
+    cousin: '<path d="M7 2.8v4M3.2 11.2V6.8h7.6v4.4"/>',
+    club: '<circle cx="7" cy="7" r="4.4"/><circle cx="7" cy="7" r="1" fill="currentColor" stroke="none"/>',
+    apart: '<circle cx="7" cy="7" r="4.4"/><path d="M7 4.6V7l1.9 1.2"/>',
+    gets: '<circle cx="7" cy="7" r="4.4"/><path d="M7 2.6V7h4.4"/>',
+    every: '<path d="M1.8 7h2.6L6 4l2 6 1.5-3h2.7"/>',
+    o24: '<circle cx="7" cy="7" r="2.2"/><path d="M7 1.8v1.4M7 10.8v1.4M1.8 7h1.4M10.8 7h1.4"/>',
+    altitude: '<path d="M1.8 11l3.6-6.2L8 9l1.4-2 2.8 4z"/>',
+    lookalike: '<rect x="2.4" y="2.4" width="6" height="6" rx="1.5"/><rect x="5.6" y="5.6" width="6" height="6" rx="1.5"/>',
+    passport: '<circle cx="7" cy="7" r="4.4"/><path d="M2.6 7h8.8M7 2.6c1.9 2 1.9 6.8 0 8.8"/>'
+  };
+  function pipFill(i, key) {
+    if (!i || !GLYPH[key] || i.firstChild) return i;
+    i.innerHTML = '<svg class="pip-g" viewBox="0 0 14 14" aria-hidden="true" focusable="false">' + GLYPH[key] + '</svg>' +
+      '<svg class="pip-k" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 7.4l2.7 2.7L11 4.4"/></svg>';
+    return i;
+  }
+  function pip(key, on) {
+    var p = el("i", on ? "on" : "");
+    p.setAttribute("data-g", key);
+    return pipFill(p, key);
+  }
+
   function onward(o) {
     o = o || {};
     var after = document.getElementById("after");
@@ -994,8 +1033,10 @@
     var box = el("section", "onward");
     box.id = "onward";
     box.setAttribute("aria-label", T("end.today_games"));
+    var slim = ONWARD_SLIM && !!next;       // 17 Nov 2026: not the day's last game, so the block stays short
+    var who = null;
     if (typeof window.TurnsOut.duelBar === "function") {
-      try { var who = window.TurnsOut.duelBar(o); if (who) box.appendChild(who); } catch (e) { /* the name and Send my day are optional */ }
+      try { who = window.TurnsOut.duelBar(o); if (who && !slim) box.appendChild(who); } catch (e) { who = null; /* the name and Send my day are optional */ }
     }
     var top = el("div", "onward-top");
     top.appendChild(el("h2", "", T("end.today")));
@@ -1003,12 +1044,10 @@
     c.innerHTML = T("end.of_played", { n: count, of: GAMES.length });
     top.appendChild(c);
     box.appendChild(top);
-    var pips = el("div", "pips");
+    var pips = el("div", "pips chips");
     pips.setAttribute("aria-hidden", "true");
     GAMES.forEach(function (G, i) {
-      var p = el("i", played[i] ? "on" : "");
-      p.setAttribute("data-g", G.key);
-      pips.appendChild(p);
+      pips.appendChild(pip(G.key, played[i]));
     });
     box.appendChild(pips);
     var eodEl = null;                     // the end-of-day card, when today is done: it may spend a while in the finish card
@@ -1027,7 +1066,7 @@
       /* 19 Oct 2026, Khayyam: "it must be same for all the games". The cells that used to come only with the
          last game (the offers, today's thread, Tell Khayyam, Share my day) now follow every game; only the
          clock and the country's place wait for the end of the day. */
-      try { box.appendChild(endOfDay(false)); } catch (e) { /* the end of the day must never break a game */ }
+      if (!slim) { try { box.appendChild(endOfDay(false)); } catch (e) { /* the end of the day must never break a game */ } }
     } else {
       /* A day with everything played can end somewhere better than a sentence: a member of a
          room goes back to its table (assets/js/rooms.js fills this hook in). Wrapped whole,
@@ -1047,7 +1086,8 @@
     all.appendChild(el("span", "onward-all-name", T("end.all_games")));
     all.insertAdjacentHTML("beforeend", ARROW);
     box.appendChild(all);
-    try { box.appendChild(messageLine("onward-msg", T("msg.line"), "box")); } catch (e) { /* the message is optional */ }
+    if (slim) { if (who) { who.classList.add("who-last"); box.appendChild(who); } }
+    else { try { box.appendChild(messageLine("onward-msg", T("msg.line"), "box")); } catch (e) { /* the message is optional */ } }
     /* the world today: the world, the continent and the country beside this result (assets/js/world.js) */
     if (typeof window.TurnsOut.worldHook === "function") {
       try { window.TurnsOut.worldHook(below, o, played); } catch (e) { /* the world's counts must never break a game */ }
@@ -1411,11 +1451,23 @@
     sheet.setAttribute("aria-label", next ? T("fin.aria_next") : T("fin.aria_done"));
     sheet.setAttribute("tabindex", "-1");
     if (next) sheet.setAttribute("data-g", next.key);
-    var top = el("div", "onward-top");
-    top.appendChild(el("h2", "fin-h", next ? T("fin.played") : T("fin.all_done")));
+    /* 17 Nov 2026: on a card that has "Next game" the result itself is the headline ("So close!" over "Off by 3"), where
+       "Played!" and the count stood with the result in a box under them; the count moves beside the chips, as "1/9".
+       A result the card cannot say (rare) keeps the old top. The last card of the day is as it was. */
+    var rl = null;
+    try { rl = resultLine(o); } catch (e) { rl = null; }
+    var lead = !!(next && rl);
+    var top = el("div", "onward-top" + (lead ? " fin-lead" : ""));
     var c = el("span", "onward-count");
-    c.innerHTML = T("end.of_played", { n: count, of: GAMES.length });
-    top.appendChild(c);
+    if (lead) {
+      try { var rs = rl.querySelector("span"); if (rs) rs.textContent = rs.textContent.replace(/^\s*\u00B7\s*/, ""); } catch (e) { /* the line reads the same */ }
+      top.appendChild(rl);
+      c.innerHTML = "<b>" + count + "</b>/" + GAMES.length;
+    } else {
+      top.appendChild(el("h2", "fin-h", next ? T("fin.played") : T("fin.all_done")));
+      c.innerHTML = T("end.of_played", { n: count, of: GAMES.length });
+      top.appendChild(c);
+    }
     var x = el("button", "chip round close fin-x", "×");
     x.type = "button";
     x.setAttribute("aria-label", T("site.close"));
@@ -1427,18 +1479,18 @@
     sheet.appendChild(top);
     /* 24 Oct 2026, Khayyam: the card came too fast and said nothing of the result. Its first line is now the result,
        as the stamp and the home tile say it ("Now you know · Off by 39 years"), so nobody has to look under the card. */
-    try {
-      var rl = resultLine(o);
-      if (rl) sheet.appendChild(rl);
-    } catch (e) { /* the card can live without the line */ }
-    var pips = el("div", "pips");
+    if (rl && !lead) sheet.appendChild(rl);
+    var pips = el("div", "pips chips");
     pips.setAttribute("aria-hidden", "true");
     GAMES.forEach(function (G, i) {
-      var p = el("i", played[i] ? "on" : "");
-      p.setAttribute("data-g", G.key);
-      pips.appendChild(p);
+      pips.appendChild(pip(G.key, played[i]));
     });
-    sheet.appendChild(pips);
+    if (lead) {
+      var dayRow = el("div", "fin-day");
+      dayRow.appendChild(pips);
+      dayRow.appendChild(c);
+      sheet.appendChild(dayRow);
+    } else sheet.appendChild(pips);
     /* how the day is going: spot-on count (19 Oct 2026, Khayyam: option C) */
     var spot = 0;
     try { dayRows().forEach(function (x) { if (x.tier === 3) spot++; }); } catch (e) { spot = 0; }
@@ -1549,7 +1601,8 @@
        tomorrow, when this phone can be offered one; with nothing to offer it stays the one full bar, as before. */
     var stay = stats;
     try {
-      if (next && comebackAsk() !== "" && comebackAsk() !== "set") {
+      if (next) stats.textContent = comeback("stay");      // 17 Nov 2026: the short words on the one bar too
+      if (FIN_REMIND && next && comebackAsk() !== "" && comebackAsk() !== "set") {
         var duo = el("div", "fin-pair fin-duo"), rem = el("div", "fin-remind-host");
         duo.style.setProperty("--n", "2");
         rem.setAttribute("data-comeback", "");
@@ -2744,6 +2797,7 @@
     keepTip: keepTip,
     stampFor: stampFor,
     GAMES: GAMES,
+    pipFill: pipFill,
     WORDS: WORDS,
     wordDone: wordDone,
     wordNext: wordNext,
