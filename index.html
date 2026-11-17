@@ -294,6 +294,137 @@ html.bo-flat #dlg-build .close { display: none; }
 .hb-sheet .gameroom { margin-top: 10px; }
 .hb-sheet .group-games { margin-top: 28px; }
 .hb-sheet .group-games h2 { padding-right: 0; }
+/* ------------------------------------------------------------------
+   Round 2 of the clean-up (17 Nov 2026, Khayyam: "in computer the homepage is naked"). Computer: the left column holds
+   the Logicer number in its own purple (as before the clean-up), Find out, the Check-in and "Explore together", all as
+   wide as the title. Phone: those bars under the story, then the Logicer number and the World table as two halves.
+   "Explore together" opens one window with four panels (#dlg-together). The foot is one row on a computer and one line
+   on a phone; the privacy words are in the About window.
+   ------------------------------------------------------------------ */
+@media (min-width: 1001px) {
+  .hero.hb > .hero-text { justify-self: start; display: grid; grid-template-columns: minmax(0, max-content); }
+  .hero.hb .hero-boxes { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; }
+}
+.logicer.explore { appearance: none; border: 0; width: 100%; font: inherit; line-height: inherit; text-align: left; cursor: pointer; color: #fff; background: linear-gradient(135deg, #0D5566 0%, #137385 55%, #2A9FA6 100%); box-shadow: 0 8px 20px rgba(19, 115, 133, .28), inset 0 0 0 1px rgba(255, 255, 255, .16); -webkit-tap-highlight-color: transparent; }
+.logicer.explore:active { transform: scale(.99); }
+.logicer.explore:focus-visible { outline: 3px solid #137385; outline-offset: 3px; }
+.logicer.explore .logicer-big { color: #fff; }
+.xb-ics { margin-left: auto; align-self: center; display: inline-flex; gap: 6px; padding-left: 8px; }
+.xb-ics span { width: 28px; height: 28px; border-radius: 99px; background: rgba(255, 255, 255, .18); display: flex; align-items: center; justify-content: center; }
+.xb-ics svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 700px) { .xb-ics { display: none; } }
+@media (prefers-reduced-motion: reduce) { .logicer.explore:active { transform: none; } }
+@media (max-width: 1000px) {
+  .hero.hb { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 10px; }
+  .hero.hb > *, .hero.hb .hero-text > *, .hero.hb .hb-col > *, .hero.hb .hero-boxes > * { grid-column: 1 / -1; }
+  .hero.hb .hero-boxes { display: contents; }
+  .hero.hb .hero-boxes > * { order: 2; margin-top: 10px; }
+  .hero.hb .hero-boxes > #logicer { order: 3; grid-column: 1; }
+  .hero.hb .hb-col > .worldbox { order: 3; grid-column: 2; }
+  .hero.hb:has(#logicer[hidden]) .hb-col > .worldbox, .hero.hb:has(#worldbox[hidden]) .hero-boxes > #logicer { grid-column: 1 / -1; }
+  /* the Logicer number as a half tile: the same words logicer.js writes, on a plain card; a link to My Logicers only while it shows the player's own number, as before */
+  .hero.hb #logicer { display: grid; grid-template-columns: 32px minmax(0, 1fr); align-content: center; align-items: center; gap: 1px 9px; min-width: 0; width: auto; min-height: 66px; margin-top: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); color: var(--ink); box-shadow: 0 8px 20px rgba(21, 23, 43, .08); }
+  .hero.hb #logicer[hidden] { display: none; }
+  .hero.hb #logicer::before { content: ""; grid-row: 1 / span 2; width: 32px; height: 32px; border-radius: 11px; background: #ECE6FD url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B3FC4' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='3.6'/%3E%3Cpath d='M4.8 20.2c.6-3.9 3.6-6.2 7.2-6.2s6.6 2.3 7.2 6.2'/%3E%3C/svg%3E") center / 19px 19px no-repeat; }
+  .hero.hb #logicer .logicer-label { grid-column: 2; align-self: end; font-size: .6rem; letter-spacing: .08em; line-height: 1.25; color: var(--soft); }
+  .hero.hb #logicer .logicer-label:empty { display: none; }
+  .hero.hb #logicer .logicer-big { grid-column: 2; align-self: start; min-width: 0; font-size: .95rem; line-height: 1.15; letter-spacing: -0.025em; white-space: normal; overflow-wrap: anywhere; color: var(--ink); }
+  .hero.hb #logicer .logicer-small { display: none; }
+  /* the World table beside it: its line only, the count of games under it waits for a wider screen */
+  .hero.hb:has(#logicer:not([hidden])) .hb-col > .worldbox { min-height: 66px; padding: 10px 12px; gap: 9px; }
+  .hero.hb:has(#logicer:not([hidden])) .hb-col > .worldbox .gameroom-art { width: 32px; height: 32px; }
+  .hero.hb:has(#logicer:not([hidden])) .hb-col > .worldbox .gameroom-h { font-size: .95rem; line-height: 1.2; overflow-wrap: break-word; hyphens: auto; }
+  .hero.hb:has(#logicer:not([hidden])) .hb-col > .worldbox .gameroom-sub { display: none; }
+}
+@media (max-width: 1000px) and (prefers-color-scheme: dark) {
+  .hero.hb #logicer { background: rgba(255, 255, 255, .055); box-shadow: inset 0 0 0 1px var(--line); border-color: transparent; }
+  .hero.hb #logicer::before { background-color: rgba(199, 184, 255, .18); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C7B8FF' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='3.6'/%3E%3Cpath d='M4.8 20.2c.6-3.9 3.6-6.2 7.2-6.2s6.6 2.3 7.2 6.2'/%3E%3C/svg%3E"); }
+}
+@media (max-width: 359px) {
+  .hero.hb #logicer { grid-template-columns: 28px minmax(0, 1fr); gap: 1px 7px; padding: 9px 9px; }
+  .hero.hb #logicer::before { width: 28px; height: 28px; border-radius: 9px; background-size: 17px 17px; }
+  .hero.hb #logicer .logicer-big, .hero.hb:has(#logicer:not([hidden])) .hb-col > .worldbox .gameroom-h { font-size: .88rem; }
+  .hero.hb:has(#logicer:not([hidden])) .hb-col > .worldbox { padding: 9px 9px; gap: 7px; }
+  .hero.hb:has(#logicer:not([hidden])) .hb-col > .worldbox .gameroom-art { display: none; }   /* room for a long country name on the smallest phones */
+}
+/* the foot: one row on a computer, one line on a phone (the words in full are in the About window) */
+.foot-note .foot-phone { display: none; }
+.foot-phone a { color: var(--ink); font-weight: 800; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.foot-phone .foot-dot { color: var(--soft); }
+@media (min-width: 701px) {
+  body.home .foot-note { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 26px; }
+  body.home .foot-note > p { margin: 0; }
+  body.home .foot-note .made-by { font-size: 1rem; }
+}
+@media (max-width: 700px) {
+  body.home .foot-note > .made-by, body.home .foot-note > .msg-line, body.home .foot-note > .mail, body.home .foot-note > [data-open="dlg-about"] { display: none; }
+  body.home .foot-note .foot-phone { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; margin: 0; font-size: .92rem; line-height: 1.35; }
+  body.home .foot-phone .msg-link { font-size: inherit; }
+}
+/* the "Explore together" window: four panels, two by two on a computer, one under the other on a phone */
+#dlg-together { width: min(100% - 24px, 60rem); }
+.xp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; margin-top: 16px; }
+@media (max-width: 760px) { .xp-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+.xp-pan { box-sizing: border-box; min-width: 0; padding: 16px; border-radius: 22px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 12px; }
+.xp-rooms { --xc: #2D4FC4; --xt: #E4E9FB; }
+.xp-pass { --xc: #7A4E7E; --xt: #F3E4F4; }
+.xp-build { --xc: #5B3FC4; --xt: #ECE6FD; }
+.xp-join { --xc: #1E7A4C; --xt: #DDF3E7; }
+.xp-head { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.xp-head > span:last-child { min-width: 0; }
+.xp-head h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; line-height: 1.15; }
+.xp-line { display: block; margin-top: 2px; color: var(--soft); font-size: .88rem; font-weight: 600; line-height: 1.3; }
+.xp-ic { flex: none; width: 40px; height: 40px; border-radius: 13px; display: flex; align-items: center; justify-content: center; background: var(--xt); color: var(--xc); }
+.xp-ic svg, .xp-ri svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.xp-ic svg { width: 20px; height: 20px; }
+.xp-new { font-family: var(--text, inherit); background: var(--ink); color: var(--bg); font-size: .64rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 3px 7px; border-radius: 99px; line-height: 1.2; }
+.xp-rows { display: flex; flex-direction: column; gap: 6px; }
+.xp-row { display: flex; align-items: center; gap: 10px; min-height: 46px; box-sizing: border-box; padding: 6px 12px 6px 7px; border-radius: 14px; background: var(--card); color: var(--ink); text-decoration: none; box-shadow: 0 1px 2px rgba(21, 23, 43, .07); -webkit-tap-highlight-color: transparent; transition: transform .15s; }
+.xp-row:active { transform: scale(.985); }
+.xp-row:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
+.xp-ri { flex: none; width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--xt); color: var(--xc); }
+.xp-row[data-g] .xp-ri { background: var(--tint); color: var(--c); }
+.xp-ri svg { width: 16px; height: 16px; }
+.xp-t { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.xp-t b { font-weight: 700; font-size: .98rem; line-height: 1.2; overflow-wrap: anywhere; }
+.xp-t span { color: var(--soft); font-size: .84rem; line-height: 1.3; }
+.xp-t .bo-en { margin-top: 2px; font-size: .78rem; }
+html[lang="en"] .xp-t .bo-en { display: none; }
+.xp-t .xp-n { margin-top: 1px; font-size: .8rem; font-weight: 700; }
+.xp-chev { flex: none; width: 12px; height: 12px; fill: none; stroke: var(--soft); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.xp-rooms .gameroom { margin: 0; padding: 10px 12px; border-radius: 14px; box-shadow: none; }
+.xp-rooms .gameroom:not(:has(.gameroom-faces:not([hidden]))) { display: none; }
+.xp-kinds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.xp-kind { appearance: none; border: 0; min-height: 44px; margin: 0; padding: 4px 8px; border-radius: 12px; background: var(--card); color: var(--ink); font: inherit; font-weight: 700; font-size: .92rem; line-height: 1.2; cursor: pointer; box-shadow: inset 0 0 0 1.5px var(--line); -webkit-tap-highlight-color: transparent; }
+.xp-kind[aria-pressed="true"] { background: var(--xc); color: #fff; box-shadow: none; }
+.xp-kind:focus-visible { outline: 3px solid var(--xc); outline-offset: 2px; }
+.xp-code[hidden] { display: none; }
+.xp-code-h { margin: 0 0 6px; color: var(--soft); font-size: .86rem; font-weight: 600; }
+.xp-code-row { display: flex; gap: 8px; }
+.xp-code-in { flex: 1; min-width: 0; height: 46px; box-sizing: border-box; margin: 0; padding: 0 14px; border-radius: 14px; border: 2px solid var(--line); background: var(--card); color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: .12em; }
+.xp-code-in:focus { outline: none; border-color: var(--xc); }
+.xp-code.bad .xp-code-in { border-color: #CF4327; animation: rooms-shake .3s; }
+.xp-go { appearance: none; flex: none; border: 0; height: 46px; padding: 0 20px; border-radius: 999px; background: var(--xc); color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
+.xp-go:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+@media (max-width: 400px) {
+  .xp-grid { margin-top: 12px; gap: 10px; }
+  .xp-pan { padding: 12px; gap: 10px; border-radius: 18px; }
+  .xp-head { gap: 10px; }
+  .xp-ic { width: 36px; height: 36px; border-radius: 12px; }
+  .xp-row { padding: 6px 10px 6px 6px; gap: 9px; }
+  .xp-t b { font-size: .94rem; }
+}
+.xp-rooms .gameroom .gameroom-art { width: 34px; height: 34px; }
+@media (prefers-reduced-motion: reduce) { .xp-row { transition: none; } .xp-row:active { transform: none; } .xp-code.bad .xp-code-in { animation: none; } }
+@media (prefers-color-scheme: dark) {
+  .xp-rooms { --xc: #9DB2FF; --xt: rgba(157, 178, 255, .16); }
+  .xp-pass { --xc: #E3B4E6; --xt: rgba(227, 180, 230, .15); }
+  .xp-build { --xc: #C7B8FF; --xt: rgba(199, 184, 255, .16); }
+  .xp-join { --xc: #8FE3B5; --xt: rgba(143, 227, 181, .15); }
+  .xp-row { background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px var(--line); }
+  .xp-kind { background: rgba(255, 255, 255, .06); }
+  .xp-kind[aria-pressed="true"], .xp-go { color: #0A0C1A; }
+}
 </style>
 <noscript><style>.hero.hb .lg-line { display: flex; } #dlg-games, #dlg-together { display: block; position: static; width: auto; max-width: 46rem; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); } #dlg-games .close, #dlg-together .close { display: none; } #dlg-build { display: block; position: static; width: auto; max-width: 440px; max-height: none; margin: 28px auto 0; box-shadow: inset 0 0 0 1.5px var(--line); } #dlg-build .close { display: none; }</style></noscript>
 </head>
@@ -326,6 +457,14 @@ html.bo-flat #dlg-build .close { display: none; }
     <!-- "You are Logicer №2,354" (20 Oct 2026): assets/js/logicer.js gives it its words; hidden until it has them -->
     <!-- the two boxes stop where the longer text stops, both the same width (Khayyam, 22 Oct 2026); on the phone they fill the line as before -->
     <div class="hero-boxes">
+    <!-- 17 Nov 2026 (round 2): the Logicer number is back in its place above Find out, in its own purple, on a computer; on a phone
+         it stands beside the World table as a half tile (see the styles) -->
+    <a class="logicer" id="logicer" hidden></a>
+    <script>/* the number opens My Logicers (7 Nov 2026): the box is a link only while it shows the player's own number */
+    (function () { var b = document.getElementById("logicer"); if (!b) return;
+      function own() { try { var l = JSON.parse(window.localStorage.getItem("turnsout:v1")).world.logicer; return !!(l && l.n > 0); } catch (e) { return false; } }
+      function set() { if (!b.hidden && own()) b.setAttribute("href", "me/"); else b.removeAttribute("href"); }
+      if (window.MutationObserver) new MutationObserver(set).observe(b, { childList: true, attributes: true, attributeFilter: ["hidden"] }); set(); })();</script>
     <!-- Find out about yourself (B2, 22 Oct 2026): the same style as the counter, right under it (Khayyam, 20 Oct) -->
     <a class="logicer findout" id="findout-box" href="find-out/">
       <span class="logicer-label" data-s="home.findout_label">Find out</span>
@@ -340,6 +479,13 @@ html.bo-flat #dlg-build .close { display: none; }
       <span class="logicer-big checkin-big" data-s="home.checkin_big">Check-in</span>
       <span class="logicer-small" id="checkin-count" data-t="{n} already did"></span>
     </a>
+    <!-- Explore together (17 Nov 2026, round 2; Khayyam: "play together sort of undersells what are inside"): opens the window with
+         the four ways to play with others. The small signs show on a computer only. -->
+    <button class="logicer explore" type="button" id="explore-box" data-open="dlg-together" aria-haspopup="dialog" aria-controls="dlg-together">
+      <span class="logicer-label" data-s="home.explore_label">With friends</span>
+      <span class="logicer-big" data-s="home.explore">Explore together</span>
+      <span class="xb-ics" aria-hidden="true"><span><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 3h3.4v3.4H3zM7.6 3H11v3.4H7.6zM3 7.6h3.4V11H3zM7.6 7.6H11V11H7.6z"/></svg></span><span><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M4.8 1.8h4.4a1.2 1.2 0 0 1 1.2 1.2v8a1.2 1.2 0 0 1-1.2 1.2H4.8a1.2 1.2 0 0 1-1.2-1.2V3a1.2 1.2 0 0 1 1.2-1.2zM6.3 10.2h1.4"/></svg></span><span><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M7 3v8M3 7h8"/></svg></span><span><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2.8 7a2.2 2.2 0 1 0 4.4 0a2.2 2.2 0 1 0 -4.4 0M7.2 7h4.2v1.8M9.6 7v1.4"/></svg></span></span>
+    </button>
     </div>
   </div>
   <!-- The clean-up of 17 Nov 2026 (Khayyam: "it is too messy"): the right-hand column (on a phone, the boxes in the order
@@ -370,18 +516,6 @@ html.bo-flat #dlg-build .close { display: none; }
     <span class="sl-count" hidden></span>
     <span class="sl-sign"></span>
   </a>
-  <!-- Two half tiles. Left: the Logicer number ("You are Logicer №2,354", 20 Oct 2026; assets/js/logicer.js gives it its words and
-       it stays hidden until it has them); a link to My Logicers only while it shows the player's own number (7 Nov 2026).
-       Right: "Play together" opens the sheet with the rooms, a code, Build your own and the Pass the phone games (#dlg-together). -->
-  <div class="hb-tiles">
-    <a class="logicer hb-me" id="logicer" hidden></a>
-    <script>/* the number opens My Logicers (7 Nov 2026): the box is a link only while it shows the player's own number */
-    (function () { var b = document.getElementById("logicer"); if (!b) return;
-      function own() { try { var l = JSON.parse(window.localStorage.getItem("turnsout:v1")).world.logicer; return !!(l && l.n > 0); } catch (e) { return false; } }
-      function set() { if (!b.hidden && own()) b.setAttribute("href", "me/"); else b.removeAttribute("href"); }
-      if (window.MutationObserver) new MutationObserver(set).observe(b, { childList: true, attributes: true, attributeFilter: ["hidden"] }); set(); })();</script>
-    <button class="hb-tile" type="button" id="together" data-open="dlg-together" aria-haspopup="dialog" aria-controls="dlg-together"><span class="hb-ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8.2" r="3.2"/><circle cx="17" cy="9.2" r="2.5"/><path d="M3 19c.6-3.3 3-5 6-5s5.4 1.7 6 5M16.4 14.2c2.3.1 4 1.4 4.6 4.2"/></svg></span><b data-s="home.together">Play together</b></button>
-  </div>
   <!-- The World table box (16 Oct 2026), last. It waits hidden until the world's counts are switched on (assets/js/world.js). -->
   <a class="gameroom worldbox" id="worldbox" href="world/" hidden>
     <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
@@ -556,167 +690,81 @@ html.bo-flat #dlg-build .close { display: none; }
 <dialog id="dlg-together" aria-labelledby="together-title">
   <div class="sheet hb-sheet">
     <button class="chip round close" type="button" data-close aria-label="Close" data-s-aria-label="site.close">×</button>
-    <h2 id="together-title" data-s="home.together">Play together</h2>
-  <div class="livebox" id="livebox">
-    <a class="lb lb-build" id="lb-build" href="#dlg-build" aria-haspopup="dialog" aria-controls="dlg-build">
-      <span class="lb-badge" data-s="site.new">New</span>
-      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="36" width="27" height="21" rx="6" fill="#7C5CF0"/><rect x="9.5" y="45.2" width="16" height="2.6" rx="1.3" fill="#fff" opacity=".6"/><rect x="15" y="41.5" width="5" height="10" rx="2.2" fill="#fff"/><rect x="33" y="36" width="27" height="21" rx="6" fill="#2FA36B"/><path d="M40.5 46.5l3.6 3.6 7-7.6" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="18.5" y="12" width="27" height="21" rx="6" fill="#FF8A57"/><path d="M28.4 19.9a3.6 3.6 0 1 1 5.4 3.1c-1.2.7-1.8 1.3-1.8 2.6" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="32" cy="28.9" r="1.7" fill="#fff"/><path d="M53.5 4.5l1.6 4.1 4.1 1.6-4.1 1.6-1.6 4.1-1.6-4.1-4.1-1.6 4.1-1.6z" fill="#FF6FA8"/><circle cx="9" cy="17" r="2.3" fill="#7C5CF0" opacity=".45"/></svg></span>
-      <b class="lb-h" data-s="home.build_own">Build your own</b>
-    </a>
-    <a class="lb lb-join" id="lb-join" href="live/" aria-haspopup="dialog" aria-controls="dlg-rooms">
-      <span class="lb-art"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M15.5 25.6l3.4 1.4M48.6 31.6l-3.2.8M15.6 41.4l3.2-1.6" stroke="#1E7A4C" stroke-width="2.2" stroke-linecap="round" opacity=".45"/><rect x="19" y="5" width="26" height="50" rx="7" fill="#1E7A4C"/><rect x="22.5" y="11" width="19" height="35" rx="3.5" fill="#fff"/><rect x="24.6" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="29.85" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><rect x="35.1" y="24" width="4.3" height="7" rx="1.6" fill="#2FA36B"/><circle cx="32" cy="50.6" r="1.9" fill="#fff" opacity=".8"/><circle cx="9.5" cy="22" r="5.5" fill="#7C5CF0"/><circle cx="54.5" cy="31" r="5.5" fill="#FF8A57"/><circle cx="11" cy="44.5" r="4.5" fill="#2D4FC4"/></svg></span>
-      <b class="lb-h" data-s="home.join_code">Join with a code</b>
-    </a>
-  </div>
-  <a class="gameroom" id="gameroom" href="room/" role="button" aria-haspopup="dialog" aria-controls="dlg-rooms">
-    <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
-      <rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/>
-      <rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/>
-      <circle cx="19.5" cy="22" r="1.6" fill="#3A3F5C"/>
-      <circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/>
-      <circle cx="36" cy="27" r="6.5" fill="#CF4327"/>
-      <circle cx="28" cy="33" r="5.5" fill="#0D7D73"/>
-    </svg></span>
-    <span class="gameroom-text">
-      <b class="gameroom-h" id="gameroom-h" data-s="home.game_rooms">Game rooms</b>
-      <span class="gameroom-sub" id="gameroom-sub" data-s="home.game_rooms_sub">Daily games, How Sure or Find out who you are — with friends.</span>
-      <span class="gameroom-faces" id="gameroom-faces" hidden></span>
-    </span>
-  </a>
-    <div class="group-games" id="more-to-play">
-    <h2 id="group-title" data-s="home.pass_h">Pass the phone</h2>
-    <p class="sec-sub" data-s="home.pass_sub">Games for two or more, on one phone.</p>
-  <div class="shelf" id="shelf2">
-    <button class="shelf-btn prev off" type="button" id="shelf2-prev" aria-controls="shelf2-row" aria-label="Previous group games" data-s-aria-label="site.previous_group_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <div class="shelf-row" id="shelf2-row" data-n="5">
-    <a class="tile" id="tile-twin" data-g="twin" href="twin-or-trap/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="q" x="76" y="30" width="190" height="124" rx="14"/><rect class="mute" x="94" y="61" width="30" height="9" rx="4.5"/><rect class="fg" x="136" y="52" width="98" height="26" rx="8"/><rect class="mute" x="94" y="115" width="30" height="9" rx="4.5"/><rect class="fg" x="136" y="106" width="98" height="26" rx="8"/><rect class="mute" x="94" y="91" width="154" height="2.5" rx="1.25"/><g transform="rotate(-9 236 158)"><rect class="q" x="204" y="136" width="64" height="44" rx="9"/><rect class="stamp" x="204" y="136" width="64" height="44" rx="9" fill="none" stroke-width="3.5"/><rect class="fg" x="221" y="149" width="30" height="5.5" rx="2.75"/><rect class="fg" x="221" y="161.5" width="30" height="5.5" rx="2.75"/><rect class="fg" x="233.5" y="141" width="5" height="34" rx="2.5" transform="rotate(32 236 158)"/></g></svg><span class="badge" data-s="site.new">New</span></div>
-      <div class="body">
-        <h3 data-s="group.twin.name">Twin or Trap</h3>
-        <p class="pitch"><span class="long" data-s="home.pitch_twin_long">One word, two languages. Read it out, talk it over, then all vote: does it mean the same, or is it a trap?</span><span class="short" data-s="group.twin.pitch">Same word, two languages. Twin or trap?</span></p>
-        <div class="foot">
-          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
+    <h2 id="together-title" data-s="home.explore">Explore together</h2>
+    <!-- Round 2 (17 Nov 2026): four panels, two by two on a computer and one under the other on a phone. Each says what it is in
+         one line and lists its ways in; Pass the phone is one panel of five short rows (no pictures). The rooms sheet and the
+         build sheet are gone: their rows and the code field are here. "Your room" (the faces, assets/js/rooms.js) shows in the
+         Game rooms panel only for a player in a room of two or more. -->
+    <div class="xp-grid">
+    <section class="xp-pan xp-rooms" id="xp-rooms" aria-labelledby="xp-rooms-h">
+      <div class="xp-head"><span class="xp-ic" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 3h3.4v3.4H3zM7.6 3H11v3.4H7.6zM3 7.6h3.4V11H3zM7.6 7.6H11V11H7.6z"/></svg></span><span><h3 id="xp-rooms-h" data-s="home.game_rooms">Game rooms</h3><span class="xp-line" data-s="home.own_phone">Everyone on their own phone.</span></span></div>
+      <a class="gameroom" id="gameroom" href="room/">
+        <span class="gameroom-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none">
+          <rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/>
+          <rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/>
+          <circle cx="19.5" cy="22" r="1.6" fill="#3A3F5C"/>
+          <circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/>
+          <circle cx="36" cy="27" r="6.5" fill="#CF4327"/>
+          <circle cx="28" cy="33" r="5.5" fill="#0D7D73"/>
+        </svg></span>
+        <span class="gameroom-text">
+          <b class="gameroom-h" id="gameroom-h" data-s="home.game_rooms">Game rooms</b>
+          <span class="gameroom-sub" id="gameroom-sub" data-s="home.game_rooms_sub">Daily games, How Sure or Find out who you are — with friends.</span>
+          <span class="gameroom-faces" id="gameroom-faces" hidden></span>
+        </span>
+      </a>
+      <div class="xp-rows">
+      <a class="xp-row" data-kind="daily" href="room/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 3h3.4v3.4H3zM7.6 3H11v3.4H7.6zM3 7.6h3.4V11H3zM7.6 7.6H11V11H7.6z"/></svg></span><span class="xp-t"><b data-s="home.room_daily">Daily games with friends</b></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-kind="live" href="live/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2.6 7a4.4 4.4 0 1 0 8.8 0a4.4 4.4 0 1 0 -8.8 0M6.2 7a.8.8 0 1 0 1.6 0a.8.8 0 1 0 -1.6 0"/></svg></span><span class="xp-t"><b data-s="home.room_live">How Sure with friends</b></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-kind="findout" href="find-out/room/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M5 4.6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0M3.2 11.4c.4-2.2 1.9-3.3 3.8-3.3s3.4 1.1 3.8 3.3"/></svg></span><span class="xp-t"><b data-s="home.room_findout">Find out who you are with friends</b></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-kind="checkin" href="checkin/host/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M1.8 7h2.6L6 4l2 6 1.5-3h2.7"/></svg></span><span class="xp-t"><b data-s="home.room_checkin">Check in, as a group</b></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+    </section>
+    <section class="xp-pan xp-pass" id="more-to-play" aria-labelledby="group-title">
+      <div class="xp-head"><span class="xp-ic" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M4.8 1.8h4.4a1.2 1.2 0 0 1 1.2 1.2v8a1.2 1.2 0 0 1-1.2 1.2H4.8a1.2 1.2 0 0 1-1.2-1.2V3a1.2 1.2 0 0 1 1.2-1.2zM6.3 10.2h1.4"/></svg></span><span><h3 id="group-title" data-s="home.pass_h">Pass the phone</h3><span class="xp-line" data-s="home.pass_sub">Games for two or more, on one phone.</span></span></div>
+      <div class="xp-rows">
+      <a class="xp-row" data-g="twin" href="twin-or-trap/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3.5 5.5h7M3.5 8.5h7M9 3l-4 8"/></svg></span><span class="xp-t"><b data-s="group.twin.name">Twin or Trap</b><span class="xp-n" data-s="group.players_2">2+ players</span></span><span class="xp-new" data-s="site.new">New</span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-g="o193" href="one-of-193/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2.6 7a4.4 4.4 0 1 0 8.8 0a4.4 4.4 0 1 0 -8.8 0M2.6 7h8.8M7 2.6c1.9 2 1.9 6.8 0 8.8"/></svg></span><span class="xp-t"><b data-s="group.o193.name">One of 193</b><span class="xp-n" data-s="group.players_2">2+ players</span></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-g="still" href="still-in/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 4h8M3 7h5M3 10h8"/></svg></span><span class="xp-t"><b data-s="group.still.name">Still In</b><span class="xp-n" data-s="group.players_2">2+ players</span></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-g="expert" href="so-called-expert/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M7 2.4l1.4 2.9 3.1.4-2.3 2.2.6 3.1L7 9.5l-2.8 1.5.6-3.1-2.3-2.2 3.1-.4z"/></svg></span><span class="xp-t"><b data-s="group.expert.name">So-Called Expert</b><span class="xp-n" data-s="group.players_3">3+ players</span></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-g="beat" href="beat-the-phone/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M4.8 1.8h4.4a1.2 1.2 0 0 1 1.2 1.2v8a1.2 1.2 0 0 1-1.2 1.2H4.8a1.2 1.2 0 0 1-1.2-1.2V3a1.2 1.2 0 0 1 1.2-1.2zM6.3 10.2h1.4"/></svg></span><span class="xp-t"><b data-s="group.beat.name">Beat the Phone</b><span class="xp-n" data-s="group.players_2">2+ players</span></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+    </section>
+    <section class="xp-pan xp-build" id="xp-build" aria-labelledby="xp-build-h">
+      <div class="xp-head"><span class="xp-ic" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M7 3v8M3 7h8"/></svg></span><span><h3 id="xp-build-h"><span data-s="home.build_own">Build your own</span><span class="xp-new" data-s="site.new">New</span></h3><span class="xp-line" data-s="home.build_line">Make your own questions.</span></span></div>
+      <div class="xp-rows">
+      <a class="xp-row" data-row="daily" href="https://by.logicers.com/new/?lang=en" data-s-href="home.build_daily_href"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 3.4h8a1 1 0 0 1 1 1v6.6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4.4a1 1 0 0 1 1-1zM2 6.2h10M4.8 2v2.4M9.2 2v2.4"/></svg></span><span class="xp-t"><b data-s="home.build_daily">Daily questions</b><span data-s="home.build_daily_sub">One a day, for your class or team</span></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="xp-row" data-row="live" href="live/build/"><span class="xp-ri" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M4.6 3v8l6.4-4z"/></svg></span><span class="xp-t"><b data-s="home.build_live">Live quiz</b><span data-s="home.build_live_sub">Everyone answers together</span><span class="bo-en" data-s="lang.english_only">This page is in English only for now.</span></span><svg class="xp-chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+    </section>
+    <section class="xp-pan xp-join" id="xp-join" aria-labelledby="xp-join-h">
+      <div class="xp-head"><span class="xp-ic" aria-hidden="true"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2.8 7a2.2 2.2 0 1 0 4.4 0a2.2 2.2 0 1 0 -4.4 0M7.2 7h4.2v1.8M9.6 7v1.4"/></svg></span><span><h3 id="xp-join-h" data-s="home.join_code">Join with a code</h3><span class="xp-line" data-s="home.join_line">Got a code? Pick the game, type it.</span></span></div>
+      <div class="xp-kinds">
+        <button class="xp-kind" type="button" data-kind="daily" aria-pressed="false" data-s="home.kind_daily">Daily games</button>
+        <button class="xp-kind" type="button" data-kind="live" aria-pressed="false">How Sure</button>
+        <button class="xp-kind" type="button" data-kind="findout" aria-pressed="false" data-s="home.findout_label">Find out</button>
+        <button class="xp-kind" type="button" data-kind="checkin" aria-pressed="false" data-s="home.checkin_big">Check-in</button>
+      </div>
+      <form class="xp-code" id="xp-code" autocomplete="off" hidden aria-label="The code" data-s-aria-label="home.code_aria">
+        <p class="xp-code-h" id="xp-code-h"></p>
+        <div class="xp-code-row">
+          <input class="xp-code-in" id="xp-code-in" maxlength="20" placeholder="CODE" data-s-placeholder="home.code_ph" autocapitalize="characters" spellcheck="false" aria-label="Game code" data-s-aria-label="home.code_field_aria">
+          <button class="xp-go" type="submit" data-s="home.join">Join</button>
         </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-o193" data-g="o193" href="one-of-193/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="dim" cx="37" cy="39" r="3.6"/><circle class="dim" cx="50.2" cy="39" r="3.6"/><circle class="dim" cx="63.4" cy="39" r="3.6"/><circle class="dim" cx="76.6" cy="39" r="3.6"/><circle class="dim" cx="89.8" cy="39" r="3.6"/><circle class="dim" cx="103" cy="39" r="3.6"/><circle class="mute" cx="116.2" cy="39" r="4.6"/><circle class="dim" cx="129.4" cy="39" r="3.6"/><circle class="dim" cx="142.6" cy="39" r="3.6"/><circle class="dim" cx="155.8" cy="39" r="3.6"/><circle class="dim" cx="169" cy="39" r="3.6"/><circle class="dim" cx="182.2" cy="39" r="3.6"/><circle class="dim" cx="195.4" cy="39" r="3.6"/><circle class="dim" cx="208.6" cy="39" r="3.6"/><circle class="dim" cx="221.8" cy="39" r="3.6"/><circle class="dim" cx="235" cy="39" r="3.6"/><circle class="dim" cx="248.2" cy="39" r="3.6"/><circle class="dim" cx="261.4" cy="39" r="3.6"/><circle class="dim" cx="274.6" cy="39" r="3.6"/><circle class="dim" cx="287.8" cy="39" r="3.6"/><circle class="dim" cx="37" cy="52.6" r="3.6"/><circle class="dim" cx="50.2" cy="52.6" r="3.6"/><circle class="dim" cx="63.4" cy="52.6" r="3.6"/><circle class="dim" cx="76.6" cy="52.6" r="3.6"/><circle class="dim" cx="89.8" cy="52.6" r="3.6"/><circle class="dim" cx="103" cy="52.6" r="3.6"/><circle class="dim" cx="116.2" cy="52.6" r="3.6"/><circle class="dim" cx="129.4" cy="52.6" r="3.6"/><circle class="dim" cx="142.6" cy="52.6" r="3.6"/><circle class="dim" cx="155.8" cy="52.6" r="3.6"/><circle class="dim" cx="169" cy="52.6" r="3.6"/><circle class="dim" cx="182.2" cy="52.6" r="3.6"/><circle class="dim" cx="195.4" cy="52.6" r="3.6"/><circle class="dim" cx="208.6" cy="52.6" r="3.6"/><circle class="dim" cx="221.8" cy="52.6" r="3.6"/><circle class="dim" cx="235" cy="52.6" r="3.6"/><circle class="dim" cx="248.2" cy="52.6" r="3.6"/><circle class="dim" cx="261.4" cy="52.6" r="3.6"/><circle class="dim" cx="274.6" cy="52.6" r="3.6"/><circle class="mute" cx="287.8" cy="52.6" r="4.6"/><circle class="dim" cx="37" cy="66.2" r="3.6"/><circle class="dim" cx="50.2" cy="66.2" r="3.6"/><circle class="dim" cx="63.4" cy="66.2" r="3.6"/><circle class="dim" cx="76.6" cy="66.2" r="3.6"/><circle class="mute" cx="89.8" cy="66.2" r="4.6"/><circle class="dim" cx="103" cy="66.2" r="3.6"/><circle class="mute" cx="116.2" cy="66.2" r="4.6"/><circle class="dim" cx="129.4" cy="66.2" r="3.6"/><circle class="dim" cx="142.6" cy="66.2" r="3.6"/><circle class="dim" cx="155.8" cy="66.2" r="3.6"/><circle class="dim" cx="169" cy="66.2" r="3.6"/><circle class="dim" cx="182.2" cy="66.2" r="3.6"/><circle class="dim" cx="195.4" cy="66.2" r="3.6"/><circle class="mute" cx="208.6" cy="66.2" r="4.6"/><circle class="dim" cx="221.8" cy="66.2" r="3.6"/><circle class="mute" cx="235" cy="66.2" r="4.6"/><circle class="dim" cx="248.2" cy="66.2" r="3.6"/><circle class="mute" cx="261.4" cy="66.2" r="4.6"/><circle class="dim" cx="274.6" cy="66.2" r="3.6"/><circle class="mute" cx="287.8" cy="66.2" r="4.6"/><circle class="dim" cx="37" cy="79.8" r="3.6"/><circle class="dim" cx="50.2" cy="79.8" r="3.6"/><circle class="dim" cx="63.4" cy="79.8" r="3.6"/><circle class="dim" cx="76.6" cy="79.8" r="3.6"/><circle class="dim" cx="89.8" cy="79.8" r="3.6"/><circle class="dim" cx="103" cy="79.8" r="3.6"/><circle class="mute" cx="116.2" cy="79.8" r="4.6"/><circle class="dim" cx="129.4" cy="79.8" r="3.6"/><circle class="dim" cx="142.6" cy="79.8" r="3.6"/><circle class="mute" cx="155.8" cy="79.8" r="4.6"/><circle class="dim" cx="169" cy="79.8" r="3.6"/><circle class="mute" cx="182.2" cy="79.8" r="4.6"/><circle class="dim" cx="195.4" cy="79.8" r="3.6"/><circle class="dim" cx="208.6" cy="79.8" r="3.6"/><circle class="dim" cx="221.8" cy="79.8" r="3.6"/><circle class="dim" cx="235" cy="79.8" r="3.6"/><circle class="mute" cx="248.2" cy="79.8" r="4.6"/><circle class="dim" cx="261.4" cy="79.8" r="3.6"/><circle class="dim" cx="274.6" cy="79.8" r="3.6"/><circle class="mute" cx="287.8" cy="79.8" r="4.6"/><circle class="dim" cx="37" cy="93.4" r="3.6"/><circle class="dim" cx="50.2" cy="93.4" r="3.6"/><circle class="mute" cx="63.4" cy="93.4" r="4.6"/><circle class="dim" cx="76.6" cy="93.4" r="3.6"/><circle class="dim" cx="89.8" cy="93.4" r="3.6"/><circle class="dim" cx="103" cy="93.4" r="3.6"/><circle class="dim" cx="116.2" cy="93.4" r="3.6"/><circle class="mute" cx="142.6" cy="93.4" r="4.6"/><circle class="dim" cx="155.8" cy="93.4" r="3.6"/><circle class="dim" cx="169" cy="93.4" r="3.6"/><circle class="dim" cx="182.2" cy="93.4" r="3.6"/><circle class="dim" cx="195.4" cy="93.4" r="3.6"/><circle class="dim" cx="208.6" cy="93.4" r="3.6"/><circle class="dim" cx="221.8" cy="93.4" r="3.6"/><circle class="dim" cx="235" cy="93.4" r="3.6"/><circle class="dim" cx="248.2" cy="93.4" r="3.6"/><circle class="dim" cx="261.4" cy="93.4" r="3.6"/><circle class="dim" cx="274.6" cy="93.4" r="3.6"/><circle class="dim" cx="287.8" cy="93.4" r="3.6"/><circle class="dim" cx="37" cy="107" r="3.6"/><circle class="dim" cx="50.2" cy="107" r="3.6"/><circle class="dim" cx="63.4" cy="107" r="3.6"/><circle class="dim" cx="76.6" cy="107" r="3.6"/><circle class="dim" cx="89.8" cy="107" r="3.6"/><circle class="dim" cx="103" cy="107" r="3.6"/><circle class="dim" cx="116.2" cy="107" r="3.6"/><circle class="dim" cx="129.4" cy="107" r="3.6"/><circle class="dim" cx="142.6" cy="107" r="3.6"/><circle class="dim" cx="155.8" cy="107" r="3.6"/><circle class="dim" cx="169" cy="107" r="3.6"/><circle class="dim" cx="182.2" cy="107" r="3.6"/><circle class="dim" cx="195.4" cy="107" r="3.6"/><circle class="dim" cx="208.6" cy="107" r="3.6"/><circle class="dim" cx="221.8" cy="107" r="3.6"/><circle class="dim" cx="235" cy="107" r="3.6"/><circle class="mute" cx="248.2" cy="107" r="4.6"/><circle class="dim" cx="261.4" cy="107" r="3.6"/><circle class="mute" cx="274.6" cy="107" r="4.6"/><circle class="dim" cx="287.8" cy="107" r="3.6"/><circle class="dim" cx="37" cy="120.6" r="3.6"/><circle class="dim" cx="50.2" cy="120.6" r="3.6"/><circle class="dim" cx="63.4" cy="120.6" r="3.6"/><circle class="dim" cx="76.6" cy="120.6" r="3.6"/><circle class="mute" cx="89.8" cy="120.6" r="4.6"/><circle class="dim" cx="103" cy="120.6" r="3.6"/><circle class="dim" cx="116.2" cy="120.6" r="3.6"/><circle class="dim" cx="129.4" cy="120.6" r="3.6"/><circle class="mute" cx="142.6" cy="120.6" r="4.6"/><circle class="dim" cx="155.8" cy="120.6" r="3.6"/><circle class="dim" cx="169" cy="120.6" r="3.6"/><circle class="dim" cx="182.2" cy="120.6" r="3.6"/><circle class="dim" cx="195.4" cy="120.6" r="3.6"/><circle class="dim" cx="208.6" cy="120.6" r="3.6"/><circle class="mute" cx="221.8" cy="120.6" r="4.6"/><circle class="dim" cx="235" cy="120.6" r="3.6"/><circle class="dim" cx="248.2" cy="120.6" r="3.6"/><circle class="dim" cx="261.4" cy="120.6" r="3.6"/><circle class="dim" cx="274.6" cy="120.6" r="3.6"/><circle class="mute" cx="287.8" cy="120.6" r="4.6"/><circle class="dim" cx="37" cy="134.2" r="3.6"/><circle class="dim" cx="50.2" cy="134.2" r="3.6"/><circle class="mute" cx="63.4" cy="134.2" r="4.6"/><circle class="mute" cx="76.6" cy="134.2" r="4.6"/><circle class="dim" cx="89.8" cy="134.2" r="3.6"/><circle class="dim" cx="103" cy="134.2" r="3.6"/><circle class="dim" cx="116.2" cy="134.2" r="3.6"/><circle class="dim" cx="129.4" cy="134.2" r="3.6"/><circle class="dim" cx="142.6" cy="134.2" r="3.6"/><circle class="dim" cx="155.8" cy="134.2" r="3.6"/><circle class="dim" cx="169" cy="134.2" r="3.6"/><circle class="dim" cx="182.2" cy="134.2" r="3.6"/><circle class="dim" cx="195.4" cy="134.2" r="3.6"/><circle class="mute" cx="208.6" cy="134.2" r="4.6"/><circle class="dim" cx="221.8" cy="134.2" r="3.6"/><circle class="dim" cx="235" cy="134.2" r="3.6"/><circle class="dim" cx="248.2" cy="134.2" r="3.6"/><circle class="dim" cx="261.4" cy="134.2" r="3.6"/><circle class="dim" cx="274.6" cy="134.2" r="3.6"/><circle class="dim" cx="287.8" cy="134.2" r="3.6"/><circle class="dim" cx="37" cy="147.8" r="3.6"/><circle class="dim" cx="50.2" cy="147.8" r="3.6"/><circle class="dim" cx="63.4" cy="147.8" r="3.6"/><circle class="dim" cx="76.6" cy="147.8" r="3.6"/><circle class="dim" cx="89.8" cy="147.8" r="3.6"/><circle class="dim" cx="103" cy="147.8" r="3.6"/><circle class="dim" cx="116.2" cy="147.8" r="3.6"/><circle class="dim" cx="129.4" cy="147.8" r="3.6"/><circle class="mute" cx="142.6" cy="147.8" r="4.6"/><circle class="mute" cx="155.8" cy="147.8" r="4.6"/><circle class="mute" cx="169" cy="147.8" r="4.6"/><circle class="dim" cx="182.2" cy="147.8" r="3.6"/><circle class="dim" cx="195.4" cy="147.8" r="3.6"/><circle class="mute" cx="208.6" cy="147.8" r="4.6"/><circle class="dim" cx="221.8" cy="147.8" r="3.6"/><circle class="dim" cx="235" cy="147.8" r="3.6"/><circle class="mute" cx="248.2" cy="147.8" r="4.6"/><circle class="dim" cx="261.4" cy="147.8" r="3.6"/><circle class="dim" cx="274.6" cy="147.8" r="3.6"/><circle class="dim" cx="287.8" cy="147.8" r="3.6"/><circle class="dim" cx="37" cy="161.4" r="3.6"/><circle class="dim" cx="50.2" cy="161.4" r="3.6"/><circle class="dim" cx="63.4" cy="161.4" r="3.6"/><circle class="dim" cx="76.6" cy="161.4" r="3.6"/><circle class="dim" cx="89.8" cy="161.4" r="3.6"/><circle class="dim" cx="103" cy="161.4" r="3.6"/><circle class="dim" cx="116.2" cy="161.4" r="3.6"/><circle class="dim" cx="129.4" cy="161.4" r="3.6"/><circle class="mute" cx="142.6" cy="161.4" r="4.6"/><circle class="dim" cx="155.8" cy="161.4" r="3.6"/><circle class="dim" cx="169" cy="161.4" r="3.6"/><circle class="dim" cx="182.2" cy="161.4" r="3.6"/><circle class="dim" cx="195.4" cy="161.4" r="3.6"/><circle class="ring" cx="129.4" cy="93.4" r="10.5" fill="none" stroke-width="3"/><circle class="fg" cx="129.4" cy="93.4" r="6"/></svg></div>
-      <div class="body">
-        <h3 data-s="group.o193.name">One of 193</h3>
-        <p class="pitch"><span class="long" data-s="home.pitch_o193_long">The phone hides one of 193 countries. Ask it yes or no, and find the country in as few questions as you can.</span><span class="short" data-s="group.o193.pitch">The phone hides a country. Ask yes or no, and find it.</span></p>
-        <div class="foot">
-          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-still" data-g="still" href="still-in/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="fg" x="56" y="28" width="208" height="34" rx="11"/><rect class="q" x="120" y="37" width="118" height="7" rx="3.5"/><rect class="q" x="120" y="49" width="74" height="5" rx="2.5" opacity=".7"/><rect class="q" x="56" y="74" width="46" height="28" rx="8"/><rect class="fg" x="110" y="74" width="46" height="28" rx="8"/><rect class="q" x="164" y="74" width="46" height="28" rx="8"/><rect class="ring" x="161" y="71" width="52" height="34" rx="10" fill="none" stroke-width="3"/><rect class="q" x="218" y="74" width="46" height="28" rx="8"/><rect class="fg" x="56" y="110" width="46" height="28" rx="8"/><rect class="q" x="110" y="110" width="46" height="28" rx="8"/><rect class="fg" x="164" y="110" width="46" height="28" rx="8"/><rect class="q" x="218" y="110" width="46" height="28" rx="8"/><rect class="q" x="56" y="146" width="46" height="28" rx="8"/><rect class="miss" x="110" y="146" width="46" height="28" rx="8"/><rect class="q" x="164" y="146" width="46" height="28" rx="8"/><rect class="fg" x="218" y="146" width="46" height="28" rx="8"/></svg></div>
-      <div class="body">
-        <h3 data-s="group.still.name">Still In</h3>
-        <p class="pitch"><span class="long" data-s="home.pitch_still_long">Twelve countries and one rule. Take turns tapping one that fits. Wrong, and you are out.</span><span class="short" data-s="group.still.pitch">Twelve countries, one rule. Tap one that fits, or you're out.</span></p>
-        <div class="foot">
-          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-expert" data-g="expert" href="so-called-expert/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><rect class="q" x="78" y="20" width="176" height="164" rx="12"/><path class="fg" d="M78 32a12 12 0 0 1 12-12h152a12 12 0 0 1 12 12v18H78z"/><rect class="cut" x="96" y="31" width="64" height="8" rx="4"/><circle class="mute" cx="98" cy="68" r="6"/><rect class="mute" x="112" y="64" width="124" height="8" rx="4"/><circle class="mute" cx="98" cy="92" r="6"/><rect class="mute" x="112" y="88" width="104" height="8" rx="4"/><circle class="mute" cx="98" cy="116" r="6"/><rect class="mute" x="112" y="112" width="132" height="8" rx="4"/><circle class="mute" cx="98" cy="140" r="6"/><rect class="mute" x="112" y="136" width="112" height="8" rx="4"/><circle class="mute" cx="98" cy="164" r="6"/><rect class="mute" x="112" y="160" width="92" height="8" rx="4"/><g transform="rotate(-9 182 140)"><rect class="stamp" x="128" y="124" width="108" height="32" rx="7" fill="none" stroke-width="3.5"/><rect class="fg" x="141" y="136" width="82" height="8" rx="4"/></g></svg></div>
-      <div class="body">
-        <h3 data-s="group.expert.name">So-Called Expert</h3>
-        <p class="pitch"><span class="long" data-s="home.pitch_expert_long">One of you gets five facts about a country, one of them invented, and sells all five. Can the table spot it?</span><span class="short" data-s="group.expert.pitch">Five facts about a country, one invented. Can the table spot it?</span></p>
-        <div class="foot">
-          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_3">3+ players</span>
-        </div>
-      </div>
-    </a>
-    <a class="tile" id="tile-beat" data-g="beat" href="beat-the-phone/">
-      <div class="art"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><path class="ln" d="M40 158 L68 140 L97 148 L126 126 L155 110 L185 122 L213 102 L240 86 L265 96 L288 76" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 9"/><circle class="fg" cx="40" cy="158" r="8"/><circle class="fg" cx="68" cy="140" r="8"/><circle class="fg" cx="97" cy="148" r="8"/><circle class="fg" cx="126" cy="126" r="8"/><circle class="fg" cx="155" cy="110" r="8"/><circle class="q" cx="185" cy="122" r="9"/><circle class="ring" cx="185" cy="122" r="14" fill="none" stroke-width="3"/><circle class="fg" cx="185" cy="122" r="4.5"/><circle class="q" cx="213" cy="102" r="7"/><circle class="ring" cx="213" cy="102" r="7" fill="none" stroke-width="2.5"/><circle class="q" cx="240" cy="86" r="7"/><circle class="ring" cx="240" cy="86" r="7" fill="none" stroke-width="2.5"/><circle class="q" cx="265" cy="96" r="7"/><circle class="ring" cx="265" cy="96" r="7" fill="none" stroke-width="2.5"/><circle class="q" cx="288" cy="76" r="7"/><circle class="ring" cx="288" cy="76" r="7" fill="none" stroke-width="2.5"/><path class="fg" transform="translate(214 22) scale(1.05)" d="M12 20.6 4.1 12.9C1.5 10.4 1.6 6.3 4.3 4.4c2.2-1.6 5.3-1.1 7 1l.7.9.7-.9c1.7-2.1 4.8-2.6 7-1 2.7 1.9 2.8 6 .2 8.5Z"/><path class="fg" transform="translate(240 22) scale(1.05)" d="M12 20.6 4.1 12.9C1.5 10.4 1.6 6.3 4.3 4.4c2.2-1.6 5.3-1.1 7 1l.7.9.7-.9c1.7-2.1 4.8-2.6 7-1 2.7 1.9 2.8 6 .2 8.5Z"/><path class="miss" transform="translate(266 22) scale(1.05)" d="M12 20.6 4.1 12.9C1.5 10.4 1.6 6.3 4.3 4.4c2.2-1.6 5.3-1.1 7 1l.7.9.7-.9c1.7-2.1 4.8-2.6 7-1 2.7 1.9 2.8 6 .2 8.5Z"/></svg></div>
-      <div class="body">
-        <h3 data-s="group.beat.name">Beat the Phone</h3>
-        <p class="pitch"><span class="long" data-s="home.pitch_beat_long">The whole table against the phone: ten stops round the world, three lives. Answer alone, or ask the table.</span><span class="short" data-s="home.pitch_beat_short">Ten stops round the world, three lives. The table against the phone.</span></p>
-        <div class="foot">
-          <span class="go"><span data-s="site.play">Play</span><svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10.5 5.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mins" data-s="group.players_2">2+ players</span>
-        </div>
-      </div>
-    </a>
-    <div class="tile soon-tile" id="tile-more-groups">
-      <div class="art soon-art" aria-hidden="true"><svg viewBox="0 0 320 200" aria-hidden="true" focusable="false"><circle class="mute" cx="128" cy="100" r="9"/><circle class="mute" cx="160" cy="100" r="9"/><circle class="mute" cx="192" cy="100" r="9"/></svg></div>
-      <div class="body">
-        <h3 data-s="home.more_to_come">More to come</h3>
-        <p class="pitch" data-s="home.more_to_come_sub">More games for groups are in the works.</p>
-      </div>
-    </div>
-    </div>
-    <button class="shelf-btn next off" type="button" id="shelf2-next" aria-controls="shelf2-row" aria-label="More group games" data-s-aria-label="site.more_group_games"><svg class="chev" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  </div>
+      </form>
+    </section>
     </div>
   </div>
 </dialog>
 
-<!-- The rooms sheet (23 Oct 2026): three kinds of room, one tap each; from "Join a game" the same three with a code
-     field. Codes never reach a server from here: the page sends the browser to the room's own page with the code
-     after the "#". -->
-<dialog id="dlg-rooms" aria-labelledby="dlg-rooms-t">
-  <div class="sheet rooms-sheet">
-    <button class="chip round close" type="button" id="dlg-rooms-x" aria-label="Close" data-s-aria-label="site.close">&times;</button>
-    <h2 id="dlg-rooms-t" data-s="home.game_rooms">Game rooms</h2>
-    <p class="quiet" id="dlg-rooms-sub" data-s="home.own_phone">Everyone on their own phone.</p>
-    <div class="rooms-list">
-      <a class="rooms-item" data-kind="daily" href="room/">
-        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="6" y="6" width="19" height="32" rx="3" fill="#3A3F5C" opacity=".92"/><rect x="9.5" y="9.5" width="12" height="25" rx="2" fill="#F3F4F9"/><circle cx="29" cy="17" r="6.5" fill="#2D4FC4"/><circle cx="36" cy="27" r="6.5" fill="#CF4327"/><circle cx="28" cy="33" r="5.5" fill="#0D7D73"/></svg></span>
-        <span class="rooms-text"><b data-s="home.room_daily">Daily games with friends</b><span data-s="home.room_daily_sub">A shared table for the day, the week and the month.</span></span>
-      </a>
-      <a class="rooms-item" data-kind="live" href="live/">
-        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="16" fill="#E6F8EE"/><circle cx="22" cy="22" r="9" fill="none" stroke="#1E7A4C" stroke-width="3"/><circle cx="22" cy="22" r="3" fill="#1E7A4C"/><path d="M22 4v6M22 34v6M4 22h6M34 22h6" stroke="#1E7A4C" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-        <span class="rooms-text"><b data-s="home.room_live">How Sure with friends</b><span data-s="home.room_live_sub">Everyone guesses a number, then picks a net. 3+ players.</span></span>
-      </a>
-      <a class="rooms-item" data-kind="findout" href="find-out/room/">
-        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="20" r="11" fill="#3F7A2A"/><circle cx="17.5" cy="18" r="2" fill="#fff"/><circle cx="26.5" cy="18" r="2" fill="#fff"/><path d="M16 25q6 5 12 0" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="8" cy="36" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="38" r="3.5" fill="#D5492F"/><circle cx="36" cy="36" r="3.5" fill="#0D7D73"/></svg></span>
-        <span class="rooms-text"><b data-s="home.room_findout">Find out who you are with friends</b><span data-s="home.room_findout_sub">The nine find-out games, the room's curve on one screen, never one person.</span></span>
-      </a>
-      <a class="rooms-item" data-kind="checkin" href="checkin/host/">
-        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><path d="M7 30a15 15 0 0 1 30 0" stroke="#F2B01E" stroke-width="5" stroke-linecap="round"/><path d="M22 30l7-9" stroke="#15172B" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="30" r="3.5" fill="#15172B"/><circle cx="8" cy="38" r="3.5" fill="#2D4FC4"/><circle cx="22" cy="40" r="3.5" fill="#D5492F"/><circle cx="36" cy="38" r="3.5" fill="#0D7D73"/></svg></span>
-        <span class="rooms-text"><b data-s="home.room_checkin">Check in, as a group</b><span data-s="home.room_checkin_sub">You see the group, never one person.</span><span class="rooms-ask" data-s="home.code_checkin" hidden>The check-in's code (six letters)</span></span>
-      </a>
-    </div>
-    <form class="rooms-code" id="rooms-code" autocomplete="off" hidden aria-label="The code" data-s-aria-label="home.code_aria">
-      <p class="quiet" id="rooms-code-h"></p>
-      <div class="rooms-code-row">
-        <input class="livejoin-code" id="rooms-code-in" maxlength="20" placeholder="CODE" data-s-placeholder="home.code_ph" autocapitalize="characters" spellcheck="false" aria-label="Game code" data-s-aria-label="home.code_field_aria">
-        <button class="livejoin-go" type="submit" data-s="home.join">Join</button>
-      </div>
-    </form>
-  </div>
-</dialog>
-
-<!-- The "Build your own" sheet (11 Nov 2026): one row per thing to build, in #bo-list. A row is a picture, a name and one short
-     line; a third one is one more <li> with its own data-row (counted as home/build/<data-row>). The Studio's address carries the
-     page's language, so it is a string of each language's doc. The live quiz exists in English only for now: the language homes
-     show the site's own quiet "English only" line under it. -->
-<dialog id="dlg-build" aria-labelledby="dlg-build-t">
-  <div class="sheet rooms-sheet">
-    <button class="chip round close" type="button" id="dlg-build-x" aria-label="Close" data-s-aria-label="site.close">&times;</button>
-    <h2 id="dlg-build-t" data-s="home.build_own">Build your own</h2>
-    <ul class="rooms-list bo-list" id="bo-list">
-      <li><a class="rooms-item" data-row="daily" href="https://by.logicers.com/new/?lang=en" data-s-href="home.build_daily_href">
-        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="6" y="9" width="32" height="30" rx="6" fill="#F3F4F9"/><path d="M6 15a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v3H6z" fill="#7C5CF0"/><rect x="13" y="5" width="3.6" height="8" rx="1.8" fill="#4B33A8"/><rect x="27.4" y="5" width="3.6" height="8" rx="1.8" fill="#4B33A8"/><path d="M18.2 25.6a3.9 3.9 0 1 1 6.2 3.1c-1.3.9-2.2 1.6-2.2 3" stroke="#FF8A57" stroke-width="3" stroke-linecap="round"/><circle cx="22.2" cy="35.2" r="1.8" fill="#FF8A57"/></svg></span>
-        <span class="rooms-text"><b data-s="home.build_daily">Daily questions</b><span data-s="home.build_daily_sub">One a day, for your class or team</span></span>
-      </a></li>
-      <li><a class="rooms-item" data-row="live" href="live/build/">
-        <span class="rooms-art" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="5" y="5" width="16.5" height="16.5" rx="4.5" fill="#7C5CF0"/><rect x="22.5" y="5" width="16.5" height="16.5" rx="4.5" fill="#FF8A57"/><rect x="5" y="22.5" width="16.5" height="16.5" rx="4.5" fill="#2D4FC4"/><rect x="22.5" y="22.5" width="16.5" height="16.5" rx="4.5" fill="#2FA36B"/><path d="M26.8 31l3.2 3.2 5.2-5.6" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="rooms-text"><b data-s="home.build_live">Live quiz</b><span data-s="home.build_live_sub">Everyone answers together</span><span class="bo-en" data-s="lang.english_only">This page is in English only for now.</span></span>
-      </a></li>
-    </ul>
-  </div>
-</dialog>
 </main>
 
 <footer class="foot-note">
-  <p><span data-privacy="short" data-s="priv.short_page">No login. No cookies. Results stay in your browser, unless you play in a room or a live game.</span></p>
   <p class="made-by"><a href="https://thekhayyam.com" target="_blank" rel="noopener noreferrer" data-s="home.made_by">Made by Khayyam. More about me →</a></p>
   <p class="msg-line"><button class="msg-link" type="button" data-msg="home" data-s="msg.read">Read my message to you →</button></p>
   <p class="mail" data-s="home.mail">Question, mistake or idea? Write to me: <b>logicers.world@gmail.com</b></p>
-  <button type="button" data-open="dlg-about" data-s="site.about_aria">About and sources</button>
+  <button type="button" data-open="dlg-about" data-s="home.about_privacy">About, sources and privacy</button>
+  <p class="foot-phone"><a href="https://thekhayyam.com" target="_blank" rel="noopener noreferrer" data-s="home.foot_made">Made by Khayyam</a><span class="foot-dot" aria-hidden="true">·</span><button class="msg-link" type="button" data-msg="home" data-s="home.foot_msg">Read his message →</button></p>
 </footer>
 </div>
 
@@ -912,6 +960,7 @@ html.bo-flat #dlg-build .close { display: none; }
     TO.count("home/more-to-play");
     window.setTimeout(function () {
       try { if (sheet.showModal) { if (!sheet.open) sheet.showModal(); } else sheet.setAttribute("open", ""); window.dispatchEvent(new Event("resize")); } catch (e) { /* the page is there all the same */ }
+      try { var p = document.getElementById("more-to-play"); if (p && window.matchMedia("(max-width: 760px)").matches) p.scrollIntoView({ block: "start" }); } catch (e) { /* the panel is in the window all the same */ }
     }, 0);
   })();
 
@@ -1096,44 +1145,29 @@ html.bo-flat #dlg-build .close { display: none; }
     }).catch(function () { /* the box reads the same without the number */ });
   })();
 
-  /* Game rooms (23 Oct 2026): the hub box opens the sheet with the three kinds of room; "Join a game" opens the same
-     sheet and, after a choice, a code field. The code goes to the room's own page after the "#", never to a server
-     from here: a daily room (10 letters and digits), a How Sure game (five letters, or seven for a saved one), a
-     find-out room (five letters). */
+  /* Join with a code (23 Oct 2026; in the "Explore together" window since 17 Nov 2026): a tap on the kind of game shows the
+     code field. The code goes to that game's own page after the "#", never to a server from here: a daily room (10 letters
+     and digits), a How Sure game (five letters, or seven for a saved one), a find-out room (five letters), a check-in room
+     (six consonants). Taps count home/join/<kind>; a row of "Build your own" counts home/build/<row>. */
   (function () {
-    var dlg = document.getElementById("dlg-rooms"), hub = document.getElementById("gameroom"), opener = document.getElementById("lb-join");
-    if (!dlg || !dlg.showModal) return;
-    var items = dlg.querySelectorAll(".rooms-item"), form = document.getElementById("rooms-code"), inp = document.getElementById("rooms-code-in"), head = document.getElementById("rooms-code-h");
-    var title = document.getElementById("dlg-rooms-t"), sub = document.getElementById("dlg-rooms-sub");
+    var form = document.getElementById("xp-code"), inp = document.getElementById("xp-code-in"), head = document.getElementById("xp-code-h");
+    var kinds = document.querySelectorAll("#xp-join .xp-kind");
+    if (!form || !inp || !kinds.length) return;
     var KINDS = {
       daily: { ask: T("home.code_daily"), ok: /^[23456789abcdefghjkmnpqrstvwxyz]{10}$/, go: function (v) { return (LG ? LG.href("room/") : "room/") + "#r=" + v; }, lower: true },
       live: { ask: T("home.code_live"), ok: /^[A-Z]{5}$|^[A-Z]{7}$/, go: function (v) { return (LG ? LG.href("live/") : "live/") + "#" + v; } },
       findout: { ask: T("home.code_findout"), ok: /^[A-Z]{5}$/, go: function (v) { return (LG ? LG.href("find-out/room/") : "find-out/room/") + "#" + v; } },
-      /* the Anonymous Check-in's rooms (4 Nov 2026): six consonants; the words over the field are the room's own line in the sheet */
-      checkin: { ask: null, ok: /^[BCDFGHJKMNPQRSTVWXZ]{6}$/, go: function (v) { return (LG ? LG.href("checkin/room/") : "checkin/room/") + "#" + v; } }
+      checkin: { ask: T("home.code_checkin"), ok: /^[BCDFGHJKMNPQRSTVWXZ]{6}$/, go: function (v) { return (LG ? LG.href("checkin/room/") : "checkin/room/") + "#" + v; } }
     };
-    var mode = "go", kind = null;
-    function open(m) {
-      mode = m; kind = null;
-      title.textContent = m === "join" ? T("home.join_code") : T("home.game_rooms");
-      sub.textContent = m === "join" ? T("home.which_room") : T("home.own_phone");
-      form.hidden = true; inp.value = ""; form.classList.remove("bad");
-      for (var i = 0; i < items.length; i++) items[i].classList.remove("on");
-      dlg.showModal();
-      if (window.TurnsOut) window.TurnsOut.count(m === "join" ? "home/join-open" : "home/rooms-open");
-    }
-    if (hub) hub.addEventListener("click", function (e) { e.preventDefault(); open("go"); });
-    if (opener) opener.addEventListener("click", function (e) { e.preventDefault(); open("join"); });
-    document.getElementById("dlg-rooms-x").addEventListener("click", function () { dlg.close(); });
-    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
-    for (var i = 0; i < items.length; i++) items[i].addEventListener("click", function (e) {
-      if (mode !== "join") return;                     // plain mode: the link goes where it goes
-      e.preventDefault();
-      kind = this.getAttribute("data-kind");
-      for (var k = 0; k < items.length; k++) items[k].classList.toggle("on", items[k] === this);
-      head.textContent = KINDS[kind].ask || (this.querySelector(".rooms-ask") || {}).textContent || ""; form.hidden = false; form.classList.remove("bad"); inp.value = "";
+    var kind = null;
+    function pick(b) {
+      kind = b.getAttribute("data-kind");
+      for (var k = 0; k < kinds.length; k++) kinds[k].setAttribute("aria-pressed", kinds[k] === b ? "true" : "false");
+      head.textContent = KINDS[kind].ask; form.hidden = false; form.classList.remove("bad"); inp.value = "";
       try { inp.focus(); } catch (err) { /* the field is there all the same */ }
-    });
+      if (window.TurnsOut) window.TurnsOut.count("home/join/" + kind);
+    }
+    for (var i = 0; i < kinds.length; i++) kinds[i].addEventListener("click", function () { pick(this); });
     inp.addEventListener("input", function () { form.classList.remove("bad"); });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -1141,27 +1175,10 @@ html.bo-flat #dlg-build .close { display: none; }
       var K = KINDS[kind], v = inp.value.trim();
       v = K.lower ? v.toLowerCase().replace(/[^a-z0-9]/g, "") : v.toUpperCase().replace(/[^A-Z]/g, "");
       if (!K.ok.test(v)) { form.classList.add("bad"); inp.focus(); return; }
-      var base = window.location.protocol === "file:" ? "" : "";
-      window.location.href = base + K.go(v);
+      window.location.href = K.go(v);
     });
-  })();
-
-  /* Build your own (11 Nov 2026): the left half of the slim box opens a sheet with one row per thing to build. A row is an
-     entry in #bo-list (<li><a data-row="name" href=...>): a new row is one more entry there and nothing else. Opening the
-     sheet counts home/build-open, a tap on a row home/build/<its data-row>. Without a script, or in a browser without
-     <dialog>, the half is a link to the sheet, shown at the foot of the page (see the styles). */
-  (function () {
-    var dlg = document.getElementById("dlg-build"), opener = document.getElementById("lb-build"), list = document.getElementById("bo-list");
-    if (!dlg || !opener) return;
-    if (!dlg.showModal) { document.documentElement.classList.add("bo-flat"); return; }
-    opener.addEventListener("click", function (e) {
-      e.preventDefault();
-      dlg.showModal();
-      if (window.TurnsOut) window.TurnsOut.count("home/build-open");
-    });
-    document.getElementById("dlg-build-x").addEventListener("click", function () { dlg.close(); });
-    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
-    if (list) list.addEventListener("click", function (e) {
+    var build = document.getElementById("xp-build");
+    if (build) build.addEventListener("click", function (e) {
       var row = e.target && e.target.closest ? e.target.closest("[data-row]") : null;
       if (row && window.TurnsOut) window.TurnsOut.count("home/build/" + row.getAttribute("data-row"));
     });
