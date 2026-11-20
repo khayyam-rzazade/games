@@ -1,0 +1,119 @@
+[
+  {
+    "name": "꼬들",
+    "url": "https://kordle.kr/",
+    "lang": "ko",
+    "kind": "words",
+    "line": "매일 새로운 한글 단어를 맞혀 봐요",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "음들",
+    "url": "https://eumdle.pages.dev/",
+    "lang": "ko",
+    "kind": "words",
+    "line": "매일 한 번, 숨은 단어를 찾아봐요",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "워들",
+    "url": "https://jhlov.github.io/wordle/#/",
+    "lang": "ko",
+    "kind": "words",
+    "line": "하루 두 번 바뀌는 단어를 맞혀 봐요",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "천지인 워들 (6타)",
+    "url": "https://puzzlet.github.io/wordle/ko-mobile/6/",
+    "lang": "ko",
+    "kind": "words",
+    "line": "천지인 키보드로 오늘의 단어를 맞혀 봐요",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle Global",
+    "url": "https://wordle.global/ko",
+    "lang": "ko",
+    "kind": "words",
+    "line": "한국어로 매일 단어를 맞혀 봐요",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ko",
+    "lang": "ko",
+    "kind": "knowledge",
+    "line": "매일 새로운 퀴즈 게임으로 지식을 시험해 봐요",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Globle",
+    "url": "https://wordle.global/ko/globle",
+    "lang": "ko",
+    "kind": "maps",
+    "line": "오늘의 나라를 6번 안에 맞혀 봐요",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/ko/flagle",
+    "lang": "ko",
+    "kind": "maps",
+    "line": "한 칸씩 열리는 국기를 보고 나라를 맞혀 봐요",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/ko/mathle",
+    "lang": "ko",
+    "kind": "numbers",
+    "line": "숨은 8자리 수식을 6번 안에 맞혀 봐요",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "후 아 야",
+    "url": "https://whoareya.app/ko",
+    "lang": "ko",
+    "kind": "sport",
+    "line": "오늘의 축구 선수를 힌트 색깔로 맞혀 봐요",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Songless 한국어",
+    "url": "https://songless.pro/ko",
+    "lang": "ko",
+    "kind": "music",
+    "line": "아주 짧은 전주를 듣고 노래를 맞혀 봐요",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "퍼즐 가든",
+    "url": "https://puzzles.tmhub.co.kr/daily",
+    "lang": "ko",
+    "kind": "other",
+    "line": "매일 새로운 퍼즐 한 판을 풀어 봐요",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "오늘의 스도쿠",
+    "url": "https://www.todaygame.co.kr/games/sudoku",
+    "lang": "ko",
+    "kind": "numbers",
+    "line": "1부터 9까지 넣어서 스도쿠를 풀어 봐요",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Puzoro 오늘의 퍼즐",
+    "url": "https://puzoro.com/ko/",
+    "lang": "ko",
+    "kind": "numbers",
+    "line": "스도쿠와 노노그램, 오늘의 퍼즐을 풀어 봐요",
+    "checked": "2026-11-20"
+  }
+]

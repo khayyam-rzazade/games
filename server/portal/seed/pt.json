@@ -1,0 +1,230 @@
+[
+  {
+    "name": "Termo",
+    "url": "https://term.ooo/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra a palavra do dia em seis tentativas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Dueto",
+    "url": "https://term.ooo/2/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra duas palavras ao mesmo tempo",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Quarteto",
+    "url": "https://term.ooo/4/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra quatro palavras ao mesmo tempo",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Letreco",
+    "url": "https://www.gabtoschi.com/letreco/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra a palavra do dia em poucas tentativas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Conexo",
+    "url": "https://conexo.ws/pt/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Junte 16 palavras em quatro grupos de quatro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Contexto",
+    "url": "https://contexto.me/pt/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra a palavra secreta pela proximidade",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Letroso",
+    "url": "https://letroso.com/pt/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra a palavra escondida do dia",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "TERMO: Wordle Portugues",
+    "url": "https://termo.pt/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra a palavra de cinco letras do dia",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle em português",
+    "url": "https://wordle.global/pt",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Descubra a palavra do dia em seis tentativas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/pt/mathle",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Descubra a conta escondida em oito casas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Queens",
+    "url": "https://wordle.global/pt/queens",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Ponha uma rainha em cada linha, coluna e cor",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Puzzle Binário",
+    "url": "https://wordle.global/pt/binary",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Preencha a grade com sóis e luas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Dedução",
+    "url": "https://wordle.global/pt/deduce",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Acenda as janelas seguindo as pistas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Adivinhe o País (Globle)",
+    "url": "https://wordle.global/pt/globle",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Descubra o país do dia em seis tentativas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/pt/flagle",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Abra as peças e descubra a bandeira do dia",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Travle",
+    "url": "https://wordle.global/pt/travle",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Ligue dois países pelos vizinhos que fazem fronteira",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "País pelo formato",
+    "url": "https://wordle.global/pt/outline",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Descubra o país só pela silhueta",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Capitais",
+    "url": "https://wordle.global/pt/capitals",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Diga a capital de cinco países por dia",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/pt",
+    "lang": "pt",
+    "kind": "knowledge",
+    "line": "Descubra o que liga as pistas, todo dia",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linha do Tempo",
+    "url": "https://wordle.global/pt/history-order",
+    "lang": "pt",
+    "kind": "knowledge",
+    "line": "Coloque sete fatos da história em ordem",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Adivinhe o Jogador (Who Are Ya?)",
+    "url": "https://www.renderfoot.com/pt/games/who-are-ya",
+    "lang": "pt",
+    "kind": "sport",
+    "line": "Descubra o jogador de futebol pelas pistas",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle de Futebol (Futdle)",
+    "url": "https://www.renderfoot.com/pt/games/football-wordle",
+    "lang": "pt",
+    "kind": "sport",
+    "line": "Adivinhe o nome de um jogador de futebol",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Bingo de Futebol",
+    "url": "https://www.renderfoot.com/pt/games/football-bingo",
+    "lang": "pt",
+    "kind": "sport",
+    "line": "Preencha a cartela com jogadores que servem",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Jogo da Velha do Futebol Brasileiro",
+    "url": "https://www.renderfoot.com/pt/games/tic-tac-toe/brasileirao",
+    "lang": "pt",
+    "kind": "sport",
+    "line": "Ganhe no jogo da velha com jogadores do Brasileirão",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Chessle",
+    "url": "https://wordle.global/pt/chessle",
+    "lang": "pt",
+    "kind": "other",
+    "line": "Resolva um puzzle de xadrez em seis tentativas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Guessong",
+    "url": "https://guessong.co/pt/play",
+    "lang": "pt",
+    "kind": "music",
+    "line": "Ouça um trechinho e descubra a música do dia",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Quiz Musical",
+    "url": "https://quizzmusical.com.br/",
+    "lang": "pt",
+    "kind": "music",
+    "line": "Descubra a música de hoje com um pedacinho dela",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Filmedle",
+    "url": "https://filmedle.com.br/",
+    "lang": "pt",
+    "kind": "screen",
+    "line": "Descubra o filme do dia em cinco tentativas",
+    "checked": "2026-11-20"
+  }
+]

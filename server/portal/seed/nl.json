@@ -1,0 +1,125 @@
+[
+  {
+    "name": "Woordle",
+    "url": "https://woordle.nl/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Raad elke dag het geheime Nederlandse woord.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Woordel",
+    "url": "https://woordel.nl/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Vind elke dag het woord. Kleuren helpen je op weg.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Lingle",
+    "url": "https://kaasiand.cool/lingle/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Raad het woord van vandaag in een paar pogingen.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle Global",
+    "url": "https://wordle.global/nl",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Raad elke dag het woord. Er zijn ook andere spelletjes.",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/nl",
+    "lang": "nl",
+    "kind": "knowledge",
+    "line": "Elke dag een nieuw quizspel. Test wat je weet.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "VRT NWS Puzzel",
+    "url": "https://www.vrt.be/vrtnws/nl/actua-puzzel/",
+    "lang": "nl",
+    "kind": "knowledge",
+    "line": "Elke dag een puzzel over het nieuws. Hoeveel weet je?",
+    "maker": "VRT NWS",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "MAX Sudoku",
+    "url": "https://www.maxvandaag.nl/max-puzzels/sudoku/",
+    "lang": "nl",
+    "kind": "numbers",
+    "line": "Los elke dag een nieuwe sudoku op.",
+    "maker": "Omroep MAX",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "MAX Binaire puzzel",
+    "url": "https://www.maxvandaag.nl/max-puzzels/binaire-puzzel/",
+    "lang": "nl",
+    "kind": "numbers",
+    "line": "Vul het raster met nullen en enen. Elke dag een nieuwe.",
+    "maker": "Omroep MAX",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "MAX Kruiswoord",
+    "url": "https://www.maxvandaag.nl/max-puzzels/kruiswoord/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Elke dag een nieuwe kruiswoordpuzzel om op te lossen.",
+    "maker": "Omroep MAX",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "MAX Woordzoeker",
+    "url": "https://www.maxvandaag.nl/max-puzzels/woordzoeker/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Zoek de woorden in het raster. Elke dag een nieuwe.",
+    "maker": "Omroep MAX",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Globle",
+    "url": "https://wordle.global/nl/globle",
+    "lang": "nl",
+    "kind": "maps",
+    "line": "Raad het land van vandaag. Hoe warmer, hoe dichterbij.",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/nl/flagle",
+    "lang": "nl",
+    "kind": "maps",
+    "line": "Raad de vlag. Je ziet elke keer een stukje meer.",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/nl/mathle",
+    "lang": "nl",
+    "kind": "numbers",
+    "line": "Raad de som van acht tekens in zes pogingen.",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Waffle",
+    "url": "https://wordle.global/nl/waffle",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Schuif de letters op hun plek en vorm de woorden.",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  }
+]

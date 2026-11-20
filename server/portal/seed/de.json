@@ -1,0 +1,162 @@
+[
+  {
+    "name": "6mal5",
+    "url": "https://6mal5.com/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Finde das Wort des Tages in sechs Versuchen.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wortify",
+    "url": "https://6mal5.com/wortify/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Bilde Wörter aus sieben Buchstaben, so viele du kannst.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Letterly",
+    "url": "https://6mal5.com/letterly/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Verbinde die Buchstaben der Box zu Wörtern.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Swaple",
+    "url": "https://6mal5.com/swaple/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Tausche Buchstaben, bis alle sechs Wörter stimmen.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wörtchen",
+    "url": "https://woertchen.sofacoach.de/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Rate das Wörtchen des Tages in sechs Versuchen.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wörtle",
+    "url": "https://woertle.wexelwirken.net/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Rate das Wort des Tages in sechs Versuchen.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wort des Tages",
+    "url": "https://web.schabi.ch/spielen/wordle",
+    "lang": "de",
+    "kind": "words",
+    "line": "Finde das Wort des Tages. Die Farben helfen dir.",
+    "maker": "Schabi",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle Global",
+    "url": "https://wordle.global/de",
+    "lang": "de",
+    "kind": "words",
+    "line": "Rate das Tagesrätsel in sechs Versuchen.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "GIGA Wortquiz",
+    "url": "https://www.giga.de/games/giga-wortquiz-kostenlose-wordle-alternative-jetzt-spielen--01K3QTZ09PHNJBJ4MGPBKR5S65",
+    "lang": "de",
+    "kind": "words",
+    "line": "Finde jeden Tag ein neues Wort mit fünf Buchstaben.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/de",
+    "lang": "de",
+    "kind": "knowledge",
+    "line": "Spring von Wikipedia-Seite zu Wikipedia-Seite zum Ziel.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Errate den Fußballer",
+    "url": "https://www.renderfoot.com/de/games/who-are-ya",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Errate den Fußballer des Tages mit Hinweisen.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Fußball Wordle",
+    "url": "https://www.renderfoot.com/de/games/football-wordle",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Errate den Namen des Fußballers, Buchstabe für Buchstabe.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Fußball Grid",
+    "url": "https://www.renderfoot.com/de/games/soccer-grid",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Fülle das Gitter mit Spielern, die zu den Hinweisen passen.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Fußball Tic Tac Toe Bundesliga",
+    "url": "https://www.renderfoot.com/de/games/tic-tac-toe/bundesliga",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Spiele Tic Tac Toe mit Fußballern aus der Bundesliga.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Songless Deutschland",
+    "url": "https://songless.de/",
+    "lang": "de",
+    "kind": "music",
+    "line": "Errate den deutschen Song des Tages am kurzen Ausschnitt.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Moviz",
+    "url": "https://moviz.it/de",
+    "lang": "de",
+    "kind": "screen",
+    "line": "Löse zwölf Filmrätsel pro Tag: Drehorte, Zitate und mehr.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Rätselstube",
+    "url": "https://raetselstube.de/",
+    "lang": "de",
+    "kind": "other",
+    "line": "Löse jeden Tag 17 kurze Rätsel, vom Sudoku bis zum Quiz.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "MathGrid",
+    "url": "https://kontra.games/de/spielen/zahlen/mathgrid",
+    "lang": "de",
+    "kind": "numbers",
+    "line": "Lege Kacheln und finde die versteckten Zahlen.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "GeoSplit",
+    "url": "https://kontra.games/de/spielen/geografie/geosplit",
+    "lang": "de",
+    "kind": "maps",
+    "line": "Teile die Welt anhand einer Zahl in zwei Hälften.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  }
+]

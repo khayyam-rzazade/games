@@ -1,104 +1,29 @@
 <!doctype html>
-<html lang="pt-BR" data-lg-path="daily/" data-lg-root="../../">
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
-<!-- The preview card a chat app shows, first in the head. -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Logicers">
-<meta property="og:title" content="Jogos do dia em português">
-<meta property="og:description" content="Jogos online com um desafio novo por dia, em português. Foram feitos por outras pessoas: cada jogo abre no site de quem criou.">
-<meta property="og:url" content="https://logicers.com/pt/daily/">
-<meta property="og:image" content="https://logicers.com/assets/img/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary_large_image">
+<!-- Since 19 Nov 2026 the daily games in Português live on Play Logicers. GitHub Pages cannot send a real redirect, so this page
+     forwards at once (meta refresh, which search engines read as a permanent move), names the new page as its canonical, and
+     shows a link for anyone the refresh does not move. Its row in sitemap.xml is gone. -->
+<meta http-equiv="refresh" content="0; url=https://play.logicers.com/pt/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Jogos do dia em português | Logicers</title>
-<link rel="canonical" href="https://logicers.com/pt/daily/">
-<meta name="description" content="Jogos online com um desafio novo por dia, em português. Foram feitos por outras pessoas: cada jogo abre no site de quem criou.">
-<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<title>Play Português</title>
+<link rel="canonical" href="https://play.logicers.com/pt/">
 <link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
-<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
-<link rel="manifest" href="../../manifest.webmanifest">
-<meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../../assets/css/logicers.css?v=2e91ec699c">
-<link rel="stylesheet" href="../../daily/daily.css?v=2879286168">
+<style>
+:root { --bg: #FFFFFF; --ink: #0B0C10; --soft: #5F6672; --line: #E3E6EB; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0E1014; --ink: #F2F4F7; --soft: #9AA3B2; --line: #262B35; } }
+html, body { margin: 0; block-size: 100%; background: var(--bg); color: var(--ink); }
+body { display: grid; place-items: center; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { display: flex; flex-direction: column; gap: 8px; padding: 28px 36px; border: 1.5px solid var(--line); border-radius: 28px; color: inherit; text-decoration: none; }
+a:hover, a:focus-visible { border-color: var(--ink); outline: none; }
+b { font-size: 32px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+span { font-size: 13px; color: var(--soft); }
+</style>
 </head>
-<body class="game" data-g="daily">
-
-<header class="bar">
-  <a class="wordmark" href="../">Logicers</a>
-</header>
-
-<main class="wrap dl-wrap" id="app">
-  <h1 class="dl-h1">Jogos do dia em português</h1>
-  <p class="dl-lede">Foram feitos por outras pessoas. Cada jogo abre no site de quem criou.</p>
-
-  <!-- One <li> per game. To add one, copy a <li>, change the colour word (data-g), the letter, the name, the site, the link and the line. -->
-  <ul class="dl-list">
-    <li data-g="hundred"><a class="dl-card" href="https://term.ooo/" target="_blank" rel="noopener noreferrer" aria-label="Jogar Termo">
-      <span class="dl-tile" aria-hidden="true">T</span>
-      <span class="dl-name">Termo</span>
-      <span class="dl-host">term.ooo</span>
-      <span class="dl-line">O Wordle em português. Todo dia, uma palavra nova de cinco letras.</span>
-      <span class="dl-go" aria-hidden="true">Jogar <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-    <li data-g="call"><a class="dl-card" href="https://term.ooo/2/" target="_blank" rel="noopener noreferrer" aria-label="Jogar Dueto">
-      <span class="dl-tile" aria-hidden="true">D</span>
-      <span class="dl-name">Dueto</span>
-      <span class="dl-host">term.ooo</span>
-      <span class="dl-line">Igual ao Termo, mas com duas palavras ao mesmo tempo.</span>
-      <span class="dl-go" aria-hidden="true">Jogar <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-    <li data-g="street"><a class="dl-card" href="https://term.ooo/4/" target="_blank" rel="noopener noreferrer" aria-label="Jogar Quarteto">
-      <span class="dl-tile" aria-hidden="true">Q</span>
-      <span class="dl-name">Quarteto</span>
-      <span class="dl-host">term.ooo</span>
-      <span class="dl-line">O mesmo jogo, com quatro palavras de uma vez.</span>
-      <span class="dl-go" aria-hidden="true">Jogar <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-    <li data-g="cousin"><a class="dl-card" href="https://www.gabtoschi.com/letreco/" target="_blank" rel="noopener noreferrer" aria-label="Jogar Letreco">
-      <span class="dl-tile" aria-hidden="true">L</span>
-      <span class="dl-name">Letreco</span>
-      <span class="dl-host">gabtoschi.com</span>
-      <span class="dl-line">Outro jogo de palavra do dia: cinco letras, seis tentativas.</span>
-      <span class="dl-go" aria-hidden="true">Jogar <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-    <li data-g="half"><a class="dl-card" href="https://conexo.ws/pt/" target="_blank" rel="noopener noreferrer" aria-label="Jogar Conexo">
-      <span class="dl-tile" aria-hidden="true">C</span>
-      <span class="dl-name">Conexo</span>
-      <span class="dl-host">conexo.ws</span>
-      <span class="dl-line">Forme 4 grupos de 4 palavras. Cada grupo tem algo em comum.</span>
-      <span class="dl-go" aria-hidden="true">Jogar <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-    <li data-g="club"><a class="dl-card" href="https://contexto.me/pt/" target="_blank" rel="noopener noreferrer" aria-label="Jogar Contexto">
-      <span class="dl-tile" aria-hidden="true">C</span>
-      <span class="dl-name">Contexto</span>
-      <span class="dl-host">contexto.me</span>
-      <span class="dl-line">Descubra a palavra secreta. Cada tentativa mostra o quanto você está perto, pelo significado.</span>
-      <span class="dl-go" aria-hidden="true">Jogar <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-    <li data-g="piece"><a class="dl-card" href="https://linkdle.com/pt" target="_blank" rel="noopener noreferrer" aria-label="Jogar Linkdle">
-      <span class="dl-tile" aria-hidden="true">L</span>
-      <span class="dl-name">Linkdle</span>
-      <span class="dl-host">linkdle.com</span>
-      <span class="dl-line">Comece numa página da Wikipédia e chegue à final só pelos links. Quanto menos cliques, melhor.</span>
-      <span class="dl-go" aria-hidden="true">Jogar <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-  </ul>
-
-  <section class="dl-add">
-    <h2>Conhece outro jogo do dia em português?</h2>
-    <p>Se foi você que fez, ou se você adora, escreva para nós. A gente adiciona.</p>
-    <a class="dl-mail" href="mailto:logicers.world@gmail.com?subject=Um%20jogo%20do%20dia%20para%20o%20Logicers&amp;body=Nome%20do%20jogo%3A%0ALink%3A%0AIdioma%3A%0A">Escreva para nós</a>
-  </section>
-
-  <p class="dl-back"><a href="../">Voltar ao Logicers</a></p>
-</main>
-
+<body>
+<a href="https://play.logicers.com/pt/"><b>Play Português</b><span>by Logicers</span></a>
 </body>
 </html>

@@ -1,0 +1,133 @@
+[
+  {
+    "name": "Par🇮🇹le",
+    "url": "https://pietroppeter.github.io/wordle-it/",
+    "lang": "it",
+    "kind": "words",
+    "line": "Indovina la parola del giorno in sei tentativi.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Verba",
+    "url": "https://sebastianomorando.github.io/wordle-it/",
+    "lang": "it",
+    "kind": "words",
+    "line": "Trova la parola del giorno in sei tentativi.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Parolette",
+    "url": "https://parolette.netlify.app/",
+    "lang": "it",
+    "kind": "words",
+    "line": "Indovina la parola di oggi: una sola al giorno.",
+    "maker": "@xho",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Parolle",
+    "url": "https://parolle.it/",
+    "lang": "it",
+    "kind": "words",
+    "line": "Indovina la parola del giorno con l'aiuto dei colori.",
+    "maker": "develrock",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle Global",
+    "url": "https://wordle.global/it",
+    "lang": "it",
+    "kind": "words",
+    "line": "Indovina il puzzle del giorno in sei tentativi.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/it",
+    "lang": "it",
+    "kind": "knowledge",
+    "line": "Salta da una pagina Wikipedia all'altra fino alla meta.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Heardle Italia",
+    "url": "https://heardleitalia.com/",
+    "lang": "it",
+    "kind": "music",
+    "line": "Ascolta un pezzetto e indovina la canzone del giorno.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "DAMBA",
+    "url": "https://dambamusic.it/",
+    "lang": "it",
+    "kind": "music",
+    "line": "Indovina la canzone italiana del giorno dagli strumenti.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Futbolle: Giocatore del Giorno",
+    "url": "https://futbolle.com/it/serie-a",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Trova il calciatore di oggi in 8 tentativi.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Futbolle: Indovina lo Stemma",
+    "url": "https://futbolle.com/it/football-logo-quiz",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Indovina il club da un pezzetto dello stemma.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Futbolle: Connections Calcio",
+    "url": "https://futbolle.com/it/connections",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Metti 16 calciatori in 4 gruppi nascosti.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/it/games/globle",
+    "lang": "it",
+    "kind": "maps",
+    "line": "Trova il paese segreto: vedi distanza e direzione.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/it/games/worldle",
+    "lang": "it",
+    "kind": "maps",
+    "line": "Guarda la sagoma e indovina il paese di oggi.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/it/games/geodle",
+    "lang": "it",
+    "kind": "maps",
+    "line": "Indovina il paese del giorno in 6 tentativi con indizi.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Collegamenti",
+    "url": "https://www.giochinidiparole.com/collegamenti",
+    "lang": "it",
+    "kind": "words",
+    "line": "Metti 16 parole in 4 gruppi segreti.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Binomi",
+    "url": "https://www.giochinidiparole.com/binomi",
+    "lang": "it",
+    "kind": "words",
+    "line": "Trova le coppie di parole nascoste, una sfida al giorno.",
+    "checked": "2026-11-20"
+  }
+]

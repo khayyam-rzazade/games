@@ -1,69 +1,29 @@
 <!doctype html>
-<html lang="tr" data-lg-path="daily/" data-lg-root="../../">
+<html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
-<!-- The preview card a chat app shows, first in the head. -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Logicers">
-<meta property="og:title" content="Türkçe günlük oyunlar">
-<meta property="og:description" content="Her gün yeni bir bulmaca sunan Türkçe oyunlar. Bunları başkaları yaptı: her oyun, yapanın kendi sitesinde açılır.">
-<meta property="og:url" content="https://logicers.com/tr/daily/">
-<meta property="og:image" content="https://logicers.com/assets/img/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
+<!-- Since 19 Nov 2026 the daily games in Türkçe live on Play Logicers. GitHub Pages cannot send a real redirect, so this page
+     forwards at once (meta refresh, which search engines read as a permanent move), names the new page as its canonical, and
+     shows a link for anyone the refresh does not move. Its row in sitemap.xml is gone. -->
+<meta http-equiv="refresh" content="0; url=https://play.logicers.com/tr/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Türkçe günlük oyunlar | Logicers</title>
-<link rel="canonical" href="https://logicers.com/tr/daily/">
-<meta name="description" content="Her gün yeni bir bulmaca sunan Türkçe oyunlar. Bunları başkaları yaptı: her oyun, yapanın kendi sitesinde açılır.">
-<meta name="theme-color" content="#F3F4F9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#080A15" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<title>Play Türkçe</title>
+<link rel="canonical" href="https://play.logicers.com/tr/">
 <link rel="icon" href="../../favicon.ico?v=30ea955f6d" sizes="32x32">
-<link rel="icon" href="../../assets/img/favicon.svg?v=a45c4bc09b" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=8975c19930">
-<link rel="manifest" href="../../manifest.webmanifest">
-<meta name="apple-mobile-web-app-title" content="Logicers">
-<link rel="stylesheet" href="../../assets/css/logicers.css?v=2e91ec699c">
-<link rel="stylesheet" href="../../daily/daily.css?v=2879286168">
+<style>
+:root { --bg: #FFFFFF; --ink: #0B0C10; --soft: #5F6672; --line: #E3E6EB; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0E1014; --ink: #F2F4F7; --soft: #9AA3B2; --line: #262B35; } }
+html, body { margin: 0; block-size: 100%; background: var(--bg); color: var(--ink); }
+body { display: grid; place-items: center; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { display: flex; flex-direction: column; gap: 8px; padding: 28px 36px; border: 1.5px solid var(--line); border-radius: 28px; color: inherit; text-decoration: none; }
+a:hover, a:focus-visible { border-color: var(--ink); outline: none; }
+b { font-size: 32px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+span { font-size: 13px; color: var(--soft); }
+</style>
 </head>
-<body class="game" data-g="daily">
-
-<header class="bar">
-  <a class="wordmark" href="../">Logicers</a>
-</header>
-
-<main class="wrap dl-wrap" id="app">
-  <h1 class="dl-h1">Türkçe günlük oyunlar</h1>
-  <p class="dl-lede">Bunları başkaları yaptı. Her oyun, yapanın kendi sitesinde açılır.</p>
-
-  <!-- One <li> per game. To add one, copy a <li>, change the colour word (data-g), the letter, the name, the site, the link and the line. -->
-  <ul class="dl-list">
-    <li data-g="hundred"><a class="dl-card" href="https://www.araclo.com/aracdle" target="_blank" rel="noopener noreferrer" aria-label="Araçdle oyununu oyna">
-      <span class="dl-tile" aria-hidden="true">A</span>
-      <span class="dl-name">Araçdle</span>
-      <span class="dl-host">araclo.com</span>
-      <span class="dl-line">Her gün gizli bir arabayı bulmaya çalışırsın.</span>
-      <span class="dl-go" aria-hidden="true">Oyna <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-    <li data-g="call"><a class="dl-card" href="https://linkdle.com/tr" target="_blank" rel="noopener noreferrer" aria-label="Linkdle oyununu oyna">
-      <span class="dl-tile" aria-hidden="true">L</span>
-      <span class="dl-name">Linkdle</span>
-      <span class="dl-host">linkdle.com</span>
-      <span class="dl-line">Wikipedia&#x27;da bir sayfadan başla, bağlantılara tıklayarak hedef sayfaya ulaş. Ne kadar az tıklarsan o kadar iyi.</span>
-      <span class="dl-go" aria-hidden="true">Oyna <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a></li>
-  </ul>
-
-  <section class="dl-add">
-    <h2>Türkçe başka bir günlük oyun biliyor musun?</h2>
-    <p>Sen yaptıysan ya da çok seviyorsan bize yaz. Biz de buraya ekleriz.</p>
-    <a class="dl-mail" href="mailto:logicers.world@gmail.com?subject=Logicers%20i%C3%A7in%20g%C3%BCnl%C3%BCk%20oyun&amp;body=Oyunun%20ad%C4%B1%3A%0ABa%C4%9Flant%C4%B1s%C4%B1%3A%0ADili%3A%0A">Bize yaz</a>
-  </section>
-
-  <p class="dl-back"><a href="../">Logicers&#x27;a dön</a></p>
-</main>
-
+<body>
+<a href="https://play.logicers.com/tr/"><b>Play Türkçe</b><span>by Logicers</span></a>
 </body>
 </html>

@@ -1,0 +1,350 @@
+[
+  {
+    "name": "Quordle",
+    "url": "https://www.merriam-webster.com/games/quordle/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Guess four hidden words at the same time",
+    "maker": "Merriam-Webster",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Waffle",
+    "url": "https://wafflegame.net/daily",
+    "lang": "en",
+    "kind": "words",
+    "line": "Put the scrambled letters back into six words",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Squareword",
+    "url": "https://squareword.org/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Fill a letter grid so every row and column is a word",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Contexto",
+    "url": "https://contexto.me/en/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Guess the secret word by how close your guesses are",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Conexo",
+    "url": "https://conexo.ws/en/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Join 16 words into four groups of four",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Letroso",
+    "url": "https://letroso.com/en/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Guess the hidden word of the day",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Semantle",
+    "url": "https://semantle.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Guess the secret word by how close its meaning is",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordiply",
+    "url": "https://www.wordiply.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Find the longest word that has the given letters in it",
+    "maker": "The Guardian",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Nerdle",
+    "url": "https://nerdlegame.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Guess the hidden sum in six tries",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathler",
+    "url": "https://www.mathler.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Find the hidden math equation in six tries",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Summle",
+    "url": "https://summle.net/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Reach the target number with a chain of sums",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Clues By Sam",
+    "url": "https://cluesbysam.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Use logic to tell who is innocent and who is not",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Zebra Puzzles",
+    "url": "https://www.zebrapuzzles.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Solve a logic puzzle with the clues you get",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "H3X",
+    "url": "https://h3xgame.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Solve a daily puzzle on a grid of hexagons",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://worldle.teuteuf.fr/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the country from its shape",
+    "maker": "Teuteuf",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Globle",
+    "url": "https://globle-game.com/game",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Find the secret country on a 3D globe",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://flagle-game.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the flag from a few uncovered pieces",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Statele",
+    "url": "https://statele.teuteuf.fr/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the US state from its shape",
+    "maker": "Teuteuf",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "travle",
+    "url": "https://travle.earth/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Name the countries that join two countries",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "WhereTaken",
+    "url": "https://wheretaken.teuteuf.fr/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess where in the world a photo was taken",
+    "maker": "Teuteuf",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/en",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Find what links the clues together",
+    "maker": "@hm4rkus",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Pedantle",
+    "url": "https://pedantle.certitudes.org/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess the hidden Wikipedia page, one word at a time",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Redactle",
+    "url": "https://redactle.net/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Read a hidden Wikipedia page and guess its title",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Metazooa",
+    "url": "https://metazooa.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess the secret animal using its family tree",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Chronophoto",
+    "url": "https://www.chronophoto.app/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess the year a photo was taken",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Bandle",
+    "url": "https://bandle.app/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the song as the instruments join in",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Songless",
+    "url": "https://lessgames.com/songless",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the song from a short sound clip",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Musicle",
+    "url": "https://musicle.app/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the song from a very short clip",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Spotle",
+    "url": "https://spotle.io/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the music artist from clues on each try",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Lyricle",
+    "url": "https://www.lyricle.app/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the song from one line of its words",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Framed",
+    "url": "https://framed.wtf/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the film from a few still pictures",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Actorle",
+    "url": "https://actorle.com/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the actor from clues on each try",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Gamedle",
+    "url": "https://www.gamedle.wtf/classic",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the video game from clues and pictures",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flickle",
+    "url": "https://flickle.app/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the film from clues, a new one each day",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Immaculate Grid: Baseball",
+    "url": "https://www.sports-reference.com/immaculate-grid/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Fill a grid with players who fit each row and column",
+    "maker": "Sports Reference",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Who Are Ya?",
+    "url": "https://www.renderfoot.com/games/who-are-ya",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Guess the football player from clues",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Football Wordle",
+    "url": "https://www.renderfoot.com/games/football-wordle",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Guess the name of a football player",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Futbol11",
+    "url": "https://futbol11.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Pick eleven football players to fit the rules",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Poeltl",
+    "url": "https://poeltl.nbpa.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Guess the basketball player from clues",
+    "maker": "NBPA",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Lichess Daily Puzzle",
+    "url": "https://lichess.org/training/daily",
+    "lang": "en",
+    "kind": "other",
+    "line": "Solve a new chess puzzle every day",
+    "maker": "Lichess",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Hexcodle",
+    "url": "https://hexcodle.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the colour code from the colour you see",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Artle",
+    "url": "https://www.nga.gov/artle",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the painting from a few clues",
+    "maker": "National Gallery of Art",
+    "checked": "2026-11-19"
+  }
+]

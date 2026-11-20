@@ -1,0 +1,16 @@
+{
+  "name": "logicers-portal",
+  "private": true,
+  "type": "module",
+  "description": "Play Logicers: the world's daily games by language, play.logicers.com. A Cloudflare Worker with D1.",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "node --test 'test/test_*.mjs'",
+    "import": "node scripts/import.mjs",
+    "stamp": "node scripts/stamp.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

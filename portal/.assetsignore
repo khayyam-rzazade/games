@@ -1,0 +1,6 @@
+# Play Logicers: what the Worker does not upload from portal/ (tests and notes stay in the repository only)
+tests
+*.md
+*.py
+*.mjs
+.DS_Store

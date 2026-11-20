@@ -1,0 +1,125 @@
+[
+  {
+    "name": "Вордли",
+    "url": "https://wordle.belousov.one/ru/daily",
+    "lang": "ru",
+    "kind": "words",
+    "line": "Угадай слово дня из пяти букв за шесть попыток.",
+    "maker": "Александр Белоусов",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Игра Вордли",
+    "url": "https://wordle.global/ru",
+    "lang": "ru",
+    "kind": "words",
+    "line": "Найди слово дня за шесть попыток.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/ru/mathle",
+    "lang": "ru",
+    "kind": "numbers",
+    "line": "Найди уравнение дня из восьми знаков.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Угадай страну дня",
+    "url": "https://wordle.global/ru/globle",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Найди страну дня по цвету подсказок.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/ru/flagle",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Угадай страну по флагу, который открывается по частям.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Столицы мира",
+    "url": "https://wordle.global/ru/capitals",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Каждый день пять стран: назови их столицы.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ru",
+    "lang": "ru",
+    "kind": "knowledge",
+    "line": "Кликай по ссылкам в Википедии и дойди до цели.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Лента времени",
+    "url": "https://wordle.global/ru/history-order",
+    "lang": "ru",
+    "kind": "knowledge",
+    "line": "Расставь события по порядку на ленте времени.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Словль",
+    "url": "https://timmarinin.net/slovl/",
+    "lang": "ru",
+    "kind": "words",
+    "line": "Угадай слово дня за несколько попыток.",
+    "maker": "Tim Marinin",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Planetrotter",
+    "url": "https://planetrotter.com/ru/",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Угадай загаданный сегодня город.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Футбольный Wordle",
+    "url": "https://gridsport.games/ru/futbol/wordle",
+    "lang": "ru",
+    "kind": "sport",
+    "line": "Угадай футболиста дня по лиге, клубу и позиции.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Сходится! Кино",
+    "url": "https://shoditsa.ru/games/movie",
+    "lang": "ru",
+    "kind": "screen",
+    "line": "Найди фильм дня: сравнивай актёров, жанры и годы.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Сходится! Музыка",
+    "url": "https://shoditsa.ru/games/music",
+    "lang": "ru",
+    "kind": "music",
+    "line": "Найди исполнителя дня по жанрам, странам и эпохам.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Сходится! Связи",
+    "url": "https://shoditsa.ru/games/connections",
+    "lang": "ru",
+    "kind": "words",
+    "line": "Раздели 16 слов на четыре группы по четыре.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Сходится! Данетки",
+    "url": "https://shoditsa.ru/games/danetki",
+    "lang": "ru",
+    "kind": "other",
+    "line": "Раскрой странную историю вопросами «да» и «нет».",
+    "checked": "2026-11-20"
+  }
+]

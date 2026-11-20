@@ -1,0 +1,198 @@
+[
+  {
+    "name": "La palabra del día",
+    "url": "https://lapalabradeldia.com/",
+    "lang": "es",
+    "kind": "words",
+    "line": "Adivina la palabra del día en seis intentos",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Contexto",
+    "url": "https://contexto.me/es/",
+    "lang": "es",
+    "kind": "words",
+    "line": "Adivina la palabra secreta por lo cerca que estás",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Boludle",
+    "url": "https://www.boludle.com/",
+    "lang": "es",
+    "kind": "words",
+    "line": "Adivina la palabra del día en seis intentos",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle en español",
+    "url": "https://wordle.global/es",
+    "lang": "es",
+    "kind": "words",
+    "line": "Adivina la palabra de cinco letras del día",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Conexo",
+    "url": "https://conexo.ws/es/",
+    "lang": "es",
+    "kind": "words",
+    "line": "Une 16 palabras en cuatro grupos de cuatro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Letroso",
+    "url": "https://letroso.com/es/",
+    "lang": "es",
+    "kind": "words",
+    "line": "Adivina la palabra oculta del día",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/es/mathle",
+    "lang": "es",
+    "kind": "numbers",
+    "line": "Adivina la ecuación escondida en ocho casillas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Queens",
+    "url": "https://wordle.global/es/queens",
+    "lang": "es",
+    "kind": "numbers",
+    "line": "Pon una reina en cada fila, columna y color",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Binario",
+    "url": "https://wordle.global/es/binary",
+    "lang": "es",
+    "kind": "numbers",
+    "line": "Llena la cuadrícula con soles y lunas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Lógica",
+    "url": "https://wordle.global/es/deduce",
+    "lang": "es",
+    "kind": "numbers",
+    "line": "Ilumina las ventanas siguiendo las pistas",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Globle",
+    "url": "https://wordle.global/es/globle",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Encuentra el país del día en seis intentos",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/es/flagle",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Abre casillas y adivina la bandera del día",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Conecta países",
+    "url": "https://wordle.global/es/travle",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Une dos países con los vecinos que tocan sus fronteras",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "País por su forma",
+    "url": "https://wordle.global/es/outline",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Adivina el país solo con su silueta",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Capitales",
+    "url": "https://wordle.global/es/capitals",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Di la capital de cinco países cada día",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/es",
+    "lang": "es",
+    "kind": "knowledge",
+    "line": "Encuentra lo que une las pistas cada día",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Línea de tiempo",
+    "url": "https://wordle.global/es/history-order",
+    "lang": "es",
+    "kind": "knowledge",
+    "line": "Pon en orden siete hechos de la historia",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Adivina el Futbolista (Who Are Ya?)",
+    "url": "https://www.renderfoot.com/es/games/who-are-ya",
+    "lang": "es",
+    "kind": "sport",
+    "line": "Adivina el futbolista con las pistas que te damos",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle de Fútbol",
+    "url": "https://www.renderfoot.com/es/games/football-wordle",
+    "lang": "es",
+    "kind": "sport",
+    "line": "Adivina el nombre de un futbolista",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Bingo de Fútbol",
+    "url": "https://www.renderfoot.com/es/games/football-bingo",
+    "lang": "es",
+    "kind": "sport",
+    "line": "Rellena el cartón con futbolistas que encajan",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Tres en Raya La Liga",
+    "url": "https://www.renderfoot.com/es/games/tic-tac-toe/la-liga",
+    "lang": "es",
+    "kind": "sport",
+    "line": "Gana al tres en raya con jugadores de La Liga",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Chessle",
+    "url": "https://wordle.global/es/chessle",
+    "lang": "es",
+    "kind": "other",
+    "line": "Resuelve un puzle de ajedrez en seis intentos",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Guessong",
+    "url": "https://guessong.co/es/play",
+    "lang": "es",
+    "kind": "music",
+    "line": "Escucha un trocito y adivina la canción del día",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "CineAdivina",
+    "url": "https://quizzs.org/cineadivina/",
+    "lang": "es",
+    "kind": "screen",
+    "line": "Adivina cinco películas al día por su póster borroso",
+    "checked": "2026-11-20"
+  }
+]

@@ -1,0 +1,44 @@
+/* Play Logicers: the Worker's settings (Chat A, 19 Nov 2026). Its own Worker and its own D1 database, so a deploy here never
+   touches logicers.com, the Studio, the rooms or My Logicers, and none of their data is here.
+   Khayyam sets it up once from Terminal (README.md):
+     the D1 database:  npx wrangler d1 create logicers-portal   (paste the id it prints below; the tables make themselves)
+   Secrets, set once with "npx wrangler secret put <NAME>", never here:
+     PORTAL_KEY   the key of the day's hashes and of the reports' browser ids (32 random characters or more). Set it before
+                  the first visitor; while it is unset, /health says "key": "missing" and nothing is counted.
+     ADMIN_KEY    Khayyam's own key for play.logicers.com/admin/ (everything). Never remembered by a browser.
+     REVIEW_KEY   the weekly review's key (list, reject, leave, edit, show again; never hide, delete or import).
+   Plain variables: SITE, the address; ALLOW_ORIGINS, more sites that may call from a browser (add "localhost" only while
+   testing on your own computer: it also lets the counts run without PORTAL_KEY).
+   The static files are the folder portal/ at the top of the repository (chat B). The Worker runs first for EVERY path
+   except /a/* (CSS, JS, icons, fonts with stamps in their names, never made by the Worker). The Studio's lesson of
+   9 Nov 2026: a path a "!" pattern matches never reaches the Worker (an empty 404 when no such file exists), so the only
+   "!" pattern is /a/*, where nothing is dynamic; test/test_misc.mjs fails if another one comes back.
+   The cron: 02:10 UTC every night (cron.js). limits.cpu_ms: the most Workers Paid allows (5 minutes); the nightly run
+   needs little CPU (300 link checks spend their time waiting on the network, which is not CPU), the number is a ceiling.
+   Workers Logs and traces stay OFF: About promises that nothing else is kept. */
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "logicers-portal",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
+  "triggers": { "crons": ["10 2 * * *"] },
+  "limits": { "cpu_ms": 300000 },
+  "routes": [{ "pattern": "play.logicers.com", "custom_domain": true }],
+  "assets": {
+    "directory": "../../portal",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "not_found_handling": "none",
+    "run_worker_first": ["/*", "!/a/*"]
+  },
+  "vars": {
+    "SITE": "https://play.logicers.com",
+    "ALLOW_ORIGINS": ""
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "logicers-portal", "database_id": "750d52ac-feb4-4b37-bce0-7a86fe35dcec" }
+  ]
+}

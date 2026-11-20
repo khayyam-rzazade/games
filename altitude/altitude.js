@@ -240,12 +240,25 @@
   }
   /* the word language follows the site's language chip; a pick made here (for a language the site's chip does not
      have, or for a second run) holds only until the site's chip is changed */
+  /* ?lang=<code> says the language: in someone else's page (?embed=1&lang=it, 11 Nov 2026) and, since 19 Nov 2026, on the
+     game's own page too (Play Logicers links logicers.com/<game>/?lang=es); a pick made in the game drops it (dropLangParam) */
+  function urlLang() {
+    var q = "";
+    try { q = String(new window.URLSearchParams(window.location.search).get("lang") || "").toLowerCase(); } catch (e) { q = ""; }
+    return CODES.indexOf(q) >= 0 ? q : null;
+  }
+  function dropLangParam() {
+    if (LG && LG.embed) return;                              /* in a frame the embedder's address stays as it is */
+    try {
+      var u = new window.URL(window.location.href);
+      if (!u.searchParams.has("lang")) return;
+      u.searchParams.delete("lang");
+      window.history.replaceState(window.history.state, "", u.pathname + u.search + u.hash);
+    } catch (e) { /* an old browser: the address keeps it */ }
+  }
   function pickLang() {
-    if (LG && LG.embed) {                                   /* in someone else's page the page says the language: ?embed=1&lang=it (11 Nov 2026) */
-      var q = "";
-      try { q = String(new window.URLSearchParams(window.location.search).get("lang") || "").toLowerCase(); } catch (e) { q = ""; }
-      if (CODES.indexOf(q) >= 0) return q;
-    }
+    var q = urlLang();
+    if (q) return q;
     var site = siteLang(), own = null;
     try { own = JSON.parse(window.localStorage.getItem(LANG_KEY) || "null"); } catch (e) { own = null; }
     if (own && CODES.indexOf(own.l) >= 0 && (own.s || null) === (site || null)) return own.l;
@@ -1658,6 +1671,7 @@
   }
   function switchLang(l, showCard) {
     if (l === lang || CODES.indexOf(l) < 0) return;
+    dropLangParam();                                       /* the player's own pick wins over ?lang= from now on */
     window.clearTimeout(cardAuto);
     closeCard(true);
     rememberLang(l);

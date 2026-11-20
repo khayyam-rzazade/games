@@ -1,0 +1,211 @@
+[
+  {
+    "name": "Sutom",
+    "url": "https://sutom.nocle.fr/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Trouve le mot du jour. La première lettre est donnée.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Tusmo",
+    "url": "https://www.tusmo.xyz/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Devine le mot du jour en six essais.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Cémantix",
+    "url": "https://cemantix.certitudes.org/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Trouve le mot secret. Chaque essai dit si tu es proche.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Pédantix",
+    "url": "https://pedantix.certitudes.org/",
+    "lang": "fr",
+    "kind": "knowledge",
+    "line": "Trouve l'article caché, mot après mot.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Sémantus",
+    "url": "https://www.semantus.fr/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Trouve le mot du jour avec des indices de proximité.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/fr",
+    "lang": "fr",
+    "kind": "knowledge",
+    "line": "Va d'une page Wikipédia à une autre en peu de clics.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "LeMOT",
+    "url": "https://www.solitaire-play.com/lemot/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Devine le mot du jour en quelques essais.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mo-mo-motus",
+    "url": "https://scambier.xyz/momomotus/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Trouve le mot du jour, comme au jeu Motus.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle·FR",
+    "url": "https://wordle.s427.ch/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Trouve le mot de cinq lettres du jour.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Motchus",
+    "url": "https://motchus.fr/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Devine le mot du jour grâce aux couleurs des lettres.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Quordle Fr",
+    "url": "https://quordle.desmaths.fr/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Trouve quatre mots du jour en même temps.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle global",
+    "url": "https://wordle.global/fr",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Devine le mot du jour en six essais.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "MOTDLE",
+    "url": "https://motdle.herokuapp.com/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Un mot par jour à trouver en six essais.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Le Mot mystère",
+    "url": "https://www.dhnet.be/jeux/mot-mystere/",
+    "lang": "fr",
+    "kind": "words",
+    "line": "Trouve le mot mystère du jour.",
+    "maker": "La DH / Les Sports+",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Devine le Joueur (Who Are Ya)",
+    "url": "https://www.renderfoot.com/fr/games/who-are-ya",
+    "lang": "fr",
+    "kind": "sport",
+    "line": "Trouve le footballeur du jour grâce aux indices.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle Foot",
+    "url": "https://www.renderfoot.com/fr/games/football-wordle",
+    "lang": "fr",
+    "kind": "sport",
+    "line": "Trouve le nom du footballeur du jour, lettre par lettre.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Grille Foot",
+    "url": "https://www.renderfoot.com/fr/games/soccer-grid",
+    "lang": "fr",
+    "kind": "sport",
+    "line": "Remplis la grille avec des joueurs qui collent aux indices.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Morpion Foot Ligue 1",
+    "url": "https://www.renderfoot.com/fr/games/tic-tac-toe/ligue-1",
+    "lang": "fr",
+    "kind": "sport",
+    "line": "Joue au morpion avec des footballeurs de Ligue 1.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Qui est-ce ?",
+    "url": "https://www.dhnet.be/jeux/qui-est-ce/",
+    "lang": "fr",
+    "kind": "sport",
+    "line": "Trouve le joueur mystère du jour.",
+    "maker": "La DH / Les Sports+",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "1 Jour 1 Film",
+    "url": "https://1jour1film.fr/",
+    "lang": "fr",
+    "kind": "screen",
+    "line": "Trouve le film du jour grâce à des indices.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Motzart",
+    "url": "https://motzart.fr/",
+    "lang": "fr",
+    "kind": "music",
+    "line": "Retrouve la chanson française du jour grâce à ses paroles.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "WhatSong",
+    "url": "https://whatsong.fr/",
+    "lang": "fr",
+    "kind": "music",
+    "line": "Devine trois chansons du jour avec un court extrait.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Problème d'échecs du jour",
+    "url": "https://chesstactics.app/fr/daily-chess-puzzle",
+    "lang": "fr",
+    "kind": "other",
+    "line": "Trouve le bon coup du problème d'échecs du jour.",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "MathGrid",
+    "url": "https://kontra.games/fr/jouer/nombres/mathgrid",
+    "lang": "fr",
+    "kind": "numbers",
+    "line": "Pose les tuiles et trouve les nombres cachés.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "GeoSplit",
+    "url": "https://kontra.games/fr/jouer/geographie/geosplit",
+    "lang": "fr",
+    "kind": "maps",
+    "line": "Coupe les pays du monde en deux selon un chiffre.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  }
+]

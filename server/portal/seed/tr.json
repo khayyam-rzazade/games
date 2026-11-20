@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Günün Kelimesi",
+    "url": "https://ordlek.github.io/ordlek/tr/",
+    "lang": "tr",
+    "kind": "words",
+    "line": "Günün kelimesini altı denemede tahmin et.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Lexicon",
+    "url": "https://lexicon.wunnle.com/",
+    "lang": "tr",
+    "kind": "words",
+    "line": "Renklere bakarak günün Türkçe kelimesini bul.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Emojile",
+    "url": "https://onedio.com/emojile",
+    "lang": "tr",
+    "kind": "words",
+    "line": "Emojilere bakıp günün kelimesini bul.",
+    "maker": "Onedio",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle Türkçe",
+    "url": "https://wordle.global/tr",
+    "lang": "tr",
+    "kind": "words",
+    "line": "Günün beş harfli kelimesini altı denemede bul.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/tr/mathle",
+    "lang": "tr",
+    "kind": "numbers",
+    "line": "Sekiz karakterlik günün denklemini bul.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Ülke Bulmaca",
+    "url": "https://wordle.global/tr/globle",
+    "lang": "tr",
+    "kind": "maps",
+    "line": "Sıcaklık renklerine bakıp günün ülkesini bul.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/tr/flagle",
+    "lang": "tr",
+    "kind": "maps",
+    "line": "Parça parça açılan bayraktan ülkeyi tahmin et.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Başkentler Testi",
+    "url": "https://wordle.global/tr/capitals",
+    "lang": "tr",
+    "kind": "maps",
+    "line": "Her gün beş ülkenin başkentini yaz.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/tr",
+    "lang": "tr",
+    "kind": "knowledge",
+    "line": "Wikipedia'da linklere tıkla, hedef sayfaya ulaş.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Zaman Çizelgesi",
+    "url": "https://wordle.global/tr/history-order",
+    "lang": "tr",
+    "kind": "knowledge",
+    "line": "Olayları doğru tarih sırasına diz.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Futbolle",
+    "url": "https://futbolle.com/tr",
+    "lang": "tr",
+    "kind": "sport",
+    "line": "Her gün yeni futbol bulmacaları çöz.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Araçdle",
+    "url": "https://www.araclo.com/aracdle",
+    "lang": "tr",
+    "kind": "other",
+    "line": "İpuçlarına bakıp günün gizli arabasını tahmin et.",
+    "maker": "Araclo",
+    "checked": "2026-11-19"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "name": "ことのはたんご",
+    "url": "https://plum-chloride.jp/kotonoha-tango/index.html",
+    "lang": "ja",
+    "kind": "words",
+    "line": "毎日ひとつ、かくれたことばを当てよう",
+    "maker": "Rikito Ohnishi",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "言葉で遊ぼう",
+    "url": "https://taximanli.github.io/kotobade-asobou/",
+    "lang": "ja",
+    "kind": "words",
+    "line": "ヒントをたよりに、今日のことばを当てよう",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle Global",
+    "url": "https://wordle.global/ja",
+    "lang": "ja",
+    "kind": "words",
+    "line": "日本語で毎日ことば当て。新しい問題が毎日出るよ",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ja",
+    "lang": "ja",
+    "kind": "knowledge",
+    "line": "毎日ちがうクイズゲームで、知識をためそう",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Globle",
+    "url": "https://wordle.global/ja/globle",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "今日の国を6回で当てよう。近いほど色が赤くなるよ",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/ja/flagle",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "1マスずつ開く国旗から、どの国か当てよう",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/ja/mathle",
+    "lang": "ja",
+    "kind": "numbers",
+    "line": "8文字のかくれた式を、6回で当てよう",
+    "maker": "Hugo Montenegro",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "ネスゴシ",
+    "url": "https://nesugoshi.app/",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "知らない駅で目がさめた。路線図から駅名を当てよう",
+    "maker": "pocke",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "チズトキ",
+    "url": "https://chizutoki.nesugoshi.app/",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "地図を少しずつ開いて、かくれた市区町村を当てよう",
+    "maker": "pocke",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "ヨジワケ",
+    "url": "https://yojiwake.vercel.app/",
+    "lang": "ja",
+    "kind": "words",
+    "line": "漢字を組み合わせて、今日の四字熟語を5つ見つけよう",
+    "maker": "tokoroten",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "まいにちクロスワード",
+    "url": "https://mainichi-game.com/crossword/",
+    "lang": "ja",
+    "kind": "words",
+    "line": "ヒントを読んで、ひらがなでマスをうめよう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "まいにちなかまわけ",
+    "url": "https://mainichi-game.com/nakama/",
+    "lang": "ja",
+    "kind": "words",
+    "line": "16個の言葉を、4つのなかまに分けよう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "まいにちナンプレ",
+    "url": "https://mainichi-game.com/nanpure/",
+    "lang": "ja",
+    "kind": "numbers",
+    "line": "1から9を入れて、今日の一問を解こう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "まいにち10つくり",
+    "url": "https://mainichi-game.com/make10/",
+    "lang": "ja",
+    "kind": "numbers",
+    "line": "4つの数字で計算して、10をつくろう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "まいにち都道府県あて",
+    "url": "https://mainichi-game.com/todofuken/",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "ヒントを見て、今日の都道府県を当てよう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "まいにち間違い探し",
+    "url": "https://mainichi-game.com/machigai/",
+    "lang": "ja",
+    "kind": "other",
+    "line": "2枚の絵から、5つの違いを見つけよう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "まいにち詰将棋",
+    "url": "https://mainichi-game.com/tsume/",
+    "lang": "ja",
+    "kind": "other",
+    "line": "王手をかけて、今日の3問を詰ませよう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "今日の映画クイズ",
+    "url": "https://shine-film.com/quiz",
+    "lang": "ja",
+    "kind": "screen",
+    "line": "ポスターとヒントから、今日の映画を当てよう",
+    "checked": "2026-11-20"
+  }
+]

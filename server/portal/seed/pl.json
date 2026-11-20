@@ -1,0 +1,174 @@
+[
+  {
+    "name": "Literalnie",
+    "url": "https://literalnie.fun/",
+    "lang": "pl",
+    "kind": "words",
+    "line": "Zgadnij hasło dnia w sześciu próbach.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Wordle po polsku",
+    "url": "https://wordle.global/pl",
+    "lang": "pl",
+    "kind": "words",
+    "line": "Znajdź słowo dnia w sześciu próbach.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://wordle.global/pl/mathle",
+    "lang": "pl",
+    "kind": "numbers",
+    "line": "Znajdź dzisiejsze równanie z ośmiu znaków.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Zgadnij kraj",
+    "url": "https://wordle.global/pl/globle",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Znajdź kraj dnia dzięki kolorom podpowiedzi.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://wordle.global/pl/flagle",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Zgadnij kraj po fladze odkrywanej po kawałku.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Stolice świata",
+    "url": "https://wordle.global/pl/capitals",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Codziennie pięć krajów: wpisz ich stolice.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/pl",
+    "lang": "pl",
+    "kind": "knowledge",
+    "line": "Klikaj linki w Wikipedii i dojdź do celu.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Oś czasu",
+    "url": "https://wordle.global/pl/history-order",
+    "lang": "pl",
+    "kind": "knowledge",
+    "line": "Ułóż wydarzenia z historii w dobrej kolejności.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "100 Hitów",
+    "url": "https://100hitow.pl/",
+    "lang": "pl",
+    "kind": "music",
+    "line": "Rozwiąż dzisiejszą muzyczną krzyżówkę.",
+    "checked": "2026-11-19"
+  },
+  {
+    "name": "Szarada",
+    "url": "https://www.lamaniec.pl/szarada/",
+    "lang": "pl",
+    "kind": "words",
+    "line": "Zgadnij ukryte hasło w sześciu próbach.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Temaciak",
+    "url": "https://www.lamaniec.pl/temaciak/",
+    "lang": "pl",
+    "kind": "words",
+    "line": "Zgadnij pięć słów o wspólnym temacie.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Skojarzak",
+    "url": "https://www.lamaniec.pl/skojarzak/",
+    "lang": "pl",
+    "kind": "words",
+    "line": "Podziel dziewięć słów na trzy grupy po trzy.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Kraciak",
+    "url": "https://www.lamaniec.pl/kraciak/",
+    "lang": "pl",
+    "kind": "numbers",
+    "line": "Zakryj pola według liczb i kształtów.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Gwiaździak",
+    "url": "https://www.lamaniec.pl/gwiazdziak/",
+    "lang": "pl",
+    "kind": "numbers",
+    "line": "Postaw gwiazdki tak, żeby się nie stykały.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Mahjong",
+    "url": "https://www.lamaniec.pl/mahjong/",
+    "lang": "pl",
+    "kind": "other",
+    "line": "Zbierz pary z planszy w ludowe wzory.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Jaki to hit?",
+    "url": "https://jakitohit.pl/",
+    "lang": "pl",
+    "kind": "music",
+    "line": "Odgadnij hit po krótkim fragmencie piosenki.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Jedenastka dnia",
+    "url": "https://kontra.games/pl/graj/pilka-nozna/jedenastka-dnia",
+    "lang": "pl",
+    "kind": "sport",
+    "line": "Ułóż jedenastkę piłkarzy według podpowiedzi dnia.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "Ścieżka kariery",
+    "url": "https://kontra.games/pl/graj/pilka-nozna/sciezka-kariery",
+    "lang": "pl",
+    "kind": "sport",
+    "line": "Zgadnij piłkarza po klubach, w których grał.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "GeoSplit",
+    "url": "https://kontra.games/pl/graj/geografia/geosplit",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Podziel kraje świata na pół według jednej liczby.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  },
+  {
+    "name": "MathGrid",
+    "url": "https://kontra.games/pl/graj/liczbowe/mathgrid",
+    "lang": "pl",
+    "kind": "numbers",
+    "line": "Układaj kafelki i odkryj ukryte liczby.",
+    "maker": "Kontra",
+    "checked": "2026-11-20"
+  }
+]

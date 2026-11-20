@@ -1,0 +1,200 @@
+/* Play Logicers — the public API (Chat A, 19 Nov 2026). Plan 2.8, 2.11, section 3. Answers { ok: true, ... } or
+   { ok: false, e: <key> }.
+     GET  /api/langs                         the open languages: code, name ("Play Español"), endonym, dir, games, today
+     GET  /api/<lang>/games?kind=&from=&n=&ids=   listed games in row order (ids=a,b,c: those games, for the Yours row)
+     GET  /api/counts?lang=                  { games: { id: { t, a } }, page: t }  t today (UTC day), a in all; cached 60 s
+     POST /api/hit   { game, id }            a tap on Play (or a Logicers tile): one count per device, game and UTC day
+     POST /api/view  { lang, id }            a language's page opened: one count per device, language and UTC day
+     POST /api/add   { url, lang, kind, name?, email?, hp }   -> {} or e: link | here | busy | bad; the look at the page
+                                             runs after the answer (ctx.waitUntil) and lands on the queue card
+     POST /api/report { game, reason, browser }   -> {} or e: bad | nogame | busy
+   A count needs: a POST with the portal's own Origin (index.js), a device id of the right shape (util.js deviceOk), the
+   brake of its address, a browser's user agent (no known robot), PORTAL_KEY set (else nothing is counted), and room in the
+   caps of its address for the UTC day (chat H, 20 Nov 2026, plan 2.8: 50 counts a game, 300 in all, 50 views a language;
+   db.js NET). What is kept: the keyed hash of (UTC day, device id, game or "view:<lang>") and of (UTC day, address, what)
+   with its count, until the night, and the counts by game, day and country (from Cloudflare's request data; "XX" when it
+   has none). Never the id itself, never an address. */
+import { json, bad, clock, utcDay, dayAdd, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where } from "./util.js";
+import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed } from "./db.js";
+import { LANG, isLang, pageName, nameParts } from "./langs.js";
+import { linkOk, norm, addCheck } from "./check.js";
+import { lookNow } from "./cron.js";
+import { REASONS } from "./pages.js";
+import { lgRowLang } from "./logicers.js";
+
+export const CAP = { add: 500, report: 2000 };
+
+const country = (req) => { const c = req.cf && typeof req.cf.country === "string" ? req.cf.country.toUpperCase() : ""; return /^[A-Z]{2}$/.test(c) && c !== "T1" ? c : "XX"; };
+const h32 = async (env, s) => (await mac(env, s)).slice(0, 32);
+/* the keyed hash of (UTC day, address, what) for the caps: the address is read here and never kept */
+const netHash = (env, req, day, what) => h32(env, day + "|net|" + where(req) + "|" + what);
+
+export async function hit(env, req, b) {
+  if (!brake("hit", req)) return bad("busy", 429);
+  const game = typeof b.game === "string" ? b.game : "";
+  if (!game || game.length > 40 || !deviceOk(b.id)) return bad("bad");
+  if (isRobot(req) || !hashReady(env)) return json({ ok: true, counted: false });
+  const day = utcDay();
+  const h = await h32(env, day + "|" + b.id + "|" + game);
+  const r = await run(env, `INSERT INTO seen (day, h) SELECT ?, ? WHERE EXISTS (SELECT 1 FROM games WHERE id = ? AND status = 'listed')
+     ON CONFLICT(day, h) DO NOTHING`, day, h, game);
+  if (!changed(r)) return json({ ok: true, counted: false });
+  /* a new device for this game today: within the caps of its address (50 for this game, 300 in all), it counts; both
+     caps are read first and both counted only with the count, so a refused tap spends neither */
+  const hg = await netHash(env, req, day, game), ha = await netHash(env, req, day, "all");
+  const had = Object.fromEntries((await all(env, "SELECT h, n FROM nets WHERE day = ? AND h IN (?, ?)", day, hg, ha)).map((x) => [x.h, x.n]));
+  if ((had[hg] || 0) >= NET.game || (had[ha] || 0) >= NET.all) return json({ ok: true, counted: false });
+  await env.DB.batch([
+    netStmt(env, hg, NET.game), netStmt(env, ha, NET.all),
+    st(env, "INSERT INTO counts (game, day, country, n) VALUES (?, ?, ?, 1) ON CONFLICT(game, day, country) DO UPDATE SET n = n + 1", game, day, country(req)),
+    st(env, "UPDATE games SET hits = hits + 1 WHERE id = ?", game),
+  ]);
+  return json({ ok: true, counted: true });
+}
+
+export async function view(env, req, b) {
+  if (!brake("view", req)) return bad("busy", 429);
+  if (!isLang(b.lang) || !deviceOk(b.id)) return bad("bad");
+  if (isRobot(req) || !hashReady(env)) return json({ ok: true, counted: false });
+  const day = utcDay();
+  const h = await h32(env, day + "|" + b.id + "|view:" + b.lang);
+  const r = await run(env, `INSERT INTO seen (day, h) SELECT ?, ? WHERE EXISTS (SELECT 1 FROM langs WHERE code = ? AND open = 1)
+     ON CONFLICT(day, h) DO NOTHING`, day, h, b.lang);
+  if (!changed(r)) return json({ ok: true, counted: false });
+  if (!changed(await netStmt(env, await netHash(env, req, day, "view:" + b.lang), NET.view).run())) return json({ ok: true, counted: false });
+  await run(env, "INSERT INTO views (lang, day, n) VALUES (?, ?, 1) ON CONFLICT(lang, day) DO UPDATE SET n = n + 1", b.lang, day);
+  return json({ ok: true, counted: true });
+}
+
+/* add a game (2.11): the answer comes from what can be seen without fetching; the fetch runs after it.
+   The hidden robot field (hp): a game sent with it filled is still kept, waiting, flagged "hp" on its card, so a real maker
+   whose browser filled it is never lost (chat H, 20 Nov 2026); the queue shows cards with no flags first. */
+export async function add(env, req, b, ctx) {
+  const hp = typeof b.hp === "string" && !!b.hp.trim();
+  const url = linkOk(b.url);
+  if (!url) return bad("link");
+  if (!isLang(b.lang) || !KINDS.includes(b.kind)) return bad("bad");
+  const name = cleanText(b.name, 0, 60), email = cleanText(b.email, 0, 120);
+  if (name === null || email === null || (email && !emailOk(email))) return bad("bad");
+  if (!brake("add", req)) return bad("busy", 429);
+  const n = norm(url);
+  if (await one(env, "SELECT id FROM games WHERE lang = ? AND norm = ?", b.lang, n)) return bad("here");
+  /* at most 10 a day from one address (a keyed hash in nets, never the address; only with the secret set) */
+  if (hashReady(env) && !changed(await netStmt(env, await netHash(env, req, utcDay(), "add"), NET.add).run())) return bad("busy", 429);
+  if (!(await capOk(env, "add", CAP.add))) return bad("busy", 429);
+  const id = newId(), now = clock();
+  try {
+    await env.DB.batch([
+      st(env, `INSERT INTO games (id, slug, lang, name, url, norm, host, kind, status, source, made)
+         VALUES (?, NULL, ?, '', ?, ?, ?, ?, 'waiting', 'add', ?)`, id, b.lang, url.href, n, url.hostname.replace(/^www\./, ""), b.kind, now),
+      st(env, "INSERT INTO adds (game, name, email, made, check_json) VALUES (?, ?, ?, ?, ?)", id, name, email, now, hp ? JSON.stringify({ flags: ["hp"] }) : null),
+      queueRow(env, "add", id, "sent for " + b.lang + " (" + b.kind + ")" + (hp ? ", hidden field filled" : "")),
+    ]);
+  } catch (e) {
+    if (/UNIQUE/i.test(String(e && e.message))) return bad("here");                     // two people at the same moment
+    throw e;
+  }
+  const look = (async () => {
+    try {
+      const c = await addCheck(url.href, b.lang);
+      c.at = clock();
+      if (hp) c.flags.unshift("hp");
+      await env.DB.batch([
+        st(env, "UPDATE adds SET check_json = ? WHERE game = ?", JSON.stringify(c), id),
+        st(env, "UPDATE games SET last_check = ?, check_state = ?, block = ? WHERE id = ?", c.at, c.flags.includes("noopen") ? "noopen" : c.same_site ? "ok" : "moved",
+          (c.block_words || []).join(","), id),
+      ]);
+    } catch (e) { if (env.PORTAL_DEBUG) console.error("add check", e && e.stack || e); }
+  })();
+  if (ctx && ctx.waitUntil) ctx.waitUntil(look); else await look;
+  return json({ ok: true });
+}
+
+/* a report (2.12): never hides anything; one per browser and game while its card is open; the third browser raises the card.
+   A "Not safe" report starts the nightly look at that game at once (once per game per UTC day, after the answer): the
+   look, not the report, may hide it (a new blocklist word, or a move to another site; chat H, 20 Nov 2026). */
+export async function report(env, req, b, ctx) {
+  if (!REASONS.includes(b.reason)) return bad("bad");
+  const g = typeof b.game === "string" && b.game.length <= 40 ? await one(env, "SELECT id, status FROM games WHERE id = ?", b.game) : null;
+  if (!g || g.status !== "listed") return bad("nogame", 404);
+  if (!brake("report", req)) return bad("busy", 429);
+  const browser = deviceOk(b.browser) ? await h32(env, "report|" + b.browser) : "none";
+  const day = utcDay();
+  const r = await run(env, "INSERT INTO reports (game, reason, day, browser_hash) VALUES (?, ?, ?, ?) ON CONFLICT DO NOTHING", g.id, b.reason, day, browser);
+  if (!r.meta || r.meta.changes !== 1) return json({ ok: true });                       // this browser already reported it: once is enough
+  if (!(await capOk(env, "report", CAP.report))) return json({ ok: true });
+  await queueRow(env, "report", g.id, b.reason).run();
+  if (b.reason === "unsafe" && changed(await run(env, "INSERT INTO caps (day, kind, n) VALUES (?, ?, 1) ON CONFLICT(day, kind) DO NOTHING", day, "look:" + g.id))) {
+    const look = lookNow(env, g.id).catch((e) => { if (env.PORTAL_DEBUG) console.error("report look", e && e.stack || e); });
+    if (ctx && ctx.waitUntil) ctx.waitUntil(look); else await look;
+  }
+  return json({ ok: true });
+}
+
+/* ---- reads ---- */
+export async function langsApi(env) {
+  const day = utcDay();
+  const rows = await all(env, `SELECT l.code, (SELECT COUNT(*) FROM games g WHERE g.lang = l.code AND g.status = 'listed') AS games,
+     COALESCE((SELECT v.n FROM views v WHERE v.lang = l.code AND v.day = ?), 0) AS today FROM langs l WHERE l.open = 1`, day);
+  return json({ ok: true, day, langs: rows.filter((r) => LANG.has(r.code)).map((r) => {
+    const l = LANG.get(r.code);
+    return { code: r.code, name: pageName(r.code), play_word: nameParts(r.code)[0], endonym: l.endonym, dir: l.dir, games: r.games, today: r.today };
+  }), today: rows.reduce((s, r) => s + r.today, 0) }, 200, { "Cache-Control": "public, max-age=60" });
+}
+
+const shape = (env, lang, g, t) => ({
+  id: g.id, slug: g.slug, name: g.name, kind: g.kind, line: g.line, maker: g.maker, url: g.url,
+  page: g.source === "logicers" ? null : String(env.SITE || "https://play.logicers.com") + "/" + lang + "/g/" + g.slug + "/",
+  ring: ring(g.id), new: !!(g.new_until && g.new_until > clock()) && g.source !== "logicers",
+  slot: g.place === 1 && g.source !== "logicers" ? 1 : null, sold: !!g.sold, logicers: g.source === "logicers",
+  en: g.source === "logicers" && g.lang !== lang, today: t[g.id] || 0, all: g.hits || 0,
+});
+export async function gamesApi(env, req, url, lang) {
+  if (!isLang(lang) || !(await openSet(env)).has(lang)) return bad("nolang", 404);
+  const day = utcDay();
+  const ids = String(url.searchParams.get("ids") || "").split(",").map((s) => s.trim()).filter((s) => /^[a-z0-9-]{1,40}$/.test(s)).slice(0, 60);
+  let list;
+  if (ids.length) {
+    list = await all(env, `SELECT * FROM games WHERE status = 'listed' AND id IN (${ids.map(() => "?").join(",")})
+       AND (lang = ? OR (source = 'logicers' AND lang = ?))`, ...ids, lang, lgRowLang(lang));
+    list.sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
+  } else {
+    const kind = url.searchParams.get("kind");
+    if (kind && !KINDS.includes(kind)) return bad("bad");
+    const rows = await all(env, `SELECT * FROM games WHERE status = 'listed' AND source <> 'logicers' AND lang = ?${kind ? " AND kind = ?" : ""}`, ...(kind ? [lang, kind] : [lang]));
+    const week = Object.fromEntries((await all(env, `SELECT c.game, SUM(c.n) AS n FROM counts c JOIN games g ON g.id = c.game
+       WHERE c.day >= ? AND g.lang = ? AND g.status = 'listed' GROUP BY c.game`, dayAdd(day, -6), lang)).map((r) => [r.game, r.n]));
+    list = [];
+    for (const k of kind ? [kind] : KINDS) list = list.concat(rowOrder(rows.filter((g) => g.kind === k), week));
+  }
+  const from = Math.max(0, parseInt(url.searchParams.get("from"), 10) || 0);
+  const n = Math.min(100, Math.max(1, parseInt(url.searchParams.get("n"), 10) || 48));
+  const page = list.slice(from, from + n);
+  /* today's numbers, 90 games a query (D1 binds at most 100 parameters a query: n=100 and the day were 101; chat B, 19 Nov 2026) */
+  const t = {};
+  for (let i = 0; i < page.length; i += 90) {
+    const part = page.slice(i, i + 90);
+    for (const r of await all(env, `SELECT game, SUM(n) AS n FROM counts WHERE day = ? AND game IN (${part.map(() => "?").join(",")}) GROUP BY game`, day, ...part.map((g) => g.id))) t[r.game] = r.n;
+  }
+  return json({ ok: true, lang, games: page.map((g) => shape(env, lang, g, t)), next: from + n < list.length ? from + n : null },
+    200, { "Cache-Control": "public, max-age=60" });
+}
+export async function countsApi(env, req, url) {
+  const lang = url.searchParams.get("lang");
+  const day = utcDay();
+  if (!lang) {
+    const r = await one(env, "SELECT COALESCE(SUM(n), 0) AS n FROM views WHERE day = ?", day);
+    return json({ ok: true, day, games: {}, page: r.n }, 200, { "Cache-Control": "public, max-age=60" });
+  }
+  if (!isLang(lang)) return bad("bad");
+  const [rows, t, v] = (await env.DB.batch([
+    st(env, "SELECT id, hits FROM games WHERE status = 'listed' AND (lang = ? OR (source = 'logicers' AND lang = ?))", lang, lgRowLang(lang)),
+    st(env, `SELECT c.game, SUM(c.n) AS n FROM counts c JOIN games g ON g.id = c.game WHERE c.day = ? AND g.status = 'listed'
+       AND (g.lang = ? OR (g.source = 'logicers' AND g.lang = ?)) GROUP BY c.game`, day, lang, lgRowLang(lang)),
+    st(env, "SELECT n FROM views WHERE lang = ? AND day = ?", lang, day),
+  ])).map(rowsOf);
+  const today = Object.fromEntries(t.map((r) => [r.game, r.n]));
+  const games = {};
+  for (const r of rows) games[r.id] = { t: today[r.id] || 0, a: r.hits || 0 };
+  return json({ ok: true, day, games, page: v[0] ? v[0].n : 0 }, 200, { "Cache-Control": "public, max-age=60" });
+}
