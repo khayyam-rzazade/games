@@ -47,5 +47,16 @@
   "nf": "Rien ici.",
   "about": "À propos",
   "close": "Fermer",
-  "star": "Enregistrer"
+  "star": "Enregistrer",
+  "dice": "Jeu au hasard",
+  "streak_n": "{n} jours d'affilée",
+  "streak_n.one": "{n} jour d'affilée",
+  "run": "Jeu suivant",
+  "run_done": "Tout joué aujourd'hui",
+  "vote": "Voter",
+  "gotw": "Jeu de la semaine",
+  "claim": "Revendiquer",
+  "days90": "90 derniers jours",
+  "countries": "Pays",
+  "edit": "Modifier"
 }

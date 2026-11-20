@@ -47,5 +47,16 @@
   "nf": "Nada por aqui.",
   "about": "Sobre",
   "close": "Fechar",
-  "star": "Salvar"
+  "star": "Salvar",
+  "dice": "Jogo aleatório",
+  "streak_n": "{n} dias seguidos",
+  "streak_n.one": "{n} dia seguido",
+  "run": "Próximo jogo",
+  "run_done": "Todos jogados hoje",
+  "vote": "Votar",
+  "gotw": "Jogo da semana",
+  "claim": "Reivindicar",
+  "days90": "Últimos 90 dias",
+  "countries": "Países",
+  "edit": "Editar"
 }

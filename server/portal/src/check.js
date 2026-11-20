@@ -80,6 +80,33 @@ export function blockFlags(hosts, title, desc) {
   if (BLOCK_WORDS.test(String(title || "") + " " + String(desc || ""))) out.push("blocklist_words");
   return out;
 }
+/* a maker's own words (a name, a line) against the same blocklist: true when they hit it (chat J, 20 Nov 2026) */
+export const blockText = (s) => BLOCK_WORDS.test(String(s || ""));
+
+/* the claim (chat J, 20 Nov 2026, plan 2.20): the contents of every <meta name="logicers-portal" content="..."> in a page,
+   whatever the order of the attributes and the quotes */
+export function claimMetas(html) {
+  const out = [];
+  for (const m of String(html || "").match(/<meta\b[^>]*>/gi) || []) {
+    if (!/\bname\s*=\s*["']?logicers-portal["'\s/>]/i.test(m)) continue;
+    const c = pick(/\bcontent\s*=\s*"([^"]*)"/i, m) ?? pick(/\bcontent\s*=\s*'([^']*)'/i, m) ?? pick(/\bcontent\s*=\s*([^\s"'>]+)/i, m);
+    if (c) out.push(c.trim());
+  }
+  return out;
+}
+/* the look at a game's own page for its claim line, with the fetch rules of 2.11 (https, a real host at every hop, 8 s, at
+   most 5 redirects, the first 512 KB) -> { state: ok | moved | noopen, metas, status } */
+export async function claimLook(url) {
+  const at = linkOk(url);
+  if (!at) return { state: "noopen", metas: [], status: 0 };
+  const w = await walk(at);
+  let other = false;
+  try { other = site(new URL(w.final).hostname) !== site(at.hostname); } catch (x) { other = true; }
+  if (other) { try { w.res && w.res.body && w.res.body.cancel(); } catch (x) { /* gone */ } return { state: "moved", metas: [], status: w.status, final: w.final }; }
+  if (!w.res || w.status < 200 || w.status >= 300) { try { w.res && w.res.body && w.res.body.cancel(); } catch (x) { /* gone */ } return { state: "noopen", metas: [], status: w.status }; }
+  return { state: "ok", metas: claimMetas(await firstText(w.res, w.signal)), status: w.status };
+}
+
 /* the blocklist words themselves, lower case, sorted, once each (chat H, 20 Nov 2026): what the nightly look compares
    with the last look (games.block), so only a NEW word hides a listed game, and a word a person has seen and let stand
    (an innocent "bet" in a title) does not hide it again */

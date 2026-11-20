@@ -45,5 +45,15 @@
   "nf": "Burada bir şey yok.",
   "about": "Hakkında",
   "close": "Kapat",
-  "star": "Kaydet"
+  "star": "Kaydet",
+  "dice": "Rastgele oyun",
+  "streak_n": "{n} gün üst üste",
+  "run": "Sıradaki oyun",
+  "run_done": "Bugün hepsini oynadın",
+  "vote": "Oy ver",
+  "gotw": "Haftanın oyunu",
+  "claim": "Benim",
+  "days90": "Son 90 gün",
+  "countries": "Ülkeler",
+  "edit": "Düzenle"
 }

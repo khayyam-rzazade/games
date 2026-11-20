@@ -7,6 +7,12 @@
        today" and a game page's numbers stay hidden until 1.
      - Yours (portal.mine: saved games and the day each was last played, the device's own day): the Yours row from
        /api/<lang>/games?ids=, the Save buttons, the tick of a game played today
+     - the streak (portal.mine.streak: the days in a row on which a game was played from here, the device's own day; a flame and
+       the number on the Yours row from 1, grey until today's first game), the run (the Yours row's one-tap run through
+       Logicers' first game and your games, each once a day) and the dice (a random game of the language, from /api/<lang>/dice)
+     - the game of the week (chat J, 20 Nov 2026, plan 2.20): the games played this UTC week (portal.mine.week), the vote on a
+       game's page (shown once this device played that game this week; one vote a language and week, final: portal.vote keeps
+       { <lang>: { w: the week's Monday, g: the game } }), and the crown on the coins the API marks
      - the language: a language's page is remembered (portal.lang); the wall puts it, or the browser's language, first
      - the sheets (add a game, report) with every error, and More on a kind's page
    Words come only from the page's own data (#pl-data), never from this file. No inline style, no HTML strings: the CSP
@@ -41,16 +47,21 @@
     return id;
   }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
+  /* the UTC week of now, as its Monday ("2026-11-16"): the week of the game of the week runs from Monday 00:00 UTC */
+  function utcWeek() { var d = new Date(), k = (d.getUTCDay() + 6) % 7; return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - k)).toISOString().slice(0, 10); }
   function localDay(t) { var d = t ? new Date(t) : new Date(); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function dayBack(k) { var d = new Date(); d.setDate(d.getDate() - k); return localDay(d.getTime()); }   // by the calendar: a day with 23 or 25 hours is still a day
   var GAME_ID = /^[a-z0-9-]{1,40}$/;
   function readMine() {
     var m = null;
     try { m = JSON.parse(get("portal.mine") || "null"); } catch (e) { m = null; }
-    var out = { v: 1, star: [], played: {} };
+    var out = { v: 1, star: [], played: {}, streak: { n: 0, last: "" }, week: { w: "", ids: [] } };
     if (m && typeof m === "object") {
       if (Array.isArray(m.star)) out.star = m.star.filter(function (x) { return typeof x === "string" && GAME_ID.test(x); }).slice(0, 200);
       if (m.played && typeof m.played === "object") Object.keys(m.played).forEach(function (k) { if (GAME_ID.test(k) && /^\d{4}-\d{2}-\d{2}$/.test(m.played[k])) out.played[k] = m.played[k]; });
     }
+    if (m && m.streak && typeof m.streak === "object" && /^\d{4}-\d{2}-\d{2}$/.test(m.streak.last || "") && m.streak.n >= 1 && m.streak.n <= 9999 && m.streak.n === Math.floor(m.streak.n)) out.streak = { n: m.streak.n, last: m.streak.last };
+    if (m && m.week && typeof m.week === "object" && m.week.w === utcWeek() && Array.isArray(m.week.ids)) out.week = { w: m.week.w, ids: m.week.ids.filter(function (x) { return typeof x === "string" && GAME_ID.test(x); }).slice(0, 300) };
     return out;
   }
   function saveMine(m) {
@@ -157,6 +168,86 @@
       if (!on && i) i.parentNode.removeChild(i);
     });
     paintMarks(m);
+    paintStreak(m);
+    paintRun(m);
+  }
+  /* the streak: shown while it is alive (today or yesterday was the last day), from 1; grey until today's first game */
+  function paintStreak(m) {
+    var el = $("#streak");
+    if (!el) return;
+    var s = m.streak, today = localDay(), alive = s.n >= 1 && (s.last === today || s.last === dayBack(1));
+    el.hidden = !alive;
+    if (!alive) return;
+    var label = withN("streak_n", s.n);
+    $(".streak-n", el).textContent = fmt(s.n);
+    el.classList.toggle("is-wait", s.last !== today);
+    el.setAttribute("aria-label", label);
+    el.setAttribute("title", label);
+  }
+  /* the run: Logicers' first game (where the page has Logicers in its own language), then Yours in its order, each once; the
+     link goes to the first not played today. A tap on it counts as any Play does. Held still for a moment after a tap on
+     it, so the tab it opens gets the address it had when it was tapped. */
+  var held = false;
+  function runList() {
+    var out = [], seen = {};
+    function add(li) {
+      var id = li && li.getAttribute("data-game"), a = li && $(".tile-a", li), u = a && a.getAttribute("href");
+      if (!id || !u || seen[id] || !SAFE.test(u)) return;
+      seen[id] = 1; out.push({ id: id, url: u });
+    }
+    add($(".row-lg:not(.row-lg-en) li.tile"));
+    $$("#row-mine li.tile").forEach(add);
+    return out;
+  }
+  function paintRun(m) {
+    var a = $("#run"), done = $("#run-done"), sec = $("#row-mine");
+    if (!a || !done || !sec || held) return;
+    m = m || readMine();
+    var list = runList(), today = localDay(), k = 0, next = null;
+    list.forEach(function (p) { if (m.played[p.id] === today) k++; else if (!next) next = p; });
+    if (sec.hidden || list.length < 2) { a.hidden = true; done.hidden = true; return; }
+    var text = k ? fmt(k) + "/" + fmt(list.length) : fmt(list.length);   // a 0 is never written
+    if (next) {
+      var label = W.run + ", " + text;
+      done.hidden = true; a.hidden = false;
+      a.setAttribute("href", next.url); a.setAttribute("data-game", next.id);
+      a.setAttribute("aria-label", label); a.setAttribute("title", label);
+      $(".run-t", a).textContent = text;
+    } else {
+      var all = W.run_done + ", " + text;
+      a.hidden = true; a.removeAttribute("href"); a.setAttribute("data-game", "");
+      done.hidden = false;
+      done.setAttribute("aria-label", all); done.setAttribute("title", all);
+      $(".run-t", done).textContent = text;
+    }
+  }
+  /* the dice: the language's games (id and address) are fetched once, and the link is given a random one it can open at once
+     (a tap is a real link in a new tab: no script between the tap and the page). Games played today are left out unless
+     they are all played, and so is the last one picked. */
+  var diceList = null, diceAt = 0, diceLast = "";
+  function diceInit() {
+    var a = $("#dice");
+    if (!a || PAGE !== "lang" || !window.fetch) return;
+    a.hidden = false; if (!a.getAttribute("href")) a.setAttribute("aria-disabled", "true");   // in its place from the start; it gets its address with the list
+    diceAt = Date.now();
+    window.fetch("/api/" + encodeURIComponent(LANG) + "/dice", { credentials: "omit" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.ok || !Array.isArray(j.games)) return;
+        diceList = j.games.filter(function (p) { return Array.isArray(p) && GAME_ID.test(p[0] || "") && SAFE.test(p[1] || ""); });
+        if (diceList.length < 2) { a.hidden = true; diceList = null; return; }
+        pickDice();
+      })
+      .catch(function () { a.hidden = true; });
+  }
+  function pickDice() {
+    var a = $("#dice");
+    if (!a || !diceList || held) return;
+    var m = readMine(), today = localDay();
+    var pool = diceList.filter(function (p) { return p[0] !== diceLast && m.played[p[0]] !== today; });
+    if (!pool.length) pool = diceList.filter(function (p) { return p[0] !== diceLast; });
+    var p = pool[Math.floor(Math.random() * pool.length)];
+    a.setAttribute("href", p[1]); a.setAttribute("data-game", p[0]); a.removeAttribute("aria-disabled");
   }
   function paintMarks(m) {                                  // a Yours tile: a tick if played today, the Save mark if saved, else today's number
     var today = localDay();
@@ -197,8 +288,17 @@
       nm.setAttribute("tabindex", "-1"); nm.setAttribute("aria-hidden", "true");
     } else nm.setAttribute("href", "/" + LANG + "/g/" + encodeURIComponent(g.slug) + "/");
     $(".tile-badge", li).hidden = !(g.new && !g.logicers);
+    if (g.crown && !g.logicers) li.classList.add("tile-crown");
+    $(".tile-gotw", li).hidden = !(g.crown && !g.logicers);
     $(".tile-chip", li).hidden = !g.en;
     $$(".tile-kind use, .tile-zero use", li).forEach(function (u) { u.setAttribute("href", SPRITE + "#k-" + g.kind); });
+    /* the logo (chat J, plan 2.20): a maker's picture from our own /p/, or the drawing of one of Logicers' games */
+    var img = $("img.tile-logo", li), lgo = $("svg.tile-logo", li);
+    var drop = function (e) { if (e && e.parentNode) e.parentNode.removeChild(e); };
+    if (g.logo && /^[a-z0-9]{2,12}$/.test(g.logo)) { $("use", lgo).setAttribute("href", SPRITE + "#lg-" + g.logo); lgo.hidden = false; drop(img); }
+    else if (g.pic && /^\/p\/[a-z0-9-]{1,40}\/[0-9a-f]{16}\.(png|jpg|webp)$/.test(g.pic)) { img.setAttribute("src", g.pic); img.hidden = false; drop(lgo); }
+    else { drop(img); drop(lgo); }
+    if (img.parentNode || lgo.parentNode) $$(".tile-kind, .tile-zero", li).forEach(drop);     // the logo takes the kind icon's place
     nm.textContent = g.name;
     var vn = $(".tile-vn > span", li);
     if (vn) vn.textContent = g.name;
@@ -255,7 +355,16 @@
     hitAt = Date.now();
     var m = readMine(), first = m.played[id] !== localDay();
     m.played[id] = localDay();
+    var wk = utcWeek();                                     // the games played this UTC week, for the vote
+    if (m.week.w !== wk) m.week = { w: wk, ids: [] };
+    if (m.week.ids.indexOf(id) < 0) m.week.ids.unshift(id);
+    var s = m.streak, today = localDay();                   // the streak: the same day changes nothing; the day after the last adds one; any other starts again
+    if (s.last !== today) { s.n = s.last === dayBack(1) ? s.n + 1 : 1; s.last = today; }
     saveMine(m);
+    if (host.id === "dice" || host.id === "run") {          // the tap's own link opens first; the next address comes a moment later
+      held = true;
+      window.setTimeout(function () { held = false; if (host.id === "dice") diceLast = id; pickDice(); paintRun(); }, 80);
+    }
     if (first) {
       $$('[data-game="' + id + '"]').forEach(function (g) {
         $$('.tile-n[data-count="today"]', g).forEach(function (x) {
@@ -267,6 +376,47 @@
       });
     }
     paintTicks(m);
+    paintVote(m);
+  }
+
+  /* ---- the game of the week: the vote on a game's page ---- */
+  function readVote() { var v = null; try { v = JSON.parse(get("portal.vote") || "null"); } catch (e) { v = null; } return v && typeof v === "object" && !Array.isArray(v) ? v : {}; }
+  function keepVote(game) { var v = readVote(); v[LANG] = { w: utcWeek(), g: game }; put("portal.vote", JSON.stringify(v)); }
+  /* shown once this device played the game this UTC week (a vote counts only then); a tick on the game voted for this
+     week; gone on the other games of the language until next Monday (one vote a language and week, final) */
+  /* Edit, for the maker only (chat J, plan 2.20): maker.js keeps on the device which maker its key opens and that maker's
+     games ("portal.makerof"); a game's page or the maker's page shows Edit there, and nowhere else */
+  function paintEdit() {
+    var o = null;
+    try { o = JSON.parse(get("portal.makerof") || "null"); } catch (e) { o = null; }
+    var games = o && Array.isArray(o.games) ? o.games : [], slug = o && typeof o.slug === "string" ? o.slug : "";
+    $$("[data-maker-game]").forEach(function (a) { a.hidden = games.indexOf(a.getAttribute("data-maker-game")) < 0; });
+    $$("[data-maker-slug]").forEach(function (a) { a.hidden = !slug || a.getAttribute("data-maker-slug") !== slug; });
+  }
+  function paintVote(m) {
+    var b = $("[data-vote]");
+    if (!b) return;
+    m = m || readMine();
+    var id = b.getAttribute("data-vote"), v = readVote()[LANG], wk = utcWeek(), mine = v && v.w === wk;
+    var on = mine && v.g === id;
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    if (on) b.setAttribute("aria-disabled", "true"); else b.removeAttribute("aria-disabled");
+    b.hidden = mine ? !on : !(m.week.w === wk && m.week.ids.indexOf(id) >= 0);
+  }
+  function sendVote(b) {
+    var id = b.getAttribute("data-vote");
+    if (!GAME_ID.test(id || "") || b.getAttribute("aria-pressed") === "true" || b.getAttribute("aria-busy") === "true" || !window.fetch) return;
+    b.setAttribute("aria-busy", "true");
+    post("/api/vote", { game: id, id: deviceId() })
+      .then(function (j) {
+        b.removeAttribute("aria-busy");
+        if (j && (j.ok || (j.e === "voted" && j.same))) keepVote(id);
+        else if (j && j.e === "voted") keepVote("");          // this week's vote went to another game of the language
+        else if (j && j.e === "notplayed") { var m = readMine(); m.week.ids = m.week.ids.filter(function (x) { return x !== id; }); saveMine(m); }
+        paintVote();
+        if (b.getAttribute("aria-pressed") === "true") { try { b.focus({ preventScroll: true }); } catch (e) { b.focus(); } }
+      })
+      .catch(function () { b.removeAttribute("aria-busy"); });
   }
 
   /* ---- the language ---- */
@@ -417,7 +567,10 @@
     var t = e.target;
     var star = closest(t, "[data-star]");
     if (star) { e.preventDefault(); toggleStar(star); return; }
+    var vt = closest(t, "[data-vote]");
+    if (vt) { e.preventDefault(); sendVote(vt); return; }
     var hit = closest(t, "[data-hit]");
+    if (hit && !hit.getAttribute("href")) { e.preventDefault(); return; }   // the dice before its list has come
     if (hit) { played(hit); return; }                       // the link opens the game as it is
     var open = closest(t, "[data-open]");
     if (open) { e.preventDefault(); openSheet(open.getAttribute("data-open"), open.getAttribute("data-kind")); return; }
@@ -463,13 +616,18 @@
   var mine = readMine();
   paintStars(mine);
   paintTicks(mine);
+  paintVote(mine);
+  paintEdit();
   renderMine();
   counts();
+  diceInit();
   doc.addEventListener("visibilitychange", function () {
     if (doc.visibilityState !== "visible") return;
     var m = readMine();
     paintStars(m);
     paintTicks(m);
+    paintVote(m);
+    if (diceList && Date.now() - diceAt > 600000) { diceAt = Date.now(); diceList = null; diceInit(); } else pickDice();
     if (Date.now() - lastCounts > 30000 || hitAt > lastCounts) { counts(); renderMine(); }
   });
 })();

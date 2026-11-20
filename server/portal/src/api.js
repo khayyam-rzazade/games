@@ -2,20 +2,25 @@
    { ok: false, e: <key> }.
      GET  /api/langs                         the open languages: code, name ("Play Español"), endonym, dir, games, today
      GET  /api/<lang>/games?kind=&from=&n=&ids=   listed games in row order (ids=a,b,c: those games, for the Yours row)
+     GET  /api/<lang>/dice                   { games: [[id, address], ...] }  every game of the language (Logicers' own where it has it), for the dice; cached 5 min
      GET  /api/counts?lang=                  { games: { id: { t, a } }, page: t }  t today (UTC day), a in all; cached 60 s
      POST /api/hit   { game, id }            a tap on Play (or a Logicers tile): one count per device, game and UTC day
      POST /api/view  { lang, id }            a language's page opened: one count per device, language and UTC day
      POST /api/add   { url, lang, kind, name?, email?, hp }   -> {} or e: link | here | busy | bad; the look at the page
                                              runs after the answer (ctx.waitUntil) and lands on the queue card
      POST /api/report { game, reason, browser }   -> {} or e: bad | nogame | busy
+     POST /api/vote  { game, id }            the game of the week (plan 2.20): one vote a device, language and UTC week, final
+                                             once cast, only for a game this device was counted playing this week
+                                             -> {} or e: bad | nogame | notplayed | voted (with same: true when it was this
+                                             game) | busy
    A count needs: a POST with the portal's own Origin (index.js), a device id of the right shape (util.js deviceOk), the
    brake of its address, a browser's user agent (no known robot), PORTAL_KEY set (else nothing is counted), and room in the
    caps of its address for the UTC day (chat H, 20 Nov 2026, plan 2.8: 50 counts a game, 300 in all, 50 views a language;
    db.js NET). What is kept: the keyed hash of (UTC day, device id, game or "view:<lang>") and of (UTC day, address, what)
    with its count, until the night, and the counts by game, day and country (from Cloudflare's request data; "XX" when it
    has none). Never the id itself, never an address. */
-import { json, bad, clock, utcDay, dayAdd, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where } from "./util.js";
-import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed } from "./db.js";
+import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where } from "./util.js";
+import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed, crownStmt, crownSet, picUrl, lgLogo } from "./db.js";
 import { LANG, isLang, pageName, nameParts } from "./langs.js";
 import { linkOk, norm, addCheck } from "./check.js";
 import { lookNow } from "./cron.js";
@@ -28,6 +33,8 @@ const country = (req) => { const c = req.cf && typeof req.cf.country === "string
 const h32 = async (env, s) => (await mac(env, s)).slice(0, 32);
 /* the keyed hash of (UTC day, address, what) for the caps: the address is read here and never kept */
 const netHash = (env, req, day, what) => h32(env, day + "|net|" + where(req) + "|" + what);
+/* the keyed hash of (UTC week, device id, game) kept with a counted play, for the vote (plan 2.20) */
+const playHash = (env, week, id, game) => h32(env, "w|" + week + "|" + id + "|" + game);
 
 export async function hit(env, req, b) {
   if (!brake("hit", req)) return bad("busy", 429);
@@ -48,8 +55,33 @@ export async function hit(env, req, b) {
     netStmt(env, hg, NET.game), netStmt(env, ha, NET.all),
     st(env, "INSERT INTO counts (game, day, country, n) VALUES (?, ?, ?, 1) ON CONFLICT(game, day, country) DO UPDATE SET n = n + 1", game, day, country(req)),
     st(env, "UPDATE games SET hits = hits + 1 WHERE id = ?", game),
+    st(env, "INSERT INTO wseen (week, h) VALUES (?, ?) ON CONFLICT(week, h) DO NOTHING", weekOf(), await playHash(env, weekOf(), b.id, game)),
   ]);
   return json({ ok: true, counted: true });
+}
+
+/* the game of the week (plan 2.20): one vote a device, language and UTC week (Monday 00:00), for any listed game of that
+   language but Logicers' own, final once cast. It counts only from a device that was counted playing that game this
+   week (wseen), and at most VOTE.perNet votes a language and week come from one address (IPv4 whole, IPv6 /64). Kept for
+   the week only, as keyed hashes: d (week, device, language) and net (week, address). The pages never write a tally. */
+export const VOTE = { perNet: 20 };
+export async function vote(env, req, b) {
+  if (!brake("vote", req)) return bad("busy", 429);
+  const game = typeof b.game === "string" && b.game.length <= 40 ? b.game : "";
+  if (!game || !deviceOk(b.id)) return bad("bad");
+  const g = await one(env, "SELECT id, lang, status, source FROM games WHERE id = ?", game);
+  if (!g || g.status !== "listed" || g.source === "logicers") return bad("nogame", 404);
+  if (isRobot(req) || !hashReady(env)) return bad("notplayed");
+  const week = weekOf();
+  if (!(await one(env, "SELECT 1 AS k FROM wseen WHERE week = ? AND h = ?", week, await playHash(env, week, b.id, game)))) return bad("notplayed");
+  const d = await h32(env, "v|" + week + "|" + b.id + "|" + g.lang), net = await netHash(env, req, week, "vote");
+  const had = await one(env, "SELECT game FROM votes WHERE week = ? AND lang = ? AND d = ?", week, g.lang, d);
+  if (had) return bad("voted", 400, { same: had.game === game });
+  const n = await one(env, "SELECT COUNT(*) AS n FROM votes WHERE week = ? AND lang = ? AND net = ?", week, g.lang, net);
+  if (n && n.n >= VOTE.perNet) return bad("busy", 429);
+  const r = await run(env, "INSERT INTO votes (week, lang, d, game, net, made) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT DO NOTHING", week, g.lang, d, game, net, clock());
+  if (!changed(r)) return bad("voted", 400, { same: false });
+  return json({ ok: true, week });
 }
 
 export async function view(env, req, b) {
@@ -142,12 +174,14 @@ export async function langsApi(env) {
   }), today: rows.reduce((s, r) => s + r.today, 0) }, 200, { "Cache-Control": "public, max-age=60" });
 }
 
-const shape = (env, lang, g, t) => ({
+const shape = (env, lang, g, t, crown) => ({
   id: g.id, slug: g.slug, name: g.name, kind: g.kind, line: g.line, maker: g.maker, url: g.url,
   page: g.source === "logicers" ? null : String(env.SITE || "https://play.logicers.com") + "/" + lang + "/g/" + g.slug + "/",
   ring: ring(g.id), new: !!(g.new_until && g.new_until > clock()) && g.source !== "logicers",
   slot: g.place === 1 && g.source !== "logicers" ? 1 : null, sold: !!g.sold, logicers: g.source === "logicers",
   en: g.source === "logicers" && g.lang !== lang, today: t[g.id] || 0, all: g.hits || 0,
+  crown: !!(crown && crown.has(g.id)),
+  pic: g.source === "logicers" ? null : picUrl(g), logo: g.source === "logicers" ? lgLogo(g) : null,     // the logo (chat J)
 });
 export async function gamesApi(env, req, url, lang) {
   if (!isLang(lang) || !(await openSet(env)).has(lang)) return bad("nolang", 404);
@@ -176,8 +210,20 @@ export async function gamesApi(env, req, url, lang) {
     const part = page.slice(i, i + 90);
     for (const r of await all(env, `SELECT game, SUM(n) AS n FROM counts WHERE day = ? AND game IN (${part.map(() => "?").join(",")}) GROUP BY game`, day, ...part.map((g) => g.id))) t[r.game] = r.n;
   }
-  return json({ ok: true, lang, games: page.map((g) => shape(env, lang, g, t)), next: from + n < list.length ? from + n : null },
+  const crown = crownSet(rowsOf(await crownStmt(env, lang).all()));
+  return json({ ok: true, lang, games: page.map((g) => shape(env, lang, g, t, crown)), next: from + n < list.length ? from + n : null },
     200, { "Cache-Control": "public, max-age=60" });
+}
+/* the dice's list (20 Nov 2026): every listed game a player of this language can be sent to, as [id, address] pairs and nothing
+   else, so the page can pick one at random on the device (a tap opens it at once, in a new tab, counted as any Play is).
+   Logicers' own games are in it only where Logicers has the language (an English row with the EN chip is not "a game of
+   this language"). The most it holds is DICE_MAX, in id order. Kept by the edge 5 minutes (index.js). */
+export const DICE_MAX = 2000;
+export async function diceApi(env, req, url, lang) {
+  if (!isLang(lang) || !(await openSet(env)).has(lang)) return bad("nolang", 404);
+  const own = lgRowLang(lang) === lang ? 1 : 0;
+  const rows = await all(env, `SELECT id, url FROM games WHERE status = 'listed' AND lang = ? AND (source <> 'logicers' OR ? = 1) ORDER BY id LIMIT ?`, lang, own, DICE_MAX);
+  return json({ ok: true, lang, games: rows.map((g) => [g.id, g.url]) }, 200, { "Cache-Control": "public, max-age=300, s-maxage=300" });
 }
 export async function countsApi(env, req, url) {
   const lang = url.searchParams.get("lang");

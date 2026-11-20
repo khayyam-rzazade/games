@@ -48,5 +48,18 @@
   "nf": "Tu nic nie ma.",
   "about": "O nas",
   "close": "Zamknij",
-  "star": "Zapisz"
+  "star": "Zapisz",
+  "dice": "Losowa gra",
+  "streak_n": "{n} dni z rzędu",
+  "streak_n.one": "{n} dzień z rzędu",
+  "streak_n.few": "{n} dni z rzędu",
+  "streak_n.many": "{n} dni z rzędu",
+  "run": "Następna gra",
+  "run_done": "Dziś zagrane wszystkie",
+  "vote": "Głosuj",
+  "gotw": "Gra tygodnia",
+  "claim": "To moja",
+  "days90": "Ostatnie 90 dni",
+  "countries": "Kraje",
+  "edit": "Edytuj"
 }

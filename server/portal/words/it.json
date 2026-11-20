@@ -47,5 +47,16 @@
   "nf": "Qui non c'è niente.",
   "about": "Chi siamo",
   "close": "Chiudi",
-  "star": "Salva"
+  "star": "Salva",
+  "dice": "Gioco a caso",
+  "streak_n": "{n} giorni di fila",
+  "streak_n.one": "{n} giorno di fila",
+  "run": "Prossimo gioco",
+  "run_done": "Tutti giocati oggi",
+  "vote": "Vota",
+  "gotw": "Gioco della settimana",
+  "claim": "Rivendica",
+  "days90": "Ultimi 90 giorni",
+  "countries": "Paesi",
+  "edit": "Modifica"
 }

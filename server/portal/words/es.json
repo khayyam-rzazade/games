@@ -47,5 +47,16 @@
   "nf": "Aquí no hay nada.",
   "about": "Acerca de",
   "close": "Cerrar",
-  "star": "Guardar"
+  "star": "Guardar",
+  "dice": "Juego al azar",
+  "streak_n": "{n} días seguidos",
+  "streak_n.one": "{n} día seguido",
+  "run": "Siguiente juego",
+  "run_done": "Todos jugados hoy",
+  "vote": "Votar",
+  "gotw": "Juego de la semana",
+  "claim": "Reclamar",
+  "days90": "Últimos 90 días",
+  "countries": "Países",
+  "edit": "Editar"
 }

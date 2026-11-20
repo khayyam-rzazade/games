@@ -88,6 +88,8 @@ body.pl {
 .top-wall .brand-lang, .admin-top .brand-lang { font-family: var(--f); font-weight: 500; letter-spacing: -0.02em; }
 .brand-a { display: inline; border-radius: 6px; }
 .brand-by { font-size: 12px; color: var(--soft); margin-block-start: 6px; letter-spacing: 0.01em; }
+.brand-by-a { display: inline-block; padding-block: 8px; margin-block: -8px; border-radius: 6px; transition: color .15s var(--ease); }
+.brand-by-a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .brand-sub { font-size: 14px; color: var(--soft); margin-block-start: 12px; }
 .brand-box { min-inline-size: 0; }
 @media (min-width: 1024px) {
@@ -104,38 +106,57 @@ body.pl {
 
 /* ---------------------------------------------------------------- the headers ---- */
 .top { display: grid; align-items: center; column-gap: 16px; }
-.top-lang { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand chip" "today today"; padding-block-start: 28px; row-gap: 30px; }
+.top-lang { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand acts" "today today"; padding-block-start: 28px; row-gap: 30px; }
 .top-lang .brand-box { grid-area: brand; }
 .top-lang .today { grid-area: today; padding-block-end: 10px; }
 .top-lang:has(> .today[hidden]) { row-gap: 0; }
-.chip-lang { grid-area: chip; display: inline-flex; align-items: center; justify-content: center; gap: 6px; block-size: 44px; min-inline-size: 44px; padding-inline: 14px; border: 1.5px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 500; white-space: nowrap; transition: border-color .15s var(--ease); }
+.top-acts { grid-area: acts; display: flex; align-items: center; gap: 8px; }
+.chip-lang { display: inline-flex; align-items: center; justify-content: center; gap: 6px; block-size: 44px; min-inline-size: 44px; padding-inline: 14px; border: 1.5px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 500; white-space: nowrap; transition: border-color .15s var(--ease); }
 .chip-lang:hover { border-color: var(--ink); }
 .chip-lang .chip-g { display: none; inline-size: 20px; block-size: 20px; }
 .chip-lang .chip-d { inline-size: 14px; block-size: 14px; stroke-width: 2.5; }
-@media (max-width: 379px) {
+@media (max-width: 519px) {                              /* the three buttons at the end of the head: the language shows as its globe, so the name keeps its line */
   .chip-lang { padding-inline: 0; inline-size: 44px; }
   .chip-lang .chip-g { display: block; }
   .chip-lang .chip-d { display: none; }
   .chip-lang .chip-lang-t { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
-.top-wall { grid-template-columns: minmax(0, 1fr); row-gap: 26px; padding-block: 28px 24px; border-block-end: 1.5px solid var(--line); }
+.top-wall { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand add" "today today"; row-gap: 26px; padding-block: 28px 24px; border-block-end: 1.5px solid var(--line); }
+.top-wall .brand-box { grid-area: brand; }
+.top-wall .today { grid-area: today; }
+.top-wall .add-top { grid-area: add; }
+.top-wall:has(> .today[hidden]) { row-gap: 0; }
 .top-wall .brand { font-size: 32px; }
 .top-wall .today-n { font-size: 64px; }
 @media (min-width: 900px) {
   .top-lang { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "brand today chip"; align-items: end; column-gap: 36px; padding-block-start: 44px; }
   .top-lang .today { padding-block-end: 0; flex-wrap: nowrap; }
-  .top-lang .chip-lang { margin-block-end: 14px; }
+  .top-lang .top-acts { margin-block-end: 14px; }
   .top-lang .today-n { font-size: 104px; }
-  .top-wall { grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: 24px; padding-block: 44px 28px; }
+  .top-wall { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "brand today add"; align-items: end; column-gap: 24px; padding-block: 44px 28px; }
+  .top-wall .add-top { margin-block-end: 14px; }
   .top-wall .brand { font-size: 44px; }
   .top-wall .today { flex-wrap: nowrap; }
   .top-wall .today-n { font-size: 96px; }
 }
 @media (min-width: 900px) and (max-width: 1099px) { .top-lang .today-n { font-size: 84px; } }
-.top-sub { grid-template-columns: auto minmax(0, 1fr); padding-block-start: 24px; }
-.back { display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; transition: border-color .15s var(--ease); }
-.back:hover { border-color: var(--ink); }
+.top-sub { grid-template-columns: auto minmax(0, 1fr) auto; padding-block-start: 24px; }
+.back, .dice { display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; transition: border-color .15s var(--ease); }
+.back:hover, .dice:hover { border-color: var(--ink); }
 .back .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.5; }
+.dice .ico { inline-size: 22px; block-size: 22px; }
+.dice[aria-disabled="true"] { opacity: .45; cursor: default; }
+.dice[aria-disabled="true"]:hover { border-color: var(--line); }
+/* Add a game, at the top of every page (20 Nov 2026): filled ink so it is seen; a round "+" on a phone, with its words from 700 px */
+.add-top { display: inline-flex; align-items: center; justify-content: center; gap: 8px; inline-size: 44px; block-size: 44px; padding: 0; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: opacity .15s var(--ease); }
+.add-top:hover { opacity: .85; }
+.add-top .ico { inline-size: 20px; block-size: 20px; stroke-width: 2.5; }
+.add-top-t { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (min-width: 700px) {
+  .add-top { inline-size: auto; padding-inline: 18px 20px; }
+  .add-top .ico { inline-size: 16px; block-size: 16px; }
+  .add-top-t { position: static; inline-size: auto; block-size: auto; overflow: visible; clip-path: none; }
+}
 .brand-sm { justify-self: end; text-align: end; }
 .brand-sm .brand { font-size: 15px; }
 .brand-sm .brand-by { font-size: 11px; margin-block-start: 3px; }
@@ -173,6 +194,19 @@ body.pl {
 .row-more:hover { color: var(--ink); }
 .row-more .ico { inline-size: 14px; block-size: 14px; }
 .row-more-sep { opacity: .7; }
+.row-mine .row-top { justify-content: flex-start; }
+.streak { display: inline-flex; align-items: center; gap: 4px; min-block-size: 44px; color: var(--ink); }
+.streak .ico { inline-size: 18px; block-size: 18px; fill: currentColor; stroke-width: 1.5; }
+.streak-n { font-family: var(--f); font-weight: 500; font-size: 14px; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+.streak.is-wait { color: var(--soft); }
+.streak.is-wait .ico { fill: none; }
+.run, .run-done { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-inline-start: auto; min-block-size: 44px; padding-inline: 16px 18px; border-radius: 999px; font-size: 14px; font-weight: 500; white-space: nowrap; }
+.run { background: var(--ink); color: var(--bg); transition: opacity .15s var(--ease); }
+.run:hover { opacity: .85; }
+.run .ico { inline-size: 14px; block-size: 14px; }
+.run-done { color: var(--soft); border: 1.5px solid var(--line); }
+.run-done .ico { inline-size: 16px; block-size: 16px; stroke-width: 2.5; }
+.run-t { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 .main-lang > .row:first-child .row-top, .main-lang > .row-mine[hidden] + .row .row-top { margin-block-start: 30px; }
 @media (min-width: 1024px) {
   .row-top { margin-block-start: 36px; padding-block-start: 14px; margin-block-end: 8px; }
@@ -207,8 +241,8 @@ body.pl {
 .tile-a {
   position: relative; display: grid; aspect-ratio: 1; inline-size: 100%; border-radius: 24px; padding: 14px;
   border: 2px solid var(--r, var(--line)); background: var(--card); color: var(--ink);
-  grid-template-columns: auto minmax(0, 1fr) auto; grid-template-rows: auto minmax(0, 1fr) auto;
-  grid-template-areas: "badge tick kind" ". . ." "n n n"; align-items: center;
+  grid-template-columns: auto auto minmax(0, 1fr) auto; grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas: "badge crown tick kind" ". . . ." "n n n n"; align-items: center;
   transition: transform .18s var(--ease), border-color .18s var(--ease);
 }
 .tile-a:focus-visible { outline-offset: 4px; }
@@ -225,10 +259,29 @@ body.pl {
 .tile-n.n7 { font-size: 24px; font-size: 16cqi; }
 .tile-n .ico { inline-size: .82em; block-size: .82em; stroke-width: 1.4; vertical-align: -0.06em; }
 .tile-n .ico.is-on { fill: currentColor; stroke-width: 1.2; inline-size: .7em; block-size: .7em; }
+/* the game of the week (plan 2.20): a filled crown at the top of the coin, after New; a mark, never a place */
+.tile-crown-i { display: none; grid-area: crown; justify-self: start; inline-size: 16px; block-size: 16px; color: var(--rt); }
+.tile-crown .tile-crown-i { display: block; }
+.tile-new .tile-crown-i { margin-inline-start: 6px; }
+.tile-one .tile-crown-i { color: var(--ro); }
+@media (min-width: 700px) { .tile-crown-i { inline-size: 18px; block-size: 18px; } }
 /* nobody today: the kind's icon, large, in the ring colour, where the number will be (a 0 is never written, plan 2.6) */
 .tile-zero { display: none; grid-area: 1 / 1 / -1 / -1; place-self: center; inline-size: 40cqi; block-size: 40cqi; color: var(--r); stroke-width: 1.25; }
 .is-0 .tile-zero { display: block; }
 .is-0 .tile-n, .is-0 .tile-kind { display: none; }
+/* a logo (chat J, plan 2.20): a maker's picture once a key said yes, or the drawing of one of Logicers' own games. Nobody
+   today: large and round where the kind's icon would be; from the first player the number stays the hero and the logo is
+   small and round in the corner, in the kind icon's place. */
+.tile-logo { grid-area: kind; justify-self: end; inline-size: 24px; block-size: 24px; border-radius: 999px; object-fit: cover; }
+img.tile-logo { background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+.tile-logo-lg { border-radius: 0; color: var(--bg); }
+.tile-logo[hidden] { display: none; }
+.is-0 .tile-logo { grid-area: 1 / 1 / -1 / -1; place-self: center; justify-self: center; inline-size: 52cqi; block-size: 52cqi; }
+.is-0 .tile-logo-lg { inline-size: 62cqi; block-size: 62cqi; }
+@media (min-width: 700px) { .tile-logo { inline-size: 26px; block-size: 26px; } }
+.tile:not(.is-0):has(.tile-star:focus-visible) .tile-logo, .tile:not(.is-0).is-star .tile-logo { visibility: hidden; }
+.tile-mine.is-star .tile-logo { visibility: visible; }
+@media (hover: hover) { .tile:not(.is-0):hover .tile-logo { visibility: hidden; } .tile-mine.is-star:hover .tile-logo { visibility: hidden; } }
 /* the name: under the coin, its own target (44 px at least), two lines at most */
 .tile-name {
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
@@ -342,6 +395,12 @@ body.pl {
 .game-tile { grid-column: 1; grid-row: 1 / span 2; align-self: center; inline-size: 120px; block-size: 120px; border-radius: 32px; border: 2px solid var(--r); display: grid; place-items: center; color: var(--r); background: var(--bg); transition: transform .18s var(--ease); }
 @media (hover: hover) { .game-tile:hover { transform: translateY(-3px); } }
 .game-ico { inline-size: 44px; block-size: 44px; stroke-width: 1.8; }
+.game-logo { inline-size: 72%; block-size: 72%; border-radius: 999px; object-fit: cover; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+/* the game of the week: a crown on the big coin, and the words above the name (beside the coin: no extra height) */
+.game-tile { position: relative; }
+.game-crown { position: absolute; inset-block-start: 9%; inset-inline: 0; margin-inline: auto; inline-size: 20%; block-size: 20%; color: var(--rt); }
+.game-gotw { order: -1; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; line-height: 1.2; color: var(--rt); }
+.game-gotw .ico { inline-size: 14px; block-size: 14px; }
 .game-body { display: contents; }
 .game-head { grid-column: 2; grid-row: 1 / span 2; align-self: center; display: flex; flex-direction: column; gap: 8px; min-inline-size: 0; }
 .game-name { font-size: 34px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; overflow-wrap: anywhere; }
@@ -361,6 +420,29 @@ body.pl {
 .btn-play:hover { opacity: .9; }
 .game-star { position: static; flex: none; inline-size: 60px; block-size: 60px; opacity: 1; color: var(--ink); border: 1.5px solid var(--line); border-radius: 999px; transition: border-color .15s var(--ease); }
 .game-star .ico { inline-size: 20px; block-size: 20px; }
+/* the vote (plan 2.20): an icon and one word, beside Play; shown once this device played the game this week; a tick once voted */
+.btn-vote { flex: none; min-block-size: 60px; padding-inline: 20px 22px; gap: 8px; font-size: 15px; white-space: nowrap; }
+.btn-vote .ico { inline-size: 18px; block-size: 18px; }
+.btn-vote .vote-ok, .btn-vote[aria-pressed="true"] .vote-i { display: none; }
+.btn-vote[aria-pressed="true"] .vote-ok { display: block; stroke-width: 2.6; }
+.btn-vote[aria-pressed="true"] { cursor: default; border-color: var(--line); color: var(--soft); }
+@media (hover: hover) { .btn-vote:not([aria-pressed="true"]):hover { background: var(--ink); color: var(--bg); } }
+/* a phone with Play, the vote and Save on one line: the three a little smaller (52 px), so no line is added; at 359 px and
+   less Play drops its triangle (its word stays). Words longer than any of the twelve languages wrap rather than overflow. */
+.game-acts:has(> .btn-vote:not([hidden])) { flex-wrap: wrap; }
+@media (max-width: 459px) {
+  .game-acts:has(> .btn-vote:not([hidden])) { gap: 8px; }
+  .game-acts:has(> .btn-vote:not([hidden])) .btn-play { min-block-size: 52px; padding-inline: 14px; gap: 8px; font-size: 17px; }
+  .game-acts:has(> .btn-vote:not([hidden])) .btn-vote { min-block-size: 52px; padding-inline: 12px 14px; gap: 6px; font-size: 14px; }
+  .game-acts:has(> .btn-vote:not([hidden])) .game-star { inline-size: 52px; block-size: 52px; }
+}
+@media (max-width: 359px) {
+  .game-acts:has(> .btn-vote:not([hidden])) { gap: 6px; }
+  .game-acts:has(> .btn-vote:not([hidden])) .btn-play { padding-inline: 12px; }
+  .game-acts:has(> .btn-vote:not([hidden])) .btn-play .ico { display: none; }
+  .game-acts:has(> .btn-vote:not([hidden])) .btn-vote { padding-inline: 10px 12px; }
+}
+
 .game-star:hover, .game-star[aria-pressed="true"] { border-color: var(--ink); }
 @media (max-width: 379px) {
   .game { grid-template-columns: 96px minmax(0, 1fr); column-gap: 14px; }
@@ -396,6 +478,7 @@ body.pl {
 @media (max-width: 699px) {
   .row-same .tile-a { border-radius: 18px; padding: 9px; }
   .row-same .tile-badge, .row-same .tile-kind, .row-same .tile-star, .row-same .tile-tick-i, .row-same .tile-chip { display: none; }
+  .row-same .tile-crown-i { inline-size: 11px; block-size: 11px; margin: 0; }
   .row-same .tile-n { font-size: 15px; font-size: 30cqi; }
   .row-same .tile-n.n5 { font-size: 24cqi; }
   .row-same .tile-n.n6 { font-size: 20cqi; }
@@ -491,6 +574,100 @@ dialog.sheet[open] { animation: pl-up .24s var(--ease); }
 .sheet-ok .ico { inline-size: 40px; block-size: 40px; padding: 9px; border-radius: 999px; border: 1.5px solid var(--ink); stroke-width: 2.4; }
 .sheet-form.is-sent > :not(.sheet-grab):not(.sheet-h):not(.sheet-x):not(.sheet-ok):not(.btn-done) { display: none !important; }
 
+/* ---------------------------------------------------------------- a claimed game's numbers, a maker's page (chat J) ---- */
+.game-maker-a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; text-decoration-thickness: 1.5px; padding-block: 12px; margin-block: -12px; }
+@media (hover: hover) { .game-maker-a:hover { text-decoration-color: currentColor; } }
+.nums { display: grid; gap: 28px; margin-block-start: 8px; }
+@media (min-width: 900px) { .nums { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 48px; } }
+.nums .row-top { margin-block-end: 12px; }
+.nums-total { font-family: var(--f); font-weight: 300; font-size: 22px; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.nums-svg { display: block; inline-size: 100%; block-size: 120px; }
+@media (min-width: 900px) { .nums-svg { block-size: 160px; } }
+.nums-bar { fill: var(--r); }
+.nums-axis { display: flex; justify-content: space-between; margin-block-start: 8px; padding-block-start: 6px; border-block-start: 1px solid var(--line); font-size: 12px; color: var(--soft); font-variant-numeric: tabular-nums; }
+.nums-c { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.nums-ci { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: baseline; font-size: 14px; }
+.nums-cn { overflow-wrap: anywhere; }
+.nums-cv { font-variant-numeric: tabular-nums; font-weight: 500; }
+.nums-cb { grid-column: 1 / -1; display: block; inline-size: 100%; block-size: 4px; }
+.nums-cb rect { fill: var(--r); }
+.btn-edit { flex: none; min-block-size: 44px; padding-inline: 16px; border-color: var(--line); font-size: 14px; gap: 8px; }
+.btn-edit .ico { inline-size: 16px; block-size: 16px; }
+.btn-edit[hidden] { display: none; }
+.btn-edit:hover { border-color: var(--ink); }
+.game-foot:has(.btn-edit:not([hidden])) { flex-wrap: wrap; }
+.main-mk { padding-block-start: 24px; }
+.mk-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; margin-block-end: 20px; }
+.mk-name { font-family: var(--f); font-size: 34px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; overflow-wrap: anywhere; min-inline-size: 0; }
+@media (min-width: 1024px) { .main-mk { padding-block-start: 44px; } .mk-name { font-size: 48px; } }
+
+.card-mail { margin: 4px 0 12px; padding: 14px 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px; line-height: 1.55; }
+.card-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.card-logo { inline-size: 72px; block-size: 72px; border-radius: 999px; object-fit: cover; box-shadow: 0 0 0 1px var(--line); background: var(--card); }
+.card-logo-new { inline-size: 120px; block-size: 120px; }
+.card-logo-see { min-block-size: 44px; padding-inline: 14px; font-size: 13px; border-color: var(--line); }
+
+/* ---------------------------------------------------------------- the claim and the maker's form (English; chat J) ---- */
+/* the question and Claim share the space left by Report, down to the pill's own width (basis 0: the foot breaks only when
+   even that does not fit, as with every word half as long again) */
+.yours-q-claim { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; flex: 1 1 0; min-inline-size: min-content; }
+.game-foot:has(.yours-q-claim) { flex-wrap: wrap; }
+.btn-claim { flex: none; min-block-size: 44px; padding-inline: 16px; border-color: var(--line); font-size: 14px; white-space: nowrap; overflow-wrap: normal; }
+.btn-claim:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.main-claim, .main-maker { padding-block-start: 28px; }
+.claim, .maker { max-inline-size: 680px; display: flex; flex-direction: column; gap: 18px; min-inline-size: 0; }
+.claim-h { font-size: 32px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; overflow-wrap: anywhere; }
+.claim-p { font-size: 16px; line-height: 1.55; font-weight: 300; overflow-wrap: anywhere; }
+.claim-p code, .claim-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+.claim-steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: flex; flex-direction: column; gap: 14px; }
+.claim-step { counter-increment: step; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 18px 20px; border: 1.5px solid var(--line); border-radius: 20px; min-inline-size: 0; }
+.claim-step > * { max-inline-size: 100%; }
+.claim-step-h { font-size: 19px; font-weight: 500; line-height: 1.25; }
+.claim-steps .claim-step-h::before { content: counter(step); display: inline-grid; place-items: center; inline-size: 26px; block-size: 26px; margin-inline-end: 10px; border-radius: 999px; border: 1.5px solid var(--ink); font-size: 13px; font-weight: 600; vertical-align: 2px; }
+.claim-url { font-weight: 500; overflow-wrap: anywhere; }
+.claim-code { display: flex; align-items: center; gap: 10px; align-self: stretch; padding-block: 8px; padding-inline: 14px 8px; border-radius: 14px; background: var(--card); border: 1.5px solid var(--line); min-inline-size: 0; }
+.claim-code code { flex: 1 1 auto; min-inline-size: 0; font-size: 13px; line-height: 1.45; overflow-wrap: anywhere; user-select: all; -webkit-user-select: all; }
+.claim-key { font-size: 17px !important; letter-spacing: .05em; }
+.btn-copy { flex: none; min-block-size: 44px; padding-inline: 16px; font-size: 14px; border-color: var(--line); }
+.btn-copy:hover { border-color: var(--ink); }
+.claim .btn-send, .maker .btn-send { inline-size: auto; min-block-size: 48px; padding-inline: 26px; font-size: 16px; }
+.claim .btn-send[disabled], .maker .btn-send[disabled] { opacity: .45; cursor: default; }
+.claim-err { font-size: 14px; font-weight: 500; line-height: 1.45; color: var(--err); }
+.claim-ok { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 20px; border: 2px solid var(--ink); border-radius: 20px; }
+.claim-keybox { display: flex; flex-direction: column; gap: 10px; align-self: stretch; }
+.claim-other { font-size: 13px; line-height: 1.5; color: var(--soft); overflow-wrap: anywhere; }
+.maker-keyform, .maker-namef, .maker-gamef { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.maker-keyform > .fld, .maker-namef > .fld, .maker-gamef > .fld { align-self: stretch; }
+.maker-games { display: flex; flex-direction: column; gap: 16px; }
+.maker-card { display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; border: 1.5px solid var(--line); border-radius: 20px; min-inline-size: 0; }
+.maker-card-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 20px; font-weight: 500; line-height: 1.2; overflow-wrap: anywhere; }
+.maker-card-a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.maker-card-lang { font-size: 13px; font-weight: 400; color: var(--soft); }
+.maker-msg { font-size: 14px; font-weight: 500; color: var(--err); }
+.maker-msg.is-ok { color: var(--soft); }
+.maker-forget { min-block-size: 44px; padding-inline: 18px; font-size: 14px; border-color: var(--line); align-self: flex-start; }
+.maker .card-count { font-size: 12px; color: var(--soft); font-variant-numeric: tabular-nums; }
+.maker-pagelink { align-self: flex-start; min-block-size: 44px; padding-inline: 18px; font-size: 14px; border-color: var(--line); }
+.maker-pagelink[hidden] { display: none; }
+.maker-logo { display: flex; flex-direction: column; gap: 10px; padding-block-start: 14px; border-block-start: 1px solid var(--line); }
+.maker-logo-h { font-size: 13px; font-weight: 600; color: var(--soft); }
+.maker-logo-row { display: flex; align-items: flex-start; gap: 16px; }
+.maker-logo-view { flex: none; inline-size: 96px; block-size: 96px; border-radius: 999px; border: 1.5px dashed var(--line); display: grid; place-items: center; overflow: hidden; color: var(--soft); }
+.maker-logo-view .ico { inline-size: 32px; block-size: 32px; }
+.maker-logo-img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.maker-logo-img[hidden] { display: none; }
+.maker-logo-side { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-inline-size: 0; }
+.maker-logo-state { font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+.maker-logo-pick { position: relative; min-block-size: 44px; padding-inline: 18px; font-size: 14px; border-color: var(--line); cursor: pointer; }
+.maker-logo-pick:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
+.maker-logo-file { position: absolute; inset: 0; opacity: 0; inline-size: 100%; block-size: 100%; cursor: pointer; }
+.maker-logo-send[hidden] { display: none; }
+.claim [tabindex="-1"]:focus, .maker [tabindex="-1"]:focus { outline: none; }   /* where the script moves the focus to read on: not a control */
+@media (max-width: 459px) {
+  .maker-card { padding: 16px 0 0; border: 0; border-block-start: 1.5px solid var(--line); border-radius: 0; }
+}
+@media (min-width: 1024px) { .main-claim, .main-maker { padding-block-start: 48px; } .claim-h { font-size: 44px; } }
+
 /* ---------------------------------------------------------------- the queue (admin, English) ---- */
 .admin { inline-size: 100%; max-inline-size: 980px; margin-inline: auto; padding: 28px var(--gut) 80px; display: flex; flex-direction: column; gap: 20px; }
 .admin-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-block-end: 1.5px solid var(--line); padding-block-end: 18px; }
@@ -506,6 +683,7 @@ dialog.sheet[open] { animation: pl-up .24s var(--ease); }
 .admin-lock { margin-inline-start: auto; min-block-size: 40px; font-size: 14px; border-color: var(--line); }
 .admin-filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .admin-filter { display: inline-flex; align-items: center; gap: 8px; min-block-size: 40px; padding-inline: 16px; border: 1.5px solid var(--line); border-radius: 999px; background: transparent; font-size: 14px; font-weight: 500; }
+.admin-filter[hidden] { display: none; }
 .admin-filter[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .admin-filter-n { font-variant-numeric: tabular-nums; opacity: .7; }
 .admin-filter-n:empty { display: none; }

@@ -9,25 +9,35 @@
      /<lang>/g/<slug>/      one game (a hidden, dead or rejected one: 410)
      /about/                About (English; ?l=<code> adds one line in that language)
      /admin/                the queue (English, never indexed, never cached)
+     /claim/?g=<id>         claim a game with a line on its page (English, never indexed, never cached; chat J, 20 Nov 2026)
+     /claim/<token>/        claim a game with the single-use link of the weekly email (the same)
+     /maker/                the maker's form: name, a game's line, kind and logo (English; the key stays on the device)
+     /m/<slug>/             a maker's page: the name and the games as coins (?l=<code>: its words; noindex for now; chat J)
+     /p/<id>/<h>.<ext>      a game's logo, once a key said yes (pics.js)
      /sitemap.xml  /sitemap-root.xml  /<lang>/sitemap.xml  /robots.txt  /health
      anything else: 404 in the page's language
    Static files under /a/ (chat B) never reach this Worker (wrangler.jsonc run_worker_first: "!/a/*"). Every other path
    does; a path with a file extension that is not ours is passed to the static files (a favicon, say).
-   POST (JSON):  /api/hit /api/view /api/add /api/report (api.js)    /admin/queue /admin/game /admin/act /admin/import (admin.js)
-   GET (JSON):   /api/langs  /api/<lang>/games  /api/counts
+   POST (JSON):  /api/hit /api/view /api/add /api/report /api/vote (api.js)  /api/claim/code /api/claim/check /api/claim/token
+                 /api/maker /api/maker/edit /api/maker/pic (claim.js, pics.js)    /admin/queue /admin/game /admin/act /admin/import
+                 /admin/pic (admin.js)
+   GET (JSON):   /api/langs  /api/<lang>/games  /api/<lang>/dice  /api/counts
    Kept: see api.js and db.js. Never kept: an IP address, a user agent, the device id itself. Workers Logs stay off. */
 import { json, bad, readJson, brake, isLocal } from "./util.js";
-import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, KINDS } from "./db.js";
+import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, KINDS } from "./db.js";
 import { LANG, isLang, CODES } from "./langs.js";
 import { lgRowLang, lgShown, lgOfKind, lgForGame, lgEn, EN_LINE, LG_HOME } from "./logicers.js";
-import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, CSP, CSP_ADMIN } from "./pages.js";
-import { hit, view, add, report, langsApi, gamesApi, countsApi } from "./api.js";
-import { adminQueue, adminGame, adminAct, adminImport } from "./admin.js";
+import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_ADMIN } from "./pages.js";
+import { claimCode, claimCheck, claimToken, makerGet, makerEdit, makerPicApi, tokenGame } from "./claim.js";
+import { servePic, PIC_BODY } from "./pics.js";
+import { hit, view, add, report, vote, langsApi, gamesApi, diceApi, countsApi } from "./api.js";
+import { adminQueue, adminGame, adminAct, adminImport, adminPic } from "./admin.js";
 import { nightly } from "./cron.js";
 
 const SMALL = 8 * 1024, IMPORT = 1024 * 1024;
-const API_POSTS = { "/api/hit": hit, "/api/view": view, "/api/add": add, "/api/report": report };
-const ADMIN_POSTS = { "/admin/queue": adminQueue, "/admin/game": adminGame, "/admin/act": adminAct, "/admin/import": adminImport };
+const API_POSTS = { "/api/hit": hit, "/api/view": view, "/api/add": add, "/api/report": report, "/api/vote": vote,
+  "/api/claim/code": claimCode, "/api/claim/check": claimCheck, "/api/claim/token": claimToken, "/api/maker": makerGet, "/api/maker/edit": makerEdit, "/api/maker/pic": makerPicApi };
+const ADMIN_POSTS = { "/admin/queue": adminQueue, "/admin/game": adminGame, "/admin/act": adminAct, "/admin/import": adminImport, "/admin/pic": adminPic };
 const siteOf = (env) => String(env.SITE || "https://play.logicers.com").replace(/\/+$/, "");
 
 /* which browser pages may call: the portal itself; ALLOW_ORIGINS adds more ("localhost" lets http://localhost:* in, for
@@ -73,7 +83,7 @@ const redirect = (to, status) => new Response(null, { status: status || 302, hea
    code; any other value answers "bad" and is never kept). */
 const KEEP = { "/about/": "l", "/api/counts": "lang", "/api/counts/": "lang" };
 export function cacheKey(u) {
-  const k = KEEP[u.pathname], v = k ? u.searchParams.get(k) : null;
+  const k = KEEP[u.pathname] || (u.pathname.startsWith("/m/") ? "l" : null), v = k ? u.searchParams.get(k) : null;
   const q = v === null ? "" : "?" + k + "=" + (isLang(v) ? v : "_");
   return u.origin + u.pathname + q;
 }
@@ -124,8 +134,11 @@ async function sitemapLang(env, site, lang) {
   const rows = await all(env, "SELECT kind, MAX(listed_at) AS t FROM games WHERE lang = ? AND status = 'listed' AND source <> 'logicers' GROUP BY kind", lang);
   const day = (t) => (t ? new Date(t).toISOString().slice(0, 10) : null);
   const last = rows.reduce((m, r) => Math.max(m, r.t || 0), 0);
+  const own = await all(env, `SELECT slug, claimed_at FROM games WHERE lang = ? AND status = 'listed' AND source <> 'logicers' AND slug IS NOT NULL
+     AND maker_id IS NOT NULL AND line_by = 'maker' AND pic IS NOT NULL ORDER BY slug`, lang);
   return urlset([{ loc: site + "/" + lang + "/", lastmod: day(last) }].concat(KINDS.filter((k) => rows.some((r) => r.kind === k))
-    .map((k) => ({ loc: site + "/" + lang + "/" + k + "/", lastmod: day(rows.find((r) => r.kind === k).t) }))));
+    .map((k) => ({ loc: site + "/" + lang + "/" + k + "/", lastmod: day(rows.find((r) => r.kind === k).t) })))
+    .concat(own.map((g) => ({ loc: site + "/" + lang + "/g/" + g.slug + "/", lastmod: day(g.claimed_at) }))));
 }
 
 async function page(req, env, ctx, url) {
@@ -135,10 +148,30 @@ async function page(req, env, ctx, url) {
   if (!path.endsWith("/") && !/\.[a-z0-9]{1,8}$/i.test(path)) return redirect(site + path + "/" + url.search, 301);
   const segs = path.split("/").filter(Boolean);
 
-  if (path === "/robots.txt") return text(`User-agent: *\nDisallow: /admin/\nDisallow: /api/\nSitemap: ${site}/sitemap.xml\n`, "text/plain; charset=utf-8");
+  if (path === "/robots.txt") return text(`User-agent: *\nDisallow: /admin/\nDisallow: /api/\nDisallow: /claim/\nDisallow: /maker/\nSitemap: ${site}/sitemap.xml\n`, "text/plain; charset=utf-8");
   if (path === "/sitemap.xml") return text(await sitemapIndex(env, site), "application/xml; charset=utf-8", "public, max-age=3600");
   if (path === "/sitemap-root.xml") return text(urlset([{ loc: site + "/" }, { loc: site + "/about/" }]), "application/xml; charset=utf-8", "public, max-age=3600");
   if (segs[0] === "admin" && segs.length === 1) return html(pageAdmin({ site }), 200, { noindex: true, cache: "no-store", csp: CSP_ADMIN });
+  /* the claim and the maker's form (chat J): personal, so never kept by the edge and never indexed */
+  if (segs[0] === "claim" && segs.length <= 2) {
+    const own = { noindex: true, cache: "no-store" };
+    if (segs.length === 2) {
+      const token = segs[1];
+      return html(pageClaimLink({ site, token, game: /^[a-z2-7]{24}$/.test(token) ? await tokenGame(env, token) : null }), 200, own);
+    }
+    const id = url.searchParams.get("g");
+    const g = id && /^[a-z0-9-]{1,40}$/.test(id) ? await one(env, "SELECT * FROM games WHERE id = ?", id) : null;
+    if (g && g.status === "listed" && g.source !== "logicers" && g.slug) return html(pageClaim({ site, game: g }), 200, own);
+    return notFound(env, site, null, await openSet(env));
+  }
+  if (segs[0] === "maker" && segs.length === 1) {
+    const l = url.searchParams.get("l");
+    return html(pageMaker({ site, local: isLang(l) ? l : null }), 200, { noindex: true, cache: "no-store" });
+  }
+  if (segs[0] === "p" && segs.length === 3) {                               // a game's logo (chat J)
+    const r = await cached(req, env, ctx, async () => (await servePic(env, segs[1], segs[2])) || new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex", "Cache-Control": "public, max-age=60" } }));
+    return r;
+  }
   if (/\.[a-z0-9]{1,8}$/i.test(path) && !(segs.length === 2 && segs[1] === "sitemap.xml")) {
     if (env.ASSETS) { try { const r = await env.ASSETS.fetch(req); if (r.status !== 404) return r; } catch (x) { /* none */ } }
     return new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex" } });
@@ -150,6 +183,11 @@ async function page(req, env, ctx, url) {
       const w = await wallData(env);
       w.langs.sort((a, b) => b.games - a.games || CODES.indexOf(a.code) - CODES.indexOf(b.code));
       return html(pageWall({ site, langs: w.langs.filter((l) => LANG.has(l.code)), today: w.today, lgHome: "https://logicers.com/" }));
+    }
+    if (segs[0] === "m" && segs.length === 2) {                             // a maker's page (chat J, plan 2.20)
+      const d = await makerData(env, segs[1], url.searchParams.get("l"), open);
+      if (!d) return notFound(env, site, null, open);
+      return html(pageMakerPublic(Object.assign({ site }, d)), 200, { noindex: "noindex, follow" });
     }
     if (segs[0] === "about" && segs.length === 1) {
       const l = url.searchParams.get("l");
@@ -170,8 +208,9 @@ async function page(req, env, ctx, url) {
       if (g && g.status === "listed" && g.source !== "logicers") {
         const lgLang = lgRowLang(lang);
         const gd = await gameData(env, g, lgLang);
+        if (g.maker_id) Object.assign(gd, await gameNumbers(env, g));         // a claimed game: its players by day and country
         return html(pageGame(Object.assign({ site, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
-          200, { noindex: "noindex, follow" });
+          200, { noindex: indexable(g) ? null : "noindex, follow" });
       }
       if (g && g.source !== "logicers") {                                   // hidden, dead, rejected, left: gone, not indexed
         const d = await langPageData(env, lang);
@@ -197,7 +236,7 @@ async function handle(req, env, ctx) {
     if (!fn) return bad("not_found", 404);
     /* the API counts only from the portal's own pages; the queue also takes calls with no Origin (Terminal: the import) */
     if (API_POSTS[route] ? !originOk(env, origin) : origin && !originOk(env, origin)) return bad("origin", 403);
-    const r = await readJson(req, route === "/admin/import" ? IMPORT : SMALL);
+    const r = await readJson(req, route === "/admin/import" ? IMPORT : route === "/api/maker/pic" ? PIC_BODY : SMALL);
     if (r.e) return cors(bad(r.e, r.e === "big" ? 413 : 400), origin, env);
     await ensure(env);
     return cors(await fn(env, req, r.body, ctx), origin, env);
@@ -216,6 +255,7 @@ async function handle(req, env, ctx) {
     if (path === "/api/langs" || path === "/api/langs/") return cors(await langsApi(env), origin, env);
     if (path === "/api/counts" || path === "/api/counts/") return cors(await cached(req, env, ctx, () => countsApi(env, req, url)), origin, env);
     if ((m = /^\/api\/([a-z]{2,3}(?:-[a-z]{4})?)\/games\/?$/.exec(path))) return cors(await gamesApi(env, req, url, m[1]), origin, env);
+    if ((m = /^\/api\/([a-z]{2,3}(?:-[a-z]{4})?)\/dice\/?$/.exec(path))) return cors(await cached(req, env, ctx, () => diceApi(env, req, url, m[1])), origin, env);
     return bad("not_found", 404);
   }
   if (/^\/admin\/(queue|game|act|import)\/?$/.test(path)) return bad("not_found", 405);
@@ -247,5 +287,5 @@ export default {
 
 /* for the tests */
 import { setClock, brakes } from "./util.js";
-import { SCHEMA } from "./db.js";
-export const _test = { setClock, brakes, nightly, SCHEMA, originOk, cacheKey };
+import { SCHEMA, AFTER } from "./db.js";
+export const _test = { setClock, brakes, nightly, SCHEMA: SCHEMA.concat(AFTER), originOk, cacheKey };

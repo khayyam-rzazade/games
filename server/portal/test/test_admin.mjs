@@ -97,13 +97,13 @@ test("reject (with a reason), leave (a mark, not a hide), done; the filters and 
   const [g1, g2, g3] = [await idOf(e, "r1.example.com"), await idOf(e, "r2.example.com"), await idOf(e, "r3.example.com")];
   let q = await admin(e, "queue", { key: R });
   assert.deepEqual(q.json.cards.map((c) => c.id), [g1, g2, g3], "To do: oldest first");
-  assert.deepEqual(q.json.open, { todo: 3, left: 0, reports: 0, dead: 0 });
+  assert.deepEqual(q.json.open, { todo: 3, left: 0, reports: 0, dead: 0, edits: 0 });
   assert.equal((await act(e, R, g1, "reject")).json.e, "reason");
   assert.equal((await act(e, R, g1, "reject", { reason: "notdaily" })).json.card.status, "rejected");
   assert.equal((await act(e, R, g2, "leave")).json.card.left, true);
   q = await admin(e, "queue", { key: R });
   assert.deepEqual(q.json.cards.map((c) => c.id), [g3]);
-  assert.deepEqual(q.json.open, { todo: 1, left: 1, reports: 0, dead: 0 });
+  assert.deepEqual(q.json.open, { todo: 1, left: 1, reports: 0, dead: 0, edits: 0 });
   assert.deepEqual((await admin(e, "queue", { key: R, filter: "left" })).json.cards.map((c) => c.id), [g2]);
   const allC = (await admin(e, "queue", { key: A, filter: "all" })).json.cards;
   assert.equal(allC.length, 3);

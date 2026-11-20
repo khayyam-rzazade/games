@@ -82,6 +82,7 @@
       rem.hidden = role !== "review";
       if (remBox) remBox.checked = role === "review" && get(REMEMBER) === k;
       if (role !== "review") drop(REMEMBER);
+      $$('.admin-filter[data-filter="tell"]').forEach(function (b) { b.hidden = role !== "admin"; });   // emails: Khayyam only
       paint(j, false);
     });
   }
@@ -134,7 +135,8 @@
   var FLAG = { blocklist_host: "Blocklist: address", blocklist_words: "Blocklist: words", other_site: "Moved to another site", hp: "Hidden field filled",
     lang_differs: "Page in another language", noopen: "Did not open" };
   /* the queue rows of a card, by kind (chat H, 20 Nov 2026: "blocked" and "jump" added) */
-  var ROW = { add: "Queue", report: "Report", dead: "Dead link", moved: "Moved", blocked: "Blocklist", check: "Check by hand", jump: "Numbers jump" };
+  var ROW = { add: "Queue", report: "Report", dead: "Dead link", moved: "Moved", blocked: "Blocklist", check: "Check by hand", jump: "Numbers jump",
+    gotw: "Game of the week", edit: "Maker's change", pic: "New logo" };
   function link(href, text, cls) {
     var a = el("a", cls, text);
     if (/^https:\/\//i.test(href || "")) { a.setAttribute("href", href); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer"); }
@@ -167,7 +169,45 @@
     if (max) i.maxLength = max;
     return i;
   }
+  /* To tell (chat J, stage 4): one email a game, written from logicers.world@gmail.com by hand once a week (plan, prompt M) */
+  function copyBtn(text, label) {
+    var b = el("button", "btn", label); b.type = "button";
+    b.addEventListener("click", function () {
+      var done = function () { b.textContent = "Copied"; window.setTimeout(function () { b.textContent = label; }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { /* the text is on the card */ });
+    });
+    return b;
+  }
+  function tellCard(c) {
+    var t = c.tell, a = el("article", "card card-tell");
+    a.setAttribute("data-id", c.id);
+    var head = el("div", "card-head");
+    head.appendChild(el("h2", "card-name", c.name || c.host || c.id));
+    head.appendChild(link(t.page, t.page, "card-url"));
+    a.appendChild(head);
+    var tags = el("div", "card-tags");
+    [(ENDONYM[c.lang] || c.lang) + " (" + c.lang + ")", c.listed_at ? "listed " + when(c.listed_at).slice(0, 10) : "", c.hits ? c.hits + " players in all" : ""]
+      .filter(Boolean).forEach(function (x) { tags.appendChild(el("span", null, x)); });
+    a.appendChild(tags);
+    var dl = el("dl", "card-facts");
+    fact(dl, "To", t.email); fact(dl, "From", t.from); fact(dl, "Subject", t.subject); fact(dl, "Claim link", t.link);
+    a.appendChild(dl);
+    a.appendChild(el("pre", "card-mail", t.text));
+    var acts = el("div", "card-acts"), msgEl = el("p", "card-msg");
+    msgEl.setAttribute("role", "status"); msgEl.hidden = true;
+    acts.appendChild(copyBtn(t.text, "Copy the text"));
+    acts.appendChild(copyBtn(t.subject, "Copy the subject"));
+    var g = link(t.gmail, "Write it in Gmail (" + t.from + ")", "btn");
+    acts.appendChild(g);
+    var sent = el("button", "btn btn-send", "Sent"); sent.type = "button";
+    sent.addEventListener("click", function () { act(a, c, "told"); });
+    acts.appendChild(sent);
+    a.appendChild(acts);
+    a.appendChild(msgEl);
+    return a;
+  }
   function card(c) {
+    if (c.tell) return tellCard(c);
     var a = el("article", "card");
     a.setAttribute("data-id", c.id);
     var lg = c.source === "logicers";
@@ -175,6 +215,7 @@
     var flags = el("div", "card-flags");
     (c.flags || []).forEach(function (f) { flags.appendChild(el("span", "card-flag", FLAG[f] || f)); });
     if (c.left) flags.appendChild(el("span", "card-flag is-soft", "Left for Khayyam"));
+    if (c.crown) flags.appendChild(el("span", "card-flag is-soft", "Game of the week"));
     if (c.reports && c.reports.browsers >= 3) flags.appendChild(el("span", "card-flag", c.reports.browsers + " browsers reported it"));
     if (flags.children.length) a.appendChild(flags);
 
@@ -206,6 +247,26 @@
     if (c.link && (c.link.state || c.link.last)) fact(dl, "Night check", [c.link.state || "ok", c.link.fails ? c.link.fails + " fails" : "", when(c.link.last)].filter(Boolean).join(" · "));
     if (c.reports && c.reports.n) fact(dl, "Reports", c.reports.n + " (" + c.reports.browsers + " browsers): " + Object.keys(c.reports.reasons || {}).map(function (r) { return r + " " + c.reports.reasons[r]; }).join(", "));
     (c.rows || []).forEach(function (r) { fact(dl, ROW[r.kind] || "Queue: " + r.kind, r.text + " · " + when(r.made)); });
+    if (c.maker_of) fact(dl, "Claimed by", c.maker_of.name + " (" + c.maker_of.slug + ")" + (c.claimed_at ? " · " + when(c.claimed_at) : "") + (c.line_by === "maker" ? " · the line is the maker's" : ""));
+    /* the logo (chat J, stage 3): the one shown, and a new one waiting for a look (fetched on a click, as a data: picture) */
+    if (c.pic || c.pic_wait) {
+      var lw = el("div", "card-logos");
+      if (c.pic) { var on = el("img", "card-logo"); on.src = c.pic; on.alt = "The logo shown"; on.width = 72; on.height = 72; lw.appendChild(on); }
+      if (c.pic_wait) {
+        var pw = c.pic_wait, seeB = el("button", "btn card-logo-see", "Look at the new logo (" + pw.w + "×" + pw.h + ", " + Math.ceil(pw.size / 1024) + " KB)");
+        seeB.type = "button";
+        seeB.addEventListener("click", function () {
+          seeB.disabled = true;
+          post("/admin/pic", { key: key, game: c.id }).then(function (j) {
+            if (!j || !j.ok || !/^data:image\/(png|jpeg|webp);base64,/.test(j.data || "")) { seeB.disabled = false; return; }
+            var im = el("img", "card-logo card-logo-new"); im.src = j.data; im.alt = "The new logo"; im.width = 120; im.height = 120;
+            seeB.parentNode.replaceChild(im, seeB);
+          });
+        });
+        lw.appendChild(seeB);
+      }
+      fact(dl, "Logo", lw);
+    }
     if (c.page) fact(dl, "Page", link(c.page, c.page));
     if (c.notes) fact(dl, "Notes", c.notes);
     if (dl.children.length) a.appendChild(dl);
@@ -257,8 +318,11 @@
       if ((st === "waiting" || st === "listed") && !c.left) btn("Leave for Khayyam", "", function () { act(a, c, "leave"); });
       btn("Save changes", "", function () { var f = fields(); if (!Object.keys(f).length) { note(msgEl, "Nothing changed.", true); return; } act(a, c, "edit", f); });
     }
+    if (!lg && c.pic_wait) { btn("Show this logo", "btn-send", function () { act(a, c, "pic_ok"); }); btn("Refuse the logo", "", function () { act(a, c, "pic_no"); }); }
+    if (!lg && c.pic) btn("Take the logo off", "", function () { act(a, c, "pic_off"); });
     if ((c.rows || []).length) btn("Done", "", function () { act(a, c, "done"); });
     if (!lg && role === "admin") {
+      if (c.crown) btn("Take the crown off", "", function () { act(a, c, "nocrown"); });   // the game of the week (chat J, 20 Nov 2026)
       if (st === "listed") btn("Hide", "is-danger", function () { act(a, c, "hide"); });
       var del = btn("Delete", "is-danger", function () {
         if (del.getAttribute("data-sure") !== "1") { del.setAttribute("data-sure", "1"); del.textContent = "Delete for good? Click again"; return; }
@@ -270,7 +334,8 @@
     return a;
   }
   function note(p, text, ok) { p.textContent = text; p.classList.toggle("is-ok", !!ok); p.hidden = !text; }
-  var DONE = { list: "Listed.", show: "Back on the list.", reject: "Rejected.", leave: "Left for Khayyam.", edit: "Saved.", done: "Closed.", hide: "Hidden." };
+  var DONE = { list: "Listed.", show: "Back on the list.", reject: "Rejected.", leave: "Left for Khayyam.", edit: "Saved.", done: "Closed.", hide: "Hidden.",
+    nocrown: "The crown is off.", pic_ok: "The logo is shown.", pic_no: "The logo is refused.", pic_off: "The logo is off." };
   function act(cardEl, c, action, fields, reason) {
     if (!key) return;
     cardEl.classList.add("is-busy");
@@ -284,7 +349,7 @@
         note($(".card-msg", cardEl), say(j), false);
         return;
       }
-      if (j.deleted) { cardEl.parentNode.removeChild(cardEl); refreshCounts(); return; }
+      if (j.deleted || action === "told") { cardEl.parentNode.removeChild(cardEl); refreshCounts(); return; }
       var fresh = card(j.card);
       cardEl.parentNode.replaceChild(fresh, cardEl);
       note($(".card-msg", fresh), (DONE[action] || "Done.") + (j.opened && j.opened.length ? " Opened: " + j.opened.join(", ") + "." : ""), true);

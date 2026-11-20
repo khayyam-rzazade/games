@@ -45,5 +45,16 @@
   "nf": "Hier ist nichts.",
   "about": "Über uns",
   "close": "Schließen",
-  "star": "Speichern"
+  "star": "Speichern",
+  "dice": "Zufälliges Spiel",
+  "streak_n": "{n} Tage in Folge",
+  "streak_n.one": "{n} Tag in Folge",
+  "run": "Nächstes Spiel",
+  "run_done": "Heute alles gespielt",
+  "vote": "Abstimmen",
+  "gotw": "Spiel der Woche",
+  "claim": "Beanspruchen",
+  "days90": "Letzte 90 Tage",
+  "countries": "Länder",
+  "edit": "Bearbeiten"
 }

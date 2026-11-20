@@ -16,17 +16,63 @@
      4  New closes: new_until cleared once passed (the pages read it anyway)
      5  the opening rule: languages that reached 5 open
      6  the senders' names and emails of a game off the list (rejected, hidden, dead) for 90 days are deleted (plan 2.16)
-     7  the tidy-up: queue rows closed more than 90 days ago, caps rows older than a week
+     7  the tidy-up: queue rows closed more than 90 days ago, caps rows older than a week, claim links older than 90 days
+        (chat J: they no longer work anyway)
+     8  the game of the week (chat J, 20 Nov 2026, plan 2.20): every week before this one (UTC, from Monday 00:00) that still
+        has votes is closed: in each language the game with most votes wins, among the games with at least VOTE_MIN.votes
+        votes from VOTE_MIN.nets different addresses; a tie goes to the game that sent fewer players that week, then to
+        the one that reached its number first. A win where the two busiest addresses hold more than 80% of the votes gets
+        a "gotw" card, left for Khayyam (the crown still shows, as a "numbers jump" changes nothing on the page; the admin
+        key can take it off). Then the week's votes and its play hashes (wseen) are deleted.
    A "Not safe" report runs the same look on its one game at once (lookNow, from api.js report): moved and blocked hide;
    gone and check change nothing there (the report's card is in the queue already, and only nights count toward dead).
    Workers Paid, a cron at most once an hour: 15 minutes of wall time and up to 15 minutes of CPU per run, 10,000
    subrequests, six connections waiting for headers at once. 300 games x at most 6 hops = 1,800 fetches; 300 x 8 s / 6 =
    400 s at the very worst. The writes go in one batch at the end (D1: 1,000 queries a run). */
-import { clock, utcDay, dayAdd } from "./util.js";
+import { clock, utcDay, dayAdd, weekOf } from "./util.js";
 import { all, one, st, queueRow, openLangs } from "./db.js";
 import { linkCheck } from "./check.js";
 
 export const NIGHT = { checks: 300, parallel: 6, deadAfter: 3, keepDone: 90, top: 50, jumpMin: 100, jumpTimes: 10, keepSender: 90 };
+/* the smallest win (plan 2.20; tuned by chat J from "3 votes from 2 addresses"): 3 votes from 3 addresses. With 2 addresses
+   every win would be "nearly all from one or two addresses", so the suspicious card would fire on every win and mean
+   nothing; a third address costs a forger more than a phone and a home router. Suspicious: the two busiest addresses hold
+   more than 80% of the votes (it can only happen from 6 votes up). */
+export const VOTE_MIN = { votes: 3, nets: 3, top2: 0.8 };
+
+/* close one past week: the winner of each language into gotw, the suspicious ones into the queue, the votes gone. One batch. */
+export async function closeWeek(env, week, now) {
+  const end = dayAdd(week, 7);
+  const rows = await all(env, `SELECT v.lang, v.game, COUNT(*) AS n, COUNT(DISTINCT v.net) AS nets, MAX(v.made) AS last FROM votes v
+     JOIN games g ON g.id = v.game WHERE v.week = ? AND g.status = 'listed' AND g.source <> 'logicers' AND g.lang = v.lang
+     GROUP BY v.lang, v.game HAVING COUNT(*) >= ? AND COUNT(DISTINCT v.net) >= ?`, week, VOTE_MIN.votes, VOTE_MIN.nets);
+  const sent = {};
+  for (let i = 0; i < rows.length; i += 90) {
+    const ids = rows.slice(i, i + 90).map((r) => r.game);
+    for (const r of await all(env, `SELECT game, SUM(n) AS n FROM counts WHERE day >= ? AND day < ? AND game IN (${ids.map(() => "?").join(",")}) GROUP BY game`, week, end, ...ids)) sent[r.game] = r.n;
+  }
+  const best = {};
+  for (const r of rows) {
+    const b = best[r.lang];
+    const better = !b || r.n > b.n || (r.n === b.n && ((sent[r.game] || 0) < (sent[b.game] || 0)
+      || ((sent[r.game] || 0) === (sent[b.game] || 0) && (r.last < b.last || (r.last === b.last && r.game < b.game)))));
+    if (better) best[r.lang] = r;
+  }
+  const stmts = [], out = [];
+  for (const lang of Object.keys(best).sort()) {
+    const w = best[lang];
+    const top = await all(env, "SELECT COUNT(*) AS n FROM votes WHERE week = ? AND lang = ? AND game = ? GROUP BY net ORDER BY n DESC LIMIT 2", week, lang, w.game);
+    const top2 = top.reduce((s, x) => s + x.n, 0), sus = top2 > VOTE_MIN.top2 * w.n;
+    stmts.push(st(env, "INSERT INTO gotw (week, lang, game, votes, nets, made) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(week, lang) DO NOTHING", week, lang, w.game, w.n, w.nets, now));
+    const text = "week of " + week + ", " + lang + ": " + w.n + " votes from " + w.nets + " addresses" + (sus ? "; the two busiest addresses hold " + top2 : "");
+    stmts.push(sus ? st(env, `INSERT INTO queue (kind, game, text, made, "by") VALUES ('gotw', ?, ?, ?, 'left')`, w.game, "Game of the week, " + text, now)
+      : st(env, `INSERT INTO queue (kind, game, text, made, done, "by") VALUES ('act', ?, ?, ?, ?, 'cron')`, w.game, "game of the week, " + text, now, now));
+    out.push({ lang, game: w.game, sus });
+  }
+  stmts.push(st(env, "DELETE FROM votes WHERE week = ?", week));
+  await env.DB.batch(stmts);
+  return out;
+}
 const DAY = 864e5;
 
 const wordsOf = (s) => String(s || "").split(",").filter(Boolean);
@@ -141,6 +187,15 @@ export async function nightly(env, o) {
     if (stmts.length) await env.DB.batch(stmts);
   });
 
+  /* the game of the week: every past week that still has votes is closed (on Monday; a missed Monday is caught up the
+     next night), then the play hashes of past weeks go */
+  await part("week", async () => {
+    const week = weekOf(now);
+    out.gotw = [];
+    for (const r of await all(env, "SELECT DISTINCT week FROM votes WHERE week < ? ORDER BY week", week)) out.gotw.push(...await closeWeek(env, r.week, now));
+    await env.DB.prepare("DELETE FROM wseen WHERE week < ?").bind(week).run();
+  });
+
   await part("new", async () => { await env.DB.prepare("UPDATE games SET new_until = NULL WHERE new_until IS NOT NULL AND new_until < ?").bind(now).run(); });
   await part("open", async () => { out.opened = await openLangs(env); });
   /* a sender's name and email are kept while the game may still be listed; 90 days after it left the list, they go */
@@ -153,6 +208,7 @@ export async function nightly(env, o) {
     await env.DB.batch([
       st(env, "DELETE FROM queue WHERE done > 0 AND done < ?", now - NIGHT.keepDone * DAY),
       st(env, "DELETE FROM caps WHERE day < ?", utcDay(now - 7 * DAY)),
+      st(env, "DELETE FROM tokens WHERE made < ?", now - 90 * DAY),
     ]);
   });
   return out;

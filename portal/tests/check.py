@@ -11,6 +11,11 @@ no 0 is ever written (a coin with nobody today shows its kind's icon; "{n} playe
 ink, their English row is one line at every width with The Club first; kind pages start with Logicers' games, game pages
 show two; the review key sees a listed game's address read-only.
 
+Chat J, 20 Nov 2026 (plan 2.20): section 10 (the game of the week, the claim, the maker page and logos, To tell) runs at
+the end, or alone with --only-j (about a minute). It plants a crown and a claimed game in the local database with
+"npx wrangler d1 execute logicers-portal --local" (run from server/portal; PORTAL_DIR overrides), and clears the day's caps
+(nets, seen) and the week's votes first, so a run can follow a run.
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -18,7 +23,8 @@ Graj Polski and "Graj po polsku" included); the keyboard; a name for every contr
 (view, hit), Save and Yours, the add and report sheets with every error, More, the queue with both keys. It prints one
 line per failure and a total; screenshots go to --shots (default /tmp/portal-shots). Nothing here is uploaded with the
 Worker (portal/.assetsignore). """
-import json, os, re, sys, time
+import json, os, random, re, subprocess, sys, time
+from datetime import datetime, timedelta, timezone
 from playwright.sync_api import sync_playwright
 
 B = os.environ.get("PORTAL", "http://localhost:8787")
@@ -79,7 +85,7 @@ BOXES = r"""
   const vis = (e) => { const r = R(e); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !e.closest('[hidden], .vh, dialog:not([open]), template'); };
   const inside = (a, b, pad) => { const r = R(a), q = R(b); pad = pad || 1; return r.left >= q.left - pad && r.right <= q.right + pad && r.top >= q.top - pad && r.bottom <= q.bottom + pad; };
   const name = (e) => (e.className && e.className.baseVal !== undefined ? e.className.baseVal : e.className) + ' "' + (e.textContent || '').trim().slice(0, 30) + '"';
-  for (const box of document.querySelectorAll('.tile, .lang-a, .wanted-k, .kind-opt, .reason-opt, .btn, .chip-lang, .game-tile, .back, .sheet-x, .admin-filter')) {
+  for (const box of document.querySelectorAll('.tile, .lang-a, .wanted-k, .kind-opt, .reason-opt, .btn, .chip-lang, .game-tile, .back, .sheet-x, .admin-filter, .add-top, .dice, .run, .run-done')) {
     if (!vis(box)) continue;
     for (const c of box.querySelectorAll('span, svg, b')) {
       if (!vis(c) || c.closest('svg') !== c && c.closest('svg')) continue;
@@ -87,12 +93,12 @@ BOXES = r"""
       if (!inside(c, box)) bad.push('outside its box: ' + name(c) + ' in ' + name(box));
     }
   }
-  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter')) {
+  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .add-top, .run, .run-done, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter')) {
     if (!vis(e)) continue;
     if (e.scrollWidth > e.clientWidth + 1) bad.push('cut: ' + name(e) + ' ' + e.scrollWidth + ' > ' + e.clientWidth);
   }
   const apart = (sel) => { for (const p of document.querySelectorAll(sel)) { const k = [...p.children].filter(vis); for (let i = 0; i < k.length; i++) for (let j = i + 1; j < k.length; j++) { const a = R(k[i]), b = R(k[j]); if (a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1) bad.push('on each other: ' + name(k[i]) + ' / ' + name(k[j])); } } };
-  apart('.top'); apart('.row-top'); apart('.game-foot'); apart('.foot-links'); apart('.game-acts'); apart('.today'); apart('.lang-a');
+  apart('.top'); apart('.top-acts'); apart('.row-top'); apart('.game-foot'); apart('.foot-links'); apart('.game-acts'); apart('.today'); apart('.lang-a');
   for (const e of document.querySelectorAll('.top > *, .row-top > *, .foot > *')) if (vis(e) && (R(e).left < -1 || R(e).right > vw + 1)) bad.push('off the screen: ' + name(e));
   return bad;
 }
@@ -101,7 +107,7 @@ BOXES = r"""
 # the stress: every word half as long again (and the Polish name as C may set it), then the same look
 STRETCH = r"""
 () => {
-  const sel = '.row-t, .row-more, .btn > span, .btn-add, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n)';
+  const sel = '.row-t, .row-more, .btn > span, .btn-add, .add-top-t, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n)';
   for (const e of document.querySelectorAll(sel)) {
     for (const n of [...e.childNodes]) if (n.nodeType === 3 && n.textContent.trim()) { const t = n.textContent.trim(); n.textContent = (n.textContent.startsWith(' ') ? ' ' : '') + t + t.slice(0, Math.ceil(t.length / 2)).toLowerCase() + (n.textContent.endsWith(' ') ? ' ' : ''); }
   }
@@ -116,9 +122,9 @@ ZERO = r"""
   const shown = (e) => !!e && getComputedStyle(e).display !== 'none' && !e.closest('[hidden], template') && e.getBoundingClientRect().width > 0;
   for (const li of document.querySelectorAll('li.tile')) {
     if (li.closest('template, [hidden]')) continue;
-    const n = li.querySelector('.tile-n'), z = li.querySelector('.tile-zero');
+    const n = li.querySelector('.tile-n'), z = li.querySelector('.tile-zero'), logo = li.querySelector('.tile-logo');   // a logo is the icon (chat J)
     if (li.classList.contains('is-0')) {
-      if (!shown(z)) bad.push('is-0 without its icon: ' + li.dataset.game);
+      if (!shown(z) && !shown(logo)) bad.push('is-0 without its icon: ' + li.dataset.game);
       if (shown(n) && n.textContent.trim()) bad.push('is-0 with a number: ' + li.dataset.game);
     } else if (!n.hasAttribute('data-mark')) {
       if (!/[1-9]/.test(n.textContent)) bad.push('a coin without is-0 and without a number: ' + li.dataset.game + ' "' + n.textContent + '"');
@@ -127,7 +133,7 @@ ZERO = r"""
     const a = li.querySelector('.tile-a');
     if (!a || a.getAttribute('target') !== '_blank' || !a.hasAttribute('data-hit') || !/^https:/.test(a.getAttribute('href') || '')) bad.push('the coin does not play: ' + li.dataset.game);
   }
-  for (const e of document.querySelectorAll('.today-n, .num-n, .tile-n')) if (shown(e) && e.textContent.trim() === '0') bad.push('a 0 is written: ' + e.className);
+  for (const e of document.querySelectorAll('.today-n, .num-n, .tile-n, .nums-total, .nums-cv')) if (shown(e) && e.textContent.trim() === '0') bad.push('a 0 is written: ' + e.className);
   for (const p of document.querySelectorAll('.today')) if (!p.hidden && !/[1-9]/.test(p.textContent)) bad.push('the players line shows without a player');
   return bad;
 }
@@ -171,7 +177,7 @@ def pages_for(lang):
 def main():
     global PG_API
     with sync_playwright() as p:
-        b = p.chromium.launch()
+        b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         def api(path):
             t = api_ctx.request.get(B + path).text()
@@ -319,7 +325,9 @@ def main():
 
         # ---- 5. the add sheet: every error, then thanks; on the wall the language is asked and guessed
         ctx, pg = new(b, 390)
-        pg.goto(url("/es/"), wait_until="networkidle")
+        # Wanted needs a language with a kind that has no game yet (the starting lists have grown since; es now has all eight)
+        WL = next((l for l in LANGS if 'class="row row-wanted"' in api_ctx.request.get(B + f"/{l}/").text()), "es")
+        pg.goto(url(f"/{WL}/"), wait_until="networkidle")
         pg.click('.row-wanted .wanted-k >> nth=0')
         kind = pg.get_attribute('.row-wanted .wanted-k >> nth=0', "data-kind")
         ok(pg.is_visible("#sheet-add") and pg.is_checked(f'#sheet-add input[name="kind"][value="{kind}"]'), "Wanted opens the sheet with its kind set")
@@ -409,6 +417,194 @@ def main():
         clean(pg, "more")
         ctx.close()
 
+        # ---- 7b. Add a game at the top, the name that never links to itself, the dice, the streak, the run (20 Nov 2026)
+        def day_js(pg, back=0):
+            return pg.evaluate("(k) => { const d = new Date(); d.setDate(d.getDate() - k); const p = (n) => String(n).padStart(2, '0'); return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); }", back)
+        def mine(pg, star=(), played=None, streak=None):
+            m = {"v": 1, "star": list(star), "played": played or {}}
+            if streak is not None: m["streak"] = streak
+            pg.evaluate("(m) => localStorage.setItem('portal.mine', JSON.stringify(m))", m)
+        def stored(pg): return pg.evaluate("JSON.parse(localStorage.getItem('portal.mine') || 'null')")
+        def tap(ctx, pg, sel):
+            with ctx.expect_page() as pop:
+                pg.click(sel)
+            href = pop.value.url
+            pop.value.close(); pg.wait_for_timeout(250)
+            return href
+        gid_of = lambda lang, n=3: [g["id"] for g in json.loads(PG_API(f"/api/{lang}/games?n={n}"))["games"]]
+
+        # Add a game: in the head of every page, filled, at least 44 px, opens the sheet, the focus comes back to it
+        for w in (320, 390, 1280):
+            ctx, pg = new(b, w)
+            for path in ["/", "/es/", "/es/words/", "/about/"]:
+                pg.goto(url(path), wait_until="networkidle")
+                box = pg.evaluate("(() => { const e = document.querySelector('.top .add-top'); if (!e) return null; const r = e.getBoundingClientRect(); return [r.width, r.height, r.left, r.right, getComputedStyle(e).backgroundColor, e.getAttribute('aria-label'), getComputedStyle(document.body).backgroundColor]; })()")
+                ok(box is not None and box[0] >= 44 and box[1] >= 44 and box[2] >= 0 and box[3] <= w + 1, f"Add a game at the top of {path} at {w}: seen, 44 px, on the screen", box)
+                ok(box is not None and box[4] != box[6] and box[5], f"Add a game at the top of {path} at {w}: filled, with a name", box)
+                words_shown = pg.evaluate("(() => { const t = document.querySelector('.top .add-top-t'); return t.getBoundingClientRect().width; })()")
+                ok((words_shown > 20) == (w >= 700), f"its words show from 700 px, not below ({path} {w})", words_shown)
+            pg.goto(url("/es/"), wait_until="networkidle")
+            pg.click(".top .add-top"); pg.wait_for_timeout(200)
+            ok(pg.is_visible("#sheet-add") and pg.evaluate("document.activeElement.name") == "url", f"the top Add opens the sheet and the focus goes to the link ({w})")
+            pg.keyboard.press("Escape"); pg.wait_for_timeout(200)
+            ok(not pg.is_visible("#sheet-add") and pg.evaluate("document.activeElement.classList.contains('add-top')"), f"Escape closes it and the focus goes back to the top Add ({w})")
+            clean(pg, f"top add {w}")
+            ctx.close()
+
+        # the name never links to the page it is on
+        ctx, pg = new(b, 390)
+        pg.goto(url("/"), wait_until="networkidle")
+        ok(pg.get_attribute(".top .brand-a", "href") == "https://logicers.com/", "the wall's name goes to Logicers' own site")
+        pg.goto(url("/es/"), wait_until="networkidle")
+        ok(pg.get_attribute(".top .brand-a", "href") == "/" and pg.get_attribute(".top .brand-by-a", "href") == "https://logicers.com/es/", "a language page's name goes to the wall, 'de Logicers' to Logicers' Spanish home")
+        pg.click(".top .brand-a"); pg.wait_for_load_state("networkidle")
+        ok(re.sub(r"[?#].*", "", pg.url).rstrip("/") == B, "a tap on a language page's name lands on the wall", pg.url)
+        pg.goto(url("/es/words/"), wait_until="networkidle")
+        ok(pg.get_attribute(".top .brand-a", "href") == "/es/", "a kind page's name goes up to the language page")
+        ctx.close()
+
+        # the dice: a real link to a game of the language, picked on the device, a new one after each tap
+        ctx, pg = new(b, 390)
+        pg.goto(url("/es/"), wait_until="networkidle"); pg.wait_for_timeout(700)
+        d = pg.evaluate("(() => { const a = document.getElementById('dice'); const r = a.getBoundingClientRect(); return { hidden: a.hidden, href: a.getAttribute('href'), game: a.dataset.game, dis: a.getAttribute('aria-disabled'), w: r.width, h: r.height, target: a.target, name: a.getAttribute('aria-label') }; })()")
+        pool = {g[0]: g[1] for g in json.loads(PG_API("/api/es/dice"))["games"]}
+        ok(not d["hidden"] and d["dis"] is None and d["href"] == pool.get(d["game"]) and d["h"] >= 44 and d["w"] >= 44 and d["target"] == "_blank" and d["name"], "the dice is a 44 px link to a game of the language, with a name", d)
+        ok(len(pool) >= 20 and any(i.startswith("lg-") for i in pool) and not any(i.endswith("-en") for i in pool if i.startswith("lg-")), "the list holds the language's games and Logicers' own Spanish ones", len(pool))   # >= 20: the seeds alone (synthetic games may be English; chat J)
+        g0 = d["game"]
+        c0 = json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"].get(g0, {"t": 0})["t"]
+        asked = []
+        ctx.on("request", lambda r: asked.append(r.url))
+        tap(ctx, pg, "#dice")
+        pg.wait_for_timeout(400)
+        ok(pool[g0] in asked, "the dice opens the game it had when tapped (not the one it holds a moment later)", (pool[g0], [u for u in asked if "example" in u]))
+        c1 = json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"][g0]["t"]
+        ok(c1 == c0 + 1, "a tap on the dice counts one hit, as Play does", (c0, c1))
+        g1 = pg.get_attribute("#dice", "data-game")
+        ok(g1 != g0 and pg.get_attribute("#dice", "href") == pool[g1], "after a tap the dice holds another game", (g0, g1))
+        ok(stored(pg)["played"].get(g0) == day_js(pg), "the game it opened is marked as played today")
+        seen = set()
+        for i in range(12):
+            pg.evaluate("document.dispatchEvent(new Event('visibilitychange'))"); seen.add(pg.get_attribute("#dice", "data-game"))
+        ok(len(seen) > 1, "the pick is random, not always the same", seen)
+        # every game played today: it still gives one; only the last pick is left out
+        mine(pg, played={i: day_js(pg) for i in pool}); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(600)
+        ok(pg.get_attribute("#dice", "data-game") in pool and pg.get_attribute("#dice", "aria-disabled") is None, "with every game played today the dice still gives one")
+        mine(pg, played={i: day_js(pg) for i in list(pool)[:-1]}); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(600)
+        ok(pg.get_attribute("#dice", "data-game") == list(pool)[-1], "it leaves out what is played today while one is left")
+        ok(not pg.evaluate("document.querySelector('.top-acts') === null") and pg.evaluate("document.getElementById('dice').closest('.top-acts') !== null"), "the dice sits with the other buttons")
+        clean(pg, "dice")
+        ctx.close()
+        ctx, pg = new(b, 390)
+        pg.route("**/api/es/dice", lambda r: r.abort())
+        pg.goto(url("/es/") + "&nd=1", wait_until="networkidle"); pg.wait_for_timeout(500)
+        ok(pg.evaluate("document.getElementById('dice').hidden"), "if the list cannot be had the dice goes away (nothing half-working)")
+        pg.errs.clear()
+        ctx.close()
+        ctx, pg = new(b, 390)
+        pg.goto(url("/es/words/"), wait_until="networkidle")
+        ok(pg.query_selector("#dice") is None and pg.query_selector("#run") is None, "a kind page has no dice and no run")
+        ctx.close()
+
+        # the streak: from 1 on the first game played, +1 the next day, gone after a missed day, nothing from a tampered store
+        ids = gid_of("es", 3)
+        ctx, pg = new(b, 390)
+        pg.goto(url("/es/"), wait_until="networkidle")
+        ok(pg.evaluate("document.getElementById('streak').hidden"), "no streak for a new device")
+        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[0]}"] .tile-a')
+        s = stored(pg)["streak"]
+        ok(s == {"n": 1, "last": day_js(pg)}, "the first game played starts it at 1", s)
+        pg.goto(url("/es/") + "&s=1", wait_until="networkidle"); pg.wait_for_timeout(700)
+        st = pg.evaluate("(() => { const e = document.getElementById('streak'); return { hidden: e.hidden, n: e.querySelector('.streak-n').textContent, wait: e.classList.contains('is-wait'), label: e.getAttribute('aria-label') }; })()")
+        ok(not st["hidden"] and st["n"] == "1" and not st["wait"] and st["label"] == "1 día seguido", "a flame and the 1, in the language's words", st)
+        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[1]}"] .tile-a')
+        ok(stored(pg)["streak"]["n"] == 1, "a second game the same day does not add to it")
+        mine(pg, played={ids[0]: day_js(pg, 1)}, streak={"n": 3, "last": day_js(pg, 1)}); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(700)
+        st = pg.evaluate("(() => { const e = document.getElementById('streak'); return { hidden: e.hidden, n: e.querySelector('.streak-n').textContent, wait: e.classList.contains('is-wait'), label: e.getAttribute('aria-label') }; })()")
+        ok(not st["hidden"] and st["n"] == "3" and st["wait"] and st["label"] == "3 días seguidos", "yesterday was the last day: the 3 shows, grey, until today's first game", st)
+        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[1]}"] .tile-a')
+        st = pg.evaluate("(() => { const e = document.getElementById('streak'); return { n: e.querySelector('.streak-n').textContent, wait: e.classList.contains('is-wait') }; })()")
+        ok(st == {"n": "4", "wait": False} and stored(pg)["streak"] == {"n": 4, "last": day_js(pg)}, "a game today makes it 4, no longer grey, at once", st)
+        mine(pg, played={ids[0]: day_js(pg, 2)}, streak={"n": 9, "last": day_js(pg, 2)}); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(700)
+        ok(pg.evaluate("document.getElementById('streak').hidden"), "a missed day: the streak is gone")
+        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[1]}"] .tile-a')
+        ok(stored(pg)["streak"] == {"n": 1, "last": day_js(pg)}, "and the next game starts it again at 1", stored(pg)["streak"])
+        for bad_streak in [{"n": -3, "last": "x"}, {"n": 1.5, "last": day_js(pg)}, {"n": "7", "last": day_js(pg)}, {"n": 5}, "flame", None]:
+            mine(pg, played={ids[0]: day_js(pg)}, streak=bad_streak); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(500)
+            ok(pg.evaluate("document.getElementById('streak').hidden"), f"a streak the store should not hold is ignored: {bad_streak}")
+        clean(pg, "streak")
+        ctx.close()
+        # the plural forms in the browser: Russian 2 and 5 and 21
+        rid = gid_of("ru", 2)
+        ctx, pg = new(b, 390)
+        pg.goto(url("/ru/"), wait_until="networkidle")
+        labels = []
+        for n in (2, 5, 21):
+            mine(pg, played={rid[0]: day_js(pg)}, streak={"n": n, "last": day_js(pg)}); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(600)
+            labels.append(pg.get_attribute("#streak", "aria-label"))
+        ok(labels == ["2 дня подряд", "5 дней подряд", "21 день подряд"], "the streak's words take the language's plural forms", labels)
+        ctx.close()
+
+        # the run: Logicers' first game, then Yours; the link goes to the first not played today; tap through to the end
+        ids = gid_of("es", 4)
+        ctx, pg = new(b, 390)
+        pg.goto(url("/es/"), wait_until="networkidle")
+        mine(pg, star=ids[:2]); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(800)
+        order = pg.evaluate("""(() => { const out = []; const lg = document.querySelector('.row-lg:not(.row-lg-en) li.tile'); if (lg) out.push(lg.dataset.game);
+          document.querySelectorAll('#row-mine li.tile').forEach((li) => { if (!out.includes(li.dataset.game)) out.push(li.dataset.game); }); return out; })()""")
+        ok(len(order) == 3 and order[0].startswith("lg-"), "the run is Logicers' first game, then Yours", order)
+        r = pg.evaluate("(() => { const a = document.getElementById('run'); const b = a.getBoundingClientRect(); return { hidden: a.hidden, game: a.dataset.game, href: a.getAttribute('href'), text: a.textContent.trim(), label: a.getAttribute('aria-label'), w: b.width, h: b.height, target: a.target }; })()")
+        ok(not r["hidden"] and r["game"] == order[0] and r["text"] == "3" and r["h"] >= 44 and r["target"] == "_blank" and r["label"] == "Siguiente juego, 3", "the run starts at the first game; a 0 is not written (3, not 0/3)", r)
+        for k in range(3):
+            want = order[k]
+            href_want = pg.get_attribute(f'li.tile[data-game="{want}"] .tile-a', "href")
+            ok(pg.get_attribute("#run", "href") == href_want and pg.get_attribute("#run", "data-game") == want, f"the run link is game {k + 1} of 3", (pg.get_attribute("#run", "data-game"), want))
+            c0 = json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"].get(want, {"t": 0})["t"]
+            tap(ctx, pg, "#run")
+            pg.wait_for_timeout(300)
+            c1 = json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"][want]["t"]
+            ok(c1 == c0 + 1, f"a tap on the run counts the game it opened ({k + 1} of 3)", (c0, c1))
+            if k < 2:
+                t = pg.text_content("#run .run-t").strip()
+                ok(t == f"{k + 1}/3" and pg.get_attribute("#run", "data-game") == order[k + 1], f"then it shows {k + 1}/3 and holds the next game", (t, pg.get_attribute("#run", "data-game")))
+        d = pg.evaluate("(() => { const a = document.getElementById('run'), b = document.getElementById('run-done'); return { runHidden: a.hidden, href: a.getAttribute('href'), doneHidden: b.hidden, text: b.textContent.trim(), label: b.getAttribute('aria-label'), tag: b.tagName, tick: !!b.querySelector('use[href$=\"i-check\"]') }; })()")
+        ok(d["runHidden"] and d["href"] is None and not d["doneHidden"] and d["text"] == "3/3" and d["label"] == "Todos jugados hoy, 3/3" and d["tag"] == "SPAN" and d["tick"], "all played: a tick and 3/3, no link", d)
+        ok(stored(pg)["streak"]["n"] == 1, "the run's games made the streak 1, not 3 (one day)")
+        pg.reload(wait_until="networkidle"); pg.wait_for_timeout(800)
+        ok(pg.evaluate("document.getElementById('run').hidden") and not pg.evaluate("document.getElementById('run-done').hidden"), "the tick is still there after a reload")
+        mine(pg, star=ids[:1]); pg.evaluate("localStorage.setItem('portal.mine', JSON.stringify({v:1, star:[%s], played:{}}))" % ", ".join(json.dumps(i) for i in ids[:1])); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(800)
+        ok(pg.evaluate("!document.getElementById('run').hidden") and pg.get_attribute("#run", "data-game").startswith("lg-"), "the next day the run starts again with Logicers' game")
+        clean(pg, "run")
+        ctx.close()
+        # no Logicers game of the language (an English row): the run is Yours only; one game alone is no run
+        pid = gid_of("pl", 3)
+        ctx, pg = new(b, 390)
+        pg.goto(url("/pl/"), wait_until="networkidle")
+        mine(pg, star=pid[:2]); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(800)
+        ok(pg.get_attribute("#run", "data-game") == pid[0] and pg.text_content("#run .run-t").strip() == "2", "Polish page: no English Logicers game in the run, only Yours", (pg.get_attribute("#run", "data-game"), pg.text_content("#run .run-t")))
+        mine(pg, star=pid[:1]); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(800)
+        ok(pg.evaluate("document.getElementById('run').hidden && document.getElementById('run-done').hidden"), "a run of one game is no run: nothing shows")
+        clean(pg, "run pl")
+        ctx.close()
+
+        # Yours with the streak and the run, in all 12 languages: nothing outside its box, nothing wider than the screen, no 0
+        for lang in LANGS:
+            gl = gid_of(lang, 3)
+            for w in (320, 1280):
+                ctx, pg = new(b, w)
+                pg.goto(url(f"/{lang}/"), wait_until="networkidle")
+                mine(pg, star=gl[:2], played={gl[2]: day_js(pg)}, streak={"n": 12, "last": day_js(pg)})
+                pg.reload(wait_until="networkidle"); pg.wait_for_timeout(700)
+                tag = f"{lang} {w} Yours with streak and run"
+                ok(pg.evaluate("!document.getElementById('streak').hidden && !document.getElementById('run').hidden && !document.getElementById('dice').hidden"), tag + ": all three show")
+                bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes", bad[:4])
+                z = pg.evaluate(ZERO); ok(not z, tag + ": no 0 written", z[:4])
+                nm = pg.evaluate(ACCNAME); ok(not nm, tag + ": every control has a name", nm[:3])
+                if w == 320:
+                    pg.evaluate(STRETCH); bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes with words half as long again", bad[:4])
+                if w == 320 and lang in ("es", "ja", "pl"): pg.screenshot(path=f"{SHOTS}/yours-run-{lang}-{w}.png", clip={"x": 0, "y": 0, "width": w, "height": 420})
+                clean(pg, tag)
+                ctx.close()
+
         # ---- 8. the keyboard and motion
         ctx, pg = new(b, 1280, motion="no-preference")
         pg.goto(url("/es/"), wait_until="networkidle")
@@ -474,6 +670,521 @@ def main():
         pg.screenshot(path=f"{SHOTS}/admin-390-dark.png")
         clean(pg, "queue phone")
         ctx.close()
+        section_j(b)
+        b.close()
+    print(f"\n{passes} passed, {len(fails)} failed")
+    sys.exit(1 if fails else 0)
+
+
+# ---- 10. chat J, 20 Nov 2026: the game of the week (stage 1), the claim (2), the maker page and logos (3), To tell (4)
+PORTAL_DIR = os.environ.get("PORTAL_DIR") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "server", "portal")
+
+
+def sql(cmd):
+    """a statement on the local database (wrangler d1 execute --local); -> the rows of the last statement"""
+    r = subprocess.run(["npx", "wrangler", "d1", "execute", "logicers-portal", "--local", "--json", "--command", cmd], cwd=PORTAL_DIR, capture_output=True, text=True, timeout=120)
+    if r.returncode != 0:
+        ok(False, "the local database answers (npx wrangler d1 execute --local, from server/portal)", (r.stderr or r.stdout)[-300:])
+        return []
+    try:
+        out = json.loads(r.stdout)
+        return out[-1].get("results", []) if isinstance(out, list) and out else []
+    except Exception:
+        return []
+
+
+def utc_week(back=0):
+    d = datetime.now(timezone.utc).date()
+    return (d - timedelta(days=d.weekday() + 7 * back)).isoformat()
+
+
+def mine_week(pg, ids):
+    """this device played these games this UTC week (as portal.js keeps it)"""
+    pg.evaluate("(a) => { const m = JSON.parse(localStorage.getItem('portal.mine') || 'null') || { v: 1, star: [], played: {} }; m.week = { w: a.w, ids: a.ids }; localStorage.setItem('portal.mine', JSON.stringify(m)); }", {"w": utc_week(), "ids": ids})
+
+
+ACTS = r"""
+() => {
+  const a = document.querySelector('.game-acts'), v = document.querySelector('.btn-vote');
+  const R = (e) => e.getBoundingClientRect(), tops = [...a.children].filter((e) => !e.hidden).map((e) => Math.round(R(e).top));
+  return { shown: !v.hidden && R(v).width > 0, w: R(v).width, h: R(v).height, lines: new Set(tops).size, over: a.scrollWidth > a.clientWidth + 1,
+    pressed: v.getAttribute('aria-pressed'), name: (v.textContent || '').trim(), right: R(a).right, vw: document.documentElement.clientWidth };
+}
+"""
+
+
+def section_j1(b):
+    """stage 1: the crown on the winner's coins and game page for a week; the vote on a game's page"""
+    es = [g for g in json.loads(PG_API("/api/es/games?n=100"))["games"] if not g.get("logicers")]
+    win = es[2]
+    sql(f"DELETE FROM nets; DELETE FROM seen; DELETE FROM votes; DELETE FROM wseen; DELETE FROM gotw WHERE week = '{utc_week(1)}';"
+        f" INSERT INTO gotw (week, lang, game, votes, nets, made) VALUES ('{utc_week(1)}', 'es', '{win['id']}', 7, 4, 0)")
+    api = [g["id"] for g in json.loads(PG_API("/api/es/games?n=100&fresh=" + str(time.time())))["games"] if g.get("crown")]
+    ok(api == [win["id"]], "the API marks last week's winner with the crown", api)
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme)
+            pg.goto(url("/es/"), wait_until="networkidle")
+            c = pg.evaluate("(id) => { const li = document.querySelector('.row-kind li.tile-crown[data-game=\"' + id + '\"]'); if (!li) return null; const i = li.querySelector('.tile-crown-i').getBoundingClientRect(), a = li.querySelector('.tile-a').getBoundingClientRect(); return { iw: i.width, inside: i.left >= a.left && i.right <= a.right && i.top >= a.top && i.bottom <= a.bottom, n: document.querySelectorAll('li.tile-crown').length, lg: document.querySelectorAll('.tile-lg.tile-crown').length }; }", win["id"])
+            ok(c and c["iw"] >= 11 and c["inside"] and c["lg"] == 0, f"es {w} {scheme}: the winner's coin wears the crown, inside the coin", c)
+            bad = pg.evaluate(BOXES); ok(not bad, f"es {w} {scheme} with a crown: boxes", bad[:3])
+            z = pg.evaluate(ZERO); ok(not z, f"es {w} {scheme} with a crown: no 0", z[:3])
+            pg.goto(url(f"/es/g/{win['slug']}/"), wait_until="networkidle")
+            g = pg.evaluate("() => { const e = document.querySelector('.game-gotw'), c = document.querySelector('.game-crown'), t = document.querySelector('.game-tile'); const r = (x) => x.getBoundingClientRect(); return { words: e && e.textContent.trim(), shown: !!e && r(e).height > 0, crown: !!c && r(c).width > 10 && r(c).top >= r(t).top && r(c).bottom <= r(t).bottom, coin: r(t).height, head: r(document.querySelector('.game-head')).height }; }")
+            ok(g["words"] == "Juego de la semana" and g["shown"] and g["crown"], f"its game page {w} {scheme}: the crown on the big coin and the words", g)
+            ok(w >= 700 or g["head"] <= g["coin"] + 1, f"its game page {w}: the words sit beside the coin, no extra height", g)
+            if w in (320, 1280): pg.screenshot(path=f"{SHOTS}/j1-gotw-{w}-{scheme}.png")
+            clean(pg, f"crown {w} {scheme}")
+            ctx.close()
+    # the vote: hidden until this device played the game this week; one line with Play and Save in the 12 languages, stretched too
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme)
+            for lang in LANGS:
+                gs = [g for g in json.loads(PG_API(f"/api/{lang}/games?n=3"))["games"] if not g.get("logicers")]
+                pg.goto(url(f"/{lang}/g/{gs[0]['slug']}/"), wait_until="networkidle")
+                ok(not pg.evaluate(ACTS)["shown"], f"{lang} {w} {scheme}: no vote before a play this week")
+                mine_week(pg, [gs[0]["id"]])
+                pg.reload(wait_until="networkidle")
+                a = pg.evaluate(ACTS)
+                ok(a["shown"] and a["h"] >= 44 and a["lines"] == 1 and not a["over"] and a["name"], f"{lang} {w} {scheme}: the vote, 44 px, on one line with Play and Save", a)
+                bad = pg.evaluate(BOXES); ok(not bad, f"{lang} {w} {scheme} with the vote: boxes", bad[:3])
+                if scheme == "light":
+                    pg.evaluate(STRETCH); pg.evaluate("() => { for (const e of document.querySelectorAll('.vote-t')) e.textContent += e.textContent.slice(0, Math.ceil(e.textContent.length / 2)); }")
+                    bad = pg.evaluate(BOXES); ok(not bad, f"{lang} {w} with the vote and every word half as long again: boxes", bad[:3])
+                    ok(not pg.evaluate(ACTS)["over"], f"{lang} {w} stretched: nothing wider than the row (it may wrap)")
+                if lang in ("de", "ru", "ja") and w == 320: pg.screenshot(path=f"{SHOTS}/j1-vote-{lang}-{w}-{scheme}.png")
+                clean(pg, f"vote {lang} {w} {scheme}")
+            ctx.close()
+    # the real vote: a play counts, the vote shows, a tap votes, the tick stays; another game of the language: no vote; the keyboard
+    ctx, pg = new(b, 390)
+    g0, g1 = es[0], es[1]
+    pg.goto(url(f"/es/g/{g0['slug']}/"), wait_until="networkidle")
+    with ctx.expect_page() as pop:
+        pg.click(".btn-play")
+    pop.value.close(); pg.wait_for_timeout(300)
+    ok(pg.evaluate(ACTS)["shown"], "after a play the vote shows at once")
+    asked = []
+    pg.on("response", lambda r: asked.append((r.url, r.status)) if "/api/vote" in r.url else None)
+    pg.focus(".btn-vote"); pg.keyboard.press("Enter"); pg.wait_for_timeout(600)
+    a = pg.evaluate(ACTS)
+    ok(any(s == 200 for _, s in asked) and a["pressed"] == "true", "the keyboard votes; a tick once voted", (asked, a))
+    ok(pg.evaluate("document.activeElement.classList.contains('btn-vote')"), "the focus stays on the vote")
+    v = pg.evaluate("JSON.parse(localStorage.getItem('portal.vote'))")
+    ok(v and v.get("es", {}).get("g") == g0["id"] and v["es"]["w"] == utc_week(), "the vote is kept on the device", v)
+    pg.reload(wait_until="networkidle")
+    ok(pg.evaluate(ACTS)["pressed"] == "true", "the tick stays after a reload")
+    pg.click(".btn-vote", force=True); pg.wait_for_timeout(300)
+    ok(len([u for u, s in asked]) == 1, "a tap on the tick sends nothing (final)", asked)
+    pg.goto(url(f"/es/g/{g1['slug']}/"), wait_until="networkidle")
+    mine_week(pg, [g0["id"], g1["id"]]); pg.reload(wait_until="networkidle")
+    ok(not pg.evaluate(ACTS)["shown"], "another game of the language this week: no vote (one a week)")
+    ok(not re.search(r"\b\d+\s*(votes?|votos?)\b", pg.text_content("main"), re.I), "no tally written")
+    clean(pg, "the vote")
+    pg.screenshot(path=f"{SHOTS}/j1-voted-390.png")
+    ctx.close()
+    # the queue: the crown on the card; only the admin key may take it off
+    ctx, pg = new(b, 1280)
+    sql(f"INSERT INTO queue (kind, game, text, made, \"by\") VALUES ('gotw', '{win['id']}', 'Game of the week, local check', 0, 'left')")
+    for key, role in ((REVIEW, "review"), (ADMIN, "admin")):
+        pg.goto(B + "/admin/", wait_until="networkidle")
+        if pg.is_visible(".admin-lock"): pg.click(".admin-lock")
+        pg.fill('#admin-key input[name="key"]', key); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+        pg.click('.admin-filter[data-filter="left"]'); pg.wait_for_timeout(600)
+        card = pg.query_selector(f'.card[data-id="{win["id"]}"]')
+        ok(card is not None and "Game of the week" in card.text_content(), f"the queue ({role}): the winner's card says Game of the week")
+        has = card is not None and card.query_selector('button:text-is("Take the crown off")') is not None
+        ok(has == (role == "admin"), f"the queue ({role}): Take the crown off for the admin key only", has)
+        if role == "admin" and has:
+            card.query_selector('button:text-is("Take the crown off")').click(); pg.wait_for_timeout(700)
+            ok(not [g for g in json.loads(PG_API("/api/es/games?n=100&fresh=" + str(time.time())))["games"] if g.get("crown")], "taken off: no crown")
+        clean(pg, f"queue {role}")
+    ctx.close()
+    sql(f"DELETE FROM gotw WHERE week = '{utc_week(1)}'; DELETE FROM votes; DELETE FROM nets; DELETE FROM seen;")
+
+
+def portal_key():
+    """the local PORTAL_KEY (server/portal/.dev.vars), to make what stage 4 will make: a claim link's keyed hash"""
+    k = os.environ.get("PORTAL_KEY")
+    if k: return k
+    try:
+        for line in open(os.path.join(PORTAL_DIR, ".dev.vars"), encoding="utf-8"):
+            m = re.match(r'\s*PORTAL_KEY\s*=\s*"?([^"\n]+)"?', line)
+            if m: return m.group(1)
+    except OSError:
+        pass
+    return None
+
+
+def key_hash(label, k):
+    import hmac, hashlib
+    return hmac.new(portal_key().encode(), (label + ":" + k).encode(), hashlib.sha256).hexdigest()
+
+
+FOOT = r"""
+() => {
+  const p = document.querySelector('.yours-q'), c = document.querySelector('.btn-claim'), R = (e) => e.getBoundingClientRect();
+  return { claim: !!c, h: c ? R(c).height : 0, w: c ? R(c).width : 0, t: c ? c.textContent.trim() : '', q: (document.querySelector('.yours-q-t') || {}).textContent || '',
+    over: p.scrollWidth > p.clientWidth + 1, href: c ? c.getAttribute('href') : '', foot: R(document.querySelector('.game-foot')).height };
+}
+"""
+
+
+def section_j2(b):
+    """stage 2: Your game? and Claim on a game's page; the claim pages; the claim link; the maker's form; Edits in the queue"""
+    ok(bool(portal_key()), "the local PORTAL_KEY is known (server/portal/.dev.vars, or PORTAL_KEY=)")
+    if not portal_key(): return
+    es = [g for g in json.loads(PG_API("/api/es/games?n=100&fresh=" + str(time.time())))["games"] if not g.get("logicers")]
+    g = es[3]
+    old = sql(f"SELECT line, kind, maker FROM games WHERE id = '{g['id']}'")[0]
+    sql("DELETE FROM nets; DELETE FROM seen;")
+    # the game page's foot, in the 12 languages: one 44 px pill after the question, nothing wider than the page
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme)
+            for lang in LANGS:
+                gs = [x for x in json.loads(PG_API(f"/api/{lang}/games?n=3"))["games"] if not x.get("logicers")]
+                pg.goto(url(f"/{lang}/g/{gs[0]['slug']}/"), wait_until="networkidle")
+                f = pg.evaluate(FOOT)
+                ok(f["claim"] and f["h"] >= 44 and f["w"] >= 44 and f["t"] and f["q"].rstrip().endswith(("?", "？")) and not f["over"] and f["href"] == "/claim/?g=" + gs[0]["id"],
+                   f"{lang} {w} {scheme}: Your game? and a 44 px Claim", f)
+                bad = pg.evaluate(BOXES); ok(not bad, f"{lang} {w} {scheme} with Claim: boxes", bad[:3])
+                if scheme == "light" and w == 320:
+                    pg.evaluate(STRETCH); bad = pg.evaluate(BOXES); ok(not bad, f"{lang} {w} with Claim, every word half as long again: boxes", bad[:3])
+                if lang in ("de", "ja", "tr") and w == 320 and scheme == "light":
+                    pg.evaluate("() => document.querySelector('.game-foot').scrollIntoView()"); pg.screenshot(path=f"{SHOTS}/j2-foot-{lang}-{w}.png")
+                clean(pg, f"claim foot {lang} {w} {scheme}")
+            ctx.close()
+    # the claim page: English, one line in the game's language; the line comes on a tap, then Check can be pressed
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme)
+            pg.goto(url(f"/claim/?g={g['id']}"), wait_until="networkidle")
+            ok(pg.get_attribute("html", "lang") == "en" and pg.text_content(".about-local").strip() == "Esta página está en inglés.", f"claim {w} {scheme}: English, one line in Spanish")
+            ok(pg.is_disabled("#claim-check") and not pg.is_visible(".claim-code"), f"claim {w} {scheme}: nothing to check before the line")
+            pg.focus("#claim-get"); pg.keyboard.press("Enter"); pg.wait_for_selector(".claim-code:not([hidden])", timeout=5000)
+            line = pg.text_content("#claim-line")
+            ok(re.fullmatch(r'<meta name="logicers-portal" content="lp-[a-z2-7]{20}">', line or "") is not None, f"claim {w} {scheme}: the line to copy", line)
+            ok(not pg.is_disabled("#claim-check"), f"claim {w} {scheme}: Check can be pressed now")
+            hs = pg.evaluate("() => [...document.querySelectorAll('.claim button:not([hidden]), .claim a.btn')].filter((e) => e.getBoundingClientRect().width).map((e) => Math.round(e.getBoundingClientRect().height))")
+            ok(hs and min(hs) >= 44, f"claim {w} {scheme}: every button 44 px at least", hs)
+            bad = pg.evaluate(BOXES); ok(not bad, f"claim {w} {scheme}: boxes", bad[:3])
+            z = pg.evaluate(ZERO); ok(not z, f"claim {w} {scheme}: no 0 written", z[:3])
+            if scheme == "light" or w == 320: pg.screenshot(path=f"{SHOTS}/j2-claim-{w}-{scheme}.png", full_page=True)
+            if w == 390 and scheme == "light":
+                pg.reload(wait_until="networkidle")
+                ok(pg.text_content("#claim-line") == line, "the line stays for this tab after a reload")
+                pg.click("#claim-check"); pg.wait_for_selector(".claim-err:not([hidden])", timeout=15000)
+                e = pg.evaluate("() => { const x = document.querySelector('.claim-err:not([hidden])'); return { k: x.dataset.e, focus: document.activeElement === x }; }")
+                ok(e["k"] in ("nometa", "noopen", "moved") and e["focus"], "a check without the line on the page says why, with the focus on it", e)
+                pg.screenshot(path=f"{SHOTS}/j2-claim-err-390.png", full_page=True)
+            clean(pg, f"claim {w} {scheme}")
+            ctx.close()
+    # the claim link of the weekly email: opening it uses nothing; Claim it gives the key once and keeps it on the device
+    token = "".join(random.choice("abcdefghijklmnopqrstuvwxyz234567") for _ in range(24))
+    sql(f"INSERT INTO tokens (h, game, made) VALUES ('{key_hash('tell', token)}', '{g['id']}', {int(time.time() * 1000)})")
+    ctx, pg = new(b, 390)
+    pg.goto(url(f"/claim/{token}/"), wait_until="networkidle"); pg.reload(wait_until="networkidle")
+    ok(pg.is_visible("#claim-token"), "the claim link: one button, after two opens")
+    pg.focus("#claim-token"); pg.keyboard.press("Enter"); pg.wait_for_selector("#claim-ok:not([hidden])", timeout=5000)
+    key = pg.text_content("#claim-key")
+    ok(re.fullmatch(r"[a-z2-7]{24}", key or "") is not None and pg.evaluate("localStorage.getItem('portal.maker')") == key, "the key shown once and kept on the device", key)
+    ok(pg.evaluate("document.activeElement && document.activeElement.id") == "claim-ok-h", "the focus goes to It's yours")
+    bad = pg.evaluate(BOXES); ok(not bad, "the key: boxes", bad[:3])
+    pg.screenshot(path=f"{SHOTS}/j2-key-390.png", full_page=True)
+    clean(pg, "the claim link")
+    pg.goto(url(f"/claim/{token}/"), wait_until="networkidle")
+    ok("This link no longer works" in pg.text_content("main"), "the link works once")
+    # the maker's form: the game's line and kind, the maker's name; live at once
+    pg.goto(url("/maker/?l=es"), wait_until="networkidle")
+    pg.wait_for_selector(".maker-card", timeout=5000)
+    ok(pg.is_visible("#maker-main") and pg.input_value(".maker-card input[name=line]") == old["line"], "the form opens with the key on the device")
+    pg.fill(".maker-card input[name=line]", "Adivina la palabra, local check")
+    pg.check('.maker-card input[name=kind][value="knowledge"]', force=True)
+    pg.click(".maker-card .btn-send"); pg.wait_for_selector(".maker-card .maker-msg:not([hidden])", timeout=5000)
+    ok(pg.text_content(".maker-card .maker-msg") == "Saved. It's live.", "a game's line and kind saved")
+    live = [x for x in json.loads(PG_API("/api/es/games?n=100&fresh=" + str(time.time())))["games"] if x["id"] == g["id"]]
+    ok(live and live[0]["line"] == "Adivina la palabra, local check" and live[0]["kind"] == "knowledge", "live at once", live[:1])
+    pg.fill("#maker-namef input[name=name]", "Local Maker"); pg.click("#maker-namef .btn-send"); pg.wait_for_selector("#maker-namef .maker-msg:not([hidden])", timeout=5000)
+    ok(sql(f"SELECT maker FROM games WHERE id = '{g['id']}'")[0]["maker"] == "Local Maker", "the maker's name on the game")
+    pg.fill(".maker-card input[name=line]", "x" * 70)
+    ok(len(pg.input_value(".maker-card input[name=line]")) == 60, "at most 60 characters")
+    for w, scheme in ((320, "light"), (320, "dark"), (1280, "light")):
+        c2, p2 = new(b, w, scheme, storage={"portal.maker": key})
+        p2.goto(url("/maker/?l=es"), wait_until="networkidle"); p2.wait_for_selector(".maker-card", timeout=5000)
+        hs = p2.evaluate("() => [...document.querySelectorAll('.maker button, .maker input:not([type=radio]):not([type=file]), .kind-opt, .maker-logo-pick')].filter((e) => e.getBoundingClientRect().width).map((e) => Math.round(e.getBoundingClientRect().height))")
+        ok(hs and min(hs) >= 44, f"the form {w} {scheme}: 44 px targets", hs)
+        bad = p2.evaluate(BOXES); ok(not bad, f"the form {w} {scheme}: boxes", bad[:3])
+        p2.screenshot(path=f"{SHOTS}/j2-maker-{w}-{scheme}.png", full_page=True)
+        clean(p2, f"the form {w} {scheme}")
+        c2.close()
+    pg.click("#maker-forget")
+    ok(pg.evaluate("localStorage.getItem('portal.maker')") is None and pg.is_visible("#maker-nokey"), "Forget the key on this device")
+    pg.fill('#maker-keyform input[name=key]', "a" * 24); pg.click("#maker-keyform .btn-send"); pg.wait_for_timeout(500)
+    ok(pg.is_visible('#maker-keyform .claim-err[data-e="key"]'), "a wrong key says so")
+    pg.fill('#maker-keyform input[name=key]', key.upper()); pg.click("#maker-keyform .btn-send"); pg.wait_for_selector(".maker-card", timeout=5000)
+    ok(pg.is_visible("#maker-main"), "the key typed by hand opens the form")
+    clean(pg, "the maker's form")
+    ctx.close()
+    # the claimed game's page: the address line again, no Claim
+    ctx, pg = new(b, 390)
+    pg.goto(url(f"/es/g/{g['slug']}/"), wait_until="networkidle")
+    ok(not pg.evaluate(FOOT)["claim"] and "logicers.world@gmail.com" in pg.text_content(".yours-q"), "a claimed game: no Claim, the address")
+    clean(pg, "claimed game page")
+    ctx.close()
+    # the queue: Edits, both keys see the maker and the change
+    ctx, pg = new(b, 1280)
+    for key_, role in ((REVIEW, "review"), (ADMIN, "admin")):
+        pg.goto(B + "/admin/", wait_until="networkidle")
+        if pg.is_visible(".admin-lock"): pg.click(".admin-lock")
+        pg.fill('#admin-key input[name="key"]', key_); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+        pg.click('.admin-filter[data-filter="edits"]'); pg.wait_for_timeout(600)
+        card = pg.query_selector(f'.card[data-id="{g["id"]}"]')
+        t = card.text_content() if card else ""
+        ok("Claimed by" in t and "Local Maker" in t and "Maker's change" in t, f"the queue ({role}): Edits shows the maker and the change", t[:200])
+        if role == "review": pg.screenshot(path=f"{SHOTS}/j2-queue-edits.png")
+        clean(pg, f"queue edits {role}")
+    ctx.close()
+    # back as it was
+    sql(f"UPDATE games SET line = '{old['line'].replace(chr(39), chr(39) * 2)}', kind = '{old['kind']}', maker = '{old['maker'].replace(chr(39), chr(39) * 2)}', maker_id = NULL, claimed_at = NULL,"
+        f" line_by = NULL, claim_hash = NULL WHERE id = '{g['id']}'; DELETE FROM makers; DELETE FROM tokens; UPDATE queue SET done = 1 WHERE kind IN ('edit', 'pic'); DELETE FROM nets; DELETE FROM seen;")
+
+
+def png_bytes(w, h, rgb):
+    """a plain PNG of one colour with a lighter disc (no picture library needed)"""
+    import zlib, struct
+    rows = []
+    cx, cy, r2 = w / 2, h / 2, (min(w, h) * .3) ** 2
+    for y in range(h):
+        row = bytearray([0])
+        for x in range(w):
+            row += bytes((255, 255, 255) if (x - cx) ** 2 + (y - cy) ** 2 < r2 else rgb)
+        rows.append(bytes(row))
+    chunk = lambda t, d: struct.pack(">I", len(d)) + t + d + struct.pack(">I", zlib.crc32(t + d) & 0xffffffff)
+    return b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)) + chunk(b"IDAT", zlib.compress(b"".join(rows), 9)) + chunk(b"IEND", b"")
+
+
+def page_post(pg, path, body):
+    return pg.evaluate("([p, b]) => fetch(p, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b) }).then((r) => r.json())", [path, body])
+
+
+LOGO = r"""
+(id) => {
+  const li = document.querySelector('li.tile[data-game="' + id + '"]'); if (!li) return null;
+  const l = li.querySelector('.tile-logo'), a = li.querySelector('.tile-a'), R = (e) => e.getBoundingClientRect();
+  if (!l) return { logo: false };
+  const r = R(l), q = R(a);
+  return { logo: true, w: Math.round(r.width), cw: Math.round(q.width), zero: li.classList.contains('is-0'), kind: !!li.querySelector('.tile-kind, .tile-zero'),
+    inside: r.left >= q.left && r.right <= q.right && r.top >= q.top && r.bottom <= q.bottom, loaded: l.tagName !== 'IMG' || (l.complete && l.naturalWidth > 0),
+    centre: Math.abs((r.left + r.right) / 2 - (q.left + q.right) / 2) < 3 };
+}
+"""
+
+
+def section_j3(b):
+    """stage 3: logos on coins (a maker's, Logicers' drawings), a claimed game's numbers, the maker's page and form, the queue's look"""
+    ok(bool(portal_key()), "the local PORTAL_KEY is known")
+    if not portal_key(): return
+    es = [g for g in json.loads(PG_API("/api/es/games?n=100&fresh=" + str(time.time())))["games"] if not g.get("logicers")]
+    A_, B_, C_ = es[5], es[6], es[7]
+    old = {g["id"]: sql(f"SELECT line, kind, maker FROM games WHERE id = '{g['id']}'")[0] for g in (A_, B_, C_)}
+    sql("DELETE FROM nets; DELETE FROM seen; DELETE FROM makers; DELETE FROM pics; UPDATE games SET maker_id = NULL, pic = NULL, line_by = NULL;")
+    ctx, pg = new(b, 390)
+    pg.goto(url("/es/"), wait_until="networkidle")
+    key = None
+    for i, g in enumerate((A_, B_, C_)):
+        tok = "".join(random.choice("abcdefghijklmnopqrstuvwxyz234567") for _ in range(24))
+        sql(f"INSERT INTO tokens (h, game, made) VALUES ('{key_hash('tell', tok)}', '{g['id']}', {int(time.time() * 1000)})")
+        r = page_post(pg, "/api/claim/token", {"token": tok, "key": key})
+        key = key or r.get("key")
+        ok(r.get("ok"), f"claimed {g['name']} ({r.get('how')})", r)
+        if i < 2:
+            data = "data:image/png;base64," + __import__("base64").b64encode(png_bytes(320, 320, [(30, 58, 138), (244, 63, 94)][i])).decode()
+            r = page_post(pg, "/api/maker/pic", {"key": key, "game": g["id"], "data": data})
+            ok(r.get("state") == "wait", f"{g['name']}: its logo waits for a look", r)
+    page_post(pg, "/api/maker/edit", {"key": key, "name": "Local Maker J3"})
+    slug = sql("SELECT slug FROM makers")[0]["slug"]
+    ctx.close()
+    # the queue: the review key looks at the new logo and shows it
+    ctx, pg = new(b, 1280)
+    pg.goto(B + "/admin/", wait_until="networkidle")
+    if pg.is_visible(".admin-lock"): pg.click(".admin-lock")
+    pg.fill('#admin-key input[name="key"]', REVIEW); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+    pg.click('.admin-filter[data-filter="edits"]'); pg.wait_for_timeout(700)
+    for g in (A_, B_):
+        card = pg.query_selector(f'.card[data-id="{g["id"]}"]')
+        ok(card is not None and card.query_selector(".card-logo-see") is not None, f"the queue shows {g['name']}'s new logo to look at")
+        if not card: continue
+        card.query_selector(".card-logo-see").click(); pg.wait_for_timeout(500)
+        ok(pg.evaluate("(id) => { const i = document.querySelector('.card[data-id=\"' + id + '\"] .card-logo-new'); return !!i && i.complete && i.naturalWidth > 0; }", g["id"]), f"the new logo of {g['name']} shows in the card (data:)")
+        card.query_selector('button:text-is("Show this logo")').click(); pg.wait_for_timeout(700)
+        ok("The logo is shown." in (pg.text_content(f'.card[data-id="{g["id"]}"] .card-msg') or ""), f"{g['name']}: Show this logo")
+    pg.screenshot(path=f"{SHOTS}/j3-queue.png")
+    clean(pg, "queue logos")
+    ctx.close()
+    # numbers: 60 days for A, today for B; C has no logo and nobody: icon stays
+    today = datetime.now(timezone.utc).date()
+    vals = [f"('{A_['id']}', '{(today - timedelta(days=d)).isoformat()}', '{c}', {n})" for d in range(0, 60, 2) for c, n in (("ES", 20 + d), ("MX", 7), ("US", 2))]
+    sql("DELETE FROM counts WHERE game IN ('%s', '%s', '%s'); INSERT INTO counts (game, day, country, n) VALUES " % (A_["id"], B_["id"], C_["id"]) + ",".join(vals))
+    sql(f"DELETE FROM seen; DELETE FROM nets;")
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme)
+            pg.goto(url("/es/"), wait_until="networkidle")
+            a, bb = pg.evaluate(LOGO, A_["id"]), pg.evaluate(LOGO, B_["id"])
+            ok(a and a["logo"] and a["loaded"] and a["inside"] and not a["kind"], f"es {w} {scheme}: a claimed game's logo on its coin, the kind icon gone", a)
+            ok(bb and bb["logo"] and bb["zero"] and bb["centre"] and bb["w"] >= bb["cw"] * .4, f"es {w} {scheme}: nobody today, the logo large in the middle", bb)
+            lg = pg.evaluate("() => [...document.querySelectorAll('.row-lg li.tile')].map((li) => { const s = li.querySelector('svg.tile-logo'); return !!s && s.getBoundingClientRect().width > 10; })")
+            ok(lg and all(lg), f"es {w} {scheme}: every Logicers coin carries its drawing", lg)
+            bad = pg.evaluate(BOXES); ok(not bad, f"es {w} {scheme} with logos: boxes", bad[:3])
+            z = pg.evaluate(ZERO); ok(not z, f"es {w} {scheme} with logos: no 0", z[:3])
+            if w in (390, 1280): pg.screenshot(path=f"{SHOTS}/j3-es-{w}-{scheme}.png")
+            pg.goto(url(f"/es/g/{A_['slug']}/"), wait_until="networkidle")
+            n = pg.evaluate("() => { const s = document.querySelector('.nums'); if (!s) return null; const R = (e) => e.getBoundingClientRect(); return { bars: s.querySelectorAll('.nums-bar').length, cs: [...s.querySelectorAll('.nums-cn')].map((e) => e.textContent), total: s.querySelector('.nums-total').textContent, h: R(s.querySelector('.nums-svg')).height, fill: getComputedStyle(s.querySelector('.nums-bar')).fill, logo: (() => { const i = document.querySelector('.game-logo'); return !!i && i.naturalWidth > 0; })() }; }")
+            ok(n and n["bars"] == 30 and n["cs"][:3] == ["España", "México", "Estados Unidos"] and n["h"] >= 100 and n["logo"] and n["fill"] not in ("rgb(0, 0, 0)", "none"),
+               f"its page {w} {scheme}: 90 days as bars in its colour, the countries in Spanish, the logo", n)
+            ok(not pg.is_visible(".btn-edit"), f"its page {w} {scheme}: no Edit on a device without the key")
+            bad = pg.evaluate(BOXES); ok(not bad, f"its page {w} {scheme}: boxes", bad[:3])
+            z = pg.evaluate(ZERO); ok(not z, f"its page {w} {scheme}: no 0", z[:3])
+            if w in (320, 1280): pg.screenshot(path=f"{SHOTS}/j3-game-{w}-{scheme}.png", full_page=True)
+            pg.goto(url(f"/m/{slug}/"), wait_until="networkidle")
+            ok(pg.text_content(".mk-name").strip() == "Local Maker J3" and len(pg.query_selector_all("li.tile")) == 3 and not pg.is_visible(".btn-edit"), f"the maker's page {w} {scheme}")
+            bad = pg.evaluate(BOXES); ok(not bad, f"the maker's page {w} {scheme}: boxes", bad[:3])
+            if w in (320, 1280) and scheme == "light": pg.screenshot(path=f"{SHOTS}/j3-maker-page-{w}.png", full_page=True)
+            clean(pg, f"stage 3 pages {w} {scheme}")
+            ctx.close()
+    # the numbers' words in the 12 languages: a game of each, claimed for the look, with players
+    for w in (320, 1280):
+        ctx, pg = new(b, w)
+        for lang in LANGS:
+            g = [x for x in json.loads(PG_API(f"/api/{lang}/games?n=3"))["games"] if not x.get("logicers")][0]
+            mid = sql("SELECT id FROM makers")[0]["id"]
+            sql(f"UPDATE games SET maker_id = '{mid}' WHERE id = '{g['id']}'; INSERT OR REPLACE INTO counts (game, day, country, n) VALUES ('{g['id']}', '{today.isoformat()}', 'JP', 12), ('{g['id']}', '{(today - timedelta(days=3)).isoformat()}', 'BR', 4321)")
+            pg.goto(url(f"/{lang}/g/{g['slug']}/"), wait_until="networkidle")
+            ok(pg.is_visible(".nums") and len(pg.query_selector_all(".nums-ci")) >= 2, f"{lang} {w}: the numbers and their words")   # earlier sections may have played it
+            bad = pg.evaluate(BOXES); ok(not bad, f"{lang} {w} with numbers: boxes", bad[:3])
+            if w == 320:
+                pg.evaluate(STRETCH); pg.evaluate("() => { for (const e of document.querySelectorAll('.nums .row-t, .nums-cn')) e.textContent += e.textContent.slice(0, Math.ceil(e.textContent.length / 2)); }")
+                bad = pg.evaluate(BOXES); ok(not bad and pg.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth"), f"{lang} {w} numbers stretched: boxes", bad[:3])
+            if lang in ("ja", "ru") and w == 320: pg.screenshot(path=f"{SHOTS}/j3-nums-{lang}.png", full_page=True)
+            sql(f"UPDATE games SET maker_id = NULL WHERE id = '{g['id']}'; DELETE FROM counts WHERE game = '{g['id']}'")
+            clean(pg, f"numbers {lang} {w}")
+        ctx.close()
+    # the maker: Edit on its own pages; the form sends a logo; a GIF is refused before it leaves the device
+    ctx, pg = new(b, 390, storage={"portal.maker": key})
+    pg.goto(url("/maker/?l=es"), wait_until="networkidle"); pg.wait_for_selector(".maker-card", timeout=5000)
+    mo = pg.evaluate("JSON.parse(localStorage.getItem('portal.makerof') || 'null')")
+    ok(mo and mo.get("slug") == slug and set(mo.get("games", [])) == {A_["id"], B_["id"], C_["id"]}, "the form keeps which maker the key opens and its games", mo)
+    ok(pg.is_visible("#maker-page") and pg.get_attribute("#maker-page", "href") == f"/m/{slug}/", "the form links the maker's page")
+    cardC = pg.query_selector(f'.maker-card[data-game="{C_["id"]}"]')
+    gif = "/tmp/j3-logo.gif"; open(gif, "wb").write(b"GIF89a" + b"\0" * 200)
+    cardC.query_selector(".maker-logo-file").set_input_files(gif); pg.wait_for_timeout(300)
+    ok("PNG, JPEG or WebP" in (cardC.query_selector(".maker-msg:not([hidden])") or cardC).text_content(), "a GIF is refused on the device")
+    pngf = "/tmp/j3-logo.png"; open(pngf, "wb").write(png_bytes(300, 300, (5, 150, 105)))
+    cardC.query_selector(".maker-logo-file").set_input_files(pngf); pg.wait_for_selector(f'.maker-card[data-game="{C_["id"]}"] .maker-logo-send:not([hidden])', timeout=5000)
+    ok(pg.evaluate("(id) => { const i = document.querySelector('.maker-card[data-game=\"' + id + '\"] .maker-logo-img'); return i.naturalWidth > 0 && i.src.startsWith('data:image/png'); }", C_["id"]), "the chosen logo shows before it is sent")
+    cardC.query_selector(".maker-logo-send").click(); pg.wait_for_timeout(700)
+    ok("Sent. It shows once we have looked at it." in cardC.text_content(), "the logo is sent and waits")
+    ok(sql(f"SELECT state FROM pics WHERE game = '{C_['id']}'") == [{"state": "wait"}], "it waits in the database")
+    hs = pg.evaluate("() => [...document.querySelectorAll('.maker-logo button, .maker-logo-pick, .maker-pagelink')].filter((e) => e.getBoundingClientRect().width).map((e) => Math.round(e.getBoundingClientRect().height))")
+    ok(hs and min(hs) >= 44, "the logo's buttons 44 px", hs)
+    bad = pg.evaluate(BOXES); ok(not bad, "the form with logos: boxes", bad[:3])
+    pg.screenshot(path=f"{SHOTS}/j3-form-390.png", full_page=True)
+    pg.goto(url(f"/es/g/{A_['slug']}/"), wait_until="networkidle")
+    ok(pg.is_visible(".btn-edit") and pg.get_attribute(".btn-edit", "href") == "/maker/?l=es", "Edit on the maker's own game page")
+    pg.goto(url(f"/m/{slug}/"), wait_until="networkidle")
+    ok(pg.is_visible(".btn-edit"), "Edit on the maker's page")
+    pg.goto(url(f"/es/g/{es[9]['slug']}/"), wait_until="networkidle")
+    ok(not pg.is_visible(".btn-edit"), "no Edit on another game")
+    clean(pg, "the maker's Edit")
+    ctx.close()
+    # back as it was
+    for gid, o in old.items():
+        sql(f"UPDATE games SET line = '{o['line'].replace(chr(39), chr(39) * 2)}', kind = '{o['kind']}', maker = '{o['maker'].replace(chr(39), chr(39) * 2)}' WHERE id = '{gid}'")
+    sql("UPDATE games SET maker_id = NULL, claimed_at = NULL, line_by = NULL, claim_hash = NULL, pic = NULL; DELETE FROM makers; DELETE FROM pics; DELETE FROM tokens;"
+        f" DELETE FROM counts WHERE game IN ('{A_['id']}', '{B_['id']}'); UPDATE queue SET done = 1 WHERE kind IN ('edit', 'pic'); DELETE FROM nets; DELETE FROM seen;")
+
+
+def admin_api(route, body):
+    r = subprocess.run(["curl", "-s", "-X", "POST", B + route, "-H", "Content-Type: application/json", "--data-binary", json.dumps(body)], capture_output=True, text=True, timeout=30)
+    try: return json.loads(r.stdout)
+    except Exception: return {}
+
+
+def section_j4(b):
+    """stage 4: To tell in the queue (admin key only): the email, the claim link, the ready text, Gmail from logicers.world, Sent"""
+    ctx, pg = new(b, 390)
+    pg.goto(url("/es/"), wait_until="networkidle")
+    ids = []
+    for i, (email, name) in enumerate((("ana.j4@example.com", "Ana"), ("bo.j4@example.com", ""))):
+        u = f"https://j4-{RUN}-{i}.example.org/"
+        r = page_post(pg, "/api/add", {"url": u, "lang": "es", "kind": "words", "name": name, "email": email, "hp": ""})
+        ok(r.get("ok"), f"sent a game with an email ({email})", r)
+        gid = sql(f"SELECT id FROM games WHERE url = '{u}'")[0]["id"]
+        r = admin_api("/admin/act", {"key": ADMIN, "game": gid, "action": "list", "fields": {"name": f"Juego J4 {i}", "line": "Adivina la palabra del día"}})
+        ok(r.get("ok"), "listed it", r)
+        ids.append(gid)
+    ctx.close()
+    for w, scheme in ((320, "light"), (1280, "light"), (1280, "dark")):
+        ctx, pg = new(b, w, scheme)
+        ctx.grant_permissions(["clipboard-read", "clipboard-write"], origin=B)
+        for key_, role in ((REVIEW, "review"), (ADMIN, "admin")):
+            pg.goto(B + "/admin/", wait_until="networkidle")
+            if pg.is_visible(".admin-lock"): pg.click(".admin-lock")
+            pg.fill('#admin-key input[name="key"]', key_); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+            ok(pg.is_visible('.admin-filter[data-filter="tell"]') == (role == "admin"), f"queue {w} {scheme} ({role}): To tell only for the admin key")
+        pg.click('.admin-filter[data-filter="tell"]'); pg.wait_for_timeout(700)
+        cards = pg.query_selector_all(".card-tell")
+        ok(len(cards) >= 2, f"To tell {w} {scheme}: a card a game", len(cards))
+        c = pg.query_selector(f'.card-tell[data-id="{ids[0]}"]')
+        t = c.text_content() if c else ""
+        ok("ana.j4@example.com" in t and "logicers.world@gmail.com" in t and "Hi Ana," in t and "is on Play Español" in t and "/claim/" in t and "rza.khay" not in t, f"To tell {w} {scheme}: the email, from logicers.world, the text", t[:200])
+        g = c.query_selector('a:text-matches("Write it in Gmail")') if c else None
+        href = g.get_attribute("href") if g else ""
+        ok(href.startswith("https://mail.google.com/mail/?authuser=logicers.world%40gmail.com&view=cm&fs=1&to=ana.j4%40example.com") and g.get_attribute("target") == "_blank", f"To tell {w} {scheme}: Gmail writes it from logicers.world", href[:120])
+        if w == 1280 and scheme == "light":
+            c.query_selector('button:text-is("Copy the text")').click(); pg.wait_for_timeout(300)
+            clip = pg.evaluate("navigator.clipboard.readText()")
+            ok(clip.startswith("Hi Ana,") and clip.rstrip().endswith("Logicers"), "Copy the text", clip[:80])
+        hs = pg.evaluate("() => [...document.querySelectorAll('.card-tell .btn')].filter((e) => e.getBoundingClientRect().width).map((e) => Math.round(e.getBoundingClientRect().height))")
+        ok(hs and min(hs) >= 40, f"To tell {w} {scheme}: buttons", hs)
+        bad = pg.evaluate(BOXES); ok(not bad, f"To tell {w} {scheme}: boxes", bad[:3])
+        pg.screenshot(path=f"{SHOTS}/j4-tell-{w}-{scheme}.png", full_page=True)
+        clean(pg, f"To tell {w} {scheme}")
+        ctx.close()
+    # Sent: the card goes, the count follows; the link the email carries opens the claim
+    ctx, pg = new(b, 1280)
+    pg.goto(B + "/admin/", wait_until="networkidle")
+    if pg.is_visible(".admin-lock"): pg.click(".admin-lock")
+    pg.fill('#admin-key input[name="key"]', ADMIN); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+    pg.click('.admin-filter[data-filter="tell"]'); pg.wait_for_timeout(700)
+    n0 = int(pg.text_content('.admin-filter[data-filter="tell"] .admin-filter-n') or 0)
+    link = pg.evaluate(r"""(id) => { const t = document.querySelector('.card-tell[data-id="' + id + '"]').textContent; return (t.match(/https:\/\/play\.logicers\.com\/claim\/[a-z2-7]{24}\//) || [''])[0]; }""", ids[1])
+    pg.query_selector(f'.card-tell[data-id="{ids[1]}"] button:text-is("Sent")').click(); pg.wait_for_timeout(800)
+    ok(pg.query_selector(f'.card-tell[data-id="{ids[1]}"]') is None and int(pg.text_content('.admin-filter[data-filter="tell"] .admin-filter-n') or 0) == n0 - 1, "Sent: the card goes, the count follows")
+    ok(bool(sql(f"SELECT told_at FROM games WHERE id = '{ids[1]}' AND told_at > 0")), "told_at kept")
+    clean(pg, "Sent")
+    pg.goto(B + link.replace("https://play.logicers.com", "") , wait_until="networkidle")
+    ok(pg.is_visible("#claim-token"), "the emailed link opens the claim", link)
+    ctx.close()
+    sql(f"DELETE FROM tokens; DELETE FROM adds WHERE game IN ('{ids[0]}', '{ids[1]}'); DELETE FROM queue WHERE game IN ('{ids[0]}', '{ids[1]}'); DELETE FROM games WHERE id IN ('{ids[0]}', '{ids[1]}'); DELETE FROM nets; DELETE FROM seen;")
+
+
+def section_j(b):
+    only = [a for a in sys.argv if a.startswith("--only-j") and a != "--only-j"]
+    if not only or "--only-j1" in only: section_j1(b)
+    if not only or "--only-j2" in only: section_j2(b)
+    if not only or "--only-j3" in only: section_j3(b)
+    if not only or "--only-j4" in only: section_j4(b)
+
+
+def only_j():
+    global PG_API
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
+        api_ctx = b.new_context(user_agent=UA)
+        PG_API = lambda path: api_ctx.request.get(B + path).text()
+        section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -481,4 +1192,4 @@ def main():
 
 PG_API = None
 if __name__ == "__main__":
-    main()
+    only_j() if any(a.startswith("--only-j") for a in sys.argv) else main()

@@ -148,9 +148,14 @@ Pages (HTML, rendered by the Worker, cached at the edge 5 minutes; the numbers c
 | `/` | the wall: Play Logicers, today's players in every language, one tile per open language |
 | `/<lang>/` | Play Español: today's players (from 1), Yours (filled on the device), From Logicers (where Logicers lacks the language: the English games, one line, The Club first), one row per kind (12 tiles, then More), Wanted |
 | `/<lang>/<kind>/` | Logicers' games of that kind first (two where they are English), then every game of one kind (`words numbers maps knowledge music screen sport other`); none: 404 |
-| `/<lang>/g/<slug>/` | one game (`noindex, follow`, not in the sitemaps until claimed games have words of their own); taken off (hidden, dead, rejected): 410 |
+| `/<lang>/g/<slug>/` | one game (`noindex, follow` and out of the sitemaps, except a claimed game with the maker's own line and a logo, which is indexed and in its language's sitemap; a claimed game shows its players by day for 90 days and by country); taken off (hidden, dead, rejected): 410 |
 | `/about/` (`?l=<code>`) | About, in English (one line on top in that language) |
 | `/admin/` | the queue page (never indexed, never cached, Trusted Types) |
+| `/claim/?g=<id>` | claim a listed game (not Logicers') with a line on its own page; English, one line on top in the game's language; never indexed, never cached (chat J, plan 2.20) |
+| `/claim/<token>/` | the same with the single-use link of the weekly email; opening it uses nothing, the button does |
+| `/maker/` (`?l=<code>`) | the maker's form: the maker's name, each game's line, kind and logo (the key stays on the device); never indexed, never cached |
+| `/m/<slug>/` (`?l=<code>`) | a maker's page: its name and its listed games as coins (`noindex, follow` for now; chat J, stage 3) |
+| `/p/<id>/<h>.<ext>` | a game's logo once a key said yes: its fixed type (PNG, JPEG, WebP), `nosniff`, `default-src 'none'; sandbox`, kept a year |
 | `/sitemap.xml`, `/sitemap-root.xml`, `/<lang>/sitemap.xml`, `/robots.txt`, `/health` | |
 
 A language that is not open: its every address answers 302 to `/`. Anything unknown: 404 in the page's language (with
@@ -163,17 +168,26 @@ pages (the Origin `https://play.logicers.com`); the queue's POSTs may also come 
 |---|---|---|
 | `GET /api/langs` | | `{ day, today, langs: [{ code, name, play_word, endonym, dir, games, today }] }` |
 | `GET /api/<lang>/games` | `kind`, `from`, `n` (≤100), or `ids=a,b,c` (Yours) | `{ games: [{ id, slug, name, kind, line, maker, url, page, ring, new, slot, sold, logicers, en, today, all }], next }`, in row order |
+| `GET /api/<lang>/dice` | none | `{ games: [[id, address], ...] }`: every listed game of the language (Logicers' own only where Logicers has the language), at most 2000 in id order; the page picks one at random on the device for the dice. Kept by the edge 5 minutes |
 | `GET /api/counts` | `lang` | `{ day, games: { id: { t, a } }, page }` (t today, a in all; without `lang`: `page` is every language's players today) |
 | `POST /api/hit` | `{ game, id }` | `{ counted }` |
 | `POST /api/view` | `{ lang, id }` | `{ counted }` |
 | `POST /api/add` | `{ url, lang, kind, name?, email?, hp }` | `{}`; the look at the page runs after the answer; `hp` filled: kept, flagged |
 | `POST /api/report` | `{ game, reason, browser }` (`broken notdaily lang unsafe other`) | `{}`; `unsafe` starts the nightly look at that game at once (once a day) |
-| `POST /admin/queue` | `{ key, filter?, before? }` (`todo left reports dead all`; To do: no flags first, then the oldest; Left also holds the "numbers jump" cards; Dead links also the "blocked" ones) | `{ role, filter, cards, next, open: { todo, left, reports, dead } }`, 20 cards a page |
+| `POST /api/vote` | `{ game, id }` | `{ week }`; the game of the week (plan 2.20): one vote a device, language and UTC week (Monday 00:00), final, only for a listed game (not Logicers') this device was counted playing this week; e `notplayed`, `voted` (with `same`), `nogame`, `busy` (20 a language and week from one address) |
+| `POST /api/claim/code` | `{ game }` | `{ code, s, line }`: the line for the page's `<head>` (`<meta name="logicers-portal" content="lp-…">`) and the secret `s` only this device gets; a newer line replaces the older; e `nogame`, `busy` (20 an hour) |
+| `POST /api/claim/check` | `{ game, s, key? }` | the Worker opens the game's own address (the fetch rules of the add check) and looks for the line → `{ game, lang, maker: { name, slug }, how, key? }`; `how`: `new` (a new maker, with its key), `joined` (to the maker of the key on the device), `same`, `rotated` (the game had a maker: the proof gives that maker a new key, the recovery); e `nocode`, `nometa`, `noopen`, `moved`, `nogame`, `busy` (10 looks an hour from one address) |
+| `POST /api/claim/token` | `{ token, key? }` | the same; the link works once and for 90 days; e `token`, `busy` (10 wrong links an hour) |
+| `POST /api/maker` | `{ key }` | `{ maker: { name, slug }, games: [{ id, name, lang, kind, line, url, status, line_by, page }] }`; e `key` (20 wrong keys in ten minutes) |
+| `POST /api/maker/edit` | `{ key, name }` or `{ key, game, line?, kind? }` | the maker's name (1–60, on all its games) or a game's line (1–60, the game's language) and kind: live at once when the blocklist and the length allow, with an `edit` card (filter Edits); e `field` (with `field`; also for `url lang status name slug maker`), `blocked`, `nogame`, `key`, `busy` |
+| `POST /api/maker/pic` | `{ key, game, data }` (base64 or a `data:` address) | `{ state }` (`wait`, or `ok` when it is the logo shown already); PNG, JPEG or WebP read from the bytes, ≤150 KB, sides 256–4096 px, not animated; one waiting a game; e `pic` (with `why`: `type big small huge animated bad`), `nogame`, `key`, `busy` (20 an hour) |
+| `POST /admin/queue` | `{ key, filter?, before? }` (`todo left reports dead edits tell all`; To tell: the admin key only, see below; Edits: the makers' changes and logos, live already except a logo; To do: no flags first, then the oldest; Left also holds the "numbers jump" cards; Dead links also the "blocked" ones) | `{ role, filter, cards, next, open: { todo, left, reports, dead, edits, tell (admin key only) } }`, 20 cards a page |
 | `POST /admin/game` | `{ key, game }` | `{ role, card }` |
+| `POST /admin/pic` | `{ key, game }` | `{ data }`: the waiting logo as a `data:` address, for its card (both keys) |
 | `POST /admin/act` | `{ key, game, action, fields?, reason? }` | `{ role, card, opened }` |
 | `POST /admin/import` | `{ key, games: [{ name, url, lang, kind, line, maker?, checked? }] }` (≤500) | `{ added, updated, skipped: [{ i, e }], opened }` |
 
-Actions: `list` and `show` (need kind, name, line ≤ 60 characters and lang), `reject` (with `reason`: `notdaily notgame
+Actions (chat J adds `nocrown`, admin key: the game of the week's crown taken off, its card closed; `pic_ok`, `pic_no`, `pic_off`, both keys: the waiting logo shown or refused, the shown one taken off — Done leaves a waiting logo open; `told`, admin key: the To tell email is sent): `list` and `show` (need kind, name, line ≤ 60 characters and lang), `reject` (with `reason`: `notdaily notgame
 broken unsafe copy other`), `leave`, `edit`, `done` — both keys; `hide`, `delete`, the `url` of a game that has been on the
 list, and closing a "numbers jump" card — the admin key only. `fields`: `kind
 name maker line lang url`. Logicers' own games take only `done` (they change in `src/logicers.js`).
@@ -181,13 +195,24 @@ name maker line lang url`. Logicers' own games take only `done` (they change in 
 A card: `flags` first (`blocklist_host blocklist_words other_site hp lang_differs noopen`), then the game, `sent` (who sent
 it: name, and email for the admin key only), `check` (what the look saw: `final`, `status`, `same_site`, `title`, `lang`,
 `desc`, `daily_hint`, `error`), `link` (the last nightly check: `state`, `last`, `fails`), `reports` (`n`, `browsers`,
-`reasons`), `rows` (its open queue rows), `left`, `page`.
+`reasons`), `rows` (its open queue rows), `left`, `page`, `crown`, `maker_of` (a claimed game: `{ id, name, slug }`),
+`claimed_at`, `line_by` (`maker` when the line is the maker's). A fix of a claimed game's `maker` renames the maker on all
+its games.
+
+**To tell** (chat J, stage 4; admin key only, as the senders' emails are): the games listed in the last 7 days whose sender gave
+an email, not claimed and not yet told, oldest first. Each card carries `tell`: `email`, `name`, `link` (a single-use claim
+link; its keyed hash goes into `tokens` when the list is shown, so it works for 90 days, and the same link comes back until
+one of the game's links is used), `page`, `subject`, `text` (the ready English email: the game is on Play <Language> with
+its page, the players sent so far from 1, the claim link, "nothing else is asked; reply to remove it", signed Logicers),
+`gmail` (an address that opens Gmail writing it from logicers.world@gmail.com) and `from`. The queue page shows Copy the
+text, Copy the subject, Write it in Gmail and Sent (`told`). Nothing is sent by the Worker: Claude writes the emails by hand
+once a week (the plan's prompt M).
 
 The error keys: `link` (not an https address with a real host), `here` (already listed or waiting, the address compared
 without `www.`, tracking parameters, trailing slash or `#…`; or a rejected one), `busy` (a brake or the day's cap), `bad`
 (a field), `origin`, `body`, `big`, `not_found`, `nolang` (a language not open), `nogame`, `key` (a wrong key),
 `admin_only`, `logicers`, `action`, `reason`, `field` (with `field`), `filter`, `games`, `server`. Import skips: `game url
-lang kind name line maker here twice`.
+lang kind name line maker here twice claimed` (a claimed seed keeps its maker's words).
 
 ## The numbers it relies on (Workers Paid)
 
@@ -210,6 +235,22 @@ lang kind name line maker here twice`.
   and UTC day** (the `nets` table: a keyed hash of day, address and what, never the address; `NET` in `src/db.js`): 50
   counts a game, 300 counts in all, 50 views a language, 10 adds. An IPv4 address counts whole, an IPv6 address by its /64.
   **Caps a day over everyone** (the `caps` table): 500 adds, 2,000 reports.
+- **The game of the week** (chat J, 20 Nov 2026, plan 2.20): on Monday the nightly job closes the week before (UTC). In each
+  language the game with most votes wins, among games with at least 3 votes from 3 addresses (`VOTE_MIN` in `src/cron.js`);
+  a tie goes to the game that sent fewer players that week. A win where the two busiest addresses hold more than 80% of the
+  votes gets a "Game of the week" card left for Khayyam (only the admin key closes it; the crown shows until he takes it
+  off). The winner wears a crown on its coins and its game page for the whole next week; the pages never write a tally.
+  Then the week's votes and play hashes are deleted.
+- **The claim** (chat J, 20 Nov 2026, plan 2.20): optional, never needed for a listing, no sign-in. A maker key is 24
+  random base32 characters, shown once, kept on the device (`portal.maker`) and in the database only as a keyed hash
+  (`makers.key_hash`); a line's secret only as the keyed hash of game and secret (`games.claim_hash`, cleared once used);
+  a claim link only as a keyed hash (`tokens`, made when the To tell list shows it, gone once used). Brakes: 20 lines an
+  hour, 10 looks or wrong links an hour, 20 wrong maker keys and 60 changes in ten minutes, 20 logos an hour.
+- **Logos and numbers** (chat J, stage 3): a logo waits for a look (queue kind `pic`, under Edits) and is then served by the
+  Worker from D1; on a coin it is large and round with nobody today, small in the corner after (the number stays the hero).
+  Logicers' own coins carry their games' drawings (`lg-<key>` in `portal/a/icons.svg`). A claimed game's page draws its
+  players by UTC day for 90 days (no script) and its countries, named by `Intl.DisplayNames`; nothing shows before the
+  first player.
 - **Today** is the UTC day for every number; the hashes of (UTC day, device id, game or `view:<lang>`), keyed with
   `PORTAL_KEY`, are deleted the next night.
 - Pages are cached at the edge 5 minutes, `/api/counts` 60 s, keyed on the path and the parameters a page reads (`l` on
@@ -222,7 +263,13 @@ Games (address, its compared form, the host, language, kind, name, maker, one li
 players in all); for a sent game, the sender's name and email if given and what the look saw; counts by game, UTC day and
 country (from Cloudflare's request data); players today by language page; the day's keyed hashes until night (devices in
 `seen`, addresses in `nets`); reports (the reason, the day, a keyed hash of the browser's id); the queue; the day's caps; for
-each game the blocklist words its last look saw (`block`) and when it left the list (`off_at`). A sender's name and email
+each game the blocklist words its last look saw (`block`) and when it left the list (`off_at`); for the game of the week,
+this week's votes (keyed hashes of the week with the device and language, and with the address; deleted when the week
+closes), the keyed hashes of this week's counted plays (`wseen`, same), and each week's winner per language with its votes
+and addresses as two numbers (`gotw`); for a claimed game its maker (`makers`: a name, its slug, the keyed hash of the key,
+two dates; `games.maker_id`, `claimed_at`, `line_by`), the pending line's keyed hash, and the claim links' keyed hashes
+(`tokens`; `games.tell_n` counts the used ones); a claimed game's logo (`pics`: its bytes, type and size; one waiting and
+the one shown, `games.pic`), and when the To tell email went (`games.told_at`). A sender's name and email
 stay while the game may be listed and go 90 days after it is rejected, hidden or dead (at once with a delete).
 
 ## A new language

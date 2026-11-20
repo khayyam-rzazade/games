@@ -14,8 +14,30 @@
      games.off_at when it left the list (rejected, hidden, dead); its senders' names and emails go 90 days later
      nets         keyed hashes of (UTC day, address, what) with a count, for the caps per address; emptied nightly
      queue kinds  "blocked" (a new blocklist word hid a listed game) and "jump" (a game's day passed 100 and ten times its
-                  7-day average) beside add, report, dead, moved, check, act */
-import { clock, utcDay, dayAdd, DAY } from "./util.js";
+                  7-day average) beside add, report, dead, moved, check, act
+   Chat J, 20 Nov 2026 (plan 2.20), the game of the week:
+     wseen        keyed hashes of (UTC week, device id, game) for a counted play: a vote needs one; emptied once the week is past
+     votes        this week's votes: d is a keyed hash of (week, device id, language), so one vote a device, language and week;
+                  net a keyed hash of (week, address), for the cap per address and the look at a suspicious win; never the
+                  id, never an address; the rows of a week go when the nightly job closes it
+     gotw         the winner of each closed week and language, with its votes and addresses as numbers (for the queue only:
+                  the pages never write a tally); off = 1 once Khayyam has taken the crown off
+     queue kind   "gotw": a suspicious win (the two busiest addresses hold more than 80% of its votes), left for Khayyam
+   Chat J, stage 2 (plan 2.20), the claim:
+     makers       a maker who claimed a game: name, slug (its page /m/<slug>/), key_hash (HMAC of its key with PORTAL_KEY;
+                  the key is shown once and kept on the maker's device), made, edited
+     tokens       the single-use claim links of the weekly email (/claim/<token>): the keyed hash of the token and its game;
+                  made when the To tell list is opened, deleted once one is used (or after TOKEN_DAYS)
+     games.maker_id the maker who claimed it; games.claimed_at when; games.line_by "maker" once the maker wrote its line;
+                  games.tell_n how many claim links were used (the next link of a game differs); games.claim_hash the keyed
+                  hash of the pending code of the meta line (cleared once used)
+     queue kind   "edit": a maker's change (name, line, kind), live at once and in the queue for a look (filter Edits)
+   Chat J, stage 3: the maker's logo
+     pics         a claimed game's picture (PNG, JPEG or WebP, at most 150 KB, 256 px at least): its bytes, type, size,
+                  state "wait" (until a look in the queue: kind "pic", filter Edits) or "ok"; one waiting a game (a newer one
+                  replaces it); a refused one is deleted. games.pic = "<h>.<ext>" of the one shown, served at /p/<id>/<h>.<ext>
+   Chat J, stage 4: games.told_at, when Khayyam marked the weekly email to the game's sender as sent (the queue's To tell) */
+import { clock, utcDay, dayAdd, weekOf, DAY } from "./util.js";
 import { LOGICERS } from "./logicers.js";
 import { CODES } from "./langs.js";
 import { norm } from "./check.js";
@@ -32,7 +54,8 @@ export const SCHEMA = [
      norm TEXT NOT NULL, host TEXT NOT NULL, kind TEXT, line TEXT NOT NULL DEFAULT '', maker TEXT NOT NULL DEFAULT '',
      status TEXT NOT NULL, source TEXT NOT NULL, made INTEGER NOT NULL, listed_at INTEGER, new_until INTEGER, slot INTEGER,
      last_check INTEGER, check_state TEXT, fails INTEGER NOT NULL DEFAULT 0, claim_hash TEXT, notes TEXT NOT NULL DEFAULT '',
-     hits INTEGER NOT NULL DEFAULT 0, block TEXT, off_at INTEGER)`,
+     hits INTEGER NOT NULL DEFAULT 0, block TEXT, off_at INTEGER, maker_id TEXT, claimed_at INTEGER, line_by TEXT,
+     tell_n INTEGER NOT NULL DEFAULT 0, pic TEXT, told_at INTEGER)`,
   `CREATE UNIQUE INDEX IF NOT EXISTS games_url ON games (lang, norm)`,
   `CREATE UNIQUE INDEX IF NOT EXISTS games_slug ON games (lang, slug) WHERE slug IS NOT NULL`,
   `CREATE INDEX IF NOT EXISTS games_rows ON games (status, lang, kind)`,
@@ -57,6 +80,25 @@ export const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS queue_open ON queue (done, kind, game)`,
   `CREATE INDEX IF NOT EXISTS queue_game ON queue (game)`,
   `CREATE TABLE IF NOT EXISTS caps (day TEXT NOT NULL, kind TEXT NOT NULL, n INTEGER NOT NULL, PRIMARY KEY (day, kind))`,
+  `CREATE TABLE IF NOT EXISTS wseen (week TEXT NOT NULL, h TEXT NOT NULL, PRIMARY KEY (week, h))`,
+  `CREATE TABLE IF NOT EXISTS votes (week TEXT NOT NULL, lang TEXT NOT NULL, d TEXT NOT NULL, game TEXT NOT NULL, net TEXT NOT NULL,
+     made INTEGER NOT NULL, PRIMARY KEY (week, lang, d))`,
+  `CREATE INDEX IF NOT EXISTS votes_net ON votes (week, lang, net)`,
+  `CREATE TABLE IF NOT EXISTS gotw (week TEXT NOT NULL, lang TEXT NOT NULL, game TEXT NOT NULL, votes INTEGER NOT NULL, nets INTEGER NOT NULL,
+     made INTEGER NOT NULL, off INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (week, lang))`,
+  `CREATE INDEX IF NOT EXISTS gotw_game ON gotw (game)`,
+  `CREATE TABLE IF NOT EXISTS makers (id TEXT PRIMARY KEY, slug TEXT NOT NULL, name TEXT NOT NULL, key_hash TEXT NOT NULL,
+     made INTEGER NOT NULL, edited INTEGER)`,
+  `CREATE UNIQUE INDEX IF NOT EXISTS makers_slug ON makers (slug)`,
+  `CREATE UNIQUE INDEX IF NOT EXISTS makers_key ON makers (key_hash)`,
+  `CREATE TABLE IF NOT EXISTS tokens (h TEXT PRIMARY KEY, game TEXT NOT NULL, made INTEGER NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS tokens_game ON tokens (game)`,
+  `CREATE TABLE IF NOT EXISTS pics (game TEXT NOT NULL, h TEXT NOT NULL, type TEXT NOT NULL, w INTEGER NOT NULL, ht INTEGER NOT NULL,
+     size INTEGER NOT NULL, data BLOB NOT NULL, state TEXT NOT NULL, made INTEGER NOT NULL, PRIMARY KEY (game, h))`,
+];
+/* indexes on columns an older database gets from MIGRATE: made after it */
+export const AFTER = [
+  `CREATE INDEX IF NOT EXISTS games_maker ON games (maker_id)`,
 ];
 
 export const one = (env, sql, ...a) => env.DB.prepare(sql).bind(...a).first();
@@ -68,7 +110,8 @@ export const rowsOf = (r) => (r && r.results) || [];
 /* the tables, then Logicers' own games (logicers.js) into the games table, then the opening rule: once per running copy */
 const ready = new WeakSet();
 /* columns added after the first build (chat H, 20 Nov 2026): a database made before them (a local run) gets them here */
-export const MIGRATE = [["games", "block", "TEXT"], ["games", "off_at", "INTEGER"]];
+export const MIGRATE = [["games", "block", "TEXT"], ["games", "off_at", "INTEGER"],
+  ["games", "maker_id", "TEXT"], ["games", "claimed_at", "INTEGER"], ["games", "line_by", "TEXT"], ["games", "tell_n", "INTEGER NOT NULL DEFAULT 0"], ["games", "pic", "TEXT"], ["games", "told_at", "INTEGER"]];
 async function migrate(env) {
   let have = null;
   try { have = new Set((await all(env, "SELECT name FROM pragma_table_info('games')")).map((r) => r.name)); } catch (e) { have = null; }
@@ -81,6 +124,7 @@ export async function ensure(env) {
   if (ready.has(env.DB)) return;
   await env.DB.batch(SCHEMA.map((s) => env.DB.prepare(s)));
   await migrate(env);
+  await env.DB.batch(AFTER.map((s) => env.DB.prepare(s)));
   await syncLogicers(env);
   await openLangs(env);
   ready.add(env.DB);
@@ -178,11 +222,22 @@ export function rowOrder(games, week) {
   return (sold ? [sold] : []).concat(news, earned).map((g, i) => Object.assign({}, g, { place: i + 1, sold: g === sold }));
 }
 
+/* ---- the game of the week (plan 2.20): the winner of last week wears the crown for the whole of this week. A mark only:
+   it takes no place in a row and adds no row. Closed by the nightly job on Monday (cron.js closeWeek). ---- */
+/* a game's logo (chat J, plan 2.20): a maker's picture once a key said yes (/p/<id>/<h>.<ext>), or the drawing of one of
+   Logicers' own games (the sprite's lg-<key>) */
+export const picUrl = (g) => (g && g.pic && /^[0-9a-f]{16}\.(png|jpg|webp)$/.test(g.pic) ? "/p/" + g.id + "/" + g.pic : null);
+export const LG_LOGOS = ["energy", "hundred", "call", "cousin", "club", "apart", "gets", "every", "o24", "altitude", "lookalike", "passport"];
+export const lgLogo = (g) => { const m = /^lg-([a-z0-9]+)-/.exec((g && g.id) || ""); return m && LG_LOGOS.includes(m[1]) ? m[1] : null; };
+export const crownWeek = (t) => dayAdd(weekOf(t), -7);
+export const crownStmt = (env, lang) => st(env, "SELECT lang, game FROM gotw WHERE week = ? AND off = 0" + (lang ? " AND lang = ?" : ""), ...[crownWeek()].concat(lang ? [lang] : []));
+export const crownSet = (rows) => new Set(rows.map((r) => r.game));
+
 /* ---- what a language page needs, in one database call ---- */
 export async function langData(env, lang, lgLang) {
   const day = utcDay(), from = dayAdd(day, -6);
-  const [games, today, week, lg, views] = (await env.DB.batch([
-    st(env, `SELECT id, slug, name, kind, line, maker, url, listed_at, new_until, slot, hits FROM games
+  const [games, today, week, lg, views, crown] = (await env.DB.batch([
+    st(env, `SELECT id, slug, lang, name, kind, line, maker, url, listed_at, new_until, slot, hits, pic, maker_id FROM games
        WHERE lang = ? AND status = 'listed' AND source <> 'logicers'`, lang),
     st(env, `SELECT c.game, SUM(c.n) AS n FROM counts c JOIN games g ON g.id = c.game
        WHERE c.day = ? AND ((g.lang = ? AND g.status = 'listed') OR (g.source = 'logicers' AND g.lang = ?)) GROUP BY c.game`, day, lang, lgLang),
@@ -190,13 +245,15 @@ export async function langData(env, lang, lgLang) {
        WHERE c.day >= ? AND g.lang = ? AND g.status = 'listed' AND g.source <> 'logicers' GROUP BY c.game`, from, lang),
     lgStmt(env, lgLang, day, from),
     st(env, "SELECT n FROM views WHERE lang = ? AND day = ?", lang, day),
+    crownStmt(env, lang),
   ])).map(rowsOf);
+  const crowned = crownSet(crown);
   const t = Object.fromEntries(today.map((r) => [r.game, r.n]));
   const w = Object.fromEntries(week.map((r) => [r.game, r.n]));
   const now = clock();
   const byKind = Object.fromEntries(KINDS.map((k) => [k, []]));
   for (const g of games) {
-    g.today = t[g.id] || 0; g.all = g.hits || 0; g.isNew = !!(g.new_until && g.new_until > now);
+    g.today = t[g.id] || 0; g.all = g.hits || 0; g.isNew = !!(g.new_until && g.new_until > now); g.crown = crowned.has(g.id);
     (byKind[g.kind] || byKind.other).push(g);
   }
   for (const k of KINDS) byKind[k] = rowOrder(byKind[k], w);
@@ -228,21 +285,61 @@ export const gameById = (env, id) => (typeof id === "string" && id.length <= 40 
 /* a game page's numbers, its row (for "same kind") and Logicers' games of the row's language (two tiles) */
 export async function gameData(env, g, lgLang) {
   const day = utcDay(), from = dayAdd(day, -6);
-  const [today, kind, week, lg] = (await env.DB.batch([
+  const [today, kind, week, lg, crown] = (await env.DB.batch([
     st(env, "SELECT COALESCE(SUM(n), 0) AS n FROM counts WHERE game = ? AND day = ?", g.id, day),
-    st(env, `SELECT id, slug, name, kind, line, maker, url, listed_at, new_until, slot, hits FROM games
+    st(env, `SELECT id, slug, lang, name, kind, line, maker, url, listed_at, new_until, slot, hits, pic, maker_id FROM games
        WHERE lang = ? AND kind = ? AND status = 'listed' AND source <> 'logicers'`, g.lang, g.kind),
     st(env, `SELECT c.game, SUM(c.n) AS n FROM counts c JOIN games g ON g.id = c.game
        WHERE c.day >= ? AND g.lang = ? AND g.kind = ? AND g.status = 'listed' GROUP BY c.game`, from, g.lang, g.kind),
     lgStmt(env, lgLang || g.lang, day, from),
+    crownStmt(env, g.lang),
   ])).map(rowsOf);
+  const crowned = crownSet(crown);
   const w = Object.fromEntries(week.map((r) => [r.game, r.n]));
   const same = rowOrder(kind, w).filter((x) => x.id !== g.id).slice(0, 4);
   const t = same.length ? Object.fromEntries((await all(env, `SELECT game, SUM(n) AS n FROM counts WHERE day = ? AND game IN (${same.map(() => "?").join(",")}) GROUP BY game`,
     day, ...same.map((x) => x.id))).map((r) => [r.game, r.n])) : {};
   const now = clock();
-  for (const x of same) { x.today = t[x.id] || 0; x.all = x.hits || 0; x.isNew = !!(x.new_until && x.new_until > now); }
-  return { today: today[0] ? today[0].n : 0, all: g.hits || 0, same, more: kind.length > 5, lg: lgMap(lg) };
+  for (const x of same) { x.today = t[x.id] || 0; x.all = x.hits || 0; x.isNew = !!(x.new_until && x.new_until > now); x.crown = crowned.has(x.id); }
+  return { today: today[0] ? today[0].n : 0, all: g.hits || 0, same, more: kind.length > 5, lg: lgMap(lg), crown: crowned.has(g.id) };
+}
+
+/* a claimed game's numbers (chat J, plan 2.20): players sent by UTC day for the last 90 days and the countries they came from
+   (counts keeps both from day one, plan 2.8) */
+export const NUM_DAYS = 90;
+export async function gameNumbers(env, g) {
+  const from = dayAdd(utcDay(), -(NUM_DAYS - 1));
+  const [days, countries] = (await env.DB.batch([
+    st(env, "SELECT day, SUM(n) AS n FROM counts WHERE game = ? AND day >= ? GROUP BY day", g.id, from),
+    st(env, "SELECT country, SUM(n) AS n FROM counts WHERE game = ? AND day >= ? GROUP BY country ORDER BY n DESC, country LIMIT 12", g.id, from),
+  ])).map(rowsOf);
+  const maker = await one(env, "SELECT name, slug FROM makers WHERE id = ?", g.maker_id);
+  return { numbers: { from, to: utcDay(), days: Object.fromEntries(days.map((r) => [r.day, r.n])), countries }, maker };
+}
+/* a game page that search may index: claimed, with the maker's own line and a logo (plan 2.15, 2.20) */
+export const indexable = (g) => !!(g && g.maker_id && g.line_by === "maker" && picUrl(g));
+
+/* a maker's page: the maker and its listed games with today's players; its words in ?l= when that language is open and
+   one of its games is in it, else in the language most of its games are in */
+export async function makerData(env, slug, l, open) {
+  if (!/^[a-z0-9-]{1,48}$/.test(slug || "")) return null;
+  const m = await one(env, "SELECT id, name, slug FROM makers WHERE slug = ?", slug);
+  if (!m) return null;
+  const day = utcDay();
+  const [games, today, crown] = (await env.DB.batch([
+    st(env, `SELECT id, slug, lang, name, kind, line, maker, url, listed_at, new_until, slot, hits, pic, maker_id FROM games
+       WHERE maker_id = ? AND status = 'listed' AND source <> 'logicers' AND slug IS NOT NULL ORDER BY claimed_at, id`, m.id),
+    st(env, "SELECT c.game, SUM(c.n) AS n FROM counts c JOIN games g ON g.id = c.game WHERE g.maker_id = ? AND c.day = ? GROUP BY c.game", m.id, day),
+    crownStmt(env),
+  ])).map(rowsOf);
+  const shown = games.filter((g) => open.has(g.lang));
+  if (!shown.length) return null;
+  const t = Object.fromEntries(today.map((r) => [r.game, r.n])), crowned = crownSet(crown), now = clock();
+  for (const g of shown) { g.today = t[g.id] || 0; g.all = g.hits || 0; g.isNew = !!(g.new_until && g.new_until > now); g.crown = crowned.has(g.id); }
+  const n = {};
+  for (const g of shown) n[g.lang] = (n[g.lang] || 0) + 1;
+  const lang = l && n[l] ? l : Object.keys(n).sort((a, b) => n[b] - n[a])[0];
+  return { lang, maker: m, games: shown };
 }
 
 export { DAY };

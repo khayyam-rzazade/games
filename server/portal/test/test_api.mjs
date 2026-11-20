@@ -261,3 +261,25 @@ test("the read API: langs, games in row order, ids for Yours, counts", async () 
   const de = await get(e, "/api/counts?lang=de");
   assert.ok(de.json.games["lg-energy-en"], "a language without Logicers counts the English row it shows");
 });
+
+test("the dice's list: a language's games as [id, address], Logicers' own only where Logicers has the language, nothing hidden", async () => {
+  const e = env();
+  await importGames(e, seedGames("es", 5).concat(seedGames("es", 2, "maps", "Map"), seedGames("pl", 7)));
+  const d = await get(e, "/api/es/dice");
+  assert.equal(d.status, 200);
+  assert.deepEqual(Object.keys(d.json).sort(), ["games", "lang", "ok"]);
+  assert.equal(d.json.games.length, 19, "7 listed games and Logicers' 12 in Spanish");
+  for (const g of d.json.games) { assert.equal(g.length, 2); assert.match(g[0], /^[a-z0-9-]{1,40}$/); assert.match(g[1], /^https:\/\//); }
+  const ids = d.json.games.map((g) => g[0]);
+  assert.ok(ids.includes("lg-energy-es") && !ids.includes("lg-energy-en"), "Logicers' Spanish games, not its English ones");
+  assert.deepEqual(ids, [...ids].sort(), "in id order, so the list is the same for everyone");
+  assert.match(d.headers.get("Cache-Control"), /s-maxage=300/);
+  const pl = (await get(e, "/api/pl/dice")).json.games;
+  assert.equal(pl.length, 7, "Polish has no Logicers language: its English row is not 'a game of this language', so the dice leaves it out");
+  assert.ok(pl.every((g) => !g[0].startsWith("lg-")));
+  const id = (await one(e, "SELECT id FROM games WHERE slug = 'game-es-1'")).id;
+  await e.DB.prepare("UPDATE games SET status = 'hidden' WHERE id = ?").bind(id).run();
+  assert.ok(!(await get(e, "/api/es/dice")).json.games.some((g) => g[0] === id), "a hidden game is not offered");
+  assert.equal((await get(e, "/api/de/dice")).json.e, "nolang", "a language that is not open");
+  assert.equal((await get(e, "/api/es/dice/")).status, 200, "with or without the slash");
+});

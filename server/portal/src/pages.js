@@ -28,18 +28,36 @@
                   .tile-n (today; .n5 .n6 .n7: a long number, smaller)  .tile-name (under the coin: a link to the game's page;
                   on a Logicers tile the same link as the coin, out of the tab order)  .tile-star (button, aria-pressed)
                   .tile-tick (li: played today, set by portal.js, with .tile-tick-i)  .is-star (li: saved on this device)
-                  .tile-mine (a Yours tile)
+                  .tile-mine (a Yours tile)  .tile-crown (li: last week's game of the week, plan 2.20) .tile-crown-i (its crown,
+                  top start of the coin, after New; a mark only, never a place)
      wanted       .wanted (ul)  .wanted-k (button; data-kind)  .wanted-t
      kind page    .kind-h  .kind-ico  .kind-n  .tiles-all (the ul: Logicers' games of the kind first, then the kind's games,
                   KIND_MAX of them)  .btn-more (the rest, by portal.js: data-more, data-from)
-     game page    .game (article; data-game)  .game-tile (the big coin: plays, as Play does)  .game-ico  .game-body  .game-head
+     game page    .game (article; data-game; .is-crown: the game of the week)  .game-tile (the big coin: plays, as Play does)  .game-crown
+                  (its crown)  .game-gotw (the words "Game of the week", above the name)  .btn-vote (data-vote: the vote, shown by
+                  portal.js once this device played the game this UTC week; aria-pressed once voted) .vote-i .vote-ok .vote-t
+                  .game-ico  .game-body  .game-head
                   .game-name  .game-meta  .game-kind-a  .game-dot  .game-maker  .game-line  .game-nums  .num .num-today
                   .num-all (each hidden while 0)  .num-w  .num-n (data-count="today" | "all")  .game-acts  .btn-play
                   .game-star  .row-lg-game (two Logicers tiles)  .game-foot  .btn-report  .yours-q  .mail (the address, plain
                   text)
      not found    .nf
      about        .about  .about-local (the one line in the page's language)  .about-h  .about-p  .mail
+     claim        (English; chat J, 20 Nov 2026, plan 2.20) .pl-claim .main-claim .claim (article; data-game, data-token)
+                  .claim-h .claim-name .claim-p .claim-steps .claim-step .claim-step-h .claim-url .claim-code (the line, copyable)
+                  .claim-line .btn-copy (data-copy: the id of what it copies) .claim-err (data-e) .claim-ok .claim-keybox .claim-key
+                  .claim-other   the game page's foot: .yours-q-t (its "Your game?") .btn-claim (to /claim/?g=)
+     maker form   (English) .pl-maker .main-maker .maker .maker-nokey .maker-keyform .maker-main .maker-namef .maker-games
+                  .maker-card .maker-card-h .maker-msg .maker-forget (the cards: maker.js) .maker-pagelink
+                  .maker-logo .maker-logo-h .maker-logo-row .maker-logo-view .maker-logo-img .maker-logo-side .maker-logo-state
+                  .maker-logo-pick .maker-logo-file .maker-logo-send (stage 3: the logo)
+     maker page   (chat J) .pl-mk .main-mk .mk-head .mk-name .btn-edit (data-maker-slug | data-maker-game; shown by portal.js)
+     numbers      (a claimed game's page) .nums .nums-days .nums-total .nums-svg .nums-bar .nums-axis .nums-where .nums-c
+                  .nums-ci .nums-cn .nums-cv .nums-cb   the coins' logo: .tile-logo (img) .tile-logo-lg (svg) .game-logo
      footer       .foot  .btn-add  .foot-links  .foot-about  .foot-lg
+     top bar      .top-acts (the buttons at the end of a language page's head)  .add-top (Add a game, filled, in every head; the words
+                  show from 700 px)  .dice (a link to a random game, #dice; JS gives it its address)
+     Yours        .streak (#streak: a flame and the days in a row, from 1)  .run (#run: the next game of the run)  .run-done (#run-done)
      buttons      .btn  .btn-add  .btn-play  .btn-report  .btn-send  .btn-done  .btn-more  .ico (any icon)  .ico-flip (turns
                   round in a right-to-left page)
      sheets       dialog.sheet  .sheet-add  .sheet-report  .sheet-form (.is-sent once sent)  .sheet-grab  .sheet-h  .sheet-x
@@ -52,18 +70,18 @@
                   .admin-filter (data-filter) .admin-filter-n .admin-cards .admin-more .admin-msg  (the cards: admin.js)
    Icons: <svg><use href="/a/icons.svg?v=…#ID"> with the ids k-words k-numbers k-maps k-knowledge (a light bulb) k-music
    k-screen k-sport (a trophy) k-other (the kinds) and i-star (Save: a bookmark) i-plus i-globe i-close i-play i-flag i-more
-   i-check i-down i-back.
+   i-check i-down i-back i-dice (the random game) i-flame (the streak) i-crown (the game of the week).
    data- attributes portal.js reads: data-game, data-kind, data-count, data-count-label, data-hit (a link whose click sends
    /api/hit), data-open="sheet-add" | "sheet-report" (opens that dialog; with data-kind it sets the kind), data-close,
-   data-star, data-lang, data-e, data-more, data-from, data-filter. */
+   data-star, data-lang, data-e, data-more, data-from, data-filter, data-vote. */
 import { LANGS, LANG, htmlLang, nameParts, pageName, byEndonym } from "./langs.js";
 import { WORDS, wordsOf, word, num, aroundN, withN } from "./words.js";
-import { KINDS } from "./db.js";
-import { ring } from "./util.js";
+import { KINDS, picUrl, lgLogo, NUM_DAYS, indexable } from "./db.js";
+import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=ca425ef4b1", js: "/a/portal.js?v=797f659fdb", admin: "/a/admin.js?v=b82865c160", icons: "/a/icons.svg?v=dd720646ea", icon: "/a/icon.svg?v=adb3f8129b" };
+export const ASSET = { css: "/a/portal.css?v=22a5ffadd2", js: "/a/portal.js?v=5489fa4f61", admin: "/a/admin.js?v=3c1522cdd6", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=178609c4ec" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -101,11 +119,13 @@ function doc(o) {
     `<meta property="og:title" content="${esc(o.title)}">`,
     o.desc ? `<meta property="og:description" content="${esc(o.desc)}">` : "",
     o.canonical ? `<meta property="og:url" content="${esc(o.canonical)}">` : "",
+    o.image ? `<meta property="og:image" content="${esc(o.image)}">` : "",
     '<meta name="twitter:card" content="summary">',
     `<link rel="icon" href="${ASSET.icon}" type="image/svg+xml">`,
     `<link rel="preload" href="/a/fonts/geologica-latin.v1.woff2" as="font" type="font/woff2" crossorigin>`,
     `<link rel="stylesheet" href="${ASSET.css}">`,
     `<script src="${o.script || ASSET.js}" defer></script>`,
+    o.script2 ? `<script src="${o.script2}" defer></script>` : "",
     o.jsonld ? `<script type="application/ld+json">${jsonIn(o.jsonld)}</script>` : "",
   ].filter(Boolean).join("\n");
   return `<!doctype html>
@@ -134,9 +154,11 @@ function pageData(d, more) {
 }
 
 /* ---- pieces ---- */
-function brand(d, tag) {
+/* the name is a link, and never to the page it is on (20 Nov 2026): the wall's goes to Logicers' own site, a language page's to the wall,
+   a page below's to the language page (or the wall); "by Logicers" under it goes to Logicers' home in that language */
+function brand(d, tag, to) {
   const [play, rest] = d.wall ? ["Play", "Logicers"] : nameParts(d.lang);
-  const href = d.wall ? "/" : "/" + d.lang + "/";
+  const href = to || (d.wall ? "/" : "/" + d.lang + "/");
   return `<${tag} class="brand"><a class="brand-a" href="${href}"><span class="brand-play">${esc(play)}</span> <span class="brand-lang">${esc(rest)}</span></a></${tag}>`;
 }
 /* "{n} players today": shown from 1, never as 0 (plan 2.8); portal.js shows it when the first player comes */
@@ -144,37 +166,49 @@ function todayLine(lang, n, which) {
   const [a, b] = aroundN(lang, "players_today", n);
   return `<p class="today"${n ? "" : " hidden"}><span class="today-w">${esc(a.trim())}</span><b class="today-n" data-count="${which}">${n ? esc(num(lang, n)) : ""}</b><span class="today-w">${esc(b.trim())}</span></p>`;
 }
+/* Add a game at the top of every page (20 Nov 2026): a filled round "+" on a phone, the words from 700 px; the one in the foot stays */
+function addTop(L) {
+  return `<button class="add-top" type="button" data-open="sheet-add" aria-label="${T(L, "add")}" title="${T(L, "add")}">${icon("i-plus")}<span class="add-top-t">${T(L, "add")}</span></button>`;
+}
 /* the wall: the name large, its one English line, today's players in every language */
 function headerWall(d) {
   return `<header class="top top-wall">
 <div class="brand-box">
-${brand(d, "h1")}
+${brand(d, "h1", d.lgHome || "https://logicers.com/")}
 <p class="brand-sub">Daily games of the world, by language</p>
 </div>
+${addTop("en")}
 ${todayLine("en", d.today, "all")}
 </header>`;
 }
+/* "by Logicers" under the name: a link to Logicers' home in the language */
+const brandBy = (d) => `<p class="brand-by"><a class="brand-by-a" href="${esc(d.lgHome || "https://logicers.com/")}">${T(d.lang, "by")}</a></p>`;
 /* a language page: the name large, "by Logicers" small, today's players, the chip back to the wall */
 function headerLang(d) {
   const l = LANG.get(d.lang);
   return `<header class="top top-lang">
 <div class="brand-box">
-${brand(d, "h1")}
-<p class="brand-by">${T(d.lang, "by")}</p>
+${brand(d, "h1", "/")}
+${brandBy(d)}
 </div>
 ${todayLine(d.lang, d.page_today, "page")}
+<div class="top-acts">
+${addTop(d.lang)}
+<a class="dice" id="dice" target="_blank" rel="noopener" data-hit data-game="" aria-label="${T(d.lang, "dice")}" title="${T(d.lang, "dice")}" hidden>${icon("i-dice")}</a>
 <a class="chip-lang" href="/">${icon("i-globe", "chip-g")}<span class="chip-lang-t">${esc(l.endonym)}</span>${icon("i-down", "chip-d")}</a>
+</div>
 </header>`;
 }
 /* a page below: the round back button, the name small at the end */
 function headerSub(d) {
-  const home = d.wall ? "/" : "/" + d.lang + "/", name = d.wall ? "Play Logicers" : pageName(d.lang);
+  const home = d.back || (d.wall ? "/" : "/" + d.lang + "/"), name = d.backName || (d.wall ? "Play Logicers" : pageName(d.lang));
   return `<header class="top top-sub">
 <a class="back" href="${home}" aria-label="${esc(name)}">${icon("i-back", "ico-flip")}</a>
 <div class="brand-box brand-sm">
 ${brand(d, "p")}
-${d.wall ? "" : `<p class="brand-by">${T(d.lang, "by")}</p>`}
+${d.wall ? "" : brandBy(d)}
 </div>
+${addTop(d.wall ? "en" : d.lang)}
 </header>`;
 }
 function about(d) { return d.wall || d.lang === "en" ? "/about/" : "/about/?l=" + d.lang; }
@@ -200,24 +234,36 @@ export function tile(d, g, o) {
     if (g.isNew) cls.push("tile-new");
     if (g.place === 1) cls.push("tile-one");
     if (g.sold) cls.push("tile-sold");
+    if (g.crown) cls.push("tile-crown");
   }
   const today = g.today || 0, n = num(d.lang, today);
   if (!today) cls.push("is-0");
+  const logo = tileLogo(g, o);
   const en = o.en ? ' lang="en"' : "";
   const play = `href="${esc(g.url)}" target="_blank" rel="noopener" data-hit`;
   return `<li class="${cls.join(" ")}" data-game="${esc(g.id)}" data-kind="${esc(g.kind)}"><a class="tile-a" ${play}>`
     + (!o.lg && g.isNew ? `<span class="tile-badge">${T(d.lang, "new")}</span>` : "")
     + (o.en ? `<span class="tile-chip" lang="en">${T(d.lang, "en_chip")}</span>` : "")
-    + icon("k-" + g.kind, "tile-kind") + icon("k-" + g.kind, "tile-zero")
+    + (!o.lg && g.crown ? icon("i-crown", "tile-crown-i") : "")
+    + (logo || icon("k-" + g.kind, "tile-kind") + icon("k-" + g.kind, "tile-zero"))
     + `<span class="tile-n${today ? numCls(n) : ""}" data-count="today" aria-hidden="true">${today ? esc(n) : ""}</span>`
-    + `<span class="vh"><span class="tile-vn">${T(d.lang, "play")} <span${en}>${esc(g.name)}</span></span><span data-count-label="today">${today ? ", " + esc(withN(d.lang, "today_n", today)) : ""}</span></span>`
+    + `<span class="vh"><span class="tile-vn">${T(d.lang, "play")} <span${en}>${esc(g.name)}</span></span>${!o.lg && g.crown ? `<span class="tile-gotw">, ${T(d.lang, "gotw")}</span>` : ""}<span data-count-label="today">${today ? ", " + esc(withN(d.lang, "today_n", today)) : ""}</span></span>`
     + `</a>`
     + (o.lg ? `<a class="tile-name" ${play} tabindex="-1" aria-hidden="true"${en}>${esc(g.name)}</a>`
-      : `<a class="tile-name" href="/${d.lang}/g/${esc(g.slug)}/"${en}>${esc(g.name)}</a>`)
+      : `<a class="tile-name" href="/${esc(g.lang || d.lang)}/g/${esc(g.slug)}/"${en}>${esc(g.name)}</a>`)
     + `<button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="${esc(g.id)}">${icon("i-star")}</button></li>`;
 }
+/* a coin's logo (chat J, plan 2.20): a maker's picture once a key said yes, or the drawing of one of Logicers' own games. With
+   nobody today it is large and round where the kind's icon would be; from the first player the number is the hero and the
+   logo is small, in the corner (portal.css .tile-pic). */
+function tileLogo(g, o) {
+  const k = o.lg ? lgLogo(g) : null, u = o.lg ? null : picUrl(g);
+  if (k) return `<svg class="tile-logo tile-logo-lg" aria-hidden="true" focusable="false"><use href="${ASSET.icons}#lg-${k}"></use></svg>`;
+  if (u) return `<img class="tile-logo" src="${esc(u)}" alt="" width="64" height="64" loading="lazy" decoding="async">`;
+  return "";
+}
 function tplTile(d) {
-  return `<template id="tpl-tile"><li class="tile" data-game="" data-kind=""><a class="tile-a" href="" target="_blank" rel="noopener" data-hit><span class="tile-badge" hidden>${T(d.lang, "new")}</span><span class="tile-chip" lang="en" hidden>${T(d.lang, "en_chip")}</span>${icon("k-other", "tile-kind")}${icon("k-other", "tile-zero")}<span class="tile-n" data-count="today" aria-hidden="true"></span><span class="vh"><span class="tile-vn">${T(d.lang, "play")} <span></span></span><span data-count-label="today"></span></span></a><a class="tile-name" href=""></a><button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="">${icon("i-star")}</button></li></template>`;
+  return `<template id="tpl-tile"><li class="tile" data-game="" data-kind=""><a class="tile-a" href="" target="_blank" rel="noopener" data-hit><span class="tile-badge" hidden>${T(d.lang, "new")}</span><span class="tile-chip" lang="en" hidden>${T(d.lang, "en_chip")}</span>${icon("i-crown", "tile-crown-i")}${icon("k-other", "tile-kind")}${icon("k-other", "tile-zero")}<img class="tile-logo" alt="" width="64" height="64" decoding="async" hidden><svg class="tile-logo tile-logo-lg" aria-hidden="true" focusable="false" hidden><use href=""></use></svg><span class="tile-n" data-count="today" aria-hidden="true"></span><span class="vh"><span class="tile-vn">${T(d.lang, "play")} <span></span></span><span class="tile-gotw" hidden>, ${T(d.lang, "gotw")}</span><span data-count-label="today"></span></span></a><a class="tile-name" href=""></a><button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="">${icon("i-star")}</button></li></template>`;
 }
 /* a row's head: its name, and More at the end */
 function rowTop(id, title, more) {
@@ -226,9 +272,16 @@ function rowTop(id, title, more) {
 function moreLink(d, href, n) {
   return `<a class="row-more" href="${esc(href)}">${T(d.lang, "more")}${n ? `<span class="row-more-sep" aria-hidden="true">·</span><span class="row-more-n">${esc(num(d.lang, n))}</span>` : ""}${icon("i-more", "ico-flip")}</a>`;
 }
+/* the Yours row's head: its name, the streak (a flame and the days in a row; JS shows it from 1) and, on a language's page, the
+   run (a link to the next game of the run, or its tick when all are played; JS sets the address) */
+function mineTop(d) {
+  const run = d.page === "lang"
+    ? `<a class="run" id="run" target="_blank" rel="noopener" data-hit data-game="" hidden>${icon("i-play", "ico-flip")}<span class="run-t"></span></a><span class="run-done" id="run-done" role="img" hidden>${icon("i-check")}<span class="run-t"></span></span>` : "";
+  return `<span class="streak" id="streak" role="img" hidden>${icon("i-flame")}<b class="streak-n"></b></span>${run}`;
+}
 function rowMine(d) {
   return `<section class="row row-mine" id="row-mine" aria-labelledby="h-mine" hidden>
-${rowTop("h-mine", T(d.lang, "mine"))}
+${rowTop("h-mine", T(d.lang, "mine"), mineTop(d))}
 <ul class="tiles" role="list"></ul>
 </section>`;
 }
@@ -399,26 +452,32 @@ function numBlock(L, key, n, which) {
   const [a, b] = aroundN(L, key, n);
   return `<span class="num num-${which}"${n ? "" : " hidden"}><span class="num-w">${esc(a.trim())}</span><b class="num-n" data-count="${which}">${n ? esc(num(L, n)) : ""}</b><span class="num-w">${esc(b.trim())}</span></span>`;
 }
+/* "Your game?": the question of yours_q, up to its question mark (every language's yours_q asks it first) */
+export const yoursQ = (L) => { const s = word(L, "yours_q"), m = /^[^?？]*[?？]/.exec(s); return (m ? m[0] : s).trim(); };
 export function pageGame(d) {
   d = Object.assign({}, d, { page: "game" });
-  const g = d.game, L = d.lang;
+  const g = d.game, L = d.lang, pic = picUrl(g), mk = g.maker_id && d.maker ? d.maker : null;
   const body = `${headerSub(d)}
 <main class="main main-game">
-<article class="game ${ring(g.id)}" data-game="${esc(g.id)}" data-kind="${esc(g.kind)}">
-<a class="game-tile" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true">${icon("k-" + g.kind, "game-ico")}</a>
+<article class="game ${ring(g.id)}${d.crown ? " is-crown" : ""}" data-game="${esc(g.id)}" data-kind="${esc(g.kind)}">
+<a class="game-tile${pic ? " has-pic" : ""}" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true">${d.crown ? icon("i-crown", "game-crown") : ""}${pic ? `<img class="game-logo" src="${esc(pic)}" alt="" width="240" height="240" decoding="async">` : icon("k-" + g.kind, "game-ico")}</a>
 <div class="game-body">
 <div class="game-head">
 <h1 class="game-name">${esc(g.name)}</h1>
-<p class="game-meta"><a class="game-kind-a" href="/${L}/${esc(g.kind)}/">${T(L, "cat." + g.kind)}</a>${g.maker ? `<span class="game-dot" aria-hidden="true">·</span><span class="game-maker">${esc(g.maker)}</span>` : ""}</p>
+${d.crown ? `<p class="game-gotw">${icon("i-crown")}<span>${T(L, "gotw")}</span></p>` : ""}
+<p class="game-meta"><a class="game-kind-a" href="/${L}/${esc(g.kind)}/">${T(L, "cat." + g.kind)}</a>${mk ? `<span class="game-dot" aria-hidden="true">·</span><a class="game-maker game-maker-a" href="/m/${esc(mk.slug)}/?l=${L}">${esc(mk.name)}</a>`
+    : g.maker ? `<span class="game-dot" aria-hidden="true">·</span><span class="game-maker">${esc(g.maker)}</span>` : ""}</p>
 </div>
 ${g.line ? `<p class="game-line">${esc(g.line)}</p>` : ""}
 <p class="game-nums"${d.today || d.all ? "" : " hidden"}>${numBlock(L, "today_n", d.today, "today")} ${numBlock(L, "total_n", d.all, "all")}</p>
 <div class="game-acts">
 <a class="btn btn-play" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit>${icon("i-play", "ico-flip")}<span>${T(L, "play")}</span></a>
+<button class="btn btn-vote" type="button" data-vote="${esc(g.id)}" aria-pressed="false" hidden>${icon("i-crown", "vote-i")}${icon("i-check", "vote-ok")}<span class="vote-t">${T(L, "vote")}</span></button>
 <button class="tile-star game-star" type="button" aria-pressed="false" aria-label="${T(L, "star")}" data-star="${esc(g.id)}">${icon("i-star")}</button>
 </div>
 </div>
 </article>
+${numbersBlock(d)}
 ${rowLg(d, d.lgGame || [], "h-lg-game", "row-lg-game")}
 ${d.same.length ? `<section class="row row-same" aria-labelledby="h-same">
 ${rowTop("h-same", T(L, "cat." + g.kind), d.more ? moreLink(d, `/${L}/${g.kind}/`) : "")}
@@ -427,8 +486,9 @@ ${d.same.map((x) => tile(d, x)).join("\n")}
 </ul>
 </section>` : ""}
 <aside class="game-foot">
-<p class="yours-q">${T(L, "yours_q")} <span class="mail">${esc(CONTACT)}</span></p>
-<button class="btn btn-report" type="button" data-open="sheet-report">${icon("i-flag")}<span>${T(L, "report")}</span></button>
+${g.maker_id || g.source === "logicers" ? `<p class="yours-q">${T(L, "yours_q")} <span class="mail">${esc(CONTACT)}</span></p>`
+    : `<p class="yours-q yours-q-claim"><span class="yours-q-t">${esc(yoursQ(L))}</span> <a class="btn btn-claim" href="/claim/?g=${esc(g.id)}">${T(L, "claim")}</a></p>`}
+${g.maker_id ? editLink(L, "game", g.id) : ""}<button class="btn btn-report" type="button" data-open="sheet-report">${icon("i-flag")}<span>${T(L, "report")}</span></button>
 </aside>
 </main>
 ${footer(d)}
@@ -439,9 +499,80 @@ ${tplTile(d)}`;
     genre: word(L, "cat." + g.kind), gamePlatform: "Web browser", mainEntityOfPage: gameUrl(d, g) };
   if (g.line) vg.description = g.line;
   if (g.maker) vg.author = { "@type": "Organization", name: g.maker };
-  return doc({ lang: L, cls: "pl-game", title: g.name + " · " + pageName(L), canonical: gameUrl(d, g), noindex: "noindex, follow",
+  if (mk) vg.author = { "@type": "Organization", name: mk.name, url: `${d.site}/m/${mk.slug}/` };
+  if (pic) vg.image = d.site + pic;
+  return doc({ lang: L, cls: "pl-game", title: g.name + " · " + pageName(L), canonical: gameUrl(d, g), noindex: indexable(g) ? null : "noindex, follow",
+    image: pic ? d.site + pic : null,
     desc: g.line || word(L, "seo.desc").replace("{lang}", LANG.get(L).endonym), jsonld: vg, body,
     data: pageData(d, { game: g.id, url: g.url, lgLang: d.lgLang }) });
+}
+
+/* Edit, for the maker only: hidden, shown by portal.js on the device that holds this maker's key (portal.makerof) */
+function editLink(L, what, id) {
+  return `<a class="btn btn-edit" href="/maker/?l=${L}" data-maker-${what}="${esc(id)}" hidden>${icon("i-edit")}<span>${T(L, "edit")}</span></a>`;
+}
+/* a claimed game's numbers (chat J, plan 2.20): players sent by UTC day for the last 90 days, as bars drawn here (no
+   script), and the countries they came from, named in the page's language. Nothing is written for a day or a country with
+   nobody, and the whole block waits for the first player. */
+export function numbersBlock(d) {
+  const N = d.numbers, L = d.lang;
+  if (!N) return "";
+  const days = Array.from({ length: NUM_DAYS }, (_, i) => { const day = dayAdd(N.from, i); return [day, N.days[day] || 0]; });
+  const total = days.reduce((a, [, n]) => a + n, 0);
+  if (!total) return "";
+  const max = Math.max(...days.map(([, n]) => n)), tag = htmlLang(L);
+  const fmt = new Intl.DateTimeFormat(tag, { day: "numeric", month: "short", timeZone: "UTC" });
+  const date = (day) => fmt.format(new Date(day + "T00:00:00Z"));
+  const bars = days.map(([day, n], i) => {
+    if (!n) return "";
+    const h = Math.max(2, Math.round(n / max * 100 * 10) / 10);
+    return `<rect class="nums-bar" x="${i * 10 + 0.75}" y="${(100 - h).toFixed(1)}" width="8.5" height="${h}"><title>${esc(date(day))}: ${esc(num(L, n))}</title></rect>`;
+  }).join("");
+  let names = null;
+  try { names = new Intl.DisplayNames([tag], { type: "region" }); } catch (e) { names = null; }
+  const cs = (N.countries || []).filter((c) => c.n > 0 && /^[A-Z]{2}$/.test(c.country || "") && !["XX", "T1", "ZZ", "EU", "AP"].includes(c.country))
+    .map((c) => { let nm = null; try { nm = names && names.of(c.country); } catch (e) { nm = null; } return nm && nm !== c.country ? { nm, n: c.n } : null; })
+    .filter(Boolean).slice(0, 5);
+  const top = cs.length ? cs[0].n : 1;
+  return `<section class="nums ${ring(d.game.id)}" aria-labelledby="h-nums">
+<div class="nums-days">
+<div class="row-top"><h2 class="row-h" id="h-nums"><span class="row-t">${T(L, "days90")}</span></h2><span class="nums-total">${esc(num(L, total))}</span></div>
+<svg class="nums-svg" viewBox="0 0 900 100" preserveAspectRatio="none" role="img" aria-label="${T(L, "days90")}: ${esc(withN(L, "total_n", total))}">${bars}</svg>
+<p class="nums-axis" aria-hidden="true"><span>${esc(date(N.from))}</span><span>${esc(date(N.to))}</span></p>
+</div>
+${cs.length ? `<div class="nums-where">
+<div class="row-top"><h2 class="row-h" id="h-where"><span class="row-t">${T(L, "countries")}</span></h2></div>
+<ol class="nums-c" aria-labelledby="h-where">
+${cs.map((c) => `<li class="nums-ci"><span class="nums-cn">${esc(c.nm)}</span><span class="nums-cv">${esc(num(L, c.n))}</span><svg class="nums-cb" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="${Math.max(2, Math.round(c.n / top * 100))}" height="4" rx="2"></rect></svg></li>`).join("\n")}
+</ol>
+</div>` : ""}
+</section>`;
+}
+
+/* a maker's page "/m/<slug>/" (chat J, plan 2.20): the maker's name and its listed games as coins, in every language they
+   have; its words in one language (?l=, else the language most of its games are in); noindex for now */
+export function pageMakerPublic(d) {
+  d = Object.assign({}, d, { page: "mk", wall: false });
+  const L = d.lang, m = d.maker;
+  const body = `${headerSub(Object.assign({}, d, { back: "/" + L + "/" }))}
+<main class="main main-mk">
+<header class="mk-head">
+<h1 class="mk-name">${esc(m.name)}</h1>
+${editLink(L, "slug", m.slug)}
+</header>
+<section class="row row-mk" aria-labelledby="h-mk">
+<h2 class="vh" id="h-mk">${esc(m.name)}</h2>
+<ul class="tiles tiles-all" role="list">
+${d.games.map((g) => tile(d, g)).join("\n")}
+</ul>
+</section>
+</main>
+${footer(d)}
+${sheetAdd(d)}
+${tplTile(d)}`;
+  return doc({ lang: L, cls: "pl-mk", title: m.name + " · Play Logicers", canonical: `${d.site}/m/${m.slug}/`, noindex: "noindex, follow",
+    desc: d.games.map((g) => g.name).join(", ").slice(0, 150), body,
+    data: pageData(d, { maker: m.slug }) });
 }
 
 /* About "/about/" (English; with ?l=<code> one line on top in that language) */
@@ -463,12 +594,129 @@ ${p("Nothing about you. No cookies, no accounts. Your device makes one random nu
 ${p("When you add a game, we keep its link, and your name and email if you give them; only Khayyam sees your email. We keep them while the game is on the list, so we can tell its maker the numbers, and delete them 90 days after a game is turned down or taken off. A report keeps its reason and the day.")}
 ${h("Your game")}
 ${p(`To have a game changed or taken off, write to <span class="mail">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}
+${p("If you like, you can claim your game: open its page here and choose Claim, then put one line in your page's code for a moment, or use the link in our email. You get a maker key: it stays on your device, and we keep only a scrambled form of it. With it you can write your game's line, choose its kind and send its logo, and you see its players by day and by country. Your words show at once and we look at every change; a logo shows once we have looked at it. There is no account and no password. Your games get a page of their own here.")}
 </article>
 </main>
 ${footer(d)}
 ${sheetAdd(d)}`;
   return doc({ lang: "en", cls: "pl-about", title: "About · Play Logicers", canonical: d.site + "/about/",
     desc: "What Play Logicers is, how games get on it, what the numbers count and what it keeps.", body, data: pageData(d) });
+}
+
+/* ---- the claim (chat J, 20 Nov 2026, plan 2.20): English, one line on top in the game's language, like About ---- */
+const localLine = (L) => (L && L !== "en" && LANG.get(L) ? `<p class="about-local" lang="${esc(htmlLang(L))}" dir="${LANG.get(L).dir}">${T(L, "about_en")}</p>\n` : "");
+const CLAIM_ERR = {
+  nocode: "Get a new line first: a newer one has replaced it.",
+  nometa: "We didn't find the line on the page. It must be in the HTML the page sends (not added later by a script). Check it, then try again.",
+  noopen: "The page did not open for us. Try again in a minute.",
+  moved: "The address now goes to another site, so it can't be checked here. Write to us.",
+  busy: "Too many tries. Try again in an hour.",
+  token: "This link no longer works: each claim link works once. You can still claim the game with a line on its page.",
+  nogame: "This game is not on the list now.",
+  server: "Something went wrong. Try again.",
+};
+const claimErrs = (keys) => keys.map((k) => `<p class="claim-err" data-e="${k}" role="alert" hidden>${esc(CLAIM_ERR[k])}</p>`).join("\n");
+const claimOk = (L) => `<section class="claim-ok" id="claim-ok" aria-labelledby="claim-ok-h" hidden>
+<h2 class="claim-step-h" id="claim-ok-h">It's yours.</h2>
+<p class="claim-p claim-joined" hidden>It is with your other games now.</p>
+<div class="claim-keybox" hidden>
+<p class="claim-p">Your maker key. This device keeps it. Keep a copy somewhere safe too: it opens your games on any device, and it is shown only this once.</p>
+<div class="claim-code"><code class="claim-key" id="claim-key"></code><button class="btn btn-copy" type="button" data-copy="claim-key">Copy</button></div>
+</div>
+<a class="btn btn-send claim-edit" href="/maker/?l=${esc(L)}">Edit your game</a>
+</section>`;
+const claimOther = `<p class="claim-other">No way to change the page? Write to <span class="mail">${esc(CONTACT)}</span> from the address you sent the game with.</p>`;
+function claimHead(g) {
+  return `<h1 class="claim-h">Claim <span class="claim-name">${esc(g.name)}</span></h1>
+<p class="claim-p">It's free and up to you: the game stays on the list either way. Once it's yours you can write its line and choose its kind.</p>`;
+}
+/* /claim/?g=<id>: the line for the page's head, then the check */
+export function pageClaim(d) {
+  const g = d.game, L = g.lang;
+  d = Object.assign({}, d, { lang: "en", wall: true, page: "claim", back: `/${L}/g/${g.slug}/`, backName: g.name });
+  const body = `${headerSub(d)}
+<main class="main main-claim">
+<article class="claim" data-game="${esc(g.id)}">
+${localLine(L)}${claimHead(g)}
+<ol class="claim-steps">
+<li class="claim-step">
+<h2 class="claim-step-h">Put this line on your page</h2>
+<p class="claim-p">In the <code>&lt;head&gt;</code> of <span class="claim-url">${esc(g.url)}</span>, as the page is sent:</p>
+<div class="claim-code" hidden><code class="claim-line" id="claim-line"></code><button class="btn btn-copy" type="button" data-copy="claim-line">Copy</button></div>
+<button class="btn btn-send claim-get" id="claim-get" type="button">Get your line</button>
+</li>
+<li class="claim-step">
+<h2 class="claim-step-h">Check</h2>
+<p class="claim-p">We open the page once and look for the line. You can take it off afterwards.</p>
+<button class="btn btn-send claim-check" id="claim-check" type="button" disabled>Check</button>
+</li>
+</ol>
+${claimErrs(["nocode", "nometa", "noopen", "moved", "busy", "nogame", "server"])}
+${claimOk(L)}
+${claimOther}
+</article>
+</main>
+${footer(d)}
+${sheetAdd(d)}`;
+  return doc({ lang: "en", cls: "pl-claim", title: "Claim " + g.name + " · Play Logicers", noindex: true, script2: ASSET.maker, body,
+    data: { lang: L, page: "claim", site: d.site, game: g.id, contact: CONTACT } });
+}
+/* /claim/<token>/: the single-use link of the weekly email; nothing is used until the button is pressed (a mail program
+   that opens links to look at them claims nothing) */
+export function pageClaimLink(d) {
+  const g = d.game, L = g ? g.lang : "en";
+  d = Object.assign({}, d, { lang: "en", wall: true, page: "claim", back: g ? `/${L}/g/${g.slug}/` : "/", backName: g ? g.name : "Play Logicers" });
+  const body = `${headerSub(d)}
+<main class="main main-claim">
+<article class="claim"${g ? ` data-game="${esc(g.id)}" data-token="${esc(d.token)}"` : ""}>
+${g ? `${localLine(L)}${claimHead(g)}
+<button class="btn btn-send claim-token" id="claim-token" type="button">Claim it</button>
+${claimErrs(["token", "busy", "server"])}
+${claimOk(L)}` : `<h1 class="claim-h">This link no longer works</h1>
+<p class="claim-p">Each claim link works once. You can still claim a game with a line on its page: open the game on Play Logicers and choose Claim under "Your game?".</p>
+<a class="btn btn-send" href="/">Play Logicers</a>`}
+</article>
+</main>
+${footer(d)}
+${sheetAdd(d)}`;
+  return doc({ lang: "en", cls: "pl-claim", title: (g ? "Claim " + g.name : "Claim") + " · Play Logicers", noindex: true, script2: ASSET.maker, body,
+    data: { lang: L, page: "claimlink", site: d.site, game: g ? g.id : null, contact: CONTACT } });
+}
+/* /maker/: the maker's form (English; maker.js builds it from the key on the device) */
+export function pageMaker(d) {
+  const L = d.local || "en";
+  d = Object.assign({}, d, { lang: "en", wall: true, page: "maker" });
+  const body = `${headerSub(d)}
+<main class="main main-maker">
+<div class="maker" id="maker">
+${localLine(L)}<h1 class="claim-h">Your games</h1>
+<section class="maker-nokey" id="maker-nokey" hidden>
+<p class="claim-p">There is no maker key on this device. You get one when you claim a game: on the game's page, under "Your game?".</p>
+<form class="maker-keyform" id="maker-keyform" autocomplete="off">
+<label class="fld"><span class="fld-l">Your maker key</span><input name="key" autocomplete="off" spellcheck="false" maxlength="40" required></label>
+<button class="btn btn-send" type="submit">Open</button>
+<p class="claim-err" data-e="key" role="alert" hidden>This key doesn't open anything. Check it and try again.</p>
+<p class="claim-err" data-e="busy" role="alert" hidden>${esc(CLAIM_ERR.busy)}</p>
+</form>
+</section>
+<section class="maker-main" id="maker-main" hidden>
+<form class="maker-namef" id="maker-namef">
+<label class="fld"><span class="fld-l">Your name, as players see it</span><input name="name" maxlength="60" required></label>
+<button class="btn btn-send" type="submit">Save</button>
+<p class="maker-msg" role="status" hidden></p>
+</form>
+<a class="btn maker-pagelink" id="maker-page" href="/" hidden>Your page on Play Logicers</a>
+<div class="maker-games" id="maker-games"></div>
+<p class="claim-other">Your words go live at once; we look at every change. The address, the language and whether a game is listed stay ours to change: write to <span class="mail">${esc(CONTACT)}</span>.</p>
+<button class="btn maker-forget" id="maker-forget" type="button">Forget the key on this device</button>
+</section>
+</div>
+</main>
+${footer(d)}
+${sheetAdd(d)}`;
+  return doc({ lang: "en", cls: "pl-maker", title: "Your games · Play Logicers", noindex: true, script2: ASSET.maker, body,
+    data: { lang: "en", local: L, page: "maker", site: d.site, kinds: KINDS, kindNames: Object.fromEntries(KINDS.map((k) => [k, word("en", "cat." + k)])),
+      langNames: Object.fromEntries(LANGS.map((l) => [l.code, l.endonym])), contact: CONTACT } });
 }
 
 /* nothing here (404): in a language, with its rows under the line; else the wall's languages */
@@ -518,7 +766,7 @@ export function pageAdmin(d) {
 <button class="btn admin-lock" type="button">Lock</button>
 </div>
 <nav class="admin-filters" aria-label="Filters" hidden>
-${[["todo", "To do"], ["left", "Left for Khayyam"], ["reports", "Reports"], ["dead", "Dead links"], ["all", "All"]].map(([f, t]) => `<button class="admin-filter" type="button" data-filter="${f}" aria-pressed="false">${t}<span class="admin-filter-n"></span></button>`).join("\n")}
+${[["todo", "To do"], ["left", "Left for Khayyam"], ["reports", "Reports"], ["dead", "Dead links"], ["edits", "Edits"], ["tell", "To tell"], ["all", "All"]].map(([f, t]) => `<button class="admin-filter" type="button" data-filter="${f}" aria-pressed="false"${f === "tell" ? " hidden" : ""}>${t}<span class="admin-filter-n"></span></button>`).join("\n")}
 </nav>
 <section class="admin-cards" id="admin-cards" aria-live="polite"></section>
 <button class="btn admin-more" type="button" hidden>More</button>

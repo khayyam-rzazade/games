@@ -46,5 +46,16 @@
   "nf": "Nothing here.",
   "about": "About",
   "close": "Close",
-  "star": "Save"
+  "star": "Save",
+  "dice": "Random game",
+  "streak_n": "{n} days in a row",
+  "streak_n.one": "{n} day in a row",
+  "run": "Next game",
+  "run_done": "All played today",
+  "vote": "Vote",
+  "gotw": "Game of the week",
+  "claim": "Claim",
+  "days90": "Last 90 days",
+  "countries": "Countries",
+  "edit": "Edit"
 }
