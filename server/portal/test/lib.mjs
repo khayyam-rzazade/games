@@ -18,7 +18,7 @@ export class Assets {
 }
 export function env(extra) {
   return Object.assign({ PORTAL_KEY: "a-long-secret-key-of-the-portal-0123456789", ADMIN_KEY: "khayyam-admin-key-0123456789abcdef",
-    REVIEW_KEY: "weekly-review-key-0123456789abcdef", ALLOW_ORIGINS: "", SITE, DB: new D1(), ASSETS: new Assets(), PORTAL_DEBUG: "" }, extra || {});
+    REVIEW_KEY: "weekly-review-key-0123456789abcdef", ALLOW_ORIGINS: "", SITE, SHOW_NUMBERS: "1", DB: new D1(), ASSETS: new Assets(), PORTAL_DEBUG: "" }, extra || {});
 }
 
 /* the web as the checks see it: { "https://x.com/": { status, headers, body } | (req) => Response | Error } */

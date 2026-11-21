@@ -17,7 +17,10 @@
    needs little CPU (300 link checks spend their time waiting on the network, which is not CPU), the number is a ceiling.
    Workers Logs and traces stay OFF: About promises that nothing else is kept.
    version_metadata (chat K, 20 Nov 2026): Cloudflare tells the Worker the id of its own version (env.CF_VERSION_METADATA.id);
-   the edge cache's keys carry it (src/index.js versionOf), so every deploy shows its new pages at once. Nothing is kept. */
+   the edge cache's keys carry it (src/index.js versionOf), so every deploy shows its new pages at once. Nothing is kept.
+   vars.SHOW_NUMBERS, the numbers of players (Khayyam, 21 Nov 2026: too few to show yet): "0" counts and shows nothing on the
+   pages or in the public API; "1" shows them. What is counted is always on the queue page, under Numbers. (No comment
+   may follow the "assets" block: a test reads this file with a simple comment stripper.) */
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "logicers-portal",
@@ -39,7 +42,8 @@
   },
   "vars": {
     "SITE": "https://play.logicers.com",
-    "ALLOW_ORIGINS": ""
+    "ALLOW_ORIGINS": "",
+    "SHOW_NUMBERS": "0"
   },
   "d1_databases": [
     { "binding": "DB", "database_name": "logicers-portal", "database_id": "750d52ac-feb4-4b37-bce0-7a86fe35dcec" }

@@ -23,6 +23,9 @@
   var doc = document;
   var D = {};
   try { D = JSON.parse(doc.getElementById("pl-data").textContent) || {}; } catch (e) { D = {}; }
+  /* the numbers of players are counted and, for now, not shown (Khayyam, 21 Nov 2026): the page says so (nums: 0), and then
+     no counts are asked for and a tap turns no coin into a number; the tap itself is still counted */
+  var NUMS = D.nums !== 0;
   var W = D.words || {}, LANG = D.lang || "en", TAG = D.tag || LANG, PAGE = D.page || "";
   var IN_LANG = PAGE === "lang" || PAGE === "kind" || PAGE === "game";
   function $(s, r) { return (r || doc).querySelector(s); }
@@ -122,7 +125,7 @@
   }
   var lastCounts = 0;
   function counts() {
-    if (!window.fetch) return;
+    if (!NUMS || !window.fetch) return;
     lastCounts = Date.now();
     window.fetch(IN_LANG ? "/api/counts?lang=" + encodeURIComponent(LANG) : "/api/counts", { credentials: "omit" })
       .then(function (r) { return r.ok ? r.json() : null; })
@@ -366,7 +369,7 @@
       held = true;
       window.setTimeout(function () { held = false; if (host.id === "dice") diceLast = id; pickDice(); paintRun(); }, 80);
     }
-    if (first) {
+    if (first && NUMS) {
       $$('[data-game="' + id + '"]').forEach(function (g) {
         $$('.tile-n[data-count="today"]', g).forEach(function (x) {
           var t = (+(x.getAttribute("data-today") || 0) || +(x.textContent || "").replace(/\D/g, "") || 0) + 1;
@@ -393,6 +396,7 @@
     var games = o && Array.isArray(o.games) ? o.games : [], slug = o && typeof o.slug === "string" ? o.slug : "";
     $$("[data-maker-game]").forEach(function (a) { a.hidden = games.indexOf(a.getAttribute("data-maker-game")) < 0; });
     $$("[data-maker-slug]").forEach(function (a) { a.hidden = !slug || a.getAttribute("data-maker-slug") !== slug; });
+    $$("[data-own-nums]").forEach(function (a) { a.hidden = games.indexOf(a.getAttribute("data-own-nums")) < 0; });   // its days and countries, while nobody else sees numbers
   }
   function paintVote(m) {
     var b = $("[data-vote]");

@@ -24,7 +24,7 @@
                  /admin/pic (admin.js)
    GET (JSON):   /api/langs  /api/<lang>/games  /api/<lang>/dice  /api/counts
    Kept: see api.js and db.js. Never kept: an IP address, a user agent, the device id itself. Workers Logs stay off. */
-import { json, bad, readJson, brake, isLocal } from "./util.js";
+import { json, bad, readJson, brake, isLocal, showNums } from "./util.js";
 import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, KINDS } from "./db.js";
 import { LANG, isLang, CODES } from "./langs.js";
 import { lgRowLang, lgShown, lgOfKind, lgForGame, lgEn, EN_LINE, LG_HOME } from "./logicers.js";
@@ -148,10 +148,10 @@ async function langPageData(env, lang) {
 async function notFound(env, site, lang, open) {
   if (lang && open.has(lang)) {
     const d = await langPageData(env, lang);
-    return pub(pageNotFound(Object.assign({ site }, d)), 404, { noindex: true, cache: "public, max-age=60" });
+    return pub(pageNotFound(Object.assign({ site, nums: showNums(env) }, d)), 404, { noindex: true, cache: "public, max-age=60" });
   }
   const w = await wallData(env);
-  return pub(pageNotFound({ site, langs: w.langs }), 404, { noindex: true, cache: "public, max-age=60" });
+  return pub(pageNotFound({ site, nums: showNums(env), langs: w.langs }), 404, { noindex: true, cache: "public, max-age=60" });
 }
 
 /* ---- sitemaps ---- */
@@ -215,30 +215,30 @@ async function page(req, env, ctx, url) {
   }
 
   return cached(req, env, ctx, async () => {
-    const open = await openSet(env);
+    const open = await openSet(env), nums = showNums(env);                  // nums false: counted, not shown (util.js showNums)
     if (segs.length === 0) {
       const w = await wallData(env);
       w.langs.sort((a, b) => b.games - a.games || CODES.indexOf(a.code) - CODES.indexOf(b.code));
-      return pub(pageWall({ site, langs: w.langs.filter((l) => LANG.has(l.code)), today: w.today, lgHome: "https://logicers.com/" }));
+      return pub(pageWall({ site, nums, langs: w.langs.filter((l) => LANG.has(l.code)), today: w.today, lgHome: "https://logicers.com/" }));
     }
     if (segs[0] === "m" && segs.length === 2) {                             // a maker's page (chat J, plan 2.20)
       const d = await makerData(env, segs[1], url.searchParams.get("l"), open);
       if (!d) return notFound(env, site, null, open);
-      return pub(pageMakerPublic(Object.assign({ site }, d)), 200, { noindex: "noindex, follow" });
+      return pub(pageMakerPublic(Object.assign({ site, nums }, d)), 200, { noindex: "noindex, follow" });
     }
     if (segs[0] === "about" && segs.length === 1) {
       const l = url.searchParams.get("l");
-      return pub(pageAbout({ site, local: isLang(l) && open.has(l) ? l : null, lgHome: "https://logicers.com/" }));
+      return pub(pageAbout({ site, nums, local: isLang(l) && open.has(l) ? l : null, lgHome: "https://logicers.com/" }));
     }
     const lang = segs[0];
     if (!isLang(lang)) return notFound(env, site, null, open);
     if (!open.has(lang)) return redirect(site + "/", 302);
     if (segs.length === 2 && segs[1] === "sitemap.xml") return text(await sitemapLang(env, site, lang), "application/xml; charset=utf-8", "public, max-age=3600");
-    if (segs.length === 1) return pub(pageLang(Object.assign({ site, open: [...open] }, await langPageData(env, lang))));   // open: for the language button's list
+    if (segs.length === 1) return pub(pageLang(Object.assign({ site, nums, open: [...open] }, await langPageData(env, lang))));   // open: for the language button's list
     if (segs.length === 2 && KINDS.includes(segs[1])) {
       const d = await langPageData(env, lang);
       if (!d.byKind[segs[1]].length) return notFound(env, site, lang, open);
-      return pub(pageKind(Object.assign({ site, kind: segs[1], lgKind: lgOfKind(lang, d.lgInfo, segs[1]) }, d)));
+      return pub(pageKind(Object.assign({ site, nums, kind: segs[1], lgKind: lgOfKind(lang, d.lgInfo, segs[1]) }, d)));
     }
     if (segs.length === 3 && segs[1] === "g") {
       const g = await gameBySlug(env, lang, segs[2]);
@@ -246,12 +246,12 @@ async function page(req, env, ctx, url) {
         const lgLang = lgRowLang(lang);
         const gd = await gameData(env, g, lgLang);
         if (g.maker_id) Object.assign(gd, await gameNumbers(env, g));         // a claimed game: its players by day and country
-        return pub(pageGame(Object.assign({ site, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
+        return pub(pageGame(Object.assign({ site, nums, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
           200, { noindex: indexable(g) ? null : "noindex, follow" });
       }
       if (g && g.source !== "logicers") {                                   // hidden, dead, rejected, left: gone, not indexed
         const d = await langPageData(env, lang);
-        return pub(pageNotFound(Object.assign({ site }, d)), 410, { noindex: true, cache: "public, max-age=60" });
+        return pub(pageNotFound(Object.assign({ site, nums }, d)), 410, { noindex: true, cache: "public, max-age=60" });
       }
     }
     return notFound(env, site, lang, open);

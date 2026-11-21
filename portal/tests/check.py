@@ -20,6 +20,15 @@ Chat K, 20 Nov 2026 (plan section 6, prompt K): section 11 runs last, or alone w
 Play's home page from every page; the language button opens the list of the open languages; a page is never kept by a browser
 without asking; Cloudflare Web Analytics runs on the public pages only.
 
+Chat K, 21 Nov 2026, second part: section 12 runs last, or alone with --only-l (about a minute), against a second local Worker
+that counts and shows no number, as production does for now (plan 2.8). The sections before it run against the Worker that
+shows them:
+  npx wrangler dev --local --port 8787 --var ALLOW_ORIGINS:localhost --var SHOW_NUMBERS:1
+  cp -r .wrangler/state /tmp/quiet && npx wrangler dev --local --port 8788 --inspector-port 9240 --persist-to /tmp/quiet --var ALLOW_ORIGINS:localhost --var SHOW_NUMBERS:0
+(PORTAL_QUIET overrides http://localhost:8788.) It looks at: no number of players on any page, before and after a tap that
+is counted; Numbers in the queue, for both keys; Claim in the first screen of a game's page; the dice with its word on a
+computer and alone on a phone, the name of the page on one line beside the buttons, in the 12 languages, stretched too.
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -97,7 +106,7 @@ BOXES = r"""
       if (!inside(c, box)) bad.push('outside its box: ' + name(c) + ' in ' + name(box));
     }
   }
-  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .add-top, .run, .run-done, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter, .lang-opt, .lang-opt-t')) {
+  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .add-top, .dice, .run, .run-done, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter, .lang-opt, .lang-opt-t')) {
     if (!vis(e)) continue;
     if (e.scrollWidth > e.clientWidth + 1) bad.push('cut: ' + name(e) + ' ' + e.scrollWidth + ' > ' + e.clientWidth);
   }
@@ -111,7 +120,7 @@ BOXES = r"""
 # the stress: every word half as long again (and the Polish name as C may set it), then the same look
 STRETCH = r"""
 () => {
-  const sel = '.row-t, .row-more, .btn > span, .btn-add, .add-top-t, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n)';
+  const sel = '.row-t, .row-more, .btn > span, .btn-add, .add-top-t, .dice-t, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n)';
   for (const e of document.querySelectorAll(sel)) {
     for (const n of [...e.childNodes]) if (n.nodeType === 3 && n.textContent.trim()) { const t = n.textContent.trim(); n.textContent = (n.textContent.startsWith(' ') ? ' ' : '') + t + t.slice(0, Math.ceil(t.length / 2)).toLowerCase() + (n.textContent.endsWith(' ') ? ' ' : ''); }
   }
@@ -677,6 +686,7 @@ def main():
         ctx.close()
         section_j(b)
         section_k(b)
+        section_l(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1328,13 +1338,148 @@ def section_k(b):
     ctx.close(); api_ctx.close()
 
 
+# ---- 12. the numbers are counted and not shown; Claim under the game; the dice's word (chat K, 21 Nov 2026, second part)
+Q = os.environ.get("PORTAL_QUIET", "http://localhost:8788")
+SHOWN = r"""
+() => {
+  const R = (e) => e.getBoundingClientRect(), bad = [];
+  const vis = (e) => { const r = R(e), s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !e.closest('[hidden], template'); };
+  for (const e of document.querySelectorAll('.today, .game-nums, .nums')) if (vis(e)) bad.push(e.className);
+  for (const e of document.querySelectorAll('[data-count], [data-count-label]')) if ((e.textContent || '').trim() && /\d/.test(e.textContent)) bad.push((e.className || e.getAttribute('data-count-label')) + ': ' + e.textContent.trim());
+  for (const e of document.querySelectorAll('li.tile[data-game]:not([data-game=""])')) { const n = e.querySelector('.tile-n'); if (n && !n.hasAttribute('data-mark') && (n.textContent || '').trim()) bad.push('coin ' + e.dataset.game + ': ' + n.textContent.trim()); }
+  return bad;
+}
+"""
+HEAD_L = r"""
+() => {
+  const R = (e) => { const r = e.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.right), Math.round(r.top), Math.round(r.bottom)]; };
+  const h = document.querySelector('.top h1, .top .brand'), d = document.getElementById('dice'), t = d.querySelector('.dice-t'), acts = document.querySelector('.top-acts');
+  const rg = document.createRange(); rg.selectNodeContents(h);
+  const tr = t.getBoundingClientRect(), ds = getComputedStyle(t);
+  return { lines: new Set([...rg.getClientRects()].filter(r => r.width > 1).map(r => Math.round(r.top))).size, h: R(h), acts: R(acts), dice: R(d), hidden: d.hidden,
+    word: tr.width > 2 && tr.height > 2 && ds.position === 'static' ? t.textContent : '', name: d.getAttribute('aria-label'), title: d.getAttribute('title'), cut: d.scrollWidth > d.clientWidth + 1,
+    kids: [...acts.children].filter(e => !e.hidden).map(R), sw: document.documentElement.scrollWidth, vw: document.documentElement.clientWidth };
+}
+"""
+
+
+def section_l(b):
+    api_ctx = b.new_context(user_agent=UA)
+    get = lambda path: api_ctx.request.get(Q + path).text()
+    post = lambda route, body: json.loads(api_ctx.request.post(Q + route, data=json.dumps(body), headers={"Content-Type": "application/json"}).text() or "{}")
+    try: c = json.loads(get("/api/counts?lang=es"))
+    except Exception as e: ok(False, "12: the Worker that shows no number answers at " + Q + " (see the top of this file)", e); return
+    ok(c.get("hidden") is True and c.get("games") == {} and c.get("page") == 0, "12: /api/counts gives no number", c)
+    lj = json.loads(get("/api/langs"))
+    ok(lj["today"] == 0 and all(l["today"] == 0 for l in lj["langs"]), "12: /api/langs gives no number", lj["today"])
+    gs = json.loads(get("/api/es/games?n=60"))["games"]
+    ok(len(gs) > 10 and all(g["today"] == 0 and g["all"] == 0 for g in gs), "12: the games' list gives no number")
+    n0 = post("/admin/queue", {"key": ADMIN, "filter": "numbers"}).get("numbers") or {}
+    ok(n0.get("shown") is False and len(n0.get("days") or []) == 14, "12: Numbers for the admin key", str(n0)[:200])
+    nr = post("/admin/queue", {"key": REVIEW, "filter": "numbers"}).get("numbers") or {}
+    ok(nr.get("total") == n0.get("total"), "12: the same Numbers for the review key", str(nr)[:200])
+    ok(post("/admin/queue", {"key": "wrong-key-0000000000000000000000", "filter": "numbers"}).get("ok") is False, "12: no Numbers for a wrong key")
+    es0 = next((l for l in n0.get("langs", []) if l["code"] == "es"), {"sent": [0, 0, 0], "opened": [0, 0, 0]})
+
+    # -- no number on any page, before and after a tap; the tap and the visit are counted
+    for w in (390, 1280):
+        ctx, pg = new(b, w)
+        asked = []
+        pg.on("request", lambda r: asked.append(r.url) if "/api/counts" in r.url else None)
+        for path in ["/", "/es/", "/es/words/", "/about/", "/es/nothing-here/"]:
+            pg.goto(Q + path + "?r=" + RUN, wait_until="networkidle"); pg.wait_for_timeout(300)
+            ok(pg.evaluate("JSON.parse(document.getElementById('pl-data').textContent).nums") == 0, f"12 {path} {w}: the page says numbers are not shown")
+            bad = pg.evaluate(SHOWN); ok(not bad, f"12 {path} {w}: not one number of players", bad[:4])
+            bad = pg.evaluate(BOXES); ok(not bad, f"12 {path} {w}: boxes", bad[:4])
+            clean(pg, f"12 {path} {w}")
+        pg.goto(Q + "/es/?t=" + RUN + str(w), wait_until="networkidle"); pg.wait_for_timeout(400)
+        tl = pg.query_selector(".row-kind li.tile:not(.tile-mine)")
+        gid = tl.get_attribute("data-game")
+        with pg.expect_response(lambda r: "/api/hit" in r.url) as hit:
+            with ctx.expect_page() as pop: tl.query_selector(".tile-a").click()
+        pop.value.close(); pg.wait_for_timeout(500)
+        ok(hit.value.status == 200 and hit.value.json().get("counted") is True, f"12 {w}: the tap is counted", hit.value.status)
+        ok(pg.evaluate(f"document.querySelector('li.tile[data-game=\"{gid}\"]').classList.contains('tile-tick')"), f"12 {w}: the coin played today has its tick")
+        bad = pg.evaluate(SHOWN); ok(not bad, f"12 {w}: no number after the tap", bad[:4])
+        pg.goto(Q + "/es/?u=" + RUN + str(w), wait_until="networkidle"); pg.wait_for_timeout(500)
+        bad = pg.evaluate(SHOWN); ok(not bad, f"12 {w}: no number after the tap and a new load", bad[:4])
+        slug = next(g["slug"] for g in gs if g["id"] == gid) if any(g["id"] == gid for g in gs) else json.loads(get("/api/es/games?ids=" + gid))["games"][0]["slug"]
+        pg.goto(Q + f"/es/g/{slug}/?r=" + RUN, wait_until="networkidle"); pg.wait_for_timeout(300)
+        bad = pg.evaluate(SHOWN); ok(not bad, f"12 {w}: no number on the page of the game just played", bad[:4])
+        ok(not asked, f"12 {w}: the pages ask for no counts", asked[:2])
+        ctx.close()
+    n1 = post("/admin/queue", {"key": ADMIN, "filter": "numbers"}).get("numbers") or {}
+    es1 = next((l for l in n1.get("langs", []) if l["code"] == "es"), {"sent": [0, 0, 0], "opened": [0, 0, 0]})
+    ok(es1["sent"][0] == es0["sent"][0] + 2 and es1["sent"][2] == es0["sent"][2] + 2, "12: Numbers has the two taps (two devices)", (es0["sent"], es1["sent"]))
+    ok(es1["opened"][0] == es0["opened"][0] + 2, "12: Numbers has the two visits", (es0["opened"], es1["opened"]))
+    ok(n1["total"]["sent"][0] == n0["total"]["sent"][0] + 2 and n1["days"][0]["sent"] == n1["total"]["sent"][0], "12: the totals and the day agree", (n1["total"], n1["days"][0]))
+
+    # -- Numbers in the queue: three tables, numbers only, nothing wider than the screen, both keys, no error
+    for w in (390, 1280):
+        for key, role in ((ADMIN, "admin"), (REVIEW, "review")):
+            ctx, pg = new(b, w)
+            pg.goto(Q + "/admin/", wait_until="networkidle")
+            pg.fill('#admin-key input[name="key"]', key); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+            pg.click('.admin-filter[data-filter="numbers"]'); pg.wait_for_timeout(700)
+            v = pg.evaluate(r"""() => ({ tables: document.querySelectorAll('.admin-nums-t').length, cards: document.querySelectorAll('.card, .admin-card').length, pressed: document.querySelector('.admin-filter[aria-pressed="true"]').getAttribute('data-filter'),
+              note: (document.querySelector('.admin-nums-note') || {}).textContent || '', es: [...document.querySelectorAll('.admin-nums-t tbody tr')].map(r => [...r.children].map(c => c.textContent)).find(r => /\(es\)/.test(r[0])) || [],
+              sw: document.documentElement.scrollWidth, vw: document.documentElement.clientWidth, more: document.querySelector('.btn-more') ? !document.querySelector('.btn-more').hidden : false })""")
+            ok(v["tables"] == 3 and v["pressed"] == "numbers" and "not shown" in v["note"], f"12 queue {role} {w}: Numbers shows its three tables and says the pages show none", v)
+            ok(v["es"][5:8] == [str(x) if x else "·" for x in es1["sent"]], f"12 queue {role} {w}: Spanish's players sent, as counted", (v["es"], es1["sent"]))
+            ok(v["sw"] <= v["vw"] + 1 and not v["more"], f"12 queue {role} {w}: nothing wider than the screen, no More", (v["sw"], v["vw"]))
+            pg.screenshot(path=f"{SHOTS}/l-numbers-{role}-{w}.png")
+            pg.click('.admin-filter[data-filter="all"]'); pg.wait_for_timeout(600)
+            ok(pg.evaluate("document.querySelectorAll('.admin-nums-t').length") == 0, f"12 queue {role} {w}: another filter takes the tables away")
+            clean(pg, f"12 queue {role} {w}")
+            ctx.close()
+
+    # -- Claim under the game, in the first screen; the dice's word on a computer; the page's name on one line: 12 languages, stretched too
+    for w in (360, 390, 1280, 1440):
+        ctx, pg = new(b, w)
+        for lang in LANGS:
+            tag = f"12 {lang} {w}"
+            pg.goto(Q + f"/{lang}/?r=" + RUN, wait_until="networkidle"); pg.wait_for_timeout(250)
+            words = pg.evaluate("JSON.parse(document.getElementById('pl-data').textContent).words")
+            for stretched in (False, True):
+                if stretched: pg.evaluate(STRETCH); pg.wait_for_timeout(100)
+                t2 = tag + (" stretched" if stretched else "")
+                h = pg.evaluate(HEAD_L)
+                ok(not h["hidden"] and h["name"] == words["dice"] and h["title"] == words["dice"] and h["dice"][3] - h["dice"][2] >= 44 and h["dice"][1] - h["dice"][0] >= 44 and not h["cut"], t2 + ": the dice is there, 44 px, named", h)
+                if w >= 1200: ok(h["word"] and (stretched or h["word"] == words["dice"]), t2 + ": the dice says what it is", h["word"])
+                else: ok(h["word"] == "" and h["dice"][1] - h["dice"][0] <= 46, t2 + ": on a phone the dice is its icon alone", h)
+                ok(h["lines"] == 1 or w < 400, t2 + ": the page's name on one line (a phone may take two)", h)
+                ok(h["acts"][2] < h["h"][3] and h["acts"][3] > h["h"][2], t2 + ": the buttons sit beside the name, not under it", (h["h"], h["acts"]))
+                ok(all(a[1] <= b_[0] + 1 for a, b_ in zip(h["kids"], h["kids"][1:])) and h["sw"] <= h["vw"] + 1, t2 + ": the buttons side by side, nothing wider than the screen", h["kids"])
+                bad = pg.evaluate(BOXES); ok(not bad, t2 + ": boxes", bad[:4])
+            if w in (390, 1280) and lang in ("es", "ru", "nl", "ja"): pg.screenshot(path=f"{SHOTS}/l-head-{lang}-{w}.png", clip={"x": 0, "y": 0, "width": w, "height": 200})
+            g = next((x for x in json.loads(get(f"/api/{lang}/games?n=40"))["games"] if not x.get("logicers") and not x.get("maker")), None)
+            if not g: ok(False, tag + ": a game nobody claimed, for the check"); continue
+            pg.goto(Q + f"/{lang}/g/{g['slug']}/?r=" + RUN, wait_until="networkidle"); pg.wait_for_timeout(250)
+            for stretched in (False, True):
+                if stretched: pg.evaluate(STRETCH); pg.wait_for_timeout(100)
+                t2 = tag + " game" + (" stretched" if stretched else "")
+                f = pg.evaluate("""() => { const R = (e) => { const r = e.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.right), Math.round(r.top + scrollY), Math.round(r.bottom + scrollY)]; };
+                  const c = document.querySelector('.game-foot .btn-claim'), art = document.querySelector('article'), rows = [...document.querySelectorAll('main section.row, section.row')].filter(e => !e.hidden && e.getBoundingClientRect().height > 0);
+                  return { claim: c ? R(c) : null, href: c ? c.getAttribute('href') : '', art: R(art), row: rows.length ? R(rows[0]) : null, foot: R(document.querySelector('.game-foot')), vh: innerHeight, report: !!document.querySelector('.game-foot [data-open="sheet-report"]') }; }""")
+                ok(f["claim"] and f["href"].startswith("/claim/?g=") and f["report"], t2 + ": Claim and Report are there", f)
+                if not f["claim"]: continue
+                ok(f["claim"][2] >= f["art"][3] - 1 and (not f["row"] or f["claim"][3] <= f["row"][2] + 1), t2 + ": Claim sits under the game and above the other games", f)
+                ok(f["claim"][3] <= f["vh"] or stretched, t2 + ": Claim is in the first screen", (f["claim"], f["vh"]))
+                ok(f["claim"][3] - f["claim"][2] >= 44, t2 + ": Claim is 44 px", f["claim"])
+                bad = pg.evaluate(BOXES); ok(not bad, t2 + ": boxes", bad[:4])
+            if w in (390, 1280) and lang in ("es", "ru"): pg.screenshot(path=f"{SHOTS}/l-game-{lang}-{w}.png")
+            clean(pg, tag)
+        ctx.close()
+    api_ctx.close()
+
+
 def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_k(b) if k else section_j(b)
+        section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1342,4 +1487,4 @@ def only_j(k=False):
 
 PG_API = None
 if __name__ == "__main__":
-    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a == "--only-k" for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l") for a in sys.argv) else main()

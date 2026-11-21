@@ -106,10 +106,40 @@
       if (n) n.textContent = open[f] != null ? String(open[f]) : "";
     });
   }
+  /* Numbers (chat K, 21 Nov 2026): what is counted, while the pages show none of it. Three small tables, numbers only. */
+  function numTable(title, head, rows) {
+    var box = el("section", "admin-nums"), t = el("table", "admin-nums-t"), tr = el("tr");
+    box.appendChild(el("h2", "admin-nums-h", title));
+    head.forEach(function (h, i) { var th = el("th", i ? "is-n" : null, h); th.scope = "col"; tr.appendChild(th); });
+    var th = el("thead"); th.appendChild(tr); t.appendChild(th);
+    var tb = el("tbody");
+    rows.forEach(function (r) {
+      var row = el("tr", r.cls || null);
+      r.cells.forEach(function (c, i) { var td = el(i ? "td" : "th", i ? "is-n" : null, typeof c === "number" ? (c ? c.toLocaleString("en-US") : "·") : c); if (!i) td.scope = "row"; row.appendChild(td); });
+      tb.appendChild(row);
+    });
+    t.appendChild(tb); box.appendChild(t);
+    return box;
+  }
+  function numbersView(n) {
+    var f = doc.createDocumentFragment(), three = function (x) { return [x[0], x[1], x[2]]; };
+    f.appendChild(el("p", "admin-nums-note", (n.shown ? "The pages show these numbers." : "Counted, not shown on the pages (SHOW_NUMBERS in wrangler.jsonc is \"0\"; \"1\" shows them).") + " Today is " + n.day + " (UTC)."));
+    var head = ["", "Games", "Opened today", "7 days", "In all", "Sent today", "7 days", "In all"];
+    var rows = n.langs.map(function (l) { return { cells: [l.endonym + " (" + l.code + ")", l.games].concat(three(l.opened), three(l.sent)) }; });
+    rows.unshift({ cls: "is-total", cells: ["All languages", n.langs.reduce(function (s, l) { return s + l.games; }, 0)].concat(three(n.total.opened), three(n.total.sent)) });
+    rows.push({ cells: ["Sent to Logicers' own games", ""].concat(["", "", ""], three(n.total.logicers)) });
+    f.appendChild(numTable("By language: people who opened a page, players sent to games", head, rows));
+    f.appendChild(numTable("The last 14 days", ["Day (UTC)", "Opened a page", "Sent to games"], n.days.map(function (d) { return { cells: [d.day, d.opened, d.sent] }; })));
+    f.appendChild(numTable("Games that sent most players (7 days)", ["Game", "Language", "Today", "7 days", "In all"],
+      n.games.map(function (g) { return { cells: [g.name + (g.logicers ? " (Logicers)" : "") + (g.status !== "listed" ? " (" + g.status + ")" : ""), g.lang].concat(three(g.sent)) }; })));
+    if (!n.games.length) f.appendChild(el("p", "admin-empty", "No player sent yet."));
+    return f;
+  }
   function paint(j, append) {
     counts(j.open);
     $$(".admin-filter").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-filter") === filter ? "true" : "false"); });
     if (!append) while (cards.firstChild) cards.removeChild(cards.firstChild);
+    if (j.numbers) { cards.appendChild(numbersView(j.numbers)); next = null; moreBtn.hidden = true; return; }
     (j.cards || []).forEach(function (c) { cards.appendChild(card(c)); });
     if (!cards.children.length) cards.appendChild(el("p", "admin-empty", "Nothing here."));
     next = j.next;

@@ -83,7 +83,7 @@ import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=d95b127ae8", js: "/a/portal.js?v=d65cda5f61", admin: "/a/admin.js?v=3c1522cdd6", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=178609c4ec" };
+export const ASSET = { css: "/a/portal.css?v=692741f24a", js: "/a/portal.js?v=7db71eb143", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=178609c4ec" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -157,8 +157,22 @@ function pageWords(lang) {
 }
 /* what portal.js gets on every page */
 function pageData(d, more) {
-  return Object.assign({ lang: d.lang, site: d.site, page: d.page, words: pageWords(d.lang), contact: CONTACT, tag: htmlLang(d.lang) }, more || {});
+  return Object.assign({ lang: d.lang, site: d.site, page: d.page, words: pageWords(d.lang), contact: CONTACT, tag: htmlLang(d.lang), nums: d.nums === false ? 0 : 1 }, more || {});
 }
+/* The numbers are counted and, for now, not shown (Khayyam, 21 Nov 2026; util.js showNums; plan 2.8). A page whose data says
+   nums: false is drawn as on a day with nobody: every "today", "in all" and "players today" it was given is 0, so each coin
+   shows its picture, no line of players is written, and nothing on the page or in its source says how few came. A claimed
+   game's own days and countries (d.numbers) stay, hidden, for the maker's device only (numbersBlock). The page's data tells
+   portal.js (nums: 0), which then asks for no counts and turns no coin into a number after a tap. */
+const QUIET = new Set(["today", "all", "page_today", "week"]);
+function hush(x) {
+  if (Array.isArray(x)) return x.map(hush);
+  if (!x || typeof x !== "object" || (Object.getPrototypeOf(x) !== Object.prototype && Object.getPrototypeOf(x) !== null)) return x;
+  const o = {};
+  for (const k of Object.keys(x)) o[k] = k === "numbers" ? x[k] : QUIET.has(k) && typeof x[k] === "number" ? 0 : hush(x[k]);
+  return o;
+}
+const quiet = (d) => (d && d.nums === false ? hush(d) : d);
 
 /* ---- pieces ---- */
 /* the name is a link to Play's home page, "/", from every page (Khayyam, 20 Nov 2026, evening: "the Play Logicers title must always
@@ -195,7 +209,7 @@ const brandBy = (d) => `<p class="brand-by"><a class="brand-by-a" href="${esc(d.
    "Language" and the language's own name; on a phone it shows as a globe. */
 function headerLang(d) {
   const l = LANG.get(d.lang);
-  return `<header class="top top-lang">
+  return `<header class="top top-lang${d.nums === false ? " top-quiet" : ""}">
 <div class="brand-box">
 ${brand(d, "h1")}
 ${brandBy(d)}
@@ -203,7 +217,7 @@ ${brandBy(d)}
 ${todayLine(d.lang, d.page_today, "page")}
 <div class="top-acts">
 ${addTop(d.lang)}
-<a class="dice" id="dice" target="_blank" rel="noopener" data-hit data-game="" aria-label="${T(d.lang, "dice")}" title="${T(d.lang, "dice")}" hidden>${icon("i-dice")}</a>
+<a class="dice" id="dice" target="_blank" rel="noopener" data-hit data-game="" aria-label="${T(d.lang, "dice")}" title="${T(d.lang, "dice")}" hidden>${icon("i-dice")}<span class="dice-t" aria-hidden="true">${T(d.lang, "dice")}</span></a>
 <button class="chip-lang" type="button" data-open="sheet-langs" aria-haspopup="dialog" aria-label="${T(d.lang, "f.lang")}: ${esc(l.endonym)}" title="${T(d.lang, "f.lang")}">${icon("i-globe", "chip-g")}<span class="chip-lang-t">${esc(l.endonym)}</span>${icon("i-down", "chip-d")}</button>
 </div>
 </header>`;
@@ -408,6 +422,7 @@ const langTile = (l) => `<li class="lang" data-lang="${l.code}" lang="${esc(html
 
 /* the wall "/" (English words; portal.js puts the device's language first) */
 export function pageWall(d) {
+  d = quiet(d);
   d = Object.assign({}, d, { lang: "en", wall: true, page: "wall" });
   const langs = d.langs.map((x) => Object.assign({}, x, LANG.get(x.code)));
   const body = `${headerWall(d)}
@@ -426,6 +441,7 @@ ${sheetAdd(d)}`;
 
 /* a language's page "/<lang>/" */
 export function pageLang(d) {
+  d = quiet(d);
   d = Object.assign({}, d, { page: "lang" });
   const kinds = kindOrder(d.byKind);
   const wanted = KINDS.filter((k) => !d.byKind[k].length);
@@ -450,6 +466,7 @@ ${tplTile(d)}`;
 
 /* one kind in a language "/<lang>/<kind>/": KIND_MAX tiles, then More (portal.js asks for the rest) */
 export function pageKind(d) {
+  d = quiet(d);
   d = Object.assign({}, d, { page: "kind" });
   const games = d.byKind[d.kind], shown = games.slice(0, KIND_MAX);
   const body = `${headerSub(d)}
@@ -480,6 +497,7 @@ function numBlock(L, key, n, which) {
 /* "Your game?": the question of yours_q, up to its question mark (every language's yours_q asks it first) */
 export const yoursQ = (L) => { const s = word(L, "yours_q"), m = /^[^?？]*[?？]/.exec(s); return (m ? m[0] : s).trim(); };
 export function pageGame(d) {
+  d = quiet(d);
   d = Object.assign({}, d, { page: "game" });
   const g = d.game, L = d.lang, pic = picUrl(g), mk = g.maker_id && d.maker ? d.maker : null;
   const body = `${headerSub(d)}
@@ -502,6 +520,11 @@ ${g.line ? `<p class="game-line">${esc(g.line)}</p>` : ""}
 </div>
 </div>
 </article>
+<aside class="game-foot">
+${g.maker_id || g.source === "logicers" ? `<p class="yours-q">${T(L, "yours_q")} <span class="mail">${esc(CONTACT)}</span></p>`
+    : `<p class="yours-q yours-q-claim"><span class="yours-q-t">${esc(yoursQ(L))}</span> <a class="btn btn-claim" href="/claim/?g=${esc(g.id)}">${T(L, "claim")}</a></p>`}
+${g.maker_id ? editLink(L, "game", g.id) : ""}<button class="btn btn-report" type="button" data-open="sheet-report">${icon("i-flag")}<span>${T(L, "report")}</span></button>
+</aside>
 ${numbersBlock(d)}
 ${rowLg(d, d.lgGame || [], "h-lg-game", "row-lg-game")}
 ${d.same.length ? `<section class="row row-same" aria-labelledby="h-same">
@@ -510,11 +533,6 @@ ${rowTop("h-same", T(L, "cat." + g.kind), d.more ? moreLink(d, `/${L}/${g.kind}/
 ${d.same.map((x) => tile(d, x)).join("\n")}
 </ul>
 </section>` : ""}
-<aside class="game-foot">
-${g.maker_id || g.source === "logicers" ? `<p class="yours-q">${T(L, "yours_q")} <span class="mail">${esc(CONTACT)}</span></p>`
-    : `<p class="yours-q yours-q-claim"><span class="yours-q-t">${esc(yoursQ(L))}</span> <a class="btn btn-claim" href="/claim/?g=${esc(g.id)}">${T(L, "claim")}</a></p>`}
-${g.maker_id ? editLink(L, "game", g.id) : ""}<button class="btn btn-report" type="button" data-open="sheet-report">${icon("i-flag")}<span>${T(L, "report")}</span></button>
-</aside>
 </main>
 ${footer(d)}
 ${sheetAdd(d)}
@@ -559,7 +577,7 @@ export function numbersBlock(d) {
     .map((c) => { let nm = null; try { nm = names && names.of(c.country); } catch (e) { nm = null; } return nm && nm !== c.country ? { nm, n: c.n } : null; })
     .filter(Boolean).slice(0, 5);
   const top = cs.length ? cs[0].n : 1;
-  return `<section class="nums ${ring(d.game.id)}" aria-labelledby="h-nums">
+  return `<section class="nums ${ring(d.game.id)}" aria-labelledby="h-nums"${d.nums === false ? ` hidden data-own-nums="${esc(d.game.id)}"` : ""}>
 <div class="nums-days">
 <div class="row-top"><h2 class="row-h" id="h-nums"><span class="row-t">${T(L, "days90")}</span></h2><span class="nums-total">${esc(num(L, total))}</span></div>
 <svg class="nums-svg" viewBox="0 0 900 100" preserveAspectRatio="none" role="img" aria-label="${T(L, "days90")}: ${esc(withN(L, "total_n", total))}">${bars}</svg>
@@ -577,6 +595,7 @@ ${cs.map((c) => `<li class="nums-ci"><span class="nums-cn">${esc(c.nm)}</span><s
 /* a maker's page "/m/<slug>/" (chat J, plan 2.20): the maker's name and its listed games as coins, in every language they
    have; its words in one language (?l=, else the language most of its games are in); noindex for now */
 export function pageMakerPublic(d) {
+  d = quiet(d);
   d = Object.assign({}, d, { page: "mk", wall: false });
   const L = d.lang, m = d.maker;
   const body = `${headerSub(Object.assign({}, d, { back: "/" + L + "/" }))}
@@ -602,6 +621,7 @@ ${tplTile(d)}`;
 
 /* About "/about/" (English; with ?l=<code> one line on top in that language) */
 export function pageAbout(d) {
+  d = quiet(d);
   d = Object.assign({}, d, { page: "about", wall: true, lang: "en" });
   const local = d.local && d.local !== "en" ? `<p class="about-local" lang="${esc(htmlLang(d.local))}" dir="${LANG.get(d.local).dir}">${T(d.local, "about_en")}</p>\n` : "";
   const p = (s) => `<p class="about-p">${s}</p>`, h = (s) => `<h2 class="about-h">${s}</h2>`;
@@ -613,7 +633,7 @@ ${p("Play Logicers is a shelf of the world's daily games, one page for each lang
 ${h("How games get here")}
 ${p("Anyone can add a game with its link. A machine looks at the page first. Every week, Claude (an AI made by Anthropic) opens the new games, plays a little and decides: on the list, not on the list, or left for Khayyam, who makes Logicers. A game must be new every day, work on a phone, be in the language of its page, need no sign-up to play, and have nothing adult, gambling, hateful or tricky in it. The words under a game are ours, never copied from its site. Part of the starting list comes from Wordles of the World, which is in the public domain (CC0).")}
 ${h("What the numbers count")}
-${p("Each game shows how many people went to play it from Play Logicers today and in all, and each page shows how many people opened it today. A day is the world's day, from midnight to midnight UTC. Each device counts once a day for each game and each page.")}
+${p((d.nums === false ? "We count how many people go to play each game from Play Logicers and how many people open each page. The numbers are not shown yet; the maker of a game can see its own." : "Each game shows how many people went to play it from Play Logicers today and in all, and each page shows how many people opened it today.") + " A day is the world's day, from midnight to midnight UTC. Each device counts once a day for each game and each page.")}
 ${h("What we keep")}
 ${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country. Cloudflare, which serves these pages, also counts visits for us, without cookies.")}
 ${p("When you add a game, we keep its link, and your name and email if you give them; only Khayyam sees your email. We keep them while the game is on the list, so we can tell its maker the numbers, and delete them 90 days after a game is turned down or taken off. A report keeps its reason and the day.")}
@@ -746,6 +766,7 @@ ${sheetAdd(d)}`;
 
 /* nothing here (404): in a language, with its rows under the line; else the wall's languages */
 export function pageNotFound(d) {
+  d = quiet(d);
   d = Object.assign({}, d, { page: "nf" });
   if (!d.lang || !d.byKind) {
     const w = Object.assign({}, d, { lang: "en", wall: true });
@@ -791,7 +812,7 @@ export function pageAdmin(d) {
 <button class="btn admin-lock" type="button">Lock</button>
 </div>
 <nav class="admin-filters" aria-label="Filters" hidden>
-${[["todo", "To do"], ["left", "Left for Khayyam"], ["reports", "Reports"], ["dead", "Dead links"], ["edits", "Edits"], ["tell", "To tell"], ["all", "All"]].map(([f, t]) => `<button class="admin-filter" type="button" data-filter="${f}" aria-pressed="false"${f === "tell" ? " hidden" : ""}>${t}<span class="admin-filter-n"></span></button>`).join("\n")}
+${[["todo", "To do"], ["left", "Left for Khayyam"], ["reports", "Reports"], ["dead", "Dead links"], ["edits", "Edits"], ["tell", "To tell"], ["all", "All"], ["numbers", "Numbers"]].map(([f, t]) => `<button class="admin-filter" type="button" data-filter="${f}" aria-pressed="false"${f === "tell" ? " hidden" : ""}>${t}<span class="admin-filter-n"></span></button>`).join("\n")}
 </nav>
 <section class="admin-cards" id="admin-cards" aria-live="polite"></section>
 <button class="btn admin-more" type="button" hidden>More</button>

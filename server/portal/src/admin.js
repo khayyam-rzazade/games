@@ -37,10 +37,10 @@
    A card: the game, what was sent (every sender's name, and their email for the admin key only), what the add check saw (check), the flags first
    (hp: the hidden robot field was filled), the last link check, the reports (browsers, reasons), the open rows, its page.
    A game that leaves the list (reject, hide) gets off_at; its senders' names and emails go 90 days later (cron.js). */
-import { json, bad, clock, sha, same, brake, spent, cleanText, slugify, newId, keyHash, DAY } from "./util.js";
+import { json, bad, clock, sha, same, brake, spent, cleanText, slugify, newId, keyHash, DAY, utcDay, dayAdd, showNums } from "./util.js";
 import { one, all, run, st, rowsOf, KINDS, NEW_DAYS, openLangs, crownWeek, picUrl } from "./db.js";
 import { bytesOf, extOf, picFile } from "./pics.js";
-import { isLang, pageName } from "./langs.js";
+import { isLang, pageName, LANG } from "./langs.js";
 import { tokenFor } from "./claim.js";
 import { linkOk, norm } from "./check.js";
 
@@ -133,7 +133,7 @@ async function pick(env, filter, from) {
      FROM games g JOIN queue q ON q.game = g.id AND q.done = 0 AND q.kind = 'add'
      AND (q."by" IS NULL OR q."by" <> 'left') WHERE g.status = 'waiting' GROUP BY g.id ORDER BY flagged, first LIMIT ? OFFSET ?`, lim, from);
 }
-export const FILTERS = ["todo", "left", "reports", "dead", "edits", "tell", "all"];
+export const FILTERS = ["todo", "left", "reports", "dead", "edits", "tell", "all", "numbers"];
 
 export async function adminQueue(env, req, b) {
   const who = await role(env, req, b);
@@ -142,7 +142,7 @@ export async function adminQueue(env, req, b) {
   if (!FILTERS.includes(filter)) return bad("filter");
   if (filter === "tell" && who !== "admin") return bad("admin_only", 403);          // emails: Khayyam only
   const from = Number.isInteger(b.before) && b.before > 0 ? b.before : 0;
-  const games = await pick(env, filter, from);
+  const games = filter === "numbers" ? [] : await pick(env, filter, from);
   const [todo, left, reports, dead, edits] = (await env.DB.batch([
     st(env, "SELECT COUNT(DISTINCT q.game) AS n FROM queue q JOIN games g ON g.id = q.game WHERE q.done = 0 AND q.kind = 'add' AND (q.\"by\" IS NULL OR q.\"by\" <> 'left') AND g.status = 'waiting'"),
     st(env, "SELECT COUNT(*) AS n FROM games g WHERE g.status = 'left' OR EXISTS (SELECT 1 FROM queue q WHERE q.game = g.id AND q.done = 0 AND q.\"by\" = 'left')"),
@@ -155,7 +155,37 @@ export async function adminQueue(env, req, b) {
      AND g.told_at IS NULL AND g.listed_at >= ? AND EXISTS (SELECT 1 FROM adds a WHERE a.game = g.id AND a.email <> '')`, clock() - TELL_DAYS * DAY)).n;
   const shown = games.slice(0, PAGE), list = await cards(env, shown, who);
   if (filter === "tell") await tellCards(env, shown, list);
-  return json({ ok: true, role: who, filter, cards: list, next: games.length > PAGE ? from + PAGE : null, open });
+  const out = { ok: true, role: who, filter, cards: list, next: games.length > PAGE ? from + PAGE : null, open };
+  if (filter === "numbers") out.numbers = await numbers(env);
+  return json(out);
+}
+
+/* Numbers (chat K, 21 Nov 2026): what is counted, for Khayyam to look at while the pages show none of it (util.js showNums).
+   Both keys may see it: counts only, nothing about a person. "Opened" is devices that opened a language's page (views: one
+   a device, language and UTC day); "sent" is players sent to games (counts: one a device, game and UTC day). Each as today
+   (UTC), the last 7 days and in all; then the last 14 days, and the 40 games that sent most in 7 days. */
+async function numbers(env) {
+  const day = utcDay(), w = dayAdd(day, -6), f = dayAdd(day, -13);
+  const sums = "SUM(CASE WHEN x.day = ? THEN x.n ELSE 0 END) AS t, SUM(CASE WHEN x.day >= ? THEN x.n ELSE 0 END) AS w, SUM(x.n) AS a";
+  const [vl, cl, lg, vd, cd, top, listed] = (await env.DB.batch([
+    st(env, `SELECT x.lang AS lang, ${sums} FROM views x GROUP BY x.lang`, day, w),
+    st(env, `SELECT g.lang AS lang, ${sums} FROM counts x JOIN games g ON g.id = x.game GROUP BY g.lang`, day, w),
+    st(env, `SELECT ${sums} FROM counts x JOIN games g ON g.id = x.game WHERE g.source = 'logicers'`, day, w),
+    st(env, "SELECT day, SUM(n) AS n FROM views WHERE day >= ? GROUP BY day", f),
+    st(env, "SELECT day, SUM(n) AS n FROM counts WHERE day >= ? GROUP BY day", f),
+    st(env, `SELECT g.id, g.name, g.lang, g.source, g.status, ${sums} FROM counts x JOIN games g ON g.id = x.game GROUP BY g.id ORDER BY w DESC, a DESC, g.name LIMIT 40`, day, w),
+    st(env, "SELECT lang, COUNT(*) AS n FROM games WHERE status = 'listed' GROUP BY lang"),
+  ])).map(rowsOf);
+  const tri = (r) => (r ? [r.t || 0, r.w || 0, r.a || 0] : [0, 0, 0]), by = (rows) => Object.fromEntries(rows.map((r) => [r.lang, r]));
+  const V = by(vl), C = by(cl), G = by(listed), add = (x, y) => x.map((n, i) => n + y[i]);
+  const langs = [...new Set([...Object.keys(V), ...Object.keys(C), ...Object.keys(G)])].filter((c) => LANG.has(c))
+    .map((c) => ({ code: c, endonym: LANG.get(c).endonym, games: G[c] ? G[c].n : 0, opened: tri(V[c]), sent: tri(C[c]) }))
+    .sort((x, y) => y.sent[1] - x.sent[1] || y.opened[1] - x.opened[1] || y.sent[2] - x.sent[2] || x.code.localeCompare(y.code));
+  const vdm = Object.fromEntries(vd.map((r) => [r.day, r.n])), cdm = Object.fromEntries(cd.map((r) => [r.day, r.n]));
+  return { day, shown: showNums(env),
+    total: { opened: langs.reduce((s, l) => add(s, l.opened), [0, 0, 0]), sent: langs.reduce((s, l) => add(s, l.sent), [0, 0, 0]), logicers: tri(lg[0]) },
+    langs, days: Array.from({ length: 14 }, (_, i) => { const d = dayAdd(day, -i); return { day: d, opened: vdm[d] || 0, sent: cdm[d] || 0 }; }),
+    games: top.map((r) => ({ id: r.id, name: r.name, lang: r.lang, logicers: r.source === "logicers", status: r.status, sent: tri(r) })) };
 }
 
 export async function adminGame(env, req, b) {
@@ -283,9 +313,9 @@ export async function adminAct(env, req, b) {
 /* To tell (chat J, stage 4, plan section 11): each card gets the sender's email, a single-use claim link (its keyed hash is
    kept now, so the link works from today for 90 days; the same link again until one of the game's links is used) and the
    ready email in English, with a Gmail address that opens it written from logicers.world@gmail.com */
-export function tellText(g, page, link, name) {
+export function tellText(g, page, link, name, show) {
   const lang = pageName(g.lang);
-  const n = g.hits || 0;
+  const n = show === false ? 0 : g.hits || 0;                               // while the numbers are not shown, the email names none either
   const lines = [
     `${g.name} (${g.host}) is on ${lang}: ${page}`,
     n >= 1 ? `It has sent you ${n === 1 ? "1 player" : n.toLocaleString("en-US") + " players"} so far.` : null,
@@ -306,7 +336,7 @@ async function tellCards(env, games, list) {
     if (!a || !c) continue;
     const token = await tokenFor(env, g), link = site + "/claim/" + token + "/";
     stmts.push(st(env, "INSERT INTO tokens (h, game, made) VALUES (?, ?, ?) ON CONFLICT (h) DO NOTHING", await keyHash(env, "tell", token), g.id, now));
-    const page = site + "/" + g.lang + "/g/" + g.slug + "/", m = tellText(g, page, link, a.name);
+    const page = site + "/" + g.lang + "/g/" + g.slug + "/", m = tellText(g, page, link, a.name, showNums(env));
     const gmail = "https://mail.google.com/mail/?authuser=" + encodeURIComponent(MAILER) + "&view=cm&fs=1&to=" + encodeURIComponent(a.email)
       + "&su=" + encodeURIComponent(m.subject) + "&body=" + encodeURIComponent(m.text);
     c.tell = { email: a.email, name: a.name || "", link, page, subject: m.subject, text: m.text, gmail, from: MAILER };

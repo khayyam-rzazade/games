@@ -19,7 +19,7 @@
    db.js NET). What is kept: the keyed hash of (UTC day, device id, game or "view:<lang>") and of (UTC day, address, what)
    with its count, until the night, and the counts by game, day and country (from Cloudflare's request data; "XX" when it
    has none). Never the id itself, never an address. */
-import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where } from "./util.js";
+import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where, showNums } from "./util.js";
 import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed, crownStmt, crownSet, picUrl, lgLogo } from "./db.js";
 import { LANG, isLang, pageName, nameParts } from "./langs.js";
 import { linkOk, norm, addCheck } from "./check.js";
@@ -165,13 +165,13 @@ export async function report(env, req, b, ctx) {
 
 /* ---- reads ---- */
 export async function langsApi(env) {
-  const day = utcDay();
+  const day = utcDay(), show = showNums(env);                               // not shown: every number here is 0 (util.js showNums)
   const rows = await all(env, `SELECT l.code, (SELECT COUNT(*) FROM games g WHERE g.lang = l.code AND g.status = 'listed') AS games,
      COALESCE((SELECT v.n FROM views v WHERE v.lang = l.code AND v.day = ?), 0) AS today FROM langs l WHERE l.open = 1`, day);
   return json({ ok: true, day, langs: rows.filter((r) => LANG.has(r.code)).map((r) => {
     const l = LANG.get(r.code);
-    return { code: r.code, name: pageName(r.code), play_word: nameParts(r.code)[0], endonym: l.endonym, dir: l.dir, games: r.games, today: r.today };
-  }), today: rows.reduce((s, r) => s + r.today, 0) }, 200, { "Cache-Control": "public, max-age=60" });
+    return { code: r.code, name: pageName(r.code), play_word: nameParts(r.code)[0], endonym: l.endonym, dir: l.dir, games: r.games, today: show ? r.today : 0 };
+  }), today: show ? rows.reduce((s, r) => s + r.today, 0) : 0 }, 200, { "Cache-Control": "public, max-age=60" });
 }
 
 const shape = (env, lang, g, t, crown) => ({
@@ -179,7 +179,7 @@ const shape = (env, lang, g, t, crown) => ({
   page: g.source === "logicers" ? null : String(env.SITE || "https://play.logicers.com") + "/" + lang + "/g/" + g.slug + "/",
   ring: ring(g.id), new: !!(g.new_until && g.new_until > clock()) && g.source !== "logicers",
   slot: g.place === 1 && g.source !== "logicers" ? 1 : null, sold: !!g.sold, logicers: g.source === "logicers",
-  en: g.source === "logicers" && g.lang !== lang, today: t[g.id] || 0, all: g.hits || 0,
+  en: g.source === "logicers" && g.lang !== lang, today: showNums(env) ? t[g.id] || 0 : 0, all: showNums(env) ? g.hits || 0 : 0,
   crown: !!(crown && crown.has(g.id)),
   pic: g.source === "logicers" ? null : picUrl(g), logo: g.source === "logicers" ? lgLogo(g) : null,     // the logo (chat J)
 });
@@ -226,6 +226,7 @@ export async function diceApi(env, req, url, lang) {
   return json({ ok: true, lang, games: rows.map((g) => [g.id, g.url]) }, 200, { "Cache-Control": "public, max-age=300, s-maxage=300" });
 }
 export async function countsApi(env, req, url) {
+  if (!showNums(env)) return json({ ok: true, day: utcDay(), games: {}, page: 0, hidden: true }, 200, { "Cache-Control": "public, max-age=60" });   // counted, not shown
   const lang = url.searchParams.get("lang");
   const day = utcDay();
   if (!lang) {

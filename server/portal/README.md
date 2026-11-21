@@ -102,6 +102,20 @@ npx wrangler deploy
 
 After a change here or in `portal/` (unless Builds is connected). The secrets and the database stay as they are.
 
+## The numbers of players: counted, not shown (21 Nov 2026)
+
+`vars.SHOW_NUMBERS` in `wrangler.jsonc` is `"0"`: every play and every visit is counted as before, and no page, no page's
+source and no public answer (`/api/counts`, `/api/langs`, `/api/<lang>/games`) says how many came. A coin shows its kind's
+icon, the head has no "players today", a game's page has no numbers, the weekly email to a maker names none. A maker still
+sees the days and countries of a claimed game, on the device that claimed it.
+
+To look at what is counted: the queue page, `https://play.logicers.com/admin/`, either key, **Numbers**. By language: people
+who opened its page and players sent to games (today in UTC, 7 days, in all); the last 14 days; the 40 games that sent most.
+
+To show the numbers on the pages: set `"SHOW_NUMBERS": "1"` in `wrangler.jsonc` and push. Nothing else changes; `"0"` hides
+them again. Locally: `--var SHOW_NUMBERS:1` (the browser check's sections 1 to 11 need it; section 12 needs a second
+Worker with `0`, see the top of `portal/tests/check.py`).
+
 ## The tests (any computer with Node 22; no internet)
 
 ```

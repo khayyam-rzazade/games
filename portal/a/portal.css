@@ -129,7 +129,7 @@ body.pl {
 .top-wall .brand { font-size: 32px; }
 .top-wall .today-n { font-size: 64px; }
 @media (min-width: 900px) {
-  .top-lang { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "brand today chip"; align-items: end; column-gap: 36px; padding-block-start: 44px; }
+  .top-lang { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "brand today acts"; align-items: end; column-gap: 36px; padding-block-start: 44px; }
   .top-lang .today { padding-block-end: 0; flex-wrap: nowrap; }
   .top-lang .top-acts { margin-block-end: 14px; }
   .top-lang .today-n { font-size: 104px; }
@@ -147,6 +147,15 @@ body.pl {
 .dice .ico { inline-size: 22px; block-size: 22px; }
 .dice[aria-disabled="true"] { opacity: .45; cursor: default; }
 .dice[aria-disabled="true"]:hover { border-color: var(--line); }
+/* the dice says what it is on a computer (Khayyam, 21 Nov 2026: "i did not understand the button between Add a game and
+   language"): its word beside it from 1200 px while the head has no number of players beside the name (.top-quiet: the numbers
+   are not shown), so the name keeps its one line in every language; otherwise the icon alone, named by its title and for a
+   screen reader */
+.dice-t { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (min-width: 1200px) {
+  .top-quiet .dice { gap: 8px; inline-size: auto; padding-inline: 14px 18px; font-size: 14px; font-weight: 500; white-space: nowrap; }
+  .top-quiet .dice-t { position: static; inline-size: auto; block-size: auto; overflow: visible; clip-path: none; }
+}
 /* Add a game, at the top of every page (20 Nov 2026): filled ink so it is seen; a round "+" on a phone, with its words from 700 px */
 .add-top { display: inline-flex; align-items: center; justify-content: center; gap: 8px; inline-size: 44px; block-size: 44px; padding: 0; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: opacity .15s var(--ease); }
 .add-top:hover { opacity: .85; }
@@ -538,6 +547,15 @@ dialog.sheet[open] { animation: pl-up .24s var(--ease); }
 .lang-opt .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.4; }
 @media (max-width: 359px) { .lang-opts { grid-template-columns: minmax(0, 1fr); } }
 @media (min-width: 700px) { .lang-opts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* the queue's Numbers (chat K, 21 Nov 2026): what is counted, as plain tables; a wide table scrolls inside its own box */
+.admin-nums { margin-block-end: 28px; overflow-x: auto; }
+.admin-nums-h { margin-block-end: 10px; font-size: 15px; font-weight: 600; }
+.admin-nums-note { margin-block-end: 20px; color: var(--soft); font-size: 14px; }
+.admin-nums-t { inline-size: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.admin-nums-t th, .admin-nums-t td { padding: 8px 12px; border-block-end: 1px solid var(--line); text-align: start; font-weight: 400; white-space: nowrap; }
+.admin-nums-t thead th { color: var(--soft); font-size: 12px; font-weight: 500; }
+.admin-nums-t .is-n { text-align: end; }
+.admin-nums-t .is-total th, .admin-nums-t .is-total td { font-weight: 600; }
 .fld { display: flex; flex-direction: column; gap: 6px; min-inline-size: 0; }
 .fld-l { font-size: 12px; color: var(--soft); }
 .fld-opt { color: var(--soft); }

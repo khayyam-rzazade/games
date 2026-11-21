@@ -174,3 +174,8 @@ export function ring(id) {
   for (const c of String(id)) { h ^= c.codePointAt(0); h = Math.imul(h, 16777619) >>> 0; }
   return "t" + (h % 12);
 }
+
+/* The numbers of players are counted from the first day and, for now, not shown (Khayyam, 21 Nov 2026: "it is too few and
+   people won't submit games"). SHOW_NUMBERS in wrangler.jsonc: "0" counts and shows nothing on the pages or in the public
+   API; "1" shows them, as the pages were built to. The queue page's Numbers always shows what is counted. */
+export const showNums = (env) => String((env && env.SHOW_NUMBERS) || "") === "1";
