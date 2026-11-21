@@ -16,6 +16,10 @@ the end, or alone with --only-j (about a minute). It plants a crown and a claime
 "npx wrangler d1 execute logicers-portal --local" (run from server/portal; PORTAL_DIR overrides), and clears the day's caps
 (nets, seen) and the week's votes first, so a run can follow a run.
 
+Chat K, 20 Nov 2026 (plan section 6, prompt K): section 11 runs last, or alone with --only-k (about a minute): the name goes to
+Play's home page from every page; the language button opens the list of the open languages; a page is never kept by a browser
+without asking; Cloudflare Web Analytics runs on the public pages only.
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -85,7 +89,7 @@ BOXES = r"""
   const vis = (e) => { const r = R(e); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !e.closest('[hidden], .vh, dialog:not([open]), template'); };
   const inside = (a, b, pad) => { const r = R(a), q = R(b); pad = pad || 1; return r.left >= q.left - pad && r.right <= q.right + pad && r.top >= q.top - pad && r.bottom <= q.bottom + pad; };
   const name = (e) => (e.className && e.className.baseVal !== undefined ? e.className.baseVal : e.className) + ' "' + (e.textContent || '').trim().slice(0, 30) + '"';
-  for (const box of document.querySelectorAll('.tile, .lang-a, .wanted-k, .kind-opt, .reason-opt, .btn, .chip-lang, .game-tile, .back, .sheet-x, .admin-filter, .add-top, .dice, .run, .run-done')) {
+  for (const box of document.querySelectorAll('.tile, .lang-a, .wanted-k, .kind-opt, .reason-opt, .btn, .chip-lang, .game-tile, .back, .sheet-x, .admin-filter, .add-top, .dice, .run, .run-done, .lang-opt')) {
     if (!vis(box)) continue;
     for (const c of box.querySelectorAll('span, svg, b')) {
       if (!vis(c) || c.closest('svg') !== c && c.closest('svg')) continue;
@@ -93,7 +97,7 @@ BOXES = r"""
       if (!inside(c, box)) bad.push('outside its box: ' + name(c) + ' in ' + name(box));
     }
   }
-  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .add-top, .run, .run-done, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter')) {
+  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .add-top, .run, .run-done, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter, .lang-opt, .lang-opt-t')) {
     if (!vis(e)) continue;
     if (e.scrollWidth > e.clientWidth + 1) bad.push('cut: ' + name(e) + ' ' + e.scrollWidth + ' > ' + e.clientWidth);
   }
@@ -188,6 +192,7 @@ def main():
         open_codes = [l["code"] for l in langs]
         ok(all(c in open_codes for c in LANGS), "the 12 launch languages are open (import the seeds)", open_codes)
         big = max(langs, key=lambda l: l["games"])["code"]
+        sql("DELETE FROM nets; DELETE FROM seen;")       # the day's caps (50 views a language from one address): cleared, so a run can follow a run or --only-k (chat K)
         ok(max(l["games"] for l in langs) >= 200, f"a language with 200 games for the check ({big})", max(l["games"] for l in langs))
 
         # ---- 1. every page at every width, light and dark: boxes, names, CSP; the words of all 12 languages, and stretched
@@ -451,16 +456,16 @@ def main():
             clean(pg, f"top add {w}")
             ctx.close()
 
-        # the name never links to the page it is on
+        # the name goes to Play's home page from every page (chat K, 20 Nov 2026, evening; section 11 has the rest)
         ctx, pg = new(b, 390)
         pg.goto(url("/"), wait_until="networkidle")
-        ok(pg.get_attribute(".top .brand-a", "href") == "https://logicers.com/", "the wall's name goes to Logicers' own site")
+        ok(pg.get_attribute(".top .brand-a", "href") == "/", "the wall's name stays on the wall")
         pg.goto(url("/es/"), wait_until="networkidle")
         ok(pg.get_attribute(".top .brand-a", "href") == "/" and pg.get_attribute(".top .brand-by-a", "href") == "https://logicers.com/es/", "a language page's name goes to the wall, 'de Logicers' to Logicers' Spanish home")
         pg.click(".top .brand-a"); pg.wait_for_load_state("networkidle")
         ok(re.sub(r"[?#].*", "", pg.url).rstrip("/") == B, "a tap on a language page's name lands on the wall", pg.url)
         pg.goto(url("/es/words/"), wait_until="networkidle")
-        ok(pg.get_attribute(".top .brand-a", "href") == "/es/", "a kind page's name goes up to the language page")
+        ok(pg.get_attribute(".top .brand-a", "href") == "/", "a kind page's name goes to the wall too")
         ctx.close()
 
         # the dice: a real link to a game of the language, picked on the device, a new one after each tap
@@ -671,6 +676,7 @@ def main():
         clean(pg, "queue phone")
         ctx.close()
         section_j(b)
+        section_k(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1178,13 +1184,157 @@ def section_j(b):
     if not only or "--only-j4" in only: section_j4(b)
 
 
-def only_j():
+# ---- 11. chat K, 20 Nov 2026 (plan section 6, prompt K): the name goes to Play's home page from every page; the language
+# button opens the list of the open languages (a sheet as Add a game's: focus, Escape, 44 px; phone and computer; the 12
+# languages, also with every word half as long again); a page is never kept by a browser without asking; Cloudflare Web
+# Analytics runs on the public pages and is blocked on the queue and the claim pages. Alone: --only-k (about a minute).
+LANGSHEET = r"""
+() => {
+  const d = document.getElementById('sheet-langs'), R = (e) => e.getBoundingClientRect(), vw = document.documentElement.clientWidth, vh = window.innerHeight;
+  if (!d || !d.open) return null;
+  const opts = [...d.querySelectorAll('a.lang-opt')], dr = R(d);
+  const cols = new Set(opts.map((a) => Math.round(R(a).left))).size;
+  return { opts: opts.map((a) => [a.getAttribute('href'), a.textContent.trim(), a.getAttribute('aria-current'), Math.round(R(a).width), Math.round(R(a).height)]),
+    small: opts.filter((a) => R(a).height < 44 || R(a).width < 44).length, out: opts.filter((a) => R(a).left < dr.left - 1 || R(a).right > dr.right + 1 || R(a).left < 0 || R(a).right > vw + 1).length,
+    cut: opts.filter((a) => a.scrollWidth > a.clientWidth + 1 || [...a.children].some((c) => R(c).right > R(a).right + 1 || R(c).left < R(a).left - 1)).length,
+    cols, title: d.querySelector('.sheet-h').textContent, x: [Math.round(R(d.querySelector('.sheet-x')).width), Math.round(R(d.querySelector('.sheet-x')).height), d.querySelector('.sheet-x').getAttribute('aria-label')],
+    focus: document.activeElement && document.activeElement.getAttribute('href'), dlg: [Math.round(dr.left), Math.round(dr.right), Math.round(dr.top), Math.round(dr.bottom), vw, vh],
+    scroll: d.scrollHeight > d.clientHeight + 1, wide: document.documentElement.scrollWidth > vw + 1 };
+}
+"""
+BEACON = "window.__beacon = 1; fetch('https://cloudflareinsights.com/cdn-cgi/rum', { method: 'POST', body: '{}' }).then((r) => { window.__rum = r.status; }).catch(() => { window.__rum = 'blocked'; });"
+
+
+def section_k(b):
+    langs = json.loads(PG_API("/api/langs"))["langs"]
+    endo = {l["code"]: l["endonym"] for l in langs}
+    want = sorted(endo, key=lambda c: endo[c])           # the list is by the languages' own names; the exact order is the server's (test_k.mjs)
+    # -- the language button and its sheet: every launch language, phone and computer
+    for w in (320, 390, 1280):
+        for scheme in (["light", "dark"] if w != 320 else ["light"]):
+            ctx, pg = new(b, w, scheme)
+            for lang in LANGS:
+                tag = f"languages {lang} {w} {scheme}"
+                pg.goto(url(f"/{lang}/"), wait_until="networkidle")
+                words = pg.evaluate("JSON.parse(document.getElementById('pl-data').textContent).words")
+                chip = pg.evaluate("(() => { const e = document.querySelector('.top .chip-lang'); const r = e.getBoundingClientRect(); return [e.tagName, e.getAttribute('href'), r.width, r.height, e.getAttribute('aria-label'), e.getAttribute('data-open'), r.left, r.right]; })()")
+                ok(chip[0] == "BUTTON" and chip[1] is None and chip[5] == "sheet-langs", tag + ": the language button is a button, not a link to the wall", chip)
+                ok(chip[2] >= 44 and chip[3] >= 44 and chip[6] >= 0 and chip[7] <= w + 1, tag + ": 44 px, on the screen", chip)
+                ok(chip[4] == words["f.lang"] + ": " + endo[lang], tag + ": named Language and the language's own name", chip[4])
+                before = pg.url
+                pg.click(".top .chip-lang"); pg.wait_for_timeout(350)
+                st = pg.evaluate(LANGSHEET)
+                ok(st is not None and pg.url == before, tag + ": a tap opens the sheet and goes nowhere", pg.url)
+                if st is None: continue
+                ok(sorted(o[0] for o in st["opts"]) == sorted(f"/{c}/" for c in endo) and [o[1] for o in st["opts"]] == [endo[o[0].strip("/")] for o in st["opts"]], tag + ": the open languages, by their own names, each a link to its page", st["opts"])
+                ok([o[0] for o in st["opts"] if o[2] == "page"] == [f"/{lang}/"], tag + ": the page's own language is the one marked", [o for o in st["opts"] if o[2]])
+                ok(st["focus"] == f"/{lang}/", tag + ": the focus is on the page's own language", st["focus"])
+                ok(st["small"] == 0 and st["out"] == 0 and st["cut"] == 0 and not st["wide"], tag + ": every language 44 px or more, inside the sheet, no name cut", st)
+                ok(st["cols"] == (1 if w < 360 else 2 if w < 700 else 3), tag + ": one, two or three to a line", st["cols"])
+                ok(st["title"] == words["f.lang"] and st["x"][2] == words["close"] and st["x"][0] >= 44 and st["x"][1] >= 44, tag + ": its title is Language, its x is Close, 44 px (no new words)", [st["title"], st["x"]])
+                ok(st["dlg"][0] >= 0 and st["dlg"][1] <= st["dlg"][4] + 1 and st["dlg"][2] >= 0 and st["dlg"][3] <= st["dlg"][5] + 1, tag + ": the sheet is on the screen", st["dlg"])
+                bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes", bad[:3])
+                if lang in ("es", "ja", "ru") and scheme == "light": pg.screenshot(path=f"{SHOTS}/k-langs-{lang}-{w}.png")
+                if lang == "pl" and scheme == "dark": pg.screenshot(path=f"{SHOTS}/k-langs-pl-{w}-dark.png")
+                pg.evaluate(STRETCH)                         # every word half as long again
+                st2 = pg.evaluate(LANGSHEET); bad = pg.evaluate(BOXES)
+                ok(not bad and st2["small"] == 0 and st2["out"] == 0 and st2["cut"] == 0 and not st2["wide"], tag + ": the same with every word half as long again", bad[:3] or st2)
+                pg.keyboard.press("Escape"); pg.wait_for_timeout(250)
+                ok(not pg.is_visible("#sheet-langs") and pg.evaluate("document.activeElement.classList.contains('chip-lang')"), tag + ": Escape closes it and the focus goes back to the button")
+                clean(pg, tag)
+            ctx.close()
+    # -- the ways out: the x, the shade, a language; the keyboard alone; nothing kept open
+    for w in (390, 1280):
+        ctx, pg = new(b, w)
+        pg.goto(url("/es/"), wait_until="networkidle")
+        pg.click(".top .chip-lang"); pg.wait_for_timeout(300)
+        pg.click("#sheet-langs .sheet-x"); pg.wait_for_timeout(250)
+        ok(not pg.is_visible("#sheet-langs") and pg.evaluate("document.activeElement.classList.contains('chip-lang')"), f"the x closes the languages, focus back ({w})")
+        pg.click(".top .chip-lang"); pg.wait_for_timeout(300)
+        pg.mouse.click(5, 5); pg.wait_for_timeout(250)
+        ok(not pg.is_visible("#sheet-langs"), f"a tap on the shade closes the languages ({w})")
+        ok(pg.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1 && getComputedStyle(document.documentElement).overflow !== 'hidden'"), f"the page scrolls again after the sheet ({w})")
+        pg.click(".top .chip-lang"); pg.wait_for_timeout(300)
+        with pg.expect_navigation(wait_until="networkidle"): pg.click('#sheet-langs a.lang-opt[href="/de/"]')
+        ok(re.sub(r"[?#].*", "", pg.url) == B + "/de/" and pg.evaluate("localStorage.getItem('portal.lang')") == "de", f"a tap on Deutsch opens Play Deutsch and the choice is kept ({w})", pg.url)
+        ok(pg.evaluate("document.querySelector('#sheet-langs a[aria-current]').getAttribute('href')") == "/de/", f"there Deutsch is the one marked ({w})")
+        # the keyboard alone: Tab to the button, Enter, the arrows are not needed: Tab walks the list, Enter goes
+        pg.goto(url("/es/"), wait_until="networkidle")
+        for _ in range(12):
+            pg.keyboard.press("Tab")
+            if pg.evaluate("document.activeElement.classList.contains('chip-lang')"): break
+        ok(pg.evaluate("document.activeElement.classList.contains('chip-lang')"), f"Tab reaches the language button ({w})")
+        pg.keyboard.press("Enter"); pg.wait_for_timeout(300)
+        ok(pg.is_visible("#sheet-langs") and pg.evaluate("document.activeElement.getAttribute('href')") == "/es/", f"Enter opens the languages, focus on Español ({w})")
+        seen = []
+        for _ in range(len(endo) + 3):
+            pg.keyboard.press("Tab")       # after the last one the browser's own bar may take a turn (the page's body then has the focus)
+            seen.append(pg.evaluate("document.activeElement.closest('#sheet-langs') ? (document.activeElement.getAttribute('href') || 'x') : document.activeElement === document.body ? 'browser' : 'outside'"))
+        ok("outside" not in seen and "x" in seen and len(set(seen) - {"browser"}) >= len(endo) + 1, f"Tab never reaches the page under the sheet, and reaches every language and the x ({w})", seen)
+        pg.keyboard.press("Escape"); pg.wait_for_timeout(250)
+        pg.keyboard.press("Enter"); pg.wait_for_timeout(300)
+        nxt = pg.evaluate("(() => { const a = [...document.querySelectorAll('#sheet-langs a.lang-opt')]; const i = a.findIndex((x) => x.getAttribute('aria-current')); const t = a[(i + 1) % a.length]; t.focus(); return t.getAttribute('href'); })()")
+        with pg.expect_navigation(wait_until="networkidle"): pg.keyboard.press("Enter")
+        ok(re.sub(r"[?#].*", "", pg.url) == B + nxt, f"Enter on a language opens its page ({w})", pg.url)
+        clean(pg, f"languages ways out {w}")
+        ctx.close()
+    # pages below a language's page keep the back button and have no language button; the wall has its tiles
+    ctx, pg = new(b, 390)
+    es = pages_for("es")
+    for path in ["/", es[1], es[2], "/about/"]:
+        pg.goto(url(path), wait_until="networkidle")
+        ok(pg.query_selector(".chip-lang") is None and pg.query_selector("#sheet-langs") is None, f"no language button on {path}")
+    # -- the name: Play's home page from every page; on the home page it stays
+    gid = json.loads(PG_API("/api/es/games?n=100"))["games"]; gid = [g for g in gid if not g.get("logicers")][0]["id"]
+    for path in ["/es/", es[1], es[2], "/about/", "/about/?l=es", "/nothing-here/", "/es/nothing-here/", f"/claim/?g={gid}", "/maker/"]:
+        pg.goto(url(path) if "claim" not in path and "maker" not in path else B + path, wait_until="networkidle")
+        ok(pg.get_attribute(".top .brand-a", "href") == "/" and pg.get_attribute(".top .brand-a", "aria-current") is None, f"the name goes to Play's home page from {path}", pg.get_attribute(".top .brand-a", "href"))
+        box = pg.evaluate("(() => { const r = document.querySelector('.top .brand-a').getBoundingClientRect(); return [r.width, r.height]; })()")
+        ok(box[0] > 40 and box[1] >= 14, f"the name can be tapped on {path}", box)
+    pg.goto(url(es[2]), wait_until="networkidle")
+    with pg.expect_navigation(wait_until="networkidle"): pg.click(".top .brand-a")
+    ok(re.sub(r"[?#].*", "", pg.url).rstrip("/") == B and pg.query_selector("body.pl-wall") is not None, "a tap on a game page's name lands on Play's home page", pg.url)
+    ok(pg.get_attribute(".top .brand-a", "href") == "/" and pg.get_attribute(".top .brand-a", "aria-current") == "page", "the home page's name is the home page")
+    with pg.expect_navigation(wait_until="networkidle"): pg.click(".top .brand-a")
+    ok(re.sub(r"[?#].*", "", pg.url).rstrip("/") == B and "logicers.com" not in pg.url.replace("play.logicers.com", ""), "a tap on it stays on Play's home page (it went to logicers.com)", pg.url)
+    ok(pg.get_attribute(".foot .foot-lg", "href") == "https://logicers.com/", "the home page's foot goes to Logicers")
+    pg.goto(url("/es/"), wait_until="networkidle")
+    ok(pg.get_attribute(".top .brand-by-a", "href") == "https://logicers.com/es/", "'de Logicers' goes to Logicers' Spanish home")
+    clean(pg, "the name")
+    ctx.close()
+    # -- a page is never kept by a browser without asking; the edge keeps it five minutes
+    api_ctx = b.new_context(user_agent=UA)
+    for path in ["/", "/es/", es[1], es[2], "/about/"]:
+        cc = api_ctx.request.get(B + path).headers.get("cache-control")
+        ok(cc == "public, max-age=0, must-revalidate, s-maxage=300", f"{path}: a browser asks again each time, the edge keeps it five minutes", cc)
+    for path in ["/admin/", "/maker/", f"/claim/?g={gid}"]:
+        ok(api_ctx.request.get(B + path).headers.get("cache-control") == "no-store", f"{path}: never kept")
+    # -- Cloudflare Web Analytics: its script runs and reports on the public pages; on the queue, the claim pages and the
+    #    maker's form the CSP blocks it. (Cloudflare writes the <script> into the live pages itself; here the check adds it.)
+    ctx, pg = new(b, 390)
+    ctx.route("https://static.cloudflareinsights.com/**", lambda r: r.fulfill(status=200, content_type="text/javascript", body=BEACON))
+    ctx.route("https://cloudflareinsights.com/**", lambda r: r.fulfill(status=204, headers={"Access-Control-Allow-Origin": "*"}, body=""))
+    ADD = "(() => new Promise((done) => { try { const s = document.createElement('script'); s.onload = () => done('loaded'); s.onerror = () => done('blocked'); s.src = 'https://static.cloudflareinsights.com/beacon.min.js'; s.defer = true; document.head.appendChild(s); } catch (e) { done('blocked'); } }))()"     # the queue's Trusted Types refuse the address itself
+    for path, public in [("/", True), ("/es/", True), (es[1], True), (es[2], True), ("/about/", True), ("/nothing-here/", True), ("/admin/", False), (f"/claim/?g={gid}", False), ("/maker/", False)]:
+        pg.goto(B + path, wait_until="networkidle")
+        got = pg.evaluate(ADD); pg.wait_for_timeout(250)
+        ran, rum, csp = pg.evaluate("window.__beacon || 0"), pg.evaluate("window.__rum || null"), pg.evaluate("window.__csp || []")
+        if public:
+            ok(got == "loaded" and ran == 1 and rum == 204 and not csp, f"{path}: Cloudflare Web Analytics loads and reports (no CSP violation)", [got, ran, rum, csp])
+            ok(not pg.errs, f"{path}: no error with the beacon", pg.errs)
+        else:
+            ok(got == "blocked" and ran == 0 and any(("script-src" in c and "cloudflareinsights" in c) or "trusted-types" in c for c in csp), f"{path}: the beacon is blocked here", [got, ran, csp])
+        pg.errs.clear()
+    ctx.close(); api_ctx.close()
+
+
+def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_j(b)
+        section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1192,4 +1342,4 @@ def only_j():
 
 PG_API = None
 if __name__ == "__main__":
-    only_j() if any(a.startswith("--only-j") for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a == "--only-k" for a in sys.argv) else main()

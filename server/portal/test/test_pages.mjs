@@ -39,7 +39,7 @@ test("a language page: name, lang, title, canonical, rows, JSON-LD, words from i
   assert.match(htmlTag(r.text), /lang="es" dir="ltr"/);
   assert.equal(title(r.text), "Play Español · " + word("es", "seo.daily"));
   assert.equal(canon(r.text), SITE + "/es/");
-  /* the name never links to the page it is on (20 Nov 2026): a language page's goes to the wall, "by Logicers" to Logicers' Spanish home */
+  /* the name goes to Play's home page from every page (20 Nov 2026, evening; test_k.mjs has every page), "by Logicers" to Logicers' Spanish home */
   assert.match(r.text, /<h1 class="brand"><a class="brand-a" href="\/"><span class="brand-play">Play<\/span> <span class="brand-lang">Español<\/span><\/a><\/h1>/);
   assert.match(r.text, new RegExp(`<p class="brand-by"><a class="brand-by-a" href="https://logicers.com/es/">${re(W("es", "by"))}</a></p>`));
   assert.match(r.text, /<section class="row row-mine" id="row-mine"[^>]*hidden>/);
@@ -56,7 +56,7 @@ test("a language page: name, lang, title, canonical, rows, JSON-LD, words from i
   assert.doesNotMatch(r.text, /hreflang/i);
   assert.doesNotMatch(r.text, /\sstyle=/, "no inline style");
   assert.equal([...r.text.matchAll(/<script\b[^>]*>/g)].filter((m) => !/type="application\/(ld\+)?json"|src="\/a\//.test(m[0])).length, 0, "no inline script");
-  assert.match(r.headers.get("Content-Security-Policy"), /script-src 'self'; style-src 'self'/);
+  assert.match(r.headers.get("Content-Security-Policy"), /script-src 'self' https:\/\/static\.cloudflareinsights\.com; style-src 'self'/, "a public page lets Cloudflare Web Analytics in, and nothing else (test_k.mjs)");
   /* a word from the page's own file */
   const es = JSON.parse((await import("node:fs")).readFileSync(new URL("../words/es.json", import.meta.url), "utf8"));
   assert.ok(r.text.includes(unesc(es.from_logicers).replace(/'/g, "&#39;")) || r.text.includes(es.from_logicers));
@@ -219,13 +219,13 @@ test("text from a sender or a seed never breaks out of the page", async () => {
   assert.equal(JSON.parse(data).description, "</script><b>hi</b>");
 });
 
-test("the head: Add a game at the top of every page, the dice and the Yours row's streak and run on a language's page, a name that never links to itself", async () => {
+test("the head: Add a game at the top of every page, the dice and the Yours row's streak and run on a language's page, a name that goes to Play's home page", async () => {
   const e = env();
   await importGames(e, seedGames("es", 3, "words").concat(seedGames("es", 2, "maps", "Map")));
   const add = (L) => new RegExp(`<button class="add-top" type="button" data-open="sheet-add" aria-label="${re(word(L, "add"))}" title="${re(word(L, "add"))}">`);
   const lang = (await get(e, "/es/")).text;
   assert.match(lang, add("es"), "a language page has it, in the buttons at the end of its head");
-  assert.match(lang, /<div class="top-acts">\n<button class="add-top"[^]*?<a class="dice" id="dice"[^>]*data-hit data-game=""[^>]* hidden>[^]*?<a class="chip-lang" href="\/">/, "Add, the dice (hidden until the script gives it a game), then the language chip");
+  assert.match(lang, /<div class="top-acts">\n<button class="add-top"[^]*?<a class="dice" id="dice"[^>]*data-hit data-game=""[^>]* hidden>[^]*?<button class="chip-lang" type="button" data-open="sheet-langs"/, "Add, the dice (hidden until the script gives it a game), then the language button");
   assert.ok(!/<a class="dice"[^>]* href=/.test(lang), "the dice has no address until the script picks one");
   assert.match(lang, new RegExp(`id="dice"[^>]*aria-label="${re(word("es", "dice"))}"`), "the dice has a name");
   assert.match(lang, /id="h-mine"><span class="row-t">[^<]*<\/span><\/h2><span class="streak" id="streak" role="img" hidden>[^]*?<a class="run" id="run"[^>]*data-hit data-game=""[^>]* hidden>[^]*?<span class="run-done" id="run-done" role="img" hidden>/, "Yours: the streak and the run, hidden until the script has something to say");
@@ -236,8 +236,8 @@ test("the head: Add a game at the top of every page, the dice and the Yours row'
   const wall = (await get(e, "/")).text;
   assert.match(wall, add("en"));
   for (const p of ["/about/", "/es/g/game-es-1/", "/nothing-here/", "/es/nothing-here/"]) assert.match((await get(e, p)).text, /class="add-top"/, p + " has Add a game in its head");
-  assert.match(wall, /<h1 class="brand"><a class="brand-a" href="https:\/\/logicers\.com\/">/, "the wall's name goes to Logicers' own site, not to itself");
-  assert.match(kind, /<p class="brand"><a class="brand-a" href="\/es\/">/, "a page below goes up to the language page");
+  assert.match(wall, /<h1 class="brand"><a class="brand-a" href="\/" aria-current="page">/, "the wall's name stays on the wall (it went to logicers.com until 20 Nov 2026, evening)");
+  assert.match(kind, /<p class="brand"><a class="brand-a" href="\/">/, "a page below goes to Play's home page too (the back button goes up one level)");
   assert.match(kind, /<p class="brand-by"><a class="brand-by-a" href="https:\/\/logicers\.com\/es\/">/, "and its 'by Logicers' to Logicers' Spanish home");
   assert.match((await get(e, "/about/")).text, /<p class="brand"><a class="brand-a" href="\/">/, "About's name goes to the wall");
 });

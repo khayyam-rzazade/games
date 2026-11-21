@@ -2,7 +2,8 @@
    play.logicers.com from the server, the API, the queue and the nightly job. Chat A, 19 Nov 2026. The plan and the
    contract: the project doc claude/play-logicers-plan.md, sections 2 and 3. README.md lists every route and error key.
 
-   Pages (HTML, rendered here, cached at the edge 5 minutes; the numbers come live from /api/counts):
+   Pages (HTML, rendered here, cached at the edge 5 minutes under a key that carries the deploy's version, never kept by a
+   browser without asking again; the numbers come live from /api/counts):
      /                      the wall, Play Logicers
      /<lang>/               a language's page (Play Español); a language that is not open: 302 to /
      /<lang>/<kind>/        one kind in that language (a kind with no game: 404)
@@ -27,7 +28,7 @@ import { json, bad, readJson, brake, isLocal } from "./util.js";
 import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, KINDS } from "./db.js";
 import { LANG, isLang, CODES } from "./langs.js";
 import { lgRowLang, lgShown, lgOfKind, lgForGame, lgEn, EN_LINE, LG_HOME } from "./logicers.js";
-import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_ADMIN } from "./pages.js";
+import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_PUBLIC, CSP_ADMIN, ASSET } from "./pages.js";
 import { claimCode, claimCheck, claimToken, makerGet, makerEdit, makerPicApi, tokenGame } from "./claim.js";
 import { servePic, PIC_BODY } from "./pics.js";
 import { hit, view, add, report, vote, langsApi, gamesApi, diceApi, countsApi } from "./api.js";
@@ -58,12 +59,18 @@ function cors(r, origin, env) {
   return o;
 }
 
-/* ---- HTML answers ---- */
+/* ---- HTML answers ----
+   How long a page lives (chat K, 20 Nov 2026): 5 minutes at the edge (s-maxage), and in a browser not at all without asking
+   again (max-age=0, must-revalidate): the answer comes from the edge, so asking costs little, and a browser never shows the
+   page from before an update (Khayyam's Safari kept Play Español for hours: Cloudflare's "Browser Cache TTL" had turned
+   max-age=60 into four hours). The numbers on a page come live from /api/counts either way.
+   Not exported: workerd takes every export of this file for a handler and refuses to start on a plain value. */
+const HTML_CACHE = "public, max-age=0, must-revalidate, s-maxage=300";
 function html(body, status, o) {
   o = o || {};
   const h = {
     "Content-Type": "text/html; charset=utf-8",
-    "Cache-Control": o.cache || "public, max-age=60, s-maxage=300",
+    "Cache-Control": o.cache || HTML_CACHE,
     "Content-Security-Policy": o.csp || CSP,
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "strict-origin-when-cross-origin",
@@ -75,6 +82,8 @@ function html(body, status, o) {
 function text(body, type, cache) {
   return new Response(body, { headers: { "Content-Type": type, "Cache-Control": cache || "public, max-age=300, s-maxage=3600", "X-Content-Type-Options": "nosniff" } });
 }
+/* a public page: the same, with Cloudflare Web Analytics let in (pages.js CSP_PUBLIC); html() alone keeps the plain CSP */
+const pub = (body, status, o) => html(body, status, Object.assign({ csp: CSP_PUBLIC }, o || {}));
 const redirect = (to, status) => new Response(null, { status: status || 302, headers: { Location: to, "Cache-Control": status === 301 ? "public, max-age=3600" : "no-store" } });
 
 /* the edge cache (Cloudflare's Cache API; absent in the tests): GET pages 5 minutes, /api/counts 60 s.
@@ -82,20 +91,48 @@ const redirect = (to, status) => new Response(null, { status: status || 302, hea
    page cannot skip the cache and make the database work: /about/ keeps "l" (a language code), /api/counts keeps "lang" (a
    code; any other value answers "bad" and is never kept). */
 const KEEP = { "/about/": "l", "/api/counts": "lang", "/api/counts/": "lang" };
-export function cacheKey(u) {
+export function cacheKey(u, ver) {
   const k = KEEP[u.pathname] || (u.pathname.startsWith("/m/") ? "l" : null), v = k ? u.searchParams.get(k) : null;
   const q = v === null ? "" : "?" + k + "=" + (isLang(v) ? v : "_");
-  return u.origin + u.pathname + q;
+  return u.origin + u.pathname + q + (ver ? (q ? "&" : "?") + "v=" + ver : "");
+}
+/* The deploy's version, in every edge key (chat K, 20 Nov 2026), so a deploy shows its new pages at once and never a page
+   of the version before with the new files: the stamps of the static files (ASSET: any change to the CSS, a script or the
+   icons) and, where Cloudflare gives it, the id of the Worker's version (wrangler.jsonc version_metadata: any deploy at
+   all, a change of markup or words included). What an older version kept is simply never asked for again and expires. */
+const STAMPS = Object.values(ASSET).map((a) => String(a).split("?v=")[1] || "").join(".");
+export function versionOf(env) {
+  const id = env && env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id ? String(env.CF_VERSION_METADATA.id) : "";
+  let h = 0x811c9dc5;                                                           // FNV-1a, 32 bits: short, and the same everywhere
+  for (const c of STAMPS + "|" + id) { h ^= c.codePointAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h.toString(16).padStart(8, "0");
+}
+/* The copy the edge keeps says only how long the edge keeps it (max-age = the answer's s-maxage, else its max-age) and
+   carries the answer's own Cache-Control beside it (KEPT); an answer from the edge is given that one back. So the edge's
+   life never depends on how Cloudflare reads "max-age=0, must-revalidate, s-maxage=300", and the zone setting "Browser
+   Cache TTL", which rewrites max-age on what the cache serves (to four hours, on 20 Nov 2026), cannot make a page or a
+   count live longer in a browser than the Worker said. */
+const KEPT = "PL-Cache-Control";
+function fromEdge(hit) {
+  const r = new Response(hit.body, hit), cc = r.headers.get(KEPT);
+  if (cc) r.headers.set("Cache-Control", cc);
+  r.headers.delete(KEPT);
+  return r;
 }
 async function cached(req, env, ctx, make) {
   const cache = typeof caches !== "undefined" && caches.default ? caches.default : null;
   if (!cache || req.method !== "GET" || isLocal(env)) return make();            // a local run (wrangler dev, check.py): never kept
-  const key = new Request(cacheKey(new URL(req.url)), { method: "GET" });
+  const key = new Request(cacheKey(new URL(req.url), versionOf(env)), { method: "GET" });
   const hitR = await cache.match(key);
-  if (hitR) return hitR;
+  if (hitR) return fromEdge(hitR);
   const res = await make();
-  if (res.status === 200 && /s-maxage|max-age/.test(res.headers.get("Cache-Control") || "") && !/no-store|private/.test(res.headers.get("Cache-Control") || "")) {
-    const p = cache.put(key, res.clone());
+  const cc = res.headers.get("Cache-Control") || "";
+  const life = /(?:^|[\s,])s-maxage=(\d+)/.exec(cc) || /(?:^|[\s,])max-age=(\d+)/.exec(cc), ttl = life ? +life[1] : 0;
+  if (res.status === 200 && ttl > 0 && !/no-store|private/.test(cc)) {
+    const keep = new Response(res.clone().body, res);
+    keep.headers.set(KEPT, cc);
+    keep.headers.set("Cache-Control", "public, max-age=" + ttl);
+    const p = cache.put(key, keep);
     if (ctx && ctx.waitUntil) ctx.waitUntil(p); else await p;
   }
   return res;
@@ -111,10 +148,10 @@ async function langPageData(env, lang) {
 async function notFound(env, site, lang, open) {
   if (lang && open.has(lang)) {
     const d = await langPageData(env, lang);
-    return html(pageNotFound(Object.assign({ site }, d)), 404, { noindex: true, cache: "public, max-age=60" });
+    return pub(pageNotFound(Object.assign({ site }, d)), 404, { noindex: true, cache: "public, max-age=60" });
   }
   const w = await wallData(env);
-  return html(pageNotFound({ site, langs: w.langs }), 404, { noindex: true, cache: "public, max-age=60" });
+  return pub(pageNotFound({ site, langs: w.langs }), 404, { noindex: true, cache: "public, max-age=60" });
 }
 
 /* ---- sitemaps ---- */
@@ -182,26 +219,26 @@ async function page(req, env, ctx, url) {
     if (segs.length === 0) {
       const w = await wallData(env);
       w.langs.sort((a, b) => b.games - a.games || CODES.indexOf(a.code) - CODES.indexOf(b.code));
-      return html(pageWall({ site, langs: w.langs.filter((l) => LANG.has(l.code)), today: w.today, lgHome: "https://logicers.com/" }));
+      return pub(pageWall({ site, langs: w.langs.filter((l) => LANG.has(l.code)), today: w.today, lgHome: "https://logicers.com/" }));
     }
     if (segs[0] === "m" && segs.length === 2) {                             // a maker's page (chat J, plan 2.20)
       const d = await makerData(env, segs[1], url.searchParams.get("l"), open);
       if (!d) return notFound(env, site, null, open);
-      return html(pageMakerPublic(Object.assign({ site }, d)), 200, { noindex: "noindex, follow" });
+      return pub(pageMakerPublic(Object.assign({ site }, d)), 200, { noindex: "noindex, follow" });
     }
     if (segs[0] === "about" && segs.length === 1) {
       const l = url.searchParams.get("l");
-      return html(pageAbout({ site, local: isLang(l) && open.has(l) ? l : null, lgHome: "https://logicers.com/" }));
+      return pub(pageAbout({ site, local: isLang(l) && open.has(l) ? l : null, lgHome: "https://logicers.com/" }));
     }
     const lang = segs[0];
     if (!isLang(lang)) return notFound(env, site, null, open);
     if (!open.has(lang)) return redirect(site + "/", 302);
     if (segs.length === 2 && segs[1] === "sitemap.xml") return text(await sitemapLang(env, site, lang), "application/xml; charset=utf-8", "public, max-age=3600");
-    if (segs.length === 1) return html(pageLang(Object.assign({ site }, await langPageData(env, lang))));
+    if (segs.length === 1) return pub(pageLang(Object.assign({ site, open: [...open] }, await langPageData(env, lang))));   // open: for the language button's list
     if (segs.length === 2 && KINDS.includes(segs[1])) {
       const d = await langPageData(env, lang);
       if (!d.byKind[segs[1]].length) return notFound(env, site, lang, open);
-      return html(pageKind(Object.assign({ site, kind: segs[1], lgKind: lgOfKind(lang, d.lgInfo, segs[1]) }, d)));
+      return pub(pageKind(Object.assign({ site, kind: segs[1], lgKind: lgOfKind(lang, d.lgInfo, segs[1]) }, d)));
     }
     if (segs.length === 3 && segs[1] === "g") {
       const g = await gameBySlug(env, lang, segs[2]);
@@ -209,12 +246,12 @@ async function page(req, env, ctx, url) {
         const lgLang = lgRowLang(lang);
         const gd = await gameData(env, g, lgLang);
         if (g.maker_id) Object.assign(gd, await gameNumbers(env, g));         // a claimed game: its players by day and country
-        return html(pageGame(Object.assign({ site, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
+        return pub(pageGame(Object.assign({ site, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
           200, { noindex: indexable(g) ? null : "noindex, follow" });
       }
       if (g && g.source !== "logicers") {                                   // hidden, dead, rejected, left: gone, not indexed
         const d = await langPageData(env, lang);
-        return html(pageNotFound(Object.assign({ site }, d)), 410, { noindex: true, cache: "public, max-age=60" });
+        return pub(pageNotFound(Object.assign({ site }, d)), 410, { noindex: true, cache: "public, max-age=60" });
       }
     }
     return notFound(env, site, lang, open);
@@ -288,4 +325,4 @@ export default {
 /* for the tests */
 import { setClock, brakes } from "./util.js";
 import { SCHEMA, AFTER } from "./db.js";
-export const _test = { setClock, brakes, nightly, SCHEMA: SCHEMA.concat(AFTER), originOk, cacheKey };
+export const _test = { setClock, brakes, nightly, SCHEMA: SCHEMA.concat(AFTER), originOk, cacheKey, versionOf, HTML_CACHE };

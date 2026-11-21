@@ -10,7 +10,8 @@
      header       .top  .top-wall (the wall)  .top-lang (a language page)  .top-sub (kind, game, About, 404: back + small name)
                   .brand-box  .brand-sm  .brand (h1 on the wall and a language page, else p)  .brand-a  .brand-play
                   ("Play", "Graj")  .brand-lang (the endonym, or "Logicers")  .brand-by ("by Logicers")  .brand-sub (the
-                  wall's English line)  .back (the round back button)  .chip-lang .chip-lang-t .chip-g .chip-d
+                  wall's English line)  .back (the round back button)  .chip-lang (a button: opens the languages) .chip-lang-t
+                  .chip-g .chip-d
      today        .today (hidden while it would say 0)  .today-w (the words around the number)  .today-n (the number;
                   data-count="page" | "all")
      main         .main .main-wall .main-lang .main-kind .main-game .main-about .main-nf
@@ -60,7 +61,8 @@
      Yours        .streak (#streak: a flame and the days in a row, from 1)  .run (#run: the next game of the run)  .run-done (#run-done)
      buttons      .btn  .btn-add  .btn-play  .btn-report  .btn-send  .btn-done  .btn-more  .ico (any icon)  .ico-flip (turns
                   round in a right-to-left page)
-     sheets       dialog.sheet  .sheet-add  .sheet-report  .sheet-form (.is-sent once sent)  .sheet-grab  .sheet-h  .sheet-x
+     sheets       dialog.sheet  .sheet-add  .sheet-report  .sheet-langs (the open languages: .sheet-box .lang-opts .lang-opt
+                  .lang-opt-t; the page's own has aria-current="page")  .sheet-form (.is-sent once sent)  .sheet-grab  .sheet-h  .sheet-x
                   (close)  .fld  .fld-l  .fld-opt  .fld-link .fld-lang .fld-kind .fld-name .fld-email  .fld-two  .kinds (the
                   eight kind buttons)  .kind-opt  .kind-opt-t  .reasons  .reason-opt  .hp (the robots' field: out of sight and
                   out of reach)  .sheet-err (data-e="link" | "here" | "busy"; hidden until needed)  .sheet-ok (thanks; hidden)
@@ -72,7 +74,7 @@
    k-screen k-sport (a trophy) k-other (the kinds) and i-star (Save: a bookmark) i-plus i-globe i-close i-play i-flag i-more
    i-check i-down i-back i-dice (the random game) i-flame (the streak) i-crown (the game of the week).
    data- attributes portal.js reads: data-game, data-kind, data-count, data-count-label, data-hit (a link whose click sends
-   /api/hit), data-open="sheet-add" | "sheet-report" (opens that dialog; with data-kind it sets the kind), data-close,
+   /api/hit), data-open="sheet-add" | "sheet-report" | "sheet-langs" (opens that dialog; with data-kind it sets the kind), data-close,
    data-star, data-lang, data-e, data-more, data-from, data-filter, data-vote. */
 import { LANGS, LANG, htmlLang, nameParts, pageName, byEndonym } from "./langs.js";
 import { WORDS, wordsOf, word, num, aroundN, withN } from "./words.js";
@@ -81,7 +83,7 @@ import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=22a5ffadd2", js: "/a/portal.js?v=5489fa4f61", admin: "/a/admin.js?v=3c1522cdd6", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=178609c4ec" };
+export const ASSET = { css: "/a/portal.css?v=d95b127ae8", js: "/a/portal.js?v=d65cda5f61", admin: "/a/admin.js?v=3c1522cdd6", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=178609c4ec" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -91,6 +93,11 @@ export const CONTACT = "logicers.world@gmail.com";
 /* the pages' security headers (2.16); the admin page adds Trusted Types (its policy is named "portal-admin") */
 export const CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; object-src 'none'";
 export const CSP_ADMIN = CSP + "; require-trusted-types-for 'script'; trusted-types portal-admin";
+/* the public pages (the wall, a language, a kind, a game, a maker's page, About, the 404s) also let Cloudflare Web Analytics in
+   (chat K, 20 Nov 2026): it is on for the zone, Cloudflare writes its beacon's <script> into every page on the way out, and
+   the plain CSP blocked it. Its script comes from static.cloudflareinsights.com and reports to cloudflareinsights.com; no
+   cookie. The queue, the claim pages and the maker's form keep the plain CSP above, so the beacon stays blocked there. */
+export const CSP_PUBLIC = CSP.replace("script-src 'self'", "script-src 'self' https://static.cloudflareinsights.com").replace("connect-src 'self'", "connect-src 'self' https://cloudflareinsights.com");
 
 /* ---- text into HTML ---- */
 export const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -154,12 +161,12 @@ function pageData(d, more) {
 }
 
 /* ---- pieces ---- */
-/* the name is a link, and never to the page it is on (20 Nov 2026): the wall's goes to Logicers' own site, a language page's to the wall,
-   a page below's to the language page (or the wall); "by Logicers" under it goes to Logicers' home in that language */
-function brand(d, tag, to) {
+/* the name is a link to Play's home page, "/", from every page (Khayyam, 20 Nov 2026, evening: "the Play Logicers title must always
+   lead to Play's home page, never to logicers.com"); on the home page itself it stays there. Up one level is the round back
+   button's work; "by Logicers" under the name goes to Logicers' home in that language. */
+function brand(d, tag) {
   const [play, rest] = d.wall ? ["Play", "Logicers"] : nameParts(d.lang);
-  const href = to || (d.wall ? "/" : "/" + d.lang + "/");
-  return `<${tag} class="brand"><a class="brand-a" href="${href}"><span class="brand-play">${esc(play)}</span> <span class="brand-lang">${esc(rest)}</span></a></${tag}>`;
+  return `<${tag} class="brand"><a class="brand-a" href="/"${d.page === "wall" ? ' aria-current="page"' : ""}><span class="brand-play">${esc(play)}</span> <span class="brand-lang">${esc(rest)}</span></a></${tag}>`;
 }
 /* "{n} players today": shown from 1, never as 0 (plan 2.8); portal.js shows it when the first player comes */
 function todayLine(lang, n, which) {
@@ -174,7 +181,7 @@ function addTop(L) {
 function headerWall(d) {
   return `<header class="top top-wall">
 <div class="brand-box">
-${brand(d, "h1", d.lgHome || "https://logicers.com/")}
+${brand(d, "h1")}
 <p class="brand-sub">Daily games of the world, by language</p>
 </div>
 ${addTop("en")}
@@ -183,19 +190,21 @@ ${todayLine("en", d.today, "all")}
 }
 /* "by Logicers" under the name: a link to Logicers' home in the language */
 const brandBy = (d) => `<p class="brand-by"><a class="brand-by-a" href="${esc(d.lgHome || "https://logicers.com/")}">${T(d.lang, "by")}</a></p>`;
-/* a language page: the name large, "by Logicers" small, today's players, the chip back to the wall */
+/* a language page: the name large, "by Logicers" small, today's players, and the language button, which opens the list of the
+   open languages (sheetLangs; chat K, 20 Nov 2026: it no longer goes to the wall). Its name for a screen reader is the word
+   "Language" and the language's own name; on a phone it shows as a globe. */
 function headerLang(d) {
   const l = LANG.get(d.lang);
   return `<header class="top top-lang">
 <div class="brand-box">
-${brand(d, "h1", "/")}
+${brand(d, "h1")}
 ${brandBy(d)}
 </div>
 ${todayLine(d.lang, d.page_today, "page")}
 <div class="top-acts">
 ${addTop(d.lang)}
 <a class="dice" id="dice" target="_blank" rel="noopener" data-hit data-game="" aria-label="${T(d.lang, "dice")}" title="${T(d.lang, "dice")}" hidden>${icon("i-dice")}</a>
-<a class="chip-lang" href="/">${icon("i-globe", "chip-g")}<span class="chip-lang-t">${esc(l.endonym)}</span>${icon("i-down", "chip-d")}</a>
+<button class="chip-lang" type="button" data-open="sheet-langs" aria-haspopup="dialog" aria-label="${T(d.lang, "f.lang")}: ${esc(l.endonym)}" title="${T(d.lang, "f.lang")}">${icon("i-globe", "chip-g")}<span class="chip-lang-t">${esc(l.endonym)}</span>${icon("i-down", "chip-d")}</button>
 </div>
 </header>`;
 }
@@ -354,6 +363,21 @@ ${KINDS.map((k) => `<label class="kind-opt"><input type="radio" name="kind" valu
 </form>
 </dialog>`;
 }
+/* the languages (chat K, 20 Nov 2026): the open languages by their own names, in the add sheet's order, the page's own marked;
+   each a real link to that language's page. No new word: its title is "Language" (f.lang), its × is "Close". */
+function sheetLangs(d) {
+  const L = d.lang, open = new Set(d.open || []);
+  open.add(L);
+  const list = byEndonym().filter((l) => open.has(l.code));
+  return `<dialog class="sheet sheet-langs" id="sheet-langs" aria-labelledby="sheet-langs-h">
+<div class="sheet-form sheet-box">
+${sheetTop(L, "sheet-langs-h", T(L, "f.lang"))}
+<ul class="lang-opts" role="list">
+${list.map((l) => `<li><a class="lang-opt" href="/${l.code}/" lang="${esc(htmlLang(l.code))}" dir="${l.dir}"${l.code === L ? ' aria-current="page"' : ""}><span class="lang-opt-t">${esc(l.endonym)}</span>${l.code === L ? icon("i-check") : ""}</a></li>`).join("\n")}
+</ul>
+</div>
+</dialog>`;
+}
 export const REASONS = ["broken", "notdaily", "lang", "unsafe", "other"];
 function sheetReport(d, g) {
   const L = d.lang;
@@ -415,6 +439,7 @@ ${rowWanted(d, wanted)}
 </main>
 ${footer(d)}
 ${sheetAdd(d)}
+${sheetLangs(d)}
 ${tplTile(d)}`;
   const lists = [itemList(word(d.lang, "from_logicers"), d.lgRow.map((g) => ({ url: g.url, name: g.name })))]
     .concat(kinds.map((k) => itemList(word(d.lang, "cat." + k), d.byKind[k].slice(0, ROW_MAX).map((g) => ({ url: gameUrl(d, g), name: g.name })))));
@@ -590,7 +615,7 @@ ${p("Anyone can add a game with its link. A machine looks at the page first. Eve
 ${h("What the numbers count")}
 ${p("Each game shows how many people went to play it from Play Logicers today and in all, and each page shows how many people opened it today. A day is the world's day, from midnight to midnight UTC. Each device counts once a day for each game and each page.")}
 ${h("What we keep")}
-${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country.")}
+${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country. Cloudflare, which serves these pages, also counts visits for us, without cookies.")}
 ${p("When you add a game, we keep its link, and your name and email if you give them; only Khayyam sees your email. We keep them while the game is on the list, so we can tell its maker the numbers, and delete them 90 days after a game is turned down or taken off. A report keeps its reason and the day.")}
 ${h("Your game")}
 ${p(`To have a game changed or taken off, write to <span class="mail">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}

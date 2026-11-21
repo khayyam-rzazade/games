@@ -111,7 +111,7 @@ body.pl {
 .top-lang .today { grid-area: today; padding-block-end: 10px; }
 .top-lang:has(> .today[hidden]) { row-gap: 0; }
 .top-acts { grid-area: acts; display: flex; align-items: center; gap: 8px; }
-.chip-lang { display: inline-flex; align-items: center; justify-content: center; gap: 6px; block-size: 44px; min-inline-size: 44px; padding-inline: 14px; border: 1.5px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 500; white-space: nowrap; transition: border-color .15s var(--ease); }
+.chip-lang { display: inline-flex; background: none; padding-block: 0; align-items: center; justify-content: center; gap: 6px; block-size: 44px; min-inline-size: 44px; padding-inline: 14px; border: 1.5px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 500; white-space: nowrap; transition: border-color .15s var(--ease); }
 .chip-lang:hover { border-color: var(--ink); }
 .chip-lang .chip-g { display: none; inline-size: 20px; block-size: 20px; }
 .chip-lang .chip-d { inline-size: 14px; block-size: 14px; stroke-width: 2.5; }
@@ -528,6 +528,16 @@ dialog.sheet[open] { animation: pl-up .24s var(--ease); }
   .sheet-form { padding: 28px 32px 32px; }
   .sheet-grab { display: none; }
 }
+/* the languages (chat K, 20 Nov 2026): the open languages by their own names, each a link 52 px high; the page's own is marked
+   as a chosen reason is. Two to a line on a phone (one under 360 px, so no name is ever cut), three in the computer's sheet. */
+.lang-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.lang-opt { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-block-size: 52px; padding: 8px 18px; border: 1.5px solid var(--line); border-radius: 16px; font-family: var(--f-sys); font-size: 16px; font-weight: 500; line-height: 1.2; transition: border-color .15s var(--ease); }
+.lang-opt:hover { border-color: var(--soft); }
+.lang-opt[aria-current="page"] { border: 2px solid var(--ink); padding: 7.5px 17.5px; font-weight: 600; }
+.lang-opt-t { min-inline-size: 0; overflow-wrap: anywhere; }
+.lang-opt .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.4; }
+@media (max-width: 359px) { .lang-opts { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 700px) { .lang-opts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .fld { display: flex; flex-direction: column; gap: 6px; min-inline-size: 0; }
 .fld-l { font-size: 12px; color: var(--soft); }
 .fld-opt { color: var(--soft); }

@@ -13,7 +13,8 @@
      - the game of the week (chat J, 20 Nov 2026, plan 2.20): the games played this UTC week (portal.mine.week), the vote on a
        game's page (shown once this device played that game this week; one vote a language and week, final: portal.vote keeps
        { <lang>: { w: the week's Monday, g: the game } }), and the crown on the coins the API marks
-     - the language: a language's page is remembered (portal.lang); the wall puts it, or the browser's language, first
+     - the language: a language's page is remembered (portal.lang); the wall puts it, or the browser's language, first; the
+       language button of a language's page opens the list of the open languages (a sheet, as Add a game: chat K, 20 Nov 2026)
      - the sheets (add a game, report) with every error, and More on a kind's page
    Words come only from the page's own data (#pl-data), never from this file. No inline style, no HTML strings: the CSP
    forbids them, so everything is built with the DOM. */
@@ -473,7 +474,7 @@
     if (form && kind) { var r = $('input[name="kind"][value="' + kind + '"]', form); if (r) r.checked = true; }
     opener = doc.activeElement;
     if (typeof dlg.showModal === "function") { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute("open", "");
-    var first = form && ($('input[name="url"]', form) || $('input[name="reason"]', form));
+    var first = form ? ($('input[name="url"]', form) || $('input[name="reason"]', form)) : $('[aria-current="page"]', dlg) || $("a[href]", dlg);   // the languages: the page's own
     if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
   }
   function closeSheet(dlg) {

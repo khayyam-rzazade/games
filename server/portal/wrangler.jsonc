@@ -15,7 +15,9 @@
    "!" pattern is /a/*, where nothing is dynamic; test/test_misc.mjs fails if another one comes back.
    The cron: 02:10 UTC every night (cron.js). limits.cpu_ms: the most Workers Paid allows (5 minutes); the nightly run
    needs little CPU (300 link checks spend their time waiting on the network, which is not CPU), the number is a ceiling.
-   Workers Logs and traces stay OFF: About promises that nothing else is kept. */
+   Workers Logs and traces stay OFF: About promises that nothing else is kept.
+   version_metadata (chat K, 20 Nov 2026): Cloudflare tells the Worker the id of its own version (env.CF_VERSION_METADATA.id);
+   the edge cache's keys carry it (src/index.js versionOf), so every deploy shows its new pages at once. Nothing is kept. */
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "logicers-portal",
@@ -26,6 +28,7 @@
   "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } },
   "triggers": { "crons": ["10 2 * * *"] },
   "limits": { "cpu_ms": 300000 },
+  "version_metadata": { "binding": "CF_VERSION_METADATA" },
   "routes": [{ "pattern": "play.logicers.com", "custom_domain": true }],
   "assets": {
     "directory": "../../portal",

@@ -118,7 +118,10 @@ dead; a "check by hand" card closed by the night the game answers again; a move 
 per address, the numbers jump card, 10 adds a day per address, the hidden field kept with `hp`, To do with no flags first,
 the nightly look's order and its blocklist hide, the Not-safe look, the review key refused on a listed game's address, the
 senders' emails deleted after 90 days, game pages noindex and out of the sitemaps, the cache key, no 0 written, one tap to
-play, and Logicers' rows and tiles. D1 is Node's
+play, and Logicers' rows and tiles. `test/test_k.mjs` (chat K, 20 Nov 2026) holds the fixes of prompt K, each with a test that
+failed before them: the name goes to Play's home page from every page, the language button opens the list of the open
+languages, a page's life in a browser and at the edge (and the deploy's version in the edge key), and Cloudflare Web
+Analytics on the public pages only. D1 is Node's
 own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`).
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.
@@ -256,6 +259,19 @@ lang kind name line maker here twice claimed` (a claimed seed keeps its maker's 
 - Pages are cached at the edge 5 minutes, `/api/counts` 60 s, keyed on the path and the parameters a page reads (`l` on
   About, `lang` on `/api/counts`) and nothing else, so `?x=1` cannot skip the cache. A local run (`ALLOW_ORIGINS` with
   `localhost`) keeps nothing.
+- **Chat K, 20 Nov 2026.** A page's `Cache-Control` is `public, max-age=0, must-revalidate, s-maxage=300`: five minutes at
+  the edge, and a browser asks again each time (the answer comes from the edge), so nobody sees the page from before an
+  update. Every edge key also carries the deploy's version (`versionOf`: the stamps of `ASSET` and, from
+  `wrangler.jsonc` `version_metadata`, the id of the Worker's version), so a deploy shows its new pages at once. What
+  the edge serves is given the Worker's own `Cache-Control` back (the kept copy carries it as `PL-Cache-Control`), because
+  the zone's "Browser Cache TTL" rewrites `max-age` on cached answers: on the Cloudflare dashboard, logicers.com →
+  Caching → Configuration → Browser Cache TTL should say **Respect Existing Headers**. `src/index.js` must export only
+  functions and objects: workerd takes every export for a handler and will not start on a plain value.
+- The public pages' CSP also allows `https://static.cloudflareinsights.com` (scripts) and `https://cloudflareinsights.com`
+  (its reports): Cloudflare Web Analytics, which is on for the zone and writes its beacon into every page. The queue, the
+  claim pages and the maker's form keep the plain CSP (`CSP` in `src/pages.js`; the public one is `CSP_PUBLIC`).
+- The name in the head goes to `/` from every page; the language button of a language's page opens a sheet with the open
+  languages (`sheetLangs`), each a link.
 
 ## What it keeps
 
@@ -296,7 +312,8 @@ asks `/api/<lang>/games` 60 at a time after the first 60 the page shows), `admin
 (`/a/portal.css?v=…`) into `ASSET`, and `test/test_assets.mjs` fails until you do. `portal/_headers` lets browsers keep
 `/a/*` for a year (safe: a changed file has a new stamp; a new font gets a new name, `geologica-latin.v1.woff2`).
 The browser check: `python3 ../../portal/tests/check.py` against `wrangler dev` with the seeds imported (its first lines
-say how); it needs Python's Playwright (`pip install playwright`, `playwright install chromium`).
+say how); it needs Python's Playwright (`pip install playwright`, `playwright install chromium`). Its section 11
+(chat K) runs alone with `--only-k`.
 
 **Chat H, 20 Nov 2026 (plan section 10):** a tile is the coin and the name under it: the coin opens the game's own site in a
 new tab and counts (one tap to play), the name (44 px) opens its page; a coin with nobody today shows its kind's icon large
