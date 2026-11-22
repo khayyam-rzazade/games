@@ -6,7 +6,8 @@
      GET  /api/counts?lang=                  { games: { id: { t, a } }, page: t }  t today (UTC day), a in all; cached 60 s
      POST /api/hit   { game, id }            a tap on Play (or a Logicers tile): one count per device, game and UTC day
      POST /api/view  { lang, id }            a language's page opened: one count per device, language and UTC day
-     POST /api/add   { url, lang, kind, name?, email?, hp }   -> {} or e: link | here | busy | bad; the look at the page
+     POST /api/add   { url, lang, kind, name?, email?, hp }   -> {} or e: link | here (with game: { id, name } for a listed game
+                     that is not Logicers' and not claimed: the sheet offers Claim, chat N) | busy | bad; the look at the page
                                              runs after the answer (ctx.waitUntil) and lands on the queue card
      POST /api/report { game, reason, browser }   -> {} or e: bad | nogame | busy
      POST /api/vote  { game, id }            the game of the week (plan 2.20): one vote a device, language and UTC week, final
@@ -110,7 +111,10 @@ export async function add(env, req, b, ctx) {
   if (name === null || email === null || (email && !emailOk(email))) return bad("bad");
   if (!brake("add", req)) return bad("busy", 429);
   const n = norm(url);
-  if (await one(env, "SELECT id FROM games WHERE lang = ? AND norm = ?", b.lang, n)) return bad("here");
+  const was = await one(env, "SELECT id, name, status, source, maker_id FROM games WHERE lang = ? AND norm = ?", b.lang, n);
+  /* already here: a listed game that is not Logicers' and not claimed is named, so the sheet can offer Claim (chat N, 22 Nov
+     2026); a waiting, rejected or hidden one says nothing more */
+  if (was) return bad("here", 400, was.status === "listed" && was.source !== "logicers" && !was.maker_id ? { game: { id: was.id, name: was.name } } : null);
   /* at most 10 a day from one address (a keyed hash in nets, never the address; only with the secret set) */
   if (hashReady(env) && !changed(await netStmt(env, await netHash(env, req, utcDay(), "add"), NET.add).run())) return bad("busy", 429);
   if (!(await capOk(env, "add", CAP.add))) return bad("busy", 429);

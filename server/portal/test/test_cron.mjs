@@ -140,7 +140,7 @@ test("New closes, languages open, the tidy-up, and the scheduled entry point", a
   const start = NOW;
   setNow(start + 8 * 864e5);
   try {
-    assert.match((await get(e, "/es/")).text, /tile-one is-0" data-game="[a-z0-9]+" data-kind="words"><a class="tile-a" href="https:\/\/nuevo.example.com\/" target="_blank" rel="noopener" data-hit><svg/, "after 7 days: no ribbon, still place 1");
+    assert.match((await get(e, "/es/")).text, /tile-one is-0" data-game="[a-z0-9]+" data-kind="words"><a class="tile-a" href="\/es\/g\/[a-z0-9-]+\/"><svg/, "after 7 days: no ribbon, still place 1");
     const c = ctx();
     await worker.scheduled({ cron: "10 2 * * *" }, e, c);
     await c.done();

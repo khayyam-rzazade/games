@@ -1,5 +1,7 @@
-/* Play Logicers — the claim pages and the maker's form (chat J, 20 Nov 2026, plan 2.20). English pages, never indexed, never
-   kept by the edge. portal.js runs on them too (the add sheet, the device's id); this file does the rest:
+/* Play Logicers — the claim pages and the maker's form (chat J, 20 Nov 2026, plan 2.20). Never indexed, never kept by the
+   edge. Since chat N (22 Nov 2026) in the game's language (the form: ?l=, else the browser's): every word comes from the
+   page's data (#pl-data words: claim.*, maker.*, f.kind and the kinds), none from this file. portal.js runs on them too (the
+   add sheet, the device's id); this file does the rest:
      /claim/?g=<id>    Get your line (POST /api/claim/code: a code and a secret only this device gets, kept for this tab in
                        sessionStorage "portal.claim"), then Check (POST /api/claim/check: the Worker opens the game's page and
                        looks for the line)
@@ -15,6 +17,8 @@
   var doc = document;
   var D = {};
   try { D = JSON.parse(doc.getElementById("pl-data").textContent) || {}; } catch (e) { D = {}; }
+  var W = D.words || {};
+  function w(k, marks) { var s = W[k] == null ? "" : String(W[k]); return marks ? s.replace(/\{([a-z]+)\}/g, function (m, x) { return marks[x] != null ? marks[x] : m; }) : s; }
   function $(s, r) { return (r || doc).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); }
   function el(tag, cls, text) { var e = doc.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = String(text); return e; }
@@ -48,7 +52,7 @@
     if (!b) return;
     var t = doc.getElementById(b.getAttribute("data-copy"));
     if (!t) return;
-    var text = t.textContent || "", done = function () { var was = b.textContent; b.textContent = "Copied"; window.setTimeout(function () { b.textContent = was; }, 1400); };
+    var text = t.textContent || "", done = function () { var was = b.textContent; b.textContent = W["claim.copied"] || was; window.setTimeout(function () { b.textContent = was; }, 1400); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { pick(t); });
     else pick(t);
   });
@@ -82,7 +86,7 @@
       line.textContent = m.line;
       codeBox.hidden = false;
       check.disabled = false;
-      get1.textContent = "Get a new line";
+      get1.textContent = w("claim.again");
       get1.classList.remove("btn-send");
     }
     if (mine && mine.g === game && /^[a-z2-7]{24}$/.test(mine.s || "") && mine.line) show(mine);
@@ -135,8 +139,7 @@
     u.setAttribute("href", SPRITE + "#" + id); s.appendChild(u);
     return s;
   }
-  var SAY = { field: "Fill it in: 1 to 60 characters.", blocked: "Some of these words can't be used here.", busy: "Too many changes at once. Try again later.",
-    server: "Something went wrong. Try again.", nogame: "This game is not yours to change." };
+  function say(e) { return w(e === "server" || !W["maker.e_" + e] ? "claim.e_server" : "maker.e_" + e); }   // field blocked busy nogame, else server
   function note(p, text, ok) { p.textContent = text; p.classList.toggle("is-ok", !!ok); p.hidden = !text; }
   function makerPage() {
     var root = $("#maker"), nokey = $("#maker-nokey"), main = $("#maker-main"), keyform = $("#maker-keyform"), namef = $("#maker-namef"), list = $("#maker-games");
@@ -155,7 +158,7 @@
         nokey.hidden = true; main.hidden = false;
         namef.elements.namedItem("name").value = j.maker.name;
         var pg = $("#maker-page");
-        if (pg) { pg.setAttribute("href", "/m/" + j.maker.slug + "/"); pg.hidden = !(j.games || []).some(function (g) { return g.status === "listed"; }); }
+        if (pg) { pg.setAttribute("href", "/m/" + j.maker.slug + "/?l=" + encodeURIComponent(D.lang || "en")); pg.hidden = !(j.games || []).some(function (g) { return g.status === "listed"; }); }
         while (list.firstChild) list.removeChild(list.firstChild);
         (j.games || []).forEach(function (g) { list.appendChild(card(g)); });
       });
@@ -172,9 +175,9 @@
       busy(b, true);
       post("/api/maker/edit", { key: key, name: (namef.elements.namedItem("name").value || "").trim() }).then(function (j) {
         busy(b, false);
-        if (j && j.ok) { namef.elements.namedItem("name").value = j.maker.name; note(msg, "Saved. It's live.", true); return; }
+        if (j && j.ok) { namef.elements.namedItem("name").value = j.maker.name; note(msg, w("maker.saved"), true); return; }
         if (j && j.e === "key") return noKey("key");
-        note(msg, SAY[j && j.e] || SAY.server, false);
+        note(msg, say(j && j.e), false);
       });
     });
     $("#maker-forget").addEventListener("click", function () { drop(KEY); drop("portal.makerof"); key = ""; keyform.reset(); noKey(null); });
@@ -188,11 +191,11 @@
     if (g.page) { var l = el("a", "maker-card-a", g.name); l.setAttribute("href", g.page); h.appendChild(l); } else h.appendChild(el("span", null, g.name));
     h.appendChild(el("span", "maker-card-lang", LANGN[g.lang] || g.lang));
     a.appendChild(h);
-    if (g.status !== "listed") a.appendChild(el("p", "claim-p", "Not on the list now."));
+    if (g.status !== "listed") a.appendChild(el("p", "claim-p", w("maker.off")));
     var f = el("form", "maker-gamef");
     f.setAttribute("novalidate", "");
     var lab = el("label", "fld"), inp = el("input");
-    lab.appendChild(el("span", "fld-l", "Its line, in " + (LANGN[g.lang] || g.lang) + ": what you do in the game (at most 60 characters)"));
+    lab.appendChild(el("span", "fld-l", w("maker.line", { lang: LANGN[g.lang] || g.lang })));
     inp.name = "line"; inp.maxLength = 60; inp.value = g.line || ""; inp.setAttribute("lang", g.lang); inp.autocomplete = "off";
     lab.appendChild(inp);
     var count = el("span", "card-count");
@@ -200,7 +203,7 @@
     inp.addEventListener("input", paint); paint();
     lab.appendChild(count);
     f.appendChild(lab);
-    var fs = el("fieldset", "fld fld-kind"), lg = el("legend", "fld-l", "Kind"), ks = el("div", "kinds");
+    var fs = el("fieldset", "fld fld-kind"), lg = el("legend", "fld-l", w("f.kind")), ks = el("div", "kinds");
     fs.appendChild(lg);
     (D.kinds || []).forEach(function (k) {
       var o = el("label", "kind-opt"), r = el("input");
@@ -209,7 +212,7 @@
       ks.appendChild(o);
     });
     fs.appendChild(ks); f.appendChild(fs);
-    var b = el("button", "btn btn-send", "Save"); b.type = "submit"; f.appendChild(b);
+    var b = el("button", "btn btn-send", w("maker.save")); b.type = "submit"; f.appendChild(b);
     var msg = el("p", "maker-msg"); msg.setAttribute("role", "status"); msg.hidden = true; f.appendChild(msg);
     f.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -218,9 +221,9 @@
       busy(b, true);
       post("/api/maker/edit", body).then(function (j) {
         busy(b, false);
-        if (j && j.ok) { inp.value = j.game.line; paint(); note(msg, "Saved. It's live.", true); return; }
+        if (j && j.ok) { inp.value = j.game.line; paint(); note(msg, w("maker.saved"), true); return; }
         if (j && j.e === "field" && j.field === "line") inp.setAttribute("aria-invalid", "true");
-        note(msg, SAY[j && j.e] || SAY.server, false);
+        note(msg, say(j && j.e), false);
       });
     });
     inp.addEventListener("input", function () { inp.removeAttribute("aria-invalid"); });
@@ -231,13 +234,10 @@
 
   /* the logo: a picture of the maker's own, square is best; it waits for a look in the queue, then shows on the coins */
   var PIC_MAX = 150 * 1024, PIC_TYPES = ["image/png", "image/jpeg", "image/webp"];
-  var PIC_SAY = { type: "Use a PNG, JPEG or WebP picture.", big: "The picture is over 150 KB. Make it smaller and try again.",
-    small: "The picture must be at least 256 pixels wide and high.", huge: "The picture is too large: 4096 pixels at most.",
-    animated: "Use a still picture.", bad: "This file can't be read as a picture.", busy: SAY.busy, server: SAY.server, nogame: SAY.nogame };
   function logoForm(g) {
     var f = el("form", "maker-logo"), id = "logo-" + g.id;
     f.setAttribute("novalidate", "");
-    f.appendChild(el("h3", "maker-logo-h", "Logo"));
+    f.appendChild(el("h3", "maker-logo-h", w("maker.logo")));
     var row = el("div", "maker-logo-row"), view = el("div", "maker-logo-view"), now = el("img", "maker-logo-img");
     now.alt = ""; now.width = 96; now.height = 96;
     if (g.pic) now.src = g.pic; else now.hidden = true;
@@ -245,13 +245,13 @@
     if (!g.pic) view.appendChild(icon("k-" + g.kind));
     row.appendChild(view);
     var side = el("div", "maker-logo-side");
-    var state = el("p", "maker-logo-state", g.pic_wait ? "A new logo is waiting for a look." : g.pic ? "Shown on your game's coins and page." : "Square, at least 256 pixels, at most 150 KB: PNG, JPEG or WebP. It shows once we have looked at it.");
+    var state = el("p", "maker-logo-state", w(g.pic_wait ? "maker.logo_wait" : g.pic ? "maker.logo_on" : "maker.logo_how"));
     side.appendChild(state);
     var lab = el("label", "btn maker-logo-pick"), inp = el("input", "maker-logo-file");
     inp.type = "file"; inp.accept = PIC_TYPES.join(","); inp.id = id;
-    lab.appendChild(inp); lab.appendChild(el("span", null, g.pic || g.pic_wait ? "Choose another" : "Choose a picture"));
+    lab.appendChild(inp); lab.appendChild(el("span", null, w(g.pic || g.pic_wait ? "maker.pick2" : "maker.pick")));
     side.appendChild(lab);
-    var send = el("button", "btn btn-send maker-logo-send", "Send the logo"); send.type = "submit"; send.hidden = true;
+    var send = el("button", "btn btn-send maker-logo-send", w("maker.send")); send.type = "submit"; send.hidden = true;
     side.appendChild(send);
     var msg = el("p", "maker-msg"); msg.setAttribute("role", "status"); msg.hidden = true;
     side.appendChild(msg);
@@ -262,18 +262,18 @@
       var file = inp.files && inp.files[0];
       data = null; send.hidden = true; note(msg, "", false);
       if (!file) return;
-      if (PIC_TYPES.indexOf(file.type) < 0) { note(msg, PIC_SAY.type, false); return; }
-      if (file.size > PIC_MAX) { note(msg, PIC_SAY.big, false); return; }
+      if (PIC_TYPES.indexOf(file.type) < 0) { note(msg, say("type"), false); return; }
+      if (file.size > PIC_MAX) { note(msg, say("big"), false); return; }
       var r = new FileReader();
       r.onload = function () {
         data = String(r.result || "");
-        if (!/^data:image\/(png|jpeg|webp);base64,/.test(data)) { data = null; note(msg, PIC_SAY.type, false); return; }
+        if (!/^data:image\/(png|jpeg|webp);base64,/.test(data)) { data = null; note(msg, say("type"), false); return; }
         now.src = data; now.hidden = false;
         var ic = $("svg", view); if (ic) view.removeChild(ic);
         send.hidden = false;
         focus(send);
       };
-      r.onerror = function () { note(msg, PIC_SAY.bad, false); };
+      r.onerror = function () { note(msg, say("bad"), false); };
       r.readAsDataURL(file);
     });
     f.addEventListener("submit", function (e) {
@@ -282,8 +282,8 @@
       busy(send, true);
       post("/api/maker/pic", { key: keyOf(), game: g.id, data: data }).then(function (j) {
         busy(send, false);
-        if (j && j.ok) { send.hidden = true; data = null; state.textContent = j.state === "ok" ? "Shown on your game's coins and page." : "Sent. It shows once we have looked at it."; note(msg, "", false); focus(state); return; }
-        note(msg, PIC_SAY[j && (j.why || j.e)] || SAY.server, false);
+        if (j && j.ok) { send.hidden = true; data = null; state.textContent = w(j.state === "ok" ? "maker.logo_on" : "maker.logo_sent"); note(msg, "", false); focus(state); return; }
+        note(msg, say(j && (j.why || j.e)), false);
       });
     });
     return f;

@@ -10,6 +10,7 @@ import assert from "node:assert/strict";
 import { env, get, call, importGames, seedGames, admin, A, R, one, rows, resetBrakes, freshIp, setNow, WEB, page, _test } from "./lib.mjs";
 import { D1 } from "./d1shim.mjs";
 import { keyHash, mac } from "../src/util.js";
+import { word } from "../src/words.js";
 
 const THU = Date.UTC(2026, 10, 19, 9, 0);
 const post = (e, p, b, o) => call(e, "POST", p, b, o);
@@ -138,7 +139,7 @@ test("the link of the weekly email: opening it uses nothing, the button claims o
   for (let i = 0; i < 2; i++) {
     const p = await get(e, "/claim/" + token + "/");
     assert.equal(p.status, 200);
-    assert.match(p.text, /<button class="btn btn-send claim-token" id="claim-token" type="button">Claim it<\/button>/);
+    assert.match(p.text, new RegExp(`<button class="btn btn-send claim-token" id="claim-token" type="button">${word("es", "claim.it")}</button>`), "in the game's language (chat N)");
     assert.match(p.text, new RegExp(`data-game="${g.id}" data-token="${token}"`));
   }
   assert.equal((await one(e, "SELECT COUNT(*) AS n FROM tokens WHERE game = ?", g.id)).n, 1, "a mail program that opens the link claims nothing");
@@ -218,7 +219,7 @@ test("the maker's form: the name everywhere, a game's line and kind live with an
   assert.equal((await maker(e, key, { ip })).status, 429);
 });
 
-test("the pages: Your game? and Claim on a game not claimed, the address on a claimed one; English pages never kept or indexed", async () => {
+test("the pages: Your game? and Claim on a game not claimed, the address on a claimed one; the claim pages never kept or indexed", async () => {
   const e = await fresh();
   const [g, h] = await seeds(e);
   const gp = await get(e, "/es/g/" + g.slug + "/");
@@ -231,8 +232,8 @@ test("the pages: Your game? and Claim on a game not claimed, the address on a cl
   assert.equal(c.headers.get("Cache-Control"), "no-store");
   assert.equal(c.headers.get("X-Robots-Tag"), "noindex");
   assert.match(c.headers.get("Content-Security-Policy"), /script-src 'self'; style-src 'self'/);
-  assert.match(c.text, /<html lang="en"/);
-  assert.match(c.text, /<p class="about-local" lang="es" dir="ltr">Esta página está en inglés\.<\/p>/);
+  assert.match(c.text, /<html lang="es"/, "in the game's language since chat N (22 Nov 2026), with no line saying it is English");
+  assert.doesNotMatch(c.text, /class="about-local"/);
   assert.match(c.text, /<script src="\/a\/maker\.js\?v=[0-9a-f]{10}" defer><\/script>/);
   assert.match(c.text, new RegExp(`<span class="claim-url">${g.url.replace(/\./g, "\\.")}</span>`));
   assert.equal((await get(e, "/claim/?g=" + h.id)).status, 200, "a claimed game can be claimed again (the recovery)");

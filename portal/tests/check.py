@@ -29,6 +29,16 @@ shows them:
 is counted; Numbers in the queue, for both keys; Claim in the first screen of a game's page; the dice with its word on a
 computer and alone on a phone, the name of the page on one line beside the buttons, in the 12 languages, stretched too.
 
+Chat N, 22 Nov 2026: a maker's coin opens its game's page in the same tab and counts nothing (as its name does); Play on that
+page, the dice, My run and Logicers' own coins count. Section 13 runs last, or alone with --only-n (a few minutes, against the
+Worker that shows numbers): Yours and More build coins that open their pages; "Add a game" with a listed game's link shows
+Claim; the claim pages, the claim link's page and the maker's form in the 12 languages (the form also by the browser's
+language), every message shown at once, also with every word half as long again; and maker.js, with its words turned into
+marks, shows no English of its own. It plants claim links and a maker in the local database and takes them away at the end.
+Its adds go out from addresses of their own (CF-Connecting-IP, which wrangler dev takes), so the add brake that earlier runs
+spent from localhost does not stop it; section 5 still adds from localhost, so a run that follows a run within the hour needs
+the Worker restarted (the brakes live in its memory).
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -47,6 +57,8 @@ SHOTS = sys.argv[sys.argv.index("--shots") + 1] if "--shots" in sys.argv else "/
 os.makedirs(SHOTS, exist_ok=True)
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 LANGS = ["en", "es", "pt", "fr", "de", "it", "tr", "ru", "pl", "nl", "ja", "ko"]
+WDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "server", "portal", "words")
+WORDS = {l: json.load(open(os.path.join(WDIR, l + ".json"), encoding="utf-8")) for l in LANGS}   # the words files (chat N reads the claim words)
 PHONES, COMPUTERS = [320, 360, 390, 414], [1280, 1440]
 fails, passes = [], 0
 RUN = str(int(time.time()))          # the pages are kept 5 minutes at the edge: a fresh address each run
@@ -120,7 +132,7 @@ BOXES = r"""
 # the stress: every word half as long again (and the Polish name as C may set it), then the same look
 STRETCH = r"""
 () => {
-  const sel = '.row-t, .row-more, .btn > span, .btn-add, .add-top-t, .dice-t, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n)';
+  const sel = '.row-t, .row-more, .btn > span, .btn-add, .add-top-t, .dice-t, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .sheet-here-t, .btn-claim, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n)';
   for (const e of document.querySelectorAll(sel)) {
     for (const n of [...e.childNodes]) if (n.nodeType === 3 && n.textContent.trim()) { const t = n.textContent.trim(); n.textContent = (n.textContent.startsWith(' ') ? ' ' : '') + t + t.slice(0, Math.ceil(t.length / 2)).toLowerCase() + (n.textContent.endsWith(' ') ? ' ' : ''); }
   }
@@ -143,8 +155,11 @@ ZERO = r"""
       if (!/[1-9]/.test(n.textContent)) bad.push('a coin without is-0 and without a number: ' + li.dataset.game + ' "' + n.textContent + '"');
       if (shown(z)) bad.push('a number and the zero icon: ' + li.dataset.game);
     }
-    const a = li.querySelector('.tile-a');
-    if (!a || a.getAttribute('target') !== '_blank' || !a.hasAttribute('data-hit') || !/^https:/.test(a.getAttribute('href') || '')) bad.push('the coin does not play: ' + li.dataset.game);
+    const a = li.querySelector('.tile-a'), nm = li.querySelector('.tile-name');
+    if (li.classList.contains('tile-lg')) {            // Logicers' own: no page here, the coin plays (new tab, counted)
+      if (!a || a.getAttribute('target') !== '_blank' || !a.hasAttribute('data-hit') || !/^https:/.test(a.getAttribute('href') || '')) bad.push('a Logicers coin does not play: ' + li.dataset.game);
+    } else if (!a || !/^\/[a-z-]+\/g\/[^/]+\/$/.test(a.getAttribute('href') || '') || a.hasAttribute('target') || a.hasAttribute('data-hit')
+      || !nm || nm.getAttribute('href') !== a.getAttribute('href') || nm.tabIndex !== -1) bad.push('the coin does not open its page (chat N): ' + li.dataset.game);
   }
   for (const e of document.querySelectorAll('.today-n, .num-n, .tile-n, .nums-total, .nums-cv')) if (shown(e) && e.textContent.trim() === '0') bad.push('a 0 is written: ' + e.className);
   for (const p of document.querySelectorAll('.today')) if (!p.hidden && !/[1-9]/.test(p.textContent)) bad.push('the players line shows without a player');
@@ -219,7 +234,7 @@ def main():
                     bad = pg.evaluate(BOXES)
                     ok(not bad, tag + ": boxes", bad[:4])
                     z = pg.evaluate(ZERO)
-                    ok(not z, tag + ": no 0 written; the coin plays", z[:4])
+                    ok(not z, tag + ": no 0 written; a coin opens its game's page, a Logicers coin plays", z[:4])
                     if scheme == "light":
                         nm = pg.evaluate(ACCNAME)
                         ok(not nm, tag + ": every control has a name", nm[:3])
@@ -291,21 +306,32 @@ def main():
             pg.query_selector(f'.row-lg li[data-game="{gid}"] .tile-a').click()
         pop.value.close(); pg.wait_for_timeout(500)
         ok(json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"][gid]["t"] == t1, "a second tap the same day is not counted again")
-        # one tap to play: a game's coin opens its own site in a new tab, counts, and its number shows at once; the name opens its page
+        # the coin opens its game's page in this tab and counts nothing (Khayyam, 22 Nov 2026; it played from chat H); Play on the
+        # page opens the game in a new tab, counts one, and back on the language page the coin shows its new number
         pg.goto(url("/es/") + "&z=1", wait_until="networkidle")
         tl = pg.query_selector(".row-kind li.tile:not(.tile-mine)")
         gid2, href2 = tl.get_attribute("data-game"), tl.query_selector(".tile-a").get_attribute("href")
+        api_g = next((g for g in json.loads(PG_API("/api/es/games?ids=" + gid2))["games"]), {})
         c0 = json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"][gid2]["t"]
+        tabs, hits = len(ctx.pages), []
+        pg.on("request", lambda r: hits.append(r.url) if "/api/hit" in r.url else None)
+        tl.query_selector(".tile-a").click(); pg.wait_for_load_state("networkidle"); pg.wait_for_timeout(400)
+        ok(href2 == f"/es/g/{api_g.get('slug')}/" and re.sub(r"[?#].*", "", pg.url) == B + href2 and len(ctx.pages) == tabs, "the coin opens the game's page, in the same tab", (href2, pg.url, len(ctx.pages)))
+        ok(not hits and json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"][gid2]["t"] == c0, "a tap on a coin counts nothing", hits)
         with ctx.expect_page() as pop:
-            tl.query_selector(".tile-a").click()
-        api_url = next((g["url"] for g in json.loads(PG_API("/api/es/games?ids=" + gid2))["games"]), None)
-        ok(href2 == api_url and pop.value is not None, "the coin opens the game's own site in a new tab", (href2, api_url))
+            pg.click(".btn-play")
+        ok(pop.value is not None and pg.get_attribute(".btn-play", "href") == api_g.get("url"), "Play on the page opens the game's own site in a new tab")
         pop.value.close(); pg.wait_for_timeout(600)
-        ok(json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"][gid2]["t"] == c0 + 1, "a tap on a coin counts one, as Play does")
+        ok(json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"][gid2]["t"] == c0 + 1, "Play counts one")
+        pg.goto(url("/es/") + "&z=2", wait_until="networkidle"); pg.wait_for_timeout(500)
         ok(pg.evaluate(f"document.querySelector('.row-kind li.tile[data-game=\"{gid2}\"] .tile-n').textContent") == str(c0 + 1)
-           and not pg.evaluate(f"document.querySelector('.row-kind li.tile[data-game=\"{gid2}\"]').classList.contains('is-0')"), "the coin shows its new number at once")
+           and not pg.evaluate(f"document.querySelector('.row-kind li.tile[data-game=\"{gid2}\"]').classList.contains('is-0')")
+           and pg.evaluate(f"document.querySelector('.row-kind li.tile[data-game=\"{gid2}\"]').classList.contains('tile-tick')"), "back on the page the coin shows its new number and its tick")
         pg.click(f'.row-kind li.tile[data-game="{gid2}"] .tile-name'); pg.wait_for_load_state("networkidle")
-        ok("/es/g/" in pg.url, "the name under the coin opens the game's page", pg.url)
+        ok("/es/g/" in pg.url, "the name under the coin opens the game's page too", pg.url)
+        pg.goto(url("/es/") + "&z=3", wait_until="networkidle")
+        pg.focus(f'.row-kind li.tile[data-game="{gid2}"] .tile-a'); pg.keyboard.press("Tab")
+        ok(not pg.evaluate("document.activeElement.classList.contains('tile-name')"), "one tab stop: from the coin the next stop is not its name", pg.evaluate("document.activeElement.className"))
         clean(pg, "counts")
         ctx.close()
 
@@ -524,23 +550,23 @@ def main():
         ctx, pg = new(b, 390)
         pg.goto(url("/es/"), wait_until="networkidle")
         ok(pg.evaluate("document.getElementById('streak').hidden"), "no streak for a new device")
-        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[0]}"] .tile-a')
+        tap(ctx, pg, '.row-lg li.tile:nth-child(1) .tile-a')
         s = stored(pg)["streak"]
         ok(s == {"n": 1, "last": day_js(pg)}, "the first game played starts it at 1", s)
         pg.goto(url("/es/") + "&s=1", wait_until="networkidle"); pg.wait_for_timeout(700)
         st = pg.evaluate("(() => { const e = document.getElementById('streak'); return { hidden: e.hidden, n: e.querySelector('.streak-n').textContent, wait: e.classList.contains('is-wait'), label: e.getAttribute('aria-label') }; })()")
         ok(not st["hidden"] and st["n"] == "1" and not st["wait"] and st["label"] == "1 día seguido", "a flame and the 1, in the language's words", st)
-        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[1]}"] .tile-a')
+        tap(ctx, pg, '.row-lg li.tile:nth-child(2) .tile-a')
         ok(stored(pg)["streak"]["n"] == 1, "a second game the same day does not add to it")
         mine(pg, played={ids[0]: day_js(pg, 1)}, streak={"n": 3, "last": day_js(pg, 1)}); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(700)
         st = pg.evaluate("(() => { const e = document.getElementById('streak'); return { hidden: e.hidden, n: e.querySelector('.streak-n').textContent, wait: e.classList.contains('is-wait'), label: e.getAttribute('aria-label') }; })()")
         ok(not st["hidden"] and st["n"] == "3" and st["wait"] and st["label"] == "3 días seguidos", "yesterday was the last day: the 3 shows, grey, until today's first game", st)
-        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[1]}"] .tile-a')
+        tap(ctx, pg, '.row-lg li.tile:nth-child(2) .tile-a')
         st = pg.evaluate("(() => { const e = document.getElementById('streak'); return { n: e.querySelector('.streak-n').textContent, wait: e.classList.contains('is-wait') }; })()")
         ok(st == {"n": "4", "wait": False} and stored(pg)["streak"] == {"n": 4, "last": day_js(pg)}, "a game today makes it 4, no longer grey, at once", st)
         mine(pg, played={ids[0]: day_js(pg, 2)}, streak={"n": 9, "last": day_js(pg, 2)}); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(700)
         ok(pg.evaluate("document.getElementById('streak').hidden"), "a missed day: the streak is gone")
-        tap(ctx, pg, f'.row-kind li.tile[data-game="{ids[1]}"] .tile-a')
+        tap(ctx, pg, '.row-lg li.tile:nth-child(2) .tile-a')
         ok(stored(pg)["streak"] == {"n": 1, "last": day_js(pg)}, "and the next game starts it again at 1", stored(pg)["streak"])
         for bad_streak in [{"n": -3, "last": "x"}, {"n": 1.5, "last": day_js(pg)}, {"n": "7", "last": day_js(pg)}, {"n": 5}, "flame", None]:
             mine(pg, played={ids[0]: day_js(pg)}, streak=bad_streak); pg.reload(wait_until="networkidle"); pg.wait_for_timeout(500)
@@ -570,7 +596,7 @@ def main():
         ok(not r["hidden"] and r["game"] == order[0] and r["text"] == "3" and r["h"] >= 44 and r["target"] == "_blank" and r["label"] == "Siguiente juego, 3", "the run starts at the first game; a 0 is not written (3, not 0/3)", r)
         for k in range(3):
             want = order[k]
-            href_want = pg.get_attribute(f'li.tile[data-game="{want}"] .tile-a', "href")
+            href_want = pg.evaluate("(id) => { const li = document.querySelector('#row-mine li.tile[data-game=\"' + id + '\"], .row-lg li.tile[data-game=\"' + id + '\"]'); return li.dataset.url || li.querySelector('.tile-a').getAttribute('href'); }", want)   # a Yours tile keeps the game's own address (chat N)
             ok(pg.get_attribute("#run", "href") == href_want and pg.get_attribute("#run", "data-game") == want, f"the run link is game {k + 1} of 3", (pg.get_attribute("#run", "data-game"), want))
             c0 = json.loads(PG_API("/api/counts?lang=es&fresh=" + str(time.time())))["games"].get(want, {"t": 0})["t"]
             tap(ctx, pg, "#run")
@@ -687,6 +713,7 @@ def main():
         section_j(b)
         section_k(b)
         section_l(b)
+        section_n(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -839,7 +866,7 @@ def key_hash(label, k):
 
 FOOT = r"""
 () => {
-  const p = document.querySelector('.yours-q'), c = document.querySelector('.btn-claim'), R = (e) => e.getBoundingClientRect();
+  const p = document.querySelector('.yours-q'), c = document.querySelector('.game-foot .btn-claim'), R = (e) => e.getBoundingClientRect();   // not the add sheet's Claim (chat N)
   return { claim: !!c, h: c ? R(c).height : 0, w: c ? R(c).width : 0, t: c ? c.textContent.trim() : '', q: (document.querySelector('.yours-q-t') || {}).textContent || '',
     over: p.scrollWidth > p.clientWidth + 1, href: c ? c.getAttribute('href') : '', foot: R(document.querySelector('.game-foot')).height };
 }
@@ -871,12 +898,13 @@ def section_j2(b):
                     pg.evaluate("() => document.querySelector('.game-foot').scrollIntoView()"); pg.screenshot(path=f"{SHOTS}/j2-foot-{lang}-{w}.png")
                 clean(pg, f"claim foot {lang} {w} {scheme}")
             ctx.close()
-    # the claim page: English, one line in the game's language; the line comes on a tap, then Check can be pressed
+    # the claim page: in the game's language (chat N; English with one line on top before); the line comes on a tap, then Check can be pressed
     for w in (320, 390, 1280):
         for scheme in ("light", "dark"):
             ctx, pg = new(b, w, scheme)
             pg.goto(url(f"/claim/?g={g['id']}"), wait_until="networkidle")
-            ok(pg.get_attribute("html", "lang") == "en" and pg.text_content(".about-local").strip() == "Esta página está en inglés.", f"claim {w} {scheme}: English, one line in Spanish")
+            ok(pg.get_attribute("html", "lang") == "es" and pg.query_selector(".about-local") is None and pg.text_content("#claim-get").strip() == WORDS["es"]["claim.get"],
+               f"claim {w} {scheme}: in the game's language, no line saying it is English (chat N)")
             ok(pg.is_disabled("#claim-check") and not pg.is_visible(".claim-code"), f"claim {w} {scheme}: nothing to check before the line")
             pg.focus("#claim-get"); pg.keyboard.press("Enter"); pg.wait_for_selector(".claim-code:not([hidden])", timeout=5000)
             line = pg.text_content("#claim-line")
@@ -910,7 +938,7 @@ def section_j2(b):
     pg.screenshot(path=f"{SHOTS}/j2-key-390.png", full_page=True)
     clean(pg, "the claim link")
     pg.goto(url(f"/claim/{token}/"), wait_until="networkidle")
-    ok("This link no longer works" in pg.text_content("main"), "the link works once")
+    ok(WORDS["en"]["claim.used_h"] in pg.text_content("main"), "the link works once (a link that works no more: the browser's language, here English)")
     # the maker's form: the game's line and kind, the maker's name; live at once
     pg.goto(url("/maker/?l=es"), wait_until="networkidle")
     pg.wait_for_selector(".maker-card", timeout=5000)
@@ -918,7 +946,7 @@ def section_j2(b):
     pg.fill(".maker-card input[name=line]", "Adivina la palabra, local check")
     pg.check('.maker-card input[name=kind][value="knowledge"]', force=True)
     pg.click(".maker-card .btn-send"); pg.wait_for_selector(".maker-card .maker-msg:not([hidden])", timeout=5000)
-    ok(pg.text_content(".maker-card .maker-msg") == "Saved. It's live.", "a game's line and kind saved")
+    ok(pg.text_content(".maker-card .maker-msg") == WORDS["es"]["maker.saved"], "a game's line and kind saved")
     live = [x for x in json.loads(PG_API("/api/es/games?n=100&fresh=" + str(time.time())))["games"] if x["id"] == g["id"]]
     ok(live and live[0]["line"] == "Adivina la palabra, local check" and live[0]["kind"] == "knowledge", "live at once", live[:1])
     pg.fill("#maker-namef input[name=name]", "Local Maker"); pg.click("#maker-namef .btn-send"); pg.wait_for_selector("#maker-namef .maker-msg:not([hidden])", timeout=5000)
@@ -1091,7 +1119,7 @@ def section_j3(b):
     pg.goto(url("/maker/?l=es"), wait_until="networkidle"); pg.wait_for_selector(".maker-card", timeout=5000)
     mo = pg.evaluate("JSON.parse(localStorage.getItem('portal.makerof') || 'null')")
     ok(mo and mo.get("slug") == slug and set(mo.get("games", [])) == {A_["id"], B_["id"], C_["id"]}, "the form keeps which maker the key opens and its games", mo)
-    ok(pg.is_visible("#maker-page") and pg.get_attribute("#maker-page", "href") == f"/m/{slug}/", "the form links the maker's page")
+    ok(pg.is_visible("#maker-page") and pg.get_attribute("#maker-page", "href") == f"/m/{slug}/?l=es", "the form links the maker's page, in the form's language (chat N)")
     cardC = pg.query_selector(f'.maker-card[data-game="{C_["id"]}"]')
     gif = "/tmp/j3-logo.gif"; open(gif, "wb").write(b"GIF89a" + b"\0" * 200)
     cardC.query_selector(".maker-logo-file").set_input_files(gif); pg.wait_for_timeout(300)
@@ -1100,7 +1128,7 @@ def section_j3(b):
     cardC.query_selector(".maker-logo-file").set_input_files(pngf); pg.wait_for_selector(f'.maker-card[data-game="{C_["id"]}"] .maker-logo-send:not([hidden])', timeout=5000)
     ok(pg.evaluate("(id) => { const i = document.querySelector('.maker-card[data-game=\"' + id + '\"] .maker-logo-img'); return i.naturalWidth > 0 && i.src.startsWith('data:image/png'); }", C_["id"]), "the chosen logo shows before it is sent")
     cardC.query_selector(".maker-logo-send").click(); pg.wait_for_timeout(700)
-    ok("Sent. It shows once we have looked at it." in cardC.text_content(), "the logo is sent and waits")
+    ok(WORDS["es"]["maker.logo_sent"] in cardC.text_content(), "the logo is sent and waits")
     ok(sql(f"SELECT state FROM pics WHERE game = '{C_['id']}'") == [{"state": "wait"}], "it waits in the database")
     hs = pg.evaluate("() => [...document.querySelectorAll('.maker-logo button, .maker-logo-pick, .maker-pagelink')].filter((e) => e.getBoundingClientRect().width).map((e) => Math.round(e.getBoundingClientRect().height))")
     ok(hs and min(hs) >= 44, "the logo's buttons 44 px", hs)
@@ -1395,17 +1423,15 @@ def section_l(b):
         pg.goto(Q + "/es/?t=" + RUN + str(w), wait_until="networkidle"); pg.wait_for_timeout(400)
         tl = pg.query_selector(".row-kind li.tile:not(.tile-mine)")
         gid = tl.get_attribute("data-game")
+        tl.query_selector(".tile-a").click(); pg.wait_for_load_state("networkidle"); pg.wait_for_timeout(300)   # the coin opens the game's page (chat N)
         with pg.expect_response(lambda r: "/api/hit" in r.url) as hit:
-            with ctx.expect_page() as pop: tl.query_selector(".tile-a").click()
+            with ctx.expect_page() as pop: pg.click(".btn-play")
         pop.value.close(); pg.wait_for_timeout(500)
-        ok(hit.value.status == 200 and hit.value.json().get("counted") is True, f"12 {w}: the tap is counted", hit.value.status)
-        ok(pg.evaluate(f"document.querySelector('li.tile[data-game=\"{gid}\"]').classList.contains('tile-tick')"), f"12 {w}: the coin played today has its tick")
-        bad = pg.evaluate(SHOWN); ok(not bad, f"12 {w}: no number after the tap", bad[:4])
-        pg.goto(Q + "/es/?u=" + RUN + str(w), wait_until="networkidle"); pg.wait_for_timeout(500)
-        bad = pg.evaluate(SHOWN); ok(not bad, f"12 {w}: no number after the tap and a new load", bad[:4])
-        slug = next(g["slug"] for g in gs if g["id"] == gid) if any(g["id"] == gid for g in gs) else json.loads(get("/api/es/games?ids=" + gid))["games"][0]["slug"]
-        pg.goto(Q + f"/es/g/{slug}/?r=" + RUN, wait_until="networkidle"); pg.wait_for_timeout(300)
+        ok(hit.value.status == 200 and hit.value.json().get("counted") is True, f"12 {w}: Play is counted", hit.value.status)
         bad = pg.evaluate(SHOWN); ok(not bad, f"12 {w}: no number on the page of the game just played", bad[:4])
+        pg.goto(Q + "/es/?u=" + RUN + str(w), wait_until="networkidle"); pg.wait_for_timeout(500)
+        ok(pg.evaluate(f"document.querySelector('li.tile[data-game=\"{gid}\"]').classList.contains('tile-tick')"), f"12 {w}: the coin played today has its tick")
+        bad = pg.evaluate(SHOWN); ok(not bad, f"12 {w}: no number after the play and a new load", bad[:4])
         ok(not asked, f"12 {w}: the pages ask for no counts", asked[:2])
         ctx.close()
     n1 = post("/admin/queue", {"key": ADMIN, "filter": "numbers"}).get("numbers") or {}
@@ -1473,13 +1499,264 @@ def section_l(b):
     api_ctx.close()
 
 
+# ---- 13. chat N, 22 Nov 2026 (plan section 0, 22 Nov): the coin opens its game's page (Yours and More too); "Add a game" with
+# a listed game's link offers Claim; the claim pages, the claim link's page and the maker's form in the game's language (the
+# form: ?l=, else the browser's), every word from the words files. 320, 390, 1280; light and dark; the 12 languages; every
+# message shown at once; again with every word half as long again; and maker.js with its words made marks (⟦key⟧) shows no
+# English of its own. Alone: --only-n (a few minutes; it plants claim links and a maker in the local database, and takes
+# them away at the end).
+
+# nothing outside the claim box, the form or the "already here" line; no cut words
+CLAIMBOX = r"""
+() => {
+  const bad = [], vw = document.documentElement.clientWidth;
+  if (document.documentElement.scrollWidth > vw + 1) bad.push('page wider than the screen: ' + document.documentElement.scrollWidth + ' > ' + vw);
+  const R = (e) => e.getBoundingClientRect();
+  const vis = (e) => { const r = R(e); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !e.closest('[hidden], dialog:not([open]), template, .vh, .hp'); };
+  const name = (e) => (e.className && e.className.baseVal !== undefined ? e.className.baseVal : e.className) + ' "' + (e.textContent || '').trim().slice(0, 30) + '"';
+  for (const box of document.querySelectorAll('.claim, .maker, .sheet-here')) {
+    if (!vis(box)) continue;
+    const q = R(box);
+    for (const c of box.querySelectorAll('*')) {
+      if (!vis(c) || (c.closest('svg') && c.tagName.toLowerCase() !== 'svg')) continue;
+      const r = R(c);
+      if (r.left < q.left - 1 || r.right > q.right + 1) bad.push('outside its box: ' + name(c) + ' in ' + name(box));
+    }
+  }
+  for (const e of document.querySelectorAll('.claim-h, .claim-p, .claim-step-h, .claim-err, .claim-other, .claim-code, .maker-card-h, .maker-logo-state, .maker-msg, .maker-logo-h, .sheet-here-t, .claim .btn, .maker .btn, .sheet-claim, .fld-l, .kind-opt-t')) {
+    if (!vis(e)) continue;
+    if (e.scrollWidth > e.clientWidth + 1) bad.push('cut: ' + name(e) + ' ' + e.scrollWidth + ' > ' + e.clientWidth);
+  }
+  const small = [...document.querySelectorAll('.claim .btn, .maker .btn, .maker input:not([type=radio]):not([type=file]), .sheet-claim, .kind-opt')].filter(vis).map((e) => Math.round(R(e).height)).filter((h) => h < 44);
+  if (small.length) bad.push('under 44 px: ' + small.join(','));
+  return bad;
+}
+"""
+# every text of the claim box, the form and the sheet's line half as long again (after the script has built its part)
+STRETCH_N = r"""
+() => {
+  const w = document.createTreeWalker(document.querySelector('main') || document.body, NodeFilter.SHOW_TEXT);
+  const ns = []; for (let n = w.nextNode(); n; n = w.nextNode()) if (n.textContent.trim() && !n.parentElement.closest('code, .claim-url, .mail, script, .vh')) ns.push(n);
+  for (const e of document.querySelectorAll('.sheet-here-t, .sheet-claim')) for (const n of e.childNodes) if (n.nodeType === 3) ns.push(n);
+  for (const n of ns) { const t = n.textContent.trim(); n.textContent = (n.textContent.startsWith(' ') ? ' ' : '') + t + t.slice(0, Math.ceil(t.length / 2)).toLowerCase() + (n.textContent.endsWith(' ') ? ' ' : ''); }
+}
+"""
+# every message of a claim page or the form shown at once (each is shown alone in use; together they test every box)
+REVEAL = r"""
+(key) => {
+  for (const e of document.querySelectorAll('.claim-err, #claim-ok, .claim-keybox, .claim-joined, .claim-code')) e.hidden = false;
+  const k = document.getElementById('claim-key'); if (k && !k.textContent) k.textContent = key;
+  const l = document.getElementById('claim-line'); if (l && !l.textContent) l.textContent = '<meta name="logicers-portal" content="lp-abcdefghijklmnopqrst">';
+  const msgs = [...document.querySelectorAll('.maker-msg')];
+  const words = JSON.parse(document.getElementById('pl-data').textContent).words || {};
+  const long = Object.keys(words).filter((x) => /^maker\.e_/.test(x)).map((x) => words[x]).sort((a, b) => b.length - a.length)[0] || '';
+  for (const m of msgs) { m.textContent = long; m.hidden = false; }
+}
+"""
+
+
+def own_address(ctx):
+    """a context of its own address (wrangler dev takes CF-Connecting-IP from the request): the add brake (30 an hour from one
+    address) then holds for this context alone, whatever earlier sections or runs sent from localhost"""
+    ctx.set_extra_http_headers({"CF-Connecting-IP": "10.%d.%d.%d" % (random.randint(100, 250), random.randint(0, 255), random.randint(1, 254))})
+
+
+def fill_w(code, key, **marks):
+    s = WORDS[code][key]
+    for k, v in marks.items(): s = s.replace("{" + k + "}", v)
+    return s
+
+
+def section_n(b):
+    """chat N: the coin, Claim from Add a game, the claim pages and the form in the game's language"""
+    ok(bool(portal_key()), "13: the local PORTAL_KEY is known (server/portal/.dev.vars, or PORTAL_KEY=)")
+    if not portal_key(): return
+    sql("DELETE FROM nets; DELETE FROM seen;")
+    games = {l: [g for g in json.loads(PG_API(f"/api/{l}/games?n=60&fresh=" + RUN))["games"] if not g.get("logicers")] for l in LANGS}
+    ends = {l["code"]: l["endonym"] for l in json.loads(PG_API("/api/langs"))["langs"]}
+    claimed = {r["id"] for r in sql("SELECT id FROM games WHERE maker_id IS NOT NULL")}
+    pick = {l: next(g for g in games[l] if g["id"] not in claimed) for l in LANGS}
+
+    # -- the coin opens its page: the Yours row and More, built by portal.js, as the server's coins
+    ctx, pg = new(b, 390)
+    g = pick["es"]
+    pg.goto(url("/es/"), wait_until="networkidle")
+    pg.evaluate("(id) => localStorage.setItem('portal.mine', JSON.stringify({ v: 1, star: [id], played: {} }))", g["id"])
+    pg.reload(wait_until="networkidle"); pg.wait_for_selector(f'#row-mine li[data-game="{g["id"]}"]', timeout=5000)
+    y = pg.evaluate("(id) => { const li = document.querySelector('#row-mine li[data-game=\"' + id + '\"]'), a = li.querySelector('.tile-a'), n = li.querySelector('.tile-name'); return { href: a.getAttribute('href'), target: a.getAttribute('target'), hit: a.hasAttribute('data-hit'), name: n.getAttribute('href'), tab: n.tabIndex, url: li.dataset.url, vn: li.querySelector('.tile-vn').textContent.trim() }; }", g["id"])
+    ok(y == {"href": f"/es/g/{g['slug']}/", "target": None, "hit": False, "name": f"/es/g/{g['slug']}/", "tab": -1, "url": g["url"], "vn": g["name"]},
+       "13: a Yours coin opens the game's page, keeps the game's address for My run, and is named by the game alone", y)
+    z = pg.evaluate(ZERO); ok(not z, "13: Yours: every coin opens its page, Logicers' play", z[:3])
+    pg.click(f'#row-mine li[data-game="{g["id"]}"] .tile-a'); pg.wait_for_load_state("networkidle")
+    ok(re.sub(r"[?#].*", "", pg.url) == B + f"/es/g/{g['slug']}/" and len(ctx.pages) == 1, "13: a tap on a Yours coin opens the game's page in this tab", pg.url)
+    clean(pg, "13 Yours")
+    big = max(LANGS, key=lambda l: len(games[l]))
+    kinds = {}
+    for x in json.loads(PG_API(f"/api/{big}/games?n=100"))["games"]: kinds[x["kind"]] = kinds.get(x["kind"], 0) + 1
+    kind = max(kinds, key=kinds.get)
+    pg.goto(url(f"/{big}/{kind}/"), wait_until="networkidle")
+    if pg.is_visible(".btn-more"):
+        n0 = len(pg.query_selector_all(".tiles-all li.tile")); pg.click(".btn-more"); pg.wait_for_timeout(800)
+        ok(len(pg.query_selector_all(".tiles-all li.tile")) > n0, "13: More brings more coins")
+        z = pg.evaluate(ZERO); ok(not z, "13: More's coins open their pages", z[:3])
+    clean(pg, "13 More")
+    ctx.close()
+
+    # -- "Add a game" with a listed game's link: "It's already here" and Claim, in the 12 languages, 320 / 390 / 1280, light and
+    #    dark, stretched; one add each (the brake: 30 adds an hour from one address)
+    for lang in LANGS:
+        g = pick[lang]
+        ctx, pg = new(b, 390)
+        own_address(ctx)
+        pg.goto(url(f"/{lang}/"), wait_until="networkidle")
+        pg.click(".top .add-top"); pg.fill('#sheet-add input[name="url"]', g["url"])
+        pg.check(f'#sheet-add input[name="kind"][value="{g["kind"]}"]', force=True)
+        with pg.expect_response(lambda r: "/api/add" in r.url) as rsp: pg.click("#sheet-add .btn-send")
+        ans = rsp.value.json()
+        pg.wait_for_selector('#sheet-add .sheet-err:not([hidden])', timeout=5000)
+        if ans.get("e") != "here":
+            ok(False, f"13 {lang}: the add answers 'here' for a listed game", ans); ctx.close(); continue
+        c = pg.evaluate("() => { const a = document.querySelector('#sheet-add .sheet-claim'); return { shown: !a.hidden && a.getBoundingClientRect().height > 0, href: a.getAttribute('href'), t: a.textContent.trim(), h: a.getBoundingClientRect().height, here: document.querySelector('#sheet-add .sheet-here-t').textContent.trim() }; }")
+        ok(ans.get("e") == "here" and (ans.get("game") or {}).get("id") == g["id"], f"13 {lang}: the answer names the listed game", ans)
+        ok(c["shown"] and c["href"] == f"/claim/?g={g['id']}" and c["t"] == WORDS[lang]["claim"] and c["here"] == WORDS[lang]["f.e_here"] and c["h"] >= 44,
+           f"13 {lang}: It's already here, and a 44 px Claim to its claim page", c)
+        for w in (320, 390, 1280):
+            for scheme in ("light", "dark"):
+                pg.set_viewport_size({"width": w, "height": 900 if w > 700 else 844}); pg.emulate_media(color_scheme=scheme); pg.wait_for_timeout(60)
+                bad = pg.evaluate(BOXES) + pg.evaluate(CLAIMBOX); ok(not bad, f"13 {lang} {w} {scheme}: the sheet with Claim: boxes", bad[:3])
+                if lang in ("de", "ja", "ru", "es") and scheme == "light" and w in (320, 1280): pg.screenshot(path=f"{SHOTS}/n-here-{lang}-{w}.png")
+        pg.evaluate(STRETCH)                                    # its words and Claim's (.sheet-here-t, .btn-claim) with the page's
+        for w in (320, 390, 1280):
+            pg.set_viewport_size({"width": w, "height": 900 if w > 700 else 844}); pg.wait_for_timeout(60)
+            bad = pg.evaluate(BOXES) + pg.evaluate(CLAIMBOX); ok(not bad, f"13 {lang} {w}: the sheet with Claim, every word half as long again: boxes", bad[:3])
+        if lang == "ja": pg.screenshot(path=f"{SHOTS}/n-here-ja-stretched-1280.png")
+        if lang == "es":                                        # the pill opens the claim page, in the game's language
+            pg.set_viewport_size({"width": 390, "height": 844}); pg.emulate_media(color_scheme="light")
+            pg.reload(wait_until="networkidle"); pg.click(".top .add-top"); pg.fill('#sheet-add input[name="url"]', g["url"])
+            pg.check(f'#sheet-add input[name="kind"][value="{g["kind"]}"]', force=True); pg.click("#sheet-add .btn-send")
+            pg.wait_for_selector("#sheet-add .sheet-claim:not([hidden])", timeout=5000)
+            pg.click("#sheet-add .sheet-claim"); pg.wait_for_load_state("networkidle")
+            ok(re.sub(r"[#].*", "", pg.url) == B + f"/claim/?g={g['id']}" and pg.get_attribute("html", "lang") == "es", "13: Claim opens the game's claim page, in Spanish", pg.url)
+            pg.go_back(wait_until="networkidle")
+        clean(pg, f"13 here {lang}")
+        ctx.close()
+    # a waiting game's link: It's already here, and no Claim
+    ctx, pg = new(b, 390)
+    own_address(ctx)
+    wait = sql("SELECT url FROM games WHERE status = 'waiting' AND lang = 'es' LIMIT 1")
+    if wait:
+        pg.goto(url("/es/"), wait_until="networkidle"); pg.click(".top .add-top"); pg.fill('#sheet-add input[name="url"]', wait[0]["url"])
+        pg.check('#sheet-add input[name="kind"][value="words"]', force=True); pg.click("#sheet-add .btn-send")
+        pg.wait_for_selector('#sheet-add .sheet-err:not([hidden])', timeout=5000)
+        ok(pg.is_visible("#sheet-add .sheet-here") and not pg.is_visible("#sheet-add .sheet-claim"), "13: a waiting game's link: It's already here, no Claim")
+        clean(pg, "13 waiting")
+    ctx.close()
+
+    # -- the claim pages, the claim link's page and the form, in the 12 languages
+    key = "".join(random.choice("abcdefghijklmnopqrstuvwxyz234567") for _ in range(24))
+    tokens = {}
+    stmts = []
+    for lang in LANGS:
+        t = "".join(random.choice("abcdefghijklmnopqrstuvwxyz234567") for _ in range(24))
+        tokens[lang] = t
+        stmts.append(f"INSERT INTO tokens (h, game, made) VALUES ('{key_hash('tell', t)}', '{pick[lang]['id']}', {int(time.time() * 1000)})")
+    mg = [pick["es"], pick["ja"]]
+    stmts.insert(0, "UPDATE games SET maker_id = NULL, claimed_at = NULL WHERE maker_id = 'n-check'; DELETE FROM makers WHERE id = 'n-check'")   # a run that stopped half-way
+    stmts.append(f"INSERT INTO makers (id, slug, name, key_hash, made) VALUES ('n-check', 'n-check-maker', 'N Check Maker', '{key_hash('maker', key)}', {int(time.time() * 1000)})")
+    stmts.append(f"UPDATE games SET maker_id = 'n-check', claimed_at = {int(time.time() * 1000)} WHERE id IN ('{mg[0]['id']}', '{mg[1]['id']}')")
+    sql("; ".join(stmts))
+    try:
+        section_n_pages(b, pick, tokens, key, mg, ends)
+    finally:                                                    # back as it was, whatever happened
+        sql("DELETE FROM tokens WHERE game IN (" + ",".join(f"'{pick[l]['id']}'" for l in LANGS) + "); UPDATE games SET maker_id = NULL, claimed_at = NULL, claim_hash = NULL WHERE maker_id = 'n-check'; DELETE FROM makers WHERE id = 'n-check'; DELETE FROM nets; DELETE FROM seen;")
+
+
+def section_n_pages(b, pick, tokens, key, mg, ends):
+    """13, the second part: the claim pages, the claim link's page and the form in the 12 languages; the browser's language;
+    maker.js with its words made marks"""
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme, storage={"portal.maker": key})
+            for lang in LANGS:
+                g = pick[lang]
+                for what, path in (("claim", f"/claim/?g={g['id']}"), ("link", f"/claim/{tokens[lang]}/"), ("form", f"/maker/?l={lang}")):
+                    pg.goto(url(path), wait_until="networkidle")
+                    if what == "form": pg.wait_for_selector(".maker-card", timeout=5000)
+                    tag = f"13 {what} {lang} {w} {scheme}"
+                    t = pg.evaluate("() => ({ lang: document.documentElement.lang, h1: (document.querySelector('.claim-h') || {}).textContent, get: (document.querySelector('#claim-get') || {}).textContent, it: (document.querySelector('#claim-token') || {}).textContent, line: (document.querySelector('.maker-card .fld-l') || {}).textContent, kind: (document.querySelector('.maker-card legend') || {}).textContent, save: (document.querySelector('.maker-card .btn-send') || {}).textContent, state: (document.querySelector('.maker-logo-state') || {}).textContent, local: !!document.querySelector('.about-local') })")
+                    want_lang = {"pt": "pt", "ja": "ja"}.get(lang, lang)
+                    ok(t["lang"] == want_lang and not t["local"], tag + ": the page is in the language, with no 'This page is in English'", t)
+                    if what == "claim": ok(t["h1"] == fill_w(lang, "claim.h", game=g["name"]) and t["get"] == WORDS[lang]["claim.get"], tag + ": its words", t)
+                    if what == "link": ok(t["h1"] == fill_w(lang, "claim.h", game=g["name"]) and t["it"] == WORDS[lang]["claim.it"], tag + ": its words", t)
+                    if what == "form":
+                        first = pg.evaluate("() => document.querySelector('.maker-card').dataset.game")
+                        gl = next(x for x in mg if x["id"] == first)
+                        gl_lang = "es" if gl is mg[0] else "ja"
+                        ok(t["line"] == fill_w(lang, "maker.line", lang=ends.get(gl_lang, gl_lang)) and t["kind"] == WORDS[lang]["f.kind"] and t["save"] == WORDS[lang]["maker.save"]
+                           and t["state"] == WORDS[lang]["maker.logo_how"], tag + ": maker.js builds the cards in the page's words", t)
+                    bad = pg.evaluate(BOXES) + pg.evaluate(CLAIMBOX); ok(not bad, tag + ": boxes", bad[:3])
+                    pg.evaluate("(k) => (" + REVEAL + ")(k)", key)
+                    bad = pg.evaluate(BOXES) + pg.evaluate(CLAIMBOX); ok(not bad, tag + ": every message shown: boxes", bad[:3])
+                    if scheme == "light":
+                        nm = pg.evaluate(ACCNAME); ok(not nm, tag + ": every control has a name", nm[:3])
+                        pg.evaluate(STRETCH_N)
+                        bad = pg.evaluate(BOXES) + pg.evaluate(CLAIMBOX); ok(not bad, tag + ": every word half as long again: boxes", bad[:3])
+                    if lang in ("es", "de", "ja", "ru") and (w, scheme) in ((320, "light"), (1280, "light"), (390, "dark")):
+                        pg.goto(url(path), wait_until="networkidle")
+                        if what == "form": pg.wait_for_selector(".maker-card", timeout=5000)
+                        pg.screenshot(path=f"{SHOTS}/n-{what}-{lang}-{w}-{scheme}.png", full_page=True)
+                    clean(pg, tag)
+            ctx.close()
+    # the form with no key on the device, and a claim link that works no more: the browser's language
+    for loc, lang in (("ja-JP", "ja"), ("de-DE", "de"), ("sv-SE", "en")):
+        ctx, pg = new(b, 390, locale=loc)
+        pg.goto(url("/maker/"), wait_until="networkidle"); pg.wait_for_selector("#maker-nokey:not([hidden])", timeout=5000)
+        ok(pg.get_attribute("html", "lang") == lang and pg.text_content(".maker-nokey .fld-l").strip() == WORDS[lang]["maker.key"], f"13 the form with no key ({loc}): {lang}", pg.get_attribute("html", "lang"))
+        pg.evaluate("(k) => (" + REVEAL + ")(k)", key); bad = pg.evaluate(BOXES) + pg.evaluate(CLAIMBOX); ok(not bad, f"13 the form with no key ({loc}): boxes", bad[:3])
+        pg.goto(url("/claim/" + "z" * 24 + "/"), wait_until="networkidle")
+        ok(pg.get_attribute("html", "lang") == lang and pg.text_content(".claim-h").strip() == WORDS[lang]["claim.used_h"], f"13 a used claim link ({loc}): {lang}")
+        bad = pg.evaluate(BOXES) + pg.evaluate(CLAIMBOX); ok(not bad, f"13 a used claim link ({loc}): boxes", bad[:3])
+        clean(pg, f"13 browser language {loc}")
+        ctx.close()
+    # maker.js keeps no English: its words made marks in the page's data, then the cards, a save, Get a new line and Copied
+    def marks(route):
+        if route.request.resource_type != "document": return route.continue_()    # /api/claim/… goes as it is
+        r = route.fetch(); body = r.text()
+        m = re.search(r'(<script type="application/json" id="pl-data">)(.*?)(</script>)', body, re.S)
+        d = json.loads(m.group(2))
+        for k in list(d.get("words", {})):
+            if re.match(r"^(claim|maker)\.", k) or k == "f.kind": d["words"][k] = "⟦" + k + "⟧ " + " ".join(re.findall(r"\{[a-z]+\}", d["words"][k]))
+        body = body[:m.start(2)] + json.dumps(d, ensure_ascii=False).replace("<", "\\u003c") + body[m.end(2):]
+        route.fulfill(response=r, body=body)
+    def english(text, names):
+        text = re.sub(r"⟦[a-z0-9._]+⟧", " ", text)
+        for n in names + ["Play Logicers", "Logicers", "logicers.world@gmail.com"]: text = text.replace(n, " ")
+        return re.findall(r"[A-Za-z]{2,}", text)
+    ctx, pg = new(b, 390, storage={"portal.maker": key})
+    ctx.grant_permissions(["clipboard-read", "clipboard-write"], origin=B)
+    pg.route(re.compile(r".*/(maker|claim)/.*"), marks)
+    pg.goto(url("/maker/?l=es"), wait_until="networkidle"); pg.wait_for_selector(".maker-card", timeout=5000)
+    pg.click(".maker-card .btn-send"); pg.wait_for_selector(".maker-card .maker-msg:not([hidden])", timeout=5000)
+    names = [x["name"] for x in mg] + list(ends.values()) + [WORDS["es"]["cat." + k] for k in ("words", "numbers", "maps", "knowledge", "music", "screen", "sport", "other")]
+    left = english(pg.evaluate("() => [...document.querySelectorAll('.maker-games, .maker-msg')].map((e) => e.innerText).join(' ')"), names)
+    ok(not left, "13: maker.js builds the form with no English of its own", left[:6])
+    pg.goto(url(f"/claim/?g={pick['fr']['id']}"), wait_until="networkidle")
+    pg.click("#claim-get"); pg.wait_for_selector(".claim-code:not([hidden])", timeout=5000)
+    ok(pg.text_content("#claim-get").strip() == "⟦claim.again⟧", "13: Get a new line comes from the words", pg.text_content("#claim-get"))
+    pg.click('[data-copy="claim-line"]'); pg.wait_for_timeout(150)
+    ok(pg.text_content('[data-copy="claim-line"]').strip() == "⟦claim.copied⟧", "13: Copied comes from the words", pg.text_content('[data-copy="claim-line"]'))
+    pg.unroute(re.compile(r".*/(maker|claim)/.*"))
+    clean(pg, "13 no English of its own")
+    ctx.close()
+
+
 def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
+        section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1487,4 +1764,4 @@ def only_j(k=False):
 
 PG_API = None
 if __name__ == "__main__":
-    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l") for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n") for a in sys.argv) else main()

@@ -44,10 +44,10 @@ let devN = 0;
 export const device = () => { const s = (++devN).toString(36).padStart(21, "x").slice(-21); return s + "A"; };
 
 export function ctx() { const p = []; return { waitUntil(x) { p.push(x); }, done: () => Promise.all(p), p }; }
-/* one call through the Worker. o: { origin (null: none), ip, ua, cf, ctx } */
+/* one call through the Worker. o: { origin (null: none), ip, ua, cf, ctx, headers (more request headers: chat N) } */
 export async function call(e, method, p, body, o) {
   o = o || {};
-  const headers = { "CF-Connecting-IP": o.ip || freshIp(), "User-Agent": o.ua === undefined ? UA : o.ua };
+  const headers = Object.assign({ "CF-Connecting-IP": o.ip || freshIp(), "User-Agent": o.ua === undefined ? UA : o.ua }, o.headers || {});
   if (o.origin !== null) headers.Origin = o.origin || SITE;
   const init = { method, headers, redirect: "manual" };
   if (body !== undefined) { headers["Content-Type"] = o.type || "application/json"; init.body = typeof body === "string" ? body : JSON.stringify(body); }

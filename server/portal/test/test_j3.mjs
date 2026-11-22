@@ -221,7 +221,8 @@ test("a maker's page: the name and the games as coins in their own languages, Ed
   assert.match(m.text, /<h1 class="mk-name">Ana Plays<\/h1>/);
   assert.match(m.text, /<a class="btn btn-edit" href="\/maker\/\?l=es" data-maker-slug="ana-plays" hidden>/);
   assert.equal((m.text.match(/<li class="tile /g) || []).length, 3);
-  assert.match(m.text, new RegExp(`<a class="tile-name" href="/fr/g/${f.slug}/">`), "a French game links to its French page");
+  assert.match(m.text, new RegExp(`<a class="tile-a" href="/fr/g/${f.slug}/">`), "a French game links to its French page");
+  assert.match(m.text, new RegExp(`<a class="tile-name" href="/fr/g/${f.slug}/" tabindex="-1" aria-hidden="true">`), "its name too");
   assert.match((await get(e, "/m/ana-plays/?l=fr")).text, /<html lang="fr"/);
   assert.match((await get(e, "/m/ana-plays/?l=de")).text, /<html lang="es"/, "a language with none of its games: its main one");
   assert.equal((await get(e, "/m/nobody/")).status, 404);

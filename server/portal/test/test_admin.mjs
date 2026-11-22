@@ -78,9 +78,9 @@ test("list: needs kind, name, line and lang; gets a slug, a New place, the ribbo
   assert.equal(row.listed_at, NOW); assert.equal(row.new_until, NOW + 7 * 864e5);
   assert.equal((await one(e, "SELECT COUNT(*) AS n FROM queue WHERE game = ? AND done = 0", g)).n, 0, "its rows closed");
   const p = await get(e, "/es/");
-  assert.match(p.text, /<li class="tile t\d+ tile-new tile-one is-0" data-game="[a-z0-9]+" data-kind="words"><a class="tile-a" href="https:\/\/neu.example.com\/" target="_blank" rel="noopener" data-hit><span class="tile-badge">/,
-    "the coin plays: the game's own site (chat H)");
-  assert.match(p.text, /<a class="tile-name" href="\/es\/g\/palabra-nueva\/">Palabra Nueva<\/a>/, "the name under it opens the game's page");
+  assert.match(p.text, /<li class="tile t\d+ tile-new tile-one is-0" data-game="[a-z0-9]+" data-kind="words"><a class="tile-a" href="\/es\/g\/palabra-nueva\/"><span class="tile-badge">/,
+    "the coin opens the game's page (chat N, 22 Nov 2026; it played from chat H)");
+  assert.match(p.text, /<a class="tile-name" href="\/es\/g\/palabra-nueva\/" tabindex="-1" aria-hidden="true">Palabra Nueva<\/a>/, "the name under it is the same link");
   const gp = await get(e, "/es/g/palabra-nueva/");
   assert.match(gp.text, /<span class="game-maker">Ana<\/span>/);
   /* a second game with the same name gets another slug; a name in another script falls back to the site's name */

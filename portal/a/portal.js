@@ -1,7 +1,8 @@
 /* Play Logicers — the pages' script (chat B, 19 Nov 2026). The pages work without it (every link is a real link); it adds:
      - the device's id (portal.id: 16 random bytes as 22 base64url characters, made once), sent only with a count
-     - the counts: a tap on a coin, on Play or on the big coin of a game page sends /api/hit by sendBeacon (the link itself
-       opens the game: one tap to play, chat H, 20 Nov 2026); a page under /<lang>/ sends /api/view once; the numbers come
+     - the counts: a tap on Play or on the big coin of a game page, on a Logicers coin, on the dice or on My run sends /api/hit
+       by sendBeacon (the link itself opens the game). Another maker's coin opens its game's page, as its name does, and
+       counts nothing (Khayyam, 22 Nov 2026; it played from 20 Nov). A page under /<lang>/ sends /api/view once; the numbers come
        live from /api/counts (on load, and again when the page is shown after a game, so a player back from it sees it
        counted). A 0 is never written: a coin with nobody today shows its kind's icon (.is-0), and the lines "{n} players
        today" and a game page's numbers stay hidden until 1.
@@ -124,10 +125,14 @@
     try { window.fetch(path, { method: "POST", body: s, keepalive: true, credentials: "omit", headers: { "Content-Type": "application/json" } }); } catch (e) { /* not counted */ }
   }
   var lastCounts = 0;
+  /* the number an element shows now (the page's own, or the last count): an older answer never lowers it. Since chat N (22 Nov
+     2026) a play happens on the game's page, so a player comes back to a new page with a newer number than the counts the
+     browser may still hold; the counts are also asked again each time (no-cache), as the pages are. */
+  function shownNum(x) { return +(x.getAttribute("data-today") || 0) || +(x.textContent || "").replace(/\D/g, "") || 0; }
   function counts() {
     if (!NUMS || !window.fetch) return;
     lastCounts = Date.now();
-    window.fetch(IN_LANG ? "/api/counts?lang=" + encodeURIComponent(LANG) : "/api/counts", { credentials: "omit" })
+    window.fetch(IN_LANG ? "/api/counts?lang=" + encodeURIComponent(LANG) : "/api/counts", { credentials: "omit", cache: "no-cache" })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (j) {
         if (!j || !j.ok) return;
@@ -136,8 +141,9 @@
           var c = g[el.getAttribute("data-game")];
           if (!c || el.tagName === "FORM") return;
           var t = Math.max(c.t, bumped[el.getAttribute("data-game")] || 0);
+          $$('[data-count="today"]', el).forEach(function (x) { if (x.hasAttribute("data-mark")) return; t = Math.max(t, shownNum(x)); });
           $$('[data-count="today"]', el).forEach(function (x) { if (x.classList.contains("tile-n")) x.setAttribute("data-today", String(t)); setNum(x, t); });
-          $$('[data-count="all"]', el).forEach(function (x) { setNum(x, c.a); });
+          $$('[data-count="all"]', el).forEach(function (x) { setNum(x, Math.max(c.a, shownNum(x), t)); });
           $$('[data-count-label="today"]', el).forEach(function (x) { setLabel(x, t); });
           var art = el.tagName === "ARTICLE" ? el : null;
           if (art) {
@@ -146,7 +152,7 @@
             $$(".game-nums", art).forEach(function (b) { b.hidden = !t && !c.a; });
           }
         });
-        if (typeof j.page === "number") $$(".today").forEach(function (p) { setNum($(".today-n", p), j.page); setWords(p, "players_today", j.page); p.hidden = !j.page; });
+        if (typeof j.page === "number") $$(".today").forEach(function (p) { var n = Math.max(j.page, shownNum($(".today-n", p))); setNum($(".today-n", p), n); setWords(p, "players_today", n); p.hidden = !n; });
         paintMarks(readMine());
       })
       .catch(function () { /* the numbers the page came with stay */ });
@@ -194,8 +200,8 @@
   var held = false;
   function runList() {
     var out = [], seen = {};
-    function add(li) {
-      var id = li && li.getAttribute("data-game"), a = li && $(".tile-a", li), u = a && a.getAttribute("href");
+    function add(li) {                                      // the game's own address: a Yours tile keeps it (data-url); a Logicers coin is it
+      var id = li && li.getAttribute("data-game"), a = li && $(".tile-a", li), u = li && (li.getAttribute("data-url") || (a && a.getAttribute("href")));
       if (!id || !u || seen[id] || !SAFE.test(u)) return;
       seen[id] = 1; out.push({ id: id, url: u });
     }
@@ -272,8 +278,9 @@
       .sort(function (a, b) { return m.played[a] < m.played[b] ? 1 : m.played[a] > m.played[b] ? -1 : 0; });
     return ids.concat(played).slice(0, 60);
   }
-  /* one tile from the template, for a game as /api/<lang>/games gives it: the coin plays (the game's own site, new tab,
-     counted), the name under it opens the game's page (a Logicers game: the same link, out of the tab order) */
+  /* one tile from the template, for a game as /api/<lang>/games gives it: the coin and the name under it (the same link, out of
+     the tab order) open the game's page in this tab and count nothing (Khayyam, 22 Nov 2026). A Logicers game has no page
+     here: its coin opens the game in a new tab and counts. The tile keeps the game's own address (data-url) for My run. */
   var SAFE = /^https:\/\//i;
   function build(g, mine) {
     var tpl = $("#tpl-tile");
@@ -286,11 +293,15 @@
     li.className = cls.join(" ");
     li.setAttribute("data-game", g.id);
     li.setAttribute("data-kind", g.kind);
-    a.setAttribute("href", g.url);
+    li.setAttribute("data-url", g.url);
+    var page = "/" + (g.lang || LANG) + "/g/" + encodeURIComponent(g.slug) + "/";
+    a.setAttribute("href", g.logicers ? g.url : page);
+    nm.setAttribute("href", g.logicers ? g.url : page);
+    var vp = $(".tile-vp", li);                            // "Play <name>" for a screen reader only where the coin plays
     if (g.logicers) {
-      nm.setAttribute("href", g.url); nm.setAttribute("target", "_blank"); nm.setAttribute("rel", "noopener"); nm.setAttribute("data-hit", "");
-      nm.setAttribute("tabindex", "-1"); nm.setAttribute("aria-hidden", "true");
-    } else nm.setAttribute("href", "/" + LANG + "/g/" + encodeURIComponent(g.slug) + "/");
+      [a, nm].forEach(function (x) { x.setAttribute("target", "_blank"); x.setAttribute("rel", "noopener"); x.setAttribute("data-hit", ""); });
+      vp.hidden = false;
+    } else vp.parentNode.removeChild(vp);
     $(".tile-badge", li).hidden = !(g.new && !g.logicers);
     if (g.crown && !g.logicers) li.classList.add("tile-crown");
     $(".tile-gotw", li).hidden = !(g.crown && !g.logicers);
@@ -304,7 +315,7 @@
     else { drop(img); drop(lgo); }
     if (img.parentNode || lgo.parentNode) $$(".tile-kind, .tile-zero", li).forEach(drop);     // the logo takes the kind icon's place
     nm.textContent = g.name;
-    var vn = $(".tile-vn > span", li);
+    var vn = $(".tile-vt", li);
     if (vn) vn.textContent = g.name;
     if (g.en) { nm.setAttribute("lang", "en"); if (vn) vn.setAttribute("lang", "en"); }
     var n = $(".tile-n", li), t = Math.max(g.today || 0, bumped[g.id] || 0);
@@ -457,6 +468,7 @@
   function showErr(form, key) { errs(form).forEach(function (p) { p.hidden = p.getAttribute("data-e") !== key; }); }
   function clearMarks(form) {
     errs(form).forEach(function (p) { p.hidden = true; });
+    $$(".sheet-claim", form).forEach(function (x) { x.hidden = true; x.setAttribute("href", "/claim/"); });
     $$("[aria-invalid]", form).forEach(function (x) { x.removeAttribute("aria-invalid"); });
     $$("[data-invalid]", form).forEach(function (x) { x.removeAttribute("data-invalid"); });
   }
@@ -521,7 +533,11 @@
         if (j && j.ok) return sent(form);
         var e = j && j.e;
         if (e === "link") { showErr(form, "link"); invalid(urlIn); urlIn.focus(); }
-        else if (e === "here") { showErr(form, "here"); urlIn.focus(); }
+        else if (e === "here") {                            // a listed game, not claimed: Claim beside "It's already here" (chat N)
+          var cl = $(".sheet-claim", form);
+          if (cl && j.game && GAME_ID.test(j.game.id || "")) { cl.setAttribute("href", "/claim/?g=" + encodeURIComponent(j.game.id)); cl.hidden = false; }
+          showErr(form, "here"); urlIn.focus();
+        }
         else if (e === "bad" && email.value.trim()) { invalid(email); email.focus(); }
         else if (e === "bad") { showErr(form, "link"); invalid(urlIn); urlIn.focus(); }
         else showErr(form, "busy");

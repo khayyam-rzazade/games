@@ -45,7 +45,7 @@ test("the row order on the page and in the API, with real hits", async () => {
   assert.deepEqual(api.json.games.map((x) => x.name), ["Ge", "Gd", "Gb", "Ga", "Gc"]);
   assert.deepEqual(api.json.games.map((x) => x.slot), [1, null, null, null, null]);
   const html = (await get(e, "/es/")).text;
-  const order = [...html.matchAll(/<li class="tile (t\d+)( tile-one)?( is-0)?" data-game="[a-z0-9]+" data-kind="words">(?:(?!<\/li>)[\s\S])*?<a class="tile-name" href="\/es\/g\/(g[a-e])\/">/g)].map((m) => [m[0], m[1], m[2], m[4]]);
+  const order = [...html.matchAll(/<li class="tile (t\d+)( tile-one)?( is-0)?" data-game="[a-z0-9]+" data-kind="words">(?:(?!<\/li>)[\s\S])*?<a class="tile-name" href="\/es\/g\/(g[a-e])\/"/g)].map((m) => [m[0], m[1], m[2], m[4]]);
   assert.deepEqual(order.map((m) => m[3]), ["ge", "gd", "gb", "ga", "gc"]);
   assert.deepEqual(order.map((m) => !!m[2]), [true, false, false, false, false], "place 1 carries tile-one");
   /* hits older than 7 days no longer earn a place */

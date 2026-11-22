@@ -10,6 +10,7 @@ import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { env, get, call, admin, one, importGames, seedGames, device, freshIp, A, R, SITE } from "./lib.mjs";
 import { tellText } from "../src/admin.js";
+import { word, fill } from "../src/words.js";
 
 const hit = (e, game, id) => call(e, "POST", "/api/hit", { game, id: id || device() }, { ip: freshIp() });
 const view = (e, lang, id) => call(e, "POST", "/api/view", { lang, id: id || device() }, { ip: freshIp() });
@@ -67,9 +68,9 @@ test("1. the numbers are counted and not shown: no page, no page's source and no
   assert.match((await get(shown, "/about/")).text, /Each game shows how many people went to play it/);
   /* the weekly email names no number either */
   const g = { name: "Conexo", host: "conexo.ws", lang: "es", hits: 2 };
-  assert.match(tellText(g, "https://p/", "https://c/", "Ana").text, /It has sent you 2 players so far\./);
-  assert.doesNotMatch(tellText(g, "https://p/", "https://c/", "Ana", false).text, /sent you|players/);
-  assert.match(tellText(g, "https://p/", "https://c/", "Ana", false).text, /Claim it to see your numbers by day and country/);
+  assert.ok(tellText(g, "https://p/", "https://c/", "Ana").text.includes(fill("es", "mail.n", { n: "2" })));   // in the game's language since chat N
+  assert.ok(!tellText(g, "https://p/", "https://c/", "Ana", false).text.includes(word("es", "mail.n").split("{n}")[0].trim()));
+  assert.ok(tellText(g, "https://p/", "https://c/", "Ana", false).text.includes(fill("es", "mail.claim", { link: "https://c/" })));
 });
 
 test("1. a claimed game's own days and countries stay on its page, hidden, for the maker's device only", async () => {

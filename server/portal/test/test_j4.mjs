@@ -9,6 +9,7 @@ import assert from "node:assert/strict";
 import { env, get, call, importGames, seedGames, admin, A, R, one, rows, resetBrakes, setNow, WEB, _test } from "./lib.mjs";
 import { D1 } from "./d1shim.mjs";
 import { keyHash } from "../src/util.js";
+import { word, fill, num } from "../src/words.js";
 
 const THU = Date.UTC(2026, 10, 19, 9, 0), DAY = 864e5;
 const act = (e, key, game, action, more) => admin(e, "act", Object.assign({ key, game, action }, more || {}));
@@ -70,10 +71,11 @@ test("a card: the email, a claim link that works (the same link until one is use
   assert.equal(t.from, "logicers.world@gmail.com");
   assert.match(t.link, /^https:\/\/play\.logicers\.com\/claim\/[a-z2-7]{24}\/$/);
   assert.equal(t.page, `https://play.logicers.com/es/g/juego-${n}/`);
-  assert.equal(t.subject, `Juego ${n} is on Play Español`);
-  assert.equal(t.text, `Hi Ana,\n\nJuego ${n} (sent${n}.example.org) is on Play Español: ${t.page}\n`
-    + `Claim it to see your numbers by day and country and add your logo: ${t.link}\nNothing else is asked; reply to remove it.\n\nLogicers`);
-  assert.doesNotMatch(t.text, /\b0 players|\bplayers so far/, "no players line before the first player");
+  /* in the game's language (chat N, 22 Nov 2026: the words mail.* of words/es.json) */
+  assert.equal(t.subject, fill("es", "mail.subject", { game: `Juego ${n}`, play: "Play Español" }));
+  assert.equal(t.text, [fill("es", "mail.hi", { name: "Ana" }), "", fill("es", "mail.on", { game: `Juego ${n} (sent${n}.example.org)`, play: "Play Español", page: t.page }),
+    fill("es", "mail.claim", { link: t.link }), word("es", "mail.reply"), "", "Logicers"].join("\n"));
+  assert.ok(!t.text.includes(word("es", "mail.n").split("{n}")[0].trim()), "no players line before the first player");
   const u = new URL(t.gmail);
   assert.equal(u.origin + u.pathname, "https://mail.google.com/mail/");
   assert.deepEqual([u.searchParams.get("authuser"), u.searchParams.get("view"), u.searchParams.get("to"), u.searchParams.get("su"), u.searchParams.get("body")],
@@ -86,14 +88,14 @@ test("a card: the email, a claim link that works (the same link until one is use
   assert.equal(c.tell.link, t.link);
   assert.equal((await one(e, "SELECT COUNT(*) AS n FROM tokens WHERE game = ?", id)).n, 1);
   assert.match((await get(e, `/claim/${token}/`)).text, /id="claim-token"/, "the link opens the claim");
-  /* players: from 1, singular and grouped */
+  /* players: from 1, written as the language writes numbers */
   await e.DB.prepare("UPDATE games SET hits = 1 WHERE id = ?").bind(id).run();
-  assert.match((await tell(e)).json.cards[0].tell.text, /\nIt has sent you 1 player so far\.\n/);
-  await e.DB.prepare("UPDATE games SET hits = 1234 WHERE id = ?").bind(id).run();
-  assert.match((await tell(e)).json.cards[0].tell.text, /\nIt has sent you 1,234 players so far\.\n/);
-  /* no name: just Hi */
+  assert.ok((await tell(e)).json.cards[0].tell.text.includes("\n" + fill("es", "mail.n", { n: "1" }) + "\n"));
+  await e.DB.prepare("UPDATE games SET hits = 12345 WHERE id = ?").bind(id).run();
+  assert.ok((await tell(e)).json.cards[0].tell.text.includes("\n" + fill("es", "mail.n", { n: num("es", 12345) }) + "\n"));
+  /* no name: the greeting without one */
   const id2 = await sent(e, "x@example.com");
-  assert.match((await tell(e)).json.cards.find((x) => x.id === id2).tell.text, /^Hi,\n\n/);
+  assert.ok((await tell(e)).json.cards.find((x) => x.id === id2).tell.text.startsWith(word("es", "mail.hi0") + "\n\n"));
 });
 
 test("a claim by the line on the page ends the game's links; the night deletes links older than 90 days", async () => {

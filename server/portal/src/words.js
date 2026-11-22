@@ -49,3 +49,25 @@ export function aroundN(lang, key, n) {
   return i < 0 ? [s + " ", ""] : [s.slice(0, i), s.slice(i + 3)];
 }
 export const withN = (lang, key, n) => word(lang, pluralKey(lang, key, n)).replace("{n}", num(lang, n));
+
+/* the words of the claim pages (claim.), the maker's form (maker.) and the To tell email (mail.) (chat N, 22 Nov 2026): only
+   those pages carry them in their data, so the other pages stay small */
+export const OWN_WORDS = /^(claim|maker|mail)\./;
+/* a word with its marks filled: fill("es", "mail.on", { game, play, page }); a mark it is not given stays as it is */
+export const fill = (lang, key, marks) => word(lang, key).replace(/\{([a-z]+)\}/g, (m, k) => (marks && Object.prototype.hasOwnProperty.call(marks, k) ? String(marks[k]) : m));
+/* the language of a page that has none of its own (the maker's form, a claim link that works no more): the first of the
+   browser's languages (Accept-Language, by its q order) that has a words file, else English */
+export function bestLang(header) {
+  const tags = String(header || "").split(",").map((p, i) => {
+    const [t, ...rest] = p.trim().split(";");
+    const q = rest.map((x) => x.trim()).find((x) => x.startsWith("q="));
+    return { t: t.trim().toLowerCase(), q: q ? parseFloat(q.slice(2)) : 1, i };
+  }).filter((x) => x.t && x.t !== "*" && x.q > 0).sort((a, b) => b.q - a.q || a.i - b.i);
+  for (const { t } of tags) {
+    const base = t.split("-")[0];
+    const c = base === "zh" ? (/-(tw|hk|mo|hant)\b/.test(t) ? "zh-hant" : "zh-hans") : base === "nb" || base === "nn" ? "no" : base === "tl" ? "fil" : base;
+    if (WORDS[t]) return t;
+    if (WORDS[c]) return c;
+  }
+  return "en";
+}

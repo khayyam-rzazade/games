@@ -9,7 +9,7 @@
                   | dead (dead, moved, blocked, "check by hand") | edits (a maker's changes, live already: a look, then
                   Done, or a fix with Save changes; chat J) | tell (admin key only: games listed in the last 7 days whose
                   sender gave an email, not claimed and not yet told, oldest first; each card carries "tell": the email,
-                  a claim link, the ready English email and a Gmail address that writes it from logicers.world@gmail.com;
+                  a claim link, the ready email in the game's language (chat N) and a Gmail address that writes it from logicers.world@gmail.com;
                   the claim links' keyed hashes are kept when the list is shown; chat J, stage 4) | all (every game but
                   Logicers', newest first); 20 cards
                   a page, before: the "next" of the last answer
@@ -41,6 +41,7 @@ import { json, bad, clock, sha, same, brake, spent, cleanText, slugify, newId, k
 import { one, all, run, st, rowsOf, KINDS, NEW_DAYS, openLangs, crownWeek, picUrl } from "./db.js";
 import { bytesOf, extOf, picFile } from "./pics.js";
 import { isLang, pageName, LANG } from "./langs.js";
+import { word, fill, num } from "./words.js";
 import { tokenFor } from "./claim.js";
 import { linkOk, norm } from "./check.js";
 
@@ -312,17 +313,18 @@ export async function adminAct(env, req, b) {
 
 /* To tell (chat J, stage 4, plan section 11): each card gets the sender's email, a single-use claim link (its keyed hash is
    kept now, so the link works from today for 90 days; the same link again until one of the game's links is used) and the
-   ready email in English, with a Gmail address that opens it written from logicers.world@gmail.com */
+   ready email, with a Gmail address that opens it written from logicers.world@gmail.com. The email is in the game's language
+   (chat N, 22 Nov 2026: the words mail.* of words/<lang>.json); the queue page around it stays English. */
 export function tellText(g, page, link, name, show) {
-  const lang = pageName(g.lang);
+  const L = g.lang, play = pageName(L);
   const n = show === false ? 0 : g.hits || 0;                               // while the numbers are not shown, the email names none either
   const lines = [
-    `${g.name} (${g.host}) is on ${lang}: ${page}`,
-    n >= 1 ? `It has sent you ${n === 1 ? "1 player" : n.toLocaleString("en-US") + " players"} so far.` : null,
-    `Claim it to see your numbers by day and country and add your logo: ${link}`,
-    "Nothing else is asked; reply to remove it.",
+    fill(L, "mail.on", { game: `${g.name} (${g.host})`, play, page }),
+    n >= 1 ? fill(L, "mail.n", { n: num(L, n) }) : null,
+    fill(L, "mail.claim", { link }),
+    word(L, "mail.reply"),
   ].filter(Boolean);
-  return { subject: `${g.name} is on ${lang}`, text: `Hi${name ? " " + name : ""},\n\n${lines.join("\n")}\n\nLogicers` };
+  return { subject: fill(L, "mail.subject", { game: g.name, play }), text: `${name ? fill(L, "mail.hi", { name }) : word(L, "mail.hi0")}\n\n${lines.join("\n")}\n\nLogicers` };
 }
 async function tellCards(env, games, list) {
   if (!games.length) return;

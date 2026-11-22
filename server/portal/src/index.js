@@ -10,9 +10,11 @@
      /<lang>/g/<slug>/      one game (a hidden, dead or rejected one: 410)
      /about/                About (English; ?l=<code> adds one line in that language)
      /admin/                the queue (English, never indexed, never cached)
-     /claim/?g=<id>         claim a game with a line on its page (English, never indexed, never cached; chat J, 20 Nov 2026)
+     /claim/?g=<id>         claim a game with a line on its page (the game's language, never indexed, never cached; chat J,
+                            20 Nov 2026; in the game's language since chat N, 22 Nov 2026)
      /claim/<token>/        claim a game with the single-use link of the weekly email (the same)
-     /maker/                the maker's form: name, a game's line, kind and logo (English; the key stays on the device)
+     /maker/                the maker's form: name, a game's line, kind and logo (?l=, else the browser's language; the key
+                            stays on the device)
      /m/<slug>/             a maker's page: the name and the games as coins (?l=<code>: its words; noindex for now; chat J)
      /p/<id>/<h>.<ext>      a game's logo, once a key said yes (pics.js)
      /sitemap.xml  /sitemap-root.xml  /<lang>/sitemap.xml  /robots.txt  /health
@@ -27,6 +29,7 @@
 import { json, bad, readJson, brake, isLocal, showNums } from "./util.js";
 import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, KINDS } from "./db.js";
 import { LANG, isLang, CODES } from "./langs.js";
+import { WORDS, bestLang } from "./words.js";
 import { lgRowLang, lgShown, lgOfKind, lgForGame, lgEn, EN_LINE, LG_HOME } from "./logicers.js";
 import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_PUBLIC, CSP_ADMIN, ASSET } from "./pages.js";
 import { claimCode, claimCheck, claimToken, makerGet, makerEdit, makerPicApi, tokenGame } from "./claim.js";
@@ -189,21 +192,25 @@ async function page(req, env, ctx, url) {
   if (path === "/sitemap.xml") return text(await sitemapIndex(env, site), "application/xml; charset=utf-8", "public, max-age=3600");
   if (path === "/sitemap-root.xml") return text(urlset([{ loc: site + "/" }, { loc: site + "/about/" }]), "application/xml; charset=utf-8", "public, max-age=3600");
   if (segs[0] === "admin" && segs.length === 1) return html(pageAdmin({ site }), 200, { noindex: true, cache: "no-store", csp: CSP_ADMIN });
-  /* the claim and the maker's form (chat J): personal, so never kept by the edge and never indexed */
+  /* the claim and the maker's form (chat J): personal, so never kept by the edge and never indexed. In the game's language
+     (chat N, 22 Nov 2026); the form, and a claim link that works no more, in ?l= (one of the languages with words) or the
+     browser's languages, else English */
+  const ownLang = () => { const l = url.searchParams.get("l"); return WORDS[l] ? l : bestLang(req.headers.get("Accept-Language")); };
+  const claimData = (lang, more) => Object.assign({ site, nums: showNums(env), lgHome: LG_HOME(lang) }, more);
   if (segs[0] === "claim" && segs.length <= 2) {
     const own = { noindex: true, cache: "no-store" };
     if (segs.length === 2) {
-      const token = segs[1];
-      return html(pageClaimLink({ site, token, game: /^[a-z2-7]{24}$/.test(token) ? await tokenGame(env, token) : null }), 200, own);
+      const token = segs[1], g = /^[a-z2-7]{24}$/.test(token) ? await tokenGame(env, token) : null, lang = g ? g.lang : ownLang();
+      return html(pageClaimLink(claimData(lang, { token, game: g, lang })), 200, own);
     }
     const id = url.searchParams.get("g");
     const g = id && /^[a-z0-9-]{1,40}$/.test(id) ? await one(env, "SELECT * FROM games WHERE id = ?", id) : null;
-    if (g && g.status === "listed" && g.source !== "logicers" && g.slug) return html(pageClaim({ site, game: g }), 200, own);
+    if (g && g.status === "listed" && g.source !== "logicers" && g.slug) return html(pageClaim(claimData(g.lang, { game: g })), 200, own);
     return notFound(env, site, null, await openSet(env));
   }
   if (segs[0] === "maker" && segs.length === 1) {
-    const l = url.searchParams.get("l");
-    return html(pageMaker({ site, local: isLang(l) ? l : null }), 200, { noindex: true, cache: "no-store" });
+    const lang = ownLang();
+    return html(pageMaker(claimData(lang, { lang })), 200, { noindex: true, cache: "no-store" });
   }
   if (segs[0] === "p" && segs.length === 3) {                               // a game's logo (chat J)
     const r = await cached(req, env, ctx, async () => (await servePic(env, segs[1], segs[2])) || new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex", "Cache-Control": "public, max-age=60" } }));

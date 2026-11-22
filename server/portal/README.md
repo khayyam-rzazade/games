@@ -122,7 +122,7 @@ Worker with `0`, see the top of `portal/tests/check.py`).
 npm test
 ```
 
-70 tests (two of them need `LIVE=1` or the whole games folder): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
+117 tests (one needs `LIVE=1`; on 22 Nov 2026 116 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
 per device, game and UTC day; robots and other sites not counted; the duplicate rule; the add check (a redirect to another
 host, a page in another language, the blocklist, a page that does not open, at most 5 redirects, never an IP or localhost);
 the review key refused on hide, delete and import; a language opening at 5 and not on the English Logicers games; Graj
@@ -135,7 +135,10 @@ senders' emails deleted after 90 days, game pages noindex and out of the sitemap
 play, and Logicers' rows and tiles. `test/test_k.mjs` (chat K, 20 Nov 2026) holds the fixes of prompt K, each with a test that
 failed before them: the name goes to Play's home page from every page, the language button opens the list of the open
 languages, a page's life in a browser and at the edge (and the deploy's version in the edge key), and Cloudflare Web
-Analytics on the public pages only. D1 is Node's
+Analytics on the public pages only. `test/test_n.mjs` (chat N, 22 Nov 2026) holds prompt N, each test failing before it: the coin
+opens the game's page (Logicers' coins still play), "Add a game" with a listed game's link names it for Claim, and the claim
+pages, the form and the To tell email take every word from the words files (the keys `claim.*`, `maker.*`, `mail.*`, the same
+in all 12 files with the same marks; a language whose words are all marks shows no English of its own). D1 is Node's
 own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`).
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.
@@ -168,9 +171,9 @@ Pages (HTML, rendered by the Worker, cached at the edge 5 minutes; the numbers c
 | `/<lang>/g/<slug>/` | one game (`noindex, follow` and out of the sitemaps, except a claimed game with the maker's own line and a logo, which is indexed and in its language's sitemap; a claimed game shows its players by day for 90 days and by country); taken off (hidden, dead, rejected): 410 |
 | `/about/` (`?l=<code>`) | About, in English (one line on top in that language) |
 | `/admin/` | the queue page (never indexed, never cached, Trusted Types) |
-| `/claim/?g=<id>` | claim a listed game (not Logicers') with a line on its own page; English, one line on top in the game's language; never indexed, never cached (chat J, plan 2.20) |
-| `/claim/<token>/` | the same with the single-use link of the weekly email; opening it uses nothing, the button does |
-| `/maker/` (`?l=<code>`) | the maker's form: the maker's name, each game's line, kind and logo (the key stays on the device); never indexed, never cached |
+| `/claim/?g=<id>` | claim a listed game (not Logicers') with a line on its own page; in the game's language (chat N; English before), with that language's head and foot; never indexed, never cached (chat J, plan 2.20) |
+| `/claim/<token>/` | the same with the single-use link of the weekly email; opening it uses nothing, the button does. A link that works no more: the browser's language |
+| `/maker/` (`?l=<code>`) | the maker's form: the maker's name, each game's line, kind and logo (the key stays on the device); in `?l=` (a language with a words file), else the first of the browser's languages (`Accept-Language`) that has one, else English; never indexed, never cached |
 | `/m/<slug>/` (`?l=<code>`) | a maker's page: its name and its listed games as coins (`noindex, follow` for now; chat J, stage 3) |
 | `/p/<id>/<h>.<ext>` | a game's logo once a key said yes: its fixed type (PNG, JPEG, WebP), `nosniff`, `default-src 'none'; sandbox`, kept a year |
 | `/sitemap.xml`, `/sitemap-root.xml`, `/<lang>/sitemap.xml`, `/robots.txt`, `/health` | |
@@ -189,7 +192,7 @@ pages (the Origin `https://play.logicers.com`); the queue's POSTs may also come 
 | `GET /api/counts` | `lang` | `{ day, games: { id: { t, a } }, page }` (t today, a in all; without `lang`: `page` is every language's players today) |
 | `POST /api/hit` | `{ game, id }` | `{ counted }` |
 | `POST /api/view` | `{ lang, id }` | `{ counted }` |
-| `POST /api/add` | `{ url, lang, kind, name?, email?, hp }` | `{}`; the look at the page runs after the answer; `hp` filled: kept, flagged |
+| `POST /api/add` | `{ url, lang, kind, name?, email?, hp }` | `{}`; the look at the page runs after the answer; `hp` filled: kept, flagged. `here` for a listed game that is not Logicers' and not claimed also carries `game: { id, name }`, and the sheet shows Claim beside "It's already here" (chat N) |
 | `POST /api/report` | `{ game, reason, browser }` (`broken notdaily lang unsafe other`) | `{}`; `unsafe` starts the nightly look at that game at once (once a day) |
 | `POST /api/vote` | `{ game, id }` | `{ week }`; the game of the week (plan 2.20): one vote a device, language and UTC week (Monday 00:00), final, only for a listed game (not Logicers') this device was counted playing this week; e `notplayed`, `voted` (with `same`), `nogame`, `busy` (20 a language and week from one address) |
 | `POST /api/claim/code` | `{ game }` | `{ code, s, line }`: the line for the page's `<head>` (`<meta name="logicers-portal" content="lp-…">`) and the secret `s` only this device gets; a newer line replaces the older; e `nogame`, `busy` (20 an hour) |
@@ -220,8 +223,9 @@ its games.
 an email, not claimed and not yet told, oldest first. Each card carries `tell`: `email`, `name`, `link` (a single-use claim
 link; its keyed hash goes into `tokens` when the list is shown, so it works for 90 days, and the same link comes back until
 one of the game's links is used), `page`, `subject`, `text` (the ready English email: the game is on Play <Language> with
-its page, the players sent so far from 1, the claim link, "nothing else is asked; reply to remove it", signed Logicers),
-`gmail` (an address that opens Gmail writing it from logicers.world@gmail.com) and `from`. The queue page shows Copy the
+its page, the players sent so far from 1, the claim link, "nothing else is needed; reply to take it off", signed Logicers),
+`gmail` (an address that opens Gmail writing it from logicers.world@gmail.com) and `from`. Since chat N (22 Nov 2026) the
+subject and the text are in the game's language (the words `mail.*` of `words/<lang>.json`); the queue page stays English. The queue page shows Copy the
 text, Copy the subject, Write it in Gmail and Sent (`told`). Nothing is sent by the Worker: Claude writes the emails by hand
 once a week (the plan's prompt M).
 
@@ -330,6 +334,23 @@ say how); it needs Python's Playwright (`pip install playwright`, `playwright in
 (chat K) runs alone with `--only-k`.
 
 **Chat H, 20 Nov 2026 (plan section 10):** a tile is the coin and the name under it: the coin opens the game's own site in a
-new tab and counts (one tap to play), the name (44 px) opens its page; a coin with nobody today shows its kind's icon large
+new tab and counts (one tap to play), the name (44 px) opens its page (**chat N, 22 Nov 2026: taken back by Khayyam, the coin
+opens the game's page in the same tab, as the name does, and counts nothing; Play and the big coin on that page, the dice and
+My run count; Logicers' own coins, which have no page here, still open the game and count**); a coin with nobody today shows its kind's icon large
 (`.is-0`), and no 0 is ever written; Logicers' coins are filled with ink; Sport is a trophy and Knowledge a light bulb
 (`icons.svg`). The hidden robot field is named `pl_x9` in the form (the API still reads `hp`).
+
+**Chat N, 22 Nov 2026 (the plan's section 0, 22 Nov):**
+- **The coin opens the game's page.** In `tile()` (`src/pages.js`) and `build()` (`portal.js`, for Yours and More) the coin
+  and the name are one link to `/<lang>/g/<slug>/`, in the same tab, one tab stop (the name is out of the tab order), with no
+  `data-hit`. A Yours tile keeps the game's own address in `data-url`, which My run plays. Logicers' coins are as before.
+- **Claim from "Add a game".** `POST /api/add` answers `here` with `game: { id, name }` for a listed game that is not
+  Logicers' and not claimed; the sheet's "It's already here" (`.sheet-here`) then shows Claim (`.sheet-claim`, the word
+  `claim`) to `/claim/?g=<id>`.
+- **The claim pages, the form and the email in the game's language.** Their words are the keys `claim.*` (the claim pages),
+  `maker.*` (the form; it also uses `f.kind`, the kinds and `claim.e_server`) and `mail.*` (the To tell email) in
+  `words/<lang>.json`, with marks (`{game}`, `{url}`, `{head}`, `{mail}`, `{claim}`, `{lang}`, `{play}`, `{page}`, `{link}`,
+  `{name}`, `{n}`) that the code fills. Only those pages carry them in their data (`OWN_WORDS` in `src/words.js`). `maker.js`
+  reads every word from the page's data and has none of its own. The English is in all 12 files until chat P translates it.
+  `bestLang()` in `src/words.js` picks the form's language from `Accept-Language`. The browser check's section 13
+  (`--only-n`) looks at the three pages and the sheet in the 12 languages.

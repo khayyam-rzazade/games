@@ -24,10 +24,12 @@
      tiles        .tile (li; data-game, data-kind)  .t0 … .t11 (the ring colour, from the game's id)  .tile-new (New for 7 days)
                   .tile-one (place 1: the filled ring)  .tile-sold (a paid place 1, phase 3)  .tile-lg (a Logicers game: a
                   coin filled with ink)  .is-0 (li: nobody today; the coin shows its kind's icon large, never a 0)
-                  .tile-a (the coin: a link to the game's own site, new tab, counted: one tap to play)  .tile-badge (the
+                  .tile-a (the coin: a link to the game's page, in this tab, counting nothing (chat N, 22 Nov 2026); on a
+                  Logicers tile the game itself, new tab, counted)  .tile-badge (the
                   word New)  .tile-chip (EN)  .tile-kind (the kind's icon, small)  .tile-zero (the kind's icon, large, at 0)
-                  .tile-n (today; .n5 .n6 .n7: a long number, smaller)  .tile-name (under the coin: a link to the game's page;
-                  on a Logicers tile the same link as the coin, out of the tab order)  .tile-star (button, aria-pressed)
+                  .tile-n (today; .n5 .n6 .n7: a long number, smaller)  .tile-name (under the coin: the same link as the
+                  coin, out of the tab order)  .tile-vn .tile-vp .tile-vt (the coin's name for a screen reader: "Play"
+                  only on a Logicers coin, then the game's name)  .tile-star (button, aria-pressed)
                   .tile-tick (li: played today, set by portal.js, with .tile-tick-i)  .is-star (li: saved on this device)
                   .tile-mine (a Yours tile)  .tile-crown (li: last week's game of the week, plan 2.20) .tile-crown-i (its crown,
                   top start of the coin, after New; a mark only, never a place)
@@ -44,11 +46,11 @@
                   text)
      not found    .nf
      about        .about  .about-local (the one line in the page's language)  .about-h  .about-p  .mail
-     claim        (English; chat J, 20 Nov 2026, plan 2.20) .pl-claim .main-claim .claim (article; data-game, data-token)
+     claim        (chat J, 20 Nov 2026, plan 2.20; in the game's language since chat N) .pl-claim .main-claim .claim (article; data-game, data-token)
                   .claim-h .claim-name .claim-p .claim-steps .claim-step .claim-step-h .claim-url .claim-code (the line, copyable)
                   .claim-line .btn-copy (data-copy: the id of what it copies) .claim-err (data-e) .claim-ok .claim-keybox .claim-key
                   .claim-other   the game page's foot: .yours-q-t (its "Your game?") .btn-claim (to /claim/?g=)
-     maker form   (English) .pl-maker .main-maker .maker .maker-nokey .maker-keyform .maker-main .maker-namef .maker-games
+     maker form   (?l= or the browser's language) .pl-maker .main-maker .maker .maker-nokey .maker-keyform .maker-main .maker-namef .maker-games
                   .maker-card .maker-card-h .maker-msg .maker-forget (the cards: maker.js) .maker-pagelink
                   .maker-logo .maker-logo-h .maker-logo-row .maker-logo-view .maker-logo-img .maker-logo-side .maker-logo-state
                   .maker-logo-pick .maker-logo-file .maker-logo-send (stage 3: the logo)
@@ -65,7 +67,8 @@
                   .lang-opt-t; the page's own has aria-current="page")  .sheet-form (.is-sent once sent)  .sheet-grab  .sheet-h  .sheet-x
                   (close)  .fld  .fld-l  .fld-opt  .fld-link .fld-lang .fld-kind .fld-name .fld-email  .fld-two  .kinds (the
                   eight kind buttons)  .kind-opt  .kind-opt-t  .reasons  .reason-opt  .hp (the robots' field: out of sight and
-                  out of reach)  .sheet-err (data-e="link" | "here" | "busy"; hidden until needed)  .sheet-ok (thanks; hidden)
+                  out of reach)  .sheet-err (data-e="link" | "here" | "busy"; hidden until needed)  .sheet-here (the "here" one:
+                  .sheet-here-t its words, .sheet-claim Claim for a listed game no maker has claimed; chat N)  .sheet-ok (thanks; hidden)
      templates    template#tpl-tile (one tile, for the Yours row and the kind page's More)
      helpers      .vh (visually hidden, read by screen readers)
      admin        .admin .admin-top .admin-h .admin-key .admin-bar .admin-role .admin-remember .admin-lock .admin-filters
@@ -77,13 +80,13 @@
    /api/hit), data-open="sheet-add" | "sheet-report" | "sheet-langs" (opens that dialog; with data-kind it sets the kind), data-close,
    data-star, data-lang, data-e, data-more, data-from, data-filter, data-vote. */
 import { LANGS, LANG, htmlLang, nameParts, pageName, byEndonym } from "./langs.js";
-import { WORDS, wordsOf, word, num, aroundN, withN } from "./words.js";
+import { WORDS, wordsOf, word, num, aroundN, withN, fill, OWN_WORDS } from "./words.js";
 import { KINDS, picUrl, lgLogo, NUM_DAYS, indexable } from "./db.js";
 import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=692741f24a", js: "/a/portal.js?v=7db71eb143", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=178609c4ec" };
+export const ASSET = { css: "/a/portal.css?v=d7b84a490a", js: "/a/portal.js?v=08ec511cce", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=f7f0fac3c2" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -105,6 +108,8 @@ export const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").repl
 export const jsonIn = (o) => JSON.stringify(o).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
 const icon = (id, cls) => `<svg class="ico${cls ? " " + cls : ""}" aria-hidden="true" focusable="false"><use href="${ASSET.icons}#${id}"></use></svg>`;
 const T = (lang, key) => esc(word(lang, key));
+/* a word with marks filled by markup (each value given here is markup already; the word itself is escaped first) */
+const TM = (lang, key, marks) => esc(word(lang, key)).replace(/\{([a-z]+)\}/g, (m, k) => (marks && Object.prototype.hasOwnProperty.call(marks, k) ? marks[k] : m));
 /* a number's size class on a tile: the more digits, the smaller (portal.css; portal.js sets the same when it counts) */
 export const numCls = (s) => { const n = String(s).replace(/\D/g, "").length; return n >= 7 ? " n7" : n === 6 ? " n6" : n === 5 ? " n5" : ""; };
 
@@ -150,14 +155,15 @@ ${o.body}
 /* the words a page carries: the language's own over English, but a plural form ("players_today.one") only from the
    language's own file, never from English (words.js pluralKey does the same on the server) */
 const PLURAL = /\.(zero|one|two|few|many)$/;
-function pageWords(lang) {
-  const own = WORDS[lang] || {}, w = wordsOf(lang), out = {};
-  for (const k of Object.keys(w)) if (!PLURAL.test(k) || own[k] !== undefined) out[k] = w[k];
+/* the words of the claim pages, the form and the email (claim., maker., mail.; chat N) only where a page asks for them (own) */
+function pageWords(lang, own) {
+  const mine = WORDS[lang] || {}, w = wordsOf(lang), out = {};
+  for (const k of Object.keys(w)) if ((!PLURAL.test(k) || mine[k] !== undefined) && (!OWN_WORDS.test(k) || (own && own.test(k)))) out[k] = w[k];
   return out;
 }
-/* what portal.js gets on every page */
-function pageData(d, more) {
-  return Object.assign({ lang: d.lang, site: d.site, page: d.page, words: pageWords(d.lang), contact: CONTACT, tag: htmlLang(d.lang), nums: d.nums === false ? 0 : 1 }, more || {});
+/* what portal.js gets on every page (and maker.js on the claim pages and the form: own names their words) */
+function pageData(d, more, own) {
+  return Object.assign({ lang: d.lang, site: d.site, page: d.page, words: pageWords(d.lang, own), contact: CONTACT, tag: htmlLang(d.lang), nums: d.nums === false ? 0 : 1 }, more || {});
 }
 /* The numbers are counted and, for now, not shown (Khayyam, 21 Nov 2026; util.js showNums; plan 2.8). A page whose data says
    nums: false is drawn as on a day with nobody: every "today", "in all" and "players today" it was given is 0, so each coin
@@ -244,11 +250,13 @@ function footer(d) {
 </footer>`;
 }
 
-/* one tile. g: { id, name, kind, slug?, url, today, isNew, place, sold }, o: { lg, en }.
-   The coin plays (chat H, 20 Nov 2026, plan 2.6): a link to the game's own site in a new tab, counted as Play is
-   (data-hit); the name under it is its own link (44 px high) to the game's page. A Logicers game has no page here: its
-   name is the same link as its coin, out of the tab order. With nobody today the coin shows its kind's icon large in its
-   ring colour (.is-0), never a 0. */
+/* one tile. g: { id, name, kind, slug?, lang?, url, today, isNew, place, sold }, o: { lg, en }.
+   The coin opens the game's page (Khayyam, 22 Nov 2026: "it should open the game page as it does with clicking the game's
+   name"; it played from 20 Nov): the coin and the name under it are one link to /<lang>/g/<slug>/, in the same tab, one
+   tab stop (the name is the same link, out of the tab order); it counts nothing. A play is counted from Play and the big
+   coin on the game's page, the dice and My run. A Logicers game has no page here: its coin opens the game in a new tab and
+   counts (data-hit), and its name is the same link. With nobody today the coin shows its kind's icon large in its ring
+   colour (.is-0), never a 0. */
 export function tile(d, g, o) {
   o = o || {};
   const cls = ["tile", ring(g.id)];
@@ -263,17 +271,16 @@ export function tile(d, g, o) {
   if (!today) cls.push("is-0");
   const logo = tileLogo(g, o);
   const en = o.en ? ' lang="en"' : "";
-  const play = `href="${esc(g.url)}" target="_blank" rel="noopener" data-hit`;
-  return `<li class="${cls.join(" ")}" data-game="${esc(g.id)}" data-kind="${esc(g.kind)}"><a class="tile-a" ${play}>`
+  const link = o.lg ? `href="${esc(g.url)}" target="_blank" rel="noopener" data-hit` : `href="/${esc(g.lang || d.lang)}/g/${esc(g.slug)}/"`;
+  return `<li class="${cls.join(" ")}" data-game="${esc(g.id)}" data-kind="${esc(g.kind)}"><a class="tile-a" ${link}>`
     + (!o.lg && g.isNew ? `<span class="tile-badge">${T(d.lang, "new")}</span>` : "")
     + (o.en ? `<span class="tile-chip" lang="en">${T(d.lang, "en_chip")}</span>` : "")
     + (!o.lg && g.crown ? icon("i-crown", "tile-crown-i") : "")
     + (logo || icon("k-" + g.kind, "tile-kind") + icon("k-" + g.kind, "tile-zero"))
     + `<span class="tile-n${today ? numCls(n) : ""}" data-count="today" aria-hidden="true">${today ? esc(n) : ""}</span>`
-    + `<span class="vh"><span class="tile-vn">${T(d.lang, "play")} <span${en}>${esc(g.name)}</span></span>${!o.lg && g.crown ? `<span class="tile-gotw">, ${T(d.lang, "gotw")}</span>` : ""}<span data-count-label="today">${today ? ", " + esc(withN(d.lang, "today_n", today)) : ""}</span></span>`
+    + `<span class="vh"><span class="tile-vn">${o.lg ? T(d.lang, "play") + " " : ""}<span${en}>${esc(g.name)}</span></span>${!o.lg && g.crown ? `<span class="tile-gotw">, ${T(d.lang, "gotw")}</span>` : ""}<span data-count-label="today">${today ? ", " + esc(withN(d.lang, "today_n", today)) : ""}</span></span>`
     + `</a>`
-    + (o.lg ? `<a class="tile-name" ${play} tabindex="-1" aria-hidden="true"${en}>${esc(g.name)}</a>`
-      : `<a class="tile-name" href="/${esc(g.lang || d.lang)}/g/${esc(g.slug)}/"${en}>${esc(g.name)}</a>`)
+    + `<a class="tile-name" ${link} tabindex="-1" aria-hidden="true"${en}>${esc(g.name)}</a>`
     + `<button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="${esc(g.id)}">${icon("i-star")}</button></li>`;
 }
 /* a coin's logo (chat J, plan 2.20): a maker's picture once a key said yes, or the drawing of one of Logicers' own games. With
@@ -285,8 +292,9 @@ function tileLogo(g, o) {
   if (u) return `<img class="tile-logo" src="${esc(u)}" alt="" width="64" height="64" loading="lazy" decoding="async">`;
   return "";
 }
+/* the template portal.js fills (Yours, More): the coin goes to the game's page; for a Logicers game portal.js makes it play */
 function tplTile(d) {
-  return `<template id="tpl-tile"><li class="tile" data-game="" data-kind=""><a class="tile-a" href="" target="_blank" rel="noopener" data-hit><span class="tile-badge" hidden>${T(d.lang, "new")}</span><span class="tile-chip" lang="en" hidden>${T(d.lang, "en_chip")}</span>${icon("i-crown", "tile-crown-i")}${icon("k-other", "tile-kind")}${icon("k-other", "tile-zero")}<img class="tile-logo" alt="" width="64" height="64" decoding="async" hidden><svg class="tile-logo tile-logo-lg" aria-hidden="true" focusable="false" hidden><use href=""></use></svg><span class="tile-n" data-count="today" aria-hidden="true"></span><span class="vh"><span class="tile-vn">${T(d.lang, "play")} <span></span></span><span class="tile-gotw" hidden>, ${T(d.lang, "gotw")}</span><span data-count-label="today"></span></span></a><a class="tile-name" href=""></a><button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="">${icon("i-star")}</button></li></template>`;
+  return `<template id="tpl-tile"><li class="tile" data-game="" data-kind=""><a class="tile-a" href=""><span class="tile-badge" hidden>${T(d.lang, "new")}</span><span class="tile-chip" lang="en" hidden>${T(d.lang, "en_chip")}</span>${icon("i-crown", "tile-crown-i")}${icon("k-other", "tile-kind")}${icon("k-other", "tile-zero")}<img class="tile-logo" alt="" width="64" height="64" decoding="async" hidden><svg class="tile-logo tile-logo-lg" aria-hidden="true" focusable="false" hidden><use href=""></use></svg><span class="tile-n" data-count="today" aria-hidden="true"></span><span class="vh"><span class="tile-vn"><span class="tile-vp" hidden>${T(d.lang, "play")} </span><span class="tile-vt"></span></span><span class="tile-gotw" hidden>, ${T(d.lang, "gotw")}</span><span data-count-label="today"></span></span></a><a class="tile-name" href="" tabindex="-1" aria-hidden="true"></a><button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="">${icon("i-star")}</button></li></template>`;
 }
 /* a row's head: its name, and More at the end */
 function rowTop(id, title, more) {
@@ -369,7 +377,7 @@ ${KINDS.map((k) => `<label class="kind-opt"><input type="radio" name="kind" valu
 </div>
 <label class="hp" aria-hidden="true">Leave empty <input name="pl_x9" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-bwignore></label>
 <p class="sheet-err" data-e="link" role="alert" hidden>${T(L, "f.e_link")}</p>
-<p class="sheet-err" data-e="here" role="alert" hidden>${T(L, "f.e_here")}</p>
+<p class="sheet-err sheet-here" data-e="here" role="alert" hidden><span class="sheet-here-t">${T(L, "f.e_here")}</span><a class="btn btn-claim sheet-claim" href="/claim/" hidden>${T(L, "claim")}</a></p>
 <p class="sheet-err" data-e="busy" role="alert" hidden>${T(L, "f.e_busy")}</p>
 <button class="btn btn-send" type="submit">${T(L, "f.send")}</button>
 <p class="sheet-ok" role="status" hidden>${icon("i-check")}<span>${T(L, "f.thanks")}</span></p>
@@ -648,120 +656,115 @@ ${sheetAdd(d)}`;
     desc: "What Play Logicers is, how games get on it, what the numbers count and what it keeps.", body, data: pageData(d) });
 }
 
-/* ---- the claim (chat J, 20 Nov 2026, plan 2.20): English, one line on top in the game's language, like About ---- */
-const localLine = (L) => (L && L !== "en" && LANG.get(L) ? `<p class="about-local" lang="${esc(htmlLang(L))}" dir="${LANG.get(L).dir}">${T(L, "about_en")}</p>\n` : "");
-const CLAIM_ERR = {
-  nocode: "Get a new line first: a newer one has replaced it.",
-  nometa: "We didn't find the line on the page. It must be in the HTML the page sends (not added later by a script). Check it, then try again.",
-  noopen: "The page did not open for us. Try again in a minute.",
-  moved: "The address now goes to another site, so it can't be checked here. Write to us.",
-  busy: "Too many tries. Try again in an hour.",
-  token: "This link no longer works: each claim link works once. You can still claim the game with a line on its page.",
-  nogame: "This game is not on the list now.",
-  server: "Something went wrong. Try again.",
-};
-const claimErrs = (keys) => keys.map((k) => `<p class="claim-err" data-e="${k}" role="alert" hidden>${esc(CLAIM_ERR[k])}</p>`).join("\n");
+/* ---- the claim (chat J, 20 Nov 2026, plan 2.20). Since chat N (22 Nov 2026) in the game's language, every word from the
+   words files (claim.*): a maker who reads no English can claim (Khayyam: "a maker who doesn't speak English, how do they
+   proceed?"). The page is the game's language page's own: its name, its head and foot. ---- */
+const claimErrs = (L, keys) => keys.map((k) => `<p class="claim-err" data-e="${k}" role="alert" hidden>${T(L, "claim.e_" + k)}</p>`).join("\n");
 const claimOk = (L) => `<section class="claim-ok" id="claim-ok" aria-labelledby="claim-ok-h" hidden>
-<h2 class="claim-step-h" id="claim-ok-h">It's yours.</h2>
-<p class="claim-p claim-joined" hidden>It is with your other games now.</p>
+<h2 class="claim-step-h" id="claim-ok-h">${T(L, "claim.ok")}</h2>
+<p class="claim-p claim-joined" hidden>${T(L, "claim.joined")}</p>
 <div class="claim-keybox" hidden>
-<p class="claim-p">Your maker key. This device keeps it. Keep a copy somewhere safe too: it opens your games on any device, and it is shown only this once.</p>
-<div class="claim-code"><code class="claim-key" id="claim-key"></code><button class="btn btn-copy" type="button" data-copy="claim-key">Copy</button></div>
+<p class="claim-p">${T(L, "claim.key")}</p>
+<div class="claim-code"><code class="claim-key" id="claim-key"></code><button class="btn btn-copy" type="button" data-copy="claim-key">${T(L, "claim.copy")}</button></div>
 </div>
-<a class="btn btn-send claim-edit" href="/maker/?l=${esc(L)}">Edit your game</a>
+<a class="btn btn-send claim-edit" href="/maker/?l=${esc(L)}">${T(L, "claim.edit")}</a>
 </section>`;
-const claimOther = `<p class="claim-other">No way to change the page? Write to <span class="mail">${esc(CONTACT)}</span> from the address you sent the game with.</p>`;
-function claimHead(g) {
-  return `<h1 class="claim-h">Claim <span class="claim-name">${esc(g.name)}</span></h1>
-<p class="claim-p">It's free and up to you: the game stays on the list either way. Once it's yours you can write its line and choose its kind.</p>`;
+const claimOther = (L) => `<p class="claim-other">${TM(L, "claim.other", { mail: `<span class="mail">${esc(CONTACT)}</span>` })}</p>`;
+function claimHead(L, g) {
+  return `<h1 class="claim-h">${TM(L, "claim.h", { game: `<span class="claim-name">${esc(g.name)}</span>` })}</h1>
+<p class="claim-p">${T(L, "claim.intro")}</p>`;
+}
+/* the claim pages' and the form's page: the language page's head (its name, "by Logicers", Add a game) and foot */
+const OWN_CLAIM = /^claim\./, OWN_MAKER = /^(claim|maker)\./;
+function claimDoc(d, title, body, page, more, own) {
+  return doc({ lang: d.lang, cls: page === "maker" ? "pl-maker" : "pl-claim", title: title + " · Play Logicers", noindex: true, script2: ASSET.maker, body,
+    data: pageData(d, Object.assign({ page }, more), own) });
 }
 /* /claim/?g=<id>: the line for the page's head, then the check */
 export function pageClaim(d) {
   const g = d.game, L = g.lang;
-  d = Object.assign({}, d, { lang: "en", wall: true, page: "claim", back: `/${L}/g/${g.slug}/`, backName: g.name });
+  d = Object.assign({}, d, { lang: L, wall: false, page: "claim", back: `/${L}/g/${g.slug}/`, backName: g.name });
   const body = `${headerSub(d)}
 <main class="main main-claim">
 <article class="claim" data-game="${esc(g.id)}">
-${localLine(L)}${claimHead(g)}
+${claimHead(L, g)}
 <ol class="claim-steps">
 <li class="claim-step">
-<h2 class="claim-step-h">Put this line on your page</h2>
-<p class="claim-p">In the <code>&lt;head&gt;</code> of <span class="claim-url">${esc(g.url)}</span>, as the page is sent:</p>
-<div class="claim-code" hidden><code class="claim-line" id="claim-line"></code><button class="btn btn-copy" type="button" data-copy="claim-line">Copy</button></div>
-<button class="btn btn-send claim-get" id="claim-get" type="button">Get your line</button>
+<h2 class="claim-step-h">${T(L, "claim.s1")}</h2>
+<p class="claim-p">${TM(L, "claim.s1_p", { head: "<code>&lt;head&gt;</code>", url: `<span class="claim-url">${esc(g.url)}</span>` })}</p>
+<div class="claim-code" hidden><code class="claim-line" id="claim-line"></code><button class="btn btn-copy" type="button" data-copy="claim-line">${T(L, "claim.copy")}</button></div>
+<button class="btn btn-send claim-get" id="claim-get" type="button">${T(L, "claim.get")}</button>
 </li>
 <li class="claim-step">
-<h2 class="claim-step-h">Check</h2>
-<p class="claim-p">We open the page once and look for the line. You can take it off afterwards.</p>
-<button class="btn btn-send claim-check" id="claim-check" type="button" disabled>Check</button>
+<h2 class="claim-step-h">${T(L, "claim.s2")}</h2>
+<p class="claim-p">${T(L, "claim.s2_p")}</p>
+<button class="btn btn-send claim-check" id="claim-check" type="button" disabled>${T(L, "claim.check")}</button>
 </li>
 </ol>
-${claimErrs(["nocode", "nometa", "noopen", "moved", "busy", "nogame", "server"])}
+${claimErrs(L, ["nocode", "nometa", "noopen", "moved", "busy", "nogame", "server"])}
 ${claimOk(L)}
-${claimOther}
+${claimOther(L)}
 </article>
 </main>
 ${footer(d)}
 ${sheetAdd(d)}`;
-  return doc({ lang: "en", cls: "pl-claim", title: "Claim " + g.name + " · Play Logicers", noindex: true, script2: ASSET.maker, body,
-    data: { lang: L, page: "claim", site: d.site, game: g.id, contact: CONTACT } });
+  return claimDoc(d, fill(L, "claim.h", { game: g.name }), body, "claim", { game: g.id }, OWN_CLAIM);
 }
 /* /claim/<token>/: the single-use link of the weekly email; nothing is used until the button is pressed (a mail program
-   that opens links to look at them claims nothing) */
+   that opens links to look at them claims nothing). A link that works no more: in the browser's language (d.lang). */
 export function pageClaimLink(d) {
-  const g = d.game, L = g ? g.lang : "en";
-  d = Object.assign({}, d, { lang: "en", wall: true, page: "claim", back: g ? `/${L}/g/${g.slug}/` : "/", backName: g ? g.name : "Play Logicers" });
+  const g = d.game, L = g ? g.lang : d.lang || "en";
+  d = Object.assign({}, d, { lang: L, wall: false, page: "claim", back: g ? `/${L}/g/${g.slug}/` : null, backName: g ? g.name : null });
   const body = `${headerSub(d)}
 <main class="main main-claim">
 <article class="claim"${g ? ` data-game="${esc(g.id)}" data-token="${esc(d.token)}"` : ""}>
-${g ? `${localLine(L)}${claimHead(g)}
-<button class="btn btn-send claim-token" id="claim-token" type="button">Claim it</button>
-${claimErrs(["token", "busy", "server"])}
-${claimOk(L)}` : `<h1 class="claim-h">This link no longer works</h1>
-<p class="claim-p">Each claim link works once. You can still claim a game with a line on its page: open the game on Play Logicers and choose Claim under "Your game?".</p>
+${g ? `${claimHead(L, g)}
+<button class="btn btn-send claim-token" id="claim-token" type="button">${T(L, "claim.it")}</button>
+${claimErrs(L, ["token", "busy", "server"])}
+${claimOk(L)}` : `<h1 class="claim-h">${T(L, "claim.used_h")}</h1>
+<p class="claim-p">${TM(L, "claim.used_p", { claim: T(L, "claim") })}</p>
 <a class="btn btn-send" href="/">Play Logicers</a>`}
 </article>
 </main>
 ${footer(d)}
 ${sheetAdd(d)}`;
-  return doc({ lang: "en", cls: "pl-claim", title: (g ? "Claim " + g.name : "Claim") + " · Play Logicers", noindex: true, script2: ASSET.maker, body,
-    data: { lang: L, page: "claimlink", site: d.site, game: g ? g.id : null, contact: CONTACT } });
+  return claimDoc(d, g ? fill(L, "claim.h", { game: g.name }) : word(L, "claim"), body, "claimlink", { game: g ? g.id : null }, OWN_CLAIM);
 }
-/* /maker/: the maker's form (English; maker.js builds it from the key on the device) */
+/* /maker/: the maker's form (maker.js builds it from the key on the device), in d.lang: ?l=, else the browser's language */
 export function pageMaker(d) {
-  const L = d.local || "en";
-  d = Object.assign({}, d, { lang: "en", wall: true, page: "maker" });
+  const L = d.lang || "en";
+  d = Object.assign({}, d, { lang: L, wall: false, page: "maker" });
   const body = `${headerSub(d)}
 <main class="main main-maker">
 <div class="maker" id="maker">
-${localLine(L)}<h1 class="claim-h">Your games</h1>
+<h1 class="claim-h">${T(L, "maker.h")}</h1>
 <section class="maker-nokey" id="maker-nokey" hidden>
-<p class="claim-p">There is no maker key on this device. You get one when you claim a game: on the game's page, under "Your game?".</p>
+<p class="claim-p">${TM(L, "maker.nokey", { claim: T(L, "claim") })}</p>
 <form class="maker-keyform" id="maker-keyform" autocomplete="off">
-<label class="fld"><span class="fld-l">Your maker key</span><input name="key" autocomplete="off" spellcheck="false" maxlength="40" required></label>
-<button class="btn btn-send" type="submit">Open</button>
-<p class="claim-err" data-e="key" role="alert" hidden>This key doesn't open anything. Check it and try again.</p>
-<p class="claim-err" data-e="busy" role="alert" hidden>${esc(CLAIM_ERR.busy)}</p>
+<label class="fld"><span class="fld-l">${T(L, "maker.key")}</span><input name="key" autocomplete="off" spellcheck="false" maxlength="40" required></label>
+<button class="btn btn-send" type="submit">${T(L, "maker.open")}</button>
+<p class="claim-err" data-e="key" role="alert" hidden>${T(L, "maker.e_key")}</p>
+<p class="claim-err" data-e="busy" role="alert" hidden>${T(L, "maker.e_busy")}</p>
+<p class="claim-err" data-e="server" role="alert" hidden>${T(L, "claim.e_server")}</p>
 </form>
 </section>
 <section class="maker-main" id="maker-main" hidden>
 <form class="maker-namef" id="maker-namef">
-<label class="fld"><span class="fld-l">Your name, as players see it</span><input name="name" maxlength="60" required></label>
-<button class="btn btn-send" type="submit">Save</button>
+<label class="fld"><span class="fld-l">${T(L, "maker.name")}</span><input name="name" maxlength="60" required></label>
+<button class="btn btn-send" type="submit">${T(L, "maker.save")}</button>
 <p class="maker-msg" role="status" hidden></p>
 </form>
-<a class="btn maker-pagelink" id="maker-page" href="/" hidden>Your page on Play Logicers</a>
+<a class="btn maker-pagelink" id="maker-page" href="/" hidden>${T(L, "maker.page")}</a>
 <div class="maker-games" id="maker-games"></div>
-<p class="claim-other">Your words go live at once; we look at every change. The address, the language and whether a game is listed stay ours to change: write to <span class="mail">${esc(CONTACT)}</span>.</p>
-<button class="btn maker-forget" id="maker-forget" type="button">Forget the key on this device</button>
+<p class="claim-other">${TM(L, "maker.note", { mail: `<span class="mail">${esc(CONTACT)}</span>` })}</p>
+<button class="btn maker-forget" id="maker-forget" type="button">${T(L, "maker.forget")}</button>
 </section>
 </div>
 </main>
 ${footer(d)}
 ${sheetAdd(d)}`;
-  return doc({ lang: "en", cls: "pl-maker", title: "Your games · Play Logicers", noindex: true, script2: ASSET.maker, body,
-    data: { lang: "en", local: L, page: "maker", site: d.site, kinds: KINDS, kindNames: Object.fromEntries(KINDS.map((k) => [k, word("en", "cat." + k)])),
-      langNames: Object.fromEntries(LANGS.map((l) => [l.code, l.endonym])), contact: CONTACT } });
+  return claimDoc(d, word(L, "maker.h"), body, "maker", { kinds: KINDS, kindNames: Object.fromEntries(KINDS.map((k) => [k, word(L, "cat." + k)])),
+    langNames: Object.fromEntries(LANGS.map((l) => [l.code, l.endonym])) }, OWN_MAKER);
 }
 
 /* nothing here (404): in a language, with its rows under the line; else the wall's languages */

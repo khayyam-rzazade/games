@@ -297,12 +297,12 @@ test("no 0 is ever written: a coin with nobody today shows its kind's icon; the 
   assert.match((await get(e, "/es/g/game-es-1/")).text, /<span class="num num-today"><span class="num-w">/);
 });
 
-test("one tap to play: the coin is the game's own address (new tab, counted); the name under it opens the game's page", async () => {
+test("the coin and the name under it open the game's page (chat N, 22 Nov 2026; one tap to play from chat H until then); its page plays", async () => {
   const e = env();
   await importGames(e, seedGames("es", 1));
   const p = (await get(e, "/es/")).text;
-  assert.match(p, /<a class="tile-a" href="https:\/\/g1-es.example.org\/" target="_blank" rel="noopener" data-hit>/);
-  assert.match(p, /<a class="tile-name" href="\/es\/g\/game-es-1\/">Game es 1<\/a>/);
+  assert.match(p, /<a class="tile-a" href="\/es\/g\/game-es-1\/">/);
+  assert.match(p, /<a class="tile-name" href="\/es\/g\/game-es-1\/" tabindex="-1" aria-hidden="true">Game es 1<\/a>/);
   const g = (await get(e, "/es/g/game-es-1/")).text;
   assert.match(g, /<a class="game-tile" href="https:\/\/g1-es.example.org\/" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true">/);
 });
