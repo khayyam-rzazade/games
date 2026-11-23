@@ -121,5 +121,168 @@
     "line": "Schuif de letters op hun plek en vorm de woorden.",
     "maker": "Hugo Montenegro",
     "checked": "2026-11-19"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/nl/games/worldle",
+    "lang": "nl",
+    "kind": "maps",
+    "line": "Zie de vorm en raad het land van vandaag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/nl/games/geodle",
+    "lang": "nl",
+    "kind": "maps",
+    "line": "Raad het land van de dag met hints. Zes pogingen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Planetrotter",
+    "url": "https://planetrotter.com/nl/",
+    "lang": "nl",
+    "kind": "maps",
+    "line": "Raad de stad van de dag. Je krijgt hints.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CineGuessr",
+    "url": "https://cineguessr.com/nl/daily",
+    "lang": "nl",
+    "kind": "screen",
+    "line": "Raad de film van vandaag aan de hand van beelden.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guessong",
+    "url": "https://guessong.co/nl/play/",
+    "lang": "nl",
+    "kind": "music",
+    "line": "Raad het nummer van de dag aan een kort stukje.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "TopQuiz: Quiz van de dag",
+    "url": "https://topquiz.nl/quiz-van-de-dag",
+    "lang": "nl",
+    "kind": "knowledge",
+    "line": "Beantwoord elke dag zes nieuwe vragen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "QuizBlast",
+    "url": "https://quizblast.nl/",
+    "lang": "nl",
+    "kind": "knowledge",
+    "line": "Doe elke dag een nieuwe quiz met tien vragen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Voetble",
+    "url": "https://voetble.nl/",
+    "lang": "nl",
+    "kind": "sport",
+    "line": "Elke dag nieuwe Eredivisie-spelletjes: raad de speler.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guess the Player",
+    "url": "https://footballlineupbuilder.com/nl/quizzes/guess-the-player",
+    "lang": "nl",
+    "kind": "sport",
+    "line": "Raad de voetballer van vandaag met een wazige foto.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Voetbal Grid",
+    "url": "https://gridsport.games/nl/voetbal/grid",
+    "lang": "nl",
+    "kind": "sport",
+    "line": "Vul het raster met voetballers die bij beide passen.",
+    "maker": "GridSport.Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Voetbal Bingo",
+    "url": "https://gridsport.games/nl/voetbal/bingo",
+    "lang": "nl",
+    "kind": "sport",
+    "line": "Vind spelers die bij elk vakje op de kaart passen.",
+    "maker": "GridSport.Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Connections",
+    "url": "https://connections.game/nl/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Zet 16 woorden in vier groepen. Elke dag nieuw.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Verbandle",
+    "url": "https://verbandle.nl/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Vind wat de woorden van vandaag met elkaar delen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Categorieën",
+    "url": "https://puzzelscore.nl/puzzel/categorieen/dagelijks",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Zet de woorden bij de juiste categorie.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "SIMWORDO",
+    "url": "https://simwordo.nl/",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Raad het geheime woord. Lager getal is dichterbij.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagpuzzel",
+    "url": "https://puzzelsamen.nl/dagpuzzel",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Elke dag een nieuwe Nederlandse puzzel.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kryss",
+    "url": "https://kryss.app/nl",
+    "lang": "nl",
+    "kind": "words",
+    "line": "Los elke dag een korte kruiswoordpuzzel op.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku van de dag",
+    "url": "https://puzzelsamen.nl/sudoku-van-de-dag",
+    "lang": "nl",
+    "kind": "numbers",
+    "line": "Los de sudoku van vandaag op. Voor iedereen dezelfde.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "LiveSudoku",
+    "url": "https://www.livesudoku.com/nl/daily-sudoku.php",
+    "lang": "nl",
+    "kind": "numbers",
+    "line": "Elke dag vier nieuwe sudoku's, van makkelijk tot moeilijk.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Rekenuitdaging",
+    "url": "https://mathorio.com/nl/daily",
+    "lang": "nl",
+    "kind": "numbers",
+    "line": "Los elke dag een nieuwe som op in drie pogingen.",
+    "maker": "Mathorio",
+    "checked": "2026-11-23"
   }
 ]

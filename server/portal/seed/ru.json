@@ -121,5 +121,96 @@
     "kind": "other",
     "line": "Раскрой странную историю вопросами «да» и «нет».",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "Футбольный Grid",
+    "url": "https://gridsport.games/ru/futbol/grid",
+    "lang": "ru",
+    "kind": "sport",
+    "line": "Найди футболистов, которые подходят и строке, и столбцу.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Футбольное Бинго",
+    "url": "https://gridsport.games/ru/futbol/bingo",
+    "lang": "ru",
+    "kind": "sport",
+    "line": "Расставь футболистов по карточке 4×4 по подсказкам.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/ru/games/worldle",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Угадай страну дня по её контуру.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/ru/games/geodle",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Угадай страну дня за шесть попыток по подсказкам.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/ru/games/travle",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Назови страны на пути между двумя странами.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Сходится! Слово",
+    "url": "https://shoditsa.ru/games/word",
+    "lang": "ru",
+    "kind": "words",
+    "line": "Найди слово дня: узнаешь, насколько оно близко по смыслу.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Сходится! Сериалы",
+    "url": "https://shoditsa.ru/games/series",
+    "lang": "ru",
+    "kind": "screen",
+    "line": "Найди сериал дня: сравнивай актёров, жанры и годы.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Сходится! Аниме",
+    "url": "https://shoditsa.ru/games/anime",
+    "lang": "ru",
+    "kind": "screen",
+    "line": "Найди аниме дня: сравнивай студии, форматы и эпизоды.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Сходится! Города",
+    "url": "https://shoditsa.ru/games/city",
+    "lang": "ru",
+    "kind": "maps",
+    "line": "Найди город дня: сравнивай страну и население.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Сходится! Книги",
+    "url": "https://shoditsa.ru/games/book",
+    "lang": "ru",
+    "kind": "knowledge",
+    "line": "Найди книгу дня: сравнивай автора, эпоху и жанр.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Songless по-русски",
+    "url": "https://songless.pro/ru",
+    "lang": "ru",
+    "kind": "music",
+    "line": "Угадай песню по самому короткому началу.",
+    "checked": "2026-11-23"
   }
 ]

@@ -158,5 +158,131 @@
     "kind": "screen",
     "line": "ポスターとヒントから、今日の映画を当てよう",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "サッカーグリッド",
+    "url": "https://gridsport.games/ja/football/grid",
+    "lang": "ja",
+    "kind": "sport",
+    "line": "行と列の両方に合うサッカー選手を見つけよう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "サッカービンゴ",
+    "url": "https://gridsport.games/ja/football/bingo",
+    "lang": "ja",
+    "kind": "sport",
+    "line": "ヒントに合う選手を4×4のカードに並べよう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "サッカーワードル",
+    "url": "https://gridsport.games/ja/football/wordle",
+    "lang": "ja",
+    "kind": "sport",
+    "line": "今日のサッカー選手を、リーグやクラブで当てよう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/ja/games/worldle",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "形を見て、今日の国を当てよう",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/ja/games/geodle",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "ヒントを見て、今日の国を6回で当てよう",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/ja/games/travle",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "2つの国のあいだの国を、順不同で答えよう",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puzoro 今日のパズル",
+    "url": "https://puzoro.com/ja/",
+    "lang": "ja",
+    "kind": "numbers",
+    "line": "ナンプレなど、今日のパズルを解こう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puzoro お絵かきロジック",
+    "url": "https://puzoro.com/ja/nonogram/",
+    "lang": "ja",
+    "kind": "numbers",
+    "line": "数字をヒントにマスをぬって、絵を完成させよう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puzoro スターバトル",
+    "url": "https://puzoro.com/ja/star-battle/",
+    "lang": "ja",
+    "kind": "numbers",
+    "line": "どの行・列・ブロックにも星を1つずつ置こう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puzoro ズームアウト",
+    "url": "https://puzoro.com/ja/zoomout/",
+    "lang": "ja",
+    "kind": "maps",
+    "line": "広がる地図を見て、色のついた国を当てよう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Songless 日本語",
+    "url": "https://songless.pro/ja",
+    "lang": "ja",
+    "kind": "music",
+    "line": "ほんの短いイントロを聞いて、曲を当てよう",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "まいにち熟語パズル",
+    "url": "https://mainichi-game.com/jukugo/",
+    "lang": "ja",
+    "kind": "words",
+    "line": "真ん中の漢字を入れて、4つの熟語を作ろう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "まいにち四角わけ",
+    "url": "https://mainichi-game.com/shikaku/",
+    "lang": "ja",
+    "kind": "numbers",
+    "line": "数字に合わせて、盤を長方形に分けよう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "まいにち橋かけ",
+    "url": "https://mainichi-game.com/hashi/",
+    "lang": "ja",
+    "kind": "other",
+    "line": "数字どおりに橋をかけて、島をつなごう",
+    "maker": "まいにち無料ゲーム運営事務局",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daily Who 偉人当て",
+    "url": "https://dailywho.app/",
+    "lang": "ja",
+    "kind": "knowledge",
+    "line": "AIに質問して、今日の日本史の人物を当てよう",
+    "checked": "2026-11-23"
   }
 ]

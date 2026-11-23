@@ -158,5 +158,172 @@
     "line": "Teile die Welt anhand einer Zahl in zwei Hälften.",
     "maker": "Kontra",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/de/games/globle",
+    "lang": "de",
+    "kind": "maps",
+    "line": "Finde das Land des Tages. Warm heißt: nah dran.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/de/games/worldle",
+    "lang": "de",
+    "kind": "maps",
+    "line": "Sieh die Form und rate das Land von heute.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/de/games/geodle",
+    "lang": "de",
+    "kind": "maps",
+    "line": "Rate das Land des Tages mit Hinweisen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Planetrotter",
+    "url": "https://planetrotter.com/de/",
+    "lang": "de",
+    "kind": "maps",
+    "line": "Rate die Stadt des Tages. Du bekommst Hinweise.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Spieler des Tages",
+    "url": "https://futbolle.com/de/player-of-the-day",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Finde den Fußballer von heute mit Hinweisen.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Logo-Quiz",
+    "url": "https://futbolle.com/de/football-logo-quiz",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Rate den Verein an einem Stück seines Wappens.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Connections",
+    "url": "https://futbolle.com/de/connections",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Ordne 16 Fußballer in vier versteckte Gruppen.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Missing 11",
+    "url": "https://futbolle.com/de/missing-xi",
+    "lang": "de",
+    "kind": "sport",
+    "line": "Finde die drei versteckten Spieler der Startelf.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wissenstest des Tages",
+    "url": "https://quiz.zeit.de/wissenstest-des-tages/",
+    "lang": "de",
+    "kind": "knowledge",
+    "line": "Beantworte die Fragen des Tages und teste dein Wissen.",
+    "maker": "ZEIT Spiele",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Tagesquiz",
+    "url": "https://quizworld.de/online-quizze/das-taegliche-quiz/",
+    "lang": "de",
+    "kind": "knowledge",
+    "line": "Beantworte jeden Tag zehn neue Fragen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wortiger",
+    "url": "https://spiele.zeit.de/wortiger/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Löse das Worträtsel des Tages von ZEIT Spiele.",
+    "maker": "ZEIT Spiele",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Connections",
+    "url": "https://connections.game/de/",
+    "lang": "de",
+    "kind": "words",
+    "line": "Teile 16 Wörter in vier Gruppen. Jeden Tag neu.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Contexto Deutsch",
+    "url": "https://www.wortspielen.de/spiel/contexto-deutsch",
+    "lang": "de",
+    "kind": "words",
+    "line": "Finde das geheime Wort. Die Zahl zeigt, wie nah du bist.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kryss",
+    "url": "https://kryss.app/de",
+    "lang": "de",
+    "kind": "words",
+    "line": "Löse jeden Tag ein kurzes Kreuzworträtsel.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Spuren zum Film",
+    "url": "https://spurenzumfilm.de/",
+    "lang": "de",
+    "kind": "screen",
+    "line": "Sieh vier Dinge aus einer Szene und finde den Film.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kinonym",
+    "url": "https://kinonym.de/",
+    "lang": "de",
+    "kind": "screen",
+    "line": "Rate einen Film oder eine Serie mit fünf Wörtern.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Moviedle",
+    "url": "https://thingdle.app/de/moviedle",
+    "lang": "de",
+    "kind": "screen",
+    "line": "Rate den Film des Tages in sechs Versuchen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku des Tages",
+    "url": "https://onlinesudoku.de/sudoku-des-tages",
+    "lang": "de",
+    "kind": "numbers",
+    "line": "Löse jeden Tag ein neues Sudoku.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Mathe-Challenge",
+    "url": "https://mathorio.com/de/daily",
+    "lang": "de",
+    "kind": "numbers",
+    "line": "Löse jeden Tag eine neue Matheaufgabe in drei Versuchen.",
+    "maker": "Mathorio",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guessong",
+    "url": "https://guessong.co/de/play/",
+    "lang": "de",
+    "kind": "music",
+    "line": "Rate den Song des Tages an einem kurzen Ausschnitt.",
+    "checked": "2026-11-23"
   }
 ]

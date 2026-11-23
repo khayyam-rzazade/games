@@ -207,5 +207,89 @@
     "line": "Coupe les pays du monde en deux selon un chiffre.",
     "maker": "Kontra",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "Kontra GeoScale",
+    "url": "https://kontra.games/fr/jouer/geographie/geoscale",
+    "lang": "fr",
+    "kind": "maps",
+    "line": "Place un pays sur l'échelle selon un chiffre",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra CityGrid",
+    "url": "https://kontra.games/fr/jouer/geographie/citygrid",
+    "lang": "fr",
+    "kind": "maps",
+    "line": "Trouve une ville qui colle aux deux indices",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra GeoTiers",
+    "url": "https://kontra.games/fr/jouer/geographie/geotiers",
+    "lang": "fr",
+    "kind": "maps",
+    "line": "Classe les pays par paliers selon un chiffre",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra Grid 999",
+    "url": "https://kontra.games/fr/jouer/nombres/grid-999",
+    "lang": "fr",
+    "kind": "numbers",
+    "line": "Écris un nombre qui colle aux deux indices",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku a Day",
+    "url": "https://sudokuaday.com/fr",
+    "lang": "fr",
+    "kind": "numbers",
+    "line": "Remplis la grille avec les chiffres de 1 à 9",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Couverture",
+    "url": "https://www.gamedle.wtf/classic?lang=fr",
+    "lang": "fr",
+    "kind": "screen",
+    "line": "Devine le jeu vidéo du jour avec sa jaquette",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Artwork",
+    "url": "https://www.gamedle.wtf/artwork?lang=fr",
+    "lang": "fr",
+    "kind": "screen",
+    "line": "Devine le jeu vidéo du jour avec une illustration",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Personnage",
+    "url": "https://www.gamedle.wtf/characters?lang=fr",
+    "lang": "fr",
+    "kind": "screen",
+    "line": "Devine le personnage de jeu vidéo du jour",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/fr/games/worldle",
+    "lang": "fr",
+    "kind": "maps",
+    "line": "Devine le pays du jour avec sa silhouette",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/fr/games/globle",
+    "lang": "fr",
+    "kind": "maps",
+    "line": "Trouve le pays du jour avec la distance et le sens",
+    "checked": "2026-11-23"
   }
 ]

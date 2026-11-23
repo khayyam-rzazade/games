@@ -194,5 +194,82 @@
     "kind": "screen",
     "line": "Adivina cinco películas al día por su póster borroso",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "Kontra GeoSplit",
+    "url": "https://kontra.games/es/jugar/geografia/geosplit",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Corta los países del mundo en dos según una cifra",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra GeoScale",
+    "url": "https://kontra.games/es/jugar/geografia/geoscale",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Coloca un país en la escala según su cifra",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra CityGrid",
+    "url": "https://kontra.games/es/jugar/geografia/citygrid",
+    "lang": "es",
+    "kind": "maps",
+    "line": "Nombra una ciudad que encaje con las dos pistas",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra MathGrid",
+    "url": "https://kontra.games/es/jugar/numeros/mathgrid",
+    "lang": "es",
+    "kind": "numbers",
+    "line": "Coloca las fichas y descubre los números ocultos",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra Grid 999",
+    "url": "https://kontra.games/es/jugar/numeros/grid-999",
+    "lang": "es",
+    "kind": "numbers",
+    "line": "Escribe un número que encaje con las dos pistas",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku a Day",
+    "url": "https://sudokuaday.com/es",
+    "lang": "es",
+    "kind": "numbers",
+    "line": "Rellena la cuadrícula con los números del 1 al 9",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Artwork",
+    "url": "https://www.gamedle.wtf/artwork?lang=es",
+    "lang": "es",
+    "kind": "screen",
+    "line": "Adivina el videojuego del día por una imagen de arte",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Personaje",
+    "url": "https://www.gamedle.wtf/characters?lang=es",
+    "lang": "es",
+    "kind": "screen",
+    "line": "Adivina el personaje de videojuego del día",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Problema de ajedrez del día",
+    "url": "https://chesstactics.app/es/daily-chess-puzzle",
+    "lang": "es",
+    "kind": "other",
+    "line": "Resuelve el problema de ajedrez del día",
+    "checked": "2026-11-23"
   }
 ]

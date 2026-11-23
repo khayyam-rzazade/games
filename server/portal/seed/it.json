@@ -129,5 +129,167 @@
     "kind": "words",
     "line": "Trova le coppie di parole nascoste, una sfida al giorno.",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "Planetrotter",
+    "url": "https://planetrotter.com/it/",
+    "lang": "it",
+    "kind": "maps",
+    "line": "Indovina la città del giorno. Hai degli indizi.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Undici: La carriera del giorno",
+    "url": "https://www.undicicalcio.it/gioco/carriera-del-giorno",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Indovina il calciatore dai club della sua carriera.",
+    "maker": "UndiciCalcio",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Undici: Tris calcio",
+    "url": "https://www.undicicalcio.it/gioco/tris-calcio",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Trova i calciatori che hanno giocato in due squadre.",
+    "maker": "UndiciCalcio",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Undici: La leggenda del giorno",
+    "url": "https://www.undicicalcio.it/gioco/leggenda-del-giorno",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Indovina la leggenda del calcio di oggi.",
+    "maker": "UndiciCalcio",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Grid Calcio",
+    "url": "https://gridsport.games/it/calcio/grid",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Riempi la griglia con i calciatori giusti.",
+    "maker": "GridSport.Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Bingo Calcio",
+    "url": "https://gridsport.games/it/calcio/bingo",
+    "lang": "it",
+    "kind": "sport",
+    "line": "Trova i calciatori che vanno bene per ogni casella.",
+    "maker": "GridSport.Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kryss",
+    "url": "https://kryss.app/it",
+    "lang": "it",
+    "kind": "words",
+    "line": "Risolvi ogni giorno un cruciverba corto.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Fuochino",
+    "url": "https://fuochino.it/",
+    "lang": "it",
+    "kind": "words",
+    "line": "Proponi parole e scopri quanto sei vicino al significato.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Il Legame",
+    "url": "https://www.ilrovello.com/giochi/il-legame/",
+    "lang": "it",
+    "kind": "words",
+    "line": "Trova cosa hanno in comune quattro parole.",
+    "maker": "Il Rovello",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "LiveSudoku",
+    "url": "https://www.livesudoku.com/it/daily-sudoku.php",
+    "lang": "it",
+    "kind": "numbers",
+    "line": "Ogni giorno quattro sudoku, da facile a molto difficile.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sfida di matematica",
+    "url": "https://mathorio.com/it/daily",
+    "lang": "it",
+    "kind": "numbers",
+    "line": "Risolvi ogni giorno un nuovo problema in tre tentativi.",
+    "maker": "Mathorio",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guessong",
+    "url": "https://guessong.co/it/play/",
+    "lang": "it",
+    "kind": "music",
+    "line": "Indovina la canzone del giorno da un pezzetto.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Film del giorno",
+    "url": "https://maratonapop.com/it-it/challenges/movie-of-the-day",
+    "lang": "it",
+    "kind": "screen",
+    "line": "Indovina il film di oggi: i colori ti guidano.",
+    "maker": "Maratona Pop",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CineGuessr",
+    "url": "https://cineguessr.com/it/daily",
+    "lang": "it",
+    "kind": "screen",
+    "line": "Indovina il film di oggi dai fotogrammi.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Moviz",
+    "url": "https://moviz.it/it",
+    "lang": "it",
+    "kind": "screen",
+    "line": "Risolvi dodici quiz sul cinema ogni giorno.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Domanda del giorno",
+    "url": "https://quizfury.com/it/daily",
+    "lang": "it",
+    "kind": "knowledge",
+    "line": "Rispondi a una domanda di cultura generale al giorno.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wonderhop",
+    "url": "https://wonderhop.io/it/quiz-del-giorno-cultura-generale",
+    "lang": "it",
+    "kind": "knowledge",
+    "line": "Gioca quattro partite da sette domande ogni giorno.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Chronosfida",
+    "url": "https://studiastoria.it/chronosfida",
+    "lang": "it",
+    "kind": "knowledge",
+    "line": "Indovina l'evento o il personaggio storico di oggi.",
+    "maker": "StudiaStoria",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "L'identikit",
+    "url": "https://www.ilrovello.com/giochi/identikit/",
+    "lang": "it",
+    "kind": "knowledge",
+    "line": "Indovina il personaggio famoso del giorno.",
+    "maker": "Il Rovello",
+    "checked": "2026-11-23"
   }
 ]

@@ -170,5 +170,127 @@
     "line": "Układaj kafelki i odkryj ukryte liczby.",
     "maker": "Kontra",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "Grid Piłkarski",
+    "url": "https://gridsport.games/pl/pilka-nozna/grid",
+    "lang": "pl",
+    "kind": "sport",
+    "line": "Znajdź piłkarzy pasujących do wiersza i kolumny.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Bingo Piłkarskie",
+    "url": "https://gridsport.games/pl/pilka-nozna/bingo",
+    "lang": "pl",
+    "kind": "sport",
+    "line": "Ułóż piłkarzy na karcie 4×4 według podpowiedzi.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle Piłkarski",
+    "url": "https://gridsport.games/pl/pilka-nozna/wordle",
+    "lang": "pl",
+    "kind": "sport",
+    "line": "Zgadnij piłkarza dnia po lidze, klubie i pozycji.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/pl/games/worldle",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Zgadnij kraj dnia po jego kształcie.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/pl/games/geodle",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Zgadnij kraj dnia w sześciu próbach z podpowiedziami.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/pl/games/travle",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Wymień kraje na drodze między dwoma krajami.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CityGrid",
+    "url": "https://kontra.games/pl/graj/geografia/citygrid",
+    "lang": "pl",
+    "kind": "maps",
+    "line": "Wskaż miasto pasujące do nagłówka wiersza i kolumny.",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Grid 999",
+    "url": "https://kontra.games/pl/graj/liczbowe/grid-999",
+    "lang": "pl",
+    "kind": "numbers",
+    "line": "Wpisz liczbę, która spełnia warunki wiersza i kolumny.",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "WordFill",
+    "url": "https://kontra.games/pl/graj/slowne/wordfill",
+    "lang": "pl",
+    "kind": "words",
+    "line": "Przeciągnij i obróć kawałki, żeby wpasować słowa.",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kim jestem?",
+    "url": "https://kontra.games/pl/graj/pilka-nozna/kim-jestem",
+    "lang": "pl",
+    "kind": "sport",
+    "line": "Zgadnij piłkarza po podpowiedziach, masz pięć prób.",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Nonogram",
+    "url": "https://www.lamaniec.pl/nonogram/",
+    "lang": "pl",
+    "kind": "numbers",
+    "line": "Zamaluj pola według liczb i odkryj obrazek.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kropki",
+    "url": "https://www.lamaniec.pl/kropki/",
+    "lang": "pl",
+    "kind": "other",
+    "line": "Połącz pary kropek i wypełnij całą planszę.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Strzałki",
+    "url": "https://www.lamaniec.pl/strzalki/",
+    "lang": "pl",
+    "kind": "other",
+    "line": "Wyprowadź strzałki poza planszę we właściwej kolejności.",
+    "maker": "Łamaniec",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Zgadnij film po kadrze",
+    "url": "https://zgadnijfilm.pl/",
+    "lang": "pl",
+    "kind": "screen",
+    "line": "Rozpoznaj film po rozmytym kadrze, masz sześć prób.",
+    "checked": "2026-11-23"
   }
 ]

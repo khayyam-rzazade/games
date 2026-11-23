@@ -226,5 +226,130 @@
     "kind": "screen",
     "line": "Descubra o filme do dia em cinco tentativas",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "Kontra GeoSplit",
+    "url": "https://kontra.games/pt/jogar/geografia/geosplit",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Divida os países do mundo em dois grupos por um número",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra GeoScale",
+    "url": "https://kontra.games/pt/jogar/geografia/geoscale",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Coloque um país na escala de acordo com um número",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra CityGrid",
+    "url": "https://kontra.games/pt/jogar/geografia/citygrid",
+    "lang": "pt",
+    "kind": "maps",
+    "line": "Diga uma cidade que combine com as duas pistas",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra MathGrid",
+    "url": "https://kontra.games/pt/jogar/numeros/mathgrid",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Coloque as peças e descubra os números escondidos",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kontra Grid 999",
+    "url": "https://kontra.games/pt/jogar/numeros/grid-999",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Escreva um número que combine com as duas pistas",
+    "maker": "Kontra",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku a Day",
+    "url": "https://sudokuaday.com/pt-br",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Preencha a grade com os números de 1 a 9",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Capa",
+    "url": "https://www.gamedle.wtf/classic?lang=pt",
+    "lang": "pt",
+    "kind": "screen",
+    "line": "Descubra o videogame do dia pela capa",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Artwork",
+    "url": "https://www.gamedle.wtf/artwork?lang=pt",
+    "lang": "pt",
+    "kind": "screen",
+    "line": "Descubra o videogame do dia por uma imagem de arte",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gamedle Personagem",
+    "url": "https://www.gamedle.wtf/characters?lang=pt",
+    "lang": "pt",
+    "kind": "screen",
+    "line": "Descubra o personagem de videogame do dia",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Entre Aspas",
+    "url": "https://rachacuca.com.br/palavras/entre-aspas/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Ache a frase escondida com as letras de cada coluna",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Palavras Quebradas",
+    "url": "https://rachacuca.com.br/palavras/palavras-quebradas/uma-dica/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Junte os pedaços e forme as palavras do tema",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Anagramania",
+    "url": "https://rachacuca.com.br/palavras/anagramania/",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Arrume as letras bagunçadas e forme as palavras",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Quase Nada",
+    "url": "https://rachacuca.com.br/logica/quase-nada/",
+    "lang": "pt",
+    "kind": "numbers",
+    "line": "Ponha os números dados nos espaços, com lógica",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Enrolado",
+    "url": "https://enrolado.xyz/game",
+    "lang": "pt",
+    "kind": "words",
+    "line": "Forme as palavras do tema do dia clicando nas letras",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Problema de xadrez do dia",
+    "url": "https://chesstactics.app/pt/daily-chess-puzzle",
+    "lang": "pt",
+    "kind": "other",
+    "line": "Resolva o problema de xadrez do dia",
+    "checked": "2026-11-23"
   }
 ]

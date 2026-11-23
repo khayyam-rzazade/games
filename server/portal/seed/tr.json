@@ -97,5 +97,187 @@
     "line": "İpuçlarına bakıp günün gizli arabasını tahmin et.",
     "maker": "Araclo",
     "checked": "2026-11-19"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/tr/games/worldle",
+    "lang": "tr",
+    "kind": "maps",
+    "line": "Şekle bak, günün ülkesini tahmin et.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/tr/games/geodle",
+    "lang": "tr",
+    "kind": "maps",
+    "line": "İpuçlarıyla günün ülkesini altı denemede bul.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Planetrotter",
+    "url": "https://planetrotter.com/tr/",
+    "lang": "tr",
+    "kind": "maps",
+    "line": "Günün şehrini tahmin et. Her denemede ipucu var.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Günün Oyuncusu",
+    "url": "https://futbolle.com/tr/player-of-the-day",
+    "lang": "tr",
+    "kind": "sport",
+    "line": "Günün futbolcusunu ipuçlarıyla bul.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Logo Testi",
+    "url": "https://futbolle.com/tr/football-logo-quiz",
+    "lang": "tr",
+    "kind": "sport",
+    "line": "Armanın küçük bir parçasından kulübü tahmin et.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Connections",
+    "url": "https://futbolle.com/tr/connections",
+    "lang": "tr",
+    "kind": "sport",
+    "line": "16 futbolcuyu dört gizli gruba ayır.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futbolle: Missing 11",
+    "url": "https://futbolle.com/tr/missing-xi",
+    "lang": "tr",
+    "kind": "sport",
+    "line": "İlk 11'deki üç gizli oyuncuyu bul.",
+    "maker": "Futbolle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Contexto Türkçe",
+    "url": "https://contexto.com.tr/",
+    "lang": "tr",
+    "kind": "words",
+    "line": "Gizli kelimeyi bul. Sayı küçüldükçe yaklaşırsın.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Günün Kelimesi (Sosyal Vadi)",
+    "url": "https://www.sosyalvadi.com/gunun-kelimesi/",
+    "lang": "tr",
+    "kind": "words",
+    "line": "Bir kelime yaz, günün kelimesini bulmaya çalış.",
+    "maker": "Sosyal Vadi",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Connections",
+    "url": "https://connections.game/tr/",
+    "lang": "tr",
+    "kind": "words",
+    "line": "16 kelimeyi dört gruba ayır. Her gün yeni.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Çengel Bulmaca",
+    "url": "https://kryss.app/tr",
+    "lang": "tr",
+    "kind": "words",
+    "line": "Her gün kısa bir çengel bulmaca çöz.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Günlük Sudoku",
+    "url": "https://www.sudoku100.com/tr/sudoku-daily",
+    "lang": "tr",
+    "kind": "numbers",
+    "line": "Bugünün sudokusunu çöz. Herkes aynısını oynar.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Muzikle",
+    "url": "https://muzikle.app/",
+    "lang": "tr",
+    "kind": "music",
+    "line": "Günün Türkçe şarkısını katmanlı ses ipuçlarıyla bul.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Nakar",
+    "url": "https://nakarmusic.com.tr/",
+    "lang": "tr",
+    "kind": "music",
+    "line": "Kısa bir parçayı dinle, günün şarkısını bul.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guessong",
+    "url": "https://guessong.co/tr/play/",
+    "lang": "tr",
+    "kind": "music",
+    "line": "Her gün beş şarkıyı kısa parçalardan tahmin et.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Günün Filmi",
+    "url": "https://www.bidunyafilm.com/oyun",
+    "lang": "tr",
+    "kind": "screen",
+    "line": "Bulanık afişe bakıp günün filmini bul.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Bilinmeyen Film",
+    "url": "https://filmkoloji.com/bilinmeyen-film",
+    "lang": "tr",
+    "kind": "screen",
+    "line": "Film karelerine bak, günün filmini bul.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Fermi",
+    "url": "https://fermi.tr/",
+    "lang": "tr",
+    "kind": "knowledge",
+    "line": "Her gün yedi soruda sayıyı tahmin et.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ne Zaman Oldu?",
+    "url": "https://www.nezamanoldu.com/",
+    "lang": "tr",
+    "kind": "knowledge",
+    "line": "Olayın tarihini tahmin et. Her gün üç olay.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "cahiliye",
+    "url": "https://cahiliye.app/",
+    "lang": "tr",
+    "kind": "knowledge",
+    "line": "Her gün üç soruyu tahmin et, Türkiye ile karşılaştır.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kim Bu?",
+    "url": "https://www.sosyalvadi.com/kim-bu/",
+    "lang": "tr",
+    "kind": "knowledge",
+    "line": "Beş ipucundan günün ünlü kişisini bul.",
+    "maker": "Sosyal Vadi",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sırala",
+    "url": "https://sirala.app/",
+    "lang": "tr",
+    "kind": "other",
+    "line": "Her gün beş şeyi doğru sıraya diz.",
+    "checked": "2026-11-23"
   }
 ]

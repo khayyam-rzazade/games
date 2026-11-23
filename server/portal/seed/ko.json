@@ -115,5 +115,112 @@
     "kind": "numbers",
     "line": "스도쿠와 노노그램, 오늘의 퍼즐을 풀어 봐요",
     "checked": "2026-11-20"
+  },
+  {
+    "name": "축구 그리드",
+    "url": "https://gridsport.games/ko/football/grid",
+    "lang": "ko",
+    "kind": "sport",
+    "line": "행과 열에 모두 맞는 축구 선수를 찾아 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "축구 빙고",
+    "url": "https://gridsport.games/ko/football/bingo",
+    "lang": "ko",
+    "kind": "sport",
+    "line": "힌트에 맞는 선수를 4×4 카드에 놓아 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "축구 워들",
+    "url": "https://gridsport.games/ko/football/wordle",
+    "lang": "ko",
+    "kind": "sport",
+    "line": "오늘의 축구 선수를 리그와 클럽으로 맞혀 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/ko/games/worldle",
+    "lang": "ko",
+    "kind": "maps",
+    "line": "모양을 보고 오늘의 나라를 맞혀 봐요",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/ko/games/geodle",
+    "lang": "ko",
+    "kind": "maps",
+    "line": "힌트를 보며 오늘의 나라를 여섯 번 안에 맞혀 봐요",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/ko/games/travle",
+    "lang": "ko",
+    "kind": "maps",
+    "line": "두 나라 사이에 있는 나라들을 순서 없이 맞혀 봐요",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puzoro 노노그램",
+    "url": "https://puzoro.com/ko/nonogram/",
+    "lang": "ko",
+    "kind": "numbers",
+    "line": "숫자를 보고 칸을 칠해 그림을 완성해 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puzoro 스타배틀",
+    "url": "https://puzoro.com/ko/star-battle/",
+    "lang": "ko",
+    "kind": "numbers",
+    "line": "행·열·구역마다 별을 하나씩 놓아 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puzoro 줌아웃",
+    "url": "https://puzoro.com/ko/zoomout/",
+    "lang": "ko",
+    "kind": "maps",
+    "line": "점점 넓어지는 지도에서 색칠된 나라를 맞혀 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "오늘의 상식퀴즈",
+    "url": "https://www.todaygame.co.kr/games/wisdom-quiz/",
+    "lang": "ko",
+    "kind": "knowledge",
+    "line": "매일 새로운 다섯 문제의 상식 퀴즈를 풀어 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "오늘의 초성퀴즈",
+    "url": "https://www.todaygame.co.kr/games/chosung-quiz/",
+    "lang": "ko",
+    "kind": "words",
+    "line": "초성만 보고 열 문제의 정답을 맞혀 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "오늘의 사건파일",
+    "url": "https://www.todaygame.co.kr/games/the-case-file/",
+    "lang": "ko",
+    "kind": "other",
+    "line": "단서를 모아 오늘의 사건을 추리해 봐요",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "오늘의 숫자야구",
+    "url": "https://www.todaygame.co.kr/games/number-baseball/",
+    "lang": "ko",
+    "kind": "numbers",
+    "line": "숨은 숫자를 열 번 안에 맞혀 봐요",
+    "checked": "2026-11-23"
   }
 ]

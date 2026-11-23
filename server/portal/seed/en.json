@@ -346,5 +346,892 @@
     "line": "Guess the painting from a few clues",
     "maker": "National Gallery of Art",
     "checked": "2026-11-19"
+  },
+  {
+    "name": "Duotrigordle",
+    "url": "https://duotrigordle.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Solve 32 word puzzles at the same time",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Squaredle",
+    "url": "https://www.squaredle.app/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Find hidden words in a grid of letters",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Spelling Bee",
+    "url": "https://spellsbee.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Make words from 7 letters. Use the middle one",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Blossom",
+    "url": "https://www.merriam-webster.com/games/blossom-word-game",
+    "lang": "en",
+    "kind": "words",
+    "line": "Make 12 words from the letters on the petals",
+    "maker": "Merriam-Webster",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Tagline",
+    "url": "https://www.merriam-webster.com/games/tagline",
+    "lang": "en",
+    "kind": "words",
+    "line": "Solve clues with today's letters, three rounds",
+    "maker": "Merriam-Webster",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "hello wordl",
+    "url": "https://hellowordl.net/?today",
+    "lang": "en",
+    "kind": "words",
+    "line": "Guess the word. It can be 4 to 11 letters long",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Phrasle",
+    "url": "https://phrasle.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Guess a hidden phrase one letter at a time",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Glyph",
+    "url": "https://glyph.today/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Guess the word from all its letters stacked together",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Cryptle",
+    "url": "https://cryptle.xyz/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Slide the letter rows into place to find the word",
+    "maker": "Matthew Graham",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Codenames Daily",
+    "url": "https://codenames.game/daily/en",
+    "lang": "en",
+    "kind": "words",
+    "line": "Solve word-link puzzles from the Codenames game",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Weaver",
+    "url": "https://weavergame.org/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Change one letter at a time to reach the end word",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Antiwordle",
+    "url": "https://antiwordle.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Like Wordle, but you must avoid the secret word",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Quotadle",
+    "url": "https://quotadle.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Type a famous quote. There is a new one every day",
+    "maker": "O'Flaherty Bros. Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "The Daily Baffle",
+    "url": "https://dailybaffle.com/",
+    "lang": "en",
+    "kind": "words",
+    "line": "Word and logic puzzles, new ones every day",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Murdle",
+    "url": "https://murdle.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Solve a murder mystery with logic clues",
+    "maker": "G. T. Karber",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sumplete",
+    "url": "https://sumplete.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Delete numbers until each row and column adds up",
+    "maker": "Hey Good Game",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daily Akari",
+    "url": "https://dailyakari.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Place lights so the whole grid is lit",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Equations",
+    "url": "https://equations-game.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Find 5 groups of 3 numbers that make equations",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Mathdle",
+    "url": "https://mathdle.app/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Use the numbers and signs to reach the target",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "NonoDaily",
+    "url": "https://www.nonodaily.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Follow number clues to color in a pixel picture",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Calcle",
+    "url": "https://calclegame.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Guess the numbers in the equation in 5 tries",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "BrainBashers Daily Puzzle",
+    "url": "https://www.brainbashers.com/dailypuzzle.asp",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Solve a new brain teaser every day",
+    "maker": "BrainBashers",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Number Island",
+    "url": "https://numberisland.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Split the board into islands that match the sums",
+    "maker": "Ana Puzzle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CancelWise",
+    "url": "https://www.cancelwise.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Cross out numbers so the rest add up to the targets",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Regexle",
+    "url": "https://regexle.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Fill a hexagon with letters that match the patterns",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dodeku",
+    "url": "https://dodeku.com/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Make each row and column add up to the edge numbers",
+    "maker": "Fox Point Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Padlock",
+    "url": "https://www.padlockgame.net/",
+    "lang": "en",
+    "kind": "numbers",
+    "line": "Crack the number code, like Wordle and Mastermind",
+    "maker": "Elizabeth Wilson",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geodle.me/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the secret country in 7 tries",
+    "maker": "muhashi",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "GeoGrid",
+    "url": "https://www.geogridgame.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Fill the grid with countries that match each clue",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "MapTap",
+    "url": "https://maptap.gg/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Tap the map as close as you can to world cities",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "TimeGuessr",
+    "url": "https://timeguessr.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess when and where an old photo was taken",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Whereabouts",
+    "url": "https://whereabouts.earth/daily/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess which countries five map points are in",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Neighborle",
+    "url": "https://neighborle.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the countries that touch the one on the map",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "WhereTaken USA",
+    "url": "https://wheretakenusa.teuteuf.fr/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess which US state a photo was taken in",
+    "maker": "Teuteuf",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Tradle",
+    "url": "https://oec.world/en/games/tradle",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the country from the things it sells abroad",
+    "maker": "OEC",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle: Capitals",
+    "url": "https://globle-capitals.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Find the secret capital city using distance hints",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Landmarkd",
+    "url": "https://www.landmarkdgame.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the landmark from a zoomed-in picture",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "WhenTaken",
+    "url": "https://whentaken.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the year and place of a photo",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geonections",
+    "url": "https://geonections.com/",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Group countries using StreetView pictures",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Airport Guessr",
+    "url": "https://planespottle.net/airportguessr",
+    "lang": "en",
+    "kind": "maps",
+    "line": "Guess the airport from a satellite picture",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wikitrivia",
+    "url": "https://wikitrivia.tomjwatson.com/daily",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Put events in time order on a timeline",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "The Dozen",
+    "url": "https://dailydozentrivia.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Answer nine trivia questions from many topics",
+    "maker": "Barstool Sports",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daily Fact or Fiction",
+    "url": "https://dailyfactorfiction.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess if today's statement is true or made up",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Top 5",
+    "url": "https://topfivetrivia.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess the top 5 things in today's list",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Timdle",
+    "url": "https://www.timdle.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Put 8 events from history in order",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Rankle",
+    "url": "https://www.rankle.app/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Put 6 things in the right order in 4 tries",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Quizl",
+    "url": "https://quizl.io/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Answer today's 5 trivia questions",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daily Tens",
+    "url": "https://dailytens.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess the top 10 things in today's list",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Yeardle",
+    "url": "https://histordle.com/yeardle/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess the year from events that happened in it",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Chemdle",
+    "url": "https://www.chemdle.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Solve today's chemistry puzzle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Metaflora",
+    "url": "https://flora.metazooa.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Guess plants to find today's secret plant",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Elemingle",
+    "url": "https://elemingle.com/",
+    "lang": "en",
+    "kind": "knowledge",
+    "line": "Find the secret element by swiping cards",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Heardle Daily",
+    "url": "https://www.heardle.info/daily/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the song from a tiny part of it",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Beatdle",
+    "url": "https://beatdle.fun/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Listen to a drum beat, then build it yourself",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Crosstune",
+    "url": "https://crosstune.io/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Solve a crossword where some clues are songs",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daily Jingle",
+    "url": "https://dailyjingle.me/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the melody in 5 tries",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Music Timeliner",
+    "url": "https://www.musictimeliner.com/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Put songs in order by the year they came out",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Timdle Music",
+    "url": "https://www.timdle.com/music",
+    "lang": "en",
+    "kind": "music",
+    "line": "Listen to songs and put them in year order",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "MeloGuessr",
+    "url": "https://meloguessr.com/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Listen to a song and click where it comes from",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Year To Beat",
+    "url": "https://yeartobeat.com/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the year of a music video, 5 rounds",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guess The Audio",
+    "url": "https://guesstheaudio.com/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the song from a short clip",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "TuneGuessr",
+    "url": "https://www.tuneguessr.net/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Listen to a clip and guess the country it is from",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "BopMatch",
+    "url": "https://bopmatch.com/",
+    "lang": "en",
+    "kind": "music",
+    "line": "Pick artists as popular as the target artist",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Songdle",
+    "url": "https://statt-land-song.ch/songdle",
+    "lang": "en",
+    "kind": "music",
+    "line": "Guess the artist, title and year of a song",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Movie Grid",
+    "url": "https://moviegrid.io/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Fill the grid with movies that match each clue",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CineNerdle",
+    "url": "https://www.cinenerdle.app/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Swap tiles to find hidden movies",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Showdle",
+    "url": "https://showdle.com/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the TV show by narrowing down its clues",
+    "maker": "Wilson Cissel",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Actorle TV",
+    "url": "https://actorle.tv/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the TV actor from clues after each guess",
+    "maker": "Laszlo Kiss",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guess The Movie",
+    "url": "https://guessthemovie.name/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the movie from pictures and clues",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Letterboxdle",
+    "url": "https://letterboxdle.net/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the movie from what people wrote about it",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "LoLdle",
+    "url": "https://loldle.net/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the League of Legends champion",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Pokedle",
+    "url": "https://pokedle.net/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the Pokemon from clues",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guess The Game",
+    "url": "https://guessthe.game/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the video game from cropped screenshots",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plotwords",
+    "url": "https://plotwords.com/daily",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the movie with as few plot words as you can",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Movie to Movie",
+    "url": "https://movietomovie.com/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Link two movies through actors they share",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Movie Pyramid",
+    "url": "https://moviepyramid.io/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Fill the pyramid with movies that match each row",
+    "maker": "Sam Shulman and Alex Nunan",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gaps",
+    "url": "https://gaps.wtf/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Guess the movie from blanks and a few clues",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CineLine",
+    "url": "https://www.playcineline.com/",
+    "lang": "en",
+    "kind": "screen",
+    "line": "Put movies in the order they came out",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "HoopGrids",
+    "url": "https://www.hoopgrids.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Fill the grid with NBA players that match each clue",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Puckdoku",
+    "url": "https://www.puckdoku.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Fill the grid with hockey players that match each clue",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Basketball 5",
+    "url": "https://basketball-5.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Play daily basketball games about NBA players",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Weddle",
+    "url": "https://www.weddlegame.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Guess the NFL player in 8 tries",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "StatPad",
+    "url": "https://www.statpadgame.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Pick baseball players to get the top score",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Immaculate Grid: Hockey",
+    "url": "https://www.sports-reference.com/immaculate-grid/hockey",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Name hockey players to fill a 3 by 3 grid",
+    "maker": "Sports Reference",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Immaculate Grid: Football",
+    "url": "https://www.sports-reference.com/immaculate-grid/football",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Name pro football players to fill a 3 by 3 grid",
+    "maker": "Sports Reference",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Immaculate Footy",
+    "url": "https://www.sports-reference.com/immaculate-footy/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Name soccer players to fill a 3 by 3 grid",
+    "maker": "Sports Reference",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Immaculate Grid: Men's Basketball",
+    "url": "https://www.sports-reference.com/immaculate-grid/basketball/mens",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Name basketball players to fill a 3 by 3 grid",
+    "maker": "Sports Reference",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Batter Up",
+    "url": "https://www.batter-up.app/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Guess the baseball player from his batting stance",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daily Walkoff",
+    "url": "https://www.dailywalkoff.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Put baseball players in the right trivia column",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "MLB Pickle",
+    "url": "https://www.mlbpickle.com/",
+    "lang": "en",
+    "kind": "sport",
+    "line": "Guess the mystery baseball player in 9 tries",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Colordle",
+    "url": "https://colordle.ryantanen.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess today's color by its name",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Chess.com Daily Puzzle",
+    "url": "https://www.chess.com/daily",
+    "lang": "en",
+    "kind": "other",
+    "line": "Solve a new chess puzzle every day",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Matle",
+    "url": "https://www.matle.io/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Fill in the missing chess pieces of a real checkmate",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Bibdle",
+    "url": "https://bibdle.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess which Bible book a verse comes from",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Guess The Logo",
+    "url": "https://guessthelogo.wtf/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the logo as it gets less blurry",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "ArchiGuesser",
+    "url": "https://archiguesser.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the building from a few pictures",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Seedle",
+    "url": "https://seedle.io/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Place tiles to grow the best garden",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Talldle",
+    "url": "https://www.talldle.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Put famous people in order from shortest to tallest",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Thinky Dailies",
+    "url": "https://thinkygames.com/dailies/today/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Solve a new handmade puzzle every day",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Morsle",
+    "url": "https://morsle.fun/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Hear a word in Morse code and guess it",
+    "maker": "Remote Ham Radio",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Cropple",
+    "url": "https://cropple.app/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess what is in a cropped picture",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Mirror Mirror",
+    "url": "https://mirrormirrorgame.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Draw the mirror image of today's sketch",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Crayondle",
+    "url": "https://crayondle.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the color of today's crayon",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Coastle",
+    "url": "https://pkyu.github.io/coastle/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the roller coaster of the day",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CarGuesser",
+    "url": "https://carguesser.com/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the car from pictures of its parts",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "planespottle",
+    "url": "https://planespottle.net/",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the plane maker, type and airline from a photo",
+    "maker": "bytecatch",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Thingdle",
+    "url": "https://thingdle.app/en/thingdle",
+    "lang": "en",
+    "kind": "other",
+    "line": "Guess the everyday object from a riddle",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ponder Club",
+    "url": "https://ponderclub.co/",
+    "lang": "en",
+    "kind": "other",
+    "line": "A few small puzzles every day, like Code Breaker",
+    "checked": "2026-11-23"
   }
 ]
