@@ -1,0 +1,175 @@
+[
+  {
+    "name": "HádejSlova.cz",
+    "url": "https://hadejslova.cz/",
+    "lang": "cs",
+    "kind": "words",
+    "line": "Hádej skryté slovo na šest pokusů. Nové každý den.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle česky",
+    "url": "https://www.wordle.cz/",
+    "lang": "cs",
+    "kind": "words",
+    "line": "Najdi slovo dne. Barvy ti ukážou, která písmena sedí.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Hádej slovo (eXtra.cz)",
+    "url": "https://www.extra.cz/minihry/hadej-slovo-hra",
+    "lang": "cs",
+    "kind": "words",
+    "line": "Hádej slovo dne na šest pokusů podle barev písmen.",
+    "maker": "eXtra.cz",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Přihořívá",
+    "url": "https://prihorivahori.cz/",
+    "lang": "cs",
+    "kind": "words",
+    "line": "Hádej tajné slovo. Zjistíš, jak blízko jsi.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Hive česky (SlovniHry)",
+    "url": "https://slovnihry.cz/hive/",
+    "lang": "cs",
+    "kind": "words",
+    "line": "Skládej slova ze sedmi písmen. Najdi to nejdelší.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Strands+ (SlovniHry)",
+    "url": "https://slovnihry.cz/strands/",
+    "lang": "cs",
+    "kind": "words",
+    "line": "Najdi slova k tématu v mřížce písmen. Nová každý den.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/cs/games/globle",
+    "lang": "cs",
+    "kind": "maps",
+    "line": "Hádej tajnou zemi na globu. Barva ukáže, jak jsi blízko.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/cs/games/worldle",
+    "lang": "cs",
+    "kind": "maps",
+    "line": "Poznej zemi podle jejího tvaru na mapě.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/cs/games/geodle",
+    "lang": "cs",
+    "kind": "maps",
+    "line": "Hádej zemi podle nápověd. Máš šest pokusů.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Najdi klub",
+    "url": "https://footballclubsmap.com/games/find-the-club/cs/",
+    "lang": "cs",
+    "kind": "maps",
+    "line": "Najdi fotbalový klub na mapě. Tip ukáže vzdálenost.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Hádej stadion",
+    "url": "https://footballclubsmap.com/games/guess-the-stadium/cs/",
+    "lang": "cs",
+    "kind": "sport",
+    "line": "Poznej klub podle fotky jeho stadionu.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Hádej logo",
+    "url": "https://footballclubsmap.com/games/guess-the-logo/cs/",
+    "lang": "cs",
+    "kind": "sport",
+    "line": "Poznej fotbalový klub podle jeho loga.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Hádej dres",
+    "url": "https://footballclubsmap.com/games/guess-the-kit/cs/",
+    "lang": "cs",
+    "kind": "sport",
+    "line": "Poznej fotbalový klub podle jeho dresu.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Hádej klub",
+    "url": "https://footballclubsmap.com/games/guess-the-club/cs/",
+    "lang": "cs",
+    "kind": "sport",
+    "line": "Hádej fotbalový klub podle indicií. Nový každý den.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Najdi film",
+    "url": "https://najdi-film.cz/hra",
+    "lang": "cs",
+    "kind": "screen",
+    "line": "Poznej film podle jednoho záběru. Nový film každý den.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plixdle: videohra dne",
+    "url": "https://plix.gg/cs/guess-the-game",
+    "lang": "cs",
+    "kind": "screen",
+    "line": "Uhodni videohru dne podle nápověd.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Mathle",
+    "url": "https://mathle.bekpagames.com/cs",
+    "lang": "cs",
+    "kind": "numbers",
+    "line": "Hádej skrytou početní rovnici na šest pokusů.",
+    "maker": "bekpagames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Killdoku",
+    "url": "https://killdoku.juegalo.eu/cs",
+    "lang": "cs",
+    "kind": "numbers",
+    "line": "Vyplň sudoku podle součtů v rámečcích.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/cs",
+    "lang": "cs",
+    "kind": "numbers",
+    "line": "Vyplň mřížku nulami a jedničkami podle pravidel.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/cs",
+    "lang": "cs",
+    "kind": "music",
+    "line": "Poslechni melodii a zahraj ji zpátky nota po notě.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Denní vědomostní kvíz (Kvizky)",
+    "url": "https://kviz.kvizky.cz/den/",
+    "lang": "cs",
+    "kind": "knowledge",
+    "line": "Odpověz na denní otázky ze všeobecných znalostí.",
+    "checked": "2026-11-23"
+  }
+]

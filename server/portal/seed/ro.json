@@ -1,0 +1,186 @@
+[
+  {
+    "name": "Wordle RO",
+    "url": "https://wordle-ro.sirb.net/",
+    "lang": "ro",
+    "kind": "words",
+    "line": "Ghicește cuvântul de cinci litere din șase încercări.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Cuvântul",
+    "url": "https://cuvantul.github.io/cuvantul/",
+    "lang": "ro",
+    "kind": "words",
+    "line": "Ghicește un cuvânt nou în fiecare zi.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Rordle",
+    "url": "https://rordle.ro/",
+    "lang": "ro",
+    "kind": "words",
+    "line": "Ghicește cuvântul zilei. Ai șase încercări.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Cuvântul Zilei (Jocurile Zilei)",
+    "url": "https://puzzle.joacaincomunitate.ro/zilnic/cuvantul",
+    "lang": "ro",
+    "kind": "words",
+    "line": "Ghicește cuvântul din șase încercări. Nou în fiecare zi.",
+    "maker": "Joaca în comunitate",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Legături (Jocurile Zilei)",
+    "url": "https://puzzle.joacaincomunitate.ro/zilnic/legaturi",
+    "lang": "ro",
+    "kind": "words",
+    "line": "Găsește patru grupuri de câte patru cuvinte.",
+    "maker": "Joaca în comunitate",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Anagrama Zilei (Jocurile Zilei)",
+    "url": "https://puzzle.joacaincomunitate.ro/zilnic/anagrama",
+    "lang": "ro",
+    "kind": "words",
+    "line": "Pune literele în ordine și află cuvântul.",
+    "maker": "Joaca în comunitate",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku Zilnic (Jocurile Zilei)",
+    "url": "https://puzzle.joacaincomunitate.ro/zilnic/sudoku",
+    "lang": "ro",
+    "kind": "numbers",
+    "line": "Completează grila 9×9 cu cifrele de la 1 la 9.",
+    "maker": "Joaca în comunitate",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Calcudoku (creieraș)",
+    "url": "https://www.creieras.ro/calcudoku",
+    "lang": "ro",
+    "kind": "numbers",
+    "line": "Completează grila cu cifre, după operațiile din chenare.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Futoshiki (creieraș)",
+    "url": "https://www.creieras.ro/futoshiki",
+    "lang": "ro",
+    "kind": "numbers",
+    "line": "Completează grila cu cifre, după semnele < și >.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Killdoku",
+    "url": "https://killdoku.juegalo.eu/ro",
+    "lang": "ro",
+    "kind": "numbers",
+    "line": "Completează sudoku după sumele din chenare.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/ro",
+    "lang": "ro",
+    "kind": "numbers",
+    "line": "Completează grila cu 0 și 1, după reguli.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "GEOPUNK",
+    "url": "https://www.geopunk.io/ro/",
+    "lang": "ro",
+    "kind": "maps",
+    "line": "Ghicește țara după contur, steag și capitală.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Locul zilei",
+    "url": "https://mariuscomper.uk/locul-zilei/",
+    "lang": "ro",
+    "kind": "maps",
+    "line": "Pune pinul pe hartă: unde în România ești, după relief?",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Găsește clubul",
+    "url": "https://footballclubsmap.com/games/find-the-club/ro/",
+    "lang": "ro",
+    "kind": "maps",
+    "line": "Găsește clubul pe hartă. Fiecare încercare arată distanța.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Ghicește stadionul",
+    "url": "https://footballclubsmap.com/games/guess-the-stadium/ro/",
+    "lang": "ro",
+    "kind": "sport",
+    "line": "Ghicește clubul după poza stadionului.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Ghicește sigla",
+    "url": "https://footballclubsmap.com/games/guess-the-logo/ro/",
+    "lang": "ro",
+    "kind": "sport",
+    "line": "Ghicește clubul de fotbal după siglă.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Ghicește echipamentul",
+    "url": "https://footballclubsmap.com/games/guess-the-kit/ro/",
+    "lang": "ro",
+    "kind": "sport",
+    "line": "Ghicește clubul de fotbal după echipament.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Ghicește clubul",
+    "url": "https://footballclubsmap.com/games/guess-the-club/ro/",
+    "lang": "ro",
+    "kind": "sport",
+    "line": "Ghicește clubul din indicii. Nou în fiecare zi.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Quizul zilei",
+    "url": "https://quizul.ro/",
+    "lang": "ro",
+    "kind": "knowledge",
+    "line": "Răspunde la 7 întrebări. Răspunsul rar dă mai multe puncte.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "SongGuess: provocarea zilei",
+    "url": "https://songguess.ro/daily",
+    "lang": "ro",
+    "kind": "music",
+    "line": "Ghicește melodia din câteva secunde. Șase melodii pe zi.",
+    "maker": "Emi RO",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/ro",
+    "lang": "ro",
+    "kind": "music",
+    "line": "Ascultă o melodie și cântă-o înapoi, notă cu notă.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plixdle: jocul video al zilei",
+    "url": "https://plix.gg/ro/guess-the-game",
+    "lang": "ro",
+    "kind": "screen",
+    "line": "Ghicește jocul video al zilei după indicii.",
+    "checked": "2026-11-23"
+  }
+]

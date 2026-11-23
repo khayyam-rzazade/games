@@ -1,0 +1,141 @@
+[
+  {
+    "name": "Sanuli",
+    "url": "https://sanuli.fi/",
+    "lang": "fi",
+    "kind": "words",
+    "line": "Arvaa päivän sanuli kuudella yrityksellä.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Taukotupa",
+    "url": "https://www.taukotupa.com/",
+    "lang": "fi",
+    "kind": "words",
+    "line": "Arvaa päivän sana. Vihjeenä on sanaluokka.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sanavelho",
+    "url": "https://www.is.fi/pelit/art-2000012247390.html",
+    "lang": "fi",
+    "kind": "words",
+    "line": "Arvaa päivän sana kuudella yrityksellä.",
+    "maker": "Ilta-Sanomat",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sanapeli",
+    "url": "https://www.sanapankki.fi/sanapeli",
+    "lang": "fi",
+    "kind": "words",
+    "line": "Keksi mahdollisimman monta synonyymiä päivän sanalle.",
+    "maker": "Sanapankki",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Päivän visa (Tietovisapeli)",
+    "url": "https://www.tietovisapeli.fi/paivan-visa/",
+    "lang": "fi",
+    "kind": "knowledge",
+    "line": "Vastaa päivän kymmeneen kysymykseen.",
+    "maker": "Tietovisapeli",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Päivän visa (Aapeli)",
+    "url": "https://aapeli.net/tietovisa/paivan-visa/",
+    "lang": "fi",
+    "kind": "knowledge",
+    "line": "Vastaa päivän kymmeneen kysymykseen ajan kanssa.",
+    "maker": "Aapeli.net",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Päivän visa (Ristikkola)",
+    "url": "https://ristikkola.fi/pelit/visa",
+    "lang": "fi",
+    "kind": "knowledge",
+    "line": "Valitse oikea vastaus neljästä vaihtoehdosta.",
+    "maker": "Ristikkola",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/fi/games/globle",
+    "lang": "fi",
+    "kind": "maps",
+    "line": "Arvaa päivän maa. Näet etäisyyden ja suunnan.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "GEOPUNK",
+    "url": "https://www.geopunk.io/fi/",
+    "lang": "fi",
+    "kind": "maps",
+    "line": "Arvaa päivän maa, lippu ja pääkaupunki.",
+    "maker": "GEOPUNK",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "HittiSpotti",
+    "url": "https://hittispotti.fi/",
+    "lang": "fi",
+    "kind": "music",
+    "line": "Tunnista suomalainen biisi pienestä pätkästä.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Beatra",
+    "url": "https://beatra.app/fi/quiz",
+    "lang": "fi",
+    "kind": "music",
+    "line": "Arvaa kappale lyhyestä klipistä.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/fi/guess-the-game",
+    "lang": "fi",
+    "kind": "screen",
+    "line": "Arvaa päivän videopeli vihjeiden avulla.",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sportsly",
+    "url": "https://sportsly.io/fi/",
+    "lang": "fi",
+    "kind": "sport",
+    "line": "Arvaa päivän pelaaja vihjeiden avulla.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Päivän sudoku (Aapeli)",
+    "url": "https://aapeli.net/sudoku/paivan-sudoku/",
+    "lang": "fi",
+    "kind": "numbers",
+    "line": "Ratkaise päivän sudoku. Valitse vaikeustaso.",
+    "maker": "Aapeli.net",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Päivän sudoku (LiveSudoku)",
+    "url": "https://www.livesudoku.com/fi/daily-sudoku.php",
+    "lang": "fi",
+    "kind": "numbers",
+    "line": "Ratkaise päivän sudoku neljällä vaikeustasolla.",
+    "maker": "LiveSudoku",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Päivänpulma",
+    "url": "https://www.paivanpulma.fi/paiva",
+    "lang": "fi",
+    "kind": "other",
+    "line": "Ratkaise päivän pulmia: sanoja, lukuja ja logiikkaa.",
+    "maker": "Päivänpulma",
+    "checked": "2026-11-23"
+  }
+]

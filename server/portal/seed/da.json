@@ -1,0 +1,207 @@
+[
+  {
+    "name": "Wørdle",
+    "url": "https://xn--wrdle-vua.dk/",
+    "lang": "da",
+    "kind": "words",
+    "line": "Gæt dagens danske ord på seks forsøg.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle Dansk",
+    "url": "https://wordledansk.com/",
+    "lang": "da",
+    "kind": "words",
+    "line": "Gæt dagens ord. Du kan også spille ubegrænset.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle på Krydsord.dk",
+    "url": "https://krydsord.dk/wordle",
+    "lang": "da",
+    "kind": "words",
+    "line": "Gæt dagens hemmelige ord på seks forsøg.",
+    "maker": "Krydsord.dk",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordleg",
+    "url": "https://ordlek.github.io/ordlek/dansk/",
+    "lang": "da",
+    "kind": "words",
+    "line": "Gæt dagens danske ord med farvede bogstaver.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Nørdle",
+    "url": "https://videnskab.dk/noerdle/",
+    "lang": "da",
+    "kind": "words",
+    "line": "Gæt dagens ord. Videnskab.dks version af Wørdle.",
+    "maker": "Videnskab.dk",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordleg på 7kabale",
+    "url": "https://7kabale-gratis.dk/ordleg/",
+    "lang": "da",
+    "kind": "words",
+    "line": "Gæt dagens ord. Vælg klassisk eller en anden udgave.",
+    "maker": "7kabale-gratis.dk",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Noundle",
+    "url": "https://jjs.dk/da/noundle/",
+    "lang": "da",
+    "kind": "words",
+    "line": "Gæt dagens ord på fem bogstaver.",
+    "maker": "jjs.dk",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens Quiz",
+    "url": "https://www.dagensquiz.dk/",
+    "lang": "da",
+    "kind": "knowledge",
+    "line": "Svar på ti nye spørgsmål hver dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "QuizMig",
+    "url": "https://www.quizmig.dk/dagens-quiz",
+    "lang": "da",
+    "kind": "knowledge",
+    "line": "Tag dagens quiz om et nyt emne hver dag.",
+    "maker": "QuizMig",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gæt Landet",
+    "url": "https://www.geofungames.com/da/games/daily-challenge",
+    "lang": "da",
+    "kind": "maps",
+    "line": "Gæt dagens land ud fra hints.",
+    "maker": "GeoFun Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/da/games/geodle",
+    "lang": "da",
+    "kind": "maps",
+    "line": "Gæt dagens land på seks forsøg med hints.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/da/games/globle",
+    "lang": "da",
+    "kind": "maps",
+    "line": "Gæt dagens land. Du ser afstand og retning.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens Land",
+    "url": "https://dagensland.dk/",
+    "lang": "da",
+    "kind": "maps",
+    "line": "Gæt dagens land. Jo grønnere, jo tættere på.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "LandeGæt",
+    "url": "https://landegaet.bozkurt.dk/",
+    "lang": "da",
+    "kind": "maps",
+    "line": "Placer fem lande på verdenskortet hver dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://jjs.dk/da/flagle/",
+    "lang": "da",
+    "kind": "maps",
+    "line": "Gæt landet ud fra dagens flag.",
+    "maker": "jjs.dk",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Tidsmaskinen",
+    "url": "https://jjs.dk/da/timemachine/",
+    "lang": "da",
+    "kind": "maps",
+    "line": "Gæt, hvor og hvornår billedet er taget.",
+    "maker": "jjs.dk",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Lytli",
+    "url": "https://lytli.dk/",
+    "lang": "da",
+    "kind": "music",
+    "line": "Gæt den danske sang ud fra et kort lydklip.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Beatra",
+    "url": "https://beatra.app/da/quiz",
+    "lang": "da",
+    "kind": "music",
+    "line": "Gæt sangen ud fra et kort klip.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Quizbold",
+    "url": "https://quizbold.dk/daily",
+    "lang": "da",
+    "kind": "sport",
+    "line": "Løs dagens fodboldgitter om Superligaen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Superliga quiz",
+    "url": "https://footballlineupbuilder.com/da/quizzes/guess-the-player/danish-superliga",
+    "lang": "da",
+    "kind": "sport",
+    "line": "Gæt dagens spiller fra Superligaen.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/da/guess-the-game",
+    "lang": "da",
+    "kind": "screen",
+    "line": "Gæt dagens computerspil ud fra hints.",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens sudoku",
+    "url": "https://www.livesudoku.com/da/daily-sudoku.php",
+    "lang": "da",
+    "kind": "numbers",
+    "line": "Løs dagens sudoku i fire sværhedsgrader.",
+    "maker": "LiveSudoku",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens sudoku på 7kabale",
+    "url": "https://7kabale-gratis.dk/dagens-sudoku/",
+    "lang": "da",
+    "kind": "numbers",
+    "line": "Løs dagens sudoku: let, mellem eller svær.",
+    "maker": "7kabale-gratis.dk",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens Gæt",
+    "url": "https://ai-spil.dk/dagens/",
+    "lang": "da",
+    "kind": "other",
+    "line": "Gæt dagens ting med spørgsmål og hints.",
+    "checked": "2026-11-23"
+  }
+]

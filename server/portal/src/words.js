@@ -1,9 +1,12 @@
 /* Play Logicers — the words of the pages (plan 2.4), one flat JSON file per language in words/<code>.json ({"key": "text"}).
    en.json by chat A; the eleven other launch files start as English copies for chat C to replace. A language with no file
    (or a key missing from its file) falls back to English. One import line per file below: a new language's file needs its
-   line (test/test_words.mjs fails while a file in words/ has none).
-   Plural forms (beyond 2.4, optional): "players_today.one", ".few", ".many", ".two", ".zero" are used when
-   Intl.PluralRules of the language picks that form; else the plain key. English has "players_today.one". */
+   line (test/test_misc.mjs fails while a file in words/ has none).
+   Chat X, 23 Nov 2026: the 19 languages of waves 1 and 2 (plan 2.13, phase 2) have their files, as copies of en.json until
+   the words chats (W1a, W1b, W2) write them. A file opens nothing: a language opens at 5 listed games (db.js OPEN_AT).
+   Plural forms (beyond 2.4, optional): every CLDR form a language has, "players_today.zero", ".one", ".two", ".few",
+   ".many" (Arabic has all six; the plain key is "other"), is used when Intl.PluralRules of the language picks it and the
+   language's own file has it; else the plain key. A form is never taken from English. English has "players_today.one". */
 import en from "../words/en.json" with { type: "json" };
 import es from "../words/es.json" with { type: "json" };
 import pt from "../words/pt.json" with { type: "json" };
@@ -16,9 +19,32 @@ import pl from "../words/pl.json" with { type: "json" };
 import nl from "../words/nl.json" with { type: "json" };
 import ja from "../words/ja.json" with { type: "json" };
 import ko from "../words/ko.json" with { type: "json" };
+/* wave 1 (chat X, 23 Nov 2026) */
+import uk from "../words/uk.json" with { type: "json" };
+import cs from "../words/cs.json" with { type: "json" };
+import ro from "../words/ro.json" with { type: "json" };
+import hu from "../words/hu.json" with { type: "json" };
+import sv from "../words/sv.json" with { type: "json" };
+import no from "../words/no.json" with { type: "json" };
+import da from "../words/da.json" with { type: "json" };
+import fi from "../words/fi.json" with { type: "json" };
+import el from "../words/el.json" with { type: "json" };
+import ca from "../words/ca.json" with { type: "json" };
+import az from "../words/az.json" with { type: "json" };
+import id from "../words/id.json" with { type: "json" };
+import vi from "../words/vi.json" with { type: "json" };
+/* wave 2 (chat X, 23 Nov 2026): right to left (he ar fa), Thai, Chinese in two */
+import he from "../words/he.json" with { type: "json" };
+import ar from "../words/ar.json" with { type: "json" };
+import fa from "../words/fa.json" with { type: "json" };
+import th from "../words/th.json" with { type: "json" };
+import zhHans from "../words/zh-hans.json" with { type: "json" };
+import zhHant from "../words/zh-hant.json" with { type: "json" };
 import { htmlLang } from "./langs.js";
 
-export const WORDS = { en, es, pt, fr, de, it, tr, ru, pl, nl, ja, ko };
+export const WORDS = { en, es, pt, fr, de, it, tr, ru, pl, nl, ja, ko,
+  uk, cs, ro, hu, sv, no, da, fi, el, ca, az, id, vi,
+  he, ar, fa, th, "zh-hans": zhHans, "zh-hant": zhHant };
 export const KEYS = Object.keys(en);
 
 /* a language's words: its own file over English */

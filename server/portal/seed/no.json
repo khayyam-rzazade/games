@@ -1,0 +1,208 @@
+[
+  {
+    "name": "Ordlig",
+    "url": "https://ordlig.killie-grenasberg.no/",
+    "lang": "no",
+    "kind": "words",
+    "line": "Gjett dagens ord på bokmål på seks forsøk.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordviss",
+    "url": "https://ordviss.killie-grenasberg.no/",
+    "lang": "no",
+    "kind": "words",
+    "line": "Gjett dagens ord på nynorsk på seks forsøk.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordle",
+    "url": "https://ordle.no/",
+    "lang": "no",
+    "kind": "words",
+    "line": "Gjett dagens norske ord. Nytt ord hver dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gjett",
+    "url": "https://gjett.net/",
+    "lang": "no",
+    "kind": "words",
+    "line": "Gjett dagens norske ord med fargehint.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordstjernen",
+    "url": "https://www.vg.no/spill/ordstjernen",
+    "lang": "no",
+    "kind": "words",
+    "line": "Lag så mange ord du kan av sju bokstaver.",
+    "maker": "VG",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordstrekket",
+    "url": "https://www.vg.no/spill/dagens-bokstaver",
+    "lang": "no",
+    "kind": "words",
+    "line": "Finn det lengste ordet du kan av ni bokstaver.",
+    "maker": "VG",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Firkløver",
+    "url": "https://www.vg.no/spill/firklover",
+    "lang": "no",
+    "kind": "words",
+    "line": "Finn fire og fire ord som hører sammen.",
+    "maker": "VG",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens quiz",
+    "url": "https://dagensquiz.no/",
+    "lang": "no",
+    "kind": "knowledge",
+    "line": "Svar på dagens quiz. Nye spørsmål hver dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens 12",
+    "url": "https://kalendern.no/quiz/",
+    "lang": "no",
+    "kind": "knowledge",
+    "line": "Svar på tolv spørsmål med dine egne ord.",
+    "maker": "Kalendern.no",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Quizo",
+    "url": "https://quizo.no/dagens-quiz",
+    "lang": "no",
+    "kind": "knowledge",
+    "line": "Svar på ti nye spørsmål hver dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Quiz for alle",
+    "url": "https://quizforalle.no/dagens-quiz",
+    "lang": "no",
+    "kind": "knowledge",
+    "line": "Ta dagens quiz med en blanding av spørsmål.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gjett kjendisen",
+    "url": "https://www.vg.no/spill/gjett-kjendisen",
+    "lang": "no",
+    "kind": "knowledge",
+    "line": "Gjett dagens norske kjendis ut fra hint.",
+    "maker": "VG",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gjett Landet",
+    "url": "https://www.geofungames.com/no/games/daily-challenge",
+    "lang": "no",
+    "kind": "maps",
+    "line": "Gjett dagens land ut fra hint.",
+    "maker": "GeoFun Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daglig Reiserute",
+    "url": "https://www.geofungames.com/no/games/travel-route/daily",
+    "lang": "no",
+    "kind": "maps",
+    "line": "Finn veien mellom to land. Ny rute hver dag.",
+    "maker": "GeoFun Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/no/games/globle",
+    "lang": "no",
+    "kind": "maps",
+    "line": "Gjett dagens land. Du ser avstand og retning.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens kart",
+    "url": "https://atlaset.no/dagens-kart",
+    "lang": "no",
+    "kind": "maps",
+    "line": "Gjett landet ut fra omrisset på kartet.",
+    "maker": "ATLAS",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens flagg",
+    "url": "https://atlaset.no/dagens",
+    "lang": "no",
+    "kind": "maps",
+    "line": "Gjett hvilket lands flagg det er.",
+    "maker": "ATLAS",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens flaggbit",
+    "url": "https://atlaset.no/dagens-flaggbit",
+    "lang": "no",
+    "kind": "maps",
+    "line": "Se en bit av et flagg og gjett landet.",
+    "maker": "ATLAS",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Elitequizen",
+    "url": "https://elitequizen.no/",
+    "lang": "no",
+    "kind": "sport",
+    "line": "Finn norske fotballspillere som passer til dagens regler.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Eliteserien quiz",
+    "url": "https://footballlineupbuilder.com/nb/quizzes/guess-the-player/eliteserien",
+    "lang": "no",
+    "kind": "sport",
+    "line": "Gjett dagens spiller fra Eliteserien.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dårlig forklart",
+    "url": "https://kalendern.no/spill/darlig-forklart/",
+    "lang": "no",
+    "kind": "screen",
+    "line": "Gjett filmen eller serien ut fra en klønete tekst.",
+    "maker": "Kalendern.no",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Beatra",
+    "url": "https://beatra.app/no/quiz",
+    "lang": "no",
+    "kind": "music",
+    "line": "Gjett sangen fra et kort klipp.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens sudoku",
+    "url": "https://www.kryssordet.no/sudoku",
+    "lang": "no",
+    "kind": "numbers",
+    "line": "Løs dagens sudoku i fire vanskelighetsgrader.",
+    "maker": "Kryssordet.no",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku",
+    "url": "https://spill.abcnyheter.no/sudoku/",
+    "lang": "no",
+    "kind": "numbers",
+    "line": "Løs dagens sudoku, fra lett til vanskelig.",
+    "maker": "Startsiden",
+    "checked": "2026-11-23"
+  }
+]

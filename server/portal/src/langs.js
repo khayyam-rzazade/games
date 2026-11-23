@@ -8,7 +8,13 @@
    Chinese is already split in two (zh-hans, zh-hant; plan 2.1 says it splits when Chinese opens): a game sent today for
    Chinese then needs no move later. So 51 rows for the plan's 50 languages.
    A new language: its words file (words/<code>.json + one import line in src/words.js), its row here (and the one-time
-   check of 2.2 for a local "Play" brand), its starting games. */
+   check of 2.2 for a local "Play" brand), its starting games.
+   Chat X, 23 Nov 2026, checked the 19 rows of waves 1 and 2 (uk cs ro hu sv no da fi el ca az id vi, then he ar fa th
+   zh-hans zh-hant): each endonym as its speakers write it in a language list (Wikipedia's and the big sites' pickers),
+   capitalised as a name; Hebrew, Arabic and Persian right to left; "Play" for all of them until the words chats' check of
+   2.2. Norwegian is Bokmål: the page says lang="nb" (tag), as no.wikipedia.org does; the code in addresses stays "no".
+   Azerbaijani "Azərbaycanca" (Wikipedia's own name for it; "Play Azərbaycanca" reads "play in Azerbaijani") is for
+   Khayyam to confirm. */
 
 export const LANGS = [
   /* launch (12) */
@@ -27,7 +33,7 @@ export const LANGS = [
   /* phase 2 (18; Chinese as two rows) */
   { code: "uk", endonym: "Українська", play_word: "Play", dir: "ltr", group: "phase2" },
   { code: "sv", endonym: "Svenska", play_word: "Play", dir: "ltr", group: "phase2" },
-  { code: "no", endonym: "Norsk", play_word: "Play", dir: "ltr", group: "phase2" },
+  { code: "no", endonym: "Norsk", play_word: "Play", dir: "ltr", group: "phase2", tag: "nb" },
   { code: "da", endonym: "Dansk", play_word: "Play", dir: "ltr", group: "phase2" },
   { code: "fi", endonym: "Suomi", play_word: "Play", dir: "ltr", group: "phase2" },
   { code: "cs", endonym: "Čeština", play_word: "Play", dir: "ltr", group: "phase2" },

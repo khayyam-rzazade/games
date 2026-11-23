@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Kobza",
+    "url": "https://kobzaapp.github.io/",
+    "lang": "uk",
+    "kind": "words",
+    "line": "Вгадай слово з п'яти літер за шість спроб.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle українською",
+    "url": "https://wordle-ua.net/",
+    "lang": "uk",
+    "kind": "words",
+    "line": "Вгадай нове українське слово. Нове щодня.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Словозв'яз",
+    "url": "https://slovozviaz.com/daily",
+    "lang": "uk",
+    "kind": "words",
+    "line": "Знайди секретне слово. Підказки ведуть тебе ближче.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "GEOPUNK",
+    "url": "https://www.geopunk.io/uk/",
+    "lang": "uk",
+    "kind": "maps",
+    "line": "Вгадай країну за обрисом, прапором і столицею.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "TerraPrinter: Вгадай місце",
+    "url": "https://terraprinter.com/uk/guess/",
+    "lang": "uk",
+    "kind": "maps",
+    "line": "Знайди місце на 3D-мапі. Промах покаже відстань.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://flagle.net/uk",
+    "lang": "uk",
+    "kind": "maps",
+    "line": "Вгадай прапор країни за шість спроб.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Знайди клуб",
+    "url": "https://footballclubsmap.com/games/find-the-club/uk/",
+    "lang": "uk",
+    "kind": "maps",
+    "line": "Знайди клуб на мапі. Кожна спроба показує відстань.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Вгадай стадіон",
+    "url": "https://footballclubsmap.com/games/guess-the-stadium/uk/",
+    "lang": "uk",
+    "kind": "sport",
+    "line": "Впізнай клуб за фото його стадіону.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Вгадай логотип",
+    "url": "https://footballclubsmap.com/games/guess-the-logo/uk/",
+    "lang": "uk",
+    "kind": "sport",
+    "line": "Впізнай футбольний клуб за логотипом.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Вгадай форму",
+    "url": "https://footballclubsmap.com/games/guess-the-kit/uk/",
+    "lang": "uk",
+    "kind": "sport",
+    "line": "Впізнай футбольний клуб за його формою.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Вгадай клуб",
+    "url": "https://footballclubsmap.com/games/guess-the-club/uk/",
+    "lang": "uk",
+    "kind": "sport",
+    "line": "Вгадай клуб за підказками. Новий щодня.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "WebQuiz: щоденні квізи",
+    "url": "https://webquiz.net/daily",
+    "lang": "uk",
+    "kind": "music",
+    "line": "Музичний і кіно-квіз дня. По 10 питань у кожному.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plixdle: відеогра дня",
+    "url": "https://plix.gg/uk/guess-the-game",
+    "lang": "uk",
+    "kind": "screen",
+    "line": "Вгадай відеогру дня за підказками.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "NumPlace: судоку дня",
+    "url": "https://numplace.com/uk/daily/",
+    "lang": "uk",
+    "kind": "numbers",
+    "line": "Розв'яжи судоку дня. Нова головоломка щодня.",
+    "checked": "2026-11-23"
+  }
+]

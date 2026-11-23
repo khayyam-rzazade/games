@@ -8,7 +8,8 @@
      /claim/<token>/   Claim it (POST /api/claim/token): the single-use link of the weekly email; nothing is used before the tap
      /maker/           the maker's form: the key on this device (localStorage "portal.maker"; or pasted), the maker's name, and
                        for each game its line, its kind (POST /api/maker, /api/maker/edit) and its logo (POST /api/maker/pic:
-                       PNG, JPEG or WebP, at most 150 KB, 256 px at least; it shows once the queue said yes)
+                       PNG, JPEG or WebP, at most 150 KB, 256 px at least; it shows once the queue said yes); under a
+                       listed game, the optional badge: its two pictures and the HTML to copy (chat X, 23 Nov 2026)
    It also keeps which maker the key opens and its games ("portal.makerof"), so portal.js shows Edit on their pages.
    A claim that gives a key shows it once and keeps it on the device. Everything is built with the DOM (createElement,
    textContent): nothing a maker types becomes markup, and the CSP forbids inline script and style. */
@@ -229,7 +230,38 @@
     inp.addEventListener("input", function () { inp.removeAttribute("aria-invalid"); });
     a.appendChild(f);
     a.appendChild(logoForm(g));
+    if (g.badge) a.appendChild(badgePart(g));
     return a;
+  }
+
+  /* the optional badge (chat X, 23 Nov 2026): a listed game only; two small pictures (for a light page and a dark one), the
+     chosen one's HTML and Copy. Offered, never asked: nothing about it anywhere else. */
+  function badgePart(g) {
+    var b = g.badge, box = el("section", "maker-badge"), id = "badge-" + g.id, hid = "badge-h-" + g.id;
+    box.setAttribute("aria-labelledby", hid);
+    var h = el("h3", "maker-logo-h", w("maker.badge")); h.id = hid;
+    box.appendChild(h);
+    box.appendChild(el("p", "maker-badge-p", w("maker.badge_p")));
+    var picks = el("div", "maker-badge-picks"), code = el("code", "maker-badge-code");
+    code.id = id;
+    [[b.pic, b.html, "light"], [b.pic_d, b.html_d, "dark"]].forEach(function (v, i) {
+      var btn = el("button", "maker-badge-pick is-" + v[2]), img = el("img");
+      btn.type = "button"; btn.setAttribute("aria-pressed", i ? "false" : "true"); btn.setAttribute("aria-controls", id); btn.setAttribute("aria-label", b.alt);
+      img.src = v[0]; img.width = b.w; img.height = b.h; img.alt = ""; img.decoding = "async";
+      btn.appendChild(img);
+      btn.addEventListener("click", function () {
+        $$(".maker-badge-pick", picks).forEach(function (x) { x.setAttribute("aria-pressed", x === btn ? "true" : "false"); });
+        code.textContent = v[1];
+      });
+      picks.appendChild(btn);
+    });
+    code.textContent = b.html;
+    box.appendChild(picks);
+    var row = el("div", "claim-code maker-badge-copy"), cp = el("button", "btn btn-copy", w("claim.copy"));
+    cp.type = "button"; cp.setAttribute("data-copy", id);
+    row.appendChild(code); row.appendChild(cp);
+    box.appendChild(row);
+    return box;
   }
 
   /* the logo: a picture of the maker's own, square is best; it waits for a look in the queue, then shows on the coins */

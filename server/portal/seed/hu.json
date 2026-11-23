@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Szózat",
+    "url": "https://szozat.miklosdanka.com/",
+    "lang": "hu",
+    "kind": "words",
+    "line": "Találd ki a nap szavát hat próbából.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Szófejtő",
+    "url": "https://jealousmarkup.xyz/szofejto/",
+    "lang": "hu",
+    "kind": "words",
+    "line": "Találd ki a nap szavát. Minden nap új.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Szókód",
+    "url": "https://www.playword.io/szokod",
+    "lang": "hu",
+    "kind": "words",
+    "line": "Találd ki a szót három szinten. Naponta új.",
+    "maker": "PlayWord",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Szócsoportok",
+    "url": "https://www.playword.io/szocsoportok",
+    "lang": "hu",
+    "kind": "words",
+    "line": "Keress négy csoportot, mindegyikben négy szó.",
+    "maker": "PlayWord",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Hideg-meleg",
+    "url": "https://www.playword.io/hidegmeleg",
+    "lang": "hu",
+    "kind": "words",
+    "line": "Írj szavakat, és nézd, mennyire vagy közel a titkos szóhoz.",
+    "maker": "PlayWord",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Napi témakvíz (PlayWord)",
+    "url": "https://www.playword.io/napi-kviz",
+    "lang": "hu",
+    "kind": "knowledge",
+    "line": "Válaszolj öt kérdésre a nap témájából.",
+    "maker": "PlayWord",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Napi kvíz (napikvizek.hu)",
+    "url": "https://napikvizek.hu/",
+    "lang": "hu",
+    "kind": "knowledge",
+    "line": "Válaszolj a napi kvízek kérdéseire, sok témából.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Blur (PlayWord)",
+    "url": "https://www.playword.io/blur",
+    "lang": "hu",
+    "kind": "screen",
+    "line": "Találd ki az elmosódott képet. Naponta három kép.",
+    "maker": "PlayWord",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plixdle: a nap videójátéka",
+    "url": "https://plix.gg/hu/guess-the-game",
+    "lang": "hu",
+    "kind": "screen",
+    "line": "Találd ki a nap videójátékát a nyomokból.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Flagle",
+    "url": "https://flagle.net/hu",
+    "lang": "hu",
+    "kind": "maps",
+    "line": "Találd ki az ország zászlaját hat próbából.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Keresd a klubot",
+    "url": "https://footballclubsmap.com/games/find-the-club/hu/",
+    "lang": "hu",
+    "kind": "maps",
+    "line": "Keresd meg a klubot a térképen. A tipp távolságot mutat.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Találd ki a stadiont",
+    "url": "https://footballclubsmap.com/games/guess-the-stadium/hu/",
+    "lang": "hu",
+    "kind": "sport",
+    "line": "Találd ki a klubot a stadion fotójáról.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Találd ki a logót",
+    "url": "https://footballclubsmap.com/games/guess-the-logo/hu/",
+    "lang": "hu",
+    "kind": "sport",
+    "line": "Találd ki a focicsapatot a logója alapján.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Találd ki a mezt",
+    "url": "https://footballclubsmap.com/games/guess-the-kit/hu/",
+    "lang": "hu",
+    "kind": "sport",
+    "line": "Találd ki a focicsapatot a mezéről.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "FootballClubsMap: Találd ki a klubot",
+    "url": "https://footballclubsmap.com/games/guess-the-club/hu/",
+    "lang": "hu",
+    "kind": "sport",
+    "line": "Találd ki a focicsapatot a tippekből. Naponta új.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Songdle HU",
+    "url": "https://songdle.hu/",
+    "lang": "hu",
+    "kind": "music",
+    "line": "Hallgasd a dal elejét, és találd ki, melyik az.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/hu",
+    "lang": "hu",
+    "kind": "music",
+    "line": "Hallgass meg egy dallamot, és játszd vissza hangról hangra.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Killdoku",
+    "url": "https://killdoku.juegalo.eu/hu",
+    "lang": "hu",
+    "kind": "numbers",
+    "line": "Töltsd ki a sudokut a dobozokban lévő összegek szerint.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/hu",
+    "lang": "hu",
+    "kind": "numbers",
+    "line": "Töltsd ki a rácsot nullákkal és egyesekkel.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-23"
+  }
+]

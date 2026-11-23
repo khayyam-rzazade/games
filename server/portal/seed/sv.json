@@ -1,0 +1,187 @@
+[
+  {
+    "name": "Ordel",
+    "url": "https://ordel.se/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens hemliga svenska ord på sex försök.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordlig",
+    "url": "https://ordlig.se/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens ord. Du får färgtips efter varje gissning.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordsnille",
+    "url": "https://ordsnille.brusman.se/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens svenska ord på några försök.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordla",
+    "url": "https://eldh.github.io/ordla/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens ord med hjälp av färgade bokstäver.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordlek",
+    "url": "https://ordlek.github.io/ordlek/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens svenska ord på sex försök.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Swerdle",
+    "url": "https://swerdle.ankarhem.dev/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens svenska ord bokstav för bokstav.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "GissaOrdet",
+    "url": "https://www.gissaordet.se/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens ord. Nytt ord varje dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens ord",
+    "url": "https://hjarngympa.se/dagens-ord/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa dagens ord och träna hjärnan en stund.",
+    "maker": "hjärngympa",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ordkupan",
+    "url": "https://ordkupan.se/dagligt-ordspel",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Lös dagens ordspel – ett nytt varje dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagligt ordspel",
+    "url": "https://www.korsordsakuten.se/ordspel/",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Lös dagens ordspel och träna ditt ordförråd.",
+    "maker": "Korsordsakuten",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gissa betydelsen",
+    "url": "https://finna.se/gissa",
+    "lang": "sv",
+    "kind": "words",
+    "line": "Gissa vad ett ord betyder. Nytt ord varje dag.",
+    "maker": "finna",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kviss",
+    "url": "https://kviss.live/",
+    "lang": "sv",
+    "kind": "knowledge",
+    "line": "Svara på dagens frågor och se hur många du klarar.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens quiz",
+    "url": "https://pusselportalen.se/fragesporten",
+    "lang": "sv",
+    "kind": "knowledge",
+    "line": "Svara på dagens frågesport.",
+    "maker": "Pusselportalen",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Gissa Landet",
+    "url": "https://www.geofungames.com/sv/games/daily-challenge",
+    "lang": "sv",
+    "kind": "maps",
+    "line": "Gissa dagens land med ledtrådar.",
+    "maker": "GeoFun Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Daglig Resväg",
+    "url": "https://www.geofungames.com/sv/games/travel-route/daily",
+    "lang": "sv",
+    "kind": "maps",
+    "line": "Hitta vägen mellan två länder – ny resa varje dag.",
+    "maker": "GeoFun Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "GeoAzimuth Daily",
+    "url": "https://www.geofungames.com/sv/games/azimuth/daily",
+    "lang": "sv",
+    "kind": "maps",
+    "line": "Gissa åt vilket håll dagens plats ligger.",
+    "maker": "GeoFun Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens låtutmaning",
+    "url": "https://www.quizlas.se/daily",
+    "lang": "sv",
+    "kind": "music",
+    "line": "Gissa dagens låt från ett kort klipp.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Beatra",
+    "url": "https://beatra.app/sv/quiz",
+    "lang": "sv",
+    "kind": "music",
+    "line": "Gissa låten från ett kort klipp. Nytt klipp varje dag.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "CineGuessr",
+    "url": "https://cineguessr.com/sv",
+    "lang": "sv",
+    "kind": "screen",
+    "line": "Gissa dagens film från en bild.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/sv/guess-the-game",
+    "lang": "sv",
+    "kind": "screen",
+    "line": "Gissa dagens datorspel med hjälp av ledtrådar.",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Allsvenskan quiz",
+    "url": "https://footballlineupbuilder.com/sv/quizzes/guess-the-player/allsvenskan",
+    "lang": "sv",
+    "kind": "sport",
+    "line": "Gissa dagens Allsvenskan-spelare med ledtrådar.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Dagens sudoku",
+    "url": "https://www.livesudoku.com/se/daily-sudoku.php",
+    "lang": "sv",
+    "kind": "numbers",
+    "line": "Lös dagens sudoku i fyra svårighetsgrader.",
+    "maker": "LiveSudoku",
+    "checked": "2026-11-23"
+  }
+]

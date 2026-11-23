@@ -199,6 +199,11 @@ body.pl {
 /* ---------------------------------------------------------------- rows ---- */
 .row-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-block-start: 24px; padding-block-start: 12px; border-block-start: 1.5px solid var(--line); min-block-size: 44px; }
 .row-h { font-size: 14px; font-weight: 500; letter-spacing: 0.005em; min-inline-size: 0; }
+.row-hl { align-self: stretch; display: flex; }
+/* a kind row's name links to its kind page (chat X, 23 Nov 2026): it looks as before; its target reaches up over the head's
+   padding and hairline (12 + 1.5 px) and fills the head's height, which stays as it was: 44 px at least, also for a short word */
+.row-ta { display: flex; align-items: center; margin-block-start: -13.5px; padding-block-start: 13.5px; min-inline-size: 44px; border-radius: 6px; }
+.row-ta:hover { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
 .row-more { display: inline-flex; align-items: center; gap: 6px; min-block-size: 44px; padding-inline: 2px; font-size: 13px; color: var(--soft); white-space: nowrap; transition: color .15s var(--ease); }
 .row-more:hover { color: var(--ink); }
 .row-more .ico { inline-size: 14px; block-size: 14px; }
@@ -220,6 +225,7 @@ body.pl {
 @media (min-width: 1024px) {
   .row-top { margin-block-start: 36px; padding-block-start: 14px; margin-block-end: 8px; }
   .row-h { font-size: 15px; }
+  .row-ta { margin-block-start: -15.5px; padding-block-start: 15.5px; }
   .row-more { font-size: 14px; }
 }
 
@@ -694,6 +700,17 @@ dialog.sheet[open] { animation: pl-up .24s var(--ease); }
 .maker-logo-pick:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
 .maker-logo-file { position: absolute; inset: 0; opacity: 0; inline-size: 100%; block-size: 100%; cursor: pointer; }
 .maker-logo-send[hidden] { display: none; }
+/* the optional badge under a listed game (chat X, 23 Nov 2026): quiet, small; the two pictures on their own light and dark
+   grounds, the chosen one ringed; then the HTML and Copy */
+.maker-badge { display: flex; flex-direction: column; gap: 10px; padding-block-start: 14px; border-block-start: 1px solid var(--line); min-inline-size: 0; }
+.maker-badge-p { font-size: 13px; line-height: 1.45; color: var(--soft); }
+.maker-badge-picks { display: flex; flex-wrap: wrap; gap: 10px; min-inline-size: 0; }
+.maker-badge-pick { display: inline-flex; padding: 8px; border-radius: 18px; border: 1.5px solid var(--line); background: #FFFFFF; max-inline-size: 100%; transition: border-color .15s var(--ease), box-shadow .15s var(--ease); }
+.maker-badge-pick.is-dark { background: #0E1014; border-color: #262B35; }
+.maker-badge-pick:hover { border-color: var(--soft); }
+.maker-badge-pick[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.maker-badge-pick img { display: block; max-inline-size: 100%; block-size: auto; }
+.claim-code .maker-badge-code { font-size: 12px; color: var(--soft); }
 .claim [tabindex="-1"]:focus, .maker [tabindex="-1"]:focus { outline: none; }   /* where the script moves the focus to read on: not a control */
 @media (max-width: 459px) {
   .maker-card { padding: 16px 0 0; border: 0; border-block-start: 1.5px solid var(--line); border-radius: 0; }

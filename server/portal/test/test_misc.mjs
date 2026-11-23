@@ -65,7 +65,7 @@ test("the languages of 2.13: 51 rows (Chinese as two), launch 12, Polish Graj, r
 
 test("the words: every launch file has every English key with its {n} and {lang}; every file in words/ is imported", () => {
   const files = fs.readdirSync(path.join(ROOT, "words")).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5)).sort();
-  assert.deepEqual(files, [...LAUNCH].sort());
+  assert.deepEqual(files, LAUNCH.concat(LANGS.filter((l) => l.group === "phase2").map((l) => l.code)).sort(), "the 12 open languages and the 19 of waves 1 and 2 (chat X)");
   assert.deepEqual(Object.keys(WORDS).sort(), files, "src/words.js imports every file of words/");
   const en = WORDS.en;
   for (const k of ["play_word", "by", "from_logicers", "play", "new", "mine", "more", "today_n", "total_n", "players_today", "cat.words", "cat.numbers",

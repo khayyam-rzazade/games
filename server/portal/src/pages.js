@@ -19,7 +19,8 @@
                   .lang-a  .lang-name  .lang-n (its number of games)  .lang-g (the word "games")
      rows         .row  .row-mine (Yours: filled by portal.js; hidden until then)  .row-lg (From Logicers; .row-lg-en: the English
                   games where Logicers lacks the language, one line at every width)  .row-kind
-                  .row-wanted  .row-same (a game page's "same kind")  .row-top  .row-h  .row-t  .row-more  .row-more-sep
+                  .row-wanted  .row-same (a game page's "same kind")  .row-top  .row-h  .row-t  .row-hl .row-ta (a kind row's name: a
+                  link to its kind page, chat X)  .row-more  .row-more-sep
                   .row-more-n  .tiles (ul)
      tiles        .tile (li; data-game, data-kind)  .t0 … .t11 (the ring colour, from the game's id)  .tile-new (New for 7 days)
                   .tile-one (place 1: the filled ring)  .tile-sold (a paid place 1, phase 3)  .tile-lg (a Logicers game: a
@@ -54,6 +55,8 @@
                   .maker-card .maker-card-h .maker-msg .maker-forget (the cards: maker.js) .maker-pagelink
                   .maker-logo .maker-logo-h .maker-logo-row .maker-logo-view .maker-logo-img .maker-logo-side .maker-logo-state
                   .maker-logo-pick .maker-logo-file .maker-logo-send (stage 3: the logo)
+                  .maker-badge .maker-badge-p .maker-badge-picks .maker-badge-pick (aria-pressed; .is-light .is-dark)
+                  .maker-badge-copy .maker-badge-code (the optional badge under a listed game: chat X, 23 Nov 2026)
      maker page   (chat J) .pl-mk .main-mk .mk-head .mk-name .btn-edit (data-maker-slug | data-maker-game; shown by portal.js)
      numbers      (a claimed game's page) .nums .nums-days .nums-total .nums-svg .nums-bar .nums-axis .nums-where .nums-c
                   .nums-ci .nums-cn .nums-cv .nums-cb   the coins' logo: .tile-logo (img) .tile-logo-lg (svg) .game-logo
@@ -86,7 +89,7 @@ import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=d7b84a490a", js: "/a/portal.js?v=08ec511cce", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=f7f0fac3c2" };
+export const ASSET = { css: "/a/portal.css?v=93c50cba75", js: "/a/portal.js?v=08ec511cce", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=175514a379" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -171,14 +174,17 @@ function pageData(d, more, own) {
    game's own days and countries (d.numbers) stay, hidden, for the maker's device only (numbersBlock). The page's data tells
    portal.js (nums: 0), which then asks for no counts and turns no coin into a number after a tap. */
 const QUIET = new Set(["today", "all", "page_today", "week"]);
-function hush(x) {
-  if (Array.isArray(x)) return x.map(hush);
+/* top: only the page's own d.numbers (a claimed game's days and countries) is kept as it is. Chat X, 23 Nov 2026: a key named
+   "numbers" was kept at every depth, and byKind.numbers (the kind Numbers) is one, so the Numbers row's coins kept their
+   players while the numbers were hidden. */
+function hush(x, top) {
+  if (Array.isArray(x)) return x.map((y) => hush(y));
   if (!x || typeof x !== "object" || (Object.getPrototypeOf(x) !== Object.prototype && Object.getPrototypeOf(x) !== null)) return x;
   const o = {};
-  for (const k of Object.keys(x)) o[k] = k === "numbers" ? x[k] : QUIET.has(k) && typeof x[k] === "number" ? 0 : hush(x[k]);
+  for (const k of Object.keys(x)) o[k] = top && k === "numbers" ? x[k] : QUIET.has(k) && typeof x[k] === "number" ? 0 : hush(x[k]);
   return o;
 }
-const quiet = (d) => (d && d.nums === false ? hush(d) : d);
+const quiet = (d) => (d && d.nums === false ? hush(d, true) : d);
 
 /* ---- pieces ---- */
 /* the name is a link to Play's home page, "/", from every page (Khayyam, 20 Nov 2026, evening: "the Play Logicers title must always
@@ -296,9 +302,12 @@ function tileLogo(g, o) {
 function tplTile(d) {
   return `<template id="tpl-tile"><li class="tile" data-game="" data-kind=""><a class="tile-a" href=""><span class="tile-badge" hidden>${T(d.lang, "new")}</span><span class="tile-chip" lang="en" hidden>${T(d.lang, "en_chip")}</span>${icon("i-crown", "tile-crown-i")}${icon("k-other", "tile-kind")}${icon("k-other", "tile-zero")}<img class="tile-logo" alt="" width="64" height="64" decoding="async" hidden><svg class="tile-logo tile-logo-lg" aria-hidden="true" focusable="false" hidden><use href=""></use></svg><span class="tile-n" data-count="today" aria-hidden="true"></span><span class="vh"><span class="tile-vn"><span class="tile-vp" hidden>${T(d.lang, "play")} </span><span class="tile-vt"></span></span><span class="tile-gotw" hidden>, ${T(d.lang, "gotw")}</span><span data-count-label="today"></span></span></a><a class="tile-name" href="" tabindex="-1" aria-hidden="true"></a><button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="">${icon("i-star")}</button></li></template>`;
 }
-/* a row's head: its name, and More at the end */
-function rowTop(id, title, more) {
-  return `<div class="row-top"><h2 class="row-h" id="${id}"><span class="row-t">${title}</span></h2>${more || ""}</div>`;
+/* a row's head: its name, and More at the end. href: the name is a link to that page (a kind's row: its kind page, chat X,
+   23 Nov 2026), so every kind page is reached from its language's page even when the row is short and has no More, and a
+   search engine finds it without the sitemap; it looks as before and adds no height (portal.css .row-ta) */
+function rowTop(id, title, more, href) {
+  const t = href ? `<a class="row-t row-ta" href="${esc(href)}">${title}</a>` : `<span class="row-t">${title}</span>`;
+  return `<div class="row-top"><h2 class="row-h${href ? " row-hl" : ""}" id="${id}">${t}</h2>${more || ""}</div>`;
 }
 function moreLink(d, href, n) {
   return `<a class="row-more" href="${esc(href)}">${T(d.lang, "more")}${n ? `<span class="row-more-sep" aria-hidden="true">·</span><span class="row-more-n">${esc(num(d.lang, n))}</span>` : ""}${icon("i-more", "ico-flip")}</a>`;
@@ -332,7 +341,7 @@ function rowKind(d, kind, games, max) {
   const shown = max ? games.slice(0, max) : games;
   const more = max && games.length > max ? moreLink(d, `/${d.lang}/${kind}/`, games.length) : "";
   return `<section class="row row-kind" id="k-${kind}" data-kind="${kind}" aria-labelledby="h-${kind}">
-${rowTop("h-" + kind, T(d.lang, "cat." + kind), more)}
+${rowTop("h-" + kind, T(d.lang, "cat." + kind), more, `/${d.lang}/${kind}/`)}
 <ul class="tiles" role="list">
 ${shown.map((g) => tile(d, g)).join("\n")}
 </ul>
@@ -491,9 +500,13 @@ ${footer(d)}
 ${sheetAdd(d)}
 ${tplTile(d)}`;
   const cat = word(d.lang, "cat." + d.kind), name = pageName(d.lang);
-  return doc({ lang: d.lang, cls: "pl-kind", title: cat + " · " + word(d.lang, "seo.daily") + " · " + name,
-    canonical: `${d.site}/${d.lang}/${d.kind}/`, desc: word(d.lang, "seo.desc").replace("{lang}", LANG.get(d.lang).endonym),
-    jsonld: graph([itemList(cat, shown.map((g) => ({ url: gameUrl(d, g), name: g.name })))]), body,
+  /* the Words page is titled for what people search (Khayyam, 23 Nov 2026: "games like Wordle in Spanish"): its title, its
+     description and its list's name come from seo.words_t and seo.words_d, each naming its own language in its own words
+     (no {lang} mark); "Wordle" only describes, it is never our name. What the page shows does not change. */
+  const sw = d.kind === "words", head = sw ? word(d.lang, "seo.words_t") : cat;
+  return doc({ lang: d.lang, cls: "pl-kind", title: sw ? head + " · " + name : cat + " · " + word(d.lang, "seo.daily") + " · " + name,
+    canonical: `${d.site}/${d.lang}/${d.kind}/`, desc: sw ? word(d.lang, "seo.words_d") : word(d.lang, "seo.desc").replace("{lang}", LANG.get(d.lang).endonym),
+    jsonld: graph([itemList(head, shown.map((g) => ({ url: gameUrl(d, g), name: g.name })))]), body,
     data: pageData(d, { kind: d.kind, lgLang: d.lgLang }) });
 }
 
@@ -648,6 +661,7 @@ ${p("When you add a game, we keep its link, and your name and email if you give 
 ${h("Your game")}
 ${p(`To have a game changed or taken off, write to <span class="mail">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}
 ${p("If you like, you can claim your game: open its page here and choose Claim, then put one line in your page's code for a moment, or use the link in our email. You get a maker key: it stays on your device, and we keep only a scrambled form of it. With it you can write your game's line, choose its kind and send its logo, and you see its players by day and by country. Your words show at once and we look at every change; a logo shows once we have looked at it. There is no account and no password. Your games get a page of their own here.")}
+${p("If you like, you can also put a small Play Logicers badge on your page: a picture with a link to your game here, with no script and no cookie; it counts nothing, and we never ask for it.")}
 </article>
 </main>
 ${footer(d)}

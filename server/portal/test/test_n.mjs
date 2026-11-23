@@ -190,9 +190,11 @@ test("the claim pages take the game's language; /maker/ takes ?l=, else the brow
   const mk = (q, al) => get(e, "/maker/" + q, { headers: al ? { "Accept-Language": al } : {} });
   assert.match((await mk("?l=tr")).text, /<html lang="tr"/);
   assert.match((await mk("", "pt-BR,pt;q=0.9")).text, /<html lang="pt"/);
-  assert.match((await mk("", "sv-SE,sv;q=0.9,de;q=0.7")).text, /<html lang="de"/, "the first of the 12 in the browser's list");
-  assert.match((await mk("", "sv-SE")).text, /<html lang="en"/, "none of the 12: English");
-  assert.match((await mk("?l=uk", "es")).text, /<html lang="es"/, "a language with no words of its own: the browser's");
+  /* chat X, 23 Nov 2026: Swedish and Ukrainian have words files now (waves 1 and 2), so Croatian stands in for a language with none */
+  assert.match((await mk("", "hr-HR,hr;q=0.9,de;q=0.7")).text, /<html lang="de"/, "the first language in the browser's list that has words");
+  assert.match((await mk("", "hr-HR")).text, /<html lang="en"/, "none with words: English");
+  assert.match((await mk("", "sv-SE,sv;q=0.9,de;q=0.7")).text, /<html lang="sv"/, "Swedish has its words file now");
+  assert.match((await mk("?l=hr", "es")).text, /<html lang="es"/, "a language with no words of its own: the browser's");
   assert.match((await mk("?l=xx")).text, /<html lang="en"/);
   /* every link to the form carries ?l= */
   for (const p of ["/es/g/" + g.slug + "/", "/claim/?g=" + g.id, "/maker/?l=es"]) {

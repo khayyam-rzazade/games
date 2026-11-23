@@ -24,6 +24,7 @@
 import { json, bad, clock, brake, spent, keyOk, newKey, newId, keyHash, mac, hashReady, cleanText, slugify, randomB32 } from "./util.js";
 import { one, all, run, st, rowsOf, KINDS, queueRow, picUrl } from "./db.js";
 import { makerPic } from "./pics.js";
+import { badgeOut } from "./badge.js";
 import { claimLook, blockText } from "./check.js";
 
 export const TOKEN_DAYS = 90;
@@ -146,9 +147,11 @@ export async function makerOr(env, req, b) {
   if (!m) { brake("makerkey", req); return bad("key", 403); }
   return m;
 }
+/* badge: the optional badge of a listed game (chat X, 23 Nov 2026; badge.js): its pictures, size, alt and the HTML to copy,
+   shown under the game on the maker's form only */
 const gameOut = (env, g) => ({ id: g.id, name: g.name, lang: g.lang, kind: g.kind, line: g.line, url: g.url, status: g.status,
   line_by: g.line_by || null, page: g.status === "listed" && g.slug ? SITE(env) + "/" + g.lang + "/g/" + g.slug + "/" : null,
-  pic: picUrl(g), pic_wait: !!g.pic_wait });
+  pic: picUrl(g), pic_wait: !!g.pic_wait, badge: g.status === "listed" && g.slug ? badgeOut(SITE(env), g) : null });
 export async function makerGet(env, req, b) {
   const m = await makerOr(env, req, b);
   if (m instanceof Response) return m;

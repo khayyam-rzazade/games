@@ -39,6 +39,14 @@ Its adds go out from addresses of their own (CF-Connecting-IP, which wrangler de
 spent from localhost does not stop it; section 5 still adds from localhost, so a run that follows a run within the hour needs
 the Worker restarted (the brakes live in its memory).
 
+Chat X, 23 Nov 2026: section 14 runs last, or alone with --only-x (a few minutes; sections 1 to 13 as before, against the Worker
+that shows numbers, and the Worker of section 12 for the badge without a number): the Words page's own title and description in
+the 12 languages; every kind row's name a link to its kind page, 44 px, adding no height (measured against the same row with
+the link taken out); the optional badge under each listed game on the maker's form at 320, 390 and 1280, light and dark, in the
+12 languages and with words half as long again (two pictures, the chosen one's HTML, Copy); the badge itself as a picture on
+another page (its size, nothing else loaded, light and dark, with and without a number). It plants a maker in the local
+database and takes it away at the end.
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -714,6 +722,7 @@ def main():
         section_k(b)
         section_l(b)
         section_n(b)
+        section_x(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1123,7 +1132,7 @@ def section_j3(b):
     cardC = pg.query_selector(f'.maker-card[data-game="{C_["id"]}"]')
     gif = "/tmp/j3-logo.gif"; open(gif, "wb").write(b"GIF89a" + b"\0" * 200)
     cardC.query_selector(".maker-logo-file").set_input_files(gif); pg.wait_for_timeout(300)
-    ok("PNG, JPEG or WebP" in (cardC.query_selector(".maker-msg:not([hidden])") or cardC).text_content(), "a GIF is refused on the device")
+    ok(WORDS["es"]["maker.e_type"] in (cardC.query_selector(".maker-msg:not([hidden])") or cardC).text_content(), "a GIF is refused on the device (the form's words, Spanish since chats N and P)")
     pngf = "/tmp/j3-logo.png"; open(pngf, "wb").write(png_bytes(300, 300, (5, 150, 105)))
     cardC.query_selector(".maker-logo-file").set_input_files(pngf); pg.wait_for_selector(f'.maker-card[data-game="{C_["id"]}"] .maker-logo-send:not([hidden])', timeout=5000)
     ok(pg.evaluate("(id) => { const i = document.querySelector('.maker-card[data-game=\"' + id + '\"] .maker-logo-img'); return i.naturalWidth > 0 && i.src.startsWith('data:image/png'); }", C_["id"]), "the chosen logo shows before it is sent")
@@ -1182,14 +1191,15 @@ def section_j4(b):
         ok(len(cards) >= 2, f"To tell {w} {scheme}: a card a game", len(cards))
         c = pg.query_selector(f'.card-tell[data-id="{ids[0]}"]')
         t = c.text_content() if c else ""
-        ok("ana.j4@example.com" in t and "logicers.world@gmail.com" in t and "Hi Ana," in t and "is on Play Español" in t and "/claim/" in t and "rza.khay" not in t, f"To tell {w} {scheme}: the email, from logicers.world, the text", t[:200])
+        on_play = WORDS["es"]["mail.subject"].split("{game}")[-1].replace("{play}", "Play Español").strip()      # the email is in the game's language since chats N and P (22 Nov 2026)
+        ok("ana.j4@example.com" in t and "logicers.world@gmail.com" in t and fill_w("es", "mail.hi", name="Ana") in t and on_play in t and "/claim/" in t and "rza.khay" not in t, f"To tell {w} {scheme}: the email, from logicers.world, the text", t[:200])
         g = c.query_selector('a:text-matches("Write it in Gmail")') if c else None
         href = g.get_attribute("href") if g else ""
         ok(href.startswith("https://mail.google.com/mail/?authuser=logicers.world%40gmail.com&view=cm&fs=1&to=ana.j4%40example.com") and g.get_attribute("target") == "_blank", f"To tell {w} {scheme}: Gmail writes it from logicers.world", href[:120])
         if w == 1280 and scheme == "light":
             c.query_selector('button:text-is("Copy the text")').click(); pg.wait_for_timeout(300)
             clip = pg.evaluate("navigator.clipboard.readText()")
-            ok(clip.startswith("Hi Ana,") and clip.rstrip().endswith("Logicers"), "Copy the text", clip[:80])
+            ok(clip.startswith(fill_w("es", "mail.hi", name="Ana")) and clip.rstrip().endswith("Logicers"), "Copy the text", clip[:80])
         hs = pg.evaluate("() => [...document.querySelectorAll('.card-tell .btn')].filter((e) => e.getBoundingClientRect().width).map((e) => Math.round(e.getBoundingClientRect().height))")
         ok(hs and min(hs) >= 40, f"To tell {w} {scheme}: buttons", hs)
         bad = pg.evaluate(BOXES); ok(not bad, f"To tell {w} {scheme}: boxes", bad[:3])
@@ -1708,7 +1718,7 @@ def section_n_pages(b, pick, tokens, key, mg, ends):
                     clean(pg, tag)
             ctx.close()
     # the form with no key on the device, and a claim link that works no more: the browser's language
-    for loc, lang in (("ja-JP", "ja"), ("de-DE", "de"), ("sv-SE", "en")):
+    for loc, lang in (("ja-JP", "ja"), ("de-DE", "de"), ("hr-HR", "en")):        # Croatian has no words file (Swedish has one since chat X)
         ctx, pg = new(b, 390, locale=loc)
         pg.goto(url("/maker/"), wait_until="networkidle"); pg.wait_for_selector("#maker-nokey:not([hidden])", timeout=5000)
         ok(pg.get_attribute("html", "lang") == lang and pg.text_content(".maker-nokey .fld-l").strip() == WORDS[lang]["maker.key"], f"13 the form with no key ({loc}): {lang}", pg.get_attribute("html", "lang"))
@@ -1738,7 +1748,7 @@ def section_n_pages(b, pick, tokens, key, mg, ends):
     pg.goto(url("/maker/?l=es"), wait_until="networkidle"); pg.wait_for_selector(".maker-card", timeout=5000)
     pg.click(".maker-card .btn-send"); pg.wait_for_selector(".maker-card .maker-msg:not([hidden])", timeout=5000)
     names = [x["name"] for x in mg] + list(ends.values()) + [WORDS["es"]["cat." + k] for k in ("words", "numbers", "maps", "knowledge", "music", "screen", "sport", "other")]
-    left = english(pg.evaluate("() => [...document.querySelectorAll('.maker-games, .maker-msg')].map((e) => e.innerText).join(' ')"), names)
+    left = english(pg.evaluate("() => [...document.querySelectorAll('.maker-games, .maker-msg')].map((e) => { const c = e.cloneNode(true); c.querySelectorAll('.maker-badge-code').forEach((x) => x.remove()); return c.textContent; }).join(' ')"), names)   # the badge's HTML is code, not words (chat X)
     ok(not left, "13: maker.js builds the form with no English of its own", left[:6])
     pg.goto(url(f"/claim/?g={pick['fr']['id']}"), wait_until="networkidle")
     pg.click("#claim-get"); pg.wait_for_selector(".claim-code:not([hidden])", timeout=5000)
@@ -1750,13 +1760,167 @@ def section_n_pages(b, pick, tokens, key, mg, ends):
     ctx.close()
 
 
+# ---- 14. chat X, 23 Nov 2026 (claude/play-next-23nov.md, prompt X): the Words page titled for search; the kind rows' names link
+# to their kind pages, with no extra height; the optional badge on the maker's form and as a picture on another page.
+# Alone: --only-x.
+ROWLINKS = r"""
+() => {
+  const R = (e) => e.getBoundingClientRect(), out = [];
+  for (const row of document.querySelectorAll('.row-kind')) {
+    const top = row.querySelector('.row-top'), a = top.querySelector('.row-ta'), k = row.dataset.kind;
+    if (!a) { out.push({ k, link: false }); continue; }
+    const h1 = R(top).height, ra = R(a), rt = R(top);
+    /* the same head with the link taken out: its height must not change */
+    const h2 = top.querySelector('h2'), keep = h2.innerHTML, cls = h2.className;
+    h2.className = 'row-h'; h2.innerHTML = '<span class="row-t">' + a.innerHTML + '</span>';
+    const h0 = R(top).height;
+    h2.className = cls; h2.innerHTML = keep;
+    out.push({ k, link: true, href: a.getAttribute('href'), h: Math.round(ra.height * 10) / 10, w: Math.round(ra.width), up: ra.top >= rt.top - 0.5, down: ra.bottom <= rt.bottom + 0.5,
+      same: Math.abs(h1 - h0) < 0.5, h1, h0, text: a.textContent.trim() });
+  }
+  return out;
+}
+"""
+BADGEBOX = r"""
+() => {
+  const bad = [], R = (e) => e.getBoundingClientRect(), vw = document.documentElement.clientWidth;
+  for (const b of document.querySelectorAll('.maker-badge')) {
+    const card = b.closest('.maker-card'), rc = R(card);
+    for (const e of b.querySelectorAll('.maker-badge-pick, .maker-badge-pick img, .maker-badge-copy, .btn-copy, .maker-badge-p, .maker-logo-h')) {
+      const r = R(e);
+      if (r.left < rc.left - 1 || r.right > rc.right + 1 || r.right > vw + 1) bad.push('outside: ' + e.className + ' ' + Math.round(r.left) + '-' + Math.round(r.right) + ' in ' + Math.round(rc.left) + '-' + Math.round(rc.right));
+    }
+    for (const i of b.querySelectorAll('img')) if (!i.complete || !i.naturalWidth || i.naturalWidth !== +i.getAttribute('width') || i.naturalHeight !== 52) bad.push('picture not shown at its size: ' + i.src + ' ' + i.naturalWidth + 'x' + i.naturalHeight);
+    const c = b.querySelector('.btn-copy'); if (R(c).height < 44) bad.push('Copy under 44 px');
+    const code = b.querySelector('.maker-badge-code'); if (code.scrollWidth > code.clientWidth + 1) bad.push('the HTML is cut');
+  }
+  if (document.documentElement.scrollWidth > vw + 1) bad.push('page wider than the screen');
+  return bad;
+}
+"""
+
+
+def section_x(b):
+    """chat X: the Words pages for search, the kind rows' links, the optional badge"""
+    ok(bool(portal_key()), "14: the local PORTAL_KEY is known (server/portal/.dev.vars, or PORTAL_KEY=)")
+    if not portal_key(): return
+    sql("DELETE FROM nets; DELETE FROM seen;")
+    names = {}
+    # -- the Words page: its own title, description and list name; what it shows is the same
+    ctx, pg = new(b, 390)
+    for lang in LANGS:
+        pg.goto(url(f"/{lang}/words/"), wait_until="networkidle")
+        t = pg.evaluate("() => ({ title: document.title, desc: document.querySelector('meta[name=description]').content, ld: JSON.parse(document.querySelector('script[type=\"application/ld+json\"]').textContent)['@graph'][0].name, h1: document.querySelector('.kind-h span').textContent, name: document.querySelector('.top .brand-play').textContent + ' ' + document.querySelector('.top .brand-lang').textContent })")
+        names[lang] = t["name"]
+        ok(t["title"] == WORDS[lang]["seo.words_t"] + " · " + t["name"] and t["desc"] == WORDS[lang]["seo.words_d"] and t["ld"] == WORDS[lang]["seo.words_t"] and t["h1"] == WORDS[lang]["cat.words"],
+           f"14 {lang}: the Words page's title, description and list name for search; its heading as before", t)
+        clean(pg, f"14 words {lang}")
+    ctx.close()
+    # -- every kind row's name links to its kind page; 44 px; no height added (the same head without the link is as tall)
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme)
+            for lang in LANGS:
+                pg.goto(url(f"/{lang}/"), wait_until="networkidle")
+                rows = pg.evaluate(ROWLINKS)
+                tag = f"14 {lang} {w} {scheme}"
+                ok(rows and all(r["link"] and r["href"] == f"/{lang}/{r['k']}/" for r in rows), tag + ": every kind row's name links to its kind page", rows[:2])
+                ok(all(r.get("h", 0) >= 44 and r.get("w", 0) >= 44 for r in rows), tag + ": each link 44 px at least", [r for r in rows if r.get("h", 0) < 44 or r.get("w", 0) < 44][:2])
+                ok(all(r.get("same") and r.get("up") and r.get("down") for r in rows), tag + ": the link adds no height and stays in its head", [r for r in rows if not (r.get("same") and r.get("up") and r.get("down"))][:2])
+                if scheme == "light" and lang in ("es", "ja"):
+                    pg.evaluate(STRETCH)
+                    bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes with words half as long again", bad[:3])
+                clean(pg, tag)
+            if w == 390 and scheme == "light":
+                pg.goto(url("/es/"), wait_until="networkidle")
+                href = pg.get_attribute(".row-kind .row-ta", "href"); pg.click(".row-kind .row-ta"); pg.wait_for_load_state("networkidle")
+                ok(re.sub(r"[?#].*", "", pg.url) == B + href, "14: a tap on a row's name opens its kind page", pg.url)
+                pg.goto(url("/es/"), wait_until="networkidle"); pg.screenshot(path=f"{SHOTS}/x-rows-es-390.png")
+                pg.hover(".row-kind .row-ta"); pg.screenshot(path=f"{SHOTS}/x-rows-es-390-hover.png", clip={"x": 0, "y": 0, "width": 390, "height": 900})
+            ctx.close()
+
+    # -- the badge on the maker's form: a maker with one listed game in each of the 12 languages, and one game off the list
+    games = {l: [g for g in json.loads(PG_API(f"/api/{l}/games?n=60&fresh=" + RUN))["games"] if not g.get("logicers")] for l in LANGS}
+    claimed = {r["id"] for r in sql("SELECT id FROM games WHERE maker_id IS NOT NULL")}
+    pick = {l: next(g for g in games[l] if g["id"] not in claimed) for l in LANGS}
+    off = next(g for g in games["es"] if g["id"] not in claimed and g["id"] != pick["es"]["id"])
+    key = "".join(random.choice("abcdefghijklmnopqrstuvwxyz234567") for _ in range(24))
+    now = int(time.time() * 1000)
+    ids = [pick[l]["id"] for l in LANGS]
+    sql("UPDATE games SET maker_id = NULL, claimed_at = NULL WHERE maker_id = 'x-check'; DELETE FROM makers WHERE id = 'x-check'; "
+        + f"INSERT INTO makers (id, slug, name, key_hash, made) VALUES ('x-check', 'x-check-maker', 'X Check Maker', '{key_hash('maker', key)}', {now}); "
+        + f"UPDATE games SET maker_id = 'x-check', claimed_at = {now} WHERE id IN (" + ",".join(f"'{i}'" for i in ids + [off['id']]) + "); "
+        + f"UPDATE games SET status = 'hidden' WHERE id = '{off['id']}'")
+    try:
+        section_x_badge(b, pick, off, key)
+    finally:                                                    # back as it was, whatever happened
+        sql(f"UPDATE games SET status = 'listed' WHERE id = '{off['id']}'; UPDATE games SET maker_id = NULL, claimed_at = NULL WHERE maker_id = 'x-check'; DELETE FROM makers WHERE id = 'x-check'; DELETE FROM nets; DELETE FROM seen;")
+
+
+def section_x_badge(b, pick, off, key):
+    """14, the badge: on the maker's form (12 languages, 3 widths, 2 looks, stretched), then as a picture on another page"""
+    n_listed = len(LANGS)
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme, storage={"portal.maker": key})
+            ctx.grant_permissions(["clipboard-read", "clipboard-write"], origin=B)
+            for lang in LANGS:
+                pg.goto(url(f"/maker/?l={lang}"), wait_until="networkidle"); pg.wait_for_selector(".maker-card", timeout=5000)
+                pg.wait_for_function("() => [...document.querySelectorAll('.maker-badge img')].every((i) => i.complete)", timeout=8000)
+                tag = f"14 badge {lang} {w} {scheme}"
+                t = pg.evaluate("(off) => ({ n: document.querySelectorAll('.maker-badge').length, cards: document.querySelectorAll('.maker-card').length, offHas: !!document.querySelector('.maker-card[data-game=\"' + off + '\"] .maker-badge'), h: [...new Set([...document.querySelectorAll('.maker-badge .maker-logo-h')].map((e) => e.textContent))], p: [...new Set([...document.querySelectorAll('.maker-badge-p')].map((e) => e.textContent))], copy: [...new Set([...document.querySelectorAll('.maker-badge .btn-copy')].map((e) => e.textContent))], pressed: [...document.querySelectorAll('.maker-badge')].every((x) => x.querySelectorAll('[aria-pressed=true]').length === 1 && x.querySelector('.is-light').getAttribute('aria-pressed') === 'true') })", off["id"])
+                ok(t["n"] == n_listed and t["cards"] == n_listed + 1 and not t["offHas"], tag + ": a badge under each listed game, none under the game off the list", t)
+                ok(t["h"] == [WORDS[lang]["maker.badge"]] and t["p"] == [WORDS[lang]["maker.badge_p"]] and t["copy"] == [WORDS[lang]["claim.copy"]] and t["pressed"], tag + ": its words, the light one chosen first", t)
+                bad = pg.evaluate(BADGEBOX) + pg.evaluate(BOXES); ok(not bad, tag + ": the pictures shown at their size, everything inside its card", bad[:3])
+                if scheme == "light":
+                    nm = pg.evaluate(ACCNAME); ok(not nm, tag + ": every control has a name", nm[:3])
+                    g = pick[lang]
+                    card = f'.maker-card[data-game="{g["id"]}"] '
+                    code = pg.text_content(card + ".maker-badge-code")
+                    ok(code.startswith('<a href="https://play.logicers.com/' + lang + "/g/") and f'/b/{g["id"]}.svg"' in code and "?d=1" not in code, tag + ": the HTML: a link to the game's page around the light picture", code)
+                    pg.click(card + ".maker-badge-pick.is-dark")
+                    code_d = pg.text_content(card + ".maker-badge-code")
+                    ok(f'/b/{g["id"]}.svg?d=1"' in code_d and pg.get_attribute(card + ".is-dark", "aria-pressed") == "true" and pg.get_attribute(card + ".is-light", "aria-pressed") == "false", tag + ": the dark picture chosen: its HTML", code_d)
+                    pg.click(card + ".maker-badge .btn-copy"); pg.wait_for_timeout(120)
+                    clip = pg.evaluate("() => navigator.clipboard.readText()")
+                    ok(clip == code_d, tag + ": Copy copies that HTML", clip)
+                    pg.evaluate(STRETCH_N)
+                    bad = pg.evaluate(BADGEBOX) + pg.evaluate(BOXES); ok(not bad, tag + ": every word half as long again: inside its card", bad[:3])
+                if lang in ("es", "ja", "pl") and (w, scheme) in ((320, "light"), (390, "dark"), (1280, "light")):
+                    pg.goto(url(f"/maker/?l={lang}"), wait_until="networkidle"); pg.wait_for_selector(".maker-badge img", timeout=5000)
+                    pg.wait_for_function("() => [...document.querySelectorAll('.maker-badge img')].every((i) => i.complete)", timeout=8000)
+                    pg.locator(f'.maker-card[data-game="{pick[lang]["id"]}"]').screenshot(path=f"{SHOTS}/x-form-{lang}-{w}-{scheme}.png")
+                clean(pg, tag)
+            ctx.close()
+    # the picture on another page, as a maker's site shows it: its size, nothing else loaded, light and dark, a 404 off the list
+    quiet = os.environ.get("PORTAL_QUIET", "http://localhost:8788")
+    for base, shown in ((B, True), (quiet, False)):
+        ctx, pg = new(b, 1280)
+        asked = []
+        pg.on("request", lambda r: asked.append(r.url))
+        imgs = "".join(f'<div class="r"><img src="{base}/b/{pick[l]["id"]}.svg"><span class="dk"><img src="{base}/b/{pick[l]["id"]}.svg?d=1"></span></div>' for l in LANGS)
+        pg.set_content(f'<!doctype html><html><head><style>body{{margin:16px;font:12px sans-serif}} .r{{display:flex;gap:16px;margin:6px 0}} .dk{{background:#0E1014;padding:8px;border-radius:8px;display:inline-flex}}</style></head><body>{imgs}<img id="off" src="{base}/b/{off["id"]}.svg"></body></html>')
+        pg.wait_for_function("() => [...document.images].every((i) => i.complete)", timeout=10000)
+        sizes = pg.evaluate("() => [...document.images].map((i) => [i.getAttribute('src'), i.naturalWidth, i.naturalHeight])")
+        ok(all(h == 52 and wd >= 130 for s, wd, h in sizes if "/b/" + off["id"] not in s), f"14 badge pictures ({'numbers shown' if shown else 'numbers hidden'}): every one shows, 52 px high", [x for x in sizes if x[2] != 52][:3])
+        if shown: ok([x for x in sizes if "/b/" + off["id"] in x[0]][0][1] == 0, "14: a game off the list has no picture (404)")   # (hidden in this Worker's database only)
+        other = [u for u in asked if "/b/" not in u and not u.startswith("about:") and not u.startswith("data:")]
+        ok(not other, "14: a badge loads nothing else (no font, no picture, no script)", other[:3])
+        hits = int((sql(f"SELECT hits FROM games WHERE id = '{pick['es']['id']}'") or [{"hits": 0}])[0]["hits"] or 0)
+        svg = pg.request.get(base + f"/b/{pick['es']['id']}.svg").text()
+        icon = '<svg x="16" y="16" width="20"' in svg
+        ok(icon == (not shown or hits == 0), f"14: the coin shows {'its number (' + str(hits) + ' players)' if shown and hits else 'its icon, no number'}", svg[:160])
+        pg.screenshot(path=f"{SHOTS}/x-badges-{'shown' if shown else 'quiet'}.png", full_page=True)
+        ctx.close()
+
+
 def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
+        section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1764,4 +1928,4 @@ def only_j(k=False):
 
 PG_API = None
 if __name__ == "__main__":
-    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n") for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x") for a in sys.argv) else main()

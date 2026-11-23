@@ -1,0 +1,111 @@
+[
+  {
+    "name": "Λέξλη",
+    "url": "https://lexli.gr/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Βρες τη λέξη της ημέρας σε έξι προσπάθειες.",
+    "maker": "Γιώργος Πουλημένος",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Lexoula",
+    "url": "https://lexoula.com/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Μάντεψε μια λέξη πέντε γραμμάτων σε έξι προσπάθειες.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Λεξόπλεγμα",
+    "url": "https://lexoplegma.gr/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Βρες λέξεις ενώνοντας γειτονικά γράμματα στο πλέγμα.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Λέξη της Ημέρας",
+    "url": "https://games.gazzetta.gr/wordle/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Βρες τη λέξη των πέντε γραμμάτων σε έξι προσπάθειες.",
+    "maker": "Gazzetta",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Lexe Wordle",
+    "url": "https://lexe.gr/wordle/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Μάντεψε την κρυφή λέξη των πέντε γραμμάτων.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Hive",
+    "url": "https://lexe.gr/hive/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Φτιάξε λέξεις με τα επτά γράμματα της κυψέλης.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Μίνι Σταυρόλεξο",
+    "url": "https://lexe.gr/stavrolexo/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Λύσε ένα μικρό σταυρόλεξο με γρήγορους ορισμούς.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Κρυπτόλεξο",
+    "url": "https://lexe.gr/kryptolexo/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Βρες τις κρυμμένες λέξεις του θέματος της ημέρας.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Word Connect",
+    "url": "https://lexe.gr/enose-lexeis/",
+    "lang": "el",
+    "kind": "words",
+    "line": "Σύρε γράμματα στη ρόδα και γέμισε το πλέγμα.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/el",
+    "lang": "el",
+    "kind": "knowledge",
+    "line": "Πάτα συνδέσμους στη Wikipedia και φτάσε στη σελίδα-στόχο.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Γεωγραφούλα",
+    "url": "https://geografoula.com/",
+    "lang": "el",
+    "kind": "knowledge",
+    "line": "Απάντησε σε πέντε ερωτήσεις γεωγραφίας κάθε μέρα.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Μάντεψε τον παίκτη",
+    "url": "https://games.gazzetta.gr/whoplayer/",
+    "lang": "el",
+    "kind": "sport",
+    "line": "Βρες τον ποδοσφαιριστή της ημέρας σε οκτώ προσπάθειες.",
+    "maker": "Gazzetta",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Πού είναι;",
+    "url": "https://games.gazzetta.gr/pou/",
+    "lang": "el",
+    "kind": "maps",
+    "line": "Βρες στον χάρτη πέντε μέρη της Ελλάδας κάθε μέρα.",
+    "maker": "Gazzetta",
+    "checked": "2026-11-23"
+  }
+]

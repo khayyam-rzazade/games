@@ -1,0 +1,107 @@
+[
+  {
+    "name": "El Mot",
+    "url": "https://gelozp.com/games/elmot/",
+    "lang": "ca",
+    "kind": "words",
+    "line": "Endevina la paraula de cinc lletres en sis intents.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Mot-li!",
+    "url": "https://www.vilaweb.cat/motli/",
+    "lang": "ca",
+    "kind": "words",
+    "line": "Endevina la paraula del dia en pocs intents.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Paraulògic",
+    "url": "https://www.vilaweb.cat/paraulogic/",
+    "lang": "ca",
+    "kind": "words",
+    "line": "Fes paraules amb set lletres i una lletra central.",
+    "maker": "VilaWeb",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Minimots",
+    "url": "https://www.vilaweb.cat/minimots/",
+    "lang": "ca",
+    "kind": "words",
+    "line": "Resol un minicreuat nou cada dia.",
+    "maker": "VilaWeb",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Trobamot",
+    "url": "https://jocs.ara.cat/trobamot",
+    "lang": "ca",
+    "kind": "words",
+    "line": "Troba la paraula d'avui en sis intents.",
+    "maker": "Ara",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Amagamots",
+    "url": "https://jocs.ara.cat/amagamots",
+    "lang": "ca",
+    "kind": "words",
+    "line": "Fes paraules amb les lletres que et donen cada dia.",
+    "maker": "Ara",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Mots encreuats",
+    "url": "https://jocs.ara.cat/motsencreuats",
+    "lang": "ca",
+    "kind": "words",
+    "line": "Resol els mots encreuats del dia.",
+    "maker": "Ara",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Jeroglífic",
+    "url": "https://jocs.ara.cat/jeroglific",
+    "lang": "ca",
+    "kind": "other",
+    "line": "Endevina què diuen els dibuixos del jeroglífic.",
+    "maker": "Ara",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku",
+    "url": "https://jocs.ara.cat/sudoku",
+    "lang": "ca",
+    "kind": "numbers",
+    "line": "Omple la graella amb els números de l'1 al 9.",
+    "maker": "Ara",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ca",
+    "lang": "ca",
+    "kind": "knowledge",
+    "line": "Clica enllaços de la Viquipèdia fins a la pàgina final.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Els947",
+    "url": "https://els947.cat/#/diari",
+    "lang": "ca",
+    "kind": "maps",
+    "line": "Un repte de geografia catalana nou cada dia.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle toponímic",
+    "url": "https://betaserver.icgc.cat/wordle_icgc/",
+    "lang": "ca",
+    "kind": "maps",
+    "line": "Troba el topònim català amagat del dia.",
+    "maker": "ICGC",
+    "checked": "2026-11-23"
+  }
+]

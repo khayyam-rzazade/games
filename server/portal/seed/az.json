@@ -1,0 +1,69 @@
+[
+  {
+    "name": "Söz Baz",
+    "url": "https://sozbaz.soz6.com/",
+    "lang": "az",
+    "kind": "words",
+    "line": "Günün sözünü bir neçə cəhddə tap.",
+    "maker": "sözaltı",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Söz Tap",
+    "url": "https://bugun.az/oyunlar/soz-tap",
+    "lang": "az",
+    "kind": "words",
+    "line": "Gizli sözü bir neçə cəhddə tap.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Əlaqə",
+    "url": "https://bugun.az/oyunlar/elaqe",
+    "lang": "az",
+    "kind": "words",
+    "line": "16 sözü ortaq cəhətinə görə 4 qrupa böl.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Hədəf",
+    "url": "https://bugun.az/oyunlar/hedef",
+    "lang": "az",
+    "kind": "numbers",
+    "line": "Verilən 6 ədədlə hədəf ədədi çıxar.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle AZ",
+    "url": "https://wordle-az.vercel.app/",
+    "lang": "az",
+    "kind": "words",
+    "line": "Hər gün yeni gizli sözü 6 cəhddə tap.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle Azərbaycan dilində",
+    "url": "https://wordleaz.synetrix.in/",
+    "lang": "az",
+    "kind": "words",
+    "line": "Hər gün yeni söz var, onu cəhd-cəhd tap.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/az",
+    "lang": "az",
+    "kind": "knowledge",
+    "line": "Vikipediyada keçidlərə klik et, hədəf səhifəyə çat.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Səyyah",
+    "url": "https://emrah2121.github.io/azerbaijan-travel/",
+    "lang": "az",
+    "kind": "maps",
+    "line": "İki rayon arasında qonşu rayonlardan körpü qur.",
+    "maker": "Əmrah Əliyev",
+    "checked": "2026-11-23"
+  }
+]

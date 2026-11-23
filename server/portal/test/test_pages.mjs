@@ -107,7 +107,7 @@ test("a kind page, a game page (VideoGame), More, and a kind with no game", asyn
   assert.equal((lp.text.match(/id="k-words"[\s\S]*?<\/section>/)[0].match(/<li class="tile /g) || []).length, 12);
   const k = await get(e, "/es/words/");
   assert.equal(k.status, 200);
-  assert.equal(title(k.text), word("es", "cat.words") + " · " + word("es", "seo.daily") + " · Play Español");
+  assert.equal(title(k.text), word("es", "seo.words_t") + " · Play Español", "the Words page is titled for what people search (chat X)");
   assert.equal(canon(k.text), SITE + "/es/words/");
   assert.equal((k.text.match(/<li class="tile (?![^"]*tile-lg)/g) || []).length, 14);
   assert.equal((k.text.match(/<li class="tile [^"]*tile-lg/g) || []).length, 3, "Logicers' three word games first (chat H)");

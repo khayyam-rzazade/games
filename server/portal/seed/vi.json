@@ -1,0 +1,118 @@
+[
+  {
+    "name": "Từ Khóa",
+    "url": "https://chithanh123.github.io/AnyLanguage-Wordle/",
+    "lang": "vi",
+    "kind": "words",
+    "line": "Đoán từ tiếng Việt của hôm nay qua các ô màu.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle Tiếng Việt",
+    "url": "https://wordletiengviet.vercel.app/",
+    "lang": "vi",
+    "kind": "words",
+    "line": "Gõ từ đoán, màu ô cho bạn biết chữ nào đúng chỗ.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Bốn Nhóm",
+    "url": "https://4nhom.com/",
+    "lang": "vi",
+    "kind": "words",
+    "line": "Chia 16 từ thành 4 nhóm, mỗi nhóm có điểm chung.",
+    "maker": "Valkyrja Interactive",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Đuổi Hình Bắt Chữ",
+    "url": "https://duoihinhbatchu.com/daily",
+    "lang": "vi",
+    "kind": "words",
+    "line": "Nhìn hình rồi đoán từ hay câu mà hình nói đến.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Ô chữ VnExpress",
+    "url": "https://vnexpress.net/thu-gian/crossword",
+    "lang": "vi",
+    "kind": "words",
+    "line": "Tìm từ trong bảng chữ rồi ghép thành đáp án.",
+    "maker": "VnExpress",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku a Day",
+    "url": "https://sudokuaday.com/vi",
+    "lang": "vi",
+    "kind": "numbers",
+    "line": "Điền số từ 1 đến 9 vào lưới sudoku của hôm nay.",
+    "maker": "Ocho",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/vi/games/globle",
+    "lang": "vi",
+    "kind": "maps",
+    "line": "Đoán nước bí ẩn hôm nay nhờ khoảng cách và hướng.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/vi/games/worldle",
+    "lang": "vi",
+    "kind": "maps",
+    "line": "Nhìn hình bóng đất nước rồi đoán tên nước đó.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/vi/games/geodle",
+    "lang": "vi",
+    "kind": "maps",
+    "line": "Đoán nước bí ẩn trong sáu lượt bằng cách so gợi ý.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/vi/games/travle",
+    "lang": "vi",
+    "kind": "maps",
+    "line": "Tìm đường bộ ngắn nhất nối hai nước qua các nước giáp biên.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/vi",
+    "lang": "vi",
+    "kind": "knowledge",
+    "line": "Từ một bài Wikipedia, bấm link để đến bài đích.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Grid Bóng Đá",
+    "url": "https://gridsport.games/vi/bong-da/grid/big5",
+    "lang": "vi",
+    "kind": "sport",
+    "line": "Điền cầu thủ hợp với cả hàng và cột vào lưới 9 ô.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Bingo Bóng Đá",
+    "url": "https://gridsport.games/vi/bong-da/bingo/big5",
+    "lang": "vi",
+    "kind": "sport",
+    "line": "Xếp 20 cầu thủ vào 16 ô bingo cho khớp.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle Bóng Đá",
+    "url": "https://gridsport.games/vi/bong-da/wordle/big5",
+    "lang": "vi",
+    "kind": "sport",
+    "line": "Đoán cầu thủ bí ẩn của hôm nay trong tám lượt.",
+    "checked": "2026-11-23"
+  }
+]

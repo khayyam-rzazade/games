@@ -17,6 +17,8 @@
                             stays on the device)
      /m/<slug>/             a maker's page: the name and the games as coins (?l=<code>: its words; noindex for now; chat J)
      /p/<id>/<h>.<ext>      a game's logo, once a key said yes (pics.js)
+     /b/<id>.svg            a listed game's optional badge (?d=1: for dark pages), kept a day, nothing counted (badge.js;
+                            chat X, 23 Nov 2026)
      /sitemap.xml  /sitemap-root.xml  /<lang>/sitemap.xml  /robots.txt  /health
      anything else: 404 in the page's language
    Static files under /a/ (chat B) never reach this Worker (wrangler.jsonc run_worker_first: "!/a/*"). Every other path
@@ -34,6 +36,7 @@ import { lgRowLang, lgShown, lgOfKind, lgForGame, lgEn, EN_LINE, LG_HOME } from 
 import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_PUBLIC, CSP_ADMIN, ASSET } from "./pages.js";
 import { claimCode, claimCheck, claimToken, makerGet, makerEdit, makerPicApi, tokenGame } from "./claim.js";
 import { servePic, PIC_BODY } from "./pics.js";
+import { badgeRoute } from "./badge.js";
 import { hit, view, add, report, vote, langsApi, gamesApi, diceApi, countsApi } from "./api.js";
 import { adminQueue, adminGame, adminAct, adminImport, adminPic } from "./admin.js";
 import { nightly } from "./cron.js";
@@ -95,8 +98,9 @@ const redirect = (to, status) => new Response(null, { status: status || 302, hea
    code; any other value answers "bad" and is never kept). */
 const KEEP = { "/about/": "l", "/api/counts": "lang", "/api/counts/": "lang" };
 export function cacheKey(u, ver) {
-  const k = KEEP[u.pathname] || (u.pathname.startsWith("/m/") ? "l" : null), v = k ? u.searchParams.get(k) : null;
-  const q = v === null ? "" : "?" + k + "=" + (isLang(v) ? v : "_");
+  const k = KEEP[u.pathname] || (u.pathname.startsWith("/m/") ? "l" : u.pathname.startsWith("/b/") ? "d" : null), v = k ? u.searchParams.get(k) : null;
+  /* a badge keeps d=1 (dark) and nothing else (chat X) */
+  const q = v === null ? "" : k === "d" ? (v === "1" ? "?d=1" : "") : "?" + k + "=" + (isLang(v) ? v : "_");
   return u.origin + u.pathname + q + (ver ? (q ? "&" : "?") + "v=" + ver : "");
 }
 /* The deploy's version, in every edge key (chat K, 20 Nov 2026), so a deploy shows its new pages at once and never a page
@@ -215,6 +219,9 @@ async function page(req, env, ctx, url) {
   if (segs[0] === "p" && segs.length === 3) {                               // a game's logo (chat J)
     const r = await cached(req, env, ctx, async () => (await servePic(env, segs[1], segs[2])) || new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex", "Cache-Control": "public, max-age=60" } }));
     return r;
+  }
+  if (segs[0] === "b" && segs.length === 2 && segs[1].endsWith(".svg")) {   // a listed game's badge (chat X)
+    return cached(req, env, ctx, () => badgeRoute(env, segs[1].slice(0, -4), url.searchParams.get("d") === "1"));
   }
   if (/\.[a-z0-9]{1,8}$/i.test(path) && !(segs.length === 2 && segs[1] === "sitemap.xml")) {
     if (env.ASSETS) { try { const r = await env.ASSETS.fetch(req); if (r.status !== 404) return r; } catch (x) { /* none */ } }

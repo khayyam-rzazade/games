@@ -122,7 +122,7 @@ Worker with `0`, see the top of `portal/tests/check.py`).
 npm test
 ```
 
-117 tests (one needs `LIVE=1`; on 22 Nov 2026 116 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
+127 tests (one needs `LIVE=1`; on 23 Nov 2026 126 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
 per device, game and UTC day; robots and other sites not counted; the duplicate rule; the add check (a redirect to another
 host, a page in another language, the blocklist, a page that does not open, at most 5 redirects, never an IP or localhost);
 the review key refused on hide, delete and import; a language opening at 5 and not on the English Logicers games; Graj
@@ -138,7 +138,11 @@ languages, a page's life in a browser and at the edge (and the deploy's version 
 Analytics on the public pages only. `test/test_n.mjs` (chat N, 22 Nov 2026) holds prompt N, each test failing before it: the coin
 opens the game's page (Logicers' coins still play), "Add a game" with a listed game's link names it for Claim, and the claim
 pages, the form and the To tell email take every word from the words files (the keys `claim.*`, `maker.*`, `mail.*`, the same
-in all 12 files with the same marks; a language whose words are all marks shows no English of its own). D1 is Node's
+in all 12 files with the same marks; a language whose words are all marks shows no English of its own). `test/test_x.mjs`
+(chat X, 23 Nov 2026) holds prompt X, each test failing before it: the Words page's title, description and list name from
+`seo.words_t` and `seo.words_d`; every kind row's name a link to its kind page; the badge (`/b/<id>.svg`, light and dark,
+nothing counted, no number while the numbers are hidden, 404 off the list, its look in every language, on the maker's form
+only); the 19 languages' words files, their rows in `src/langs.js`, plural forms for all six CLDR categories. D1 is Node's
 own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`).
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.
@@ -176,6 +180,7 @@ Pages (HTML, rendered by the Worker, cached at the edge 5 minutes; the numbers c
 | `/maker/` (`?l=<code>`) | the maker's form: the maker's name, each game's line, kind and logo (the key stays on the device); in `?l=` (a language with a words file), else the first of the browser's languages (`Accept-Language`) that has one, else English; never indexed, never cached |
 | `/m/<slug>/` (`?l=<code>`) | a maker's page: its name and its listed games as coins (`noindex, follow` for now; chat J, stage 3) |
 | `/p/<id>/<h>.<ext>` | a game's logo once a key said yes: its fixed type (PNG, JPEG, WebP), `nosniff`, `default-src 'none'; sandbox`, kept a year |
+| `/b/<id>.svg` (`?d=1`) | a listed game's optional badge (chat X): our own SVG, "Play <Language>" and "by Logicers" small with the game's coin, for a light page or a dark one (`d=1`); no script, no cookie, nothing counted, no number while `SHOW_NUMBERS` is `"0"`; kept a day; 404 for a game that is not listed and for Logicers' own |
 | `/sitemap.xml`, `/sitemap-root.xml`, `/<lang>/sitemap.xml`, `/robots.txt`, `/health` | |
 
 A language that is not open: its every address answers 302 to `/`. Anything unknown: 404 in the page's language (with
@@ -312,6 +317,13 @@ Its words file `words/<code>.json` and one import line in `src/words.js` (a test
 in `src/langs.js` (all 51 rows are there already; check once that "Play" is not a big brand in that country, as for
 Polish), and its starting games (`npm run import -- seed/<code>.json`). It opens by itself at 5 games.
 
+**Chat X, 23 Nov 2026:** the 19 languages of waves 1 and 2 (uk cs ro hu sv no da fi el ca az id vi; he ar fa th zh-hans
+zh-hant) have their words files, as copies of `en.json` until the words chats write them (what the new keys must tell:
+`notes/words-x.md`), and their import lines; their rows in `src/langs.js` are checked (Norwegian is Bokmål: its pages say
+`lang="nb"`). A plural form is used for every CLDR category a language has (Arabic: `.zero .one .two .few .many`, the
+plain key being `other`), only from the language's own file. Nothing opens before 5 listed games. If a language's name
+changes in `src/langs.js`, run `python3 scripts/glyphs.py` (below): a test says so.
+
 ## For the front end (chat B)
 
 Every template and the list of classes are in `src/pages.js` (change the markup there freely; keep its class list true).
@@ -354,3 +366,29 @@ My run count; Logicers' own coins, which have no page here, still open the game 
   reads every word from the page's data and has none of its own. The English is in all 12 files until chat P translates it.
   `bestLang()` in `src/words.js` picks the form's language from `Accept-Language`. The browser check's section 13
   (`--only-n`) looks at the three pages and the sheet in the 12 languages.
+
+**Chat X, 23 Nov 2026 (claude/play-next-23nov.md, prompt X):**
+- **The Words pages for search.** `/<lang>/words/` takes its `<title>` (then ` · Play <Language>`), its description and its
+  list's JSON-LD name from `seo.words_t` and `seo.words_d` (English "Word games like Wordle"); each words file names its own
+  language there, in its own words, with no mark. What the page shows does not change. Every kind row's name on a language
+  page (and on its 404) is a link to its kind page (`.row-hl`, `.row-ta`), so a short row with no More still leads there and
+  search engines reach every kind page without the sitemap; the link reaches up over the head's padding and hairline, so it
+  is 44 px and adds no height.
+- **The optional badge.** `src/badge.js`: `GET /b/<id>.svg` (and `?d=1`), the HTML for the maker's form (`badge` on each
+  listed game in `POST /api/maker`), and nothing else: not in the email, not on the claim pages. "Play", the language's name
+  and the coin's digits are outlines of Geologica (`src/glyphs.js`), so the badge looks the same on every site; a name
+  Geologica does not cover (日本語, 한국어, עברית, العربية, فارسی, ไทย, Chinese) and the small "by Logicers" are text in the
+  visitor's own fonts, with a width estimated a little wide. `src/glyphs.js` is made by `scripts/glyphs.py` from
+  `portal/a/fonts` and the names in `src/langs.js` (`pip install fonttools brotli uharfbuzz`, then
+  `python3 scripts/glyphs.py`); run it again only when a name in `src/langs.js` or the fonts change. On the form
+  (`portal/a/maker.js` `badgePart`): the two pictures (light, dark; the one chosen is ringed), the chosen one's HTML and
+  Copy; words `maker.badge`, `maker.badge_p` and `claim.copy`. About says it in one sentence.
+- **Found on the way, fixed:** with the numbers hidden, the coins of the kind Numbers still showed today's players (on a
+  language page, the Numbers kind page and the 404): `hush` in `src/pages.js` kept every key named `numbers` (meant for a
+  claimed game's own days and countries), and `byKind.numbers` is one. Only the page's own `numbers` is kept now.
+  The browser check's section 10 and 13 also follow the words files where they still expected English (the To tell email
+  and the logo's message are in the game's or the form's language since chats N and P; Swedish has a words file now).
+- **The browser check's section 14** (`--only-x`): the Words titles in the 12 languages; the kind rows' links (44 px, no
+  height added, measured against the same head without the link) at 320, 390 and 1280, light and dark; the badge on the
+  form in the 12 languages at three widths, both looks, stretched words, Copy; the badge as a picture on another page
+  (52 px high, nothing else loaded), against both local Workers.

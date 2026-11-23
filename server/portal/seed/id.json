@@ -1,0 +1,85 @@
+[
+  {
+    "name": "Wordle ID",
+    "url": "https://wordle-id.vercel.app/daily",
+    "lang": "id",
+    "kind": "words",
+    "line": "Tebak kata rahasia hari ini, lihat warna kotaknya.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Katla",
+    "url": "https://katla.id/",
+    "lang": "id",
+    "kind": "words",
+    "line": "Tebak kata lima huruf hari ini dalam enam percobaan.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "TTS Kompas",
+    "url": "https://www.kompas.id/tts/",
+    "lang": "id",
+    "kind": "words",
+    "line": "Isi teka-teki silang Kompas hari ini, bisa tanpa daftar.",
+    "maker": "Kompas",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kata yang Mengalir",
+    "url": "https://slidingword.com/?lang=id",
+    "lang": "id",
+    "kind": "words",
+    "line": "Geser kartu huruf sampai jadi empat kata, satu per baris.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Sudoku a Day",
+    "url": "https://sudokuaday.com/id",
+    "lang": "id",
+    "kind": "numbers",
+    "line": "Isi angka 1 sampai 9 di kotak sudoku hari ini.",
+    "maker": "Ocho",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Kotla",
+    "url": "https://kotla.vercel.app/",
+    "lang": "id",
+    "kind": "maps",
+    "line": "Tebak kota atau kabupaten di peta lewat petunjuk jarak.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/id",
+    "lang": "id",
+    "kind": "knowledge",
+    "line": "Klik link Wikipedia dari artikel awal sampai artikel tujuan.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Grid Sepak Bola",
+    "url": "https://gridsport.games/id/sepakbola/grid/big5",
+    "lang": "id",
+    "kind": "sport",
+    "line": "Isi kotak dengan pemain yang cocok untuk baris dan kolom.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Bingo Sepak Bola",
+    "url": "https://gridsport.games/id/sepakbola/bingo/big5",
+    "lang": "id",
+    "kind": "sport",
+    "line": "Pasang 20 pemain ke 16 kotak di kartu bingo.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Wordle Sepak Bola",
+    "url": "https://gridsport.games/id/sepakbola/wordle/big5",
+    "lang": "id",
+    "kind": "sport",
+    "line": "Tebak pemain rahasia hari ini dalam delapan percobaan.",
+    "checked": "2026-11-23"
+  }
+]
