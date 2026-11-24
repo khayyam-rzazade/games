@@ -80,9 +80,9 @@ test("list: needs kind, name, line and lang; gets a slug, a New place, the ribbo
   const p = await get(e, "/es/");
   assert.match(p.text, /<li class="tile t\d+ tile-new tile-one is-0" data-game="[a-z0-9]+" data-kind="words"><a class="tile-a" href="\/es\/g\/palabra-nueva\/"><span class="tile-badge">/,
     "the coin opens the game's page (chat N, 22 Nov 2026; it played from chat H)");
-  assert.match(p.text, /<a class="tile-name" href="\/es\/g\/palabra-nueva\/" tabindex="-1" aria-hidden="true">Palabra Nueva<\/a>/, "the name under it is the same link");
+  assert.match(p.text, /<a class="tile-name" href="\/es\/g\/palabra-nueva\/" tabindex="-1" aria-hidden="true" dir="auto">Palabra Nueva<\/a>/, "the name under it is the same link");
   const gp = await get(e, "/es/g/palabra-nueva/");
-  assert.match(gp.text, /<span class="game-maker">Ana<\/span>/);
+  assert.match(gp.text, /<span class="game-maker" dir="auto">Ana<\/span>/);
   /* a second game with the same name gets another slug; a name in another script falls back to the site's name */
   WEB.set("https://otra.example.com/", { body: page("Otra", "es") });
   await addG(e, "https://otra.example.com/");

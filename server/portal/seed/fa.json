@@ -1,0 +1,54 @@
+[
+  {
+    "name": "واجور",
+    "url": "https://www.vaajoor.com/",
+    "lang": "fa",
+    "kind": "words",
+    "line": "کلمهٔ پنج‌حرفی امروز رو توی شش حدس پیدا کن.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "چارجو",
+    "url": "https://www.vaajoor.com/chaarjoo",
+    "lang": "fa",
+    "kind": "words",
+    "line": "۱۶ کلمه رو توی چهار گروه چهارتایی جا بده.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "وردل فارسی",
+    "url": "https://tools.negareno.com/wordle",
+    "lang": "fa",
+    "kind": "words",
+    "line": "کلمهٔ پنج‌حرفی امروز رو توی هفت تلاش حدس بزن.",
+    "maker": "نگار نو",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "حدس کلمه",
+    "url": "https://golpesar.com/bazi/kalameh",
+    "lang": "fa",
+    "kind": "words",
+    "line": "یه واژهٔ فارسی پنج‌حرفی رو با شش حدس پیدا کن.",
+    "maker": "گلپسر",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "سودوکوی روزانه",
+    "url": "https://golpesar.com/bazi/sudoku",
+    "lang": "fa",
+    "kind": "numbers",
+    "line": "جدول ۹ در ۹ رو با عددهای ۱ تا ۹ پر کن.",
+    "maker": "گلپسر",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/fa",
+    "lang": "fa",
+    "kind": "knowledge",
+    "line": "بین صفحه‌های ویکی‌پدیا بپر تا به صفحهٔ امروز برسی.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  }
+]

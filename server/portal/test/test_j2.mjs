@@ -225,7 +225,7 @@ test("the pages: Your game? and Claim on a game not claimed, the address on a cl
   const gp = await get(e, "/es/g/" + g.slug + "/");
   assert.match(gp.text, new RegExp(`<p class="yours-q yours-q-claim"><span class="yours-q-t">¿Es tu juego\\?</span> <a class="btn btn-claim" href="/claim/\\?g=${g.id}">Reclamar</a></p>`));
   await claimWithLine(e, h);
-  assert.match((await get(e, "/es/g/" + h.slug + "/")).text, /<p class="yours-q">¿Es tu juego\? Escribe a <span class="mail">logicers.world@gmail.com<\/span><\/p>/);
+  assert.match((await get(e, "/es/g/" + h.slug + "/")).text, /<p class="yours-q">¿Es tu juego\? Escribe a <span class="mail" dir="ltr">logicers.world@gmail.com<\/span><\/p>/);
 
   const c = await get(e, "/claim/?g=" + g.id);
   assert.equal(c.status, 200);
@@ -235,7 +235,7 @@ test("the pages: Your game? and Claim on a game not claimed, the address on a cl
   assert.match(c.text, /<html lang="es"/, "in the game's language since chat N (22 Nov 2026), with no line saying it is English");
   assert.doesNotMatch(c.text, /class="about-local"/);
   assert.match(c.text, /<script src="\/a\/maker\.js\?v=[0-9a-f]{10}" defer><\/script>/);
-  assert.match(c.text, new RegExp(`<span class="claim-url">${g.url.replace(/\./g, "\\.")}</span>`));
+  assert.match(c.text, new RegExp(`<span class="claim-url" dir="ltr">${g.url.replace(/\./g, "\\.")}</span>`));
   assert.equal((await get(e, "/claim/?g=" + h.id)).status, 200, "a claimed game can be claimed again (the recovery)");
   assert.equal((await get(e, "/claim/?g=lg-energy-en")).status, 404, "never Logicers' own");
   assert.equal((await get(e, "/claim/?g=nope")).status, 404);
@@ -252,7 +252,7 @@ test("the word Claim in every language, and the question before it", async () =>
   const { WORDS } = await import("../src/words.js");
   for (const [l, w] of Object.entries(WORDS)) {
     assert.ok(w.claim && w.claim.length <= 14, l + ": claim");
-    assert.match(w.yours_q, /^[^?？]+[?？]/, l + ": yours_q asks first");
+    assert.match(w.yours_q, /^[^?？؟;\u037E]+[?？؟;\u037E]/, l + ": yours_q asks first");
   }
 });
 

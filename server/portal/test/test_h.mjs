@@ -302,7 +302,7 @@ test("the coin and the name under it open the game's page (chat N, 22 Nov 2026; 
   await importGames(e, seedGames("es", 1));
   const p = (await get(e, "/es/")).text;
   assert.match(p, /<a class="tile-a" href="\/es\/g\/game-es-1\/">/);
-  assert.match(p, /<a class="tile-name" href="\/es\/g\/game-es-1\/" tabindex="-1" aria-hidden="true">Game es 1<\/a>/);
+  assert.match(p, /<a class="tile-name" href="\/es\/g\/game-es-1\/" tabindex="-1" aria-hidden="true" dir="auto">Game es 1<\/a>/);
   const g = (await get(e, "/es/g/game-es-1/")).text;
   assert.match(g, /<a class="game-tile" href="https:\/\/g1-es.example.org\/" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true">/);
 });

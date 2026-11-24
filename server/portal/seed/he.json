@@ -1,0 +1,129 @@
+[
+  {
+    "name": "מילן",
+    "url": "https://milan.liorp.dev/",
+    "lang": "he",
+    "kind": "words",
+    "line": "נחש את מילת היום בכמה ניסיונות.",
+    "maker": "ליאור פולק",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "מילותיים",
+    "url": "https://milotayim.com/",
+    "lang": "he",
+    "kind": "words",
+    "line": "נחש שתי מילים קשורות, עם אותם רמזים.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "סמנטעל",
+    "url": "https://semantle.ishefi.com/",
+    "lang": "he",
+    "kind": "words",
+    "line": "נחש את המילה הסודית לפי קרבה במשמעות.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "סמנטעל יומי",
+    "url": "https://hebrew-semantle.com/",
+    "lang": "he",
+    "kind": "words",
+    "line": "מצא את מילת היום לפי דמיון במשמעות.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "כוורת מילים",
+    "url": "https://wordhive.co.il/",
+    "lang": "he",
+    "kind": "words",
+    "line": "בנה מילים מהאותיות בכוורת של היום.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "מה הקשר",
+    "url": "https://www.yo-yoo.co.il/kesher/today/",
+    "lang": "he",
+    "kind": "words",
+    "line": "חלק 16 מילים לארבע קבוצות לפי הקשר.",
+    "maker": "יויו",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "מילים מצטלבות",
+    "url": "https://www.yo-yoo.co.il/daily/milim-mitztalvot/",
+    "lang": "he",
+    "kind": "words",
+    "line": "חבר אותיות והשלם תשבץ קטן של חמש מילים.",
+    "maker": "יויו",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "איש תלוי יומי",
+    "url": "https://www.yo-yoo.co.il/hangmanonline/daily/",
+    "lang": "he",
+    "kind": "words",
+    "line": "גלה עשר מילים ביום, אות אחרי אות.",
+    "maker": "יויו",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "אותיות מבולבלות",
+    "url": "https://www.yo-yoo.co.il/words/daily/",
+    "lang": "he",
+    "kind": "words",
+    "line": "סדר את האותיות וגלה את המילה, עשר בכל יום.",
+    "maker": "יויו",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/he",
+    "lang": "he",
+    "kind": "knowledge",
+    "line": "קפוץ בין דפי ויקיפדיה עד שתגיע לדף של היום.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "מי ה־11?",
+    "url": "https://mi-ha11.co.il/",
+    "lang": "he",
+    "kind": "sport",
+    "line": "נחש את 11 השחקנים שפתחו במשחק מהכדורגל הישראלי.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "מכיר תשיר",
+    "url": "https://mekirshir.com/",
+    "lang": "he",
+    "kind": "music",
+    "line": "זהה שיר לפי שנייה אחת ממנו, בכל סגנון.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "נחשיר",
+    "url": "https://guesssong.co.il/",
+    "lang": "he",
+    "kind": "music",
+    "line": "זהה שיר לפי שכבות של כלי נגינה.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "נחשת'שיר",
+    "url": "https://xn--cebet8adag.net/",
+    "lang": "he",
+    "kind": "music",
+    "line": "זהה שיר ישראלי לפי הפזמון, כלי אחרי כלי.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "צוללות",
+    "url": "https://zolelot.com/",
+    "lang": "he",
+    "kind": "other",
+    "line": "מצא את הספינות בלוח לפי המספרים בצדדים.",
+    "maker": "דן שמעוני",
+    "checked": "2026-11-23"
+  }
+]

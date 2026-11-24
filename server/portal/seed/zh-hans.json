@@ -1,0 +1,132 @@
+[
+  {
+    "name": "汉兜",
+    "url": "https://handle.antfu.me/",
+    "lang": "zh-hans",
+    "kind": "words",
+    "line": "猜一个成语，看拼音和字的颜色找答案",
+    "maker": "Anthony Fu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "中文猜词游戏",
+    "url": "https://www.masmo.cn/tool/wordle-cn",
+    "lang": "zh-hans",
+    "kind": "words",
+    "line": "6次机会猜一个四字成语，看颜色找答案",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/zh/games/worldle",
+    "lang": "zh-hans",
+    "kind": "maps",
+    "line": "看国家的剪影，猜它是哪个国家",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/zh/games/globle",
+    "lang": "zh-hans",
+    "kind": "maps",
+    "line": "在地图上点一点，看离答案还有多远",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/zh/games/geodle",
+    "lang": "zh-hans",
+    "kind": "maps",
+    "line": "6次机会猜一个国家，每次多一条线索",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "无猜不欢",
+    "url": "https://noguessnogame.com/zh-cn",
+    "lang": "zh-hans",
+    "kind": "maps",
+    "line": "每天一个国家，用三种玩法猜出它",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/zh",
+    "lang": "zh-hans",
+    "kind": "knowledge",
+    "line": "从一篇维基百科开始，点链接走到目标文章",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Songless",
+    "url": "https://songless.pro/zh",
+    "lang": "zh-hans",
+    "kind": "music",
+    "line": "听一小段歌，猜歌名；猜错就多听一点",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Song Spot",
+    "url": "https://songspot.co/zh/daily",
+    "lang": "zh-hans",
+    "kind": "music",
+    "line": "每天5首歌，从0.1秒的片段开始猜",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "足一把",
+    "url": "https://zuyiba.net/",
+    "lang": "zh-hans",
+    "kind": "sport",
+    "line": "每天猜一位足球球员，看颜色线索缩小范围",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Copero 猜球星",
+    "url": "https://copero.net/zh/games/adivina-el-futbolista",
+    "lang": "zh-hans",
+    "kind": "sport",
+    "line": "8次机会，猜出今天的隐藏足球传奇",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "猜球员",
+    "url": "https://footballlineupbuilder.com/zh-CN/quizzes/guess-the-player",
+    "lang": "zh-hans",
+    "kind": "sport",
+    "line": "照片很模糊，7次内猜出神秘球员",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "FilmSweep",
+    "url": "https://filmsweep.io/zh-hans",
+    "lang": "zh-hans",
+    "kind": "screen",
+    "line": "找出同时符合演员和条件的电影，3条命",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Quietdoku 每日数独",
+    "url": "https://quietdoku.com/zh-hans/daily",
+    "lang": "zh-hans",
+    "kind": "numbers",
+    "line": "每天一道数独，全世界同一题，难度自选",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "E-Sudoku 每日数独",
+    "url": "https://e-sudoku.com/zh/sudoku/daily",
+    "lang": "zh-hans",
+    "kind": "numbers",
+    "line": "每天一道新数独，大家玩同一题",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Daily Games",
+    "url": "https://daily.zalize.com/zh-cn/",
+    "lang": "zh-hans",
+    "kind": "other",
+    "line": "每天一套小游戏，每款一题，文字数字地理都有",
+    "checked": "2026-11-24"
+  }
+]

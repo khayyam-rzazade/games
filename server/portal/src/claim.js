@@ -91,7 +91,13 @@ async function claimed(env, g, key, how) {
   }
   if (!out) {
     const k = newKey(), id = newId();
-    const name = cleanText(g.maker, 1, 60) || String(g.host || "").replace(/^www\./, "").slice(0, 60) || g.name.slice(0, 60);
+    /* a new maker's name (plan 2.20; chat Q, 23 Nov 2026, the live claim test's first note): through the emailed link, the
+       name its sender gave with the game (the link went to that sender's address, the To tell card's first one, so the one
+       who claims is that sender); otherwise, and for a claim with the line (whoever controls the page, who may not be the
+       one who sent it, so a sender's name is never made public by someone else), the maker the listing names, else the
+       game's host, else its name. The maker can change it on the form at once. */
+    const sender = how === "link" ? await one(env, "SELECT name FROM adds WHERE game = ? AND email <> '' ORDER BY id LIMIT 1", g.id) : null;
+    const name = cleanText(sender && sender.name, 1, 60) || cleanText(g.maker, 1, 60) || String(g.host || "").replace(/^www\./, "").slice(0, 60) || g.name.slice(0, 60);
     maker = { id, name, slug: await freeMakerSlug(env, name) };
     stmts.push(st(env, "INSERT INTO makers (id, slug, name, key_hash, made) VALUES (?, ?, ?, ?, ?)", id, maker.slug, name, await keyHash(env, "maker", k), now));
     stmts.push(st(env, "UPDATE games SET maker_id = ?, claimed_at = ?, maker = ? WHERE id = ?", id, now, name, g.id));

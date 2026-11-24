@@ -14,7 +14,12 @@
    capitalised as a name; Hebrew, Arabic and Persian right to left; "Play" for all of them until the words chats' check of
    2.2. Norwegian is Bokmål: the page says lang="nb" (tag), as no.wikipedia.org does; the code in addresses stays "no".
    Azerbaijani "Azərbaycanca" (Wikipedia's own name for it; "Play Azərbaycanca" reads "play in Azerbaijani") is for
-   Khayyam to confirm. */
+   Khayyam to confirm.
+   Chat R, 24 Nov 2026 (wave 2): nu, where a row has it, is the language's own digits (Unicode's numbering systems): Arabic
+   writes ٠١٢٣ (arab), Persian ۰۱۲۳ (arabext). Without it a browser picks by its own data, and they differ: newer ones write
+   Arabic with 0123, older ones (and the Worker, by its own version) with ٠١٢٣. So every number the server or a device
+   writes is formatted with numTag(code), "ar-u-nu-arab", and both write the same digits. Hebrew, Thai and Chinese write
+   0123 (no nu). */
 
 export const LANGS = [
   /* launch (12) */
@@ -45,8 +50,8 @@ export const LANGS = [
   { code: "id", endonym: "Bahasa Indonesia", play_word: "Play", dir: "ltr", group: "phase2" },
   { code: "vi", endonym: "Tiếng Việt", play_word: "Play", dir: "ltr", group: "phase2" },
   { code: "th", endonym: "ไทย", play_word: "Play", dir: "ltr", group: "phase2" },
-  { code: "ar", endonym: "العربية", play_word: "Play", dir: "rtl", group: "phase2" },
-  { code: "fa", endonym: "فارسی", play_word: "Play", dir: "rtl", group: "phase2" },
+  { code: "ar", endonym: "العربية", play_word: "Play", dir: "rtl", group: "phase2", nu: "arab" },
+  { code: "fa", endonym: "فارسی", play_word: "Play", dir: "rtl", group: "phase2", nu: "arabext" },
   { code: "zh-hans", endonym: "简体中文", play_word: "Play", dir: "ltr", group: "phase2", tag: "zh-Hans" },
   { code: "zh-hant", endonym: "繁體中文", play_word: "Play", dir: "ltr", group: "phase2", tag: "zh-Hant" },
   { code: "az", endonym: "Azərbaycanca", play_word: "Play", dir: "ltr", group: "phase2" },
@@ -79,6 +84,8 @@ export const LAUNCH = LANGS.filter((l) => l.group === "launch").map((l) => l.cod
 export const isLang = (c) => typeof c === "string" && LANG.has(c);
 /* the value of <html lang> */
 export const htmlLang = (c) => (LANG.get(c) && LANG.get(c).tag) || c;
+/* the locale for numbers and dates: the language's tag with its own digits (chat R): "ar-u-nu-arab", "fa-u-nu-arabext", else htmlLang */
+export const numTag = (c) => htmlLang(c) + (LANG.get(c) && LANG.get(c).nu ? "-u-nu-" + LANG.get(c).nu : "");
 /* the page's name in two parts: ["Play", "Español"], ["Graj", "Polski"] */
 export function nameParts(c) {
   const l = LANG.get(c);

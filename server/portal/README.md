@@ -122,7 +122,7 @@ Worker with `0`, see the top of `portal/tests/check.py`).
 npm test
 ```
 
-127 tests (one needs `LIVE=1`; on 23 Nov 2026 126 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
+137 tests (one needs `LIVE=1`; on 24 Nov 2026, chat R, 136 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
 per device, game and UTC day; robots and other sites not counted; the duplicate rule; the add check (a redirect to another
 host, a page in another language, the blocklist, a page that does not open, at most 5 redirects, never an IP or localhost);
 the review key refused on hide, delete and import; a language opening at 5 and not on the English Logicers games; Graj
@@ -142,7 +142,17 @@ in all 12 files with the same marks; a language whose words are all marks shows 
 (chat X, 23 Nov 2026) holds prompt X, each test failing before it: the Words page's title, description and list name from
 `seo.words_t` and `seo.words_d`; every kind row's name a link to its kind page; the badge (`/b/<id>.svg`, light and dark,
 nothing counted, no number while the numbers are hidden, 404 off the list, its look in every language, on the maker's form
-only); the 19 languages' words files, their rows in `src/langs.js`, plural forms for all six CLDR categories. D1 is Node's
+only); the 19 languages' words files (since chat Q: written by the words chats, the keys of `en.json` in its order and only
+the plural forms each language has), their rows in `src/langs.js`, plural forms for all six CLDR categories. `test/test_q.mjs`
+(chat Q, 23 Nov 2026, the check of wave 1) holds its fixes, each test failing before it: "Your game?" cut at the language's own
+question mark (Greek `;`, Arabic and Persian `؟`); a maker made through the emailed link named as its sender named themselves;
+a logo kept five minutes at the edge (a year in a browser), so after Delete or "Take the logo off" its address stops answering
+soon; a maker deleted with its last game. `test/test_r.mjs` (chat R, 24 Nov 2026, wave 2) holds its fixes, each test failing
+before it: Arabic's and Persian's own digits (`src/langs.js` `nu` and `numTag`; the page tells its script `nt`, so the server
+and every device write ١٬٢٣٤ and ۱٬۲۳۴ alike); right to left, the 90 days and the countries' bars from the right, Play's
+triangle never turned, a game's or a maker's name in its own direction, addresses, the email, the link field and code left
+to right; Arabic and Persian ask with `؟` and Arabic's words write its own digits; a coin's number sized by every character
+(separators too); the page's name never broken inside (简体中文); the Words icon's lines from the right in right to left. D1 is Node's
 own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`).
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.
@@ -321,7 +331,10 @@ Polish), and its starting games (`npm run import -- seed/<code>.json`). It opens
 zh-hant) have their words files, as copies of `en.json` until the words chats write them (what the new keys must tell:
 `notes/words-x.md`), and their import lines; their rows in `src/langs.js` are checked (Norwegian is Bokmål: its pages say
 `lang="nb"`). A plural form is used for every CLDR category a language has (Arabic: `.zero .one .two .few .many`, the
-plain key being `other`), only from the language's own file. Nothing opens before 5 listed games. If a language's name
+plain key being `other`), only from the language's own file. Nothing opens before 5 listed games. **Chat R, 24 Nov 2026:** a
+row's `nu` is the language's own digits (Arabic `arab` ٠١٢٣, Persian `arabext` ۰۱۲۳; Urdu would need its own look):
+every number on the server and the device is written with `numTag(code)`, because browsers' own data differ (newer ones
+write Arabic with 0123). Right to left needs nothing per language: `dir` in the row, and the CSS is logical. If a language's name
 changes in `src/langs.js`, run `python3 scripts/glyphs.py` (below): a test says so.
 
 ## For the front end (chat B)

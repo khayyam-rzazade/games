@@ -1,0 +1,153 @@
+[
+  {
+    "name": "كلمة",
+    "url": "https://www.kalimah.xyz/",
+    "lang": "ar",
+    "kind": "words",
+    "line": "خمّن كلمة اليوم المكوّنة من أربعة حروف.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "الوِرد",
+    "url": "https://arwordle.netlify.app/",
+    "lang": "ar",
+    "kind": "words",
+    "line": "خمّن كلمة اليوم من خمسة حروف في ثماني محاولات.",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "ووردل",
+    "url": "https://www.woardle.com/",
+    "lang": "ar",
+    "kind": "words",
+    "line": "خمّن كلمة اليوم في ست محاولات.",
+    "maker": "Habibi Technologies LLC",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "كلمة السر",
+    "url": "https://www.grilledoku.com/ar/word-search",
+    "lang": "ar",
+    "kind": "words",
+    "line": "اعثر على الكلمات المخفية في شبكة الحروف.",
+    "maker": "Grilledoku",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/ar/games/globle",
+    "lang": "ar",
+    "kind": "maps",
+    "line": "خمّن دولة اليوم؛ اللون الأدفأ يعني أنك أقرب.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/ar/games/worldle",
+    "lang": "ar",
+    "kind": "maps",
+    "line": "خمّن دولة اليوم من شكلها على الخريطة.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/ar/games/geodle",
+    "lang": "ar",
+    "kind": "maps",
+    "line": "اعرف دولة اليوم في ست محاولات من التلميحات.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/ar/games/travle",
+    "lang": "ar",
+    "kind": "maps",
+    "line": "اعثر على أقصر طريق بري بين دولتين.",
+    "maker": "GeoGames",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "خمن الدولة",
+    "url": "https://www.grilledoku.com/ar/guess-country",
+    "lang": "ar",
+    "kind": "maps",
+    "line": "خمّن دولة عربية من العلم والعاصمة والعملة.",
+    "maker": "Grilledoku",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "جغرافيا العرب",
+    "url": "https://www.grilledoku.com/ar/geography",
+    "lang": "ar",
+    "kind": "maps",
+    "line": "املأ شبكة ٣×٣ بدول عربية تطابق الشرطين.",
+    "maker": "Grilledoku",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "تحدي الأعلام",
+    "url": "https://www.grilledoku.com/ar/flags",
+    "lang": "ar",
+    "kind": "knowledge",
+    "line": "تعرّف على خمسة أعلام عربية كل يوم.",
+    "maker": "Grilledoku",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ar",
+    "lang": "ar",
+    "kind": "knowledge",
+    "line": "تنقّل بين صفحات ويكيبيديا لتصل إلى صفحة اليوم.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "سودوكو",
+    "url": "https://www.grilledoku.com/ar/sudoku",
+    "lang": "ar",
+    "kind": "numbers",
+    "line": "املأ الشبكة بالأرقام من ١ إلى ٩ بلا تكرار.",
+    "maker": "Grilledoku",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "شبكة كرة القدم",
+    "url": "https://gridsport.games/ar/football/grid",
+    "lang": "ar",
+    "kind": "sport",
+    "line": "املأ الشبكة بلاعبين يطابقون كل خانة.",
+    "maker": "GridSport.Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "بينغو كرة القدم",
+    "url": "https://gridsport.games/ar/football/bingo",
+    "lang": "ar",
+    "kind": "sport",
+    "line": "ضع كل لاعب في المربع المناسب له.",
+    "maker": "GridSport.Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "وردل كرة القدم",
+    "url": "https://gridsport.games/ar/football/wordle",
+    "lang": "ar",
+    "kind": "sport",
+    "line": "خمّن اللاعب الغامض من الدوري والنادي والجنسية.",
+    "maker": "GridSport.Games",
+    "checked": "2026-11-23"
+  },
+  {
+    "name": "خمن اللاعب",
+    "url": "https://www.renderfoot.com/ar/games/who-are-ya",
+    "lang": "ar",
+    "kind": "sport",
+    "line": "خمّن لاعب كرة القدم الغامض في ثماني محاولات.",
+    "maker": "RenderFoot",
+    "checked": "2026-11-23"
+  }
+]

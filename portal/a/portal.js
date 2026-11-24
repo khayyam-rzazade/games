@@ -77,7 +77,7 @@
 
   /* ---- numbers and words ---- */
   var NF = null, PR = null;
-  try { NF = new Intl.NumberFormat(TAG); } catch (e) { NF = null; }
+  try { NF = new Intl.NumberFormat(D.nt || TAG); } catch (e) { NF = null; }   // nt: the language's own digits (chat R: ١٢٣ in Arabic, ۱۲۳ in Persian), as the server writes them
   try { PR = new Intl.PluralRules(TAG); } catch (e) { PR = null; }
   function fmt(n) { return NF ? NF.format(n) : String(n); }
   function wordN(key, n) {
@@ -87,7 +87,7 @@
   }
   function aroundN(key, n) { var s = wordN(key, n), i = s.indexOf("{n}"); return i < 0 ? [s.trim(), ""] : [s.slice(0, i).trim(), s.slice(i + 3).trim()]; }
   function withN(key, n) { return wordN(key, n).replace("{n}", fmt(n)); }
-  function numCls(s) { var n = String(s).replace(/\D/g, "").length; return n >= 7 ? "n7" : n === 6 ? "n6" : n === 5 ? "n5" : ""; }
+  function numCls(s) { var n = Array.from(String(s)).length; return n >= 7 ? "n7" : n === 6 ? "n6" : n === 5 ? "n5" : ""; }   // as pages.js: every character, its separators too (chat R)
   function setNum(el, n) {
     if (!el || el.hasAttribute("data-mark")) return;
     var s = n ? fmt(n) : "";

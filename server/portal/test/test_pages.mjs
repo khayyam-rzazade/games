@@ -21,7 +21,7 @@ test("the six Logicers languages open at once; the wall lists them with their ga
   assert.equal(title(r.text), "Play Logicers");
   assert.equal(canon(r.text), SITE + "/");
   assert.match(htmlTag(r.text), /lang="en"/);
-  for (const c of ["en", "it", "tr", "es", "pt", "fr"]) assert.match(r.text, new RegExp(`<li class="lang" data-lang="${c}"[^>]*><a class="lang-a" href="/${c}/"><span class="lang-name">[^<]+</span><span class="lang-n">12</span>`));
+  for (const c of ["en", "it", "tr", "es", "pt", "fr"]) assert.match(r.text, new RegExp(`<li class="lang" data-lang="${c}"[^>]*><a class="lang-a" href="/${c}/"><span class="lang-name" dir="ltr">[^<]+</span><span class="lang-n">12</span>`));
   assert.doesNotMatch(r.text, /data-lang="de"/);
   assert.doesNotMatch(r.text, /hreflang/i, "no hreflang (2.15)");
   assert.equal(ld(r.text)["@graph"][0]["@type"], "ItemList");
@@ -68,7 +68,7 @@ test("a language without Logicers shows the English games with the EN chip", asy
   const r = await get(e, "/de/");
   assert.equal(r.status, 200);
   assert.match(r.text, /href="https:\/\/logicers.com\/same-energy\/"[^>]*data-hit><span class="tile-chip" lang="en">EN<\/span>/);
-  assert.match(r.text, /<a class="tile-name" href="https:\/\/logicers.com\/same-energy\/" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true" lang="en">Same Energy<\/a>/);
+  assert.match(r.text, /<a class="tile-name" href="https:\/\/logicers.com\/same-energy\/" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true" dir="auto" lang="en">Same Energy<\/a>/);
 });
 
 test("Graj po polsku on the Polish page (chat C's choice; the wall and the chip keep the endonym Polski)", async () => {
@@ -86,7 +86,7 @@ test("Graj po polsku on the Polish page (chat C's choice; the wall and the chip 
   const l = await get(e, "/api/langs");
   assert.equal(l.json.langs.find((x) => x.code === "pl").name, "Graj po polsku");
   const w = await get(e, "/");
-  assert.match(w.text, /<li class="lang" data-lang="pl"[^>]*><a class="lang-a" href="\/pl\/"><span class="lang-name">Polski<\/span>/);
+  assert.match(w.text, /<li class="lang" data-lang="pl"[^>]*><a class="lang-a" href="\/pl\/"><span class="lang-name" dir="ltr">Polski<\/span>/);
 });
 
 test("Play 日本語 and a right-to-left language carry their lang and dir", async () => {

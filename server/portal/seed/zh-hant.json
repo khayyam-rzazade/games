@@ -1,0 +1,124 @@
+[
+  {
+    "name": "JNDLE 字道",
+    "url": "https://samuello.io/jndle/",
+    "lang": "zh-hant",
+    "kind": "words",
+    "line": "倉頡版 Wordle：每天猜一個字",
+    "maker": "Samuel Lo",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Zidou",
+    "url": "https://chaaklau.github.io/zidou/",
+    "lang": "zh-hant",
+    "kind": "words",
+    "line": "用粵拼字母猜字，每天一題",
+    "maker": "阿揼",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "六合",
+    "url": "https://lukhap.jonathanl.dev/",
+    "lang": "zh-hant",
+    "kind": "words",
+    "line": "粵拼版 Wordle，每天一題，用拼音猜答案",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "字知之明",
+    "url": "https://zedaizd.github.io/zh-char-puzzle/",
+    "lang": "zh-hant",
+    "kind": "words",
+    "line": "象形版 Wordle：每天猜一個漢字",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Song Guesser",
+    "url": "https://guessingsong.com/zh",
+    "lang": "zh-hant",
+    "kind": "music",
+    "line": "聽0.1秒的前奏猜歌名，每天一首新歌",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "無猜不歡",
+    "url": "https://noguessnogame.com/zh-tw",
+    "lang": "zh-hant",
+    "kind": "maps",
+    "line": "每天一個國家，用三種玩法猜出它",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "GEOPUNK",
+    "url": "https://www.geopunk.io/zh-hant/",
+    "lang": "zh-hant",
+    "kind": "maps",
+    "line": "每天猜國家的輪廓、國旗和首都",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Countryle 猜國家",
+    "url": "https://kuakua.app/zh-TW/games/countryle",
+    "lang": "zh-hant",
+    "kind": "maps",
+    "line": "6次機會猜一個國家，看箭頭和顏色找方向",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Quietdoku 每日數獨",
+    "url": "https://quietdoku.com/zh-hant/daily",
+    "lang": "zh-hant",
+    "kind": "numbers",
+    "line": "每天一道數獨，全世界同一題，難度自選",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "NumPlace 每日數獨",
+    "url": "https://numplace.com/zh-hant/daily/",
+    "lang": "zh-hant",
+    "kind": "numbers",
+    "line": "每天一道新數獨，大家玩同一題",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "影迷來賓",
+    "url": "https://movie-guest.bobochen.dev/",
+    "lang": "zh-hant",
+    "kind": "screen",
+    "line": "從冷知識線索，猜出今天的電影",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "FilmSweep",
+    "url": "https://filmsweep.io/zh-hant",
+    "lang": "zh-hant",
+    "kind": "screen",
+    "line": "找出同時符合演員和條件的電影，3條命",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "估球員",
+    "url": "https://footballlineupbuilder.com/zh-HK/quizzes/guess-the-player",
+    "lang": "zh-hant",
+    "kind": "sport",
+    "line": "照片很模糊，7次內猜出神祕球員",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "台灣 Guessr",
+    "url": "https://taiwanguessr.com/",
+    "lang": "zh-hant",
+    "kind": "knowledge",
+    "line": "每天猜台灣的零食、品牌、捷運站，共七種題",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Daily Games",
+    "url": "https://daily.zalize.com/zh-tw/",
+    "lang": "zh-hant",
+    "kind": "other",
+    "line": "每天一套小遊戲，每款一題，文字數字地理都有",
+    "checked": "2026-11-24"
+  }
+]

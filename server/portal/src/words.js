@@ -40,7 +40,7 @@ import fa from "../words/fa.json" with { type: "json" };
 import th from "../words/th.json" with { type: "json" };
 import zhHans from "../words/zh-hans.json" with { type: "json" };
 import zhHant from "../words/zh-hant.json" with { type: "json" };
-import { htmlLang } from "./langs.js";
+import { htmlLang, numTag } from "./langs.js";
 
 export const WORDS = { en, es, pt, fr, de, it, tr, ru, pl, nl, ja, ko,
   uk, cs, ro, hu, sv, no, da, fi, el, ca, az, id, vi,
@@ -57,9 +57,9 @@ export function wordsOf(lang) {
 /* one word */
 export const word = (lang, key) => wordsOf(lang)[key] ?? en[key] ?? key;
 
-/* a number as the language writes it (1,234 / 1.234 / 1 234) */
+/* a number as the language writes it (1,234 / 1.234 / 1 234 / ١٬٢٣٤ / ۱٬۲۳۴: its own digits, langs.js numTag) */
 export function num(lang, n) {
-  try { return new Intl.NumberFormat(htmlLang(lang)).format(n); } catch (x) { return String(n); }
+  try { return new Intl.NumberFormat(numTag(lang)).format(n); } catch (x) { return String(n); }
 }
 /* the key for n: "players_today.one" when the language says "one" for n and the file has that form */
 export function pluralKey(lang, key, n) {

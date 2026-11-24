@@ -1,0 +1,76 @@
+[
+  {
+    "name": "Thwordle",
+    "url": "https://thwordle.vercel.app/",
+    "lang": "th",
+    "kind": "words",
+    "line": "ทายคำไทยปริศนาประจำวัน มี 6 ครั้ง ดูสีเป็นคำใบ้",
+    "maker": "narze",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "เวิดดิ้น",
+    "url": "https://word.in.th/",
+    "lang": "th",
+    "kind": "words",
+    "line": "เปลี่ยนคำทีละตัวอักษร จนไปถึงคำเป้าหมาย",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "คอนเท็กซ์ไทย",
+    "url": "https://context.in.th/",
+    "lang": "th",
+    "kind": "words",
+    "line": "ทายคำลับ ยิ่งอันดับต่ำ ยิ่งใกล้คำตอบ",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "รหัสคำไทย",
+    "url": "https://thaicryptic.com/",
+    "lang": "th",
+    "kind": "words",
+    "line": "ไขปริศนาซ่อนเงื่อนวันละข้อ จากคำใบ้และการเล่นคำ",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/th",
+    "lang": "th",
+    "kind": "knowledge",
+    "line": "คลิกลิงก์ในวิกิพีเดียไปให้ถึงบทความเป้าหมาย",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "ทายนักฟุตบอล",
+    "url": "https://footballlineupbuilder.com/th/quizzes/guess-the-player",
+    "lang": "th",
+    "kind": "sport",
+    "line": "รูปเบลอ ๆ ทายนักเตะลึกลับให้ได้ใน 7 ครั้ง",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "GEOPUNK",
+    "url": "https://www.geopunk.io/th/",
+    "lang": "th",
+    "kind": "maps",
+    "line": "ทายประเทศจากรูปร่าง ธง และเมืองหลวง วันละสามข้อ",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Countryle",
+    "url": "https://kuakua.app/th/games/countryle",
+    "lang": "th",
+    "kind": "maps",
+    "line": "ทายประเทศลับใน 6 ครั้ง ลูกศรบอกว่าใกล้หรือไกล",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "NumPlace",
+    "url": "https://numplace.com/th/daily/",
+    "lang": "th",
+    "kind": "numbers",
+    "line": "ซูโดกุใหม่ทุกวัน ทุกคนได้โจทย์เดียวกัน",
+    "checked": "2026-11-24"
+  }
+]

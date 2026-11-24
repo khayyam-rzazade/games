@@ -289,6 +289,8 @@ export async function adminAct(env, req, b) {
   } else if (b.action === "delete") {
     await env.DB.batch(["adds", "reports", "queue", "counts", "pics", "tokens"].map((t) => st(env, `DELETE FROM ${t} WHERE game = ?`, g.id))
       .concat([st(env, "DELETE FROM games WHERE id = ?", g.id),
+        /* a maker left with no game goes too, so its key opens nothing (chat Q, 23 Nov 2026: the claim test's third note) */
+        st(env, "DELETE FROM makers WHERE id = ? AND NOT EXISTS (SELECT 1 FROM games WHERE maker_id = ?)", g.maker_id || "", g.maker_id || ""),
         st(env, `INSERT INTO queue (kind, game, text, made, done, "by") VALUES ('act', NULL, ?, ?, ?, ?)`, "delete " + g.id + " " + g.lang + " " + g.norm, now, now, who)]));
     return json({ ok: true, deleted: g.id });
   }

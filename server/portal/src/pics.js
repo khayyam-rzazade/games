@@ -5,8 +5,10 @@
                                                animated PNG or WebP); the type and the size are read from the bytes (the
                                                file's name and the browser's word are never trusted). -> { state: "wait" }
                                                e: key | nogame | pic (with why: type | big | small | huge | animated | bad) | busy
-     GET  /p/<game id>/<h>.<ext>               the picture shown (state "ok"): its own fixed type, nosniff, kept a year (the
-                                               address changes with the bytes), never a page
+     GET  /p/<game id>/<h>.<ext>               the picture shown (state "ok"): its own fixed type, nosniff, kept a year by
+                                               a browser (the address changes with the bytes) and five minutes at the edge, so
+                                               after Delete, Hide or "Take the logo off" the address stops answering within
+                                               five minutes, as the game's page does (chat Q, 23 Nov 2026), never a page
    Stored in D1 (pics), not in a new store: a logo is small, there are few, and the Worker serves it from its own origin. */
 import { json, bad, clock, brake } from "./util.js";
 import { one, st, queueRow } from "./db.js";
@@ -117,6 +119,6 @@ export async function servePic(env, id, file) {
   const p = await one(env, "SELECT p.type, p.data FROM pics p JOIN games g ON g.id = p.game AND g.pic = ? WHERE p.game = ? AND p.h = ? AND p.state = 'ok'", file, id, m[1]);
   if (!p || p.type !== TYPES[m[2]]) return null;
   return new Response(bytesOf(p.data), { headers: {
-    "Content-Type": p.type, "X-Content-Type-Options": "nosniff", "Cache-Control": "public, max-age=31536000, immutable",
+    "Content-Type": p.type, "X-Content-Type-Options": "nosniff", "Cache-Control": "public, max-age=31536000, immutable, s-maxage=300",
     "Content-Security-Policy": "default-src 'none'; sandbox", "Content-Disposition": "inline", "Cross-Origin-Resource-Policy": "same-site" } });
 }

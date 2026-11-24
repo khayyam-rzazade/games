@@ -87,15 +87,30 @@ test("1. every kind row's name links to its kind page, also a short row with no 
 });
 
 /* ==== 3. the wiring for the 19 languages ==== */
-test("3. the 19 languages have a words file each (English for now), imported, with every key of en.json in its order", () => {
+/* Chat Q, 23 Nov 2026: the words chats W1a, W1b and W2 have written the 19 files, so they are no longer copies of en.json.
+   Each keeps every key of en.json in its order, except the plural forms: a language has exactly the forms its grammar
+   uses beyond "other" (Intl.PluralRules), for the keys English has plural forms of, and never one it lacks. */
+const PLURAL = /\.(zero|one|two|few|many)$/;
+test("3. the 19 languages have a words file each, imported, with every key of en.json in its order, and their own plural forms", () => {
   const files = fs.readdirSync(path.join(ROOT, "words")).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5)).sort();
   assert.deepEqual(files, LAUNCH.concat(WAVE1, WAVE2).sort(), "31 files: the 12 open languages and the 19 of waves 1 and 2");
   assert.deepEqual(LANGS.filter((l) => l.group === "phase2").map((l) => l.code).sort(), WAVE1.concat(WAVE2).sort(), "the 19 are langs.js's phase 2");
   const en = fs.readFileSync(path.join(ROOT, "words", "en.json"), "utf8");
+  const plain = (keys) => keys.filter((k) => !PLURAL.test(k));
+  const bases = [...new Set(Object.keys(WORDS.en).filter((k) => PLURAL.test(k)).map((k) => k.replace(PLURAL, "")))];
   for (const c of WAVE1.concat(WAVE2)) {
     assert.ok(WORDS[c], c + ": imported in src/words.js");
-    assert.equal(fs.readFileSync(path.join(ROOT, "words", c + ".json"), "utf8"), en, c + ": a copy of en.json until the words chats write it");
-    assert.deepEqual(Object.keys(WORDS[c]), Object.keys(WORDS.en), c + ": the same keys in the same order");
+    assert.notEqual(fs.readFileSync(path.join(ROOT, "words", c + ".json"), "utf8"), en, c + ": written by its words chat, no longer English");
+    assert.deepEqual(plain(Object.keys(WORDS[c])), plain(Object.keys(WORDS.en)), c + ": the same keys in the same order");
+    const cats = new Intl.PluralRules(htmlLang(c)).resolvedOptions().pluralCategories.filter((x) => x !== "other");
+    for (const k of Object.keys(WORDS[c]).filter((x) => PLURAL.test(x))) {
+      const [base, cat] = [k.replace(PLURAL, ""), PLURAL.exec(k)[1]];
+      assert.ok(bases.includes(base), c + ": " + k + " is a form of a key English has forms of");
+      assert.ok(cats.includes(cat), c + ": " + k + ": " + htmlLang(c) + " has no form " + cat);
+      assert.match(WORDS[c][k], /\{n\}/, c + ": " + k + " carries {n}");
+      const at = Object.keys(WORDS[c]), i = at.indexOf(k);
+      assert.ok(at[i - 1] === base || PLURAL.test(at[i - 1]) && at[i - 1].startsWith(base + "."), c + ": " + k + " follows its key");
+    }
   }
   const src = fs.readFileSync(path.join(ROOT, "src", "words.js"), "utf8");
   for (const c of WAVE1.concat(WAVE2)) assert.match(src, new RegExp(`from "\\.\\./words/${c}\\.json" with \\{ type: "json" \\};`), c + ": its import line");
@@ -138,7 +153,7 @@ test("3. plural forms: all six CLDR categories work (Arabic zero one two few man
     delete WORDS.ar["streak_n.one"];                    // the English copy's form, taken out to see that English never fills it
     const want = [[0, "zero"], [1, "one"], [2, "two"], [3, "few"], [10, "few"], [11, "many"], [99, "many"], [100, "players_today"], [102, "players_today"], [103, "few"], [111, "many"], [1000, "players_today"]];
     for (const [n, c] of want) assert.equal(pluralKey("ar", "players_today", n), c === "players_today" ? c : "players_today." + c, "ar " + n);
-    const ar = (n) => new Intl.NumberFormat("ar").format(n);
+    const ar = (n) => new Intl.NumberFormat("ar-u-nu-arab").format(n);   // Arabic's own digits (chat R): ٢, ١١
     assert.equal(withN("ar", "players_today", 2), "two " + ar(2));
     assert.equal(withN("ar", "players_today", 11), "many " + ar(11));
     assert.deepEqual(aroundN("ar", "players_today", 0), ["zero ", ""]);

@@ -82,14 +82,14 @@
    data- attributes portal.js reads: data-game, data-kind, data-count, data-count-label, data-hit (a link whose click sends
    /api/hit), data-open="sheet-add" | "sheet-report" | "sheet-langs" (opens that dialog; with data-kind it sets the kind), data-close,
    data-star, data-lang, data-e, data-more, data-from, data-filter, data-vote. */
-import { LANGS, LANG, htmlLang, nameParts, pageName, byEndonym } from "./langs.js";
+import { LANGS, LANG, htmlLang, numTag, nameParts, pageName, byEndonym } from "./langs.js";
 import { WORDS, wordsOf, word, num, aroundN, withN, fill, OWN_WORDS } from "./words.js";
 import { KINDS, picUrl, lgLogo, NUM_DAYS, indexable } from "./db.js";
 import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=93c50cba75", js: "/a/portal.js?v=08ec511cce", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=175514a379" };
+export const ASSET = { css: "/a/portal.css?v=804d5eb21f", js: "/a/portal.js?v=3ea97cf42b", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -113,8 +113,10 @@ const icon = (id, cls) => `<svg class="ico${cls ? " " + cls : ""}" aria-hidden="
 const T = (lang, key) => esc(word(lang, key));
 /* a word with marks filled by markup (each value given here is markup already; the word itself is escaped first) */
 const TM = (lang, key, marks) => esc(word(lang, key)).replace(/\{([a-z]+)\}/g, (m, k) => (marks && Object.prototype.hasOwnProperty.call(marks, k) ? marks[k] : m));
-/* a number's size class on a tile: the more digits, the smaller (portal.css; portal.js sets the same when it counts) */
-export const numCls = (s) => { const n = String(s).replace(/\D/g, "").length; return n >= 7 ? " n7" : n === 6 ? " n6" : n === 5 ? " n5" : ""; };
+/* a number's size class on a tile: the longer it is written, the smaller (portal.css; portal.js sets the same when it counts).
+   Chat R: every character counts, its separators too ("1,234" and "١٬٢٣٤" are five), since a separator takes room and \D took
+   Arabic and Persian digits for no digit at all; a 4-digit number was cut on a phone by 2 px. */
+export const numCls = (s) => { const n = [...String(s)].length; return n >= 7 ? " n7" : n === 6 ? " n6" : n === 5 ? " n5" : ""; };
 
 /* ---- the document ---- */
 function doc(o) {
@@ -166,7 +168,7 @@ function pageWords(lang, own) {
 }
 /* what portal.js gets on every page (and maker.js on the claim pages and the form: own names their words) */
 function pageData(d, more, own) {
-  return Object.assign({ lang: d.lang, site: d.site, page: d.page, words: pageWords(d.lang, own), contact: CONTACT, tag: htmlLang(d.lang), nums: d.nums === false ? 0 : 1 }, more || {});
+  return Object.assign({ lang: d.lang, site: d.site, page: d.page, words: pageWords(d.lang, own), contact: CONTACT, tag: htmlLang(d.lang), nt: numTag(d.lang), nums: d.nums === false ? 0 : 1 }, more || {});
 }
 /* The numbers are counted and, for now, not shown (Khayyam, 21 Nov 2026; util.js showNums; plan 2.8). A page whose data says
    nums: false is drawn as on a day with nobody: every "today", "in all" and "players today" it was given is 0, so each coin
@@ -286,7 +288,7 @@ export function tile(d, g, o) {
     + `<span class="tile-n${today ? numCls(n) : ""}" data-count="today" aria-hidden="true">${today ? esc(n) : ""}</span>`
     + `<span class="vh"><span class="tile-vn">${o.lg ? T(d.lang, "play") + " " : ""}<span${en}>${esc(g.name)}</span></span>${!o.lg && g.crown ? `<span class="tile-gotw">, ${T(d.lang, "gotw")}</span>` : ""}<span data-count-label="today">${today ? ", " + esc(withN(d.lang, "today_n", today)) : ""}</span></span>`
     + `</a>`
-    + `<a class="tile-name" ${link} tabindex="-1" aria-hidden="true"${en}>${esc(g.name)}</a>`
+    + `<a class="tile-name" ${link} tabindex="-1" aria-hidden="true" dir="auto"${en}>${esc(g.name)}</a>`
     + `<button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="${esc(g.id)}">${icon("i-star")}</button></li>`;
 }
 /* a coin's logo (chat J, plan 2.20): a maker's picture once a key said yes, or the drawing of one of Logicers' own games. With
@@ -300,7 +302,7 @@ function tileLogo(g, o) {
 }
 /* the template portal.js fills (Yours, More): the coin goes to the game's page; for a Logicers game portal.js makes it play */
 function tplTile(d) {
-  return `<template id="tpl-tile"><li class="tile" data-game="" data-kind=""><a class="tile-a" href=""><span class="tile-badge" hidden>${T(d.lang, "new")}</span><span class="tile-chip" lang="en" hidden>${T(d.lang, "en_chip")}</span>${icon("i-crown", "tile-crown-i")}${icon("k-other", "tile-kind")}${icon("k-other", "tile-zero")}<img class="tile-logo" alt="" width="64" height="64" decoding="async" hidden><svg class="tile-logo tile-logo-lg" aria-hidden="true" focusable="false" hidden><use href=""></use></svg><span class="tile-n" data-count="today" aria-hidden="true"></span><span class="vh"><span class="tile-vn"><span class="tile-vp" hidden>${T(d.lang, "play")} </span><span class="tile-vt"></span></span><span class="tile-gotw" hidden>, ${T(d.lang, "gotw")}</span><span data-count-label="today"></span></span></a><a class="tile-name" href="" tabindex="-1" aria-hidden="true"></a><button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="">${icon("i-star")}</button></li></template>`;
+  return `<template id="tpl-tile"><li class="tile" data-game="" data-kind=""><a class="tile-a" href=""><span class="tile-badge" hidden>${T(d.lang, "new")}</span><span class="tile-chip" lang="en" hidden>${T(d.lang, "en_chip")}</span>${icon("i-crown", "tile-crown-i")}${icon("k-other", "tile-kind")}${icon("k-other", "tile-zero")}<img class="tile-logo" alt="" width="64" height="64" decoding="async" hidden><svg class="tile-logo tile-logo-lg" aria-hidden="true" focusable="false" hidden><use href=""></use></svg><span class="tile-n" data-count="today" aria-hidden="true"></span><span class="vh"><span class="tile-vn"><span class="tile-vp" hidden>${T(d.lang, "play")} </span><span class="tile-vt"></span></span><span class="tile-gotw" hidden>, ${T(d.lang, "gotw")}</span><span data-count-label="today"></span></span></a><a class="tile-name" href="" tabindex="-1" aria-hidden="true" dir="auto"></a><button class="tile-star" type="button" aria-pressed="false" aria-label="${T(d.lang, "star")}" data-star="">${icon("i-star")}</button></li></template>`;
 }
 /* a row's head: its name, and More at the end. href: the name is a link to that page (a kind's row: its kind page, chat X,
    23 Nov 2026), so every kind page is reached from its language's page even when the row is short and has no More, and a
@@ -316,7 +318,7 @@ function moreLink(d, href, n) {
    run (a link to the next game of the run, or its tick when all are played; JS sets the address) */
 function mineTop(d) {
   const run = d.page === "lang"
-    ? `<a class="run" id="run" target="_blank" rel="noopener" data-hit data-game="" hidden>${icon("i-play", "ico-flip")}<span class="run-t"></span></a><span class="run-done" id="run-done" role="img" hidden>${icon("i-check")}<span class="run-t"></span></span>` : "";
+    ? `<a class="run" id="run" target="_blank" rel="noopener" data-hit data-game="" hidden>${icon("i-play")}<span class="run-t"></span></a><span class="run-done" id="run-done" role="img" hidden>${icon("i-check")}<span class="run-t"></span></span>` : "";
   return `<span class="streak" id="streak" role="img" hidden>${icon("i-flame")}<b class="streak-n"></b></span>${run}`;
 }
 function rowMine(d) {
@@ -375,14 +377,14 @@ function sheetAdd(d) {
   return `<dialog class="sheet sheet-add" id="sheet-add" aria-labelledby="sheet-add-h">
 <form class="sheet-form" method="post" action="/api/add" data-api="add" novalidate>
 ${sheetTop(L, "sheet-add-h", T(L, "add"))}
-<label class="fld fld-link"><span class="fld-l">${T(L, "f.link")}</span><input name="url" type="url" inputmode="url" required maxlength="500" autocomplete="url" spellcheck="false" placeholder="https://"></label>
+<label class="fld fld-link"><span class="fld-l">${T(L, "f.link")}</span><input name="url" type="url" inputmode="url" required maxlength="500" autocomplete="url" spellcheck="false" placeholder="https://" dir="ltr"></label>
 ${langField}
 <fieldset class="fld fld-kind"><legend class="fld-l">${T(L, "f.kind")}</legend><div class="kinds">
 ${KINDS.map((k) => `<label class="kind-opt"><input type="radio" name="kind" value="${k}" required>${icon("k-" + k)}<span class="kind-opt-t">${T(L, "cat." + k)}</span></label>`).join("\n")}
 </div></fieldset>
 <div class="fld-two">
 <label class="fld fld-name"><span class="fld-l">${T(L, "f.name")} <span class="fld-opt">· ${T(L, "f.optional")}</span></span><input name="name" maxlength="60" autocomplete="name"></label>
-<label class="fld fld-email"><span class="fld-l">${T(L, "f.email")} <span class="fld-opt">· ${T(L, "f.optional")}</span></span><input name="email" type="email" maxlength="120" autocomplete="email" spellcheck="false"></label>
+<label class="fld fld-email"><span class="fld-l">${T(L, "f.email")} <span class="fld-opt">· ${T(L, "f.optional")}</span></span><input name="email" type="email" maxlength="120" autocomplete="email" spellcheck="false" dir="ltr"></label>
 </div>
 <label class="hp" aria-hidden="true">Leave empty <input name="pl_x9" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-bwignore></label>
 <p class="sheet-err" data-e="link" role="alert" hidden>${T(L, "f.e_link")}</p>
@@ -433,7 +435,7 @@ function itemList(name, items) {
     itemListElement: items.map((x, i) => ({ "@type": "ListItem", position: i + 1, url: x.url, name: x.name })) };
 }
 const graph = (lists) => ({ "@context": "https://schema.org", "@graph": lists });
-const langTile = (l) => `<li class="lang" data-lang="${l.code}" lang="${esc(htmlLang(l.code))}" dir="${l.dir}"><a class="lang-a" href="/${l.code}/"><span class="lang-name">${esc(l.endonym)}</span><span class="lang-n">${esc(num("en", l.games))}</span><span class="lang-g" lang="en">games</span></a></li>`;
+const langTile = (l) => `<li class="lang" data-lang="${l.code}" lang="${esc(htmlLang(l.code))}"><a class="lang-a" href="/${l.code}/"><span class="lang-name" dir="${l.dir}">${esc(l.endonym)}</span><span class="lang-n">${esc(num("en", l.games))}</span><span class="lang-g" lang="en">games</span></a></li>`;
 
 /* ==== the pages. d: { site, lang, page, ... } as index.js gathers it ==== */
 
@@ -515,8 +517,10 @@ function numBlock(L, key, n, which) {
   const [a, b] = aroundN(L, key, n);
   return `<span class="num num-${which}"${n ? "" : " hidden"}><span class="num-w">${esc(a.trim())}</span><b class="num-n" data-count="${which}">${n ? esc(num(L, n)) : ""}</b><span class="num-w">${esc(b.trim())}</span></span>`;
 }
-/* "Your game?": the question of yours_q, up to its question mark (every language's yours_q asks it first) */
-export const yoursQ = (L) => { const s = word(L, "yours_q"), m = /^[^?？]*[?？]/.exec(s); return (m ? m[0] : s).trim(); };
+/* "Your game?": the question of yours_q, up to its question mark (every language's yours_q asks it first): ? ？, the Arabic
+   and Persian ؟, and the Greek one, written ; (U+037E, which NFC turns into ;) (chat Q, 23 Nov 2026) */
+export const QMARK = /^[^?？؟;\u037E]*[?？؟;\u037E]/;
+export const yoursQ = (L) => { const s = word(L, "yours_q"), m = QMARK.exec(s); return (m ? m[0] : s).trim(); };
 export function pageGame(d) {
   d = quiet(d);
   d = Object.assign({}, d, { page: "game" });
@@ -527,22 +531,22 @@ export function pageGame(d) {
 <a class="game-tile${pic ? " has-pic" : ""}" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true">${d.crown ? icon("i-crown", "game-crown") : ""}${pic ? `<img class="game-logo" src="${esc(pic)}" alt="" width="240" height="240" decoding="async">` : icon("k-" + g.kind, "game-ico")}</a>
 <div class="game-body">
 <div class="game-head">
-<h1 class="game-name">${esc(g.name)}</h1>
+<h1 class="game-name" dir="auto">${esc(g.name)}</h1>
 ${d.crown ? `<p class="game-gotw">${icon("i-crown")}<span>${T(L, "gotw")}</span></p>` : ""}
-<p class="game-meta"><a class="game-kind-a" href="/${L}/${esc(g.kind)}/">${T(L, "cat." + g.kind)}</a>${mk ? `<span class="game-dot" aria-hidden="true">·</span><a class="game-maker game-maker-a" href="/m/${esc(mk.slug)}/?l=${L}">${esc(mk.name)}</a>`
-    : g.maker ? `<span class="game-dot" aria-hidden="true">·</span><span class="game-maker">${esc(g.maker)}</span>` : ""}</p>
+<p class="game-meta"><a class="game-kind-a" href="/${L}/${esc(g.kind)}/">${T(L, "cat." + g.kind)}</a>${mk ? `<span class="game-dot" aria-hidden="true">·</span><a class="game-maker game-maker-a" href="/m/${esc(mk.slug)}/?l=${L}" dir="auto">${esc(mk.name)}</a>`
+    : g.maker ? `<span class="game-dot" aria-hidden="true">·</span><span class="game-maker" dir="auto">${esc(g.maker)}</span>` : ""}</p>
 </div>
 ${g.line ? `<p class="game-line">${esc(g.line)}</p>` : ""}
 <p class="game-nums"${d.today || d.all ? "" : " hidden"}>${numBlock(L, "today_n", d.today, "today")} ${numBlock(L, "total_n", d.all, "all")}</p>
 <div class="game-acts">
-<a class="btn btn-play" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit>${icon("i-play", "ico-flip")}<span>${T(L, "play")}</span></a>
+<a class="btn btn-play" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit>${icon("i-play")}<span>${T(L, "play")}</span></a>
 <button class="btn btn-vote" type="button" data-vote="${esc(g.id)}" aria-pressed="false" hidden>${icon("i-crown", "vote-i")}${icon("i-check", "vote-ok")}<span class="vote-t">${T(L, "vote")}</span></button>
 <button class="tile-star game-star" type="button" aria-pressed="false" aria-label="${T(L, "star")}" data-star="${esc(g.id)}">${icon("i-star")}</button>
 </div>
 </div>
 </article>
 <aside class="game-foot">
-${g.maker_id || g.source === "logicers" ? `<p class="yours-q">${T(L, "yours_q")} <span class="mail">${esc(CONTACT)}</span></p>`
+${g.maker_id || g.source === "logicers" ? `<p class="yours-q">${T(L, "yours_q")} <span class="mail" dir="ltr">${esc(CONTACT)}</span></p>`
     : `<p class="yours-q yours-q-claim"><span class="yours-q-t">${esc(yoursQ(L))}</span> <a class="btn btn-claim" href="/claim/?g=${esc(g.id)}">${T(L, "claim")}</a></p>`}
 ${g.maker_id ? editLink(L, "game", g.id) : ""}<button class="btn btn-report" type="button" data-open="sheet-report">${icon("i-flag")}<span>${T(L, "report")}</span></button>
 </aside>
@@ -584,13 +588,13 @@ export function numbersBlock(d) {
   const days = Array.from({ length: NUM_DAYS }, (_, i) => { const day = dayAdd(N.from, i); return [day, N.days[day] || 0]; });
   const total = days.reduce((a, [, n]) => a + n, 0);
   if (!total) return "";
-  const max = Math.max(...days.map(([, n]) => n)), tag = htmlLang(L);
-  const fmt = new Intl.DateTimeFormat(tag, { day: "numeric", month: "short", timeZone: "UTC" });
+  const max = Math.max(...days.map(([, n]) => n)), tag = htmlLang(L), rtl = !!(LANG.get(L) && LANG.get(L).dir === "rtl");
+  const fmt = new Intl.DateTimeFormat(numTag(L), { day: "numeric", month: "short", timeZone: "UTC" });
   const date = (day) => fmt.format(new Date(day + "T00:00:00Z"));
   const bars = days.map(([day, n], i) => {
     if (!n) return "";
     const h = Math.max(2, Math.round(n / max * 100 * 10) / 10);
-    return `<rect class="nums-bar" x="${i * 10 + 0.75}" y="${(100 - h).toFixed(1)}" width="8.5" height="${h}"><title>${esc(date(day))}: ${esc(num(L, n))}</title></rect>`;
+    return `<rect class="nums-bar" x="${rtl ? 890.75 - i * 10 : i * 10 + 0.75}" y="${(100 - h).toFixed(1)}" width="8.5" height="${h}"><title>${esc(date(day))}: ${esc(num(L, n))}</title></rect>`;
   }).join("");
   let names = null;
   try { names = new Intl.DisplayNames([tag], { type: "region" }); } catch (e) { names = null; }
@@ -607,7 +611,7 @@ export function numbersBlock(d) {
 ${cs.length ? `<div class="nums-where">
 <div class="row-top"><h2 class="row-h" id="h-where"><span class="row-t">${T(L, "countries")}</span></h2></div>
 <ol class="nums-c" aria-labelledby="h-where">
-${cs.map((c) => `<li class="nums-ci"><span class="nums-cn">${esc(c.nm)}</span><span class="nums-cv">${esc(num(L, c.n))}</span><svg class="nums-cb" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect width="${Math.max(2, Math.round(c.n / top * 100))}" height="4" rx="2"></rect></svg></li>`).join("\n")}
+${cs.map((c) => `<li class="nums-ci"><span class="nums-cn">${esc(c.nm)}</span><span class="nums-cv">${esc(num(L, c.n))}</span><svg class="nums-cb" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true" focusable="false">${((w) => `<rect${rtl ? ` x="${100 - w}"` : ""} width="${w}" height="4" rx="2"></rect>`)(Math.max(2, Math.round(c.n / top * 100)))}</svg></li>`).join("\n")}
 </ol>
 </div>` : ""}
 </section>`;
@@ -622,7 +626,7 @@ export function pageMakerPublic(d) {
   const body = `${headerSub(Object.assign({}, d, { back: "/" + L + "/" }))}
 <main class="main main-mk">
 <header class="mk-head">
-<h1 class="mk-name">${esc(m.name)}</h1>
+<h1 class="mk-name" dir="auto">${esc(m.name)}</h1>
 ${editLink(L, "slug", m.slug)}
 </header>
 <section class="row row-mk" aria-labelledby="h-mk">
@@ -659,7 +663,7 @@ ${h("What we keep")}
 ${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country. Cloudflare, which serves these pages, also counts visits for us, without cookies.")}
 ${p("When you add a game, we keep its link, and your name and email if you give them; only Khayyam sees your email. We keep them while the game is on the list, so we can tell its maker the numbers, and delete them 90 days after a game is turned down or taken off. A report keeps its reason and the day.")}
 ${h("Your game")}
-${p(`To have a game changed or taken off, write to <span class="mail">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}
+${p(`To have a game changed or taken off, write to <span class="mail" dir="ltr">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}
 ${p("If you like, you can claim your game: open its page here and choose Claim, then put one line in your page's code for a moment, or use the link in our email. You get a maker key: it stays on your device, and we keep only a scrambled form of it. With it you can write your game's line, choose its kind and send its logo, and you see its players by day and by country. Your words show at once and we look at every change; a logo shows once we have looked at it. There is no account and no password. Your games get a page of their own here.")}
 ${p("If you like, you can also put a small Play Logicers badge on your page: a picture with a link to your game here, with no script and no cookie; it counts nothing, and we never ask for it.")}
 </article>
@@ -679,13 +683,13 @@ const claimOk = (L) => `<section class="claim-ok" id="claim-ok" aria-labelledby=
 <p class="claim-p claim-joined" hidden>${T(L, "claim.joined")}</p>
 <div class="claim-keybox" hidden>
 <p class="claim-p">${T(L, "claim.key")}</p>
-<div class="claim-code"><code class="claim-key" id="claim-key"></code><button class="btn btn-copy" type="button" data-copy="claim-key">${T(L, "claim.copy")}</button></div>
+<div class="claim-code"><code class="claim-key" id="claim-key" dir="ltr"></code><button class="btn btn-copy" type="button" data-copy="claim-key">${T(L, "claim.copy")}</button></div>
 </div>
 <a class="btn btn-send claim-edit" href="/maker/?l=${esc(L)}">${T(L, "claim.edit")}</a>
 </section>`;
-const claimOther = (L) => `<p class="claim-other">${TM(L, "claim.other", { mail: `<span class="mail">${esc(CONTACT)}</span>` })}</p>`;
+const claimOther = (L) => `<p class="claim-other">${TM(L, "claim.other", { mail: `<span class="mail" dir="ltr">${esc(CONTACT)}</span>` })}</p>`;
 function claimHead(L, g) {
-  return `<h1 class="claim-h">${TM(L, "claim.h", { game: `<span class="claim-name">${esc(g.name)}</span>` })}</h1>
+  return `<h1 class="claim-h">${TM(L, "claim.h", { game: `<span class="claim-name" dir="auto">${esc(g.name)}</span>` })}</h1>
 <p class="claim-p">${T(L, "claim.intro")}</p>`;
 }
 /* the claim pages' and the form's page: the language page's head (its name, "by Logicers", Add a game) and foot */
@@ -705,8 +709,8 @@ ${claimHead(L, g)}
 <ol class="claim-steps">
 <li class="claim-step">
 <h2 class="claim-step-h">${T(L, "claim.s1")}</h2>
-<p class="claim-p">${TM(L, "claim.s1_p", { head: "<code>&lt;head&gt;</code>", url: `<span class="claim-url">${esc(g.url)}</span>` })}</p>
-<div class="claim-code" hidden><code class="claim-line" id="claim-line"></code><button class="btn btn-copy" type="button" data-copy="claim-line">${T(L, "claim.copy")}</button></div>
+<p class="claim-p">${TM(L, "claim.s1_p", { head: '<code dir="ltr">&lt;head&gt;</code>', url: `<span class="claim-url" dir="ltr">${esc(g.url)}</span>` })}</p>
+<div class="claim-code" hidden><code class="claim-line" id="claim-line" dir="ltr"></code><button class="btn btn-copy" type="button" data-copy="claim-line">${T(L, "claim.copy")}</button></div>
 <button class="btn btn-send claim-get" id="claim-get" type="button">${T(L, "claim.get")}</button>
 </li>
 <li class="claim-step">
@@ -755,7 +759,7 @@ export function pageMaker(d) {
 <section class="maker-nokey" id="maker-nokey" hidden>
 <p class="claim-p">${TM(L, "maker.nokey", { claim: T(L, "claim") })}</p>
 <form class="maker-keyform" id="maker-keyform" autocomplete="off">
-<label class="fld"><span class="fld-l">${T(L, "maker.key")}</span><input name="key" autocomplete="off" spellcheck="false" maxlength="40" required></label>
+<label class="fld"><span class="fld-l">${T(L, "maker.key")}</span><input name="key" autocomplete="off" spellcheck="false" maxlength="40" required dir="ltr"></label>
 <button class="btn btn-send" type="submit">${T(L, "maker.open")}</button>
 <p class="claim-err" data-e="key" role="alert" hidden>${T(L, "maker.e_key")}</p>
 <p class="claim-err" data-e="busy" role="alert" hidden>${T(L, "maker.e_busy")}</p>
@@ -770,7 +774,7 @@ export function pageMaker(d) {
 </form>
 <a class="btn maker-pagelink" id="maker-page" href="/" hidden>${T(L, "maker.page")}</a>
 <div class="maker-games" id="maker-games"></div>
-<p class="claim-other">${TM(L, "maker.note", { mail: `<span class="mail">${esc(CONTACT)}</span>` })}</p>
+<p class="claim-other">${TM(L, "maker.note", { mail: `<span class="mail" dir="ltr">${esc(CONTACT)}</span>` })}</p>
 <button class="btn maker-forget" id="maker-forget" type="button">${T(L, "maker.forget")}</button>
 </section>
 </div>

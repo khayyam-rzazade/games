@@ -75,6 +75,8 @@ body.pl {
 .vh { position: absolute !important; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: -1px; padding: 0; border: 0; }
 .ico { inline-size: 1em; block-size: 1em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
 [dir="rtl"] .ico-flip { transform: scaleX(-1); }
+/* right to left (chat R): the Words kind's lines are text, so they hang from the right, as text does there */
+[dir="rtl"] .ico:has(> use[href$="#k-words"]) { transform: scaleX(-1); }
 /* one column, 1120 px of content at most (the canvas: 1200 with 40 at each side); hairlines run the width of the content */
 .top, .main, .foot { margin-inline: max(var(--gut), calc(50% - 560px)); min-inline-size: 0; }
 .main { flex: 1 0 auto; }
@@ -84,7 +86,7 @@ body.pl {
 /* ---------------------------------------------------------------- the name block (any script, any length) ---- */
 .brand { font-family: var(--f); font-weight: 500; line-height: 1; letter-spacing: -0.02em; font-size: 26px; overflow-wrap: anywhere; }
 .brand-play { font-family: var(--f); font-weight: 500; }
-.brand-lang { font-family: var(--f-sys); font-weight: 600; letter-spacing: -0.01em; }
+.brand-lang { font-family: var(--f-sys); font-weight: 600; letter-spacing: -0.01em; word-break: keep-all; }   /* 简体中文 stays whole: a line breaks after "Play", never inside the name (chat R) */
 .top-wall .brand-lang, .admin-top .brand-lang { font-family: var(--f); font-weight: 500; letter-spacing: -0.02em; }
 .brand-a { display: inline; border-radius: 6px; }
 .brand-by { font-size: 12px; color: var(--soft); margin-block-start: 6px; letter-spacing: 0.01em; }
@@ -180,7 +182,7 @@ body.pl {
   border: 1.5px solid var(--line); background: var(--bg); transition: border-color .15s var(--ease), transform .15s var(--ease);
 }
 .lang-a:hover { border-color: var(--ink); }
-.lang-name { grid-area: name; align-self: start; font-size: 22px; font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+.lang-name { grid-area: name; align-self: start; font-size: 22px; font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; overflow-wrap: anywhere; word-break: keep-all; }
 .lang-n { grid-area: n; font-size: 34px; font-weight: 200; line-height: 1; letter-spacing: -0.03em; }
 .lang-g { grid-area: g; font-size: 12px; color: var(--soft); }
 .lang-best .lang-a { border-color: var(--ink); border-width: 2.5px; padding: 17px; }
@@ -696,7 +698,7 @@ dialog.sheet[open] { animation: pl-up .24s var(--ease); }
 .maker-logo-img[hidden] { display: none; }
 .maker-logo-side { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-inline-size: 0; }
 .maker-logo-state { font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
-.maker-logo-pick { position: relative; min-block-size: 44px; padding-inline: 18px; font-size: 14px; border-color: var(--line); cursor: pointer; }
+.maker-logo-pick { position: relative; min-block-size: 44px; max-inline-size: 100%; padding-inline: 18px; font-size: 14px; border-color: var(--line); cursor: pointer; overflow-wrap: anywhere; }
 .maker-logo-pick:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
 .maker-logo-file { position: absolute; inset: 0; opacity: 0; inline-size: 100%; block-size: 100%; cursor: pointer; }
 .maker-logo-send[hidden] { display: none; }

@@ -19,7 +19,12 @@
   var D = {};
   try { D = JSON.parse(doc.getElementById("pl-data").textContent) || {}; } catch (e) { D = {}; }
   var W = D.words || {};
-  function w(k, marks) { var s = W[k] == null ? "" : String(W[k]); return marks ? s.replace(/\{([a-z]+)\}/g, function (m, x) { return marks[x] != null ? marks[x] : m; }) : s; }
+  /* a word with its marks filled; each value is set apart (U+2068 … U+2069), so a name in another direction keeps its place
+     in a right-to-left sentence and the sentence keeps its own (chat R) */
+  function w(k, marks) { var s = W[k] == null ? "" : String(W[k]); return marks ? s.replace(/\{([a-z]+)\}/g, function (m, x) { return marks[x] != null ? "\u2068" + marks[x] + "\u2069" : m; }) : s; }
+  var NF = null;
+  try { NF = new Intl.NumberFormat(D.nt || D.tag || "en"); } catch (e) { NF = null; }
+  function fmt(n) { return NF ? NF.format(n) : String(n); }
   function $(s, r) { return (r || doc).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); }
   function el(tag, cls, text) { var e = doc.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = String(text); return e; }
@@ -189,18 +194,20 @@
     var a = el("article", "maker-card");
     a.setAttribute("data-game", g.id);
     var h = el("h2", "maker-card-h");
-    if (g.page) { var l = el("a", "maker-card-a", g.name); l.setAttribute("href", g.page); h.appendChild(l); } else h.appendChild(el("span", null, g.name));
-    h.appendChild(el("span", "maker-card-lang", LANGN[g.lang] || g.lang));
+    var nm = g.page ? el("a", "maker-card-a", g.name) : el("span", null, g.name), ln = el("span", "maker-card-lang", LANGN[g.lang] || g.lang);
+    if (g.page) nm.setAttribute("href", g.page);
+    nm.dir = "auto"; ln.dir = "auto"; ln.setAttribute("lang", g.lang);
+    h.appendChild(nm); h.appendChild(ln);
     a.appendChild(h);
     if (g.status !== "listed") a.appendChild(el("p", "claim-p", w("maker.off")));
     var f = el("form", "maker-gamef");
     f.setAttribute("novalidate", "");
     var lab = el("label", "fld"), inp = el("input");
     lab.appendChild(el("span", "fld-l", w("maker.line", { lang: LANGN[g.lang] || g.lang })));
-    inp.name = "line"; inp.maxLength = 60; inp.value = g.line || ""; inp.setAttribute("lang", g.lang); inp.autocomplete = "off";
+    inp.name = "line"; inp.maxLength = 60; inp.value = g.line || ""; inp.setAttribute("lang", g.lang); inp.dir = "auto"; inp.autocomplete = "off";
     lab.appendChild(inp);
     var count = el("span", "card-count");
-    var paint = function () { var n = Array.from(inp.value).length; count.textContent = n + "/60"; count.classList.toggle("is-over", n > 60); };
+    var paint = function () { var n = Array.from(inp.value).length; count.textContent = fmt(n) + "/" + fmt(60); count.classList.toggle("is-over", n > 60); };
     inp.addEventListener("input", paint); paint();
     lab.appendChild(count);
     f.appendChild(lab);
@@ -243,7 +250,7 @@
     box.appendChild(h);
     box.appendChild(el("p", "maker-badge-p", w("maker.badge_p")));
     var picks = el("div", "maker-badge-picks"), code = el("code", "maker-badge-code");
-    code.id = id;
+    code.id = id; code.dir = "ltr";
     [[b.pic, b.html, "light"], [b.pic_d, b.html_d, "dark"]].forEach(function (v, i) {
       var btn = el("button", "maker-badge-pick is-" + v[2]), img = el("img");
       btn.type = "button"; btn.setAttribute("aria-pressed", i ? "false" : "true"); btn.setAttribute("aria-controls", id); btn.setAttribute("aria-label", b.alt);

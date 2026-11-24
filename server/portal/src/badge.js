@@ -16,7 +16,7 @@
    The HTML is one link to the game's page on Play Logicers around the picture, with its width, height and alt. Right to
    left (he ar fa): the coin goes to the right and the words read from the right; R checks it in the browsers. */
 import { GLYPHS, PLAY, NAMES, FIG } from "./glyphs.js";
-import { LANG, nameParts, pageName, htmlLang } from "./langs.js";
+import { LANG, nameParts, pageName, htmlLang, numTag } from "./langs.js";
 import { word } from "./words.js";
 import { ring, showNums } from "./util.js";
 import { gameById } from "./db.js";
@@ -92,7 +92,7 @@ export function badgeLayout(lang) {
 
 /* the coin's number (players in all), with the language's own figures; up to 9,999 whole, then short and whole (57K) */
 function coinNumber(lang, n, ink) {
-  const tag = htmlLang(lang);
+  const tag = numTag(lang);      // the language's own digits (langs.js; chat R): Arabic and Persian are drawn as text, Geologica has no such figures
   let s;
   try { s = n < 10000 ? new Intl.NumberFormat(tag).format(n) : new Intl.NumberFormat(tag, { notation: "compact", maximumFractionDigits: 0 }).format(n); } catch (e) { s = String(n); }
   const cx = COIN.x + COIN.s / 2, inner = COIN.s - 10;
@@ -117,7 +117,8 @@ export function badgeSvg(g, o) {
   const coinX = mx(COIN.x, COIN.s);
   const icon = KIND_ICONS[g.kind] || KIND_ICONS.other;
   const num = o.n > 0 ? coinNumber(g.lang, o.n, c.ink) : null;
-  const ic = num ? "" : `<svg x="${coinX + 7}" y="${COIN.y + 7}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${r}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>`;
+  /* in rtl the Words icon's lines hang from the right, as on the pages (portal.css, chat R) */
+  const ic = num ? "" : `<svg x="${coinX + 7}" y="${COIN.y + 7}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${r}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${rtl && g.kind === "words" ? `<g transform="matrix(-1 0 0 1 24 0)">${icon}</g>` : icon}</svg>`;
   const numSvg = num ? (rtl ? num.svg.replace(/translate\(([\d.]+) /, (m, x) => `translate(${f2(+x + coinX - COIN.x)} `).replace(/ x="([\d.]+)"/, (m, x) => ` x="${f2(+x + coinX - COIN.x)}"`) : num.svg) : "";
   /* line 1: "Play" and the name; in rtl "Play" sits at the right and the name to its left */
   const parts = [];
