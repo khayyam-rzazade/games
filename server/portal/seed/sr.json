@@ -1,0 +1,14 @@
+[
+{"name":"Речко","url":"https://rechko.com/","lang":"sr","kind":"words","line":"Погоди реч дана за шест покушаја.","checked":"2026-11-24"},
+{"name":"Речко (Значење.Нет)","url":"https://znacenje.net/igre/recko/","lang":"sr","kind":"words","line":"Нађи скривену реч. Свакога дана је нова.","maker":"Značenje.Net","checked":"2026-11-24"},
+{"name":"Српски Вордл","url":"https://srpskiwordle.com/","lang":"sr","kind":"words","line":"Откриј скривену реч у шест покушаја.","checked":"2026-11-24"},
+{"name":"Анаграм","url":"https://srpskiwordle.com/anagram/","lang":"sr","kind":"words","line":"Реши три анаграма. Сваки дан су нови.","checked":"2026-11-24"},
+{"name":"Linkdle","url":"https://linkdle.com/sr","lang":"sr","kind":"knowledge","line":"Кликај по везама на Википедији и стигни до циља.","maker":"Marc García-Penche","checked":"2026-11-24"},
+{"name":"Plixdle: видео-игра дана","url":"https://plix.gg/sr/guess-the-game","lang":"sr","kind":"screen","line":"Погоди видео-игру дана по траговима.","checked":"2026-11-24"},
+{"name":"Фудбалски Грид","url":"https://gridsport.games/sr/fudbal/grid","lang":"sr","kind":"sport","line":"Нађи фудбалере који пасују и реду и колони.","checked":"2026-11-24"},
+{"name":"Фудбалски Бинго","url":"https://gridsport.games/sr/fudbal/bingo","lang":"sr","kind":"sport","line":"Поређај фудбалере на картицу 4×4 по траговима.","checked":"2026-11-24"},
+{"name":"Фудбалски Вордл","url":"https://gridsport.games/sr/fudbal/wordle","lang":"sr","kind":"sport","line":"Погоди фудбалера дана по лиги, клубу и позицији.","checked":"2026-11-24"},
+{"name":"FootballClubsMap: Погоди клуб","url":"https://footballclubsmap.com/games/guess-the-club/sr/","lang":"sr","kind":"sport","line":"Погоди клуб по траговима. Нов је сваки дан.","checked":"2026-11-24"},
+{"name":"FootballClubsMap: Нађи клуб","url":"https://footballclubsmap.com/games/find-the-club/sr/","lang":"sr","kind":"maps","line":"Нађи клуб на мапи. Сваки покушај показује даљину.","checked":"2026-11-24"},
+{"name":"FootballClubsMap: Погоди стадион","url":"https://footballclubsmap.com/games/guess-the-stadium/sr/","lang":"sr","kind":"sport","line":"Препознај клуб по слици његовог стадиона.","checked":"2026-11-24"}
+]

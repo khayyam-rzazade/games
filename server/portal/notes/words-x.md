@@ -58,4 +58,4 @@ Four new keys, in all 31 files (English for now). Same keys, same order, flat JS
   uk cs: one few many · ro: one few · ca: one many · he: one two · ar: zero one two few many · hu sv no da fi el az fa:
   one · id vi th zh-hans zh-hant: none (take out the English `.one` keys).
 - Norwegian is Bokmål; its pages say `lang="nb"` (`src/langs.js` row `no`, `tag: "nb"`), so `Intl` uses Bokmål's rules.
-- Nothing opens because of a words file: a language opens at 5 listed games.
+- Nothing opens because of a words file: a language opens at its first listed game (1 since 25 Nov 2026; it was 5).

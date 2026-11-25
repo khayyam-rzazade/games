@@ -5,7 +5,7 @@
      2. The optional badge: GET /b/<id>.svg (?d=1 for dark pages), on the maker's form only, under each listed game.
      3. The wiring for the 19 languages of waves 1 and 2: a words file each (a copy of en.json until the words chats), its
         import line, its row in langs.js checked; plural forms for all six CLDR categories (Arabic has them all); nothing
-        opens before 5 listed games.
+        opens before its first listed game (5 until 25 Nov 2026).
    Found on the way: with the numbers hidden, the Numbers row's coins still showed their players (the last test). */
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -93,7 +93,7 @@ test("1. every kind row's name links to its kind page, also a short row with no 
 const PLURAL = /\.(zero|one|two|few|many)$/;
 test("3. the 19 languages have a words file each, imported, with every key of en.json in its order, and their own plural forms", () => {
   const files = fs.readdirSync(path.join(ROOT, "words")).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5)).sort();
-  assert.deepEqual(files, LAUNCH.concat(WAVE1, WAVE2).sort(), "31 files: the 12 open languages and the 19 of waves 1 and 2");
+  assert.deepEqual(files, LANGS.map((l) => l.code).sort(), "51 files: the 12 launch languages, the 19 of waves 1 and 2, and wave 3's 20 (chat S: test_s.mjs)");
   assert.deepEqual(LANGS.filter((l) => l.group === "phase2").map((l) => l.code).sort(), WAVE1.concat(WAVE2).sort(), "the 19 are langs.js's phase 2");
   const en = fs.readFileSync(path.join(ROOT, "words", "en.json"), "utf8");
   const plain = (keys) => keys.filter((k) => !PLURAL.test(k));
@@ -180,13 +180,13 @@ test("3. plural forms: all six CLDR categories work (Arabic zero one two few man
   }
 });
 
-test("3. a words file opens nothing: a new language opens at 5 listed games, with its lang and direction", async () => {
+test("3. a words file opens nothing: a new language opens at its first listed game (5 until 25 Nov 2026), with its lang and direction", async () => {
   const e = env();
   resetBrakes();
-  await importGames(e, seedGames("uk", 4).concat(seedGames("he", 4), seedGames("no", 5)));
+  await importGames(e, seedGames("no", 5));
   for (const c of ["uk", "he"]) {
     const r = await get(e, "/" + c + "/");
-    assert.equal(r.status, 302, c + ": 4 games, not open");
+    assert.equal(r.status, 302, c + ": a words file and no game, not open");
     assert.equal(r.headers.get("Location"), "https://play.logicers.com/");
   }
   const n = await get(e, "/no/");
@@ -194,9 +194,9 @@ test("3. a words file opens nothing: a new language opens at 5 listed games, wit
   assert.match(n.text, /<html lang="nb" dir="ltr">/);
   assert.equal(unesc(title(n.text)), "Play Norsk · " + word("no", "seo.daily"));
   assert.equal(data(n.text).tag, "nb", "the page's script counts and plurals in nb");
-  await importGames(e, seedGames("he", 5));
+  await importGames(e, seedGames("he", 1));
   const h = await get(e, "/he/");
-  assert.equal(h.status, 200, "Hebrew opens at its 5th game");
+  assert.equal(h.status, 200, "Hebrew opens at its first game");
   assert.match(h.text, /<html lang="he" dir="rtl">/);
   assert.match(h.text, /<span class="brand-play">Play<\/span> <span class="brand-lang">עברית<\/span>/);
   const langs = (await get(e, "/api/langs")).json.langs.map((l) => l.code);

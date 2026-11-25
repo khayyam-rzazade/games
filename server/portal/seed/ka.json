@@ -1,0 +1,19 @@
+[
+  {
+    "name": "ქართული ვორდლი",
+    "url": "https://wordle.ge/",
+    "lang": "ka",
+    "kind": "words",
+    "line": "გამოიცანი დღის სიტყვა ექვს ცდაში.",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ka",
+    "lang": "ka",
+    "kind": "knowledge",
+    "line": "დააჭირე ვიკიპედიის ბმულებს ბოლო გვერდამდე.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  }
+]

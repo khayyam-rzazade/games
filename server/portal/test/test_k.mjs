@@ -46,7 +46,7 @@ test("1. the name goes to Play's home page from every page; on the home page it 
 
 test("2. the language button opens the list of the open languages: their own names, the page's own marked, each a link; no new words", async () => {
   const e = env();
-  await importGames(e, seedGames("es", 2).concat(seedGames("de", 5), seedGames("ja", 2)));   // de opens at 5; ja stays closed; en it tr es pt fr are Logicers' own
+  await importGames(e, seedGames("es", 2).concat(seedGames("de", 5)));   // de opens (a language opens at its first game since 25 Nov 2026); ja has none and stays closed; en it tr es pt fr are Logicers' own
   const r = await get(e, "/es/");
   assert.doesNotMatch(r.text, /<a class="chip-lang"/, "the language button is no longer a link to the wall");
   const btn = /<button class="chip-lang" type="button" data-open="sheet-langs" aria-haspopup="dialog" aria-label="([^"]*)" title="([^"]*)">[^]*?<span class="chip-lang-t">Español<\/span>[^]*?<\/button>/.exec(r.text);
@@ -70,7 +70,7 @@ test("2. the language button opens the list of the open languages: their own nam
   /* no new words: the sheet uses f.lang and close, which every language already has in its own file */
   const dir = fileURLToPath(new URL("../words/", import.meta.url));
   const en = Object.keys(JSON.parse(fs.readFileSync(dir + "en.json", "utf8")));
-  assert.equal(en.filter((k) => !/\.(one|few|many)$/.test(k) && !/^(claim|maker|mail)\./.test(k) && !/^seo\.words_[td]$/.test(k)).length, 57, "the words are the 57 of before chat K (chat N's claim words and chat X's two search words aside)");
+  assert.equal(en.filter((k) => !/\.(one|few|many)$/.test(k) && !/^(claim|maker|mail)\./.test(k) && !/^seo\.words_[td]$/.test(k) && k !== "search").length, 57, "the words are the 57 of before chat K (chat N's claim words, chat X's two search words and chat S's search aside)");
   for (const f of fs.readdirSync(dir)) { const w = JSON.parse(fs.readFileSync(dir + f, "utf8")); assert.ok(w["f.lang"] && w.close, f + " has both"); }
 });
 

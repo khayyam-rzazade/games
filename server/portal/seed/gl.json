@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Wordle Galego",
+    "url": "https://wordlegalego.appspot.com/",
+    "lang": "gl",
+    "kind": "words",
+    "line": "Adiviña a palabra do día en seis intentos.",
+    "maker": "@mg_abraham",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/gl",
+    "lang": "gl",
+    "kind": "knowledge",
+    "line": "Fai clic en ligazóns da Wikipedia ata a páxina final.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/gl",
+    "lang": "gl",
+    "kind": "words",
+    "line": "Adiviña a palabra mentres se vai vendo a súa forma.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Kakuru",
+    "url": "https://kakuru.juegalo.eu/gl",
+    "lang": "gl",
+    "kind": "numbers",
+    "line": "Enche a grella para que cada serie sume a súa pista.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Shikaku",
+    "url": "https://shikaku.juegalo.eu/gl",
+    "lang": "gl",
+    "kind": "numbers",
+    "line": "Debuxa rectángulos: cada número é a área dunha sala.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/gl",
+    "lang": "gl",
+    "kind": "music",
+    "line": "Escoita unha melodía e repite cada nota.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/gl",
+    "lang": "gl",
+    "kind": "other",
+    "line": "Mira unha cor e recréaa de memoria.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  }
+]

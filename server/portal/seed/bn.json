@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/bn",
+    "lang": "bn",
+    "kind": "words",
+    "line": "ঝাপসা শব্দ দেখে ছয় চেষ্টায় চিনে নাও।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/bn",
+    "lang": "bn",
+    "kind": "knowledge",
+    "line": "লিংকে ক্লিক করে আজকের লক্ষ্য উইকিপিডিয়া লেখায় যাও।",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Sonido",
+    "url": "https://sonido.juegalo.eu/bn",
+    "lang": "bn",
+    "kind": "music",
+    "line": "সুর শোনো আর চারটির মধ্যে মিল থাকা সুরটা বেছে নাও।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/bn",
+    "lang": "bn",
+    "kind": "music",
+    "line": "ছোট সুর শোনো আর ঠিক তেমন করে বাজাও।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/bn",
+    "lang": "bn",
+    "kind": "other",
+    "line": "একটা রং মনে রাখো আর সেটা আবার মেলাও।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/bn",
+    "lang": "bn",
+    "kind": "numbers",
+    "line": "যুক্তি দিয়ে ঘরগুলো ০ আর ১ দিয়ে ভরো।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/bn/guess-the-game",
+    "lang": "bn",
+    "kind": "screen",
+    "line": "ইঙ্গিত দেখে আজকের ভিডিও গেমের নাম বলো।",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-24"
+  }
+]

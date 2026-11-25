@@ -1,0 +1,14 @@
+[
+{"name":"Riječek","url":"https://kveez.com/hr/rijecek/","lang":"hr","kind":"words","line":"Pogodi riječ od pet slova u šest pokušaja.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Kontekstek","url":"https://kveez.com/hr/kontekstek/","lang":"hr","kind":"words","line":"Pogodi tajnu riječ prema riječima koje su joj blizu.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Zastavek","url":"https://kveez.com/hr/zastavek/","lang":"hr","kind":"maps","line":"Pogodi državu po zastavi u šest pokušaja.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Brojček","url":"https://kveez.com/hr/brojcek/","lang":"hr","kind":"numbers","line":"Pogodi četveroznamenkasti broj u sedam pokušaja.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Godinek","url":"https://kveez.com/hr/godinek/","lang":"hr","kind":"knowledge","line":"Pogodi godinu povijesnog događaja.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Rječkaš","url":"https://www.rjeckas.com/","lang":"hr","kind":"words","line":"Pogodi skrivenu riječ. Nova je svaki dan.","checked":"2026-11-24"},
+{"name":"Wordle.hr","url":"https://wordle.hr/","lang":"hr","kind":"words","line":"Pogodi riječ dana u nekoliko pokušaja.","checked":"2026-11-24"},
+{"name":"Linkdle","url":"https://linkdle.com/hr","lang":"hr","kind":"knowledge","line":"Klikaj po poveznicama na Wikipediji i dođi do cilja.","maker":"Marc García-Penche","checked":"2026-11-24"},
+{"name":"Plixdle: videoigra dana","url":"https://plix.gg/hr/guess-the-game","lang":"hr","kind":"screen","line":"Pogodi videoigru dana po tragovima.","checked":"2026-11-24"},
+{"name":"Melodía","url":"https://melodia.juegalo.eu/hr","lang":"hr","kind":"music","line":"Poslušaj melodiju i odsviraj je natrag, notu po notu.","maker":"juegalo.eu","checked":"2026-11-24"},
+{"name":"Binario","url":"https://binario.juegalo.eu/hr","lang":"hr","kind":"numbers","line":"Popuni mrežu nulama i jedinicama prema pravilima.","maker":"juegalo.eu","checked":"2026-11-24"},
+{"name":"Killdoku","url":"https://killdoku.juegalo.eu/hr","lang":"hr","kind":"numbers","line":"Popuni sudoku prema zbrojevima u okvirima.","maker":"juegalo.eu","checked":"2026-11-24"}
+]

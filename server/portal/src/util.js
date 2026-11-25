@@ -70,7 +70,7 @@ function trim() {
 }
 /* per address; [limit, window in ms]. A school is often one address, so the counting brakes are wide (the Studio's lesson). */
 export const BRAKE = {
-  hit: [600, 6e5], view: [600, 6e5], add: [30, 36e5], report: [20, 6e5], vote: [60, 6e5],
+  hit: [600, 6e5], view: [600, 6e5], add: [30, 36e5], report: [20, 6e5], vote: [60, 6e5], miss: [60, 6e5] /* searches that found nothing (chat S) */,
   claimcode: [20, 36e5], claim: [10, 36e5] /* looks at an outside page, and wrong links */, makerkey: [20, 6e5] /* wrong keys */, makeredit: [60, 6e5], makerpic: [20, 36e5],
   admin: [10, 6e5] /* wrong keys */, read: [3000, 6e5] /* API reads */, health: [60, 36e5],
 };
@@ -117,6 +117,8 @@ export async function mac(env, msg) {
   return hex(await crypto.subtle.sign("HMAC", macCache.k, te.encode(msg)));
 }
 export const keyHash = (env, label, k) => mac(env, label + ":" + String(k).trim().toLowerCase());
+/* the keyed hash of (UTC day, address, what) for the caps per address (db.js NET): the address is read here and never kept */
+export const netHash = async (env, req, day, what) => (await mac(env, day + "|net|" + where(req) + "|" + what)).slice(0, 32);
 export async function sha(s) { return hex(await crypto.subtle.digest("SHA-256", te.encode(String(s)))); }
 /* compared in constant time */
 export function same(a, b) {

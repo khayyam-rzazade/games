@@ -65,6 +65,15 @@ zh-SG; Play in Geologica; the plural lines; Arabic's and Persian's question mark
 The numbers on these pages are checked for digits other than 0-9 too (ZERO and section 12 know ٠١٢٣ and ۰۱۲۳). maker.js sets a mark's value apart
 (U+2068 … U+2069, so a name in another direction keeps its place); section 13 compares its words without them.
 
+Chat S, 24 Nov 2026 (search): section 17 runs last, or alone with --only-s (a few minutes, against the Worker that shows numbers):
+the magnifier where a language has 40 games as the dice counts them (and nothing where it has fewer), on its page and a kind page,
+at 320, 390 and 1280, light and dark, also with words half as long again: 44 px, named, the head as high as before (on a phone the
+dice gives way where four buttons would push the name onto another line), one row on a computer; the sheet by a tap and by "/"
+(not while typing), the focus in the field, results as the rows' own coins (a maker's opens its page, Logicers' own plays),
+best match first, at most 24; nothing found: "Nothing here." and Add a game with the language set; Escape, the ×, the shade, and
+the focus back on the magnifier; a search that finds nothing sent once, as words only, never an address; the queue's Searches.
+Sections 7b and 12 know that the dice gives way to search on a phone.
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -139,7 +148,7 @@ BOXES = r"""
   const vis = (e) => { const r = R(e); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !e.closest('[hidden], .vh, dialog:not([open]), template'); };
   const inside = (a, b, pad) => { const r = R(a), q = R(b); pad = pad || 1; return r.left >= q.left - pad && r.right <= q.right + pad && r.top >= q.top - pad && r.bottom <= q.bottom + pad; };
   const name = (e) => (e.className && e.className.baseVal !== undefined ? e.className.baseVal : e.className) + ' "' + (e.textContent || '').trim().slice(0, 30) + '"';
-  for (const box of document.querySelectorAll('.tile, .lang-a, .wanted-k, .kind-opt, .reason-opt, .btn, .chip-lang, .game-tile, .back, .sheet-x, .admin-filter, .add-top, .dice, .run, .run-done, .lang-opt')) {
+  for (const box of document.querySelectorAll('.tile, .lang-a, .wanted-k, .kind-opt, .reason-opt, .btn, .chip-lang, .game-tile, .back, .sheet-x, .admin-filter, .add-top, .dice, .run, .run-done, .lang-opt, .find-b, .find-fld')) {
     if (!vis(box)) continue;
     for (const c of box.querySelectorAll('span, svg, b')) {
       if (!vis(c) || c.closest('svg') !== c && c.closest('svg')) continue;
@@ -147,7 +156,7 @@ BOXES = r"""
       if (!inside(c, box)) bad.push('outside its box: ' + name(c) + ' in ' + name(box));
     }
   }
-  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .add-top, .dice, .run, .run-done, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter, .lang-opt, .lang-opt-t')) {
+  for (const e of document.querySelectorAll('.tile-n, .row-h, .row-more, .btn, .chip-lang, .add-top, .dice, .run, .run-done, .brand, .game-name, .kind-h, .today, .num, .foot-links a, .fld-l, .sheet-err, .sheet-h, .yours-q, .nf, .lang-name, .wanted-t, .kind-opt-t, .reason-opt, .game-meta, .brand-by, .admin-filter, .lang-opt, .lang-opt-t, .find-nf-t')) {
     if (!vis(e)) continue;
     if (e.scrollWidth > e.clientWidth + 1) bad.push('cut: ' + name(e) + ' ' + e.scrollWidth + ' > ' + e.clientWidth);
   }
@@ -161,7 +170,7 @@ BOXES = r"""
 # the stress: every word half as long again (and the Polish name as C may set it), then the same look
 STRETCH = r"""
 () => {
-  const sel = '.row-t, .row-more, .btn > span, .btn-add, .add-top-t, .dice-t, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .sheet-here-t, .btn-claim, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n)';
+  const sel = '.row-t, .row-more, .btn > span, .btn-add, .add-top-t, .dice-t, .btn-send, .btn-done, .btn-more, .kind-opt-t, .wanted-t, .today-w, .num-w, .fld-l, .sheet-err, .sheet-here-t, .btn-claim, .reason-opt > span, .brand-by, .foot-links a, .yours-q, .tile-badge, .sheet-h, .nf, .game-kind-a, .sheet-ok > span, .kind-h > span:not(.kind-n), .find-nf-t';
   for (const e of document.querySelectorAll(sel)) {
     for (const n of [...e.childNodes]) if (n.nodeType === 3 && n.textContent.trim()) { const t = n.textContent.trim(); n.textContent = (n.textContent.startsWith(' ') ? ' ' : '') + t + t.slice(0, Math.ceil(t.length / 2)).toLowerCase() + (n.textContent.endsWith(' ') ? ' ' : ''); }
   }
@@ -532,8 +541,9 @@ def main():
         ok(pg.get_attribute(".top .brand-a", "href") == "/", "a kind page's name goes to the wall too")
         ctx.close()
 
-        # the dice: a real link to a game of the language, picked on the device, a new one after each tap
-        ctx, pg = new(b, 390)
+        # the dice: a real link to a game of the language, picked on the device, a new one after each tap (430: Spanish has search
+        # now, and at 360 to 413 px the dice gives way to it, chat S)
+        ctx, pg = new(b, 430)
         pg.goto(url("/es/"), wait_until="networkidle"); pg.wait_for_timeout(700)
         d = pg.evaluate("(() => { const a = document.getElementById('dice'); const r = a.getBoundingClientRect(); return { hidden: a.hidden, href: a.getAttribute('href'), game: a.dataset.game, dis: a.getAttribute('aria-disabled'), w: r.width, h: r.height, target: a.target, name: a.getAttribute('aria-label') }; })()")
         pool = {g[0]: g[1] for g in json.loads(PG_API("/api/es/dice"))["games"]}
@@ -746,6 +756,7 @@ def main():
         section_x(b)
         section_q(b)
         section_r(b)
+        section_s(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -1418,8 +1429,9 @@ HEAD_L = r"""
   const rg = document.createRange(); rg.selectNodeContents(h);
   const tr = t.getBoundingClientRect(), ds = getComputedStyle(t);
   return { lines: new Set([...rg.getClientRects()].filter(r => r.width > 1).map(r => Math.round(r.top))).size, h: R(h), acts: R(acts), dice: R(d), hidden: d.hidden,
+    off: d.classList.contains('dice-off'), find: !!document.getElementById('find-b'),
     word: tr.width > 2 && tr.height > 2 && ds.position === 'static' ? t.textContent : '', name: d.getAttribute('aria-label'), title: d.getAttribute('title'), cut: d.scrollWidth > d.clientWidth + 1,
-    kids: [...acts.children].filter(e => !e.hidden).map(R), sw: document.documentElement.scrollWidth, vw: document.documentElement.clientWidth };
+    kids: [...acts.children].filter(e => !e.hidden && getComputedStyle(e).display !== 'none').map(R), sw: document.documentElement.scrollWidth, vw: document.documentElement.clientWidth };
 }
 """
 
@@ -1503,9 +1515,12 @@ def section_l(b):
                 if stretched: pg.evaluate(STRETCH); pg.wait_for_timeout(100)
                 t2 = tag + (" stretched" if stretched else "")
                 h = pg.evaluate(HEAD_L)
-                ok(not h["hidden"] and h["name"] == words["dice"] and h["title"] == words["dice"] and h["dice"][3] - h["dice"][2] >= 44 and h["dice"][1] - h["dice"][0] >= 44 and not h["cut"], t2 + ": the dice is there, 44 px, named", h)
-                if w >= 1200: ok(h["word"] and (stretched or h["word"] == words["dice"]), t2 + ": the dice says what it is", h["word"])
-                else: ok(h["word"] == "" and h["dice"][1] - h["dice"][0] <= 46, t2 + ": on a phone the dice is its icon alone", h)
+                if h["off"]:                                       # chat S: with search in the head, on a phone the dice gives way where it would push the name onto another line
+                    ok(h["find"] and w < 700, t2 + ": the dice gives way only to search, and only on a phone", h)
+                else:
+                    ok(not h["hidden"] and h["name"] == words["dice"] and h["title"] == words["dice"] and h["dice"][3] - h["dice"][2] >= 44 and h["dice"][1] - h["dice"][0] >= 44 and not h["cut"], t2 + ": the dice is there, 44 px, named", h)
+                    if w >= 1200: ok(h["word"] and (stretched or h["word"] == words["dice"]), t2 + ": the dice says what it is", h["word"])
+                    else: ok(h["word"] == "" and h["dice"][1] - h["dice"][0] <= 46, t2 + ": on a phone the dice is its icon alone", h)
                 ok(h["lines"] == 1 or w < 400, t2 + ": the page's name on one line (a phone may take two)", h)
                 ok(h["acts"][2] < h["h"][3] and h["acts"][3] > h["h"][2], t2 + ": the buttons sit beside the name, not under it", (h["h"], h["acts"]))
                 kids = sorted(h["kids"])                                   # in right to left they run from the right (chat R)
@@ -1742,7 +1757,7 @@ def section_n_pages(b, pick, tokens, key, mg, ends):
                     clean(pg, tag)
             ctx.close()
     # the form with no key on the device, and a claim link that works no more: the browser's language
-    for loc, lang in (("ja-JP", "ja"), ("de-DE", "de"), ("hr-HR", "en")):        # Croatian has no words file (Swedish has one since chat X)
+    for loc, lang in (("ja-JP", "ja"), ("de-DE", "de"), ("hy-AM", "en")):        # Armenian has no words file (Croatian has one since chat S, Swedish since chat X)
         ctx, pg = new(b, 390, locale=loc)
         pg.goto(url("/maker/"), wait_until="networkidle"); pg.wait_for_selector("#maker-nokey:not([hidden])", timeout=5000)
         ok(pg.get_attribute("html", "lang") == lang and pg.text_content(".maker-nokey .fld-l").strip() == WORDS[lang]["maker.key"], f"13 the form with no key ({loc}): {lang}", pg.get_attribute("html", "lang"))
@@ -2341,13 +2356,179 @@ def section_r_pages(b, games, slug, pick, key):
     ctx.close()
 
 
+# ---- 17. chat S, 24 Nov 2026: search on a language page and its kind pages. Alone: --only-s.
+FINDHEAD = r"""
+(off) => {
+  const top = document.querySelector('.top'), h = top.querySelector('.brand'), f = document.getElementById('find-b'), d = document.getElementById('dice');
+  const lines = () => { const r = document.createRange(); r.selectNodeContents(h); return new Set([...r.getClientRects()].filter(x => x.width > 1).map(x => Math.round(x.top))).size; };
+  const R = (e) => { const r = e.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.right), Math.round(r.top), Math.round(r.bottom)]; };
+  const out = { lines: lines(), h: Math.round(top.getBoundingClientRect().height), find: f ? R(f) : null, name: f && f.getAttribute('aria-label'), title: f && f.getAttribute('title'),
+    brand: R(h), dice: d ? !d.hidden && getComputedStyle(d).display !== 'none' : null, sw: document.documentElement.scrollWidth, vw: document.documentElement.clientWidth };
+  if (off && f) {                                   // the head as it was before search: no magnifier, the dice in its place
+    f.hidden = true; const was = d && d.className; if (d) d.classList.remove('dice-off');
+    out.before = { lines: lines(), h: Math.round(top.getBoundingClientRect().height) };
+    f.hidden = false; if (d) d.className = was;
+  }
+  return out;
+}
+"""
+FINDSTATE = r"""
+() => {
+  const dlg = document.getElementById('sheet-find'), ul = dlg.querySelector('.find-tiles'), nf = dlg.querySelector('.find-nf');
+  const tiles = [...ul.querySelectorAll('li.tile')].map(li => { const a = li.querySelector('.tile-a'); return { id: li.dataset.game, name: li.querySelector('.tile-name').textContent,
+    href: a.getAttribute('href'), hit: a.hasAttribute('data-hit'), target: a.getAttribute('target'), lg: li.classList.contains('tile-lg') }; });
+  return { open: dlg.open, focus: document.activeElement && document.activeElement.className, tiles, nf: !nf.hidden,
+    nfAdd: !nf.hidden && !!nf.querySelector('[data-open="sheet-add"]'), q: dlg.querySelector('.find-q').value };
+}
+"""
+
+
+def letters(s): return "".join(chr(97 + int(c)) for c in str(s) if c.isdigit())
+
+
+def section_s(b):
+    api = b.new_context(user_agent=UA)
+    getj = lambda path: json.loads(api.request.get(B + path).text())
+    sql("DELETE FROM nets;")                      # the day's caps from earlier runs (30 searches a day from one address)
+    dice = {l: len(getj(f"/api/{l}/dice").get("games") or []) for l in LANGS}
+    big = [l for l in LANGS if dice[l] >= 40]
+    small = [l for l in LANGS if dice[l] < 40]
+    ok(big and small, "17: some languages have 40 games as the dice counts them, some fewer (import every seed)", dice)
+    # -- nothing drawn below 40: no magnifier, no sheet, no room kept
+    for lang in small:
+        k = next((x[4] for x in getj(f"/api/{lang}/names").get("games", []) if not str(x[1]).startswith("https://")), "words")
+        for path in (f"/{lang}/", f"/{lang}/{k}/"):
+            t = api.request.get(B + path + "?r=" + RUN).text()
+            ok("find-b" not in t and "sheet-find" not in t, f"17 {path}: {dice[lang]} games, no search drawn")
+    tail = letters(RUN)[-6:]
+    for lang in big:
+        names = getj(f"/api/{lang}/names")["games"]
+        ok(len(names) >= dice[lang] - 1 and not any(isinstance(x, list) and len(x) != 6 for x in names), f"17 {lang}: the names list, six fields each", len(names))
+        maker = next((x for x in names if not str(x[1]).startswith("https://") and len(x[2]) >= 5), None)
+        kind = next((x[4] for x in names if not str(x[1]).startswith("https://")), "words")
+        for w in (320, 390, 1280):
+            for scheme in (("light", "dark") if w != 320 else ("light",)):
+                ctx, pg = new(b, w, scheme)
+                tag = f"17 {lang} {w} {scheme}"
+                pg.goto(url(f"/{lang}/"), wait_until="networkidle"); pg.wait_for_timeout(400)
+                words = pg.evaluate("JSON.parse(document.getElementById('pl-data').textContent).words")
+                h = pg.evaluate(FINDHEAD, True)
+                ok(h["find"] and h["find"][1] - h["find"][0] >= 44 and h["find"][3] - h["find"][2] >= 44 and h["name"] == words["search"] and h["title"] == words["search"], tag + ": the magnifier, 44 px, named", h)
+                ok(h["lines"] <= h["before"]["lines"] and h["h"] <= h["before"]["h"] + 1, tag + ": the head is no higher and the name has no more lines than before search", h)
+                if w >= 1024: ok(h["lines"] == 1 and h["find"][2] < h["brand"][3] and h["find"][3] > h["brand"][2], tag + ": on a computer one row, the name on one line", h)
+                if w >= 700: ok(h["dice"], tag + ": on a computer the dice stays", h)
+                ok(h["sw"] <= h["vw"] + 1, tag + ": nothing wider than the screen", h)
+                bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes", bad[:4])
+                # open it: a tap; the focus is in the field; nothing typed, nothing shown
+                pg.click("#find-b"); pg.wait_for_timeout(250)
+                st = pg.evaluate(FINDSTATE)
+                ok(st["open"] and "find-q" in (st["focus"] or "") and not st["tiles"] and not st["nf"], tag + ": the sheet opens with the focus in the field, nothing shown", st)
+                fld = pg.evaluate("(() => { const i = document.querySelector('.find-q'); const l = i.closest('label'); return [i.type, i.getAttribute('enterkeyhint'), i.getAttribute('autocomplete'), l.textContent.trim(), i.placeholder, i.getBoundingClientRect().height]; })()")
+                ok(fld[:5] == ["search", "search", "off", words["search"], words["search"]], tag + ": a search field, named by the word search", fld)
+                # a search: the first letters of a game's name find it, first or among the first, as a coin that opens its page
+                if maker:
+                    q = maker[2][:4]
+                    pg.fill(".find-q", q); pg.wait_for_timeout(400)
+                    st = pg.evaluate(FINDSTATE)
+                    ids = [t["id"] for t in st["tiles"]]
+                    ok(maker[0] in ids and len(ids) <= 24, tag + f": '{q}' finds {maker[2]}", ids[:6])
+                    t0 = next((t for t in st["tiles"] if t["id"] == maker[0]), None)
+                    ok(t0 and t0["href"] == f"/{lang}/g/{maker[1]}/" and not t0["hit"] and not t0["target"], tag + ": a maker's coin opens its game's page, counting nothing", t0)
+                    ok(all(t["hit"] and t["target"] == "_blank" and t["href"].startswith("https://") for t in st["tiles"] if t["lg"]), tag + ": Logicers' own coins play, as everywhere")
+                    if w == 390 and scheme == "light": pg.screenshot(path=f"{SHOTS}/s-find-{lang}-{w}.png")
+                    z = pg.evaluate(ZERO); ok(not z, tag + ": the coins: no 0, each opens what it should", z[:3])
+                    bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes with results", bad[:4])
+                # nothing found: the words and Add a game; the search goes once, as words only, after 1.5 s
+                miss = "zq" + tail + lang.replace("-", "")
+                sent = []
+                pg.on("request", lambda r: sent.append(r.post_data or "") if "/api/miss" in r.url else None)
+                pg.fill(".find-q", "Zq " + tail + lang.replace("-", "")); pg.wait_for_timeout(300)
+                st = pg.evaluate(FINDSTATE)
+                ok(not st["tiles"] and st["nf"] and st["nfAdd"], tag + ": nothing found: 'Nothing here.' and Add a game", st)
+                ok(not sent, tag + ": not sent while typing", sent)
+                pg.wait_for_timeout(1500)
+                ok(len(sent) == 1 and json.loads(sent[0]).get("lang") == lang, tag + ": sent once when the player stops typing", sent)
+                pg.type(".find-q", " "); pg.wait_for_timeout(1700)
+                ok(len(sent) == 1, tag + ": the same search is not sent again", sent)
+                if w == 1280 and scheme == "light": pg.screenshot(path=f"{SHOTS}/s-nf-{lang}-{w}.png")
+                pg.evaluate(STRETCH); pg.wait_for_timeout(100)
+                bad = pg.evaluate(BOXES); ok(not bad, tag + ": nothing found, words half as long again: boxes", bad[:4])
+                # Add a game from it: the add sheet over it, with the language set; back to the search, then Escape closes it
+                pg.click(".find-nf .btn-add"); pg.wait_for_timeout(250)
+                ad = pg.evaluate("(() => { const d = document.getElementById('sheet-add'); return [d.open, d.querySelector('input[name=lang]').value, document.activeElement && document.activeElement.name]; })()")
+                ok(ad[0] and ad[1] == lang and ad[2] == "url", tag + ": Add a game opens with the language set", ad)
+                pg.keyboard.press("Escape"); pg.wait_for_timeout(200)
+                ok(pg.evaluate("document.getElementById('sheet-find').open && document.activeElement.classList.contains('btn-add')"), tag + ": back in the search, on Add a game")
+                pg.focus(".find-q"); pg.keyboard.press("Escape"); pg.wait_for_timeout(250)
+                ok(not pg.evaluate("document.getElementById('sheet-find').open") and pg.evaluate("document.activeElement.id") == "find-b", tag + ": Escape closes it, the focus back on the magnifier")
+                ok(len(sent) == 1, tag + ": closing sends nothing more for a search already sent", sent)
+                # an address never leaves the device, not even on close; the × and the shade close it
+                pg.click("#find-b"); pg.wait_for_timeout(200)
+                pg.fill(".find-q", "me" + tail + "@example.com"); pg.wait_for_timeout(1700)
+                pg.click("#sheet-find .sheet-x"); pg.wait_for_timeout(250)
+                ok(len(sent) == 1, tag + ": an email address is never sent", sent)
+                ok(not pg.evaluate("document.getElementById('sheet-find').open") and pg.evaluate("document.activeElement.id") == "find-b", tag + ": the × closes it, the focus back")
+                pg.click("#find-b"); pg.wait_for_timeout(200)
+                pg.fill(".find-q", "Zy " + tail + lang.replace("-", "")); pg.wait_for_timeout(200)
+                vp = pg.viewport_size
+                pg.mouse.click(3, 3) if w >= 700 else pg.mouse.click(vp["width"] // 2, 6)
+                pg.wait_for_timeout(300)
+                ok(not pg.evaluate("document.getElementById('sheet-find').open"), tag + ": the shade closes it")
+                ok(len(sent) == 2, tag + ": a search that found nothing goes when the sheet closes", sent)
+                # "/" on a computer, but not while typing
+                if w >= 1024:
+                    pg.evaluate("document.activeElement && document.activeElement.blur()")
+                    pg.keyboard.press("/"); pg.wait_for_timeout(200)
+                    ok(pg.evaluate("document.getElementById('sheet-find').open") and pg.evaluate("document.activeElement.classList.contains('find-q')"), tag + ": '/' opens it")
+                    pg.keyboard.press("Escape"); pg.wait_for_timeout(150)
+                    pg.click(".add-top"); pg.wait_for_timeout(200); pg.focus('#sheet-add input[name="url"]'); pg.keyboard.press("/")
+                    ok(not pg.evaluate("document.getElementById('sheet-find').open") and "/" in pg.input_value('#sheet-add input[name="url"]'), tag + ": not while typing in a field")
+                    pg.keyboard.press("Escape"); pg.wait_for_timeout(150)
+                nm = pg.evaluate(ACCNAME); ok(not nm, tag + ": every control has a name", nm[:3])
+                clean(pg, tag)
+                # a kind page: the magnifier before Add a game; the head no higher; it finds
+                pg.goto(url(f"/{lang}/{kind}/"), wait_until="networkidle"); pg.wait_for_timeout(300)
+                h = pg.evaluate(FINDHEAD, True)
+                ok(h["find"] and h["find"][1] - h["find"][0] >= 44 and h["h"] <= h["before"]["h"] + 1, tag + " kind: the magnifier, the head no higher", h)
+                bad = pg.evaluate(BOXES); ok(not bad, tag + " kind: boxes", bad[:4])
+                if maker:
+                    pg.click("#find-b"); pg.wait_for_timeout(200); pg.fill(".find-q", maker[2][:4]); pg.wait_for_timeout(400)
+                    ok(maker[0] in [t["id"] for t in pg.evaluate(FINDSTATE)["tiles"]], tag + " kind: it searches the whole language")
+                    pg.keyboard.press("Escape")
+                if w == 320: pg.screenshot(path=f"{SHOTS}/s-kind-{lang}-{w}.png", clip={"x": 0, "y": 0, "width": w, "height": 160})
+                clean(pg, tag + " kind")
+                ctx.close()
+    # -- the queue's Searches: what was sent, for the admin key only
+    rows = sql(f"SELECT lang, q, n FROM misses WHERE q LIKE 'zq{tail}%' OR q LIKE 'zy{tail}%'")
+    ok(len(rows) >= len(big) and all(r["q"].startswith(("zq" + tail, "zy" + tail)) for r in rows), "17: the searches that found nothing are kept, as their matched form", rows[:4])
+    ok(not sql(f"SELECT q FROM misses WHERE q LIKE '%example%'"), "17: never an address")
+    r = json.loads(api.request.post(B + "/admin/queue", data=json.dumps({"key": ADMIN, "filter": "searches"}), headers={"Content-Type": "application/json"}).text())
+    ok(r.get("ok") and any(t[0].startswith("zq" + tail) for l in r["searches"]["langs"] for t in l["terms"]), "17: Searches for the admin key", str(r)[:200])
+    r = api.request.post(B + "/admin/queue", data=json.dumps({"key": REVIEW, "filter": "searches"}), headers={"Content-Type": "application/json"})
+    ok(r.status == 403, "17: not for the review key", r.status)
+    for w in (390, 1280):
+        ctx, pg = new(b, w)
+        pg.goto(B + "/admin/", wait_until="networkidle")
+        pg.fill('#admin-key input[name="key"]', REVIEW); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+        ok(pg.evaluate("document.querySelector('.admin-filter[data-filter=searches]').hidden"), f"17 queue {w}: no Searches for the review key")
+        pg.click(".admin-lock"); pg.wait_for_timeout(200)
+        pg.fill('#admin-key input[name="key"]', ADMIN); pg.click("#admin-key .btn-send"); pg.wait_for_timeout(600)
+        pg.click('.admin-filter[data-filter="searches"]'); pg.wait_for_timeout(600)
+        ok(pg.evaluate("document.querySelectorAll('.admin-nums-t').length") >= 1 and ("zq" + tail) in pg.inner_text("#admin-cards"), f"17 queue {w}: Searches shows the terms by language")
+        bad = pg.evaluate(BOXES); ok(not bad, f"17 queue {w}: boxes", bad[:3])
+        if w == 1280: pg.screenshot(path=f"{SHOTS}/s-queue-{w}.png")
+        clean(pg, f"17 queue {w}")
+        ctx.close()
+    api.close()
+
+
 def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
+        section_s(b) if "--only-s" in sys.argv else section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -2355,4 +2536,4 @@ def only_j(k=False):
 
 PG_API = None
 if __name__ == "__main__":
-    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r") for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r", "--only-s") for a in sys.argv) else main()

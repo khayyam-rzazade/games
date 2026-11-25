@@ -1,0 +1,89 @@
+[
+  {
+    "name": "Dienos žodis",
+    "url": "https://dienoszodis.lnk.lt/",
+    "lang": "lt",
+    "kind": "words",
+    "line": "Atspėk dienos žodį per kelis bandymus.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Atspėk žodį",
+    "url": "https://atspekzodi.dario.cat/",
+    "lang": "lt",
+    "kind": "words",
+    "line": "Atspėk slaptą žodį. Spalvos parodo, kurios raidės tinka.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Kryžiažodis (tv3.lt)",
+    "url": "https://www.tv3.lt/kryziazodziai",
+    "lang": "lt",
+    "kind": "words",
+    "line": "Išspręsk dienos kryžiažodį.",
+    "maker": "tv3.lt",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/lt",
+    "lang": "lt",
+    "kind": "words",
+    "line": "Atspėk dienos žodį. Kiekvienas bandymas rodo daugiau formos.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Plixdle: dienos žaidimas",
+    "url": "https://plix.gg/lt/guess-the-game",
+    "lang": "lt",
+    "kind": "screen",
+    "line": "Atspėk dienos vaizdo žaidimą pagal užuominas.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/lt",
+    "lang": "lt",
+    "kind": "knowledge",
+    "line": "Spausk Vikipedijos nuorodas ir pasiek tikslo puslapį.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/lt",
+    "lang": "lt",
+    "kind": "music",
+    "line": "Išklausyk melodiją ir atkartok ją nata po natos.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Killdoku",
+    "url": "https://killdoku.juegalo.eu/lt",
+    "lang": "lt",
+    "kind": "numbers",
+    "line": "Užpildyk sudoku pagal sumas langeliuose.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/lt",
+    "lang": "lt",
+    "kind": "numbers",
+    "line": "Užpildyk tinklelį nuliais ir vienetais pagal taisykles.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/lt",
+    "lang": "lt",
+    "kind": "other",
+    "line": "Pažiūrėk į spalvą ir sumaišyk ją iš atminties.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  }
+]

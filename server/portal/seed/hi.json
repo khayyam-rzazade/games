@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Shabdle",
+    "url": "https://kach.github.io/shabdle/",
+    "lang": "hi",
+    "kind": "words",
+    "line": "रोज़ का छिपा हिंदी शब्द कीबोर्ड से ढूँढो।",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/hi",
+    "lang": "hi",
+    "kind": "words",
+    "line": "धुँधला शब्द देखो और छह कोशिशों में पहचानो।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/hi",
+    "lang": "hi",
+    "kind": "knowledge",
+    "line": "लिंक दबाकर रोज़ का लक्ष्य विकिपीडिया लेख ढूँढो।",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/hi/games/worldle",
+    "lang": "hi",
+    "kind": "maps",
+    "line": "आकृति देखकर रोज़ का देश पहचानो।",
+    "maker": "GeoGames",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/hi/games/globle",
+    "lang": "hi",
+    "kind": "maps",
+    "line": "ग्लोब पर रोज़ का छिपा देश ढूँढो।",
+    "maker": "GeoGames",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/hi/games/geodle",
+    "lang": "hi",
+    "kind": "maps",
+    "line": "छह कोशिशों में रोज़ का गुप्त देश पहचानो।",
+    "maker": "GeoGames",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/hi/games/travle",
+    "lang": "hi",
+    "kind": "maps",
+    "line": "शुरू से मंज़िल तक देशों का सबसे छोटा रास्ता बनाओ।",
+    "maker": "GeoGames",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "क्लब ढूँढो",
+    "url": "https://footballclubsmap.com/games/find-the-club/hi/",
+    "lang": "hi",
+    "kind": "maps",
+    "line": "नक्शे पर पिन देखकर फ़ुटबॉल क्लब ढूँढो।",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "स्टेडियम पहचानो",
+    "url": "https://footballclubsmap.com/games/guess-the-stadium/hi/",
+    "lang": "hi",
+    "kind": "sport",
+    "line": "फ़ोटो देखकर स्टेडियम वाला फ़ुटबॉल क्लब पहचानो।",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "लोगो पहचानो",
+    "url": "https://footballclubsmap.com/games/guess-the-logo/hi/",
+    "lang": "hi",
+    "kind": "sport",
+    "line": "धुँधला लोगो देखकर रोज़ का क्लब पहचानो।",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "किट पहचानो",
+    "url": "https://footballclubsmap.com/games/guess-the-kit/hi/",
+    "lang": "hi",
+    "kind": "sport",
+    "line": "जर्सी देखकर रोज़ का फ़ुटबॉल क्लब पहचानो।",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "क्लब पहचानो",
+    "url": "https://footballclubsmap.com/games/guess-the-club/hi/",
+    "lang": "hi",
+    "kind": "sport",
+    "line": "सुरागों से रोज़ का छिपा फ़ुटबॉल क्लब ढूँढो।",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Sonido",
+    "url": "https://sonido.juegalo.eu/hi",
+    "lang": "hi",
+    "kind": "music",
+    "line": "सुर सुनो और चार में से मेल खाता सुर चुनो।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/hi",
+    "lang": "hi",
+    "kind": "music",
+    "line": "छोटी धुन सुनो और उसे वैसे ही बजाओ।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/hi",
+    "lang": "hi",
+    "kind": "other",
+    "line": "रंग याद रखो और उसे वापस मिलाओ।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/hi",
+    "lang": "hi",
+    "kind": "numbers",
+    "line": "तर्क से खानों को 0 और 1 से भर दो।",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/hi/guess-the-game",
+    "lang": "hi",
+    "kind": "screen",
+    "line": "संकेतों से रोज़ के वीडियो गेम का नाम पहचानो।",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-24"
+  }
+]

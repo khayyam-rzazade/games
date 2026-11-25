@@ -1,0 +1,61 @@
+[
+  {
+    "name": "Cyrdle",
+    "url": "https://cyrdle.web.app/home/cy",
+    "lang": "cy",
+    "kind": "words",
+    "line": "Dyfala gair y dydd mewn chwe chynnig.",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Cyrdle Mathemateg",
+    "url": "https://cyrdle.web.app/maths",
+    "lang": "cy",
+    "kind": "numbers",
+    "line": "Dyfala'r swm sy'n rhoi'r ateb cywir.",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Cyrdle Superbugs",
+    "url": "https://cyrdle.web.app/superbugs",
+    "lang": "cy",
+    "kind": "words",
+    "line": "Dyfala air am ficrobau ac iechyd.",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Dyfalair",
+    "url": "https://www.rhwyd.org/dyfalair/",
+    "lang": "cy",
+    "kind": "words",
+    "line": "Dyfala'r gair newydd bob dydd mewn chwe chynnig.",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/cy",
+    "lang": "cy",
+    "kind": "knowledge",
+    "line": "Clicia ar ddolenni Wicipedia nes cyrraedd y dudalen olaf.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Wyrdol",
+    "url": "https://www.gemaucymraeg.com/",
+    "lang": "cy",
+    "kind": "words",
+    "line": "Dyfala air Cymraeg pum llythyren mewn saith cynnig.",
+    "maker": "Gemau Cymraeg",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Cwch Gwenyn",
+    "url": "https://www.gemaucymraeg.com/cwch-gwenyn",
+    "lang": "cy",
+    "kind": "words",
+    "line": "Gwna eiriau o saith llythyren, gyda'r un ganol ym mhob un.",
+    "maker": "Gemau Cymraeg",
+    "checked": "2026-11-24"
+  }
+]

@@ -143,8 +143,15 @@ body.pl {
 }
 @media (min-width: 900px) and (max-width: 1099px) { .top-lang .today-n { font-size: 84px; } }
 .top-sub { grid-template-columns: auto minmax(0, 1fr) auto; padding-block-start: 24px; }
-.back, .dice { display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; transition: border-color .15s var(--ease); }
-.back:hover, .dice:hover { border-color: var(--ink); }
+.back, .dice, .find-b { display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; transition: border-color .15s var(--ease); }
+.back:hover, .dice:hover, .find-b:hover { border-color: var(--ink); }
+/* search (chat S, 24 Nov 2026): the magnifier, round, 44 px, in B's line; on a language page beside Add a game, on a kind page
+   before it. Where four buttons would push the page's name onto another line (a phone), the dice gives way (portal.js
+   measures it: .dice-off); a kind page's head takes one column more, with a little less between them. */
+.find-b { flex: none; padding: 0; background: none; color: var(--ink); cursor: pointer; }
+.find-b .ico { inline-size: 20px; block-size: 20px; stroke-width: 2.2; }
+.dice.dice-off { display: none; }
+.top-sub.has-find { grid-template-columns: auto minmax(0, 1fr) auto auto; column-gap: 12px; }
 .back .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.5; }
 .dice .ico { inline-size: 22px; block-size: 22px; }
 .dice[aria-disabled="true"] { opacity: .45; cursor: default; }
@@ -544,6 +551,32 @@ dialog.sheet[open] { animation: pl-up .24s var(--ease); }
   dialog.sheet { inset: 0; margin: auto; max-inline-size: 540px; block-size: fit-content; border: 1.5px solid var(--line); border-radius: 28px; }
   .sheet-form { padding: 28px 32px 32px; }
   .sheet-grab { display: none; }
+}
+/* search's sheet (chat S, 24 Nov 2026): opens as the languages' one does. On a phone it takes the screen's height, so the field
+   stays at the top above the keyboard and the results scroll under it; on a computer a fixed height, so it never jumps while
+   typing. The field is a pill as the buttons are; the results are the rows' own coins, three to a line on a phone, four in the
+   computer's sheet. */
+dialog.sheet-find { block-size: calc(100dvh - 24px); }
+.find-form { min-block-size: 100%; }
+.find-top { position: sticky; inset-block-start: 0; z-index: 2; display: flex; align-items: center; gap: 10px; margin-block: -8px; padding-block: 8px; background: var(--bg); }
+.find-top .sheet-x { position: static; flex: none; }
+.find-fld { flex: 1 1 auto; min-inline-size: 0; display: flex; align-items: center; gap: 10px; block-size: 52px; padding-inline: 18px 14px;
+  border: 1.5px solid var(--line); border-radius: 999px; background: var(--card); cursor: text; transition: border-color .15s var(--ease); }
+.find-fld:focus-within { border: 2px solid var(--ink); padding-inline: 17.5px 13.5px; }   /* the focus: the pill's line in ink, as a chosen language */
+.find-fld .find-q:focus-visible { outline: none; }
+.find-i { inline-size: 20px; block-size: 20px; stroke-width: 2.2; color: var(--soft); }
+.find-q { flex: 1 1 auto; min-inline-size: 0; block-size: 100%; padding: 0; border: 0; background: none; color: var(--ink);
+  font-family: var(--f-sys); font-size: 17px; outline: none; -webkit-appearance: none; appearance: none; }
+.find-q::placeholder { color: var(--soft); opacity: 1; }
+.find-q::-webkit-search-cancel-button, .find-q::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+.tiles.find-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; overflow: visible; margin-inline: 0; padding: 0; }
+.tiles.find-tiles:empty { display: none; }
+.find-tiles > .tile { inline-size: auto; }
+.find-nf { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-block: 8px; }
+.find-nf-t { font-size: 22px; font-weight: 300; line-height: 1.3; }
+@media (min-width: 700px) {
+  dialog.sheet-find { max-inline-size: 720px; block-size: min(600px, calc(100dvh - 64px)); }
+  .tiles.find-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 }
 /* the languages (chat K, 20 Nov 2026): the open languages by their own names, each a link 52 px high; the page's own is marked
    as a chosen reason is. Two to a line on a phone (one under 360 px, so no name is ever cut), three in the computer's sheet. */

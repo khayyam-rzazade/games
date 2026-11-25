@@ -78,7 +78,8 @@ The files `seed/<lang>.json` (chats S1–S4) go in with one command; it asks for
 npm run import
 ```
 
-It says how many were added, updated and skipped (with why), and which languages opened (a language opens with 5 games).
+It says how many were added, updated and skipped (with why), and which languages opened (a language opens with its first
+listed game: 1 since 25 Nov 2026, it was 5; `OPEN_AT` in `src/db.js`).
 The first nights read every listed game's title and description: a starting game whose page carries a blocklist word (an
 innocent "bet" in a title, say) is hidden with a "Blocklist" card under Dead links; Show again, and that word stays quiet.
 Running it again changes nothing that is already there except a starting game's name, kind, line and maker. One file:
@@ -116,16 +117,25 @@ To show the numbers on the pages: set `"SHOW_NUMBERS": "1"` in `wrangler.jsonc` 
 them again. Locally: `--var SHOW_NUMBERS:1` (the browser check's sections 1 to 11 need it; section 12 needs a second
 Worker with `0`, see the top of `portal/tests/check.py`).
 
+## Search (chat S, 24 Nov 2026)
+
+A language with 40 listed games or more, counted as the dice counts them (`db.js` `SEARCH_MIN`, `DICE_WHERE`), has a round
+magnifier in the head of its page and its kind pages. It opens a sheet with a field: the page fetches `/api/<lang>/names` once
+and matches on the device (`fold` and `rankOf`, the same text in `portal/a/portal.js` and `src/search.js`): the name's start,
+then a word's start, then anywhere in it, then the maker or the kind's word; at most 24. A search that finds nothing goes to
+`/api/miss` once, as words only. What people searched for and did not find: the queue page, the admin key, **Searches**.
+On a phone, where four head buttons would push the page's name onto another line, the dice gives way to search.
+
 ## The tests (any computer with Node 22; no internet)
 
 ```
 npm test
 ```
 
-137 tests (one needs `LIVE=1`; on 24 Nov 2026, chat R, 136 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
+149 tests (one needs `LIVE=1`; on 25 Nov 2026, chat S, 148 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
 per device, game and UTC day; robots and other sites not counted; the duplicate rule; the add check (a redirect to another
 host, a page in another language, the blocklist, a page that does not open, at most 5 redirects, never an IP or localhost);
-the review key refused on hide, delete and import; a language opening at 5 and not on the English Logicers games; Graj
+the review key refused on hide, delete and import; a language opening at its first listed game (1 since 25 Nov 2026) and not on the English Logicers games; Graj
 po polsku; the row order of 2.6; the nightly job (the day's hashes emptied; a 403 that must not hide; three nights of 404 before
 dead; a "check by hand" card closed by the night the game answers again; a move to another site hidden; 300 a night, 6 at a time); the settings (only `/a/*` skips the Worker).
 `test/test_h.mjs` (chat H, 20 Nov 2026) holds the fixes of plan section 10, each with a test that failed before them: the caps
@@ -152,7 +162,15 @@ before it: Arabic's and Persian's own digits (`src/langs.js` `nu` and `numTag`; 
 and every device write ١٬٢٣٤ and ۱٬۲۳۴ alike); right to left, the 90 days and the countries' bars from the right, Play's
 triangle never turned, a game's or a maker's name in its own direction, addresses, the email, the link field and code left
 to right; Arabic and Persian ask with `؟` and Arabic's words write its own digits; a coin's number sized by every character
-(separators too); the page's name never broken inside (简体中文); the Words icon's lines from the right in right to left. D1 is Node's
+(separators too); the page's name never broken inside (简体中文); the Words icon's lines from the right in right to left.
+`test/test_s.mjs` (chat S, 24 Nov 2026) holds search and wave 3, each test failing before it: the magnifier at 40 games counted as
+the dice counts them (39: nothing drawn), on a language page and its kind pages, not on a game page; the sheet; the names list
+(the page's order, no numbers, kept as the dice, 404 for a closed language); the one matching function, the same text in
+`portal/a/portal.js` and `src/search.js`, against a table with a case in every script of the 51 languages; the searches that
+found nothing (their matched form, never an address or a number, 30 a day from one address, deleted after 90 days); the queue's
+Searches for the admin key only; About's sentence; the 20 words files of wave 3 with only their grammar's plural forms (Welsh
+all six), their rows (Serbian and Kazakh in Cyrillic, Urdu right to left, Bengali's own digits); the word `search` in every
+file; and the drawing on Logicers' coins built on the device (an svg has no `.hidden`). D1 is Node's
 own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`).
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.
@@ -204,6 +222,8 @@ pages (the Origin `https://play.logicers.com`); the queue's POSTs may also come 
 | `GET /api/langs` | | `{ day, today, langs: [{ code, name, play_word, endonym, dir, games, today }] }` |
 | `GET /api/<lang>/games` | `kind`, `from`, `n` (≤100), or `ids=a,b,c` (Yours) | `{ games: [{ id, slug, name, kind, line, maker, url, page, ring, new, slot, sold, logicers, en, today, all }], next }`, in row order |
 | `GET /api/<lang>/dice` | none | `{ games: [[id, address], ...] }`: every listed game of the language (Logicers' own only where Logicers has the language), at most 2000 in id order; the page picks one at random on the device for the dice. Kept by the edge 5 minutes |
+| `GET /api/<lang>/names` | none | `{ games: [[id, where, name, maker, kind, pic], ...] }` (chat S, search): every game the language's page can show, in its order (From Logicers, then the kind rows), no numbers; `where` is the slug of a maker's game (its page here) or the address of one of Logicers' own; `pic` a maker's logo (`/p/...`), a Logicers drawing's key, or null. The page fetches it once, when search opens, and matches on the device. Kept as the dice; a closed language: 404 `nolang` |
+| `POST /api/miss` | `{ lang, q }` | `{ kept }` (chat S): a search that found nothing, sent once per term and page view by the page. Kept in its matched form (`src/search.js` `fold`), at most 40 characters, counted per language and UTC day in `misses`; dropped when it holds `@`, `://` or 6 digits in a row; no device id, no address; at most 30 a day from one address (`nets`); deleted after 90 days (the nightly job); e `nolang`, `bad`, `busy` |
 | `GET /api/counts` | `lang` | `{ day, games: { id: { t, a } }, page }` (t today, a in all; without `lang`: `page` is every language's players today) |
 | `POST /api/hit` | `{ game, id }` | `{ counted }` |
 | `POST /api/view` | `{ lang, id }` | `{ counted }` |
@@ -216,7 +236,7 @@ pages (the Origin `https://play.logicers.com`); the queue's POSTs may also come 
 | `POST /api/maker` | `{ key }` | `{ maker: { name, slug }, games: [{ id, name, lang, kind, line, url, status, line_by, page }] }`; e `key` (20 wrong keys in ten minutes) |
 | `POST /api/maker/edit` | `{ key, name }` or `{ key, game, line?, kind? }` | the maker's name (1–60, on all its games) or a game's line (1–60, the game's language) and kind: live at once when the blocklist and the length allow, with an `edit` card (filter Edits); e `field` (with `field`; also for `url lang status name slug maker`), `blocked`, `nogame`, `key`, `busy` |
 | `POST /api/maker/pic` | `{ key, game, data }` (base64 or a `data:` address) | `{ state }` (`wait`, or `ok` when it is the logo shown already); PNG, JPEG or WebP read from the bytes, ≤150 KB, sides 256–4096 px, not animated; one waiting a game; e `pic` (with `why`: `type big small huge animated bad`), `nogame`, `key`, `busy` (20 an hour) |
-| `POST /admin/queue` | `{ key, filter?, before? }` (`todo left reports dead edits tell all`; To tell: the admin key only, see below; Edits: the makers' changes and logos, live already except a logo; To do: no flags first, then the oldest; Left also holds the "numbers jump" cards; Dead links also the "blocked" ones) | `{ role, filter, cards, next, open: { todo, left, reports, dead, edits, tell (admin key only) } }`, 20 cards a page |
+| `POST /admin/queue` | `{ key, filter?, before? }` (`todo left reports dead edits tell all numbers searches`; To tell and Searches: the admin key only, see below; Searches (chat S) gives no cards but `searches: { from, to, langs: [{ code, endonym, n, terms: [[term, n], ...] }] }`: per language, the last 30 days' searches that found nothing, most first; Edits: the makers' changes and logos, live already except a logo; To do: no flags first, then the oldest; Left also holds the "numbers jump" cards; Dead links also the "blocked" ones) | `{ role, filter, cards, next, open: { todo, left, reports, dead, edits, tell (admin key only) } }`, 20 cards a page |
 | `POST /admin/game` | `{ key, game }` | `{ role, card }` |
 | `POST /admin/pic` | `{ key, game }` | `{ data }`: the waiting logo as a `data:` address, for its card (both keys) |
 | `POST /admin/act` | `{ key, game, action, fields?, reason? }` | `{ role, card, opened }` |
@@ -318,23 +338,29 @@ closes), the keyed hashes of this week's counted plays (`wseen`, same), and each
 and addresses as two numbers (`gotw`); for a claimed game its maker (`makers`: a name, its slug, the keyed hash of the key,
 two dates; `games.maker_id`, `claimed_at`, `line_by`), the pending line's keyed hash, and the claim links' keyed hashes
 (`tokens`; `games.tell_n` counts the used ones); a claimed game's logo (`pics`: its bytes, type and size; one waiting and
-the one shown, `games.pic`), and when the To tell email went (`games.told_at`). A sender's name and email
+the one shown, `games.pic`), and when the To tell email went (`games.told_at`); the searches on a language's page that found
+nothing, as words only (`misses`: the day, the language, the term as it was compared, how many times; chat S), 90 days. A sender's name and email
 stay while the game may be listed and go 90 days after it is rejected, hidden or dead (at once with a delete).
 
 ## A new language
 
 Its words file `words/<code>.json` and one import line in `src/words.js` (a test fails until the line is there), its row
 in `src/langs.js` (all 51 rows are there already; check once that "Play" is not a big brand in that country, as for
-Polish), and its starting games (`npm run import -- seed/<code>.json`). It opens by itself at 5 games.
+Polish), and its starting games (`npm run import -- seed/<code>.json`). It opens by itself at its first listed game
+(Khayyam, 25 Nov 2026: one is enough, it was 5; a waiting game does not count, nor Logicers' English ones shown elsewhere).
 
 **Chat X, 23 Nov 2026:** the 19 languages of waves 1 and 2 (uk cs ro hu sv no da fi el ca az id vi; he ar fa th zh-hans
 zh-hant) have their words files, as copies of `en.json` until the words chats write them (what the new keys must tell:
 `notes/words-x.md`), and their import lines; their rows in `src/langs.js` are checked (Norwegian is Bokmål: its pages say
 `lang="nb"`). A plural form is used for every CLDR category a language has (Arabic: `.zero .one .two .few .many`, the
-plain key being `other`), only from the language's own file. Nothing opens before 5 listed games. **Chat R, 24 Nov 2026:** a
+plain key being `other`), only from the language's own file. Nothing opens before its first listed game. **Chat R, 24 Nov 2026:** a
 row's `nu` is the language's own digits (Arabic `arab` ٠١٢٣, Persian `arabext` ۰۱۲۳; Urdu would need its own look):
 every number on the server and the device is written with `numTag(code)`, because browsers' own data differ (newer ones
-write Arabic with 0123). Right to left needs nothing per language: `dir` in the row, and the CSS is logical. If a language's name
+write Arabic with 0123). Right to left needs nothing per language: `dir` in the row, and the CSS is logical. **Chat S, 24 Nov
+2026:** wave 3's 20 (hr sr bg sk sl lt lv et eu gl cy ms fil hi bn ur ta sw kk ka) have their words files, copies of `en.json`
+with only the plural forms each grammar has (Welsh all six, Malay none; what to write: `notes/words-s.md`), and their import
+lines; their rows are checked: Serbian and Kazakh in Cyrillic, Urdu right to left with 0123 (`nu` `latn`, as Jang writes),
+Bengali in its own digits (`nu` `beng`, as Prothom Alo writes). If a language's name
 changes in `src/langs.js`, run `python3 scripts/glyphs.py` (below): a test says so.
 
 ## For the front end (chat B)

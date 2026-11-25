@@ -1,0 +1,12 @@
+[
+{"name":"Уърдъл","url":"https://wordle-bg.ggerganov.com/","lang":"bg","kind":"words","line":"Познай скритата дума в шест опита.","checked":"2026-11-24"},
+{"name":"Уърдли","url":"https://lordcris.github.io/wordle-bg/","lang":"bg","kind":"words","line":"Намери скритата дума. Всеки ден е нова.","checked":"2026-11-24"},
+{"name":"Linkdle","url":"https://linkdle.com/bg","lang":"bg","kind":"knowledge","line":"Кликай по връзките в Уикипедия и стигни до целта.","maker":"Marc García-Penche","checked":"2026-11-24"},
+{"name":"Plixdle: видеоиграта на деня","url":"https://plix.gg/bg/guess-the-game","lang":"bg","kind":"screen","line":"Познай видеоиграта на деня по подсказки.","checked":"2026-11-24"},
+{"name":"FootballClubsMap: Познай клуба","url":"https://footballclubsmap.com/games/guess-the-club/bg/","lang":"bg","kind":"sport","line":"Познай клуба по подсказки. Нов е всеки ден.","checked":"2026-11-24"},
+{"name":"FootballClubsMap: Намери клуба","url":"https://footballclubsmap.com/games/find-the-club/bg/","lang":"bg","kind":"maps","line":"Намери клуба на картата. Всеки опит показва разстояние.","checked":"2026-11-24"},
+{"name":"FootballClubsMap: Познай стадиона","url":"https://footballclubsmap.com/games/guess-the-stadium/bg/","lang":"bg","kind":"sport","line":"Познай клуба по снимка на стадиона му.","checked":"2026-11-24"},
+{"name":"Killdoku","url":"https://killdoku.juegalo.eu/bg","lang":"bg","kind":"numbers","line":"Попълни судоку по сумите в рамките.","maker":"juegalo.eu","checked":"2026-11-24"},
+{"name":"Binario","url":"https://binario.juegalo.eu/bg","lang":"bg","kind":"numbers","line":"Попълни мрежата с нули и единици по правила.","maker":"juegalo.eu","checked":"2026-11-24"},
+{"name":"Melodía","url":"https://melodia.juegalo.eu/bg","lang":"bg","kind":"music","line":"Чуй мелодия и я изсвири обратно, нота по нота.","maker":"juegalo.eu","checked":"2026-11-24"}
+]

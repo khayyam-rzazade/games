@@ -1,0 +1,12 @@
+[
+{"name":"Besedle","url":"https://kveez.com/si/besedle/","lang":"sl","kind":"words","line":"Ugani petčrkovno besedo v šestih poskusih.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Državle","url":"https://kveez.com/si/drzavle/","lang":"sl","kind":"maps","line":"Ugani državo po njenem obrisu.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Matematle","url":"https://kveez.com/si/matematle/","lang":"sl","kind":"numbers","line":"Sestavi enačbo dneva v šestih poskusih.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Filmle","url":"https://kveez.com/si/filmle/","lang":"sl","kind":"screen","line":"Poveži šest filmov z igralci.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Pesle","url":"https://kveez.com/si/pesle/","lang":"sl","kind":"knowledge","line":"Ugani pasmo psa na sliki.","maker":"Kveez","checked":"2026-11-24"},
+{"name":"Linkdle","url":"https://linkdle.com/sl","lang":"sl","kind":"knowledge","line":"Klikaj povezave na Wikipediji in pridi do cilja.","maker":"Marc García-Penche","checked":"2026-11-24"},
+{"name":"Plixdle: videoigra dneva","url":"https://plix.gg/sl/guess-the-game","lang":"sl","kind":"screen","line":"Ugani videoigro dneva s pomočjo namigov.","checked":"2026-11-24"},
+{"name":"Melodía","url":"https://melodia.juegalo.eu/sl","lang":"sl","kind":"music","line":"Poslušaj melodijo in jo zaigraj nazaj, noto za noto.","maker":"juegalo.eu","checked":"2026-11-24"},
+{"name":"Binario","url":"https://binario.juegalo.eu/sl","lang":"sl","kind":"numbers","line":"Izpolni mrežo z ničlami in enicami po pravilih.","maker":"juegalo.eu","checked":"2026-11-24"},
+{"name":"Killdoku","url":"https://killdoku.juegalo.eu/sl","lang":"sl","kind":"numbers","line":"Izpolni sudoku po vsotah v okvirjih.","maker":"juegalo.eu","checked":"2026-11-24"}
+]

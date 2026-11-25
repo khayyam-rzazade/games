@@ -62,7 +62,9 @@
                   .nums-ci .nums-cn .nums-cv .nums-cb   the coins' logo: .tile-logo (img) .tile-logo-lg (svg) .game-logo
      footer       .foot  .btn-add  .foot-links  .foot-about  .foot-lg
      top bar      .top-acts (the buttons at the end of a language page's head)  .add-top (Add a game, filled, in every head; the words
-                  show from 700 px)  .dice (a link to a random game, #dice; JS gives it its address)
+                  show from 700 px)  .dice (a link to a random game, #dice; JS gives it its address; .dice-off: it gives way where
+                  the head has search and four buttons would push the name onto another line, chat S)  .find-b (#find-b: the
+                  magnifier, on a language page and its kind pages once the language has SEARCH_MIN games; .has-find on the head)
      Yours        .streak (#streak: a flame and the days in a row, from 1)  .run (#run: the next game of the run)  .run-done (#run-done)
      buttons      .btn  .btn-add  .btn-play  .btn-report  .btn-send  .btn-done  .btn-more  .ico (any icon)  .ico-flip (turns
                   round in a right-to-left page)
@@ -72,24 +74,26 @@
                   eight kind buttons)  .kind-opt  .kind-opt-t  .reasons  .reason-opt  .hp (the robots' field: out of sight and
                   out of reach)  .sheet-err (data-e="link" | "here" | "busy"; hidden until needed)  .sheet-here (the "here" one:
                   .sheet-here-t its words, .sheet-claim Claim for a listed game no maker has claimed; chat N)  .sheet-ok (thanks; hidden)
+                  .sheet-find (search, chat S: .find-form .find-top .find-fld .find-i .find-q (the field) .find-tiles (the results,
+                  built by portal.js from #tpl-tile) .find-nf .find-nf-t (nothing found, with Add a game))
      templates    template#tpl-tile (one tile, for the Yours row and the kind page's More)
      helpers      .vh (visually hidden, read by screen readers)
      admin        .admin .admin-top .admin-h .admin-key .admin-bar .admin-role .admin-remember .admin-lock .admin-filters
                   .admin-filter (data-filter) .admin-filter-n .admin-cards .admin-more .admin-msg  (the cards: admin.js)
    Icons: <svg><use href="/a/icons.svg?v=…#ID"> with the ids k-words k-numbers k-maps k-knowledge (a light bulb) k-music
    k-screen k-sport (a trophy) k-other (the kinds) and i-star (Save: a bookmark) i-plus i-globe i-close i-play i-flag i-more
-   i-check i-down i-back i-dice (the random game) i-flame (the streak) i-crown (the game of the week).
+   i-check i-down i-back i-dice (the random game) i-flame (the streak) i-crown (the game of the week) i-search (search).
    data- attributes portal.js reads: data-game, data-kind, data-count, data-count-label, data-hit (a link whose click sends
-   /api/hit), data-open="sheet-add" | "sheet-report" | "sheet-langs" (opens that dialog; with data-kind it sets the kind), data-close,
+   /api/hit), data-open="sheet-add" | "sheet-report" | "sheet-langs" | "sheet-find" (opens that dialog; with data-kind it sets the kind), data-close,
    data-star, data-lang, data-e, data-more, data-from, data-filter, data-vote. */
 import { LANGS, LANG, htmlLang, numTag, nameParts, pageName, byEndonym } from "./langs.js";
 import { WORDS, wordsOf, word, num, aroundN, withN, fill, OWN_WORDS } from "./words.js";
-import { KINDS, picUrl, lgLogo, NUM_DAYS, indexable } from "./db.js";
+import { KINDS, picUrl, lgLogo, NUM_DAYS, indexable, SEARCH_MIN } from "./db.js";
 import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=804d5eb21f", js: "/a/portal.js?v=3ea97cf42b", admin: "/a/admin.js?v=4f6f5e1ea1", icons: "/a/icons.svg?v=aedb4ab243", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
+export const ASSET = { css: "/a/portal.css?v=8875b09fcf", js: "/a/portal.js?v=ec8256d0d3", admin: "/a/admin.js?v=a80f78c7b5", icons: "/a/icons.svg?v=ad7b0adbd9", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -205,6 +209,13 @@ function todayLine(lang, n, which) {
 function addTop(L) {
   return `<button class="add-top" type="button" data-open="sheet-add" aria-label="${T(L, "add")}" title="${T(L, "add")}">${icon("i-plus")}<span class="add-top-t">${T(L, "add")}</span></button>`;
 }
+/* search (chat S, 24 Nov 2026; plan 2.17 item 5): a round magnifier, its icon only, named by the word "search"; drawn only where
+   the language has SEARCH_MIN games or more, counted as the dice counts them (db.js DICE_WHERE: d.dice); below that nothing is
+   drawn and no room is kept. It opens the sheet sheetFind; on a computer "/" opens it too (portal.js). */
+const hasFind = (d) => (d.dice || 0) >= SEARCH_MIN;
+function findTop(L) {
+  return `<button class="find-b" id="find-b" type="button" data-open="sheet-find" aria-haspopup="dialog" aria-label="${T(L, "search")}" title="${T(L, "search")}">${icon("i-search")}</button>`;
+}
 /* the wall: the name large, its one English line, today's players in every language */
 function headerWall(d) {
   return `<header class="top top-wall">
@@ -223,7 +234,7 @@ const brandBy = (d) => `<p class="brand-by"><a class="brand-by-a" href="${esc(d.
    "Language" and the language's own name; on a phone it shows as a globe. */
 function headerLang(d) {
   const l = LANG.get(d.lang);
-  return `<header class="top top-lang${d.nums === false ? " top-quiet" : ""}">
+  return `<header class="top top-lang${d.nums === false ? " top-quiet" : ""}${hasFind(d) ? " has-find" : ""}">
 <div class="brand-box">
 ${brand(d, "h1")}
 ${brandBy(d)}
@@ -231,7 +242,7 @@ ${brandBy(d)}
 ${todayLine(d.lang, d.page_today, "page")}
 <div class="top-acts">
 ${addTop(d.lang)}
-<a class="dice" id="dice" target="_blank" rel="noopener" data-hit data-game="" aria-label="${T(d.lang, "dice")}" title="${T(d.lang, "dice")}" hidden>${icon("i-dice")}<span class="dice-t" aria-hidden="true">${T(d.lang, "dice")}</span></a>
+${hasFind(d) ? findTop(d.lang) : ""}<a class="dice" id="dice" target="_blank" rel="noopener" data-hit data-game="" aria-label="${T(d.lang, "dice")}" title="${T(d.lang, "dice")}" hidden>${icon("i-dice")}<span class="dice-t" aria-hidden="true">${T(d.lang, "dice")}</span></a>
 <button class="chip-lang" type="button" data-open="sheet-langs" aria-haspopup="dialog" aria-label="${T(d.lang, "f.lang")}: ${esc(l.endonym)}" title="${T(d.lang, "f.lang")}">${icon("i-globe", "chip-g")}<span class="chip-lang-t">${esc(l.endonym)}</span>${icon("i-down", "chip-d")}</button>
 </div>
 </header>`;
@@ -239,13 +250,14 @@ ${addTop(d.lang)}
 /* a page below: the round back button, the name small at the end */
 function headerSub(d) {
   const home = d.back || (d.wall ? "/" : "/" + d.lang + "/"), name = d.backName || (d.wall ? "Play Logicers" : pageName(d.lang));
-  return `<header class="top top-sub">
+  const find = d.page === "kind" && hasFind(d);             // search: a kind page too (not a game page)
+  return `<header class="top top-sub${find ? " has-find" : ""}">
 <a class="back" href="${home}" aria-label="${esc(name)}">${icon("i-back", "ico-flip")}</a>
 <div class="brand-box brand-sm">
 ${brand(d, "p")}
 ${d.wall ? "" : brandBy(d)}
 </div>
-${addTop(d.wall ? "en" : d.lang)}
+${find ? findTop(d.lang) + "\n" : ""}${addTop(d.wall ? "en" : d.lang)}
 </header>`;
 }
 function about(d) { return d.wall || d.lang === "en" ? "/about/" : "/about/?l=" + d.lang; }
@@ -411,6 +423,24 @@ ${list.map((l) => `<li><a class="lang-opt" href="/${l.code}/" lang="${esc(htmlLa
 </div>
 </dialog>`;
 }
+/* search's sheet (chat S): like the languages' one. A field (its label and its placeholder the word "search"), and the rows'
+   own tiles under it, built by portal.js; nothing found: "Nothing here." (nf) and Add a game, which opens the add sheet with
+   the language set. Escape, the ×, the shade close it, and the focus goes back to the magnifier. */
+function sheetFind(d) {
+  if (!hasFind(d)) return "";
+  const L = d.lang;
+  return `<dialog class="sheet sheet-find" id="sheet-find" aria-labelledby="find-l">
+<form class="sheet-form find-form" role="search" novalidate>
+<span class="sheet-grab" aria-hidden="true"></span>
+<div class="find-top">
+<label class="find-fld">${icon("i-search", "find-i")}<span class="vh" id="find-l">${T(L, "search")}</span><input class="find-q" name="q" type="search" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="100" placeholder="${T(L, "search")}" dir="auto"></label>
+<button class="sheet-x" type="button" data-close aria-label="${T(L, "close")}">${icon("i-close")}</button>
+</div>
+<ul class="tiles find-tiles" role="list"></ul>
+<div class="find-nf" hidden><p class="find-nf-t" role="status">${T(L, "nf")}</p><button class="btn btn-add" type="button" data-open="sheet-add">${T(L, "add")}</button></div>
+</form>
+</dialog>`;
+}
 export const REASONS = ["broken", "notdaily", "lang", "unsafe", "other"];
 function sheetReport(d, g) {
   const L = d.lang;
@@ -475,6 +505,7 @@ ${rowWanted(d, wanted)}
 ${footer(d)}
 ${sheetAdd(d)}
 ${sheetLangs(d)}
+${sheetFind(d)}
 ${tplTile(d)}`;
   const lists = [itemList(word(d.lang, "from_logicers"), d.lgRow.map((g) => ({ url: g.url, name: g.name })))]
     .concat(kinds.map((k) => itemList(word(d.lang, "cat." + k), d.byKind[k].slice(0, ROW_MAX).map((g) => ({ url: gameUrl(d, g), name: g.name })))));
@@ -500,6 +531,7 @@ ${games.length > KIND_MAX ? `<button class="btn btn-more" type="button" data-mor
 </main>
 ${footer(d)}
 ${sheetAdd(d)}
+${sheetFind(d)}
 ${tplTile(d)}`;
   const cat = word(d.lang, "cat." + d.kind), name = pageName(d.lang);
   /* the Words page is titled for what people search (Khayyam, 23 Nov 2026: "games like Wordle in Spanish"): its title, its
@@ -660,7 +692,7 @@ ${p("Anyone can add a game with its link. A machine looks at the page first. Eve
 ${h("What the numbers count")}
 ${p((d.nums === false ? "We count how many people go to play each game from Play Logicers and how many people open each page. The numbers are not shown yet; the maker of a game can see its own." : "Each game shows how many people went to play it from Play Logicers today and in all, and each page shows how many people opened it today.") + " A day is the world's day, from midnight to midnight UTC. Each device counts once a day for each game and each page.")}
 ${h("What we keep")}
-${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country. Cloudflare, which serves these pages, also counts visits for us, without cookies.")}
+${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country. When a search here finds nothing, we keep only its words, for 90 days, to see which games are missing. Cloudflare, which serves these pages, also counts visits for us, without cookies.")}
 ${p("When you add a game, we keep its link, and your name and email if you give them; only Khayyam sees your email. We keep them while the game is on the list, so we can tell its maker the numbers, and delete them 90 days after a game is turned down or taken off. A report keeps its reason and the day.")}
 ${h("Your game")}
 ${p(`To have a game changed or taken off, write to <span class="mail" dir="ltr">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}
@@ -833,7 +865,7 @@ export function pageAdmin(d) {
 <button class="btn admin-lock" type="button">Lock</button>
 </div>
 <nav class="admin-filters" aria-label="Filters" hidden>
-${[["todo", "To do"], ["left", "Left for Khayyam"], ["reports", "Reports"], ["dead", "Dead links"], ["edits", "Edits"], ["tell", "To tell"], ["all", "All"], ["numbers", "Numbers"]].map(([f, t]) => `<button class="admin-filter" type="button" data-filter="${f}" aria-pressed="false"${f === "tell" ? " hidden" : ""}>${t}<span class="admin-filter-n"></span></button>`).join("\n")}
+${[["todo", "To do"], ["left", "Left for Khayyam"], ["reports", "Reports"], ["dead", "Dead links"], ["edits", "Edits"], ["tell", "To tell"], ["all", "All"], ["numbers", "Numbers"], ["searches", "Searches"]].map(([f, t]) => `<button class="admin-filter" type="button" data-filter="${f}" aria-pressed="false"${f === "tell" || f === "searches" ? " hidden" : ""}>${t}<span class="admin-filter-n"></span></button>`).join("\n")}
 </nav>
 <section class="admin-cards" id="admin-cards" aria-live="polite"></section>
 <button class="btn admin-more" type="button" hidden>More</button>

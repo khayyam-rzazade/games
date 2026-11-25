@@ -3,7 +3,8 @@
    (or a key missing from its file) falls back to English. One import line per file below: a new language's file needs its
    line (test/test_misc.mjs fails while a file in words/ has none).
    Chat X, 23 Nov 2026: the 19 languages of waves 1 and 2 (plan 2.13, phase 2) have their files, as copies of en.json until
-   the words chats (W1a, W1b, W2) write them. A file opens nothing: a language opens at 5 listed games (db.js OPEN_AT).
+   the words chats (W1a, W1b, W2) write them. A file opens nothing: a language opens at its first listed game (db.js OPEN_AT;
+   1 since 25 Nov 2026, it was 5).
    Plural forms (beyond 2.4, optional): every CLDR form a language has, "players_today.zero", ".one", ".two", ".few",
    ".many" (Arabic has all six; the plain key is "other"), is used when Intl.PluralRules of the language picks it and the
    language's own file has it; else the plain key. A form is never taken from English. English has "players_today.one". */
@@ -40,11 +41,35 @@ import fa from "../words/fa.json" with { type: "json" };
 import th from "../words/th.json" with { type: "json" };
 import zhHans from "../words/zh-hans.json" with { type: "json" };
 import zhHant from "../words/zh-hant.json" with { type: "json" };
+/* wave 3 (chat S, 24 Nov 2026): the plan's 20 "later" languages, as copies of en.json (each with only the plural forms its
+   grammar has: Welsh all six, Malay none) until the words chats W3a-W3d write them. Serbian and Kazakh are written in
+   Cyrillic; Urdu runs right to left */
+import hr from "../words/hr.json" with { type: "json" };
+import sr from "../words/sr.json" with { type: "json" };
+import bg from "../words/bg.json" with { type: "json" };
+import sk from "../words/sk.json" with { type: "json" };
+import sl from "../words/sl.json" with { type: "json" };
+import lt from "../words/lt.json" with { type: "json" };
+import lv from "../words/lv.json" with { type: "json" };
+import et from "../words/et.json" with { type: "json" };
+import eu from "../words/eu.json" with { type: "json" };
+import gl from "../words/gl.json" with { type: "json" };
+import cy from "../words/cy.json" with { type: "json" };
+import ms from "../words/ms.json" with { type: "json" };
+import fil from "../words/fil.json" with { type: "json" };
+import hi from "../words/hi.json" with { type: "json" };
+import bn from "../words/bn.json" with { type: "json" };
+import ur from "../words/ur.json" with { type: "json" };
+import ta from "../words/ta.json" with { type: "json" };
+import sw from "../words/sw.json" with { type: "json" };
+import kk from "../words/kk.json" with { type: "json" };
+import ka from "../words/ka.json" with { type: "json" };
 import { htmlLang, numTag } from "./langs.js";
 
 export const WORDS = { en, es, pt, fr, de, it, tr, ru, pl, nl, ja, ko,
   uk, cs, ro, hu, sv, no, da, fi, el, ca, az, id, vi,
-  he, ar, fa, th, "zh-hans": zhHans, "zh-hant": zhHant };
+  he, ar, fa, th, "zh-hans": zhHans, "zh-hant": zhHant,
+  hr, sr, bg, sk, sl, lt, lv, et, eu, gl, cy, ms, fil, hi, bn, ur, ta, sw, kk, ka };
 export const KEYS = Object.keys(en);
 
 /* a language's words: its own file over English */

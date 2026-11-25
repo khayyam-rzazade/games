@@ -19,7 +19,15 @@
    writes ٠١٢٣ (arab), Persian ۰۱۲۳ (arabext). Without it a browser picks by its own data, and they differ: newer ones write
    Arabic with 0123, older ones (and the Worker, by its own version) with ٠١٢٣. So every number the server or a device
    writes is formatted with numTag(code), "ar-u-nu-arab", and both write the same digits. Hebrew, Thai and Chinese write
-   0123 (no nu). */
+   0123 (no nu).
+   Chat S, 24 Nov 2026 (wave 3, the 20 "later" rows checked): each endonym as its speakers write it in a language list
+   (Wikipedia's and the big sites' pickers), capitalised as a name where the script has capitals. Serbian is written in
+   Cyrillic ("sr" is Cyrillic in CLDR, Wikipedia's default, Google and Android; Serbian games in either script go on its one
+   page) and Kazakh in Cyrillic ("Қазақша", as its Wikipedia and big sites write it today). Urdu runs right to left.
+   Digits as the big native sites write them: Bengali in its own (Prothom Alo: ২২,০০০, ১০ নভেম্বর), so nu "beng"; Urdu in
+   0123 (Jang: 24؍ نومبر 2026ء), set as nu "latn" so no browser picks Urdu's other digits; Hindi (Aaj Tak), Tamil (Dinamalar)
+   and the others 0123 (no nu). Georgian, Devanagari, Bengali, Tamil and Urdu are drawn by the visitor's own fonts, as Thai
+   and Chinese are; Geologica holds every letter of the Latin and Cyrillic names (src/glyphs.js). */
 
 export const LANGS = [
   /* launch (12) */
@@ -70,8 +78,8 @@ export const LANGS = [
   { code: "ms", endonym: "Bahasa Melayu", play_word: "Play", dir: "ltr", group: "later" },
   { code: "fil", endonym: "Filipino", play_word: "Play", dir: "ltr", group: "later" },
   { code: "hi", endonym: "हिन्दी", play_word: "Play", dir: "ltr", group: "later" },
-  { code: "bn", endonym: "বাংলা", play_word: "Play", dir: "ltr", group: "later" },
-  { code: "ur", endonym: "اردو", play_word: "Play", dir: "rtl", group: "later" },
+  { code: "bn", endonym: "বাংলা", play_word: "Play", dir: "ltr", group: "later", nu: "beng" },
+  { code: "ur", endonym: "اردو", play_word: "Play", dir: "rtl", group: "later", nu: "latn" },
   { code: "ta", endonym: "தமிழ்", play_word: "Play", dir: "ltr", group: "later" },
   { code: "sw", endonym: "Kiswahili", play_word: "Play", dir: "ltr", group: "later" },
   { code: "kk", endonym: "Қазақша", play_word: "Play", dir: "ltr", group: "later" },

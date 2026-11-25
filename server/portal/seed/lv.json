@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Vārdulis",
+    "url": "https://vardulis.lv/",
+    "lang": "lv",
+    "kind": "words",
+    "line": "Uzmini dienas vārdu ar pieciem burtiem sešos mēģinājumos.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Vārdulis (lielakeda.lv)",
+    "url": "https://wordle.lielakeda.lv/",
+    "lang": "lv",
+    "kind": "words",
+    "line": "Atrodi dienas vārdu. Krāsas rāda, kuri burti der.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Ralfulis",
+    "url": "https://ralfulis.vercel.app/",
+    "lang": "lv",
+    "kind": "words",
+    "line": "Atrodi slēpto vārdu. Katrs mēģinājums dod norādes.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Mīklu režģis",
+    "url": "https://researchgames.eu/games/miklu-rezgis/",
+    "lang": "lv",
+    "kind": "words",
+    "line": "Atmini dienas mīklu un atrodi atbildi burtu režģī.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/lv",
+    "lang": "lv",
+    "kind": "words",
+    "line": "Uzmini dienas vārdu pēc tā formas, kas atklājas pamazām.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Plixdle: dienas spēle",
+    "url": "https://plix.gg/lv/guess-the-game",
+    "lang": "lv",
+    "kind": "screen",
+    "line": "Uzmini dienas videospēli pēc norādēm.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/lv",
+    "lang": "lv",
+    "kind": "knowledge",
+    "line": "Klikšķini uz Vikipēdijas saitēm un sasniedz mērķa lapu.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/lv",
+    "lang": "lv",
+    "kind": "music",
+    "line": "Noklausies melodiju un nospēlē to atpakaļ.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Sudoku a Day",
+    "url": "https://sudokuaday.com/lv",
+    "lang": "lv",
+    "kind": "numbers",
+    "line": "Atrisini šodienas sudoku.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Killdoku",
+    "url": "https://killdoku.juegalo.eu/lv",
+    "lang": "lv",
+    "kind": "numbers",
+    "line": "Aizpildi sudoku pēc summām iezīmētajos lodziņos.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/lv",
+    "lang": "lv",
+    "kind": "numbers",
+    "line": "Aizpildi režģi ar nullēm un vieniniekiem pēc noteikumiem.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/lv",
+    "lang": "lv",
+    "kind": "other",
+    "line": "Apskati krāsu un sajauc to vēlreiz no atmiņas.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  }
+]

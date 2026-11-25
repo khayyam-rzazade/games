@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Solliyadi",
+    "url": "https://solliyadi.vikatan.com/",
+    "lang": "ta",
+    "kind": "words",
+    "line": "தினமும் ஒரு தமிழ்ச் சொல்லைச் சில முயற்சியில் கண்டுபிடி.",
+    "maker": "Vikatan Games",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Thirukkural Puzzle",
+    "url": "https://games.vikatan.com/thirukural",
+    "lang": "ta",
+    "kind": "words",
+    "line": "திருக்குறளில் விடுபட்ட சொல்லைக் கண்டுபிடி.",
+    "maker": "Vikatan Games",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/ta",
+    "lang": "ta",
+    "kind": "words",
+    "line": "மங்கலான சொல்லை ஆறு முயற்சியில் கண்டுபிடி.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ta",
+    "lang": "ta",
+    "kind": "knowledge",
+    "line": "இணைப்புகளை அழுத்தி இன்றைய இலக்குக் கட்டுரைக்குப் போ.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Solvalam",
+    "url": "https://games.vikatan.com/word-coach",
+    "lang": "ta",
+    "kind": "knowledge",
+    "line": "தினமும் 5 கேள்விகளில் இணையான சொல்லைத் தேர்ந்தெடு.",
+    "maker": "Vikatan Games",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Sudoku",
+    "url": "https://games.vikatan.com/sudoku",
+    "lang": "ta",
+    "kind": "numbers",
+    "line": "9x9 கட்டத்தில் விடுபட்ட எண்களை நிரப்பு.",
+    "maker": "Vikatan Games",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/ta",
+    "lang": "ta",
+    "kind": "numbers",
+    "line": "தர்க்கத்தால் கட்டங்களை 0, 1 கொண்டு நிரப்பு.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Viyugam",
+    "url": "https://games.vikatan.com/viyugam",
+    "lang": "ta",
+    "kind": "other",
+    "line": "புள்ளியிலிருந்து கொடி வரை எல்லாக் கட்டங்களையும் இணை.",
+    "maker": "Vikatan Games",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/ta",
+    "lang": "ta",
+    "kind": "other",
+    "line": "ஒரு நிறத்தை நினைவில் வைத்து மீண்டும் பொருத்து.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Sonido",
+    "url": "https://sonido.juegalo.eu/ta",
+    "lang": "ta",
+    "kind": "music",
+    "line": "சுரங்களைக் கேட்டு நான்கில் பொருந்தும் ஒன்றைத் தேர்ந்தெடு.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/ta",
+    "lang": "ta",
+    "kind": "music",
+    "line": "சிறு இசையைக் கேட்டு அதே போல் வாசி.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/ta/guess-the-game",
+    "lang": "ta",
+    "kind": "screen",
+    "line": "குறிப்புகளால் இன்றைய வீடியோ கேம் பெயரைக் கண்டுபிடி.",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-24"
+  }
+]

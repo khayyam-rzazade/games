@@ -1,5 +1,6 @@
 /* The queue (plan 2.12, 2.13): the two keys, the review key refused on hide, delete and import, every action, the
-   opening rule at 5 and never on the English Logicers games, the import (idempotent on language + address). */
+   opening rule (1 listed game since 25 Nov 2026; it was 5) and never on the English Logicers games, the import (idempotent on
+   language + address). */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { env, get, call, importGames, seedGames, admin, A, R, SITE, one, rows, WEB, page, resetBrakes, freshIp, setNow, NOW } from "./lib.mjs";
@@ -144,12 +145,10 @@ test("Logicers' own games: only done", async () => {
   assert.equal((await act(e, A, "lg-energy-es", "done")).json.ok, true);
 });
 
-test("a language opens at 5 listed games in it, and not on the English Logicers games it shows", async () => {
+test("a language opens at its first listed game (25 Nov 2026; it was 5), and not on the English Logicers games it shows", async () => {
   const e = env();
   assert.equal((await get(e, "/de/")).status, 302, "Play Deutsch would show 12 English Logicers games: they do not count");
   assert.equal(await one(e, "SELECT code FROM langs WHERE code = 'de'"), null);
-  assert.deepEqual((await importGames(e, seedGames("de", 4))).opened, []);
-  assert.equal((await get(e, "/de/")).status, 302);
   WEB.set("https://fuenf.example.de/", { body: page("Fünf", "de") });
   await addG(e, "https://fuenf.example.de/", "de");
   assert.equal((await get(e, "/de/")).status, 302, "a waiting game does not count");
@@ -157,6 +156,7 @@ test("a language opens at 5 listed games in it, and not on the English Logicers 
   assert.deepEqual(r.json.opened, ["de"]);
   assert.equal((await get(e, "/de/")).status, 200);
   assert.ok((await get(e, "/api/langs")).json.langs.some((l) => l.code === "de"));
+  assert.equal((await one(e, "SELECT COUNT(*) AS n FROM games WHERE lang = 'de' AND status = 'listed'")).n, 1, "one game was enough");
   /* never closed by the rule; Khayyam can close one by hand and it stays closed */
   await e.DB.prepare("UPDATE langs SET open = 0 WHERE code = 'de'").run();
   await importGames(e, seedGames("de", 3, "maps", "M"));

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "چار حرف",
+    "url": "https://charharf.chaoticity.com/",
+    "lang": "ur",
+    "kind": "words",
+    "line": "روز کا چار حرفی لفظ ڈھونڈو۔",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "ہِجّے",
+    "url": "https://www.hijjay.com/",
+    "lang": "ur",
+    "kind": "words",
+    "line": "دیے گئے حروف سے زیادہ سے زیادہ لفظ بناؤ۔",
+    "maker": "Storykit",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ur",
+    "lang": "ur",
+    "kind": "knowledge",
+    "line": "لنک دبا کر آج کے ہدف ویکیپیڈیا مضمون تک پہنچو۔",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/ur/guess-the-game",
+    "lang": "ur",
+    "kind": "screen",
+    "line": "اشاروں سے آج کے ویڈیو گیم کا نام بتاؤ۔",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-24"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Wordle (EUS)",
+    "url": "https://wordle.jokoak.eus/",
+    "lang": "eu",
+    "kind": "words",
+    "line": "Asmatu eguneko hitza sei saiakeratan.",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "WorldlEH",
+    "url": "https://worldleh.jokoak.eus/",
+    "lang": "eu",
+    "kind": "maps",
+    "line": "Asmatu zein herri den, bere silueta ikusita.",
+    "maker": "Talaios Koop",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/eu",
+    "lang": "eu",
+    "kind": "knowledge",
+    "line": "Sakatu Wikipediako estekak azken orrira iritsi arte.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Urkatua",
+    "url": "https://hiztegiak.elhuyar.eus/jolasak/egunekoa",
+    "lang": "eu",
+    "kind": "words",
+    "line": "Asmatu eguneko hitza, letrak esanez.",
+    "maker": "Elhuyar",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/eu",
+    "lang": "eu",
+    "kind": "words",
+    "line": "Asmatu hitza, bere forma agertzen den bitartean.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Kakuru",
+    "url": "https://kakuru.juegalo.eu/eu",
+    "lang": "eu",
+    "kind": "numbers",
+    "line": "Bete sareta, lerro bakoitzak bere pista batu dezan.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Shikaku",
+    "url": "https://shikaku.juegalo.eu/eu",
+    "lang": "eu",
+    "kind": "numbers",
+    "line": "Marraztu laukizuzenak: zenbakia gelaren azalera da.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/eu",
+    "lang": "eu",
+    "kind": "music",
+    "line": "Entzun melodia eta errepikatu nota bakoitza.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/eu",
+    "lang": "eu",
+    "kind": "other",
+    "line": "Ikusi kolore bat, gero sortu berriro memoriatik.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-24"
+  }
+]

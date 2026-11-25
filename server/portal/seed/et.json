@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Sõnuk",
+    "url": "https://sonuk.subscribe.ee/",
+    "lang": "et",
+    "kind": "words",
+    "line": "Arva päeva sõna. Värvid näitavad, millised tähed sobivad.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Sõnarajad",
+    "url": "https://xn--snar-0qa.ajad.ee/",
+    "lang": "et",
+    "kind": "words",
+    "line": "Arva peidetud sõna ära. Iga katse annab vihjeid.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/et",
+    "lang": "et",
+    "kind": "words",
+    "line": "Arva päeva sõna. Iga katse näitab selle kuju rohkem.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Plixdle: päeva videomäng",
+    "url": "https://plix.gg/et/guess-the-game",
+    "lang": "et",
+    "kind": "screen",
+    "line": "Arva ära päeva videomäng vihjete järgi.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/et",
+    "lang": "et",
+    "kind": "knowledge",
+    "line": "Klõpsa Vikipeedia linkidel ja jõua sihtlehele.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/et",
+    "lang": "et",
+    "kind": "music",
+    "line": "Kuula viisi ja mängi see noot-noodi haaval järele.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Killdoku",
+    "url": "https://killdoku.juegalo.eu/et",
+    "lang": "et",
+    "kind": "numbers",
+    "line": "Täida sudoku kastide summade järgi.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/et",
+    "lang": "et",
+    "kind": "numbers",
+    "line": "Täida ruudustik nullide ja ühtedega reeglite järgi.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/et",
+    "lang": "et",
+    "kind": "other",
+    "line": "Vaata värvi ja sega see mälu järgi uuesti kokku.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  }
+]

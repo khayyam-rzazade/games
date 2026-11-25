@@ -4,6 +4,8 @@
    it to point a listed game elsewhere). A wrong key: e "key" (and a brake: 10 wrong keys in ten minutes from one address,
    then "busy").
      POST /admin/queue  { key, filter?, before? }  -> { role, cards, next, open: { todo, left, reports, dead } }
+          filter searches (admin key only; chat S, 24 Nov 2026): no cards, and searches: { from, to, langs: [{ code, endonym,
+          n, terms: [[term, n], ...] }] }: per language, the last 30 days' searches that found nothing, most first
           filter: todo (new games waiting: cards with no flags first, then oldest first, so a flood sinks below real
                   games) | left (left for Khayyam, and the "numbers jump" cards) | reports (the third browser on top)
                   | dead (dead, moved, blocked, "check by hand") | edits (a maker's changes, live already: a look, then
@@ -16,7 +18,7 @@
      POST /admin/game   { key, game }              -> { role, card }
      POST /admin/act    { key, game, action, fields?, reason? }
           list    on the list (needs kind, name, line and lang, here or in fields); the language opens at once if it
-                  reaches 5; a New place and the ribbon for 7 days
+                  was closed (a first listed game opens it, 25 Nov 2026); a New place and the ribbon for 7 days
           reject  reason: notdaily | notgame | broken | unsafe | copy | other
           leave   left for Khayyam: a waiting game gets status "left"; a listed game's open rows get the mark
           show    back on the list (hidden, dead, rejected, left)
@@ -44,6 +46,7 @@ import { isLang, pageName, LANG } from "./langs.js";
 import { word, fill, num } from "./words.js";
 import { tokenFor } from "./claim.js";
 import { linkOk, norm } from "./check.js";
+import { searchesData } from "./search.js";
 
 export const ACTIONS = ["list", "reject", "leave", "show", "edit", "done", "hide", "delete", "nocrown", "pic_ok", "pic_no", "pic_off", "told"];
 export const ADMIN_ONLY = ["hide", "delete", "nocrown", "told"];
@@ -134,7 +137,7 @@ async function pick(env, filter, from) {
      FROM games g JOIN queue q ON q.game = g.id AND q.done = 0 AND q.kind = 'add'
      AND (q."by" IS NULL OR q."by" <> 'left') WHERE g.status = 'waiting' GROUP BY g.id ORDER BY flagged, first LIMIT ? OFFSET ?`, lim, from);
 }
-export const FILTERS = ["todo", "left", "reports", "dead", "edits", "tell", "all", "numbers"];
+export const FILTERS = ["todo", "left", "reports", "dead", "edits", "tell", "all", "numbers", "searches"];
 
 export async function adminQueue(env, req, b) {
   const who = await role(env, req, b);
@@ -142,8 +145,9 @@ export async function adminQueue(env, req, b) {
   const filter = b.filter === undefined ? "todo" : b.filter;
   if (!FILTERS.includes(filter)) return bad("filter");
   if (filter === "tell" && who !== "admin") return bad("admin_only", 403);          // emails: Khayyam only
+  if (filter === "searches" && who !== "admin") return bad("admin_only", 403);      // what people searched for: Khayyam only (chat S)
   const from = Number.isInteger(b.before) && b.before > 0 ? b.before : 0;
-  const games = filter === "numbers" ? [] : await pick(env, filter, from);
+  const games = filter === "numbers" || filter === "searches" ? [] : await pick(env, filter, from);
   const [todo, left, reports, dead, edits] = (await env.DB.batch([
     st(env, "SELECT COUNT(DISTINCT q.game) AS n FROM queue q JOIN games g ON g.id = q.game WHERE q.done = 0 AND q.kind = 'add' AND (q.\"by\" IS NULL OR q.\"by\" <> 'left') AND g.status = 'waiting'"),
     st(env, "SELECT COUNT(*) AS n FROM games g WHERE g.status = 'left' OR EXISTS (SELECT 1 FROM queue q WHERE q.game = g.id AND q.done = 0 AND q.\"by\" = 'left')"),
@@ -158,6 +162,7 @@ export async function adminQueue(env, req, b) {
   if (filter === "tell") await tellCards(env, shown, list);
   const out = { ok: true, role: who, filter, cards: list, next: games.length > PAGE ? from + PAGE : null, open };
   if (filter === "numbers") out.numbers = await numbers(env);
+  if (filter === "searches") out.searches = await searchesData(env);
   return json(out);
 }
 

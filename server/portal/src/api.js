@@ -20,8 +20,8 @@
    db.js NET). What is kept: the keyed hash of (UTC day, device id, game or "view:<lang>") and of (UTC day, address, what)
    with its count, until the night, and the counts by game, day and country (from Cloudflare's request data; "XX" when it
    has none). Never the id itself, never an address. */
-import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where, showNums } from "./util.js";
-import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed, crownStmt, crownSet, picUrl, lgLogo } from "./db.js";
+import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where, showNums, netHash } from "./util.js";
+import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed, crownStmt, crownSet, picUrl, lgLogo, DICE_WHERE } from "./db.js";
 import { LANG, isLang, pageName, nameParts } from "./langs.js";
 import { linkOk, norm, addCheck } from "./check.js";
 import { lookNow } from "./cron.js";
@@ -32,8 +32,6 @@ export const CAP = { add: 500, report: 2000 };
 
 const country = (req) => { const c = req.cf && typeof req.cf.country === "string" ? req.cf.country.toUpperCase() : ""; return /^[A-Z]{2}$/.test(c) && c !== "T1" ? c : "XX"; };
 const h32 = async (env, s) => (await mac(env, s)).slice(0, 32);
-/* the keyed hash of (UTC day, address, what) for the caps: the address is read here and never kept */
-const netHash = (env, req, day, what) => h32(env, day + "|net|" + where(req) + "|" + what);
 /* the keyed hash of (UTC week, device id, game) kept with a counted play, for the vote (plan 2.20) */
 const playHash = (env, week, id, game) => h32(env, "w|" + week + "|" + id + "|" + game);
 
@@ -226,7 +224,7 @@ export const DICE_MAX = 2000;
 export async function diceApi(env, req, url, lang) {
   if (!isLang(lang) || !(await openSet(env)).has(lang)) return bad("nolang", 404);
   const own = lgRowLang(lang) === lang ? 1 : 0;
-  const rows = await all(env, `SELECT id, url FROM games WHERE status = 'listed' AND lang = ? AND (source <> 'logicers' OR ? = 1) ORDER BY id LIMIT ?`, lang, own, DICE_MAX);
+  const rows = await all(env, `SELECT id, url FROM games WHERE ${DICE_WHERE} ORDER BY id LIMIT ?`, lang, own, DICE_MAX);
   return json({ ok: true, lang, games: rows.map((g) => [g.id, g.url]) }, 200, { "Cache-Control": "public, max-age=300, s-maxage=300" });
 }
 export async function countsApi(env, req, url) {

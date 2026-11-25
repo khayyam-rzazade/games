@@ -14,10 +14,10 @@
      3  numbers jump: a game whose day (yesterday, UTC) passed 100 players and ten times its average of the 7 days before
         gets a "jump" card, made left for Khayyam; nothing changes on the page (plan 2.8)
      4  New closes: new_until cleared once passed (the pages read it anyway)
-     5  the opening rule: languages that reached 5 open
+     5  the opening rule: languages that reached OPEN_AT listed games open (1 since 25 Nov 2026; it was 5)
      6  the senders' names and emails of a game off the list (rejected, hidden, dead) for 90 days are deleted (plan 2.16)
      7  the tidy-up: queue rows closed more than 90 days ago, caps rows older than a week, claim links older than 90 days
-        (chat J: they no longer work anyway)
+        (chat J: they no longer work anyway), searches that found nothing older than 90 days (chat S, 24 Nov 2026)
      8  the game of the week (chat J, 20 Nov 2026, plan 2.20): every week before this one (UTC, from Monday 00:00) that still
         has votes is closed: in each language the game with most votes wins, among the games with at least VOTE_MIN.votes
         votes from VOTE_MIN.nets different addresses; a tie goes to the game that sent fewer players that week, then to
@@ -32,6 +32,7 @@
 import { clock, utcDay, dayAdd, weekOf } from "./util.js";
 import { all, one, st, queueRow, openLangs } from "./db.js";
 import { linkCheck } from "./check.js";
+import { MISS } from "./search.js";
 
 export const NIGHT = { checks: 300, parallel: 6, deadAfter: 3, keepDone: 90, top: 50, jumpMin: 100, jumpTimes: 10, keepSender: 90 };
 /* the smallest win (plan 2.20; tuned by chat J from "3 votes from 2 addresses"): 3 votes from 3 addresses. With 2 addresses
@@ -209,6 +210,7 @@ export async function nightly(env, o) {
       st(env, "DELETE FROM queue WHERE done > 0 AND done < ?", now - NIGHT.keepDone * DAY),
       st(env, "DELETE FROM caps WHERE day < ?", utcDay(now - 7 * DAY)),
       st(env, "DELETE FROM tokens WHERE made < ?", now - 90 * DAY),
+      st(env, "DELETE FROM misses WHERE day < ?", dayAdd(today, -MISS.days)),   // searches that found nothing: 90 days (chat S)
     ]);
   });
   return out;

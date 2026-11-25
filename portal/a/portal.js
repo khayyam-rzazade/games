@@ -17,6 +17,9 @@
      - the language: a language's page is remembered (portal.lang); the wall puts it, or the browser's language, first; the
        language button of a language's page opens the list of the open languages (a sheet, as Add a game: chat K, 20 Nov 2026)
      - the sheets (add a game, report) with every error, and More on a kind's page
+     - search (chat S, 24 Nov 2026): the magnifier of a language with 40 games or more opens a sheet that finds a game by its
+       name, its maker or its kind, on the device (the one matching function below, "fold"); a search that finds nothing is
+       sent once, as words only (/api/miss), to see which games are missing
    Words come only from the page's own data (#pl-data), never from this file. No inline style, no HTML strings: the CSP
    forbids them, so everything is built with the DOM. */
 (function () {
@@ -104,6 +107,54 @@
     if (w.length === 2) { w[0].textContent = a[0]; w[1].textContent = a[1]; }
   }
 
+  /* ---- search: the matching (chat S, 24 Nov 2026). The one function the search compares with; src/search.js keeps the same
+     text, letter for letter (test/test_s.mjs), so the Worker keeps a search that found nothing exactly as it was compared. ---- */
+  /* fold: from here */
+  /* The search's one matching function (chat S, 24 Nov 2026). A name, a maker, a kind's word or what was typed, as the search
+     compares them: case and accents go (NFKD; the marks of Latin, Greek and Cyrillic letters, Hebrew points and Arabic,
+     Persian and Urdu marks are taken off; the vowel signs of Indic and Thai letters stay, as they are letters there); ı, İ
+     and i are one, ß is ss, Greek's final sigma is sigma; the forms of alef, yeh, kaf and heh are one; katakana is
+     hiragana; full and half width are one (NFKD); every script's digits are 0-9; spaces, punctuation and symbols go. On a
+     Serbian page Cyrillic reads as Latin, so a game named in either script is found from the other. */
+  var FOLD_ONE = { "ı": "i", "ß": "ss", "ς": "σ", "ə": "e", "ø": "o", "æ": "ae", "œ": "oe", "đ": "d", "ł": "l", "ħ": "h", "þ": "th", "ð": "d",
+    "ٱ": "ا", "ى": "ی", "ي": "ی", "ك": "ک", "ة": "ه", "ە": "ه", "ہ": "ه", "ھ": "ه" };
+  var FOLD_SR = { "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "ђ": "d", "е": "e", "ж": "z", "з": "z", "и": "i", "ј": "j", "к": "k",
+    "л": "l", "љ": "lj", "м": "m", "н": "n", "њ": "nj", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t", "ћ": "c", "у": "u", "ф": "f",
+    "х": "h", "ц": "c", "ч": "c", "џ": "dz", "ш": "s" };
+  var FOLD_ZERO = [0x660, 0x6F0, 0x7C0, 0x966, 0x9E6, 0xA66, 0xAE6, 0xB66, 0xBE6, 0xC66, 0xCE6, 0xD66, 0xDE6, 0xE50, 0xED0, 0xF20, 0x1040, 0x1090, 0x17E0, 0x1810, 0x1946, 0x19D0];
+  function fold(s, lang) {
+    s = String(s == null ? "" : s).normalize("NFKD").toLowerCase()
+      .replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0591-\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\uFE00-\uFE0F]/g, "")
+      .replace(/[ıßςəøæœđłħþðٱىيكةەہھ]/g, function (c) { return FOLD_ONE[c]; });
+    if (lang === "sr") s = s.replace(/[\u0430-\u0448\u0452\u0458-\u045B\u045F]/g, function (c) { return FOLD_SR[c] || c; });
+    return s.replace(/[\u30A1-\u30F6\u30FD\u30FE]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); })
+      .replace(/\p{Nd}/gu, function (c) {
+        var n = c.codePointAt(0), i = FOLD_ZERO.length;
+        while (i--) if (n >= FOLD_ZERO[i] && n < FOLD_ZERO[i] + 10) return String(n - FOLD_ZERO[i]);
+        return c;
+      })
+      .replace(/[\p{Z}\p{P}\p{S}\p{Cc}\p{Cf}\u0640]/gu, "")
+      .normalize("NFC");
+  }
+  /* a game as the search compares it, folded once: its name (with where each of its words starts), its maker, its kind's word */
+  function foldGame(name, maker, kindWord, lang) {
+    var parts = String(name == null ? "" : name).split(/[\p{Z}\p{P}\p{S}]+/u), at = [], n = "";
+    for (var i = 0; i < parts.length; i++) { var f = fold(parts[i], lang); if (f) { at.push(n.length); n += f; } }
+    return { n: n, at: at, m: fold(maker, lang), k: fold(kindWord, lang) };
+  }
+  /* where a game goes among the results for a folded query q: 0 its name starts with q, 1 a word of its name does, 2 its
+     name holds q, 3 its maker or its kind's word holds it; -1 not found. Chinese, Japanese and Thai write no spaces, so
+     there it is the name's start, then anywhere in it (by substring). */
+  function rankOf(g, q) {
+    if (!q || !g) return -1;
+    var i = g.n.indexOf(q);
+    if (i === 0) return 0;
+    for (var w = 1; w < g.at.length; w++) if (g.n.substr(g.at[w], q.length) === q) return 1;
+    if (i > 0) return 2;
+    return g.m.indexOf(q) >= 0 || g.k.indexOf(q) >= 0 ? 3 : -1;
+  }
+  /* fold: to here */
+
   /* ---- icons (the sprite the page already uses, with its stamp) ---- */
   var SPRITE = (function () { var u = $("svg use"); var h = u ? u.getAttribute("href") || "" : ""; return h.split("#")[0] || "/a/icons.svg"; })();
   var SVG = "http://www.w3.org/2000/svg";                // the SVG namespace, not an address
@@ -124,7 +175,7 @@
     try { if (navigator.sendBeacon && navigator.sendBeacon(path, s)) return; } catch (e) { /* the fetch below */ }
     try { window.fetch(path, { method: "POST", body: s, keepalive: true, credentials: "omit", headers: { "Content-Type": "application/json" } }); } catch (e) { /* not counted */ }
   }
-  var lastCounts = 0;
+  var lastCounts = 0, lastGames = {};
   /* the number an element shows now (the page's own, or the last count): an older answer never lowers it. Since chat N (22 Nov
      2026) a play happens on the game's page, so a player comes back to a new page with a newer number than the counts the
      browser may still hold; the counts are also asked again each time (no-cache), as the pages are. */
@@ -137,6 +188,7 @@
       .then(function (j) {
         if (!j || !j.ok) return;
         var g = j.games || {};
+        lastGames = g;
         $$("[data-game]").forEach(function (el) {
           var c = g[el.getAttribute("data-game")];
           if (!c || el.tagName === "FORM") return;
@@ -239,6 +291,7 @@
     var a = $("#dice");
     if (!a || PAGE !== "lang" || !window.fetch) return;
     a.hidden = false; if (!a.getAttribute("href")) a.setAttribute("aria-disabled", "true");   // in its place from the start; it gets its address with the list
+    fitDice();
     diceAt = Date.now();
     window.fetch("/api/" + encodeURIComponent(LANG) + "/dice", { credentials: "omit" })
       .then(function (r) { return r.ok ? r.json() : null; })
@@ -246,6 +299,7 @@
         if (!j || !j.ok || !Array.isArray(j.games)) return;
         diceList = j.games.filter(function (p) { return Array.isArray(p) && GAME_ID.test(p[0] || "") && SAFE.test(p[1] || ""); });
         if (diceList.length < 2) { a.hidden = true; diceList = null; return; }
+        fitDice();
         pickDice();
       })
       .catch(function () { a.hidden = true; });
@@ -284,7 +338,7 @@
   var SAFE = /^https:\/\//i;
   function build(g, mine) {
     var tpl = $("#tpl-tile");
-    if (!tpl || !tpl.content || !SAFE.test(g.url || "")) return null;
+    if (!tpl || !tpl.content || ((g.logicers || !g.slug || g.url) && !SAFE.test(g.url || ""))) return null;   // the search names a maker's game by its page alone (no url)
     var li = tpl.content.firstElementChild.cloneNode(true), a = $(".tile-a", li), nm = $(".tile-name", li);
     var cls = ["tile", /^t\d{1,2}$/.test(g.ring) ? g.ring : "t8"];
     if (g.logicers) cls.push("tile-lg");
@@ -293,7 +347,7 @@
     li.className = cls.join(" ");
     li.setAttribute("data-game", g.id);
     li.setAttribute("data-kind", g.kind);
-    li.setAttribute("data-url", g.url);
+    if (g.url) li.setAttribute("data-url", g.url);
     var page = "/" + (g.lang || LANG) + "/g/" + encodeURIComponent(g.slug) + "/";
     a.setAttribute("href", g.logicers ? g.url : page);
     nm.setAttribute("href", g.logicers ? g.url : page);
@@ -310,7 +364,7 @@
     /* the logo (chat J, plan 2.20): a maker's picture from our own /p/, or the drawing of one of Logicers' games */
     var img = $("img.tile-logo", li), lgo = $("svg.tile-logo", li);
     var drop = function (e) { if (e && e.parentNode) e.parentNode.removeChild(e); };
-    if (g.logo && /^[a-z0-9]{2,12}$/.test(g.logo)) { $("use", lgo).setAttribute("href", SPRITE + "#lg-" + g.logo); lgo.hidden = false; drop(img); }
+    if (g.logo && /^[a-z0-9]{2,12}$/.test(g.logo)) { $("use", lgo).setAttribute("href", SPRITE + "#lg-" + g.logo); lgo.removeAttribute("hidden"); drop(img); }   // an svg has no .hidden to set (chat S: Logicers' coins in Yours and More showed no drawing)
     else if (g.pic && /^\/p\/[a-z0-9-]{1,40}\/[0-9a-f]{16}\.(png|jpg|webp)$/.test(g.pic)) { img.setAttribute("src", g.pic); img.hidden = false; drop(lgo); }
     else { drop(img); drop(lgo); }
     if (img.parentNode || lgo.parentNode) $$(".tile-kind, .tile-zero", li).forEach(drop);     // the logo takes the kind icon's place
@@ -318,7 +372,7 @@
     var vn = $(".tile-vt", li);
     if (vn) vn.textContent = g.name;
     if (g.en) { nm.setAttribute("lang", "en"); if (vn) vn.setAttribute("lang", "en"); }
-    var n = $(".tile-n", li), t = Math.max(g.today || 0, bumped[g.id] || 0);
+    var n = $(".tile-n", li), t = Math.max(g.today || 0, bumped[g.id] || 0, (lastGames[g.id] || {}).t || 0);
     n.setAttribute("data-today", String(t));
     setNum(n, t);
     setLabel($("[data-count-label]", li), t);
@@ -463,7 +517,6 @@
   }
 
   /* ---- the sheets ---- */
-  var opener = null;
   function errs(form) { return $$(".sheet-err", form); }
   function showErr(form, key) { errs(form).forEach(function (p) { p.hidden = p.getAttribute("data-e") !== key; }); }
   function clearMarks(form) {
@@ -488,10 +541,11 @@
     var form = $("form", dlg);
     if (form && (form.classList.contains("is-sent") || !form.getAttribute("data-ready"))) { resetForm(form); form.setAttribute("data-ready", "1"); }
     if (form && kind) { var r = $('input[name="kind"][value="' + kind + '"]', form); if (r) r.checked = true; }
-    opener = doc.activeElement;
+    dlg.plOpener = doc.activeElement;                     // each sheet its own: Add a game can open over the search's
     if (typeof dlg.showModal === "function") { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute("open", "");
-    var first = form ? ($('input[name="url"]', form) || $('input[name="reason"]', form)) : $('[aria-current="page"]', dlg) || $("a[href]", dlg);   // the languages: the page's own
+    var first = form ? ($('input[name="url"]', form) || $('input[name="reason"]', form) || $(".find-q", form)) : $('[aria-current="page"]', dlg) || $("a[href]", dlg);   // the languages: the page's own
     if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+    if (id === "sheet-find") { if (first && first.select) first.select(); findOpen(); }
   }
   function closeSheet(dlg) {
     if (!dlg) return;
@@ -583,6 +637,93 @@
       .catch(function () { btn.removeAttribute("aria-busy"); });
   }
 
+  /* ---- search (chat S, 24 Nov 2026; plan 2.17 item 5) ----
+     The magnifier (#find-b, drawn by the Worker where the language has 40 games or more) opens #sheet-find: a field and the
+     rows' own tiles, at most FIND_MAX, best match first (rankOf above), then in the order of the page's rows. The list comes
+     once, when the sheet first opens (/api/<lang>/names, kept 5 minutes like the dice's). Nothing typed, nothing shown;
+     nothing found: "Nothing here." and Add a game. A search that finds nothing, at FIND_MISS characters or more, is sent once
+     per term and page view, as words only, when the player stops typing (FIND_WAIT), presses search or closes the sheet;
+     never one that holds "@", "://" or 6 digits in a row (a person's address or number), which the Worker drops anyway.
+     On a computer "/" opens it too, except while typing in a field. */
+  var FIND_MAX = 24, FIND_MISS = 3, FIND_WAIT = 1500, KIND_OK = /^(words|numbers|maps|knowledge|music|screen|sport|other)$/;
+  var findList = null, findAsk = null, findSent = {}, findTimer = 0, findLast = null;
+  function ringOf(id) {                                     // a coin's ring colour from the game's id, as the Worker draws it (util.js ring)
+    var h = 2166136261;
+    for (var i = 0; i < id.length; i++) { h ^= id.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    return "t" + (h % 12);
+  }
+  function findLoad() {
+    if (findList || findAsk || !window.fetch) return;
+    findAsk = window.fetch("/api/" + encodeURIComponent(LANG) + "/names", { credentials: "omit" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        findAsk = null;
+        if (!j || !j.ok || !Array.isArray(j.games)) return;
+        var en = !!D.lgLang && D.lgLang !== LANG, list = [];
+        j.games.forEach(function (x, i) {
+          if (!Array.isArray(x) || !GAME_ID.test(x[0] || "") || typeof x[2] !== "string") return;
+          var lg = SAFE.test(x[1] || ""), kind = KIND_OK.test(x[4] || "") ? x[4] : "other";
+          if (!lg && !/^[a-z0-9-]{1,64}$/.test(x[1] || "")) return;
+          list.push({ i: i, f: foldGame(x[2], x[3], W["cat." + kind], LANG), g: { id: x[0], slug: lg ? "" : x[1], url: lg ? x[1] : "", name: x[2], kind: kind,
+            ring: ringOf(x[0]), logicers: lg, en: lg && en, pic: lg ? null : x[5], logo: lg ? x[5] : null } });
+        });
+        findList = list;
+        findRun();
+      })
+      .catch(function () { findAsk = null; });
+  }
+  function findRun() {
+    var dlg = $("#sheet-find");
+    if (!dlg) return;
+    var input = $(".find-q", dlg), ul = $(".find-tiles", dlg), nf = $(".find-nf", dlg);
+    var raw = input ? input.value : "", q = fold(raw, LANG);
+    if (q && findList && q === findLast) return;            // the same search (a space typed): nothing changes, its wait runs on
+    window.clearTimeout(findTimer);
+    if (!q || !findList) { clear(ul); nf.hidden = true; findLast = q && !findList ? null : ""; return; }
+    findLast = q;
+    var hits = [];
+    findList.forEach(function (x) { var r = rankOf(x.f, q); if (r >= 0) hits.push({ r: r, i: x.i, g: x.g }); });
+    hits.sort(function (a, b) { return a.r - b.r || a.i - b.i; });
+    clear(ul);
+    hits.slice(0, FIND_MAX).forEach(function (h) { var li = build(h.g, false); if (li) ul.appendChild(li); });
+    nf.hidden = !!ul.children.length;
+    if (!ul.children.length) findTimer = window.setTimeout(function () { findMiss(q, raw); }, FIND_WAIT);
+    var m = readMine();
+    paintStars(m);
+    paintTicks(m);
+  }
+  function findMiss(q, raw) {                               // sent once per term and page view, as words only
+    if (Array.from(q).length < FIND_MISS || findSent[q] || /@|:\/\//.test(String(raw).normalize("NFKC")) || /\d{6}/.test(q)) return;
+    findSent[q] = 1;
+    beacon("/api/miss", { lang: LANG, q: String(raw).trim().slice(0, 200) });
+  }
+  function findDone() {                                     // pressed search, or closed the sheet: a search that found nothing goes now
+    var dlg = $("#sheet-find"), input = dlg && $(".find-q", dlg);
+    window.clearTimeout(findTimer);
+    if (!input || !findList) return;
+    var q = fold(input.value, LANG);
+    if (q && q === findLast && !$(".find-tiles", dlg).children.length) findMiss(q, input.value);
+  }
+  function findOpen() { findLast = null; findLoad(); findRun(); }
+  /* the head with search: four 44 px buttons would push the page's name onto another line on a phone, so there the dice gives
+     way (search takes its place). Measured, not guessed: it shows wherever it fits beside the name as it is, adding no line
+     and breaking no word ("Portu-guês"). */
+  function nameLines(h) {
+    var r = doc.createRange(), t = {};
+    r.selectNodeContents(h);
+    Array.prototype.forEach.call(r.getClientRects(), function (x) { if (x.width > 1) t[Math.round(x.top)] = 1; });
+    return Object.keys(t).length;
+  }
+  function fitDice() {
+    var a = $("#dice"), top = closest(a, ".top-lang"), h = top && $(".brand", top);
+    if (!a || !h || !$("#find-b", top) || a.hidden) return;
+    var words = String(h.textContent || "").trim().split(/\s+/).length;
+    a.classList.remove("dice-off");
+    var on = nameLines(h);
+    a.classList.add("dice-off");
+    if (on <= nameLines(h) && on <= words) a.classList.remove("dice-off");   // never a line more, and never a word broken in two
+  }
+
   /* ---- one listener for every tap ---- */
   doc.addEventListener("click", function (e) {
     var t = e.target;
@@ -611,6 +752,7 @@
     e.preventDefault();
     if (!window.fetch) return;
     if (f.getAttribute("data-api") === "add") sendAdd(f); else if (f.getAttribute("data-api") === "report") sendReport(f);
+    else if (f.classList.contains("find-form")) { findRun(); findDone(); var q = $(".find-q", f); if (q && window.matchMedia && window.matchMedia("(hover: none)").matches) q.blur(); }   // a phone's keyboard goes, the results stay
   });
   doc.addEventListener("change", function (e) {             // a choice made clears its own mark
     var t = e.target, f = closest(t, ".sheet-form");
@@ -619,12 +761,30 @@
     if (t.name === "reason") { var r = $(".reasons", f); if (r) r.removeAttribute("data-invalid"); }
     if (t.getAttribute("aria-invalid")) t.removeAttribute("aria-invalid");
   });
-  doc.addEventListener("input", function (e) { var t = e.target; if (t && t.getAttribute && t.getAttribute("aria-invalid")) t.removeAttribute("aria-invalid"); });
+  doc.addEventListener("input", function (e) {
+    var t = e.target;
+    if (t && t.getAttribute && t.getAttribute("aria-invalid")) t.removeAttribute("aria-invalid");
+    if (t && t.classList && t.classList.contains("find-q")) findRun();
+  });
   $$("dialog.sheet").forEach(function (dlg) {
     dlg.addEventListener("close", function () {
-      if (opener && doc.contains(opener) && opener.focus) { try { opener.focus({ preventScroll: true }); } catch (e) { opener.focus(); } }
-      opener = null;
+      if (dlg.id === "sheet-find") findDone();
+      var o = dlg.plOpener;
+      if (o && doc.contains(o) && o.focus) { try { o.focus({ preventScroll: true }); } catch (e) { o.focus(); } }
+      dlg.plOpener = null;
     });
+  });
+  /* "/" opens the search on a computer, except while typing in a field or with a sheet open */
+  doc.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && e.target && e.target.classList && e.target.classList.contains("find-q")) {   // a search field would only clear itself first
+      e.preventDefault(); closeSheet(closest(e.target, "dialog")); return;
+    }
+    if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey || e.defaultPrevented) return;
+    var b = $("#find-b"), t = e.target;
+    if (!b || $("dialog[open]") || (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName || "")))) return;
+    e.preventDefault();
+    try { b.focus({ preventScroll: true }); } catch (x) { b.focus(); }
+    openSheet("sheet-find");
   });
 
   /* ---- start ---- */
@@ -642,6 +802,11 @@
   renderMine();
   counts();
   diceInit();
+  if ($("#find-b")) {                                       // the head with search: the dice fits beside the name, or gives way
+    var fitAt = 0;
+    window.addEventListener("resize", function () { if (!fitAt) fitAt = window.requestAnimationFrame(function () { fitAt = 0; fitDice(); }); });
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(fitDice);
+  }
   doc.addEventListener("visibilitychange", function () {
     if (doc.visibilityState !== "visible") return;
     var m = readMine();

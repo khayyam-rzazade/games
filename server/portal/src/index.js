@@ -23,10 +23,10 @@
      anything else: 404 in the page's language
    Static files under /a/ (chat B) never reach this Worker (wrangler.jsonc run_worker_first: "!/a/*"). Every other path
    does; a path with a file extension that is not ours is passed to the static files (a favicon, say).
-   POST (JSON):  /api/hit /api/view /api/add /api/report /api/vote (api.js)  /api/claim/code /api/claim/check /api/claim/token
+   POST (JSON):  /api/hit /api/view /api/add /api/report /api/vote (api.js)  /api/miss (search.js)  /api/claim/code /api/claim/check /api/claim/token
                  /api/maker /api/maker/edit /api/maker/pic (claim.js, pics.js)    /admin/queue /admin/game /admin/act /admin/import
                  /admin/pic (admin.js)
-   GET (JSON):   /api/langs  /api/<lang>/games  /api/<lang>/dice  /api/counts
+   GET (JSON):   /api/langs  /api/<lang>/games  /api/<lang>/dice  /api/<lang>/names (search.js, chat S)  /api/counts
    Kept: see api.js and db.js. Never kept: an IP address, a user agent, the device id itself. Workers Logs stay off. */
 import { json, bad, readJson, brake, isLocal, showNums } from "./util.js";
 import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, KINDS } from "./db.js";
@@ -39,10 +39,11 @@ import { servePic, PIC_BODY } from "./pics.js";
 import { badgeRoute } from "./badge.js";
 import { hit, view, add, report, vote, langsApi, gamesApi, diceApi, countsApi } from "./api.js";
 import { adminQueue, adminGame, adminAct, adminImport, adminPic } from "./admin.js";
+import { namesApi, miss } from "./search.js";
 import { nightly } from "./cron.js";
 
 const SMALL = 8 * 1024, IMPORT = 1024 * 1024;
-const API_POSTS = { "/api/hit": hit, "/api/view": view, "/api/add": add, "/api/report": report, "/api/vote": vote,
+const API_POSTS = { "/api/hit": hit, "/api/view": view, "/api/add": add, "/api/report": report, "/api/vote": vote, "/api/miss": miss,
   "/api/claim/code": claimCode, "/api/claim/check": claimCheck, "/api/claim/token": claimToken, "/api/maker": makerGet, "/api/maker/edit": makerEdit, "/api/maker/pic": makerPicApi };
 const ADMIN_POSTS = { "/admin/queue": adminQueue, "/admin/game": adminGame, "/admin/act": adminAct, "/admin/import": adminImport, "/admin/pic": adminPic };
 const siteOf = (env) => String(env.SITE || "https://play.logicers.com").replace(/\/+$/, "");
@@ -149,7 +150,7 @@ async function langPageData(env, lang) {
   const lgLang = lgRowLang(lang);
   const d = await langData(env, lang, lgLang);
   const all = lgShown(lang, d.lg);
-  return { lang, lgLang, lgRow: lgEn(lang) ? all.slice(0, EN_LINE) : all, lgInfo: d.lg, byKind: d.byKind, page_today: d.page, lgHome: LG_HOME(lang) };
+  return { lang, lgLang, lgRow: lgEn(lang) ? all.slice(0, EN_LINE) : all, lgInfo: d.lg, byKind: d.byKind, page_today: d.page, lgHome: LG_HOME(lang), dice: d.dice };
 }
 
 async function notFound(env, site, lang, open) {
@@ -307,6 +308,7 @@ async function handle(req, env, ctx) {
     if (path === "/api/counts" || path === "/api/counts/") return cors(await cached(req, env, ctx, () => countsApi(env, req, url)), origin, env);
     if ((m = /^\/api\/([a-z]{2,3}(?:-[a-z]{4})?)\/games\/?$/.exec(path))) return cors(await gamesApi(env, req, url, m[1]), origin, env);
     if ((m = /^\/api\/([a-z]{2,3}(?:-[a-z]{4})?)\/dice\/?$/.exec(path))) return cors(await cached(req, env, ctx, () => diceApi(env, req, url, m[1])), origin, env);
+    if ((m = /^\/api\/([a-z]{2,3}(?:-[a-z]{4})?)\/names\/?$/.exec(path))) return cors(await cached(req, env, ctx, () => namesApi(env, req, url, m[1])), origin, env);   // search (chat S): kept as the dice is
     return bad("not_found", 404);
   }
   if (/^\/admin\/(queue|game|act|import)\/?$/.test(path)) return bad("not_found", 405);

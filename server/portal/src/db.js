@@ -36,7 +36,12 @@
      pics         a claimed game's picture (PNG, JPEG or WebP, at most 150 KB, 256 px at least): its bytes, type, size,
                   state "wait" (until a look in the queue: kind "pic", filter Edits) or "ok"; one waiting a game (a newer one
                   replaces it); a refused one is deleted. games.pic = "<h>.<ext>" of the one shown, served at /p/<id>/<h>.<ext>
-   Chat J, stage 4: games.told_at, when Khayyam marked the weekly email to the game's sender as sent (the queue's To tell) */
+   Chat J, stage 4: games.told_at, when Khayyam marked the weekly email to the game's sender as sent (the queue's To tell)
+   Chat S, 24 Nov 2026 (search, plan 2.17 item 5):
+     misses       the searches on a language's page that found nothing: the term in its matched form (search.js fold, at most
+                  40 characters; never one holding "@", "://" or 6 digits in a row), counted per language and UTC day; no
+                  device id, no address. Only the admin key sees them (the queue's Searches); the nightly job deletes rows
+                  older than 90 days. nets also keeps "miss" (at most 30 a day from one address). */
 import { clock, utcDay, dayAdd, weekOf, DAY } from "./util.js";
 import { LOGICERS } from "./logicers.js";
 import { CODES } from "./langs.js";
@@ -44,8 +49,15 @@ import { norm } from "./check.js";
 
 export const KINDS = ["words", "numbers", "maps", "knowledge", "music", "screen", "sport", "other"];
 export const STATUSES = ["waiting", "listed", "rejected", "hidden", "dead", "left"];
-export const OPEN_AT = 5;            // a language page opens with 5 listed games in that language (2.13)
+export const OPEN_AT = 1;            // a language page opens with 1 listed game in that language (Khayyam, 25 Nov 2026; it was 5; 2.13)
 export const NEW_DAYS = 7;           // the New ribbon (2.6)
+/* the games the dice picks from (plan 2.19): every listed game of the language, Logicers' own only where Logicers has the
+   language (an English row with the EN chip is not "a game of this language"). Binds (lang, own): own is 1 where Logicers
+   has the language. The search's head button counts the same games (chat S, 24 Nov 2026). */
+export const DICE_WHERE = "status = 'listed' AND lang = ? AND (source <> 'logicers' OR ? = 1)";
+/* search on a language page and its kind pages (chat S, 24 Nov 2026; plan 2.17 item 5): the magnifier is drawn once the
+   language has this many games, counted as the dice list counts them (DICE_WHERE); below it nothing is drawn */
+export const SEARCH_MIN = 40;
 
 export const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS langs (code TEXT PRIMARY KEY, open INTEGER NOT NULL DEFAULT 0, opened_at INTEGER)`,
@@ -95,6 +107,7 @@ export const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS tokens_game ON tokens (game)`,
   `CREATE TABLE IF NOT EXISTS pics (game TEXT NOT NULL, h TEXT NOT NULL, type TEXT NOT NULL, w INTEGER NOT NULL, ht INTEGER NOT NULL,
      size INTEGER NOT NULL, data BLOB NOT NULL, state TEXT NOT NULL, made INTEGER NOT NULL, PRIMARY KEY (game, h))`,
+  `CREATE TABLE IF NOT EXISTS misses (day TEXT NOT NULL, lang TEXT NOT NULL, q TEXT NOT NULL, n INTEGER NOT NULL, PRIMARY KEY (day, lang, q))`,
 ];
 /* indexes on columns an older database gets from MIGRATE: made after it */
 export const AFTER = [
@@ -168,9 +181,11 @@ export async function syncLogicers(env) {
   return changed.length;
 }
 
-/* the opening rule (2.13): a language opens with OPEN_AT listed games in that language. Logicers' own games count only in
-   their own language (they are rows of that language; the English ones shown elsewhere are English rows). A language is
-   never closed by this: Khayyam may close one by hand (langs.open = 0), and it stays closed. -> the codes opened now */
+/* the opening rule (2.13): a language opens with OPEN_AT listed games in that language: since 25 Nov 2026 (Khayyam) one is
+   enough (it was 5), so every language with a listed game has its page and its tile; with none it stays closed and its
+   address forwards to the wall. Logicers' own games count only in their own language (they are rows of that language, en
+   it tr es pt fr; the English ones shown elsewhere are English rows). A waiting game does not count. A language is never
+   closed by this: Khayyam may close one by hand (langs.open = 0), and it stays closed. -> the codes opened now */
 export async function openLangs(env) {
   const rows = await all(env, `SELECT g.lang, COUNT(*) AS n FROM games g LEFT JOIN langs l ON l.code = g.lang
      WHERE g.status = 'listed' AND l.code IS NULL GROUP BY g.lang HAVING COUNT(*) >= ?`, OPEN_AT);
@@ -189,8 +204,9 @@ export function queueRow(env, kind, game, text) {
 
 /* the caps per address and UTC day (plan 2.8, 2.11; chat H, 20 Nov 2026): one more of `what` from this address today,
    true while within max. Kept as a keyed hash of (day, address, what) with its count, in `nets`, until the night; never
-   the address. `what`: a game's id (50), "all" (300 counts), "view:<lang>" (50), "add" (10). */
-export const NET = { game: 50, all: 300, view: 50, add: 10 };
+   the address. `what`: a game's id (50), "all" (300 counts), "view:<lang>" (50), "add" (10), "miss" (30 searches that found
+   nothing, chat S). */
+export const NET = { game: 50, all: 300, view: 50, add: 10, miss: 30 };
 export function netStmt(env, h, max) {
   return st(env, "INSERT INTO nets (day, h, n) VALUES (?, ?, 1) ON CONFLICT(day, h) DO UPDATE SET n = n + 1 WHERE n < ?", utcDay(), h, max);
 }
@@ -236,7 +252,7 @@ export const crownSet = (rows) => new Set(rows.map((r) => r.game));
 /* ---- what a language page needs, in one database call ---- */
 export async function langData(env, lang, lgLang) {
   const day = utcDay(), from = dayAdd(day, -6);
-  const [games, today, week, lg, views, crown] = (await env.DB.batch([
+  const [games, today, week, lg, views, crown, dice] = (await env.DB.batch([
     st(env, `SELECT id, slug, lang, name, kind, line, maker, url, listed_at, new_until, slot, hits, pic, maker_id FROM games
        WHERE lang = ? AND status = 'listed' AND source <> 'logicers'`, lang),
     st(env, `SELECT c.game, SUM(c.n) AS n FROM counts c JOIN games g ON g.id = c.game
@@ -246,6 +262,7 @@ export async function langData(env, lang, lgLang) {
     lgStmt(env, lgLang, day, from),
     st(env, "SELECT n FROM views WHERE lang = ? AND day = ?", lang, day),
     crownStmt(env, lang),
+    st(env, `SELECT COUNT(*) AS n FROM games WHERE ${DICE_WHERE}`, lang, lgLang === lang ? 1 : 0),
   ])).map(rowsOf);
   const crowned = crownSet(crown);
   const t = Object.fromEntries(today.map((r) => [r.game, r.n]));
@@ -257,7 +274,7 @@ export async function langData(env, lang, lgLang) {
     (byKind[g.kind] || byKind.other).push(g);
   }
   for (const k of KINDS) byKind[k] = rowOrder(byKind[k], w);
-  return { byKind, lg: lgMap(lg), page: views[0] ? views[0].n : 0, count: games.length };
+  return { byKind, lg: lgMap(lg), page: views[0] ? views[0].n : 0, count: games.length, dice: dice[0] ? dice[0].n : 0 };
 }
 
 /* Logicers' own games of a language with today's players, the last 7 days' and the total, in one statement (chat H: the

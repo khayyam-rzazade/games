@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Plixdle: videohra dňa",
+    "url": "https://plix.gg/sk/guess-the-game",
+    "lang": "sk",
+    "kind": "screen",
+    "line": "Uhádni videohru dňa podľa nápovedí.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/sk",
+    "lang": "sk",
+    "kind": "knowledge",
+    "line": "Klikaj na odkazy vo Wikipédii a nájdi cieľovú stránku.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Ponor",
+    "url": "https://ponor.sk/",
+    "lang": "sk",
+    "kind": "words",
+    "line": "Sedem otázok denne. Čím originálnejšia odpoveď, tým lepšie.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/sk",
+    "lang": "sk",
+    "kind": "words",
+    "line": "Hádaj slovo dňa. Každý pokus ukáže viac z jeho tvaru.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/sk",
+    "lang": "sk",
+    "kind": "music",
+    "line": "Vypočuj si melódiu a zahraj ju späť tón po tóne.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Killdoku",
+    "url": "https://killdoku.juegalo.eu/sk",
+    "lang": "sk",
+    "kind": "numbers",
+    "line": "Vyplň sudoku podľa súčtov v rámčekoch.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/sk",
+    "lang": "sk",
+    "kind": "numbers",
+    "line": "Vyplň mriežku nulami a jednotkami podľa pravidiel.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/sk",
+    "lang": "sk",
+    "kind": "other",
+    "line": "Pozri si farbu a namiešaj ju znova z pamäte.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  }
+]

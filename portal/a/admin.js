@@ -82,7 +82,7 @@
       rem.hidden = role !== "review";
       if (remBox) remBox.checked = role === "review" && get(REMEMBER) === k;
       if (role !== "review") drop(REMEMBER);
-      $$('.admin-filter[data-filter="tell"]').forEach(function (b) { b.hidden = role !== "admin"; });   // emails: Khayyam only
+      $$('.admin-filter[data-filter="tell"], .admin-filter[data-filter="searches"]').forEach(function (b) { b.hidden = role !== "admin"; });   // emails and searches: Khayyam only
       paint(j, false);
     });
   }
@@ -135,11 +135,23 @@
     if (!n.games.length) f.appendChild(el("p", "admin-empty", "No player sent yet."));
     return f;
   }
+  /* Searches (chat S, 24 Nov 2026; the admin key only): what people searched for on a language's page and did not find, the
+     last 30 days, as the words were compared (case, accents and spaces gone), most first. Never public. */
+  function searchesView(x) {
+    var f = doc.createDocumentFragment();
+    f.appendChild(el("p", "admin-nums-note", "Searches that found nothing, " + x.from + " to " + x.to + " (UTC), as they were compared: no case, no accents, no spaces. Kept 90 days; only this key sees them."));
+    x.langs.forEach(function (l) {
+      f.appendChild(numTable(l.endonym + " (" + l.code + ")", ["Searched for", "Times"], l.terms.map(function (t) { return { cells: [t[0], t[1]] }; })));
+    });
+    if (!x.langs.length) f.appendChild(el("p", "admin-empty", "No search has come up empty yet."));
+    return f;
+  }
   function paint(j, append) {
     counts(j.open);
     $$(".admin-filter").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-filter") === filter ? "true" : "false"); });
     if (!append) while (cards.firstChild) cards.removeChild(cards.firstChild);
     if (j.numbers) { cards.appendChild(numbersView(j.numbers)); next = null; moreBtn.hidden = true; return; }
+    if (j.searches) { cards.appendChild(searchesView(j.searches)); next = null; moreBtn.hidden = true; return; }
     (j.cards || []).forEach(function (c) { cards.appendChild(card(c)); });
     if (!cards.children.length) cards.appendChild(el("p", "admin-empty", "Nothing here."));
     next = j.next;
