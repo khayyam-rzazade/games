@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Saltong",
+    "url": "https://saltong.com/play",
+    "lang": "fil",
+    "kind": "words",
+    "line": "Hulaan mo ang salita ngayong araw.",
+    "maker": "Saltong Hub",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Saltong Mini",
+    "url": "https://saltong.com/play/mini",
+    "lang": "fil",
+    "kind": "words",
+    "line": "Hulaan mo ang maikling salita ngayong araw.",
+    "maker": "Saltong Hub",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Saltong Hex",
+    "url": "https://saltong.com/play/hex",
+    "lang": "fil",
+    "kind": "words",
+    "line": "Bumuo ng mga salita mula sa pitong letra.",
+    "maker": "Saltong Hub",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/fil",
+    "lang": "fil",
+    "kind": "words",
+    "line": "Tingnan ang malabong salita at hulaan sa anim na subok.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Sonido",
+    "url": "https://sonido.juegalo.eu/fil",
+    "lang": "fil",
+    "kind": "music",
+    "line": "Pakinggan ang tono, ihatak ang panlakad hanggang tugma.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/fil",
+    "lang": "fil",
+    "kind": "music",
+    "line": "Makinig sa himig at i-tap ito pabalik sa staff.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/fil",
+    "lang": "fil",
+    "kind": "other",
+    "line": "Tandaan ang kulay at itugma ito ulit.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/fil",
+    "lang": "fil",
+    "kind": "numbers",
+    "line": "Punan ang mga kahon ng 0 at 1 gamit ang lohika.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/tl",
+    "lang": "fil",
+    "kind": "knowledge",
+    "line": "Mag-click ng mga link sa Wikipedia hanggang sa target.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/fil/guess-the-game",
+    "lang": "fil",
+    "kind": "screen",
+    "line": "Hulaan ang video game ngayong araw mula sa pahiwatig.",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Worldle",
+    "url": "https://geogames.io/fil/games/worldle",
+    "lang": "fil",
+    "kind": "maps",
+    "line": "Tingnan ang hugis at hulaan ang bansa ngayong araw.",
+    "maker": "GeoGames",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Globle",
+    "url": "https://geogames.io/fil/games/globle",
+    "lang": "fil",
+    "kind": "maps",
+    "line": "Hanapin ang nakatagong bansa ngayong araw sa globo.",
+    "maker": "GeoGames",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Geodle",
+    "url": "https://geogames.io/fil/games/geodle",
+    "lang": "fil",
+    "kind": "maps",
+    "line": "Hulaan ang lihim na bansa ngayong araw.",
+    "maker": "GeoGames",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Travle",
+    "url": "https://geogames.io/fil/games/travle",
+    "lang": "fil",
+    "kind": "maps",
+    "line": "Buuin ang pinakamaikling ruta ng mga bansa.",
+    "maker": "GeoGames",
+    "checked": "2026-11-25"
+  }
+]

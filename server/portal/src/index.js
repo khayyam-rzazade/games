@@ -33,7 +33,7 @@ import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, ga
 import { LANG, isLang, CODES } from "./langs.js";
 import { WORDS, bestLang } from "./words.js";
 import { lgRowLang, lgShown, lgOfKind, lgForGame, lgEn, EN_LINE, LG_HOME } from "./logicers.js";
-import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_PUBLIC, CSP_ADMIN, ASSET } from "./pages.js";
+import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_PUBLIC, CSP_ADMIN, ASSET, BRIDGE, cspPlay } from "./pages.js";
 import { claimCode, claimCheck, claimToken, makerGet, makerEdit, makerPicApi, tokenGame } from "./claim.js";
 import { servePic, PIC_BODY } from "./pics.js";
 import { badgeRoute } from "./badge.js";
@@ -91,6 +91,14 @@ function text(body, type, cache) {
 }
 /* a public page: the same, with Cloudflare Web Analytics let in (pages.js CSP_PUBLIC); html() alone keeps the plain CSP */
 const pub = (body, status, o) => html(body, status, Object.assign({ csp: CSP_PUBLIC }, o || {}));
+/* the bridge to My Logicers (chat M, 26 Nov 2026): logicers.com/portal/bridge.html; a local run may point it at a page on this
+   computer (wrangler dev --var BRIDGE:http://127.0.0.1:4197/portal/bridge.html), nothing else. A language's page, a kind page and
+   a game page open it, and their CSP lets in that one frame (pages.js cspPlay). */
+function bridgeOf(env) {
+  const b = env && typeof env.BRIDGE === "string" ? env.BRIDGE.trim() : "";
+  return /^https:\/\/logicers\.com\/[a-z0-9\/._-]+\.html$/.test(b) || (isLocal(env) && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/[a-z0-9\/._-]+\.html$/.test(b)) ? b : BRIDGE;
+}
+const play = (env, body, status, o) => pub(body, status, Object.assign({ csp: cspPlay(bridgeOf(env)) }, o || {}));
 const redirect = (to, status) => new Response(null, { status: status || 302, headers: { Location: to, "Cache-Control": status === 301 ? "public, max-age=3600" : "no-store" } });
 
 /* the edge cache (Cloudflare's Cache API; absent in the tests): GET pages 5 minutes, /api/counts 60 s.
@@ -249,11 +257,12 @@ async function page(req, env, ctx, url) {
     if (!isLang(lang)) return notFound(env, site, null, open);
     if (!open.has(lang)) return redirect(site + "/", 302);
     if (segs.length === 2 && segs[1] === "sitemap.xml") return text(await sitemapLang(env, site, lang), "application/xml; charset=utf-8", "public, max-age=3600");
-    if (segs.length === 1) return pub(pageLang(Object.assign({ site, nums, open: [...open] }, await langPageData(env, lang))));   // open: for the language button's list
+    const bridge = bridgeOf(env);
+    if (segs.length === 1) return play(env, pageLang(Object.assign({ site, nums, bridge, open: [...open] }, await langPageData(env, lang))));   // open: for the language button's list
     if (segs.length === 2 && KINDS.includes(segs[1])) {
       const d = await langPageData(env, lang);
       if (!d.byKind[segs[1]].length) return notFound(env, site, lang, open);
-      return pub(pageKind(Object.assign({ site, nums, kind: segs[1], lgKind: lgOfKind(lang, d.lgInfo, segs[1]) }, d)));
+      return play(env, pageKind(Object.assign({ site, nums, bridge, kind: segs[1], lgKind: lgOfKind(lang, d.lgInfo, segs[1]) }, d)));
     }
     if (segs.length === 3 && segs[1] === "g") {
       const g = await gameBySlug(env, lang, segs[2]);
@@ -261,7 +270,7 @@ async function page(req, env, ctx, url) {
         const lgLang = lgRowLang(lang);
         const gd = await gameData(env, g, lgLang);
         if (g.maker_id) Object.assign(gd, await gameNumbers(env, g));         // a claimed game: its players by day and country
-        return pub(pageGame(Object.assign({ site, nums, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
+        return play(env, pageGame(Object.assign({ site, nums, bridge, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
           200, { noindex: indexable(g) ? null : "noindex, follow" });
       }
       if (g && g.source !== "logicers") {                                   // hidden, dead, rejected, left: gone, not indexed

@@ -1,0 +1,118 @@
+[
+  {
+    "name": "Katapat",
+    "url": "https://www.projecteugene.com/katapat.html",
+    "lang": "ms",
+    "kind": "words",
+    "line": "Teka perkataan Melayu hari ini.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/ms",
+    "lang": "ms",
+    "kind": "knowledge",
+    "line": "Klik pautan Wikipedia sampai ke laman sasaran.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Trazo",
+    "url": "https://trazo.juegalo.eu/ms",
+    "lang": "ms",
+    "kind": "words",
+    "line": "Lihat perkataan kabur dan teka dalam enam cubaan.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Sonido",
+    "url": "https://sonido.juegalo.eu/ms",
+    "lang": "ms",
+    "kind": "music",
+    "line": "Dengar nada dan seret peluncur sampai sama.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Melodía",
+    "url": "https://melodia.juegalo.eu/ms",
+    "lang": "ms",
+    "kind": "music",
+    "line": "Dengar melodi yang makin panjang dan ketik semula.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Colores",
+    "url": "https://colores.juegalo.eu/ms",
+    "lang": "ms",
+    "kind": "other",
+    "line": "Ingat satu warna dan padankan semula.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Binario",
+    "url": "https://binario.juegalo.eu/ms",
+    "lang": "ms",
+    "kind": "numbers",
+    "line": "Isi petak dengan 0 dan 1 guna logik.",
+    "maker": "juegalo.eu",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/ms/guess-the-game",
+    "lang": "ms",
+    "kind": "screen",
+    "line": "Teka permainan video hari ini daripada petunjuk.",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Cari Kelab",
+    "url": "https://footballclubsmap.com/games/find-the-club/ms/",
+    "lang": "ms",
+    "kind": "maps",
+    "line": "Teka kelab bola sepak daripada pin di atas peta.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Teka Stadium",
+    "url": "https://footballclubsmap.com/games/guess-the-stadium/ms/",
+    "lang": "ms",
+    "kind": "sport",
+    "line": "Lihat foto stadium dan teka kelab yang main di situ.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Teka Logo",
+    "url": "https://footballclubsmap.com/games/guess-the-logo/ms/",
+    "lang": "ms",
+    "kind": "sport",
+    "line": "Lihat lencana kabur dan teka kelab bola sepak.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Teka Jersi",
+    "url": "https://footballclubsmap.com/games/guess-the-kit/ms/",
+    "lang": "ms",
+    "kind": "sport",
+    "line": "Lihat jersi dan teka kelab bola sepak hari ini.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Teka Kelab",
+    "url": "https://footballclubsmap.com/games/guess-the-club/ms/",
+    "lang": "ms",
+    "kind": "sport",
+    "line": "Teka kelab bola sepak hari ini daripada petunjuk.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  }
+]

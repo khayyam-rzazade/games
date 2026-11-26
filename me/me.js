@@ -4,7 +4,7 @@
    A screen change slides (a still copy of the old screen leaves while the new one arrives; taps always reach the new one). Nothing
    here writes to a game's keys: restoring is A's apply(); the page only asks. The page never shows a score of the check-in anywhere
    but here, on the phone that holds it. */
-import { T, TD, initWords, setLang, LANGS, LANG, fmtN, fmtDay, monthName, whenDate, whenIso, fmtWhen } from './words.js';
+import { T, TD, initWords, setLang, LANGS, LANG, LOCALE, fmtN, fmtDay, monthName, whenDate, whenIso, fmtWhen } from './words.js';
 import * as api from './api.js';
 
 /* F, 8 Nov 2026: My Logicers is never shown inside another site's frame (its Delete for good and rename could be clicked
@@ -24,7 +24,9 @@ const WORDS = ['altitude', 'lookalike', 'passport'];
 const QIDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const CODE_RE = /^[a-z]+-[a-z]+-[a-z]+-\d{2}$/;
 
-const S = { stats: null, code: null, kind: null, openKind: null, flash: '', counted: false, doorsNow: null, quiet: false };
+const S = { stats: null, play: null, code: null, kind: null, openKind: null, flash: '', counted: false, doorsNow: null, quiet: false };
+/* what the page draws from, as text: a pull or another tab that changed only Play Logicers' part draws the page again too (chat M) */
+const drawn = () => JSON.stringify([S.stats, S.play]);
 
 /* ---------- small tools ---------- */
 function safeHref(h) {
@@ -464,6 +466,50 @@ function playTile(p) {
 function studioOthersCard(list) {
   const sec = section(T('studio.others_h')); sec.classList.add('full'); sec.appendChild(strip(list.slice(0, 24), playTile)); return sec;
 }
+/* ---------- Play Logicers (26 Nov 2026, chat M of claude/play-next-24nov.md): the games saved on play.logicers.com and the streak there,
+   as Play's bridge keeps them on this phone with a code (they come to other phones in the locked box). "Play Logicers" is a name;
+   the one new line is play.note, under the games. Each game opens its page on Play (one of Logicers' own games: the game itself);
+   its colour is the ring Play gives it (server/portal/src/util.js ring), its second line the language it is in. ---------- */
+const PLAY_SITE = 'https://play.logicers.com/';
+const PLAY_RING = ['#FF5A36', '#2E6BFF', '#10B981', '#E0A800', '#9B5CFF', '#FF3D9A', '#11B8D4', '#FF8A1F', '#8A94A6', '#E5243B', '#7FB800', '#2C8FB0'];
+function playRing(id) { let h = 2166136261; for (const c of String(id)) { h ^= c.codePointAt(0); h = Math.imul(h, 16777619) >>> 0; } return PLAY_RING[h % 12]; }
+const playDay = (s) => Math.round(Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)) / 864e5);
+/* Play's own rule (plan 2.9): the streak is alive while its last day is today or yesterday on this phone; never a 0 */
+function playStreak(st) {
+  if (!st || !(st.n >= 1) || !/^\d{4}-\d{2}-\d{2}$/.test(String(st.last || ''))) return 0;
+  const d = new Date(), t = Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5), l = playDay(st.last);
+  return l === t || l === t - 1 ? st.n : 0;
+}
+function playLangName(code) {
+  const tag = String(code || '').replace(/-([a-z])([a-z]{3})$/, (m, a, b) => '-' + a.toUpperCase() + b);
+  try { const n = new Intl.DisplayNames([LOCALE], { type: 'language' }).of(tag); return n && n !== tag ? n.charAt(0).toLocaleUpperCase(LOCALE) + n.slice(1) : code; } catch (e) { return code; }
+}
+function playList(pl) {
+  return (pl && Array.isArray(pl.star) ? pl.star : []).map((id) => ({ id, g: pl.g && pl.g[id] })).filter((x) => Array.isArray(x.g) && (x.g[1] || x.g[3]));
+}
+function playTileOf(x) {
+  const [lang, slug, name, url] = x.g;
+  const a = el('a', 'me-tile me-ptile'); a.href = slug ? PLAY_SITE + lang + '/g/' + encodeURIComponent(slug) + '/' : url;
+  a.style.setProperty('--c', playRing(x.id));
+  const nm = el('span', 'nm', name); nm.dir = 'auto'; a.appendChild(nm);
+  a.appendChild(el('span', 'sub', slug ? playLangName(lang) : 'Logicers'));
+  return a;
+}
+function playCard(pl) {
+  const sec = section(); sec.classList.add('full', 'me-play');
+  const head = el('div', 'me-phead'); head.appendChild(el('h2', 'me-h', 'Play Logicers'));
+  const n = playStreak(pl.streak);
+  if (n) {
+    const f = el('a', 'me-pstreak'); f.href = PLAY_SITE + (pl.lang ? pl.lang + '/' : '');
+    f.setAttribute('aria-label', T('tile.streak') + ' ' + fmtN(n)); f.title = T('tile.streak');
+    f.appendChild(el('i', 'me-flame')); f.appendChild(el('b', null, fmtN(n))); head.appendChild(f);
+  }
+  sec.appendChild(head);
+  const list = playList(pl);
+  if (list.length) sec.appendChild(strip(list.slice(0, 60), playTileOf));
+  sec.appendChild(el('p', 'me-note me-pnote', T('play.note')));
+  return sec;
+}
 function openStudioMore(it) {
   sheet(it.title || (api.studioParts(it.code) || {}).slug || T('mine.kind.made'), (box, close) => {
     const msg = msgLine(); const col = el('div', 'me-col');
@@ -878,6 +924,8 @@ function homeScreen() {
   if (plain.length || rooms.length) add(mineCard(plain, rooms));
   if (s.maker || studio.length) add(studioMadeCard(s.maker, studio));
   if (Array.isArray(s.others) && s.others.length) add(studioOthersCard(s.others));
+  const pl = S.play;
+  if (pl && (playList(pl).length || playStreak(pl.streak))) add(playCard(pl));
 
   if (S.code) { add(codeCard(S.code)); add(loseCard()); }
   else if (s.logicer) add(getCard());
@@ -1174,6 +1222,7 @@ function chrome() {
 }
 async function refresh() {
   try { S.stats = api.stats({}); } catch (e) { S.stats = null; }
+  S.play = api.play();
   S.code = api.getCode();
   if (!S.code) S.doorsNow = null;
   if (S.stats && S.doorsNow) S.stats.doors = Object.assign({}, S.stats.doors, S.doorsNow);
@@ -1188,9 +1237,9 @@ function pull(force) {
   pulling = api.sync().then(async (r) => {
     pulledAt = Date.now();
     if (!r || !r.ok) return;
-    const before = JSON.stringify(S.stats);
+    const before = drawn();
     await refresh();
-    if (current === '' && JSON.stringify(S.stats) !== before) { S.quiet = true; try { render(false, true); } finally { S.quiet = false; } }
+    if (current === '' && drawn() !== before) { S.quiet = true; try { render(false, true); } finally { S.quiet = false; } }
   }).catch(() => { /* the next pull does it */ }).then(() => { pulling = null; });
   return pulling;
 }
@@ -1208,7 +1257,7 @@ async function boot() {
   /* a game played in another tab of this browser: its own page syncs it; this one only draws again */
   window.addEventListener('storage', (e) => {
     if (!e.key || !/^(turnsout:v1|altitude:v1|lookalike:v1|passport:v1|story:v1|lg\.|logicers-)/.test(e.key) || current !== '') return;
-    clearTimeout(storageT); storageT = setTimeout(async () => { const before = JSON.stringify(S.stats); await refresh(); if (JSON.stringify(S.stats) !== before) { S.quiet = true; try { render(false, true); } finally { S.quiet = false; } } }, 400);
+    clearTimeout(storageT); storageT = setTimeout(async () => { const before = drawn(); await refresh(); if (drawn() !== before) { S.quiet = true; try { render(false, true); } finally { S.quiet = false; } } }, 400);
   });
   pull(true);
 }

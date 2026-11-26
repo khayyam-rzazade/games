@@ -214,5 +214,6 @@
  "game.every.name": "Every Beat",
  "game.o24.name": "Out of 24",
  "game.altitude.name": "Altitude",
-  "mine.gone_s": "Gone"
+  "mine.gone_s": "Gone",
+  "play.note": "Your saved games and your streak go with your code. Only your code opens them."
 }

@@ -438,6 +438,17 @@ dialog.me-sheet[open]::backdrop { animation: me-fade var(--m-base) var(--e-out) 
 /* ---------- F, 8 Nov 2026: My Logicers' Studio sections and the cards ---------- */
 .me-studio .me-maker { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 0 0 14px; padding: 0 2px; background: none; box-shadow: none; }
 .me-studio .me-maker .mkw { min-width: 0; }
+/* ---------- Play Logicers (26 Nov 2026, chat M): the name and the streak in one row, then the saved games, each in the colour Play
+   gives it, its name and the language it is in; one quiet line under them (play.note) ---------- */
+.me-play .me-phead { display: flex; align-items: center; gap: 12px; min-height: 44px; margin: 0 2px 6px; }
+.me-play .me-phead .me-h { margin: 0; }
+.me-pstreak { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; color: var(--ink); text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; -webkit-tap-highlight-color: transparent; }
+.me-pstreak .me-flame { width: .85em; height: .85em; }
+.me-tile.me-ptile { min-height: 6.6rem; }
+.me-tile.me-ptile .nm { -webkit-line-clamp: 3; }
+.me-tile.me-ptile .sub { margin-top: auto; padding-top: 6px; color: var(--soft); font-weight: 600; overflow-wrap: anywhere; }
+.me-pnote { margin-top: 4px; }
+
 .me-studio .me-maker .mk { display: block; font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.15; }
 .me-studio .me-maker .tot { margin-top: 3px; color: var(--soft); font-weight: 600; font-size: .92rem; display: flex; gap: 6px 14px; flex-wrap: wrap; }
 .me-studio .me-maker .tot b { color: var(--ink); font-weight: 800; }

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Neno Ficho",
+    "url": "https://www.kamusi.app/michezo/neno-ficho",
+    "lang": "sw",
+    "kind": "words",
+    "line": "Tafuta neno la Kiswahili la leo ndani ya mara sita.",
+    "maker": "Kamusi Halisi",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Jaza Pengo",
+    "url": "https://www.kamusi.app/michezo/jaza-pengo",
+    "lang": "sw",
+    "kind": "words",
+    "line": "Soma maana na chagua neno sahihi kati ya manne.",
+    "maker": "Kamusi Halisi",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Kisia Methali",
+    "url": "https://www.kamusi.app/michezo/kisia-methali",
+    "lang": "sw",
+    "kind": "words",
+    "line": "Soma maelezo na uchague methali sahihi.",
+    "maker": "Kamusi Halisi",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Plixdle",
+    "url": "https://plix.gg/sw/guess-the-game",
+    "lang": "sw",
+    "kind": "screen",
+    "line": "Tambua mchezo wa video wa leo kwa vidokezo.",
+    "maker": "PLIX.GG",
+    "checked": "2026-11-25"
+  }
+]

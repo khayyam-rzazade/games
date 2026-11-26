@@ -214,5 +214,6 @@
  "game.every.name": "Kalp Atışı",
  "game.o24.name": "24 Saatte",
  "game.altitude.name": "Altitude",
-  "mine.gone_s": "Silindi"
+  "mine.gone_s": "Silindi",
+  "play.note": "Kaydettiğin oyunları ve serini kodun taşır. Onları yalnızca kodun açar."
 }

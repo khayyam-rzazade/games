@@ -214,5 +214,6 @@
  "game.every.name": "Cada latido",
  "game.o24.name": "Las 24 horas",
  "game.altitude.name": "Altitude",
-  "mine.gone_s": "Ya no está"
+  "mine.gone_s": "Ya no está",
+  "play.note": "Tus juegos guardados y tu racha van con tu código. Solo tu código los abre."
 }

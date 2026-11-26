@@ -214,5 +214,6 @@
  "game.every.name": "Cada batida",
  "game.o24.name": "Em 24 horas",
  "game.altitude.name": "Altitude",
-  "mine.gone_s": "Não existe mais"
+  "mine.gone_s": "Não existe mais",
+  "play.note": "Seus jogos salvos e sua sequência vão junto com seu código. Só ele pode abri-los."
 }

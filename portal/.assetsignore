@@ -4,3 +4,6 @@ tests
 *.py
 *.mjs
 .DS_Store
+# the bridge to My Logicers lives on logicers.com (GitHub Pages), not on play.logicers.com (chat M, 26 Nov 2026)
+bridge.html
+bridge.js

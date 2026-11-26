@@ -214,5 +214,6 @@
  "game.every.name": "Chaque battement",
  "game.o24.name": "Heures sur 24",
  "game.altitude.name": "Altitude",
-  "mine.gone_s": "Supprimé"
+  "mine.gone_s": "Supprimé",
+  "play.note": "Tes jeux enregistrés et ta série suivent ton code. Seul ton code les ouvre."
 }

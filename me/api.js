@@ -55,6 +55,10 @@ export async function sync() {
   return r && r.ok ? { ok: true } : { ok: false, reason: 'net' };
 }
 
+/* Play Logicers (26 Nov 2026, chat M): its Yours as its bridge keeps it on this phone, a phone with a code ({ star, t, g, played, streak,
+   lang }, assets/js/me.js pmClean), or null. It comes to other phones in the locked box, with the code. */
+export function play() { const m = Me(); try { return m && typeof m.play === 'function' ? m.play() : null; } catch (e) { return null; } }
+
 /* Exit (7 Nov 2026): A's leave() sends what this phone holds, then takes the code and the games off this phone */
 export async function leave() {
   const m = Me(); if (!m || typeof m.leave !== 'function') return { ok: false, reason: 'fail' };

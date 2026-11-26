@@ -74,6 +74,18 @@ best match first, at most 24; nothing found: "Nothing here." and Add a game with
 the focus back on the magnifier; a search that finds nothing sent once, as words only, never an address; the queue's Searches.
 Sections 7b and 12 know that the dice gives way to search on a phone.
 
+Chat M, 26 Nov 2026 (Yours in My Logicers): section 18 runs last, or alone with --only-m (a few minutes, against the Worker that shows
+numbers, started with the bridge pointed at this computer: --var BRIDGE:http://127.0.0.1:4197/portal/bridge.html on both Workers, and
+the Workers started with --ip 127.0.0.1 so the page and the bridge are one site, as play.logicers.com and logicers.com are). It starts
+logicers.com on this computer itself if nothing answers at 127.0.0.1:4197 (node portal/tests/me-site.mjs: the site's files and a
+stand-in of the My Logicers Worker) and stops it at the end. It looks at: the one hidden frame, after the page's load and only on a
+language's page, a kind page and a game page, never focused, with no CSP violation; Logicers' mark beside the flame in the 31
+languages at 320, 360, 390, 414 and 1280, light and dark, also with words half as long again: 44 px, its link to My Logicers in the
+page's language or English, the Logicer number where it fits and in its name always, no line added to the Yours row; a phone with no
+code: nothing new but the mark, nothing written on logicers.com; two browsers with one code: a game saved on one is saved on the
+other's Play and shown on its My Logicers, an unsave on the other wins on the first, two streaks are one; Play with logicers.com
+away works as before.
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -242,6 +254,7 @@ def pages_for(lang):
 
 def main():
     global PG_API
+    site = site_m()                                       # logicers.com on this computer, for the bridge's frame (chat M)
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
@@ -757,7 +770,9 @@ def main():
         section_q(b)
         section_r(b)
         section_s(b)
+        section_m(b)
         b.close()
+    if site: site.terminate()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
 
@@ -2522,13 +2537,227 @@ def section_s(b):
     api.close()
 
 
+# ---- 18. chat M, 26 Nov 2026: Yours in My Logicers (the bridge, the mark, two browsers with one code). Alone: --only-m.
+SITE_M = os.environ.get("ME_SITE", "http://127.0.0.1:4197")       # logicers.com on this computer (portal/tests/me-site.mjs)
+BRIDGE_M = SITE_M + "/portal/bridge.html"
+MARK = r"""
+() => {
+  const a = document.getElementById('me-mark'), sec = document.getElementById('row-mine');
+  if (!a) return null;
+  const top = a.closest('.row-top'), h = top.querySelector('.row-h'), t = a.querySelector('.me-mark-n'), r = a.getBoundingClientRect();
+  const lines = () => { const g = document.createRange(); g.selectNodeContents(h); return new Set([...g.getClientRects()].filter(x => x.width > 1).map(x => Math.round(x.top))).size; };
+  const kids = [...top.children].filter(e => !e.hidden && getComputedStyle(e).display !== 'none');
+  const hit = getComputedStyle(a, '::after');
+  const out = { shown: !sec.hidden && r.width > 0, w: Math.round(r.width), h: Math.round(r.height), hitW: Math.max(Math.round(r.width), parseFloat(hit.width) || 0), off: a.classList.contains('me-mark-off'),
+    cut: h.scrollWidth > h.clientWidth + 1, href: a.getAttribute('href'), lang: a.getAttribute('lang'), label: a.getAttribute('aria-label'),
+    title: a.getAttribute('title'), num: t.hidden || getComputedStyle(t).display === 'none' ? '' : t.textContent, text: t.textContent, tight: a.classList.contains('me-mark-tight'),
+    rowH: Math.round(top.getBoundingClientRect().height), lines: lines(), over: top.scrollWidth - top.clientWidth,
+    after: a.previousElementSibling && a.previousElementSibling.id, dots: a.querySelectorAll('svg circle').length,
+    order: kids.map(e => e.id || e.className.baseVal || e.className) };
+  const was = a.className; a.classList.add('me-mark-off');                   // the row as it was without the mark
+  out.before = { rowH: Math.round(top.getBoundingClientRect().height), lines: lines(), cut: h.scrollWidth > h.clientWidth + 1 };
+  a.className = was;
+  return out;
+}
+"""
+FRAMES = r"""
+() => [...document.querySelectorAll('iframe')].map(f => ({ src: f.src, shown: getComputedStyle(f).display !== 'none', tab: f.tabIndex, hidden: f.hidden, aria: f.getAttribute('aria-hidden'),
+  at: performance.getEntriesByType('resource').filter(e => e.name === f.src).map(e => Math.round(e.startTime))[0] || null,
+  load: Math.round(performance.getEntriesByType('navigation')[0].loadEventEnd) }))
+"""
+
+
+def site_m():
+    """logicers.com on this computer: started here when nothing answers (-> the process to stop at the end, or None)"""
+    import urllib.request
+    def up():
+        try: return urllib.request.urlopen(BRIDGE_M, timeout=2).status == 200
+        except Exception: return False
+    if up(): return None
+    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
+    proc = subprocess.Popen(["node", os.path.join(root, "portal", "tests", "me-site.mjs"), SITE_M.rsplit(":", 1)[1]], cwd=root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    for _ in range(40):
+        if up(): return proc
+        time.sleep(0.25)
+    ok(False, "18: logicers.com on this computer answers (node portal/tests/me-site.mjs)", BRIDGE_M)
+    return proc
+
+
+def new_m(b, w, scheme="light", play=None, site=None, locale="en-US"):
+    """a browser for section 18: Play on 127.0.0.1 (one site with the bridge); play: portal.mine; site: logicers.com's keys"""
+    ctx = b.new_context(viewport={"width": w, "height": 900 if w > 700 else 844}, color_scheme=scheme, reduced_motion="reduce", user_agent=UA, locale=locale, device_scale_factor=1)
+    ctx.add_init_script(WATCH)
+    ctx.add_init_script("""((c) => { window.LOGICERS_ME_API = '/__me';
+      const mine = location.origin === c.site ? c.siteKeys : location.origin === c.play ? c.playKeys : null;
+      if (!mine || localStorage.getItem('m.seeded')) return; localStorage.setItem('m.seeded', '1');
+      for (const k in mine) localStorage.setItem(k, typeof mine[k] === 'string' ? mine[k] : JSON.stringify(mine[k])); })(""" +
+        json.dumps({"site": SITE_M, "play": PL, "siteKeys": site or {}, "playKeys": {"portal.mine": play} if play else {}}) + ")")
+    pg = ctx.new_page()
+    pg.errs = []
+    pg.on("pageerror", lambda e: pg.errs.append("pageerror " + str(e)))
+    pg.on("console", lambda m: pg.errs.append(m.type + " " + m.text) if (m.type == "error" and "Failed to load resource" not in m.text) or "Content Security Policy" in m.text else None)
+    return ctx, pg
+
+
+def site_key(pg, k):
+    f = next((x for x in pg.frames if x.url.startswith(BRIDGE_M)), None)
+    return f.evaluate("(k) => JSON.parse(localStorage.getItem(k) || 'null')", k) if f else "no frame"
+
+
+def keep_code(ctx):
+    """a My Logicers code kept on this browser, as a player does it (Get your code, Keep) -> the code"""
+    me = ctx.new_page()
+    me.goto(SITE_M + "/me/"); me.wait_for_function("() => document.documentElement.dataset.ready", timeout=15000); me.wait_for_timeout(800)
+    me.get_by_role("button", name="Get your code").click(); me.wait_for_timeout(600)
+    me.get_by_role("button", name="Keep", exact=True).click(); me.wait_for_timeout(1800)
+    c = me.evaluate("JSON.parse(localStorage.getItem('lg.me.v1') || '{}').code || null")
+    me.close()
+    return c
+
+
+def section_m(b):
+    proc = site_m()
+    global PL
+    api = b.new_context(user_agent=UA)
+    getj = lambda path: json.loads(api.request.get(PL + path).text())
+    today = datetime.now().date()
+    ymd = lambda back: (today - timedelta(days=back)).isoformat()
+    sql("DELETE FROM nets; DELETE FROM seen;")
+    try: open_codes = [l["code"] for l in getj("/api/langs")["langs"]]
+    except Exception as e: ok(False, "18: the Worker answers at " + PL, e); return
+    langs = [l for l in LANGS if l in open_codes]
+    games = {}
+    for l in langs: games[l] = [g for g in getj(f"/api/{l}/games?n=12").get("games", []) if not g.get("logicers")][:4]
+    es = games["es"]
+    # -- the CSP, as the browser has it: the frame on a language's page, a kind page and a game page; nothing anywhere else
+    for path, framed in ((f"/es/", True), (f"/es/{es[0]['kind']}/", True), (f"/es/g/{es[0]['slug']}/", True), ("/", False), ("/about/", False), ("/es/nothing-here/", False)):
+        c = api.request.get(PL + path + "?m=" + RUN).headers.get("content-security-policy", "")
+        ok(c.endswith("; frame-src " + BRIDGE_M) if framed else "frame-src" not in c, f"18 {path}: " + ("the bridge's frame and nothing else" if framed else "no frame"), c[-120:])
+    # -- a phone with no code: the one hidden frame, after the load; nothing new but the mark; nothing written on logicers.com
+    mine = {"v": 1, "star": [es[0]["id"], es[1]["id"]], "played": {es[2]["id"]: ymd(0)}, "streak": {"n": 3, "last": ymd(0)}}
+    for path in ("/es/", f"/es/{es[0]['kind']}/", f"/es/g/{es[0]['slug']}/"):
+        ctx, pg = new_m(b, 390, play=mine)
+        pg.goto(PL + path + "?m=" + RUN, wait_until="load"); pg.wait_for_timeout(4500)
+        fr = pg.evaluate(FRAMES)
+        ok(len(fr) == 1 and fr[0]["src"] == BRIDGE_M and not fr[0]["shown"] and fr[0]["tab"] == -1 and fr[0]["aria"] == "true", f"18 {path}: one hidden frame, the bridge, never focused", fr)
+        ok(fr and fr[0]["at"] is not None and fr[0]["at"] >= fr[0]["load"], f"18 {path}: opened after the page's load (the first screen never waits)", fr)
+        ok(site_key(pg, "logicers-play:mine") is None and site_key(pg, "lg.me.v1") is None, f"18 {path}: nothing written on logicers.com without a code")
+        clean(pg, f"18 {path} no code")
+        ctx.close()
+    for path in ("/", "/about/", "/es/nothing-here/"):
+        ctx, pg = new_m(b, 390, play=mine)
+        pg.goto(PL + path + "?m=" + RUN, wait_until="load"); pg.wait_for_timeout(3500)
+        ok(pg.evaluate(FRAMES) == [], f"18 {path}: no frame")
+        clean(pg, f"18 {path}")
+        ctx.close()
+    # -- the mark: every open language, phone and computer, light and dark, the number where it fits, no line added
+    gave = []
+    for lang in langs:
+        g = games[lang]
+        if len(g) < 3: continue
+        m = {"v": 1, "star": [g[0]["id"], g[1]["id"]], "played": {g[2]["id"]: ymd(0)}, "streak": {"n": 12, "last": ymd(0)}}
+        own = lang in ("en", "it", "tr", "es", "pt", "fr")
+        widths = (320, 360, 390, 414, 1280) if lang in ("es", "en", "de", "ru", "ar", "ja", "th", "pt", "fr") else (320, 1280)
+        for w in widths:
+            for scheme in (("light", "dark") if w in (320, 1280) else ("light",)):
+                ctx, pg = new_m(b, w, scheme, play=m, site={"turnsout:v1": {"games": {}, "world": {"logicer": {"n": 12354, "d": "20261003"}}}})
+                pg.goto(PL + f"/{lang}/?m=" + RUN, wait_until="load")
+                try: pg.wait_for_function("() => (document.querySelector('#me-mark .me-mark-n') || {}).textContent", timeout=12000)
+                except Exception: pass
+                pg.wait_for_timeout(150)
+                k = pg.evaluate(MARK)
+                tag = f"18 {lang} {w} {scheme}"
+                ok(k and (k["off"] and w < 360 or k["shown"] and k["h"] >= 44 and k["hitW"] >= 44) and k["dots"] == 3 and k["after"] == "streak", f"{tag}: the mark beside the flame, 44 px to tap (it gives way only below 360 px)", k)
+                if k and k["off"]: gave.append(f"{lang} {w}")
+                ok(k and k["href"] == "https://logicers.com/me/?lang=" + (lang if own else "en") and (k["lang"] is None if own else k["lang"] == "en"), f"{tag}: My Logicers in the page's language, else English", k and [k["href"], k["lang"]])
+                ok(k and re.search(r"12[.,  ٬٬']?354|١٢٬?٣٥٤|۱۲٬?۳۵۴", k["text"] or "") and (k["text"] in k["label"]) and k["label"] == k["title"], f"{tag}: the Logicer number, in the mark's name always", k and [k["text"], k["label"]])
+                ok(k and k["rowH"] == k["before"]["rowH"] and k["lines"] <= k["before"]["lines"] and k["lines"] == 1 and not k["cut"] and k["over"] <= 1, f"{tag}: no line added to the Yours row, Yours on one line and never cut", k)
+                if w >= 1280: ok(k and k["num"], f"{tag}: the number shows on a computer", k)
+                bad = pg.evaluate(BOXES); ok(not bad, f"{tag}: boxes", bad[:3])
+                if w in (320, 1280) and scheme == "light":
+                    pg.evaluate(STRETCH); pg.evaluate("window.dispatchEvent(new Event('resize'))"); pg.wait_for_timeout(200)
+                    k2 = pg.evaluate(MARK)
+                    ok(k2 and k2["rowH"] == k2["before"]["rowH"] and k2["lines"] <= k2["before"]["lines"] and (k2["off"] or not k2["cut"] or k2["before"]["cut"]) and k2["over"] <= 1, f"{tag}: words half as long again: no line added, nothing cut by the mark", k2)
+                    bad = pg.evaluate(BOXES); ok(not bad, f"{tag} stretched: boxes", bad[:3])
+                if lang in ("es", "ja", "ar") and w in (320, 1280): pg.query_selector("#row-mine").screenshot(path=f"{SHOTS}/m-mark-{lang}-{w}-{scheme}.png")
+                clean(pg, tag)
+                ctx.close()
+    print("18: the mark gave way (Yours would have taken a second line):", ", ".join(gave) or "nowhere")
+    # -- two browsers with one code
+    lgA = {"games": {}, "world": {"logicer": {"n": 777, "d": "20261003"}}}            # A finished one of Logicers' own games once: Logicer 777
+    A, pa = new_m(b, 390, play={"v": 1, "star": [], "played": {}, "streak": {"n": 4, "last": ymd(1)}}, site={"turnsout:v1": lgA})
+    code = keep_code(A)
+    ok(bool(re.match(r"^[a-z]+-[a-z]+-[a-z]+-[1-9]\d$", code or "")), "18: A keeps a My Logicers code", code)
+    pa.goto(PL + "/es/?m=" + RUN, wait_until="load"); pa.wait_for_timeout(4000)
+    gid = es[0]["id"]
+    star = pa.query_selector(f'.row-kind li.tile[data-game="{gid}"] .tile-star') or pa.query_selector(f'li.tile[data-game="{gid}"] .tile-star')
+    star.click(); pa.wait_for_timeout(3500)
+    ka = site_key(pa, "logicers-play:mine")
+    ok(ka and gid in ka.get("star", []) and ka.get("g", {}).get(gid, [None, None])[1] == es[0]["slug"], "18 A: the saved game went to My Logicers, with its page", ka)
+    ok(ka and ka.get("streak", {}).get("n") == 4, "18 A: and the streak", ka and ka.get("streak"))
+    clean(pa, "18 A save")
+    starred = time.time()
+    Bc, pb = new_m(b, 1280, play={"v": 1, "star": [], "played": {}, "streak": {"n": 1, "last": ymd(0)}})
+    me = Bc.new_page()
+    me.goto(SITE_M + "/me/#have"); me.wait_for_function("() => document.documentElement.dataset.ready", timeout=15000); me.wait_for_timeout(600)
+    me.fill("input", code); me.keyboard.press("Enter"); me.wait_for_timeout(2500)
+    pb.goto(PL + "/es/?m=" + RUN, wait_until="load")
+    try: pb.wait_for_function(f"() => document.querySelector('#row-mine li.tile[data-game=\"{gid}\"]')", timeout=15000)
+    except Exception: pass
+    ok(pb.evaluate(f"!!document.querySelector('#row-mine li.tile[data-game=\"{gid}\"]') && document.querySelector('li.tile[data-game=\"{gid}\"] .tile-star').getAttribute('aria-pressed') === 'true'"), "18 B: Play shows the game saved on A in Yours, saved")
+    pb.wait_for_timeout(1500)
+    ok(pb.evaluate("document.querySelector('#streak .streak-n').textContent") == "5", "18 B: Play's flame says 5: A's 4 days to yesterday and B's today are one streak", pb.evaluate("localStorage.getItem('portal.mine')"))
+    pb.wait_for_timeout(2500)
+    me.goto(SITE_M + "/me/"); me.wait_for_function("() => document.documentElement.dataset.ready", timeout=15000); me.wait_for_timeout(1500)
+    ok(me.locator(".me-play .me-ptile").count() == 1 and me.locator(".me-play .me-ptile").first.get_attribute("href") == f"https://play.logicers.com/es/g/{es[0]['slug']}/", "18 B: My Logicers shows the game saved on A, linked to its page on Play")
+    ok(me.locator(".me-play .me-pstreak b").count() == 1 and me.locator(".me-play .me-pstreak b").inner_text() == "5", "18 B: and the streak, 5", me.locator(".me-play").inner_text() if me.locator(".me-play").count() else "no part")
+    me.screenshot(path=f"{SHOTS}/m-me-b-1280.png", full_page=True)
+    pb.query_selector(f'#row-mine li.tile[data-game="{gid}"] .tile-star').click(); pb.wait_for_timeout(3500)
+    kb = site_key(pb, "logicers-play:mine")
+    ok(kb and gid not in kb.get("star", []) and kb.get("t", {}).get(gid), "18 B: unsaved, and when", kb)
+    clean(pb, "18 B")
+    rest = 62 - (time.time() - starred)                     # A's copy on logicers.com is a minute old: its next Play page asks My Logicers first
+    if rest > 0: time.sleep(rest)
+    pa.goto(PL + "/es/?m=" + RUN + "x", wait_until="load")
+    try: pa.wait_for_function(f"() => document.querySelector('li.tile[data-game=\"{gid}\"] .tile-star').getAttribute('aria-pressed') === 'false'", timeout=20000)
+    except Exception: pass
+    ok(pa.evaluate(f"document.querySelector('li.tile[data-game=\"{gid}\"] .tile-star').getAttribute('aria-pressed')") == "false", "18 A: the unsave made on B wins on A's Play")
+    ok(pa.evaluate("JSON.parse(localStorage.getItem('portal.mine')).streak.n") == 5, "18 A: A's streak is 5 too")
+    pa.goto(PL + f"/es/g/{es[1]['slug']}/?m=" + RUN, wait_until="load"); pa.wait_for_timeout(400)
+    with A.expect_page() as pop: pa.click(".btn-play")                # a maker's game, played from Play
+    pop.value.close(); pa.wait_for_timeout(3500)
+    to = site_key(pa, "turnsout:v1") or {}
+    ok(to.get("world", {}).get("logicer") == lgA["world"]["logicer"] and not to.get("games"), "18 A: playing a maker's game on Play gave no Logicer number and no result of Logicers' own (Logicers' counters stay honest)", to)
+    ka = site_key(pa, "logicers-play:mine")
+    ok(ka and ka.get("played", {}).get(es[1]["id"]) == ymd(0) and ka.get("streak", {}).get("n") == 5, "18 A: the play went to My Logicers; the streak stays 5 the same day", ka)
+    clean(pa, "18 A after")
+    A.close(); Bc.close()
+    # -- logicers.com away: Play works as before (save, Yours, the dice), and says nothing of it
+    ctx, pg = new_m(b, 390, play=mine)
+    ctx.route(SITE_M + "/**", lambda r: r.abort())
+    pg.goto(PL + "/es/?m=" + RUN + "a", wait_until="load"); pg.wait_for_timeout(9500)
+    ok(pg.evaluate("!document.getElementById('row-mine').hidden && document.querySelectorAll('#row-mine li.tile').length >= 2"), "18 away: Yours as before")
+    t = pg.query_selector(f'.row-kind li.tile[data-game="{es[3]["id"]}"] .tile-star')
+    if t: t.click(); pg.wait_for_timeout(500)
+    ok(pg.evaluate(f"JSON.parse(localStorage.getItem('portal.mine')).star.includes('{es[3]['id']}')"), "18 away: a save is kept on the device")
+    ok(pg.evaluate("!!document.getElementById('me-mark') && document.querySelector('#me-mark .me-mark-n').hidden"), "18 away: the mark, without a number")
+    pg.errs[:] = [e for e in pg.errs if "ERR_FAILED" not in e and "net::" not in e]
+    clean(pg, "18 away")
+    ctx.close()
+    api.close()
+    if proc: proc.terminate()
+
+
+PL = B.replace("://localhost", "://127.0.0.1")      # Play on 127.0.0.1: one site with the bridge (section 18)
+
+
 def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_s(b) if "--only-s" in sys.argv else section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
+        section_m(b) if "--only-m" in sys.argv else section_s(b) if "--only-s" in sys.argv else section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -2536,4 +2765,4 @@ def only_j(k=False):
 
 PG_API = None
 if __name__ == "__main__":
-    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r", "--only-s") for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r", "--only-s", "--only-m") for a in sys.argv) else main()

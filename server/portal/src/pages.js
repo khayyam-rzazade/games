@@ -66,6 +66,9 @@
                   the head has search and four buttons would push the name onto another line, chat S)  .find-b (#find-b: the
                   magnifier, on a language page and its kind pages once the language has SEARCH_MIN games; .has-find on the head)
      Yours        .streak (#streak: a flame and the days in a row, from 1)  .run (#run: the next game of the run)  .run-done (#run-done)
+                  .me-mark (#me-mark: Logicers' mark beside the flame, a link to My Logicers; chat M, 26 Nov 2026) .me-mark-i (the three
+                  dots) .me-mark-n (the Logicer number, set by portal.js when the device has one) .me-mark-tight (the number left out
+                  where it would take a line more) .me-mark-off (the mark gives way where even its dots would push Yours onto another line)   iframe.me-frame (the hidden bridge to My Logicers, made by portal.js)
      buttons      .btn  .btn-add  .btn-play  .btn-report  .btn-send  .btn-done  .btn-more  .ico (any icon)  .ico-flip (turns
                   round in a right-to-left page)
      sheets       dialog.sheet  .sheet-add  .sheet-report  .sheet-langs (the open languages: .sheet-box .lang-opts .lang-opt
@@ -93,7 +96,7 @@ import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=8875b09fcf", js: "/a/portal.js?v=ec8256d0d3", admin: "/a/admin.js?v=a80f78c7b5", icons: "/a/icons.svg?v=ad7b0adbd9", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
+export const ASSET = { css: "/a/portal.css?v=ef4a76f4b7", js: "/a/portal.js?v=627d5e7219", admin: "/a/admin.js?v=a80f78c7b5", icons: "/a/icons.svg?v=ad7b0adbd9", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -108,6 +111,22 @@ export const CSP_ADMIN = CSP + "; require-trusted-types-for 'script'; trusted-ty
    the plain CSP blocked it. Its script comes from static.cloudflareinsights.com and reports to cloudflareinsights.com; no
    cookie. The queue, the claim pages and the maker's form keep the plain CSP above, so the beacon stays blocked there. */
 export const CSP_PUBLIC = CSP.replace("script-src 'self'", "script-src 'self' https://static.cloudflareinsights.com").replace("connect-src 'self'", "connect-src 'self' https://cloudflareinsights.com");
+/* My Logicers (chat M, 26 Nov 2026): a language's page, a kind page and a game page open the bridge to My Logicers on logicers.com
+   in a hidden frame (portal.js; the bridge is portal/bridge.html, which GitHub Pages publishes there). Their CSP lets in that one
+   frame and nothing else; every other page keeps CSP_PUBLIC, where no frame may load. A local run points BRIDGE elsewhere
+   (wrangler dev --var BRIDGE:http://127.0.0.1:4197/portal/bridge.html; index.js bridgeOf). */
+export const BRIDGE = "https://logicers.com/portal/bridge.html";
+export const cspPlay = (bridge) => CSP_PUBLIC + "; frame-src " + (bridge || BRIDGE);
+/* My Logicers' name and how Logicers writes a Logicer number, in the six languages Logicers has (me/lang/*.json: app.name and
+   home.number without its "Logicer "); elsewhere My Logicers opens in English. Names of Logicers' own, not words of Play. */
+const ME_NAME = { en: "My Logicers", it: "Il mio Logicers", tr: "Logicers’ım", es: "Mi Logicers", pt: "Meu Logicers", fr: "Mon Logicers" };
+const ME_NUM = { en: "№{n}", it: "№{n}", tr: "№{n}", es: "n.º {n}", pt: "nº {n}", fr: "n° {n}" };
+export function meOf(d) {
+  const l = ME_NAME[d.lang] ? d.lang : "en";
+  return { bridge: d.bridge || BRIDGE, href: "https://logicers.com/me/?lang=" + l, name: ME_NAME[l], nf: ME_NUM[l], lang: l };
+}
+/* Logicers' mark: its three dots, as assets/img/favicon.svg draws them (fill is an attribute, not a style: the CSP allows it) */
+const MARK = '<svg class="me-mark-i" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="16.5" r="11.5" fill="#3558DC"/><circle cx="14.5" cy="47" r="11.5" fill="#E0512F"/><circle cx="49.5" cy="47" r="11.5" fill="#11998B"/></svg>';
 
 /* ---- text into HTML ---- */
 export const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -331,7 +350,10 @@ function moreLink(d, href, n) {
 function mineTop(d) {
   const run = d.page === "lang"
     ? `<a class="run" id="run" target="_blank" rel="noopener" data-hit data-game="" hidden>${icon("i-play")}<span class="run-t"></span></a><span class="run-done" id="run-done" role="img" hidden>${icon("i-check")}<span class="run-t"></span></span>` : "";
-  return `<span class="streak" id="streak" role="img" hidden>${icon("i-flame")}<b class="streak-n"></b></span>${run}`;
+  const me = meOf(d), other = me.lang !== d.lang ? ` lang="${me.lang}"` : "";   // its name is My Logicers' own (English where Logicers lacks the language)
+  /* Logicers' mark (chat M): a quiet way to My Logicers beside the flame; portal.js adds the Logicer number when the device has one */
+  const mark = `<a class="me-mark" id="me-mark" href="${esc(me.href)}"${other} aria-label="${esc(me.name)}" title="${esc(me.name)}">${MARK}<span class="me-mark-n" hidden></span></a>`;
+  return `<span class="streak" id="streak" role="img" hidden>${icon("i-flame")}<b class="streak-n"></b></span>${mark}${run}`;
 }
 function rowMine(d) {
   return `<section class="row row-mine" id="row-mine" aria-labelledby="h-mine" hidden>
@@ -511,7 +533,7 @@ ${tplTile(d)}`;
     .concat(kinds.map((k) => itemList(word(d.lang, "cat." + k), d.byKind[k].slice(0, ROW_MAX).map((g) => ({ url: gameUrl(d, g), name: g.name })))));
   return doc({ lang: d.lang, cls: "pl-lang", title: name + " · " + word(d.lang, "seo.daily"), canonical: d.site + "/" + d.lang + "/",
     desc: word(d.lang, "seo.desc").replace("{lang}", endonym), jsonld: graph(lists), body,
-    data: pageData(d, { lgLang: d.lgLang }) });
+    data: pageData(d, { lgLang: d.lgLang, me: meOf(d) }) });
 }
 
 /* one kind in a language "/<lang>/<kind>/": KIND_MAX tiles, then More (portal.js asks for the rest) */
@@ -541,7 +563,7 @@ ${tplTile(d)}`;
   return doc({ lang: d.lang, cls: "pl-kind", title: sw ? head + " · " + name : cat + " · " + word(d.lang, "seo.daily") + " · " + name,
     canonical: `${d.site}/${d.lang}/${d.kind}/`, desc: sw ? word(d.lang, "seo.words_d") : word(d.lang, "seo.desc").replace("{lang}", LANG.get(d.lang).endonym),
     jsonld: graph([itemList(head, shown.map((g) => ({ url: gameUrl(d, g), name: g.name })))]), body,
-    data: pageData(d, { kind: d.kind, lgLang: d.lgLang }) });
+    data: pageData(d, { kind: d.kind, lgLang: d.lgLang, me: meOf(d) }) });
 }
 
 /* one game "/<lang>/g/<slug>/" */
@@ -604,7 +626,7 @@ ${tplTile(d)}`;
   return doc({ lang: L, cls: "pl-game", title: g.name + " · " + pageName(L), canonical: gameUrl(d, g), noindex: indexable(g) ? null : "noindex, follow",
     image: pic ? d.site + pic : null,
     desc: g.line || word(L, "seo.desc").replace("{lang}", LANG.get(L).endonym), jsonld: vg, body,
-    data: pageData(d, { game: g.id, url: g.url, lgLang: d.lgLang }) });
+    data: pageData(d, { game: g.id, url: g.url, lgLang: d.lgLang, me: meOf(d) }) });
 }
 
 /* Edit, for the maker only: hidden, shown by portal.js on the device that holds this maker's key (portal.makerof) */
@@ -693,6 +715,7 @@ ${h("What the numbers count")}
 ${p((d.nums === false ? "We count how many people go to play each game from Play Logicers and how many people open each page. The numbers are not shown yet; the maker of a game can see its own." : "Each game shows how many people went to play it from Play Logicers today and in all, and each page shows how many people opened it today.") + " A day is the world's day, from midnight to midnight UTC. Each device counts once a day for each game and each page.")}
 ${h("What we keep")}
 ${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country. When a search here finds nothing, we keep only its words, for 90 days, to see which games are missing. Cloudflare, which serves these pages, also counts visits for us, without cookies.")}
+${p("The games you save and your streak stay on your device. If you keep a My Logicers code on logicers.com, they also go with it to your other devices, locked so that only your code opens them.")}
 ${p("When you add a game, we keep its link, and your name and email if you give them; only Khayyam sees your email. We keep them while the game is on the list, so we can tell its maker the numbers, and delete them 90 days after a game is turned down or taken off. A report keeps its reason and the day.")}
 ${h("Your game")}
 ${p(`To have a game changed or taken off, write to <span class="mail" dir="ltr">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}

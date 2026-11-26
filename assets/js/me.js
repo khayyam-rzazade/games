@@ -26,6 +26,10 @@
      code()                    the code kept on this phone, or null; normalize(s) a typed code as the server knows it
    Logicer Studio (8 Nov 2026): the three keys "logicers-studio:maker", ":games" and ":played" (see STUDIO_MAKER below) ride in the record like the kits' keys:
    the maker key and every game's edit key in the box, the games' titles and addresses in mine[] (kind "studio"), the streak days of others in sp.
+   Play Logicers (26 Nov 2026, chat M of claude/play-next-24nov.md): play.logicers.com keeps Yours (the saved games, the day each was
+   played, the streak) on its own site; on a phone that keeps a code its bridge (portal/bridge.html) writes it here too, under
+   "logicers-play:mine" (PLAY below), and this file carries it in the box, merged on the phone (pmMerge): it follows the code to every
+   phone, and the server never reads it. play() gives it to My Logicers' page; playMerge is the bridge's merge.
    The code is kept under one key, lg.me.v1: { v: 1, code, lang, at, last, rec } (rec = the last record the server sent).
    Never sent anywhere but the My Logicers server (logicers-me): the code, the record, the sealed box. */
 (function () {
@@ -59,6 +63,80 @@
   var STUDIO_MAKER = "logicers-studio:maker", STUDIO_GAMES = "logicers-studio:games", STUDIO_PLAYED = "logicers-studio:played";
   var STUDIO_SITE = "https://by.logicers.com/";
   var KEEP_PLAYED = 400;                   // the last days kept for each game of others
+  var PLAY = "logicers-play:mine";         // Play Logicers' Yours, as its bridge writes it here (26 Nov 2026): carried in the box
+
+  /* play-merge: from here */
+  /* Play Logicers' Yours as My Logicers carries it from device to device (chat M, 26 Nov 2026):
+       { v: 1, star: [game ids, newest first], t: { id: when it was last saved or unsaved, ms }, g: { id: [language, slug, name,
+         address] } (what My Logicers needs to name and link a saved game: its page on play.logicers.com, or the address of one of
+         Logicers' own games), played: { id: the device's day it was last played }, streak: { n, last }, lang }
+     An id in t that is not in star was unsaved at that time. Two copies merge so that a saved game is never lost, a streak is
+     never lowered, and a game unsaved on one device stays unsaved on the others: of a game's two states the later one wins (a
+     save kept with no time, from before 26 Nov 2026, loses only to an unsave that has one); two streaks that touch or overlap
+     are one (days in a row on any of the devices are days in a row); a game's last day played is the later one. b is the copy
+     of the side that merges: its words win (a game's name, the language). The same text is in portal/a/portal.js and
+     assets/js/me.js (server/portal/test/test_m.mjs compares them). */
+  var PM_ID = /^[a-z0-9-]{1,40}$/, PM_DAY = /^\d{4}-\d{2}-\d{2}$/, PM_LANG = /^[a-z]{2,3}(-[a-z]{4})?$/, PM_SLUG = /^(?:[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?)?$/;
+  var PM_STAR = 200, PM_OFF = 100, PM_KEEP = 400, PM_PLAYED = 8;       // saved games; unsaved ones remembered (at most, and days); days of plays kept
+  function pmObj(x) { return x && typeof x === "object" && !Array.isArray(x) ? x : null; }
+  function pmDay(s) { return Math.round(Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)) / 864e5); }
+  function pmToday() { var d = new Date(); return Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); }
+  function pmSort(o) { var out = {}; Object.keys(o).sort().forEach(function (k) { out[k] = o[k]; }); return out; }
+  function pmClean(x) {
+    var o = { v: 1, star: [], t: {}, g: {}, played: {}, streak: { n: 0, last: "" } };
+    x = pmObj(x);
+    if (!x) return o;
+    (Array.isArray(x.star) ? x.star : []).forEach(function (id) { if (typeof id === "string" && PM_ID.test(id) && o.star.indexOf(id) < 0 && o.star.length < PM_STAR) o.star.push(id); });
+    var t = pmObj(x.t) || {}, g = pmObj(x.g) || {}, p = pmObj(x.played) || {}, s = pmObj(x.streak);
+    Object.keys(t).forEach(function (id) { var v = t[id]; if (PM_ID.test(id) && typeof v === "number" && isFinite(v) && v > 0) o.t[id] = Math.floor(v); });
+    Object.keys(g).forEach(function (id) {
+      var v = g[id];
+      if (!PM_ID.test(id) || !Array.isArray(v) || !PM_LANG.test(String(v[0])) || !PM_SLUG.test(String(v[1] == null ? "" : v[1])) || typeof v[2] !== "string" || !v[2].trim()) return;
+      var u = typeof v[3] === "string" && /^https:\/\/[^\s"'<>\\]{1,200}$/.test(v[3]) ? v[3] : "";
+      if (!v[1] && !u) return;                                         // nothing to link to
+      o.g[id] = [v[0], v[1] || "", v[2].replace(/[\u0000-\u001f]/g, " ").trim().slice(0, 80), u];
+    });
+    Object.keys(p).forEach(function (id) { if (PM_ID.test(id) && PM_DAY.test(String(p[id])) && isFinite(pmDay(p[id]))) o.played[id] = p[id]; });
+    if (s && PM_DAY.test(String(s.last)) && isFinite(pmDay(s.last)) && typeof s.n === "number" && s.n >= 1 && s.n <= 9999 && Math.floor(s.n) === s.n) o.streak = { n: s.n, last: s.last };
+    if (typeof x.lang === "string" && PM_LANG.test(x.lang)) o.lang = x.lang;
+    o.t = pmSort(o.t); o.g = pmSort(o.g); o.played = pmSort(o.played);
+    return o;
+  }
+  function pmStreak(x, y) {
+    if (!x.n) return { n: y.n, last: y.last };
+    if (!y.n) return { n: x.n, last: x.last };
+    var ex = pmDay(x.last), ey = pmDay(y.last), sx = ex - x.n + 1, sy = ey - y.n + 1;
+    if (Math.max(sx, sy) <= Math.min(ex, ey) + 1) {
+      var e = Math.max(ex, ey);
+      return { n: Math.min(9999, e - Math.min(sx, sy) + 1), last: e === ex ? x.last : y.last };
+    }
+    return ex > ey ? { n: x.n, last: x.last } : { n: y.n, last: y.last };
+  }
+  function pmMerge(a, b) {
+    a = pmClean(a); b = pmClean(b);
+    var o = { v: 1, star: [], t: {}, g: {}, played: {}, streak: pmStreak(a.streak, b.streak) }, seen = {}, on = [];
+    a.star.concat(b.star, Object.keys(a.t), Object.keys(b.t)).forEach(function (id) {
+      if (seen[id]) return;
+      seen[id] = 1;
+      var ia = a.star.indexOf(id), ib = b.star.indexOf(id), ta = a.t[id] || 0, tb = b.t[id] || 0, t = Math.max(ta, tb);
+      var saved = ta === tb ? ia >= 0 || ib >= 0 : ta > tb ? ia >= 0 : ib >= 0;
+      if (t) o.t[id] = t;
+      if (saved) on.push({ id: id, t: t, i: Math.min(ia < 0 ? 1e9 : ia, ib < 0 ? 1e9 : ib) });
+    });
+    on.sort(function (x, y) { return y.t - x.t || x.i - y.i || (x.id < y.id ? -1 : 1); });
+    o.star = on.slice(0, PM_STAR).map(function (x) { return x.id; });
+    on.slice(PM_STAR).forEach(function (x) { delete o.t[x.id]; });  // past the most Play keeps: gone, not an unsave
+    var cut = Date.now() - PM_KEEP * 864e5;
+    Object.keys(o.t).filter(function (id) { return o.star.indexOf(id) < 0; }).sort(function (x, y) { return o.t[y] - o.t[x] || (x < y ? -1 : 1); })
+      .forEach(function (id, i) { if (i >= PM_OFF || o.t[id] < cut) delete o.t[id]; });
+    o.star.forEach(function (id) { var v = b.g[id] || a.g[id]; if (v) o.g[id] = v; });
+    var from = pmToday() - PM_PLAYED;
+    [a.played, b.played].forEach(function (p) { Object.keys(p).forEach(function (id) { if (pmDay(p[id]) >= from && p[id] > (o.played[id] || "")) o.played[id] = p[id]; }); });
+    if (b.lang || a.lang) o.lang = b.lang || a.lang;
+    o.t = pmSort(o.t); o.g = pmSort(o.g); o.played = pmSort(o.played);
+    return o;
+  }
+  /* play-merge: to here */
 
   /* ---------------- this phone's storage ---------------- */
   function get(k) { try { var v = window.localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
@@ -292,6 +370,10 @@
     });
     var sp = studioPlays(); if (sp) rec.sp = sp;
 
+    /* Play Logicers' Yours (26 Nov 2026): only in the box, never in the open record */
+    var pl = get(PLAY);
+    if (obj(pl)) { var pc = pmClean(pl); if (pc.star.length || Object.keys(pc.t).length || Object.keys(pc.played).length || pc.streak.n) open.play = pc; }
+
     rec.langs = langs;
     var f = Math.min.apply(null, firsts.filter(isFinite).concat([Infinity]));
     rec.first = isFinite(f) ? DATE(f) : null;
@@ -368,7 +450,7 @@
     rec = M.clean(rec) || L.record;
     if (s.rec && s.rec.doors) rec.doors = s.rec.doors;
     if (s.rec && num(s.rec.pk)) rec.pk = s.rec.pk;
-    Object.defineProperty(rec, "_open", { value: { ci: L.open.ci, mine: linksOf(L.open), rooms: L.open.rooms || null, maker: L.open.maker || null }, enumerable: false });
+    Object.defineProperty(rec, "_open", { value: { ci: L.open.ci, mine: linksOf(L.open), rooms: L.open.rooms || null, maker: L.open.maker || null, play: L.open.play || null }, enumerable: false });
     return rec;
   }
   function stripSecret(r) { var x = JSON.parse(JSON.stringify(r)); delete x.box; delete x.pk; return x; }
@@ -434,6 +516,7 @@
         try { writeMine(open.mine); } catch (e) { /* idem */ }
         try { writeRooms(open.rooms); } catch (e) { /* idem */ }
         try { writeMaker(open.maker); } catch (e) { /* idem */ }
+        try { writePlay(open.play); } catch (e) { /* idem */ }
       }
       /* the portrait is asked for only when a code is typed or a door opened (restore, adopt): never on an ordinary sync */
       var q = claim && open && open.fo ? claimFindouts(open.fo) : Promise.resolve();
@@ -646,6 +729,13 @@
     if (!obj(m) || typeof m.key !== "string" || !m.key || typeof m.slug !== "string" || !m.slug || obj(get(STUDIO_MAKER))) return;
     put(STUDIO_MAKER, { slug: m.slug, name: typeof m.name === "string" ? m.name.slice(0, 40) : "", key: m.key, t: num(m.t) ? m.t : undefined });
   }
+  /* Play Logicers' Yours from the box: merged with this phone's own copy (pmMerge: a saved game is never lost, a streak never
+     lowered, an unsave made later on another phone wins); the bridge gives it to play.logicers.com on the next page there */
+  function writePlay(p) {
+    if (!obj(p)) return;
+    var here = get(PLAY), merged = pmMerge(p, here);
+    if (JSON.stringify(merged) !== JSON.stringify(pmClean(here))) put(PLAY, merged);
+  }
   /* the days of the games of others: the days of both, never fewer */
   function writeStudioPlays(record) {
     if (!record || !obj(record.sp)) return;
@@ -736,7 +826,7 @@
      the oldest check-ins' answers), sealed */
   function sealed(c, salt, extra) {
     var L = local(), rec = L.record;
-    var data = { ci: L.open.ci, mine: L.open.mine, rooms: L.open.rooms || null, st: L.open.st, recent: L.open.recent, fo: L.open.fo || null, maker: L.open.maker || null };
+    var data = { ci: L.open.ci, mine: L.open.mine, rooms: L.open.rooms || null, st: L.open.st, recent: L.open.recent, fo: L.open.fo || null, maker: L.open.maker || null, play: L.open.play || null };
     if (extra) data = mergeOpen(extra, data);
     goneList().forEach(function (k) { if (data.mine) delete data.mine[k]; });
     rec.upd = new Date().toISOString();
@@ -745,6 +835,7 @@
         rec.box = box;
         if (M.size(rec) <= M.LIMIT - 512) return { record: rec, data: d };
         if (d.recent && Object.keys(d.recent).length) { d.recent = {}; return fit(d); }
+        if (d.play) { d.play = null; return fit(d); }               // Play's Yours stays on each phone (26 Nov 2026)
         var full = (d.ci || []).filter(function (e) { return e.a; });
         if (full.length > 1) { delete full[0].a; return fit(d); }
         if ((d.ci || []).length > 2) { d.ci = d.ci.slice(-Math.max(2, Math.floor(d.ci.length / 2))); return fit(d); }
@@ -757,7 +848,8 @@
   /* two boxes' contents as one: check-ins by their time, games by kind and code, votes by chapter, recent by game and day */
   function mergeOpen(a, b) {
     a = a || {}; b = b || {};
-    var ci = {}, out = { ci: [], mine: {}, rooms: b.rooms || a.rooms || null, st: {}, recent: {}, fo: b.fo || a.fo || null, maker: b.maker || a.maker || null };
+    var ci = {}, out = { ci: [], mine: {}, rooms: b.rooms || a.rooms || null, st: {}, recent: {}, fo: b.fo || a.fo || null, maker: b.maker || a.maker || null,
+                         play: a.play || b.play ? pmMerge(a.play, b.play) : null };
     (a.ci || []).concat(b.ci || []).forEach(function (e) {
       if (!obj(e) || !num(e.at)) return;
       if (!ci[e.at] || (!ci[e.at].a && e.a)) ci[e.at] = e;
@@ -911,7 +1003,7 @@
   /* remove: the record goes from the server; with { local: true } every key of the inventory goes from this phone too */
   var LOCAL_KEYS = ["turnsout:v1", "altitude:v1", "lookalike:v1", "passport:v1", "altitude.lang", "lookalike.lang", "passport.lang",
                     "story:v1", "story:readers", "lg.findout.v1", "lg.findout.marks", "lg.findout.room.host", "lg.checkin.v1",
-                    "logicers-make:games", "logicers-room:tab", "logicers-studio:maker", "logicers-studio:games", "logicers-studio:played"];
+                    "logicers-make:games", "logicers-room:tab", "logicers-studio:maker", "logicers-studio:games", "logicers-studio:played", PLAY];
   function remove(opts) {
     var c = code();
     var p = c && apiBase() ? call("/delete", { code: c }).then(function (r) { return r.status === 200; }, function () { return false; }) : Promise.resolve(true);
@@ -991,7 +1083,7 @@
   }
   /* the watcher: any write of a game's, a room's or a result's own key on this page is an action, and it syncs about a second
      later (several writes in a row make one sync). Storage.setItem is wrapped once; the write itself happens first, untouched. */
-  var WATCH = /^(turnsout:v1|altitude:v1|lookalike:v1|passport:v1|story:v1|lg\.findout\.v1|lg\.findout\.room\.host|lg\.checkin\.v1|logicers-make:games|logicers-live:host:|logicers-studio:)/;
+  var WATCH = /^(turnsout:v1|altitude:v1|lookalike:v1|passport:v1|story:v1|lg\.findout\.v1|lg\.findout\.room\.host|lg\.checkin\.v1|logicers-make:games|logicers-live:host:|logicers-studio:|logicers-play:)/;
   function watch() {
     try {
       var P = window.Storage && window.Storage.prototype;
@@ -1019,6 +1111,8 @@
   window.LogicersMe = {
     KEY: KEY, collect: collect, apply: apply, draw: draw, keep: keep, sync: sync, soon: soon, restore: restore, adopt: adopt,
     remove: remove, leave: leave, forget: forget, openBox: openBox, sealBox: sealBox, code: code, normalize: normalize, isCode: function (c) { return CODE_RE.test(normalize(c)); },
+    /* Play Logicers (26 Nov 2026): its Yours as kept on this phone (null when there is none), and the merge its bridge uses */
+    play: function () { var p = obj(get(PLAY)); return p ? pmClean(p) : null; }, playMerge: pmMerge,
     _test: { local: local, mergeOpen: mergeOpen, RULES: RULES, hook: hook }
   };
 })();

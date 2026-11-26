@@ -126,6 +126,21 @@ then a word's start, then anywhere in it, then the maker or the kind's word; at 
 `/api/miss` once, as words only. What people searched for and did not find: the queue page, the admin key, **Searches**.
 On a phone, where four head buttons would push the page's name onto another line, the dice gives way to search.
 
+## Yours in My Logicers (chat M, 26 Nov 2026)
+
+A language's page, a kind page and a game page open, once the page has settled, one hidden frame: the bridge to My Logicers,
+`https://logicers.com/portal/bridge.html` (the files `portal/bridge.html` and `portal/bridge.js`; GitHub Pages publishes them on
+logicers.com with every push, and this Worker does not upload them: `portal/.assetsignore`). Those three pages' CSP adds
+`frame-src` for exactly that address (`src/pages.js` `BRIDGE`, `cspPlay`); every other page lets in no frame. The bridge says
+whether the device keeps a My Logicers code and its Logicer number; with a code, Yours (saved games with when each was saved or
+unsaved, the day each was played, the streak) is merged both ways (`pmMerge`, the same text in `portal/a/portal.js` and
+`assets/js/me.js`) and kept on logicers.com under `logicers-play:mine`, which My Logicers carries inside its locked box to every
+device with the code (the My Logicers Worker never reads it, and nothing changed there). Without a code nothing leaves the
+device. Beside the flame, Logicers' mark leads to My Logicers (in the page's language where Logicers has it, else English), with
+the Logicer number where it fits. When logicers.com does not answer, the page is as before. Locally: `--var BRIDGE:http://127.0.0.1:4197/portal/bridge.html`
+(taken only with `ALLOW_ORIGINS` `localhost`), and `node portal/tests/me-site.mjs` serves logicers.com there (check.py section 18
+starts it itself).
+
 ## The tests (any computer with Node 22; no internet)
 
 ```
@@ -170,7 +185,12 @@ the dice counts them (39: nothing drawn), on a language page and its kind pages,
 found nothing (their matched form, never an address or a number, 30 a day from one address, deleted after 90 days); the queue's
 Searches for the admin key only; About's sentence; the 20 words files of wave 3 with only their grammar's plural forms (Welsh
 all six), their rows (Serbian and Kazakh in Cyrillic, Urdu right to left, Bengali's own digits); the word `search` in every
-file; and the drawing on Logicers' coins built on the device (an svg has no `.hidden`). D1 is Node's
+file; and the drawing on Logicers' coins built on the device (an svg has no `.hidden`). `test/test_m.mjs` (chat M, 26 Nov 2026)
+holds Yours in My Logicers, each test failing before it: the bridge's one frame in the CSP of a language's page, a kind page and a
+game page and of no other page (a local address only in a local run); the bridge's own page (noindex, its own CSP, its script
+stamped, not uploaded); Logicers' mark beside the flame and My Logicers' address in the page's language or English; the merge,
+one text in Play's page script and My Logicers' script (a saved game never lost, a streak never lowered, an unsave made later
+wins, what goes is cleaned). The two browsers with one code: `node me/tests/play.test.mjs` and check.py section 18. D1 is Node's
 own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`).
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.

@@ -175,8 +175,11 @@ test("4. Cloudflare Web Analytics is let in on the public pages only: not on the
   const g2 = (await one(e, "SELECT id FROM games WHERE slug = 'game-es-2'")).id;
   const strict = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; object-src 'none'";
   const open = "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; object-src 'none'";
-  for (const p of ["/", "/es/", "/es/words/", "/es/g/game-es-1/", "/es/g/game-es-2/", "/about/", "/about/?l=es", "/m/the-maker/", "/nothing-here/", "/es/nothing-here/"])
+  for (const p of ["/", "/about/", "/about/?l=es", "/m/the-maker/", "/nothing-here/", "/es/nothing-here/"])
     assert.equal((await get(e, p)).headers.get("Content-Security-Policy"), open, p + ": a public page");
+  /* chat M, 26 Nov 2026: a language's page, a kind page and a game page also let in the one frame of the bridge to My Logicers */
+  for (const p of ["/es/", "/es/words/", "/es/g/game-es-1/", "/es/g/game-es-2/"])
+    assert.equal((await get(e, p)).headers.get("Content-Security-Policy"), open + "; frame-src https://logicers.com/portal/bridge.html", p + ": a public page with the bridge");
   for (const p of ["/claim/?g=" + g2, "/claim/aaaaaaaaaaaaaaaaaaaaaaaa/", "/maker/", "/maker/?l=es"])
     assert.equal((await get(e, p)).headers.get("Content-Security-Policy"), strict, p + ": never anyone else's script");
   const ad = (await get(e, "/admin/")).headers.get("Content-Security-Policy");

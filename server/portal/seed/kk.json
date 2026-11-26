@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Қазақша Wordle",
+    "url": "https://wordle.jarjan.xyz/",
+    "lang": "kk",
+    "kind": "words",
+    "line": "Бүгінгі қазақша сөзді бірнеше талпыныста тап.",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Linkdle",
+    "url": "https://linkdle.com/kk",
+    "lang": "kk",
+    "kind": "knowledge",
+    "line": "Уикипедия сілтемелерін басып, мақсатты бетке жет.",
+    "maker": "Marc García-Penche",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Клубты тап",
+    "url": "https://footballclubsmap.com/games/find-the-club/kk/",
+    "lang": "kk",
+    "kind": "maps",
+    "line": "Картадағы түйреуішке қарап футбол клубын тап.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Стадионды тап",
+    "url": "https://footballclubsmap.com/games/guess-the-stadium/kk/",
+    "lang": "kk",
+    "kind": "sport",
+    "line": "Суреттегі стадионға қарап футбол клубын тап.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Эмблеманы тап",
+    "url": "https://footballclubsmap.com/games/guess-the-logo/kk/",
+    "lang": "kk",
+    "kind": "sport",
+    "line": "Бұлыңғыр эмблемаға қарап клубты тап.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Форманы тап",
+    "url": "https://footballclubsmap.com/games/guess-the-kit/kk/",
+    "lang": "kk",
+    "kind": "sport",
+    "line": "Форманы көріп, футбол клубын тап.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  },
+  {
+    "name": "Клубты тап",
+    "url": "https://footballclubsmap.com/games/guess-the-club/kk/",
+    "lang": "kk",
+    "kind": "sport",
+    "line": "Кеңестер арқылы бүгінгі футбол клубын тап.",
+    "maker": "Football Clubs Map",
+    "checked": "2026-11-25"
+  }
+]

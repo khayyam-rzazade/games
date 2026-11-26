@@ -223,6 +223,18 @@ body.pl {
 .streak-n { font-family: var(--f); font-weight: 500; font-size: 14px; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 .streak.is-wait { color: var(--soft); }
 .streak.is-wait .ico { fill: none; }
+/* Logicers' mark beside the flame (chat M, 26 Nov 2026): a quiet way to My Logicers, its three dots and the Logicer number in the
+   soft ink. The box is as wide as what it shows (so the Yours row keeps its room on a phone); the tap reaches 44 px around it
+   (::after, centred, in either direction). Where it would take a line more, portal.js fitMark leaves the number out
+   (.me-mark-tight; it stays in the mark's name), and where even the dots would push Yours onto another line or cut it, the mark
+   gives way (.me-mark-off), as the dice does for search. */
+.me-mark { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-block-size: 44px; padding-inline: 3px; border-radius: 999px; color: var(--soft); font-family: var(--f); font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; white-space: nowrap; transition: color .15s var(--ease); }
+.me-mark::after { content: ""; position: absolute; inset-block: 0; inset-inline: calc(50% - 22px); }
+.me-mark:hover { color: var(--ink); }
+.me-mark-i { inline-size: 18px; block-size: 18px; flex: none; }
+.me-mark-n { unicode-bidi: isolate; }
+.me-mark-tight .me-mark-n, .me-mark-off { display: none; }
+iframe.me-frame { display: none; }
 .run, .run-done { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-inline-start: auto; min-block-size: 44px; padding-inline: 16px 18px; border-radius: 999px; font-size: 14px; font-weight: 500; white-space: nowrap; }
 .run { background: var(--ink); color: var(--bg); transition: opacity .15s var(--ease); }
 .run:hover { opacity: .85; }
