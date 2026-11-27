@@ -1,12 +1,12 @@
 {
- "when": "2026-11-27T12:38:42.109Z",
+ "when": "2026-11-27T18:56:32.585Z",
  "base": "https://play.logicers.com",
  "total": {
   "all": 1016,
-  "yes": 553,
-  "no": 366,
-  "unknown": 97,
-  "bust": 3
+  "yes": 544,
+  "no": 374,
+  "unknown": 98,
+  "bust": 2
  },
  "byLang": {
   "en": {
@@ -39,8 +39,8 @@
   },
   "pt": {
    "all": 46,
-   "yes": 34,
-   "no": 12,
+   "yes": 33,
+   "no": 13,
    "unknown": 0,
    "bust": 0
   },
@@ -74,8 +74,8 @@
   },
   "nl": {
    "all": 34,
-   "yes": 21,
-   "no": 10,
+   "yes": 20,
+   "no": 11,
    "unknown": 3,
    "bust": 0
   },
@@ -123,16 +123,16 @@
   },
   "da": {
    "all": 24,
-   "yes": 12,
-   "no": 8,
+   "yes": 11,
+   "no": 9,
    "unknown": 4,
    "bust": 0
   },
   "el": {
    "all": 13,
-   "yes": 4,
+   "yes": 3,
    "no": 9,
-   "unknown": 0,
+   "unknown": 1,
    "bust": 0
   },
   "fa": {
@@ -151,10 +151,10 @@
   },
   "he": {
    "all": 15,
-   "yes": 14,
-   "no": 1,
+   "yes": 9,
+   "no": 6,
    "unknown": 0,
-   "bust": 1
+   "bust": 0
   },
   "hu": {
    "all": 19,
@@ -179,8 +179,8 @@
   },
   "ro": {
    "all": 22,
-   "yes": 5,
-   "no": 16,
+   "yes": 4,
+   "no": 17,
    "unknown": 1,
    "bust": 0
   },
@@ -193,9 +193,9 @@
   },
   "th": {
    "all": 9,
-   "yes": 4,
+   "yes": 5,
    "no": 4,
-   "unknown": 1,
+   "unknown": 0,
    "bust": 0
   },
   "uk": {
@@ -208,8 +208,8 @@
   "vi": {
    "all": 14,
    "yes": 5,
-   "no": 5,
-   "unknown": 4,
+   "no": 4,
+   "unknown": 5,
    "bust": 0
   },
   "zh-hans": {
@@ -3303,8 +3303,8 @@
    "lang": "pt",
    "id": "6gpdll23c5",
    "url": "https://termo.pt/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://termo.pt/",
    "moved": false,
@@ -3951,7 +3951,7 @@
    "id": "nctc7ebtkk",
    "url": "https://www.bidunyafilm.com/oyun",
    "result": "no",
-   "reason": "x-frame-options sameorigin",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://www.bidunyafilm.com/oyun",
    "moved": false,
@@ -4480,7 +4480,7 @@
    "id": "zdb4udhlm3",
    "url": "https://www.wortspielen.de/spiel/contexto-deutsch",
    "result": "no",
-   "reason": "x-frame-options sameorigin",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://www.wortspielen.de/spiel/contexto-deutsch",
    "moved": false,
@@ -5429,8 +5429,8 @@
    "lang": "nl",
    "id": "oszk6s6neg",
    "url": "https://verbandle.nl/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://verbandle.nl/",
    "moved": false,
@@ -6865,8 +6865,8 @@
    "lang": "da",
    "id": "eafw74dubj",
    "url": "https://landegaet.bozkurt.dk/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://landegaet.bozkurt.dk/",
    "moved": false,
@@ -7132,19 +7132,17 @@
    "lang": "el",
    "id": "nbgrlhyzek",
    "url": "https://games.gazzetta.gr/wordle/",
-   "result": "no",
-   "reason": "frame-ancestors",
-   "status": 200,
+   "result": "unknown",
+   "status": 520,
    "final": "https://games.gazzetta.gr/wordle/",
-   "moved": false,
-   "bust": false
+   "reason": "status 520"
   },
   {
    "lang": "el",
    "id": "psxddakhr5",
    "url": "https://lexli.gr/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://lexli.gr/",
    "moved": false,
@@ -7423,8 +7421,8 @@
    "lang": "he",
    "id": "2ldpzmdn5y",
    "url": "https://www.yo-yoo.co.il/words/daily/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://www.yo-yoo.co.il/words/daily/",
    "moved": false,
@@ -7489,19 +7487,19 @@
    "lang": "he",
    "id": "bvmdebjjkx",
    "url": "https://www.yo-yoo.co.il/kesher/today/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://www.yo-yoo.co.il/kesher/today/",
    "moved": false,
-   "bust": true
+   "bust": false
   },
   {
    "lang": "he",
    "id": "crbxt5byqe",
    "url": "https://www.yo-yoo.co.il/hangmanonline/daily/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://www.yo-yoo.co.il/hangmanonline/daily/",
    "moved": false,
@@ -7533,8 +7531,8 @@
    "lang": "he",
    "id": "jomfxonxzr",
    "url": "https://www.yo-yoo.co.il/daily/milim-mitztalvot/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://www.yo-yoo.co.il/daily/milim-mitztalvot/",
    "moved": false,
@@ -7577,8 +7575,8 @@
    "lang": "he",
    "id": "xx6fft63gi",
    "url": "https://wordhive.co.il/",
-   "result": "yes",
-   "reason": "frame-ancestors allows",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://wordhive.co.il/",
    "moved": false,
@@ -8168,8 +8166,8 @@
    "lang": "ro",
    "id": "33xwre4sez",
    "url": "https://wordle-ro.sirb.net/",
-   "result": "yes",
-   "reason": "",
+   "result": "no",
+   "reason": "frame-ancestors",
    "status": 200,
    "final": "https://wordle-ro.sirb.net/",
    "moved": false,
@@ -8624,10 +8622,12 @@
    "lang": "th",
    "id": "43hmviwsi3",
    "url": "https://thaicryptic.com/",
-   "result": "unknown",
-   "status": 500,
+   "result": "yes",
+   "reason": "",
+   "status": 200,
    "final": "https://thaicryptic.com/",
-   "reason": "status 500"
+   "moved": false,
+   "bust": false
   },
   {
    "lang": "th",
@@ -8986,12 +8986,10 @@
    "lang": "vi",
    "id": "q7456brwud",
    "url": "https://vnexpress.net/thu-gian/crossword",
-   "result": "no",
-   "reason": "frame-ancestors",
-   "status": 200,
+   "result": "unknown",
+   "status": 0,
    "final": "https://vnexpress.net/thu-gian/crossword",
-   "moved": false,
-   "bust": false
+   "reason": "timeout"
   },
   {
    "lang": "vi",
