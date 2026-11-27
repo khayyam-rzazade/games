@@ -156,7 +156,7 @@ const TABLE = [
   ["lt", "Žodžių žaidimas", "", "zodziu", 0], ["lv", "Vārdu spēle", "", "vardu", 0], ["et", "Sõnamäng", "", "sonamang", 0],
   ["eu", "Hitz jokoa", "", "jokoa", 1], ["gl", "Palabra do día", "", "dia", 1], ["cy", "Gair y Dydd", "", "dydd", 1], ["cy", "Ŵy Pasg", "", "wy", 0],
   ["ms", "Teka Kata", "", "teka", 0], ["fil", "Hulaan ang Salita", "", "salita", 1], ["sw", "Neno la Siku", "", "siku", 1],
-  ["hi", "आज का शब्द", "", "शब्द", 1], ["hi", "शब्दखेल", "", "खेल", 2],
+  ["hi", "आज का शब्द", "", "शब्द", 1], ["hi", "शब्दखेल", "", "खेल", 2], ["hi", "ज़मीन की पहेली", "", "जमीन", 0], ["hi", "फ़िल्म पहेली", "", "फिल्म", 0],
   ["bn", "আজকের শব্দ ১২", "", "12", 1], ["bn", "শব্দজট", "", "শব্দ", 0],
   ["ur", "لفظوں کا کھیل", "", "کهیل", 1], ["ur", "آج کا لفظ", "", "اج", 0],
   ["ta", "தமிழ் சொல்", "", "சொல்", 1], ["kk", "Сөз ойыны", "", "СӨЗ", 0], ["kk", "Қала", "", "қала", 0], ["ka", "სიტყვობანა", "", "სიტყვ", 0],
@@ -243,7 +243,7 @@ test("1. the device: the miss rules, the wait, the Escape, the '/' key, and Logi
 
 /* ==== 2. the 20 languages of wave 3 ==== */
 const PLURAL = /\.(zero|one|two|few|many)$/;
-test("2. the 20 languages: a words file each (English until the words chats), imported, with exactly the plural forms each grammar has", () => {
+test("2. the 20 languages: a words file each (in its own language since the words chats, 26-27 Nov 2026), imported, with exactly the plural forms each grammar has", () => {
   const en = WORDS.en, plain = (o) => Object.keys(o).filter((k) => !PLURAL.test(k));
   const src = fs.readFileSync(path.join(ROOT, "src", "words.js"), "utf8");
   assert.deepEqual(LANGS.filter((l) => l.group === "later").map((l) => l.code).sort(), WAVE3.slice().sort());
@@ -252,7 +252,12 @@ test("2. the 20 languages: a words file each (English until the words chats), im
     assert.ok(WORDS[c], c + ": imported");
     assert.match(src, new RegExp(`from "\\.\\./words/${c}\\.json" with \\{ type: "json" \\};`), c);
     assert.deepEqual(plain(WORDS[c]), plain(en), c + ": every key of en.json in its order");
-    for (const k of plain(en)) assert.equal(WORDS[c][k], en[k], c + ": " + k + " is English until its words chat");
+    const marks = (t) => (String(t).match(/\{[a-z_]+\}/g) || []).sort().join(" ");
+    for (const k of plain(en)) {
+      assert.ok(typeof WORDS[c][k] === "string" && WORDS[c][k].trim(), c + ": " + k + " is not empty");
+      assert.equal(marks(WORDS[c][k]), marks(en[k]), c + ": " + k + " keeps the marks of en.json");
+    }
+    assert.notEqual(WORDS[c].add, en.add, c + ": in its own language (the words chats replaced the English copy)");
     const ORDER = ["zero", "one", "two", "few", "many"];
     const cats = new Intl.PluralRules(htmlLang(c)).resolvedOptions().pluralCategories.filter((x) => x !== "other").sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
     const have = Object.keys(WORDS[c]).filter((k) => PLURAL.test(k));
@@ -311,13 +316,16 @@ test("2. the 20 rows: endonyms as natives write them, Serbian and Kazakh in Cyri
 });
 
 /* ==== 3. the word ==== */
-test("3. the word search: in every file, from MediaWiki's search box in each language (Norwegian Bokmål); English in the 20 copies", () => {
+test("3. the word search: in every file, from MediaWiki's search box in each language (Norwegian Bokmål; the 20 of wave 3 by their words chats)", () => {
   const want = { en: "Search", es: "Buscar", pt: "Pesquisar", fr: "Rechercher", de: "Suche", it: "Cerca", tr: "Ara", ru: "Поиск", pl: "Szukaj",
     nl: "Zoeken", ja: "検索", ko: "검색", uk: "Пошук", cs: "Hledat", ro: "Căutare", hu: "Keresés", sv: "Sök", no: "Søk", da: "Søg", fi: "Haku",
     el: "Αναζήτηση", ca: "Cerca", az: "Axtar", id: "Cari", vi: "Tìm kiếm", he: "חיפוש", ar: "بحث", fa: "جستجو", th: "ค้นหา", "zh-hans": "搜索",
-    "zh-hant": "搜尋" };
+    "zh-hant": "搜尋",
+    // wave 3, chosen by the words chats W3a-W3d (26-27 Nov 2026) from MediaWiki's search box
+    hr: "Traži", sr: "Претрага", bg: "Търсене", sl: "Išči", sk: "Hľadať", lt: "Paieška", lv: "Meklēt", et: "Otsing", kk: "Іздеу",
+    ka: "ძიება", eu: "Bilatu", gl: "Procura", cy: "Chwilio", ms: "Cari", fil: "Hanapin", sw: "Tafuta", hi: "खोजें", bn: "অনুসন্ধান",
+    ur: "تلاش", ta: "தேடு" };
   for (const [c, w] of Object.entries(want)) assert.equal(WORDS[c].search, w, c);
-  for (const c of WAVE3) assert.equal(WORDS[c].search, "Search", c + ": English until its words chat");
   for (const [c, w] of Object.entries(WORDS)) {
     const keys = Object.keys(w);
     assert.equal(keys[keys.indexOf("edit") + 1], "search", c + ": after edit, before the claim words");

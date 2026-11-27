@@ -96,7 +96,7 @@ import { ring, dayAdd } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=ef4a76f4b7", js: "/a/portal.js?v=627d5e7219", admin: "/a/admin.js?v=a80f78c7b5", icons: "/a/icons.svg?v=ad7b0adbd9", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
+export const ASSET = { css: "/a/portal.css?v=1c78254545", js: "/a/portal.js?v=f18e52270d", admin: "/a/admin.js?v=a80f78c7b5", icons: "/a/icons.svg?v=ad7b0adbd9", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at

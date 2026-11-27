@@ -94,6 +94,7 @@ body.pl {
 .brand-by-a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .brand-sub { font-size: 14px; color: var(--soft); margin-block-start: 12px; }
 .brand-box { min-inline-size: 0; }
+.top-lang .brand.brand-fit { font-size: 22px; } .top-lang .brand.brand-fit2 { font-size: 19px; }   /* the name a step smaller where its word would be cut in two (portal.js fitDice; chat Q3) */
 @media (min-width: 1024px) {
   .top-lang .brand, .top-wall .brand { font-size: 44px; }
   .brand-by { font-size: 13px; margin-block-start: 10px; }
@@ -190,6 +191,7 @@ body.pl {
 }
 .lang-a:hover { border-color: var(--ink); }
 .lang-name { grid-area: name; align-self: start; font-size: 22px; font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; overflow-wrap: anywhere; word-break: keep-all; }
+.lang-name.lang-name-fit { font-size: 19px; } .lang-name.lang-name-fit2 { font-size: 16px; } .lang-name.lang-name-fit3 { font-size: 14px; }   /* where the name would be cut inside its word (portal.js fitLangs; chat Q3) */
 .lang-n { grid-area: n; font-size: 34px; font-weight: 200; line-height: 1; letter-spacing: -0.03em; }
 .lang-g { grid-area: g; font-size: 12px; color: var(--soft); }
 .lang-best .lang-a { border-color: var(--ink); border-width: 2.5px; padding: 17px; }
@@ -728,7 +730,7 @@ dialog.sheet-find { block-size: calc(100dvh - 24px); }
 .maker-card-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 20px; font-weight: 500; line-height: 1.2; overflow-wrap: anywhere; }
 .maker-card-a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
 .maker-card-lang { font-size: 13px; font-weight: 400; color: var(--soft); }
-.maker-msg { font-size: 14px; font-weight: 500; color: var(--err); }
+.maker-msg { font-size: 14px; font-weight: 500; color: var(--err); overflow-wrap: anywhere; }   /* a long word wraps inside its card (Bulgarian, words half as long again; chat Q3) */
 .maker-msg.is-ok { color: var(--soft); }
 .maker-forget { min-block-size: 44px; padding-inline: 18px; font-size: 14px; border-color: var(--line); align-self: flex-start; }
 .maker .card-count { font-size: 12px; color: var(--soft); font-variant-numeric: tabular-nums; }

@@ -124,7 +124,10 @@ magnifier in the head of its page and its kind pages. It opens a sheet with a fi
 and matches on the device (`fold` and `rankOf`, the same text in `portal/a/portal.js` and `src/search.js`): the name's start,
 then a word's start, then anywhere in it, then the maker or the kind's word; at most 24. A search that finds nothing goes to
 `/api/miss` once, as words only. What people searched for and did not find: the queue page, the admin key, **Searches**.
-On a phone, where four head buttons would push the page's name onto another line, the dice gives way to search.
+On a phone, where four head buttons would push the page's name onto another line, the dice gives way to search. And on every
+language page, search or not, the name is never cut inside its word (chat Q3, 27 Nov 2026): where the dice would cut it ("Play
+Azərbaycanca" at 360 px), the dice gives way, and where even that is not enough the name is drawn a step smaller (two steps at
+most); a language's name on the wall's tile likewise (three steps at most).
 
 ## Yours in My Logicers (chat M, 26 Nov 2026)
 
@@ -147,7 +150,7 @@ starts it itself).
 npm test
 ```
 
-149 tests (one needs `LIVE=1`; on 25 Nov 2026, chat S, 148 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
+160 tests (one needs `LIVE=1`; on 27 Nov 2026, chat Q3, 159 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
 per device, game and UTC day; robots and other sites not counted; the duplicate rule; the add check (a redirect to another
 host, a page in another language, the blocklist, a page that does not open, at most 5 redirects, never an IP or localhost);
 the review key refused on hide, delete and import; a language opening at its first listed game (1 since 25 Nov 2026) and not on the English Logicers games; Graj
@@ -191,7 +194,10 @@ game page and of no other page (a local address only in a local run); the bridge
 stamped, not uploaded); Logicers' mark beside the flame and My Logicers' address in the page's language or English; the merge,
 one text in Play's page script and My Logicers' script (a saved game never lost, a streak never lowered, an unsave made later
 wins, what goes is cleaned). The two browsers with one code: `node me/tests/play.test.mjs` and check.py section 18. D1 is Node's
-own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`).
+own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`). `test/test_q3.mjs`
+(chat Q3, 27 Nov 2026, the check of wave 3) holds its fixes, each test failing before it: the page's name and the wall's names
+never cut inside a word; Hindi typed without the nukta (ज़ is ज) in search; Welsh's "Last 90 days" within its 20 characters.
+Its look in a browser is check.py section 19 (`--only-q3`), with the 51 languages in sections 1 to 18.
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.
 To fetch each from logicers.com (200): `LIVE=1 node --test test/test_logicers.mjs`.

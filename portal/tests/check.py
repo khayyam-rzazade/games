@@ -62,7 +62,7 @@ address and code left to right, a game's name in its own direction, the badge's 
 digits, the same from the server and on the device; Thai lines broken only between words (the browser's Intl.Segmenter); the two
 Chinese pages with their own games, names and fonts, and the right one first on the wall and on the form for zh-TW, zh-HK, zh-CN and
 zh-SG; Play in Geologica; the plural lines; Arabic's and Persian's question mark. It plants a maker and numbers, and takes them away.
-The numbers on these pages are checked for digits other than 0-9 too (ZERO and section 12 know ٠١٢٣ and ۰۱۲۳). maker.js sets a mark's value apart
+The numbers on these pages are checked for digits other than 0-9 too (ZERO and section 12 know ٠١٢٣ and ۰۱۲۳, and since chat Q3 ০১২৩). maker.js sets a mark's value apart
 (U+2068 … U+2069, so a name in another direction keeps its place); section 13 compares its words without them.
 
 Chat S, 24 Nov 2026 (search): section 17 runs last, or alone with --only-s (a few minutes, against the Worker that shows numbers):
@@ -86,6 +86,19 @@ code: nothing new but the mark, nothing written on logicers.com; two browsers wi
 other's Play and shown on its My Logicers, an unsave on the other wins on the first, two streaks are one; Play with logicers.com
 away works as before.
 
+Chat Q3, 27 Nov 2026 (wave 3, claude/play-next-24nov.md): LANGS holds the 20 of wave 3 too (hr sr bg sk sl lt lv et eu gl cy ms
+fil hi bn ur ta sw kk ka), so sections 1 to 18 look at all 51 open languages (a language opens at its first listed game since 25
+Nov). Section 19 runs last, or alone with --only-q3 (several minutes, against the Worker that shows numbers): both sheets in the 20;
+Urdu right to left (the head, the rows, the back button, Play's triangle, the 90 days' and the countries' bars, addresses and code
+left to right, game names in their own direction, the badge's coin at the right); Bengali's own digits (০১২৩) from the server and on
+the device, the 19 others in 0123; "Play" in Geologica on every page, the names on the wall in Geologica letter by letter for the
+Latin and Cyrillic ones and in one font for Devanagari, Bengali, Tamil, Georgian and Urdu, and the badge drawing or writing each name;
+no word cut over two lines and no line cut at its top or bottom in those five scripts (and Welsh, Lithuanian, Kazakh); the plural
+lines (hr sr sk sl lt lv cy and the rest) against the server's own forms; "Your game?" with its own question mark; and search in
+the new scripts: 40 games planted in hi ur ka kk bn (by the admin import, taken away at the end) so the magnifier shows, then
+queries without the marks, with Arabic kaf and yeh for Urdu's, in another case for Kazakh. It plants a maker and numbers too, and
+takes them away.
+
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
 nothing outside its box, in the 12 launch languages and again with every word made half as long again (Play 日本語,
@@ -106,7 +119,8 @@ UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
 LAUNCH = ["en", "es", "pt", "fr", "de", "it", "tr", "ru", "pl", "nl", "ja", "ko"]
 WAVE1 = ["uk", "cs", "ro", "hu", "sv", "no", "da", "fi", "el", "ca", "az", "id", "vi"]     # chat Q, 23 Nov 2026
 WAVE2 = ["he", "ar", "fa", "th", "zh-hans", "zh-hant"]                                     # chat R, 24 Nov 2026
-LANGS = LAUNCH + WAVE1 + WAVE2
+WAVE3 = ["hr", "sr", "bg", "sk", "sl", "lt", "lv", "et", "eu", "gl", "cy", "ms", "fil", "hi", "bn", "ur", "ta", "sw", "kk", "ka"]   # chat Q3, 27 Nov 2026
+LANGS = LAUNCH + WAVE1 + WAVE2 + WAVE3
 WDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "server", "portal", "words")
 WORDS = {l: json.load(open(os.path.join(WDIR, l + ".json"), encoding="utf-8")) for l in LANGS}   # the words files (chat N reads the claim words)
 PHONES, COMPUTERS = [320, 360, 390, 414], [1280, 1440]
@@ -202,7 +216,7 @@ ZERO = r"""
       if (!shown(z) && !shown(logo)) bad.push('is-0 without its icon: ' + li.dataset.game);
       if (shown(n) && n.textContent.trim()) bad.push('is-0 with a number: ' + li.dataset.game);
     } else if (!n.hasAttribute('data-mark')) {
-      if (!/[1-9\u0661-\u0669\u06F1-\u06F9]/.test(n.textContent)) bad.push('a coin without is-0 and without a number: ' + li.dataset.game + ' "' + n.textContent + '"');
+      if (!/[1-9\u0661-\u0669\u06F1-\u06F9\u09E7-\u09EF]/.test(n.textContent)) bad.push('a coin without is-0 and without a number: ' + li.dataset.game + ' "' + n.textContent + '"');
       if (shown(z)) bad.push('a number and the zero icon: ' + li.dataset.game);
     }
     const a = li.querySelector('.tile-a'), nm = li.querySelector('.tile-name');
@@ -211,8 +225,8 @@ ZERO = r"""
     } else if (!a || !/^\/[a-z-]+\/g\/[^/]+\/$/.test(a.getAttribute('href') || '') || a.hasAttribute('target') || a.hasAttribute('data-hit')
       || !nm || nm.getAttribute('href') !== a.getAttribute('href') || nm.tabIndex !== -1) bad.push('the coin does not open its page (chat N): ' + li.dataset.game);
   }
-  for (const e of document.querySelectorAll('.today-n, .num-n, .tile-n, .nums-total, .nums-cv')) if (shown(e) && /^[0\u0660\u06F0]$/.test(e.textContent.trim())) bad.push('a 0 is written: ' + e.className);
-  for (const p of document.querySelectorAll('.today')) if (!p.hidden && !/[1-9\u0661-\u0669\u06F1-\u06F9]/.test(p.textContent)) bad.push('the players line shows without a player');
+  for (const e of document.querySelectorAll('.today-n, .num-n, .tile-n, .nums-total, .nums-cv')) if (shown(e) && /^[0\u0660\u06F0\u09E6]$/.test(e.textContent.trim())) bad.push('a 0 is written: ' + e.className);
+  for (const p of document.querySelectorAll('.today')) if (!p.hidden && !/[1-9\u0661-\u0669\u06F1-\u06F9\u09E7-\u09EF]/.test(p.textContent)) bad.push('the players line shows without a player');
   return bad;
 }
 """
@@ -265,7 +279,7 @@ def main():
         PG_API = api
         langs = json.loads(PG_API("/api/langs"))["langs"]
         open_codes = [l["code"] for l in langs]
-        ok(all(c in open_codes for c in LANGS), "the 12 launch languages, the 13 of wave 1 and the 6 of wave 2 are open (import the seeds)", open_codes)
+        ok(all(c in open_codes for c in LANGS), "the 12 launch languages, the 13 of wave 1, the 6 of wave 2 and the 20 of wave 3 are open (import the seeds)", [c for c in LANGS if c not in open_codes])
         big = max(langs, key=lambda l: l["games"])["code"]
         sql("DELETE FROM nets; DELETE FROM seen;")       # the day's caps (50 views a language from one address): cleared, so a run can follow a run or --only-k (chat K)
         ok(max(l["games"] for l in langs) >= 200, f"a language with 200 games for the check ({big})", max(l["games"] for l in langs))
@@ -684,7 +698,7 @@ def main():
             for w in (320, 1280):
                 ctx, pg = new(b, w)
                 pg.goto(url(f"/{lang}/"), wait_until="networkidle")
-                mine(pg, star=gl[:2], played={gl[2]: day_js(pg)}, streak={"n": 12, "last": day_js(pg)})
+                mine(pg, star=gl[:2], played={gl[min(2, len(gl) - 1)]: day_js(pg)}, streak={"n": 12, "last": day_js(pg)})   # Georgian has two games (chat Q3)
                 pg.reload(wait_until="networkidle"); pg.wait_for_timeout(700)
                 tag = f"{lang} {w} Yours with streak and run"
                 ok(pg.evaluate("!document.getElementById('streak').hidden && !document.getElementById('run').hidden && !document.getElementById('dice').hidden"), tag + ": all three show")
@@ -771,6 +785,7 @@ def main():
         section_r(b)
         section_s(b)
         section_m(b)
+        section_q3(b)
         b.close()
     if site: site.terminate()
     print(f"\n{passes} passed, {len(fails)} failed")
@@ -817,7 +832,9 @@ ACTS = r"""
 def section_j1(b):
     """stage 1: the crown on the winner's coins and game page for a week; the vote on a game's page"""
     es = [g for g in json.loads(PG_API("/api/es/games?n=100"))["games"] if not g.get("logicers")]
-    win = es[2]
+    # a winner whose name takes one line beside the coin (chat Q3: es[2] depends on the counts of earlier runs; with a two-line name,
+    # "La palabra del día", "Juego de la semana" adds about 16 px to the head on a phone, which Q3 reported and left as it is)
+    win = next((g for g in es[2:] if len(g["name"]) <= 12), es[2])
     sql(f"DELETE FROM nets; DELETE FROM seen; DELETE FROM votes; DELETE FROM wseen; DELETE FROM gotw WHERE week = '{utc_week(1)}';"
         f" INSERT INTO gotw (week, lang, game, votes, nets, made) VALUES ('{utc_week(1)}', 'es', '{win['id']}', 7, 4, 0)")
     api = [g["id"] for g in json.loads(PG_API("/api/es/games?n=100&fresh=" + str(time.time())))["games"] if g.get("crown")]
@@ -848,7 +865,10 @@ def section_j1(b):
                 mine_week(pg, [gs[0]["id"]])
                 pg.reload(wait_until="networkidle")
                 a = pg.evaluate(ACTS)
-                ok(a["shown"] and a["h"] >= 44 and a["lines"] == 1 and not a["over"] and a["name"], f"{lang} {w} {scheme}: the vote, 44 px, on one line with Play and Save", a)
+                # Georgian's Play and Vote (ითამაშე, ხმის მიცემა) are wider than a 320 px row can hold even at 52 px: there the row wraps
+                # as the stylesheet says longer words do (no overflow, no word cut); seen and left as it is by chat Q3, 27 Nov 2026
+                wraps = lang == "ka" and w < 360
+                ok(a["shown"] and a["h"] >= 44 and (a["lines"] == 1 or wraps) and not a["over"] and a["name"], f"{lang} {w} {scheme}: the vote, 44 px, on one line with Play and Save" + (" (or two, by design, in Georgian at 320)" if wraps else ""), a)
                 bad = pg.evaluate(BOXES); ok(not bad, f"{lang} {w} {scheme} with the vote: boxes", bad[:3])
                 if scheme == "light":
                     pg.evaluate(STRETCH); pg.evaluate("() => { for (const e of document.querySelectorAll('.vote-t')) e.textContent += e.textContent.slice(0, Math.ceil(e.textContent.length / 2)); }")
@@ -1432,7 +1452,7 @@ SHOWN = r"""
   const R = (e) => e.getBoundingClientRect(), bad = [];
   const vis = (e) => { const r = R(e), s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !e.closest('[hidden], template'); };
   for (const e of document.querySelectorAll('.today, .game-nums, .nums')) if (vis(e)) bad.push(e.className);
-  for (const e of document.querySelectorAll('[data-count], [data-count-label]')) if ((e.textContent || '').trim() && /[\d\u0660-\u0669\u06F0-\u06F9]/.test(e.textContent)) bad.push((e.className || e.getAttribute('data-count-label')) + ': ' + e.textContent.trim());
+  for (const e of document.querySelectorAll('[data-count], [data-count-label]')) if ((e.textContent || '').trim() && /[\d\u0660-\u0669\u06F0-\u06F9\u09E6-\u09EF]/.test(e.textContent)) bad.push((e.className || e.getAttribute('data-count-label')) + ': ' + e.textContent.trim());
   for (const e of document.querySelectorAll('li.tile[data-game]:not([data-game=""])')) { const n = e.querySelector('.tile-n'); if (n && !n.hasAttribute('data-mark') && (n.textContent || '').trim()) bad.push('coin ' + e.dataset.game + ': ' + n.textContent.trim()); }
   return bad;
 }
@@ -1530,8 +1550,9 @@ def section_l(b):
                 if stretched: pg.evaluate(STRETCH); pg.wait_for_timeout(100)
                 t2 = tag + (" stretched" if stretched else "")
                 h = pg.evaluate(HEAD_L)
-                if h["off"]:                                       # chat S: with search in the head, on a phone the dice gives way where it would push the name onto another line
-                    ok(h["find"] and w < 700, t2 + ": the dice gives way only to search, and only on a phone", h)
+                if h["off"]:                                       # chat S: with search in the head, on a phone the dice gives way where it would push the name onto another line;
+                    # chat Q3: and, search or not, where it would cut the name inside its word ("Play Azərbaycanca" at 360)
+                    ok(w < 700 and (h["find"] or stretched or lang in NARROW_NAME), t2 + ": the dice gives way only on a phone, to search or to a name it would cut", h)
                 else:
                     ok(not h["hidden"] and h["name"] == words["dice"] and h["title"] == words["dice"] and h["dice"][3] - h["dice"][2] >= 44 and h["dice"][1] - h["dice"][0] >= 44 and not h["cut"], t2 + ": the dice is there, 44 px, named", h)
                     if w >= 1200: ok(h["word"] and (stretched or h["word"] == words["dice"]), t2 + ": the dice says what it is", h["word"])
@@ -1542,7 +1563,8 @@ def section_l(b):
                 ok(all(a[1] <= b_[0] + 1 for a, b_ in zip(kids, kids[1:])) and h["sw"] <= h["vw"] + 1, t2 + ": the buttons side by side, nothing wider than the screen", h["kids"])
                 bad = pg.evaluate(BOXES); ok(not bad, t2 + ": boxes", bad[:4])
             if w in (390, 1280) and lang in ("es", "ru", "nl", "ja"): pg.screenshot(path=f"{SHOTS}/l-head-{lang}-{w}.png", clip={"x": 0, "y": 0, "width": w, "height": 200})
-            g = next((x for x in json.loads(get(f"/api/{lang}/games?n=40"))["games"] if not x.get("logicers") and not x.get("maker")), None)
+            gs40 = [x for x in json.loads(get(f"/api/{lang}/games?n=40"))["games"] if not x.get("logicers")]
+            g = next((x for x in gs40 if not x.get("maker")), None) or (gs40[0] if gs40 else None)   # chat Q3: every seed game of bn fil gl sw ta names its maker; none is claimed
             if not g: ok(False, tag + ": a game nobody claimed, for the check"); continue
             pg.goto(Q + f"/{lang}/g/{g['slug']}/?r=" + RUN, wait_until="networkidle"); pg.wait_for_timeout(250)
             for stretched in (False, True):
@@ -2670,7 +2692,7 @@ def section_m(b):
                 ok(k and (k["off"] and w < 360 or k["shown"] and k["h"] >= 44 and k["hitW"] >= 44) and k["dots"] == 3 and k["after"] == "streak", f"{tag}: the mark beside the flame, 44 px to tap (it gives way only below 360 px)", k)
                 if k and k["off"]: gave.append(f"{lang} {w}")
                 ok(k and k["href"] == "https://logicers.com/me/?lang=" + (lang if own else "en") and (k["lang"] is None if own else k["lang"] == "en"), f"{tag}: My Logicers in the page's language, else English", k and [k["href"], k["lang"]])
-                ok(k and re.search(r"12[.,  ٬٬']?354|١٢٬?٣٥٤|۱۲٬?۳۵۴", k["text"] or "") and (k["text"] in k["label"]) and k["label"] == k["title"], f"{tag}: the Logicer number, in the mark's name always", k and [k["text"], k["label"]])
+                ok(k and re.search(r"12[.,  ٬٬']?354|١٢٬?٣٥٤|۱۲٬?۳۵۴|১২,?৩৫৪", k["text"] or "") and (k["text"] in k["label"]) and k["label"] == k["title"], f"{tag}: the Logicer number, in the mark's name always", k and [k["text"], k["label"]])
                 ok(k and k["rowH"] == k["before"]["rowH"] and k["lines"] <= k["before"]["lines"] and k["lines"] == 1 and not k["cut"] and k["over"] <= 1, f"{tag}: no line added to the Yours row, Yours on one line and never cut", k)
                 if w >= 1280: ok(k and k["num"], f"{tag}: the number shows on a computer", k)
                 bad = pg.evaluate(BOXES); ok(not bad, f"{tag}: boxes", bad[:3])
@@ -2751,13 +2773,333 @@ def section_m(b):
 PL = B.replace("://localhost", "://127.0.0.1")      # Play on 127.0.0.1: one site with the bridge (section 18)
 
 
+# ---- 19. chat Q3, 27 Nov 2026 (claude/play-next-24nov.md, prompt Q3): wave 3. Sections 1 to 18 already look at the 20 (LANGS);
+# this adds what is new in them (see the top of this file). Alone: --only-q3.
+OWN3 = {"bn": "০১২৩৪৫৬৭৮৯"}
+NARROW_NAME = ["az", "bg", "el", "id", "ka", "nl", "sk", "sl", "uk", "pt"]   # names the dice would cut at 320 or 360 px (chat Q3)
+TALL = ["hi", "bn", "ta", "ka", "ur"]                 # scripts Geologica does not hold: the system's font, as Thai and Chinese
+LINECUT = r"""
+(args) => {
+  const [lang, sel] = args, out = { words: 0, bad: [] };
+  const seg = new Intl.Segmenter(lang, { granularity: 'word' });
+  for (const e of document.querySelectorAll(sel)) {
+    const er = e.getBoundingClientRect();
+    if (!er.width || e.closest('[hidden], template, dialog:not([open])')) continue;
+    const cs = getComputedStyle(e), clips = cs.overflowY !== 'visible' || cs.overflowX !== 'visible';
+    const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const n = walker.currentNode, t = n.textContent;
+      if (!t.trim()) continue;
+      for (const s of seg.segment(t)) {
+        if (!s.isWordLike) continue;
+        const r = document.createRange(); r.setStart(n, s.index); r.setEnd(n, s.index + s.segment.length);
+        const rs = [...r.getClientRects()].filter((x) => x.width > 0);
+        if (!rs.length) continue;
+        out.words++;
+        if (new Set(rs.map((x) => Math.round(x.top))).size > 1) out.bad.push('a word cut over two lines: "' + s.segment + '" in ' + e.className);
+        if (clips) for (const x of rs) if ((x.top < er.top - 2 && x.bottom > er.top + 2) || (x.top < er.bottom - 2 && x.bottom > er.bottom + 2)) {
+          out.bad.push('a line cut at its top or bottom: "' + s.segment + '" in ' + e.className + ' ' + Math.round(x.top) + '-' + Math.round(x.bottom) + ' in ' + Math.round(er.top) + '-' + Math.round(er.bottom)); break; }
+      }
+    }
+  }
+  return out;
+}
+"""
+CUTSEL = (".game-line, .game-name, .game-meta, .claim-p, .claim-h, .claim-other, .claim-step-h, .fld-l, .maker-logo-p, .maker-badge-p, .about-local, "
+          ".tile-name, .row-t, .row-h, .btn, .yours-q, .brand-lang, .brand-by, .lang-name, .today, .nf, .wanted-t, .sheet-h, .kind-h")
+
+
+def section_q3(b):
+    sql("DELETE FROM nets; DELETE FROM seen;")
+    open_codes = [l["code"] for l in json.loads(PG_API("/api/langs"))["langs"]]
+    ok(all(c in open_codes for c in WAVE3), "19: the 20 languages of wave 3 are open (their seeds imported; one game opens a language)", [c for c in WAVE3 if c not in open_codes])
+    games = {l: [g for g in json.loads(PG_API(f"/api/{l}/games?n=60&fresh=" + RUN))["games"] if not g.get("logicers")] for l in WAVE3}
+    ok(all(games[l] for l in WAVE3), "19: each language of wave 3 has its games", {l: len(games[l]) for l in WAVE3})
+    slug = {l: games[l][0]["slug"] for l in WAVE3}
+    key = "".join(random.choice("abcdefghijklmnopqrstuvwxyz234567") for _ in range(24))
+    now, today = int(time.time() * 1000), datetime.now(timezone.utc).date()
+    pick = {l: games[l][1] for l in ("ur", "bn", "hi")}
+    own = {l: [g["id"] for g in games[l][:3]] for l in pick}
+    stm = ["UPDATE games SET maker_id = NULL, claimed_at = NULL WHERE maker_id = 'q3-check'", "DELETE FROM makers WHERE id = 'q3-check'",
+           f"INSERT INTO makers (id, slug, name, key_hash, made) VALUES ('q3-check', 'q3-check-maker', 'Q3 Check Maker', '{key_hash('maker', key)}', {now})",
+           "UPDATE games SET maker_id = 'q3-check', claimed_at = %d WHERE id IN (%s)" % (now, ",".join(f"'{pick[l]['id']}'" for l in pick))]
+    for l in pick:
+        stm.append("DELETE FROM counts WHERE game IN (%s)" % ",".join(f"'{i}'" for i in own[l]))
+        for d in range(1, 88, 3):
+            for c, n in (("PK", 20 + d), ("IN", 7), ("GB", 2)): stm.append(f"INSERT INTO counts (game, day, country, n) VALUES ('{pick[l]['id']}', '{(today - timedelta(days=d)).isoformat()}', '{c}', {n})")
+        stm.append(f"INSERT INTO counts (game, day, country, n) VALUES ('{pick[l]['id']}', '{today.isoformat()}', 'PK', 47), ('{own[l][0]}', '{today.isoformat()}', 'PK', 1234), ('{own[l][2]}', '{today.isoformat()}', 'PK', 3)")
+    sql("; ".join(stm))
+    try:
+        section_q3_pages(b, games, slug, pick, key)
+    finally:                                                    # back as it was, whatever happened
+        sql("UPDATE games SET maker_id = NULL, claimed_at = NULL WHERE maker_id = 'q3-check'; DELETE FROM makers WHERE id = 'q3-check'; "
+            + "DELETE FROM counts WHERE game IN (" + ",".join(f"'{i}'" for l in own for i in own[l]) + "); DELETE FROM nets; DELETE FROM seen;")
+    section_q3_find(b)
+
+
+def section_q3_pages(b, games, slug, pick, key):
+    # -- both sheets in the 20 (as sections 15 and 16)
+    sheets(b, WAVE3, "19", slug, ("ur", "hi", "ka", "cy", "kk", "bn"))
+    # -- Urdu right to left: a language page, a game page, the add sheet's fields, the claim page, the maker's form
+    for w in (320, 390, 1280):
+        for scheme in ("light", "dark"):
+            ctx, pg = new(b, w, scheme, storage={"portal.maker": key})
+            tag = f"19 ur {w} {scheme}"
+            pg.goto(url("/ur/"), wait_until="networkidle"); pg.wait_for_timeout(200)
+            h = pg.evaluate(RTLHEAD)
+            ok(h["dir"] == "rtl", tag + ": the page is right to left", h["dir"])
+            ok(h["playRight"], tag + ": \"Play\" stands at the right, the language's name after it (to its left)", h)
+            ok(h["actsLeft"], tag + ": the buttons stand at the left of the name (or under it)", h)
+            ok(h["firstRight"] and abs(h["firstRight"][0] - h["firstRight"][1]) <= 2 and h["firstRight"][2], tag + ": a row starts at the right", h["firstRight"])
+            if pg.query_selector(".row-more"): ok(h["moreLeft"] and h["moreFlipped"], tag + ": More stands at the left, its arrow points left", h)
+            ok(h["words"] and h["wordsFlipped"] and not h["mapsFlipped"], tag + ": the Words icon's lines hang from the right; the globe is not turned", h)
+            if w in (390, 1280): pg.screenshot(path=f"{SHOTS}/q3-ur-{w}-{scheme}.png", full_page=True)
+            pg.goto(url(f"/ur/g/{pick['ur']['slug']}/"), wait_until="networkidle"); pg.wait_for_timeout(200)
+            g = pg.evaluate(RTLGAME)
+            ok(g["back"] == [True, True], tag + ": the back button at the right, its arrow pointing right", g["back"])
+            ok(not g["playFlipped"], tag + ": Play's triangle points right", g)
+            ok(g["coinRight"], tag + ": the big coin at the right of the name", g)
+            ok(g["bars"] >= 20 and g["barsDown"] and g["axis"] is True, tag + ": the 90 days run from the right", (g["bars"], g["barsDown"], g["axis"]))
+            ok(g["countries"] and all(abs(c[0] - c[1]) <= 1 for c in g["countries"]), tag + ": the countries' bars grow from the right", g["countries"])
+            bad = pg.evaluate(BOXES); ok(not bad, tag + ": its game page: boxes", bad[:3])
+            z = pg.evaluate(ZERO); ok(not z, tag + ": its game page: no 0", z[:3])
+            pg.evaluate(STRETCH); bad = pg.evaluate(BOXES); ok(not bad, tag + ": its game page, words half as long again: boxes", bad[:3])
+            if w in (320, 1280): pg.screenshot(path=f"{SHOTS}/q3-game-ur-{w}-{scheme}.png", full_page=True)
+            pg.goto(url("/ur/"), wait_until="networkidle")
+            pg.click(".top .add-top"); pg.wait_for_timeout(150)
+            d = pg.evaluate("() => ['url', 'email', 'name'].map((n) => { const i = document.querySelector('#sheet-add input[name=\"' + n + '\"]'); return i ? getComputedStyle(i).direction + ' ' + (i.getAttribute('dir') || '') : null; })")
+            ok(d == ["ltr ltr", "ltr ltr", "rtl "], tag + ": the link and the email are typed left to right, the name in the page's direction", d)
+            pg.keyboard.press("Escape")
+            cg = games["ur"][-1]
+            pg.goto(url(f"/claim/?g={cg['id']}"), wait_until="networkidle")
+            c = pg.evaluate("() => { const u = document.querySelector('.claim-url'), h = document.querySelector('.claim-p code'), m = document.querySelector('.claim-other .mail'); return [u && getComputedStyle(u).direction, u && u.textContent, h && getComputedStyle(h).direction, m && getComputedStyle(m).direction, document.documentElement.dir]; }")
+            ok(c[0] == "ltr" and c[1] == cg["url"] and c[2] == "ltr" and c[3] == "ltr" and c[4] == "rtl", tag + ": the claim page: the address, <head> and the email left to right inside the page's own direction", c)
+            bad = pg.evaluate(BOXES); ok(not bad, tag + ": the claim page: boxes", bad[:3])
+            pg.goto(url("/maker/?l=ur"), wait_until="networkidle"); pg.wait_for_selector(".maker-card", timeout=5000)
+            m = pg.evaluate("() => { const c = document.querySelector('.maker-badge-code'), i = document.querySelector('.maker-gamef input[name=\"line\"]'); return [c && getComputedStyle(c).direction, i && i.getAttribute('dir'), document.documentElement.dir]; }")
+            ok(m[0] == "ltr" and m[1] == "auto" and m[2] == "rtl", tag + ": the maker's form: right to left, the badge's HTML left to right, a line in its own direction", m)
+            bad = pg.evaluate(BOXES); ok(not bad, tag + ": the maker's form: boxes", bad[:3])
+            if w == 390 and scheme == "light": pg.screenshot(path=f"{SHOTS}/q3-maker-ur-{w}.png", full_page=True)
+            clean(pg, tag)
+            ctx.close()
+    ctx, pg = new(b, 390)
+    pg.goto(url("/ur/"), wait_until="networkidle")
+    nd = pg.evaluate("() => [...document.querySelectorAll('.tile-name')].map((e) => [e.textContent, getComputedStyle(e).direction])")
+    want_dir = lambda t: "ltr" if re.match(r"^[^֐-ࣿ]*[A-Za-z]", t) else "rtl"
+    ok(nd and all(d == want_dir(t) for t, d in nd), "19 ur: every game's name in its own direction", [x for x in nd if x[1] != want_dir(x[0])][:4])
+    q = pg.evaluate("() => { const p = JSON.parse(document.getElementById('pl-data').textContent); return p.words.yours_q; }")
+    pg.goto(url(f"/ur/g/{games['ur'][-1]['slug']}/"), wait_until="networkidle")
+    qt = pg.text_content(".yours-q-t") if pg.query_selector(".yours-q-t") else ""
+    ok(qt.endswith("؟") and "?" not in qt, "19 ur: Your game? is asked with the Urdu question mark", qt)
+    clean(pg, "19 ur names"); ctx.close()
+    # -- "Your game?" cut at each language's own question mark (the 19 others)
+    ctx, pg = new(b, 390)
+    for lang in WAVE3:
+        if lang == "ur": continue
+        free = [g for g in games[lang] if g["id"] not in {pick[l]["id"] for l in pick}]
+        pg.goto(url(f"/{lang}/g/{free[-1]['slug']}/"), wait_until="networkidle")
+        qt = (pg.text_content(".yours-q-t") or "").strip() if pg.query_selector(".yours-q-t") else ""
+        full = WORDS[lang]["yours_q"]
+        ok(qt and full.startswith(qt) and re.search(r"[?？؟;;]$", qt), f"19 {lang}: \"Your game?\" is its own question, cut at its question mark", (qt, full))
+    clean(pg, "19 questions"); ctx.close()
+    # -- the badge: Urdu's coin at the right; Latin and Cyrillic names drawn in Geologica; the other scripts written in the system's font
+    req = b.new_context(user_agent=UA).request
+    for lang in WAVE3:
+        gid = (pick.get(lang) or games[lang][0])["id"]
+        r = req.get(B + f"/b/{gid}.svg"); svg = r.text()
+        ok(r.status == 200 and svg.startswith("<svg"), f"19 badge {lang}: a picture", r.status)
+        if r.status != 200: continue
+        W = float(re.search(r'width="([\d.]+)"', svg).group(1)); cx = float(re.findall(r'<rect x="([\d.]+)"', svg)[1])
+        ok((cx > W / 2) == (lang == "ur"), f"19 badge {lang}: the coin at the {'right' if lang == 'ur' else 'left'}", (cx, W))
+        name = next(l["endonym"] for l in json.loads(PG_API("/api/langs"))["langs"] if l["code"] == lang)
+        texts = re.findall(r"<text[^>]*>([^<]*)</text>", svg)
+        if lang in TALL: ok(any(name in t for t in texts), f"19 badge {lang}: its name {name} written in the system's font (Geologica has no such letters)", texts)
+        else: ok(not any(name in t for t in texts), f"19 badge {lang}: its name {name} drawn in Geologica", texts)
+    # -- digits: Bengali's own from the server and on the device; the 19 others in 0123
+    for lang in WAVE3:
+        got = server_num(lang, [1234, 47, 3, 12, 2135])
+        if lang in OWN3: ok(got and all(not re.search(r"[0-9]", x) and any(ch in OWN3[lang] for ch in x) for x in got), f"19 {lang}: the server writes its own digits", got)
+        else: ok(got and all(re.fullmatch(r"[0-9.,\u00a0\u202f' ]+", x) for x in got), f"19 {lang}: the server writes 0123", got)
+    for lang in ("bn", "ur", "hi"):
+        for w in (390, 1280):
+            ctx, pg = new(b, w)
+            gl = [g["id"] for g in games[lang][:3]]
+            day = pg.evaluate("(() => { const d = new Date(), p = (n) => String(n).padStart(2, '0'); return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); })()")
+            ctx.add_init_script("localStorage.setItem('portal.mine', " + json.dumps(json.dumps({"v": 1, "star": [gl[0], gl[2]], "played": {gl[0]: day, gl[2]: day}, "streak": {"n": 12, "last": day}})) + ")")
+            want = server_num(lang, [1234, 12])
+            for path in (f"/{lang}/", f"/{lang}/g/{pick[lang]['slug']}/", f"/{lang}/{games[lang][0]['kind']}/"):
+                pg.goto(url(path), wait_until="networkidle"); pg.wait_for_timeout(500)
+                got = pg.evaluate(DIGITS_OF, DIGITS_SEL)
+                if lang in OWN3:
+                    ok(got and all(not re.search(r"[0-9]", t) for c, t in got), f"19 {lang} {w} {path}: no number in 0123 (server and device)", [x for x in got if re.search(r"[0-9]", x[1])][:4])
+                    ok(any(any(ch in OWN3[lang] for ch in t) for c, t in got), f"19 {lang} {w} {path}: numbers in the language's own digits", got[:4])
+                else:
+                    ok(got and all(not re.search(r"[٠-٩۰-۹০-৯०-९]", t) for c, t in got), f"19 {lang} {w} {path}: numbers in 0123", got[:4])
+                if path == f"/{lang}/":
+                    tn = pg.evaluate("(id) => { const e = document.querySelector('.row-kind li.tile[data-game=\"' + id + '\"] .tile-n'); return e && e.textContent.trim(); }", gl[0])
+                    ok(tn == want[0], f"19 {lang} {w}: a coin's 1234 as the server writes it", (tn, want[0]))
+                    st = pg.text_content(".streak-n") if pg.query_selector(".streak-n") else None
+                    ok(st == want[1], f"19 {lang} {w}: the streak (written on the device) as the server writes 12", (st, want[1]))
+            clean(pg, f"19 digits {lang} {w}")
+            ctx.close()
+    # -- fonts: "Play" in Geologica on every page; the names on the wall (Latin and Cyrillic in Geologica letter by letter, the other
+    # scripts in one font); the language's name in the head in one font, no letter from a second one
+    for w in (390, 1280):
+        ctx, pg = new(b, w)
+        pg.goto(url("/"), wait_until="networkidle"); pg.wait_for_timeout(300)
+        for lang in WAVE3:
+            f = fonts_of(pg, f'.langs li.lang[data-lang="{lang}"] .lang-name')
+            if lang in TALL: ok(f and f[0] and len(f[0]) == 1 and not f[0][0][0].startswith("Geologica"), f"19 the wall {w}: {lang}'s name in one font (the system's)", f)
+            else: ok(f and all(x and all(fam.startswith("Geologica") for fam, n in x) for x in f), f"19 the wall {w}: {lang}'s name all in Geologica, no letter from another font", f)
+        for lang in WAVE3:
+            pg.goto(url(f"/{lang}/"), wait_until="networkidle")
+            f = fonts_of(pg, ".top .brand-play")
+            ok(f and all(x and all(fam.startswith("Geologica") for fam, n in x) for x in f), f"19 {lang} {w}: Play in Geologica", f)
+            sysf = fonts_of(pg, ".top .brand-lang")
+            ok(sysf and len(sysf[0]) == 1, f"19 {lang} {w}: the language's name in one font, no letter from a second one", sysf)
+            if w == 390 and lang in TALL + ["kk", "sr", "cy"]: pg.screenshot(path=f"{SHOTS}/q3-{lang}-{w}.png", full_page=True)
+        ctx.close()
+    # -- no word cut over two lines, no line cut at its top or bottom: the tall scripts (and long Latin and Cyrillic words), 320 and 390
+    for w in (320, 390):
+        ctx, pg = new(b, w, storage={"portal.maker": key})
+        for lang in TALL + ["cy", "lt", "kk"]:
+            seen_words = 0
+            gl = games[lang]
+            paths = [f"/{lang}/", f"/{lang}/{gl[0]['kind']}/"] + [f"/{lang}/g/{g['slug']}/" for g in gl[:4]] + [f"/claim/?g={gl[-1]['id']}", f"/maker/?l={lang}", f"/about/?l={lang}"]
+            for path in paths:
+                pg.goto(url(path), wait_until="networkidle"); pg.wait_for_timeout(250)
+                for stretch in (False, True):                 # stretched: the line cuts only (the stretch glues letters into one long word)
+                    if stretch: pg.evaluate(STRETCH); pg.wait_for_timeout(50)
+                    t = pg.evaluate(LINECUT, [lang, CUTSEL])
+                    seen_words += t["words"]
+                    bad = [x for x in t["bad"] if not (x.startswith("a word cut") and (stretch or "in tile-name" in x))]   # a coin's name wraps where it must, by design
+                    ok(not bad, f"19 {lang} {w} {path}{' stretched' if stretch else ''}: no word cut over two lines, no line cut at its top or bottom", bad[:3])
+            ok(seen_words > 100, f"19 {lang} {w}: the look saw the words", seen_words)
+        clean(pg, f"19 lines {w}"); ctx.close()
+    # -- the page's name is never cut inside its word, in any of the 51, at any phone width: the dice gives way, then the name is drawn
+    # a step smaller (portal.js fitDice; "Play Azərbaycanca" at 360 and nine names at 320 were cut before)
+    NAMECUT = r"""() => { const h = document.querySelector('.top .brand'), out = [], w = document.createTreeWalker(h, 4); let n;
+      while ((n = w.nextNode())) { const re = /\S+/g; let m; while ((m = re.exec(n.textContent))) { const r = document.createRange(); r.setStart(n, m.index); r.setEnd(n, m.index + m[0].length);
+        if (new Set([...r.getClientRects()].filter(x => x.width > 1).map(x => Math.round(x.top))).size > 1) out.push(m[0]); } }
+      const d = document.getElementById('dice');
+      return { cut: out, size: parseFloat(getComputedStyle(h).fontSize), dice: !!d && !d.hidden && getComputedStyle(d).display !== 'none', sw: document.documentElement.scrollWidth, vw: document.documentElement.clientWidth }; }"""
+    for w in PHONES:
+        ctx, pg = new(b, w)
+        for lang in LANGS:
+            pg.goto(url(f"/{lang}/"), wait_until="networkidle"); pg.wait_for_timeout(200)
+            r = pg.evaluate(NAMECUT)
+            ok(not r["cut"] and r["sw"] <= r["vw"] + 1, f"19 {lang} {w}: the page's name is never cut inside its word", r)
+            ok(r["size"] >= 19, f"19 {lang} {w}: the name at most two steps smaller", r["size"])
+            if lang not in NARROW_NAME and not pg.query_selector("#find-b"): ok(r["dice"], f"19 {lang} {w}: the dice stays where the name fits", r)
+            if lang in ("az", "ka", "uk", "pt") and w == 320: pg.screenshot(path=f"{SHOTS}/q3-head-{lang}-{w}.png", clip={"x": 0, "y": 0, "width": w, "height": 170})
+        # and the wall: each language's name on its tile, never cut inside its word (fitLangs: a step smaller, three at most)
+        pg.goto(url("/"), wait_until="networkidle"); pg.wait_for_timeout(300)
+        t = pg.evaluate(LINECUT, ["en", ".langs .lang-name"])
+        ok(t["words"] >= len(LANGS) and not t["bad"], f"19 the wall {w}: no language's name cut inside its word", t["bad"][:4])
+        sz = pg.evaluate("() => Math.min(...[...document.querySelectorAll('.langs .lang-name')].map((e) => parseFloat(getComputedStyle(e).fontSize)))")
+        ok(sz >= 14, f"19 the wall {w}: the names at most three steps smaller", sz)
+        if w == 320: pg.screenshot(path=f"{SHOTS}/q3-wall-{w}.png", full_page=True)
+        clean(pg, f"19 names {w}"); ctx.close()
+    # -- the plural lines: the streak (on the device) and the players line, against the server's own forms
+    STREAKS = {"hr": [1, 2, 5, 21], "sr": [1, 2, 5, 21], "bg": [1, 2], "sk": [1, 2, 5], "sl": [1, 2, 3, 5, 101, 102], "lt": [1, 2, 10, 21],
+               "lv": [1, 2, 10, 11, 21], "et": [1, 2], "eu": [1, 2], "gl": [1, 2], "cy": [1, 2, 3, 6, 7], "ms": [1, 2], "fil": [1, 2, 4],
+               "hi": [1, 2], "bn": [1, 2], "ur": [1, 2], "ta": [1, 2], "sw": [1, 2], "kk": [1, 2], "ka": [1, 2]}
+    for lang, ns in STREAKS.items():
+        want = server_forms(lang, "streak_n", ns)
+        ok(want is not None and len(set(want)) >= min(2, len(ns)), f"19 {lang}: the server's forms (node)", want)
+        gl = [g["id"] for g in games[lang][:3]]
+        ctx, pg = new(b, 390)
+        pg.goto(url(f"/{lang}/"), wait_until="networkidle")
+        got = []
+        for n in ns:
+            day = pg.evaluate("(() => { const d = new Date(), p = (n) => String(n).padStart(2, '0'); return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); })()")
+            pg.evaluate("(m) => localStorage.setItem('portal.mine', JSON.stringify(m))", {"v": 1, "star": [], "played": {gl[0]: day}, "streak": {"n": n, "last": day}})
+            pg.reload(wait_until="networkidle"); pg.wait_for_timeout(400)
+            got.append(pg.get_attribute("#streak", "aria-label"))
+        ok(got == want, f"19 {lang}: the streak's words in the language's plural forms", (got, want))
+        clean(pg, f"19 streak {lang}")
+        ctx.close()
+    req = b.new_context(user_agent=UA).request
+    for lang, ns in (("lt", [1, 2, 10]), ("lv", [1, 2, 10]), ("sl", [1, 2, 3]), ("cy", [1, 2, 3, 6]), ("sk", [1, 2, 5]), ("hr", [1, 2, 5]), ("sr", [1, 3]), ("bn", [1, 2]), ("ur", [1, 2]), ("ta", [1, 2])):
+        got, shown = [], []
+        for n in ns:
+            sql(f"DELETE FROM views WHERE lang = '{lang}'; DELETE FROM seen; DELETE FROM nets;")
+            for i in range(n):
+                r = req.post(B + "/api/view", data=json.dumps({"lang": lang, "id": ("t" + lang + str(n) + "d" + str(i)).ljust(21, "x")[:21] + "A"}),
+                             headers={"Content-Type": "application/json", "Origin": B, "CF-Connecting-IP": "10.7.%d.%d" % (n, i + 1)})
+                ok(r.status == 200, f"19 {lang}: a view counted", r.text()[:120])
+            ctx, pg = new(b, 390)
+            pg.route("**/api/view", lambda r: r.fulfill(status=200, content_type="application/json", body='{"ok":true}'))
+            pg.goto(url(f"/{lang}/"), wait_until="networkidle"); pg.wait_for_timeout(500)
+            t = pg.evaluate("(() => { const p = document.querySelector('.today'); return p && !p.hidden ? [[...p.childNodes].map((c) => c.textContent.trim()).filter(Boolean).join(' '), p.querySelector('.today-n').textContent] : ['', '']; })()")
+            got.append(re.sub(r"\s+", " ", t[0]).strip())
+            digits = t[1].translate(str.maketrans("০১২৩৪৫৬৭৮৯", "0123456789"))
+            shown.append(int(re.sub(r"\D", "", digits) or 0))
+            ctx.close()
+        want = server_forms(lang, "players_today", shown)
+        ok(shown == ns, f"19 {lang}: the page shows the players counted", (shown, ns))
+        ok(got == want, f"19 {lang}: the players line in the language's plural forms", (got, want))
+    sql("DELETE FROM seen; DELETE FROM nets;")
+
+
+FIND3 = {   # language: (the planted names, a query the way a player types it, the names it must find)
+    "hi": (["ज़मीन की पहेली {}", "शब्द खेल {}"], "जमीन", "ज़मीन की पहेली"),
+    "ur": (["کتابی پہیلی {}", "لَفظ کھیل {}"], "كتابي", "کتابی پہیلی"),
+    "ka": (["სიტყვების თამაში {}", "რუკის გამოცანა {}"], "თამაში", "სიტყვების თამაში"),
+    "kk": (["Сөзжұмбақ {}", "Қала табу {}"], "СӨЗЖҰМ", "Сөзжұмбақ"),
+    "bn": (["শব্দের খেলা {}", "মানচিত্র ধাঁধা {}"], "খেলা", "শব্দের খেলা"),
+}
+
+
+def section_q3_find(b):
+    """search in the new scripts: 40 games planted in five languages (the admin import), so the magnifier shows; queries the way a
+    player types them (no nukta in Hindi, Arabic kaf and yeh for Urdu's, capitals in Kazakh); taken away at the end"""
+    kinds = ["words", "numbers", "maps", "knowledge", "music", "screen", "sport", "other"]
+    plant = []
+    for lang, (names, q, want) in FIND3.items():
+        for i in range(40):
+            plant.append({"name": names[i % 2].format(i + 1), "url": f"https://q3-find-{lang}-{i + 1}.example.org/", "lang": lang, "kind": kinds[i % 8],
+                          "line": "Q3", "maker": "", "checked": datetime.now(timezone.utc).date().isoformat()})
+    api = b.new_context(user_agent=UA).request
+    r = api.post(B + "/admin/import", data=json.dumps({"key": ADMIN, "games": plant}), headers={"Content-Type": "application/json"})
+    ok(r.status == 200 and json.loads(r.text()).get("added") == len(plant), "19 find: 40 games planted in each of five languages", r.text()[:200])
+    sql("DELETE FROM nets;")
+    try:
+        for lang, (names, q, want) in FIND3.items():
+            for w in (320, 390, 1280):
+                ctx, pg = new(b, w)
+                tag = f"19 find {lang} {w}"
+                pg.goto(url(f"/{lang}/"), wait_until="networkidle"); pg.wait_for_timeout(300)
+                ok(pg.query_selector("#find-b") is not None, tag + ": the magnifier at 40 games")
+                if not pg.query_selector("#find-b"): ctx.close(); continue
+                h = pg.evaluate(FINDHEAD, True)
+                ok(h["lines"] <= h["before"]["lines"] and h["h"] <= h["before"]["h"] + 1 and h["sw"] <= h["vw"] + 1, tag + ": the head is no higher, the name has no more lines than before search", h)
+                pg.click("#find-b"); pg.wait_for_timeout(250)
+                pg.fill(".find-q", q); pg.wait_for_timeout(400)
+                st = pg.evaluate(FINDSTATE)
+                names_found = [t["name"] for t in st["tiles"]]
+                ok(st["tiles"] and len(st["tiles"]) <= 24 and all(n.startswith(want) for n in names_found), tag + f": '{q}' finds '{want}' and nothing else", names_found[:4])
+                if lang == "ur":
+                    d = pg.evaluate("() => { const i = document.querySelector('.find-q'); return [getComputedStyle(i).direction, document.documentElement.dir]; }")
+                    ok(d == ["rtl", "rtl"], tag + ": the field typed right to left on a right-to-left page", d)
+                bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes with results", bad[:3])
+                t = pg.evaluate(LINECUT, [lang, "#sheet-find .tile-name, #sheet-find .find-nf-t, #sheet-find .sheet-h"])
+                ok(not t["bad"], tag + ": the results: no word cut, no line cut", t["bad"][:3])
+                if w == 390: pg.screenshot(path=f"{SHOTS}/q3-find-{lang}-{w}.png")
+                pg.keyboard.press("Escape"); pg.wait_for_timeout(200)
+                clean(pg, tag)
+                ctx.close()
+    finally:
+        sql("DELETE FROM games WHERE url LIKE 'https://q3-find-%'; DELETE FROM nets; DELETE FROM seen;")
+
+
 def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_m(b) if "--only-m" in sys.argv else section_s(b) if "--only-s" in sys.argv else section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
+        section_q3(b) if "--only-q3" in sys.argv else section_m(b) if "--only-m" in sys.argv else section_s(b) if "--only-s" in sys.argv else section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -2765,4 +3107,4 @@ def only_j(k=False):
 
 PG_API = None
 if __name__ == "__main__":
-    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r", "--only-s", "--only-m") for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r", "--only-s", "--only-m", "--only-q3") for a in sys.argv) else main()

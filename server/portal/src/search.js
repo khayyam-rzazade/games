@@ -32,7 +32,8 @@ export const MISS = { min: 3, max: 40, days: 90, show: 30, top: 100 };
 /* fold: from here */
   /* The search's one matching function (chat S, 24 Nov 2026). A name, a maker, a kind's word or what was typed, as the search
      compares them: case and accents go (NFKD; the marks of Latin, Greek and Cyrillic letters, Hebrew points and Arabic,
-     Persian and Urdu marks are taken off; the vowel signs of Indic and Thai letters stay, as they are letters there); ı, İ
+     Persian and Urdu marks are taken off, and Devanagari's nukta, as Hindi is often typed without it: ज़ is ज (chat Q3);
+     the vowel signs of Indic and Thai letters stay, as they are letters there); ı, İ
      and i are one, ß is ss, Greek's final sigma is sigma; the forms of alef, yeh, kaf and heh are one; katakana is
      hiragana; full and half width are one (NFKD); every script's digits are 0-9; spaces, punctuation and symbols go. On a
      Serbian page Cyrillic reads as Latin, so a game named in either script is found from the other. */
@@ -44,7 +45,7 @@ export const MISS = { min: 3, max: 40, days: 90, show: 30, top: 100 };
   var FOLD_ZERO = [0x660, 0x6F0, 0x7C0, 0x966, 0x9E6, 0xA66, 0xAE6, 0xB66, 0xBE6, 0xC66, 0xCE6, 0xD66, 0xDE6, 0xE50, 0xED0, 0xF20, 0x1040, 0x1090, 0x17E0, 0x1810, 0x1946, 0x19D0];
   function fold(s, lang) {
     s = String(s == null ? "" : s).normalize("NFKD").toLowerCase()
-      .replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0591-\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\uFE00-\uFE0F]/g, "")
+      .replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0591-\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u093C\uFE00-\uFE0F]/g, "")
       .replace(/[ıßςəøæœđłħþðٱىيكةەہھ]/g, function (c) { return FOLD_ONE[c]; });
     if (lang === "sr") s = s.replace(/[\u0430-\u0448\u0452\u0458-\u045B\u045F]/g, function (c) { return FOLD_SR[c] || c; });
     return s.replace(/[\u30A1-\u30F6\u30FD\u30FE]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); })

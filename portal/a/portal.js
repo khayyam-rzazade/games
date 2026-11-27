@@ -124,7 +124,8 @@
   /* fold: from here */
   /* The search's one matching function (chat S, 24 Nov 2026). A name, a maker, a kind's word or what was typed, as the search
      compares them: case and accents go (NFKD; the marks of Latin, Greek and Cyrillic letters, Hebrew points and Arabic,
-     Persian and Urdu marks are taken off; the vowel signs of Indic and Thai letters stay, as they are letters there); ı, İ
+     Persian and Urdu marks are taken off, and Devanagari's nukta, as Hindi is often typed without it: ज़ is ज (chat Q3);
+     the vowel signs of Indic and Thai letters stay, as they are letters there); ı, İ
      and i are one, ß is ss, Greek's final sigma is sigma; the forms of alef, yeh, kaf and heh are one; katakana is
      hiragana; full and half width are one (NFKD); every script's digits are 0-9; spaces, punctuation and symbols go. On a
      Serbian page Cyrillic reads as Latin, so a game named in either script is found from the other. */
@@ -136,7 +137,7 @@
   var FOLD_ZERO = [0x660, 0x6F0, 0x7C0, 0x966, 0x9E6, 0xA66, 0xAE6, 0xB66, 0xBE6, 0xC66, 0xCE6, 0xD66, 0xDE6, 0xE50, 0xED0, 0xF20, 0x1040, 0x1090, 0x17E0, 0x1810, 0x1946, 0x19D0];
   function fold(s, lang) {
     s = String(s == null ? "" : s).normalize("NFKD").toLowerCase()
-      .replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0591-\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\uFE00-\uFE0F]/g, "")
+      .replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0591-\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u093C\uFE00-\uFE0F]/g, "")
       .replace(/[ıßςəøæœđłħþðٱىيكةەہھ]/g, function (c) { return FOLD_ONE[c]; });
     if (lang === "sr") s = s.replace(/[\u0430-\u0448\u0452\u0458-\u045B\u045F]/g, function (c) { return FOLD_SR[c] || c; });
     return s.replace(/[\u30A1-\u30F6\u30FD\u30FE]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); })
@@ -605,6 +606,19 @@
       li.classList.add("lang-best");
       if (ul.firstElementChild !== li) ul.insertBefore(li, ul.firstElementChild);
     });
+    fitLangs();
+    var at = 0;
+    window.addEventListener("resize", function () { if (!at) at = window.requestAnimationFrame(function () { at = 0; fitLangs(); }); });
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(fitLangs);
+  }
+  /* a language's name on the wall is never cut inside its word ("Azərbaycan-ca" at 390 px, "Portu-guês" at 320): where it would
+     be, it is drawn a step smaller, three steps at most (chat Q3, 27 Nov 2026) */
+  var LANG_FIT = ["lang-name-fit", "lang-name-fit2", "lang-name-fit3"];
+  function fitLangs() {
+    $$(".langs .lang-name").forEach(function (e) {
+      LANG_FIT.forEach(function (c) { e.classList.remove(c); });
+      for (var i = 0; i < LANG_FIT.length && cutWord(e); i++) { if (i) e.classList.remove(LANG_FIT[i - 1]); e.classList.add(LANG_FIT[i]); }
+    });
   }
 
   /* ---- the sheets ---- */
@@ -805,14 +819,36 @@
     Array.prototype.forEach.call(r.getClientRects(), function (x) { if (x.width > 1) t[Math.round(x.top)] = 1; });
     return Object.keys(t).length;
   }
+  /* Chat Q3, 27 Nov 2026: and never a word of the name cut in two, with search or without. On a narrow phone "Play Azərbaycanca"
+     (360 px), "Play ქართული" or "Play Українська" (320 px) cut the name inside its word: there the dice gives way where that mends
+     it, and where even that is not enough, the name is drawn a step smaller (two steps at most). */
+  function cutWord(h) {
+    var w = doc.createTreeWalker(h, 4), n, m, re = /\S+/g;
+    while ((n = w.nextNode())) {
+      re.lastIndex = 0;
+      while ((m = re.exec(n.textContent))) {
+        var r = doc.createRange(), t = {}, k = 0;
+        r.setStart(n, m.index); r.setEnd(n, m.index + m[0].length);
+        Array.prototype.forEach.call(r.getClientRects(), function (x) { if (x.width > 1 && !t[Math.round(x.top)]) { t[Math.round(x.top)] = 1; k++; } });
+        if (k > 1) return true;
+      }
+    }
+    return false;
+  }
   function fitDice() {
-    var a = $("#dice"), top = closest(a, ".top-lang"), h = top && $(".brand", top);
-    if (!a || !h || !$("#find-b", top) || a.hidden) return;
-    var words = String(h.textContent || "").trim().split(/\s+/).length;
-    a.classList.remove("dice-off");
-    var on = nameLines(h);
-    a.classList.add("dice-off");
-    if (on <= nameLines(h) && on <= words) a.classList.remove("dice-off");   // never a line more, and never a word broken in two
+    var top = $(".top-lang"), h = top && $(".brand", top), a = top && $("#dice", top);
+    if (!h) return;
+    h.classList.remove("brand-fit", "brand-fit2");
+    if (a && !a.hidden) {
+      var find = !!$("#find-b", top), words = String(h.textContent || "").trim().split(/\s+/).length;
+      a.classList.remove("dice-off");
+      var on = nameLines(h), cut = cutWord(h);
+      if (find || cut) {
+        a.classList.add("dice-off");
+        if (find && on <= nameLines(h) && on <= words && !cut) a.classList.remove("dice-off");   // never a line more, never a word broken in two
+      }
+    }
+    if (cutWord(h)) { h.classList.add("brand-fit"); if (cutWord(h)) { h.classList.remove("brand-fit"); h.classList.add("brand-fit2"); } }
   }
 
   /* ---- My Logicers (chat M, 26 Nov 2026) ----
@@ -1039,7 +1075,7 @@
     /* and again at once when a word of the row changes (the flame's number, the run's, a longer name): never a moment with Yours cut */
     if (window.MutationObserver) new MutationObserver(fitMark).observe(closest($("#me-mark"), ".row-top"), { subtree: true, childList: true, characterData: true });
   }
-  if ($("#find-b")) {                                       // the head with search: the dice fits beside the name, or gives way
+  if ($(".top-lang .brand")) {                              // the head: the dice fits beside the name, or gives way (search; a cut word)
     var fitAt = 0;
     window.addEventListener("resize", function () { if (!fitAt) fitAt = window.requestAnimationFrame(function () { fitAt = 0; fitDice(); }); });
     if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(fitDice);
