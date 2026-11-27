@@ -91,3 +91,7 @@ export async function importGames(e, games) {
   if (!r.json || !r.json.ok) throw new Error("import: " + r.text);
   return r.json;
 }
+
+/* "Play" in a page's name may be drawn one letter a span (the ring colours, chat Inside, 27 Nov 2026): a page's markup with those
+   spans taken out, for the tests that read the name as plain words */
+export const flat = (t) => String(t).replace(/<span class="pc pc\d">([^<]*)<\/span>/g, "$1");

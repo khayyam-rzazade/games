@@ -151,6 +151,10 @@ function apply(env, g, r, at, o) {
       return { stmts, kind: "blocked" };
     }
     stmts.push(st(env, "UPDATE games SET last_check = ?, check_state = 'ok', fails = 0, block = ? WHERE id = ?", at, words, g.id));
+    /* may the game be shown inside Play Logicers? What the page answered tonight (chat Inside, 27 Nov 2026): only a look that
+       got a page on the game's own site says; a held look (429, 503), a page that did not open or moved on changes nothing, and
+       frame_off (the maker's or the admin's switch) is never touched here */
+    if (r.frame === 0 || r.frame === 1) stmts.push(st(env, "UPDATE games SET frame = ?, frame_at = ? WHERE id = ?", r.frame, r.frame_at || null, g.id));
     /* it opens again: its "check by hand" card closes by itself (one bad night would otherwise leave up to 300 cards
        for a hand to close); a card left for Khayyam stays (general check, 19 Nov 2026) */
     if (o.open && o.open.has(g.id)) stmts.push(st(env, `UPDATE queue SET done = ?, "by" = 'cron' WHERE game = ? AND done = 0 AND kind = 'check' AND text NOT LIKE 'check by hand: the host %' AND ("by" IS NULL OR "by" <> 'left')`, at, g.id));

@@ -145,6 +145,53 @@ the Logicer number where it fits. When logicers.com does not answer, the page is
 (taken only with `ALLOW_ORIGINS` `localhost`), and `node portal/tests/me-site.mjs` serves logicers.com there (check.py section 18
 starts it itself).
 
+## Play it here (chat Inside, 27 Nov 2026; claude/play-here-27nov.md)
+
+**What a game allows.** `games.frame` (1 may be shown in a frame of ours, 0 may not, NULL not known; the Worker adds the column on
+its first request, `schema.sql` has it) is written by the add check and by the nightly look from the page the link ends on: its
+CSP `frame-ancestors` decides if it has one (every policy must allow `*`, `https:`, logicers.com or play.logicers.com), else
+`X-Frame-Options` (`DENY`, `SAMEORIGIN`, `ALLOW-FROM` all keep us out). `verdict()` lives in `src/check.js`
+(`scripts/frames.mjs` uses it). A look the host held back (429, 503), a page that did not open and a move to another site change
+nothing; a page whose own script leaves a frame is fine. `frame_off` (1: switched off) and `frame_at` (the origin the look ended
+on) sit beside it; the nightly look never touches `frame_off`, so an off stays off even if the site later allows frames.
+`node scripts/frames.mjs --send` (after a deploy: it asks for the admin key as `import.mjs` does) looks at every listed game and
+sends the yes and no to `POST /admin/frames` `{ key, games: [{ id, result: "yes"|"no", final? }] }` (admin key only, <=500, a
+`final` on another site than the game's is skipped as "moved").
+
+**Playing inside.** Where `insideOf(game)` (`src/db.js`: listed, not Logicers', `frame = 1`, `frame_off = 0`) gives
+`/<lang>/g/<slug>/play/`, Play and the big coin on the game page open that page in the same tab, and the small round arrow
+beside Play (`open_site`) opens the game's own site in a new tab (it counts as Play does). Elsewhere nothing changed. The dice
+list (`/api/<lang>/dice`: `[id, url, inside?]`), `/api/<lang>/games` (`inside`) and My run carry it, and My run's Next game is in
+the inside page's bar (`#run`, the fragment `#run` keeps it there; `portal.js` `openAs`, `runNext`). The inside page is one slim bar
+(back to the game's page, the small coin and name, the arrow, Next game in a run) over one iframe: `sandbox` with scripts,
+same origin, forms, popups (that leave the sandbox) and modals, **never `allow-top-navigation`**; `allow="fullscreen; autoplay;
+clipboard-write"`; the referrer kept; `noindex`; its CSP's `frame-src` is that game's origin only (and the one a move ended on,
+`frame_at`), `frame-ancestors 'none'`, no bridge. It counts nothing the page does not. Not inside: a listed game of ours that
+cannot play inside answers 302 to its page, anything else 404. On a phone, where the vote shows beside the arrow and its word
+does not fit, the vote is its crown alone (`portal.js` `fitActs`, `.acts-tight`), so the row stays one line. About says that a game shown
+inside keeps its own saved progress apart from the same game on its own site.
+
+**The switch.** The maker's form (`/maker/`) has "Play it here" (`maker.frame`, `maker.frame_p`) under each listed game, on by
+default, saved at once (`POST /api/maker/edit` `{ key, game, frame: true|false }`; anything else: 400 `field`; a card in the
+queue as every maker edit). The admin key has the same switch on a game's card ("Playing here", `frame_off`/`frame_on`, admin key
+only; the review key gets `admin_only`).
+
+**The number of games.** On top of the wall, above Play Logicers: the sum of the wall's tiles (every open language's games,
+Logicers' own included), in English, live with the list and cached like the wall (`.brand-n`, from 1, never a 0). Not players.
+
+**"Play" as the key word.** `vars.PLAY_LOOK` in `wrangler.jsonc` picks the one shown in every page's name and in the badge:
+`rings` (ring colours, one letter each where the script allows it: Latin, Cyrillic, Greek; Arabic, Indic, Thai and the Chinese,
+Japanese, Korean scripts keep their word whole), `warm` (heavier, one warm colour) or `tri` (a small filled triangle hanging
+in the margin before it). One class each on `<body>` (`play-rings`, `play-warm`, `play-tri`), so one word switches it. Default
+`rings`. Pictures of all three: `portal/tests/check.py --only-inside --shots <dir>` writes `play-looks-<wall|es>-<390|1280>-<light|dark>.png`
+(the three one above the other) and one picture of each.
+
+Tests: `test/test_inside.mjs` (the frame rule on a table of headers, the look and the add check, `/admin/frames`,
+`scripts/frames.mjs --send`, the game page, the inside page's CSP and sandbox, dice and list, the maker's and admin's switch, My
+run's block run as it stands, the wall number, the three looks, the badge); check.py section 20, `--only-inside` (several
+minutes; wall at 320, 390, 1280, light and dark; the name block in the 51 languages in each look, stretched too; the game page's Play and
+arrow in the 51 languages with and without the vote; the inside view with a stand-in game; a run).
+
 ## The tests (any computer with Node 22; no internet)
 
 ```
@@ -235,6 +282,7 @@ Pages (HTML, rendered by the Worker, cached at the edge 5 minutes; the numbers c
 | `/<lang>/` | Play Español: today's players (from 1), Yours (filled on the device), From Logicers (where Logicers lacks the language: the English games, one line, The Club first), one row per kind (12 tiles, then More), Wanted |
 | `/<lang>/<kind>/` | Logicers' games of that kind first (two where they are English), then every game of one kind (`words numbers maps knowledge music screen sport other`); none: 404 |
 | `/<lang>/g/<slug>/` | one game (`noindex, follow` and out of the sitemaps, except a claimed game with the maker's own line and a logo, which is indexed and in its language's sitemap; a claimed game shows its players by day for 90 days and by country); taken off (hidden, dead, rejected): 410 |
+| `/<lang>/g/<slug>/play/` | the game inside Play Logicers (chat Inside): one slim bar over the game's own page in a sandboxed frame; `noindex`; a game that cannot play inside: 302 to its page, else 404 |
 | `/about/` (`?l=<code>`) | About, in English (one line on top in that language) |
 | `/admin/` | the queue page (never indexed, never cached, Trusted Types) |
 | `/claim/?g=<id>` | claim a listed game (not Logicers') with a line on its own page; in the game's language (chat N; English before), with that language's head and foot; never indexed, never cached (chat J, plan 2.20) |
@@ -275,6 +323,7 @@ pages (the Origin `https://play.logicers.com`); the queue's POSTs may also come 
 | `POST /admin/pic` | `{ key, game }` | `{ data }`: the waiting logo as a `data:` address, for its card (both keys) |
 | `POST /admin/act` | `{ key, game, action, fields?, reason? }` | `{ role, card, opened }` |
 | `POST /admin/import` | `{ key, games: [{ name, url, lang, kind, line, maker?, checked? }] }` (≤500) | `{ added, updated, skipped: [{ i, e }], opened }` |
+| `POST /admin/frames` | `{ key, games: [{ id, result: "yes"\|"no", final? }] }` (<=500; the admin key only) | `{ ok, set, skipped: [{ i, e }] }` |
 
 Actions (chat J adds `nocrown`, admin key: the game of the week's crown taken off, its card closed; `pic_ok`, `pic_no`, `pic_off`, both keys: the waiting logo shown or refused, the shown one taken off — Done leaves a waiting logo open; `told`, admin key: the To tell email is sent): `list` and `show` (need kind, name, line ≤ 60 characters and lang), `reject` (with `reason`: `notdaily notgame
 broken unsafe copy other`), `leave`, `edit`, `done` — both keys; `hide`, `delete`, the `url` of a game that has been on the

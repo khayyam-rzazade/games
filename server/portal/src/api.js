@@ -21,7 +21,7 @@
    with its count, until the night, and the counts by game, day and country (from Cloudflare's request data; "XX" when it
    has none). Never the id itself, never an address. */
 import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where, showNums, netHash } from "./util.js";
-import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed, crownStmt, crownSet, picUrl, lgLogo, DICE_WHERE } from "./db.js";
+import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed, crownStmt, crownSet, picUrl, lgLogo, DICE_WHERE, insideOf } from "./db.js";
 import { LANG, isLang, pageName, nameParts } from "./langs.js";
 import { linkOk, norm, addCheck } from "./check.js";
 import { lookNow } from "./cron.js";
@@ -135,8 +135,8 @@ export async function add(env, req, b, ctx) {
       if (hp) c.flags.unshift("hp");
       await env.DB.batch([
         st(env, "UPDATE adds SET check_json = ? WHERE game = ?", JSON.stringify(c), id),
-        st(env, "UPDATE games SET last_check = ?, check_state = ?, block = ? WHERE id = ?", c.at, c.flags.includes("noopen") ? "noopen" : c.same_site ? "ok" : "moved",
-          (c.block_words || []).join(","), id),
+        st(env, "UPDATE games SET last_check = ?, check_state = ?, block = ?, frame = ?, frame_at = ? WHERE id = ?", c.at, c.flags.includes("noopen") ? "noopen" : c.same_site ? "ok" : "moved",
+          (c.block_words || []).join(","), c.frame === 0 || c.frame === 1 ? c.frame : null, c.frame === null || c.frame === undefined ? null : c.frame_at || null, id),
       ]);
     } catch (e) { if (env.PORTAL_DEBUG) console.error("add check", e && e.stack || e); }
   })();
@@ -184,6 +184,7 @@ const shape = (env, lang, g, t, crown) => ({
   en: g.source === "logicers" && g.lang !== lang, today: showNums(env) ? t[g.id] || 0 : 0, all: showNums(env) ? g.hits || 0 : 0,
   crown: !!(crown && crown.has(g.id)),
   pic: g.source === "logicers" ? null : picUrl(g), logo: g.source === "logicers" ? lgLogo(g) : null,     // the logo (chat J)
+  inside: insideOf(g),                                                  // where it plays inside Play Logicers (chat Inside), else null
 });
 export async function gamesApi(env, req, url, lang) {
   if (!isLang(lang) || !(await openSet(env)).has(lang)) return bad("nolang", 404);
@@ -224,8 +225,9 @@ export const DICE_MAX = 2000;
 export async function diceApi(env, req, url, lang) {
   if (!isLang(lang) || !(await openSet(env)).has(lang)) return bad("nolang", 404);
   const own = lgRowLang(lang) === lang ? 1 : 0;
-  const rows = await all(env, `SELECT id, url FROM games WHERE ${DICE_WHERE} ORDER BY id LIMIT ?`, lang, own, DICE_MAX);
-  return json({ ok: true, lang, games: rows.map((g) => [g.id, g.url]) }, 200, { "Cache-Control": "public, max-age=300, s-maxage=300" });
+  const rows = await all(env, `SELECT id, url, lang, slug, status, source, frame, frame_off FROM games WHERE ${DICE_WHERE} ORDER BY id LIMIT ?`, lang, own, DICE_MAX);
+  /* [id, address] and, for a game that plays inside Play Logicers, a third: its inside page (chat Inside, 27 Nov 2026) */
+  return json({ ok: true, lang, games: rows.map((g) => (insideOf(g) ? [g.id, g.url, insideOf(g)] : [g.id, g.url])) }, 200, { "Cache-Control": "public, max-age=300, s-maxage=300" });
 }
 export async function countsApi(env, req, url) {
   if (!showNums(env)) return json({ ok: true, day: utcDay(), games: {}, page: 0, hidden: true }, 200, { "Cache-Control": "public, max-age=60" });   // counted, not shown

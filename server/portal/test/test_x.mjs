@@ -12,7 +12,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { env, get, importGames, seedGames, one, resetBrakes } from "./lib.mjs";
+import { env, get, importGames, seedGames, one, resetBrakes , flat } from "./lib.mjs";
 import { WORDS, word, pluralKey, withN, aroundN, bestLang } from "../src/words.js";
 import { LANGS, LANG, LAUNCH, htmlLang, pageName } from "../src/langs.js";
 import { ROW_MAX } from "../src/pages.js";
@@ -198,7 +198,7 @@ test("3. a words file opens nothing: a new language opens at its first listed ga
   const h = await get(e, "/he/");
   assert.equal(h.status, 200, "Hebrew opens at its first game");
   assert.match(h.text, /<html lang="he" dir="rtl">/);
-  assert.match(h.text, /<span class="brand-play">Play<\/span> <span class="brand-lang">עברית<\/span>/);
+  assert.match(flat(h.text), /<span class="brand-play">Play<\/span> <span class="brand-lang">עברית<\/span>/);
   const langs = (await get(e, "/api/langs")).json.langs.map((l) => l.code);
   assert.ok(langs.includes("no") && langs.includes("he") && !langs.includes("uk"), "the open ones only");
   assert.ok(await one(e, "SELECT open FROM langs WHERE code = 'he' AND open = 1"));
@@ -354,7 +354,7 @@ test("2. on the maker's form only: each listed game carries its badge (two pictu
     "maker.pick2", "maker.send", "maker.e_type", "maker.e_big", "maker.e_small", "maker.e_huge", "maker.e_animated", "maker.e_bad", "maker.note", "maker.forget"];
   for (const [l, w] of Object.entries(WORDS)) {
     const mk = Object.keys(w).filter((k) => k.startsWith("maker."));
-    assert.deepEqual(mk, before.concat(["maker.badge", "maker.badge_p"]), l + ": two new maker words, after the others");
+    assert.deepEqual(mk, before.concat(["maker.badge", "maker.badge_p", "maker.frame", "maker.frame_p"]), l + ": two new maker words, after the others (and chat Inside's two, 27 Nov 2026)");
   }
   assert.equal(WORDS.en["maker.badge"], "Badge");
   assert.match(WORDS.en["maker.badge_p"], /^Optional\./, "the line says it is optional");

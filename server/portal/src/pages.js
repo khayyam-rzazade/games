@@ -91,12 +91,12 @@
    data-star, data-lang, data-e, data-more, data-from, data-filter, data-vote. */
 import { LANGS, LANG, htmlLang, numTag, nameParts, pageName, byEndonym } from "./langs.js";
 import { WORDS, wordsOf, word, num, aroundN, withN, fill, OWN_WORDS } from "./words.js";
-import { KINDS, picUrl, lgLogo, NUM_DAYS, indexable, SEARCH_MIN } from "./db.js";
-import { ring, dayAdd } from "./util.js";
+import { KINDS, picUrl, lgLogo, NUM_DAYS, indexable, SEARCH_MIN, insideOf } from "./db.js";
+import { ring, dayAdd, LOOKS, LOOK_DEFAULT, setLook, getLook } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=1c78254545", js: "/a/portal.js?v=f18e52270d", admin: "/a/admin.js?v=a80f78c7b5", icons: "/a/icons.svg?v=ad7b0adbd9", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=fe68454f4f" };
+export const ASSET = { css: "/a/portal.css?v=d0aeed6dc4", js: "/a/portal.js?v=631913293c", admin: "/a/admin.js?v=7f220fe019", icons: "/a/icons.svg?v=8e84ea5697", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=7691685761" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -117,6 +117,30 @@ export const CSP_PUBLIC = CSP.replace("script-src 'self'", "script-src 'self' ht
    (wrangler dev --var BRIDGE:http://127.0.0.1:4197/portal/bridge.html; index.js bridgeOf). */
 export const BRIDGE = "https://logicers.com/portal/bridge.html";
 export const cspPlay = (bridge) => CSP_PUBLIC + "; frame-src " + (bridge || BRIDGE);
+/* "Play" as the key word of every name (chat Inside, 27 Nov 2026; claude/play-here-27nov.md): three looks, one class each on <body>
+   (play-warm, play-tri, play-rings), drawn in portal.css and in the badge (badge.js); util.js LOOKS says which is shown, by the word
+   PLAY_LOOK in wrangler.jsonc.
+     warm   "Play" heavier, in one warm ring colour (the coral of ring 0)
+     tri    "Play" with a small filled play-triangle before it, in the same colour
+     rings  "Play" in the ring colours, one letter each (a name in a script that joins or stacks its letters, Arabic, Hebrew,
+            Thai, Devanagari, Bengali, Tamil, Georgian, Korean, Chinese and Japanese, takes the one warm colour whole: a letter's
+            colour never splits a word's joins) */
+export { LOOKS, LOOK_DEFAULT, setLook, getLook };
+/* the letters of a word that may be coloured one by one: Latin, Cyrillic and Greek, whole characters (no mark of its own) */
+const SIMPLE_WORD = /^[\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}]{1,12}$/u;
+export const ringLetters = (word) => {
+  const w = String(word || "").normalize("NFC");
+  return SIMPLE_WORD.test(w) ? [...w].map((c, i) => `<span class="pc pc${i % 6}">${esc(c)}</span>`).join("") : esc(w);
+};
+
+/* The inside page (chat Inside, 27 Nov 2026; /<lang>/g/<slug>/play/) shows one game in a frame: its CSP lets in that game's origin
+   and nothing else (a game that moved on its own site: the origin the look ended on too, db.js games.frame_at). The page loads
+   no bridge frame. */
+export const cspInside = (origins) => CSP_PUBLIC + "; frame-src " + origins.join(" ");
+/* the sandbox of the frame: scripts and the game's own origin (its saved progress), forms, popups (they leave the sandbox, as a game's
+   share or help page would), modals (alert, confirm). Never allow-top-navigation: a game cannot take the player off the page. */
+export const SANDBOX = "allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals";
+export const FRAME_ALLOW = "fullscreen; autoplay; clipboard-write";
 /* My Logicers' name and how Logicers writes a Logicer number, in the six languages Logicers has (me/lang/*.json: app.name and
    home.number without its "Logicer "); elsewhere My Logicers opens in English. Names of Logicers' own, not words of Play. */
 const ME_NAME = { en: "My Logicers", it: "Il mio Logicers", tr: "Logicers’ım", es: "Mi Logicers", pt: "Meu Logicers", fr: "Mon Logicers" };
@@ -173,7 +197,7 @@ function doc(o) {
 <head>
 ${head}
 </head>
-<body class="pl ${esc(o.cls)}">
+<body class="pl ${esc(o.cls)}${" play-" + getLook()}">
 ${o.body}
 <script type="application/json" id="pl-data">${jsonIn(o.data || {})}</script>
 </body>
@@ -217,7 +241,7 @@ const quiet = (d) => (d && d.nums === false ? hush(d, true) : d);
    button's work; "by Logicers" under the name goes to Logicers' home in that language. */
 function brand(d, tag) {
   const [play, rest] = d.wall ? ["Play", "Logicers"] : nameParts(d.lang);
-  return `<${tag} class="brand"><a class="brand-a" href="/"${d.page === "wall" ? ' aria-current="page"' : ""}><span class="brand-play">${esc(play)}</span> <span class="brand-lang">${esc(rest)}</span></a></${tag}>`;
+  return `<${tag} class="brand"><a class="brand-a" href="/"${d.page === "wall" ? ' aria-current="page"' : ""}><span class="brand-play">${getLook() === "rings" ? ringLetters(play) : esc(play)}</span> <span class="brand-lang">${esc(rest)}</span></a></${tag}>`;
 }
 /* "{n} players today": shown from 1, never as 0 (plan 2.8); portal.js shows it when the first player comes */
 function todayLine(lang, n, which) {
@@ -237,9 +261,12 @@ function findTop(L) {
 }
 /* the wall: the name large, its one English line, today's players in every language */
 function headerWall(d) {
+  /* the number of games on the wall (chat Inside, 27 Nov 2026): the sum of the wall's tiles, in English, from 1 (a 0 is never
+     written); not the number of players */
+  const total = (d.langs || []).reduce((n, l) => n + (l.games || 0), 0);
   return `<header class="top top-wall">
 <div class="brand-box">
-${brand(d, "h1")}
+${total > 0 ? `<p class="brand-n"><b class="brand-n-n" data-games>${esc(num("en", total))}</b> <span class="brand-n-w" lang="en">games</span></p>\n` : ""}${brand(d, "h1")}
 <p class="brand-sub">Daily games of the world, by language</p>
 </div>
 ${addTop("en")}
@@ -579,10 +606,13 @@ export function pageGame(d) {
   d = quiet(d);
   d = Object.assign({}, d, { page: "game" });
   const g = d.game, L = d.lang, pic = picUrl(g), mk = g.maker_id && d.maker ? d.maker : null;
+  /* where its site allows a frame and nobody turned it off, Play and the big coin open the game inside this page (same tab); the
+     small arrow beside Play always opens the game's own site in a new tab (chat Inside, 27 Nov 2026) */
+  const inside = insideOf(g), out = inside ? "" : ' target="_blank" rel="noopener"';
   const body = `${headerSub(d)}
 <main class="main main-game">
 <article class="game ${ring(g.id)}${d.crown ? " is-crown" : ""}" data-game="${esc(g.id)}" data-kind="${esc(g.kind)}">
-<a class="game-tile${pic ? " has-pic" : ""}" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit tabindex="-1" aria-hidden="true">${d.crown ? icon("i-crown", "game-crown") : ""}${pic ? `<img class="game-logo" src="${esc(pic)}" alt="" width="240" height="240" decoding="async">` : icon("k-" + g.kind, "game-ico")}</a>
+<a class="game-tile${pic ? " has-pic" : ""}" href="${esc(inside || g.url)}"${out} data-hit tabindex="-1" aria-hidden="true">${d.crown ? icon("i-crown", "game-crown") : ""}${pic ? `<img class="game-logo" src="${esc(pic)}" alt="" width="240" height="240" decoding="async">` : icon("k-" + g.kind, "game-ico")}</a>
 <div class="game-body">
 <div class="game-head">
 <h1 class="game-name" dir="auto">${esc(g.name)}</h1>
@@ -593,7 +623,8 @@ ${d.crown ? `<p class="game-gotw">${icon("i-crown")}<span>${T(L, "gotw")}</span>
 ${g.line ? `<p class="game-line">${esc(g.line)}</p>` : ""}
 <p class="game-nums"${d.today || d.all ? "" : " hidden"}>${numBlock(L, "today_n", d.today, "today")} ${numBlock(L, "total_n", d.all, "all")}</p>
 <div class="game-acts">
-<a class="btn btn-play" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit>${icon("i-play")}<span>${T(L, "play")}</span></a>
+<a class="btn btn-play" href="${esc(inside || g.url)}"${out} data-hit>${icon("i-play")}<span>${T(L, "play")}</span></a>
+${inside ? `<a class="btn-site" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit aria-label="${T(L, "open_site")}" title="${T(L, "open_site")}">${icon("i-out")}</a>` : ""}
 <button class="btn btn-vote" type="button" data-vote="${esc(g.id)}" aria-pressed="false" hidden>${icon("i-crown", "vote-i")}${icon("i-check", "vote-ok")}<span class="vote-t">${T(L, "vote")}</span></button>
 <button class="tile-star game-star" type="button" aria-pressed="false" aria-label="${T(L, "star")}" data-star="${esc(g.id)}">${icon("i-star")}</button>
 </div>
@@ -627,6 +658,29 @@ ${tplTile(d)}`;
     image: pic ? d.site + pic : null,
     desc: g.line || word(L, "seo.desc").replace("{lang}", LANG.get(L).endonym), jsonld: vg, body,
     data: pageData(d, { game: g.id, url: g.url, lgLang: d.lgLang, me: meOf(d) }) });
+}
+
+/* The inside page (chat Inside, 27 Nov 2026; claude/play-here-27nov.md): one game under one slim bar. The bar holds, in this
+   order: back to the game's page (round, named by the game), the small coin and the game's name, the arrow that opens the game's own
+   site in a new tab (named by the word open_site) and, in a run (/play/#run), Next game (the word run; portal.js gives it the
+   next game of today's run from portal.run). Not indexed; the frame is the game's address as listed; nothing is counted here
+   (the tap on Play counted it), except a tap on Next game, as the run's link counts on the language's page. */
+export function pageInside(d) {
+  d = Object.assign({}, d, { page: "inside", nums: false });
+  const g = d.game, L = d.lang, pic = picUrl(g), back = `/${L}/g/${g.slug}/`;
+  const coin = pic ? `<span class="in-coin has-pic ${ring(g.id)}"><img class="in-logo" src="${esc(pic)}" alt="" width="28" height="28" decoding="async"></span>`
+    : `<span class="in-coin ${ring(g.id)}">${icon("k-" + (KINDS.includes(g.kind) ? g.kind : "other"), "in-ico")}</span>`;
+  const body = `<div class="in">
+<header class="in-bar">
+<a class="back" href="${esc(back)}" aria-label="${esc(g.name)}">${icon("i-back", "ico-flip")}</a>
+<h1 class="in-name" dir="auto">${coin}<span class="in-name-t">${esc(g.name)}</span></h1>
+<a class="in-open" href="${esc(g.url)}" target="_blank" rel="noopener" aria-label="${T(L, "open_site")}" title="${T(L, "open_site")}">${icon("i-out")}</a>
+<a class="run in-run" id="run" data-hit data-game="" hidden>${icon("i-play")}<span class="run-t"></span></a>
+</header>
+<iframe class="in-frame" src="${esc(g.url)}" title="${esc(g.name)}" sandbox="${SANDBOX}" allow="${FRAME_ALLOW}" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>`;
+  return doc({ lang: L, cls: "pl-inside", title: g.name + " · " + pageName(L), noindex: true, body,
+    data: pageData(d, { game: g.id }) });
 }
 
 /* Edit, for the maker only: hidden, shown by portal.js on the device that holds this maker's key (portal.makerof) */
@@ -716,6 +770,7 @@ ${p((d.nums === false ? "We count how many people go to play each game from Play
 ${h("What we keep")}
 ${p("Nothing about you. No cookies, no accounts. Your device makes one random number and keeps it; it is sent with a count only so the same device is counted once a day. We keep a scrambled form of it for that day only, and delete it every night. We never keep your IP address: for one day we keep a scrambled form of it, only to stop fake counts, and delete it every night. We keep the counts by game, day and country. When a search here finds nothing, we keep only its words, for 90 days, to see which games are missing. Cloudflare, which serves these pages, also counts visits for us, without cookies.")}
 ${p("The games you save and your streak stay on your device. If you keep a My Logicers code on logicers.com, they also go with it to your other devices, locked so that only your code opens them.")}
+${p("A game shown inside Play Logicers keeps its own saved progress apart from the same game on its own site.")}
 ${p("When you add a game, we keep its link, and your name and email if you give them; only Khayyam sees your email. We keep them while the game is on the list, so we can tell its maker the numbers, and delete them 90 days after a game is turned down or taken off. A report keeps its reason and the day.")}
 ${h("Your game")}
 ${p(`To have a game changed or taken off, write to <span class="mail" dir="ltr">${esc(CONTACT)}</span>. It goes within days. Makers never need to do anything to be listed, and nothing is asked of them.`)}

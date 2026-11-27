@@ -181,3 +181,13 @@ export function ring(id) {
    people won't submit games"). SHOW_NUMBERS in wrangler.jsonc: "0" counts and shows nothing on the pages or in the public
    API; "1" shows them, as the pages were built to. The queue page's Numbers always shows what is counted. */
 export const showNums = (env) => String((env && env.SHOW_NUMBERS) || "") === "1";
+
+/* "Play" as the key word of every name (chat Inside, 27 Nov 2026; claude/play-here-27nov.md): which of three looks is shown, by the
+   word PLAY_LOOK in wrangler.jsonc (set at the start of every request, index.js). pages.js draws it on the pages and badge.js in
+   the badge. warm: "Play" heavier in one warm ring colour; tri: a small filled play-triangle before it; rings: the ring colours,
+   one letter each. LOOK_DEFAULT is the strongest of the three. */
+export const LOOKS = ["warm", "tri", "rings"];
+export const LOOK_DEFAULT = "rings";
+let lookNow = LOOK_DEFAULT;
+export const setLook = (v) => { lookNow = LOOKS.includes(v) ? v : LOOK_DEFAULT; };
+export const getLook = () => lookNow;

@@ -29,23 +29,24 @@
    GET (JSON):   /api/langs  /api/<lang>/games  /api/<lang>/dice  /api/<lang>/names (search.js, chat S)  /api/counts
    Kept: see api.js and db.js. Never kept: an IP address, a user agent, the device id itself. Workers Logs stay off. */
 import { json, bad, readJson, brake, isLocal, showNums } from "./util.js";
-import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, KINDS } from "./db.js";
+import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, insideOf, KINDS } from "./db.js";
+import { originOf } from "./check.js";
 import { LANG, isLang, CODES } from "./langs.js";
 import { WORDS, bestLang } from "./words.js";
 import { lgRowLang, lgShown, lgOfKind, lgForGame, lgEn, EN_LINE, LG_HOME } from "./logicers.js";
-import { pageWall, pageLang, pageKind, pageGame, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_PUBLIC, CSP_ADMIN, ASSET, BRIDGE, cspPlay } from "./pages.js";
+import { pageWall, pageLang, pageKind, pageGame, pageInside, cspInside, setLook, pageAbout, pageNotFound, pageAdmin, pageClaim, pageClaimLink, pageMaker, pageMakerPublic, CSP, CSP_PUBLIC, CSP_ADMIN, ASSET, BRIDGE, cspPlay } from "./pages.js";
 import { claimCode, claimCheck, claimToken, makerGet, makerEdit, makerPicApi, tokenGame } from "./claim.js";
 import { servePic, PIC_BODY } from "./pics.js";
 import { badgeRoute } from "./badge.js";
 import { hit, view, add, report, vote, langsApi, gamesApi, diceApi, countsApi } from "./api.js";
-import { adminQueue, adminGame, adminAct, adminImport, adminPic } from "./admin.js";
+import { adminQueue, adminGame, adminAct, adminImport, adminFrames, adminPic } from "./admin.js";
 import { namesApi, miss } from "./search.js";
 import { nightly } from "./cron.js";
 
 const SMALL = 8 * 1024, IMPORT = 1024 * 1024;
 const API_POSTS = { "/api/hit": hit, "/api/view": view, "/api/add": add, "/api/report": report, "/api/vote": vote, "/api/miss": miss,
   "/api/claim/code": claimCode, "/api/claim/check": claimCheck, "/api/claim/token": claimToken, "/api/maker": makerGet, "/api/maker/edit": makerEdit, "/api/maker/pic": makerPicApi };
-const ADMIN_POSTS = { "/admin/queue": adminQueue, "/admin/game": adminGame, "/admin/act": adminAct, "/admin/import": adminImport, "/admin/pic": adminPic };
+const ADMIN_POSTS = { "/admin/queue": adminQueue, "/admin/game": adminGame, "/admin/act": adminAct, "/admin/import": adminImport, "/admin/frames": adminFrames, "/admin/pic": adminPic };
 const siteOf = (env) => String(env.SITE || "https://play.logicers.com").replace(/\/+$/, "");
 
 /* which browser pages may call: the portal itself; ALLOW_ORIGINS adds more ("localhost" lets http://localhost:* in, for
@@ -278,11 +279,23 @@ async function page(req, env, ctx, url) {
         return pub(pageNotFound(Object.assign({ site, nums }, d)), 410, { noindex: true, cache: "public, max-age=60" });
       }
     }
+    /* the game inside Play Logicers (chat Inside, 27 Nov 2026): /<lang>/g/<slug>/play/. Only where the site allows a frame and nobody
+       turned it off (db.js insideOf); else the game's page, where Play opens the game on its own site. Its CSP lets in the game's
+       origin (and the one the look ended on) and nothing else; never indexed. */
+    if (segs.length === 4 && segs[1] === "g" && segs[3] === "play") {
+      const g = await gameBySlug(env, lang, segs[2]);
+      if (g && insideOf(g)) {
+        const origins = [...new Set([originOf(g.url), originOf(g.frame_at)].filter((o) => /^https:\/\//.test(o)))];
+        return html(pageInside({ site, lang, game: g }), 200, { csp: cspInside(origins), noindex: true });
+      }
+      if (g && g.status === "listed" && g.source !== "logicers" && g.slug) return redirect(site + "/" + lang + "/g/" + g.slug + "/", 302);
+    }
     return notFound(env, site, lang, open);
   });
 }
 
 async function handle(req, env, ctx) {
+  setLook(env && env.PLAY_LOOK);                                              // "Play" as the key word: which of the three looks (pages.js LOOKS)
   const url = new URL(req.url);
   const path = url.pathname;
   const origin = req.headers.get("Origin");
@@ -297,7 +310,7 @@ async function handle(req, env, ctx) {
     if (!fn) return bad("not_found", 404);
     /* the API counts only from the portal's own pages; the queue also takes calls with no Origin (Terminal: the import) */
     if (API_POSTS[route] ? !originOk(env, origin) : origin && !originOk(env, origin)) return bad("origin", 403);
-    const r = await readJson(req, route === "/admin/import" ? IMPORT : route === "/api/maker/pic" ? PIC_BODY : SMALL);
+    const r = await readJson(req, route === "/admin/import" || route === "/admin/frames" ? IMPORT : route === "/api/maker/pic" ? PIC_BODY : SMALL);
     if (r.e) return cors(bad(r.e, r.e === "big" ? 413 : 400), origin, env);
     await ensure(env);
     return cors(await fn(env, req, r.body, ctx), origin, env);

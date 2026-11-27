@@ -286,6 +286,8 @@
       fact(dl, "Description", k.desc);
       fact(dl, "Says daily", k.daily_hint ? "yes" : (k.status ? "no sign" : ""));
     }
+    /* playing inside (chat Inside, 27 Nov 2026): what the look found, and the switch (the maker's form has the same one) */
+    if (!lg && c.status === "listed") fact(dl, "Playing here", c.frame_off ? "off (switched off; kept even if the site allows frames)" : c.frame === 1 ? "on (the site allows it)" : c.frame === 0 ? "no (the site does not allow it)" : "not known yet");
     if (c.link && (c.link.state || c.link.last)) fact(dl, "Night check", [c.link.state || "ok", c.link.fails ? c.link.fails + " fails" : "", when(c.link.last)].filter(Boolean).join(" · "));
     if (c.reports && c.reports.n) fact(dl, "Reports", c.reports.n + " (" + c.reports.browsers + " browsers): " + Object.keys(c.reports.reasons || {}).map(function (r) { return r + " " + c.reports.reasons[r]; }).join(", "));
     (c.rows || []).forEach(function (r) { fact(dl, ROW[r.kind] || "Queue: " + r.kind, r.text + " · " + when(r.made)); });
@@ -365,6 +367,7 @@
     if ((c.rows || []).length) btn("Done", "", function () { act(a, c, "done"); });
     if (!lg && role === "admin") {
       if (c.crown) btn("Take the crown off", "", function () { act(a, c, "nocrown"); });   // the game of the week (chat J, 20 Nov 2026)
+      if (st === "listed") btn(c.frame_off ? "Turn playing here on" : "Turn playing here off", "", function () { act(a, c, c.frame_off ? "frame_on" : "frame_off"); });
       if (st === "listed") btn("Hide", "is-danger", function () { act(a, c, "hide"); });
       var del = btn("Delete", "is-danger", function () {
         if (del.getAttribute("data-sure") !== "1") { del.setAttribute("data-sure", "1"); del.textContent = "Delete for good? Click again"; return; }
@@ -377,7 +380,8 @@
   }
   function note(p, text, ok) { p.textContent = text; p.classList.toggle("is-ok", !!ok); p.hidden = !text; }
   var DONE = { list: "Listed.", show: "Back on the list.", reject: "Rejected.", leave: "Left for Khayyam.", edit: "Saved.", done: "Closed.", hide: "Hidden.",
-    nocrown: "The crown is off.", pic_ok: "The logo is shown.", pic_no: "The logo is refused.", pic_off: "The logo is off." };
+    nocrown: "The crown is off.", pic_ok: "The logo is shown.", pic_no: "The logo is refused.", pic_off: "The logo is off.",
+    frame_off: "Playing here is off.", frame_on: "Playing here is on." };
   function act(cardEl, c, action, fields, reason) {
     if (!key) return;
     cardEl.classList.add("is-busy");

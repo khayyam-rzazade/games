@@ -29,10 +29,17 @@
                   game goes, and its "gotw" card closes
           pic_ok  the waiting logo shown (both keys; chat J, stage 3)    pic_no  the waiting logo refused and deleted (both keys)
           told    the weekly email to the sender is sent (admin key; To tell): told_at
+          frame_off / frame_on  playing the game inside Play Logicers turned off / on again (admin key only; chat Inside, 27 Nov
+                  2026): games.frame_off. The maker has the same switch on the maker's form. Players then play it on its own site
+                  (frame_off is kept even if the site later allows a frame)
           pic_off the logo shown taken off and deleted (both keys). "done" and the others leave a waiting logo's card open:
                   a logo is decided with pic_ok or pic_no.
           Logicers' own games: only "done" (they change in src/logicers.js).
      POST /admin/pic    { key, game }              -> { data }: the waiting logo as a data: address, for the card (both keys)
+     POST /admin/frames { key, games: [{ id, result: "yes" | "no", final? }] }   (admin key; at most 500 a call; chat Inside, 27 Nov
+          2026) -> { set, skipped: [{ i, e }] }: what scripts/frames.mjs --send saw, written to games.frame (and frame_at, the
+          origin of the page the frame ended on, if it is on the game's own site). Only listed games that are not Logicers';
+          frame_off is never touched.
      POST /admin/import { key, games: [{ name, url, lang, kind, line, maker?, checked? }] }   (admin key; at most 500 a call)
           -> { added, updated, skipped: [{ i, e }], opened }. Idempotent on language + address: a seed already there is
           updated (its name, kind, line, maker), anything else there is skipped ("here"); a claimed seed too ("claimed").
@@ -45,11 +52,11 @@ import { bytesOf, extOf, picFile } from "./pics.js";
 import { isLang, pageName, LANG } from "./langs.js";
 import { word, fill, num } from "./words.js";
 import { tokenFor } from "./claim.js";
-import { linkOk, norm } from "./check.js";
+import { linkOk, norm, site, originOf } from "./check.js";
 import { searchesData } from "./search.js";
 
-export const ACTIONS = ["list", "reject", "leave", "show", "edit", "done", "hide", "delete", "nocrown", "pic_ok", "pic_no", "pic_off", "told"];
-export const ADMIN_ONLY = ["hide", "delete", "nocrown", "told"];
+export const ACTIONS = ["list", "reject", "leave", "show", "edit", "done", "hide", "delete", "nocrown", "pic_ok", "pic_no", "pic_off", "told", "frame_off", "frame_on"];
+export const ADMIN_ONLY = ["hide", "delete", "nocrown", "told", "frame_off", "frame_on"];
 export const TELL_DAYS = 7;
 export const MAILER = "logicers.world@gmail.com";          // the only address Logicers writes from (never Khayyam's own)
 /* queue rows only the admin key closes: Khayyam's own cards */
@@ -109,6 +116,7 @@ async function cards(env, games, who) {
       crown: crowns.some((x) => x.game === g.id),                                      // wears this week's crown (plan 2.20)
       maker_of: g.maker_id ? (makers.find((m) => m.id === g.maker_id) || null) : null,   // claimed: the maker (chat J)
       claimed_at: g.claimed_at || null, line_by: g.line_by || null,
+      frame: g.frame === 1 || g.frame === 0 ? g.frame : null, frame_off: !!g.frame_off,     // may it play inside the page, and was that turned off (chat Inside)
       pic: picUrl(g),                                                                   // the logo shown (chat J)
       pic_wait: (({ w, ht, type, size, made } = {}) => (type ? { w, h: ht, type, size, made } : null))(waits.find((x) => x.game === g.id)),
     };
@@ -285,6 +293,8 @@ export async function adminAct(env, req, b) {
     } else if (b.action === "pic_no") stmts.push(st(env, "DELETE FROM pics WHERE game = ? AND state = 'wait'", g.id));
     else stmts.push(st(env, "DELETE FROM pics WHERE game = ? AND state = 'ok'", g.id), st(env, "UPDATE games SET pic = NULL WHERE id = ?", g.id));
     if (b.action !== "pic_off") stmts.push(st(env, `UPDATE queue SET done = ?, "by" = ? WHERE game = ? AND done = 0 AND kind = 'pic'`, now, who, g.id));
+  } else if (b.action === "frame_off" || b.action === "frame_on") {      // playing inside Play Logicers (chat Inside, 27 Nov 2026)
+    stmts.push(st(env, "UPDATE games SET frame_off = ? WHERE id = ?", b.action === "frame_off" ? 1 : 0, g.id));
   } else if (b.action === "told") {                                      // the weekly email is sent (To tell)
     stmts.push(st(env, "UPDATE games SET told_at = ? WHERE id = ?", now, g.id));
   } else if (b.action === "hide") {
@@ -363,6 +373,41 @@ export async function adminPic(env, req, b) {
   let bin = "";
   for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
   return json({ ok: true, data: "data:" + p.type + ";base64," + btoa(bin) });
+}
+
+export async function adminFrames(env, req, b) {
+  const who = await role(env, req, b);
+  if (who instanceof Response) return who;
+  if (who !== "admin") return bad("admin_only", 403);
+  if (!Array.isArray(b.games) || !b.games.length) return bad("games");
+  if (b.games.length > IMPORT_MAX) return bad("big", 413);
+  const skipped = [], items = [];
+  b.games.forEach((x, i) => {
+    const id = x && typeof x.id === "string" && /^[a-z0-9-]{1,40}$/.test(x.id) ? x.id : null;
+    const f = x && x.result === "yes" ? 1 : x && x.result === "no" ? 0 : null;
+    if (!id) { skipped.push({ i, e: "id" }); return; }
+    if (f === null) { skipped.push({ i, e: "result" }); return; }
+    items.push({ i, id, f, final: typeof x.final === "string" ? x.final.slice(0, 500) : "" });
+  });
+  const hosts = new Map();
+  for (let j = 0; j < items.length; j += 80) {
+    const part = items.slice(j, j + 80);
+    for (const r of await all(env, `SELECT id, host FROM games WHERE status = 'listed' AND source <> 'logicers' AND id IN (${part.map(() => "?").join(",")})`, ...part.map((x) => x.id))) hosts.set(r.id, r.host);
+  }
+  const stmts = [];
+  for (const x of items) {
+    if (!hosts.has(x.id)) { skipped.push({ i: x.i, e: "nogame" }); continue; }
+    let at = null;
+    if (x.final) {
+      const o = originOf(x.final);
+      if (!/^https:\/\//.test(o)) { skipped.push({ i: x.i, e: "final" }); continue; }
+      if (site(new URL(o).hostname) !== site(hosts.get(x.id))) { skipped.push({ i: x.i, e: "moved" }); continue; }     // another site is a move, not an answer
+      at = o;
+    }
+    stmts.push(st(env, "UPDATE games SET frame = ?, frame_at = ? WHERE id = ? AND status = 'listed' AND source <> 'logicers'", x.f, at, x.id));
+  }
+  for (let j = 0; j < stmts.length; j += 90) await env.DB.batch(stmts.slice(j, j + 90));
+  return json({ ok: true, set: stmts.length, skipped });
 }
 
 export async function adminImport(env, req, b) {

@@ -157,6 +157,7 @@ export async function makerOr(env, req, b) {
    shown under the game on the maker's form only */
 const gameOut = (env, g) => ({ id: g.id, name: g.name, lang: g.lang, kind: g.kind, line: g.line, url: g.url, status: g.status,
   line_by: g.line_by || null, page: g.status === "listed" && g.slug ? SITE(env) + "/" + g.lang + "/g/" + g.slug + "/" : null,
+  frame: !g.frame_off,                                                   // players play it inside Play Logicers where its site allows (the form's switch; chat Inside, 27 Nov 2026)
   pic: picUrl(g), pic_wait: !!g.pic_wait, badge: g.status === "listed" && g.slug ? badgeOut(SITE(env), g) : null });
 export async function makerGet(env, req, b) {
   const m = await makerOr(env, req, b);
@@ -200,10 +201,16 @@ export async function makerEdit(env, req, b) {
     if (!KINDS.includes(b.kind)) return bad("field", 400, { field: "kind" });
     if (b.kind !== g.kind) set.kind = b.kind;
   }
+  /* the switch under the game: on (the default) = players play it inside Play Logicers where its site allows; off = on its own site.
+     Kept as asked, whatever the site later allows (games.frame_off; the look never touches it) */
+  if (b.frame !== undefined) {
+    if (typeof b.frame !== "boolean") return bad("field", 400, { field: "frame" });
+    if ((b.frame ? 0 : 1) !== (g.frame_off ? 1 : 0)) set.frame_off = b.frame ? 0 : 1;
+  }
   if (!Object.keys(set).length) return json({ ok: true, game: gameOut(env, g) });
   const next = Object.assign({}, g, set, set.line ? { line_by: "maker" } : {});
   await env.DB.batch([
-    st(env, "UPDATE games SET line = ?, kind = ?, line_by = ? WHERE id = ?", next.line, next.kind, next.line_by || null, g.id),
+    st(env, "UPDATE games SET line = ?, kind = ?, line_by = ?, frame_off = ? WHERE id = ?", next.line, next.kind, next.line_by || null, next.frame_off ? 1 : 0, g.id),
     queueRow(env, "edit", g.id, "maker edit: " + Object.entries(set).map(([k, v]) => k + " " + JSON.stringify(v) + " (was " + JSON.stringify(g[k]) + ")").join(", ")),
   ]);
   return json({ ok: true, game: gameOut(env, next) });

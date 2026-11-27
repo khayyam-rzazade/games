@@ -362,8 +362,35 @@ export async function addCheck(url, lang) {
   try { finalHost = new URL(out.final).hostname; } catch (x) { /* none */ }
   for (const f of blockFlags([at.hostname, finalHost], out.title, out.desc, lang)) out.flags.push(f);
   out.block_words = blockHits([at.hostname, finalHost], out.title, out.desc, lang);
+  /* may it be shown inside Play Logicers? Only a page that opened (2xx) on the game's own site tells (null: not known) */
+  out.frame = w.res && w.status >= 200 && w.status < 300 && out.same_site ? frameOf(w.res.headers) : null;
+  out.frame_at = out.frame === null ? null : originOf(out.final);
   return out;
 }
+
+/* Can the game be shown in a frame on play.logicers.com? (chat Inside, 27 Nov 2026; claude/play-here-27nov.md.) The final page's
+   own answer decides: a Content-Security-Policy with frame-ancestors, if it has one (every such policy must let us in: "*",
+   "https:", logicers.com, play.logicers.com), else X-Frame-Options (deny, sameorigin and allow-from keep us out; allow-from names
+   one site and browsers no longer read it, so it is "no"). Nothing in either: yes. A page whose own script leaves a frame
+   is not looked for: it is fine. -> { result: "yes" | "no", reason } (scripts/frames.mjs and the nightly look share this) */
+export function verdict(headers) {
+  const csp = String(headers.get("content-security-policy") || "");
+  const fa = csp.split(/[;,]/).map((d) => d.trim()).filter((d) => /^frame-ancestors\b/i.test(d));
+  if (fa.length) {
+    const ok = fa.every((d) => {
+      const src = d.split(/\s+/).slice(1).map((s) => s.toLowerCase());
+      return src.some((s) => s === "*" || s === "https:" || /^(https:\/\/)?(\*\.)?logicers\.com$/.test(s) || /^(https:\/\/)?play\.logicers\.com$/.test(s));
+    });
+    return ok ? { result: "yes", reason: "frame-ancestors allows" } : { result: "no", reason: "frame-ancestors" };
+  }
+  const xfo = String(headers.get("x-frame-options") || "").toLowerCase();
+  if (/deny|sameorigin|allow-from/.test(xfo)) return { result: "no", reason: "x-frame-options " + xfo.trim() };
+  return { result: "yes", reason: "" };
+}
+/* the games.frame value of a verdict: 1 allowed, 0 forbidden */
+export const frameOf = (headers) => (verdict(headers).result === "yes" ? 1 : 0);
+/* the origin of an address, "" if it has none */
+export const originOf = (u) => { try { return new URL(u).origin; } catch (x) { return ""; } };
 
 /* the nightly look at a listed game (2.12) -> { state, final?, status, words? }
      ok     it opened on its own site; words: the blocklist words in its title, description and host (chat H, 20 Nov
@@ -389,7 +416,7 @@ export async function linkCheck(url, lang, opts) {
     } else if (w.res) { try { w.res.body && w.res.body.cancel(); } catch (x) { /* gone */ } }
     if (other) return { state: "moved", status: w.status, final: w.final };       // another site, an IP literal, localhost
     if (w.dns || w.status === 404 || w.status === 410 || w.status === 530) return { state: "gone", status: w.status, final: w.final };
-    if (ok) return { state: "ok", status: w.status, final: w.final, words };
+    if (ok) return { state: "ok", status: w.status, final: w.final, words, frame: frameOf(w.res.headers), frame_at: originOf(w.final) };
     return { state: "check", status: w.status, final: w.final, error: w.error || null };
   } finally { if (w.release) w.release(); }
 }

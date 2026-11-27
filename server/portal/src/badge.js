@@ -18,12 +18,18 @@
 import { GLYPHS, PLAY, NAMES, FIG } from "./glyphs.js";
 import { LANG, nameParts, pageName, htmlLang, numTag } from "./langs.js";
 import { word } from "./words.js";
-import { ring, showNums } from "./util.js";
+import { ring, showNums, getLook } from "./util.js";
 import { gameById } from "./db.js";
 
 export const BADGE_H = 52;
 const S1 = 17, S2 = 11, Y1 = 25, Y2 = 40, X0 = 56, END = 16, SPACE = 220;
 const COIN = { x: 9, y: 9, s: 34, r: 10 };
+/* "Play" as the key word (chat Inside, 27 Nov 2026; util.js LOOKS, pages.js): the colours of portal.css (--w0 and the ring words,
+   light and dark), the triangle's width and the room it takes before "Play" */
+const WARM = { light: "#C2462C", dark: "#FF5A36" };
+const RING_W = { light: ["#C2462C", "#2C65F1", "#0E7E5B", "#C9327C", "#8550DB", "#A75D1A"], dark: ["#FF5A36", "#6F95FF", "#10B981", "#FF3D9A", "#A877FF", "#FF8A1F"] };
+const TRI = 8, TRI_W = 13;
+const SIMPLE = /^[\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}]{1,12}$/u;
 const SYS = "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif";
 /* the gallery's palette (portal.css :root, light and dark) and the twelve ring colours (--c0 … --c11) */
 const LOOK = {
@@ -79,15 +85,38 @@ function drawn(run, x, y, size, fill) {
 }
 
 /* the layout of a language's badge: the same for every game of that language (its width goes into the HTML) */
-export function badgeLayout(lang) {
+export function badgeLayout(lang, look) {
+  look = look || getLook();
   const l = LANG.get(lang), [play, name] = nameParts(lang), by = word(lang, "by");
   const p = PLAY[play], n = NAMES[lang];
   const playW = p ? p[0] * S1 / 1000 : est(play, S1, true);
   const nameW = n ? n[0] * S1 / 1000 : est(name, S1, true);
-  const sp = SPACE * S1 / 1000;
-  const w1 = playW + sp + nameW, w2 = est(by, S2, false);
+  const sp = SPACE * S1 / 1000, tri = look === "tri" ? TRI_W : 0;
+  const w1 = tri + playW + sp + nameW, w2 = est(by, S2, false);
   const W = Math.ceil(X0 + Math.max(w1, w2) + END);
-  return { lang, rtl: !!(l && l.dir === "rtl"), play, name, by, p, n, playW, nameW, sp, W, H: BADGE_H, tag: htmlLang(lang) };
+  return { lang, rtl: !!(l && l.dir === "rtl"), play, name, by, p, n, playW, nameW, sp, tri, look, W, H: BADGE_H, tag: htmlLang(lang) };
+}
+/* "Play" in the badge, in the look of the pages: its drawn letters (Play, Graj: one outline each) or its text in the system font;
+   x: where its left edge is */
+function playSvg(L, x, c) {
+  const col = c === LOOK.dark ? "dark" : "light", warm = WARM[col], rings = RING_W[col];
+  if (L.p) {
+    const s = S1 / 1000, glyphs = L.p[1];
+    const path = ([id, gx, gy], fill) => `<path transform="translate(${gx}${gy ? " " + gy : ""})"${fill ? ` fill="${fill}"` : ""} d="${GLYPHS[id]}"/>`;
+    if (L.look === "rings") {
+      let k = -1;
+      const parts = glyphs.map((gl) => { if (!gl[2]) k++; return path(gl, rings[Math.max(0, k) % rings.length]); }).join("");
+      return `<g transform="translate(${f2(x)} ${Y1}) scale(${s})">${parts}</g>`;
+    }
+    const bold = L.look === "warm" ? 34 : 18;                         // heavier: the outlines drawn with a line of their own
+    return `<g transform="translate(${f2(x)} ${Y1}) scale(${s})" fill="${warm}" stroke="${warm}" stroke-width="${bold}" stroke-linejoin="round">${glyphs.map((gl) => path(gl)).join("")}</g>`;
+  }
+  const weight = L.look === "warm" ? 700 : 600;
+  const at = `<text x="${f2(x)}" y="${Y1}" font-family="${SYS}" font-weight="${weight}" font-size="${S1}"`;
+  if (L.look === "rings" && SIMPLE.test(L.play.normalize("NFC"))) {
+    return `${at} fill="${warm}">${[...L.play.normalize("NFC")].map((ch, i) => `<tspan fill="${rings[i % rings.length]}">${esc(ch)}</tspan>`).join("")}</text>`;
+  }
+  return `${at} fill="${warm}">${esc(L.play)}</text>`;
 }
 
 /* the coin's number (players in all), with the language's own figures; up to 9,999 whole, then short and whole (57K) */
@@ -122,12 +151,15 @@ export function badgeSvg(g, o) {
   const numSvg = num ? (rtl ? num.svg.replace(/translate\(([\d.]+) /, (m, x) => `translate(${f2(+x + coinX - COIN.x)} `).replace(/ x="([\d.]+)"/, (m, x) => ` x="${f2(+x + coinX - COIN.x)}"`) : num.svg) : "";
   /* line 1: "Play" and the name; in rtl "Play" sits at the right and the name to its left */
   const parts = [];
-  const playX = rtl ? W - X0 - L.playW : X0;
-  parts.push(L.p ? drawn(L.p, playX, Y1, S1, c.ink).svg
-    : `<text x="${f2(playX)}" y="${Y1}" font-family="${SYS}" font-weight="500" font-size="${S1}" fill="${c.ink}">${esc(L.play)}</text>`);
-  const nameX = rtl ? W - X0 - L.playW - L.sp - L.nameW : X0 + L.playW + L.sp;
+  const playX = rtl ? W - X0 - L.tri - L.playW : X0 + L.tri;
+  if (L.tri) {                                                      // the small play-triangle, pointing right in every direction (as the pages' Play)
+    const tx = rtl ? W - X0 - TRI : X0;
+    parts.push(`<path d="M${f2(tx)} ${Y1 - 11}L${f2(tx + TRI)} ${Y1 - 6}L${f2(tx)} ${Y1 - 1}z" fill="${o.dark ? WARM.dark : WARM.light}"/>`);
+  }
+  parts.push(playSvg(L, playX, c));
+  const nameX = rtl ? W - X0 - L.tri - L.playW - L.sp - L.nameW : X0 + L.tri + L.playW + L.sp;
   parts.push(L.n ? drawn(L.n, nameX, Y1, S1, c.ink).svg
-    : rtl ? `<text x="${f2(W - X0 - L.playW - L.sp)}" y="${Y1}" direction="rtl" text-anchor="start" font-family="${SYS}" font-weight="600" font-size="${S1}" letter-spacing="-0.17" fill="${c.ink}">${esc(L.name)}</text>`
+    : rtl ? `<text x="${f2(W - X0 - L.tri - L.playW - L.sp)}" y="${Y1}" direction="rtl" text-anchor="start" font-family="${SYS}" font-weight="600" font-size="${S1}" letter-spacing="-0.17" fill="${c.ink}">${esc(L.name)}</text>`
       : `<text x="${f2(nameX)}" y="${Y1}" font-family="${SYS}" font-weight="600" font-size="${S1}" letter-spacing="-0.17" fill="${c.ink}">${esc(L.name)}</text>`);
   /* line 2: "by Logicers", small, in the soft colour */
   parts.push(rtl ? `<text x="${W - X0}" y="${Y2}" direction="rtl" text-anchor="start" font-family="${SYS}" font-size="${S2}" letter-spacing="0.11" fill="${c.soft}">${esc(L.by)}</text>`

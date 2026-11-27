@@ -70,7 +70,7 @@ test("2. the language button opens the list of the open languages: their own nam
   /* no new words: the sheet uses f.lang and close, which every language already has in its own file */
   const dir = fileURLToPath(new URL("../words/", import.meta.url));
   const en = Object.keys(JSON.parse(fs.readFileSync(dir + "en.json", "utf8")));
-  assert.equal(en.filter((k) => !/\.(one|few|many)$/.test(k) && !/^(claim|maker|mail)\./.test(k) && !/^seo\.words_[td]$/.test(k) && k !== "search").length, 57, "the words are the 57 of before chat K (chat N's claim words, chat X's two search words and chat S's search aside)");
+  assert.equal(en.filter((k) => !/\.(one|few|many)$/.test(k) && !/^(claim|maker|mail)\./.test(k) && !/^seo\.words_[td]$/.test(k) && k !== "search" && k !== "open_site").length, 57, "the words are the 57 of before chat K (chat N's claim words, chat X's two search words, chat S's search and chat Inside's open_site aside)");
   for (const f of fs.readdirSync(dir)) { const w = JSON.parse(fs.readFileSync(dir + f, "utf8")); assert.ok(w["f.lang"] && w.close, f + " has both"); }
 });
 

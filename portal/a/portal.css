@@ -820,3 +820,56 @@ dialog.sheet-find { block-size: calc(100dvh - 24px); }
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   .tile:hover .tile-a, .tile:hover .tile-star, .game-tile:hover, .btn:active { transform: none !important; }
 }
+
+/* ---------------------------------------------------------------- play it here (chat Inside, 27 Nov 2026) ---- */
+/* the small arrow beside Play: the game's own site in a new tab; 44 px, the same ring as Save, smaller than it */
+.btn-site { flex: none; align-self: center; display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; color: var(--ink); transition: border-color .15s var(--ease); }
+.btn-site:hover { border-color: var(--ink); }
+.btn-site .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.2; }
+/* the inside page: the game fills the screen under one slim bar (back, the small coin and name, the arrow, Next game in a run) */
+.pl-inside { overflow: hidden; }
+.in { display: flex; flex-direction: column; block-size: 100vh; block-size: 100dvh; }
+.in-bar { flex: none; display: flex; align-items: center; gap: 10px; min-block-size: 52px; padding-block: 4px; padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right)); background: var(--bg); border-block-end: 1.5px solid var(--line); }
+.in-name { flex: 1 1 auto; min-inline-size: 0; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; }
+.in-name-t { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.in-coin { flex: none; display: grid; place-items: center; inline-size: 28px; block-size: 28px; border: 2px solid var(--r); border-radius: 999px; color: var(--r); overflow: hidden; }
+.in-ico { inline-size: 14px; block-size: 14px; stroke-width: 2; }
+.in-logo { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; border-radius: 999px; background: var(--card); }
+.in-bar .back { flex: none; }
+.in-open { flex: none; display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; color: var(--ink); transition: border-color .15s var(--ease); }
+.in-open:hover { border-color: var(--ink); }
+.in-open .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.2; }
+.in-run { flex: none; margin-inline-start: 0; padding-inline: 14px 16px; }
+.in-frame { flex: 1 1 auto; min-block-size: 0; inline-size: 100%; border: 0; background: var(--card); }
+/* the switch under a listed game on the maker's form: on = players play it inside Play Logicers */
+.maker-frame { display: flex; flex-direction: column; gap: 4px; padding-block-start: 14px; border-block-start: 1px solid var(--line); min-inline-size: 0; }
+.maker-frame-l { display: flex; align-items: center; gap: 14px; min-block-size: 44px; cursor: pointer; font-size: 15px; font-weight: 500; line-height: 1.3; overflow-wrap: anywhere; }
+.maker-frame-cb { appearance: none; -webkit-appearance: none; flex: none; position: relative; inline-size: 48px; block-size: 44px; margin: 0; border: 0; background: transparent; cursor: pointer; }   /* the input is the 44 px target; the switch is drawn in it */
+.maker-frame-cb::before { content: ""; position: absolute; inset-inline: 0; inset-block: 8px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; transition: background-color .15s var(--ease); }
+.maker-frame-cb::after { content: ""; position: absolute; inset-block-start: 12.5px; inset-inline-start: 4.5px; inline-size: 19px; block-size: 19px; border-radius: 999px; background: var(--ink); transition: transform .15s var(--ease), background-color .15s var(--ease); }
+.maker-frame-cb:checked::before { background: var(--ink); }
+.maker-frame-cb:checked::after { background: var(--bg); transform: translateX(20px); }
+[dir="rtl"] .maker-frame-cb:checked::after { transform: translateX(-20px); }
+.maker-frame-cb:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 999px; }
+.maker-frame-p { font-size: 13px; line-height: 1.45; color: var(--soft); overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) { .maker-frame-cb::before, .maker-frame-cb::after { transition: none; } }
+/* the number of games on the wall, above the name: the sum of the wall's tiles (chat Inside, 27 Nov 2026) */
+.brand-n { display: flex; align-items: baseline; gap: 6px; margin-block-end: 12px; font-size: 14px; line-height: 1; color: var(--soft); }
+.brand-n-n { font-family: var(--f); font-weight: 500; font-size: 18px; letter-spacing: -0.01em; color: var(--ink); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+@media (min-width: 900px) { .brand-n { font-size: 15px; margin-block-end: 14px; } .brand-n-n { font-size: 20px; } }
+/* "Play" as the key word of every name (chat Inside, 27 Nov 2026; pages.js LOOKS, the class of <body>, PLAY_LOOK in wrangler.jsonc):
+   warm = heavier in one warm ring colour; tri = a small filled play-triangle before it; rings = the ring colours, one letter each */
+.play-warm .brand-play, .play-tri .brand-play, .play-rings .brand-play { color: var(--w0); }
+.play-warm .brand-play { font-weight: 700; letter-spacing: -.03em; }
+.play-tri .brand-play { font-weight: 600; }
+.play-tri .brand-play { position: relative; }
+.play-tri .brand-play::before { content: ""; position: absolute; inset-inline-end: calc(100% + .16em); inset-block-start: calc(50% - .22em); inline-size: .4em; block-size: .5em; background: currentColor; clip-path: polygon(0 0, 100% 50%, 0 100%); }   /* hangs in the page's margin: the name loses no width */
+.play-rings .brand-play { font-weight: 600; }
+.play-rings .pc0 { color: var(--w0); } .play-rings .pc1 { color: var(--w1); } .play-rings .pc2 { color: var(--w2); }
+.play-rings .pc3 { color: var(--w5); } .play-rings .pc4 { color: var(--w4); } .play-rings .pc5 { color: var(--w7); }
+
+/* the game page's row with the small arrow and the vote: the vote is its crown alone where its word does not fit (portal.js fitActs) */
+.btn-vote { position: relative; }
+.acts-tight .btn-vote { inline-size: 52px; padding-inline: 0; justify-content: center; }
+.acts-tight .btn-vote .vote-t { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 380px) { .game-acts:has(> .btn-site) { gap: 8px; } }   /* Play, the arrow and Save fit one line in every language at 320 */

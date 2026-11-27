@@ -37,6 +37,15 @@
                   state "wait" (until a look in the queue: kind "pic", filter Edits) or "ok"; one waiting a game (a newer one
                   replaces it); a refused one is deleted. games.pic = "<h>.<ext>" of the one shown, served at /p/<id>/<h>.<ext>
    Chat J, stage 4: games.told_at, when Khayyam marked the weekly email to the game's sender as sent (the queue's To tell)
+   Chat Inside, 27 Nov 2026 (play it here, claude/play-here-27nov.md):
+     games.frame      may the game be shown in a frame on play.logicers.com? 1 yes, 0 no (its final page's frame-ancestors or
+                      X-Frame-Options keeps us out), NULL not known (the look found no page that opened); the add check and the
+                      nightly look set it (check.js verdict), scripts/frames.mjs --send sets it too (POST /admin/frames); a look
+                      that is held (429, 503) or finds no page changes nothing
+     games.frame_at   the origin of the page the look ended on (the game's own, or where it moved on its own site): the
+                      frame's address may pass through it, so the inside page's CSP frame-src lets in both
+     games.frame_off  1 when the maker (the form's switch) or the admin key turned playing inside off: kept, whatever the site
+                      later allows. A game plays inside where frame = 1 and frame_off = 0 (db.js insideOf)
    Chat S, 24 Nov 2026 (search, plan 2.17 item 5):
      misses       the searches on a language's page that found nothing: the term in its matched form (search.js fold, at most
                   40 characters; never one holding "@", "://" or 6 digits in a row), counted per language and UTC day; no
@@ -72,7 +81,7 @@ export const SCHEMA = [
      status TEXT NOT NULL, source TEXT NOT NULL, made INTEGER NOT NULL, listed_at INTEGER, new_until INTEGER, slot INTEGER,
      last_check INTEGER, check_state TEXT, fails INTEGER NOT NULL DEFAULT 0, claim_hash TEXT, notes TEXT NOT NULL DEFAULT '',
      hits INTEGER NOT NULL DEFAULT 0, block TEXT, off_at INTEGER, maker_id TEXT, claimed_at INTEGER, line_by TEXT,
-     tell_n INTEGER NOT NULL DEFAULT 0, pic TEXT, told_at INTEGER)`,
+     tell_n INTEGER NOT NULL DEFAULT 0, pic TEXT, told_at INTEGER, frame INTEGER, frame_off INTEGER NOT NULL DEFAULT 0, frame_at TEXT)`,
   `CREATE UNIQUE INDEX IF NOT EXISTS games_url ON games (lang, norm)`,
   `CREATE UNIQUE INDEX IF NOT EXISTS games_slug ON games (lang, slug) WHERE slug IS NOT NULL`,
   `CREATE INDEX IF NOT EXISTS games_rows ON games (status, lang, kind)`,
@@ -130,7 +139,8 @@ export const rowsOf = (r) => (r && r.results) || [];
 const ready = new WeakSet();
 /* columns added after the first build (chat H, 20 Nov 2026): a database made before them (a local run) gets them here */
 export const MIGRATE = [["games", "block", "TEXT"], ["games", "off_at", "INTEGER"],
-  ["games", "maker_id", "TEXT"], ["games", "claimed_at", "INTEGER"], ["games", "line_by", "TEXT"], ["games", "tell_n", "INTEGER NOT NULL DEFAULT 0"], ["games", "pic", "TEXT"], ["games", "told_at", "INTEGER"]];
+  ["games", "maker_id", "TEXT"], ["games", "claimed_at", "INTEGER"], ["games", "line_by", "TEXT"], ["games", "tell_n", "INTEGER NOT NULL DEFAULT 0"], ["games", "pic", "TEXT"], ["games", "told_at", "INTEGER"],
+  ["games", "frame", "INTEGER"], ["games", "frame_off", "INTEGER NOT NULL DEFAULT 0"], ["games", "frame_at", "TEXT"]];
 async function migrate(env) {
   let have = null;
   try { have = new Set((await all(env, "SELECT name FROM pragma_table_info('games')")).map((r) => r.name)); } catch (e) { have = null; }
@@ -301,6 +311,10 @@ export async function wallData(env) {
   ])).map(rowsOf);
   return { langs, today: totals[0] ? totals[0].n : 0 };
 }
+
+/* a game plays inside Play Logicers' own page (/<lang>/g/<slug>/play/) where its site allows a frame (games.frame = 1) and
+   nobody turned it off (frame_off); one of Logicers' own games never (its site is ours), nor a game with no page -> the path, or null */
+export const insideOf = (g) => (g && g.status === "listed" && g.source !== "logicers" && g.slug && g.frame === 1 && !g.frame_off ? "/" + g.lang + "/g/" + g.slug + "/play/" : null);
 
 export const gameBySlug = (env, lang, slug) => one(env, "SELECT * FROM games WHERE lang = ? AND slug = ?", lang, slug);
 export const gameById = (env, id) => (typeof id === "string" && id.length <= 40 ? one(env, "SELECT * FROM games WHERE id = ?", id) : null);

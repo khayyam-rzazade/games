@@ -13,7 +13,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { env, get, call, importGames, seedGames, one, rows, resetBrakes, setNow, WEB, A, admin } from "./lib.mjs";
+import { env, get, call, importGames, seedGames, one, rows, resetBrakes, setNow, WEB, A, admin , flat } from "./lib.mjs";
 import { WORDS } from "../src/words.js";
 import { keyHash } from "../src/util.js";
 import { tellText } from "../src/admin.js";
@@ -176,7 +176,7 @@ test("the claim pages take the game's language; /maker/ takes ?l=, else the brow
   assert.doesNotMatch(c, /class="about-local"/, "no 'This page is in English'");
   assert.doesNotMatch(visible(c), /This page is in English|Esta página está en inglés/, "no 'This page is in English'");
   assert.match(c, /<a class="btn btn-send claim-edit" href="\/maker\/\?l=es">/);
-  assert.match(c, /<span class="brand-play">Play<\/span> <span class="brand-lang">Español<\/span>/, "the name of the game's language page");
+  assert.match(flat(c), /<span class="brand-play">Play<\/span> <span class="brand-lang">Español<\/span>/, "the name of the game's language page");
   assert.match(c, /<a class="back" href="\/es\/g\/[a-z0-9-]+\/"/);
   assert.match((await get(e, "/claim/?g=" + j.id)).text, /<html lang="ja" dir="ltr">/);
   /* the link of the weekly email: the game's language; a link that works no more: the browser's */

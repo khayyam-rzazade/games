@@ -9,7 +9,7 @@
      /maker/           the maker's form: the key on this device (localStorage "portal.maker"; or pasted), the maker's name, and
                        for each game its line, its kind (POST /api/maker, /api/maker/edit) and its logo (POST /api/maker/pic:
                        PNG, JPEG or WebP, at most 150 KB, 256 px at least; it shows once the queue said yes); under a
-                       listed game, the optional badge: its two pictures and the HTML to copy (chat X, 23 Nov 2026)
+                       listed game, the switch "play it here" (chat Inside, 27 Nov 2026) and the optional badge: its two pictures and the HTML to copy (chat X, 23 Nov 2026)
    It also keeps which maker the key opens and its games ("portal.makerof"), so portal.js shows Edit on their pages.
    A claim that gives a key shows it once and keeps it on the device. Everything is built with the DOM (createElement,
    textContent): nothing a maker types becomes markup, and the CSP forbids inline script and style. */
@@ -236,9 +236,36 @@
     });
     inp.addEventListener("input", function () { inp.removeAttribute("aria-invalid"); });
     a.appendChild(f);
+    if (g.status === "listed") a.appendChild(framePart(g));
     a.appendChild(logoForm(g));
     if (g.badge) a.appendChild(badgePart(g));
     return a;
+  }
+
+  /* the switch under a listed game (chat Inside, 27 Nov 2026): on by default; on, players play the game inside Play Logicers where its
+     site allows it, off, on its own site. It saves at once (POST /api/maker/edit { frame }); the line under it says what on means. */
+  function framePart(g) {
+    var box = el("section", "maker-frame"), id = "frame-" + g.id, pid = "frame-p-" + g.id;
+    var lab = el("label", "maker-frame-l"), cb = el("input", "maker-frame-cb"), t = el("span", "maker-frame-t", w("maker.frame"));
+    cb.type = "checkbox"; cb.id = id; cb.setAttribute("role", "switch"); cb.setAttribute("aria-describedby", pid); cb.checked = g.frame !== false;
+    lab.appendChild(cb); lab.appendChild(t);
+    box.appendChild(lab);
+    var p = el("p", "maker-frame-p", w("maker.frame_p")); p.id = pid;
+    box.appendChild(p);
+    var msg = el("p", "maker-msg"); msg.setAttribute("role", "status"); msg.hidden = true;
+    box.appendChild(msg);
+    cb.addEventListener("change", function () {
+      var want = cb.checked;
+      cb.disabled = true;
+      post("/api/maker/edit", { key: keyOf(), game: g.id, frame: want }).then(function (j) {
+        cb.disabled = false;
+        if (j && j.ok) { cb.checked = j.game.frame !== false; note(msg, w("maker.saved"), true); return; }
+        cb.checked = !want;
+        if (j && j.e === "key") return;
+        note(msg, say(j && j.e), false);
+      });
+    });
+    return box;
   }
 
   /* the optional badge (chat X, 23 Nov 2026): a listed game only; two small pictures (for a light page and a dark one), the

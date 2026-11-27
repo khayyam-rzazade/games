@@ -2,6 +2,7 @@
 -- request (src/db.js, SCHEMA: the same statements; test/test_misc.mjs checks the two agree). Chat A, 19 Nov 2026;
 -- games.block, games.off_at and nets by chat H, 20 Nov 2026; wseen, votes and gotw (the game of the week), makers, tokens
 -- and games.maker_id, claimed_at, line_by, tell_n (the claim) by chat J, 20 Nov 2026 (src/db.js says what each holds).
+-- games.frame, frame_off and frame_at (may a game be shown inside the page) by chat Inside, 27 Nov 2026.
 -- throttled (the hosts that answered 429 or 503 to the nightly look, night by night) by chat F2, 27 Nov 2026.
 -- A database made before a column was added gets it on the first request (src/db.js MIGRATE), then the indexes on it (AFTER).
 -- To make them by hand anyway: npx wrangler d1 execute logicers-portal --remote --file=schema.sql
@@ -14,7 +15,7 @@ CREATE TABLE IF NOT EXISTS games (
   status TEXT NOT NULL, source TEXT NOT NULL, made INTEGER NOT NULL, listed_at INTEGER, new_until INTEGER, slot INTEGER,
   last_check INTEGER, check_state TEXT, fails INTEGER NOT NULL DEFAULT 0, claim_hash TEXT, notes TEXT NOT NULL DEFAULT '',
   hits INTEGER NOT NULL DEFAULT 0, block TEXT, off_at INTEGER, maker_id TEXT, claimed_at INTEGER, line_by TEXT,
-  tell_n INTEGER NOT NULL DEFAULT 0, pic TEXT, told_at INTEGER);
+  tell_n INTEGER NOT NULL DEFAULT 0, pic TEXT, told_at INTEGER, frame INTEGER, frame_off INTEGER NOT NULL DEFAULT 0, frame_at TEXT);
 
 CREATE UNIQUE INDEX IF NOT EXISTS games_url ON games (lang, norm);
 

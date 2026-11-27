@@ -19,7 +19,7 @@ import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
-import { env, get, call, admin, importGames, seedGames, one, rows, resetBrakes, setNow, A, R, _test } from "./lib.mjs";
+import { env, get, call, admin, importGames, seedGames, one, rows, resetBrakes, setNow, A, R, _test , flat } from "./lib.mjs";
 import { WORDS, word, pluralKey, withN, num } from "../src/words.js";
 import { LANGS, LANG, htmlLang, numTag, pageName } from "../src/langs.js";
 import { SEARCH_MIN, OPEN_AT } from "../src/db.js";
@@ -340,7 +340,7 @@ test("4. open at 1 (25 Nov 2026; it was 5): one listed game opens a language wit
   const r = await get(e, "/ka/");
   assert.equal(r.status, 200, "Georgian with one game: its page");
   assert.match(r.text, /<html lang="ka" dir="ltr">/);
-  assert.match(r.text, /<span class="brand-play">Play<\/span> <span class="brand-lang">ქართული<\/span>/);
+  assert.match(flat(r.text), /<span class="brand-play">Play<\/span> <span class="brand-lang">ქართული<\/span>/);
   const wall = (await get(e, "/")).text;
   assert.match(wall, /<li class="lang" data-lang="ka" lang="ka"><a class="lang-a" href="\/ka\/"><span class="lang-name" dir="ltr">ქართული<\/span><span class="lang-n">1<\/span>/, "its tile on the wall, with its one game");
   assert.ok((await get(e, "/api/langs")).json.langs.some((l) => l.code === "ka" && l.games === 1));

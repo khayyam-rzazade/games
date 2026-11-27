@@ -337,12 +337,34 @@
      link goes to the first not played today. A tap on it counts as any Play does. Held still for a moment after a tap on
      it, so the tab it opens gets the address it had when it was tapped. */
   var held = false;
+  /* run-next: from here */
+  /* Where a game opens and which game a run goes to next (chat Inside, 27 Nov 2026; server/portal/test/test_inside.mjs runs this
+     block as it stands): a game that plays inside Play opens its inside page in this tab ("#run" on the page of a run, so the bar
+     there offers Next game), any other on its own site in a new tab. runNext: the run's games (id, url, inside), the days they were
+     played (id -> the device's day), today, and the game now on screen (none on a language's page) -> how many were played today,
+     how many there are, and the first not played today. */
+  var INSIDE = /^\/[a-z]{2,3}(?:-[a-z]{4})?\/g\/[a-z0-9-]{1,64}\/play\/$/;
+  function openOf(p, run) {
+    return p.inside && INSIDE.test(p.inside) ? { href: p.inside + (run === false ? "" : "#run"), blank: false } : { href: p.url, blank: true };
+  }
+  function runNext(list, played, today, current) {
+    var k = 0, next = null;
+    list.forEach(function (p) { if (played[p.id] === today) k++; else if (p.id !== current && !next) next = p; });
+    return { k: k, n: list.length, next: next };
+  }
+  /* run-next: to here */
+  function openAs(a, p, run) {
+    var o = openOf(p, run);
+    a.setAttribute("href", o.href);
+    if (o.blank) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener"); } else { a.removeAttribute("target"); a.removeAttribute("rel"); }
+  }
   function runList() {
     var out = [], seen = {};
     function add(li) {                                      // the game's own address: a Yours tile keeps it (data-url); a Logicers coin is it
       var id = li && li.getAttribute("data-game"), a = li && $(".tile-a", li), u = li && (li.getAttribute("data-url") || (a && a.getAttribute("href")));
       if (!id || !u || seen[id] || !SAFE.test(u)) return;
-      seen[id] = 1; out.push({ id: id, url: u });
+      var ins = li.getAttribute("data-inside") || "";          // a game that plays inside Play (chat Inside): its inside page
+      seen[id] = 1; out.push({ id: id, url: u, inside: INSIDE.test(ins) ? ins : "" });
     }
     add($(".row-lg:not(.row-lg-en) li.tile"));
     $$("#row-mine li.tile").forEach(add);
@@ -352,14 +374,15 @@
     var a = $("#run"), done = $("#run-done"), sec = $("#row-mine");
     if (!a || !done || !sec || held) return;
     m = m || readMine();
-    var list = runList(), today = localDay(), k = 0, next = null;
-    list.forEach(function (p) { if (m.played[p.id] === today) k++; else if (!next) next = p; });
+    var list = runList(), today = localDay(), r = runNext(list, m.played, today), k = r.k, next = r.next;
     if (sec.hidden || list.length < 2) { a.hidden = true; done.hidden = true; return; }
     var text = k ? fmt(k) + "/" + fmt(list.length) : fmt(list.length);   // a 0 is never written
+    if (list.length >= 2) put("portal.run", JSON.stringify({ lang: LANG, day: today, list: list }));   // for the inside page's Next game
     if (next) {
       var label = W.run + ", " + text;
       done.hidden = true; a.hidden = false;
-      a.setAttribute("href", next.url); a.setAttribute("data-game", next.id);
+      openAs(a, next);
+      a.setAttribute("data-game", next.id);
       a.setAttribute("aria-label", label); a.setAttribute("title", label);
       $(".run-t", a).textContent = text;
     } else {
@@ -369,6 +392,25 @@
       done.setAttribute("aria-label", all); done.setAttribute("title", all);
       $(".run-t", done).textContent = text;
     }
+  }
+  /* the inside page's Next game (chat Inside, 27 Nov 2026): only in a run (the page's address ends in #run, which the run's link and
+     this one add); the next game of today's run that this device has not played today, from portal.run (kept by the language's
+     page whenever it draws the run: { lang, day, list: [{ id, url, inside }] }); it opens inside in this tab where it can, else
+     on its own site in a new tab. A tap counts as any Play does. Without a run for this language and day: no link. */
+  function paintInside() {
+    var a = $("#run");
+    if (PAGE !== "inside" || !a || held) return;
+    var r = null;
+    try { r = JSON.parse(get("portal.run") || "null"); } catch (e) { r = null; }
+    var show = /^#run$/.test(window.location.hash) && r && r.lang === LANG && r.day === localDay() && Array.isArray(r.list);
+    var list = show ? r.list.filter(function (p) { return p && GAME_ID.test(p.id || "") && SAFE.test(p.url || ""); }) : [];
+    var m = readMine(), today = localDay(), r = runNext(list, m.played, today, D.game), k = r.k, next = r.next;
+    if (!next || list.length < 2) { a.hidden = true; a.removeAttribute("href"); a.setAttribute("data-game", ""); return; }
+    var text = k ? fmt(k) + "/" + fmt(list.length) : fmt(list.length), label = W.run + ", " + text;
+    openAs(a, next);
+    a.setAttribute("data-game", next.id); a.setAttribute("aria-label", label); a.setAttribute("title", label);
+    $(".run-t", a).textContent = text;
+    a.hidden = false;
   }
   /* the dice: the language's games (id and address) are fetched once, and the link is given a random one it can open at once
      (a tap is a real link in a new tab: no script between the tap and the page). Games played today are left out unless
@@ -398,7 +440,8 @@
     var pool = diceList.filter(function (p) { return p[0] !== diceLast && m.played[p[0]] !== today; });
     if (!pool.length) pool = diceList.filter(function (p) { return p[0] !== diceLast; });
     var p = pool[Math.floor(Math.random() * pool.length)];
-    a.setAttribute("href", p[1]); a.setAttribute("data-game", p[0]); a.removeAttribute("aria-disabled");
+    openAs(a, { url: p[1], inside: p[2] || "" }, false);        // a third entry: the game plays inside Play (chat Inside)
+    a.setAttribute("data-game", p[0]); a.removeAttribute("aria-disabled");
   }
   function paintMarks(m) {                                  // a Yours tile: a tick if played today, the Save mark if saved, else today's number
     var today = localDay();
@@ -435,6 +478,7 @@
     li.setAttribute("data-game", g.id);
     li.setAttribute("data-kind", g.kind);
     if (g.url) li.setAttribute("data-url", g.url);
+    if (g.inside && INSIDE.test(g.inside)) li.setAttribute("data-inside", g.inside);   // for My run (chat Inside)
     var page = "/" + (g.lang || LANG) + "/g/" + encodeURIComponent(g.slug) + "/";
     a.setAttribute("href", g.logicers ? g.url : page);
     nm.setAttribute("href", g.logicers ? g.url : page);
@@ -524,7 +568,7 @@
     mePush();
     if (host.id === "dice" || host.id === "run") {          // the tap's own link opens first; the next address comes a moment later
       held = true;
-      window.setTimeout(function () { held = false; if (host.id === "dice") diceLast = id; pickDice(); paintRun(); }, 80);
+      window.setTimeout(function () { held = false; if (host.id === "dice") diceLast = id; pickDice(); paintRun(); paintInside(); }, 80);
     }
     if (first && NUMS) {
       $$('[data-game="' + id + '"]').forEach(function (g) {
@@ -564,7 +608,23 @@
     b.setAttribute("aria-pressed", on ? "true" : "false");
     if (on) b.setAttribute("aria-disabled", "true"); else b.removeAttribute("aria-disabled");
     b.hidden = mine ? !on : !(m.week.w === wk && m.week.ids.indexOf(id) >= 0);
+    fitActs();
   }
+  /* a game page that plays inside has the small arrow in the row (chat Inside, 27 Nov 2026): Play, the arrow, the vote and Save stay on one
+     line, so the page is no higher. Where the vote's word does not fit beside them, the vote is its crown alone (the word stays its name
+     and its title); on a wider screen the word comes back. The vote is hidden until it is wanted, so nothing jumps. */
+  var actsAt = 0;
+  function fitActs() {
+    var a = $(".game-acts"), v = a && $(".btn-vote", a);
+    if (!a || !v || !$(".btn-site", a)) return;
+    a.classList.remove("acts-tight"); v.removeAttribute("title");
+    if (v.hidden) return;
+    var kids = [].slice.call(a.children).filter(function (e) { return !e.hidden; }), first = kids[0].getBoundingClientRect();
+    var wraps = function () { return kids.some(function (e) { return e.getBoundingClientRect().top >= first.bottom - 2; }); };
+    if (!wraps()) return;
+    a.classList.add("acts-tight"); v.setAttribute("title", (v.textContent || "").trim());
+  }
+  if (window.addEventListener) window.addEventListener("resize", function () { if (!actsAt) actsAt = window.requestAnimationFrame(function () { actsAt = 0; fitActs(); }); });
   function sendVote(b) {
     var id = b.getAttribute("data-vote");
     if (!GAME_ID.test(id || "") || b.getAttribute("aria-pressed") === "true" || b.getAttribute("aria-busy") === "true" || !window.fetch) return;
@@ -1065,6 +1125,7 @@
   paintEdit();
   paintMark();
   renderMine();
+  paintInside();
   counts();
   diceInit();
   meStart();
@@ -1086,6 +1147,7 @@
     paintStars(m);
     paintTicks(m);
     paintVote(m);
+    paintInside();
     if (diceList && Date.now() - diceAt > 600000) { diceAt = Date.now(); diceList = null; diceInit(); } else pickDice();
     if (Date.now() - lastCounts > 30000 || hitAt > lastCounts) { counts(); renderMine(); }
   });

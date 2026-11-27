@@ -2,7 +2,7 @@
    (Graj po polsku), 404 in the page's language, 302 for a language that is not open, 410 for a game taken off. */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { env, get, call, importGames, seedGames, admin, A, SITE, one } from "./lib.mjs";
+import { env, get, call, importGames, seedGames, admin, A, SITE, one , flat } from "./lib.mjs";
 import { word } from "../src/words.js";
 const W = (lang, key) => word(lang, key).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");   /* a word as the page writes it (C's files, 19 Nov 2026) */
 const re = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -40,7 +40,7 @@ test("a language page: name, lang, title, canonical, rows, JSON-LD, words from i
   assert.equal(title(r.text), "Play Español · " + word("es", "seo.daily"));
   assert.equal(canon(r.text), SITE + "/es/");
   /* the name goes to Play's home page from every page (20 Nov 2026, evening; test_k.mjs has every page), "by Logicers" to Logicers' Spanish home */
-  assert.match(r.text, /<h1 class="brand"><a class="brand-a" href="\/"><span class="brand-play">Play<\/span> <span class="brand-lang">Español<\/span><\/a><\/h1>/);
+  assert.match(flat(r.text), /<h1 class="brand"><a class="brand-a" href="\/"><span class="brand-play">Play<\/span> <span class="brand-lang">Español<\/span><\/a><\/h1>/);
   assert.match(r.text, new RegExp(`<p class="brand-by"><a class="brand-by-a" href="https://logicers.com/es/">${re(W("es", "by"))}</a></p>`));
   assert.match(r.text, /<section class="row row-mine" id="row-mine"[^>]*hidden>/);
   const iLg = r.text.indexOf('class="row row-lg"'), iW = r.text.indexOf('id="k-words"'), iM = r.text.indexOf('id="k-maps"'), iWanted = r.text.indexOf('class="row row-wanted"');
@@ -77,10 +77,10 @@ test("Graj po polsku on the Polish page (chat C's choice; the wall and the chip 
   const r = await get(e, "/pl/");
   assert.equal(r.status, 200);
   assert.match(htmlTag(r.text), /lang="pl"/);
-  assert.match(r.text, /<span class="brand-play">Graj<\/span> <span class="brand-lang">po polsku<\/span>/);
+  assert.match(flat(r.text), /<span class="brand-play">Graj<\/span> <span class="brand-lang">po polsku<\/span>/);
   assert.match(title(r.text), /^Graj po polsku · /);
   assert.match(r.text, /<span class="chip-lang-t">Polski<\/span>/);
-  assert.doesNotMatch(r.text, /<span class="brand-play">Play<\/span>/);
+  assert.doesNotMatch(flat(r.text), /<span class="brand-play">Play<\/span>/);
   const g = await get(e, "/pl/g/game-pl-1/");
   assert.match(title(g.text), / · Graj po polsku$/);
   const l = await get(e, "/api/langs");
@@ -94,7 +94,7 @@ test("Play 日本語 and a right-to-left language carry their lang and dir", asy
   await importGames(e, seedGames("ja", 5).concat(seedGames("ar", 5)));
   const ja = await get(e, "/ja/");
   assert.match(htmlTag(ja.text), /lang="ja" dir="ltr"/);
-  assert.match(ja.text, /<span class="brand-play">Play<\/span> <span class="brand-lang">日本語<\/span>/);
+  assert.match(flat(ja.text), /<span class="brand-play">Play<\/span> <span class="brand-lang">日本語<\/span>/);
   const ar = await get(e, "/ar/");
   assert.match(htmlTag(ar.text), /lang="ar" dir="rtl"/);
 });
