@@ -82,6 +82,7 @@ It says how many were added, updated and skipped (with why), and which languages
 listed game: 1 since 25 Nov 2026, it was 5; `OPEN_AT` in `src/db.js`).
 The first nights read every listed game's title and description: a starting game whose page carries a blocklist word (an
 innocent "bet" in a title, say) is hidden with a "Blocklist" card under Dead links; Show again, and that word stays quiet.
+The blocklist reads a page in the game's own language: an everyday word there is no hit (Swedish "sex" is six); the exceptions are `EVERYDAY` in `src/check.js`.
 Running it again changes nothing that is already there except a starting game's name, kind, line and maker. One file:
 `npm run import -- seed/es.json`.
 
@@ -150,12 +151,12 @@ starts it itself).
 npm test
 ```
 
-160 tests (one needs `LIVE=1`; on 27 Nov 2026, chat Q3, 159 pass and that one is skipped): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
+183 tests (two are skipped, one of them needs `LIVE=1`; on 27 Nov 2026, chat F2, 181 pass and none fail): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
 per device, game and UTC day; robots and other sites not counted; the duplicate rule; the add check (a redirect to another
 host, a page in another language, the blocklist, a page that does not open, at most 5 redirects, never an IP or localhost);
 the review key refused on hide, delete and import; a language opening at its first listed game (1 since 25 Nov 2026) and not on the English Logicers games; Graj
 po polsku; the row order of 2.6; the nightly job (the day's hashes emptied; a 403 that must not hide; three nights of 404 before
-dead; a "check by hand" card closed by the night the game answers again; a move to another site hidden; 300 a night, 6 at a time); the settings (only `/a/*` skips the Worker).
+dead; a "check by hand" card closed by the night the game answers again; a move to another site hidden; 300 a night, 6 at a time, one at a time to one site); the settings (only `/a/*` skips the Worker).
 `test/test_h.mjs` (chat H, 20 Nov 2026) holds the fixes of plan section 10, each with a test that failed before them: the caps
 per address, the numbers jump card, 10 adds a day per address, the hidden field kept with `hp`, To do with no flags first,
 the nightly look's order and its blocklist hide, the Not-safe look, the review key refused on a listed game's address, the
@@ -197,7 +198,14 @@ wins, what goes is cleaned). The two browsers with one code: `node me/tests/play
 own SQLite (`test/d1shim.mjs`, as in the Studio); the web the checks open is a stand-in (`test/lib.mjs`). `test/test_q3.mjs`
 (chat Q3, 27 Nov 2026, the check of wave 3) holds its fixes, each test failing before it: the page's name and the wall's names
 never cut inside a word; Hindi typed without the nukta (ज़ is ज) in search; Welsh's "Last 90 days" within its 20 characters.
-Its look in a browser is check.py section 19 (`--only-q3`), with the 51 languages in sections 1 to 18.
+Its look in a browser is check.py section 19 (`--only-q3`), with the 51 languages in sections 1 to 18. `test/test_f2.mjs` (chat F2,
+27 Nov 2026) holds the nightly look's one-site-at-a-time rule, each test failing before it, on a fake clock (`test/vclock.mjs`;
+`test/lib.mjs` installs it, so no test waits in real time): never two requests at once to one host and 2 s between two (a redirect
+to the same site's other page too); six at a time are six different hosts; a host that answers 429 after 3 requests in 10 s (or a
+503) leaves no card, no fail and no hide, and its games go first the next night, though others were looked at longer ago; three
+nights in a row give ONE card for the host, a good night or a night with no look starts the count again, and the card closes
+when the host answers; a 403, a 500 and a time-out are still the game's own card; the 300 count looks, not games passed over; what
+60 games of one host take; the 12 minutes; the Gate and the walk on their own.
 
 Logicers' own 72 addresses: `npm test` checks each is a page in this repository and that the six homes still name them so.
 To fetch each from logicers.com (200): `LIVE=1 node --test test/test_logicers.mjs`.
@@ -300,14 +308,32 @@ lang kind name line maker here twice claimed` (a claimed seed keeps its maker's 
 
 - **The nightly job** (02:10 UTC) looks at listed games: first the 50 with most players in the last 7 days, then those that
   failed last time, then the oldest look; it reads each page's title and description, and a blocklist word it did not see
-  last time hides the game at once (a "blocked" card). It also writes a "numbers jump" card, left for Khayyam, for a game
+  last time hides the game at once (a "blocked" card). A host that answers 429 or 503 is left alone for the rest of the
+  night and looked at first the next night (see the limits). It also writes a "numbers jump" card, left for Khayyam, for a game
   whose day passed 100 players and ten times its average of the 7 days before, and deletes the senders' names and emails of
   games off the list (rejected, hidden, dead) for 90 days.
 - **The nightly job's limits**: a cron at most once an hour may run 15 minutes of wall time and up to 15 minutes of CPU;
   `limits.cpu_ms` is set to 300,000 (5 minutes, the most a setting allows) and the night needs a few seconds of it: waiting
-  on the network is not CPU. **Link checks: at most 300 a night, 6 at a time** (a Worker may have six connections waiting
-  for headers at once), **8 s each** for the whole walk, at most 5 redirects: 300 × 8 s ÷ 6 = 400 s at the very worst;
-  300 × 6 hops = 1,800 fetches of the 10,000 subrequests a run may make; the look reads the first 128 KB of a page.
+  on the network is not CPU. **Link checks: at most 300 a night, 6 at a time**
+  (a Worker may have six connections waiting for headers at once), **but never more than one request at a time to one host,
+  and at least 2 s from the end of one answer to the start of the next request to the same host** (`NIGHT.gap`; a redirect to
+  another page of the same site is a request too, and `www.` is the same host). The night's list is taken by host in turn: a game
+  whose host is busy or in its pause is passed over for the next game, in the list's order, of another host, so 6 at a time are 6
+  different hosts. **8 s each** for the whole walk (the time a look waits for its host's turn is not part of the 8 s), at most 5
+  redirects. **A host that answers 429 or 503 is stopped for the rest of the night** (chat F2): nothing more is asked of it, its
+  games passed over do not use up the 300 (`NIGHT.spare`: 300 more rows are read for this), no fail and no card is written on
+  them, and the next night its games go first (the table `throttled`: the host, the nights in a row, the last day, the status;
+  made by the Worker on the first request and in `schema.sql`; a row is deleted when the host answers a page again, and after 30
+  days). **Only when a host has answered 429 or 503 on 3 nights in a row** (`NIGHT.hostNights`) does a card go under Dead links:
+  ONE card for the host, "check by hand: the host … answered 503 on 3 nights in a row (n games)", on the host's first game looked
+  at; it is not one per game, nothing is ever hidden on a 429 or 503, and the card closes by itself when the host answers a page.
+  A night the host answers something else, or is not looked at, starts the count again. A 403, a 500, a time-out and the rest
+  are still the game's own card, as before. **The night starts no look after 12 minutes** (`NIGHT.budget`), so the one batch of
+  writes at the end is never cut by the 15 minutes. **What a night takes**: 60 games of one host with 0.3 s answers take
+  60 × 0.3 s + 59 × 2 s = 136 s (2 min 16 s); with 1 s answers 3 min; if every page runs to the 8 s time-out, just under 10 min.
+  300 games of one host with 1 s answers do not fit: 240 looks fit the 12 minutes and the rest wait for the next night. Games of
+  different hosts go side by side, 6 at a time. 300 looks × 6 hops = 1,800 fetches of the 10,000 subrequests a run may make; the
+  look reads the first 128 KB of a page.
   With 2,000 games each is seen about once a week; with more, the cadence stretches by itself. The writes go in one batch
   (D1 allows 1,000 queries a run).
 - **The add check** runs after the answer (`ctx.waitUntil`, which may run 30 s past the answer): one GET, 8 s, 5 redirects,
@@ -365,7 +391,9 @@ and addresses as two numbers (`gotw`); for a claimed game its maker (`makers`: a
 two dates; `games.maker_id`, `claimed_at`, `line_by`), the pending line's keyed hash, and the claim links' keyed hashes
 (`tokens`; `games.tell_n` counts the used ones); a claimed game's logo (`pics`: its bytes, type and size; one waiting and
 the one shown, `games.pic`), and when the To tell email went (`games.told_at`); the searches on a language's page that found
-nothing, as words only (`misses`: the day, the language, the term as it was compared, how many times; chat S), 90 days. A sender's name and email
+nothing, as words only (`misses`: the day, the language, the term as it was compared, how many times; chat S), 90 days; and the hosts
+that answered 429 or 503 to the nightly look (`throttled`: the host, the nights in a row, the last day, the status; chat F2), 30
+days after the last. A sender's name and email
 stay while the game may be listed and go 90 days after it is rejected, hidden or dead (at once with a delete).
 
 ## A new language

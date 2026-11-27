@@ -1,6 +1,7 @@
 /* The nightly job (plan 2.12, section 3): the day's hashes emptied, the link check (a 403 that must not hide, three
    nights of 404 before dead, a redirect to another host hidden at once, at most 300 a night, 6 at a time, 8 s each,
-   oldest first), New closed, the opening rule, the tidy-up. */
+   oldest first), New closed, the opening rule, the tidy-up. Since 27 Nov 2026 (chat F2) a 429 or 503 is the host's matter,
+   not the game's: no card, no fail (the one-site-at-a-time tests are in test_f2.mjs). */
 import test from "node:test";
 import assert from "node:assert/strict";
 import { env, get, call, importGames, seedGames, admin, A, R, one, rows, WEB, page, device, setNow, NOW, _test, worker, ctx } from "./lib.mjs";
@@ -28,14 +29,16 @@ test("the day's hashes: past days emptied at night, today's kept; counts stay", 
   } finally { setNow(start); }
 });
 
-test("the link check: ok, a 403 that must not hide, 429 and 5xx and a timeout queued by hand, a redirect to another host hidden", async () => {
+test("the link check: ok, a 403 that must not hide, 500 and 502 and a timeout queued by hand, 429 and 503 left alone, a redirect to another host hidden", async () => {
   const e = env();
-  const names = ["ok", "forbidden", "busy", "down", "slow", "moved", "samesite", "downgrade"];
+  const names = ["ok", "forbidden", "busy", "down", "broken", "bad", "slow", "moved", "samesite", "downgrade"];
   await importGames(e, names.map((n) => ({ name: n, url: `https://${n}.example.com/`, lang: "es", kind: "words", line: "x" })));
   WEB.set("https://ok.example.com/", { body: page("ok", "es") });
   WEB.set("https://forbidden.example.com/", { status: 403 });
   WEB.set("https://busy.example.com/", { status: 429 });
   WEB.set("https://down.example.com/", { status: 503 });
+  WEB.set("https://broken.example.com/", { status: 500 });
+  WEB.set("https://bad.example.com/", { status: 502 });
   WEB.set("https://slow.example.com/", () => Promise.reject(Object.assign(new Error("The operation was aborted due to timeout"), { name: "TimeoutError" })));
   WEB.set("https://moved.example.com/", { status: 301, headers: { Location: "https://bahis-giris.example.net/" } });
   WEB.set("https://bahis-giris.example.net/", { body: page("Bahis", "tr") });
@@ -45,11 +48,12 @@ test("the link check: ok, a 403 that must not hide, 429 and 5xx and a timeout qu
   const out = await nightly(e);
   assert.equal(out.checked, names.length);
   assert.deepEqual(await status(e, "ok"), { status: "listed", fails: 0, check_state: "ok" });
-  for (const n of ["forbidden", "busy", "down", "slow", "downgrade"]) assert.deepEqual(await status(e, n), { status: "listed", fails: 0, check_state: "check" }, n + ": never hidden");
+  for (const n of ["forbidden", "broken", "bad", "slow", "downgrade"]) assert.deepEqual(await status(e, n), { status: "listed", fails: 0, check_state: "check" }, n + ": never hidden");
+  for (const n of ["busy", "down"]) assert.deepEqual(await status(e, n), { status: "listed", fails: 0, check_state: null }, n + ": 429 and 503: the host's matter, nothing on the game");
   assert.deepEqual(await status(e, "moved"), { status: "hidden", fails: 0, check_state: "moved" });
   assert.equal((await status(e, "samesite")).status, "listed", "a redirect on its own site is fine");
   const q = await rows(e, "SELECT q.kind, g.slug, q.text FROM queue q JOIN games g ON g.id = q.game WHERE q.done = 0 ORDER BY g.slug");
-  assert.deepEqual(q.map((r) => r.kind + " " + r.slug), ["check busy", "check down", "check downgrade", "check forbidden", "moved moved", "check slow"]);
+  assert.deepEqual(q.map((r) => r.kind + " " + r.slug), ["check bad", "check broken", "check downgrade", "check forbidden", "moved moved", "check slow"], "no card for 429 or 503");
   assert.match(q.find((r) => r.slug === "moved").text, /bahis-giris/);
   assert.equal((await get(e, "/es/g/moved/")).status, 410);
   /* a second night: one "check" card per game while it is open */
@@ -63,8 +67,8 @@ test("the link check: ok, a 403 that must not hide, 429 and 5xx and a timeout qu
 test("a \"check by hand\" card closes by itself the night the game opens again; one left for Khayyam stays", async () => {
   const e = env();
   await importGames(e, ["blip", "kept"].map((n) => ({ name: n, url: `https://${n}.example.com/`, lang: "es", kind: "words", line: "x" })));
-  WEB.set("https://blip.example.com/", { status: 503 });
-  WEB.set("https://kept.example.com/", { status: 503 });
+  WEB.set("https://blip.example.com/", { status: 500 });
+  WEB.set("https://kept.example.com/", { status: 502 });
   await nightly(e);
   assert.equal((await one(e, "SELECT COUNT(*) AS n FROM queue WHERE kind = 'check' AND done = 0")).n, 2);
   const kept = (await one(e, "SELECT id FROM games WHERE slug = 'kept'")).id;

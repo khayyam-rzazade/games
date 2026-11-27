@@ -174,7 +174,9 @@ export async function makerEdit(env, req, b) {
   if (b.game === undefined) {                                           // the maker's name, on every game of the maker
     const name = cleanText(b.name, 1, 60);
     if (name === null) return bad("field", 400, { field: "name" });
-    if (blockText(name)) return bad("blocked", 400, { field: "name" });
+    /* the name goes on every game of the maker: it must pass in the language of each of them */
+    const langs = (await all(env, "SELECT DISTINCT lang FROM games WHERE maker_id = ? AND source <> 'logicers'", m.id)).map((r) => r.lang);
+    if (blockText(name, langs)) return bad("blocked", 400, { field: "name" });
     if (name === m.name) return json({ ok: true, maker: { name: m.name, slug: m.slug } });
     const slug = await freeMakerSlug(env, name, m.id);
     const first = await one(env, "SELECT id FROM games WHERE maker_id = ? AND source <> 'logicers' ORDER BY claimed_at, id LIMIT 1", m.id);
@@ -191,7 +193,7 @@ export async function makerEdit(env, req, b) {
   if (b.line !== undefined) {
     const line = cleanText(b.line, 1, 60);
     if (line === null) return bad("field", 400, { field: "line" });
-    if (blockText(line)) return bad("blocked", 400, { field: "line" });
+    if (blockText(line, g.lang)) return bad("blocked", 400, { field: "line" });
     if (line !== g.line) set.line = line;
   }
   if (b.kind !== undefined) {

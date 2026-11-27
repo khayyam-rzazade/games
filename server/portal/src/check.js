@@ -6,7 +6,9 @@
      site(host)       the registrable domain ("juegos.example.co.uk" -> "example.co.uk"; "anna.github.io" stays whole)
      addCheck(...)    the look at a sent game, run after the answer (ctx.waitUntil): GET, 8 s for the whole walk, at most
                       5 redirects followed by hand (each hop must pass linkOk); what it saw goes on the game's card
-     linkCheck(url)   the nightly look at a listed game: status, whether it ended on another site, its blocklist words
+     linkCheck(url, lang, opts)  the nightly look at a listed game: status, whether it ended on another site, its blocklist
+                      words (in the game's language, F1); opts.gate paces it by host (F2)
+     hostKey(host)    the host as the nightly look paces it: lower case, no "www." (as games.host keeps it)
    The registrable domain uses a short list of public suffixes (below), not the whole Public Suffix List: two-level country
    suffixes by rule (co.uk, com.br, com.tr, ne.jp ...) and the hosting platforms where each user has a site of their own. */
 
@@ -71,17 +73,105 @@ export function site(host) {
   return l.slice(-2).join(".");
 }
 
-/* ---- what the page is: words that mark gambling, adult pages and loans (flags only: they never refuse) ---- */
-const BLOCK_WORDS = /\b(casinos?|kasino|kasyno|casino\w*|bet(?:s|ting|way|365)?|bahis\w*|iddaa|apuestas?|apostas?|scommesse|paris sportifs|wetten|zakłady|poker|slots?|jackpot|roulette|blackjack|porn\w*|xxx|adult|sex|sexy|nsfw|escort\w*|hentai|onlyfans|loans?|payday|crypto ?casino|viagra|cialis)\b|casinò|казино|ставк|порно|кредит|カジノ|ギャンブル|アダルト|賭博|카지노|도박|성인|토토|博彩|赌|色情/i;
+/* ---- what the page is: words that mark gambling, adult pages and loans (flags only: they never refuse) ----
+   The blocklist knows the language (chat F1, 27 Nov 2026). Three things changed, none of them widens the list:
+   1. A word that is a different everyday word in the game's language is not a hit there: Swedish "sex" is six, and the
+      Swedish pages of Ordlig and Dagens ord say "sex försök" (six tries). The exceptions are all in EVERYDAY below, one
+      place, per language, each with what the word means there and the dictionary it comes from. Only an exact word
+      (or, for Romanian, one verb's forms) is let through: "sexy", "betting", "bet365", "casino", "porno", "xxx" still hit
+      in every language, and the English words still hit on an English page. No language given: no exception.
+   2. The words that mean the thing itself are never let through in any language (Dutch "wetten" is laws, but German
+      "wetten" is to bet and stays a hit on a German page; Polish "zakłady", French "roulette", Turkish "bahis" and the
+      like carry the gambling sense in their own language, so they stay too).
+   3. A word is whole by Unicode, not by ASCII: JS "\b" knows only a-z, so "bet" hit inside Portuguese "betão" (concrete)
+      and Spanish "betún", and Russian "ставк" hit inside "доставка" (delivery), "выставка" (exhibition) and "порно"
+      inside "опорно-двигательный". A letter, mark or digit of any script next to a word now keeps it from being one. The
+      scripts written with no spaces (Japanese, Chinese, Korean) and the Cyrillic stems with their endings are as before. */
+const LET = "\\p{L}\\p{M}\\p{N}_";
+const BLOCK_WORDS = new RegExp("(?<![" + LET + "])(?:casinos?|kasino|kasyno|casino[" + LET + "]*|bet(?:s|ting|way|365)?|bahis[" + LET + "]*|iddaa|apuestas?|apostas?|scommesse|paris sportifs|wetten|zakłady|poker|slots?|jackpot|roulette|blackjack|porn[" + LET + "]*|xxx|adult|sex|sexy|nsfw|escort[" + LET + "]*|hentai|onlyfans|loans?|payday|crypto ?casino|viagra|cialis)(?![" + LET + "])"
+  + "|casinò|(?<![" + LET + "])(?:казино|ставк|порно|кредит)|カジノ|ギャンブル|アダルト|賭博|카지노|도박|성인|토토|博彩|赌|色情", "iu");
 const BLOCK_HOST = /(^|[.-])(casino\w*|kasino\w*|bet\d*|betting\w*|bahis\w*|iddaa\w*|poker\w*|slots?\w*|porn\w*|xxx\w*|sex\w*|adult\w*|escort\w*|loans?\w*|payday\w*|1xbet|1win|toto\w*)([.-]|$)/i;
-export function blockFlags(hosts, title, desc) {
-  const out = [];
-  if ([].concat(hosts).some((h) => BLOCK_HOST.test(String(h || "")))) out.push("blocklist_host");
-  if (BLOCK_WORDS.test(String(title || "") + " " + String(desc || ""))) out.push("blocklist_words");
+
+/* The everyday exceptions, by the game's language (the codes of src/langs.js). Each entry: words (exact, lower case) or
+   re (a pattern for one verb's forms), what it means there, the dictionary page it was read on (27 Nov 2026). A hit is
+   dropped only when the whole word (a host: the whole label) is one of these. Never a word that is that language's own
+   word for the gambling or adult thing; a word the same as English's ("adult" in Catalan and Romanian, "casino" in
+   Italian) is not a different word, so it is not here. Checked against every word of BLOCK_WORDS and BLOCK_HOST in the
+   51 languages. Looked at and left as hits, because the word still carries the gambling or adult sense there or is the
+   same word as English's: Polish "zakłady" (also factories, but "zakłady bukmacherskie" is betting), French "roulette"
+   (also castor wheels) and "escorte" (convoy; in Quebec also the adult word), Turkish "bahis" (also a subject, but
+   mostly a bet), Italian "casino" (also a mess; the gambling sites write "casino" too), German "Kasino", Catalan and
+   Romanian "adult", Korean "성인" (adult; also saint) and "토토" (also in Totoro), Chinese "赌" (also in 赌气). */
+export const EVERYDAY = {
+  sv: [
+    { words: ["sex"], text: true, means: "six (the numeral: \"sex försök\" = six tries). The same spelling is also Swedish for sex, so it is let through in page text only, never as a host name, and only the bare word; \"sexy\", \"sexfilm\" and the rest still hit",
+      src: "Folkets lexikon (KTH), https://folkets-lexikon.csc.kth.se/folkets/service?lang=sv&interface=en&word=sex" },
+    { words: ["bet"], means: "bit (past tense of bita, to bite)", src: "Folkets lexikon, https://folkets-lexikon.csc.kth.se/folkets/service?lang=sv&interface=en&word=bet" },
+    { words: ["bets"], means: "stain (a dye for wood)", src: "Folkets lexikon, https://folkets-lexikon.csc.kth.se/folkets/service?lang=sv&interface=en&word=bets" },
+    { words: ["slott", "slottet"], means: "castle, palace; the castle (a host label \"slott\" or \"slottet\" begins with \"slot\")", src: "Folkets lexikon, https://folkets-lexikon.csc.kth.se/folkets/service?lang=sv&interface=en&word=slott" },
+  ],
+  da: [
+    { words: ["slot", "slotte", "slottet"], means: "castle, palace (slot; plural slotte; definite slottet)",
+      src: "Lex (Danmarks Nationalleksikon), https://lex.dk/slot; Wiktionary, Danish \"slot\"" },
+  ],
+  nl: [
+    { words: ["wetten"], means: "laws (plural of wet); the Dutch for a bet is \"weddenschap\"", src: "Van Dale via woorden.org, https://www.woorden.org/woord/wet" },
+    { words: ["slot"], means: "lock; castle; end", src: "woorden.org, https://www.woorden.org/woord/slot" },
+  ],
+  lv: [
+    { words: ["bet"], means: "but (the conjunction)", src: "Tēzaurs.lv, https://tezaurs.lv/bet" },
+  ],
+  lt: [
+    { words: ["bet"], means: "but, however (the conjunction)", src: "Lietuvių kalbos žodynas, https://www.lietuviuzodynas.lt/zodynas/bet" },
+  ],
+  ro: [
+    { re: /^porn[ie]/, means: "porni, to start or set off, in every form (pornește, pornesc, pornit, pornire, pornind, pornea ...); porno and pornografie are not these forms",
+      src: "DEX online, https://dexonline.ro/definitie/porni" },
+  ],
+};
+const EVERYDAY_INDEX = {};
+for (const [l, list] of Object.entries(EVERYDAY)) {
+  const both = list.filter((x) => !x.text), textOnly = list.filter((x) => x.text);
+  EVERYDAY_INDEX[l] = {
+    words: new Set(both.flatMap((x) => x.words || [])), res: both.flatMap((x) => (x.re ? [x.re] : [])),
+    textWords: new Set(textOnly.flatMap((x) => x.words || [])),
+  };
+}
+/* is this exact word (lower case) an everyday exception in this language? host: it is a host label (an entry marked
+   text: true is for page text only) */
+export function everyday(lang, word, host) {
+  const e = EVERYDAY_INDEX[lang];
+  if (!e) return false;
+  return e.words.has(word) || e.res.some((r) => r.test(word)) || (!host && e.textWords.has(word));
+}
+
+const allOf = (re) => new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
+const BLOCK_WORDS_G = allOf(BLOCK_WORDS), BLOCK_HOST_G = allOf(BLOCK_HOST);
+/* the blocklist words in a text, or in the hosts, lower case, once each, after the language's exceptions */
+function textHits(text, lang) {
+  const out = new Set();
+  for (const m of String(text || "").matchAll(BLOCK_WORDS_G)) { const w = m[0].toLowerCase().trim(); if (w && !everyday(lang, w)) out.add(w); }
   return out;
 }
-/* a maker's own words (a name, a line) against the same blocklist: true when they hit it (chat J, 20 Nov 2026) */
-export const blockText = (s) => BLOCK_WORDS.test(String(s || ""));
+function hostHits(hosts, lang) {
+  const out = new Set();
+  for (const h of [].concat(hosts)) for (const m of String(h || "").matchAll(BLOCK_HOST_G)) { const w = m[2].toLowerCase(); if (!everyday(lang, w, true)) out.add(w); }
+  return out;
+}
+export function blockFlags(hosts, title, desc, lang) {
+  const out = [];
+  if (hostHits(hosts, lang).size) out.push("blocklist_host");
+  if (textHits(String(title || "") + " " + String(desc || ""), lang).size) out.push("blocklist_words");
+  return out;
+}
+/* a maker's own words (a name, a line) against the same blocklist, in the game's language: true when they hit it (chat J, 20
+   Nov 2026; the language, chat F1). A maker's name goes on every game of the maker, so lang may be a list of languages:
+   it hits when it hits in any of them. */
+export function blockText(s, lang) {
+  const t = String(s || "");
+  const ls = Array.isArray(lang) ? (lang.length ? lang : [undefined]) : [lang];
+  return ls.some((l) => textHits(t, l).size > 0);
+}
 
 /* the claim (chat J, 20 Nov 2026, plan 2.20): the contents of every <meta name="logicers-portal" content="..."> in a page,
    whatever the order of the attributes and the quotes */
@@ -109,13 +199,10 @@ export async function claimLook(url) {
 
 /* the blocklist words themselves, lower case, sorted, once each (chat H, 20 Nov 2026): what the nightly look compares
    with the last look (games.block), so only a NEW word hides a listed game, and a word a person has seen and let stand
-   (an innocent "bet" in a title) does not hide it again */
-const allOf = (re) => new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
-const BLOCK_WORDS_G = allOf(BLOCK_WORDS), BLOCK_HOST_G = allOf(BLOCK_HOST);
-export function blockHits(hosts, title, desc) {
-  const out = new Set();
-  for (const h of [].concat(hosts)) for (const m of String(h || "").matchAll(BLOCK_HOST_G)) out.add(m[2].toLowerCase());
-  for (const m of (String(title || "") + " " + String(desc || "")).matchAll(BLOCK_WORDS_G)) out.add(m[0].toLowerCase().trim());
+   (an innocent "bet" in a title) does not hide it again. In the game's language (chat F1, 27 Nov 2026): a word that is an
+   everyday word there is not a hit. */
+export function blockHits(hosts, title, desc, lang) {
+  const out = new Set([...hostHits(hosts, lang), ...textHits(String(title || "") + " " + String(desc || ""), lang)]);
   return [...out].filter(Boolean).sort();
 }
 /* words that say "a new one each day" or "N tries", in the launch languages and a few more (a hint for the review) */
@@ -163,20 +250,48 @@ const sameLang = (ours, tag) => {
   return l === ours;
 };
 
+/* the host as the nightly look keeps its pace per host and games.host stores it: lower case, no "www." */
+export const hostKey = (h) => String(h || "").toLowerCase().replace(/^www\./, "");
+
 /* GET with redirects followed by hand: every hop must be an https address with a real host (no IP literal, no localhost),
-   all within one 8 s budget. -> { status, final, hops, res?, error?, timeout?, dns? } */
+   all within one 8 s budget. -> { status, final, hops, res?, error?, timeout?, dns? }
+   opts.gate (the nightly look, chat F2, 27 Nov 2026): { enter(host) -> release(status) | null }. Every request waits for its
+   host's turn first (one request at a time to one host, a pause after each; cron.js Gate), and the 8 s do not run while it
+   waits. null = the host is stopped for the night: { held: true }, nothing fetched. With a response the answer carries
+   release(): the caller calls it when it is done with the body (it gives the host its turn back and says what the host
+   answered). Without a gate: as before (one 8 s signal for the whole walk). */
 export async function walk(url, opts) {
   opts = opts || {};
-  const signal = AbortSignal.timeout(opts.timeout || TIMEOUT);
+  const gate = opts.gate || null;
+  let left = opts.timeout || TIMEOUT, started = 0, timer = null;
+  let signal, arm = () => {}, pause = () => {};
+  if (gate) {
+    const ctl = new AbortController();
+    signal = ctl.signal;
+    arm = () => {
+      started = Date.now();
+      timer = setTimeout(() => ctl.abort(new DOMException("The operation timed out", "TimeoutError")), Math.max(1, left));
+      if (timer && timer.unref) timer.unref();
+    };
+    pause = () => { if (timer) { clearTimeout(timer); timer = null; left -= Date.now() - started; } };
+  } else signal = AbortSignal.timeout(left);
+  let rel = null;
+  const done = (status) => { pause(); if (rel) { const r = rel; rel = null; r(status); } };
   let at = url instanceof URL ? url : linkOk(String(url));
   if (!at) return { status: 0, final: String(url), hops: 0, error: "link" };
   for (let hop = 0; ; hop++) {
+    if (gate) {
+      rel = await gate.enter(hostKey(at.hostname));
+      if (!rel) return { status: 0, final: at.href, hops: hop, error: "held", held: true };
+      arm();
+    }
     let res;
     try {
       res = await fetch(at.href, { method: "GET", redirect: "manual", signal,
         headers: { "User-Agent": "Mozilla/5.0 (compatible; PlayLogicers/1.0; +https://play.logicers.com/about/)",
           "Accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.5", "Accept-Language": opts.lang || "en" } });
     } catch (e) {
+      done(0);
       const msg = String(e && (e.name + " " + e.message + " " + (e.cause && e.cause.code)) || e);
       const timeout = /timeout|abort/i.test(msg);
       return { status: 0, final: at.href, hops: hop, error: timeout ? "timeout" : "fetch", timeout,
@@ -184,6 +299,7 @@ export async function walk(url, opts) {
     }
     if (res.status >= 300 && res.status < 400 && res.headers.get("Location")) {
       try { res.body && res.body.cancel(); } catch (x) { /* gone */ }
+      done(res.status);
       if (hop >= (opts.hops ?? HOPS)) return { status: res.status, final: at.href, hops: hop, error: "redirects" };
       let next;
       try { next = new URL(res.headers.get("Location"), at.href); } catch (x) { return { status: res.status, final: at.href, hops: hop, error: "location" }; }
@@ -192,7 +308,7 @@ export async function walk(url, opts) {
       at = ok;
       continue;
     }
-    return { status: res.status, final: at.href, hops: hop, res, signal };
+    return { status: res.status, final: at.href, hops: hop, res, signal, release: gate ? () => done(res.status) : undefined };
   }
 }
 
@@ -244,8 +360,8 @@ export async function addCheck(url, lang) {
   }
   let finalHost = "";
   try { finalHost = new URL(out.final).hostname; } catch (x) { /* none */ }
-  for (const f of blockFlags([at.hostname, finalHost], out.title, out.desc)) out.flags.push(f);
-  out.block_words = blockHits([at.hostname, finalHost], out.title, out.desc);
+  for (const f of blockFlags([at.hostname, finalHost], out.title, out.desc, lang)) out.flags.push(f);
+  out.block_words = blockHits([at.hostname, finalHost], out.title, out.desc, lang);
   return out;
 }
 
@@ -256,20 +372,24 @@ export async function addCheck(url, lang) {
      gone   404, 410 or the name does not resolve (dead after three nights in a row)
      check  403, 429, 5xx, a timeout or anything else (queued "check by hand", never hidden) */
 export const HEAD_READ = 128 * 1024;
-export async function linkCheck(url) {
+/* lang: the game's language (F1). opts.gate: see walk. A look the gate held back (its host stopped for the night) is { state: "held" }: nothing was asked. */
+export async function linkCheck(url, lang, opts) {
   const at = linkOk(url);
   if (!at) return { state: "gone", status: 0, final: url };
-  const w = await walk(at);
-  let other = false;
-  try { other = site(new URL(w.final).hostname) !== site(at.hostname); } catch (x) { other = true; }
-  const ok = !other && w.res && w.status >= 200 && w.status < 300;
-  let words = [];
-  if (ok && /html|xml|text\/plain/i.test(w.res.headers.get("Content-Type") || "text/html")) {
-    const h = readHead(await firstText(w.res, w.signal, HEAD_READ));
-    words = blockHits([at.hostname, new URL(w.final).hostname], h.title, h.desc);
-  } else if (w.res) { try { w.res.body && w.res.body.cancel(); } catch (x) { /* gone */ } }
-  if (other) return { state: "moved", status: w.status, final: w.final };       // another site, an IP literal, localhost
-  if (w.dns || w.status === 404 || w.status === 410 || w.status === 530) return { state: "gone", status: w.status, final: w.final };
-  if (ok) return { state: "ok", status: w.status, final: w.final, words };
-  return { state: "check", status: w.status, final: w.final, error: w.error || null };
+  const w = await walk(at, opts);
+  if (w.held) return { state: "held", status: 0, final: w.final };
+  try {
+    let other = false;
+    try { other = site(new URL(w.final).hostname) !== site(at.hostname); } catch (e) { other = true; }
+    const ok = !other && w.res && w.status >= 200 && w.status < 300;
+    let words = [];
+    if (ok && /html|xml|text\/plain/i.test(w.res.headers.get("Content-Type") || "text/html")) {
+      const h = readHead(await firstText(w.res, w.signal, HEAD_READ));
+      words = blockHits([at.hostname, new URL(w.final).hostname], h.title, h.desc, lang);
+    } else if (w.res) { try { w.res.body && w.res.body.cancel(); } catch (x) { /* gone */ } }
+    if (other) return { state: "moved", status: w.status, final: w.final };       // another site, an IP literal, localhost
+    if (w.dns || w.status === 404 || w.status === 410 || w.status === 530) return { state: "gone", status: w.status, final: w.final };
+    if (ok) return { state: "ok", status: w.status, final: w.final, words };
+    return { state: "check", status: w.status, final: w.final, error: w.error || null };
+  } finally { if (w.release) w.release(); }
 }

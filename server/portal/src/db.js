@@ -41,7 +41,12 @@
      misses       the searches on a language's page that found nothing: the term in its matched form (search.js fold, at most
                   40 characters; never one holding "@", "://" or 6 digits in a row), counted per language and UTC day; no
                   device id, no address. Only the admin key sees them (the queue's Searches); the nightly job deletes rows
-                  older than 90 days. nets also keeps "miss" (at most 30 a day from one address). */
+                  older than 90 days. nets also keeps "miss" (at most 30 a day from one address).
+   Chat F2, 27 Nov 2026 (one site at a time in the nightly look, cron.js):
+     throttled    the hosts (games.host) that answered 429 or 503 to the nightly look: how many nights in a row (`nights`,
+                  counted by calendar day), the UTC `day` of the last and the `status`. Their games go first the next night; at
+                  the third night in a row one card for the host is made; a night in which the host is looked at and does not
+                  answer 429 or 503 deletes its row; a row not touched for 30 days goes. */
 import { clock, utcDay, dayAdd, weekOf, DAY } from "./util.js";
 import { LOGICERS } from "./logicers.js";
 import { CODES } from "./langs.js";
@@ -108,6 +113,7 @@ export const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS pics (game TEXT NOT NULL, h TEXT NOT NULL, type TEXT NOT NULL, w INTEGER NOT NULL, ht INTEGER NOT NULL,
      size INTEGER NOT NULL, data BLOB NOT NULL, state TEXT NOT NULL, made INTEGER NOT NULL, PRIMARY KEY (game, h))`,
   `CREATE TABLE IF NOT EXISTS misses (day TEXT NOT NULL, lang TEXT NOT NULL, q TEXT NOT NULL, n INTEGER NOT NULL, PRIMARY KEY (day, lang, q))`,
+  `CREATE TABLE IF NOT EXISTS throttled (host TEXT PRIMARY KEY, nights INTEGER NOT NULL, day TEXT NOT NULL, status INTEGER NOT NULL)`,
 ];
 /* indexes on columns an older database gets from MIGRATE: made after it */
 export const AFTER = [

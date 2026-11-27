@@ -3,6 +3,13 @@
    Worker as Cloudflare would, and a ctx whose waitUntil promises the tests can wait for. */
 import { D1 } from "./d1shim.mjs";
 import worker, { _test } from "../src/index.js";
+import { setPace } from "../src/cron.js";
+import { vclock } from "./vclock.mjs";
+
+/* the nightly look's pauses (2 s after a host's answer, cron.js Gate) run on a fake clock in every test file: no test waits for
+   them in real time, and vc.now() is the fake time in ms (chat F2, 27 Nov 2026) */
+export const vc = vclock();
+setPace(vc);
 
 export { worker, _test };
 export const SITE = "https://play.logicers.com";
@@ -24,10 +31,12 @@ export function env(extra) {
 /* the web as the checks see it: { "https://x.com/": { status, headers, body } | (req) => Response | Error } */
 export const WEB = new Map();
 export const fetched = [];
+export const fetchedAt = [];          // the fake time (vc.now()) of each entry of `fetched`
 const realFetch = globalThis.fetch;
 globalThis.fetch = async (u, init) => {
   const href = typeof u === "string" ? u : u.url;
   fetched.push(href);
+  fetchedAt.push(vc.now());
   const w = WEB.get(href);
   if (w === undefined) { const e = new TypeError("fetch failed"); e.cause = { code: "ENOTFOUND" }; throw e; }
   if (w instanceof Error) throw w;

@@ -2,6 +2,7 @@
 -- request (src/db.js, SCHEMA: the same statements; test/test_misc.mjs checks the two agree). Chat A, 19 Nov 2026;
 -- games.block, games.off_at and nets by chat H, 20 Nov 2026; wseen, votes and gotw (the game of the week), makers, tokens
 -- and games.maker_id, claimed_at, line_by, tell_n (the claim) by chat J, 20 Nov 2026 (src/db.js says what each holds).
+-- throttled (the hosts that answered 429 or 503 to the nightly look, night by night) by chat F2, 27 Nov 2026.
 -- A database made before a column was added gets it on the first request (src/db.js MIGRATE), then the indexes on it (AFTER).
 -- To make them by hand anyway: npx wrangler d1 execute logicers-portal --remote --file=schema.sql
 
@@ -83,5 +84,7 @@ CREATE TABLE IF NOT EXISTS pics (game TEXT NOT NULL, h TEXT NOT NULL, type TEXT 
   size INTEGER NOT NULL, data BLOB NOT NULL, state TEXT NOT NULL, made INTEGER NOT NULL, PRIMARY KEY (game, h));
 
 CREATE TABLE IF NOT EXISTS misses (day TEXT NOT NULL, lang TEXT NOT NULL, q TEXT NOT NULL, n INTEGER NOT NULL, PRIMARY KEY (day, lang, q));
+
+CREATE TABLE IF NOT EXISTS throttled (host TEXT PRIMARY KEY, nights INTEGER NOT NULL, day TEXT NOT NULL, status INTEGER NOT NULL);
 
 CREATE INDEX IF NOT EXISTS games_maker ON games (maker_id);
