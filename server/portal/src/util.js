@@ -181,6 +181,10 @@ export function ring(id) {
    people won't submit games"). SHOW_NUMBERS in wrangler.jsonc: "0" counts and shows nothing on the pages or in the public
    API; "1" shows them, as the pages were built to. The queue page's Numbers always shows what is counted. */
 export const showNums = (env) => String((env && env.SHOW_NUMBERS) || "") === "1";
+/* the vote for the game of the week (plan 2.20; Khayyam, 27 Nov 2026: "for now just take it out"): SHOW_VOTE in wrangler.jsonc, "1"
+   shows the vote on a game's page and takes votes; anything else (now "0") draws no vote and /api/vote answers not_found. The week's
+   closing (cron.js) and the crown stay: with no votes there is no winner, and nothing else changes. */
+export const showVote = (env) => String((env && env.SHOW_VOTE) || "") === "1";
 
 /* "Play" as the key word of every name (chat Inside, 27 Nov 2026; claude/play-here-27nov.md): which of three looks is shown, by the
    word PLAY_LOOK in wrangler.jsonc (set at the start of every request, index.js). pages.js draws it on the pages and badge.js in

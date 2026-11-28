@@ -118,6 +118,13 @@ To show the numbers on the pages: set `"SHOW_NUMBERS": "1"` in `wrangler.jsonc` 
 them again. Locally: `--var SHOW_NUMBERS:1` (the browser check's sections 1 to 11 need it; section 12 needs a second
 Worker with `0`, see the top of `portal/tests/check.py`).
 
+## The vote for the game of the week: out for now (27 Nov 2026)
+
+Khayyam: "for now just take it out". `vars.SHOW_VOTE` in `wrangler.jsonc` is `"0"`: a game's page draws no vote and `POST /api/vote`
+answers 404 `not_found` (`src/util.js` `showVote`). The week's closing (cron.js) and the crown are as they were: with no votes there is
+no winner. To bring it back: `"SHOW_VOTE": "1"` and push. Locally the browser check's Worker on 8787 needs `--var SHOW_VOTE:1`
+(sections 10 and 20 look at the vote; section 21 looks at it gone on the second Worker).
+
 ## Search (chat S, 24 Nov 2026)
 
 A language with 40 listed games or more, counted as the dice counts them (`db.js` `SEARCH_MIN`, `DICE_WHERE`), has a round
@@ -192,13 +199,29 @@ run's block run as it stands, the wall number, the three looks, the badge); chec
 minutes; wall at 320, 390, 1280, light and dark; the name block in the 51 languages in each look, stretched too; the game page's Play and
 arrow in the 51 languages with and without the vote; the inside view with a stand-in game; a run).
 
+**The Logicers frame** (chat Frame, 27 Nov 2026; Khayyam: "it is not really noticed that it is embedded within logicers"). The
+inside page is Play's own: its background (`--card`), no white bar. The bar: back, the page's own name small (`.in-brand`: "Play
+Español" in the look `PLAY_LOOK` names, a link to the language's page; on a phone the Play word alone, the link keeps the whole name),
+a thin line (`.in-sep`), the coin and the game's name, the arrow, Next game in a run. The game is a card (`.in-card`) 6 px from the
+edges on a phone and 24 px from 768 px, with the Play letters' colours along its top edge (3 px, 4 px from 768 px; the four ring
+colours in reading order with `rings`, one warm colour with `warm` and `tri`). A phone keeps the game big: 59 px above and below it,
+53.5 before. Until the game has drawn itself the card shows its coin, large and breathing (`.in-wait`; `portal.js` `waitInside` takes
+it away on the frame's load). From 1100 px a rail beside the card (`.in-more`, 232 px) holds six more games of the language under the
+word More (`src/db.js` `railData`: the same kind first, those that play inside first, then the week's players, never this game or
+Logicers' own); a coin of a game that plays inside opens it there and counts (`tile(..., { play: true })`), any other opens its page.
+No new word. Tests: `test/test_frame.mjs`; check.py section 21, `--only-frame` (320 to 1440, light and dark, the 51 languages and
+stretched, right to left, a run, the waiting coin, the rail's tap). Also in chat Frame: on a computer (1024 px and wider) a language
+page's name keeps to one line; where the head's buttons would push it onto a second (Malay with every word half as long again, check.py
+section 12) it is drawn a step smaller, 38 then 32 px (`portal.js` `fitDice`, `.brand-wide`), and fits again when a word of the head
+changes.
+
 ## The tests (any computer with Node 22; no internet)
 
 ```
 npm test
 ```
 
-183 tests (two are skipped, one of them needs `LIVE=1`; on 27 Nov 2026, chat F2, 181 pass and none fail): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
+206 tests (one needs `LIVE=1`; on 27 Nov 2026, chat Frame, 205 pass and none fail): every page and its `<html lang>`, title, canonical, JSON-LD and noindex; every API route and error key; one count
 per device, game and UTC day; robots and other sites not counted; the duplicate rule; the add check (a redirect to another
 host, a page in another language, the blocklist, a page that does not open, at most 5 redirects, never an IP or localhost);
 the review key refused on hide, delete and import; a language opening at its first listed game (1 since 25 Nov 2026) and not on the English Logicers games; Graj

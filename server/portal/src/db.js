@@ -316,6 +316,27 @@ export async function wallData(env) {
    nobody turned it off (frame_off); one of Logicers' own games never (its site is ours), nor a game with no page -> the path, or null */
 export const insideOf = (g) => (g && g.status === "listed" && g.source !== "logicers" && g.slug && g.frame === 1 && !g.frame_off ? "/" + g.lang + "/g/" + g.slug + "/play/" : null);
 
+/* the inside page's rail (chat Frame, 27 Nov 2026, claude/play-here-27nov.md): RAIL_N more games of the game's language, beside the
+   game on a computer (1100 px and wider). The same kind first; within that, those that play inside Play first (a tap goes on playing
+   in Play); then the most players in the last 7 days, then the newest. Never this game, never Logicers' own (they have no inside
+   page). Each comes with its inside page (insideOf) or none. */
+export const RAIL_N = 6;
+export async function railData(env, g) {
+  const from = dayAdd(utcDay(), -6);
+  const [games, week, crown] = (await env.DB.batch([
+    st(env, `SELECT id, slug, lang, name, kind, url, listed_at, new_until, slot, hits, pic, maker_id, status, source, frame, frame_off FROM games
+       WHERE lang = ? AND status = 'listed' AND source <> 'logicers' AND slug IS NOT NULL AND id <> ?`, g.lang, g.id),
+    st(env, `SELECT c.game, SUM(c.n) AS n FROM counts c JOIN games x ON x.id = c.game
+       WHERE c.day >= ? AND x.lang = ? AND x.status = 'listed' GROUP BY c.game`, from, g.lang),
+    crownStmt(env, g.lang),
+  ])).map(rowsOf);
+  const w = Object.fromEntries(week.map((r) => [r.game, r.n])), crowned = crownSet(crown), now = clock();
+  const rank = (x) => [x.kind === g.kind ? 0 : 1, insideOf(x) ? 0 : 1, -(w[x.id] || 0), -(x.listed_at || 0)];
+  const order = (a, b) => { const p = rank(a), q = rank(b); for (let i = 0; i < p.length; i++) if (p[i] !== q[i]) return p[i] - q[i]; return a.id < b.id ? -1 : a.id > b.id ? 1 : 0; };
+  return games.sort(order).slice(0, RAIL_N).map((x) => Object.assign({}, x, { today: 0, inside: insideOf(x),
+    isNew: !!(x.new_until && x.new_until > now), crown: crowned.has(x.id) }));
+}
+
 export const gameBySlug = (env, lang, slug) => one(env, "SELECT * FROM games WHERE lang = ? AND slug = ?", lang, slug);
 export const gameById = (env, id) => (typeof id === "string" && id.length <= 40 ? one(env, "SELECT * FROM games WHERE id = ?", id) : null);
 

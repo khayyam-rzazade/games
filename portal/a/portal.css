@@ -97,6 +97,7 @@ body.pl {
 .top-lang .brand.brand-fit { font-size: 22px; } .top-lang .brand.brand-fit2 { font-size: 19px; }   /* the name a step smaller where its word would be cut in two (portal.js fitDice; chat Q3) */
 @media (min-width: 1024px) {
   .top-lang .brand, .top-wall .brand { font-size: 44px; }
+  .top-lang .brand.brand-wide { font-size: 38px; } .top-lang .brand.brand-wide2 { font-size: 32px; }   /* the name a step smaller where the buttons would push it onto a second line (portal.js fitDice; chat Frame) */
   .brand-by { font-size: 13px; margin-block-start: 10px; }
 }
 
@@ -821,26 +822,67 @@ dialog.sheet-find { block-size: calc(100dvh - 24px); }
   .tile:hover .tile-a, .tile:hover .tile-star, .game-tile:hover, .btn:active { transform: none !important; }
 }
 
-/* ---------------------------------------------------------------- play it here (chat Inside, 27 Nov 2026) ---- */
+/* ---------------------------------------------------------------- play it here (chat Inside, 27 Nov 2026; its frame, chat Frame) ---- */
 /* the small arrow beside Play: the game's own site in a new tab; 44 px, the same ring as Save, smaller than it */
 .btn-site { flex: none; align-self: center; display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; color: var(--ink); transition: border-color .15s var(--ease); }
 .btn-site:hover { border-color: var(--ink); }
 .btn-site .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.2; }
-/* the inside page: the game fills the screen under one slim bar (back, the small coin and name, the arrow, Next game in a run) */
-.pl-inside { overflow: hidden; }
-.in { display: flex; flex-direction: column; block-size: 100vh; block-size: 100dvh; }
-.in-bar { flex: none; display: flex; align-items: center; gap: 10px; min-block-size: 52px; padding-block: 4px; padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right)); background: var(--bg); border-block-end: 1.5px solid var(--line); }
-.in-name { flex: 1 1 auto; min-inline-size: 0; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; }
+/* the inside page: the game under one slim bar (back, the page's own name, the small coin and name, the arrow, Next game in a run).
+   The Logicers frame (chat Frame, 27 Nov 2026): the page is Play's own background, the bar has no white and no line, and the game is
+   a card on it with the Play letters' colours along its top edge, as Poki and CrazyGames show a game inside their own page. On a
+   phone the card leaves 6 px of Play around it and the bar is 50 px: 59 px above and below the game, against 53.5 before. */
+html:has(> body.pl-inside) { background: var(--card); }
+body.pl-inside { overflow: hidden; background: var(--card); }
+.in { display: flex; flex-direction: column; block-size: 100vh; block-size: 100dvh; padding-inline: env(safe-area-inset-left) env(safe-area-inset-right); }
+.in-bar { flex: none; display: flex; align-items: center; gap: 8px; min-block-size: 50px; padding: 3px 6px; }
+.in-bar .back { flex: none; }
+/* the page's own name, small: Play and the language on a computer, the Play word alone on a phone (the link keeps the whole name) */
+.in-brand { flex: none; display: inline-flex; align-items: center; min-block-size: 44px; padding-inline: 4px 2px; font-size: 20px; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; color: var(--ink); }
+.in-brand .brand-play { font-weight: 600; }
+.in-brand-rest { display: none; margin-inline-start: .26em; font-family: var(--f-sys); font-weight: 600; letter-spacing: -0.01em; word-break: keep-all; }   /* a flex box drops the space before it: the margin is the space */
+.in-sep { flex: none; inline-size: 1.5px; block-size: 22px; margin-inline: 2px; border-radius: 1px; background: var(--line); }
+.in-name { flex: 1 1 auto; min-inline-size: 0; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; }
 .in-name-t { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .in-coin { flex: none; display: grid; place-items: center; inline-size: 28px; block-size: 28px; border: 2px solid var(--r); border-radius: 999px; color: var(--r); overflow: hidden; }
 .in-ico { inline-size: 14px; block-size: 14px; stroke-width: 2; }
 .in-logo { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; border-radius: 999px; background: var(--card); }
-.in-bar .back { flex: none; }
 .in-open { flex: none; display: inline-flex; align-items: center; justify-content: center; inline-size: 44px; block-size: 44px; border: 1.5px solid var(--line); border-radius: 999px; color: var(--ink); transition: border-color .15s var(--ease); }
 .in-open:hover { border-color: var(--ink); }
 .in-open .ico { inline-size: 18px; block-size: 18px; stroke-width: 2.2; }
 .in-run { flex: none; margin-inline-start: 0; padding-inline: 14px 16px; }
-.in-frame { flex: 1 1 auto; min-block-size: 0; inline-size: 100%; border: 0; background: var(--card); }
+/* the card: the game on Play's background, the Play letters' colours along its top edge (the look's: one warm colour, or the four
+   ring colours of "Play" in reading order) */
+.in-main { flex: 1 1 auto; min-block-size: 0; display: flex; gap: 20px; padding: 0 6px max(6px, env(safe-area-inset-bottom)); }
+.in-card { --strip: 3px; position: relative; flex: 1 1 auto; min-inline-size: 0; display: flex; flex-direction: column; padding-block-start: var(--strip); border-radius: 14px; overflow: hidden;
+  background-color: var(--bg); background-image: linear-gradient(var(--w0), var(--w0)); background-size: 100% var(--strip); background-repeat: no-repeat; background-position: 0 0;
+  box-shadow: 0 0 0 1px var(--line), 0 18px 40px -22px rgba(11, 12, 16, .30); }
+.play-rings .in-card { background-image: linear-gradient(to right, var(--w0) 0 25%, var(--w1) 25% 50%, var(--w2) 50% 75%, var(--w5) 75%); }
+[dir="rtl"] .play-rings .in-card { background-image: linear-gradient(to left, var(--w0) 0 25%, var(--w1) 25% 50%, var(--w2) 50% 75%, var(--w5) 75%); }
+@media (prefers-color-scheme: dark) { .in-card { box-shadow: 0 0 0 1px var(--line), 0 18px 44px -20px rgba(0, 0, 0, .7); } }
+.in-frame { position: relative; z-index: 1; flex: 1 1 auto; min-block-size: 0; inline-size: 100%; border: 0; background: transparent; }
+/* until the game has drawn itself: its coin, large, breathing slowly (still where motion is off); portal.js takes it away on load */
+.in-wait { position: absolute; inset: var(--strip) 0 0; display: grid; place-items: center; transition: opacity .3s var(--ease); }
+.in-card.is-on .in-wait { opacity: 0; visibility: hidden; }
+.in-wait-c { display: grid; place-items: center; inline-size: 88px; block-size: 88px; border: 3px solid var(--r); border-radius: 999px; color: var(--r); overflow: hidden; animation: in-breathe 1.8s var(--ease) infinite alternate; }
+.in-wait-ico { inline-size: 40px; block-size: 40px; stroke-width: 1.6; }
+.in-wait-logo { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+@keyframes in-breathe { from { opacity: .45; transform: scale(.96); } to { opacity: 1; transform: scale(1); } }
+/* more of the language beside the game, on a computer only (db.js railData): the wall's coins, two to a line */
+.in-more { display: none; }
+.in-more-h { margin-block-end: 12px; font-size: 13px; font-weight: 600; line-height: 1.2; color: var(--soft); }
+.in-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
+@media (min-width: 768px) {
+  .in-bar { gap: 12px; min-block-size: 64px; padding: 6px 24px; }
+  .in-brand { font-size: 24px; padding-inline-end: 4px; }
+  .in-brand-rest { display: inline; }
+  .in-sep { block-size: 26px; margin-inline: 4px; }
+  .in-name { font-size: 17px; }
+  .in-main { padding: 0 24px max(24px, env(safe-area-inset-bottom)); }
+  .in-card { --strip: 4px; border-radius: 18px; }
+}
+@media (min-width: 1100px) {
+  .in-more { display: block; flex: 0 0 232px; min-block-size: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding-block: 2px 4px; }
+}
 /* the switch under a listed game on the maker's form: on = players play it inside Play Logicers */
 .maker-frame { display: flex; flex-direction: column; gap: 4px; padding-block-start: 14px; border-block-start: 1px solid var(--line); min-inline-size: 0; }
 .maker-frame-l { display: flex; align-items: center; gap: 14px; min-block-size: 44px; cursor: pointer; font-size: 15px; font-weight: 500; line-height: 1.3; overflow-wrap: anywhere; }

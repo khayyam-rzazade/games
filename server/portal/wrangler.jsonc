@@ -21,7 +21,9 @@
    vars.SHOW_NUMBERS, the numbers of players (Khayyam, 21 Nov 2026: too few to show yet): "0" counts and shows nothing on the
    pages or in the public API; "1" shows them. What is counted is always on the queue page, under Numbers.
    vars.PLAY_LOOK (chat Inside, 27 Nov 2026): how "Play" shows in every page's name and in the badge: "warm" (heavier, one warm
-   colour), "tri" (a small play-triangle before it) or "rings" (the ring colours, one letter each); one word, then deploy. (No comment
+   colour), "tri" (a small play-triangle before it) or "rings" (the ring colours, one letter each); one word, then deploy.
+   vars.SHOW_VOTE (Khayyam, 27 Nov 2026: "for now just take it out"): "1" shows the vote for the game of the week on a game's
+   page and takes votes; "0" draws no vote and refuses one (src/util.js showVote). (No comment
    may follow the "assets" block: a test reads this file with a simple comment stripper.) */
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
@@ -46,7 +48,8 @@
     "SITE": "https://play.logicers.com",
     "ALLOW_ORIGINS": "",
     "SHOW_NUMBERS": "0",
-    "PLAY_LOOK": "rings"
+    "PLAY_LOOK": "rings",
+    "SHOW_VOTE": "0"
   },
   "d1_databases": [
     { "binding": "DB", "database_name": "logicers-portal", "database_id": "750d52ac-feb4-4b37-bce0-7a86fe35dcec" }

@@ -412,6 +412,20 @@
     $(".run-t", a).textContent = text;
     a.hidden = false;
   }
+  /* the inside page's card shows the game's coin until the game has drawn itself (chat Frame, 27 Nov 2026): it goes on the frame's
+     load; a frame that loaded before this script ran is known by the browser's timing of it (an iframe's entry is written at its
+     load); and after 12 s at most */
+  function waitInside() {
+    var c = $(".in-card"), f = c && $(".in-frame", c);
+    if (PAGE !== "inside" || !c || !f) return;
+    var on = function () { c.classList.add("is-on"); };
+    f.addEventListener("load", on);
+    var src = f.getAttribute("src") || "";
+    try {
+      if (window.performance && performance.getEntriesByType && performance.getEntriesByType("resource").some(function (e) { return e.initiatorType === "iframe" && e.name.indexOf(src) === 0; })) on();
+    } catch (e) { /* no timing: the load or the 12 s */ }
+    window.setTimeout(on, 12000);
+  }
   /* the dice: the language's games (id and address) are fetched once, and the link is given a random one it can open at once
      (a tap is a real link in a new tab: no script between the tap and the page). Games played today are left out unless
      they are all played, and so is the last one picked. */
@@ -909,6 +923,13 @@
       }
     }
     if (cutWord(h)) { h.classList.add("brand-fit"); if (cutWord(h)) { h.classList.remove("brand-fit"); h.classList.add("brand-fit2"); } }
+    /* chat Frame, 27 Nov 2026 (check.py section 12, Malay with every word half as long again): on a computer the name keeps to one
+       line; where the buttons' words would push it onto a second, it is drawn a step smaller (two steps at most). A phone may take two. */
+    h.classList.remove("brand-wide", "brand-wide2");
+    if ((doc.documentElement.clientWidth || 0) >= 1024 && nameLines(h) > 1) {
+      h.classList.add("brand-wide");
+      if (nameLines(h) > 1) { h.classList.remove("brand-wide"); h.classList.add("brand-wide2"); }
+    }
   }
 
   /* ---- My Logicers (chat M, 26 Nov 2026) ----
@@ -1126,6 +1147,7 @@
   paintMark();
   renderMine();
   paintInside();
+  waitInside();
   counts();
   diceInit();
   meStart();
@@ -1137,9 +1159,12 @@
     if (window.MutationObserver) new MutationObserver(fitMark).observe(closest($("#me-mark"), ".row-top"), { subtree: true, childList: true, characterData: true });
   }
   if ($(".top-lang .brand")) {                              // the head: the dice fits beside the name, or gives way (search; a cut word)
-    var fitAt = 0;
-    window.addEventListener("resize", function () { if (!fitAt) fitAt = window.requestAnimationFrame(function () { fitAt = 0; fitDice(); }); });
+    var fitAt = 0, refit = function () { if (!fitAt) fitAt = window.requestAnimationFrame(function () { fitAt = 0; fitDice(); }); };
+    window.addEventListener("resize", refit);
     if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(fitDice);
+    /* and again when a word of the head changes (the dice's word, a longer name): chat Frame. Only words are watched, not the classes
+       fitDice itself sets, so it never calls itself again. */
+    if (window.MutationObserver) new MutationObserver(refit).observe($(".top-lang"), { subtree: true, childList: true, characterData: true });
   }
   doc.addEventListener("visibilitychange", function () {
     if (doc.visibilityState !== "visible") return;

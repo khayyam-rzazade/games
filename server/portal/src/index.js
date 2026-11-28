@@ -28,8 +28,8 @@
                  /admin/pic (admin.js)
    GET (JSON):   /api/langs  /api/<lang>/games  /api/<lang>/dice  /api/<lang>/names (search.js, chat S)  /api/counts
    Kept: see api.js and db.js. Never kept: an IP address, a user agent, the device id itself. Workers Logs stay off. */
-import { json, bad, readJson, brake, isLocal, showNums } from "./util.js";
-import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, insideOf, KINDS } from "./db.js";
+import { json, bad, readJson, brake, isLocal, showNums, showVote } from "./util.js";
+import { ensure, one, all, openSet, langData, wallData, gameBySlug, gameData, gameNumbers, makerData, indexable, insideOf, railData, KINDS } from "./db.js";
 import { originOf } from "./check.js";
 import { LANG, isLang, CODES } from "./langs.js";
 import { WORDS, bestLang } from "./words.js";
@@ -271,7 +271,7 @@ async function page(req, env, ctx, url) {
         const lgLang = lgRowLang(lang);
         const gd = await gameData(env, g, lgLang);
         if (g.maker_id) Object.assign(gd, await gameNumbers(env, g));         // a claimed game: its players by day and country
-        return play(env, pageGame(Object.assign({ site, nums, bridge, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
+        return play(env, pageGame(Object.assign({ site, nums, vote: showVote(env), bridge, lang, lgLang, game: g, lgHome: LG_HOME(lang), lgGame: lgForGame(lang, gd.lg, g.kind) }, gd)),
           200, { noindex: indexable(g) ? null : "noindex, follow" });
       }
       if (g && g.source !== "logicers") {                                   // hidden, dead, rejected, left: gone, not indexed
@@ -286,7 +286,7 @@ async function page(req, env, ctx, url) {
       const g = await gameBySlug(env, lang, segs[2]);
       if (g && insideOf(g)) {
         const origins = [...new Set([originOf(g.url), originOf(g.frame_at)].filter((o) => /^https:\/\//.test(o)))];
-        return html(pageInside({ site, lang, game: g }), 200, { csp: cspInside(origins), noindex: true });
+        return html(pageInside({ site, lang, game: g, rail: await railData(env, g) }), 200, { csp: cspInside(origins), noindex: true });   // the rail: chat Frame
       }
       if (g && g.status === "listed" && g.source !== "logicers" && g.slug) return redirect(site + "/" + lang + "/g/" + g.slug + "/", 302);
     }

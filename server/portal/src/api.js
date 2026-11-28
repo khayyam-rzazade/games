@@ -20,7 +20,7 @@
    db.js NET). What is kept: the keyed hash of (UTC day, device id, game or "view:<lang>") and of (UTC day, address, what)
    with its count, until the night, and the counts by game, day and country (from Cloudflare's request data; "XX" when it
    has none). Never the id itself, never an address. */
-import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where, showNums, netHash } from "./util.js";
+import { json, bad, clock, utcDay, dayAdd, weekOf, brake, mac, hashReady, deviceOk, isRobot, cleanText, emailOk, newId, ring, where, showNums, showVote, netHash } from "./util.js";
 import { one, all, run, st, rowsOf, capOk, queueRow, KINDS, rowOrder, openSet, NET, netStmt, changed, crownStmt, crownSet, picUrl, lgLogo, DICE_WHERE, insideOf } from "./db.js";
 import { LANG, isLang, pageName, nameParts } from "./langs.js";
 import { linkOk, norm, addCheck } from "./check.js";
@@ -65,6 +65,7 @@ export async function hit(env, req, b) {
    the week only, as keyed hashes: d (week, device, language) and net (week, address). The pages never write a tally. */
 export const VOTE = { perNet: 20 };
 export async function vote(env, req, b) {
+  if (!showVote(env)) return bad("not_found", 404);                   // the vote is out for now (util.js showVote, 27 Nov 2026)
   if (!brake("vote", req)) return bad("busy", 429);
   const game = typeof b.game === "string" && b.game.length <= 40 ? b.game : "";
   if (!game || !deviceOk(b.id)) return bad("bad");

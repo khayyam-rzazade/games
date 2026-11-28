@@ -23,7 +23,7 @@ without asking; Cloudflare Web Analytics runs on the public pages only.
 Chat K, 21 Nov 2026, second part: section 12 runs last, or alone with --only-l (about a minute), against a second local Worker
 that counts and shows no number, as production does for now (plan 2.8). The sections before it run against the Worker that
 shows them:
-  npx wrangler dev --local --port 8787 --var ALLOW_ORIGINS:localhost --var SHOW_NUMBERS:1
+  npx wrangler dev --local --port 8787 --var ALLOW_ORIGINS:localhost --var SHOW_NUMBERS:1 --var SHOW_VOTE:1
   cp -r .wrangler/state /tmp/quiet && npx wrangler dev --local --port 8788 --inspector-port 9240 --persist-to /tmp/quiet --var ALLOW_ORIGINS:localhost --var SHOW_NUMBERS:0
 (PORTAL_QUIET overrides http://localhost:8788.) It looks at: no number of players on any page, before and after a tap that
 is counted; Numbers in the queue, for both keys; Claim in the first screen of a game's page; the dice with its word on a
@@ -109,6 +109,14 @@ without the vote (one line, no more height, 44 px, the arrow named in the langua
 game page at 320, 390 and 1280, light and dark (one slim bar, the game under it, the page does not scroll, 44 px, the game works and keeps
 its own saved progress, the sandbox stops it taking the player off the page); a run with Next game. It plants four games and marks the
 local database's games as ones a page may frame, and takes both away at the end.
+
+Chat Frame, 27 Nov 2026 (claude/play-here-27nov.md "Frame"): section 21 runs alone with --only-frame (several minutes, against the
+Worker that shows numbers, which needs --var SHOW_VOTE:1 as above, and the second Worker, which runs as production does): the inside
+page as Play's own, the page's name in the bar (Play and the language on a computer, the Play word on a phone), the game in a card with
+the Play colours on its top edge, 6 px (24 from 768) around it, the rail of six more games from 1100 px whose coins play inside and
+count, at 320, 390, 768, 1099, 1100, 1280 and 1440, light and dark; the coin that waits for the game; the 51 languages at 320, 390 and
+1280, stretched too, right to left; a run; the vote gone from the second Worker (no SHOW_VOTE) and still there with SHOW_VOTE 1.
+Pictures: frame-<390|1280>-<light|dark>.png, frame-wait-*, frame-run-*, frame-ar-390, frame-he-390.
 
 What it looks at: the wall, a language page (the biggest), a kind page with More, a game page, About, the 404, the queue;
 phone 320, 360, 390, 414 and computer 1280, 1440; light and dark; motion on and off; nothing wider than the screen and
@@ -3133,7 +3141,7 @@ INSIDEVIEW = r"""
   const R = (e) => e.getBoundingClientRect(), q = (s) => document.querySelector(s), de = document.documentElement;
   const box = (e) => { const r = R(e); return { l: Math.round(r.left), t: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height), r: Math.round(r.right), b: Math.round(r.bottom) }; };
   const bar = q('.in-bar'), f = q('.in-frame'), nm = q('.in-name-t'), run = q('#run');
-  const parts = [q('.back'), q('.in-coin'), nm, q('.in-open')].concat(run && !run.hidden ? [run] : []).map(box).sort((a, b) => a.l - b.l);
+  const parts = [q('.back'), q('.in-brand'), q('.in-sep'), q('.in-coin'), nm, q('.in-open')].filter(Boolean).filter((e) => R(e).width > 0).concat(run && !run.hidden ? [run] : []).map(box).sort((a, b) => a.l - b.l);   // the page's name and its line: chat Frame
   let over = false; for (let i = 1; i < parts.length; i++) if (parts[i].l < parts[i - 1].r - 1) over = true;
   return { vw: de.clientWidth, vh: window.innerHeight, bar: box(bar), frame: box(f), back: box(q('.back')), open: box(q('.in-open')), run: run ? Object.assign({ hidden: run.hidden, game: run.getAttribute('data-game'), href: run.getAttribute('href'), target: run.getAttribute('target') }, box(run)) : null,
     name: Object.assign(box(nm), { cut: nm.scrollWidth > nm.clientWidth + 1, text: nm.textContent }), overlap: over, barOver: bar.scrollWidth > bar.clientWidth + 1,
@@ -3301,8 +3309,9 @@ def section_inside(b):
                 pg.goto(url(f"/es/g/{one['slug']}/play/"), wait_until="load"); pg.wait_for_timeout(600)
                 v = pg.evaluate(INSIDEVIEW)
                 tag = f"20 inside {w} {scheme}"
-                ok(v["bar"]["t"] == 0 and 44 <= v["bar"]["h"] <= 62, tag + ": one slim bar at the top (44 to 62 px)", v["bar"])
-                ok(v["frame"]["l"] == 0 and v["frame"]["r"] == v["vw"] and v["frame"]["t"] == v["bar"]["b"] and abs(v["frame"]["b"] - v["vh"]) <= 1, tag + ": the game fills the screen under the bar", [v["frame"], v["vw"], v["vh"]])
+                ok(v["bar"]["t"] == 0 and 44 <= v["bar"]["h"] <= (64 if w >= 768 else 52), tag + ": one slim bar at the top (44 to 52 px on a phone, 64 on a computer)", v["bar"])
+                gap, strip = (24, 4) if w >= 768 else (6, 3)   # chat Frame, 27 Nov 2026: the game is a card on Play's background, the Play colours on its top edge
+                ok(v["frame"]["l"] == gap and v["frame"]["t"] == v["bar"]["b"] + strip and abs(v["frame"]["b"] - (v["vh"] - gap)) <= 1 and (w >= 1100 or v["frame"]["r"] == v["vw"] - gap), tag + ": the game fills its card under the bar", [v["frame"], v["vw"], v["vh"]])
                 ok(v["scroll"][0] <= v["vw"] and v["scroll"][1] <= v["scroll"][2] + 1, tag + ": the page itself does not scroll", v["scroll"])
                 ok(v["back"]["w"] >= 44 and v["back"]["h"] >= 44 and v["open"]["w"] >= 44 and v["open"]["h"] >= 44, tag + ": back and the arrow are 44 px", [v["back"], v["open"]])
                 ok(not v["overlap"] and not v["barOver"] and v["name"]["w"] >= 40, tag + ": the parts of the bar do not meet, the name has room", v)
@@ -3326,7 +3335,7 @@ def section_inside(b):
                 # the longest name a game may have, and every word half as long again
                 pg.evaluate("() => { const t = document.querySelector('.in-name-t'); t.textContent = t.textContent + ' ' + t.textContent + ' ' + t.textContent; }")
                 v = pg.evaluate(INSIDEVIEW)
-                ok(not v["overlap"] and not v["barOver"] and v["name"]["w"] >= 40 and v["bar"]["h"] <= 62, tag + ": a very long name is cut with an ellipsis, the bar stays slim", v)
+                ok(not v["overlap"] and not v["barOver"] and v["name"]["w"] >= 40 and v["bar"]["h"] <= (64 if w >= 768 else 52), tag + ": a very long name is cut with an ellipsis, the bar stays slim", v)
                 ctx.close()
         # ---- a run: Next game in the bar, to the next game inside, in the same window
         for w in (320, 1280):
@@ -3340,7 +3349,7 @@ def section_inside(b):
             v = pg.evaluate(INSIDEVIEW)
             tag = f"20 run {w}"
             ok(v["run"] and not v["run"]["hidden"] and v["run"]["game"] == two["id"] and v["run"]["href"].endswith("#run") and not v["run"]["target"] and v["run"]["w"] >= 44 and v["run"]["h"] >= 44, tag + ": Next game shows, to the next game, inside, this tab, 44 px", v["run"])
-            ok(not v["overlap"] and not v["barOver"] and v["bar"]["h"] <= 62 and v["back"]["w"] >= 44 and v["back"]["h"] >= 44 and v["open"]["w"] >= 44 and v["open"]["h"] >= 44, tag + ": the bar with Next game stays slim and whole, back and the arrow still 44 px", [v["bar"], v["back"], v["open"]])
+            ok(not v["overlap"] and not v["barOver"] and v["bar"]["h"] <= (64 if w >= 768 else 52) and v["back"]["w"] >= 44 and v["back"]["h"] >= 44 and v["open"]["w"] >= 44 and v["open"]["h"] >= 44, tag + ": the bar with Next game stays slim and whole, back and the arrow still 44 px", [v["bar"], v["back"], v["open"]])
             if w == 320: pg.screenshot(path=f"{SHOTS}/inside-run-{w}.png")
             pg.click("#run"); pg.wait_for_timeout(900)
             ok(pg.url.startswith(B + f"/es/g/{two['slug']}/play/") and pg.url.endswith("#run"), tag + ": a tap goes to the next game in the same tab", pg.url)
@@ -3358,13 +3367,160 @@ def section_inside(b):
         sql("DELETE FROM games WHERE url LIKE 'https://inside-%' OR url LIKE 'https://inside-stand.%'; UPDATE games SET frame = NULL, frame_off = 0, frame_at = NULL; DELETE FROM nets; DELETE FROM seen;")
 
 
+# ---- 21. chat Frame, 27 Nov 2026 (claude/play-here-27nov.md "Frame"): the Logicers frame around a game played inside, and the vote out.
+# Alone: --only-frame (several minutes, against the Worker that shows numbers; it plants two stand-in games, marks the local database's
+# games as ones a page may frame and takes both away at the end). The vote: the Worker on PORTAL_QUIET (8788) runs as production does
+# (no SHOW_VOTE): no vote on a game's page and /api/vote answers not_found; the one on 8787 is started with --var SHOW_VOTE:1.
+QUIET_B = os.environ.get("PORTAL_QUIET", "http://localhost:8788")
+FRAMEVIEW = r"""
+() => {
+  const R = (e) => e.getBoundingClientRect(), q = (s) => document.querySelector(s), de = document.documentElement;
+  const box = (e) => { if (!e) return null; const r = R(e); return { l: Math.round(r.left), t: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height), r: Math.round(r.right), b: Math.round(r.bottom) }; };
+  const vis = (e) => !!e && R(e).width > 0 && getComputedStyle(e).display !== 'none' && getComputedStyle(e).visibility !== 'hidden';
+  const bar = q('.in-bar'), card = q('.in-card'), f = q('.in-frame'), brand = q('.in-brand'), rest = q('.in-brand-rest'), play = q('.in-brand .brand-play'), more = q('.in-more');
+  const lines = (e) => new Set([...e.getClientRects()].map((r) => Math.round(r.top))).size;
+  const pcs = [...document.querySelectorAll('.in-brand .pc')];
+  const tops = new Set((pcs.length ? pcs : [play]).map((e) => Math.round(R(e).top))).size;
+  const cs = getComputedStyle(card), bgi = cs.backgroundImage;
+  const tiles = more ? [...more.querySelectorAll('li.tile')] : [];
+  const parts = [q('.back'), brand, q('.in-sep'), q('.in-coin'), q('.in-name-t'), q('.in-open'), q('#run')].filter(vis).map(box).sort((a, b) => a.l - b.l);
+  let over = false; for (let i = 1; i < parts.length; i++) if (parts[i].l < parts[i - 1].r - 1) over = true;
+  return { vw: de.clientWidth, vh: window.innerHeight, sw: de.scrollWidth, sh: de.scrollHeight, bar: box(bar), card: box(card), frame: box(f), brand: box(brand), back: box(q('.back')), open: box(q('.in-open')),
+    restShown: vis(rest), playOne: tops === 1, brandCut: brand.scrollWidth > brand.clientWidth + 1 || R(brand).right > de.clientWidth + 1 || R(brand).left < -1,
+    brandLabel: brand.getAttribute('aria-label'), brandHref: brand.getAttribute('href'), brandText: brand.textContent, playText: play.textContent,
+    strip: Math.round(parseFloat(cs.paddingTop)), stripImg: bgi, radius: cs.borderTopLeftRadius, bodyBg: getComputedStyle(document.body).backgroundColor, cardBg: cs.backgroundColor,
+    overlap: over, barOver: bar.scrollWidth > bar.clientWidth + 1, more: more ? { shown: vis(more), box: box(more), n: tiles.length, h: (q('.in-more-h') || {}).textContent,
+      tiles: tiles.map((li) => { const a = li.querySelector('.tile-a'); return { id: li.dataset.game, kind: li.dataset.kind, href: a.getAttribute('href'), hit: a.hasAttribute('data-hit'), w: Math.round(R(a).width), h: Math.round(R(a).height), r: Math.round(R(li).right), b: Math.round(R(li).bottom) }; }) } : null,
+    wait: (() => { const w = q('.in-wait'); return w ? { shown: getComputedStyle(w).visibility !== 'hidden' && +getComputedStyle(w).opacity > 0.5, on: card.classList.contains('is-on'), box: box(q('.in-wait-c')) } : null; })(),
+    rtl: getComputedStyle(de).direction === 'rtl' };
+}
+"""
+
+
+def section_frame(b):
+    today = datetime.now(timezone.utc).date().isoformat()
+    names = {"one": "Frame stand one", "two": "Frame stand two"}
+    plant = [{"name": names["one"], "url": STAND + "/", "lang": "es", "kind": "words", "line": "Frame", "maker": "", "checked": today},
+             {"name": names["two"], "url": STAND + "/two/", "lang": "es", "kind": "words", "line": "Frame", "maker": "", "checked": today}]
+    api = b.new_context(user_agent=UA).request
+    r = api.post(B + "/admin/import", data=json.dumps({"key": ADMIN, "games": plant}), headers={"Content-Type": "application/json"})
+    j = json.loads(r.text()); ok(r.status == 200 and j.get("added", 0) + j.get("updated", 0) == 2, "21: two games planted in Spanish", r.text()[:200])
+    sql("DELETE FROM nets; DELETE FROM seen;")
+    try:
+        sql("UPDATE games SET frame = 1 WHERE source != 'logicers'")
+        by = {g["name"]: g for g in json.loads(api.get(B + "/api/es/games?n=300").text())["games"]}
+        one, two = by.get(names["one"]), by.get(names["two"])
+        ok(one and two and one.get("inside"), "21: the planted games play inside", [one, two])
+        if not (one and two): return
+        page = f"/es/g/{one['slug']}/play/"
+        # ---- the frame at every width, light and dark
+        for w in (320, 390, 768, 1099, 1100, 1280, 1440):
+            for scheme in ("light", "dark"):
+                ctx, pg = new(b, w, scheme); stand_in(ctx)
+                pg.goto(url(page), wait_until="load"); pg.wait_for_timeout(500)
+                v = pg.evaluate(FRAMEVIEW)
+                tag = f"21 frame {w} {scheme}"
+                phone = w < 768
+                gap, strip = (6, 3) if phone else (24, 4)
+                ok(v["bodyBg"] != v["cardBg"], tag + ": the page is Play's background, the game a card on it", [v["bodyBg"], v["cardBg"]])
+                ok(v["bar"]["t"] == 0 and 44 <= v["bar"]["h"] <= (52 if phone else 64), tag + ": the bar, slim", v["bar"])
+                ok(v["card"]["l"] == gap and v["card"]["t"] == v["bar"]["b"] and abs(v["card"]["b"] - (v["vh"] - gap)) <= 1, tag + f": the card {gap} px from the edges, under the bar", [v["card"], v["vh"]])
+                ok(v["strip"] == strip and "linear-gradient" in v["stripImg"] and v["frame"]["t"] == v["card"]["t"] + strip and v["frame"]["l"] == v["card"]["l"] and v["frame"]["r"] == v["card"]["r"], tag + f": the Play colours along the card's top edge ({strip} px), the game under them", [v["strip"], v["stripImg"][:80], v["frame"]])
+                ok(v["stripImg"].count("rgb") >= 4, tag + ": the four ring colours of Play (the look on is rings)", v["stripImg"][:160])
+                ok(v["playOne"] and not v["brandCut"] and v["brandLabel"] == "Play Español" and v["brandHref"] == "/es/", tag + ": the page's name, whole, to the language's page, named in full", [v["brandText"], v["brandLabel"], v["brandHref"]])
+                ok(v["restShown"] == (not phone) and v["playText"] == "Play", tag + (": the Play word alone on a phone" if phone else ": Play and the language on a computer"), [v["restShown"], v["brandText"]])
+                ok(not v["overlap"] and not v["barOver"] and v["sw"] <= v["vw"] and v["sh"] <= v["vh"] + 1, tag + ": nothing meets, nothing scrolls", [v["overlap"], v["barOver"], v["sw"], v["sh"]])
+                ok(v["back"]["w"] >= 44 and v["back"]["h"] >= 44 and v["open"]["w"] >= 44 and v["open"]["h"] >= 44 and v["brand"]["h"] >= 44, tag + ": 44 px targets", [v["back"], v["brand"], v["open"]])
+                if phone:
+                    chrome = v["vh"] - v["frame"]["h"]
+                    ok(chrome <= 53.5 + 8, tag + f": the game keeps its height on a phone: {chrome} px around it, 53.5 before", chrome)
+                m = v["more"]
+                if w >= 1100:
+                    ok(m and m["shown"] and m["n"] == 6 and m["h"] == WORDS["es"]["more"], tag + ": six more games beside the game, under the word More", m and [m["shown"], m["n"], m["h"]])
+                    ok(m and m["box"]["l"] >= v["card"]["r"] + 12 and m["box"]["r"] <= v["vw"] - 23, tag + ": the rail beside the card, inside the page", m and [m["box"], v["card"]])
+                    ok(m and all(t["w"] >= 44 and t["h"] >= 44 for t in m["tiles"]) and one["id"] not in [t["id"] for t in m["tiles"]], tag + ": its coins are 44 px or more, never this game", m and m["tiles"][:2])
+                    ok(m and all(t["href"].endswith("/play/") and t["hit"] for t in m["tiles"]), tag + ": each coin of a game that plays inside opens it here and counts", m and m["tiles"][:2])
+                    ok(m and all(t["kind"] == "words" for t in m["tiles"]), tag + ": the same kind first (Spanish has more than six Words games)", m and [t["kind"] for t in m["tiles"]])
+                else:
+                    ok(not m or not m["shown"], tag + ": no rail below 1100 px", m and m["shown"])
+                bad = pg.evaluate(BOXES); ok(not bad, tag + ": boxes", bad[:3])
+                if w in (390, 1280): pg.screenshot(path=f"{SHOTS}/frame-{w}-{scheme}.png")
+                clean(pg, tag)
+                ctx.close()
+        # ---- a tap on a coin of the rail: the game plays here and counts
+        ctx, pg = new(b, 1280); stand_in(ctx)
+        hits = []
+        pg.on("request", lambda rq: hits.append(rq.post_data) if rq.url.endswith("/api/hit") else None)
+        pg.goto(url(page), wait_until="load"); pg.wait_for_timeout(400)
+        pg.click(f'.in-more li[data-game="{two["id"]}"] .tile-a'); pg.wait_for_timeout(900)
+        ok(pg.url.startswith(B + f"/es/g/{two['slug']}/play/") and any(two["id"] in (h or "") for h in hits), "21 rail: a coin opens its game inside, in this tab, and counts it", [pg.url, hits[:2]])
+        clean(pg, "21 rail"); ctx.close()
+        # ---- until the game has drawn itself: its coin, large, in the card
+        for w in (390, 1280):
+            ctx, pg = new(b, w)
+            held = []                                   # the game's page is held back until the coin has been seen
+            ctx.route(STAND + "/**", lambda route: held.append(route))
+            pg.goto(url(page), wait_until="domcontentloaded"); pg.wait_for_timeout(800)
+            v = pg.evaluate(FRAMEVIEW)
+            ok(v["wait"] and v["wait"]["shown"] and not v["wait"]["on"] and v["wait"]["box"]["w"] >= 80, f"21 wait {w}: the game's coin shows in the card while the game loads", v["wait"])
+            pg.screenshot(path=f"{SHOTS}/frame-wait-{w}.png")
+            for rt in held: rt.fulfill(status=200, headers={"content-type": "text/html; charset=utf-8", "content-security-policy": "frame-ancestors *"}, body=STAND_HTML)
+            pg.wait_for_timeout(1200)
+            v = pg.evaluate(FRAMEVIEW)
+            ok(v["wait"] and v["wait"]["on"] and not v["wait"]["shown"], f"21 wait {w}: and goes when the game has loaded", v["wait"])
+            ctx.close()
+        # ---- the 51 languages: the page's name in the bar, at 320, 390 and 1280, also with every word half as long again
+        for lang in LANGS:
+            gl = [g for g in json.loads(api.get(B + f"/api/{lang}/games?n=50").text())["games"] if g.get("inside")]
+            if not gl: ok(False, f"21 {lang}: a game that plays inside"); continue
+            for w in (320, 390, 1280):
+                ctx, pg = new(b, w, "dark" if w == 390 else "light")
+                ctx.route("**/*", lambda route: route.fulfill(status=200, headers={"content-type": "text/html"}, body="<!doctype html><title>x</title>x") if not route.request.url.startswith(B) else route.continue_())
+                pg.goto(url(gl[0]["inside"]), wait_until="load"); pg.wait_for_timeout(250)
+                v = pg.evaluate(FRAMEVIEW)
+                tag = f"21 {lang} {w}"
+                ok(v["playOne"] and not v["brandCut"] and not v["overlap"] and not v["barOver"] and v["sw"] <= v["vw"] and v["bar"]["h"] <= (52 if w < 768 else 64), tag + ": the page's name whole, the bar slim, nothing meets", [v["brandText"], v["bar"], v["overlap"], v["barOver"]])
+                if v["rtl"]: ok("to left" in v["stripImg"] or "270deg" in v["stripImg"], tag + ": right to left, the colours run as the letters do", v["stripImg"][:90])
+                pg.evaluate("() => { for (const e of document.querySelectorAll('.in-brand-rest, .in-name-t, .in-more-h, .tile-name')) e.textContent += e.textContent.slice(0, Math.ceil(e.textContent.length / 2)); }")
+                v = pg.evaluate(FRAMEVIEW)
+                ok(v["playOne"] and not v["brandCut"] and not v["overlap"] and not v["barOver"] and v["sw"] <= v["vw"], tag + ": and with every word half as long again", [v["brandText"], v["overlap"], v["barOver"]])
+                if lang in ("ar", "he") and w == 390: pg.screenshot(path=f"{SHOTS}/frame-{lang}-{w}.png")
+                ctx.close()
+        # ---- a run: Next game in the bar beside the name, phone and computer
+        for w in (390, 1280):
+            ctx, pg = new(b, w); stand_in(ctx)
+            day = datetime.now(timezone.utc).date().isoformat()
+            run = {"lang": "es", "day": day, "list": [{"id": one["id"], "url": one["url"], "inside": one["inside"]}, {"id": two["id"], "url": two["url"], "inside": two["inside"]}]}
+            pg.goto(url("/es/"), wait_until="networkidle")
+            pg.evaluate("(r) => { localStorage.setItem('portal.run', JSON.stringify(r)); }", run)
+            pg.goto(url(page) + "#run", wait_until="load"); pg.wait_for_timeout(700)
+            v = pg.evaluate(FRAMEVIEW)
+            rn = pg.evaluate("() => { const a = document.querySelector('#run'), r = a.getBoundingClientRect(); return { hidden: a.hidden, w: Math.round(r.width), h: Math.round(r.height) }; }")
+            ok(not rn["hidden"] and rn["w"] >= 44 and rn["h"] >= 44 and not v["overlap"] and not v["barOver"] and v["playOne"] and not v["brandCut"], f"21 run {w}: Next game beside the name, nothing meets", [rn, v["overlap"], v["barOver"]])
+            pg.screenshot(path=f"{SHOTS}/frame-run-{w}.png")
+            clean(pg, f"21 run {w}"); ctx.close()
+        # ---- the vote, out for now (Khayyam, 27 Nov 2026): the Worker as production runs it shows none and takes none
+        q = b.new_context(user_agent=UA).request
+        qg = json.loads(q.get(QUIET_B + "/api/es/games?n=5").text())["games"][0]
+        gp = q.get(QUIET_B + f"/es/g/{qg['slug']}/?r={RUN}")
+        if gp.status == 200:
+            ok("btn-vote" not in gp.text() and "data-vote" not in gp.text(), "21 vote: no vote on a game's page (SHOW_VOTE unset)")
+            vr = q.post(QUIET_B + "/api/vote", data=json.dumps({"game": qg["id"], "id": "d" * 21 + "A"}), headers={"Content-Type": "application/json", "Origin": QUIET_B})
+            ok(vr.status == 404, "21 vote: /api/vote answers not_found", [vr.status, vr.text()[:80]])
+        else:
+            ok(False, "21 vote: the quiet Worker answers (start it as the top of this file says)", gp.status)
+        ok("btn-vote" in api.get(B + f"/es/g/{one['slug']}/?r={RUN}").text(), "21 vote: with SHOW_VOTE 1 the vote is still there, to come back with one word")
+    finally:
+        sql("DELETE FROM games WHERE url LIKE 'https://inside-stand.%'; UPDATE games SET frame = NULL, frame_off = 0, frame_at = NULL; DELETE FROM nets; DELETE FROM seen;")
+
+
 def only_j(k=False):
     global PG_API
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=os.environ.get("CHROME") or None, args=["--no-sandbox"])
         api_ctx = b.new_context(user_agent=UA)
         PG_API = lambda path: api_ctx.request.get(B + path).text()
-        section_inside(b) if "--only-inside" in sys.argv else section_q3(b) if "--only-q3" in sys.argv else section_m(b) if "--only-m" in sys.argv else section_s(b) if "--only-s" in sys.argv else section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
+        section_frame(b) if "--only-frame" in sys.argv else section_inside(b) if "--only-inside" in sys.argv else section_q3(b) if "--only-q3" in sys.argv else section_m(b) if "--only-m" in sys.argv else section_s(b) if "--only-s" in sys.argv else section_r(b) if "--only-r" in sys.argv else section_q(b) if "--only-q" in sys.argv else section_x(b) if "--only-x" in sys.argv else section_n(b) if "--only-n" in sys.argv else section_l(b) if "--only-l" in sys.argv else section_k(b) if k else section_j(b)
         b.close()
     print(f"\n{passes} passed, {len(fails)} failed")
     sys.exit(1 if fails else 0)
@@ -3372,4 +3528,4 @@ def only_j(k=False):
 
 PG_API = None
 if __name__ == "__main__":
-    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r", "--only-s", "--only-m", "--only-q3", "--only-inside") for a in sys.argv) else main()
+    only_j("--only-k" in sys.argv) if any(a.startswith("--only-j") or a in ("--only-k", "--only-l", "--only-n", "--only-x", "--only-q", "--only-r", "--only-s", "--only-m", "--only-q3", "--only-inside", "--only-frame") for a in sys.argv) else main()

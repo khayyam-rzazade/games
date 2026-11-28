@@ -58,6 +58,9 @@
                   .maker-badge .maker-badge-p .maker-badge-picks .maker-badge-pick (aria-pressed; .is-light .is-dark)
                   .maker-badge-copy .maker-badge-code (the optional badge under a listed game: chat X, 23 Nov 2026)
      maker page   (chat J) .pl-mk .main-mk .mk-head .mk-name .btn-edit (data-maker-slug | data-maker-game; shown by portal.js)
+     inside page  (chat Inside; its frame, chat Frame) .pl-inside .in .in-bar .in-brand .in-brand-rest .in-sep .in-name .in-name-t .in-coin
+                  .in-ico .in-logo .in-open .in-run .in-main .in-card (.is-on: the game has loaded) .in-wait .in-wait-c .in-wait-ico
+                  .in-wait-logo .in-frame .in-more .in-more-h .in-tiles
      numbers      (a claimed game's page) .nums .nums-days .nums-total .nums-svg .nums-bar .nums-axis .nums-where .nums-c
                   .nums-ci .nums-cn .nums-cv .nums-cb   the coins' logo: .tile-logo (img) .tile-logo-lg (svg) .game-logo
      footer       .foot  .btn-add  .foot-links  .foot-about  .foot-lg
@@ -96,7 +99,7 @@ import { ring, dayAdd, LOOKS, LOOK_DEFAULT, setLook, getLook } from "./util.js";
 import { lgEn } from "./logicers.js";
 
 /* the static files under /a/, with the start of their SHA-256 as a stamp (npm run stamp writes this line; a test checks it) */
-export const ASSET = { css: "/a/portal.css?v=d0aeed6dc4", js: "/a/portal.js?v=631913293c", admin: "/a/admin.js?v=7f220fe019", icons: "/a/icons.svg?v=c337aa1e5b", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=7691685761" };
+export const ASSET = { css: "/a/portal.css?v=2463f4787a", js: "/a/portal.js?v=79600968fa", admin: "/a/admin.js?v=7f220fe019", icons: "/a/icons.svg?v=c337aa1e5b", icon: "/a/icon.svg?v=adb3f8129b", maker: "/a/maker.js?v=7691685761" };
 /* how many tiles a row shows before More (the rest is on the kind page) */
 export const ROW_MAX = 12;
 /* how many tiles a kind page shows before its More button (portal.js asks /api/<lang>/games for the rest): full lines at
@@ -316,13 +319,14 @@ function footer(d) {
 </footer>`;
 }
 
-/* one tile. g: { id, name, kind, slug?, lang?, url, today, isNew, place, sold }, o: { lg, en }.
+/* one tile. g: { id, name, kind, slug?, lang?, url, today, isNew, place, sold, inside? }, o: { lg, en, play }.
    The coin opens the game's page (Khayyam, 22 Nov 2026: "it should open the game page as it does with clicking the game's
    name"; it played from 20 Nov): the coin and the name under it are one link to /<lang>/g/<slug>/, in the same tab, one
    tab stop (the name is the same link, out of the tab order); it counts nothing. A play is counted from Play and the big
    coin on the game's page, the dice and My run. A Logicers game has no page here: its coin opens the game in a new tab and
    counts (data-hit), and its name is the same link. With nobody today the coin shows its kind's icon large in its ring
-   colour (.is-0), never a 0. */
+   colour (.is-0), never a 0. o.play (the inside page's rail, chat Frame, 27 Nov 2026): a game that plays inside Play opens its inside
+   page in this tab and counts, as Play does; any other opens its page, as everywhere. */
 export function tile(d, g, o) {
   o = o || {};
   const cls = ["tile", ring(g.id)];
@@ -337,7 +341,8 @@ export function tile(d, g, o) {
   if (!today) cls.push("is-0");
   const logo = tileLogo(g, o);
   const en = o.en ? ' lang="en"' : "";
-  const link = o.lg ? `href="${esc(g.url)}" target="_blank" rel="noopener" data-hit` : `href="/${esc(g.lang || d.lang)}/g/${esc(g.slug)}/"`;
+  const link = o.lg ? `href="${esc(g.url)}" target="_blank" rel="noopener" data-hit`
+    : o.play && g.inside ? `href="${esc(g.inside)}" data-hit` : `href="/${esc(g.lang || d.lang)}/g/${esc(g.slug)}/"`;
   return `<li class="${cls.join(" ")}" data-game="${esc(g.id)}" data-kind="${esc(g.kind)}"><a class="tile-a" ${link}>`
     + (!o.lg && g.isNew ? `<span class="tile-badge">${T(d.lang, "new")}</span>` : "")
     + (o.en ? `<span class="tile-chip" lang="en">${T(d.lang, "en_chip")}</span>` : "")
@@ -625,7 +630,7 @@ ${g.line ? `<p class="game-line">${esc(g.line)}</p>` : ""}
 <div class="game-acts">
 <a class="btn btn-play" href="${esc(inside || g.url)}"${out} data-hit>${icon("i-play")}<span>${T(L, "play")}</span></a>
 ${inside ? `<a class="btn-site" href="${esc(g.url)}" target="_blank" rel="noopener" data-hit aria-label="${T(L, "open_site")}" title="${T(L, "open_site")}">${icon("i-out")}</a>` : ""}
-<button class="btn btn-vote" type="button" data-vote="${esc(g.id)}" aria-pressed="false" hidden>${icon("i-crown", "vote-i")}${icon("i-check", "vote-ok")}<span class="vote-t">${T(L, "vote")}</span></button>
+${d.vote ? `<button class="btn btn-vote" type="button" data-vote="${esc(g.id)}" aria-pressed="false" hidden>${icon("i-crown", "vote-i")}${icon("i-check", "vote-ok")}<span class="vote-t">${T(L, "vote")}</span></button>` : ""}
 <button class="tile-star game-star" type="button" aria-pressed="false" aria-label="${T(L, "star")}" data-star="${esc(g.id)}">${icon("i-star")}</button>
 </div>
 </div>
@@ -664,20 +669,45 @@ ${tplTile(d)}`;
    order: back to the game's page (round, named by the game), the small coin and the game's name, the arrow that opens the game's own
    site in a new tab (named by the word open_site) and, in a run (/play/#run), Next game (the word run; portal.js gives it the
    next game of today's run from portal.run). Not indexed; the frame is the game's address as listed; nothing is counted here
-   (the tap on Play counted it), except a tap on Next game, as the run's link counts on the language's page. */
+   (the tap on Play counted it), except a tap on Next game, as the run's link counts on the language's page.
+   The Logicers frame (chat Frame, 27 Nov 2026; Khayyam: "it is not really noticed that it is embedded within logicers"): the page is
+   Play's, its own background with no white bar; after the back button the page's own name (Play English, in the look PLAY_LOOK
+   names; a phone shows its Play word alone, the whole name stays its link's name) leads to the language's page, then a thin line,
+   then the coin and the game's name. The game is a card on that background (.in-card) with the Play letters' colours along its top
+   edge; until the game has drawn itself, the card shows the game's coin, large (.in-wait; portal.js takes it away on the frame's
+   load). On a computer (1100 px and wider) the rail (.in-more) holds RAIL_N more games of the language (db.js railData), headed by
+   the word more; a coin of a game that plays inside opens it here and counts, as Play does. No new word. */
 export function pageInside(d) {
   d = Object.assign({}, d, { page: "inside", nums: false });
-  const g = d.game, L = d.lang, pic = picUrl(g), back = `/${L}/g/${g.slug}/`;
+  const g = d.game, L = d.lang, pic = picUrl(g), back = `/${L}/g/${g.slug}/`, kind = KINDS.includes(g.kind) ? g.kind : "other";
   const coin = pic ? `<span class="in-coin has-pic ${ring(g.id)}"><img class="in-logo" src="${esc(pic)}" alt="" width="28" height="28" decoding="async"></span>`
-    : `<span class="in-coin ${ring(g.id)}">${icon("k-" + (KINDS.includes(g.kind) ? g.kind : "other"), "in-ico")}</span>`;
+    : `<span class="in-coin ${ring(g.id)}">${icon("k-" + kind, "in-ico")}</span>`;
+  const wait = `<span class="in-wait" aria-hidden="true"><span class="in-wait-c ${ring(g.id)}${pic ? " has-pic" : ""}">${pic
+    ? `<img class="in-wait-logo" src="${esc(pic)}" alt="" width="96" height="96" decoding="async">` : icon("k-" + kind, "in-wait-ico")}</span></span>`;
+  const [play, rest] = nameParts(L);
+  const name = `<a class="in-brand" href="/${L}/" aria-label="${esc(pageName(L))}"><span class="brand-play">${getLook() === "rings" ? ringLetters(play) : esc(play)}</span>`
+    + (rest ? `<span class="in-brand-rest"> ${esc(rest)}</span>` : "") + `</a>`;
+  const rail = (d.rail || []).length ? `
+<aside class="in-more" aria-labelledby="h-in-more">
+<h2 class="in-more-h" id="h-in-more">${T(L, "more")}</h2>
+<ul class="in-tiles" role="list">
+${d.rail.map((x) => tile(d, x, { play: true })).join("\n")}
+</ul>
+</aside>` : "";
   const body = `<div class="in">
 <header class="in-bar">
 <a class="back" href="${esc(back)}" aria-label="${esc(g.name)}">${icon("i-back", "ico-flip")}</a>
+${name}<span class="in-sep" aria-hidden="true"></span>
 <h1 class="in-name" dir="auto">${coin}<span class="in-name-t">${esc(g.name)}</span></h1>
 <a class="in-open" href="${esc(g.url)}" target="_blank" rel="noopener" aria-label="${T(L, "open_site")}" title="${T(L, "open_site")}">${icon("i-out")}</a>
 <a class="run in-run" id="run" data-hit data-game="" hidden>${icon("i-play")}<span class="run-t"></span></a>
 </header>
+<div class="in-main">
+<div class="in-card">
+${wait}
 <iframe class="in-frame" src="${esc(g.url)}" title="${esc(g.name)}" sandbox="${SANDBOX}" allow="${FRAME_ALLOW}" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>${rail}
+</div>
 </div>`;
   return doc({ lang: L, cls: "pl-inside", title: g.name + " · " + pageName(L), noindex: true, body,
     data: pageData(d, { game: g.id }) });
